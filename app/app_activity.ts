@@ -4,6 +4,7 @@ import { AppState, Platform } from 'react-native';
 import { getCanonicalUserId } from './user_id_policy';
 import { submitClientReport } from './client_reports';
 import { isAnalyticsConsentGranted } from './analytics_consent';
+import { recordSupportDiagnostic } from './support_diagnostics';
 
 type ActivityValue = string | number | boolean | null | undefined;
 
@@ -24,6 +25,39 @@ const LOCAL_ACTIVITY_QUEUE_ENABLED = false;
 let lastEventKey = '';
 let lastEventAt = 0;
 let activityQueueCache: Array<Record<string, unknown>> | null = null;
+
+function recordKnownSupportDiagnostic(action: string, meta: AppActivityMeta, atMs: number): void {
+  if (action === 'navigation:screen_view') {
+    void recordSupportDiagnostic({
+      atMs,
+      event: 'navigation',
+      screen: meta.screen,
+      result: meta.result ?? 'info',
+      subject: 'app',
+    });
+    return;
+  }
+  if (action === 'app:state_change') {
+    const state = AppState.currentState;
+    const reason = state === 'active' ? 'foreground' : state === 'background' ? 'background' : 'inactive';
+    void recordSupportDiagnostic({
+      atMs,
+      event: 'app_state',
+      result: meta.result ?? 'info',
+      reason,
+      subject: 'app',
+    });
+    return;
+  }
+  void recordSupportDiagnostic({
+    atMs,
+    event: 'feature_action',
+    action,
+    screen: meta.screen,
+    result: meta.result ?? 'info',
+    subject: 'app',
+  });
+}
 
 function cleanTags(tags: AppActivityMeta['tags']) {
   if (!tags) return {};
@@ -65,6 +99,7 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
     if (key === lastEventKey && now - lastEventAt < 750) return;
     lastEventKey = key;
     lastEventAt = now;
+    recordKnownSupportDiagnostic(action, meta, now);
 
     // Decide whether the event has any sink before paying for identity reads.
     // Explicit traces and sampled errors keep their existing diagnostic path.

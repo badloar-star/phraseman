@@ -5,7 +5,12 @@ import { onDocumentCreated } from 'firebase-functions/v2/firestore';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { maskEmailForRecoveryHint } from './auth_identity';
-import { ACCOUNT_DELETE_AUTH_MARKERS, ACCOUNT_DELETE_TOMBSTONES } from './account_delete_job';
+import {
+  ACCOUNT_DELETE_AUTH_MARKERS,
+  ACCOUNT_DELETE_PERMANENT_DENIALS,
+  ACCOUNT_DELETE_TOMBSTONES,
+  accountDeletePermanentDenialId,
+} from './account_delete_job';
 import { sendTransactionalEmail } from './admin_email';
 import { sendTelegramAlert, ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import { RESEND_API_KEY } from './resend_secret';
@@ -36,6 +41,11 @@ const LEADERBOARD = 'leaderboard';
 const RECOVERY_CODES = 'auth_recovery_codes';
 const RECOVERY_RATE_LIMITS = 'auth_recovery_rate_limits';
 const RECOVERY_EVENTS = 'auth_recovery_events';
+
+function accountDeleteDenialRef(db: FirebaseFirestore.Firestore, identity: string) {
+  return db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+    .doc(accountDeletePermanentDenialId(identity));
+}
 
 export const CLEAN_RECOVERY_COLLECTIONS = {
   challenges: 'auth_recovery_challenges',
@@ -480,22 +490,26 @@ export const authRequestRecoveryCode = onCall(REQUEST_RECOVERY_CALLABLE_OPTIONS,
   const currentLinkRef = db.collection(AUTH_LINKS).doc(authUid);
   const currentMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
   const targetTombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId);
+  const currentDenialRef = accountDeleteDenialRef(db, authUid);
+  const targetStableDenialRef = accountDeleteDenialRef(db, stableId);
   const rateRef = db.collection(RECOVERY_RATE_LIMITS).doc(stableId);
   const codeRef = db.collection(RECOVERY_CODES).doc(stableId);
 
   let delivery: { email: string; maskedEmail: string; provider: RecoveryProvider };
   try {
     delivery = await db.runTransaction(async (tx) => {
-      const [userSnap, currentLinkSnap, currentMarkerSnap, targetTombstoneSnap, rateSnap] =
+      const [userSnap, currentLinkSnap, currentMarkerSnap, targetTombstoneSnap, currentDenialSnap, targetStableDenialSnap, rateSnap] =
         await Promise.all([
           tx.get(userRef),
           tx.get(currentLinkRef),
           tx.get(currentMarkerRef),
           tx.get(targetTombstoneRef),
+          tx.get(currentDenialRef),
+          tx.get(targetStableDenialRef),
           tx.get(rateRef),
         ]);
 
-      if (currentMarkerSnap.exists || targetTombstoneSnap.exists) {
+      if (currentMarkerSnap.exists || targetTombstoneSnap.exists || currentDenialSnap.exists || targetStableDenialSnap.exists) {
         throw new HttpsError('failed-precondition', 'account_delete_pending');
       }
       if (!userSnap.exists) {
@@ -517,11 +531,14 @@ export const authRequestRecoveryCode = onCall(REQUEST_RECOVERY_CALLABLE_OPTIONS,
       const targetMarkerRefs = targetProviderUids.map(
         (uid) => db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(uid),
       );
-      const [targetAnchorSnaps, targetMarkerSnaps] = await Promise.all([
+      const targetDenialRefs = targetProviderUids.map((uid) => accountDeleteDenialRef(db, uid));
+      const [targetAnchorSnaps, targetMarkerSnaps, targetDenialSnaps] = await Promise.all([
         Promise.all(targetAnchorRefs.map((ref) => tx.get(ref))),
         Promise.all(targetMarkerRefs.map((ref) => tx.get(ref))),
+        Promise.all(targetDenialRefs.map((ref) => tx.get(ref))),
       ]);
-      if (targetMarkerSnaps.some((snapshot) => snapshot.exists)) {
+      if (targetMarkerSnaps.some((snapshot) => snapshot.exists)
+        || targetDenialSnaps.some((snapshot) => snapshot.exists)) {
         throw new HttpsError('failed-precondition', 'account_delete_pending');
       }
       targetAnchorSnaps.forEach((snapshot, index) => {
@@ -539,13 +556,16 @@ export const authRequestRecoveryCode = onCall(REQUEST_RECOVERY_CALLABLE_OPTIONS,
           const displacedUserRef = db.collection(USERS).doc(currentStableId);
           const displacedTombstoneRef =
             db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(currentStableId);
-          const [displacedUserSnap, displacedTombstoneSnap] = await Promise.all([
+          const displacedDenialRef = accountDeleteDenialRef(db, currentStableId);
+          const [displacedUserSnap, displacedTombstoneSnap, displacedDenialSnap] = await Promise.all([
             tx.get(displacedUserRef),
             tx.get(displacedTombstoneRef),
+            tx.get(displacedDenialRef),
           ]);
           const displacedUserData = displacedUserSnap.data() ?? {};
           if (
             displacedTombstoneSnap.exists
+            || displacedDenialSnap.exists
             || !displacedUserSnap.exists
             || String(displacedUserData.firebaseAuthUid ?? '').trim() !== authUid
             || isProviderOwnedUser(displacedUserData)
@@ -657,13 +677,17 @@ async function performAtomicRecoveryRelink(params: {
   const linkRef = db.collection(AUTH_LINKS).doc(newUid);
   const markerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(newUid);
   const targetTombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId);
+  const newUidDenialRef = accountDeleteDenialRef(db, newUid);
+  const targetStableDenialRef = accountDeleteDenialRef(db, stableId);
   const leaderboardRef = db.collection(LEADERBOARD).doc(stableId);
-  const [userSnap, linkSnap, markerSnap, targetTombstoneSnap, leaderboardSnap] =
+  const [userSnap, linkSnap, markerSnap, targetTombstoneSnap, newUidDenialSnap, targetStableDenialSnap, leaderboardSnap] =
     await Promise.all([
       tx.get(userRef),
       tx.get(linkRef),
       tx.get(markerRef),
       tx.get(targetTombstoneRef),
+      tx.get(newUidDenialRef),
+      tx.get(targetStableDenialRef),
       tx.get(leaderboardRef),
     ]);
   if (
@@ -678,7 +702,7 @@ async function performAtomicRecoveryRelink(params: {
   ) {
     throwIdentityMismatch();
   }
-  if (markerSnap.exists || targetTombstoneSnap.exists) {
+  if (markerSnap.exists || targetTombstoneSnap.exists || newUidDenialSnap.exists || targetStableDenialSnap.exists) {
     throw new HttpsError('failed-precondition', 'account_delete_pending');
   }
   if (!userSnap.exists) {
@@ -699,11 +723,14 @@ async function performAtomicRecoveryRelink(params: {
   const targetMarkerRefs = allPreviousProviderUids.map(
     (uid) => db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(uid),
   );
-  const [targetAnchorSnaps, targetMarkerSnaps] = await Promise.all([
+  const targetDenialRefs = allPreviousProviderUids.map((uid) => accountDeleteDenialRef(db, uid));
+  const [targetAnchorSnaps, targetMarkerSnaps, targetDenialSnaps] = await Promise.all([
     Promise.all(targetAnchorRefs.map((ref) => tx.get(ref))),
     Promise.all(targetMarkerRefs.map((ref) => tx.get(ref))),
+    Promise.all(targetDenialRefs.map((ref) => tx.get(ref))),
   ]);
-  if (targetMarkerSnaps.some((snapshot) => snapshot.exists)) {
+  if (targetMarkerSnaps.some((snapshot) => snapshot.exists)
+    || targetDenialSnaps.some((snapshot) => snapshot.exists)) {
     throw new HttpsError('failed-precondition', 'account_delete_pending');
   }
   targetAnchorSnaps.forEach((snapshot, index) => {
@@ -731,13 +758,16 @@ async function performAtomicRecoveryRelink(params: {
       const displacedUserRef = db.collection(USERS).doc(previousLinkedStableId);
       const displacedTombstoneRef =
         db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(previousLinkedStableId);
-      const [displacedUserSnap, displacedTombstoneSnap] = await Promise.all([
+      const displacedDenialRef = accountDeleteDenialRef(db, previousLinkedStableId);
+      const [displacedUserSnap, displacedTombstoneSnap, displacedDenialSnap] = await Promise.all([
         tx.get(displacedUserRef),
         tx.get(displacedTombstoneRef),
+        tx.get(displacedDenialRef),
       ]);
       const displacedUserData = displacedUserSnap.data() ?? {};
       if (
         displacedTombstoneSnap.exists
+        || displacedDenialSnap.exists
         || !displacedUserSnap.exists
         || String(displacedUserData.firebaseAuthUid ?? '').trim() !== newUid
         || isProviderOwnedUser(displacedUserData)
@@ -1129,11 +1159,15 @@ async function requestCleanInstallRecoveryCodeCore(request: {
     const candidateAnchorRef = db.collection(AUTH_LINKS).doc(initialProviderUid);
     const requesterMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
     const targetMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(initialProviderUid);
-    const [rateSnaps, requesterMarkerSnap, targetMarkerSnap, candidateAnchorSnap] =
+    const requesterDenialRef = accountDeleteDenialRef(db, authUid);
+    const targetDenialRef = accountDeleteDenialRef(db, initialProviderUid);
+    const [rateSnaps, requesterMarkerSnap, targetMarkerSnap, requesterDenialSnap, targetDenialSnap, candidateAnchorSnap] =
       await Promise.all([
         Promise.all(rateRefs.map((ref) => tx.get(ref))),
         tx.get(requesterMarkerRef),
         tx.get(targetMarkerRef),
+        tx.get(requesterDenialRef),
+        tx.get(targetDenialRef),
         tx.get(candidateAnchorRef),
       ]);
     const anchorData = candidateAnchorSnap.data() ?? {};
@@ -1141,14 +1175,20 @@ async function requestCleanInstallRecoveryCodeCore(request: {
     const stableIdForRead = candidateStableId || fallback.stableId;
     const userRef = db.collection(USERS).doc(stableIdForRead);
     const tombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableIdForRead);
-    const [userSnap, tombstoneSnap] = await Promise.all([tx.get(userRef), tx.get(tombstoneRef)]);
+    const stableDenialRef = accountDeleteDenialRef(db, stableIdForRead);
+    const [userSnap, tombstoneSnap, stableDenialSnap] = await Promise.all([
+      tx.get(userRef), tx.get(tombstoneRef), tx.get(stableDenialRef),
+    ]);
     const userData = userSnap.data() ?? {};
     const linked = readLinkedAuth(userData);
     const eligible = Boolean(
       candidateUser
       && !requesterMarkerSnap.exists
       && !targetMarkerSnap.exists
+      && !requesterDenialSnap.exists
+      && !targetDenialSnap.exists
       && !tombstoneSnap.exists
+      && !stableDenialSnap.exists
       && candidateAnchorSnap.exists
       && candidateStableId
       && String(anchorData.providerUid ?? '').trim() === candidateUser.uid
@@ -1338,11 +1378,13 @@ export const authCleanInstallRecoveryDeliveryWorker = onDocumentCreated(
       && hashesEqual(expectedEmailHmac, String(intent.emailHmac ?? ''))
       && String(challenge.emailHmac ?? '') === String(intent.emailHmac ?? '')
     ) {
-      const [anchorSnap, userSnap, markerSnap, tombstoneSnap] = await Promise.all([
+      const [anchorSnap, userSnap, markerSnap, tombstoneSnap, authDenialSnap, stableDenialSnap] = await Promise.all([
         db.collection(AUTH_LINKS).doc(targetProviderUid).get(),
         db.collection(USERS).doc(targetStableId).get(),
         db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(targetProviderUid).get(),
         db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(targetStableId).get(),
+        accountDeleteDenialRef(db, targetProviderUid).get(),
+        accountDeleteDenialRef(db, targetStableId).get(),
       ]);
       const anchor = anchorSnap.data() ?? {};
       const userData = userSnap.data() ?? {};
@@ -1352,6 +1394,8 @@ export const authCleanInstallRecoveryDeliveryWorker = onDocumentCreated(
         && userSnap.exists
         && !markerSnap.exists
         && !tombstoneSnap.exists
+        && !authDenialSnap.exists
+        && !stableDenialSnap.exists
         && String(anchor.stable_id ?? '').trim() === targetStableId
         && String(anchor.providerUid ?? '').trim() === targetProviderUid
         && String(anchor.provider ?? '').trim() === provider
@@ -1682,13 +1726,17 @@ async function readAndValidateHandoffIdentity(
   const userRef = db.collection(USERS).doc(stableId);
   const markerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
   const tombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId);
-  const [linkSnap, userSnap, markerSnap, tombstoneSnap] = await Promise.all([
+  const authDenialRef = accountDeleteDenialRef(db, authUid);
+  const stableDenialRef = accountDeleteDenialRef(db, stableId);
+  const [linkSnap, userSnap, markerSnap, tombstoneSnap, authDenialSnap, stableDenialSnap] = await Promise.all([
     tx.get(linkRef),
     tx.get(userRef),
     tx.get(markerRef),
     tx.get(tombstoneRef),
+    tx.get(authDenialRef),
+    tx.get(stableDenialRef),
   ]);
-  if (markerSnap.exists || tombstoneSnap.exists) {
+  if (markerSnap.exists || tombstoneSnap.exists || authDenialSnap.exists || stableDenialSnap.exists) {
     throw new HttpsError('failed-precondition', 'account_delete_pending');
   }
   if (!linkSnap.exists || !userSnap.exists) {

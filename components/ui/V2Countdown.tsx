@@ -123,6 +123,7 @@ export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: 
       accessibilityLabel={triLang(lang, {
         ru: `Время на вопрос: ${Math.ceil(seconds)}`,
         uk: `Час на запитання: ${Math.ceil(seconds)}`,
+        en: `Time for the question: ${Math.ceil(seconds)}`,
         es: `Tiempo para la pregunta: ${Math.ceil(seconds)}`,
         'pt-BR': `Tempo para a pergunta: ${Math.ceil(seconds)}`,
         vi: `Thời gian cho câu hỏi: ${Math.ceil(seconds)}`,

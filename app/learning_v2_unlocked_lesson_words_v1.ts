@@ -110,6 +110,14 @@ export function learningV2UnlockedLessonWordsKeyV1(
   return `learning-v2:unlocked-words:v1:${targetLanguage}:lesson:${lessonOrdinal}`;
 }
 
+export function learningV2AuthoringPreviewUnlockedLessonWordsKeyV1(
+  targetLanguage: string,
+  lessonOrdinal: number,
+): string {
+  validateScope({ targetLanguage, lessonOrdinal });
+  return `learning-v2:authoring-preview-unlocked-words:v1:${targetLanguage}:lesson:${lessonOrdinal}`;
+}
+
 export function parseLearningV2UnlockedLessonWordsV1(
   raw: string | null,
 ): readonly LearningV2UnlockedLessonWordV1[] {
@@ -140,6 +148,22 @@ export function mergeLearningV2UnlockedLessonWordV1(
   return Object.freeze([...current, Object.freeze({ ...next })]);
 }
 
+export function mergeLearningV2UnlockedLessonWordListsV1(
+  ...lists: readonly (readonly LearningV2UnlockedLessonWordV1[])[]
+): readonly LearningV2UnlockedLessonWordV1[] {
+  const chronological = lists
+    .flat()
+    .slice()
+    .sort(
+      (left, right) =>
+        Date.parse(left.firstEncounteredAt) - Date.parse(right.firstEncounteredAt),
+    );
+  return chronological.reduce<readonly LearningV2UnlockedLessonWordV1[]>(
+    (current, item) => mergeLearningV2UnlockedLessonWordV1(current, item),
+    Object.freeze([]),
+  );
+}
+
 function emit(key: string): void {
   for (const listener of listeners.get(key) ?? []) listener();
 }
@@ -149,6 +173,23 @@ export function subscribeLearningV2UnlockedLessonWordsV1(
   listener: Listener,
 ): () => void {
   const key = learningV2UnlockedLessonWordsKeyV1(
+    scope.targetLanguage,
+    scope.lessonOrdinal,
+  );
+  const scoped = listeners.get(key) ?? new Set<Listener>();
+  scoped.add(listener);
+  listeners.set(key, scoped);
+  return () => {
+    scoped.delete(listener);
+    if (scoped.size === 0) listeners.delete(key);
+  };
+}
+
+export function subscribeLearningV2AuthoringPreviewUnlockedLessonWordsV1(
+  scope: Scope,
+  listener: Listener,
+): () => void {
+  const key = learningV2AuthoringPreviewUnlockedLessonWordsKeyV1(
     scope.targetLanguage,
     scope.lessonOrdinal,
   );
@@ -171,6 +212,41 @@ export async function loadLearningV2UnlockedLessonWordsV1(
   return parseLearningV2UnlockedLessonWordsV1(await AsyncStorage.getItem(key));
 }
 
+export async function loadLearningV2AuthoringPreviewUnlockedLessonWordsV1(
+  scope: Scope,
+): Promise<readonly LearningV2UnlockedLessonWordV1[]> {
+  const key = learningV2AuthoringPreviewUnlockedLessonWordsKeyV1(
+    scope.targetLanguage,
+    scope.lessonOrdinal,
+  );
+  return parseLearningV2UnlockedLessonWordsV1(await AsyncStorage.getItem(key));
+}
+
+export async function loadLearningV2VisibleUnlockedLessonWordsV1(
+  scope: Scope,
+  includeAuthoringPreview: boolean,
+): Promise<readonly LearningV2UnlockedLessonWordV1[]> {
+  const learner = await loadLearningV2UnlockedLessonWordsV1(scope);
+  if (!includeAuthoringPreview) return learner;
+  const preview = await loadLearningV2AuthoringPreviewUnlockedLessonWordsV1(scope);
+  return mergeLearningV2UnlockedLessonWordListsV1(learner, preview);
+}
+
+async function markAtKey(
+  item: LearningV2UnlockedLessonWordV1,
+  key: string,
+): Promise<readonly LearningV2UnlockedLessonWordV1[]> {
+  const current = parseLearningV2UnlockedLessonWordsV1(
+    await AsyncStorage.getItem(key),
+  );
+  const merged = mergeLearningV2UnlockedLessonWordV1(current, item);
+  if (merged.length !== current.length) {
+    await AsyncStorage.setItem(key, JSON.stringify(merged));
+    emit(key);
+  }
+  return merged;
+}
+
 export async function markLearningV2LessonWordUnlockedV1(
   item: LearningV2UnlockedLessonWordV1,
 ): Promise<readonly LearningV2UnlockedLessonWordV1[]> {
@@ -183,11 +259,16 @@ export async function markLearningV2LessonWordUnlockedV1(
     scope.targetLanguage,
     scope.lessonOrdinal,
   );
-  const current = await loadLearningV2UnlockedLessonWordsV1(scope);
-  const merged = mergeLearningV2UnlockedLessonWordV1(current, item);
-  if (merged.length !== current.length) {
-    await AsyncStorage.setItem(key, JSON.stringify(merged));
-    emit(key);
-  }
-  return merged;
+  return markAtKey(item, key);
+}
+
+export async function markLearningV2AuthoringPreviewWordUnlockedV1(
+  item: LearningV2UnlockedLessonWordV1,
+): Promise<readonly LearningV2UnlockedLessonWordV1[]> {
+  if (!isValidItem(item)) fail();
+  const key = learningV2AuthoringPreviewUnlockedLessonWordsKeyV1(
+    item.targetLanguage,
+    item.lessonOrdinal,
+  );
+  return markAtKey(item, key);
 }

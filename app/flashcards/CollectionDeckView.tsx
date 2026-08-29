@@ -518,7 +518,7 @@ export default function CollectionDeckView({
           testID="fc-deck-exit"
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
-            ru: 'К списку', uk: 'До списку', es: 'A la lista',
+            ru: 'К списку', uk: 'До списку', en: 'To the list', es: 'A la lista',
             'pt-BR': 'Para a lista', vi: 'Về danh sách', id: 'Ke daftar', tr: 'Listeye dön', pl: 'Do listy',
           })}
           onPress={onExitToList}
@@ -558,7 +558,7 @@ export default function CollectionDeckView({
           testID="fc-deck-prev"
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
-            ru: 'Предыдущая карточка', uk: 'Попередня картка', es: 'Tarjeta anterior',
+            ru: 'Предыдущая карточка', uk: 'Попередня картка', en: 'Previous card', es: 'Tarjeta anterior',
             'pt-BR': 'Cartão anterior', vi: 'Thẻ trước', id: 'Kartu sebelumnya', tr: 'Önceki kart', pl: 'Poprzednia karta',
           })}
           onPress={goPrev}
@@ -589,7 +589,7 @@ export default function CollectionDeckView({
           testID="fc-deck-next"
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
-            ru: 'Следующая карточка', uk: 'Наступна картка', es: 'Siguiente tarjeta',
+            ru: 'Следующая карточка', uk: 'Наступна картка', en: 'Next card', es: 'Siguiente tarjeta',
             'pt-BR': 'Próximo cartão', vi: 'Thẻ tiếp theo', id: 'Kartu berikutnya', tr: 'Sonraki kart', pl: 'Następna karta',
           })}
           onPress={goNext}

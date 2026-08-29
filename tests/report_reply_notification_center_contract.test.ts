@@ -31,11 +31,12 @@ describe('report replies in home notification center', () => {
     const button = read(path.join('components', 'NotificationCenterButton.tsx'));
     expect(model).toContain("| 'report_reply'");
     expect(model).toContain('export interface UserNotificationReportReply');
-    expect(model).toContain('reportReply: normalizeReportReply(data.reportReply)');
+    expect(model).toContain('reportReply: normalizeUserNotificationReportReply(data.reportReply)');
+    expect(model).toContain('rewardBundle: Readonly<{');
     expect(model).toContain('export async function refreshUserNotificationsOnce');
     expect(model).toContain("LAST_REFRESH_KEY = 'user_notifications_last_refresh_ms_v1'");
 
-    expect(button).toContain("import { claimReportReplyCoinsOptimistically } from '../app/app_messages'");
+    expect(button).toContain("import { claimReportRewardBundle, resumePendingReportRewardBundleClaims } from '../app/report_reward_bundle'");
     expect(button).toContain("import { AppState, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'");
     expect(button).toContain("import MotionModal from './MotionModal'");
     expect(button).toContain('<MotionModal');
@@ -47,6 +48,21 @@ describe('report replies in home notification center', () => {
     expect(button).toContain("AppState.addEventListener('change'");
     expect(button).toContain("row.type === 'report_reply' && row.reportReply");
     expect(button).toContain('notification-report-reply-claim-cta');
-    expect(button).toContain('claimReportReplyCoinsOptimistically(reward.messageId, reward.coins)');
+    expect(button).toContain('claimReportRewardBundle(reward.messageId, reward.rewardBundle)');
+    expect(button).toContain("claim: triLang(lang, { ru: 'Получить'");
+    expect(button).toContain("claimed: triLang(lang, { ru: 'Награда получена'");
+    expect(button).not.toContain('Вас ждёт приятный бонус');
+    expect(button).not.toContain('уже на счету');
+  });
+
+  it('keeps each row unread until that exact notification is opened', () => {
+    const button = read(path.join('components', 'NotificationCenterButton.tsx'));
+    const openStart = button.indexOf('const open = useCallback');
+    const openEnd = button.indexOf('const close = useCallback', openStart);
+    const openBlock = button.slice(openStart, openEnd);
+    expect(openBlock).not.toContain('markUserNotificationsRead(');
+    const rowStart = button.indexOf('const openNotification = useCallback');
+    const rowEnd = button.indexOf('const renderReportReplyDetail', rowStart);
+    expect(button.slice(rowStart, rowEnd)).toContain('markUserNotificationsRead([row.id])');
   });
 });

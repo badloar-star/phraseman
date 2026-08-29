@@ -116,23 +116,15 @@ function inputModeFor(family, modeNative) {
 }
 function modeNativeFeedbackByResponseId(card, locale) {
     const payload = card.modePayload;
-    if (!payload || payload.family === 'speed_match' || payload.family === 'scripted_repeat_compare') {
+    if (!payload ||
+        payload.family === 'phrase_builder' ||
+        payload.family === 'listen_build_dictation' ||
+        payload.family === 'speed_match' ||
+        payload.family === 'scripted_repeat_compare') {
         return Object.freeze({});
     }
-    const entries = payload.family === 'phrase_builder' || payload.family === 'listen_build_dictation'
-        ? payload.slotFeedback
-        : payload.choiceFeedback;
+    const entries = payload.choiceFeedback;
     const wrongEntries = entries.filter((entry) => !entry.correct);
-    if (payload.family === 'phrase_builder' ||
-        payload.family === 'listen_build_dictation') {
-        // Builder tiles are projected into learner-safe per-card IDs. Keep the
-        // authored feedback aligned by the same stable distractor order instead
-        // of leaking source-only response IDs that the runtime can never select.
-        return Object.freeze(Object.fromEntries(wrongEntries.map((entry, index) => [
-            `${card.cardId}:trap:${index + 1}`,
-            entry.feedbackByLocale[locale],
-        ])));
-    }
     return Object.freeze(Object.fromEntries(wrongEntries.map((entry) => [entry.responseId, entry.feedbackByLocale[locale]])));
 }
 function modeNativeLearnerTaskProjection(card, locale) {
@@ -191,7 +183,9 @@ function modeNativeLearnerTaskProjection(card, locale) {
         return { prompt: instruction, responseOptions: [], feedbackByResponseId };
     }
     if (payload.family === 'scripted_repeat_compare') {
-        return { prompt: `${instruction} ${payload.targetPhrase}`, responseOptions: [], feedbackByResponseId };
+        // The native repeat renderer owns the large target layer. Keeping the
+        // target out of the instruction prevents "... HAPPY" from appearing twice.
+        return { prompt: instruction, responseOptions: [], feedbackByResponseId };
     }
     if (payload.family === 'sound_contrast') {
         if (payload.choiceFeedback.length !== 2) {
@@ -470,7 +464,7 @@ function grammarGap(card) {
         distractors: selection.distractors.map((item) => item.sourceValue),
     };
 }
-function learnerTaskProjection(card, practiceCards, interfaceLocale) {
+function learnerTaskProjection(card, practiceCards, interfaceLocale, allowUnavailableAuthoredChoiceTargets = false) {
     const locale = interfaceLocale;
     const modeNativeProjection = modeNativeLearnerTaskProjection(card, locale);
     if (modeNativeProjection)
@@ -487,14 +481,17 @@ function learnerTaskProjection(card, practiceCards, interfaceLocale) {
             : card.cardId.includes('episode-01-s15-')
                 ? (0, episode_01_session_15_task_feedback_v1_1.episode01Session15ChoiceTargetsV1)(card.contentItem.target.text)
                 : undefined;
-    const otherCards = desiredChoiceTargets
+    const authoredChoiceCards = desiredChoiceTargets
         ? desiredChoiceTargets.map((target) => {
             const candidate = practiceCards.find((entry) => entry.contentItem.target.text === target);
-            if (!candidate) {
+            if (!candidate && !allowUnavailableAuthoredChoiceTargets) {
                 throw new Error(`authored_choice_target_missing:${card.cardId}:${target}`);
             }
             return candidate;
-        })
+        }).filter((candidate) => candidate !== undefined)
+        : [];
+    const otherCards = authoredChoiceCards.length === desiredChoiceTargets?.length
+        ? authoredChoiceCards
         : practiceCards.filter((candidate) => candidate.cardId !== card.cardId);
     if (card.family === 'phrase_builder' || card.family === 'listen_build_dictation') {
         const tiles = targetTiles(card);
@@ -596,10 +593,10 @@ function learnerTaskProjection(card, practiceCards, interfaceLocale) {
     }
     throw new Error(`session_package_unsupported_family:${card.family}`);
 }
-function localizedResponseFeedback(card, practiceCards) {
+function localizedResponseFeedback(card, practiceCards, allowUnavailableAuthoredChoiceTargets = false) {
     const byLocale = Object.fromEntries(generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES.map((locale) => [
         locale,
-        learnerTaskProjection(card, practiceCards, locale).feedbackByResponseId,
+        learnerTaskProjection(card, practiceCards, locale, allowUnavailableAuthoredChoiceTargets).feedbackByResponseId,
     ]));
     const responseIds = [...new Set(generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES.flatMap((locale) => Object.keys(byLocale[locale])))];
     return Object.freeze(Object.fromEntries(responseIds.map((responseId) => [
@@ -627,7 +624,7 @@ function localizedResponseFeedback(card, practiceCards) {
  * проверка. Теперь id — один, приходит от вызывающей стороны (топологии),
  * и утечь в двух местах по-разному больше не может.
  */
-function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionId) {
+function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionId, options) {
     const locale = interfaceLocale;
     // Интро: три страницы, у каждой свой вопрос внизу.
     //
@@ -660,20 +657,29 @@ function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionI
         ? shard.cards
         : practiceCards;
     const cardTargets = shard.cards.map((card) => card.contentItem.target.text);
-    const isSession01ModeNative = shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1;
-    const vocabularyCount = isSession01ModeNative
+    const isFourWordModeNative = shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1 ||
+        shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1;
+    const vocabularyCount = isFourWordModeNative
         ? 4
         : (0, lesson1_session_choreography_v1_1.inferLesson1WordFirstVocabularyCountV1)(cardTargets);
-    const phraseCount = isSession01ModeNative
+    const phraseCount = shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
         ? 2
-        : (0, lesson1_session_choreography_v1_1.inferLesson1WordFirstPhraseCountV1)(cardTargets, vocabularyCount);
+        : shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1
+            ? 4
+            : (0, lesson1_session_choreography_v1_1.inferLesson1WordFirstPhraseCountV1)(cardTargets, vocabularyCount);
     const choreography = (0, lesson1_session_choreography_v1_1.lesson1SessionChoreographyV1)(shard.requiredSessionOrdinal, undefined, vocabularyCount, phraseCount, shard.modeNativePlanId ?? undefined);
     const learner = (0, course_session_client_children_v1_1.materializeLearningV2CourseSessionLearnerChildV1)({
         courseSessionId,
         targetLanguage: shard.targetLanguage,
         interactionProfile: choreography.interactionProfile,
         interactions: practiceCards.map((card, index) => {
-            const task = learnerTaskProjection(card, choiceCards, interfaceLocale);
+            const task = learnerTaskProjection(card, choiceCards, interfaceLocale, options?.allowUnavailableAuthoredChoiceTargets === true);
+            const speedMatchMeanings = card.modePayload?.family === 'speed_match'
+                ? card.modePayload.pairGrid.map((pair) => pair.meaningByLocale[locale]).join(' · ')
+                : null;
+            const speedMatchTargets = card.modePayload?.family === 'speed_match'
+                ? card.modePayload.pairGrid.map((pair) => pair.target).join(' · ')
+                : null;
             return {
                 interactionId: card.cardId,
                 ordinal: index + 4,
@@ -687,13 +693,17 @@ function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionI
                     ? (0, mode_native_payload_v1_1.learningV2ModeNativeAudioTargetIdsV1)(card.modePayload)
                     : [],
                 modePayload: card.modePayload,
-                accessibilityLabel: card.accessibilityLabelByLocale[locale] ?? '',
+                accessibilityLabel: speedMatchMeanings && speedMatchTargets
+                    ? `${speedMatchTargets}. ${speedMatchMeanings}.`
+                    : card.accessibilityLabelByLocale[locale] ?? '',
                 // зачем: запасной текстовый путь для голосового задания. Оба флага
                 // строго false — иначе голосовое упражнение можно было бы «сдать»
                 // текстом и получить за это награду как за произнесённое вслух.
                 scriptedAlternate: {
                     alternateId: `${card.cardId}:alt`,
-                    instruction: card.hintByLocale[locale] ?? '',
+                    instruction: speedMatchMeanings
+                        ?? card.hintByLocale[locale]
+                        ?? '',
                     voiceEvidenceEquivalent: false,
                     canAward: false,
                 },
@@ -787,7 +797,7 @@ function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionI
     const introCards = shard.cards.filter((card) => card.taskSlot < 4);
     const responseFeedbackByCardId = new Map(practiceCards.map((card) => [
         card.cardId,
-        localizedResponseFeedback(card, choiceCards),
+        localizedResponseFeedback(card, choiceCards, options?.allowUnavailableAuthoredChoiceTargets === true),
     ]));
     // One lexical item may deliberately receive several different contacts
     // (for example listen → build) before the next word is introduced. The
@@ -890,8 +900,12 @@ function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionI
             // Repeating every rejected-answer essay here made rapid sessions exceed
             // the immutable 256 KiB client-child limit (S44 was 301,219 bytes).
             // This fallback is used only when no response id identifies the trap.
-            secondErrorExplanationByLocale: (card.taskSlot < 4
-                ? card.errorExplanationByLocale
+            // Intro feedback is the short, manually authored explanation attached
+            // to that exact intro question. Never substitute the practice card's
+            // aggregate error catalog here: it concatenates every word distractor
+            // and turns one small correction into an unrelated wall of text.
+            secondErrorExplanationByLocale: (card.taskSlot < 4 && introPage
+                ? introPage.question.explanationByLocale
                 : card.hintByLocale),
             ...(responseFeedbackByCardId.get(card.cardId) &&
                 Object.keys(responseFeedbackByCardId.get(card.cardId)).length > 0

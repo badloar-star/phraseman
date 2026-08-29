@@ -166,6 +166,7 @@ export function loadingLineForLang(lang: string): string {
   return triLang(asLang(lang), {
     ru: 'готовлю объяснение…',
     uk: 'готую пояснення…',
+    en: 'preparing the explanation…',
     es: 'preparando la explicación…',
     'pt-BR': 'preparando a explicação…',
     vi: 'đang chuẩn bị lời giải thích…',

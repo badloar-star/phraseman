@@ -5,12 +5,11 @@
  *   1) Админ (вручную или через ИИ-черновик adminDraftReportReply) готовит краткий
  *      вежливый ответ юзеру на его репорт.
  *   2) adminReplyToReport пишет персональное сообщение в users/{uid}/user_messages
- *      (kind 'report_reply'); если репорт подтвердился — с невостребованными осколками.
+ *      (kind 'report_reply'); если проблема подтверждена и исправлена — с пакетом наград.
  *   3) Юзер видит ответ в колокольчике на главной; если есть награда — кнопка
- *      «Забрать осколки» вызывает claimReportReward (идемпотентная транзакция).
+ *      «Получить» вызывает claimReportReward (идемпотентная транзакция).
  *
- * Никаких модалок при начислении: осколки появляются только после явного клейма
- * из уведомления (требование владельца, 2026-07).
+ * Награда появляется только после явного подтверждения в модале ответа.
  *
  * Прочитанность/дизмисс — через существующий users/{uid}/app_message_states
  * (тот же механизм, что у глобальных app_messages; ключ = id сообщения).
@@ -129,6 +128,29 @@ function readLeaderboardProjection(
 
 const REPORT_RESOLUTIONS = ['confirmed_fixed', 'duplicate', 'in_progress', 'rejected', 'unconfirmed'] as const;
 export type ReportResolution = typeof REPORT_RESOLUTIONS[number];
+export type ReportRewardSeverity = 'none' | 'minor' | 'serious' | 'critical' | 'legacy';
+export type ReportRewardBundle = Readonly<{
+  version: 1;
+  severity: ReportRewardSeverity;
+  spins: number;
+  runes: number;
+  pearls: number;
+}>;
+
+export const REPORT_REWARD_TIERS = Object.freeze({
+  none: Object.freeze({ version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 }),
+  minor: Object.freeze({ version: 1, severity: 'minor', spins: 1, runes: 300, pearls: 1 }),
+  serious: Object.freeze({ version: 1, severity: 'serious', spins: 2, runes: 600, pearls: 5 }),
+  critical: Object.freeze({ version: 1, severity: 'critical', spins: 3, runes: 1000, pearls: 10 }),
+} satisfies Record<Exclude<ReportRewardSeverity, 'legacy'>, ReportRewardBundle>);
+
+const LEGACY_ONE_PEARL_BUNDLE: ReportRewardBundle = Object.freeze({
+  version: 1,
+  severity: 'legacy',
+  spins: 0,
+  runes: 0,
+  pearls: 1,
+});
 const REPLY_TITLE_MAX = 120;
 const REPLY_BODY_MAX = 1200;
 
@@ -154,30 +176,88 @@ function cleanString(value: unknown, maxLen: number): string {
   return String(value ?? '').trim().slice(0, maxLen);
 }
 
-export function normalizeReportReplyReward(data: unknown): { resolution: ReportResolution; coins: 0 | 1 } {
+function bundleHasReward(bundle: ReportRewardBundle): boolean {
+  return bundle.spins > 0 || bundle.runes > 0 || bundle.pearls > 0;
+}
+
+function isExactRewardBundle(value: unknown): value is ReportRewardBundle {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const input = value as Record<string, unknown>;
+  const severity = cleanString(input.severity, 16) as Exclude<ReportRewardSeverity, 'legacy'>;
+  const tier = REPORT_REWARD_TIERS[severity];
+  return !!tier
+    && Number(input.version) === tier.version
+    && Number(input.spins) === tier.spins
+    && Number(input.runes) === tier.runes
+    && Number(input.pearls) === tier.pearls;
+}
+
+export function normalizeReportReplyReward(data: unknown): {
+  resolution: ReportResolution;
+  rewardBundle: ReportRewardBundle;
+} {
   const input = data && typeof data === 'object' && !Array.isArray(data)
     ? data as Record<string, unknown>
     : {};
   const resolution = cleanString(input.resolution, 40) as ReportResolution;
-  const coins = Number(input.coins ?? 0);
   if (!(REPORT_RESOLUTIONS as readonly string[]).includes(resolution)) {
     throw new HttpsError('invalid-argument', 'unsupported report resolution');
   }
-  if (!Number.isInteger(coins) || (coins !== 0 && coins !== 1)) {
-    throw new HttpsError('invalid-argument', 'coins must be exactly 0 or 1');
+
+  let rewardBundle: ReportRewardBundle;
+  if (input.rewardBundle !== undefined) {
+    if (!isExactRewardBundle(input.rewardBundle)) {
+      throw new HttpsError('invalid-argument', 'rewardBundle must match an exact supported tier');
+    }
+    const severity = cleanString((input.rewardBundle as Record<string, unknown>).severity, 16) as Exclude<ReportRewardSeverity, 'legacy'>;
+    rewardBundle = REPORT_REWARD_TIERS[severity];
+  } else {
+    const coins = Number(input.coins ?? 0);
+    if (!Number.isInteger(coins) || (coins !== 0 && coins !== 1)) {
+      throw new HttpsError('invalid-argument', 'legacy coins must be exactly 0 or 1');
+    }
+    rewardBundle = coins === 1 ? LEGACY_ONE_PEARL_BUNDLE : REPORT_REWARD_TIERS.none;
   }
-  if (coins === 1 && resolution !== 'confirmed_fixed') {
-    throw new HttpsError('failed-precondition', 'one coin requires confirmed_fixed');
+  if (bundleHasReward(rewardBundle) && resolution !== 'confirmed_fixed') {
+    throw new HttpsError('failed-precondition', 'a reward bundle requires confirmed_fixed');
   }
-  return { resolution, coins: coins as 0 | 1 };
+  return { resolution, rewardBundle };
 }
 
-export function reportDocumentAllowsCoin(
+export function reportDocumentAllowsReward(
   report: FirebaseFirestore.DocumentData,
   resolution: ReportResolution,
 ): boolean {
   return resolution === 'confirmed_fixed'
     && (cleanString(report.resolution, 40) === 'confirmed_fixed' || cleanString(report.status, 40) === 'fixed');
+}
+
+/** Backward-compatible export for older focused tests/callers. */
+export const reportDocumentAllowsCoin = reportDocumentAllowsReward;
+
+export function normalizeStoredReportReplyRewardBundle(
+  message: FirebaseFirestore.DocumentData,
+): ReportRewardBundle {
+  if (message.rewardBundle !== undefined) {
+    const resolution = (cleanString(message.resolution, 40) || 'confirmed_fixed') as ReportResolution;
+    return normalizeReportReplyReward({ resolution, rewardBundle: message.rewardBundle }).rewardBundle;
+  }
+  return normalizeStoredReportReplyClaimAmount(message) === 1
+    ? LEGACY_ONE_PEARL_BUNDLE
+    : REPORT_REWARD_TIERS.none;
+}
+
+export function reportRewardClaimReceipt(
+  messageId: string,
+  rewardBundle: ReportRewardBundle,
+  alreadyClaimed: boolean,
+): Readonly<{
+  ok: true;
+  eventId: string;
+  rewardBundle: ReportRewardBundle;
+  alreadyClaimed: boolean;
+}> {
+  return Object.freeze({ ok: true, eventId: messageId, rewardBundle, alreadyClaimed });
 }
 
 export function normalizeStoredReportReplyClaimAmount(
@@ -222,13 +302,14 @@ export function reportRecipientIdentityLookup(
  *   reportId: string;            // id документа репорта
  *   title: string;               // заголовок в языке юзера
  *   body: string;                // краткий вежливый ответ в языке юзера
- *   shards?: number;             // 0 = не подтвердилось (без награды), 1..100 = награда к клейму
+ *   resolution: ReportResolution;
+ *   rewardBundle: ReportRewardBundle;
  * }
  *
  * Эффект (транзакция):
- *   - users/{uid}/user_messages/{auto}: kind 'report_reply', shards, claimed:false
- *   - при shards>0: progress.helpful_error_reports_confirmed_v1 += 1 (титул «Хелпер»)
- *   - репорт: status 'answered', replyMessageId, repliedAt (осколки НЕ начисляются здесь)
+ *   - users/{uid}/user_messages/{auto}: kind 'report_reply', rewardBundle, claimed:false
+ *   - при rewardBundle>0: progress.helpful_error_reports_confirmed_v1 += 1 (титул «Хелпер»)
+ *   - репорт: status 'answered', replyMessageId, repliedAt (награда НЕ начисляется здесь)
  *   - admin_log: аудит
  */
 export const adminReplyToReport = onCall(
@@ -304,7 +385,7 @@ export const adminReplyToReport = onCall(
       if (typeof report.replyMessageId === 'string' && report.replyMessageId) {
         throw new HttpsError('already-exists', 'report already replied');
       }
-      if (reward.coins === 1 && !reportDocumentAllowsCoin(report, reward.resolution)) {
+      if (bundleHasReward(reward.rewardBundle) && !reportDocumentAllowsReward(report, reward.resolution)) {
         throw new HttpsError('failed-precondition', 'report is not server-confirmed as fixed');
       }
 
@@ -312,7 +393,8 @@ export const adminReplyToReport = onCall(
         kind: 'report_reply',
         title,
         body,
-        coins: reward.coins,
+        rewardBundle: reward.rewardBundle,
+        coins: reward.rewardBundle.severity === 'legacy' ? reward.rewardBundle.pearls : 0,
         resolution: reward.resolution,
         claimed: false,
         claimedAtMs: null,
@@ -335,7 +417,8 @@ export const adminReplyToReport = onCall(
           messageId: messageRef.id,
           title,
           body,
-          coins: reward.coins,
+          rewardBundle: reward.rewardBundle,
+          coins: reward.rewardBundle.severity === 'legacy' ? reward.rewardBundle.pearls : 0,
           resolution: reward.resolution,
           claimed: false,
           claimedAtMs: null,
@@ -348,7 +431,7 @@ export const adminReplyToReport = onCall(
       // подтверждение состоялось независимо от того, заберёт ли юзер награду).
       // В той же транзакции обновляем публичную проекцию борда «Топ хелперов»,
       // чтобы рейтинг на борде и счётчик титула никогда не разъезжались.
-      if (reward.coins === 1) {
+      if (bundleHasReward(reward.rewardBundle)) {
         tx.set(userRef, {
           progress: { [HELPFUL_REPORTS_CONFIRMED_KEY]: admin.firestore.FieldValue.increment(1) },
         }, { merge: true });
@@ -367,7 +450,8 @@ export const adminReplyToReport = onCall(
         replyNotificationId: notificationRef.id,
         replyTitle: title,
         replyBody: body,
-        replyCoins: reward.coins,
+        replyCoins: reward.rewardBundle.severity === 'legacy' ? reward.rewardBundle.pearls : 0,
+        replyRewardBundle: reward.rewardBundle,
         resolution: reward.resolution,
         repliedAt: nowIso,
         repliedAtMs: nowMs,
@@ -381,22 +465,22 @@ export const adminReplyToReport = onCall(
         adminEmail,
         action: 'reply_to_report',
         uid,
-        details: { reportCollection, reportId, coins: reward.coins, resolution: reward.resolution, title },
+        details: { reportCollection, reportId, rewardBundle: reward.rewardBundle, resolution: reward.resolution, title },
       });
     });
 
-    return { ok: true, messageId: messageRef.id, notificationId: notificationRef.id, coins: reward.coins };
+    return { ok: true, messageId: messageRef.id, notificationId: notificationRef.id, rewardBundle: reward.rewardBundle };
   },
 );
 
 /**
- * claimReportReward — юзер жмёт «Забрать награду» в уведомлении-ответе.
+ * claimReportReward — юзер жмёт «Получить» в уведомлении-ответе.
  *
  * data: { messageId: string }
  *
  * Транзакция: проверить своё сообщение (kind report_reply, reward>0, !claimed) →
  * claimed:true + immutable external economy fact + audit log. Личный баланс
- * сервер не читает и не пишет. Повторный вызов — 'already-exists'.
+ * сервер не читает и не пишет. Повторный вызов возвращает тот же receipt.
  */
 export const claimReportReward = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
@@ -421,9 +505,11 @@ export const claimReportReward = onCall(
       if (!messageSnap.exists) throw new HttpsError('not-found', 'message not found');
       const message = messageSnap.data() ?? {};
       if (message.kind !== 'report_reply') throw new HttpsError('failed-precondition', 'not a report reply');
-      const amount = normalizeStoredReportReplyClaimAmount(message);
-      if (amount <= 0) throw new HttpsError('failed-precondition', 'nothing to claim');
-      if (message.claimed === true) throw new HttpsError('already-exists', 'already claimed');
+      const rewardBundle = normalizeStoredReportReplyRewardBundle(message);
+      if (!bundleHasReward(rewardBundle)) throw new HttpsError('failed-precondition', 'nothing to claim');
+      if (message.claimed === true) {
+        return reportRewardClaimReceipt(messageId, rewardBundle, true);
+      }
 
       tx.update(messageRef, { claimed: true, claimedAtMs: nowMs });
       if (notificationSnap.exists) {
@@ -437,11 +523,11 @@ export const claimReportReward = onCall(
         source: 'report_reply',
         eventId: messageId,
         ownerStableId: stableUid,
-        delta: amount,
-        reason: 'report_reply_coin_claim',
-        kind: 'confirmed_report_reward',
+        delta: rewardBundle.pearls,
+        reason: 'report_reward_bundle_claim',
+        kind: 'confirmed_report_reward_bundle',
         subjectId: messageId,
-        payload: { messageId },
+        payload: { messageId, rewardBundle },
         createdAtMs: nowMs,
       });
 
@@ -449,13 +535,14 @@ export const claimReportReward = onCall(
       tx.set(shardLogRef, {
         ts: nowIso,
         type: 'earn',
-        amount,
-        reason: 'report_reply_coin_claim',
+        amount: rewardBundle.pearls,
+        reason: 'report_reward_bundle_claim',
         authority: 'external_event',
         messageId,
+        rewardBundle,
       });
 
-      return { ok: true, amount, eventId: messageId };
+      return reportRewardClaimReceipt(messageId, rewardBundle, false);
     });
   },
 );
@@ -465,14 +552,17 @@ const DRAFT_SYSTEM_PROMPT = [
   'Тебе дают юзерский репорт об ошибке и вердикт команды (подтвердился или нет).',
   'Напиши КОРОТКИЙ (2-4 предложения) вежливый ответ юзеру на языке из поля lang.',
   'Обязательно: поблагодари за репорт. Если подтвердился — скажи, что ошибка исправлена',
-  'и в этом сообщении его ждёт награда. Если не подтвердился — мягко объясни почему,',
+  'и что пользователь сможет получить приятный бонус. Не перечисляй виды наград и количества.',
+  'Если не подтвердился — мягко объясни почему,',
   'без канцелярита и без обвинений. Пиши от лица команды («мы»), тепло и по-человечески.',
   'ВАЖНО: каждый юзер видит ТОЛЬКО своё сообщение и не знает о других юзерах, их репортах',
   'или каких-либо «соседних сообщениях». Никогда не ссылайся на другие сообщения, на других',
   'людей или на то, что кто-то уже сообщал об этой проблеме. Пиши так, будто это единственный',
   'разговор с этим человеком.',
   'Без эмодзи-спама (максимум один), без ссылок, без обещаний сроков.',
-  'Ответ верни строго JSON-объектом: {"title": "...", "body": "..."}.',
+  'Предложи rewardSeverity: minor для локальной небольшой ошибки, serious для заметной проблемы,',
+  'critical только для критического сбоя с большим влиянием; rejected всегда none.',
+  'Ответ верни строго JSON-объектом: {"title": "...", "body": "...", "rewardSeverity": "none|minor|serious|critical"}.',
   'title — до 60 знаков, body — до 500 знаков.',
 ].join(' ');
 
@@ -528,10 +618,15 @@ export const adminDraftReportReply = onCall(
     }
     let title = '';
     let body = '';
+    let rewardSeverity = 'none';
     try {
-      const parsed = JSON.parse(raw) as { title?: unknown; body?: unknown };
+      const parsed = JSON.parse(raw) as { title?: unknown; body?: unknown; rewardSeverity?: unknown };
       title = cleanString(parsed.title, REPLY_TITLE_MAX);
       body = cleanString(parsed.body, REPLY_BODY_MAX);
+      const suggested = cleanString(parsed.rewardSeverity, 16);
+      rewardSeverity = verdict === 'confirmed' && ['minor', 'serious', 'critical'].includes(suggested)
+        ? suggested
+        : 'none';
     } catch {
       throw new HttpsError(
         'failed-precondition',
@@ -545,6 +640,6 @@ export const adminDraftReportReply = onCall(
       );
     }
 
-    return { ok: true, title, body };
+    return { ok: true, title, body, rewardSeverity };
   },
 );

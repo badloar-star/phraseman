@@ -1309,6 +1309,31 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // High-entropy post-delete credential receipts are callable-only. They
+    // must never be readable directly because the bearer proof lives only in
+    // SecureStore and is verified server-side with a constant-time hash check.
+    match /account_deletion_credential_receipts/{receiptId} {
+      allow read, write: if false;
+    }
+
+    match /account_deletion_jobs/{jobId} {
+      allow read, write: if false;
+    }
+
+    // Диагностика прогонов удаления (ИНЦИДЕНТ 2026-08-29).
+    //
+    // зачем: вся трассировка удаления уходила в Cloud Logging, куда у владельца
+    // доступа нет. Пять боевых удалений подряд падали, а в базе лежало только
+    // безликое `account_delete_failed` — понять, что чинить, было невозможно.
+    // Теперь каждый прогон пишет сюда: пройденные стадии, длительности, стадию
+    // падения, код и сообщение.
+    //
+    // Внутри только SHA-256 хеши identity — ни uid, ни email, ни имён. Доступ
+    // закрыт наглухо: пишет и читает исключительно Admin SDK (сервер и админка).
+    match /account_deletion_diagnostics/{runId} {
+      allow read, write: if false;
+    }
+
     // Recovery secrets, rate-limit state, and audit events are server-only.
     // Cloud Functions use the Admin SDK, which bypasses Firestore Rules.
     match /auth_recovery_codes/{document=**} {
@@ -1405,6 +1430,13 @@ service cloud.firestore {
       // Phone-authoritative personal state: clients append immutable, bounded
       // transport documents. The server persists them but never recalculates or
       // rejects an ordinary local result based on a server-side projection.
+      // The opaque payload may include premium_freeze, star_credit,
+      // star_credit_ack, attempt_restore_inventory_credit,
+      // attempt_restore_inventory_consume, session_attempt_recovery_rune_debit,
+      // paid_level_spin_rune_purchase, customization_rune_purchase and
+      // customization_selection_v1 exact grants. Rules protect the owner and
+      // immutable envelope; they never reinterpret a bound debit, entitlement,
+      // spin result, inventory change or local selection.
       match /personal_sync_segments/{segmentId} {
         allow read: if userDocOwnerMatchesAuth(userId);
         allow create: if userDocOwnerMatchesAuth(userId)
@@ -1919,6 +1951,20 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Verified store receipts and explicit admin minute-grant events share this
+    // immutable ledger. Events and the rebuildable projection are Admin-SDK
+    // only. A client may read only the bounded wallet view returned by
+    // voiceMinuteWalletMine and can never mint or edit seconds.
+    match /voice_minute_events/{eventId} {
+      allow read, write: if false;
+    }
+    match /voice_minute_wallets/{ownerStableId} {
+      allow read, write: if false;
+    }
+    match /voice_minute_denials/{denialId} {
+      allow read, write: if false;
+    }
+
     // Content-free operational aggregates, including bounded pre-reservation
     // rejection buckets, are read only by bounded server callables and Jarvis.
     // Direct reads still reveal internal reliability and cost data, so the
@@ -2333,10 +2379,16 @@ service cloud.firestore {
         && request.resource.data.createdAt is number
         && (
           // Служебный маркер «аккаунт ведёт индекс»: только время, без адресата.
-          (toUid == '__index__'
+          // зачем имя (ИНЦИДЕНТ 2026-08-29): раньше здесь стояло '__index__' —
+          // Firestore резервирует форму `__…__` и отвергал такой id ещё до
+          // правил, поэтому маркер не мог быть записан никогда, а бросок из
+          // .doc() валил всё удаление аккаунта. Имя обязано совпадать с
+          // FRIEND_REQUESTS_SENT_MARKER_ID в
+          // shared/friend_requests_index_contract.ts.
+          (toUid == 'marker.index'
             && request.resource.data.keys().hasOnly(['createdAt']))
           // Обычная отметка: id документа обязан совпасть с полем toUid.
-          || (toUid != '__index__'
+          || (toUid != 'marker.index'
             && toUid != senderUid
             && request.resource.data.toUid == toUid
             && request.resource.data.keys().hasOnly(['toUid', 'createdAt']))
@@ -3029,6 +3081,8 @@ service cloud.firestore {
         && collection != 'users'
         && collection != 'account_deletion_tombstones'
         && collection != 'account_deletion_auth_markers'
+        && collection != 'account_deletion_credential_receipts'
+        && collection != 'account_deletion_jobs'
         && collection != 'account_deletion_permanent_denials'
         && collection != 'account_identity_owner_map'
         && collection != 'account_merge_outbox'
@@ -3036,6 +3090,9 @@ service cloud.firestore {
         && collection != 'revenuecat_premium_lineages'
         && collection != 'revenuecat_premium_denials'
         && collection != 'revenuecat_shard_refunds'
+        && collection != 'voice_minute_events'
+        && collection != 'voice_minute_wallets'
+        && collection != 'voice_minute_denials'
         && collection != 'jarvis_approval_tokens'
         && collection != 'admin_log'
         && collection != 'safety_flags'

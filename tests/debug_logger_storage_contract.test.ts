@@ -6,6 +6,7 @@ jest.mock('../app/app_health', () => ({
 type AsyncStorageMock = {
   getItem: jest.Mock<Promise<string | null>, [string]>;
   setItem: jest.Mock<Promise<void>, [string, string]>;
+  clear: jest.Mock<Promise<void>, []>;
   __reset?: () => void;
 };
 
@@ -13,17 +14,31 @@ const flushAsyncWork = () => new Promise((resolve) => setTimeout(resolve, 0));
 
 async function loadDebugLoggerWithFreshStorage() {
   jest.resetModules();
+  (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = true;
   const storage = (await import('@react-native-async-storage/async-storage')).default as unknown as AsyncStorageMock;
   storage.__reset?.();
   jest.clearAllMocks();
   const consoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
+  const consoleWarn = jest.spyOn(console, 'warn').mockImplementation(() => {});
   const debugLogger = await import('../app/debug-logger');
-  return { debugLogger, storage, consoleError };
+  return { debugLogger, storage, consoleError, consoleWarn };
 }
 
 describe('DebugLogger storage contract', () => {
   afterEach(() => {
+    delete (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__;
     jest.restoreAllMocks();
+  });
+
+  it('does not turn non-critical warnings into React Native console errors', async () => {
+    const { debugLogger, storage, consoleError, consoleWarn } = await loadDebugLoggerWithFreshStorage();
+
+    debugLogger.DebugLogger.error('debug:test', new Error('recoverable failure'), 'warning');
+
+    expect(consoleError).not.toHaveBeenCalled();
+    expect(consoleWarn).toHaveBeenCalledWith('[WARNING] debug:test: recoverable failure');
+    await flushAsyncWork();
+    await storage.clear();
   });
 
   it('stores repeated errors in one bounded log key instead of timestamp keys', async () => {

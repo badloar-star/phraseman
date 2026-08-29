@@ -45,7 +45,7 @@ import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
 import SpeakingInlineResultStars, { type SpeakingAttemptResult } from '../components/SpeakingInlineResultStars';
 import { isSpeakingEnabled } from './remote_flags';
 import { isTesterNoLimitsActive } from './premium_guard';
-import { usePremium, useFeatureAccess } from '../components/PremiumContext';
+import { useFeatureAccess } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { useScreen } from '../hooks/use-screen';
 import { useAudio } from '../hooks/use-audio';
@@ -138,8 +138,8 @@ import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
-import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
@@ -3267,10 +3267,6 @@ function LessonScreen() {
     });
 
     if (attemptEffect === 'attempts_exhausted') {
-      attemptsModalTimerRef.current = setTimeout(
-        () => setShowAttemptsModal(true),
-        SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
-      );
       return;
     }
 
@@ -3430,40 +3426,35 @@ function LessonScreen() {
     }
   }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, lessonRuntimeActive, persistErrorReplayToStorage, reduceMotion, studyTarget, lessonStorageId, SERVER_ATTEMPT_KEY, attempts.registerVerdict, attemptSessionId]);
 
-  const retryCurrentLessonPhraseAfterRecovery = useCallback(async (source: 'gift' | 'runes') => {
-    try {
-      if (source === 'gift') await attempts.recoverWithGift();
-      else await attempts.recoverWithRunes();
-      setShowAttemptsModal(false);
-      setStatus('playing');
-      setLessonTeachingNote(null);
-      setWasWrong(false);
-      setTypedText('');
-      setContrExpanded(null);
-      answerInFlightRef.current = false;
-      fadeAnim.stopAnimation(() => fadeAnim.setValue(0));
-
-      const phraseWords = getPhraseTokens(phrase, studyTarget);
-      let nextWordIndex = 0;
-      const initialSelection: string[] = [];
-      while (nextWordIndex < phraseWords.length && isZeroArticlePosition(phraseWords, nextWordIndex)) {
-        initialSelection.push(phraseWords[nextWordIndex]);
-        nextWordIndex += 1;
-      }
-      setSelectedWords(initialSelection);
-      setPhraseWordIdx(nextWordIndex);
-      setShuffled(nextWordIndex < phraseWords.length ? safeGetDistracts(phrase, nextWordIndex, studyTarget) : []);
-      if (settings.hardMode) setTimeout(() => textInputRef.current?.focus(), 50);
-    } catch {
-      // The same phrase remains blocked until durable recovery succeeds.
-    }
-  }, [attempts.recoverWithGift, attempts.recoverWithRunes, fadeAnim, phrase, settings.hardMode, studyTarget]);
-
-  const endAttemptsExhaustedLessonSession = useCallback(() => {
-    attempts.endAttemptsSession();
+  const retryCurrentLessonPhraseAfterSessionRuneForfeit = useCallback(() => {
     setShowAttemptsModal(false);
-    handleLessonHeaderBack();
-  }, [attempts.endAttemptsSession, handleLessonHeaderBack]);
+    setStatus('playing');
+    setLessonTeachingNote(null);
+    setWasWrong(false);
+    setTypedText('');
+    setContrExpanded(null);
+    answerInFlightRef.current = false;
+    fadeAnim.stopAnimation(() => fadeAnim.setValue(0));
+
+    const phraseWords = getPhraseTokens(phrase, studyTarget);
+    let nextWordIndex = 0;
+    const initialSelection: string[] = [];
+    while (nextWordIndex < phraseWords.length && isZeroArticlePosition(phraseWords, nextWordIndex)) {
+      initialSelection.push(phraseWords[nextWordIndex]);
+      nextWordIndex += 1;
+    }
+    setSelectedWords(initialSelection);
+    setPhraseWordIdx(nextWordIndex);
+    setShuffled(nextWordIndex < phraseWords.length ? safeGetDistracts(phrase, nextWordIndex, studyTarget) : []);
+    if (settings.hardMode) setTimeout(() => textInputRef.current?.focus(), 50);
+  }, [fadeAnim, phrase, settings.hardMode, studyTarget]);
+
+  useSessionAttemptAutoReset({
+    phase: attempts.state.phase,
+    forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
+    restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
+    onRestored: retryCurrentLessonPhraseAfterSessionRuneForfeit,
+  });
 
   const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (autoTimer.current) clearTimeout(autoTimer.current);
@@ -4073,16 +4064,6 @@ function LessonScreen() {
       onClose={resetNoEnergyModal}
       onGotIt={dismissEnergyModal}
       paywallContext="no_energy"
-    />
-    <SessionAttemptsRecoveryModal
-      visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
-      locale={lang}
-      giftCount={attempts.giftCount}
-      runeBalance={attempts.runeBalance ?? 0}
-      busy={attempts.recoveryBusy}
-      onUseGift={() => { void retryCurrentLessonPhraseAfterRecovery('gift'); }}
-      onSpendRunes={() => { void retryCurrentLessonPhraseAfterRecovery('runes'); }}
-      onEndSession={endAttemptsExhaustedLessonSession}
     />
     </>
   );

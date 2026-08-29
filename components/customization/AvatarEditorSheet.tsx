@@ -1,29 +1,35 @@
 import React, { useCallback } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import CustomAvatarBadge from '../CustomAvatarBadge';
-import DuoPressable from '../DuoPressable';
 import PressableHybrid from '../PressableHybrid';
 import { useTheme } from '../ThemeContext';
 import { hapticTap } from '../../hooks/use-haptics';
+import { soundDirector } from '../../modules/audio/sound_director';
 import {
   CUSTOM_AVATAR_GRADIENTS,
-  CUSTOM_AVATAR_RESTYLE_COST,
   type CustomAvatarDef,
   type CustomAvatarLogoColor,
 } from '../../constants/custom_avatars';
+import {
+  CustomizationPrice,
+  YinYangControl,
+  type CustomizationPriceValue,
+} from './CustomizationControls';
 
 export interface AvatarEditorSheetProps {
   visible: boolean;
   avatar: CustomAvatarDef | null;
   gradientId: string;
   logoColor: CustomAvatarLogoColor;
-  owned: boolean;
   title: string;
-  applyLabel: string;
-  darkLabel: string;
-  lightLabel: string;
+  confirmLabel: string;
+  confirmAccessibilityLabel: string;
+  confirmPrice: CustomizationPriceValue | null;
+  busy: boolean;
+  yinAccessibilityLabel: string;
+  yangAccessibilityLabel: string;
   gradientLabel: (id: string) => string;
   onGradientChange: (id: string) => void;
   onLogoColorChange: (color: CustomAvatarLogoColor) => void;
@@ -39,7 +45,8 @@ export interface AvatarEditorSheetProps {
  * резина ×0.12, порог 88px/900), так что конфликта нет и держать свою копию
  * незачем. Плитки градиентов/чипы цвета логотипа — PressableHybrid variant
  * (card/chip), выбор читается тоном (accentBg) и галочкой, а не рамкой (правило
- * владельца — контейнеры без обводок). CTA «Сохранить» — DuoPressable, кромка 6.
+ * владельца — контейнеры без обводок). CTA — одна плоская Pressable-поверхность:
+ * без декоративной нижней капсулы, но с явными pressed/disabled состояниями.
  */
 export function AvatarEditorSheet(props: AvatarEditorSheetProps) {
   const { theme: t } = useTheme();
@@ -50,6 +57,10 @@ export function AvatarEditorSheet(props: AvatarEditorSheetProps) {
 
   const handleConfirm = useCallback(() => {
     void hapticTap();
+    // зачем: применение образа отзывалось только вибрацией — облик менялся
+    // молча. Звук идёт ДО onConfirm (тот может закрыть лист и увести экран),
+    // чтобы подтверждение было слышно в момент нажатия, а не после перехода.
+    soundDirector.request('pm.customization.applied', { scope: 'avatar-editor' });
     props.onConfirm();
   }, [props]);
 
@@ -85,7 +96,7 @@ export function AvatarEditorSheet(props: AvatarEditorSheetProps) {
                 accessibilityState={{ selected }}
                 accessibilityLabel={props.gradientLabel(gradient.id)}
               >
-                <Text style={styles.gradientText} numberOfLines={1}>{props.gradientLabel(gradient.id)}</Text>
+                <Text style={styles.gradientText}>{props.gradientLabel(gradient.id)}</Text>
                 {selected ? (
                   <View style={[styles.selectedBadge, { backgroundColor: t.accent }]}>
                     <Ionicons name="checkmark" size={11} color={t.correctText} />
@@ -97,45 +108,35 @@ export function AvatarEditorSheet(props: AvatarEditorSheetProps) {
         </View>
 
         <View style={styles.colorRow}>
-          {(['black', 'white'] as const).map((color) => {
-            const selected = props.logoColor === color;
-            return (
-              <PressableHybrid
-                key={color}
-                variant="card"
-                onPress={() => props.onLogoColorChange(color)}
-                style={styles.colorChoiceWrap}
-                contentStyle={[
-                  styles.colorChoice,
-                  { backgroundColor: color === 'black' ? '#111827' : '#F8FAFC' },
-                  selected ? { backgroundColor: color === 'black' ? '#111827' : '#F8FAFC' } : null,
-                ]}
-                accessibilityState={{ selected }}
-              >
-                <Text style={{ color: color === 'black' ? '#FFFFFF' : '#111827', fontWeight: '700' }}>
-                  {color === 'black' ? props.darkLabel : props.lightLabel}
-                </Text>
-                {selected ? (
-                  <View style={[styles.selectedBadge, { backgroundColor: t.accent }]}>
-                    <Ionicons name="checkmark" size={11} color={t.correctText} />
-                  </View>
-                ) : null}
-              </PressableHybrid>
-            );
-          })}
+          <YinYangControl
+            value={props.logoColor === 'black' ? 'yin' : 'yang'}
+            onChange={(side) => props.onLogoColorChange(side === 'yin' ? 'black' : 'white')}
+            accessibilityLabelForSide={(side) => side === 'yin'
+              ? props.yinAccessibilityLabel
+              : props.yangAccessibilityLabel}
+          />
         </View>
 
-        <DuoPressable
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={props.confirmAccessibilityLabel}
+          accessibilityState={{ disabled: props.busy }}
           onPress={handleConfirm}
-          style={[styles.confirm, { backgroundColor: t.accent }]}
-          edgeColor={t.accentBg}
-          edgeHeight={6}
+          disabled={props.busy}
+          style={({ pressed }) => [
+            styles.confirm,
+            {
+              backgroundColor: t.accent,
+              opacity: props.busy ? 0.55 : pressed ? 0.82 : 1,
+            },
+          ]}
           testID="avatar-editor-confirm"
         >
           <Text style={[styles.confirmText, { color: t.correctText }]}>
-            {props.applyLabel}{props.owned ? ` · ${CUSTOM_AVATAR_RESTYLE_COST}` : ''}
+            {props.confirmLabel}
           </Text>
-        </DuoPressable>
+          {props.confirmPrice ? <CustomizationPrice price={props.confirmPrice} color={t.correctText} /> : null}
+        </Pressable>
       </View>
     </HybridSheetShell>
   );
@@ -165,13 +166,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   colorRow: { width: '100%', flexDirection: 'row', gap: 10, marginTop: 14 },
-  colorChoiceWrap: { flex: 1 },
-  colorChoice: {
-    minHeight: 46,
-    borderRadius: 13,
-    alignItems: 'center',
-    justifyContent: 'center',
+  confirm: {
+    width: '100%', minHeight: 56, marginTop: 18, borderRadius: 16,
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
   },
-  confirm: { width: '100%', marginTop: 18, borderRadius: 16 },
-  confirmText: { fontSize: 16, fontWeight: '700', paddingVertical: 15 },
+  confirmText: { fontSize: 16, fontWeight: '700' },
 });

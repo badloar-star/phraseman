@@ -32,6 +32,7 @@ import {
   verifyMistakePracticeEventReplay,
 } from './mistake_practice_event_sync';
 import { writeAccessProjection } from './access_projection';
+import { mergeVoiceMinuteWalletsInTransaction } from './voice_minutes';
 
 const USERS = 'users';
 
@@ -433,11 +434,14 @@ async function reserveStableAccountMerge(
       if (existing) return existing;
       const pending = (async () => {
         const ref = db.collection(USERS).doc(stableId);
-        const [userSnap, tombstoneSnap] = await Promise.all([
+        const [userSnap, tombstoneSnap, denialSnap] = await Promise.all([
           tx.get(ref),
           tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId)),
+          tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(stableId))),
         ]);
-        if (tombstoneSnap.exists) throw new HttpsError('failed-precondition', 'account_delete_pending');
+        if (tombstoneSnap.exists || denialSnap.exists) {
+          throw new HttpsError('failed-precondition', 'account_delete_pending');
+        }
         if (!userSnap.exists) throw new HttpsError('failed-precondition', 'stable_id_missing');
         return { stableId, data: (userSnap.data() ?? {}) as Record<string, unknown>, ref };
       })();
@@ -458,13 +462,16 @@ async function reserveStableAccountMerge(
       throw new HttpsError('failed-precondition', 'stable_identity_changed');
     };
 
-    const [authLinkSnap, authMarkerSnap, resolvedA, resolvedB] = await Promise.all([
+    const [authLinkSnap, authMarkerSnap, authDenialSnap, resolvedA, resolvedB] = await Promise.all([
       tx.get(authLinkRef),
       tx.get(authMarkerRef),
+      tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(authUid))),
       resolveCanonical(rawA),
       resolveCanonical(rawB),
     ]);
-    if (authMarkerSnap.exists) throw new HttpsError('failed-precondition', 'account_delete_pending');
+    if (authMarkerSnap.exists || authDenialSnap.exists) {
+      throw new HttpsError('failed-precondition', 'account_delete_pending');
+    }
     const xpA = asCleanInt((resolvedA.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
     const xpB = asCleanInt((resolvedB.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
     const linkedStableId = cleanStr(authLinkSnap.data()?.stable_id);
@@ -557,11 +564,12 @@ async function mergeStableAccountsTransactionally(
       const pending = (async () => {
         const ref = db.collection(USERS).doc(stableId);
         const tombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId);
-        const [userSnap, tombstoneSnap] = await Promise.all([
+        const [userSnap, tombstoneSnap, denialSnap] = await Promise.all([
           tx.get(ref),
           tx.get(tombstoneRef),
+          tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(stableId))),
         ]);
-        if (tombstoneSnap.exists) {
+        if (tombstoneSnap.exists || denialSnap.exists) {
           throw new HttpsError('failed-precondition', 'account_delete_pending');
         }
         if (!userSnap.exists) {
@@ -595,11 +603,12 @@ async function mergeStableAccountsTransactionally(
       throw new HttpsError('failed-precondition', 'stable_identity_changed');
     };
 
-    const [authLinkSnap, authMarkerSnap] = await Promise.all([
+    const [authLinkSnap, authMarkerSnap, authDenialSnap] = await Promise.all([
       tx.get(authLinkRef),
       tx.get(authMarkerRef),
+      tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(authUid))),
     ]);
-    if (authMarkerSnap.exists) {
+    if (authMarkerSnap.exists || authDenialSnap.exists) {
       throw new HttpsError('failed-precondition', 'account_delete_pending');
     }
 
@@ -739,6 +748,12 @@ async function mergeStableAccountsTransactionally(
         && revenueCatProjectionStrength(mergedProgress) >= revenueCatProjectionStrength(canonicalAggregate.progressPatch))
       ? canonicalAggregate.progressPatch
       : mergedProgress;
+    await mergeVoiceMinuteWalletsInTransaction(tx, db, {
+      winnerStableId: winner.stableId,
+      loserStableId: loser.stableId,
+      mergeOperationId: accountMergeOutboxId(winner.stableId, loser.stableId),
+      occurredAtMs: now,
+    });
     const winnerUpdate: Record<string, unknown> = {
       progress: reconciledMergedProgress,
       levelSpinMergePending: true,

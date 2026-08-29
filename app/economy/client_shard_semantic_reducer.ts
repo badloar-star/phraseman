@@ -4,6 +4,7 @@ import {
   CUSTOM_AVATAR_OWNED_KEY,
 } from '../../constants/customization_storage_keys';
 import { flashcardsOwnedPacksKey, storageStudyTarget } from '../target_storage_keys';
+import { seasonPassEntitlementStorageKey } from '../season_pass_model';
 import type { ClientShardGrant, ClientShardLocalWrite } from './client_shard_operation_ledger';
 
 export const CLIENT_SHARD_SEMANTIC_PAID_PREFIX = 'client_shard_semantic_paid_v1:';
@@ -120,14 +121,20 @@ async function materializePortableClientShardGrant(
       ] };
     }
     case 'season_pass': {
-      const current = jsonObject(await AsyncStorage.getItem('season_pass_owned_v1'));
+      const entitlementKey = seasonPassEntitlementStorageKey(ownerStableId);
+      const current = jsonObject(await AsyncStorage.getItem(entitlementKey));
       // Season ids are YYYY-Qn, therefore lexical order is chronological and
       // also repairs legacy rows whose purchasedAt was stored as zero.
       const currentSeasonId = String(current.seasonId ?? '');
       if (currentSeasonId === grant.subjectId) return { status: 'already-satisfied', writes: [[paidKey, '1']] };
       if (currentSeasonId > grant.subjectId) return { status: 'materialized', writes: [[paidKey, '1']] };
       return { status: 'materialized', writes: [
-        ['season_pass_owned_v1', JSON.stringify({ seasonId: grant.subjectId, purchasedAt: createdAtMs })],
+        [entitlementKey, JSON.stringify({
+          schemaVersion: 'season-pass-entitlement.v1',
+          ownerStableId,
+          seasonId: grant.subjectId,
+          purchasedAtMs: createdAtMs,
+        })],
         ...(currentSeasonId ? [[semanticPaidKey(ownerStableId, grant.kind, currentSeasonId), '1'] as const] : []),
         [paidKey, '1'],
       ] };

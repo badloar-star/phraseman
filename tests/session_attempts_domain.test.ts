@@ -92,6 +92,29 @@ describe('session attempts domain', () => {
     expect(replay.state).toBe(recovered.state);
   });
 
+  test('session-rune forfeiture restores hearts for every user without a recovery receipt', () => {
+    const exhausted = wrong(wrong(wrong(start(), 'answer_01').state, 'answer_02').state, 'answer_03').state;
+
+    const restored = reduceSessionAttempts(exhausted, {
+      type: 'restore_after_session_rune_forfeit',
+    });
+
+    expect(restored.effect).toBe('attempts_restored');
+    expect(restored.state).toMatchObject({
+      remainingAttempts: 3,
+      phase: 'active',
+      recoveryOrdinal: 1,
+      recoveryReceiptIds: [],
+      questionId: 'word:hello',
+    });
+
+    const replay = reduceSessionAttempts(restored.state, {
+      type: 'restore_after_session_rune_forfeit',
+    });
+    expect(replay.effect).toBe('none');
+    expect(replay.state).toBe(restored.state);
+  });
+
   test('recovery while active and verdict after end fail closed', () => {
     const activeRecovery = reduceSessionAttempts(start(), {
       type: 'recover_all',

@@ -486,6 +486,10 @@ function PlanPronunciationRecorder({
     const assetModule = getPersonalPlanRuntimeAudioAssetModule(audioUri);
     return assetModule ? { assetId: assetModule } : audioUri;
   }, [audioUri]);
+  // зачем: targetAudioStatusRef.current.currentTime реально читается ниже
+  // (gate "started" по currentTime > 0.05с) — в отличие от соседних
+  // audio-плееров в этом файле, здесь 250мс-поллинг НЕ убираем, иначе
+  // сломается детект начала воспроизведения.
   const targetAudioPlayer = useAudioPlayer(targetAudioPlayerSource, targetAudioPlayerSource ? { downloadFirst: false, updateInterval: 250 } : undefined);
   const targetAudioStatus = useAudioPlayerStatus(targetAudioPlayer);
   const managedTargetAudio = useManagedSpokenAudioPlayer(
@@ -2027,9 +2031,12 @@ function PersonalPlanExerciseScreen() {
     if (isChoiceMode) return getPersonalPlanChooseNaturalPhraseItems({ lessonId, contentUnitIds });
     if (isListeningMode) return getPersonalPlanListenChooseItems({ lessonId, contentUnitIds });
     if (isListenBuildMode) return getPersonalPlanListenBuildItems({ lessonId, contentUnitIds });
+    // Phrase-build has the same target-word tiles as listen-build, but without
+    // an audio requirement. It is the destination of the Route's first task.
+    if (isPhraseBuildMode) return getPersonalPlanListenBuildItems({ lessonId, contentUnitIds });
     if (isPronunciationMode) return getPersonalPlanPronunciationRepeatItems({ lessonId, contentUnitIds });
     return getPersonalPlanMissingWordItems({ lessonId, contentUnitIds });
-  }, [contentUnitIds, isChoiceMode, isListenBuildMode, isListeningMode, isMissingWordMode, isPronunciationMode, isRecallMode, lessonId, recallItems]);
+  }, [contentUnitIds, isChoiceMode, isListenBuildMode, isListeningMode, isMissingWordMode, isPhraseBuildMode, isPronunciationMode, isRecallMode, lessonId, recallItems]);
 
   const block = useMemo<PlanExerciseBlock>(() => ({
     id: planTaskId || `${rendererType || 'plan_exercise'}_${lessonId}`,
@@ -2159,9 +2166,14 @@ function PersonalPlanExerciseScreen() {
     const assetModule = getPersonalPlanRuntimeAudioAssetModule(answerAudioUri);
     return assetModule ? { assetId: assetModule } : answerAudioUri;
   }, [answerAudioUri]);
+  // зачем: только answerAudioStatus.didJustFinish читается ниже —
+  // currentTime/duration не нужны, поэтому 250мс-тик playbackStatusUpdate
+  // (setState без memo на весь экран, 2 раза в секунду на воспроизведение)
+  // поднят до недостижимого; didJustFinish всё равно приходит мгновенно
+  // из нативного слушателя.
   const answerAudioPlayer = useAudioPlayer(
     answerAudioSource,
-    answerAudioSource ? { downloadFirst: false, updateInterval: 250 } : undefined,
+    answerAudioSource ? { downloadFirst: false, updateInterval: 60_000 } : undefined,
   );
   const answerAudioStatus = useAudioPlayerStatus(answerAudioPlayer);
   const managedAnswerAudio = useManagedSpokenAudioPlayer(
@@ -2376,7 +2388,7 @@ function PersonalPlanExerciseScreen() {
   };
 
   const submitListenBuild = async () => {
-    if (!item || !session || saving || done || noEnergyModalOpen || !isListenBuildMode || !isPersonalPlanListenBuildItem(item)) return;
+    if (!item || !session || saving || done || noEnergyModalOpen || !(isListenBuildMode || isPhraseBuildMode) || !isPersonalPlanListenBuildItem(item)) return;
     const answer = buildWords.join(' ');
     // зачем: raw normalizePlanAnswer (lowercase+trim only) не раскрывала сокращения —
     // "I am Anna" засчитывался неверным против цели "I'm Anna." (репорт юзера 2026-07-20,
@@ -2420,7 +2432,7 @@ function PersonalPlanExerciseScreen() {
       selectedAnswer: answer,
       grammarTags: item.grammarTags,
       vocabularyTags: item.vocabularyTags,
-      mistakeTags: isCorrect ? [] : ['listen_build'],
+      mistakeTags: isCorrect ? [] : [isPhraseBuildMode ? 'phrase_build' : 'listen_build'],
     }, {
       recoveryWrite,
     }).catch(() => undefined);
@@ -2751,27 +2763,43 @@ function PersonalPlanExerciseScreen() {
                 />
               ) : null}
             </>
-          ) : isListenBuildMode && isPersonalPlanListenBuildItem(item) ? (
+          ) : (isListenBuildMode || isPhraseBuildMode) && isPersonalPlanListenBuildItem(item) ? (
             <>
               <View style={styles.questionBlock}>
-                <Text style={[styles.prompt, { color: t.textMuted }]}>{triLang(lang, {
-                  ru: 'Сначала слушай, потом собирай фразу по порядку.',
-                  uk: 'Спершу слухай, потім збирай фразу по порядку.',
-                  en: 'Listen first, then build the phrase in order.',
-                  es: 'Primero escucha, luego ordena la frase.',
-                  'pt-BR': 'Primeiro escute, depois monte a frase na ordem.',
-                  vi: 'Nghe trước, sau đó sắp xếp cụm từ theo thứ tự.',
-                  id: 'Dengarkan dulu, lalu susun frasa sesuai urutan.',
-                  tr: 'Önce dinle, sonra ifadeyi sırayla diz.',
-                  pl: 'Najpierw słuchaj, potem ułóż frazę po kolei.',
-                })}</Text>
-                <PlanListenChooseAudioButton
-                  item={item}
-                  accent={accent}
-                  actionText={actionText}
-                  mutedText={t.textMuted}
-                  lang={lang}
-                />
+                <Text style={[styles.prompt, { color: t.textMuted }]}>{
+                  isListenBuildMode
+                    ? triLang(lang, {
+                        ru: 'Сначала слушай, потом собирай фразу по порядку.',
+                        uk: 'Спершу слухай, потім збирай фразу по порядку.',
+                        en: 'Listen first, then build the phrase in order.',
+                        es: 'Primero escucha, luego ordena la frase.',
+                        'pt-BR': 'Primeiro escute, depois monte a frase na ordem.',
+                        vi: 'Nghe trước, sau đó sắp xếp cụm từ theo thứ tự.',
+                        id: 'Dengarkan dulu, lalu susun frasa sesuai urutan.',
+                        tr: 'Önce dinle, sonra ifadeyi sırayla diz.',
+                        pl: 'Najpierw słuchaj, potem ułóż frazę po kolei.',
+                      })
+                    : triLang(lang, {
+                        ru: 'Собери фразу из слов по порядку.',
+                        uk: 'Збери фразу зі слів по порядку.',
+                        en: 'Build the phrase from the words in order.',
+                        es: 'Construye la frase con las palabras en orden.',
+                        'pt-BR': 'Monte a frase com as palavras na ordem.',
+                        vi: 'Sắp xếp câu từ các từ theo đúng thứ tự.',
+                        id: 'Susun frasa dari kata-kata secara berurutan.',
+                        tr: 'İfadeyi kelimelerden doğru sırayla kur.',
+                        pl: 'Ułóż frazę ze słów we właściwej kolejności.',
+                      })
+                }</Text>
+                {isListenBuildMode ? (
+                  <PlanListenChooseAudioButton
+                    item={item}
+                    accent={accent}
+                    actionText={actionText}
+                    mutedText={t.textMuted}
+                    lang={lang}
+                  />
+                ) : null}
                 <View
                   accessibilityLabel="Поле собранной фразы"
                   style={[styles.listenBuildAnswerBox, { backgroundColor: t.bgCard }]}

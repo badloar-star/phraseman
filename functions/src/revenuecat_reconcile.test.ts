@@ -28,27 +28,23 @@ type ReconcileHooks = {
     outcome: { statusCode: number; body: Record<string, unknown> },
     existingStoreProjectionActive: boolean,
   ) => boolean;
-  reservationId: (stableUid: string, scope?: 'premium' | 'max_activation') => string;
+  reservationId: (stableUid: string, scope?: 'premium') => string;
   acquireReservation: (
     db: any,
     stableUid: string,
     nowMs: number,
-    scope?: 'premium' | 'max_activation',
+    scope?: 'premium',
   ) => Promise<'acquired' | 'cooldown' | 'in_progress'>;
   finishReservation: (
     db: any,
     stableUid: string,
     nowMs: number,
     outcome: 'active' | 'not_found' | 'error',
-    scope?: 'premium' | 'max_activation',
+    scope?: 'premium',
   ) => Promise<void>;
-  maxActivationNotFoundDecision: (
-    state: Record<string, unknown>,
-    nowMs: number,
-  ) => { rapidNotFoundCount: number; rapidWindowStartedAtMs: number; cooldownMs: number };
   reservationCooldownMs: (
     outcome: 'active' | 'not_found' | 'error',
-    scope?: 'premium' | 'max_activation',
+    scope?: 'premium',
   ) => number;
 };
 
@@ -84,7 +80,7 @@ describe('RevenueCat V2 premium reconciliation policy', () => {
     expect(selected).toMatchObject({ id: 'sub_prod_01', product_id: 'prod_monthly_01' });
   });
 
-  it('keeps an active MAX-only subscription eligible for exact product verification', () => {
+  it('rejects an active retired MAX-only subscription', () => {
     const { selectEligiblePremiumSubscription } = loadHooks();
     const selected = selectEligiblePremiumSubscription([
       activeSubscription({
@@ -93,10 +89,10 @@ describe('RevenueCat V2 premium reconciliation policy', () => {
       }),
     ], 1_801_000_000_000);
 
-    expect(selected).toMatchObject({ id: 'sub_max_only' });
+    expect(selected).toBeNull();
   });
 
-  it('prefers an active MAX subscription over a later-expiring ordinary Premium subscription', () => {
+  it('selects the later-expiring ordinary Premium subscription without MAX priority', () => {
     const { selectEligiblePremiumSubscription } = loadHooks();
     const selected = selectEligiblePremiumSubscription([
       activeSubscription({
@@ -115,7 +111,7 @@ describe('RevenueCat V2 premium reconciliation policy', () => {
       }),
     ], 1_801_000_000_000);
 
-    expect(selected).toMatchObject({ id: 'sub_max' });
+    expect(selected).toMatchObject({ id: 'sub_plus_later' });
   });
 
   it.each(['trialing', 'in_grace_period'])(
@@ -181,51 +177,17 @@ describe('RevenueCat V2 premium reconciliation policy', () => {
     });
   });
 
-  it('maps the MAX Play base-plan SKU with both premium and max entitlements', () => {
-    const { mapSubscriptionToSyntheticEvent } = loadHooks();
-    const event = mapSubscriptionToSyntheticEvent(
-      'stable-user',
-      activeSubscription({ entitlements: { items: [
-        { lookup_key: 'premium', state: 'active' },
-        { lookup_key: 'max', state: 'active' },
-      ] } }),
-      'phraseman_max_monthly_v1:monthly-base',
-      'appabc123',
-    );
-
-    expect(event).toMatchObject({
-      product_id: 'phraseman_max_monthly_v1:monthly-base',
-      entitlement_ids: ['premium', 'max'],
-    });
-  });
-
-  it('maps an exact MAX SKU with a real MAX-only entitlement to Premium plus MAX semantics', () => {
-    const { mapSubscriptionToSyntheticEvent } = loadHooks();
-    const event = mapSubscriptionToSyntheticEvent(
-      'stable-user',
-      activeSubscription({
-        entitlements: { items: [{ lookup_key: 'max', state: 'active' }] },
-      }),
-      'phraseman_max_monthly_v1',
-      'appabc123',
-    );
-
-    expect(event).toMatchObject({
-      product_id: 'phraseman_max_monthly_v1',
-      entitlement_ids: ['premium', 'max'],
-    });
-  });
-
-  it('rejects a MAX SKU when RevenueCat did not attach the active max entitlement', () => {
+  it.each([
+    'phraseman_max_monthly_v1',
+    'phraseman_max_monthly_v1:monthly-base',
+  ])('rejects retired MAX SKU %s without creating Premium access', (productId) => {
     const { mapSubscriptionToSyntheticEvent } = loadHooks();
     expect(() => mapSubscriptionToSyntheticEvent(
       'stable-user',
-      activeSubscription({
-        entitlements: { items: [{ lookup_key: 'premium', state: 'active' }] },
-      }),
-      'phraseman_max_monthly_v1:monthly-base',
+      activeSubscription(),
+      productId,
       'appabc123',
-    )).toThrow('revenuecat_reconcile_max_entitlement_unverified');
+    )).toThrow('revenuecat_reconcile_unmanaged_product');
   });
 
   it('rejects a non-MAX product when only the max entitlement is active', () => {
@@ -240,136 +202,11 @@ describe('RevenueCat V2 premium reconciliation policy', () => {
     )).toThrow('revenuecat_reconcile_premium_entitlement_unverified');
   });
 
-  it('partitions one bounded MAX activation attempt from the ordinary Premium cooldown', () => {
-    const { reservationId } = loadHooks();
-    expect(reservationId('stable-user', 'premium'))
-      .toBe(reservationId('stable-user', 'premium'));
-    expect(reservationId('stable-user', 'max_activation'))
-      .toBe(reservationId('stable-user', 'max_activation'));
-    expect(reservationId('stable-user', 'max_activation'))
-      .not.toBe(reservationId('stable-user', 'premium'));
-  });
-
-  it('allows the next client MAX poll after an unverified lookup without relaxing other cooldowns', () => {
+  it('keeps ordinary Premium reconciliation cooldowns bounded', () => {
     const { reservationCooldownMs } = loadHooks();
-    expect(reservationCooldownMs('not_found', 'max_activation')).toBeLessThanOrEqual(1_250);
-    expect(reservationCooldownMs('error', 'max_activation')).toBe(5 * 60 * 1_000);
     expect(reservationCooldownMs('not_found', 'premium')).toBe(5 * 60 * 1_000);
-    expect(reservationCooldownMs('active', 'max_activation')).toBe(6 * 60 * 60 * 1_000);
-  });
-
-  it('allows five rapid MAX propagation misses, then applies the normal cooldown', () => {
-    const { maxActivationNotFoundDecision } = loadHooks();
-    let state: Record<string, unknown> = {};
-    const startedAt = 10_000;
-    for (let attempt = 1; attempt <= 5; attempt += 1) {
-      const decision = maxActivationNotFoundDecision(state, startedAt + attempt * 1_000);
-      expect(decision.rapidNotFoundCount).toBe(attempt);
-      expect(decision.cooldownMs).toBe(attempt < 5 ? 1_000 : 5 * 60 * 1_000);
-      state = decision;
-    }
-  });
-
-  it('expires an exhausted rapid window after the normal cooldown', () => {
-    const { maxActivationNotFoundDecision } = loadHooks();
-    const decision = maxActivationNotFoundDecision({
-      rapidNotFoundCount: 5,
-      rapidWindowStartedAtMs: 10_000,
-    }, 10_000 + 5 * 60 * 1_000 + 1);
-    expect(decision).toEqual({
-      rapidNotFoundCount: 1,
-      rapidWindowStartedAtMs: 10_000 + 5 * 60 * 1_000 + 1,
-      cooldownMs: 1_000,
-    });
-  });
-
-  it('atomically consumes the rapid retry budget under concurrent modified-client finishes', async () => {
-    const { finishReservation, reservationId } = loadHooks();
-    const id = reservationId('stable-concurrent', 'max_activation');
-    const documents = new Map<string, Record<string, unknown>>([[id, {}]]);
-    let transactionTail = Promise.resolve();
-    const db = {
-      collection: () => ({ doc: (docId: string) => ({ id: docId }) }),
-      runTransaction: (work: (transaction: any) => Promise<void>) => {
-        const run = transactionTail.then(async () => {
-          const writes: Array<[string, Record<string, unknown>]> = [];
-          await work({
-            get: async (ref: { id: string }) => ({ data: () => documents.get(ref.id) ?? {} }),
-            set: (ref: { id: string }, value: Record<string, unknown>) => writes.push([ref.id, value]),
-          });
-          for (const [docId, value] of writes) {
-            documents.set(docId, { ...(documents.get(docId) ?? {}), ...value });
-          }
-        });
-        transactionTail = run.catch(() => undefined);
-        return run;
-      },
-    };
-
-    await Promise.all(Array.from({ length: 8 }, () => finishReservation(
-      db, 'stable-concurrent', 20_000, 'not_found', 'max_activation',
-    )));
-
-    expect(documents.get(id)).toMatchObject({
-      rapidNotFoundCount: 5,
-      rapidWindowStartedAtMs: 20_000,
-      nextAllowedAtMs: 20_000 + 5 * 60 * 1_000,
-    });
-  });
-
-  it('permits the legitimate five client polls but rejects a sixth rapid check', async () => {
-    const { acquireReservation, finishReservation, reservationId } = loadHooks();
-    const id = reservationId('stable-five', 'max_activation');
-    const documents = new Map<string, Record<string, unknown>>([[id, {}]]);
-    const db = {
-      collection: () => ({ doc: (docId: string) => ({ id: docId }) }),
-      runTransaction: async (work: (transaction: any) => Promise<unknown>) => {
-        const writes: Array<[string, Record<string, unknown>]> = [];
-        const result = await work({
-          get: async (ref: { id: string }) => ({ data: () => documents.get(ref.id) ?? {} }),
-          set: (ref: { id: string }, value: Record<string, unknown>) => writes.push([ref.id, value]),
-        });
-        for (const [docId, value] of writes) {
-          documents.set(docId, { ...(documents.get(docId) ?? {}), ...value });
-        }
-        return result;
-      },
-    };
-    let now = 30_000;
-    for (let attempt = 1; attempt <= 5; attempt += 1) {
-      await expect(acquireReservation(db, 'stable-five', now, 'max_activation')).resolves.toBe('acquired');
-      await finishReservation(db, 'stable-five', now, 'not_found', 'max_activation');
-      if (attempt < 5) now += 1_000;
-    }
-    await expect(acquireReservation(db, 'stable-five', now + 1_000, 'max_activation'))
-      .resolves.toBe('cooldown');
-    expect(documents.get(id)?.rapidNotFoundCount).toBe(5);
-  });
-
-  it('allows one fresh MAX activation lookup despite a recent Plus cooldown, then throttles duplicates', async () => {
-    const { acquireReservation, reservationId } = loadHooks();
-    const documents = new Map<string, Record<string, unknown>>([
-      [reservationId('stable-user', 'premium'), {
-        leaseUntilMs: 0,
-        nextAllowedAtMs: 9_000,
-        outcome: 'active',
-      }],
-    ]);
-    const db = {
-      collection: () => ({ doc: (id: string) => ({ id }) }),
-      runTransaction: async (work: (transaction: any) => Promise<unknown>) => work({
-        get: async (ref: { id: string }) => ({ data: () => documents.get(ref.id) ?? {} }),
-        set: (ref: { id: string }, value: Record<string, unknown>) => {
-          documents.set(ref.id, { ...(documents.get(ref.id) ?? {}), ...value });
-        },
-      }),
-    };
-
-    await expect(acquireReservation(db, 'stable-user', 1_000, 'max_activation'))
-      .resolves.toBe('acquired');
-    await expect(acquireReservation(db, 'stable-user', 1_001, 'max_activation'))
-      .resolves.toBe('in_progress');
-    expect(documents.get(reservationId('stable-user', 'premium'))?.nextAllowedAtMs).toBe(9_000);
+    expect(reservationCooldownMs('error', 'premium')).toBe(5 * 60 * 1_000);
+    expect(reservationCooldownMs('active', 'premium')).toBe(6 * 60 * 60 * 1_000);
   });
 
   it('rejects a lookalike product before creating a synthetic event', () => {

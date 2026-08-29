@@ -43,8 +43,8 @@ const CLAIM_KEY = MYSTERY_MONDAY_CLAIM_KEY;
 const MYSTERY_MONDAY_SHOWN_KEY = 'boon_mystery_monday_shown_v1';
 
 function makeL(lang: Lang) {
-  return (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
-    triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  return (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 }
 
 // Псевдослучайный roll из weekId — стабилен в пределах недели, без Math.random в рендере.
@@ -186,7 +186,7 @@ export default function MysteryMondayHost() {
   const rarity = rarityForShards(reward.rarityShards ?? reward.shards);
 
   const title = L(
-    'Сундук недели', 'Скриня тижня', 'Cofre de la semana', 'Baú da semana',
+    'Сундук недели', 'Скриня тижня', 'Weekly chest', 'Cofre de la semana', 'Baú da semana',
     'Rương của tuần', 'Peti minggu ini', 'Haftanın sandığı', 'Skrzynia tygodnia',
   );
   // зачем (владелец, 2026-08-26): наградой были жемчужины — заменены на спин
@@ -199,6 +199,7 @@ export default function MysteryMondayHost() {
   const rewardLine = L(
     `${spins} ${ruSpin} — ${spinOne ? 'теперь твой' : 'теперь твои'}`,
     `${spins} ${ukSpin} — ${spinOne ? 'тепер твій' : 'тепер твої'}`,
+    `${spins} ${spins === 1 ? 'spin' : 'spins'} — now yours`,
     `${spins} ${spins === 1 ? 'giro' : 'giros'} — ${spins === 1 ? 'ahora es tuyo' : 'ahora son tuyos'}`,
     `${spins} ${spins === 1 ? 'giro' : 'giros'} — ${spins === 1 ? 'agora é seu' : 'agora são seus'}`,
     `${spins} lượt quay — giờ là của bạn`,
@@ -207,11 +208,11 @@ export default function MysteryMondayHost() {
     `${spins} ${spins === 1 ? 'spin' : 'spinów'} — teraz ${spins === 1 ? 'twój' : 'twoje'}`,
   );
   const tapHint = L(
-    'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Toca para abrir', 'Toque para abrir',
+    'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Tap to open', 'Toca para abrir', 'Toque para abrir',
     'Nhấn để mở', 'Ketuk untuk membuka', 'Açmak için dokun', 'Dotknij, aby otworzyć',
   );
-  const claimCta = L('Забрать', 'Забрати', 'Recoger', 'Pegar', 'Nhận', 'Ambil', 'Al', 'Odbierz');
-  const closeLabel = L('Закрыть', 'Закрити', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij');
+  const claimCta = L('Забрать', 'Забрати', 'Claim', 'Recoger', 'Pegar', 'Nhận', 'Ambil', 'Al', 'Odbierz');
+  const closeLabel = L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij');
 
   return (
     <BoonChestModal

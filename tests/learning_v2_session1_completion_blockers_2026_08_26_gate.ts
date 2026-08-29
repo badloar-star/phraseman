@@ -37,7 +37,7 @@ assert.ok(
   "the session player must not mount the heavyweight universal SpeakingPanel",
 );
 assert.ok(
-  player.includes("void localVoice.start()"),
+  player.includes("void startVoiceCapture()"),
   "press-in must start the dedicated local recognizer",
 );
 assert.ok(
@@ -45,7 +45,7 @@ assert.ok(
   "the center footer microphone must retain press-in capture",
 );
 assert.ok(
-  player.includes("onPressOut={localVoice.stop}"),
+  player.includes("onPressOut={stopVoiceCapture}"),
   "the center footer microphone must retain press-out completion",
 );
 assert.ok(

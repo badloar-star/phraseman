@@ -264,6 +264,13 @@ describe('K2 owned/purchased union restore (offline purchases survive cloud-wins
       expect(merged['av-1']).toBe('gradCloud:black');
     });
 
+    it('keeps a local custom-avatar restyle when raw cloud has an older value', () => {
+      const cloud = JSON.stringify({ 'av-1': 'gradCloud:black' });
+      const local = JSON.stringify({ 'av-1': 'gradLocal:white' });
+      const merged = JSON.parse(mergeOwnedRestoreValue(cloud, local, true));
+      expect(merged['av-1']).toBe('gradLocal:white');
+    });
+
     // Регресс аудита K2: cloud-wins ветка проверяла только !== null/undefined, но
     // пустую строку/битый JSON НЕ отсекала. При object-owned мапе это стирало
     // локальные покупки (аватары/ауры/счётчики) — массивы были защищены, мапы нет.
@@ -300,6 +307,15 @@ describe('K2 owned/purchased union restore (offline purchases survive cloud-wins
         mergeLessonRestoreValue('flashcards_v2::fr::flashcards_owned_packs_v1', cloud, local),
       );
       expect(new Set(merged)).toEqual(new Set(['pack-a', 'pack-offline']));
+    });
+
+    it('routes custom-avatar restyle conflicts through local-authoritative merge', () => {
+      const cloud = JSON.stringify({ 'av-1': 'gradCloud:black' });
+      const local = JSON.stringify({ 'av-1': 'gradLocal:white' });
+      const merged = JSON.parse(
+        mergeLessonRestoreValue('custom_avatar_owned_v1', cloud, local),
+      );
+      expect(merged['av-1']).toBe('gradLocal:white');
     });
   });
 });

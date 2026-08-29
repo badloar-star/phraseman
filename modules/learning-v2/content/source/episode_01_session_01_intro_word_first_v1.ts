@@ -1,37 +1,45 @@
 import type { LearningV2IntroTextRunV1 } from '../intro_semantic_runs_v1';
-import type {
-  LocalizedSource,
-  SessionSourceIntroPage,
-} from './session_shard_from_source_v1';
+import type { LocalizedSource, SessionSourceIntroPage } from './session_shard_from_source_v1';
 
 const L = (value: LocalizedSource): LocalizedSource => value;
-const R = (
-  ...runs: readonly LearningV2IntroTextRunV1[]
-): readonly LearningV2IntroTextRunV1[] =>
-  // Session 1 compares valid English competitors (an, m, hear, hair). They are
-  // wrong answers in this context, but not malformed English. Owner rule:
-  // valid target-language forms keep one target colour; red strike-through is
-  // reserved for an actually invalid form.
-  runs.map((run) =>
-    run.semantic === 'targetWrong'
-      ? { ...run, semantic: 'targetCorrect' as const }
-      : run,
-  );
+const targetChoice = (value: string): LocalizedSource => L({ ru: value, uk: value, es: value, 'pt-BR': value, vi: value, id: value, tr: value, pl: value });
+const LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+
+// Тексты ниже написаны вручную. Функция создаёт только визуальную разметку
+// готовых строк, чтобы target-язык всегда имел отдельный цвет и начертание.
+function bodyRuns(
+  body: LocalizedSource,
+  targets: readonly string[],
+): NonNullable<SessionSourceIntroPage['bodyRuns']> {
+  const escaped = targets
+    .slice()
+    .sort((a, b) => b.length - a.length)
+    .map((target) => target.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&'));
+  const pattern = new RegExp(`\\b(${escaped.join('|')})\\b`, 'giu');
+  const targetSet = new Set(targets.map((value) => value.toLocaleLowerCase('en')));
+  return Object.fromEntries(
+    LOCALES.map((locale) => [
+      locale,
+      (body[locale] ?? '').split(pattern).filter(Boolean).map(
+        (text): LearningV2IntroTextRunV1 => ({
+          text,
+          semantic: targetSet.has(text.toLocaleLowerCase('en'))
+            ? 'targetCorrect'
+            : 'explanation',
+        }),
+      ),
+    ]),
+  ) as NonNullable<SessionSourceIntroPage['bodyRuns']>;
+}
 
 export const EPISODE_01_SESSION_01_WORD_FIRST_TITLE = L({
-  ru: 'Я здесь',
-  uk: 'Я тут',
-  es: 'Estoy aquí',
-  'pt-BR': 'Estou aqui',
-  vi: 'Tôi ở đây',
-  id: 'Saya di sini',
-  tr: 'Buradayım',
-  pl: 'Jestem tutaj',
+  ru: 'Я здесь', uk: 'Я тут', es: 'Estoy aquí', 'pt-BR': 'Estou aqui',
+  vi: 'Tôi ở đây', id: 'Saya di sini', tr: 'Buradayım', pl: 'Jestem tutaj',
 });
 
 export const EPISODE_01_SESSION_01_WORD_FIRST_SUMMARY = L({
-  ru: 'Четыре коротких английских слова сначала становятся понятными по отдельности, а затем соединяются в речь о себе.',
-  uk: 'Чотири короткі англійські слова спершу стають зрозумілими окремо, а потім з’єднуються у вислів про себе.',
+  ru: 'Четыре коротких английских слова становятся понятными по отдельности, а затем соединяются в речь о себе.',
+  uk: 'Чотири короткі англійські слова стають зрозумілими окремо, а потім поєднуються у вислів про себе.',
   es: 'Cuatro palabras inglesas se aclaran por separado antes de formar una idea completa sobre quien habla.',
   'pt-BR': 'Quatro palavras inglesas ficam claras separadamente antes de formar uma ideia completa sobre quem fala.',
   vi: 'Bốn từ tiếng Anh được hiểu riêng từng từ trước khi ghép thành lời nói trọn vẹn về bản thân.',
@@ -52,152 +60,79 @@ export const EPISODE_01_SESSION_01_WORD_FIRST_GOAL = L({
 });
 
 const CONCEPT_BODY = L({
-  ru: 'Слово I не приклеено к одному человеку навсегда. Оно переходит к тому, у кого сейчас воображаемый микрофон. Говорите вы — I означает «я» и указывает на вас. Собеседник забирает реплику — теперь его I указывает уже на него. Поэтому I всегда называет того, кто сейчас говорит, а не слушателя и не место разговора. На письме английский всегда даёт этому короткому слову заглавную форму I.',
-  uk: 'Слово I не належить одній людині назавжди. Воно переходить до того, в кого зараз уявний мікрофон. Говорите ви — I означає «я» і вказує на вас. Співрозмовник бере слово — його I вже вказує на нього. Тому I завжди називає того, хто зараз говорить, а не слухача і не місце розмови. На письмі англійська завжди подає це коротке слово великою літерою I.',
-  es: 'I no pertenece para siempre a una sola persona: viaja con el micrófono imaginario. Si hablas tú, I significa «yo» y te señala a ti. Cuando la otra persona toma la palabra, su I pasa a señalarla a ella. Por eso I nombra siempre a quien está hablando, y no al que escucha ni al lugar de la conversación. En la escritura inglesa esta palabra breve siempre aparece como I mayúscula.',
-  'pt-BR': 'I não pertence para sempre a uma única pessoa: acompanha o microfone imaginário. Quando você fala, I significa «eu» e aponta para você. Quando a outra pessoa toma a palavra, o I dela passa a apontar para ela. Portanto, I nomeia sempre quem está falando, e não quem escuta nem o lugar da conversa. Na escrita inglesa, essa palavra curta aparece sempre como I maiúsculo.',
-  vi: 'I không gắn vĩnh viễn với một người; nó đi theo chiếc micro tưởng tượng. Khi bạn đang nói, I mang nghĩa “tôi” và chỉ chính bạn. Khi người đối diện cất lời, I của họ lại chỉ họ. Vì thế I luôn chỉ người đang nói, chứ không phải người nghe hay nơi diễn ra cuộc trò chuyện. Trong chữ viết tiếng Anh, từ rất ngắn ấy luôn xuất hiện bằng chữ hoa I.',
-  id: 'I tidak melekat selamanya pada satu orang; kata ini mengikuti mikrofon khayalan. Saat kamu berbicara, I berarti “saya” dan menunjuk dirimu. Ketika lawan bicara mengambil giliran, I miliknya menunjuk dirinya sendiri. Jadi I selalu menunjuk orang yang sedang berbicara, bukan orang yang mendengarkan dan bukan tempat percakapan. Dalam tulisan bahasa Inggris, kata pendek ini selalu tampil sebagai huruf besar I.',
-  tr: 'I sonsuza kadar tek bir kişiye ait değildir; hayalî mikrofon kimdeyse onunla birlikte gider. Siz konuşurken I “ben” demektir ve sizi gösterir. Söz karşı tarafa geçince onun söylediği I artık onu gösterir. Bu yüzden I her zaman o anda konuşan kişiyi gösterir; dinleyeni ya da konuşmanın geçtiği yeri değil. İngilizce yazıda bu kısa sözcük her zaman büyük I biçimindedir.',
-  pl: 'I nie należy na stałe do jednej osoby; wędruje razem z wyobrażonym mikrofonem. Gdy mówisz ty, I znaczy „ja” i wskazuje ciebie. Kiedy głos przejmuje rozmówca, jego I wskazuje już jego. Dlatego I zawsze wskazuje osobę, która właśnie mówi, a nie słuchacza ani miejsce rozmowy. W angielskim zapisie to krótkie słowo zawsze ma wielką formę I.',
+  ru: 'I — слово с воображаемым микрофоном: оно означает «я» у того, кто сейчас говорит. Передайте микрофон другому человеку — и его I уже указывает на него. На письме английское I всегда заглавное, даже посреди фразы.',
+  uk: 'I — слово з уявним мікрофоном: воно означає «я» для того, хто зараз говорить. Передайте мікрофон іншій людині — і її I вже вказує на неї. В англійському письмі I завжди велике, навіть усередині вислову.',
+  es: 'I viaja con un micrófono imaginario: nombra a quien habla en ese momento y significa «yo». Si otra persona toma el micrófono, su I pasa a señalarla a ella. En inglés, I siempre se escribe con mayúscula, incluso en medio de una frase.',
+  'pt-BR': 'I acompanha um microfone imaginário: nomeia quem está falando naquele momento e significa «eu». Quando outra pessoa pega o microfone, o I dela passa a apontar para ela. Em inglês, I é sempre maiúsculo, até no meio de uma frase.',
+  vi: 'I đi theo chiếc micro tưởng tượng: ai đang nói thì I mang nghĩa “tôi” và chỉ người đó. Khi micro chuyển sang người khác, I của họ lại chỉ chính họ. Trong tiếng Anh, I luôn được viết hoa, kể cả khi đứng giữa câu.',
+  id: 'I mengikuti mikrofon khayalan: bagi orang yang sedang berbicara, I berarti “saya”. Saat mikrofon berpindah, I milik pembicara baru menunjuk dirinya. Dalam tulisan bahasa Inggris, I selalu memakai huruf besar, bahkan di tengah kalimat.',
+  tr: 'I hayalî mikrofonu izler: o anda konuşan kişiyi gösterir ve onun için “ben” demektir. Mikrofon başkasına geçince onun söylediği I artık onu gösterir. İngilizcede I, cümlenin ortasında bile her zaman büyük yazılır.',
+  pl: 'I wędruje z wyobrażonym mikrofonem i wskazuje osobę, która mówi: dla niej znaczy „ja”. Gdy mikrofon przejmuje ktoś inny, jego I wskazuje już jego. Po angielsku I zawsze zapisuje się wielką literą, nawet w środku zdania.',
 });
 
 const FORMULA_BODY = L({
-  ru: 'Слово am не описывает место или состояние само по себе. Это короткая связка для случая, когда говорящий уже назвал себя через I. В русском переводе такая связь часто остаётся невидимой, но в английской форме она нужна. Держите роли раздельно: I называет человека; am соединяет его с дальнейшей информацией. На слух у am отчётливо заканчивается звук /m/. В an финальный звук /n/, а одиночная m — только буква. Если нужна именно связка говорящего, выбирайте am.',
-  uk: 'Слово am саме по собі не описує місце чи стан. Це коротка зв’язка для випадку, коли мовець уже назвав себе через I. В українському перекладі така зв’язка часто лишається невидимою, але в англійській формі вона потрібна. Тримайте ролі окремо: I називає людину; am з’єднує її з подальшою інформацією. На слух am чітко закінчується звуком /m/. В an наприкінці чути /n/, а окрема m — лише літера. Коли потрібна саме зв’язка мовця, обирайте am.',
-  es: 'Am no describe por sí sola un lugar ni un estado. Es la unión breve que usa el inglés cuando la persona que habla ya está nombrada con I. En español esa información puede quedar reunida dentro de soy o estoy, pero el inglés la muestra aparte. Mantén dos funciones distintas: I nombra a la persona; am la conecta con la información que seguirá. Al oír am, el final es /m/. An termina en /n/ y una m sola es únicamente una letra. Para la unión del hablante, la forma precisa es am.',
-  'pt-BR': 'Am não descreve sozinho um lugar nem um estado. É a ligação curta usada pelo inglês quando quem fala já foi indicado por I. Em português essa informação pode ficar reunida em sou ou estou, mas o inglês a mostra separadamente. Mantenha duas funções distintas: I nomeia a pessoa; am a conecta à informação que virá. Ao ouvir am, o final é /m/. An termina em /n/, e m sozinho é apenas uma letra. Para ligar quem fala, a forma exata é am.',
-  vi: 'Am không tự diễn tả nơi chốn hay trạng thái. Đây là từ nối ngắn dùng khi người nói đã được gọi bằng I. Tiếng Việt thường không cần một từ nối như vậy trước tính chất, nhưng tiếng Anh phải hiện nó ra. Hãy tách rõ hai vai trò: I gọi tên người nói; am nối người ấy với thông tin phía sau. Khi nghe am, âm cuối là /m/. An kết thúc bằng /n/, còn m đứng một mình chỉ là một chữ cái. Từ nối chính xác cho người nói là am.',
-  id: 'Am tidak menjelaskan tempat atau keadaan sendirian. Kata pendek ini menjadi penghubung ketika penutur sudah disebut dengan I. Bahasa Indonesia sering tidak menampilkan penghubung semacam itu sebelum sifat, tetapi bahasa Inggris harus menampilkannya. Pisahkan dua tugasnya: I menyebut orangnya; am menghubungkannya dengan informasi berikutnya. Saat am terdengar, bunyi akhirnya /m/. An berakhir dengan /n/, sedangkan m sendiri hanya sebuah huruf. Penghubung yang tepat untuk penutur ialah am.',
-  tr: 'Am tek başına bir yer ya da durum anlatmaz. Konuşan kişi I ile adlandırıldıktan sonra onu gelecek bilgiye bağlayan kısa sözcüktür. Türkçede bu bağlantı çoğu zaman yüklem ekinin içinde görünür; İngilizcede ayrı yazılır. İki görevi ayırın: I kişiyi adlandırır; am onu sonraki bilgiye bağlar. Am duyulduğunda son ses /m/ olur. An /n/ ile biter, tek başına m ise yalnızca bir harftir. Konuşanı bağlayan doğru biçim am olur.',
-  pl: 'Am samo nie opisuje miejsca ani stanu. To krótki łącznik używany wtedy, gdy osoba mówiąca została już nazwana przez I. Po polsku ta informacja często mieści się w formie jestem, lecz angielski pokazuje ją osobno. Rozdziel dwie funkcje: I nazywa osobę; am łączy ją z dalszą informacją. W wymowie am kończy się dźwiękiem /m/. An kończy się /n/, a samo m jest tylko literą. Właściwym łącznikiem dla mówiącego jest am.',
+  ru: 'I называет говорящего, а am присоединяет к нему важную информацию. Поэтому английская мысль строится как маленький мост: I am here или I am ready. Уберите am — мост исчезнет, и слова останутся по разным берегам.',
+  uk: 'I називає мовця, а am приєднує до нього важливу інформацію. Тому англійська думка будується як маленький міст: I am here або I am ready. Заберіть am — міст зникне, а слова залишаться на різних берегах.',
+  es: 'I nombra a quien habla y am lo conecta con la información importante. Por eso la idea inglesa usa un pequeño puente: I am here o I am ready. Si quitas am, el puente desaparece y las palabras quedan separadas.',
+  'pt-BR': 'I identifica quem fala, e am liga essa pessoa à informação importante. Por isso a ideia inglesa usa uma pequena ponte: I am here ou I am ready. Sem am, a ponte some e as palavras ficam separadas.',
+  vi: 'I gọi tên người nói, còn am nối người đó với thông tin quan trọng. Vì vậy tiếng Anh dùng một cây cầu nhỏ: I am here hoặc I am ready. Bỏ am đi, cây cầu biến mất và các từ đứng rời nhau.',
+  id: 'I menyebut orang yang berbicara, lalu am menghubungkannya dengan informasi penting. Karena itu bahasa Inggris memakai jembatan kecil: I am here atau I am ready. Tanpa am, jembatannya hilang dan kata-kata terpisah.',
+  tr: 'I konuşan kişiyi gösterir, am ise onu önemli bilgiye bağlar. Bu yüzden İngilizce düşüncede küçük bir köprü vardır: I am here ya da I am ready. Am çıkarılırsa köprü kaybolur ve sözcükler ayrı kalır.',
+  pl: 'I wskazuje osobę mówiącą, a am łączy ją z ważną informacją. Dlatego angielska myśl ma mały most: I am here albo I am ready. Bez am most znika, a słowa zostają po dwóch stronach.',
 });
 
 const TRAP_BODY = L({
-  ru: 'Слово here указывает место говорящего и означает «здесь». Оно начинается с заметного /h/ и пишется с двумя e по краям. На слух рядом оказывается hear: звучание может совпасть, но это другое слово со значением «слышать». Hair тоже похоже, однако означает «волосы» и имеет другой гласный звук. Поэтому одного знакомого звучания недостаточно: для значения «здесь» нужна точная форма here.',
-  uk: 'Слово here вказує місце мовця й означає «тут». Воно починається з помітного /h/ і має дві e по краях у написанні. На слух поруч опиняється hear: звучання може збігатися, але це інше слово зі значенням «чути». Hair теж схоже, проте означає «волосся» й має інший голосний звук. Тому знайомого звучання недостатньо: для значення «тут» потрібна точна форма here.',
-  es: 'Here señala el lugar de quien habla y significa «aquí». Empieza con un /h/ perceptible y lleva una e a cada lado de la r. Al oído aparece muy cerca hear: puede sonar igual, pero es otra palabra y significa «oír». Hair también se parece, aunque significa «pelo» y usa otra vocal. Por eso no basta reconocer un sonido familiar: para expresar «aquí», la forma exacta es here.',
-  'pt-BR': 'Here aponta para o lugar de quem fala e significa «aqui». Começa com um /h/ perceptível e tem uma letra e de cada lado do r. Ao ouvir, hear fica muito próximo: pode soar igual, mas é outra palavra e significa «ouvir». Hair também se parece, porém significa «cabelo» e usa outra vogal. Por isso o som familiar não basta: para dizer «aqui», a forma exata é here.',
-  vi: 'Here chỉ nơi của người nói và mang nghĩa “ở đây”. Từ này bắt đầu bằng /h/ rõ ràng và có hai chữ e ở hai bên r. Khi nghe, hear ở rất gần: âm có thể giống nhau nhưng đó là từ khác, nghĩa là “nghe”. Hair cũng gần giống, nhưng nghĩa là “tóc” và có nguyên âm khác. Vì vậy chỉ nhận ra âm quen chưa đủ: để nói “ở đây”, dạng chính xác là here.',
-  id: 'Here menunjuk tempat penutur dan berarti “di sini”. Kata ini diawali /h/ yang jelas dan memiliki huruf e di kedua sisi r. Saat didengar, hear sangat dekat: bunyinya dapat sama, tetapi itu kata lain yang berarti “mendengar”. Hair juga mirip, namun berarti “rambut” dan memakai vokal yang berbeda. Jadi bunyi yang terasa akrab belum cukup: untuk makna “di sini”, bentuk yang tepat ialah here.',
-  tr: 'Here konuşanın bulunduğu yeri gösterir ve “burada” demektir. Belirgin bir /h/ ile başlar ve yazıda r harfinin iki yanında e bulunur. Duyarken hear çok yakına gelir: aynı duyulabilir ama “duymak” anlamındaki başka bir sözcüktür. Hair da benzer görünür; “saç” demektir ve ünlü sesi farklıdır. Bu yüzden tanıdık bir ses yetmez: “burada” anlamı için doğru biçim here olur.',
-  pl: 'Here wskazuje miejsce osoby mówiącej i znaczy „tutaj”. Zaczyna się wyraźnym /h/, a w zapisie ma e po obu stronach r. W wymowie bardzo blisko znajduje się hear: może brzmieć tak samo, ale jest innym słowem i znaczy „słyszeć”. Hair także wygląda podobnie, lecz oznacza „włosy” i ma inną samogłoskę. Sam znajomy dźwięk więc nie wystarczy: znaczenie „tutaj” ma dokładna forma here.',
+  ru: 'По-русски можно сказать «я здесь» без отдельного слова между частями. Английская фраза так не любит: ей нужен порядок I am here. Am может не появиться в переводе, но в самой английской фразе оно работает и держит всё вместе.',
+  uk: 'Українською можна сказати «я тут» без окремого слова між частинами. Англійська фраза так не любить: їй потрібен порядок I am here. Am може не з’явитися в перекладі, але в англійському вислові воно тримає все разом.',
+  es: 'En español, estoy puede reunir a la persona y su situación en una sola forma. El inglés separa las piezas y necesita I am here. Aunque am no aparezca como palabra independiente en la traducción, sostiene la frase inglesa.',
+  'pt-BR': 'Em português, estou pode reunir a pessoa e a situação numa única forma. O inglês separa as peças e precisa de I am here. Mesmo sem uma palavra isolada na tradução, am sustenta a frase inglesa.',
+  vi: 'Tiếng Việt có thể nói “tôi ở đây” mà không cần một từ nối giống hệt tiếng Anh. Tiếng Anh tách rõ ba phần và cần I am here. Am có thể không hiện thành một từ riêng trong bản dịch, nhưng nó giữ câu tiếng Anh liền mạch.',
+  id: 'Bahasa Indonesia dapat mengatakan “saya di sini” tanpa penghubung yang sama seperti bahasa Inggris. Bahasa Inggris memisahkan tiga bagian dan memerlukan I am here. Am mungkin tidak tampak sebagai kata tersendiri dalam terjemahan, tetapi tetap menyatukan kalimat.',
+  tr: 'Türkçe “buradayım” derken kişi ve yer bilgisini tek sözcükte toplayabilir. İngilizce parçaları ayırır ve I am here düzenini ister. Am çeviride ayrı görünmese bile İngilizce ifadeyi bir arada tutar.',
+  pl: 'Po polsku jestem potrafi połączyć osobę i jej sytuację w jednym słowie. Angielski rozdziela te części i potrzebuje I am here. Choć am nie ma osobnego odpowiednika w tłumaczeniu, spina angielskie zdanie.',
 });
 
-export const EPISODE_01_SESSION_01_WORD_FIRST_INTRO: readonly [
-  SessionSourceIntroPage,
-  SessionSourceIntroPage,
-  SessionSourceIntroPage,
-] = [
+export const EPISODE_01_SESSION_01_WORD_FIRST_INTRO: readonly [SessionSourceIntroPage, SessionSourceIntroPage, SessionSourceIntroPage] = [
   {
     kind: 'concept',
-    title: L({
-      ru: 'I называет говорящего',
-      uk: 'I називає мовця',
-      es: 'I nombra a quien habla',
-      'pt-BR': 'I nomeia quem fala',
-      vi: 'I gọi tên người đang nói',
-      id: 'I menunjuk orang yang berbicara',
-      tr: 'I konuşan kişiyi gösterir',
-      pl: 'I nazywa osobę mówiącą',
-    }),
+    title: L({ ru: 'I называет говорящего', uk: 'I називає мовця', es: 'I nombra a quien habla', 'pt-BR': 'I nomeia quem fala', vi: 'I gọi tên người đang nói', id: 'I menunjuk orang yang berbicara', tr: 'I konuşan kişiyi gösterir', pl: 'I nazywa osobę mówiącą' }),
     body: CONCEPT_BODY,
-    bodyRuns: {
-      ru: R({ text: 'Слово ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' не приклеено к одному человеку навсегда. Оно переходит к тому, у кого сейчас воображаемый микрофон. Говорите вы — ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' означает «я» и указывает на вас. Собеседник забирает реплику — теперь его ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' указывает уже на него. Поэтому это слово всегда называет того, кто сейчас говорит, а не слушателя и не место разговора. На письме форма всегда заглавная: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      uk: R({ text: 'Слово ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' не належить одній людині назавжди. Воно переходить до того, в кого зараз уявний мікрофон. Говорите ви — ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' означає «я» і вказує на вас. Співрозмовник бере слово — його ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' вже вказує на нього. Тому це слово завжди називає того, хто зараз говорить, а не слухача і не місце розмови. На письмі форма завжди велика: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      es: R({ text: 'La palabra ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' no pertenece para siempre a una sola persona: viaja con el micrófono imaginario. Si hablas tú, ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' significa «yo» y te señala a ti. Cuando otra persona toma la palabra, su ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' pasa a señalarla a ella. Por eso nombra siempre a quien está hablando, y no al que escucha ni al lugar de la conversación. En inglés siempre se escribe con mayúscula: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      'pt-BR': R({ text: 'A palavra ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' não pertence para sempre a uma pessoa: acompanha o microfone imaginário. Quando você fala, ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' significa «eu» e aponta para você. Quando a outra pessoa toma a palavra, o ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' dela passa a apontar para ela. Portanto, nomeia sempre quem está falando, e não quem escuta nem o lugar da conversa. Na escrita inglesa a forma é sempre maiúscula: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      vi: R({ text: 'Từ ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' không gắn vĩnh viễn với một người; nó đi theo chiếc micro tưởng tượng. Khi bạn đang nói, ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' mang nghĩa “tôi” và chỉ chính bạn. Khi người đối diện cất lời, ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' của họ lại chỉ họ. Vì thế từ này luôn chỉ người đang nói, chứ không phải người nghe hay nơi diễn ra cuộc trò chuyện. Trong chữ viết tiếng Anh, từ ấy luôn viết hoa: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      id: R({ text: 'Kata ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' tidak melekat selamanya pada satu orang; kata ini mengikuti mikrofon khayalan. Saat kamu berbicara, ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' berarti “saya” dan menunjuk dirimu. Ketika lawan bicara mengambil giliran, ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' miliknya menunjuk dirinya sendiri. Jadi kata ini selalu menunjuk orang yang sedang berbicara, bukan orang yang mendengarkan dan bukan tempat percakapan. Dalam tulisan bahasa Inggris bentuknya selalu huruf besar: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      tr: R({ text: 'Sözcük ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' sonsuza kadar tek bir kişiye ait değildir; hayalî mikrofon kimdeyse onunla birlikte gider. Siz konuşurken ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' “ben” demektir ve sizi gösterir. Söz karşı tarafa geçince onun ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' sözcüğü artık onu gösterir. Bu yüzden bu sözcük her zaman o anda konuşan kişiyi gösterir; dinleyeni ya da konuşmanın geçtiği yeri değil. İngilizce yazıda biçim her zaman büyüktür: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      pl: R({ text: 'Słowo ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' nie należy na stałe do jednej osoby; wędruje razem z wyobrażonym mikrofonem. Gdy mówisz ty, ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' znaczy „ja” i wskazuje ciebie. Kiedy głos przejmuje rozmówca, jego ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' wskazuje już jego. Dlatego zawsze wskazuje osobę, która właśnie mówi, a nie słuchacza ani miejsce rozmowy. W angielskim zapisie forma jest zawsze wielka: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-    },
+    bodyRuns: bodyRuns(CONCEPT_BODY, ['I']),
     question: {
+      grammarFeatureId: 'copula_be',
+      testedDimension: 'first_person_subject_I',
       prompt: L({ ru: 'Кого называет I, когда говорите вы?', uk: 'Кого називає I, коли говорите ви?', es: '¿A quién nombra I cuando hablas tú?', 'pt-BR': 'Quem I nomeia quando você está falando?', vi: 'I chỉ ai khi chính bạn đang nói?', id: 'Siapa yang ditunjuk I saat kamu sedang berbicara?', tr: 'Siz konuşurken I kimi gösterir?', pl: 'Kogo oznacza I, gdy mówisz ty?' }),
-      choices: [
-        L({ ru: 'Того, кто сейчас говорит', uk: 'Того, хто зараз говорить', es: 'A quien está hablando', 'pt-BR': 'Quem está falando', vi: 'Người đang nói', id: 'Orang yang sedang berbicara', tr: 'O anda konuşan kişiyi', pl: 'Osobę, która właśnie mówi' }),
-        L({ ru: 'Того, кто сейчас слушает', uk: 'Того, хто зараз слухає', es: 'A quien está escuchando', 'pt-BR': 'Quem está ouvindo', vi: 'Người đang nghe', id: 'Orang yang sedang mendengarkan', tr: 'O anda dinleyen kişiyi', pl: 'Osobę, która właśnie słucha' }),
-        L({ ru: 'Место, где идёт разговор', uk: 'Місце, де триває розмова', es: 'El lugar de la conversación', 'pt-BR': 'O lugar da conversa', vi: 'Nơi cuộc trò chuyện diễn ra', id: 'Tempat percakapan berlangsung', tr: 'Konuşmanın yapıldığı yeri', pl: 'Miejsce, w którym trwa rozmowa' }),
-      ],
+      choices: [targetChoice('I'), targetChoice('i'), targetChoice('l')],
       correctChoiceIndex: 0,
-      explanation: L({
-        ru: 'Верно: того, кто сейчас говорит. I переходит вместе с голосом, поэтому оно указывает на человека с репликой, а не на слушателя и не на место.',
-        uk: 'Правильно: того, хто зараз говорить. I переходить разом із голосом, тому вказує на людину з реплікою, а не на слухача і не на місце.',
-        es: 'Correcto: a quien está hablando. I viaja con la voz, así que señala a la persona que tiene la palabra, no al oyente ni al lugar.',
-        'pt-BR': 'Correto: quem está falando. I acompanha a voz, por isso aponta para a pessoa com a palavra, e não para quem ouve nem para o lugar.',
-        vi: 'Đúng: người đang nói. I đi theo giọng nói, nên nó chỉ người đang cầm lời, không phải người nghe hay địa điểm.',
-        id: 'Benar: orang yang sedang berbicara. I mengikuti suara, jadi kata itu menunjuk orang yang sedang bicara, bukan pendengar atau tempatnya.',
-        tr: 'Doğru: o anda konuşan kişiyi. I sesi izler, bu yüzden sözü elinde tutan kişiyi gösterir; dinleyeni ya da yeri değil.',
-        pl: 'Dobrze: osobę, która właśnie mówi. I podąża za głosem, więc wskazuje osobę zabierającą głos, a nie słuchacza ani miejsce.',
-      }),
+      explanation: L({ ru: 'I — правильное английское «я»: оно всегда заглавное. i нарушает написание, а l является другой буквой.', uk: 'I — правильне англійське «я»: воно завжди велике. i порушує написання, а l є іншою літерою.', es: 'I es el «yo» inglés correcto y siempre va en mayúscula. i rompe la escritura y l es otra letra.', 'pt-BR': 'I é o «eu» inglês correto e sempre fica em maiúscula. i quebra a escrita e l é outra letra.', vi: 'I là từ tiếng Anh đúng cho “tôi” và luôn viết hoa. i sai cách viết, còn l là chữ khác.', id: 'I adalah bentuk Inggris yang benar untuk “saya” dan selalu huruf besar. i salah eja, sedangkan l huruf lain.', tr: 'Doğru İngilizce “ben” biçimi I olur ve her zaman büyüktür. i yazımı bozar, l ise başka bir harftir.', pl: 'I jest poprawnym angielskim „ja” i zawsze ma wielką literę. i ma złą pisownię, a l jest inną literą.' }),
     },
   },
   {
     kind: 'formula',
     title: L({ ru: 'Am создаёт связь', uk: 'Am створює зв’язок', es: 'Am crea la unión', 'pt-BR': 'Am cria a ligação', vi: 'Am tạo mối nối', id: 'Am menjadi penghubung', tr: 'Am bağlantıyı kurar', pl: 'Am tworzy połączenie' }),
     body: FORMULA_BODY,
-    bodyRuns: {
-      ru: R({ text: 'Слово ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' не описывает место или состояние само по себе. Это короткая связка для случая, когда говорящий уже назвал себя через ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '. В русском переводе такая связь часто остаётся невидимой, но в английской форме она нужна. Держите роли раздельно: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' называет человека; ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' соединяет его с дальнейшей информацией. На слух у ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' отчётливо заканчивается звук /m/. В ', semantic: 'explanation' }, { text: 'an', semantic: 'targetWrong' }, { text: ' финальный звук /n/, а одиночная ', semantic: 'explanation' }, { text: 'm', semantic: 'targetWrong' }, { text: ' — только буква. Если нужна именно связка говорящего, выбирайте ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      uk: R({ text: 'Слово ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' саме по собі не описує місце чи стан. Це коротка зв’язка для випадку, коли мовець уже назвав себе через ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '. В українському перекладі така зв’язка часто лишається невидимою, але в англійській формі вона потрібна. Тримайте ролі окремо: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' називає людину; ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' з’єднує її з подальшою інформацією. На слух ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' чітко закінчується звуком /m/. В ', semantic: 'explanation' }, { text: 'an', semantic: 'targetWrong' }, { text: ' наприкінці чути /n/, а окрема ', semantic: 'explanation' }, { text: 'm', semantic: 'targetWrong' }, { text: ' — лише літера. Коли потрібна саме зв’язка мовця, обирайте ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      es: R({ text: 'Am', semantic: 'targetCorrect' }, { text: ' no describe por sí sola un lugar ni un estado. Es la unión breve que usa el inglés cuando la persona que habla ya está nombrada con ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '. En español esa información puede quedar reunida dentro de soy o estoy, pero el inglés la muestra aparte. Mantén dos funciones distintas: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' nombra a la persona; ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' la conecta con la información que seguirá. Al oír ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ', el final es /m/. ', semantic: 'explanation' }, { text: 'An', semantic: 'targetWrong' }, { text: ' termina en /n/ y una ', semantic: 'explanation' }, { text: 'm', semantic: 'targetWrong' }, { text: ' sola es únicamente una letra. Para la unión del hablante, la forma precisa es ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      'pt-BR': R({ text: 'Am', semantic: 'targetCorrect' }, { text: ' não descreve sozinho um lugar nem um estado. É a ligação curta usada pelo inglês quando quem fala já foi indicado por ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '. Em português essa informação pode ficar reunida em sou ou estou, mas o inglês a mostra separadamente. Mantenha duas funções distintas: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' nomeia a pessoa; ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' a conecta à informação que virá. Ao ouvir ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ', o final é /m/. ', semantic: 'explanation' }, { text: 'An', semantic: 'targetWrong' }, { text: ' termina em /n/, e ', semantic: 'explanation' }, { text: 'm', semantic: 'targetWrong' }, { text: ' sozinho é apenas uma letra. Para ligar quem fala, a forma exata é ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      vi: R({ text: 'Am', semantic: 'targetCorrect' }, { text: ' không tự diễn tả nơi chốn hay trạng thái. Đây là từ nối ngắn dùng khi người nói đã được gọi bằng ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '. Tiếng Việt thường không cần một từ nối như vậy trước tính chất, nhưng tiếng Anh phải hiện nó ra. Hãy tách rõ hai vai trò: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' gọi tên người nói; ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' nối người ấy với thông tin phía sau. Khi nghe ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ', âm cuối là /m/. ', semantic: 'explanation' }, { text: 'An', semantic: 'targetWrong' }, { text: ' kết thúc bằng /n/, còn ', semantic: 'explanation' }, { text: 'm', semantic: 'targetWrong' }, { text: ' đứng một mình chỉ là một chữ cái. Từ nối chính xác cho người nói là ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      id: R({ text: 'Am', semantic: 'targetCorrect' }, { text: ' tidak menjelaskan tempat atau keadaan sendirian. Kata pendek ini menjadi penghubung ketika penutur sudah disebut dengan ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '. Bahasa Indonesia sering tidak menampilkan penghubung semacam itu sebelum sifat, tetapi bahasa Inggris harus menampilkannya. Pisahkan dua tugasnya: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' menyebut orangnya; ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' menghubungkannya dengan informasi berikutnya. Saat ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' terdengar, bunyi akhirnya /m/. ', semantic: 'explanation' }, { text: 'An', semantic: 'targetWrong' }, { text: ' berakhir dengan /n/, sedangkan ', semantic: 'explanation' }, { text: 'm', semantic: 'targetWrong' }, { text: ' sendiri hanya sebuah huruf. Penghubung yang tepat untuk penutur ialah ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      tr: R({ text: 'Am', semantic: 'targetCorrect' }, { text: ' tek başına bir yer ya da durum anlatmaz. Konuşan kişi ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' ile adlandırıldıktan sonra onu gelecek bilgiye bağlayan kısa sözcüktür. Türkçede bu bağlantı çoğu zaman yüklem ekinin içinde görünür; İngilizcede ayrı yazılır. İki görevi ayırın: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' kişiyi adlandırır; ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' onu sonraki bilgiye bağlar. ', semantic: 'explanation' }, { text: 'Am', semantic: 'targetCorrect' }, { text: ' duyulduğunda son ses /m/ olur. ', semantic: 'explanation' }, { text: 'An', semantic: 'targetWrong' }, { text: ' /n/ ile biter, tek başına ', semantic: 'explanation' }, { text: 'm', semantic: 'targetWrong' }, { text: ' ise yalnızca bir harftir. Konuşanı bağlayan doğru biçim ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' olur.', semantic: 'explanation' }),
-      pl: R({ text: 'Am', semantic: 'targetCorrect' }, { text: ' samo nie opisuje miejsca ani stanu. To krótki łącznik używany wtedy, gdy osoba mówiąca została już nazwana przez ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: '. Po polsku ta informacja często mieści się w formie jestem, lecz angielski pokazuje ją osobno. Rozdziel dwie funkcje: ', semantic: 'explanation' }, { text: 'I', semantic: 'targetCorrect' }, { text: ' nazywa osobę; ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' łączy ją z dalszą informacją. W wymowie ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: ' kończy się dźwiękiem /m/. ', semantic: 'explanation' }, { text: 'An', semantic: 'targetWrong' }, { text: ' kończy się /n/, a samo ', semantic: 'explanation' }, { text: 'm', semantic: 'targetWrong' }, { text: ' jest tylko literą. Właściwym łącznikiem dla mówiącego jest ', semantic: 'explanation' }, { text: 'am', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-    },
+    bodyRuns: bodyRuns(FORMULA_BODY, ['I', 'am', 'here', 'ready']),
     question: {
-      prompt: L({ ru: 'Какое слово звучит с финальным /m/ и служит связкой?', uk: 'Яке слово закінчується звуком /m/ і служить зв’язкою?', es: '¿Qué palabra termina en /m/ y funciona como unión?', 'pt-BR': 'Qual palavra termina em /m/ e funciona como ligação?', vi: 'Từ nào kết thúc bằng /m/ và làm từ nối?', id: 'Kata mana berakhir dengan /m/ dan menjadi penghubung?', tr: 'Hangi sözcük /m/ ile biter ve bağlantı kurar?', pl: 'Które słowo kończy się /m/ i jest łącznikiem?' }),
-      choices: [
-        L({ ru: 'am', uk: 'am', es: 'am', 'pt-BR': 'am', vi: 'am', id: 'am', tr: 'am', pl: 'am' }),
-        L({ ru: 'an', uk: 'an', es: 'an', 'pt-BR': 'an', vi: 'an', id: 'an', tr: 'an', pl: 'an' }),
-        L({ ru: 'm', uk: 'm', es: 'm', 'pt-BR': 'm', vi: 'm', id: 'm', tr: 'm', pl: 'm' }),
-      ],
+      grammarFeatureId: 'copula_be',
+      testedDimension: 'first_person_copula_am',
+      prompt: L({ ru: 'Какое слово соединяет I с дальнейшей информацией?', uk: 'Яке слово поєднує I з подальшою інформацією?', es: '¿Qué palabra conecta I con la información siguiente?', 'pt-BR': 'Qual palavra liga I à informação seguinte?', vi: 'Từ nào nối I với thông tin phía sau?', id: 'Kata mana menghubungkan I dengan informasi berikutnya?', tr: 'I sözcüğünü sonraki bilgiye hangisi bağlar?', pl: 'Które słowo łączy I z dalszą informacją?' }),
+      choices: [L({ ru: 'am', uk: 'am', es: 'am', 'pt-BR': 'am', vi: 'am', id: 'am', tr: 'am', pl: 'am' }), L({ ru: 'an', uk: 'an', es: 'an', 'pt-BR': 'an', vi: 'an', id: 'an', tr: 'an', pl: 'an' }), L({ ru: 'm', uk: 'm', es: 'm', 'pt-BR': 'm', vi: 'm', id: 'm', tr: 'm', pl: 'm' })],
       correctChoiceIndex: 0,
-      explanation: L({
-        ru: 'Am — связка с финальным /m/. В an слышится /n/, а m без a остаётся одной буквой.',
-        uk: 'Am — зв’язка з кінцевим /m/. В an чути /n/, а m без a лишається однією літерою.',
-        es: 'Am es la unión y termina en /m/. An termina en /n/ y m sin a es solo una letra.',
-        'pt-BR': 'Am é a ligação e termina em /m/. An termina em /n/ e m sem a é apenas uma letra.',
-        vi: 'Am là từ nối và kết thúc bằng /m/. An kết thúc bằng /n/, còn m không có a chỉ là một chữ cái.',
-        id: 'Am adalah penghubung dan berakhir dengan /m/. An berakhir dengan /n/, sedangkan m tanpa a hanya sebuah huruf.',
-        tr: 'Am bağlantı kurar ve /m/ ile biter. An /n/ ile biter; a olmadan m yalnızca bir harftir.',
-        pl: 'Am jest łącznikiem i kończy się /m/. An kończy się /n/, a m bez a jest tylko literą.',
-      }),
+      explanation: L({ ru: 'Am строит нужный мост после I. An заканчивается другим звуком, а m остаётся одной буквой.', uk: 'Am будує потрібний міст після I. An закінчується іншим звуком, а m лишається однією літерою.', es: 'Am construye el puente después de I. An termina con otro sonido y m es solo una letra.', 'pt-BR': 'Am constrói a ponte depois de I. An termina com outro som, e m é apenas uma letra.', vi: 'Am tạo cây cầu sau I. An kết thúc bằng âm khác, còn m chỉ là một chữ cái.', id: 'Am membangun jembatan setelah I. An berakhir dengan bunyi lain, sedangkan m hanya satu huruf.', tr: 'I sonrasındaki köprüyü am kurar. An başka bir sesle biter, m ise tek bir harftir.', pl: 'Potrzebny most po I tworzy am. An kończy się innym dźwiękiem, a m jest tylko literą.' }),
     },
   },
   {
     kind: 'trap',
-    title: L({ ru: 'Here означает «здесь»', uk: 'Here означає «тут»', es: 'Here significa «aquí»', 'pt-BR': 'Here significa «aqui»', vi: 'Here nghĩa là “ở đây”', id: 'Here berarti “di sini”', tr: 'Here “burada” demektir', pl: 'Here znaczy „tutaj”' }),
+    title: L({ ru: 'Am нельзя потерять', uk: 'Am не можна загубити', es: 'No pierdas am', 'pt-BR': 'Não perca am', vi: 'Đừng làm mất am', id: 'Jangan hilangkan am', tr: 'Am kaybolmasın', pl: 'Nie zgub am' }),
     body: TRAP_BODY,
-    bodyRuns: {
-      ru: R({ text: 'Слово ', semantic: 'explanation' }, { text: 'here', semantic: 'targetCorrect' }, { text: ' указывает место говорящего и означает «здесь». Оно начинается с заметного /h/ и пишется с двумя e по краям. На слух рядом оказывается ', semantic: 'explanation' }, { text: 'hear', semantic: 'targetWrong' }, { text: ': звучание может совпасть, но это другое слово со значением «слышать». ', semantic: 'explanation' }, { text: 'Hair', semantic: 'targetWrong' }, { text: ' тоже похоже, однако означает «волосы» и имеет другой гласный звук. Поэтому одного знакомого звучания недостаточно: для значения «здесь» нужна точная форма ', semantic: 'explanation' }, { text: 'here', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      uk: R({ text: 'Слово ', semantic: 'explanation' }, { text: 'here', semantic: 'targetCorrect' }, { text: ' вказує місце мовця й означає «тут». Воно починається з помітного /h/ і має дві e по краях у написанні. На слух поруч опиняється ', semantic: 'explanation' }, { text: 'hear', semantic: 'targetWrong' }, { text: ': звучання може збігатися, але це інше слово зі значенням «чути». ', semantic: 'explanation' }, { text: 'Hair', semantic: 'targetWrong' }, { text: ' теж схоже, проте означає «волосся» й має інший голосний звук. Тому знайомого звучання недостатньо: для значення «тут» потрібна точна форма ', semantic: 'explanation' }, { text: 'here', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      es: R({ text: 'Here', semantic: 'targetCorrect' }, { text: ' señala el lugar de quien habla y significa «aquí». Empieza con un /h/ perceptible y lleva una e a cada lado de la r. Al oído aparece muy cerca ', semantic: 'explanation' }, { text: 'hear', semantic: 'targetWrong' }, { text: ': puede sonar igual, pero es otra palabra y significa «oír». ', semantic: 'explanation' }, { text: 'Hair', semantic: 'targetWrong' }, { text: ' también se parece, aunque significa «pelo» y usa otra vocal. Por eso no basta reconocer un sonido familiar: para expresar «aquí», la forma exacta es ', semantic: 'explanation' }, { text: 'here', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      'pt-BR': R({ text: 'Here', semantic: 'targetCorrect' }, { text: ' aponta para o lugar de quem fala e significa «aqui». Começa com um /h/ perceptível e tem uma letra e de cada lado do r. Ao ouvir, ', semantic: 'explanation' }, { text: 'hear', semantic: 'targetWrong' }, { text: ' fica muito próximo: pode soar igual, mas é outra palavra e significa «ouvir». ', semantic: 'explanation' }, { text: 'Hair', semantic: 'targetWrong' }, { text: ' também se parece, porém significa «cabelo» e usa outra vogal. Por isso o som familiar não basta: para dizer «aqui», a forma exata é ', semantic: 'explanation' }, { text: 'here', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      vi: R({ text: 'Here', semantic: 'targetCorrect' }, { text: ' chỉ nơi của người nói và mang nghĩa “ở đây”. Từ này bắt đầu bằng /h/ rõ ràng và có hai chữ e ở hai bên r. Khi nghe, ', semantic: 'explanation' }, { text: 'hear', semantic: 'targetWrong' }, { text: ' ở rất gần: âm có thể giống nhau nhưng đó là từ khác, nghĩa là “nghe”. ', semantic: 'explanation' }, { text: 'Hair', semantic: 'targetWrong' }, { text: ' cũng gần giống, nhưng nghĩa là “tóc” và có nguyên âm khác. Vì vậy chỉ nhận ra âm quen chưa đủ: để nói “ở đây”, dạng chính xác là ', semantic: 'explanation' }, { text: 'here', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      id: R({ text: 'Here', semantic: 'targetCorrect' }, { text: ' menunjuk tempat penutur dan berarti “di sini”. Kata ini diawali /h/ yang jelas dan memiliki huruf e di kedua sisi r. Saat didengar, ', semantic: 'explanation' }, { text: 'hear', semantic: 'targetWrong' }, { text: ' sangat dekat: bunyinya dapat sama, tetapi itu kata lain yang berarti “mendengar”. ', semantic: 'explanation' }, { text: 'Hair', semantic: 'targetWrong' }, { text: ' juga mirip, namun berarti “rambut” dan memakai vokal yang berbeda. Jadi bunyi yang terasa akrab belum cukup: untuk makna “di sini”, bentuk yang tepat ialah ', semantic: 'explanation' }, { text: 'here', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-      tr: R({ text: 'Here', semantic: 'targetCorrect' }, { text: ' konuşanın bulunduğu yeri gösterir ve “burada” demektir. Belirgin bir /h/ ile başlar ve yazıda r harfinin iki yanında e bulunur. Duyarken ', semantic: 'explanation' }, { text: 'hear', semantic: 'targetWrong' }, { text: ' çok yakına gelir: aynı duyulabilir ama “duymak” anlamındaki başka bir sözcüktür. ', semantic: 'explanation' }, { text: 'Hair', semantic: 'targetWrong' }, { text: ' da benzer görünür; “saç” demektir ve ünlü sesi farklıdır. Bu yüzden tanıdık bir ses yetmez: “burada” anlamı için doğru biçim ', semantic: 'explanation' }, { text: 'here', semantic: 'targetCorrect' }, { text: ' olur.', semantic: 'explanation' }),
-      pl: R({ text: 'Here', semantic: 'targetCorrect' }, { text: ' wskazuje miejsce osoby mówiącej i znaczy „tutaj”. Zaczyna się wyraźnym /h/, a w zapisie ma e po obu stronach r. W wymowie bardzo blisko znajduje się ', semantic: 'explanation' }, { text: 'hear', semantic: 'targetWrong' }, { text: ': może brzmieć tak samo, ale jest innym słowem i znaczy „słyszeć”. ', semantic: 'explanation' }, { text: 'Hair', semantic: 'targetWrong' }, { text: ' także wygląda podobnie, lecz oznacza „włosy” i ma inną samogłoskę. Sam znajomy dźwięk więc nie wystarczy: znaczenie „tutaj” ma dokładna forma ', semantic: 'explanation' }, { text: 'here', semantic: 'targetCorrect' }, { text: '.', semantic: 'explanation' }),
-    },
+    bodyRuns: bodyRuns(TRAP_BODY, ['I', 'am', 'here']),
     question: {
-      prompt: L({ ru: 'Какое написание означает «здесь»?', uk: 'Яке написання означає «тут»?', es: '¿Qué forma escrita significa «aquí»?', 'pt-BR': 'Qual forma escrita significa «aqui»?', vi: 'Cách viết nào nghĩa là “ở đây”?', id: 'Bentuk tulisan mana berarti “di sini”?', tr: 'Hangi yazım “burada” demektir?', pl: 'Który zapis znaczy „tutaj”?' }),
-      choices: [
-        L({ ru: 'here', uk: 'here', es: 'here', 'pt-BR': 'here', vi: 'here', id: 'here', tr: 'here', pl: 'here' }),
-        L({ ru: 'hear', uk: 'hear', es: 'hear', 'pt-BR': 'hear', vi: 'hear', id: 'hear', tr: 'hear', pl: 'hear' }),
-        L({ ru: 'hair', uk: 'hair', es: 'hair', 'pt-BR': 'hair', vi: 'hair', id: 'hair', tr: 'hair', pl: 'hair' }),
-      ],
+      grammarFeatureId: 'copula_be',
+      testedDimension: 'affirmative_I_am_word_order',
+      prompt: L({ ru: 'Какая английская фраза собрана полностью?', uk: 'Який англійський вислів зібрано повністю?', es: '¿Qué frase inglesa está completa?', 'pt-BR': 'Qual frase inglesa está completa?', vi: 'Câu tiếng Anh nào đã đủ các phần?', id: 'Kalimat Inggris mana yang lengkap?', tr: 'Hangi İngilizce ifade tamamdır?', pl: 'Które angielskie zdanie jest kompletne?' }),
+      choices: [L({ ru: 'I am here', uk: 'I am here', es: 'I am here', 'pt-BR': 'I am here', vi: 'I am here', id: 'I am here', tr: 'I am here', pl: 'I am here' }), L({ ru: 'I here', uk: 'I here', es: 'I here', 'pt-BR': 'I here', vi: 'I here', id: 'I here', tr: 'I here', pl: 'I here' }), L({ ru: 'Am here', uk: 'Am here', es: 'Am here', 'pt-BR': 'Am here', vi: 'Am here', id: 'Am here', tr: 'Am here', pl: 'Am here' })],
       correctChoiceIndex: 0,
-      explanation: L({
-        ru: 'Here означает «здесь». Hear означает «слышать», а hair — «волосы».',
-        uk: 'Here означає «тут». Hear означає «чути», а hair — «волосся».',
-        es: 'Here significa «aquí». Hear significa «oír» y hair significa «pelo».',
-        'pt-BR': 'Here significa «aqui». Hear significa «ouvir» e hair significa «cabelo».',
-        vi: 'Here nghĩa là “ở đây”. Hear nghĩa là “nghe”, còn hair nghĩa là “tóc”.',
-        id: 'Here berarti “di sini”. Hear berarti “mendengar”, sedangkan hair berarti “rambut”.',
-        tr: 'Here “burada” demektir. Hear “duymak”, hair ise “saç” demektir.',
-        pl: 'Here znaczy „tutaj”. Hear znaczy „słyszeć”, a hair znaczy „włosy”.',
-      }),
+      explanation: L({ ru: 'I am here собрано полностью: I называет говорящего, а am удерживает связь.', uk: 'I am here зібрано повністю: I називає мовця, а am утримує зв’язок.', es: 'I am here está completa: I nombra a quien habla y am mantiene la conexión.', 'pt-BR': 'I am here está completa: I identifica quem fala e am mantém a ligação.', vi: 'I am here đã đầy đủ: I gọi tên người nói và am giữ mối nối.', id: 'I am here sudah lengkap: I menyebut penutur dan am menjaga penghubungnya.', tr: 'I am here tamamdır: I konuşanı gösterir, am ise bağlantıyı korur.', pl: 'I am here jest kompletne: I wskazuje mówiącego, a am utrzymuje połączenie.' }),
     },
   },
 ];

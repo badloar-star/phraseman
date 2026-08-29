@@ -44,6 +44,8 @@ describe('MAX Voice error normalization', () => {
 
   it('offers MAX upgrade only when the lifetime trial is unavailable', () => {
     expect(shouldOfferMaxUpgradeForVoiceReason('voice_max_required')).toBe(true);
+    expect(shouldOfferMaxUpgradeForVoiceReason('voice_minutes_insufficient')).toBe(true);
+    expect(maxVoiceFailureMessage('voice_minutes_insufficient', 'ru')).toContain('купи ещё');
     expect(shouldOfferMaxUpgradeForVoiceReason('voice_monthly_quota_exhausted')).toBe(false);
     expect(shouldOfferMaxUpgradeForVoiceReason('voice_daily_quota_exhausted')).toBe(false);
     expect(isMaxVoiceFailureRetryable('voice_monthly_quota_exhausted')).toBe(false);

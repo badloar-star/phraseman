@@ -26,139 +26,16 @@ import {
 } from './learning_content_quality_autopass_v1';
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../course_topology_v1';
 
+// зачем только сессия 1 (владелец, 2026-08-28: «удали все написанные сессии
+// и весь материал для испанского»): сессии 2-34 были признаны непригодными
+// и удалены целиком вместе с исходниками — грузчики на них были бы мёртвым
+// require() на несуществующий файл. Единственная сохранённая сессия — 1,
+// написанная и проверенная ДО этой ночи.
 const ES_SESSION_LOADERS: readonly (() => SessionSource)[] = Object.freeze([
   () =>
     // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
     (require('./es_episode_01_session_01_v1') as Record<string, SessionSource>)
       .ES_EPISODE_01_SESSION_01_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_02_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_02_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_03_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_03_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_04_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_04_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_05_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_05_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_06_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_06_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_07_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_07_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_08_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_08_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_09_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_09_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_10_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_10_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_11_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_11_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_12_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_12_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_13_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_13_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_14_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_14_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_15_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_15_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_16_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_16_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_17_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_17_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_18_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_18_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_19_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_19_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_20_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_20_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_21_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_21_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_22_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_22_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_23_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_23_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_24_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_24_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_25_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_25_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_26_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_26_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_27_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_27_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_28_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_28_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_29_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_29_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_30_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_30_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_31_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_31_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_32_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_32_SOURCE,
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-    (require('./es_episode_01_session_33_v1') as Record<string, SessionSource>)
-      .ES_EPISODE_01_SESSION_33_SOURCE,
 ]);
 
 
@@ -189,9 +66,76 @@ function deepFreezeSource<T>(value: T): T {
   return value;
 }
 
-// зачем ЗАПЕЧЕНА, а не вычисляется — см. тот же комментарий в
-// authored_sessions_v1.ts: граница урока не меняется в рантайме.
-export const ES_AUTHORED_EPISODE_01_CONTIGUOUS_CEILING_V1 = 1 as const;
+// зачем ВЫЧИСЛЯЕТСЯ, а не запечена (владелец, 2026-08-27, «накорню реши эту
+// проблему чтобы никогда больше такого не было»): раньше здесь стояла ручная
+// константа = 1. Испанская сессия 2 была написана, лежала в бандле и проходила
+// все гейты — но потолок остался равен 1, поэтому authoredEsLearningV2Session-
+// Shard(2) возвращал null, клиент уходил в СЕТЬ за контентом, которого на
+// сервере нет, и человек видел «Подготавливаем занятие…» и затем «Сессия
+// недоступна / stable_identity_unavailable». Симптом выглядел как поломка
+// аккаунта, хотя причина — забытая константа.
+//
+// Теперь потолок = длина непрерывной цепочки РЕАЛЬНО играбельных сессий с
+// первой. Написал новую сессию и она проходит гейты — она автоматически
+// доступна из бандла, без сети и без ручного шага, о котором можно забыть.
+// Непрерывность сохранена намеренно: дыра (сессия 3 готова, 2 нет) не должна
+// открывать доступ через пропуск — иначе человек упрётся в недоступную
+// середину урока.
+// зачем ДОПОЛНИТЕЛЬНО требуется modeNativePlanId (владелец, 2026-08-27:
+// «то что было раньше оно забраковано, оставить только как историю, они не
+// пригодны потому что писались не под те режимы»): старые испанские сессии
+// 3-33 физически лежат в бандле и технически собираются — без этой проверки
+// автопотолок открыл бы их человеку сразу после сессии 2. Признак нового
+// формата — наличие modeNativePlanId/modeNativePractice: они появляются
+// только у переписанных под шесть режимов сессий. Как только очередная
+// старая сессия будет переписана, она войдёт в цепочку сама.
+// зачем ES_BUNDLED_AUDIO_SESSIONS (владелец, 2026-08-27): сессия со звуковыми
+// заданиями обязана иметь СВОЮ озвучку в бандле, иначе материал не соберётся
+// (см. learning_v2_course_released_session_client_v3.ts, ветка needsAudio).
+// Держим список рядом с потолком, чтобы «написал сессию → забыл озвучку →
+// человек упёрся в недоступное занятие» стало невозможным: без озвучки
+// сессия просто не входит в цепочку. Пополнять при генерации аудио.
+const ES_BUNDLED_AUDIO_SESSIONS: ReadonlySet<number> = new Set([1, 2]);
+
+function computeEsContiguousCeiling(allowDevAudiolessSessions: boolean): number {
+  let ceiling = 0;
+  for (let ordinal = 1; ordinal <= ES_SESSION_LOADERS.length; ordinal += 1) {
+    const source = esSessionSource(ordinal);
+    if (!source) break;
+    if (!source.modeNativePlanId || !source.modeNativePractice) break;
+    if (!isEsPlayable(source)) break;
+    const needsAudio = source.modeNativePractice.some(
+      (step) =>
+        step.family === 'listen_choose' ||
+        step.family === 'listen_build_dictation' ||
+        step.family === 'scripted_repeat_compare',
+    );
+    // зачем DEV_LEARNING_V2_AUDIOLESS_SESSIONS (владелец, 2026-08-28): на
+    // период разработки авторы пишут испанские сессии быстрее, чем для них
+    // генерируют bundled-озвучку. Без этого условия каждая написанная
+    // звуковая сессия сверх ES_BUNDLED_AUDIO_SESSIONS обрывает цепочку здесь
+    // — потолок стоит на 2, а сессия 3+ честно закрыта и недоступна на
+    // устройстве. В dev-сборке пропускаем требование звука (задания играются
+    // текстом — см. DEV-обход needsAudio в
+    // learning_v2_course_released_session_client_v3.ts); в сторе флаг
+    // всегда false, поведение прежнее.
+    if (needsAudio && !ES_BUNDLED_AUDIO_SESSIONS.has(ordinal) && !allowDevAudiolessSessions) break;
+    ceiling = ordinal;
+  }
+  return ceiling;
+}
+
+const esCeilingCache = new Map<boolean, number>();
+
+export function esAuthoredEpisode01ContiguousCeilingV1(
+  allowDevAudiolessSessions = false,
+): number {
+  const cached = esCeilingCache.get(allowDevAudiolessSessions);
+  if (cached !== undefined) return cached;
+  const ceiling = computeEsContiguousCeiling(allowDevAudiolessSessions);
+  esCeilingCache.set(allowDevAudiolessSessions, ceiling);
+  return ceiling;
+}
 
 const playableVerdictCache = new WeakMap<SessionSource, boolean>();
 let lastBuilt: Readonly<{
@@ -256,10 +200,11 @@ export function buildEsAuthoredSessionShard(
  */
 export function authoredEsLearningV2SessionShard(
   sessionOrdinal: number,
+  allowDevAudiolessSessions = false,
 ): LearningV2GeneratedSessionShardV1 | null {
   const source = esSessionSource(sessionOrdinal);
   if (!source) return null;
-  if (sessionOrdinal > ES_AUTHORED_EPISODE_01_CONTIGUOUS_CEILING_V1) return null;
+  if (sessionOrdinal > esAuthoredEpisode01ContiguousCeilingV1(allowDevAudiolessSessions)) return null;
   return buildEsPlayableShard(source);
 }
 

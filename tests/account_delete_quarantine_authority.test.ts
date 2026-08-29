@@ -11,7 +11,7 @@ function lock(overrides: Record<string, unknown> = {}) {
     providerUid: 'deleted-provider',
     stableId: 'deleted-stable',
     source: 'local',
-    phase: 'local_cleared',
+    phase: 'old_stable_cleared',
     createdAt: 1_000,
     expiresAt: 10_000,
     ...overrides,
@@ -113,7 +113,7 @@ test('both unreadable authoritative records fail closed even when AsyncStorage i
   );
 });
 
-test('historical v1 mirror without phase migrates as local_cleared', async () => {
+test('historical v1 mirror without phase migrates before durable server enqueue', async () => {
   const asyncStorage = require('@react-native-async-storage/async-storage');
   await asyncStorage.setItem(MIRROR_KEY, JSON.stringify({
     providerUid: 'deleted-provider',
@@ -125,10 +125,10 @@ test('historical v1 mirror without phase migrates as local_cleared', async () =>
 
   const raw = await quarantine.readAccountDeletePendingAuthRaw();
 
-  expect(JSON.parse(raw).phase).toBe('local_cleared');
+  expect(JSON.parse(raw).phase).toBe('local_data_cleared');
 });
 
-test('server_enqueued is a durable parsed phase distinct from local_cleared', async () => {
+test('server_enqueued is a durable parsed phase distinct from old_stable_cleared', async () => {
   const secure = require('expo-secure-store');
   secure.__rows[RECORD_KEY] = JSON.stringify(lock({ phase: 'server_enqueued' }));
   secure.__rows[ANCHOR_KEY] = JSON.stringify(anchor());
@@ -139,7 +139,7 @@ test('server_enqueued is a durable parsed phase distinct from local_cleared', as
   expect(JSON.parse(raw).phase).toBe('server_enqueued');
 });
 
-test('local_cleared blocks only the deleted provider after verified local exit', () => {
+test('post-signout phases block only the retired provider and never a fresh anonymous identity', () => {
   const quarantine = require('../app/account_delete_quarantine');
   const raw = JSON.stringify(lock());
 
@@ -156,6 +156,108 @@ test('local_cleared blocks only the deleted provider after verified local exit',
   expect(quarantine.shouldQuarantineAccountDeleteIdentity(
     raw,
     { uid: 'anon', isAnonymous: true },
+    2_000,
+  )).toBe(false);
+});
+
+test('legacy local_cleared secure record migrates before durable server enqueue', async () => {
+  const secure = require('expo-secure-store');
+  secure.__rows[RECORD_KEY] = JSON.stringify(lock({ phase: 'local_cleared' }));
+  secure.__rows[ANCHOR_KEY] = JSON.stringify(anchor());
+  const quarantine = require('../app/account_delete_quarantine');
+
+  const raw = await quarantine.readAccountDeletePendingAuthRaw();
+
+  expect(JSON.parse(raw).phase).toBe('local_data_cleared');
+});
+
+test('transition phases advance exactly once and preserve the immutable retired anchor', async () => {
+  const quarantine = require('../app/account_delete_quarantine');
+  const prepared = lock({ phase: 'prepared' });
+  await expect(quarantine.persistAccountDeletePendingAuthLock(prepared)).resolves.toBe(true);
+
+  const advanced = await quarantine.advanceAccountDeletePendingAuthLock(
+    prepared,
+    'local_data_cleared',
+  );
+
+  expect(advanced).toMatchObject({ ok: true, lock: { phase: 'local_data_cleared' } });
+  await expect(quarantine.advanceAccountDeletePendingAuthLock(
+    prepared,
+    'server_enqueued',
+  )).resolves.toEqual({ ok: false, code: 'transition_phase_conflict' });
+  const secure = require('expo-secure-store');
+  expect(JSON.parse(secure.__rows[ANCHOR_KEY])).toEqual(anchor());
+});
+
+test('concurrent identical phase advances join one durable write and cannot regress a later phase', async () => {
+  const secure = require('expo-secure-store');
+  const quarantine = require('../app/account_delete_quarantine');
+  const prepared = lock({ phase: 'prepared' });
+  await expect(quarantine.persistAccountDeletePendingAuthLock(prepared)).resolves.toBe(true);
+  let releaseFirstWrite!: () => void;
+  let delayed = false;
+  secure.setItemAsync.mockImplementation(async (key: string, value: string) => {
+    if (!delayed && key === RECORD_KEY && value.includes('"phase":"local_data_cleared"')) {
+      delayed = true;
+      await new Promise<void>((resolve) => { releaseFirstWrite = resolve; });
+    }
+    secure.__rows[key] = value;
+  });
+
+  const first = quarantine.advanceAccountDeletePendingAuthLock(prepared, 'local_data_cleared');
+  for (let attempt = 0; attempt < 20 && !releaseFirstWrite; attempt += 1) await Promise.resolve();
+  const retry = quarantine.advanceAccountDeletePendingAuthLock(prepared, 'local_data_cleared');
+  await Promise.resolve();
+  const phaseWriteCount = secure.setItemAsync.mock.calls.filter(
+    ([key, value]: [string, string]) => key === RECORD_KEY && value.includes('"phase":"local_data_cleared"'),
+  ).length;
+  expect(phaseWriteCount).toBe(1);
+
+  releaseFirstWrite();
+  const [firstResult, retryResult] = await Promise.all([first, retry]);
+  expect(firstResult).toEqual(expect.objectContaining({
+    ok: true,
+    lock: expect.objectContaining({ phase: 'local_data_cleared' }),
+  }));
+  expect(retryResult).toEqual(firstResult);
+  const serverEnqueued = await quarantine.advanceAccountDeletePendingAuthLock(
+    firstResult.lock,
+    'server_enqueued',
+  );
+  expect(serverEnqueued).toMatchObject({ ok: true, lock: { phase: 'server_enqueued' } });
+  expect(JSON.parse(secure.__rows[RECORD_KEY]).phase).toBe('server_enqueued');
+});
+
+test('fresh identity proofs are required and cannot reuse a retired anchor', async () => {
+  const quarantine = require('../app/account_delete_quarantine');
+  const oldCleared = lock({ phase: 'old_stable_cleared' });
+  await expect(quarantine.persistAccountDeletePendingAuthLock(oldCleared)).resolves.toBe(true);
+
+  await expect(quarantine.advanceAccountDeletePendingAuthLock(
+    oldCleared,
+    'anonymous_authenticated',
+    { freshAuthUid: 'deleted-provider', freshStableId: 'fresh-stable' },
+  )).resolves.toEqual({ ok: false, code: 'transition_retired_auth_reuse' });
+  await expect(quarantine.advanceAccountDeletePendingAuthLock(
+    oldCleared,
+    'anonymous_authenticated',
+    { freshAuthUid: 'fresh-auth', freshStableId: 'deleted-stable' },
+  )).resolves.toEqual({ ok: false, code: 'transition_retired_stable_reuse' });
+});
+
+test('stable-only remote guard never self-blocks the fresh live provider uid', () => {
+  const quarantine = require('../app/account_delete_quarantine');
+  const raw = JSON.stringify(lock({
+    providerUid: 'stable-only:retired-stable',
+    retiredSubject: 'stable',
+    source: 'remote',
+    phase: 'server_enqueued',
+  }));
+
+  expect(quarantine.shouldQuarantineAccountDeleteIdentity(
+    raw,
+    { uid: 'fresh-live-provider', isAnonymous: false },
     2_000,
   )).toBe(false);
 });
@@ -194,18 +296,77 @@ test('empty stable id in secure mutable record is malformed and reconstructed pr
   expect(JSON.parse(raw)).toMatchObject({ phase: 'prepared', stableId: 'deleted-stable' });
 });
 
-test('clear cut-point cannot re-migrate stale v1 mirror after one secure record was deleted', async () => {
+test('terminal clear deletes anchor before ready record and never reconstructs prepared after a crash cut', async () => {
   const secure = require('expo-secure-store');
   const asyncStorage = require('@react-native-async-storage/async-storage');
   const quarantine = require('../app/account_delete_quarantine');
-  await expect(quarantine.persistAccountDeletePendingAuthLock(lock({ phase: 'local_cleared' }))).resolves.toBe(true);
+  const ready = lock({
+    phase: 'ready',
+    freshAuthUid: 'fresh-auth',
+    freshStableId: 'fresh-stable',
+    cleanupAuthorized: true,
+  });
+  await expect(quarantine.persistAccountDeletePendingAuthLock(ready)).resolves.toBe(true);
+  expect(JSON.parse(secure.__rows[ANCHOR_KEY])).toMatchObject({
+    version: 3,
+    terminalPhase: 'ready',
+    freshAuthUid: 'fresh-auth',
+    freshStableId: 'fresh-stable',
+    cleanupAuthorized: true,
+  });
   secure.deleteItemAsync.mockImplementation(async (key: string) => {
-    if (key === ANCHOR_KEY) throw new Error('crash cut point');
+    if (key === RECORD_KEY) throw new Error('crash cut point');
     delete secure.__rows[key];
   });
 
   await expect(quarantine.clearAccountDeletePendingAuthLock()).rejects.toThrow('crash cut point');
   expect(await asyncStorage.getItem(MIRROR_KEY)).toBeNull();
   const raw = await quarantine.readAccountDeletePendingAuthRaw();
-  expect(JSON.parse(raw).phase).toBe('prepared');
+  expect(JSON.parse(raw)).toMatchObject({
+    phase: 'ready',
+    freshAuthUid: 'fresh-auth',
+    freshStableId: 'fresh-stable',
+    cleanupAuthorized: true,
+  });
+});
+
+test('ready record without anchor resumes terminal clear without wiping or creating another identity', async () => {
+  const secure = require('expo-secure-store');
+  const quarantine = require('../app/account_delete_quarantine');
+  secure.__rows[RECORD_KEY] = JSON.stringify(lock({
+    phase: 'ready',
+    freshAuthUid: 'fresh-auth',
+    freshStableId: 'fresh-stable',
+    cleanupAuthorized: true,
+  }));
+  const parsed = JSON.parse(await quarantine.readAccountDeletePendingAuthRaw());
+  const wipeLocal = jest.fn(async () => true);
+  const authenticateAnonymously = jest.fn(async () => ({
+    ok: true,
+    authUid: 'another-auth',
+    stableId: 'another-stable',
+    isAnonymous: true,
+  }));
+  const clearTransition = jest.fn(async () => true);
+
+  await expect(quarantine.runPostDeleteFreshIdentityTransition(parsed, {
+    wipeLocal,
+    enqueueDeletion: jest.fn(async () => true),
+    signOutProvider: jest.fn(async () => true),
+    clearOldStable: jest.fn(async () => true),
+    authenticateAnonymously,
+    linkAuthoritatively: jest.fn(async () => ({ ok: true, authUid: '', stableId: '' })),
+    adoptAuthoritativeStable: jest.fn(async () => true),
+    beginAccountGeneration: jest.fn(),
+    persistPhase: jest.fn(),
+    clearTransition,
+    emitReady: jest.fn(),
+  })).resolves.toEqual({
+    status: 'ready',
+    authUid: 'fresh-auth',
+    stableId: 'fresh-stable',
+  });
+  expect(wipeLocal).not.toHaveBeenCalled();
+  expect(authenticateAnonymously).not.toHaveBeenCalled();
+  expect(clearTransition).toHaveBeenCalledTimes(1);
 });

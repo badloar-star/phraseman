@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   Animated,
   InteractionManager,
+  Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // зачем: FadeInDown и withDelay остались без потребителей после снятия входного
@@ -76,7 +77,13 @@ import { OLIVE_GRADIENTS, oliveShadow } from "../../constants/oliveTheme";
 import { getLessonExamIcon } from "../../constants/generatedThemeIconAssets";
 import type { ThemeMode } from "../../constants/theme";
 import GoldBevel from "../../components/GoldBevel";
-import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS } from "../config";
+import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS, ENABLE_DEV_STUDY_TARGET_LANG } from "../config";
+import {
+  devStudyTargetsForUiLang,
+  emitDevStudyTargetChanged,
+  setDevStudyTargetLang,
+  type StudyTargetLang,
+} from "../study_target_lang_dev";
 import { hapticTap } from "../../hooks/use-haptics";
 import { useReduceMotionPreference } from "../../hooks/use_reduce_motion";
 import { useTabContentBottomPad } from "../../hooks/use-tab-content-bottom-pad";
@@ -1878,7 +1885,7 @@ export default function LessonsTab({
   const menuImages = getHomeMenuImages(themeMode);
   const screenTitleColor = t.textPrimary;
   const { lang, s } = useLang();
-  const { studyTarget } = useStudyTarget();
+  const { studyTarget, refresh: refreshStudyTarget } = useStudyTarget();
   const lessonCacheTarget = storageStudyTarget(studyTarget);
   const lessonCacheTargetRef = useRef(lessonCacheTarget);
   lessonCacheTargetRef.current = lessonCacheTarget;
@@ -3351,6 +3358,76 @@ export default function LessonsTab({
                 gap: 10,
               }}
             >
+              {page === "v2" && __DEV__ && ENABLE_DEV_STUDY_TARGET_LANG ? (
+                // зачем (владелец, 2026-08-27): dev-кнопка прямо на карточке
+                // Learning V2 для быстрого переключения между испанскими и
+                // английскими сессиями во время mode-native authoring —
+                // раньше язык обучения менялся только в настройках, отдельным
+                // экраном. Использует тот же setDevStudyTargetLang +
+                // emitDevStudyTargetChanged, что и StudyLanguagePicker —
+                // StudyTargetContext подписан на DEV_STUDY_TARGET_CHANGED и
+                // обновляет studyTarget во всём дереве мгновенно, без похода
+                // в настройки. Только dev-сборка (__DEV__ && ENABLE_DEV_STUDY_TARGET_LANG),
+                // в проде не рендерится и не влияет на store-путь.
+                //
+                // зачем цикл по devStudyTargetsForUiLang(lang), а не по всему
+                // DEV_STUDY_TARGET_LANGS (владелец, 2026-08-27, «кнопка не
+                // работает, не могу включить испанский»): setDevStudyTargetLang
+                // сам молча откатывает es/fr на en, если язык ИНТЕРФЕЙСА
+                // приложения сейчас не ru/uk — это законтрактовано тестом
+                // study_target_lang_dev.test.ts под StudyLanguagePicker, трогать
+                // нельзя. Раньше кнопка гоняла полный список ['en','es','fr'],
+                // не зная про это ограничение — на английском интерфейсе она
+                // молча писала 'en' поверх 'en' и выглядела сломанной. Теперь
+                // кнопка сама ограничивается тем же списком, что видит пикер в
+                // настройках, и явно объясняет, если доступен только en.
+                <TapScale
+                  withHaptic={true}
+                  onPress={() => {
+                    const options = devStudyTargetsForUiLang(lang);
+                    if (options.length <= 1) {
+                      Alert.alert(
+                        "Dev: язык обучения",
+                        "Испанский/французский доступны только при русском или украинском языке интерфейса. Смените язык интерфейса в настройках, чтобы переключить сюда.",
+                      );
+                      return;
+                    }
+                    const currentIndex = options.indexOf(studyTarget as StudyTargetLang);
+                    const next = options[(currentIndex + 1) % options.length]!;
+                    void (async () => {
+                      await setDevStudyTargetLang(next, lang);
+                      emitDevStudyTargetChanged();
+                      await refreshStudyTarget();
+                    })();
+                  }}
+                >
+                  <View
+                    accessibilityRole="button"
+                    accessibilityLabel="Dev: switch study target language"
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      gap: 6,
+                      backgroundColor: t.bgCard,
+                      borderRadius: 999,
+                      paddingHorizontal: 12,
+                      paddingVertical: 7,
+                    }}
+                  >
+                    <Ionicons name="language-outline" size={14} color={t.gold} />
+                    <Text
+                      style={{
+                        color: t.textPrimary,
+                        fontSize: 14,
+                        fontWeight: "700",
+                        letterSpacing: 0.4,
+                      }}
+                    >
+                      {studyTarget.toUpperCase()}
+                    </Text>
+                  </View>
+                </TapScale>
+              ) : null}
               {page === "v2" ? (
                 <Reanimated.View style={learningV2WalletPulseStyle}>
                   {/* зачем: владелец 2026-08-24 — тап по счётчику рун открывает раздел «Руны».

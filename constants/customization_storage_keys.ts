@@ -11,6 +11,10 @@ export const AVATAR_DNA_STATE_PREFIX = 'avatar_dna_state_v1:';
 export const AVATAR_DNA_DRAFT_PREFIX = 'avatar_dna_draft_v1:';
 export const AVATAR_DNA_INVITATION_PREFIX = 'avatar_dna_invitation_v1:';
 export const AVATAR_DNA_STYLE_OPERATION_PREFIX = 'avatar_dna_style_operation_v1:';
+export const CUSTOMIZATION_SELECTION_OPERATION_PREFIX = 'customization_selection_operation_v1:';
+export const CUSTOMIZATION_SELECTION_HEAD_PREFIX = 'customization_selection_head_v1:';
+export const CUSTOMIZATION_SELECTION_OUTBOX_PREFIX = 'customization_selection_outbox_v1:';
+export const CUSTOMIZATION_SELECTION_QUARANTINE_PREFIX = 'customization_selection_quarantine_v1:';
 
 export const CUSTOMIZATION_STORAGE_KEYS = [
   USER_AVATAR_AURA_KEY,
@@ -31,4 +35,8 @@ export const CUSTOMIZATION_ACCOUNT_LOCAL_PREFIXES = [
   AVATAR_DNA_DRAFT_PREFIX,
   AVATAR_DNA_INVITATION_PREFIX,
   AVATAR_DNA_STYLE_OPERATION_PREFIX,
+  CUSTOMIZATION_SELECTION_OPERATION_PREFIX,
+  CUSTOMIZATION_SELECTION_HEAD_PREFIX,
+  CUSTOMIZATION_SELECTION_OUTBOX_PREFIX,
+  CUSTOMIZATION_SELECTION_QUARANTINE_PREFIX,
 ] as const;

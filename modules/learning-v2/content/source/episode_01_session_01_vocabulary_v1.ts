@@ -11,7 +11,7 @@ const contact = (
   distractors: SessionVocabularyContactSourceV1['distractors'],
 ): SessionVocabularyContactSourceV1 => ({ guidance, distractors });
 
-export const EPISODE_01_SESSION_01_VOCABULARY_V1:
+const EPISODE_01_SESSION_01_VOCABULARY_BASE_V1:
   readonly SessionVocabularySourceV1[] = Object.freeze([
   {
     id: 'e01-s01-word-i',
@@ -30,14 +30,14 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
     contacts: {
       recognize: contact(
         L({
-          ru: 'Название буквы I звучит /aɪ/. Буква A звучит /eɪ/, а E — /iː/: различается главный гласный звук.',
-          uk: 'Назва літери I звучить /aɪ/. Літера A звучить /eɪ/, а E — /iː/: різниться головний голосний звук.',
-          es: 'El nombre de la letra I suena /aɪ/. A suena /eɪ/ y E suena /iː/: cambia la vocal principal.',
-          'pt-BR': 'O nome da letra I soa /aɪ/. A soa /eɪ/ e E soa /iː/: a vogal principal muda.',
-          vi: 'Tên chữ I có âm /aɪ/. Chữ A có âm /eɪ/, còn E có âm /iː/: nguyên âm chính khác nhau.',
-          id: 'Nama huruf I berbunyi /aɪ/. A berbunyi /eɪ/ dan E /iː/: vokal utamanya berbeda.',
-          tr: 'I harfinin adı /aɪ/ diye okunur. A /eɪ/, E ise /iː/ olur: temel ünlü ses değişir.',
-          pl: 'Nazwa litery I brzmi /aɪ/. A brzmi /eɪ/, a E — /iː/: zmienia się główna samogłoska.',
+          ru: 'I — одно английское слово и одна заглавная буква. Оно звучит /aɪ/: коротко, одним слогом.',
+          uk: 'I — одне англійське слово й одна велика літера. Воно звучить /aɪ/: коротко, одним складом.',
+          es: 'I es una palabra inglesa de una sola letra mayúscula. Suena /aɪ/: breve y en una sílaba.',
+          'pt-BR': 'I é uma palavra inglesa formada por uma única letra maiúscula. Soa /aɪ/: breve e em uma sílaba.',
+          vi: 'I là một từ tiếng Anh chỉ có một chữ in hoa. Từ này đọc là /aɪ/, gọn trong một âm tiết.',
+          id: 'I adalah kata Inggris yang terdiri dari satu huruf kapital. Bunyinya /aɪ/, singkat dalam satu suku kata.',
+          tr: 'I, tek bir büyük harften oluşan İngilizce bir sözcüktür. /aɪ/ diye, tek hecede söylenir.',
+          pl: 'I to angielskie słowo złożone z jednej wielkiej litery. Brzmi /aɪ/, krótko i w jednej sylabie.',
         }),
         [
           {
@@ -74,14 +74,14 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
       ),
       retrieve_meaning: contact(
         L({
-          ru: 'I называет говорящего как действующее лицо: «я». Me — «меня/мне», а my показывает принадлежность.',
-          uk: 'I називає мовця як діяча: «я». Me означає «мене/мені», а my показує належність.',
-          es: 'I nombra a quien habla como sujeto: yo. Me funciona como objeto y my expresa posesión.',
-          'pt-BR': 'I nomeia quem fala como sujeito: eu. Me é objeto e my indica posse.',
-          vi: 'I chỉ người nói ở vị trí chủ ngữ: tôi. Me là tân ngữ, còn my chỉ sở hữu.',
-          id: 'I menyebut penutur sebagai subjek: saya. Me adalah objek, sedangkan my menyatakan kepunyaan.',
-          tr: 'I konuşanı özne olarak gösterir: ben. Me nesne, my ise iyelik bildirir.',
-          pl: 'I nazywa mówiącego jako podmiot: ja. Me jest formą dopełnienia, a my oznacza „mój”.',
+          ru: 'I означает «я». Так говорящий показывает прямо на себя — без имени и без лишнего представления.',
+          uk: 'I означає «я». Так мовець указує просто на себе — без імені й без зайвого представлення.',
+          es: 'I significa «yo». Quien habla lo usa para señalarse a sí mismo, sin decir su nombre.',
+          'pt-BR': 'I significa «eu». Quem fala usa essa palavra para apontar para si, sem dizer o próprio nome.',
+          vi: 'I có nghĩa là “tôi”. Người nói dùng từ này để chỉ chính mình mà không cần nêu tên.',
+          id: 'I berarti “saya”. Penutur memakai kata ini untuk menunjuk dirinya sendiri tanpa menyebut nama.',
+          tr: 'I, “ben” demektir. Konuşan kişi adını söylemeden doğrudan kendisini gösterir.',
+          pl: 'I znaczy „ja”. Osoba mówiąca wskazuje nim na siebie, bez podawania imienia.',
         }),
         [
           {
@@ -118,14 +118,14 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
       ),
       build_form: contact(
         L({
-          ru: 'Местоимение I всегда пишется заглавной. Строчная i и буква l без точки похожи на него, но не являются словом «я».',
-          uk: 'Займенник I завжди пишеться великою. Мала i та літера l без крапки схожі на нього, але не є словом «я».',
-          es: 'El pronombre I siempre lleva mayúscula. La i minúscula y la letra l sin punto se parecen, pero no significan «yo».',
-          'pt-BR': 'O pronome I sempre usa maiúscula. A letra i minúscula e l sem ponto se parecem, mas não significam «eu».',
-          vi: 'Đại từ I luôn viết hoa. Chữ i thường và chữ l không có dấu chấm trông giống, nhưng không mang nghĩa “tôi”.',
-          id: 'Kata ganti I selalu ditulis besar. Huruf i kecil dan l tanpa titik tampak mirip, tetapi bukan kata “saya”.',
-          tr: 'I zamiri her zaman büyük yazılır. Küçük i ve noktasız l ona benzer ama “ben” sözcüğü değildir.',
-          pl: 'Zaimek I zawsze zapisuje się wielką literą. Małe i i litera l bez kropki są podobne, ale nie znaczą „ja”.',
+          ru: 'I всегда пишется заглавной — даже посреди фразы. Это маленькое слово с привычкой держать спину прямо.',
+          uk: 'I завжди пишеться великою — навіть посеред вислову. Це маленьке слово зі звичкою тримати спину рівно.',
+          es: 'I siempre se escribe con mayúscula, incluso en medio de una frase. Es pequeña, pero nunca se encoge.',
+          'pt-BR': 'I sempre se escreve com maiúscula, até no meio de uma frase. É pequena, mas nunca se encolhe.',
+          vi: 'I luôn được viết hoa, kể cả khi đứng giữa câu. Từ này nhỏ nhưng lúc nào cũng đứng thẳng.',
+          id: 'I selalu ditulis dengan huruf kapital, bahkan di tengah kalimat. Katanya kecil, tetapi selalu berdiri tegak.',
+          tr: 'I, ifadenin ortasında bile her zaman büyük yazılır. Küçüktür ama hiç kambur durmaz.',
+          pl: 'I zawsze zapisuje się wielką literą, nawet w środku zdania. Jest małe, lecz nigdy się nie garbi.',
         }),
         [
           {
@@ -179,14 +179,14 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
     contacts: {
       recognize: contact(
         L({
-          ru: 'Am начинается с короткого гласного и заканчивается чётким /m/. В an конец /n/, а um начинается другим гласным звуком.',
-          uk: 'Am починається з короткого голосного й закінчується чітким /m/. В an кінець /n/, а um починається іншим голосним.',
-          es: 'Am empieza con una vocal breve y termina en /m/. An termina en /n/ y um empieza con otra vocal.',
-          'pt-BR': 'Am começa com uma vogal breve e termina em /m/. An termina em /n/ e um começa com outra vogal.',
-          vi: 'Am bắt đầu bằng nguyên âm ngắn và kết thúc bằng /m/. An kết thúc bằng /n/, còn um có nguyên âm đầu khác.',
-          id: 'Am diawali vokal pendek dan berakhir dengan /m/. An berakhir dengan /n/, sedangkan um memakai vokal awal berbeda.',
-          tr: 'Am kısa bir ünlüyle başlayıp /m/ ile biter. An /n/ ile biter, um ise başka bir ünlüyle başlar.',
-          pl: 'Am zaczyna się krótką samogłoską i kończy /m/. An kończy się /n/, a um zaczyna inną samogłoską.',
+          ru: 'Am звучит /æm/. В конце губы смыкаются на /m/, поэтому слово заканчивается чётко.',
+          uk: 'Am звучить /æm/. Наприкінці губи змикаються на /m/, тому слово завершується чітко.',
+          es: 'Am suena /æm/. Al final, los labios se cierran en /m/, así que la palabra termina con claridad.',
+          'pt-BR': 'Am soa /æm/. No final, os lábios se fecham em /m/, deixando a palavra bem definida.',
+          vi: 'Am được đọc là /æm/. Cuối từ, hai môi khép lại ở âm /m/ nên âm kết thúc rất rõ.',
+          id: 'Am berbunyi /æm/. Di akhir, bibir menutup pada /m/, sehingga ujung katanya terdengar jelas.',
+          tr: 'Am /æm/ diye söylenir. Sonda dudaklar /m/ için kapanır; sözcük net biçimde biter.',
+          pl: 'Am brzmi /æm/. Na końcu wargi zamykają się przy /m/, więc słowo ma wyraźne zakończenie.',
         }),
         [
           {
@@ -223,14 +223,14 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
       ),
       retrieve_meaning: contact(
         L({
-          ru: 'Am — короткая английская связка для говорящего I. An заканчивается другим согласным, а m без начального a остаётся одной буквой.',
-          uk: 'Am — коротка англійська зв’язка для мовця I. An закінчується іншим приголосним, а m без початкової a лишається однією літерою.',
-          es: 'Am es la unión inglesa breve para el hablante I. An termina con otra consonante y m sin la a inicial es solo una letra.',
-          'pt-BR': 'Am é a ligação inglesa breve para o falante I. An termina com outra consoante e m sem a inicial a é só uma letra.',
-          vi: 'Am là từ nối tiếng Anh ngắn dành cho người nói I. An kết thúc bằng phụ âm khác, còn m thiếu a ở đầu chỉ là một chữ cái.',
-          id: 'Am ialah penghubung Inggris pendek untuk penutur I. An berakhir dengan konsonan lain dan m tanpa a awal hanya sebuah huruf.',
-          tr: 'Am, I konuşanı için kısa İngilizce bağlantıdır. An başka bir ünsüzle biter; başında a olmayan m ise tek harftir.',
-          pl: 'Am jest krótkim angielskim łącznikiem dla mówiącego I. An kończy się inną spółgłoską, a m bez początkowego a jest tylko literą.',
+          ru: 'Am ставится после I и соединяет говорящего с дальнейшей информацией. Само по себе оно почти незаметно, но без него фраза развалится.',
+          uk: 'Am ставиться після I й поєднує мовця з подальшою інформацією. Саме воно майже непомітне, але без нього вислів розсиплеться.',
+          es: 'Am va después de I y conecta a quien habla con la información que sigue. Casi no presume, pero sin ella la frase se desmonta.',
+          'pt-BR': 'Am vem depois de I e liga quem fala à informação seguinte. Quase não aparece, mas sem ela a frase desmonta.',
+          vi: 'Am đứng sau I và nối người nói với thông tin phía sau. Từ này khá kín đáo, nhưng thiếu nó thì câu sẽ rời ra.',
+          id: 'Am muncul setelah I dan menghubungkan penutur dengan informasi berikutnya. Kecil perannya di layar, besar tugasnya di kalimat.',
+          tr: 'Am, I sözcüğünden sonra gelir ve konuşanı sonraki bilgiye bağlar. Gösterişsizdir ama onsuz ifade dağılır.',
+          pl: 'Am stoi po I i łączy mówiącego z dalszą informacją. Nie rzuca się w oczy, ale bez niego zdanie się rozsypuje.',
         }),
         [
           {
@@ -267,14 +267,14 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
       ),
       build_form: contact(
         L({
-          ru: 'Форма am состоит из двух букв: сначала a, затем m. An меняет последний звук и букву, а одиночная m теряет начало слова.',
-          uk: 'Форма am складається з двох літер: спочатку a, потім m. An змінює останній звук і літеру, а окрема m втрачає початок слова.',
-          es: 'Am tiene dos letras: primero a y después m. An cambia el sonido y la letra final; m sola pierde el comienzo de la palabra.',
-          'pt-BR': 'Am tem duas letras: primeiro a e depois m. An muda o som e a letra final; m sozinho perde o começo da palavra.',
-          vi: 'Am có hai chữ cái: a trước rồi đến m. An đổi âm và chữ cuối; m đứng một mình làm mất phần đầu của từ.',
-          id: 'Am terdiri dari dua huruf: a lalu m. An mengubah bunyi dan huruf akhir; m sendirian kehilangan awal katanya.',
-          tr: 'Am iki harften oluşur: önce a, sonra m. An son sesi ve harfi değiştirir; tek m ise sözcüğün başını kaybeder.',
-          pl: 'Am ma dwie litery: najpierw a, potem m. An zmienia końcowy dźwięk i literę, a samo m gubi początek słowa.',
+          ru: 'Am пишется слитно и строчными буквами. Это короткая цельная форма: внутри неё нет пробела.',
+          uk: 'Am пишеться разом і малими літерами. Це коротка цілісна форма: усередині неї немає пробілу.',
+          es: 'Am se escribe unido y en minúsculas. Es una forma breve y completa, sin espacio en medio.',
+          'pt-BR': 'Am se escreve junto e em letras minúsculas. É uma forma curta e inteira, sem espaço no meio.',
+          vi: 'Am được viết liền bằng chữ thường. Đây là một dạng ngắn, nguyên vẹn và không có khoảng trắng ở giữa.',
+          id: 'Am ditulis rapat dengan huruf kecil. Bentuknya pendek dan utuh, tanpa spasi di tengah.',
+          tr: 'Am bitişik ve küçük harflerle yazılır. Kısa ama tam bir biçimdir; ortasında boşluk yoktur.',
+          pl: 'Am zapisuje się łącznie i małymi literami. To krótka, pełna forma bez spacji w środku.',
         }),
         [
           {
@@ -328,14 +328,14 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
     contacts: {
       recognize: contact(
         L({
-          ru: 'Here начинается с /h/ и заканчивается долгим звуком, похожим на «иэ». Hair шире звучит как /eə/, а he не имеет конечного /r/.',
-          uk: 'Here починається з /h/ і має довгий кінець, схожий на «іе». Hair звучить ширше як /eə/, а he не має кінцевого /r/.',
-          es: 'Here empieza con /h/ y termina con el sonido de /ɪə/ o /ɪr/. Hair lleva una vocal más abierta; he termina en /iː/.',
-          'pt-BR': 'Here começa com /h/ e termina em /ɪə/ ou /ɪr/. Hair tem vogal mais aberta; he termina em /iː/.',
-          vi: 'Here bắt đầu bằng /h/ và kết thúc bằng /ɪə/ hoặc /ɪr/. Hair có nguyên âm mở hơn; he kết thúc bằng /iː/.',
-          id: 'Here diawali /h/ dan berakhir dengan /ɪə/ atau /ɪr/. Hair memakai vokal lebih terbuka; he berakhir /iː/.',
-          tr: 'Here /h/ ile başlar ve /ɪə/ ya da /ɪr/ ile biter. Hair daha açık bir ünlü taşır; he /iː/ ile biter.',
-          pl: 'Here zaczyna się od /h/ i kończy /ɪə/ lub /ɪr/. Hair ma bardziej otwartą samogłoskę, a he kończy się /iː/.',
+          ru: 'Here начинается лёгким выдохом /h/ и звучит примерно /hɪr/. Произнесите его одним плавным движением.',
+          uk: 'Here починається легким видихом /h/ і звучить приблизно /hɪr/. Вимовте його одним плавним рухом.',
+          es: 'Here empieza con una suave salida de aire /h/ y suena aproximadamente /hɪr/. Dilo en un solo movimiento.',
+          'pt-BR': 'Here começa com uma leve saída de ar /h/ e soa aproximadamente /hɪr/. Diga tudo em um movimento.',
+          vi: 'Here bắt đầu bằng luồng hơi nhẹ /h/ và đọc gần như /hɪr/. Hãy nói liền trong một nhịp.',
+          id: 'Here diawali hembusan ringan /h/ dan terdengar kira-kira /hɪr/. Ucapkan dalam satu gerakan lancar.',
+          tr: 'Here hafif bir /h/ nefesiyle başlar ve yaklaşık /hɪr/ diye söylenir. Tek akışta çıkarın.',
+          pl: 'Here zaczyna się lekkim wydechem /h/ i brzmi mniej więcej /hɪr/. Wypowiedz je jednym płynnym ruchem.',
         }),
         [
           {
@@ -372,14 +372,14 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
       ),
       retrieve_meaning: contact(
         L({
-          ru: 'Here указывает на место рядом с говорящим: «здесь». There отсылает дальше, а home называет дом, а не просто близкое место.',
-          uk: 'Here вказує на місце біля мовця: «тут». There відсилає далі, а home називає дім, а не будь-яке близьке місце.',
-          es: 'Here señala el lugar del hablante: aquí. There apunta más lejos; home nombra el hogar.',
-          'pt-BR': 'Here aponta para o lugar do falante: aqui. There aponta para longe; home nomeia a casa.',
-          vi: 'Here chỉ nơi gần người nói: ở đây. There chỉ nơi xa hơn; home là nhà.',
-          id: 'Here menunjuk tempat penutur: di sini. There menunjuk tempat lebih jauh; home berarti rumah.',
-          tr: 'Here konuşanın bulunduğu yeri gösterir: burada. There daha uzaktaki yeri, home ise evi adlandırır.',
-          pl: 'Here wskazuje miejsce mówiącego: tutaj. There wskazuje dalej, a home nazywa dom.',
+          ru: 'Here означает «здесь» — в том месте, где находится говорящий. Слово будто ставит маленькую метку прямо под ногами.',
+          uk: 'Here означає «тут» — у місці, де перебуває мовець. Слово ніби ставить маленьку позначку просто під ногами.',
+          es: 'Here significa «aquí», en el lugar donde está quien habla. Es como poner una pequeña marca bajo los pies.',
+          'pt-BR': 'Here significa «aqui», no lugar onde está quem fala. É como colocar uma pequena marca sob os pés.',
+          vi: 'Here có nghĩa là “ở đây”, tại nơi người nói đang đứng. Từ này giống như đặt một dấu nhỏ ngay dưới chân.',
+          id: 'Here berarti “di sini”, di tempat penutur berada. Kata ini seperti memberi tanda kecil tepat di bawah kaki.',
+          tr: 'Here, konuşanın bulunduğu yerde “burada” demektir. Sözcük sanki ayakların altına küçük bir işaret koyar.',
+          pl: 'Here znaczy „tutaj”, w miejscu, w którym jest mówiący. To jak mały znacznik postawiony pod stopami.',
         }),
         [
           {
@@ -416,14 +416,14 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
       ),
       build_form: contact(
         L({
-          ru: 'Here пишется h-e-r-e. Hear звучит так же во многих вариантах английского, но означает «слышать»; her означает «её/ей».',
-          uk: 'Here пишеться h-e-r-e. Hear у багатьох варіантах звучить так само, але означає «чути»; her означає «її/їй».',
-          es: 'Here se escribe h-e-r-e. Hear puede sonar igual, pero significa «oír»; her significa «su/a ella».',
-          'pt-BR': 'Here se escreve h-e-r-e. Hear pode soar igual, mas significa «ouvir»; her significa «dela/a ela».',
-          vi: 'Here viết h-e-r-e. Hear có thể phát âm giống nhưng nghĩa là “nghe”; her nghĩa là “cô ấy/của cô ấy”.',
-          id: 'Here ditulis h-e-r-e. Hear dapat terdengar sama tetapi berarti “mendengar”; her berarti “dia/miliknya”.',
-          tr: 'Here h-e-r-e yazılır. Hear aynı duyulabilir ama “duymak”, her ise “onu/onun” anlamındadır.',
-          pl: 'Here zapisuje się h-e-r-e. Hear może brzmieć tak samo, ale znaczy „słyszeć”; her znaczy „ją/jej”.',
+          ru: 'Here пишется четырьмя строчными буквами. В слове есть начало, середина и чёткое окончание — ничего не теряем.',
+          uk: 'Here пишеться чотирма малими літерами. У слові є початок, середина й чітке закінчення — нічого не губимо.',
+          es: 'Here se escribe con cuatro letras minúsculas. Tiene principio, centro y final: no dejes ninguna pieza atrás.',
+          'pt-BR': 'Here se escreve com quatro letras minúsculas. Tem começo, meio e fim: nenhuma peça fica para trás.',
+          vi: 'Here được viết bằng bốn chữ thường. Từ có đủ đầu, giữa và cuối, vì vậy đừng làm rơi mất phần nào.',
+          id: 'Here ditulis dengan empat huruf kecil. Ada awal, tengah, dan akhir; jangan sampai ada bagian yang tertinggal.',
+          tr: 'Here dört küçük harfle yazılır. Başı, ortası ve sonu vardır; hiçbir parçayı yolda bırakmayın.',
+          pl: 'Here zapisuje się czterema małymi literami. Ma początek, środek i koniec — żadnego elementu nie zostawiamy.',
         }),
         [
           {
@@ -477,14 +477,14 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
     contacts: {
       recognize: contact(
         L({
-          ru: 'Ready начинается /red-/. Really после /riː/ имеет звук /l/, а reading заканчивается слогом /-dɪŋ/.',
-          uk: 'Ready починається /red-/. Really після /riː/ має звук /l/, а reading закінчується складом /-dɪŋ/.',
-          es: 'Ready empieza /red-/. Really tiene /l/ después de /riː/ y reading termina en /-dɪŋ/.',
-          'pt-BR': 'Ready começa /red-/. Really tem /l/ depois de /riː/ e reading termina em /-dɪŋ/.',
-          vi: 'Ready bắt đầu /red-/. Really có âm /l/ sau /riː/, còn reading kết thúc bằng /-dɪŋ/.',
-          id: 'Ready diawali /red-/. Really memiliki /l/ setelah /riː/, sedangkan reading berakhir /-dɪŋ/.',
-          tr: 'Ready /red-/ ile başlar. Really içinde /l/ vardır; reading /-dɪŋ/ ile biter.',
-          pl: 'Ready zaczyna się /red-/. Really ma głoskę /l/, a reading kończy się sylabą /-dɪŋ/.',
+          ru: 'Ready звучит /ˈredi/: ударение падает на начало, а короткий конец произносится легко.',
+          uk: 'Ready звучить /ˈredi/: наголос падає на початок, а коротке закінчення вимовляється легко.',
+          es: 'Ready suena /ˈredi/: el golpe de voz cae al principio y el final breve sale ligero.',
+          'pt-BR': 'Ready soa /ˈredi/: a sílaba forte vem no começo e o final curto sai leve.',
+          vi: 'Ready được đọc là /ˈredi/: trọng âm nằm ở đầu, còn phần cuối ngắn và nhẹ.',
+          id: 'Ready berbunyi /ˈredi/: tekanannya ada di awal dan ujung pendeknya diucapkan ringan.',
+          tr: 'Ready /ˈredi/ diye söylenir: vurgu baştadır, kısa son bölüm ise hafif çıkar.',
+          pl: 'Ready brzmi /ˈredi/: akcent pada na początek, a krótkie zakończenie wymawia się lekko.',
         }),
         [
           {
@@ -521,14 +521,14 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
       ),
       retrieve_meaning: contact(
         L({
-          ru: 'Ready означает, что можно начинать. Busy говорит о занятости, tired — об усталости; оба состояния могут помешать готовности.',
-          uk: 'Ready означає, що можна починати. Busy говорить про зайнятість, tired — про втому; обидва стани можуть заважати готовності.',
-          es: 'Ready indica que se puede empezar. Busy significa ocupado y tired, cansado; ninguno equivale a estar preparado.',
-          'pt-BR': 'Ready indica que é possível começar. Busy significa ocupado e tired, cansado; nenhum equivale a estar pronto.',
-          vi: 'Ready nghĩa là có thể bắt đầu. Busy là bận, tired là mệt; hai trạng thái này không đồng nghĩa với sẵn sàng.',
-          id: 'Ready berarti dapat mulai. Busy berarti sibuk dan tired berarti lelah; keduanya bukan “siap”.',
-          tr: 'Ready başlanabileceğini gösterir. Busy “meşgul”, tired “yorgun” demektir; ikisi de “hazır” değildir.',
-          pl: 'Ready oznacza, że można zaczynać. Busy to „zajęty”, tired to „zmęczony”; żadne nie znaczy „gotowy”.',
+          ru: 'Ready означает «готов»: всё на месте и можно начинать. Это слово для момента перед стартом, когда осталось только кивнуть.',
+          uk: 'Ready означає «готовий»: усе на місці й можна починати. Це слово для миті перед стартом, коли лишається тільки кивнути.',
+          es: 'Ready significa «listo»: todo está preparado y se puede empezar. Es la palabra del instante justo antes de arrancar.',
+          'pt-BR': 'Ready significa «pronto»: tudo está preparado e já dá para começar. É a palavra daquele instante antes da largada.',
+          vi: 'Ready có nghĩa là “sẵn sàng”: mọi thứ đã ổn và có thể bắt đầu. Đây là từ dành cho khoảnh khắc ngay trước khi xuất phát.',
+          id: 'Ready berarti “siap”: semuanya sudah beres dan kita bisa mulai. Inilah kata untuk sesaat sebelum berangkat.',
+          tr: 'Ready “hazır” demektir: her şey yerindedir ve başlanabilir. Tam hareketten önce kullanılacak sözcüktür.',
+          pl: 'Ready znaczy „gotowy”: wszystko jest na miejscu i można zaczynać. To słowo na chwilę tuż przed startem.',
         }),
         [
           {
@@ -565,14 +565,14 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
       ),
       build_form: contact(
         L({
-          ru: 'Ready пишется r-e-a-d-y: внутри сохраняется ea, а перед y стоит одна d. В redy пропущена a, в readdy ошибочно удвоена d.',
-          uk: 'Ready пишеться r-e-a-d-y: усередині зберігається ea, а перед y стоїть одна d. У redy пропущено a, у readdy помилково подвоєно d.',
-          es: 'Ready se escribe r-e-a-d-y: conserva ea y lleva una sola d antes de y. Redy pierde la a; readdy duplica la d.',
-          'pt-BR': 'Ready se escreve r-e-a-d-y: mantém ea e usa um único d antes de y. Redy perde o a; readdy duplica o d.',
-          vi: 'Ready viết r-e-a-d-y: giữ ea và chỉ có một d trước y. Redy thiếu a, còn readdy thừa một d.',
-          id: 'Ready ditulis r-e-a-d-y: bagian ea tetap dan hanya ada satu d sebelum y. Redy kehilangan a; readdy menggandakan d.',
-          tr: 'Ready r-e-a-d-y yazılır: ea korunur ve y önünde tek d bulunur. Redy a harfini atlar; readdy d harfini gereksiz çiftler.',
-          pl: 'Ready zapisuje się r-e-a-d-y: zachowuje ea i ma jedno d przed y. Redy pomija a, a readdy błędnie podwaja d.',
+          ru: 'Ready пишется пятью строчными буквами. Слово выглядит длиннее, чем звучит, поэтому собирайте его целиком, не на слух по кусочкам.',
+          uk: 'Ready пишеться п’ятьма малими літерами. Слово виглядає довшим, ніж звучить, тому складайте його цілком, а не шматочками на слух.',
+          es: 'Ready se escribe con cinco letras minúsculas. Parece más larga de lo que suena, así que constrúyela completa.',
+          'pt-BR': 'Ready se escreve com cinco letras minúsculas. Parece maior no papel do que no ouvido, então monte a palavra inteira.',
+          vi: 'Ready được viết bằng năm chữ thường. Từ này nhìn dài hơn khi nghe, vì vậy hãy ghép trọn vẹn thay vì đoán từng mảnh.',
+          id: 'Ready ditulis dengan lima huruf kecil. Bentuknya tampak lebih panjang daripada bunyinya, jadi susunlah secara utuh.',
+          tr: 'Ready beş küçük harfle yazılır. Görünüşü sesinden uzundur; bu yüzden sözcüğü parça parça değil, tam kurun.',
+          pl: 'Ready zapisuje się pięcioma małymi literami. Wygląda dłużej, niż brzmi, więc składaj je w całości.',
         }),
         [
           {
@@ -610,3 +610,74 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
     },
   },
 ]);
+
+type ContactStage = keyof SessionVocabularySourceV1['contacts'];
+type Distractor = SessionVocabularyContactSourceV1['distractors'][number];
+
+// Every row below is editor-authored. This table only keeps the third trap
+// beside the original two so the source itself—not a late renderer fallback—
+// owns the complete learning decision.
+const THIRD_CONTACT_DISTRACTORS: Readonly<
+  Record<string, Readonly<Record<ContactStage, Distractor>>>
+> = Object.freeze({
+  'e01-s01-word-i': Object.freeze({
+    recognize: { value: 'Y', reasonCode: 'i_recognize_y_initial_glide', trapType: 'phonetic', feedback: L({
+      ru: 'Y звучит /waɪ/: перед /aɪ/ слышится короткое /w/. В I звучит только /aɪ/.', uk: 'Y звучить /waɪ/: перед /aɪ/ чути коротке /w/. В I звучить лише /aɪ/.', es: 'Y suena /waɪ/, con una /w/ antes de /aɪ/. I suena solo /aɪ/.', 'pt-BR': 'Y soa /waɪ/, com /w/ antes de /aɪ/. I soa apenas /aɪ/.', vi: 'Y đọc /waɪ/, có /w/ trước /aɪ/. I chỉ đọc /aɪ/.', id: 'Y berbunyi /waɪ/, dengan /w/ sebelum /aɪ/. I hanya /aɪ/.', tr: 'Y /waɪ/ diye okunur; /aɪ/ önünde /w/ vardır. I yalnız /aɪ/ olur.', pl: 'Y brzmi /waɪ/, z /w/ przed /aɪ/. I brzmi tylko /aɪ/.',
+    }) },
+    retrieve_meaning: { value: 'you', reasonCode: 'i_meaning_you_other_person', trapType: 'grammar', feedback: L({
+      ru: 'You — «ты/вы», то есть собеседник. Говорящий называет себя словом I — «я».', uk: 'You — «ти/ви», тобто співрозмовник. Мовець називає себе словом I — «я».', es: 'You señala a la otra persona. Para decir «yo», quien habla usa I.', 'pt-BR': 'You aponta para a outra pessoa. Para dizer «eu», quem fala usa I.', vi: 'You chỉ người nghe. Người nói dùng I để nói “tôi”.', id: 'You menunjuk lawan bicara. Penutur memakai I untuk “saya”.', tr: 'You karşıdaki kişiyi gösterir. Konuşan “ben” için I kullanır.', pl: 'You wskazuje rozmówcę. Mówiący używa I w znaczeniu „ja”.',
+    }) },
+    build_form: { value: '1', reasonCode: 'i_form_digit_one', trapType: 'orthographic', feedback: L({
+      ru: '1 — цифра один. Английское «я» здесь пишется буквой I.', uk: '1 — цифра один. Англійське «я» тут пишеться літерою I.', es: '1 es el número uno. El «yo» inglés se escribe con la letra I.', 'pt-BR': '1 é o número um. O «eu» inglês se escreve com a letra I.', vi: '1 là số một. “Tôi” trong tiếng Anh được viết bằng chữ I.', id: '1 adalah angka satu. “Saya” dalam bahasa Inggris ditulis dengan huruf I.', tr: '1 bir rakamdır. İngilizce “ben” I harfiyle yazılır.', pl: '1 to cyfra jeden. Angielskie „ja” zapisuje się literą I.',
+    }) },
+  }),
+  'e01-s01-word-am': Object.freeze({
+    recognize: { value: "I'm", reasonCode: 'am_recognize_im_extra_i_sound', trapType: 'phonetic', feedback: L({
+      ru: "I'm начинается с /aɪ/: сначала слышно I. В am сразу звучит /æm/.", uk: "I'm починається з /aɪ/: спочатку чути I. В am одразу звучить /æm/.", es: "I'm empieza con /aɪ/, donde se oye I. Am empieza directamente con /æm/.", 'pt-BR': "I'm começa com /aɪ/, onde se ouve I. Am começa direto com /æm/.", vi: "I'm mở đầu bằng /aɪ/, có âm I. Am đi thẳng vào /æm/.", id: "I'm diawali /aɪ/, jadi I terdengar. Am langsung berbunyi /æm/.", tr: "I'm /aɪ/ ile başlar ve I duyulur. Am doğrudan /æm/ olur.", pl: "I'm zaczyna się /aɪ/, więc słychać I. Am zaczyna się od razu /æm/.",
+    }) },
+    retrieve_meaning: { value: 'I', reasonCode: 'am_meaning_i_speaker_not_link', trapType: 'grammar', feedback: L({
+      ru: 'I означает «я» и называет говорящего. Связку «есть / являюсь» передаёт am.', uk: 'I означає «я» й називає мовця. Зв’язку «є» передає am.', es: 'I significa «yo» y nombra a quien habla. La unión «soy/estoy» es am.', 'pt-BR': 'I significa «eu» e nomeia quem fala. A ligação «sou/estou» é am.', vi: 'I nghĩa là “tôi”; từ nối cần dùng trong câu này là am.', id: 'I berarti “saya”. Penghubung yang dicari adalah am.', tr: 'I “ben” demektir. Aranan bağlayıcı am olur.', pl: 'I znaczy „ja”. Szukanym łącznikiem jest am.',
+    }) },
+    build_form: { value: "I'm", reasonCode: 'am_form_contraction_not_standalone', trapType: 'grammar', feedback: L({
+      ru: "I'm уже соединяет I и am. Когда нужен только второй элемент, пишется am.", uk: "I'm уже поєднує I та am. Коли потрібен лише другий елемент, пишеться am.", es: "I'm ya une I y am. Cuando se pide solo la segunda parte, se escribe am.", 'pt-BR': "I'm já junta I e am. Quando se pede só a segunda parte, escreve-se am.", vi: "I'm đã gộp I và am. Khi chỉ cần phần thứ hai, hãy viết am.", id: "I'm sudah menggabungkan I dan am. Jika hanya bagian kedua yang diminta, tulis am.", tr: "I'm, I ile am'i zaten birleştirir. Yalnız ikinci parça istenince am yazılır.", pl: "I'm już łączy I oraz am. Gdy potrzebna jest tylko druga część, piszemy am.",
+    }) },
+  }),
+  'e01-s01-word-here': Object.freeze({
+    recognize: { value: 'hero', reasonCode: 'here_recognize_hero_extra_syllable', trapType: 'phonetic', feedback: L({
+      ru: 'Hero добавляет второй слог /roʊ/. Here заканчивается сразу после /hɪr/.', uk: 'Hero додає другий склад /roʊ/. Here закінчується одразу після /hɪr/.', es: 'Hero añade una segunda sílaba, /roʊ/. Here termina después de /hɪr/.', 'pt-BR': 'Hero acrescenta uma segunda sílaba, /roʊ/. Here termina depois de /hɪr/.', vi: 'Hero có thêm âm tiết /roʊ/. Here kết thúc ngay sau /hɪr/.', id: 'Hero memiliki suku kata tambahan /roʊ/. Here selesai setelah /hɪr/.', tr: 'Hero ek bir /roʊ/ hecesi taşır. Here /hɪr/ sonrasında biter.', pl: 'Hero dodaje sylabę /roʊ/. Here kończy się po /hɪr/.',
+    }) },
+    retrieve_meaning: { value: 'near', reasonCode: 'here_meaning_near_proximity_not_location', trapType: 'semantic_neighbor', feedback: L({
+      ru: 'Near — «рядом» и обычно просит уточнить, рядом с чем. Самостоятельное «здесь» — here.', uk: 'Near — «поруч» і зазвичай просить уточнити, поруч із чим. Самостійне «тут» — here.', es: 'Near significa «cerca» y suele pedir cerca de qué. «Aquí» por sí solo es here.', 'pt-BR': 'Near significa «perto» e costuma pedir perto de quê. «Aqui» sozinho é here.', vi: 'Near nghĩa là “gần” và thường cần nói gần cái gì. “Ở đây” là here.', id: 'Near berarti “dekat” dan biasanya perlu objek. “Di sini” adalah here.', tr: 'Near “yakın” demektir ve genelde neye yakın olduğunu ister. “Burada” here olur.', pl: 'Near znaczy „blisko” i zwykle wymaga dopowiedzenia czego. „Tutaj” to here.',
+    }) },
+    build_form: { value: 'hire', reasonCode: 'here_form_hire_vowel_order', trapType: 'orthographic', feedback: L({
+      ru: 'Hire меняет порядок гласных и означает «нанимать». Место «здесь» пишется here.', uk: 'Hire змінює порядок голосних і означає «наймати». Місце «тут» пишеться here.', es: 'Hire cambia el orden de las vocales y significa «contratar». «Aquí» se escribe here.', 'pt-BR': 'Hire muda a ordem das vogais e significa «contratar». «Aqui» se escreve here.', vi: 'Hire đổi thứ tự nguyên âm và nghĩa là “thuê”. “Ở đây” viết là here.', id: 'Hire menukar urutan vokal dan berarti “mempekerjakan”. “Di sini” ditulis here.', tr: 'Hire ünlülerin sırasını değiştirir ve “işe almak” demektir. “Burada” here yazılır.', pl: 'Hire zmienia kolejność samogłosek i znaczy „zatrudniać”. „Tutaj” zapisujemy here.',
+    }) },
+  }),
+  'e01-s01-word-ready': Object.freeze({
+    recognize: { value: 'already', reasonCode: 'ready_recognize_already_extra_opening', trapType: 'phonetic', feedback: L({
+      ru: 'Already добавляет в начале /ɔːl/. В ready запись сразу начинается с /red-/.', uk: 'Already додає на початку /ɔːl/. У ready запис одразу починається з /red-/.', es: 'Already añade /ɔːl/ al principio. Ready empieza directamente por /red-/.', 'pt-BR': 'Already acrescenta /ɔːl/ no início. Ready começa direto por /red-/.', vi: 'Already thêm /ɔːl/ ở đầu. Ready bắt đầu ngay bằng /red-/.', id: 'Already menambahkan /ɔːl/ di awal. Ready langsung dimulai /red-/.', tr: 'Already başına /ɔːl/ ekler. Ready doğrudan /red-/ ile başlar.', pl: 'Already dodaje /ɔːl/ na początku. Ready zaczyna się od razu /red-/.',
+    }) },
+    retrieve_meaning: { value: 'waiting', reasonCode: 'ready_meaning_waiting_action_not_readiness', trapType: 'semantic_neighbor', feedback: L({
+      ru: 'Waiting — «жду»: это действие ожидания. Ready означает, что уже можно начинать.', uk: 'Waiting — «чекаю»: це дія очікування. Ready означає, що вже можна починати.', es: 'Waiting es «esperando». Ready indica que ya se puede empezar.', 'pt-BR': 'Waiting é «esperando». Ready indica que já se pode começar.', vi: 'Waiting là “đang chờ”. Ready nghĩa là đã có thể bắt đầu.', id: 'Waiting berarti “sedang menunggu”. Ready berarti sudah bisa mulai.', tr: 'Waiting “bekliyor” demektir. Ready artık başlanabileceğini söyler.', pl: 'Waiting znaczy „czekam”. Ready mówi, że można już zaczynać.',
+    }) },
+    build_form: { value: 'read', reasonCode: 'ready_form_read_missing_y', trapType: 'orthographic', feedback: L({
+      ru: 'Read заканчивается на d и означает «читать». Состояние «готов» пишется ready с y.', uk: 'Read закінчується на d й означає «читати». Стан «готовий» пишеться ready з y.', es: 'Read termina en d y significa «leer». El estado «listo» se escribe ready con y.', 'pt-BR': 'Read termina em d e significa «ler». O estado «pronto» se escreve ready com y.', vi: 'Read kết thúc bằng d và nghĩa là “đọc”. “Sẵn sàng” viết ready với y.', id: 'Read berakhir dengan d dan berarti “membaca”. “Siap” ditulis ready dengan y.', tr: 'Read d ile biter ve “okumak” demektir. “Hazır” ready diye y ile yazılır.', pl: 'Read kończy się na d i znaczy „czytać”. Stan „gotowy” zapisujemy ready z y.',
+    }) },
+  }),
+});
+
+export const EPISODE_01_SESSION_01_VOCABULARY_V1:
+  readonly SessionVocabularySourceV1[] = Object.freeze(
+  EPISODE_01_SESSION_01_VOCABULARY_BASE_V1.map((item) => {
+    const third = THIRD_CONTACT_DISTRACTORS[item.id];
+    if (!third) throw new Error(`session_01_third_contact_distractors_missing:${item.id}`);
+    return Object.freeze({
+      ...item,
+      contacts: Object.freeze({
+        recognize: Object.freeze({ ...item.contacts.recognize, distractors: Object.freeze([...item.contacts.recognize.distractors, third.recognize]) }),
+        retrieve_meaning: Object.freeze({ ...item.contacts.retrieve_meaning, distractors: Object.freeze([...item.contacts.retrieve_meaning.distractors, third.retrieve_meaning]) }),
+        build_form: Object.freeze({ ...item.contacts.build_form, distractors: Object.freeze([...item.contacts.build_form.distractors, third.build_form]) }),
+      }),
+    });
+  }),
+);

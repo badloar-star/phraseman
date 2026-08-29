@@ -62,4 +62,20 @@ describe('client reports cache', () => {
     expect(mockCallableInvoker).toHaveBeenCalledTimes(3);
     expect(mockInitFirebaseAppCheckIfAvailable).toHaveBeenCalledTimes(2);
   });
+
+  it('forwards owner binding and the stable idempotency key only when supplied', async () => {
+    const { submitClientReport } = await loadClientReportsWithFreshCache();
+
+    await submitClientReport('error_report', { comment: 'Detailed problem' }, {
+      expectedStableUid: 'stable-owner',
+      idempotencyKey: 'support_123_retry',
+    });
+
+    expect(mockCallableInvoker).toHaveBeenCalledWith({
+      kind: 'error_report',
+      payload: { comment: 'Detailed problem' },
+      expectedStableUid: 'stable-owner',
+      idempotencyKey: 'support_123_retry',
+    });
+  });
 });

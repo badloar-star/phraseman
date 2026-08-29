@@ -97,7 +97,10 @@ export const DebugLogger = {
     const errorMessage = error instanceof Error ? error.message : String(error);
     const errorStack = error instanceof Error ? error.stack : undefined;
     const msg = `[${severity.toUpperCase()}] ${context}: ${errorMessage}`;
-    if (isDevRuntime) console.error(msg);
+    if (isDevRuntime) {
+      if (severity === 'critical') console.error(msg);
+      else console.warn(msg);
+    }
 
     persistDebugLog({
       timestamp: new Date().toISOString(),

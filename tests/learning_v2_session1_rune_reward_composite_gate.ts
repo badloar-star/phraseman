@@ -307,6 +307,14 @@ function installNativeLoaderStubs(): () => void {
         },
       };
     }
+    // зачем (аудит начислений 2026-08-26): гейт запускается через tsx, где нет
+    // jest-моков для ассетов, и настоящий require натыкался на mp3-байты —
+    // «Invalid or unexpected token». Медиа здесь не нужны: гейт проверяет
+    // композит начисления рун, а не звук. Отдаём опаковый идентификатор, как
+    // это делает tests/__mocks__/fileMock.js в Jest.
+    if (/\.(mp3|wav|m4a|ogg|aac|png|jpe?g|gif|svg|webp|avif|ttf|otf)$/i.test(request)) {
+      return { default: request, uri: request } as unknown as ReturnType<typeof original>;
+    }
     return original(request, parent, isMain);
   };
   return () => { Module._load = original; };

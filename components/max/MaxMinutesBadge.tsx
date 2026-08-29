@@ -34,12 +34,13 @@ function MaxMinutesBadge({ dayRemainingSec, lang, style, testID }: MaxMinutesBad
   // локаль, которую это задевало, физически видна на бейдже, не только в
   // accessibilityLabel, поэтому короткий суффикс тоже переведён.
   const label = triLang(lang, {
-    ru: `${minutes}м`, uk: `${minutes}хв`, es: `${minutes}m`, 'pt-BR': `${minutes}m`,
+    ru: `${minutes}м`, uk: `${minutes}хв`, en: `${minutes}m`, es: `${minutes}m`, 'pt-BR': `${minutes}m`,
     vi: `${minutes}p`, id: `${minutes}m`, tr: `${minutes}dk`, pl: `${minutes}m`,
   });
   const a11yLabel = triLang(lang, {
     ru: `Осталось ${minutes} минут MAX на сегодня`,
     uk: `Залишилося ${minutes} хвилин MAX на сьогодні`,
+    en: `${minutes} minutes of MAX left today`,
     es: `Quedan ${minutes} minutos de MAX hoy`,
     'pt-BR': `Restam ${minutes} minutos de MAX hoje`,
     vi: `Còn ${minutes} phút MAX hôm nay`,

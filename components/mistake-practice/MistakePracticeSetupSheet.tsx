@@ -33,6 +33,7 @@ export default function MistakePracticeSetupSheet({
   const copy = useMemo(() => triLang(lang, {
     ru: { all: 'Все', closeSheet: 'Закрыть настройку ошибок', title: 'Ошибки', close: 'Закрыть', length: 'Длина сессии', start: 'Начать' },
     uk: { all: 'Усі', closeSheet: 'Закрити налаштування помилок', title: 'Помилки', close: 'Закрити', length: 'Тривалість сесії', start: 'Почати' },
+    en: { all: 'All', closeSheet: 'Close mistake settings', title: 'Mistakes', close: 'Close', length: 'Session length', start: 'Start' },
     es: { all: 'Todas', closeSheet: 'Cerrar la configuración de errores', title: 'Errores', close: 'Cerrar', length: 'Duración de la sesión', start: 'Empezar' },
     'pt-BR': { all: 'Todos', closeSheet: 'Fechar configuração de erros', title: 'Erros', close: 'Fechar', length: 'Duração da sessão', start: 'Começar' },
     vi: { all: 'Tất cả', closeSheet: 'Đóng cài đặt lỗi sai', title: 'Lỗi sai', close: 'Đóng', length: 'Độ dài buổi học', start: 'Bắt đầu' },

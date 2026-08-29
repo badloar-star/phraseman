@@ -8,6 +8,7 @@ import { projectLearningV2UnlockedWordsToCardsV1 } from "../../app/learning_v2_u
 import type { LearningV2UnlockedLessonWordV1 } from "../../app/learning_v2_unlocked_lesson_words_v1";
 import type { SpeakOpts } from "../../hooks/use-audio";
 import { useStableSafeAreaInsets } from "../../app/stable_safe_area_metrics";
+import { triLang } from "../../constants/i18n";
 import AddToFlashcard from "../AddToFlashcard";
 import { useLang } from "../LangContext";
 import { useTheme } from "../ThemeContext";
@@ -31,6 +32,24 @@ export default function LearningV2WordPocketOverlayV1({
     [words],
   );
   const cardContentLang = (lang === "en" ? "ru" : lang) as FlashcardContentLang;
+  const copy = {
+    eyebrow: triLang(lang, {
+      ru: "СЛОВА УРОКА", uk: "СЛОВА УРОКУ", en: "LESSON WORDS", es: "PALABRAS DE LA LECCIÓN",
+      "pt-BR": "PALAVRAS DA LIÇÃO", vi: "TỪ TRONG BÀI", id: "KATA PELAJARAN", tr: "DERSİN KELİMELERİ", pl: "SŁOWA Z LEKCJI",
+    }),
+    title: triLang(lang, {
+      ru: "Карман слов", uk: "Кишеня слів", en: "Word pocket", es: "Bolsillo de palabras",
+      "pt-BR": "Bolso de palavras", vi: "Túi từ", id: "Kantong kata", tr: "Kelime cebi", pl: "Kieszeń słów",
+    }),
+    close: triLang(lang, {
+      ru: "Закрыть карман слов", uk: "Закрити кишеню слів", en: "Close word pocket", es: "Cerrar el bolsillo de palabras",
+      "pt-BR": "Fechar o bolso de palavras", vi: "Đóng túi từ", id: "Tutup kantong kata", tr: "Kelime cebini kapat", pl: "Zamknij kieszeń słów",
+    }),
+    empty: triLang(lang, {
+      ru: "Новые слова появятся здесь после знакомства с ними.", uk: "Нові слова з’являться тут після знайомства з ними.", en: "New words will appear here after you meet them.", es: "Las palabras nuevas aparecerán aquí después de conocerlas.",
+      "pt-BR": "As palavras novas aparecerão aqui depois que você as conhecer.", vi: "Từ mới sẽ xuất hiện ở đây sau khi bạn làm quen với chúng.", id: "Kata baru akan muncul di sini setelah kamu mengenalnya.", tr: "Yeni kelimelerle tanıştıktan sonra burada görünür.", pl: "Nowe słowa pojawią się tutaj, gdy je poznasz.",
+    }),
+  };
 
   return (
     <View
@@ -49,13 +68,13 @@ export default function LearningV2WordPocketOverlayV1({
         ]}
       >
         <View>
-          <Text style={[styles.eyebrow, { color: t.accent }]}>СЛОВА УРОКА</Text>
-          <Text style={[styles.title, { color: t.textPrimary }]}>Карман слов</Text>
+          <Text style={[styles.eyebrow, { color: t.accent }]}>{copy.eyebrow}</Text>
+          <Text style={[styles.title, { color: t.textPrimary }]}>{copy.title}</Text>
         </View>
         <Pressable
           testID="learning-v2-word-pocket-close"
           accessibilityRole="button"
-          accessibilityLabel="Закрыть карман слов"
+          accessibilityLabel={copy.close}
           onPress={onClose}
           hitSlop={10}
           style={({ pressed }) => [
@@ -96,7 +115,7 @@ export default function LearningV2WordPocketOverlayV1({
       ) : (
         <View style={styles.empty}>
           <Ionicons name="albums-outline" size={36} color={t.textMuted} />
-          <Text style={[styles.emptyText, { color: t.textSecond }]}>Новые слова появятся здесь после знакомства с ними.</Text>
+          <Text style={[styles.emptyText, { color: t.textSecond }]}>{copy.empty}</Text>
         </View>
       )}
     </View>

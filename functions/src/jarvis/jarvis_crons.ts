@@ -275,6 +275,7 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
     runMoney: (appTier) => buildMoneySnapshot({
       fetchers: {
         revenuecat_premium_events: () => fetchMoneySource({ sourceId: 'revenuecat_premium_events', collection: db.collection('revenuecat_premium_events'), nowMs }),
+        voice_minute_events: () => fetchMoneySource({ sourceId: 'voice_minute_events', collection: db.collection('voice_minute_events'), nowMs }),
         paywall_funnel: () => fetchMoneySource({ sourceId: 'paywall_funnel', collection: db.collection('paywall_funnel'), nowMs }),
         client_economy_opening: () => fetchMoneySource({ sourceId: 'client_economy_opening', collection: db.collectionGroup('client_economy_opening'), nowMs }),
         client_economy_operations: () => fetchMoneySource({ sourceId: 'client_economy_operations', collection: db.collectionGroup('client_economy_operations'), nowMs }),

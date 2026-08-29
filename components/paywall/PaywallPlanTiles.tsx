@@ -33,10 +33,8 @@ interface Props {
   lifetimePrice?: string | null;
   lifetimeAvailable?: boolean;
   /**
-   * Витрина тарифа MAX рядом с Pro в том же ряду плиток — тап сразу открывает
-   * /max_paywall (там своя покупка через max_subscription_purchase), плитка
-   * не выбирается как план: MAX не входит в usePaywallPurchase (денежный
-   * путь Plus/Pro трогать рискованно без возможности проверить транзакцию).
+   * Витрина MAX рядом с Pro — тап открывает неистекающие пакеты минут. Плитка
+   * не выбирается как Premium-план: grant подтверждает серверный wallet.
    */
   onOpenMaxPaywall?: () => void;
 }
@@ -134,13 +132,13 @@ export default function PaywallPlanTiles({
       plan: 'monthly', // не участвует в выборе — плитка навигационная (onNavigate)
       name: 'MAX',
       price: triLang(lang, {
-        ru: '120 минут в месяц', uk: '120 хвилин на місяць', en: '120 minutes a month', es: '120 minutos al mes',
-        'pt-BR': '120 minutos por mês', vi: '120 phút mỗi tháng', id: '120 menit per bulan',
-        tr: 'ayda 120 dakika', pl: '120 minut miesięcznie',
+        ru: '30 · 120 · 300 минут', uk: '30 · 120 · 300 хвилин', en: '30 · 120 · 300 minutes', es: '30 · 120 · 300 minutos',
+        'pt-BR': '30 · 120 · 300 minutos', vi: '30 · 120 · 300 phút', id: '30 · 120 · 300 menit',
+        tr: '30 · 120 · 300 dakika', pl: '30 · 120 · 300 minut',
       }),
       sub: triLang(lang, {
-        ru: 'звонки с ИИ', uk: 'дзвінки з ШІ', en: 'AI calls', es: 'llamadas con IA', 'pt-BR': 'ligações com IA',
-        vi: 'gọi với AI', id: 'panggilan AI', tr: 'yapay zekâ ile arama', pl: 'rozmowy z AI',
+        ru: 'не сгорают', uk: 'не згорають', en: 'never expire', es: 'no caducan', 'pt-BR': 'não expiram',
+        vi: 'không hết hạn', id: 'tidak kedaluwarsa', tr: 'süresiz', pl: 'nie wygasają',
       }),
       badge: null,
       onNavigate: onOpenMaxPaywall,

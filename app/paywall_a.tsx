@@ -67,7 +67,7 @@ export default function PaywallA() {
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, resumeLessonId, impression: analyticsImpression });
   const sticky = useStickyCta();
   const router = useRouter();
-  // зачем: MAX — отдельный тариф со своей покупкой (modules/max_subscription/purchase),
+  // MAX — отдельный экран неистекающих пакетов минут,
   // не план внутри usePaywallPurchase (тот денежный путь Plus/Pro трогать рискованно
   // без возможности проверить реальную транзакцию в этой сессии) — витрина уводит
   // на уже готовый и проверенный /max_paywall.
@@ -129,8 +129,8 @@ export default function PaywallA() {
   const hadPremiumEver = getStatsCache().hadPremiumEver;
   const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
   const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
-  const title = LP(copy.titleRu, copy.titleUk, copy.titleEs, planned.title);
-  const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle);
+  const title = LP(copy.titleRu, copy.titleUk, copy.titleRu, copy.titleEs, planned.title);
+  const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleRu, copy.subtitleEs, planned.subtitle);
 
   const price = p.selected === 'lifetime' ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
@@ -231,7 +231,7 @@ export default function PaywallA() {
                 ctx={ctx}
                 lang={lang as Lang}
                 chrome={chrome}
-                tagTexts={personalTag ? [LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)] : []}
+                tagTexts={personalTag ? [LP(personalTag.ru, personalTag.uk, personalTag.ru, personalTag.es, personalTag)] : []}
                 profile={profile}
                 mirror={mirror}
               />

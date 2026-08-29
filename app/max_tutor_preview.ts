@@ -15,6 +15,13 @@ export interface MaxTutorPreview {
   outcome: string;
   /** Read-only quota/config snapshot returned by the same preflight. */
   limits?: Record<string, unknown>;
+  /**
+   * зачем (владелец 2026-08-26): limits.dayRemainingSec — всегда общий
+   * 20-минутный пул MAX, даже когда доступ trial. Кто рисует минуты по этому
+   * превью (бейдж Главной), обязан знать доступ, иначе free/plus видит «20м»
+   * вместо реальных 3 минут пробника.
+   */
+  access?: 'max' | 'trial';
 }
 
 export interface MaxTutorPreviewKeyParams {

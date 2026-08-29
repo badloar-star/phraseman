@@ -21,6 +21,7 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
+import { Image } from 'expo-image';
 import { scheduleOnRN } from 'react-native-worklets';
 import { useTheme } from './ThemeContext';
 import { LinearGradient } from './SafeLinearGradient';
@@ -36,6 +37,7 @@ import {
   type GiftDef,
 } from '../app/level_gift_system';
 import type { LocalLevelSpinReceipt as LevelSpinReceipt } from '../app/level_spin_local_contract';
+import { spinTicketImageSource } from '../app/spin_ticket_asset';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
@@ -66,14 +68,18 @@ const MANUAL_REEL_MAX_VELOCITY = 5_200;
 const MANUAL_REEL_DECELERATION = 0.992;
 const MANUAL_REEL_SNAP_MS = 180;
 const DEFAULT_REWARD_GRADIENT: [string, string, string] = ['#15473C', '#0E2B28', '#081918'];
+const RUNE_ASSET = require('../assets/images/level-spin-rewards/stars_10.webp');
 export type LevelSpinFinishLinePhase = 'recovering' | 'idle' | 'spinning' | 'revealed' | 'error' | 'empty';
 
 type Props = {
   lang: Lang;
   phase: LevelSpinFinishLinePhase;
   balance: number | null;
+  runeBalance: number;
+  paidSpinPrice: number;
   receipt: LevelSpinReceipt | null;
   onSpin: () => void;
+  onPaidSpin: () => void;
   onRetry: () => void;
   onAgain: () => void;
   onRevealed: (requestId: string) => void;
@@ -147,8 +153,11 @@ export default function LevelSpinFinishLine({
   lang,
   phase,
   balance,
+  runeBalance,
+  paidSpinPrice,
   receipt,
   onSpin,
+  onPaidSpin,
   onRetry,
   onAgain,
   onRevealed,
@@ -609,6 +618,24 @@ export default function LevelSpinFinishLine({
         : phase === 'empty'
           ? triLang(lang, { ru: 'СПИНОВ НЕТ', uk: 'СПІНІВ НЕМАЄ', en: 'NO SPINS', es: 'SIN GIROS', 'pt-BR': 'SEM GIROS', vi: 'HẾT LƯỢT', id: 'PUTARAN HABIS', tr: 'ÇEVİRME YOK', pl: 'BRAK SPINÓW' })
           : triLang(lang, { ru: 'КРУТИТЬ', uk: 'КРУТИТИ', en: 'SPIN', es: 'GIRAR', 'pt-BR': 'GIRAR', vi: 'QUAY', id: 'PUTAR', tr: 'ÇEVİR', pl: 'ZAKRĘĆ' });
+  const paidVisible = !resultVisible && (phase === 'idle' || phase === 'empty');
+  const paidDisabled = runeBalance < paidSpinPrice;
+  const paidLabel = triLang(lang, {
+    ru: 'КРУТИТЬ', uk: 'КРУТИТИ', en: 'SPIN', es: 'GIRAR', 'pt-BR': 'GIRAR',
+    vi: 'QUAY', id: 'PUTAR', tr: 'ÇEVİR', pl: 'ZAKRĘĆ',
+  });
+  const paidAccessibilityLabel = triLang(lang, {
+    ru: `${paidLabel} за ${paidSpinPrice} рун. Доступно ${runeBalance}.${paidDisabled ? ' Недостаточно рун.' : ''}`,
+    uk: `${paidLabel} за ${paidSpinPrice} рун. Доступно ${runeBalance}.${paidDisabled ? ' Недостатньо рун.' : ''}`,
+    en: `${paidLabel} for ${paidSpinPrice} runes. ${runeBalance} available.${paidDisabled ? ' Not enough runes.' : ''}`,
+    es: `${paidLabel} por ${paidSpinPrice} runas. ${runeBalance} disponibles.${paidDisabled ? ' Runas insuficientes.' : ''}`,
+    'pt-BR': `${paidLabel} por ${paidSpinPrice} runas. ${runeBalance} disponíveis.${paidDisabled ? ' Runas insuficientes.' : ''}`,
+    vi: `${paidLabel} với ${paidSpinPrice} rune. Có ${runeBalance}.${paidDisabled ? ' Không đủ rune.' : ''}`,
+    id: `${paidLabel} seharga ${paidSpinPrice} rune. Tersedia ${runeBalance}.${paidDisabled ? ' Rune tidak cukup.' : ''}`,
+    tr: `${paidSpinPrice} rün ile ${paidLabel}. Mevcut ${runeBalance}.${paidDisabled ? ' Yeterli rün yok.' : ''}`,
+    pl: `${paidLabel} za ${paidSpinPrice} run. Dostępne: ${runeBalance}.${paidDisabled ? ' Za mało run.' : ''}`,
+  });
+  const spinAsset = spinTicketImageSource();
 
   const fineCopy = phase === 'error'
     ? ''
@@ -781,6 +808,30 @@ export default function LevelSpinFinishLine({
       )}
 
       <View style={styles.spinFooter}>
+        {paidVisible ? (
+          <Pressable
+            testID="level-spin-paid-start"
+            accessibilityRole="button"
+            accessibilityLabel={paidAccessibilityLabel}
+            accessibilityState={{ disabled: paidDisabled }}
+            disabled={paidDisabled}
+            onPressIn={() => {
+              if (paidDisabled) return;
+              void hapticTap();
+            }}
+            onPress={onPaidSpin}
+            style={({ pressed }) => [
+              styles.spinCta,
+              styles.paidSpinCta,
+              pressed && !paidDisabled && styles.spinCtaPressed,
+              paidDisabled && styles.spinCtaDisabled,
+            ]}
+          >
+            <Image source={RUNE_ASSET} style={styles.ctaAsset} contentFit="contain" />
+            <Text style={styles.paidSpinCtaText}>{paidLabel}</Text>
+            <Text style={styles.paidSpinCtaText}>{paidSpinPrice}</Text>
+          </Pressable>
+        ) : null}
         <Pressable
           testID={ctaTestID}
           accessibilityRole="button"
@@ -798,6 +849,9 @@ export default function LevelSpinFinishLine({
           onPress={handleCtaPress}
           style={({ pressed }) => [styles.spinCta, pressed && !ctaDisabled && styles.spinCtaPressed, ctaDisabled && styles.spinCtaDisabled]}
         >
+          {!resultVisible && spinAsset
+            ? <Image source={spinAsset} style={styles.ctaAsset} contentFit="contain" />
+            : null}
           <Text style={styles.spinCtaText}>{ctaLabel}</Text>
         </Pressable>
         {fineCopy ? <Text accessibilityLiveRegion="polite" style={[styles.fineCopy, { color: t.textMuted }]}>{fineCopy}</Text> : null}
@@ -895,7 +949,7 @@ const styles = StyleSheet.create({
   plusGift: { marginTop: 3, color: '#4A350D', fontSize: 9, fontWeight: '900' },
   statusOverlay: { position: 'absolute', left: 18, right: 18, bottom: 86, zIndex: 8, alignItems: 'center' },
   statusText: { textAlign: 'center', fontWeight: '700', opacity: 0 },
-  spinFooter: { width: '100%', paddingHorizontal: 18, paddingTop: 8, paddingBottom: 4, zIndex: 10 },
+  spinFooter: { width: '100%', paddingHorizontal: 18, paddingTop: 8, paddingBottom: 4, zIndex: 10, gap: 8 },
   spinCta: {
     width: '100%',
     minHeight: 56,
@@ -904,12 +958,17 @@ const styles = StyleSheet.create({
     borderBottomColor: '#918DA5',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
+    gap: 9,
     backgroundColor: '#F0EEF8',
     paddingHorizontal: 18,
   },
   spinCtaPressed: { transform: [{ translateY: 4 }], borderBottomWidth: 0, marginBottom: 4 },
   spinCtaDisabled: { opacity: 0.58 },
   spinCtaText: { color: '#0F0D13', fontSize: 16, fontWeight: '900', letterSpacing: 0.3, textAlign: 'center' },
+  paidSpinCta: { backgroundColor: '#F3C85C', borderBottomColor: '#9B6D12' },
+  paidSpinCtaText: { color: '#0F0D13', fontSize: 16, fontWeight: '900', letterSpacing: 0.3, textAlign: 'center' },
+  ctaAsset: { width: 28, height: 28 },
   fineCopy: { marginTop: 8, minHeight: 12, textAlign: 'center', fontSize: 9, lineHeight: 12 },
   devError: { marginTop: 3, fontSize: 9, textAlign: 'center' },
 });

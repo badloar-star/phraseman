@@ -54,9 +54,9 @@ for (const locale of locales) {
   assert.equal(learner.interactionProfile, 'voice_heavy');
   assert.equal(learner.interactions.length, 9);
   assert.deepEqual(learner.interactions.map((entry) => entry.family), [
-    'listen_choose', 'sound_contrast', 'scripted_repeat_compare',
+    'listen_choose', 'listen_choose', 'scripted_repeat_compare',
     'scripted_repeat_compare', 'listen_build_dictation', 'scripted_repeat_compare',
-    'sound_contrast', 'scripted_repeat_compare', 'listen_choose',
+    'listen_choose', 'scripted_repeat_compare', 'listen_choose',
   ]);
   assert.equal(learner.interactions.filter((entry) => entry.inputMode === 'scripted_speech').length, 4);
 }

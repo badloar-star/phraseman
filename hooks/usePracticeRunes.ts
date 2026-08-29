@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { DebugLogger } from '../app/debug-logger';
 import { getStableId } from '../app/stable_id';
 import {
   awardPracticeRune,
   createPracticeRuneEarnings,
+  forfeitPendingPracticeRunes,
   parsePracticeRuneEarnings,
   practiceRuneEarningsStorageKey,
   practiceRuneSettledOnceStorageKey,
@@ -15,6 +17,7 @@ import {
 } from '../app/practice_rune_earnings';
 import {
   clearPracticeRuneSettlementPending,
+  flushStalePracticeRuneSettlements,
   markPracticeRuneSettlementPending,
   settlePracticeRuneEarningsToServer,
 } from '../app/practice_rune_settlement';
@@ -67,6 +70,8 @@ export type UsePracticeRunesResult = Readonly<{
   onCorrectAnswer: (itemId: string) => number;
   /** Зачесть копилку на сервер. Вызывать на экране завершения. */
   settle: () => Promise<void>;
+  /** Обнулить только незачтённые руны этого прохода, сохранив оплаченные элементы. */
+  forfeitPendingRunes: () => Promise<void>;
   /**
    * Начать НОВЫЙ проход той же сессии БЕЗ перемонтирования экрана — кнопка
    * «Повторить»/«Начать заново» на экранах, где финиш встроен в тот же
@@ -96,12 +101,30 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
   // держат completionOrdinal=1 на каждый маунт, и без этого счётчика повторный
   // проход строил бы ТОТ ЖЕ operationId — сервер отверг бы его как дубль.
   const settledCountRef = useRef(0);
+  const settlementInFlightRef = useRef<number | null>(null);
+  // Session props can change without an unmount (Blitz "Ещё разок"). Every
+  // async hydration/settlement captures this generation so an older round can
+  // finish its own durable write without replacing the new round in memory.
+  const sessionGenerationRef = useRef(0);
+  const activeSessionIdentityRef = useRef('');
+  const settlementOrdinalByGenerationRef = useRef<Map<number, number>>(new Map());
   // DEV HUB ONLY: элементы, уже «оплаченные» в этой in-memory сессии — без
   // этого повторный тап по той же карточке в dev-режиме продолжал бы плюсовать
   // до бесконечности, что выглядело бы как явный баг при проверке экрана.
   const devCreditedRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
+    sessionGenerationRef.current += 1;
+    const sessionGeneration = sessionGenerationRef.current;
+    activeSessionIdentityRef.current = '';
+    settlementOrdinalByGenerationRef.current.clear();
+    ownerRef.current = null;
+    earningsRef.current = null;
+    settledCountRef.current = 0;
+    settlementInFlightRef.current = null;
+    devCreditedRef.current = new Set();
+    setRunes(devFakeStartRunes ?? 0);
+    setHydrating(enabled && devFakeStartRunes === undefined);
     // DEV HUB ONLY (владелец, 2026-08-27): «Проверка рун» — диск и сеть не
     // трогаются вообще, счётчик уже выставлен случайным числом в useState выше.
     if (devFakeStartRunes !== undefined) { setHydrating(false); return; }
@@ -109,14 +132,14 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     let cancelled = false;
     void (async () => {
       const ownerStableId = (await getStableId()).trim();
-      if (cancelled) return;
+      if (cancelled || sessionGeneration !== sessionGenerationRef.current) return;
       if (!ownerStableId) { setHydrating(false); return; }
       ownerRef.current = ownerStableId;
 
       const settledOnceRaw = await AsyncStorage.getItem(practiceRuneSettledOnceStorageKey({
         ownerStableId, activity: input.activity, sessionKey: input.sessionKey,
       }));
-      if (cancelled) return;
+      if (cancelled || sessionGeneration !== sessionGenerationRef.current) return;
       // Маркер хранит ЧИСЛО успешных зачётов этой сессии (легаси-значение '1'
       // читается как 1). Оно двигает и цену (повтор = 1 руна), и серверный
       // номер прохода в settle() ниже.
@@ -131,7 +154,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
         ownerStableId, activity: input.activity, sessionKey: input.sessionKey,
       });
       const storedRaw = await AsyncStorage.getItem(storageKey);
-      if (cancelled) return;
+      if (cancelled || sessionGeneration !== sessionGenerationRef.current) return;
       const stored = parsePracticeRuneEarnings(storedRaw, {
         activity: input.activity, sessionKey: input.sessionKey,
       });
@@ -152,15 +175,27 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
         : createPracticeRuneEarnings({
             activity: input.activity, sessionKey: input.sessionKey, firstCompletion,
           });
+      activeSessionIdentityRef.current = `${earnings.activity}\u0000${earnings.sessionKey}`;
       earningsRef.current = earnings;
       setRunes(earnings.pendingRunes);
       setHydrating(false);
+      DebugLogger.info('practice_runes:hydrated', JSON.stringify({
+        activity: input.activity,
+        sessionKey: earnings.sessionKey,
+        settledCount,
+        awardPerItem: earnings.awardPerItem,
+        pendingRunes: earnings.pendingRunes,
+        restoredFinishedPass: storedIsFinishedPass,
+      }));
+      void flushStalePracticeRuneSettlements(ownerStableId).catch((error) => {
+        DebugLogger.error('practice_runes:stale_flush_failed', error, 'warning');
+      });
     })();
     return () => { cancelled = true; };
-    // зачем: sessionKey/activity фиксированы на весь жизненный цикл экрана —
-    // пересоздавать копилку при их смене здесь не нужно, это отдельный маунт.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [enabled]);
+    // Blitz replaces roundId/sessionKey in-place, without remounting this hook.
+    // Rehydrate on identity changes so credited item ids and the operation id
+    // can never leak into the next completion.
+  }, [devFakeStartRunes, enabled, input.activity, input.sessionKey]);
 
   const persist = useCallback((earnings: PracticeRuneEarnings) => {
     const ownerStableId = ownerRef.current;
@@ -187,49 +222,179 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     earningsRef.current = result.earnings;
     setRunes(result.earnings.pendingRunes);
     persist(result.earnings);
+    DebugLogger.info('practice_runes:answer_awarded', JSON.stringify({
+      activity: result.earnings.activity,
+      sessionKey: result.earnings.sessionKey,
+      itemId: itemId.slice(0, 80),
+      awarded: result.awarded,
+      pendingRunes: result.earnings.pendingRunes,
+    }));
     return result.awarded;
   }, [devFakeStartRunes, persist]);
+
+  const forfeitPendingRunes = useCallback(async (): Promise<void> => {
+    if (devFakeStartRunes !== undefined) {
+      setRunes(0);
+      return;
+    }
+    const current = earningsRef.current;
+    const ownerStableId = ownerRef.current;
+    if (!current || !ownerStableId) return;
+    const forfeited = forfeitPendingPracticeRunes(current);
+    if (forfeited === current) return;
+    earningsRef.current = forfeited;
+    setRunes(0);
+    const storageKey = practiceRuneEarningsStorageKey({
+      ownerStableId,
+      activity: forfeited.activity,
+      sessionKey: forfeited.sessionKey,
+    });
+    await AsyncStorage.setItem(storageKey, JSON.stringify(forfeited));
+    DebugLogger.info('practice_runes:pending_forfeited', JSON.stringify({
+      activity: forfeited.activity,
+      sessionKey: forfeited.sessionKey,
+    }));
+  }, [devFakeStartRunes]);
 
   const settle = useCallback(async (): Promise<void> => {
     // DEV HUB ONLY: зачёт — не более чем визуальный жест здесь, диск и сеть
     // не участвуют. Оставляем накопленное число как есть, а не обнуляем: это
     // и есть то, что владелец пришёл посмотреть.
-    if (devFakeStartRunes !== undefined) return;
+    if (devFakeStartRunes !== undefined) {
+      DebugLogger.info('practice_runes:settle_skip_dev', JSON.stringify({
+        activity: input.activity,
+        sessionKey: input.sessionKey,
+      }));
+      return;
+    }
     const current = earningsRef.current;
     const ownerStableId = ownerRef.current;
-    if (!current || !ownerStableId || current.pendingRunes <= 0) return;
+    if (!current || !ownerStableId || current.pendingRunes <= 0) {
+      DebugLogger.info('practice_runes:settle_skip_not_ready', JSON.stringify({
+        activity: input.activity,
+        sessionKey: input.sessionKey,
+        hasEarnings: Boolean(current),
+        hasOwner: Boolean(ownerStableId),
+        pendingRunes: current?.pendingRunes ?? null,
+      }));
+      return;
+    }
+    if (settlementInFlightRef.current !== null) {
+      DebugLogger.info('practice_runes:settle_skip_in_flight', JSON.stringify({
+        activity: current.activity,
+        sessionKey: current.sessionKey,
+      }));
+      return;
+    }
+    const sessionGeneration = sessionGenerationRef.current;
+    const sessionIdentity = `${current.activity}\u0000${current.sessionKey}`;
+    settlementInFlightRef.current = sessionGeneration;
+    try {
 
     // зачем (аудит 2026-08-28): экраны со встроенным финишем передают
     // completionOrdinal=1 на каждый маунт — берём максимум с числом уже
     // подтверждённых зачётов, чтобы повторный проход получил СВЕЖИЙ
     // operationId, а не дубль первого (сервер дубль молча отверг бы).
-    const effectiveOrdinal = Math.max(input.completionOrdinal, settledCountRef.current + 1);
-    await markPracticeRuneSettlementPending({
+    const assignedOrdinal = settlementOrdinalByGenerationRef.current.get(sessionGeneration);
+    const highestAllocatedOrdinal = Math.max(
+      0,
+      ...settlementOrdinalByGenerationRef.current.values(),
+    );
+    const effectiveOrdinal = assignedOrdinal ?? Math.max(
+      input.completionOrdinal,
+      settledCountRef.current + 1,
+      highestAllocatedOrdinal + 1,
+    );
+    settlementOrdinalByGenerationRef.current.set(sessionGeneration, effectiveOrdinal);
+    DebugLogger.info('practice_runes:settle_start', JSON.stringify({
+      activity: current.activity,
+      sessionKey: current.sessionKey,
+      pendingRunes: current.pendingRunes,
+      requestedOrdinal: input.completionOrdinal,
+      settledCount: settledCountRef.current,
+      effectiveOrdinal,
+    }));
+    const durableIntent = await markPracticeRuneSettlementPending({
       ownerStableId, earnings: current, completionOrdinal: effectiveOrdinal,
     });
-    const result = await settlePracticeRuneEarningsToServer(current, effectiveOrdinal);
-    if (result.settled) {
-      settledCountRef.current = effectiveOrdinal;
-      await clearPracticeRuneSettlementPending({
+    DebugLogger.info('practice_runes:pending_marker_written', JSON.stringify({
+      activity: current.activity,
+      sessionKey: current.sessionKey,
+      effectiveOrdinal,
+    }));
+    const result = await settlePracticeRuneEarningsToServer(
+      current, effectiveOrdinal, durableIntent,
+    );
+    DebugLogger.info('practice_runes:settle_server_result', JSON.stringify({
+      activity: current.activity,
+      sessionKey: current.sessionKey,
+      effectiveOrdinal,
+      locallyCommitted: result.locallyCommitted,
+      settled: result.settled,
+    }));
+    if (result.locallyCommitted) {
+      const settled = settlePracticeRuneEarnings(current);
+      const settledOnceKey = practiceRuneSettledOnceStorageKey({
         ownerStableId, activity: current.activity, sessionKey: current.sessionKey,
       });
-      // Маркер хранит число подтверждённых зачётов (легаси '1' совместимо).
-      await AsyncStorage.setItem(practiceRuneSettledOnceStorageKey({
+      const earningsKey = practiceRuneEarningsStorageKey({
         ownerStableId, activity: current.activity, sessionKey: current.sessionKey,
-      }), String(effectiveOrdinal));
+      });
+      const sameStorageSession = activeSessionIdentityRef.current === sessionIdentity;
+      const markerOrdinal = sameStorageSession
+        ? Math.max(settledCountRef.current, effectiveOrdinal)
+        : effectiveOrdinal;
+      if (sameStorageSession) settledCountRef.current = markerOrdinal;
+      if (sessionGenerationRef.current === sessionGeneration) {
+        // Close only the accumulator that is still active. A previous pass may
+        // complete after "Повторить", but it must not zero the new pass.
+        await AsyncStorage.multiSet([
+          [earningsKey, JSON.stringify(settled)],
+          [settledOnceKey, String(markerOrdinal)],
+        ]);
+        earningsRef.current = settled;
+      } else {
+        // Preserve the old pass's durable ordinal without replacing the newer
+        // accumulator that shares this activity/session storage key.
+        await AsyncStorage.setItem(settledOnceKey, String(markerOrdinal));
+      }
     }
-    // Обнуляем локальный счётчик независимо от исхода сети: руны уже
-    // отражены в снапшоте оптимистично (settlePracticeRuneEarningsToServer),
-    // а незачтённая копилка досылается при следующем заходе в любую
-    // активность — экран не должен ждать и не должен показывать их дважды.
-    const settled = settlePracticeRuneEarnings(current);
-    earningsRef.current = settled;
-    setRunes(0);
-    persist(settled);
-  }, [input.completionOrdinal, persist]);
+    if (result.settled) {
+      await clearPracticeRuneSettlementPending({
+        ownerStableId,
+        activity: current.activity,
+        sessionKey: current.sessionKey,
+        completionOrdinal: effectiveOrdinal,
+      });
+    }
+    // Закрываем локальную копилку, но сохраняем показанный итог на экране:
+    // это уже заработанные руны, а не индикатор незавершённой транзакции.
+    // Новый проход явно обнулит число через startNewCompletion().
+    DebugLogger.info('practice_runes:local_counter_settled', JSON.stringify({
+      activity: current.activity,
+      sessionKey: current.sessionKey,
+      effectiveOrdinal,
+      locallyCommitted: result.locallyCommitted,
+      serverSettled: result.settled,
+      displayedRunes: current.pendingRunes,
+    }));
+    } finally {
+      if (settlementInFlightRef.current === sessionGeneration) {
+        settlementInFlightRef.current = null;
+      }
+    }
+  }, [
+    devFakeStartRunes,
+    input.activity,
+    input.completionOrdinal,
+    input.sessionKey,
+  ]);
 
   const startNewCompletion = useCallback(() => {
     if (!enabled) return;
+    sessionGenerationRef.current += 1;
+    settlementInFlightRef.current = null;
+    devCreditedRef.current = new Set();
     // Повторный проход всегда «не первое прохождение» этой сессии — цену
     // определяет settledOnce, а не то, была ли уже вызвана settle() именно
     // сейчас: даже незачтённая (например, экран закрыли без интернета) первая
@@ -237,10 +402,11 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     const earnings = createPracticeRuneEarnings({
       activity: input.activity, sessionKey: input.sessionKey, firstCompletion: false,
     });
+    activeSessionIdentityRef.current = `${earnings.activity}\u0000${earnings.sessionKey}`;
     earningsRef.current = earnings;
     setRunes(0);
     persist(earnings);
   }, [enabled, input.activity, input.sessionKey, persist]);
 
-  return { runes, onCorrectAnswer, settle, startNewCompletion, hydrating };
+  return { runes, onCorrectAnswer, settle, forfeitPendingRunes, startNewCompletion, hydrating };
 }

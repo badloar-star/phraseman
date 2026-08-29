@@ -38,9 +38,11 @@
 //    словами — он же не знает их». Слово получает НЕСКОЛЬКО касаний за сессию
 //    (услышать → вспомнить → собрать → применить), а не один выбор из пяти:
 //    один выбор — это узнавание, а не отработка (владелец, 2026-08-17).
-// 2A. КАЖДАЯ ОБЫЧНАЯ УЧЕБНАЯ СЕССИЯ по возможности приносит новую полезную
-//    лексику. Если budget/чистая грамматическая цель этого не допускают, нужна
-//    явная редакторская причина. Voice, recall и checkpoint новых слов не дают.
+// 2A. КАЖДАЯ СЕССИЯ приносит 1–5 новых полезных единиц. Пустой newVocabulary
+//    или повтор ранее введённого target как нового дают HOLD.
+// 2B. ЛЮБАЯ НОВАЯ ГРАММАТИКА получает отдельную полную сессию: 3 интро +
+//    17 практик и явная запись в teaches. `to`, отрицание, вопрос и прочие
+//    конструкции нельзя прятать внутрь словарной темы.
 // 3. АКТИВНОЕ ПРИПОМИНАНИЕ. Фразы МОГУТ повторяться в поздних сессиях — это не
 //    дублирование, а извлечение из памяти после задержки.
 // 4. ГОЛОСОВЫЕ СЕССИИ отдельным типом.
@@ -115,7 +117,7 @@ exports.EPISODE_01_SESSION_MAP_V1 = Object.freeze([
     { sessionOrdinal: 1, kind: 'words_then_phrases', title: 'Я здесь', teaches: ['copula_be', 'first_person_singular', 'state_adjective', 'adverb_place'], builtOn: [] },
     { sessionOrdinal: 2, kind: 'phrases', title: 'I am целиком', teaches: ['affirmative_self_statement'], builtOn: [1], recalls: [1] },
     { sessionOrdinal: 3, kind: 'phrases', title: 'I’m — коротко и живо', teaches: ['contraction_im'], builtOn: [1, 2], recalls: [1] },
-    { sessionOrdinal: 4, kind: 'words_then_phrases', title: 'Я готов', teaches: ['readiness_vocabulary'], builtOn: [1], recalls: [1, 2] },
+    { sessionOrdinal: 4, kind: 'words_then_phrases', title: 'You are — о собеседнике', teaches: ['second_person'], builtOn: [1, 2], recalls: [1, 2, 3] },
     { sessionOrdinal: 5, kind: 'words_then_phrases', title: 'Hi и Hello', teaches: ['greeting_formula', 'greeting_choice'], builtOn: [], recalls: [1] },
     { sessionOrdinal: 6, kind: 'phrases', title: 'Первые две реплики', teaches: ['opening_turn'], builtOn: [3, 5], recalls: [1, 3, 5] },
     { sessionOrdinal: 7, kind: 'voice', title: 'Скажи о себе вслух', teaches: ['spoken_production'], builtOn: [1, 3, 4, 5, 6], recalls: [1, 3, 4, 5] },

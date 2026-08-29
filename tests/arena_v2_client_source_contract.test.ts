@@ -345,7 +345,12 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(entryPrefetch).toContain('export const arenaEntryPrefetchClaim = arenaEntryPrefetch.claim;');
     expect(match).toContain('arenaEntryPrefetchClaim(matchId)');
     expect(match).not.toContain('arenaMatchPlanRequests');
-    expect(match).toContain('[active, matchId, plan, planError, planScope, restoreChecked, restored]');
+    // зачем (владелец 2026-08-29): в список добавлен planAccountTick — повтор
+    // ожидания готовности аккаунта. Без него эффект молча выходил навсегда,
+    // если аккаунт ещё не поднялся, и экран матча оставался пустым. Второго
+    // запроса плана тик не создаёт: загрузка по-прежнему одна, через общий
+    // entry-prefetch, а тик лишь повторяет попытку до активации аккаунта.
+    expect(match).toContain('[active, matchId, plan, planAccountTick, planError, planScope, restoreChecked, restored]');
   });
 
   /** Точный таймер живёт в хуке — единственном месте с эффектами. */

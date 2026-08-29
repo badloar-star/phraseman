@@ -20,6 +20,7 @@ export function expandableTextLabels(lang: Lang, expanded: boolean): string {
   const copy = triLang(lang, {
     ru: { show: 'Показать полностью', hide: 'Свернуть' },
     uk: { show: 'Показати повністю', hide: 'Згорнути' },
+    en: { show: 'Show more', hide: 'Show less' },
     es: { show: 'Mostrar todo', hide: 'Contraer' },
     'pt-BR': { show: 'Mostrar tudo', hide: 'Recolher' },
     vi: { show: 'Hiện tất cả', hide: 'Thu gọn' },

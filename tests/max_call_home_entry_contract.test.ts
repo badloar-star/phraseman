@@ -32,12 +32,22 @@ describe('MAX call is a Home-owned preloaded experience', () => {
     }
   });
 
-  it('prefetches a read-only tutor preview only after consent and never premints before navigation', () => {
+  it('prefetches and premints only after consent while keeping navigation available to the consent gate', () => {
+    const maxEntry = home.slice(home.indexOf("key: 'max'"), home.indexOf("key: 'flashcards'"));
+
     expect(home).toContain('prefetchMaxTutorPreview(maxTutorCallParams)');
     expect(home).toContain('if (!homeRuntimeActive || !maxVoiceVisible || !isAiVoiceConsentGranted()) return;');
     expect(home).toContain('isAiVoiceConsentGranted()');
     expect(home).not.toContain('beginMaxTutorEntry();');
-    expect(home).not.toContain('beginPremint(');
+    expect(maxEntry).toContain('if (isAiVoiceConsentGranted()) {');
+    expect(maxEntry).toContain('beginPremint(');
+    expect(maxEntry.indexOf('if (isAiVoiceConsentGranted()) {'))
+      .toBeLessThan(maxEntry.indexOf('beginPremint('));
+    const consentChecks = [...maxEntry.matchAll(/isAiVoiceConsentGranted\(\)/g)]
+      .map((match) => match.index);
+    expect(consentChecks.length).toBeGreaterThanOrEqual(2);
+    expect(consentChecks[1]).toBeLessThan(maxEntry.indexOf('beginPremint('));
+    expect(maxEntry).toContain('nav.push({');
     expect(home).not.toContain('setInterval(prefetchMaxTutorPreview');
     const paramsStart = home.indexOf('const maxTutorCallParams');
     const paramsEnd = home.indexOf('useEffect(() =>', paramsStart);

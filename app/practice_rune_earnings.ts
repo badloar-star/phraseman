@@ -196,6 +196,18 @@ export function settlePracticeRuneEarnings(
   return Object.freeze({ ...earnings, pendingRunes: 0 });
 }
 
+/**
+ * Premium-порог ошибок: сгорает лишь незачтённая копилка текущего прохода.
+ * Уже оплаченные элементы остаются в списке, поэтому повторный ответ после
+ * восстановления сердец не позволяет нафармить те же руны второй раз.
+ */
+export function forfeitPendingPracticeRunes(
+  earnings: PracticeRuneEarnings,
+): PracticeRuneEarnings {
+  if (earnings.pendingRunes === 0) return earnings;
+  return Object.freeze({ ...earnings, pendingRunes: 0 });
+}
+
 const STORAGE_PREFIX = 'practice_rune_earnings_v1';
 
 /**

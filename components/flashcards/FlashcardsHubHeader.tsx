@@ -60,6 +60,7 @@ function FlashcardsHubHeaderBase({ title, balance, t, themeMode }: FlashcardsHub
         accessibilityLabel={triLang(lang, {
           ru: `Баланс: ${balance}`,
           uk: `Баланс: ${balance}`,
+          en: `Balance: ${balance}`,
           es: `Saldo: ${balance}`,
           'pt-BR': `Saldo: ${balance}`,
           vi: `Số dư: ${balance}`,

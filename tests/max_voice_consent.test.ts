@@ -29,4 +29,23 @@ describe('MAX voice consent contract', () => {
     expect(layout).toContain("import { hydrateAiVoiceConsentFromStorage } from './max_voice_consent'");
     expect(layout).toContain('hydrateAiVoiceConsentFromStorage().catch(() => {})');
   });
+
+  test('re-prompts after not-now and unmounts preparation while consent is absent', () => {
+    const gate = read('app/max_voice_consent_gate.tsx');
+    expect(gate).not.toContain('hasAiVoiceConsentDecision');
+
+    const reentryComment = gate.indexOf('// «Не сейчас»');
+    const readyReset = gate.lastIndexOf('setReady(false);', reentryComment);
+    const promptAgain = gate.indexOf('setVisible(true);', reentryComment);
+    expect(reentryComment).toBeGreaterThanOrEqual(0);
+    expect(readyReset).toBeGreaterThanOrEqual(0);
+    expect(readyReset).toBeLessThan(reentryComment);
+    expect(promptAgain).toBeGreaterThan(reentryComment);
+
+    const declineStart = gate.indexOf('const decline');
+    expect(gate.indexOf('leavingRef.current = true;', declineStart))
+      .toBeLessThan(gate.indexOf("setAiVoiceConsent('denied')", declineStart));
+    expect(gate).toContain('if (leavingRef.current) return;');
+    expect(gate).toContain('setReady(true);');
+  });
 });

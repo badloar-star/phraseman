@@ -70,8 +70,8 @@ import {
 } from './flashcards/listening_machine';
 import { resolveVoiceForLang, ttsLangFromLocale, type FcTtsLang, type ResolvedVoice } from './flashcards/tts_voices';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
-import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
@@ -143,6 +143,7 @@ export default function FlashcardsListeningSession() {
   const { speak, stop: stopSpeech } = useAudio();
   const params = useLocalSearchParams<{ deck?: string; size?: string }>();
   const [attemptSessionId] = useState(makeFeedbackAttemptId);
+  const [listeningEnergyRevision, setListeningEnergyRevision] = useState(0);
   const accountToken = useMemo(() => captureAccountGeneration(), []);
   const attempts = useSessionAttempts({
     token: accountToken,
@@ -199,10 +200,23 @@ export default function FlashcardsListeningSession() {
   const listeningEnergyIntent = useEnergySessionIntent(
     'flashcards_listening',
     deckKey || 'saved',
-    attemptSessionId,
+    `${attemptSessionId}:${listeningEnergyRevision}`,
   );
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const listeningEntryChargedRef = useRef(false);
+  const listeningRefundInFlightRef = useRef<Promise<void> | null>(null);
+  const refundListeningEntry = useCallback((operationId: string, reason: string): Promise<void> => {
+    if (listeningRefundInFlightRef.current) return listeningRefundInFlightRef.current;
+    const pending = refundListenEnergy(operationId, reason).then(() => {
+      listeningEntryChargedRef.current = false;
+      setListeningEnergyRevision((current) => current + 1);
+    }).catch(() => {});
+    listeningRefundInFlightRef.current = pending;
+    void pending.finally(() => {
+      if (listeningRefundInFlightRef.current === pending) listeningRefundInFlightRef.current = null;
+    });
+    return pending;
+  }, [refundListenEnergy]);
   const [cards, setCards] = useState<ListeningCard[]>([]);
   const [cardIndex, setCardIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -357,6 +371,11 @@ export default function FlashcardsListeningSession() {
     let chargedOperationId: string | null = null;
     let entryGranted = false;
     void (async () => {
+      if (listeningRefundInFlightRef.current) {
+        await listeningRefundInFlightRef.current;
+        return;
+      }
+      if (cancelled) return;
       const [pool, rawPrefs] = await Promise.all([
         // cards-2.1 (§6): несколько наборов одной объединённой подборкой (дедуп по id + шаффл)
         loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true }).catch(
@@ -404,7 +423,7 @@ export default function FlashcardsListeningSession() {
         if (energyResult === 'spent') chargedOperationId = listeningEnergyIntent.operationId;
         if (cancelled) {
           if (chargedOperationId) {
-            void refundListenEnergy(chargedOperationId, 'entry_cancelled').catch(() => {});
+            void refundListeningEntry(chargedOperationId, 'entry_cancelled');
           }
           return;
         }
@@ -447,9 +466,9 @@ export default function FlashcardsListeningSession() {
         startTimerRef.current = null;
         machine.start();
       }, 450);
-    })().catch(() => {
+    })().catch(async () => {
       if (chargedOperationId && !entryGranted) {
-        void refundListenEnergy(chargedOperationId, 'entry_failed').catch(() => {});
+        await refundListeningEntry(chargedOperationId, 'entry_failed');
       }
       if (!cancelled) {
         setCards([]);
@@ -459,14 +478,14 @@ export default function FlashcardsListeningSession() {
     return () => {
       cancelled = true;
       if (chargedOperationId && !entryGranted) {
-        void refundListenEnergy(chargedOperationId, 'entry_cancelled').catch(() => {});
+        void refundListeningEntry(chargedOperationId, 'entry_cancelled');
       }
       // Ре-ран эффекта (смена deck/size) не должен оставлять играющую машину
       createdMachine?.send({ type: 'STOP' });
     };
     // Пересоздание машины при смене deck/size — валидный сценарий только при новом пуше роута
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [acknowledgeSessionStart, contentLang, confirmListenEnergy, deckKey, listeningEnergyIntent, refundListenEnergy, router, sessionSize, sessionSizeReady]);
+  }, [acknowledgeSessionStart, contentLang, confirmListenEnergy, deckKey, listeningEnergyIntent, refundListeningEntry, router, sessionSize, sessionSizeReady]);
 
   // ── Выход: STOP глушит всё ───────────────────────────────────────────────
   useEffect(() => {
@@ -668,29 +687,17 @@ export default function FlashcardsListeningSession() {
     attempts.updateQuestion(`flashcard-listening:${activeListeningCardId}:${cardIndex}`);
   }, [activeListeningCardId, attempts.updateQuestion, cardIndex]);
 
-  useEffect(() => {
-    if (attempts.state.phase !== 'awaiting_recovery' || showAttemptsModal) return;
-    machineRef.current?.send({ type: 'PAUSE' });
-    setPhase('paused');
-    setSpeaking(false);
-    stopSpeech();
-    attemptsModalTimerRef.current = setTimeout(
-      () => setShowAttemptsModal(true),
-      SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
-    );
-  }, [attempts.state.phase, showAttemptsModal, stopSpeech]);
+  const resetListeningAfterSessionRuneForfeit = useCallback(() => {
+    setShowAttemptsModal(false);
+    machineRef.current?.send({ type: 'RESUME' });
+    setPhase('playing');
+  }, []);
 
-  const recoverListeningAttempts = useCallback(async (source: 'gift' | 'runes') => {
-    try {
-      if (source === 'gift') await attempts.recoverWithGift();
-      else await attempts.recoverWithRunes();
-      setShowAttemptsModal(false);
-      machineRef.current?.send({ type: 'RESUME' });
-      setPhase('playing');
-    } catch {
-      // The exact machine/card position remains paused beneath the modal.
-    }
-  }, [attempts.recoverWithGift, attempts.recoverWithRunes]);
+  useSessionAttemptAutoReset({
+    phase: attempts.state.phase,
+    restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
+    onRestored: resetListeningAfterSessionRuneForfeit,
+  });
 
   const endExhaustedListeningSession = useCallback(() => {
     attempts.endAttemptsSession();
@@ -1118,16 +1125,6 @@ RU: ${card.back}`}
       </SafeAreaView>
       {deckPickerSheet}
       <NoEnergyModal visible={noEnergyOpen} onClose={leave} />
-      <SessionAttemptsRecoveryModal
-        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
-        locale={lang}
-        giftCount={attempts.giftCount}
-        runeBalance={attempts.runeBalance ?? 0}
-        busy={attempts.recoveryBusy}
-        onUseGift={() => { void recoverListeningAttempts('gift'); }}
-        onSpendRunes={() => { void recoverListeningAttempts('runes'); }}
-        onEndSession={endExhaustedListeningSession}
-      />
     </ScreenGradient>
   );
 }

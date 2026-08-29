@@ -30,6 +30,7 @@ import {
   isCurrentAccountGeneration,
   type AccountGenerationToken,
 } from './account_generation';
+import { normalizeStarsView, starsWeekEarned } from './stars_view';
 
 export type RuneSourceKey = 'arena' | 'learning' | 'friends' | 'spin' | 'exchange' | 'other';
 
@@ -88,10 +89,11 @@ function parseCachedStats(raw: string | null, uid: string): RunesServerStats | n
     if (!parsed || typeof parsed !== 'object' || parsed.uid !== uid) return null;
     const fetchedAtMs = Number(parsed.fetchedAtMs);
     if (!Number.isFinite(fetchedAtMs) || fetchedAtMs <= 0) return null;
+    const normalizedStars = normalizeStarsView(parsed);
     return Object.freeze({
       uid,
       weekKey: typeof parsed.weekKey === 'string' ? parsed.weekKey : '',
-      weekEarned: normalizeCount(parsed.weekEarned),
+      weekEarned: starsWeekEarned(normalizedStars, normalizedStars.weekKey),
       earnedTotal: normalizeCount(parsed.earnedTotal),
       grantedTotal: normalizeCount(parsed.grantedTotal),
       bySource: normalizeBySource(parsed.bySource),
@@ -117,18 +119,23 @@ export function peekRunesServerStats(): RunesServerStats | null {
  */
 export async function loadRunesServerStats(): Promise<RunesServerStats | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return memoryStats;
+  const requestToken = captureAccountGeneration();
+  const requestedStableId = requestToken.phase === 'active' ? requestToken.stableId?.trim() : null;
+  if (!requestedStableId) return null;
   let uid: string | null = null;
   try { uid = await getCanonicalUserId(); } catch { uid = null; }
   // зачем: без uid нельзя понять, чьи цифры в памяти — не показываем ничьи.
   // Класс бага «чужие пиксели после смены аккаунта» (память проекта).
-  if (!uid) return null;
+  if (!uid || uid !== requestedStableId
+    || !isCurrentAccountGeneration(requestToken, requestedStableId)) return null;
 
   if (!memoryStats || memoryStats.uid !== uid) {
     const cachedRaw = await AsyncStorage.getItem(CACHE_KEY).catch(() => null);
+    if (!isCurrentAccountGeneration(requestToken, requestedStableId)) return null;
     const cached = parseCachedStats(cachedRaw, uid);
     if (cached) {
       memoryStats = cached;
-      memoryStatsToken = captureAccountGeneration();
+      memoryStatsToken = requestToken;
     }
   }
   if (memoryStats && memoryStats.uid === uid
@@ -137,27 +144,33 @@ export async function loadRunesServerStats(): Promise<RunesServerStats | null> {
   }
 
   try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- native module is unavailable in Expo Go/tests
     const firestore = require('@react-native-firebase/firestore').default;
     const snap = await firestore().collection('users').doc(uid).get();
+    if (!isCurrentAccountGeneration(requestToken, requestedStableId)) return null;
     const stars = snap.exists
       ? (snap.data()?.stars as Record<string, unknown> | undefined)
       : undefined;
+    const normalizedStars = normalizeStarsView(stars);
     const stats: RunesServerStats = Object.freeze({
       uid,
-      weekKey: typeof stars?.weekKey === 'string' ? stars.weekKey : '',
-      weekEarned: normalizeCount(stars?.weekEarned),
+      weekKey: normalizedStars.weekKey,
+      weekEarned: starsWeekEarned(normalizedStars, normalizedStars.weekKey),
       earnedTotal: normalizeCount(stars?.earnedTotal),
       grantedTotal: normalizeCount(stars?.grantedTotal),
       bySource: normalizeBySource(stars?.bySource),
       fetchedAtMs: Date.now(),
     });
     memoryStats = stats;
-    memoryStatsToken = captureAccountGeneration();
+    memoryStatsToken = requestToken;
     AsyncStorage.setItem(CACHE_KEY, JSON.stringify(stats)).catch(() => {});
     return stats;
   } catch {
     // Сеть недоступна — живём на последнем известном снимке ЭТОГО аккаунта;
     // снимок чужого uid (смена аккаунта + офлайн) не отдаём никогда.
-    return memoryStats && memoryStats.uid === uid ? memoryStats : null;
+    return isCurrentAccountGeneration(requestToken, requestedStableId)
+      && memoryStats && memoryStats.uid === uid
+      ? memoryStats
+      : null;
   }
 }

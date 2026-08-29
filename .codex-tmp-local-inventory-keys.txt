@@ -1,0 +1,513 @@
+
+components\account\NicknameEditModal.tsx:210:    void AsyncStorage.setItem('user_name', trimmed).catch((error) => {
+components\account\NicknameEditModal.tsx:228:      void AsyncStorage.setItem('user_name', oldName).catch((error) => {
+modules\avatar-dna-3d\storage.ts:4:export const AVATAR_3D_DNA_STORAGE_KEY = 'avatar_dna_human_v2';
+modules\phrase-widget\constants.ts:20:export const STORAGE_KEY = 'phrase_of_the_day_v1';
+app\(tabs)\settings.tsx:910:      const lrp = await AsyncStorage.getItem('league_result_pending');
+app\(tabs)\settings.tsx:915:          await AsyncStorage.setItem('league_result_pending', JSON.stringify(result));
+app\(tabs)\settings.tsx:964:    void AsyncStorage.setItem('user_name', trimmed).catch((error) => {
+app\(tabs)\settings.tsx:982:      void AsyncStorage.setItem('user_name', oldName).catch((error) => {
+app\(tabs)\home.tsx:295:const HOME_DAILY_GREETING_KEY = 'home_daily_greeting_v1';
+app\(tabs)\home.tsx:296:const STATS_PULSE_HINT_DONE_KEY = 'phraseman_home_stats_pulse_hint_done_v1';
+app\(tabs)\home.tsx:299:const HOME_ONBOARDING_DONE_KEY = 'onboarding_done';
+app\(tabs)\home.tsx:1871:                await AsyncStorage.setItem('streak_last_shown', String(currentStreakNum));
+app\(tabs)\home.tsx:2172:                await AsyncStorage.removeItem('login_bonus_pending');
+app\(tabs)\home.tsx:2176:                await AsyncStorage.removeItem('comeback_pending');
+app\(tabs)\home.tsx:2181:                await AsyncStorage.setItem('weekly_pb_v1', JSON.stringify({ bestXP: weekPts }));
+app\(tabs)\home.tsx:2196:                const freezeRaw2 = await AsyncStorage.getItem('streak_freeze');
+app\(tabs)\home.tsx:2204:                    const shownToday = await AsyncStorage.getItem('streak_paywall_shown');
+app\(tabs)\home.tsx:2206:                        await AsyncStorage.setItem('streak_paywall_shown', today);
+hooks\use-flashcards.ts:48:export const FLASHCARDS_KEY = 'flashcards_v1';
+modules\arena\result_outbox.ts:27:export const ARENA_OUTBOX_INDEX_PREFIX = 'arena.outbox.v3.index.';
+modules\arena\result_outbox.ts:28:export const ARENA_OUTBOX_ENTRY_PREFIX = 'arena.outbox.v3.entry.';
+modules\learning-v2\runtime\voice_audio_device_harness_v1.ts:93:const PENDING_PREFIX = "learning_v2_voice_audio_pending_upload_v1";
+modules\arena\home_cache.ts:27:export const ARENA_HOME_CACHE_KEY = 'arena.home.warm.v2';
+modules\arena\match_store.ts:24:export const ARENA_MATCH_STORE_KEY = 'arena.match.v2.current';
+modules\max_subscription\pending.ts:11:export const MAX_PENDING_ACTIVATION_STORAGE_KEY = 'max_pending_activation_v1' as const;
+components\arena\ArenaHubSurface.tsx:48:const NEXT_RANK_TOAST_KEY = 'arena.nextRankToast.day.v1';
+components\ComebackBoonHost.tsx:57:      const existing = parseStreakFreeze(await AsyncStorage.getItem('streak_freeze'));
+components\ErrorBoundary.tsx:125:    AsyncStorage.getItem('app_lang').then(v => {
+components\EntitlementExpiredHost.tsx:260:    const WARN_SHOWN_KEY = 'entitlement_trial_ending_shown';
+components\EntitlementExpiredHost.tsx:263:        const rcExpiryRaw = await AsyncStorage.getItem('premium_rc_expiry_ms').catch(() => null);
+components\BoonActivatedHost.tsx:79:    const onboardingDone = await AsyncStorage.getItem('onboarding_done').catch(() => null);
+components\EnergyContext.tsx:341:    const raw = await AsyncStorage.getItem('app_lang');
+components\CleanOnboarding.tsx:214:const FLOW_VERSION_KEY = 'onboarding_flow_version_v1';
+components\CleanOnboarding.tsx:215:const STEP_KEY = 'onboarding_step';
+components\CleanOnboarding.tsx:216:const DONE_KEY = 'onboarding_done';
+components\CleanOnboarding.tsx:217:const DISCOVERY_SOURCE_KEY = 'onboarding_discovery_source';
+components\CleanOnboarding.tsx:218:const PLAN_LEVEL_KEY = 'onboarding_plan_level';
+components\CleanOnboarding.tsx:219:const PLAN_BILLING_KEY = 'onboarding_plan_billing';
+components\CleanOnboarding.tsx:220:const LEGAL_ACCEPTED_KEY = 'onboarding_terms_privacy_accepted_v1';
+components\CleanOnboarding.tsx:221:const ANALYTICS_HELP_KEY = 'onboarding_analytics_help_v1';
+components\level-exam\LevelExamV2.tsx:209:      const storedName = ((await AsyncStorage.getItem('user_name')) || '').trim();
+modules\phone-state\sqlite_sync_repository.ts:293:const RETRY_KEY = 'personal_sync';
+components\ReportErrorButton.tsx:177:        const nameRaw = await AsyncStorage.getItem('user_name') ?? '';
+components\ReportErrorButton.tsx:179:          (await AsyncStorage.getItem('app_lang')) ??
+components\ReportErrorButton.tsx:180:          (await AsyncStorage.getItem('app_language')) ??
+components\NoEnergyModal.tsx:424:    void AsyncStorage.setItem('energy_onboarding_shown', '1');
+components\MysteryMondayHost.tsx:110:      const onboardingDone = await AsyncStorage.getItem('onboarding_done').catch(() => null);
+components\RegistrationPromptModal.tsx:106:const STREAK_COUNT_KEY = 'streak_count';
+components\ReferralInviteBannerArt.tsx:38:  const stored = await AsyncStorage.getItem('app_theme').catch(() => null);
+components\PremiumContext.tsx:389:              await AsyncStorage.setItem('premium_active', 'true').catch(() => {});
+components\PremiumContext.tsx:618:                  AsyncStorage.getItem('premium_active').catch(() => null),
+components\PremiumContext.tsx:619:                  AsyncStorage.getItem('premium_plan').catch(() => null),
+components\SaveProgressBanner.tsx:55:const DISMISSED_AT_KEY = 'auth_save_banner_dismissed_at';
+components\SaveProgressBanner.tsx:62:    const xpRaw = await AsyncStorage.getItem('user_total_xp');
+components\StreakRiskToastHost.tsx:21:const SHOWN_KEY = 'streak_risk_toast_shown';
+components\ThemeContext.tsx:264:const MIDNIGHT_GRANDFATHER_KEY = 'app_theme_midnight_grandfather';
+components\ThemeContext.tsx:340:        void AsyncStorage.setItem('app_theme', 'dark');
+components\ThemeContext.tsx:344:        void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
+components\ThemeContext.tsx:348:        void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
+components\ThemeContext.tsx:365:          void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
+components\ThemeContext.tsx:371:        void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
+components\ThemeContext.tsx:406:    void AsyncStorage.setItem('app_theme', m);
+components\ThemeContext.tsx:471:      void AsyncStorage.setItem('app_theme', next);
+components\ThemeContext.tsx:478:    void AsyncStorage.setItem('app_font_size', s);
+app\age_consent_cloud.ts:25:const PENDING_CONSENT_KEY = 'age_consent_cloud_pending_v1';
+app\age_consent_cloud.ts:29:export const LEGAL_ACCEPTED_STORAGE_KEY = 'onboarding_terms_privacy_accepted_v1';
+app\activity_365_analytics.ts:5:export const ACTIVITY_365_GOAL_KEY = 'activity_365_goal_v1';
+app\activity_365_analytics.ts:6:export const STATS_DAILY_BREAKDOWN_KEY = 'stats_daily_breakdown_v1';
+app\activity_365_analytics.ts:7:export const FOREGROUND_DAILY_MS_KEY = 'phraseman_foreground_daily_ms_v1';
+app\activity_365_analytics.ts:606:        AsyncStorage.getItem('daily_stats'),
+app\achievements_screen.tsx:109:      AsyncStorage.getItem('shards_balance'),
+app\achievements_screen.tsx:110:      AsyncStorage.getItem('achievement_league_champion_count'),
+app\achievements_screen.tsx:111:      AsyncStorage.getItem('achievement_league_diamond_week_streak_v1'),
+app\achievement_progress_v2.ts:10:export const ACHIEVEMENT_FOUNDATION_PROGRESS_KEY = 'achievement_foundation_progress_v2';
+app\achievement_progress_v2.ts:11:export const ACHIEVEMENT_ACCESS_PLUS_PAID_KEY = 'achievement_access_plus_paid_v1';
+app\achievement_progress_v2.ts:12:export const ACHIEVEMENT_ACCESS_PRO_PAID_KEY = 'achievement_access_pro_paid_v1';
+app\age_gate.ts:33:const BIRTH_YEAR_KEY = 'user_birth_year_v1';
+app\age_gate.ts:34:const AGE_BRACKET_KEY = 'user_age_bracket_v1';
+app\achievements.ts:933:const STORAGE_KEY = 'achievements_v1';
+app\achievements.ts:1315:const ACHIEVEMENT_BACKFILL_KEY = 'achievements_progress_backfill_v4';
+app\achievements.ts:1318:const WAGER_WIN_COUNT_KEY = 'achievement_wager_win_count';
+app\achievements.ts:1369:const ACHIEVEMENT_STREAK_SAFETY_USED_KEY = 'achievement_streak_safety_used_v1';
+app\achievements.ts:1518:    const raw = await AsyncStorage.getItem('active_days_v1');
+app\achievements.ts:1766:      const userName = await AsyncStorage.getItem('user_name').catch(() => null);
+app\achievements.ts:1768:      const lang = (await AsyncStorage.getItem('app_lang').catch(() => null))
+app\achievements.ts:1769:        || (await AsyncStorage.getItem('user_lang').catch(() => null));
+app\account_switch_backup_restore.ts:33:const BACKUP_KEY = 'account_switch_emergency_backup_latest_v1';
+app\account_switch_backup_restore.ts:34:const BACKUP_PAGE_PREFIX = 'account_switch_emergency_backup_page_v1:';
+app\account_delete_quarantine.ts:3:export const ACCOUNT_DELETE_PENDING_AUTH_KEY = 'account_delete_pending_auth_v1';
+app\account_delete_quarantine.ts:4:export const ACCOUNT_DELETE_PENDING_AUTH_SECURE_KEY = 'account_delete_pending_auth_v2';
+app\account_delete_quarantine.ts:5:export const ACCOUNT_DELETE_PENDING_AUTH_ANCHOR_KEY = 'account_delete_pending_auth_anchor_v2';
+app\avatar_select.tsx:374:      const leagueRaw = await AsyncStorage.getItem('league_state_v3');
+app\avatar_select.tsx:382:          await AsyncStorage.setItem('league_state_v3', JSON.stringify(league));
+app\arena_friend_duel.tsx:27:const ACTIVE_INVITE_KEY = 'arena_friend_invite_active_v2';
+app\avatar_nudge_state.ts:16:const STORAGE_PREFIX = 'avatar_nudge_v1';
+app\avatar_nudge_state.ts:31:const VISITED_KEY = 'visited';
+app\avatar_nudge_state.ts:32:const SESSIONS_KEY = 'sessions';
+app\app_health.ts:149:  const userName = await AsyncStorage.getItem('user_name').catch(() => null);
+app\ai_mistake_explain_limit_session.ts:6:export const DAILY_AI_MISTAKE_EXPLAIN_KEY = 'ai_mistake_explain_session_v1';
+app\ai_mistake_explain_limit_session.ts:7:export const DAILY_AI_MISTAKE_LIMIT_NOTICE_KEY = 'ai_mistake_limit_notice_shown_v1';
+app\ai_dialog_session.tsx:745:        const userName = (await AsyncStorage.getItem('user_name')) || '';
+app\analytics_consent.ts:26:const CONSENT_KEY = 'analytics_consent_v1';
+app\app_activity.ts:80:    const userName = await AsyncStorage.getItem('user_name').catch(() => null);
+app\app_messages.ts:44:const REPORT_REPLY_PENDING_CLAIMS_KEY_PREFIX = 'app_messages_report_reply_pending_claims_v2';
+app\app_messages.ts:46:export const LEGACY_REPORT_REPLY_PENDING_CLAIMS_KEY = 'app_messages_report_reply_pending_claims_v1';
+app\app_messages.ts:48:const APP_MESSAGE_VISIBILITY_OUTBOX_KEY_PREFIX = 'app_message_visibility_outbox_v1';
+app\app_messages.ts:50:const PERSONAL_MODAL_ACK_OUTBOX_KEY_PREFIX = 'app_message_personal_modal_ack_outbox_v1';
+app\avatar_dna_invitation.ts:10:const INVITATION_PREFIX = 'avatar_dna_invitation_v1:';
+app\app_snapshot_bootstrap.ts:72:const BOOT_LANG_KEY = 'app_lang';
+app\auth_recovery_adoption.ts:10:export const AUTH_RECOVERY_PENDING_ACK_KEY = 'auth_recovery_pending_ack_v1';
+app\auth_clean_install_recovery_journal.ts:4:export const AUTH_CLEAN_INSTALL_RECOVERY_KEY = 'auth_clean_install_recovery_v1';
+app\auth_clean_install_recovery_transition.ts:7:const REQUEST_INTENT_KEY = 'auth_clean_install_recovery_request_intent_v1';
+app\auth_clean_install_recovery_flow.ts:24:export const AUTH_CLEAN_INSTALL_REQUEST_INTENT_KEY = 'auth_clean_install_recovery_request_intent_v1';
+app\auth_clean_install_recovery_adoption.ts:27:export const AUTH_CLEAN_INSTALL_ADOPTION_KEY = 'auth_clean_install_recovery_adoption_v1';
+app\auth_clean_install_recovery_adoption.ts:319:  if (await AsyncStorage.getItem('auth_clean_install_recovery_v1') !== cleanRecoveryJournalRaw) {
+app\auth_clean_install_recovery_adoption.ts:397:    const cleanRaw = await AsyncStorage.getItem('auth_clean_install_recovery_v1');
+app\auth_clean_install_recovery_adoption.ts:419:  const cleanRecoveryJournalRaw = await AsyncStorage.getItem('auth_clean_install_recovery_v1');
+app\auth_provider.ts:431:const REMOTE_ACCOUNT_DELETED_NOTICE_KEY = 'remote_account_deleted_notice_v1';
+app\auth_provider.ts:2322:    const userName = (await AsyncStorage.getItem('user_name'))?.trim();
+app\auth_provider.ts:2324:    const cur = await AsyncStorage.getItem('onboarding_done');
+app\auth_provider.ts:3135:export const AUTH_PROMPT_SHOWN_KEY = 'auth_prompt_shown_v1';
+app\auth_provider.ts:3138:export const AUTH_ONBOARDING_DONE_KEY = 'auth_onboarding_done_v1';
+app\club_screen.tsx:733:        AsyncStorage.getItem('user_name'),
+app\club_screen.tsx:734:        AsyncStorage.getItem('user_avatar'),
+app\club_screen.tsx:735:        AsyncStorage.getItem('user_frame'),
+app\club_screen.tsx:737:        AsyncStorage.getItem('user_phrasm'),
+app\club_screen.tsx:738:        AsyncStorage.getItem('user_total_xp'),
+app\coin_exchange_wallet_outbox.ts:15:const PREFIX = 'learning_v2_coin_exchange_outbox:v1:';
+app\firebase.ts:227:      AsyncStorage.getItem('user_name').catch(() => null),
+app\firebase.ts:228:      AsyncStorage.getItem('app_lang').catch(() => null),
+app\firebase.ts:229:      AsyncStorage.getItem('premium_plan').catch(() => null),
+app\daily_phrase_quest.ts:28:const AWARD_KEY_PREFIX = 'daily_phrase_quest_xp_awarded_v1';
+app\daily_phrase_quest.ts:29:const ANSWER_KEY_PREFIX = 'daily_phrase_quest_answered_v1';
+app\daily_phrase_quest.ts:198:  const userName = (await AsyncStorage.getItem('user_name')) || '';
+app\daily_phrase_pulse.ts:3:export const DAILY_PHRASE_PULSE_DAY_KEY = 'daily_phrase_home_pulse_day_v1';
+app\feedback_outbox.ts:10:const OUTBOX_KEY_PREFIX = 'feedback_entries_outbox_v1';
+app\daily_analytics_sync.ts:18:const SYNCED_DATE_KEY = 'daily_analytics_synced_v1';
+app\daily_analytics_sync.ts:52:    const raw = await AsyncStorage.getItem('daily_stats');
+app\daily_analytics_sync.ts:132:    AsyncStorage.getItem('streak_count'),
+app\daily_analytics_sync.ts:133:    AsyncStorage.getItem('user_total_xp'),
+app\cloud_sync.ts:831:const STABLE_AUTH_LINK_CACHE_KEY = 'stable_auth_link_cache_v1';
+app\cloud_sync.ts:832:const ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY = 'account_switch_emergency_backup_latest_v1';
+app\cloud_sync.ts:833:const ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX = 'account_switch_emergency_backup_page_v1:';
+app\cloud_sync.ts:2817:const AVATAR_AURA_OWNED_KEY = 'avatar_aura_owned_v1';
+app\cloud_sync.ts:2818:const USER_AVATAR_AURA_KEY = 'user_avatar_aura';
+app\cloud_sync.ts:2819:const AVATAR_AURA_GIFT_OWNED_KEY = 'avatar_aura_gift_owned_v1';
+app\cloud_sync.ts:2939:    const achievementsV1 = await AsyncStorage.getItem('achievements_v1');
+app\cloud_sync.ts:3161:    (await AsyncStorage.getItem('tester_no_premium').catch(() => null)) === 'true';
+app\cloud_sync.ts:3177:      AsyncStorage.getItem('user_total_xp'),
+app\cloud_sync.ts:3178:      AsyncStorage.getItem('streak_count'),
+app\cloud_sync.ts:3180:      AsyncStorage.getItem('streak_last_date'),
+app\cloud_sync.ts:3280:    const localNameRaw = await AsyncStorage.getItem('user_name');
+app\cloud_sync.ts:3881:    const achievementsV1 = await AsyncStorage.getItem('achievements_v1');
+app\dialogs_progress.ts:14:export const DIALOGS_COMPLETED_KEY = 'dialogs_completed_ids_v1';
+app\dialogs_limit_session.ts:8:export const FREE_DIALOG_LEGACY_USED_KEY = 'dialogs_free_lifetime_used_v2';
+app\dialogs_limit_session.ts:9:export const FREE_DIALOG_USED_KEY = 'dialogs_free_lifetime_count_v3';
+app\diagnostic_test.tsx:1233:    AsyncStorage.getItem('user_name').then(n => { if (n) userNameRef.current = n; });
+app\foreground_usage_ms.ts:7:const DAILY_STORAGE_KEY = 'phraseman_foreground_daily_ms_v1';
+app\exam_certificate.ts:17:export const LINGMAN_CERT_STORAGE_KEY = 'lingman_certificate_v1';
+app\collectibles\storage.ts:25:export const COLLECTIBLES_OWNED_KEY = 'collectibles_owned_v1';
+app\exam.tsx:773:      const raw = await AsyncStorage.getItem('user_name');
+app\exam.tsx:840:      await AsyncStorage.setItem('user_name', name);
+app\home_feature_tips.ts:19:export const HOME_FEATURE_TIPS_INDEX_KEY = 'home_feature_tips_index_v1';
+app\home_feature_tips.ts:20:export const HOME_FEATURE_TIPS_DONE_KEY = 'home_feature_tips_done_v1';
+app\home_feature_tips.ts:21:export const HOME_FEATURE_TIPS_REPLAY_COUNT_KEY = 'home_feature_tips_replay_count_v1';
+app\daily_phrase_system.ts:52:const DAILY_PHRASE_KEY = 'daily_phrase_v3';
+app\daily_phrase_system.ts:53:const LAST_PHRASE_DATE_KEY = 'last_phrase_date_v3';
+app\daily_phrase_system.ts:54:const REMOTE_DAILY_PHRASE_CACHE_KEY = 'daily_phrase_remote_cache_v1';
+app\daily_phrase_system.ts:355:const DAILY_PHRASE_PEEK_KEY = 'daily_phrase_peek_v1';
+app\community_packs\purchaseCommunityPack.ts:182:  const nameRaw = (await AsyncStorage.getItem('user_name')) ?? '';
+app\hint.tsx:191:      const userName = (await AsyncStorage.getItem('user_name')) ?? '';
+app\energyOnboardingGate.ts:3:const FROM_WELCOME_KEY = 'from_welcome_first_lesson';
+app\explain_local_cache.ts:4:const CACHE_KEY_PREFIX = 'ai_explain_local_cache_v1:';
+app\hall_of_fame_utils.ts:65:export const LEADERBOARD_KEY = 'leaderboard';
+app\hall_of_fame_utils.ts:100:export const WEEK_BOARD_KEY = 'week_leaderboard';
+app\hall_of_fame_utils.ts:254:    let streak = parseInt(await AsyncStorage.getItem('streak_count') || '0');
+app\hall_of_fame_utils.ts:267:      const freezeRaw = await AsyncStorage.getItem('streak_freeze');
+app\hall_of_fame_utils.ts:272:        await AsyncStorage.setItem('streak_freeze', JSON.stringify({ ...freeze, active: false }));
+app\hall_of_fame_utils.ts:323:              AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
+app\hall_of_fame_utils.ts:355:            AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
+app\hall_of_fame_utils.ts:363:          AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
+app\hall_of_fame_utils.ts:373:        AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
+app\hall_of_fame_utils.ts:475:  const storedTotalXp = parseInt((await AsyncStorage.getItem('user_total_xp')) || '0', 10) || 0;
+app\hall_of_fame_utils.ts:479:    const storedAvatar = (await AsyncStorage.getItem('user_avatar'))?.trim();
+app\hall_of_fame_utils.ts:508:    const PB_KEY = 'week_xp_peak_best_v1';
+app\hall_of_fame_utils.ts:571:    const raw = await AsyncStorage.getItem('daily_stats');
+app\hall_of_fame_utils.ts:579:    const streakVal = parseInt(await AsyncStorage.getItem('streak_count') || '0');
+app\hall_of_fame_utils.ts:581:    await AsyncStorage.setItem('daily_stats', JSON.stringify(stats));
+app\hall_of_fame_utils.ts:709:    const streak = parseInt(await AsyncStorage.getItem('streak_count') || '0');
+app\hall_of_fame_utils.ts:712:    const freezeRaw = await AsyncStorage.getItem('streak_freeze');
+app\community_packs\packAuthorNames.ts:24:const AUTHOR_NAME_CACHE_KEY = 'community_pack_author_names_v1';
+app\community_packs\packAuthorNames.ts:101:    return sanitizeNickname(await AsyncStorage.getItem('user_name'));
+app\boons\perfect_week.ts:22:export const PERFECT_WEEK_CLAIMED_KEY = 'boon_perfect_week_claimed_v1';
+app\boons\perfect_week.ts:30:export const PERFECT_WEEK_ONBOARDING_DAY_KEY = 'perfect_week_onboarding_day_v1';
+app\boons\perfect_week.ts:101:      AsyncStorage.getItem('onboarding_done'),
+app\global_broadcast_modal.ts:373:      await AsyncStorage.setItem('gift_xp_multiplier', claim.giftXpMultiplier);
+app\community_packs\localAuthorPacks.ts:22:export const LOCAL_AUTHOR_PACK_ID_PREFIX = 'local_pack_';
+app\boons\comeback.ts:17:export const COMEBACK_GRANTED_KEY = 'boon_comeback_granted_v1';
+app\gift_expiry.ts:23:export const GIFT_FIRST_SEEN_KEY = 'gift_first_seen_v1';
+app\boons\boon_rewards.ts:113:export const MYSTERY_MONDAY_CLAIM_KEY = 'boon_mystery_monday_claimed_v1';
+app\error_report.ts:87:    AsyncStorage.getItem('user_total_xp'),
+app\error_report.ts:88:    AsyncStorage.getItem('streak_count'),
+app\error_report.ts:91:    AsyncStorage.getItem('user_name'),
+app\firestore_leaderboard.ts:30:export const GLOBAL_LB_ASYNC_CACHE_KEY = 'global_lb_cache_v4';
+app\firestore_leaderboard.ts:533:      const localName = await AsyncStorage.getItem('user_name');
+app\friend_quests.ts:80:  const localRaw = await AsyncStorage.getItem('user_total_xp').catch(() => null);
+app\energy_system.ts:30:    const xpRaw = await AsyncStorage.getItem('user_total_xp');
+app\firestore_friend_requests.ts:101:    const localName = cleanFriendRequestDisplayName(await AsyncStorage.getItem('user_name'));
+app\friend_gift_outbox.ts:18:const PREFIX = 'friend_gift_send_outbox_v1::';
+app\economy\external_shard_event_sync.ts:9:export const EXTERNAL_ECONOMY_EVENT_APPLIED_PREFIX = 'external_economy_event_applied_v1:';
+app\community_packs\communityModerationAlerts.ts:15:    const v = await AsyncStorage.getItem('app_lang');
+app\boons\boon_bootstrap.ts:60:    const existing = parseStreakFreeze(await AsyncStorage.getItem('streak_freeze'));
+app\boons\boon_bootstrap.ts:68:    await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: todayKey }));
+app\friend_gift_inventory.ts:9:export const FRIEND_GIFT_INVENTORY_KEY = 'friend_gift_inventory_v1';
+app\friends_tab_swr_warm.ts:6:export const FRIENDS_TAB_SWR_CACHE_KEY = 'friends_tab_swr_v1';
+app\friends_tab_swr_warm.ts:8:export const FRIEND_PROFILES_CACHE_KEY = 'friend_profiles_cache_v1';
+app\league_week_runes.ts:63:const CATCHUP_KEY = 'league_week_runes_catchup_v1';
+app\league_week_runes.ts:245:const LAST_FINAL_KEY = 'league_week_runes_last_final_v1';
+app\bonus_energy_store.ts:14:export const BONUS_ENERGY_KEY = 'energy_gift_bonus';
+app\friend_gifts.ts:26:const FRIEND_GIFT_PENDING_SEND_KEY_PREFIX = 'friend_gift_pending_send_v1';
+app\friend_gifts.ts:27:const FRIEND_GIFT_PENDING_THANKS_KEY_PREFIX = 'friend_gift_pending_thanks_v1';
+app\customization_dev_grant.ts:16:export const CUSTOMIZATION_DEV_GRANT_RECEIPT_KEY = 'customization_dev_unlock_all_v1';
+app\flashcards\blitz_record.ts:16:export const FC_BLITZ_BEST_KEY = 'fc_blitz_best_v1';
+app\leaderboard_stats.ts:14:const CACHE_KEY = 'leaderboard_stats_cache_v2';
+app\economy\client_shard_semantic_reducer.ts:9:export const CLIENT_SHARD_SEMANTIC_PAID_PREFIX = 'client_shard_semantic_paid_v1:';
+app\economy\client_shard_semantic_reducer.ts:188:      const current = jsonObject(await AsyncStorage.getItem('streak_freeze'));
+app\economy\client_shard_semantic_reducer.ts:205:      const current = jsonObject(await AsyncStorage.getItem('streak_wager_v2'));
+app\economy\client_shard_semantic_reducer.ts:225:      const current = jsonObject(await AsyncStorage.getItem('streak_revive_v1'));
+app\league_engine.ts:414:const RESULT_KEY = 'league_result_pending';
+app\economy\client_shard_operation_ledger.ts:20:export const CLIENT_SHARD_OPERATION_PREFIX = 'client_shard_operation_v1:';
+app\economy\client_shard_operation_ledger.ts:21:export const CLIENT_SHARD_LEDGER_STATE_PREFIX = 'client_shard_ledger_state_v1:';
+app\economy\client_shard_operation_ledger.ts:22:export const CLIENT_SHARD_PREPARED_PREFIX = 'client_shard_prepared_v1:';
+app\economy\client_shard_operation_ledger.ts:23:export const CLIENT_SHARD_GRANT_RECEIPT_PREFIX = 'client_shard_grant_receipt_v1:';
+app\economy\client_shard_operation_ledger.ts:24:export const CLIENT_SHARD_CLOUD_SYNCED_PREFIX = 'client_shard_cloud_synced_v1:';
+app\lesson_complete.tsx:1041:          const streakRaw = await AsyncStorage.getItem('streak_count');
+app\lesson_complete.tsx:1043:          const langRaw = await AsyncStorage.getItem('app_lang');
+app\friends_together\sender_identity.ts:15:const USER_NAME_KEY = 'user_name';
+app\lesson_bonus_grant.ts:29:const PENDING_KEY = 'lesson_bonus_pending_v1';
+app\lesson_bonus_grant.ts:181:    const name = userName ?? ((await AsyncStorage.getItem('user_name')) || '');
+app\intro_full_access_keys.ts:3:export const INTRO_FULL_ACCESS_STARTED_AT_KEY = 'intro_full_access_started_at_v1';
+app\intro_full_access_keys.ts:4:export const INTRO_FULL_ACCESS_ENDS_AT_KEY = 'intro_full_access_ends_at_v1';
+app\intro_full_access_keys.ts:5:export const INTRO_FULL_ACCESS_WELCOME_SEEN_KEY = 'intro_full_access_welcome_seen_v1';
+app\intro_full_access_keys.ts:6:export const INTRO_FULL_ACCESS_ENDED_SEEN_KEY = 'intro_full_access_ended_seen_v1';
+app\idea_decision_modals.ts:21:    const v = await AsyncStorage.getItem('app_lang');
+app\lesson1.tsx:301:const SETTINGS_KEY = 'user_settings';
+app\lesson1.tsx:2295:      AsyncStorage.getItem('user_name')
+app\lesson_words.tsx:2921:      if (!userNameProp) AsyncStorage.getItem('user_name').then(n => { if(n) setUserName(n); });
+app\lesson_words.tsx:3800:    AsyncStorage.getItem('user_name').then(n => { if (n) setUserName(n); });
+app\flashcards\collection_view_prefs.ts:8:export const FC_COLLECTION_VIEW_KEY = 'fc_collection_view_v1';
+app\flashcards\mode_prefs.ts:19:export const FC_MODE_PREFS_KEY = 'fc_mode_prefs_v1';
+app\lesson_help.tsx:395:    const userName = (await AsyncStorage.getItem('user_name')) ?? '';
+app\lesson_theory_v2.tsx:235:      const userName = (await AsyncStorage.getItem('user_name')) ?? '';
+app\lesson_irregular_verbs.tsx:392:    AsyncStorage.getItem('user_name').then(n => { if (n) setUserName(n); });
+app\flashcards\low_power.ts:13:export const LOW_POWER_OVERRIDE_KEY = 'fc_low_power_override_v1';
+app\flashcards\deck_sources.ts:185:const LOCAL_AUTHOR_PACK_ID_PREFIX = 'local_pack_';
+app\flashcards\voice_prefs.ts:13:export const FC_VOICE_PREFS_KEY = 'fc_voice_prefs_v1';
+app\flashcards\hint_flags.ts:5:export const FC_HINT_FLAGS_KEY = 'fc_hint_flags_v1';
+app\flashcards\speaking_session_logic.ts:28:export const FC_SPEAKING_PREFS_KEY = 'fc_speaking_prefs_v1';
+app\level_up_storage_keys.ts:6:export const UNCLAIMED_GIFTS_KEY = 'unclaimed_level_gifts';
+app\level_up_storage_keys.ts:7:export const CLAIMED_GIFTS_KEY = 'claimed_level_gifts';
+app\level_up_storage_keys.ts:8:export const UNCLAIMED_DUAL_GIFTS_KEY = 'unclaimed_level_gifts_dual_v1';
+app\level_up_storage_keys.ts:9:export const CLAIMED_DUAL_LEVELS_KEY = 'claimed_level_gift_dual_flag_v1';
+app\level_up_storage_keys.ts:10:export const PARTIAL_DUAL_CLAIMED_LEVELS_KEY = 'partial_dual_claimed_levels_v1';
+app\level_up_storage_keys.ts:11:export const PENDING_LEVEL_GIFT_COUNT_CACHE_KEY = 'pending_level_gift_count_cache_v1';
+app\level_up_storage_keys.ts:13:export const UNCLAIMED_GIFT_RECEIVED_AT_KEY = 'unclaimed_level_gift_received_at_v1';
+app\level_up_storage_keys.ts:15:export const PENDING_LEVEL_UP_QUEUE_KEY = 'pending_level_up_queue';
+app\level_up_storage_keys.ts:16:export const LEVEL_UP_REWARD_RETRY_KEY = 'pending_level_up_reward_retry_v1';
+app\level_up_storage_keys.ts:17:export const LEVEL_UP_REWARD_CONTEXT_KEY = 'pending_level_up_reward_context_v1';
+app\level_up_storage_keys.ts:18:export const LEVEL_UP_REWARD_FALLBACK_KEY = 'pending_level_up_reward_fallback_v1';
+app\level_up_storage_keys.ts:19:export const LEVEL_UP_REWARD_OWNER_KEY = 'pending_level_up_reward_owner_v1';
+app\level_up_storage_keys.ts:20:export const LEVEL_UP_SHOWN_LEVELS_KEY = 'level_up_shown_levels_v1';
+app\level_up_storage_keys.ts:21:export const LEVEL_UP_REWARD_QUEUE_QUARANTINE_KEY = 'pending_level_up_queue_quarantine_v1';
+app\level_up_storage_keys.ts:22:export const LEVEL_UP_REWARD_RETRY_QUARANTINE_KEY = 'pending_level_up_reward_retry_quarantine_v1';
+app\level_up_storage_keys.ts:23:export const LEVEL_UP_REWARD_CONTEXT_QUARANTINE_KEY = 'pending_level_up_reward_context_quarantine_v1';
+app\level_up_storage_keys.ts:24:export const LEVEL_UP_REWARD_FALLBACK_QUARANTINE_KEY = 'pending_level_up_reward_fallback_quarantine_v1';
+app\level_up_storage_keys.ts:25:export const LEVEL_UP_SHOWN_LEVELS_QUARANTINE_KEY = 'level_up_shown_levels_quarantine_v1';
+app\level_up_storage_keys.ts:26:export const PENDING_LEVEL_SPIN_LEVEL_UP_QUEUE_KEY = 'pending_level_spin_level_up_queue_v1';
+app\level_up_storage_keys.ts:27:export const LEVEL_SPIN_OUTBOX_KEY = 'level_reward_spin_outbox_v1';
+app\level_up_storage_keys.ts:28:export const LEVEL_SPIN_BALANCE_CACHE_KEY = 'level_reward_spin_balance_cache_v1';
+app\level_up_storage_keys.ts:29:export const LEVEL_SPIN_MATERIALIZED_RESULTS_KEY = 'level_reward_spin_materialized_results_v1';
+app\level_up_storage_keys.ts:30:export const LEVEL_SPIN_GIFT_JOURNAL_KEY = 'level_reward_spin_gift_journal_v1';
+app\level_up_storage_keys.ts:31:export const LEVEL_SPIN_PENDING_REVEAL_KEY = 'level_reward_spin_pending_reveal_v1';
+app\level_up_storage_keys.ts:32:export const LEVEL_UP_BONUS_OUTBOX_KEY = 'level_up_bonus_outbox_v1';
+app\level_gift_active_inventory.ts:79:const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
+app\level_gift_active_inventory.ts:80:const GIFT_MULTIPLIER_KEY = 'gift_xp_multiplier';
+app\level_gifts_inventory.tsx:322:      AsyncStorage.getItem('user_name'),
+app\lifetime_profile_stats.ts:157:const LIFETIME_PROFILE_STATS_CACHE_KEY = 'lifetime_profile_stats_snapshot_v1';
+app\lifetime_profile_stats.ts:217:    AsyncStorage.getItem('daily_stats'),
+app\local_level_spins.ts:38:export const LOCAL_LEVEL_SPIN_STATE_KEY = 'local_level_spin_state_v1';
+app\max_voice_feedback_outbox.ts:21:const OUTBOX_KEY_PREFIX = 'max_voice_feedback_outbox_v1';
+app\level_exam.tsx:944:      try { storedName = ((await AsyncStorage.getItem('user_name')) || '').trim(); } catch {}
+app\max_voice_flags.ts:19:export const MAX_VOICE_GATE_KEY = 'gate_ai_voice_call';
+app\max_voice_finalize_outbox.ts:15:const OUTBOX_KEY_PREFIX = 'max_voice_finalize_outbox_v1';
+app\pending_auth_link.ts:25:const PENDING_AUTH_LINK_KEY = 'pending_auth_link_v1';
+app\level_reward_spin.tsx:76:      const userName = (await AsyncStorage.getItem('user_name').catch(() => null)) ?? '';
+app\onboarding_flow.ts:31:export const ONBOARDING_ENABLED_STEPS_TEXT_KEY = 'onboarding_enabled_steps_v1';
+app\level_gift_system.ts:967:const PREMIUM_PACK_UNLOCK_GIFT_RECEIVED_KEY = 'level_premium_pack_unlock_gifts_v1';
+app\level_gift_system.ts:1210:const GIFT_MULT_KEY = 'gift_xp_multiplier';
+app\level_gift_system.ts:1211:const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
+app\paywall_urgency.ts:13:export const URGENCY_SHOWN_AT_KEY = 'paywall_urgency_shown_at_v1';
+app\paywall_urgency.ts:14:const URGENCY_EXPIRED_AT_KEY = 'paywall_urgency_expired_at_v1';
+app\personal_plan_activation.ts:15:export const PERSONAL_PLAN_PENDING_ACTIVATION_KEY = 'personal_plan_pending_activation_v1';
+app\personal_plan_activation.ts:16:export const PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY = 'personal_plan_onboarding_nickname_pending_v1';
+app\notifications.ts:384:const DAILY_REMINDER_ID_KEY = 'daily_reminder_notif_id';
+app\notifications.ts:386:const STREAK_WARNING_NOTIF_ID_KEY = 'streak_warning_notif_id';
+app\notifications.ts:453:    AsyncStorage.getItem('streak_count'),
+app\notifications.ts:570:const INTRO_EXPIRING_NOTIF_ID_KEY = 'notification_intro_expiring_id';
+app\notifications.ts:572:const GIFT_EXPIRING_NOTIF_ID_KEY = 'gift_expiring_notif_id_v1';
+app\notifications.ts:1014:    const lang = normalizeNotificationLang(await AsyncStorage.getItem('app_lang').catch(() => null));
+app\notifications.ts:1646:      AsyncStorage.getItem('streak_count'),
+app\notifications.ts:1677:    const alreadyScheduled = await AsyncStorage.getItem('streak_warning_scheduled');
+app\notifications.ts:2009:    await AsyncStorage.setItem('streak_warning_scheduled', today);
+app\notifications.ts:2265:      const storedLang = langHint ?? (await AsyncStorage.getItem('app_lang').catch(() => null));
+app\notifications.ts:2290:      AsyncStorage.getItem('user_total_xp'),
+app\notifications.ts:2291:      AsyncStorage.getItem('streak_count'),
+app\onboarding_welcome_state.ts:31:export const ONBOARDING_WELCOME_PENDING_KEY = 'onboarding_welcome_pending_v1';
+app\onboarding_welcome_state.ts:34:const RETRO_OFFERED_KEY = 'onboarding_welcome_retro_offered_v1';
+app\paywall_purchase.ts:130:const EXIT_TRIAL_OFFER_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
+app\paywall_purchase.ts:483:    await AsyncStorage.setItem('had_premium_ever', '1').catch(() => {});
+app\nickname_guard.ts:15:export const GENERATED_NICKNAME_PENDING_KEY = 'generated_nickname_pending_v1';
+app\nickname_guard.ts:73:  const stored = (await AsyncStorage.getItem('user_name').catch(() => null))?.trim() ?? '';
+app\nickname_guard.ts:78:    await AsyncStorage.setItem('user_name', finalName);
+app\nickname_guard.ts:96:  const stored = (await AsyncStorage.getItem('user_name').catch(() => null))?.trim() ?? '';
+app\nickname_guard.ts:182:      const rawProfile = await AsyncStorage.getItem('user_profile').catch(() => null);
+app\paywall_progress_mirror.ts:92:      AsyncStorage.getItem('streak_count'),
+app\paywall_progress_mirror.ts:93:      AsyncStorage.getItem('user_total_xp'),
+app\paywall_progress_mirror.ts:114:    const startedRaw = await AsyncStorage.getItem('intro_full_access_started_at_v1');
+app\paywall_progress_mirror.ts:121:      AsyncStorage.getItem('streak_count'),
+app\paywall_progress_mirror.ts:122:      AsyncStorage.getItem('user_total_xp'),
+app\onboarding_notification_choice.ts:3:export const ONBOARDING_NOTIFICATION_CHOICE_KEY = 'onboarding_trial_reminder_choice_v1';
+app\paywall_profile.ts:130:      AsyncStorage.getItem('user_name'),
+app\paywall_profile.ts:131:      AsyncStorage.getItem('user_profile'),
+app\nickname_change_helpers.ts:62:    const lrp = await AsyncStorage.getItem('league_result_pending');
+app\nickname_change_helpers.ts:67:        await AsyncStorage.setItem('league_result_pending', JSON.stringify(result));
+app\onboarding_funnel.ts:9:const ATTEMPT_KEY = 'onboarding_funnel_attempt_v1';
+app\onboarding_funnel.ts:10:const START_ACK_KEY = 'onboarding_funnel_started_ack_v1';
+app\onboarding_funnel.ts:11:const COMPLETE_ACK_KEY = 'onboarding_funnel_completed_ack_v1';
+app\onboarding_funnel.ts:12:const START_PENDING_KEY = 'onboarding_funnel_started_pending_v1';
+app\onboarding_funnel.ts:13:const COMPLETE_PENDING_KEY = 'onboarding_funnel_completed_pending_v1';
+app\onboarding_funnel.ts:15:const CONSENT_PENDING_KEY = 'onboarding_funnel_consent_pending_v1';
+app\paywall_personalization.ts:22:export const ENERGY_ZERO_COUNT_KEY = 'energy_zero_count_v1';
+app\paywall_personalization.ts:23:export const STREAK_LOST_COUNT_KEY = 'streak_lost_count_v1';
+app\personal_plan_progress.ts:9:export const COMPLETED_PLAN_TASKS_KEY = 'personal_plan_completed_tasks_v1';
+app\personal_plan_xp_ledger.ts:13:const LEDGER_KEY = 'personal_plan_xp_ledger_v1';
+app\personal_plan_xp.ts:130:      const userName = (await AsyncStorage.getItem('user_name')) ?? '';
+app\personal_plan_state.ts:26:export const PERSONAL_PLAN_STATE_KEY = 'personal_plan_state_v1';
+app\personal_plan_sunset_clock.ts:3:export const PERSONAL_PLAN_SUNSET_HIGH_WATER_KEY = 'personal_plan_sunset_high_water_v1';
+app\practice_rune_settlement.ts:190:const PENDING_SETTLEMENT_PREFIX = 'practice_rune_pending_settlement_v1';
+app\personal_plan_task_progress.ts:12:export const PLAN_TASK_PROGRESS_KEY = 'personal_plan_task_progress_v1';
+app\practice_rune_earnings.ts:199:const STORAGE_PREFIX = 'practice_rune_earnings_v1';
+app\practice_rune_earnings.ts:262:const SETTLED_ONCE_PREFIX = 'practice_rune_settled_once_v1';
+app\platform_ui_preview.ts:5:export const PLATFORM_UI_PREVIEW_STORAGE_KEY = 'platform_ui_preview_mode';
+app\revenuecat_init.ts:279:    const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
+app\revenuecat_init.ts:287:      const existingPlan = String(await AsyncStorage.getItem('premium_plan').catch(() => '') ?? '').trim().toLowerCase();
+app\revenuecat_init.ts:423:            await AsyncStorage.setItem('admin_premium_override', 'false');
+app\progress_events_client.ts:89:const PROGRESS_EVENT_QUEUE_KEY = 'progress_server_event_queue_v1';
+app\progress_events_client.ts:90:const PROGRESS_MIGRATED_KEY = 'progress_server_snapshot_migrated_v1';
+app\progress_events_client.ts:91:const PROGRESS_MIGRATION_BASELINE_KEY = 'progress_server_snapshot_baseline_v1';
+app\progress_events_client.ts:92:const PROGRESS_EVENT_DEAD_LETTER_KEY = 'progress_server_event_dead_letter_v1';
+app\progress_events_client.ts:93:const PROGRESS_EVENT_RETRY_KEY = 'progress_server_event_retry_v1';
+app\profile_card_system.ts:14:export const PROFILE_CARD_LEVEL_KEY = 'profile_card_level';
+app\profile_card_system.ts:15:export const PROFILE_CARD_THEME_KEY = 'profile_card_theme';
+app\profile_card_system.ts:16:export const PROFILE_CARD_MOTION_KEY = 'profile_card_motion';
+app\profile_card_system.ts:17:export const PROFILE_CARD_PUBLIC_FOCUS_KEY = 'profile_card_public_focus';
+app\profile_card_system.ts:21:export const PROFILE_CARD_LEGEND_NO_KEY = 'profile_card_legend_no';
+app\premium_vip_storage.ts:10:const VIP_SNAPSHOT_PREFIX = 'premium_vip_snapshot_v1:';
+app\premium_vip_storage.ts:12:export const VIP_LEGACY_OWNER_KEY = 'premium_vip_legacy_owner_v1';
+app\premium_vip_storage.ts:13:export const VIP_LEGACY_MIGRATION_CONSUMED_KEY = 'premium_vip_legacy_migration_consumed_v1';
+app\profile_card_streak_shield.ts:16:export const CARD_STREAK_SHIELD_USED_AT_KEY = 'card_streak_shield_used_at';
+app\profile_card_streak_shield.ts:26:    const raw = await AsyncStorage.getItem('profile_card_level');
+app\release_wave_bonus.ts:10:export const APP_LAST_RECORDED_NATIVE_BUILD_ID_KEY = 'app_last_recorded_native_build_id_v1';
+app\premium_trial_eligibility.ts:3:const STORAGE_KEY_LAST = 'trial_last_consumed_at';
+app\premium_trial_eligibility.ts:4:const LEGACY_KEY_BOOLEAN = 'trial_used';
+app\premium_trial_eligibility.ts:7:const ONE_TIME_GLOBAL_TRIAL_UI_RESET_KEY = 'trial_migrate_all_show_7d_v1';
+app\premium_guard.ts:33:const RC_LAST_SEEN_KEY = 'premium_rc_last_seen_at';
+app\premium_guard.ts:199:  const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
+app\premium_guard.ts:249:  const plan = await AsyncStorage.getItem('premium_plan').catch(() => null);
+app\premium_guard.ts:391:          AsyncStorage.setItem('premium_active', 'false')
+app\premium_guard.ts:475:        AsyncStorage.setItem('premium_active', 'true')
+app\premium_guard.ts:495:      AsyncStorage.setItem('premium_active', 'false')
+app\premium_guard.ts:505:        AsyncStorage.setItem('premium_active', 'false')
+app\premium_guard.ts:537:      AsyncStorage.setItem('premium_active', 'false')
+app\premium_guard.ts:553:  const noPremiumVip = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
+app\premium_guard.ts:596:  const noPremiumAccess = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
+app\preposition_drill.tsx:126:      AsyncStorage.getItem('user_name').then(n => { if (n) userNameRef.current = n; });
+app\referral_welcome_state.ts:24:const PENDING_REF_KEY = 'pending_referral_code';
+app\referral_welcome_state.ts:25:const PENDING_REF_SOURCE_KEY = 'pending_referral_source';
+app\referral_welcome_state.ts:26:const ONBOARDING_DONE_KEY = 'onboarding_done';
+app\referral_bootstrap.ts:39:const PENDING_REF_KEY = 'pending_referral_code';
+app\referral_bootstrap.ts:40:const PENDING_REF_SOURCE_KEY = 'pending_referral_source';
+app\referral_system.ts:14:const LEGACY_REFERRAL_KEY = 'user_referral_code';
+app\referral_system.ts:15:const LEGACY_REFERRAL_OWNER_KEY = 'user_referral_code_owner_v1';
+app\referral_system.ts:16:const REFERRAL_KEY_PREFIX = 'user_referral_code_v2';
+app\premium_freeze_allowance.ts:21:export const PREMIUM_FREEZE_USED_FLAG_KEY = 'premium_free_freeze_used';
+app\premium_freeze_allowance.ts:22:export const PREMIUM_FREEZE_MONTH_STATE_KEY = 'premium_free_freeze_month_v1';
+app\referrals_cache.ts:40:export const REFERRAL_STATE_STORAGE_KEY = 'referrals_state_cache_v3';
+app\push_token_registration.ts:29:const PUSH_TOKEN_LOCAL_KEY = 'expo_push_token_last_written';
+app\public_profile_snapshot.ts:32:export const PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1';
+app\referrals.tsx:198:    void AsyncStorage.getItem('premium_plan')
+app\referral_clipboard.ts:24:const PENDING_REF_KEY = 'pending_referral_code';
+app\premium_celebration_state.ts:16:const PENDING_KEY = 'premium_celebration_pending_v1';
+app\premium_celebration_state.ts:17:const PENDING_MARKER_KEY = 'premium_celebration_pending_marker_v1';
+app\premium_celebration_state.ts:18:const PENDING_VARIANT_KEY = 'premium_celebration_pending_variant_v1';
+app\premium_celebration_state.ts:19:const SEEN_KEY = 'premium_celebration_seen_v1';
+app\premium_celebration_state.ts:20:const ADMIN_SEEN_KEY = 'premium_celebration_admin_seen_v1';
+app\season_pass_gift_inventory.ts:26:export const SEASON_PASS_GIFT_INVENTORY_STORAGE_KEY = 'season_pass_gift_inventory_v1';
+app\season_reward_apply.ts:46:export const SEASON_GOLDEN_LESSON_KEY = 'season_golden_lesson_v1';
+app\season_reward_apply.ts:49:const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
+app\season_reward_apply.ts:57:export const SEASON_COLLECTION_MAGNET_KEY = 'season_collection_magnet_v1';
+app\season_reward_apply.ts:58:export const SEASON_TOURNAMENT_TICKET_KEY = 'season_tournament_ticket_v1';
+app\season_cosmetics.ts:26:export const SEASON_COSMETICS_KEY = 'season_cosmetics_v1';
+app\review_utils.ts:8:const KEY_RATED         = 'review_user_rated';
+app\review_utils.ts:254:    const raw = await AsyncStorage.getItem('daily_stats');
+app\runes_wallet_stats.ts:53:const CACHE_KEY = 'runes_wallet_server_stats_v2';
+app\shards_system.ts:112:const STORE_PURCHASED_SHARDS_KEY = 'shards_store_purchased_total_v1';
+app\settings\profile_name_service.ts:58:  const raw = await AsyncStorage.getItem('league_result_pending');
+app\settings\profile_name_service.ts:63:  await AsyncStorage.setItem('league_result_pending', JSON.stringify(result));
+app\streak_revive.ts:25:const STORAGE_KEY = 'streak_revive_v1';
+app\shards_pending_grants.ts:25:const STORAGE_KEY_PREFIX = 'pending_shard_grants_v2:';
+app\shards_pending_grants.ts:26:const LEGACY_STORAGE_KEY = 'pending_shard_grants_v1';
+app\shards_pending_grants.ts:27:const QUARANTINE_KEY_PREFIX = 'pending_shard_grants_quarantine_v1:';
+app\shards_pending_grants.ts:28:const LEGACY_QUARANTINE_OWNER_KEY = 'pending_shard_grants_v1_quarantine_owner_v1';
+app\shards_pending_grants.ts:29:const DELETE_MARKER_PREFIX = 'pending_shard_grants_delete_cleanup_v1:';
+app\shards_pending_grants.ts:30:const RECOVERY_NEEDED_PREFIX = 'pending_shard_grants_recovery_needed_v1:';
+app\shards_pending_grants.ts:31:const CORRELATED_EVENT_PREFIX = 'pending_shard_grants_correlated_event_v1:';
+app\streak_repair.ts:32:const KEY = 'streak_repair_v1';
+app\streak_repair.ts:77:      AsyncStorage.getItem('last_active_date'),
+app\streak_repair.ts:78:      AsyncStorage.getItem('streak_count'),
+app\streak_repair.ts:79:      AsyncStorage.getItem('streak_freeze'),
+app\streak_freeze_purchase.ts:4:export const STREAK_FREEZE_STORAGE_KEY = 'streak_freeze';
+app\streak_freeze.ts:34:    return isStreakFreezeActiveToday(parseStreakFreeze(await AsyncStorage.getItem('streak_freeze')), todayKey);
+app\services\league_chest_rewards.ts:50:export const LEAGUE_GOLD_THEME_UNLOCK_KEY = 'league_gold_theme_unlocked_v1';
+app\services\league_chest_rewards.ts:51:export const LEAGUE_GOLD_THEME_UNLOCK_AT_KEY = 'league_gold_theme_unlocked_at';
+app\services\league_chest_rewards.ts:52:export const LEAGUE_BONUS_ADMIN_PREVIEW_KEY = 'league_bonus_admin_force_ready_v1';
+app\services\league_chest_rewards.ts:66:const XP_OVERRIDE_KEY = 'league_chest_xp_override_v1';
+app\services\league_chest_rewards.ts:67:const STREAK_SHIELD_KEY = 'chain_shield';
+app\services\league_chest_rewards.ts:68:const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
+app\services\league_chest_rewards.ts:71:const LOCAL_PENDING_CLAIM_KEY_PREFIX = 'league_chest_claim_pending_';
+app\stats_daily_breakdown.ts:18:const STORAGE_KEY = 'stats_daily_breakdown_v1';
+app\stats_daily_breakdown.ts:319:        AsyncStorage.getItem('daily_stats'),
+app\stable_id.ts:25:const SECURE_KEY = 'phraseman_stable_uid';
+app\stable_id.ts:26:const ASYNC_KEY = 'phraseman_stable_uid_cache';
+app\stable_id.ts:36:const KEYCHAIN_SERVICE = 'phraseman.identity.stable_id';
+app\statsCache.ts:25:const STATS_PRELOAD_CACHE_KEY = 'stats_preload_cache_v2';
+app\statsCache.ts:345:    AsyncStorage.getItem('streak_count'),
+app\statsCache.ts:346:    AsyncStorage.getItem('user_total_xp'),
+app\statsCache.ts:347:    AsyncStorage.getItem('daily_stats'),
+app\statsCache.ts:348:    AsyncStorage.getItem('streak_freeze'),
+app\statsCache.ts:349:    AsyncStorage.getItem('premium_free_freeze_used'),
+app\statsCache.ts:350:    AsyncStorage.getItem('comeback_active'),
+app\statsCache.ts:351:    AsyncStorage.getItem('chain_shield'),
+app\statsCache.ts:352:    AsyncStorage.getItem('had_premium_ever'),
+app\statsCache.ts:353:    AsyncStorage.getItem('user_name'),
+app\statsCache.ts:406:    const raw = await AsyncStorage.getItem('gift_xp_multiplier');
+app\study_target_server_prefetch.ts:24:export const ONBOARDING_REQUESTED_STUDY_TARGET_KEY = 'onboarding_requested_study_target_v1';
+app\study_target_server_prefetch.ts:25:export const ONBOARDING_STUDY_TARGET_SERVER_PREFETCH_RESULT_KEY = 'onboarding_study_target_server_prefetch_result_v1';
+app\tester_premium_override.ts:4:export const TESTER_NO_PREMIUM_STORAGE_KEY = 'tester_no_premium';
+app\streak_week_markers.ts:6:export const STREAK_WEEK_MARKERS_KEY = 'streak_week_day_markers_v1';
+app\study_target.ts:28:export const STUDY_TARGET_STORAGE_KEY = 'study_target_v1';
+app\study_target_lang_dev.ts:16:const STORAGE_KEY = 'dev_study_target_lang';
+app\streak_wager.ts:41:const WAGER_DISCOUNT_KEY = 'wager_discount';
+app\streak_wager.ts:42:const WAGER_DISCOUNT_USES_KEY = 'wager_discount_uses_v1';
+app\streak_wager.ts:43:const PREM_WAGER_TOKEN_KEY = 'premium_wager_free_after_levelup_v1';
+app\streak_wager.ts:44:const PREM_WAGER_MONTH_KEY = 'premium_wager_free_month_issued_v1';
+app\streak_wager.ts:114:const KEY = 'streak_wager_v2';
+app\streak_wager.ts:309:      const winUserName = await AsyncStorage.getItem('user_name') || '';
+app\survey_completion_marker.ts:8:export const LEGACY_SURVEY_DONE_KEY = 'shard_survey_done_daykey_v1';
+app\study_languages.ts:35:export const STUDY_LANGUAGES_STARTED_KEY = 'study_languages_started_v1';
+app\theme_ownership_store.ts:54:const GRANDFATHER_MIGRATION_KEY_PREFIX = 'theme_grandfather_migrated_v2_';
+app\theme_ownership_store.ts:56:const LEGACY_DEVICE_MIGRATION_KEY = 'theme_grandfather_migrated_v1';
+app\theme_ownership_merge.ts:48:export const OWNED_THEMES_KEY = 'owned_theme_modes_v1';
+app\theme_ownership_merge.ts:51:export const GRANDFATHERED_THEMES_KEY = 'grandfathered_theme_modes_v1';
+app\streak_stats.tsx:2690:const STATS_CHART_SCRUB_HINT_KEY = 'stats_chart_scrub_hint_seen_v1';
+app\streak_stats.tsx:3311:        void AsyncStorage.getItem('tester_no_premium').then((v) => {
+app\user_notifications.ts:13:const LEGACY_CACHE_KEY = 'user_notifications_cache_v1';
+app\user_notifications.ts:14:const LEGACY_LAST_REFRESH_KEY = 'user_notifications_last_refresh_ms_v1';
+app\user_notifications.ts:15:const CACHE_KEY_PREFIX = 'user_notifications_cache_v2:';
+app\user_notifications.ts:16:const LAST_REFRESH_KEY_PREFIX = 'user_notifications_last_refresh_ms_v2:';
+app\user_report.ts:7:const THROTTLE_KEY = 'last_user_report_ts';
+app\user_report.ts:42:    AsyncStorage.getItem('user_name'),
+app\user_report.ts:91:    AsyncStorage.getItem('user_name'),
+app\user_report.ts:136:    AsyncStorage.getItem('user_name'),
+app\user_settings_store.ts:4:const SETTINGS_KEY = 'user_settings';
+app\user_warning_check.ts:6:const SEEN_KEY = 'seen_warning_ids';
+app\user_warning_check.ts:7:const WARN_FETCH_AT_KEY = 'user_warnings_last_fetch_at_v1';
+app\vip_celebration_state.ts:4:const PENDING_KEY = 'vip_celebration_pending_v1';
+app\vip_celebration_state.ts:5:const PENDING_MARKER_KEY = 'vip_celebration_pending_marker_v1';
+app\vip_survey_dev_auth.ts:4:const VIP_SURVEY_DEV_AUTH_EMAIL_KEY = 'vip_survey_e2e_email';
+app\vip_survey_dev_auth.ts:5:const VIP_SURVEY_DEV_AUTH_PASSWORD_KEY = 'vip_survey_e2e_password';
+app\vip_survey_dev_auth.ts:6:const ADMIN_VIP_DEV_AUTH_EMAIL_KEY = 'admin_vip_e2e_email';
+app\vip_survey_dev_auth.ts:7:const ADMIN_VIP_DEV_AUTH_PASSWORD_KEY = 'admin_vip_e2e_password';
+app\weekly_xp.ts:3:export const WEEKLY_XP_KEY = 'weekly_xp';
+app\weekly_xp.ts:4:export const WEEKLY_XP_PERIOD_START_KEY = 'weekly_xp_period_start';
+app\welcome_gift.ts:90:export const WELCOME_GIFT_PEARLS_EVENT_KEY = 'welcome_gift_v1';
+app\welcome_gift.ts:94:const LEGACY_RUNES_REQUEST_KEY = 'welcome_gift_runes_request_v1';
+app\xp_level_restore.ts:7:export const XP_LEVEL_RESTORE_250_TO_400_KEY = 'xp_level_restore_250_to_400_v1';
+app\xp_manager.ts:179:const LOCAL_PROGRESS_EVENT_LEDGER_KEY = 'progress_local_event_applied_v1';
+app\xp_manager.ts:713:      const lastDate = await AsyncStorage.getItem('last_active_date');
+app\xp_manager.ts:716:        const prevStreak = Number((await AsyncStorage.getItem('streak_count')) ?? '0') || 0;
+app\xp_manager.ts:982:const LESSON_XP_MULTIPLIER_FINALIZED_PREFIX = 'lesson_xp_multipliers_finalized_v1';
+app\xp_manager.ts:1035:const XP_MIGRATION_KEY = 'xp_formula_v2_migrated';
+app\_layout.tsx:670:      const name = await AsyncStorage.getItem('user_name');
+app\_layout.tsx:686:        await AsyncStorage.setItem('login_bonus_pending', JSON.stringify({ xp: bonusXP, cycle: consecutive }));
+app\_layout.tsx:728:        await AsyncStorage.setItem('comeback_pending', 'true');
+app\_layout.tsx:732:    const langRaw = await AsyncStorage.getItem('app_lang');
+app\_layout.tsx:773:        AsyncStorage.getItem('user_name'),
+app\_layout.tsx:856:        const name = (await AsyncStorage.getItem('user_name')) || userName;
+app\_layout.tsx:2166:        const onboardingDoneAfterHydrate = await AsyncStorage.getItem('onboarding_done').catch(() => null);
+app\_layout.tsx:2463:            await AsyncStorage.setItem('user_prev_xp', totalXPRaw);
+app\_layout.tsx:2668:      const streakCount = parseInt((await AsyncStorage.getItem('streak_count').catch(() => null)) || '0', 10) || 0;
+app\_layout.tsx:2772:      void AsyncStorage.setItem('xp_migration_v2', '1').catch(() => {});
+

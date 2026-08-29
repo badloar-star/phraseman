@@ -33,7 +33,15 @@ export default function ArenaInviteScreen() {
     refundOne: refundInviteEnergy,
     acknowledgeSessionStart,
   } = useEnergy();
-  const inviteEnergyIntent = useEnergySessionIntent('arena_invite_accept', inviteId, inviteId);
+  const inviteEnergyMountIdRef = useRef(
+    `invite-energy-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`,
+  );
+  const [inviteEnergyRevision, setInviteEnergyRevision] = useState(0);
+  const inviteEnergyIntent = useEnergySessionIntent(
+    'arena_invite_accept',
+    inviteId,
+    `${inviteEnergyMountIdRef.current}:${inviteEnergyRevision}`,
+  );
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const [error, setError] = useState('');
   const [now, setNow] = useState(Date.now());
@@ -135,7 +143,9 @@ export default function ArenaInviteScreen() {
       // зачем: вызов не принят (нет сети / отказ сервера) — входа не случилось,
       // плата возвращается. Иначе теряется единица за чужую сетевую ошибку.
       if (energyCharged && !entryGranted) {
-        void refundInviteEnergy(inviteEnergyIntent.operationId, 'entry_failed').catch(() => {});
+        await refundInviteEnergy(inviteEnergyIntent.operationId, 'entry_failed')
+          .then(() => setInviteEnergyRevision((current) => current + 1))
+          .catch(() => {});
       }
       setError(`${arenaText(lang, 'joinFailed')}. ${arenaText(lang, 'joinFailedHint')}`);
     }

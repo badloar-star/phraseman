@@ -7,7 +7,6 @@ import {
 } from './account_generation';
 import {
   readGiftAccountValue,
-  removeGiftAccountValue,
   writeGiftAccountValue,
 } from './gift_account_storage';
 import { parseBonusEnergyStorageValue } from './spin_gift_storage_integrity';
@@ -16,6 +15,7 @@ export const BONUS_ENERGY_KEY = 'energy_gift_bonus';
 
 export interface BonusEnergyState {
   amount: number;
+  capacity: number;
   expiresAt: number;
 }
 
@@ -90,15 +90,14 @@ export async function consumeBonusEnergy(
     }
     const spent = Math.min(requested, current.amount);
     const remaining = current.amount - spent;
-    if (remaining > 0) {
-      await writeGiftAccountValue(
-        BONUS_ENERGY_KEY,
-        JSON.stringify({ amount: remaining, expiresAt: current.expiresAt }),
-        accountToken,
-      );
-    } else {
-      await removeGiftAccountValue(BONUS_ENERGY_KEY, accountToken);
-    }
+    // Capacity belongs to the active until-midnight gift, not to its remaining
+    // units. Keep the zero-amount snapshot so 8 remains the denominator after
+    // the three temporary units have been spent.
+    await writeGiftAccountValue(
+      BONUS_ENERGY_KEY,
+      JSON.stringify({ amount: remaining, capacity: current.capacity, expiresAt: current.expiresAt }),
+      accountToken,
+    );
     return { spent, remaining, expiresAt: current.expiresAt };
   }, accountTransitionLockLease);
 }
@@ -116,8 +115,10 @@ export async function restoreBonusEnergy(
       || Date.now() >= originalExpiresAt) return null;
     const current = await readBonusEnergyForMutation(accountToken);
     if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return null;
+    const nextAmount = (current?.amount ?? 0) + amount;
     const next: BonusEnergyState = {
-      amount: (current?.amount ?? 0) + amount,
+      amount: nextAmount,
+      capacity: Math.max(current?.capacity ?? 0, nextAmount),
       expiresAt: Math.max(current?.expiresAt ?? 0, originalExpiresAt),
     };
     await writeGiftAccountValue(BONUS_ENERGY_KEY, JSON.stringify(next), accountToken);

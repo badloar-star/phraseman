@@ -369,6 +369,7 @@ export function boostNameForLang(def: BoostDef, lang: Lang): string {
   return triLang(lang, {
     ru: def.nameRU,
     uk: def.nameUK,
+    en: def.nameRU,
     es: def.nameES,
     'pt-BR': def.namePtBr,
     vi: def.nameVi,
@@ -382,6 +383,7 @@ export function boostDescriptionForLang(def: BoostDef, lang: Lang): string {
   return triLang(lang, {
     ru: def.descRU,
     uk: def.descUK,
+    en: def.descRU,
     es: def.descES,
     'pt-BR': def.descPtBr,
     vi: def.descVi,
@@ -414,6 +416,7 @@ export function getBoostNotification(
   return triLang(lang, {
     ru: `🎉 ${playerName} активировал ${name}`,
     uk: `🎉 ${playerName} активував ${name}`,
+    en: `🎉 ${playerName} activated ${name}`,
     es: `🎉 ${playerName} ha activado ${name}`,
     'pt-BR': `🎉 ${playerName} ativou ${name}`,
     vi: `🎉 ${playerName} đã kích hoạt ${name}`,

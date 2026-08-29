@@ -7,101 +7,103 @@ import type { LearningV2IntroTextRunV1 } from '../intro_semantic_runs_v1';
 
 const L = (value: LocalizedSource): LocalizedSource => value;
 const LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+const TERMS = ['I am', 'I', 'am'] as const;
 
-function markBody(body: LocalizedSource): LocalizedIntroRunsSource {
-  const terms = ['note', 'now', 'not', 'no', 'n', 'o', 't'];
-  const byLocale = Object.fromEntries(LOCALES.map((locale) => {
-    const text = body[locale] ?? '';
-    const runs: LearningV2IntroTextRunV1[] = [];
-    let cursor = 0;
-    const boundary = (start: number, term: string): boolean => {
-      const word = /\p{L}/u;
-      return !word.test(text[start - 1] ?? '') && !word.test(text[start + term.length] ?? '');
-    };
-    while (cursor < text.length) {
-      const term = terms.find((candidate) =>
-        text.slice(cursor, cursor + candidate.length).toLocaleLowerCase('en') === candidate &&
-        boundary(cursor, candidate),
-      );
-      if (term) {
-        runs.push({
-          text: text.slice(cursor, cursor + term.length),
-          semantic: term === 'not' ? 'targetCorrect' : 'targetWrong',
+function markEnglish(body: LocalizedSource): LocalizedIntroRunsSource {
+  return Object.fromEntries(
+    LOCALES.map((locale) => {
+      const text = body[locale] ?? '';
+      const runs: LearningV2IntroTextRunV1[] = [];
+      let cursor = 0;
+      const isLetter = (value: string): boolean => /\p{L}/u.test(value);
+      while (cursor < text.length) {
+        const term = TERMS.find((candidate) => {
+          const slice = text.slice(cursor, cursor + candidate.length);
+          if (candidate === 'I' ? slice !== 'I' : slice.toLocaleLowerCase('en') !== candidate.toLocaleLowerCase('en')) return false;
+          return !isLetter(text[cursor - 1] ?? '') && !isLetter(text[cursor + candidate.length] ?? '');
         });
-        cursor += term.length;
-        continue;
+        if (term) {
+          runs.push({ text: text.slice(cursor, cursor + term.length), semantic: 'targetCorrect' });
+          cursor += term.length;
+          continue;
+        }
+        let end = cursor + 1;
+        while (end < text.length && !TERMS.some((candidate) => {
+          const slice = text.slice(end, end + candidate.length);
+          if (candidate === 'I' ? slice !== 'I' : slice.toLocaleLowerCase('en') !== candidate.toLocaleLowerCase('en')) return false;
+          return !isLetter(text[end - 1] ?? '') && !isLetter(text[end + candidate.length] ?? '');
+        })) end += 1;
+        runs.push({ text: text.slice(cursor, end), semantic: 'explanation' });
+        cursor = end;
       }
-      let end = cursor + 1;
-      while (
-        end < text.length &&
-        !terms.some((candidate) => text.startsWith(candidate, end) && boundary(end, candidate))
-      ) end += 1;
-      runs.push({ text: text.slice(cursor, end), semantic: 'explanation' });
-      cursor = end;
-    }
-    return [locale, runs];
-  }));
-  return byLocale as unknown as LocalizedIntroRunsSource;
+      return [locale, runs];
+    }),
+  ) as unknown as LocalizedIntroRunsSource;
+}
+
+function target(value: string): LocalizedSource {
+  return L({ ru: value, uk: value, es: value, 'pt-BR': value, vi: value, id: value, tr: value, pl: value });
 }
 
 export const EPISODE_01_SESSION_02_WORD_FIRST_TITLE = L({
-  ru: 'Я не', uk: 'Я не', es: 'Yo no', 'pt-BR': 'Eu não',
-  vi: 'Tôi không', id: 'Saya tidak', tr: 'Ben değilim', pl: 'Ja nie',
+  ru: 'I am целиком', uk: 'I am повністю', es: 'I am completo',
+  'pt-BR': 'I am completo', vi: 'I am trọn vẹn', id: 'I am secara utuh',
+  tr: 'Tam hâliyle I am', pl: 'Pełne I am',
 });
 
 export const EPISODE_01_SESSION_02_WORD_FIRST_SUMMARY = L({
-  ru: 'Короткое not отменяет знакомый признак или место.',
-  uk: 'Коротке not заперечує знайому ознаку або місце.',
-  es: 'La palabra breve not niega una cualidad o un lugar conocido.',
-  'pt-BR': 'A palavra curta not nega uma característica ou um lugar conhecido.',
-  vi: 'Từ ngắn not phủ định một đặc điểm hoặc nơi chốn đã biết.',
-  id: 'Kata pendek not menyangkal keadaan atau tempat yang sudah dikenal.',
-  tr: 'Kısa not sözcüğü bilinen bir özelliği ya da yeri olumsuz yapar.',
-  pl: 'Krótkie not zaprzecza znanej cesze albo miejscu.',
+  ru: 'Собираем точное начало фразы о себе: I am.',
+  uk: 'Складаємо точний початок фрази про себе: I am.',
+  es: 'Construimos el inicio exacto de una frase sobre uno mismo: I am.',
+  'pt-BR': 'Montamos o início exato de uma frase sobre si: I am.',
+  vi: 'Ghép đúng phần mở đầu của câu nói về bản thân: I am.',
+  id: 'Menyusun awal yang tepat untuk kalimat tentang diri sendiri: I am.',
+  tr: 'Kendinizle ilgili cümlenin doğru başlangıcını kuruyoruz: I am.',
+  pl: 'Budujemy dokładny początek zdania o sobie: I am.',
 });
 
 export const EPISODE_01_SESSION_02_WORD_FIRST_GOAL = L({
-  ru: 'Узнавать, понимать и точно писать not перед отрицательной фразой.',
-  uk: 'Упізнавати, розуміти й точно писати not перед заперечним висловом.',
-  es: 'Reconocer, comprender y escribir not antes de usar una frase negativa.',
-  'pt-BR': 'Reconhecer, compreender e escrever not antes de usar uma frase negativa.',
-  vi: 'Nhận ra, hiểu và viết đúng not trước khi dùng câu phủ định.',
-  id: 'Mengenali, memahami, dan menulis not dengan tepat sebelum memakai kalimat negatif.',
-  tr: 'Olumsuz bir ifade kurmadan önce not sözcüğünü tanımak, anlamak ve doğru yazmak.',
-  pl: 'Rozpoznawać, rozumieć i poprawnie zapisywać not przed użyciem zdania przeczącego.',
+  ru: 'Уверенно начинать утвердительную фразу словами I am.',
+  uk: 'Упевнено починати стверджувальну фразу словами I am.',
+  es: 'Empezar con seguridad una afirmación usando I am.',
+  'pt-BR': 'Começar com segurança uma afirmação usando I am.',
+  vi: 'Tự tin mở đầu một câu khẳng định bằng I am.',
+  id: 'Memulai pernyataan dengan yakin memakai I am.',
+  tr: 'Olumlu bir cümleye I am ile güvenle başlamak.',
+  pl: 'Pewnie zaczynać zdanie oznajmujące od I am.',
 });
 
 const conceptBody = L({
-  ru: 'Not означает «не» и отменяет то, что человек сообщает о себе. Это отдельное короткое слово, а не часть соседнего слова. Английское no чаще отвечает «нет», поэтому оно не занимает то же место. Now означает «сейчас» и лишь похоже начинается. Сначала научитесь точно узнавать именно not по смыслу и по форме.',
-  uk: 'Not означає «не» й заперечує те, що людина повідомляє про себе. Це окреме коротке слово, а не частина сусіднього слова. Англійське no частіше відповідає «ні», тому воно не виконує тієї самої роботи. Now означає «зараз» і лише схоже починається. Спершу навчіться впізнавати саме not за змістом і формою.',
-  es: 'Not expresa la negación que en español suele aparecer como «no» delante de una idea. En inglés es una palabra independiente y tiene un lugar propio dentro de la frase. La palabra inglesa no suele funcionar como una respuesta completa, así que no sustituye automáticamente a not. Now significa «ahora» y solo comparte el comienzo de la escritura. Conviene reconocer not primero por su significado y por su forma exacta.',
-  'pt-BR': 'Not expressa a negação que em português costuma aparecer como «não» antes de uma ideia. Em inglês, ela é uma palavra independente e ocupa um lugar próprio na frase. A palavra inglesa no costuma funcionar como uma resposta completa, por isso não substitui not automaticamente. Now significa «agora» e apenas começa de modo parecido. Primeiro reconheça not pelo sentido e pela forma exata.',
-  vi: 'Not mang nghĩa phủ định gần với “không” trong tiếng Việt. Trong tiếng Anh, đây là một từ độc lập và có vị trí riêng trong câu. No thường được dùng như một câu trả lời “không”, nên không thể tự động thay cho not. Now nghĩa là “bây giờ” và chỉ có phần đầu nhìn giống nhau. Trước hết hãy nhận ra đúng not bằng cả nghĩa lẫn hình thức.',
-  id: 'Not membawa makna penyangkalan yang dalam bahasa Indonesia sering dinyatakan dengan “tidak”. Dalam bahasa Inggris, kata ini berdiri sendiri dan mempunyai tempat tertentu di dalam kalimat. No biasanya dipakai sebagai jawaban “tidak”, sehingga tidak otomatis menggantikan not. Now berarti “sekarang” dan hanya memiliki awal tulisan yang mirip. Kenali dahulu not melalui arti dan bentuknya yang tepat.',
-  tr: 'Not, Türkçedeki “değil” ya da “-me/-ma” anlamına yaklaşan bir olumsuzluk sözcüğüdür. İngilizcede ayrı yazılır ve cümle içinde kendi yeri vardır. No çoğunlukla tek başına “hayır” cevabını verir, bu yüzden not yerine geçmez. Now “şimdi” demektir ve yalnızca başlangıcı benzer görünür. Önce not sözcüğünü hem anlamından hem de tam biçiminden tanıyın.',
-  pl: 'Not wyraża przeczenie podobne do polskiego „nie”. W angielskim jest osobnym słowem i zajmuje własne miejsce w zdaniu. Angielskie no najczęściej jest samodzielną odpowiedzią „nie”, więc nie zastępuje automatycznie not. Now znaczy „teraz” i tylko podobnie się zaczyna. Najpierw rozpoznawaj not po znaczeniu oraz dokładnym zapisie.',
+  ru: 'Чтобы сообщить что-то о себе, английскому нужны два маленьких работника. I называет говорящего, а am открывает место для сообщения о нём. Вместе I am — крепкое начало: короткое, но уже держит всю фразу.',
+  uk: 'Щоб повідомити щось про себе, англійській потрібні два маленькі працівники. I називає мовця, а am відкриває місце для повідомлення про нього. Разом I am — міцний початок: короткий, але вже тримає всю фразу.',
+  es: 'Para decir algo sobre ti, el inglés necesita dos pequeños trabajadores. I nombra a quien habla y am abre el lugar para la información. Juntos, I am es un inicio firme: breve, pero ya sostiene toda la frase.',
+  'pt-BR': 'Para dizer algo sobre você, o inglês precisa de dois pequenos trabalhadores. I mostra quem fala e am abre espaço para a informação. Juntos, I am é um começo firme: curto, mas já sustenta a frase inteira.',
+  vi: 'Để nói điều gì đó về bản thân, tiếng Anh cần hai “nhân viên” nhỏ. I gọi tên người đang nói, còn am mở chỗ cho thông tin tiếp theo. I am là một mở đầu gọn mà chắc: ngắn thôi nhưng đỡ được cả câu.',
+  id: 'Untuk mengatakan sesuatu tentang diri sendiri, bahasa Inggris membutuhkan dua pekerja kecil. I menamai penutur, sedangkan am membuka tempat bagi informasi. Bersama, I am menjadi awal yang kokoh: pendek, tetapi menopang seluruh kalimat.',
+  tr: 'Kendinizle ilgili bir şey söylemek için İngilizce iki küçük çalışana ihtiyaç duyar. I konuşanı gösterir, am ise bilgiye yer açar. I am birlikte sağlam bir başlangıçtır: kısa ama bütün cümleyi taşır.',
+  pl: 'Aby powiedzieć coś o sobie, angielski potrzebuje dwóch małych pracowników. I wskazuje mówiącego, a am otwiera miejsce na informację. Razem I am tworzy mocny początek: krótki, ale utrzymuje całe zdanie.',
 });
 
 const formulaBody = L({
-  ru: 'Not состоит из трёх букв: n, затем o, затем t. Первые две буквы образуют знакомое no, поэтому взгляд легко останавливается слишком рано. Конечная t не украшение: без неё получится другое слово. Лишняя e тоже меняет слово и превращает not в note. Поэтому проверяйте всю короткую форму слева направо: n-o-t.',
-  uk: 'Not складається з трьох літер: n, потім o, потім t. Перші дві літери утворюють знайоме no, тому погляд легко зупиняється зарано. Кінцева t не є прикрасою: без неї виходить інше слово. Саме t зберігає потрібне значення заперечення. Зайва e також змінює слово й перетворює not на note. Тому перевіряйте всю коротку форму зліва направо: n-o-t.',
-  es: 'Not se escribe con tres letras: n, después o y al final t. Las dos primeras forman no, por eso es fácil dejar de leer demasiado pronto. La t final no es decorativa: sin ella queda otra palabra. Una e adicional también cambia el resultado y convierte not en note. Recorre siempre la forma completa de izquierda a derecha: n-o-t.',
-  'pt-BR': 'Not é escrita com três letras: n, depois o e por fim t. As duas primeiras formam no, então é fácil parar de ler cedo demais. O t final não é um detalhe: sem ele sobra outra palavra. Um e adicional também muda o resultado e transforma not em note. Confira sempre a forma inteira da esquerda para a direita: n-o-t.',
-  vi: 'Not được viết bằng ba chữ cái: n, rồi o, cuối cùng là t. Hai chữ đầu tạo thành no, vì vậy mắt rất dễ dừng lại quá sớm. Chữ t cuối không phải chi tiết thừa; bỏ nó đi sẽ thành một từ khác. Chính chữ t giữ lại nghĩa phủ định cần thiết. Thêm e cũng đổi từ và biến not thành note. Vì vậy, hãy kiểm tra trọn dạng từ từ trái sang phải: n-o-t.',
-  id: 'Not ditulis dengan tiga huruf: n, lalu o, dan terakhir t. Dua huruf pertama membentuk no, sehingga mata mudah berhenti terlalu cepat. Huruf t terakhir bukan hiasan; tanpa huruf itu terbentuk kata lain. Tambahan e juga mengubah kata dan membuat not menjadi note. Periksa selalu seluruh bentuk dari kiri ke kanan: n-o-t.',
-  tr: 'Not üç harfle yazılır: önce n, sonra o, en sonda t. İlk iki harf no sözcüğünü oluşturduğu için göz kolayca erken durabilir. Sondaki t bir süs değildir; çıkarılırsa başka bir sözcük kalır. Fazladan e de sözcüğü değiştirir ve not biçimini note yapar. Kısa biçimin tamamını soldan sağa denetleyin: n-o-t.',
-  pl: 'Not zapisuje się trzema literami: n, potem o, a na końcu t. Pierwsze dwie tworzą no, dlatego wzrok łatwo zatrzymuje się zbyt wcześnie. Końcowe t nie jest ozdobą; bez niego powstaje inne słowo. Dodatkowe e także zmienia wyraz i zamienia not w note. Zawsze sprawdzaj całą formę od lewej do prawej: n-o-t.',
+  ru: 'Порядок не меняется: сначала I, сразу за ним am. По-русски слово «есть» часто молчит, а по-английски am честно выходит на работу. Поэтому начало строится слева направо: I am.',
+  uk: 'Порядок не змінюється: спочатку I, одразу за ним am. Українською слово «є» часто мовчить, а англійською am чесно виходить на роботу. Тому початок будується зліва направо: I am.',
+  es: 'El orden no cambia: primero I y justo después am. En español la conexión suele esconderse dentro del verbo, pero en inglés am sale a trabajar. Por eso el comienzo se construye de izquierda a derecha: I am.',
+  'pt-BR': 'A ordem não muda: primeiro I e logo depois am. Em português a ligação costuma ficar dentro do verbo, mas em inglês am aparece para trabalhar. Por isso o começo vai da esquerda para a direita: I am.',
+  vi: 'Thứ tự không đổi: I đứng trước, am theo ngay sau. Trong tiếng Việt ta thường không cần một từ nối riêng, nhưng tiếng Anh bắt am đi làm. Vì vậy phần mở đầu đi từ trái sang phải: I am.',
+  id: 'Urutannya tidak berubah: I lebih dulu, lalu am tepat sesudahnya. Dalam bahasa Indonesia penghubung sering tidak tampak, tetapi dalam bahasa Inggris am wajib bekerja. Jadi awalnya disusun dari kiri ke kanan: I am.',
+  tr: 'Sıra değişmez: önce I, hemen ardından am gelir. Türkçede bu bağ çoğu zaman ekin içinde saklanır; İngilizcede am açıkça işe çıkar. Bu yüzden başlangıç soldan sağa kurulur: I am.',
+  pl: 'Szyk się nie zmienia: najpierw I, zaraz po nim am. Po polsku „jestem” mieści wszystko w jednym słowie, lecz angielski wysyła am osobno do pracy. Początek układamy więc od lewej: I am.',
 });
 
 const trapBody = L({
-  ru: 'В быстрой речи конечная t в not может прозвучать очень коротко. Из-за этого слово легко спутать с no, если слушать только начало. У now другой конец — слышится движение к звуку «у». В note гласная тянется дольше, а конечная e не произносится отдельно. Чтобы узнать not, ловите короткую гласную и резкое завершение на t.',
-  uk: 'У швидкому мовленні кінцева t у not може прозвучати дуже коротко. Через це слово легко сплутати з no, якщо слухати лише початок. У now інше закінчення — чується рух до звука «у». У note голосний тягнеться довше, а кінцева e окремо не вимовляється. Щоб упізнати not, ловіть короткий голосний і різке завершення на t.',
-  es: 'En el habla rápida, la t final de not puede sonar muy breve. Por eso se confunde con no si solo prestas atención al comienzo. Now termina con un deslizamiento parecido a «au», no con una t cerrada. En note la vocal es más larga y la e escrita no se pronuncia por separado. Para reconocer not, escucha una vocal breve y un cierre rápido en t.',
-  'pt-BR': 'Na fala rápida, o t final de not pode soar muito curto. Por isso a palavra se confunde com no quando você escuta apenas o começo. Now termina com um movimento parecido com «au», não com um t fechado. Em note, a vogal é mais longa e o e escrito não é pronunciado separadamente. Para reconhecer not, procure uma vogal breve e um fechamento rápido em t.',
-  vi: 'Khi nói nhanh, âm t cuối của not có thể bật ra rất ngắn. Vì thế người nghe dễ nhầm với no nếu chỉ chú ý phần đầu. Now kết thúc bằng một chuyển động nguyên âm khác chứ không khép lại bằng t. Trong note, nguyên âm dài hơn và e cuối không được đọc riêng. Muốn nhận ra not, hãy nghe nguyên âm ngắn cùng điểm dừng gọn ở t.',
-  id: 'Dalam ucapan cepat, t terakhir pada not dapat terdengar sangat singkat. Karena itu, kata ini mudah tertukar dengan no jika hanya awalnya yang didengar. Now berakhir dengan luncuran vokal lain, bukan penutupan t. Pada note, vokalnya lebih panjang dan e tertulis tidak dibunyikan sendiri. Untuk mengenali not, dengarkan vokal pendek dan hentian cepat pada t.',
-  tr: 'Hızlı konuşmada not sonundaki t çok kısa duyulabilir. Yalnızca başlangıca dikkat edilirse sözcük bu yüzden no ile karışır. Now başka bir ünlü kaymasıyla biter, kapalı bir t sesiyle değil. Note sözcüğünde ünlü daha uzundur ve yazıdaki e ayrı okunmaz. Not sözcüğünü tanımak için kısa ünlüyü ve t ile gelen keskin bitişi dinleyin.',
-  pl: 'W szybkiej mowie końcowe t w not może być bardzo krótkie. Dlatego słowo łatwo pomylić z no, jeśli słucha się tylko początku. Now kończy się innym ruchem samogłoski, a nie zwarciem t. W note samogłoska jest dłuższa, a zapisane e nie brzmi osobno. Aby rozpoznać not, wychwyć krótką samogłoskę i szybkie zakończenie na t.',
+  ru: 'На слух I am может проскочить почти одним толчком, но на письме это два слова. I всегда заглавная, am — маленькое и второе. Если середина потерялась, верните простой ритм: I — am.',
+  uk: 'На слух I am може промайнути майже одним поштовхом, але на письмі це два слова. I завжди велика, am — маленьке й друге. Якщо середина загубилася, поверніть простий ритм: I — am.',
+  es: 'Al oído, I am puede pasar casi de un solo golpe, pero al escribir son dos palabras. I siempre va en mayúscula y am, pequeño, ocupa el segundo lugar. Si el centro se pierde, recupera el ritmo: I — am.',
+  'pt-BR': 'Ao ouvir, I am pode passar quase num só impulso, mas na escrita são duas palavras. I fica sempre em maiúscula e am, pequeno, vem em segundo. Se o meio sumir, recupere o ritmo: I — am.',
+  vi: 'Khi nghe, I am có thể lướt qua gần như một nhịp, nhưng khi viết vẫn là hai từ. I luôn viết hoa, còn am viết thường và đứng thứ hai. Nếu phần giữa biến mất, hãy gọi nhịp về: I — am.',
+  id: 'Saat didengar, I am dapat meluncur hampir dalam satu dorongan, tetapi saat ditulis tetap dua kata. I selalu huruf besar, sedangkan am kecil dan berada di urutan kedua. Jika bagian tengah hilang, kembalikan iramanya: I — am.',
+  tr: 'Duyarken I am neredeyse tek vuruşta geçebilir, ama yazıda iki sözcüktür. I her zaman büyük, am küçük ve ikinci sıradadır. Orta kaybolursa ritmi geri çağırın: I — am.',
+  pl: 'W mowie I am może przemknąć niemal jednym ruchem, ale w piśmie to dwa słowa. I jest zawsze wielkie, a małe am stoi drugie. Gdy środek zniknie, przywróć rytm: I — am.',
 });
 
 export const EPISODE_01_SESSION_02_WORD_FIRST_INTRO: readonly [
@@ -111,92 +113,44 @@ export const EPISODE_01_SESSION_02_WORD_FIRST_INTRO: readonly [
 ] = Object.freeze([
   {
     kind: 'concept',
-    title: L({
-      ru: 'Not означает «не»', uk: 'Not означає «не»', es: 'Not significa «no»',
-      'pt-BR': 'Not significa «não»', vi: 'Not có nghĩa là “không”',
-      id: 'Not berarti “tidak”', tr: 'Not “değil” anlamını verir', pl: 'Not znaczy „nie”',
-    }),
+    title: L({ ru: 'Два слова — одна команда', uk: 'Два слова працюють разом', es: 'Dos palabras, un equipo', 'pt-BR': 'Duas palavras, uma equipe', vi: 'Hai từ, một đội', id: 'Dua kata, satu tim', tr: 'İki sözcük, tek takım', pl: 'Dwa słowa, jedna drużyna' }),
     body: conceptBody,
-    bodyRuns: markBody(conceptBody),
+    bodyRuns: markEnglish(conceptBody),
     question: {
-      prompt: L({
-        ru: 'Какое английское слово означает «не»?', uk: 'Яке англійське слово означає «не»?',
-        es: '¿Qué palabra inglesa expresa «no»?', 'pt-BR': 'Qual palavra inglesa expressa «não»?',
-        vi: 'Từ tiếng Anh nào có nghĩa là “không”?', id: 'Kata Inggris mana yang berarti “tidak”?',
-        tr: 'Hangi İngilizce sözcük “değil” anlamını verir?', pl: 'Które angielskie słowo znaczy „nie”?',
-      }),
-      choices: [L({ ru: 'not', uk: 'not', es: 'not', 'pt-BR': 'not', vi: 'not', id: 'not', tr: 'not', pl: 'not' }), L({ ru: 'no', uk: 'no', es: 'no', 'pt-BR': 'no', vi: 'no', id: 'no', tr: 'no', pl: 'no' }), L({ ru: 'now', uk: 'now', es: 'now', 'pt-BR': 'now', vi: 'now', id: 'now', tr: 'now', pl: 'now' })],
-      correctChoiceIndex: 0,
-      explanation: L({
-        ru: 'Not — отдельное английское отрицание «не»; no и now имеют другое значение.',
-        uk: 'Not — окреме англійське заперечення «не»; no та now мають інше значення.',
-        es: 'Not es la negación inglesa; no y now tienen otra función y otro significado.',
-        'pt-BR': 'Not é a negação inglesa; no e now têm outra função e outro significado.',
-        vi: 'Not là từ phủ định tiếng Anh; no và now có nghĩa và chức năng khác.',
-        id: 'Not adalah kata negasi Inggris; no dan now mempunyai arti serta fungsi lain.',
-        tr: 'Not İngilizce olumsuzluk sözcüğüdür; no ve now başka anlam taşır.',
-        pl: 'Not jest angielskim przeczeniem; no i now mają inne znaczenie i funkcję.',
-      }),
+      grammarFeatureId: 'affirmative_self_statement',
+      testedDimension: 'complete_I_am_frame',
+      prompt: L({ ru: 'Какое начало полностью называет говорящего и связь?', uk: 'Який початок повністю називає мовця й зв’язок?', es: '¿Qué inicio muestra al hablante y la conexión?', 'pt-BR': 'Qual início mostra quem fala e a ligação?', vi: 'Mở đầu nào có cả người nói lẫn từ nối?', id: 'Awal mana memuat penutur dan penghubung?', tr: 'Hangi başlangıçta hem konuşan hem bağ vardır?', pl: 'Który początek zawiera mówiącego i łącznik?' }),
+      choices: [target('I'), target('I am'), target('am')],
+      correctChoiceIndex: 1,
+      explanation: L({ ru: 'I am сохраняет обе роли: I называет говорящего, am связывает его с продолжением.', uk: 'I am зберігає обидві ролі: I називає мовця, am пов’язує його з продовженням.', es: 'I am conserva ambos papeles: I nombra al hablante y am lo conecta con lo que sigue.', 'pt-BR': 'I am mantém os dois papéis: I mostra quem fala e am liga ao que vem depois.', vi: 'I am giữ đủ hai vai trò: I chỉ người nói, am nối với phần tiếp theo.', id: 'I am menjaga kedua peran: I menamai penutur dan am menghubungkannya dengan kelanjutan.', tr: 'I am iki görevi de korur: I konuşanı gösterir, am devamına bağlar.', pl: 'I am zachowuje obie role: I wskazuje mówiącego, a am łączy go z dalszą częścią.' }),
     },
   },
   {
     kind: 'formula',
-    title: L({
-      ru: 'Три буквы: n-o-t', uk: 'Три літери: n-o-t', es: 'Tres letras: n-o-t',
-      'pt-BR': 'Três letras: n-o-t', vi: 'Ba chữ cái: n-o-t', id: 'Tiga huruf: n-o-t',
-      tr: 'Üç harf: n-o-t', pl: 'Trzy litery: n-o-t',
-    }),
+    title: L({ ru: 'Сначала I, затем am', uk: 'Спочатку I, потім am', es: 'Primero I, después am', 'pt-BR': 'Primeiro I, depois am', vi: 'I trước, am sau', id: 'I dahulu, lalu am', tr: 'Önce I, sonra am', pl: 'Najpierw I, potem am' }),
     body: formulaBody,
-    bodyRuns: markBody(formulaBody),
+    bodyRuns: markEnglish(formulaBody),
     question: {
-      prompt: L({
-        ru: 'Какая форма написана полностью?', uk: 'Яка форма написана повністю?',
-        es: '¿Qué forma está escrita completa?', 'pt-BR': 'Qual forma está escrita por completo?',
-        vi: 'Dạng nào được viết đầy đủ?', id: 'Bentuk mana yang ditulis lengkap?',
-        tr: 'Hangi biçim eksiksiz yazılmıştır?', pl: 'Która forma jest zapisana w całości?',
-      }),
-      choices: [L({ ru: 'not', uk: 'not', es: 'not', 'pt-BR': 'not', vi: 'not', id: 'not', tr: 'not', pl: 'not' }), L({ ru: 'no', uk: 'no', es: 'no', 'pt-BR': 'no', vi: 'no', id: 'no', tr: 'no', pl: 'no' }), L({ ru: 'note', uk: 'note', es: 'note', 'pt-BR': 'note', vi: 'note', id: 'note', tr: 'note', pl: 'note' })],
-      correctChoiceIndex: 0,
-      explanation: L({
-        ru: 'Not заканчивается буквой t. No теряет эту букву, а note добавляет лишнюю e.',
-        uk: 'Not закінчується літерою t. No втрачає її, а note додає зайву e.',
-        es: 'Not termina en t. No pierde esa letra y note añade una e que cambia la palabra.',
-        'pt-BR': 'Not termina em t. No perde essa letra e note acrescenta um e que muda a palavra.',
-        vi: 'Not kết thúc bằng t. No thiếu chữ đó, còn note thêm e và trở thành từ khác.',
-        id: 'Not berakhir dengan t. No kehilangan huruf itu, sedangkan note menambah e dan menjadi kata lain.',
-        tr: 'Not t ile biter. No bu harfi kaybeder, note ise sözcüğü değiştiren bir e ekler.',
-        pl: 'Not kończy się literą t. No jej nie ma, a note dodaje e i tworzy inne słowo.',
-      }),
+      grammarFeatureId: 'affirmative_self_statement',
+      testedDimension: 'I_then_am_order',
+      prompt: L({ ru: 'Какой порядок даёт точное начало утверждения?', uk: 'Який порядок дає точний початок твердження?', es: '¿Qué orden da el inicio exacto de una afirmación?', 'pt-BR': 'Qual ordem forma o início exato de uma afirmação?', vi: 'Thứ tự nào tạo đúng phần mở đầu câu khẳng định?', id: 'Urutan mana membentuk awal pernyataan yang tepat?', tr: 'Hangi sıra olumlu cümlenin doğru başlangıcını verir?', pl: 'Która kolejność tworzy dokładny początek oznajmienia?' }),
+      choices: [target('I I'), target('am am'), target('I am')],
+      correctChoiceIndex: 2,
+      explanation: L({ ru: 'Верный порядок — I am: говорящий стоит первым, связка идёт сразу следом.', uk: 'Правильний порядок — I am: мовець стоїть першим, зв’язок іде одразу слідом.', es: 'El orden correcto es I am: primero el hablante y justo después la conexión.', 'pt-BR': 'A ordem correta é I am: primeiro quem fala e logo depois a ligação.', vi: 'Thứ tự đúng là I am: người nói đứng trước, từ nối theo ngay sau.', id: 'Urutan yang benar adalah I am: penutur lebih dulu, penghubung tepat sesudahnya.', tr: 'Doğru sıra I am: önce konuşan, hemen ardından bağ gelir.', pl: 'Właściwy szyk to I am: najpierw mówiący, zaraz potem łącznik.' }),
     },
   },
   {
     kind: 'trap',
-    title: L({
-      ru: 'Не теряйте конечную t', uk: 'Не губіть кінцеву t', es: 'No pierdas la t final',
-      'pt-BR': 'Não perca o t final', vi: 'Đừng bỏ âm t cuối', id: 'Jangan hilangkan t terakhir',
-      tr: 'Sondaki t sesini kaybetmeyin', pl: 'Nie gub końcowego t',
-    }),
+    title: L({ ru: 'Не теряйте am', uk: 'Не губіть am', es: 'No pierdas am', 'pt-BR': 'Não perca am', vi: 'Đừng làm rơi am', id: 'Jangan kehilangan am', tr: 'Am kaybolmasın', pl: 'Nie zgub am' }),
     body: trapBody,
-    bodyRuns: markBody(trapBody),
+    bodyRuns: markEnglish(trapBody),
     question: {
-      prompt: L({
-        ru: 'Какое слово вы услышали: /nɒt/?', uk: 'Яке слово ви почули: /nɒt/?',
-        es: '¿Qué palabra oyes: /nɒt/?', 'pt-BR': 'Qual palavra você ouve: /nɒt/?',
-        vi: 'Bạn nghe thấy từ nào: /nɒt/?', id: 'Kata mana yang terdengar: /nɒt/?',
-        tr: 'Hangi sözcüğü duyuyorsunuz: /nɒt/?', pl: 'Które słowo słyszysz: /nɒt/?',
-      }),
-      choices: [L({ ru: 'not', uk: 'not', es: 'not', 'pt-BR': 'not', vi: 'not', id: 'not', tr: 'not', pl: 'not' }), L({ ru: 'now', uk: 'now', es: 'now', 'pt-BR': 'now', vi: 'now', id: 'now', tr: 'now', pl: 'now' }), L({ ru: 'note', uk: 'note', es: 'note', 'pt-BR': 'note', vi: 'note', id: 'note', tr: 'note', pl: 'note' })],
+      grammarFeatureId: 'affirmative_self_statement',
+      testedDimension: 'orthographic_I_am_integrity',
+      prompt: L({ ru: 'Как записано точное начало фразы о себе?', uk: 'Як записано точний початок фрази про себе?', es: '¿Cómo se escribe el inicio exacto de una frase sobre ti?', 'pt-BR': 'Como se escreve o início exato de uma frase sobre você?', vi: 'Phần mở đầu đúng của câu nói về bản thân được viết thế nào?', id: 'Bagaimana awal tepat kalimat tentang diri sendiri ditulis?', tr: 'Kendinizle ilgili cümlenin doğru başlangıcı nasıl yazılır?', pl: 'Jak zapisać dokładny początek zdania o sobie?' }),
+      choices: [target('I am'), target('l am'), target('I arn')],
       correctChoiceIndex: 0,
-      explanation: L({
-        ru: 'В not слышна короткая гласная и конечная t; now и note звучат иначе.',
-        uk: 'У not чути короткий голосний і кінцеву t; now та note звучать інакше.',
-        es: 'Not lleva una vocal breve y una t final; now y note tienen otros sonidos.',
-        'pt-BR': 'Not tem uma vogal breve e t final; now e note usam outros sons.',
-        vi: 'Not có nguyên âm ngắn và âm t cuối; now và note phát âm khác.',
-        id: 'Not memakai vokal pendek dan t terakhir; now dan note berbunyi berbeda.',
-        tr: 'Not kısa ünlü ve son t taşır; now ile note farklı duyulur.',
-        pl: 'Not ma krótką samogłoskę i końcowe t; now i note brzmią inaczej.',
-      }),
+      explanation: L({ ru: 'I am начинается с заглавной I и сохраняет маленькое am отдельным вторым словом.', uk: 'I am починається з великої I й зберігає маленьке am окремим другим словом.', es: 'I am empieza con I mayúscula y mantiene am como segunda palabra separada.', 'pt-BR': 'I am começa com I maiúsculo e mantém am como segunda palavra separada.', vi: 'I am bắt đầu bằng I viết hoa và giữ am thành từ thứ hai riêng biệt.', id: 'I am dimulai dengan I besar dan mempertahankan am sebagai kata kedua yang terpisah.', tr: 'I am büyük I ile başlar ve küçük am ayrı ikinci sözcük olarak kalır.', pl: 'I am zaczyna się wielkim I, a małe am pozostaje osobnym drugim słowem.' }),
     },
   },
 ]);

@@ -105,6 +105,15 @@ export const ARENA_V2_REVEAL_MS = 1_200;
 export const ARENA_V2_READING_MS = 1_500;
 export const ARENA_V2_RECEIVE_GRACE_MS = 1_500;
 export const ARENA_V2_QUEUE_LEASE_MS = 45_000;
+/**
+ * Через сколько после ПРОСРОЧЕННОГО дедлайна фазы матч считается брошенным и
+ * перестаёт блокировать новый поиск (владелец 2026-08-29).
+ *
+ * Запас крупный намеренно: живой матч всегда двигает свой дедлайн, поэтому
+ * пять минут тишины после срока не может означать «идёт игра». Меньше брать
+ * опасно — вернувшийся из фона игрок должен доиграть, а не потерять матч.
+ */
+export const ARENA_V2_ACTIVE_MATCH_STALE_MS = 5 * 60_000;
 export const ARENA_V2_MATCH_TTL_MS = 7 * 24 * 60 * 60 * 1_000;
 export const ARENA_V2_INVITE_TTL_MS = 10 * 60 * 1_000;
 export const ARENA_V2_RENDEZVOUS_MS = 90 * 1_000;

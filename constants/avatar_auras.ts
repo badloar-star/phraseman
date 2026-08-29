@@ -3,6 +3,7 @@ export {
   AVATAR_AURA_OWNED_KEY,
   USER_AVATAR_AURA_KEY,
 } from './customization_storage_keys';
+import { isDevAllCustomizationAccessActive } from './customization_dev_access';
 // зачем: см. CUSTOM_AVATAR_BUY_COST — жемчуг только покупается, цена = ценник в евро.
 // Аура дороже аватара (120 против 90): она заметнее в бою/профиле и её носят реже.
 export const AVATAR_AURA_BUY_COST = 120;
@@ -191,9 +192,11 @@ export function getEffectiveAvatarAuraId(
   isPremium?: boolean,
   isVip?: boolean,
   isPro?: boolean,
+  devOwnerStableId?: string | null,
 ): string | undefined {
   const aura = normalizeAvatarAuraId(id);
   if (aura === NO_AVATAR_AURA_ID) return undefined;
+  if (aura && isDevAllCustomizationAccessActive(devOwnerStableId)) return aura;
   if (aura === PLUS_AVATAR_AURA_ID) return isPremium || isVip ? PLUS_AVATAR_AURA_ID : undefined;
   // Older/public profile contracts carry only isPremium. An explicitly stored Pro
   // selection is therefore renderable for premium profiles, while local callers

@@ -30,13 +30,14 @@ function makeL(lang: Lang) {
   return (
     ru: string,
     uk: string,
+    en: string,
     es: string,
     ptBr: string,
     vi: string,
     id: string,
     tr: string,
     pl: string,
-  ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 }
 
 export default function ReferralWelcomeHost() {
@@ -99,6 +100,7 @@ export default function ReferralWelcomeHost() {
   const title = L(
     'Тебя пригласили — лови подарок',
     'Тебе запросили — лови подарунок',
+    'You were invited — grab a gift',
     'Te invitaron: hay un regalo',
     'Você foi convidado: tem um presente',
     'Bạn được mời — có quà tặng',
@@ -109,6 +111,7 @@ export default function ReferralWelcomeHost() {
   const body = L(
     'Оформи Plus или Pro — пригласивший тебя друг получит ключ. Награда — Plus от 1 дня до 365 дней.',
     'Оформи Plus або Pro — друг, який тебе запросив, отримає ключ. Нагорода — Plus від 1 до 365 днів.',
+    'Subscribe to Plus or Pro — the friend who invited you gets a key. Reward: Plus from 1 to 365 days.',
     'Compra Plus o Pro: quien te invitó recibirá una llave. Recompensa: Plus de 1 a 365 días.',
     'Assine Plus ou Pro: quem convidou você recebe uma chave. Recompensa: Plus de 1 a 365 dias.',
     'Mua Plus hoặc Pro: người mời bạn nhận một chìa khóa. Phần thưởng: Plus từ 1 đến 365 ngày.',
@@ -119,6 +122,7 @@ export default function ReferralWelcomeHost() {
   const primaryCta = L(
     'Начать учиться',
     'Почати навчання',
+    'Start learning',
     'Empezar a aprender',
     'Começar a aprender',
     'Bắt đầu học',
@@ -129,6 +133,7 @@ export default function ReferralWelcomeHost() {
   const codeCta = L(
     'У меня есть код приглашения',
     'У мене є код запрошення',
+    'I have an invite code',
     'Tengo un código de invitación',
     'Tenho um código de convite',
     'Tôi có mã mời',

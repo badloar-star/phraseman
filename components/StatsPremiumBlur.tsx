@@ -184,6 +184,7 @@ function StatsPremiumBlur({
   const ctaLabel = triLang(lang, {
     ru: 'Открыть с Plus',
     uk: 'Відкрити з Plus',
+    en: 'Unlock with Plus',
     es: 'Abrir con Plus',
     'pt-BR': 'Abrir com Plus',
     vi: 'Mở bằng Plus',

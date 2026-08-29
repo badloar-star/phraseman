@@ -1,14 +1,16 @@
 import { ALL_LEVEL_GIFT_DEFS, type GiftDef } from './level_gift_system';
 import { isLocalSpinReceiptCreditId } from './level_spin_credit_ids';
 import { LEVEL_SPIN_REWARD_CATALOG } from './level_spin_reward_catalog';
+import {
+  hasValidPaidLevelSpinRuneFingerprint,
+  parsePaidLevelSpinRuneOperation,
+  type PaidLevelSpinRuneOperationV1,
+} from '../modules/phone-state/domains/economy';
 
-export type LocalLevelSpinReceipt = {
+type LocalLevelSpinReceiptBase = {
   ok: true;
   stableUid: string;
   requestId: string;
-  creditId: string;
-  level: number;
-  kind: 'standard' | 'milestone';
   baseGiftId: string;
   premiumGiftId: null;
   createdAtMs: number;
@@ -18,9 +20,81 @@ export type LocalLevelSpinReceipt = {
   revealState?: 'pending' | 'acknowledged';
   deliveries: { base: { state: 'unclaimed' } };
   catalogVersion: 1 | 2 | 3 | 4 | 5 | 6;
-  schemaVersion: 1 | 2;
   localOnly: true;
 };
+
+export type FreeLocalLevelSpinReceipt = LocalLevelSpinReceiptBase & {
+  schemaVersion: 1 | 2;
+  paymentKind?: 'free_credit';
+  creditId: string;
+  level: number;
+  kind: 'standard' | 'milestone';
+};
+
+export type PaidLocalLevelSpinReceipt = LocalLevelSpinReceiptBase & {
+  schemaVersion: 3;
+  paymentKind: 'runes';
+  runeOperationId: string;
+  runePrice: 300;
+  creditId: `paid_level_spin:${string}`;
+  level: 0;
+  kind: 'standard';
+};
+
+export type LocalLevelSpinReceipt = FreeLocalLevelSpinReceipt | PaidLocalLevelSpinReceipt;
+
+export type PaidLevelSpinEnvelopeV1 = Readonly<{
+  schemaVersion: 'paid-level-spin-envelope.v1';
+  ownerStableId: string;
+  requestId: string;
+  operation: PaidLevelSpinRuneOperationV1;
+  receipt: PaidLocalLevelSpinReceipt;
+}>;
+
+export function paidLevelSpinEnvelopePrefix(ownerStableId: string): string {
+  const owner = ownerStableId.trim();
+  if (!owner || owner.includes('/')) throw new Error('paid_level_spin_owner_invalid');
+  return `paid_level_spin_envelope_v1:${encodeURIComponent(owner)}:`;
+}
+
+export function paidLevelSpinEnvelopeKey(ownerStableId: string, requestId: string): string {
+  if (!/^[A-Za-z0-9_-]{16,96}$/.test(requestId)) {
+    throw new Error('paid_level_spin_request_invalid');
+  }
+  return `${paidLevelSpinEnvelopePrefix(ownerStableId)}${requestId}`;
+}
+
+export async function parsePaidLevelSpinEnvelope(
+  input: unknown,
+  expectedOwnerStableId?: string,
+): Promise<PaidLevelSpinEnvelopeV1 | null> {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const value = input as Partial<PaidLevelSpinEnvelopeV1>;
+  const keys = Object.keys(value).sort();
+  const expectedKeys = ['schemaVersion', 'ownerStableId', 'requestId', 'operation', 'receipt'].sort();
+  if (keys.length !== expectedKeys.length
+    || !keys.every((key, index) => key === expectedKeys[index])
+    || value.schemaVersion !== 'paid-level-spin-envelope.v1'
+    || typeof value.ownerStableId !== 'string'
+    || (expectedOwnerStableId !== undefined && value.ownerStableId !== expectedOwnerStableId)
+    || typeof value.requestId !== 'string') return null;
+  const operation = parsePaidLevelSpinRuneOperation(value.operation);
+  const receipt = value.receipt;
+  if (!operation || !receipt || receipt.schemaVersion !== 3
+    || !await hasValidPaidLevelSpinRuneFingerprint(operation)
+    || operation.ownerStableId !== value.ownerStableId
+    || operation.requestId !== value.requestId
+    || receipt.stableUid !== value.ownerStableId
+    || receipt.requestId !== value.requestId
+    || receipt.runeOperationId !== operation.operationId
+    || receipt.creditId !== operation.operationId
+    || receipt.runePrice !== operation.price
+    || receipt.baseGiftId !== operation.giftId
+    || receipt.catalogVersion !== operation.catalogVersion
+    || receipt.createdAtMs !== operation.createdAtMs
+    || !isRecoverableLocalLevelSpinReceipt(receipt, value.ownerStableId, receipt.createdAtMs)) return null;
+  return value as PaidLevelSpinEnvelopeV1;
+}
 
 export type LocalLevelSpinJournalEntry = {
   owner: string;
@@ -113,19 +187,28 @@ export function isLocalSpinGiftAllowedForCatalogVersion(giftId: string, catalogV
 }
 
 export function localLevelSpinReceiptToInventory(receipt: LocalLevelSpinReceipt): LocalLevelSpinInventory {
+  const paid = receipt?.schemaVersion === 3 && receipt.paymentKind === 'runes';
   if (!receipt || typeof receipt !== 'object'
     || receipt.ok !== true
     || receipt.localOnly !== true
     || typeof receipt.stableUid !== 'string' || receipt.stableUid.trim().length === 0
     || typeof receipt.requestId !== 'string' || !/^[A-Za-z0-9_-]{16,96}$/.test(receipt.requestId)
-    || !Number.isInteger(receipt.level) || receipt.level < 2 || receipt.level > 60
-    || !isLocalSpinReceiptCreditId(receipt.creditId)
-    || (receipt.creditId.startsWith('level_spin_v1_')
-      && receipt.creditId !== `level_spin_v1_${String(receipt.level).padStart(3, '0')}`)
+    || (paid
+      ? receipt.level !== 0
+        || receipt.kind !== 'standard'
+        || receipt.runePrice !== 300
+        || receipt.runeOperationId !== `paid_level_spin:${receipt.requestId}`
+        || receipt.creditId !== receipt.runeOperationId
+      : !Number.isInteger(receipt.level) || receipt.level < 2 || receipt.level > 60
+        || !isLocalSpinReceiptCreditId(receipt.creditId)
+        || (receipt.creditId.startsWith('level_spin_v1_')
+          && receipt.creditId !== `level_spin_v1_${String(receipt.level).padStart(3, '0')}`))
     || !Number.isSafeInteger(receipt.createdAtMs) || receipt.createdAtMs <= 0
     || !Number.isSafeInteger(receipt.expiresAtMs)
     || receipt.expiresAtMs !== receipt.createdAtMs + 259_200_000
-    || !((receipt.catalogVersion === 1 && receipt.schemaVersion === 1)
+    || !(paid
+      ? receipt.catalogVersion >= 2 && receipt.catalogVersion <= 6
+      : (receipt.catalogVersion === 1 && receipt.schemaVersion === 1)
       || (receipt.catalogVersion === 2 && receipt.schemaVersion === 2)
       || (receipt.catalogVersion === 3 && receipt.schemaVersion === 2)
       // v4 (2026-08-26): добавлена награда «тема оформления», подняты веса
@@ -156,10 +239,16 @@ export function isRecoverableLocalLevelSpinReceipt(
       && Object.keys(receipt.deliveries ?? {}).length === 1
       && Number.isSafeInteger(receipt.balanceAfter)
       && receipt.balanceAfter >= 0
-      && (receipt.kind === 'standard' || receipt.kind === 'milestone')
-      && receipt.kind === (receipt.level % 5 === 0 ? 'milestone' : 'standard')
+      && (receipt.schemaVersion === 3
+        ? receipt.paymentKind === 'runes'
+          && receipt.kind === 'standard'
+          && receipt.level === 0
+          && receipt.runePrice === 300
+          && receipt.runeOperationId === receipt.creditId
+        : (receipt.kind === 'standard' || receipt.kind === 'milestone')
+          && receipt.kind === (receipt.level % 5 === 0 ? 'milestone' : 'standard'))
       && Number.isSafeInteger(nowMs)
-      && receipt.expiresAtMs > nowMs;
+      && (receipt.schemaVersion === 3 || receipt.expiresAtMs > nowMs);
   } catch {
     return false;
   }

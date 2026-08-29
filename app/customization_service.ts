@@ -1,6 +1,7 @@
 import type AsyncStorage from '@react-native-async-storage/async-storage';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
 import { USER_AVATAR_AURA_KEY } from '../constants/customization_storage_keys';
+import type { AccountTransitionLockLease } from './account_generation';
 import type { CustomizationSnapshot } from './customization_snapshot';
 
 export interface ApplyCustomizationInput {
@@ -10,6 +11,12 @@ export interface ApplyCustomizationInput {
   frameId: string;
   cloudSyncMode?: 'immediate' | 'deferred';
 }
+
+export type CustomizationSelectionCommitContext = Readonly<{
+  operationId?: string;
+  source: 'user' | 'external' | 'legacy';
+  occurrenceId?: string;
+}>;
 
 export interface CustomizationServiceDeps {
   storage: Pick<typeof AsyncStorage, 'multiSet'>;
@@ -22,9 +29,17 @@ export interface CustomizationServiceDeps {
     level: number,
     storedAuraSelection: string | null,
   ) => void | Promise<void>;
+  commitSelection?: (
+    input: ApplyCustomizationInput,
+    context: CustomizationSelectionCommitContext | undefined,
+    inheritedLease?: AccountTransitionLockLease,
+  ) => Promise<void>;
   createAccountScope?: () => {
     isCurrent: () => boolean;
-    runExclusive: <T>(work: () => Promise<T>) => Promise<T | undefined>;
+    runExclusive: <T>(
+      work: () => Promise<T>,
+      inheritedLease?: AccountTransitionLockLease,
+    ) => Promise<T | undefined>;
   };
 }
 
@@ -60,6 +75,8 @@ async function applyCustomizationDraftInternal(
   input: ApplyCustomizationInput,
   deps: CustomizationServiceDeps,
   force: boolean,
+  accountTransitionLockLease?: AccountTransitionLockLease,
+  selectionContext?: CustomizationSelectionCommitContext,
 ): Promise<CustomizationSnapshot> {
   const accountScope = deps.createAccountScope?.();
   const persistOptimisticSelection = async (): Promise<{
@@ -75,13 +92,18 @@ async function applyCustomizationDraftInternal(
     }
 
     const optimistic = snapshotForInput(previous, input);
-    deps.publishSnapshot(optimistic);
     try {
-      await deps.storage.multiSet([
-        ['user_avatar', input.avatarValue],
-        ['user_frame', input.frameId],
-        [USER_AVATAR_AURA_KEY, input.storedAuraSelection ?? ''],
-      ]);
+      if (deps.commitSelection) {
+        await deps.commitSelection(input, selectionContext, accountTransitionLockLease);
+        deps.publishSnapshot(optimistic);
+      } else {
+        deps.publishSnapshot(optimistic);
+        await deps.storage.multiSet([
+          ['user_avatar', input.avatarValue],
+          ['user_frame', input.frameId],
+          [USER_AVATAR_AURA_KEY, input.storedAuraSelection ?? ''],
+        ]);
+      }
       if (accountScope && !accountScope.isCurrent()) {
         throw new Error('customization_account_changed');
       }
@@ -100,7 +122,7 @@ async function applyCustomizationDraftInternal(
   // аккаунта могла успеть очистить общий snapshot после первой проверки, а
   // старый экран затем повторно публиковал в него аватар предыдущего владельца.
   const localResult = accountScope
-    ? await accountScope.runExclusive(persistOptimisticSelection)
+    ? await accountScope.runExclusive(persistOptimisticSelection, accountTransitionLockLease)
     : await persistOptimisticSelection();
   if (!localResult) throw new Error('customization_account_changed');
   if (!localResult.changed) return localResult.snapshot;
@@ -127,13 +149,17 @@ async function applyCustomizationDraftInternal(
 export async function applyCustomizationDraft(
   input: ApplyCustomizationInput,
   deps: CustomizationServiceDeps,
+  accountTransitionLockLease?: AccountTransitionLockLease,
+  selectionContext?: CustomizationSelectionCommitContext,
 ): Promise<CustomizationSnapshot> {
-  return applyCustomizationDraftInternal(input, deps, false);
+  return applyCustomizationDraftInternal(input, deps, false, accountTransitionLockLease, selectionContext);
 }
 
 export async function resetToLevelAvatar(
   input: { level: number; storedAuraSelection: string | null },
   deps: CustomizationServiceDeps,
+  accountTransitionLockLease?: AccountTransitionLockLease,
+  selectionContext?: CustomizationSelectionCommitContext,
 ): Promise<CustomizationSnapshot> {
   const level = Math.max(1, Math.floor(input.level));
   return applyCustomizationDraftInternal({
@@ -142,5 +168,5 @@ export async function resetToLevelAvatar(
     level,
     frameId: getBestFrameForLevel(level).id,
     cloudSyncMode: 'deferred',
-  }, deps, true);
+  }, deps, true, accountTransitionLockLease, selectionContext);
 }

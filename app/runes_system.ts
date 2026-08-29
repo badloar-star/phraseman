@@ -29,6 +29,7 @@ import {
   waitForActiveAccountGeneration,
 } from './account_generation';
 import { emitAppEvent } from './events';
+import { DebugLogger } from './debug-logger';
 import { readUnifiedLevelSpinStars, peekStoredLevelSpinStarsForBoot } from './level_spin_star_grants';
 
 export type RunesBalance = Readonly<{
@@ -36,6 +37,12 @@ export type RunesBalance = Readonly<{
   balance: number;
   /** Сколько заработано всего (соревновательный прогресс; гранты сюда не идут). */
   earnedTotal: number;
+}>;
+
+export type RunesBalanceRead = Readonly<{
+  wallet: RunesBalance;
+  /** `fallback` is safe to display but cannot establish a new Season baseline. */
+  quality: 'durable' | 'fallback';
 }>;
 
 const EMPTY: RunesBalance = Object.freeze({ balance: 0, earnedTotal: 0 });
@@ -78,22 +85,39 @@ export function peekRunes(): number {
  * сервером начисления) и синхронизирует снапшот. Firestore при этом НЕ читается —
  * стоимости нет.
  */
-export async function getRunesBalance(): Promise<RunesBalance> {
+export async function getRunesBalanceRead(): Promise<RunesBalanceRead> {
   const token = captureAccountGeneration();
   const stableId = token.stableId?.trim();
-  if (!stableId || !isCurrentAccountGeneration(token, stableId)) return EMPTY;
+  if (!stableId || !isCurrentAccountGeneration(token, stableId)) {
+    return Object.freeze({ wallet: EMPTY, quality: 'fallback' });
+  }
   try {
     const unified = await readUnifiedLevelSpinStars(token);
-    if (!isCurrentAccountGeneration(token, stableId)) return EMPTY;
-    return Object.freeze({
+    if (!isCurrentAccountGeneration(token, stableId)) {
+      return Object.freeze({ wallet: EMPTY, quality: 'fallback' });
+    }
+    const result = Object.freeze({
       balance: normalize(unified.balance),
       earnedTotal: normalize(unified.earnedTotal),
     });
+    DebugLogger.info('runes_wallet:read_unified', JSON.stringify({
+      owner: stableId.slice(0, 8),
+      balance: result.balance,
+      earnedTotal: result.earnedTotal,
+    }));
+    return Object.freeze({ wallet: result, quality: 'durable' });
   } catch {
     // Проекция битая или аккаунт сменился — показываем то, что уже в снапшоте,
     // вместо нуля: занижать баланс на глазах у пользователя хуже, чем отстать.
-    return readFromSnapshot();
+    // The quality marker keeps this potentially incomplete value from becoming
+    // a future Season's durable wallet baseline.
+    return Object.freeze({ wallet: readFromSnapshot(), quality: 'fallback' });
   }
+}
+
+/** Compatibility facade for consumers that only render the wallet. */
+export async function getRunesBalance(): Promise<RunesBalance> {
+  return (await getRunesBalanceRead()).wallet;
 }
 
 /**
@@ -110,16 +134,29 @@ export async function getRunesBalance(): Promise<RunesBalance> {
 export function subscribeRunesBalance(
   listener: (value: RunesBalance, delta: number) => void,
 ): () => void {
-  let previous = readFromSnapshot();
-  return subscribeAppSnapshot(() => {
-    const next = readFromSnapshot();
-    if (next.balance === previous.balance && next.earnedTotal === previous.earnedTotal) return;
+  return subscribeRunesSnapshot((next, previous) => {
     const delta = next.balance - previous.balance;
-    previous = next;
     listener(next, delta);
     if (delta !== 0) {
       emitAppEvent('runes_balance_updated', { balance: next.balance, delta });
     }
+  });
+}
+
+/**
+ * Silent canonical subscription for projections that need both balance and
+ * earned-total changes without emitting the wallet animation event themselves.
+ */
+export function subscribeRunesSnapshot(
+  listener: (value: RunesBalance, previous: RunesBalance) => void,
+): () => void {
+  let previous = readFromSnapshot();
+  return subscribeAppSnapshot(() => {
+    const next = readFromSnapshot();
+    if (next.balance === previous.balance && next.earnedTotal === previous.earnedTotal) return;
+    const prior = previous;
+    previous = next;
+    listener(next, prior);
   });
 }
 

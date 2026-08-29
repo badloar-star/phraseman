@@ -72,6 +72,7 @@ export const FEATURE_INTRO_REGISTRY: readonly FeatureIntroDef[] = [
     title: (lang) => triLang(lang, {
       ru: 'Арена',
       uk: 'Арена',
+      en: 'Arena',
       es: 'Arena',
       'pt-BR': 'Arena',
       vi: 'Đấu trường',
@@ -82,6 +83,7 @@ export const FEATURE_INTRO_REGISTRY: readonly FeatureIntroDef[] = [
     body: (lang) => triLang(lang, {
       ru: 'Дуэли один на один по фразам. Побеждай и поднимайся по рангам — от Бронзы до Легенды. За победы — руны для сезонных наград.',
       uk: 'Дуелі один на один по фразах. Перемагай і піднімайся по рангах — від Бронзи до Легенди. За перемоги — руни для сезонних нагород.',
+      en: 'One-on-one phrase duels. Win and climb the ranks — from Bronze to Legend. Victories earn runes for season rewards.',
       es: 'Duelos uno contra uno con frases. Gana y sube de rango, desde Bronce hasta Leyenda. Las victorias dan runas para las recompensas de temporada.',
       'pt-BR': 'Duelos um contra um com frases. Vença e suba de rank, do Bronze até Lenda. As vitórias dão runas para as recompensas da temporada.',
       vi: 'Đấu 1 chọi 1 bằng các câu học. Thắng để lên rank, từ Đồng đến Huyền thoại. Chiến thắng cho rune để đổi phần thưởng theo mùa.',
@@ -92,6 +94,7 @@ export const FEATURE_INTRO_REGISTRY: readonly FeatureIntroDef[] = [
     ctaLabel: (lang) => triLang(lang, {
       ru: 'В бой',
       uk: 'У бій',
+      en: 'Into battle',
       es: 'A la batalla',
       'pt-BR': 'Para a batalha',
       vi: 'Vào trận',

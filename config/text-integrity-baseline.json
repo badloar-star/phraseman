@@ -7258,37 +7258,6 @@
       }
     },
     {
-      "file": "app/avatar_select.tsx",
-      "ownerName": "AvatarSelect",
-      "ownerPath": "AvatarSelect",
-      "ancestorPath": [
-        "ScreenGradient",
-        "View",
-        "View",
-        "View",
-        "Reanimated.View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "a8797ff6db51c464d64bc8c028bb0c9efa8c7684d4567eaf1b92b4e90498f937",
-      "count": 1,
-      "lineHints": [
-        852
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "tournament-avatar-fixed-geometry",
-      "reason": "Name in the animated mini-preview of the collapsing header — fixed absolute-position slot, wrapping would fight the collapse animation",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "owner-2026-08-02-tournament-avatar-plan-fixed-geometry",
-        "scope": "reviewed-fixed-geometry"
-      }
-    },
-    {
       "file": "app/(tabs)/tournaments.tsx",
       "ownerName": "TournamentsScreen",
       "ownerPath": "TournamentsScreen",
@@ -7398,36 +7367,6 @@
       "intendedMode": "temporary-exception",
       "owner": "tournament-avatar-fixed-geometry",
       "reason": "Explicit product decision (owner): weak-spot category title stays single-line, no wrap",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "owner-2026-08-02-tournament-avatar-plan-fixed-geometry",
-        "scope": "reviewed-fixed-geometry"
-      }
-    },
-    {
-      "file": "app/avatar_select.tsx",
-      "ownerName": "AvatarSelect",
-      "ownerPath": "AvatarSelect",
-      "ancestorPath": [
-        "ScreenGradient",
-        "View",
-        "View",
-        "View",
-        "Reanimated.Text"
-      ],
-      "tag": "Reanimated.Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "e522dce87662a4af1f0755c403aefd41769542e1ba3318c6c0d73ec739b4fd30",
-      "count": 1,
-      "lineHints": [
-        846
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "tournament-avatar-fixed-geometry",
-      "reason": "Reanimated.Text collapsing header title — FlowText does not wrap Reanimated text components",
       "expiryMilestone": "text-integrity-residual-closeout",
       "exception": {
         "approvedBy": "owner-2026-08-02-tournament-avatar-plan-fixed-geometry",

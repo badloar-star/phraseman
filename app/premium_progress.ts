@@ -41,7 +41,7 @@ function hasMeaningfulPlan(plan: string): boolean {
 
 function isStorePremiumPlan(plan: string): boolean {
   return plan === 'monthly' || plan === 'yearly' || plan === 'annual'
-    || plan === 'lifetime' || plan === 'max_monthly';
+    || plan === 'lifetime';
 }
 
 function isTruthyProgressFlag(value: unknown): boolean {

@@ -152,16 +152,16 @@ export default function FlashcardsPacksScreen() {
   }, [searchOpen, reduceMotion, searchAnim]);
 
   const searchLabel = triLang(lang, {
-    ru: 'Поиск набора', uk: 'Пошук набору', es: 'Buscar pack',
+    ru: 'Поиск набора', uk: 'Пошук набору', en: 'Search packs', es: 'Buscar pack',
     'pt-BR': 'Buscar pacote', vi: 'Tìm bộ thẻ', id: 'Cari paket', tr: 'Paket ara', pl: 'Szukaj zestawu',
   });
   const closeSearchLabel = triLang(lang, {
-    ru: 'Закрыть поиск', uk: 'Закрити пошук', es: 'Cerrar la búsqueda',
+    ru: 'Закрыть поиск', uk: 'Закрити пошук', en: 'Close search', es: 'Cerrar la búsqueda',
     'pt-BR': 'Fechar a busca', vi: 'Đóng tìm kiếm', id: 'Tutup pencarian',
     tr: 'Aramayı kapat', pl: 'Zamknij wyszukiwanie',
   });
   const screenTitle = triLang(lang, {
-    ru: 'Наборы сообщества', uk: 'Набори спільноти', es: 'Packs de la comunidad',
+    ru: 'Наборы сообщества', uk: 'Набори спільноти', en: 'Community packs', es: 'Packs de la comunidad',
     'pt-BR': 'Pacotes da comunidade', vi: 'Bộ thẻ cộng đồng', id: 'Paket komunitas',
     tr: 'Topluluk paketleri', pl: 'Zestawy społeczności',
   });

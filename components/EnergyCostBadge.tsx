@@ -21,6 +21,8 @@ interface EnergyCostBadgeProps {
   corner?: 'topRight' | 'topLeft';
   /** Для маленьких иконочных CTA, сохраняя тот же единственный ассет. */
   compact?: boolean;
+  /** Для особенно плотных шапок: уменьшает только графику, не область нажатия CTA. */
+  micro?: boolean;
   style?: StyleProp<ViewStyle>;
   testID?: string;
 }
@@ -30,6 +32,7 @@ function EnergyCostBadge({
   urgent = false,
   corner = 'topRight',
   compact = false,
+  micro = false,
   style,
   testID,
 }: EnergyCostBadgeProps) {
@@ -106,9 +109,10 @@ function EnergyCostBadge({
       style={[
         styles.badge,
         compact ? styles.badgeCompact : null,
+        micro ? styles.badgeMicro : null,
         corner === 'topRight'
-          ? (compact ? styles.topRightCompact : styles.topRight)
-          : (compact ? styles.topLeftCompact : styles.topLeft),
+          ? (micro ? styles.topRightMicro : compact ? styles.topRightCompact : styles.topRight)
+          : (micro ? styles.topLeftMicro : compact ? styles.topLeftCompact : styles.topLeft),
         { opacity: enter },
         style,
       ]}
@@ -116,7 +120,7 @@ function EnergyCostBadge({
       <Animated.View style={{ transform: [{ translateY }, { scale: assetScale }, { rotate }] }}>
         <Image
           source={ENERGY_START_COST_IMAGE}
-          style={[styles.asset, compact ? styles.assetCompact : null]}
+          style={[styles.asset, compact ? styles.assetCompact : null, micro ? styles.assetMicro : null]}
           contentFit="contain"
           accessible={false}
           importantForAccessibility="no"
@@ -127,6 +131,7 @@ function EnergyCostBadge({
         style={[
           styles.label,
           compact ? styles.labelCompact : null,
+          micro ? styles.labelMicro : null,
           {
             color: urgent ? t.wrong : t.textPrimary,
             textShadowColor: t.bgPrimary,
@@ -150,10 +155,14 @@ const styles = StyleSheet.create({
   asset: { width: 42, height: 42 },
   badgeCompact: { width: 32, height: 32 },
   assetCompact: { width: 32, height: 32 },
+  badgeMicro: { width: 24, height: 24 },
+  assetMicro: { width: 24, height: 24 },
   topRight: { top: -18, right: 0 },
   topLeft: { top: -18, left: -12 },
   topRightCompact: { top: -14, right: 0 },
   topLeftCompact: { top: -14, left: -8 },
+  topRightMicro: { top: -10, right: 0 },
+  topLeftMicro: { top: -10, left: -6 },
   label: {
     position: 'absolute',
     right: 39,
@@ -164,6 +173,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 3,
   },
   labelCompact: { right: 30, top: 13, fontSize: 12 },
+  labelMicro: { right: 22, top: 9, fontSize: 10 },
 });
 
 export default memo(EnergyCostBadge);

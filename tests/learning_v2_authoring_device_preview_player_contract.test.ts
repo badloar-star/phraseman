@@ -14,7 +14,8 @@ const route = readFileSync(
 
 const requiredPlayerContracts = [
   'previewMode?: string | string[];',
-  'const isAuthoringPreview = __DEV__ && first(params.previewMode) === "authoring_v1";',
+  'const previewMode = first(params.previewMode);',
+  'previewMode === "authoring_v1" || isDevUnlockedDraftPreview',
   "buildLearningV2AuthoringDevicePreviewV1",
   "if (isAuthoringPreview) {",
   "preview_only_no_learner_writes",

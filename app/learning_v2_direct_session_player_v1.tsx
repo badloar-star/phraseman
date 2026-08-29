@@ -34,7 +34,9 @@ import Animated, {
 } from "react-native-reanimated";
 
 import LearningV2AnswerChoice from "../components/LearningV2AnswerChoice";
-import LearningV2NewWordEncounterOverlay from "../components/learning-v2/LearningV2NewWordEncounterOverlay";
+import LearningV2NewWordEncounterOverlay, {
+  type LearningV2WindowPointV1,
+} from "../components/learning-v2/LearningV2NewWordEncounterOverlay";
 import LearningV2WordPocketOverlayV1 from "../components/learning-v2/LearningV2WordPocketOverlayV1";
 import LearningV2SessionFinale from "../components/LearningV2SessionFinale";
 import LearningV2RuneFlight, {
@@ -42,16 +44,17 @@ import LearningV2RuneFlight, {
 } from "../components/LearningV2RuneFlight";
 import ReportErrorButton from "../components/ReportErrorButton";
 import SessionAttemptsHud from "../components/session_attempts/SessionAttemptsHud";
-import SessionAttemptsRecoveryModal from "../components/session_attempts/SessionAttemptsRecoveryModal";
 import { useLang } from "../components/LangContext";
 import { useStudyTarget } from "../components/StudyTargetContext";
 import { useTheme } from "../components/ThemeContext";
+import { useEnergy, useEnergySessionIntent } from "../components/EnergyContext";
 import { hapticError, hapticSuccess, hapticTap } from "../hooks/use-haptics";
 import { useAudio } from "../hooks/use-audio";
 import { useLearningV2LocalHoldToTalkV1 } from "../hooks/use_learning_v2_local_hold_to_talk_v1";
 import { useLearningV2UnlockedLessonWordsV1 } from "../hooks/use_learning_v2_unlocked_lesson_words_v1";
 import { useManagedSpokenAudioPlayer } from "../hooks/use_managed_spoken_audio_player";
 import { useSessionAttempts } from "../hooks/useSessionAttempts";
+import { useSessionAttemptAutoReset } from "../hooks/useSessionAttemptAutoReset";
 import { SESSION_ATTEMPTS_MOTION } from "../constants/motionHybrid";
 import { createLearningV2CourseLocalProgressStoreV1 } from "../modules/learning-v2/progress/course_local_progress_v1";
 import { deriveLocalOfflineProgressAccountScopeHash } from "../modules/learning-v2/progress/progress_account_scope";
@@ -155,13 +158,14 @@ import type {
 import ScriptedRepeatCompareModeV1 from "../modules/learning-v2/modes/scripted_repeat_compare_mode_v1";
 import {
   buildLearningV2AuthoringDevicePreviewV1,
+  buildLearningV2DevUnlockedDraftDevicePreviewV1,
   resolveLearningV2AuthoringPreviewSpeechTextV1,
   type LearningV2AuthoringDevicePreviewV1,
 } from "../modules/learning-v2/preview/authoring_device_preview_v1";
 import { stableShuffleLearningV2OptionsV1 } from "../modules/learning-v2/runtime/stable_option_shuffle_v1";
 import {
+  markLearningV2AuthoringPreviewWordUnlockedV1,
   markLearningV2LessonWordUnlockedV1,
-  mergeLearningV2UnlockedLessonWordV1,
   type LearningV2UnlockedLessonWordV1,
 } from "./learning_v2_unlocked_lesson_words_v1";
 
@@ -280,7 +284,12 @@ export default function LearningV2DirectSessionPlayerV1() {
     previewMode?: string | string[];
     previewOrigin?: string | string[];
   }>();
-  const isAuthoringPreview = __DEV__ && first(params.previewMode) === "authoring_v1";
+  const previewMode = first(params.previewMode);
+  const isDevUnlockedDraftPreview =
+    __DEV__ && previewMode === "dev_unlocked_drafts_v1";
+  const isAuthoringPreview =
+    __DEV__ &&
+    (previewMode === "authoring_v1" || isDevUnlockedDraftPreview);
   const previewReturnsToCourse = first(params.previewOrigin) === "course";
   const exitRoute = isAuthoringPreview && !previewReturnsToCourse
     ? "/learning_v2_authoring_preview"
@@ -294,6 +303,24 @@ export default function LearningV2DirectSessionPlayerV1() {
   const sessionRunIdRef = useRef(Crypto.randomUUID());
   const lessonOrdinal = exactOrdinal(first(params.lessonOrdinal), 32);
   const sessionOrdinal = exactOrdinal(first(params.sessionOrdinal), 56);
+  const {
+    energy,
+    bonusEnergy,
+    isUnlimited: energyUnlimited,
+    energyReady,
+    confirmSpendOne,
+    acknowledgeSessionStart,
+  } = useEnergy();
+  const restartEnergyMountIdRef = useRef(Crypto.randomUUID());
+  const [restartEnergyAttemptRevision, setRestartEnergyAttemptRevision] =
+    useState(0);
+  const restartEnergyIntent = useEnergySessionIntent(
+    "learning_v2_session",
+    `${lessonOrdinal ?? "unknown"}:${sessionOrdinal ?? "unknown"}`,
+    `${restartEnergyMountIdRef.current}:${restartEnergyAttemptRevision}`,
+  );
+  const [restartEnergyBusy, setRestartEnergyBusy] = useState(false);
+  const restartEnergyBusyRef = useRef(false);
   const attemptsAccountToken = useMemo(() => captureAccountGeneration(), []);
   const attemptsSessionId = `learning-v2-direct:${lessonOrdinal ?? "unknown"}:${sessionOrdinal ?? "unknown"}:${sessionRunIdRef.current}`;
   const sessionAttempts = useSessionAttempts({
@@ -356,10 +383,8 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [newWordSaveStates, setNewWordSaveStates] = useState<
     Readonly<Record<string, LearningV2NewWordSaveStateV1>>
   >({});
+  const newWordSaveBusyRef = useRef(new Set<string>());
   const [wordPocketOpen, setWordPocketOpen] = useState(false);
-  const [previewUnlockedWords, setPreviewUnlockedWords] = useState<
-    readonly LearningV2UnlockedLessonWordV1[]
-  >([]);
   const [practiceIndex, setPracticeIndex] = useState(0);
   const [practiceAudioAutoplayToken, setPracticeAudioAutoplayToken] =
     useState(0);
@@ -394,6 +419,25 @@ export default function LearningV2DirectSessionPlayerV1() {
   const wordPocketBumpStyle = useAnimatedStyle(() => ({
     transform: [{ scale: wordPocketBump.value }],
   }));
+  const wordPocketTargetRef = useRef<View>(null);
+  const measureWordPocketTarget = useCallback(
+    () =>
+      new Promise<LearningV2WindowPointV1 | null>((resolve) => {
+        const target = wordPocketTargetRef.current;
+        if (!target) {
+          resolve(null);
+          return;
+        }
+        target.measureInWindow((x, y, width, height) => {
+          if (![x, y, width, height].every(Number.isFinite)) {
+            resolve(null);
+            return;
+          }
+          resolve({ x: x + width / 2, y: y + height / 2 });
+        });
+      }),
+    [],
+  );
   const [finishing, setFinishing] = useState(false);
   // зачем (аудит анимаций 22.08): сессия завершалась молча — сразу возврат на
   // карту. Теперь звёзды зажигаются по одной (<=700мс), и только потом уход.
@@ -446,11 +490,47 @@ export default function LearningV2DirectSessionPlayerV1() {
   const previewSpeechGuardRef = useRef(
     createLearningV2PreviewSpeechGenerationGuardV1(),
   );
-  const audioPlayer = useAudioPlayer(
-    audioRequest ? { uri: audioRequest.fileUri } : null,
-    { downloadFirst: false },
-  );
+  // зачем (owner: "переключение сессий тормозит"): useAudioPlayerStatus
+  // подписан на нативное событие playbackStatusUpdate, которое по дефолту
+  // (updateInterval=500мс) тикает КАЖДЫЕ 500мс, пока идёт воспроизведение —
+  // а автовоспроизведение эталонного произношения запускается почти на
+  // каждой карточке. Каждый тик даёт setState в этом компоненте на 3200+
+  // строк без единого React.memo внутри, то есть перерисовывает ВЕСЬ экран
+  // (шапку, прогресс-бар, счётчик рун, активную карточку режима) 2 раза в
+  // секунду поверх анимации входа/выхода карточки — это и есть источник
+  // "подтормаживает". Ниже по файлу из audioStatus читаются только
+  // isLoaded/playing/didJustFinish (см. использования audioStatus.*) —
+  // currentTime/duration нигде не нужны, поэтому периодический тик не несёт
+  // полезных данных. Поднимаем updateInterval до значения, недостижимого
+  // за время одной фразы: событийные апдейты (onIsPlayingChanged,
+  // onIsLoadingChanged, didJustFinish) по-прежнему приходят мгновенно из
+  // нативных слушателей — они не зависят от таймера и не проседают.
+  //
+  // зачем (owner: "озвучка глохнет через 25-30 слов", 2026-08-28): раньше
+  // источник useAudioPlayer менялся на каждое слово (audioRequest в deps),
+  // и expo-audio пересоздавал нативный ExoPlayer на КАЖДОЕ слово —
+  // node_modules/expo-audio/android AudioPlayer.kt sharedObjectDidRelease()
+  // освобождает старый ExoPlayer АСИНХРОННО (mainQueue.launch, следующий
+  // тик) и ref.release() там последним шагом: если что-то в цепочке кинет
+  // исключение раньше, нативный декодер утекает навсегда. За ~25-30 слов
+  // копится ровно столько утечек decoder-слотов, сколько нужно, чтобы
+  // упереться в системный лимит Android — дальше звук глохнет до рестарта
+  // приложения. Источник плеера теперь СТАБИЛЕН (null, создаётся один раз
+  // за сессию) — сам ExoPlayer живёт весь урок, а переключение слова идёт
+  // через player.replace() (тот же нативный объект, просто новый трек).
+  const audioPlayer = useAudioPlayer(null, {
+    downloadFirst: false,
+    updateInterval: 60_000,
+  });
   const audioStatus = useAudioPlayerStatus(audioPlayer);
+  useEffect(() => {
+    if (!audioRequest) return;
+    try {
+      audioPlayer.replace({ uri: audioRequest.fileUri });
+    } catch {
+      // Player already released on unmount; playFromStart below will no-op.
+    }
+  }, [audioRequest, audioPlayer]);
   const managedAudio = useManagedSpokenAudioPlayer(
     audioPlayer,
     audioStatus.didJustFinish,
@@ -542,17 +622,6 @@ export default function LearningV2DirectSessionPlayerV1() {
     setLocalAudioPlayback(null);
   }, [managedAudio, stopPreviewAudio]);
 
-  const showExhaustedAttemptsModal = useCallback(() => {
-    stopAttemptMediaBeforeRecovery();
-    if (attemptsModalTimerRef.current !== null) {
-      clearTimeout(attemptsModalTimerRef.current);
-    }
-    attemptsModalTimerRef.current = setTimeout(() => {
-      attemptsModalTimerRef.current = null;
-      setShowAttemptsModal(true);
-    }, SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs);
-  }, [stopAttemptMediaBeforeRecovery]);
-
   useEffect(
     () => () => {
       if (attemptsModalTimerRef.current !== null) {
@@ -562,18 +631,6 @@ export default function LearningV2DirectSessionPlayerV1() {
     },
     [],
   );
-
-  useEffect(() => {
-    if (!sessionAttempts.hydrated) return;
-    if (sessionAttempts.state.phase !== "awaiting_recovery") return;
-    if (attemptsModalTimerRef.current !== null) return;
-    stopAttemptMediaBeforeRecovery();
-    setShowAttemptsModal(true);
-  }, [
-    sessionAttempts.hydrated,
-    sessionAttempts.state.phase,
-    stopAttemptMediaBeforeRecovery,
-  ]);
 
   useEffect(() => {
     // The request can switch the hook player to another preloaded local URI.
@@ -613,10 +670,15 @@ export default function LearningV2DirectSessionPlayerV1() {
     if (isAuthoringPreview) {
       try {
         setMaterial(
-          buildLearningV2AuthoringDevicePreviewV1(
-            locator.sessionOrdinal,
-            lang,
-          ),
+          isDevUnlockedDraftPreview
+            ? buildLearningV2DevUnlockedDraftDevicePreviewV1(
+                locator.sessionOrdinal,
+                lang,
+              )
+            : buildLearningV2AuthoringDevicePreviewV1(
+                locator.sessionOrdinal,
+                lang,
+              ),
         );
       } catch (error: unknown) {
         setLoadFailed(true);
@@ -654,7 +716,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     return () => {
       cancelled = true;
     };
-  }, [isAuthoringPreview, lang, loadRevision, locator]);
+  }, [isAuthoringPreview, isDevUnlockedDraftPreview, lang, loadRevision, locator]);
 
   const audioPreload: LearningV2CourseSessionAudioPreloadHandleV1 | null =
     readyHandle
@@ -681,11 +743,16 @@ export default function LearningV2DirectSessionPlayerV1() {
         : null,
     [unlockedLessonOrdinal, unlockedTargetLanguage],
   );
-  const { words: persistedUnlockedWords } =
-    useLearningV2UnlockedLessonWordsV1(unlockedWordScope);
-  const unlockedWords = isAuthoringPreview
-    ? previewUnlockedWords
-    : persistedUnlockedWords;
+  const {
+    words: unlockedWords,
+    hydrated: unlockedWordsHydrated,
+  } = useLearningV2UnlockedLessonWordsV1(unlockedWordScope, {
+    includeAuthoringPreview: isAuthoringPreview,
+  });
+  const unlockedWordIds = useMemo(
+    () => new Set(unlockedWords.map((word) => word.lexicalItemId)),
+    [unlockedWords],
+  );
   const previousUnlockedWordCountRef = useRef(0);
   useEffect(() => {
     if (
@@ -768,7 +835,6 @@ export default function LearningV2DirectSessionPlayerV1() {
     newWordFlowRef.current = next;
     setNewWordFlow(next);
     setNewWordSaveStates({});
-    setPreviewUnlockedWords([]);
     setWordPocketOpen(false);
   }, [newWordEncounterIds]);
 
@@ -832,7 +898,7 @@ export default function LearningV2DirectSessionPlayerV1() {
       : audioRequest?.fileUri === currentNewWordAudioUri && audioStatus.playing
         ? "playing"
         : "idle";
-  const unlockCurrentNewWord = useCallback(async () => {
+  const markCurrentNewWordPresented = useCallback(async () => {
     if (!currentNewWordEncounter || !runSummary) return;
     const unlocked: LearningV2UnlockedLessonWordV1 = {
       targetLanguage: runSummary.targetLanguage,
@@ -843,13 +909,21 @@ export default function LearningV2DirectSessionPlayerV1() {
       encounter: currentNewWordEncounter,
     };
     if (isAuthoringPreview) {
-      setPreviewUnlockedWords((current) =>
-        mergeLearningV2UnlockedLessonWordV1(current, unlocked),
-      );
+      await markLearningV2AuthoringPreviewWordUnlockedV1(unlocked);
       return;
     }
     await markLearningV2LessonWordUnlockedV1(unlocked);
   }, [currentNewWordEncounter, isAuthoringPreview, runSummary]);
+  const presentedUnlockStartedRef = useRef(new Set<string>());
+  useEffect(() => {
+    if (!currentNewWordEncounter || newWordFlow.kind !== "presenting") return;
+    const lexicalItemId = currentNewWordEncounter.lexicalItemId;
+    if (presentedUnlockStartedRef.current.has(lexicalItemId)) return;
+    presentedUnlockStartedRef.current.add(lexicalItemId);
+    void markCurrentNewWordPresented().catch(() => {
+      presentedUnlockStartedRef.current.delete(lexicalItemId);
+    });
+  }, [currentNewWordEncounter, markCurrentNewWordPresented, newWordFlow.kind]);
   useEffect(() => {
     if (!currentNewWordEncounter) return;
     const lexicalItemId = currentNewWordEncounter.lexicalItemId;
@@ -871,42 +945,53 @@ export default function LearningV2DirectSessionPlayerV1() {
   const toggleCurrentNewWordSave = useCallback(async () => {
     if (!currentNewWordEncounter) return;
     const lexicalItemId = currentNewWordEncounter.lexicalItemId;
+    if (newWordSaveBusyRef.current.has(lexicalItemId)) return;
     const currentState = newWordSaveStates[lexicalItemId] ?? "not_saved";
     if (currentState === "saving") return;
+    newWordSaveBusyRef.current.add(lexicalItemId);
     void hapticTap();
     setNewWordSaveStates((current) => ({
       ...current,
       [lexicalItemId]: "saving",
     }));
-    if (isAuthoringPreview) {
-      setNewWordSaveStates((current) => ({
-        ...current,
-        [lexicalItemId]: currentState === "saved" ? "not_saved" : "saved",
-      }));
-      return;
-    }
-    if (currentState === "saved") {
-      const outcome = await removeLearningV2NewWordEncounterFromCardsV1({
+    try {
+      if (isAuthoringPreview) {
+        setNewWordSaveStates((current) => ({
+          ...current,
+          [lexicalItemId]: currentState === "saved" ? "not_saved" : "saved",
+        }));
+        return;
+      }
+      if (currentState === "saved") {
+        const outcome = await removeLearningV2NewWordEncounterFromCardsV1({
+          encounter: currentNewWordEncounter,
+        });
+        setNewWordSaveStates((current) => ({
+          ...current,
+          [lexicalItemId]:
+            outcome === "removed" || outcome === "absent" ? "not_saved" : "saved",
+        }));
+        return;
+      }
+      const outcome = await saveLearningV2NewWordEncounterToCardsV1({
         encounter: currentNewWordEncounter,
+        interfaceLocale: lang,
       });
       setNewWordSaveStates((current) => ({
         ...current,
         [lexicalItemId]:
-          outcome === "removed" || outcome === "absent" ? "not_saved" : "saved",
+          outcome === "added" || outcome === "duplicate"
+            ? "saved"
+            : "save_failed",
       }));
-      return;
+    } catch {
+      setNewWordSaveStates((current) => ({
+        ...current,
+        [lexicalItemId]: "save_failed",
+      }));
+    } finally {
+      newWordSaveBusyRef.current.delete(lexicalItemId);
     }
-    const outcome = await saveLearningV2NewWordEncounterToCardsV1({
-      encounter: currentNewWordEncounter,
-      interfaceLocale: lang,
-    });
-    setNewWordSaveStates((current) => ({
-      ...current,
-      [lexicalItemId]:
-        outcome === "added" || outcome === "duplicate"
-          ? "saved"
-          : "save_failed",
-    }));
   }, [currentNewWordEncounter, isAuthoringPreview, lang, newWordSaveStates]);
   const practice =
     run && runSummary && practiceIndex < runSummary.practiceInteractionCount
@@ -944,6 +1029,11 @@ export default function LearningV2DirectSessionPlayerV1() {
   const practiceEncounterId =
     auxiliary?.newWordEncounter?.lexicalItemId ?? null;
   const practiceActivated = introDone && newWordFlow.kind !== "presenting";
+  const voiceFooterDisabled =
+    !practiceActivated ||
+    auxiliary?.voice.available !== true ||
+    result === "correct" ||
+    sessionAttempts.state.phase !== "active";
 
   useEffect(() => {
     if (!practice?.interactionId) return;
@@ -955,15 +1045,21 @@ export default function LearningV2DirectSessionPlayerV1() {
   // resolves the encounter before the frame is committed.
   useLayoutEffect(() => {
     if (!introDone || !practice) return;
+    if (!unlockedWordsHydrated) return;
     dispatchNewWordEvent({
       kind: "practice_reached",
-      encounterId: practiceEncounterId,
+      encounterId:
+        practiceEncounterId && unlockedWordIds.has(practiceEncounterId)
+          ? null
+          : practiceEncounterId,
     });
   }, [
     dispatchNewWordEvent,
     introDone,
     practice,
     practiceEncounterId,
+    unlockedWordIds,
+    unlockedWordsHydrated,
   ]);
   // зачем (SB-14): на проверке главы разбора после ошибки нет — он был бы
   // подсказкой. Человек видит итог в конце, а не по ходу.
@@ -1131,6 +1227,11 @@ export default function LearningV2DirectSessionPlayerV1() {
     completionsRef.current.clear();
     answeredUiByInteractionRef.current.clear();
     sessionRunIdRef.current = Crypto.randomUUID();
+    sessionStartedAtRef.current = null;
+    sessionStageRef.current = "intro";
+    telemetryStartSentRef.current = false;
+    interruptedWhileBackgroundedRef.current = false;
+    finishingRef.current = false;
     setReadyHandle(null);
     setMaterial(null);
     setIntroDone(false);
@@ -1391,9 +1492,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             token: prev.token + 1,
           }));
       }
-      if (attemptEffect === "attempts_exhausted") {
-        showExhaustedAttemptsModal();
-      }
+      if (attemptEffect === "attempts_exhausted") return;
     },
     [
       attempts,
@@ -1413,19 +1512,18 @@ export default function LearningV2DirectSessionPlayerV1() {
       sessionAttempts.registerVerdict,
       sessionAttempts.state.phase,
       sessionOrdinal,
-      showExhaustedAttemptsModal,
       studyTarget,
       transcript,
     ],
   );
 
-  const localVoice = useLearningV2LocalHoldToTalkV1({
-    enabled:
-      practiceActivated &&
-      showVoiceFooter &&
-      auxiliary?.voice.available === true &&
-      result !== "correct" &&
-      sessionAttempts.state.phase === "active",
+  const {
+    status: modeVoiceStatus,
+    start: startVoiceCapture,
+    stop: stopVoiceCapture,
+    cancel: cancelVoiceCapture,
+  } = useLearningV2LocalHoldToTalkV1({
+    enabled: showVoiceFooter && !voiceFooterDisabled,
     interactionId: practice?.interactionId ?? "no-practice-interaction",
     locale:
       runSummary?.targetLanguage === "en"
@@ -1451,8 +1549,11 @@ export default function LearningV2DirectSessionPlayerV1() {
       );
     },
   });
-  const modeVoiceStatus = localVoice.status;
-  voiceCancelRef.current = localVoice.cancel;
+  voiceCancelRef.current = cancelVoiceCapture;
+  const voiceCaptureActive =
+    modeVoiceStatus === "requesting" ||
+    modeVoiceStatus === "listening" ||
+    modeVoiceStatus === "finishing";
   const startVoiceHold = useCallback(() => {
     if (sessionAttempts.state.phase !== "active") return;
     stopPreviewAudio();
@@ -1460,19 +1561,20 @@ export default function LearningV2DirectSessionPlayerV1() {
     setAudioRequest(null);
     setPreviewSpeechKey(null);
     void hapticTap();
-    void localVoice.start();
-  }, [localVoice, managedAudio, sessionAttempts.state.phase, stopPreviewAudio]);
-  const stopVoiceHold = localVoice.stop;
+    void startVoiceCapture();
+  }, [
+    managedAudio,
+    sessionAttempts.state.phase,
+    startVoiceCapture,
+    stopPreviewAudio,
+  ]);
   const toggleVoiceFromAccessibility = useCallback(() => {
-    if (
-      modeVoiceStatus === "listening" ||
-      modeVoiceStatus === "requesting"
-    ) {
-      stopVoiceHold();
+    if (voiceCaptureActive) {
+      stopVoiceCapture();
       return;
     }
     startVoiceHold();
-  }, [modeVoiceStatus, startVoiceHold, stopVoiceHold]);
+  }, [startVoiceHold, stopVoiceCapture, voiceCaptureActive]);
   const finish = useCallback(async () => {
     if (!run || finishing || !runSummary) return;
     finishingRef.current = true;
@@ -1615,19 +1717,17 @@ export default function LearningV2DirectSessionPlayerV1() {
     showPracticeIndex(practiceIndex + 1);
   }, [finish, practiceIndex, result, runSummary, showPracticeIndex]);
 
-  const recoverCurrentLearningV2Attempt = useCallback(
-    async (source: "gift" | "runes") => {
-      try {
-        if (source === "gift") await sessionAttempts.recoverWithGift();
-        else await sessionAttempts.recoverWithRunes();
-        setShowAttemptsModal(false);
-      } catch {
-        // The shared modal keeps the exact activity blocked and exposes the
-        // resource error. No activity/evidence state is rewound.
-      }
-    },
-    [sessionAttempts.recoverWithGift, sessionAttempts.recoverWithRunes],
-  );
+  const resetLearningV2AfterSessionRuneForfeit = useCallback(() => {
+    setShowAttemptsModal(false);
+    setSessionRunes(0);
+  }, []);
+
+  useSessionAttemptAutoReset({
+    phase: sessionAttempts.state.phase,
+    forfeitSessionRunes: () => { setSessionRunes(0); },
+    restoreAttempts: sessionAttempts.restoreAfterSessionRuneForfeit,
+    onRestored: resetLearningV2AfterSessionRuneForfeit,
+  });
 
   const endExhaustedLearningV2Session = useCallback(() => {
     sessionAttempts.endAttemptsSession();
@@ -1635,25 +1735,36 @@ export default function LearningV2DirectSessionPlayerV1() {
     safeRouterBack(router, exitRoute);
   }, [exitRoute, router, sessionAttempts.endAttemptsSession]);
 
-  const attemptsRecoveryModal = (
-    <SessionAttemptsRecoveryModal
-      visible={
-        showAttemptsModal &&
-        sessionAttempts.state.phase === "awaiting_recovery"
+  const restartExhaustedLearningV2Session = useCallback(async () => {
+    if (restartEnergyBusyRef.current) return;
+    restartEnergyBusyRef.current = true;
+    setRestartEnergyBusy(true);
+    try {
+      let energyResult: "spent" | "unlimited" = "unlimited";
+      if (!isAuthoringPreview) {
+        const result = await confirmSpendOne(restartEnergyIntent);
+        if (result !== "spent" && result !== "unlimited") return;
+        energyResult = result;
       }
-      locale={lang}
-      giftCount={sessionAttempts.giftCount}
-      runeBalance={sessionAttempts.runeBalance ?? 0}
-      busy={sessionAttempts.recoveryBusy}
-      onUseGift={() => {
-        void recoverCurrentLearningV2Attempt("gift");
-      }}
-      onSpendRunes={() => {
-        void recoverCurrentLearningV2Attempt("runes");
-      }}
-      onEndSession={endExhaustedLearningV2Session}
-    />
-  );
+      sessionAttempts.endAttemptsSession();
+      setShowAttemptsModal(false);
+      restartInterruptedRun();
+      if (energyResult === "spent") {
+        void acknowledgeSessionStart(restartEnergyIntent.operationId);
+      }
+      setRestartEnergyAttemptRevision((current) => current + 1);
+    } finally {
+      restartEnergyBusyRef.current = false;
+      setRestartEnergyBusy(false);
+    }
+  }, [
+    acknowledgeSessionStart,
+    confirmSpendOne,
+    isAuthoringPreview,
+    restartEnergyIntent,
+    restartInterruptedRun,
+    sessionAttempts.endAttemptsSession,
+  ]);
 
   if (!locator || !lessonOrdinal || !sessionOrdinal) {
     return (
@@ -1661,6 +1772,20 @@ export default function LearningV2DirectSessionPlayerV1() {
         <Text style={[styles.errorText, { color: t.textPrimary }]}>
           {copy.unavailable}
         </Text>
+        <Pressable
+          testID="learning-v2-unavailable-back"
+          accessibilityRole="button"
+          accessibilityLabel={footerBackLabel}
+          onPress={() => safeRouterBack(router, exitRoute)}
+          style={({ pressed }) => [
+            styles.retry,
+            { backgroundColor: t.bgCard, opacity: pressed ? 0.72 : 1 },
+          ]}
+        >
+          <Text style={[styles.retryText, { color: t.textPrimary }]}>
+            {footerBackLabel}
+          </Text>
+        </Pressable>
       </View>
     );
   }
@@ -1817,6 +1942,20 @@ export default function LearningV2DirectSessionPlayerV1() {
           </Text>
         ) : null}
         <Pressable
+          testID="learning-v2-unavailable-back"
+          accessibilityRole="button"
+          accessibilityLabel={footerBackLabel}
+          onPress={() => safeRouterBack(router, exitRoute)}
+          style={({ pressed }) => [
+            styles.retry,
+            { backgroundColor: t.bgCard, opacity: pressed ? 0.72 : 1 },
+          ]}
+        >
+          <Text style={[styles.retryText, { color: t.textPrimary }]}>
+            {footerBackLabel}
+          </Text>
+        </Pressable>
+        <Pressable
           accessibilityRole="button"
           onPress={() => setLoadRevision((value) => value + 1)}
           style={({ pressed }) => [
@@ -1924,9 +2063,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                 answerAttemptId,
                 verdict: "pedagogical_wrong",
               });
-              if (attemptEffect === "attempts_exhausted") {
-                showExhaustedAttemptsModal();
-              }
+              if (attemptEffect === "attempts_exhausted") return "wrong";
               return "wrong";
             }}
             resolveSecondWrongExplanation={(interactionId) =>
@@ -1955,7 +2092,6 @@ export default function LearningV2DirectSessionPlayerV1() {
             }
           />
         </View>
-        {attemptsRecoveryModal}
       </View>
     );
   }
@@ -2036,22 +2172,6 @@ export default function LearningV2DirectSessionPlayerV1() {
               remaining={sessionAttempts.state.remainingAttempts}
               locale={lang}
               testID="learning-v2-session-attempts"
-            />
-            <ReportErrorButton
-              screen="learning_v2_session"
-              dataId={`${runSummary.courseSessionId}:${practice.interactionId}`}
-              dataText={practice.prompt}
-              userAnswer={
-                practice.inputMode === "single_choice" || practice.inputMode === "pair_grid"
-                  ? practice.responseOptions.find(
-                      (entry) => entry.responseId === selectedChoiceId,
-                    )?.text
-                  : practice.inputMode === "scripted_speech" || practice.inputMode === "tap_record_compare"
-                    ? transcript
-                    : selectedText
-              }
-              variant="icon-flag"
-              accessibilityLabel={copy.reportTask}
             />
             <Animated.View style={runeBumpStyle}>
               <View
@@ -2501,6 +2621,25 @@ export default function LearningV2DirectSessionPlayerV1() {
           )}
         </ScrollView>
 
+        <View style={[styles.reportDock, { bottom: insets.bottom + 84 }]}>
+          <ReportErrorButton
+            screen="learning_v2_session"
+            dataId={`${runSummary.courseSessionId}:${practice.interactionId}`}
+            dataText={practice.prompt}
+            userAnswer={
+              practice.inputMode === "single_choice" || practice.inputMode === "pair_grid"
+                ? practice.responseOptions.find(
+                    (entry) => entry.responseId === selectedChoiceId,
+                  )?.text
+                : practice.inputMode === "scripted_speech" || practice.inputMode === "tap_record_compare"
+                  ? transcript
+                  : selectedText
+            }
+            variant="icon-flag"
+            accessibilityLabel={copy.reportTask}
+          />
+        </View>
+
         <View
           style={[
             styles.footer,
@@ -2537,39 +2676,37 @@ export default function LearningV2DirectSessionPlayerV1() {
                   testID="learning-v2-footer-hold-to-talk"
                   accessibilityRole="button"
                   accessibilityLabel={
-                    modeVoiceStatus === "listening"
-                      ? copy.stopVoice
-                      : copy.startVoice
+                    voiceCaptureActive ? copy.stopVoice : copy.startVoice
                   }
                   accessibilityHint={copy.voiceSpeaking}
                   accessibilityActions={[
                     {
                       name: "activate",
-                      label:
-                        modeVoiceStatus === "listening"
-                          ? copy.stopVoice
-                          : copy.startVoice,
+                      label: voiceCaptureActive
+                        ? copy.stopVoice
+                        : copy.startVoice,
                     },
                   ]}
                   onAccessibilityAction={(event) => {
-                    if (event.nativeEvent.actionName === "activate")
+                    if (
+                      !voiceFooterDisabled &&
+                      event.nativeEvent.actionName === "activate"
+                    )
                       toggleVoiceFromAccessibility();
                   }}
                   accessibilityState={{
-                    disabled: auxiliary.voice.available !== true,
-                    selected: modeVoiceStatus === "listening",
-                    busy:
-                      modeVoiceStatus === "requesting" ||
-                      modeVoiceStatus === "finishing",
+                    disabled: voiceFooterDisabled,
+                    selected: voiceCaptureActive,
                   }}
-                  disabled={auxiliary.voice.available !== true}
+                  disabled={voiceFooterDisabled}
                   onPressIn={startVoiceHold}
-                  onPressOut={localVoice.stop}
+                  onPressOut={stopVoiceCapture}
+                  pressRetentionOffset={{ top: 40, right: 40, bottom: 40, left: 40 }}
                   style={({ pressed }) => [
                     styles.footerAction,
                     {
                       opacity:
-                        auxiliary.voice.available !== true
+                        voiceFooterDisabled
                           ? 0.3
                           : pressed
                             ? 0.62
@@ -2577,21 +2714,20 @@ export default function LearningV2DirectSessionPlayerV1() {
                     },
                   ]}
                 >
-                  {modeVoiceStatus === "requesting" ||
-                  modeVoiceStatus === "listening" ? (
+                  {voiceCaptureActive ? (
                     <View pointerEvents="none" style={styles.footerMicEqualizer}>
                       <VoiceEqualizer
                         active
                         color={t.accent}
                         idleColor={t.textMuted}
-                        owner={modeVoiceStatus === "listening" ? "user" : "idle"}
+                        owner="user"
                       />
                     </View>
                   ) : null}
                   <Ionicons
                     name="mic-outline"
                     size={26}
-                    color={modeVoiceStatus === "listening" ? t.wrong : t.textSecond}
+                    color={voiceCaptureActive ? t.wrong : t.textSecond}
                   />
                   <Text style={[styles.footerActionLabel, { color: t.textMuted, fontSize: f.label }]}>
                     {footerVoiceLabel}
@@ -2600,6 +2736,11 @@ export default function LearningV2DirectSessionPlayerV1() {
             ) : null}
 
             <Animated.View style={[styles.footerActionSlot, wordPocketBumpStyle]}>
+              <View
+                ref={wordPocketTargetRef}
+                collapsable={false}
+                style={styles.footerActionTarget}
+              >
               <Pressable
                 testID="learning-v2-footer-word-pocket"
                 accessibilityRole="button"
@@ -2632,6 +2773,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                   {footerWordsLabel}
                 </Text>
               </Pressable>
+              </View>
             </Animated.View>
 
             <Pressable
@@ -2704,9 +2846,12 @@ export default function LearningV2DirectSessionPlayerV1() {
             "not_saved"
           }
           audioState={currentNewWordAudioState}
-          onContinue={async () => {
+          onContinue={() => {
             void hapticTap();
-            await unlockCurrentNewWord();
+            // The presentation effect is the primary unlock point. Repeating
+            // the idempotent write here only retries a rare storage failure;
+            // Continue never owns or delays the first unlock.
+            void markCurrentNewWordPresented();
           }}
           onFlightComplete={() => {
             dispatchNewWordEvent({ kind: "continue" });
@@ -2723,6 +2868,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                 `new-word:${currentNewWordEncounter.lexicalItemId}`,
               );
           }}
+          measurePocketTarget={measureWordPocketTarget}
         />
       ) : null}
       {runeFlight ? (
@@ -2736,7 +2882,6 @@ export default function LearningV2DirectSessionPlayerV1() {
           }}
         />
       ) : null}
-      {attemptsRecoveryModal}
     </View>
   );
 }
@@ -3001,6 +3146,11 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     borderTopWidth: 0.5,
   },
+  reportDock: {
+    position: "absolute",
+    right: 16,
+    zIndex: 20,
+  },
   footerControls: {
     minHeight: 48,
     flexDirection: "row",
@@ -3008,6 +3158,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   footerActionSlot: { flex: 1 },
+  footerActionTarget: { flex: 1 },
   footerAction: {
     flex: 1,
     minHeight: 44,

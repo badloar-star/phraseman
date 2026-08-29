@@ -108,6 +108,22 @@ describe('active level gift inventory', () => {
     await expect(loadActiveLevelGiftInventory('uk')).resolves.toEqual([]);
   });
 
+  it('keeps an until-midnight energy gift visible after its units are spent', async () => {
+    mockStorage.energy_gift_bonus = JSON.stringify({
+      amount: 0,
+      capacity: 3,
+      expiresAt: nowMs + 60 * 60 * 1000,
+    });
+
+    await expect(loadActiveLevelGiftInventory('ru', nowMs)).resolves.toEqual([
+      expect.objectContaining({
+        key: 'bonus_energy',
+        iconGiftId: 'energy_plus3',
+        desc: 'Осталось 0 из +3 до полуночи',
+      }),
+    ]);
+  });
+
   it('treats shield daysLeft as remaining uses rather than elapsed calendar days', async () => {
     mockStorage.chain_shield = JSON.stringify({ daysLeft: 3, grantedAt: '2026-05-14' });
 
@@ -168,19 +184,9 @@ describe('active level gift inventory', () => {
     ]);
   });
 
-  it('lists a permanent second-chance row only while its count is positive', async () => {
+  it('hides the retired second-chance record without deleting it from storage', async () => {
     (readAttemptRestoreGiftCount as jest.Mock).mockResolvedValue(2);
 
-    await expect(loadActiveLevelGiftInventory('ru', nowMs, 'en')).resolves.toEqual([
-      expect.objectContaining({
-        key: 'attempt_restore_all',
-        iconGiftId: 'attempt_restore_all',
-        title: 'Второй шанс',
-        desc: 'Восстанавливает все 3 попытки во время сессии',
-        countBadge: 2,
-        lifetime: { kind: 'permanent' },
-        informationKind: 'attempt_restore_all',
-      }),
-    ]);
+    await expect(loadActiveLevelGiftInventory('ru', nowMs, 'en')).resolves.toEqual([]);
   });
 });

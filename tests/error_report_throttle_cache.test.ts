@@ -91,4 +91,36 @@ describe('error report throttle cache', () => {
     );
     expect(xpManager.registerXP).toHaveBeenCalledTimes(1);
   });
+
+  it('still completes after the server accepts the report when persisting the local throttle fails', async () => {
+    Date.now = jest.fn(() => 4_000_000);
+    const { errorReport, storage, clientReports } = await loadErrorReportWithFreshCache();
+    storage.setItem.mockRejectedValueOnce(new Error('storage unavailable'));
+
+    const payload = {
+      screen: 'settings_support',
+      dataId: 'settings_support_request',
+      dataText: 'In-app support request',
+      comment: 'The submit button stopped responding after reconnecting',
+    };
+
+    const deliveryOptions = {
+      awardSubmissionXp: false,
+      expectedStableUid: 'stable_user_1',
+      idempotencyKey: 'support_123_retry',
+    };
+    await expect(errorReport.submitErrorReport(payload, 'Ada', 'ru', deliveryOptions))
+      .resolves.toBe('sent');
+    await expect(errorReport.submitErrorReport(payload, 'Ada', 'ru', deliveryOptions))
+      .resolves.toBe('throttled');
+    expect(clientReports.submitClientReport).toHaveBeenCalledTimes(1);
+    expect(clientReports.submitClientReport).toHaveBeenCalledWith(
+      'error_report',
+      expect.objectContaining({ comment: payload.comment }),
+      {
+        expectedStableUid: 'stable_user_1',
+        idempotencyKey: 'support_123_retry',
+      },
+    );
+  });
 });

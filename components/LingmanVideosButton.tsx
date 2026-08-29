@@ -38,12 +38,13 @@ function LingmanVideosButton({ ownerActive = true }: LingmanVideosButtonProps) {
   const label = triLang(lang, {
     ru: `Видео ${channelName}`,
     uk: `Відео ${channelName}`,
-    es: `${channelName} videos`,
-    'pt-BR': `${channelName} videos`,
-    vi: `${channelName} videos`,
-    id: `${channelName} videos`,
-    tr: `${channelName} videos`,
-    pl: `${channelName} videos`,
+    en: `${channelName} videos`,
+    es: `Vídeos de ${channelName}`,
+    'pt-BR': `Vídeos de ${channelName}`,
+    vi: `Video của ${channelName}`,
+    id: `Video ${channelName}`,
+    tr: `${channelName} videoları`,
+    pl: `Filmy ${channelName}`,
   });
 
   useEffect(() => {

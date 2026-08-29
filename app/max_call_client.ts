@@ -243,6 +243,8 @@ export interface MaxVoiceMintResponse {
   wrapUpText: string;
   limits?: Record<string, unknown>;
   trialVariant?: 'companion' | 'scenario' | null;
+  /** Authoritative server access path; paid minutes are never inferred from Premium. */
+  access?: 'trial' | 'paid_minutes' | 'admin';
   /** Только формат 'tutor'. */
   tutor?: MaxVoiceTutorInfo;
 }
@@ -281,6 +283,9 @@ export function parseMintResponse(data: unknown): MaxVoiceMintResponse {
     expires_at: num(d.expires_at, d.expiresAt),
     trialVariant:
       d.trialVariant === 'companion' || d.trialVariant === 'scenario' ? d.trialVariant : null,
+    ...(d.access === 'trial' || d.access === 'paid_minutes' || d.access === 'admin'
+      ? { access: d.access }
+      : {}),
     ...(d.tutor !== null && typeof d.tutor === 'object' ? { tutor: parseTutorInfo(d.tutor as Record<string, unknown>) } : {}),
   };
 }
@@ -852,7 +857,16 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         // присылает status:"incomplete" и речь замолкает на полуслове, а MAX
         // молча ждёт ученика. Кап поднят обратно до запаса, но если обрыв всё же
         // случился — просим договорить начатую мысль одной короткой фразой.
-        if (wasIncompleteByTokenLimit(message) && requestFinishTruncatedTurn()) return;
+        // зачем (владелец 2026-08-29): «он перебивает сам себя, отвечает 2-3
+        // раза на одну реплику». Автоматическая договорка обрезанного ответа
+        // создавала ВТОРОЙ response на тот же ход — для человека это и есть
+        // «не договорил первую и сказал вторую». Договариваем ТОЛЬКО когда
+        // ученик молчит: если он уже заговорил (очередь взведена), его ход
+        // важнее незаконченной мысли учителя. Корень обрывов — низкий
+        // max_output_tokens — поднят на сервере в max_voice_config.
+        if (!defaultResponseQueued
+          && wasIncompleteByTokenLimit(message)
+          && requestFinishTruncatedTurn()) return;
         flushQueuedDefaultResponse();
         return;
       }

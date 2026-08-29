@@ -132,6 +132,40 @@ async function fetchRevenuecatEvents(input: FetchMoneySourceInput): Promise<Fetc
   }
 }
 
+async function fetchVoiceMinuteEvents(input: FetchMoneySourceInput): Promise<FetchMoneySourceResult> {
+  const sinceMs = input.nowMs - MONEY_LOOKBACK_MS;
+  try {
+    const snapshot = await input.collection
+      .where('environment', '==', 'PRODUCTION')
+      .where('occurredAtMs', '>=', sinceMs)
+      .where('occurredAtMs', '<=', input.nowMs)
+      .orderBy('occurredAtMs', 'desc')
+      .limit(MAX_MONEY_ROWS_PER_SOURCE + 1)
+      .get();
+    const { kept, truncated } = boundedDocs(snapshot);
+    let invalidRows = 0;
+    const rows = kept.flatMap((snap) => {
+      const data = snap.data() as Record<string, unknown>;
+      const environment = text(data.environment)?.toUpperCase() ?? null;
+      const kind = text(data.kind);
+      if (environment !== 'PRODUCTION' || !inWindow(data.occurredAtMs, sinceMs, input.nowMs)
+        || (kind !== 'purchase_grant' && kind !== 'purchase_refund')) {
+        invalidRows += 1;
+        return [];
+      }
+      return [Object.freeze({
+        eventType: kind === 'purchase_grant' ? 'NON_RENEWING_PURCHASE' : 'REFUND',
+        periodType: null,
+        environment,
+        createdAtMs: number(data.occurredAtMs),
+      })];
+    });
+    return packResult('voice_minute_events', rows, truncated, invalidRows + (truncated ? 1 : 0), input.nowMs);
+  } catch {
+    return errorResult('voice_minute_events', input.nowMs);
+  }
+}
+
 async function fetchPaywallFunnel(input: FetchMoneySourceInput): Promise<FetchMoneySourceResult> {
   const sinceMs = input.nowMs - MONEY_LOOKBACK_MS;
   try {
@@ -163,5 +197,6 @@ async function fetchPaywallFunnel(input: FetchMoneySourceInput): Promise<FetchMo
 export async function fetchMoneySource(input: FetchMoneySourceInput): Promise<FetchMoneySourceResult> {
   if (input.sourceId === 'paywall_funnel') return fetchPaywallFunnel(input);
   if (input.sourceId === 'revenuecat_premium_events') return fetchRevenuecatEvents(input);
+  if (input.sourceId === 'voice_minute_events') return fetchVoiceMinuteEvents(input);
   return fetchPersonalEconomy(input);
 }

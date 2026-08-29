@@ -76,6 +76,7 @@ import {
   USER_AVATAR_AURA_KEY,
   type AvatarAuraDef,
 } from '../constants/avatar_auras';
+import { commitExternalAuraSelectionOccurrence } from './customization_selection_runtime';
 import { lessonBonusHintsKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { THEME_DISPLAY_NAMES } from './theme_display_names';
 // зачем: пул кандидатов общий с розыгрышем (local_level_spins) — иначе
@@ -2463,8 +2464,14 @@ const applyAuraGiftForOccurrence = async (
       await AsyncStorage.multiSet([
         [AVATAR_AURA_OWNED_KEY, JSON.stringify({ ...owned, [result.id]: true })],
         [AVATAR_AURA_GIFT_OWNED_KEY, result.id],
-        [USER_AVATAR_AURA_KEY, result.id],
       ]);
+      await commitExternalAuraSelectionOccurrence({
+        source: 'level_gift',
+        occurrenceId: staged.occurrenceKey,
+        auraId: result.id,
+        ...(opts?.accountToken ? { token: opts.accountToken } : {}),
+        inheritedLease: opts?.accountTransitionLockLease,
+      });
     }
   }
   await markLevelGiftEffectApplied(staged, opts);

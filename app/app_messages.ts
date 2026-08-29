@@ -13,6 +13,7 @@ import {
 import { VIP_SURVEY_ID } from './vip_survey_content';
 import type { Lang } from '../constants/i18n';
 import { createDisposableAdoption } from './disposable_adoption';
+import { normalizeReportRewardBundle, type ReportRewardBundle } from './report_reward_bundle';
 
 export type AppMessageReaction = 'like' | 'dislike';
 export type AppMessageAudience = 'all' | 'free' | 'premium';
@@ -426,6 +427,7 @@ export type AppMessageVipSurvey = {
 /** Награда в ответе на репорт: монеты к клейму через CF claimReportReward. */
 export type AppMessageReportReply = {
   coins: number;
+  rewardBundle: ReportRewardBundle;
   claimed: boolean;
 };
 
@@ -801,7 +803,7 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
   const vipSurvey = kind === 'vip_survey' ? normalizeAppMessageVipSurvey(data) : null;
   const replyCoins = Math.max(0, Math.min(1, Math.floor(Number(data.coins ?? data.shards ?? 0) || 0)));
   const reportReply: AppMessageReportReply | null = kind === 'report_reply'
-    ? { coins: replyCoins, claimed: data.claimed === true }
+    ? { coins: replyCoins, rewardBundle: normalizeReportRewardBundle(data.rewardBundle, replyCoins), claimed: data.claimed === true }
     : null;
   const targetAppVersions = cleanAppVersionList(
     data.targetAppVersions ?? data.appVersions ?? data.appVersion,
@@ -1079,6 +1081,23 @@ export function filterAppMessagesSnapshotForAudience(
   return {
     messages,
     unreadCount: messages.reduce((n, message) => n + (message.unread ? 1 : 0), 0),
+  };
+}
+
+/**
+ * Modern report replies have an atomic mirror in users/{uid}/notifications,
+ * where the unified bell renders the complete reward bundle. Keep historical
+ * one-pearl messages, but remove modern mirrors and their duplicate unread count.
+ */
+export function filterAppMessagesSnapshotForNotificationCenter(
+  snapshot: AppMessagesSnapshot,
+): AppMessagesSnapshot {
+  const messages = snapshot.messages.filter((message) => (
+    message.kind !== 'report_reply' || message.reportReply?.rewardBundle.severity === 'legacy'
+  ));
+  return {
+    messages,
+    unreadCount: messages.reduce((count, message) => count + (message.unread ? 1 : 0), 0),
   };
 }
 

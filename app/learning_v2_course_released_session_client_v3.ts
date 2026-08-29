@@ -4,7 +4,11 @@ import { getFunctions, httpsCallable } from "@react-native-firebase/functions";
 
 import { initFirebaseAppCheckIfAvailable } from "./app_check_init";
 import { withCallableTimeout } from "./callable_timeout";
-import { ensureAnonUser } from "./cloud_sync";
+import {
+  ensureAnonUser,
+  ensureStableAuthLink,
+  repairStableAuthLinkAfterIdentityFailure,
+} from "./cloud_sync";
 import { withBackgroundNetworkLease } from "./interactive_network_quiet";
 import {
   getLearningV2CourseSessionAudioPreloadSummaryV1,
@@ -13,6 +17,8 @@ import {
   type LearningV2CourseSessionAudioPreloadHandleV1,
 } from "./learning_v2_course_session_audio_preload_v1";
 import { buildLearningV2Session1BundledAudioChildV1 } from "./learning_v2_session1_production_audio_v1";
+import { buildLearningV2EsSession1BundledAudioChildV1 } from "./learning_v2_es_session1_production_audio_v1";
+import { buildLearningV2EsSession2BundledAudioChildV1 } from "./learning_v2_es_session2_production_audio_v1";
 import { peekStableId } from "./stable_id";
 import {
   LEARNING_V2_COURSE_LESSON_COUNT_V1,
@@ -33,6 +39,7 @@ import {
 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
 import {
   LEARNING_V2_COURSE_SESSION_CLIENT_CHILD_MAX_BYTES_V1,
+  materializeLearningV2CourseSessionLearnerChildV1,
   parseLearningV2CourseSessionAuxiliaryChildV1,
   parseLearningV2CourseSessionIntroChildV1,
   parseLearningV2CourseSessionLearnerChildV1,
@@ -40,6 +47,7 @@ import {
   type LearningV2CourseSessionIntroChildV1,
   type LearningV2CourseSessionLearnerChildV1,
 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
+import { DEV_LEARNING_V2_AUDIOLESS_SESSIONS } from "./config";
 import {
   LEARNING_V2_COURSE_SESSION_EVALUATOR_CAPSULE_CHILD_MAX_BYTES_V1,
   parseLearningV2CourseSessionEvaluatorCapsuleChildV1,
@@ -620,6 +628,29 @@ async function persistRow(row: CacheRow): Promise<void> {
   return writeChain;
 }
 
+/**
+ * Ошибка «сервер не знает эту личность» — единственная, которую имеет смысл
+ * лечить повтором после пересоздания привязки.
+ *
+ * зачем (владелец, 2026-08-27, «снова та же ошибка стейбл айдентити»):
+ * callable зовётся с requireKnownIdentity:true и заворачивает серверный
+ * stable_id_required в свой stable_identity_unavailable. Предварительный
+ * ensureStableAuthLink() не всегда спасает: он может вернуть ok:true из
+ * локального кэша, не сходив на сервер (cloud_sync.ts ~2206). Тот же приём,
+ * что и в Арене (arena_client.ts isArenaStableIdRace) — распознать и повторить
+ * ОДИН раз, уже с принудительной перепривязкой.
+ */
+function isLearningV2StableIdentityFailure(error: unknown): boolean {
+  const code = String((error as { code?: unknown })?.code ?? "");
+  const message = String((error as { message?: unknown })?.message ?? "");
+  return (
+    code.includes("failed-precondition") &&
+    (message.includes("stable_identity_unavailable") ||
+      message.includes("stable_id_required") ||
+      message.includes("stable_identity_missing"))
+  );
+}
+
 function allowsOfflineFallback(error: unknown): boolean {
   const code =
     typeof error === "object" && error !== null && "code" in error
@@ -751,7 +782,12 @@ function bundledShardFor(
   sessionOrdinal: number,
 ): AuthoredLearningV2SessionShard | null {
   if (lessonOrdinal !== 1) return null;
-  if (targetLanguage === "es") return authoredEsLearningV2SessionShard(sessionOrdinal);
+  if (targetLanguage === "es") {
+    return authoredEsLearningV2SessionShard(
+      sessionOrdinal,
+      DEV_LEARNING_V2_AUDIOLESS_SESSIONS,
+    );
+  }
   return authoredLearningV2SessionShard(sessionOrdinal);
 }
 
@@ -790,12 +826,74 @@ export function bundledLearningV2CourseSessionMaterialV3(
     locator.targetLanguage === "en" &&
     locator.lessonOrdinal === 1 &&
     locator.sessionOrdinal === 1;
+  // зачем испанская ветка (владелец, 2026-08-27, mode-native переписка
+  // es_episode_01_session_01): та же схема audio child, что у английской
+  // session1 — реальные mp3 через learning_v2_es_session1_production_audio_v1.ts,
+  // сгенерированные scripts/generate_es_session01_production_audio.mjs.
+  // materializeLearningV2CourseSessionAudioChildV1({interactions: []}) ниже
+  // работает только для сессий БЕЗ audio-зависимых interactions вообще —
+  // как только у сессии есть listen_choose/listen_build_dictation/
+  // scripted_repeat_compare (mode-native формат), она обязана попасть в одну
+  // из bundled-веток, иначе exactInteraction бросает fail() на несовпадении
+  // count.
+  const bindsEsSessionOneProductionAudio =
+    locator.targetLanguage === "es" &&
+    locator.lessonOrdinal === 1 &&
+    locator.sessionOrdinal === 1;
+  // зачем (владелец, 2026-08-27): у испанской сессии 2 своя озвучка —
+  // scripts/generate_es_session02_production_audio.mjs, три фразы темы
+  // отрицания (no / No es fácil / No es verdad) в четырёх голосах.
+  const bindsEsSessionTwoProductionAudio =
+    locator.targetLanguage === "es" &&
+    locator.lessonOrdinal === 1 &&
+    locator.sessionOrdinal === 2;
+  // зачем эта проверка (владелец, 2026-08-27, «накорню реши эту проблему»):
+  // пустая ветка ниже годится ТОЛЬКО для сессии без единого звукового задания.
+  // Если у сессии есть listen_choose/listen_build_dictation/scripted_repeat_
+  // compare, но нет своего bundled-аудио (как у испанской session 2 — она
+  // написана, а озвучку ей никто не генерировал), схема бросает fail() на
+  // несовпадении количества, и человек видит «Сессия недоступна». Раньше это
+  // ловилось только на устройстве. Теперь несобираемая сессия честно
+  // возвращает null ЗДЕСЬ, ещё до показа экрана: потолок бандла её не
+  // откроет, и она просто не появится в списке доступных.
+  const hasBundledAudio =
+    bindsSessionOneProductionAudio ||
+    bindsEsSessionOneProductionAudio ||
+    bindsEsSessionTwoProductionAudio;
+  // зачем (владелец, 2026-08-28, DEV_LEARNING_V2_AUDIOLESS_SESSIONS в
+  // app/config.ts): испанские сессии пишутся быстрее, чем для них генерируют
+  // bundled-озвучку — без этого написанная сессия 3+ честно закрыта потолком
+  // (см. комментарий выше про сессию 2) и человек упирается в вечную
+  // загрузку/сеть. На период разработки убираем ИМЕННО требование звука:
+  // audioTargetIds обнуляются ДО вычисления needsAudio, поэтому
+  // criptографический аудио-гейт ниже просто не активируется для этой сессии
+  // (а не подделывается пустым списком внутри — тот путь запрещён нарочно,
+  // см. комментарий про exactInteraction/fail()). Задания остаются текстовыми.
+  if (DEV_LEARNING_V2_AUDIOLESS_SESSIONS && locator.targetLanguage === "es" && !hasBundledAudio) {
+    children.learner = materializeLearningV2CourseSessionLearnerChildV1({
+      courseSessionId: children.learner.courseSessionId,
+      targetLanguage: children.learner.targetLanguage,
+      interactionProfile: children.learner.interactionProfile,
+      interactions: children.learner.interactions.map((interaction) => ({
+        ...interaction,
+        audioTargetIds: [],
+      })),
+    });
+  }
+  const needsAudio = children.learner.interactions.some(
+    (interaction) => interaction.audioTargetIds.length > 0,
+  );
+  if (needsAudio && !hasBundledAudio) return null;
   const audioChild = bindsSessionOneProductionAudio
     ? buildLearningV2Session1BundledAudioChildV1(children.learner)
-    : materializeLearningV2CourseSessionAudioChildV1({
-        learner: children.learner,
-        interactions: Object.freeze([]),
-      });
+    : bindsEsSessionOneProductionAudio
+      ? buildLearningV2EsSession1BundledAudioChildV1(children.learner)
+      : bindsEsSessionTwoProductionAudio
+        ? buildLearningV2EsSession2BundledAudioChildV1(children.learner)
+        : materializeLearningV2CourseSessionAudioChildV1({
+          learner: children.learner,
+          interactions: Object.freeze([]),
+        });
   const bindsSessionOneRewardPublication =
     locator.targetLanguage === "en" && locator.lessonOrdinal === 1 &&
     locator.sessionOrdinal === 1;
@@ -895,12 +993,38 @@ export async function loadCurrentLearningV2CourseReleasedSessionV3(
   // на телефоне.
   const bundled = bundledLearningV2CourseSessionMaterialV3(locator);
   if (bundled) return appResult(bundled, "network");
+  // зачем ensureStableAuthLink, а не голый ensureAnonUser (владелец,
+  // 2026-08-27, «сессии должны быть доступны всегда, даже без привязки
+  // аккаунта»; ensureStableAuthLink = ensureAnonUser + серверная привязка,
+  // тот же bootstrap, что уже стоит перед Ареной — arena_client.ts:125, НЕ
+  // ОТКАТЫВАТЬ): callable ниже зовётся с requireKnownIdentity:true — серверу
+  // нужен уже существующий users/{stableId}. Один ensureAnonUser() создаёт
+  // только ЛОКАЛЬНЫЙ id и анонимный вход, без единой записи на сервере — на
+  // устройстве без прежней привязки (или после сброса локального auth-стейта)
+  // это гонка: сервер честно отвечает stable_id_required, callable выше
+  // заворачивает это в stable_identity_unavailable, и сессия не открывается
+  // вообще ни для одного пользователя без привязанного провайдера.
+  await ensureStableAuthLink().catch(() => false);
   const stableId = await ensureAnonUser();
   if (!stableId) fail();
   const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(stableId);
   let response: unknown;
   try {
-    response = await fetchNetwork({ ...locator, activeRootFingerprint: null });
+    try {
+      response = await fetchNetwork({ ...locator, activeRootFingerprint: null });
+    } catch (firstError) {
+      // зачем ОДИН повтор именно здесь (владелец, 2026-08-27): предварительный
+      // ensureStableAuthLink мог вернуть ok:true из локального кэша, ничего не
+      // создав на сервере (замкнутая ловушка до истечения TTL кэша). Стираем
+      // отметку, пересоздаём привязку по-настоящему и пробуем ровно один раз —
+      // не бесконечный ретрай, как и в Арене (arena_client.ts:147-160).
+      if (!isLearningV2StableIdentityFailure(firstError)) throw firstError;
+      const repaired = await repairStableAuthLinkAfterIdentityFailure().catch(
+        () => false,
+      );
+      if (!repaired) throw firstError;
+      response = await fetchNetwork({ ...locator, activeRootFingerprint: null });
+    }
   } catch (networkError) {
     if (!allowsOfflineFallback(networkError)) throw networkError;
     const envelope = await readEnvelope();

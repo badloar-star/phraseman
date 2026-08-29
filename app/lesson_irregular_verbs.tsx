@@ -57,8 +57,8 @@ import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
-import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
@@ -522,11 +522,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     }
 
     if (attemptEffect === 'attempts_exhausted') {
-      attemptsModalTimerRef.current = setTimeout(
-        () => setShowAttemptsModal(true),
-        SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
-      );
-      return; // Keep the current verb form for recovery.
+      return; // Keep the current verb form for the automatic reset.
     }
 
     // Advance after short delay (озвучка — сразу выше, без ожидания таймера)
@@ -608,26 +604,22 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     attempts.updateQuestion(`${activeVerb.base}:${activeForm}`);
   }, [activeForm, activeVerb, attempts.updateQuestion]);
 
-  const retryCurrentVerbFormAfterRecovery = useCallback(async (source: 'gift' | 'runes') => {
-    try {
-      if (source === 'gift') await attempts.recoverWithGift();
-      else await attempts.recoverWithRunes();
-      setShowAttemptsModal(false);
-      setBtnStates(['idle', 'idle', 'idle', 'idle']);
-      setFeedbackCorrect(true);
-      setPhase('answering');
-      setLetterBankKey(key => key + 1);
-      locked.current = false;
-    } catch {
-      // Keep this exact form blocked until a durable recovery succeeds.
-    }
-  }, [attempts.recoverWithGift, attempts.recoverWithRunes]);
-
-  const endAttemptsExhaustedVerbSession = useCallback(() => {
-    attempts.endAttemptsSession();
+  const retryCurrentVerbFormAfterSessionRuneForfeit = useCallback(() => {
     setShowAttemptsModal(false);
-    safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
-  }, [attempts.endAttemptsSession, lessonId, router]);
+    setBtnStates(['idle', 'idle', 'idle', 'idle']);
+    setFeedbackCorrect(true);
+    setPhase('answering');
+    setLetterBankKey(key => key + 1);
+    locked.current = false;
+  }, []);
+
+  useSessionAttemptAutoReset({
+    phase: attempts.state.phase,
+    forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
+    restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
+    onRestored: retryCurrentVerbFormAfterSessionRuneForfeit,
+  });
+
   // Зрелый глагол → собираем форму из букв (воспроизведение), новый → 4 кнопки (узнавание).
   const recallActive = !!activeVerb && isRecallVerb(activeVerb.base);
   const activeAcceptedForms = useMemo(
@@ -1028,16 +1020,6 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         celebrateSound="medal"
         autoHideMs={1600}
         onDone={() => setLearnedBurst(null)}
-      />
-      <SessionAttemptsRecoveryModal
-        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
-        locale={lang}
-        giftCount={attempts.giftCount}
-        runeBalance={attempts.runeBalance ?? 0}
-        busy={attempts.recoveryBusy}
-        onUseGift={() => { void retryCurrentVerbFormAfterRecovery('gift'); }}
-        onSpendRunes={() => { void retryCurrentVerbFormAfterRecovery('runes'); }}
-        onEndSession={endAttemptsExhaustedVerbSession}
       />
       {runeFlight.flight && (
         <LearningV2RuneFlight

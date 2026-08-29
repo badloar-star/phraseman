@@ -185,7 +185,8 @@ export class SoundArbiter {
     if (!definition.source) return { kind: 'drop', reason: 'missing' };
     if (this.recordingActive) return { kind: 'drop', reason: 'recording' };
 
-    const voiceBlocked = this.voiceActive || (!ignoreVoiceGap && now < this.voiceQuietUntil);
+    const voiceBlocked = !definition.mixWithVoice
+      && (this.voiceActive || (!ignoreVoiceGap && now < this.voiceQuietUntil));
     if (voiceBlocked) {
       if (options.deferAfterVoice ?? definition.deferAfterVoice) {
         return this.defer(eventId, options, now);
@@ -220,8 +221,8 @@ export class SoundArbiter {
       }
     }
 
-    const preempt = this.active !== null;
-    if (this.active && definition.priority <= this.active.priority) {
+    const preempt = !definition.allowConcurrent && this.active !== null;
+    if (!definition.allowConcurrent && this.active && definition.priority <= this.active.priority) {
       return {
         kind: 'drop',
         reason: 'priority',
@@ -230,12 +231,14 @@ export class SoundArbiter {
     }
 
     const requestId = ++this.requestSequence;
-    this.active = {
-      requestId,
-      eventId,
-      priority: definition.priority,
-      endsAt: now + definition.durationMs,
-    };
+    if (!definition.allowConcurrent) {
+      this.active = {
+        requestId,
+        eventId,
+        priority: definition.priority,
+        endsAt: now + definition.durationMs,
+      };
+    }
     if (scopedStarts) scopedStarts.push(now);
     else this.starts.push(now);
     this.lastStartedByEvent.set(eventId, now);

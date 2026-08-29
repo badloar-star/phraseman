@@ -12,6 +12,9 @@ describe('home feature visibility', () => {
     const source = read('app/(tabs)/home.tsx');
 
     expect(source).toContain('const nextHomeLeagueChest = buildHomeLeagueChest(');
+    expect(source).toContain('getMyLeagueWeekRunes()');
+    expect(source).toContain('withMyLivePoints(');
+    expect(source).not.toContain('setHomeLeagueChest((prev) => prev);');
     expect(source).not.toContain('shouldShowLeagueRace');
     expect(source).toContain('homeLeagueChest ?? peekHomeScreenHydration(studyTarget)?.homeLeagueChest ?? null');
   });

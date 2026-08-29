@@ -1,51 +1,23 @@
 // ─── ГЛОБАЛЬНЫЙ ПЕРЕХВАТ ШРИФТА ──────────────────────────────────────────────
-// Проблема: на Android React Native НЕ применяет числовой fontWeight ('700'/'900')
-// к кастомному шрифту — текст рендерится обычным Roboto, иерархии нет.
-// В проекте ~1900 мест с fontWeight числом и НИ ОДНОГО явного fontFamily: 'Inter-Bold'.
+// Проблема: весь интерфейс задаёт числовой fontWeight, поэтому Android должен
+// получать одно нативное семейство Inter, внутри которого зарегистрированы
+// реальные начертания 400/600/700/900.
 //
-// Решение: один раз патчим Text.render так, чтобы любой fontWeight маппился в
-// соответствующее именованное начертание Inter. Это чинит все экраны сразу,
-// без правки каждого файла. Идемпотентно (защита от повторного вызова при HMR).
-//
-// Веса -> семейства (см. app/typography.ts / APP_FONT_ASSETS):
-//   400/normal      -> Inter         (Regular)
-//   500/600         -> Inter-SemiBold
-//   700/bold/800    -> Inter-Bold
-//   900             -> Inter-Black
+// Этот fallback один раз патчит Text.render там, где такой API существует, и
+// добавляет только fontFamily. Исходный fontWeight остаётся в style, а Android
+// выбирает нужное начертание из единого семейства. Идемпотентно при HMR.
 //
 // Важно: НЕ трогаем элементы, у которых уже задан собственный fontFamily
 // (иконочные шрифты Ionicons/MaterialIcons, эмодзи и т.п. — у них fontFamily свой).
 
 import { cloneElement, isValidElement } from 'react';
-import { Text, type TextStyle } from 'react-native';
+import { Platform, Text, type TextStyle } from 'react-native';
+import { shouldInstallNativeTextRenderPatch } from './native_runtime_capability';
 import { APP_FONT_FAMILY } from './typography';
 
-const FONT_REGULAR = APP_FONT_FAMILY;          // 'Inter'
-const FONT_SEMIBOLD = 'Inter-SemiBold';
-const FONT_BOLD = 'Inter-Bold';
-const FONT_BLACK = 'Inter-Black';
-
-/** Сопоставляет fontWeight именованному начертанию Inter. */
-export function interFamilyForWeight(weight: TextStyle['fontWeight'] | undefined): string {
-  switch (weight) {
-    case '900':
-      return FONT_BLACK;
-    case '800':
-    case '700':
-    case 'bold':
-      return FONT_BOLD;
-    case '600':
-    case '500':
-      return FONT_SEMIBOLD;
-    case '400':
-    case '300':
-    case '200':
-    case '100':
-    case 'normal':
-    case undefined:
-    default:
-      return FONT_REGULAR;
-  }
+/** Все веса выбираются внутри единого нативного семейства Inter. */
+export function interFamilyForWeight(_weight: TextStyle['fontWeight'] | undefined): string {
+  return APP_FONT_FAMILY;
 }
 
 type FlatStyle = TextStyle & { fontFamily?: string };
@@ -86,6 +58,7 @@ let patched = false;
  * Патчит Text.render один раз. Безопасно вызывать повторно (HMR) — no-op после первого раза.
  */
 export function installInterFontPatch(): void {
+  if (!shouldInstallNativeTextRenderPatch(Platform.OS)) return;
   if (patched) return;
   patched = true;
 

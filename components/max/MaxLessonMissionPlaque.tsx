@@ -21,6 +21,7 @@ export default function MaxLessonMissionPlaque({ mission, lang, reduceMotion }: 
   const label = triLang(lang, {
     ru: 'Сегодня с MAX',
     uk: 'Сьогодні з MAX',
+    en: 'Today with MAX',
     es: 'Hoy con MAX',
     'pt-BR': 'Hoje com o MAX',
     vi: 'Hôm nay cùng MAX',

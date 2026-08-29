@@ -56,6 +56,7 @@ import { useAppSnapshotSelector } from './app_snapshot_store';
 import { animateNextLayoutTransition } from './smooth_layout';
 import { safeRouterBack } from './navigation_back';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
+import { traceAccountDeleteUi } from './account_delete_ui_trace';
 
 const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
   ru: 'ru-RU',
@@ -97,9 +98,9 @@ export default function AccountDetailsScreen() {
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();
   const L = (
-    ru: string, uk: string, es: string, ptBr: string,
+    ru: string, uk: string, en: string, es: string, ptBr: string,
     vi: string, id: string, tr: string, pl: string,
-  ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const surface = SETTINGS_SURFACES[themeMode];
   const isLightTheme = isLightThemeMode(themeMode);
 
@@ -146,6 +147,7 @@ export default function AccountDetailsScreen() {
   const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => {
     if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+    traceAccountDeleteUi('account_details_unmounted');
   }, []);
 
   const openNameModal = useCallback(() => {
@@ -174,10 +176,11 @@ export default function AccountDetailsScreen() {
 
   const initials = initialsFromName(userName);
   const providerLabel = linkedAuth?.provider === 'apple' ? 'Apple' : 'Google';
-  const namePlaceholder = L('Не задано', 'Не задано', 'No indicado', 'Não definido', 'Chưa đặt', 'Belum diatur', 'Ayarlanmadı', 'Nie ustawiono');
+  const namePlaceholder = L('Не задано', 'Не задано', 'Not set', 'No indicado', 'Não definido', 'Chưa đặt', 'Belum diatur', 'Ayarlanmadı', 'Nie ustawiono');
   const logoutActionLabel = L(
     'Выйти и войти под другим аккаунтом',
     'Вийти й увійти під іншим акаунтом',
+    'Sign out and sign in with another account',
     'Salir e iniciar sesión con otra cuenta',
     'Sair e entrar com outra conta',
     'Đăng xuất và đăng nhập bằng tài khoản khác',
@@ -193,7 +196,7 @@ export default function AccountDetailsScreen() {
           {/* зачем: стандарт «шторки раздела» — модал с выездом снизу, шапка
               с центрированным заголовком и крестиком вместо стрелки «назад». */}
           <SectionSheetHeader
-            title={L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
+            title={L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             onClose={() => safeRouterBack(router, '/(tabs)/settings' as never)}
             closeTestID="account-sheet-close"
           />
@@ -203,7 +206,7 @@ export default function AccountDetailsScreen() {
         <TouchableOpacity
           activeOpacity={0.8}
           accessibilityRole="button"
-          accessibilityLabel={L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
+          accessibilityLabel={L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
           onPress={openNameModal}
           style={{ alignItems: 'center', marginTop: 22 }}
           testID="account-hero"
@@ -234,7 +237,7 @@ export default function AccountDetailsScreen() {
             {userName || namePlaceholder}
           </FlowText>
           <Text style={{ color: surface.accent, fontSize: f.caption, fontWeight: '700', marginTop: 5 }}>
-            {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
+            {L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
           </Text>
         </TouchableOpacity>
 
@@ -267,7 +270,7 @@ export default function AccountDetailsScreen() {
             testID="account-name-row"
             icon="person"
             color="blue"
-            label={L('Имя', 'Ім\'я', 'Nombre', 'Nome', 'Tên', 'Nama', 'Ad', 'Imię')}
+            label={L('Имя', 'Ім\'я', 'Name', 'Nombre', 'Nome', 'Tên', 'Nama', 'Ad', 'Imię')}
             value={userName || namePlaceholder}
             onPress={openNameModal}
           />
@@ -292,7 +295,7 @@ export default function AccountDetailsScreen() {
               testID="account-link-row"
               icon="link"
               color="green"
-              label={L('Привязать аккаунт', "Прив\'язати акаунт", 'Vincular cuenta', 'Vincular conta', 'Liên kết tài khoản', 'Tautkan akun', 'Hesabı bağla', 'Połącz konto')}
+              label={L('Привязать аккаунт', "Прив\'язати акаунт", 'Link account', 'Vincular cuenta', 'Vincular conta', 'Liên kết tài khoản', 'Tautkan akun', 'Hesabı bağla', 'Połącz konto')}
               onPress={() => { doHaptic(); setAuthPromptVisible(true); }}
             />
           )}
@@ -300,7 +303,7 @@ export default function AccountDetailsScreen() {
             <SettingsRow
               icon={linkedAuth.provider === 'apple' ? 'logo-apple' : 'logo-google'}
               color="gray"
-              label={L('Способ входа', 'Спосіб входу', 'Método de acceso', 'Método de login', 'Cách đăng nhập', 'Metode masuk', 'Giriş yöntemi', 'Metoda logowania')}
+              label={L('Способ входа', 'Спосіб входу', 'Sign-in method', 'Método de acceso', 'Método de login', 'Cách đăng nhập', 'Metode masuk', 'Giriş yöntemi', 'Metoda logowania')}
               value={providerLabel}
               hideChevron
             />
@@ -309,7 +312,7 @@ export default function AccountDetailsScreen() {
             <SettingsRow
               icon="calendar-clear"
               color="orange"
-              label={L('С нами с', 'З нами з', 'Con nosotros desde', 'Conosco desde', 'Cùng chúng tôi từ', 'Bersama kami sejak', 'Bizimle şu tarihten beri', 'Z nami od')}
+              label={L('С нами с', 'З нами з', 'With us since', 'Con nosotros desde', 'Conosco desde', 'Cùng chúng tôi từ', 'Bersama kami sejak', 'Bizimle şu tarihten beri', 'Z nami od')}
               value={formatMemberSince(memberSinceMs, lang)}
               hideChevron
             />
@@ -349,7 +352,7 @@ export default function AccountDetailsScreen() {
             }}
           >
             <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '700' }}>
-              {L('Удалить аккаунт', 'Видалити акаунт', 'Eliminar cuenta', 'Excluir conta', 'Xóa tài khoản', 'Hapus akun', 'Hesabı sil', 'Usuń konto')}
+              {L('Удалить аккаунт', 'Видалити акаунт', 'Delete account', 'Eliminar cuenta', 'Excluir conta', 'Xóa tài khoản', 'Hapus akun', 'Hesabı sil', 'Usuń konto')}
             </Text>
           </TouchableOpacity>
         </View>

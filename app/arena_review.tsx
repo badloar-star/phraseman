@@ -207,7 +207,7 @@ function ReviewCard({ row, index, reduceMotion }: {
             dataId={`arena_task_${row.taskId || row.taskIndex}`}
             dataText={row.prompt}
             variant="icon-flag"
-            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку в завданні', es: 'Informar de un error en el ejercicio', 'pt-BR': 'Relatar erro no exercício', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan pada latihan', tr: 'Alıştırmadaki hatayı bildir', pl: 'Zgłoś błąd w zadaniu' })}
+            accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку в завданні', en: 'Report an error in the exercise', es: 'Informar de un error en el ejercicio', 'pt-BR': 'Relatar erro no exercício', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan pada latihan', tr: 'Alıştırmadaki hatayı bildir', pl: 'Zgłoś błąd w zadaniu' })}
             testID="arena-review-report"
           />
         </View>

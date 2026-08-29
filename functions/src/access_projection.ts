@@ -45,7 +45,7 @@ export function buildAccessProjection(
     progressMs(progress.premium_expiry),
     progressMs(progress.premium_rc_expiry_ms),
   );
-  const storePlan = ['monthly', 'yearly', 'annual', 'lifetime', 'max_monthly'].includes(premiumPlan);
+  const storePlan = ['monthly', 'yearly', 'annual', 'lifetime'].includes(premiumPlan);
   const premiumRevoked = falsy(progress.admin_premium_override) && !storePlan;
   const premiumSentinel = premiumPlan === 'lifetime'
     || truthy(progress.admin_premium_override)

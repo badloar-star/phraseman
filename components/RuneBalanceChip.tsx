@@ -42,7 +42,7 @@ import { triLang, type Lang } from '../constants/i18n';
  */
 function balanceLabel(lang: Lang, balance: number): string {
   const prefix = triLang(lang, {
-    ru: 'Баланс', uk: 'Баланс', es: 'Saldo', 'pt-BR': 'Saldo',
+    ru: 'Баланс', uk: 'Баланс', en: 'Balance', es: 'Saldo', 'pt-BR': 'Saldo',
     vi: 'Số dư', id: 'Saldo', tr: 'Bakiye', pl: 'Saldo',
   });
   return `${prefix}: ${runeAmount(lang, balance)}`;

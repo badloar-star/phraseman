@@ -51,8 +51,9 @@ import {
 } from './max_tutor_preview';
 import MaxVoiceConsentGate from './max_voice_consent_gate';
 import { maxVoiceStudyTarget } from './max_target_gate';
-import { getAppSnapshot } from './app_snapshot_store';
-import { onAppEvent } from './events';
+import VoiceMinutePackSheet from '../modules/voice_minutes/VoiceMinutePackSheet';
+import { readVoiceMinuteWalletStatus, type VoiceMinuteWalletStatus } from '../modules/voice_minutes/wallet';
+import { peekVoiceMinutes, writeVoiceMinutePeek } from '../modules/voice_minutes/peek_cache';
 
 /**
  * Пре-экран «Позвонить» (спека, раздел 1: max_call_prestart).
@@ -169,14 +170,18 @@ function MaxCallPrestartContent() {
 
   const [preflight, setPreflight] = useState<PreflightView | null>(null);
   const [preflightReason, setPreflightReason] = useState<string | null>(null);
-  // зачем (владелец 2026-08-26): free/plus/pro видят пробник 3 минуты, а не общий
-  // 20-минутный пул MAX — сервер в limits отдаёт dayRemainingSec от 20-минутного
-  // пула даже когда доступ trial (estimateQuotaRemaining его не различает).
-  // Доступ определяем по trialVariant успешного минта; до ответа — по локальному
-  // тарифу из снапшота (не max_monthly ⇒ показываем пробный пул, не 20 минут).
-  const [mintAccess, setMintAccess] = useState<'max' | 'trial' | null>(null);
+  // Единственный коммерческий путь — серверный кошелёк купленных минут.
+  // Trial/admin остаются отдельными серверными gates и не выводятся из Premium.
+  const [mintAccess, setMintAccess] = useState<'paid_minutes' | 'admin' | 'trial' | null>(null);
+  const [minuteWallet, setMinuteWallet] = useState<VoiceMinuteWalletStatus | null>(null);
+  const [minuteSheetVisible, setMinuteSheetVisible] = useState(false);
   const [prepState, setPrepState] = useState<PreparationState>('preparing');
   const [prepAttempt, setPrepAttempt] = useState(0);
+  // зачем (владелец 2026-08-29): «текст, пока прогревается и кнопки нет, не
+  // должен быть всегда — только когда надо». Обычно подготовка укладывается в
+  // доли секунды, и плашка успевала мигнуть без пользы. Показываем её только
+  // если ожидание затянулось — тогда она объясняет, что экран не завис.
+  const [prepIsSlow, setPrepIsSlow] = useState(false);
   const startCtaReveal = useRef(new Animated.Value(0)).current;
   const a11y = useMemo(() => ({
     backHint: triLang(lang, { ru: 'Закрывает подготовку MAX и возвращает на предыдущий экран', en: 'Closes MAX preparation and returns to the previous screen', uk: 'Закриває підготовку MAX і повертає на попередній екран', es: 'Cierra la preparación de MAX y vuelve a la pantalla anterior', 'pt-BR': 'Fecha a preparação do MAX e volta à tela anterior', vi: 'Đóng phần chuẩn bị MAX và quay lại màn hình trước', id: 'Menutup persiapan MAX dan kembali ke layar sebelumnya', tr: 'MAX hazırlığını kapatıp önceki ekrana döner', pl: 'Zamyka przygotowanie MAX i wraca do poprzedniego ekranu' }),
@@ -185,6 +190,19 @@ function MaxCallPrestartContent() {
     startLabel: triLang(lang, { ru: 'Начать разговор с MAX', en: 'Start the conversation with MAX', uk: 'Почати розмову з MAX', es: 'Empezar conversación con MAX', 'pt-BR': 'Começar conversa com o MAX', vi: 'Bắt đầu trò chuyện với MAX', id: 'Mulai percakapan dengan MAX', tr: 'MAX ile konuşmayı başlat', pl: 'Rozpocznij rozmowę z MAX' }),
     startHint: triLang(lang, { ru: 'Запускает уже подготовленный урок и начинает отсчёт времени', en: 'Starts the already prepared lesson and begins the timer', uk: 'Запускає вже підготовлений урок і починає відлік часу', es: 'Inicia la clase ya preparada y comienza a contar el tiempo', 'pt-BR': 'Inicia a aula já preparada e começa a contar o tempo', vi: 'Bắt đầu bài học đã chuẩn bị và tính thời gian', id: 'Memulai pelajaran yang sudah disiapkan dan penghitungan waktu', tr: 'Hazırlanmış dersi başlatır ve süreyi saymaya başlar', pl: 'Uruchamia przygotowaną lekcję i zaczyna odliczać czas' }),
   }), [lang]);
+
+  useEffect(() => {
+    let active = true;
+    void readVoiceMinuteWalletStatus()
+      .then((wallet) => {
+        if (!active) return;
+        setMinuteWallet(wallet);
+        // Резерв идущего звонка — не трата: кэшируем то же число, что видит глаз.
+        writeVoiceMinutePeek(wallet.availableSeconds + wallet.reservedSeconds);
+      })
+      .catch(() => {});
+    return () => { active = false; };
+  }, []);
 
   useEffect(() => {
     if (!isTutor) return;
@@ -204,9 +222,23 @@ function MaxCallPrestartContent() {
     return () => { active = false; };
   }, [callParams, format, isTutor, previewKey]);
 
+  // Порог «долгого» ожидания: короче — человек не успевает заметить паузу, и
+  // плашка только мигнула бы; дольше — экран уже кажется зависшим.
+  const PREP_SLOW_AFTER_MS = 1_500;
+
+  useEffect(() => {
+    if (prepState !== 'preparing') {
+      setPrepIsSlow(false);
+      return undefined;
+    }
+    const timer = setTimeout(() => setPrepIsSlow(true), PREP_SLOW_AFTER_MS);
+    return () => clearTimeout(timer);
+  }, [prepState, prepAttempt]);
+
   useEffect(() => {
     let active = true;
     setPrepState('preparing');
+    setPrepIsSlow(false);
     setPreflightReason(null);
     setMintAccess(null);
     // Заготовка минта стартует сразу при входе (см. шапку файла): её же limits
@@ -223,7 +255,7 @@ function MaxCallPrestartContent() {
         setPreflight(parsePreflight({ limits: limitsBeforeReserve(mint.limits) }, format));
         // Сервер сам решил, пробник это или полный MAX: trialVariant ≠ null —
         // единственный честный признак trial-доступа в ответе минта.
-        setMintAccess(mint.trialVariant ? 'trial' : 'max');
+        setMintAccess(mint.access ?? (mint.trialVariant ? 'trial' : 'admin'));
         setPreflightReason(null);
         setPrepState('ready');
         // зачем: линия готова к разговору — сигнал ставим сразу на переходе в
@@ -255,36 +287,58 @@ function MaxCallPrestartContent() {
 
   const capSec = preflight?.capSec ?? DEFAULT_CAP_SEC[format];
   const capMin = Math.max(1, Math.round(capSec / 60));
-  // зачем: сервер отдаёт dayRemainingSec/dailyVoiceSecMax от ОБЩЕГО 20-минутного
-  // MAX-пула даже для trial-доступа (см. max_voice_mint.ts estimateQuotaRemaining) —
-  // он не различает разовый 3-минутный пробник free/plus/pro в этих полях.
-  // Карточка «Остаток минут дня» для пробника обязана показывать его настоящий
-  // лимит, иначе free/plus видит «20 минут» вместо реальных 3 (владелец 2026-08-26).
+  // Trial показывает только одноразовый пробный пул. Купленные минуты показывают
+  // неистекающий остаток кошелька без календарного дневного/месячного лимита.
   const isTrialFormat = format === 'trial';
   // Отказ voice_max_required = пробник сожжён: пул этого тарифа всё равно 3 мин.
   const maxRequired = preflightReason === 'voice_max_required';
-  // ИЗВЕСТНОЕ ОГРАНИЧЕНИЕ (аудит 2026-08-26): сервер выдаёт полный MAX-пул не
-  // только по подписке, но и АДМИНУ (max_voice_mint.ts: `if (isMaxTier ||
-  // isAdmin)`), а здесь локально виден лишь тариф. Поэтому у админа до ответа
-  // минта экран покажет пробные 3 мин вместо 20 — цифра сама исправляется, как
-  // только придёт trialVariant (setMintAccess ниже). Тянуть сюда claim админа
-  // ради доли секунды сознательно НЕ стали: это второй источник истины о
-  // доступе, который неизбежно разойдётся с серверным. Ошибаться в сторону
-  // меньшего числа безопаснее: обещать 20 минут и отобрать хуже, чем наоборот.
-  const localPlanIsMax = getAppSnapshot().profile?.premiumPlan === 'max_monthly';
-  const trialAccess = isTrialFormat || mintAccess === 'trial' || maxRequired
-    || (mintAccess === null && !localPlanIsMax);
+  // зачем (владелец 2026-08-29, «сначала показывает 3 минуты, потом 109»): пока
+  // кошелёк не ответил, minuteWallet === null, доступ считался пробником и
+  // экран рисовал пробниковые 3 минуты — платящему показывали чужой остаток.
+  // Синхронный peek-кэш знает последний остаток ещё до первого кадра.
+  const peekedMinuteSec = peekVoiceMinutes()?.seconds ?? null;
+  const effectiveAccess = mintAccess ?? ((minuteWallet
+    ? minuteWallet.availableSeconds + minuteWallet.reservedSeconds
+    : peekedMinuteSec ?? 0) >= 60
+    ? 'paid_minutes'
+    : 'trial');
+  const trialAccess = isTrialFormat || effectiveAccess === 'trial' || maxRequired;
   // Кап trial-минта (limits.sessionCapSec) — и есть пробный пул; до ответа
   // сервера и после отказа берём дефолт спеки, а не кап формата tutor (10 мин).
   const trialPoolSec = isTrialFormat || mintAccess === 'trial' ? capSec : DEFAULT_CAP_SEC.trial;
-  const dayRemainingSec = trialAccess
-    ? (maxRequired ? 0 : trialPoolSec)
-    : preflight?.dayRemainingSec ?? DEFAULT_DAY_SEC;
-  const dayMaxSec = trialAccess ? trialPoolSec : preflight?.dayMaxSec ?? DEFAULT_DAY_SEC;
+  const paidAccess = effectiveAccess === 'paid_minutes';
+  // зачем (владелец 2026-08-29, «цифра прыгает то 109, то 119»): у купленных
+  // минут было ДВА источника одной цифры — кошелёк (приходит при входе) и
+  // limits минта (приходят, когда дозреет преминт). Они меряют чуть разное:
+  // кошелёк — весь остаток, limits — остаток за вычетом резерва этого звонка,
+  // возвращаемый обратно в limitsBeforeReserve. Секунда расхождения после
+  // floor превращалась в минуту, и число скакало на глазах.
+  //
+  // Источник истины для платной ветки один — кошелёк: он описывает ровно то,
+  // что обещает подпись «купленные минуты не сгорают», и не зависит от того,
+  // успел ли дозреть преминт. limits минта остаются источником для trial и
+  // дневного пула, где кошелька нет.
+  // зачем (владелец 2026-08-29, «купил 120, говорил пару секунд, показывает
+  // 109»): availableSeconds — это остаток МИНУС резерв идущего звонка. Резерв
+  // не трата: он возвращается, как только звонок закрыт. Пока сессия висела
+  // незакрытой, экран занижал остаток на целый резерв (10 минут). Показываем
+  // честный остаток кошелька — потраченное уже вычтено в netSeconds.
+  const paidWalletSec = minuteWallet
+    ? minuteWallet.availableSeconds + minuteWallet.reservedSeconds
+    : peekedMinuteSec;
+  const dayRemainingSec = paidAccess
+    ? (paidWalletSec ?? preflight?.dayRemainingSec ?? 0)
+    : trialAccess
+      ? (maxRequired ? 0 : trialPoolSec)
+      : preflight?.dayRemainingSec ?? DEFAULT_DAY_SEC;
+  const dayMaxSec = paidAccess
+    ? dayRemainingSec
+    : trialAccess ? trialPoolSec : preflight?.dayMaxSec ?? DEFAULT_DAY_SEC;
   const remainingMin = Math.max(0, Math.floor(dayRemainingSec / 60));
   const dayMaxMin = Math.max(remainingMin, Math.round(dayMaxSec / 60));
   // «Возвращайся завтра» — только про исчерпанный ДНЕВНОЙ пул; сожжённый
-  // пробник — не «завтра вернётся», там говорит кнопка «Подключить MAX».
+  // пробник — не «завтра вернётся», там предлагается купить минуты.
+  const paidMinutesInsufficient = paidAccess && dayRemainingSec < 60;
   const noMinutesLeft = dayRemainingSec < 60 && !maxRequired;
   // Premint дозревает на экране цели. CTA открывается только после готовности,
   // чтобы первый тап вёл сразу в разговор, а не переносил ожидание в звонок.
@@ -414,16 +468,15 @@ function MaxCallPrestartContent() {
     setPrepAttempt((attempt) => attempt + 1);
   };
 
-  useEffect(() => {
-    const sub = onAppEvent('premium_activated', () => {
-      setPrepAttempt((attempt) => attempt + 1);
-    });
-    return () => sub.remove();
-  }, []);
-
-  const openMaxPaywall = () => {
+  const openMinutePacks = () => {
     hapticTap();
-    router.push({ pathname: '/max_paywall', params: { source: 'voice_max_required' } } as any);
+    setMinuteSheetVisible(true);
+  };
+
+  const onMinutesCredited = (wallet: VoiceMinuteWalletStatus) => {
+    setMinuteWallet(wallet);
+    setMinuteSheetVisible(false);
+    setPrepAttempt((attempt) => attempt + 1);
   };
 
   if (isTutor) {
@@ -531,14 +584,14 @@ function MaxCallPrestartContent() {
                     runningSinceMs={null}
                     variant="hero"
                     lang={lang}
+                    mode={paidAccess ? 'wallet' : 'daily'}
                   />
                 </View>
               </View>
             </StatsCardArtSurface>
 
-            {/* зачем (владелец 2026-08-26, «убрать дурацкий красный текст»):
-                когда причина — пейвол (voice_max_required), красное объяснение
-                не показываем: кнопка «Подключить MAX» говорит сама. Красный
+            {/* Когда причина — отсутствие минут (voice_max_required), красное
+                объяснение не показываем: кнопка покупки говорит сама. Красный
                 остаётся только настоящим сбоям (сеть/сервер). */}
             {maxRequired ? null : prepState === 'failed' ? (
               <View accessibilityLiveRegion="polite" style={{ paddingHorizontal: 4, marginTop: 10, marginBottom: 10 }}>
@@ -550,24 +603,15 @@ function MaxCallPrestartContent() {
 
             {noMinutesLeft ? (
               <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '700', textAlign: 'center', marginBottom: 12 }} maxFontSizeMultiplier={2}>
-                {triLang(lang, { ru: 'Минуты на сегодня закончились — возвращайся завтра', uk: 'Хвилини на сьогодні закінчилися — повертайся завтра', en: "Today's minutes are used up — come back tomorrow", es: 'Se acabaron los minutos de hoy: vuelve mañana', 'pt-BR': 'Os minutos de hoje acabaram: volte amanhã', vi: 'Hết phút hôm nay — hãy quay lại vào ngày mai', id: 'Menit hari ini habis — kembali besok', tr: 'Bugünkü dakikalar bitti — yarın tekrar gel', pl: 'Minuty na dziś się skończyły — wróć jutro' })}
+                {paidMinutesInsufficient
+                  ? triLang(lang, { ru: 'Недостаточно минут — купи ещё', uk: 'Недостатньо хвилин — купи ще', en: 'Not enough minutes — buy more', es: 'No hay suficientes minutos: compra más', 'pt-BR': 'Minutos insuficientes — compre mais', vi: 'Không đủ phút — hãy mua thêm', id: 'Menit tidak cukup — beli lagi', tr: 'Yeterli dakika yok — daha fazla satın al', pl: 'Za mało minut — kup więcej' })
+                  : triLang(lang, { ru: 'Минуты на сегодня закончились — возвращайся завтра', uk: 'Хвилини на сьогодні закінчилися — повертайся завтра', en: "Today's minutes are used up — come back tomorrow", es: 'Se acabaron los minutos de hoy: vuelve mañana', 'pt-BR': 'Os minutos de hoje acabaram: volte amanhã', vi: 'Hết phút hôm nay — hãy quay lại vào ngày mai', id: 'Menit hari ini habis — kembali besok', tr: 'Bugünkü dakikalar bitti — yarın tekrar gel', pl: 'Minuty na dziś się skończyły — wróć jutro' })}
               </Text>
             ) : null}
 
             {/* зачем: аудит 2026-08-22 — при неретраебельной причине (минуты
                 кончились, линия выключена) кнопка повтора лишь дразнила. */}
-                {shouldOfferMaxUpgradeForVoiceReason(preflightReason) ? (
-                  <Pressable
-                    testID="max-subscribe-button"
-                    accessibilityRole="button"
-                    onPress={openMaxPaywall}
-                    style={{ minHeight: 56, backgroundColor: t.accent, borderRadius: 18, paddingHorizontal: 18, marginBottom: 10, alignItems: 'center', justifyContent: 'center' }}
-                  >
-                    <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-                      {triLang(lang, { ru: 'Подключить MAX', uk: 'Підключити MAX', en: 'Activate MAX', es: 'Activar MAX', 'pt-BR': 'Ativar MAX', vi: 'Đăng ký MAX', id: 'Aktifkan MAX', tr: 'MAX’i etkinleştir', pl: 'Włącz MAX' })}
-                    </Text>
-                  </Pressable>
-                ) : prepState === 'failed' && isMaxVoiceFailureRetryable(preflightReason) ? (
+                {prepState === 'failed' && isMaxVoiceFailureRetryable(preflightReason) ? (
               <>
                 <TouchableOpacity
                   testID="max-preflight-retry-button"
@@ -584,7 +628,15 @@ function MaxCallPrestartContent() {
               </>
             ) : null}
 
-            {prepState === 'preparing' ? (
+            {/* зачем (владелец 2026-08-29): плашка ожидания — не всегда, а
+                только когда подготовка реально затянулась. Пока молчим, место
+                под неё зарезервировано той же высотой: первый кадр обязан
+                совпадать с финальной геометрией (Performance Bible), иначе
+                кнопка «Начать» появлялась бы рывком. */}
+            {prepState === 'preparing' && !prepIsSlow ? (
+              <View style={{ minHeight: MAX_PRESTART_MISSION_HYBRID.cardMinHeight }} />
+            ) : null}
+            {prepState === 'preparing' && prepIsSlow ? (
               <MaxLessonMissionPlaque
                 mission={activeTutorPreview.outcome}
                 lang={lang}
@@ -634,11 +686,45 @@ function MaxCallPrestartContent() {
                 </TouchableOpacity>
               </Animated.View>
             ) : null}
+
+            {/* зачем: владелец 2026-08-29 — «кнопка купить минуты должна быть
+                ВСЕГДА, и не такая же, как кнопка начать». Раньше покупка жила
+                внутри ветки отказа: когда минуты были, а подготовка не дошла до
+                ready, на экране не оставалось НИ одной кнопки. Теперь покупка —
+                отдельная постоянная вторичная кнопка (тихий фон, без акцентной
+                заливки), а акцентная CTA «Начать» остаётся единственной главной
+                и появляется, когда минуты есть. */}
+            <Pressable
+              testID="voice-minute-prestart-buy-button"
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, { ru: 'Купить минуты', uk: 'Купити хвилини', en: 'Buy minutes', es: 'Comprar minutos', 'pt-BR': 'Comprar minutos', vi: 'Mua phút', id: 'Beli menit', tr: 'Dakika satın al', pl: 'Kup minuty' })}
+              onPress={openMinutePacks}
+              hitSlop={6}
+              style={({ pressed }) => ({
+                minHeight: 52,
+                backgroundColor: t.bgCard,
+                borderRadius: 16,
+                paddingHorizontal: 18,
+                marginTop: 12,
+                alignItems: 'center',
+                justifyContent: 'center',
+                opacity: pressed ? 0.82 : 1,
+              })}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={2}>
+                {triLang(lang, { ru: 'Купить минуты', uk: 'Купити хвилини', en: 'Buy minutes', es: 'Comprar minutos', 'pt-BR': 'Comprar minutos', vi: 'Mua phút', id: 'Beli menit', tr: 'Dakika satın al', pl: 'Kup minuty' })}
+              </Text>
+            </Pressable>
           </ScrollView>
         </SafeAreaView>
         <NoEnergyModal
           visible={maxLessonNoEnergy}
           onClose={() => setMaxLessonNoEnergy(false)}
+        />
+        <VoiceMinutePackSheet
+          visible={minuteSheetVisible}
+          onClose={() => setMinuteSheetVisible(false)}
+          onCredited={onMinutesCredited}
         />
       </ScreenGradient>
     );
@@ -759,24 +845,28 @@ function MaxCallPrestartContent() {
               {remainingMin}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} maxFontSizeMultiplier={2}>
-              {triLang(lang, {
-                ru: `минут на сегодня из ${dayMaxMin}`,
-                uk: `хвилин на сьогодні з ${dayMaxMin}`,
-                en: `minutes today out of ${dayMaxMin}`,
-                es: `minutos para hoy de ${dayMaxMin}`,
-                'pt-BR': `minutos para hoje de ${dayMaxMin}`,
-                vi: `phút hôm nay trên ${dayMaxMin}`,
-                id: `menit hari ini dari ${dayMaxMin}`,
-                tr: `bugün için dakika (${dayMaxMin} üzerinden)`,
-                pl: `minut na dziś z ${dayMaxMin}`,
-              })}
+              {paidAccess
+                ? triLang(lang, {
+                  ru: 'купленных минут доступно', uk: 'придбаних хвилин доступно', en: 'purchased minutes available',
+                  es: 'minutos comprados disponibles', 'pt-BR': 'minutos comprados disponíveis', vi: 'phút đã mua còn lại',
+                  id: 'menit yang dibeli tersedia', tr: 'satın alınan dakika kullanılabilir', pl: 'kupionych minut dostępne',
+                })
+                : triLang(lang, {
+                  ru: `минут доступно из ${dayMaxMin}`, uk: `хвилин доступно з ${dayMaxMin}`, en: `minutes available out of ${dayMaxMin}`,
+                  es: `minutos disponibles de ${dayMaxMin}`, 'pt-BR': `minutos disponíveis de ${dayMaxMin}`, vi: `phút còn lại trên ${dayMaxMin}`,
+                  id: `menit tersedia dari ${dayMaxMin}`, tr: `${dayMaxMin} dakikadan kullanılabilir`, pl: `minut dostępne z ${dayMaxMin}`,
+                })}
             </Text>
             {noMinutesLeft && (
               <Text
                 style={{ color: t.wrong, fontSize: f.caption, marginTop: 8, textAlign: 'center' }}
                 maxFontSizeMultiplier={2}
               >
-                {triLang(lang, {
+                {paidMinutesInsufficient ? triLang(lang, {
+                  ru: 'Недостаточно минут — купи ещё', uk: 'Недостатньо хвилин — купи ще', en: 'Not enough minutes — buy more',
+                  es: 'No hay suficientes minutos: compra más', 'pt-BR': 'Minutos insuficientes — compre mais', vi: 'Không đủ phút — hãy mua thêm',
+                  id: 'Menit tidak cukup — beli lagi', tr: 'Yeterli dakika yok — daha fazla satın al', pl: 'Za mało minut — kup więcej',
+                }) : triLang(lang, {
                   ru: 'Минуты на сегодня закончились — возвращайся завтра',
                   uk: 'Хвилини на сьогодні закінчилися — повертайся завтра',
                   en: "Today's minutes are used up — come back tomorrow",
@@ -795,8 +885,8 @@ function MaxCallPrestartContent() {
 
           {preflightReason ? (
             <>
-              {/* зачем (владелец 2026-08-26): при пейволе красную плашку не
-                  показываем — кнопка «Подключить MAX» говорит сама. */}
+              {/* При отсутствии минут красную плашку не показываем:
+                  кнопка покупки говорит сама. */}
               {shouldOfferMaxUpgradeForVoiceReason(preflightReason) ? null : (
                 <View
                   testID="max-call-preflight-error"
@@ -809,13 +899,13 @@ function MaxCallPrestartContent() {
               )}
               {shouldOfferMaxUpgradeForVoiceReason(preflightReason) ? (
                 <Pressable
-                  testID="max-subscribe-button"
+                  testID="voice-minute-prestart-buy-button"
                   accessibilityRole="button"
-                  onPress={openMaxPaywall}
+                  onPress={openMinutePacks}
                   style={{ minHeight: 56, backgroundColor: t.accent, borderRadius: 18, paddingHorizontal: 18, marginBottom: 10, alignItems: 'center', justifyContent: 'center' }}
                 >
                   <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-                    {triLang(lang, { ru: 'Подключить MAX', uk: 'Підключити MAX', en: 'Activate MAX', es: 'Activar MAX', 'pt-BR': 'Ativar MAX', vi: 'Đăng ký MAX', id: 'Aktifkan MAX', tr: 'MAX’i etkinleştir', pl: 'Włącz MAX' })}
+                    {triLang(lang, { ru: 'Купить минуты', uk: 'Купити хвилини', en: 'Buy minutes', es: 'Comprar minutos', 'pt-BR': 'Comprar minutos', vi: 'Mua phút', id: 'Beli menit', tr: 'Dakika satın al', pl: 'Kup minuty' })}
                   </Text>
                 </Pressable>
               ) : isMaxVoiceFailureRetryable(preflightReason) ? (
@@ -893,6 +983,11 @@ function MaxCallPrestartContent() {
           </TouchableOpacity>
         </View>
       </SafeAreaView>
+      <VoiceMinutePackSheet
+        visible={minuteSheetVisible}
+        onClose={() => setMinuteSheetVisible(false)}
+        onCredited={onMinutesCredited}
+      />
     </ScreenGradient>
   );
 }

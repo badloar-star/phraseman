@@ -53,9 +53,6 @@ export interface ScriptedRepeatCompareModePropsV1 extends LearningV2ModeCommonPr
   readonly voiceStatus: LearningV2LocalHoldToTalkStatusV1;
   readonly transcript: string;
   readonly instruction: string | null;
-  /** Canonical app SpeakingPanel. The mode owns the lesson framing while the
-   * shared panel owns permission, capture, equalizer, recognition and retry. */
-  readonly capturePanel?: React.ReactNode;
 }
 
 function WaveformBarsV1({ active, reducedMotion }: { readonly active: boolean; readonly reducedMotion: boolean }) {
@@ -127,7 +124,6 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
     modePayload,
     phase,
     referenceAudioState,
-    capturePanel,
   } = props;
 
   if (modePayload && modePayload.family !== "scripted_repeat_compare") {
@@ -271,8 +267,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
 
       {/* Capture-зона: min-height зарезервирована, первый кадр = финальная
         геометрия (Performance Bible). Ровно один из трёх режимов виден. */}
-      {capturePanel ?? (
-        <V2Card style={styles.capture} pad={16}>
+      <V2Card style={styles.capture} pad={16}>
           {requesting ? (
             <Text style={[styles.captureLine, { color: t.textMuted }]}>{copy.preparingMicrophone}</Text>
           ) : recording ? (
@@ -290,8 +285,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
               {copy.holdMicrophone}
             </Text>
           )}
-        </V2Card>
-      )}
+      </V2Card>
 
       {explanation && (
         <View style={[styles.feedbackLane, { backgroundColor: t.bgSurface2 }]}>

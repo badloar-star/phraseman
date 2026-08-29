@@ -149,6 +149,7 @@ function localText(
   lang: Lang,
   ru: string,
   uk: string,
+  en: string,
   es: string,
   ptBR: string,
   vi: string,
@@ -156,7 +157,7 @@ function localText(
   tr: string,
   pl: string,
 ): string {
-  return triLang(lang, { ru, uk, es, 'pt-BR': ptBR, vi, id, tr, pl });
+  return triLang(lang, { ru, uk, en, es, 'pt-BR': ptBR, vi, id, tr, pl });
 }
 
 function hasEnoughStatsSignal(briefing: StatsInsightsBriefing): boolean {
@@ -181,6 +182,7 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
           briefing.lang,
           `Пока мало данных для честного вывода: за 7 дней было ${briefing.balance.active7} активных дн. Продолжай короткими сессиями.`,
           `Поки мало даних для чесного висновку: за 7 днів було ${briefing.balance.active7} активних дн. Продовжуй короткими сесіями.`,
+          `Not enough data for a fair verdict yet: ${briefing.balance.active7} active days in the last 7. Keep going with short sessions.`,
           `Aún hay pocos datos: en 7 días tuviste ${briefing.balance.active7} días activos. Sigue con sesiones cortas.`,
           `Ainda há poucos dados: em 7 dias você teve ${briefing.balance.active7} dias ativos. Continue com sessões curtas.`,
           `Vẫn còn ít dữ liệu: trong 7 ngày bạn có ${briefing.balance.active7} ngày hoạt động. Hãy tiếp tục với các phiên ngắn.`,
@@ -192,6 +194,7 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
           briefing.lang,
           `За 7 дней у тебя ${briefing.balance.active7} активных дн., средняя сессия — ${Math.round(briefing.balance.avgMinutes)} мин. Лучше держать короткий фокус, чем растягивать практику.`,
           `За 7 днів у тебе ${briefing.balance.active7} активних дн., середня сесія — ${Math.round(briefing.balance.avgMinutes)} хв. Краще тримати короткий фокус, ніж розтягувати практику.`,
+          `In the last 7 days you had ${briefing.balance.active7} active days, average session ${Math.round(briefing.balance.avgMinutes)} min. Short focus beats stretched-out practice.`,
           `En 7 días tuviste ${briefing.balance.active7} días activos; sesión media: ${Math.round(briefing.balance.avgMinutes)} min. Mejor foco corto que práctica alargada.`,
           `Em 7 dias você teve ${briefing.balance.active7} dias ativos; sessão média: ${Math.round(briefing.balance.avgMinutes)} min. Melhor foco curto do que prática alongada.`,
           `Trong 7 ngày bạn có ${briefing.balance.active7} ngày hoạt động; phiên trung bình: ${Math.round(briefing.balance.avgMinutes)} phút. Tập trung ngắn vẫn tốt hơn kéo dài buổi học.`,
@@ -203,6 +206,7 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
       briefing.lang,
       `За 7 дней: ${briefing.rhythm.active7} активн. дн., ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} мин. Лучший день: ${bestDay}.`,
       `За 7 днів: ${briefing.rhythm.active7} активн. дн., ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} хв. Найкращий день: ${bestDay}.`,
+      `Last 7 days: ${briefing.rhythm.active7} active days, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} min. Best day: ${bestDay}.`,
       `En 7 días: ${briefing.rhythm.active7} días activos, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} min. Mejor día: ${bestDay}.`,
       `Em 7 dias: ${briefing.rhythm.active7} dias ativos, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} min. Melhor dia: ${bestDay}.`,
       `Trong 7 ngày: ${briefing.rhythm.active7} ngày hoạt động, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} phút. Ngày tốt nhất: ${bestDay}.`,
@@ -214,6 +218,7 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
       briefing.lang,
       `Годовой ритм: ${briefing.year.activeDays} активных дней, серия ${briefing.year.currentStreak}, рекорд ${briefing.year.longestStreak}. Лучший месяц: ${bestMonth}.`,
       `Річний ритм: ${briefing.year.activeDays} активних днів, серія ${briefing.year.currentStreak}, рекорд ${briefing.year.longestStreak}. Найкращий місяць: ${bestMonth}.`,
+      `Yearly rhythm: ${briefing.year.activeDays} active days, streak ${briefing.year.currentStreak}, record ${briefing.year.longestStreak}. Best month: ${bestMonth}.`,
       `Ritmo anual: ${briefing.year.activeDays} días activos, racha ${briefing.year.currentStreak}, récord ${briefing.year.longestStreak}. Mejor mes: ${bestMonth}.`,
       `Ritmo anual: ${briefing.year.activeDays} dias ativos, sequência ${briefing.year.currentStreak}, recorde ${briefing.year.longestStreak}. Melhor mês: ${bestMonth}.`,
       `Nhịp trong năm: ${briefing.year.activeDays} ngày hoạt động, chuỗi ${briefing.year.currentStreak}, kỷ lục ${briefing.year.longestStreak}. Tháng tốt nhất: ${bestMonth}.`,
@@ -226,6 +231,7 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
           briefing.lang,
           'Процентили появятся после большего объёма. Пока сравнивай себя с прошлой неделей, а не с другими.',
           'Процентилі зʼявляться після більшого обсягу. Поки порівнюй себе з минулим тижнем, а не з іншими.',
+          'Percentiles will appear once there\'s more volume. For now, compare yourself to last week, not to others.',
           'Los percentiles aparecerán con más volumen. Por ahora compárate con tu semana anterior, no con otros.',
           'Os percentis aparecerão com mais volume. Por enquanto, compare-se com a semana passada, não com outras pessoas.',
           'Phần trăm xếp hạng sẽ xuất hiện khi có nhiều dữ liệu hơn. Bây giờ hãy so với tuần trước của bạn, không phải với người khác.',
@@ -237,6 +243,7 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
           briefing.lang,
           `Ты примерно в топ-${100 - Math.round(pct)}% по общему XP. Следующий прирост даст стабильность, а не рывок.`,
           `Ти приблизно в топ-${100 - Math.round(pct)}% за загальним XP. Наступний приріст дасть стабільність, а не ривок.`,
+          `You're roughly in the top ${100 - Math.round(pct)}% by total XP. The next gain will come from consistency, not a spike.`,
           `Estás cerca del top-${100 - Math.round(pct)}% por XP total. El siguiente salto viene de la constancia.`,
           `Você está perto do top-${100 - Math.round(pct)}% em XP total. O próximo avanço vem da constância.`,
           `Bạn đang gần top-${100 - Math.round(pct)}% theo tổng XP. Bước tăng tiếp theo đến từ sự đều đặn.`,
@@ -249,6 +256,7 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
           briefing.lang,
           `Всего закреплено ${totalItems} слов/фраз. Слабая зона: ${weak.label} (${Math.round(weak.pct)}%) — начни с неё.`,
           `Усього закріплено ${totalItems} слів/фраз. Слабка зона: ${weak.label} (${Math.round(weak.pct)}%) — почни з неї.`,
+          `Total mastered: ${totalItems} words/phrases. Weak zone: ${weak.label} (${Math.round(weak.pct)}%) — start there.`,
           `Tienes ${totalItems} palabras/frases trabajadas. Zona débil: ${weak.label} (${Math.round(weak.pct)}%); empieza ahí.`,
           `Você trabalhou ${totalItems} palavras/frases. Zona fraca: ${weak.label} (${Math.round(weak.pct)}%); comece por ela.`,
           `Bạn đã ôn ${totalItems} từ/cụm từ. Vùng yếu: ${weak.label} (${Math.round(weak.pct)}%); hãy bắt đầu từ đó.`,
@@ -260,6 +268,7 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
           briefing.lang,
           `Всего закреплено ${totalItems} слов/фраз. Продолжай маленькими повторениями.`,
           `Усього закріплено ${totalItems} слів/фраз. Продовжуй малими повтореннями.`,
+          `Total mastered: ${totalItems} words/phrases. Keep going with small reviews.`,
           `Tienes ${totalItems} palabras/frases trabajadas. Sigue con repasos pequeños.`,
           `Você trabalhou ${totalItems} palavras/frases. Continue com pequenas revisões.`,
           `Bạn đã ôn ${totalItems} từ/cụm từ. Hãy tiếp tục với các lượt ôn nhỏ.`,

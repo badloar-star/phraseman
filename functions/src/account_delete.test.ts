@@ -3,6 +3,8 @@ import {
   __accountDeleteTestHooks,
   executeAccountDeletion,
 } from './account_delete';
+import { createHash } from 'crypto';
+import { accountDeleteJobId, accountDeletePermanentDenialId } from './account_delete_job';
 
 const {
   accountDeleteQueryPlan,
@@ -11,12 +13,19 @@ const {
   accountDeleteDirectDocumentPlan,
   resolveStableUidForDelete,
   enqueueForAuthenticatedAccount,
+  enqueueAndReleaseAuthenticatedAccount,
+  repairAccountDeleteCredentialSafety,
   removeFromFriendGiftDailyLimits,
   deleteCrossUserDocumentIdMatches,
   deleteArenaSeasonEntries,
   deleteDirectDocs,
   deleteMergeIdentityRecords,
   resolveAccountDeleteIdentityClosure,
+  credentialReceiptDecision,
+  accountDeleteEmailQueryCollections,
+  emailMatchDocumentBelongsToDeletionGeneration,
+  deleteMutableIdentityIndexSnapshotIfStillOwned,
+  persistPermanentDeletionDenials,
 } = __accountDeleteTestHooks;
 
 function makeDbStub(opts: {
@@ -83,12 +92,235 @@ describe('accountDelete query plan', () => {
       'auth-456',
       'stable-123',
       enqueue,
+      {
+        fence: jest.fn(async () => ({ jobId: 'adel_hash' })),
+        resolveClosure: jest.fn(async () => ['stable-123', 'auth-456']),
+      },
     );
 
-    expect(enqueue).toHaveBeenCalledWith(db, 'auth-456', 'stable-123');
+    expect(enqueue).toHaveBeenCalledWith(
+      db,
+      'auth-456',
+      'stable-123',
+      expect.any(Number),
+      undefined,
+      ['stable-123', 'auth-456'],
+    );
     expect(result).toEqual({ ok: true, jobId: 'adel_hash', status: 'queued', created: true });
     expect(result).not.toHaveProperty('authUid');
     expect(result).not.toHaveProperty('stableUid');
+  });
+
+  it('publishes credential-safe only after durable closure and idempotent Auth deletion', async () => {
+    const db = makeDbStub({
+      users: { 'stable-123': { linkedAuth: { providerUid: 'auth-456' } } },
+      authLinks: { 'auth-456': { stable_id: 'stable-123' } },
+    });
+    const calls: string[] = [];
+    const fence = jest.fn(async () => {
+      calls.push('closure_fenced');
+      return { stage: 'closure_fenced' as const, jobId: 'adel_hash' };
+    });
+    const resolveClosure = jest.fn(async () => {
+      calls.push('closure_discovered');
+      return ['stable-123', 'alias-a', 'auth-456'];
+    });
+    const enqueue = jest.fn(async () => {
+      calls.push('closure_committed');
+      return { jobId: 'adel_hash', status: 'queued' as const, created: true };
+    });
+    const deleteUser = jest.fn(async () => { calls.push('auth_deleted'); });
+    const publishCredentialSafe = jest.fn(async () => { calls.push('credential_safe'); });
+
+    const result = await enqueueAndReleaseAuthenticatedAccount(
+      db as unknown as FirebaseFirestore.Firestore,
+      'auth-456',
+      'stable-123',
+      { operationId: 'op-1'.padEnd(32, 'x'), capability: 'c'.repeat(64) },
+      { enqueue, deleteUser, publishCredentialSafe, fence, resolveClosure },
+    );
+
+    expect(calls).toEqual([
+      'closure_fenced',
+      'closure_discovered',
+      'closure_committed',
+      'auth_deleted',
+      'credential_safe',
+    ]);
+    expect(enqueue).toHaveBeenCalledWith(
+      db,
+      'auth-456',
+      'stable-123',
+      expect.any(Number),
+      expect.objectContaining({ operationId: expect.any(String), capabilityHash: expect.any(String) }),
+      ['stable-123', 'alias-a', 'auth-456'],
+    );
+    expect(result).toMatchObject({ ok: true, authReleased: true, credentialSafe: true });
+  });
+
+  it('treats user-not-found as idempotent credential-safe success but fails closed on other Auth errors', async () => {
+    const db = makeDbStub({
+      users: { 'stable-123': { linkedAuth: { providerUid: 'auth-456' } } },
+      authLinks: { 'auth-456': { stable_id: 'stable-123' } },
+    });
+    const enqueue = jest.fn(async () => ({
+      jobId: 'adel_hash',
+      status: 'queued' as const,
+      created: false,
+    }));
+    const publishCredentialSafe = jest.fn(async () => {});
+
+    await expect(enqueueAndReleaseAuthenticatedAccount(
+      db as unknown as FirebaseFirestore.Firestore,
+      'auth-456',
+      'stable-123',
+      { operationId: 'op-1'.padEnd(32, 'x'), capability: 'c'.repeat(64) },
+      {
+        enqueue,
+        fence: jest.fn(async () => ({ stage: 'closure_fenced' as const, jobId: 'adel_hash' })),
+        resolveClosure: jest.fn(async () => ['auth-456', 'stable-123']),
+        deleteUser: jest.fn(async () => {
+          const error: any = new Error('gone');
+          error.code = 'auth/user-not-found';
+          throw error;
+        }),
+        publishCredentialSafe,
+      },
+    )).resolves.toMatchObject({ credentialSafe: true });
+
+    await expect(enqueueAndReleaseAuthenticatedAccount(
+      db as unknown as FirebaseFirestore.Firestore,
+      'auth-456',
+      'stable-123',
+      { operationId: 'op-2'.padEnd(32, 'y'), capability: 'd'.repeat(64) },
+      {
+        enqueue,
+        fence: jest.fn(async () => ({ stage: 'closure_fenced' as const, jobId: 'adel_hash' })),
+        resolveClosure: jest.fn(async () => ['auth-456', 'stable-123']),
+        deleteUser: jest.fn(async () => { throw new Error('firebase unavailable'); }),
+        publishCredentialSafe,
+      },
+    )).rejects.toThrow('account_delete_auth_release_failed');
+  });
+
+  it('still reveals a valid credential-safe receipt after the repair-attempt budget', () => {
+    expect(credentialReceiptDecision({
+      stage: 'credential_safe',
+      capabilityHash: 'h',
+      jobId: 'job-1',
+      attempts: 999,
+      expiresAtMs: 2_000,
+    }, 'h', 1_000)).toEqual({ kind: 'credential_safe', jobId: 'job-1' });
+  });
+
+  it('still reveals terminal credential-safe after the repair TTL boundary', () => {
+    expect(credentialReceiptDecision({
+      stage: 'credential_safe',
+      capabilityHash: 'h',
+      jobId: 'job-1',
+      attempts: 0,
+      expiresAtMs: 1_000,
+    }, 'h', 1_001)).toEqual({ kind: 'credential_safe', jobId: 'job-1' });
+  });
+
+  it('keeps irreversible closure-fenced and closure-committed receipts repairable after TTL', () => {
+    const authUid = 'auth-expired';
+    const stableUid = 'stable-expired';
+    const hash = (value: string) => createHash('sha256').update(value).digest('hex');
+    const fenced = credentialReceiptDecision({
+      stage: 'closure_fenced',
+      capabilityHash: 'h',
+      jobId: accountDeleteJobId(authUid),
+      authUid,
+      stableUid,
+      authUidHash: hash(authUid),
+      stableUidHash: hash(stableUid),
+      attempts: 0,
+      expiresAtMs: 1_000,
+    }, 'h', 1_001);
+    expect(fenced).toMatchObject({
+      kind: 'repair_fenced',
+      jobId: accountDeleteJobId(authUid),
+      authUid,
+      stableUid,
+    });
+    expect(credentialReceiptDecision({
+      stage: 'closure_committed',
+      capabilityHash: 'h',
+      jobId: accountDeleteJobId(authUid),
+      attempts: 0,
+      expiresAtMs: 1_000,
+    }, 'h', 1_001)).toMatchObject({ kind: 'repair', jobId: accountDeleteJobId(authUid) });
+  });
+
+  it('rejects unknown receipt stages instead of coercing them to closure committed', () => {
+    expect(credentialReceiptDecision({
+      stage: 'surprise',
+      capabilityHash: 'h',
+      jobId: 'job-1',
+      attempts: 0,
+      expiresAtMs: 2_000,
+    }, 'h', 1_000)).toEqual({ kind: 'denied' });
+  });
+
+  it('resumes a closure-fenced crash from the capability receipt without old Firebase auth', async () => {
+    const proof = { operationId: 'op-crash'.padEnd(32, 'x'), capability: 'c'.repeat(64) };
+    const resolveClosure = jest.fn(async () => ['stable-123', 'alias-a', 'auth-456']);
+    const enqueue = jest.fn(async () => ({
+      jobId: 'job-1',
+      status: 'queued' as const,
+      created: true,
+    }));
+    const deleteUser = jest.fn(async () => {
+      const error: any = new Error('already gone');
+      error.code = 'auth/user-not-found';
+      throw error;
+    });
+    const publishCredentialSafe = jest.fn(async () => {});
+
+    await expect(repairAccountDeleteCredentialSafety(
+      {} as FirebaseFirestore.Firestore,
+      proof,
+      deleteUser,
+      {
+        readReceipt: jest.fn(async () => ({
+          stage: 'closure_fenced' as const,
+          jobId: 'job-1',
+          authUid: 'auth-456',
+          stableUid: 'stable-123',
+        })),
+        resolveClosure,
+        enqueue,
+        publishCredentialSafe,
+      },
+    )).resolves.toEqual({ status: 'credential_safe' });
+
+    expect(resolveClosure).toHaveBeenCalledWith(
+      expect.anything(),
+      'stable-123',
+      'auth-456',
+    );
+    expect(enqueue).toHaveBeenCalledWith(
+      expect.anything(),
+      'auth-456',
+      'stable-123',
+      expect.any(Number),
+      expect.objectContaining({ operationId: proof.operationId }),
+      ['stable-123', 'alias-a', 'auth-456'],
+    );
+    expect(deleteUser).toHaveBeenCalledWith('auth-456');
+    expect(publishCredentialSafe).toHaveBeenCalledWith(proof.operationId);
+  });
+
+  it('never deletes a fresh auth link merely because it reuses the deleted email', () => {
+    expect(accountDeleteEmailQueryCollections()).toEqual(['website_contact_inbox']);
+  });
+
+  it('deletes only contact rows created no later than the frozen deletion cutoff', () => {
+    const timestamp = (ms: number) => ({ toMillis: () => ms });
+    expect(emailMatchDocumentBelongsToDeletionGeneration({ createdAt: timestamp(999) }, 1_000)).toBe(true);
+    expect(emailMatchDocumentBelongsToDeletionGeneration({ createdAt: timestamp(1_001) }, 1_000)).toBe(false);
+    expect(emailMatchDocumentBelongsToDeletionGeneration({}, 1_000)).toBe(true);
   });
 
   it('covers the privacy-critical user data collections', () => {
@@ -276,6 +508,8 @@ describe('accountDelete stable id resolver', () => {
     expect(direct).toEqual(expect.arrayContaining([
       expect.objectContaining({ collection: 'users', id: 'loserA' }),
       expect.objectContaining({ collection: 'users', id: 'winnerB' }),
+    ]));
+    expect(direct).not.toEqual(expect.arrayContaining([
       expect.objectContaining({ collection: 'auth_links', id: 'auth-1' }),
     ]));
 
@@ -310,6 +544,13 @@ describe('accountDelete stable id resolver', () => {
           if (path === ref.path || path.startsWith(`${ref.path}/`)) stored.delete(path);
         }
       },
+      runTransaction: async (work: (transaction: unknown) => Promise<unknown>) => work({
+        get: async (ref: { path: string }) => ({
+          exists: stored.has(ref.path),
+          data: () => stored.get(ref.path),
+        }),
+        delete: (ref: { path: string }) => { stored.delete(ref.path); },
+      }),
     };
     const ctx = {
       db: deleteDb,
@@ -322,6 +563,12 @@ describe('accountDelete stable id resolver', () => {
     for (const identity of identities) {
       await deleteDirectDocs(deleteDb as any, identity, 'auth-1', ctx as any);
     }
+    await deleteMutableIdentityIndexSnapshotIfStillOwned(
+      deleteDb as any,
+      refFor('auth_links/auth-1') as any,
+      'auth_links',
+      identities,
+    );
     await deleteMergeIdentityRecords(deleteDb as any, identities, ctx as any, stats);
 
     expect([...stored.keys()]).toEqual([]);
@@ -760,5 +1007,93 @@ describe('accountDelete query deletion safety', () => {
     expect(ctx.db.recursiveDelete).toHaveBeenCalledWith(ref, ctx.writer);
     expect(ctx.writer.flush).toHaveBeenCalledTimes(1);
     expect(stats.queriesRun).toBe(2);
+  });
+
+  it('does not delete an auth link that was repointed to a fresh stable identity after query snapshot', async () => {
+    const ref = { path: 'auth_links/provider-auth' };
+    let current = { stable_id: 'fresh-stable', providerUid: 'provider-auth' };
+    const tx = {
+      get: jest.fn(async () => ({ exists: true, data: () => current })),
+      delete: jest.fn(),
+    };
+    const db = { runTransaction: jest.fn(async (work: (value: typeof tx) => unknown) => work(tx)) };
+
+    await expect(deleteMutableIdentityIndexSnapshotIfStillOwned(
+      db as any,
+      ref as any,
+      'auth_links',
+      ['old-stable', 'old-auth'],
+    )).resolves.toBe(false);
+    expect(tx.delete).not.toHaveBeenCalled();
+
+    current = { stable_id: 'old-stable', providerUid: 'provider-auth' };
+    await expect(deleteMutableIdentityIndexSnapshotIfStillOwned(
+      db as any,
+      ref as any,
+      'auth_links',
+      ['old-stable', 'old-auth'],
+    )).resolves.toBe(true);
+    expect(tx.delete).toHaveBeenCalledWith(ref);
+  });
+
+  it('does not delete a reclaimed mutable name index merely because it retains the old auth uid', async () => {
+    const ref = { path: 'name_index/reclaimed-name' };
+    const tx = {
+      get: jest.fn(async () => ({
+        exists: true,
+        data: () => ({ uid: 'fresh-stable', authUid: 'old-auth' }),
+      })),
+      delete: jest.fn(),
+    };
+    const db = { runTransaction: jest.fn(async (work: (value: typeof tx) => unknown) => work(tx)) };
+
+    await expect(deleteMutableIdentityIndexSnapshotIfStillOwned(
+      db as any,
+      ref as any,
+      'name_index',
+      ['old-stable', 'old-auth'],
+    )).resolves.toBe(false);
+    expect(tx.delete).not.toHaveBeenCalled();
+  });
+
+  it('creates only missing permanent denials and preserves existing audit provenance on replay', async () => {
+    const docs = new Map<string, Record<string, unknown>>([
+      ['root', { identityKind: 'auth_root', createdAt: 'original-root', updatedAt: 'original-root' }],
+      ['alias', { identityKind: 'stable_root', createdAt: 'original-alias', updatedAt: 'original-alias' }],
+    ]);
+    const ref = (id: string) => ({ id, path: `account_deletion_permanent_denials/${id}` });
+    const db = {
+      collection: jest.fn(() => ({ doc: ref })),
+      runTransaction: jest.fn(async (work: (tx: any) => Promise<void>) => work({
+        get: async (docRef: { id: string }) => ({ exists: docs.has(docRef.id) }),
+        create: (docRef: { id: string }, data: Record<string, unknown>) => {
+          if (docs.has(docRef.id)) throw new Error('already-exists');
+          docs.set(docRef.id, data);
+        },
+      })),
+    };
+    const denialId = (identity: string) => accountDeletePermanentDenialId(identity);
+    docs.clear();
+    docs.set(denialId('root'), {
+      identityKind: 'auth_root', createdAt: 'original-root', updatedAt: 'original-root',
+    });
+    docs.set(denialId('alias'), {
+      identityKind: 'stable_root', createdAt: 'original-alias', updatedAt: 'original-alias',
+    });
+
+    await persistPermanentDeletionDenials(db as any, ['root', 'alias', 'missing']);
+    const afterFirst = new Map(docs);
+    await persistPermanentDeletionDenials(db as any, ['root', 'alias', 'missing']);
+
+    expect(docs.get(denialId('root'))).toEqual({
+      identityKind: 'auth_root', createdAt: 'original-root', updatedAt: 'original-root',
+    });
+    expect(docs.get(denialId('alias'))).toEqual({
+      identityKind: 'stable_root', createdAt: 'original-alias', updatedAt: 'original-alias',
+    });
+    expect(docs).toEqual(afterFirst);
+    expect(docs.get(denialId('missing'))).toMatchObject({
+      identityKind: 'account_delete_alias_closure', status: 'denied',
+    });
   });
 });

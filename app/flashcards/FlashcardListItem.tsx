@@ -112,6 +112,8 @@ type Props = {
   getOverlayAnim: (cardId: string) => Animated.Value;
   getDeleteAnim: (cardId: string) => { opacity: Animated.Value; scale: Animated.Value };
   onFlipCard: (cardId: string) => void;
+  /** Learning V2 word encounters must react on the first touch frame. */
+  flipOnPressIn?: boolean;
   onOpenDelete: (cardId: string) => void;
   onCloseDelete: () => void;
   onDeleteCard: (item: CardItem, itemIdx: number) => void;
@@ -168,6 +170,7 @@ function FlashcardListItemImpl({
   getOverlayAnim,
   getDeleteAnim,
   onFlipCard,
+  flipOnPressIn = false,
   onOpenDelete,
   onCloseDelete,
   onDeleteCard,
@@ -643,12 +646,15 @@ function FlashcardListItemImpl({
         <View style={{ height: cardHeight, position: 'relative' }}>
           <TouchableOpacity
             activeOpacity={0.92}
+            onPressIn={() => {
+              if (flipOnPressIn && !isLongPressed) onFlipCard(item.id);
+            }}
             onPress={() => {
               if (isLongPressed) {
                 onCloseDelete();
                 return;
               }
-              onFlipCard(item.id);
+              if (!flipOnPressIn) onFlipCard(item.id);
             }}
             onLongPress={() => {
               if (isLongPressed) {

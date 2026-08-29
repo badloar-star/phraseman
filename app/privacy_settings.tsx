@@ -97,8 +97,7 @@ export default function PrivacySettings() {
   }, []);
 
   // Голосовые разговоры MAX имеют отдельное явное согласие. Выключение
-  // останавливает новые звонки, но не стирает ученическую память без команды
-  // пользователя — ею можно управлять отдельной строкой ниже.
+  // останавливает новые звонки, но не стирает существующую ученическую память.
   const toggleAiVoice = useCallback((val: boolean) => {
     void hapticTap();
     setAiVoiceOn(val);
@@ -184,17 +183,6 @@ export default function PrivacySettings() {
                   : L({ ru: 'Новые звонки с MAX выключены', uk: 'Нові дзвінки з MAX вимкнено', es: 'Las nuevas llamadas con MAX están desactivadas', 'pt-BR': 'Novas chamadas com o MAX estão desativadas', vi: 'Các cuộc gọi MAX mới đang tắt', id: 'Panggilan baru dengan MAX dimatikan', tr: 'Yeni MAX aramaları kapalı', pl: 'Nowe rozmowy z MAX są wyłączone' })}
                 hideChevron
                 right={<CustomSwitch value={aiVoiceOn} onValueChange={toggleAiVoice} />}
-              />
-              <SettingsRow
-                testID="privacy-max-memory"
-                icon="albums"
-                color="purple"
-                label={L({ ru: 'Память MAX', uk: 'Пам’ять MAX', es: 'Memoria de MAX', 'pt-BR': 'Memória do MAX', vi: 'Bộ nhớ MAX', id: 'Memori MAX', tr: 'MAX hafızası', pl: 'Pamięć MAX' })}
-                sub={L({ ru: 'Посмотреть, изменить или удалить учебные заметки', uk: 'Переглянути, змінити або видалити навчальні нотатки', es: 'Ver, editar o eliminar notas de aprendizaje', 'pt-BR': 'Ver, editar ou excluir notas de aprendizado', vi: 'Xem, sửa hoặc xóa ghi chú học tập', id: 'Lihat, ubah, atau hapus catatan belajar', tr: 'Öğrenme notlarını gör, düzenle veya sil', pl: 'Wyświetl, edytuj lub usuń notatki do nauki' })}
-                onPress={() => {
-                  void hapticTap();
-                  router.push('/max_memory_settings' as any);
-                }}
               />
             </SettingsGroup>
             <Text style={{ color: t.textMuted, fontSize: 12, lineHeight: 17, fontWeight: '600', marginHorizontal: 20, marginTop: 8 }}>

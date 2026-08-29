@@ -9,7 +9,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   AVATAR_AURA_OWNED_KEY,
   SEASON_AVATAR_AURA_IDS,
-  USER_AVATAR_AURA_KEY,
 } from '../constants/avatar_auras';
 import {
   captureAccountGeneration,
@@ -20,6 +19,7 @@ import {
 import { emitAppEvent } from './events';
 import { SEASON1_FRAME_ID, seasonAuraIdForStage } from './season_cosmetics_model';
 import { withStorageLock } from './storage_mutex';
+import { commitExternalAuraSelectionOccurrence } from './customization_selection_runtime';
 
 export { SEASON1_FRAME_ID, seasonAuraIdForStage } from './season_cosmetics_model';
 
@@ -124,7 +124,6 @@ async function mutate(
       }
       pairs.push(
         [AVATAR_AURA_OWNED_KEY, JSON.stringify({ ...owned, [options.activateAuraId]: true })],
-        [USER_AVATAR_AURA_KEY, options.activateAuraId],
       );
     }
 
@@ -134,6 +133,14 @@ async function mutate(
     cache = updated;
     return updated;
   }));
+  if (options.activateAuraId) {
+    await commitExternalAuraSelectionOccurrence({
+      source: 'season_cosmetic',
+      occurrenceId: `season-1:${options.activateAuraId}`,
+      auraId: options.activateAuraId,
+      token: accountToken,
+    });
+  }
   emitAppEvent('season_cosmetics_changed', undefined);
   if (options.activateAuraId) emitAppEvent('xp_changed');
   return next;

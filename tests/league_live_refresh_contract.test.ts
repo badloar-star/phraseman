@@ -51,6 +51,16 @@ describe('league participant progress refresh', () => {
     expect(remotePhase).not.toMatch(/\}\s*await AsyncStorage\.setItem\(CLUB_REMOTE_REFRESH_AT_KEY/);
   });
 
+  it('reapplies my live rune points after both remote response branches', () => {
+    const source = read('app/club_screen.tsx');
+    const remotePhase = source.slice(
+      source.indexOf('const leagueWork = checkLeagueOnAppOpen'),
+      source.indexOf('} catch (e)', source.indexOf('const leagueWork = checkLeagueOnAppOpen')),
+    );
+    expect(remotePhase.match(/group: withMyLivePoints\(state\.group, myPoints, canonicalUid, n\)/g) ?? [])
+      .toHaveLength(2);
+  });
+
   it('materializes synthetic participant progress hourly', () => {
     expect(read('functions/src/league_residents_cron.ts')).toContain("schedule: 'every 1 hours'");
     expect(read('functions/src/synthetic_residents.ts')).toContain('export const RESIDENT_TICK_MS = 60 * 60 * 1000;');

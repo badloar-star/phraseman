@@ -36,13 +36,23 @@ describe('app typography contract', () => {
 
     const fontPlugin = appConfig.expo?.plugins?.find(
       (entry) => Array.isArray(entry) && entry[0] === 'expo-font',
-    ) as [string, { android?: { fonts?: Array<{ fontFamily?: string }> } }] | undefined;
-    expect(fontPlugin?.[1].android?.fonts?.map((font) => font.fontFamily)).toEqual([
-      'Inter',
-      'Inter-SemiBold',
-      'Inter-Bold',
-      'Inter-Black',
+    ) as [string, {
+      android?: {
+        fonts?: Array<{
+          fontFamily?: string;
+          fontDefinitions?: Array<{ path?: string; weight?: number }>;
+        }>;
+      };
+    }] | undefined;
+    const androidFonts = fontPlugin?.[1].android?.fonts ?? [];
+    expect(androidFonts.map((font) => font.fontFamily)).toEqual(['Inter']);
+    expect(androidFonts[0]?.fontDefinitions).toEqual([
+      { path: './assets/fonts/Inter-Regular.ttf', weight: 400 },
+      { path: './assets/fonts/Inter-SemiBold.ttf', weight: 600 },
+      { path: './assets/fonts/Inter-Bold.ttf', weight: 700 },
+      { path: './assets/fonts/Inter-Black.ttf', weight: 900 },
     ]);
+
     expect(reactNativePatchSource).toContain('PHRASEMAN PATCH (RN 0.81 text family lock)');
   });
 });

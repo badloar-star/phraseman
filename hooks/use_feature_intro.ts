@@ -4,6 +4,12 @@
 // первому кадру экрана осесть, паттерн «ничего не прыгает поверх ещё не
 // осевшего layout»), и только ОДИН раз за сессию экрана (повторный фокус того
 // же смонтированного экрана не переоткрывает, пока компонент не размонтирован).
+//
+// зачем (владелец 2026-08-29): интро показывается один раз НА АККАУНТ любым
+// исходом. Раньше «Позже»/свайп/бэкдроп закрывали без пометки, и модалка
+// встречала человека при каждом заходе на экран — он её уже прочитал и просто
+// хотел играть. Показ засчитывается в момент ОТКРЫТИЯ (dismiss только страхует
+// на случай, если экран закрыли раньше, чем запись успела лечь на диск).
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import {
@@ -36,6 +42,10 @@ export function useFeatureIntro(id: string, enabled = true): UseFeatureIntroResu
           if (!alive || !show) return;
           offeredOnceRef.current = true;
           setVisible(true);
+          // Показ засчитан здесь, а не в dismiss: иначе выход с экрана мимо
+          // кнопок (жест «назад», сворачивание приложения) оставлял интро
+          // непомеченным, и оно возвращалось на следующем заходе.
+          void markFeatureIntroSeen(id);
         });
       }, SHOW_DELAY_MS);
       return () => {
@@ -58,9 +68,11 @@ export function useFeatureIntro(id: string, enabled = true): UseFeatureIntroResu
     if (!enabled) setVisible(false);
   }, [enabled]);
 
-  const dismiss = useCallback((markSeen: boolean) => {
+  // Любое закрытие («Понятно», «Позже», бэкдроп, свайп) равнозначно: интро
+  // больше не покажется. Аргумент сохранён ради вызывающих экранов.
+  const dismiss = useCallback((_markSeen: boolean) => {
     setVisible(false);
-    if (markSeen) void markFeatureIntroSeen(id);
+    void markFeatureIntroSeen(id);
   }, [id]);
 
   return { visible, dismiss };

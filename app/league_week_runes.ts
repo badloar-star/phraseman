@@ -16,9 +16,10 @@
  *      закинул бы новичка в зону повышения.
  *   2. Локальный догон. Серверный снимок живёт с TTL 6 часов (правило владельца
  *      «чужие цифры раз в 6 часов»), а свои очки обязаны быть живыми — иначе
- *      игрок закрывает занятие и не видит движения. Догон копит дельты события
- *      `runes_balance_updated` поверх снимка и обнуляется, когда приходит более
- *      свежий серверный снимок или сменилась неделя.
+ *      игрок закрывает занятие и не видит движения. Догон копит дельты
+ *      `starsEarnedTotal` поверх снимка и обнуляется, когда приходит более
+ *      свежий серверный снимок или сменилась неделя. Это не дельта баланса:
+ *      подарки и траты лигу не двигают.
  *
  * Firebase-экономия: НОЛЬ собственных чтений. Серверную часть отдаёт
  * `runes_wallet_stats.loadRunesServerStats()` — то самое одно чтение
@@ -31,8 +32,21 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+} from './account_generation';
+import { emitAppEvent } from './events';
+import { DebugLogger } from './debug-logger';
+import {
+  accountScopedLeagueRunesStorageKey,
+  canonicalLeagueLocalOverlay,
+  leagueEarnedDelta,
+  remainingLeagueRunesCatchup,
+} from './league_week_runes_delta';
 import { loadRunesServerStats, peekRunesServerStats } from './runes_wallet_stats';
-import { onAppEvent } from './events';
+import { peekRunesBalance, subscribeRunesSnapshot } from './runes_system';
+import { starsWeekEarned } from './stars_view';
 
 /**
  * Локальный догон: сколько рун пришло ПОСЛЕ последнего серверного снимка.
@@ -58,12 +72,15 @@ function isoWeekKey(now: Date): string {
 }
 
 const CATCHUP_KEY = 'league_week_runes_catchup_v1';
+const LAST_FINAL_KEY = 'league_week_runes_last_final_v1';
 
 type Catchup = Readonly<{
   /** ISO-неделя, к которой относится догон. Смена недели его обнуляет. */
   weekKey: string;
   /** Серверный снимок, поверх которого копится догон (защита от двойного счёта). */
   baseFetchedAtMs: number;
+  /** Заработок недели в базовом серверном снимке; null = снимка ещё не было. */
+  baseWeekEarned: number | null;
   /** Сумма дельт начислений после снимка. Только рост: траты сюда не идут. */
   delta: number;
   /**
@@ -77,14 +94,27 @@ type Catchup = Readonly<{
   hotBonus: number;
 }>;
 
-const EMPTY_CATCHUP: Catchup = Object.freeze({ weekKey: '', baseFetchedAtMs: 0, delta: 0, hotBonus: 0 });
+const EMPTY_CATCHUP: Catchup = Object.freeze({
+  weekKey: '', baseFetchedAtMs: 0, baseWeekEarned: null, delta: 0, hotBonus: 0,
+});
 
 let memoryCatchup: Catchup = EMPTY_CATCHUP;
 let catchupLoaded = false;
+let memoryCatchupOwnerStableId: string | null = null;
+
+function activeOwnerStableId(): string | null {
+  const token = captureAccountGeneration();
+  return token.phase === 'active' ? token.stableId : null;
+}
 
 function int(value: unknown): number {
   const parsed = Math.trunc(Number(value));
   return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : 0;
+}
+
+function nonNegativeInt(value: unknown): number | null {
+  const parsed = Math.trunc(Number(value));
+  return Number.isSafeInteger(parsed) && parsed >= 0 ? parsed : null;
 }
 
 function parseCatchup(raw: string | null): Catchup {
@@ -95,6 +125,7 @@ function parseCatchup(raw: string | null): Catchup {
     return Object.freeze({
       weekKey: typeof parsed.weekKey === 'string' ? parsed.weekKey : '',
       baseFetchedAtMs: int(parsed.baseFetchedAtMs),
+      baseWeekEarned: nonNegativeInt(parsed.baseWeekEarned),
       delta: int(parsed.delta),
       hotBonus: int(parsed.hotBonus),
     });
@@ -112,11 +143,6 @@ function parseCatchup(raw: string | null): Catchup {
  *    и складывать их второй раз значило бы завысить очки (класс бага
  *    «награду показали дважды»).
  */
-function usableCatchup(catchup: Catchup, weekKeyNow: string, snapshotFetchedAtMs: number): number {
-  if (!catchup.weekKey || catchup.weekKey !== weekKeyNow) return 0;
-  if (snapshotFetchedAtMs > catchup.baseFetchedAtMs) return 0;
-  return catchup.delta;
-}
 
 /**
  * Надбавка горячих часов текущей недели. В отличие от догона её НЕ гасит
@@ -136,13 +162,23 @@ function usableHotBonus(catchup: Catchup, weekKeyNow: string): number {
  * (правило стабильности вёрстки из Performance Bible).
  */
 export function peekMyLeagueWeekRunes(): number {
-  const stats = peekRunesServerStats();
+  const ownerStableId = activeOwnerStableId();
+  const observedStats = peekRunesServerStats();
+  const stats = ownerStableId && observedStats?.uid === ownerStableId ? observedStats : null;
   const weekKeyNow = isoWeekKey(new Date());
+  const accountCatchup = ownerStableId && memoryCatchupOwnerStableId === ownerStableId
+    ? memoryCatchup
+    : EMPTY_CATCHUP;
   // Снимок чужой недели даёт 0 заработанного — это честно: новая неделя
   // начинается с нуля, а не наследует прошлую.
-  const serverEarned = stats && stats.weekKey === weekKeyNow ? stats.weekEarned : 0;
-  const catchup = usableCatchup(memoryCatchup, weekKeyNow, stats?.fetchedAtMs ?? 0);
-  const hotBonus = usableHotBonus(memoryCatchup, weekKeyNow);
+  const serverEarned = starsWeekEarned(stats ?? undefined, weekKeyNow);
+  // Before the account-scoped server snapshot is loaded there is no safe way
+  // to distinguish this week's delta from an old/corrupt persisted event sum.
+  // The async read below replaces this first-frame zero immediately.
+  const catchup = stats
+    ? canonicalLeagueLocalOverlay(peekRunesBalance().earnedTotal, stats.earnedTotal)
+    : 0;
+  const hotBonus = usableHotBonus(accountCatchup, weekKeyNow);
   return Math.max(0, serverEarned + catchup + hotBonus);
 }
 
@@ -153,7 +189,10 @@ export function peekMyLeagueWeekRunes(): number {
  * известный снимок этого же аккаунта, а догон останется поверх него.
  */
 export async function getMyLeagueWeekRunes(): Promise<number> {
-  await ensureCatchupLoaded();
+  const ownerStableId = await ensureCatchupLoaded();
+  const accountCatchup = ownerStableId && memoryCatchupOwnerStableId === ownerStableId
+    ? memoryCatchup
+    : EMPTY_CATCHUP;
   const weekKeyNow = isoWeekKey(new Date());
   let stats = null as Awaited<ReturnType<typeof loadRunesServerStats>>;
   try {
@@ -161,35 +200,88 @@ export async function getMyLeagueWeekRunes(): Promise<number> {
   } catch {
     stats = peekRunesServerStats();
   }
-  const serverEarned = stats && stats.weekKey === weekKeyNow ? stats.weekEarned : 0;
-  const catchup = usableCatchup(memoryCatchup, weekKeyNow, stats?.fetchedAtMs ?? 0);
+  if (ownerStableId && activeOwnerStableId() !== ownerStableId) return 0;
+  if (stats && (!ownerStableId || stats.uid !== ownerStableId)) stats = null;
+  const serverEarned = starsWeekEarned(stats ?? undefined, weekKeyNow);
+  const eventCatchup = remainingLeagueRunesCatchup(accountCatchup, weekKeyNow, serverEarned);
+  const localEarnedTotal = peekRunesBalance().earnedTotal;
+  // Event delivery is intentionally not authoritative: Fast Refresh and boot
+  // hydration can replay the whole earnedTotal transition. The exact wallet
+  // counters provide an idempotent overlay and repair any previously inflated
+  // catchup as soon as a same-account server snapshot is available.
+  const catchup = stats
+    ? canonicalLeagueLocalOverlay(localEarnedTotal, stats.earnedTotal)
+    : eventCatchup;
 
   // Неделя сменилась, а сервер ещё помнит прошлую — снимаем финал ДО того, как
   // счётчик обнулится. Этим снимком league_engine считает переход лиги, если
   // на границе недели не было сети (см. getLastWeekLeagueRunes).
-  if (stats && stats.weekKey && stats.weekKey !== weekKeyNow && stats.weekEarned > 0) {
-    await rememberLeagueWeekRunesFinal(stats.weekKey, stats.weekEarned);
+  const observedStatsWeekEarned = starsWeekEarned(stats ?? undefined, stats?.weekKey ?? '');
+  if (stats && stats.weekKey && stats.weekKey !== weekKeyNow && observedStatsWeekEarned > 0) {
+    await rememberLeagueWeekRunesFinal(stats.weekKey, observedStatsWeekEarned, ownerStableId);
   }
 
-  // Снимок обогнал догон — стираем догон, иначе он будет вечно висеть в памяти
-  // и однажды сложится с уже учтёнными сервером рунами.
-  if (catchup === 0 && memoryCatchup.delta > 0) await resetCatchup(weekKeyNow, stats?.fetchedAtMs ?? 0);
-  const hotBonus = usableHotBonus(memoryCatchup, weekKeyNow);
-  return Math.max(0, serverEarned + catchup + hotBonus);
+  // Списываем только ту часть догона, которую сервер доказуемо поглотил.
+  // Более свежий fetchedAt сам по себе ничего не доказывает: callable мог быть
+  // offline/NOT FOUND, и прежняя логика стирала честные очки при входе в лигу.
+  if (ownerStableId && (accountCatchup.weekKey !== weekKeyNow
+    || accountCatchup.baseWeekEarned !== serverEarned
+    || accountCatchup.delta !== catchup)) {
+    await rebaseCatchup(ownerStableId, weekKeyNow, stats?.fetchedAtMs ?? 0, serverEarned, catchup);
+  }
+  const hotBonus = usableHotBonus(
+    ownerStableId && memoryCatchupOwnerStableId === ownerStableId ? memoryCatchup : accountCatchup,
+    weekKeyNow,
+  );
+  const result = Math.max(0, serverEarned + catchup + hotBonus);
+  DebugLogger.info('league_runes:read_week_points', JSON.stringify({
+    weekKey: weekKeyNow,
+    serverEarned,
+    serverEarnedTotal: stats?.earnedTotal ?? null,
+    localEarnedTotal,
+    localCatchup: catchup,
+    hotBonus,
+    result,
+  }));
+  return result;
 }
 
-async function ensureCatchupLoaded(): Promise<void> {
-  if (catchupLoaded) return;
+async function ensureCatchupLoaded(expectedOwnerStableId?: string): Promise<string | null> {
+  const token = captureAccountGeneration();
+  const ownerStableId = token.phase === 'active' ? token.stableId : null;
+  if (!ownerStableId || (expectedOwnerStableId && expectedOwnerStableId !== ownerStableId)) {
+    return null;
+  }
+  if (catchupLoaded && memoryCatchupOwnerStableId === ownerStableId) return ownerStableId;
+  const raw = await AsyncStorage.getItem(
+    accountScopedLeagueRunesStorageKey(CATCHUP_KEY, ownerStableId),
+  ).catch(() => null);
+  if (!isCurrentAccountGeneration(token, ownerStableId)) return null;
+  memoryCatchup = parseCatchup(raw);
+  memoryCatchupOwnerStableId = ownerStableId;
   catchupLoaded = true;
-  memoryCatchup = parseCatchup(await AsyncStorage.getItem(CATCHUP_KEY).catch(() => null));
+  return ownerStableId;
 }
 
-async function resetCatchup(weekKey: string, baseFetchedAtMs: number): Promise<void> {
+async function rebaseCatchup(
+  ownerStableId: string,
+  weekKey: string,
+  baseFetchedAtMs: number,
+  baseWeekEarned: number,
+  delta: number,
+): Promise<void> {
+  if (activeOwnerStableId() !== ownerStableId) return;
+  if (memoryCatchupOwnerStableId !== ownerStableId) memoryCatchup = EMPTY_CATCHUP;
   // Надбавку горячих часов НЕ сбрасываем: её нет в серверном снимке, и
   // обнуление здесь стёрло бы честно заработанное удвоение.
   const hotBonus = usableHotBonus(memoryCatchup, weekKey);
-  memoryCatchup = Object.freeze({ weekKey, baseFetchedAtMs, delta: 0, hotBonus });
-  await AsyncStorage.setItem(CATCHUP_KEY, JSON.stringify(memoryCatchup)).catch(() => {});
+  memoryCatchup = Object.freeze({ weekKey, baseFetchedAtMs, baseWeekEarned, delta, hotBonus });
+  memoryCatchupOwnerStableId = ownerStableId;
+  catchupLoaded = true;
+  await AsyncStorage.setItem(
+    accountScopedLeagueRunesStorageKey(CATCHUP_KEY, ownerStableId),
+    JSON.stringify(memoryCatchup),
+  ).catch(() => {});
 }
 
 /**
@@ -200,7 +292,10 @@ async function resetCatchup(weekKey: string, baseFetchedAtMs: number): Promise<v
  * Отрицательные дельты (траты) игнорируются намеренно: очки лиги считают
  * приток, и открытие занятия не должно опускать игрока в таблице.
  */
-export async function noteRunesEarnedForLeague(delta: number): Promise<void> {
+export async function noteRunesEarnedForLeague(
+  delta: number,
+  expectedOwnerStableId?: string,
+): Promise<void> {
   const base = int(delta);
   if (base <= 0) return;
   // «Горячие 2 часа»: в последние два часа недели зона вылета получает ×2 —
@@ -211,19 +306,30 @@ export async function noteRunesEarnedForLeague(delta: number): Promise<void> {
   // Базовую часть сервер учтёт сам — она идёт в догон и гаснет свежим
   // снимком. Надбавку горячих часов сервер не знает: она копится отдельно.
   const bonus = base * (getLeagueHotHoursMultiplierSync() - 1);
-  await ensureCatchupLoaded();
+  const ownerStableId = await ensureCatchupLoaded(expectedOwnerStableId);
+  if (!ownerStableId) return;
   const weekKeyNow = isoWeekKey(new Date());
-  const stats = peekRunesServerStats();
+  const observedStats = peekRunesServerStats();
+  const stats = observedStats?.uid === ownerStableId ? observedStats : null;
+  const sameWeekStats = stats?.weekKey === weekKeyNow ? stats : null;
   const baseFetchedAtMs = stats?.fetchedAtMs ?? memoryCatchup.baseFetchedAtMs;
-  const carried = usableCatchup(memoryCatchup, weekKeyNow, stats?.fetchedAtMs ?? 0);
+  const serverWeekEarned = starsWeekEarned(sameWeekStats ?? undefined, weekKeyNow);
+  const carried = remainingLeagueRunesCatchup(memoryCatchup, weekKeyNow, serverWeekEarned);
   const carriedBonus = usableHotBonus(memoryCatchup, weekKeyNow);
   memoryCatchup = Object.freeze({
     weekKey: weekKeyNow,
     baseFetchedAtMs,
+    baseWeekEarned: sameWeekStats ? serverWeekEarned : null,
     delta: carried + base,
     hotBonus: carriedBonus + Math.max(0, bonus),
   });
-  await AsyncStorage.setItem(CATCHUP_KEY, JSON.stringify(memoryCatchup)).catch(() => {});
+  if (activeOwnerStableId() !== ownerStableId) return;
+  await AsyncStorage.setItem(
+    accountScopedLeagueRunesStorageKey(CATCHUP_KEY, ownerStableId),
+    JSON.stringify(memoryCatchup),
+  ).catch(() => {});
+  if (activeOwnerStableId() !== ownerStableId) return;
+  emitAppEvent('league_local_state_updated');
 }
 
 /**
@@ -238,20 +344,34 @@ export async function noteRunesEarnedForLeague(delta: number): Promise<void> {
  * Ключ отдельный от `week_points_last_final` намеренно — опыт продолжает
  * жить своей жизнью для Зала славы и друзей.
  */
-const LAST_FINAL_KEY = 'league_week_runes_last_final_v1';
-
-export async function rememberLeagueWeekRunesFinal(weekKey: string, points: number): Promise<void> {
+export async function rememberLeagueWeekRunesFinal(
+  weekKey: string,
+  points: number,
+  expectedOwnerStableId?: string | null,
+): Promise<void> {
   const clean = int(points);
   if (!weekKey) return;
+  if (expectedOwnerStableId === null) return;
+  const ownerStableId = expectedOwnerStableId ?? activeOwnerStableId();
+  if (!ownerStableId || activeOwnerStableId() !== ownerStableId) return;
   await AsyncStorage
-    .setItem(LAST_FINAL_KEY, JSON.stringify({ weekKey, points: clean }))
+    .setItem(
+      accountScopedLeagueRunesStorageKey(LAST_FINAL_KEY, ownerStableId),
+      JSON.stringify({ weekKey, points: clean }),
+    )
     .catch(() => {});
 }
 
 /** Руны завершившейся недели, если снимок относится именно к ней; иначе null. */
 export async function getLastWeekLeagueRunes(weekId: string): Promise<number | null> {
   try {
-    const raw = await AsyncStorage.getItem(LAST_FINAL_KEY);
+    const token = captureAccountGeneration();
+    const ownerStableId = token.phase === 'active' ? token.stableId : null;
+    if (!ownerStableId) return null;
+    const raw = await AsyncStorage.getItem(
+      accountScopedLeagueRunesStorageKey(LAST_FINAL_KEY, ownerStableId),
+    );
+    if (!isCurrentAccountGeneration(token, ownerStableId)) return null;
     if (!raw) return null;
     const data = JSON.parse(raw) as { weekKey?: unknown; points?: unknown };
     if (typeof data.weekKey !== 'string' || data.weekKey !== weekId) return null;
@@ -274,10 +394,12 @@ export async function getLastWeekLeagueRunes(weekId: string): Promise<number | n
  */
 function getLeagueHotHoursMultiplierSync(): number {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- lazy by design: avoids league_engine cycle
     const { getCachedLeagueStateSync } = require('./league_open_cache_policy') as
       typeof import('./league_open_cache_policy');
     const state = getCachedLeagueStateSync();
     if (!state?.group) return 1;
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- lazy by design: avoids league_engine cycle
     const { resolveLeagueHotHoursMultiplier } = require('./league_hot_hours') as
       typeof import('./league_hot_hours');
     return resolveLeagueHotHoursMultiplier({ now: Date.now(), group: state.group });
@@ -286,24 +408,41 @@ function getLeagueHotHoursMultiplierSync(): number {
   }
 }
 
-let subscribed = false;
+let subscribedOwnerStableId: string | null = null;
 
 /**
  * Подписка на начисления рун — ставится один раз при старте приложения.
  *
  * зачем: без неё догон пришлось бы звать вручную из каждого места, где руны
- * начисляются (Арена, занятия, друзья, спин), и любое новое место молча
- * выпало бы из лиги. Событие `runes_balance_updated` эмитит единый кошелёк
- * (`runes_system.subscribeRunesBalance`), поэтому источник ровно один.
+ * начисляются (Арена, занятия, друзья), и любое новое место молча выпало бы из
+ * лиги. Слушаем канонический снапшот напрямую: UI-событие баланса существует
+ * только пока открыт экран-подписчик и включает подарки, которые в лигу не идут.
  */
-export function startLeagueWeekRunesTracking(): () => void {
-  if (subscribed) return () => {};
-  subscribed = true;
-  const subscription = onAppEvent('runes_balance_updated', ({ delta }) => {
-    void noteRunesEarnedForLeague(delta);
+export function startLeagueWeekRunesTracking(expectedOwnerStableId?: string): () => void {
+  const ownerStableId = activeOwnerStableId();
+  if (!ownerStableId || (expectedOwnerStableId && expectedOwnerStableId !== ownerStableId)) {
+    return () => {};
+  }
+  if (subscribedOwnerStableId) return () => {};
+  subscribedOwnerStableId = ownerStableId;
+  const baseline = peekRunesServerStats();
+  DebugLogger.info('league_runes:tracking_started', JSON.stringify({
+    balanceEarnedTotal: peekRunesBalance().earnedTotal,
+    serverWeekEarned: baseline ? starsWeekEarned(baseline, baseline.weekKey) : null,
+  }));
+  const unsubscribe = subscribeRunesSnapshot((next, previous) => {
+    const delta = leagueEarnedDelta(previous.earnedTotal, next.earnedTotal);
+    if (delta > 0) {
+      DebugLogger.info('league_runes:earned_delta', JSON.stringify({
+        previousEarnedTotal: previous.earnedTotal,
+        nextEarnedTotal: next.earnedTotal,
+        delta,
+      }));
+      void noteRunesEarnedForLeague(delta, ownerStableId);
+    }
   });
   return () => {
-    subscribed = false;
-    subscription.remove();
+    if (subscribedOwnerStableId === ownerStableId) subscribedOwnerStableId = null;
+    unsubscribe();
   };
 }

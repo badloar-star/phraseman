@@ -12,7 +12,6 @@ const LOCALES: readonly LearningV2InterfaceLocale[] = [
   'ru',
   'uk',
   'es',
-  'en',
   'pt-BR',
   'vi',
   'id',
@@ -21,10 +20,12 @@ const LOCALES: readonly LearningV2InterfaceLocale[] = [
 ];
 
 const EXPECTED_TARGET_TERMS = [
-  new Set(['I', 'i', 'l']),
-  new Set(['i', 'am', 'an', 'm']),
-  new Set(['here', 'hear', 'hair']),
+  new Set(['i']),
+  new Set(['i', 'am', 'here', 'ready']),
+  new Set(['i', 'am', 'here']),
 ] as const;
+
+const FORBIDDEN_PREMATURE_DISTRACTORS = /\b(?:an|um|hear|hair|really|reading)\b/iu;
 
 assert.ok(
   Object.is(
@@ -44,9 +45,9 @@ for (const [pageIndex, page] of EPISODE_01_SESSION_01_SOURCE.introPages.entries(
         .filter((run) => run.semantic !== 'explanation')
         .map((run) => run.text),
     );
-    const comparableTerms = pageIndex === 0
-      ? targetTerms
-      : new Set([...targetTerms].map((term) => term.toLocaleLowerCase('en')));
+    const comparableTerms = new Set(
+      [...targetTerms].map((term) => term.toLocaleLowerCase('en')),
+    );
     assert.deepEqual(
       comparableTerms,
       EXPECTED_TARGET_TERMS[pageIndex],
@@ -55,10 +56,17 @@ for (const [pageIndex, page] of EPISODE_01_SESSION_01_SOURCE.introPages.entries(
 
     const body = page.body[locale] ?? page.body.ru;
     assert.doesNotMatch(
-      body,
-      /\bI\s+am(?:\s+(?:here|ready))?\b/u,
-      `intro page ${pageIndex + 1} ${locale}: a complete phrase appeared before standalone word contacts`,
+      [...targetTerms].join(' '),
+      FORBIDDEN_PREMATURE_DISTRACTORS,
+      `intro page ${pageIndex + 1} ${locale}: distractor appeared before learner choice`,
     );
+    if (pageIndex > 0) {
+      assert.match(
+        body,
+        /\bI\s+am\b/u,
+        `intro page ${pageIndex + 1} ${locale}: the required live English example is missing`,
+      );
+    }
   }
 }
 

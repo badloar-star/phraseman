@@ -12,13 +12,16 @@ const rows = learningV2AuthoringDevicePreviewRowsV1();
 
 assert.deepEqual(
   rows.map((row) => [row.sessionOrdinal, row.status, row.openable]),
-  [[1, "DRAFT", true]],
+  [
+    [1, "LOCKED", true],
+    [2, "DRAFT", true],
+  ],
   "the phone preview must expose only the locked prefix plus current session",
 );
 
 assert.throws(
-  () => buildLearningV2AuthoringDevicePreviewV1(2, "ru"),
-  /learning_v2_authoring_device_preview_forbidden:session=2/u,
+  () => buildLearningV2AuthoringDevicePreviewV1(3, "ru"),
+  /learning_v2_authoring_device_preview_forbidden:session=3/u,
   "a forbidden future session must never be previewable",
 );
 
@@ -27,7 +30,7 @@ assert.equal(preview.schemaVersion, "learning-v2-authoring-device-preview.v1");
 assert.equal(preview.targetLanguage, "en");
 assert.equal(preview.lessonOrdinal, 1);
 assert.equal(preview.sessionOrdinal, 1);
-assert.equal(preview.status, "DRAFT");
+assert.equal(preview.status, "LOCKED");
 assert.equal(preview.introChild.pages.length, 3);
 assert.equal(preview.learnerChild.interactions.length, 17);
 assert.equal(
@@ -96,5 +99,11 @@ const run = createLearningV2CourseSessionDeviceRunV1({
 const summary = getLearningV2CourseSessionDeviceRunSummaryV1(run);
 assert.equal(summary.introInteractionCount, 3);
 assert.equal(summary.practiceInteractionCount, 17);
+
+const secondPreview = buildLearningV2AuthoringDevicePreviewV1(2, "ru");
+assert.equal(secondPreview.sessionOrdinal, 2);
+assert.equal(secondPreview.status, "DRAFT");
+assert.equal(secondPreview.introChild.pages.length, 3);
+assert.ok(secondPreview.learnerChild.interactions.length > 0);
 
 process.stdout.write("LEARNING V2 AUTHORING DEVICE PREVIEW: PASS\n");

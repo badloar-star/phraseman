@@ -260,6 +260,72 @@ const INTENTIONALLY_UNREAD_LOCAL_ECONOMY_RECEIPTS = [
   },
 ] as const;
 
+const INTENTIONALLY_UNREAD_PHONE_STATE_ECONOMY_GRANTS = [
+  {
+    grantKind: 'premium_freeze',
+    contract: 'modules/phone-state/domains/economy.ts',
+    writer: 'app/economy/premium_free_freeze.ts',
+    collection: 'personal_sync_segments',
+    authority: 'client-authoritative premium freeze entitlement in an owner-only opaque Phone State segment; intentionally unread by Jarvis',
+  },
+  {
+    grantKind: 'star_credit',
+    contract: 'modules/phone-state/domains/economy.ts',
+    writer: 'app/level_spin_star_grants.ts',
+    collection: 'personal_sync_segments',
+    authority: 'client-authoritative exact level-spin rune credit in an owner-only opaque Phone State segment; intentionally unread by Jarvis',
+  },
+  {
+    grantKind: 'star_credit_ack',
+    contract: 'modules/phone-state/domains/economy.ts',
+    writer: 'app/level_spin_star_grants.ts',
+    collection: 'personal_sync_segments',
+    authority: 'client-authoritative level-spin rune credit acknowledgement in an owner-only opaque Phone State segment; intentionally unread by Jarvis',
+  },
+  {
+    grantKind: 'attempt_restore_inventory_credit',
+    contract: 'modules/phone-state/domains/economy.ts',
+    writer: 'app/session_attempts/session_attempt_restore_inventory.ts',
+    collection: 'personal_sync_segments',
+    authority: 'client-authoritative exact attempt-restore inventory credit in an owner-only opaque Phone State segment; intentionally unread by Jarvis',
+  },
+  {
+    grantKind: 'attempt_restore_inventory_consume',
+    contract: 'modules/phone-state/domains/economy.ts',
+    writer: 'app/session_attempts/session_attempt_restore_inventory.ts',
+    collection: 'personal_sync_segments',
+    authority: 'client-authoritative exact attempt-restore inventory consume in an owner-only opaque Phone State segment; intentionally unread by Jarvis',
+  },
+  {
+    grantKind: 'session_attempt_recovery_rune_debit',
+    contract: 'modules/phone-state/domains/economy.ts',
+    writer: 'app/session_attempts/session_attempt_recovery.ts',
+    collection: 'personal_sync_segments',
+    authority: 'client-authoritative exact rune debit plus restored attempts in an owner-only opaque Phone State segment; intentionally unread by Jarvis',
+  },
+  {
+    grantKind: 'paid_level_spin_rune_purchase',
+    contract: 'modules/phone-state/domains/economy.ts',
+    writer: 'app/local_level_spins.ts',
+    collection: 'personal_sync_segments',
+    authority: 'client-authoritative exact rune debit plus immutable spin result in an owner-only opaque Phone State segment; intentionally unread by Jarvis',
+  },
+  {
+    grantKind: 'customization_rune_purchase',
+    contract: 'modules/phone-state/domains/economy.ts',
+    writer: 'app/customization_rune_purchase.ts',
+    collection: 'personal_sync_segments',
+    authority: 'client-authoritative exact rune debit plus avatar entitlement in an owner-only opaque Phone State segment; intentionally unread by Jarvis',
+  },
+  {
+    grantKind: 'customization_selection_v1',
+    contract: 'modules/phone-state/domains/economy.ts',
+    writer: 'app/phone_state_economy_bridge.ts',
+    collection: 'personal_sync_segments',
+    authority: 'client-authoritative complete avatar/frame/aura selection in an owner+lineage opaque Phone State segment; intentionally unread by Jarvis',
+  },
+] as const;
+
 // зачем: чекпойнт 96c32bb97 (прошёл с --no-verify) вырезал единственного
 // писателя в client_economy_opening / client_economy_operations из
 // app/economy/client_shard_operation_sync.ts. Экономия переехала в
@@ -298,6 +364,22 @@ const MONEY_WRITER_CONTRACTS = [
     readerPattern: /\.where\('eventTimestampMs',\s*'<='\s*,\s*input\.nowMs\)/,
   },
   {
+    writer: 'functions/src/voice_minutes.ts',
+    reader: 'functions/src/jarvis/money_firestore_fetcher.ts',
+    collection: 'voice_minute_events',
+    field: 'occurredAtMs',
+    writerPattern: /VOICE_MINUTE_EVENT_COLLECTION\s*=\s*'voice_minute_events'[\s\S]{0,12000}\boccurredAtMs\b/,
+    readerPattern: /fetchVoiceMinuteEvents[\s\S]{0,1800}\.where\('occurredAtMs',\s*'>=',\s*sinceMs\)/,
+  },
+  {
+    writer: 'functions/src/admin_voice_minutes.ts',
+    reader: 'functions/src/jarvis/money_firestore_fetcher.ts',
+    collection: 'voice_minute_events',
+    field: 'admin_grant explicit non-revenue disposition',
+    writerPattern: /createVoiceMinuteAdminGrantEvent\(\{[\s\S]{0,1800}appendVoiceMinuteEventInTransaction\(tx,\s*db,\s*event\)/,
+    readerPattern: /fetchVoiceMinuteEvents[\s\S]{0,1800}\.where\('environment',\s*'==',\s*'PRODUCTION'\)[\s\S]{0,1800}kind !== 'purchase_grant' && kind !== 'purchase_refund'/,
+  },
+  {
     writer: 'app/paywall_funnel.ts',
     reader: 'functions/src/jarvis/money_firestore_fetcher.ts',
     field: 'ts',
@@ -307,6 +389,18 @@ const MONEY_WRITER_CONTRACTS = [
 ] as const;
 
 const ISOLATED_COLLECTION_CONTRACTS = [
+  {
+    collection: 'account_deletion_jobs',
+    writer: 'functions/src/account_delete_job.ts',
+    authority: 'server-only deletion work queue; frozen identityClosure/version/hash/cutoff are privacy-control fields and never Jarvis metrics',
+    fields: ['identityClosure', 'identityClosureVersion', 'identityClosureHash', 'closureCutoffMs'],
+  },
+  {
+    collection: 'account_deletion_credential_receipts',
+    writer: 'functions/src/account_delete.ts + functions/src/account_delete_job.ts',
+    authority: 'server-only short-lived credential-safety capability receipt; never a Jarvis metric or browser-readable identity surface',
+    fields: ['authUid', 'stableUid', 'authUidHash', 'stableUidHash'],
+  },
   {
     collection: 'voice_call_reviews',
     writer: 'functions/src/max_voice_finalize.ts',
@@ -406,7 +500,31 @@ const ISOLATED_COLLECTION_CONTRACTS = [
   },
 ] as const;
 
+// User-attached troubleshooting history is visible only in the manual admin
+// report card. Jarvis keeps its bounded aggregate category/screen counts and
+// must never turn this nested personal sequence into model prompt material.
+const INTENTIONALLY_EXCLUDED_NESTED_FIELDS = [{
+  field: 'error_reports.diagnostics',
+  writer: 'client_reports.ts',
+  authority: 'intentionally_excluded_from_jarvis_prompts',
+}] as const;
+
 describe('Jarvis data contract — silence must never replace a broken source', () => {
+  test('support diagnostic timelines stay out of Jarvis prompts and outbound alerts', () => {
+    expect(INTENTIONALLY_EXCLUDED_NESTED_FIELDS).toContainEqual({
+      field: 'error_reports.diagnostics',
+      writer: 'client_reports.ts',
+      authority: 'intentionally_excluded_from_jarvis_prompts',
+    });
+    expect(readSource('client_reports.ts')).toContain('diagnostics');
+    const jarvisReaders = fs.readdirSync(path.join(functionsSrc, 'jarvis'))
+      .filter((file) => file.endsWith('_firestore_fetcher.ts'))
+      .map((file) => fs.readFileSync(path.join(functionsSrc, 'jarvis', file), 'utf8'))
+      .join('\n');
+    expect(jarvisReaders).not.toContain('diagnostics');
+    expect(readSource('admin_alerts.ts')).not.toContain('report.diagnostics');
+    expect(readSource('admin_daily_digest.ts')).not.toContain('d.diagnostics');
+  });
   test('MAX daily operations are an explicit bounded Jarvis source', () => {
     const writer = readSource('max_voice_ops.ts');
     const reader = readSource('jarvis/maxvoice_firestore_fetcher.ts');
@@ -450,7 +568,9 @@ describe('Jarvis data contract — silence must never replace a broken source', 
     }));
     expect(writer).toContain('safetyGuard');
     expect(quotaWriter).toContain('quotaIdentityClosureProof');
-    expect(quotaWriter.match(/lastSettledAtMs:\s*now/g)).toHaveLength(2);
+    // Trial/admin settlement plus paid-wallet release/settlement all close the
+    // server-owned session marker; adding a paid path must update this guard.
+    expect(quotaWriter.match(/lastSettledAtMs:\s*now/g)).toHaveLength(3);
     expect(rules).toMatch(/match \/voice_call_quotas\/\{docId\}\s*\{\s*allow read, write: if false;/);
     expect(jarvisReaders).not.toContain("collection('voice_call_quotas')");
   });
@@ -485,6 +605,43 @@ describe('Jarvis data contract — silence must never replace a broken source', 
       expect(rules).not.toContain(receiptType);
       expect(jarvisReaders).not.toContain(receiptType);
       expect(authority).toContain('no Firestore collection');
+    },
+  );
+  test('every authoritative Phone State economy grant has one Jarvis disposition', () => {
+    const contractSource = fs.readFileSync(
+      path.join(root, 'modules/phone-state/domains/economy.ts'),
+      'utf8',
+    );
+    const authoritativeBlock = contractSource.match(
+      /const ZERO_DELTA_GRANT_KINDS = new Set\(\[([\s\S]*?)\]\);/,
+    );
+    expect(authoritativeBlock).not.toBeNull();
+    const authoritative = [...(authoritativeBlock?.[1] ?? '').matchAll(/'([^']+)'/g)]
+      .map((match) => match[1])
+      .sort();
+    const registered = INTENTIONALLY_UNREAD_PHONE_STATE_ECONOMY_GRANTS
+      .map(({ grantKind }) => grantKind)
+      .sort();
+
+    expect(new Set(registered).size).toBe(registered.length);
+    expect(registered).toEqual(authoritative);
+  });
+  test.each(INTENTIONALLY_UNREAD_PHONE_STATE_ECONOMY_GRANTS)(
+    'Phone State economy grant $grantKind stays owner-only and intentionally unread by Jarvis',
+    ({ grantKind, contract, writer, collection, authority }) => {
+      const contractSource = fs.readFileSync(path.join(root, contract), 'utf8');
+      const writerSource = fs.readFileSync(path.join(root, writer), 'utf8');
+      const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
+      const jarvisReaders = fs.readdirSync(path.join(functionsSrc, 'jarvis'))
+        .filter((file) => file.endsWith('_firestore_fetcher.ts'))
+        .map((file) => fs.readFileSync(path.join(functionsSrc, 'jarvis', file), 'utf8'))
+        .join('\n');
+      expect(contractSource).toContain(`'${grantKind}'`);
+      expect(writerSource).toContain(`kind: '${grantKind}'`);
+      expect(rules).toContain(`/${collection}/`);
+      expect(rules).toContain(grantKind);
+      expect(jarvisReaders).not.toContain(grantKind);
+      expect(authority).toContain('intentionally unread by Jarvis');
     },
   );
   test('personal sync collections are explicitly intentionally unread by Jarvis', () => {

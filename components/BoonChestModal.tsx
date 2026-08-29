@@ -228,7 +228,7 @@ export default function BoonChestModal({
   };
 
   const laterLabel = triLang(lang, {
-    ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde',
+    ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde',
     vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później',
   });
 

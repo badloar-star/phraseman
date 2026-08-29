@@ -6,7 +6,7 @@ import { flashcardsOfficialPacksAvailableForTarget } from './flashcards_target_g
 import { captureAccountGeneration } from './account_generation';
 import { readGiftAccountValue } from './gift_account_storage';
 import { BONUS_ENERGY_KEY } from './bonus_energy_store';
-import { readAttemptRestoreGiftCount } from './session_attempts/session_attempt_restore_inventory';
+import { parseBonusEnergyStorageValue } from './spin_gift_storage_integrity';
 import { getPackGiftTrial } from './flashcards/pack_trial_gift';
 import {
   friendGiftExpiresAtMs,
@@ -67,11 +67,6 @@ interface GiftXpBankStorage {
 
 interface GiftMultiplierStorage {
   multiplier?: number;
-  expiresAt?: number;
-}
-
-interface BonusEnergyStorage {
-  amount?: number;
   expiresAt?: number;
 }
 
@@ -188,9 +183,6 @@ export const loadActiveLevelGiftInventory = async (
   const bonusEnergyRead = accountToken.phase === 'active' && accountToken.stableId
     ? readGiftAccountValue(BONUS_ENERGY_KEY, accountToken).catch(() => null)
     : Promise.resolve(null);
-  const attemptRestoreCountRead = accountToken.phase === 'active' && accountToken.stableId
-    ? readAttemptRestoreGiftCount(accountToken).catch(() => 0)
-    : Promise.resolve(0);
   const [
     xpBankRaw,
     giftMultiplierRaw,
@@ -202,7 +194,6 @@ export const loadActiveLevelGiftInventory = async (
     clubGiftBoost,
     friendGifts,
     firstSeenLoaded,
-    attemptRestoreCount,
   ] = await Promise.all([
     AsyncStorage.getItem(GIFT_XP_BANK_KEY),
     AsyncStorage.getItem(GIFT_MULTIPLIER_KEY),
@@ -214,7 +205,6 @@ export const loadActiveLevelGiftInventory = async (
     AsyncStorage.getItem(CLUB_GIFT_BOOST_KEY),
     loadStoredFriendGiftInventory(nowMs).catch(() => []),
     loadGiftFirstSeenMap(),
-    attemptRestoreCountRead,
   ]);
 
   // зачем (2026-08-02, владелец): у банка XP, пари-скидки и буста лиги нет
@@ -253,32 +243,6 @@ export const loadActiveLevelGiftInventory = async (
   };
 
   const active: ActiveLevelGiftInventoryDraft[] = [];
-  if (attemptRestoreCount > 0) {
-    active.push({
-      key: 'attempt_restore_all',
-      iconGiftId: 'attempt_restore_all',
-      title: triLang(lang, {
-        ru: 'Второй шанс', uk: 'Другий шанс', en: 'Second chance', es: 'Segunda oportunidad',
-        'pt-BR': 'Segunda chance', vi: 'Cơ hội thứ hai', id: 'Kesempatan kedua',
-        tr: 'İkinci şans', pl: 'Druga szansa',
-      }),
-      desc: triLang(lang, {
-        ru: 'Восстанавливает все 3 попытки во время сессии',
-        uk: 'Відновлює всі 3 спроби під час сесії',
-        en: 'Restores all 3 attempts during a session',
-        es: 'Restaura los 3 intentos durante la sesión',
-        'pt-BR': 'Restaura todas as 3 tentativas durante uma sessão',
-        vi: 'Khôi phục cả 3 lượt thử trong một phiên',
-        id: 'Memulihkan semua 3 percobaan selama sesi',
-        tr: 'Oturum sırasında 3 denemenin tümünü yeniler',
-        pl: 'Przywraca wszystkie 3 próby podczas sesji',
-      }),
-      accent: '#D96076',
-      countBadge: attemptRestoreCount,
-      lifetime: { kind: 'permanent' },
-      informationKind: 'attempt_restore_all',
-    });
-  }
   const xpBank = parseJson<GiftXpBankStorage>(xpBankRaw);
   const xpRemaining = parsePositiveInt(xpBank?.remaining);
   const xpBankLifetime = resolveFirstSeenLifetime('xp_bank', xpRemaining > 0, GIFT_XP_BANK_KEY);
@@ -331,13 +295,15 @@ export const loadActiveLevelGiftInventory = async (
     });
   }
 
-  const bonusEnergy = parseJson<BonusEnergyStorage>(bonusEnergyRaw);
-  const bonusEnergyAmount = parsePositiveInt(bonusEnergy?.amount);
-  if (bonusEnergyAmount > 0 && Number(bonusEnergy?.expiresAt || 0) > nowMs) {
+  const inspectedBonusEnergy = parseBonusEnergyStorageValue(bonusEnergyRaw, nowMs);
+  const bonusEnergy = inspectedBonusEnergy.status === 'valid' ? inspectedBonusEnergy.value : null;
+  const bonusEnergyAmount = bonusEnergy?.amount ?? 0;
+  const bonusEnergyCapacity = bonusEnergy?.capacity ?? 0;
+  if (bonusEnergyCapacity > 0 && bonusEnergy) {
     active.push({
       key: 'bonus_energy',
-      expiresAtMs: Number(bonusEnergy?.expiresAt || 0),
-      iconGiftId: energyRewardIconForAmount(bonusEnergyAmount),
+      expiresAtMs: bonusEnergy.expiresAt,
+      iconGiftId: energyRewardIconForAmount(bonusEnergyCapacity),
       title: triLang(lang, { ru: 'Энергия', uk: 'Енергія', en: 'Energy', es: 'Energía',
     'pt-BR': 'Energia',
     vi: 'Năng lượng',
@@ -346,15 +312,15 @@ export const loadActiveLevelGiftInventory = async (
     pl: 'Energia',
   }),
       desc: triLang(lang, {
-        ru: `+${bonusEnergyAmount} до полуночи`,
-        uk: `+${bonusEnergyAmount} до опівночі`,
-        en: `+${bonusEnergyAmount} until midnight`,
-        es: `+${bonusEnergyAmount} hasta medianoche`,
-    'pt-BR': `+${bonusEnergyAmount} até meia-noite`,
-    vi: `+${bonusEnergyAmount} đến nửa đêm`,
-    id: `+${bonusEnergyAmount} sampai tengah malam`,
-    tr: `Gece yarısına kadar +${bonusEnergyAmount}`,
-    pl: `+${bonusEnergyAmount} do północy`,
+        ru: `Осталось ${bonusEnergyAmount} из +${bonusEnergyCapacity} до полуночи`,
+        uk: `Залишилось ${bonusEnergyAmount} із +${bonusEnergyCapacity} до опівночі`,
+        en: `${bonusEnergyAmount} of +${bonusEnergyCapacity} left until midnight`,
+        es: `Quedan ${bonusEnergyAmount} de +${bonusEnergyCapacity} hasta medianoche`,
+    'pt-BR': `Restam ${bonusEnergyAmount} de +${bonusEnergyCapacity} até meia-noite`,
+    vi: `Còn ${bonusEnergyAmount} trong +${bonusEnergyCapacity} đến nửa đêm`,
+    id: `Tersisa ${bonusEnergyAmount} dari +${bonusEnergyCapacity} hingga tengah malam`,
+    tr: `Gece yarısına kadar +${bonusEnergyCapacity} içinden ${bonusEnergyAmount} kaldı`,
+    pl: `Zostało ${bonusEnergyAmount} z +${bonusEnergyCapacity} do północy`,
   }),
       accent: '#34D399',
     });

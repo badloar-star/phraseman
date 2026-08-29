@@ -294,11 +294,14 @@ describe('Arena V2 backend source contract', () => {
     expect(source).not.toMatch(/\bshards\s*:/);
   });
 
-  it('keeps ranked human-only, strict range, pair reservations and server settlement guards', () => {
+  it('keeps ranked strict range, human-or-1v1-bot roster, pair reservations and server settlement guards', () => {
     expect(core).toContain("return mode === 'ranked' ? 1 : 3");
-    // Публичный opponentKind теперь всегда 'human' (бот не раскрывается),
-    // поэтому целостность рейтинга держится на числе живых участников.
-    expect(source).toContain('humans.length !== 2');
+    // Публичный opponentKind теперь всегда 'human' (бот не раскрывается).
+    // Владелец (2026-08-28): рейтинг допускает бота как замену пустой очереди,
+    // но ТОЛЬКО пару «1 живой + 1 бот» — состав с 0 живых участников остаётся
+    // невозможным, как и прежде.
+    expect(source).toContain('humans.length === 1 && privateDoc.participantStableUids.length === 2');
+    expect(source).toContain('humans.length === 2');
     expect(source).not.toContain("match.opponentKind !== 'human'");
     expect(source).not.toContain('Training opponent');
     expect(source).not.toContain('Arena Bot');

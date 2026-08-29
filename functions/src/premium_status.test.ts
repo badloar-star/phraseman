@@ -207,13 +207,21 @@ describe('premium_status — серверный источник правды п
         await expect(resolveIsMaxTier(db, 'canonical', NOW, 'auth-revoked')).resolves.toBe(false);
       });
 
-      it('still finds active MAX on the visible canonical identity reached through auth_links', async () => {
+      it('never resurrects retired MAX as Premium on the visible canonical identity', async () => {
         const db = fakeDb({
           legacy_auth_doc: { identityHidden: true, canonicalStableId: 'canonical', progress: {} },
           canonical: { firebaseAuthUid: 'auth-live', progress: { premium_plan: 'max_monthly', premium_expiry: '0' } },
         }, { 'auth-live': { stable_id: 'canonical' } }) as any;
 
-        await expect(resolveIsMaxTier(db, 'legacy_auth_doc', NOW, 'auth-live')).resolves.toBe(true);
+        await expect(resolveIsMaxTier(db, 'legacy_auth_doc', NOW, 'auth-live')).resolves.toBe(false);
+      });
+
+      it('fails closed for a retired MAX marker on the requested visible account', async () => {
+        const db = fakeDb({
+          canonical: { progress: { premium_plan: 'max_monthly', premium_expiry: '0' } },
+        }) as any;
+
+        await expect(resolveIsMaxTier(db, 'canonical', NOW)).resolves.toBe(false);
       });
     });
 

@@ -193,6 +193,7 @@ export default function LessonTheoryV2Screen() {
   const subtitle = triLang(lang, {
     ru: 'am, is, are — каркас английской фразы',
     uk: 'am, is, are — каркас англійської фрази',
+    en: 'am, is, are — the frame of an English sentence',
     es: 'am, is, are — la base de la frase en inglés',
     'pt-BR': 'am, is, are — a base da frase em inglês',
     vi: 'am, is, are — nền tảng của câu tiếng Anh',

@@ -17,12 +17,13 @@ import {
   type AppStateStatus,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
+import { recordSupportDiagnostic } from './support_diagnostics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
-import Reanimated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
+import Reanimated from 'react-native-reanimated';
 import ScreenGradient from '../components/ScreenGradient';
-import AvatarView from '../components/AvatarView';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
 import { prefetchAllAvatarAuraArt } from './avatar_aura_art_prefetch';
@@ -47,6 +48,7 @@ import {
   customAvatarNameForLang,
   encodeCustomAvatarOwnedStyle,
   getCustomAvatarPurchaseCost,
+  getCustomAvatarRuneCost,
   getCustomAvatarById,
   makeCustomAvatarValue,
   parseCustomAvatarValue,
@@ -62,6 +64,7 @@ import { getLevelFromXP } from '../constants/theme';
 import {
   buildAuraCatalog,
   buildAvatarCatalog,
+  type AvatarSide,
   type CatalogAvailability,
 } from './customization_catalog';
 import {
@@ -70,6 +73,9 @@ import {
   type CustomizationAction,
   type CustomizationTab,
 } from './customization_draft';
+import { resolveCustomizationEditorEntry } from './customization_editor_entry';
+import { buildAtomicEditorAvatarPurchase } from './customization_editor_purchase';
+import { customizationEditorConfirmAccessibilityLabel } from './customization_editor_accessibility';
 import {
   buildCustomizationSnapshot,
   createCustomizationInitialState,
@@ -105,6 +111,24 @@ import {
   useAppSnapshotSelector,
 } from './app_snapshot_store';
 import { commitShardCompositeOperation, getShardsBalance } from './shards_system';
+import {
+  getRunesBalance,
+  peekRunes,
+  subscribeRunesSnapshot,
+} from './runes_system';
+import {
+  commitCustomizationRuneCompositeOperation,
+  syncPendingCustomizationRunePurchases,
+} from './customization_rune_purchase';
+import {
+  executeAccountScopedCustomizationPurchase,
+  refreshCurrentCustomizationBalances,
+  resolveCustomizationPurchaseCta,
+  runCustomizationPurchasePreflightSingleFlight,
+  runFreshCustomizationPurchasePreflight,
+  type CustomizationPurchasePrice,
+  type CustomizationPurchaseShortage,
+} from './customization_purchase_cta';
 import { syncToCloud } from './cloud_sync';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { updateMyGroupPoints } from './firestore_leagues';
@@ -112,10 +136,19 @@ import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_gu
 import { parseWeekPointsForWeek } from './hall_of_fame_utils';
 import { getCanonicalUserId } from './user_id_policy';
 import { getStableId } from './stable_id';
+import { newShardOpId } from './shards_delta_queue';
+import {
+  commitCustomizationSelection,
+  drainCustomizationSelectionOutbox,
+} from './customization_selection_journal';
+import { commitPhoneStateCustomizationSelection } from './phone_state_economy_bridge';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
+  subscribeAccountGeneration,
   withAccountTransitionLock,
+  type AccountGenerationToken,
+  type AccountTransitionLockLease,
 } from './account_generation';
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import { hydrateCosmeticAssetCatalog } from './cosmetic_asset_archive';
@@ -127,34 +160,35 @@ import {
 } from '../components/customization/CustomizationCatalogCard';
 import {
   CustomizationActionBar,
+  YinYangControl,
   CustomizationTabs,
+  type CustomizationPriceValue,
 } from '../components/customization/CustomizationControls';
 import { AvatarEditorSheet } from '../components/customization/AvatarEditorSheet';
+import { RuneBalanceChip } from '../components/RuneBalanceChip';
 import { CustomizationPurchaseConfirmModal } from '../components/customization/CustomizationPurchaseConfirmModal';
 import { avatarDNACopy } from './avatar_dna_copy';
 import {
   avatarShowcaseCountLabel,
-  avatarShowcasePriceFilterLabel,
   avatarShowcaseTierTitle,
 } from './avatar_showcase_copy';
 import { isAvatarDNAEnabled } from './remote_flags';
 import {
-  grantAllCustomizationForDev,
-  hasAllCustomizationDevGrant,
-} from './customization_dev_grant';
+  clearCustomizationDevSandbox,
+  createCustomizationDevSandbox,
+  previewInCustomizationDevSandbox,
+  toggleCustomizationDevSandbox,
+  type CustomizationDevSandbox,
+  type CustomizationDevSandboxResult,
+} from './customization_dev_sandbox';
 
 const GRID_GAP = 10;
 const GRID_PAD = 16;
 const ACTION_BAR_HEIGHT = 82;
 const AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000;
 const REVALIDATE_TTL_MS = 30_000;
-/** Фиксированная высота сцены: первый кадр = финальная геометрия (layout stability). */
-const STAGE_MIN_HEIGHT = 288;
 /** Высота контентной части закреплённого верхнего бара (без safe-инсета). */
 const TOP_BAR_CONTENT_HEIGHT = 64;
-/** Диапазон скролла, на котором сцена «передаёт» превью в мини-бар. */
-const COLLAPSE_START = 120;
-const COLLAPSE_END = 210;
 
 type AvatarCatalogFilter = 'all' | 'mine' | number;
 
@@ -280,6 +314,20 @@ function localized(lang: Lang, copy: { ru: string; uk: string; es: string } & Pa
   return copy.ru;
 }
 
+function purchaseShortageLabel(shortage: Exclude<CustomizationPurchaseShortage, null>, lang: Lang): string {
+  return shortage === 'runes'
+    ? localized(lang, {
+      ru: 'Не хватает рун', uk: 'Не вистачає рун', en: 'Not enough runes',
+      es: 'No hay suficientes runas', 'pt-BR': 'Runas insuficientes', vi: 'Không đủ rune',
+      id: 'Rune tidak cukup', tr: 'Yeterli rün yok', pl: 'Za mało run',
+    })
+    : localized(lang, {
+      ru: 'Не хватает жемчуга', uk: 'Не вистачає перлин', en: 'Not enough pearls',
+      es: 'No hay suficientes perlas', 'pt-BR': 'Pérolas insuficientes', vi: 'Không đủ ngọc trai',
+      id: 'Mutiara tidak cukup', tr: 'Yeterli inci yok', pl: 'Za mało pereł',
+    });
+}
+
 function slavicPlural(count: number, one: string, few: string, many: string): string {
   const normalized = Math.abs(Math.floor(count));
   const mod10 = normalized % 10;
@@ -342,17 +390,23 @@ async function writeProfileAvatarSnapshot(avatar: string, level: number, aura: s
       getVerifiedVipStatus().catch(() => false),
     ]);
     if (!isCurrentAccountGeneration(accountToken)) return;
+    const profileSelection: Record<string, string | null> = {
+      user_avatar: avatar,
+      user_frame: frameRaw,
+      user_avatar_frame: frameRaw,
+      user_avatar_aura: aura,
+    };
     await syncPublicProfileSnapshot({
       reason: 'display_change',
       name: (nameRaw || '').trim() || `Level ${level}`,
       totalXp,
       weekPoints,
       lang: langRaw || 'ru',
-      avatar,
+      avatar: profileSelection.user_avatar || getBestAvatarForLevel(level),
       streak: parseInt(streakRaw || '0', 10) || undefined,
       leagueId,
-      frame: frameRaw || undefined,
-      aura: aura || undefined,
+      frame: profileSelection.user_avatar_frame || undefined,
+      aura: profileSelection.user_avatar_aura || undefined,
       isPremium: realPremium,
       isVip: vip,
     }, accountToken);
@@ -412,6 +466,7 @@ function availabilityStatus(
     case 'owned': return copy.owned;
     case 'none': return copy.noAura;
     case 'shards': return `${item.availability.cost} ${localized(lang, { ru: 'жемчужин', uk: 'перлин', es: 'perlas', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' })}`;
+    case 'runes': return `${item.availability.cost} ${localized(lang, { ru: 'рун', uk: 'рун', es: 'runas', 'pt-BR': 'runas', vi: 'rune', id: 'rune', tr: 'rün', pl: 'run' })}`;
     case 'level': return `${localized(lang, { ru: 'Уровень', uk: 'Рівень', es: 'Nivel', 'pt-BR': 'Nível', vi: 'Cấp', id: 'Level', tr: 'Seviye', pl: 'Poziom' })} ${item.availability.level}`;
     case 'plus': return 'Plus';
     case 'pro': return 'Pro';
@@ -442,7 +497,7 @@ export default function AvatarSelect() {
   // более высокий тир, см. effectivePro в PremiumContext.tsx).
   const { hasPremiumAccess: isPremium, isVip, isPro } = usePremium();
   const copy = useMemo(() => studioCopy(lang), [lang]);
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll, scrollY } = useBouncy();
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const focused = useIsScreenFocused();
   const [appState, setAppState] = useState<AppStateStatus>(AppState.currentState);
@@ -451,20 +506,20 @@ export default function AvatarSelect() {
   const [confirmed, setConfirmed] = useState(initialCustomization.confirmed);
   const [previewAvatarValue, setPreviewAvatarValue] = useState(initialCustomization.previewAvatarValue);
   const [previewStoredAuraSelection, setPreviewStoredAuraSelection] = useState(initialCustomization.previewStoredAuraSelection);
+  const [avatarSide, setAvatarSide] = useState<AvatarSide>(() => (
+    parseCustomAvatarValue(initialCustomization.previewAvatarValue)?.logoColor === 'black' ? 'yin' : 'yang'
+  ));
   const [activeTab, setActiveTab] = useState<CustomizationTab>('avatars');
   const [avatarCatalogFilter, setAvatarCatalogFilter] = useState<AvatarCatalogFilter>('all');
   const [busy, setBusy] = useState(false);
   const [editorAvatar, setEditorAvatar] = useState<CustomAvatarDef | null>(null);
   const [editorArtVersion, setEditorArtVersion] = useState<CustomAvatarArtVersion | undefined>(undefined);
-  // зачем: «Применить» в шторке обязана реально сохранять образ, а не только ставить
-  // превью. Само применение нельзя звать тут же — resolvedAction ещё посчитан по
-  // старому превью, и платная перекраска проскочила бы мимо списания жемчуга.
-  // Поэтому ставим флаг и применяем в эффекте, когда действие уже пересчитано.
-  const [pendingApplyAfterEditor, setPendingApplyAfterEditor] = useState(false);
+  const [runeBalance, setRuneBalance] = useState(() => peekRunes());
   const [cosmeticCatalogRevision, setCosmeticCatalogRevision] = useState(0);
   const [avatarDNAEnabled, setAvatarDNAEnabled] = useState(false);
-  const [devAllUnlocked, setDevAllUnlocked] = useState(false);
-  const [devGrantBusy, setDevGrantBusy] = useState(false);
+  const [devSandbox, setDevSandbox] = useState<CustomizationDevSandbox>(() => createCustomizationDevSandbox());
+  const devSandboxRef = useRef<CustomizationDevSandbox>(devSandbox);
+  const devSandboxActive = __DEV__ && devSandbox.active;
 
   useEffect(() => {
     const subscription = onAppEvent('cosmetic_asset_catalog_changed', () => {
@@ -495,9 +550,26 @@ export default function AvatarSelect() {
   const previewRef = useRef({ avatar: previewAvatarValue, aura: previewStoredAuraSelection });
   const lastValidationRef = useRef(0);
   const listRef = useRef<any>(null);
+  const purchasePreflightInFlightRef = useRef(false);
 
   useEffect(() => { confirmedRef.current = confirmed; }, [confirmed]);
   useEffect(() => { previewRef.current = { avatar: previewAvatarValue, aura: previewStoredAuraSelection }; }, [previewAvatarValue, previewStoredAuraSelection]);
+
+  const publishDevSandboxResult = useCallback((result: CustomizationDevSandboxResult | null) => {
+    if (!result) return;
+    devSandboxRef.current = result.sandbox;
+    setDevSandbox(result.sandbox);
+    previewRef.current = {
+      avatar: result.preview.avatarValue,
+      aura: result.preview.storedAuraSelection,
+    };
+    setPreviewAvatarValue(result.preview.avatarValue);
+    setPreviewStoredAuraSelection(result.preview.storedAuraSelection);
+  }, []);
+
+  const clearDevSandbox = useCallback(() => {
+    publishDevSandboxResult(clearCustomizationDevSandbox(devSandboxRef.current));
+  }, [publishDevSandboxResult]);
 
   useEffect(() => {
     if (!focused) return undefined;
@@ -513,6 +585,46 @@ export default function AvatarSelect() {
     setPreviewStoredAuraSelection(snapshot.storedAuraSelection);
     patchAppSnapshotCustomizationSelection(snapshot);
   }, []);
+
+  const publishPearlBalance = useCallback((shards: number) => {
+    const safeShards = Math.max(0, Math.floor(Number(shards) || 0));
+    const current = confirmedRef.current;
+    if (current.shards === safeShards) return;
+    const next = { ...current, shards: safeShards };
+    confirmedRef.current = next;
+    setConfirmed(next);
+    patchAppSnapshot({ customization: next });
+  }, []);
+
+  useEffect(() => {
+    const shardSubscription = onAppEvent('shards_balance_updated', ({ balance }) => {
+      publishPearlBalance(balance);
+    });
+    const unsubscribeRunes = subscribeRunesSnapshot((next) => {
+      setRuneBalance(next.balance);
+    });
+    return () => {
+      shardSubscription.remove();
+      unsubscribeRunes();
+    };
+  }, [publishPearlBalance]);
+
+  useFocusEffect(useCallback(() => {
+    let active = true;
+    void refreshCurrentCustomizationBalances({
+      captureAccount: captureAccountGeneration,
+      isCurrentAccount: (accountToken) => active
+        && !!accountToken.stableId?.trim()
+        && isCurrentAccountGeneration(accountToken),
+      readPearlBalance: getShardsBalance,
+      readRuneBalance: async () => (await getRunesBalance()).balance,
+      publishBalances: (shards, runes) => {
+        publishPearlBalance(shards);
+        setRuneBalance(runes);
+      },
+    }).catch(() => {});
+    return () => { active = false; };
+  }, [publishPearlBalance]));
 
   useEffect(() => {
     if (!appSnapshotCustomization || customizationSnapshotsEqual(confirmedRef.current, appSnapshotCustomization)) return;
@@ -540,8 +652,13 @@ export default function AvatarSelect() {
 
   useEffect(() => {
     if (!__DEV__) return;
-    void hasAllCustomizationDevGrant().then(setDevAllUnlocked).catch(() => {});
-  }, []);
+    const subscription = subscribeAccountGeneration(clearDevSandbox);
+    return () => subscription.remove();
+  }, [clearDevSandbox]);
+
+  useFocusEffect(useCallback(() => () => {
+    if (__DEV__) clearDevSandbox();
+  }, [clearDevSandbox]));
 
   useFocusEffect(useCallback(() => {
     if (Date.now() - lastValidationRef.current < REVALIDATE_TTL_MS) return undefined;
@@ -567,14 +684,44 @@ export default function AvatarSelect() {
     invalidateCaches: invalidateAvatarDependentCaches,
     syncCloud: syncAvatarDisplayToCloud,
     syncPublicProfile: writeProfileAvatarSnapshot,
+    commitSelection: async (input, context, inheritedLease) => {
+      const token = captureAccountGeneration();
+      const operationId = context?.operationId
+        ?? `customization_selection:${await newShardOpId()}`;
+      const committed = await commitCustomizationSelection({
+        token,
+        operationId,
+        source: context?.source ?? 'user',
+        ...(context?.occurrenceId ? { occurrenceId: context.occurrenceId } : {}),
+        selection: {
+          avatarValue: input.avatarValue,
+          frameId: input.frameId,
+          storedAuraSelection: input.storedAuraSelection,
+          level: input.level,
+        },
+        inheritedLease,
+      }, {
+        storage: AsyncStorage,
+        mirror: commitPhoneStateCustomizationSelection,
+      });
+      // Root+head+raw projections+outbox marker are already durable. SQLite is
+      // a portable mirror and cannot keep the Apply/Purchase button busy.
+      void drainCustomizationSelectionOutbox({
+        token,
+        lineage: committed.operation.lineage,
+      }, {
+        storage: AsyncStorage,
+        mirror: commitPhoneStateCustomizationSelection,
+      }).catch(() => {});
+    },
     createAccountScope: () => {
       const accountToken = captureAccountGeneration();
       return {
         isCurrent: () => isCurrentAccountGeneration(accountToken),
-        runExclusive: <T,>(work: () => Promise<T>) => withAccountTransitionLock(async () => {
+        runExclusive: <T,>(work: () => Promise<T>, inheritedLease?: AccountTransitionLockLease) => withAccountTransitionLock(async () => {
           if (!isCurrentAccountGeneration(accountToken)) return undefined;
           return work();
-        }),
+        }, inheritedLease),
       };
     },
   }), [publishCustomizationSnapshot]);
@@ -584,6 +731,7 @@ export default function AvatarSelect() {
     storage: AsyncStorage,
     getAccountScope: async () => (await getCanonicalUserId()) || getStableId(),
     commitShardCompositeOperation,
+    commitRuneCustomizationCompositeOperation: commitCustomizationRuneCompositeOperation,
     validatePurchase: (intent) => validateCustomizationPurchase(intent, {
       snapshot: confirmedRef.current,
       isPremium,
@@ -622,13 +770,15 @@ export default function AvatarSelect() {
         confirmedRef.current = next;
         setConfirmed(next);
         patchAppSnapshot({ customization: next });
+        const token = captureAccountGeneration();
+        await syncPendingCustomizationRunePurchases(token).catch(() => {});
       })
       .catch(() => {});
   }, [purchaseDeps]);
 
-  const effectivePreviewAuraId = __DEV__ && devAllUnlocked
+  const effectivePreviewAuraId = (devSandboxActive
     ? normalizeAvatarAuraId(previewStoredAuraSelection)
-    : resolveEffectivePreviewAuraId(previewStoredAuraSelection, isPremium, isVip, isPro);
+    : resolveEffectivePreviewAuraId(previewStoredAuraSelection, isPremium, isVip, isPro)) ?? null;
   // зачем: «Аватар уровня» — первая плитка каталога вместо скрытого меню-трёх-точек:
   // возврат к уровню выбирается так же, как любой другой аватар («Вернуть аватар уровня»
   // больше не прячется за многоточием).
@@ -644,9 +794,10 @@ export default function AvatarSelect() {
     ownedAvatars: confirmed.ownedAvatars,
     giftedAvatarId: confirmed.giftedAvatarId,
     activeAvatar: confirmed.activeAvatar,
-    devUnlockAll: __DEV__ && devAllUnlocked,
+    side: avatarSide,
+    devUnlockAll: devSandboxActive,
     catalogRevision: cosmeticCatalogRevision,
-  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, confirmed.activeAvatar, devAllUnlocked, cosmeticCatalogRevision]);
+  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, confirmed.activeAvatar, avatarSide, devSandboxActive, cosmeticCatalogRevision]);
   const auraItems = useMemo(() => buildAuraCatalog({
     activeAvatar: previewAvatarValue,
     activeAuraId: confirmed.storedAuraSelection,
@@ -655,16 +806,13 @@ export default function AvatarSelect() {
     isPremium,
     isVip,
     isPro,
-    devUnlockAll: __DEV__ && devAllUnlocked,
+    devUnlockAll: devSandboxActive,
     catalogRevision: cosmeticCatalogRevision,
-  }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip, isPro, devAllUnlocked, cosmeticCatalogRevision]);
+  }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip, isPro, devSandboxActive, cosmeticCatalogRevision]);
   const catalogItems = useMemo<CatalogCardItem[]>(
     () => activeTab === 'avatars' ? [levelTile, ...avatarItems] : auraItems,
     [activeTab, levelTile, avatarItems, auraItems],
   );
-  const catalogPrices = useMemo(() => [...new Set(avatarItems.flatMap((item) =>
-    item.kind === 'custom-avatar' ? [getCustomAvatarPurchaseCost(item.avatar)] : []))]
-    .sort((left, right) => left - right), [avatarItems]);
   const displayCatalogItems = useMemo<CatalogCardItem[]>(() => {
     if (activeTab === 'auras') return auraItems;
     if (avatarCatalogFilter === 'mine') {
@@ -699,8 +847,64 @@ export default function AvatarSelect() {
     avatarAvailability,
     auraAvailability,
     ownedAvatarStyles: confirmed.ownedAvatars,
-    devUnlockAll: __DEV__ && devAllUnlocked,
+    devUnlockAll: devSandboxActive,
   });
+  const editorPreviewAvatarValue = editorAvatar
+    ? makeCustomAvatarValue(editorAvatar.id, editorGradientId, editorLogoColor, editorArtVersion)
+    : previewAvatarValue;
+  const editorSide: AvatarSide = editorLogoColor === 'black' ? 'yin' : 'yang';
+  const editorAvatarItem = editorAvatar
+    ? buildAvatarCatalog({
+      activeAvatar: confirmed.activeAvatar,
+      ownedAvatars: confirmed.ownedAvatars,
+      giftedAvatarId: confirmed.giftedAvatarId,
+      side: editorSide,
+    }).find((item) => item.kind === 'custom-avatar' && item.id === editorAvatar.id)
+    : undefined;
+  const editorResolvedAction = resolveCustomizationAction({
+    confirmed: { avatarValue: confirmed.activeAvatar, storedAuraSelection: confirmed.storedAuraSelection },
+    previewAvatarValue: editorPreviewAvatarValue,
+    previewStoredAuraSelection,
+    effectivePreviewAuraId,
+    activeTab: 'avatars',
+    avatarAvailability: editorAvatarItem?.availability ?? { kind: 'owned' },
+    auraAvailability,
+    ownedAvatarStyles: confirmed.ownedAvatars,
+    devUnlockAll: devSandboxActive,
+  });
+  const editorActionPrice: CustomizationPriceValue | null =
+    editorResolvedAction.kind === 'buy-and-apply' || editorResolvedAction.kind === 'buy-only'
+      ? { currency: editorResolvedAction.currency, amount: editorResolvedAction.cost }
+      : null;
+  const editorPurchaseDecision = editorActionPrice
+    ? resolveCustomizationPurchaseCta({
+      price: editorActionPrice,
+      runeBalance,
+      pearlBalance: confirmed.shards,
+    })
+    : null;
+  const editorConfirmLabel = editorPurchaseDecision?.shortage
+    ? purchaseShortageLabel(editorPurchaseDecision.shortage, lang)
+    : editorActionPrice ? localized(lang, {
+      ru: 'Купить и применить', uk: 'Купити й застосувати', en: 'Buy and apply',
+      es: 'Comprar y aplicar', 'pt-BR': 'Comprar e aplicar', vi: 'Mua và áp dụng',
+      id: 'Beli dan terapkan', tr: 'Satın al ve uygula', pl: 'Kup i zastosuj',
+    })
+    : copy.applyStyle;
+  const editorConfirmAccessibilityLabel = customizationEditorConfirmAccessibilityLabel(
+    editorConfirmLabel,
+    editorActionPrice,
+    {
+      runes: localized(lang, {
+        ru: 'рун', uk: 'рун', en: 'runes', es: 'runas', 'pt-BR': 'runas',
+        vi: 'rune', id: 'rune', tr: 'rün', pl: 'run',
+      }),
+      pearls: localized(lang, {
+        ru: 'жемчужин', uk: 'перлин', en: 'pearls', es: 'perlas', 'pt-BR': 'pérolas',
+        vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł',
+      }),
+    },
+  );
 
   const previewAvatarLabel = selectedAvatarItem?.kind === 'custom-avatar' ? customAvatarNameForLang(selectedAvatarItem.avatar, lang) : copy.levelAvatar;
   const previewAura = effectivePreviewAuraId ? getAvatarAuraById(effectivePreviewAuraId) : undefined;
@@ -725,10 +929,31 @@ export default function AvatarSelect() {
   // должна вести в шторку настроек, а «Применить» жить уже внутри неё. Подменяем
   // только чистое применение купленного образа с редактором; покупка, Plus,
   // уровневые и наградные объяснения работают как раньше.
-  const bottomOpensEditor = resolvedAction.kind === 'apply' && selectedAvatar !== null;
+  const editorEntryDecision = resolveCustomizationEditorEntry({
+    activeTab,
+    hasCustomAvatar: selectedAvatar !== null,
+    resolvedAction,
+  });
+  const bottomOpensEditor = editorEntryDecision.opensEditor;
+  const actionBarAction = editorEntryDecision.actionBarAction;
+
+  const actionPrice: CustomizationPriceValue | null = !bottomOpensEditor
+    && (resolvedAction.kind === 'buy-and-apply' || resolvedAction.kind === 'buy-only')
+    ? { currency: resolvedAction.currency, amount: resolvedAction.cost }
+    : null;
+  const actionPurchaseDecision = actionPrice
+    ? resolveCustomizationPurchaseCta({
+      price: actionPrice,
+      runeBalance,
+      pearlBalance: confirmed.shards,
+    })
+    : null;
 
   const actionLabel = useMemo(() => {
     if (bottomOpensEditor) return copy.editAvatar;
+    if (actionPurchaseDecision?.shortage) {
+      return purchaseShortageLabel(actionPurchaseDecision.shortage, lang);
+    }
     switch (resolvedAction.kind) {
       case 'unchanged': return copy.applied;
       case 'apply': return copy.apply;
@@ -748,10 +973,7 @@ export default function AvatarSelect() {
       case 'explain-level': return `${localized(lang, { ru: 'Откроется на уровне', uk: 'Відкриється на рівні', es: 'Se desbloquea en el nivel', 'pt-BR': 'Desbloqueia no nível', vi: 'Mở khóa ở cấp', id: 'Terbuka di level', tr: 'Açılacağı seviye', pl: 'Odblokuje się na poziomie' })} ${resolvedAction.level}`;
       case 'explain-reward': return copy.reward;
     }
-  }, [resolvedAction, copy, lang, bottomOpensEditor]);
-  const actionCost = resolvedAction.kind === 'buy-and-apply' || resolvedAction.kind === 'buy-only'
-    ? resolvedAction.cost
-    : null;
+  }, [resolvedAction, copy, lang, bottomOpensEditor, actionPurchaseDecision]);
 
   const applyInput = useCallback((cloudSyncMode: 'immediate' | 'deferred'): ApplyCustomizationInput => ({
     avatarValue: previewAvatarValue,
@@ -761,20 +983,33 @@ export default function AvatarSelect() {
     cloudSyncMode,
   }), [previewAvatarValue, previewStoredAuraSelection, confirmed.level]);
 
-  const purchaseInputForAction = useCallback((action: Extract<CustomizationAction, { kind: 'buy-only' | 'buy-and-apply' }>): PurchaseCustomizationInput | null => {
+  const purchaseInputForAction = useCallback((
+    action: Extract<CustomizationAction, { kind: 'buy-only' | 'buy-and-apply' }>,
+    avatarValueOverride?: string,
+  ): PurchaseCustomizationInput | null => {
     if (action.target === 'avatar') {
-      const parsed = parseCustomAvatarValue(previewAvatarValue);
+      const avatarValue = avatarValueOverride ?? previewAvatarValue;
+      const parsed = parseCustomAvatarValue(avatarValue);
       if (!parsed) return null;
       const cost = action.cost;
+      const avatarApplyInput: ApplyCustomizationInput = {
+        avatarValue,
+        storedAuraSelection: previewStoredAuraSelection,
+        level: confirmed.level,
+        frameId: getBestFrameForLevel(confirmed.level).id,
+        cloudSyncMode: cost > 0 ? 'immediate' : 'deferred',
+      };
       const base = {
         target: 'avatar' as const,
         itemId: parsed.avatarId,
         cost,
+        currency: action.currency,
         spendReason: action.purchaseKind === 'restyle' ? 'custom_avatar_restyle' as const : 'custom_avatar' as const,
-        ownedValue: encodeOwnedStyle(previewAvatarValue),
+        ownedValue: encodeOwnedStyle(avatarValue),
+        avatarValue,
       };
       return action.kind === 'buy-and-apply'
-        ? { ...base, mode: 'buy-and-apply', applyInput: applyInput(cost > 0 ? 'immediate' : 'deferred') }
+        ? { ...base, mode: 'buy-and-apply', applyInput: avatarApplyInput }
         : { ...base, mode: 'buy-only' };
     }
     if (!previewStoredAuraSelection || previewStoredAuraSelection === NO_AVATAR_AURA_ID) return null;
@@ -783,48 +1018,216 @@ export default function AvatarSelect() {
       target: 'aura' as const,
       itemId: previewStoredAuraSelection,
       cost: action.cost,
+      currency: action.currency,
       spendReason: 'avatar_aura' as const,
       ownedValue: true as const,
     };
     return action.kind === 'buy-and-apply'
       ? { ...base, mode: 'buy-and-apply', applyInput: applyInput(purchasedAura ? 'immediate' : 'deferred') }
       : { ...base, mode: 'buy-only' };
-  }, [previewAvatarValue, previewStoredAuraSelection, applyInput]);
+  }, [previewAvatarValue, previewStoredAuraSelection, confirmed.level, applyInput]);
 
   const showToast = useCallback((kind: 'success' | 'error' | 'info', text: string) => {
     emitAppEvent('action_toast', actionToastTri(kind, { ru: text, uk: text, es: text, 'pt-BR': text, vi: text, id: text, tr: text, pl: text }));
   }, []);
 
-  const handleDevUnlockAll = useCallback(async () => {
-    if (!__DEV__ || devGrantBusy) return;
-    setDevGrantBusy(true);
-    try {
-      await grantAllCustomizationForDev();
-      const fresh = await readFreshCustomizationSnapshot();
-      publishCustomizationSnapshot(fresh);
-      setDevAllUnlocked(true);
-      showToast('success', localized(lang, {
-        ru: 'Все Avatar100 и ауры открыты для тестирования',
-        uk: 'Усі Avatar100 та аури відкриті для тестування',
-        es: 'Avatar100 y todas las auras están disponibles para pruebas',
-        'pt-BR': 'Avatar100 e todas as auras foram liberados para testes',
-        vi: 'Đã mở Avatar100 và mọi hào quang để thử nghiệm',
-        id: 'Avatar100 dan semua aura terbuka untuk pengujian',
-        tr: 'Avatar100 ve tüm auralar test için açıldı',
-        pl: 'Avatar100 i wszystkie aury odblokowano do testów',
-      }));
-    } catch {
-      showToast('error', copy.applyError);
-    } finally {
-      setDevGrantBusy(false);
+  const openShortageDestination = useCallback((shortage: Exclude<CustomizationPurchaseShortage, null>) => {
+    if (shortage === 'runes') {
+      router.push('/runes_wallet');
+      return;
     }
-  }, [copy.applyError, devGrantBusy, lang, publishCustomizationSnapshot, showToast]);
+    router.push({ pathname: '/shards_shop', params: { source: 'avatar_customization' } } as any);
+  }, [router]);
+
+  const notifyPurchaseShortage = useCallback((shortage: Exclude<CustomizationPurchaseShortage, null>) => {
+    showToast('error', purchaseShortageLabel(shortage, lang));
+  }, [lang, showToast]);
+
+  const runFreshPurchasePreflight = useCallback(async (
+    price: CustomizationPurchasePrice,
+    onAffordable: (capturedAccount: AccountGenerationToken) => void | Promise<void>,
+  ) => runCustomizationPurchasePreflightSingleFlight(
+    purchasePreflightInFlightRef,
+    () => runFreshCustomizationPurchasePreflight({
+      price,
+      captureAccount: captureAccountGeneration,
+      isCurrentAccount: (accountToken) => !!accountToken.stableId?.trim()
+        && isCurrentAccountGeneration(accountToken),
+      readPearlBalance: getShardsBalance,
+      readRuneBalance: async () => (await getRunesBalance()).balance,
+      publishBalances: (pearlBalance, freshRuneBalance) => {
+        publishPearlBalance(pearlBalance);
+        setRuneBalance(freshRuneBalance);
+      },
+      notifyShortage: notifyPurchaseShortage,
+      openShortageDestination,
+      onAffordable,
+    }),
+  ), [notifyPurchaseShortage, openShortageDestination, publishPearlBalance]);
+
+  const executePurchaseInput = useCallback(async (
+    input: PurchaseCustomizationInput,
+    expectedAccount: AccountGenerationToken,
+  ) => {
+    const expectedStableId = expectedAccount.stableId?.trim();
+    const assertExpectedAccount = (): string => {
+      if (!expectedStableId || !isCurrentAccountGeneration(expectedAccount, expectedStableId)) {
+        throw new Error('customization_purchase_account_mismatch');
+      }
+      return expectedStableId;
+    };
+    const scopedPurchaseDeps: CustomizationPurchaseDeps = {
+      ...purchaseDeps,
+      getAccountScope: async () => {
+        const expectedScope = assertExpectedAccount();
+        const resolvedScope = ((await getCanonicalUserId()) || (await getStableId())).trim();
+        assertExpectedAccount();
+        if (resolvedScope !== expectedScope) throw new Error('customization_purchase_account_mismatch');
+        return resolvedScope;
+      },
+      commitShardCompositeOperation: async (operation) => {
+        assertExpectedAccount();
+        const result = await purchaseDeps.commitShardCompositeOperation(operation);
+        assertExpectedAccount();
+        return result;
+      },
+      commitRuneCustomizationCompositeOperation: async (operation) => {
+        assertExpectedAccount();
+        const result = await purchaseDeps.commitRuneCustomizationCompositeOperation({
+          ...operation,
+          token: expectedAccount,
+        });
+        assertExpectedAccount();
+        return result;
+      },
+      validatePurchase: async (intent) => {
+        assertExpectedAccount();
+        const valid = await purchaseDeps.validatePurchase(intent);
+        assertExpectedAccount();
+        return valid;
+      },
+      validateApply: async (intent) => {
+        assertExpectedAccount();
+        const valid = await purchaseDeps.validateApply(intent);
+        assertExpectedAccount();
+        return valid;
+      },
+      onOwnershipGranted: async (target, itemId, ownedValue) => {
+        assertExpectedAccount();
+        await purchaseDeps.onOwnershipGranted(target, itemId, ownedValue);
+        assertExpectedAccount();
+      },
+      createAccountScope: () => ({
+        isCurrent: () => Boolean(
+          expectedStableId
+          && isCurrentAccountGeneration(expectedAccount, expectedStableId)
+        ),
+        runExclusive: <T,>(work: () => Promise<T>, inheritedLease?: AccountTransitionLockLease) => (
+          withAccountTransitionLock(async () => {
+            assertExpectedAccount();
+            const result = await work();
+            assertExpectedAccount();
+            return result;
+          }, inheritedLease)
+        ),
+      }),
+    };
+
+    return executeAccountScopedCustomizationPurchase({
+      expectedAccount,
+      isCurrentAccount: (captured) => Boolean(
+        expectedStableId
+        && isCurrentAccountGeneration(captured, expectedStableId)
+      ),
+      prepare: async () => prepareCustomizationPurchase(input, scopedPurchaseDeps),
+      resume: async (prepared) => resumeCustomizationPurchase(prepared, scopedPurchaseDeps),
+      readPostPurchaseBalance: async () => getShardsBalance(),
+      publishPostPurchaseBalance: (shards) => publishPearlBalance(shards),
+    });
+  }, [publishPearlBalance, purchaseDeps]);
+
+  const handleDevUnlockAll = useCallback(() => {
+    if (!__DEV__) return;
+    const account = captureAccountGeneration();
+    const ownerStableId = account.stableId?.trim();
+    if (!ownerStableId || !isCurrentAccountGeneration(account, ownerStableId)) return;
+    try {
+      const result = toggleCustomizationDevSandbox(
+        devSandboxRef.current,
+        ownerStableId,
+        {
+          avatarValue: previewRef.current.avatar,
+          storedAuraSelection: previewRef.current.aura,
+        },
+      );
+      publishDevSandboxResult(result);
+      dispatchPurchase({ type: 'cancel' });
+      showToast('success', result.sandbox.active
+        ? localized(lang, {
+          ru: 'Режим примерки включён — покупки и применение отключены',
+          uk: 'Режим примірки ввімкнено — покупки та застосування вимкнено',
+          es: 'Vista previa activada: compras y aplicación desactivadas',
+          'pt-BR': 'Prévia ativada: compras e aplicação desativadas',
+          vi: 'Đã bật chế độ xem thử — không mua hoặc áp dụng',
+          id: 'Mode pratinjau aktif — tanpa pembelian atau penerapan',
+          tr: 'Önizleme modu açık — satın alma ve uygulama kapalı',
+          pl: 'Tryb podglądu włączony — bez zakupu i zastosowania',
+        })
+        : localized(lang, {
+          ru: 'Магазин и прежняя примерка восстановлены',
+          uk: 'Магазин і попередню примірку відновлено',
+          es: 'Se restauraron la tienda y la vista previa anterior',
+          'pt-BR': 'A loja e a prévia anterior foram restauradas',
+          vi: 'Đã khôi phục cửa hàng và bản xem thử trước đó',
+          id: 'Toko dan pratinjau sebelumnya dipulihkan',
+          tr: 'Mağaza ve önceki önizleme geri yüklendi',
+          pl: 'Przywrócono sklep i poprzedni podgląd',
+        }));
+    } catch {
+      clearDevSandbox();
+      showToast('error', copy.applyError);
+    }
+  }, [clearDevSandbox, copy.applyError, lang, publishDevSandboxResult, showToast]);
+
+  const commitDevPreview = useCallback((avatarValue: string, storedAuraSelection: string | null): boolean => {
+    if (!devSandboxActive) return false;
+    const account = captureAccountGeneration();
+    const ownerStableId = account.stableId?.trim();
+    if (!ownerStableId || !isCurrentAccountGeneration(account, ownerStableId)) {
+      clearDevSandbox();
+      return true;
+    }
+    try {
+      publishDevSandboxResult(previewInCustomizationDevSandbox(
+        devSandboxRef.current,
+        ownerStableId,
+        { avatarValue, storedAuraSelection },
+      ));
+    } catch {
+      clearDevSandbox();
+    }
+    return true;
+  }, [clearDevSandbox, devSandboxActive, publishDevSandboxResult]);
 
   // зачем: ядро действия вынесено отдельно, чтобы его звали ДВА входа — нижняя
   // кнопка и «Применить» из шторки. Общий путь сохраняет платную перекраску:
   // если стиль сменили, resolvedAction станет buy-and-apply и откроется
   // подтверждение покупки, а не тихое бесплатное применение.
   const runResolvedAction = useCallback(async () => {
+    if (devSandboxActive) {
+      commitDevPreview(previewAvatarValue, previewStoredAuraSelection);
+      showToast('info', localized(lang, {
+        ru: 'Это только примерка — профиль и баланс не изменены',
+        uk: 'Це лише примірка — профіль і баланс не змінено',
+        es: 'Solo vista previa: el perfil y el saldo no cambiaron',
+        'pt-BR': 'Apenas prévia: perfil e saldo não foram alterados',
+        vi: 'Chỉ xem thử — hồ sơ và số dư không thay đổi',
+        id: 'Hanya pratinjau — profil dan saldo tidak berubah',
+        tr: 'Yalnızca önizleme — profil ve bakiye değişmedi',
+        pl: 'Tylko podgląd — profil i saldo bez zmian',
+      }));
+      return;
+    }
     if (resolvedAction.kind === 'unchanged') return;
     if (resolvedAction.kind === 'open-plus') {
       router.push({ pathname: '/premium_modal', params: { context: 'avatar_aura' } } as any);
@@ -844,7 +1247,12 @@ export default function AvatarSelect() {
     }
     if (resolvedAction.kind === 'buy-only' || resolvedAction.kind === 'buy-and-apply') {
       const input = purchaseInputForAction(resolvedAction);
-      if (input) dispatchPurchase({ type: 'request', input });
+      if (input) {
+        await runFreshPurchasePreflight({
+          currency: resolvedAction.currency,
+          amount: resolvedAction.cost,
+        }, () => dispatchPurchase({ type: 'request', input }));
+      }
       return;
     }
     setBusy(true);
@@ -865,53 +1273,235 @@ export default function AvatarSelect() {
     } finally {
       setBusy(false);
     }
-  }, [resolvedAction, router, showToast, actionLabel, copy, purchaseInputForAction, previewAvatarValue, previewStoredAuraSelection, confirmed.level, applyInput, serviceDeps]);
+  }, [resolvedAction, router, showToast, actionLabel, copy, purchaseInputForAction,
+    previewAvatarValue, previewStoredAuraSelection, confirmed.level, applyInput, serviceDeps,
+    runFreshPurchasePreflight, commitDevPreview, devSandboxActive, lang]);
 
   const handleAction = useCallback(async () => {
     if (busy) return;
-    if (resolvedAction.kind === 'unchanged') return;
     if (bottomOpensEditor) {
       openEditor();
       return;
     }
+    if (resolvedAction.kind === 'unchanged') return;
     await runResolvedAction();
   }, [busy, resolvedAction, bottomOpensEditor, openEditor, runResolvedAction]);
 
-  // зачем: применение после шторки ждёт кадра, в котором resolvedAction уже
-  // пересчитан по новому превью — иначе платная перекраска ушла бы бесплатно.
-  useEffect(() => {
-    if (!pendingApplyAfterEditor) return;
-    setPendingApplyAfterEditor(false);
-    if (busy) return;
-    void runResolvedAction();
-  }, [pendingApplyAfterEditor, busy, runResolvedAction]);
-
-  const handleConfirmPurchase = useCallback(async () => {
-    const pendingPurchase = purchaseState.pending;
-    if (!pendingPurchase || busy) return;
+  const handleEditorConfirm = useCallback(async () => {
+    if (!editorAvatar || busy) return;
+    if ((editorResolvedAction.kind === 'buy-and-apply' || editorResolvedAction.kind === 'buy-only')
+      && purchasePreflightInFlightRef.current) return;
+    const nextAvatarValue = editorPreviewAvatarValue;
+    const editorDiagnosticSubject: 'avatar' | 'aura' =
+      editorResolvedAction.kind === 'buy-and-apply' || editorResolvedAction.kind === 'buy-only'
+        ? editorResolvedAction.target
+        : 'avatar';
+    if (devSandboxActive) {
+      commitDevPreview(nextAvatarValue, previewStoredAuraSelection);
+      setAvatarSide(editorSide);
+      setEditorAvatar(null);
+      showToast('info', localized(lang, {
+        ru: 'Стиль оставлен в примерке без покупки',
+        uk: 'Стиль залишено у примірці без покупки',
+        es: 'Estilo mantenido en la vista previa sin compra',
+        'pt-BR': 'Estilo mantido na prévia sem compra',
+        vi: 'Đã giữ kiểu trong bản xem thử mà không mua',
+        id: 'Gaya disimpan di pratinjau tanpa pembelian',
+        tr: 'Stil satın alınmadan önizlemede tutuldu',
+        pl: 'Styl pozostawiono w podglądzie bez zakupu',
+      }));
+      return;
+    }
     setBusy(true);
     try {
-      const outcome = await confirmPendingPurchase(purchaseState, async (input) => {
-        const prepared = await prepareCustomizationPurchase(input, purchaseDeps);
-        return resumeCustomizationPurchase(prepared, purchaseDeps);
-      }, () => dispatchPurchase({ type: 'cancel' }));
-      const shards = await getShardsBalance();
-      const current = confirmedRef.current;
-      const next = { ...current, shards };
-      confirmedRef.current = next;
-      setConfirmed(next);
-      patchAppSnapshot({ customization: next });
-      showToast('success', outcome === 'applied' ? copy.applied : copy.purchased);
-    } catch (error) {
-      if (error instanceof Error && error.message === 'insufficient_shards') {
-        router.push({ pathname: '/shards_shop', params: { source: 'avatar_customization' } } as any);
+      if (editorResolvedAction.kind === 'buy-and-apply' || editorResolvedAction.kind === 'buy-only') {
+        void recordSupportDiagnostic({
+          event: 'customization_purchase',
+          result: 'start',
+          subject: editorDiagnosticSubject,
+        });
+        const baseInput = purchaseInputForAction(editorResolvedAction, nextAvatarValue);
+        if (!baseInput) throw new Error('invalid_customization_purchase');
+        const input = editorResolvedAction.kind === 'buy-only' && editorResolvedAction.target === 'avatar'
+          ? buildAtomicEditorAvatarPurchase({
+            purchaseInput: baseInput,
+            selectedAvatarValue: nextAvatarValue,
+            confirmedStoredAuraSelection: confirmed.storedAuraSelection,
+            level: confirmed.level,
+            frameId: getBestFrameForLevel(confirmed.level).id,
+          })
+          : baseInput;
+        const preflightStatus = await runFreshPurchasePreflight({
+          currency: editorResolvedAction.currency,
+          amount: editorResolvedAction.cost,
+        }, async (expectedAccount) => {
+          const outcome = await executePurchaseInput(input, expectedAccount);
+          void recordSupportDiagnostic({
+            event: 'customization_purchase',
+            result: 'success',
+            subject: editorDiagnosticSubject,
+          });
+          showToast('success', outcome === 'applied' ? copy.applied : copy.purchased);
+        });
+        if (preflightStatus !== 'proceeded') {
+          void recordSupportDiagnostic({
+            event: 'customization_purchase',
+            result: 'blocked',
+            reason: preflightStatus === 'shortage' ? 'insufficient_currency' : 'account_changed',
+            subject: editorDiagnosticSubject,
+          });
+          return;
+        }
+      } else if (editorResolvedAction.kind === 'unchanged') {
+        setPreviewAvatarValue(nextAvatarValue);
+      } else if (editorResolvedAction.kind === 'apply') {
+        void recordSupportDiagnostic({
+          event: 'customization_apply',
+          result: 'start',
+          subject: editorDiagnosticSubject,
+        });
+        await applyCustomizationDraft({
+          avatarValue: nextAvatarValue,
+          storedAuraSelection: previewStoredAuraSelection,
+          level: confirmed.level,
+          frameId: getBestFrameForLevel(confirmed.level).id,
+          cloudSyncMode: 'deferred',
+        }, serviceDeps);
+        emitAppEvent('xp_changed');
+        void recordSupportDiagnostic({
+          event: 'customization_apply',
+          result: 'success',
+          subject: editorDiagnosticSubject,
+        });
+        showToast('success', copy.applied);
       } else {
+        showToast('info', actionLabel);
+        return;
+      }
+      setAvatarSide(editorSide);
+      setEditorAvatar(null);
+    } catch (error) {
+      if (error instanceof Error && error.message === 'customization_purchase_account_mismatch') {
+        void recordSupportDiagnostic({
+          event: 'customization_purchase', result: 'blocked', reason: 'account_changed',
+          subject: editorDiagnosticSubject,
+        });
+        return;
+      } else if (error instanceof Error && error.message === 'insufficient_shards') {
+        void recordSupportDiagnostic({
+          event: 'customization_purchase', result: 'blocked', reason: 'insufficient_currency',
+          subject: editorDiagnosticSubject,
+        });
+        notifyPurchaseShortage('pearls');
+        openShortageDestination('pearls');
+      } else if (error instanceof Error && error.message === 'insufficient_runes') {
+        void recordSupportDiagnostic({
+          event: 'customization_purchase', result: 'blocked', reason: 'insufficient_currency',
+          subject: editorDiagnosticSubject,
+        });
+        notifyPurchaseShortage('runes');
+        openShortageDestination('runes');
+      } else {
+        void recordSupportDiagnostic({
+          event: editorResolvedAction.kind === 'apply' ? 'customization_apply' : 'customization_purchase',
+          result: 'error',
+          reason: editorResolvedAction.kind === 'apply' ? 'selection_failed' : 'transaction_failed',
+          subject: editorDiagnosticSubject,
+        });
+        DebugLogger.error('avatar_select.tsx:handleEditorConfirm', error, 'warning');
         showToast('error', copy.purchaseError);
       }
     } finally {
       setBusy(false);
     }
-  }, [purchaseState, busy, purchaseDeps, showToast, copy, router]);
+  }, [editorAvatar, busy, editorPreviewAvatarValue, editorResolvedAction, purchaseInputForAction,
+    executePurchaseInput, showToast, copy, previewStoredAuraSelection, confirmed.level,
+    confirmed.storedAuraSelection, serviceDeps,
+    editorSide, actionLabel, openShortageDestination, notifyPurchaseShortage, runFreshPurchasePreflight,
+    commitDevPreview, devSandboxActive, lang]);
+
+  const handleConfirmPurchase = useCallback(async () => {
+    const pendingPurchase = purchaseState.pending;
+    if (!pendingPurchase || busy || purchasePreflightInFlightRef.current) return;
+    if (devSandboxActive) {
+      dispatchPurchase({ type: 'cancel' });
+      return;
+    }
+    setBusy(true);
+    void recordSupportDiagnostic({
+      event: 'customization_purchase',
+      result: 'start',
+      subject: pendingPurchase.target,
+    });
+    try {
+      let purchaseOutcome: 'applied' | 'purchased-only' | undefined;
+      const preflightStatus = await runFreshPurchasePreflight({
+        currency: pendingPurchase.currency ?? 'pearls',
+        amount: pendingPurchase.cost,
+      }, async (expectedAccount) => {
+        purchaseOutcome = await confirmPendingPurchase(purchaseState, async (input) => {
+          return executePurchaseInput(input, expectedAccount);
+        }, () => dispatchPurchase({ type: 'cancel' }));
+      });
+      if (preflightStatus === 'in-flight') return;
+      if (preflightStatus !== 'proceeded') {
+        void recordSupportDiagnostic({
+          event: 'customization_purchase',
+          result: 'blocked',
+          reason: preflightStatus === 'shortage' ? 'insufficient_currency' : 'account_changed',
+          subject: pendingPurchase.target,
+        });
+        dispatchPurchase({ type: 'cancel' });
+        return;
+      }
+      if (purchaseOutcome) {
+        void recordSupportDiagnostic({
+          event: 'customization_purchase',
+          result: 'success',
+          subject: pendingPurchase.target,
+        });
+        showToast('success', purchaseOutcome === 'applied' ? copy.applied : copy.purchased);
+      }
+    } catch (error) {
+      if (error instanceof Error && error.message === 'customization_purchase_account_mismatch') {
+        void recordSupportDiagnostic({
+          event: 'customization_purchase', result: 'blocked', reason: 'account_changed',
+          subject: pendingPurchase.target,
+        });
+        dispatchPurchase({ type: 'cancel' });
+        return;
+      } else if (error instanceof Error && error.message === 'insufficient_shards') {
+        void recordSupportDiagnostic({
+          event: 'customization_purchase', result: 'blocked', reason: 'insufficient_currency',
+          subject: pendingPurchase.target,
+        });
+        dispatchPurchase({ type: 'cancel' });
+        notifyPurchaseShortage('pearls');
+        openShortageDestination('pearls');
+      } else if (error instanceof Error && error.message === 'insufficient_runes') {
+        void recordSupportDiagnostic({
+          event: 'customization_purchase', result: 'blocked', reason: 'insufficient_currency',
+          subject: pendingPurchase.target,
+        });
+        dispatchPurchase({ type: 'cancel' });
+        notifyPurchaseShortage('runes');
+        openShortageDestination('runes');
+      } else {
+        void recordSupportDiagnostic({
+          event: 'customization_purchase', result: 'error', reason: 'transaction_failed',
+          subject: pendingPurchase.target,
+        });
+        // зачем: раньше настоящая причина (в т.ч. залипший prepared-слот леджера,
+        // блокирующий ВСЕ покупки) терялась за общим тостом — с поля было
+        // невозможно понять, что чинить. Причина теперь хотя бы попадает в лог.
+        DebugLogger.error('avatar_select.tsx:handleConfirmPurchase', error, 'warning');
+        showToast('error', copy.purchaseError);
+      }
+    } finally {
+      setBusy(false);
+    }
+  }, [purchaseState, busy, executePurchaseInput, showToast, copy, openShortageDestination,
+    notifyPurchaseShortage, runFreshPurchasePreflight, devSandboxActive]);
 
   const selectCatalogItem = useCallback((id: string) => {
     const item = catalogItems.find((candidate) => candidate.id === id);
@@ -922,25 +1512,30 @@ export default function AvatarSelect() {
     }
     if (item.kind === 'custom-avatar') {
       // зачем: тап по плитке — только примерка; редактор цвета открывается осознанно
-      // кнопкой «Настроить» на сцене (раньше шторка выскакивала на каждый тап).
+      // нижней кнопкой «Настроить аватар» (раньше шторка выскакивала на каждый тап).
       setPreviewAvatarValue(item.previewValue);
       return;
     }
     setPreviewStoredAuraSelection(item.kind === 'none-aura' ? NO_AVATAR_AURA_ID : item.auraId);
   }, [catalogItems]);
 
-  const heroHeight = Math.max(300, Math.min(430, Math.round(Dimensions.get('window').height * 0.52)));
-  const scrollToCatalog = useCallback(() => {
-    // зачем: раньше вкладки телепортировали список даже с верха экрана; теперь позиция
-    // трогается только когда пользователь уже углубился в каталог.
-    if (scrollY.value <= heroHeight) return;
-    requestAnimationFrame(() => listRef.current?.scrollToOffset({ offset: heroHeight, animated: false }));
-  }, [scrollY, heroHeight]);
+  const fixedStageHeight = Math.max(184, Math.min(250, Math.round(Dimensions.get('window').height * 0.28)));
+
+  const handleAvatarSideChange = useCallback((side: AvatarSide) => {
+    setAvatarSide(side);
+    const parsed = parseCustomAvatarValue(previewRef.current.avatar);
+    if (!parsed) return;
+    setPreviewAvatarValue(makeCustomAvatarValue(
+      parsed.avatarId,
+      parsed.gradientId,
+      side === 'yin' ? 'black' : 'white',
+      parsed.artVersion,
+    ));
+  }, []);
 
   const handleTabChange = useCallback((tab: CustomizationTab) => {
     setActiveTab(tab);
-    scrollToCatalog();
-  }, [scrollToCatalog]);
+  }, []);
 
   const renderCatalogCard = useCallback((item: CatalogCardItem) => {
     const selected = item.kind === 'level-avatar'
@@ -949,7 +1544,7 @@ export default function AvatarSelect() {
         ? item.id === selectedAvatar?.avatarId
         : item.id === previewAuraCatalogId;
     const tierPrice = item.kind === 'custom-avatar'
-      ? getCustomAvatarPurchaseCost(item.avatar)
+      ? (avatarSide === 'yin' ? getCustomAvatarRuneCost(item.avatar) : getCustomAvatarPurchaseCost(item.avatar))
       : undefined;
     return (
       <View style={styles.cell}>
@@ -959,11 +1554,12 @@ export default function AvatarSelect() {
           label={itemLabel(item, lang, copy)}
           statusLabel={availabilityStatus(item, lang, copy, selected)}
           tierPrice={item.kind === 'custom-avatar' ? tierPrice : undefined}
+          tierCurrency={item.kind === 'custom-avatar' ? (avatarSide === 'yin' ? 'runes' : 'pearls') : undefined}
           onPress={selectCatalogItem}
         />
       </View>
     );
-  }, [isLevelAvatarPreview, selectedAvatar?.avatarId, previewAuraCatalogId, lang, copy, selectCatalogItem]);
+  }, [isLevelAvatarPreview, selectedAvatar?.avatarId, previewAuraCatalogId, lang, copy, selectCatalogItem, avatarSide]);
 
   const renderCatalogItem = useCallback(
     ({ item }: { item: CatalogCardItem }) => renderCatalogCard(item),
@@ -979,21 +1575,30 @@ export default function AvatarSelect() {
         ? copy.mine
         : copy.catalog;
 
+  const devToggleLabel = devSandboxActive
+    ? localized(lang, {
+      ru: 'DEV · Закрыть примерку',
+      uk: 'DEV · Закрити примірку',
+      es: 'DEV · Cerrar vista previa',
+      'pt-BR': 'DEV · Fechar prévia',
+      vi: 'DEV · Đóng bản xem thử',
+      id: 'DEV · Tutup pratinjau',
+      tr: 'DEV · Önizlemeyi kapat',
+      pl: 'DEV · Zamknij podgląd',
+    })
+    : localized(lang, {
+      ru: 'DEV · Открыть примерку',
+      uk: 'DEV · Відкрити примірку',
+      es: 'DEV · Abrir vista previa',
+      'pt-BR': 'DEV · Abrir prévia',
+      vi: 'DEV · Mở bản xem thử',
+      id: 'DEV · Buka pratinjau',
+      tr: 'DEV · Önizlemeyi aç',
+      pl: 'DEV · Otwórz podgląd',
+    });
+
   const listHeader = useMemo(() => (
     <View>
-      <View style={{ height: insets.top + TOP_BAR_CONTENT_HEIGHT }} />
-      <CustomizationHero
-        avatarValue={previewAvatarValue}
-        auraId={effectivePreviewAuraId}
-        level={confirmed.level}
-        avatarLabel={previewAvatarLabel}
-        auraLabel={stageAuraLabel}
-        themeAccent={t.accent}
-        motionEnabled={focused && appState === 'active'}
-        minHeight={STAGE_MIN_HEIGHT}
-        onEdit={selectedAvatar ? openEditor : null}
-        editLabel={copy.editAvatar}
-      />
       {avatarDNAEnabled ? <Pressable
         accessibilityRole="button"
         accessibilityLabel={avatarDNACopy(lang).createCharacter}
@@ -1009,59 +1614,40 @@ export default function AvatarSelect() {
         </View>
         <Ionicons name="chevron-forward" size={22} color={t.accent} />
       </Pressable> : null}
-      <View style={styles.controls}>
-        <CustomizationTabs value={activeTab} onChange={handleTabChange} avatarsLabel={copy.avatars} aurasLabel={copy.auras} />
-      </View>
       {__DEV__ ? (
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel={localized(lang, {
-            ru: 'Открыть все Avatar100 и ауры для тестирования',
-            uk: 'Відкрити всі Avatar100 та аури для тестування',
-            es: 'Desbloquear Avatar100 y todas las auras para pruebas',
-            'pt-BR': 'Liberar Avatar100 e todas as auras para testes',
-            vi: 'Mở Avatar100 và mọi hào quang để thử nghiệm',
-            id: 'Buka Avatar100 dan semua aura untuk pengujian',
-            tr: 'Avatar100 ve tüm auraları test için aç',
-            pl: 'Odblokuj Avatar100 i wszystkie aury do testów',
-          })}
-          accessibilityState={{ disabled: devGrantBusy }}
-          disabled={devGrantBusy}
+          accessibilityLabel={devToggleLabel}
           onPress={handleDevUnlockAll}
-          style={[styles.devUnlockButton, { backgroundColor: t.correct, opacity: devGrantBusy ? 0.65 : 1 }]}
+          style={[styles.devUnlockButton, { backgroundColor: t.correct }]}
         >
-          <Ionicons name="lock-open-outline" size={20} color={t.correctText} />
-          <Text style={[styles.devUnlockText, { color: t.correctText }]}>DEV · Avatar100 + Auras</Text>
+          <Ionicons name={devSandboxActive ? 'refresh-outline' : 'eye-outline'} size={20} color={t.correctText} />
+          <Text style={[styles.devUnlockText, { color: t.correctText }]}>{devToggleLabel}</Text>
         </Pressable>
       ) : null}
       {activeTab === 'avatars' ? (
         <View style={styles.filterRail} accessibilityRole="tablist">
+          {/* зачем: кнопки-фильтры по ярусам цен убраны (владелец, 2026-08-27) —
+              их было семь штук, они занимали две строки над каталогом и дублировали
+              заголовки ярусов в самом списке. Остаются «Все» и «Мои». */}
           {([
             { value: 'all' as const, label: copy.all },
             { value: 'mine' as const, label: copy.mine },
-            ...catalogPrices.map((price) => ({ value: price, label: String(price) })),
           ]).map((option) => {
             const active = avatarCatalogFilter === option.value;
-            const accent = typeof option.value === 'number'
-              ? (SHOWCASE_TIER_ACCENT[option.value] ?? t.accent)
-              : t.accent;
+            const accent = t.accent;
             return (
               <Pressable
                 key={option.value}
                 accessibilityRole="tab"
                 accessibilityState={{ selected: active }}
-                accessibilityLabel={typeof option.value === 'number'
-                  ? avatarShowcasePriceFilterLabel(option.value, lang)
-                  : option.label}
+                accessibilityLabel={option.label}
                 onPress={() => setAvatarCatalogFilter(option.value)}
                 style={[styles.filterChip, {
                   backgroundColor: active ? accent : t.bgSurface,
                   borderColor: active ? accent : withAlpha(accent, '66'),
                 }]}
               >
-                {typeof option.value === 'number' ? (
-                  <Image source={pearlIconForTheme(themeMode)} style={styles.filterCoin} contentFit="contain" accessible={false} />
-                ) : null}
                 <Text style={[styles.filterText, { color: active ? t.correctText : t.textSecond }]}>{option.label}</Text>
               </Pressable>
             );
@@ -1082,21 +1668,7 @@ export default function AvatarSelect() {
         </View>
       </View>
     </View>
-  ), [insets.top, t, themeMode, copy, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, stageAuraLabel, focused, appState, selectedAvatar, openEditor, activeTab, handleTabChange, lang, router, avatarDNAEnabled, avatarCatalogFilter, catalogPrices, catalogHeading, displayCatalogItems.length, selectedTierPrice, devGrantBusy, handleDevUnlockAll]);
-
-  // зачем: сцена «передаёт» превью в закреплённый бар при скролле — образ всегда на
-  // глазах, пока листаешь каталог (главная боль старого экрана). Интерполяции живут на
-  // UI-потоке (Reanimated), ре-рендеров при скролле нет.
-  const largeTitleStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(scrollY.value, [90, COLLAPSE_START + 40], [1, 0], Extrapolation.CLAMP),
-  }));
-  const miniPreviewStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(scrollY.value, [COLLAPSE_START, COLLAPSE_END], [0, 1], Extrapolation.CLAMP),
-    transform: [{ translateY: interpolate(scrollY.value, [COLLAPSE_START, COLLAPSE_END], [10, 0], Extrapolation.CLAMP) }],
-  }));
-  const topBarBackdropStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(scrollY.value, [30, 110], [0, 1], Extrapolation.CLAMP),
-  }));
+  ), [t, copy, activeTab, lang, router, avatarDNAEnabled, avatarCatalogFilter, catalogHeading, displayCatalogItems.length, selectedTierPrice, devSandboxActive, devToggleLabel, handleDevUnlockAll]);
 
   const purchaseMessage = purchaseState.pending
     ? purchaseCostMessage(purchaseState.pending.cost, lang)
@@ -1105,6 +1677,76 @@ export default function AvatarSelect() {
   return (
     <ScreenGradient>
       <View style={styles.flex}>
+        <View style={[styles.topBar, { paddingTop: insets.top + 6, backgroundColor: withAlpha(t.bgPrimary, 'F0') }]} pointerEvents="box-none">
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={localized(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+            onPress={() => safeRouterBack(router)}
+            style={[styles.iconButton, { backgroundColor: withAlpha(t.bgSurface, 'D9') }]}
+          >
+            <Ionicons name="chevron-back" size={23} color={t.textPrimary} />
+          </Pressable>
+          <View style={styles.topCenter} pointerEvents="none">
+              <Text style={[styles.title, { color: t.textPrimary }]}>{copy.title}</Text>
+          </View>
+          <View style={styles.balanceGroup}>
+            <RuneBalanceChip color={t.textPrimary} active={focused && appState === 'active'} size={18} testID="avatar-studio-rune-balance" />
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={localized(lang, { ru: 'Жемчуг', uk: 'Перлини', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnciler', pl: 'Perły' })}
+              onPress={() => router.push({ pathname: '/shards_shop', params: { source: 'avatar_customization' } } as any)}
+              style={[styles.balance, { backgroundColor: withAlpha(t.bgSurface, 'D9') }]}
+            >
+              <Image source={pearlIconForTheme(themeMode)} style={styles.balanceCoin} contentFit="contain" accessible={false} />
+              <Text style={[styles.balanceText, { color: t.textPrimary }]}>{confirmed.shards}</Text>
+            </Pressable>
+          </View>
+        </View>
+        <View style={[styles.fixedStudio, { paddingTop: insets.top + TOP_BAR_CONTENT_HEIGHT }]}>
+          <View style={styles.controls}>
+            <CustomizationTabs value={activeTab} onChange={handleTabChange} avatarsLabel={copy.avatars} aurasLabel={copy.auras} />
+          </View>
+          <CustomizationHero
+            avatarValue={previewAvatarValue}
+            auraId={effectivePreviewAuraId}
+            level={confirmed.level}
+            avatarLabel={previewAvatarLabel}
+            auraLabel={stageAuraLabel}
+            themeAccent={t.accent}
+            motionEnabled={focused && appState === 'active'}
+            minHeight={fixedStageHeight}
+            avatarSize={fixedStageHeight < 210 ? 112 : 132}
+          />
+          {activeTab === 'avatars' ? (
+            <View style={styles.sideControl}>
+              <YinYangControl
+                value={avatarSide}
+                onChange={handleAvatarSideChange}
+                accessibilityLabelForSide={(side) => side === 'yin'
+                  ? localized(lang, {
+                    ru: 'Инь, чёрный образ, оплата рунами',
+                    uk: 'Інь, чорний образ, оплата рунами',
+                    es: 'Yin, aspecto negro, pago con runas',
+                    'pt-BR': 'Yin, visual preto, pagamento com runas',
+                    vi: 'Yin, diện mạo màu đen, thanh toán bằng rune',
+                    id: 'Yin, tampilan hitam, bayar dengan rune',
+                    tr: 'Yin, siyah görünüm, rünlerle ödeme',
+                    pl: 'Yin, czarny wygląd, płatność runami',
+                  })
+                  : localized(lang, {
+                    ru: 'Янь, светлый образ, оплата жемчугом',
+                    uk: 'Янь, світлий образ, оплата перлинами',
+                    es: 'Yang, aspecto claro, pago con perlas',
+                    'pt-BR': 'Yang, visual claro, pagamento com pérolas',
+                    vi: 'Yang, diện mạo sáng, thanh toán bằng ngọc trai',
+                    id: 'Yang, tampilan terang, bayar dengan mutiara',
+                    tr: 'Yang, açık görünüm, incilerle ödeme',
+                    pl: 'Yang, jasny wygląd, płatność perłami',
+                  })}
+              />
+            </View>
+          ) : null}
+        </View>
         {/* зачем: FlatList должен быть ПРЯМЫМ ребёнком BouncyWrap — обёртка клонирует
             ребёнка (overScrollMode) и вешает на него GestureDetector с нативным
             жестом скролла. Промежуточный Reanimated.View забирал жест себе: на
@@ -1130,46 +1772,15 @@ export default function AvatarSelect() {
             showsVerticalScrollIndicator={false}
           />
         </BouncyWrap>
-        <View style={[styles.topBar, { paddingTop: insets.top + 6 }]} pointerEvents="box-none">
-          <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, topBarBackdropStyle]}>
-            <View style={[StyleSheet.absoluteFill, { backgroundColor: withAlpha(t.bgPrimary, 'F0') }]} />
-          </Reanimated.View>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={localized(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-            onPress={() => safeRouterBack(router)}
-            style={[styles.iconButton, { backgroundColor: withAlpha(t.bgSurface, 'D9') }]}
-          >
-            <Ionicons name="chevron-back" size={23} color={t.textPrimary} />
-          </Pressable>
-          <View style={styles.topCenter} pointerEvents="none">
-            <Reanimated.Text style={[styles.title, { color: t.textPrimary }, largeTitleStyle]} numberOfLines={1}>
-              {copy.title}
-            </Reanimated.Text>
-            <Reanimated.View style={[styles.miniPreview, miniPreviewStyle]}>
-              <AvatarView avatar={previewAvatarValue} level={confirmed.level} auraId={effectivePreviewAuraId} size={34} animateAura={false} />
-              <Text style={[styles.miniName, { color: t.textPrimary }]} numberOfLines={1}>{previewAvatarLabel}</Text>
-            </Reanimated.View>
-          </View>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={localized(lang, { ru: 'Жемчуг', uk: 'Перлини', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnciler', pl: 'Perły' })}
-            onPress={() => router.push({ pathname: '/shards_shop', params: { source: 'avatar_customization' } } as any)}
-            style={[styles.balance, { backgroundColor: withAlpha(t.bgSurface, 'D9') }]}
-          >
-            <Image source={pearlIconForTheme(themeMode)} style={styles.balanceCoin} contentFit="contain" accessible={false} />
-            <Text style={[styles.balanceText, { color: t.textPrimary }]}>{confirmed.shards}</Text>
-          </Pressable>
-        </View>
         <LinearGradient
           pointerEvents="none"
           colors={[withAlpha(t.bgPrimary, '00'), withAlpha(t.bgPrimary, 'D9')]}
           style={[styles.bottomScrim, { height: bottomInset + 108 }]}
         />
         <CustomizationActionBar
-          action={resolvedAction}
+          action={actionBarAction}
           label={actionLabel}
-          cost={actionCost}
+          price={actionPrice}
           busy={busy}
           bottomOffset={bottomInset + 10}
           onPress={handleAction}
@@ -1179,24 +1790,17 @@ export default function AvatarSelect() {
           avatar={editorAvatar}
           gradientId={editorGradientId}
           logoColor={editorLogoColor}
-          owned={editorAvatar ? !!confirmed.ownedAvatars[editorAvatar.id] : false}
           title={copy.editAvatar}
-          applyLabel={copy.applyStyle}
-          darkLabel={copy.dark}
-          lightLabel={copy.light}
+              confirmLabel={editorConfirmLabel}
+              confirmAccessibilityLabel={editorConfirmAccessibilityLabel}
+          confirmPrice={editorActionPrice}
+          busy={busy}
+          yinAccessibilityLabel={localized(lang, { ru: 'Инь, чёрный образ, оплата рунами', uk: 'Інь, чорний образ, оплата рунами', es: 'Yin, aspecto negro, pago con runas' })}
+          yangAccessibilityLabel={localized(lang, { ru: 'Янь, светлый образ, оплата жемчугом', uk: 'Янь, світлий образ, оплата перлинами', es: 'Yang, aspecto claro, pago con perlas' })}
           gradientLabel={(id) => customAvatarGradientNameForLang(CUSTOM_AVATAR_GRADIENTS.find((item) => item.id === id) ?? CUSTOM_AVATAR_GRADIENTS[0], lang)}
           onGradientChange={setEditorGradientId}
           onLogoColorChange={setEditorLogoColor}
-          onConfirm={() => {
-            if (editorAvatar) setPreviewAvatarValue(makeCustomAvatarValue(
-              editorAvatar.id,
-              editorGradientId,
-              editorLogoColor,
-              editorArtVersion,
-            ));
-            setEditorAvatar(null);
-            setPendingApplyAfterEditor(true);
-          }}
+          onConfirm={handleEditorConfirm}
           onClose={() => setEditorAvatar(null)}
         />
         <CustomizationPurchaseConfirmModal
@@ -1227,17 +1831,16 @@ const styles = StyleSheet.create({
   iconButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   topCenter: { flex: 1, height: 44, alignItems: 'center', justifyContent: 'center' },
   title: { fontSize: 20, lineHeight: 26, fontWeight: '900', textAlign: 'center', letterSpacing: -0.2 },
-  miniPreview: {
-    position: 'absolute', flexDirection: 'row', alignItems: 'center', gap: 8, maxWidth: 190,
-  },
-  miniName: { flexShrink: 1, fontSize: 14.5, lineHeight: 19, fontWeight: '800' },
+  balanceGroup: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   balance: {
     minWidth: 44, height: 36, borderRadius: 13, paddingHorizontal: 11,
     flexDirection: 'row', alignItems: 'center', gap: 6,
   },
   balanceCoin: { width: 17, height: 17 },
   balanceText: { fontSize: 13.5, lineHeight: 18, fontWeight: '800' },
-  controls: { paddingHorizontal: GRID_PAD, paddingTop: 12, paddingBottom: 10, alignItems: 'flex-end' },
+  fixedStudio: { flexShrink: 0 },
+  controls: { paddingHorizontal: GRID_PAD, paddingTop: 6, paddingBottom: 2, alignItems: 'center' },
+  sideControl: { paddingHorizontal: GRID_PAD, paddingTop: 2, paddingBottom: 10 },
   devUnlockButton: {
     minHeight: 48, marginHorizontal: GRID_PAD, marginBottom: 12, borderRadius: 16,
     paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
@@ -1251,7 +1854,6 @@ const styles = StyleSheet.create({
     minHeight: 44, borderWidth: 1, borderRadius: 16, paddingHorizontal: 14,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
   },
-  filterCoin: { width: 15, height: 15 },
   filterText: { fontSize: 13, lineHeight: 17, fontWeight: '900' },
   showcaseHeading: {
     minHeight: 52, marginHorizontal: GRID_PAD, marginBottom: 10,

@@ -69,12 +69,12 @@ function ArenaReportOpponentButton({ matchId, opponentSeat, opponentName, lang, 
 
   const label = sent
     ? triLang(lang, {
-      ru: 'Жалоба отправлена', uk: 'Скаргу надіслано', es: 'Reporte enviado',
+      ru: 'Жалоба отправлена', uk: 'Скаргу надіслано', en: 'Report sent', es: 'Reporte enviado',
       'pt-BR': 'Denúncia enviada', vi: 'Đã gửi báo cáo', id: 'Laporan terkirim',
       tr: 'Şikayet gönderildi', pl: 'Zgłoszenie wysłane',
     })
     : triLang(lang, {
-      ru: 'Пожаловаться на ник', uk: 'Поскаржитись на нік', es: 'Reportar el apodo',
+      ru: 'Пожаловаться на ник', uk: 'Поскаржитись на нік', en: 'Report the nickname', es: 'Reportar el apodo',
       'pt-BR': 'Denunciar o apelido', vi: 'Báo cáo biệt danh', id: 'Laporkan nama',
       tr: 'Takma adı bildir', pl: 'Zgłoś nick',
     });

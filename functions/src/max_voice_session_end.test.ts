@@ -142,6 +142,7 @@ const NOW = 1_800_000_000_000;
 const AUTH = 'auth-1';
 const STABLE = 'stable-1';
 const QUOTA_PATH = `voice_call_quotas/${voiceQuotaDocId(STABLE)}`;
+const WALLET_PATH = `voice_minute_wallets/${STABLE}`;
 const BUDGET_PATH = 'voice_cost_daily/current';
 
 function liveQuota(overrides: DocData = {}): void {
@@ -215,6 +216,34 @@ afterEach(() => {
 });
 
 describe('maxVoiceSessionEnd — settlement', () => {
+  it('settles a paid-minute reservation through the shared immutable charge journal', async () => {
+    liveQuota({
+      accessType: 'paid_minutes',
+      paidReservationRootSessionId: 's1',
+      paidReservationTotalSec: 320,
+      paidConsumedSec: 0,
+    });
+    docs.set(WALLET_PATH, {
+      schemaVersion: 1, ownerStableId: STABLE,
+      grantedSeconds: 7_200, refundedSeconds: 0, chargedSeconds: 0,
+      reservedSeconds: 320, availableSeconds: 6_880, eventCount: 1,
+      activeReservationSessionId: 's1', reservationRootSessionId: 's1',
+    });
+
+    const first = await sessionEnd({ auth: { uid: AUTH }, data: END_DATA });
+    const retry = await sessionEnd({ auth: { uid: AUTH }, data: END_DATA });
+
+    expect(first).toMatchObject({ ok: true, alreadySettled: false, chargedSec: 200, refundedSec: 120 });
+    expect(retry).toMatchObject({ ok: true, alreadySettled: true, chargedSec: 0 });
+    expect(docs.get(WALLET_PATH)).toMatchObject({
+      chargedSeconds: 200, reservedSeconds: 0, availableSeconds: 7_000,
+    });
+    const chargeEvents = [...docs.entries()]
+      .filter(([path]) => path.startsWith('voice_minute_events/vm_call_charge_'));
+    expect(chargeEvents).toHaveLength(1);
+    expect(chargeEvents[0][1]).toMatchObject({ kind: 'call_charge', sessionId: 's1', seconds: 200 });
+  });
+
   it('charges min(fact, reserve) by SERVER clock, refunds the tail, writes full billing', async () => {
     liveQuota();
     docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 1 });

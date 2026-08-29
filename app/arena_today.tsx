@@ -56,7 +56,13 @@ export default function ArenaTodayScreen() {
     refundOne: refundArenaTodayEnergy,
     acknowledgeSessionStart,
   } = useEnergy();
-  const arenaTodayEnergyIntent = useEnergySessionIntent('arena_today', String(params.runId ?? 'today'));
+  const arenaTodayEnergyMountIdRef = useRef(createArenaRequestId('today_energy'));
+  const [arenaTodayEnergyRevision, setArenaTodayEnergyRevision] = useState(0);
+  const arenaTodayEnergyIntent = useEnergySessionIntent(
+    'arena_today',
+    String(params.runId ?? 'today'),
+    `${arenaTodayEnergyMountIdRef.current}:${arenaTodayEnergyRevision}`,
+  );
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const ids = useRef(new Map<string, string>());
   const deadlineSyncs = useRef(new Set<string>());
@@ -157,10 +163,14 @@ export default function ArenaTodayScreen() {
       setMatch(response.match);
       setHardExpiresAtMs(response.hardExpiresAtMs);
       setStatus(response.match.terminal ? 'complete' : 'ready');
-    }).catch(() => {
+    }).catch(async () => {
       // зачем: задание не стартовало (нет сети / отказ сервера) — входа не
       // случилось, плата возвращается.
-      if (energyCharged) void refundArenaTodayEnergy(arenaTodayEnergyIntent.operationId, 'entry_failed').catch(() => {});
+      if (energyCharged) {
+        await refundArenaTodayEnergy(arenaTodayEnergyIntent.operationId, 'entry_failed')
+          .then(() => setArenaTodayEnergyRevision((current) => current + 1))
+          .catch(() => {});
+      }
       setStatus('error');
     }).finally(() => setSubmitting(false));
   };

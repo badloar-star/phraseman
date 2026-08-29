@@ -111,4 +111,18 @@ describe('pending account-deletion quarantine after process restart', () => {
     expect(mockSignInAnonymously).not.toHaveBeenCalled();
     expect(mockHttpsCallable).not.toHaveBeenCalled();
   });
+
+  it('strict anonymous identity reports auth failure and legacy ensureAnonUser returns null', async () => {
+    const storage = require('@react-native-async-storage/async-storage');
+    storage.__reset();
+    mockAuth.currentUser = null;
+    mockSignInAnonymously.mockRejectedValue(new Error('offline'));
+    const cloudSync = require('../app/cloud_sync') as typeof import('../app/cloud_sync');
+
+    await expect(cloudSync.ensureAnonIdentityDetailed()).resolves.toEqual({
+      ok: false,
+      failure: 'anonymous_auth_unavailable',
+    });
+    await expect(cloudSync.ensureAnonUser()).resolves.toBeNull();
+  });
 });

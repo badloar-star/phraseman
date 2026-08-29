@@ -167,11 +167,15 @@ describe('Economy Constitution — client authority is a permanent source contra
       'client_shard_grant_receipt_v1:',
       'client_shard_cloud_synced_v1:',
       'client_shard_conflict_v1:',
+      'client_shard_phone_state_outbox_v1:',
       'client_shard_semantic_paid_v1:',
       'level_spin_star_grant_outbox_v1:',
       'level_spin_star_projection_v1:',
       'level_spin_star_prepared_v1:',
       'level_spin_star_operation_v1:',
+      'paid_level_spin_envelope_v1:',
+      'paid_level_spin_outbox_v1:',
+      'practice_rune_journal_v1:',
       'attempt_restore_gift_projection_v1:',
       'attempt_restore_gift_outbox_v1:',
       'attempt_restore_gift_prepared_credit_v1:',
@@ -181,11 +185,17 @@ describe('Economy Constitution — client authority is a permanent source contra
       'session_attempt_recovery_prepared_v1:',
       'session_attempt_recovery_receipt_v1:',
       'session_attempt_recovery_sync_outbox_v1:',
+      'customization_rune_purchase_outbox_v1:',
+      'customization_selection_operation_v1:',
+      'customization_selection_head_v1:',
+      'customization_selection_outbox_v1:',
+      'customization_selection_quarantine_v1:',
     ]) expect(cloudSync).toContain(`'${prefix}'`);
   });
 
   test('Spin star persistence overlays unacked composites and accepts only newer server revisions', () => {
     const client = read('app/level_spin_star_grants.ts');
+    const phoneStateEconomy = read('modules/phone-state/domains/economy.ts');
     const friends = read('app/friends_together/claims_client.ts');
     const bootstrap = read('app/local_level_spins.ts');
     expect(client).toContain('unacknowledgedTotal(projection)');
@@ -195,8 +205,14 @@ describe('Economy Constitution — client authority is a permanent source contra
     expect(client).toContain('ack.requestFingerprint !== operation.requestFingerprint');
     expect(client).toContain("schemaVersion: 'client-level-spin-star-projection.v3'");
     expect(client).toContain("schemaVersion: 'client-session-attempt-recovery-rune-operation.v1'");
+    expect(client).toContain("schemaVersion: 'client-paid-level-spin-rune-operation.v1'");
     expect(client).not.toMatch(/export\s+(?:async\s+)?function\s+spendRunes/);
     expect(client).not.toMatch(/stars:\s*ack\.starsBalance/);
+    expect(phoneStateEconomy).toContain("'paid_level_spin_rune_purchase'");
+    expect(phoneStateEconomy).toContain("value.runeDelta !== -300");
+    expect(phoneStateEconomy).toContain('balanceAfter !== balanceBefore - 300');
+    expect(bootstrap).toContain('preparePaidLevelSpinRunePurchase({');
+    expect(bootstrap).toContain('[paidLevelSpinOutboxKey(owner), JSON.stringify(nextOutbox)]');
     expect(friends).toContain('mergeLevelSpinServerStars(token');
     expect(bootstrap).toContain('recoverAndHydrateLevelSpinStarGrants(token)');
   });

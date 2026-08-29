@@ -35,6 +35,7 @@ import {
   commitClientShardOperation,
   hasClientShardLedgerState,
   initializeClientShardLedgerOpeningBalance,
+  isTerminalPreparedRecoveryReason,
   readStoredClientShardOperation,
   recoverPreparedClientShardOperation,
   type ClientShardGrant,
@@ -1321,7 +1322,13 @@ export async function commitShardCompositeOperation(
   // (commitShardCreditOperation) токен пробрасывает, списание было забыто.
   const recovered = await recoverPreparedClientShardOperation({ accountToken: operationToken });
   if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
-  if (recovered?.status === 'failed') return recovered;
+  // A terminal prepared record is removed by recovery. Continue the user's
+  // requested operation in this same call so a stale/corrupt crash artifact
+  // cannot force a second tap. Identity-transition failures remain fail-closed.
+  if (
+    recovered?.status === 'failed'
+    && !isTerminalPreparedRecoveryReason(recovered.reason)
+  ) return recovered;
   const operationId = input.operationId?.trim() || newShardOpId();
   const result = await commitClientShardOperation({
     expectedOwnerStableId: operationOwnerStableId!,

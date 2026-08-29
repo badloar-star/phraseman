@@ -11,6 +11,7 @@ import {
   getRecoveryIntervalMs,
   EnergyState,
 } from '../app/energy_system';
+import * as energySystem from '../app/energy_system';
 import { TOTAL_XP_FOR_LEVEL } from '../constants/theme';
 
 // Мокируем AsyncStorage
@@ -104,6 +105,75 @@ describe('Energy System', () => {
 
     it('returns 0 for non-positive recovery interval (defensive)', () => {
       expect(secondsUntilEnergyFull(2, 5, 0, NOW, NOW)).toBe(0);
+    });
+  });
+
+  describe('temporary-capacity recovery projection', () => {
+    type RecoveryPlanner = (input: {
+      baseEnergy: number;
+      maxEnergy: number;
+      bonusEnergy: number;
+      bonusCapacity: number;
+      bonusExpiresAt: number;
+      lastRecoveryTime: number;
+      recoveryIntervalMs: number;
+      now: number;
+    }) => {
+      baseEnergy: number;
+      bonusEnergy: number;
+      lastRecoveryTime: number;
+    };
+
+    const planner = (): RecoveryPlanner => (
+      energySystem as typeof energySystem & { planActiveEnergyRecovery?: RecoveryPlanner }
+    ).planActiveEnergyRecovery!;
+
+    it('recovers spent temporary slots from 5/8 through 6/8 to 8/8 without losing the remainder', () => {
+      const interval = 1_000;
+      const startedAt = 10_000;
+      const first = planner()({
+        baseEnergy: 5,
+        maxEnergy: 5,
+        bonusEnergy: 0,
+        bonusCapacity: 3,
+        bonusExpiresAt: startedAt + 60_000,
+        lastRecoveryTime: startedAt,
+        recoveryIntervalMs: interval,
+        now: startedAt + interval + 400,
+      });
+      expect(first).toMatchObject({
+        baseEnergy: 5,
+        bonusEnergy: 1,
+        lastRecoveryTime: startedAt + interval,
+      });
+
+      const full = planner()({
+        ...first,
+        maxEnergy: 5,
+        bonusCapacity: 3,
+        bonusExpiresAt: startedAt + 60_000,
+        recoveryIntervalMs: interval,
+        now: startedAt + 3 * interval + 400,
+      });
+      expect(full).toMatchObject({
+        baseEnergy: 5,
+        bonusEnergy: 3,
+        lastRecoveryTime: startedAt + 3 * interval,
+      });
+    });
+
+    it('does not recover expired temporary capacity', () => {
+      const result = planner()({
+        baseEnergy: 5,
+        maxEnergy: 5,
+        bonusEnergy: 0,
+        bonusCapacity: 3,
+        bonusExpiresAt: 9_999,
+        lastRecoveryTime: 9_000,
+        recoveryIntervalMs: 1_000,
+        now: 10_000,
+      });
+      expect(result).toMatchObject({ baseEnergy: 5, bonusEnergy: 0 });
     });
   });
 

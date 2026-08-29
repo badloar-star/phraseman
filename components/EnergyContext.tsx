@@ -3,13 +3,15 @@ import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../app/per
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, DeviceEventEmitter, InteractionManager } from 'react-native';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
-import { readBonusEnergy } from '../app/bonus_energy_store';
+import { BONUS_ENERGY_KEY, readBonusEnergy, readBonusEnergyForMutation, type BonusEnergyState } from '../app/bonus_energy_store';
+import { requireGiftAccountStorageKey } from '../app/gift_account_storage';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from '../app/premium_guard';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
   subscribeAccountGeneration,
   withAccountTransitionLock,
+  type AccountGenerationToken,
 } from '../app/account_generation';
 import { readDevLocalPlusOverride } from '../app/dev_plus_controls';
 import { applyAdminEnergyCommand, formatTimeUntilRecovery, getRecoveryIntervalMs, secondsUntilEnergyFull } from '../app/energy_system';
@@ -34,6 +36,7 @@ import { isFeatureFreeForEveryone } from '../app/feature_gates';
 import { emitAppEvent } from '../app/events';
 import type { EnergyStartResult } from './energy_start_confirmation';
 import { peekEnergy, writePeekEnergy } from '../app/energy_peek_cache';
+import { soundDirector } from '../modules/audio/sound_director';
 import {
   acknowledgeEnergySessionStart as acknowledgeEnergySessionStartInLedger,
   commitEnergySessionStart,
@@ -70,6 +73,15 @@ interface StoredEnergy {
 export interface EnergyContextValue {
   energy: number;            // 0-maxEnergy (base only, without bonus)
   bonusEnergy: number;       // 0-N extra energy from gifts (expires next day)
+  /**
+   * Временный ПОТОЛОК от подарка, живущий до полуночи независимо от остатка.
+   *
+   * зачем: подарок «+3» — это не три единицы, а расширенная шкала на день.
+   * Потратив бонус, игрок обязан сохранить восемь делений вместо пяти, и
+   * восстановление должно доливать энергию в золотые слоты. Если хранить
+   * только остаток, шкала схлопывалась бы сразу после первой траты.
+   */
+  bonusEnergyCapacity: number;
   bonusExpiresAt: number;    // epoch ms when bonus expires (0 if no bonus)
   maxEnergy: number;         // динамически: 5-6 в зависимости от уровня
   recoveryIntervalMs: number;// current +1 energy recovery interval
@@ -105,6 +117,7 @@ export interface EnergyContextValue {
 const EnergyContext = createContext<EnergyContextValue>({
   energy: MAX_ENERGY,
   bonusEnergy: 0,
+  bonusEnergyCapacity: 0,
   bonusExpiresAt: 0,
   maxEnergy: MAX_ENERGY,
   recoveryIntervalMs: getRecoveryIntervalMs(0),
@@ -231,7 +244,26 @@ async function readRecoveryIntervalMs(): Promise<number> {
 }
 
 /** Читает и восстанавливает состояние энергии с учётом динамического максимума */
-async function readAndRecoverState(dynMax: number, recoveryMs: number): Promise<StoredEnergy> {
+/**
+ * Читает базовую энергию и подарочный бонус ОДНОЙ операцией и доводит их
+ * восстановлением до актуального момента.
+ *
+ * зачем: восстановление обязано знать про временный потолок подарка. Базовая
+ * энергия доливается до `dynMax`, а сверх него до полуночи живут золотые слоты
+ * подарка — их ёмкость хранится отдельно от остатка (`capacity` в
+ * bonus_energy_store), поэтому читаем обе величины вместе и возвращаем парой.
+ */
+async function readAndRecoverState(
+  dynMax: number,
+  recoveryMs: number,
+  accountToken: AccountGenerationToken,
+): Promise<{ state: StoredEnergy; bonus: BonusEnergyState | null }> {
+  const bonus = await readBonusEnergy(accountToken);
+  const state = await readAndRecoverBaseState(dynMax, recoveryMs);
+  return { state, bonus };
+}
+
+async function readAndRecoverBaseState(dynMax: number, recoveryMs: number): Promise<StoredEnergy> {
   const raw = await AsyncStorage.getItem(ENERGY_KEY);
   let state: StoredEnergy = { current: dynMax, lastRecoveryTime: Date.now() };
 
@@ -305,6 +337,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const initialPeek = peekEnergy();
   const [energy, setEnergy] = useState(() => initialPeek?.energy ?? MAX_ENERGY);
   const [bonusEnergy, setBonusEnergy] = useState(0);
+  const [bonusEnergyCapacity, setBonusEnergyCapacity] = useState(0);
   const [refundCredit, setRefundCredit] = useState(0);
   const [bonusExpiresAt, setBonusExpiresAt] = useState(0);
   const [maxEnergy, setMaxEnergy] = useState(() => initialPeek?.maxEnergy ?? MAX_ENERGY);
@@ -322,6 +355,9 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // Refs for use inside callbacks without stale closures
   const energyRef = useRef(initialPeek?.energy ?? MAX_ENERGY);
   const bonusRef = useRef(0);
+  // Потолок живёт отдельно от остатка: остаток тратится, потолок держит шкалу
+  // расширенной до полуночи (см. bonusEnergyCapacity в типе контекста).
+  const bonusCapacityRef = useRef(0);
   const bonusExpiresAtRef = useRef(0);
   const refundCreditRef = useRef(0);
   const dynMaxRef = useRef(initialPeek?.maxEnergy ?? MAX_ENERGY);
@@ -352,16 +388,22 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const applySessionProjection = useCallback((projection: EnergySessionProjection) => {
     energyRef.current = projection.baseEnergy;
     bonusRef.current = projection.bonusEnergy;
-    bonusExpiresAtRef.current = projection.bonusEnergy > 0 ? projection.bonusExpiresAt : 0;
+    // зачем: срок подарка держится за ПОТОЛОК, а не за остаток. Иначе трата
+    // последней бонусной единицы обнуляла бы срок, и расширенная шкала
+    // исчезала бы раньше полуночи.
+    bonusExpiresAtRef.current = bonusCapacityRef.current > 0 ? projection.bonusExpiresAt : 0;
     refundCreditRef.current = projection.refundCredit;
     lastRecoveryRef.current = projection.lastRecoveryTime;
     setEnergy(projection.baseEnergy);
     setBonusEnergy(projection.bonusEnergy);
     setRefundCredit(projection.refundCredit);
-    setBonusExpiresAt(projection.bonusEnergy > 0 ? projection.bonusExpiresAt : 0);
+    setBonusExpiresAt(bonusCapacityRef.current > 0 ? projection.bonusExpiresAt : 0);
     writePeekEnergy(projection.baseEnergy, projection.maxEnergy);
 
-    if (projection.baseEnergy < projection.maxEnergy) {
+    // Восстановление идёт до ОБЩЕЙ ёмкости: пустые золотые слоты обязаны
+    // доливаться, пока подарок не сгорел в полночь.
+    if (projection.baseEnergy + projection.bonusEnergy
+      < projection.maxEnergy + bonusCapacityRef.current) {
       const now = Date.now();
       const elapsed = now - projection.lastRecoveryTime;
       const remaining = recoveryMsRef.current - (elapsed % recoveryMsRef.current);
@@ -377,6 +419,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const currentSessionProjection = useCallback((): EnergySessionProjection => ({
     baseEnergy: energyRef.current,
     bonusEnergy: bonusRef.current,
+    bonusCapacity: bonusCapacityRef.current,
     bonusExpiresAt: bonusExpiresAtRef.current,
     refundCredit: refundCreditRef.current,
     lastRecoveryTime: lastRecoveryRef.current,
@@ -399,15 +442,17 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         // same account lock as spend/refund, so it cannot land in another user.
         await applyAdminEnergyCommand();
         if (!isCurrentAccountGeneration(accountToken)) return;
-        const bonusState = await readBonusEnergy(accountToken);
         if (!isCurrentAccountGeneration(accountToken)) return;
         let loadSucceeded = false;
         try {
-          const state = await readAndRecoverState(dynMax, recoveryMs);
+          const initialRecovery = await readAndRecoverState(dynMax, recoveryMs, accountToken);
+          const state = initialRecovery.state;
+          const bonusState = initialRecovery.bonus;
           const storedRefundCredit = await readEnergySessionRefundCredit(accountToken);
           await recoverEnergySessionOperations({
             baseEnergy: state.current,
             bonusEnergy: bonusState?.amount ?? 0,
+            bonusCapacity: bonusState?.capacity ?? 0,
             bonusExpiresAt: bonusState?.expiresAt ?? 0,
             refundCredit: storedRefundCredit,
             lastRecoveryTime: state.lastRecoveryTime,
@@ -420,12 +465,14 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
           // A recovered prepared debit republishes its exact crash-time
           // projection. Re-run ordinary elapsed-time recovery afterwards so
           // completed refill intervals during the stopped process are kept.
-          const settledState = await readAndRecoverState(dynMax, recoveryMs);
-          const settledBonus = await readBonusEnergy(accountToken);
+          const settledRecovery = await readAndRecoverState(dynMax, recoveryMs, accountToken);
+          const settledState = settledRecovery.state;
+          const settledBonus = settledRecovery.bonus;
           const settledRefundCredit = await readEnergySessionRefundCredit(accountToken);
           const recovered: EnergySessionProjection = {
             baseEnergy: settledState.current,
             bonusEnergy: settledBonus?.amount ?? 0,
+            bonusCapacity: settledBonus?.capacity ?? 0,
             bonusExpiresAt: settledBonus?.expiresAt ?? 0,
             refundCredit: settledRefundCredit,
             lastRecoveryTime: settledState.lastRecoveryTime,
@@ -434,6 +481,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
 
           dynMaxRef.current = dynMax;
           recoveryMsRef.current = recoveryMs;
+          // Потолок применяем ДО проекции: она считает по нему таймер долива
+          // золотых слотов и срок сгорания подарка.
+          bonusCapacityRef.current = settledBonus?.capacity ?? 0;
+          setBonusEnergyCapacity(settledBonus?.capacity ?? 0);
           setMaxEnergy(dynMax);
           setRecoveryIntervalMs(recoveryMs);
           applySessionProjection(recovered);
@@ -490,6 +541,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         }
       });
     } catch {
+    } finally {
+      // Fail-open only for rendering readiness: callers may leave a loading
+      // gate, but mutation readiness remains false and confirm fails closed.
+      if (isCurrentAccountGeneration(accountToken)) setEnergyReady(true);
     }
   }, [applySessionProjection]);
   const load = useCallback(async () => {
@@ -508,8 +563,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       isUnlimitedRef.current = false;
       setIsUnlimited(false);
       bonusRef.current = 0;
+      bonusCapacityRef.current = 0;
       bonusExpiresAtRef.current = 0;
       setBonusEnergy(0);
+      setBonusEnergyCapacity(0);
       setBonusExpiresAt(0);
       refundCreditRef.current = 0;
       setRefundCredit(0);
@@ -574,13 +631,17 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   }, [load]);
 
   // Check recovery near the next real refill instead of polling while the app is idle.
+  // зачем: пока жив подарок, «полной» считается расширенная шкала — иначе долив
+  // золотых слотов останавливался бы на базовом максимуме.
+  const activeEnergy = energy + bonusEnergy;
+  const activeMaxEnergy = maxEnergy + bonusEnergyCapacity;
   useEffect(() => {
-    if (!appActive || isUnlimited || energy >= maxEnergy) return;
+    if (!appActive || isUnlimited || !(activeEnergy < activeMaxEnergy)) return;
     const remaining = timeUntilNextMs > 0 ? timeUntilNextMs : recoveryIntervalMs;
     const delay = Math.max(1000, remaining + 250);
     const timeoutId = setTimeout(load, delay);
     return () => clearTimeout(timeoutId);
-  }, [appActive, energy, maxEnergy, isUnlimited, load, recoveryIntervalMs, timeUntilNextMs]);
+  }, [appActive, activeEnergy, activeMaxEnergy, isUnlimited, load, recoveryIntervalMs, timeUntilNextMs]);
 
   // Бонус обязан исчезнуть ровно по своему expiresAt даже если приложение
   // остаётся открытым всю ночь. В фоне таймер не держим: foreground-load выше
@@ -616,6 +677,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       applySessionProjection(result.projection);
       if (result.status === 'applied') {
         emitAppEvent('energy_spent_on_start', { amount: 1, target: motionTargetRef.current ?? undefined });
+        // зачем: списание энергии проходило беззвучно — значок молнии в шапке
+        // просто уменьшался. Звук ставим только на 'applied' (реальное списание),
+        // а не на 'insufficient': отказ озвучивает pm.energy.empty из своей модалки.
+        soundDirector.request('pm.energy.spend', { scope: 'energy-spend' });
       }
       void syncEnergyPushRef.current?.();
       return true;
@@ -731,8 +796,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         await cancelEnergyFullNotification();
         return;
       }
-      const current = energyRef.current;
-      const dynMax = dynMaxRef.current;
+      // «Полная» считается по активной ёмкости: пока жив подарок, шкала
+      // заполнена только когда залиты и золотые слоты.
+      const current = bonusRef.current + energyRef.current;
+      const dynMax = bonusCapacityRef.current + dynMaxRef.current;
       if (current >= dynMax) {
         await cancelEnergyFullNotification();
         return;
@@ -768,12 +835,44 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     const fullEnergy = Math.max(1, Math.floor(freshDynMax));
     const now = Date.now();
     const state: StoredEnergy = { current: fullEnergy, lastRecoveryTime: now };
+    /**
+     * зачем: премиум заливает шкалу ЦЕЛИКОМ, включая временные золотые слоты
+     * подарка. Заливать только базу значило бы оставить пустые деления на
+     * полной шкале. Потолок подарка при этом не трогаем — он живёт до полуночи
+     * сам по себе, меняется только остаток.
+     */
+    const accountToken = captureAccountGeneration();
+    let bonusWrite: readonly [string, string] | null = null;
+    let refilledBonus = 0;
+    try {
+      const currentBonus = await readBonusEnergyForMutation(accountToken);
+      if (currentBonus && currentBonus.capacity > currentBonus.amount) {
+        refilledBonus = currentBonus.capacity;
+        bonusWrite = [
+          requireGiftAccountStorageKey(BONUS_ENERGY_KEY, accountToken),
+          JSON.stringify({
+            amount: currentBonus.capacity,
+            capacity: currentBonus.capacity,
+            expiresAt: currentBonus.expiresAt,
+          }),
+        ];
+      } else if (currentBonus) {
+        refilledBonus = currentBonus.amount;
+      }
+    } catch {
+      // Подарок недоступен/испорчен — премиум всё равно заливает базу.
+    }
+    if (!isCurrent()) return false;
     energyRef.current = fullEnergy;
     lastRecoveryRef.current = now;
     isUnlimitedRef.current = true;
     setEnergy(fullEnergy);
     setMaxEnergy(fullEnergy);
     setIsUnlimited(true);
+    if (bonusWrite) {
+      bonusRef.current = refilledBonus;
+      setBonusEnergy(refilledBonus);
+    }
     setTimeUntilNextMs(0);
     setRecoveryEndsAtMs(0);
     energyReadyRef.current = true;
@@ -784,7 +883,11 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     for (let attempt = 0; attempt < 2 && isCurrent(); attempt += 1) {
       try {
         await withStorageLock(async () => {
-          await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+          // Обе величины уходят одной записью: премиум не должен оставить
+          // базу залитой, а золотые слоты пустыми при обрыве между записями.
+          const writes: [string, string][] = [[ENERGY_KEY, JSON.stringify(state)]];
+          if (bonusWrite) writes.push([bonusWrite[0], bonusWrite[1]]);
+          await AsyncStorage.multiSet(writes);
         });
         persisted = true;
         break;
@@ -801,12 +904,12 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const formattedTime = energy < dynMaxRef.current && !isUnlimited ? formatTimeUntilRecovery(timeUntilNextMs) : '';
 
   const value = useMemo<EnergyContextValue>(() => ({
-    energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
+    energy, bonusEnergy, bonusEnergyCapacity, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
     spendOne, confirmSpendOne, spendAmount, confirmSpendAmount,
     refundOne, acknowledgeSessionStart, reload, refillToMax, energyReady,
   }), [
-    energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
+    energy, bonusEnergy, bonusEnergyCapacity, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
     spendOne, confirmSpendOne, spendAmount, confirmSpendAmount,
     refundOne, acknowledgeSessionStart, reload, refillToMax, energyReady,

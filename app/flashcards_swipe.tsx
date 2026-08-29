@@ -35,7 +35,6 @@ import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
-import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
@@ -99,6 +98,7 @@ import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_captur
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 type SourceKind = 'saved' | 'custom' | 'official' | 'community';
@@ -2472,11 +2472,6 @@ function FlashcardsSwipeScreen() {
         }
         if (attemptEffect === 'attempts_exhausted') {
           audio.stop();
-          if (attemptsModalTimerRef.current) clearTimeout(attemptsModalTimerRef.current);
-          attemptsModalTimerRef.current = setTimeout(
-            () => setShowAttemptsModal(true),
-            SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
-          );
         }
         return;
       }
@@ -2599,15 +2594,18 @@ function FlashcardsSwipeScreen() {
     audio.speak(textToSpeak, undefined, { language: 'en-US' });
   }, [attempts.state.phase, audio, currentPrompt?.card.en]);
 
-  const recoverSwipeAttempts = useCallback(async (source: 'gift' | 'runes') => {
-    try {
-      if (source === 'gift') await attempts.recoverWithGift();
-      else await attempts.recoverWithRunes();
-      setShowAttemptsModal(false);
-    } catch {
-      // The shared modal stays open; the current card, feedback and queue remain untouched.
-    }
-  }, [attempts.recoverWithGift, attempts.recoverWithRunes]);
+  const resetSwipeAfterSessionRuneForfeit = useCallback(() => {
+    setShowAttemptsModal(false);
+    setFeedback(null);
+    answeredPromptIdRef.current = null;
+  }, []);
+
+  useSessionAttemptAutoReset({
+    phase: attempts.state.phase,
+    forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
+    restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
+    onRestored: resetSwipeAfterSessionRuneForfeit,
+  });
 
   const endExhaustedSwipe = useCallback(() => {
     audio.stop();
@@ -3577,16 +3575,6 @@ function FlashcardsSwipeScreen() {
         </ContentWrap>
       </SafeAreaView>
       <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} />
-      <SessionAttemptsRecoveryModal
-        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
-        locale={lang}
-        giftCount={attempts.giftCount}
-        runeBalance={attempts.runeBalance ?? 0}
-        busy={attempts.recoveryBusy}
-        onUseGift={() => { void recoverSwipeAttempts('gift'); }}
-        onSpendRunes={() => { void recoverSwipeAttempts('runes'); }}
-        onEndSession={endExhaustedSwipe}
-      />
     </ScreenGradient>
   );
 }

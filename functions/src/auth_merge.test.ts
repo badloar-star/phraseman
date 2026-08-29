@@ -1255,6 +1255,37 @@ describe('mergeStableAccounts', () => {
     expect(store.users['stable-b']?.identityHidden).not.toBe(true);
   });
 
+  it.each([
+    ['auth uid', 'google-denial-race'],
+    ['raw stable', 'stable-raw'],
+    ['resolved stable', 'stable-a'],
+    ['terminal stable', 'stable-terminal'],
+  ])('fails closed when a %s has only a permanent deletion denial', async (_kind, deniedId) => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-raw': { identityHidden: true, canonicalStableId: 'stable-a' },
+        'stable-a': { firebaseAuthUid: 'google-denial-race', progress: { user_total_xp: '100' } },
+        'stable-b': { firebaseAuthUid: 'google-denial-race', progress: { user_total_xp: '50' } },
+        'stable-terminal': { firebaseAuthUid: 'google-denial-race', progress: { user_total_xp: '200' } },
+      },
+    });
+    if (deniedId === 'stable-terminal') {
+      store.users['stable-a'] = {
+        ...store.users['stable-a'],
+        identityHidden: true,
+        canonicalStableId: 'stable-terminal',
+      };
+    }
+    store.account_deletion_permanent_denials[accountDeletePermanentDenialId(deniedId)] = {
+      status: 'denied',
+    };
+
+    await expect(
+      mergeStableAccounts(db as any, 'google-denial-race', 'stable-raw', 'stable-b', NOW),
+    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+    expect(store.users['stable-b']?.identityHidden).not.toBe(true);
+  });
+
   it('does not recreate a user that disappears before the transaction reads it', async () => {
     const { db, store } = makeDbStub({
       users: {

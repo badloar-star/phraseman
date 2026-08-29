@@ -56,7 +56,6 @@ const ignoredRootFolders = [
   '.vscode',
   '.well-known',
   '.worktrees',
-  'admin',
   'builds',
   'docs',
   'duel',
@@ -77,6 +76,15 @@ const ignoredRootFolders = [
   'tmp',
   'tools',
 ];
+
+// Avatar100 finals are runtime assets even though their shared source of truth
+// lives beside the admin preview. Keep every other admin surface out of Metro's
+// file map, but allow the two ancestor directories and the avatar subtree so
+// literal require() calls in constants/avatar100_assets.ts can resolve.
+const adminRoot = escapePathForRegex(path.join(__dirname, 'admin'));
+const adminExceptRuntimeAvatars = new RegExp(
+  `^${adminRoot}[/\\\\](?!v2(?:[/\\\\]avatars(?:[/\\\\]|$)|$)).*`,
+);
 
 // Старый обход бага expo-dev-client, который НЕ умел парсить multipart-ответ Metro:
 // для .bundle-запросов вырезался `multipart/mixed` из Accept, чтобы Metro отдавал
@@ -197,6 +205,7 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
 
 config.resolver.blockList = [
   ...blockList,
+  adminExceptRuntimeAvatars,
   ...ignoredRootFolders.map(
     (folder) => new RegExp(`^${escapePathForRegex(path.join(__dirname, folder))}[/\\\\].*`),
   ),

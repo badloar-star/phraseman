@@ -42,6 +42,11 @@ jest.mock('expo-web-browser', () => ({
   dismissAuthSession: jest.fn(),
 }), { virtual: true });
 
+const mockRetirePhoneStateAfterDeletion = jest.fn<Promise<void>, [string]>(async () => {});
+jest.mock('../app/phone_state_bootstrap', () => ({
+  retirePhoneStateAfterDeletion: (stableId: string) => mockRetirePhoneStateAfterDeletion(stableId),
+}));
+
 // ── Native Google sign-in: return a fake credential with an idToken. ──
 const expoGetRandomBytesAsyncImpl = jest.fn<Promise<Uint8Array>, [number]>();
 const expoDigestStringAsyncImpl = jest.fn<Promise<string>, [string, string, unknown?]>();
@@ -99,21 +104,40 @@ const mergeStableAccountsViaServer = jest.fn(async () => null);
 const quiesceSyncBeforeStableIdSwap = jest.fn(async () => {});
 const quiesceCloudSyncForAccountTransition = jest.fn(async () => true);
 const enqueueCloudDeletion = jest.fn<
-  Promise<{ ok: true; jobId: string; status: 'queued'; created: true }>,
+  Promise<{ ok: true; jobId: string; status: 'queued'; created: true; authReleased: true; credentialSafe: true }>,
   [string | null]
->(async () => ({ ok: true as const, jobId: 'job-1', status: 'queued' as const, created: true }));
+>(async () => ({
+  ok: true as const,
+  jobId: 'job-1',
+  status: 'queued' as const,
+  created: true,
+  authReleased: true as const,
+  credentialSafe: true as const,
+}));
 const startCloudDeletionEnqueue = jest.fn((stableId: string | null) => ({
   dispatchSettled: Promise.resolve(),
   acknowledgment: enqueueCloudDeletion(stableId),
 }));
+const waitForAccountDeletionCredentialSafe = jest.fn(async () => false);
 const wipeLocalAccountData = jest.fn(async () => {});
-const ensureAnonUser = jest.fn(async () => mockStableId);
+const ensureTestStableId = (): string => {
+  if (!mockStableId) mockStableId = 'rotated-stable-id';
+  return mockStableId;
+};
+const ensureAnonUser = jest.fn(async () => ensureTestStableId());
+const ensureAnonIdentityDetailed = jest.fn(async () => ({
+  ok: true as const,
+  authUid: authState.anonUid,
+  stableId: ensureTestStableId(),
+  isAnonymous: true as const,
+}));
 const forceSyncToCloud = jest.fn(async () => true);
 const saveAccountSwitchEmergencyBackup = jest.fn(async () => true);
 const resetAnonAuthCacheForSignOut = jest.fn();
 jest.mock('../app/cloud_sync', () => ({
   SYNC_KEYS: ['user_total_xp', 'streak_count', 'unlocked_lessons', 'unlocked_lessons::fr', 'user_name', 'custom_flashcards_v2'],
   ensureAnonUser: (...a: unknown[]) => (ensureAnonUser as any)(...a),
+  ensureAnonIdentityDetailed: (...a: unknown[]) => (ensureAnonIdentityDetailed as any)(...a),
   waitForAnonAuth: jest.fn(async () => true),
   syncToCloud: (...a: unknown[]) => (syncToCloud as any)(...a),
   restoreFromCloud: (...a: unknown[]) => (restoreFromCloud as any)(...a),
@@ -123,6 +147,9 @@ jest.mock('../app/cloud_sync', () => ({
   quiesceCloudSyncForAccountTransition: (...a: unknown[]) => (quiesceCloudSyncForAccountTransition as any)(...a),
   enqueueCloudDeletion: (...a: unknown[]) => (enqueueCloudDeletion as any)(...a),
   startCloudDeletionEnqueue: (...a: unknown[]) => (startCloudDeletionEnqueue as any)(...a),
+  waitForAccountDeletionCredentialSafe: (...a: unknown[]) => (
+    waitForAccountDeletionCredentialSafe as any
+  )(...a),
   wipeLocalAccountData: (...a: unknown[]) => (wipeLocalAccountData as any)(...a),
   deleteCloudData: jest.fn(async () => {}),
   resetAnonAuthCacheForSignOut: (...a: unknown[]) => (resetAnonAuthCacheForSignOut as any)(...a),
@@ -131,11 +158,11 @@ jest.mock('../app/cloud_sync', () => ({
   saveAccountSwitchEmergencyBackup: (...a: unknown[]) => (saveAccountSwitchEmergencyBackup as any)(...a),
 }));
 
-let mockStableId = 'local-stable-id';
-const clearStableId = jest.fn(async () => { mockStableId = 'rotated-stable-id'; });
+let mockStableId: string | null = 'local-stable-id';
+const clearStableId = jest.fn(async () => { mockStableId = null; });
 jest.mock('../app/stable_id', () => {
   return {
-    getStableId: jest.fn(async () => mockStableId),
+    getStableId: jest.fn(async () => ensureTestStableId()),
     setStableId: jest.fn(async (v: string) => { mockStableId = v; }),
     clearStableId: (...a: unknown[]) => (clearStableId as any)(...a),
     peekStableId: jest.fn(() => mockStableId),
@@ -144,6 +171,7 @@ jest.mock('../app/stable_id', () => {
 
 const beginPremiumAccountTransition = jest.fn();
 const waitForPremiumAccountWorkIdleWithDeadline = jest.fn(async (_timeoutMs: number) => true);
+const waitForRestoreApplicationIdleWithDeadline = jest.fn(async (_timeoutMs: number) => true);
 jest.mock('../app/premium_guard', () => ({
   invalidatePremiumCache: jest.fn(),
   beginPremiumAccountTransition: (...args: unknown[]) => beginPremiumAccountTransition(...args),
@@ -195,7 +223,12 @@ jest.mock('../app/account_generation', () => ({
   })),
   invalidateAccountGeneration: jest.fn(),
   isCurrentAccountGeneration: jest.fn(() => true),
-  waitForRestoreApplicationIdleWithDeadline: jest.fn(async () => true),
+  waitForRestoreApplicationIdleWithDeadline: (timeoutMs: number) => (
+    waitForRestoreApplicationIdleWithDeadline(timeoutMs)
+  ),
+  withAccountTransitionLock: jest.fn(async (work: (lease: unknown) => Promise<unknown>) => (
+    work({ generation: 1, stableId: mockStableId, phase: 'transitioning' })
+  )),
   withAccountTransitionLockWithDeadline: jest.fn(async (work: () => Promise<unknown>) => ({
     completed: true,
     value: await work(),
@@ -259,6 +292,7 @@ beforeEach(() => {
   ensureStableAuthLinkForStableIdDetailed.mockImplementation(async (stableId: string) => ({
     ok: true,
     stableUid: stableId,
+    authUid: authState.isAnonymous ? authState.anonUid : authState.providerUid,
     source: 'server',
   }));
   restoreFromCloud.mockReset();
@@ -274,7 +308,16 @@ beforeEach(() => {
   quiesceSyncBeforeStableIdSwap.mockClear();
   quiesceCloudSyncForAccountTransition.mockClear();
   enqueueCloudDeletion.mockReset();
-  enqueueCloudDeletion.mockResolvedValue({ ok: true, jobId: 'job-1', status: 'queued', created: true });
+  enqueueCloudDeletion.mockResolvedValue({
+    ok: true,
+    jobId: 'job-1',
+    status: 'queued',
+    created: true,
+    authReleased: true,
+    credentialSafe: true,
+  });
+  waitForAccountDeletionCredentialSafe.mockReset();
+  waitForAccountDeletionCredentialSafe.mockResolvedValue(false);
   startCloudDeletionEnqueue.mockReset();
   startCloudDeletionEnqueue.mockImplementation((stableId: string | null) => ({
     dispatchSettled: Promise.resolve(),
@@ -282,8 +325,11 @@ beforeEach(() => {
   }));
   wipeLocalAccountData.mockReset();
   wipeLocalAccountData.mockResolvedValue(undefined);
+  mockRetirePhoneStateAfterDeletion.mockReset();
+  mockRetirePhoneStateAfterDeletion.mockResolvedValue(undefined);
   ensureAnonUser.mockReset();
-  ensureAnonUser.mockImplementation(async () => mockStableId);
+  ensureAnonUser.mockImplementation(async () => ensureTestStableId());
+  ensureAnonIdentityDetailed.mockClear();
   forceSyncToCloud.mockReset();
   forceSyncToCloud.mockResolvedValue(true);
   saveAccountSwitchEmergencyBackup.mockReset();
@@ -337,6 +383,8 @@ beforeEach(() => {
   beginPremiumAccountTransition.mockClear();
   waitForPremiumAccountWorkIdleWithDeadline.mockReset();
   waitForPremiumAccountWorkIdleWithDeadline.mockResolvedValue(true);
+  waitForRestoreApplicationIdleWithDeadline.mockReset();
+  waitForRestoreApplicationIdleWithDeadline.mockResolvedValue(true);
 });
 
 let lastLoadedAuthProviderStorage: { getItem: (key: string) => Promise<string | null> };
@@ -599,7 +647,7 @@ test('refreshes the Firebase token after credential mutation before calling the 
   );
 });
 
-test('pending provider deletion rotates away without rebinding the deleted stable id', async () => {
+test('first same-provider tap after a pending local deletion creates a new empty profile in one picker', async () => {
   authState.linkImpl = async () => {
     const err: any = new Error('credential already in use');
     err.code = 'auth/credential-already-in-use';
@@ -614,16 +662,27 @@ test('pending provider deletion rotates away without rebinding the deleted stabl
       expiresAt: now + 60_000,
     }),
   });
+  (enqueueCloudDeletion as jest.Mock).mockResolvedValueOnce({
+    ok: true,
+    jobId: 'job-1',
+    status: 'queued',
+    created: false,
+    authReleased: true,
+    credentialSafe: true,
+  });
 
   const result = await signInWithProvider('google');
 
-  expect(result).toEqual({ result: 'error', error: 'account_delete_pending' });
+  expect(result).toMatchObject({ result: 'created_new', email: 'u@example.com' });
   expect(enqueueCloudDeletion).toHaveBeenCalledWith('deleted-stable-id');
-  expect(clearStableId).not.toHaveBeenCalled();
-  expect(ensureStableAuthLinkForStableIdDetailed).not.toHaveBeenCalled();
+  expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(restoreFromCloud).not.toHaveBeenCalled();
+  expect(mergeStableAccountsViaServer).not.toHaveBeenCalled();
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1')).toBeNull();
 });
 
-test('completed pending-delete enqueue retry still quarantines the matching provider before auth-link work', async () => {
+test('idempotent completed deletion proof continues the same provider attempt without a second picker', async () => {
   authState.linkImpl = async () => {
     const err: any = new Error('credential already in use');
     err.code = 'auth/credential-already-in-use';
@@ -634,6 +693,8 @@ test('completed pending-delete enqueue retry still quarantines the matching prov
     jobId: 'job-1',
     status: 'completed',
     created: false,
+    authReleased: true,
+    credentialSafe: true,
   });
   const now = Date.now();
   const { signInWithProvider } = loadAuthProvider({
@@ -647,12 +708,39 @@ test('completed pending-delete enqueue retry still quarantines the matching prov
 
   const result = await signInWithProvider('google');
 
-  expect(result).toEqual({ result: 'error', error: 'account_delete_pending' });
-  expect(authState.calls).toContain('signout');
-  expect(ensureAnonUser).toHaveBeenCalledTimes(2);
-  expect(clearStableId).not.toHaveBeenCalled();
-  expect(ensureStableAuthLinkForStableIdDetailed).not.toHaveBeenCalled();
-  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1')).not.toBeNull();
+  expect(result).toMatchObject({ result: 'created_new' });
+  expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+  // The completed receipt may be resumed from an already-anonymous Firebase
+  // session; there is no provider session to sign out a second time.
+  expect(authState.calls).not.toContain('signout');
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(restoreFromCloud).not.toHaveBeenCalled();
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1')).toBeNull();
+});
+
+test('offline pending deletion fails closed before provider picker and preserves the durable guard', async () => {
+  authState.isAnonymous = false;
+  enqueueCloudDeletion.mockRejectedValueOnce(new Error('offline'));
+  const now = Date.now();
+  const { signInWithProvider } = loadAuthProvider({
+    account_delete_pending_auth_v1: JSON.stringify({
+      providerUid: 'provider-uid-1',
+      stableId: 'deleted-stable-id',
+      source: 'local',
+      phase: 'local_data_cleared',
+      createdAt: now - 1_000,
+      expiresAt: now + 60_000,
+    }),
+  });
+
+  await expect(signInWithProvider('google')).resolves.toEqual({
+    result: 'error',
+    error: 'account_delete_pending',
+  });
+  expect(googleSignInImpl).not.toHaveBeenCalled();
+  expect(restoreFromCloud).not.toHaveBeenCalled();
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .toContain('"phase":"local_data_cleared"');
 });
 
 test('provider sign-in rotates a stale local stable id instead of returning auth_link_failed', async () => {
@@ -681,6 +769,77 @@ test('provider sign-in rotates a stale local stable id instead of returning auth
   expect(quiesceSyncBeforeStableIdSwap).toHaveBeenCalledTimes(1);
   expect(ensureStableAuthLinkForStableIdDetailed.mock.calls[0][0]).toBe('local-stable-id');
   expect(ensureStableAuthLinkForStableIdDetailed.mock.calls[1][0]).toBe('rotated-stable-id');
+});
+
+test('stable-only retirement creates a new empty profile in the same provider attempt', async () => {
+  authState.linkImpl = async () => {
+    authState.isAnonymous = false;
+    return { user: { uid: authState.providerUid, isAnonymous: false } };
+  };
+  ensureStableAuthLinkForStableIdDetailed
+    .mockResolvedValueOnce({
+      ok: false,
+      requestedStableId: 'local-stable-id',
+      stableUid: null,
+      authUid: authState.providerUid,
+      source: 'callable',
+      failure: 'identity_retired',
+      retiredSubject: 'stable',
+    })
+    .mockImplementation(async (stableId: string) => ({
+      ok: true,
+      requestedStableId: stableId,
+      stableUid: stableId,
+      authUid: authState.providerUid,
+      source: 'callable',
+    }));
+
+  const { signInWithProvider } = loadAuthProvider();
+  const result = await signInWithProvider('google');
+
+  expect(result).toMatchObject({ result: 'created_new', email: 'u@example.com' });
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(enqueueCloudDeletion).not.toHaveBeenCalled();
+  expect(authState.calls).not.toContain('signout');
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+  expect(restoreFromCloud).not.toHaveBeenCalled();
+  expect(syncToCloud).not.toHaveBeenCalled();
+});
+
+test('auth retirement fails closed to a fresh anonymous identity without restoring old data', async () => {
+  authState.linkImpl = async () => {
+    authState.isAnonymous = false;
+    return { user: { uid: authState.providerUid, isAnonymous: false } };
+  };
+  ensureStableAuthLinkForStableIdDetailed
+    .mockResolvedValueOnce({
+      ok: false,
+      requestedStableId: 'local-stable-id',
+      stableUid: null,
+      authUid: authState.providerUid,
+      source: 'callable',
+      failure: 'identity_retired',
+      retiredSubject: 'auth',
+    })
+    .mockImplementation(async (stableId: string) => ({
+      ok: true,
+      requestedStableId: stableId,
+      stableUid: stableId,
+      authUid: authState.anonUid,
+      source: 'callable',
+    }));
+
+  const { signInWithProvider } = loadAuthProvider();
+  const result = await signInWithProvider('google');
+
+  expect(result).toEqual({ result: 'error', error: 'identity_retired' });
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(authState.calls).toContain('signout');
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(ensureAnonIdentityDetailed).toHaveBeenCalledTimes(1);
+  expect(restoreFromCloud).not.toHaveBeenCalled();
+  expect(syncToCloud).not.toHaveBeenCalled();
 });
 
 test('same-stable-id sign-in resolves before non-critical cloud hydration finishes', async () => {
@@ -968,7 +1127,7 @@ test('returning account on an empty device skips pointless local upload and acco
   const { signInWithProvider } = loadAuthProvider();
   const result = await signInWithProvider('google');
 
-  expect(result.result).toBe('merged_devices');
+  expect(result).toMatchObject({ result: 'merged_devices' });
   expect(syncToCloud).not.toHaveBeenCalled();
   expect(mergeStableAccountsViaServer).not.toHaveBeenCalled();
   expect(quiesceSyncBeforeStableIdSwap).toHaveBeenCalledTimes(1);
@@ -986,7 +1145,7 @@ test('Apple uses the same premium transition boundary when it swaps to a returni
   const { signInWithProvider } = loadAuthProvider(undefined, 'ios');
   const result = await signInWithProvider('apple');
 
-  expect(result.result).toBe('merged_devices');
+  expect(result).toMatchObject({ result: 'merged_devices' });
   expect(beginPremiumAccountTransition).toHaveBeenCalledTimes(1);
 });
 
@@ -1005,7 +1164,7 @@ test('an enqueue rejection keeps a linked deletion quarantined for a later retry
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
   expect(clearStableId).not.toHaveBeenCalled();
   expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
-    .toContain('"phase":"prepared"');
+    .toContain('"phase":"local_data_cleared"');
   expect(logEvent.mock.calls.some(([name]) => name === 'auth_account_delete_enqueue_failed')).toBe(true);
 });
 
@@ -1030,13 +1189,203 @@ test('linked account deletion fails before wiping when the durable guard cannot 
   expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
 });
 
-test('cold restart pending guard blocks before native sign-in, stable id, or auth callables', async () => {
+test('linked deletion remains prepared and fails closed when the local privacy wipe throws', async () => {
   authState.isAnonymous = false;
+  wipeLocalAccountData.mockRejectedValueOnce(new Error('wipe unavailable'));
+  const accountGeneration = require('../app/account_generation');
+  const authProvider = loadAuthProvider();
+
+  const handoff = await authProvider.beginAccountDeletion();
+
+  expect(handoff).toEqual({ ok: false, reason: 'local_wipe_unverified' });
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(accountGeneration.beginAccountGeneration).not.toHaveBeenCalled();
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .toContain('"phase":"prepared"');
+});
+
+test('partial AsyncStorage residue cannot advance deletion or create a fresh generation', async () => {
+  authState.isAnonymous = false;
+  const accountGeneration = require('../app/account_generation');
+  const authProvider = loadAuthProvider({ user_total_xp: '99' });
+  const storage = lastLoadedAuthProviderStorage as typeof import('@react-native-async-storage/async-storage').default & {
+    clear: jest.Mock;
+    getAllKeys: jest.Mock;
+  };
+  const originalClear = storage.clear.getMockImplementation();
+  const originalGetAllKeys = storage.getAllKeys.getMockImplementation();
+  storage.clear.mockImplementation(async () => {
+    // Simulate the production failure mode where clear resolves but old account
+    // data remains on disk. Verification, not the return value, is authoritative.
+  });
+  storage.getAllKeys.mockResolvedValue([
+    'user_total_xp',
+    'account_delete_pending_auth_v1',
+  ]);
+  let handoff: Awaited<ReturnType<typeof authProvider.beginAccountDeletion>>;
+  try {
+    handoff = await authProvider.beginAccountDeletion();
+  } finally {
+    storage.clear.mockImplementation(originalClear);
+    storage.getAllKeys.mockImplementation(originalGetAllKeys);
+  }
+
+  expect(handoff).toEqual({ ok: false, reason: 'local_wipe_unverified' });
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(accountGeneration.beginAccountGeneration).not.toHaveBeenCalled();
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .toContain('"phase":"prepared"');
+});
+
+test('unreadable post-wipe storage is not accepted as an empty account', async () => {
+  authState.isAnonymous = false;
+  const authProvider = loadAuthProvider();
+  const storage = lastLoadedAuthProviderStorage as typeof import('@react-native-async-storage/async-storage').default & {
+    getAllKeys: jest.Mock;
+  };
+  storage.getAllKeys.mockRejectedValueOnce(new Error('storage unreadable'));
+
+  const handoff = await authProvider.beginAccountDeletion();
+
+  expect(handoff).toEqual({ ok: false, reason: 'local_wipe_unverified' });
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .toContain('"phase":"prepared"');
+});
+
+test('phone-state lineage retirement failure keeps the guard prepared and blocks fresh identity', async () => {
+  authState.isAnonymous = false;
+  mockRetirePhoneStateAfterDeletion.mockRejectedValueOnce(new Error('sqlcipher key unavailable'));
+  const accountGeneration = require('../app/account_generation');
+  const authProvider = loadAuthProvider();
+
+  const handoff = await authProvider.beginAccountDeletion();
+
+  expect(handoff).toEqual({ ok: false, reason: 'local_wipe_unverified' });
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(accountGeneration.beginAccountGeneration).not.toHaveBeenCalled();
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .toContain('"phase":"prepared"');
+});
+
+test('timed-out local wipe remains a single joined flight and cannot clear a fresh generation later', async () => {
+  jest.useFakeTimers();
+  authState.isAnonymous = false;
+  let resolveWipe!: () => void;
+  wipeLocalAccountData.mockImplementationOnce(() => new Promise<void>((resolve) => {
+    resolveWipe = resolve;
+  }));
+  const accountGeneration = require('../app/account_generation');
+  const authProvider = loadAuthProvider({ user_total_xp: '73' });
+  try {
+    const first = authProvider.beginAccountDeletion();
+    await waitForCall(wipeLocalAccountData, 'wipeLocalAccountData');
+    await jest.advanceTimersByTimeAsync(1_000);
+    await expect(first).resolves.toEqual({ ok: false, reason: 'local_wipe_unverified' });
+
+    const retry = authProvider.beginAccountDeletion();
+    await Promise.resolve();
+    expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+    await jest.advanceTimersByTimeAsync(1_000);
+    await expect(retry).resolves.toEqual({ ok: false, reason: 'local_wipe_unverified' });
+    expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+    expect(accountGeneration.beginAccountGeneration).not.toHaveBeenCalled();
+
+    resolveWipe();
+    await jest.runAllTimersAsync();
+    await Promise.resolve();
+    expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+    expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+    expect(accountGeneration.beginAccountGeneration).not.toHaveBeenCalled();
+    expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+      .toContain('"phase":"prepared"');
+  } finally {
+    jest.useRealTimers();
+  }
+});
+
+test('a hung local_data_cleared guard write cannot freeze the deletion handoff', async () => {
+  authState.isAnonymous = false;
+  const secureStore = require('expo-secure-store') as {
+    setItemAsync: jest.Mock;
+  };
+  const originalSetItem = secureStore.setItemAsync.getMockImplementation();
+  secureStore.setItemAsync.mockImplementation((key: string, value: string, options?: unknown) => {
+    if (value.includes('"phase":"local_data_cleared"')) return new Promise<void>(() => {});
+    return originalSetItem?.(key, value, options);
+  });
+  const authProvider = loadAuthProvider();
+  try {
+    const outcome = await Promise.race([
+      authProvider.beginAccountDeletion(),
+      new Promise<'ui_timeout'>((resolve) => setTimeout(() => resolve('ui_timeout'), 1_300)),
+    ]);
+    expect(outcome).toEqual({ ok: false, reason: 'local_wipe_unverified' });
+    expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+    expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+      .toContain('"phase":"prepared"');
+  } finally {
+    secureStore.setItemAsync.mockImplementation(originalSetItem);
+  }
+});
+
+test('a concurrent delete tap cannot treat a prepared guard as a completed local wipe', async () => {
+  authState.isAnonymous = false;
+  let rejectRetirement!: (error: Error) => void;
+  mockRetirePhoneStateAfterDeletion.mockImplementationOnce(() => new Promise<void>((_resolve, reject) => {
+    rejectRetirement = reject;
+  }));
+  const accountGeneration = require('../app/account_generation');
+  const authProvider = loadAuthProvider();
+
+  const first = authProvider.beginAccountDeletion();
+  for (let attempt = 0; attempt < 20 && !rejectRetirement; attempt += 1) {
+    await new Promise<void>((resolve) => setImmediate(resolve));
+  }
+  expect(rejectRetirement).toBeDefined();
+
+  const second = await authProvider.beginAccountDeletion();
+  expect(second).toEqual({ ok: false, reason: 'local_wipe_unverified' });
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(accountGeneration.beginAccountGeneration).not.toHaveBeenCalled();
+
+  rejectRetirement(new Error('sqlcipher retirement failed'));
+  await expect(first).resolves.toEqual({ ok: false, reason: 'local_wipe_unverified' });
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .toContain('"phase":"prepared"');
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(accountGeneration.beginAccountGeneration).not.toHaveBeenCalled();
+});
+
+test('cold restart local_data_cleared repairs credential safety before exactly one provider picker', async () => {
+  authState.isAnonymous = true;
+  const wrappedDefault = Object.assign(
+    () => {
+      const base = originalAuthFactoryDefault();
+      return {
+        ...base,
+        currentUser: null,
+        onAuthStateChanged: (listener: (user: unknown) => void) => {
+          queueMicrotask(() => listener(null));
+          return jest.fn();
+        },
+      };
+    },
+    originalAuthFactoryDefault,
+  );
+  authFactory.default = wrappedDefault;
+  enqueueCloudDeletion.mockRejectedValueOnce(new Error('lost response after closure'));
+  waitForAccountDeletionCredentialSafe.mockResolvedValueOnce(true);
   const now = Date.now();
   const { signInWithProvider } = loadAuthProvider({
     account_delete_pending_auth_v1: JSON.stringify({
       providerUid: 'provider-uid-1',
       stableId: 'deleted-stable-id',
+      source: 'local',
+      phase: 'local_data_cleared',
       createdAt: now - 60_000,
       expiresAt: now + 60_000,
     }),
@@ -1044,14 +1393,69 @@ test('cold restart pending guard blocks before native sign-in, stable id, or aut
 
   const result = await signInWithProvider('google');
 
-  expect(result).toEqual({ result: 'error', error: 'account_delete_pending' });
-  expect(googleSignInImpl).not.toHaveBeenCalled();
-  expect(authStampAnonOwnership).not.toHaveBeenCalled();
-  expect(ensureStableAuthLinkForStableIdDetailed).not.toHaveBeenCalled();
-  expect(enqueueCloudDeletion).toHaveBeenCalledWith('deleted-stable-id');
-  expect(authState.calls).toContain('signout');
-  expect(clearStableId).not.toHaveBeenCalled();
+  expect(result).toMatchObject({ result: 'created_new' });
+  expect(waitForAccountDeletionCredentialSafe).toHaveBeenCalledTimes(1);
+  expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(restoreFromCloud).not.toHaveBeenCalled();
+  expect(mergeStableAccountsViaServer).not.toHaveBeenCalled();
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1')).toBeNull();
 });
+
+it.each([
+  ['local_data_cleared', 'null', 'google'],
+  ['local_data_cleared', 'null', 'apple'],
+  ['local_data_cleared', 'anonymous', 'google'],
+  ['local_data_cleared', 'anonymous', 'apple'],
+  ['server_enqueued', 'null', 'google'],
+  ['server_enqueued', 'null', 'apple'],
+  ['server_enqueued', 'anonymous', 'google'],
+  ['server_enqueued', 'anonymous', 'apple'],
+] as const)(
+  'same-call restart convergence: phase=%s auth=%s provider=%s opens exactly one picker',
+  async (phase, authKind, provider) => {
+    authState.isAnonymous = true;
+    if (authKind === 'null') {
+      const wrappedDefault = Object.assign(
+        () => {
+          const base = originalAuthFactoryDefault();
+          return {
+            ...base,
+            currentUser: null,
+            onAuthStateChanged: (listener: (user: unknown) => void) => {
+              queueMicrotask(() => listener(null));
+              return jest.fn();
+            },
+          };
+        },
+        originalAuthFactoryDefault,
+      );
+      authFactory.default = wrappedDefault;
+    }
+    if (phase === 'local_data_cleared') {
+      waitForAccountDeletionCredentialSafe.mockResolvedValueOnce(true);
+    }
+    const now = Date.now();
+    const { signInWithProvider } = loadAuthProvider({
+      account_delete_pending_auth_v1: JSON.stringify({
+        providerUid: 'provider-uid-1',
+        stableId: 'deleted-stable-id',
+        source: 'local',
+        phase,
+        createdAt: now - 60_000,
+        expiresAt: now + 60_000,
+      }),
+    }, 'ios');
+
+    const result = await signInWithProvider(provider);
+
+    expect(result).toMatchObject({ result: 'created_new' });
+    expect(provider === 'google' ? googleSignInImpl : appleSignInImpl).toHaveBeenCalledTimes(1);
+    expect(provider === 'google' ? appleSignInImpl : googleSignInImpl).not.toHaveBeenCalled();
+    expect(restoreFromCloud).not.toHaveBeenCalled();
+    expect(mergeStableAccountsViaServer).not.toHaveBeenCalled();
+  },
+);
 
 test('startup pending-delete recovery waits for auth hydration before treating null as signed out', async () => {
   let hydrated = false;
@@ -1097,13 +1501,16 @@ test('startup pending-delete recovery waits for auth hydration before treating n
 
   releaseAuth();
   await expect(recovery).resolves.toBe(true);
-  expect(startCloudDeletionEnqueue).toHaveBeenCalledWith('deleted-stable-id');
+  expect(startCloudDeletionEnqueue).toHaveBeenCalledWith(
+    'deleted-stable-id',
+    expect.objectContaining({ operationId: expect.any(String), capability: expect.any(String) }),
+  );
   expect(authState.calls).toContain('signout');
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
   expect(clearStableId).toHaveBeenCalledTimes(1);
 });
 
-test('expired same-provider guard stays quarantined without re-clearing the stable id', async () => {
+test('expired same-provider guard with terminal server proof creates the fresh profile in the same tap', async () => {
   authState.isAnonymous = false;
   const now = Date.now();
   const { signInWithProvider } = loadAuthProvider({
@@ -1117,12 +1524,56 @@ test('expired same-provider guard stays quarantined without re-clearing the stab
 
   const result = await signInWithProvider('google');
 
-  expect(result).toEqual({ result: 'error', error: 'account_delete_pending' });
-  expect(googleSignInImpl).not.toHaveBeenCalled();
+  expect(result).toMatchObject({ result: 'created_new' });
+  expect(googleSignInImpl).toHaveBeenCalledTimes(1);
   expect(enqueueCloudDeletion).toHaveBeenCalledWith('deleted-stable-id');
-  expect(clearStableId).not.toHaveBeenCalled();
-  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1')).not.toBeNull();
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1')).toBeNull();
 });
+
+it.each(['null', 'anonymous'] as const)(
+  'expired irreversible receipt resumes from %s auth and opens exactly one provider picker',
+  async (authKind) => {
+    if (authKind === 'null') {
+      const wrappedDefault = Object.assign(
+        () => {
+          const base = originalAuthFactoryDefault();
+          return {
+            ...base,
+            currentUser: null,
+            onAuthStateChanged: (listener: (user: unknown) => void) => {
+              queueMicrotask(() => listener(null));
+              return jest.fn();
+            },
+          };
+        },
+        originalAuthFactoryDefault,
+      );
+      authFactory.default = wrappedDefault;
+    } else {
+      authState.isAnonymous = true;
+    }
+    enqueueCloudDeletion.mockRejectedValueOnce(new Error('lost response after irreversible fence'));
+    waitForAccountDeletionCredentialSafe.mockResolvedValueOnce(true);
+    const now = Date.now();
+    const { signInWithProvider } = loadAuthProvider({
+      account_delete_pending_auth_v1: JSON.stringify({
+        providerUid: 'provider-uid-1',
+        stableId: 'deleted-stable-id',
+        source: 'local',
+        phase: 'local_data_cleared',
+        createdAt: now - 8 * 24 * 60 * 60_000,
+        expiresAt: now - 24 * 60 * 60_000,
+      }),
+    });
+
+    await expect(signInWithProvider('google')).resolves.toMatchObject({ result: 'created_new' });
+    expect(waitForAccountDeletionCredentialSafe).toHaveBeenCalledTimes(1);
+    expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+    expect(restoreFromCloud).not.toHaveBeenCalled();
+    expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1')).toBeNull();
+  },
+);
 
 test('local-cleared guard for another provider allows a verified different provider', async () => {
   authState.isAnonymous = false;
@@ -1367,17 +1818,32 @@ test('pending-delete recovery does not rebind or rotate identity after Firebase 
     error: 'account_delete_pending',
   });
 
-  // One call is the normal pre-picker warmup; pending-delete recovery must not rebind.
-  expect(ensureAnonUser).toHaveBeenCalledTimes(1);
+  // Credential safety failed before the picker, so no anonymous identity may
+  // be prepared or rebound at all.
+  expect(ensureAnonUser).not.toHaveBeenCalled();
   expect(clearStableId).not.toHaveBeenCalled();
 });
 
 test('UI handoff is fast but linked background deletion waits for server acknowledgement', async () => {
   authState.isAnonymous = false;
   let resolveDispatch!: () => void;
-  let resolveAcknowledgement!: (value: { ok: true; jobId: string; status: 'queued'; created: true }) => void;
+  let resolveAcknowledgement!: (value: {
+    ok: true;
+    jobId: string;
+    status: 'queued';
+    created: true;
+    authReleased: true;
+    credentialSafe: true;
+  }) => void;
   const dispatchSettled = new Promise<void>((resolve) => { resolveDispatch = resolve; });
-  const acknowledgment = new Promise<{ ok: true; jobId: string; status: 'queued'; created: true }>((resolve) => {
+  const acknowledgment = new Promise<{
+    ok: true;
+    jobId: string;
+    status: 'queued';
+    created: true;
+    authReleased: true;
+    credentialSafe: true;
+  }>((resolve) => {
     resolveAcknowledgement = resolve;
   });
   startCloudDeletionEnqueue.mockReturnValueOnce({ dispatchSettled, acknowledgment });
@@ -1386,7 +1852,20 @@ test('UI handoff is fast but linked background deletion waits for server acknowl
   const handoff = await authProvider.beginAccountDeletion();
   expect(handoff.ok).toBe(true);
   if (!handoff.ok) throw new Error(handoff.reason);
+  const secureStore = require('expo-secure-store');
+  const secureLock = JSON.parse(await secureStore.getItemAsync('account_delete_pending_auth_v2'));
+  expect(secureLock.credentialSafeCapability).toHaveLength(64);
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .not.toContain('credentialSafeCapability');
   expect(authState.calls).not.toContain('signout');
+
+  const signIn = authProvider.signInWithProvider('google');
+  const signInBeforeAck = await Promise.race([
+    signIn,
+    new Promise<'blocked'>((resolve) => setTimeout(() => resolve('blocked'), 100)),
+  ]);
+  expect(signInBeforeAck).toBe('blocked');
+  expect(googleSignInImpl).not.toHaveBeenCalled();
 
   resolveDispatch();
   const result = await Promise.race([
@@ -1394,14 +1873,26 @@ test('UI handoff is fast but linked background deletion waits for server acknowl
     new Promise<'blocked'>((resolve) => setTimeout(() => resolve('blocked'), 100)),
   ]);
 
-  expect(startCloudDeletionEnqueue).toHaveBeenCalledWith('local-stable-id');
+  expect(startCloudDeletionEnqueue).toHaveBeenCalledWith(
+    'local-stable-id',
+    expect.objectContaining({ operationId: expect.any(String), capability: expect.any(String) }),
+  );
   expect(result).toBe('blocked');
   expect(authState.calls).not.toContain('signout');
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
   expect(beginPremiumAccountTransition).toHaveBeenCalledTimes(1);
 
-  resolveAcknowledgement({ ok: true, jobId: 'job-1', status: 'queued', created: true });
+  resolveAcknowledgement({
+    ok: true,
+    jobId: 'job-1',
+    status: 'queued',
+    created: true,
+    authReleased: true,
+    credentialSafe: true,
+  });
   await expect(handoff.completion).resolves.toEqual({ ok: true, cloudDeleted: false });
+  await expect(signIn).resolves.toMatchObject({ result: 'created_new' });
+  expect(googleSignInImpl).toHaveBeenCalledTimes(1);
   expect(authState.calls).toContain('signout');
 });
 
@@ -1421,7 +1912,10 @@ test('cold restart retries a local_cleared linked deletion before allowing recov
 
   await expect(authProvider.resumePendingAccountDeleteLocalExit()).resolves.toBe(true);
 
-  expect(startCloudDeletionEnqueue).toHaveBeenCalledWith('deleted-stable-id');
+  expect(startCloudDeletionEnqueue).toHaveBeenCalledWith(
+    'deleted-stable-id',
+    expect.objectContaining({ operationId: expect.any(String), capability: expect.any(String) }),
+  );
   expect(enqueueCloudDeletion).toHaveBeenCalledWith('deleted-stable-id');
   expect(authState.calls).toContain('signout');
 });
@@ -1443,9 +1937,12 @@ test('cold restart keeps a local_cleared linked deletion retryable when enqueue 
 
   await expect(authProvider.resumePendingAccountDeleteLocalExit()).resolves.toBe(false);
 
-  expect(startCloudDeletionEnqueue).toHaveBeenCalledWith('deleted-stable-id');
+  expect(startCloudDeletionEnqueue).toHaveBeenCalledWith(
+    'deleted-stable-id',
+    expect.objectContaining({ operationId: expect.any(String), capability: expect.any(String) }),
+  );
   expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
-    .toContain('"phase":"local_cleared"');
+    .toContain('"phase":"local_data_cleared"');
 });
 
 test('cold restart completes server_enqueued deletion without enqueueing or signing out fresh anon', async () => {
@@ -1467,8 +1964,7 @@ test('cold restart completes server_enqueued deletion without enqueueing or sign
   expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
   expect(authState.calls).not.toContain('signout');
   expect(clearStableId).toHaveBeenCalledTimes(1);
-  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
-    .toContain('"phase":"local_cleared"');
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1')).toBeNull();
 });
 
 test('account switch holds the clean-recovery exclusion until its async work finishes', async () => {
@@ -1491,41 +1987,79 @@ test('account switch holds the clean-recovery exclusion until its async work fin
 
 test('account deletion holds the clean-recovery exclusion until local exit finishes', async () => {
   authState.isAnonymous = false;
-  let resolveAcknowledgement!: (value: { ok: true; jobId: string; status: 'queued'; created: true }) => void;
+  let resolveAcknowledgement!: (value: {
+    ok: true;
+    jobId: string;
+    status: 'queued';
+    created: true;
+    authReleased: true;
+    credentialSafe: true;
+  }) => void;
   startCloudDeletionEnqueue.mockReturnValueOnce({
     dispatchSettled: Promise.resolve(),
     acknowledgment: new Promise(resolve => { resolveAcknowledgement = resolve; }),
   });
   const authProvider = loadAuthProvider();
 
-  const deleting = authProvider.deleteAccountAndWipe();
-  await waitForCall(startCloudDeletionEnqueue, 'startCloudDeletionEnqueue');
+  const handoff = await authProvider.beginAccountDeletion();
+  expect(handoff.ok).toBe(true);
+  if (!handoff.ok) throw new Error(handoff.reason);
+  const deleting = handoff.completion;
+  expect(startCloudDeletionEnqueue).toHaveBeenCalledTimes(1);
   const switching = authProvider.signOutAndWipeForAccountSwitch();
 
   await expect(switching).resolves.toEqual({
     ok: false,
     reason: 'clean_recovery_transition_active',
   });
-  resolveAcknowledgement({ ok: true, jobId: 'job-1', status: 'queued', created: true });
+  resolveAcknowledgement({
+    ok: true,
+    jobId: 'job-1',
+    status: 'queued',
+    created: true,
+    authReleased: true,
+    credentialSafe: true,
+  });
   await deleting;
 });
 
-test('account deletion completes local privacy exit after the bounded premium drain times out', async () => {
+test('account deletion fails closed before wipe when old premium writes cannot be drained', async () => {
   authState.isAnonymous = false;
   waitForPremiumAccountWorkIdleWithDeadline.mockResolvedValueOnce(false);
   const authProvider = loadAuthProvider();
 
-  await expect(authProvider.deleteAccountAndWipe()).resolves.toEqual({ ok: true, cloudDeleted: false });
+  await expect(authProvider.deleteAccountAndWipe()).resolves.toEqual({
+    ok: false,
+    reason: 'local_wipe_unverified',
+  });
 
   expect(waitForPremiumAccountWorkIdleWithDeadline).toHaveBeenCalledWith(1_500);
-  expect(authState.calls).toContain('signout');
-  expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
-  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(authState.calls).not.toContain('signout');
+  expect(clearStableId).not.toHaveBeenCalled();
   expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
-    .toContain('provider-uid-1');
-  expect(logEvent).toHaveBeenCalledWith('auth_premium_account_work_drain_timed_out', {
-    timeoutMs: 1_500,
+    .toContain('"phase":"prepared"');
+});
+
+test.each([
+  ['restore', () => waitForRestoreApplicationIdleWithDeadline.mockResolvedValueOnce(false)],
+  ['cloud', () => quiesceCloudSyncForAccountTransition.mockResolvedValueOnce(false)],
+] as const)('account deletion fails closed before clear when the %s writer drain times out', async (_name, failDrain) => {
+  authState.isAnonymous = false;
+  failDrain();
+  const authProvider = loadAuthProvider({ user_total_xp: '91' });
+
+  await expect(authProvider.beginAccountDeletion()).resolves.toEqual({
+    ok: false,
+    reason: 'local_wipe_unverified',
   });
+
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+  expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
+  expect(await lastLoadedAuthProviderStorage.getItem('user_total_xp')).toBe('91');
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
+    .toContain('"phase":"prepared"');
 });
 
 test('account switch preserves sign-out-before-wipe after the bounded premium drain times out', async () => {
@@ -1604,10 +2138,12 @@ test('account deletion exits locally but never binds anonymous identity when Fir
 
   expect(result).toEqual({ ok: false, reason: 'firebase_signout_failed' });
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
-  expect(clearStableId).toHaveBeenCalledTimes(1);
-  // Both calls are the intentional pre-signout notification/push-token cleanup
-  // paths. The failed Firebase sign-out must not add a third call for identity
-  // rotation or turn the still-provider session into an anonymous account.
+  // Exact ordering is sign-out before stable rotation. A failed sign-out keeps
+  // the old stable guard intact and must not create/bind an anonymous identity.
+  expect(clearStableId).not.toHaveBeenCalled();
+  // These two calls are the existing pre-signout notification/push-token
+  // cleanup paths while the provider is still current; failure must not add a
+  // third post-signout anonymous bind.
   expect(ensureAnonUser).toHaveBeenCalledTimes(2);
   expect(authState.isAnonymous).toBe(false);
   expect(logEvent.mock.calls.some(([name]) => name === 'auth_account_deleted')).toBe(false);
@@ -1620,7 +2156,7 @@ test('remote account deletion wipes this device without creating another deletio
     handleAccountDeletedOnAnotherDevice: () => Promise<void>;
   };
 
-  await authProvider.handleAccountDeletedOnAnotherDevice();
+  await expect(authProvider.handleAccountDeletedOnAnotherDevice()).resolves.toEqual({ ok: true });
 
   expect(enqueueCloudDeletion).not.toHaveBeenCalled();
   expect(authState.calls).toContain('signout');
@@ -1639,6 +2175,8 @@ test('the initiating device suppresses its own remote-deletion marker until loca
       jobId: 'job-1',
       status: 'queued' as const,
       created: true as const,
+      authReleased: true as const,
+      credentialSafe: true as const,
     }),
   });
   const authProvider = loadAuthProvider();
@@ -1672,7 +2210,7 @@ test('account data without XP is still preserved before a remote account swap', 
   });
   const result = await signInWithProvider('google');
 
-  expect(result.result).toBe('merged_devices');
+  expect(result).toMatchObject({ result: 'merged_devices' });
   expect(syncToCloud).toHaveBeenCalledWith({ forceNow: true });
   expect(mergeStableAccountsViaServer).toHaveBeenCalledTimes(1);
 });

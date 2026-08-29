@@ -19,28 +19,20 @@ const phoneEconomy = fs.readFileSync(path.join(root, 'modules', 'phone-state', '
 
 for (const needle of [
   "from '../components/session_attempts/SessionAttemptsHud'",
-  "from '../components/session_attempts/SessionAttemptsRecoveryModal'",
   "from '../hooks/useSessionAttempts'",
+  "from '../hooks/useSessionAttemptAutoReset'",
   '<SessionAttemptsHud',
-  '<SessionAttemptsRecoveryModal',
   "verdict: correct ? 'correct' : 'pedagogical_wrong'",
   "attemptEffect === 'attempts_exhausted'",
-  'SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs',
 ]) {
   assert.ok(swipe.includes(needle), `flashcards_swipe missing: ${needle}`);
 }
 assert.ok(!swipe.includes('Попытка потеряна'), 'wrong-answer toast is forbidden');
 assert.ok(registry.includes("'/flashcards_swipe'"), 'ordinary training route is not registered');
-assert.ok(hook.includes('recoveryBusyRef.current'), 'same-frame recovery latch is missing');
+assert.ok(hook.includes('restoreAfterSessionRuneForfeit'), 'automatic local attempt restore is missing');
 assert.ok(
-  giftInventory.includes("key: 'attempt_restore_all'")
-    && giftInventory.includes("lifetime: { kind: 'permanent' }"),
-  'Second chance must remain in inventory without the 72-hour lifetime',
-);
-assert.ok(
-  rewardCatalog.includes("'attempt_restore_all'")
-    && rewardCatalog.includes('attempt_restore_all: 41_386'),
-  'Second chance spin weight (~15%) is missing',
+  !giftInventory.includes("key: 'attempt_restore_all'"),
+  'retired Second chance must not appear in active inventory',
 );
 assert.ok(
   recovery.includes("kind: 'session_attempt_recovery_rune_debit'")

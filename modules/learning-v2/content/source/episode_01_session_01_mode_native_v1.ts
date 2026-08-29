@@ -58,7 +58,7 @@ function localizedPhraseDistractorFeedback(
     LEARNING_V2_INTERFACE_LOCALES.map((locale) => {
       const reason = phrase?.localizedDetails?.[locale]?.distractors.find(
         (entry) => entry.value === value,
-      )?.reason;
+      )?.reason ?? EPISODE_01_SESSION_01_PHRASE_THIRD_DISTRACTOR_FEEDBACK[value]?.[locale];
       if (locale === "en" && !reason) {
         const russian = phrase?.localizedDetails?.ru?.distractors.find(
           (entry) => entry.value === value,
@@ -79,6 +79,23 @@ function localizedPhraseDistractorFeedback(
     }),
   ) as LearningV2Localized<string>;
 }
+
+export const EPISODE_01_SESSION_01_PHRASE_THIRD_DISTRACTOR_FEEDBACK: Readonly<
+  Record<string, LearningV2Localized<string>>
+> = Object.freeze({
+  me: L({
+    ru: 'Me означает «меня/мне». Сообщение говорящего о себе начинается с I.', uk: 'Me означає «мене/мені». Повідомлення мовця про себе починається з I.', es: 'Me funciona como objeto. El mensaje del hablante sobre sí mismo empieza con I.', 'pt-BR': 'Me funciona como objeto. A mensagem de quem fala sobre si começa com I.', vi: 'Me là dạng tân ngữ. Người nói bắt đầu lời về mình bằng I.', id: 'Me adalah bentuk objek. Penutur memulai pernyataan tentang dirinya dengan I.', tr: 'Me nesne biçimidir. Konuşan kendisiyle ilgili söze I ile başlar.', pl: 'Me jest formą dopełnienia. Mówiący zaczyna wypowiedź o sobie od I.',
+  }),
+  "I'm": L({
+    ru: "I'm уже содержит I и am. После отдельного I нужна только связка am.", uk: "I'm уже містить I та am. Після окремого I потрібна лише зв’язка am.", es: "I'm ya contiene I y am. Después de I solo hace falta am.", 'pt-BR': "I'm já contém I e am. Depois de I, basta am.", vi: "I'm đã chứa I và am. Sau I riêng chỉ cần am.", id: "I'm sudah memuat I dan am. Setelah I terpisah, cukup am.", tr: "I'm zaten I ve am içerir. Ayrı I sonrasında yalnız am gerekir.", pl: "I'm zawiera już I oraz am. Po osobnym I potrzebne jest tylko am.",
+  }),
+  her: L({
+    ru: 'Her означает «её/ей» и теряет финальную e. Место «здесь» пишется here.', uk: 'Her означає «її/їй» і втрачає кінцеву e. Місце «тут» пишеться here.', es: 'Her significa «su/a ella» y pierde la e final. «Aquí» se escribe here.', 'pt-BR': 'Her significa «dela/a ela» e perde o e final. «Aqui» se escreve here.', vi: 'Her nghĩa là “cô ấy/của cô ấy” và thiếu e cuối. “Ở đây” viết here.', id: 'Her berarti “dia/miliknya” dan kehilangan e akhir. “Di sini” ditulis here.', tr: 'Her “onu/onun” anlamındadır ve sondaki e eksiktir. “Burada” here yazılır.', pl: 'Her znaczy „ją/jej” i nie ma końcowego e. „Tutaj” zapisujemy here.',
+  }),
+  red: L({
+    ru: 'Red означает «красный» и заканчивается раньше. Состояние «готов» выражает ready.', uk: 'Red означає «червоний» і закінчується раніше. Стан «готовий» передає ready.', es: 'Red significa «rojo» y termina antes. El estado «listo» se expresa con ready.', 'pt-BR': 'Red significa «vermelho» e termina antes. O estado «pronto» se expressa com ready.', vi: 'Red nghĩa là “màu đỏ” và kết thúc sớm hơn. “Sẵn sàng” là ready.', id: 'Red berarti “merah” dan lebih pendek. Keadaan “siap” dinyatakan dengan ready.', tr: 'Red “kırmızı” demektir ve daha kısadır. “Hazır” durumu ready ile anlatılır.', pl: 'Red znaczy „czerwony” i kończy się wcześniej. Stan „gotowy” wyraża ready.',
+  }),
+});
 
 function feedback(
   responseId: string,
@@ -137,18 +154,19 @@ function phraseBuilderFeedback(
   ]);
 }
 
-const L = (source: LocalizedSource): LearningV2Localized<string> =>
-  expandLocalized(source);
+function L(source: LocalizedSource): LearningV2Localized<string> {
+  return expandLocalized(source);
+}
 
 const LISTEN_HERE_READY = L({
-  ru: "В конце прозвучало here — короткое «здесь». Ready звучит длиннее и говорит о готовности, поэтому это другая фраза.",
-  uk: "Наприкінці прозвучало here — коротке «тут». Ready звучить довше й говорить про готовність, тому це інша фраза.",
-  es: "Al final sonó here, la palabra breve para «aquí». Ready es más larga y habla de estar listo: es otra frase.",
-  "pt-BR": "No fim soou here, a palavra curta para «aqui». Ready é mais longa e fala de estar pronto: é outra frase.",
-  vi: "Cuối câu là here, từ ngắn có nghĩa “ở đây”. Ready dài hơn và nói về sự sẵn sàng, nên đó là câu khác.",
-  id: "Bagian akhirnya berbunyi here, kata pendek yang berarti “di sini”. Ready lebih panjang dan menyatakan kesiapan, jadi itu frasa lain.",
-  tr: "Sonda kısa olan here, yani «burada» duyuldu. Ready daha uzundur ve hazırlığı anlatır; bu yüzden başka bir cümledir.",
-  pl: "Na końcu słychać krótkie here — „tutaj”. Ready jest dłuższe i mówi o gotowości, więc to inne zdanie.",
+  ru: "I am ready означает «я готов», но прозвучало I am here — «я здесь»: последнее слово указывает место, а не готовность.",
+  uk: "I am ready означає «я готовий», але прозвучало I am here — «я тут»: останнє слово вказує місце, а не готовність.",
+  es: "I am ready significa «estoy listo», pero sonó I am here, «estoy aquí»: la última palabra indica lugar, no preparación.",
+  "pt-BR": "I am ready significa «estou pronto», mas soou I am here, «estou aqui»: a última palavra indica lugar, não preparo.",
+  vi: "I am ready nghĩa là “tôi sẵn sàng”, nhưng âm thanh là I am here, “tôi ở đây”: từ cuối chỉ nơi chốn, không phải sự sẵn sàng.",
+  id: "I am ready berarti “saya siap”, tetapi yang terdengar I am here, “saya di sini”: kata terakhir menunjukkan tempat, bukan kesiapan.",
+  tr: "I am ready “hazırım” demektir; duyulan ise I am here, “buradayım”: son sözcük hazırlığı değil, yeri gösterir.",
+  pl: "I am ready znaczy „jestem gotowy”, lecz słychać I am here — „jestem tutaj”: ostatnie słowo wskazuje miejsce, nie gotowość.",
 });
 const LISTEN_THERE_MEANING = L({
   ru: "Я там", uk: "Я там", es: "Estoy allí", "pt-BR": "Estou lá",
@@ -159,24 +177,24 @@ const LISTEN_HOME_MEANING = L({
   vi: "Tôi ở nhà", id: "Saya di rumah", tr: "Evdeyim", pl: "Jestem w domu",
 });
 const LISTEN_HERE_THERE = L({
-  ru: "There начинается звонким /ð/ и означает «там». В записи слышится лёгкий /h/ и короткое here — «здесь».",
-  uk: "There починається дзвінким /ð/ і означає «там». У записі чути легкий /h/ і коротке here — «тут».",
-  es: "There empieza con /ð/ y significa «allí». En el audio se oye la /h/ suave de here, «aquí».",
-  "pt-BR": "There começa com /ð/ e significa «lá». No áudio aparece o /h/ leve de here, «aqui».",
-  vi: "There mở đầu bằng /ð/ và nghĩa là “ở đó”. Âm thanh có /h/ nhẹ của here, nghĩa là “ở đây”.",
-  id: "There diawali /ð/ dan berarti “di sana”. Audio memuat /h/ ringan pada here, yaitu “di sini”.",
-  tr: "There /ð/ ile başlar ve “orada” demektir. Kayıtta here sözcüğünün hafif /h/ sesi, yani “burada” duyulur.",
-  pl: "There zaczyna się od /ð/ i znaczy „tam”. W nagraniu słychać lekkie /h/ słowa here — „tutaj”.",
+  ru: "I am there означает «я там», но прозвучало I am here — «я здесь». Ловушка меняет именно место.",
+  uk: "I am there означає «я там», але прозвучало I am here — «я тут». Пастка змінює саме місце.",
+  es: "I am there significa «estoy allí», pero sonó I am here, «estoy aquí». La trampa cambia justo el lugar.",
+  "pt-BR": "I am there significa «estou lá», mas soou I am here, «estou aqui». A armadilha troca justamente o lugar.",
+  vi: "I am there nghĩa là “tôi ở đó”, nhưng âm thanh là I am here, “tôi ở đây”. Bẫy nằm ở việc đổi địa điểm.",
+  id: "I am there berarti “saya di sana”, tetapi yang terdengar I am here, “saya di sini”. Jebakannya menukar tempat.",
+  tr: "I am there “oradayım” demektir; duyulan I am here, “buradayım”. Tuzak yalnızca yeri değiştirir.",
+  pl: "I am there znaczy „jestem tam”, lecz słychać I am here — „jestem tutaj”. Pułapka zmienia właśnie miejsce.",
 });
 const LISTEN_HERE_HOME = L({
-  ru: "Home заканчивается долгим /oʊm/ и означает «дома». В записи конец короче: here /hɪr/, то есть «здесь».",
-  uk: "Home закінчується довгим /oʊm/ і означає «вдома». У записі кінець коротший: here /hɪr/, тобто «тут».",
-  es: "Home termina en /oʊm/ y significa «en casa». El audio acaba con el breve here /hɪr/, «aquí».",
-  "pt-BR": "Home termina em /oʊm/ e significa «em casa». O áudio termina no curto here /hɪr/, «aqui».",
-  vi: "Home kết thúc bằng /oʊm/ và nghĩa là “ở nhà”. Âm thanh kết thúc ngắn hơn: here /hɪr/, “ở đây”.",
-  id: "Home berakhir /oʊm/ dan berarti “di rumah”. Audio berakhir lebih pendek: here /hɪr/, “di sini”.",
-  tr: "Home /oʊm/ ile biter ve “evde” demektir. Kayıt daha kısa here /hɪr/, yani “burada” ile biter.",
-  pl: "Home kończy się długim /oʊm/ i znaczy „w domu”. Nagranie kończy krótsze here /hɪr/ — „tutaj”.",
+  ru: "I am home означает «я дома», но прозвучало I am here — «я здесь». Here говорит о текущем месте, не обязательно о доме.",
+  uk: "I am home означає «я вдома», але прозвучало I am here — «я тут». Here називає поточне місце, не обов’язково дім.",
+  es: "I am home significa «estoy en casa», pero sonó I am here, «estoy aquí». Here marca el lugar actual, no necesariamente la casa.",
+  "pt-BR": "I am home significa «estou em casa», mas soou I am here, «estou aqui». Here marca o lugar atual, não necessariamente casa.",
+  vi: "I am home nghĩa là “tôi ở nhà”, nhưng âm thanh là I am here, “tôi ở đây”. Here chỉ vị trí hiện tại, không nhất thiết là nhà.",
+  id: "I am home berarti “saya di rumah”, tetapi yang terdengar I am here, “saya di sini”. Here menunjuk tempat saat ini, belum tentu rumah.",
+  tr: "I am home “evdeyim” demektir; duyulan I am here, “buradayım”. Here şu anki yeri söyler; bu yer ev olmak zorunda değildir.",
+  pl: "I am home znaczy „jestem w domu”, lecz słychać I am here — „jestem tutaj”. Here wskazuje obecne miejsce, niekoniecznie dom.",
 });
 
 const HERE_AUDIO: LearningV2ModeAudioReferenceV1 = Object.freeze({
@@ -291,17 +309,17 @@ const EXTRA_MEANING_TRAPS = Object.freeze({
     }),
   }),
   1: Object.freeze({
-    value: "be",
-    reasonCode: "am_meaning_be_dictionary_form",
+    value: "I",
+    reasonCode: "am_meaning_i_speaker_not_link",
     feedback: L({
-      ru: "Be — словарная форма «быть». Рядом с I в готовой фразе она меняется на личную форму am.",
-      uk: "Be — словникова форма «бути». Поруч з I у готовій фразі вона змінюється на особову форму am.",
-      es: "Be es la forma de diccionario. Junto a I, una frase completa necesita la forma personal am.",
-      "pt-BR": "Be é a forma de dicionário. Ao lado de I, a frase pronta usa a forma pessoal am.",
-      vi: "Be là dạng từ điển. Trong câu hoàn chỉnh với I, dạng cần dùng là am.",
-      id: "Be adalah bentuk kamus. Dalam kalimat lengkap bersama I, bentuk yang dipakai ialah am.",
-      tr: "Be sözlük biçimidir. I ile kurulan tamamlanmış cümlede kişi biçimi am kullanılır.",
-      pl: "Be jest formą słownikową. W gotowym zdaniu przy I potrzebna jest forma osobowa am.",
+      ru: "I означает «я» и называет говорящего. В этом задании нужна связка «есть / являюсь» — am.",
+      uk: "I означає «я» і називає мовця. Тут потрібна зв’язка «є» — am.",
+      es: "I significa «yo» y nombra a quien habla. Aquí se pide la unión «soy/estoy»: am.",
+      "pt-BR": "I significa «eu» e nomeia quem fala. Aqui se pede a ligação «sou/estou»: am.",
+      vi: "I nghĩa là “tôi” và gọi tên người nói. Ở đây cần từ nối “là/đang”: am.",
+      id: "I berarti “saya” dan menyebut penutur. Di sini yang dicari adalah penghubung “adalah”: am.",
+      tr: "I “ben” demektir ve konuşanı gösterir. Burada istenen bağlayıcı “-im” anlamındaki am'dir.",
+      pl: "I znaczy „ja” i wskazuje mówiącego. Tutaj potrzebny jest łącznik „jestem”: am.",
     }),
   }),
   2: Object.freeze({
@@ -338,16 +356,16 @@ const EXTRA_MEANING_TRAPS = Object.freeze({
 // the English trap tokens here turned a meaning task into another spelling
 // task (for example I / me / my / you under «значение слова»).
 const VOCABULARY_TRAP_MEANINGS = Object.freeze({
-  me: L({ ru: "меня / мне", uk: "мене / мені", es: "me / a mí", "pt-BR": "me / a mim", vi: "tôi ở vị trí tân ngữ", id: "saya sebagai objek", tr: "beni / bana", pl: "mnie / mi" }),
-  my: L({ ru: "мой / моя", uk: "мій / моя", es: "mi", "pt-BR": "meu / minha", vi: "của tôi", id: "milik saya", tr: "benim", pl: "mój / moja" }),
-  you: L({ ru: "ты / вы", uk: "ти / ви", es: "tú / usted", "pt-BR": "você", vi: "bạn", id: "kamu / Anda", tr: "sen / siz", pl: "ty / wy" }),
-  an: L({ ru: "неопределённый артикль an", uk: "неозначений артикль an", es: "el artículo an", "pt-BR": "o artigo an", vi: "mạo từ an", id: "artikel an", tr: "an tanımlığı", pl: "rodzajnik an" }),
+  me: L({ ru: "меня", uk: "мене", es: "me", "pt-BR": "me", vi: "tôi ở vị trí tân ngữ", id: "saya sebagai objek", tr: "beni", pl: "mnie" }),
+  my: L({ ru: "мой", uk: "мій", es: "mi", "pt-BR": "meu", vi: "của tôi", id: "milik saya", tr: "benim", pl: "mój" }),
+  you: L({ ru: "ты", uk: "ти", es: "tú", "pt-BR": "você", vi: "bạn", id: "kamu", tr: "sen", pl: "ty" }),
+  an: L({ ru: "слово an", uk: "слово an", es: "la palabra an", "pt-BR": "a palavra an", vi: "từ an", id: "kata an", tr: "an sözcüğü", pl: "słowo an" }),
   m: L({ ru: "буква m", uk: "літера m", es: "la letra m", "pt-BR": "a letra m", vi: "chữ m", id: "huruf m", tr: "m harfi", pl: "litera m" }),
-  be: L({ ru: "быть — словарная форма", uk: "бути — словникова форма", es: "ser/estar — forma de diccionario", "pt-BR": "ser/estar — forma de dicionário", vi: "dạng từ điển ‘be’", id: "bentuk kamus ‘be’", tr: "sözlük biçimi ‘be’", pl: "być — forma słownikowa" }),
+  I: L({ ru: "я", uk: "я", es: "yo", "pt-BR": "eu", vi: "tôi", id: "saya", tr: "ben", pl: "ja" }),
   there: L({ ru: "там", uk: "там", es: "allí", "pt-BR": "lá", vi: "ở đó", id: "di sana", tr: "orada", pl: "tam" }),
-  home: L({ ru: "дом / дома", uk: "дім / удома", es: "casa / en casa", "pt-BR": "casa / em casa", vi: "nhà / ở nhà", id: "rumah / di rumah", tr: "ev / evde", pl: "dom / w domu" }),
-  near: L({ ru: "рядом / близко", uk: "поруч / близько", es: "cerca", "pt-BR": "perto", vi: "gần", id: "dekat", tr: "yakın", pl: "blisko" }),
-  busy: L({ ru: "занят / занята", uk: "зайнятий / зайнята", es: "ocupado / ocupada", "pt-BR": "ocupado / ocupada", vi: "bận", id: "sibuk", tr: "meşgul", pl: "zajęty / zajęta" }),
+  home: L({ ru: "дома", uk: "удома", es: "en casa", "pt-BR": "em casa", vi: "ở nhà", id: "di rumah", tr: "evde", pl: "w domu" }),
+  near: L({ ru: "рядом", uk: "поруч", es: "cerca", "pt-BR": "perto", vi: "gần", id: "dekat", tr: "yakın", pl: "blisko" }),
+  busy: L({ ru: "занят", uk: "зайнятий", es: "ocupado", "pt-BR": "ocupado", vi: "bận", id: "sibuk", tr: "meşgul", pl: "zajęty" }),
   tired: L({ ru: "устал / устала", uk: "втомився / втомилася", es: "cansado / cansada", "pt-BR": "cansado / cansada", vi: "mệt", id: "lelah", tr: "yorgun", pl: "zmęczony / zmęczona" }),
   waiting: L({ ru: "жду / ожидаю", uk: "чекаю", es: "esperando", "pt-BR": "esperando", vi: "đang chờ", id: "sedang menunggu", tr: "bekliyorum", pl: "czekam" }),
 } as const satisfies Readonly<Record<string, LearningV2Localized<string>>>);
@@ -357,13 +375,46 @@ function vocabularyTrapMeaning(value: string): LearningV2Localized<string> {
     value as keyof typeof VOCABULARY_TRAP_MEANINGS
   ];
   if (!localized) throw new Error(`session_01_trap_meaning_missing:${value}`);
-  return localized;
+  return Object.freeze(
+    Object.fromEntries(
+      Object.entries(localized).map(([locale, copy]) => [
+        locale,
+        copy.split("/")[0]!.trim(),
+      ]),
+    ),
+  ) as unknown as LearningV2Localized<string>;
+}
+
+function atomicLocalizedMeaning(
+  localized: LearningV2Localized<string>,
+): LearningV2Localized<string> {
+  return Object.freeze(
+    Object.fromEntries(
+      Object.entries(localized).map(([locale, copy]) => [
+        locale,
+        copy.split("/")[0]!.trim(),
+      ]),
+    ),
+  ) as unknown as LearningV2Localized<string>;
+}
+
+function atomicVocabularyMeaning(
+  item: (typeof vocabulary)[number],
+): LearningV2Localized<string> {
+  const localized = expandLocalized(item.meaning);
+  return Object.freeze(
+    Object.fromEntries(
+      Object.entries(localized).map(([locale, copy]) => [
+        locale,
+        copy.split("/")[0]!.trim(),
+      ]),
+    ),
+  ) as unknown as LearningV2Localized<string>;
 }
 
 function listenChooseWord(index: number): LearningV2ModeNativePayloadV1 {
   const item = vocabulary[index]!;
   const contact = item.contacts.recognize;
-  const extra = EXTRA_RECOGNIZE_TRAPS[index as keyof typeof EXTRA_RECOGNIZE_TRAPS];
   return Object.freeze({
     family: "listen_choose",
     referenceAudio: WORD_AUDIO[index]!,
@@ -379,26 +430,9 @@ function listenChooseWord(index: number): LearningV2ModeNativePayloadV1 {
         targetText: entry.value,
         meaningByLocale: null,
       })),
-      ...(extra
-        ? [{
-            responseId: `${item.id}:recognize:${extra.reasonCode}`,
-            targetText: extra.value,
-            meaningByLocale: null,
-          }]
-        : []),
     ]),
     transcriptRevealPolicy: "after_first_attempt",
-    choiceFeedback: Object.freeze([
-      ...vocabularyFeedback(item, "recognize"),
-      ...(extra
-        ? [feedback(
-            `${item.id}:recognize:${extra.reasonCode}`,
-            false,
-            `phonetic:${extra.reasonCode}`,
-            extra.feedback,
-          )]
-        : []),
-    ]),
+    choiceFeedback: vocabularyFeedback(item, "recognize"),
   });
 }
 
@@ -418,8 +452,6 @@ function vocabularyFeedbackForReason(
 
 function listenBuildWord(index: number): LearningV2ModeNativePayloadV1 {
   const item = vocabulary[index]!;
-  const extra = EXTRA_RECOGNIZE_TRAPS[index as keyof typeof EXTRA_RECOGNIZE_TRAPS];
-  if (!extra) throw new Error(`session_01_listen_build_extra_trap_missing:${item.id}`);
   return Object.freeze({
     family: "listen_build_dictation",
     referenceAudio: WORD_AUDIO[index]!,
@@ -431,24 +463,14 @@ function listenBuildWord(index: number): LearningV2ModeNativePayloadV1 {
     // learning decision.
     authoredDistractorTokens: Object.freeze([
       ...item.contacts.recognize.distractors.map((entry) => entry.value),
-      extra.value,
     ]),
-    slotFeedback: Object.freeze([
-      ...vocabularyFeedback(item, "recognize"),
-      feedback(
-        `${item.id}:recognize:${extra.reasonCode}`,
-        false,
-        `phonetic:${extra.reasonCode}`,
-        extra.feedback,
-      ),
-    ]),
+    slotFeedback: vocabularyFeedback(item, "recognize"),
   });
 }
 
 function listenChooseMeaning(index: number): LearningV2ModeNativePayloadV1 {
   const item = vocabulary[index]!;
   const contact = item.contacts.retrieve_meaning;
-  const extra = EXTRA_MEANING_TRAPS[index as keyof typeof EXTRA_MEANING_TRAPS];
   return Object.freeze({
     family: "listen_choose",
     referenceAudio: WORD_AUDIO[index]!,
@@ -457,42 +479,22 @@ function listenChooseMeaning(index: number): LearningV2ModeNativePayloadV1 {
       {
         responseId: `${item.id}:retrieve_meaning:correct`,
         targetText: item.target,
-        meaningByLocale: expandLocalized(item.meaning),
+        meaningByLocale: atomicVocabularyMeaning(item),
       },
       ...contact.distractors.map((entry) => ({
         responseId: `${item.id}:retrieve_meaning:${entry.reasonCode}`,
         targetText: entry.value,
         meaningByLocale: vocabularyTrapMeaning(entry.value),
       })),
-      {
-        responseId: `${item.id}:retrieve_meaning:${extra.reasonCode}`,
-        targetText: extra.value,
-        meaningByLocale: vocabularyTrapMeaning(extra.value),
-      },
     ]),
     transcriptRevealPolicy: "after_first_attempt",
-    choiceFeedback: Object.freeze([
-      ...vocabularyFeedback(item, "retrieve_meaning"),
-      feedback(
-        `${item.id}:retrieve_meaning:${extra.reasonCode}`,
-        false,
-        `semantic_neighbor:${extra.reasonCode}`,
-        extra.feedback,
-      ),
-    ]),
+    choiceFeedback: vocabularyFeedback(item, "retrieve_meaning"),
   });
 }
 
 function vocabularyFormBuilder(index: number): LearningV2ModeNativePayloadV1 {
   const item = vocabulary[index]!;
   const build = item.contacts.build_form;
-  const buildTrapValues = new Set(build.distractors.map((entry) => entry.value));
-  const extra = item.contacts.recognize.distractors.find(
-    (entry) => !buildTrapValues.has(entry.value),
-  );
-  if (!extra) {
-    throw new Error(`session_01_form_builder_unique_trap_missing:${item.id}`);
-  }
   return Object.freeze({
     family: "phrase_builder",
     targetPhrase: item.target,
@@ -500,19 +502,14 @@ function vocabularyFormBuilder(index: number): LearningV2ModeNativePayloadV1 {
     orderedTokens: Object.freeze([item.target]),
     authoredDistractorTokens: Object.freeze([
       ...build.distractors.map((entry) => entry.value),
-      extra.value,
     ]),
-    slotFeedback: Object.freeze([
-      ...vocabularyFeedback(item, "build_form"),
-      vocabularyFeedbackForReason(item, "recognize", extra.reasonCode),
-    ]),
+    slotFeedback: vocabularyFeedback(item, "build_form"),
   });
 }
 
 function vocabularyMeaningBuilder(index: number): LearningV2ModeNativePayloadV1 {
   const item = vocabulary[index]!;
   const meaning = item.contacts.retrieve_meaning;
-  const extra = EXTRA_MEANING_TRAPS[index as keyof typeof EXTRA_MEANING_TRAPS];
   return Object.freeze({
     family: "phrase_builder",
     targetPhrase: item.target,
@@ -520,17 +517,8 @@ function vocabularyMeaningBuilder(index: number): LearningV2ModeNativePayloadV1 
     orderedTokens: Object.freeze([item.target]),
     authoredDistractorTokens: Object.freeze([
       ...meaning.distractors.map((entry) => entry.value),
-      extra.value,
     ]),
-    slotFeedback: Object.freeze([
-      ...vocabularyFeedback(item, "retrieve_meaning"),
-      feedback(
-        `${item.id}:retrieve_meaning:${extra.reasonCode}`,
-        false,
-        `semantic_neighbor:${extra.reasonCode}`,
-        extra.feedback,
-      ),
-    ]),
+    slotFeedback: vocabularyFeedback(item, "retrieve_meaning"),
   });
 }
 
@@ -566,7 +554,7 @@ function listenChooseHerePhrase(): LearningV2ModeNativePayloadV1 {
       {
         responseId: `${phrase.id}:listen:ready`,
         targetText: ready.english,
-        meaningByLocale: localizedPhraseField(1, "meaning"),
+        meaningByLocale: atomicLocalizedMeaning(localizedPhraseField(1, "meaning")),
       },
       {
         responseId: `${phrase.id}:listen:there`,
@@ -613,7 +601,10 @@ function contextGap(phraseIndex: number): LearningV2ModeNativePayloadV1 {
   const phrase = phrases[phraseIndex]!;
   const item = vocabulary[0]!;
   const subjectFeedback = vocabularyFeedback(item, "retrieve_meaning");
-  const youTrap = EXTRA_MEANING_TRAPS[0];
+  const youTrap = item.contacts.retrieve_meaning.distractors.find(
+    (entry) => entry.value === "you",
+  );
+  if (!youTrap) throw new Error("session_01_context_gap_you_trap_missing");
   return Object.freeze({
     family: "context_gap_grammar",
     localizedScene: localizedPhraseField(phraseIndex, "meaning"),
@@ -625,15 +616,7 @@ function contextGap(phraseIndex: number): LearningV2ModeNativePayloadV1 {
       { responseId: `${item.id}:retrieve_meaning:${youTrap.reasonCode}`, text: "you" },
     ]),
     testedDimension: "grammar:first_person_subject_before_am",
-    choiceFeedback: Object.freeze([
-      ...subjectFeedback,
-      feedback(
-        `${item.id}:retrieve_meaning:${youTrap.reasonCode}`,
-        false,
-        `grammar:${youTrap.reasonCode}`,
-        youTrap.feedback,
-      ),
-    ]),
+    choiceFeedback: Object.freeze(subjectFeedback),
   });
 }
 
@@ -659,9 +642,9 @@ function repeatCompare(phraseIndex: number): LearningV2ModeNativePayloadV1 {
 
 const SPEED_MATCH_VOCABULARY = Object.freeze([
   { id: "i", target: "I", meaning: L({ ru: "я", uk: "я", es: "yo", "pt-BR": "eu", vi: "tôi", id: "saya", tr: "ben", pl: "ja" }) },
-  { id: "am", target: "am", meaning: L({ ru: "есть / являюсь", uk: "є / являюся", es: "soy / estoy", "pt-BR": "sou / estou", vi: "là", id: "adalah", tr: "-im / -ım", pl: "jestem" }) },
+  { id: "am", target: "am", meaning: L({ ru: "есть", uk: "є", es: "soy", "pt-BR": "sou", vi: "là", id: "adalah", tr: "-im", pl: "jestem" }) },
   { id: "here", target: "here", meaning: L({ ru: "здесь", uk: "тут", es: "aquí", "pt-BR": "aqui", vi: "ở đây", id: "di sini", tr: "burada", pl: "tutaj" }) },
-  { id: "ready", target: "ready", meaning: L({ ru: "готов / готова", uk: "готовий / готова", es: "listo / lista", "pt-BR": "pronto / pronta", vi: "sẵn sàng", id: "siap", tr: "hazır", pl: "gotowy / gotowa" }) },
+  { id: "ready", target: "ready", meaning: L({ ru: "готов", uk: "готовий", es: "listo", "pt-BR": "pronto", vi: "sẵn sàng", id: "siap", tr: "hazır", pl: "gotowy" }) },
 ] as const);
 
 const speedMatchVocabularyPayload: LearningV2ModeNativePayloadV1 = Object.freeze({

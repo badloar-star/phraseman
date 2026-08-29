@@ -16,6 +16,8 @@ import {
 } from "./learning_v2_activity_audio_transport_v1";
 import { getStableId } from "./stable_id";
 import { learningV2Session1BundledAudioModuleForObjectPathV1 } from "./learning_v2_session1_production_audio_v1";
+import { learningV2EsSession1BundledAudioModuleForObjectPathV1 } from "./learning_v2_es_session1_production_audio_v1";
+import { learningV2EsSession2BundledAudioModuleForObjectPathV1 } from "./learning_v2_es_session2_production_audio_v1";
 import {
   withBackgroundNetworkLease,
   type BackgroundNetworkLease,
@@ -269,8 +271,17 @@ async function preload(
     if (!isCurrentAccountGeneration(account, account.stableId)) fail();
     const file = orderedFiles[index]!;
     const identity = identityForFile(file, index);
+    // зачем испанский lookup рядом с английским (владелец, 2026-08-27,
+    // mode-native переписка ES session1): у английской session1 свой bundled
+    // asset lookup по objectPath; испанская session1 — свой (собственные
+    // sha256, свои require()). Без этой строки испанские objectPath не
+    // находили bundledModule, падали в сетевую ветку ниже (там нет реального
+    // Firebase Storage объекта для DEV-озвучки) и давали
+    // learning_v2_voice_audio_offline_cache_invalid.
     const bundledModule =
-      learningV2Session1BundledAudioModuleForObjectPathV1(file.objectPath);
+      learningV2Session1BundledAudioModuleForObjectPathV1(file.objectPath) ??
+      learningV2EsSession1BundledAudioModuleForObjectPathV1(file.objectPath) ??
+      learningV2EsSession2BundledAudioModuleForObjectPathV1(file.objectPath);
     const cache = await prepareLearningV2VoiceAudioOfflineBytesV1({
       identity,
       loadBytes: async () => {

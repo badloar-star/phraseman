@@ -98,7 +98,7 @@ export default function LevelExamIntro({
           <TapScale
             onPress={onBack}
             accessibilityLabel={triLang(lang, {
-              ru: 'Вернуться назад', uk: 'Повернутися назад', es: 'Volver',
+              ru: 'Вернуться назад', uk: 'Повернутися назад', en: 'Go back', es: 'Volver',
               'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri dön', pl: 'Wróć',
             })}
             style={[styles.backButton, { backgroundColor: t.bgSurface }]}

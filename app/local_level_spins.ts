@@ -18,10 +18,14 @@ import { isLocalSpinCreditId, isLocalSpinReceiptCreditId } from './level_spin_cr
 import {
   localJournalEntryForReceipt,
   mergeLocalSpinJournal,
+  paidLevelSpinEnvelopeKey,
+  paidLevelSpinEnvelopePrefix,
+  parsePaidLevelSpinEnvelope,
   parseLocalPendingReveal,
   isRecoverableLocalLevelSpinReceipt,
   type LocalLevelSpinJournalEntry,
   type LocalLevelSpinReceipt,
+  type PaidLevelSpinEnvelopeV1,
 } from './level_spin_local_contract';
 import {
   LEVEL_SPIN_REWARD_CATALOG_VERSION,
@@ -29,6 +33,18 @@ import {
 } from './level_spin_reward_catalog';
 import { listExhaustedSpinRewardIds } from './theme_gift_pool';
 import { stableUniqueStrings } from './spin_gift_storage_integrity';
+import {
+  PAID_LEVEL_SPIN_RUNE_PRICE,
+  preparePaidLevelSpinRunePurchase,
+  recoverAndHydrateLevelSpinStarGrants,
+  sessionAttemptRuneOperationStorageKey,
+} from './level_spin_star_grants';
+import { commitPhoneStateNonMonetaryEconomyGrant } from './phone_state_economy_bridge';
+import {
+  hasValidPaidLevelSpinRuneFingerprint,
+  parsePaidLevelSpinRuneOperation,
+  type PaidLevelSpinRuneOperationV1,
+} from '../modules/phone-state/domains/economy';
 export { localLevelSpinReceiptToInventory, type LocalLevelSpinReceipt } from './level_spin_local_contract';
 
 /**
@@ -49,6 +65,11 @@ export const LOCAL_LEVEL_SPIN_STATE_KEY = 'local_level_spin_state_v1';
  * подхватят его вместе. Сторож: tests/local_level_spins.test.ts.
  */
 const LOCAL_RESULT_TTL_MS = 72 * 60 * 60 * 1000;
+const MAX_PAID_LEVEL_SPIN_OUTBOX = 4_096;
+// «Второй шанс» остаётся распознаваемым для уже выданных квитанций, но больше
+// не участвует в новых розыгрышах: три попытки теперь восстанавливаются
+// автоматически после обнуления сессионных рун.
+const RETIRED_LEVEL_SPIN_REWARD_IDS = ['attempt_restore_all'] as const;
 
 type LocalSpinCredit = { id: string; level: number };
 type LocalSpinState = {
@@ -68,6 +89,12 @@ function ownerFromDevice(): string | null {
 
 function localLevelSpinStateKey(owner: string): string {
   return `${LOCAL_LEVEL_SPIN_STATE_KEY}:${encodeURIComponent(owner)}`;
+}
+
+export function paidLevelSpinOutboxKey(ownerStableId: string): string {
+  const owner = ownerStableId.trim();
+  if (!owner) throw new Error('paid_level_spin_owner_invalid');
+  return `paid_level_spin_outbox_v1:${encodeURIComponent(owner)}`;
 }
 
 function normalizeLevels(raw: unknown): number[] {
@@ -194,8 +221,9 @@ function isValidLocalSpinJournalEntry(value: unknown): value is LocalLevelSpinJo
   // Preserve them after validating their public shape; local authority itself
   // must satisfy the stronger immutable receipt projection below.
   if (entry.localOnly !== true) return entry.localOnly === undefined || entry.localOnly === false;
-  return isLocalSpinReceiptCreditId(entry.creditId)
-    && Number.isInteger(entry.level) && Number(entry.level) >= 2 && Number(entry.level) <= 60
+  const paidEntry = entry.creditId === `paid_level_spin:${entry.requestId}` && entry.level === 0;
+  return (paidEntry || (isLocalSpinReceiptCreditId(entry.creditId)
+      && Number.isInteger(entry.level) && Number(entry.level) >= 2 && Number(entry.level) <= 60))
     && Number.isSafeInteger(entry.receivedAtMs) && Number(entry.receivedAtMs) > 0
     && Number.isSafeInteger(entry.expiresAtMs)
     && Number(entry.expiresAtMs) === Number(entry.receivedAtMs) + LOCAL_RESULT_TTL_MS
@@ -230,6 +258,28 @@ async function restoreActiveReceipt(state: LocalSpinState): Promise<LocalLevelSp
   if (!receipt) return null;
 
   const closed = typeof receipt.requestId === 'string' && state.closedRequestIds.includes(receipt.requestId);
+  if (receipt.schemaVersion === 3) {
+    let envelope: PaidLevelSpinEnvelopeV1 | null = null;
+    if (!closed) {
+      try {
+        const raw = await AsyncStorage.getItem(paidLevelSpinEnvelopeKey(state.owner, receipt.requestId));
+        envelope = raw ? await parsePaidLevelSpinEnvelope(JSON.parse(raw), state.owner) : null;
+      } catch {
+        envelope = null;
+      }
+    }
+    if (!envelope) {
+      await writeLocalState({ ...state, activeReceipt: null }).catch(() => {});
+      await AsyncStorage.removeItem(LEVEL_SPIN_PENDING_REVEAL_KEY).catch(() => {});
+      return null;
+    }
+    const authoritative = envelope.receipt;
+    if (!sameLocalSpinReceiptAuthority(receipt, authoritative)) {
+      await writeLocalState({ ...state, activeReceipt: authoritative }).catch(() => {});
+    }
+    await persistLocalReceipt(authoritative, state.owner).catch(() => {});
+    return authoritative;
+  }
   const parsedReceipt = closed ? null : parseLocalPendingReveal(
     JSON.stringify({ owner: state.owner, receipt }),
     state.owner,
@@ -315,7 +365,207 @@ function sameLocalSpinReceiptAuthority(
     && Object.keys(pending.deliveries ?? {}).length === Object.keys(active.deliveries ?? {}).length
     && pending.catalogVersion === active.catalogVersion
     && pending.schemaVersion === active.schemaVersion
+    && pending.paymentKind === active.paymentKind
+    && (pending.schemaVersion !== 3 || (active.schemaVersion === 3
+      && pending.runeOperationId === active.runeOperationId
+      && pending.runePrice === active.runePrice))
     && pending.localOnly === active.localOnly;
+}
+
+async function readPaidLevelSpinOutbox(owner: string): Promise<PaidLevelSpinRuneOperationV1[]> {
+  const raw = await AsyncStorage.getItem(paidLevelSpinOutboxKey(owner));
+  if (raw === null) return [];
+  let parsed: unknown;
+  try { parsed = JSON.parse(raw); } catch { throw new Error('paid_level_spin_outbox_corrupt'); }
+  if (!Array.isArray(parsed) || parsed.length > MAX_PAID_LEVEL_SPIN_OUTBOX) {
+    throw new Error('paid_level_spin_outbox_corrupt');
+  }
+  const result: PaidLevelSpinRuneOperationV1[] = [];
+  const seen = new Map<string, string>();
+  for (const candidate of parsed) {
+    const operation = parsePaidLevelSpinRuneOperation(candidate);
+    if (!operation || operation.ownerStableId !== owner
+      || !await hasValidPaidLevelSpinRuneFingerprint(operation)) {
+      throw new Error('paid_level_spin_outbox_corrupt');
+    }
+    const prior = seen.get(operation.operationId);
+    if (prior && prior !== operation.requestFingerprint) {
+      throw new Error('paid_level_spin_outbox_corrupt');
+    }
+    if (!prior) result.push(operation);
+    seen.set(operation.operationId, operation.requestFingerprint);
+  }
+  return result;
+}
+
+async function readPaidLevelSpinEnvelopes(owner: string): Promise<PaidLevelSpinEnvelopeV1[]> {
+  const prefix = paidLevelSpinEnvelopePrefix(owner);
+  const keys = (await AsyncStorage.getAllKeys()).filter((key) => key.startsWith(prefix)).sort();
+  if (keys.length > MAX_PAID_LEVEL_SPIN_OUTBOX) throw new Error('paid_level_spin_envelope_history_too_large');
+  const rows = await AsyncStorage.multiGet(keys);
+  const envelopes: PaidLevelSpinEnvelopeV1[] = [];
+  for (const [key, raw] of rows) {
+    if (raw === null) continue;
+    let parsed: unknown;
+    try { parsed = JSON.parse(raw); } catch { throw new Error('paid_level_spin_envelope_corrupt'); }
+    const envelope = await parsePaidLevelSpinEnvelope(parsed, owner);
+    if (!envelope || key !== paidLevelSpinEnvelopeKey(owner, envelope.requestId)) {
+      throw new Error('paid_level_spin_envelope_corrupt');
+    }
+    envelopes.push(envelope);
+  }
+  return envelopes;
+}
+
+function samePaidLevelSpinOperation(
+  left: PaidLevelSpinRuneOperationV1,
+  right: PaidLevelSpinRuneOperationV1,
+): boolean {
+  return left.schemaVersion === right.schemaVersion
+    && left.operationId === right.operationId
+    && left.ownerStableId === right.ownerStableId
+    && left.accountGeneration === right.accountGeneration
+    && left.requestId === right.requestId
+    && left.giftId === right.giftId
+    && left.catalogVersion === right.catalogVersion
+    && left.runeDelta === right.runeDelta
+    && left.price === right.price
+    && left.balanceBefore === right.balanceBefore
+    && left.balanceAfter === right.balanceAfter
+    && left.reason === right.reason
+    && left.createdAtMs === right.createdAtMs
+    && left.requestFingerprint === right.requestFingerprint;
+}
+
+async function readMaterializedPaidLevelSpinOperation(
+  owner: string,
+  operationId: string,
+): Promise<PaidLevelSpinRuneOperationV1 | null> {
+  const raw = await AsyncStorage.getItem(sessionAttemptRuneOperationStorageKey(owner, operationId));
+  if (raw === null) return null;
+  let parsed: unknown;
+  try { parsed = JSON.parse(raw); } catch { throw new Error('paid_level_spin_operation_corrupt'); }
+  const operation = parsePaidLevelSpinRuneOperation(parsed);
+  if (!operation
+    || operation.ownerStableId !== owner
+    || operation.operationId !== operationId
+    || !await hasValidPaidLevelSpinRuneFingerprint(operation)) {
+    throw new Error('paid_level_spin_operation_corrupt');
+  }
+  return operation;
+}
+
+async function pendingPaidLevelSpinRunePurchases(
+  owner: string,
+  token: AccountGenerationToken,
+): Promise<PaidLevelSpinRuneOperationV1[]> {
+  const [envelopes, outbox] = await Promise.all([
+    readPaidLevelSpinEnvelopes(owner),
+    readPaidLevelSpinOutbox(owner),
+  ]);
+  if (!isCurrentAccountGeneration(token, owner)) return [];
+
+  const envelopeByOperationId = new Map<string, PaidLevelSpinRuneOperationV1>();
+  const pendingByOperationId = new Map<string, PaidLevelSpinRuneOperationV1>();
+  for (const { operation } of envelopes) {
+    if (operation.accountGeneration !== token.generation) {
+      throw new Error('paid_level_spin_envelope_account_generation_mismatch');
+    }
+    const materialized = await readMaterializedPaidLevelSpinOperation(owner, operation.operationId);
+    if (materialized && !samePaidLevelSpinOperation(operation, materialized)) {
+      throw new Error('paid_level_spin_operation_authority_conflict');
+    }
+    const prior = envelopeByOperationId.get(operation.operationId);
+    if (prior && !samePaidLevelSpinOperation(prior, operation)) {
+      throw new Error('paid_level_spin_envelope_conflict');
+    }
+    envelopeByOperationId.set(operation.operationId, operation);
+    pendingByOperationId.set(operation.operationId, operation);
+  }
+
+  for (const operation of outbox) {
+    if (operation.accountGeneration !== token.generation) {
+      throw new Error('paid_level_spin_outbox_account_generation_mismatch');
+    }
+    const envelopeOperation = envelopeByOperationId.get(operation.operationId) ?? null;
+    const materialized = await readMaterializedPaidLevelSpinOperation(owner, operation.operationId);
+    const authority = envelopeOperation ?? materialized;
+    if (!authority || !samePaidLevelSpinOperation(operation, authority)
+      || (envelopeOperation && materialized
+        && !samePaidLevelSpinOperation(envelopeOperation, materialized))) {
+      throw new Error('paid_level_spin_outbox_authority_conflict');
+    }
+    const prior = pendingByOperationId.get(operation.operationId);
+    if (prior && !samePaidLevelSpinOperation(prior, operation)) {
+      throw new Error('paid_level_spin_pending_conflict');
+    }
+    pendingByOperationId.set(operation.operationId, authority);
+  }
+  return [...pendingByOperationId.values()];
+}
+
+async function removeConfirmedPaidLevelSpinOutboxOperation(
+  owner: string,
+  token: AccountGenerationToken,
+  confirmed: PaidLevelSpinRuneOperationV1,
+): Promise<void> {
+  await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(token, owner)) return;
+    const current = await readPaidLevelSpinOutbox(owner);
+    const matching = current.find((operation) => operation.operationId === confirmed.operationId);
+    if (matching && !samePaidLevelSpinOperation(matching, confirmed)) {
+      throw new Error('paid_level_spin_outbox_confirmed_operation_conflict');
+    }
+    if (!matching || !isCurrentAccountGeneration(token, owner)) return;
+    await AsyncStorage.setItem(
+      paidLevelSpinOutboxKey(owner),
+      JSON.stringify(current.filter((operation) => operation.operationId !== confirmed.operationId)),
+    );
+  });
+}
+
+async function upsertPaidLevelSpinOutboxOperation(
+  owner: string,
+  operation: PaidLevelSpinRuneOperationV1,
+): Promise<void> {
+  const current = await readPaidLevelSpinOutbox(owner);
+  const matching = current.find((candidate) => candidate.operationId === operation.operationId);
+  if (matching) {
+    if (!samePaidLevelSpinOperation(matching, operation)) {
+      throw new Error('paid_level_spin_outbox_operation_conflict');
+    }
+    return;
+  }
+  if (current.length >= MAX_PAID_LEVEL_SPIN_OUTBOX) {
+    throw new Error('paid_level_spin_outbox_full');
+  }
+  await AsyncStorage.setItem(
+    paidLevelSpinOutboxKey(owner),
+    JSON.stringify([...current, operation]),
+  );
+}
+
+async function syncPendingPaidLevelSpinRunePurchases(token: AccountGenerationToken): Promise<void> {
+  const owner = token.stableId?.trim();
+  if (!owner || !isCurrentAccountGeneration(token, owner)) return;
+  const pending = await pendingPaidLevelSpinRunePurchases(owner, token);
+  for (const operation of pending) {
+    if (!isCurrentAccountGeneration(token, owner)) return;
+    const stored = await commitPhoneStateNonMonetaryEconomyGrant({
+      operationId: operation.operationId,
+      kind: 'paid_level_spin_rune_purchase',
+      entitlementId: operation.operationId,
+      expectedOwnerStableId: owner,
+      expectedAccountGeneration: token.generation,
+      exactResult: operation,
+    });
+    if (!stored || !isCurrentAccountGeneration(token, owner)) continue;
+    await removeConfirmedPaidLevelSpinOutboxOperation(owner, token, operation);
+  }
+}
+
+export async function syncPendingPaidLevelSpinRunePurchasesForCurrentAccount(): Promise<void> {
+  await syncPendingPaidLevelSpinRunePurchases(captureAccountGeneration());
 }
 
 export async function readLocalLevelSpinBalance(): Promise<number> {
@@ -501,10 +751,60 @@ export async function grantLocalChestSpin(
   });
 }
 
+/**
+ * Confirmed support reward. One report message can mint 1..3 deterministic
+ * credits; retries observe the same IDs and can never increase the balance.
+ */
+export async function grantLocalReportRewardSpins(
+  messageId: string,
+  count: number,
+  token: AccountGenerationToken,
+  accountTransitionLockLease?: AccountTransitionLockLease,
+): Promise<boolean> {
+  const owner = token.stableId;
+  const safeMessageId = String(messageId ?? '').trim()
+    .replace(/[^A-Za-z0-9_-]/g, '_')
+    .slice(0, 96);
+  const safeCount = Math.trunc(count);
+  if (!owner || !safeMessageId || safeCount < 1 || safeCount > 3) return false;
+  const ids = Array.from({ length: safeCount }, (_, index) => (
+    `local_spin_report_${safeMessageId}_${index + 1}`
+  ));
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(token, owner)) return false;
+    const current = await loadLocalState(owner);
+    const missingIds = ids.filter((id) => !current.issuedCreditIds.includes(id));
+    if (missingIds.length === 0) return true;
+    await writeLocalState({
+      ...current,
+      credits: [...current.credits, ...missingIds.map((id) => ({ id, level: 2 }))],
+      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, ...missingIds]),
+    });
+    return isCurrentAccountGeneration(token, owner);
+  }, accountTransitionLockLease);
+}
+
 export async function recoverLocalLevelSpin(): Promise<LocalLevelSpinReceipt | null> {
   const owner = ownerFromDevice();
   if (!owner) return null;
+  const token = captureAccountGeneration();
+  void syncPendingPaidLevelSpinRunePurchases(token).catch(() => {});
   const state = await loadLocalState(owner);
+  if (state.activeReceipt?.schemaVersion === 3) {
+    return restoreActiveReceipt(state);
+  }
+  if (!state.activeReceipt) {
+    const envelopes = await readPaidLevelSpinEnvelopes(owner);
+    const envelope = [...envelopes].reverse().find((candidate) => (
+      !state.closedRequestIds.includes(candidate.requestId)
+    ));
+    if (envelope) {
+      const recoveredState = { ...state, activeReceipt: envelope.receipt };
+      await writeLocalState(recoveredState).catch(() => {});
+      await persistLocalReceipt(envelope.receipt, owner).catch(() => {});
+      return envelope.receipt;
+    }
+  }
   const pendingRaw = await AsyncStorage.getItem(LEVEL_SPIN_PENDING_REVEAL_KEY);
   const pending = parseLocalPendingReveal(pendingRaw, owner);
   if (pending && state.activeReceipt
@@ -541,6 +841,7 @@ export async function releaseUndeliveredLocalLevelSpin(requestId: string): Promi
     const state = await loadLocalState(owner);
     const receipt = state.activeReceipt;
     if (!receipt || receipt.requestId !== requestId) return false;
+    if (receipt.schemaVersion === 3) return false;
     if (state.closedRequestIds.includes(requestId)) return false;
     const journal = await readLocalSpinJournal();
     const alreadyClaimed = journal.some((entry) => entry.owner === owner
@@ -578,12 +879,39 @@ export async function acknowledgeLocalLevelSpin(requestId: string): Promise<void
   await withAccountTransitionLock(async () => {
     const state = await loadLocalState(owner);
     if (state.activeReceipt?.requestId !== requestId && !state.closedRequestIds.includes(requestId)) return;
+    const paidReceipt = state.activeReceipt?.requestId === requestId
+      && state.activeReceipt.schemaVersion === 3
+      ? state.activeReceipt
+      : null;
+    let paidEnvelopeStorageKey: string | null = null;
+    const possiblePaidEnvelopeStorageKey = paidLevelSpinEnvelopeKey(owner, requestId);
+    if (paidReceipt || state.closedRequestIds.includes(requestId)) {
+      const raw = await AsyncStorage.getItem(possiblePaidEnvelopeStorageKey);
+      let parsed: unknown;
+      try { parsed = raw ? JSON.parse(raw) : null; } catch { parsed = null; }
+      const envelope = await parsePaidLevelSpinEnvelope(parsed, owner);
+      if (paidReceipt && (!envelope || envelope.receipt.runeOperationId !== paidReceipt.runeOperationId)) return;
+      if (envelope) {
+        paidEnvelopeStorageKey = possiblePaidEnvelopeStorageKey;
+        // The single owner outbox value is the durable retry authority after ACK.
+        // Upsert it before any receipt/envelope retirement; a failed validation
+        // or setItem leaves the composite envelope intact for safe recovery.
+        await upsertPaidLevelSpinOutboxOperation(owner, envelope.operation);
+        // Before retiring the receipt envelope, make the immutable rune operation
+        // independently durable in one value. Projection remains rebuildable.
+        await AsyncStorage.setItem(
+          sessionAttemptRuneOperationStorageKey(owner, envelope.operation.operationId),
+          JSON.stringify(envelope.operation),
+        );
+      }
+    }
     await writeLocalState({
       ...state,
       activeReceipt: state.activeReceipt?.requestId === requestId ? null : state.activeReceipt,
       closedRequestIds: [...state.closedRequestIds, requestId].slice(-80),
     });
     await AsyncStorage.removeItem(LEVEL_SPIN_PENDING_REVEAL_KEY);
+    if (paidEnvelopeStorageKey) await AsyncStorage.removeItem(paidEnvelopeStorageKey);
   });
 }
 
@@ -611,7 +939,10 @@ export async function claimLocalLevelSpin(): Promise<LocalLevelSpinReceipt> {
     // зачем (владелец 2026-08-26): исчерпаемые награды не должны выпадать
     // впустую. Если все платные темы уже открыты, «тема оформления» выбывает
     // из розыгрыша, а её вес честно достаётся остальным наградам.
-    const excludedRewardIds = await listExhaustedSpinRewardIds();
+    const excludedRewardIds = stableUniqueStrings([
+      ...await listExhaustedSpinRewardIds(),
+      ...RETIRED_LEVEL_SPIN_REWARD_IDS,
+    ]);
     const receipt: LocalLevelSpinReceipt = {
       ok: true,
       stableUid: owner,
@@ -647,4 +978,103 @@ export async function claimLocalLevelSpin(): Promise<LocalLevelSpinReceipt> {
     emitAppEvent('level_spin_balance_changed');
     return receipt;
   });
+}
+
+export async function claimLocalLevelSpinWithRunes(): Promise<LocalLevelSpinReceipt> {
+  const owner = ownerFromDevice();
+  if (!owner) throw new Error('local_spin_identity_unavailable');
+  const token = captureAccountGeneration();
+  const pending = await recoverLocalLevelSpin();
+  if (pending) return pending;
+
+  const receipt = await withAccountTransitionLock(async (lease) => {
+    if (!isCurrentAccountGeneration(token, owner)) throw new Error('local_spin_identity_changed');
+    const current = await loadLocalState(owner);
+    const activeReceipt = await restoreActiveReceipt(current);
+    if (activeReceipt) return activeReceipt;
+
+    const requestId = Crypto.randomUUID();
+    const nowMs = Date.now();
+    const excludedRewardIds = stableUniqueStrings([
+      ...await listExhaustedSpinRewardIds(),
+      ...RETIRED_LEVEL_SPIN_REWARD_IDS,
+    ]);
+    if (!isCurrentAccountGeneration(token, owner)) throw new Error('local_spin_identity_changed');
+    const giftId = pickLevelSpinRewardExcluding(requestId, excludedRewardIds).id;
+    const paid = await preparePaidLevelSpinRunePurchase({
+      token,
+      requestId,
+      giftId,
+      catalogVersion: LEVEL_SPIN_REWARD_CATALOG_VERSION,
+      createdAtMs: nowMs,
+    }, lease);
+    if (!isCurrentAccountGeneration(token, owner)) throw new Error('local_spin_identity_changed');
+
+    const currentJournal = await readLocalSpinJournal();
+    const currentOutbox = await readPaidLevelSpinOutbox(owner);
+    if (currentOutbox.length >= MAX_PAID_LEVEL_SPIN_OUTBOX) {
+      throw new Error('paid_level_spin_outbox_full');
+    }
+    const runeOperationId = paid.operation.operationId;
+    const nextReceipt: LocalLevelSpinReceipt = {
+      ok: true,
+      stableUid: owner,
+      requestId,
+      paymentKind: 'runes',
+      runeOperationId,
+      runePrice: PAID_LEVEL_SPIN_RUNE_PRICE,
+      creditId: runeOperationId as `paid_level_spin:${string}`,
+      level: 0,
+      kind: 'standard',
+      baseGiftId: giftId,
+      premiumGiftId: null,
+      createdAtMs: nowMs,
+      expiresAtMs: nowMs + LOCAL_RESULT_TTL_MS,
+      balanceAfter: current.credits.length,
+      status: 'awaiting_ack',
+      revealState: 'pending',
+      deliveries: { base: { state: 'unclaimed' } },
+      catalogVersion: LEVEL_SPIN_REWARD_CATALOG_VERSION,
+      schemaVersion: 3,
+      localOnly: true,
+    };
+    const nextState: LocalSpinState = { ...current, activeReceipt: nextReceipt };
+    const nextOutbox = currentOutbox.some((candidate) => candidate.operationId === runeOperationId)
+      ? currentOutbox
+      : [...currentOutbox, paid.operation];
+    const envelope: PaidLevelSpinEnvelopeV1 = Object.freeze({
+      schemaVersion: 'paid-level-spin-envelope.v1',
+      ownerStableId: owner,
+      requestId,
+      operation: paid.operation,
+      receipt: nextReceipt,
+    });
+    if (!isCurrentAccountGeneration(token, owner)) throw new Error('local_spin_identity_changed');
+    // The one authoritative commit. AsyncStorage.multiSet can tear per entry on
+    // iOS, so every row below is only a rebuildable projection of this envelope.
+    await AsyncStorage.setItem(
+      paidLevelSpinEnvelopeKey(owner, requestId),
+      JSON.stringify(envelope),
+    );
+    try {
+      await AsyncStorage.multiSet([
+        ...paid.durableWrites.map(([key, value]) => [key, value] as [string, string]),
+        [paidLevelSpinOutboxKey(owner), JSON.stringify(nextOutbox)],
+        [localLevelSpinStateKey(owner), JSON.stringify(nextState)],
+        [LEVEL_SPIN_BALANCE_CACHE_KEY, JSON.stringify({ owner, balance: current.credits.length })],
+        [LEVEL_SPIN_GIFT_JOURNAL_KEY, JSON.stringify(mergeLocalSpinJournal(
+          currentJournal,
+          localJournalEntryForReceipt(nextReceipt, owner),
+        ))],
+        [LEVEL_SPIN_PENDING_REVEAL_KEY, JSON.stringify({ owner, receipt: nextReceipt })],
+      ]);
+    } catch {
+      // Envelope remains authoritative; recovery rebuilds every torn row.
+    }
+    return nextReceipt;
+  });
+
+  await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false });
+  void syncPendingPaidLevelSpinRunePurchases(token).catch(() => {});
+  return receipt;
 }

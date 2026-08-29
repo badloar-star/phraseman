@@ -45,6 +45,24 @@ const validSessionAttemptRuneFingerprint = createHash('sha256').update(JSON.stri
   reason: 'restore_all_session_attempts',
 })).digest('hex');
 
+const validCustomizationRuneFingerprint = createHash('sha256').update(JSON.stringify({
+  schemaVersion: 1,
+  operationId: 'customization_avatar:custom-gen-73:purchase',
+  ownerStableId: 'account-a',
+  accountGeneration: 3,
+  avatarId: 'custom-gen-73',
+  artVersion: 'avatar100-v1',
+  ownedValue: 'avatar100-v1|aurora:black',
+  avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1',
+  applyInput: null,
+  runeDelta: -5600,
+  price: 5600,
+  balanceBefore: 10000,
+  balanceAfter: 4400,
+  reason: 'custom_avatar',
+  createdAtMs: 103,
+})).digest('hex');
+
 const operation = {
   operationId: 'purchase-123',
   ownerStableId: 'account-a',
@@ -325,6 +343,46 @@ describe('PhoneState economy bridge', () => {
       payload: expect.objectContaining({
         delta: 0,
         grant: expect.objectContaining({ kind: 'session_attempt_recovery_rune_debit' }),
+      }),
+    }), { idempotencyKey: `economy:${operationId}` });
+  });
+
+  test('customization rune purchase validates the exact avatar grant inside one zero-delta result', async () => {
+    const commit = jest.fn(async () => ({ duplicate: false }));
+    configurePhoneStateEconomyBridge({
+      scope: { stableUid: 'account-a', accountGeneration: 3 }, runtimeGeneration: 3, deviceId: 'device-a',
+      store: { commit, readProjection: jest.fn(), replay: jest.fn() } as never,
+      triggerSync: jest.fn(),
+    });
+    const operationId = 'customization_avatar:custom-gen-73:purchase';
+    await expect(commitPhoneStateNonMonetaryEconomyGrant({
+      operationId,
+      kind: 'customization_rune_purchase',
+      entitlementId: operationId,
+      expectedOwnerStableId: 'account-a',
+      expectedAccountGeneration: 3,
+      exactResult: {
+        schemaVersion: 'client-customization-rune-operation.v1',
+        operationId,
+        ownerStableId: 'account-a',
+        accountGeneration: 3,
+        avatarId: 'custom-gen-73',
+        artVersion: 'avatar100-v1',
+        ownedValue: 'avatar100-v1|aurora:black',
+        avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1',
+        runeDelta: -5_600,
+        price: 5_600,
+        balanceBefore: 10_000,
+        balanceAfter: 4_400,
+        reason: 'custom_avatar',
+        createdAtMs: 103,
+        requestFingerprint: validCustomizationRuneFingerprint,
+      },
+    })).resolves.toBe(true);
+    expect(commit).toHaveBeenCalledWith(expect.objectContaining({
+      payload: expect.objectContaining({
+        delta: 0,
+        grant: expect.objectContaining({ kind: 'customization_rune_purchase' }),
       }),
     }), { idempotencyKey: `economy:${operationId}` });
   });

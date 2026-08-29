@@ -111,7 +111,7 @@ function makeDb(initial?: DocData) {
       }
     },
   };
-  return { db: db as any, state };
+  return { db: db as any, state, docs };
 }
 
 function liveDoc(overrides: DocData = {}): DocData {
@@ -150,6 +150,74 @@ describe('doc id', () => {
 });
 
 describe('reserveVoiceSeconds', () => {
+  it('reserves paid wallet seconds atomically without the legacy daily or monthly commercial cap', async () => {
+    const { db, state, docs } = makeDb({
+      resetAtMs: NOW + 3_600_000,
+      monthResetAtMs: NOW + 86_400_000,
+      dailyUsedSec: 900,
+      monthlyUsedSec: 14_400,
+    });
+    docs.set(`voice_minute_wallets/${STABLE}`, {
+      schemaVersion: 1,
+      ownerStableId: STABLE,
+      grantedSeconds: 7_200,
+      refundedSeconds: 0,
+      chargedSeconds: 0,
+      reservedSeconds: 0,
+      availableSeconds: 7_200,
+      eventCount: 1,
+    });
+
+    const result = await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      sessionId: 'paid-1',
+      accessType: 'paid_minutes',
+      nowMs: NOW,
+    });
+
+    expect(result).toEqual({
+      reservedSec: 320,
+      dayRemainingSec: 6_880,
+      monthRemainingSec: 6_880,
+      staleRefundedSec: 0,
+    });
+    expect(state.data).toMatchObject({
+      activeSessionId: 'paid-1',
+      accessType: 'paid_minutes',
+      paidReservationRootSessionId: 'paid-1',
+      paidReservationTotalSec: 320,
+      paidConsumedSec: 0,
+      dailyUsedSec: 900,
+      monthlyUsedSec: 14_400,
+    });
+    expect(docs.get(`voice_minute_wallets/${STABLE}`)).toMatchObject({
+      reservedSeconds: 320,
+      activeReservationSessionId: 'paid-1',
+      availableSeconds: 6_880,
+    });
+  });
+
+  it('allows only one concurrent paid reserve to spend a wallet balance', async () => {
+    const { db, docs } = makeDb();
+    docs.set(`voice_minute_wallets/${STABLE}`, {
+      schemaVersion: 1, ownerStableId: STABLE,
+      grantedSeconds: 320, refundedSeconds: 0, chargedSeconds: 0,
+      reservedSeconds: 0, availableSeconds: 320, eventCount: 1,
+    });
+
+    const results = await Promise.allSettled([
+      reserveVoiceSeconds(db, { ...LIMITS, sessionId: 'paid-a', accessType: 'paid_minutes', nowMs: NOW }),
+      reserveVoiceSeconds(db, { ...LIMITS, sessionId: 'paid-b', accessType: 'paid_minutes', nowMs: NOW }),
+    ]);
+
+    expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+    expect(results.filter((result) => result.status === 'rejected')).toHaveLength(1);
+    expect(docs.get(`voice_minute_wallets/${STABLE}`)).toMatchObject({
+      reservedSeconds: 320,
+      availableSeconds: 0,
+    });
+  });
+
   it('reserves min(cap+tail, day, month) and charges it to both windows', async () => {
     const { db, state } = makeDb();
 
@@ -684,6 +752,43 @@ describe('reserveVoiceSeconds', () => {
 });
 
 describe('settleVoiceSession', () => {
+  it('settles a paid reserve once, appends one charge, and releases the unused seconds', async () => {
+    const { db, docs } = makeDb(liveDoc({
+      activeSessionId: 'paid-1',
+      accessType: 'paid_minutes',
+      paidReservationRootSessionId: 'paid-1',
+      paidReservationTotalSec: 320,
+      paidConsumedSec: 0,
+    }));
+    docs.set(`voice_minute_wallets/${STABLE}`, {
+      schemaVersion: 1, ownerStableId: STABLE,
+      grantedSeconds: 7_200, refundedSeconds: 0, chargedSeconds: 0,
+      reservedSeconds: 320, availableSeconds: 6_880, eventCount: 1,
+      activeReservationSessionId: 'paid-1', reservationRootSessionId: 'paid-1',
+    });
+
+    const first = await settleVoiceSession(db, {
+      authUid: AUTH, stableUid: STABLE, sessionId: 'paid-1', actualSec: 200,
+      endReason: 'completed', nowMs: NOW,
+    });
+    const retry = await settleVoiceSession(db, {
+      authUid: AUTH, stableUid: STABLE, sessionId: 'paid-1', actualSec: 200,
+      endReason: 'completed', nowMs: NOW + 1_000,
+    });
+
+    expect(first).toEqual({ chargedSec: 200, refundedSec: 120, alreadySettled: false });
+    expect(retry).toEqual({ chargedSec: 0, refundedSec: 0, alreadySettled: true });
+    expect(docs.get(`voice_minute_wallets/${STABLE}`)).toMatchObject({
+      chargedSeconds: 200,
+      reservedSeconds: 0,
+      availableSeconds: 7_000,
+      activeReservationSessionId: null,
+    });
+    const charges = [...docs.entries()].filter(([path]) => path.startsWith('voice_minute_events/vm_call_charge_'));
+    expect(charges).toHaveLength(1);
+    expect(charges[0][1]).toMatchObject({ kind: 'call_charge', sessionId: 'paid-1', seconds: 200 });
+  });
+
   it('charges min(actual, reserve) and refunds the unused tail', async () => {
     const { db, state } = makeDb(liveDoc());
 
@@ -737,6 +842,33 @@ describe('settleVoiceSession', () => {
 });
 
 describe('releaseVoiceReservation', () => {
+  it('releases an unused paid reserve without appending a charge', async () => {
+    const { db, docs } = makeDb(liveDoc({
+      activeSessionId: 'paid-cancel',
+      accessType: 'paid_minutes',
+      paidReservationRootSessionId: 'paid-cancel',
+      paidReservationTotalSec: 320,
+      paidConsumedSec: 0,
+    }));
+    docs.set(`voice_minute_wallets/${STABLE}`, {
+      schemaVersion: 1, ownerStableId: STABLE,
+      grantedSeconds: 1_800, refundedSeconds: 0, chargedSeconds: 0,
+      reservedSeconds: 320, availableSeconds: 1_480, eventCount: 1,
+      activeReservationSessionId: 'paid-cancel', reservationRootSessionId: 'paid-cancel',
+    });
+
+    const result = await releaseVoiceReservation(db, {
+      authUid: AUTH, stableUid: STABLE, sessionId: 'paid-cancel',
+      reason: 'briefing_abandoned', nowMs: NOW,
+    });
+
+    expect(result).toEqual({ chargedSec: 0, refundedSec: 320, alreadySettled: false });
+    expect(docs.get(`voice_minute_wallets/${STABLE}`)).toMatchObject({
+      chargedSeconds: 0, reservedSeconds: 0, availableSeconds: 1_800,
+    });
+    expect([...docs.keys()].some((path) => path.startsWith('voice_minute_events/vm_call_charge_'))).toBe(false);
+  });
+
   it('refunds the full reserve on pre-connect cancel and records the reason', async () => {
     const { db, state } = makeDb(liveDoc());
 
@@ -795,6 +927,40 @@ describe('transferReserve', () => {
       monthlyUsedSec: 320,
       reconnectChain: { rootId: 's1', count: 1, gapSecTotal: 10 },
     });
+  });
+
+  it('moves a paid reservation to the reconnect session and settles the whole call once', async () => {
+    const { db, docs } = makeDb(liveDoc({
+      accessType: 'paid_minutes',
+      paidReservationRootSessionId: 's1',
+      paidReservationTotalSec: 320,
+      paidConsumedSec: 0,
+    }));
+    docs.set(`voice_minute_wallets/${STABLE}`, {
+      schemaVersion: 1, ownerStableId: STABLE,
+      grantedSeconds: 1_800, refundedSeconds: 0, chargedSeconds: 0,
+      reservedSeconds: 320, availableSeconds: 1_480, eventCount: 1,
+      activeReservationSessionId: 's1', reservationRootSessionId: 's1',
+    });
+
+    const transfer = await transferReserve(db, { ...TRANSFER, heartbeatElapsedSec: 80 });
+    expect(transfer.reservedSec).toBe(230);
+    expect(docs.get(`voice_minute_wallets/${STABLE}`)).toMatchObject({
+      reservedSeconds: 320,
+      activeReservationSessionId: 's2',
+      reservationRootSessionId: 's1',
+    });
+
+    const settled = await settleVoiceSession(db, {
+      authUid: AUTH, stableUid: STABLE, sessionId: 's2', actualSec: 100, nowMs: NOW + 100_000,
+    });
+    expect(settled).toEqual({ chargedSec: 190, refundedSec: 130, alreadySettled: false });
+    expect(docs.get(`voice_minute_wallets/${STABLE}`)).toMatchObject({
+      chargedSeconds: 190, reservedSeconds: 0, availableSeconds: 1_610,
+    });
+    const charges = [...docs.values()].filter((event) => event.kind === 'call_charge');
+    expect(charges).toHaveLength(1);
+    expect(charges[0]).toMatchObject({ sessionId: 's1', seconds: 190 });
   });
 
   it('caps the free gap across the whole chain at 60s total', async () => {
@@ -929,6 +1095,59 @@ describe('settleVoiceSessionWithXp (P1-13: settle + XP + снимок одной
     expect(state.data!.lastSettledAtMs).toBe(NOW);
     expect(state.data!.xpAwardedToday).toBe(100);
     expect(state.data!.xpDayKey).toBe(DAY);
+  });
+
+  // зачем (инцидент владельца 2026-08-29): пробник помечается использованным в
+  // момент РЕЗЕРВА — иначе двумя параллельными минтами можно выпросить два
+  // бесплатных звонка. Но у владельца звонок сорвался: провайдер не отдал
+  // аудио, транскрипт пустой, chargedSec=0, секунды вернулись — а
+  // trialUsedAtMs остался, и человек навсегда потерял пробник, ни секунды не
+  // поговорив. Settle обязан вернуть и сам пробник, если разговора не было.
+  // Проверено мутацией 2026-08-29: если снять условие возврата в
+  // settleVoiceSessionWithXp, этот кейс краснеет — сторож рабочий, а не
+  // тавтологический.
+  it('возвращает пробник, когда сорвавшийся trial-звонок не потратил ни секунды', async () => {
+    const { db, state } = makeDb(liveDoc({
+      accessType: 'trial',
+      trialUsedAtMs: NOW - 90_000,
+      lifetimeTrialUsedAtMs: NOW - 90_000,
+      trialReservationSessionId: 's1',
+    }));
+
+    const result = await settleVoiceSessionWithXp(db, {
+      authUid: AUTH, stableUid: STABLE, sessionId: 's1',
+      actualSec: 0,
+      xpDayKey: DAY, xpDailyCap: 100,
+      computeXp: () => 0,
+      endReason: 'dropped',
+      nowMs: NOW,
+    });
+
+    expect(result.chargedSec).toBe(0);
+    expect(state.data!.trialUsedAtMs).toBeNull();
+    expect(state.data!.lifetimeTrialUsedAtMs).toBeNull();
+    expect(state.data!.trialReservationSessionId).toBeNull();
+  });
+
+  it('НЕ возвращает пробник, если разговор реально состоялся', async () => {
+    const { db, state } = makeDb(liveDoc({
+      accessType: 'trial',
+      trialUsedAtMs: NOW - 90_000,
+      lifetimeTrialUsedAtMs: NOW - 90_000,
+      trialReservationSessionId: 's1',
+    }));
+
+    await settleVoiceSessionWithXp(db, {
+      authUid: AUTH, stableUid: STABLE, sessionId: 's1',
+      actualSec: 45,
+      xpDayKey: DAY, xpDailyCap: 100,
+      computeXp: () => 0,
+      endReason: 'completed',
+      nowMs: NOW,
+    });
+
+    expect(state.data!.trialUsedAtMs).toBe(NOW - 90_000);
+    expect(state.data!.lifetimeTrialUsedAtMs).toBe(NOW - 90_000);
   });
 
   it('дневной кэп считается от НАКОПЛЕННОГО за день, а не от одной сессии', async () => {

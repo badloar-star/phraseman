@@ -87,7 +87,10 @@ for (const sourcePath of [
 }
 for (const word of EPISODE_01_SESSION_02_SOURCE.newVocabulary ?? []) {
   for (const stage of ['recognize', 'retrieve_meaning', 'build_form'] as const) {
-    assert.equal(word.contacts[stage].distractors.length, 2);
+    assert.ok(
+      word.contacts[stage].distractors.length >= 3,
+      `${word.target}:${stage} must keep at least three authored distractors`,
+    );
     assert.ok(word.contacts[stage].distractors.every((entry) => entry.feedback));
   }
 }
@@ -97,7 +100,7 @@ for (const phrase of EPISODE_01_SESSION_02_SOURCE.phrases) {
     assert.ok(detail?.meaning.trim());
     assert.ok(detail?.explanation.trim());
     assert.equal(detail?.words.length, phrase.words.length);
-    assert.ok(detail?.words.every((word) => word.distractors.length === 2));
+    assert.ok(detail?.words.every((word) => word.distractors.length >= 3));
   }
 }
 
@@ -115,10 +118,10 @@ for (let index = 1; index < practice.length; index += 1) {
 for (const entry of practice) assert.equal(entry.modePayload.family, entry.family);
 const speedMatch = practice.find((entry) => entry.family === 'speed_match')?.modePayload;
 assert.ok(speedMatch?.family === 'speed_match');
-assert.equal(speedMatch.pairGrid.length, 8);
+assert.equal(speedMatch.pairGrid.length, 4);
 assert.deepEqual(
   speedMatch.pairGrid.map((pair) => pair.target).sort(),
-  ['I', 'am', 'fine', 'happy', 'here', 'ready', 'sad', 'tired'].sort(),
+  ['fine', 'happy', 'sad', 'tired'].sort(),
 );
 
 const shard = buildSessionShardFromSource(EPISODE_01_SESSION_02_SOURCE);
@@ -206,7 +209,7 @@ for (const interaction of deviceChildren.learner.interactions) {
   );
 }
 const authoringPreview = buildLearningV2AuthoringDevicePreviewV1(2, 'ru');
-assert.equal(authoringPreview.status, 'DRAFT');
+assert.equal(authoringPreview.status, 'LOCKED');
 assert.equal(authoringPreview.introChild.pages.length, 3);
 assert.equal(authoringPreview.learnerChild.interactions.length, 17);
 assert.equal(authoringPreview.sideEffectPolicy, 'preview_only_no_learner_writes');

@@ -6,9 +6,9 @@ const SOURCE = fs.readFileSync(path.join(__dirname, '..', 'app', 'flashcards_lis
 describe('passive listening shared session attempts integration', () => {
   test('shows attempts consistently without inventing pedagogical errors', () => {
     expect(SOURCE).toContain("from '../components/session_attempts/SessionAttemptsHud'");
-    expect(SOURCE).toContain("from '../components/session_attempts/SessionAttemptsRecoveryModal'");
     expect(SOURCE).toContain('<SessionAttemptsHud');
-    expect(SOURCE).toContain('<SessionAttemptsRecoveryModal');
+    expect(SOURCE).toContain('useSessionAttemptAutoReset');
+    expect(SOURCE).not.toContain('SessionAttemptsRecoveryModal');
     expect(SOURCE).not.toContain("verdict: 'pedagogical_wrong'");
   });
 

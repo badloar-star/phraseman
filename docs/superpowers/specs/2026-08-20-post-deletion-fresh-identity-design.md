@@ -1,6 +1,6 @@
 # Phraseman Post-Deletion Fresh Identity Design
 
-**Status:** Approved by the owner on 2026-08-20.
+**Status:** Approved by the owner on 2026-08-20; one-tap provider re-entry decision clarified by the owner on 2026-08-28.
 
 ## Goal
 
@@ -15,7 +15,11 @@ This design extends the account-deletion and identity boundaries in `2026-07-10-
 - Onboarding and local learning remain usable without a network connection.
 - Cloud-dependent actions attempted before the fresh identity is ready are retained for the current account generation and retried; they must not execute under the retired identity.
 - A nickname entered during onboarding is retained locally. Reservation resumes automatically when the fresh identity is ready. A real name conflict uses the normal “name taken” flow; an identity transition must never be presented as a network or name-availability failure.
-- Signing in again with the deleted Google or Apple identity remains blocked. The new anonymous account is not a restoration of the deleted account.
+- The same external Google or Apple account creates the new empty profile in the same sign-in attempt; the person is never asked to open the provider picker a second time. When the authoritative retired error identifies only the old stable ID (`details.subject === 'stable'`), the freshly authenticated, non-retired provider Firebase UID remains signed in while the client durably wipes old local data, clears the retired stable ID, creates a fresh stable ID, and authoritatively links that exact fresh pair. Local destructive cleanup is one operation-scoped flight after old-generation writer drains; phase writes and terminal cleanup are serialized so a late SecureStore write cannot regress or resurrect the guard.
+- For a local deletion, the provider picker must not open until the server has atomically persisted the closure/tombstones/permanent denials, idempotently deleted the old Firebase Auth UID, and published a short-lived `credential_safe` receipt. The server first commits a root denial fence, discovers the alias/merge closure under that fence, then atomically writes every member denial plus the sorted `identityClosure`/hash/version/cutoff job and advances the receipt to `closure_committed`; no worker job exists before that commit. The worker consumes only this frozen array and never rediscovers mutable aliases. Mutable identity indexes are transactionally reread and deleted only while their current stable owner remains in the frozen closure. A lost enqueue response is repaired through an unauthenticated, App-Check-disabled status callable keyed by `operationId` plus a high-entropy capability stored only in SecureStore. The callable returns no identity data, compares the capability hash in constant time, enforces a fixed repair rate window, and never extends the capability lifetime on retry; once fencing is irreversible, a valid sealed capability remains repairable after retention TTL, and terminal `credential_safe` remains observable.
+- When retirement identifies the authenticated UID, the full deletion closure, or an unknown legacy subject, the client remains fail-closed: it signs out and rotates through a fresh anonymous identity before any new cloud write.
+- Every Firebase UID and stable ID in the deleted identity closure remains permanently retired. A provider credential must never make one of those retired identifiers reusable.
+- Email/code recovery is not a user-facing account path. Ordinary Google/Apple sign-in restores a live profile automatically; after deletion it creates the new empty profile. No deleted data, progress, name, entitlement, avatar, or aura is restored.
 
 ## Non-Negotiable Identity Invariants
 
@@ -57,7 +61,7 @@ The local transition record may be deleted only after `ready`. Failure to delete
 ### Phase proofs
 
 - `prepared`: a durable local deletion guard exists; old local data and onboarding completion keys are scheduled for immediate wipe.
-- `local_data_cleared`: old account data, snapshots, onboarding completion keys, and account-scoped pending work are absent; only after this proof may the clean onboarding be mounted.
+- `local_data_cleared`: old account data, snapshots, onboarding completion keys, customization/avatar/aura state, phone-state SQLCipher lineage, and account-scoped pending work are absent; a strict storage readback succeeded and found no AsyncStorage key except the non-secret deletion-guard mirror. Any wipe, clear, readback, or phone-state retirement failure keeps `prepared`; only after this proof may clean onboarding mount or a fresh generation begin.
 - `server_enqueued`: the server durably acknowledged an immutable deletion job and its identity closure.
 - `provider_signed_out`: Firebase has no active non-anonymous provider session belonging to the deleted account.
 - `old_stable_cleared`: SecureStore, legacy SecureStore aliases, AsyncStorage, in-memory caches, and pending auth-link caches no longer contain a retired stable ID.
@@ -168,7 +172,7 @@ Support diagnostics should expose app version, transition phase, and a short new
 - Requested stable ID `A` plus proven auth-link stable ID `B` persists a closure containing `A`, `B`, and the auth UID; the worker handles the complete closure.
 - An unproved requested ID is rejected before deletion acknowledgement.
 - Permanent denials are written before any deleted identity can be relinked.
-- Re-entering with the old Google/Apple provider remains blocked.
+- A retired Firebase provider UID remains blocked. If the server proves only the old stable ID is retired, the same sign-in attempt may keep its fresh provider UID and authoritatively attach a new stable ID to the new empty profile.
 - A stale Keychain stable ID receiving `account_delete_pending` or `identity_retired` rotates to a new anonymous UID/stable ID pair and verifies it authoritatively.
 
 ### State-machine resilience

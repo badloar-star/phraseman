@@ -57,7 +57,7 @@ export type ArenaTicket = Readonly<{
   matchId?: string;
   joinedAtMs?: number;
   leaseExpiresAt?: number;
-  /** Момент входа бота, назначенный сервером (только быстрый матч). */
+  /** Момент входа бота, назначенный сервером (быстрый матч и рейтинг). */
   botDueAtMs?: number;
 }>;
 
@@ -174,7 +174,25 @@ export const ARENA_QUICK_FALLBACK_MAX_MS = 20_000;
  * а не сгорает в бесконечном пульсе.
  */
 export const ARENA_QUICK_SEARCH_GIVE_UP_MS = 26_000;
+/**
+ * Запас поверх СЕРВЕРНОГО срока бота (владелец 2026-08-29, лог 10:54).
+ *
+ * Сервер назначил бота на 24.9 с, клиент сдавал поиск на 26-й — ответ бота
+ * пришёл ровно в момент сдачи, матч уже был создан, а человека выбросило на
+ * хаб. Сдача обязана давать серверу дожать один короткий повтор после его
+ * собственного срока, иначе гонка повторится на любой медленной сети.
+ */
+export const ARENA_QUICK_BOT_ANSWER_GRACE_MS = 10_000;
 export const ARENA_RANKED_HEARTBEAT_MS = 15_000;
+/**
+ * Рейтинговый бот (владелец 2026-08-28): окно шире, чем в быстром матче — до
+ * минуты, потому что живой соперник в рейтинге ценнее подождать, а окно
+ * рангов ±1 не всегда находит его быстро. Живой соперник всегда перебивает
+ * бота, если находится раньше.
+ */
+export const ARENA_RANKED_FALLBACK_MAX_MS = 60_000;
+/** Запас поверх 60 с на один короткий повтор запроса бота, как в быстром матче. */
+export const ARENA_RANKED_SEARCH_GIVE_UP_MS = 66_000;
 
 export function isArenaTaskMode(value: unknown): value is ArenaTaskMode {
   return typeof value === 'string' && (ARENA_TASK_MODES as readonly string[]).includes(value);

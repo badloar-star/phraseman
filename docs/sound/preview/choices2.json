@@ -1,0 +1,18 @@
+{
+  "pm_rune_flight_land": "a",
+  "pm_learn_correct": "none",
+  "pm_learn_hint_reveal": "none",
+  "pm_tap_primary": "a",
+  "pm_tap_blocked": "none",
+  "pm_energy_refilled": "c",
+  "pm_hearts_restored": "a",
+  "pm_lesson_begin": "none",
+  "pm_complete_perfect": "none",
+  "ar_countdown_go": "none",
+  "ar_answer_correct": "none",
+  "ar_answer_first": "none",
+  "ar_rank_up": "none",
+  "pm_system_destructive_done": "none",
+  "pm_onboarding_step": "none",
+  "pm_rune_count_done": "none"
+}

@@ -69,6 +69,16 @@ describe('parseMintResponse: оба написания ключей', () => {
     expect(parsed.limits).toBeUndefined();
   });
 
+  it('preserves the authoritative minute access kind for wallet UI', () => {
+    const parsed = parseMintResponse({
+      ...base,
+      session_id: 'paid-session',
+      max_seconds: 300,
+      access: 'paid_minutes',
+    });
+    expect(parsed.access).toBe('paid_minutes');
+  });
+
   it('сохраняет разрешённые сцены текущей цели для проверки переноса на клиенте', () => {
     const parsed = parseMintResponse({
       value: 'x', session_id: 's', max_seconds: 60,

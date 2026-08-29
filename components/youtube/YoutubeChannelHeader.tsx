@@ -17,7 +17,7 @@ export default function YoutubeChannelHeader({ channel, onBack, onOpenChannels, 
   const { lang } = useLang();
   const { theme: t, isDark, themeMode } = useTheme();
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
-  const allChannels = triLang(lang, { ru: 'Все наши каналы', uk: 'Усі наші канали', es: 'All our channels', 'pt-BR': 'Todos os nossos canais', vi: 'Tất cả kênh', id: 'Semua kanal kami', tr: 'Tüm kanallarımız', pl: 'Wszystkie nasze kanały' });
+  const allChannels = triLang(lang, { ru: 'Все наши каналы', uk: 'Усі наші канали', en: 'All our channels', es: 'Todos nuestros canales', 'pt-BR': 'Todos os nossos canais', vi: 'Tất cả kênh', id: 'Semua kanal kami', tr: 'Tüm kanallarımız', pl: 'Wszystkie nasze kanały' });
   return (
     <View style={styles.topRow}>
         <TapScale accessibilityRole="button" accessibilityLabel="Back" onPress={onBack} style={[styles.back, { backgroundColor: chrome.quietButtonBg }]}>

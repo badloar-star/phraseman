@@ -681,7 +681,10 @@ function RegistrationPromptModal({
   );
   const cleanRecoveryExpired = typeof cleanRecoveryFlowState.expiresAt === 'number'
     && cleanRecoveryFlowState.expiresAt <= recoveryNow;
-  const showRecoveryEntry = context === 'startup_recovery' || recoveryOfferedAfterMismatch;
+  // Owner 2026-08-28: provider sign-in is the only live recovery/creation path.
+  // Existing profiles restore automatically; deleted profiles create empty ones.
+  const showRecoveryEntry = false;
+  const showCleanRecoveryEntry = false;
 
   const isCurrentRecoveryFlow = useCallback((flow: AuthRecoveryFlowController, generation: number) => (
     isRecoveryFlowLeaseCurrent(
@@ -1051,7 +1054,10 @@ function RegistrationPromptModal({
         }
       }, SIGN_IN_SLOW_THRESHOLD_MS);
       logEvent('auth_prompt_click', { context, provider });
-      if (__DEV__) console.log('[RegistrationPromptModal] handleSignIn start, provider=', provider);
+      // зачем: [SIGNIN] — замер «от тапа до закрытия окна», чтобы владелец видел
+      // фактическое время входа, а не оценку по таймаутам (правило «сперва логи»).
+      const signInStartedAt = Date.now();
+      console.log(`[SIGNIN] ui:tap provider=${provider} context=${context}`);
       try {
         await waitForAuthPromptBusyFrame();
         if (!isAttemptCurrent(attemptToken)) return;
@@ -1062,7 +1068,7 @@ function RegistrationPromptModal({
         });
         if (!isAttemptCurrent(attemptToken)) return;
         clearSlowTimer();
-        if (__DEV__) console.log('[RegistrationPromptModal] signInWithProvider returned', result);
+        console.log(`[SIGNIN] ui:returned provider=${provider} result=${result.result} in=${Date.now() - signInStartedAt}ms`);
 
         if (result.result === 'cancelled') {
           // Отмена picker'а — retryable: даём «Повторить» под сообщением.
@@ -1127,24 +1133,10 @@ function RegistrationPromptModal({
             return;
           }
           if (result.error === 'identity_retired') {
-            // зачем: аккаунт удалён (свой/на другом устройстве) — сервер отверг
-            // retired identity. signInWithProvider уже сбросил сессию на
-            // анонимную, поэтому повтор заведёт новый профиль, а не повторит
-            // ошибку. Оставляем «Повторить» видимым. TestFlight-инцидент 2026-08-25.
-            showInlineError(
-              triLang(lang, { ru: 'Аккаунт удалён', uk: 'Акаунт видалено', en: 'Account deleted', es: 'Cuenta eliminada', 'pt-BR': 'Conta excluída', vi: 'Tài khoản đã xóa', id: 'Akun dihapus', tr: 'Hesap silindi', pl: 'Konto usunięte' }),
-              triLang(lang, {
-                ru: 'Этот аккаунт был удалён. Попробуй войти ещё раз — откроется новый профиль.',
-                uk: 'Цей акаунт було видалено. Спробуй увійти ще раз — відкриється новий профіль.',
-                en: 'This account was deleted. Try signing in again — a new profile will open.',
-                es: 'Esta cuenta fue eliminada. Intenta iniciar sesión de nuevo: se abrirá un perfil nuevo.',
-                'pt-BR': 'Esta conta foi excluída. Tente entrar de novo — um novo perfil será aberto.',
-                vi: 'Tài khoản này đã bị xóa. Hãy thử đăng nhập lại — hồ sơ mới sẽ mở ra.',
-                id: 'Akun ini telah dihapus. Coba masuk lagi — profil baru akan terbuka.',
-                tr: 'Bu hesap silindi. Tekrar giriş yapmayı dene — yeni bir profil açılacak.',
-                pl: 'To konto zostało usunięte. Spróbuj zalogować się ponownie — otworzy się nowy profil.',
-              }),
-            );
+            setRetryProvider(null);
+            setRecoveryPanelVisible(false);
+            setCleanRecoveryPanelVisible(false);
+            onClose();
             return;
           }
           if (result.error?.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
@@ -1547,7 +1539,7 @@ function RegistrationPromptModal({
             </Pressable>
           )}
 
-          {!recoveryPanelVisible && !cleanRecoveryPanelVisible && (
+          {showCleanRecoveryEntry && !recoveryPanelVisible && !cleanRecoveryPanelVisible && (
             <Pressable
               testID="auth-clean-recovery-entry"
               onPress={handleCleanRecoveryEntry}

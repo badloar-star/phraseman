@@ -48,6 +48,11 @@ const ledger = read('app/energy_session_operation_ledger.ts');
 assert.match(ledger, /energy-session-operation\.v1/);
 assert.match(ledger, /energy-session-prepared\.v1/);
 assert.match(ledger, /energy-session-grant-receipt\.v1/);
+assert.match(ledger, /energy-session-refund-request\.v1/);
+assert.match(ledger, /status: 'reversed'/);
 assert.match(ledger, /operation_id_conflict/);
+
+const levelExam = read('app/level_exam.tsx');
+assert.match(levelExam, /setExamEnergyAttemptRevision\(\(current\) => current \+ 1\)/);
 
 console.log(`ENERGY SESSION CALLSITES CONTRACT: PASS (${productionFiles.length} production files)`);

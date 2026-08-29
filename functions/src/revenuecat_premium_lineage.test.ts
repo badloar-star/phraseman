@@ -500,21 +500,11 @@ describe('RevenueCat canonical premium lineage reducer', () => {
     expect(aggregatePremiumLineages([yearly, monthly], {}, NOW).winnerLineageHash).toBe(yearly.lineageHash);
   });
 
-  it('projects an active MAX lineage as max_monthly ahead of ordinary premium', () => {
-    const max = apply(null, {
+  it('quarantines a retired MAX receipt instead of projecting Premium', () => {
+    expect(normalizePremiumLineageEvent({ ...base,
       id: 'evt-max', original_transaction_id: 'original-max',
       product_id: 'phraseman_max_monthly_v1', expiration_at_ms: 9_000_000,
-    }).state;
-    const yearly = apply(null, {
-      id: 'evt-year-with-max', original_transaction_id: 'original-year-with-max',
-      product_id: 'phraseman_premium_yearly', expiration_at_ms: 9_000_000,
-    }).state;
-
-    expect(max.plan).toBe('max_monthly');
-    expect(aggregatePremiumLineages([yearly, max], {}, NOW)).toMatchObject({
-      winnerLineageHash: max.lineageHash,
-      progressPatch: { premium_plan: 'max_monthly' },
-    });
+    })).toMatchObject({ status: 'quarantine', reason: 'unmanaged_premium_product' });
   });
 
   it('fails closed on owner-candidate overflow instead of silently truncating identities', () => {

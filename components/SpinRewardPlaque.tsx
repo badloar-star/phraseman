@@ -91,7 +91,7 @@ export const SpinRewardPlaque = memo(function SpinRewardPlaque({
   const accent = rewardModalAccentColor(themeMode, theme);
   const border = rewardModalPanelBorder(themeMode, theme, accent);
   const label = triLang(lang, {
-    ru: `+${amount} СПИН`, uk: `+${amount} СПІН`, es: `+${amount} GIRO`, 'pt-BR': `+${amount} GIRO`,
+    ru: `+${amount} СПИН`, uk: `+${amount} СПІН`, en: `+${amount} SPIN`, es: `+${amount} GIRO`, 'pt-BR': `+${amount} GIRO`,
     vi: `+${amount} LƯỢT`, id: `+${amount} PUTARAN`, tr: `+${amount} ÇEVİRME`, pl: `+${amount} SPIN`,
   });
 

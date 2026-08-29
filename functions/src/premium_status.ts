@@ -34,26 +34,19 @@ function hasMeaningfulPlan(plan: string): boolean {
   return plan !== '' && plan !== 'null' && plan !== 'undefined';
 }
 
-/**
- * Планы тира MAX (голосовой учитель). Владелец 2026-08-23: «Плюс/Про + отдельная
- * MAX», годовую не делаем — при неизвестном реальном потреблении годовой тариф
- * фиксирует экономику на 12 месяцев вперёд.
- *
- * MAX включает в себя обычный премиум: подписчик MAX не должен терять доступ к
- * тому, что уже даёт Плюс, поэтому план попадает и в isStorePremiumPlan ниже.
- */
-export const MAX_TIER_PLANS: readonly string[] = ['max_monthly'];
+/** Retired compatibility export. MAX receipts no longer grant any access. */
+export const MAX_TIER_PLANS: readonly string[] = [];
 
 function isMaxTierPlan(plan: string): boolean {
-  return MAX_TIER_PLANS.includes(plan);
+  void plan;
+  return false;
 }
 
 function isStorePremiumPlan(plan: string): boolean {
   // 'lifetime' — non-consumable «навсегда»: premium_expiry='0' (бессрочный).
   // Без этой ветки сервер счёл бы синхронизированный premium_plan='lifetime'
   // не-store-планом и отрезал бы платящему доступ.
-  return plan === 'monthly' || plan === 'yearly' || plan === 'annual' || plan === 'lifetime'
-    || isMaxTierPlan(plan);
+  return plan === 'monthly' || plan === 'yearly' || plan === 'annual' || plan === 'lifetime';
 }
 
 function isTruthyFlag(value: unknown): boolean {

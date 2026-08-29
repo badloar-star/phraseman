@@ -25,8 +25,17 @@ export type SfxPlayerLike = {
 type PlayerFactory = (source: number) => SfxPlayerLike;
 
 type CacheEntry = {
+  eventId: SoundEventId;
   player: SfxPlayerLike;
   lastUsed: number;
+  activeToken: number | null;
+};
+
+type ActivePlayback = {
+  token: number;
+  entry: CacheEntry;
+  player: SfxPlayerLike;
+  subscription: SubscriptionLike | null;
 };
 
 const DEFAULT_CACHE_SIZE = 6;
@@ -36,13 +45,8 @@ const DEFAULT_CACHE_SIZE = 6;
 const SEEK_SETTLE_TIMEOUT_MS = 200;
 
 export class ExpoSfxBackend {
-  private readonly cache = new Map<SoundEventId, CacheEntry>();
-  private current: {
-    token: number;
-    eventId: SoundEventId;
-    player: SfxPlayerLike;
-    subscription: SubscriptionLike | null;
-  } | null = null;
+  private readonly cache = new Set<CacheEntry>();
+  private readonly activePlayback = new Map<number, ActivePlayback>();
   private useSequence = 0;
   private playbackSequence = 0;
 
@@ -58,9 +62,10 @@ export class ExpoSfxBackend {
     onEnded: () => void,
   ): boolean {
     try {
-      this.stop();
-      const player = this.ensure(eventId, source);
+      const entry = this.ensure(eventId, source);
+      const player = entry.player;
       const playbackToken = ++this.playbackSequence;
+      entry.activeToken = playbackToken;
       player.volume = Math.max(0, Math.min(1, volume));
       const seekResult = player.seekTo(0);
       const seekPromise = seekResult && typeof (seekResult as Promise<void>).then === 'function'
@@ -103,7 +108,8 @@ export class ExpoSfxBackend {
       let startAttempted = false;
       const RETRY_WINDOW_MS = 400;
       const subscription = player.addListener('playbackStatusUpdate', (status) => {
-        if (this.current?.token !== playbackToken || this.current.player !== player) return;
+        const playback = this.activePlayback.get(playbackToken);
+        if (!playback || playback.player !== player) return;
 
         if (status.playing === true) sawPlaying = true;
         const withinRetryWindow = !startAttempted || Date.now() - playStartedAtMs < RETRY_WINDOW_MS;
@@ -114,8 +120,7 @@ export class ExpoSfxBackend {
         // переиспользуемого плеера в первые RETRY_WINDOW_MS после play(), пока
         // ещё не видели ни одного playing:true (см. коммент выше).
         if (status.didJustFinish && (sawPlaying || !withinRetryWindow)) {
-          this.current.subscription?.remove();
-          this.current = null;
+          this.finish(playbackToken);
           onEnded();
           return;
         }
@@ -133,14 +138,14 @@ export class ExpoSfxBackend {
             // that exception leaves SoundDirector believing this effect still
             // owns the global slot, so the next lower-priority sounds appear to
             // work "through once". Release exactly this playback generation.
-            if (this.current?.token === playbackToken && this.current.player === player) {
-              this.stop();
+            if (this.activePlayback.get(playbackToken)?.player === player) {
+              this.stopPlayback(playbackToken);
               onEnded();
             }
           }
         }
       });
-      this.current = { token: playbackToken, eventId, player, subscription };
+      this.activePlayback.set(playbackToken, { token: playbackToken, entry, player, subscription });
 
       let seekFallbackTimer: ReturnType<typeof setTimeout> | null = null;
       let startReleased = false;
@@ -155,7 +160,7 @@ export class ExpoSfxBackend {
         // Сравнения только player недостаточно: повтор того же eventId повторно
         // использует тот же объект. Поздний timeout/Promise прошлого seek тогда
         // мог запустить уже новый сеанс раньше завершения его собственной перемотки.
-        if (this.current?.token !== playbackToken || this.current.player !== player) return;
+        if (this.activePlayback.get(playbackToken)?.player !== player) return;
         startAttempted = true;
         playStartedAtMs = Date.now();
         try {
@@ -163,7 +168,7 @@ export class ExpoSfxBackend {
         } catch {
           // Async seek completion runs outside the outer play() try/catch.
           // Release the director slot instead of leaving all later sounds queued.
-          this.stop();
+          this.stopPlayback(playbackToken);
           onEnded();
         }
       };
@@ -178,18 +183,12 @@ export class ExpoSfxBackend {
       }
       return true;
     } catch {
-      this.stop();
       return false;
     }
   }
 
   stop(): void {
-    const current = this.current;
-    if (!current) return;
-    this.current = null;
-    try { current.subscription?.remove(); } catch {}
-    try { current.player.pause(); } catch {}
-    try { void current.player.seekTo(0); } catch {}
+    for (const token of [...this.activePlayback.keys()]) this.stopPlayback(token);
   }
 
   dispose(): void {
@@ -204,27 +203,57 @@ export class ExpoSfxBackend {
     return this.cache.size;
   }
 
-  private ensure(eventId: SoundEventId, source: number): SfxPlayerLike {
-    const existing = this.cache.get(eventId);
-    if (existing) {
-      existing.lastUsed = ++this.useSequence;
-      return existing.player;
+  private ensure(eventId: SoundEventId, source: number): CacheEntry {
+    for (const entry of this.cache) {
+      if (entry.eventId === eventId && entry.activeToken === null) {
+        entry.lastUsed = ++this.useSequence;
+        return entry;
+      }
     }
 
-    this.evictIfNeeded();
     const player = this.createPlayer(source);
-    this.cache.set(eventId, { player, lastUsed: ++this.useSequence });
-    return player;
+    const entry: CacheEntry = {
+      eventId,
+      player,
+      lastUsed: ++this.useSequence,
+      activeToken: null,
+    };
+    this.cache.add(entry);
+    return entry;
   }
 
-  private evictIfNeeded(): void {
-    if (this.cache.size < Math.max(1, this.maxCacheSize)) return;
-    let oldest: [SoundEventId, CacheEntry] | null = null;
-    for (const entry of this.cache.entries()) {
-      if (!oldest || entry[1].lastUsed < oldest[1].lastUsed) oldest = entry;
+  private finish(token: number): void {
+    const playback = this.activePlayback.get(token);
+    if (!playback) return;
+    this.activePlayback.delete(token);
+    playback.entry.activeToken = null;
+    try { playback.subscription?.remove(); } catch {}
+    this.evictIdleEntries();
+  }
+
+  private stopPlayback(token: number): void {
+    const playback = this.activePlayback.get(token);
+    if (!playback) return;
+    this.activePlayback.delete(token);
+    playback.entry.activeToken = null;
+    try { playback.subscription?.remove(); } catch {}
+    try { playback.player.pause(); } catch {}
+    try { void playback.player.seekTo(0); } catch {}
+    this.evictIdleEntries();
+  }
+
+  private evictIdleEntries(): void {
+    const capacity = Math.max(1, this.maxCacheSize);
+    while (this.cache.size > capacity) {
+      let oldest: CacheEntry | null = null;
+      for (const entry of this.cache) {
+        if (entry.activeToken === null && (!oldest || entry.lastUsed < oldest.lastUsed)) {
+          oldest = entry;
+        }
+      }
+      if (!oldest) return;
+      try { oldest.player.remove(); } catch {}
+      this.cache.delete(oldest);
     }
-    if (!oldest) return;
-    try { oldest[1].player.remove(); } catch {}
-    this.cache.delete(oldest[0]);
   }
 }

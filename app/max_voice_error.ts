@@ -29,6 +29,7 @@ const KNOWN_REASONS = [
   'voice_budget_exhausted',
   'voice_disabled',
   'voice_max_required',
+  'voice_minutes_insufficient',
   'voice_mint_rate_limited',
   'voice_provider_failed',
   'voice_daily_quota_exhausted',
@@ -77,6 +78,7 @@ const NON_RETRYABLE_REASONS: ReadonlySet<string> = new Set([
   'voice_budget_exhausted',
   'voice_disabled',
   'voice_max_required',
+  'voice_minutes_insufficient',
   'voice_daily_quota_exhausted',
   'voice_monthly_quota_exhausted',
   'voice_quota_exhausted',
@@ -90,9 +92,7 @@ export function isMaxVoiceFailureRetryable(reason: string | null | undefined): b
 export function shouldOfferMaxUpgradeForVoiceReason(
   reason: string | null | undefined,
 ): boolean {
-  // Месячная квота теперь существует только у уже активного тарифа MAX.
-  // Пейвол нужен лишь Free/Плюс/Про после единственного пробного звонка.
-  return reason === 'voice_max_required';
+  return reason === 'voice_max_required' || reason === 'voice_minutes_insufficient';
 }
 
 /** Ошибка с reason, который транспорт может безопасно передать UI-автомату. */
@@ -105,6 +105,13 @@ export class MaxVoiceStageError extends Error {
 
 /** Конкретное, но безопасное объяснение + действие для экрана отказа. */
 export function maxVoiceFailureMessage(reason: string | null, lang: Lang): string {
+  if (reason === 'voice_minutes_insufficient') {
+    return triLang(lang, {
+      ru: 'Недостаточно минут — купи ещё.', uk: 'Недостатньо хвилин — купи ще.', en: 'Not enough minutes — buy more.',
+      es: 'No hay suficientes minutos: compra más.', 'pt-BR': 'Minutos insuficientes — compre mais.', vi: 'Không đủ phút — hãy mua thêm.',
+      id: 'Menit tidak cukup — beli lagi.', tr: 'Yeterli dakika yok — daha fazla satın al.', pl: 'Za mało minut — kup więcej.',
+    });
+  }
   if (reason === 'voice_disabled' || reason === 'ai_globally_disabled') {
     return triLang(lang, {
       ru: 'Голос сейчас недоступен. Попробуй чуть позже.',

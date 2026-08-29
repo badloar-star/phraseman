@@ -56,6 +56,7 @@ export default function SectionSheetHeader({
   const closeLabel = triLang(lang, {
     ru: 'Закрыть',
     uk: 'Закрити',
+    en: 'Close',
     es: 'Cerrar',
     'pt-BR': 'Fechar',
     vi: 'Đóng',

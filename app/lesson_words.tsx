@@ -76,8 +76,8 @@ import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
-import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
@@ -3042,11 +3042,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
 
     if (attemptEffect === 'attempts_exhausted') {
       recordWrongVocabularyAttempt(current, opt);
-      attemptsModalTimerRef.current = setTimeout(
-        () => setShowAttemptsModal(true),
-        SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
-      );
-      return; // Keep the current vocabulary card for recovery.
+      return; // Keep the current vocabulary card for the automatic reset.
     }
 
     setTimeout(() => {
@@ -3168,23 +3164,18 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     }, isRight ? ANSWER_FEEDBACK_MS.correct : ANSWER_FEEDBACK_MS.wrong);
   };
 
-  const retryCurrentVocabularyCardAfterRecovery = useCallback(async (source: 'gift' | 'runes') => {
-    try {
-      if (source === 'gift') await attempts.recoverWithGift();
-      else await attempts.recoverWithRunes();
-      setShowAttemptsModal(false);
-      setChosen(null);
-      locked.current = false;
-    } catch {
-      // Keep the same card locked until a durable recovery succeeds.
-    }
-  }, [attempts.recoverWithGift, attempts.recoverWithRunes]);
-
-  const endAttemptsExhaustedVocabularySession = useCallback(() => {
-    attempts.endAttemptsSession();
+  const retryCurrentVocabularyCardAfterSessionRuneForfeit = useCallback(() => {
     setShowAttemptsModal(false);
-    safeRouterBack(router, '/lessons_list');
-  }, [attempts.endAttemptsSession, router]);
+    setChosen(null);
+    locked.current = false;
+  }, []);
+
+  useSessionAttemptAutoReset({
+    phase: attempts.state.phase,
+    forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
+    restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
+    onRestored: retryCurrentVocabularyCardAfterSessionRuneForfeit,
+  });
 
   const startPractice = () => {
     // Пересобираем очередь со ВСЕМИ словами — прогресс не меняем
@@ -3483,16 +3474,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         />
       )}
       {xpToastOverlay}
-      <SessionAttemptsRecoveryModal
-        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
-        locale={lang}
-        giftCount={attempts.giftCount}
-        runeBalance={attempts.runeBalance ?? 0}
-        busy={attempts.recoveryBusy}
-        onUseGift={() => { void retryCurrentVocabularyCardAfterRecovery('gift'); }}
-        onSpendRunes={() => { void retryCurrentVocabularyCardAfterRecovery('runes'); }}
-        onEndSession={endAttemptsExhaustedVocabularySession}
-      />
       {runeFlight.flight && (
         <LearningV2RuneFlight
           key={runeFlight.flight.key}

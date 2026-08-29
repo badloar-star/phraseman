@@ -54,6 +54,7 @@ import {
   persistLevelUpBonusIntent,
 } from './level_up_bonus_outbox';
 import {
+  beginInitialAccountGeneration,
   captureAccountGeneration,
   subscribeAccountGeneration,
   withAccountTransitionLock,
@@ -155,7 +156,7 @@ import {
   handleAccountDeletedOnAnotherDevice,
   isLocalAccountDeletionInProgress,
   peekLinkedAuthFromCurrentUser,
-  resumePendingAccountDeleteLocalExit,
+  ensureFreshPostDeletionIdentity,
 } from './auth_provider';
 import { startRemoteAccountDeletionMonitor } from './remote_account_deletion_monitor';
 import { getCanonicalUserId } from './user_id_policy';
@@ -165,6 +166,10 @@ import { prefetchAchievementArtInBackground, prefetchAllAchievementArt } from '.
 import { prefetchAllAvatarAuraArt, prefetchAvatarAuraArtInBackground } from './avatar_aura_art_prefetch';
 import { fetchPendingGlobalBroadcastModal, GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { emitAppEvent, onAppEvent } from './events';
+import {
+  finishAccountDeleteUiTrace,
+  traceAccountDeleteUi,
+} from './account_delete_ui_trace';
 import { hydratePlatformUiPreviewFromStorage } from './platform_ui_preview';
 import { setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
@@ -219,6 +224,7 @@ import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, LEARNING_V2_ROUTE_PRE
 import { APP_FONT_FAMILY } from './typography';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
+import { shouldRunFullAppBootstrap } from './native_runtime_capability';
 import {
   acknowledgePersonalAdminMessageModal,
   pickNextLoginPersonalMessage,
@@ -1241,6 +1247,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [rootNavigationReady, setRootNavigationReady] = useState(false);
   const [isBanned, setIsBanned]     = useState(false);
   const [showOnboarding, setShow]   = useState(false);
+  // Account deletion must tear down the complete native presentation tree.
+  // Merely hiding the React Native confirmation modal leaves iOS pageSheet
+  // routes (Account/Privacy over Settings) alive above the onboarding overlay.
+  const [accountDeletionNavigationEpoch, setAccountDeletionNavigationEpoch] = useState(0);
   // Онбординг переоткрывается на шаге «Имя» после пейвола (continue-free / покупка):
   // монтируем сразу на 'name' без блокирующего async-резолва A/B (иначе пустой
   // «resolving»-экран + ожидание Keychain getStableId = «думает» после кнопки).
@@ -1452,11 +1462,38 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   useEffect(() => {
     if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
+    // Practice can start while cloud restore and the rest of bootstrap are
+    // still running. Listen as soon as the account is active so those early
+    // rune earnings cannot fall through the league projection.
+    let disposed = false;
+    let unsubscribe: (() => void) | undefined;
+    void import('./runes_system')
+      .then(({ getRunesBalance }) => getRunesBalance())
+      .then(() => {
+        if (!disposed) unsubscribe = startLeagueWeekRunesTracking(accountGeneration.stableId!);
+      })
+      .catch(() => { /* next account activation retries after durable hydration */ });
+    return () => {
+      disposed = true;
+      unsubscribe?.();
+    };
+  }, [accountGeneration.generation, accountGeneration.phase, accountGeneration.stableId]);
+
+  useEffect(() => {
+    if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
     const stableId = accountGeneration.stableId;
     void import('./feedback_outbox')
       .then(({ purgeExpiredFeedbackOutbox }) => purgeExpiredFeedbackOutbox(stableId))
       .catch(() => { /* best-effort privacy cleanup retries on the next account generation */ });
   }, [accountGeneration.phase, accountGeneration.stableId]);
+
+  useEffect(() => {
+    if (!appIsActive || accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
+    const stableId = accountGeneration.stableId;
+    void import('./support_report_outbox')
+      .then(({ resumePendingSupportReports }) => resumePendingSupportReports(stableId))
+      .catch(() => { /* durable row retries on the next boot or foreground */ });
+  }, [accountGeneration.phase, accountGeneration.stableId, appIsActive]);
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', (nextState) => setAppIsActive(nextState === 'active'));
@@ -2020,6 +2057,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, []);
 
   useEffect(() => {
+    const pathname =
+      Platform.OS === 'web' && typeof window !== 'undefined'
+        ? window.location.pathname
+        : '';
+    if (!shouldRunFullAppBootstrap(Platform.OS, __DEV__, pathname)) return;
+
     // The normal reveal timer is armed only after crash-recovery proves that no
     // deleted account identity/data can reappear beneath the startup shell.
     let safetyTimer: ReturnType<typeof setTimeout> | null = null;
@@ -2217,7 +2260,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           }
         }
         await ensureStableAuthLink().catch(() => false);
-        startLeagueWeekRunesTracking();
         registerInLeagueGroupSilently().catch(() => {});
         Promise.all([
           getVerifiedRealPremiumStatus().catch(() => false),
@@ -2299,7 +2341,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       if (authRecoveryBootstrapInFlight) return;
       authRecoveryBootstrapInFlight = true;
       try {
-      const pendingDeleteRecovered = await resumePendingAccountDeleteLocalExit();
+      const freshIdentity = await ensureFreshPostDeletionIdentity('startup');
+      const pendingDeleteRecovered = freshIdentity.status !== 'fatal_local_guard';
       if (effectDisposed) return;
       if (!pendingDeleteRecovered) {
         // зачем: владелец — «ни один юзер никогда не должен увидеть такого».
@@ -2347,6 +2390,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         return;
       }
       clearAuthRecoveryBootRetry();
+      const startupStableId = await getStableId();
+      beginInitialAccountGeneration(startupStableId);
       recoveryBootAllowsCloud = true;
       safetyTimer = setTimeout(() => setReady(true), 1200);
       onboardingPathRef.current = false;
@@ -2543,7 +2588,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       if (!authRecoveryBootRetryScheduler.schedule()) return false;
       if (!authRecoveryBootAppStateSub) {
         authRecoveryBootAppStateSub = AppState.addEventListener('change', (state) => {
-          if (state === 'active') authRecoveryBootRetryScheduler.triggerActive();
+          if (state === 'active') {
+            void ensureFreshPostDeletionIdentity('foreground');
+            authRecoveryBootRetryScheduler.triggerActive();
+          }
         });
       }
       return true;
@@ -2571,6 +2619,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       void checkAchievements({ type: 'foreground_usage', totalMs });
     });
     const subDelete = onAppEvent('account_deleted', () => {
+      traceAccountDeleteUi('root_event_received');
       // После первого онбординга refs = true; без сброса повторное завершение
       // (Apple/Google/«Позже» на шаге auth) вызывает handleOnboardingDone → ранний return → экран не уходит.
       onboardingDoneHandledRef.current = false;
@@ -2580,7 +2629,28 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // новый онбординг сразу на шаге «имя» — минуя план/пейвол/порядок шагов.
       setOnboardingStartAtName(false);
       setOnboardingPaywallActive(false);
+      // Destroy all native modal/pageSheet presentations in one React commit.
+      // This is the deterministic reset; router.replace also normalizes the URL
+      // underneath the clean onboarding for when onboarding later completes.
+      setAccountDeletionNavigationEpoch((value) => value + 1);
+      traceAccountDeleteUi('native_stack_reset_requested');
+      try {
+        router.dismissAll();
+        traceAccountDeleteUi('native_sheets_dismiss_requested');
+      } catch {
+        traceAccountDeleteUi('native_sheets_dismiss_failed');
+      }
+      try {
+        router.replace('/(tabs)/home' as never);
+        traceAccountDeleteUi('home_replace_requested');
+      } catch {
+        traceAccountDeleteUi('home_replace_failed');
+      }
       setShow(true);
+      traceAccountDeleteUi('onboarding_show_requested');
+    });
+    const subRetiredIdentity = onAppEvent('identity_retired', ({ subject }) => {
+      void ensureFreshPostDeletionIdentity('identity_retired', { subject });
     });
     return () => {
       effectDisposed = true;
@@ -2594,9 +2664,16 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       subShards.remove();
       subForeground.remove();
       subDelete.remove();
+      subRetiredIdentity.remove();
       remoteConfigUnsub?.();
     };
   }, [coldExamBestPctRestoreOptions, flushPending]);
+
+  useEffect(() => {
+    if (!showOnboarding || accountDeletionNavigationEpoch < 1) return;
+    traceAccountDeleteUi('onboarding_render_committed');
+    finishAccountDeleteUiTrace('onboarding_visible');
+  }, [accountDeletionNavigationEpoch, showOnboarding]);
 
   useEffect(() => {
     const sub = onAppEvent('notif_permission_nudge', async ({ missedDays }) => {
@@ -2930,6 +3007,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // Мемоизация разрывает эту связь: смена вкладки больше не трогает дерево стека.
   const stackTree = useMemo(() => (
     <Stack
+      key={`account-generation-${accountDeletionNavigationEpoch}`}
       initialRouteName="(tabs)"
       screenOptions={{
         headerShown: false,
@@ -2980,6 +3058,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="privacy_settings" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="max_memory_settings" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="ideas_submit" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="support_report" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="language_welcome" />
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
@@ -3088,6 +3167,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     pushScreenAnimationOptions,
     bottomModalAnimationOptions,
     cardsSiblingAnimationOptions,
+    accountDeletionNavigationEpoch,
   ]);
 
   return (

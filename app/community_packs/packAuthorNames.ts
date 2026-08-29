@@ -35,6 +35,7 @@ export function communityAuthorFallbackName(lang: Lang): string {
   return triLang(lang, {
     ru: 'Автор сообщества',
     uk: 'Автор спільноти',
+    en: 'Community author',
     es: 'Autor de la comunidad',
     'pt-BR': 'Autor da comunidade',
     vi: 'Tác giả cộng đồng',

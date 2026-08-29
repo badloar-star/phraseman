@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 
 import {
+  learningV2AuthoringPreviewUnlockedLessonWordsKeyV1,
   learningV2UnlockedLessonWordsKeyV1,
+  mergeLearningV2UnlockedLessonWordListsV1,
   mergeLearningV2UnlockedLessonWordV1,
   parseLearningV2UnlockedLessonWordsV1,
 } from "../app/learning_v2_unlocked_lesson_words_v1";
@@ -49,6 +51,11 @@ assert.equal(
   learningV2UnlockedLessonWordsKeyV1("en", 1),
   "learning-v2:unlocked-words:v1:en:lesson:1",
 );
+assert.equal(
+  learningV2AuthoringPreviewUnlockedLessonWordsKeyV1("en", 1),
+  "learning-v2:authoring-preview-unlocked-words:v1:en:lesson:1",
+  "authoring preview must never write the learner unlock key",
+);
 
 const once = mergeLearningV2UnlockedLessonWordV1([], first);
 const twice = mergeLearningV2UnlockedLessonWordV1(once, {
@@ -72,6 +79,17 @@ const otherTarget = mergeLearningV2UnlockedLessonWordV1(twice, {
   },
 });
 assert.equal(otherTarget.length, 2, "target-language identity must be isolated");
+
+const visible = mergeLearningV2UnlockedLessonWordListsV1(
+  once,
+  [{ ...first, firstEncounteredAt: "2026-08-26T11:00:00.000Z" }],
+);
+assert.equal(visible.length, 1, "learner and preview rows must merge idempotently");
+assert.equal(
+  visible[0]?.firstEncounteredAt,
+  first.firstEncounteredAt,
+  "visible dictionary merge must preserve the earliest real encounter",
+);
 
 assert.deepEqual(parseLearningV2UnlockedLessonWordsV1("not-json"), []);
 const { encounter: _missingEncounter, ...withoutEncounter } = first;

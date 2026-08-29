@@ -94,6 +94,18 @@ test('repeated stable id reads keep one active generation', async () => {
   expect(generation.isCurrentAccountGeneration(first, id)).toBe(true);
 });
 
+test('post-delete clear proves every stable-id storage layer empty before rotation', async () => {
+  const stable = require('../app/stable_id');
+  const oldId = await stable.getStableId();
+
+  await stable.clearStableId();
+
+  expect(stable.peekStableId()).toBeNull();
+  expect(secureStore['phraseman_stable_uid']).toBeUndefined();
+  expect(asyncStore['phraseman_stable_uid_cache']).toBeUndefined();
+  await expect(stable.getStableId()).resolves.not.toBe(oldId);
+});
+
 test('cached stable id read cannot implicitly finish an account transition', async () => {
   const stable = require('../app/stable_id');
   const generation = require('../app/account_generation');

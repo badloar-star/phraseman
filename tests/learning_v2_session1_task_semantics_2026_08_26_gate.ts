@@ -15,9 +15,13 @@ assert.deepEqual(
     "есть / являюсь",
     "неопределённый артикль an",
     "буква m",
-    "быть — словарная форма",
+    "я",
   ],
-  "meaning choices must be locale-native meanings, not another set of English spellings",
+  "meaning choices must be plain locale-native meanings without grammar jargon",
+);
+assert.ok(
+  !amMeaning.responseOptions.some((entry) => entry.text.includes("словарн")),
+  "an A0 learner must never need the term 'dictionary form' to answer a meaning task",
 );
 
 const root = resolve(__dirname, "..");

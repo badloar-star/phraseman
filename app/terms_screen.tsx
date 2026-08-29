@@ -35,7 +35,7 @@ export default function TermsScreen() {
             документ выезжает снизу как модал, шапка — центрированный заголовок
             + крестик; «открыть на сайте» — аксессуар рядом с крестиком. */}
         <SectionSheetHeader
-          title={triLang(lang, { ru: 'Условия использования', uk: 'Умови використання', es: 'Términos de uso', 'pt-BR': 'Termos de uso', vi: 'Điều khoản sử dụng', id: 'Ketentuan penggunaan', tr: 'Kullanım Koşulları', pl: 'Warunki korzystania' })}
+          title={triLang(lang, { ru: 'Условия использования', uk: 'Умови використання', en: 'Terms of Use', es: 'Términos de uso', 'pt-BR': 'Termos de uso', vi: 'Điều khoản sử dụng', id: 'Ketentuan penggunaan', tr: 'Kullanım Koşulları', pl: 'Warunki korzystania' })}
           onClose={() => safeRouterBack(router, '/(tabs)/settings' as any)}
           accessory={(
           <TouchableOpacity
@@ -48,6 +48,7 @@ export default function TermsScreen() {
             accessibilityLabel={triLang(lang, {
               ru: 'Открыть условия на сайте Knowly',
               uk: 'Відкрити умови на сайті Knowly',
+              en: 'Open the terms on knowlyapps.com',
               es: 'Abrir los términos en knowlyapps.com',
               'pt-BR': 'Abrir os termos em knowlyapps.com',
               vi: 'Mở điều khoản trên knowlyapps.com',

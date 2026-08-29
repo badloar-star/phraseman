@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Crypto from "expo-crypto";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import RuneGlyph from "../../../components/RuneGlyph";
 import { runeWord } from "../../../constants/runes";
@@ -91,6 +92,7 @@ import { createRequiredSessionLocalCommitCoordinator } from "../../../modules/le
 import { warmLesson1SessionRuntime } from "../../../modules/learning-v2/runtime/lesson1_session_runtime";
 import { preloadCurrentLearningV2ActivityAudioSessionV1 } from "../../../app/learning_v2_activity_audio_preload_v1";
 import { preloadCurrentLearningV2ActivityReleasedSessionV1 } from "../../../app/learning_v2_activity_released_session_client_v1";
+import { prepareCurrentLearningV2CourseSessionV3 } from "../../../app/learning_v2_course_released_session_client_v3";
 import { parseLearningV2ActivityAuxiliaryRouteScopeV1 } from "../../../app/use_learning_v2_activity_auxiliary_session_v1";
 import { lessonNamesForStudyTarget } from "../../../app/lesson_titles_for_study_target";
 import {
@@ -787,7 +789,30 @@ export default function LearningV2LessonMap() {
       learnerSourceLocale: lang,
       sessionOrdinal,
     }).catch(() => undefined);
-  }, [auxiliaryScope, isMapFocused, lang, model, studyTarget]);
+    // зачем ВРЕМЕННО откачено на одну сессию вперёд, а не весь урок (владелец,
+    // 2026-08-27, «stable identity unavailable» при запуске сессии на боевом
+    // устройстве): фоновая загрузка всего урока (все 56 по порядку) стала
+    // бить облачную функцию до 55 раз на каждый вход в карту — для сессий,
+    // которых ещё нет на сервере. Ошибки там глотаются молча, но нельзя
+    // честно исключить побочный эффект на серверную проверку личности без
+    // аудита серверного кода. Владелец попросил откатить именно фоновую
+    // загрузку, пока причина не прояснится — сам prefetchLearningV2Lesson-
+    // InBackgroundV1 (app/learning_v2_lesson_background_prefetch_v1.ts) не
+    // удалён, просто не вызывается здесь; вернуть одним включением обратно,
+    // когда подтвердится, что дело не в нём.
+    void prepareCurrentLearningV2CourseSessionV3({
+      locator: {
+        environment: "production",
+        targetLanguage: studyTarget,
+        studyTarget,
+        learnerSourceLocale: lang,
+        seasonId: "learning-v2",
+        lessonOrdinal,
+        sessionOrdinal,
+      },
+      sessionRunId: Crypto.randomUUID(),
+    }).catch(() => undefined);
+  }, [auxiliaryScope, isMapFocused, lang, lessonOrdinal, model, studyTarget]);
   useEffect(() => {
     if (lessonOrdinal !== 1) return;
     const task = InteractionManager.runAfterInteractions(

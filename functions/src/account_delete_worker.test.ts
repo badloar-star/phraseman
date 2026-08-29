@@ -35,7 +35,7 @@ describe('account deletion worker binding', () => {
     expect(accountDeleteRetryCron).toBeDefined();
   });
 
-  it('wakes due jobs once and purges expired audit jobs and deletion tombstones', async () => {
+  it('wakes due jobs once, retains failed deny/retry jobs, and purges expired deletion markers', async () => {
     const dueRef = { path: 'account_deletion_jobs/due' };
     const sharedRef = { path: 'account_deletion_jobs/shared' };
     const failedExpiredRef = { path: 'account_deletion_jobs/failed-expired' };
@@ -89,7 +89,7 @@ describe('account deletion worker binding', () => {
     }), { merge: true });
     expect(batchSet.mock.calls.filter(([ref]) => ref === sharedRef)).toHaveLength(1);
     expect(batchSet.mock.calls.some(([ref]) => ref === failedExpiredRef)).toBe(false);
-    expect(batchDelete).toHaveBeenCalledWith(failedExpiredRef);
+    expect(batchDelete).not.toHaveBeenCalledWith(failedExpiredRef);
     expect(batchDelete).toHaveBeenCalledWith(expiredTombstoneRef);
     expect(batchDelete).toHaveBeenCalledWith(expiredAuthMarkerRef);
     expect(batchCommit).toHaveBeenCalledTimes(1);

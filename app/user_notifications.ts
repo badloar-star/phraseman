@@ -72,6 +72,14 @@ export interface UserNotificationReportReply {
   messageId: string;
   title: string;
   body: string;
+  rewardBundle: Readonly<{
+    version: 1;
+    severity: 'none' | 'minor' | 'serious' | 'critical' | 'legacy';
+    spins: number;
+    runes: number;
+    pearls: number;
+  }>;
+  /** Legacy alias retained while cached v1 notifications age out. */
   coins: number;
   claimed: boolean;
   claimedAtMs: number | null;
@@ -173,17 +181,34 @@ export function parseUserNotificationNav(value: unknown): UserNotificationNav | 
   };
 }
 
-function normalizeReportReply(value: unknown): UserNotificationReportReply | null {
+export function normalizeUserNotificationReportReply(value: unknown): UserNotificationReportReply | null {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
   const row = value as Record<string, unknown>;
   const messageId = cleanText(row.messageId, 128);
   if (!messageId) return null;
   const coins = Math.max(0, Math.min(1, Math.floor(Number(row.coins ?? row.shards ?? 0) || 0)));
+  const bundleRow = row.rewardBundle && typeof row.rewardBundle === 'object' && !Array.isArray(row.rewardBundle)
+    ? row.rewardBundle as Record<string, unknown>
+    : null;
+  const severity = cleanText(bundleRow?.severity, 16) as UserNotificationReportReply['rewardBundle']['severity'];
+  const tiers: Readonly<Record<string, readonly [number, number, number]>> = {
+    none: [0, 0, 0], minor: [1, 300, 1], serious: [2, 600, 5], critical: [3, 1000, 10], legacy: [0, 0, 1],
+  };
+  const tier = tiers[severity];
+  const rewardBundle = bundleRow && Number(bundleRow.version) === 1 && tier
+    && Number(bundleRow.spins) === tier[0]
+    && Number(bundleRow.runes) === tier[1]
+    && Number(bundleRow.pearls) === tier[2]
+    ? { version: 1 as const, severity, spins: tier[0], runes: tier[1], pearls: tier[2] }
+    : coins === 1
+      ? { version: 1 as const, severity: 'legacy' as const, spins: 0, runes: 0, pearls: 1 }
+      : { version: 1 as const, severity: 'none' as const, spins: 0, runes: 0, pearls: 0 };
   const claimedAtMsRaw = Math.floor(Number(row.claimedAtMs ?? 0) || 0);
   return {
     messageId,
     title: cleanText(row.title, 120),
     body: cleanText(row.body, 1200),
+    rewardBundle,
     coins,
     claimed: row.claimed === true,
     claimedAtMs: claimedAtMsRaw > 0 ? claimedAtMsRaw : null,
@@ -200,7 +225,7 @@ function normalizeNotification(id: string, data: Record<string, unknown>): UserN
     fromAvatar: String(data.fromAvatar || ''),
     text: String(data.text || ''),
     nav,
-    reportReply: normalizeReportReply(data.reportReply),
+    reportReply: normalizeUserNotificationReportReply(data.reportReply),
     read: data.read === true,
     createdAt: Number(data.createdAt || 0),
   };

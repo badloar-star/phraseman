@@ -1,8 +1,10 @@
 import { existsSync, readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
-import { AUTHORED_EPISODE_01_SESSIONS } from "../modules/learning-v2/content/source/authored_sessions_v1";
-import { allAuthoredEsEpisode01Sessions } from "../modules/learning-v2/content/source/es_authored_sessions_v1";
+import {
+  AUTHORED_EPISODE_01_SESSIONS,
+  authoredLearningV2SessionSource,
+} from "../modules/learning-v2/content/source/authored_sessions_v1";
 import { buildSessionShardFromSource } from "../modules/learning-v2/content/source/session_shard_from_source_v1";
 import { buildSessionChildBodiesFromShard } from "../modules/learning-v2/content/source/session_package_from_shard_v1";
 import {
@@ -67,10 +69,32 @@ const definitionByFamily = new Map(
   ]),
 );
 
-const sourceSets = [
-  { target: "en", sources: AUTHORED_EPISODE_01_SESSIONS },
-  { target: "es", sources: allAuthoredEsEpisode01Sessions() },
-] as const;
+type ModeGateSource = Parameters<typeof buildSessionShardFromSource>[0];
+const sourceSets: {
+  target: "en" | "es";
+  sources: readonly ModeGateSource[];
+}[] = [{
+  target: "en",
+  sources: requestedSession === null
+    ? AUTHORED_EPISODE_01_SESSIONS
+    : [authoredLearningV2SessionSource(requestedSession)].filter(
+        (source): source is ModeGateSource => Boolean(source),
+      ),
+}];
+
+// Keep the English focused gate isolated from the independently authored
+// Spanish contour. Loading the Spanish registry pulls its own runtime seam,
+// which must not be evaluated for --target=en.
+if (requestedTarget !== "en") {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { allAuthoredEsEpisode01Sessions } = require("../modules/learning-v2/content/source/es_authored_sessions_v1") as {
+    allAuthoredEsEpisode01Sessions: () => readonly ModeGateSource[];
+  };
+  sourceSets.push({
+    target: "es",
+    sources: allAuthoredEsEpisode01Sessions(),
+  });
+}
 
 for (const { target, sources } of sourceSets) {
   if (requestedTarget !== null && target !== requestedTarget) continue;

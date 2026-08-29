@@ -35,7 +35,7 @@ interactions не могут иметь одну family. Проверка вып
 
 | Family | Канонический owner-макет | Неподменяемая учебная операция |
 |---|---|---|
-| `phrase_builder` | `mockups/02-phrase-builder.html` | собрать фразу из авторских плиток и получить feedback по точному слоту |
+| `phrase_builder` | `mockups/02-phrase-builder.html` | собрать фразу из авторских плиток; неверная сборка даёт retry/verdict без choice-style пояснения |
 | `listen_choose` | `mockups/03-listen-choose.html` | услышать реальное аудио и выбрать услышанный locale-native смысл без утечки target-текста |
 | `listen_build_dictation` | `mockups/05-listen-build.html` | восстановить скрытую фразу по обычному/замедленному аудио |
 | `context_gap_grammar` | `mockups/06-context-gap.html` | выбрать точную форму в видимом контексте и одном диагностическом пропуске |
@@ -80,6 +80,12 @@ family не повторяется внутри сессии» сохраняе�
 Под flip-поверхностью показывается обязательная вручную написанная краткая
 словарная дефиниция для текущей из восьми локалей. Она проходит source → shard →
 package → runtime без template-generation и не попадает на оборот карточки.
+Сам факт первого показа overlay немедленно и идемпотентно записывает durable
+lesson unlock. Завершение сессии и кнопка Continue не являются условием
+разблокировки. Перед решением о показе registry обязан гидратироваться; уже
+увиденный lexical item при повторном входе не показывает blocking-карточку.
+Authoring preview использует отдельный DEV namespace и не пишет learner
+progress, но DEV-словарь карты объединяет оба namespace для owner-проверки.
 
 Футер direct player повторяет footer обычного урока: равные колонки с иконкой и
 подписью, без круглых action-контейнеров и pill CTA. Attempts HUD находится в
@@ -99,24 +105,36 @@ family. Поля общей оболочки (`family`, `prompt`, `responseOptio
 `inputMode`) не заменяют этот payload.
 
 - `phrase_builder`: target, locale-native meaning, ordered target tokens,
-  авторские distractor tiles, feedback по выбранной плитке/слоту.
+  авторские distractor tiles и внутренние slot diagnostics для authoring QA;
+  отдельный learner-facing choice-feedback не проецируется.
 - `listen_choose`: reference audio, slow replay, locale-native choices,
   transcript reveal policy и feedback по каждому варианту.
 - `listen_build_dictation`: reference + slow audio, target hidden до попытки,
-  ordered tokens, авторские лишние плитки и slot feedback.
+  ordered tokens, авторские лишние плитки и внутренние slot diagnostics без
+  learner-facing choice-feedback.
 - `context_gap_grammar`: locale-native scene/meaning, одна точная gap-position,
   варианты одной проверяемой dimension и feedback по каждой ловушке.
 - `speed_match`: полноценный `pairGrid`, две независимо перемешанные колонки,
   stable pairing keys, timer/pause policy и finish stats. Один prompt с тремя
-  radio-вариантами не является Speed Match. В первой сессии курса `pairGrid`
-  содержит четыре разных слова, уже введённых word-first; начиная со второй —
-  восемь разных слов, изученных в текущей или предыдущих сессиях. Незнакомый
-  target и повтор одной пары ради заполнения сетки дают `HOLD`.
+  radio-вариантами не является Speed Match. `pairGrid` содержит ровно четыре
+  разных знакомых слова и четыре атомарных значения: максимум `4 + 4` видимых
+  кнопки. Незнакомый target, повтор пары или расширение сетки сверх четырёх
+  пар дают `HOLD`.
 - `scripted_repeat_compare`: reference + slow audio, target phrase,
   hold-press/release lifecycle в центральном футере, playback модели и ученика,
   honest outcome states и доступный toggle через assistive action. Видимая
   вторая mic-кнопка внутри карточки и tap-only управление запрещены. Бинарный
   correct/wrong не может подменять утверждённый режим.
+  Центральный reference control — крупная ringed Play-кнопка; во время
+  `requesting/listening/finishing` она сохраняет геометрию и становится
+  недоступной, а footer press-target не размонтируется и не меняет callback до
+  release. Report-control закреплён справа над футером.
+  Instruction содержит только действие; `targetPhrase` рендерится отдельным
+  крупным слоем ровно один раз и не конкатенируется к prompt. На Android при
+  наличии штатного PCM-recorder и локальной модели используется тот же
+  app-owned hold route, что в обычных уроках: нативный endpointer не имеет права
+  завершать запись раньше физического release. Системный recognizer допустим
+  только как fallback, а press target получает достаточный retention offset.
 
 Аудиозависимое задание без валидного published audio target — `HOLD`. Кнопка,
 которая визуально существует, но ничего не воспроизводит, не считается
@@ -127,12 +145,48 @@ listening/voice evidence.
 системным голосом устройства. Ошибка или задержка воспроизведения не должна
 делать экран непроходимым: choices/tiles остаются доступны, а недоступная
 audio-кнопка имеет честный disabled/unavailable state. Это не превращает DEV
-fallback в production audio evidence.
+  fallback в production audio evidence.
+
+Жёсткая гранулярность токенов (owner 2026-08-28): `phrase_builder` и
+`listen_build_dictation` собирают только целые слова/целые утверждённые чанки.
+Нельзя разбивать `set` на `s + e + t`, нельзя смешивать одиночные буквы с
+цельными словами-дистракторами. Однобуквенные `I` и `a` допустимы только потому,
+что сами являются полными словами. Форму отдельного нового слова проверяет
+whole-word choice, audio recognition или voice, но не буквенный пазл.
 
 Для обычного single-choice/gap/одношагового builder нужны один правильный ответ
-и минимум три вручную выбранные диагностические ловушки с разным feedback.
+и минимум три вручную выбранные диагностические ловушки. Только single-choice
+получает видимый разбор ответа: у каждой неверной кнопки свой ручной feedback,
+точно привязанный к `responseId`. Builder сохраняет ловушки для retry и QA, но
+не показывает плашку выбора.
 `speed_match` состоит из настоящих пар и не получает искусственных
 неправильных пар ради этого минимума.
+
+Новая грамматическая конструкция не может быть побочным материалом словарной,
+голосовой или повторительной сессии. Первое появление `to`, отрицания, вопроса,
+артикля, нового подлежащего, указательной/притяжательной формы, `have` или
+модальной конструкции требует отдельной полной сессии: конструкция явно
+записана в `session map.teaches`, а source содержит ровно 3 интро и 17
+mode-native практик. Скрытая конструкция в target-тексте или только в
+`phrase.features` даёт `HOLD`.
+
+Owner-дополнение 2026-08-28: каждая authoring-сессия обязана иметь новую
+микрограмматическую операцию. Три интро содержат одинаковый `grammarFeatureId`,
+три разные `testedDimension`, объясняют операцию до practice и задают варианты
+на английском. Native-language semantic quiz в интро запрещён.
+
+После сборки evaluator обязан принимать ровно один видимый single-choice
+вариант. Тексты кнопок и `responseId` уникальны. Ключи
+`responseFeedbackById` обязаны в точности совпасть с множеством видимых
+неверных response IDs: ни пропусков, ни правильного ответа, ни устаревшего
+невидимого ключа. Во всех восьми локалях тексты непустые и различаются между
+ловушками. Fallback «возьми любой feedback с `correct=false`» запрещён.
+
+Каждая видимая кнопка правильного ответа и дистрактора содержит одну атомарную
+формулировку. Перечислять через `/` несколько переводов, синонимов или родовых
+форм запрещено; в `speed_match` это же относится к каждой подписи значения.
+Полные варианты могут оставаться в словарной карточке или редакторском
+объяснении, но не протекают в `responseOptions`/`pairGrid` learner package.
 
 Все варианты ответа перемешиваются runtime детерминированно по стабильному
 interaction seed. Если source хранит правильный вариант первым, он обязан
@@ -198,6 +252,13 @@ viewport не разрешает менять композицию или мех
 6. motion receipt с измеренными durations/easings и reduced-motion variant;
 7. полный играбельный owner mock с тем же пакетом, что получает runtime;
 8. exact content fingerprint и exact mockup fingerprint.
+
+После любого изменения learner-facing source, статуса или fingerprint макет
+пересобирается в том же ходе. Перед словами «готово к проверке» обязательно
+выполнить `npm run learning-v2:owner-review-ready-gate`: команда заново строит
+HTML, проверяет bundle/renderer/server и побайтово сравнивает свежий файл с
+ответом живого owner-review URL. Старый HTML в памяти сервера, кэш браузера,
+отсутствующая текущая сессия или несовпадение bytes означают `HOLD`.
 
 Проверка только наличия семи family names, маршрута компонента или красивого
 первого кадра не является доказательством.

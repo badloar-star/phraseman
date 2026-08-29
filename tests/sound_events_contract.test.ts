@@ -17,7 +17,6 @@ const MISSING_EVENTS: SoundEventId[] = [
   'pm.arena.search_start',
   'pm.arena.search_loop',
   'pm.arena.opponent_found',
-  'pm.arena.countdown_tick',
   'pm.arena.countdown_go',
   'pm.arena.task_in',
   'pm.arena.option_tap',
@@ -33,8 +32,6 @@ const MISSING_EVENTS: SoundEventId[] = [
   'pm.arena.pair_match',
   'pm.arena.pair_miss',
   'pm.arena.pair_clear',
-  'pm.arena.result_win',
-  'pm.arena.result_loss',
   'pm.arena.result_draw',
   'pm.arena.star_fly',
   'pm.arena.star_land',
@@ -44,7 +41,6 @@ const MISSING_EVENTS: SoundEventId[] = [
   'pm.arena.rank_down',
   // зачем 2026-08-25: событие празднования Plus заведено параллельной сессией,
   // файл к нему ещё не сгенерирован — директор молча пропускает такие события.
-  'pm.celebration.voice_score',
 ];
 
 describe('semantic sound event catalog', () => {
@@ -53,8 +49,8 @@ describe('semantic sound event catalog', () => {
     const enabled = ids.filter((id) => SOUND_EVENTS[id].source !== null);
     const disabled = ids.filter((id) => SOUND_EVENTS[id].source === null);
 
-    expect(ids).toHaveLength(133);
-    expect(enabled).toHaveLength(103);
+    expect(ids).toHaveLength(142);
+    expect(enabled).toHaveLength(116);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });
@@ -66,6 +62,16 @@ describe('semantic sound event catalog', () => {
       durationMs: 380,
       cooldownMs: 160,
       family: 'learning',
+      mixWithVoice: true,
+      allowConcurrent: true,
+    });
+    expect(SOUND_EVENTS['pm.reward.rune_flight_start']).toMatchObject({
+      mixWithVoice: true,
+      allowConcurrent: true,
+    });
+    expect(SOUND_EVENTS['pm.reward.rune_flight_land']).toMatchObject({
+      mixWithVoice: true,
+      allowConcurrent: true,
     });
     expect(SOUND_EVENTS['pm.voice.record_ready']).toMatchObject({
       volume: 0.4,

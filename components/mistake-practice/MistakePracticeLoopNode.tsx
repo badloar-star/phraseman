@@ -18,6 +18,7 @@ export default function MistakePracticeLoopNode({ count, locked, onPress }: Prop
   const copy = React.useMemo(() => triLang(lang, {
     ru: { title: 'Ошибки', optional: 'Необязательная петля', plus: ', нужен Plus' },
     uk: { title: 'Помилки', optional: 'Необов’язкова петля', plus: ', потрібен Plus' },
+    en: { title: 'Mistakes', optional: 'Optional loop', plus: ', requires Plus' },
     es: { title: 'Errores', optional: 'Bucle opcional', plus: ', requiere Plus' },
     'pt-BR': { title: 'Erros', optional: 'Loop opcional', plus: ', requer Plus' },
     vi: { title: 'Lỗi sai', optional: 'Vòng lặp tùy chọn', plus: ', cần Plus' },

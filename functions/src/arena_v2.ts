@@ -70,6 +70,12 @@ import {
   ARENA_V2_QUICK_BOT_FALLBACK_MS,
   ARENA_V2_QUICK_BOT_MAX_MS,
   arenaQuickBotDelayMs,
+  ARENA_V2_RANKED_BOT_FALLBACK_MS,
+  ARENA_V2_RANKED_BOT_MAX_MS,
+  ARENA_V2_RANKED_BOT_DAILY_LIMIT,
+  arenaRankedBotDelayMs,
+  type ArenaBotStrength,
+  ARENA_V2_ACTIVE_MATCH_STALE_MS,
   ARENA_V2_QUEUE_LEASE_MS,
   ARENA_V2_READING_MS,
   ARENA_V2_REVEAL_MS,
@@ -489,6 +495,11 @@ function profileDefaults(stableUid: string, data?: Json): Json {
     lifetimeBestTierIndex: Math.max(0, Math.trunc(Number(data?.lifetimeBestTierIndex ?? 0))),
     /** Сезон, к которому относится текущий рейтинг. Смена — повод для сброса. */
     rankSeasonId: typeof data?.rankSeasonId === 'string' ? data.rankSeasonId : null,
+    /** Дневной счётчик рейтинговых матчей против бота (владелец 2026-08-28):
+     *  фарм-защита. Ключ дня хранится рядом, чтобы новый день сбрасывал счёт
+     *  без отдельного чтения. */
+    rankedBotDayKey: typeof data?.rankedBotDayKey === 'string' ? data.rankedBotDayKey : null,
+    rankedBotMatchesToday: Math.max(0, Math.trunc(Number(data?.rankedBotMatchesToday ?? 0))),
   };
 }
 
@@ -625,10 +636,14 @@ function makeMatch(input: {
     if (!input.botSeed) throw new HttpsError('internal', 'arena_bot_seed_missing');
     privateDoc.botSeed = input.botSeed;
     privateDoc.botSeedCommitment = createHmac('sha256', input.botSeed).update(input.matchId).digest('hex');
+    // зачем (владелец 2026-08-28): рейтинговый бот обязан быть заметно
+    // сильнее тренировочного — он играет за реальные звёзды игрока.
+    const botStrength: ArenaBotStrength = input.mode === 'ranked' ? 'ranked' : 'quick';
     privateDoc.botPlan = Object.fromEntries(buildArenaBotBlueprint(
       input.botSeed,
       Number(input.left.rank ?? 0),
       privateDoc.tasks,
+      botStrength,
     ).map((plan, index) => [String(index), plan]));
   }
   // Бот не открывает приложение и не вызывает MatchAccept. Его место уже
@@ -967,10 +982,16 @@ async function settleMatch(
 ): Promise<void> {
   if (match.state === 'settled' && privateDoc.settledAtMs) return;
   const humans = privateDoc.participantStableUids.filter((uid) => !uid.startsWith('bot_'));
+  const hasBot = privateDoc.participantStableUids.some((uid) => uid.startsWith('bot_'));
   if (match.mode === 'ranked') {
     const divisions = (match.players as Json[]).map((player) => Number(player.rank ?? 0));
-    // humans.length === 2 строже, чем публичный opponentKind: он теперь всегда 'human'.
-    if (humans.length !== 2 || divisions.length !== 2
+    // зачем (владелец 2026-08-28): рейтинг теперь допускает бота как замену
+    // пустой очереди — но ТОЛЬКО пару «1 живой + 1 бот», никогда не 0 живых.
+    // Против человека остаётся жёсткое humans.length === 2, как раньше.
+    const rosterOk = hasBot
+      ? humans.length === 1 && privateDoc.participantStableUids.length === 2
+      : humans.length === 2;
+    if (!rosterOk || divisions.length !== 2
       || Math.abs(divisions[0] - divisions[1]) > 1) {
       throw new HttpsError('data-loss', 'arena_ranked_integrity_failed');
     }
@@ -1722,12 +1743,40 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
         tx.get(db.collection(ARENA_V2_COLLECTIONS.matches).doc(activeMatchId)),
         tx.get(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(activeMatchId)),
       ]);
+      const activeMatch = activeMatchSnap.data();
+      /**
+       * Матч считается брошенным, если он давно просрочен и при этом не
+       * доигран. Дедлайн ставит сам сервер на КАЖДУЮ фазу, поэтому «дедлайн в
+       * далёком прошлом» однозначно означает, что за матчем никто не вернулся.
+       *
+       * зачем (владелец 2026-08-29, «арена не запускается, сразу пустой
+       * экран»): сервер лечил ссылку ТОЛЬКО когда матч исчез. Существующий, но
+       * брошенный матч блокировал поиск ВЕЧНО — `arena_active_match_exists` на
+       * каждый заход. А брошенным он становился системно: сдача поиска
+       * выбрасывала человека ровно в тот момент, когда матч уже создался.
+       * Клиент такой матч не откроет (план не выдаётся по протухшему матчу), и
+       * выхода у игрока не оставалось вовсе.
+       */
+      const activeDeadlineMs = Number(activeMatch?.stateDeadlineAtMs ?? 0);
+      const activeFinished = activeMatch?.state?.phase === 'finished';
+      const activeStale = Number.isFinite(activeDeadlineMs) && activeDeadlineMs > 0
+        && now - activeDeadlineMs > ARENA_V2_ACTIVE_MATCH_STALE_MS;
       if (!activeMatchSnap.exists || !activePrivateSnap.exists) {
         // Матч уже исчез, но старый профиль/билет пережил его. Новый поиск сам
         // лечит ссылку: пользователь не должен видеть «матча больше нет» и
         // вручную сбрасывать очередь.
         activeMatchMissing = true;
         profile = { ...profile, activeMatchId: null };
+      } else if (activeFinished || activeStale) {
+        // Тот же ремонт ссылки, но для матча, который существует и уже никогда
+        // не продолжится. Закрываем его явно, чтобы он не всплыл ещё раз.
+        activeMatchMissing = true;
+        profile = { ...profile, activeMatchId: null };
+        tx.set(activeMatchSnap.ref, {
+          state: { ...(activeMatch?.state ?? {}), phase: 'finished' },
+          closeReason: activeFinished ? 'already_finished' : 'abandoned_stale',
+          closedAtMs: now,
+        }, { merge: true });
       } else {
         throw new HttpsError('already-exists', 'arena_active_match_exists');
       }
@@ -1799,10 +1848,13 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
         player: playerSnapshot(who.stableUid, who.user, profile),
         // Владелец (2026-08-12): момент входа бота назначает СЕРВЕР, а не клиент,
         // иначе задержку легко подделать и она перестаёт быть случайной.
-        // Только для быстрого матча: в рейтинге ботов нет.
+        // зачем (владелец 2026-08-28): рейтинг тоже получает бота — окно шире
+        // (до минуты, не 20 с), потому что живой соперник в рейтинге ценнее
+        // подождать. Дневной лимит матчей против бота проверяется отдельно,
+        // в самом фолбэке — здесь только назначается момент готовности.
         ...(mode === 'quick'
           ? { botDueAtMs: ownJoinedAt + arenaQuickBotDelayMs(randomUnit()) }
-          : {}),
+          : { botDueAtMs: ownJoinedAt + arenaRankedBotDelayMs(randomUnit()) }),
       };
       tx.set(ownProfileRef, { ...profile, ...(activeMatchMissing ? { activeMatchId: null } : {}), updatedAtMs: now }, { merge: true });
       tx.set(ownQueueRef, queue);
@@ -2149,6 +2201,85 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
     tx.set(queueRef, { status: 'matched', matchId, matchedAtMs: now,
       viewerSeat: 'a', opponentKind: 'human' }, { merge: true });
     tx.set(profileRef, { ...profile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
+    return { matchId, opponentKind: 'human' as const, viewerSeat: 'a' as const };
+  });
+  return { ok: true, status: 'matched' as const, matchId: output.matchId, viewerSeat: output.viewerSeat ?? 'a',
+    opponentKind: output.opponentKind };
+});
+
+/**
+ * Рейтинговый бот-фолбэк (владелец 2026-08-28).
+ *
+ * Живого соперника в узком окне рангов ±1 ищут `arenaV2FindMatch` (по опросу)
+ * и мгновенный триггер `arenaV2OnQueueWrite` — сюда доходят только если за
+ * botDueAtMs (до минуты) никто не нашёлся. Бот здесь ЗАМЕТНО сильнее
+ * тренировочного (arena_v2_core.ts: 'ranked' профиль точности), потому что
+ * итог влияет на настоящий рейтинг — как и решил владелец.
+ *
+ * Дневной лимит на игрока (ARENA_V2_RANKED_BOT_DAILY_LIMIT) защищает рейтинг
+ * от фарма самым слабым источником побед: бот закрывает дыру пустой очереди,
+ * а не становится бесплатной лестницей наверх.
+ */
+export const arenaV2RankedBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
+  const who = await arenaActor(request, 'ranked');
+  const requestId = safeId(request.data?.requestId, 'request_id');
+  const now = nowMs();
+  const queueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(who.stableUid);
+  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const matchId = db.collection(ARENA_V2_COLLECTIONS.matches).doc().id;
+  const botSeed = randomId(32);
+  const todayKey = utcDayKey(now);
+  const output = await db.runTransaction(async (tx) => {
+    const [queueSnap, profileSnap] = await Promise.all([tx.get(queueRef), tx.get(profileRef)]);
+    const queue = queueSnap.data() ?? {};
+    if (queue.requestId !== requestId || queue.authUid !== who.authUid || queue.mode !== 'ranked') {
+      throw new HttpsError('failed-precondition', 'arena_ranked_queue_missing');
+    }
+    if (queue.status === 'matched' && queue.matchId) return {
+      matchId: String(queue.matchId),
+      opponentKind: 'human' as const,
+      viewerSeat: queue.viewerSeat === 'b' ? 'b' as const : 'a' as const,
+    };
+    if (queue.status !== 'waiting') throw new HttpsError('failed-precondition', 'arena_ranked_queue_not_waiting');
+    const joinedAtMs = Number(queue.joinedAtMs ?? now);
+    const botDueAtMs = Number.isFinite(Number(queue.botDueAtMs))
+      ? Number(queue.botDueAtMs)
+      : joinedAtMs + ARENA_V2_RANKED_BOT_MAX_MS;
+    if (now < Math.max(botDueAtMs, joinedAtMs + ARENA_V2_RANKED_BOT_FALLBACK_MS)) {
+      throw new HttpsError('failed-precondition', 'arena_ranked_bot_too_early');
+    }
+    const profile = profileDefaults(who.stableUid, profileSnap.data());
+    if (profile.activeMatchId) throw new HttpsError('already-exists', 'arena_active_match_exists');
+    const dayKeyStored = String(profile.rankedBotDayKey ?? '');
+    const matchesTodayBefore = dayKeyStored === todayKey ? Math.max(0, Math.trunc(Number(profile.rankedBotMatchesToday ?? 0))) : 0;
+    if (matchesTodayBefore >= ARENA_V2_RANKED_BOT_DAILY_LIMIT) {
+      throw new HttpsError('resource-exhausted', 'arena_ranked_bot_daily_limit');
+    }
+    const botUid = `bot_${randomId(8)}`;
+    const pool = await loadArenaTaskPool(tx, profile.rank, matchId, 'ranked');
+    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, profile.rank, 'ranked');
+    const built = makeMatch({
+      matchId, mode: 'ranked', left: playerSnapshot(who.stableUid, who.user, profile),
+      right: playerSnapshot(
+        botUid,
+        {
+          displayName: arenaBotDisplayName(botSeed, typeof who.user.lang === 'string' ? who.user.lang : undefined),
+          avatar: arenaBotAvatar(botSeed, who.user.avatar),
+          ...botCosmetics(botSeed),
+        },
+        { rank: profile.rank, rating: profile.rating },
+      ),
+      leftAuthUid: who.authUid, privateEnvelope, now, bot: true, botSeed,
+    });
+    tx.create(db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId), built.publicDoc);
+    tx.create(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId), built.privateDoc);
+    tx.create(memberRef(matchId, who.authUid), memberMarker(matchId, who.authUid, 'a', now));
+    tx.set(queueRef, { status: 'matched', matchId, matchedAtMs: now,
+      viewerSeat: 'a', opponentKind: 'human' }, { merge: true });
+    tx.set(profileRef, {
+      ...profile, activeMatchId: matchId, updatedAtMs: now,
+      rankedBotDayKey: todayKey, rankedBotMatchesToday: matchesTodayBefore + 1,
+    }, { merge: true });
     return { matchId, opponentKind: 'human' as const, viewerSeat: 'a' as const };
   });
   return { ok: true, status: 'matched' as const, matchId: output.matchId, viewerSeat: output.viewerSeat ?? 'a',
@@ -2929,6 +3060,74 @@ export const arenaV2MatchSettle = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     ...matchResponse(output.match, output.viewerSeat, output.viewerReward),
     settled: output.match.state === 'settled',
   };
+});
+
+/**
+ * Освободить игрока от матча, который так и НЕ СОСТОЯЛСЯ.
+ *
+ * зачем (владелец 2026-08-29, «сделай чтобы матчи закрывались сразу же после
+ * того как матч не случился»): матч создаётся на сервере в момент назначения
+ * соперника, а игрок мог до него не дойти — экран поиска ушёл, приложение
+ * свернули, сеть моргнула. Тогда `activeMatchId` оставался в профиле НАВСЕГДА
+ * и блокировал любой новый поиск: Арена переставала открываться совсем.
+ *
+ * Живую игру этим вызовом закрыть нельзя — решает только сервер:
+ * закрывается матч, который уже доигран, либо тот, чей дедлайн фазы давно
+ * прошёл (`ARENA_V2_ACTIVE_MATCH_STALE_MS`). Матч, в котором игрок сейчас
+ * находится, двигает свой дедлайн и под условие не попадает.
+ *
+ * Идемпотентно: без замка возвращает `released: false` и ничего не пишет.
+ */
+export const arenaV2ReleaseStaleMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
+  const who = await arenaActor(request, 'home', true);
+  const now = nowMs();
+  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  return db.runTransaction(async (tx) => {
+    const profileSnap = await tx.get(profileRef);
+    const activeMatchId = String(profileSnap.data()?.activeMatchId ?? '');
+    if (!activeMatchId) return { released: false as const };
+
+    const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(activeMatchId);
+    const privateRef = db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(activeMatchId);
+    const [matchSnap, privateSnap] = await Promise.all([tx.get(matchRef), tx.get(privateRef)]);
+
+    // Матча уже нет — снимаем осиротевшую ссылку и уходим.
+    if (!matchSnap.exists || !privateSnap.exists) {
+      tx.set(profileRef, { activeMatchId: null, updatedAtMs: now }, { merge: true });
+      return { released: true as const, matchId: activeMatchId };
+    }
+
+    const match = clone(matchSnap.data()!);
+    const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
+    const deadlineMs = Number(match.stateDeadlineAtMs ?? 0);
+    const finished = match.terminal === true || match.state?.phase === 'finished';
+    const stale = Number.isFinite(deadlineMs) && deadlineMs > 0
+      && now - deadlineMs > ARENA_V2_ACTIVE_MATCH_STALE_MS;
+    /**
+     * Матч НЕ НАЧАЛСЯ: он всё ещё ждёт принятия, а этот игрок его не принимал.
+     * Именно так выглядит «соперник назначен, но человек до матча не дошёл» —
+     * и закрывать такой матч надо СРАЗУ, не дожидаясь просрочки (владелец
+     * 2026-08-29). Принятый матч сюда не попадает: там seat уже в acceptedBy.
+     */
+    const viewerSeat = privateDoc.seatByStableUid?.[who.stableUid];
+    const neverStarted = match.state === 'accepting'
+      && (!viewerSeat || !(match.acceptedBy as string[] | undefined ?? []).includes(viewerSeat));
+    // Матч живой и идёт прямо сейчас — не трогаем, игрок обязан доиграть.
+    if (!finished && !stale && !neverStarted) {
+      return { released: false as const, matchId: activeMatchId };
+    }
+
+    clearActiveProfiles(tx, privateDoc, now);
+    closeMatchQueues(tx, match, privateDoc, now, 'aborted');
+    if (!finished) {
+      match.terminal = true;
+      match.state = { ...(match.state ?? {}), phase: 'finished' };
+      match.closeReason = 'never_started';
+      match.closedAtMs = now;
+      tx.set(matchRef, match);
+    }
+    return { released: true as const, matchId: activeMatchId };
+  });
 });
 
 export const arenaV2Forfeit = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {

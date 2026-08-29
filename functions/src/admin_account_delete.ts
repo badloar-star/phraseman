@@ -8,7 +8,9 @@ import {
   ACCOUNT_DELETE_JOBS,
   accountDeleteJobId,
   enqueueAccountDeletionJob,
+  fenceAccountDeletionRoots,
 } from './account_delete_job';
+import { resolveAccountDeleteIdentityClosure } from './account_delete';
 
 const REGION = 'us-central1';
 const USERS = 'users';
@@ -533,7 +535,21 @@ export const adminQueueAccountDeletion = onCall(ADMIN_ACCOUNT_DELETE_OPTIONS, as
   }
 
   const identity = prepared.identity;
-  const queue = await enqueueAccountDeletionJob(db, identity.authUid, identity.stableUid);
+  const closureCutoffMs = Date.now();
+  await fenceAccountDeletionRoots(db, identity.authUid, identity.stableUid, closureCutoffMs);
+  const identityClosure = await resolveAccountDeleteIdentityClosure(
+    db,
+    identity.stableUid,
+    identity.authUid,
+  );
+  const queue = await enqueueAccountDeletionJob(
+    db,
+    identity.authUid,
+    identity.stableUid,
+    closureCutoffMs,
+    undefined,
+    identityClosure,
+  );
   const authHardening = await hardenTargetAuth(identity);
   const nowMs = Date.now();
   const result: Row = {

@@ -818,7 +818,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     marginTop: 12,
   },
-  answerList: { marginTop: 10, gap: 8 },
+  answerList: { marginTop: 10, marginHorizontal: -14, gap: 8 },
   answerChoiceTouch: { minHeight: 52 },
   answerChoice: {
     minHeight: 52,

@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createHash } from 'crypto';
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
@@ -7,10 +8,17 @@ import {
   CLIENT_SHARD_GRANT_RECEIPT_PREFIX,
   CLIENT_SHARD_LEDGER_STATE_PREFIX,
   CLIENT_SHARD_OPERATION_PREFIX,
+  clientShardPreparedStorageKey,
+  clientShardConflictStorageKey,
+  clientShardPhoneStateOutboxStorageKey,
+  backfillClientShardPhoneStateOutbox,
   commitClientShardOperation,
+  drainClientShardPhoneStateOutbox,
   recoverPreparedClientShardOperation,
 } from '../app/economy/client_shard_operation_ledger';
+import { configurePhoneStateEconomyBridge } from '../app/phone_state_economy_bridge';
 import { CLIENT_SHARD_SEMANTIC_PAID_PREFIX } from '../app/economy/client_shard_semantic_reducer';
+import { seasonPassEntitlementStorageKey } from '../app/season_pass_model';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'owner-1') }));
@@ -40,6 +48,10 @@ beforeEach(() => {
   __resetAccountGenerationForTests();
   beginAccountGeneration('owner-1');
   (AsyncStorage.getItem as jest.Mock).mockImplementation(async (key: string) => storage[key] ?? null);
+  (AsyncStorage.getAllKeys as jest.Mock).mockImplementation(async () => Object.keys(storage));
+  (AsyncStorage.multiGet as jest.Mock).mockImplementation(async (keys: readonly string[]) => (
+    keys.map((key) => [key, storage[key] ?? null])
+  ));
   (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
     storage[key] = value;
   });
@@ -48,6 +60,148 @@ beforeEach(() => {
   });
   (AsyncStorage.removeItem as jest.Mock).mockImplementation(async (key: string) => {
     delete storage[key];
+  });
+});
+
+function canonicalFingerprint(value: unknown): string {
+  const normalize = (input: unknown): unknown => {
+    if (Array.isArray(input)) return input.map(normalize);
+    if (input && typeof input === 'object') {
+      return Object.fromEntries(
+        Object.entries(input as Record<string, unknown>)
+          .filter(([, item]) => item !== undefined)
+          .sort(([left], [right]) => left.localeCompare(right))
+          .map(([key, item]) => [key, normalize(item)]),
+      );
+    }
+    return input;
+  };
+  return createHash('sha256').update(JSON.stringify(normalize(value))).digest('hex');
+}
+
+afterEach(() => {
+  configurePhoneStateEconomyBridge(null);
+});
+
+it('returns the durable local purchase without waiting for a stalled PhoneState mirror', async () => {
+  const phoneStateCommit = jest.fn(() => new Promise<never>(() => {}));
+  configurePhoneStateEconomyBridge({
+    scope: { stableUid: 'owner-1', accountGeneration: 1 },
+    runtimeGeneration: 1,
+    deviceId: 'device-1',
+    store: { commit: phoneStateCommit, readProjection: jest.fn(), replay: jest.fn() } as never,
+    triggerSync: jest.fn(),
+  });
+
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const outcome = await Promise.race([
+    commitClientShardOperation(purchase('energy:phone-state-stall:0001')),
+    new Promise<'timed-out'>((resolve) => {
+      timer = setTimeout(() => resolve('timed-out'), 50);
+    }),
+  ]);
+  if (timer) clearTimeout(timer);
+  await new Promise((resolve) => setTimeout(resolve, 0));
+
+  expect(outcome).toMatchObject({ status: 'applied', balanceAfter: 15 });
+  expect(phoneStateCommit).toHaveBeenCalledTimes(1);
+  expect(storage.energy_state).toContain('"current":5');
+  expect(storage.shards_balance).toBe('15');
+  expect(JSON.parse(storage[clientShardPhoneStateOutboxStorageKey('owner-1', 1)])).toMatchObject({
+    ownerStableId: 'owner-1',
+    lineage: 1,
+    operationIds: ['energy:phone-state-stall:0001'],
+  });
+});
+
+it('removes a durable PhoneState marker only after exact commit true', async () => {
+  const phoneStateCommit = jest.fn(async () => ({ duplicate: false }));
+  configurePhoneStateEconomyBridge({
+    scope: { stableUid: 'owner-1', accountGeneration: 1 },
+    runtimeGeneration: 1,
+    deviceId: 'device-1',
+    store: { commit: phoneStateCommit, readProjection: jest.fn(), replay: jest.fn() } as never,
+    triggerSync: jest.fn(),
+  });
+  const applied = await commitClientShardOperation(purchase('energy:phone-state-ok:0001'));
+  expect(applied).toMatchObject({ status: 'applied' });
+
+  const drained = await drainClientShardPhoneStateOutbox();
+  expect(drained.pending).toBe(0);
+  expect(drained.synced).toBeLessThanOrEqual(1);
+  expect(JSON.parse(storage[clientShardPhoneStateOutboxStorageKey('owner-1', 1)])).toMatchObject({
+    ownerStableId: 'owner-1',
+    lineage: 1,
+    operationIds: [],
+  });
+  expect(phoneStateCommit).toHaveBeenCalledWith(expect.anything(), {
+    idempotencyKey: 'economy:energy:phone-state-ok:0001',
+  });
+});
+
+it.each([
+  ['false', async () => { throw new Error('sqlite_busy'); }],
+  ['hang', () => new Promise<never>(() => {})],
+] as const)('retains the durable PhoneState marker when the mirror %s path does not commit', async (_label, commit) => {
+  configurePhoneStateEconomyBridge({
+    scope: { stableUid: 'owner-1', accountGeneration: 1 }, runtimeGeneration: 1, deviceId: 'device-1',
+    store: { commit, readProjection: jest.fn(), replay: jest.fn() } as never,
+    triggerSync: jest.fn(),
+  });
+  const operationId = `energy:phone-state-retry:${_label}`;
+  await expect(commitClientShardOperation(purchase(operationId))).resolves.toMatchObject({ status: 'applied' });
+  await expect(drainClientShardPhoneStateOutbox({ timeoutMs: 5 })).resolves.toEqual({ synced: 0, pending: 1 });
+  expect(JSON.parse(storage[clientShardPhoneStateOutboxStorageKey('owner-1', 1)])).toMatchObject({
+    ownerStableId: 'owner-1',
+    lineage: 1,
+    operationIds: [operationId],
+  });
+});
+
+it('never drains a durable marker into a different persistent lineage', async () => {
+  const firstLineageCommit = jest.fn(async () => { throw new Error('sqlite_busy'); });
+  configurePhoneStateEconomyBridge({
+    scope: { stableUid: 'owner-1', accountGeneration: 1 }, runtimeGeneration: 1, deviceId: 'device-1',
+    store: { commit: firstLineageCommit, readProjection: jest.fn(), replay: jest.fn() } as never,
+    triggerSync: jest.fn(),
+  });
+  const operationId = 'energy:old-lineage:0001';
+  await expect(commitClientShardOperation(purchase(operationId))).resolves.toMatchObject({ status: 'applied' });
+
+  const newLineageCommit = jest.fn(async () => ({ duplicate: false }));
+  configurePhoneStateEconomyBridge({
+    scope: { stableUid: 'owner-1', accountGeneration: 2 }, runtimeGeneration: 1, deviceId: 'device-2',
+    store: { commit: newLineageCommit, readProjection: jest.fn(), replay: jest.fn() } as never,
+    triggerSync: jest.fn(),
+  });
+
+  await expect(drainClientShardPhoneStateOutbox()).resolves.toEqual({ synced: 0, pending: 0 });
+  expect(newLineageCommit).not.toHaveBeenCalled();
+  expect(JSON.parse(storage[clientShardPhoneStateOutboxStorageKey('owner-1', 1)])).toMatchObject({
+    lineage: 1,
+    operationIds: [operationId],
+  });
+});
+
+it('backfills a missing mirror marker from the immutable root when PhoneState opens later', async () => {
+  const operationId = 'energy:runtime-backfill:0001';
+  await expect(commitClientShardOperation(purchase(operationId))).resolves.toMatchObject({ status: 'applied' });
+  expect(storage[clientShardPhoneStateOutboxStorageKey('owner-1', 1)]).toBeUndefined();
+
+  const phoneStateCommit = jest.fn(async () => ({ duplicate: false }));
+  configurePhoneStateEconomyBridge({
+    scope: { stableUid: 'owner-1', accountGeneration: 1 }, runtimeGeneration: 1, deviceId: 'device-1',
+    store: { commit: phoneStateCommit, readProjection: jest.fn(), replay: jest.fn() } as never,
+    triggerSync: jest.fn(),
+  });
+  await expect(backfillClientShardPhoneStateOutbox()).resolves.toEqual({ added: 1, pending: 1 });
+  await expect(drainClientShardPhoneStateOutbox()).resolves.toEqual({ synced: 1, pending: 0 });
+  expect(phoneStateCommit).toHaveBeenCalledTimes(1);
+
+  await expect(backfillClientShardPhoneStateOutbox()).resolves.toEqual({ added: 0, pending: 0 });
+  expect(JSON.parse(storage[clientShardPhoneStateOutboxStorageKey('owner-1', 1)])).toMatchObject({
+    operationIds: [],
+    acknowledgedOperationIds: [operationId],
   });
 });
 
@@ -419,7 +573,12 @@ it.each([
     })).resolves.toMatchObject({ status: 'applied' });
   }
   expect(storage.shards_balance).toBe('50');
-  expect(JSON.parse(storage.season_pass_owned_v1)).toMatchObject({ seasonId: '2026-Q2' });
+  expect(JSON.parse(storage[seasonPassEntitlementStorageKey('owner-1')]!)).toMatchObject({
+    schemaVersion: 'season-pass-entitlement.v1',
+    ownerStableId: 'owner-1',
+    seasonId: '2026-Q2',
+  });
+  expect(storage.season_pass_owned_v1).toBeUndefined();
 
   await expect(commitClientShardOperation({
     expectedOwnerStableId: 'owner-1',
@@ -441,6 +600,157 @@ it('rejects raw caller injection into semantic paid markers', async () => {
     ...purchase('energy:marker:inject1'),
     localWrites: [[`${CLIENT_SHARD_SEMANTIC_PAID_PREFIX}owner-1:profile_card_level:5`, '1']],
   })).resolves.toEqual({ status: 'failed', reason: 'reserved_local_write_key' });
+});
+
+// зачем (владелец 2026-08-27, «в TestFlight не покупаются аватары/ауры хотя
+// жемчужин полно»): preparedKey — ОДИН слот на владельца. Раньше, если запись
+// в нём была испорчена/несовместима с текущей версией приложения (пережиток
+// старого билда после обновления), recoverPreparedClientShardOperation
+// возвращала 'failed', а commitShardCompositeOperation на любой 'failed' от
+// восстановления сразу отдавала ошибку, НЕ снимая слот — КАЖДАЯ следующая
+// покупка проваливалась той же ошибкой навсегда. Тест сторожит самоочистку.
+it('clears a corrupt prepared slot instead of blocking every future purchase forever', async () => {
+  storage[clientShardPreparedStorageKey('owner-1')] = '{not json';
+
+  const stuckRecovery = await recoverPreparedClientShardOperation();
+  expect(stuckRecovery).toEqual({ status: 'failed', reason: 'prepared_operation_corrupt' });
+  expect(storage[clientShardPreparedStorageKey('owner-1')]).toBeUndefined();
+
+  // Следующая обычная покупка больше не видит зависшую запись и проходит.
+  await expect(commitClientShardOperation(purchase('energy:after-corrupt:0001'))).resolves.toMatchObject({
+    status: 'applied',
+    balanceAfter: 15,
+  });
+});
+
+// зачем (владелец 2026-08-27, «применение образа/ауры в Студии зависает
+// прозрачной кнопкой навсегда, даже после покупки и после перезапуска
+// приложения»): prepared-слот может застрять не только испорченным JSON, но и
+// СТРУКТУРНЫМ конфликтом с уже записанной операцией того же operationId —
+// commitUnlocked бросает 'operation_id_conflict', когда existing-операция на
+// диске имеет другой fingerprint. Это не читалось раньше как terminal:
+// recoverPreparedClientShardOperation возвращала 'failed' и НЕ снимала слот,
+// а commitShardCompositeOperation на любой 'failed' от восстановления сразу
+// отдавал ту же ошибку наружу — каждая следующая трата жемчужин (включая
+// применение уже купленного образа) валилась ею же навсегда. Существующие
+// данные на диске не меняются повторными попытками, поэтому это тот же класс
+// «повтор не изменит исход», что и мусорный JSON — тест сторожит самоочистку.
+it('uses the immutable root on a prepared operation-id conflict and preserves the conflicting evidence in quarantine', async () => {
+  await expect(commitClientShardOperation(purchase('energy:conflict:0001'))).resolves.toMatchObject({
+    status: 'applied',
+    balanceAfter: 15,
+  });
+
+  const preparedKey = clientShardPreparedStorageKey('owner-1');
+  const conflictingInput = purchase('energy:conflict:0001', 9);
+  storage[preparedKey] = JSON.stringify({
+    schemaVersion: 'client-shard-prepared.v1',
+    ownerStableId: 'owner-1',
+    input: conflictingInput,
+    requestFingerprint: canonicalFingerprint({
+      operationId: conflictingInput.operationId,
+      authority: 'client',
+      direction: conflictingInput.direction,
+      amount: conflictingInput.amount,
+      reason: conflictingInput.reason,
+      grant: conflictingInput.grant,
+      semanticResult: false,
+      localWrites: conflictingInput.localWrites,
+    }),
+    preparedAtMs: Date.now(),
+  });
+
+  const stuckRecovery = await recoverPreparedClientShardOperation();
+  expect(stuckRecovery).toMatchObject({ status: 'already-applied', balanceAfter: 15 });
+  expect(storage[preparedKey]).toBeUndefined();
+  expect(JSON.parse(storage[clientShardConflictStorageKey('owner-1')])).toMatchObject({
+    reason: 'operation_id_conflict',
+    operationId: 'energy:conflict:0001',
+  });
+
+  // Следующая обычная покупка (совсем другой товар) больше не блокируется.
+  await expect(commitClientShardOperation(purchase('energy:after-conflict:0001'))).resolves.toMatchObject({
+    status: 'applied',
+    balanceAfter: 10,
+  });
+  expect(storage[preparedKey]).toBeUndefined();
+});
+
+it('quarantines but never discards a fingerprint-mismatched prepared grant receipt', async () => {
+  // Оставляем prepared-слот тем же способом, что и «recovers a semantic result
+  // receipt after a crash» ниже — крах ПОСЛЕ записи слота, ДО завершения
+  // операции. Затем симулируем несовместимость со старой версией: запись
+  // на диске повреждена так, что её отпечаток больше не сходится (как если бы
+  // формат prepared-записи изменился между версиями приложения).
+  let failOperationOnce = true;
+  (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+    if (failOperationOnce && key.startsWith(CLIENT_SHARD_OPERATION_PREFIX)) {
+      failOperationOnce = false;
+      throw new Error('crash_after_grant');
+    }
+    storage[key] = value;
+  });
+  await expect(commitClientShardOperation(semanticEnergyPurchase('energy:stuck-shape:0001'))).resolves.toEqual({
+    status: 'failed',
+    reason: 'crash_after_grant',
+  });
+  const preparedKey = clientShardPreparedStorageKey('owner-1');
+  expect(storage[preparedKey]).toBeDefined();
+  const tampered = JSON.parse(storage[preparedKey]);
+  tampered.input.amount = 999;
+  storage[preparedKey] = JSON.stringify(tampered);
+
+  const stuckRecovery = await recoverPreparedClientShardOperation();
+  expect(stuckRecovery).toEqual({ status: 'failed', reason: 'prepared_evidence_quarantined' });
+  expect(storage[preparedKey]).toBeDefined();
+  expect(JSON.parse(storage[clientShardConflictStorageKey('owner-1')])).toMatchObject({
+    reason: 'prepared_operation_fingerprint_mismatch',
+    operationId: 'energy:stuck-shape:0001',
+  });
+  await expect(commitClientShardOperation(purchase('energy:after-stuck-shape:0001'))).resolves.toEqual({
+    status: 'failed', reason: 'prepared_operation_recovery_required',
+  });
+});
+
+it('never clears an unidentifiable prepared record while immutable owner evidence exists', async () => {
+  await expect(commitClientShardOperation(purchase('energy:evidence-root:0001'))).resolves.toMatchObject({
+    status: 'applied', balanceAfter: 15,
+  });
+  const preparedKey = clientShardPreparedStorageKey('owner-1');
+  storage[preparedKey] = '{unreadable-prepared';
+
+  await expect(recoverPreparedClientShardOperation()).resolves.toEqual({
+    status: 'failed', reason: 'prepared_evidence_quarantined',
+  });
+  expect(storage[preparedKey]).toBe('{unreadable-prepared');
+  expect(JSON.parse(storage[clientShardConflictStorageKey('owner-1')])).toMatchObject({
+    reason: 'prepared_operation_corrupt_unidentified_evidence',
+    operationId: null,
+  });
+});
+
+it('rebuilds projection and exact grant from an immutable root after a crash cut', async () => {
+  let failStateOnce = true;
+  (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+    if (failStateOnce && key.startsWith(CLIENT_SHARD_LEDGER_STATE_PREFIX)) {
+      failStateOnce = false;
+      throw new Error('crash_after_immutable_root');
+    }
+    storage[key] = value;
+  });
+  await expect(commitClientShardOperation(purchase('energy:root-recovery:0001', 9))).resolves.toEqual({
+    status: 'failed', reason: 'crash_after_immutable_root',
+  });
+  expect(Object.keys(storage).some((key) => key.includes('energy:root-recovery:0001'))).toBe(true);
+  delete storage.energy_state;
+  delete storage.shards_balance;
+
+  await expect(recoverPreparedClientShardOperation()).resolves.toMatchObject({
+    status: 'already-applied', balanceBefore: 20, balanceAfter: 15,
+  });
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ current: 9 });
+  expect(storage.shards_balance).toBe('15');
+  expect(storage[clientShardPreparedStorageKey('owner-1')]).toBeUndefined();
 });
 
 // зачем: раньше флаг «оплачено» завершал операцию с пустым writes, поэтому

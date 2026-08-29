@@ -4,6 +4,7 @@ import {
   type CustomizationServiceDeps,
 } from '../app/customization_service';
 import type { CustomizationSnapshot } from '../app/customization_snapshot';
+import type { AccountTransitionLockLease } from '../app/account_generation';
 
 const previousSnapshot: CustomizationSnapshot = {
   source: 'storage',
@@ -38,6 +39,28 @@ function makeDeps(): CustomizationServiceDeps {
 }
 
 describe('customization service', () => {
+  it('commits the complete selection through the durable authority before publishing it', async () => {
+    const deps = makeDeps();
+    const commitSelection = jest.fn(async () => undefined);
+    deps.commitSelection = commitSelection;
+
+    await expect(applyCustomizationDraft(availableInput, deps, undefined, {
+      operationId: 'selection:purchase:avatar-73', source: 'user',
+    })).resolves.toMatchObject({
+      activeAvatar: availableInput.avatarValue,
+      storedAuraSelection: availableInput.storedAuraSelection,
+    });
+
+    expect(commitSelection).toHaveBeenCalledWith(availableInput, {
+      operationId: 'selection:purchase:avatar-73', source: 'user',
+    }, undefined);
+    expect(deps.storage.multiSet).not.toHaveBeenCalled();
+    expect(deps.publishSnapshot).toHaveBeenCalledWith(expect.objectContaining({
+      activeAvatar: availableInput.avatarValue,
+      storedAuraSelection: availableInput.storedAuraSelection,
+    }));
+  });
+
   it('publishes the complete draft immediately, then persists and syncs', async () => {
     const deps = makeDeps();
     let finishWrite!: () => void;
@@ -152,5 +175,25 @@ describe('customization service', () => {
     expect(deps.invalidateCaches).toHaveBeenCalledTimes(1);
     expect(deps.syncCloud).toHaveBeenCalledTimes(1);
     expect(deps.syncPublicProfile).toHaveBeenCalledTimes(1);
+  });
+
+  it('passes an inherited account lock through the canonical level reset commit', async () => {
+    const deps = makeDeps();
+    const commitSelection = jest.fn(async () => undefined);
+    deps.commitSelection = commitSelection;
+    const lease = Object.freeze({}) as AccountTransitionLockLease;
+
+    await resetToLevelAvatar(
+      { level: 18, storedAuraSelection: null },
+      deps,
+      lease,
+      { source: 'user', operationId: 'dev:restore-baseline' },
+    );
+
+    expect(commitSelection).toHaveBeenCalledWith(
+      expect.objectContaining({ avatarValue: '18', storedAuraSelection: null }),
+      { source: 'user', operationId: 'dev:restore-baseline' },
+      lease,
+    );
   });
 });

@@ -19,8 +19,8 @@ import { isStreakFreezeActiveToday, parseStreakFreeze } from '../app/streak_free
 import BoonChestModal from './BoonChestModal';
 
 function makeL(lang: Lang) {
-  return (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
-    triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  return (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 }
 
 export default function ComebackBoonHost() {
@@ -78,7 +78,7 @@ export default function ComebackBoonHost() {
   // зачем: прежнее «Ты вернулся. Хорошо.» звучало сухо и почти укоризненно —
   // рядом с подарком это читалось как «мы тебе не особо рады». Тон радостный.
   const title = L(
-    'С возвращением! Мы скучали', 'З поверненням! Ми сумували', '¡Bienvenido de vuelta! Te echábamos de menos', 'Bem-vindo de volta! Sentimos sua falta',
+    'С возвращением! Мы скучали', 'З поверненням! Ми сумували', 'Welcome back! We missed you', '¡Bienvenido de vuelta! Te echábamos de menos', 'Bem-vindo de volta! Sentimos sua falta',
     'Chào mừng trở lại! Chúng tôi đã nhớ bạn', 'Selamat datang kembali! Kami merindukanmu', 'Tekrar hoş geldin! Seni özledik', 'Witaj z powrotem! Tęskniliśmy',
   );
   // зачем (владелец, 2026-08-26): наградой была 1 жемчужина — заменена на спин
@@ -91,6 +91,7 @@ export default function ComebackBoonHost() {
   const rewardLine = L(
     `Серия под защитой и ${cbSpins} ${cbRuSpin} ${cbOne ? 'твой' : 'твои'}`,
     `Серія під захистом і ${cbSpins} ${cbUkSpin} ${cbOne ? 'твій' : 'твої'}`,
+    `Streak protected and ${cbSpins} ${cbSpins === 1 ? 'spin' : 'spins'} yours`,
     `Racha protegida y ${cbSpins} ${cbSpins === 1 ? 'giro tuyo' : 'giros tuyos'}`,
     `Sequência protegida e ${cbSpins} ${cbSpins === 1 ? 'giro seu' : 'giros seus'}`,
     `Chuỗi được bảo vệ và ${cbSpins} lượt quay là của bạn`,
@@ -99,11 +100,11 @@ export default function ComebackBoonHost() {
     `Seria chroniona i ${cbSpins} ${cbSpins === 1 ? 'spin twój' : 'spinów twoje'}`,
   );
   const tapHint = L(
-    'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Toca para abrir', 'Toque para abrir',
+    'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Tap to open', 'Toca para abrir', 'Toque para abrir',
     'Nhấn để mở', 'Ketuk untuk membuka', 'Açmak için dokun', 'Dotknij, aby otworzyć',
   );
-  const claimCta = L('Продолжить', 'Продовжити', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjut', 'Devam et', 'Kontynuuj');
-  const closeLabel = L('Закрыть', 'Закрити', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij');
+  const claimCta = L('Продолжить', 'Продовжити', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjut', 'Devam et', 'Kontynuuj');
+  const closeLabel = L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij');
 
   return (
     <BoonChestModal

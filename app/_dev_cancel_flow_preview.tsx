@@ -65,9 +65,9 @@ export default function DevCancelFlowPreview() {
   const L = lang as Lang;
   const chrome = usePaywallChrome();
   const LP = (
-    ru: string, uk: string, es: string, ptBR: string,
+    ru: string, uk: string, en: string, es: string, ptBR: string,
     vi: string, id: string, tr: string, pl: string,
-  ) => triLang(L, { ru, uk, es, 'pt-BR': ptBR, vi, id, tr, pl });
+  ) => triLang(L, { ru, uk, en, es, 'pt-BR': ptBR, vi, id, tr, pl });
 
   const [preset, setPreset] = useState<PresetKey>('typical');
   const [openedReason, setOpenedReason] = useState<string | null>(null);
@@ -260,8 +260,8 @@ export default function DevCancelFlowPreview() {
               )}
               <Text style={[S.sheetTitle, { color: chrome.textPrimary }]}>
                 {offer === 'support'
-                  ? LP('Расскажи, что пошло не так', 'Розкажи, що пішло не так', 'Cuéntanos qué salió mal', 'Conte o que deu errado', 'Hãy cho chúng tôi biết vấn đề', 'Ceritakan apa yang salah', 'Neyin yanlış gittiğini anlat', 'Napisz, co poszło nie tak')
-                  : LP('Ты уже многого добился', 'Ти вже багато чого досяг', 'Ya has logrado mucho', 'Você já conquistou muito', 'Bạn đã đạt được rất nhiều', 'Kamu sudah mencapai banyak hal', 'Şimdiden çok şey başardın', 'Już wiele osiągnąłeś')}
+                  ? LP('Расскажи, что пошло не так', 'Розкажи, що пішло не так', 'Tell us what went wrong', 'Cuéntanos qué salió mal', 'Conte o que deu errado', 'Hãy cho chúng tôi biết vấn đề', 'Ceritakan apa yang salah', 'Neyin yanlış gittiğini anlat', 'Napisz, co poszło nie tak')
+                  : LP('Ты уже многого добился', 'Ти вже багато чого досяг', 'You\'ve already achieved a lot', 'Ya has logrado mucho', 'Você já conquistou muito', 'Bạn đã đạt được rất nhiều', 'Kamu sudah mencapai banyak hal', 'Şimdiden çok şey başardın', 'Już wiele osiągnąłeś')}
               </Text>
               <Text style={[S.sheetSub, { color: chrome.textMuted }]}>
                 {offer === 'support'
@@ -275,7 +275,7 @@ export default function DevCancelFlowPreview() {
                     <View style={[S.offerStat, { backgroundColor: `${chrome.tc.heroAccent}14` }]}>
                       <Text style={[S.offerStatNum, { color: chrome.tc.heroAccent }]}>{progress.streak}</Text>
                       <Text style={[S.offerStatLabel, { color: chrome.textMuted }]} maxFontSizeMultiplier={1.2}>
-                        {LP('дней подряд', 'днів поспіль', 'días seguidos', 'dias seguidos', 'ngày liên tiếp', 'hari berturut', 'gün üst üste', 'dni z rzędu')}
+                        {LP('дней подряд', 'днів поспіль', 'days in a row', 'días seguidos', 'dias seguidos', 'ngày liên tiếp', 'hari berturut', 'gün üst üste', 'dni z rzędu')}
                       </Text>
                     </View>
                   )}
@@ -283,7 +283,7 @@ export default function DevCancelFlowPreview() {
                     <View style={[S.offerStat, { backgroundColor: `${chrome.tc.heroAccent}14` }]}>
                       <Text style={[S.offerStatNum, { color: chrome.tc.heroAccent }]}>{progress.lessonsCompleted}</Text>
                       <Text style={[S.offerStatLabel, { color: chrome.textMuted }]} maxFontSizeMultiplier={1.2}>
-                        {LP('уроков', 'уроків', 'lecciones', 'aulas', 'bài học', 'pelajaran', 'ders', 'lekcji')}
+                        {LP('уроков', 'уроків', 'lessons', 'lecciones', 'aulas', 'bài học', 'pelajaran', 'ders', 'lekcji')}
                       </Text>
                     </View>
                   )}
@@ -291,7 +291,7 @@ export default function DevCancelFlowPreview() {
                     <View style={[S.offerStat, { backgroundColor: `${chrome.tc.heroAccent}14` }]}>
                       <Text style={[S.offerStatNum, { color: chrome.tc.heroAccent }]}>{progress.totalXP}</Text>
                       <Text style={[S.offerStatLabel, { color: chrome.textMuted }]} maxFontSizeMultiplier={1.2}>
-                        {LP('опыта', 'досвіду', 'de experiencia', 'de experiência', 'kinh nghiệm', 'pengalaman', 'deneyim', 'doświadczenia')}
+                        {LP('опыта', 'досвіду', 'XP', 'de experiencia', 'de experiência', 'kinh nghiệm', 'pengalaman', 'deneyim', 'doświadczenia')}
                       </Text>
                     </View>
                   )}
@@ -305,10 +305,10 @@ export default function DevCancelFlowPreview() {
               >
                 <Text style={[S.sheetPrimaryText, { color: chrome.tc.ctaText }]}>
                   {offer === 'support'
-                    ? LP('Написать нам', 'Написати нам', 'Escríbenos', 'Fale conosco', 'Nhắn cho chúng tôi', 'Hubungi kami', 'Bize yaz', 'Napisz do nas')
+                    ? LP('Написать нам', 'Написати нам', 'Write to us', 'Escríbenos', 'Fale conosco', 'Nhắn cho chúng tôi', 'Hubungi kami', 'Bize yaz', 'Napisz do nas')
                     : (isMax
-                        ? LP('Остаться в MAX', 'Залишитися в MAX', 'Quedarme en MAX', 'Ficar no MAX', 'Ở lại MAX', 'Tetap di MAX', "MAX'te kal", 'Zostań w MAX')
-                        : LP('Остаться в Plus', 'Залишитися в Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus'))}
+                        ? LP('Остаться в MAX', 'Залишитися в MAX', 'Stay on MAX', 'Quedarme en MAX', 'Ficar no MAX', 'Ở lại MAX', 'Tetap di MAX', "MAX'te kal", 'Zostań w MAX')
+                        : LP('Остаться в Plus', 'Залишитися в Plus', 'Stay on Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus'))}
                 </Text>
               </TouchableOpacity>
 
@@ -318,7 +318,7 @@ export default function DevCancelFlowPreview() {
                 style={S.sheetSecondary}
               >
                 <Text style={[S.sheetSecondaryText, { color: chrome.textMuted }]}>
-                  {LP('Всё равно отменить', 'Все одно скасувати', 'Cancelar de todos modos', 'Cancelar mesmo assim', 'Vẫn hủy', 'Tetap batalkan', 'Yine de iptal et', 'Anuluj mimo to')}
+                  {LP('Всё равно отменить', 'Все одно скасувати', 'Cancel anyway', 'Cancelar de todos modos', 'Cancelar mesmo assim', 'Vẫn hủy', 'Tetap batalkan', 'Yine de iptal et', 'Anuluj mimo to')}
                 </Text>
               </TouchableOpacity>
             </View>

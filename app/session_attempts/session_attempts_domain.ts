@@ -35,6 +35,8 @@ export type SessionAttemptsEvent =
   }>
   | Readonly<{ type: 'question_changed'; questionId: string }>
   | Readonly<{ type: 'recover_all'; recoveryReceiptId: string }>
+  /** Экран уже сжёг только временную копилку рун текущей сессии. */
+  | Readonly<{ type: 'restore_after_session_rune_forfeit' }>
   | Readonly<{ type: 'end_session' }>;
 
 export type SessionAttemptsEffect =
@@ -138,6 +140,18 @@ export function reduceSessionAttempts(
         recoveryReceiptId,
         MAX_RECOVERY_RECEIPT_IDS,
       ),
+    }), 'attempts_restored');
+  }
+
+  if (event.type === 'restore_after_session_rune_forfeit') {
+    if (state.phase !== 'awaiting_recovery' || state.remainingAttempts !== 0) {
+      return transition(state);
+    }
+    return transition(freezeState({
+      ...state,
+      remainingAttempts: SESSION_ATTEMPTS_MAX,
+      phase: 'active',
+      recoveryOrdinal: state.recoveryOrdinal + 1,
     }), 'attempts_restored');
   }
 

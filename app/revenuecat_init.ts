@@ -20,6 +20,7 @@ import {
 } from './account_generation';
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
+import { selectVoiceMinutePackages, type VoiceMinutePack } from '../modules/voice_minutes/catalog';
 
 const RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS = 1_500;
 
@@ -27,10 +28,7 @@ export function resolveRevenueCatStorePlan(
   existingStorePlan: PremiumStorePlan | null,
   inferredPlan: PremiumStorePlan,
 ): PremiumStorePlan {
-  // A cached MAX plan is stale after expiry/downgrade; current RevenueCat
-  // product metadata must be allowed to move back to an ordinary plan.
-  if (existingStorePlan === 'max_monthly') return inferredPlan;
-  return inferredPlan === 'max_monthly' ? inferredPlan : existingStorePlan ?? inferredPlan;
+  return existingStorePlan ?? inferredPlan;
 }
 
 // Мгновенная доставка премиума: RevenueCat шлёт CustomerInfo при покупке/RENEWAL/
@@ -71,19 +69,10 @@ export function resolvePremiumPackages(
   return { monthly, yearly, lifetime };
 }
 
-export function resolveMaxPackage(
-  offerings: { all?: Record<string, { availablePackages?: PurchasesPackage[] } | undefined> } | null | undefined,
-  expectedProductId?: string,
-): PurchasesPackage | undefined {
-  const packages = offerings?.all?.max?.availablePackages ?? [];
-  const expected = String(expectedProductId ?? '').trim().toLowerCase();
-  return packages.find((pkg) => {
-    const packageId = String(pkg?.identifier ?? '').trim().toLowerCase();
-    const productId = String(pkg?.product?.identifier ?? '').trim().toLowerCase();
-    if (packageId !== 'max_monthly') return false;
-    if (!/^phraseman_max_monthly_v1(?::monthly-base)?$/.test(productId)) return false;
-    return !expected || productId === expected;
-  });
+export function resolveVoiceMinutePackages(
+  offerings: Parameters<typeof selectVoiceMinutePackages>[0],
+): VoiceMinutePack[] {
+  return selectVoiceMinutePackages(offerings);
 }
 
 function trimKey(raw: unknown): string {
@@ -425,7 +414,7 @@ async function _doInit(): Promise<void> {
           }
           const existingStorePlan =
             !legacyAdminVip && (existingPlan === 'monthly' || existingPlan === 'yearly'
-              || existingPlan === 'lifetime' || existingPlan === 'max_monthly')
+              || existingPlan === 'lifetime')
               ? existingPlan as PremiumStorePlan
               : null;
           const inferredPlan = inferPremiumPlanFromProductId(

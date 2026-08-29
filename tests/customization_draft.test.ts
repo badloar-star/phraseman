@@ -28,7 +28,27 @@ describe('resolveCustomizationAction', () => {
     expect(resolveCustomizationAction({
       ...availableDraft,
       avatarAvailability: { kind: 'shards', cost: 90 },
-    })).toEqual({ kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'purchase', cost: 90 });
+    })).toEqual({
+      kind: 'buy-and-apply',
+      target: 'avatar',
+      purchaseKind: 'purchase',
+      currency: 'pearls',
+      cost: 90,
+    });
+  });
+
+  it('buys and applies a Yin rune blocker', () => {
+    expect(resolveCustomizationAction({
+      ...availableDraft,
+      previewAvatarValue: 'custom:custom-gen-42:violet:black',
+      avatarAvailability: { kind: 'runes', cost: 7_200 },
+    })).toEqual({
+      kind: 'buy-and-apply',
+      target: 'avatar',
+      purchaseKind: 'purchase',
+      currency: 'runes',
+      cost: 7_200,
+    });
   });
 
   it('resolves two shard blockers one at a time from active tab', () => {
@@ -37,7 +57,13 @@ describe('resolveCustomizationAction', () => {
       activeTab: 'auras',
       avatarAvailability: { kind: 'shards', cost: 90 },
       auraAvailability: { kind: 'shards', cost: 120 },
-    })).toEqual({ kind: 'buy-only', target: 'aura', purchaseKind: 'purchase', cost: 120 });
+    })).toEqual({
+      kind: 'buy-only',
+      target: 'aura',
+      purchaseKind: 'purchase',
+      currency: 'pearls',
+      cost: 120,
+    });
   });
 
   it('does not partially apply a level blocker', () => {
@@ -83,7 +109,13 @@ describe('resolveCustomizationAction', () => {
       ...availableDraft,
       previewAvatarValue: 'custom:custom-gen-41:aurora:white',
       avatarAvailability: owned,
-    })).toEqual({ kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'restyle', cost: 25 });
+    })).toEqual({
+      kind: 'buy-and-apply',
+      target: 'avatar',
+      purchaseKind: 'restyle',
+      currency: 'pearls',
+      cost: 25,
+    });
   });
 
   it('charges 25 shards for restyling a non-active owned avatar', () => {
@@ -92,7 +124,27 @@ describe('resolveCustomizationAction', () => {
       previewAvatarValue: 'custom:custom-gen-42:aurora:white',
       ownedAvatarStyles: { 'custom-gen-42': 'violet:black' },
       avatarAvailability: owned,
-    })).toEqual({ kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'restyle', cost: 25 });
+    })).toEqual({
+      kind: 'buy-and-apply',
+      target: 'avatar',
+      purchaseKind: 'restyle',
+      currency: 'pearls',
+      cost: 25,
+    });
+  });
+
+  it('charges 2,000 runes for a Yin restyle', () => {
+    expect(resolveCustomizationAction({
+      ...availableDraft,
+      previewAvatarValue: 'custom:custom-gen-41:ember:black',
+      avatarAvailability: owned,
+    })).toEqual({
+      kind: 'buy-and-apply',
+      target: 'avatar',
+      purchaseKind: 'restyle',
+      currency: 'runes',
+      cost: 2_000,
+    });
   });
 
   it.each([

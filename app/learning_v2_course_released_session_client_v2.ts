@@ -3,7 +3,7 @@ import { getApp } from "@react-native-firebase/app";
 import { getFunctions, httpsCallable } from "@react-native-firebase/functions";
 import { initFirebaseAppCheckIfAvailable } from "./app_check_init";
 import { withCallableTimeout } from "./callable_timeout";
-import { ensureAnonUser } from "./cloud_sync";
+import { ensureAnonUser, ensureStableAuthLink } from "./cloud_sync";
 import { withBackgroundNetworkLease } from "./interactive_network_quiet";
 import { peekStableId } from "./stable_id";
 import { deriveLocalOfflineProgressAccountScopeHash } from "../modules/learning-v2/progress/progress_account_scope";
@@ -559,6 +559,10 @@ export async function loadCurrentLearningV2CourseReleasedSessionV2(
   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV2,
 ): Promise<LearningV2CourseReleasedSessionAppResultV2> {
   const locator = exactCurrentLocator(locatorInput);
+  // зачем ensureStableAuthLink (владелец, 2026-08-27, «сессии должны быть
+  // доступны всегда, даже без привязки аккаунта») — см. подробный комментарий
+  // в learning_v2_course_released_session_client_v3.ts, тот же класс бага.
+  await ensureStableAuthLink().catch(() => false);
   const stableId = await ensureAnonUser();
   if (!stableId) fail();
   const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(stableId);

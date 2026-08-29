@@ -9,6 +9,8 @@ import { useTheme } from '../ThemeContext';
 import { pearlIconForTheme } from '../../app/coin_icons';
 import { LinearGradient } from '../SafeLinearGradient';
 import type { CustomizationCatalogItem } from '../../app/customization_catalog';
+import { CUSTOM_AVATAR_RUNE_RATE } from '../../constants/custom_avatars';
+import { RuneGlyph } from '../RuneGlyph';
 
 /**
  * зачем: «Вернуть аватар уровня» переехал из скрытого меню-трёх-точек в первую плитку
@@ -41,6 +43,7 @@ interface Props {
   label: string;
   statusLabel: string;
   tierPrice?: number;
+  tierCurrency?: 'pearls' | 'runes';
   onPress: (id: string) => void;
 }
 
@@ -68,17 +71,21 @@ function AvailabilityChip({
   item,
   pearlIcon,
   tierPrice,
+  tierCurrency,
 }: {
   item: CatalogCardItem;
   pearlIcon: ReturnType<typeof pearlIconForTheme>;
   tierPrice?: number;
+  tierCurrency?: 'pearls' | 'runes';
 }) {
   const a = item.availability;
-  const price = a.kind === 'shards' ? a.cost : tierPrice;
+  const price = a.kind === 'shards' || a.kind === 'runes' ? a.cost : tierPrice;
   if (price !== undefined) {
     return (
       <View style={styles.chip}>
-        <Image source={pearlIcon} style={styles.chipCoin} contentFit="contain" accessible={false} />
+        {a.kind === 'runes' || (a.kind !== 'shards' && tierCurrency === 'runes')
+          ? <RuneGlyph size={12} color="#D7F7C2" />
+          : <Image source={pearlIcon} style={styles.chipCoin} contentFit="contain" accessible={false} />}
         <Text style={[styles.chipText, styles.chipPrice]}>{price}</Text>
       </View>
     );
@@ -110,12 +117,15 @@ function AvailabilityChip({
 }
 
 export const CustomizationCatalogCard = React.memo(function CustomizationCatalogCard({
-  item, selected, label, statusLabel, tierPrice, onPress,
+  item, selected, label, statusLabel, tierPrice, tierCurrency, onPress,
 }: Props) {
   const { theme: t, themeMode } = useTheme();
   const owned = item.isOwned && !selected && item.kind !== 'none-aura';
-  const tierAccent = tierPrice === undefined ? undefined : TIER_ACCENT[tierPrice];
-  const prestige = (tierPrice ?? 0) >= 300;
+  const normalizedTierPrice = tierCurrency === 'runes'
+    ? (tierPrice ?? 0) / CUSTOM_AVATAR_RUNE_RATE
+    : tierPrice;
+  const tierAccent = normalizedTierPrice === undefined ? undefined : TIER_ACCENT[normalizedTierPrice];
+  const prestige = (normalizedTierPrice ?? 0) >= 300;
   return (
     <TapScale
       accessibilityRole="button"
@@ -137,7 +147,7 @@ export const CustomizationCatalogCard = React.memo(function CustomizationCatalog
     >
       <LinearGradient
         colors={tierAccent && prestige
-          ? [alpha(tierAccent, tierPrice === 1000 ? '2E' : '1E'), t.bgCard]
+          ? [alpha(tierAccent, normalizedTierPrice === 1000 ? '2E' : '1E'), t.bgCard]
           : [t.bgSurface, t.bgCard]}
         start={{ x: 0.2, y: 0 }}
         end={{ x: 0.8, y: 1 }}
@@ -152,7 +162,14 @@ export const CustomizationCatalogCard = React.memo(function CustomizationCatalog
                   auraVisualSize={item.kind === 'aura' ? AURA_CATALOG_VISUAL_SIZE : undefined}
                   animateAura={false}
                 />}
-        {!selected ? <AvailabilityChip item={item} pearlIcon={pearlIconForTheme(themeMode)} tierPrice={tierPrice} /> : null}
+        {!selected ? (
+          <AvailabilityChip
+            item={item}
+            pearlIcon={pearlIconForTheme(themeMode)}
+            tierPrice={tierPrice}
+            tierCurrency={tierCurrency}
+          />
+        ) : null}
         {selected ? (
           <View style={[styles.mark, { backgroundColor: t.accent }]}>
             <Ionicons name="checkmark" size={12} color={t.correctText} />

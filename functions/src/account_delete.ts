@@ -1,11 +1,16 @@
 import * as admin from 'firebase-admin';
-import { createHash } from 'crypto';
+import { createHash, timingSafeEqual } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK_SENSITIVE } from './callable_options';
 import {
   ACCOUNT_DELETE_PERMANENT_DENIALS,
+  ACCOUNT_DELETE_CREDENTIAL_RECEIPTS,
+  accountDeleteJobId,
+  accountDeleteCredentialReceiptId,
   accountDeletePermanentDenialId,
   enqueueAccountDeletionJob,
+  fenceAccountDeletionCredential,
+  fenceAccountDeletionRoots,
 } from './account_delete_job';
 // Префикс синтетических жителей: комната без ЖИВЫХ считается пустой и удаляется,
 // иначе после ухода последнего человека остался бы призрак из ботов.
@@ -23,6 +28,8 @@ const ACCOUNT_DELETE_TIMEOUT_SECONDS = 540;
 const ACCOUNT_DELETE_PROGRESS_LOG_DOCS = 500;
 const MAX_ID_LEN = 180;
 const MAX_ACCOUNT_DELETE_IDENTITIES = 64;
+const ACCOUNT_DELETE_RECEIPT_MAX_ATTEMPTS = 64;
+const ACCOUNT_DELETE_RECEIPT_RATE_WINDOW_MS = 60_000;
 
 const ACCOUNT_DELETE_OPTIONS = {
   region: REGION,
@@ -47,8 +54,22 @@ type DeleteContext = {
   stableUidHash: string;
   authUidHash: string;
   startedAtMs: number;
+  closureCutoffMs: number;
   lastProgressLogDocs: number;
   writerClosed: boolean;
+  /**
+   * Диагностика последней упавшей стадии (ИНЦИДЕНТ 2026-08-29).
+   *
+   * зачем: имя стадии известно ТОЛЬКО внутри runDeleteStage. Общий catch ниже
+   * его уже не видит, поэтому раньше в job.lastError попадало безликое
+   * `account_delete_failed` без указания места. Держим здесь, чтобы записать
+   * в job — документ Firestore виден владельцу и админке без доступа в GCP.
+   */
+  failedStage?: string;
+  failedStageCode?: string;
+  failedStageMessage?: string;
+  /** Пройденные стадии с длительностью — попадают в диагностику одним полем. */
+  stageTrace: AccountDeleteStageTrace[];
 };
 
 type QueryValueKind = 'stable' | 'auth' | 'both';
@@ -190,6 +211,8 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'revenuecat_shard_transactions', field: 'candidates', values: 'both', op: 'array-contains' },
   { collection: 'revenuecat_shard_refunds', field: 'uid', values: 'both' },
   { collection: 'revenuecat_shard_refunds', field: 'sourceUid', values: 'both' },
+  { collection: 'voice_minute_events', field: 'ownerStableId', values: 'stable' },
+  { collection: 'voice_minute_denials', field: 'candidates', values: 'both', op: 'array-contains' },
   { collection: 'league_chest_claims', field: 'uid', values: 'stable' },
   { collection: 'league_chest_claims', field: 'authUid', values: 'auth' },
   { collection: 'league_crowns', field: 'uid', values: 'stable' },
@@ -204,6 +227,13 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'voice_call_quotas', field: 'stableUid', values: 'stable' },
   { collection: 'voice_call_quotas', field: 'authUid', values: 'auth' },
 ];
+
+type MutableIdentityIndexCollection = 'auth_links' | 'name_index' | 'friend_code_index';
+const MUTABLE_IDENTITY_INDEX_COLLECTIONS = new Set<MutableIdentityIndexCollection>([
+  'auth_links',
+  'name_index',
+  'friend_code_index',
+]);
 
 const COLLECTION_GROUP_QUERY_SPECS: AccountDeleteCollectionGroupSpec[] = [
   { collectionGroup: 'messages', field: 'authorUid', values: 'both' },
@@ -244,7 +274,7 @@ const DIRECT_DOCUMENT_SPECS: AccountDeleteDirectDocumentSpec[] = [
   { collection: 'user_consents', values: 'both' },
   { collection: 'referral_owners', values: 'both' },
   { collection: 'referral_attributions', values: 'both' },
-  { collection: 'auth_links', values: 'both' },
+  { collection: 'voice_minute_wallets', values: 'stable' },
 ];
 
 // `users/{stableUid}` is removed through deleteDocTree, which recursively
@@ -347,11 +377,91 @@ function accountDeleteLog(
   }));
 }
 
+/**
+ * Коллекция диагностики удалений — ВИДНА ВЛАДЕЛЬЦУ БЕЗ ДОСТУПА В GCP.
+ *
+ * зачем (правило владельца «сперва логи, потом починка», ИНЦИДЕНТ 2026-08-29):
+ * вся трассировка удаления уходила в console.log, то есть в Cloud Logging.
+ * Туда нет доступа ни у владельца из админки, ни у сессии-ассистента (проверено:
+ * PERMISSION_DENIED). Из-за этого пять боевых удалений подряд падали, а в базе
+ * лежало только безликое `account_delete_failed` — понять, ЧТО чинить, было
+ * физически невозможно, и баг `__index__` прожил незамеченным.
+ *
+ * Теперь каждый прогон удаления оставляет здесь документ: какие стадии прошли,
+ * сколько заняли, на какой упало, с каким кодом и сообщением.
+ *
+ * Приватность: НИКАКИХ uid, email и имён — только SHA-256 хеши (16 символов) и
+ * технические поля. По документу нельзя узнать, чей это аккаунт, но можно
+ * сопоставить с job по тем же хешам. Коллекция закрыта правилами наглухо
+ * (allow read, write: if false) — доступ только Admin SDK и админке.
+ *
+ * Стоимость: РОВНО ОДНА запись на прогон удаления, в самом конце. Не в цикле,
+ * не по стадиям — иначе на аккаунт с большим прогрессом набегали бы десятки
+ * записей. Живёт 90 дней, столько же, сколько сам job.
+ */
+export const ACCOUNT_DELETE_DIAGNOSTICS = 'account_deletion_diagnostics';
+
+const ACCOUNT_DELETE_DIAGNOSTICS_RETENTION_MS = 90 * 24 * 60 * 60_000;
+
+type AccountDeleteStageTrace = {
+  stage: string;
+  ms: number;
+  ok: boolean;
+};
+
+/**
+ * Одна запись с полной картиной прогона.
+ *
+ * Никогда не бросает: диагностика не имеет права уронить удаление. Отказ
+ * записи логируется (запрет немого catch), но результат удаления не меняет.
+ */
+async function persistAccountDeleteDiagnostics(
+  db: admin.firestore.Firestore,
+  ctx: DeleteContext,
+  stats: DeleteStats,
+  outcome: 'completed' | 'failed',
+): Promise<void> {
+  const nowMs = Date.now();
+  try {
+    await db.collection(ACCOUNT_DELETE_DIAGNOSTICS).doc(ctx.runId).set({
+      runId: ctx.runId,
+      outcome,
+      stableUidHash: ctx.stableUidHash.slice(0, 16),
+      authUidHash: ctx.authUidHash.slice(0, 16),
+      startedAtMs: ctx.startedAtMs,
+      finishedAtMs: nowMs,
+      totalMs: nowMs - ctx.startedAtMs,
+      stages: ctx.stageTrace,
+      docsDeleted: stats.docsDeleted,
+      docsUpdated: stats.docsUpdated,
+      queriesRun: stats.queriesRun,
+      authDeleted: stats.authDeleted,
+      ...(outcome === 'failed' ? {
+        failedStage: ctx.failedStage ?? 'unknown_stage',
+        failedCode: ctx.failedStageCode ?? 'unknown',
+        failedMessage: ctx.failedStageMessage ?? '',
+      } : {}),
+      retentionUntilMs: nowMs + ACCOUNT_DELETE_DIAGNOSTICS_RETENTION_MS,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+  } catch (e: any) {
+    // зачем: запрет немого catch. Диагностика не смогла записаться — это само
+    // по себе диагноз (правила/квота/сеть), и он обязан быть виден.
+    console.warn(JSON.stringify({
+      event: 'account_delete_diagnostics_write_failed',
+      runId: ctx.runId,
+      code: e?.code ?? 'unknown',
+      message: String(e?.message ?? e).slice(0, 160),
+    }));
+  }
+}
+
 function createDeleteContext(
   db: admin.firestore.Firestore,
   stableUid: string,
   authUid: string,
   stats: DeleteStats,
+  closureCutoffMs = Date.now(),
 ): DeleteContext {
   const stableUidHash = hashId(stableUid);
   const authUidHash = hashId(authUid);
@@ -363,8 +473,10 @@ function createDeleteContext(
     stableUidHash,
     authUidHash,
     startedAtMs: Date.now(),
+    closureCutoffMs,
     lastProgressLogDocs: 0,
     writerClosed: false,
+    stageTrace: [],
   };
 
   const writer = db.bulkWriter({
@@ -400,16 +512,48 @@ async function closeDeleteWriter(ctx: DeleteContext): Promise<void> {
   await ctx.writer.close();
 }
 
+/**
+ * Стадия удаления с ПОЛНОЙ трассировкой.
+ *
+ * зачем (ИНЦИДЕНТ 2026-08-29, правило владельца «сперва логи, потом починка»):
+ * раньше стадия писала только `:start` и `:done`, а при падении — НИЧЕГО.
+ * Из-за этого по логу нельзя было понять, на каком шаге умерло удаление, и
+ * баг `__index__` прожил пять боевых удалений подряд: в job лежало безликое
+ * `account_delete_failed`, а настоящая причина терялась.
+ *
+ * Теперь фиксируем и провал: имя стадии, код, сообщение, сколько заняло и
+ * какая статистика была на этот момент. Ошибку пробрасываем дальше без
+ * изменений — лог не должен менять поведение.
+ */
 async function runDeleteStage<T = void>(
   ctx: DeleteContext,
   stats: DeleteStats,
   stage: string,
   fn: () => Promise<T>,
 ): Promise<T> {
+  const stageStartedAtMs = Date.now();
   accountDeleteLog(ctx, `${stage}:start`, stats);
-  const result = await fn();
-  accountDeleteLog(ctx, `${stage}:done`, stats);
-  return result;
+  try {
+    const result = await fn();
+    const okMs = Date.now() - stageStartedAtMs;
+    ctx.stageTrace.push({ stage, ms: okMs, ok: true });
+    accountDeleteLog(ctx, `${stage}:done`, stats, { stageMs: okMs });
+    return result;
+  } catch (e: any) {
+    // зачем: единственное место, где ещё известно ИМЯ упавшей стадии. Выше по
+    // стеку остаётся только общий catch, который её уже не знает.
+    const failMs = Date.now() - stageStartedAtMs;
+    ctx.failedStage = stage;
+    ctx.failedStageCode = String(e?.code ?? 'unknown');
+    ctx.failedStageMessage = String(e?.message ?? e).slice(0, 200);
+    ctx.stageTrace.push({ stage, ms: failMs, ok: false });
+    accountDeleteLog(ctx, `${stage}:failed`, stats, {
+      stageMs: failMs,
+      code: ctx.failedStageCode,
+      message: ctx.failedStageMessage,
+    });
+    throw e;
+  }
 }
 
 async function getEmailsForDeletion(
@@ -522,6 +666,60 @@ async function deleteQuery(
   }
 }
 
+function mutableIdentityIndexBelongsToFrozenClosure(
+  collection: MutableIdentityIndexCollection,
+  data: Record<string, unknown>,
+  identityClosure: ReadonlySet<string>,
+): boolean {
+  if (collection === 'auth_links') {
+    return identityClosure.has(cleanId(data.stable_id));
+  }
+  const currentStableOwner = cleanId(data.uid);
+  if (currentStableOwner) return identityClosure.has(currentStableOwner);
+  // Legacy index rows may predate `uid`; only those rows fall back to authUid.
+  // A reclaimed row with a fresh uid is never deleted merely because its
+  // historical authUid still names the retired provider generation.
+  return identityClosure.has(cleanId(data.authUid));
+}
+
+async function deleteMutableIdentityIndexSnapshotIfStillOwned(
+  db: FirebaseFirestore.Firestore,
+  ref: FirebaseFirestore.DocumentReference,
+  collection: MutableIdentityIndexCollection,
+  identities: string[],
+): Promise<boolean> {
+  const identityClosure = new Set(identities.map(cleanId).filter(Boolean));
+  return db.runTransaction(async (transaction) => {
+    const current = await transaction.get(ref);
+    if (!current.exists) return false;
+    if (!mutableIdentityIndexBelongsToFrozenClosure(
+      collection,
+      current.data() as Record<string, unknown>,
+      identityClosure,
+    )) return false;
+    transaction.delete(ref);
+    return true;
+  });
+}
+
+async function deleteMutableIdentityIndexMatches(
+  db: FirebaseFirestore.Firestore,
+  spec: AccountDeleteQuerySpec & { value: string; op: QueryOp },
+  identities: string[],
+  stats: DeleteStats,
+): Promise<void> {
+  stats.queriesRun += 1;
+  const snapshot = await db.collection(spec.collection).where(spec.field, spec.op, spec.value).get();
+  for (const doc of snapshot.docs) {
+    if (await deleteMutableIdentityIndexSnapshotIfStillOwned(
+      db,
+      doc.ref,
+      spec.collection as MutableIdentityIndexCollection,
+      identities,
+    )) stats.docsDeleted += 1;
+  }
+}
+
 async function deleteDirectDocs(
   db: admin.firestore.Firestore,
   stableUid: string,
@@ -610,17 +808,24 @@ async function persistPermanentDeletionDenials(
   db: FirebaseFirestore.Firestore,
   identities: string[],
 ): Promise<void> {
-  const batch = db.batch();
-  for (const identity of identities) {
-    batch.set(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(identity)), {
-      identityHash: hashId(identity),
-      status: 'denied',
-      identityKind: 'account_delete_alias_closure',
-      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    }, { merge: true });
-  }
-  await batch.commit();
+  const uniqueIdentities = Array.from(new Set(identities.map(cleanId).filter(Boolean)));
+  await db.runTransaction(async (transaction) => {
+    const refs = uniqueIdentities.map((identity) => (
+      db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(identity))
+    ));
+    const snapshots = await Promise.all(refs.map((ref) => transaction.get(ref)));
+    snapshots.forEach((snapshot, index) => {
+      if (snapshot.exists) return;
+      const identity = uniqueIdentities[index];
+      transaction.create(refs[index], {
+        identityHash: hashId(identity),
+        status: 'denied',
+        identityKind: 'account_delete_alias_closure',
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+    });
+  });
 }
 
 async function deleteMergeIdentityRecords(
@@ -648,10 +853,15 @@ async function deleteFieldMatches(
   db: admin.firestore.Firestore,
   stableUid: string,
   authUid: string,
+  identities: string[],
   ctx: DeleteContext,
   stats: DeleteStats,
 ): Promise<void> {
   for (const spec of accountDeleteQueryPlan(stableUid, authUid)) {
+    if (MUTABLE_IDENTITY_INDEX_COLLECTIONS.has(spec.collection as MutableIdentityIndexCollection)) {
+      await deleteMutableIdentityIndexMatches(db, spec, identities, stats);
+      continue;
+    }
     const q = db.collection(spec.collection).where(spec.field, spec.op, spec.value);
     await deleteQuery(q, ctx, stats);
   }
@@ -664,9 +874,31 @@ async function deleteEmailMatches(
   stats: DeleteStats,
 ): Promise<void> {
   for (const email of emails) {
-    await deleteQuery(db.collection('website_contact_inbox').where('email', '==', email), ctx, stats);
-    await deleteQuery(db.collection('auth_links').where('email', '==', email), ctx, stats);
+    stats.queriesRun += 1;
+    const snapshot = await db.collection('website_contact_inbox').where('email', '==', email).get();
+    for (const doc of snapshot.docs) {
+      if (emailMatchDocumentBelongsToDeletionGeneration(doc.data(), ctx.closureCutoffMs)) {
+        await deleteDocTree(ctx, doc.ref);
+      }
+    }
   }
+}
+
+function accountDeleteEmailQueryCollections(): string[] {
+  return ['website_contact_inbox'];
+}
+
+function emailMatchDocumentBelongsToDeletionGeneration(
+  data: Record<string, unknown>,
+  cutoffMs: number,
+): boolean {
+  const raw = data.createdAt as { toMillis?: () => number } | number | undefined;
+  const createdAtMs = typeof raw === 'number'
+    ? raw
+    : typeof raw?.toMillis === 'function'
+      ? raw.toMillis()
+      : null;
+  return createdAtMs === null || !Number.isFinite(createdAtMs) || createdAtMs <= cutoffMs;
 }
 
 async function deleteCollectionGroupMatches(
@@ -702,12 +934,28 @@ async function hasFriendRequestsSentIndexMarker(
   for (const identity of identities) {
     if (!identity) continue;
     stats.queriesRun += 1;
-    const snap = await db
-      .collection('users').doc(identity)
-      .collection(FRIEND_REQUESTS_SENT_INDEX)
-      .doc(FRIEND_REQUESTS_SENT_MARKER_ID)
-      .get();
-    if (snap.exists) return true;
+    try {
+      const snap = await db
+        .collection('users').doc(identity)
+        .collection(FRIEND_REQUESTS_SENT_INDEX)
+        .doc(FRIEND_REQUESTS_SENT_MARKER_ID)
+        .get();
+      if (snap.exists) return true;
+    } catch (e: any) {
+      // зачем (ИНЦИДЕНТ 2026-08-29): бросок отсюда валил стадию collect_peers,
+      // а через неё ВСЁ удаление аккаунта (корень — зарезервированный id
+      // `__index__`). Маркер — это лишь подсказка «можно ли верить узкому
+      // пути»; его недоступность обязана лишь понизить нас до честного полного
+      // перебора, но никогда не отменять удаление данных человека.
+      console.warn(JSON.stringify({
+        event: 'account_delete_sent_index_marker_unreadable',
+        identityHash: hashId(identity),
+        markerId: FRIEND_REQUESTS_SENT_MARKER_ID,
+        code: e?.code ?? 'unknown',
+        message: String(e?.message ?? e).slice(0, 160),
+      }));
+      return false;
+    }
   }
   return false;
 }
@@ -794,10 +1042,23 @@ async function collectSentRequestPeerUids(
   for (const identity of identities) {
     if (!identity) continue;
     stats.queriesRun += 1;
-    const snap = await db
-      .collection('users').doc(identity)
-      .collection(FRIEND_REQUESTS_SENT_INDEX)
-      .get();
+    // зачем (ИНЦИДЕНТ 2026-08-29): любой отказ чтения обратного индекса обязан
+    // понизить нас до полного перебора, а НЕ отменить удаление целиком.
+    let snap: FirebaseFirestore.QuerySnapshot;
+    try {
+      snap = await db
+        .collection('users').doc(identity)
+        .collection(FRIEND_REQUESTS_SENT_INDEX)
+        .get();
+    } catch (e: any) {
+      console.warn(JSON.stringify({
+        event: 'account_delete_sent_index_unreadable',
+        identityHash: hashId(identity),
+        code: e?.code ?? 'unknown',
+        message: String(e?.message ?? e).slice(0, 160),
+      }));
+      return { peers: [], indexPresent: false };
+    }
     for (const doc of snap.docs) {
       if (doc.id === FRIEND_REQUESTS_SENT_MARKER_ID) {
         indexPresent = true;
@@ -1107,10 +1368,16 @@ export async function executeAccountDeletion(
   db: FirebaseFirestore.Firestore,
   stableUid: string,
   authUid: string,
+  closureCutoffMs = Date.now(),
+  frozenIdentityClosure?: readonly string[],
 ): Promise<DeleteStats> {
   const stats: DeleteStats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
-  const identities = await resolveAccountDeleteIdentityClosure(db, stableUid, authUid);
-  const ctx = createDeleteContext(db, stableUid, authUid, stats);
+  // Queued deletion consumes the closure frozen before credential release. It
+  // must not rediscover aliases that may now belong to a fresh generation.
+  const identities = frozenIdentityClosure
+    ? [...frozenIdentityClosure]
+    : await resolveAccountDeleteIdentityClosure(db, stableUid, authUid);
+  const ctx = createDeleteContext(db, stableUid, authUid, stats, closureCutoffMs);
 
   try {
     await runDeleteStage(ctx, stats, 'permanent_denials', () => persistPermanentDeletionDenials(db, identities));
@@ -1151,7 +1418,9 @@ export async function executeAccountDeletion(
       for (const identity of identities) await deleteArenaSeasonEntries(db, identity, authUid, ctx, stats);
     });
     await runDeleteStage(ctx, stats, 'field_matches', async () => {
-      for (const identity of identities) await deleteFieldMatches(db, identity, authUid, ctx, stats);
+      for (const identity of identities) {
+        await deleteFieldMatches(db, identity, authUid, identities, ctx, stats);
+      }
     });
     await runDeleteStage(ctx, stats, 'collection_group_matches', async () => {
       for (const identity of identities) {
@@ -1189,14 +1458,35 @@ export async function executeAccountDeletion(
     }
 
     accountDeleteLog(ctx, 'done', stats);
+    // зачем: диагностика в Firestore — единственный след, который владелец
+    // видит без доступа в Cloud Logging. Пишем и на успехе тоже: без «как
+    // выглядит норма» невозможно понять, что именно сломалось в отказе.
+    await persistAccountDeleteDiagnostics(db, ctx, stats, 'completed');
     return stats;
   } catch (e: any) {
     accountDeleteLog(ctx, 'failed', stats, {
-      code: e?.code ?? 'unknown',
-      message: String(e?.message ?? e).slice(0, 160),
+      failedStage: ctx.failedStage ?? 'unknown_stage',
+      code: ctx.failedStageCode ?? e?.code ?? 'unknown',
+      message: (ctx.failedStageMessage ?? String(e?.message ?? e)).slice(0, 200),
+      totalMs: Date.now() - ctx.startedAtMs,
     });
+    await persistAccountDeleteDiagnostics(db, ctx, stats, 'failed');
     if (e instanceof HttpsError) throw e;
-    throw new HttpsError('internal', 'account_delete_failed');
+    // зачем (ИНЦИДЕНТ 2026-08-29): раньше здесь стояло голое
+    // 'account_delete_failed'. Настоящая причина уходила только в Cloud
+    // Logging, а в job.lastError попадала безликая строка — из-за этого баг
+    // `__index__` прожил незамеченным пять боевых удалений подряд. Причину
+    // обязаны видеть и владелец, и админка, НЕ открывая GCP.
+    //
+    // Формат «стадия|код|сообщение» выбран так, чтобы по одному полю job было
+    // видно ГДЕ упало (стадия), ПОЧЕМУ (код) и ЧТО именно (сообщение).
+    const stage = ctx.failedStage ?? 'unknown_stage';
+    const code = ctx.failedStageCode ?? String(e?.code ?? 'unknown');
+    const message = ctx.failedStageMessage ?? String(e?.message ?? e);
+    throw new HttpsError(
+      'internal',
+      `account_delete_failed at ${stage} | ${code} | ${message}`.slice(0, 240),
+    );
   } finally {
     if (!ctx.writerClosed) {
       await closeDeleteWriter(ctx).catch((e) => {
@@ -1215,10 +1505,277 @@ export async function enqueueForAuthenticatedAccount(
   authUid: string,
   requestedStableId: unknown,
   enqueue: typeof enqueueAccountDeletionJob = enqueueAccountDeletionJob,
+  deps: {
+    fence?: typeof fenceAccountDeletionRoots;
+    resolveClosure?: typeof resolveAccountDeleteIdentityClosure;
+  } = {},
 ) {
   const stableUid = await resolveStableUidForDelete(db, authUid, requestedStableId);
-  const result = await enqueue(db, authUid, stableUid);
+  await (deps.fence ?? fenceAccountDeletionRoots)(db, authUid, stableUid);
+  const identityClosure = await (deps.resolveClosure ?? resolveAccountDeleteIdentityClosure)(
+    db, stableUid, authUid,
+  );
+  const result = await enqueue(db, authUid, stableUid, Date.now(), undefined, identityClosure);
   return { ok: true as const, ...result };
+}
+
+type AccountDeleteCredentialProof = {
+  operationId: string;
+  capability: string;
+};
+
+function cleanCredentialProof(input: AccountDeleteCredentialProof): AccountDeleteCredentialProof {
+  const operationId = typeof input?.operationId === 'string' ? input.operationId.trim() : '';
+  const capability = typeof input?.capability === 'string' ? input.capability.trim() : '';
+  if (
+    operationId.length < 16
+    || operationId.length > 220
+    || operationId.includes('/')
+    || capability.length < 43
+    || capability.length > 256
+  ) {
+    throw new HttpsError('permission-denied', 'account_delete_credential_pending');
+  }
+  return { operationId, capability };
+}
+
+function credentialCapabilityHash(capability: string): string {
+  return createHash('sha256').update(capability).digest('hex');
+}
+
+function constantTimeHashEquals(left: unknown, right: string): boolean {
+  const actual = Buffer.from(typeof left === 'string' ? left : '', 'utf8');
+  const expected = Buffer.from(right, 'utf8');
+  if (actual.length !== expected.length) {
+    timingSafeEqual(expected, Buffer.alloc(expected.length));
+    return false;
+  }
+  return timingSafeEqual(actual, expected);
+}
+
+function credentialReceiptDecision(
+  data: Record<string, unknown>,
+  expectedHash: string,
+  nowMs: number,
+):
+  | { kind: 'credential_safe'; jobId: string }
+  | { kind: 'repair_fenced'; jobId: string; authUid: string; stableUid: string; attempts: number; rateWindowStartedAtMs: number }
+  | { kind: 'repair'; jobId: string; attempts: number; rateWindowStartedAtMs: number }
+  | { kind: 'rate_limited' }
+  | { kind: 'denied' } {
+  const jobId = typeof data.jobId === 'string' ? data.jobId : '';
+  const storedAttempts = Math.max(0, Math.floor(Number(data.attempts) || 0));
+  const storedWindowStartedAtMs = Number(data.rateWindowStartedAtMs ?? 0);
+  const windowActive = Number.isFinite(storedWindowStartedAtMs)
+    && storedWindowStartedAtMs > 0
+    && nowMs - storedWindowStartedAtMs < ACCOUNT_DELETE_RECEIPT_RATE_WINDOW_MS;
+  const attempts = windowActive ? storedAttempts : 0;
+  const rateWindowStartedAtMs = windowActive ? storedWindowStartedAtMs : nowMs;
+  const expiresAtMs = Number(data.expiresAtMs ?? 0);
+  if (
+    !constantTimeHashEquals(data.capabilityHash, expectedHash)
+    || !jobId
+  ) return { kind: 'denied' };
+  if (data.stage === 'credential_safe') return { kind: 'credential_safe', jobId };
+  // `closure_fenced` is irreversible. Expiry may bound receipt retention, but
+  // it must not strand an already-fenced deletion after a long offline period.
+  // A valid sealed capability can only finish deletion and reveals no identity.
+  if (!Number.isFinite(expiresAtMs) || expiresAtMs <= 0) return { kind: 'denied' };
+  if (attempts >= ACCOUNT_DELETE_RECEIPT_MAX_ATTEMPTS) return { kind: 'rate_limited' };
+  if (data.stage === 'closure_fenced') {
+    const authUid = typeof data.authUid === 'string' ? data.authUid : '';
+    const stableUid = typeof data.stableUid === 'string' ? data.stableUid : '';
+    if (
+      !authUid
+      || !stableUid
+      || jobId !== accountDeleteJobId(authUid)
+      || data.authUidHash !== credentialCapabilityHash(authUid)
+      || data.stableUidHash !== credentialCapabilityHash(stableUid)
+    ) return { kind: 'denied' };
+    return {
+      kind: 'repair_fenced',
+      jobId,
+      authUid,
+      stableUid,
+      attempts,
+      rateWindowStartedAtMs,
+    };
+  }
+  if (data.stage !== 'closure_committed') return { kind: 'denied' };
+  return { kind: 'repair', jobId, attempts, rateWindowStartedAtMs };
+}
+
+async function publishCredentialSafeReceipt(
+  db: FirebaseFirestore.Firestore,
+  operationId: string,
+  nowMs = Date.now(),
+): Promise<void> {
+  await db.collection(ACCOUNT_DELETE_CREDENTIAL_RECEIPTS)
+    .doc(accountDeleteCredentialReceiptId(operationId))
+    .set({
+      stage: 'credential_safe',
+      credentialSafeAtMs: nowMs,
+      updatedAtMs: nowMs,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+}
+
+export async function enqueueAndReleaseAuthenticatedAccount(
+  db: FirebaseFirestore.Firestore,
+  authUid: string,
+  requestedStableId: unknown,
+  rawProof: AccountDeleteCredentialProof,
+  deps: {
+    enqueue?: typeof enqueueAccountDeletionJob;
+    fence?: typeof fenceAccountDeletionCredential;
+    resolveClosure?: typeof resolveAccountDeleteIdentityClosure;
+    deleteUser?: (uid: string) => Promise<unknown>;
+    publishCredentialSafe?: (operationId: string) => Promise<void>;
+  } = {},
+) {
+  const proof = cleanCredentialProof(rawProof);
+  const stableUid = await resolveStableUidForDelete(db, authUid, requestedStableId);
+  const enqueue = deps.enqueue ?? enqueueAccountDeletionJob;
+  const receipt = {
+    operationId: proof.operationId,
+    capabilityHash: credentialCapabilityHash(proof.capability),
+  };
+  await (deps.fence ?? fenceAccountDeletionCredential)(
+    db,
+    authUid,
+    stableUid,
+    Date.now(),
+    receipt,
+  );
+  const identityClosure = await (deps.resolveClosure ?? resolveAccountDeleteIdentityClosure)(
+    db,
+    stableUid,
+    authUid,
+  );
+  const result = await enqueue(
+    db,
+    authUid,
+    stableUid,
+    Date.now(),
+    receipt,
+    identityClosure,
+  );
+  try {
+    await (deps.deleteUser ?? ((uid: string) => admin.auth().deleteUser(uid)))(authUid);
+  } catch (error: any) {
+    if (error?.code !== 'auth/user-not-found') {
+      throw new HttpsError('unavailable', 'account_delete_auth_release_failed');
+    }
+  }
+  await (deps.publishCredentialSafe
+    ?? ((operationId: string) => publishCredentialSafeReceipt(db, operationId)))(proof.operationId);
+  return {
+    ok: true as const,
+    ...result,
+    authReleased: true as const,
+    credentialSafe: true as const,
+  };
+}
+
+async function readCredentialReceiptForRepair(
+  db: FirebaseFirestore.Firestore,
+  proof: AccountDeleteCredentialProof,
+  nowMs = Date.now(),
+): Promise<
+  | { stage: 'closure_fenced'; jobId: string; authUid: string; stableUid: string }
+  | { stage: 'closure_committed' | 'credential_safe'; jobId: string }
+> {
+  const ref = db.collection(ACCOUNT_DELETE_CREDENTIAL_RECEIPTS)
+    .doc(accountDeleteCredentialReceiptId(proof.operationId));
+  return db.runTransaction(async (tx) => {
+    const snapshot = await tx.get(ref);
+    const data = snapshot.exists ? snapshot.data() ?? {} : {};
+    const expectedHash = credentialCapabilityHash(proof.capability);
+    if (!snapshot.exists) {
+      throw new HttpsError('permission-denied', 'account_delete_credential_pending');
+    }
+    const decision = credentialReceiptDecision(data, expectedHash, nowMs);
+    if (decision.kind === 'denied') {
+      throw new HttpsError('permission-denied', 'account_delete_credential_pending');
+    }
+    if (decision.kind === 'rate_limited') {
+      throw new HttpsError('resource-exhausted', 'account_delete_credential_pending');
+    }
+    if (decision.kind === 'credential_safe') {
+      return { stage: 'credential_safe' as const, jobId: decision.jobId };
+    }
+    tx.update(ref, {
+      attempts: decision.attempts + 1,
+      rateWindowStartedAtMs: decision.rateWindowStartedAtMs,
+      lastCheckedAtMs: nowMs,
+      updatedAtMs: nowMs,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    return decision.kind === 'repair_fenced'
+      ? {
+        stage: 'closure_fenced' as const,
+        jobId: decision.jobId,
+        authUid: decision.authUid,
+        stableUid: decision.stableUid,
+      }
+      : { stage: 'closure_committed' as const, jobId: decision.jobId };
+  });
+}
+
+export async function repairAccountDeleteCredentialSafety(
+  db: FirebaseFirestore.Firestore,
+  rawProof: AccountDeleteCredentialProof,
+  deleteUser: (uid: string) => Promise<unknown> = (uid) => admin.auth().deleteUser(uid),
+  deps: {
+    readReceipt?: typeof readCredentialReceiptForRepair;
+    resolveClosure?: typeof resolveAccountDeleteIdentityClosure;
+    enqueue?: typeof enqueueAccountDeletionJob;
+    publishCredentialSafe?: (operationId: string) => Promise<void>;
+  } = {},
+): Promise<{ status: 'credential_safe' }> {
+  const proof = cleanCredentialProof(rawProof);
+  const receipt = await (deps.readReceipt ?? readCredentialReceiptForRepair)(db, proof);
+  if (receipt.stage === 'credential_safe') return { status: 'credential_safe' };
+
+  let authUid: string;
+  if (receipt.stage === 'closure_fenced') {
+    authUid = receipt.authUid;
+    const identityClosure = await (deps.resolveClosure ?? resolveAccountDeleteIdentityClosure)(
+      db,
+      receipt.stableUid,
+      receipt.authUid,
+    );
+    await (deps.enqueue ?? enqueueAccountDeletionJob)(
+      db,
+      receipt.authUid,
+      receipt.stableUid,
+      Date.now(),
+      {
+        operationId: proof.operationId,
+        capabilityHash: credentialCapabilityHash(proof.capability),
+      },
+      identityClosure,
+    );
+  } else {
+    const jobSnapshot = await db.collection('account_deletion_jobs').doc(receipt.jobId).get();
+    const job = jobSnapshot.exists ? jobSnapshot.data() ?? {} : {};
+    authUid = typeof job.authUid === 'string' ? job.authUid : '';
+    if (job.status !== 'completed' && !authUid) {
+      throw new HttpsError('failed-precondition', 'account_delete_credential_pending');
+    }
+  }
+  if (authUid) {
+    try {
+      await deleteUser(authUid);
+    } catch (error: any) {
+      if (error?.code !== 'auth/user-not-found') {
+        throw new HttpsError('unavailable', 'account_delete_credential_pending');
+      }
+    }
+  }
+  await (deps.publishCredentialSafe
+    ?? ((operationId: string) => publishCredentialSafeReceipt(db, operationId)))(proof.operationId);
+  return { status: 'credential_safe' };
 }
 
 export const accountDeleteEnqueue = onCall({
@@ -1229,34 +1786,32 @@ export const accountDeleteEnqueue = onCall({
   maxInstances: 80,
 }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
-  const result = await enqueueForAuthenticatedAccount(
+  const result = await enqueueAndReleaseAuthenticatedAccount(
     admin.firestore(),
     request.auth.uid,
     request.data?.stableId,
+    {
+      operationId: request.data?.operationId,
+      capability: request.data?.capability,
+    },
   );
-  const hardening = Promise.allSettled([
-    admin.auth().updateUser(request.auth.uid, { disabled: true }),
-    admin.auth().revokeRefreshTokens(request.auth.uid),
-  ]).then((outcomes) => {
-    const failures = outcomes.filter((outcome) => outcome.status === 'rejected').length;
-    if (failures > 0) {
-      console.warn(JSON.stringify({
-        event: 'account_delete_auth_hardening_partial_failure',
-        failures,
-      }));
-    }
-  });
-  let timeout: ReturnType<typeof setTimeout> | undefined;
-  await Promise.race([
-    hardening,
-    new Promise<void>((resolve) => {
-      timeout = setTimeout(resolve, 2_000);
-    }),
-  ]).finally(() => {
-    if (timeout) clearTimeout(timeout);
-  });
   return result;
 });
+
+export const accountDeleteCredentialStatus = onCall({
+  region: REGION,
+  // Owner seal: capability security replaces App Check for this unauthenticated receipt.
+  enforceAppCheck: false,
+  timeoutSeconds: 15,
+  memory: '256MiB' as const,
+  maxInstances: 40,
+}, async (request) => repairAccountDeleteCredentialSafety(
+  admin.firestore(),
+  {
+    operationId: request.data?.operationId,
+    capability: request.data?.capability,
+  },
+));
 
 export const accountDeleteMine = onCall(ACCOUNT_DELETE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
@@ -1264,7 +1819,16 @@ export const accountDeleteMine = onCall(ACCOUNT_DELETE_OPTIONS, async (request) 
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForDelete(db, authUid, request.data?.stableId);
-  const stats = await executeAccountDeletion(db, stableUid, authUid);
+  const closureCutoffMs = Date.now();
+  await fenceAccountDeletionRoots(db, authUid, stableUid, closureCutoffMs);
+  const identityClosure = await resolveAccountDeleteIdentityClosure(db, stableUid, authUid);
+  const stats = await executeAccountDeletion(
+    db,
+    stableUid,
+    authUid,
+    closureCutoffMs,
+    identityClosure,
+  );
   return { ok: true, stableUid, authUid, ...stats };
 });
 
@@ -1280,10 +1844,17 @@ export const __accountDeleteTestHooks = {
   resolveStableUidForDelete,
   resolveAccountDeleteIdentityClosure,
   enqueueForAuthenticatedAccount,
+  enqueueAndReleaseAuthenticatedAccount,
+  repairAccountDeleteCredentialSafety,
+  credentialReceiptDecision,
+  accountDeleteEmailQueryCollections,
+  emailMatchDocumentBelongsToDeletionGeneration,
   removeFromFriendGiftDailyLimits,
   deleteCrossUserDocumentIdMatches,
   deleteArenaSeasonEntries,
   deleteQuery,
+  deleteMutableIdentityIndexSnapshotIfStillOwned,
+  persistPermanentDeletionDenials,
   deleteDirectDocs,
   deleteMergeIdentityRecords,
   ACCOUNT_DELETE_OPTIONS,

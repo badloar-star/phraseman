@@ -64,7 +64,7 @@ export interface PaywallFunnelPayload {
   // покупки может вернуть именно его. Раньше тип воронки о нём не знал и ломал
   // сборку на logPaywallFunnel('restore_completed') — тест пейвола вообще не
   // запускался. Держать в синхроне с PremiumStorePlan (premium_revenuecat_state).
-  plan?: 'monthly' | 'yearly' | 'lifetime' | 'max_monthly' | null;
+  plan?: 'monthly' | 'yearly' | 'lifetime' | null;
   obColor?: 'main';
   /**
    * Локализованная цена стора в момент покупки (priceString, уже через storePriceTrim),

@@ -7,12 +7,12 @@ const SOURCE = fs.readFileSync(
 );
 
 describe('Blitz shared session attempts integration', () => {
-  test('uses the shared three-attempt HUD and recovery modal', () => {
+  test('uses the shared three-attempt HUD and automatic reset', () => {
     expect(SOURCE).toContain("from '../components/session_attempts/SessionAttemptsHud'");
-    expect(SOURCE).toContain("from '../components/session_attempts/SessionAttemptsRecoveryModal'");
     expect(SOURCE).toContain("from '../hooks/useSessionAttempts'");
+    expect(SOURCE).toContain('useSessionAttemptAutoReset');
     expect(SOURCE).toContain('<SessionAttemptsHud');
-    expect(SOURCE).toContain('<SessionAttemptsRecoveryModal');
+    expect(SOURCE).not.toContain('SessionAttemptsRecoveryModal');
   });
 
   test('third pedagogical wrong pauses instead of auto-finishing', () => {
@@ -30,8 +30,4 @@ describe('Blitz shared session attempts integration', () => {
     expect(SOURCE).not.toContain('nextQuestion(); // recovery');
   });
 
-  test('ending from the modal uses the existing score finalizer', () => {
-    expect(SOURCE).toContain('endAttemptsSession();');
-    expect(SOURCE).toContain('finish();');
-  });
 });

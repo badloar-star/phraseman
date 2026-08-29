@@ -181,13 +181,17 @@ describe('auth provider stable-id linking', () => {
     const transitionHelperStart = source.indexOf('function beginEntitlementSafeAccountTransition');
     const transitionHelperEnd = source.indexOf('const getAuth =', transitionHelperStart);
     const transitionHelperSource = source.slice(transitionHelperStart, transitionHelperEnd);
+    const drainHelperStart = source.indexOf('function drainEntitlementSafeAccountTransition');
+    const drainHelperEnd = source.indexOf('function beginEntitlementSafeAccountTransition', drainHelperStart);
+    const drainHelperSource = source.slice(drainHelperStart, drainHelperEnd);
     const invalidateGeneration = transitionHelperSource.indexOf('invalidateAccountGeneration();');
     const invalidatePremium = transitionHelperSource.indexOf('beginPremiumAccountTransition();');
-    const boundedDrain = transitionHelperSource.indexOf('waitForPremiumAccountWorkIdleWithDeadline(');
+    const boundedDrain = transitionHelperSource.indexOf('drainEntitlementSafeAccountTransition();');
     expect(invalidateGeneration).toBeGreaterThanOrEqual(0);
     expect(invalidateGeneration).toBeLessThan(invalidatePremium);
     expect(invalidatePremium).toBeLessThan(boundedDrain);
-    expect(transitionHelperSource).not.toContain('await waitForPremiumAccountWorkIdle();');
+    expect(drainHelperSource).toContain('waitForPremiumAccountWorkIdleWithDeadline(');
+    expect(drainHelperSource).not.toContain('await waitForPremiumAccountWorkIdle();');
 
     for (const branch of [mergeSwapSource, mergeKeepLocalSource]) {
       const invalidate = branch.indexOf('await beginEntitlementSafeAccountTransition();');
@@ -218,48 +222,25 @@ describe('auth provider stable-id linking', () => {
     expect(signInSource).toContain("kind: linkLookupCompleted && !linkLookupFound ? 'created_new' : 'linked_existing'");
   });
 
-  test('provider sign-in refuses same-provider re-login while account deletion is still pending', () => {
-    const pendingDeleteStart = signInSource.indexOf('pendingDelete = await readAccountDeletePendingAuth(firebaseProviderUid)');
-    const pendingDeleteHandler = signInSource.indexOf('return handleAccountDeletePendingAuth(provider, pendingDelete)', pendingDeleteStart);
-    const authLinksStart = signInSource.indexOf("const linkRef = db.collection('auth_links').doc(firebaseProviderUid)");
-    const recoveryStart = source.indexOf('async function handleAccountDeletePendingAuth');
+  test('pending deletion converges before one provider picker and continues the same sign-in call', () => {
+    const pendingDeleteStart = signInSource.indexOf('pendingDeleteBeforeCredential = await readPendingDeleteTransition');
+    const converge = signInSource.indexOf('await convergePendingAccountDeleteBeforeCredential(', pendingDeleteStart);
+    const nativePicker = signInSource.indexOf('cred = await runGoogleNativeSignIn()', converge);
+    const recoveryStart = source.indexOf('async function convergePendingAccountDeleteBeforeCredential');
     const recoveryEnd = source.indexOf('export async function resumePendingAccountDeleteLocalExit', recoveryStart);
     const recoverySource = source.slice(recoveryStart, recoveryEnd);
-    const retry = recoverySource.indexOf('startCloudDeletionEnqueue(pendingDelete.stableId)');
-    const retryDispatch = recoverySource.indexOf('await enqueueOperation.dispatchSettled');
-    const signOut = recoverySource.indexOf('await signOutCurrentProvider()');
-    const ensureAnon = recoverySource.indexOf('await ensureAnonUser()');
-    const blockedReturn = recoverySource.indexOf(
-      "return { result: 'error', error: 'account_delete_pending' }",
-      ensureAnon,
-    );
-    const completionClear = recoverySource.indexOf(
-      'clearAccountDeleteGuardAfterServerCompletion(pendingDelete)',
-    );
 
     expect(accountDeleteQuarantineSource).toContain(
       "export const ACCOUNT_DELETE_PENDING_AUTH_KEY = 'account_delete_pending_auth_v1';",
     );
     expect(source).toContain("from './account_delete_quarantine'");
     expect(pendingDeleteStart).toBeGreaterThan(0);
-    expect(authLinksStart).toBeGreaterThan(pendingDeleteStart);
-    expect(pendingDeleteHandler).toBeGreaterThan(pendingDeleteStart);
-    expect(pendingDeleteHandler).toBeLessThan(authLinksStart);
-    expect(retry).toBeGreaterThan(0);
-    expect(retry).toBeLessThan(retryDispatch);
-    expect(retryDispatch).toBeLessThan(signOut);
-    expect(signOut).toBeLessThan(ensureAnon);
-    expect(ensureAnon).toBeLessThan(blockedReturn);
-    expect(recoverySource).toContain("logAuthEvent('auth_signin_blocked_account_delete_pending'");
-    expect(recoverySource).toContain("logAuthEvent('auth_account_delete_enqueue_retry'");
-    expect(recoverySource).toContain('await signOutCurrentProvider()');
-    expect(recoverySource).toContain('await ensureAnonUser()');
-    expect(recoverySource).toContain('rotatedStableId === pendingDelete.stableId');
-    expect(recoverySource).toContain("logAuthEvent('auth_account_delete_pending_rotation_failed'");
-    expect(recoverySource).not.toContain('clearAccountDeletePendingAuthLock');
-    if (completionClear >= 0) {
-      expect(recoverySource.lastIndexOf("ack.status === 'completed'", completionClear)).toBeGreaterThan(retry);
-    }
+    expect(converge).toBeGreaterThan(pendingDeleteStart);
+    expect(nativePicker).toBeGreaterThan(converge);
+    expect(signInSource).not.toContain('return handleAccountDeletePendingAuth(provider');
+    expect(recoverySource).toContain("ensureFreshPostDeletionIdentity('foreground')");
+    expect(recoverySource).toContain('waitForAccountDeletionCredentialSafe');
+    expect(recoverySource).toContain('return false');
     expect(recoverySource).not.toContain('captureAuthSignInFailure');
     expect(recoverySource).not.toContain("db.collection('auth_links')");
   });
@@ -442,4 +423,29 @@ describe('auth provider stable-id linking', () => {
   test('keeps auth provider runtime free of legacy locale fallback markers', () => {
     expect(source).not.toMatch(legacyRuntimePattern);
   });
+});
+
+test('identity_retired branches delegate to fresh identity handling and never retry with the stale stable id', () => {
+  const source = readFileSync(authProviderPath, 'utf8');
+  expect(source).toContain("ensureFreshPostDeletionIdentity('identity_retired'");
+  const retiredBranches = source.match(/if \([^\n]*failure === 'identity_retired'\)[\s\S]{0,900}?return \{ result: '[^']+'[^\n]*\};/g) ?? [];
+  expect(retiredBranches.length).toBeGreaterThanOrEqual(2);
+  for (const branch of retiredBranches) {
+    expect(branch).not.toContain('ensureAnonUser().catch(() => null)');
+  }
+});
+
+test('stable-only retirement preserves the live provider uid and completes as created_new in one attempt', () => {
+  const source = readFileSync(authProviderPath, 'utf8');
+  expect(source).toContain("retiredSubject === 'stable'");
+  expect(source).toContain('ensureFreshStableIdentityForLiveProvider');
+  expect(source).toContain("result: 'created_new'");
+  expect(source).toContain("`stable-only:${retiredStableId ?? localStableId ?? 'unknown'}`");
+  const start = source.indexOf('async function ensureFreshStableIdentityForLiveProvider');
+  const end = source.indexOf('async function convergePendingAccountDeleteBeforeCredential', start);
+  const stableOnly = source.slice(start, end);
+  expect(stableOnly).not.toContain('startCloudDeletionEnqueue');
+  expect(stableOnly).not.toContain('signOutCurrentProvider');
+  expect(stableOnly).not.toContain('ensureAnonIdentityDetailed');
+  expect(stableOnly).toContain("{ requireAuthoritative: true }");
 });

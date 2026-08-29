@@ -122,7 +122,7 @@ function makeDbStub(initial: Store = {}, options: DbStubOptions = {}) {
       for (let attempt = 0; attempt < 3; attempt += 1) {
         const storeBefore = JSON.stringify(store);
         const writes: Array<{
-          mode: 'create' | 'set';
+          mode: 'create' | 'set' | 'delete';
           ref: { path: string; collectionName: string; id: string };
           data: DocData;
           options?: unknown;
@@ -145,6 +145,10 @@ function makeDbStub(initial: Store = {}, options: DbStubOptions = {}) {
             hasWritten = true;
             writes.push({ mode: 'set', ref, data, options: writeOptions });
           },
+          delete: (ref: { path: string; collectionName: string; id: string }) => {
+            hasWritten = true;
+            writes.push({ mode: 'delete', ref, data: {} });
+          },
         };
 
         const result = await callback(transaction);
@@ -155,6 +159,10 @@ function makeDbStub(initial: Store = {}, options: DbStubOptions = {}) {
           const current = store[write.ref.collectionName]?.[write.ref.id];
           if (write.mode === 'create' && current) throw new Error('transaction_create_conflict');
           store[write.ref.collectionName] = store[write.ref.collectionName] ?? {};
+          if (write.mode === 'delete') {
+            delete store[write.ref.collectionName][write.ref.id];
+            continue;
+          }
           store[write.ref.collectionName][write.ref.id] = write.mode === 'set' && write.options
             ? { ...(current ?? {}), ...write.data }
             : { ...write.data };
@@ -1687,6 +1695,76 @@ describe('ensureStableLinkForAuth', () => {
       updatedAt: 1_777_000_000_000,
     });
     expect(store.users['local-stable']).toBeUndefined();
+  });
+
+  it('atomically rotates a clean provider from its exact retired stable link to a fresh empty profile', async () => {
+    const retiredStable = 'retired-stable-old';
+    const freshStable = 'fresh-stable-new';
+    const authUid = 'google-auth-clean';
+    const { db, store, transactionCommits } = makeDbStub({
+      auth_links: {
+        [authUid]: { stable_id: retiredStable, providerUid: authUid, provider: 'google' },
+      },
+      users: {
+        [retiredStable]: {
+          // The old root can survive until the asynchronous worker even though
+          // this same live provider UID was already re-created by Firebase.
+          firebaseAuthUid: authUid,
+          totalXp: 9999,
+          userName: 'Deleted Name',
+          premium: true,
+          equippedAvatar: 'deleted-avatar',
+          equippedAura: 'deleted-aura',
+        },
+      },
+      account_deletion_permanent_denials: {
+        [accountDeletePermanentDenialId(retiredStable)]: { status: 'denied' },
+      },
+    });
+
+    const result = await ensureStableLinkForAuth(
+      db as any,
+      authUid,
+      freshStable,
+      'google.com',
+      { email: 'same@example.com', displayName: 'Same Person' },
+    );
+
+    expect(result).toEqual({ ok: true, stableUid: freshStable, authUid, identityReady: true });
+    expect(store.auth_links[authUid]).toMatchObject({ stable_id: freshStable, providerUid: authUid });
+    expect(store.users[freshStable]).toEqual(expect.objectContaining({
+      firebaseAuthUid: authUid,
+      linkedAuth: expect.objectContaining({ providerUid: authUid }),
+    }));
+    expect(store.users[freshStable]).not.toHaveProperty('totalXp');
+    expect(store.users[freshStable]).not.toHaveProperty('premium');
+    expect(store.users[freshStable]).not.toHaveProperty('equippedAvatar');
+    expect(store.users[freshStable]).not.toHaveProperty('equippedAura');
+    expect(store.users[retiredStable]).toBeUndefined();
+    expect(transactionCommits).toHaveLength(1);
+  });
+
+  it('never rotates a retired provider auth uid even when only its stable link appears replaceable', async () => {
+    const authUid = 'google-auth-retired';
+    const retiredStable = 'retired-stable-linked';
+    const { db, store, transactionCommits } = makeDbStub({
+      auth_links: { [authUid]: { stable_id: retiredStable } },
+      account_deletion_permanent_denials: {
+        [accountDeletePermanentDenialId(authUid)]: { status: 'denied' },
+        [accountDeletePermanentDenialId(retiredStable)]: { status: 'denied' },
+      },
+    });
+
+    await expect(ensureStableLinkForAuth(
+      db as any,
+      authUid,
+      'fresh-stable-denied-auth',
+      'google.com',
+    )).rejects.toMatchObject({ message: 'identity_retired' });
+
+    expect(store.users['fresh-stable-denied-auth']).toBeUndefined();
+    expect(store.auth_links[authUid]).toMatchObject({ stable_id: retiredStable });
+    expect(transactionCommits).toEqual([]);
   });
 
   it('canonicalizes a provider pair when auth_links still anchors hidden source H', async () => {

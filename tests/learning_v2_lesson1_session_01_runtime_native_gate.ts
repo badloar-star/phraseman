@@ -105,8 +105,13 @@ expectText(
 );
 expectText(
   "app/learning_v2_direct_session_player_v1.tsx",
-  "onPressOut={localVoice.stop}",
+  "onPressOut={stopVoiceCapture}",
   "player_missing_hold_release",
+);
+rejectText(
+  "app/learning_v2_direct_session_player_v1.tsx",
+  "<SpeakingPanel",
+  "player_mounts_competing_speaking_panel",
 );
 expectText(
   "app/learning_v2_direct_session_player_v1.tsx",

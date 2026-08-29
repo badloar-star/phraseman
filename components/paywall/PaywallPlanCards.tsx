@@ -38,15 +38,13 @@ interface Props {
    *  display-only карточка: без onSelect, не выбирается и не покупается. */
   decoyPriceString?: string | null;
   /**
-   * Витрина тарифа MAX (120 мин/мес голосовых звонков). Карточка визуально
+   * Витрина MAX с неистекающими пакетами минут. Карточка визуально
    * идентична карточке Phraseman Pro (та же renderCard) и живёт под ТЕМ ЖЕ
    * тогглом «Дополнительное предложение» — владелец 2026-08-24 отверг
    * отдельный второй тоггл со своим текстом, обе карточки должны
    * разворачиваться вместе, одним движением. Тап уводит на отдельный
-   * /max_paywall (там уже готова покупка через max_subscription_purchase),
-   * а не выбирает MAX как план здесь: usePaywallPurchase — это денежный путь
-   * Plus/Pro, вплетать в него параллельную покупку MAX рискованно без
-   * возможности протестировать реальную транзакцию в этой сессии.
+   * /max_paywall, а не выбирает MAX как Premium-план. Минуты выдаёт только
+   * серверный wallet после подтверждённого store webhook.
    */
   onOpenMaxPaywall?: () => void;
 }
@@ -267,11 +265,11 @@ export default function PaywallPlanCards({
       })
     : onOpenMaxPaywall
       ? triLang(lang, {
-          ru: 'Тариф MAX · 120 минут в месяц с ИИ-учителем', uk: 'Тариф MAX · 120 хвилин на місяць із ШІ-вчителем',
-          en: 'MAX plan · 120 minutes a month with an AI teacher',
-          es: 'Plan MAX · 120 minutos al mes con tu profesor de IA', 'pt-BR': 'Plano MAX · 120 minutos por mês com o professor de IA',
-          vi: 'Gói MAX · 120 phút mỗi tháng với gia sư AI', id: 'Paket MAX · 120 menit per bulan dengan guru AI',
-          tr: 'MAX planı · yapay zekâ öğretmeninle ayda 120 dakika', pl: 'Plan MAX · 120 minut miesięcznie z nauczycielem AI',
+          ru: 'MAX · пакеты минут с ИИ-учителем', uk: 'MAX · пакети хвилин із ШІ-вчителем',
+          en: 'MAX · minute packs with an AI teacher',
+          es: 'MAX · paquetes de minutos con tu profesor de IA', 'pt-BR': 'MAX · pacotes de minutos com o professor de IA',
+          vi: 'MAX · gói phút với gia sư AI', id: 'MAX · paket menit bersama guru AI',
+          tr: 'MAX · yapay zekâ öğretmeninle dakika paketleri', pl: 'MAX · pakiety minut z nauczycielem AI',
         })
       : triLang(lang, {
           ru: 'Phraseman Pro · разовая покупка', uk: 'Phraseman Pro · разова покупка', en: 'Phraseman Pro · one-time purchase', es: 'Phraseman Pro · compra única',
@@ -377,17 +375,17 @@ export default function PaywallPlanCards({
         'monthly', // зачем: MAX не план usePaywallPurchase — plan-параметр здесь не участвует в selected (onNavigate ставит sel=false всегда)
         'MAX',
         triLang(lang, {
-          ru: '120 минут в месяц', uk: '120 хвилин на місяць', en: '120 minutes a month', es: '120 minutos al mes',
-          'pt-BR': '120 minutos por mês', vi: '120 phút mỗi tháng', id: '120 menit per bulan',
-          tr: 'ayda 120 dakika', pl: '120 minut miesięcznie',
+          ru: '30 · 120 · 300 минут', uk: '30 · 120 · 300 хвилин', en: '30 · 120 · 300 minutes', es: '30 · 120 · 300 minutos',
+          'pt-BR': '30 · 120 · 300 minutos', vi: '30 · 120 · 300 phút', id: '30 · 120 · 300 menit',
+          tr: '30 · 120 · 300 dakika', pl: '30 · 120 · 300 minut',
         }),
         triLang(lang, {
-          ru: 'Разговор с ИИ-учителем', uk: 'Розмова з ШІ-вчителем', en: 'Conversation with an AI teacher', es: 'Conversación con tu profesor de IA',
-          'pt-BR': 'Conversa com o professor de IA', vi: 'Trò chuyện với gia sư AI', id: 'Ngobrol dengan guru AI',
-          tr: 'Yapay zekâ öğretmeninle konuşma', pl: 'Rozmowa z nauczycielem AI',
+          ru: 'Разовая покупка · минуты не сгорают', uk: 'Разова купівля · хвилини не згорають', en: 'One-time purchase · minutes never expire', es: 'Compra única · los minutos no caducan',
+          'pt-BR': 'Compra única · os minutos não expiram', vi: 'Mua một lần · số phút không hết hạn', id: 'Pembelian sekali · menit tidak kedaluwarsa',
+          tr: 'Tek seferlik satın alma · dakikalar süresiz', pl: 'Jednorazowy zakup · minuty nie wygasają',
         }),
         null,
-        true, // hidePerMonth — MAX здесь показывает минуты, не цену/мес
+        true, // навигационная карточка пакетов, не периодическая цена
         onOpenMaxPaywall,
       )}
     </View>

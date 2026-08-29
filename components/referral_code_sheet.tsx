@@ -21,8 +21,8 @@ import ReferralSheetShell from './referral_sheet_shell';
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
 function makeL(lang: Lang) {
-  return (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
-    triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  return (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 }
 
 function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof makeL>): Feedback {
@@ -33,6 +33,7 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
         text: L(
           'Код принят. Когда оформишь Plus или Pro — другу откроется ключ к награде.',
           'Код прийнято. Коли оформиш Plus або Pro — друг отримає ключ до нагороди.',
+          'Code accepted. Once you subscribe to Plus or Pro, your friend unlocks a key.',
           'Código aceptado. Cuando compres Plus o Pro, tu amigo recibirá una llave.',
           'Código aceito. Quando você assinar Plus ou Pro, seu amigo recebe uma chave.',
           'Đã nhận mã. Khi bạn mua Plus hoặc Pro, bạn của bạn nhận một chìa khóa.',
@@ -47,6 +48,7 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
         text: L(
           'Код уже привязан к вашему аккаунту.',
           'Код уже прив’язаний до вашого акаунта.',
+          'This code is already linked to your account.',
           'El código ya está vinculado a tu cuenta.',
           'O código já está vinculado à sua conta.',
           'Mã đã được liên kết với tài khoản của bạn.',
@@ -61,6 +63,7 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
         text: L(
           'Проверьте код: он слишком короткий.',
           'Перевірте код: він закороткий.',
+          'Check the code: it\'s too short.',
           'Revisa el código: es demasiado corto.',
           'Confira o código: está curto demais.',
           'Hãy kiểm tra mã: mã quá ngắn.',
@@ -75,6 +78,7 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
         text: L(
           'Такой код не найден. Убедитесь, что это код приглашения Phraseman.',
           'Такий код не знайдено. Переконайтеся, що це код запрошення Phraseman.',
+          'We couldn\'t find that code. Make sure it\'s a Phraseman invite code.',
           'No encontramos ese código. Verifica que sea un código de invitación de Phraseman.',
           'Não encontramos esse código. Confira se é um convite do Phraseman.',
           'Không tìm thấy mã này. Hãy chắc chắn đó là mã mời Phraseman.',
@@ -89,6 +93,7 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
         text: L(
           'Этот код можно ввести только на новом аккаунте.',
           'Цей код можна ввести лише на новому акаунті.',
+          'This code can only be entered on a new account.',
           'Este código solo se puede usar en una cuenta nueva.',
           'Este código só pode ser usado em uma conta nova.',
           'Mã này chỉ dùng được cho tài khoản mới.',
@@ -103,6 +108,7 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
         text: L(
           'Это ваш код. Его нужно отправить другу.',
           'Це ваш код. Його потрібно надіслати другу.',
+          'This is your code. Send it to a friend.',
           'Es tu código. Envíalo a un amigo.',
           'Esse é o seu código. Envie para um amigo.',
           'Đây là mã của bạn. Hãy gửi nó cho bạn bè.',
@@ -117,6 +123,7 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
         text: L(
           'Код сохранён. Приложение применит его автоматически, как только соединение будет готово.',
           'Код збережено. Застосунок застосує його автоматично, щойно з’єднання буде готове.',
+          'Code saved. The app will apply it automatically once the connection is ready.',
           'Código guardado. Lo aplicaremos automáticamente cuando la conexión esté lista.',
           'Código salvo. Vamos aplicar automaticamente quando a conexão estiver pronta.',
           'Đã lưu mã. Ứng dụng sẽ tự áp dụng khi kết nối sẵn sàng.',
@@ -131,6 +138,7 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
         text: L(
           'Приглашения сейчас недоступны. Попробуйте позже.',
           'Запрошення зараз недоступні. Спробуйте пізніше.',
+          'Invitations are unavailable right now. Try again later.',
           'Las invitaciones no están disponibles ahora.',
           'Os convites não estão disponíveis agora.',
           'Lời mời hiện chưa khả dụng.',
@@ -146,6 +154,7 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
         text: L(
           'Не получилось применить код. Проверьте интернет и попробуйте ещё раз.',
           'Не вдалося застосувати код. Перевірте інтернет і спробуйте ще раз.',
+          'Couldn\'t apply the code. Check your internet and try again.',
           'No pudimos aplicar el código. Revisa internet e inténtalo de nuevo.',
           'Não foi possível aplicar o código. Confira a internet e tente de novo.',
           'Không áp dụng được mã. Kiểm tra mạng rồi thử lại.',
@@ -209,13 +218,14 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
       visible={visible}
       onClose={onClose}
       testID="referral-code-sheet"
-      title={L('Код от друга', 'Код від друга', 'Código de un amigo', 'Código de um amigo', 'Mã của bạn bè', 'Kode teman', 'Arkadaş kodu', 'Kod znajomego')}
-      closeLabel={L('Закрыть', 'Закрити', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
+      title={L('Код от друга', 'Код від друга', 'Friend\'s code', 'Código de un amigo', 'Código de um amigo', 'Mã của bạn bè', 'Kode teman', 'Arkadaş kodu', 'Kod znajomego')}
+      closeLabel={L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
     >
       <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '400', marginBottom: 12 }}>
         {L(
           'Введи код и оформи Plus или Pro — другу откроется ключ к награде.',
           'Введи код і оформи Plus або Pro — друг отримає ключ до нагороди.',
+          'Enter the code and subscribe to Plus or Pro — your friend unlocks a key.',
           'Escribe el código y compra Plus o Pro para darle una llave a tu amigo.',
           'Digite o código e assine Plus ou Pro para dar uma chave ao seu amigo.',
           'Nhập mã và mua Plus hoặc Pro để bạn của bạn nhận một chìa khóa.',
@@ -226,12 +236,12 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
       </Text>
       <TextInput
         testID="referral-code-sheet-input"
-        accessibilityLabel={L('Код приглашения', 'Код запрошення', 'Código de invitación', 'Código de convite', 'Mã mời', 'Kode undangan', 'Davet kodu', 'Kod zaproszenia')}
+        accessibilityLabel={L('Код приглашения', 'Код запрошення', 'Invite code', 'Código de invitación', 'Código de convite', 'Mã mời', 'Kode undangan', 'Davet kodu', 'Kod zaproszenia')}
         value={code}
         onChangeText={setCode}
         autoCapitalize="characters"
         autoCorrect={false}
-        placeholder={L('Введите код', 'Введіть код', 'Introduce el código', 'Digite o código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
+        placeholder={L('Введите код', 'Введіть код', 'Enter the code', 'Introduce el código', 'Digite o código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
         placeholderTextColor={t.textMuted}
         style={{
           minHeight: 56,
@@ -267,7 +277,7 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
           ? <ActivityIndicator color={t.correctText} />
           : <Ionicons name="checkmark-circle-outline" size={20} color={canSubmit ? t.correctText : t.textMuted} />}
         <Text style={{ color: canSubmit ? t.correctText : t.textMuted, fontSize: f.body ?? 16, fontWeight: '700' }}>
-          {L('Применить код', 'Застосувати код', 'Aplicar código', 'Aplicar código', 'Áp dụng mã', 'Terapkan kode', 'Kodu uygula', 'Zastosuj kod')}
+          {L('Применить код', 'Застосувати код', 'Apply code', 'Aplicar código', 'Aplicar código', 'Áp dụng mã', 'Terapkan kode', 'Kodu uygula', 'Zastosuj kod')}
         </Text>
       </TouchableOpacity>
       {feedback && (
@@ -286,6 +296,7 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
           {L(
             'Заявка в друзья отправлена — будете видеть прогресс друг друга.',
             'Заявку в друзі надіслано — бачитимете прогрес одне одного.',
+            'Friend request sent — you\'ll see each other\'s progress.',
             'Solicitud de amistad enviada: verán el progreso el uno del otro.',
             'Pedido de amizade enviado — vocês verão o progresso um do outro.',
             'Đã gửi lời mời kết bạn — hai bạn sẽ thấy tiến độ của nhau.',

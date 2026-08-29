@@ -110,20 +110,77 @@ function titleFor(goal: CanDoGoal | null, lessonType: TutorLessonType, ordinal: 
     .replace('{goal}', localizedGoalTitle(goal, lang));
 }
 
-function outcomeFor(goal: CanDoGoal | null, lessonType: TutorLessonType, lang: PreviewLanguage): string {
+/**
+ * Название цели внутри живой фразы: с маленькой буквы и без кавычек.
+ *
+ * зачем (владелец 2026-08-29): «убери дурацкие тексты, замени на нормальные,
+ * не механические». Прежний шаблон вставлял заголовок цели в кавычках —
+ * «Закрепишь цель „Поздороваться и попрощаться“ в короткой сцене». Так не
+ * пишет ни один живой человек. Названия целей — это глаголы в инфинитиве
+ * («поздороваться и попрощаться», «представиться»), и они читаются
+ * естественно, если встроить их в предложение, а не процитировать.
+ */
+function goalInSentence(goal: CanDoGoal | null, lang: PreviewLanguage): string {
   const title = localizedGoalTitle(goal, lang);
+  if (!title) return title;
+  // Аббревиатуры и имена собственные оставляем как есть: строчная буква
+  // испортила бы их. Признак — вторая буква тоже заглавная.
+  if (title.length > 1 && title[1] === title[1].toUpperCase() && title[1] !== title[1].toLowerCase()) {
+    return title;
+  }
+  return title[0].toLowerCase() + title.slice(1);
+}
+
+function outcomeFor(goal: CanDoGoal | null, lessonType: TutorLessonType, lang: PreviewLanguage): string {
+  const goalText = goalInSentence(goal, lang);
   const patterns: Record<PreviewLanguage, Record<TutorLessonType, string>> = {
-    en: { new_material: 'Learn new phrases and start speaking: “{goal}”.', review_and_scene: 'Lock in “{goal}” through a short scene.', free_talk: 'Use “{goal}” naturally without a prepared script.' },
-    ru: { new_material: 'Разберёшь новые фразы и начнёшь говорить: «{goal}».', review_and_scene: 'Закрепишь цель «{goal}» в короткой сцене.', free_talk: 'Используешь цель «{goal}» без готового сценария.' },
-    uk: { new_material: 'Розбереш нові фрази й почнеш говорити: «{goal}».', review_and_scene: 'Закріпиш ціль «{goal}» у короткій сцені.', free_talk: 'Використаєш ціль «{goal}» без готового сценарію.' },
-    es: { new_material: 'Aprenderás frases nuevas y empezarás a hablar: «{goal}».', review_and_scene: 'Consolidarás «{goal}» en una escena breve.', free_talk: 'Usarás «{goal}» sin un guion preparado.' },
-    'pt-BR': { new_material: 'Você aprenderá frases novas e começará a falar: “{goal}”.', review_and_scene: 'Você consolidará “{goal}” em uma cena curta.', free_talk: 'Você usará “{goal}” sem um roteiro pronto.' },
-    vi: { new_material: 'Bạn sẽ học cụm từ mới và bắt đầu nói: “{goal}”.', review_and_scene: 'Bạn sẽ củng cố “{goal}” trong một tình huống ngắn.', free_talk: 'Bạn sẽ dùng “{goal}” tự nhiên mà không cần kịch bản.' },
-    id: { new_material: 'Kamu akan mempelajari frasa baru dan mulai berbicara: “{goal}”.', review_and_scene: 'Kamu akan menguatkan “{goal}” dalam adegan singkat.', free_talk: 'Kamu akan memakai “{goal}” tanpa naskah.' },
-    tr: { new_material: 'Yeni ifadeler öğrenip konuşmaya başlayacaksın: “{goal}”.', review_and_scene: '“{goal}” hedefini kısa bir sahnede pekiştireceksin.', free_talk: '“{goal}” hedefini hazır senaryo olmadan kullanacaksın.' },
-    pl: { new_material: 'Poznasz nowe zwroty i zaczniesz mówić: „{goal}”.', review_and_scene: 'Utrwalisz „{goal}” w krótkiej scence.', free_talk: 'Użyjesz „{goal}” bez gotowego scenariusza.' },
+    en: {
+      new_material: 'Today you learn to {goal} — and say it out loud yourself.',
+      review_and_scene: 'A short scene where you {goal} without any hints.',
+      free_talk: 'A real conversation. You will {goal} along the way, off-script.',
+    },
+    ru: {
+      new_material: 'Сегодня учимся {goal} — и сразу говорим это вслух.',
+      review_and_scene: 'Короткая сцена: нужно {goal} без подсказок.',
+      free_talk: 'Живой разговор без сценария — по ходу нужно {goal}.',
+    },
+    uk: {
+      new_material: 'Сьогодні вчимося {goal} — і одразу говоримо це вголос.',
+      review_and_scene: 'Коротка сцена: треба {goal} без підказок.',
+      free_talk: 'Жива розмова без сценарію — дорогою треба {goal}.',
+    },
+    es: {
+      new_material: 'Hoy aprendes a {goal} y lo dices en voz alta.',
+      review_and_scene: 'Una escena breve: tienes que {goal} sin pistas.',
+      free_talk: 'Una conversación real, sin guion: por el camino vas a {goal}.',
+    },
+    'pt-BR': {
+      new_material: 'Hoje você aprende a {goal} e já fala em voz alta.',
+      review_and_scene: 'Uma cena curta: você precisa {goal} sem dicas.',
+      free_talk: 'Uma conversa de verdade, sem roteiro: no caminho você vai {goal}.',
+    },
+    vi: {
+      new_material: 'Hôm nay bạn học cách {goal} và nói ra thành tiếng.',
+      review_and_scene: 'Một tình huống ngắn: bạn phải {goal} mà không có gợi ý.',
+      free_talk: 'Trò chuyện thật, không kịch bản — trên đường đi bạn sẽ {goal}.',
+    },
+    id: {
+      new_material: 'Hari ini kamu belajar {goal} dan langsung mengucapkannya.',
+      review_and_scene: 'Adegan singkat: kamu harus {goal} tanpa petunjuk.',
+      free_talk: 'Percakapan nyata tanpa naskah — di tengah jalan kamu akan {goal}.',
+    },
+    tr: {
+      new_material: 'Bugün {goal} öğreniyorsun ve hemen yüksek sesle söylüyorsun.',
+      review_and_scene: 'Kısa bir sahne: ipucu olmadan {goal} gerekiyor.',
+      free_talk: 'Senaryosuz gerçek bir sohbet — yol boyunca {goal} gerekecek.',
+    },
+    pl: {
+      new_material: 'Dziś uczysz się {goal} i od razu mówisz to na głos.',
+      review_and_scene: 'Krótka scenka: trzeba {goal} bez podpowiedzi.',
+      free_talk: 'Prawdziwa rozmowa bez scenariusza — po drodze trzeba {goal}.',
+    },
   };
-  return patterns[lang][lessonType].replace('{goal}', title);
+  return patterns[lang][lessonType].replace('{goal}', goalText);
 }
 
 export function buildTutorPreview(input: {

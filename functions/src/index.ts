@@ -107,7 +107,11 @@ const {
   accountMergeOutboxRetryCron,
 } = require("./auth_merge");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { accountDeleteMine, accountDeleteEnqueue } = require("./account_delete");
+const {
+  accountDeleteMine,
+  accountDeleteEnqueue,
+  accountDeleteCredentialStatus,
+} = require("./account_delete");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   accountDeleteWorker,
@@ -310,6 +314,7 @@ exports.accountMergeOutboxWorker = accountMergeOutboxWorker;
 exports.accountMergeOutboxRetryCron = accountMergeOutboxRetryCron;
 exports.accountDeleteMine = accountDeleteMine;
 exports.accountDeleteEnqueue = accountDeleteEnqueue;
+exports.accountDeleteCredentialStatus = accountDeleteCredentialStatus;
 exports.accountDeleteWorker = accountDeleteWorker;
 exports.accountDeleteRetryCron = accountDeleteRetryCron;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
@@ -725,6 +730,7 @@ export {
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 export { adminGrantReward, adminSetShardBalance } from "./admin_grant";
+export { adminGrantVoiceMinutes } from "./admin_voice_minutes";
 export { adminGrantAccess, adminSetUserBan } from "./admin_access_controls";
 export {
   adminDeleteDuplicateUser,
@@ -943,6 +949,8 @@ export { recordAiVoiceConsent } from "./record_ai_voice_consent";
 
 export { revenueCatShardsWebhook } from "./revenuecat_shards";
 export { revenueCatPremiumReconcileMine } from "./revenuecat_reconcile";
+export { voiceMinuteWalletMine } from "./voice_minutes_api";
+export { voiceMinuteDevGrant } from "./voice_minutes_dev_grant";
 
 export { adminPushJobCreated, adminPushJobsCron } from "./admin_push_jobs";
 export { adminUserBriefs } from "./admin_user_briefs";
@@ -1013,6 +1021,7 @@ export {
   arenaV2OnQueueWrite,
   arenaV2QueueCancel,
   arenaV2QuickBotFallback,
+  arenaV2RankedBotFallback,
   arenaV2MatchAccept,
   arenaV2MatchDecline,
   // Дуэль v3: план выдаётся одним вызовом, отчёт принимается одним вызовом.
@@ -1025,6 +1034,7 @@ export {
   arenaV2SubmitSpeedAttempt,
   arenaV2SyncMatch,
   arenaV2Forfeit,
+  arenaV2ReleaseStaleMatch,
   arenaV2InviteCreate,
   arenaV2InviteAccept,
   arenaV2InviteDecline,

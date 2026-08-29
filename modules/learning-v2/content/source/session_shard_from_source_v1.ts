@@ -131,6 +131,10 @@ export interface SessionSourceIntroPage {
   readonly body: LocalizedSource;
   readonly bodyRuns?: LocalizedIntroRunsSource;
   readonly question: {
+    /** The English grammar operation explicitly taught on this intro page. */
+    readonly grammarFeatureId?: string;
+    /** A page-specific diagnostic dimension; all three intro pages must differ. */
+    readonly testedDimension?: string;
     readonly prompt: LocalizedSource;
     readonly choices: readonly [LocalizedSource, LocalizedSource, LocalizedSource];
     readonly correctChoiceIndex: 0 | 1 | 2;
@@ -194,6 +198,8 @@ export interface SessionVocabularySourceV1 {
 
 export interface SessionModeNativePracticeSourceV1 {
   readonly family: LearningV2ModeNativePayloadV1['family'];
+  /** Manually authored learner instruction for the exact native operation. */
+  readonly instruction?: LocalizedSource;
   readonly purpose:
     | 'supported_practice'
     | 'guided_practice'
@@ -208,7 +214,12 @@ export interface SessionModeNativePracticeSourceV1 {
     | 'speak_with_model';
   readonly target:
     | Readonly<{ kind: 'vocabulary'; sourceIndex: number }>
-    | Readonly<{ kind: 'vocabulary_grid'; sourceIndices: readonly number[] }>
+    | Readonly<{
+        kind: 'vocabulary_grid';
+        sourceIndices: readonly number[];
+        /** Previously grounded items may be practised without reintroducing them. */
+        knownItems?: readonly SessionVocabularySourceV1[];
+      }>
     | Readonly<{ kind: 'phrase'; sourceIndex: number }>;
   readonly modePayload: LearningV2ModeNativePayloadV1;
 }
@@ -704,6 +715,18 @@ export function buildSessionShardFromSource(
       ) {
         throw new Error(`session_source_mode_native_step_mismatch:${index + 4}`);
       }
+      if (
+        authored.modePayload.family === 'speed_match' &&
+        authored.target.kind === 'vocabulary_grid' &&
+        authored.target.knownItems
+      ) {
+        const metadataTargets = authored.target.knownItems.map((item) => item.target);
+        const payloadTargets = authored.modePayload.pairGrid.map((item) => item.target);
+        if (
+          metadataTargets.length !== payloadTargets.length ||
+          metadataTargets.some((target, itemIndex) => target !== payloadTargets[itemIndex])
+        ) throw new Error(`session_source_speed_match_metadata_mismatch:${index + 4}`);
+      }
     });
   }
 
@@ -763,8 +786,13 @@ export function buildSessionShardFromSource(
     const vocabulary = step.targetKind === 'vocabulary'
       ? source.newVocabulary?.[step.sourceVocabularyIndex ?? -1]
       : undefined;
+    const authoredKnownGrid = authoredModeStep?.target.kind === 'vocabulary_grid'
+      ? authoredModeStep.target.knownItems
+      : undefined;
     const gridVocabulary = step.targetKind === 'vocabulary_grid'
-      ? step.sourceVocabularyIndices?.map((sourceIndex) => source.newVocabulary?.[sourceIndex])
+      ? (authoredKnownGrid?.length
+          ? authoredKnownGrid
+          : step.sourceVocabularyIndices?.map((sourceIndex) => source.newVocabulary?.[sourceIndex]))
       : undefined;
     if (
       (step.targetKind === 'vocabulary' && (!vocabulary || !vocabularyStage)) ||
@@ -940,6 +968,9 @@ export function buildSessionShardFromSource(
         slot <= 3 ? intro.pages[slot - 1].question.questionId : null,
       contentItem,
       ...learnerCopy,
+      ...(authoredModeStep?.instruction
+        ? { instructionByLocale: expandLocalized(authoredModeStep.instruction) }
+        : {}),
       modePayload: authoredModeStep?.modePayload ?? null,
       audioScript: AUDIO_FAMILIES.has(family)
         ? {

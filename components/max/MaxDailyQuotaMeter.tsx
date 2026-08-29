@@ -13,6 +13,7 @@ type Props = {
   runningSinceMs: number | null;
   variant: 'hero' | 'compact';
   lang: Lang;
+  mode?: 'daily' | 'wallet';
 };
 
 /**
@@ -41,7 +42,7 @@ function useTonePulse(tone: MaxDailyQuotaTone, reduceMotion: boolean): Animated.
   return pulse;
 }
 
-function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant, lang }: Props) {
+function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant, lang, mode = 'daily' }: Props) {
   const { theme: t, f } = useTheme();
   const reduceMotion = useReduceMotion();
   const [remainingSec, setRemainingSec] = useState(startRemainingSec);
@@ -70,8 +71,8 @@ function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant
   const color = model.tone === 'red' ? t.wrong : model.tone === 'amber' ? t.gold : t.accent;
   const barPulse = useTonePulse(model.tone, reduceMotion);
   // зачем (аудит 2026-08-24): последние 59 секунд floor давал «0 мин» — цифра
-  // врала, что минут не осталось, пока разговор ещё шёл. Ниже минуты
-  // показываем секунды: цифра остаётся честной до самого конца.
+  // врала, что минут не осталось, пока разговор ещё шёл. На 1–59 секундах
+  // показываем секунды; после исчерпания возвращаем понятное «0 мин».
   const minutesValue = model.lastMinute
     ? triLang(lang, {
       ru: `${model.seconds} сек`, uk: `${model.seconds} сек`, en: `${model.seconds} sec`, es: `${model.seconds} s`,
@@ -83,16 +84,16 @@ function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant
       'pt-BR': `${model.minutes} min`, vi: `${model.minutes} phút`, id: `${model.minutes} mnt`,
       tr: `${model.minutes} dk`, pl: `${model.minutes} min`,
     });
-  // Один источник заголовка для обоих вариантов: hero ставит его слева от
-  // числа, compact — тише под числом.
-  const quotaTitle = triLang(lang, {
-    ru: 'Дневной запас MAX', uk: 'Денний запас MAX', en: "Today's MAX minutes", es: 'Minutos MAX de hoy',
-    'pt-BR': 'Minutos MAX de hoje', vi: 'Số phút MAX hôm nay', id: 'Menit MAX hari ini',
-    tr: 'Bugünkü MAX süresi', pl: 'Dzisiejsze minuty MAX',
-  });
   // Озвучка честна там же, где и цифра: на последней минуте диктовать
   // «осталось 0 минут», пока человек говорит, — та же ложь, только вслух.
-  const label = model.lastMinute
+  const walletLabel = triLang(lang, {
+    ru: `Доступно ${minutesValue} купленных минут`, uk: `Доступно ${minutesValue} придбаних хвилин`,
+    en: `${minutesValue} of purchased minutes available`, es: `${minutesValue} de minutos comprados disponibles`,
+    'pt-BR': `${minutesValue} de minutos comprados disponíveis`, vi: `Còn ${minutesValue} đã mua`,
+    id: `${minutesValue} menit yang dibeli tersedia`, tr: `${minutesValue} satın alınan dakika kullanılabilir`,
+    pl: `Dostępne kupione minuty: ${minutesValue}`,
+  });
+  const label = mode === 'wallet' ? walletLabel : model.lastMinute
     ? triLang(lang, {
       ru: `Осталось ${model.seconds} секунд MAX сегодня из ${totalMinutes} минут`,
       uk: `Залишилося ${model.seconds} секунд MAX сьогодні з ${totalMinutes} хвилин`,
@@ -118,43 +119,19 @@ function MaxDailyQuotaMeter({ startRemainingSec, maxSec, runningSinceMs, variant
 
   return (
     <View testID={`max-daily-quota-${variant}`} accessible accessibilityLabel={label}>
-      {/* зачем (владелец 2026-08-24, «цифра справа вылазит»): в компактной
-          пилюле шапки звонка заголовок и число стояли в ОДИН ряд через
-          space-between внутри жёстких 132pt. Русское «Дневной запас MAX»
-          переносится на две строки, забирает всю ширину, и число выдавливалось
-          за правый край карточки — на скриншоте от «12 мин» видна только «1».
-          Компактный вариант теперь колонка: число ведёт (оно и есть ответ на
-          вопрос «сколько осталось»), заголовок тише под ним и переносится
-          свободно. Лечение именно вёрсткой: кегли остались прежние, сжатие
-          шрифта запрещено правилами владельца. Hero-вариант — прежний ряд:
-          там ширина карточки полная и переполнения не было. */}
-      <View
-        style={variant === 'hero'
-          ? { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }
-          : { flexDirection: 'column', alignItems: 'flex-start' }}
-      >
-        {variant === 'hero' ? (
-          <Text
-            style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800' }}
-            maxFontSizeMultiplier={2}
-          >
-            {quotaTitle}
-          </Text>
-        ) : null}
+      {/* зачем (владелец 2026-08-29): подпись «Дневной запас MAX» /
+          «Купленные минуты» убрана — владелец запрещает подписи-расшифровки
+          под названием, а число «12 мин» самодостаточно. Заголовок остаётся
+          только в озвучке (accessibilityLabel родителя), иначе незрячий
+          услышал бы голое число без смысла. Заодно исчезла причина старого
+          бага «цифра справа вылазит»: делить ширину больше не с чем. */}
+      <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
         <Text
           style={{ color, fontSize: variant === 'hero' ? f.numMd + 2 : f.sub, fontWeight: '900', fontVariant: ['tabular-nums'] }}
           maxFontSizeMultiplier={2}
         >
           {minutesValue}
         </Text>
-        {variant === 'hero' ? null : (
-          <Text
-            style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', marginTop: 1 }}
-            maxFontSizeMultiplier={2}
-          >
-            {quotaTitle}
-          </Text>
-        )}
       </View>
       {/* зачем (аудит 2026-08-24): scaleY пульса растягивает бар из его
           собственного центра — если рамка трека держит overflow:'hidden' по

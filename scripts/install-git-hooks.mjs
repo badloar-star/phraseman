@@ -101,6 +101,16 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Owner lock: a Learning V2 session that is "written" must actually OPEN
+# (see scripts/guard_learning_v2_session_release.mjs). On 2026-08-27 session 2
+# was written and every content gate was green, yet the learner saw a black
+# screen and "stable_identity_unavailable" three times in a row: the session
+# was not served from the bundle and silently went to the network.
+node scripts/guard_learning_v2_session_release.mjs
+status=$?
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
 # Ratchet: no new hardcoded Russian UI strings (see scripts/scan_untranslated_ui.mjs).
 # The same "screen showed Russian text in every language" bug was fixed 14 times
 # screen by screen; the count may only go down, never up. Runs in ~0.3s.

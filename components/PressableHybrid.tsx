@@ -1,6 +1,7 @@
 import React, { memo, useRef, useCallback, useEffect } from 'react';
 import { Animated, Easing, Pressable, type PressableProps, StyleProp, ViewStyle } from 'react-native';
 import { hapticTap } from '../hooks/use-haptics';
+import { soundDirector } from '../modules/audio/sound_director';
 import { PRESS } from '../constants/motionHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { mergeAccessibilityDisabled } from './a11y_state';
@@ -72,7 +73,17 @@ function PressableHybrid({
     }
     // Visual-first: native haptic cold-start must never delay the first frame.
     if (!silent && withHaptic) hapticTap();
-  }, [opacity, pressedScale, reduceMotion, scale, silent, unavailable, withHaptic]);
+    // зачем: нажатия отзывались только вибрацией. Звук идёт на pressIn (вместе
+    // с вибрацией), а не на onPress — отклик должен совпасть с касанием, а не
+    // с отпусканием. Флаг `silent` глушит и звук: демо-панели остаются немыми.
+    // primary — кнопка с последствием («Продолжить», «Проверить»), она весомее.
+    if (!silent && withHaptic) {
+      soundDirector.request(
+        variant === 'primary' ? 'pm.ui.tap_primary' : 'pm.ui.tap_soft',
+        { scope: 'pressable' },
+      );
+    }
+  }, [opacity, pressedScale, reduceMotion, scale, silent, unavailable, variant, withHaptic]);
 
   const pressOut = useCallback(() => {
     if (reduceMotion) {

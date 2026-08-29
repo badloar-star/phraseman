@@ -27,6 +27,9 @@ const C = {
   searching: ['Ищем соперника', 'Шукаємо суперника', 'Finding an opponent', 'Buscando rival', 'Buscando adversário', 'Đang tìm đối thủ', 'Mencari lawan', 'Rakip aranıyor', 'Szukamy rywala'],
   keepOpen: ['Можно свернуть — поиск продолжится после возврата', 'Можна згорнути — пошук продовжиться після повернення', 'You can leave — the search resumes when you\'re back', 'Puedes salir; se reanudará al volver', 'Você pode sair; a busca volta ao retornar', 'Bạn có thể rời đi; tìm kiếm tiếp tục khi quay lại', 'Boleh keluar; pencarian lanjut saat kembali', 'Çıkabilirsin; dönünce arama sürer', 'Możesz wyjść; wyszukiwanie wznowi się po powrocie'],
   cancel: ['Отменить', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'İptal', 'Anuluj'],
+  // зачем (владелец 2026-08-29): экран матча, не дождавшийся плана, рисовал
+  // пустоту без слов и без выхода. Ожидание обязано быть названо словом.
+  preparing: ['Готовим матч', 'Готуємо матч', 'Preparing the match', 'Preparando la partida', 'Preparando a partida', 'Đang chuẩn bị trận', 'Menyiapkan laga', 'Maç hazırlanıyor', 'Przygotowujemy mecz'],
   later: ['Позже', 'Пізніше', 'Later', 'Más tarde', 'Mais tarde', 'Để sau', 'Nanti', 'Sonra', 'Później'],
   accept: ['Принять дуэль', 'Прийняти дуель', 'Accept duel', 'Aceptar duelo', 'Aceitar duelo', 'Chấp nhận', 'Terima duel', 'Düelloyu kabul et', 'Przyjmij pojedynek'],
   decline: ['Отказаться', 'Відмовитися', 'Decline', 'Rechazar', 'Recusar', 'Từ chối', 'Tolak', 'Reddet', 'Odrzuć'],

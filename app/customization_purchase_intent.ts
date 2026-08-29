@@ -15,6 +15,7 @@ import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
   withAccountTransitionLock,
+  type AccountGenerationToken,
 } from './account_generation';
 import {
   applyCustomizationDraft,
@@ -26,21 +27,39 @@ interface PurchaseCustomizationBase {
   target: 'avatar' | 'aura';
   itemId: string;
   cost: number;
+  currency?: 'pearls' | 'runes';
   spendReason: Extract<ShardSpendReason, 'custom_avatar' | 'custom_avatar_restyle' | 'avatar_aura'>;
   ownedValue: true | string;
+  avatarValue?: string;
 }
 
 export type PurchaseCustomizationInput =
   | (PurchaseCustomizationBase & { mode: 'buy-only'; applyInput?: never })
   | (PurchaseCustomizationBase & { mode: 'buy-and-apply'; applyInput: ApplyCustomizationInput });
 
-export type CustomizationPurchaseIntent = PurchaseCustomizationInput & {
-  v: 1;
+interface CustomizationPurchaseIntentState {
   accountScope: string;
   opId: string;
   phase: 'prepared' | 'charged' | 'granted';
   createdAt: number;
-};
+}
+
+export type CustomizationPurchaseIntent = PurchaseCustomizationInput & CustomizationPurchaseIntentState & (
+  | { v: 1; currency?: undefined }
+  | { v: 2; currency: 'pearls' | 'runes' }
+);
+
+export interface CommitRuneCustomizationCompositeInput {
+  token: AccountGenerationToken;
+  operationId: string;
+  avatarId: string;
+  ownedValue: string;
+  avatarValue: string;
+  applyInput?: ApplyCustomizationInput;
+  price: number;
+  reason: 'custom_avatar' | 'custom_avatar_restyle';
+  localWrites: readonly (readonly [string, string])[];
+}
 
 export interface CustomizationPurchaseDeps extends Omit<CustomizationServiceDeps, 'storage'> {
   storage: Pick<typeof AsyncStorage, 'multiSet' | 'multiRemove' | 'getItem'>;
@@ -48,6 +67,9 @@ export interface CustomizationPurchaseDeps extends Omit<CustomizationServiceDeps
   commitShardCompositeOperation: (
     input: CommitShardCompositeOperationInput,
   ) => Promise<CommitClientShardOperationResult>;
+  commitRuneCustomizationCompositeOperation: (
+    input: CommitRuneCustomizationCompositeInput,
+  ) => Promise<Readonly<{ duplicate: boolean; balanceBefore: number; balanceAfter: number }>>;
   onOwnershipGranted: (
     target: 'avatar' | 'aura',
     itemId: string,
@@ -60,11 +82,22 @@ export interface CustomizationPurchaseDeps extends Omit<CustomizationServiceDeps
 export type CustomizationPurchaseOutcome = 'applied' | 'purchased-only';
 
 function validInput(input: PurchaseCustomizationInput): boolean {
+  const currency = input.currency ?? 'pearls';
   return (input.target === 'avatar' || input.target === 'aura')
     && input.itemId.trim().length > 0
     && Number.isFinite(input.cost)
     && input.cost > 0
+    && (currency === 'pearls' || currency === 'runes')
+    && (currency !== 'runes'
+      || (input.target === 'avatar'
+        && typeof input.ownedValue === 'string'
+        && typeof input.avatarValue === 'string'
+        && input.avatarValue.trim().length > 0))
     && (input.mode === 'buy-only' || !!input.applyInput);
+}
+
+function intentCurrency(intent: CustomizationPurchaseIntent): 'pearls' | 'runes' {
+  return intent.v === 1 ? 'pearls' : intent.currency;
 }
 
 async function persistIntent(
@@ -83,11 +116,12 @@ export async function prepareCustomizationPurchase(
   if (!accountScope) throw new Error('missing_customization_account_scope');
   const intent: CustomizationPurchaseIntent = {
     ...input,
-    v: 1,
+    v: 2,
+    currency: input.currency ?? 'pearls',
     accountScope,
     opId: input.spendReason === 'custom_avatar_restyle'
       ? newShardOpId()
-      : await semanticShardOperationId(`${input.target}_initial`, input.itemId),
+      : await semanticShardOperationId(`${input.currency ?? 'pearls'}_${input.target}_initial`, input.itemId),
     phase: 'prepared',
     createdAt: Date.now(),
   };
@@ -110,6 +144,7 @@ function parseOwnedMap(raw: string | null): Record<string, string | true> {
 async function grantOwnership(
   intent: CustomizationPurchaseIntent,
   deps: CustomizationPurchaseDeps,
+  accountToken: AccountGenerationToken,
 ): Promise<CustomizationPurchaseIntent> {
   const ownedKey = intent.target === 'avatar' ? CUSTOM_AVATAR_OWNED_KEY : AVATAR_AURA_OWNED_KEY;
   const currentOwned = parseOwnedMap(await deps.storage.getItem(ownedKey));
@@ -153,45 +188,86 @@ export async function resumeCustomizationPurchase(
     throw new Error('invalid_customization_purchase_product');
   }
   let current = intent;
+  let ownershipNotificationPending = false;
   if (current.phase === 'prepared') {
     const ownedKey = current.target === 'avatar' ? CUSTOM_AVATAR_OWNED_KEY : AVATAR_AURA_OWNED_KEY;
     const currentOwned = parseOwnedMap(await deps.storage.getItem(ownedKey));
     const granted: CustomizationPurchaseIntent = { ...current, phase: 'granted' };
-    const purchase = await deps.commitShardCompositeOperation({
-      amount: current.cost,
-      reason: current.spendReason,
-      operationId: current.opId,
-      grant: {
-        kind: current.target === 'avatar'
-          ? (current.spendReason === 'custom_avatar_restyle' ? 'custom_avatar_restyle' : 'custom_avatar')
-          : 'avatar_aura',
-        subjectId: current.itemId,
-        payload: { ownedValue: current.ownedValue },
-      },
-      localWrites: [
-        [ownedKey, JSON.stringify({ ...currentOwned, [current.itemId]: current.ownedValue })],
-        [CUSTOMIZATION_PURCHASE_INTENT_KEY, JSON.stringify(granted)],
-      ],
-    });
-    if (purchase.status === 'insufficient') throw new Error('insufficient_shards');
-    if (purchase.status === 'failed') throw new Error('shard_spend_failed');
+    const localWrites: readonly (readonly [string, string])[] = [
+      [ownedKey, JSON.stringify({ ...currentOwned, [current.itemId]: current.ownedValue })],
+      [CUSTOMIZATION_PURCHASE_INTENT_KEY, JSON.stringify(granted)],
+    ];
+    if (intentCurrency(current) === 'runes') {
+      if (current.target !== 'avatar'
+        || typeof current.ownedValue !== 'string'
+        || typeof current.avatarValue !== 'string'
+        || current.spendReason === 'avatar_aura') {
+        throw new Error('invalid_customization_rune_purchase');
+      }
+      try {
+        await deps.commitRuneCustomizationCompositeOperation({
+          token: accountToken,
+          operationId: current.opId,
+          avatarId: current.itemId,
+          ownedValue: current.ownedValue,
+          avatarValue: current.avatarValue,
+          ...(current.mode === 'buy-and-apply' ? { applyInput: current.applyInput } : {}),
+          price: current.cost,
+          reason: current.spendReason,
+          localWrites,
+        });
+      } catch (error) {
+        if (error instanceof Error && error.message === 'customization_runes_insufficient') {
+          throw new Error('insufficient_runes');
+        }
+        throw error;
+      }
+    } else {
+      const purchase = await deps.commitShardCompositeOperation({
+        amount: current.cost,
+        reason: current.spendReason,
+        operationId: current.opId,
+        grant: {
+          kind: current.target === 'avatar'
+            ? (current.spendReason === 'custom_avatar_restyle' ? 'custom_avatar_restyle' : 'custom_avatar')
+            : 'avatar_aura',
+          subjectId: current.itemId,
+          payload: { ownedValue: current.ownedValue },
+        },
+        localWrites,
+      });
+      if (purchase.status === 'insufficient') throw new Error('insufficient_shards');
+      // зачем: раньше настоящая причина отказа (purchase.reason — например
+      // «залипший prepared-слот блокирует все покупки») терялась за одним общим
+      // 'shard_spend_failed', и с поля («жемчужин полно, но не покупается») было
+      // невозможно понять, что чинить. Теперь причина видна в message ошибки.
+      if (purchase.status === 'failed') throw new Error(`shard_spend_failed:${purchase.reason}`);
+    }
     await assertCurrentAccount();
     current = granted;
-    await deps.onOwnershipGranted(current.target, current.itemId, current.ownedValue);
+    ownershipNotificationPending = true;
   }
-  return withAccountTransitionLock(async () => {
+  return withAccountTransitionLock(async (accountTransitionLockLease) => {
     await assertCurrentAccount();
+    if (ownershipNotificationPending) {
+      await deps.onOwnershipGranted(current.target, current.itemId, current.ownedValue);
+    }
     if (current.phase === 'charged') {
       await persistIntent(current, deps);
       if (!(await deps.validatePurchase(current))) {
         await deps.storage.multiRemove([CUSTOMIZATION_PURCHASE_INTENT_KEY]);
         throw new Error('invalid_customization_purchase_product');
       }
-      current = await grantOwnership(current, deps);
+      current = await grantOwnership(current, deps, accountToken);
     }
     if (current.mode === 'buy-and-apply') {
       if (await deps.validateApply(current)) {
-        await applyCustomizationDraft(current.applyInput, deps);
+        await applyCustomizationDraft(
+          current.applyInput,
+          deps,
+          accountTransitionLockLease,
+          { operationId: `customization_selection:${current.opId}`, source: 'user' },
+        );
         await deps.storage.multiRemove([CUSTOMIZATION_PURCHASE_INTENT_KEY]);
         return 'applied';
       }
@@ -205,10 +281,11 @@ function parseIntent(raw: string | null): CustomizationPurchaseIntent | null {
   if (!raw) return null;
   try {
     const parsed = JSON.parse(raw) as Partial<CustomizationPurchaseIntent>;
-    if (parsed.v !== 1
+    if ((parsed.v !== 1 && parsed.v !== 2)
       || typeof parsed.accountScope !== 'string'
       || typeof parsed.opId !== 'string'
       || !['prepared', 'charged', 'granted'].includes(String(parsed.phase))) return null;
+    if (parsed.v === 2 && parsed.currency !== 'pearls' && parsed.currency !== 'runes') return null;
     return validInput(parsed as PurchaseCustomizationInput)
       ? parsed as CustomizationPurchaseIntent
       : null;

@@ -3,13 +3,13 @@
     "name": "Phraseman",
     "owner": "badloar",
     "slug": "phraseman",
-    "version": "1.6.9",
+    "version": "1.6.14",
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "runtimeVersion": "1.6.9",
+    "runtimeVersion": "1.6.14",
     "updates": {
       "enabled": true,
       "url": "https://u.expo.dev/87b454d9-0384-4213-8c26-fc12162e73d2",
@@ -49,7 +49,7 @@
     "android": {
       "package": "app.phraseman",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 115,
+      "versionCode": 120,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
@@ -98,7 +98,7 @@
     "ios": {
       "bundleIdentifier": "app.phraseman",
       "icon": "./assets/images/ios-icon.png",
-      "buildNumber": "115",
+      "buildNumber": "120",
       "supportsTablet": true,
       "usesAppleSignIn": true,
       "associatedDomains": [
@@ -136,30 +136,15 @@
                   {
                     "path": "./assets/fonts/Inter-Regular.ttf",
                     "weight": 400
-                  }
-                ]
-              },
-              {
-                "fontFamily": "Inter-SemiBold",
-                "fontDefinitions": [
+                  },
                   {
                     "path": "./assets/fonts/Inter-SemiBold.ttf",
                     "weight": 600
-                  }
-                ]
-              },
-              {
-                "fontFamily": "Inter-Bold",
-                "fontDefinitions": [
+                  },
                   {
                     "path": "./assets/fonts/Inter-Bold.ttf",
                     "weight": 700
-                  }
-                ]
-              },
-              {
-                "fontFamily": "Inter-Black",
-                "fontDefinitions": [
+                  },
                   {
                     "path": "./assets/fonts/Inter-Black.ttf",
                     "weight": 900

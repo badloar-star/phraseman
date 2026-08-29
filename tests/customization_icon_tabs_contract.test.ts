@@ -8,23 +8,20 @@ const CONTROLS = fs.readFileSync(
 );
 const SCREEN = fs.readFileSync(path.join(ROOT, 'app', 'avatar_select.tsx'), 'utf8');
 
-describe('customization icon tabs', () => {
-  it('uses two compact circular icon-only controls aligned to the right', () => {
-    expect(CONTROLS).toContain("icon: 'person'");
-    expect(CONTROLS).toContain("icon: 'sparkles'");
-    expect(CONTROLS).toContain("tabGroup: { alignSelf: 'flex-end', flexDirection: 'row'");
-    expect(CONTROLS).toContain('width: 48');
-    expect(CONTROLS).toContain('height: 48');
-    expect(CONTROLS).toContain('borderRadius: 24');
-    expect(SCREEN).toContain("controls: { paddingHorizontal: GRID_PAD, paddingTop: 12, paddingBottom: 10, alignItems: 'flex-end' }");
+describe('customization segmented tabs', () => {
+  it('uses one compact labeled Avatar and Aura segmented control', () => {
+    expect(CONTROLS).toContain('{item.label}');
+    expect(CONTROLS).toContain('segmentedGroup');
+    expect(CONTROLS).toContain('minHeight: 44');
+    expect(CONTROLS).not.toContain("icon: 'person'");
+    expect(CONTROLS).not.toContain("icon: 'sparkles'");
+    expect(SCREEN).toContain('<CustomizationTabs');
   });
 
-  it('keeps labels for accessibility and gives the selected tab a filled icon', () => {
+  it('keeps labels and selected state accessible without relying on icons', () => {
     expect(CONTROLS).toContain('accessibilityState={{ selected }}');
     expect(CONTROLS).toContain('accessibilityLabel={item.label}');
     expect(CONTROLS).toContain('accessibilityRole="tab"');
-    expect(CONTROLS).toContain('name={selected ? item.icon : item.outlineIcon}');
-    expect(CONTROLS).toContain('color={selected ? t.correctText : t.textMuted}');
-    expect(CONTROLS).not.toContain('<Segmented');
+    expect(CONTROLS).toContain('color: selected ? t.correctText : t.textMuted');
   });
 });

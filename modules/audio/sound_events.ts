@@ -15,7 +15,10 @@ export type SoundFamily =
   | 'dialog'
   | 'economy'
   | 'max'
-  | 'profile';
+  | 'profile'
+  // зачем: нажатия — отдельное семейство, чтобы их можно было приглушать
+  // независимо от наград и обучения (звучат чаще всего остального).
+  | 'ui';
 
 export type SoundEventDefinition = Readonly<{
   source: number | null;
@@ -26,6 +29,10 @@ export type SoundEventDefinition = Readonly<{
   family: SoundFamily;
   platform: 'all' | 'ios';
   deferAfterVoice: boolean;
+  /** This short cue remains audible when spoken playback has the audio session. */
+  mixWithVoice: boolean;
+  /** This cue has its own native player and never preempts another SFX. */
+  allowConcurrent: boolean;
 }>;
 
 const event = (
@@ -35,7 +42,7 @@ const event = (
   cooldownMs: number,
   durationMs: number,
   family: SoundFamily,
-  options: Partial<Pick<SoundEventDefinition, 'platform' | 'deferAfterVoice'>> = {},
+  options: Partial<Pick<SoundEventDefinition, 'platform' | 'deferAfterVoice' | 'mixWithVoice' | 'allowConcurrent'>> = {},
 ): SoundEventDefinition => Object.freeze({
   source,
   volume,
@@ -45,6 +52,8 @@ const event = (
   family,
   platform: options.platform ?? 'all',
   deferAfterVoice: options.deferAfterVoice ?? false,
+  mixWithVoice: options.mixWithVoice ?? false,
+  allowConcurrent: options.allowConcurrent ?? false,
 });
 
 export const SOUND_EVENTS = Object.freeze({
@@ -56,7 +65,7 @@ export const SOUND_EVENTS = Object.freeze({
   // случайного даблтапа/гонки, не суррогат персистентности.
   'pm.app.welcome': event(require('../../assets/audio/sfx/v1/app/pm_app_welcome_v1.m4a'), 0.40, 65, 8000, 2300, 'app'),
 
-  'pm.learn.correct': event(require('../../assets/audio/sfx/v1/learning/pm_learn_correct_v1.m4a'), 0.42, 70, 160, 380, 'learning'),
+  'pm.learn.correct': event(require('../../assets/audio/sfx/v1/learning/pm_learn_correct_v1.m4a'), 0.42, 70, 160, 380, 'learning', { mixWithVoice: true, allowConcurrent: true }),
   'pm.learn.needs_work': event(require('../../assets/audio/sfx/v1/learning/pm_learn_needs_work_v1.m4a'), 0.28, 68, 220, 320, 'learning'),
   'pm.learn.hint_reveal': event(require('../../assets/audio/sfx/v1/learning/pm_learn_hint_reveal_v1.m4a'), 0.30, 38, 500, 340, 'learning'),
   // зачем 2026-08-03 (владелец: «тики звучат непонятно как — то в середине
@@ -194,7 +203,7 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.arena.search_start': event(null, 0.35, 55, 600, 400, 'arena'),
   'pm.arena.search_loop': event(null, 0.12, 20, 1800, 2000, 'arena'),
   'pm.arena.opponent_found': event(null, 0.6, 78, 1500, 700, 'arena'),
-  'pm.arena.countdown_tick': event(null, 0.34, 62, 700, 200, 'arena'),
+  'pm.arena.countdown_tick': event(require('../../assets/audio/sfx/v1/arena/ar_countdown_tick_v1.m4a'), 0.34, 62, 700, 200, 'arena'),
   'pm.arena.countdown_go': event(null, 0.55, 74, 1200, 500, 'arena'),
   'pm.arena.task_in': event(null, 0.24, 40, 500, 260, 'arena'),
   'pm.arena.option_tap': event(null, 0.2, 30, 60, 120, 'arena'),
@@ -210,8 +219,8 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.arena.pair_match': event(null, 0.34, 66, 80, 180, 'arena'),
   'pm.arena.pair_miss': event(null, 0.24, 62, 120, 200, 'arena'),
   'pm.arena.pair_clear': event(null, 0.46, 74, 800, 520, 'arena'),
-  'pm.arena.result_win': event(null, 0.55, 90, 2000, 1400, 'arena'),
-  'pm.arena.result_loss': event(null, 0.38, 90, 2000, 1200, 'arena'),
+  'pm.arena.result_win': event(require('../../assets/audio/sfx/v1/arena/ar_result_win_v1.m4a'), 0.55, 90, 2000, 1400, 'arena'),
+  'pm.arena.result_loss': event(require('../../assets/audio/sfx/v1/arena/ar_result_loss_v1.m4a'), 0.38, 90, 2000, 1200, 'arena'),
   'pm.arena.result_draw': event(null, 0.42, 90, 2000, 1100, 'arena'),
   'pm.arena.star_fly': event(null, 0.26, 50, 70, 240, 'arena'),
   'pm.arena.star_land': event(null, 0.34, 56, 90, 260, 'arena'),
@@ -266,6 +275,45 @@ export const SOUND_EVENTS = Object.freeze({
   // Профиль и достижения. Файлы сгенерированы владельцем через Firefly
   // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).
   'pm.achievements.open': event(require('../../assets/audio/sfx/v1/profile/pm_achievements_open_v1.m4a'), 0.28, 46, 800, 1100, 'profile', { deferAfterVoice: true }),
+
+  // ─── Новые звуки, одобренные владельцем 2026-08-28 ───
+  // зачем: полёт рун, нажатия, сердечки, трата энергии, покупка и примерка
+  // образа раньше проходили молча. Файлы отобраны владельцем на слух из трёх
+  // вариантов каждый; у всех сделан мягкий уход в тишину, чтобы не было
+  // обрубка на конце (прямое требование владельца).
+
+  // Полёт руны к счётчику: старт — тихий (0.22), приземление слышнее (0.34).
+  // Кулдаун 0 у полёта: руны стартуют пачкой по 1-3 штуки с шагом 90 мс,
+  // любой кулдаун проглотил бы вторую и третью.
+  'pm.reward.rune_flight_start': event(require('../../assets/audio/sfx/v1/reward/pm_rune_flight_start_v1.m4a'), 0.22, 40, 0, 500, 'reward', { mixWithVoice: true, allowConcurrent: true }),
+  'pm.reward.rune_flight_land': event(require('../../assets/audio/sfx/v1/reward/pm_rune_flight_land_v1.m4a'), 0.34, 52, 0, 300, 'reward', { mixWithVoice: true, allowConcurrent: true }),
+  // Тик перекрутки счётчика НЕ объявлен: в приложении цифра баланса меняется
+  // мгновенно, без анимации счёта (проверено 2026-08-28 — в PracticeRuneCounter
+  // и RuneBalanceChip анимируется только пульс, не число). Ставить тик некуда.
+  // Файл лежит в assets/audio/sfx/v1/reward/pm_rune_count_tick_v1.m4a на случай,
+  // если перекрутку добавят:
+  //   'pm.reward.rune_count_tick': event(require('../../assets/audio/sfx/v1/reward/pm_rune_count_tick_v1.m4a'), 0.16, 30, 0, 200, 'reward'),
+  'pm.reward.rune_count_done': event(require('../../assets/audio/sfx/v1/reward/pm_rune_count_done_v1.m4a'), 0.40, 60, 800, 800, 'reward'),
+
+  // Нажатия. Громкость намеренно низкая: звучат чаще всего остального.
+  'pm.ui.tap_soft': event(require('../../assets/audio/sfx/v1/ui/pm_tap_soft_v1.m4a'), 0.12, 12, 40, 200, 'ui'),
+  'pm.ui.tap_primary': event(require('../../assets/audio/sfx/v1/ui/pm_tap_primary_v1.m4a'), 0.14, 16, 40, 250, 'ui'),
+
+  'pm.energy.spend': event(require('../../assets/audio/sfx/v1/energy/pm_energy_spend_v1.m4a'), 0.26, 44, 300, 300, 'energy'),
+
+  // Сердечки/жизни в приложении НЕ реализованы — механики нет ни в одном
+  // экране (проверено 2026-08-28 поиском heartsLeft/loseHeart/livesLeft).
+  // Звуки владелец одобрил, файлы лежат в assets/audio/sfx/v1/hearts/, но
+  // объявлять события нельзя: контракт call-sites требует место вызова, а
+  // положить звук в бандл без единого вызова — мёртвый вес.
+  // Появится механика — раскомментировать и расставить вызовы:
+  //   'pm.hearts.lost': event(require('../../assets/audio/sfx/v1/hearts/pm_heart_lost_v1.m4a'), 0.30, 64, 400, 500, 'hearts'),
+  //   'pm.hearts.restored': event(require('../../assets/audio/sfx/v1/hearts/pm_hearts_restored_v1.m4a'), 0.48, 78, 2000, 1200, 'hearts'),
+
+  // Успешная покупка: до этого был только звук отказа и старта, самого
+  // подтверждения покупки не звучало.
+  'pm.purchase.success': event(require('../../assets/audio/sfx/v1/commerce/pm_purchase_success_v1.m4a'), 0.50, 84, 1500, 600, 'commerce'),
+  'pm.customization.applied': event(require('../../assets/audio/sfx/v1/commerce/pm_customization_applied_v1.m4a'), 0.38, 62, 800, 550, 'commerce'),
 
 });
 

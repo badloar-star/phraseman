@@ -26,6 +26,7 @@ export default function SurveyTaskCard({ challenge, onOpen }: SurveyTaskCardProp
   const rewardLabel = triLang(lang, {
     ru: `+${rewardAmount} жемчужина`,
     uk: `+${rewardAmount} перлина`,
+    en: `+${rewardAmount} pearl`,
     es: `+${rewardAmount} perla`,
     'pt-BR': `+${rewardAmount} pérola`,
     vi: `+${rewardAmount} ngọc trai`,
@@ -36,6 +37,7 @@ export default function SurveyTaskCard({ challenge, onOpen }: SurveyTaskCardProp
   const completedLabel = triLang(lang, {
     ru: 'Опрос пройден',
     uk: 'Опитування пройдено',
+    en: 'Survey completed',
     es: 'Encuesta completada',
     'pt-BR': 'Pesquisa concluída',
     vi: 'Đã hoàn thành khảo sát',

@@ -1,238 +1,128 @@
-import type {
-  EpisodeSourceDistractor,
-  EpisodeSourcePhrase,
-  EpisodeSourcePhraseLocalizedDetails,
-} from './episode_01_source_v1';
+import type { EpisodeSourcePhrase, EpisodeSourcePhraseLocalizedDetails } from './episode_01_source_v1';
+import { EPISODE_01_SESSION_01_WORD_FIRST_PHRASES } from './episode_01_session_01_phrases_word_first_v1';
+import {
+  EPISODE_01_LEGACY_NOT_SAD_PHRASE,
+  EPISODE_01_SESSION_02_MODE_NATIVE_PHRASES,
+} from './episode_01_session_02_affirmative_phrases_v1';
 
 const LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 type Locale = (typeof LOCALES)[number];
-type State = 'happy' | 'sad' | 'tired' | 'fine';
-type TrapType = NonNullable<EpisodeSourceDistractor['trapType']>;
-type LocalWordCopy = Readonly<{
-  iPrompt: string; iLower: string; iLetterL: string;
-  amPrompt: string; amAn: string; amM: string;
-  notPrompt: string; notNo: string; notNow: string;
-}>;
-type StateCopy = Readonly<{
-  prompt: string;
-  first: string;
-  second: string;
-}>;
-type PhraseCopy = Readonly<{ meaning: string; explanation: string }>;
+type Copy = Readonly<{ prompt: string; missing: string; misplaced: string; doubled: string }>;
 
-const COMMON: Readonly<Record<Locale, LocalWordCopy>> = {
-  ru: { iPrompt: 'Выберите английское «я».', iLower: 'i выглядит похоже, но английское местоимение «я» всегда пишется заглавной I.', iLetterL: 'l — строчная L без точки, а не местоимение говорящего I.', amPrompt: 'Выберите связку после I.', amAn: 'an заканчивается /n/ и является другим словом; после I нужна связка am с /m/.', amM: 'm — только последняя буква; связка пишется полностью: am.', notPrompt: 'Выберите слово, которое отрицает состояние.', notNo: 'no обычно отвечает «нет» отдельно и не заменяет not внутри этой фразы.', notNow: 'now означает «сейчас»; отрицание состояния передаёт not.' },
-  uk: { iPrompt: 'Оберіть англійське «я».', iLower: 'i схоже, але англійський займенник «я» завжди пишеться великою I.', iLetterL: 'l — мала L без крапки, а не займенник мовця I.', amPrompt: 'Оберіть зв’язку після I.', amAn: 'an закінчується /n/ і є іншим словом; після I потрібна зв’язка am з /m/.', amM: 'm — лише остання літера; зв’язка пишеться повністю: am.', notPrompt: 'Оберіть слово, яке заперечує стан.', notNo: 'no зазвичай окремо відповідає «ні» й не замінює not усередині цієї фрази.', notNow: 'now означає «зараз»; заперечення стану передає not.' },
-  es: { iPrompt: 'Elige el «yo» inglés.', iLower: 'i se parece, pero el pronombre inglés «yo» siempre se escribe con I mayúscula.', iLetterL: 'l es una L minúscula sin punto, no el pronombre del hablante I.', amPrompt: 'Elige el enlace que sigue a I.', amAn: 'an termina en /n/ y es otra palabra; después de I corresponde am con /m/.', amM: 'm es solo la última letra; el enlace completo se escribe am.', notPrompt: 'Elige la palabra que niega el estado.', notNo: 'no suele ser una respuesta independiente y no sustituye a not dentro de esta frase.', notNow: 'now significa «ahora»; la negación del estado se expresa con not.' },
-  'pt-BR': { iPrompt: 'Escolha o «eu» inglês.', iLower: 'i se parece, mas o pronome inglês «eu» sempre se escreve com I maiúsculo.', iLetterL: 'l é um L minúsculo sem ponto, não o pronome do falante I.', amPrompt: 'Escolha a ligação depois de I.', amAn: 'an termina em /n/ e é outra palavra; depois de I é necessário am com /m/.', amM: 'm é apenas a última letra; a ligação completa se escreve am.', notPrompt: 'Escolha a palavra que nega o estado.', notNo: 'no costuma ser uma resposta independente e não substitui not dentro desta frase.', notNow: 'now significa «agora»; a negação do estado é expressa com not.' },
-  vi: { iPrompt: 'Chọn đại từ tiếng Anh nghĩa là “tôi”.', iLower: 'i trông giống nhưng đại từ “tôi” trong tiếng Anh luôn được viết hoa là I.', iLetterL: 'l là chữ L thường không có chấm, không phải đại từ người nói I.', amPrompt: 'Chọn từ nối đứng sau I.', amAn: 'an kết thúc bằng /n/ và là từ khác; sau I cần am với âm /m/.', amM: 'm chỉ là chữ cuối; từ nối phải được viết đầy đủ là am.', notPrompt: 'Chọn từ phủ định trạng thái.', notNo: 'no thường là câu trả lời độc lập và không thay cho not bên trong câu này.', notNow: 'now nghĩa là “bây giờ”; trạng thái được phủ định bằng not.' },
-  id: { iPrompt: 'Pilih pronomina Inggris untuk “saya”.', iLower: 'i tampak mirip, tetapi pronomina Inggris “saya” selalu ditulis dengan I besar.', iLetterL: 'l adalah huruf L kecil tanpa titik, bukan pronomina penutur I.', amPrompt: 'Pilih penghubung setelah I.', amAn: 'an berakhir /n/ dan merupakan kata lain; setelah I diperlukan am dengan /m/.', amM: 'm hanya huruf terakhir; penghubung lengkap ditulis am.', notPrompt: 'Pilih kata yang menyangkal keadaan.', notNo: 'no biasanya menjadi jawaban mandiri dan tidak menggantikan not di dalam kalimat ini.', notNow: 'now berarti “sekarang”; penyangkalan keadaan dinyatakan dengan not.' },
-  tr: { iPrompt: 'İngilizce “ben” zamirini seçin.', iLower: 'i benzer görünür ama İngilizce “ben” zamiri her zaman büyük I olarak yazılır.', iLetterL: 'l noktasız küçük L harfidir, konuşanı gösteren I zamiri değildir.', amPrompt: 'I sonrasındaki bağlantıyı seçin.', amAn: 'an /n/ ile biter ve başka bir sözcüktür; I sonrasında /m/ ile biten am gerekir.', amM: 'm yalnızca son harftir; bağlantı tam olarak am yazılır.', notPrompt: 'Durumu olumsuz yapan sözcüğü seçin.', notNo: 'no çoğunlukla bağımsız “hayır” cevabıdır ve bu cümlede not yerine geçmez.', notNow: 'now “şimdi” demektir; durum not ile olumsuz yapılır.' },
-  pl: { iPrompt: 'Wybierz angielskie „ja”.', iLower: 'i wygląda podobnie, ale angielskie „ja” zawsze zapisuje się wielką literą I.', iLetterL: 'l jest małą literą L bez kropki, a nie zaimkiem mówiącego I.', amPrompt: 'Wybierz łącznik po I.', amAn: 'an kończy się /n/ i jest innym słowem; po I potrzebne jest am z /m/.', amM: 'm jest tylko ostatnią literą; pełny łącznik zapisuje się am.', notPrompt: 'Wybierz słowo, które neguje stan.', notNo: 'no zwykle jest samodzielną odpowiedzią i nie zastępuje not wewnątrz tego zdania.', notNow: 'now znaczy „teraz”; stan neguje słowo not.' },
+const CONTRACTION: Readonly<Record<Locale, Copy>> = {
+  ru: { prompt: 'Выберите короткую форму I am.', missing: 'Im потеряло апостроф, который отмечает пропущенную a. Правильно: I’m.', misplaced: 'I’am оставляет a после апострофа; в правильном I’m эта буква исчезает.', doubled: 'I’m am повторяет am: оно уже находится внутри I’m.' },
+  uk: { prompt: 'Оберіть коротку форму I am.', missing: 'Im втратило апостроф, який позначає пропущену a. Правильно: I’m.', misplaced: 'I’am залишає a після апострофа; у правильному I’m ця літера зникає.', doubled: 'I’m am повторює am: воно вже міститься всередині I’m.' },
+  es: { prompt: 'Elige la forma corta de I am.', missing: 'Im perdió el apóstrofo que marca la a omitida. La forma correcta es I’m.', misplaced: 'I’am conserva la a después del apóstrofo; en I’m esa letra desaparece.', doubled: 'I’m am repite am, que ya está dentro de I’m.' },
+  'pt-BR': { prompt: 'Escolha a forma curta de I am.', missing: 'Im perdeu o apóstrofo que marca o a omitido. A forma certa é I’m.', misplaced: 'I’am mantém o a depois do apóstrofo; em I’m essa letra desaparece.', doubled: 'I’m am repete am, que já está dentro de I’m.' },
+  vi: { prompt: 'Chọn dạng ngắn của I am.', missing: 'Im thiếu dấu nháy dùng để đánh dấu chữ a đã lược. Dạng đúng là I’m.', misplaced: 'I’am vẫn giữ a sau dấu nháy; trong I’m, chữ này phải biến mất.', doubled: 'I’m am lặp am vì am đã nằm bên trong I’m.' },
+  id: { prompt: 'Pilih bentuk singkat I am.', missing: 'Im kehilangan apostrof yang menandai huruf a yang dibuang. Bentuk yang benar ialah I’m.', misplaced: 'I’am masih menyisakan a setelah apostrof; dalam I’m huruf itu hilang.', doubled: 'I’m am mengulang am karena am sudah ada di dalam I’m.' },
+  tr: { prompt: 'I am biçiminin kısa hâlini seçin.', missing: 'Im, düşen a harfini gösteren kesme işaretini kaybetmiştir. Doğrusu I’m olur.', misplaced: 'I’am kesme işaretinden sonra a bırakır; doğru I’m biçiminde bu harf düşer.', doubled: 'I’m am, I’m içinde bulunan am biçimini tekrarlar.' },
+  pl: { prompt: 'Wybierz krótką formę I am.', missing: 'Im zgubiło apostrof wskazujący pominięte a. Poprawny zapis to I’m.', misplaced: 'I’am zostawia a po apostrofie; w poprawnym I’m ta litera znika.', doubled: 'I’m am powtarza am, które już znajduje się w I’m.' },
 };
 
-const STATE_COPY: Readonly<Record<State, Readonly<Record<Locale, StateCopy>>>> = {
+const EXPLANATIONS = {
+  here: {
+    ru: 'I’m here звучит как короткое появление в кадре: «я здесь». I’m уже несёт I am, а here спокойно ставит точку на месте.', uk: 'I’m here звучить як коротка поява в кадрі: «я тут». I’m уже несе I am, а here спокійно вказує місце.', es: 'I’m here suena como una entrada breve en escena: «estoy aquí». I’m ya lleva I am y here fija el lugar.', 'pt-BR': 'I’m here soa como uma entrada rápida em cena: «estou aqui». I’m já carrega I am e here marca o lugar.', vi: 'I’m here giống một lời xuất hiện gọn gàng: “tôi ở đây”. I’m đã mang nghĩa I am, còn here chỉ đúng nơi.', id: 'I’m here terdengar seperti kemunculan singkat: “saya di sini”. I’m sudah memuat I am, sedangkan here menunjukkan tempat.', tr: 'I’m here sahneye kısa bir giriş gibidir: “buradayım”. I’m, I am anlamını taşır; here yeri gösterir.', pl: 'I’m here brzmi jak krótkie wejście na scenę: „jestem tutaj”. I’m zawiera I am, a here wskazuje miejsce.'
+  },
+  ready: {
+    ru: 'I’m ready — короткий зелёный свет перед стартом: «я готов / готова». После цельного I’m слово ready сразу называет готовность.', uk: 'I’m ready — коротке зелене світло перед стартом: «я готовий / готова». Після цілісного I’m слово ready одразу називає готовність.', es: 'I’m ready es una luz verde antes de empezar: «estoy listo / lista». Después del bloque I’m, ready nombra la preparación.', 'pt-BR': 'I’m ready é o sinal verde antes de começar: «estou pronto / pronta». Depois do bloco I’m, ready mostra a prontidão.', vi: 'I’m ready như đèn xanh trước lúc bắt đầu: “tôi sẵn sàng”. Sau cụm I’m, ready gọi đúng trạng thái sẵn sàng.', id: 'I’m ready seperti lampu hijau sebelum mulai: “saya siap”. Setelah I’m, ready langsung menyatakan kesiapan.', tr: 'I’m ready başlangıçtan önceki yeşil ışık gibidir: “hazırım”. Bütün I’m biçiminden sonra ready hazırlığı söyler.', pl: 'I’m ready jest jak zielone światło przed startem: „jestem gotowy / gotowa”. Po całym I’m słowo ready nazywa gotowość.'
+  },
   happy: {
-    ru: { prompt: 'Выберите состояние «счастлив / рад».', first: 'heavy грамматически подходит после I am, но означает «тяжёлый»; радостное состояние называется happy.', second: 'unhappy тоже описывает чувство, но приставка un- разворачивает смысл в «несчастный»; без неё happy означает радость.' },
-    uk: { prompt: 'Оберіть стан «щасливий / радий».', first: 'heavy граматично стоїть після I am, але означає «важкий»; радісний стан називається happy.', second: 'unhappy теж описує почуття, але префікс un- змінює зміст на «нещасний»; без нього happy означає радість.' },
-    es: { prompt: 'Elige el estado «feliz / contento».', first: 'Heavy puede seguir a I am, pero significa «pesado»; el estado alegre es happy.', second: 'Unhappy también describe una emoción, pero el prefijo un- invierte el sentido a «infeliz»; happy expresa alegría.' },
-    'pt-BR': { prompt: 'Escolha o estado «feliz / contente».', first: 'Heavy pode vir depois de I am, mas significa «pesado»; o estado alegre é happy.', second: 'Unhappy também descreve emoção, mas o prefixo un- inverte o sentido para «infeliz»; happy expressa alegria.' },
-    vi: { prompt: 'Chọn trạng thái “vui / hạnh phúc”.', first: 'Heavy vẫn có thể đứng sau I am nhưng nghĩa là “nặng”; trạng thái vui là happy.', second: 'Unhappy cũng tả cảm xúc nhưng tiền tố un- đổi nghĩa thành “không vui”; bỏ un- thì happy là vui.' },
-    id: { prompt: 'Pilih keadaan “senang / bahagia”.', first: 'Heavy dapat muncul setelah I am, tetapi berarti “berat”; keadaan senang adalah happy.', second: 'Unhappy juga menggambarkan perasaan, tetapi awalan un- membalik arti menjadi “tidak bahagia”; happy berarti senang.' },
-    tr: { prompt: '“Mutlu” durumunu seçin.', first: 'Heavy I am sonrasında dilbilgisel olarak durabilir ama “ağır” demektir; sevinç durumu happy olur.', second: 'Unhappy de duygu anlatır fakat un- öneki anlamı “mutsuz” yapar; öneksiz happy mutluluğu söyler.' },
-    pl: { prompt: 'Wybierz stan „szczęśliwy / radosny”.', first: 'Heavy może stać po I am, lecz znaczy „ciężki”; radosny stan to happy.', second: 'Unhappy też opisuje uczucie, ale przedrostek un- odwraca sens na „nieszczęśliwy”; happy oznacza radość.' },
+    ru: 'I’m happy сообщает радость без длинного разбега. I’m быстро называет говорящего, а happy оставляет улыбку в конце.', uk: 'I’m happy повідомляє про радість без довгого розгону. I’m швидко називає мовця, а happy залишає усмішку наприкінці.', es: 'I’m happy comunica alegría sin rodeos. I’m presenta al hablante con rapidez y happy deja la sonrisa al final.', 'pt-BR': 'I’m happy comunica alegria sem rodeios. I’m apresenta quem fala rapidamente e happy deixa o sorriso no fim.', vi: 'I’m happy nói niềm vui mà không vòng vo. I’m đưa người nói vào câu thật nhanh, còn happy để lại nụ cười ở cuối.', id: 'I’m happy menyampaikan rasa senang tanpa berputar-putar. I’m menghadirkan penutur dengan cepat, lalu happy menutupnya dengan senyum.', tr: 'I’m happy sevinci dolanmadan söyler. I’m konuşanı hızla gösterir, happy ise cümleyi gülümsemeyle bitirir.', pl: 'I’m happy mówi o radości bez rozbiegu. I’m szybko wskazuje mówiącego, a happy zostawia uśmiech na końcu.'
   },
   sad: {
-    ru: { prompt: 'Выберите состояние «грустный».', first: 'mad рифмуется с sad и тоже называет чувство, но означает «злой / безумный»; грусть передаёт sad.', second: 'bad отличается одной начальной буквой и означает «плохой»; личное чувство грусти называется sad.' },
-    uk: { prompt: 'Оберіть стан «сумний».', first: 'mad римується із sad і теж називає почуття, але означає «злий / божевільний»; смуток передає sad.', second: 'bad відрізняється однією початковою літерою й означає «поганий»; особистий смуток називається sad.' },
-    es: { prompt: 'Elige el estado «triste».', first: 'Mad rima con sad y también describe emoción, pero significa «enfadado / loco»; tristeza es sad.', second: 'Bad cambia solo la primera letra y significa «malo»; el sentimiento triste se llama sad.' },
-    'pt-BR': { prompt: 'Escolha o estado «triste».', first: 'Mad rima com sad e também descreve emoção, mas significa «bravo / louco»; tristeza é sad.', second: 'Bad muda apenas a primeira letra e significa «ruim»; o sentimento triste se chama sad.' },
-    vi: { prompt: 'Chọn trạng thái “buồn”.', first: 'Mad vần với sad và cũng tả cảm xúc nhưng nghĩa là “giận / điên”; buồn là sad.', second: 'Bad chỉ đổi chữ đầu và nghĩa là “xấu / tệ”; cảm giác buồn được gọi là sad.' },
-    id: { prompt: 'Pilih keadaan “sedih”.', first: 'Mad berima dengan sad dan juga menyatakan emosi, tetapi berarti “marah / gila”; sedih adalah sad.', second: 'Bad hanya mengganti huruf awal dan berarti “buruk”; perasaan sedih disebut sad.' },
-    tr: { prompt: '“Üzgün” durumunu seçin.', first: 'Mad sad ile kafiyelidir ve duygu anlatır ama “kızgın / deli” demektir; üzüntü sad olur.', second: 'Bad yalnızca ilk harfi değiştirir ve “kötü” demektir; kişisel üzüntü sad ile adlandırılır.' },
-    pl: { prompt: 'Wybierz stan „smutny”.', first: 'Mad rymuje się z sad i też opisuje emocję, ale znaczy „zły / szalony”; smutek to sad.', second: 'Bad zmienia tylko pierwszą literę i znaczy „zły / niedobry”; uczucie smutku nazywa sad.' },
+    ru: 'I’m sad коротко и честно сообщает о грусти. I’m не меняет чувство, а лишь убирает лишний слог перед sad.', uk: 'I’m sad коротко й чесно повідомляє про смуток. I’m не змінює почуття, а лише прибирає зайвий склад перед sad.', es: 'I’m sad expresa tristeza de forma breve y directa. I’m no cambia la emoción; solo acorta el inicio antes de sad.', 'pt-BR': 'I’m sad comunica tristeza de modo curto e direto. I’m não muda a emoção; apenas encurta o começo antes de sad.', vi: 'I’m sad nói nỗi buồn ngắn gọn và thật lòng. I’m không đổi cảm xúc, chỉ rút ngắn phần mở đầu trước sad.', id: 'I’m sad menyampaikan kesedihan secara singkat dan jujur. I’m tidak mengubah perasaan; hanya memendekkan bagian sebelum sad.', tr: 'I’m sad üzüntüyü kısa ve açık söyler. I’m duyguyu değiştirmez; yalnızca sad öncesindeki başlangıcı kısaltır.', pl: 'I’m sad krótko i szczerze mówi o smutku. I’m nie zmienia uczucia, tylko skraca początek przed sad.'
   },
   tired: {
-    ru: { prompt: 'Выберите состояние «уставший».', first: 'wired рифмуется с tired и может описывать человека, но означает «взвинченный / на нервах»; нехватку сил называет tired.', second: 'fired отличается первым звуком и означает «уволен»; состояние усталости передаёт tired.' },
-    uk: { prompt: 'Оберіть стан «втомлений».', first: 'wired римується з tired і може описувати людину, але означає «збуджений / на нервах»; брак сил називає tired.', second: 'fired відрізняється першим звуком і означає «звільнений»; стан втоми передає tired.' },
-    es: { prompt: 'Elige el estado «cansado».', first: 'Wired rima con tired y puede describir a una persona, pero significa «nervioso / acelerado»; falta de energía es tired.', second: 'Fired cambia el primer sonido y significa «despedido»; cansancio se expresa con tired.' },
-    'pt-BR': { prompt: 'Escolha o estado «cansado».', first: 'Wired rima com tired e pode descrever uma pessoa, mas significa «agitado / elétrico»; falta de energia é tired.', second: 'Fired muda o primeiro som e significa «demitido»; cansaço se expressa com tired.' },
-    vi: { prompt: 'Chọn trạng thái “mệt”.', first: 'Wired vần với tired và có thể tả người nhưng nghĩa là “căng thẳng / kích động”; thiếu sức là tired.', second: 'Fired đổi âm đầu và nghĩa là “bị sa thải”; trạng thái mệt là tired.' },
-    id: { prompt: 'Pilih keadaan “lelah”.', first: 'Wired berima dengan tired dan dapat menggambarkan orang, tetapi berarti “tegang / terlalu bersemangat”; kekurangan tenaga adalah tired.', second: 'Fired mengganti bunyi awal dan berarti “dipecat”; keadaan lelah adalah tired.' },
-    tr: { prompt: '“Yorgun” durumunu seçin.', first: 'Wired tired ile kafiyelidir ve kişiyi anlatabilir ama “gergin / aşırı uyarılmış” demektir; enerji eksikliği tired olur.', second: 'Fired ilk sesi değiştirir ve “işten çıkarılmış” demektir; yorgunluk tired ile anlatılır.' },
-    pl: { prompt: 'Wybierz stan „zmęczony”.', first: 'Wired rymuje się z tired i może opisywać osobę, ale znaczy „pobudzony / spięty”; brak sił to tired.', second: 'Fired zmienia pierwszy dźwięk i znaczy „zwolniony”; zmęczenie wyraża tired.' },
+    ru: 'I’m tired экономит силы даже в самой фразе: «я устал / устала». I’m произносится одним куском, а tired несёт всю усталость.', uk: 'I’m tired заощаджує сили навіть у самій фразі: «я втомився / втомилася». I’m вимовляється одним шматком, а tired несе всю втому.', es: 'I’m tired ahorra energía incluso al decirlo: «estoy cansado / cansada». I’m sale en un bloque y tired lleva todo el cansancio.', 'pt-BR': 'I’m tired economiza energia até na própria frase: «estou cansado / cansada». I’m sai em um bloco e tired carrega o cansaço.', vi: 'I’m tired tiết kiệm sức ngay trong câu: “tôi mệt”. I’m bật ra thành một cụm, còn tired mang trọn cảm giác mệt.', id: 'I’m tired bahkan menghemat tenaga saat diucapkan: “saya lelah”. I’m keluar sebagai satu blok dan tired membawa rasa lelahnya.', tr: 'I’m tired söylerken bile enerji tasarrufu yapar: “yorgunum”. I’m tek parça çıkar, yorgunluğu tired taşır.', pl: 'I’m tired oszczędza siły nawet w samym zdaniu: „jestem zmęczony / zmęczona”. I’m brzmi jak jeden blok, a tired niesie zmęczenie.'
   },
   fine: {
-    ru: { prompt: 'Выберите спокойное состояние «нормально».', first: 'kind грамматически подходит после I am и рифмуется с fine, но означает «добрый»; ответ о самочувствии — fine.', second: 'blind тоже описывает человека и содержит похожий конец, но означает «слепой»; спокойное «нормально» передаёт fine.' },
-    uk: { prompt: 'Оберіть спокійний стан «нормально».', first: 'kind граматично стоїть після I am і римується з fine, але означає «добрий»; відповідь про самопочуття — fine.', second: 'blind теж описує людину й має схожий кінець, але означає «сліпий»; спокійне «нормально» передає fine.' },
-    es: { prompt: 'Elige el estado tranquilo «bien».', first: 'Kind puede seguir a I am y rima con fine, pero significa «amable»; la respuesta sobre el estado es fine.', second: 'Blind también describe a una persona y tiene un final parecido, pero significa «ciego»; «bien» corresponde a fine.' },
-    'pt-BR': { prompt: 'Escolha o estado tranquilo «bem».', first: 'Kind pode vir depois de I am e rima com fine, mas significa «gentil»; a resposta sobre o estado é fine.', second: 'Blind também descreve pessoa e tem final parecido, mas significa «cego»; «bem» corresponde a fine.' },
-    vi: { prompt: 'Chọn trạng thái bình thản “ổn”.', first: 'Kind có thể đứng sau I am và có vần gần fine nhưng nghĩa là “tốt bụng”; trạng thái “ổn” là fine.', second: 'Blind cũng tả người và có phần cuối gần giống nhưng nghĩa là “mù”; câu trả lời “ổn” là fine.' },
-    id: { prompt: 'Pilih keadaan tenang “baik-baik saja”.', first: 'Kind dapat mengikuti I am dan berima dekat dengan fine, tetapi berarti “baik hati”; jawaban keadaan adalah fine.', second: 'Blind juga menggambarkan orang dan memiliki akhir mirip, tetapi berarti “buta”; “baik-baik saja” adalah fine.' },
-    tr: { prompt: 'Sakin “iyiyim” durumunu seçin.', first: 'Kind I am sonrasında durabilir ve fine ile yakın uyaklıdır ama “nazik” demektir; durum cevabı fine olur.', second: 'Blind de kişiyi tanımlar ve benzer son taşır ama “kör” demektir; sakin “iyiyim” cevabı fine olur.' },
-    pl: { prompt: 'Wybierz spokojny stan „w porządku”.', first: 'Kind może stać po I am i rymuje się blisko z fine, ale znaczy „życzliwy”; odpowiedź o samopoczuciu to fine.', second: 'Blind też opisuje osobę i ma podobne zakończenie, lecz znaczy „niewidomy”; spokojne „w porządku” to fine.' },
+    ru: 'I’m fine — спокойное «у меня всё нормально» без лишней церемонии. Короткое I’m открывает ответ, а fine мягко его завершает.', uk: 'I’m fine — спокійне «у мене все гаразд» без зайвої церемонії. Коротке I’m відкриває відповідь, а fine м’яко її завершує.', es: 'I’m fine es un tranquilo «estoy bien» sin ceremonia. La forma corta I’m abre la respuesta y fine la cierra con suavidad.', 'pt-BR': 'I’m fine é um tranquilo «estou bem» sem cerimônia. A forma curta I’m abre a resposta e fine a encerra suavemente.', vi: 'I’m fine là một câu “tôi ổn” bình thản, không cần nghi thức. I’m mở câu thật gọn, còn fine khép lại nhẹ nhàng.', id: 'I’m fine adalah “saya baik-baik saja” yang tenang tanpa basa-basi. I’m membuka jawaban dengan ringkas dan fine menutupnya dengan lembut.', tr: 'I’m fine törensiz, sakin bir “iyiyim” cevabıdır. Kısa I’m yanıtı açar, fine yumuşakça bitirir.', pl: 'I’m fine to spokojne „wszystko w porządku” bez ceremonii. Krótkie I’m otwiera odpowiedź, a fine łagodnie ją kończy.'
   },
-};
+} satisfies Readonly<Record<string, Readonly<Record<Locale, string>>>>;
 
-const TRAPS: Readonly<Record<State, readonly [Readonly<{ value: string; trapType: TrapType }>, Readonly<{ value: string; trapType: TrapType }>]>> = {
-  happy: [{ value: 'heavy', trapType: 'phonetic' }, { value: 'unhappy', trapType: 'semantic_neighbor' }],
-  sad: [{ value: 'mad', trapType: 'phonetic' }, { value: 'bad', trapType: 'phonetic' }],
-  tired: [{ value: 'wired', trapType: 'phonetic' }, { value: 'fired', trapType: 'phonetic' }],
-  fine: [{ value: 'kind', trapType: 'phonetic' }, { value: 'blind', trapType: 'phonetic' }],
-};
+const THIRD_TRAPS = {
+  here: { value: 'hire', reasonCode: 'phonetic:here:hire_vowel', trapType: 'phonetic' as const, why: 'hire начинается похоже, но означает «нанимать»; место «здесь» передаёт here.', reason: { ru: 'hire начинается похоже, но означает «нанимать»; место «здесь» передаёт here.', uk: 'hire починається схоже, але означає «наймати»; місце «тут» передає here.', es: 'hire empieza de forma parecida, pero significa «contratar»; el lugar «aquí» se expresa con here.', 'pt-BR': 'hire começa de modo parecido, mas significa «contratar»; o lugar «aqui» é here.', vi: 'hire có phần đầu gần giống nhưng nghĩa là “thuê”; nơi “ở đây” phải là here.', id: 'hire terdengar mirip di awal tetapi berarti “mempekerjakan”; tempat “di sini” ialah here.', tr: 'hire benzer başlar ama “işe almak” demektir; “burada” anlamı here ile verilir.', pl: 'hire zaczyna się podobnie, ale znaczy „zatrudniać”; miejsce „tutaj” wyraża here.' } },
+  ready: { value: 'read', reasonCode: 'orthographic:ready:read_missing_y', trapType: 'orthographic' as const, why: 'read похоже на ready без y, но говорит о чтении; готовность передаёт ready.', reason: { ru: 'read похоже на ready без y, но говорит о чтении; готовность передаёт ready.', uk: 'read схоже на ready без y, але стосується читання; готовність передає ready.', es: 'read se parece a ready sin y, pero habla de leer; la preparación se expresa con ready.', 'pt-BR': 'read parece ready sem y, mas fala de ler; prontidão se expressa com ready.', vi: 'read trông giống ready thiếu y nhưng nói về việc đọc; trạng thái sẵn sàng là ready.', id: 'read tampak seperti ready tanpa y tetapi berkaitan dengan membaca; kesiapan ialah ready.', tr: 'read, y harfi eksik ready gibi görünür ama okumayı anlatır; hazır olma ready ile söylenir.', pl: 'read wygląda jak ready bez y, ale dotyczy czytania; gotowość wyraża ready.' } },
+  happy: { value: 'happen', reasonCode: 'orthographic:happy:happen_ending', trapType: 'orthographic' as const, why: 'happen делит начало с happy, но означает «случаться»; радость называет happy.', reason: { ru: 'happen делит начало с happy, но означает «случаться»; радость называет happy.', uk: 'happen має спільний початок із happy, але означає «траплятися»; радість називає happy.', es: 'happen comparte el inicio de happy, pero significa «suceder»; la alegría se expresa con happy.', 'pt-BR': 'happen tem o mesmo começo de happy, mas significa «acontecer»; alegria se expressa com happy.', vi: 'happen có phần đầu giống happy nhưng nghĩa là “xảy ra”; cảm giác vui là happy.', id: 'happen berawal seperti happy tetapi berarti “terjadi”; rasa senang ialah happy.', tr: 'happen, happy ile aynı başlangıcı paylaşır ama “olmak” demektir; sevinci happy anlatır.', pl: 'happen ma ten sam początek co happy, ale znaczy „wydarzyć się”; radość wyraża happy.' } },
+  sad: { value: 'said', reasonCode: 'orthographic:sad:said_extra_i', trapType: 'orthographic' as const, why: 'said отличается от sad одной i и означает «сказал»; чувство грусти называет sad.', reason: { ru: 'said отличается от sad одной i и означает «сказал»; чувство грусти называет sad.', uk: 'said відрізняється від sad однією i й означає «сказав»; почуття смутку називає sad.', es: 'said se distingue de sad por una i y significa «dijo»; la tristeza se expresa con sad.', 'pt-BR': 'said difere de sad por uma i e significa «disse»; tristeza se expressa com sad.', vi: 'said khác sad ở chữ i và nghĩa là “đã nói”; cảm giác buồn là sad.', id: 'said berbeda dari sad dengan huruf i dan berarti “berkata”; perasaan sedih ialah sad.', tr: 'said, sad biçiminden bir i ile ayrılır ve “söyledi” demektir; üzüntüyü sad anlatır.', pl: 'said różni się od sad literą i i znaczy „powiedział”; smutek wyraża sad.' } },
+  tired: { value: 'tried', reasonCode: 'orthographic:tired:tried_transposition', trapType: 'orthographic' as const, why: 'tried переставляет буквы tired и означает «попробовал»; усталость передаёт tired.', reason: { ru: 'tried переставляет буквы tired и означает «попробовал»; усталость передаёт tired.', uk: 'tried переставляє літери tired й означає «спробував»; втому передає tired.', es: 'tried cambia el orden de las letras de tired y significa «intentó»; el cansancio se expresa con tired.', 'pt-BR': 'tried troca a ordem das letras de tired e significa «tentou»; cansaço se expressa com tired.', vi: 'tried đảo vị trí chữ trong tired và nghĩa là “đã thử”; trạng thái mệt là tired.', id: 'tried menukar urutan huruf pada tired dan berarti “mencoba”; rasa lelah ialah tired.', tr: 'tried, tired harflerinin yerini değiştirir ve “denedi” demektir; yorgunluğu tired anlatır.', pl: 'tried przestawia litery tired i znaczy „spróbował”; zmęczenie wyraża tired.' } },
+  fine: { value: 'find', reasonCode: 'orthographic:fine:find_final_letter', trapType: 'orthographic' as const, why: 'find меняет последнюю букву fine и означает «находить»; нормальное состояние передаёт fine.', reason: { ru: 'find меняет последнюю букву fine и означает «находить»; нормальное состояние передаёт fine.', uk: 'find змінює останню літеру fine й означає «знаходити»; нормальний стан передає fine.', es: 'find cambia la última letra de fine y significa «encontrar»; estar bien se expresa con fine.', 'pt-BR': 'find muda a última letra de fine e significa «encontrar»; estar bem se expressa com fine.', vi: 'find đổi chữ cuối của fine và nghĩa là “tìm thấy”; trạng thái ổn là fine.', id: 'find mengubah huruf terakhir fine dan berarti “menemukan”; keadaan baik ialah fine.', tr: 'find, fine sözcüğünün son harfini değiştirir ve “bulmak” demektir; iyi olma durumu fine ile verilir.', pl: 'find zmienia ostatnią literę fine i znaczy „znaleźć”; dobry stan wyraża fine.' } },
+} satisfies Readonly<Record<typeof KEYS[number], Readonly<{ value: string; reasonCode: string; trapType: 'phonetic' | 'orthographic'; why: string; reason: Readonly<Record<Locale, string>> }>>>;
 
-const PHRASE_COPY: Readonly<Record<string, Readonly<Record<Locale, PhraseCopy>>>> = {
-  'I am happy': {
-    ru: { meaning: 'Я счастлив / Я счастлива', explanation: 'Так прямо называют своё радостное состояние. I показывает говорящего, am соединяет его с описанием, а happy передаёт радость.' },
-    uk: { meaning: 'Я щасливий / Я щаслива', explanation: 'Так прямо називають свій радісний стан. I показує мовця, am пов’язує його з описом, а happy передає радість.' },
-    es: { meaning: 'Estoy feliz / contento / contenta', explanation: 'Así se nombra directamente un estado alegre. I identifica al hablante, am lo enlaza con la descripción y happy expresa alegría.' },
-    'pt-BR': { meaning: 'Estou feliz / contente', explanation: 'Assim se nomeia diretamente um estado alegre. I identifica quem fala, am liga a pessoa à descrição e happy expressa alegria.' },
-    vi: { meaning: 'Tôi vui / hạnh phúc', explanation: 'Câu này trực tiếp gọi tên trạng thái vui. I chỉ người nói, am nối người ấy với mô tả, còn happy diễn tả niềm vui.' },
-    id: { meaning: 'Saya senang / bahagia', explanation: 'Kalimat ini langsung menamai keadaan senang. I menunjukkan penutur, am menghubungkannya dengan deskripsi, dan happy menyatakan rasa gembira.' },
-    tr: { meaning: 'Mutluyum', explanation: 'Bu söz sevinç durumunu doğrudan adlandırır. I konuşanı gösterir, am onu açıklamaya bağlar, happy ise mutluluğu anlatır.' },
-    pl: { meaning: 'Jestem szczęśliwy / szczęśliwa', explanation: 'Tak wprost nazywa się radosny stan. I wskazuje mówiącego, am łączy go z opisem, a happy wyraża radość.' },
-  },
-  'I am sad': {
-    ru: { meaning: 'Мне грустно / Я грустный / грустная', explanation: 'Так спокойно сообщают о грусти. I называет человека, am удерживает английскую связь, а sad передаёт именно грустное настроение.' },
-    uk: { meaning: 'Мені сумно / Я сумний / сумна', explanation: 'Так спокійно повідомляють про смуток. I називає людину, am зберігає англійський зв’язок, а sad передає саме сумний настрій.' },
-    es: { meaning: 'Estoy triste', explanation: 'Así se comunica con calma la tristeza. I identifica a la persona, am mantiene el enlace inglés y sad expresa el ánimo triste.' },
-    'pt-BR': { meaning: 'Estou triste', explanation: 'Assim se comunica a tristeza com calma. I identifica a pessoa, am mantém a ligação inglesa e sad expressa o humor triste.' },
-    vi: { meaning: 'Tôi buồn', explanation: 'Câu này bình thản cho biết người nói đang buồn. I chỉ người nói, am giữ từ nối tiếng Anh, còn sad gọi tên tâm trạng buồn.' },
-    id: { meaning: 'Saya sedih', explanation: 'Kalimat ini menyampaikan kesedihan dengan tenang. I menunjukkan penutur, am mempertahankan penghubung Inggris, dan sad menamai suasana hati sedih.' },
-    tr: { meaning: 'Üzgünüm', explanation: 'Bu söz üzüntüyü sakin biçimde bildirir. I kişiyi gösterir, am İngilizce bağlantıyı korur, sad ise üzgün ruh hâlini anlatır.' },
-    pl: { meaning: 'Jest mi smutno / Jestem smutny / smutna', explanation: 'Tak spokojnie informuje się o smutku. I wskazuje osobę, am zachowuje angielski łącznik, a sad nazywa smutny nastrój.' },
-  },
-  'I am tired': {
-    ru: { meaning: 'Я устал / Я устала', explanation: 'Так говорят, когда сил стало мало. I называет говорящего, am связывает его с состоянием, а tired сообщает об усталости.' },
-    uk: { meaning: 'Я втомився / Я втомилася', explanation: 'Так говорять, коли сил стало мало. I називає мовця, am пов’язує його зі станом, а tired повідомляє про втому.' },
-    es: { meaning: 'Estoy cansado / cansada', explanation: 'Se usa cuando falta energía. I identifica al hablante, am lo conecta con su estado y tired comunica cansancio.' },
-    'pt-BR': { meaning: 'Estou cansado / cansada', explanation: 'A frase é usada quando falta energia. I identifica quem fala, am liga a pessoa ao estado e tired comunica cansaço.' },
-    vi: { meaning: 'Tôi mệt', explanation: 'Câu này dùng khi người nói thiếu sức. I chỉ người nói, am nối người ấy với trạng thái, còn tired báo rằng đang mệt.' },
-    id: { meaning: 'Saya lelah', explanation: 'Kalimat ini dipakai ketika tenaga berkurang. I menunjukkan penutur, am menghubungkannya dengan keadaan, dan tired menyatakan lelah.' },
-    tr: { meaning: 'Yorgunum', explanation: 'Bu söz enerji azaldığında kullanılır. I konuşanı gösterir, am onu duruma bağlar, tired ise yorgunluğu bildirir.' },
-    pl: { meaning: 'Jestem zmęczony / zmęczona', explanation: 'Tak mówi się, gdy brakuje sił. I wskazuje mówiącego, am łączy go ze stanem, a tired informuje o zmęczeniu.' },
-  },
-  'I am fine': {
-    ru: { meaning: 'Я в порядке / У меня всё нормально', explanation: 'Это спокойный ответ о нормальном самочувствии. I называет говорящего, am держит связь, а fine сообщает, что всё в порядке.' },
-    uk: { meaning: 'Я в порядку / У мене все нормально', explanation: 'Це спокійна відповідь про нормальне самопочуття. I називає мовця, am тримає зв’язок, а fine повідомляє, що все гаразд.' },
-    es: { meaning: 'Estoy bien', explanation: 'Es una respuesta tranquila sobre un estado normal. I identifica al hablante, am mantiene el enlace y fine comunica que todo está bien.' },
-    'pt-BR': { meaning: 'Estou bem', explanation: 'É uma resposta tranquila sobre um estado normal. I identifica quem fala, am mantém a ligação e fine comunica que está tudo bem.' },
-    vi: { meaning: 'Tôi ổn', explanation: 'Đây là câu trả lời bình thản rằng trạng thái vẫn ổn. I chỉ người nói, am giữ từ nối, còn fine báo rằng mọi thứ bình thường.' },
-    id: { meaning: 'Saya baik-baik saja', explanation: 'Ini jawaban tenang tentang keadaan yang baik. I menunjukkan penutur, am mempertahankan penghubung, dan fine menyatakan bahwa keadaan normal.' },
-    tr: { meaning: 'İyiyim', explanation: 'Bu, durumun normal olduğunu söyleyen sakin bir cevaptır. I konuşanı gösterir, am bağlantıyı korur, fine ise her şeyin iyi olduğunu bildirir.' },
-    pl: { meaning: 'Wszystko u mnie w porządku / Czuję się dobrze', explanation: 'To spokojna odpowiedź o normalnym samopoczuciu. I wskazuje mówiącego, am zachowuje łącznik, a fine mówi, że wszystko jest w porządku.' },
-  },
-  'I am not sad': {
-    ru: { meaning: 'Мне не грустно / Я не грустный / грустная', explanation: 'Так уточняют, что грусти сейчас нет. I называет говорящего, am связывает его с состоянием, not отрицает его, а sad называет именно грусть.' },
-    uk: { meaning: 'Мені не сумно / Я не сумний / сумна', explanation: 'Так уточнюють, що смутку зараз немає. I називає мовця, am пов’язує його зі станом, not заперечує його, а sad називає саме смуток.' },
-    es: { meaning: 'No estoy triste', explanation: 'Así se aclara que no hay tristeza. I identifica al hablante, am lo enlaza con el estado, not lo niega y sad nombra la tristeza.' },
-    'pt-BR': { meaning: 'Não estou triste', explanation: 'Assim se esclarece que não há tristeza. I identifica quem fala, am liga a pessoa ao estado, not o nega e sad nomeia a tristeza.' },
-    vi: { meaning: 'Tôi không buồn', explanation: 'Câu này làm rõ rằng người nói không buồn. I chỉ người nói, am nối với trạng thái, not phủ định trạng thái đó, còn sad gọi tên nỗi buồn.' },
-    id: { meaning: 'Saya tidak sedih', explanation: 'Kalimat ini menjelaskan bahwa penutur tidak sedih. I menunjukkan penutur, am menghubungkannya dengan keadaan, not menyangkalnya, dan sad menamai kesedihan.' },
-    tr: { meaning: 'Üzgün değilim', explanation: 'Bu söz üzüntü olmadığını açıklar. I konuşanı gösterir, am onu duruma bağlar, not durumu olumsuz yapar, sad ise üzüntüyü adlandırır.' },
-    pl: { meaning: 'Nie jest mi smutno / Nie jestem smutny / smutna', explanation: 'Tak wyjaśnia się, że nie ma smutku. I wskazuje mówiącego, am łączy go ze stanem, not go neguje, a sad nazywa smutek.' },
-  },
-  'I am not tired': {
-    ru: { meaning: 'Я не устал / Я не устала', explanation: 'Так сообщают, что сил ещё достаточно. I называет говорящего, am связывает его с состоянием, not отрицает усталость, а tired называет её.' },
-    uk: { meaning: 'Я не втомився / Я не втомилася', explanation: 'Так повідомляють, що сил іще достатньо. I називає мовця, am пов’язує його зі станом, not заперечує втому, а tired називає її.' },
-    es: { meaning: 'No estoy cansado / cansada', explanation: 'Así se comunica que todavía hay energía. I identifica al hablante, am lo conecta con el estado, not niega el cansancio y tired lo nombra.' },
-    'pt-BR': { meaning: 'Não estou cansado / cansada', explanation: 'Assim se comunica que ainda há energia. I identifica quem fala, am liga a pessoa ao estado, not nega o cansaço e tired o nomeia.' },
-    vi: { meaning: 'Tôi không mệt', explanation: 'Câu này cho biết người nói vẫn còn đủ sức. I chỉ người nói, am nối với trạng thái, not phủ định sự mệt, còn tired gọi tên trạng thái đó.' },
-    id: { meaning: 'Saya tidak lelah', explanation: 'Kalimat ini menyatakan bahwa tenaga masih cukup. I menunjukkan penutur, am menghubungkannya dengan keadaan, not menyangkal kelelahan, dan tired menamainya.' },
-    tr: { meaning: 'Yorgun değilim', explanation: 'Bu söz enerjinin hâlâ yeterli olduğunu bildirir. I konuşanı gösterir, am onu duruma bağlar, not yorgunluğu olumsuz yapar, tired ise onu adlandırır.' },
-    pl: { meaning: 'Nie jestem zmęczony / zmęczona', explanation: 'Tak mówi się, że sił nadal wystarcza. I wskazuje mówiącego, am łączy go ze stanem, not neguje zmęczenie, a tired je nazywa.' },
-  },
-};
+const BASES = Object.freeze([
+  EPISODE_01_SESSION_01_WORD_FIRST_PHRASES[0]!,
+  EPISODE_01_SESSION_01_WORD_FIRST_PHRASES[1]!,
+  ...EPISODE_01_SESSION_02_MODE_NATIVE_PHRASES,
+]);
+const KEYS = ['here', 'ready', 'happy', 'sad', 'tired', 'fine'] as const;
+const CONTRACTION_WORD = Object.freeze({
+  correct: "I'm", category: 'contraction', distractors: [
+    { value: 'Im', reasonCode: 'orthographic:im:missing_apostrophe', trapType: 'orthographic' as const, why: CONTRACTION.ru.missing },
+    { value: "I'am", reasonCode: 'orthographic:im:apostrophe_before_a', trapType: 'orthographic' as const, why: CONTRACTION.ru.misplaced },
+    { value: "I'm am", reasonCode: 'grammar:im:duplicated_am', trapType: 'grammar' as const, why: CONTRACTION.ru.doubled },
+  ],
+});
 
-const I_WORD = { correct: 'I', category: 'pronoun', distractors: [
-  { value: 'i', reasonCode: 'orthographic:I:lowercase_pronoun', trapType: 'orthographic', why: 'i похоже на местоимение, но английское «я» всегда пишется заглавной I.' },
-  { value: 'l', reasonCode: 'orthographic:I:lowercase_l_shape', trapType: 'orthographic', why: 'l — строчная L, а не местоимение говорящего I.' },
-] } as const;
-const AM_WORD = { correct: 'am', category: 'to-be', distractors: [
-  { value: 'an', reasonCode: 'phonetic:am:final_n_instead_of_m', trapType: 'phonetic', why: 'an заканчивается /n/ и является другим словом; после I нужна связка am.' },
-  { value: 'm', reasonCode: 'orthographic:am:missing_initial_a', trapType: 'orthographic', why: 'm теряет начальную a; связка после I пишется полностью: am.' },
-] } as const;
-const NOT_WORD = { correct: 'not', category: 'negation', distractors: [
-  { value: 'no', reasonCode: 'orthographic:not:missing_final_t', trapType: 'orthographic', why: 'no не имеет конечной t и не заменяет not внутри отрицательной фразы.' },
-  { value: 'now', reasonCode: 'phonetic:not:diphthong_instead_of_t', trapType: 'phonetic', why: 'now означает «сейчас»; отрицание состояния передаёт not.' },
-] } as const;
-
-function stateWord(state: State) {
-  const traps = TRAPS[state];
-  return {
-    correct: state,
-    category: 'state_adjective',
-    distractors: traps.map((trap, index) => ({
-      value: trap.value,
-      reasonCode: `${trap.trapType}:${state}:${trap.value}:state_contrast`,
-      trapType: trap.trapType,
-      why: STATE_COPY[state].ru[index === 0 ? 'first' : 'second'],
-    })),
-  } as const;
-}
-
-function details(
-  english: keyof typeof PHRASE_COPY,
-  state: State,
-  negative: boolean,
-): NonNullable<EpisodeSourcePhrase['localizedDetails']> {
-  const traps = TRAPS[state];
+function localizedDetails(base: EpisodeSourcePhrase, key: typeof KEYS[number]): NonNullable<EpisodeSourcePhrase['localizedDetails']> {
   return Object.fromEntries(LOCALES.map((locale) => {
-    const common = COMMON[locale];
-    const stateCopy = STATE_COPY[state][locale];
-    const phrase = PHRASE_COPY[english][locale];
-    const iDistractors = [
-      { value: 'i', reason: common.iLower, trapType: 'orthographic' as const },
-      { value: 'l', reason: common.iLetterL, trapType: 'orthographic' as const },
+    const source = base.localizedDetails?.[locale];
+    if (!source) throw new Error(`session_03_base_locale_missing:${key}:${locale}`);
+    const lexical = source.words.at(-1)!;
+    const third = THIRD_TRAPS[key];
+    const copy = CONTRACTION[locale];
+    const contractionDistractors = [
+      { value: 'Im', reason: copy.missing, trapType: 'orthographic' as const },
+      { value: "I'am", reason: copy.misplaced, trapType: 'orthographic' as const },
+      { value: "I'm am", reason: copy.doubled, trapType: 'grammar' as const },
     ];
-    const amDistractors = [
-      { value: 'an', reason: common.amAn, trapType: 'phonetic' as const },
-      { value: 'm', reason: common.amM, trapType: 'orthographic' as const },
-    ];
-    const notDistractors = [
-      { value: 'no', reason: common.notNo, trapType: 'orthographic' as const },
-      { value: 'now', reason: common.notNow, trapType: 'phonetic' as const },
-    ];
-    const lexicalDistractors = [
-      { value: traps[0].value, reason: stateCopy.first, trapType: traps[0].trapType },
-      { value: traps[1].value, reason: stateCopy.second, trapType: traps[1].trapType },
-    ];
-    const words: EpisodeSourcePhraseLocalizedDetails['words'] = [
-      { correct: 'I', prompt: common.iPrompt, distractors: iDistractors },
-      { correct: 'am', prompt: common.amPrompt, distractors: amDistractors },
-      ...(negative ? [{ correct: 'not', prompt: common.notPrompt, distractors: notDistractors }] : []),
-      { correct: state, prompt: stateCopy.prompt, distractors: lexicalDistractors },
-    ];
+    const lexicalWithThird = {
+      ...lexical,
+      distractors: lexical.distractors.some((entry) => entry.value === third.value)
+        ? [...lexical.distractors]
+        : [...lexical.distractors, { value: third.value, reason: third.reason[locale], trapType: third.trapType }],
+    };
     return [locale, {
-      meaning: phrase.meaning,
-      explanation: phrase.explanation,
-      distractors: [
-        ...iDistractors,
-        ...amDistractors,
-        ...(negative ? notDistractors : []),
-        ...lexicalDistractors,
+      meaning: source.meaning,
+      explanation: EXPLANATIONS[key][locale],
+      distractors: [...contractionDistractors, ...lexicalWithThird.distractors],
+      words: [
+        { correct: "I'm", prompt: copy.prompt, distractors: contractionDistractors },
+        lexicalWithThird,
       ],
-      words,
     } satisfies EpisodeSourcePhraseLocalizedDetails];
   })) as NonNullable<EpisodeSourcePhrase['localizedDetails']>;
 }
 
-function phrase(english: keyof typeof PHRASE_COPY, state: State, negative = false): EpisodeSourcePhrase {
-  return {
-    id: `e01-s03-word-first-${english.toLowerCase().replace(/\s+/gu, '-')}`,
-    english,
-    russian: PHRASE_COPY[english].ru.meaning,
-    explanation: PHRASE_COPY[english].ru.explanation,
-    words: [I_WORD, AM_WORD, ...(negative ? [NOT_WORD] : []), stateWord(state)],
-    localizedDetails: details(english, state, negative),
-    features: ['copula_be', 'first_person_singular', 'feeling_adjective', ...(negative ? ['negation_not'] : [])],
-  };
-}
+// Compatibility inventory for later, still-forbidden draft sessions. Those
+// modules historically learned the four full-form feeling phrases from this
+// export. Session 03 itself deliberately uses the separate contraction export
+// below, so its approved boundary cannot leak into later drafts or vice versa.
+export const EPISODE_01_SESSION_03_WORD_FIRST_PHRASES: readonly EpisodeSourcePhrase[] =
+  Object.freeze([...EPISODE_01_SESSION_02_MODE_NATIVE_PHRASES, EPISODE_01_LEGACY_NOT_SAD_PHRASE]);
 
-export const EPISODE_01_SESSION_03_WORD_FIRST_PHRASES: readonly EpisodeSourcePhrase[] = Object.freeze([
-  phrase('I am happy', 'happy'),
-  phrase('I am sad', 'sad'),
-  phrase('I am tired', 'tired'),
-  phrase('I am fine', 'fine'),
-  phrase('I am not sad', 'sad', true),
-]);
+export const EPISODE_01_SESSION_03_CONTRACTION_PHRASES: readonly EpisodeSourcePhrase[] = Object.freeze(
+  BASES.map((base, index) => {
+    const key = KEYS[index]!;
+    const details = localizedDetails(base, key);
+    return {
+      id: `e01-s03-im-${key}`,
+      english: `I'm ${key}`,
+      russian: details.ru.meaning,
+      explanation: details.ru.explanation,
+      words: [CONTRACTION_WORD, {
+        ...base.words.at(-1)!,
+        distractors: base.words.at(-1)!.distractors.some((entry) => entry.value === THIRD_TRAPS[key].value)
+          ? [...base.words.at(-1)!.distractors]
+          : [...base.words.at(-1)!.distractors, {
+            value: THIRD_TRAPS[key].value,
+            reasonCode: THIRD_TRAPS[key].reasonCode,
+            trapType: THIRD_TRAPS[key].trapType,
+            why: THIRD_TRAPS[key].why,
+          }],
+      }],
+      localizedDetails: details,
+      features: ['copula_be', 'first_person_singular', 'contraction_im', ...base.features],
+    };
+  }),
+);

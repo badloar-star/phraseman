@@ -30,6 +30,7 @@ import {
   buildAppMessagePreview,
   dismissAppMessage,
   filterAppMessagesSnapshotForAudience,
+  filterAppMessagesSnapshotForNotificationCenter,
   markAppMessageRead,
   pickAppMessagePollOptionText,
   pickAppMessagePollQuestion,
@@ -101,20 +102,7 @@ function inboxText(lang: Lang) {
     pollResultsHint: triLang(lang, { ru: 'Результаты после выбора', uk: 'Результати після вибору', en: 'Results after voting', es: 'Resultados después de elegir', 'pt-BR': 'Resultados após escolher', vi: 'Kết quả sau khi chọn', id: 'Hasil setelah memilih', tr: 'Sonuçlar seçimden sonra', pl: 'Wyniki po wyborze' }),
     inbox: triLang(lang, { ru: 'Inbox', uk: 'Inbox', en: 'Inbox', es: 'Inbox', 'pt-BR': 'Inbox', vi: 'Inbox', id: 'Inbox', tr: 'Inbox', pl: 'Inbox' }),
     reportReply: triLang(lang, { ru: 'Ответ на репорт', uk: 'Відповідь на репорт', en: 'Report reply', es: 'Respuesta a tu reporte', 'pt-BR': 'Resposta ao seu reporte', vi: 'Phản hồi báo cáo', id: 'Balasan laporan', tr: 'Rapor yanıtı', pl: 'Odpowiedź na zgłoszenie' }),
-    claimCoins: (n: number) => triLang(lang, {
-      ru: `Забрать жемчуг (+${n})`,
-      uk: `Забрати перлини (+${n})`,
-      en: `Claim pearls (+${n})`,
-      es: `Reclamar perlas (+${n})`,
-      'pt-BR': `Resgatar pérolas (+${n})`,
-      // зачем: валюта в приложении — жемчужины, а не монеты. На vi/id/tr/pl тут
-      // осталось legacy-название «монеты» — юзер получает жемчуг, а читает «xu/koin/
-      // jeton/monety». Названия сверены с каноном (CollectibleDropModal, магазин).
-      vi: `Nhận ngọc trai (+${n})`,
-      id: `Ambil mutiara (+${n})`,
-      tr: `İnci al (+${n})`,
-      pl: `Odbierz perły (+${n})`,
-    }),
+    claim: triLang(lang, { ru: 'Получить', uk: 'Отримати', en: 'Claim', es: 'Recibir', 'pt-BR': 'Receber', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' }),
     claimed: triLang(lang, { ru: 'Награда получена', uk: 'Нагороду отримано', en: 'Reward received', es: 'Recompensa recibida', 'pt-BR': 'Recompensa recebida', vi: 'Đã nhận thưởng', id: 'Hadiah diterima', tr: 'Ödül alındı', pl: 'Nagroda odebrana' }),
   };
 }
@@ -328,9 +316,16 @@ function AppMessagesInbox({
 
   const applyAppMessagesSnapshot = useCallback((snapshot: AppMessagesSnapshot) => {
     const filtered = filterAppMessagesSnapshotForAudience(snapshot, hasPremiumAccess);
-    setMessages(filtered.messages);
-    setUnreadCount(filtered.unreadCount);
-  }, [hasPremiumAccess]);
+    // Modern report replies are mirrored atomically into users/{uid}/notifications
+    // and rendered by NotificationCenterButton with the complete three-currency
+    // claim flow. Hiding only those mirrors prevents duplicate rows/badge counts;
+    // legacy one-pearl messages remain as a backwards-compatible fallback.
+    const visible = mode === 'notification-center'
+      ? filterAppMessagesSnapshotForNotificationCenter(filtered)
+      : filtered;
+    setMessages(visible.messages);
+    setUnreadCount(visible.unreadCount);
+  }, [hasPremiumAccess, mode]);
 
   useEffect(() => {
     if (!runtimeActive) return;
@@ -942,7 +937,8 @@ function AppMessagesInbox({
     );
   };
 
-  // Карточка награды в ответе на репорт: кнопка «Забрать монеты» → CF claimReportReward.
+  // Legacy fallback for historical one-pearl replies. Modern reward bundles are
+  // rendered once by NotificationCenterButton and filtered from this embedded list.
   // Никаких модалок при начислении — вся выдача живёт здесь, в уведомлении.
   const renderReportReplyClaim = (message: AppMessageWithState) => {
     if (message.kind !== 'report_reply') return null;
@@ -965,12 +961,12 @@ function AppMessagesInbox({
             testID="report-reply-claim-cta"
             activeOpacity={0.86}
             accessibilityRole="button"
-            accessibilityLabel={copy.claimCoins(reward.coins)}
+            accessibilityLabel={copy.claim}
             onPress={() => { void claimReportReward(message); }}
-            style={[styles.vipSurveyButton, { backgroundColor: '#2E9E63' }]}
+            style={[styles.vipSurveyButton, { backgroundColor: '#63D98F' }]}
           >
-            <Ionicons name="cash-outline" size={17} color="#FFFFFF" />
-            <Text style={[styles.vipSurveyButtonText, { color: '#FFFFFF' }]}>{copy.claimCoins(reward.coins)}</Text>
+            <Ionicons name="gift-outline" size={17} color="#07110A" />
+            <Text style={[styles.vipSurveyButtonText, { color: '#07110A' }]}>{copy.claim}</Text>
           </TouchableOpacity>
         ) : null}
       </View>

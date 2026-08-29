@@ -2,10 +2,18 @@ import React, { memo } from 'react';
 import { View } from 'react-native';
 import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Svg, { Defs, LinearGradient, Polygon, Stop } from 'react-native-svg';
+import Svg, { Defs, LinearGradient, Polygon, Polyline, Stop } from 'react-native-svg';
+import Avatar100Portrait, {
+  AVATAR100_HEX_STROKE,
+  AVATAR100_HEX_STROKE_WIDTH,
+  AVATAR100_LOWER_V_POINTS,
+  avatar100FitFor,
+} from './Avatar100Portrait';
 import {
   CUSTOM_AVATAR_GRADIENTS,
   CustomAvatarLogoColor,
+  CustomAvatarArtVersion,
+  getCustomAvatarArtSource,
   getCustomAvatarById,
   getCustomAvatarGradientById,
   parseCustomAvatarValue,
@@ -16,6 +24,7 @@ type Props = {
   avatarId?: string;
   gradientId?: string;
   logoColor?: CustomAvatarLogoColor;
+  artVersion?: CustomAvatarArtVersion;
   size?: number;
   style?: any;
 };
@@ -133,11 +142,12 @@ function CustomAvatarImageWithFallback({
   );
 }
 
-function CustomAvatarBadge({ value, avatarId, gradientId, logoColor, size = 44, style }: Props) {
+function CustomAvatarBadge({ value, avatarId, gradientId, logoColor, artVersion, size = 44, style }: Props) {
   const parsed = parseCustomAvatarValue(value);
   const resolvedAvatarId = avatarId ?? parsed?.avatarId;
   const resolvedGradientId = gradientId ?? parsed?.gradientId;
   const resolvedLogoColor = logoColor ?? parsed?.logoColor ?? 'white';
+  const resolvedArtVersion = artVersion ?? parsed?.artVersion;
   const avatar = resolvedAvatarId ? getCustomAvatarById(resolvedAvatarId) : undefined;
   const gradient = (resolvedGradientId ? getCustomAvatarGradientById(resolvedGradientId) : undefined)
     ?? CUSTOM_AVATAR_GRADIENTS[0];
@@ -156,9 +166,69 @@ function CustomAvatarBadge({ value, avatarId, gradientId, logoColor, size = 44, 
   const points = '50,3.5 93,26 93,74 50,96.5 7,74 7,26';
 
   if (!avatar) return null;
-  const nativeImage = isWhiteLogo ? avatar.imageWhite : avatar.imageBlack;
+  const nativeImage = getCustomAvatarArtSource(avatar.id, resolvedLogoColor, resolvedArtVersion);
   const imageSource = nativeImage ?? avatar.image;
   if (!imageSource) return null;
+
+  // зачем: у Avatar100 своя геометрия из макета-эталона — единый силуэт, нижняя V
+  // поверх портрета, верх поверх боковых линий. Старый арт продолжает рисоваться
+  // прежним путём ниже, поэтому купленные раньше аватары выглядят как и выглядели.
+  const avatar100Fit = nativeImage ? avatar100FitFor(avatar.id, resolvedLogoColor) : undefined;
+  const avatar100Uri = typeof (nativeImage as { uri?: string } | undefined)?.uri === 'string'
+    ? (nativeImage as { uri: string }).uri
+    : undefined;
+  if (avatar100Fit && avatar100Uri) {
+    return (
+      <View style={[{
+        width: size,
+        height: size,
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'visible',
+      }, style]}>
+        {/* Слой 0 — гекс с общим градиентом (для black и white он один и тот же). */}
+        <Svg width={size} height={size} viewBox="0 0 100 100" style={{ position: 'absolute', left: 0, top: 0 }}>
+          <Defs>
+            <LinearGradient id={gid} x1="0.5" y1="0" x2="0.5" y2="1">
+              <Stop offset="0" stopColor={gradient.colors[0]} />
+              <Stop offset="0.52" stopColor={gradient.colors[1]} />
+              <Stop offset="1" stopColor={gradient.colors[2]} />
+            </LinearGradient>
+          </Defs>
+          <Polygon
+            points={points}
+            fill={`url(#${gid})`}
+            stroke={AVATAR100_HEX_STROKE}
+            strokeWidth={AVATAR100_HEX_STROKE_WIDTH}
+          />
+        </Svg>
+
+        {/* Слой 1 — тело портрета: под линиями гекса, обрезано нижней V. */}
+        <Avatar100Portrait uri={avatar100Uri} size={size} fit={avatar100Fit} zone="body" />
+
+        {/* Слой 2 — нижняя V поверх портрета: ниже неё тело не выходит. */}
+        <Svg
+          width={size}
+          height={size}
+          viewBox="0 0 100 100"
+          style={{ position: 'absolute', left: 0, top: 0 }}
+          pointerEvents="none"
+        >
+          <Polyline
+            points={AVATAR100_LOWER_V_POINTS}
+            fill="none"
+            stroke={AVATAR100_HEX_STROKE}
+            strokeWidth={AVATAR100_HEX_STROKE_WIDTH}
+            strokeLinejoin="miter"
+          />
+        </Svg>
+
+        {/* Слой 3 — верх портрета поверх линий: морда, уши и крылья не режутся. */}
+        <Avatar100Portrait uri={avatar100Uri} size={size} fit={avatar100Fit} zone="upper" />
+      </View>
+    );
+  }
   const imageFit = nativeImage && resolvedAvatarId
     ? (CUSTOM_AVATAR_IMAGE_FITS[resolvedAvatarId] ?? DEFAULT_NATIVE_IMAGE_FIT)
     : { scale: 1 };

@@ -12,7 +12,7 @@ describe('home startup stability', () => {
     expect(bootstrap).toContain("'league_state_v3'");
     expect(bootstrap).toContain('rememberLeagueStateSnapshot(sanitizeLeagueState');
     expect(home).toContain('getCachedLeagueStateSync()');
-    expect(home).toContain('buildHomeLeagueChest(cachedLeagueState.group');
+    expect(home).toContain('withMyLivePoints(cachedLeagueState.group, peekMyLeagueWeekRunes())');
   });
 
   it('always creates the league row for the first Home frame', () => {

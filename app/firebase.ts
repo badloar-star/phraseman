@@ -5,12 +5,27 @@ import { Platform } from 'react-native';
 import { submitClientReport } from './client_reports';
 import { isAnalyticsConsentGranted } from './analytics_consent';
 import { getProductAnalyticsSessionId } from './product_analytics_session_context';
+import { shouldUseNativeFirebaseTelemetry } from './native_runtime_capability';
 
 // Firebase недоступен в Expo Go — только в production билде
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const getAnalytics = () => IS_EXPO_GO ? null : require('@react-native-firebase/analytics').default();
+const getAnalytics = () => {
+  if (!shouldUseNativeFirebaseTelemetry(Platform.OS, IS_EXPO_GO)) return null;
+  try {
+    return require('@react-native-firebase/analytics').default();
+  } catch {
+    return null;
+  }
+};
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const getCrashlytics = () => IS_EXPO_GO ? null : require('@react-native-firebase/crashlytics').default();
+const getCrashlytics = () => {
+  if (!shouldUseNativeFirebaseTelemetry(Platform.OS, IS_EXPO_GO)) return null;
+  try {
+    return require('@react-native-firebase/crashlytics').default();
+  } catch {
+    return null;
+  }
+};
 
 // ── Core helpers ─────────────────────────────────────────────────────────────
 

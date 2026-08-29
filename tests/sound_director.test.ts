@@ -95,13 +95,31 @@ describe('SoundDirector', () => {
     expect(backend.stopCount).toBe(1);
   });
 
-  test('speech still blocks NEW effects from starting on top of it', () => {
+  test('speech still blocks effects that are not marked to mix with voice', () => {
     const backend = new FakeBackend();
     const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
 
     director.setVoiceActive(true);
-    expect(director.request('pm.learn.correct')).toEqual({ kind: 'drop', reason: 'voice' });
+    expect(director.request('pm.learn.needs_work')).toEqual({ kind: 'drop', reason: 'voice' });
     expect(backend.plays).toHaveLength(0);
+  });
+
+  test('keeps correct and rune-flight effects independent from speech and each other', () => {
+    const backend = new FakeBackend();
+    const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
+
+    director.setVoiceActive(true);
+
+    expect(director.request('pm.learn.correct').kind).toBe('play');
+    const runeFlight = { scope: 'rune-flight', rateLimit: { maxStarts: 4, windowMs: 1000 } };
+    expect(director.request('pm.reward.rune_flight_start', runeFlight).kind).toBe('play');
+    expect(director.request('pm.reward.rune_flight_land', runeFlight).kind).toBe('play');
+    expect(backend.plays.map((play) => play.eventId)).toEqual([
+      'pm.learn.correct',
+      'pm.reward.rune_flight_start',
+      'pm.reward.rune_flight_land',
+    ]);
+    expect(backend.stopCount).toBe(0);
   });
 
   test('cancels only an active completion sound and frees the arbiter slot', () => {
@@ -190,15 +208,15 @@ describe('SoundDirector', () => {
         const clock = new FakeClock();
         const director = new SoundDirector(backend, new SoundArbiter(clock));
 
-        // pm.learn.correct (priority 70, 380ms) занимает слот.
-        expect(director.request('pm.learn.correct').kind).toBe('play');
+        // pm.system.error_recoverable (priority 76, 480ms) занимает слот.
+        expect(director.request('pm.system.error_recoverable').kind).toBe('play');
         // pm.learn.timer_warning (priority 62) конкурирует за слот и проигрывает.
         expect(director.request('pm.learn.timer_warning')).toEqual({ kind: 'drop', reason: 'priority' });
 
-        clock.advance(400);
+        clock.advance(500);
         jest.advanceTimersByTime(1000);
         // Без queueIfBusy повторной попытки не было — тик безвозвратно потерян.
-        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.learn.correct']);
+        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.system.error_recoverable']);
       } finally {
         jest.useRealTimers();
       }
@@ -211,18 +229,18 @@ describe('SoundDirector', () => {
         const clock = new FakeClock();
         const director = new SoundDirector(backend, new SoundArbiter(clock));
 
-        expect(director.request('pm.learn.correct').kind).toBe('play');
+        expect(director.request('pm.system.error_recoverable').kind).toBe('play');
         expect(director.request('pm.learn.timer_warning', { queueIfBusy: true }))
           .toMatchObject({ kind: 'drop', reason: 'priority' });
 
-        // durationMs('pm.learn.correct') = 380ms — до этого момента слот занят.
-        clock.advance(379);
-        jest.advanceTimersByTime(379);
-        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.learn.correct']);
+        // durationMs('pm.system.error_recoverable') = 480ms — до этого момента слот занят.
+        clock.advance(479);
+        jest.advanceTimersByTime(479);
+        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.system.error_recoverable']);
 
         clock.advance(1);
         jest.advanceTimersByTime(1);
-        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.learn.correct', 'pm.learn.timer_warning']);
+        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.system.error_recoverable', 'pm.learn.timer_warning']);
       } finally {
         jest.useRealTimers();
       }
@@ -247,13 +265,13 @@ describe('SoundDirector', () => {
         const clock = new FakeClock();
         const director = new SoundDirector(backend, new SoundArbiter(clock));
 
-        director.request('pm.learn.correct');
+        director.request('pm.system.error_recoverable');
         director.request('pm.learn.timer_warning', { queueIfBusy: true });
         director.setEffectsEnabled(false);
 
-        clock.advance(400);
+        clock.advance(500);
         jest.advanceTimersByTime(1000);
-        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.learn.correct']);
+        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.system.error_recoverable']);
       } finally {
         jest.useRealTimers();
       }
@@ -262,7 +280,24 @@ describe('SoundDirector', () => {
 });
 
 describe('ExpoSfxBackend', () => {
-  test('keeps one active player, reuses entries, and evicts beyond the LRU cap', () => {
+  test('keeps separate native players running for overlapping effects', () => {
+    const made: Array<ReturnType<typeof makePlayer>> = [];
+    const backend = new ExpoSfxBackend(() => {
+      const player = makePlayer();
+      made.push(player);
+      return player;
+    }, 3);
+
+    backend.play('pm.learn.correct', 1, 0.42, jest.fn());
+    backend.play('pm.reward.rune_flight_start', 2, 0.22, jest.fn());
+
+    expect(made).toHaveLength(2);
+    expect(made[0].calls).not.toContain('pause');
+    expect(made[0].calls.filter((call) => call === 'play')).toHaveLength(1);
+    expect(made[1].calls.filter((call) => call === 'play')).toHaveLength(1);
+  });
+
+  test('does not evict or pause an active player to make room for another effect', () => {
     const made: SfxPlayerLike[] = [];
     const backend = new ExpoSfxBackend((source) => {
       const player = makePlayer();
@@ -274,10 +309,10 @@ describe('ExpoSfxBackend', () => {
     backend.play('pm.system.success', 2, 0.34, jest.fn());
     backend.play('pm.system.warning', 3, 0.34, jest.fn());
 
-    expect(backend.getCacheSize()).toBe(2);
+    expect(backend.getCacheSize()).toBe(3);
     expect(made).toHaveLength(3);
-    expect((made[0] as ReturnType<typeof makePlayer>).calls).toContain('remove');
-    expect((made[1] as ReturnType<typeof makePlayer>).calls).toContain('pause');
+    expect((made[0] as ReturnType<typeof makePlayer>).calls).not.toContain('remove');
+    expect((made[1] as ReturnType<typeof makePlayer>).calls).not.toContain('pause');
   });
 
   test('finishes playback, applies volume, and contains native creation failure', () => {
@@ -420,7 +455,7 @@ describe('ExpoSfxBackend', () => {
     }
   });
 
-  test('an obsolete rewind cannot start a newer play of the same cached sound', async () => {
+  test('overlapping starts of the same event do not cancel each other', async () => {
     const seekResolvers: Array<() => void> = [];
     const calls: string[] = [];
     const player: SfxPlayerLike = {
@@ -435,15 +470,15 @@ describe('ExpoSfxBackend', () => {
 
     expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
     expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
-    expect(seekResolvers).toHaveLength(3); // first play, stop rewind, second play
+    expect(seekResolvers).toHaveLength(2);
 
     seekResolvers[0]();
     await Promise.resolve();
-    expect(calls).not.toContain('play');
-
-    seekResolvers[2]();
-    await Promise.resolve();
     expect(calls.filter((call) => call === 'play')).toHaveLength(1);
+
+    seekResolvers[1]();
+    await Promise.resolve();
+    expect(calls.filter((call) => call === 'play')).toHaveLength(2);
   });
 
   // зачем 2026-08-03 (владелец: «звук таймера был только в первом раунде

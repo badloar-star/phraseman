@@ -232,7 +232,9 @@ async function runPendingParts(): Promise<void> {
   const token = await waitForActiveAccountGeneration(15_000);
   const stableId = token?.stableId?.trim();
   if (!token || !stableId) {
-    DebugLogger.error('welcome_gift:run', new Error('account_not_active_in_15s'), 'warning');
+    // Глобальный хост легально живёт и без готового аккаунта. Это не сбой:
+    // подписка хоста повторит выдачу при следующей active-генерации.
+    DebugLogger.info('welcome_gift:run', 'account_not_active_in_15s');
     return;
   }
 

@@ -2935,6 +2935,78 @@
       "sensitivity": "sensitive"
     },
     {
+      "prefix": "client_shard_conflict_v1:",
+      "domain": "economy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "client_shard_phone_state_outbox_v1:",
+      "domain": "economy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "client_shard_semantic_paid_v1:",
+      "domain": "economy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "customization_rune_purchase_outbox_v1:",
+      "domain": "economy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "sensitive"
+    },
+    {
+      "prefix": "customization_selection_operation_v1:",
+      "domain": "economy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "customization_selection_head_v1:",
+      "domain": "economy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "customization_selection_outbox_v1:",
+      "domain": "economy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "customization_selection_quarantine_v1:",
+      "domain": "economy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
       "prefix": "diagnosis_training_progress_v1:",
       "domain": "practice",
       "scope": "portable",

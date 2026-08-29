@@ -9,7 +9,6 @@ import { useStudyTarget } from "../../../components/StudyTargetContext";
 import { useEnergy, useEnergySessionIntent } from "../../../components/EnergyContext";
 import NoEnergyModal from "../../../components/NoEnergyModal";
 import SessionAttemptsHud from "../../../components/session_attempts/SessionAttemptsHud";
-import SessionAttemptsRecoveryModal from "../../../components/session_attempts/SessionAttemptsRecoveryModal";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, {
   useCallback,
@@ -46,6 +45,7 @@ import {
   withAccountTransitionLock,
 } from "../../../app/account_generation";
 import { useSessionAttempts } from "../../../hooks/useSessionAttempts";
+import { useSessionAttemptAutoReset } from "../../../hooks/useSessionAttemptAutoReset";
 import { SESSION_ATTEMPTS_MOTION } from "../../../constants/motionHybrid";
 import { grantLocalCourseSessionCompletionSpin } from "../../../app/local_level_spins";
 import {
@@ -359,8 +359,17 @@ function LearningV2LegacySessionScreen() {
   const localAudioSource = item
     ? learningV2Lesson1AudioSource(item.contentItemId)
     : null;
+  // зачем: useAudioPlayerStatus подписан на нативное playbackStatusUpdate,
+  // которое по дефолту (updateInterval=500мс) тикает каждые 500мс, пока
+  // играет звук — это setState в этом компоненте без React.memo, то есть
+  // перерисовка всего экрана 2 раза в секунду на всё время воспроизведения.
+  // Ниже читаются только localAudioStatus.playing/didJustFinish (булевы) —
+  // currentTime/duration не используются, поэтому тик не несёт полезных
+  // данных. onIsPlayingChanged/didJustFinish по-прежнему приходят мгновенно
+  // из нативных слушателей независимо от таймера.
   const localAudioPlayer = useAudioPlayer(localAudioSource, {
     downloadFirst: false,
+    updateInterval: 60_000,
   });
   const localAudioStatus = useAudioPlayerStatus(localAudioPlayer);
   const [failedAudioCardId, setFailedAudioCardId] = useState<string | null>(
@@ -492,17 +501,6 @@ function LearningV2LegacySessionScreen() {
     setVoiceRecording(false);
   }, [controlReleasedVoice, stopLocalAudioPlayback, voiceRecording]);
 
-  const showExhaustedAttemptsModal = useCallback(() => {
-    stopAttemptMediaBeforeRecovery();
-    if (attemptsModalTimerRef.current !== null) {
-      clearTimeout(attemptsModalTimerRef.current);
-    }
-    attemptsModalTimerRef.current = setTimeout(() => {
-      attemptsModalTimerRef.current = null;
-      setShowAttemptsModal(true);
-    }, SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs);
-  }, [stopAttemptMediaBeforeRecovery]);
-
   useEffect(
     () => () => {
       if (attemptsModalTimerRef.current !== null) {
@@ -512,18 +510,6 @@ function LearningV2LegacySessionScreen() {
     },
     [],
   );
-
-  useEffect(() => {
-    if (!sessionAttempts.hydrated) return;
-    if (sessionAttempts.state.phase !== "awaiting_recovery") return;
-    if (attemptsModalTimerRef.current !== null) return;
-    stopAttemptMediaBeforeRecovery();
-    setShowAttemptsModal(true);
-  }, [
-    sessionAttempts.hydrated,
-    sessionAttempts.state.phase,
-    stopAttemptMediaBeforeRecovery,
-  ]);
 
   useEffect(() => {
     progress.value = withTiming((cardIndex + 1) / 12, {
@@ -1045,9 +1031,7 @@ function LearningV2LegacySessionScreen() {
         answerAttemptId,
         verdict: "pedagogical_wrong",
       });
-      if (attemptEffect === "attempts_exhausted") {
-        showExhaustedAttemptsModal();
-      }
+      if (attemptEffect === "attempts_exhausted") return;
     }
   };
   const chooseTile = (tile: {
@@ -1264,19 +1248,22 @@ function LearningV2LegacySessionScreen() {
     setAttempts(1);
   };
 
-  const recoverCurrentLearningV2Attempt = async (
-    source: "gift" | "runes",
-  ) => {
-    try {
-      if (source === "gift") await sessionAttempts.recoverWithGift();
-      else await sessionAttempts.recoverWithRunes();
-      setShowAttemptsModal(false);
-      setResult("idle");
-    } catch {
-      // Keep the same card blocked. The shared modal exposes the resource
-      // error and no task/evidence state is rewound.
-    }
-  };
+  const resetLearningV2RouteAfterSessionRuneForfeit = useCallback(() => {
+    setShowAttemptsModal(false);
+    sessionStarsRef.current = 0;
+    setDisplayedStars(0);
+    setResult("idle");
+  }, []);
+
+  useSessionAttemptAutoReset({
+    phase: sessionAttempts.state.phase,
+    forfeitSessionRunes: () => {
+      sessionStarsRef.current = 0;
+      setDisplayedStars(0);
+    },
+    restoreAttempts: sessionAttempts.restoreAfterSessionRuneForfeit,
+    onRestored: resetLearningV2RouteAfterSessionRuneForfeit,
+  });
 
   const endExhaustedLearningV2Session = () => {
     sessionAttempts.endAttemptsSession();
@@ -1284,26 +1271,6 @@ function LearningV2LegacySessionScreen() {
     stopAttemptMediaBeforeRecovery();
     router.replace("/learning-v2/course");
   };
-
-  const attemptsRecoveryModal = (
-    <SessionAttemptsRecoveryModal
-      visible={
-        showAttemptsModal &&
-        sessionAttempts.state.phase === "awaiting_recovery"
-      }
-      locale={lang}
-      giftCount={sessionAttempts.giftCount}
-      runeBalance={sessionAttempts.runeBalance ?? 0}
-      busy={sessionAttempts.recoveryBusy}
-      onUseGift={() => {
-        void recoverCurrentLearningV2Attempt("gift");
-      }}
-      onSpendRunes={() => {
-        void recoverCurrentLearningV2Attempt("runes");
-      }}
-      onEndSession={endExhaustedLearningV2Session}
-    />
-  );
 
   if (
     !session ||
@@ -1372,9 +1339,7 @@ function LearningV2LegacySessionScreen() {
                   answerAttemptId,
                   verdict: "pedagogical_wrong",
                 });
-                if (attemptEffect === "attempts_exhausted") {
-                  showExhaustedAttemptsModal();
-                }
+                if (attemptEffect === "attempts_exhausted") return "wrong";
               }
               return verdict;
             }}
@@ -1427,7 +1392,6 @@ function LearningV2LegacySessionScreen() {
             testID="learning-v2-route-intro-attempts"
           />
         </View>
-        {attemptsRecoveryModal}
       </View>
     );
   }
@@ -2081,7 +2045,6 @@ function LearningV2LegacySessionScreen() {
       {sessionAttempts.state.phase === "awaiting_recovery" ? (
         <View pointerEvents="auto" style={styles.attemptsInputBlocker} />
       ) : null}
-      {attemptsRecoveryModal}
     </LinearGradient>
   );
 }
@@ -2126,6 +2089,31 @@ function LearningV2SessionEnergyGate({ children }: { children: React.ReactNode }
   if (gate === "ok") return <>{children}</>;
   return (
     <View style={styles.screen}>
+      {/* зачем этот скелет (владелец, 2026-08-27, «открываю — вижу тёмный
+          экран, потом сессия недоступна»): пока gate === "checking" (ждём
+          energyReady + подтверждение траты — это реально пара секунд) экран
+          рендерил ПУСТОЙ View с тёмным фоном и невидимой модалкой. Человек
+          видел чёрный прямоугольник без единого элемента и даже без кнопки
+          выхода. Performance Bible (AGENTS.md) требует мгновенный первый кадр
+          с финальной геометрией и запрещает пустой экран вместо скелета.
+          Показываем ту же шапку, что и сам плеер, чтобы кадр был осмысленным
+          и из него всегда можно было выйти назад. */}
+      {gate === "checking" ? (
+        <View style={styles.gateSkeleton}>
+          <Pressable
+            accessibilityRole="button"
+            hitSlop={10}
+            onPress={() => safeRouterBack(router, "/(tabs)/lessons" as never)}
+            style={({ pressed }) => [
+              styles.gateSkeletonClose,
+              { opacity: pressed ? 0.72 : 1 },
+            ]}
+          >
+            <Ionicons name="close" size={22} color="#F7F9FB" />
+          </Pressable>
+          <View style={styles.gateSkeletonTrack} />
+        </View>
+      ) : null}
       <NoEnergyModal
         visible={gate === "denied"}
         onClose={() => safeRouterBack(router, "/(tabs)/lessons" as never)}
@@ -2152,6 +2140,29 @@ export default function LearningV2SessionScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: "#10151D" },
+  // Скелет энергетического гейта: та же геометрия шапки, что и у плеера, —
+  // первый кадр сразу финальный, без прыжка вёрстки при переходе к сессии.
+  gateSkeleton: {
+    paddingTop: 54,
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+  },
+  gateSkeletonClose: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#1A222D",
+  },
+  gateSkeletonTrack: {
+    flex: 1,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#1A222D",
+  },
   introAttemptsOverlay: {
     position: "absolute",
     right: 16,

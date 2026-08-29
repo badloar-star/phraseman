@@ -172,7 +172,7 @@ export const Sheet = memo(function Sheet({ visible, onClose, children }: SheetPr
   const styles = React.useMemo(() => makeStyles(P), [P]);
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <Pressable style={styles.sheetBackdrop} onPress={onClose} accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} />
+      <Pressable style={styles.sheetBackdrop} onPress={onClose} accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} />
       <View style={styles.sheet}>
         <View style={styles.sheetGrip} />
         {children}

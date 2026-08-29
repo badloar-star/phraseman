@@ -85,11 +85,14 @@ describe('admin reports center contracts', () => {
     expect(isReportUnresolved('archived')).toBe(false);
   });
 
-  test('exports the legacy workflow guidance with the one-coin rule', () => {
+  test('exports manual reward-tier guidance for the LLM workflow', () => {
     const instructions = reportExportInstructions();
     expect(instructions).toContain('каждый reportId');
     expect(instructions).toContain('не выполнять массовую живую отправку');
-    expect(instructions).toContain('не более одной монеты');
+    expect(instructions).toContain('minor: 1 спин, 300 рун, 1 жемчужина');
+    expect(instructions).toContain('serious: 2 спина, 600 рун, 5 жемчужин');
+    expect(instructions).toContain('critical: 3 спина, 1000 рун, 10 жемчужин');
+    expect(instructions).toContain('администратор');
     expect(instructions).not.toMatch(/осколк|shard/i);
   });
 
@@ -101,10 +104,13 @@ describe('admin reports center contracts', () => {
 
   test('projects reply archive metadata without exposing unrelated fields', () => {
     expect(projectReportRow('error_reports', 'archived-1', {
-      status: 'archived', replyTitle: 'Спасибо', replyBody: 'Исправили', replyCoins: 1,
+      status: 'archived', replyTitle: 'Спасибо', replyBody: 'Исправили',
+      replyRewardBundle: { version: 1, severity: 'serious', spins: 2, runes: 600, pearls: 5 },
       repliedAtMs: 1234, repliedBy: 'admin@example.com', resolution: 'confirmed_fixed', secret: 'drop',
     })).toMatchObject({ archive: {
-      title: 'Спасибо', body: 'Исправили', coins: 1, repliedAtMs: 1234,
+      title: 'Спасибо', body: 'Исправили',
+      rewardBundle: { version: 1, severity: 'serious', spins: 2, runes: 600, pearls: 5 },
+      repliedAtMs: 1234,
       repliedBy: 'admin@example.com', resolution: 'confirmed_fixed',
     } });
   });

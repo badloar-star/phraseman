@@ -29,10 +29,13 @@ describe('spin/gift storage integrity', () => {
   test('classifies bonus energy without silently repairing corruption', () => {
     expect(parseBonusEnergyStorageValue(null, 1_000)).toEqual({ status: 'absent' });
     expect(parseBonusEnergyStorageValue('{"amount":3,"expiresAt":2000}', 1_000)).toEqual({
-      status: 'valid', value: { amount: 3, expiresAt: 2_000 },
+      status: 'valid', value: { amount: 3, capacity: 3, expiresAt: 2_000 },
     });
     expect(parseBonusEnergyStorageValue('{"amount":3,"expiresAt":999}', 1_000)).toEqual({
-      status: 'expired', value: { amount: 3, expiresAt: 999 },
+      status: 'expired', value: { amount: 3, capacity: 3, expiresAt: 999 },
+    });
+    expect(parseBonusEnergyStorageValue('{"amount":0,"capacity":3,"expiresAt":2000}', 1_000)).toEqual({
+      status: 'valid', value: { amount: 0, capacity: 3, expiresAt: 2_000 },
     });
     expect(parseBonusEnergyStorageValue('{"amount":0,"expiresAt":2000}', 1_000)).toEqual({ status: 'malformed' });
     expect(parseBonusEnergyStorageValue('{"amount":"3","expiresAt":2000}', 1_000)).toEqual({ status: 'malformed' });

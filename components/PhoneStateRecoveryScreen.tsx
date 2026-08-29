@@ -32,6 +32,7 @@ function PhoneStateRecoveryScreen() {
   const title = triLang(lang, {
     ru: 'Восстанавливаем сохранение',
     uk: 'Відновлюємо збереження',
+    en: 'Restoring your save',
     es: 'Restaurando el guardado',
     'pt-BR': 'Restaurando o salvamento',
     vi: 'Đang khôi phục bản lưu',
@@ -42,6 +43,7 @@ function PhoneStateRecoveryScreen() {
   const body = triLang(lang, {
     ru: phoneStateRecoveryCopyRu,
     uk: 'Звільняємо місце та відновлюємо збереження…',
+    en: 'Freeing up space and restoring your save…',
     es: 'Liberando espacio y restaurando el guardado…',
     'pt-BR': 'Liberando espaço e restaurando o salvamento…',
     vi: 'Đang giải phóng dung lượng và khôi phục bản lưu…',

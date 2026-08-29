@@ -8,6 +8,7 @@ import { LEAGUE_RACE_MIN_PARTICIPANTS } from '../league_race_visibility';
 import { setPackGiftTrial48hOnce } from '../flashcards/pack_trial_gift';
 import { grantLocalChestSpin } from '../local_level_spins';
 import { captureAccountGeneration } from '../account_generation';
+import { commitExternalAuraSelectionOccurrence } from '../customization_selection_runtime';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from '../flashcards/marketplace';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import {
@@ -523,7 +524,7 @@ function rewardAmount(drop: LeagueChestRewardDrop | undefined): number {
   return Math.max(0, Math.floor(Number(drop?.amount) || 0));
 }
 
-async function grantAvatarAuraReward(auraId?: string): Promise<void> {
+async function grantAvatarAuraReward(auraId?: string, occurrenceId?: string): Promise<void> {
   const aura = AVATAR_AURAS.find((item) =>
     item.id === auraId && !item.premiumOnly && !item.retiredFromShop);
   if (!aura) return;
@@ -534,11 +535,20 @@ async function grantAvatarAuraReward(auraId?: string): Promise<void> {
   } catch {
     owned = {};
   }
-  await AsyncStorage.multiSet([
+  const writes: [string, string][] = [
     [AVATAR_AURA_OWNED_KEY, JSON.stringify({ ...owned, [aura.id]: true })],
     [AVATAR_AURA_GIFT_OWNED_KEY, aura.id],
-    [USER_AVATAR_AURA_KEY, aura.id],
-  ]);
+  ];
+  // Old callers without an immutable claim occurrence retain their historical
+  // behavior; collapsing them to one aura-id grant would silently remove
+  // repeated-same-aura semantics.
+  if (!occurrenceId) writes.push([USER_AVATAR_AURA_KEY, aura.id]);
+  await AsyncStorage.multiSet(writes);
+  if (occurrenceId) {
+    await commitExternalAuraSelectionOccurrence({
+      source: 'league_chest', occurrenceId, auraId: aura.id,
+    });
+  }
 }
 
 async function grantCustomAvatarReward(drop: LeagueChestRewardDrop): Promise<void> {
@@ -673,7 +683,10 @@ async function applyLocalRewardPack(
       );
       if (trial) await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget);
     } else if (drop.kind === 'avatar_aura') {
-      await grantAvatarAuraReward(drop.auraId);
+      await grantAvatarAuraReward(
+        drop.auraId,
+        claimEffectId ? `${claimEffectId}:${drop.id}:avatar_aura` : undefined,
+      );
     } else if (drop.kind === 'custom_avatar') {
       await grantCustomAvatarReward(drop);
     }

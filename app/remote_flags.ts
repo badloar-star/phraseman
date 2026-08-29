@@ -64,6 +64,7 @@ export type RemoteBoolKey =
   | 'referral_roulette_emergency_stop'
   | 'speaking_enabled'
   | 'collectibles_enabled'
+  | 'support_diagnostics_enabled'
   | 'league_xp_promotion_enabled'
   | 'league_startup_registration_enabled'
   | 'lifetime_button_enabled'
@@ -270,6 +271,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // «Сокровищница»: дефолт true = kill-switch семантика (фича едет с релизом,
   // админка может экстренно выключить).
   collectibles_enabled: true,
+  // Privacy-safe local breadcrumbs. false disables recording and report attachment.
+  support_diagnostics_enabled: true,
   league_xp_promotion_enabled: false,
   league_startup_registration_enabled: true,
   // Кнопка Phraseman Pro (lifetime) на пейволах. Дефолт FALSE с 2026-08-24 —
@@ -632,6 +635,7 @@ export function getSoftUpsellEnabledByTrigger(): Record<SoftUpsellTrigger, boole
 }
 export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
+export const isSupportDiagnosticsEnabled = () => getRemoteBool('support_diagnostics_enabled');
 /** Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт true. */
 /**
  * Таймеры «срочности» (анонс повышения цены) на пейволах A/B/C. Дефолт true =

@@ -23,6 +23,13 @@ type SubmitClientReportResult = {
 type SubmitClientReportRequest = {
   kind: ClientReportKind;
   payload: Record<string, unknown>;
+  expectedStableUid?: string;
+  idempotencyKey?: string;
+};
+
+export type SubmitClientReportOptions = {
+  expectedStableUid?: string;
+  idempotencyKey?: string;
 };
 
 type SubmitClientReportCallable = (
@@ -64,13 +71,20 @@ function warmClientReportAppCheck(): Promise<void> {
 export async function submitClientReport(
   kind: ClientReportKind,
   payload: Record<string, unknown>,
+  options: SubmitClientReportOptions = {},
 ): Promise<SubmitClientReportResult | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   await warmClientReportAppCheck();
   const fn = getSubmitClientReportCallable();
   // 30с вместо ~70с дефолта RN Firebase: на висящей сети кнопка «Отправить»
   // не должна крутить спиннер больше минуты.
-  const res = await withCallableTimeout(fn({ kind, payload }), 'submitClientReport');
+  const request: SubmitClientReportRequest = {
+    kind,
+    payload,
+    ...(options.expectedStableUid ? { expectedStableUid: options.expectedStableUid } : {}),
+    ...(options.idempotencyKey ? { idempotencyKey: options.idempotencyKey } : {}),
+  };
+  const res = await withCallableTimeout(fn(request), 'submitClientReport');
   return res.data;
 }
 

@@ -1,5 +1,5 @@
 import React, { forwardRef, memo, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 import Animated, {
   useAnimatedStyle,
@@ -11,6 +11,8 @@ import Animated, {
 
 import { runeAmount } from '../constants/runes';
 import { triLang, type Lang } from '../constants/i18n';
+import { soundDirector } from '../modules/audio/sound_director';
+import AnimatedCountUpText from './AnimatedCountUpText';
 
 const RUNE_ASSET = require('../assets/images/level-spin-rewards/stars_10.webp');
 
@@ -64,14 +66,44 @@ export const PracticeRuneCounter = memo(forwardRef<View, Props>(
   function PracticeRuneCounter({ runes, lang, backgroundColor, color, testID }, ref) {
     const reducedMotion = useReducedMotion();
     const bump = useSharedValue(1);
+    const runeScale = useSharedValue(1);
+    const runeLift = useSharedValue(0);
     const previousRunes = useRef(runes);
 
     useEffect(() => {
       const grew = runes > previousRunes.current;
+      const decreased = runes < previousRunes.current;
       previousRunes.current = runes;
-      // зачем: пульс только на РОСТЕ. Первый кадр и сброс счётчика не должны
-      // дёргать шапку — иначе экран «моргает» при каждом входе.
-      if (!grew || reducedMotion) return;
+      if (decreased) {
+        // зачем: Premium после трёх ошибок теряет только текущие руны. Это не
+        // награда, поэтому не используем reward-звук и не масштабируем всю
+        // шапку. Двигается лишь ассет: пилюля и соседние элементы стоят ровно.
+        if (reducedMotion) {
+          runeScale.value = 1;
+          runeLift.value = 0;
+          return;
+        }
+        runeScale.value = withSequence(
+          withTiming(1.45, { duration: 180 }),
+          withTiming(1.08, { duration: 420 }),
+          withTiming(1, { duration: 300 }),
+        );
+        runeLift.value = withSequence(
+          withTiming(-8, { duration: 180 }),
+          withTiming(2, { duration: 420 }),
+          withTiming(0, { duration: 300 }),
+        );
+        return;
+      }
+
+      // зачем: первый кадр и неизменившееся значение не должны дёргать шапку.
+      if (!grew) return;
+      // зачем: баланс вырос — начисление завершено, это финальная точка после
+      // полёта рун. Звук ставим ДО проверки reducedMotion: отключённая анимация
+      // не должна забирать звуковое подтверждение (это разные настройки, и
+      // человек с reduce motion всё так же должен слышать, что руны зачислены).
+      soundDirector.request('pm.reward.rune_count_done', { scope: 'rune-counter' });
+      if (reducedMotion) return;
       bump.value = withSequence(
         withTiming(1.28, { duration: 140 }),
         withTiming(1, { duration: 220 }),
@@ -80,6 +112,12 @@ export const PracticeRuneCounter = memo(forwardRef<View, Props>(
 
     const bumpStyle = useAnimatedStyle(() => ({
       transform: [{ scale: bump.value }],
+    }));
+    const runeMotionStyle = useAnimatedStyle(() => ({
+      transform: [
+        { translateY: runeLift.value },
+        { scale: runeScale.value },
+      ],
     }));
 
     return (
@@ -95,15 +133,17 @@ export const PracticeRuneCounter = memo(forwardRef<View, Props>(
           {/* guard-ok: ассет декоративен — смысл несёт accessibilityLabel
               родителя («Заработано: 12 рун»). Своя подпись у картинки заставила
               бы скринридер читать руну дважды. */}
-          <Image
-            source={RUNE_ASSET}
-            style={styles.asset}
-            contentFit="contain"
-            accessible={false}
-            accessibilityElementsHidden
-            importantForAccessibility="no"
-          />
-          <Text style={[styles.value, { color }]}>{runes}</Text>
+          <Animated.View style={runeMotionStyle}>
+            <Image
+              source={RUNE_ASSET}
+              style={styles.asset}
+              contentFit="contain"
+              accessible={false}
+              accessibilityElementsHidden
+              importantForAccessibility="no"
+            />
+          </Animated.View>
+          <AnimatedCountUpText value={runes} durationMs={900} style={[styles.value, { color }]} />
         </View>
       </Animated.View>
     );

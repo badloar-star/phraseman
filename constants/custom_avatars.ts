@@ -12,6 +12,9 @@ export { CUSTOM_AVATAR_OWNED_KEY } from './customization_storage_keys';
 export const CUSTOM_AVATAR_BUY_COST = 90;
 /** Рестайл держим ~25–30% от цены аватара: смена стиля дешевле новой вещи. */
 export const CUSTOM_AVATAR_RESTYLE_COST = 25;
+/** Фиксированный retail-курс косметики: не зависит от плавающей котировки обменника. */
+export const CUSTOM_AVATAR_RUNE_RATE = 80;
+export const CUSTOM_AVATAR_RUNE_RESTYLE_COST = CUSTOM_AVATAR_RESTYLE_COST * CUSTOM_AVATAR_RUNE_RATE;
 
 // Custom-avatar artwork is hosted with the admin static target instead of being
 // embedded in every mobile binary. React Native downloads only the image that
@@ -851,6 +854,17 @@ export function getCustomAvatarPurchaseCost(avatarOrId: CustomAvatarDef | string
     ? CUSTOM_AVATARS.find((candidate) => candidate.id === avatarOrId)
     : avatarOrId;
   return avatar?.price ?? CUSTOM_AVATAR_BUY_COST;
+}
+
+export function getCustomAvatarRuneCost(avatarOrPearlCost: CustomAvatarDef | string | number): number {
+  const pearlCost = typeof avatarOrPearlCost === 'number'
+    ? avatarOrPearlCost
+    : getCustomAvatarPurchaseCost(avatarOrPearlCost);
+  const runeCost = pearlCost * CUSTOM_AVATAR_RUNE_RATE;
+  if (!Number.isSafeInteger(pearlCost) || pearlCost <= 0 || !Number.isSafeInteger(runeCost)) {
+    throw new Error('invalid_custom_avatar_price');
+  }
+  return runeCost;
 }
 
 export const CUSTOM_AVATAR_GIFT_POOL: CustomAvatarDef[] = CUSTOM_AVATARS.filter((avatar) =>

@@ -72,11 +72,14 @@ export function starsEarnedAllTime(stars: StarsView | undefined): number {
   return Math.max(0, stars?.earnedTotal ?? 0);
 }
 
+export type StarsWeekView = Readonly<Pick<StarsView, 'weekKey' | 'weekEarned'>
+  & Partial<Pick<StarsView, 'prevWeekKey' | 'prevWeekEarned'>>>;
+
 /** D-11: заработано за указанную неделю. Устаревшая неделя честно даёт ноль. */
-export function starsWeekEarned(stars: StarsView | undefined, weekKeyNow: string): number {
+export function starsWeekEarned(stars: StarsWeekView | undefined, weekKeyNow: string): number {
   if (!stars) return 0;
   if (stars.weekKey === weekKeyNow) return Math.max(0, stars.weekEarned);
-  if (stars.prevWeekKey === weekKeyNow) return Math.max(0, stars.prevWeekEarned);
+  if (stars.prevWeekKey === weekKeyNow) return Math.max(0, stars.prevWeekEarned ?? 0);
   return 0;
 }
 

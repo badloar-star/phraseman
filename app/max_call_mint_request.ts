@@ -318,6 +318,10 @@ export function prefetchMaxTutorPreview(
       ...(envelope.limits && typeof envelope.limits === 'object'
         ? { limits: envelope.limits as Record<string, unknown> }
         : {}),
+      // Доступ из того же ответа: без него минуты по limits врут для free/plus.
+      ...(envelope.access === 'trial' || envelope.access === 'max'
+        ? { access: envelope.access }
+        : {}),
     };
   }, nowMs);
 }

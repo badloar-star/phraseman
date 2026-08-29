@@ -4,8 +4,13 @@ import {
   PRO_AVATAR_AURA_ID,
   normalizeAvatarAuraId,
 } from '../constants/avatar_auras';
-import { CUSTOM_AVATAR_RESTYLE_COST, parseCustomAvatarValue } from '../constants/custom_avatars';
-import type { CatalogAvailability } from './customization_catalog';
+import {
+  CUSTOM_AVATAR_RUNE_RESTYLE_COST,
+  CUSTOM_AVATAR_RESTYLE_COST,
+  parseCustomAvatarOwnedStyle,
+  parseCustomAvatarValue,
+} from '../constants/custom_avatars';
+import type { CatalogAvailability, CustomizationCurrency } from './customization_catalog';
 
 export type CustomizationTab = 'avatars' | 'auras';
 
@@ -21,12 +26,13 @@ export interface CustomizationDraft {
   avatarAvailability: CatalogAvailability;
   auraAvailability: CatalogAvailability;
   ownedAvatarStyles: Readonly<Record<string, string>>;
+  devUnlockAll?: boolean;
 }
 
 export type CustomizationAction =
   | { kind: 'apply' }
-  | { kind: 'buy-and-apply'; target: 'avatar' | 'aura'; purchaseKind: 'purchase' | 'restyle'; cost: number }
-  | { kind: 'buy-only'; target: 'avatar' | 'aura'; purchaseKind: 'purchase' | 'restyle'; cost: number }
+  | { kind: 'buy-and-apply'; target: 'avatar' | 'aura'; purchaseKind: 'purchase' | 'restyle'; currency: CustomizationCurrency; cost: number }
+  | { kind: 'buy-only'; target: 'avatar' | 'aura'; purchaseKind: 'purchase' | 'restyle'; currency: CustomizationCurrency; cost: number }
   | { kind: 'open-plus' }
   | { kind: 'explain-pro-reward' }
   | { kind: 'explain-level'; level: number }
@@ -61,29 +67,51 @@ function nonPurchaseBlocker(availability: CatalogAvailability): CustomizationAct
   }
 }
 
-function avatarPurchase(draft: CustomizationDraft): { cost: number; purchaseKind: 'purchase' | 'restyle' } | null {
+function avatarPurchase(draft: CustomizationDraft): {
+  cost: number;
+  currency: CustomizationCurrency;
+  purchaseKind: 'purchase' | 'restyle';
+} | null {
+  if (draft.devUnlockAll) return null;
   if (draft.avatarAvailability.kind === 'shards') {
-    return { cost: draft.avatarAvailability.cost, purchaseKind: 'purchase' };
+    return { cost: draft.avatarAvailability.cost, currency: 'pearls', purchaseKind: 'purchase' };
+  }
+  if (draft.avatarAvailability.kind === 'runes') {
+    return { cost: draft.avatarAvailability.cost, currency: 'runes', purchaseKind: 'purchase' };
   }
   if (draft.avatarAvailability.kind !== 'owned') return null;
   const confirmed = parseCustomAvatarValue(draft.confirmed.avatarValue);
   const preview = parseCustomAvatarValue(draft.previewAvatarValue);
   if (!preview) return null;
-  const storedStyle = draft.ownedAvatarStyles[preview.avatarId]?.split(':');
+  // зачем: у владельцев старых аватаров стиль теперь хранится как
+  // "showcase-v1|gradient:color". Наивный split(':') прочитал бы градиент как
+  // "showcase-v1|graphite" — стиль «не совпал» бы сам с собой, и человеку
+  // выставили бы счёт в 25 жемчужин за перекраску, которой он не делал.
+  const storedStyle = parseCustomAvatarOwnedStyle(
+    preview.avatarId,
+    draft.ownedAvatarStyles[preview.avatarId],
+  );
   const baseline = confirmed?.avatarId === preview.avatarId
     ? confirmed
     : storedStyle
-      ? { gradientId: storedStyle[0], logoColor: storedStyle[1] }
+      ? { gradientId: storedStyle.gradientId, logoColor: storedStyle.logoColor }
       : null;
   if (baseline && (baseline.gradientId !== preview.gradientId || baseline.logoColor !== preview.logoColor)) {
-    return { cost: CUSTOM_AVATAR_RESTYLE_COST, purchaseKind: 'restyle' };
+    return preview.logoColor === 'black'
+      ? { cost: CUSTOM_AVATAR_RUNE_RESTYLE_COST, currency: 'runes', purchaseKind: 'restyle' }
+      : { cost: CUSTOM_AVATAR_RESTYLE_COST, currency: 'pearls', purchaseKind: 'restyle' };
   }
   return null;
 }
 
-function auraPurchase(draft: CustomizationDraft): { cost: number; purchaseKind: 'purchase' } | null {
+function auraPurchase(draft: CustomizationDraft): {
+  cost: number;
+  currency: 'pearls';
+  purchaseKind: 'purchase';
+} | null {
+  if (draft.devUnlockAll) return null;
   return draft.auraAvailability.kind === 'shards'
-    ? { cost: draft.auraAvailability.cost, purchaseKind: 'purchase' }
+    ? { cost: draft.auraAvailability.cost, currency: 'pearls', purchaseKind: 'purchase' }
     : null;
 }
 

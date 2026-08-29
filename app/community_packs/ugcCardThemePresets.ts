@@ -97,6 +97,7 @@ export function ugcCardThemeLabel(id: string, lang: Lang): string {
     return triLang(lang, {
       ru: label.ru,
       uk: label.uk,
+      en: label.ru,
       es: label.es,
       'pt-BR': label['pt-BR'],
       vi: label.vi,

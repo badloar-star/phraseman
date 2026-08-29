@@ -24,7 +24,8 @@ export type PaymentWebhookKind =
   | 'refund'
   | 'refund_reversed'
   | 'transfer'
-  | 'premium_lineage';
+  | 'premium_lineage'
+  | 'voice_minutes';
 
 const MAX_MESSAGE_LENGTH = 900;
 

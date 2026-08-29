@@ -74,6 +74,12 @@ const I_WORD = {
       trapType: 'orthographic',
       why: 'l — строчная буква L без точки, а не местоимение I; говорящего здесь называет I.',
     },
+    {
+      value: 'me',
+      reasonCode: 'grammar:i:object_form_in_subject_slot',
+      trapType: 'grammar',
+      why: 'me означает «меня/мне»; когда говорящий начинает сообщение о себе, нужна форма I.',
+    },
   ],
 } as const;
 
@@ -92,6 +98,12 @@ const AM_WORD = {
       reasonCode: 'orthographic:am:missing_initial_a',
       trapType: 'orthographic',
       why: 'm — только одна буква без начального a; английская связка пишется полностью: am.',
+    },
+    {
+      value: "I'm",
+      reasonCode: 'grammar:am:contraction_duplicates_subject',
+      trapType: 'grammar',
+      why: "I'm уже содержит I и am; после отдельного I здесь нужна только форма am.",
     },
   ],
 } as const;
@@ -112,6 +124,12 @@ const HERE_WORD = {
       trapType: 'phonetic',
       why: 'hair похоже по звучанию, но означает «волосы»; для места говорящего нужна форма here.',
     },
+    {
+      value: 'her',
+      reasonCode: 'orthographic:here:missing_final_e',
+      trapType: 'orthographic',
+      why: 'her теряет финальную e и означает «её/ей»; место «здесь» пишется here.',
+    },
   ],
 } as const;
 
@@ -131,13 +149,19 @@ const READY_WORD = {
       trapType: 'orthographic',
       why: 'reading похоже началом написания, но означает процесс чтения; «готов» передаёт ready.',
     },
+    {
+      value: 'red',
+      reasonCode: 'orthographic:ready:short_color_word',
+      trapType: 'orthographic',
+      why: 'red короче и означает «красный»; состояние готовности передаёт полная форма ready.',
+    },
   ],
 } as const;
 
 const HERE_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   ru: manualDetails('here', { value: 'hear', trapType: 'semantic_neighbor' }, { value: 'hair', trapType: 'phonetic' }, {
     meaning: 'Я здесь',
-    explanation: 'Так говорят, когда сообщают, что уже пришли или находятся в нужном месте. I называет говорящего, am создаёт обязательную английскую связь, а here указывает именно на его текущее место; русское «я здесь» обходится без отдельной связки.',
+    explanation: 'Так сообщают: «я уже в нужном месте». I называет говорящего, am связывает его с сообщением, а here ставит точку на карте: «здесь».',
     iPrompt: 'Выберите английское «я», с которого начинается сообщение говорящего.',
     iLower: 'i выглядит почти как I, но местоимение «я» всегда заглавное; начало этой фразы требует I.',
     iLetterL: 'l — строчная буква L без точки, а не местоимение I; сообщающего о себе называет I.',
@@ -150,7 +174,7 @@ const HERE_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   uk: manualDetails('here', { value: 'hear', trapType: 'semantic_neighbor' }, { value: 'hair', trapType: 'phonetic' }, {
     meaning: 'Я тут',
-    explanation: 'Так кажуть, коли повідомляють, що вже прийшли або перебувають у потрібному місці. I називає мовця, am створює обов’язковий англійський зв’язок, а here вказує саме на його теперішнє місце; українське «я тут» обходиться без окремої зв’язки.',
+    explanation: 'Так повідомляють: «я вже в потрібному місці». I називає мовця, am з’єднує його з повідомленням, а here ставить позначку: «тут».',
     iPrompt: 'Оберіть англійське «я», з якого починається повідомлення мовця.',
     iLower: 'i майже схоже на I, але займенник «я» завжди великий; на початку цієї фрази потрібне I.',
     iLetterL: 'l — мала літера L без крапки, а не займенник I; людину, яка говорить про себе, називає I.',
@@ -163,7 +187,7 @@ const HERE_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   es: manualDetails('here', { value: 'hear', trapType: 'semantic_neighbor' }, { value: 'hair', trapType: 'phonetic' }, {
     meaning: 'Estoy aquí',
-    explanation: 'Se usa para avisar que la persona que habla ya llegó o está en el lugar esperado. I muestra al hablante, am lo une de forma obligatoria con la información, y here señala su ubicación actual; el español reúne parte de esa estructura dentro de estoy.',
+    explanation: 'Sirve para avisar: «ya estoy en el lugar». I señala a quien habla, am crea la unión y here pone la marca: «aquí».',
     iPrompt: 'Elige el «yo» inglés que abre el mensaje del hablante.',
     iLower: 'i se parece a I, pero el pronombre inglés siempre lleva mayúscula; esta frase debe empezar con I.',
     iLetterL: 'l es la letra L minúscula sin punto, no el pronombre I; quien habla se identifica con I.',
@@ -176,7 +200,7 @@ const HERE_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   'pt-BR': manualDetails('here', { value: 'hear', trapType: 'semantic_neighbor' }, { value: 'hair', trapType: 'phonetic' }, {
     meaning: 'Estou aqui',
-    explanation: 'A frase serve para avisar que quem fala já chegou ou está no lugar esperado. I mostra o falante, am o liga obrigatoriamente à informação, e here aponta sua localização atual; em português, estou reúne parte dessa estrutura numa só forma.',
+    explanation: 'Serve para avisar: «já estou no lugar». I aponta quem fala, am cria a ligação e here coloca a marca: «aqui».',
     iPrompt: 'Escolha o «eu» inglês que inicia a mensagem do falante.',
     iLower: 'i se parece com I, mas o pronome inglês sempre usa maiúscula; esta frase precisa começar com I.',
     iLetterL: 'l é a letra L minúscula sem ponto, não o pronome I; quem fala é identificado por I.',
@@ -189,7 +213,7 @@ const HERE_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   vi: manualDetails('here', { value: 'hear', trapType: 'semantic_neighbor' }, { value: 'hair', trapType: 'phonetic' }, {
     meaning: 'Tôi ở đây',
-    explanation: 'Câu này dùng để báo rằng người nói đã đến hoặc đang ở đúng nơi cần có mặt. I gọi tên người nói, am tạo mối nối bắt buộc trong tiếng Anh, còn here chỉ vị trí hiện tại; tiếng Việt dùng “ở đây” theo một cấu trúc riêng.',
+    explanation: 'Câu này báo rằng người nói đã ở đúng nơi. I gọi tên họ, am tạo mối nối, còn here đặt dấu vị trí: “ở đây”.',
     iPrompt: 'Chọn từ tiếng Anh nghĩa là “tôi” để mở đầu lời báo của người nói.',
     iLower: 'i trông gần giống I, nhưng đại từ tiếng Anh luôn viết hoa; câu này phải bắt đầu bằng I.',
     iLetterL: 'l là chữ L thường không có dấu chấm, không phải đại từ I; người nói được gọi bằng I.',
@@ -202,7 +226,7 @@ const HERE_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   id: manualDetails('here', { value: 'hear', trapType: 'semantic_neighbor' }, { value: 'hair', trapType: 'phonetic' }, {
     meaning: 'Saya di sini',
-    explanation: 'Kalimat ini dipakai untuk memberi tahu bahwa penutur sudah datang atau berada di tempat yang dimaksud. I menyebut penutur, am menjadi penghubung wajib dalam bahasa Inggris, dan here menunjuk lokasinya sekarang; bahasa Indonesia memakai susunan “saya di sini”.',
+    explanation: 'Kalimat ini memberi tahu bahwa penutur sudah berada di tempatnya. I menunjuk penutur, am menghubungkan, dan here menandai “di sini”.',
     iPrompt: 'Pilih kata Inggris untuk “saya” yang membuka pesan penutur.',
     iLower: 'i tampak hampir sama dengan I, tetapi pronomina Inggris selalu ditulis besar; kalimat ini harus diawali I.',
     iLetterL: 'l adalah huruf L kecil tanpa titik, bukan pronomina I; orang yang berbicara ditandai dengan I.',
@@ -215,7 +239,7 @@ const HERE_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   tr: manualDetails('here', { value: 'hear', trapType: 'semantic_neighbor' }, { value: 'hair', trapType: 'phonetic' }, {
     meaning: 'Buradayım',
-    explanation: 'Bu söz, konuşanın geldiğini ya da beklenen yerde bulunduğunu bildirmek için kullanılır. I konuşan kişiyi adlandırır, am İngilizcede zorunlu bağlantıyı kurar, here ise şu anki yeri gösterir; Türkçe aynı bilgiyi “buradayım” ekli yapısında toplar.',
+    explanation: 'Bu söz, konuşanın doğru yerde olduğunu bildirir. I konuşanı gösterir, am bağlantıyı kurar, here ise “burada” işaretini koyar.',
     iPrompt: 'Konuşanın bildirimini başlatan İngilizce “ben” sözcüğünü seçin.',
     iLower: 'i, I biçimine çok benzer ama İngilizce zamir her zaman büyük yazılır; bu söz I ile başlamalıdır.',
     iLetterL: 'l noktasız küçük L harfidir, I zamiri değildir; konuşan kişi I ile gösterilir.',
@@ -228,7 +252,7 @@ const HERE_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   pl: manualDetails('here', { value: 'hear', trapType: 'semantic_neighbor' }, { value: 'hair', trapType: 'phonetic' }, {
     meaning: 'Jestem tutaj',
-    explanation: 'Tego zdania używa się, aby powiedzieć, że osoba mówiąca już przyszła albo znajduje się we właściwym miejscu. I wskazuje mówiącego, am tworzy obowiązkowe angielskie połączenie, a here określa jego obecną lokalizację; polskie jestem zawiera część tej informacji.',
+    explanation: 'Tak mówi się: „jestem już na miejscu”. I wskazuje mówiącego, am tworzy połączenie, a here stawia znacznik „tutaj”.',
     iPrompt: 'Wybierz angielskie „ja”, które rozpoczyna wiadomość mówiącego.',
     iLower: 'i wygląda prawie jak I, lecz angielski zaimek zawsze jest wielki; to zdanie musi zaczynać się od I.',
     iLetterL: 'l jest małą literą L bez kropki, a nie zaimkiem I; osobę mówiącą wskazuje I.',
@@ -244,7 +268,7 @@ const HERE_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
 const READY_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   ru: manualDetails('ready', { value: 'really', trapType: 'phonetic' }, { value: 'reading', trapType: 'orthographic' }, {
     meaning: 'Я готов / Я готова',
-    explanation: 'Так отвечают, когда можно начинать встречу, поездку или другую договорённую часть дела. I называет говорящего, am соединяет его с состоянием, а ready сообщает именно о готовности; русское окончание рода в английское ready не переносится.',
+    explanation: 'Так отвечают прямо перед стартом. I называет говорящего, am соединяет его с состоянием, а ready сообщает: «готов» — без рода.',
     iPrompt: 'Выберите английское «я», которое называет готового говорящего.',
     iLower: 'i похоже на I, но местоимение «я» всегда заглавное; фраза о своей готовности начинается с I.',
     iLetterL: 'l — строчная буква L без точки, а не местоимение I; готового говорящего здесь называет I.',
@@ -257,7 +281,7 @@ const READY_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   uk: manualDetails('ready', { value: 'really', trapType: 'phonetic' }, { value: 'reading', trapType: 'orthographic' }, {
     meaning: 'Я готовий / Я готова',
-    explanation: 'Так відповідають, коли вже можна починати зустріч, поїздку чи іншу домовлену справу. I називає мовця, am поєднує його зі станом, а ready повідомляє саме про готовність; українське родове закінчення до англійського ready не переходить.',
+    explanation: 'Так відповідають перед самим стартом. I називає мовця, am поєднує його зі станом, а ready повідомляє: «готовий» — без зміни за родом.',
     iPrompt: 'Оберіть англійське «я», яке називає готового мовця.',
     iLower: 'i схоже на I, але займенник «я» завжди великий; вислів про власну готовність починається з I.',
     iLetterL: 'l — мала літера L без крапки, а не займенник I; готового мовця тут називає I.',
@@ -270,7 +294,7 @@ const READY_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   es: manualDetails('ready', { value: 'really', trapType: 'phonetic' }, { value: 'reading', trapType: 'orthographic' }, {
     meaning: 'Estoy listo / Estoy lista',
-    explanation: 'Se dice cuando ya se puede comenzar una reunión, un viaje o cualquier acción acordada. I identifica a quien habla, am lo conecta con su estado y ready expresa disponibilidad para empezar; ready no cambia entre masculino y femenino como listo o lista.',
+    explanation: 'Se dice justo antes de empezar. I identifica a quien habla, am lo conecta con su estado y ready dice «listo» sin cambiar por género.',
     iPrompt: 'Elige el «yo» inglés que identifica a la persona preparada.',
     iLower: 'i se parece a I, pero el pronombre inglés siempre lleva mayúscula; la frase sobre uno mismo empieza con I.',
     iLetterL: 'l es la letra L minúscula sin punto, no el pronombre I; la persona preparada se identifica con I.',
@@ -283,7 +307,7 @@ const READY_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   'pt-BR': manualDetails('ready', { value: 'really', trapType: 'phonetic' }, { value: 'reading', trapType: 'orthographic' }, {
     meaning: 'Estou pronto / Estou pronta',
-    explanation: 'A frase é usada quando já se pode começar uma reunião, uma viagem ou outra ação combinada. I identifica quem fala, am liga essa pessoa ao estado, e ready comunica disponibilidade para começar; ready não muda entre pronto e pronta.',
+    explanation: 'É dita logo antes de começar. I identifica quem fala, am liga a pessoa ao estado e ready diz «pronto» sem mudar por gênero.',
     iPrompt: 'Escolha o «eu» inglês que identifica a pessoa preparada.',
     iLower: 'i se parece com I, mas o pronome inglês sempre usa maiúscula; a frase sobre a própria prontidão começa com I.',
     iLetterL: 'l é a letra L minúscula sem ponto, não o pronome I; a pessoa preparada é indicada por I.',
@@ -296,7 +320,7 @@ const READY_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   vi: manualDetails('ready', { value: 'really', trapType: 'phonetic' }, { value: 'reading', trapType: 'orthographic' }, {
     meaning: 'Tôi sẵn sàng',
-    explanation: 'Câu này dùng khi cuộc gặp, chuyến đi hoặc việc đã hẹn có thể bắt đầu ngay. I gọi tên người nói, am nối người ấy với trạng thái, còn ready cho biết họ đã sẵn sàng; tiếng Anh không đổi ready theo giới tính của người nói.',
+    explanation: 'Câu này dùng ngay trước khi bắt đầu. I gọi tên người nói, am nối họ với trạng thái, còn ready cho biết: “đã sẵn sàng”.',
     iPrompt: 'Chọn từ tiếng Anh nghĩa là “tôi” để gọi người đã sẵn sàng.',
     iLower: 'i trông giống I, nhưng đại từ tiếng Anh luôn viết hoa; lời nói về sự sẵn sàng phải bắt đầu bằng I.',
     iLetterL: 'l là chữ L thường không có dấu chấm, không phải đại từ I; người đã sẵn sàng được gọi bằng I.',
@@ -309,7 +333,7 @@ const READY_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   id: manualDetails('ready', { value: 'really', trapType: 'phonetic' }, { value: 'reading', trapType: 'orthographic' }, {
     meaning: 'Saya siap',
-    explanation: 'Kalimat ini dipakai ketika pertemuan, perjalanan, atau kegiatan yang disepakati sudah dapat dimulai. I menyebut penutur, am menghubungkannya dengan keadaan, dan ready menyatakan kesiapan untuk mulai; ready tidak berubah menurut gender penutur.',
+    explanation: 'Kalimat ini dipakai tepat sebelum mulai. I menyebut penutur, am menghubungkannya dengan keadaan, dan ready menyatakan “siap”.',
     iPrompt: 'Pilih kata Inggris untuk “saya” yang menyebut orang yang siap.',
     iLower: 'i tampak seperti I, tetapi pronomina Inggris selalu ditulis besar; pernyataan tentang kesiapan dimulai dengan I.',
     iLetterL: 'l adalah huruf L kecil tanpa titik, bukan pronomina I; orang yang siap disebut dengan I.',
@@ -322,7 +346,7 @@ const READY_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   tr: manualDetails('ready', { value: 'really', trapType: 'phonetic' }, { value: 'reading', trapType: 'orthographic' }, {
     meaning: 'Hazırım',
-    explanation: 'Bu söz, toplantı, yolculuk ya da kararlaştırılmış başka bir iş başlayabileceği zaman kullanılır. I konuşan kişiyi adlandırır, am onu duruma bağlar, ready ise başlamaya hazır olduğunu bildirir; İngilizce ready konuşanın cinsiyetine göre değişmez.',
+    explanation: 'Bu söz tam başlamadan önce kullanılır. I konuşanı gösterir, am onu duruma bağlar, ready ise “hazırım” anlamını verir.',
     iPrompt: 'Hazır olan kişiyi gösteren İngilizce “ben” sözcüğünü seçin.',
     iLower: 'i, I biçimine benzer ama İngilizce zamir her zaman büyük yazılır; kişinin hazır olduğunu bildiren söz I ile başlar.',
     iLetterL: 'l noktasız küçük L harfidir, I zamiri değildir; hazır olan konuşan kişi I ile gösterilir.',
@@ -335,7 +359,7 @@ const READY_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
   pl: manualDetails('ready', { value: 'really', trapType: 'phonetic' }, { value: 'reading', trapType: 'orthographic' }, {
     meaning: 'Jestem gotowy / Jestem gotowa',
-    explanation: 'Tego zdania używa się, gdy można już rozpocząć spotkanie, podróż albo inną uzgodnioną czynność. I wskazuje osobę mówiącą, am łączy ją ze stanem, a ready oznacza gotowość do rozpoczęcia; angielskie ready nie zmienia się przez rodzaj.',
+    explanation: 'Tak mówi się tuż przed startem. I wskazuje mówiącego, am łączy go ze stanem, a ready oznacza „gotowy” bez zmiany rodzaju.',
     iPrompt: 'Wybierz angielskie „ja”, które wskazuje gotową osobę mówiącą.',
     iLower: 'i wygląda jak I, lecz angielski zaimek zawsze jest wielki; wypowiedź o własnej gotowości zaczyna się od I.',
     iLetterL: 'l jest małą literą L bez kropki, a nie zaimkiem I; gotową osobę mówiącą wskazuje I.',

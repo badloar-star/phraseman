@@ -49,6 +49,7 @@ export default function FlashcardsCategoryTiles({
           const label = triLang(lang, {
             ru: cat.labelRU,
             uk: cat.labelUK,
+            en: cat.labelRU,
             es: cat.labelES,
             'pt-BR': cat.labelPtBr,
             vi: cat.labelVi,

@@ -46,7 +46,7 @@ const REGION = 'us-central1';
  */
 export const RC_GRACE_MS = 72 * 60 * 60 * 1000;
 
-const STORE_PLANS = new Set(['monthly', 'yearly', 'annual', 'max_monthly']);
+const STORE_PLANS = new Set(['monthly', 'yearly', 'annual']);
 
 function cleanStr(value: unknown): string {
   return String(value ?? '').trim();

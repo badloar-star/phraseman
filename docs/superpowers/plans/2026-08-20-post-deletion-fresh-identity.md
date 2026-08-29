@@ -6,6 +6,14 @@
 
 **Architecture:** Preserve server tombstones and permanent denials, add an immutable server-side identity closure to each deletion job, and model client recovery as one durable monotonic state machine. All cloud mutations use a typed readiness gate; a server `identity_retired` response starts or resumes the state machine, while onboarding remains local and non-blocking.
 
+**Owner clarification (2026-08-28):** The same external Google or Apple credential must create the new empty profile in one sign-in attempt, with no second picker. Preserve structured `identity_retired` details. For `details.subject === 'stable'`, the current provider Firebase UID has passed server auth retirement checks and may remain signed in: synthesize a durable `source: 'remote'` transition, wipe old local data, clear the retired stable ID, create a fresh stable ID, authoritatively link that exact pair, and return `created_new` with the current provider email/display name. Do not enqueue deletion or denial for that fresh provider UID. For `subject: 'auth' | 'closure' | unknown`, fail closed through provider sign-out and a fresh anonymous pair. Every identifier in the deleted closure remains denied, and no old data, progress, name, entitlement, avatar, or aura is restored. Remove the user-facing email/code recovery entry: live profiles restore through ordinary provider sign-in; deleted profiles start empty.
+
+**Local first-tap safety clarification (2026-08-28):** The fast UI handoff still never awaits network. The first later provider tap joins the in-flight deletion before opening Google/Apple, waits for an authoritative `credential_safe` receipt, and then continues in that same call with exactly one picker. The enqueue transaction writes closure/tombstones/permanent denials and a `closure_committed` receipt; the server deletes the old Auth UID (`user-not-found` is idempotent success) before advancing the receipt to `credential_safe`. Response loss is repaired by a minimal unauthenticated status callable using an operation ID plus a SecureStore-only high-entropy capability. App Check remains explicitly disabled per the owner seal; constant-time hash comparison, fixed TTL, bounded retry windows, minimal responses, Firestore Rules deny, and Jarvis isolation are mandatory. No receipt proof means no picker and no guard clearance.
+
+**Security hardening clarification (2026-08-28):** `local_data_cleared` requires strict readback after `wipeLocalAccountData`, `AsyncStorage.clear`, and phone-state SQLCipher lineage retirement; read failure, partial residue, timeout, or thrown cleanup keeps `prepared`, emits no deletion-ready event, starts no cloud/fresh generation, and exposes no ordinary onboarding. Server closure is two-phase: atomically fence the root auth/stable IDs, discover the complete alias closure under denial-guarded merge/recovery contracts, then atomically persist sorted `identityClosure`/hash/version/cutoff, every member denial, the worker job, and `closure_committed`. The worker consumes exactly the frozen array and never re-resolves the mutable merge graph. `account_deletion_jobs` and receipt documents remain server-only in Rules and explicitly isolated from Jarvis metrics.
+
+**Writer/TOCTOU clarification (2026-08-28):** Before destructive local clearing, invalidate the old generation and require bounded successful drains of premium, restore, and cloud work. Register phone-state retirement, outbox cleanup, local DB wipe, AsyncStorage clear/mirror/readback as one operation-scoped flight; UI timeout stays `prepared`, and retry joins the same flight so late cleanup cannot touch a new generation. Bound the forward-only `local_data_cleared` CAS. For server deletion, never recursively delete mutable identity-index documents from stale query snapshots: transactionally reread `auth_links`, `name_index`, and `friend_code_index`, and delete only if their current stable owner remains in the frozen closure.
+
 **Tech Stack:** React Native 0.81, Expo 54, TypeScript 5.9, React Native Firebase Auth/Functions/Firestore, Expo SecureStore, AsyncStorage, Firebase Functions v2, Firestore transactions/rules, Jest/ts-jest, Firebase Emulator Suite.
 
 ---
@@ -626,7 +634,9 @@ Cover:
 - fresh stable ID equal to deleted stable ID is rejected;
 - authoritative link failure does not set `ready`;
 - `identity_retired` with no local record creates a `source: 'remote'` transition and performs one legacy safety wipe;
-- old provider sign-in remains `account_delete_pending`/blocked.
+- a fresh, non-denied provider UID paired with a retired stable ID stays signed in, receives a fresh stable ID, is linked authoritatively, and returns `created_new` in the same provider attempt without any deletion enqueue;
+- `subject: 'auth' | 'closure' | unknown` stays fail-closed through sign-out and fresh anonymous rotation;
+- the email/code recovery surface is unreachable; ordinary Google/Apple sign-in is the only live account recovery/creation entry.
 
 - [ ] **Step 3: Run integration tests and verify RED**
 
@@ -1044,7 +1054,8 @@ Commit only Task 9 files. Report the commit list, exact test counts, Functions b
 - [ ] The server deletion job contains the full proved immutable identity closure.
 - [ ] Unproved requested stable IDs are rejected, never silently substituted.
 - [ ] Permanent denials survive job/tombstone retention cleanup.
-- [ ] Old provider login remains blocked.
+- [ ] Every retired Firebase provider UID remains blocked; a `subject: 'stable'` sign-in links a fresh stable ID and returns `created_new` in one attempt, restoring no old data or entitlement.
+- [ ] No live auth surface offers email/code recovery.
 - [ ] Firestore Rules keep deletion closure data server-only.
 - [ ] Jarvis readers remain contract-correct or are updated in the same change.
 - [ ] Focused automated gates pass.

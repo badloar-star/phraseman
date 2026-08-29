@@ -754,6 +754,7 @@ function TabScaffold({
                     accessibilityLabel={triLang(lang, {
                       ru: tab.key === 'home' ? 'Главная' : tab.key === 'lessons' ? 'Уроки' : tab.key === 'arena' ? 'Арена' : tab.key === 'friends' ? 'Друзья' : 'Настройки',
                       uk: tab.key === 'home' ? 'Головна' : tab.key === 'lessons' ? 'Уроки' : tab.key === 'arena' ? 'Арена' : tab.key === 'friends' ? 'Друзі' : 'Налаштування',
+                      en: tab.key === 'home' ? 'Home' : tab.key === 'lessons' ? 'Lessons' : tab.key === 'arena' ? 'Arena' : tab.key === 'friends' ? 'Friends' : 'Settings',
                       es: tab.key === 'home' ? 'Inicio' : tab.key === 'lessons' ? 'Lecciones' : tab.key === 'arena' ? 'Arena' : tab.key === 'friends' ? 'Amigos' : 'Ajustes',
                       'pt-BR': tab.key === 'home' ? 'Início' : tab.key === 'lessons' ? 'Lições' : tab.key === 'arena' ? 'Arena' : tab.key === 'friends' ? 'Amigos' : 'Configurações',
                       vi: tab.key === 'home' ? 'Trang chủ' : tab.key === 'lessons' ? 'Bài học' : tab.key === 'arena' ? 'Đấu trường' : tab.key === 'friends' ? 'Bạn bè' : 'Cài đặt',

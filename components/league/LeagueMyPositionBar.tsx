@@ -83,8 +83,8 @@ function LeagueMyPositionBarComponent({ lang, palette, myRank, zone, gap, avatar
   const onCard = isDanger ? '#FFFFFF' : palette.accentText;
   const ratio = Math.max(0.05, Math.min(1, gap?.ratio ?? 0));
 
-  const mePrefix = triLang(lang, { ru: 'Вы', uk: 'Ви', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' });
-  const a11y = triLang(lang, { ru: `Ваше место: ${myRank}. Открывает вашу строку в рейтинге`, uk: `Ваше місце: ${myRank}. Відкриває ваш рядок у рейтингу`, es: `Tu puesto: ${myRank}. Abre tu fila en la clasificación`, 'pt-BR': `Sua posição: ${myRank}. Abre sua linha no ranking`, vi: `Hạng của bạn: ${myRank}. Mở hàng của bạn trong bảng xếp hạng`, id: `Peringkatmu: ${myRank}. Membuka barismu di peringkat`, tr: `Sıran: ${myRank}. Sıralamadaki satırını açar`, pl: `Twoje miejsce: ${myRank}. Otwiera Twój wiersz w rankingu` });
+  const mePrefix = triLang(lang, { ru: 'Вы', uk: 'Ви', en: 'You', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' });
+  const a11y = triLang(lang, { ru: `Ваше место: ${myRank}. Открывает вашу строку в рейтинге`, uk: `Ваше місце: ${myRank}. Відкриває ваш рядок у рейтингу`, en: `Your rank: ${myRank}. Opens your row in the leaderboard`, es: `Tu puesto: ${myRank}. Abre tu fila en la clasificación`, 'pt-BR': `Sua posição: ${myRank}. Abre sua linha no ranking`, vi: `Hạng của bạn: ${myRank}. Mở hàng của bạn trong bảng xếp hạng`, id: `Peringkatmu: ${myRank}. Membuka barismu di peringkat`, tr: `Sıran: ${myRank}. Sıralamadaki satırını açar`, pl: `Twoje miejsce: ${myRank}. Otwiera Twój wiersz w rankingu` });
 
   return (
     <Reanimated.View entering={reduceMotion ? undefined : FadeInUp.delay(200).duration(280)} style={styles.wrap}>

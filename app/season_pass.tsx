@@ -11,7 +11,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type ListRenderItemInfo } from 'react-native';
+import { AppState, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type ListRenderItemInfo } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { Stack, useRouter } from 'expo-router';
@@ -28,13 +28,24 @@ import { softShadow } from '../constants/androidGlow';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import TapScale from '../components/TapScale';
 import {
-  hydrateSeasonPassProgress,
-  peekSeasonPassProgress,
+  computeSeasonPassProgress,
+  observeSeasonPassRuneProgressForAccount,
   getSeasonPassSeasonId,
+  hydrateSeasonPassEntitlementForAccount,
+  isSeasonPassLevelReached,
+  prepareSeasonPassEntitlementLocalWrite,
   SEASON_PASS_LEVELS,
+  seasonPassEndsAtMs,
   seasonPassStarsToUnlockLevel,
   type SeasonPassProgress,
 } from './season_pass_model';
+import { getRunesBalanceRead, subscribeRunesSnapshot, type RunesBalance } from './runes_system';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+  type AccountGenerationToken,
+} from './account_generation';
 import {
   spineTrackProgressPath,
   spineTrackRegionPaths,
@@ -55,7 +66,11 @@ import SeasonAuraRing from '../components/SeasonAuraRing';
 import SeasonGiftModal from '../components/SeasonGiftModal';
 import SeasonRewardInfoModal, { type SeasonRewardCardStatus } from '../components/SeasonRewardInfoModal';
 import SeasonPassBuyButton from '../components/SeasonPassBuyButton';
-import { addSeasonPassGift, loadPendingSeasonPassGiftCount } from './season_pass_gift_inventory';
+import {
+  commitSeasonPassRewardClaim,
+  loadPendingSeasonPassGiftCount,
+  loadSeasonPassClaimedMapForAccount,
+} from './season_pass_gift_inventory';
 import { seasonBuyPassOnServer } from './season_pass_server';
 import { commitShardCompositeOperation, getShardsBalance } from './shards_system';
 import { getVerifiedPremiumAccessStatus } from './premium_guard';
@@ -170,9 +185,6 @@ const REWARD_LABELS: Record<SeasonReward['kind'], Record<Lang, string>> = {
 // SEASON_AURA_STAGE_NAMES живёт в season_pass_track_config.ts — общий источник
 // для экрана дорожки И обеих модалок (клейм + просмотр), см. импорт выше.
 
-const CLAIMED_LEVELS_KEY = 'season_pass_claimed_v1';
-const PASS_OWNED_KEY = 'season_pass_owned_v1';
-
 type ClaimedMap = Record<string, true>; // `${seasonId}:${level}:${side}`
 
 export default function SeasonPassScreen() {
@@ -181,7 +193,9 @@ export default function SeasonPassScreen() {
   const { lang } = useLang();
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
-  const [progress, setProgress] = useState<SeasonPassProgress>(peekSeasonPassProgress);
+  const [progress, setProgress] = useState<SeasonPassProgress>(() => (
+    computeSeasonPassProgress(getSeasonPassSeasonId(), 0)
+  ));
   const [pendingGiftCount, setPendingGiftCount] = useState(0);
   const [openReward, setOpenReward] = useState<{ reward: SeasonReward; giftId: string } | null>(null);
   // зачем 2026-08-03 (владелец: «модальные окна для каждого подарка на сезоне
@@ -191,6 +205,7 @@ export default function SeasonPassScreen() {
   // открывает описание; «Забрать»/«Нужен пропуск» — кнопки УЖЕ ВНУТРИ неё.
   const [openInfoReward, setOpenInfoReward] = useState<{
     reward: SeasonReward; level: number; side: 'free' | 'pass'; status: SeasonRewardCardStatus;
+    claimToken: AccountGenerationToken; claimSeasonId: string;
   } | null>(null);
   const [claimed, setClaimed] = useState<ClaimedMap>({});
   const [passOwned, setPassOwned] = useState(false);
@@ -203,7 +218,7 @@ export default function SeasonPassScreen() {
   const [buyConfirmVisible, setBuyConfirmVisible] = useState(false);
   const [userName, setUserName] = useState<string | null>(null);
 
-  const seasonId = getSeasonPassSeasonId();
+  const [seasonId, setSeasonId] = useState(() => getSeasonPassSeasonId());
   const seasonBackground = useMemo(() => getSeasonPassThemeBackground(themeMode), [themeMode]);
   // Нефритовый исходник уже светлый и малоконтрастный. Остальные тематические
   // иллюстрации намеренно оставляем лишь как едва заметную фактуру: награды,
@@ -211,40 +226,166 @@ export default function SeasonPassScreen() {
   const seasonBackgroundScrimOpacity = themeMode === 'olive' ? 0.58 : themeMode === 'sagePorcelain' ? 0.3 : 0.82;
 
   const refreshPendingGiftCount = useCallback(() => {
-    loadPendingSeasonPassGiftCount().then(setPendingGiftCount).catch(() => {});
+    const token = captureAccountGeneration();
+    const ownerStableId = token.stableId?.trim() ?? '';
+    if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
+      setPendingGiftCount(0);
+      return;
+    }
+    loadPendingSeasonPassGiftCount().then((count) => {
+      if (isCurrentAccountGeneration(token, ownerStableId)) setPendingGiftCount(count);
+    }).catch(() => {});
   }, []);
 
   useEffect(() => {
     let alive = true;
-    hydrateSeasonPassProgress().then((p) => { if (alive) setProgress(p); });
-    refreshPendingGiftCount();
-    // Персистентные клеймы + владение пропуском + ник (для превью финала).
-    AsyncStorage.multiGet([CLAIMED_LEVELS_KEY, PASS_OWNED_KEY, 'user_name']).then((pairs) => {
-      if (!alive) return;
-      try {
-        const claimedRaw = pairs[0]?.[1];
-        if (claimedRaw) setClaimed(JSON.parse(claimedRaw) as ClaimedMap);
-      } catch { /* повреждённый кэш клеймов не должен ронять экран */ }
-      try {
-        const ownedRaw = pairs[1]?.[1];
-        if (ownedRaw) {
-          const parsed = JSON.parse(ownedRaw) as { seasonId?: string };
-          setPassOwned(parsed?.seasonId === getSeasonPassSeasonId());
+    let activeToken = captureAccountGeneration();
+    let activeSeasonId = getSeasonPassSeasonId();
+    let boundaryTimer: ReturnType<typeof setTimeout> | null = null;
+    let liveGeneration: number | null = null;
+    const resetTransitionState = () => {
+      setOpenInfoReward(null);
+      setOpenReward(null);
+      setBuyConfirmVisible(false);
+    };
+    const resetProgress = (nextSeasonId = activeSeasonId) => {
+      setProgress(computeSeasonPassProgress(nextSeasonId, 0));
+    };
+    const tokenOwner = (token: AccountGenerationToken): string | null => {
+      const ownerStableId = token.stableId?.trim() ?? '';
+      return ownerStableId && isCurrentAccountGeneration(token, ownerStableId)
+        ? ownerStableId
+        : null;
+    };
+    const applyWallet = async (
+      token: AccountGenerationToken,
+      wallet: RunesBalance,
+      quality: 'durable' | 'fallback' = 'durable',
+    ) => {
+      const ownerStableId = tokenOwner(token);
+      if (!alive || !ownerStableId) return;
+      const next = await observeSeasonPassRuneProgressForAccount(token, wallet, new Date(), quality);
+      if (!alive || !next || activeToken.generation !== token.generation
+        || !isCurrentAccountGeneration(token, ownerStableId)) return;
+      setProgress(next);
+    };
+    const hydrateAccount = (token: AccountGenerationToken, acceptLiveImmediately: boolean) => {
+      activeToken = token;
+      activeSeasonId = getSeasonPassSeasonId();
+      setSeasonId(activeSeasonId);
+      resetTransitionState();
+      resetProgress();
+      // Entitlement and claimed state are both account + quarter sensitive.
+      // Clear synchronously so the previous owner/season is never rendered or
+      // used while the active generation is hydrating.
+      setPassOwned(false);
+      setClaimed({});
+      setPendingGiftCount(0);
+      const ownerStableId = tokenOwner(token);
+      liveGeneration = ownerStableId && acceptLiveImmediately ? token.generation : null;
+      if (!ownerStableId) return;
+      const hydrationSeasonId = activeSeasonId;
+      void loadPendingSeasonPassGiftCount().then((count) => {
+        if (alive && activeToken.generation === token.generation
+          && activeSeasonId === hydrationSeasonId
+          && isCurrentAccountGeneration(token, ownerStableId)) {
+          setPendingGiftCount(count);
         }
-      } catch { /* то же */ }
-      setUserName(pairs[2]?.[1] ?? null);
+      }).catch(() => {});
+      void hydrateSeasonPassEntitlementForAccount(token, new Date()).then((owned) => {
+        if (alive && activeToken.generation === token.generation
+          && activeSeasonId === hydrationSeasonId
+          && getSeasonPassSeasonId() === hydrationSeasonId
+          && isCurrentAccountGeneration(token, ownerStableId)) {
+          setPassOwned(owned);
+        }
+      }).catch(() => {});
+      void loadSeasonPassClaimedMapForAccount(token).then((nextClaimed) => {
+        if (alive && activeToken.generation === token.generation
+          && activeSeasonId === hydrationSeasonId
+          && getSeasonPassSeasonId() === hydrationSeasonId
+          && isCurrentAccountGeneration(token, ownerStableId)) {
+          setClaimed(nextClaimed);
+        }
+      }).catch(() => {});
+      void getRunesBalanceRead()
+        .then(async (read) => {
+          await applyWallet(token, read.wallet, read.quality);
+          // Live snapshots are allowed to advance a checkpoint only after a
+          // full projection read. A fallback remains display-only.
+          if (read.quality === 'durable' && alive
+            && activeToken.generation === token.generation
+            && isCurrentAccountGeneration(token, ownerStableId)) {
+            liveGeneration = token.generation;
+          }
+        })
+        .catch(() => {});
+    };
+    const unsubscribeRunes = subscribeRunesSnapshot((next) => {
+      const token = activeToken;
+      if (!alive || liveGeneration !== token.generation || !tokenOwner(token)) return;
+      void applyWallet(token, next).catch(() => {});
+    });
+    const accountGenerationSubscription = subscribeAccountGeneration((token) => {
+      hydrateAccount(token, false);
+    });
+    const refreshSeasonBoundary = () => {
+      const nextSeasonId = getSeasonPassSeasonId();
+      if (nextSeasonId === activeSeasonId) return;
+      activeSeasonId = nextSeasonId;
+      setSeasonId(nextSeasonId);
+      // Disable live snapshots until the full owner projection has established
+      // the new quarter baseline. This also invalidates all old-season modals.
+      hydrateAccount(captureAccountGeneration(), false);
+    };
+    const scheduleSeasonBoundaryCheck = () => {
+      if (boundaryTimer) clearTimeout(boundaryTimer);
+      const delay = Math.min(
+        Math.max(1_000, seasonPassEndsAtMs(new Date()) - Date.now() + 100),
+        2_000_000_000,
+      );
+      boundaryTimer = setTimeout(() => {
+        if (!alive) return;
+        refreshSeasonBoundary();
+        scheduleSeasonBoundaryCheck();
+      }, delay);
+      (boundaryTimer as unknown as { unref?: () => void })?.unref?.();
+    };
+    const appStateSubscription = AppState.addEventListener('change', (state) => {
+      if (state !== 'active') return;
+      const previousSeasonId = activeSeasonId;
+      refreshSeasonBoundary();
+      // A resume is also the retry path after a fallback wallet read. Avoid a
+      // double hydration when refreshSeasonBoundary already started one.
+      if (previousSeasonId === activeSeasonId) {
+        hydrateAccount(captureAccountGeneration(), false);
+      }
+    });
+    scheduleSeasonBoundaryCheck();
+    // Re-capture after both subscriptions are installed: an account transition
+    // between the first capture and listener registration must not strand the
+    // mounted screen on a stale token.
+    hydrateAccount(captureAccountGeneration(), false);
+    // Ник не является transition-sensitive экономическим состоянием.
+    AsyncStorage.getItem('user_name').then((name) => {
+      if (alive) setUserName(name);
     }).catch(() => {});
     getVerifiedPremiumAccessStatus().then((active) => { if (alive) setIsPremium(active); }).catch(() => {});
-    const subStars = onAppEvent('season_pass_stars_changed', () => {
-      if (alive) setProgress(peekSeasonPassProgress());
-    });
     const subGifts = onAppEvent('season_pass_gift_inventory_changed', () => {
       if (alive) refreshPendingGiftCount();
     });
     const subPremium = onAppEvent('premium_access_changed', ({ active }) => {
       if (alive) setIsPremium(active);
     });
-    return () => { alive = false; subStars.remove(); subGifts.remove(); subPremium.remove(); };
+    return () => {
+      alive = false;
+      unsubscribeRunes();
+      accountGenerationSubscription.remove();
+      appStateSubscription.remove();
+      if (boundaryTimer) clearTimeout(boundaryTimer);
+      subGifts.remove();
+      subPremium.remove();
+    };
   }, [refreshPendingGiftCount]);
 
   // зачем 2026-08-03: daysLeft и pct удалены вместе со счётчиком дней и
@@ -266,10 +407,6 @@ export default function SeasonPassScreen() {
   const passBought = passOwned;
   // Правая (платная) линия — привилегия тира, но работает только после входа.
   const passLaneAllowed = isPremium;
-
-  const persistClaims = useCallback((next: ClaimedMap) => {
-    AsyncStorage.setItem(CLAIMED_LEVELS_KEY, JSON.stringify(next)).catch(() => {});
-  }, []);
 
   // ── Покупка пропуска сезона (SEASON_PASS_PRICE_PEARLS, одна цена для всех) ──
   // зачем 2026-08-03: в заголовке стояло «платной дорожки (350 жемчужин)» —
@@ -352,6 +489,23 @@ export default function SeasonPassScreen() {
     }
     setBuying(true);
     setBuyConfirmVisible(false);
+    const purchaseToken = captureAccountGeneration();
+    const purchaseNow = new Date();
+    if (seasonId !== getSeasonPassSeasonId(purchaseNow)) {
+      setBuying(false);
+      return;
+    }
+    let entitlementWrite: readonly [string, string];
+    try {
+      entitlementWrite = prepareSeasonPassEntitlementLocalWrite(
+        purchaseToken,
+        purchaseNow,
+        purchaseNow.getTime(),
+      );
+    } catch {
+      setBuying(false);
+      return;
+    }
     const purchase = await commitShardCompositeOperation({
       operationId: `season-pass:${seasonId}`,
       amount: SEASON_PASS_PRICE_PEARLS,
@@ -361,13 +515,19 @@ export default function SeasonPassScreen() {
         subjectId: seasonId,
         payload: { seasonId },
       },
-      localWrites: [[PASS_OWNED_KEY, JSON.stringify({ seasonId, purchasedAt: 0 })]],
+      localWrites: [entitlementWrite],
     });
     if (
       purchase.status === 'applied'
       || purchase.status === 'already-applied'
       || purchase.status === 'already-satisfied'
     ) {
+      const purchaseOwner = purchaseToken.stableId?.trim() ?? '';
+      if (!purchaseOwner || !isCurrentAccountGeneration(purchaseToken, purchaseOwner)
+        || seasonId !== getSeasonPassSeasonId()) {
+        setBuying(false);
+        return;
+      }
       setPassOwned(true);
       emitAppEvent('season_pass_plus_changed', undefined);
       // Сервер сохраняет факт владения для других устройств; он не решает
@@ -388,22 +548,47 @@ export default function SeasonPassScreen() {
     setBuying(false);
   }, [buying, router, seasonId]);
 
-  const onClaimReward = useCallback(async (reward: SeasonReward, level: number, side: 'free' | 'pass') => {
+  const onClaimReward = useCallback(async (
+    reward: SeasonReward,
+    level: number,
+    side: 'free' | 'pass',
+    claimToken: AccountGenerationToken,
+    claimSeasonId: string,
+  ) => {
     hapticTap();
-    const key = `${seasonId}:${level}:${side}`;
+    // The modal is transition-sensitive: its owner token and season were
+    // captured when it opened. Re-authorize against the durable checkpoint at
+    // mutation time, not against stale rendered state.
+    if (claimSeasonId !== seasonId || !passBought || (side === 'pass' && !passLaneAllowed)) return;
+    const claimOwner = claimToken.stableId?.trim() ?? '';
+    if (!claimOwner || claimSeasonId !== getSeasonPassSeasonId()
+      || !isCurrentAccountGeneration(claimToken, claimOwner)) return;
+    const key = `${claimSeasonId}:${level}:${side}`;
     if (claimed[key]) return; // защита от двойного тапа/гонки
-    const nextClaimed: ClaimedMap = { ...claimed, [key]: true };
-    setClaimed(nextClaimed);
-    persistClaims(nextClaimed);
-    const gift = await addSeasonPassGift(seasonId, level, side, reward.kind, reward.amount);
+    let committed: Awaited<ReturnType<typeof commitSeasonPassRewardClaim>>;
+    try {
+      committed = await commitSeasonPassRewardClaim({
+        token: claimToken,
+        seasonId: claimSeasonId,
+        level,
+        side,
+        kind: reward.kind,
+        amount: reward.amount,
+      });
+    } catch {
+      return;
+    }
+    if (!isCurrentAccountGeneration(claimToken, claimOwner)) return;
+    setClaimed((current) => ({ ...current, [key]: true }));
+    if (committed.status !== 'applied' || !committed.gift) return;
     refreshPendingGiftCount();
     // Owner-locked rewards (currently the retired tournament ticket) may be
     // normalized by the inventory. Render exactly what the user can apply.
-    const visibleReward: SeasonReward = gift.kind === reward.kind
+    const visibleReward: SeasonReward = committed.gift.kind === reward.kind
       ? reward
-      : { kind: gift.kind, amount: gift.amount };
-    setOpenReward({ reward: visibleReward, giftId: gift.id });
-  }, [claimed, persistClaims, refreshPendingGiftCount, seasonId]);
+      : { kind: committed.gift.kind, amount: committed.gift.amount };
+    setOpenReward({ reward: visibleReward, giftId: committed.gift.id });
+  }, [claimed, passBought, passLaneAllowed, refreshPendingGiftCount, seasonId]);
 
   const renderReward = useCallback((reward: SeasonReward | undefined, side: 'free' | 'pass', reached: boolean, level: number) => {
     // Пустая сторона — прозрачный заполнитель ТОЙ ЖЕ формы, что и карточка,
@@ -470,7 +655,17 @@ export default function SeasonPassScreen() {
       activeOpacity: 0.85,
       // Открытие описания — чистый setState, без сети и записи: мгновенный
       // отклик на тап независимо от статуса карточки.
-      onPress: () => { hapticTap(); setOpenInfoReward({ reward, level, side, status }); },
+      onPress: () => {
+        hapticTap();
+        setOpenInfoReward({
+          reward,
+          level,
+          side,
+          status,
+          claimToken: captureAccountGeneration(),
+          claimSeasonId: seasonId,
+        });
+      },
       accessibilityRole: 'button' as const,
       // Метка нужна КАЖДОЙ карточке: у жемчужин подпись пустая (её место
       // занимает выросшая иконка), и без label скринридер объявил бы кнопку
@@ -670,10 +865,11 @@ export default function SeasonPassScreen() {
         </View>
       </View>
     );
-  }, [claimed, lang, onClaimReward, onLockedRewardPress, passBought, passLaneAllowed, pearlIcon, seasonId, t, themeMode]);
+  }, [claimed, lang, passBought, passLaneAllowed, pearlIcon, seasonId, t, themeMode]);
 
   const renderItem = useCallback(({ item }: ListRenderItemInfo<SeasonTrackNode>) => {
-    const reached = progress.level >= item.level;
+    const reached = progress.seasonId === seasonId
+      && isSeasonPassLevelReached(progress, seasonId, item.level);
     return (
       // зачем 2026-08-03 (владелец: «контейнеры с подарками слишком близко друг
       // к другу, раздели их слегка чтобы не сливались»): карточки стояли
@@ -693,7 +889,7 @@ export default function SeasonPassScreen() {
         {renderReward(item.pass, 'pass', reached, item.level)}
       </View>
     );
-  }, [progress.level, renderReward]);
+  }, [progress, renderReward, seasonId]);
 
   const getItemLayout = useCallback((_: unknown, index: number) => (
     { length: ROW_HEIGHT, offset: ROW_HEIGHT * index, index }
@@ -1044,7 +1240,18 @@ export default function SeasonPassScreen() {
         side={openInfoReward?.side ?? 'free'}
         status={openInfoReward?.status ?? 'upcoming'}
         onClose={() => setOpenInfoReward(null)}
-        onClaim={(reward, level, side) => { setOpenInfoReward(null); void onClaimReward(reward, level, side); }}
+        onClaim={() => {
+          const intent = openInfoReward;
+          setOpenInfoReward(null);
+          if (!intent) return;
+          void onClaimReward(
+            intent.reward,
+            intent.level,
+            intent.side,
+            intent.claimToken,
+            intent.claimSeasonId,
+          );
+        }}
         onNeedPass={() => {
           const isPassLane = openInfoReward?.side === 'pass';
           setOpenInfoReward(null);

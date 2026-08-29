@@ -81,9 +81,112 @@ function cleanTags(value: unknown): Record<string, string | number | boolean | n
   return out;
 }
 
+const SUPPORT_DIAGNOSTIC_EVENTS = [
+  'navigation', 'app_state', 'support_report', 'customization_purchase',
+  'customization_apply', 'account_delete', 'auth_transition',
+  'feature_action',
+] as const;
+const SUPPORT_DIAGNOSTIC_RESULTS = ['start', 'success', 'blocked', 'error', 'info'] as const;
+const SUPPORT_DIAGNOSTIC_SUBJECTS = ['avatar', 'aura', 'account', 'report', 'app'] as const;
+const SUPPORT_DIAGNOSTIC_REASONS = [
+  'account_changed', 'insufficient_currency', 'transaction_failed', 'selection_failed',
+  'locally_cleared', 'server_enqueued', 'quarantine_retained', 'queued',
+  'direct_fallback', 'foreground', 'background', 'inactive',
+] as const;
+const SUPPORT_DIAGNOSTIC_TTL_MS = 24 * HOUR_MS;
+const SUPPORT_DIAGNOSTIC_FUTURE_SKEW_MS = 5 * 60 * 1000;
+const SUPPORT_DIAGNOSTIC_MAX_EVENTS = 200;
+const SUPPORT_DIAGNOSTIC_MAX_BYTES = 32 * 1024;
+
+function optionalEnum<T extends string>(value: unknown, allowed: readonly T[]): T | undefined {
+  return typeof value === 'string' && allowed.includes(value as T) ? value as T : undefined;
+}
+
+function safeDiagnosticScreen(value: unknown): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  const out = value.trim().slice(0, 96);
+  if (!out || !/^[/a-zA-Z0-9_().\-[\]]+$/.test(out)) return undefined;
+  if (/(?:^|\/)[A-Za-z0-9]{20,}(?:\/|$)/.test(out)
+    || /[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/i.test(out)) {
+    return undefined;
+  }
+  return out;
+}
+
+function safeDiagnosticAction(value: unknown): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  const out = value.trim().slice(0, 80);
+  if (!/^[a-zA-Z][a-zA-Z0-9_.:-]{0,79}$/.test(out)) return undefined;
+  if (/(?:^|[:._-])[A-Za-z0-9]{20,}(?:$|[:._-])/.test(out)
+    || /[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/i.test(out)) {
+    return undefined;
+  }
+  return out;
+}
+
+export function cleanSupportDiagnostics(value: unknown, now: number): Record<string, unknown> | null {
+  const source = asRecord(value);
+  if (source.version !== 1 || !Array.isArray(source.events)) return null;
+  const capturedRaw = Number(source.capturedAtMs);
+  const capturedAtMs = Number.isSafeInteger(capturedRaw)
+    && capturedRaw >= now - SUPPORT_DIAGNOSTIC_TTL_MS
+    && capturedRaw <= now + SUPPORT_DIAGNOSTIC_FUTURE_SKEW_MS
+    ? capturedRaw
+    : now;
+  const events = source.events.slice(-400).flatMap((raw): Record<string, unknown>[] => {
+    const eventSource = asRecord(raw);
+    const atMs = Number(eventSource.atMs);
+    const event = optionalEnum(eventSource.event, SUPPORT_DIAGNOSTIC_EVENTS);
+    if (!event || !Number.isSafeInteger(atMs)
+      || atMs < now - SUPPORT_DIAGNOSTIC_TTL_MS
+      || atMs > now + SUPPORT_DIAGNOSTIC_FUTURE_SKEW_MS) return [];
+    const screen = safeDiagnosticScreen(eventSource.screen);
+    const result = optionalEnum(eventSource.result, SUPPORT_DIAGNOSTIC_RESULTS);
+    const reason = optionalEnum(eventSource.reason, SUPPORT_DIAGNOSTIC_REASONS);
+    const subject = optionalEnum(eventSource.subject, SUPPORT_DIAGNOSTIC_SUBJECTS);
+    const durationRaw = Number(eventSource.durationMs);
+    const durationMs = Number.isFinite(durationRaw) && durationRaw >= 0
+      ? Math.min(Math.round(durationRaw), SUPPORT_DIAGNOSTIC_TTL_MS)
+      : undefined;
+    const action = safeDiagnosticAction(eventSource.action);
+    return [{
+      atMs,
+      event,
+      ...(screen ? { screen } : {}),
+      ...(result ? { result } : {}),
+      ...(reason ? { reason } : {}),
+      ...(subject ? { subject } : {}),
+      ...(durationMs !== undefined ? { durationMs } : {}),
+      ...(action ? { action } : {}),
+    }];
+  }).sort((left, right) => Number(left.atMs) - Number(right.atMs))
+    .slice(-SUPPORT_DIAGNOSTIC_MAX_EVENTS);
+  if (events.length === 0) return null;
+  const bundle: { version: number; capturedAtMs: number; events: Record<string, unknown>[] } = {
+    version: 1,
+    capturedAtMs,
+    events,
+  };
+  while (bundle.events.length > 0
+    && Buffer.byteLength(JSON.stringify(bundle), 'utf8') > SUPPORT_DIAGNOSTIC_MAX_BYTES) {
+    bundle.events.shift();
+  }
+  return bundle.events.length > 0 ? bundle : null;
+}
+
 function rateDocId(kind: ClientReportKind, authUid: string, stableUid: string): string {
   const hash = createHash('sha256').update(`${kind}|${authUid}|${stableUid}`).digest('hex').slice(0, 48);
   return `${kind}_${hash}`;
+}
+
+function idempotentReportDocId(
+  kind: ClientReportKind,
+  stableUid: string,
+  idempotencyKey: string,
+): string {
+  return createHash('sha256')
+    .update(`${kind}|${stableUid}|${idempotencyKey}`)
+    .digest('hex');
 }
 
 function baseDoc(payload: Record<string, unknown>, stableUid: string, authUid: string, now: number) {
@@ -170,6 +273,7 @@ function buildReportDoc(
   }
 
   if (kind === 'error_report') {
+    const diagnostics = cleanSupportDiagnostics(payload.diagnostics, now);
     return {
       ...base,
       screen: text(payload.screen, 120),
@@ -192,6 +296,7 @@ function buildReportDoc(
       userLanguage: nullableText(payload.userLanguage, 16),
       userDaysInApp: numeric(payload.userDaysInApp),
       copyText: text(payload.copyText, 7000),
+      ...(diagnostics ? { diagnostics } : {}),
       status: 'new',
     };
   }
@@ -298,6 +403,11 @@ export const submitClientReport = onCall({
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
+  const expectedStableUid = text(request.data?.expectedStableUid, 180);
+  if (expectedStableUid && expectedStableUid !== stableUid) {
+    throw new HttpsError('failed-precondition', 'report_owner_changed');
+  }
+  const idempotencyKey = text(request.data?.idempotencyKey, 120);
   const payload = asRecord(request.data?.payload);
   const now = Date.now();
   // зачем: в Арене клиент не знает uid соперника (сервер его намеренно не шлёт),
@@ -320,9 +430,17 @@ export const submitClientReport = onCall({
   if (resolvedPayload === null) return { ok: true, id: 'accepted' };
   const doc = buildReportDoc(kind, resolvedPayload, stableUid, authUid, now);
   const rateRef = db.collection(RATE_COLLECTION).doc(rateDocId(kind, authUid, stableUid));
-  const reportRef = db.collection(config.collection).doc();
+  const reportRef = idempotencyKey
+    ? db.collection(config.collection).doc(idempotentReportDocId(kind, stableUid, idempotencyKey))
+    : db.collection(config.collection).doc();
 
   return db.runTransaction(async (tx) => {
+    if (idempotencyKey) {
+      const existingReport = await tx.get(reportRef);
+      if (existingReport.exists) {
+        return { ok: true, id: reportRef.id, collection: config.collection };
+      }
+    }
     const rateSnap = await tx.get(rateRef);
     const rate = rateSnap.data() || {};
     const windowStartMs = numeric(rate.windowStartMs);

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View, Text, TouchableOpacity,
   TextInput, Modal, ScrollView, Animated, DeviceEventEmitter,
-  Linking,
   Alert,
   Keyboard,
   InteractionManager,
@@ -32,7 +31,6 @@ import {
 } from '../../components/settings/SettingsGroup';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import DeleteAccountConfirmModal from '../../components/DeleteAccountConfirmModal';
-import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
 import { emitAppEvent } from '../events';
 import { DebugLogger } from '../debug-logger';
@@ -643,9 +641,6 @@ export default function SettingsMain() {
   }, []);
   const [accountModalVisible, setAccountModalVisible] = useState(false);
   const [deleteAccountModalVisible, setDeleteAccountModalVisible] = useState(false);
-  // зачем: владелец просил предупреждать ПЕРЕД открытием почты — письма приходили
-  // без ника, а почта не привязана к аккаунту, и поддержка не могла найти профиль.
-  const [supportHintVisible, setSupportHintVisible] = useState(false);
   /**
    * UI state для flow "Сменить аккаунт" (Variant 2):
    *   'idle'        — пользователь нигде не нажал
@@ -1048,7 +1043,7 @@ export default function SettingsMain() {
   // premium_plan: пожизненный доступ бывает и безденежным (сертификат «Pro —
   // навсегда», промокод, бессрочная выдача из админки), и раньше такой человек
   // видел «Plus активирован» вопреки тому, что написано на его сертификате.
-  const tierName = premiumPlan === 'max_monthly' ? 'MAX' : isPro ? 'Pro' : 'Plus';
+  const tierName = isPro ? 'Pro' : 'Plus';
 
   const vipExpiryText = vipUntilMs > 0
     ? `${L('Действует до', 'Діє до', 'Active until', 'Activo hasta', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(vipUntilMs)}`
@@ -1109,9 +1104,7 @@ export default function SettingsMain() {
     ? `${tierName} ${L('активирован', 'активовано', 'active', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓`
     : 'Phraseman Plus';
   const plusRowValue = hasPremiumAccess && isPremium
-    ? (premiumPlan === 'max_monthly'
-      ? 'MAX'
-      : premiumPlan === 'yearly'
+    ? (premiumPlan === 'yearly'
       ? L('Год', 'Рік', 'Year', 'Anual', 'Anual', 'Năm', 'Tahunan', 'Yıllık', 'Rok')
       : premiumPlan === 'monthly'
         ? L('Месяц', 'Місяць', 'Month', 'Mensual', 'Mensal', 'Tháng', 'Bulanan', 'Aylık', 'Miesiąc')
@@ -1716,15 +1709,14 @@ export default function SettingsMain() {
               onPress={() => router.push('/ideas_submit' as any)}
             />
           ) : null}
-          {/* зачем: адрес-подпись под названием убран (запрет владельца + чистота
-              референса) — тап и так открывает почту с подставленным адресом. */}
           <SettingsRow
-            icon="mail"
+            testID="settings-support-report-row"
+            icon="chatbox-ellipses"
             color="blue"
             label={L('Написать в поддержку', 'Написати в підтримку', 'Contact support', 'Escribir a soporte', 'Escrever para o suporte', 'Liên hệ hỗ trợ', 'Tulis ke dukungan', 'Desteğe yaz', 'Napisz do pomocy')}
             onPress={() => {
               doHaptic();
-              setSupportHintVisible(true);
+              router.push('/support_report' as never);
             }}
           />
           {/* зачем: владелец попросил ряд «Оценить в сторе» как в референсе Bevel
@@ -1828,75 +1820,6 @@ export default function SettingsMain() {
       <DeleteAccountConfirmModal
         visible={deleteAccountModalVisible}
         onRequestClose={() => setDeleteAccountModalVisible(false)}
-      />
-
-      {/* зачем: письма в поддержку приходили без ника, а почта не привязана к
-          аккаунту — найти профиль было невозможно. Просим описать проблему и
-          указать ник, а сам ник заранее подставляем в тело письма (он уже есть
-          в локальном состоянии — ни одного лишнего чтения Firestore), чтобы
-          его нельзя было забыть; пользователь видит его в письме и может
-          поправить. Модалку закрываем ДО openURL: почта уезжает на системный
-          экран, и возврат на уже закрытую модалку выглядит чище. */}
-      <ThemedConfirmModal
-        visible={supportHintVisible}
-        testIDPrefix="settings-support-hint"
-        title={L(
-          'Как нам быстрее вам помочь',
-          'Як нам швидше вам допомогти',
-          'How to help you fastest',
-          'Cómo ayudarte más rápido',
-          'Como te ajudar mais rápido',
-          'Cách chúng tôi giúp bạn nhanh hơn',
-          'Cara kami membantu lebih cepat',
-          'Sana daha hızlı nasıl yardım ederiz',
-          'Jak szybciej ci pomóc',
-        )}
-        message={L(
-          'Расскажи о проблеме подробно: что происходит, когда началось, на каком экране.\n\nИ напиши свой ник из приложения — почта не связана с аккаунтом, поэтому без ника мы не найдём твои данные.',
-          'Розкажи про проблему докладно: що відбувається, коли почалося, на якому екрані.\n\nІ напиши свій нік із застосунку — пошта не пов’язана з акаунтом, тому без ніка ми не знайдемо твої дані.',
-          'Describe the problem in detail: what is happening, when it started, on which screen.\n\nAnd write your in-app nickname — the email is not linked to the account, so without it we can\'t find your data.',
-          'Cuéntanos el problema en detalle: qué pasa, cuándo empezó y en qué pantalla.\n\nY escribe tu apodo de la app: el correo no está vinculado a la cuenta, así que sin él no podremos encontrar tus datos.',
-          'Conte o problema em detalhes: o que acontece, quando começou e em qual tela.\n\nE escreva seu apelido do app: o e-mail não está ligado à conta, então sem ele não conseguiremos encontrar seus dados.',
-          'Hãy mô tả chi tiết vấn đề: chuyện gì xảy ra, bắt đầu khi nào, ở màn hình nào.\n\nVà hãy ghi biệt danh của bạn trong ứng dụng — email không liên kết với tài khoản, nên nếu thiếu nó chúng tôi sẽ không tìm được dữ liệu của bạn.',
-          'Ceritakan masalahnya secara detail: apa yang terjadi, kapan mulai, di layar mana.\n\nDan tulis nama panggilanmu di aplikasi — email tidak terhubung dengan akun, jadi tanpa itu kami tidak bisa menemukan datamu.',
-          'Sorunu ayrıntılı anlat: ne oluyor, ne zaman başladı, hangi ekranda.\n\nVe uygulamadaki takma adını yaz — e-posta hesaba bağlı değil, o yüzden takma ad olmadan verilerini bulamayız.',
-          'Opisz problem szczegółowo: co się dzieje, kiedy się zaczęło, na którym ekranie.\n\nI napisz swój nick z aplikacji — poczta nie jest powiązana z kontem, więc bez nicka nie znajdziemy twoich danych.',
-        )}
-        confirmLabel={L(
-          'Написать письмо',
-          'Написати листа',
-          'Write an email',
-          'Escribir correo',
-          'Escrever e-mail',
-          'Đã hiểu, viết thư',
-          'Paham, tulis',
-          'Anladım, yaz',
-          'Jasne, piszę',
-        )}
-        cancelLabel={L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
-        onCancel={() => setSupportHintVisible(false)}
-        onConfirm={() => {
-          setSupportHintVisible(false);
-          const nick = userName.trim();
-          const nickLine = L(
-            'Мой ник в приложении: ',
-            'Мій нік у застосунку: ',
-            'My in-app nickname: ',
-            'Mi apodo en la app: ',
-            'Meu apelido no app: ',
-            'Biệt danh của tôi trong ứng dụng: ',
-            'Nama panggilan saya di aplikasi: ',
-            'Uygulamadaki takma adım: ',
-            'Mój nick w aplikacji: ',
-          );
-          const body = `\n\n${nickLine}${nick}\n`;
-          void Linking.openURL(
-            'mailto:support.phraseman@gmail.com?subject=' +
-              encodeURIComponent('Phraseman') +
-              '&body=' +
-              encodeURIComponent(body),
-          );
-        }}
       />
 
       <Modal visible={accountModalVisible} transparent animationType="fade" onRequestClose={() => setAccountModalVisible(false)}>

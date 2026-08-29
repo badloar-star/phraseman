@@ -60,6 +60,30 @@ test('registerVerdict returns exhaustion immediately, deduplicates callbacks, an
   });
 });
 
+test('session-rune forfeiture restores the current question for every user without a durable recovery', async () => {
+  const token = captureAccountGeneration();
+  const hook = await renderHook(() => useSessionAttempts({
+    token,
+    sessionId: 'premium-forfeit-1',
+    initialQuestionId: 'question-1',
+    autoHydrate: false,
+  }));
+
+  await act(() => { hook.result.current.registerVerdict({ answerAttemptId: 'a1', verdict: 'pedagogical_wrong' }); });
+  await act(() => { hook.result.current.registerVerdict({ answerAttemptId: 'a2', verdict: 'pedagogical_wrong' }); });
+  await act(() => { hook.result.current.registerVerdict({ answerAttemptId: 'a3', verdict: 'pedagogical_wrong' }); });
+
+  await act(() => { hook.result.current.restoreAfterSessionRuneForfeit(); });
+  expect(hook.result.current.state).toMatchObject({
+    remainingAttempts: 3,
+    phase: 'active',
+    questionId: 'question-1',
+    recoveryOrdinal: 1,
+  });
+  expect(mockCoordinator.commitSessionAttemptRecovery).not.toHaveBeenCalled();
+  expect(mockCoordinator.persistSessionAttemptsState).toHaveBeenCalled();
+});
+
 test('hydrate restores the blocking zero-attempt state and resource choices after remount', async () => {
   const token = captureAccountGeneration();
   mockCoordinator.hydrateSessionAttemptsState.mockResolvedValue({

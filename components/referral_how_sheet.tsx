@@ -14,8 +14,8 @@ import { triLang, type Lang } from '../constants/i18n';
 import ReferralSheetShell from './referral_sheet_shell';
 
 function makeL(lang: Lang) {
-  return (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
-    triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  return (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 }
 
 interface ReferralHowSheetProps {
@@ -30,26 +30,26 @@ export default function ReferralHowSheet({ visible, onClose }: ReferralHowSheetP
 
   const steps: readonly { title: string; text: string }[] = [
     {
-      title: L('Пригласи друга', 'Запроси друга', 'Invita a un amigo', 'Convide um amigo', 'Mời một người bạn', 'Undang teman', 'Bir arkadaşını davet et', 'Zaproś znajomego'),
-      text: L('Отправь другу свой код — он на этом экране.', 'Надішли другові свій код — він на цьому екрані.', 'Envía tu código a un amigo: está en esta pantalla.', 'Envie seu código a um amigo: está nesta tela.', 'Gửi mã của bạn cho bạn bè — mã ở ngay màn hình này.', 'Kirim kodemu ke teman — ada di layar ini.', 'Kodunu arkadaşına gönder — bu ekranda.', 'Wyślij znajomemu swój kod — jest na tym ekranie.'),
+      title: L('Пригласи друга', 'Запроси друга', 'Invite a friend', 'Invita a un amigo', 'Convide um amigo', 'Mời một người bạn', 'Undang teman', 'Bir arkadaşını davet et', 'Zaproś znajomego'),
+      text: L('Отправь другу свой код — он на этом экране.', 'Надішли другові свій код — він на цьому екрані.', 'Send your friend your code — it\'s on this screen.', 'Envía tu código a un amigo: está en esta pantalla.', 'Envie seu código a um amigo: está nesta tela.', 'Gửi mã của bạn cho bạn bè — mã ở ngay màn hình này.', 'Kirim kodemu ke teman — ada di layar ini.', 'Kodunu arkadaşına gönder — bu ekranda.', 'Wyślij znajomemu swój kod — jest na tym ekranie.'),
     },
     {
-      title: L('Друг оформит Plus или Pro', 'Друг оформить Plus або Pro', 'Tu amigo compra Plus o Pro', 'Seu amigo assina Plus ou Pro', 'Bạn của bạn mua Plus hoặc Pro', 'Temanmu membeli Plus atau Pro', 'Arkadaşın Plus veya Pro alır', 'Znajomy kupuje Plus lub Pro'),
-      text: L('Когда он введёт твой код и оформит Plus или Pro, ты получишь ключ.', 'Коли він введе твій код і оформить Plus або Pro, ти отримаєш ключ.', 'Cuando introduzca tu código y compre Plus o Pro, recibirás una llave.', 'Quando inserir seu código e assinar Plus ou Pro, você recebe uma chave.', 'Khi họ nhập mã và mua Plus hoặc Pro, bạn nhận một chìa khóa.', 'Saat memasukkan kodemu dan membeli Plus atau Pro, kamu mendapat kunci.', 'Kodunu girip Plus veya Pro satın aldığında bir anahtar kazanırsın.', 'Gdy wpisze twój kod i kupi Plus lub Pro, dostaniesz klucz.'),
+      title: L('Друг оформит Plus или Pro', 'Друг оформить Plus або Pro', 'Your friend subscribes to Plus or Pro', 'Tu amigo compra Plus o Pro', 'Seu amigo assina Plus ou Pro', 'Bạn của bạn mua Plus hoặc Pro', 'Temanmu membeli Plus atau Pro', 'Arkadaşın Plus veya Pro alır', 'Znajomy kupuje Plus lub Pro'),
+      text: L('Когда он введёт твой код и оформит Plus или Pro, ты получишь ключ.', 'Коли він введе твій код і оформить Plus або Pro, ти отримаєш ключ.', 'When they enter your code and subscribe to Plus or Pro, you get a key.', 'Cuando introduzca tu código y compre Plus o Pro, recibirás una llave.', 'Quando inserir seu código e assinar Plus ou Pro, você recebe uma chave.', 'Khi họ nhập mã và mua Plus hoặc Pro, bạn nhận một chìa khóa.', 'Saat memasukkan kodemu dan membeli Plus atau Pro, kamu mendapat kunci.', 'Kodunu girip Plus veya Pro satın aldığında bir anahtar kazanırsın.', 'Gdy wpisze twój kod i kupi Plus lub Pro, dostaniesz klucz.'),
     },
     {
-      title: L('Открой награду', 'Відкрий нагороду', 'Abre la recompensa', 'Abra a recompensa', 'Mở phần thưởng', 'Buka hadiah', 'Ödülü aç', 'Otwórz nagrodę'),
-      text: L('Каждый ключ даёт Plus от 1 дня до 365 дней.', 'Кожен ключ дає Plus від 1 до 365 днів.', 'Cada llave da entre 1 y 365 días de Plus.', 'Cada chave dá de 1 a 365 dias de Plus.', 'Mỗi chìa khóa nhận từ 1 đến 365 ngày Plus.', 'Setiap kunci memberi 1–365 hari Plus.', 'Her anahtar 1–365 gün Plus verir.', 'Każdy klucz daje od 1 do 365 dni Plus.'),
+      title: L('Открой награду', 'Відкрий нагороду', 'Open the reward', 'Abre la recompensa', 'Abra a recompensa', 'Mở phần thưởng', 'Buka hadiah', 'Ödülü aç', 'Otwórz nagrodę'),
+      text: L('Каждый ключ даёт Plus от 1 дня до 365 дней.', 'Кожен ключ дає Plus від 1 до 365 днів.', 'Each key gives Plus from 1 to 365 days.', 'Cada llave da entre 1 y 365 días de Plus.', 'Cada chave dá de 1 a 365 dias de Plus.', 'Mỗi chìa khóa nhận từ 1 đến 365 ngày Plus.', 'Setiap kunci memberi 1–365 hari Plus.', 'Her anahtar 1–365 gün Plus verir.', 'Każdy klucz daje od 1 do 365 dni Plus.'),
     },
   ];
 
   const rules: readonly string[] = [
-    L('Сколько друзей оформит подписку — столько ключей ты получишь.', 'Скільки друзів оформить підписку — стільки ключів ти отримаєш.', 'Recibes una llave por cada amigo que compre la suscripción.', 'Você recebe uma chave por cada amigo que assinar.', 'Bạn nhận một chìa khóa cho mỗi người bạn mua gói.', 'Kamu dapat satu kunci untuk setiap teman yang berlangganan.', 'Abone olan her arkadaş için bir anahtar kazanırsın.', 'Dostajesz klucz za każdego znajomego, który kupi subskrypcję.'),
-    L('Выигрыш суммируется с текущим сроком Plus.', 'Виграш додається до поточного строку Plus.', 'El premio se suma a tu período Plus actual.', 'O prêmio é somado ao período Plus atual.', 'Phần thưởng được cộng vào thời hạn Plus hiện tại.', 'Hadiah ditambahkan ke masa Plus saat ini.', 'Ödül mevcut Plus sürene eklenir.', 'Nagroda dodaje się do obecnego okresu Plus.'),
+    L('Сколько друзей оформит подписку — столько ключей ты получишь.', 'Скільки друзів оформить підписку — стільки ключів ти отримаєш.', 'You get one key for every friend who subscribes.', 'Recibes una llave por cada amigo que compre la suscripción.', 'Você recebe uma chave por cada amigo que assinar.', 'Bạn nhận một chìa khóa cho mỗi người bạn mua gói.', 'Kamu dapat satu kunci untuk setiap teman yang berlangganan.', 'Abone olan her arkadaş için bir anahtar kazanırsın.', 'Dostajesz klucz za każdego znajomego, który kupi subskrypcję.'),
+    L('Выигрыш суммируется с текущим сроком Plus.', 'Виграш додається до поточного строку Plus.', 'The prize is added to your current Plus period.', 'El premio se suma a tu período Plus actual.', 'O prêmio é somado ao período Plus atual.', 'Phần thưởng được cộng vào thời hạn Plus hiện tại.', 'Hadiah ditambahkan ke masa Plus saat ini.', 'Ödül mevcut Plus sürene eklenir.', 'Nagroda dodaje się do obecnego okresu Plus.'),
     // зачем: владелец (2026-08-03) — «результат определяет сервер» читалось как
     // «крутилка ненастоящая, всё решено заранее». Смысл тот же (исход честный и
     // не подкручивается), но на языке игрока: приз выпадает случайно.
-    L('Приз выпадает случайно — шанс есть у каждого ключа.', 'Приз випадає випадково — шанс є в кожного ключа.', 'El premio es aleatorio: cada llave tiene su oportunidad.', 'O prêmio é aleatório: cada chave tem sua chance.', 'Phần thưởng là ngẫu nhiên — mỗi chìa khóa đều có cơ hội.', 'Hadiah acak — setiap kunci punya peluang.', 'Ödül rastgele — her anahtarın şansı var.', 'Nagroda jest losowa — każdy klucz ma szansę.'),
+    L('Приз выпадает случайно — шанс есть у каждого ключа.', 'Приз випадає випадково — шанс є в кожного ключа.', 'The prize is random — every key has a chance.', 'El premio es aleatorio: cada llave tiene su oportunidad.', 'O prêmio é aleatório: cada chave tem sua chance.', 'Phần thưởng là ngẫu nhiên — mỗi chìa khóa đều có cơ hội.', 'Hadiah acak — setiap kunci punya peluang.', 'Ödül rastgele — her anahtarın şansı var.', 'Nagroda jest losowa — każdy klucz ma szansę.'),
   ];
 
   return (
@@ -57,8 +57,8 @@ export default function ReferralHowSheet({ visible, onClose }: ReferralHowSheetP
       visible={visible}
       onClose={onClose}
       testID="referral-how-sheet"
-      title={L('Как это работает', 'Як це працює', 'Cómo funciona', 'Como funciona', 'Cách hoạt động', 'Cara kerjanya', 'Nasıl çalışır', 'Jak to działa')}
-      closeLabel={L('Закрыть', 'Закрити', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
+      title={L('Как это работает', 'Як це працює', 'How it works', 'Cómo funciona', 'Como funciona', 'Cách hoạt động', 'Cara kerjanya', 'Nasıl çalışır', 'Jak to działa')}
+      closeLabel={L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
     >
       <View style={{ gap: 14 }}>
         {steps.map((s, i) => (

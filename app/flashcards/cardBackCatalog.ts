@@ -205,6 +205,7 @@ export function ugcCardBackLabel(raw: string, lang: Lang): string {
   return triLang(lang, {
     ru: label,
     uk: label,
+    en: label,
     es: label,
     'pt-BR': label,
     vi: label,

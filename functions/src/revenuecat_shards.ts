@@ -2,7 +2,7 @@ import * as admin from 'firebase-admin';
 import { createHash, timingSafeEqual } from 'crypto';
 import { onRequest } from 'firebase-functions/v2/https';
 import * as logger from 'firebase-functions/logger';
-import { defineSecret } from 'firebase-functions/params';
+import { defineSecret, defineString } from 'firebase-functions/params';
 import {
   classifyRevenueCatBillingCadence,
   normalizeRevenueCatFinancials,
@@ -27,9 +27,20 @@ import { appendExternalEconomyEvent } from './external_economy_events';
 import { recordPaymentWebhookFailure } from './payment_webhook_alert';
 import { markRefereeQualified } from './referral';
 import { writeAccessProjection, writeAccessProjectionFromPatch } from './access_projection';
+import {
+  VOICE_MINUTE_PRODUCTS,
+  appendVoiceMinuteEventInTransaction,
+  createVoiceMinutePurchaseEvent,
+  createVoiceMinuteRefundEvent,
+  voiceMinutePurchaseEventId,
+} from './voice_minutes';
 
 const REGION = 'us-central1';
 const REVENUECAT_WEBHOOK_AUTH = defineSecret('REVENUECAT_WEBHOOK_AUTH');
+const VOICE_MINUTE_SANDBOX_STABLE_UIDS = defineString('VOICE_MINUTE_SANDBOX_STABLE_UIDS', {
+  default: '',
+  description: 'Comma/space separated stable UIDs allowed to receive verified RevenueCat SANDBOX voice-minute purchases.',
+});
 
 const SHARD_PACKS_BY_PRODUCT_ID: Record<string, { packId: string; shards: number }> = {
   phraseman_shards_30: { packId: 'starter', shards: 35 },
@@ -316,8 +327,7 @@ function entitlementIds(event: RevenueCatEvent): string[] {
 export function isManagedPremiumProductId(rawProductId: unknown): boolean {
   const productId = cleanId(rawProductId).toLowerCase();
   return /^phraseman_premium_(monthly|yearly)(?:_[0-9]{1,6})?(?::[a-z0-9][a-z0-9-]*)?$/.test(productId)
-    || productId === 'phraseman_premium_lifetime_v1'
-    || /^phraseman_max_monthly_v1(?::monthly-base)?$/.test(productId);
+    || productId === 'phraseman_premium_lifetime_v1';
 }
 
 function looksLikePremiumSubscription(event: RevenueCatEvent): boolean {
@@ -333,16 +343,29 @@ function looksLikePremiumSubscription(event: RevenueCatEvent): boolean {
     'phraseman_premium_yearly_2999',
     'phraseman_premium_lifetime_v1',
   ]);
-  const isMaxProduct = /^phraseman_max_monthly_v1(?::monthly-base)?$/.test(productId);
   if (entitlements.length === 0) return legacyPremiumProducts.has(productId);
-  if (isMaxProduct) return entitlements.includes('max');
   if (!entitlements.includes('premium')) return false;
   return isManagedPremiumProductId(productId);
 }
 
-function premiumPlanFromEvent(event: RevenueCatEvent): 'monthly' | 'yearly' | 'lifetime' | 'max_monthly' {
+export function voiceMinutePackFromProduct(rawProductId: unknown): { seconds: number } | null {
+  const productId = cleanId(rawProductId) as keyof typeof VOICE_MINUTE_PRODUCTS;
+  const seconds = VOICE_MINUTE_PRODUCTS[productId];
+  return seconds ? { seconds } : null;
+}
+
+export function sandboxVoiceMinuteOwnerAllowed(ownerStableId: unknown, rawAllowlist: unknown): boolean {
+  const owner = cleanId(ownerStableId);
+  if (!owner) return false;
+  const allowed = String(rawAllowlist ?? '')
+    .split(/[\s,]+/)
+    .map(cleanId)
+    .filter(Boolean);
+  return new Set(allowed).has(owner);
+}
+
+function premiumPlanFromEvent(event: RevenueCatEvent): 'monthly' | 'yearly' | 'lifetime' {
   const productId = cleanId(event.product_id).toLowerCase();
-  if (/^phraseman_max_monthly_v1(?::monthly-base)?$/.test(productId)) return 'max_monthly';
   if (/lifetime|forever|one.?time|onetime|perpetual/.test(productId)) return 'lifetime';
   if (/year|yearly|annual|12.?month/.test(productId)) return 'yearly';
   return 'monthly';
@@ -814,6 +837,143 @@ async function qualifyReferralFromVerifiedPremiumOutcome(
   if (!uid) return false;
   await qualify(db, uid);
   return true;
+}
+
+async function handleVoiceMinutePackEvent(
+  event: RevenueCatEvent,
+  eventType: string,
+  productId: string,
+  pack: { seconds: number },
+  res: any,
+  sandboxStableUidAllowlist?: string,
+): Promise<void> {
+  const environment = cleanId(event.environment).toUpperCase();
+  if (environment !== 'PRODUCTION' && environment !== 'SANDBOX') {
+    res.status(200).json({ ok: true, ignored: 'voice_minutes_unknown_environment' });
+    return;
+  }
+  if (eventType !== 'NON_RENEWING_PURCHASE' && eventType !== 'REFUND') {
+    res.status(200).json({ ok: true, ignored: 'voice_minutes_event_type' });
+    return;
+  }
+  const cataloguePack = voiceMinutePackFromProduct(productId);
+  if (!cataloguePack || cataloguePack.seconds !== pack.seconds) {
+    res.status(200).json({ ok: true, ignored: 'not_managed_product' });
+    return;
+  }
+
+  const purchaseSourceId = cleanId(event.original_transaction_id || event.transaction_id);
+  const eventSourceId = eventType === 'REFUND'
+    ? cleanId(event.id)
+    : cleanId(event.transaction_id || event.original_transaction_id || event.id);
+  const occurredAtMs = eventType === 'REFUND'
+    ? eventMs(event.event_timestamp_ms)
+    : eventMs(event.purchased_at_ms) ?? eventMs(event.event_timestamp_ms);
+  const boundedCandidates = boundPremiumOwnerCandidates(candidateUserIds(event));
+  if (boundedCandidates.status === 'quarantine') {
+    res.status(202).json({ ok: true, kind: 'voice_minutes', quarantined: true, reason: boundedCandidates.reason });
+    return;
+  }
+  const candidates = boundedCandidates.candidates;
+  if (!purchaseSourceId || !eventSourceId || occurredAtMs === null || candidates.length === 0) {
+    res.status(400).send('Missing immutable voice-minute identity');
+    return;
+  }
+
+  const db = admin.firestore();
+  const denialId = `voice_${createHash('sha256').update(`${eventType}|${eventSourceId}`).digest('hex')}`;
+  try {
+    const out = await db.runTransaction(async (tx) => {
+      const permanentDenialSnapshots = await readPermanentDeletionDenials(tx, db, candidates);
+      const deletionSnapshots: FirebaseFirestore.DocumentSnapshot[] = [];
+      for (const candidate of candidates) {
+        deletionSnapshots.push(await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(candidate)));
+        deletionSnapshots.push(await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(candidate)));
+      }
+      if ([...deletionSnapshots, ...permanentDenialSnapshots].some((snapshot) => snapshot.exists)) {
+        return { applied: false, reason: 'account_deletion_pending_or_permanent' as const };
+      }
+
+      const owner = await resolvePremiumOwnerRef(tx, db, candidates);
+      if (owner.status !== 'resolved') {
+        tx.set(db.collection('voice_minute_denials').doc(denialId), {
+          reason: owner.reason,
+          productId,
+          seconds: pack.seconds,
+          candidates,
+          ...(owner.status === 'ambiguous' ? { ownerUids: owner.ownerUids } : {}),
+          eventId: cleanId(event.id),
+          eventTimestampMs: eventMs(event.event_timestamp_ms),
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
+        return { applied: false, reason: owner.reason, retryable: true };
+      }
+
+      if (environment === 'SANDBOX' && !sandboxVoiceMinuteOwnerAllowed(
+        owner.uid,
+        sandboxStableUidAllowlist ?? VOICE_MINUTE_SANDBOX_STABLE_UIDS.value(),
+      )) {
+        return {
+          applied: false,
+          ignored: 'voice_minutes_sandbox_owner_not_allowlisted' as const,
+          uid: owner.uid,
+        };
+      }
+
+      const canonicalDeletionSnapshots = [
+        await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(owner.uid)),
+        await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(owner.uid)),
+        ...(await readPermanentDeletionDenials(tx, db, [owner.uid])),
+      ];
+      if (canonicalDeletionSnapshots.some((snapshot) => snapshot.exists)) {
+        return { applied: false, reason: 'account_deletion_pending_or_permanent' as const };
+      }
+
+      const minuteEvent = eventType === 'REFUND'
+        ? createVoiceMinuteRefundEvent({
+            sourceId: eventSourceId,
+            ownerStableId: owner.uid,
+            originalEventId: voiceMinutePurchaseEventId(purchaseSourceId),
+            reversedSeconds: pack.seconds,
+            occurredAtMs,
+            environment,
+            store: cleanId(event.store),
+            revenueCatEventId: cleanId(event.id),
+            originalTransactionId: purchaseSourceId,
+          })
+        : createVoiceMinutePurchaseEvent({
+            sourceId: eventSourceId,
+            ownerStableId: owner.uid,
+            productId,
+            occurredAtMs,
+            environment,
+            store: cleanId(event.store),
+            revenueCatEventId: cleanId(event.id),
+            originalTransactionId: purchaseSourceId,
+          });
+      const appended = await appendVoiceMinuteEventInTransaction(tx, db, minuteEvent);
+      return {
+        applied: appended.applied,
+        ...(appended.reason ? { reason: appended.reason } : {}),
+        uid: owner.uid,
+        availableSeconds: appended.wallet.availableSeconds,
+      };
+    });
+
+    if ('retryable' in out && out.retryable) {
+      res.status(503).json({ ok: false, kind: 'voice_minutes', ...out });
+      return;
+    }
+    res.status(200).json({ ok: true, kind: 'voice_minutes', ...out });
+  } catch (error) {
+    logger.error('revenuecat_voice_minutes_webhook_failed', error);
+    await recordPaymentWebhookFailure(db, {
+      hook: 'voice_minutes',
+      message: String(error),
+      nowMs: Date.now(),
+    });
+    res.status(500).send('Internal error');
+  }
 }
 
 async function handlePremiumSubscriptionEvent(
@@ -1310,7 +1470,7 @@ function readDonorPremiumBlock(progress: Record<string, unknown>, now: number): 
   // см. premiumPlanFromEvent). Без него TRANSFER от анонимного RC-id (купил «Навсегда»
   // до Purchases.logIn) возвращал null → доступ исчезал у реального аккаунта после логина.
   const isStorePlan = plan === 'monthly' || plan === 'yearly' || plan === 'annual'
-    || plan === 'lifetime' || plan === 'max_monthly';
+    || plan === 'lifetime';
   if (!isStorePlan) return null;
   const expiryMs = eventMs(progress.premium_expiry);
   const rcExpiryMs = eventMs(progress.premium_rc_expiry_ms);
@@ -1332,7 +1492,6 @@ function readDonorPremiumBlock(progress: Record<string, unknown>, now: number): 
 
 function premiumProjectionStrength(progress: Record<string, unknown>): number {
   const plan = cleanId(progress.premium_plan).toLowerCase();
-  if (plan === 'max_monthly') return Number.MAX_SAFE_INTEGER;
   if (plan === 'lifetime') return Number.POSITIVE_INFINITY;
   if (plan !== 'monthly' && plan !== 'yearly' && plan !== 'annual') return 0;
   const expiryMs = eventMs(progress.premium_expiry);
@@ -1649,10 +1808,12 @@ export const revenueCatShardsWebhook = onRequest({ region: REGION, secrets: [REV
     return;
   }
 
-  // Sandbox-события (TestFlight / sandbox App Store / Play Console testing) НЕ
-  // должны изменять production Firestore: иначе тестер получает реальный premium
-  // на бою, а sandbox-«покупка» осколков зачисляет настоящую валюту.
-  if (isSandboxEvent(event)) {
+  const voiceMinutePack = voiceMinutePackFromProduct(productId);
+  // Premium and pearl/shard SANDBOX events always remain blocked. The only
+  // exception is an exact managed voice-minute product; its handler performs a
+  // second fail-closed check against VOICE_MINUTE_SANDBOX_STABLE_UIDS after
+  // canonical owner resolution, then appends the same immutable receipt.
+  if (isSandboxEvent(event) && !voiceMinutePack) {
     logger.info('revenuecat_webhook_sandbox_ignored', { eventType, productId, environment: cleanId(event.environment) });
     res.status(200).json({ ok: true, ignored: 'sandbox_environment', environment: cleanId(event.environment) });
     return;
@@ -1667,8 +1828,13 @@ export const revenueCatShardsWebhook = onRequest({ region: REGION, secrets: [REV
 
   const pack = SHARD_PACKS_BY_PRODUCT_ID[productId];
   const premium = looksLikePremiumSubscription(event);
-  if (!pack && !premium) {
+  if (!pack && !voiceMinutePack && !premium) {
     res.status(200).json({ ok: true, ignored: 'not_managed_product' });
+    return;
+  }
+
+  if (voiceMinutePack) {
+    await handleVoiceMinutePackEvent(event, eventType, productId, voiceMinutePack, res);
     return;
   }
 
@@ -1694,8 +1860,11 @@ export const __revenueCatWebhookTestHooks = {
   transferTargetIds,
   transferSourceIds,
   revenueCatLifecycleReasonFields,
+  voiceMinutePackFromProduct,
+  sandboxVoiceMinuteOwnerAllowed,
   handleTransferEvent,
   handlePremiumSubscriptionEvent,
+  handleVoiceMinutePackEvent,
   // зачем в хуки (2026-08-16): ветка покупки жемчужин проверялась ЧТЕНИЕМ
   // ИСХОДНИКА — такой тест зелёный, даже если логика сломана. Для оплаченной
   // покупки этого мало: инцидент как раз в том, что деньги списаны, а

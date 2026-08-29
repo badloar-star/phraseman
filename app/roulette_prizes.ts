@@ -39,16 +39,16 @@ export interface RoulettePrize {
  * Ключ — days, зеркало REFERRAL_SPIN_PRIZE_DAYS на сервере.
  */
 export function roulettePrizeLabel(days: number, lang: Lang): string {
-  const L = (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
-    triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  const L = (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
   switch (days) {
-    case 1: return L('1 день', '1 день', '1 día', '1 dia', '1 ngày', '1 hari', '1 gün', '1 dzień');
-    case 7: return L('7 дней', '7 днів', '7 días', '7 dias', '7 ngày', '7 hari', '7 gün', '7 dni');
-    case 30: return L('1 месяц', '1 місяць', '1 mes', '1 mês', '1 tháng', '1 bulan', '1 ay', '1 miesiąc');
-    case 90: return L('3 месяца', '3 місяці', '3 meses', '3 meses', '3 tháng', '3 bulan', '3 ay', '3 miesiące');
-    case 180: return L('6 месяцев', '6 місяців', '6 meses', '6 meses', '6 tháng', '6 bulan', '6 ay', '6 miesięcy');
-    case 365: return L('1 год', '1 рік', '1 año', '1 ano', '1 năm', '1 tahun', '1 yıl', '1 rok');
-    default: return `${days} ${L('дн.', 'дн.', 'd.', 'd.', 'ngày', 'hari', 'gün', 'dn.')}`;
+    case 1: return L('1 день', '1 день', '1 day', '1 día', '1 dia', '1 ngày', '1 hari', '1 gün', '1 dzień');
+    case 7: return L('7 дней', '7 днів', '7 days', '7 días', '7 dias', '7 ngày', '7 hari', '7 gün', '7 dni');
+    case 30: return L('1 месяц', '1 місяць', '1 month', '1 mes', '1 mês', '1 tháng', '1 bulan', '1 ay', '1 miesiąc');
+    case 90: return L('3 месяца', '3 місяці', '3 months', '3 meses', '3 meses', '3 tháng', '3 bulan', '3 ay', '3 miesiące');
+    case 180: return L('6 месяцев', '6 місяців', '6 months', '6 meses', '6 meses', '6 tháng', '6 bulan', '6 ay', '6 miesięcy');
+    case 365: return L('1 год', '1 рік', '1 year', '1 año', '1 ano', '1 năm', '1 tahun', '1 yıl', '1 rok');
+    default: return `${days} ${L('дн.', 'дн.', 'd.', 'd.', 'd.', 'ngày', 'hari', 'gün', 'dn.')}`;
   }
 }
 
@@ -72,7 +72,7 @@ export const ROULETTE_PRIZE_PEARLS: readonly number[] = [10, 25, 70, 150, 350, 8
 /** «N жемчужин» на 8 языках (для номиналов лестницы формы совпадают). */
 export function roulettePearlsLabel(amount: number, lang: Lang): string {
   const unit = triLang(lang, {
-    ru: 'жемчужин', uk: 'перлин', es: 'perlas', 'pt-BR': 'pérolas',
+    ru: 'жемчужин', uk: 'перлин', en: 'pearls', es: 'perlas', 'pt-BR': 'pérolas',
     vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł',
   });
   return `${Math.max(0, Math.floor(Number(amount) || 0))} ${unit}`;

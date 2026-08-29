@@ -9,6 +9,7 @@ import {
   commitStarOperations,
   normalizeStars,
   prepareStarOperations,
+  STAR_OP_MAX_ABS_DELTA,
   type StarOpReceipt,
   type StarOpRequest,
 } from './stars_ledger';
@@ -22,8 +23,9 @@ import {
  * курс Learning V2, друзья, спин и биржа.
  *
  * Устройство — зеркало `level_spin_star_grant.ts`: клиент присылает закрытую
- * расписку с отпечатком, сервер проверяет её сам и кладёт ОДНУ операцию в
- * журнал рун. Повтор той же расписки не начисляет второй раз (идемпотентность
+ * расписку с отпечатком, сервер проверяет её сам и кладёт один semantic
+ * settlement в журнал рун (крупная сумма — детерминированными строками одной
+ * транзакции). Повтор той же расписки не начисляет второй раз (идемпотентность
  * по operationId), расхождение расписки с уже применённой — конфликт, а не
  * тихое перезатирание.
  *
@@ -41,6 +43,12 @@ const ACTIVITIES = Object.freeze([
   'speaking_practice',
 ] as const);
 
+// Structural transaction/resource bound, not a gameplay earning ceiling.
+// 128 receipt rows + one user projection remain below Firestore's transaction
+// write limit while still allowing one exact 640,000-rune settlement.
+const MAX_PRACTICE_RUNE_STAR_CHUNKS = 128;
+const MAX_PRACTICE_RUNE_STRUCTURAL_AMOUNT = STAR_OP_MAX_ABS_DELTA * MAX_PRACTICE_RUNE_STAR_CHUNKS;
+
 type PracticeRuneActivity = (typeof ACTIVITIES)[number];
 
 /**
@@ -56,80 +64,6 @@ type PracticeRuneActivity = (typeof ACTIVITIES)[number];
  */
 const SESSION_KEY = /^[A-Za-z0-9_-]{1,72}$/;
 const FINGERPRINT = /^[a-f0-9]{64}$/;
-
-/**
- * Потолок начисления за одну сессию.
- *
- * зачем: расписку формирует клиент, а клиент подделывается. Отпечаток защищает
- * от случайной порчи, но не от злонамеренного пересчёта — секрета у телефона
- * нет. Потолок превращает возможную накрутку из безграничной в незначительную.
- *
- * 180 рун покрывают самую щедрую честную сессию приложения — 53 неправильных
- * глагола по 3 руны (159) с запасом — и не превышают суточный потолок, иначе
- * одна сессия выбирала бы весь день (аудит 2026-08-27, прежнее значение 300
- * было выше суточного лимита и потому бессмысленным).
- */
-export const PRACTICE_RUNE_MAX_PER_SESSION = 180;
-
-/**
- * Потолок начисления за сутки по всем учебным активностям вместе.
- *
- * зачем (аудит 2026-08-27): потолка на сессию НЕ ХВАТАЕТ. `completionOrdinal`
- * выбирает клиент, а не сервер, поэтому подделанный клиент шлёт ordinal 1, 2,
- * 3… — каждый раз получается НОВЫЙ operationId, и идемпотентность по расписке
- * его не останавливает. Без суточного потолка это неограниченная эмиссия
- * валюты, которую тратят в магазине.
- *
- * Почему ordinal вообще нужен клиентский: повторные прохождения законны
- * (владелец разрешил перепроходить и снова зарабатывать), а серверного
- * идентификатора прохождения у этих семи экранов нет — в отличие от курса V2,
- * где opId привязан к выданному сервером courseSessionId.
- *
- * Значение — ПАРИТЕТ С АРЕНОЙ (аудит 2026-08-27). Первая версия ставила 900,
- * исходя только из «выше честного максимума». Аудит показал, что это ломает
- * три системы разом: Арена ограничена ARENA_DAILY_STAR_CAP = 160 рун в сутки
- * (functions/src/arena_stars_v3.ts), поэтому 900 давали учёбе преимущество в
- * 5.6 раза — игроки Арены гарантированно оказывались внизу таблицы лиги;
- * арена-пропуск (50 рун за уровень) качался бы на 18 уровней в день; а витрина
- * магазина, намеренно оценённая в рунах вдесятеро дороже жемчуга, стала бы
- * почти бесплатной и подорвала бы смысл покупки жемчуга за деньги.
- *
- * 160 в сутки уравнивает учёбу с Ареной: и то и другое — законный путь к
- * рунам, ни один не обгоняет другой.
- */
-export const PRACTICE_RUNE_MAX_PER_DAY = 160;
-
-/** Календарные сутки по UTC — ключ окна суточного потолка. */
-export function practiceRuneDayKey(nowMs: number): string {
-  return new Date(nowMs).toISOString().slice(0, 10);
-}
-
-type PracticeRuneDailyState = Readonly<{ dayKey: string; earned: number }>;
-
-/**
- * Разбор счётчика суток из документа игрока. Поле лежит рядом с `stars`, в том
- * же документе, который транзакция и так читает — дополнительных чтений ноль.
- * Клиент записать его не может: `practice_runes_daily` закрыт правилом
- * Firestore ровно как `stars`.
- */
-export function readPracticeRuneDaily(
-  raw: unknown,
-  dayKeyNow: string,
-): PracticeRuneDailyState {
-  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
-    return Object.freeze({ dayKey: dayKeyNow, earned: 0 });
-  }
-  const value = raw as Record<string, unknown>;
-  // Другой день — окно открывается заново, накопленное вчера не мешает.
-  if (value.dayKey !== dayKeyNow) {
-    return Object.freeze({ dayKey: dayKeyNow, earned: 0 });
-  }
-  const earned = value.earned;
-  if (!Number.isSafeInteger(earned) || (earned as number) < 0) {
-    return Object.freeze({ dayKey: dayKeyNow, earned: 0 });
-  }
-  return Object.freeze({ dayKey: dayKeyNow, earned: earned as number });
-}
 
 export type PracticeRuneComposite = Readonly<{
   schemaVersion: 'client-practice-rune-operation.v1';
@@ -162,6 +96,19 @@ function exactKeys(value: object, expected: readonly string[]): boolean {
 }
 
 function requestFingerprint(value: PracticeRuneComposite): string {
+  return createHash('sha256').update(JSON.stringify({
+    schemaVersion: 1,
+    ownerStableId: value.ownerStableId,
+    activity: value.activity,
+    sessionKey: value.sessionKey,
+    completionOrdinal: value.completionOrdinal,
+    amount: value.amount,
+    reason: 'practice_session_reward',
+    createdAtMs: value.createdAtMs,
+  })).digest('hex');
+}
+
+function legacyRequestFingerprint(value: PracticeRuneComposite): string {
   return createHash('sha256').update(JSON.stringify({
     schemaVersion: 1,
     ownerStableId: value.ownerStableId,
@@ -213,15 +160,18 @@ export function parsePracticeRuneComposite(input: unknown): PracticeRuneComposit
     || value.ownerStableId.length > 160
     || !Number.isSafeInteger(amount)
     || Number(amount) < 1
-    || Number(amount) > PRACTICE_RUNE_MAX_PER_SESSION
     || value.reason !== 'practice_session_reward'
     || !Number.isSafeInteger(value.createdAtMs)
     || Number(value.createdAtMs) < 0
     || !FINGERPRINT.test(String(value.requestFingerprint ?? ''))) {
     throw new HttpsError('invalid-argument', 'practice_rune_composite_invalid');
   }
+  if (Number(amount) > MAX_PRACTICE_RUNE_STRUCTURAL_AMOUNT) {
+    throw new HttpsError('invalid-argument', 'practice_rune_structural_limit_exceeded');
+  }
   const parsed = value as PracticeRuneComposite;
-  if (requestFingerprint(parsed) !== parsed.requestFingerprint) {
+  if (requestFingerprint(parsed) !== parsed.requestFingerprint
+    && legacyRequestFingerprint(parsed) !== parsed.requestFingerprint) {
     throw new HttpsError('invalid-argument', 'practice_rune_fingerprint_invalid');
   }
   return parsed;
@@ -252,6 +202,61 @@ export function practiceRuneLedgerOperation(
       completionOrdinal: composite.completionOrdinal,
     }),
   });
+}
+
+export function splitPracticeRuneStarOperations(
+  composite: PracticeRuneComposite,
+): readonly StarOpRequest[] {
+  if (composite.amount > MAX_PRACTICE_RUNE_STRUCTURAL_AMOUNT) {
+    throw new HttpsError('invalid-argument', 'practice_rune_structural_limit_exceeded');
+  }
+  if (composite.amount <= STAR_OP_MAX_ABS_DELTA) {
+    return Object.freeze([practiceRuneLedgerOperation(composite)]);
+  }
+  const chunkCount = Math.ceil(composite.amount / STAR_OP_MAX_ABS_DELTA);
+  const chunks: StarOpRequest[] = [];
+  let remaining = composite.amount;
+  for (let index = 0; remaining > 0; index += 1) {
+    const delta = Math.min(remaining, STAR_OP_MAX_ABS_DELTA);
+    chunks.push(Object.freeze({
+      // The first row remains the stable semantic settlement anchor. It makes
+      // operation-id reuse with altered bytes observable before any write.
+      opId: index === 0
+        ? composite.operationId
+        : `practice_rune:${composite.requestFingerprint.slice(0, 40)}_${index + 1}`,
+      delta,
+      reason: 'practice_session' as const,
+      sourceKind: `practice_${composite.activity}`,
+      sourceId: `${composite.sessionKey}.${composite.completionOrdinal}.${index + 1}`,
+      ruleVersion: 1,
+      earnedAtMs: composite.createdAtMs,
+      meta: Object.freeze({
+        clientFingerprint: composite.requestFingerprint,
+        settlementOperationId: composite.operationId,
+        activity: composite.activity,
+        completionOrdinal: composite.completionOrdinal,
+        chunkIndex: index + 1,
+        chunkCount,
+      }),
+    }));
+    remaining -= delta;
+  }
+  return Object.freeze(chunks);
+}
+
+function practiceRuneChunkReplayMatches(
+  receipt: Partial<StarOpReceipt>,
+  operation: StarOpRequest,
+): boolean {
+  return receipt.opId === operation.opId
+    && receipt.delta === operation.delta
+    && receipt.reason === operation.reason
+    && receipt.sourceKind === operation.sourceKind
+    && receipt.sourceId === operation.sourceId
+    && receipt.meta?.clientFingerprint === operation.meta?.clientFingerprint
+    && receipt.meta?.settlementOperationId === operation.meta?.settlementOperationId
+    && receipt.meta?.chunkIndex === operation.meta?.chunkIndex
+    && receipt.meta?.chunkCount === operation.meta?.chunkCount;
 }
 
 export function assertPracticeRuneOwner(
@@ -288,12 +293,13 @@ export const practiceRuneGrant = onCall(
     });
     assertPracticeRuneOwner(stableUid, composite);
     const userRef = db.collection('users').doc(stableUid);
-    const receiptRef = userRef.collection('star_operations').doc(composite.operationId);
+    const starOperations = splitPracticeRuneStarOperations(composite);
+    const receiptRef = userRef.collection('star_operations').doc(starOperations[0]!.opId);
     const now = Date.now();
     return db.runTransaction(async (tx) => {
-      // guard-ok: это чтения ДВУХ конкретных документов по id (users/{uid} и
-      // его расписка), а не запросы коллекций — limit()/where() тут неприменимы.
-      // Ровно два чтения на всю сессию, сколько бы ответов в ней ни было.
+      // guard-ok: это чтения конкретных документов по id (users/{uid} и
+      // детерминированные расписки чанков), а не запросы коллекций —
+      // limit()/where() тут неприменимы. Все чтения выполняются до записей.
       const [userSnap, existingReceipt] = await Promise.all([
         tx.get(userRef), tx.get(receiptRef),
       ]);
@@ -302,7 +308,10 @@ export const practiceRuneGrant = onCall(
       }
       if (existingReceipt.exists) {
         const receipt = existingReceipt.data() as Partial<StarOpReceipt>;
-        if (!practiceRuneReplayMatches(receipt, composite)) {
+        const replayMatches = starOperations.length === 1
+          ? practiceRuneReplayMatches(receipt, composite)
+          : practiceRuneChunkReplayMatches(receipt, starOperations[0]!);
+        if (!replayMatches) {
           throw new HttpsError('already-exists', 'practice_rune_operation_conflict');
         }
         const current = normalizeStars(userSnap.data()?.stars);
@@ -316,23 +325,12 @@ export const practiceRuneGrant = onCall(
           starsSeq: current.seq,
         });
       }
-      // Суточный потолок. Читается из того же документа, что уже загружен —
-      // ни одного дополнительного чтения Firestore.
-      const dayKeyNow = practiceRuneDayKey(now);
-      const daily = readPracticeRuneDaily(
-        userSnap.data()?.practice_runes_daily,
-        dayKeyNow,
-      );
-      if (daily.earned + composite.amount > PRACTICE_RUNE_MAX_PER_DAY) {
-        throw new HttpsError('resource-exhausted', 'practice_rune_daily_cap_reached');
-      }
-
       const prepared = await prepareStarOperations(
         tx,
         db,
         stableUid,
         userSnap,
-        [practiceRuneLedgerOperation(composite)],
+        starOperations,
         {
           nowMs: now,
           activeSeasonId: arenaSeasonWindow(now).seasonId,
@@ -342,16 +340,11 @@ export const practiceRuneGrant = onCall(
         },
       );
       const result = commitStarOperations(tx, prepared);
-      if (result.outcomes[0]?.status !== 'applied') {
+      if (result.outcomes.length !== starOperations.length
+        || result.outcomes.some((outcome) => outcome.status !== 'applied')
+        || result.outcomes.reduce((total, outcome) => total + outcome.appliedDelta, 0) !== composite.amount) {
         throw new HttpsError('failed-precondition', 'practice_rune_materialization_failed');
       }
-      // Счётчик суток двигаем В ТОЙ ЖЕ транзакции, что и баланс: иначе руны
-      // начислились бы, а потолок остался бы нетронутым при сбое между записями.
-      // guard-ok: tx.set внутри транзакции синхронно ставит запись в очередь —
-      // await к нему неприменим, атомарность обеспечивает сама транзакция.
-      tx.set(userRef, {
-        practice_runes_daily: { dayKey: dayKeyNow, earned: daily.earned + composite.amount },
-      }, { merge: true });
       return Object.freeze({
         materialized: true as const,
         operationId: composite.operationId,

@@ -146,7 +146,7 @@ function formatDate(ms: number | null, lang: Lang): string | null {
 function normalizeStoredPremiumPlan(plan: unknown): PremiumStorePlan | null {
   const normalized = String(plan ?? '').trim().toLowerCase();
   if (normalized === 'annual') return 'yearly';
-  return normalized === 'monthly' || normalized === 'yearly' || normalized === 'lifetime' || normalized === 'max_monthly'
+  return normalized === 'monthly' || normalized === 'yearly' || normalized === 'lifetime'
     ? normalized
     : null;
 }
@@ -314,12 +314,9 @@ export default function ManageSubscription() {
   const nextDate = formatDate(metadata.expiryMs ?? null, L);
   const isLifetime = currentPlan === 'lifetime';
   const isMonthly = currentPlan === 'monthly';
-  const isMax = currentPlan === 'max_monthly';
 
   const planLabel = isLifetime
     ? 'Phraseman Pro'
-    : isMax
-      ? LP('Подписка MAX', 'Підписка MAX', 'MAX subscription', 'Suscripción MAX', 'Assinatura MAX', 'Gói MAX', 'Langganan MAX', 'MAX aboneliği', 'Subskrypcja MAX')
     : currentPlan === 'yearly'
       ? LP('Годовая подписка', 'Річна підписка', 'Annual subscription', 'Suscripción anual', 'Assinatura anual', 'Gói năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
       : currentPlan === 'monthly'
@@ -501,9 +498,7 @@ export default function ManageSubscription() {
           <View style={[S.statusBadge, { backgroundColor: `${chrome.tc.heroAccent}1A` }]}>
             <Ionicons name="checkmark-circle" size={16} color={chrome.tc.heroAccent} />
             <Text style={[S.statusText, { color: chrome.tc.heroAccent }]}>
-              {isMax
-                ? LP('MAX активирован', 'MAX активовано', 'MAX activated', 'MAX activado', 'MAX ativado', 'MAX đã kích hoạt', 'MAX aktif', 'MAX etkinleştirildi', 'MAX aktywowany')
-                : LP('Plus активирован', 'Plus активовано', 'Plus activated', 'Plus activado', 'Plus ativado', 'Plus đã kích hoạt', 'Plus aktif', 'Plus etkinleştirildi', 'Plus aktywowany')}
+              {LP('Plus активирован', 'Plus активовано', 'Plus activated', 'Plus activado', 'Plus ativado', 'Plus đã kích hoạt', 'Plus aktif', 'Plus etkinleştirildi', 'Plus aktywowany')}
             </Text>
           </View>
 
@@ -625,9 +620,7 @@ export default function ManageSubscription() {
               </TouchableOpacity>
               <TouchableOpacity onPress={() => { hapticTap(); closeCancelSheet(); }} style={S.sheetSecondary}>
                 <Text style={[S.sheetSecondaryText, { color: chrome.textMuted }]}>
-                  {isMax
-                    ? LP('Остаться в MAX', 'Залишитися в MAX', 'Stay on MAX', 'Quedarme en MAX', 'Ficar no MAX', 'Ở lại MAX', 'Tetap di MAX', "MAX'te kal", 'Zostań w MAX')
-                    : LP('Остаться в Plus', 'Залишитися в Plus', 'Stay on Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus')}
+                  {LP('Остаться в Plus', 'Залишитися в Plus', 'Stay on Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -688,9 +681,7 @@ export default function ManageSubscription() {
                 <Text style={[S.sheetPrimaryText, { color: chrome.tc.ctaText }]}>
                   {saveOffer === 'support'
                     ? LP('Написать нам', 'Написати нам', 'Write to us', 'Escríbenos', 'Fale conosco', 'Nhắn cho chúng tôi', 'Hubungi kami', 'Bize yaz', 'Napisz do nas')
-                    : (isMax
-                        ? LP('Остаться в MAX', 'Залишитися в MAX', 'Stay on MAX', 'Quedarme en MAX', 'Ficar no MAX', 'Ở lại MAX', 'Tetap di MAX', "MAX'te kal", 'Zostań w MAX')
-                        : LP('Остаться в Plus', 'Залишитися в Plus', 'Stay on Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus'))}
+                    : LP('Остаться в Plus', 'Залишитися в Plus', 'Stay on Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus')}
                 </Text>
               </TouchableOpacity>
 

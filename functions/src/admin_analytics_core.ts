@@ -209,7 +209,7 @@ function activeUntil(value: unknown, nowMs: number): boolean {
 }
 
 function storePlan(plan: string): boolean {
-  return ['monthly', 'yearly', 'annual', 'lifetime', 'max_monthly'].includes(plan);
+  return ['monthly', 'yearly', 'annual', 'lifetime'].includes(plan);
 }
 
 function hasRevenueCatProvenance(progress: Record<string, unknown>): boolean {

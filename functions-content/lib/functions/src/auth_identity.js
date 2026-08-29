@@ -1203,6 +1203,96 @@ async function bootstrapMissingStableIdentity(db, authUid, stableId, provider, m
         return throwIdentityCheckUnavailable(error);
     }
 }
+async function rotateRetiredProviderStableLink(db, authUid, retiredStableId, freshStableId, provider, metadata) {
+    const now = Date.now();
+    const authLinkRef = db.collection(AUTH_LINKS).doc(authUid);
+    const freshUserRef = db.collection(USERS).doc(freshStableId);
+    const retiredUserRef = db.collection(USERS).doc(retiredStableId);
+    const existingIdentityQuery = db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(2);
+    const refs = {
+        authMarker: db.collection(account_delete_job_1.ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid),
+        authDenial: db.collection(account_delete_job_1.ACCOUNT_DELETE_PERMANENT_DENIALS)
+            .doc((0, account_delete_job_1.accountDeletePermanentDenialId)(authUid)),
+        retiredTombstone: db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).doc(retiredStableId),
+        retiredDenial: db.collection(account_delete_job_1.ACCOUNT_DELETE_PERMANENT_DENIALS)
+            .doc((0, account_delete_job_1.accountDeletePermanentDenialId)(retiredStableId)),
+        freshTombstone: db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).doc(freshStableId),
+        freshDenial: db.collection(account_delete_job_1.ACCOUNT_DELETE_PERMANENT_DENIALS)
+            .doc((0, account_delete_job_1.accountDeletePermanentDenialId)(freshStableId)),
+    };
+    try {
+        await db.runTransaction(async (transaction) => {
+            const [authLinkSnap, freshUserSnap, existingIdentitySnap, authMarkerSnap, authDenialSnap, retiredTombstoneSnap, retiredDenialSnap, freshTombstoneSnap, freshDenialSnap,] = await Promise.all([
+                transaction.get(authLinkRef),
+                transaction.get(freshUserRef),
+                transaction.get(existingIdentityQuery),
+                transaction.get(refs.authMarker),
+                transaction.get(refs.authDenial),
+                transaction.get(refs.retiredTombstone),
+                transaction.get(refs.retiredDenial),
+                transaction.get(refs.freshTombstone),
+                transaction.get(refs.freshDenial),
+            ]);
+            if (authMarkerSnap.exists || authDenialSnap.exists)
+                throwIdentityRetired('auth');
+            if (freshTombstoneSnap.exists || freshDenialSnap.exists)
+                throwIdentityRetired('stable');
+            if (!retiredTombstoneSnap.exists && !retiredDenialSnap.exists) {
+                throw new https_1.HttpsError('aborted', 'identity_rotation_raced');
+            }
+            if (normalizeStableId(authLinkSnap.data()?.stable_id) !== retiredStableId) {
+                throw new https_1.HttpsError('aborted', 'identity_rotation_raced');
+            }
+            const existingIdentityDocs = existingIdentitySnap.docs ?? [];
+            const hasUnexpectedLiveIdentity = existingIdentityDocs.some((doc) => (doc.id !== retiredStableId
+                || doc.data()?.firebaseAuthUid !== authUid));
+            if (freshUserSnap.exists || hasUnexpectedLiveIdentity) {
+                throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+            }
+            const userData = {
+                firebaseAuthUid: authUid,
+                linkedAuth: {
+                    provider,
+                    providerUid: authUid,
+                    email: metadata && Object.prototype.hasOwnProperty.call(metadata, 'email') ? metadata.email ?? null : null,
+                    displayName: metadata && Object.prototype.hasOwnProperty.call(metadata, 'displayName')
+                        ? metadata.displayName ?? null
+                        : null,
+                    linkedAt: now,
+                    lastSignInAt: metadata?.lastSignInAt ?? now,
+                    devicePlatform: metadata?.devicePlatform ?? 'web',
+                },
+                updatedAt: now,
+            };
+            const authLinkData = {
+                stable_id: freshStableId,
+                providerUid: authUid,
+                provider,
+                linkedAt: now,
+                lastSignInAt: metadata?.lastSignInAt ?? now,
+                updatedAt: now,
+            };
+            if (metadata?.devicePlatform)
+                authLinkData.devicePlatform = metadata.devicePlatform;
+            if (metadata && Object.prototype.hasOwnProperty.call(metadata, 'email')) {
+                authLinkData.email = metadata.email ?? null;
+            }
+            if (metadata && Object.prototype.hasOwnProperty.call(metadata, 'displayName')) {
+                authLinkData.displayName = metadata.displayName ?? null;
+            }
+            if (existingIdentityDocs.some((doc) => doc.id === retiredStableId)) {
+                // Remove only the exact denied old root. Subcollections remain under
+                // the frozen deletion worker; none of their fields are copied.
+                transaction.delete(retiredUserRef);
+            }
+            transaction.create(freshUserRef, userData);
+            transaction.set(authLinkRef, authLinkData);
+        });
+    }
+    catch (error) {
+        throwIdentityCheckUnavailable(error);
+    }
+}
 async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInProvider, metadata) {
     const stableId = normalizeStableId(requestedStableId);
     const provider = signInProvider === 'google.com'
@@ -1224,8 +1314,21 @@ async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInPro
     if (provider) {
         const existingLinkSnap = await readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get());
         const linkedStableId = normalizeStableId(existingLinkSnap?.data()?.stable_id);
-        if (linkedStableId)
-            await assertStableDeletionNotPending(db, linkedStableId);
+        if (linkedStableId) {
+            const [linkedTombstone, linkedDenial] = await Promise.all([
+                readIdentityOrThrow(db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).doc(linkedStableId).get()),
+                readIdentityOrThrow(db.collection(account_delete_job_1.ACCOUNT_DELETE_PERMANENT_DENIALS)
+                    .doc((0, account_delete_job_1.accountDeletePermanentDenialId)(linkedStableId))
+                    .get()),
+            ]);
+            const linkedStableRetired = linkedTombstone.exists || linkedDenial.exists;
+            if (linkedStableRetired && stableId && linkedStableId !== stableId) {
+                await rotateRetiredProviderStableLink(db, authUid, linkedStableId, stableId, provider, metadata);
+                return { ok: true, stableUid: stableId, authUid, identityReady: true };
+            }
+            if (linkedStableRetired)
+                throwIdentityRetired('stable');
+        }
         // Хвост E: auth_links может указывать на УДАЛЁННЫЙ users-док (осиротевшая
         // привязка после deleteAccountAndWipe — серверная чистка fire-and-forget могла
         // снести users/{stableId}, но не auth_links). Повторный вход тем же Google/Apple

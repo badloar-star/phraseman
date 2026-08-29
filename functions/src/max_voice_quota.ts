@@ -26,6 +26,12 @@ import { HttpsError } from 'firebase-functions/v2/https';
 import type { Firestore } from 'firebase-admin/firestore';
 import { resolveAccountDeleteIdentityClosure } from './account_delete';
 import { MAX_VOICE_LIFETIME_TRIAL_RESERVE_SEC } from './max_voice_config';
+import {
+  reserveVoiceMinuteWalletInTransaction,
+  settleVoiceMinuteWalletInTransaction,
+  transferVoiceMinuteWalletReservationInTransaction,
+  type VoiceMinuteAccessType,
+} from './voice_minutes';
 
 export const VOICE_QUOTA_COLLECTION = 'voice_call_quotas';
 
@@ -392,6 +398,8 @@ export interface VoiceReserveArgs {
   maxInitialTrialOffsetSec?: number;
   /** Proof returned by ensureCanonicalVoiceQuota; revalidated in the reserve transaction. */
   quotaIdentityClosureProof?: string;
+  /** Paid packs are reserved from the non-expiring wallet, not calendar caps. */
+  accessType?: VoiceMinuteAccessType;
   nowMs?: number;
 }
 
@@ -470,6 +478,12 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
     const prevReserved = Math.max(0, Math.floor(num(data.reservedSec)));
     let staleRefundedSec = 0;
     if (activeSessionId && prevReserved > 0) {
+      // Paid reservations are bound to the wallet session id. Let the shared
+      // watchdog close them atomically; never evict one using quota counters
+      // alone because that would strand or double-spend wallet seconds.
+      if (data.accessType === 'paid_minutes') {
+        throw new HttpsError('failed-precondition', 'voice_session_active');
+      }
       const lastHeartbeatMs = num(data.lastHeartbeatMs, num(data.sessionStartedAtMs));
       // зачем (аудит 2026-08-24, владелец «связь не установилась»): резерв
       // пишет lastHeartbeatMs = now ПРИ СОЗДАНИИ, ещё до звонка. Поэтому
@@ -505,6 +519,61 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
       staleRefundedSec = prevReserved - consumed;
       win.dailyUsedSec = Math.max(0, win.dailyUsedSec - staleRefundedSec);
       win.monthlyUsedSec = Math.max(0, win.monthlyUsedSec - staleRefundedSec);
+    }
+
+    if (args.accessType === 'paid_minutes') {
+      let paidReserve;
+      try {
+        paidReserve = await reserveVoiceMinuteWalletInTransaction(tx, db, {
+          ownerStableId: args.stableUid,
+          sessionId: args.sessionId,
+          requestedSeconds: Math.floor(
+            Math.max(0, args.formatCapSec) + Math.max(0, args.graceTailSec),
+          ),
+          minimumSeconds: MIN_VOICE_RESERVE_SEC,
+          occurredAtMs: now,
+        });
+      } catch (error) {
+        const reason = error instanceof Error ? error.message : '';
+        if (reason === 'voice_minutes_insufficient') {
+          throw new HttpsError('resource-exhausted', 'voice_minutes_insufficient');
+        }
+        if (reason === 'voice_minute_reservation_active') {
+          throw new HttpsError('failed-precondition', 'voice_session_active');
+        }
+        throw error;
+      }
+      const reservedSec = paidReserve.reservedSeconds;
+      tx.set(ref, {
+        quotaIdentityVersion: VOICE_QUOTA_IDENTITY_VERSION,
+        quotaIdentityClosureProof: suppliedClosureProof,
+        authUid: args.authUid,
+        stableUid: args.stableUid,
+        resetAtMs: win.resetAtMs,
+        monthResetAtMs: win.monthResetAtMs,
+        dailyUsedSec: win.dailyUsedSec,
+        monthlyUsedSec: win.monthlyUsedSec,
+        accessType: 'paid_minutes',
+        activeSessionId: args.sessionId,
+        sessionStartedAtMs: now,
+        activatedAtMs: 0,
+        reservedSec,
+        paidReservationRootSessionId: args.sessionId,
+        paidReservationTotalSec: reservedSec,
+        paidConsumedSec: 0,
+        expiresAtMs: now + (reservedSec + VOICE_RESERVE_EXPIRY_GRACE_SEC) * 1000,
+        lastHeartbeatMs: now,
+        usageTotals: { ...VOICE_USAGE_ZERO },
+        lastHeartbeatElapsedSec: 0,
+        reconnectChain: { rootId: args.sessionId, count: 0, gapSecTotal: 0 },
+        updatedAtMs: now,
+      }, { merge: true });
+      return {
+        reservedSec,
+        dayRemainingSec: paidReserve.availableSeconds,
+        monthRemainingSec: paidReserve.availableSeconds,
+        staleRefundedSec,
+      };
     }
 
     const dayRemaining = Math.max(0, Math.floor(args.dailyVoiceSecMax) - win.dailyUsedSec);
@@ -581,6 +650,10 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
       lastHeartbeatElapsedSec: 0,
       // Свежий минт = новый корень чейна реконнектов.
       reconnectChain: { rootId: args.sessionId, count: 0, gapSecTotal: 0 },
+      accessType: args.accessType ?? (args.consumeLifetimeTrial ? 'trial' : 'admin'),
+      paidReservationRootSessionId: null,
+      paidReservationTotalSec: 0,
+      paidConsumedSec: 0,
       ...(args.consumeLifetimeTrial ? {
         lifetimeTrialUsedAtMs: now,
         trialUsedAtMs: now,
@@ -634,6 +707,38 @@ export async function settleVoiceSession(db: Firestore, args: VoiceSettleArgs): 
     const win = normalizeWindows(data, now);
     const chargedSec = Math.min(reservedSec, Math.max(0, Math.floor(num(args.actualSec))));
     const refundedSec = reservedSec - chargedSec;
+    if (data.accessType === 'paid_minutes') {
+      const reservationTotalSec = Math.max(reservedSec, Math.floor(num(data.paidReservationTotalSec)));
+      const consumedBeforeSec = Math.min(
+        reservationTotalSec,
+        Math.max(0, Math.floor(num(data.paidConsumedSec))),
+      );
+      const paid = await settleVoiceMinuteWalletInTransaction(tx, db, {
+        ownerStableId: args.stableUid,
+        activeSessionId: args.sessionId,
+        rootSessionId: str(data.paidReservationRootSessionId) || args.sessionId,
+        reservationTotalSeconds: reservationTotalSec,
+        chargedSeconds: Math.min(reservationTotalSec, consumedBeforeSec + chargedSec),
+        occurredAtMs: now,
+      });
+      tx.set(ref, {
+        activeSessionId: null,
+        reservedSec: 0,
+        expiresAtMs: 0,
+        paidReservationRootSessionId: null,
+        paidReservationTotalSec: 0,
+        paidConsumedSec: 0,
+        lastSettledSessionId: args.sessionId,
+        lastSettledAtMs: now,
+        lastEndReason: str(args.endReason).slice(0, 40) || 'completed',
+        updatedAtMs: now,
+      }, { merge: true });
+      return {
+        chargedSec: paid.chargedSeconds,
+        refundedSec: paid.refundedSeconds,
+        alreadySettled: false,
+      };
+    }
     tx.set(ref, {
       resetAtMs: win.resetAtMs,
       monthResetAtMs: win.monthResetAtMs,
@@ -715,8 +820,18 @@ export async function settleVoiceSessionWithXp(
     }
     const win = normalizeWindows(data, now);
     const actualSec = args.resolveActualSec ? args.resolveActualSec(data) : num(args.actualSec);
-    const chargedSec = Math.min(reservedSec, Math.max(0, Math.floor(actualSec)));
-    const refundedSec = reservedSec - chargedSec;
+    const currentSegmentChargedSec = Math.min(reservedSec, Math.max(0, Math.floor(actualSec)));
+    const isPaidMinutes = data.accessType === 'paid_minutes';
+    const reservationTotalSec = isPaidMinutes
+      ? Math.max(reservedSec, Math.floor(num(data.paidReservationTotalSec)))
+      : reservedSec;
+    const consumedBeforeSec = isPaidMinutes
+      ? Math.min(reservationTotalSec, Math.max(0, Math.floor(num(data.paidConsumedSec))))
+      : 0;
+    const chargedSec = isPaidMinutes
+      ? Math.min(reservationTotalSec, consumedBeforeSec + currentSegmentChargedSec)
+      : currentSegmentChargedSec;
+    const refundedSec = reservationTotalSec - chargedSec;
 
     // Дневной XP-кэп применяется к НАКОПЛЕННОМУ за день, не к одной сессии,
     // иначе N сессий в день давали бы N×cap.
@@ -727,15 +842,49 @@ export async function settleVoiceSessionWithXp(
     const sessionXp = Math.max(0, Math.floor(args.computeXp(chargedSec, data)));
     const xpAwarded = Math.max(0, Math.min(sessionXp, cap - alreadyToday));
 
+    if (isPaidMinutes) {
+      await settleVoiceMinuteWalletInTransaction(tx, db, {
+        ownerStableId: args.stableUid,
+        activeSessionId: args.sessionId,
+        rootSessionId: str(data.paidReservationRootSessionId) || args.sessionId,
+        reservationTotalSeconds: reservationTotalSec,
+        chargedSeconds: chargedSec,
+        occurredAtMs: now,
+      });
+    }
+
+    // зачем (инцидент владельца 2026-08-29): пробник помечается использованным
+    // при РЕЗЕРВЕ — так двумя параллельными минтами нельзя выпросить два
+    // бесплатных звонка. Но если звонок сорвался и не потратил НИ СЕКУНДЫ
+    // (провайдер не отдал аудио: call_failed / no_remote_audio / empty
+    // transcript), человек терял пробник навсегда, ни разу не поговорив.
+    // Секунды в этом случае уже возвращаются — возвращаем и сам пробник.
+    // Возврат строго по этой сессии: чужую отметку снять нельзя.
+    const refundsLifetimeTrial = !isPaidMinutes
+      && chargedSec === 0
+      && data.accessType === 'trial'
+      && str(data.trialReservationSessionId) === str(args.sessionId);
+
     tx.set(ref, {
       resetAtMs: win.resetAtMs,
       monthResetAtMs: win.monthResetAtMs,
       // Кламп в 0: если день/месяц успел перещёлкнуться, возврат не уходит в минус.
-      dailyUsedSec: Math.max(0, win.dailyUsedSec - refundedSec),
-      monthlyUsedSec: Math.max(0, win.monthlyUsedSec - refundedSec),
+      dailyUsedSec: isPaidMinutes ? win.dailyUsedSec : Math.max(0, win.dailyUsedSec - refundedSec),
+      monthlyUsedSec: isPaidMinutes ? win.monthlyUsedSec : Math.max(0, win.monthlyUsedSec - refundedSec),
       activeSessionId: null,
       reservedSec: 0,
       expiresAtMs: 0,
+      ...(isPaidMinutes ? {
+        paidReservationRootSessionId: null,
+        paidReservationTotalSec: 0,
+        paidConsumedSec: 0,
+      } : {}),
+      ...(refundsLifetimeTrial ? {
+        trialUsedAtMs: null,
+        lifetimeTrialUsedAtMs: null,
+        trialReservationSessionId: null,
+        trialProviderMintedAtMs: 0,
+      } : {}),
       lastSettledSessionId: args.sessionId,
       lastSettledAtMs: now,
       lastEndReason: str(args.endReason).slice(0, 40) || 'completed',
@@ -875,6 +1024,36 @@ export async function releaseVoiceReservation(db: Firestore, args: VoiceReleaseA
       return { chargedSec: 0, refundedSec: 0, alreadySettled: true };
     }
     const win = normalizeWindows(data, now);
+    if (data.accessType === 'paid_minutes') {
+      const reservationTotalSec = Math.max(reservedSec, Math.floor(num(data.paidReservationTotalSec)));
+      const consumedBeforeSec = Math.min(
+        reservationTotalSec,
+        Math.max(0, Math.floor(num(data.paidConsumedSec))),
+      );
+      const paid = await settleVoiceMinuteWalletInTransaction(tx, db, {
+        ownerStableId: args.stableUid,
+        activeSessionId: args.sessionId,
+        rootSessionId: str(data.paidReservationRootSessionId) || args.sessionId,
+        reservationTotalSeconds: reservationTotalSec,
+        chargedSeconds: consumedBeforeSec,
+        occurredAtMs: now,
+      });
+      tx.set(ref, {
+        activeSessionId: null,
+        reservedSec: 0,
+        expiresAtMs: 0,
+        paidReservationRootSessionId: null,
+        paidReservationTotalSec: 0,
+        paidConsumedSec: 0,
+        lastReleaseReason: str(args.reason).slice(0, 40) || 'released',
+        updatedAtMs: now,
+      }, { merge: true });
+      return {
+        chargedSec: paid.chargedSeconds,
+        refundedSec: paid.refundedSeconds,
+        alreadySettled: false,
+      };
+    }
     const restoreUnmintedTrial = args.restoreLifetimeTrial === true
       && str(data.trialReservationSessionId) === args.sessionId
       && num(data.trialProviderMintedAtMs) <= 0;
@@ -1000,6 +1179,14 @@ export async function transferReserve(db: Firestore, args: VoiceTransferArgs): P
     }
 
     const rootSessionId = str(chain.rootId) || str(args.prevSessionId);
+    if (data.accessType === 'paid_minutes') {
+      await transferVoiceMinuteWalletReservationInTransaction(tx, db, {
+        ownerStableId: args.stableUid,
+        previousSessionId: args.prevSessionId,
+        newSessionId: args.newSessionId,
+        occurredAtMs: now,
+      });
+    }
     tx.set(ref, {
       activeSessionId: args.newSessionId,
       sessionStartedAtMs: now,
@@ -1016,6 +1203,12 @@ export async function transferReserve(db: Firestore, args: VoiceTransferArgs): P
         count: chainCount + 1,
         gapSecTotal: gapTotal + freeGapSec,
       },
+      ...(data.accessType === 'paid_minutes' ? {
+        paidConsumedSec: Math.min(
+          Math.max(reservedSec, Math.floor(num(data.paidReservationTotalSec))),
+          Math.max(0, Math.floor(num(data.paidConsumedSec))) + consumedSec,
+        ),
+      } : {}),
       updatedAtMs: now,
     }, { merge: true });
 

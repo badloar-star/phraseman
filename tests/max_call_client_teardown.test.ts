@@ -289,6 +289,76 @@ describe('happy-path: idle → … → active на моках deps', () => {
     expect(sent.filter((event) => event.type === 'response.create')).toHaveLength(1);
   });
 
+  // зачем (владелец 2026-08-29): «отвечает на одну реплику дважды — не
+  // договаривает первую и говорит вторую», а неудачная попытка это починить
+  // дала худшее: «говорит без остановки и отвечает сам себе». Оба дефекта —
+  // про ОДНО место: очередь ответа, накопленную во время речи MAX. Тесты
+  // фиксируют обе границы, чтобы следующая правка не свалилась ни в одну.
+  it('речь, порезанная VAD во время ответа MAX, не даёт второго ответа на тот же ход', async () => {
+    const h = makeHarness();
+    await connect(h);
+    dcMessage(h, { type: 'response.created' });
+    dcMessage(h, { type: 'output_audio_buffer.started' });
+    h.dc.send.mockClear();
+
+    dcMessage(h, { type: 'input_audio_buffer.speech_stopped' });
+    dcMessage(h, { type: 'input_audio_buffer.speech_stopped' });
+    dcMessage(h, {
+      type: 'conversation.item.input_audio_transcription.completed',
+      transcript: 'i would like a coffee please',
+    });
+    dcMessage(h, { type: 'output_audio_buffer.stopped' });
+    dcMessage(h, { type: 'response.done', response: {} });
+
+    const sent = h.dc.send.mock.calls.map(([raw]) => JSON.parse(raw as string) as { type: string });
+    expect(sent.filter((event) => event.type === 'response.create')).toHaveLength(1);
+  });
+
+  it('обрезанный по лимиту ответ НЕ договаривается, если ученик уже заговорил', async () => {
+    // зачем (владелец 2026-08-29): договорка создавала второй response на тот
+    // же ход — «не договорил первую и сказал вторую». Ход ученика важнее.
+    const h = makeHarness();
+    await connect(h);
+    dcMessage(h, { type: 'response.created' });
+    dcMessage(h, { type: 'output_audio_buffer.started' });
+    h.dc.send.mockClear();
+
+    // Ученик заговорил поверх — ответ встал в очередь и ждёт транскрипта.
+    dcMessage(h, { type: 'input_audio_buffer.speech_stopped' });
+    dcMessage(h, {
+      type: 'conversation.item.input_audio_transcription.completed',
+      transcript: 'wait i have a question',
+    });
+    dcMessage(h, { type: 'output_audio_buffer.stopped' });
+    // Ответ учителя оборвался по лимиту токенов.
+    dcMessage(h, {
+      type: 'response.done',
+      response: { status: 'incomplete', status_details: { reason: 'max_output_tokens' } },
+    });
+
+    const sent = h.dc.send.mock.calls
+      .map(([raw]) => JSON.parse(raw as string) as { type: string; response?: { instructions?: string } })
+      .filter((event) => event.type === 'response.create');
+    // Ровно один ответ — на реплику ученика, а не договорка учителя.
+    expect(sent).toHaveLength(1);
+    expect(sent[0].response?.instructions ?? '').not.toContain('cut off mid-sentence');
+  });
+
+  it('не создаёт ответ сам себе, когда ученик молчит', async () => {
+    const h = makeHarness();
+    await connect(h);
+    h.dc.send.mockClear();
+
+    dcMessage(h, { type: 'response.created' });
+    dcMessage(h, { type: 'output_audio_buffer.started' });
+    dcMessage(h, { type: 'output_audio_buffer.stopped' });
+    dcMessage(h, { type: 'response.done', response: {} });
+    jest.advanceTimersByTime(5_000);
+
+    const sent = h.dc.send.mock.calls.map(([raw]) => JSON.parse(raw as string) as { type: string });
+    expect(sent.filter((event) => event.type === 'response.create')).toHaveLength(0);
+  });
+
   it('битый JSON и неизвестные события — тихий no-op, не throw', async () => {
     const h = makeHarness();
     const client = await connect(h);

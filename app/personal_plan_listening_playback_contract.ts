@@ -18,9 +18,16 @@ export type PlanListeningPlaybackSource =
       source: 'in_app_audio';
       uri: string;
       playerSource: string | { assetId: number };
+      // зачем: единственный потребитель (personal_plan_exercise.tsx) читает
+      // из useAudioPlayerStatus только didJustFinish/playing/isBuffering —
+      // currentTime/duration нигде не используются. 250мс тика
+      // playbackStatusUpdate на всё время воспроизведения даёт setState без
+      // React.memo вокруг тяжёлого контента, поэтому интервал поднят до
+      // недостижимого — событийные апдейты (onIsPlayingChanged и т.п.)
+      // по-прежнему приходят мгновенно из нативных слушателей.
       options: {
         downloadFirst: false;
-        updateInterval: 250;
+        updateInterval: 60_000;
       };
       audioMode: LoudPlaybackAudioMode;
       issues: [];
@@ -64,7 +71,7 @@ export function buildPlanListeningPlaybackSource(
     playerSource,
     options: {
       downloadFirst: false,
-      updateInterval: 250,
+      updateInterval: 60_000,
     },
     audioMode: LOUD_PLAYBACK_AUDIO_MODE,
     issues: [],

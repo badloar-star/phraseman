@@ -88,6 +88,7 @@ function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose, motion
   const closeLabel = triLang(lang, {
     ru: 'Закрыть',
     uk: 'Закрити',
+    en: 'Close',
     es: 'Entendido',
     'pt-BR': 'Entendi',
     vi: 'Đã hiểu',

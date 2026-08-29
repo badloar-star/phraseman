@@ -58,30 +58,26 @@ export const fk = {
     haptics.pop();
   },
 
-  /** Верный ответ: тёплый «дин-дон» + success haptic. */
-  correct(options?: VerdictSoundOptions): void {
-    soundDirector.request('pm.learn.correct', options);
+  /** Верный ответ: только success haptic. */
+  correct(_options?: VerdictSoundOptions): void {
     haptics.correct();
   },
 
   /**
-   * Ошибка: по просьбе пользователя ЗВУК неправильного ответа убран совсем —
-   * остаётся только error-хаптика (мягкая вибрация, НЕ «бззз»).
+   * Ошибка: только error-хаптика (мягкая вибрация, НЕ «бззз»).
    */
-  wrong(options?: VerdictSoundOptions): void {
-    soundDirector.request('pm.learn.needs_work', options);
+  wrong(_options?: VerdictSoundOptions): void {
     haptics.wrong();
   },
 
-  /** Atomic verdict: one decision replaces correct+completion stacking. */
+  /** A unit-completion sound may play; ordinary answer verdicts stay silent. */
   verdict({ correct, completesUnit, completionEvent, dedupeKey }: VerdictOptions): void {
-    soundDirector.requestLearningVerdict({
-      correct,
-      completesUnit,
-      completionEvent,
-      dedupeKey,
-      scope: 'learning-verdict',
-    });
+    if (completesUnit) {
+      soundDirector.request(completionEvent ?? 'pm.complete.micro', {
+        dedupeKey,
+        scope: 'learning-verdict',
+      });
+    }
     if (correct) haptics.correct();
     else haptics.wrong();
   },

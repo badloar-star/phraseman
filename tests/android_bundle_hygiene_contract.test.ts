@@ -179,9 +179,21 @@ expoAutolinking.useExpoModules()
     const appConfig = JSON.parse(read('app.json')) as { expo?: { plugins?: unknown[] } };
     const fontPlugin = appConfig.expo?.plugins?.find((entry) => Array.isArray(entry) && entry[0] === 'expo-font');
     expect(fontPlugin).toEqual(expect.any(Array));
-    const families = ((fontPlugin as [string, { android?: { fonts?: Array<{ fontFamily?: string }> } }])[1]
-      .android?.fonts ?? []).map((font) => font.fontFamily);
-    expect(families).toEqual(['Inter', 'Inter-SemiBold', 'Inter-Bold', 'Inter-Black']);
+    const androidFonts = ((fontPlugin as [string, {
+      android?: {
+        fonts?: Array<{
+          fontFamily?: string;
+          fontDefinitions?: Array<{ weight?: number }>;
+        }>;
+      };
+    }])[1].android?.fonts ?? []);
+    expect(androidFonts.map((font) => font.fontFamily)).toEqual(['Inter']);
+    expect(androidFonts[0]?.fontDefinitions?.map((definition) => definition.weight)).toEqual([
+      400,
+      600,
+      700,
+      900,
+    ]);
   });
 
   it('keeps non-runtime build inputs out of the EAS upload archive', () => {

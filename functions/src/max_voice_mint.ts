@@ -18,7 +18,7 @@ import { createHash, randomUUID } from 'crypto';
 import type { Firestore } from 'firebase-admin/firestore';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
-import { resolveIsLifetimePlan, resolveIsMaxTier, resolvePremiumAccess } from './premium_status';
+import { resolveIsLifetimePlan, resolvePremiumAccess } from './premium_status';
 import { aiGloballyDisabled } from './remote_gates';
 import { resolveMaxVoiceConfig, type MaxVoiceConfig } from './max_voice_config';
 import {
@@ -64,6 +64,7 @@ import {
   maxVoiceOpsLocale,
   recordMaxVoiceOpsOnce,
 } from './max_voice_ops';
+import { readVoiceMinuteWallet, type VoiceMinuteAccessType } from './voice_minutes';
 
 // Идемпотентный бутстрап: модуль может грузиться и напрямую (targeted deploy),
 // и через lib/index.js — паттерн premium_dialog.ts.
@@ -269,10 +270,10 @@ export interface VoiceTrialState {
 /**
  * Пробник доступен ровно один раз за жизнь стабильного аккаунта.
  *
- * trialUsedAtMs — прежнее имя поля, но теперь это бессрочный штамп. Для
- * fail-closed миграции учитываем детерминированную историю старых звонков:
- * раньше Плюс/Про могли расходовать monthlyUsedSec без trialUsedAtMs. Истёкший
- * monthResetAtMs не обнуляет сам факт такого использования.
+ * Только выделенные trial-маркеры доказывают расход бесплатного пробника.
+ * activatedAtMs, lastSettledAtMs и monthlyUsedSec описывают обычные звонки и
+ * подписочную историю; использовать их как trial-маркер нельзя — после
+ * миграции MAX в покупаемые минуты это отбирало неиспользованные 3 минуты.
  */
 export function resolveTrialState(
   quotaData: Record<string, unknown> | undefined,
@@ -280,15 +281,12 @@ export function resolveTrialState(
   _nowMs: number,
 ): VoiceTrialState {
   const data = quotaData ?? {};
-  const legacyUsageMarker = Math.max(
+  const trialUsageMarker = Math.max(
     0,
     num(data.lifetimeTrialUsedAtMs),
     num(data.trialUsedAtMs),
-    num(data.activatedAtMs),
-    num(data.lastSettledAtMs),
-    num(data.monthlyUsedSec) > 0 ? 1 : 0,
   );
-  return { available: legacyUsageMarker <= 0, usedAtMs: legacyUsageMarker };
+  return { available: trialUsageMarker <= 0, usedAtMs: trialUsageMarker };
 }
 
 export type VoiceTrialVariant = 'companion' | 'scenario';
@@ -369,38 +367,31 @@ interface VoiceGateContext {
   stableUid: string;
   config: MaxVoiceConfig;
   isPremium: boolean;
-  /** Активна ли отдельная подписка MAX (большой пакет минут). */
-  isMaxTier: boolean;
   quotaData: Record<string, unknown>;
-  access: 'max' | 'trial';
+  access: VoiceMinuteAccessType;
+  paidAvailableSec: number;
   trialVariant: VoiceTrialVariant | null;
   nowMs: number;
 }
 
 /**
- * Пакет минут по тиру: MAX — 120 минут в месяц; Free/Плюс/Про — только один
- * общий пожизненный пробный звонок, которому нужен технический резерв с хвостом.
- *
- * Дневной потолок общий для всех платных тиров: он растягивает месячный пакет,
- * а не режет доступ.
+ * Купленные минуты живут в неистекающем серверном wallet и не используют
+ * календарные лимиты. Trial/admin сохраняют технический резерв с хвостом.
  */
 export function monthlyVoiceCapFor(
   config: MaxVoiceConfig,
-  isMaxTier: boolean,
-  _isPremium: boolean,
-  access: 'max' | 'trial' = 'max',
+  access: VoiceMinuteAccessType,
 ): number {
-  if (isMaxTier) return config.monthlyVoiceSecMax;
   // У пробника месячного пакета нет, но своя единственная
   // сессия должна поместиться — иначе резерв упрётся в ноль и звонок не
   // состоится вовсе. Разовость держит trialUsedAtMs, а не месячный счётчик.
   if (access === 'trial') return config.trialCallSec + config.graceTailSec;
-  return 0;
+  return config.monthlyVoiceSecMax;
 }
 
 /**
  * Гейты в порядке теста №11: kill switch (aiGloballyDisabled + gate_ai_voice_call)
- * → серверный тариф (MAX / Plus / Pro) ИЛИ пробник. Бросает HttpsError на
+ * → купленные минуты ИЛИ trial/admin gate. Бросает HttpsError на
  * первом же закрытом гейте. Устаревший voiceForPremiumBeta больше не участвует.
  */
 async function resolveVoiceGates(
@@ -415,7 +406,7 @@ async function resolveVoiceGates(
   // зачем: владелец 2026-08-16 — соединение должно быть мгновенным. Три чтения
   // не зависят друг от друга, поэтому идут ПАРАЛЛЕЛЬНО (−2 сетевых круга на
   // минте); ПОРЯДОК проверки гейтов при этом прежний (тест №11): рубильник ИИ →
-  // гейт звонков → подписка/квота.
+  // гейт звонков → кошелёк/trial-квота.
   const [globallyDisabled, config, stableUid] = await Promise.all([
     aiGloballyDisabled(db),
     resolveMaxVoiceConfig(db),
@@ -446,61 +437,65 @@ async function resolveVoiceGates(
     throw new HttpsError('failed-precondition', 'voice_disabled');
   }
 
-  // Подписку резолвит сервер — телу запроса не верим (паттерн premium_dialog).
-  // Подписка, тир MAX и док квоты — независимые чтения, поэтому параллельно.
-  const [isPremium, isMaxTier, quotaData] = await Promise.all([
+  // Premium is read only to select the existing trial flag. Paid voice access
+  // is authoritative in the independent server wallet, never an entitlement.
+  const [isPremium, quotaData, paidWallet] = await Promise.all([
     resolvePremiumAccess(db, stableUid, Date.now(), authUid),
-    resolveIsMaxTier(db, stableUid, Date.now(), authUid),
     ensureCanonicalVoiceQuota(db, { authUid, stableUid, nowMs }),
+    readVoiceMinuteWallet(db, stableUid),
   ]);
 
-  // MAX получает 120 мин/мес. Все остальные серверные тиры (Free/Плюс/Про)
-  // проходят одну и ту же пожизненную пробную ветку: апгрейд обычного тарифа
-  // не должен сбрасывать trialUsedAtMs или давать второй звонок.
-  // Админ приравнен к MAX: свои тестовые звонки не должны упираться в пейвол.
-  if (isMaxTier || isAdmin) {
-    return { db, authUid, stableUid, config, isPremium, isMaxTier: true, quotaData, access: 'max', trialVariant: null, nowMs };
+  if (isAdmin) {
+    return {
+      db, authUid, stableUid, config, isPremium, quotaData,
+      access: 'admin', paidAvailableSec: paidWallet.availableSeconds,
+      trialVariant: null, nowMs,
+    };
   }
-  // Free/Плюс/Про — общий пробник. Исчерпан -> линия закрыта, клиент
-  // показывает пейвол MAX по коду voice_max_required.
-  //
-  // ⚠️ РЕКОННЕКТ ИСКЛЮЧЁН ИЗ ПЕЙВОЛА: он продолжает УЖЕ оплаченную и уже
-  // начатую сессию. Иначе просадка сети посреди пробного урока обрывала бы
-  // человека пейволом — он терял бы звонок, за который уже «заплатил» своим
-  // единственным пробником. Резерв секунд при этом не выдаётся заново:
-  // reconnectOf переносит остаток прежней сессии (transferReserve ниже).
-  const isReconnect = text(data.reconnectOf, 80) !== '';
-  const trial = resolveTrialAccess(quotaData, config, nowMs);
 
-  // зачем: владелец 2026-08-24 — «чтобы не тратить деньги»: пробник платный, и
-  // админка обязана уметь погасить его отдельно для Free, Плюса и Про.
-  //
-  // Тир считаем ТОЛЬКО когда флаги реально расходятся, иначе лишнее чтение
-  // Firestore на каждый звонок. Если у всех трёх флагов одно значение, ответ
-  // уже известен и resolveIsLifetimePlan не вызывается.
-  //
-  // Реконнект проверяется ДО этой ветки (ниже): начатый звонок не рубим на
-  // полуслове — человек уже потратил свой единственный пробник.
-  if (trial && !isReconnect) {
+  const isReconnect = text(data.reconnectOf, 80) !== '';
+  if (isReconnect) {
+    const activeAccess = quotaData.accessType === 'paid_minutes' ? 'paid_minutes' : 'trial';
+    return {
+      db, authUid, stableUid, config, isPremium, quotaData,
+      access: activeAccess,
+      paidAvailableSec: paidWallet.availableSeconds,
+      trialVariant: activeAccess === 'trial' ? 'scenario' : null,
+      nowMs,
+    };
+  }
+
+  // зачем (владелец 2026-08-29): КУПЛЕННЫЕ МИНУТЫ ИДУТ ПЕРВЫМИ. Раньше trial
+  // проверялся раньше кошелька, и у владельца со 120 купленными минутами экран
+  // урока не открывался вовсе: сервер выдавал trial с потолком 3 минуты, урок
+  // tutor в него не помещался, минт отвечал отказом — а оплаченные минуты
+  // лежали нетронутыми. Пробник теперь берётся только когда платить нечем: так
+  // он и остаётся тем, чем задуман — пробой для того, у кого минут нет.
+  if (paidWallet.availableSeconds >= 60) {
+    return {
+      db, authUid, stableUid, config, isPremium, quotaData,
+      access: 'paid_minutes', paidAvailableSec: paidWallet.availableSeconds,
+      trialVariant: null, nowMs,
+    };
+  }
+
+  const trial = resolveTrialAccess(quotaData, config, nowMs);
+  if (trial) {
     const tierTrialEnabled = await isTrialEnabledForTier(
       db, stableUid, authUid, isPremium, config, nowMs,
     );
-    if (!tierTrialEnabled) {
-      console.warn('max_voice_mint rejected', { reason: 'voice_max_required', cause: 'trial_disabled_for_tier' });
-      await rejectBeforeReserve('paywall');
-      throw new HttpsError('permission-denied', 'voice_max_required');
+    if (tierTrialEnabled) {
+      return {
+        db, authUid, stableUid, config, isPremium, quotaData,
+        access: 'trial', paidAvailableSec: paidWallet.availableSeconds,
+        trialVariant: trial, nowMs,
+      };
     }
   }
 
-  if (!trial && isReconnect) {
-    return { db, authUid, stableUid, config, isPremium, isMaxTier: false, quotaData, access: 'trial', trialVariant: 'scenario', nowMs };
-  }
-  if (!trial) {
-    console.warn('max_voice_mint rejected', { reason: 'voice_max_required' });
-    await rejectBeforeReserve('paywall');
-    throw new HttpsError('permission-denied', 'voice_max_required');
-  }
-  return { db, authUid, stableUid, config, isPremium, isMaxTier: false, quotaData, access: 'trial', trialVariant: trial, nowMs };
+  console.warn('max_voice_mint rejected', { reason: 'voice_max_required' });
+  await rejectBeforeReserve('paywall');
+  throw new HttpsError('permission-denied', 'voice_max_required');
 }
 
 /** Read-only остаток дня/месяца (для preflight; резерв всё равно транзакционный). */
@@ -508,13 +503,17 @@ export function estimateQuotaRemaining(
   quotaData: Record<string, unknown>,
   config: MaxVoiceConfig,
   nowMs: number,
-  tier?: { isMaxTier: boolean; isPremium: boolean; access: 'max' | 'trial' },
+  tier?: { access: VoiceMinuteAccessType; paidAvailableSec?: number },
 ): { dayRemainingSec: number; monthRemainingSec: number } {
+  if (tier?.access === 'paid_minutes') {
+    const available = Math.max(0, Math.floor(tier.paidAvailableSec ?? 0));
+    return { dayRemainingSec: available, monthRemainingSec: available };
+  }
   const dailyUsed = nowMs >= num(quotaData.resetAtMs) ? 0 : Math.max(0, num(quotaData.dailyUsedSec));
   const monthlyUsed = nowMs >= num(quotaData.monthResetAtMs) ? 0 : Math.max(0, num(quotaData.monthlyUsedSec));
   // Без тира (старые вызовы) считаем по максимальному пакету — прежнее поведение.
   const monthlyCap = tier
-    ? monthlyVoiceCapFor(config, tier.isMaxTier, tier.isPremium, tier.access)
+    ? monthlyVoiceCapFor(config, tier.access)
     : config.monthlyVoiceSecMax;
   const now = new Date(nowMs);
   const currentMonthStartedAtMs = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1);
@@ -527,12 +526,12 @@ export function estimateQuotaRemaining(
     && num(quotaData.trialProviderMintedAtMs) > 0
     ? Math.min(monthlyUsed, config.trialCallSec + config.graceTailSec)
     : 0;
-  const maxBaseline = tier?.isMaxTier
+  const maxBaseline = tier?.access === 'admin'
     ? markerMatchesWindow
       ? Math.min(monthlyUsed, Math.max(0, num(quotaData.maxAllowanceUsageBaselineSec)))
       : currentMonthTrialOffset
     : 0;
-  const effectiveMonthlyUsed = tier?.isMaxTier ? monthlyUsed - maxBaseline : monthlyUsed;
+  const effectiveMonthlyUsed = tier?.access === 'admin' ? monthlyUsed - maxBaseline : monthlyUsed;
   return {
     dayRemainingSec: Math.max(0, config.dailyVoiceSecMax - dailyUsed),
     monthRemainingSec: Math.max(0, monthlyCap - effectiveMonthlyUsed),
@@ -558,7 +557,7 @@ async function recordMintRejection(
 
 type VoiceMintFormat = 'scenario' | 'companion' | 'trial' | 'tutor';
 
-function formatOf(data: Record<string, unknown>, access: 'max' | 'trial', trialVariant: VoiceTrialVariant | null): VoiceMintFormat {
+function formatOf(data: Record<string, unknown>, access: VoiceMinuteAccessType, trialVariant: VoiceTrialVariant | null): VoiceMintFormat {
   if (access === 'trial') return 'trial';
   const raw = text(data.format, 20);
   // зачем: 'tutor' — урок-звонок с учителем (вариант A, владелец 2026-08-16).
@@ -622,7 +621,12 @@ export const maxVoicePreflight = onCall({
     nowMs,
     request.auth.token?.admin === true,
   );
-  const { dayRemainingSec, monthRemainingSec } = estimateQuotaRemaining(ctx.quotaData, ctx.config, nowMs, { isMaxTier: ctx.isMaxTier, isPremium: ctx.isPremium, access: ctx.access });
+  const { dayRemainingSec, monthRemainingSec } = estimateQuotaRemaining(
+    ctx.quotaData,
+    ctx.config,
+    nowMs,
+    { access: ctx.access, paidAvailableSec: ctx.paidAvailableSec },
+  );
   const quotaReason = voiceQuotaExhaustedReason(dayRemainingSec, monthRemainingSec);
   if (quotaReason) {
     console.warn('max_voice_preflight rejected', { reason: quotaReason, dayRemainingSec, monthRemainingSec });
@@ -941,7 +945,12 @@ export const maxVoiceMint = onCall({
       nowMs,
     });
     reservedSec = transfer.reservedSec;
-    const remaining = estimateQuotaRemaining(ctx.quotaData, config, nowMs, { isMaxTier: ctx.isMaxTier, isPremium: ctx.isPremium, access: ctx.access });
+    const remaining = estimateQuotaRemaining(
+      ctx.quotaData,
+      config,
+      nowMs,
+      { access: ctx.access, paidAvailableSec: ctx.paidAvailableSec },
+    );
     dayRemainingSec = remaining.dayRemainingSec;
     monthRemainingSec = remaining.monthRemainingSec;
   } else {
@@ -950,7 +959,7 @@ export const maxVoiceMint = onCall({
       ctx.quotaData,
       config,
       nowMs,
-      { isMaxTier: ctx.isMaxTier, isPremium: ctx.isPremium, access: ctx.access },
+      { access: ctx.access, paidAvailableSec: ctx.paidAvailableSec },
     );
     const estimatedQuotaReason = voiceQuotaExhaustedReason(
       estimatedRemaining.dayRemainingSec,
@@ -983,24 +992,25 @@ export const maxVoiceMint = onCall({
         formatCapSec: capSec,
         graceTailSec: config.graceTailSec,
         dailyVoiceSecMax: config.dailyVoiceSecMax,
-        // MAX резервируется из пакета 120 мин/мес; Free/Плюс/Про — из одного
-        // пробного резерва до 3 минут. Разовость держит trialUsedAtMs.
-        monthlyVoiceSecMax: monthlyVoiceCapFor(config, ctx.isMaxTier, ctx.isPremium, ctx.access),
+        monthlyVoiceSecMax: monthlyVoiceCapFor(config, ctx.access),
         consumeLifetimeTrial: ctx.access === 'trial',
+        accessType: ctx.access,
         quotaIdentityClosureProof: text(ctx.quotaData.quotaIdentityClosureProof, 80),
-        maxMonthlyAllowance: ctx.isMaxTier,
-        maxInitialTrialOffsetSec: config.trialCallSec + config.graceTailSec,
         nowMs,
       });
     } catch (error) {
       const rawReason = error instanceof Error ? error.message : '';
-      if (rawReason === 'voice_daily_quota_exhausted' || rawReason === 'voice_monthly_quota_exhausted') {
+      if (rawReason === 'voice_daily_quota_exhausted'
+        || rawReason === 'voice_monthly_quota_exhausted'
+        || rawReason === 'voice_minutes_insufficient') {
         await recordMintRejection(
           db,
           authUid,
           stableUid,
           rejectionMarkerId,
-          rawReason === 'voice_monthly_quota_exhausted' ? 'monthly_quota' : 'daily_quota',
+          rawReason === 'voice_minutes_insufficient'
+            ? 'paywall'
+            : rawReason === 'voice_monthly_quota_exhausted' ? 'monthly_quota' : 'daily_quota',
           nowMs,
         );
       }
@@ -1173,6 +1183,7 @@ export const maxVoiceMint = onCall({
       day: dayRemainingSec,
       month: monthRemainingSec,
     }),
+    access: ctx.access,
     trialVariant: ctx.trialVariant,
     // Учитель: имя (шапка экрана звонка) и инструкция первого ответа — клиент
     // шлёт её в response.create вместо ролевого приветствия.

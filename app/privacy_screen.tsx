@@ -48,6 +48,7 @@ export default function PrivacyScreen() {
               accessibilityLabel={triLang(lang, {
                 ru: 'Открыть политику на сайте Knowly',
                 uk: 'Відкрити політику на сайті Knowly',
+                en: 'Open the policy on knowlyapps.com',
                 es: 'Abrir la política en knowlyapps.com',
                 'pt-BR': 'Abrir a política em knowlyapps.com',
                 vi: 'Mở chính sách trên knowlyapps.com',

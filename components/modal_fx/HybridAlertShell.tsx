@@ -38,6 +38,9 @@ type Props = {
   backdropColor?: string;
   /** Блокирующие решения закрываются только явной кнопкой внутри панели. */
   dismissible?: boolean;
+  /** Длинная форма занимает всю доступную высоту, чтобы её ScrollView получил
+   * измеренный viewport, а не был обрезан внешним overflow:hidden. */
+  fillAvailableHeight?: boolean;
 };
 
 /**
@@ -55,6 +58,7 @@ function HybridAlertShell({
   testID,
   backdropColor = 'rgba(0,0,0,0.60)',
   dismissible = true,
+  fillAvailableHeight = false,
 }: Props) {
   const reduceMotion = useReduceMotion();
   const backdropOpacity = useSharedValue(0);
@@ -152,8 +156,19 @@ function HybridAlertShell({
         <View style={styles.center} pointerEvents="box-none">
           {/* guard-ok: чисто структурная обёртка, гасит всплытие тапа до скрима —
               её единственная роль такая же декоративная, как у самого скрима. */}
-          <Pressable onPress={(e) => e.stopPropagation()} style={styles.pressableWrap}>
-            <Reanimated.View style={[styles.panel, { shadowColor }, panelStyle, noAndroidOutline]}>
+          <Pressable
+            onPress={(e) => e.stopPropagation()}
+            style={[styles.pressableWrap, fillAvailableHeight ? styles.fillAvailableHeight : undefined]}
+          >
+            <Reanimated.View
+              style={[
+                styles.panel,
+                fillAvailableHeight ? styles.fillAvailableHeight : undefined,
+                { shadowColor },
+                panelStyle,
+                noAndroidOutline,
+              ]}
+            >
               {visible ? children : null}
             </Reanimated.View>
           </Pressable>
@@ -219,5 +234,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.35,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 10 },
+  },
+  fillAvailableHeight: {
+    flex: 1,
   },
 });

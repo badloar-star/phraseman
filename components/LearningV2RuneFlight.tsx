@@ -8,6 +8,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
+import { soundDirector } from '../modules/audio/sound_director';
 
 const RUNE_ASSET = require('../assets/images/level-spin-rewards/stars_10.webp');
 
@@ -47,6 +48,16 @@ interface RuneProps {
   onLastDone: () => void;
 }
 
+// Один тихий звук старта даёт полёту тактильность, но не повторяется для каждой
+// из 1–3 рун и не конкурирует с правильным ответом или озвучкой фразы.
+const RUNE_FLIGHT_SOUND_OPTIONS = {
+  scope: 'rune-flight',
+} as const;
+
+const playFlightStart = () => {
+  soundDirector.request('pm.reward.rune_flight_start', RUNE_FLIGHT_SOUND_OPTIONS);
+};
+
 const FlightRune = memo(function FlightRune({
   index,
   isLast,
@@ -57,10 +68,14 @@ const FlightRune = memo(function FlightRune({
   const progress = useSharedValue(0);
 
   useEffect(() => {
+    // Звук отрыва — один на всю пачку: его даёт первая руна, иначе три
+    // наложенных вдоха превратятся в шум.
+    if (index === 0) playFlightStart();
     progress.value = withDelay(
       index * STAGGER_MS,
       withTiming(1, { duration: FLIGHT_MS, easing: FLIGHT_EASE }, (finished) => {
-        if (finished && isLast) scheduleOnRN(onLastDone);
+        if (!finished) return;
+        if (isLast) scheduleOnRN(onLastDone);
       }),
     );
   }, [index, isLast, onLastDone, progress]);

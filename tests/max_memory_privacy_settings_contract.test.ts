@@ -5,13 +5,13 @@ const root = path.resolve(__dirname, '..');
 const read = (file: string) => fs.readFileSync(path.join(root, file), 'utf8');
 
 describe('MAX memory privacy settings contract', () => {
-  it('exposes independent voice consent and learner-owned memory controls', () => {
+  it('exposes independent voice consent without a MAX memory entry in settings', () => {
     const source = read('app/privacy_settings.tsx');
     expect(source).toContain('privacy-ai-voice-consent');
     expect(source).toContain('setAiVoiceConsent');
     expect(source).toContain('recordAiVoiceConsentToCloud');
-    expect(source).toContain('privacy-max-memory');
-    expect(source).toContain("router.push('/max_memory_settings'");
+    expect(source).not.toContain('privacy-max-memory');
+    expect(source).not.toContain("router.push('/max_memory_settings'");
     expect(source).not.toContain('clearMaxMemory');
   });
 

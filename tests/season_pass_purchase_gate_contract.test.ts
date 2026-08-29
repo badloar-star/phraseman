@@ -66,7 +66,9 @@ describe('закрытый подарок объясняет причину', ()
     // ради чего копить звёзды.
     expect(SOURCE).toMatch(/status: SeasonRewardCardStatus = claimable/);
     expect(SOURCE).toContain("isClaimed ? 'claimed' : locked ? 'locked' : 'upcoming'");
-    expect(SOURCE).toContain('setOpenInfoReward({ reward, level, side, status })');
+    expect(SOURCE).toContain('setOpenInfoReward({');
+    expect(SOURCE).toContain('claimToken: captureAccountGeneration()');
+    expect(SOURCE).toContain('claimSeasonId: seasonId');
     expect(SOURCE).toContain('<SeasonRewardInfoModal');
   });
 
@@ -90,7 +92,8 @@ describe('закрытый подарок объясняет причину', ()
   test('просмотр описания сам по себе НИЧЕГО не выдаёт', () => {
     // Деньги: модалка read-only. Клейм обязан идти только через onClaim,
     // под теми же условиями claimable, а не срабатывать от открытия окна.
-    expect(SOURCE).toMatch(/onClaim=\{[\s\S]{0,200}onClaimReward\(reward, level, side\)/);
+    expect(SOURCE).toMatch(/onClaim=\{[\s\S]{0,400}onClaimReward\(\s*intent\.reward/);
+    expect(SOURCE).toContain('commitSeasonPassRewardClaim({');
     // Открытие описания — чистый setState без записи в инвентарь.
     expect(SOURCE).not.toMatch(/setOpenInfoReward\([\s\S]{0,120}addSeasonPassGift/);
   });

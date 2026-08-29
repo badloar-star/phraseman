@@ -90,8 +90,8 @@ import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
-import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
@@ -468,10 +468,6 @@ export default function FlashcardsSpeakingSession() {
         clearAdvanceTimer();
         setHoldActive(false);
         stopSpeech();
-        attemptsModalTimerRef.current = setTimeout(
-          () => setShowAttemptsModal(true),
-          SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
-        );
       }
     },
     [attemptSessionId, attempts.registerVerdict, task, clearAdvanceTimer, goNext, stopSpeech, studyTarget],
@@ -518,22 +514,23 @@ export default function FlashcardsSpeakingSession() {
     setSession((cur) => (cur.phase === 'scored' ? { ...cur, phase: 'idle', attempt: null } : cur));
   }, [clearAdvanceTimer]);
 
-  const retryCurrentSpeakingCardAfterRecovery = useCallback(async (source: 'gift' | 'runes') => {
-    try {
-      if (source === 'gift') await attempts.recoverWithGift();
-      else await attempts.recoverWithRunes();
-      clearAdvanceTimer();
-      stopSpeech();
-      setShowAttemptsModal(false);
-      setHoldActive(false);
-      setStuck(false);
-      setFlipped(false);
-      attemptKeyRef.current += 1;
-      setSession((cur) => (cur.phase === 'scored' ? { ...cur, phase: 'idle', attempt: null } : cur));
-    } catch {
-      // The same speaking card remains stopped beneath the recovery modal.
-    }
-  }, [attempts.recoverWithGift, attempts.recoverWithRunes, clearAdvanceTimer, stopSpeech]);
+  const resetSpeakingCardAfterSessionRuneForfeit = useCallback(() => {
+    clearAdvanceTimer();
+    stopSpeech();
+    setShowAttemptsModal(false);
+    setHoldActive(false);
+    setStuck(false);
+    setFlipped(false);
+    attemptKeyRef.current += 1;
+    setSession((cur) => (cur.phase === 'scored' ? { ...cur, phase: 'idle', attempt: null } : cur));
+  }, [clearAdvanceTimer, stopSpeech]);
+
+  useSessionAttemptAutoReset({
+    phase: attempts.state.phase,
+    forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
+    restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
+    onRestored: resetSpeakingCardAfterSessionRuneForfeit,
+  });
 
   const endExhaustedSpeakingSession = useCallback(() => {
     attempts.endAttemptsSession();
@@ -1100,16 +1097,6 @@ RU: ${card.translation}`}
       </SafeAreaView>
       {deckPickerSheet}
       <NoEnergyModal visible={noEnergyOpen} onClose={leave} />
-      <SessionAttemptsRecoveryModal
-        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
-        locale={lang}
-        giftCount={attempts.giftCount}
-        runeBalance={attempts.runeBalance ?? 0}
-        busy={attempts.recoveryBusy}
-        onUseGift={() => { void retryCurrentSpeakingCardAfterRecovery('gift'); }}
-        onSpendRunes={() => { void retryCurrentSpeakingCardAfterRecovery('runes'); }}
-        onEndSession={endExhaustedSpeakingSession}
-      />
       {runeFlight.flight && (
         <LearningV2RuneFlight
           key={runeFlight.flight.key}
@@ -1134,7 +1121,9 @@ const styles = StyleSheet.create({
   headerTitle: { fontWeight: '700' },
   progressTrack: { height: 4, borderRadius: 2, marginHorizontal: 16, overflow: 'hidden' },
   progressFill: { height: 4, borderRadius: 2 },
-  cardArea: { flex: 1, justifyContent: 'center', paddingHorizontal: 24 },
+  // Отдельная верхняя строка рун уплотнила экран: опускаем карточку ниже,
+  // чтобы её верх не заходил на progress bar.
+  cardArea: { flex: 1, justifyContent: 'center', paddingHorizontal: 24, paddingTop: 32 },
   cardFace: { alignItems: 'center', width: '100%', paddingVertical: 12, gap: 12 },
   spokenRow: {
     flexDirection: 'row',

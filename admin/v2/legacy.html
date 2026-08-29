@@ -865,6 +865,15 @@
     .u360-pill.p-fixed, .u360-pill.p-resolved, .u360-pill.p-approved { background: #0f2a1a; color: #4ade80; }
     .u360-pill.p-deleted, .u360-pill.p-rejected, .u360-pill.p-banned { background: #3a1414; color: #f87171; }
     .u360-empty { color: #6b7280; font-size: 12px; padding: 6px 0; }
+    .voice-minute-admin-action { min-height:44px;display:inline-flex;align-items:center;gap:7px;background:#10243a!important;border:1px solid #2563eb!important;color:#dbeafe!important;cursor:pointer;transition:background .18s,border-color .18s; }
+    .voice-minute-admin-action:hover { background:#173154!important;border-color:#60a5fa!important; }
+    .voice-minute-admin-action:focus-visible { outline:3px solid #38bdf8;outline-offset:2px; }
+    .voice-minute-admin-action:disabled { opacity:.58;cursor:not-allowed; }
+    .voice-minute-admin-action svg { width:18px;height:18px;flex:0 0 auto; }
+    .voice-minute-admin-status { width:100%;min-height:20px;margin-top:9px;color:#94a3b8;font-size:12px;line-height:1.5; }
+    .voice-minute-admin-status[data-state="loading"] { color:#bfdbfe; }
+    .voice-minute-admin-status[data-state="success"] { color:#86efac; }
+    .voice-minute-admin-status[data-state="error"] { color:#fecaca; }
     .auth-links-card { display: grid; gap: 8px; }
     .auth-links-state { display: inline-flex; align-items: center; min-height: 28px; padding: 3px 9px; border: 1px solid; border-radius: 999px; font: 700 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; }
     .auth-links-state.linked { color: #4ade80; background: #0f2a1a; border-color: #14532d; }
@@ -22056,11 +22065,13 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
           <button data-action="premium-grant" data-uid="${u.uid}" style="background:#062a18;border:1px solid #166534;color:#4ade80">💚 Выдать Plus</button>
           <button data-action="vip-revoke" data-uid="${u.uid}" style="background:#2a1111;border:1px solid #7f1d1d;color:#fca5a5">💚 Снять Plus</button>
           <button data-action="grant-reward" data-uid="${u.uid}" style="background:#1a2a3a;border:1px solid #14305c;color:#60a5fa">🎁 Выдать награду</button>
+          <button type="button" class="voice-minute-admin-action" data-action="grant-voice-minutes" data-uid="${escapeHtml(u.uid)}" aria-label="Выдать голосовые минуты пользователю ${escapeHtml(u.name)}" data-tooltip="Начислит выбранному пользователю голосовые минуты через защищённое серверное событие. Минуты станут доступны сразу; результат можно проверить по audit ID и event ID. Автоматической отмены нет." title="Начислит выбранному пользователю голосовые минуты через защищённое серверное событие. Минуты станут доступны сразу; результат можно проверить по audit ID и event ID. Автоматической отмены нет."><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path><path d="M19 5v4h-4"></path></svg><span>Выдать минуты</span></button>
           <button data-action="merge" data-uid="${u.uid}" style="background:#0e2a2e;border:1px solid #155e75;color:#22d3ee">🔗 Merge с другим UID</button>
           <button data-action="ach-view" data-uid="${u.uid}" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#86efac">🏆 Ачивки</button>
           <button data-action="ach-reset" data-uid="${u.uid}" style="background:#3b1a1a;border:1px solid #7f1d1d;color:#fca5a5">↺ Сбросить ачивки</button>
           <button data-action="user-analytics" data-uid="${u.uid}" style="background:#0f1f2e;border:1px solid #1e4a6e;color:#38bdf8">📊 Аналитика дней</button>
         </div>
+        <div class="voice-minute-admin-status" data-voice-minute-grant-status="${escapeHtml(u.uid)}" data-state="ready" role="status" aria-live="polite">Минуты ещё не начислялись в этой панели. Выдача создаст отдельный audit receipt и не изменит Plus, подписку или жемчуг.</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button data-action="warn" data-uid="${u.uid}" style="background:#2a1a00;color:#fbbf24;border:1px solid #7c3f00">⚠️ Предупреждение</button>
           ${u.banned
@@ -22103,6 +22114,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         if (a === 'edit-premium') editUserField(uid, 'premium_plan',  'Plus RC/debug: monthly / annual / yearly / null. Admin grant = Plus-кнопка.', u2.premium||'');
         if (a === 'edit-shards')  editShards(uid);
         if (a === 'grant-reward') grantReward(uid, u2.name);
+        if (a === 'grant-voice-minutes') grantVoiceMinutes(uid, u2.name, btn);
         if (a === 'merge')        mergeUserPrompt(uid, u2.name);
         if (a === 'ach-view')     viewAchievements(uid, u2.name);
         if (a === 'ach-reset')    resetAchievements(uid, u2.name);
@@ -40468,11 +40480,18 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   //   chain_shield_1    → users.chain_shield
   //   chain_shield_3    → users.chain_shield
   let _fnAdminGrant = null;
+  let _fnAdminVoiceMinutes = null;
   function getAdminGrantFn() {
     if (!_fnAdminGrant && typeof httpsCallable === 'function' && functionsUs) {
       _fnAdminGrant = httpsCallable(functionsUs, 'adminGrantReward');
     }
     return _fnAdminGrant;
+  }
+  function getAdminVoiceMinutesFn() {
+    if (!_fnAdminVoiceMinutes && typeof httpsCallable === 'function' && functionsUs) {
+      _fnAdminVoiceMinutes = httpsCallable(functionsUs, 'adminGrantVoiceMinutes');
+    }
+    return _fnAdminVoiceMinutes;
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -41269,6 +41288,107 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       } else {
         showToast('Ошибка: ' + msg, 'err');
       }
+    }
+  };
+
+  function setVoiceMinuteGrantStatus(uid, text, state = 'ready') {
+    const status = Array.from(document.querySelectorAll('[data-voice-minute-grant-status]'))
+      .find(node => node.dataset.voiceMinuteGrantStatus === uid);
+    if (!status) return;
+    status.textContent = text;
+    status.dataset.state = state;
+  }
+
+  window.grantVoiceMinutes = async function grantVoiceMinutes(uid, name, triggerButton) {
+    const u = (window._users || []).find(x => x.uid === uid);
+    if (!u) { showToast('Пользователь не найден в загруженном списке', 'err'); return; }
+    const fn = getAdminVoiceMinutesFn();
+    if (!fn) { showToast('Защищённая выдача минут недоступна', 'err'); return; }
+
+    const amountInput = await showInputModal({
+      title: `Выдать голосовые минуты — ${name}`,
+      desc: 'Введите целое число от 1 до 10 000. Популярные варианты можно выбрать ниже.',
+      defaultVal: '30',
+      presets: ['30', '60', '120', '300'],
+      confirmLabel: 'Дальше',
+    });
+    if (amountInput === null) return;
+    const minutes = Number(String(amountInput).trim());
+    if (!Number.isSafeInteger(minutes) || minutes < 1 || minutes > 10000) {
+      setVoiceMinuteGrantStatus(uid, 'Минуты не начислены: укажите целое число от 1 до 10 000.', 'error');
+      showToast('Укажите целое число минут от 1 до 10 000', 'err');
+      return;
+    }
+
+    const reasonInput = await showInputModal({
+      title: 'Причина выдачи',
+      desc: 'Обязательная причина попадёт в защищённый audit log и immutable receipt.',
+      defaultVal: '',
+      multiline: true,
+      confirmLabel: 'Дальше',
+    });
+    if (reasonInput === null) return;
+    const reason = String(reasonInput).trim();
+    if (!reason) {
+      setVoiceMinuteGrantStatus(uid, 'Минуты не начислены: причина обязательна.', 'error');
+      return;
+    }
+
+    const commentInput = await showInputModal({
+      title: 'Служебный комментарий',
+      desc: 'Необязательно. Например, номер обращения или короткое пояснение. Пользователь его не увидит.',
+      defaultVal: '',
+      multiline: true,
+      allowEmpty: true,
+      confirmLabel: 'Проверить',
+    });
+    if (commentInput === null) return;
+    const comment = String(commentInput).trim();
+
+    const confirmed = await showConfirmModal({
+      title: 'Выдать минуты пользователю?',
+      desc: `Пользователь: ${name}\nUID: ${uid}\nНачисление: ${minutes} мин.\nПричина: ${reason}\n\nМинуты станут доступны сразу. Plus, подписка и жемчуг не изменятся. Операция необратима автоматически: проверка будет доступна по audit ID и event ID.`,
+      confirmLabel: `Выдать ${minutes} мин.`,
+      danger: false,
+    });
+    if (!confirmed) {
+      setVoiceMinuteGrantStatus(uid, 'Выдача отменена. Ничего не изменено.', 'ready');
+      return;
+    }
+
+    const commandNonce = globalThis.crypto?.randomUUID?.()
+      || `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+    if (triggerButton) triggerButton.disabled = true;
+    setVoiceMinuteGrantStatus(uid, 'Начисляем минуты…', 'loading');
+    try {
+      const response = await fn({
+        uid,
+        minutes,
+        reason,
+        comment,
+        idempotencyKey: `voice-minutes-${commandNonce}`,
+        requestId: `voice-minutes-request-${commandNonce}`,
+      });
+      if (!response || !response.data || response.data.ok !== true
+        || response.data.requestedUid !== uid
+        || Number(response.data.minutes) !== minutes
+        || !response.data.auditId
+        || !response.data.eventId) {
+        throw new Error('Сервер не вернул полный receipt выдачи минут');
+      }
+      const totalMinutes = Math.floor(Number(response.data.availableSeconds || 0) / 60);
+      setVoiceMinuteGrantStatus(
+        uid,
+        `Начислено ${minutes} мин. Доступно примерно ${totalMinutes} мин. Audit: ${response.data.auditId}; event: ${response.data.eventId}.`,
+        'success',
+      );
+      showToast(`Начислено ${minutes} голосовых минут`);
+    } catch (error) {
+      const message = error && error.message ? error.message : String(error);
+      setVoiceMinuteGrantStatus(uid, `Минуты не начислены: ${message}`, 'error');
+      showToast('Минуты не начислены: ' + message, 'err');
+    } finally {
+      if (triggerButton && triggerButton.isConnected) triggerButton.disabled = false;
     }
   };
 

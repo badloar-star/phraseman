@@ -55,6 +55,7 @@ function CollectionLimitHeaderBase({ saved, isPremium, t }: CollectionLimitHeade
           accessibilityLabel={triLang(lang, {
             ru: `Сохранено: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
             uk: `Збережено: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
+            en: `Saved: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
             es: `Guardadas: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
             'pt-BR': `Salvas: ${saved} / ${FREE_FLASHCARD_LIMIT}`,
             vi: `Đã lưu: ${saved} / ${FREE_FLASHCARD_LIMIT}`,

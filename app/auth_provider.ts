@@ -30,9 +30,10 @@ import * as Linking from 'expo-linking';
 import * as WebBrowser from 'expo-web-browser';
 import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { getStableId, setStableId, clearStableId } from './stable_id';
+import { getStableId, setStableId, clearStableId, peekStableId } from './stable_id';
 import {
   ensureAnonUser,
+  ensureAnonIdentityDetailed,
   syncToCloud,
   restoreFromCloud,
   restoreFromCloudDetailed,
@@ -41,6 +42,7 @@ import {
   quiesceCloudSyncForAccountTransition,
   wipeLocalAccountData,
   startCloudDeletionEnqueue,
+  waitForAccountDeletionCredentialSafe,
   resetAnonAuthCacheForSignOut,
   ensureStableAuthLinkForStableIdDetailed,
   mergeStableAccountsViaServer,
@@ -52,6 +54,8 @@ import {
 import type { AccountDeleteEnqueueOperation } from './account_delete_enqueue';
 import {
   ACCOUNT_DELETE_PENDING_AUTH_TTL_MS,
+  ACCOUNT_DELETE_PENDING_AUTH_KEY,
+  advanceAccountDeletePendingAuthLock,
   cleanAccountDeleteLockId,
   clearAccountDeletePendingAuthLock,
   createAccountDeleteOperationId,
@@ -60,7 +64,10 @@ import {
   persistAccountDeletePendingAuthLock,
   readAccountDeletePendingAuthRaw,
   restoreAccountDeletePendingAuthMirror,
+  runPostDeleteFreshIdentityTransition,
   type AccountDeletePendingAuthLock,
+  type AccountDeleteRetiredSubject,
+  type FreshPostDeletionIdentityResult,
 } from './account_delete_quarantine';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
 import {
@@ -191,9 +198,7 @@ function emitAuthProviderLinked(): void {
   }
 }
 
-async function beginEntitlementSafeAccountTransition(): Promise<void> {
-  invalidateAccountGeneration();
-  beginPremiumAccountTransition();
+async function drainEntitlementSafeAccountTransition(): Promise<void> {
   const premiumWorkDrained = await waitForPremiumAccountWorkIdleWithDeadline(
     ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS,
   );
@@ -202,6 +207,12 @@ async function beginEntitlementSafeAccountTransition(): Promise<void> {
       timeoutMs: ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS,
     });
   }
+}
+
+async function beginEntitlementSafeAccountTransition(): Promise<void> {
+  invalidateAccountGeneration();
+  beginPremiumAccountTransition();
+  await drainEntitlementSafeAccountTransition();
 }
 
 // ── Lazy native modules ───────────────────────────────────────────────────────
@@ -445,13 +456,15 @@ export function isLocalAccountDeletionInProgress(): boolean {
  * зачем: используется, когда резервация занята — чтобы отличить «удаление уже
  * идёт, просто выпусти человека на онбординг» от настоящей ошибки подготовки.
  */
-async function hasPendingAccountDeleteLock(): Promise<boolean> {
+async function readPendingAccountDeleteLockForHandoff(): Promise<AccountDeletePendingAuthLock | null> {
   try {
     const raw = await readAccountDeletePendingAuthRaw();
     const inspection = inspectAccountDeletePendingAuth(raw);
-    return inspection.status === 'active' || inspection.status === 'expired';
+    return inspection.status === 'active' || inspection.status === 'expired'
+      ? inspection.lock
+      : null;
   } catch {
-    return false;
+    return null;
   }
 }
 
@@ -511,6 +524,10 @@ async function persistAccountDeletePendingAuth(
   // Google/Apple он не блокирует — блокировать нечего, привязки нет.
   const providerUid = rawProviderUid ?? `anon:${stableId}`;
   const now = Date.now();
+  const capabilityBytes = await Crypto.getRandomBytesAsync(32);
+  const credentialSafeCapability = Array.from(capabilityBytes)
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('');
   const lock: AccountDeletePendingAuthLock = {
     operationId: createAccountDeleteOperationId(providerUid, cleanAccountDeleteLockId(stableIdRaw), now),
     providerUid,
@@ -519,6 +536,7 @@ async function persistAccountDeletePendingAuth(
     phase: 'prepared',
     createdAt: now,
     expiresAt: now + ACCOUNT_DELETE_PENDING_AUTH_TTL_MS,
+    credentialSafeCapability,
   };
   let persisted = await persistAccountDeletePendingAuthLock(lock);
   if (!persisted) {
@@ -532,7 +550,9 @@ async function persistAccountDeletePendingAuth(
     const adopted = await adoptStaleAccountDeleteLock(providerUid, stableId);
     if (!adopted) return null;
     logAuthEvent('auth_account_delete_stale_lock_adopted');
-    return adopted;
+    if (adopted.credentialSafeCapability) return adopted;
+    const upgraded = { ...adopted, credentialSafeCapability };
+    return await persistAccountDeletePendingAuthLock(upgraded) ? upgraded : null;
   }
   logAuthEvent('auth_account_delete_pending_lock_set', { ttlMs: ACCOUNT_DELETE_PENDING_AUTH_TTL_MS });
   return lock;
@@ -549,10 +569,12 @@ async function readAccountDeletePendingAuth(providerUidRaw: string): Promise<Acc
     }
     if (inspection.status !== 'active' && inspection.status !== 'expired') return null;
     if (
-      inspection.lock.phase === 'local_cleared'
-      && providerUid
+      providerUid
       && inspection.lock.providerUid !== providerUid
     ) {
+      // A provider UID created by a post-deletion sign-in must never inherit or
+      // enqueue the old UID's destructive operation. The subsequent
+      // authoritative stable-link call will classify the retained stable ID.
       return null;
     }
     return inspection.lock;
@@ -604,186 +626,555 @@ async function completePreparedAccountDeleteLocalExit(
 
   const localClearedLock: AccountDeletePendingAuthLock = {
     ...pendingDelete,
-    phase: 'local_cleared',
+    phase: 'old_stable_cleared',
   };
   return persistAccountDeletePendingAuthLock(localClearedLock);
 }
 
-async function handleAccountDeletePendingAuth(
+async function verifyPostDeleteLocalWipe(): Promise<boolean> {
+  try {
+    const remainingKeys = await AsyncStorage.getAllKeys();
+    // AsyncStorage.clear() is the privacy boundary: every account-owned key,
+    // including customization/avatar/aura keys unknown to SYNC_KEYS, must be
+    // gone. The only permitted row is the non-secret deletion guard mirror
+    // restored after clear; authoritative proofs remain in SecureStore.
+    return remainingKeys.every((key) => key === ACCOUNT_DELETE_PENDING_AUTH_KEY);
+  } catch {
+    return false;
+  }
+}
+
+function traceAccountDeleteLocal(stage: string): void {
+  if (typeof __DEV__ !== 'undefined' && __DEV__) {
+    console.info(`[account-delete-local] ${stage.replace(/[^a-z0-9_:+-]/gi, '_').slice(0, 180)}`);
+  }
+}
+
+const postDeleteLocalWipeFlights = new Map<string, Promise<boolean>>();
+const verifiedPostDeleteLocalWipes = new Set<string>();
+
+async function executePostDeleteLocalWipe(
+  lock: AccountDeletePendingAuthLock | null,
+  stableId: string | null,
+): Promise<boolean> {
+  try {
+    traceAccountDeleteLocal('start');
+    // Close the old generation before waiting for writers. A writer which
+    // already captured it may still be running, so every account-scoped drain
+    // is authoritative: timeout means no clear and no fresh identity.
+    invalidateAccountGeneration();
+    beginPremiumAccountTransition();
+    const [premiumDrained, restoreDrained, cloudDrained] = await Promise.all([
+      waitForPremiumAccountWorkIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS)
+        .catch(() => false),
+      waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS)
+        .catch(() => false),
+      quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS)
+        .catch(() => false),
+    ]);
+    traceAccountDeleteLocal(
+      `drains:premium=${premiumDrained ? 1 : 0}:restore=${restoreDrained ? 1 : 0}:cloud=${cloudDrained ? 1 : 0}`,
+    );
+    if (!premiumDrained || !restoreDrained || !cloudDrained) {
+      logAuthEvent('auth_account_delete_writer_drain_failed', {
+        premiumDrained: premiumDrained ? 1 : 0,
+        restoreDrained: restoreDrained ? 1 : 0,
+        cloudDrained: cloudDrained ? 1 : 0,
+      });
+      return false;
+    }
+    const phoneStateRetired = await retirePhoneStateForDeletion(stableId);
+    traceAccountDeleteLocal(`phone_state_retired=${phoneStateRetired ? 1 : 0}`);
+    if (!phoneStateRetired) return false;
+    if (stableId) await clearMaxFinalizeOutbox(stableId);
+    if (stableId) await clearMaxVoiceReviewReceipts(stableId);
+    traceAccountDeleteLocal('outboxes_cleared');
+    await wipeLocalAccountData();
+    traceAccountDeleteLocal('account_data_wiped');
+    await AsyncStorage.clear();
+    traceAccountDeleteLocal('async_storage_cleared');
+    // AsyncStorage.clear removes the non-authoritative mirror. Restore it only
+    // after the privacy wipe, while the SecureStore record/anchor stay durable.
+    if (lock) await restoreAccountDeletePendingAuthMirror(lock);
+    const verified = await verifyPostDeleteLocalWipe();
+    traceAccountDeleteLocal(`readback_verified=${verified ? 1 : 0}`);
+    if (!verified) return false;
+    invalidatePremiumCache();
+    return true;
+  } catch (e) {
+    const detail = e instanceof Error ? e.message : String(e);
+    traceAccountDeleteLocal(`threw:${detail}`);
+    if (__DEV__) console.warn('[auth_provider] post-delete local wipe failed', e);
+    return false;
+  }
+}
+
+async function wipeAndVerifyPostDeleteLocalData(
+  lock: AccountDeletePendingAuthLock | null,
+  stableId: string | null,
+): Promise<boolean> {
+  const flightKey = lock?.operationId ?? `anonymous:${stableId ?? 'none'}`;
+  if (verifiedPostDeleteLocalWipes.has(flightKey)) return true;
+  let flight = postDeleteLocalWipeFlights.get(flightKey);
+  if (!flight) {
+    traceAccountDeleteLocal(`flight_created:${lock ? 'guarded' : 'anonymous'}`);
+    flight = executePostDeleteLocalWipe(lock, stableId);
+    postDeleteLocalWipeFlights.set(flightKey, flight);
+    void flight.then((verified) => {
+      if (verified) verifiedPostDeleteLocalWipes.add(flightKey);
+    }).finally(() => {
+      if (postDeleteLocalWipeFlights.get(flightKey) === flight) {
+        postDeleteLocalWipeFlights.delete(flightKey);
+      }
+    });
+  }
+  // The UI gets a bounded fail-closed result. The registered flight remains
+  // joinable so a late native/AsyncStorage clear cannot cross into a fresh
+  // account generation.
+  const result = await withLocalStepDeadline(
+    () => flight!,
+    false,
+    ACCOUNT_DELETE_LOCAL_WIPE_TIMEOUT_MS,
+  );
+  traceAccountDeleteLocal(`flight_deadline_result=${result ? 1 : 0}`);
+  return result;
+}
+
+const phoneStateRetirementFlights = new Map<string, Promise<boolean>>();
+
+async function retirePhoneStateForDeletion(stableId: string | null): Promise<boolean> {
+  if (!stableId) return true;
+  let flight = phoneStateRetirementFlights.get(stableId);
+  if (!flight) {
+    flight = import('./phone_state_bootstrap')
+      .then(({ retirePhoneStateAfterDeletion }) => retirePhoneStateAfterDeletion(stableId))
+      .then(() => true)
+      .catch((error: unknown) => {
+        const detail = error instanceof Error ? error.message : String(error);
+        traceAccountDeleteLocal(`phone_state_retire_threw:${detail}`);
+        return false;
+      });
+    phoneStateRetirementFlights.set(stableId, flight);
+    void flight.finally(() => {
+      if (phoneStateRetirementFlights.get(stableId) === flight) {
+        phoneStateRetirementFlights.delete(stableId);
+      }
+    });
+  }
+  const result = await withLocalStepDeadline(() => flight!, false);
+  return result;
+}
+
+async function retirePhoneStateThenWipe(
+  lock: AccountDeletePendingAuthLock | null,
+  stableId: string | null,
+): Promise<boolean> {
+  return wipeAndVerifyPostDeleteLocalData(lock, stableId);
+}
+
+type FreshIdentityTrigger = 'delete' | 'startup' | 'foreground' | 'identity_retired';
+type RetiredIdentityEvidence = {
+  subject?: AccountDeleteRetiredSubject;
+  retiredStableId?: string | null;
+  metadata?: StableAuthLinkMetadata;
+};
+
+const freshIdentityFlights = new Map<string, Promise<FreshPostDeletionIdentityResult>>();
+const activeLocalAccountDeletionCompletions = new Map<string, Promise<DeleteAccountResult>>();
+
+function accountDeleteCredentialProof(lock: AccountDeletePendingAuthLock): {
+  operationId: string;
+  capability: string;
+} | null {
+  return lock.credentialSafeCapability
+    ? { operationId: lock.operationId, capability: lock.credentialSafeCapability }
+    : null;
+}
+
+async function ensureAccountDeleteCredentialCapability(
+  lock: AccountDeletePendingAuthLock,
+): Promise<AccountDeletePendingAuthLock | null> {
+  if (lock.credentialSafeCapability) return lock;
+  const bytes = await Crypto.getRandomBytesAsync(32).catch(() => null);
+  if (!bytes || bytes.length !== 32) return null;
+  const credentialSafeCapability = Array.from(bytes)
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('');
+  const upgraded = { ...lock, credentialSafeCapability };
+  return await persistAccountDeletePendingAuthLock(upgraded) ? upgraded : null;
+}
+
+async function ensureAccountDeleteCredentialSafe(
+  lock: AccountDeletePendingAuthLock,
+): Promise<boolean> {
+  const proof = accountDeleteCredentialProof(lock);
+  if (!proof) return false;
+  try {
+    const op = startCloudDeletionEnqueue(lock.stableId, proof);
+    const ack = await op.acknowledgment;
+    if (ack.authReleased === true && ack.credentialSafe === true) return true;
+  } catch {
+    // The closure may have committed and deleted Auth while its response was lost.
+  }
+  return waitForAccountDeletionCredentialSafe(proof).catch(() => false);
+}
+
+async function waitForPostDeleteAuthHydration(): Promise<boolean> {
+  const auth = getAuth();
+  if (!auth) return false;
+  if (auth.currentUser) return true;
+  if (typeof auth.onAuthStateChanged !== 'function') return false;
+  return new Promise<boolean>((resolve) => {
+    let settled = false;
+    let unsubscribe: (() => void) | undefined;
+    const finish = (ready: boolean) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      unsubscribe?.();
+      resolve(ready);
+    };
+    const timer = setTimeout(() => finish(false), 2_500);
+    unsubscribe = auth.onAuthStateChanged(() => finish(true));
+  });
+}
+
+async function readPendingDeleteTransition(): Promise<AccountDeletePendingAuthLock | null> {
+  const inspection = inspectAccountDeletePendingAuth(await readAccountDeletePendingAuthRaw());
+  return inspection.status === 'active' || inspection.status === 'expired'
+    ? inspection.lock
+    : null;
+}
+
+async function synthesizeRemoteDeleteTransition(
+  evidence: RetiredIdentityEvidence,
+): Promise<AccountDeletePendingAuthLock | null> {
+  const authUid = cleanAccountDeleteLockId(getAuth()?.currentUser?.uid);
+  const localStableId = await getStableId().catch(() => null);
+  const retiredStableId = cleanAccountDeleteLockId(evidence.retiredStableId ?? localStableId);
+  const subject = evidence.subject ?? 'unknown';
+  const providerAnchor = subject === 'stable'
+    ? `stable-only:${retiredStableId ?? localStableId ?? 'unknown'}`
+    : authUid ?? `anon:${retiredStableId ?? localStableId ?? 'unknown'}`;
+  if (!providerAnchor || (!localStableId && !retiredStableId)) return null;
+  const now = Date.now();
+  const lock: AccountDeletePendingAuthLock = {
+    operationId: createAccountDeleteOperationId(providerAnchor, localStableId, now),
+    providerUid: providerAnchor,
+    stableId: localStableId,
+    ...(retiredStableId && retiredStableId !== localStableId
+      ? { serverRetiredStableId: retiredStableId }
+      : {}),
+    source: 'remote',
+    phase: 'prepared',
+    createdAt: now,
+    expiresAt: now + ACCOUNT_DELETE_PENDING_AUTH_TTL_MS,
+    retiredSubject: subject,
+  };
+  return await persistAccountDeletePendingAuthLock(lock) ? lock : null;
+}
+
+/**
+ * One fail-closed coordinator for delete/startup/foreground/retired recovery.
+ * Stable-only one-tap provider recovery delegates to the live-provider path
+ * below; every other subject rotates through a new anonymous Firebase user.
+ */
+export async function ensureFreshPostDeletionIdentity(
+  trigger: 'delete' | 'startup' | 'foreground' | 'identity_retired',
+  evidence: RetiredIdentityEvidence = {},
+): Promise<FreshPostDeletionIdentityResult> {
+  let lock: AccountDeletePendingAuthLock | null;
+  try {
+    lock = await readPendingDeleteTransition();
+  } catch (e) {
+    if (isAccountDeleteGuardNoLockSeenError(e)) {
+      return { status: 'pending_auth', phase: 'prepared' };
+    }
+    return { status: 'fatal_local_guard', phase: null };
+  }
+  if (!lock && trigger === 'identity_retired') {
+    lock = await synthesizeRemoteDeleteTransition(evidence);
+  }
+  if (!lock) return { status: 'pending_auth', phase: 'prepared' };
+  if (lock.source === 'local' && !lock.credentialSafeCapability) {
+    lock = await ensureAccountDeleteCredentialCapability(lock);
+    if (!lock) return { status: 'fatal_local_guard', phase: 'prepared' };
+  }
+  // After credential_safe the old Firebase user may already be absent on a
+  // restart. Hydration is therefore best-effort only: the durable receipt can
+  // advance the guard and the coordinator can create a fresh anonymous user.
+  if (lock.source === 'local' && !getAuth()?.currentUser) {
+    await waitForPostDeleteAuthHydration().catch(() => false);
+  }
+  if (lock.retiredSubject === 'stable') {
+    const liveProvider = getAuth()?.currentUser;
+    if (liveProvider && liveProvider.isAnonymous === false) {
+      return ensureFreshStableIdentityForLiveProvider(lock, liveProvider.uid, evidence.metadata);
+    }
+    return { status: 'pending_auth', phase: lock.phase };
+  }
+
+  const existing = freshIdentityFlights.get(lock.operationId);
+  if (existing) return existing;
+  const run = (async (): Promise<FreshPostDeletionIdentityResult> => {
+    // The active delete completion already opened and drained this boundary
+    // before it waited for credential_safe. Re-entering it here duplicates the
+    // transition and can race consumers joining the same deletion flight.
+    if (trigger !== 'delete') await beginEntitlementSafeAccountTransition();
+    return runPostDeleteFreshIdentityTransition(lock!, {
+      wipeLocal: () => retirePhoneStateThenWipe(
+        lock!,
+        lock!.stableId ?? lock!.serverRetiredStableId ?? null,
+      ),
+      enqueueDeletion: async () => {
+        // A remote retirement signal is already authoritative. Re-enqueueing
+        // here can target a provider session which only supplied the signal;
+        // it must never create a second destructive request or denial.
+        if (lock!.source === 'remote' && lock!.retiredSubject) return true;
+        // Anonymous Firebase UIDs have no reusable email/Apple credential and
+        // therefore require no provider quarantine. Older builds could still
+        // create a guard for them; let that guard converge locally instead of
+        // blocking onboarding on an unnecessary callable round-trip.
+        if (
+          getAuth()?.currentUser?.isAnonymous === true
+          && getAuth()?.currentUser?.uid === lock!.providerUid
+        ) return true;
+        return ensureAccountDeleteCredentialSafe(lock!);
+      },
+      signOutProvider: async () => {
+        const currentUser = getAuth()?.currentUser;
+        if (!currentUser || currentUser.isAnonymous === true) return true;
+        try {
+          await signOutCurrentProvider();
+          const afterSignOut = getAuth()?.currentUser;
+          return afterSignOut == null || afterSignOut.isAnonymous === true;
+        } catch {
+          return false;
+        }
+      },
+      clearOldStable: async () => {
+        try {
+          await clearStableId();
+          await clearPendingAuthLink();
+          resetAnonAuthCacheForSignOut();
+          return peekStableId() === null;
+        } catch {
+          return false;
+        }
+      },
+      authenticateAnonymously: () => ensureAnonIdentityDetailed(),
+      linkAuthoritatively: async (authUid, stableId) => {
+        const linked = await ensureStableAuthLinkForStableIdDetailed(
+          stableId,
+          undefined,
+          { requireAuthoritative: true },
+        );
+        return {
+          ok: linked.ok,
+          authUid: linked.authUid,
+          stableId: linked.stableUid,
+        };
+      },
+      adoptAuthoritativeStable: async (stableId) => {
+        try {
+          await setStableId(stableId);
+          return peekStableId() === stableId;
+        } catch {
+          return false;
+        }
+      },
+      beginAccountGeneration,
+      persistPhase: advanceAccountDeletePendingAuthLock,
+      clearTransition: async () => {
+        try {
+          await clearAccountDeletePendingAuthLock();
+          return true;
+        } catch {
+          logAuthEvent('auth_account_delete_lock_release_failed');
+          return false;
+        }
+      },
+      emitLocalWipeReady: () => emitAppEvent('account_deleted'),
+      emitReady: (authUid, stableId) => {
+        emitAppEvent('post_delete_identity_ready', { authUid, stableId });
+      },
+    });
+  })().finally(() => {
+    freshIdentityFlights.delete(lock!.operationId);
+  });
+  freshIdentityFlights.set(lock.operationId, run);
+  return run;
+}
+
+async function ensureFreshStableIdentityForLiveProvider(
+  initial: AccountDeletePendingAuthLock,
+  liveProviderUid: string,
+  metadata?: StableAuthLinkMetadata,
+): Promise<FreshPostDeletionIdentityResult> {
+  const existing = freshIdentityFlights.get(initial.operationId);
+  if (existing) return existing;
+  const run = (async (): Promise<FreshPostDeletionIdentityResult> => {
+    let lock = initial;
+    const persist = async (
+      phase: AccountDeletePendingAuthLock['phase'],
+      proof: Partial<Pick<AccountDeletePendingAuthLock, 'freshAuthUid' | 'freshStableId'>> = {},
+    ): Promise<boolean> => {
+      const result = await advanceAccountDeletePendingAuthLock(lock, phase, proof);
+      if (!result.ok) return false;
+      lock = result.lock;
+      return true;
+    };
+    await beginEntitlementSafeAccountTransition();
+    for (;;) {
+      const currentProvider = getAuth()?.currentUser;
+      switch (lock.phase) {
+        case 'prepared':
+          if (!await retirePhoneStateThenWipe(
+            lock,
+            lock.stableId ?? lock.serverRetiredStableId ?? null,
+          )) {
+            return { status: 'fatal_local_guard', phase: lock.phase };
+          }
+          if (!await persist('local_data_cleared')) {
+            return { status: 'fatal_local_guard', phase: lock.phase };
+          }
+          emitAppEvent('account_deleted');
+          break;
+        case 'local_data_cleared':
+          // `identity_retired` with subject:stable is already authoritative.
+          // Never enqueue a destructive deletion for this fresh provider UID.
+          if (!await persist('server_enqueued')) {
+            return { status: 'fatal_local_guard', phase: lock.phase };
+          }
+          break;
+        case 'server_enqueued':
+          if (
+            !currentProvider
+            || currentProvider.isAnonymous !== false
+            || currentProvider.uid !== liveProviderUid
+          ) return { status: 'pending_auth', phase: lock.phase };
+          if (!await persist('provider_identity_verified', { freshAuthUid: liveProviderUid })) {
+            return { status: 'fatal_local_guard', phase: lock.phase };
+          }
+          break;
+        case 'provider_identity_verified':
+          try {
+            await clearStableId();
+            await clearPendingAuthLink();
+            resetAnonAuthCacheForSignOut();
+          } catch {
+            return { status: 'fatal_local_guard', phase: lock.phase };
+          }
+          if (peekStableId() !== null || !await persist('old_stable_cleared')) {
+            return { status: 'fatal_local_guard', phase: lock.phase };
+          }
+          break;
+        case 'old_stable_cleared': {
+          if (
+            !currentProvider
+            || currentProvider.isAnonymous !== false
+            || currentProvider.uid !== liveProviderUid
+          ) return { status: 'pending_auth', phase: lock.phase };
+          const freshStableId = await getStableId().catch(() => null);
+          if (
+            !freshStableId
+            || freshStableId === lock.stableId
+            || freshStableId === lock.serverRetiredStableId
+          ) return { status: 'fatal_local_guard', phase: lock.phase };
+          if (!await persist('provider_stable_created', {
+            freshAuthUid: liveProviderUid,
+            freshStableId,
+          })) return { status: 'fatal_local_guard', phase: lock.phase };
+          break;
+        }
+        case 'provider_stable_created': {
+          if (
+            !currentProvider
+            || currentProvider.isAnonymous !== false
+            || currentProvider.uid !== lock.freshAuthUid
+          ) return { status: 'pending_auth', phase: lock.phase };
+          const linked = await ensureStableAuthLinkForStableIdDetailed(
+            lock.freshStableId!,
+            metadata,
+            { requireAuthoritative: true },
+          );
+          if (
+            !linked.ok
+            || linked.authUid !== lock.freshAuthUid
+            || linked.stableUid !== lock.freshStableId
+          ) return { status: 'pending_offline', phase: lock.phase };
+          if (!await persist('stable_link_verified')) {
+            return { status: 'fatal_local_guard', phase: lock.phase };
+          }
+          break;
+        }
+        case 'stable_link_verified':
+          beginAccountGeneration(lock.freshStableId!);
+          if (!await persist('ready')) {
+            return { status: 'fatal_local_guard', phase: lock.phase };
+          }
+          break;
+        case 'ready':
+          try {
+            await clearAccountDeletePendingAuthLock();
+          } catch {
+            logAuthEvent('auth_account_delete_lock_release_failed');
+            return { status: 'fatal_local_guard', phase: lock.phase };
+          }
+          emitAppEvent('post_delete_identity_ready', {
+            authUid: lock.freshAuthUid!,
+            stableId: lock.freshStableId!,
+          });
+          return {
+            status: 'ready',
+            authUid: lock.freshAuthUid!,
+            stableId: lock.freshStableId!,
+          };
+        case 'provider_signed_out':
+        case 'anonymous_authenticated':
+          return { status: 'fatal_local_guard', phase: lock.phase };
+        default:
+          return { status: 'fatal_local_guard', phase: null };
+      }
+    }
+  })().finally(() => {
+    freshIdentityFlights.delete(initial.operationId);
+  });
+  freshIdentityFlights.set(initial.operationId, run);
+  return run;
+}
+
+async function convergePendingAccountDeleteBeforeCredential(
   provider: AuthProviderId,
   pendingDelete: AccountDeletePendingAuthLock,
-): Promise<SignInResult> {
+): Promise<boolean> {
   const ageMs = Math.max(0, Date.now() - pendingDelete.createdAt);
-  logAuthEvent('auth_signin_blocked_account_delete_pending', { provider, ageMs });
-  const enqueueOperation = startCloudDeletionEnqueue(pendingDelete.stableId);
-  void enqueueOperation.acknowledgment
-    .then((ack) => {
-      logAuthEvent('auth_account_delete_enqueue_retry', { provider, status: ack.status });
-    })
-    .catch((e) => {
-      if (__DEV__) console.warn('[auth_provider] account-delete-pending enqueue retry failed', e);
-      logAuthEvent('auth_account_delete_enqueue_retry_failed', { provider });
-    });
-  await enqueueOperation.dispatchSettled;
-
+  logAuthEvent('auth_signin_waiting_account_delete_pending', { provider, ageMs });
+  const activeCompletion = activeLocalAccountDeletionCompletions.get(pendingDelete.operationId);
+  if (activeCompletion) await activeCompletion.catch(() => null);
+  let remaining: AccountDeletePendingAuthLock | null;
   try {
-    await signOutCurrentProvider();
+    remaining = await readPendingDeleteTransition();
   } catch {
-    logAuthEvent('auth_account_delete_pending_signout_failed', { provider });
-    return { result: 'error', error: 'account_delete_pending' };
+    return false;
   }
-
-  if (pendingDelete.phase === 'prepared') {
-    const localExitComplete = await completePreparedAccountDeleteLocalExit(pendingDelete, true);
-    if (!localExitComplete) {
-      logAuthEvent('auth_account_delete_pending_phase_update_failed', { provider });
-      return { result: 'error', error: 'account_delete_pending' };
+  if (!remaining) return true;
+  const result = await ensureFreshPostDeletionIdentity('foreground');
+  if (result.status !== 'ready') {
+    if (remaining.phase === 'local_data_cleared') {
+      const proof = accountDeleteCredentialProof(remaining);
+      if (proof) await waitForAccountDeletionCredentialSafe(proof).catch(() => false);
     }
+    logAuthEvent('auth_account_delete_pending_convergence_failed', { provider });
+    return false;
   }
-  const rotatedStableId = await ensureAnonUser().catch(() => null);
-  if (!rotatedStableId || rotatedStableId === pendingDelete.stableId) {
-    logAuthEvent('auth_account_delete_pending_rotation_failed', { provider });
-    return { result: 'error', error: 'account_delete_pending' };
-  }
-  beginAccountGeneration(rotatedStableId);
-  logAuthEvent('auth_account_delete_pending_identity_rotated');
-  return { result: 'error', error: 'account_delete_pending' };
+  logAuthEvent('auth_account_delete_pending_converged', { provider });
+  return true;
 }
 
 export async function resumePendingAccountDeleteLocalExit(): Promise<boolean> {
-  let pendingDelete: AccountDeletePendingAuthLock | null;
-  try {
-    const raw = await readAccountDeletePendingAuthRaw();
-    const inspection = inspectAccountDeletePendingAuth(raw);
-    if (inspection.status === 'empty') return true;
-    if (inspection.status === 'malformed') return false;
-    pendingDelete = inspection.lock;
-  } catch (e) {
-    // зачем: раньше ЛЮБАЯ ошибка чтения защищённого хранилища закрывала
-    // приложение экраном «Нужна безопасная проверка» — в том числе у людей,
-    // которые никогда ничего не удаляли (Keychain не отдал данные до первой
-    // разблокировки, dev-пересборка, отсутствие модуля). Блокировать имеет
-    // смысл, только когда замок удаления реально виден и повреждён; если
-    // следов удаления не видели — пускаем в приложение как обычно.
-    if (isAccountDeleteGuardNoLockSeenError(e)) {
-      logAuthEvent('auth_account_delete_guard_unreadable_no_lock');
-      return true;
-    }
-    return false;
-  }
-  if (!pendingDelete) return false;
-  if (pendingDelete.phase === 'local_cleared' && pendingDelete.source !== 'local') {
-    return true;
-  }
-  const auth = getAuth();
-  if (!auth) return false;
-  if (!auth.currentUser) {
-    const authReady = await new Promise<boolean>((resolve) => {
-      if (typeof auth.onAuthStateChanged !== 'function') {
-        resolve(false);
-        return;
-      }
-      let settled = false;
-      let unsubscribe: (() => void) | undefined;
-      const finish = (ready: boolean) => {
-        if (settled) return;
-        settled = true;
-        clearTimeout(timer);
-        unsubscribe?.();
-        resolve(ready);
-      };
-      const timer = setTimeout(() => finish(false), 2_500);
-      unsubscribe = auth.onAuthStateChanged(() => finish(true));
-    });
-    if (!authReady) return false;
-  }
-
-  // зачем: ИНЦИДЕНТ 2026-08-25 — замок от удаления ДРУГОГО аккаунта (23.08,
-  // фаза local_cleared, пережил в Keychain) при следующем запуске «дожал»
-  // enqueue удаления под СВЕЖЕЙ Google-сессией владельца. Сервер подменил цель
-  // на живой якорь — живой аккаунт ушёл в очередь на стирание и был отключён.
-  // Правило класса: замок удаления имеет право действовать ТОЛЬКО против той
-  // identity, для которой создан. Чужая (несовпадающая) провайдер-сессия не
-  // продолжает чужое удаление, не выходит из аккаунта и не трогает локальные
-  // данные — замок остаётся сторожить вход СВОЕГО удалённого провайдера, а
-  // серверные tombstone'ы авторитетно защищают всё остальное.
-  if (
-    auth.currentUser
-    && auth.currentUser.isAnonymous === false
-    && auth.currentUser.uid !== pendingDelete.providerUid
-  ) {
-    logAuthEvent('auth_account_delete_foreign_lock_skipped', { stage: 'resume' });
-    return true;
-  }
-
-  await beginEntitlementSafeAccountTransition();
-  await Promise.all([
-    waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
-    quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
-  ]);
-
-  let firebaseSignedOut = auth?.currentUser == null;
-  let completionAcknowledgment: ReturnType<typeof startCloudDeletionEnqueue>['acknowledgment'] | null = null;
-  if (pendingDelete.source === 'local' && auth?.currentUser?.isAnonymous === false) {
-    if (pendingDelete.phase !== 'server_enqueued') {
-      const enqueueOperation = startCloudDeletionEnqueue(pendingDelete.stableId);
-      completionAcknowledgment = enqueueOperation.acknowledgment;
-      void completionAcknowledgment.catch(() => {});
-      try {
-        await completionAcknowledgment;
-      } catch (e) {
-        if (__DEV__) console.warn('[auth_provider] pending account delete: durable enqueue retry failed', e);
-        logAuthEvent('auth_account_delete_enqueue_retry_failed', { provider: 'resume' });
-        return false;
-      }
-    }
-  }
-  if (pendingDelete.phase === 'server_enqueued' && auth?.currentUser?.isAnonymous === true) {
-    return completePreparedAccountDeleteLocalExit(pendingDelete, true);
-  }
-  // зачем: тупик, из которого не было выхода (инцидент 2026-08-16). Фаза
-  // local_cleared означает, что локальные данные удалённого аккаунта уже
-  // стёрты, а анонимный currentUser — что провайдер отвязан и возвращаться
-  // некуда. Стирать нечего, но ветка возвращала false навсегда: замок в
-  // Keychain переживает переустановку, clearAccountDeletePendingAuthLock()
-  // не вызывалась НИОТКУДА, и человек оставался заперт даже после сноса
-  // приложения. Для App Store это прямой блокер: удалил аккаунт — не можешь
-  // зарегистрироваться заново.
-  //
-  // Защита не слабеет. Замок держал ДВА смысла, и снимаем мы только первый:
-  //  1) «локальный выход не доделан» — уже доделан, поэтому снимаем;
-  //  2) «не пускать старый провайдер обратно» — этим занимается
-  //     handleAccountDeletePendingAuth на входе через провайдер, и сервер
-  //     всё равно откажет по tombstone/маркеру удаления.
-  if (pendingDelete.phase === 'local_cleared' && auth?.currentUser?.isAnonymous === true) {
-    try {
-      await clearAccountDeletePendingAuthLock();
-      logAuthEvent('auth_account_delete_lock_released_after_local_exit');
-      return true;
-    } catch (e) {
-      // Не смогли снять — не запираем человека молча: локальных данных
-      // удалённого аккаунта всё равно нет, показывать нечего.
-      if (__DEV__) console.warn('[auth_provider] pending account delete: lock release failed', e);
-      logAuthEvent('auth_account_delete_lock_release_failed');
-      return true;
-    }
-  }
-  if (auth?.currentUser) {
-    try {
-      await signOutCurrentProvider();
-      firebaseSignedOut = true;
-    } catch {
-      firebaseSignedOut = false;
-    }
-  }
-  if (pendingDelete.phase === 'local_cleared') {
-    return firebaseSignedOut && completionAcknowledgment !== null;
-  }
-  const localExitComplete = await completePreparedAccountDeleteLocalExit(pendingDelete, firebaseSignedOut);
-  if (localExitComplete && completionAcknowledgment) {
-    void completionAcknowledgment.catch(() => {});
-  }
-  return localExitComplete;
+  const result = await ensureFreshPostDeletionIdentity('startup');
+  return result.status === 'ready';
 }
 
 function coerceFirebaseMetaTime(raw: unknown, defaultTime: number): number {
@@ -1342,7 +1733,12 @@ export async function signInWithProvider(
   try {
     await assertNoCleanInstallRecoveryTransition();
   } catch {
-    return { result: 'error', error: 'clean_recovery_transition_active' };
+    // A provider tap made after the delete handoff joins that exact durable
+    // transition. Other clean-install/recovery mutations remain excluded.
+    const pendingDelete = await readPendingDeleteTransition().catch(() => null);
+    if (!pendingDelete) {
+      return { result: 'error', error: 'clean_recovery_transition_active' };
+    }
   }
   if (providerCredentialModeReservation?.mode === 'recovery') {
     return {
@@ -1429,7 +1825,7 @@ async function runSignInWithProvider(
 
   let pendingDeleteBeforeCredential: AccountDeletePendingAuthLock | null;
   try {
-    pendingDeleteBeforeCredential = await readAccountDeletePendingAuth(auth.currentUser?.uid ?? '');
+    pendingDeleteBeforeCredential = await readPendingDeleteTransition();
   } catch {
     captureAuthSignInFailure(provider, 'guard', 'account_delete_guard_unavailable');
     return { result: 'error', error: 'account_delete_guard_unavailable' };
@@ -1443,18 +1839,20 @@ async function runSignInWithProvider(
   const preCredentialLockOwnsSession =
     pendingDeleteBeforeCredential != null
     && (
-      auth.currentUser?.isAnonymous !== false
+      auth.currentUser == null
+      || auth.currentUser.isAnonymous !== false
       || auth.currentUser?.uid === pendingDeleteBeforeCredential.providerUid
     );
   if (
     pendingDeleteBeforeCredential
     && preCredentialLockOwnsSession
-    && (
-      pendingDeleteBeforeCredential.phase === 'prepared'
-      || auth.currentUser?.isAnonymous === false
-    )
   ) {
-    return handleAccountDeletePendingAuth(provider, pendingDeleteBeforeCredential);
+    const converged = await convergePendingAccountDeleteBeforeCredential(
+      provider,
+      pendingDeleteBeforeCredential,
+    );
+    if (!converged) return { result: 'error', error: 'account_delete_pending' };
+    pendingDeleteBeforeCredential = null;
   }
   if (pendingDeleteBeforeCredential && !preCredentialLockOwnsSession) {
     logAuthEvent('auth_account_delete_foreign_lock_skipped', { stage: 'pre_credential', provider });
@@ -1610,7 +2008,9 @@ async function runSignInWithProvider(
   // выходить из невиновной сессии и дожимать чужое удаление — сервер всё равно
   // авторитетно охраняет удалённую identity через tombstone/permanent denial.
   if (pendingDelete && pendingDelete.providerUid === firebaseProviderUid) {
-    return handleAccountDeletePendingAuth(provider, pendingDelete);
+    const converged = await convergePendingAccountDeleteBeforeCredential(provider, pendingDelete);
+    if (!converged) return { result: 'error', error: 'account_delete_pending' };
+    pendingDelete = null;
   }
   if (pendingDelete) {
     logAuthEvent('auth_account_delete_foreign_lock_skipped', { stage: 'post_credential', provider });
@@ -1713,20 +2113,25 @@ async function runSignInWithProvider(
       // но users/{remoteStableId} помечен tombstone'ом). Прежде это было тупиком
       // «auth_link_failed» — юзер навсегда терял вход (TestFlight-инцидент
       // 2026-08-25, error local_stable_link_failed:identity_retired). Дизайн от
-      // 2026-08-20 (post-deletion-fresh-identity) предписывал полноценный
-      // ensureFreshPostDeletionIdentity(), но он не был реализован (только
-      // классификатор в cloud_sync.ts). Пока полный coordinator не сделан —
-      // тот же безопасный выход, что уже используется для account_delete_pending
-      // в handleAccountDeletePendingAuth: выходим из мёртвого провайдера назад
-      // на анонимную сессию, чтобы юзер снова попал в онбординг, а не завис.
+      // Coordinator keeps a proven-fresh provider for subject:stable so the
+      // same tap creates an empty profile. Auth/closure/unknown retirements
+      // fail closed through provider sign-out and a fresh anonymous pair.
       if (linkedRemote.failure === 'identity_retired') {
-        try {
-          await signOutCurrentProvider();
-        } catch (e) {
-          if (__DEV__) console.warn('[auth_provider] identity_retired: signOutCurrentProvider failed', e);
+        const retiredSubject = linkedRemote.retiredSubject ?? 'unknown';
+        const fresh = await ensureFreshPostDeletionIdentity('identity_retired', {
+          subject: retiredSubject,
+          retiredStableId: remoteStableId,
+          metadata: authLinkMetadata,
+        });
+        logAuthEvent('auth_signin_identity_retired_recovered', {
+          provider,
+          subject: retiredSubject,
+          ready: fresh.status === 'ready' ? 1 : 0,
+        });
+        if (retiredSubject === 'stable' && fresh.status === 'ready') {
+          emitAuthProviderLinked();
+          return { result: 'created_new', email: firebaseEmail, displayName: providerDisplayName };
         }
-        await ensureAnonUser().catch(() => null);
-        logAuthEvent('auth_signin_identity_retired_recovered', { provider, subject: 'remote' });
         return { result: 'error', error: 'identity_retired' };
       }
       return { result: 'error', error: 'auth_link_failed' };
@@ -1765,20 +2170,25 @@ async function runSignInWithProvider(
       // устройстве). Прежде это было тупиком «auth_link_failed» — юзер навсегда
       // терял вход (TestFlight-инцидент 2026-08-25, error
       // local_stable_link_failed:identity_retired, UID #q663). Дизайн от
-      // 2026-08-20 (post-deletion-fresh-identity) предписывал полноценный
-      // ensureFreshPostDeletionIdentity(), но он не реализован (только
-      // классификатор в cloud_sync.ts). Пока полный coordinator не сделан —
-      // тот же безопасный выход, что уже используется для account_delete_pending
-      // в handleAccountDeletePendingAuth: выходим из мёртвого провайдера назад
-      // на анонимную сессию, чтобы юзер снова попал в онбординг, а не завис.
+      // Stable-only retirement preserves this proven-fresh provider and creates
+      // an empty profile in the same attempt. Other subjects rotate fail closed
+      // to a fresh anonymous identity before onboarding can continue.
       if (linkedLocal.failure === 'identity_retired') {
-        try {
-          await signOutCurrentProvider();
-        } catch (e) {
-          if (__DEV__) console.warn('[auth_provider] identity_retired: signOutCurrentProvider failed', e);
+        const retiredSubject = linkedLocal.retiredSubject ?? 'unknown';
+        const fresh = await ensureFreshPostDeletionIdentity('identity_retired', {
+          subject: retiredSubject,
+          retiredStableId: localStableId,
+          metadata: authLinkMetadata,
+        });
+        logAuthEvent('auth_signin_identity_retired_recovered', {
+          provider,
+          subject: retiredSubject,
+          ready: fresh.status === 'ready' ? 1 : 0,
+        });
+        if (retiredSubject === 'stable' && fresh.status === 'ready') {
+          emitAuthProviderLinked();
+          return { result: 'created_new', email: firebaseEmail, displayName: providerDisplayName };
         }
-        await ensureAnonUser().catch(() => null);
-        logAuthEvent('auth_signin_identity_retired_recovered', { provider, subject: 'local' });
         return { result: 'error', error: 'identity_retired' };
       }
       // Тихий deferred link: провайдер-вход УЖЕ состоялся (Firebase-сессия жива
@@ -1831,7 +2241,17 @@ async function runSignInWithProvider(
       // Здесь нельзя оставлять обычный debounce: дальше мы меняем stable_id и чистим локальные
       // progress-ключи, поэтому свежий локальный прогресс должен быть отправлен прямо сейчас.
       if (preserveLocalProgress) {
-        await withTimeout(syncToCloud({ forceNow: true }), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'swap_presync');
+        // зачем: ЭТОТ шаг намеренно остаётся блокирующим и с полным таймаутом —
+        // единственная защита свежего локального прогресса перед wipeLocalAccountData.
+        // Унести в фон или укоротить = риск потери прогресса на медленной сети.
+        const presyncStarted = Date.now();
+        try {
+          await withTimeout(syncToCloud({ forceNow: true }), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'swap_presync');
+          console.log(`[SIGNIN] presync ok ${Date.now() - presyncStarted}ms`);
+        } catch (e) {
+          console.warn(`[SIGNIN] presync FAIL ${Date.now() - presyncStarted}ms reason=${String((e as any)?.message ?? e).slice(0, 120)}`);
+          throw e;
+        }
       }
 
       // СЛИЯНИЕ НА СЕРВЕРЕ (Admin SDK, best-of-field). Заменяет старую клиентскую
@@ -1888,25 +2308,16 @@ async function runSignInWithProvider(
       // Гарантируем Firebase Auth state ready (после signInWithCredential anon → google)
       await ensureAnonUser();
 
-      // stable_id уже поменялся: RevenueCat должен смотреть на новый canonical id
-      // до того, как PremiumContext перечитает entitlement.
-      const revenueCatSync = syncRevenueCatAfterAuthLink();
-
-      // Тащим прогресс с canonical stable_id
-      await Promise.all([
-        revenueCatSync,
-        withTimeout(restoreFromCloud(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'swap_restore'),
-      ]);
-
-      // КРИТИЧНО: шарды лежат в users/{uid}.shards (отдельно от SYNC_KEYS),
-      // и после свапа stable_id локальный баланс соответствует СТАРОМУ аккаунту.
-      // Без этого вызова первый же addShards/spendShards перезапишет правильный
-      // облачный баланс мусором с прежнего stable_id.
-      await loadShardsFromCloud().catch(() => {});
-      await tryRestoreAccountSwitchBackup('swap_restore');
-
-      // Если в облаке тоже автоген/пусто — попробуем дать человеческий ник из Google.
-      await markOnboardedAfterSignIn();
+      // зачем: владелец 2026-08-29 «сделать мгновенным». Ядро свапа выше
+      // (merge → wipe → setStableId) обязано быть блокирующим: до него на
+      // экране данные СТАРОГО аккаунта, и показать профиль раньше нельзя.
+      // А догрузка (restore + шарды + бэкап + ник + RC) — это два таймаута по
+      // 20с, ради которых человек ждал впустую. Уносим их в фон: stable_id уже
+      // канонический, поколение открыто выше в withAccountTransitionLock,
+      // поэтому передаём preparedStableId и не сбрасываем его повторно.
+      // Шарды при этом грузятся ДО первого addShards/spendShards, потому что
+      // загрузка идёт первым шагом фоновой цепочки, а не по тапу пользователя.
+      scheduleSameStablePostAuthRefresh('swap_restore', { preparedStableId: canonicalStableId });
 
       logAuthEvent('auth_signin_merged', {
         provider,
@@ -1958,25 +2369,31 @@ async function runSignInWithProvider(
         });
         invalidatePremiumCache();
         await ensureAnonUser();
-        await syncRevenueCatAfterAuthLink();
-        await withTimeout(restoreFromCloud(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'keeplocal_restore');
-        await loadShardsFromCloud().catch(() => {});
-        await tryRestoreAccountSwitchBackup('keeplocal_restore');
+        // зачем: см. swap-ветку — догрузка уходит в фон, ядро свапа выше блокирующее.
+        scheduleSameStablePostAuthRefresh('keeplocal_restore', { preparedStableId: canonicalStableId });
       } else if (merge?.ok) {
         // canonical == local: премиум/VIP-блок remote слит в наш local-док сервером.
         // Инвалидируем кэш и тянем слитое состояние в AsyncStorage (иначе VIP не виден).
+        // stable_id НЕ менялся — фоновая догрузка сама возьмёт текущий.
         invalidatePremiumCache();
-        await withTimeout(restoreFromCloud(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'keeplocal_restore_same').catch(() => {});
+        scheduleSameStablePostAuthRefresh('keeplocal_restore_same');
       }
     } catch (e) {
       if (__DEV__) console.warn('[auth_provider] merged_keep_local server-merge failed', e);
       // Не валим вход — деградируем к прежнему поведению ниже.
     }
-    // Local выиграл → попробуем подставить человеческий ник из Google если локальный — автоген,
-    // ПОТОМ синкаем (чтобы новый ник тоже ушёл в облако одним пакетом).
-    await markOnboardedAfterSignIn();
-    await syncRevenueCatAfterAuthLink();
-    syncToCloud().catch(() => {});
+    // Local выиграл → человеческий ник из Google вместо автогена, ПОТОМ синк
+    // (чтобы новый ник ушёл в облако одним пакетом).
+    // зачем: не держим экран — это косметика профиля, а не условие входа.
+    void (async () => {
+      try {
+        await markOnboardedAfterSignIn();
+        await syncRevenueCatAfterAuthLink();
+        await syncToCloud();
+      } catch (e) {
+        console.warn(`[SIGNIN] keep_local tail failed reason=${String((e as any)?.message ?? e).slice(0, 160)}`);
+      }
+    })();
     logAuthEvent('auth_signin_merged_keep_local', {
       provider,
       replaced: outcome.mergedFromStableId.slice(0, 8),
@@ -2013,37 +2430,76 @@ async function runSignInWithProvider(
   return { result: 'created_new', email: firebaseEmail, displayName: providerDisplayName };
 }
 
-function scheduleSameStablePostAuthRefresh(stage: 'linked_restore' | 'created_restore'): void {
+/**
+ * Фоновая догрузка после входа. Возвращает управление СРАЗУ — экран входа
+ * закрывается, не дожидаясь сети.
+ *
+ * зачем: владелец 2026-08-29 — «сделать чтобы был мгновенным». Раньше вход
+ * ждал restoreFromCloud + шарды + бэкап последовательно (два таймаута по 20с,
+ * худший случай ~47с), и человек всё это время смотрел на «Входим...».
+ * Теперь ядро (привязка/merge/swap stable_id) остаётся блокирующим — его
+ * нельзя прерывать без потери данных, — а всё, что лишь ДОГРУЖАЕТ данные,
+ * уходит сюда. Гонки закрыты isCurrentAccountGeneration: поздний ответ
+ * прошлого аккаунта не затирает свежий (см. app/account_generation.ts).
+ *
+ * `preparedStableId` — для merge-веток, где stable_id уже подменён вызывающим
+ * кодом и повторный beginAccountGeneration сбросил бы чужое поколение.
+ */
+function scheduleSameStablePostAuthRefresh(
+  stage: 'linked_restore' | 'created_restore' | 'swap_restore' | 'keeplocal_restore' | 'keeplocal_restore_same',
+  options: { preparedStableId?: string } = {},
+): void {
   void (async () => {
-    const stableId = await getStableId().catch(() => null);
-    beginAccountGeneration(stableId);
+    const t0 = Date.now();
+    const stableId = options.preparedStableId ?? (await getStableId().catch(() => null));
+    // зачем: в merge-ветках поколение уже открыто под новый stable_id —
+    // второй beginAccountGeneration сделал бы токен вызывающего устаревшим.
+    if (!options.preparedStableId) beginAccountGeneration(stableId);
     const generation = captureAccountGeneration();
     const isCurrent = () => isCurrentAccountGeneration(generation, stableId);
     let restoreResult: 'restored' | 'not_found' | 'failed' = 'failed';
-    try {
-      restoreResult = await withTimeout(restoreFromCloudDetailed(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, stage);
-    } catch (e) {
-      if (__DEV__) console.warn(`[auth_provider] ${stage} restoreFromCloud failed`, e);
-    }
-    if (!isCurrent()) return;
-    await loadShardsFromCloud(isCurrent).catch(() => {});
-    if (!isCurrent()) return;
-    await tryRestoreAccountSwitchBackup(stage, isCurrent);
-    if (!isCurrent()) return;
-    await markOnboardedAfterSignIn(isCurrent);
-    if (!isCurrent()) return;
-    await syncRevenueCatAfterAuthLink(isCurrent);
-    if (!isCurrent()) return;
+    // зачем: [SIGNIN] — единый префикс, чтобы владелец одним grep увидел,
+    // какой шаг сколько занял. Раньше ни один шаг не мерился, и «долго»
+    // приходилось оценивать по таймаутам из кода, а не по факту.
+    const step = async <T,>(name: string, run: () => Promise<T>): Promise<T | undefined> => {
+      const started = Date.now();
+      try {
+        const value = await run();
+        console.log(`[SIGNIN] bg:${stage}:${name} ok ${Date.now() - started}ms`);
+        return value;
+      } catch (e) {
+        // зачем: немой catch запрещён — причина обязана попасть в лог.
+        console.warn(`[SIGNIN] bg:${stage}:${name} FAIL ${Date.now() - started}ms reason=${String((e as any)?.message ?? e).slice(0, 120)}`);
+        return undefined;
+      }
+    };
+
+    restoreResult = (await step('restoreFromCloud', () =>
+      withTimeout(restoreFromCloudDetailed(), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, stage),
+    )) ?? 'failed';
+    if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_after_restore`); return; }
+    await step('loadShards', () => loadShardsFromCloud(isCurrent));
+    if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_after_shards`); return; }
+    await step('switchBackup', () => tryRestoreAccountSwitchBackup(stage, isCurrent));
+    if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_after_backup`); return; }
+    await step('markOnboarded', () => markOnboardedAfterSignIn(isCurrent));
+    if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_after_onboarded`); return; }
+    await step('revenueCat', () => syncRevenueCatAfterAuthLink(isCurrent));
+    if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_after_rc`); return; }
     if (restoreResult !== 'failed' && await hasMeaningfulLocalAccountData()) {
       if (!isCurrent()) return;
       await syncToCloud({ forceNow: true }).catch(() => {});
     } else if (__DEV__) {
       console.warn(`[auth_provider] ${stage}: skipping syncToCloud — local AsyncStorage empty`);
     }
-    if (!isCurrent()) return;
+    if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_before_hydrate`); return; }
+    // зачем: экран уже открыт — это событие плавно обновляет цифры,
+    // когда облако догрузилось (без «прыжка» из ниоткуда).
     if (restoreResult === 'restored') emitAppEvent('cloud_profile_hydrated');
+    console.log(`[SIGNIN] bg:${stage} done total=${Date.now() - t0}ms restore=${restoreResult}`);
   })().catch((e) => {
-    if (__DEV__) console.warn(`[auth_provider] ${stage} background refresh failed`, e);
+    // зачем: раньше причина падения фоновой догрузки терялась в __DEV__-only логе.
+    console.warn(`[SIGNIN] bg:${stage} background refresh failed reason=${String((e as any)?.message ?? e).slice(0, 160)}`);
   });
 }
 
@@ -2380,8 +2836,9 @@ export type DeleteAccountResult =
 /**
  * Результат БЫСТРОЙ фазы удаления — единственное, чего ждёт UI.
  *
- * `ok: true` означает: точка невозврата пройдена. Замок
- * account_delete_pending_auth уже лежит в SecureStore, а значит:
+ * `ok: true` означает: точка невозврата пройдена И строгая локальная очистка
+ * подтверждена. Замок account_delete_pending_auth уже лежит в SecureStore в
+ * фазе не ниже local_data_cleared, а значит:
  *   • старая почта / Apple ID уже НЕ пускают в старый аккаунт
  *     (signInWithProvider → handleAccountDeletePendingAuth);
  *   • даже если приложение убить прямо сейчас, следующий запуск дочистит всё
@@ -2424,21 +2881,36 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
     endLocalAccountDeletionAttempt();
     // зачем: резервацию мог держать НАШ ЖЕ незавершённый фон (сеть висит) или
     // оборванная прошлая попытка. Раньше это давало пользователю «не удалось
-    // подготовить удаление» на каждое повторное нажатие — удаление выглядело
-    // намертво сломанным. Если замок уже стоит, точка невозврата пройдена:
-    // сообщать об ошибке не о чем, надо просто выпустить человека на онбординг.
-    const alreadyPending = await hasPendingAccountDeleteLock();
+    // подготовить удаление» на каждое повторное нажатие. Повтор может присоединить
+    // только уже запущенный completion или доказанную фазу local_data_cleared+;
+    // один prepared guard ещё не доказывает, что старые данные стёрты.
+    const alreadyPending = await readPendingAccountDeleteLockForHandoff();
     if (alreadyPending) {
+      const activeCompletion = activeLocalAccountDeletionCompletions.get(alreadyPending.operationId);
+      if (activeCompletion) return { ok: true, completion: activeCompletion };
+      // A prepared guard proves only that destructive work was requested. It
+      // does not prove phone-state retirement, AsyncStorage clear, or strict
+      // readback. Letting the UI leave here can expose the old account under a
+      // fresh onboarding shell while the first attempt is still stalled.
+      if (alreadyPending.phase === 'prepared') {
+        return { ok: false, reason: 'local_wipe_unverified' };
+      }
       return { ok: true, completion: Promise.resolve({ ok: true, cloudDeleted: false }) };
     }
     return { ok: false, reason: 'clean_recovery_transition_active' };
   }
 
-  let prepared: PreparedAccountDeletion | null = null;
+  let prepared: PreparedAccountDeletion | 'local_wipe_unverified' | null = null;
   try {
     prepared = await prepareAccountDeletion();
   } catch (e) {
     if (__DEV__) console.warn('[auth_provider] beginAccountDeletion: prepare threw', e);
+  }
+
+  if (prepared === 'local_wipe_unverified') {
+    releaseTransitionReservation();
+    endLocalAccountDeletionAttempt();
+    return { ok: false, reason: 'local_wipe_unverified' };
   }
 
   if (!prepared) {
@@ -2450,26 +2922,12 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
       endLocalAccountDeletionAttempt();
       return { ok: false, reason: 'pending_guard_persist_failed' };
     }
-    // зачем: сюда попадаем, только если сама быстрая фаза БРОСИЛА (её штатный
-    // путь отказать уже не может). Раньше здесь жил отказ
-    // pending_guard_persist_failed — тот самый алерт «Не удалось безопасно
-    // подготовить удаление», который владелец видел на боевом устройстве.
-    // Он был неверным по сути: невозможность поставить замок не повод
-    // сохранять аккаунт, ведь у анонима блокировать вход всё равно нечего.
-    // Поэтому даже здесь доводим локальное удаление до конца и выпускаем
-    // пользователя на онбординг — сервер дочистит по замку/следующему старту.
-    logAuthEvent('auth_account_delete_prepare_threw_local_only');
-    try {
-      await wipeLocalAccountData();
-    } catch { /* игнорируем: отменять удаление нельзя */ }
-    try {
-      await AsyncStorage.clear();
-    } catch { /* игнорируем */ }
     releaseTransitionReservation();
     endLocalAccountDeletionAttempt();
-    return { ok: true, completion: Promise.resolve({ ok: true, cloudDeleted: false }) };
+    return { ok: false, reason: 'pending_guard_persist_failed' };
   }
 
+  const pendingOperationId = prepared.pendingDeleteLock?.operationId ?? null;
   const completion = (async () => {
     try {
       return await finishAccountDeletion(prepared);
@@ -2478,10 +2936,12 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
       logAuthEvent('auth_account_delete_background_failed');
       return { ok: false, reason: 'unknown' } as DeleteAccountResult;
     } finally {
+      if (pendingOperationId) activeLocalAccountDeletionCompletions.delete(pendingOperationId);
       releaseTransitionReservation();
       endLocalAccountDeletionAttempt();
     }
   })();
+  if (pendingOperationId) activeLocalAccountDeletionCompletions.set(pendingOperationId, completion);
   // зачем: completion живёт в фоне и его никто не обязан ждать. Без этой
   // заглушки отказ внутри превратился бы в unhandled rejection.
   void completion.catch(() => {});
@@ -2536,15 +2996,25 @@ type PreparedAccountDeletion = {
  * Ни одна локальная запись не имеет права держать пользователя дольше секунды.
  */
 const ACCOUNT_DELETE_LOCAL_STEP_TIMEOUT_MS = 1_000;
+// The complete wipe is a sequence of several individually bounded native
+// operations (writer drains, SecureStore lineage rotation, module cleanup,
+// AsyncStorage clear and strict readback). Giving their entire chain the same
+// one-second budget as a single operation created a deterministic false timeout
+// on real iOS hardware even though every stage completed successfully.
+const ACCOUNT_DELETE_LOCAL_WIPE_TIMEOUT_MS = 5_000;
 
 /** Ограничивает локальный шаг по времени; при таймауте отдаёт запасное значение. */
-async function withLocalStepDeadline<T>(run: () => Promise<T>, onTimeout: T): Promise<T> {
+async function withLocalStepDeadline<T>(
+  run: () => Promise<T>,
+  onTimeout: T,
+  timeoutMs = ACCOUNT_DELETE_LOCAL_STEP_TIMEOUT_MS,
+): Promise<T> {
   let timer: ReturnType<typeof setTimeout> | null = null;
   try {
     return await Promise.race([
       run().catch(() => onTimeout),
       new Promise<T>((resolve) => {
-        timer = setTimeout(() => resolve(onTimeout), ACCOUNT_DELETE_LOCAL_STEP_TIMEOUT_MS);
+        timer = setTimeout(() => resolve(onTimeout), timeoutMs);
       }),
     ]);
   } finally {
@@ -2552,31 +3022,26 @@ async function withLocalStepDeadline<T>(run: () => Promise<T>, onTimeout: T): Pr
   }
 }
 
-async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | null> {
+async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | 'local_wipe_unverified' | null> {
   const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;
   const isProvablyAnonymousAccount = getAuth()?.currentUser?.isAnonymous === true;
   const pendingDeleteStableId = await withLocalStepDeadline(() => getStableId(), null);
   // The bounded guard write is mandatory for linked/unknown identity and
   // best-effort only for a provably anonymous account.
-  const pendingDeleteLock = await withLocalStepDeadline(
-    () => persistAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId),
-    null,
-  );
+  let pendingDeleteLock = isProvablyAnonymousAccount
+    ? null
+    : await withLocalStepDeadline(
+      () => persistAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId),
+      null,
+      ACCOUNT_DELETE_LOCAL_WIPE_TIMEOUT_MS,
+    );
   // зачем: для связанной/неизвестной личности отказываем ДО стирания. Без замка
   // тот же провайдер вошёл бы снова и восстановил данные; аноним этим не связан.
   if (!isProvablyAnonymousAccount && !pendingDeleteLock) return null;
   // The deletion guard above is the point of no return for linked identities.
-  // Only after it is durable may the deleted account's SQLCipher lineage/key be
-  // retired. This bounded local step never makes the UI await network work.
-  if (pendingDeleteStableId) {
-    await withLocalStepDeadline(
-      () => import('./phone_state_bootstrap')
-        .then(({ retirePhoneStateAfterDeletion }) => (
-          retirePhoneStateAfterDeletion(pendingDeleteStableId)
-        )),
-      undefined,
-    );
-  }
+  // SQLCipher retirement, writer drains and every local clear are one
+  // registered flight below. Retries join it, so late native work cannot touch
+  // a fresh account generation.
   // зачем: владелец (2026-07-27) — «даже анонимный пользователь должен иметь
   // возможность удалить всё; локальные данные стираются сразу и мгновенный
   // переход на первый экран онбординга». Поэтому локальная очистка живёт ЗДЕСЬ,
@@ -2584,25 +3049,35 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | null>
   // вовсе, и ждать сеть, чтобы стереть своё же локальное, бессмысленно.
   // AsyncStorage.clear() снимает и прогресс, и onboarding_step/done/version —
   // без этого онбординг восстановил бы старый шаг вместо первого экрана.
-  // Ошибку глушим: даже если часть ключей не снялась, отменять удаление нельзя —
-  // фоновая фаза и resumePendingAccountDeleteLocalExit() дочистят.
   try {
-    if (pendingDeleteStableId) await clearMaxFinalizeOutbox(pendingDeleteStableId);
-    if (pendingDeleteStableId) await clearMaxVoiceReviewReceipts(pendingDeleteStableId);
-    await wipeLocalAccountData();
+    const locallyWiped = await wipeAndVerifyPostDeleteLocalData(
+      pendingDeleteLock,
+      pendingDeleteStableId,
+    );
+    if (!locallyWiped) return 'local_wipe_unverified';
   } catch (e) {
     if (__DEV__) console.warn('[auth_provider] prepareAccountDeletion: local wipe failed', e);
+    return 'local_wipe_unverified';
   }
-  try {
-    await AsyncStorage.clear();
-  } catch (e) {
-    if (__DEV__) console.warn('[auth_provider] prepareAccountDeletion: storage clear failed', e);
-  }
-  // Замок — зеркало в AsyncStorage — пишем ПОСЛЕ clear(), иначе он бы стёрся.
   if (pendingDeleteLock) {
-    await restoreAccountDeletePendingAuthMirror(pendingDeleteLock).catch(() => {});
+    const localCleared = await withLocalStepDeadline(
+      () => advanceAccountDeletePendingAuthLock(
+        pendingDeleteLock!,
+        'local_data_cleared',
+      ),
+      { ok: false, code: 'transition_persist_failed' } as const,
+      ACCOUNT_DELETE_LOCAL_WIPE_TIMEOUT_MS,
+    );
+    traceAccountDeleteLocal(`phase_local_data_cleared=${localCleared.ok ? 1 : 0}`);
+    if (!localCleared.ok) return 'local_wipe_unverified';
+    verifiedPostDeleteLocalWipes.delete(pendingDeleteLock.operationId);
+    pendingDeleteLock = localCleared.lock;
   }
-  const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(pendingDeleteStableId);
+  emitAppEvent('account_deleted');
+  const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(
+    pendingDeleteStableId,
+    pendingDeleteLock ? accountDeleteCredentialProof(pendingDeleteLock) ?? undefined : undefined,
+  );
   return {
     pendingDeleteLock,
     pendingDeleteStableId,
@@ -2662,30 +3137,41 @@ async function finishAccountDeletion(
         }),
     ]);
 
-    await beginEntitlementSafeAccountTransition();
+    // The strict local wipe already invalidated the old generation and opened
+    // the premium transition. Here we only drain in-flight work before the
+    // server/auth boundary, avoiding a duplicate transition notification.
+    await drainEntitlementSafeAccountTransition();
     await Promise.all([
       waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
       quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
     ]);
     if (requiresDurableServerDeletion) {
+      if (!pendingDeleteLock) return { ok: false, reason: 'pending_guard_persist_failed' };
+      let credentialSafe = false;
       try {
         const ack = await cloudDeleteEnqueueOperation.acknowledgment;
+        credentialSafe = ack.authReleased === true && ack.credentialSafe === true;
         logAuthEvent('auth_account_delete_enqueued', { status: ack.status });
-        if (!pendingDeleteLock) return { ok: false, reason: 'pending_guard_persist_failed' };
-        const serverEnqueuedLock: AccountDeletePendingAuthLock = {
-          ...pendingDeleteLock,
-          phase: 'server_enqueued',
-        };
-        if (!await persistAccountDeletePendingAuthLock(serverEnqueuedLock)) {
-          logAuthEvent('auth_account_delete_quarantined', { reason: 'enqueue_phase_persist_failed' });
-          return { ok: false, reason: 'pending_guard_persist_failed' };
-        }
-        localExitLock = serverEnqueuedLock;
       } catch (e) {
-        if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: enqueue failed; pending guard retained', e);
+        if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: enqueue response lost; checking receipt', e);
+      }
+      const proof = accountDeleteCredentialProof(pendingDeleteLock);
+      if (!credentialSafe && proof) {
+        credentialSafe = await waitForAccountDeletionCredentialSafe(proof).catch(() => false);
+      }
+      if (!credentialSafe) {
         logAuthEvent('auth_account_delete_enqueue_failed');
         return { ok: false, reason: 'account_delete_enqueue_failed' };
       }
+      const advanced = await advanceAccountDeletePendingAuthLock(
+        pendingDeleteLock,
+        'server_enqueued',
+      );
+      if (!advanced.ok) {
+        logAuthEvent('auth_account_delete_quarantined', { reason: 'enqueue_phase_persist_failed' });
+        return { ok: false, reason: 'pending_guard_persist_failed' };
+      }
+      localExitLock = advanced.lock;
     } else {
       // зачем: для анонима ждём только отправки запроса, а подтверждение сервера
       // остаётся фоновой работой под замком — медленная сеть не имеет права
@@ -2701,6 +3187,23 @@ async function finishAccountDeletion(
       await cloudDeleteEnqueueOperation.dispatchSettled;
     }
 
+    if (requiresDurableServerDeletion && localExitLock) {
+      const freshIdentity = await ensureFreshPostDeletionIdentity('delete');
+      if (freshIdentity.status !== 'ready') {
+        if (
+          freshIdentity.status === 'pending_auth'
+          && getAuth()?.currentUser?.isAnonymous === false
+        ) {
+          logAuthEvent('auth_account_delete_quarantined', { reason: 'firebase_signout_failed' });
+          return { ok: false, reason: 'firebase_signout_failed' };
+        }
+        logAuthEvent('auth_account_delete_quarantined', { reason: 'local_exit_unverified' });
+        return { ok: false, reason: 'local_exit_unverified' };
+      }
+      logAuthEvent('auth_account_deleted', { cloudDeleted: 0 });
+      return { ok: true, cloudDeleted: false };
+    }
+
     // Linked deletion keeps provider auth until durable server acceptance. This
     // runs only in completion: UI handoff and the fast local privacy wipe already
     // completed, while the guard lets a later launch retry any interruption.
@@ -2714,38 +3217,24 @@ async function finishAccountDeletion(
 
     // зачем: локальные данные уже стёрты в БЫСТРОЙ фазе (требование владельца —
     // мгновенно, ещё до сети). Здесь остаётся только довести замок до фазы
-    // local_cleared. Без замка (аноним/недоступный SecureStore) доводить нечего:
+    // old_stable_cleared. Без замка (аноним/недоступный SecureStore) доводить нечего:
     // считаем локальный выход выполненным, иначе удаление вечно висело бы
     // «незавершённым» и блокировало следующие попытки.
     const localExitComplete = localExitLock
       ? await completePreparedAccountDeleteLocalExit(localExitLock, firebaseSignedOut, true)
       : firebaseSignedOut;
-    let rotatedStableId: string | null = null;
-    if (CLOUD_SYNC_ENABLED && firebaseSignedOut && localExitComplete) {
-      try {
-        try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
-        rotatedStableId = await ensureAnonUser();
-        if (rotatedStableId && rotatedStableId === pendingDeleteStableId) {
-          await clearStableId();
-          try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
-          rotatedStableId = await ensureAnonUser();
-        }
-      } catch (e) {
-        if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: ensureAnonUser failed', e);
-      }
-    }
-
-    if (localExitComplete && rotatedStableId !== pendingDeleteStableId) {
-      beginAccountGeneration(rotatedStableId);
-    } else {
-      beginAccountGeneration(null);
-    }
+    const freshIdentity = localExitComplete && localExitLock
+      ? await ensureFreshPostDeletionIdentity('delete')
+      : null;
 
     if (!firebaseSignedOut) {
       logAuthEvent('auth_account_delete_quarantined', { reason: 'firebase_signout_failed' });
       return { ok: false, reason: 'firebase_signout_failed' };
     }
-    if (!localExitComplete || rotatedStableId === pendingDeleteStableId) {
+    if (
+      !localExitComplete
+      || (CLOUD_SYNC_ENABLED && localExitLock && freshIdentity?.status !== 'ready')
+    ) {
       logAuthEvent('auth_account_delete_quarantined', { reason: 'local_exit_unverified' });
       return { ok: false, reason: 'local_exit_unverified' };
     }
@@ -2759,47 +3248,14 @@ export type RemoteAccountDeleteResult =
 
 /** Clears a device whose still-signed-in provider account was deleted elsewhere. */
 export async function handleAccountDeletedOnAnotherDevice(): Promise<RemoteAccountDeleteResult> {
-  const providerUid = getAuth()?.currentUser?.uid ?? null;
-  const deletedStableId = await getStableId().catch(() => null);
-  const pendingDelete = await persistAccountDeletePendingAuth(
-    providerUid,
-    deletedStableId,
-    'remote',
-  );
-  if (!pendingDelete) return { ok: false, reason: 'pending_guard_persist_failed' };
-
-  await beginEntitlementSafeAccountTransition();
-  await Promise.all([
-    waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
-    quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
-  ]).catch((e) => {
-    if (__DEV__) console.warn('[auth_provider] remote account delete: transition drain failed', e);
+  const freshIdentity = await ensureFreshPostDeletionIdentity('identity_retired', {
+    subject: 'auth',
   });
-
-  try {
-    await signOutCurrentProvider();
-  } catch (e) {
-    if (__DEV__) console.warn('[auth_provider] remote account delete: signOut failed', e);
-    return { ok: false, reason: 'firebase_signout_failed' };
-  }
-  const localExitComplete = await completePreparedAccountDeleteLocalExit(pendingDelete, true);
-  if (!localExitComplete) return { ok: false, reason: 'local_exit_unverified' };
-
-  let rotatedStableId: string | null = null;
-  if (CLOUD_SYNC_ENABLED) {
-    try {
-      try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
-      rotatedStableId = await ensureAnonUser();
-    } catch (e) {
-      if (__DEV__) console.warn('[auth_provider] remote account delete: ensureAnonUser failed', e);
-    }
-  }
-  if (rotatedStableId === deletedStableId) {
-    return { ok: false, reason: 'identity_rotation_failed' };
+  if (freshIdentity.status !== 'ready') {
+    return { ok: false, reason: freshIdentity.status };
   }
   await AsyncStorage.setItem(REMOTE_ACCOUNT_DELETED_NOTICE_KEY, '1').catch(() => {});
   invalidatePremiumCache();
-  beginAccountGeneration(rotatedStableId);
   logAuthEvent('auth_account_deleted_on_another_device');
   return { ok: true };
 }

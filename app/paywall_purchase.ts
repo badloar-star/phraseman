@@ -75,6 +75,7 @@ import {
 } from './account_generation';
 import {
   commitRevenueCatResultForGeneration,
+  readRevenueCatCustomerInfoForGeneration,
   runRevenueCatOperationForGeneration,
 } from './revenuecat_account_identity';
 
@@ -562,7 +563,21 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         () => Purchases.purchasePackage(pkg), // RAW пакет — цена стора без изменений
       );
       if (purchaseResult.status !== 'ok') return;
-      const { customerInfo } = purchaseResult.value;
+      let { customerInfo } = purchaseResult.value;
+      // зачем: в Sandbox/TestFlight customerInfo из purchasePackage иногда ещё не
+      // отражает свежий entitlement (RevenueCat не успел досинхронизироваться с
+      // Apple к моменту ответа) — доступ фактически уже есть, но проверка ниже
+      // мгновенно показывала «ждёт подтверждения». Пара коротких повторных
+      // чтений customerInfo перед тем, как считать это deferred-покупкой.
+      if (!customerInfoConfirmsProductAccess(customerInfo, pkg.product.identifier)) {
+        for (let attempt = 0; attempt < 2 && isOperationAccountCurrent(); attempt += 1) {
+          await new Promise((r) => setTimeout(r, 800));
+          if (!isOperationAccountCurrent()) break;
+          const refreshed = await readRevenueCatCustomerInfoForGeneration(operationAccount);
+          if (refreshed) customerInfo = refreshed;
+          if (customerInfoConfirmsProductAccess(customerInfo, pkg.product.identifier)) break;
+        }
+      }
       // Премиум включаем ТОЛЬКО при реально активном entitlement (как в restore):
       // deferred-исход / аномалия sandbox без этой проверки давали локальный
       // «премиум», которого нет на сервере, — доступ потом «отваливался».
@@ -610,6 +625,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       // Передаём состояние целиком: присваивание идёт внутри async-колбэка,
       // из-за чего TS сужает замыкание до never при обращении к полю.
       if (activatedPersonalPlan) prefetchWholePlanContentInBackground(activatedPersonalPlan);
+      // зачем: сама успешная покупка не звучала — были только start/failed/restored.
+      // Играем сразу после локального подтверждения, до аналитики и навигации,
+      // по тому же правилу, что и restored: пользователь не должен ждать
+      // финального экрана, чтобы услышать подтверждение. На тирах с экраном
+      // празднования этот звук уходит первым, до его фоновой подложки.
+      soundDirector.request('pm.purchase.success', { scope: 'paywall' });
       void trackEvent('purchase_completed', { context, source, plan: selected, product_id: pkg.product.identifier, with_trial: pkgTrial.hasTrial, paywall: variant, ...paywallImpressionParams(impression) });
       logPaywallFunnel('purchase_completed', { variant, context, plan: selected, price: storePriceTrim(pkg.product.priceString) || null });
       if (pkgTrial.hasTrial) {

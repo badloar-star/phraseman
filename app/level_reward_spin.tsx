@@ -17,12 +17,15 @@ import { triLang } from '../constants/i18n';
 import {
   acknowledgeLocalLevelSpin,
   claimLocalLevelSpin,
+  claimLocalLevelSpinWithRunes,
   localLevelSpinReceiptToInventory,
   readLocalLevelSpinBalance,
   recoverLocalLevelSpin,
   releaseUndeliveredLocalLevelSpin,
   type LocalLevelSpinReceipt,
 } from './local_level_spins';
+import { PAID_LEVEL_SPIN_RUNE_PRICE } from './level_spin_star_grants';
+import { getRunesBalance, peekRunes, subscribeRunesSnapshot } from './runes_system';
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import {
@@ -46,6 +49,7 @@ export default function LevelRewardSpinScreen() {
   const runIdRef = useRef(0);
   const [phase, setPhase] = useState<LevelSpinFinishLinePhase>('recovering');
   const [balance, setBalance] = useState<number | null>(null);
+  const [runeBalance, setRuneBalance] = useState(() => peekRunes());
   const [receipt, setReceipt] = useState<LocalLevelSpinReceipt | null>(null);
   const [rewardPreviewVisible, setRewardPreviewVisible] = useState(false);
   const rewardRuntimeRef = useRef({ energy, maxEnergy, reloadEnergy, studyTarget });
@@ -165,6 +169,54 @@ export default function LevelRewardSpinScreen() {
     }
   }, [beginRewardDelivery]);
 
+  const runPaid = useCallback(async () => {
+    if (busyRef.current || runeBalance < PAID_LEVEL_SPIN_RUNE_PRICE) return;
+    const captured = captureAccountGeneration();
+    const accountToken = isCurrentAccountGeneration(captured)
+      ? captured
+      : await waitForActiveAccountGeneration();
+    if (!accountToken || !isCurrentAccountGeneration(accountToken)) return;
+    busyRef.current = true;
+    const runId = ++runIdRef.current;
+    setPhase('spinning');
+    try {
+      const nextReceipt = await claimLocalLevelSpinWithRunes();
+      if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
+      void beginRewardDelivery(nextReceipt, accountToken);
+      setReceipt(nextReceipt);
+      setBalance(nextReceipt.balanceAfter);
+      setRuneBalance((await getRunesBalance()).balance);
+      if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
+      setPhase('spinning');
+    } catch {
+      if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
+      const [localBalance, runes] = await Promise.all([
+        readLocalLevelSpinBalance().catch(() => 0),
+        getRunesBalance().catch(() => ({ balance: peekRunes(), earnedTotal: 0 })),
+      ]);
+      if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
+      setBalance(localBalance);
+      setRuneBalance(runes.balance);
+      setPhase(localBalance > 0 ? 'idle' : 'empty');
+    } finally {
+      if (runIdRef.current === runId) busyRef.current = false;
+    }
+  }, [beginRewardDelivery, runeBalance]);
+
+  useEffect(() => {
+    let active = true;
+    void getRunesBalance().then((next) => {
+      if (active) setRuneBalance(next.balance);
+    });
+    const unsubscribe = subscribeRunesSnapshot((next) => {
+      if (active) setRuneBalance(next.balance);
+    });
+    return () => {
+      active = false;
+      unsubscribe();
+    };
+  }, []);
+
   useEffect(() => {
     mountedRef.current = true;
     void run(true);
@@ -176,8 +228,12 @@ export default function LevelRewardSpinScreen() {
       setReceipt(null);
       setRewardPreviewVisible(false);
       setBalance(null);
+      setRuneBalance(peekRunes());
       setPhase('recovering');
-      if (accountToken.phase === 'active') queueMicrotask(() => { void run(true); });
+      if (accountToken.phase === 'active') queueMicrotask(() => {
+        void getRunesBalance().then((next) => setRuneBalance(next.balance));
+        void run(true);
+      });
     });
     return () => {
       mountedRef.current = false;
@@ -352,8 +408,11 @@ export default function LevelRewardSpinScreen() {
         lang={lang}
         phase={phase}
         balance={balance}
+        runeBalance={runeBalance}
+        paidSpinPrice={PAID_LEVEL_SPIN_RUNE_PRICE}
         receipt={receipt}
         onSpin={() => { void run(false); }}
+        onPaidSpin={() => { void runPaid(); }}
         onRetry={() => { void run(false); }}
         onAgain={() => { void handleResultAction(); }}
         onRevealed={handleRevealed}

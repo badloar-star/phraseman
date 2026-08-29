@@ -8,7 +8,7 @@ import { V2Card, V2Cta } from '../components/ui/v2_ui';
 import { useTournamentPalette } from '../components/ui/v2_theme';
 import { arenaText } from '../modules/arena/copy';
 import { arenaEntryFailure } from '../modules/arena/duel_plan';
-import { ARENA_QUICK_FALLBACK_MAX_MS, ARENA_QUICK_SEARCH_GIVE_UP_MS, ARENA_RANKED_HEARTBEAT_MS, type ArenaQueueMode } from '../modules/arena/contract';
+import { ARENA_QUICK_BOT_ANSWER_GRACE_MS, ARENA_QUICK_FALLBACK_MAX_MS, ARENA_QUICK_SEARCH_GIVE_UP_MS, ARENA_RANKED_HEARTBEAT_MS, type ArenaQueueMode } from '../modules/arena/contract';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import { arenaReplacementBotDelayMs } from '../modules/arena/matchmaking_state';
@@ -17,14 +17,27 @@ import {
   arenaV2FindMatch,
   arenaV2QueueCancel,
   arenaV2QuickBotFallback,
+  arenaV2ReleaseStaleMatch,
   createArenaRequestId,
   useArenaQueue,
 } from './arena_client';
 import { arenaEntryPrefetchStart } from './arena_entry_prefetch';
+import { DebugLogger } from './debug-logger';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 
 const quickFallbackRequests = new Set<string>();
+
+/**
+ * Ожидание готовности энергии на входе в поиск (владелец 2026-08-28).
+ *
+ * На холодном старте профиль восстанавливается дольше, чем открывается экран,
+ * и списание отвечает `'cancelled'` не потому, что энергии нет, а потому что
+ * она ещё не поднялась. Пятнадцать секунд с шагом в секунду перекрывают
+ * обычное восстановление; дальше экран просто ждёт человека, а не выбрасывает.
+ */
+const ENERGY_READY_RETRY_MS = 1_000;
+const ENERGY_READY_RETRIES = 15;
 
 /**
  * Ноль секундомера до старта поиска. Формат и ширина совпадают с рабочим
@@ -32,6 +45,14 @@ const quickFallbackRequests = new Set<string>();
  * «оплата прошла → поиск пошёл» не двигает геометрию карточки ни на пиксель.
  */
 const ZERO_ELAPSED_LABEL = '0:00';
+
+/**
+ * Сколько раз пробуем снять замок незакрытого матча, прежде чем честно
+ * закончить поиск (владелец 2026-08-29, лог 11:11-11:12: бесконечный цикл
+ * «отбой → снятие → NOT FOUND» держал пульс минутами, а очередь так и не
+ * создавалась).
+ */
+const LOCK_RELEASE_MAX_ATTEMPTS = 2;
 
 /**
  * React в dev/Strict Mode может смонтировать экран поиска дважды. Если
@@ -89,6 +110,33 @@ export default function ArenaMatchmakingScreen() {
   /** Момент входа бота назначает сервер. Клиент только ждёт до него.
    *  Считаем от локального старта очереди, чтобы расхождение часов не сдвигало срок. */
   const [botDelayMs, setBotDelayMs] = useState<number | null>(null);
+  /**
+   * Локальный момент, когда сервер ПОДТВЕРДИЛ постановку в очередь.
+   *
+   * зачем (владелец 2026-08-29, «идёт поиск, а через 30-40 секунд обрывает и
+   * возвращает назад»): сроки клиента и сервера считались от РАЗНЫХ нулей.
+   * Клиент отсчитывал и окно бота, и сдачу поиска от момента оплаты энергии,
+   * а сервер — от собственного joinedAtMs, то есть от создания билета кругом
+   * сети позже. На холодном старте и моргнувшей сети разрыв доходил до
+   * секунд: сервер ещё отбивал бота как `arena_quick_bot_too_early`, а клиент
+   * уже сдавал поиск и уходил на хаб. Теперь обе даты растут от одного нуля —
+   * подтверждения очереди; до подтверждения ждём, а не сдаёмся.
+   *
+   * ПОЧЕМУ ref, А НЕ useState (владелец 2026-08-29, «поиск зависает на 3
+   * секунды и дальше не идёт»): первая же сверка отвечает через 1-3 секунды.
+   * Состояние в зависимостях эффекта бота заставляло эффект пересоздаться, и
+   * его cleanup УБИВАЛ уже запущенный таймер бота — новых триггеров не было,
+   * поиск замирал навсегда. Момент подтверждения обязан жить вне графа
+   * зависимостей: его читают при постановке таймеров, но менять их он не смеет.
+   * Отдельный тик ниже будит ТОЛЬКО сдачу поиска, ничего больше не трогая.
+   */
+  const queueConfirmedAtMsRef = useRef<number | null>(null);
+  /** Подлинный серверный срок бота (без клиентского потолка) — сдача его ждёт. */
+  const serverBotDueDelayMsRef = useRef<number | null>(null);
+  /** Запрос бота прямо сейчас в полёте: рубить поиск под ним нельзя. */
+  const botRequestInFlightRef = useRef(false);
+  /** Одноразовый тик: сообщает эффекту сдачи, что ноль отсчёта наконец известен. */
+  const [queueConfirmedTick, setQueueConfirmedTick] = useState(0);
   /** Ближайший момент автоматического повтора запроса бота. */
   const [botRetryAtMs, setBotRetryAtMs] = useState<number | null>(null);
   /** После сорванного назначения следующий бот не приходит раньше ~минуты. */
@@ -104,6 +152,25 @@ export default function ArenaMatchmakingScreen() {
     acknowledgeSessionStart,
   } = useEnergy();
   const [energyGate, setEnergyGate] = useState<'checking' | 'ok' | 'denied'>('checking');
+  /**
+   * Замок незакрытого матча уже снят — можно повторять поиск.
+   *
+   * зачем (владелец 2026-08-29): показывать человеку «прошлый матч ещё не
+   * доигран» — неправильно. Матч, который НЕ СОСТОЯЛСЯ, обязан закрываться
+   * сам и сразу, а не превращаться в заглушку поперёк Арены. Клиент просит
+   * сервер снять замок и молча продолжает искать.
+   */
+  const [lockReleaseTick, setLockReleaseTick] = useState(0);
+  /** Замок снимаем один раз за попытку: без этого повтор уходил бы в петлю. */
+  const lockReleaseRequestedRef = useRef(false);
+  /** Сколько раз снятие замка провалилось: предел спасает от вечного поиска. */
+  const lockReleaseAttemptsRef = useRef(0);
+  /**
+   * Ссылка на выход из поиска: сам обработчик объявлен ниже (ему нужны кэшбэк
+   * энергии и роутер), а нужен он выше — в сверке очереди. Ref разрывает этот
+   * порядок, не создавая цикла зависимостей между эффектами.
+   */
+  const leaveSearchRef = useRef<((reason: string) => void) | null>(null);
   /** Плата за вход в очередь состоялась — при отмене поиска её возвращаем. */
   const energyChargedRef = useRef(false);
   /** Выход из поиска уже начат: защита от двойного тапа и двойного возврата. */
@@ -114,25 +181,56 @@ export default function ArenaMatchmakingScreen() {
   useEffect(() => {
     if (resumesPaidQueue) { setEnergyGate('ok'); return; }
     let cancelled = false;
-    void confirmArenaMatchEnergy(arenaMatchEnergyIntent).then((result) => {
-      if (cancelled) return;
-      if (result === 'cancelled') {
-        router.replace('/arena' as never);
-        return;
-      }
-      // Помним факт оплаты: отмена поиска обязана вернуть единицу (см. cancel).
-      if (result === 'spent') energyChargedRef.current = true;
-      setEnergyGate(result === 'insufficient' ? 'denied' : 'ok');
-    });
-    return () => { cancelled = true; };
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
+    /**
+     * зачем (владелец 2026-08-28, «Арена сразу закрывается, а энергия ЕСТЬ»):
+     * `'cancelled'` от списания НЕ означает отказ пользователя и НЕ означает
+     * нехватку энергии. Он приходит и тогда, когда энергия ещё не поднялась —
+     * загрузка молча выходит, пока поколение аккаунта не стало `active`
+     * (`account_generation.ts:133`), а на холодном старте это норма: профиль
+     * восстанавливается дольше, чем открывается экран.
+     *
+     * Раньше экран на этот вердикт немедленно делал `router.replace('/arena')`
+     * — человека выбрасывало из поиска, хотя энергия у него была. Теперь ждём
+     * и повторяем: экран остаётся на месте, показывает обычный пульс поиска,
+     * а списание догоняет, как только аккаунт активируется. Выброс убран
+     * совсем — «не смогли списать» больше не равно «уходим с экрана».
+     */
+    const attempt = (attemptsLeft: number) => {
+      void confirmArenaMatchEnergy(arenaMatchEnergyIntent).then((result) => {
+        if (cancelled) return;
+        if (result === 'cancelled') {
+          // Даже исчерпав попытки, НЕ выбрасываем с экрана: человек сам решит
+          // уйти кнопкой «Отмена». Молчаливый выброс выглядел как поломка.
+          if (attemptsLeft <= 0) return;
+          retryTimer = setTimeout(() => attempt(attemptsLeft - 1), ENERGY_READY_RETRY_MS);
+          return;
+        }
+        // Помним факт оплаты: отмена поиска обязана вернуть единицу (см. cancel).
+        if (result === 'spent') energyChargedRef.current = true;
+        setEnergyGate(result === 'insufficient' ? 'denied' : 'ok');
+      }).catch(() => {
+        if (cancelled || attemptsLeft <= 0) return;
+        retryTimer = setTimeout(() => attempt(attemptsLeft - 1), ENERGY_READY_RETRY_MS);
+      });
+    };
+    attempt(ENERGY_READY_RETRIES);
+    return () => {
+      cancelled = true;
+      if (retryTimer) clearTimeout(retryTimer);
+    };
     // Ровно один расход на requestIdKey (смена requestId = новая попытка поиска).
-  }, [arenaMatchEnergyIntent, confirmArenaMatchEnergy, requestIdKey, resumesPaidQueue, router]);
+  }, [arenaMatchEnergyIntent, confirmArenaMatchEnergy, requestIdKey, resumesPaidQueue]);
 
   useEffect(() => {
     if (energyGate !== 'ok') return;
     // Экран поиска открылся.
     playSound('searchStart');
     queueAttemptStartedAtMsRef.current = Date.now();
+    queueConfirmedAtMsRef.current = null;
+    lockReleaseRequestedRef.current = false;
+    serverBotDueDelayMsRef.current = null;
+    botRequestInFlightRef.current = false;
     setBotDelayMs(null);
     setBotRetryAtMs(null);
     setReplacementBotNotBeforeAtMs(null);
@@ -145,6 +243,16 @@ export default function ArenaMatchmakingScreen() {
     const due = Number(ticket?.botDueAtMs);
     const joined = Number(ticket?.joinedAtMs);
     if (!Number.isFinite(due) || !Number.isFinite(joined)) return;
+    /**
+     * зачем (владелец 2026-08-29, лог 10:54): сервер назначил бота на 24.9 с,
+     * а клиент режет ожидание своим потолком в 20 с и просит бота раньше
+     * срока — сервер отбивает `arena_quick_bot_too_early`, повтор приходит на
+     * 26-й секунде и совпадает со сдачей поиска. Потолок оставляем (он спасает
+     * от старых билетов с 45-секундным сроком), но ПОДЛИННЫЙ серверный срок
+     * запоминаем отдельно: сдача обязана его дождаться, иначе мы бросаем
+     * поиск ровно в тот момент, когда соперник уже назначен.
+     */
+    serverBotDueDelayMsRef.current = Math.max(0, due - joined);
     setBotDelayMs(Math.max(0, Math.min(ARENA_QUICK_FALLBACK_MAX_MS, due - joined)));
   }, []);
 
@@ -155,15 +263,75 @@ export default function ArenaMatchmakingScreen() {
       if (cancelled) return;
       if (energyChargedRef.current) void acknowledgeSessionStart(arenaMatchEnergyIntent.operationId);
       setStableUid(result.stableUid);
+      // Сервер ответил — билет в очереди существует. С этого мгновения растут
+      // и окно бота, и предел ожидания (см. queueConfirmedAtMsRef).
+      if (queueConfirmedAtMsRef.current === null) {
+        queueConfirmedAtMsRef.current = Date.now();
+        DebugLogger.info('arena_matchmaking', `queue confirmed mode=${mode} after=${
+          Date.now() - queueAttemptStartedAtMsRef.current}ms botDue=${
+          Number(result.queue?.botDueAtMs) - Number(result.queue?.joinedAtMs)}ms`);
+        // Будим ТОЛЬКО эффект сдачи поиска. Таймер бота при этом не трогаем:
+        // именно его пересоздание и убивало поиск на третьей секунде.
+        setQueueConfirmedTick((tick) => tick + 1);
+      }
       adoptBotSchedule(result.queue);
       if (result.matchId) {
         // Соперник найден — звук ровно один раз, до перехода на матч.
         playSound('opponentFound');
         setMatchId(result.matchId);
       }
-    }).catch(() => {
+    }).catch((reason) => {
       // Никакой отдельной ошибки на поверхности: heartbeat продолжает ту же
-      // серверную очередь с тем же идемпотентным requestId.
+      // серверную очередь с тем же идемпотентным requestId. Но в лог пишем —
+      // молчащая сверка была невидима и её приходилось угадывать.
+      DebugLogger.warn('arena_matchmaking', `findMatch failed mode=${mode}: ${String(reason)}`);
+      /**
+       * Единственный отказ, который сам не рассосётся: очередь не будет создана
+       * НИКОГДА, пока за профилем числится незакрытый матч.
+       *
+       * зачем (владелец 2026-08-29): человеку тут показывать нечего — он не
+       * бросал матч, тот просто не состоялся. Молча просим сервер снять замок
+       * и продолжаем искать; заглушка «прошлый матч ещё не доигран» убрана.
+       */
+      if (!cancelled && String(reason).includes('arena_active_match_exists')
+        && !lockReleaseRequestedRef.current) {
+        lockReleaseRequestedRef.current = true;
+        DebugLogger.warn('arena_matchmaking', 'active match lock detected — releasing');
+        void arenaV2ReleaseStaleMatch().then((released) => {
+          DebugLogger.info('arena_matchmaking',
+            `stale match released=${released.released} matchId=${released.matchId ?? 'none'}`);
+          if (cancelled) return;
+          if (released.released) {
+            lockReleaseAttemptsRef.current = 0;
+            setLockReleaseTick((tick) => tick + 1);
+            return;
+          }
+          /**
+           * Сервер отказался снимать замок — значит матч ЖИВОЙ и человеку надо
+           * в него вернуться, а не искать новый. Поиск здесь бесполезен.
+           */
+          DebugLogger.warn('arena_matchmaking', 'lock held by a live match — leaving search');
+          leaveSearchRef.current?.('active_match_live');
+        }).catch((error) => {
+          /**
+           * зачем (владелец 2026-08-29, «поиск идёт уже больше минуты»): в логе
+           * 11:11-11:12 клиент КАЖДЫЕ 15 секунд получал `NOT FOUND` (функция
+           * тогда не была задеплоена), снимал замок попытки и пробовал снова —
+           * бесконечно. Поиск при этом не шёл вовсе: очередь не создавалась.
+           * Даём ровно две попытки, дальше честно заканчиваем поиск и
+           * возвращаем энергию, вместо вечного пульса на экране.
+           */
+          lockReleaseAttemptsRef.current += 1;
+          DebugLogger.warn('arena_matchmaking',
+            `stale match release failed (attempt ${lockReleaseAttemptsRef.current}): ${String(error)}`);
+          if (cancelled) return;
+          if (lockReleaseAttemptsRef.current >= LOCK_RELEASE_MAX_ATTEMPTS) {
+            leaveSearchRef.current?.('active_match_lock_stuck');
+            return;
+          }
+          lockReleaseRequestedRef.current = false;
+        });
+      }
     });
     void reconcile();
     /**
@@ -182,14 +350,16 @@ export default function ArenaMatchmakingScreen() {
       cancelled = true;
       clearInterval(heartbeat);
     };
-  }, [acknowledgeSessionStart, active, adoptBotSchedule, arenaMatchEnergyIntent, leaseRefreshTick, matchId, mode, playSound, requestId]);
+  }, [acknowledgeSessionStart, active, adoptBotSchedule, arenaMatchEnergyIntent, leaseRefreshTick,
+    lockReleaseTick, matchId, mode, playSound, requestId]);
 
   useEffect(() => {
     if (!active || matchId || mode !== 'quick' || botDelayMs === null) return undefined;
     // botDueAtMs может быть через 55 с, а lease очереди живёт 45 с. Один
     // FindMatch с тем же requestId перед концом аренды сохраняет joinedAtMs и
     // назначенный сервером botDueAtMs, только продлевая существующий билет.
-    const refreshAtMs = queueAttemptStartedAtMsRef.current + Math.min(botDelayMs, 40_000);
+    const refreshAtMs = (queueConfirmedAtMsRef.current ?? queueAttemptStartedAtMsRef.current)
+      + Math.min(botDelayMs, 40_000);
     const timer = setTimeout(() => setLeaseRefreshTick((tick) => tick + 1),
       Math.max(0, refreshAtMs - Date.now()));
     return () => clearTimeout(timer);
@@ -205,8 +375,19 @@ export default function ArenaMatchmakingScreen() {
     if (!active || matchId || mode !== 'quick' || botDelayMs === null) return undefined;
     if (quickFallbackRequests.has(requestId)) return undefined;
     let cancelled = false;
+    // botDelayMs — это (botDueAtMs - joinedAtMs) СЕРВЕРА, поэтому и отсчитывать
+    // его надо от подтверждения очереди, а не от оплаты энергии: иначе клиент
+    // просил бота раньше срока и получал arena_quick_bot_too_early.
+    /**
+     * зачем (лог 10:54:13 → `arena_quick_bot_too_early`): клиент урезал срок
+     * своим 20-секундным потолком и стучался к серверу раньше назначенного им
+     * момента. Отказ стоил повтора и увёл ответ за черту сдачи. Просим бота не
+     * раньше ПОДЛИННОГО серверного срока; потолок остаётся страховкой от
+     * старых билетов (там он меньше серверного и ничего не ломает).
+     */
+    const dueDelayMs = Math.max(botDelayMs, serverBotDueDelayMsRef.current ?? 0);
     const fireAtMs = Math.max(
-      queueAttemptStartedAtMsRef.current + botDelayMs,
+      (queueConfirmedAtMsRef.current ?? queueAttemptStartedAtMsRef.current) + dueDelayMs,
       botRetryAtMs ?? 0,
       replacementBotNotBeforeAtMs ?? 0,
     );
@@ -220,13 +401,21 @@ export default function ArenaMatchmakingScreen() {
       // лечится ничем. Владелец 2026-08-27: окно было 10 с + 2 с на повтор —
       // одна молчащая попытка съедала больше половины обещанных 20 секунд.
       const unstick = setTimeout(() => {
+        botRequestInFlightRef.current = false;
         quickFallbackRequests.delete(requestId);
         if (!cancelled) setBotRetryAtMs(Date.now() + 1_000);
       }, 4_000);
+      botRequestInFlightRef.current = true;
+      DebugLogger.info('arena_matchmaking', `bot fallback requested after=${
+        Date.now() - (queueConfirmedAtMsRef.current ?? queueAttemptStartedAtMsRef.current)}ms`);
       void arenaV2QuickBotFallback(requestId).then((result) => {
         clearTimeout(unstick);
+        botRequestInFlightRef.current = false;
+        DebugLogger.info('arena_matchmaking', `bot fallback matched match=${result.matchId}`);
         if (!cancelled) setMatchId(result.matchId);
       }).catch((reason) => {
+        botRequestInFlightRef.current = false;
+        DebugLogger.warn('arena_matchmaking', `bot fallback rejected: ${String(reason)}`);
         // Сервер — единственный владелец момента входа бота. Если наши локальные
         // часы забежали вперёд, он отвечает arena_quick_bot_too_early: снимаем
         // блокировку и пробуем ещё раз чуть позже, а не бросаем поиск навсегда.
@@ -262,6 +451,10 @@ export default function ArenaMatchmakingScreen() {
     const restartedAtMs = Date.now();
     requestIdRef.current = { key: requestIdKey, value: createArenaRequestId('queue') };
     queueAttemptStartedAtMsRef.current = restartedAtMs;
+    queueConfirmedAtMsRef.current = null;
+    lockReleaseRequestedRef.current = false;
+    serverBotDueDelayMsRef.current = null;
+    botRequestInFlightRef.current = false;
     setBotDelayMs(null);
     setBotRetryAtMs(null);
     setReplacementBotNotBeforeAtMs(mode === 'quick'
@@ -318,6 +511,22 @@ export default function ArenaMatchmakingScreen() {
    * arenaV2Home и покажет её честно. Держать человека на экране ради этого —
    * плата не с той стороны.
    */
+  /**
+   * Возврат платы за так и не начавшийся поиск.
+   *
+   * зачем: точек, где поиск заканчивается без матча, стало две — уход с экрана
+   * и блокировка незакрытым матчем. Возврат обязан быть один и тот же, и
+   * ровно один раз (замок energyChargedRef), иначе энергия либо сгорает, либо
+   * задваивается.
+   */
+  const refundUnstartedSearch = useCallback((reason: string) => {
+    if (!energyChargedRef.current) return;
+    energyChargedRef.current = false;
+    void refundArenaMatchEnergy(arenaMatchEnergyIntent.operationId, reason).catch((error) => {
+      DebugLogger.warn('arena_matchmaking', `refund failed reason=${reason}: ${String(error)}`);
+    });
+  }, [arenaMatchEnergyIntent, refundArenaMatchEnergy]);
+
   const leaveSearchWithRefund = useCallback((reason: string) => {
     if (matchId || cancellingRef.current) return; // защита от двойного тапа и отмены назначенного матча
     cancellingRef.current = true;
@@ -328,16 +537,30 @@ export default function ArenaMatchmakingScreen() {
     // (аудит 2026-08-23: единственная из четырёх точек Арены без возврата).
     // Владелец 2026-08-27 распространил это правило на ЛЮБОЙ исход без матча:
     // и на кнопку «Отмена», и на случай «соперник так и не нашёлся».
-    if (energyChargedRef.current) {
-      energyChargedRef.current = false;
-      void refundArenaMatchEnergy(arenaMatchEnergyIntent.operationId, reason).catch(() => {});
-    }
+    refundUnstartedSearch(reason);
     router.replace('/arena' as never);
+    /**
+     * зачем (владелец 2026-08-29, «матчи должны закрываться сразу же после
+     * того как матч не случился»): матч мог быть уже НАЗНАЧЕН на сервере, а до
+     * клиента не дойти — ровно так и появился висящий матч, из-за которого
+     * Арена перестала открываться. Уходя без игры, просим сервер закрыть его
+     * немедленно; живую игру этот вызов не трогает, решает сервер.
+     */
+    void arenaV2ReleaseStaleMatch().then((released) => {
+      if (released.released) {
+        DebugLogger.info('arena_matchmaking',
+          `closed never-started match=${released.matchId ?? 'none'} reason=${reason}`);
+      }
+    }).catch((error) => {
+      DebugLogger.warn('arena_matchmaking', `release on leave failed: ${String(error)}`);
+    });
     // Сеть — вдогонку. Один повтор: сеть на телефоне моргает чаще, чем падает.
     void arenaV2QueueCancel(requestId).catch(() => {
       setTimeout(() => { void arenaV2QueueCancel(requestId).catch(() => {}); }, 1500);
     });
-  }, [arenaMatchEnergyIntent, matchId, mode, refundArenaMatchEnergy, requestId, router]);
+  }, [matchId, mode, refundUnstartedSearch, requestId, router]);
+
+  leaveSearchRef.current = leaveSearchWithRefund;
 
   const cancel = useCallback(() => {
     leaveSearchWithRefund('cancelled_before_entry');
@@ -357,12 +580,51 @@ export default function ArenaMatchmakingScreen() {
    */
   useEffect(() => {
     if (!active || matchId || energyGate !== 'ok' || mode !== 'quick') return undefined;
-    const giveUpAtMs = queueAttemptStartedAtMsRef.current + ARENA_QUICK_SEARCH_GIVE_UP_MS;
-    const timer = setTimeout(() => {
+    /**
+     * зачем (владелец 2026-08-29): пока сервер не подтвердил очередь, обещание
+     * «соперник за 20 секунд» ещё не начало действовать — отсчитывать сдачу
+     * не от чего. Раньше он шёл от оплаты энергии, и медленный круг сети
+     * съедал окно бота: поиск обрывался сам, не дождавшись назначенного
+     * сервером момента. Ждём подтверждения; человек всё это время видит
+     * обычный пульс и в любой момент волен уйти кнопкой «Отмена».
+     */
+    if (queueConfirmedAtMsRef.current === null) return undefined;
+    /**
+     * зачем (владелец 2026-08-29, лог 10:54:26 «бот найден и в ту же секунду
+     * сдача»): срок сдачи обязан быть ПОЗЖЕ серверного срока бота, а не рядом
+     * с ним. Сервер назначил бота на 24.9 с, ответ пришёл на 26-й секунде —
+     * ровно в момент сдачи, и человека выбросило на хаб с уже созданным
+     * матчем. Считаем от подлинного серверного срока плюс запас на один
+     * повтор; клиентский потолок остаётся страховкой для старых билетов.
+     */
+    const serverDue = serverBotDueDelayMsRef.current;
+    const giveUpDelayMs = Math.max(
+      ARENA_QUICK_SEARCH_GIVE_UP_MS,
+      (serverDue ?? 0) + ARENA_QUICK_BOT_ANSWER_GRACE_MS,
+    );
+    const giveUpAtMs = queueConfirmedAtMsRef.current + giveUpDelayMs;
+    const armAt = (whenMs: number) => setTimeout(() => {
+      /**
+       * Ответ бота уже в пути — рубить поиск под ним нельзя: именно так матч
+       * создавался на сервере, а человек уходил на хаб. Ждём ответа и решаем
+       * после него.
+       */
+      if (botRequestInFlightRef.current) {
+        DebugLogger.warn('arena_matchmaking',
+          'give up postponed: bot request in flight');
+        timerRef.current = armAt(1_500);
+        return;
+      }
+      DebugLogger.warn('arena_matchmaking', `give up: no opponent in ${
+        giveUpDelayMs}ms since queue confirmed (serverBotDue=${serverDue ?? 'unknown'})`);
       leaveSearchWithRefund('opponent_not_found');
-    }, Math.max(0, giveUpAtMs - Date.now()));
-    return () => clearTimeout(timer);
-  }, [active, energyGate, leaveSearchWithRefund, matchId, mode, requestIdKey, requestRevision]);
+    }, Math.max(0, whenMs));
+    const timerRef: { current: ReturnType<typeof setTimeout> } = {
+      current: armAt(giveUpAtMs - Date.now()),
+    };
+    return () => clearTimeout(timerRef.current);
+  }, [active, energyGate, leaveSearchWithRefund, matchId, mode, queueConfirmedTick,
+    requestIdKey, requestRevision]);
 
   const searching = energyGate === 'ok';
   const elapsedLabel = useMemo(() => {

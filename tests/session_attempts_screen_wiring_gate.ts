@@ -19,8 +19,10 @@ const screens = [
 for (const relativeFile of screens) {
   const source = fs.readFileSync(path.join(root, relativeFile), 'utf8');
   assert.ok(source.includes('SessionAttemptsHud'), `${relativeFile} has no attempts HUD`);
-  assert.ok(source.includes('SessionAttemptsRecoveryModal'), `${relativeFile} has no recovery modal`);
   assert.ok(source.includes('useSessionAttempts'), `${relativeFile} has no attempts controller`);
+  assert.ok(source.includes('useSessionAttemptAutoReset'), `${relativeFile} has no automatic reset`);
+  assert.ok(!source.includes('SessionAttemptsRecoveryModal'), `${relativeFile} must not mount recovery modal`);
+  assert.ok(!source.includes('recoverWithGift'), `${relativeFile} must not offer retired recovery gift`);
   assert.ok(!source.includes('Попытка потеряна'), `${relativeFile} contains the forbidden toast`);
 }
 

@@ -306,20 +306,16 @@ function describeAuthError(raw: string, lang: Lang): string {
   if (code === 'account_delete_pending' || code.includes('user-disabled')) {
     human = 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.';
   } else if (code === 'identity_retired') {
-    // зачем: аккаунт был удалён (свой или на другом устройстве) — сервер
-    // отверг retired identity. Клиент уже сбросил сессию на анонимную
-    // (signInWithProvider), поэтому повтор входа заведёт новый профиль, а не
-    // повторит ту же ошибку. TestFlight-инцидент 2026-08-25.
     human = triLang(lang, {
-      ru: 'Этот аккаунт был удалён. Попробуй войти ещё раз — откроется новый профиль.',
-      uk: 'Цей акаунт було видалено. Спробуй увійти ще раз — відкриється новий профіль.',
-      en: 'This account was deleted. Try signing in again — a new profile will open.',
-      es: 'Esta cuenta fue eliminada. Intenta iniciar sesión de nuevo: se abrirá un perfil nuevo.',
-      'pt-BR': 'Esta conta foi excluída. Tente entrar de novo — um novo perfil será aberto.',
-      vi: 'Tài khoản này đã bị xóa. Hãy thử đăng nhập lại — hồ sơ mới sẽ mở ra.',
-      id: 'Akun ini telah dihapus. Coba masuk lagi — profil baru akan terbuka.',
-      tr: 'Bu hesap silindi. Tekrar giriş yapmayı dene — yeni bir profil açılacak.',
-      pl: 'To konto zostało usunięte. Spróbuj zalogować się ponownie — otworzy się nowy profil.',
+      ru: 'Старые данные удалены и не восстановятся. Открывается новый пустой профиль.',
+      uk: 'Старі дані видалено й вони не відновляться. Відкривається новий порожній профіль.',
+      en: 'The old data was deleted and cannot be restored. A new empty profile is opening.',
+      es: 'Los datos anteriores se eliminaron y no se pueden restaurar. Se abre un perfil nuevo y vacío.',
+      'pt-BR': 'Os dados antigos foram excluídos e não podem ser restaurados. Um novo perfil vazio será aberto.',
+      vi: 'Dữ liệu cũ đã bị xóa và không thể khôi phục. Một hồ sơ mới trống đang được mở.',
+      id: 'Data lama telah dihapus dan tidak dapat dipulihkan. Profil kosong baru sedang dibuka.',
+      tr: 'Eski veriler silindi ve geri getirilemez. Yeni boş bir profil açılıyor.',
+      pl: 'Stare dane zostały usunięte i nie można ich odzyskać. Otwiera się nowy pusty profil.',
     });
   } else if (code.includes('google_signin_timeout')) {
     human = 'Вход занимает слишком много времени. Вернись в приложение и попробуй ещё раз.';
@@ -2471,6 +2467,13 @@ function CleanOnboarding({
         return;
       }
       if (result.result === 'error') {
+        if (result.error === 'identity_retired') {
+          setAuthError(null);
+          setGreetName(null);
+          setUnknownAccountEmail('');
+          go('welcome');
+          return;
+        }
         // Удаление аккаунта двухфазное (disabled → стирание через 2-3 минуты), вход в
         // это окно даёт auth/user-disabled — describeAuthError говорит об этом прямо.
         setAuthError(describeAuthError(result.error, lang));
@@ -2526,6 +2529,13 @@ function CleanOnboarding({
         return;
       }
       if (result.result === 'error') {
+        if (result.error === 'identity_retired') {
+          setAuthError(null);
+          setGreetName(null);
+          setUnknownAccountEmail('');
+          go('welcome');
+          return;
+        }
         // зачем: раньше любой отказ схлопывался в «Не получилось войти» — владелец
         // ткнул Apple на сейфе, получил ошибку и не смог понять причину. Теперь
         // причины различаются так же, как на экране «уже есть аккаунт», а в
@@ -3317,22 +3327,19 @@ function CleanOnboarding({
   // период заканчивается — отмени до {дата}», под кнопкой «сейчас ничего не
   // спишем». Длительность берётся только из подтверждённой стором trial-фазы.
   const renderTrialReminder = () => {
-    // Стор ответил «триала нет» → пуш без даты и без обещания «не спишем».
+    // зачем 2026-08-29: владелец забраковал запасную ветку «Перед покупкой всё
+    // проверим» — она читалась как юридический дисклеймер и не вела к покупке.
+    // Экран теперь ВСЕГДА показывает эталон: обещание напомнить до конца
+    // пробного — один заголовок, один пуш, одна подпись под кнопкой.
+    // Дни НЕ выдумываем: пока стор молчит/упал/выбран lifetime — говорим о
+    // пробном без числа. Сторож tests/onboarding_trial_truth_contract.test.ts
+    // и правила Apple запрещают обещать срок, которого магазин не подтвердил.
     const trialDays = paywallTrialDays;
-    // Заголовок в ОДНУ строку на 140pt; «не спишем» уже говорит ReassureLine
-    // под кнопкой — в теле пуша только дата.
-    // зачем 2026-08-17: дословный перевод текста Bevel («Free trial ending soon» /
-    // «Cancel before {дата} to avoid being charged.») — владелец забраковал прежнее
-    // «Отмени до {дата}» как обрывок без причины (отмени ЗАЧЕМ?).
-    const reminderEnabled = notificationChoice === 'allow';
-    const pushTitle = trialDays && reminderEnabled ? 'Пробный период скоро закончится' : 'Условия подписки';
-    const pushBody = trialDays && reminderEnabled
-      ? `Отмени до ${formatRuDateLong(addDays(new Date(), trialDays))}, чтобы не списали деньги.`
-      : 'Точную цену и период увидишь перед подтверждением покупки.';
+    const reminderDate = trialDays ? formatRuDateLong(addDays(new Date(), trialDays)) : null;
     return (
       <ScreenFrame
         step="trialReminder"
-        title={trialDays && reminderEnabled ? 'Напомним до конца пробного' : 'Перед покупкой всё проверим'}
+        title="Напомним до конца пробного"
         plainTitle
         onBack={back}
         footer={(
@@ -3343,12 +3350,18 @@ function CleanOnboarding({
               loading={paywallBusy}
               testID="onboarding-trial-reminder-continue"
             />
-            <ReassureLine label={trialDays ? 'Сейчас ничего не спишем' : 'Сначала увидишь точные условия'} />
+            <ReassureLine label="Сейчас ничего не спишем" />
           </>
         )}
         phoneBackdrop={
           <PhoneMock
-            push={{ title: pushTitle, body: pushBody, when: 'сейчас' }}
+            push={{
+              title: 'Пробный период скоро закончится',
+              body: reminderDate
+                ? `Отмени до ${reminderDate}, чтобы не списали деньги.`
+                : 'Отмени до конца пробного, чтобы не списали деньги.',
+              when: 'сейчас',
+            }}
             pushDelayMs={LUM.ladder[3]}
             testID="onboarding-trial-reminder-phone"
           />
@@ -3356,8 +3369,8 @@ function CleanOnboarding({
       >
         <Text style={[styles.screenSubtitle, shortScreen && styles.screenSubtitleShort]}>
           {trialDays
-            ? `Попробуй Plus бесплатно ${trialDays} ${pluralDays(trialDays)}. ${reminderEnabled ? 'Мы напомним заранее, чтобы ты сам решил, продлевать ли доступ.' : 'Ты сам решишь, продлевать ли доступ; включить напоминания можно позже в настройках.'}`
-            : 'Перед подтверждением покажем точную цену, период оплаты и условия отмены.'}
+            ? `Попробуй Plus бесплатно ${trialDays} ${pluralDays(trialDays)}. Мы напомним заранее, чтобы ты сам решил, продлевать ли доступ.`
+            : 'Попробуй Plus бесплатно. Мы напомним заранее, чтобы ты сам решил, продлевать ли доступ.'}
         </Text>
       </ScreenFrame>
     );
@@ -3726,6 +3739,7 @@ function CleanOnboarding({
           message={triLang(lang, {
             ru: 'Вы удалили все свои данные',
             uk: 'Ви видалили всі свої дані',
+            en: 'You deleted all your data',
             es: 'Has eliminado todos tus datos',
             'pt-BR': 'Você excluiu todos os seus dados',
             vi: 'Bạn đã xóa toàn bộ dữ liệu của mình',

@@ -10,6 +10,10 @@ const clientLedger = fs.readFileSync(
 const server = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'welcome_gift.ts'), 'utf8');
 const ledger = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'stars_ledger.ts'), 'utf8');
 const fnIndex = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'index.ts'), 'utf8');
+const welcomeHost = fs.readFileSync(
+  path.join(process.cwd(), 'components', 'OnboardingWelcomeHost.tsx'),
+  'utf8',
+);
 
 // зачем: владелец (2026-08-26) — стартовый подарок (+100 жемчужин, +300 рун)
 // из приветственной модалки, СТРОГО один раз на аккаунт. Контракт сторожит
@@ -71,9 +75,17 @@ describe('Welcome gift economics contract', () => {
     // Корень №2: выдача на монтировании хоста стартовала до active-фазы и
     // молча ловила stale_account_generation при каждом запуске.
     expect(client).toContain('waitForActiveAccountGeneration(15_000)');
-    // Отказы больше не молчат: и жемчужины, и общий прогон пишут причину.
+    // Реальный отказ начисления остаётся warning, но отсутствие аккаунта во
+    // время глобального старта — нормальное состояние, не Console Error.
     expect(client).toMatch(/DebugLogger\.error\(\s*'welcome_gift:pearls'/);
-    expect(client).toContain("DebugLogger.error('welcome_gift:run', new Error('account_not_active_in_15s')");
+    expect(client).not.toContain("DebugLogger.error('welcome_gift:run', new Error('account_not_active_in_15s')");
+    expect(client).toContain("DebugLogger.info('welcome_gift:run', 'account_not_active_in_15s')");
+  });
+
+  it('retries the grant when an account becomes active after the startup timeout', () => {
+    expect(welcomeHost).toContain('subscribeAccountGeneration');
+    expect(welcomeHost).toMatch(/token\.phase === 'active'[\s\S]*?token\.stableId\?\.trim\(\)[\s\S]*?ensureWelcomeGiftGranted\(\)/);
+    expect(welcomeHost).toMatch(/accountGenerationSubscription\.remove\(\)/);
   });
 
   it('runes stay server-authoritative: no client-side star writer, only merge', () => {

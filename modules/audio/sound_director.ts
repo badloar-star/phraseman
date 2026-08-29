@@ -170,11 +170,13 @@ export class SoundDirector {
       this.arbiter.finishActive(decision.requestId);
       return;
     }
-    this.activePlayback = {
-      eventId: decision.eventId,
-      requestId: decision.requestId,
-      scope: options.scope,
-    };
+    if (!definition.allowConcurrent) {
+      this.activePlayback = {
+        eventId: decision.eventId,
+        requestId: decision.requestId,
+        scope: options.scope,
+      };
+    }
   }
 
   private scheduleDeferredFlush(): void {

@@ -8,6 +8,7 @@ import {
   APP_MESSAGE_TTL_MS,
   REPORT_REPLY_TTL_MS,
   applyPendingVisibilityToStates,
+  filterAppMessagesSnapshotForNotificationCenter,
   isAppMessageAllowedForAudience,
   mergeAppMessagesWithStates,
   normalizeAppMessage,
@@ -31,7 +32,11 @@ describe('report reply user messages', () => {
   it('normalizes personal message with report_reply kind and reward payload', () => {
     const message = normalizeUserAppMessage('um1', baseDoc, now);
     expect(message.kind).toBe('report_reply');
-    expect(message.reportReply).toEqual({ coins: 1, claimed: false });
+    expect(message.reportReply).toEqual({
+      coins: 1,
+      rewardBundle: { version: 1, severity: 'legacy', spins: 0, runes: 0, pearls: 1 },
+      claimed: false,
+    });
   });
 
   it('spreads the single-language title/body across all languages', () => {
@@ -57,11 +62,11 @@ describe('report reply user messages', () => {
 
   it('keeps claimed flag and clamps rewards to the one-coin contract', () => {
     const claimed = normalizeUserAppMessage('um2', { ...baseDoc, claimed: true }, now);
-    expect(claimed.reportReply).toEqual({ coins: 1, claimed: true });
+    expect(claimed.reportReply).toMatchObject({ coins: 1, rewardBundle: { severity: 'legacy', pearls: 1 }, claimed: true });
     const broken = normalizeUserAppMessage('um3', { ...baseDoc, coins: -5 }, now);
-    expect(broken.reportReply).toEqual({ coins: 0, claimed: false });
+    expect(broken.reportReply).toMatchObject({ coins: 0, rewardBundle: { severity: 'none' }, claimed: false });
     const legacy = normalizeUserAppMessage('um4', { ...baseDoc, coins: undefined, shards: 1 }, now);
-    expect(legacy.reportReply).toEqual({ coins: 1, claimed: false });
+    expect(legacy.reportReply).toMatchObject({ coins: 1, rewardBundle: { severity: 'legacy', pearls: 1 }, claimed: false });
   });
 
   it('keeps report replies in the Messages inbox and unread count', () => {
@@ -88,6 +93,22 @@ describe('report reply user messages', () => {
     });
     expect(snapshot.messages.map((message) => message.id)).toEqual(['um1', 'broadcast1']);
     expect(snapshot.unreadCount).toBe(2);
+  });
+
+  it('removes only modern notification mirrors from the unified center', () => {
+    const modern = normalizeUserAppMessage('modern', {
+      ...baseDoc,
+      coins: 0,
+      rewardBundle: { version: 1, severity: 'minor', spins: 1, runes: 300, pearls: 1 },
+    }, now);
+    const legacy = normalizeUserAppMessage('legacy', baseDoc, now);
+    const ordinary = { ...legacy, id: 'broadcast1', kind: 'message' as const, reportReply: null };
+    const snapshot = mergeAppMessagesWithStates([modern, legacy, ordinary], [], now);
+
+    const visible = filterAppMessagesSnapshotForNotificationCenter(snapshot);
+
+    expect(visible.messages.map((message) => message.id)).toEqual(['legacy', 'broadcast1']);
+    expect(visible.unreadCount).toBe(2);
   });
 
   it('filters every dismissed team message kind', () => {

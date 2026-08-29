@@ -124,6 +124,18 @@
         "C:/appsprojects/phraseman/.codex-tmp/voice-audition"
       ],
       "port": 8847
+    },
+    {
+      "name": "avatar100-showcase",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765",
+        "--directory",
+        "C:/appsprojects/phraseman"
+      ],
+      "port": 8765
     }
   ]
 }

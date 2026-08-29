@@ -10,7 +10,7 @@ import { triLang } from '../../constants/i18n';
 export default function YoutubePlaylistRow({ playlist, onPress }: { playlist: YoutubePlaylistSnapshot; onPress: () => void }) {
   const { lang } = useLang();
   const { theme: t } = useTheme();
-  const countLabel = triLang(lang, { ru: 'видео', uk: 'відео', es: 'videos', 'pt-BR': 'vídeos', vi: 'video', id: 'video', tr: 'video', pl: 'filmów' });
+  const countLabel = triLang(lang, { ru: 'видео', uk: 'відео', en: 'videos', es: 'videos', 'pt-BR': 'vídeos', vi: 'video', id: 'video', tr: 'video', pl: 'filmów' });
   return (
     <TouchableOpacity testID="youtube-playlist-row" accessibilityRole="button" accessibilityLabel={`${playlist.title}, ${playlist.itemCount} ${countLabel}`} onPress={onPress} activeOpacity={0.86} style={[styles.row, { backgroundColor: t.bgCard }]}>
       <View style={styles.imageWrap}>

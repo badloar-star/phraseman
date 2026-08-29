@@ -12,6 +12,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED, IS_STORE_RELEASE } from './config';
 import { getUtcDayKey } from './local_date';
+import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
 import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
 import { processVipGrantForCelebration } from './vip_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
@@ -62,6 +63,7 @@ import {
 } from './account_generation';
 import { clearStableId, setStableId } from './stable_id';
 import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
+import { emitAppEvent } from './events';
 import { patchAppSnapshotFromAuthoritativeCloudProgress } from './app_snapshot_store';
 // зачем: сброс кэша множителей XP при смене аккаунта — см. resetMultiplierBreakdownCache
 // в xp_manager.ts (защита от утечки предыдущего аккаунта в PlayerProfileModal).
@@ -110,6 +112,14 @@ import {
   customizationAccountLocalKeysFrom,
   isCustomizationAccountLocalKey,
 } from './customization_account_cleanup';
+import {
+  drainCustomizationSelectionOutbox,
+  resolveCustomizationSelectionAuthority,
+} from './customization_selection_journal';
+import {
+  commitPhoneStateCustomizationSelection,
+  readPhoneStateCustomizationSelection,
+} from './phone_state_economy_bridge';
 import {
   canonicalJsonV1,
   hashCanonicalBody,
@@ -667,12 +677,16 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'client_shard_grant_receipt_v1:',
   'client_shard_cloud_synced_v1:',
   'client_shard_conflict_v1:',
+  'client_shard_phone_state_outbox_v1:',
   'client_shard_semantic_paid_v1:',
   // Owner-scoped level-Spin star composite journal and local projection.
   'level_spin_star_grant_outbox_v1:',
   'level_spin_star_projection_v1:',
   'level_spin_star_prepared_v1:',
   'level_spin_star_operation_v1:',
+  'paid_level_spin_envelope_v1:',
+  'paid_level_spin_outbox_v1:',
+  'practice_rune_journal_v1:',
   // Permanent attempt-restore gift journal and crash-safe reservations.
   'attempt_restore_gift_projection_v1:',
   'attempt_restore_gift_outbox_v1:',
@@ -683,6 +697,11 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'session_attempt_recovery_prepared_v1:',
   'session_attempt_recovery_receipt_v1:',
   'session_attempt_recovery_sync_outbox_v1:',
+  'customization_rune_purchase_outbox_v1:',
+  'customization_selection_operation_v1:',
+  'customization_selection_head_v1:',
+  'customization_selection_outbox_v1:',
+  'customization_selection_quarantine_v1:',
   'external_economy_result_v1:',
   'external_economy_event_applied_v1:',
 ] as const;
@@ -936,6 +955,7 @@ export type StableAuthLinkEnsureResult = {
   authUid: string | null;
   source: 'disabled' | 'cache' | 'callable' | 'unavailable';
   failure?: StableAuthLinkFailure;
+  retiredSubject?: 'stable' | 'auth' | 'closure' | 'unknown';
 };
 
 export type StableAuthLinkMetadata = {
@@ -978,6 +998,18 @@ function classifyCloudAccessFailure(
     return 'transport_unavailable';
   }
   return 'identity_unavailable';
+}
+
+function classifyRetiredIdentitySubject(
+  error: unknown,
+): 'stable' | 'auth' | 'closure' | 'unknown' {
+  const details = (error as { details?: unknown })?.details;
+  const subject = details && typeof details === 'object'
+    ? (details as { subject?: unknown }).subject
+    : undefined;
+  return subject === 'stable' || subject === 'auth' || subject === 'closure'
+    ? subject
+    : 'unknown';
 }
 
 async function readStableAuthLinkCache(key: string): Promise<boolean> {
@@ -1501,10 +1533,17 @@ function parseOwnedRestoreJson(raw: string | null | undefined): unknown {
 /**
  * Union-merge owned-значения при restore: массив id — объединение множеств;
  * объект-мапа — ключи из обоих источников (числа берут max — счётчик карточек
- * Сокровищницы не должен регрессировать; прочие конфликты решает облако).
+ * Сокровищницы не должен регрессировать; прочие конфликты обычно решает облако).
+ * Для raw-зеркала custom_avatar_owned_v1 локальная версия конфликта авторитетна:
+ * облако не содержит operation lineage и потому не может доказать, что его
+ * restyle новее локально зафиксированной покупки.
  * При нечитаемом локальном значении возвращает облачное как есть.
  */
-function mergeOwnedRestoreValue(cloudValue: string, localValue: string | null | undefined): string {
+function mergeOwnedRestoreValue(
+  cloudValue: string,
+  localValue: string | null | undefined,
+  preferLocalConflicts = false,
+): string {
   const local = parseOwnedRestoreJson(localValue);
   if (local === null) return cloudValue;
   const cloud = parseOwnedRestoreJson(cloudValue);
@@ -1530,6 +1569,10 @@ function mergeOwnedRestoreValue(cloudValue: string, localValue: string | null | 
   const merged: Record<string, unknown> = { ...cloudMap };
   for (const [id, localVal] of Object.entries(localMap)) {
     if (!(id in merged)) {
+      merged[id] = localVal;
+      continue;
+    }
+    if (preferLocalConflicts) {
       merged[id] = localVal;
       continue;
     }
@@ -1865,7 +1908,7 @@ function mergeLessonRestoreValue(
   }
   // K2: владение (покупки/выдачи) строго аддитивно — union вместо перезаписи облаком.
   if (isOwnedUnionRestoreKey(key)) {
-    return mergeOwnedRestoreValue(cloudValue, localValue);
+    return mergeOwnedRestoreValue(cloudValue, localValue, key === 'custom_avatar_owned_v1');
   }
   if (key === 'profile_card_level') {
     return String(Math.max(
@@ -2117,11 +2160,47 @@ export async function ensureAnonUser(
 ): Promise<string | null> {
   if (!CLOUD_SYNC_ENABLED) return null;
   if (await isAccountDeleteIdentityQuarantined()) return null;
-  // Всегда используем canonical stable ID как ключ users/*
-  const stableId = await getCanonicalUserId();
-  if (options.cacheOnly) return getAuth()?.currentUser ? stableId : null;
-  await ensureAnonAuthReady();
-  return stableId;
+  const auth = getAuth();
+  // Existing provider sessions are already authenticated; callers use this
+  // legacy helper to obtain their canonical stable key as well.
+  if (auth?.currentUser && auth.currentUser.isAnonymous !== true) {
+    return getCanonicalUserId();
+  }
+  const detailed = await ensureAnonIdentityDetailed(options);
+  return detailed.ok ? detailed.stableId : null;
+}
+
+export type EnsureAnonIdentityDetailedResult =
+  | { ok: true; authUid: string; stableId: string; isAnonymous: true }
+  | {
+      ok: false;
+      failure:
+        | 'cloud_sync_disabled'
+        | 'identity_quarantined'
+        | 'anonymous_auth_unavailable'
+        | 'stable_identity_unavailable';
+    };
+
+/** Strict proof used only when post-delete rotation requires a fresh anonymous pair. */
+export async function ensureAnonIdentityDetailed(
+  options: { cacheOnly?: boolean } = {},
+): Promise<EnsureAnonIdentityDetailedResult> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
+    return { ok: false, failure: 'cloud_sync_disabled' };
+  }
+  if (await isAccountDeleteIdentityQuarantined()) {
+    return { ok: false, failure: 'identity_quarantined' };
+  }
+  const auth = getAuth();
+  if (!auth) return { ok: false, failure: 'anonymous_auth_unavailable' };
+  if (!options.cacheOnly && !auth.currentUser) await ensureAnonAuthReady();
+  const current = auth.currentUser;
+  if (!current || current.isAnonymous !== true || !String(current.uid || '').trim()) {
+    return { ok: false, failure: 'anonymous_auth_unavailable' };
+  }
+  const stableId = String(await getCanonicalUserId().catch(() => '') || '').trim();
+  if (!stableId) return { ok: false, failure: 'stable_identity_unavailable' };
+  return { ok: true, authUid: current.uid, stableId, isAnonymous: true };
 }
 
 async function waitForFirebaseAuthUid(): Promise<string | null> {
@@ -2239,7 +2318,17 @@ export async function ensureStableAuthLinkForStableIdDetailed(
     } catch (error) {
       if (__DEV__) console.warn('[cloud_sync] authEnsureStableLink callable failed', error);
       const failure = classifyCloudAccessFailure(error, appCheckReady);
-      return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable', failure };
+      return {
+        ok: false,
+        requestedStableId: stableId,
+        stableUid: null,
+        authUid,
+        source: 'unavailable',
+        failure,
+        ...(failure === 'identity_retired'
+          ? { retiredSubject: classifyRetiredIdentitySubject(error) }
+          : {}),
+      };
     } finally {
       stableAuthLinkPromise = null;
     }
@@ -2283,6 +2372,48 @@ export async function ensureStableAuthLink(): Promise<boolean> {
     return second.ok;
   } catch (e) {
     if (__DEV__) console.warn('[cloud_sync] stale stable id rotation failed', e);
+    return false;
+  }
+}
+
+/**
+ * Принудительно пересоздать серверную привязку, игнорируя локальный кэш.
+ *
+ * зачем (владелец, 2026-08-27, «снова та же ошибка стейбл айдентити»):
+ * ensureStableAuthLinkForStableIdDetailed на строке ~2206 возвращает ok:true
+ * БЕЗ похода на сервер, если в AsyncStorage лежит свежая отметка
+ * `${stableId}:${authUid}`. Отметка живёт по TTL и не стирается, когда сервер
+ * на самом деле про эту личность ничего не знает — база могла быть очищена,
+ * проект/эмулятор сменился, документ удалён. Тогда получается замкнутая
+ * ловушка: ensureStableAuthLink() мгновенно говорит «привязка есть», ничего
+ * не создав, а следующий callable с requireKnownIdentity:true честно отвечает
+ * stable_id_required → stable_identity_unavailable, и так до истечения TTL.
+ * Эта функция стирает отметку и заставляет реальный вызов authEnsureStableLink.
+ * Звать ТОЛЬКО как реакцию на уже полученную ошибку личности, не в горячем
+ * пути — иначе потеряется весь смысл кэша.
+ */
+export async function repairStableAuthLinkAfterIdentityFailure(): Promise<boolean> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return true;
+  await AsyncStorage.removeItem(STABLE_AUTH_LINK_CACHE_KEY).catch(() => {});
+  stableAuthLinkPromise = null;
+  stableAuthLinkKey = '';
+  const stableId = await ensureAnonUser();
+  if (!stableId) return false;
+  const result = await ensureStableAuthLinkForStableIdDetailed(stableId, undefined, {
+    requireAuthoritative: true,
+  });
+  if (result.ok) return true;
+  // Тот же выход из ловушки «чужой stableId», что и в ensureStableAuthLink:
+  // локальный якорь принадлежит стёртому uid — заводим свой новый.
+  if (result.failure !== 'stable_id_mismatch') return false;
+  try {
+    await clearStableId();
+    const rotated = await ensureAnonUser();
+    if (!rotated || rotated === stableId) return false;
+    return (await ensureStableAuthLinkForStableIdDetailed(rotated, undefined, {
+      requireAuthoritative: true,
+    })).ok;
+  } catch {
     return false;
   }
 }
@@ -2558,6 +2689,35 @@ export type AuthoritativeCloudIdentityResult = {
   stableUid: string | null;
   adopted: boolean;
 };
+
+export type CloudMutationIdentityResult =
+  | { status: 'ready'; stableUid: string; authUid: string }
+  | { status: 'retired'; subject: 'stable' | 'auth' | 'closure' | 'unknown' }
+  | { status: 'pending' };
+
+export async function ensureCloudMutationIdentity(
+  stableIdRaw: string,
+): Promise<CloudMutationIdentityResult> {
+  const result = await ensureStableAuthLinkForStableIdDetailed(
+    stableIdRaw,
+    undefined,
+    { requireAuthoritative: true },
+  );
+  if (
+    result.ok
+    && result.stableUid
+    && result.authUid
+    && result.stableUid === String(stableIdRaw || '').trim()
+  ) {
+    return { status: 'ready', stableUid: result.stableUid, authUid: result.authUid };
+  }
+  if (result.failure === 'identity_retired') {
+    const subject = result.retiredSubject ?? 'unknown';
+    emitAppEvent('identity_retired', { source: 'cloud_mutation', subject });
+    return { status: 'retired', subject };
+  }
+  return { status: 'pending' };
+}
 
 /**
  * Mandatory precondition for client-initiated cloud mutation. This deliberately
@@ -2950,6 +3110,39 @@ async function applyRestoreFromUserDoc(
     progressData as Record<string, string | null>,
     phoneStateOwnsCore,
   );
+  // Raw user_avatar/frame/aura fields are compatibility projections only. A
+  // stale cloud snapshot must not revoke a locally committed purchase or a
+  // newer PhoneState selection operation.
+  if (vipGeneration?.stableId?.trim() && isCurrentAccountGeneration(vipGeneration)) {
+    const selectionLevel = Math.max(1, Math.floor(Number(cloudData.user_level) || 1));
+    const authority = await resolveCustomizationSelectionAuthority({
+      token: vipGeneration,
+      cloudSelection: {
+        avatarValue: String(cloudData.user_avatar ?? '').trim() || getBestAvatarForLevel(selectionLevel),
+        frameId: String(cloudData.user_avatar_frame ?? '').trim() || getBestFrameForLevel(selectionLevel).id,
+        storedAuraSelection: String(cloudData.user_avatar_aura ?? '').trim() || null,
+        level: selectionLevel,
+      },
+    }, {
+      storage: AsyncStorage,
+      mirror: commitPhoneStateCustomizationSelection,
+      readPhoneState: readPhoneStateCustomizationSelection,
+    });
+    assertCurrent();
+    cloudData.user_avatar = authority.selection.avatarValue;
+    cloudData.user_avatar_frame = authority.selection.frameId;
+    cloudData.user_avatar_aura = authority.selection.storedAuraSelection ?? '';
+    // Selection authority may legitimately prefer the local journal, but a
+    // DEV-only preview must remain device-local and must never be restored or
+    // uploaded as the account's active customization.
+    void drainCustomizationSelectionOutbox({
+      token: vipGeneration,
+      lineage: authority.lineage,
+    }, {
+      storage: AsyncStorage,
+      mirror: commitPhoneStateCustomizationSelection,
+    }).catch(() => {});
+  }
   // Keep league recovery independent from SQLite capacity. The account cache is
   // cleared on sign-out/switch and this projection never overwrites a state that
   // the current account already loaded into memory.
@@ -3234,7 +3427,11 @@ async function applyRestoreFromUserDoc(
       for (const key of stickyOwnedKeys) {
         const cloudVal = cloudData[key];
         if (cloudVal === null || cloudVal === undefined || String(cloudVal).trim() === '') continue;
-        const merged = mergeOwnedRestoreValue(cloudProgressStorageValue(key, cloudVal), localOwnedMap[key]);
+        const merged = mergeOwnedRestoreValue(
+          cloudProgressStorageValue(key, cloudVal),
+          localOwnedMap[key],
+          key === 'custom_avatar_owned_v1',
+        );
         if (merged !== localOwnedMap[key]) stickyPairs.push([key, merged]);
       }
     }
@@ -4179,10 +4376,18 @@ export type AccountDeleteEnqueueAck = {
   jobId: string;
   status: 'queued' | 'running' | 'completed';
   created: boolean;
+  authReleased: true;
+  credentialSafe: true;
+};
+
+export type AccountDeleteCredentialProof = {
+  operationId: string;
+  capability: string;
 };
 
 export function startCloudDeletionEnqueue(
   stableId: string | null,
+  proof?: AccountDeleteCredentialProof,
 ): AccountDeleteEnqueueOperation<AccountDeleteEnqueueAck> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
     return startAccountDeleteEnqueueWithDeadline(
@@ -4194,20 +4399,72 @@ export function startCloudDeletionEnqueue(
   return startAccountDeleteEnqueueWithDeadline(
     () => initFirebaseAppCheckIfAvailable().catch(() => {}),
     async () => {
-      const fn = callable<{ stableId?: string | null }, AccountDeleteEnqueueAck>(
+      if (!proof?.operationId || !proof.capability) {
+        throw new Error('account_delete_credential_proof_missing');
+      }
+      const fn = callable<{
+        stableId?: string | null;
+        operationId: string;
+        capability: string;
+      }, AccountDeleteEnqueueAck>(
         'accountDeleteEnqueue',
         { timeout: ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS },
       );
-      const res = await fn({ stableId });
-      if (!res.data?.ok || !res.data.jobId) throw new Error('account_delete_enqueue_failed');
+      const res = await fn({ stableId, ...proof });
+      if (
+        !res.data?.ok
+        || !res.data.jobId
+        || res.data.authReleased !== true
+        || res.data.credentialSafe !== true
+      ) throw new Error('account_delete_enqueue_failed');
       return res.data;
     },
     ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
   );
 }
 
-export async function enqueueCloudDeletion(stableId: string | null): Promise<AccountDeleteEnqueueAck> {
-  return startCloudDeletionEnqueue(stableId).acknowledgment;
+const ACCOUNT_DELETE_CREDENTIAL_SAFE_WAIT_MS = 15_000;
+
+/**
+ * Repairs a lost enqueue response after the old Auth UID has already been
+ * deleted. The callable is deliberately unauthenticated; possession of the
+ * SecureStore-only capability is the sole bounded proof.
+ */
+export async function waitForAccountDeletionCredentialSafe(
+  proof: AccountDeleteCredentialProof,
+  timeoutMs = ACCOUNT_DELETE_CREDENTIAL_SAFE_WAIT_MS,
+): Promise<boolean> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO || !proof.operationId || !proof.capability) return false;
+  const deadline = Date.now() + Math.max(1, timeoutMs);
+  const fn = callable<AccountDeleteCredentialProof, { status: 'credential_safe' }>(
+    'accountDeleteCredentialStatus',
+    { timeout: Math.min(timeoutMs, ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS) },
+  );
+  while (Date.now() < deadline) {
+    try {
+      const remaining = Math.max(1, deadline - Date.now());
+      const response = await withTimeout(
+        fn(proof),
+        remaining,
+        'account_delete_credential_status',
+      );
+      if (response.data?.status === 'credential_safe') return true;
+    } catch {
+      // A closure may be committed while its first response is lost. Retry the
+      // capability receipt within the bounded foreground deadline.
+    }
+    const remaining = deadline - Date.now();
+    if (remaining <= 0) break;
+    await new Promise((resolve) => setTimeout(resolve, Math.min(400, remaining)));
+  }
+  return false;
+}
+
+export async function enqueueCloudDeletion(
+  stableId: string | null,
+  proof?: AccountDeleteCredentialProof,
+): Promise<AccountDeleteEnqueueAck> {
+  return startCloudDeletionEnqueue(stableId, proof).acknowledgment;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

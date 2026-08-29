@@ -218,7 +218,7 @@ test('returns the local decision first and syncs a managed RevenueCat entitlemen
   expect(syncRevenueCatProjectionForAccount).toHaveBeenCalledWith('premium-guard-test');
 });
 
-test('background refresh preserves MAX when premium and max entitlements are both active', async () => {
+test('background refresh ignores retired MAX and persists only ordinary Premium', async () => {
   getCustomerInfo.mockResolvedValue({
     entitlements: { active: {
       premium: {
@@ -240,9 +240,9 @@ test('background refresh preserves MAX when premium and max entitlements are bot
   await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
   await __waitForPremiumBackgroundRefreshForTests();
 
-  expect(asyncStore.premium_plan).toBe('max_monthly');
-  expect(asyncStore.premium_rc_product_id).toBe('phraseman_max_monthly_v1:monthly-base');
-  expect(asyncStore.premium_rc_expiry_ms).toBe('9000');
+  expect(asyncStore.premium_plan).toBe('monthly');
+  expect(asyncStore.premium_rc_product_id).toBe('phraseman_premium_monthly_399');
+  expect(asyncStore.premium_rc_expiry_ms).toBe('1000');
 });
 
 test('preserves local paid access and logs warning when projection sync fails', async () => {

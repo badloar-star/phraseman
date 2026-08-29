@@ -102,21 +102,22 @@ export function openPersonalPlanTask(
   const go = nav === 'replace' ? router.replace : router.push;
   if (destination.type === 'plan_phrase_lesson') {
     go({
-      pathname: '/lesson1',
+      // The phrase lesson is a Route activity, not a slice of the legacy
+      // numbered course. `/lesson1` ignores `planPhraseLessonId` and therefore
+      // always starts the generic Lesson 1 instead of this day's task.
+      pathname: '/personal_plan_exercise',
       params: {
-        id: String(destination.afterLessonId),
-        planTask: '1',
-        lessonShellMode: 'plan_phrase_build',
-        planPracticeMode: 'build',
-        allowCorrectWordHighlighting: '0',
+        rendererType: 'plan_phrase_build',
         planId: plan.id,
         planDayIndex: String(day.dayIndex),
         planTaskId: task.id,
         ...(planInstanceId ? { planInstanceId } : {}),
-        planPhraseLessonId: destination.lessonId,
-        planPhraseMode: 'build',
-        requiredPhrases: String(destination.requiredPhrases),
-        requiredPhraseIds: phraseLessonContentUnitIds(destination.lessonId, destination.requiredPhrases).join(','),
+        lessonId: destination.lessonId,
+        contentUnitIds: phraseLessonContentUnitIds(
+          destination.lessonId,
+          destination.requiredPhrases,
+        ).join(','),
+        requiredCorrect: String(destination.requiredPhrases),
       },
     } as any);
     return;

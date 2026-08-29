@@ -55,7 +55,7 @@ assert.ok(speedMatch.includes('disabled={disabled || verdict === "ok"}'));
 assert.ok(!speedMatch.includes('matchedPairIds.has(pair.pairId) ? "void"'));
 
 assert.ok(player.includes("useLearningV2LocalHoldToTalkV1({"));
-assert.ok(player.includes("onPressOut={localVoice.stop}"));
+assert.ok(player.includes("onPressOut={stopVoiceCapture}"));
 assert.ok(player.includes("onFinalTranscript: (heard) =>"));
 assert.ok(player.includes("<VoiceEqualizer"));
 assert.ok(!player.includes("<SpeakingPanel"));

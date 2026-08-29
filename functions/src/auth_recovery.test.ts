@@ -23,6 +23,10 @@ const docs = new Map<string, DocData>();
 const versions = new Map<string, number>();
 const writeLog: Array<{ path: string; data: DocData; merge: boolean }> = [];
 const FIELD_DELETE = { __op: 'delete' } as const;
+const denialPath = (identity: string) => {
+  const { createHash } = require('crypto') as typeof import('crypto');
+  return `account_deletion_permanent_denials/adel_deny_${createHash('sha256').update(identity).digest('hex')}`;
+};
 let autoId = 0;
 let transactionReadHook: ((path: string) => void | Promise<void>) | null = null;
 let nextTransactionFailure: Error | null = null;
@@ -694,6 +698,9 @@ describe('authRequestRecoveryCode', () => {
     ['old provider marker', 'account_deletion_auth_markers/old-provider-uid'],
     ['current provider marker', 'account_deletion_auth_markers/new-google-uid'],
     ['target tombstone', `account_deletion_tombstones/${STABLE}`],
+    ['old provider permanent denial', denialPath('old-provider-uid')],
+    ['current provider permanent denial', denialPath('new-google-uid')],
+    ['target stable permanent denial', denialPath(STABLE)],
   ])('rejects when a %s appears after preflight but before code creation', async (_label, path) => {
     seedLinkedUser();
     let injected = false;
@@ -1041,6 +1048,9 @@ describe('authConfirmRecoveryCode', () => {
     ['old provider marker', 'account_deletion_auth_markers/old-provider-uid'],
     ['current provider marker', 'account_deletion_auth_markers/replacement-google-uid'],
     ['target tombstone', `account_deletion_tombstones/${STABLE}`],
+    ['old provider permanent denial', denialPath('old-provider-uid')],
+    ['current provider permanent denial', denialPath('replacement-google-uid')],
+    ['target stable permanent denial', denialPath(STABLE)],
   ])('rejects when a %s appears after code read and commits no recovery writes', async (_label, path) => {
     seedLinkedUser();
     await callRequest({ stableId: STABLE }, 'replacement-google-uid');

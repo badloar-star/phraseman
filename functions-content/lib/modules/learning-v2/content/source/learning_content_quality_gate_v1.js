@@ -23,12 +23,63 @@ exports.LEARNING_V2_CONTENT_QUALITY_LOCALES = Object.freeze([
 ]);
 const EXPECTED_INTRO_ROLES = Object.freeze(['concept', 'formula', 'trap']);
 const UNTRANSLATED_MARKER = '[[NEEDS_TRANSLATION]]';
-// Пороги выведены из полного утверждённого восьмиязычного калибра, а не из
-// вкуса автора гейта: title min=11, body min=329, explanation min=36,
-// body sentences min=4. Небольшой технический допуск не меняет стиль.
 const MIN_TITLE_CHARS = 10;
-const MIN_BODY_CHARS = 300;
-const MAX_BODY_CHARS = 700;
+// зачем 320, а не 700 (Библия текстов, правило 2): 700 знаков — это лекция на
+// пол-экрана телефона. NN/Group: люди читают 20-28% слов и на мобильном
+// сканируют, а не читают. Интро — одна понятная мысль, а не абзац.
+const MAX_BODY_CHARS = 320;
+const MIN_BODY_SENTENCES = 2;
+const MAX_BODY_SENTENCES = 4;
+// Подсказка внутри задания короче интро: она читается на бегу, между ответами
+// (Библия текстов, правило 2).
+const MAX_GUIDANCE_CHARS = 200;
+const MAX_FEEDBACK_CHARS = 160;
+// зачем список (Библия текстов, правило 4): владелец прямо запретил «сложные
+// термины грамматические». Новичок не обязан знать, что такое «инфинитив» или
+// «изъявительное наклонение» — объяснение должно работать без словаря.
+// Проверяется по началу слова, чтобы ловить любые падежные формы.
+const FORBIDDEN_GRAMMAR_TERMS = Object.freeze([
+    'инфинитив',
+    'спряжен',
+    'склонен',
+    'изъявительн',
+    'сослагательн',
+    'повелительн',
+    'транзитивн',
+    'переходн',
+    'герунди',
+    'причасти',
+    'деепричасти',
+    'номинатив',
+    'аккузатив',
+    'винительн',
+    'дательн',
+    'творительн',
+    'предложн',
+    'родительн',
+    'именительн',
+    'глагол-связка',
+    'глагольная связка',
+    'лексем',
+    'морфем',
+    'флекси',
+    'артикл',
+    'детерминатив',
+    'залог',
+]);
+const FORBIDDEN_BEGINNER_PHRASES = Object.freeze([
+    /\bсловарн(?:ая|ой|ую|ые|ых)\s+форм/iu,
+]);
+const MULTIPLE_TEACHING_JOBS_BY_LOCALE = Object.freeze({
+    ru: /(?:кроме\s+того|ещ[её]\s+одно|также\s+важно|отдельно\s+запомните).{0,80}(?:правил|формул|исключен)/iu,
+    uk: /(?:крім\s+того|ще\s+одне|також\s+важливо|окремо\s+запам['’]?ятайте).{0,80}(?:правил|формул|винят)/iu,
+    es: /(?:además|otra\s+regla|también\s+es\s+importante).{0,80}(?:regla|fórmula|excepción)/iu,
+    'pt-BR': /(?:além\s+disso|outra\s+regra|também\s+é\s+importante).{0,80}(?:regra|fórmula|exceção)/iu,
+    vi: /(?:ngoài\s+ra|một\s+quy\s+tắc\s+khác).{0,80}(?:quy\s+tắc|công\s+thức|ngoại\s+lệ)/iu,
+    id: /(?:selain\s+itu|aturan\s+lain|juga\s+penting).{0,80}(?:aturan|rumus|pengecualian)/iu,
+    tr: /(?:ayrıca|başka\s+bir\s+kural|şunu\s+da\s+unutmayın).{0,80}(?:kural|formül|istisna)/iu,
+    pl: /(?:ponadto|kolejna\s+zasada|ważne\s+jest\s+też).{0,80}(?:zasad|formuł|wyjąt)/iu,
+});
 const MIN_EXPLANATION_CHARS = 35;
 const MIN_PHRASE_EXPLANATION_CHARS = 100;
 const MIN_DISTRACTOR_REASON_CHARS = 40;
@@ -98,6 +149,48 @@ const FOREIGN_GRAMMAR = Object.freeze([
 function textFor(source, locale) {
     return String(source[locale] ?? source.rest?.[locale] ?? '').trim();
 }
+function looksLikeLocalizedSource(value) {
+    if (!value || typeof value !== 'object' || Array.isArray(value))
+        return false;
+    const candidate = value;
+    return typeof candidate.ru === 'string' &&
+        typeof candidate.uk === 'string' &&
+        typeof candidate.es === 'string';
+}
+function inspectLocalizedLanguageAndBeginnerCopy(value, path, issues) {
+    if (looksLikeLocalizedSource(value)) {
+        for (const locale of exports.LEARNING_V2_CONTENT_QUALITY_LOCALES) {
+            const copy = textFor(value, locale);
+            const copyPath = `${path}.${locale}`;
+            if (locale === 'ru') {
+                const ukrainianMarkers = copy.match(/\b(?:це|щоб|який|яка|яке|які|тільки|потрібно|після|означає)\b/giu)?.length ?? 0;
+                if (/[іїєґ]/iu.test(copy) || ukrainianMarkers >= 2)
+                    add(issues, 'locale_language_mismatch', copyPath, 'Русская локаль содержит украинский learner-facing текст.');
+            }
+            else if (locale === 'uk') {
+                const russianMarkers = copy.match(/\b(?:это|чтобы|который|которая|только|нужно|после|означает)\b/giu)?.length ?? 0;
+                if (/[ыэъё]/iu.test(copy) || russianMarkers >= 2)
+                    add(issues, 'locale_language_mismatch', copyPath, 'Украинская локаль содержит русский learner-facing текст.');
+            }
+            else if (/[Ѐ-ӿ]/u.test(copy)) {
+                add(issues, 'locale_language_mismatch', copyPath, `Локаль ${locale} содержит кириллический learner-facing текст.`);
+            }
+            const forbiddenTerm = FORBIDDEN_GRAMMAR_TERMS.find((term) => new RegExp(term, 'iu').test(copy));
+            if (forbiddenTerm ||
+                FORBIDDEN_BEGINNER_PHRASES.some((pattern) => pattern.test(copy))) {
+                add(issues, 'learner_copy_forbidden_term', copyPath, 'Learner-facing текст содержит непояснённый методический термин.');
+            }
+        }
+        return;
+    }
+    if (Array.isArray(value)) {
+        value.forEach((entry, index) => inspectLocalizedLanguageAndBeginnerCopy(entry, `${path}[${index}]`, issues));
+        return;
+    }
+    if (value && typeof value === 'object') {
+        Object.entries(value).forEach(([key, entry]) => inspectLocalizedLanguageAndBeginnerCopy(entry, path ? `${path}.${key}` : key, issues));
+    }
+}
 function add(issues, code, path, message) {
     issues.push({ code, path, message });
 }
@@ -132,6 +225,9 @@ function normalizedOption(value) {
         .replace(/[’]/g, "'")
         .replace(/[^\p{L}\p{N}']+/gu, ' ')
         .trim();
+}
+function normalizedFeedbackComparable(value) {
+    return normalizedOption(value).toLocaleLowerCase('en');
 }
 function tokenCoverage(answer, evidence) {
     const answerTokens = [...new Set(normalized(answer).split(' ').filter(Boolean))];
@@ -185,6 +281,129 @@ function inspectLocalizedIntroField(value, path, issues, allowSharedTargetText =
         }
     }
 }
+/**
+ * Слова изучаемого языка, которые ученик В ЭТОЙ сессии реально видит.
+ *
+ * зачем (Библия текстов, правило 1 — владелец, 2026-08-27: «не упоминай в
+ * уроке то, чего там не должно быть и нету»): объяснение к испанскому `no`
+ * рассказывало про `nada` и `non` — слова, которых в уроке нет и которые никто
+ * не путает. Доказательства против такого контраста: Mayer coherence principle
+ * (лишнее вредит), Sanchez & Wiley (вредит именно новичкам), Kalyuga expertise
+ * reversal (материал «на будущее» — груз, а не подготовка).
+ *
+ * В набор входит всё, что ученик увидит своими глазами: целевые слова, слова
+ * фраз и дистракторы (они показываются как варианты ответа).
+ */
+function sessionCurriculumTargetWords(source) {
+    const words = new Set();
+    const add = (value) => {
+        if (typeof value !== 'string')
+            return;
+        const normalized = value.normalize('NFKC').trim().toLocaleLowerCase('en');
+        if (normalized.length === 0)
+            return;
+        words.add(normalized);
+        for (const token of normalized.split(/\s+/u)) {
+            if (token)
+                words.add(token);
+        }
+    };
+    for (const item of source.newVocabulary ?? []) {
+        add(item.target);
+        for (const stage of Object.values(item.contacts ?? {})) {
+            for (const distractor of stage?.distractors ?? [])
+                add(distractor.value);
+        }
+    }
+    for (const phrase of source.phrases ?? []) {
+        // Сама фраза целиком и каждое её слово.
+        add(phrase.english);
+        for (const token of String(phrase.english ?? '').split(/\s+/))
+            add(token);
+        for (const word of phrase.words ?? []) {
+            add(word.correct);
+            for (const distractor of word.distractors ?? [])
+                add(distractor.value);
+        }
+    }
+    return words;
+}
+function sessionDistractorTargetWords(source) {
+    const words = new Set();
+    const add = (value) => {
+        if (typeof value !== 'string')
+            return;
+        const normalized = value.normalize('NFKC').trim();
+        if (normalized.length > 0)
+            words.add(normalized);
+    };
+    for (const item of source.newVocabulary ?? []) {
+        for (const stage of Object.values(item.contacts ?? {})) {
+            for (const distractor of stage?.distractors ?? [])
+                add(distractor.value);
+        }
+    }
+    for (const phrase of source.phrases ?? []) {
+        for (const word of phrase.words ?? []) {
+            for (const distractor of word.distractors ?? [])
+                add(distractor.value);
+        }
+    }
+    return words;
+}
+function reportPrematureDistractorMentions(text, distractors, currentTarget, code, pathLabel, issues) {
+    const named = [...distractors].filter((candidate) => {
+        if (candidate === currentTarget)
+            return false;
+        // Однобуквенные i/l/m невозможно безопасно искать в латинских interface-
+        // locales: там это могут быть обычные союзы или части местного текста.
+        // Кириллические локали дополнительно проходят полный scan ниже.
+        if (candidate.length < 2)
+            return false;
+        const escaped = candidate.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&');
+        return new RegExp(`(^|[^\\p{L}])${escaped}(?=$|[^\\p{L}])`, 'iu').test(text);
+    });
+    if (named.length === 0)
+        return;
+    add(issues, code, pathLabel, `Дистрактор назван до выбора ученика: ${named.slice(0, 4).join(', ')}. ` +
+        'Первое объяснение раскрывает только текущий материал; ловушка объясняется после ответа.');
+}
+/**
+ * Ищет в тексте слова изучаемого языка, которых в этой сессии НЕТ.
+ *
+ * Работает так: берём из текста только слова, написанные латиницей (в
+ * русском/украинском объяснении это почти всегда цитата изучаемого языка),
+ * и сверяем с разрешённым набором. Служебные英 слова вроде "a"/"the" отсеены
+ * длиной, имена собственные — заглавной буквой внутри предложения не ловятся,
+ * поэтому проверка намеренно консервативная: ложное срабатывание дороже
+ * пропуска, но пропуск здесь уже стоил владельцу доверия к текстам.
+ */
+function reportUnknownTargetWords(text, allowed, code, pathLabel, issues) {
+    // зачем вырезаем /.../ до разбора: в объяснении произношения звук пишут в
+    // косых скобках (/oi/, /na-/). Это запись ЗВУКА того же слова урока, а не
+    // постороннее слово — без этого гейт ругался на собственный корректный текст.
+    const withoutPhonetics = text.replace(/\/[^/]{1,12}\//gu, ' ');
+    const latin = withoutPhonetics.match(/[a-zA-ZáéíóúñüàâçèêëîïôùûÁÉÍÓÚÑÜ]+/gu) ?? [];
+    const unknown = new Set();
+    for (const raw of latin) {
+        const word = raw.normalize('NFKC').toLocaleLowerCase('en');
+        if (allowed.has(word))
+            continue;
+        // зачем проверка на часть слова: живое объяснение разбирает слово на куски
+        // («хвост -oy», «начало ver-»), и такой кусок — не постороннее слово, а то
+        // же самое слово урока. Без этого гейт ругался на собственный правильный
+        // текст про soy, что и есть ложное срабатывание.
+        const isFragmentOfAllowed = [...allowed].some((known) => known.length > word.length && known.includes(word));
+        if (isFragmentOfAllowed)
+            continue;
+        unknown.add(raw);
+    }
+    if (unknown.size === 0)
+        return;
+    add(issues, code, pathLabel, `Упомянуты слова, которых в этой сессии нет: ${[...unknown].slice(0, 4).join(', ')}. ` +
+        'Правило 1 Библии текстов: сравнивать можно только с уже пройденным — ' +
+        'новое слово ради контраста вредит новичку (Mayer, Kalyuga).');
+}
 function inspectIntro(source, issues) {
     // Owner approval freezes the exact first-ten candidate byte-for-byte. Its
     // shortest causal feedback is 20 characters. The exception is hash- and
@@ -213,10 +432,44 @@ function inspectIntro(source, issues) {
             const path = `${pagePath}.${locale}`;
             if (title.length < MIN_TITLE_CHARS)
                 add(issues, 'intro_title_too_thin', `${path}.title`, `Заголовок короче ${MIN_TITLE_CHARS} знаков.`);
-            if (body.length < MIN_BODY_CHARS || sentenceCount(body) < 4)
-                add(issues, 'intro_body_too_thin', `${path}.body`, 'Требуются минимум четыре законченных причинных предложения и плотность старого эталона.');
+            // зачем убран минимум длины (владелец, 2026-08-27 + research, см.
+            // docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md): требование «минимум 300
+            // знаков и 4 предложения» структурно ЗАСТАВЛЯЛО лить воду — так в тексте
+            // про испанское `no` появились nada и non, слова, которых в уроке нет.
+            // Доказательная база против нижнего порога: Mayer coherence principle
+            // (лишний материал вредит, 13 экспериментов из 14), Sanchez & Wiley
+            // (вредит именно новичкам), Sweller redundancy effect. Ни один источник
+            // не рекомендует минимум длины для микро-объяснения. Ограничитель теперь
+            // только сверху.
+            if (sentenceCount(body) < 1)
+                add(issues, 'intro_body_empty', `${path}.body`, 'Текст пустой — нужно хотя бы одно законченное предложение.');
+            else if (sentenceCount(body) < MIN_BODY_SENTENCES)
+                add(issues, 'intro_body_sentence_count_invalid', `${path}.body`, `Нужно ${MIN_BODY_SENTENCES}–${MAX_BODY_SENTENCES} законченных предложения без искусственного растягивания.`);
             if (body.length > MAX_BODY_CHARS)
                 add(issues, 'intro_body_overloaded', `${path}.body`, `Текст длиннее ${MAX_BODY_CHARS} знаков и перестаёт быть одним экраном.`);
+            if (sentenceCount(body) > MAX_BODY_SENTENCES)
+                add(issues, 'intro_body_overloaded', `${path}.body`, `Больше ${MAX_BODY_SENTENCES} предложений — это уже лекция, а не одна понятная мысль.`);
+            if (MULTIPLE_TEACHING_JOBS_BY_LOCALE[locale]?.test(body))
+                add(issues, 'intro_multiple_teaching_jobs', `${path}.body`, 'Одна страница интро объясняет одну мысль; отдельное второе правило нужно убрать.');
+            const forbiddenTerm = FORBIDDEN_GRAMMAR_TERMS.find((term) => new RegExp(term, 'iu').test(body));
+            if (forbiddenTerm)
+                add(issues, 'intro_forbidden_term', `${path}.body`, `Сложный термин «${forbiddenTerm}» — правило 4 Библии требует человеческого языка.`);
+            // зачем только ru/uk: приём «латиница в кириллическом тексте = цитата
+            // изучаемого языка» работает лишь там, где сам язык объяснения на
+            // кириллице. В en/pt-BR/vi/id/tr/pl обычные слова самого объяснения —
+            // тоже латиница, и проверка ловила бы «means», «ini», «significa».
+            // Правило 1 всё равно соблюдается: тексты всех локалей пишутся с одного
+            // русского оригинала, поэтому лишнее слово ловится на ru/uk и чинится
+            // сразу во всех восьми.
+            reportPrematureDistractorMentions(
+            // Проверяем только явно размеченные фрагменты изучаемого языка.
+            // Сырые латинские locale-тексты дают ложные совпадения: например,
+            // португальское `um` и турецкое `her` являются обычными словами языка
+            // объяснения, а не преждевременно показанными английскими ловушками.
+            targetCorrectEvidence(page, locale), sessionDistractorTargetWords(source), undefined, 'intro_mentions_unknown_word', `${path}.body`, issues);
+            if (locale === 'ru' || locale === 'uk') {
+                reportUnknownTargetWords(body, sessionCurriculumTargetWords(source), 'intro_mentions_unknown_word', `${path}.body`, issues);
+            }
             if (new Set(choices.map((choice) => choice.normalize('NFKC').trim())).size !== 3 ||
                 choices.some((choice) => !choice))
                 add(issues, 'intro_question_choices_invalid', `${path}.question.choices`, 'Нужны ровно три непустых уникальных варианта.');
@@ -257,16 +510,18 @@ function inspectPhrases(source, issues) {
             add(issues, 'phrase_out_of_scope', path, 'Урок 1 допускает только настоящее to be; чужая грамматика заблокирована.');
         if (phrase.explanation.trim().length < MIN_PHRASE_EXPLANATION_CHARS || sentenceCount(phrase.explanation) < 2)
             add(issues, 'phrase_explanation_too_thin', `${path}.explanation`, 'Нужно не менее двух предложений: когда так говорят и почему фраза устроена именно так.');
+        for (const locale of exports.LEARNING_V2_CONTENT_QUALITY_LOCALES) {
+            const explanation = phrase.localizedDetails?.[locale]?.explanation;
+            if (explanation && explanation.length > MAX_FEEDBACK_CHARS)
+                add(issues, 'feedback_overloaded', `${path}.localizedDetails.${locale}.explanation`, `Feedback длиннее ${MAX_FEEDBACK_CHARS} знаков — оставьте одну точную живую мысль.`);
+        }
         const built = normalized(phrase.words.map((word) => word.correct).join(' '));
         if (built !== phraseKey)
             add(issues, 'phrase_word_alignment_invalid', `${path}.words`, `Разбор слов собирается в «${built}», а фраза — «${phraseKey}».`);
         phrase.words.forEach((word, wordIndex) => {
             const wordPath = `${path}.words[${wordIndex}]`;
             const options = word.distractors.map((item) => normalizedOption(item.value));
-            // Manually authored learner sources use the owner-approved three-option
-            // task contract: one answer plus two deliberately close traps. Legacy
-            // catalog sources without that authorship receipt still require three.
-            const minimumDistractors = hasExplicitVocabulary || source.distractorAuthorship === 'manual' ? 2 : 3;
+            const minimumDistractors = 3;
             if (word.distractors.length < minimumDistractors || new Set(options).size !== options.length || options.includes(normalizedOption(word.correct)))
                 add(issues, 'phrase_distractors_invalid', `${wordPath}.distractors`, `Нужны минимум ${minimumDistractors} уникальных правдоподобных ошибки, не совпадающие с ответом.`);
             word.distractors.forEach((distractor, distractorIndex) => {
@@ -312,8 +567,8 @@ function inspectPhrases(source, issues) {
 }
 function inspectVocabulary(source, issues) {
     const vocabulary = source.newVocabulary ?? [];
-    if (vocabulary.length > 5)
-        add(issues, 'vocabulary_count_invalid', 'newVocabulary', 'Не более пяти новых единиц: каждая обязана поместиться в полный word-first цикл.');
+    if (vocabulary.length < 1 || vocabulary.length > 5)
+        add(issues, 'vocabulary_count_invalid', 'newVocabulary', 'Каждая сессия обязана приносить 1–5 новых единиц; каждая проходит полный word-first цикл.');
     const seenTargets = new Set();
     const stages = ['recognize', 'retrieve_meaning', 'build_form'];
     vocabulary.forEach((entry, entryIndex) => {
@@ -339,12 +594,30 @@ function inspectVocabulary(source, issues) {
                 const guidance = textFor(contact.guidance, locale);
                 if (!guidance || guidance.includes(UNTRANSLATED_MARKER))
                     add(issues, 'vocabulary_locale_missing', `${contactPath}.guidance.${locale}`, 'Подсказка контакта обязательна во всех восьми локалях без fallback.');
+                if (!guidance)
+                    continue;
+                // зачем те же правила, что и для интро (владелец, 2026-08-27: «оба вида
+                // текстов»): текст со скриншота — про nada/non — жил ИМЕННО здесь, в
+                // guidance словаря, а не в интро. Покрыть только интро значило бы
+                // починить не то место. Лимит строже интро (правило 2 библии): это
+                // подсказка внутри задания, а не отдельный экран.
+                const guidancePath = `${contactPath}.guidance.${locale}`;
+                if (guidance.length > MAX_GUIDANCE_CHARS)
+                    add(issues, 'guidance_overloaded', guidancePath, `Подсказка длиннее ${MAX_GUIDANCE_CHARS} знаков — правило 2 Библии текстов требует одной короткой мысли.`);
+                const guidanceTerm = FORBIDDEN_GRAMMAR_TERMS.find((term) => new RegExp(`\\b${term}`, 'iu').test(guidance));
+                if (guidanceTerm)
+                    add(issues, 'guidance_forbidden_term', guidancePath, `Сложный термин «${guidanceTerm}» — правило 4 Библии требует человеческого языка.`);
+                reportPrematureDistractorMentions(guidance, new Set(contact.distractors.map((item) => item.value)), target, 'guidance_mentions_unknown_word', guidancePath, issues);
+                if (locale === 'ru' || locale === 'uk') {
+                    const introducedTargets = sessionCurriculumTargetWords(source);
+                    reportUnknownTargetWords(guidance, introducedTargets, 'guidance_mentions_unknown_word', guidancePath, issues);
+                }
             }
             const alternatives = contact.distractors.map((item) => normalizedOption(item.value));
-            if (contact.distractors.length < 2 ||
+            if (contact.distractors.length < 3 ||
                 new Set(alternatives).size !== alternatives.length ||
                 alternatives.includes(targetKey))
-                add(issues, 'vocabulary_distractors_invalid', `${contactPath}.distractors`, 'Каждый словарный контакт требует минимум две разные близкие ловушки, не совпадающие с target.');
+                add(issues, 'vocabulary_distractors_invalid', `${contactPath}.distractors`, 'Каждый словарный контакт требует минимум три разные близкие ловушки, не совпадающие с target.');
             contact.distractors.forEach((distractor, distractorIndex) => {
                 const distractorPath = `${contactPath}.distractors[${distractorIndex}]`;
                 if (!DISTRACTOR_TRAP_TYPES.has(distractor.trapType))
@@ -357,6 +630,8 @@ function inspectVocabulary(source, issues) {
                         !normalizedFeedback.includes(normalized(distractor.value)) ||
                         !normalizedFeedback.includes(normalized(target)))
                         add(issues, 'vocabulary_distractor_feedback_invalid', `${distractorPath}.feedback.${locale}`, 'Feedback обязан назвать выбранную ловушку, правильный target и конкретное различие.');
+                    if (feedback.length > MAX_FEEDBACK_CHARS)
+                        add(issues, 'feedback_overloaded', `${distractorPath}.feedback.${locale}`, `Feedback длиннее ${MAX_FEEDBACK_CHARS} знаков — назовите ловушку и одно решающее отличие.`);
                 }
             });
         }
@@ -383,12 +658,87 @@ function inspectReceipt(source, receipt, issues) {
             add(issues, 'locale_review_missing', `qualityReview.localeAuthorship.${locale}`, 'Для каждой локали требуется отдельное явное APPROVED носителем/редактором языка.');
     }
 }
+function inspectModeNativeDistractors(source, issues) {
+    source.modeNativePractice?.forEach((practice, index) => {
+        const payload = practice.modePayload;
+        const path = `modeNativePractice[${index}].modePayload`;
+        let visible = null;
+        if (payload.family === 'phrase_builder' || payload.family === 'listen_build_dictation') {
+            visible = payload.authoredDistractorTokens;
+        }
+        else if (payload.family === 'listen_choose') {
+            const correctIds = new Set(payload.choiceFeedback.filter((entry) => entry.correct).map((entry) => entry.responseId));
+            visible = payload.localizedMeaningChoices
+                .filter((choice) => !correctIds.has(choice.responseId))
+                .map((choice) => choice.targetText);
+        }
+        else if (payload.family === 'context_gap_grammar') {
+            const correctIds = new Set(payload.choiceFeedback.filter((entry) => entry.correct).map((entry) => entry.responseId));
+            visible = payload.gapOptions
+                .filter((option) => !correctIds.has(option.responseId))
+                .map((option) => option.text);
+        }
+        if (!visible)
+            return;
+        const normalizedVisible = visible.map(normalizedOption);
+        if (visible.length < 3 || new Set(normalizedVisible).size !== visible.length) {
+            add(issues, 'mode_distractors_invalid', path, 'Одношаговый режим требует минимум три разные вручную написанные ловушки.');
+        }
+        if (payload.family !== 'listen_choose' &&
+            payload.family !== 'context_gap_grammar')
+            return;
+        const options = payload.family === 'listen_choose'
+            ? payload.localizedMeaningChoices.map((option) => ({
+                responseId: option.responseId,
+                label: option.targetText,
+            }))
+            : payload.gapOptions.map((option) => ({
+                responseId: option.responseId,
+                label: option.text,
+            }));
+        const feedbackEntries = payload.choiceFeedback;
+        const optionIds = options.map((option) => option.responseId);
+        const feedbackIds = feedbackEntries.map((entry) => entry.responseId);
+        const correctEntries = feedbackEntries.filter((entry) => entry.correct);
+        const exactCoverage = new Set(optionIds).size === optionIds.length &&
+            new Set(feedbackIds).size === feedbackIds.length &&
+            optionIds.length === feedbackIds.length &&
+            optionIds.every((responseId) => feedbackIds.includes(responseId));
+        const correctOption = correctEntries.length === 1
+            ? options.find((option) => option.responseId === correctEntries[0].responseId)
+            : undefined;
+        const wrongEntries = feedbackEntries.filter((entry) => !entry.correct);
+        let pairSpecific = exactCoverage && Boolean(correctOption) && wrongEntries.length >= 3;
+        for (const locale of exports.LEARNING_V2_CONTENT_QUALITY_LOCALES) {
+            const localizedFeedback = wrongEntries.map((entry) => normalizedFeedbackComparable(entry.feedbackByLocale[locale] ?? ''));
+            if (localizedFeedback.some((copy) => !copy) ||
+                new Set(localizedFeedback).size !== localizedFeedback.length) {
+                pairSpecific = false;
+            }
+            for (const entry of wrongEntries) {
+                const selectedOption = options.find((option) => option.responseId === entry.responseId);
+                const copy = normalizedFeedbackComparable(entry.feedbackByLocale[locale] ?? '');
+                if (!selectedOption ||
+                    !correctOption ||
+                    !copy.includes(normalizedFeedbackComparable(selectedOption.label)) ||
+                    !copy.includes(normalizedFeedbackComparable(correctOption.label))) {
+                    pairSpecific = false;
+                }
+            }
+        }
+        if (!pairSpecific) {
+            add(issues, 'mode_choice_feedback_not_pair_specific', `${path}.choiceFeedback`, 'Каждый неверный вариант выбора требует собственного ручного feedback, который называет выбранную ловушку и правильную форму во всех локалях.');
+        }
+    });
+}
 function evaluateLearningV2SessionContentQuality(source, receipt) {
     const issues = [];
     inspectForbiddenGenericFeedback(source, '', issues);
+    inspectLocalizedLanguageAndBeginnerCopy(source, '', issues);
     inspectIntro(source, issues);
     inspectVocabulary(source, issues);
     inspectPhrases(source, issues);
+    inspectModeNativeDistractors(source, issues);
     inspectReceipt(source, receipt, issues);
     return { ok: issues.length === 0, issues };
 }

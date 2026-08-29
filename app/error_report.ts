@@ -7,6 +7,7 @@ import { getCanonicalUserId } from './user_id_policy';
 import { getLevelFromXP } from '../constants/theme';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { submitClientReport } from './client_reports';
+import type { SupportDiagnosticBundle } from './support_diagnostic_schema';
 
 const THROTTLE_KEY = 'last_error_report_ts';
 const THROTTLE_MS = 60_000;
@@ -53,9 +54,20 @@ export interface ErrorReportPayload {
   userAnswer?: string;
   /** Обязательный поясняющий текст; минимум ERROR_REPORT_COMMENT_MIN_LEN символов после trim */
   comment: string;
+  /** Privacy-safe technical timeline frozen before the report enters the outbox. */
+  diagnostics?: SupportDiagnosticBundle;
 }
 
 export type ErrorReportResult = 'sent' | 'throttled' | 'invalid_comment' | 'failed';
+
+export interface SubmitErrorReportOptions {
+  /** Existing lesson/content report buttons keep their historical +10 XP by default. */
+  awardSubmissionXp?: boolean;
+  /** Owner binding for durable retries; the server rejects a changed account. */
+  expectedStableUid?: string;
+  /** Stable retry key; the server returns the original receipt instead of duplicating. */
+  idempotencyKey?: string;
+}
 
 /**
  * Стабильный `dataId` для упражнения «собери фразу» в уроке (`lesson_N_phrase_K`).
@@ -158,6 +170,7 @@ export const submitErrorReport = async (
   payload: ErrorReportPayload,
   userName: string,
   lang: Lang = 'ru',
+  options: SubmitErrorReportOptions = {},
 ): Promise<ErrorReportResult> => {
   const commentTrimmed = (payload.comment ?? '').trim();
   if (commentTrimmed.length < ERROR_REPORT_COMMENT_MIN_LEN) {
@@ -173,7 +186,7 @@ export const submitErrorReport = async (
   const meta = await collectMetadata(userName, lang);
 
   try {
-    await submitClientReport('error_report', {
+    const reportRequest = {
       screen: payload.screen,
       category,
       dataId: payload.dataId,
@@ -195,25 +208,39 @@ export const submitErrorReport = async (
       userLanguage: meta.userLanguage,
       userDaysInApp: meta.userDaysInApp,
       copyText: buildCopyText({ ...payload, category, comment: commentTrimmed }, meta),
-    });
+      diagnostics: payload.diagnostics,
+    };
+    if (options.expectedStableUid || options.idempotencyKey) {
+      await submitClientReport('error_report', reportRequest, {
+        expectedStableUid: options.expectedStableUid,
+        idempotencyKey: options.idempotencyKey,
+      });
+    } else {
+      await submitClientReport('error_report', reportRequest);
+    }
   } catch {
     return 'failed';
   }
-  await AsyncStorage.setItem(THROTTLE_KEY, String(now));
+  // The callable already accepted the report. A broken/full local storage must
+  // not strand the UI in "sending" or invite a duplicate retry. Keep the
+  // in-memory throttle authoritative for this process and persist best-effort.
   errorReportThrottleCacheTs = now;
-  /** Маленький бонус за отправку — не await: иначе общая очередь registerXP может навсегда держать «Отправка…». */
-  void registerXP(10, 'achievement_reward', userName, lang, undefined, {
-    eventId: [
-      'achievement',
-      'error_report',
-      safeReportEventPart(Math.floor(now / THROTTLE_MS)),
-      safeReportEventPart(payload.dataId, 50),
-    ].join(':'),
-    payload: {
-      surface: 'error_report',
-      dataId: payload.dataId,
-    },
-  }).catch(() => {});
+  await AsyncStorage.setItem(THROTTLE_KEY, String(now)).catch(() => {});
+  if (options.awardSubmissionXp !== false) {
+    /** Маленький бонус за отправку — не await: иначе общая очередь registerXP может навсегда держать «Отправка…». */
+    void registerXP(10, 'achievement_reward', userName, lang, undefined, {
+      eventId: [
+        'achievement',
+        'error_report',
+        safeReportEventPart(Math.floor(now / THROTTLE_MS)),
+        safeReportEventPart(payload.dataId, 50),
+      ].join(':'),
+      payload: {
+        surface: 'error_report',
+        dataId: payload.dataId,
+      },
+    }).catch(() => {});
+  }
 
   return 'sent';
 };

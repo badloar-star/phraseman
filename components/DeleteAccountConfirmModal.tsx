@@ -9,6 +9,7 @@ import {
   Platform,
   ScrollView,
   Keyboard,
+  StyleSheet,
   type GestureResponderEvent,
 } from 'react-native';
 import Reanimated, {
@@ -24,9 +25,13 @@ import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticTap as doHaptic, hapticWarning } from '../hooks/use-haptics';
 import { beginAccountDeletion } from '../app/auth_provider';
 import { enqueueThemedBlockingInfoAlert } from '../app/themed_blocking_alert_queue';
-import { router } from 'expo-router';
 import { emitAppEvent } from '../app/events';
 import { markAccountDeletedNoticePending } from '../app/account_deleted_notice';
+import {
+  finishAccountDeleteUiTrace,
+  startAccountDeleteUiTrace,
+  traceAccountDeleteUi,
+} from '../app/account_delete_ui_trace';
 import { soundDirector } from '../modules/audio/sound_director';
 import HybridAlertShell from './modal_fx/HybridAlertShell';
 import DuoPressable from './DuoPressable';
@@ -179,6 +184,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   const handleConfirmDelete = useCallback(async () => {
     if (deleteInFlightRef.current || deleting || !deleteConfirmMatches) return;
     deleteInFlightRef.current = true;
+    startAccountDeleteUiTrace();
     if (isHybrid) {
       void hapticWarning();
       runDangerShake();
@@ -197,6 +203,8 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       // секунд — ровно то «зависает намертво», которое чиним.
       const res = await beginAccountDeletion();
       if (!res.ok) {
+        traceAccountDeleteUi(`local_delete_rejected:${res.reason}`);
+        finishAccountDeleteUiTrace('handoff_failed');
         showInfoAlert(
           L({
             ru: 'Не получилось',
@@ -233,6 +241,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         deleteInFlightRef.current = false;
         return;
       }
+      traceAccountDeleteUi('local_delete_committed');
       // зачем: подтверждение пользователю — короткая плашка на первом экране
       // онбординга, а НЕ алерт. Второй нативный <Modal> в том же тике, в котором
       // закрывается этот, на iOS ломает стек презентаций (экран настроек остаётся
@@ -248,20 +257,24 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         dedupeKey: 'account-deleted',
       });
       markAccountDeletedNoticePending();
+      // Release every blocking control before dismissing the native Modal. The
+      // Settings screen may unmount in the same render as the root onboarding
+      // overlay, so waiting for finally leaves iOS presenting a disabled modal
+      // over the new clean profile for a frame (or indefinitely on a broken
+      // presentation stack).
+      setDeleting(false);
+      deleteInFlightRef.current = false;
       onRequestClose();
-      // зачем: удаление вызывают и с ВЛОЖЕННЫХ экранов-маршрутов («Приватность и
-      // данные», «Аккаунт»), а не только из вкладки настроек. Оверлей онбординга
-      // рисуется поверх, но сам экран остаётся в стеке навигации под ним — и
-      // после онбординга пользователь возвращался на мёртвый экран удалённого
-      // аккаунта. Владелец потребовал: закрыться должно ВСЁ. Сбрасываем стек в
-      // корень до показа онбординга; ошибку глушим — навигация не должна
-      // отменять само удаление.
-      try { router.dismissAll?.(); } catch { /* стек мог быть уже корневым */ }
-      try { router.replace('/(tabs)/home' as never); } catch { /* ignore */ }
-      // Событие само монтирует чистый онбординг — перезапуск приложения не нужен
-      // и раньше только добавлял задержку поверх ожидания сети.
+      traceAccountDeleteUi('inner_modal_close_requested');
+      // Mount the first clean onboarding screen in the same UI handoff. The
+      // returned completion is intentionally ignored: server deletion, provider
+      // sign-out and anonymous-auth creation remain background-only.
+      traceAccountDeleteUi('root_event_emitting');
       emitAppEvent('account_deleted');
+      traceAccountDeleteUi('root_event_dispatch_complete');
     } catch {
+      traceAccountDeleteUi('local_delete_threw');
+      finishAccountDeleteUiTrace('handoff_failed');
       showInfoAlert(
         L({
           ru: 'Не получилось',
@@ -301,13 +314,15 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   // только оболочка (Modal→HybridAlertShell) и CTA-компоненты внизу; сама
   // логика удаления выше не тронута ни в одной ветке.
   const panel = (
-    <Reanimated.View style={isHybrid ? shakeStyle : undefined}>
+    <Reanimated.View style={[isHybrid ? styles.hybridPanelViewport : undefined, isHybrid ? shakeStyle : undefined]}>
       <KeyboardAvoidingView
-        style={isHybrid ? undefined : { flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center' }}
+        style={isHybrid ? styles.hybridPanelViewport : styles.classicModalViewport}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <View style={{ width: isHybrid ? '100%' : '88%', maxWidth: 420, maxHeight: '90%', backgroundColor: t.bgCard, borderRadius: 16, overflow: 'hidden', borderWidth: 0, borderColor: 'transparent' }}>
-          <ScrollView decelerationRate="fast"
+        <View style={[styles.dialog, isHybrid ? styles.hybridPanelViewport : styles.classicDialog, { backgroundColor: t.bgCard }]}>
+          <ScrollView
+            style={isHybrid ? styles.hybridScrollViewport : undefined}
+            decelerationRate="fast"
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ padding: 24 }}
@@ -661,6 +676,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         }}
         shadowColor="#000000"
         testID="delete-account-modal-hybrid"
+        fillAvailableHeight
       >
         {panel}
       </HybridAlertShell>
@@ -677,3 +693,32 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
 }
 
 export default memo(DeleteAccountConfirmModal);
+
+const styles = StyleSheet.create({
+  hybridPanelViewport: {
+    flex: 1,
+    width: '100%',
+    minHeight: 0,
+  },
+  hybridScrollViewport: {
+    flex: 1,
+    minHeight: 0,
+  },
+  classicModalViewport: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dialog: {
+    maxWidth: 420,
+    borderRadius: 16,
+    overflow: 'hidden',
+    borderWidth: 0,
+    borderColor: 'transparent',
+  },
+  classicDialog: {
+    width: '88%',
+    maxHeight: '90%',
+  },
+});

@@ -1,17 +1,21 @@
 import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import {
   assertPracticeRuneOwner,
   parsePracticeRuneComposite,
   practiceRuneLedgerOperation,
   practiceRuneOperationId,
-  practiceRuneDayKey,
   practiceRuneReplayMatches,
-  readPracticeRuneDaily,
-  PRACTICE_RUNE_MAX_PER_DAY,
-  PRACTICE_RUNE_MAX_PER_SESSION,
+  splitPracticeRuneStarOperations,
   type PracticeRuneComposite,
 } from './practice_rune_grant';
-import { STAR_OP_CLASS, STAR_OP_SOURCE } from './stars_ledger';
+import {
+  commitStarOperations,
+  prepareStarOperations,
+  STAR_OP_CLASS,
+  STAR_OP_SOURCE,
+} from './stars_ledger';
 
 function makeComposite(over: Partial<PracticeRuneComposite> = {}): PracticeRuneComposite {
   const base = {
@@ -38,6 +42,7 @@ function makeComposite(over: Partial<PracticeRuneComposite> = {}): PracticeRuneC
     completionOrdinal: base.completionOrdinal,
     amount: base.amount,
     reason: 'practice_session_reward',
+    createdAtMs: base.createdAtMs,
   })).digest('hex');
   return Object.freeze({
     ...base,
@@ -52,19 +57,38 @@ describe('practice rune composite validation', () => {
     expect(parsePracticeRuneComposite(composite)).toEqual(composite);
   });
 
+  test('легаси-расписка до привязки createdAt остаётся досылаемой', () => {
+    const composite = makeComposite();
+    const requestFingerprint = createHash('sha256').update(JSON.stringify({
+      schemaVersion: 1,
+      ownerStableId: composite.ownerStableId,
+      activity: composite.activity,
+      sessionKey: composite.sessionKey,
+      completionOrdinal: composite.completionOrdinal,
+      amount: composite.amount,
+      reason: 'practice_session_reward',
+    })).digest('hex');
+    const legacy = Object.freeze({ ...composite, requestFingerprint });
+    expect(parsePracticeRuneComposite(legacy)).toEqual(legacy);
+  });
+
   test('подделанная сумма отвергается — отпечаток не сойдётся', () => {
-    // Классическая накрутка: взять честную расписку и вписать больше рун, не
-    // выходя за потолок сессии — иначе сработает более ранняя проверка
-    // потолка, а не отпечатка, и тест перестанет проверять то, что заявлен.
+    // Классическая подмена: взять честную расписку и вписать больше рун, не
+    // пересчитывая её immutable fingerprint.
     const forged = { ...makeComposite(), amount: 99 };
     expect(() => parsePracticeRuneComposite(forged))
       .toThrow(/practice_rune_fingerprint_invalid/);
   });
 
-  test('сумма выше потолка сессии отвергается', () => {
-    const forged = makeComposite({ amount: PRACTICE_RUNE_MAX_PER_SESSION + 1 });
-    expect(() => parsePracticeRuneComposite(forged))
-      .toThrow(/practice_rune_composite_invalid/);
+  test('честная сумма выше прежнего потолка 180 принимается без урезания', () => {
+    const composite = makeComposite({ amount: 600 });
+    expect(parsePracticeRuneComposite(composite).amount).toBe(600);
+  });
+
+  test('структурно огромная сумма отвергается до выделения массива чанков', () => {
+    const composite = makeComposite({ amount: Number.MAX_SAFE_INTEGER });
+    expect(() => parsePracticeRuneComposite(composite))
+      .toThrow(/practice_rune_structural_limit_exceeded/);
   });
 
   test('нулевая и отрицательная сумма отвергается', () => {
@@ -135,6 +159,65 @@ describe('practice rune ledger mapping', () => {
     expect(op.reason).toBe('practice_session');
     expect(op.delta).toBe(12);
     expect(op.sourceKind).toBe('practice_vocabulary');
+  });
+
+  test('сумма выше структурного лимита сохраняется точными детерминированными чанками', () => {
+    const composite = makeComposite({ amount: 12_345 });
+    const operations = splitPracticeRuneStarOperations(composite);
+    expect(operations.map(({ delta }) => delta)).toEqual([5_000, 5_000, 2_345]);
+    expect(operations.reduce((total, operation) => total + operation.delta, 0)).toBe(12_345);
+    expect(operations.map(({ opId }) => opId)).toEqual(
+      splitPracticeRuneStarOperations(composite).map(({ opId }) => opId),
+    );
+    expect(new Set(operations.map(({ opId }) => opId)).size).toBe(3);
+    expect(operations.every((operation, index) => (
+      operation.meta?.settlementOperationId === composite.operationId
+      && operation.meta?.clientFingerprint === composite.requestFingerprint
+      && operation.meta?.chunkIndex === index + 1
+      && operation.meta?.chunkCount === 3
+    ))).toBe(true);
+  });
+
+  test('все чанки 12 345 применяются и получают расписки в одной транзакции', async () => {
+    const operations = splitPracticeRuneStarOperations(makeComposite({ amount: 12_345 }));
+    const receiptRefs = new Map<string, { opId: string }>();
+    const userRef = {
+      collection: () => ({
+        doc: (opId: string) => {
+          const ref = { opId };
+          receiptRefs.set(opId, ref);
+          return ref;
+        },
+      }),
+    };
+    const tx = {
+      get: jest.fn(async () => ({ exists: false })),
+      set: jest.fn(),
+      create: jest.fn(),
+    };
+    const prepared = await prepareStarOperations(
+      tx as never,
+      {} as never,
+      'stable-user_1',
+      { ref: userRef, data: () => ({}) } as never,
+      operations,
+      {
+        nowMs: 1_700_000_000_000,
+        activeSeasonId: 'season-1',
+        weekKeyNow: '2026-W35',
+        authUid: 'auth-1',
+        deviceId: null,
+      },
+    );
+    const result = commitStarOperations(tx as never, prepared);
+
+    expect(result.outcomes.map(({ status }) => status)).toEqual(['applied', 'applied', 'applied']);
+    expect(result.outcomes.reduce((sum, outcome) => sum + outcome.appliedDelta, 0)).toBe(12_345);
+    expect(result.balance).toBe(12_345);
+    expect(tx.set).toHaveBeenCalledTimes(1);
+    expect(tx.create).toHaveBeenCalledTimes(3);
+    expect(tx.create.mock.calls.map(([, data]) => data.delta)).toEqual([5_000, 5_000, 2_345]);
+    expect(receiptRefs.size).toBe(3);
   });
 
   test('practice_session — заработок и идёт в строку «учёба»', () => {
@@ -222,43 +305,13 @@ describe('practice rune opId contract with the ledger', () => {
   });
 });
 
-describe('practice rune daily cap', () => {
-  test('счётчик суток стартует с нуля на новом дне', () => {
-    const state = readPracticeRuneDaily({ dayKey: '2026-08-26', earned: 880 }, '2026-08-27');
-    expect(state).toEqual({ dayKey: '2026-08-27', earned: 0 });
-  });
-
-  test('счётчик того же дня продолжается', () => {
-    const state = readPracticeRuneDaily({ dayKey: '2026-08-27', earned: 120 }, '2026-08-27');
-    expect(state.earned).toBe(120);
-  });
-
-  test('битый и подделанный счётчик читается как ноль, а не как отрицательный', () => {
-    for (const raw of [null, 'x', [], { dayKey: '2026-08-27', earned: -50 },
-      { dayKey: '2026-08-27', earned: 1.5 }, {}]) {
-      expect(readPracticeRuneDaily(raw, '2026-08-27').earned).toBe(0);
-    }
-  });
-
-  test('ключ дня — календарные сутки UTC', () => {
-    expect(practiceRuneDayKey(Date.UTC(2026, 7, 27, 23, 59))).toBe('2026-08-27');
-    expect(practiceRuneDayKey(Date.UTC(2026, 7, 28, 0, 1))).toBe('2026-08-28');
-  });
-
-  test('суточный потолок держит паритет с Ареной', () => {
-    // ARENA_DAILY_STAR_CAP = 160 (functions/src/arena_stars_v3.ts). Учёба не
-    // должна обгонять Арену — иначе игроки Арены проваливаются в лиге, а
-    // арена-пропуск качается учёбой (аудит 2026-08-27).
-    expect(PRACTICE_RUNE_MAX_PER_DAY).toBe(160);
-  });
-
-  test('потолок сессии не превышает суточный', () => {
-    // Иначе одна сессия выбирала бы весь день и потолок сессии терял смысл.
-    expect(PRACTICE_RUNE_MAX_PER_SESSION).toBeLessThanOrEqual(
-      PRACTICE_RUNE_MAX_PER_DAY + PRACTICE_RUNE_MAX_PER_SESSION,
-    );
-    // Самая щедрая честная сессия — 53 глагола × 3 = 159 рун.
-    expect(PRACTICE_RUNE_MAX_PER_SESSION).toBeGreaterThanOrEqual(159);
+describe('practice rune client-authority contract', () => {
+  test('сервер не вводит игровой потолок и не пишет legacy daily counter', () => {
+    const source = readFileSync(join(__dirname, 'practice_rune_grant.ts'), 'utf8');
+    expect(source).not.toContain('PRACTICE_RUNE_MAX_PER_SESSION');
+    expect(source).not.toContain('PRACTICE_RUNE_MAX_PER_DAY');
+    expect(source).not.toContain('practice_rune_daily_cap_reached');
+    expect(source).not.toContain('practice_runes_daily:');
   });
 });
 

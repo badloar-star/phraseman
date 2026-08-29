@@ -62,9 +62,15 @@ import { getRemoteBool } from './remote_flags';
 import { configurePhoneStatePreferenceBridge } from './phone_state_preference_bridge';
 import { configurePhoneStatePracticeBridge } from './phone_state_practice_bridge';
 import {
+  commitPhoneStateCustomizationSelection,
   configurePhoneStateEconomyBridge,
   phoneStateEconomyCompositeFromLegacy,
 } from './phone_state_economy_bridge';
+import { drainCustomizationSelectionOutbox } from './customization_selection_journal';
+import {
+  backfillClientShardPhoneStateOutbox,
+  drainClientShardPhoneStateOutbox,
+} from './economy/client_shard_operation_ledger';
 import { configurePhoneStateBackgroundSyncBridge } from './phone_state_background_sync_bridge';
 import { configurePhoneStateProgressRegisterBridge } from './phone_state_progress_register_bridge';
 
@@ -421,6 +427,18 @@ export function installPhoneStateProductionRuntime(): void {
         store: session.store,
         triggerSync: () => session.triggerSync('sealed_segment'),
       });
+      void drainCustomizationSelectionOutbox({
+        token: session.context.runtimeToken,
+        lineage: session.context.lineage,
+      }, {
+        storage: AsyncStorage,
+        mirror: commitPhoneStateCustomizationSelection,
+      }).catch(() => {});
+      void backfillClientShardPhoneStateOutbox({
+        accountToken: session.context.runtimeToken,
+      }).then(() => drainClientShardPhoneStateOutbox({
+        accountToken: session.context.runtimeToken,
+      })).catch(() => {});
       configurePhoneStateLearningV2Bridge({
         scope,
         deviceId: session.deviceId,

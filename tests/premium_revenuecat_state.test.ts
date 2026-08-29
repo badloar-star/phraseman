@@ -67,7 +67,7 @@ describe('premium RevenueCat state sync', () => {
     });
   });
 
-  it('prefers verified MAX plan and metadata when premium and max are both active', () => {
+  it('ignores retired MAX metadata when ordinary Premium is active', () => {
     const info = {
       entitlements: { active: {
         premium: {
@@ -87,11 +87,11 @@ describe('premium RevenueCat state sync', () => {
       ],
     } as any;
 
-    expect(inferPremiumPlanFromCustomerInfo(info)).toBe('max_monthly');
+    expect(inferPremiumPlanFromCustomerInfo(info)).toBe('monthly');
     expect(revenueCatPremiumMetadata(info)).toEqual(expect.objectContaining({
-      productId: 'phraseman_max_monthly_v1:monthly-base',
-      expiryMs: 9_000,
-      store: 'PLAY_STORE',
+      productId: 'phraseman_premium_monthly_399',
+      expiryMs: 1_000,
+      store: 'APP_STORE',
     }));
   });
 
@@ -123,6 +123,32 @@ describe('premium RevenueCat state sync', () => {
       entitlements: { active: { premium: { productIdentifier: 'phraseman_yearly' } } },
       activeSubscriptions: [],
     } as any)).toBe(true);
+  });
+
+  it.each([
+    'premium_monthly',
+    'premium_yearly',
+    'premium_lifetime',
+    'phraseman_premium_monthly_399',
+    'phraseman_premium_yearly_2999',
+    'phraseman_premium_lifetime_9999',
+  ])('keeps ordinary Premium product %s eligible', (productIdentifier) => {
+    expect(revenueCatCustomerInfoHasPremiumAccess({
+      entitlements: { active: { premium: { productIdentifier } } },
+      activeSubscriptions: [productIdentifier],
+    } as any)).toBe(true);
+  });
+
+  it.each([
+    'phraseman_max_monthly_v1',
+    'phraseman_voice_minutes_30',
+    'phraseman_voice_minutes_120',
+    'phraseman_voice_minutes_300',
+  ])('never treats retired MAX or minute product %s as Premium', (productIdentifier) => {
+    expect(revenueCatCustomerInfoHasPremiumAccess({
+      entitlements: { active: { premium: { productIdentifier } } },
+      activeSubscriptions: [productIdentifier],
+    } as any)).toBe(false);
   });
 
   it('also confirms an exact active subscription id when entitlement details are absent', () => {

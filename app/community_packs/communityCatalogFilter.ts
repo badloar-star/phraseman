@@ -20,12 +20,12 @@ export const COMMUNITY_SORTS: readonly CommunityPacksSort[] = ['popular', 'new']
 export function communitySortLabel(sort: CommunityPacksSort, lang: Lang): string {
   if (sort === 'new') {
     return triLang(lang, {
-      ru: 'Новые', uk: 'Нові', es: 'Nuevos',
+      ru: 'Новые', uk: 'Нові', en: 'New', es: 'Nuevos',
       'pt-BR': 'Novos', vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe',
     });
   }
   return triLang(lang, {
-    ru: 'Популярные', uk: 'Популярні', es: 'Populares',
+    ru: 'Популярные', uk: 'Популярні', en: 'Popular', es: 'Populares',
     'pt-BR': 'Populares', vi: 'Phổ biến', id: 'Populer', tr: 'Popüler', pl: 'Popularne',
   });
 }

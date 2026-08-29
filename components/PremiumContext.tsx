@@ -581,7 +581,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
             const projectedVipActive = data?.vipActive === true;
             const projectedPremiumPlan = typeof data?.premiumPlan === 'string' ? data.premiumPlan : '';
             const projectedPremiumExpiry = Number(data?.premiumExpiresAtMs);
-            const projectedStorePlan = ['monthly', 'yearly', 'annual', 'lifetime', 'max_monthly'].includes(projectedPremiumPlan);
+            const projectedStorePlan = ['monthly', 'yearly', 'annual', 'lifetime'].includes(projectedPremiumPlan);
             const progress = {
               premium_active: data?.premiumActive === true ? 'true' : 'false',
               premium_plan: projectedPremiumPlan,

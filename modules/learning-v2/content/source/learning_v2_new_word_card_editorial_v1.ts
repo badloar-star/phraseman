@@ -47,15 +47,15 @@ const ENGLISH_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] =
       targetText: "am",
       transcription: "/æm/",
       playfulMeaningByLocale: copy({
-        ru: "Форма глагола be, которая употребляется только с I. Она связывает «я» с именем, местом или состоянием.",
-        uk: "Форма дієслова be, яка вживається тільки з I. Вона пов’язує «я» з ім’ям, місцем або станом.",
-        es: "Forma del verbo be que se usa solo con I. Une «yo» con un nombre, un lugar o un estado.",
-        en: "The form of be used only with I. It links the speaker to a name, place, or state.",
-        "pt-BR": "Forma do verbo be usada somente com I. Liga «eu» a um nome, lugar ou estado.",
-        vi: "Dạng của động từ be chỉ dùng với I. Nó nối “tôi” với tên, nơi chốn hoặc trạng thái.",
-        id: "Bentuk kata kerja be yang hanya dipakai dengan I. Kata ini menghubungkan “saya” dengan nama, tempat, atau keadaan.",
-        tr: "Be fiilinin yalnızca I ile kullanılan biçimi. Konuşanı bir ad, yer ya da durumla bağlar.",
-        pl: "Forma czasownika be używana tylko z I. Łączy „ja” z imieniem, miejscem lub stanem.",
+        ru: "Короткий мостик после I: соединяет говорящего с именем, местом или состоянием. Две буквы, а держит целую фразу.",
+        uk: "Короткий місток після I: поєднує мовця з ім’ям, місцем або станом. Дві літери, а тримає цілий вислів.",
+        es: "Un puente breve después de I: conecta a quien habla con un nombre, lugar o estado. Dos letras sostienen toda la frase.",
+        en: "A short bridge after I: it links the speaker to a name, place, or state. Two letters hold the whole sentence together.",
+        "pt-BR": "Uma ponte curta depois de I: liga quem fala a um nome, lugar ou estado. Duas letras sustentam a frase inteira.",
+        vi: "Một chiếc cầu ngắn đứng sau I: nối người nói với tên, nơi chốn hoặc trạng thái. Chỉ hai chữ mà đỡ cả câu.",
+        id: "Jembatan pendek setelah I: menghubungkan penutur dengan nama, tempat, atau keadaan. Dua huruf menopang seluruh kalimat.",
+        tr: "I sözcüğünden sonra gelen kısa bir köprü: konuşanı ad, yer ya da duruma bağlar. İki harf, bütün ifadeyi taşır.",
+        pl: "Krótki most po I: łączy mówiącego z imieniem, miejscem lub stanem. Dwie litery, a podtrzymują całe zdanie.",
       }),
     },
     {
@@ -395,6 +395,74 @@ const ENGLISH_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] =
         pl: "Stolik dla jednej osoby: nie musi być smutno, po prostu dziś nie ma towarzystwa.",
       }),
     },
+    {
+      targetLanguage: "en",
+      lexicalItemId: "e01-s03-contraction-im",
+      targetText: "I'm",
+      transcription: "/aɪm/",
+      playfulMeaningByLocale: copy({
+        ru: "Короткая форма I am: говорящий называет себя и сразу соединяет с местом или состоянием. Апостроф работает за букву a — маленький сотрудник с большой ответственностью.",
+        uk: "Коротка форма I am: мовець називає себе й одразу поєднує з місцем або станом. Апостроф працює за літеру a — маленький працівник із великою відповідальністю.",
+        es: "Forma corta de I am: quien habla se conecta enseguida con un lugar o estado. El apóstrofo sustituye a la a: un empleado diminuto con mucha responsabilidad.",
+        en: "The short form of I am, linking the speaker straight to a place or state. The apostrophe covers for the missing a: a tiny employee with a big job.",
+        "pt-BR": "Forma curta de I am: quem fala se liga diretamente a um lugar ou estado. O apóstrofo substitui o a: um funcionário minúsculo com enorme responsabilidade.",
+        vi: "Dạng ngắn của I am, nối người nói thẳng với một nơi hoặc trạng thái. Dấu nháy làm thay việc của chữ a: bé xíu mà gánh việc lớn.",
+        id: "Bentuk singkat I am yang langsung menghubungkan penutur dengan tempat atau keadaan. Apostrof menggantikan huruf a: pegawai kecil dengan tugas besar.",
+        tr: "Konuşanı doğrudan yer ya da duruma bağlayan I am kısa biçimidir. Kesme işareti a harfinin vardiyasını devralır: küçük çalışan, büyük görev.",
+        pl: "Krótka forma I am, która od razu łączy mówiącego z miejscem lub stanem. Apostrof zastępuje literę a: mały pracownik z wielkim zadaniem.",
+      }),
+    },
+    {
+      targetLanguage: "en",
+      lexicalItemId: "e01-s04-word-set",
+      targetText: "set",
+      transcription: "/set/",
+      playfulMeaningByLocale: copy({
+        ru: "Полностью подготовлен и имеющий всё нужное для начала. Чемодан уже у двери и нервно смотрит на часы.",
+        uk: "Повністю підготовлений і такий, що має все потрібне для початку. Валіза вже біля дверей і нервово дивиться на годинник.",
+        es: "Completamente preparado y con todo lo necesario para empezar. La maleta ya espera junto a la puerta mirando el reloj.",
+        en: "Fully prepared and having everything needed to begin. The suitcase is already by the door, checking the time.",
+        "pt-BR": "Completamente preparado e com tudo o que é necessário para começar. A mala já espera junto à porta olhando o relógio.",
+        vi: "Đã chuẩn bị đầy đủ và có mọi thứ cần để bắt đầu. Chiếc vali đang chờ bên cửa và sốt ruột nhìn đồng hồ.",
+        id: "Sudah sepenuhnya siap dan memiliki semua yang diperlukan untuk mulai. Koper menunggu di pintu sambil melihat jam.",
+        tr: "Başlamak için gereken her şeye sahip ve tamamen hazır. Bavul kapıda bekleyip saate bakıyor.",
+        pl: "W pełni przygotowany i mający wszystko potrzebne do startu. Walizka czeka już przy drzwiach i zerka na zegarek.",
+      }),
+    },
+    {
+      targetLanguage: "en",
+      lexicalItemId: "e01-s04-word-done",
+      targetText: "done",
+      transcription: "/dʌn/",
+      playfulMeaningByLocale: copy({
+        ru: "Закончивший действие или задачу; больше делать нечего. Галочка поставлена, карандаш официально ушёл в отпуск.",
+        uk: "Той, хто закінчив дію або завдання; більше робити нічого. Позначку поставлено, олівець офіційно пішов у відпустку.",
+        es: "Haber terminado una acción o tarea; ya no queda nada por hacer. La casilla está marcada y el lápiz se fue de vacaciones.",
+        en: "Having finished an action or task, with nothing left to do. The box is ticked and the pencil is officially on holiday.",
+        "pt-BR": "Ter concluído uma ação ou tarefa, sem nada mais para fazer. A caixa foi marcada e o lápis entrou oficialmente de férias.",
+        vi: "Đã hoàn thành một hành động hoặc nhiệm vụ, không còn gì phải làm. Ô đã được đánh dấu và cây bút chì chính thức nghỉ phép.",
+        id: "Sudah menyelesaikan tindakan atau tugas sehingga tidak ada lagi yang harus dilakukan. Kotaknya dicentang dan pensil resmi berlibur.",
+        tr: "Bir işi ya da görevi bitirmiş, yapılacak bir şey bırakmamış olmak. Kutu işaretlendi, kalem resmen tatile çıktı.",
+        pl: "Mieć zakończone działanie lub zadanie, bez niczego do zrobienia. Pole zaznaczone, a ołówek oficjalnie poszedł na urlop.",
+      }),
+    },
+    {
+      targetLanguage: "en",
+      lexicalItemId: "e01-s04-word-free",
+      targetText: "free",
+      transcription: "/friː/",
+      playfulMeaningByLocale: copy({
+        ru: "Не занятый и имеющий время для другого дела. В календаре появилось белое пятно — редкий зверь, не спугните.",
+        uk: "Не зайнятий і такий, що має час для іншої справи. У календарі з’явилася біла пляма — рідкісний звір, не злякайте.",
+        es: "No ocupado y con tiempo disponible para otra cosa. Apareció un hueco blanco en la agenda: criatura rara, no la asustes.",
+        en: "Not busy and having time available for something else. A blank space appeared in the calendar: a rare creature, do not scare it away.",
+        "pt-BR": "Não ocupado e com tempo disponível para outra coisa. Surgiu um espaço em branco na agenda: criatura rara, não assuste.",
+        vi: "Không bận và có thời gian cho việc khác. Một khoảng trắng xuất hiện trong lịch: sinh vật hiếm, đừng làm nó chạy mất.",
+        id: "Tidak sibuk dan memiliki waktu untuk hal lain. Ruang kosong muncul di kalender: makhluk langka, jangan ditakuti.",
+        tr: "Meşgul olmayan ve başka bir şey için zamanı bulunan. Takvimde boş bir alan belirdi: nadir canlıdır, ürkütmeyin.",
+        pl: "Niezajęty i mający czas na coś innego. W kalendarzu pojawiła się pusta plama — rzadkie stworzenie, nie spłosz go.",
+      }),
+    },
   ]);
 
 const EDITORIAL_BY_KEY = new Map(
@@ -403,6 +471,62 @@ const EDITORIAL_BY_KEY = new Map(
     entry,
   ]),
 );
+
+const SESSION_02_EXACT_DEFINITION_BY_SOURCE_ID = Object.freeze({
+  "e01-s02-word-happy": copy({
+    ru: "Чувствовать радость и удовольствие.", uk: "Відчувати радість і задоволення.",
+    es: "Sentir alegría y satisfacción.", en: "Feeling pleased and full of joy.",
+    "pt-BR": "Sentir alegria e satisfação.", vi: "Cảm thấy vui và hài lòng.",
+    id: "Merasa senang dan gembira.", tr: "Sevinç ve memnuniyet hissetmek.",
+    pl: "Czuć radość i zadowolenie.",
+  }),
+  "e01-s02-word-sad": copy({
+    ru: "Чувствовать грусть или несчастье.", uk: "Відчувати смуток або нещастя.",
+    es: "Sentir tristeza o desánimo.", en: "Feeling unhappy or sorrowful.",
+    "pt-BR": "Sentir tristeza ou desânimo.", vi: "Cảm thấy buồn hoặc không vui.",
+    id: "Merasa sedih atau tidak bahagia.", tr: "Üzüntü ya da mutsuzluk hissetmek.",
+    pl: "Czuć smutek albo nieszczęście.",
+  }),
+  "e01-s02-word-tired": copy({
+    ru: "Нуждаться в отдыхе из-за нехватки сил.", uk: "Потребувати відпочинку через брак сил.",
+    es: "Necesitar descanso por falta de energía.", en: "Needing rest because you lack energy.",
+    "pt-BR": "Precisar descansar por falta de energia.", vi: "Cần nghỉ ngơi vì thiếu sức.",
+    id: "Membutuhkan istirahat karena kekurangan tenaga.", tr: "Enerji azlığından dinlenmeye ihtiyaç duymak.",
+    pl: "Potrzebować odpoczynku z braku sił.",
+  }),
+  "e01-s02-word-fine": copy({
+    ru: "Быть в нормальном, достаточно хорошем состоянии.", uk: "Бути в нормальному, достатньо доброму стані.",
+    es: "Estar en un estado aceptable o bastante bueno.", en: "Being in an acceptable or reasonably good state.",
+    "pt-BR": "Estar em um estado aceitável ou razoavelmente bom.", vi: "Ở trạng thái ổn hoặc khá tốt.",
+    id: "Berada dalam keadaan cukup baik.", tr: "Normal ya da yeterince iyi durumda olmak.",
+    pl: "Być w normalnym, wystarczająco dobrym stanie.",
+  }),
+} as const);
+
+// Session 2 deliberately teaches the same four lexical items that the older
+// session-3 draft introduced. The definition and humorous image are both
+// hand-authored per locale; this join only keeps the two approved parts in one
+// compact card paragraph.
+for (const [session2Id, targetText] of [
+  ["e01-s02-word-happy", "happy"],
+  ["e01-s02-word-sad", "sad"],
+  ["e01-s02-word-tired", "tired"],
+  ["e01-s02-word-fine", "fine"],
+] as const) {
+  const source = ENGLISH_EDITORIAL.find((entry) => entry.targetText === targetText);
+  if (!source) throw new Error(`learning_v2_new_word_card_source_missing:${targetText}`);
+  const definition = SESSION_02_EXACT_DEFINITION_BY_SOURCE_ID[session2Id];
+  EDITORIAL_BY_KEY.set(`en\u0000${session2Id}`, Object.freeze({
+    ...source,
+    lexicalItemId: session2Id,
+    playfulMeaningByLocale: copy(Object.fromEntries(
+      LEARNING_V2_INTERFACE_LOCALES.map((locale) => [
+        locale,
+        `${definition[locale]} ${source.playfulMeaningByLocale[locale]}`,
+      ]),
+    ) as Record<LearningV2InterfaceLocale, string>),
+  }));
+}
 
 export function learningV2NewWordCardEditorialV1(
   input: Readonly<{

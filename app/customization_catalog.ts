@@ -9,8 +9,12 @@ import {
   CUSTOM_AVATAR_GRADIENTS,
   CUSTOM_AVATARS,
   CUSTOM_AVATAR_SHOP,
+  AVATAR100_ART_VERSION,
   getCustomAvatarPurchaseCost,
+  getCustomAvatarRuneCost,
+  isRetiredCustomAvatarSale,
   makeCustomAvatarValue,
+  parseCustomAvatarOwnedStyle,
   parseCustomAvatarValue,
   type CustomAvatarDef,
   type CustomAvatarLogoColor,
@@ -21,6 +25,7 @@ import type { OwnedAuras, OwnedAvatars } from './customization_snapshot';
 export type CatalogAvailability =
   | { kind: 'owned' }
   | { kind: 'shards'; cost: number }
+  | { kind: 'runes'; cost: number }
   | { kind: 'level'; level: number }
   | { kind: 'plus' }
   | { kind: 'pro' }
@@ -53,6 +58,8 @@ export type CustomizationCatalogItem =
     });
 
 export type CatalogFilter = 'all' | 'mine';
+export type CustomizationCurrency = 'pearls' | 'runes';
+export type AvatarSide = 'yin' | 'yang';
 
 export interface BuildAvatarCatalogInput {
   ownedAvatars: OwnedAvatars;
@@ -60,6 +67,8 @@ export interface BuildAvatarCatalogInput {
   activeAvatar: string;
   defaultGradientId?: string;
   defaultLogoColor?: CustomAvatarLogoColor;
+  side?: AvatarSide;
+  devUnlockAll?: boolean;
   /** UI invalidation token for the mutable, cached server catalog. */
   catalogRevision?: number;
 }
@@ -72,6 +81,7 @@ export interface BuildAuraCatalogInput {
   isPremium: boolean;
   isVip: boolean;
   isPro?: boolean;
+  devUnlockAll?: boolean;
   /** UI invalidation token for the mutable, cached server catalog. */
   catalogRevision?: number;
 }
@@ -81,28 +91,34 @@ function ownedAvatarStyle(
   ownedAvatars: OwnedAvatars,
   defaultGradientId: string,
   defaultLogoColor: CustomAvatarLogoColor,
-): { gradientId: string; logoColor: CustomAvatarLogoColor } {
-  const [gradientId, logoColor] = String(ownedAvatars[avatarId] ?? '').split(':');
+): { gradientId: string; logoColor: CustomAvatarLogoColor; artVersion?: 'showcase-v1' | 'avatar100-v1' } {
+  const owned = parseCustomAvatarOwnedStyle(avatarId, ownedAvatars[avatarId]);
   return {
-    gradientId: gradientId || defaultGradientId,
-    logoColor: logoColor === 'white' ? 'white' : defaultLogoColor,
+    gradientId: owned?.gradientId || defaultGradientId,
+    logoColor: owned?.logoColor ?? defaultLogoColor,
+    artVersion: owned?.artVersion,
   };
 }
 
 export function buildAvatarCatalog(input: BuildAvatarCatalogInput): CustomizationCatalogItem[] {
   const active = parseCustomAvatarValue(input.activeAvatar);
   const defaultGradientId = input.defaultGradientId ?? CUSTOM_AVATAR_GRADIENTS[0].id;
-  const defaultLogoColor = input.defaultLogoColor ?? 'black';
+  // зачем: в каталоге по умолчанию показываем СВЕТЛУЮ версию существа (владелец,
+  // 2026-08-27) — на новых цветных подложках она читается выразительнее тёмной.
+  // Уже купленный стиль это не трогает: у владельца берётся его сохранённый
+  // logoColor, дефолт применяется только к тому, что человек ещё не открывал.
+  const defaultLogoColor = input.defaultLogoColor ?? 'white';
   const visibleRemoteAvatars = CUSTOM_AVATARS.filter((avatar) =>
     avatar.id.startsWith('custom-gen-')
     && !CUSTOM_AVATAR_SHOP.some((shopAvatar) => shopAvatar.id === avatar.id)
-    && (isCosmeticAssetForSale('avatar', avatar.id, false)
+    && ((!isRetiredCustomAvatarSale(avatar.id) && isCosmeticAssetForSale('avatar', avatar.id, false))
       || avatar.id === input.giftedAvatarId
       || avatar.id === active?.avatarId
       || !!input.ownedAvatars[avatar.id]));
 
   const visibleShopAvatars = CUSTOM_AVATAR_SHOP.filter((avatar) =>
-    isCosmeticAssetForSale('avatar', avatar.id, true)
+    input.devUnlockAll
+    || isCosmeticAssetForSale('avatar', avatar.id, true)
     || avatar.id === input.giftedAvatarId
     || avatar.id === active?.avatarId
     || !!input.ownedAvatars[avatar.id])
@@ -112,10 +128,20 @@ export function buildAvatarCatalog(input: BuildAvatarCatalogInput): Customizatio
 
   return [...visibleShopAvatars, ...visibleRemoteAvatars].map((avatar) => {
     const defaultForSale = CUSTOM_AVATAR_SHOP.some((shopAvatar) => shopAvatar.id === avatar.id);
-    const isOwned = !!input.ownedAvatars[avatar.id] || avatar.id === input.giftedAvatarId || avatar.id === active?.avatarId;
-    const style = active?.avatarId === avatar.id
-      ? { gradientId: active.gradientId, logoColor: active.logoColor }
+    const isOwned = input.devUnlockAll === true
+      || !!input.ownedAvatars[avatar.id]
+      || avatar.id === input.giftedAvatarId
+      || avatar.id === active?.avatarId;
+    const style = input.devUnlockAll && defaultForSale
+      ? { gradientId: defaultGradientId, logoColor: defaultLogoColor, artVersion: AVATAR100_ART_VERSION }
+      : active?.avatarId === avatar.id
+      ? { gradientId: active.gradientId, logoColor: active.logoColor, artVersion: active.artVersion }
       : ownedAvatarStyle(avatar.id, input.ownedAvatars, defaultGradientId, defaultLogoColor);
+    const previewLogoColor = input.side === 'yin'
+      ? 'black'
+      : input.side === 'yang'
+        ? 'white'
+        : style.logoColor;
     return {
       id: avatar.id,
       kind: 'custom-avatar' as const,
@@ -125,9 +151,16 @@ export function buildAvatarCatalog(input: BuildAvatarCatalogInput): Customizatio
       availability: isOwned
         ? { kind: 'owned' as const }
         : isCosmeticAssetForSale('avatar', avatar.id, defaultForSale)
-          ? { kind: 'shards' as const, cost: getCustomAvatarPurchaseCost(avatar) }
+          ? input.side === 'yin'
+            ? { kind: 'runes' as const, cost: getCustomAvatarRuneCost(avatar) }
+            : { kind: 'shards' as const, cost: getCustomAvatarPurchaseCost(avatar) }
           : { kind: 'reward' as const },
-      previewValue: makeCustomAvatarValue(avatar.id, style.gradientId, style.logoColor),
+      previewValue: makeCustomAvatarValue(
+        avatar.id,
+        style.gradientId,
+        previewLogoColor,
+        style.artVersion ?? (defaultForSale ? AVATAR100_ART_VERSION : undefined),
+      ),
     };
   });
 }
@@ -136,6 +169,7 @@ function auraAvailability(
   aura: AvatarAuraDef,
   input: BuildAuraCatalogInput,
 ): { isOwned: boolean; availability: CatalogAvailability } {
+  if (input.devUnlockAll) return { isOwned: true, availability: { kind: 'owned' } };
   if (aura.proOnly && !input.isPro) {
     return { isOwned: false, availability: { kind: 'pro' } };
   }
@@ -175,7 +209,8 @@ export function buildAuraCatalog(input: BuildAuraCatalogInput): CustomizationCat
     availability: { kind: 'none' },
   };
   const visibleAuras = AVATAR_AURAS.filter((aura) =>
-    (!aura.rewardOnly && isCosmeticAssetForSale('aura', aura.id, !aura.retiredFromShop))
+    input.devUnlockAll
+    || (!aura.rewardOnly && isCosmeticAssetForSale('aura', aura.id, !aura.retiredFromShop))
     || aura.premiumOnly === true
     || input.ownedAuras[aura.id] === true
     || normalizedActiveAuraId === aura.id);

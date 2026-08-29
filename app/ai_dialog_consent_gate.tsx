@@ -78,7 +78,7 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
     <View style={{ flex: 1, backgroundColor: t.bgPrimary, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 16 }}>
       <Text style={{ color: t.textPrimary, fontSize: 17, fontWeight: '800', textAlign: 'center' }}>
         {triLang(lang, {
-          ru: 'AI-диалоги выключены', uk: 'AI-діалоги вимкнено', es: 'Diálogos con IA desactivados', 'pt-BR': 'Diálogos com IA desativados', vi: 'Đã tắt hội thoại AI', id: 'Dialog AI dimatikan', tr: 'Yapay zeka diyalogları kapalı', pl: 'Dialogi AI wyłączone',
+          ru: 'AI-диалоги выключены', uk: 'AI-діалоги вимкнено', en: 'AI dialogues are off', es: 'Diálogos con IA desactivados', 'pt-BR': 'Diálogos com IA desativados', vi: 'Đã tắt hội thoại AI', id: 'Dialog AI dimatikan', tr: 'Yapay zeka diyalogları kapalı', pl: 'Dialogi AI wyłączone',
         })}
       </Text>
       <TouchableOpacity
@@ -89,7 +89,7 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
           <Ionicons name="chevron-back" size={18} color={t.textPrimary} />
           <Text style={{ color: t.textPrimary, fontWeight: '700' }}>
-            {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+            {triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
           </Text>
         </View>
       </TouchableOpacity>

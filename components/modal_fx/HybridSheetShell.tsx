@@ -63,6 +63,8 @@ interface HybridSheetShellProps {
   onDismissRequested?: () => void;
   /** Ярлык для скринридера на зоне фона (обычно = подпись кнопки закрытия). */
   closeLabel: string;
+  /** Blocks backdrop/back/accessibility/gesture dismissal during an atomic flow. */
+  dismissDisabled?: boolean;
   /** Backdrop remains tappable, but can be hidden from screen readers when a visible close CTA exists. */
   backdropAccessible?: boolean;
   testID?: string;
@@ -79,6 +81,7 @@ export default function HybridSheetShell({
   onDismissed,
   onDismissRequested,
   closeLabel,
+  dismissDisabled = false,
   backdropAccessible = true,
   testID,
   glowColor,
@@ -249,6 +252,7 @@ export default function HybridSheetShell({
   }, []);
 
   const dismissSheet = useCallback(() => {
+    if (dismissDisabled) return;
     if (dismissRequestedRef.current || dismissCompletedRef.current) return;
     dismissRequestedRef.current = true;
     try {
@@ -270,11 +274,12 @@ export default function HybridSheetShell({
     sheetY.value = withTiming(SHEET_HIDDEN, { duration: LUM.exitMs, easing: REasing.out(REasing.cubic) }, (finished) => {
       if (finished) runOnJS(completeDismiss)();
     });
-  }, [backdropO, completeDismiss, onDismissRequested, reduceMotion, sheetOpacity, sheetY]);
+  }, [backdropO, completeDismiss, dismissDisabled, onDismissRequested, reduceMotion, sheetOpacity, sheetY]);
 
   const panGesture = useMemo(
     () =>
       Gesture.Pan()
+        .enabled(!dismissDisabled)
         .activeOffsetY(10)
         .failOffsetX([-32, 32])
         .onUpdate((e) => {
@@ -291,7 +296,7 @@ export default function HybridSheetShell({
             dragTranslateY.value = reduceMotion ? 0 : withSpring(0, SHEET.dragReturn);
           }
         }),
-    [dismissSheet, dragTranslateY, reduceMotion],
+    [dismissDisabled, dismissSheet, dragTranslateY, reduceMotion],
   );
 
   const backdropStyle = useAnimatedStyle(() => ({
@@ -311,6 +316,7 @@ export default function HybridSheetShell({
           accessible={backdropAccessible}
           accessibilityRole={backdropAccessible ? 'button' : undefined}
           accessibilityLabel={backdropAccessible ? closeLabel : undefined}
+          accessibilityState={backdropAccessible ? { disabled: dismissDisabled } : undefined}
           importantForAccessibility={backdropAccessible ? 'auto' : 'no-hide-descendants'}
         >
           <Animated.View style={[styles.backdrop, backdropStyle]} />

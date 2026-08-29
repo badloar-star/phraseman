@@ -2,12 +2,15 @@ import { HttpsError } from 'firebase-functions/v2/https';
 import {
   normalizeReportReplyReward,
   normalizeStoredReportReplyClaimAmount,
+  normalizeStoredReportReplyRewardBundle,
+  reportDocumentAllowsReward,
   reportDocumentAllowsCoin,
+  reportRewardClaimReceipt,
   reportRecipientIdentityLookup,
   requireReportReplyPermission,
 } from './report_replies';
 
-describe('report reply one-coin contract', () => {
+describe('report reply reward bundle contract', () => {
   test('requires the exact server-side permission for draft and send actions', () => {
     expect(() => requireReportReplyPermission({ auth: { token: { admin: true, adminRole: 'analyst' } } }, 'reports.reply.draft')).toThrow(HttpsError);
     expect(() => requireReportReplyPermission({ auth: { token: { admin: true, adminRole: 'moderator' } } }, 'reports.reply.send')).toThrow(HttpsError);
@@ -27,22 +30,77 @@ describe('report reply one-coin contract', () => {
     expect(normalizeStoredReportReplyClaimAmount({ coins: 1, shards: 50 })).toBe(1);
   });
 
+  test('reads a stored exact bundle and keeps legacy one-pearl documents claimable', () => {
+    expect(normalizeStoredReportReplyRewardBundle({
+      resolution: 'confirmed_fixed',
+      rewardBundle: { version: 1, severity: 'critical', spins: 3, runes: 1000, pearls: 10 },
+    })).toEqual({ version: 1, severity: 'critical', spins: 3, runes: 1000, pearls: 10 });
+    expect(normalizeStoredReportReplyRewardBundle({ coins: 1 })).toEqual({
+      version: 1, severity: 'legacy', spins: 0, runes: 0, pearls: 1,
+    });
+    expect(normalizeStoredReportReplyRewardBundle({ coins: 0 })).toEqual({
+      version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0,
+    });
+    expect(() => normalizeStoredReportReplyRewardBundle({
+      resolution: 'confirmed_fixed',
+      rewardBundle: { version: 1, severity: 'serious', spins: 2, runes: 601, pearls: 5 },
+    })).toThrow(HttpsError);
+  });
+
+  test('replays the same deterministic claim receipt on retry', () => {
+    const bundle = { version: 1, severity: 'serious', spins: 2, runes: 600, pearls: 5 } as const;
+    expect(reportRewardClaimReceipt('message-1', bundle, false)).toEqual({
+      ok: true, eventId: 'message-1', rewardBundle: bundle, alreadyClaimed: false,
+    });
+    expect(reportRewardClaimReceipt('message-1', bundle, true)).toEqual({
+      ok: true, eventId: 'message-1', rewardBundle: bundle, alreadyClaimed: true,
+    });
+  });
+
   test.each(['duplicate', 'in_progress', 'rejected', 'unconfirmed'])(
-    'rejects a coin for %s',
+    'rejects a reward bundle for %s',
     (resolution) => {
-      expect(() => normalizeReportReplyReward({ resolution, coins: 1 })).toThrow(HttpsError);
-      expect(normalizeReportReplyReward({ resolution, coins: 0 })).toEqual({ resolution, coins: 0 });
+      expect(() => normalizeReportReplyReward({
+        resolution,
+        rewardBundle: { version: 1, severity: 'minor', spins: 1, runes: 300, pearls: 1 },
+      })).toThrow(HttpsError);
+      expect(normalizeReportReplyReward({ resolution, rewardBundle: { version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 } })).toEqual({
+        resolution,
+        rewardBundle: { version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 },
+      });
     },
   );
 
-  test('allows exactly one coin only for confirmed_fixed', () => {
+  test.each([
+    ['minor', 1, 300, 1],
+    ['serious', 2, 600, 5],
+    ['critical', 3, 1000, 10],
+  ] as const)('accepts the exact %s tier', (severity, spins, runes, pearls) => {
+    expect(normalizeReportReplyReward({
+      resolution: 'confirmed_fixed',
+      rewardBundle: { version: 1, severity, spins, runes, pearls },
+    })).toEqual({
+      resolution: 'confirmed_fixed',
+      rewardBundle: { version: 1, severity, spins, runes, pearls },
+    });
+  });
+
+  test('rejects custom or mixed tier quantities', () => {
+    for (const rewardBundle of [
+      { version: 1, severity: 'minor', spins: 2, runes: 300, pearls: 1 },
+      { version: 1, severity: 'serious', spins: 2, runes: 1000, pearls: 5 },
+      { version: 1, severity: 'critical', spins: 3, runes: 1000, pearls: 9 },
+      { version: 2, severity: 'critical', spins: 3, runes: 1000, pearls: 10 },
+    ]) {
+      expect(() => normalizeReportReplyReward({ resolution: 'confirmed_fixed', rewardBundle })).toThrow(HttpsError);
+    }
+  });
+
+  test('normalizes the historical one-coin payload as a legacy one-pearl bundle', () => {
     expect(normalizeReportReplyReward({ resolution: 'confirmed_fixed', coins: 1 })).toEqual({
       resolution: 'confirmed_fixed',
-      coins: 1,
+      rewardBundle: { version: 1, severity: 'legacy', spins: 0, runes: 0, pearls: 1 },
     });
-    for (const coins of [-1, 2, 1.5, Number.NaN]) {
-      expect(() => normalizeReportReplyReward({ resolution: 'confirmed_fixed', coins })).toThrow(HttpsError);
-    }
   });
 
   test('requires the persisted report to confirm the fixed result', () => {
@@ -50,6 +108,8 @@ describe('report reply one-coin contract', () => {
     expect(reportDocumentAllowsCoin({ resolution: 'confirmed_fixed' }, 'confirmed_fixed')).toBe(true);
     expect(reportDocumentAllowsCoin({ status: 'reviewed' }, 'confirmed_fixed')).toBe(false);
     expect(reportDocumentAllowsCoin({ status: 'fixed' }, 'duplicate')).toBe(false);
+    expect(reportDocumentAllowsReward({ status: 'fixed' }, 'confirmed_fixed')).toBe(true);
+    expect(reportDocumentAllowsReward({ status: 'reviewed' }, 'confirmed_fixed')).toBe(false);
   });
 
   test('resolves a stored stable uid through its distinct report auth uid', () => {

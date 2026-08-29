@@ -2,6 +2,10 @@ import * as Crypto from 'expo-crypto';
 import * as SecureStore from 'expo-secure-store';
 
 const SECURE_STORE_SERVICE = 'phraseman.phone_state.sqlcipher.v1';
+// Expo SecureStore accepts only alphanumeric characters plus `.`, `-`, `_`.
+// A colon here made every lineage read/rotation throw on real iOS devices,
+// which in turn blocked account deletion before the local privacy wipe.
+const PHONE_STATE_LINEAGE_KEY_PREFIX = 'phone_state_lineage_v1_';
 const KEY_HEX_PATTERN = /^[a-f0-9]{64}$/;
 const inFlightCredentials = new Map<string, Promise<PhoneStateCredentials>>();
 const inFlightLineages = new Map<string, Promise<number>>();
@@ -41,6 +45,11 @@ function secureOptions(): SecureStore.SecureStoreOptions {
     keychainService: SECURE_STORE_SERVICE,
     keychainAccessible: SecureStore.AFTER_FIRST_UNLOCK_THIS_DEVICE_ONLY,
   };
+}
+
+function phoneStateLineageKey(accountHash: string): string {
+  if (!KEY_HEX_PATTERN.test(accountHash)) throw new Error('phone_state_scope_invalid');
+  return `${PHONE_STATE_LINEAGE_KEY_PREFIX}${accountHash}`;
 }
 
 export async function digestStableUid(stableUid: string): Promise<string> {
@@ -120,7 +129,7 @@ export async function materializePhoneStateLineage(stableUid: string): Promise<n
 
   const pending = (async () => {
     const accountHash = await digestStableUid(normalized);
-    const lineageKey = `phone_state_lineage_v1:${accountHash}`;
+    const lineageKey = phoneStateLineageKey(accountHash);
     const raw = await SecureStore.getItemAsync(lineageKey, secureOptions());
     if (raw !== null) {
       const lineage = parseLineage(raw);
@@ -151,7 +160,7 @@ export async function retirePhoneStateLineageAfterDeletion(stableUid: string): P
 
   const pending = (async () => {
     const accountHash = await digestStableUid(normalized);
-    const lineageKey = `phone_state_lineage_v1:${accountHash}`;
+    const lineageKey = phoneStateLineageKey(accountHash);
     const raw = await SecureStore.getItemAsync(lineageKey, secureOptions());
     const current = raw === null ? 1 : parseLineage(raw);
     if (current === null || current >= Number.MAX_SAFE_INTEGER) {

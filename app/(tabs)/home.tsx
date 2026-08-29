@@ -21,7 +21,7 @@ import ScreenGradient from '../../components/ScreenGradient';
 import { glassFill } from '../../components/GlassSurface';
 import BouncyScrollView from '../../components/BouncyScrollView';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
-import { clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName, getLeagueResultSignature, tryAcquireLeagueResultModal, markLeagueResultShown } from '../league_engine';
+import { clearPendingResult, loadLeagueState, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName, getLeagueResultSignature, tryAcquireLeagueResultModal, markLeagueResultShown } from '../league_engine';
 import LeagueResultModal from '../LeagueResultModal';
 import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending } from '../hall_of_fame_utils';
@@ -118,6 +118,8 @@ import { ruKnowledgeShardsAfterNumber, ukKnowledgeShardsAfterNumber } from '../.
 import MaxHomeOrb from '../../components/home/MaxHomeOrb';
 import MaxMinutesBadge from '../../components/max/MaxMinutesBadge';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
+import ReportReplyHomeBanner from '../../components/ReportReplyHomeBanner';
+import type { UserNotification } from '../user_notifications';
 import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProfileModal';
 import { getForegroundUsageMs } from '../foreground_usage_ms';
 import { logFeatureOpened } from '../firebase';
@@ -128,7 +130,8 @@ import { soundDirector } from '../../modules/audio/sound_director';
 import { ensureAnonUser } from '../cloud_sync';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
 import { fetchActiveLeagueCrowns, getLeagueChestGoal } from '../services/league_chest_rewards';
-import { getCachedLeagueStateSync } from '../league_open_cache_policy';
+import { getCachedLeagueStateSync, withMyLivePoints } from '../league_open_cache_policy';
+import { getMyLeagueWeekRunes, peekMyLeagueWeekRunes } from '../league_week_runes';
 import { getHomeMenuImages } from '../home_menu_icons';
 import { getMaxHomeOrbLayers } from '../max_home_orb_assets';
 import {
@@ -805,6 +808,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         progress: number;
         score: string;
     } | null>(() => buildLastLessonFromHydration(lang, studyTarget) ?? null);
+    const [requestedReportReply, setRequestedReportReply] = useState<UserNotification | null>(null);
+    const handleReportReplyBannerOpen = useCallback((notification: UserNotification) => {
+        setRequestedReportReply(notification);
+    }, []);
+    const handleRequestedReportReplyHandled = useCallback(() => {
+        setRequestedReportReply(null);
+    }, []);
     // Сколько раз юзер запрашивал повторный показ подсказок (0 = первый показ,
     // 1..5 = юмористические наборы №2..№6). Двигается кнопкой в настройках.
     const [homeFeatureTipsReplayCount, setHomeFeatureTipsReplayCount] = useState(0);
@@ -864,7 +874,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // Счётчик, а не boolean: каждое нажатие даёт новое значение, поэтому повтор
     // срабатывает подряд сколько угодно раз. В стор-сборку не попадает.
     const [avatarNudgeDevToken, setAvatarNudgeDevToken] = useState(0);
-    const effectiveUserAvatarAura = getEffectiveAvatarAuraId(userAvatarAura, isPremium, isVip, isPro);
+    const effectiveUserAvatarAura = getEffectiveAvatarAuraId(
+      userAvatarAura,
+      isPremium,
+      isVip,
+      isPro,
+      captureAccountGeneration().stableId,
+    );
     // зачем (аудит 2026-08-25): слои колец живут в Storage, а СВОЯ аура видна на
     // Главной с первого кадра. Просим её вне очереди, иначе она ждала бы
     // прогрева всего каталога (111 слоёв) и юзер несколько секунд смотрел бы на
@@ -1092,7 +1108,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             ? LEAGUES.find((league) => league.id === cachedLeagueState.leagueId) ?? null
             : null;
         return cachedLeagueState
-            ? buildHomeLeagueChest(cachedLeagueState.group, cachedLeague ? clubTierShortName(cachedLeague, lang) : 'Лига недели', cachedLeagueState.leagueId)
+            ? buildHomeLeagueChest(withMyLivePoints(cachedLeagueState.group, peekMyLeagueWeekRunes()), cachedLeague ? clubTierShortName(cachedLeague, lang) : 'Лига недели', cachedLeagueState.leagueId)
             : hh?.homeLeagueChest ?? buildHomeLeagueChest([], clubTierShortName(LEAGUES[0], lang), LEAGUES[0].id);
     });
     const shardsAnim = useRef(new Animated.Value(1)).current;
@@ -2103,7 +2119,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 markHomeStatsReady();
             // Home never reads a foreign league group. Club owns the six-hour
             // remote refresh; Home consumes only its local pending/cache projection.
-            const [leaguePending, allMedals, repairEligible, bannerStoragePairs] = await Promise.all([
+            const [leagueState, myLeagueWeekRunes, leaguePending, allMedals, repairEligible, bannerStoragePairs] = await Promise.all([
+                loadLeagueState().catch(() => getCachedLeagueStateSync()),
+                getMyLeagueWeekRunes().catch(() => peekMyLeagueWeekRunes()),
                 loadPendingResult().catch(() => null),
                 loadAllMedals(studyTarget),
                 isRepairEligible(),
@@ -2113,7 +2131,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const bonusRaw = bannerStorage.get('login_bonus_pending') ?? null;
             const comebackRaw = bannerStorage.get('comeback_pending') ?? null;
             const pbRaw = bannerStorage.get('weekly_pb_v1') ?? null;
-            setHomeLeagueChest((prev) => prev);
+            if (leagueState) {
+                const league = LEAGUES.find((item) => item.id === leagueState.leagueId) ?? null;
+                const liveGroup = withMyLivePoints(leagueState.group, myLeagueWeekRunes);
+                const nextHomeLeagueChest = buildHomeLeagueChest(
+                    liveGroup,
+                    league ? clubTierShortName(league, lang) : clubTierShortName(LEAGUES[0], lang),
+                    leagueState.leagueId,
+                );
+                setEngineLeague(league);
+                setHomeLeagueChest(nextHomeLeagueChest);
+                patchHomeScreenHydration({ homeLeagueChest: nextHomeLeagueChest }, studyTarget);
+            }
             if (leaguePending && mountedRef.current) {
                 const pendingSig = getLeagueResultSignature(leaguePending);
                 // Если пользователь уже закрыл модалку в этой сессии — больше не показываем,
@@ -2740,19 +2769,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     // анимация перехода, связь уже готовится, и пре-экран
                     // переиспользует её (beginPremint отдаёт живой слот с тем же
                     // ключом). Греть заранее для всех нельзя — заготовка держит
-                    // серверный резерв минут, значит только по явному намерению.
-                    void import('../max_call_premint').then(({ beginPremint, premintKey }) =>
-                        import('../max_call_mint_request').then(({ initialMintRequest, performMaxVoiceMint, releaseUnusedMint }) => {
-                            beginPremint(
-                                premintKey(maxTutorCallParams),
-                                () => performMaxVoiceMint(maxTutorCallParams, initialMintRequest(maxTutorCallParams)),
-                                Date.now(),
-                                releaseUnusedMint,
-                            );
-                        }),
-                    ).catch(() => {
-                        // Прогрев — оптимизация: пре-экран сам запустит заготовку.
-                    });
+                    // серверный резерв минут, значит только по явному намерению
+                    // И после согласия на обработку голоса. До согласия сразу
+                    // открываем gate; он сам запустит premint после «Разрешить».
+                    if (isAiVoiceConsentGranted()) {
+                        void import('../max_call_premint').then(({ beginPremint, premintKey }) =>
+                            import('../max_call_mint_request').then(({ initialMintRequest, performMaxVoiceMint, releaseUnusedMint }) => {
+                                if (!isAiVoiceConsentGranted()) return;
+                                beginPremint(
+                                    premintKey(maxTutorCallParams),
+                                    () => performMaxVoiceMint(maxTutorCallParams, initialMintRequest(maxTutorCallParams)),
+                                    Date.now(),
+                                    releaseUnusedMint,
+                                );
+                            }),
+                        ).catch(() => {
+                            // Прогрев — оптимизация: пре-экран сам запустит заготовку.
+                        });
+                    }
                     nav.push({
                             pathname: '/max_call_prestart',
                         params: { format: 'tutor', cefr: maxTutorCallParams.cefr, studyTarget },
@@ -3275,7 +3309,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     а аватар/бюст профиля уходит на дальний правый край, где раньше был
                     колокольчик. onPress/бейдж каждой кнопки не тронуты. */}
                 {!homeHeaderCompact ? (
-                  <NotificationCenterButton isHomeTabActive={homeRuntimeActive} homeFocusTick={focusTick} />
+                  <NotificationCenterButton
+                    isHomeTabActive={homeRuntimeActive}
+                    homeFocusTick={focusTick}
+                    requestedReportReply={requestedReportReply}
+                    onRequestedReportReplyHandled={handleRequestedReportReplyHandled}
+                  />
                 ) : null}
                 {ENABLE_DEV_TOOLS && (
                   <TouchableOpacity
@@ -3316,7 +3355,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 {!homeHeaderCompact ? <View style={{ flex: 1, minWidth: 0 }} /> : null}
                 <View testID="home-header-secondary-actions" style={{ flexDirection: 'row', alignItems: 'center', justifyContent: homeHeaderCompact ? 'flex-end' : 'flex-start', gap: 0 }}>
                 {homeHeaderCompact ? (
-                  <NotificationCenterButton isHomeTabActive={homeRuntimeActive} homeFocusTick={focusTick} />
+                  <NotificationCenterButton
+                    isHomeTabActive={homeRuntimeActive}
+                    homeFocusTick={focusTick}
+                    requestedReportReply={requestedReportReply}
+                    onRequestedReportReplyHandled={handleRequestedReportReplyHandled}
+                  />
                 ) : null}
                 {/* зачем: энергия живёт в хедере (владелец вернул её сюда 2026-08-24),
                     а жемчужины и руны уехали в строку заголовка «Быстрый старт».
@@ -3576,6 +3620,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               </LinearGradient>
             </TouchableOpacity>
           )}
+
+          <ReportReplyHomeBanner
+            active={homeRuntimeActive}
+            refreshTick={focusTick}
+            onOpen={handleReportReplyBannerOpen}
+          />
 
           {/* Очередь баннеров (лимит 1) — ПОД карточкой последнего урока по правке
               владельца (2026-08-23): бонус за вход не должен опережать «продолжить

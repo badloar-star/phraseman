@@ -4,8 +4,6 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 
 const FUNCTIONS_REGION = 'us-central1';
 const MAX_TRACKED_ACCOUNTS = 8;
-export const MAX_ACTIVATION_DEFAULT_ATTEMPTS = 5;
-export const MAX_ACTIVATION_DEFAULT_RETRY_DELAY_MS = 1_250;
 
 type ReconcileResponse = {
   ok?: boolean;
@@ -17,7 +15,7 @@ type ReconcileResponse = {
 };
 
 type ReconcileCallable = (
-  data: Readonly<{ intent?: 'max_activation'; expectedProductId?: string }>,
+  data: Readonly<Record<string, never>>,
 ) => Promise<{ data?: ReconcileResponse }>;
 
 const successfulAccounts = new Map<string, true>();
@@ -86,54 +84,6 @@ export async function syncRevenueCatProjectionForAccount(stableUid: string): Pro
   } finally {
     if (inFlightByAccount.get(accountId) === pending) inFlightByAccount.delete(accountId);
   }
-}
-
-export async function confirmRevenueCatMaxProjectionForAccount(
-  stableUid: string,
-  options: Readonly<{
-    maxAttempts?: number;
-    retryDelayMs?: number;
-    isCurrent?: () => boolean;
-  }> = {},
-): Promise<boolean> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return false;
-  normalizedAccountId(stableUid);
-  const maxAttempts = Math.min(6, Math.max(1, Math.floor(
-    options.maxAttempts ?? MAX_ACTIVATION_DEFAULT_ATTEMPTS,
-  )));
-  const retryDelayMs = Math.min(5_000, Math.max(0, Math.floor(
-    options.retryDelayMs ?? MAX_ACTIVATION_DEFAULT_RETRY_DELAY_MS,
-  )));
-  const isCurrent = options.isCurrent ?? (() => true);
-  await initFirebaseAppCheckIfAvailable().catch(() => false);
-  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
-    if (!isCurrent()) return false;
-    try {
-      const response = await withCallableTimeout(
-        getReconcileCallable()({
-          intent: 'max_activation',
-          expectedProductId: 'phraseman_max_monthly_v1',
-        }),
-        'revenueCatPremiumReconcileMine',
-      );
-      if (!isCurrent()) return false;
-      const data = response?.data;
-      if (
-        data?.ok === true
-        && data.active === true
-        && data.reconciled === true
-        && data.source === 'revenuecat_v2'
-        && data.plan === 'max_monthly'
-        && data.maxActive === true
-      ) return true;
-    } catch {
-      if (!isCurrent()) return false;
-    }
-    if (attempt + 1 < maxAttempts && retryDelayMs > 0) {
-      await new Promise<void>((resolve) => setTimeout(resolve, retryDelayMs));
-    }
-  }
-  return false;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

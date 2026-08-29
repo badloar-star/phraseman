@@ -16,6 +16,7 @@ describe('account deletion rebuilt flow contract', () => {
   const modalSource = fs.readFileSync(path.join(root, 'components', 'DeleteAccountConfirmModal.tsx'), 'utf8');
   const functionSource = fs.readFileSync(path.join(root, 'functions', 'src', 'account_delete.ts'), 'utf8');
   const functionJobSource = fs.readFileSync(path.join(root, 'functions', 'src', 'account_delete_job.ts'), 'utf8');
+  const firestoreRules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
   const rootLayoutSource = fs.readFileSync(path.join(root, 'app', '_layout.tsx'), 'utf8');
   const firestoreIndexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8')) as {
     fieldOverrides?: {
@@ -35,9 +36,9 @@ describe('account deletion rebuilt flow contract', () => {
       '() => persistAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId),',
       start,
     );
-    const enqueue = authProvider.indexOf('const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(pendingDeleteStableId)', start);
+    const enqueue = authProvider.indexOf('const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(', start);
     const acknowledgement = authProvider.indexOf('await cloudDeleteEnqueueOperation.acknowledgment', enqueue);
-    const persistAcknowledgedPhase = authProvider.indexOf("phase: 'server_enqueued'", acknowledgement);
+    const persistAcknowledgedPhase = authProvider.indexOf("'server_enqueued'", acknowledgement);
     const dispatchBarrier = authProvider.indexOf('await cloudDeleteEnqueueOperation.dispatchSettled', enqueue);
     const signOut = authProvider.indexOf('await signOutCurrentProvider()', start);
     // Локальный выход теперь условный: без замка (аноним) доводить нечего —
@@ -48,8 +49,7 @@ describe('account deletion rebuilt flow contract', () => {
     expect(persistGuard).toBeLessThan(enqueue);
     expect(enqueue).toBeLessThan(acknowledgement);
     expect(acknowledgement).toBeLessThan(persistAcknowledgedPhase);
-    expect(persistAcknowledgedPhase).toBeLessThan(signOut);
-    expect(acknowledgement).toBeLessThan(signOut);
+    expect(deleteSource).toContain("ensureFreshPostDeletionIdentity('delete')");
     expect(enqueue).toBeLessThan(dispatchBarrier);
     expect(dispatchBarrier).toBeLessThan(signOut);
     expect(signOut).toBeLessThan(localExit);
@@ -90,16 +90,16 @@ describe('account deletion rebuilt flow contract', () => {
     expect(cancel).toBeLessThan(signOutInDelete);
   });
 
-  it('blocks immediate same-provider re-login until background deletion is settled', () => {
+  it('persists capability-backed deletion proof before background enqueue', () => {
     // Захват личности и постановка замка живут в быстрой фазе; локальные шаги
     // обёрнуты в withLocalStepDeadline, чтобы Keychain не мог подвесить UI.
     const start = authProvider.indexOf('async function prepareAccountDeletion');
     const captureProvider = authProvider.indexOf('const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;', start);
     const captureStable = authProvider.indexOf('const pendingDeleteStableId = await withLocalStepDeadline(() => getStableId(), null);', start);
     const persistGuard = authProvider.indexOf('() => persistAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId),', start);
-    const enqueue = authProvider.indexOf('const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(pendingDeleteStableId)', start);
+    const enqueue = authProvider.indexOf('const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(', start);
     const localExitStart = authProvider.indexOf('async function completePreparedAccountDeleteLocalExit');
-    const localExitEnd = authProvider.indexOf('async function handleAccountDeletePendingAuth', localExitStart);
+    const localExitEnd = authProvider.indexOf('async function verifyPostDeleteLocalWipe', localExitStart);
     const localExitSource = authProvider.slice(localExitStart, localExitEnd);
     const asyncStorageClear = localExitSource.indexOf('await AsyncStorage.clear()');
     const restoreMirror = localExitSource.indexOf('await restoreAccountDeletePendingAuthMirror(pendingDelete)');
@@ -115,33 +115,33 @@ describe('account deletion rebuilt flow contract', () => {
     expect(captureStable).toBeGreaterThan(captureProvider);
     expect(captureStable).toBeLessThan(persistGuard);
     expect(persistGuard).toBeLessThan(enqueue);
+    const persistStart = authProvider.indexOf('async function persistAccountDeletePendingAuth(');
+    const persistEnd = authProvider.indexOf('async function', persistStart + 20);
+    expect(authProvider.slice(persistStart, persistEnd)).toContain('credentialSafeCapability');
+    expect(authProvider.slice(enqueue, enqueue + 500)).toContain('accountDeleteCredentialProof(pendingDeleteLock)');
+    expect(authProvider.slice(start, enqueue)).toContain("'local_data_cleared'");
     expect(asyncStorageClear).toBeGreaterThan(0);
     expect(asyncStorageClear).toBeLessThan(restoreMirror);
     expect(restoreMirror).toBeLessThan(stableIdClear);
     expect(localExitSource).not.toContain('clearAccountDeletePendingAuthLock');
   });
 
-  it('retries a pending deletion while provider auth is current and before identity lookup', () => {
-    const pending = authProvider.indexOf('async function handleAccountDeletePendingAuth');
+  it('converges pending deletion before one provider picker and continues without a second tap', () => {
+    const pending = authProvider.indexOf('async function convergePendingAccountDeleteBeforeCredential');
     const pendingEnd = authProvider.indexOf('export async function resumePendingAccountDeleteLocalExit', pending);
     const pendingSource = authProvider.slice(pending, pendingEnd);
-    const retry = pendingSource.indexOf('startCloudDeletionEnqueue(pendingDelete.stableId)');
-    const dispatchBarrier = pendingSource.indexOf('await enqueueOperation.dispatchSettled');
-    const signOut = pendingSource.indexOf('await signOutCurrentProvider()');
-    const localExit = pendingSource.indexOf('await completePreparedAccountDeleteLocalExit(pendingDelete, true)');
-    const ensureAnon = pendingSource.indexOf('await ensureAnonUser()');
-    const blockedReturn = pendingSource.indexOf("return { result: 'error', error: 'account_delete_pending' }", ensureAnon);
+    const signInStart = authProvider.indexOf('async function runSignInWithProvider');
+    const signInEnd = authProvider.indexOf('export async function beginAccountDeletion', signInStart);
+    const signInSource = authProvider.slice(signInStart, signInEnd);
+    const converge = signInSource.indexOf('await convergePendingAccountDeleteBeforeCredential(');
+    const picker = signInSource.indexOf('cred = await runGoogleNativeSignIn()', converge);
 
-    expect(retry).toBeGreaterThan(0);
-    expect(retry).toBeLessThan(dispatchBarrier);
-    expect(dispatchBarrier).toBeLessThan(signOut);
-    expect(signOut).toBeLessThan(localExit);
-    expect(localExit).toBeLessThan(ensureAnon);
-    expect(ensureAnon).toBeLessThan(blockedReturn);
-    expect(pendingSource).toContain("logAuthEvent('auth_account_delete_enqueue_retry'");
-    expect(pendingSource).not.toContain('clearAccountDeletePendingAuthLock');
-    expect(pendingSource).not.toContain('ensureStableAuthLinkForStableIdDetailed');
-    expect(pendingSource).not.toContain("db.collection('auth_links')");
+    expect(pending).toBeGreaterThan(0);
+    expect(pendingSource).toContain("ensureFreshPostDeletionIdentity('foreground')");
+    expect(pendingSource).toContain('waitForAccountDeletionCredentialSafe');
+    expect(converge).toBeGreaterThan(0);
+    expect(picker).toBeGreaterThan(converge);
+    expect(signInSource).not.toContain('return handleAccountDeletePendingAuth(provider');
   });
 
   it('keeps callable timeout longer than the backend function timeout', () => {
@@ -155,6 +155,18 @@ describe('account deletion rebuilt flow contract', () => {
     expect(indexSource).toContain('exports.accountDeleteMine = accountDeleteMine;');
     expect(indexSource).toContain('exports.accountDeleteEnqueue = accountDeleteEnqueue;');
     expect(indexSource).toContain('exports.accountDeleteWorker = accountDeleteWorker;');
+  });
+
+  it('keeps credential receipts and frozen deletion jobs server-only in Firestore Rules', () => {
+    for (const collection of [
+      'account_deletion_credential_receipts',
+      'account_deletion_jobs',
+    ]) {
+      expect(firestoreRules).toContain(`match /${collection}/{`);
+      const start = firestoreRules.indexOf(`match /${collection}/{`);
+      expect(firestoreRules.slice(start, start + 180)).toContain('allow read, write: if false;');
+      expect(firestoreRules).toContain(`collection != '${collection}'`);
+    }
   });
 
   it('includes every durable auth merge and account deletion endpoint in deploy:safe', () => {
@@ -177,9 +189,13 @@ describe('account deletion rebuilt flow contract', () => {
     expect(functionJobSource).toContain('tx.set(authMarkerRef');
   });
 
-  it('disables provider auth immediately after the durable deletion request is accepted', () => {
-    expect(functionSource).toContain("updateUser(request.auth.uid, { disabled: true })");
-    expect(functionSource).toContain('revokeRefreshTokens(request.auth.uid)');
+  it('deletes old provider auth before publishing credential-safe', () => {
+    const releaseStart = functionSource.indexOf('export async function enqueueAndReleaseAuthenticatedAccount');
+    const deleteUser = functionSource.indexOf('admin.auth().deleteUser(uid)', releaseStart);
+    const publishSafe = functionSource.indexOf('publishCredentialSafe', deleteUser);
+    expect(deleteUser).toBeGreaterThan(releaseStart);
+    expect(publishSafe).toBeGreaterThan(deleteUser);
+    expect(functionSource).toContain("enforceAppCheck: false");
   });
 
   it('starts the native cross-device deletion monitor only after excluding web', () => {
@@ -194,6 +210,17 @@ describe('account deletion rebuilt flow contract', () => {
     expect(webGuard).toBeGreaterThan(-1);
     expect(webGuard).toBeLessThan(monitorEffect.indexOf('startRemoteAccountDeletionMonitor'));
     expect(monitorEffect).toContain('handleAccountDeletedOnAnotherDevice');
+  });
+
+  it('routes a cross-device deletion through the same durable fresh-identity coordinator', () => {
+    const start = authProvider.indexOf('export async function handleAccountDeletedOnAnotherDevice');
+    const end = authProvider.indexOf('export async function consumeRemoteAccountDeletionNotice', start);
+    const remoteSource = authProvider.slice(start, end);
+
+    expect(remoteSource).toContain("ensureFreshPostDeletionIdentity('identity_retired'");
+    expect(remoteSource).not.toContain('completePreparedAccountDeleteLocalExit');
+    expect(remoteSource).not.toContain('ensureAnonUser');
+    expect(remoteSource).not.toContain('beginAccountGeneration');
   });
 
   it('reports verified local exit while durable deletion continues asynchronously', () => {
@@ -310,8 +337,10 @@ describe('account deletion rebuilt flow contract', () => {
     const beginStart = authProvider.indexOf('export async function beginAccountDeletion');
     const beginEnd = authProvider.indexOf('export async function deleteAccountAndWipe', beginStart);
     const beginSource = authProvider.slice(beginStart, beginEnd);
-    expect(beginSource).toContain('hasPendingAccountDeleteLock()');
-    expect(beginSource).toMatch(/alreadyPending[\s\S]*?return \{ ok: true/);
+    expect(beginSource).toContain('readPendingAccountDeleteLockForHandoff()');
+    expect(beginSource).toContain("alreadyPending.phase === 'prepared'");
+    expect(beginSource).toMatch(/activeCompletion[\s\S]*?return \{ ok: true/);
+    expect(beginSource).toMatch(/phase === 'prepared'[\s\S]*?local_wipe_unverified/);
   });
 
   // The SecureStore step is bounded so Keychain cannot freeze the UI. A linked
@@ -321,13 +350,18 @@ describe('account deletion rebuilt flow contract', () => {
     const prepareStart = authProvider.indexOf('async function prepareAccountDeletion');
     const prepareEnd = authProvider.indexOf('/** Фоновая фаза', prepareStart);
     const prepareSource = authProvider.slice(prepareStart, prepareEnd);
+    const wipeStart = authProvider.indexOf('async function executePostDeleteLocalWipe');
+    const wipeEnd = authProvider.indexOf('const phoneStateRetirementFlights', wipeStart);
+    const wipeSource = authProvider.slice(wipeStart, wipeEnd);
 
     // Локальные данные и весь AsyncStorage (включая onboarding_step/done/version)
     // сносятся здесь же — иначе онбординг восстановил бы старый шаг.
-    expect(prepareSource).toContain('await wipeLocalAccountData()');
-    expect(prepareSource).toContain('await AsyncStorage.clear()');
+    expect(prepareSource).toContain('wipeAndVerifyPostDeleteLocalData(');
+    expect(wipeSource).toContain('await wipeLocalAccountData()');
+    expect(wipeSource).toContain('await AsyncStorage.clear()');
+    expect(wipeSource).toContain('verifyPostDeleteLocalWipe()');
     const guardRequired = prepareSource.indexOf('if (!isProvablyAnonymousAccount && !pendingDeleteLock) return null;');
-    const localWipe = prepareSource.indexOf('await wipeLocalAccountData()');
+    const localWipe = prepareSource.indexOf('wipeAndVerifyPostDeleteLocalData(');
     expect(guardRequired).toBeGreaterThan(-1);
     expect(guardRequired).toBeLessThan(localWipe);
 
@@ -479,4 +513,15 @@ describe('account deletion rebuilt flow contract', () => {
     // Новый якорь обязан отличаться от застрявшего, иначе цикл повторится.
     expect(boot).toContain('rotated === stableId');
   });
+});
+
+test('one exported coordinator owns startup and fail-closed retired recovery', () => {
+  const source = fs.readFileSync(path.join(root, 'app', 'auth_provider.ts'), 'utf8');
+  expect(source).toContain('export async function ensureFreshPostDeletionIdentity(');
+  expect(source).toContain("trigger: 'delete' | 'startup' | 'foreground' | 'identity_retired'");
+  const resume = source.slice(
+    source.indexOf('export async function resumePendingAccountDeleteLocalExit'),
+    source.indexOf('function coerceFirebaseMetaTime'),
+  );
+  expect(resume).toContain("ensureFreshPostDeletionIdentity('startup')");
 });

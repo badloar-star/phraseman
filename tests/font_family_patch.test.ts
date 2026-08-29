@@ -1,7 +1,7 @@
 /**
  * Тест глобального фикса шрифта (app/font_family_patch.ts).
  * Проверяем:
- *  1) interFamilyForWeight — маппинг весов в начертания Inter
+ *  1) interFamilyForWeight — сохраняет единое нативное семейство Inter для всех весов
  *  2) installInterFontPatch — реально оборачивает Text.render, инжектит fontFamily
  *  3) не переопределяет fontFamily, если он уже задан автором (иконки/эмодзи)
  *  4) идемпотентность (повторный вызов — no-op)
@@ -38,25 +38,12 @@ function familyOf(el: any): string | undefined {
 }
 
 describe('interFamilyForWeight', () => {
-  it('900 -> Inter-Black', () => {
-    expect(interFamilyForWeight('900')).toBe('Inter-Black');
-  });
-
-  it('700 / 800 / bold -> Inter-Bold', () => {
-    expect(interFamilyForWeight('700')).toBe('Inter-Bold');
-    expect(interFamilyForWeight('800')).toBe('Inter-Bold');
-    expect(interFamilyForWeight('bold')).toBe('Inter-Bold');
-  });
-
-  it('500 / 600 -> Inter-SemiBold', () => {
-    expect(interFamilyForWeight('500')).toBe('Inter-SemiBold');
-    expect(interFamilyForWeight('600')).toBe('Inter-SemiBold');
-  });
-
-  it('400 / normal / undefined -> Inter (Regular)', () => {
-    expect(interFamilyForWeight('400')).toBe('Inter');
-    expect(interFamilyForWeight('normal')).toBe('Inter');
-    expect(interFamilyForWeight(undefined)).toBe('Inter');
+  it('keeps every supported weight in the single native Inter family', () => {
+    for (const weight of [
+      '100', '200', '300', '400', '500', '600', '700', '800', '900', 'normal', 'bold', undefined,
+    ] as const) {
+      expect(interFamilyForWeight(weight)).toBe('Inter');
+    }
   });
 });
 
@@ -65,15 +52,18 @@ describe('installInterFontPatch', () => {
     installInterFontPatch();
   });
 
-  it('инжектит Inter-Bold для fontWeight 700', () => {
+  it('инжектит единое семейство Inter и сохраняет fontWeight 700', () => {
     const el = Text.render({ style: { fontWeight: '700', fontSize: 18 } });
     expect(isValidElement(el)).toBe(true);
-    expect(familyOf(el)).toBe('Inter-Bold');
+    expect(familyOf(el)).toBe('Inter');
+    expect(el.props.style).toEqual(expect.arrayContaining([
+      expect.objectContaining({ fontWeight: '700' }),
+    ]));
   });
 
-  it('инжектит Inter-Black для fontWeight 900', () => {
+  it('инжектит единое семейство Inter для fontWeight 900', () => {
     const el = Text.render({ style: { fontWeight: '900' } });
-    expect(familyOf(el)).toBe('Inter-Black');
+    expect(familyOf(el)).toBe('Inter');
   });
 
   it('инжектит Inter (Regular) когда вес не задан', () => {
@@ -83,7 +73,7 @@ describe('installInterFontPatch', () => {
 
   it('обрабатывает вложенный массив стилей и берёт последний вес', () => {
     const el = Text.render({ style: [{ fontSize: 12 }, { fontWeight: '600' }] });
-    expect(familyOf(el)).toBe('Inter-SemiBold');
+    expect(familyOf(el)).toBe('Inter');
   });
 
   it('НЕ переопределяет fontFamily, если он уже задан автором (иконки)', () => {

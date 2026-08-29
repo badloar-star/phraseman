@@ -1,10 +1,8 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Defs, RadialGradient as SvgRadialGradient, Stop, Rect } from 'react-native-svg';
 import { FlowText } from '../text-integrity/FlowText';
 import AvatarView from '../AvatarView';
-import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { getAvatarAuraById } from '../../constants/avatar_auras';
@@ -18,9 +16,7 @@ export interface CustomizationHeroProps {
   themeAccent: string;
   motionEnabled: boolean;
   minHeight: number;
-  /** null → у выбранного аватара нет настроек цвета (аватар уровня). */
-  onEdit: (() => void) | null;
-  editLabel: string;
+  avatarSize?: number;
 }
 
 const hex = /^#([0-9a-f]{6})$/i;
@@ -63,7 +59,7 @@ export const CustomizationHero = React.memo(function CustomizationHero(props: Cu
           avatar={props.avatarValue}
           level={props.level}
           auraId={props.auraId}
-          size={168}
+          size={props.avatarSize ?? 168}
           animateAura={props.motionEnabled && !reduceMotion}
         />
       </View>
@@ -75,18 +71,6 @@ export const CustomizationHero = React.memo(function CustomizationHero(props: Cu
           <View style={[styles.auraDot, { backgroundColor: auraColor, shadowColor: auraColor }]} />
           <FlowText testID="customization-hero-aura-chip" provenance="authored" style={[styles.chipText, { color: t.heroTextMuted }]}>{props.auraLabel}</FlowText>
         </View>
-        {props.onEdit ? (
-          <TapScale
-            accessibilityRole="button"
-            accessibilityLabel={props.editLabel}
-            onPress={props.onEdit}
-            scaleTo={0.95}
-            style={[styles.chip, { backgroundColor: chipBg }]}
-          >
-            <Ionicons name="color-palette-outline" size={14} color={t.heroTextPrimary} />
-            <FlowText testID="customization-hero-edit-chip" provenance="authored" style={[styles.chipText, { color: t.heroTextPrimary }]}>{props.editLabel}</FlowText>
-          </TapScale>
-        ) : null}
       </View>
     </View>
   );

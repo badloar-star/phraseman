@@ -210,6 +210,19 @@ export async function arenaV2QuickBotFallback(requestId: string): Promise<Readon
   return response;
 }
 
+/** зачем (владелец 2026-08-28): зеркало быстрого фолбэка для рейтинга — тот же
+ *  контракт ответа, отдельный callable из-за дневного лимита на сервере. */
+export async function arenaV2RankedBotFallback(requestId: string): Promise<Readonly<{
+  ok: true;
+  status: 'matched';
+  matchId: string;
+  viewerSeat?: 'a' | 'b';
+}>> {
+  const response = await callArena<Readonly<{ ok: true; status: 'matched'; matchId: string; viewerSeat?: 'a' | 'b' }>>('arenaV2RankedBotFallback', { requestId });
+  rememberArenaViewerSeat(response.matchId, response.viewerSeat);
+  return response;
+}
+
 export const arenaV2MatchAccept = (matchId: string) => callArena<MatchMutationResponse>('arenaV2MatchAccept', { matchId });
 /**
  * НЕ ВЫЗЫВАЕТСЯ НИ ОДНИМ ЭКРАНОМ, и это осознанно.
@@ -226,6 +239,18 @@ export const arenaV2SyncMatch = (matchId: string, expectedVersion?: number) => c
   expectedVersion === undefined ? { matchId } : { matchId, expectedVersion },
 );
 export const arenaV2Forfeit = (matchId: string) => callArena<MatchMutationResponse>('arenaV2Forfeit', { matchId });
+/**
+ * Снять замок незакрытого матча, который так и не начался.
+ *
+ * зачем (владелец 2026-08-29): матч, который НЕ СОСТОЯЛСЯ, обязан закрываться
+ * сразу. Иначе `activeMatchId` в профиле блокирует любой новый поиск, и Арена
+ * перестаёт открываться вовсе. Сервер сам решает, действительно ли матч мёртв,
+ * — клиент не может закрыть живую игру этим вызовом.
+ */
+export const arenaV2ReleaseStaleMatch = () => callArena<Readonly<{
+  released: boolean;
+  matchId?: string;
+}>>('arenaV2ReleaseStaleMatch', {});
 
 /* ─────────────────────────── Дуэль v3 ──────────────────────────────────── */
 

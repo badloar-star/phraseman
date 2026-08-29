@@ -812,7 +812,15 @@ export default function ClubScreen() {
       if (winner === 'timeout') {
         leagueWork
           .then(({ state, result }) => {
-            if (isMountedRef.current) applyLeagueOpen(state, result, true);
+            if (isMountedRef.current) {
+              applyLeagueOpen({
+                ...state,
+                // A remote group can lag behind this phone's durable rune
+                // ledger. Reapply the live row after every response so the
+                // shared total and “Your contribution” use the same data.
+                group: withMyLivePoints(state.group, myPoints, canonicalUid, n),
+              }, result, true);
+            }
             void AsyncStorage.setItem(CLUB_REMOTE_REFRESH_AT_KEY, String(Date.now())).catch(() => {});
           })
           .catch(() => {
@@ -823,7 +831,10 @@ export default function ClubScreen() {
       } else {
         const { state, result } = await leagueWork;
         if (!isMountedRef.current) return;
-        applyLeagueOpen(state, result, true);
+        applyLeagueOpen({
+          ...state,
+          group: withMyLivePoints(state.group, myPoints, canonicalUid, n),
+        }, result, true);
         await AsyncStorage.setItem(CLUB_REMOTE_REFRESH_AT_KEY, String(Date.now())).catch(() => {});
       }
     } catch (e) {
@@ -1008,6 +1019,14 @@ export default function ClubScreen() {
   const leagueChestProgress = leagueRaceVisible ? Math.min(leagueChestGoal, leagueBonusAdminActive ? leagueChestGoal : leagueRoomXp) : 0;
   const myLeagueRoomXp = Math.max(0, Math.floor(Number(sortedGroup.find((p) => p.isMe)?.points) || 0));
   const myLeagueChestContribution = myLeagueRoomXp;
+  useEffect(() => {
+    if (!__DEV__ || !localLeagueHydrated) return;
+    console.log('[league_runes] club totals', JSON.stringify({
+      sharedTotal: leagueRoomXp,
+      myContribution: myLeagueChestContribution,
+      participants: sortedGroup.length,
+    }));
+  }, [leagueRoomXp, localLeagueHydrated, myLeagueChestContribution, sortedGroup.length]);
   const leagueChestReady = leagueRaceVisible && (leagueBonusAdminActive || leagueChestProgress >= leagueChestGoal);
   const leagueCrownWinnerUid = leagueRaceVisible && leagueChestReady
     ? leagueBonusAdminActive && leagueBonusAdminPreview?.crownWinner

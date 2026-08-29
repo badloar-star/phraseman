@@ -236,14 +236,18 @@ export const ES_EPISODE_01_SESSION_01_VOCABULARY_V1:
       ),
       retrieve_meaning: contact(
         L({
-          ru: 'Soy — связка для говорящего: «я есть». Отдельное местоимение «yo» не нужно, хвост soy уже называет говорящего. Es — та же связка, но про «оно/он/она».',
-          uk: 'Soy — зв’язка для мовця: «я є». Окремий займенник «yo» не потрібен, хвіст soy вже називає мовця. Es — та сама зв’язка, але про «воно/він/вона».',
-          es: 'Soy is the linking word for the speaker: "I am". A separate pronoun "yo" is not needed — the ending of soy already names the speaker. Es is the same linking word, but about "it/he/she".',
-          'pt-BR': 'Soy is the linking word for the speaker: "I am". A separate pronoun "yo" is not needed — the ending of soy already names the speaker. Es is the same linking word, but about "it/he/she".',
-          vi: 'Soy is the linking word for the speaker: "I am". A separate pronoun "yo" is not needed — the ending of soy already names the speaker. Es is the same linking word, but about "it/he/she".',
-          id: 'Soy is the linking word for the speaker: "I am". A separate pronoun "yo" is not needed — the ending of soy already names the speaker. Es is the same linking word, but about "it/he/she".',
-          tr: 'Soy is the linking word for the speaker: "I am". A separate pronoun "yo" is not needed — the ending of soy already names the speaker. Es is the same linking word, but about "it/he/she".',
-          pl: 'Soy is the linking word for the speaker: "I am". A separate pronoun "yo" is not needed — the ending of soy already names the speaker. Es is the same linking word, but about "it/he/she".',
+          // зачем переписано (владелец, 2026-08-27; Библия текстов, правило 1):
+          // прошлый текст рассказывал про слово «yo», которого в этой сессии
+          // нет — тот же класс ошибки, что и nada/non. Ученик его не видел,
+          // значит сравнение только грузит память (Mayer, Kalyuga).
+          ru: 'Soy — это «я есть». Само слово уже говорит, что речь о вас: хвост -oy никому больше не достаётся.',
+          uk: 'Soy — це «я є». Саме слово вже каже, що йдеться про вас: хвіст -oy більше нікому не дістається.',
+          es: 'Soy means "I am". The word itself already points at you: nobody else gets that -oy ending.',
+          'pt-BR': 'Soy quer dizer "eu sou". A palavra já aponta para você: essa terminação -oy não sobra para mais ninguém.',
+          vi: 'Soy nghĩa là "tôi là". Bản thân từ đã chỉ vào bạn: cái đuôi -oy không dành cho ai khác.',
+          id: 'Soy berarti "saya adalah". Katanya sendiri sudah menunjuk Anda: akhiran -oy tidak untuk orang lain.',
+          tr: 'Soy "ben ...-im" demektir. Sözcük zaten sizi işaret eder: o -oy sonu başka kimseye kalmaz.',
+          pl: 'Soy znaczy „ja jestem”. Samo słowo już wskazuje na ciebie: końcówka -oy nie przypada nikomu innemu.',
         }),
         [
           {

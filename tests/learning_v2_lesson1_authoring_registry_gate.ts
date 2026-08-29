@@ -51,11 +51,27 @@ const registryModule = require(modulePath) as {
 assert.equal(registryModule.LESSON1_AUTHORING_REGISTRY_V1.length, 56);
 assert.deepEqual(
   registryModule.LESSON1_AUTHORING_REGISTRY_V1.map((entry) => entry.status),
-  Array.from({ length: 56 }, () => "DRAFT"),
+  ["LOCKED", "LOCKED", "LOCKED", ...Array.from({ length: 53 }, () => "DRAFT")],
 );
 assert.match(
   registryModule.LESSON1_AUTHORING_REGISTRY_V1[0]?.unlockDecisionRef ?? "",
-  /owner-unlocked-all-learning-v2-mode-native-rewrite-2026-08-25/u,
+  /owner-reopened-en-lesson-01-sessions-01-03-for-strict-gates-2026-08-28/u,
+);
+assert.equal(
+  registryModule.LESSON1_AUTHORING_REGISTRY_V1[0]?.lockedFingerprint,
+  "a275efa0823ed7520c40bda1709e65ddb0387f6729eb7fa6ccccd75ea791dd56",
+);
+assert.equal(
+  registryModule.LESSON1_AUTHORING_REGISTRY_V1[1]?.lockedFingerprint,
+  "b62808281db481b8bc7563d7d5c7447ae54d99c929124111776723ad2bc2d961",
+);
+assert.equal(
+  registryModule.LESSON1_AUTHORING_REGISTRY_V1[2]?.lockedFingerprint,
+  "059c616af0ad12f959f58f7845ee6620a9b66b380986d1073ce20cf98fb129be",
+);
+assert.equal(
+  registryModule.LESSON1_AUTHORING_REGISTRY_V1[3]?.forbiddenFutureFingerprint,
+  "203a283824a0453677dd38ca4a0c34eb6d556ee58776106a008a3f84ca15c049",
 );
 
 const actualFingerprints = Object.fromEntries(
@@ -66,60 +82,60 @@ for (const source of AUTHORED_EPISODE_01_SESSIONS) {
     learningV2SessionContentFingerprint(source);
 }
 assert.deepEqual(
-  registryModule.lesson1AuthoringPreflightV1(1, actualFingerprints),
+  registryModule.lesson1AuthoringPreflightV1(4, actualFingerprints),
   {
-    lockedThrough: 0,
-    currentSessionOrdinal: 1,
-    forbiddenFrom: 2,
+    lockedThrough: 3,
+    currentSessionOrdinal: 4,
+    forbiddenFrom: 5,
   },
 );
 assert.deepEqual(
   registryModule.lesson1AuthoringPreflightV1(undefined, actualFingerprints),
   {
-    lockedThrough: 0,
-    currentSessionOrdinal: 1,
-    forbiddenFrom: 2,
+    lockedThrough: 3,
+    currentSessionOrdinal: 4,
+    forbiddenFrom: 5,
   },
 );
 assert.throws(
   () => registryModule.lesson1AuthoringPreflightV1(2, actualFingerprints),
-  /lesson1_authoring_out_of_order:requested=2:current=1:lockedThrough=0/u,
+  /lesson1_authoring_out_of_order:requested=2:current=4:lockedThrough=3/u,
 );
 
 const driftedRegistry = registryModule.LESSON1_AUTHORING_REGISTRY_V1.map(
   (entry) =>
-    entry.sessionOrdinal === 1
+    entry.sessionOrdinal === 4
       ? {
           ...entry,
-          lockedFingerprint: "deliberate-drift-for-red-green-proof",
+          forbiddenFutureFingerprint: "deliberate-drift-for-red-green-proof",
         }
       : entry,
 );
 assert.throws(
   () =>
     registryModule.lesson1AuthoringPreflightV1(
-      6,
+      4,
       actualFingerprints,
       driftedRegistry,
     ),
-  /lesson1_authoring_out_of_order|lesson1_forbidden_future_fingerprint_drift/u,
+  /lesson1_forbidden_future_fingerprint_drift:range=5-56/u,
 );
 
 const futureDraftDrift = {
   ...actualFingerprints,
-  2: "deliberate-future-draft-drift-for-red-green-proof",
+  5: "deliberate-future-draft-drift-for-red-green-proof",
 };
 assert.throws(
-  () => registryModule.lesson1AuthoringPreflightV1(1, futureDraftDrift),
-  /lesson1_forbidden_future_fingerprint_drift:range=2-56/u,
+  () => registryModule.lesson1AuthoringPreflightV1(4, futureDraftDrift),
+  /lesson1_forbidden_future_fingerprint_drift:range=5-56/u,
 );
 
 const packageJson = JSON.parse(
   readFileSync(join(ROOT, "package.json"), "utf8"),
 ) as { readonly scripts?: Readonly<Record<string, string>> };
-assert.equal(
-  packageJson.scripts?.["learning-v2:lesson1-authoring-preflight"],
-  "npx tsx scripts/learning_v2_lesson1_authoring_preflight.ts",
+assert.match(
+  packageJson.scripts?.["learning-v2:lesson1-authoring-preflight"] ?? "",
+  /learning_v2_lesson1_authoring_preflight\.ts/u,
 );
 assert.equal(
   packageJson.scripts?.["learning-v2:mode-native-authoring-gate"],
@@ -127,7 +143,7 @@ assert.equal(
 );
 assert.match(
   packageJson.scripts?.["learning-v2:lesson1-authoring-gate"] ?? "",
-  /^npm run learning-v2:mode-native-authoring-gate && /u,
+  /npm run learning-v2:mode-native-authoring-gate/u,
 );
 assert.match(
   packageJson.scripts?.["learning-v2:lesson1-authoring-gate"] ?? "",

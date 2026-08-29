@@ -54,6 +54,11 @@ export type AppEventMap = {
   avatar_dna_sync_requested: { ownerStableId: string; accountGeneration: number };
   avatar_dna_saved: { ownerStableId: string };
   account_deleted: undefined;
+  identity_retired: {
+    source: 'cloud_mutation' | 'startup' | 'nickname' | 'provider_sign_in';
+    subject: 'stable' | 'auth' | 'closure' | 'unknown';
+  };
+  post_delete_identity_ready: { authUid: string; stableId: string };
   /** После restoreFromCloud / мерджа user_name с облака — обновить профиль в UI. */
   cloud_profile_hydrated: undefined;
   /** После первого сохранения league_state_v3 из облака — перечитать карточку клуба на главной. */

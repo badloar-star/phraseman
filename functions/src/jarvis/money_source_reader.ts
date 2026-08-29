@@ -12,6 +12,7 @@ import { normalizeEvidence, type Evidence, type EvidenceState } from './decision
 
 export const MONEY_REPORT_COLLECTIONS = [
   'revenuecat_premium_events',
+  'voice_minute_events',
   'paywall_funnel',
   'client_economy_opening',
   'client_economy_operations',

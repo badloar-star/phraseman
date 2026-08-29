@@ -67,13 +67,14 @@ function FriendLevelUpModal({
     impact.setOnImpact(() => {});
   }, [impact]);
 
-  const L = (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
-    triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  const L = (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang as any, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
   const levelName = LEVEL_NAMES[Math.max(1, Math.min(LEVEL_NAMES.length - 1, level))] || '';
   const title = L(
     `Вы с ${friendName} — ${levelName}`,
     `Ви з ${friendName} — ${levelName}`,
+    `You and ${friendName} — ${levelName}`,
     `Tú y ${friendName} — ${levelName}`,
     `Você e ${friendName} — ${levelName}`,
     `Bạn và ${friendName} — ${levelName}`,
@@ -81,10 +82,11 @@ function FriendLevelUpModal({
     `Sen ve ${friendName} — ${levelName}`,
     `Ty i ${friendName} — ${levelName}`,
   );
-  const claimLabel = L('Забрать', 'Забрати', 'Reclamar', 'Resgatar', 'Nhận', 'Ambil', 'Al', 'Odbierz');
+  const claimLabel = L('Забрать', 'Забрати', 'Claim', 'Reclamar', 'Resgatar', 'Nhận', 'Ambil', 'Al', 'Odbierz');
   const xpRewardLabel = L(
     `+${bonusPercent}% опыта вместе`,
     `+${bonusPercent}% досвіду разом`,
+    `+${bonusPercent}% XP together`,
     `+${bonusPercent}% XP juntos`,
     `+${bonusPercent}% XP juntos`,
     `+${bonusPercent}% XP cùng nhau`,

@@ -130,6 +130,7 @@ export default function PosAnalyticsAuditScreen() {
   const title = triLang(lang, {
     ru: 'POS token audit',
     uk: 'POS token audit',
+    en: 'POS token audit',
     es: 'Auditoría POS',
     'pt-BR': 'Auditoria POS',
     vi: 'Kiểm tra token POS',

@@ -34,6 +34,9 @@ const FORBIDDEN_SUBSTRINGS = [
   'app_message_visibility_outbox',
   'app_message_personal_modal_ack_outbox',
   'app_messages_local_preview',
+  // Пользователь уже увидел «отправлено»: очистка кеша не имеет права стереть
+  // ещё не доставленное обращение из фоновой очереди.
+  'support_report_outbox_v1',
 ];
 
 describe('cache_reset: границы очистки', () => {

@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Reanimated, { useAnimatedStyle, useSharedValue, withSequence, withTiming, Easing } from 'react-native-reanimated';
+import Reanimated, { cancelAnimation, Easing, FadeInDown, useAnimatedStyle, useSharedValue, withRepeat, withSequence, withTiming, ZoomIn } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -12,7 +12,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
 import AppMessagesInbox from './AppMessagesInbox';
-import { claimReportReplyCoinsOptimistically } from '../app/app_messages';
+import { claimReportRewardBundle, resumePendingReportRewardBundleClaims } from '../app/report_reward_bundle';
 import {
   countUnreadNotifications,
   deleteUserNotification,
@@ -49,6 +49,8 @@ const NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000;
 type NotificationCenterButtonProps = {
   isHomeTabActive: boolean;
   homeFocusTick: number;
+  requestedReportReply?: UserNotification | null;
+  onRequestedReportReplyHandled?: () => void;
 };
 
 function centerCopy(lang: Lang) {
@@ -73,19 +75,8 @@ function reportReplyCopy(lang: Lang) {
   return {
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' }),
     reportReply: triLang(lang, { ru: 'Ответ на репорт', uk: 'Відповідь на репорт', en: 'Reply to your report', es: 'Respuesta a tu reporte', 'pt-BR': 'Resposta ao seu reporte', vi: 'Phản hồi báo cáo', id: 'Balasan laporan', tr: 'Rapor yanıtı', pl: 'Odpowiedź na zgłoszenie' }),
-    claimShards: (n: number) => triLang(lang, {
-      ru: `Забрать жемчуг (+${n})`,
-      uk: `Забрати перлини (+${n})`,
-      en: `Claim pearls (+${n})`,
-      es: `Reclamar perlas (+${n})`,
-      'pt-BR': `Resgatar pérolas (+${n})`,
-      // зачем: та же награда, что в инбоксе (AppMessagesInbox.claimCoins) — валюта
-      // называется жемчужинами; на vi/id/tr/pl тут оставалось legacy «монеты».
-      vi: `Nhận ngọc trai (+${n})`,
-      id: `Ambil mutiara (+${n})`,
-      tr: `İnci al (+${n})`,
-      pl: `Odbierz perły (+${n})`,
-    }),
+    claim: triLang(lang, { ru: 'Получить', uk: 'Отримати', en: 'Claim', es: 'Recibir', 'pt-BR': 'Receber', vi: 'Nhận', id: 'Ambil', tr: 'Al', pl: 'Odbierz' }),
+    claimError: triLang(lang, { ru: 'Не получилось начислить награду. Попробуйте ещё раз.', uk: 'Не вдалося нарахувати нагороду. Спробуйте ще раз.', en: 'Could not apply the reward. Please try again.', es: 'No se pudo entregar la recompensa. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível entregar a recompensa. Tente de novo.', vi: 'Không thể trao thưởng. Hãy thử lại.', id: 'Hadiah belum dapat diberikan. Coba lagi.', tr: 'Ödül verilemedi. Tekrar deneyin.', pl: 'Nie udało się przyznać nagrody. Spróbuj ponownie.' }),
     claimed: triLang(lang, { ru: 'Награда получена', uk: 'Нагороду отримано', en: 'Reward claimed', es: 'Recompensa recibida', 'pt-BR': 'Recompensa recebida', vi: 'Đã nhận thưởng', id: 'Hadiah diterima', tr: 'Ödül alındı', pl: 'Nagroda odebrana' }),
   };
 }
@@ -163,7 +154,12 @@ function timeLabel(ms: number): string {
   return `${Math.floor(h / 24)}d`;
 }
 
-function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: NotificationCenterButtonProps) {
+function NotificationCenterButton({
+  isHomeTabActive,
+  homeFocusTick,
+  requestedReportReply = null,
+  onRequestedReportReplyHandled,
+}: NotificationCenterButtonProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isScreenFocused = useIsScreenFocused();
@@ -177,7 +173,8 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
   const [teamMessageCount, setTeamMessageCount] = useState(0);
   const [teamDetailOpen, setTeamDetailOpen] = useState(false);
   const markedReadIdsRef = useRef<Set<string>>(new Set());
-  const optimisticReportClaimIdsRef = useRef<Set<string>>(new Set());
+  const [claimingMessageId, setClaimingMessageId] = useState<string | null>(null);
+  const [claimErrorMessageId, setClaimErrorMessageId] = useState<string | null>(null);
   const notificationTargetRef = useRef<View>(null);
   const requestGenerationRef = useRef(0);
   const [identityRevision, setIdentityRevision] = useState(0);
@@ -196,7 +193,8 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
         setTeamMessageCount(0);
         setTeamDetailOpen(false);
         markedReadIdsRef.current.clear();
-        optimisticReportClaimIdsRef.current.clear();
+        setClaimingMessageId(null);
+        setClaimErrorMessageId(null);
         if (deleteTimerRef.current) clearTimeout(deleteTimerRef.current);
         deleteTimerRef.current = null;
         pendingDeletionRef.current = null;
@@ -211,6 +209,7 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
 
   useEffect(() => {
     if (!isScreenFocused || !isHomeTabActive) return;
+    void resumePendingReportRewardBundleClaims();
     let alive = true;
     const generation = ++requestGenerationRef.current;
     let authoritativeResultApplied = false;
@@ -248,22 +247,35 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
   const combinedUnreadCount = teamUnreadCount + unreadCount;
   const selected = useMemo(() => visibleItems.find((row) => row.id === selectedId) ?? null, [visibleItems, selectedId]);
 
+  useEffect(() => {
+    if (!requestedReportReply?.reportReply || requestedReportReply.type !== 'report_reply') return;
+    setItems((current) => current.some((row) => row.id === requestedReportReply.id)
+      ? current.map((row) => row.id === requestedReportReply.id ? { ...requestedReportReply, read: true } : row)
+      : [{ ...requestedReportReply, read: true }, ...current]);
+    markedReadIdsRef.current.add(requestedReportReply.id);
+    setSelectedId(requestedReportReply.id);
+    setVisible(true);
+    void markUserNotificationsRead([requestedReportReply.id]);
+    onRequestedReportReplyHandled?.();
+  }, [onRequestedReportReplyHandled, requestedReportReply]);
+
   // Гибрид «Световод + Чекан» (owner-инициатива, семья «Отклик» B6): микро-
   // качание колокольчика 4→-2.5→0 ОДИН раз, ровно в момент появления бейджа
   // непрочитанного (переход 0 → >0), не на каждый ре-рендер счётчика.
   const reduceMotion = useReduceMotion();
   const bellShakeDeg = useSharedValue(0);
-  const prevUnreadRef = useRef(combinedUnreadCount);
   useEffect(() => {
-    const prev = prevUnreadRef.current;
-    prevUnreadRef.current = combinedUnreadCount;
-    if (prev > 0 || combinedUnreadCount <= 0) return;
-    if (reduceMotion) return; // reduce motion = один кадр, без качания
-    bellShakeDeg.value = withSequence(
-      withTiming(4, { duration: 90, easing: Easing.out(Easing.cubic) }),
-      withTiming(-2.5, { duration: 90, easing: Easing.inOut(Easing.cubic) }),
-      withTiming(0, { duration: 90, easing: Easing.out(Easing.cubic) }),
-    );
+    cancelAnimation(bellShakeDeg);
+    bellShakeDeg.value = 0;
+    if (combinedUnreadCount <= 0 || reduceMotion) return;
+    bellShakeDeg.value = withRepeat(withSequence(
+      withTiming(4, { duration: 95, easing: Easing.out(Easing.cubic) }),
+      withTiming(-3, { duration: 105, easing: Easing.inOut(Easing.cubic) }),
+      withTiming(2, { duration: 90, easing: Easing.inOut(Easing.cubic) }),
+      withTiming(0, { duration: 110, easing: Easing.out(Easing.cubic) }),
+      withTiming(0, { duration: 2400 }),
+    ), -1, false);
+    return () => cancelAnimation(bellShakeDeg);
   }, [bellShakeDeg, combinedUnreadCount, reduceMotion]);
   const bellShakeStyle = useAnimatedStyle(() => ({ transform: [{ rotate: `${bellShakeDeg.value}deg` }] }));
 
@@ -307,7 +319,6 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
     if (deletion) void deleteUserNotification(deletion.row.id);
   }, []);
 
-  // Открытие центра гасит непрочитанность: как в Telegram — увидел список, значит прочитал.
   const open = useCallback(() => {
     setVisible(true);
     const generation = requestGenerationRef.current;
@@ -317,26 +328,9 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
     void refreshUserNotificationsOnce({ force: true }).then((list) => {
       if (requestGenerationRef.current !== generation) return;
       const visibleList = hideNotificationIds(list, hiddenNotificationIdsRef.current);
-      const refreshedUnreadIds = visibleList
-        .filter((row) => !row.read && !markedReadIdsRef.current.has(row.id))
-        .map((row) => row.id);
-      refreshedUnreadIds.forEach((id) => markedReadIdsRef.current.add(id));
-      setItems(visibleList.map((row) => (
-        refreshedUnreadIds.includes(row.id) ? { ...row, read: true } : row
-      )));
-      if (refreshedUnreadIds.length) void markUserNotificationsRead(refreshedUnreadIds);
+      setItems(visibleList);
     });
-    const unreadIds = visibleItems
-      .filter((row) => !row.read && !markedReadIdsRef.current.has(row.id))
-      .map((row) => row.id);
-    if (unreadIds.length) {
-      unreadIds.forEach((id) => markedReadIdsRef.current.add(id));
-      setItems((current) => current.map((row) => (
-        unreadIds.includes(row.id) ? { ...row, read: true } : row
-      )));
-      void markUserNotificationsRead(unreadIds);
-    }
-  }, [visibleItems]);
+  }, []);
 
   const close = useCallback(() => {
     hapticTap();
@@ -358,18 +352,30 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
     }));
   }, []);
 
-  const claimReportReward = useCallback((row: UserNotification) => {
+  const claimReportReward = useCallback(async (row: UserNotification) => {
     const reward = row.reportReply;
-    if (!reward || reward.coins <= 0 || reward.claimed) return;
-    if (optimisticReportClaimIdsRef.current.has(reward.messageId)) return;
-    optimisticReportClaimIdsRef.current.add(reward.messageId);
+    const hasReward = !!reward && (reward.rewardBundle.spins > 0 || reward.rewardBundle.runes > 0 || reward.rewardBundle.pearls > 0);
+    if (!reward || !hasReward || reward.claimed || claimingMessageId === reward.messageId) return;
     hapticTap();
-    markReportReplyClaimedLocally(row.id, reward.messageId);
-    void claimReportReplyCoinsOptimistically(reward.messageId, reward.coins);
-  }, [markReportReplyClaimedLocally]);
+    setClaimErrorMessageId(null);
+    setClaimingMessageId(reward.messageId);
+    try {
+      await claimReportRewardBundle(reward.messageId, reward.rewardBundle);
+      markReportReplyClaimedLocally(row.id, reward.messageId);
+    } catch {
+      setClaimErrorMessageId(reward.messageId);
+    } finally {
+      setClaimingMessageId(null);
+    }
+  }, [claimingMessageId, markReportReplyClaimedLocally]);
 
   const openNotification = useCallback((row: UserNotification) => {
     hapticTap();
+    if (!row.read && !markedReadIdsRef.current.has(row.id)) {
+      markedReadIdsRef.current.add(row.id);
+      setItems((current) => current.map((candidate) => candidate.id === row.id ? { ...candidate, read: true } : candidate));
+      void markUserNotificationsRead([row.id]);
+    }
     if (row.type === 'report_reply' && row.reportReply) {
       setSelectedId(row.id);
       return;
@@ -407,27 +413,59 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
         <Text style={[styles.detailMeta, { color: t.textGhost }]}>{timeLabel(row.createdAt)}</Text>
         <Text style={[styles.detailTitle, { color: t.textPrimary }]}>{title}</Text>
         {body ? <Text style={[styles.detailBody, { color: t.textMuted }]}>{body}</Text> : null}
-        {reward.coins > 0 ? (
+        {(reward.rewardBundle.spins > 0 || reward.rewardBundle.runes > 0 || reward.rewardBundle.pearls > 0) ? (
           <View style={[styles.rewardCard, { backgroundColor: t.bgSurface, borderColor: 'rgba(99,217,143,0.35)' }]}>
-            <View style={styles.rewardTop}>
+            <Reanimated.View entering={reduceMotion ? undefined : ZoomIn.duration(420).springify()} style={styles.rewardTop}>
               <View style={styles.rewardIcon}>
-                <Ionicons name={reward.claimed ? 'checkmark-circle' : 'diamond-outline'} size={20} color="#2E9E63" />
+                <Ionicons name={reward.claimed ? 'checkmark-circle' : 'gift-outline'} size={22} color="#2E9E63" />
               </View>
               <Text style={[styles.rewardTitle, { color: t.textPrimary }]}>
-                {reward.claimed ? copy.claimed : `+${reward.coins}`}
+                {reward.claimed ? copy.claimed : copy.reportReply}
               </Text>
+            </Reanimated.View>
+            {reward.claimed && !reduceMotion ? (
+              <Reanimated.View entering={ZoomIn.delay(120).duration(460)} style={styles.celebrationRow}>
+                {['sparkles', 'star', 'sparkles', 'star', 'sparkles'].map((icon, index) => (
+                  <Ionicons key={`${icon}-${index}`} name={icon as keyof typeof Ionicons.glyphMap} size={index === 2 ? 22 : 15} color={index % 2 ? '#F6C453' : '#63D98F'} />
+                ))}
+              </Reanimated.View>
+            ) : null}
+            <View style={styles.rewardList}>
+              {reward.rewardBundle.spins > 0 ? (
+                <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.delay(90).duration(260)} style={styles.rewardLine}>
+                  <Ionicons name="sync-circle-outline" size={21} color="#7A6FF0" />
+                  <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reward.rewardBundle.spins} ${triLang(lang as Lang, { ru: 'спин', uk: 'спін', en: 'spin', es: 'giro', 'pt-BR': 'giro', vi: 'lượt quay', id: 'putaran', tr: 'çevirme', pl: 'obrót' })}`}</Text>
+                </Reanimated.View>
+              ) : null}
+              {reward.rewardBundle.runes > 0 ? (
+                <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.delay(180).duration(260)} style={styles.rewardLine}>
+                  <Ionicons name="star-outline" size={21} color="#F6C453" />
+                  <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reward.rewardBundle.runes} ${triLang(lang as Lang, { ru: 'рун', uk: 'рун', en: 'runes', es: 'runas', 'pt-BR': 'runas', vi: 'rune', id: 'rune', tr: 'rün', pl: 'run' })}`}</Text>
+                </Reanimated.View>
+              ) : null}
+              {reward.rewardBundle.pearls > 0 ? (
+                <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.delay(270).duration(260)} style={styles.rewardLine}>
+                  <Ionicons name="diamond-outline" size={21} color="#39B985" />
+                  <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reward.rewardBundle.pearls} ${triLang(lang as Lang, { ru: 'жемчугов', uk: 'перлин', en: 'pearls', es: 'perlas', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' })}`}</Text>
+                </Reanimated.View>
+              ) : null}
             </View>
+            {claimErrorMessageId === reward.messageId ? (
+              <Text accessibilityRole="alert" style={[styles.rewardError, { color: t.wrong }]}>{copy.claimError}</Text>
+            ) : null}
             {!reward.claimed ? (
               <TouchableOpacity
                 testID="notification-report-reply-claim-cta"
                 activeOpacity={0.86}
                 accessibilityRole="button"
-                accessibilityLabel={copy.claimShards(reward.coins)}
-                onPress={() => claimReportReward(row)}
+                accessibilityLabel={copy.claim}
+                accessibilityState={{ busy: claimingMessageId === reward.messageId, disabled: claimingMessageId === reward.messageId }}
+                disabled={claimingMessageId === reward.messageId}
+                onPress={() => { void claimReportReward(row); }}
                 style={styles.rewardButton}
               >
-                <Ionicons name="diamond-outline" size={17} color="#07110A" />
-                <Text style={styles.rewardButtonText}>{copy.claimShards(reward.coins)}</Text>
+                <Ionicons name="gift-outline" size={17} color="#07110A" />
+                <Text style={styles.rewardButtonText}>{copy.claim}</Text>
               </TouchableOpacity>
             ) : null}
           </View>
@@ -444,6 +482,12 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
     const rowPreview = row.type === 'report_reply'
       ? (row.reportReply?.body || row.text || '')
       : row.text;
+    const hasUnclaimedReportReward = row.type === 'report_reply'
+      && !!row.reportReply
+      && !row.reportReply.claimed
+      && (row.reportReply.rewardBundle.spins > 0
+        || row.reportReply.rewardBundle.runes > 0
+        || row.reportReply.rewardBundle.pearls > 0);
     const hasAvatar = !!row.fromAvatar;
     return (
       <TouchableOpacity
@@ -475,6 +519,7 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
           </Text>
           <Ionicons name={notificationIcon(row.type)} size={13} color={notificationIconColor(row.type, t.textGhost)} />
         </View>
+        {!hasUnclaimedReportReward ? (
         <TouchableOpacity
           testID={`notification-delete-${row.id}`}
           accessibilityRole="button"
@@ -488,6 +533,7 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
         >
           <Ionicons name="trash-outline" size={18} color={t.textGhost} />
         </TouchableOpacity>
+        ) : null}
         {!row.read && !markedReadIdsRef.current.has(row.id) ? (
           <View style={styles.notificationUnreadDot} />
         ) : null}
@@ -751,6 +797,35 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
+  },
+  celebrationRow: {
+    minHeight: 32,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+  },
+  rewardList: {
+    gap: 9,
+  },
+  rewardLine: {
+    minHeight: 38,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    backgroundColor: 'rgba(99,217,143,0.08)',
+  },
+  rewardLineText: {
+    fontSize: 14,
+    lineHeight: 19,
+    fontWeight: '900',
+  },
+  rewardError: {
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: '700',
   },
   rewardIcon: {
     width: 34,

@@ -14,6 +14,7 @@ export function lessonDialogLockedHint(lang: Lang): string {
   return triLang(lang, {
     ru: 'Диалог откроется, когда ты пройдёшь этот урок на золото.',
     uk: 'Діалог відкриється, коли ти пройдеш цей урок на золото.',
+    en: 'The dialogue will unlock once you complete this lesson with gold.',
     es: 'El diálogo se abrirá cuando completes esta lección con oro.',
     'pt-BR': 'O diálogo abre quando você concluir esta lição com ouro.',
     vi: 'Hội thoại sẽ mở khi bạn hoàn thành bài này với huy chương vàng.',

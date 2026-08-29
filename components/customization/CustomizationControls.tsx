@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
 import { FlowText } from '../text-integrity/FlowText';
@@ -9,6 +8,8 @@ import { pearlIconForTheme } from '../../app/coin_icons';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { CustomizationAction, CustomizationTab } from '../../app/customization_draft';
+import type { AvatarSide, CustomizationCurrency } from '../../app/customization_catalog';
+import { RuneGlyph } from '../RuneGlyph';
 
 import { noAndroidOutline } from '../../constants/androidGlow';
 
@@ -16,12 +17,12 @@ export function CustomizationTabs({ value, onChange, avatarsLabel, aurasLabel }:
   value: CustomizationTab; onChange: (value: CustomizationTab) => void; avatarsLabel: string; aurasLabel: string;
 }) {
   const { theme: t } = useTheme();
-  const tabs: { id: CustomizationTab; label: string; icon: 'person' | 'sparkles'; outlineIcon: 'person-outline' | 'sparkles-outline' }[] = [
-    { id: 'avatars', label: avatarsLabel, icon: 'person', outlineIcon: 'person-outline' },
-    { id: 'auras', label: aurasLabel, icon: 'sparkles', outlineIcon: 'sparkles-outline' },
+  const tabs: { id: CustomizationTab; label: string }[] = [
+    { id: 'avatars', label: avatarsLabel },
+    { id: 'auras', label: aurasLabel },
   ];
   return (
-    <View style={styles.tabGroup} accessibilityRole="tablist">
+    <View style={[styles.segmentedGroup, { backgroundColor: t.bgCard }]} accessibilityRole="tablist">
       {tabs.map((item) => {
         const selected = item.id === value;
         return (
@@ -34,10 +35,9 @@ export function CustomizationTabs({ value, onChange, avatarsLabel, aurasLabel }:
             }}
             scaleTo={0.94}
             style={[
-              styles.iconTab,
+              styles.segment,
               {
                 backgroundColor: selected ? t.accent : t.bgCard,
-                borderColor: selected ? t.accent : t.border,
                 shadowColor: selected ? t.accent : '#000000',
               },
             ]}
@@ -45,14 +45,71 @@ export function CustomizationTabs({ value, onChange, avatarsLabel, aurasLabel }:
             accessibilityState={{ selected }}
             accessibilityLabel={item.label}
           >
-            <Ionicons
-              name={selected ? item.icon : item.outlineIcon}
-              size={23}
-              color={selected ? t.correctText : t.textMuted}
-            />
+              <Text style={[styles.segmentText, { color: selected ? t.correctText : t.textMuted }]}>
+                {item.label}
+              </Text>
           </TapScale>
         );
       })}
+    </View>
+  );
+}
+
+const SIDE_OPTIONS = [
+  { id: 'yin' as const, label: 'Инь' },
+  { id: 'yang' as const, label: 'Янь' },
+];
+
+export function YinYangControl({ value, onChange, accessibilityLabelForSide }: {
+  value: AvatarSide;
+  onChange: (value: AvatarSide) => void;
+  accessibilityLabelForSide: (value: AvatarSide) => string;
+}) {
+  const { theme: t } = useTheme();
+  return (
+    <View style={[styles.sideGroup, { backgroundColor: t.bgCard }]} accessibilityRole="tablist">
+      {SIDE_OPTIONS.map((option) => {
+        const selected = option.id === value;
+        return (
+          <TapScale
+            key={option.id}
+            testID={`avatar-side-${option.id}`}
+            onPress={() => { if (!selected) onChange(option.id); }}
+            scaleTo={0.96}
+            style={[
+              styles.sideSegment,
+              { backgroundColor: selected ? t.accent : t.bgCard },
+            ]}
+            accessibilityRole="tab"
+            accessibilityState={{ selected }}
+            accessibilityLabel={accessibilityLabelForSide(option.id)}
+          >
+            <Text style={[styles.segmentText, { color: selected ? t.correctText : t.textMuted }]}>
+              {option.label}
+            </Text>
+          </TapScale>
+        );
+      })}
+    </View>
+  );
+}
+
+export type CustomizationPriceValue = Readonly<{
+  currency: CustomizationCurrency;
+  amount: number;
+}>;
+
+export function CustomizationPrice({ price, color }: {
+  price: CustomizationPriceValue;
+  color: string;
+}) {
+  const { themeMode } = useTheme();
+  return (
+    <View style={styles.priceBox}>
+      {price.currency === 'runes'
+        ? <RuneGlyph size={18} color={color} />
+        : <Image source={pearlIconForTheme(themeMode)} style={styles.priceCoin} contentFit="contain" accessible={false} />}
+      <Text style={[styles.actionText, { color }]}>{price.amount.toLocaleString('ru-RU')}</Text>
     </View>
   );
 }
@@ -62,11 +119,11 @@ export function CustomizationTabs({ value, onChange, avatarsLabel, aurasLabel }:
  * появляется снизу только когда есть действие (применить/купить/открыть Plus), и цена
  * живёт прямо в ней монетой, а не текстом «· 35». Нет действия — нет кнопки, каталог дышит.
  */
-export function CustomizationActionBar({ action, label, cost, busy, bottomOffset, onPress }: {
-  action: CustomizationAction; label: string; cost: number | null; busy: boolean;
+export function CustomizationActionBar({ action, label, price, busy, bottomOffset, onPress }: {
+  action: CustomizationAction; label: string; price: CustomizationPriceValue | null; busy: boolean;
   bottomOffset: number; onPress: () => void;
 }) {
-  const { theme: t, themeMode } = useTheme();
+  const { theme: t } = useTheme();
   const reduceMotion = useReduceMotion();
   const visible = action.kind !== 'unchanged';
   const shown = useRef(new Animated.Value(visible ? 1 : 0)).current;
@@ -102,24 +159,20 @@ export function CustomizationActionBar({ action, label, cost, busy, bottomOffset
       >
         {/* зачем: text-integrity — лейбл CTA переносится, кнопка растёт по minHeight. */}
         <FlowText testID="customization-action-label" provenance="authored" style={[styles.actionText, { color: t.correctText }]}>{label}</FlowText>
-        {cost !== null ? (
-          <View style={styles.priceBox}>
-            <Image source={pearlIconForTheme(themeMode)} style={styles.priceCoin} contentFit="contain" accessible={false} />
-            <Text style={[styles.actionText, { color: t.correctText }]}>{cost}</Text>
-          </View>
-        ) : null}
+        {price ? <CustomizationPrice price={price} color={t.correctText} /> : null}
       </Pressable>
     </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
-  tabGroup: { alignSelf: 'flex-end', flexDirection: 'row', gap: 10 },
-  iconTab: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    borderWidth: 1,
+  segmentedGroup: {
+    alignSelf: 'center', flexDirection: 'row', padding: 3, borderRadius: 16, gap: 3,
+  },
+  segment: {
+    minWidth: 112,
+    minHeight: 44,
+    borderRadius: 13,
     alignItems: 'center',
     justifyContent: 'center',
     shadowOpacity: 0.18,
@@ -128,6 +181,14 @@ const styles = StyleSheet.create({
     elevation: 3,
     ...noAndroidOutline,
   },
+  sideGroup: {
+    alignSelf: 'stretch', flexDirection: 'row', padding: 3, borderRadius: 16, gap: 3,
+  },
+  sideSegment: {
+    flex: 1, minHeight: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center',
+    ...noAndroidOutline,
+  },
+  segmentText: { fontSize: 14, lineHeight: 19, fontWeight: '900' },
   actionWrap: { position: 'absolute', left: 16, right: 16 },
   action: {
     minHeight: 56, borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',

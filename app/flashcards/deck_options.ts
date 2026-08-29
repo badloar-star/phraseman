@@ -94,7 +94,7 @@ export async function loadFcDeckOptions(
   out.push({
     deckId: 'saved',
     title: triLang(lang, {
-      ru: 'Все сохранённые', uk: 'Усі збережені', es: 'Todas las guardadas',
+      ru: 'Все сохранённые', uk: 'Усі збережені', en: 'All saved', es: 'Todas las guardadas',
       'pt-BR': 'Todos os salvos', vi: 'Tất cả thẻ đã lưu', id: 'Semua tersimpan',
       tr: 'Tüm kaydedilenler', pl: 'Wszystkie zapisane',
     }),
@@ -106,7 +106,7 @@ export async function loadFcDeckOptions(
   out.push({
     deckId: 'custom',
     title: triLang(lang, {
-      ru: 'Мои карточки', uk: 'Мої картки', es: 'Mis tarjetas',
+      ru: 'Мои карточки', uk: 'Мої картки', en: 'My cards', es: 'Mis tarjetas',
       'pt-BR': 'Meus cartões', vi: 'Thẻ của tôi', id: 'Kartu saya',
       tr: 'Kartlarım', pl: 'Moje fiszki',
     }),

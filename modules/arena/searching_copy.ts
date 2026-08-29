@@ -1,5 +1,5 @@
 /**
- * Строка «сколько игроков сейчас ищет» — во всех восьми локалях.
+ * Строка «сколько игроков сейчас ищет» — во всех девяти локалях (включая `en`).
  *
  * Вынесена отдельно от `copy.ts` намеренно. `copy.ts` тянет за собой весь
  * механизм локализации, а тот — нативные модули, и проверить правило склонения
@@ -9,10 +9,10 @@
  * Склонение существует потому, что в русском, украинском и польском число
  * управляет окончанием: «1 игрок», «2 игрока», «5 игроков», «11 игроков».
  * Склеенная строка вида `${count} игроков` разъехалась бы по смыслу в трёх
- * локалях из восьми, а это ровно тот экран, где игрок сидит и ждёт.
+ * локалях из девяти, а это ровно тот экран, где игрок сидит и ждёт.
  */
 
-export type ArenaCopyLocale = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+export type ArenaCopyLocale = 'ru' | 'uk' | 'en' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
 /**
  * Славянская форма числительного.
@@ -48,6 +48,7 @@ export function arenaSearchingCountForms(count: number): Readonly<Record<ArenaCo
   return {
     ru: `Сейчас ищут ещё ${value} ${slavic('игрок', 'игрока', 'игроков')}`,
     uk: `Зараз шукають ще ${value} ${slavic('гравець', 'гравці', 'гравців')}`,
+    en: value === 1 ? '1 more player searching' : `${value} more players searching`,
     es: value === 1 ? 'Hay 1 jugador más buscando' : `Hay ${value} jugadores más buscando`,
     'pt-BR': value === 1 ? 'Mais 1 jogador procurando' : `Mais ${value} jogadores procurando`,
     vi: `Còn ${value} người chơi đang tìm`,

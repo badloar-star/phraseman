@@ -28,7 +28,10 @@ export function reportExportInstructions(): string {
     'Подготовь отдельный живой уважительный ответ на языке пользователя для каждого reportId.',
     'Черновики должны оставаться редактируемыми и проверяться администратором.',
     'Черновики проверяются администратором; не выполнять массовую живую отправку через CLI или автоматический процесс.',
-    'Награда допустима только за confirmed_fixed: не более одной монеты и ровно один раз; остальные исходы получают 0.',
+    'Награда допустима только за confirmed_fixed; остальные исходы получают 0.',
+    'Выбери один точный уровень серьёзности: minor: 1 спин, 300 рун, 1 жемчужина; serious: 2 спина, 600 рун, 5 жемчужин; critical: 3 спина, 1000 рун, 10 жемчужин.',
+    'ИИ только предлагает уровень; администратор обязан проверить, при необходимости изменить его и отправить ответ вручную.',
+    'В тексте для пользователя не перечисляй состав награды и не обещай конкретные количества.',
   ].join('\n');
 }
 
@@ -243,6 +246,29 @@ function firstText(row: Row, fields: readonly string[], max: number): string {
   return '';
 }
 
+function projectReplyRewardBundle(value: unknown, legacyCoins: unknown): Row {
+  if (isRecord(value)) {
+    const severity = cleanText(value.severity, 16);
+    const expected: Readonly<Record<string, readonly [number, number, number]>> = {
+      none: [0, 0, 0],
+      minor: [1, 300, 1],
+      serious: [2, 600, 5],
+      critical: [3, 1000, 10],
+      legacy: [0, 0, 1],
+    };
+    const tier = expected[severity];
+    if (Number(value.version) === 1 && tier
+      && Number(value.spins) === tier[0]
+      && Number(value.runes) === tier[1]
+      && Number(value.pearls) === tier[2]) {
+      return Object.freeze({ version: 1, severity, spins: tier[0], runes: tier[1], pearls: tier[2] });
+    }
+  }
+  return Number(legacyCoins) === 1
+    ? Object.freeze({ version: 1, severity: 'legacy', spins: 0, runes: 0, pearls: 1 })
+    : Object.freeze({ version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 });
+}
+
 export function projectReportRow(source: ReportSource, id: string, row: Row): Row {
   const config = SOURCE_CONFIG[source];
   const rawStatus = normalizedStatus(source, row.status);
@@ -284,6 +310,7 @@ export function projectReportRow(source: ReportSource, id: string, row: Row): Ro
       title: cleanText(row.replyTitle, 160) || null,
       body: cleanText(row.replyBody, 2000) || null,
       coins: Math.max(0, Math.min(1, Math.floor(Number(row.replyCoins ?? 0) || 0))),
+      rewardBundle: projectReplyRewardBundle(row.replyRewardBundle, row.replyCoins),
       repliedAtMs: millis(row.repliedAtMs || row.repliedAt || row.answeredAtMs),
       repliedBy: cleanText(row.repliedBy || row.adminStatusUpdatedBy, 320) || null,
     }),

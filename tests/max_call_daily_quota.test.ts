@@ -38,7 +38,9 @@ describe('MAX daily quota projection', () => {
     expect(dailyQuotaView(60, 14_400)).toMatchObject({ minutes: 1, lastMinute: false });
     expect(dailyQuotaView(59, 14_400)).toMatchObject({ minutes: 0, seconds: 59, lastMinute: true });
     expect(dailyQuotaView(1, 14_400)).toMatchObject({ seconds: 1, lastMinute: true });
-    expect(dailyQuotaView(0, 14_400)).toMatchObject({ seconds: 0, lastMinute: true });
+    // Ноль — это уже не «последняя минута»: экран обязан сказать «0 мин»,
+    // а не нелепое «0 сек» после завершения/до выдачи пробника.
+    expect(dailyQuotaView(0, 14_400)).toMatchObject({ minutes: 0, seconds: 0, lastMinute: false });
   });
 
   it('accepts snake-case aliases without exceeding the maximum', () => {

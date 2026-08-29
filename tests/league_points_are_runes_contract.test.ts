@@ -138,7 +138,7 @@ describe('горячие 2 часа реально удваивают руны',
   });
 
   it('сброс догона не стирает надбавку', () => {
-    const start = source.indexOf('async function resetCatchup(');
+    const start = source.indexOf('async function rebaseCatchup(');
     expect(start).toBeGreaterThan(-1);
     const body = source.slice(start, source.indexOf('\n}', start));
     expect(body).toContain('hotBonus');
@@ -150,5 +150,29 @@ describe('горячие 2 часа реально удваивают руны',
     // импорт замкнул бы цикл и отдал бы undefined на старте.
     expect(source).not.toMatch(/^import .*league_hot_hours/m);
     expect(source).toContain("require('./league_hot_hours')");
+  });
+});
+
+describe('живой прогресс лиги не зависит от открытого кошелька', () => {
+  const source = readFileSync(join(__dirname, '..', 'app', 'league_week_runes.ts'), 'utf8');
+
+  it('слушает канонический снапшот рун, а не UI-событие кошелька', () => {
+    const start = source.indexOf('export function startLeagueWeekRunesTracking');
+    expect(start).toBeGreaterThan(-1);
+    const body = source.slice(start, source.indexOf('\n}', start));
+    expect(body).toContain('subscribeRunesSnapshot');
+    expect(body).toContain('leagueEarnedDelta');
+    expect(body).not.toContain("onAppEvent('runes_balance_updated'");
+  });
+
+  it('будит локальную проекцию лиги после сохранения догона', () => {
+    expect(source).toContain("emitAppEvent('league_local_state_updated')");
+  });
+
+  it('изолирует догон, hot bonus и финал недели по аккаунту', () => {
+    expect(source).toContain('accountScopedLeagueRunesStorageKey(CATCHUP_KEY, ownerStableId)');
+    expect(source).toContain('accountScopedLeagueRunesStorageKey(LAST_FINAL_KEY, ownerStableId)');
+    expect(source).toContain('memoryCatchupOwnerStableId');
+    expect(source).toContain('isCurrentAccountGeneration(token, ownerStableId)');
   });
 });

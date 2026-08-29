@@ -16,6 +16,7 @@ export function getBoonActiveStatusText(boon: BoonId, lang: Lang): string {
     return triLang(lang, {
       ru: 'Действует до 22:00',
       uk: 'Діє до 22:00',
+      en: 'Active until 22:00',
       es: 'Activo hasta las 22:00',
       'pt-BR': 'Ativo até às 22:00',
       vi: 'Có hiệu lực đến 22:00',
@@ -28,6 +29,7 @@ export function getBoonActiveStatusText(boon: BoonId, lang: Lang): string {
     return triLang(lang, {
       ru: 'Действует 48 часов',
       uk: 'Діє 48 годин',
+      en: 'Active for 48 hours',
       es: 'Activo durante 48 horas',
       'pt-BR': 'Ativo por 48 horas',
       vi: 'Có hiệu lực trong 48 giờ',
@@ -39,6 +41,7 @@ export function getBoonActiveStatusText(boon: BoonId, lang: Lang): string {
   return triLang(lang, {
     ru: 'Действует до конца дня',
     uk: 'Діє до кінця дня',
+    en: 'Active until the end of the day',
     es: 'Activo hasta el final del día',
     'pt-BR': 'Ativo até o fim do dia',
     vi: 'Có hiệu lực đến hết hôm nay',

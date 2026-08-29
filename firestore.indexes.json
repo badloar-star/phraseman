@@ -131,6 +131,20 @@
       ]
     },
     {
+      "collectionGroup": "voice_minute_events",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "environment",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "occurredAtMs",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "paywall_funnel",
       "queryScope": "COLLECTION",
       "fields": [
@@ -974,20 +988,6 @@
         },
         {
           "fieldPath": "expiresAtMs",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "users",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "expoPushToken",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "__name__",
           "order": "ASCENDING"
         }
       ]

@@ -29,8 +29,8 @@ test("Learning V2 direct player exposes the real hold microphone in the center f
     "utf8",
   );
   expect(player).toContain("useLearningV2LocalHoldToTalkV1({");
-  expect(player).toContain("void localVoice.start()");
-  expect(player).toContain("onPressOut={localVoice.stop}");
+  expect(player).toContain("void startVoiceCapture()");
+  expect(player).toContain("onPressOut={stopVoiceCapture}");
   expect(player).toContain("<VoiceEqualizer");
   expect(player).not.toContain("<SpeakingPanel");
   expect(player).toContain('testID="learning-v2-footer-hold-to-talk"');

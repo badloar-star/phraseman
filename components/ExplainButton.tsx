@@ -79,6 +79,7 @@ function ExplainButton({ phraseEn, phraseMeaning, lang, style }: Props) {
         accessibilityLabel={triLang(uiLang, {
           ru: 'Объяснить простыми словами',
           uk: 'Пояснити простими словами',
+          en: 'Explain in simple words',
           es: 'Explicar en palabras simples',
           'pt-BR': 'Explicar em palavras simples',
           vi: 'Giải thích bằng lời đơn giản',
@@ -92,6 +93,7 @@ function ExplainButton({ phraseEn, phraseMeaning, lang, style }: Props) {
           {triLang(uiLang, {
             ru: 'Объяснить просто',
             uk: 'Пояснити просто',
+            en: 'Simple explanation',
             es: 'Explicar simple',
             'pt-BR': 'Explicar simples',
             vi: 'Giải thích đơn giản',

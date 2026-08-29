@@ -36,8 +36,8 @@ function ChannelRowContent({ channel, checked, t }: { channel: YoutubeManifestCh
 export default function YoutubeChannelPickerSheet({ visible, manifest, preference, onSelect, onClose, motionVariant = 'classic' }: Props) {
   const { lang } = useLang();
   const { theme: t } = useTheme();
-  const title = triLang(lang, { ru: 'Наши каналы', uk: 'Наші канали', es: 'Our channels', 'pt-BR': 'Nossos canais', vi: 'Kênh của chúng tôi', id: 'Kanal kami', tr: 'Kanallarımız', pl: 'Nasze kanały' });
-  const closeLabel = triLang(lang, { ru: 'Закрыть выбор канала', uk: 'Закрити вибір каналу', es: 'Cerrar selector de canal', 'pt-BR': 'Fechar seletor de canal', vi: 'Đóng bộ chọn kênh', id: 'Tutup pemilih kanal', tr: 'Kanal seçiciyi kapat', pl: 'Zamknij wybór kanału' });
+  const title = triLang(lang, { ru: 'Наши каналы', uk: 'Наші канали', en: 'Our channels', es: 'Nuestros canales', 'pt-BR': 'Nossos canais', vi: 'Kênh của chúng tôi', id: 'Kanal kami', tr: 'Kanallarımız', pl: 'Nasze kanały' });
+  const closeLabel = triLang(lang, { ru: 'Закрыть выбор канала', uk: 'Закрити вибір каналу', en: 'Close channel picker', es: 'Cerrar selector de canal', 'pt-BR': 'Fechar seletor de canal', vi: 'Đóng bộ chọn kênh', id: 'Tutup pemilih kanal', tr: 'Kanal seçiciyi kapat', pl: 'Zamknij wybór kanału' });
   const channels = manifest.channels.slice().sort((a, b) => a.order - b.order);
 
   if (motionVariant === 'hybrid') {

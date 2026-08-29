@@ -246,13 +246,14 @@ export default function CommunityPackCreateScreen() {
   const L = (
     ru: string,
     uk: string,
+    en: string,
     es: string,
     ptBr: string,
     vi: string,
     id: string,
     tr: string,
     pl: string,
-  ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const isLightTheme = !isDark;
 
   const [title, setTitle] = useState('');
@@ -405,7 +406,7 @@ export default function CommunityPackCreateScreen() {
         const local = (await loadLocalAuthorPacks(studyTarget)).find((x) => x.id === editPackId);
         if (cancelled) return;
         if (!local) {
-          setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'El pack no está disponible para editar', 'O pack não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Pakiet nie jest dostępny do edycji'));
+          setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'The pack is not available for editing', 'El pack no está disponible para editar', 'O pack não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Pakiet nie jest dostępny do edycji'));
           return;
         }
         setTitle(local.title);
@@ -434,13 +435,13 @@ export default function CommunityPackCreateScreen() {
       }
       const sid = await getCanonicalUserId();
       if (!sid) {
-        setLoadErr(L('Нет id', 'Немає id', 'Sin ID', 'Sem ID', 'Không có ID', 'Tanpa ID', 'ID yok', 'Brak ID'));
+        setLoadErr(L('Нет id', 'Немає id', 'No ID', 'Sin ID', 'Sem ID', 'Không có ID', 'Tanpa ID', 'ID yok', 'Brak ID'));
         return;
       }
       const snap = await fetchCommunityPackForAuthorEdit(editPackId, sid, studyTarget);
       if (cancelled) return;
       if (!snap) {
-        setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'El pack no está disponible para editar', 'O pack não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Pakiet nie jest dostępny do edycji'));
+        setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'The pack is not available for editing', 'El pack no está disponible para editar', 'O pack não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Pakiet nie jest dostępny do edycji'));
         return;
       }
       setTitle(snap.title);
@@ -899,8 +900,8 @@ export default function CommunityPackCreateScreen() {
             <View style={styles.formHorizontalInset}>
               <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 24 }}>
                 {communityPacksTargetEnabled
-                  ? L('Создание наборов недоступно в этой сборке.', 'Створення наборів недоступне в цьому білді.', 'Crear packs no está disponible en esta versión.', 'A criação de packs não está disponível nesta versão.', 'Tính năng tạo bộ thẻ không khả dụng trong bản dựng này.', 'Pembuatan paket tidak tersedia di build ini.', 'Paket oluşturma bu sürümde kullanılamıyor.', 'Tworzenie pakietów nie jest dostępne w tej wersji.')
-                  : L('Community-наборы для French закрыты до отдельной проверки источников.', 'Community-набори для French закриті до окремої перевірки джерел.', 'Los packs community para French están bloqueados hasta una revisión de fuentes.', 'Os packs community para French estão bloqueados até uma revisão de fontes.', 'Các gói community cho French đang bị khóa cho đến khi kiểm tra nguồn riêng.', 'Paket community untuk French dikunci sampai pemeriksaan sumber terpisah.', 'French için community paketleri ayrı kaynak kontrolüne kadar kapalı.', 'Pakiety community dla French są zablokowane do osobnej kontroli źródeł.')}
+                  ? L('Создание наборов недоступно в этой сборке.', 'Створення наборів недоступне в цьому білді.', 'Creating packs is not available in this build.', 'Crear packs no está disponible en esta versión.', 'A criação de packs não está disponível nesta versão.', 'Tính năng tạo bộ thẻ không khả dụng trong bản dựng này.', 'Pembuatan paket tidak tersedia di build ini.', 'Paket oluşturma bu sürümde kullanılamıyor.', 'Tworzenie pakietów nie jest dostępne w tej wersji.')
+                  : L('Community-наборы для French закрыты до отдельной проверки источников.', 'Community-набори для French закриті до окремої перевірки джерел.', 'Community packs for French are closed pending a separate source review.', 'Los packs community para French están bloqueados hasta una revisión de fuentes.', 'Os packs community para French estão bloqueados até uma revisão de fontes.', 'Các gói community cho French đang bị khóa cho đến khi kiểm tra nguồn riêng.', 'Paket community untuk French dikunci sampai pemeriksaan sumber terpisah.', 'French için community paketleri ayrı kaynak kontrolüne kadar kapalı.', 'Pakiety community dla French są zablokowane do osobnej kontroli źródeł.')}
               </Text>
             </View>
           </ContentWrap>
@@ -925,7 +926,7 @@ export default function CommunityPackCreateScreen() {
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
             </TapScale>
             <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>
-              {L('Редактирование', 'Редагування', 'Edición', 'Edição', 'Chỉnh sửa', 'Pengeditan', 'Düzenleme', 'Edycja')}
+              {L('Редактирование', 'Редагування', 'Editing', 'Edición', 'Edição', 'Chỉnh sửa', 'Pengeditan', 'Düzenleme', 'Edycja')}
             </Text>
             <View style={{ width: 40 }} />
           </View>
@@ -964,7 +965,7 @@ export default function CommunityPackCreateScreen() {
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
             </TapScale>
             <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>
-              {L('Новый набор', 'Новий набір', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet')}
+              {L('Новый набор', 'Новий набір', 'New pack', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet')}
             </Text>
             <View style={{ width: 40 }} />
           </View>
@@ -1006,8 +1007,8 @@ export default function CommunityPackCreateScreen() {
             </TapScale>
             <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>
               {isEditMode
-                ? L('Редактировать набор', 'Редагувати набір', 'Editar pack', 'Editar pack', 'Chỉnh sửa bộ thẻ', 'Edit paket', 'Paketi düzenle', 'Edytuj pakiet')
-                : L('Новый набор', 'Новий набір', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet')}
+                ? L('Редактировать набор', 'Редагувати набір', 'Edit pack', 'Editar pack', 'Editar pack', 'Chỉnh sửa bộ thẻ', 'Edit paket', 'Paketi düzenle', 'Edytuj pakiet')
+                : L('Новый набор', 'Новий набір', 'New pack', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet')}
             </Text>
             <View style={{ width: 40 }} />
           </View>
@@ -1027,27 +1028,27 @@ export default function CommunityPackCreateScreen() {
           >
             <ContentWrap>
               <View style={styles.formHorizontalInset}>
-              <Text style={labelStyle(t)}>{L('Название', 'Назва', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')} *</Text>
+              <Text style={labelStyle(t)}>{L('Название', 'Назва', 'Title', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')} *</Text>
               <TextInput
                 ref={titleInputRef}
-                accessibilityLabel={L('Название набора', 'Назва набору', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
+                accessibilityLabel={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
                 {...getTextInputSystemEditMenuProps()}
                 value={title}
                 onChangeText={setTitle}
                 onFocus={bindScrollOnFocus(titleInputRef)}
-                placeholder={L('Название набора', 'Назва набору', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
+                placeholder={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
                 placeholderTextColor={t.textGhost}
                 style={fieldInputStyle(t)}
               />
-              <Text style={labelStyle(t)}>{L('Описание', 'Опис', 'Descripción', 'Descrição', 'Mô tả', 'Deskripsi', 'Açıklama', 'Opis')} *</Text>
+              <Text style={labelStyle(t)}>{L('Описание', 'Опис', 'Description', 'Descripción', 'Descrição', 'Mô tả', 'Deskripsi', 'Açıklama', 'Opis')} *</Text>
               <TextInput
                 ref={descriptionInputRef}
-                accessibilityLabel={L('Описание набора', 'Опис набору', 'Descripción del pack', 'Descrição do pack', 'Mô tả bộ thẻ', 'Deskripsi paket', 'Paket açıklaması', 'Opis pakietu')}
+                accessibilityLabel={L('Описание набора', 'Опис набору', 'Pack description', 'Descripción del pack', 'Descrição do pack', 'Mô tả bộ thẻ', 'Deskripsi paket', 'Paket açıklaması', 'Opis pakietu')}
                 {...getTextInputSystemEditMenuProps()}
                 value={description}
                 onChangeText={setDescription}
                 onFocus={bindScrollOnFocus(descriptionInputRef)}
-                placeholder={L('Кратко о наборе', 'Коротко про набір', 'Breve descripción del pack', 'Resumo do pack', 'Mô tả ngắn về bộ thẻ', 'Ringkasan paket', 'Paket hakkında kısa bilgi', 'Krótko o pakiecie')}
+                placeholder={L('Кратко о наборе', 'Коротко про набір', 'Briefly about the pack', 'Breve descripción del pack', 'Resumo do pack', 'Mô tả ngắn về bộ thẻ', 'Ringkasan paket', 'Paket hakkında kısa bilgi', 'Krótko o pakiecie')}
                 placeholderTextColor={t.textGhost}
                 multiline
                 style={[fieldInputStyle(t), { minHeight: 88, textAlignVertical: 'top' }]}
@@ -1071,7 +1072,7 @@ export default function CommunityPackCreateScreen() {
                 }}
               >
                 <Text style={{ color: t.accent, fontWeight: '800', fontSize: f.body }}>
-                  {L('+ Добавить карточку', '+ Додати картку', '+ Añadir tarjeta', '+ Adicionar cartão', '+ Thêm thẻ', '+ Tambah kartu', '+ Kart ekle', '+ Dodaj kartę')}
+                  {L('+ Добавить карточку', '+ Додати картку', '+ Add card', '+ Añadir tarjeta', '+ Adicionar cartão', '+ Thêm thẻ', '+ Tambah kartu', '+ Kart ekle', '+ Dodaj kartę')}
                 </Text>
               </TouchableOpacity>
 
@@ -1079,15 +1080,15 @@ export default function CommunityPackCreateScreen() {
                 <View ref={draftPanelRef} style={[styles.draftCardPanel, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', marginBottom: 4 }}>
                     {isEditingCard
-                      ? L('Редактирование карточки', 'Редагування картки', 'Editar tarjeta', 'Editar cartão', 'Chỉnh sửa thẻ', 'Edit kartu', 'Kartı düzenle', 'Edytuj kartę')
-                      : L('Новая карточка', 'Нова картка', 'Nueva tarjeta', 'Novo cartão', 'Thẻ mới', 'Kartu baru', 'Yeni kart', 'Nowa karta')}
+                      ? L('Редактирование карточки', 'Редагування картки', 'Editing the card', 'Editar tarjeta', 'Editar cartão', 'Chỉnh sửa thẻ', 'Edit kartu', 'Kartı düzenle', 'Edytuj kartę')
+                      : L('Новая карточка', 'Нова картка', 'New card', 'Nueva tarjeta', 'Novo cartão', 'Thẻ mới', 'Kartu baru', 'Yeni kart', 'Nowa karta')}
                   </Text>
                   <Text style={[draftLabelStyle(t), { marginTop: 8 }]}>
-                    {L('Передняя сторона', 'Передня сторона', 'Cara delantera', 'Frente', 'Mặt trước', 'Sisi depan', 'Ön yüz', 'Przednia strona')}
+                    {L('Передняя сторона', 'Передня сторона', 'Front side', 'Cara delantera', 'Frente', 'Mặt trước', 'Sisi depan', 'Ön yüz', 'Przednia strona')}
                   </Text>
                   <TextInput
                     ref={draftEnInputRef}
-                    accessibilityLabel={L('Передняя сторона карточки', 'Передня сторона картки', 'Cara delantera de la tarjeta', 'Frente do cartão', 'Mặt trước của thẻ', 'Sisi depan kartu', 'Kartın ön yüzü', 'Przednia strona karty')}
+                    accessibilityLabel={L('Передняя сторона карточки', 'Передня сторона картки', 'Front side of the card', 'Cara delantera de la tarjeta', 'Frente do cartão', 'Mặt trước của thẻ', 'Sisi depan kartu', 'Kartın ön yüzü', 'Przednia strona karty')}
                     {...getTextInputSystemEditMenuProps()}
                     value={draftEn}
                     onChangeText={setDraftEn}
@@ -1095,11 +1096,11 @@ export default function CommunityPackCreateScreen() {
                     style={[fieldInputStyle(t), { borderColor: t.accent }]}
                   />
                   <Text style={draftLabelStyle(t)}>
-                    {L('Задняя сторона', 'Зворотна сторона', 'Cara trasera', 'Verso', 'Mặt sau', 'Sisi belakang', 'Arka yüz', 'Tylna strona')}
+                    {L('Задняя сторона', 'Зворотна сторона', 'Back side', 'Cara trasera', 'Verso', 'Mặt sau', 'Sisi belakang', 'Arka yüz', 'Tylna strona')}
                   </Text>
                   <TextInput
                     ref={draftTranslationInputRef}
-                    accessibilityLabel={L('Задняя сторона карточки', 'Зворотна сторона картки', 'Cara trasera de la tarjeta', 'Verso do cartão', 'Mặt sau của thẻ', 'Sisi belakang kartu', 'Kartın arka yüzü', 'Tylna strona karty')}
+                    accessibilityLabel={L('Задняя сторона карточки', 'Зворотна сторона картки', 'Back side of the card', 'Cara trasera de la tarjeta', 'Verso do cartão', 'Mặt sau của thẻ', 'Sisi belakang kartu', 'Kartın arka yüzü', 'Tylna strona karty')}
                     {...getTextInputSystemEditMenuProps()}
                     value={draftTranslation}
                     onChangeText={setDraftTranslation}
@@ -1107,11 +1108,11 @@ export default function CommunityPackCreateScreen() {
                     style={fieldInputStyle(t)}
                   />
                   <Text style={draftLabelStyle(t)}>
-                    {L('Подсказка (необязательно)', 'Підказка (необов\'язково)', 'Nota (opcional)', 'Nota (opcional)', 'Ghi chú (không bắt buộc)', 'Catatan (opsional)', 'Not (isteğe bağlı)', 'Notatka (opcjonalnie)')}
+                    {L('Подсказка (необязательно)', 'Підказка (необов\'язково)', 'Hint (optional)', 'Nota (opcional)', 'Nota (opcional)', 'Ghi chú (không bắt buộc)', 'Catatan (opsional)', 'Not (isteğe bağlı)', 'Notatka (opcjonalnie)')}
                   </Text>
                   <TextInput
                     ref={draftNoteInputRef}
-                    accessibilityLabel={L('Описание или заметка к карточке', 'Опис або замітка до картки', 'Descripción o nota de la tarjeta', 'Descrição ou nota do cartão', 'Mô tả hoặc ghi chú thẻ', 'Deskripsi atau catatan kartu', 'Kart açıklaması veya notu', 'Opis lub notatka do karty')}
+                    accessibilityLabel={L('Описание или заметка к карточке', 'Опис або замітка до картки', 'Description or note for the card', 'Descripción o nota de la tarjeta', 'Descrição ou nota do cartão', 'Mô tả hoặc ghi chú thẻ', 'Deskripsi atau catatan kartu', 'Kart açıklaması veya notu', 'Opis lub notatka do karty')}
                     {...getTextInputSystemEditMenuProps()}
                     value={draftNote}
                     onChangeText={setDraftNote}
@@ -1133,7 +1134,7 @@ export default function CommunityPackCreateScreen() {
                       }}
                     >
                       <Text style={{ color: t.textSecond, fontWeight: '700', fontSize: f.body }}>
-                        {L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+                        {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -1154,8 +1155,8 @@ export default function CommunityPackCreateScreen() {
                       <Ionicons name="checkmark-circle" size={22} color={t.correctText} />
                       <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
                         {isEditingCard
-                          ? L('Обновить', 'Оновити', 'Actualizar', 'Atualizar', 'Cập nhật', 'Perbarui', 'Güncelle', 'Zaktualizuj')
-                          : L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
+                          ? L('Обновить', 'Оновити', 'Update', 'Actualizar', 'Atualizar', 'Cập nhật', 'Perbarui', 'Güncelle', 'Zaktualizuj')
+                          : L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -1205,7 +1206,7 @@ export default function CommunityPackCreateScreen() {
               >
                 <Ionicons name="color-palette-outline" size={18} color={t.accent} />
                 <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                  {L('Оформление', 'Оформлення', 'Aspecto', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')}
+                  {L('Оформление', 'Оформлення', 'Design', 'Aspecto', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }} numberOfLines={1}>
                   {ugcCardThemeLabel(themeKey, lang)}
@@ -1217,7 +1218,7 @@ export default function CommunityPackCreateScreen() {
 
               {decorOpen ? (
                 <View>
-              <Text style={labelStyle(t)}>{L('Цвет карточек', 'Колір карток', 'Color de las tarjetas', 'Cor dos cartões', 'Màu thẻ', 'Warna kartu', 'Kart rengi', 'Kolor kart')}</Text>
+              <Text style={labelStyle(t)}>{L('Цвет карточек', 'Колір карток', 'Card color', 'Color de las tarjetas', 'Cor dos cartões', 'Màu thẻ', 'Warna kartu', 'Kart rengi', 'Kolor kart')}</Text>
               {/* Живое превью: цвет виден сразу, в любой теме (владелец, 2026-08-13). */}
               <LinearGradient
                 colors={[...cardChrome.frontGradient]}
@@ -1234,7 +1235,7 @@ export default function CommunityPackCreateScreen() {
                 }}
               >
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
-                  {title.trim() || L('Ваш набор', 'Ваш набір', 'Tu pack', 'Seu pack', 'Bộ thẻ của bạn', 'Paketmu', 'Paketin', 'Twój pakiet')}
+                  {title.trim() || L('Ваш набор', 'Ваш набір', 'Your pack', 'Tu pack', 'Seu pack', 'Bộ thẻ của bạn', 'Paketmu', 'Paketin', 'Twój pakiet')}
                 </Text>
               </LinearGradient>
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 12 }}>
@@ -1279,7 +1280,7 @@ export default function CommunityPackCreateScreen() {
                 {ugcCardThemeLabel(themeKey, lang)}
               </Text>
 
-              <Text style={labelStyle(t)}>{L('Иконка набора', 'Іконка набору', 'Icono del pack', 'Icone do pack', 'Biểu tượng bộ thẻ', 'Ikon paket', 'Paket ikonu', 'Ikona pakietu')}</Text>
+              <Text style={labelStyle(t)}>{L('Иконка набора', 'Іконка набору', 'Pack icon', 'Icono del pack', 'Icone do pack', 'Biểu tượng bộ thẻ', 'Ikon paket', 'Paket ikonu', 'Ikona pakietu')}</Text>
               <View style={[styles.cardBackPickerPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
                 <View style={styles.cardBackHeroRow}>
                   <TapScale
@@ -1371,7 +1372,7 @@ export default function CommunityPackCreateScreen() {
               <TouchableOpacity
                 testID="ugc-pack-save"
                 accessibilityRole="button"
-                accessibilityLabel={L('Сохранить набор', 'Зберегти набір', 'Guardar el pack', 'Salvar o pacote', 'Lưu bộ thẻ', 'Simpan paket', 'Paketi kaydet', 'Zapisz zestaw')}
+                accessibilityLabel={L('Сохранить набор', 'Зберегти набір', 'Save the pack', 'Guardar el pack', 'Salvar o pacote', 'Lưu bộ thẻ', 'Simpan paket', 'Paketi kaydet', 'Zapisz zestaw')}
                 onPress={() => {
                   Keyboard.dismiss();
                   void onSubmit();
@@ -1388,7 +1389,7 @@ export default function CommunityPackCreateScreen() {
                 }}
               >
                 <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body + 1 }}>
-                  {L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
+                  {L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
                 </Text>
               </TouchableOpacity>
 
@@ -1404,7 +1405,7 @@ export default function CommunityPackCreateScreen() {
                   style={{ alignSelf: 'center', marginTop: 20, paddingVertical: 8, paddingHorizontal: 12 }}
                 >
                   <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                    {L('Очистить черновик', 'Очистити чернетку', 'Borrar borrador', 'Apagar rascunho', 'Xóa bản nháp', 'Hapus draf', 'Taslağı temizle', 'Wyczyść szkic')}
+                    {L('Очистить черновик', 'Очистити чернетку', 'Clear draft', 'Borrar borrador', 'Apagar rascunho', 'Xóa bản nháp', 'Hapus draf', 'Taslağı temizle', 'Wyczyść szkic')}
                   </Text>
                 </TouchableOpacity>
               ) : null}
@@ -1412,7 +1413,7 @@ export default function CommunityPackCreateScreen() {
                 <ReportErrorButton
                   screen="community_pack_create"
                   dataId="community_pack_editor"
-                  dataText={L('Создание набора', 'Створення набору', 'Crear pack', 'Criar pack', 'Tạo bộ thẻ', 'Buat paket', 'Paket oluşturma', 'Tworzenie pakietu')}
+                  dataText={L('Создание набора', 'Створення набору', 'Creating a pack', 'Crear pack', 'Criar pack', 'Tạo bộ thẻ', 'Buat paket', 'Paket oluşturma', 'Tworzenie pakietu')}
                 />
               </View>
               </View>
@@ -1421,10 +1422,11 @@ export default function CommunityPackCreateScreen() {
         </KeyboardAvoidingView>
         <ThemedConfirmModal
           visible={clearDraftModalOpen}
-          title={L('Очистить черновик?', 'Очистити чернетку?', '¿Borrar borrador?', 'Apagar rascunho?', 'Xóa bản nháp?', 'Hapus draf?', 'Taslak temizlensin mi?', 'Wyczyścić szkic?')}
+          title={L('Очистить черновик?', 'Очистити чернетку?', 'Clear the draft?', '¿Borrar borrador?', 'Apagar rascunho?', 'Xóa bản nháp?', 'Hapus draf?', 'Taslak temizlensin mi?', 'Wyczyścić szkic?')}
           message={L(
             'Локальные данные этого набора будут удалены.',
             'Локальні дані цього набору буде видалено.',
+            'The local data for this pack will be deleted.',
             'Se borrarán los datos locales de este pack.',
             'Os dados locais deste pack serão apagados.',
             'Dữ liệu cục bộ của bộ thẻ này sẽ bị xóa.',
@@ -1432,8 +1434,8 @@ export default function CommunityPackCreateScreen() {
             'Bu paketin yerel verileri silinecek.',
             'Lokalne dane tego pakietu zostaną usunięte.',
           )}
-          cancelLabel={L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
-          confirmLabel={L('Очистить', 'Очистити', 'Borrar', 'Apagar', 'Xóa', 'Hapus', 'Temizle', 'Wyczyść')}
+          cancelLabel={L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+          confirmLabel={L('Очистить', 'Очистити', 'Clear', 'Borrar', 'Apagar', 'Xóa', 'Hapus', 'Temizle', 'Wyczyść')}
           confirmVariant="default"
           onCancel={() => setClearDraftModalOpen(false)}
           onConfirm={performClearLocalDraft}

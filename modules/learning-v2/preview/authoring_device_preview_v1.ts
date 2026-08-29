@@ -114,18 +114,12 @@ export function resolveLearningV2AuthoringPreviewSpeechTextV1(
   return null;
 }
 
-export function buildLearningV2AuthoringDevicePreviewV1(
+function buildLearningV2AuthoringDevicePreviewFromSourceV1(
   sessionOrdinal: number,
   interfaceLocale: LearningV2InterfaceLocale,
+  status: Lesson1AuthoringStatusV1,
+  allowUnavailableAuthoredChoiceTargets = false,
 ): LearningV2AuthoringDevicePreviewV1 {
-  const row = learningV2AuthoringDevicePreviewRowsV1().find(
-    (entry) => entry.sessionOrdinal === sessionOrdinal,
-  );
-  if (!row) {
-    throw new Error(
-      `learning_v2_authoring_device_preview_forbidden:session=${sessionOrdinal}`,
-    );
-  }
   const source = authoredLearningV2SessionSource(sessionOrdinal);
   if (!source) {
     throw new Error(
@@ -138,6 +132,9 @@ export function buildLearningV2AuthoringDevicePreviewV1(
     shard,
     interfaceLocale,
     courseSessionId,
+    allowUnavailableAuthoredChoiceTargets
+      ? { allowUnavailableAuthoredChoiceTargets: true }
+      : undefined,
   ) as Readonly<{
     intro: LearningV2CourseSessionIntroChildV1;
     learner: LearningV2CourseSessionLearnerChildV1;
@@ -150,7 +147,7 @@ export function buildLearningV2AuthoringDevicePreviewV1(
     targetLanguage: "en" as const,
     lessonOrdinal: 1 as const,
     sessionOrdinal,
-    status: row.status,
+    status,
     releaseId: "authoring-preview-lesson-01" as const,
     activeRootFingerprint: PREVIEW_FINGERPRINT,
     activeHeadFingerprint: PREVIEW_FINGERPRINT,
@@ -165,4 +162,49 @@ export function buildLearningV2AuthoringDevicePreviewV1(
     audioReadiness: "published_audio_or_device_tts_preview_fallback" as const,
     sideEffectPolicy: "preview_only_no_learner_writes" as const,
   });
+}
+
+export function buildLearningV2AuthoringDevicePreviewV1(
+  sessionOrdinal: number,
+  interfaceLocale: LearningV2InterfaceLocale,
+): LearningV2AuthoringDevicePreviewV1 {
+  const row = learningV2AuthoringDevicePreviewRowsV1().find(
+    (entry) => entry.sessionOrdinal === sessionOrdinal,
+  );
+  if (!row) {
+    throw new Error(
+      `learning_v2_authoring_device_preview_forbidden:session=${sessionOrdinal}`,
+    );
+  }
+  return buildLearningV2AuthoringDevicePreviewFromSourceV1(
+    sessionOrdinal,
+    interfaceLocale,
+    row.status,
+  );
+}
+
+/**
+ * Explicitly unsafe DEV-only review path used by the map toggle. It exposes
+ * existing drafts without promoting them, writing learner progress, or
+ * weakening the normal owner-review boundary above. Call sites must hard-gate
+ * this function with React Native's compile-time `__DEV__` literal.
+ */
+export function buildLearningV2DevUnlockedDraftDevicePreviewV1(
+  sessionOrdinal: number,
+  interfaceLocale: LearningV2InterfaceLocale,
+): LearningV2AuthoringDevicePreviewV1 {
+  const row = LESSON1_AUTHORING_REGISTRY_V1.find(
+    (entry) => entry.sessionOrdinal === sessionOrdinal,
+  );
+  if (!row) {
+    throw new Error(
+      `learning_v2_dev_unlocked_draft_preview_missing:session=${sessionOrdinal}`,
+    );
+  }
+  return buildLearningV2AuthoringDevicePreviewFromSourceV1(
+    sessionOrdinal,
+    interfaceLocale,
+    row.status,
+    true,
+  );
 }

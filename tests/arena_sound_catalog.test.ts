@@ -149,9 +149,16 @@ describe('каталог сходится с объявлениями дирек
    * играет другое, и услышать это можно только ушами.
    */
   it('каждый звук объявлен и ровно с теми числами, что в каталоге', () => {
+    // зачем 2026-08-28: часть файлов Арены уже сгенерирована и подключена, у
+    // таких строк источник — require(...), а не null. Числа при этом обязаны
+    // совпадать с каталогом по-прежнему, поэтому сверяем ХВОСТ объявления
+    // (громкость, приоритет, кулдаун, длительность, семейство), а не весь текст.
     for (const spec of ARENA_SOUNDS) {
-      const line = `'${spec.eventId}': event(null, ${spec.volume}, ${spec.priority}, ${spec.cooldownMs}, ${spec.durationMs}, 'arena')`;
-      expect(events).toContain(line);
+      const tail = `, ${spec.volume}, ${spec.priority}, ${spec.cooldownMs}, ${spec.durationMs}, 'arena')`;
+      const at = events.indexOf(`'${spec.eventId}':`);
+      expect(at).toBeGreaterThan(-1);
+      const line = events.slice(at, events.indexOf('\n', at));
+      expect(line).toContain(tail);
     }
   });
 
@@ -161,18 +168,27 @@ describe('каталог сходится с объявлениями дирек
   });
 
   /**
-   * Источник пуст намеренно: файлов ещё нет. Директор такие события молча
-   * пропускает, поэтому места вызова уже работают, а заглушек в экранах нет.
+   * Звук Арены либо ещё не сгенерирован (источник null — директор молча
+   * пропускает такое событие), либо подключён файлом, который РЕАЛЬНО лежит
+   * на диске. Третьего не дано: require на несуществующий файл роняет сборку
+   * Metro целиком, а не только звук.
+   *
+   * зачем 2026-08-28: прежняя редакция требовала, чтобы источники были пусты
+   * ВСЕГДА. Это сторожило временное состояние «файлов ещё нет», и первый же
+   * подключённый звук ронял тест на ровном месте.
    */
-  it('источники пусты, пока файлы не сгенерированы', () => {
-    // Проверяем именно объявления, а не весь файл: папку `assets/sounds/ar/`
-    // упоминает пояснение рядом, и это правильно — оно говорит, куда класть.
+  it('источник либо пуст, либо ведёт на существующий файл', () => {
+    const dir = path.join(__dirname, '..', 'modules', 'audio');
     for (const spec of ARENA_SOUNDS) {
       const at = events.indexOf(`'${spec.eventId}':`);
       expect(at).toBeGreaterThan(-1);
       const line = events.slice(at, events.indexOf('\n', at));
-      expect(line).toContain('event(null,');
-      expect(line).not.toContain('require(');
+      const req = line.match(/require\('([^']+)'\)/);
+      if (!req) {
+        expect(line).toContain('event(null,');
+        continue;
+      }
+      expect(fs.existsSync(path.join(dir, req[1]))).toBe(true);
     }
   });
 

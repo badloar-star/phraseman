@@ -161,6 +161,17 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
   const recoverWithGift = useCallback(() => recover('gift'), [recover]);
   const recoverWithRunes = useCallback(() => recover('runes'), [recover]);
 
+  const restoreAfterSessionRuneForfeit = useCallback((): SessionAttemptsEffect => {
+    const transition = reduceSessionAttempts(stateRef.current, {
+      type: 'restore_after_session_rune_forfeit',
+    });
+    if (transition.state !== stateRef.current) {
+      adoptState(transition.state);
+      persist(transition.state);
+    }
+    return transition.effect;
+  }, [adoptState, persist]);
+
   const endAttemptsSession = useCallback((): SessionAttemptsEffect => {
     const transition = reduceSessionAttempts(stateRef.current, { type: 'end_session' });
     if (transition.state !== stateRef.current) {
@@ -182,6 +193,7 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
     updateQuestion,
     recoverWithGift,
     recoverWithRunes,
+    restoreAfterSessionRuneForfeit,
     endAttemptsSession,
     hydrate,
   });

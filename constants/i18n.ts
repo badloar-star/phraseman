@@ -1,8 +1,7 @@
 // All interface text. `es` is a UI/source language for learning English.
-// `en` has prepared UI copy but is deliberately quarantined outside `Lang`.
-// ENGLISH_UI_LOCALE_ENABLED is reserved for preflight only: it cannot activate
-// runtime selection until all UI contracts have verified English values.
-import { SPANISH_UI_LOCALE_ENABLED } from '../app/config';
+// `en` is a pure UI language gated by ENGLISH_UI_LOCALE_ENABLED, same pattern
+// as SPANISH_UI_LOCALE_ENABLED below.
+import { ENGLISH_UI_LOCALE_ENABLED, SPANISH_UI_LOCALE_ENABLED } from '../app/config';
 import {
   ACTIVE_INTERFACE_SOURCE_LOCALES,
   PLANNED_INTERFACE_SOURCE_LOCALES,
@@ -10,7 +9,11 @@ import {
   type RegisteredInterfaceSourceLocale,
 } from '../app/source_locales';
 
-export type Lang = RegisteredInterfaceSourceLocale;
+// зачем: English — чистый UI-язык, не входит в RegisteredInterfaceSourceLocale
+// (тот список гейтит контентные source-локали — квизы/паки, для которых нет
+// английского контента). Расширяем Lang здесь же, а не в source_locales.ts,
+// чтобы не задеть валидацию контента.
+export type Lang = RegisteredInterfaceSourceLocale | 'en';
 export type PlannedInterfaceLang = Exclude<HeisenbergSourceLocale, 'es'>;
 export type InterfaceLanguageOptionCode = Lang | PlannedInterfaceLang | 'en';
 export type PlannedTriLangCopy = Partial<Record<PlannedInterfaceLang, string>>;
@@ -43,6 +46,7 @@ export const INTERFACE_LANGUAGE_OPTIONS = [
 export const INTERFACE_LANG_READY_FOR_PROD: readonly InterfaceLanguageOptionCode[] = [
   'ru',
   'uk',
+  'en',
   'es',
   'pt-BR',
   'vi',
@@ -53,9 +57,7 @@ export const INTERFACE_LANG_READY_FOR_PROD: readonly InterfaceLanguageOptionCode
 
 export function isInterfaceLangEnabled(lang: InterfaceLanguageOptionCode): lang is Lang {
   if (lang === 'es') return SPANISH_UI_LOCALE_ENABLED;
-  // English is a staged dev-only option. It cannot enter the core Lang state
-  // until every Record<Lang, ...> contract has a complete English value.
-  if (lang === 'en') return false;
+  if (lang === 'en') return ENGLISH_UI_LOCALE_ENABLED;
   return INTERFACE_LANG_READY_FOR_PROD.includes(lang);
 }
 
@@ -824,7 +826,9 @@ export function triLang<const T extends { ru: unknown; uk: unknown; es: unknown 
 /** Ключ строк в `T` для текущего языка интерфейса (RU / UK / ES). */
 export function legacyRuUk(lang: Lang): 'ru' | 'uk' | 'es' {
   if (lang === 'uk') return 'uk';
-  if (lang === 'es' && isInterfaceLangEnabled(lang)) return 'es';
+  // зачем: EN — не кириллица, ближе к ES-паре в этом легаси-словаре, чем к RU;
+  // сам словарь ещё не переведён на EN отдельно (см. UiBundleLang).
+  if ((lang === 'es' || lang === 'en') && isInterfaceLangEnabled('es')) return 'es';
   return 'ru';
 }
 
@@ -833,6 +837,6 @@ export type UiBundleLang = 'ru' | 'uk' | 'es';
 
 export function bundleLang(lang: Lang): UiBundleLang {
   if (lang === 'uk') return 'uk';
-  if (lang === 'es' && isInterfaceLangEnabled(lang)) return 'es';
+  if ((lang === 'es' || lang === 'en') && isInterfaceLangEnabled('es')) return 'es';
   return 'ru';
 }

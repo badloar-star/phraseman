@@ -36,8 +36,8 @@ async function readLevelAwareBaseMaxEnergy(): Promise<number> {
 }
 
 /**
- * Постоянный потолок базовой энергии. Временный подарок хранится отдельным
- * расходуемым пулом и не должен расширять восстановление или знаменатель UI.
+ * Постоянный потолок базовой энергии. Временная ёмкость хранится отдельно;
+ * EnergyContext объединяет оба пула для восстановления и знаменателя UI.
  */
 export async function getEffectiveMaxEnergyValue(): Promise<number> {
   return readLevelAwareBaseMaxEnergy();
@@ -295,6 +295,71 @@ export function secondsUntilEnergyFull(
   const elapsedInCurrent = Math.max(0, now - lastRecoveryTime) % recoveryIntervalMs;
   const msUntilFull = missing * recoveryIntervalMs - elapsedInCurrent;
   return Math.max(1, Math.ceil(msUntilFull / 1000));
+}
+
+export type ActiveEnergyRecoveryInput = Readonly<{
+  baseEnergy: number;
+  maxEnergy: number;
+  bonusEnergy: number;
+  bonusCapacity: number;
+  bonusExpiresAt: number;
+  lastRecoveryTime: number;
+  recoveryIntervalMs: number;
+  now?: number;
+}>;
+
+export type ActiveEnergyRecoveryProjection = Readonly<{
+  baseEnergy: number;
+  bonusEnergy: number;
+  bonusCapacity: number;
+  bonusExpiresAt: number;
+  lastRecoveryTime: number;
+}>;
+
+/**
+ * Projects timer recovery across the permanent and currently active temporary
+ * pools. Permanent slots fill first; any remaining recovered units refill the
+ * temporary capacity without ever increasing that capacity.
+ */
+export function planActiveEnergyRecovery(
+  input: ActiveEnergyRecoveryInput,
+): ActiveEnergyRecoveryProjection {
+  const now = Number.isFinite(input.now) ? Number(input.now) : Date.now();
+  const maxEnergy = Math.max(0, Math.floor(Number(input.maxEnergy) || 0));
+  const baseEnergy = Math.min(maxEnergy, Math.max(0, Math.floor(Number(input.baseEnergy) || 0)));
+  const bonusIsActive = Number.isFinite(input.bonusExpiresAt) && input.bonusExpiresAt > now;
+  const bonusCapacity = bonusIsActive
+    ? Math.max(0, Math.floor(Number(input.bonusCapacity) || 0))
+    : 0;
+  const bonusEnergy = Math.min(
+    bonusCapacity,
+    Math.max(0, Math.floor(Number(input.bonusEnergy) || 0)),
+  );
+  const lastRecoveryTime = Number.isFinite(input.lastRecoveryTime) && input.lastRecoveryTime > 0
+    ? input.lastRecoveryTime
+    : now;
+  const recoveryIntervalMs = Math.max(0, Number(input.recoveryIntervalMs) || 0);
+  const missing = (maxEnergy - baseEnergy) + (bonusCapacity - bonusEnergy);
+  if (missing <= 0 || recoveryIntervalMs <= 0 || now <= lastRecoveryTime) {
+    return { baseEnergy, bonusEnergy, bonusCapacity, bonusExpiresAt: bonusIsActive ? input.bonusExpiresAt : 0, lastRecoveryTime };
+  }
+
+  const completedIntervals = Math.floor((now - lastRecoveryTime) / recoveryIntervalMs);
+  if (completedIntervals <= 0) {
+    return { baseEnergy, bonusEnergy, bonusCapacity, bonusExpiresAt: bonusIsActive ? input.bonusExpiresAt : 0, lastRecoveryTime };
+  }
+  const recoveredUnits = Math.min(missing, completedIntervals);
+  const nextBase = Math.min(maxEnergy, baseEnergy + recoveredUnits);
+  const recoveredBonus = recoveredUnits - (nextBase - baseEnergy);
+  return {
+    baseEnergy: nextBase,
+    bonusEnergy: Math.min(bonusCapacity, bonusEnergy + recoveredBonus),
+    bonusCapacity,
+    bonusExpiresAt: bonusIsActive ? input.bonusExpiresAt : 0,
+    // Consume every completed interval while the pool was not full. Otherwise
+    // a long offline period would be replayed again immediately after a spend.
+    lastRecoveryTime: lastRecoveryTime + completedIntervals * recoveryIntervalMs,
+  };
 }
 
 /**

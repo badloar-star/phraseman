@@ -1,4 +1,9 @@
-import { CUSTOM_AVATARS, CUSTOM_AVATAR_GIFT_ONLY } from '../constants/custom_avatars';
+import {
+  CUSTOM_AVATARS,
+  CUSTOM_AVATAR_GIFT_ONLY,
+  getCustomAvatarRuneCost,
+  parseCustomAvatarValue,
+} from '../constants/custom_avatars';
 import type { Lang } from '../constants/i18n';
 import {
   buildAuraCatalog,
@@ -20,6 +25,54 @@ const baseContext = {
 describe('customization catalog', () => {
   afterEach(() => replaceCosmeticSaleOverrides({}, 0));
 
+  it.each([
+    [50, 4_000],
+    [70, 5_600],
+    [100, 8_000],
+    [150, 12_000],
+    [300, 24_000],
+    [500, 40_000],
+    [1_000, 80_000],
+    [3_000, 240_000],
+  ] as const)('maps the %i pearl retail tier to %i Yin runes', (pearls, runes) => {
+    expect(getCustomAvatarRuneCost(pearls)).toBe(runes);
+  });
+
+  it('prices Yin in runes with black art and Yang in pearls with white art', () => {
+    const base = {
+      ownedAvatars: {},
+      giftedAvatarId: null,
+      activeAvatar: '1',
+    } as const;
+    const yin = buildAvatarCatalog({ ...base, side: 'yin' })
+      .find((candidate) => candidate.id === 'custom-gen-73');
+    const yang = buildAvatarCatalog({ ...base, side: 'yang' })
+      .find((candidate) => candidate.id === 'custom-gen-73');
+
+    expect(yin?.availability).toEqual({ kind: 'runes', cost: 5_600 });
+    expect(parseCustomAvatarValue(yin?.kind === 'custom-avatar' ? yin.previewValue : null)?.logoColor)
+      .toBe('black');
+    expect(yang?.availability).toEqual({ kind: 'shards', cost: 70 });
+    expect(parseCustomAvatarValue(yang?.kind === 'custom-avatar' ? yang.previewValue : null)?.logoColor)
+      .toBe('white');
+  });
+
+  it('returns a formerly active DEV-only avatar to its purchase price after baseline restore', () => {
+    const restored = buildAvatarCatalog({
+      ownedAvatars: {},
+      giftedAvatarId: null,
+      activeAvatar: '18',
+      side: 'yin',
+      devUnlockAll: false,
+    }).find((candidate) => candidate.id === 'custom-gen-73');
+
+    expect(restored).toMatchObject({
+      isOwned: false,
+      isActive: false,
+      availability: { kind: 'runes', cost: 5_600 },
+    });
+  });
+
   it('never exposes level avatars', () => {
     const items = buildAvatarCatalog({ ownedAvatars: {}, giftedAvatarId: null, activeAvatar: '1' });
     expect(items.every((item) => item.kind === 'custom-avatar')).toBe(true);
@@ -36,25 +89,30 @@ describe('customization catalog', () => {
     }).some((item) => item.id === secretGiftId)).toBe(true);
   });
 
-  it('prices an unowned shop avatar at 90 shards', () => {
-    const item = buildAvatarCatalog({
-      ownedAvatars: {},
-      giftedAvatarId: null,
-      activeAvatar: '1',
-    }).find((candidate) => candidate.id === 'custom-gen-41');
+  // зачем: владелец 2026-08-27 снял старые платные аватары (41–72 и 90) с продажи
+  // навсегда. Незнакомый покупатель их больше вообще не видит в каталоге.
+  it.each(['custom-gen-41', 'custom-gen-63', 'custom-gen-72', 'custom-gen-90'] as const)(
+    'never offers retired avatar %s to a customer who does not own it',
+    (id) => {
+      const item = buildAvatarCatalog({
+        ownedAvatars: {},
+        giftedAvatarId: null,
+        activeAvatar: '1',
+      }).find((candidate) => candidate.id === id);
 
-    expect(item?.availability).toEqual({ kind: 'shards', cost: 90 });
-  });
+      expect(item).toBeUndefined();
+    },
+  );
 
   it.each([
-    ['custom-gen-63', 50],
     ['custom-gen-73', 70],
     ['custom-gen-83', 100],
     ['custom-gen-93', 150],
     ['custom-gen-103', 300],
     ['custom-gen-113', 500],
     ['custom-gen-123', 1000],
-  ] as const)('prices showcase avatar %s at %i pearls', (id, cost) => {
+    ['custom-gen-126', 3000],
+  ] as const)('prices Avatar100 avatar %s at %i pearls', (id, cost) => {
     const item = buildAvatarCatalog({
       ownedAvatars: {},
       giftedAvatarId: null,
@@ -64,7 +122,9 @@ describe('customization catalog', () => {
     expect(item?.availability).toEqual({ kind: 'shards', cost });
   });
 
-  it('sorts purchasable avatars by price and keeps all showcase tier sizes', () => {
+  // зачем: витрина теперь — только Avatar100 (73–126 без 90). В ярусе 100 жемчужин
+  // девять позиций именно потому, что ID 90 исключён владельцем.
+  it('sorts purchasable avatars by price and keeps all Avatar100 tier sizes', () => {
     const items = buildAvatarCatalog({
       ownedAvatars: {},
       giftedAvatarId: null,
@@ -75,20 +135,25 @@ describe('customization catalog', () => {
       : []);
 
     expect(costs).toEqual([...costs].sort((left, right) => left - right));
-    expect(costs.filter((cost) => cost === 50)).toHaveLength(10);
+    expect(costs.filter((cost) => cost === 50)).toHaveLength(0);
+    expect(costs.filter((cost) => cost === 90)).toHaveLength(0);
     expect(costs.filter((cost) => cost === 70)).toHaveLength(10);
-    expect(costs.filter((cost) => cost === 100)).toHaveLength(10);
+    expect(costs.filter((cost) => cost === 100)).toHaveLength(9);
     expect(costs.filter((cost) => cost === 150)).toHaveLength(10);
     expect(costs.filter((cost) => cost === 300)).toHaveLength(10);
     expect(costs.filter((cost) => cost === 500)).toHaveLength(10);
     expect(costs.filter((cost) => cost === 1000)).toHaveLength(3);
+    expect(costs.filter((cost) => cost === 3000)).toHaveLength(1);
+    expect(costs).toHaveLength(53);
   });
 
   it('localizes every showcase avatar name in all supported languages', () => {
     const languages: Lang[] = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+    // Avatar100 забрал ID 73–126 из showcase-v1; у снятых с продажи 41–72
+    // подписи обязаны оставаться живыми — их аватары носят прежние владельцы.
     const showcase = CUSTOM_AVATARS.filter((avatar) => avatar.collection === 'showcase-v1');
 
-    expect(showcase).toHaveLength(63);
+    expect(showcase).toHaveLength(11);
     showcase.forEach((avatar) => {
       languages.forEach((lang) => {
         expect(avatar.labels?.[lang]).toEqual(expect.any(String));

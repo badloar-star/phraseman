@@ -48,8 +48,9 @@ export const LEARNING_V2_MODE_NATIVE_AUTHORING_CONTRACT_V1 = Object.freeze({
         "authoredDistractorTokens",
         "slotFeedback",
       ]),
-      mockupParityStatus: "HOLD",
-      mockupParityReceiptId: null,
+      mockupParityStatus: "PASS",
+      mockupParityReceiptId:
+        "owner-approved-en-s01-phone-parity-2026-08-26:phrase_builder",
     }),
     Object.freeze({
       family: "listen_choose",
@@ -63,8 +64,9 @@ export const LEARNING_V2_MODE_NATIVE_AUTHORING_CONTRACT_V1 = Object.freeze({
         "transcriptRevealPolicy",
         "choiceFeedback",
       ]),
-      mockupParityStatus: "HOLD",
-      mockupParityReceiptId: null,
+      mockupParityStatus: "PASS",
+      mockupParityReceiptId:
+        "owner-approved-en-s01-phone-parity-2026-08-26:listen_choose",
     }),
     Object.freeze({
       family: "listen_build_dictation",
@@ -79,8 +81,9 @@ export const LEARNING_V2_MODE_NATIVE_AUTHORING_CONTRACT_V1 = Object.freeze({
         "authoredDistractorTokens",
         "slotFeedback",
       ]),
-      mockupParityStatus: "HOLD",
-      mockupParityReceiptId: null,
+      mockupParityStatus: "PASS",
+      mockupParityReceiptId:
+        "owner-approved-en-s01-phone-parity-2026-08-26:listen_build_dictation",
     }),
     Object.freeze({
       family: "context_gap_grammar",
@@ -94,8 +97,9 @@ export const LEARNING_V2_MODE_NATIVE_AUTHORING_CONTRACT_V1 = Object.freeze({
         "testedDimension",
         "choiceFeedback",
       ]),
-      mockupParityStatus: "HOLD",
-      mockupParityReceiptId: null,
+      mockupParityStatus: "PASS",
+      mockupParityReceiptId:
+        "owner-approved-en-s01-phone-parity-2026-08-26:context_gap_grammar",
     }),
     Object.freeze({
       family: "speed_match",
@@ -110,8 +114,9 @@ export const LEARNING_V2_MODE_NATIVE_AUTHORING_CONTRACT_V1 = Object.freeze({
         "timerPolicy",
         "finishStats",
       ]),
-      mockupParityStatus: "HOLD",
-      mockupParityReceiptId: null,
+      mockupParityStatus: "PASS",
+      mockupParityReceiptId:
+        "owner-approved-en-s01-phone-parity-2026-08-26:speed_match",
     }),
     Object.freeze({
       family: "scripted_repeat_compare",
@@ -127,8 +132,9 @@ export const LEARNING_V2_MODE_NATIVE_AUTHORING_CONTRACT_V1 = Object.freeze({
         "learnerPlayback",
         "honestOutcomeStates",
       ]),
-      mockupParityStatus: "HOLD",
-      mockupParityReceiptId: null,
+      mockupParityStatus: "PASS",
+      mockupParityReceiptId:
+        "owner-approved-en-s01-phone-parity-2026-08-26:scripted_repeat_compare",
     }),
   ]),
 });

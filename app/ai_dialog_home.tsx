@@ -18,7 +18,7 @@ export default function AiDialogHome() {
   const router = useRouter();
 
   const backLabel = triLang(lang, {
-    ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar',
+    ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
     vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
   });
 
@@ -63,6 +63,7 @@ export default function AiDialogHome() {
           {triLang(lang, {
             ru: 'Диалоги',
             uk: 'Діалоги',
+            en: 'Dialogues',
             es: 'Diálogos',
             'pt-BR': 'Diálogos',
             vi: 'Đối thoại',

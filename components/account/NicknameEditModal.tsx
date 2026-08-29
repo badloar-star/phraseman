@@ -85,9 +85,9 @@ export default function NicknameEditModal({
   const reduceMotion = useReduceMotion();
   const isHybrid = motionVariant === 'hybrid';
   const L = (
-    ru: string, uk: string, es: string, ptBr: string,
+    ru: string, uk: string, en: string, es: string, ptBr: string,
     vi: string, id: string, tr: string, pl: string,
-  ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
   const [newName, setNewName] = useState(currentName);
   const [saving, setSaving] = useState(false);
@@ -158,7 +158,7 @@ export default function NicknameEditModal({
 
   const alertOverModal = useCallback((message: string) => {
     Alert.alert(
-      L('Сообщение', 'Повідомлення', 'Mensaje', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość'),
+      L('Сообщение', 'Повідомлення', 'Message', 'Mensaje', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość'),
       message,
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -178,10 +178,10 @@ export default function NicknameEditModal({
     if (savingRef.current) return;
     if (availabilityStatus === 'checking' || availabilityStatus === 'taken') return;
     const trimmed = newName.trim();
-    if (!trimmed) { alertOverModal(L('Введи имя', "Введіть ім\'я", 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
-    if (trimmed.length < 2) { alertOverModal(L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
-    if (trimmed.length > 20) { alertOverModal(L('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
-    if (containsBadWord(trimmed)) { alertOverModal(L('Недопустимое имя', "Недопустиме ім\'я", 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa')); return; }
+    if (!trimmed) { alertOverModal(L('Введи имя', "Введіть ім\'я", 'Enter a name or nickname', 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
+    if (trimmed.length < 2) { alertOverModal(L('Минимум 2 символа', 'Мінімум 2 символи', 'Minimum 2 characters', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
+    if (trimmed.length > 20) { alertOverModal(L('Максимум 20 символов', 'Максимум 20 символів', 'Maximum 20 characters', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
+    if (containsBadWord(trimmed)) { alertOverModal(L('Недопустимое имя', "Недопустиме ім\'я", 'Invalid name', 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa')); return; }
 
     const oldName = currentName.trim();
     if (trimmed === oldName) {
@@ -246,7 +246,7 @@ export default function NicknameEditModal({
 
       if (reservation.status === 'taken') {
         rollbackToOldName();
-        onNotice(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
+        onNotice(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'This name is already taken. Choose another.', 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
         return;
       }
       if (reservation.status === 'cooldown') {
@@ -254,6 +254,7 @@ export default function NicknameEditModal({
         onNotice(L(
           'Ник можно менять не чаще одного раза в 14 дней.',
           'Нік можна змінювати не частіше одного разу на 14 днів.',
+          'You can change your name only once every 14 days.',
           'Puedes cambiar el nombre solo una vez cada 14 días.',
           'Você só pode mudar o nome uma vez a cada 14 dias.',
           'Bạn chỉ có thể đổi tên 14 ngày một lần.',
@@ -268,6 +269,7 @@ export default function NicknameEditModal({
         onNotice(L(
           'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
           'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',
+          'Could not verify the name. Check your internet and try again.',
           'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
           'Não foi possível verificar o nome. Verifique a conexão e tente novamente.',
           'Không thể kiểm tra tên. Kiểm tra kết nối và thử lại.',
@@ -290,16 +292,16 @@ export default function NicknameEditModal({
 
   const availabilityMessage = (() => {
     if (availabilityStatus === 'checking') {
-      return L('Проверяем имя…', 'Перевіряємо ім\'я…', 'Comprobando nombre…', 'Verificando nome…', 'Đang kiểm tra tên…', 'Memeriksa nama…', 'Ad kontrol ediliyor…', 'Sprawdzamy nazwę…');
+      return L('Проверяем имя…', 'Перевіряємо ім\'я…', 'Checking the name…', 'Comprobando nombre…', 'Verificando nome…', 'Đang kiểm tra tên…', 'Memeriksa nama…', 'Ad kontrol ediliyor…', 'Sprawdzamy nazwę…');
     }
     if (availabilityStatus === 'available') {
-      return L('Имя свободно', 'Ім\'я вільне', 'El nombre está disponible', 'Nome disponível', 'Tên khả dụng', 'Nama tersedia', 'Ad kullanılabilir', 'Nazwa jest dostępna');
+      return L('Имя свободно', 'Ім\'я вільне', 'The name is available', 'El nombre está disponible', 'Nome disponível', 'Tên khả dụng', 'Nama tersedia', 'Ad kullanılabilir', 'Nazwa jest dostępna');
     }
     if (availabilityStatus === 'taken') {
-      return L('Имя уже занято', 'Ім\'я вже зайняте', 'El nombre ya está en uso', 'Este nome já está em uso', 'Tên đã được sử dụng', 'Nama sudah dipakai', 'Bu ad zaten kullanılıyor', 'Nazwa jest już zajęta');
+      return L('Имя уже занято', 'Ім\'я вже зайняте', 'The name is already taken', 'El nombre ya está en uso', 'Este nome já está em uso', 'Tên đã được sử dụng', 'Nama sudah dipakai', 'Bu ad zaten kullanılıyor', 'Nazwa jest już zajęta');
     }
     if (availabilityStatus === 'error') {
-      return L('Проверим при сохранении', 'Перевіримо під час збереження', 'Lo comprobaremos al guardar', 'Verificaremos ao salvar', 'Sẽ kiểm tra khi lưu', 'Akan diperiksa saat menyimpan', 'Kaydederken kontrol edeceğiz', 'Sprawdzimy przy zapisie');
+      return L('Проверим при сохранении', 'Перевіримо під час збереження', 'We\'ll check when you save', 'Lo comprobaremos al guardar', 'Verificaremos ao salvar', 'Sẽ kiểm tra khi lưu', 'Akan diperiksa saat menyimpan', 'Kaydederken kontrol edeceğiz', 'Sprawdzimy przy zapisie');
     }
     return '';
   })();
@@ -333,13 +335,13 @@ export default function NicknameEditModal({
     >
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
         <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '600', marginBottom: 16 }}>
-          {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
+          {L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
         </Text>
       </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] + 96 : 0} reduceMotion={!isHybrid || reduceMotion}>
         <TextInput
           testID="nickname-input"
-          accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
+          accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Profile name', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
           style={{
             // Поле отделено тоном (bgPrimary на bgCard), без обводки — правило владельца.
             backgroundColor: t.bgPrimary,
@@ -351,7 +353,7 @@ export default function NicknameEditModal({
           }}
           value={newName}
           onChangeText={setNewName}
-          placeholder={L('Введи имя...', 'Введіть ім\'я...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
+          placeholder={L('Введи имя...', 'Введіть ім\'я...', 'Enter your name...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
           placeholderTextColor={t.textGhost}
           editable={!saving}
           autoFocus={!isHybrid}
@@ -400,7 +402,7 @@ export default function NicknameEditModal({
           >
             {/* зачем: text-integrity — лейбл переносится, кнопка растёт по паддингам. */}
             <FlowText testID="nickname-cancel-label" provenance="authored" style={{ color: t.textMuted, fontSize: f.body }}>
-              {L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+              {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
             </FlowText>
           </TouchableOpacity>
           <TouchableOpacity
@@ -435,8 +437,8 @@ export default function NicknameEditModal({
                 style={{ color: t.correctText, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
               >
                 {saving
-                  ? L('Сохраняем', 'Зберігаємо', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')
-                  : L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
+                  ? L('Сохраняем', 'Зберігаємо', 'Saving', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')
+                  : L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
               </FlowText>
             </View>
           </TouchableOpacity>

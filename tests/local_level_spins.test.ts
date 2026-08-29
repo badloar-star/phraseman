@@ -86,6 +86,8 @@ describe('local level Spin runtime', () => {
     // Награда, которую человеку уже нечего дать, выбывает ИЗ РОЗЫГРЫША.
     // Утешительная выплата здесь была бы слишком щедрой (решение владельца).
     expect(runtime).toContain('listExhaustedSpinRewardIds()');
+    expect(runtime).toContain('RETIRED_LEVEL_SPIN_REWARD_IDS');
+    expect(runtime).toContain("['attempt_restore_all'] as const");
     expect(runtime).toContain('pickLevelSpinRewardExcluding(requestId, excludedRewardIds)');
   });
 

@@ -2,7 +2,11 @@ import { AVATAR_AURA_BUY_COST, NO_AVATAR_AURA_ID } from '../constants/avatar_aur
 import {
   CUSTOM_AVATAR_GRADIENTS,
   CUSTOM_AVATAR_RESTYLE_COST,
+  CUSTOM_AVATAR_RUNE_RESTYLE_COST,
+  encodeCustomAvatarOwnedStyle,
   getCustomAvatarPurchaseCost,
+  getCustomAvatarRuneCost,
+  parseCustomAvatarOwnedStyle,
   parseCustomAvatarValue,
 } from '../constants/custom_avatars';
 import { getBestFrameForLevel } from '../constants/avatars';
@@ -17,14 +21,20 @@ export interface CustomizationPurchaseValidationContext {
   isPro?: boolean;
 }
 
-function validAvatarOwnedValue(itemId: string, ownedValue: true | string): ownedValue is string {
-  if (typeof ownedValue !== 'string') return false;
-  const [gradientId, logoColor, extra] = ownedValue.split(':');
-  if (extra !== undefined
-    || !CUSTOM_AVATAR_GRADIENTS.some((gradient) => gradient.id === gradientId)
-    || (logoColor !== 'black' && logoColor !== 'white')) return false;
-  const parsed = parseCustomAvatarValue(`custom:${itemId}:${ownedValue}`);
-  return parsed?.avatarId === itemId;
+function intentCurrency(intent: CustomizationPurchaseIntent): 'pearls' | 'runes' {
+  return intent.v === 1 ? 'pearls' : intent.currency;
+}
+
+function validAvatarValues(intent: CustomizationPurchaseIntent) {
+  if (intent.target !== 'avatar'
+    || typeof intent.ownedValue !== 'string'
+    || typeof intent.avatarValue !== 'string') return null;
+  const parsed = parseCustomAvatarValue(intent.avatarValue);
+  if (!parsed
+    || parsed.avatarId !== intent.itemId
+    || !CUSTOM_AVATAR_GRADIENTS.some((gradient) => gradient.id === parsed.gradientId)
+    || encodeCustomAvatarOwnedStyle(parsed) !== intent.ownedValue) return null;
+  return parsed;
 }
 
 export function validateCustomizationPurchase(
@@ -33,23 +43,52 @@ export function validateCustomizationPurchase(
 ): boolean {
   const { snapshot } = context;
   if (intent.target === 'avatar') {
-    if (!validAvatarOwnedValue(intent.itemId, intent.ownedValue)) return false;
+    if (intent.v === 1 && intent.phase !== 'prepared' && typeof intent.ownedValue === 'string') {
+      const legacyStyle = parseCustomAvatarOwnedStyle(intent.itemId, intent.ownedValue);
+      const legacyItem = buildAvatarCatalog({
+        activeAvatar: snapshot.activeAvatar,
+        ownedAvatars: snapshot.ownedAvatars,
+        giftedAvatarId: snapshot.giftedAvatarId,
+        side: 'yang',
+      }).find((candidate) => candidate.id === intent.itemId);
+      return !!legacyStyle
+        && legacyItem?.kind === 'custom-avatar'
+        && intent.spendReason === 'custom_avatar'
+        && legacyItem.availability.kind === 'shards'
+        && intent.cost === getCustomAvatarPurchaseCost(legacyItem.avatar);
+    }
+    const parsed = validAvatarValues(intent);
+    if (!parsed) return false;
+    const currency = intentCurrency(intent);
+    const side = parsed.logoColor === 'black' ? 'yin' : 'yang';
+    if ((side === 'yin' && currency !== 'runes') || (side === 'yang' && currency !== 'pearls')) return false;
     const item = buildAvatarCatalog({
       activeAvatar: snapshot.activeAvatar,
       ownedAvatars: snapshot.ownedAvatars,
       giftedAvatarId: snapshot.giftedAvatarId,
+      side,
     }).find((candidate) => candidate.id === intent.itemId);
     if (!item || item.kind !== 'custom-avatar') return false;
     if (intent.spendReason === 'custom_avatar') {
-      return (item.availability.kind === 'shards' || (intent.phase === 'granted' && item.isOwned))
-        && intent.cost === getCustomAvatarPurchaseCost(item.avatar);
+      const canonicalCost = currency === 'runes'
+        ? getCustomAvatarRuneCost(item.avatar)
+        : getCustomAvatarPurchaseCost(item.avatar);
+      const purchasable = currency === 'runes'
+        ? item.availability.kind === 'runes'
+        : item.availability.kind === 'shards';
+      return (purchasable || (intent.phase === 'granted' && item.isOwned))
+        && intent.cost === canonicalCost;
     }
     return intent.spendReason === 'custom_avatar_restyle'
       && item.availability.kind === 'owned'
-      && intent.cost === CUSTOM_AVATAR_RESTYLE_COST;
+      && intent.cost === (currency === 'runes'
+        ? CUSTOM_AVATAR_RUNE_RESTYLE_COST
+        : CUSTOM_AVATAR_RESTYLE_COST);
   }
 
-  if (intent.spendReason !== 'avatar_aura' || intent.ownedValue !== true) return false;
+  if (intentCurrency(intent) !== 'pearls'
+    || intent.spendReason !== 'avatar_aura'
+    || intent.ownedValue !== true) return false;
   const item = buildAuraCatalog({
     activeAvatar: snapshot.activeAvatar,
     activeAuraId: snapshot.storedAuraSelection,
@@ -86,6 +125,7 @@ export function validateCustomizationPurchaseApply(
       activeAvatar: snapshot.activeAvatar,
       ownedAvatars,
       giftedAvatarId: snapshot.giftedAvatarId,
+      side: parsedAvatar.logoColor === 'black' ? 'yin' : 'yang',
     }).find((candidate) => candidate.id === parsedAvatar.avatarId);
     if (!avatarItem?.isOwned) return false;
     if (intent.target === 'avatar' && parsedAvatar.avatarId !== intent.itemId) return false;

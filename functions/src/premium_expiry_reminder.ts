@@ -32,7 +32,7 @@ export const REMIND_MAX_MS = 4 * DAY_MS;
 /** Не повторять напоминание про один и тот же срок чаще раза в N дней (анти-спам). */
 export const REMINDER_COOLDOWN_DAYS = 5;
 
-const STORE_PLANS = new Set(['monthly', 'yearly', 'annual', 'max_monthly']);
+const STORE_PLANS = new Set(['monthly', 'yearly', 'annual']);
 
 function cleanStr(value: unknown): string {
   return String(value ?? '').trim();
@@ -172,7 +172,7 @@ export function classifyExpiryReminder(
     lang: u.pushTokenLang || 'ru',
     kind: access.kind,
     ...(access.kind === 'subscription' ? {
-      subscriptionPlan: cleanPlan(u.progress?.premium_plan) === 'max_monthly' ? 'max' : 'plus',
+      subscriptionPlan: 'plus',
     } : {}),
     expiryMs: access.expiryMs,
   };

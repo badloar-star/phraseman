@@ -1,5 +1,367 @@
 # Phraseman Learning V2 — мастер-хендовер
 
+## Session 4: no letter assembly + explicit `you are` grammar — 2026-08-28
+
+- Прямое решение владельца: буквенная сборка полностью запрещена. Builder и
+  dictation получают только цельные слова/чанки; смесь вроде `e / sad / t`
+  блокируется `assertLearningV2NoLetterLevelAssemblyV1`.
+- Каждая новая сессия обязана объявить новую микрограмматическую операцию.
+  Нулевая новая грамматика, locale-native semantic quiz в интро или новая форма
+  до объяснения дают HOLD через current-session integrity gate.
+- Session 4 переписана с повторявшей `I am + state` на новый шаг `you are`.
+  Три интро учат `you` как собеседника, форму `are` и обязательный полный
+  порядок; вопросы проверяют английские формы. Новая лексика сохранена:
+  `set / done / free`.
+- Будущие строки карты с `teaches: []` и прежняя session 33, повторяющая
+  `you are`, должны быть перепланированы до authoring; сессии 5–56 не
+  редактировались в обход sequential registry.
+- Registry после точечного пересчёта изменённых LOCKED source fingerprints:
+  `LOCKED 1–3 / CURRENT 4 DRAFT / FORBIDDEN 5–56`. Session 4 не считается
+  одобренной и не переводится в `LOCKED` без личного owner review.
+- Финальный focused GREEN в `C:\appsprojects\phraseman`:
+  `npm run learning-v2:lesson1-authoring-preflight -- --session 4`;
+  session-specific word-first gates `01`, `02`, `03`, `04`;
+  `learning_v2_authoring_guardrails_2026_08_28_gate.ts`; static owner-review
+  bundle + HTML + freshness gates. Макет пересобран с sessions `1,2,3,4`;
+  точный scan подтверждает `old_letter_prompt=False`,
+  `new_grammar_intro=True`, `new_phrase=True`.
+
+## Speed Match capped at four pairs — 2026-08-28
+
+- Новое прямое решение владельца отменяет прежние восемь пар начиная с
+  session 2: один экран содержит максимум `4 target + 4 meaning`.
+- Session 2 теперь повторяет `happy / sad / tired / fine`; session 3 —
+  `here / ready / happy / tired`. Session 1 уже содержала четыре пары.
+- Learner-projection gate блокирует пятую пару кодом
+  `speed_match_pair_count_exceeded`; session-specific gates требуют ровно
+  четыре пары и точный учебный набор.
+- GREEN после пересборки source-backed HTML:
+  `learning_v2_lesson1_session_02_word_first_gate.ts`,
+  `learning_v2_lesson1_session_03_word_first_gate.ts`,
+  `learning_v2_authoring_guardrails_2026_08_28_gate.ts`, session 3 preflight,
+  static owner-review bundle и HTML gates. Макет:
+  `.codex-tmp/learning-v2-owner-review/index.html`.
+
+## English sessions 1–3 rebuilt under atomic-choice gates — 2026-08-28
+
+- Текущий авторский контур: `LOCKED 1–2 / CURRENT 3 DRAFT / FORBIDDEN 4–56`.
+  Сессия 3 доведена до `AUTO_PASS`-готовности, но намеренно не переведена в
+  `LOCKED` без нового личного owner review.
+- Сессии 1–3 теперь подчиняются одному projection contract: каждый видимый
+  вариант атомарен, response IDs и тексты уникальны, правильный ответ ровно
+  один, у single-choice минимум три разные правдоподобные ловушки, а каждая
+  неверная ловушка имеет собственный ручной feedback по точному `responseId`
+  во всех восьми локалях. Choice-style feedback в builder, dictation, pairs и
+  voice запрещён.
+- Для session 2 добавлены отсутствовавшие третьи ручные дистракторы слов и
+  phrase slots; atomic projection отделяет короткую подпись кнопки от богатого
+  перевода карточки. Для session 3 устранён наследуемый дубль `find`: merge
+  больше не добавляет ловушку, уже существующую в source или locale details.
+- GREEN: current-session integrity `1`, `2`, `3`; session 2/3 word-first;
+  focused mode-native `--target=en --session=1|2|3`; authoring guardrails;
+  static owner-review HTML; session 3 preflight. Актуальный source-backed
+  HTML пересобран с тремя сессиями:
+  `.codex-tmp/learning-v2-owner-review/index.html`.
+- Независимый инфраструктурный дефект остаётся вне английского контура:
+  нефокусированный global mode-native runner импортирует испанский registry,
+  тот тянет `app/config` и React Native Flow source, после чего Node/tsx падает
+  на `typeof`. Английские focused gates проходят; Spanish source не менялся.
+
+## Exact single-choice feedback boundary + distractor integrity — 2026-08-28
+
+- Новое прямое решение владельца: learner-facing пояснение ошибки существует
+  только в practice с `inputMode=single_choice`; builder, listen-build, пары и
+  voice не показывают такую плашку. Каждый неверный выбор имеет собственный
+  ручной locale-native feedback по точному `responseId`.
+- Root cause owner-макета: builder передавал текст последней плитки вместо
+  стабильного feedback id, а renderer при промахе подставлял первый элемент с
+  `correct=false`. Удалены оба fallback-пути; non-choice feedback больше не
+  попадает в auxiliary child.
+- Постоянный projection gate теперь проверяет реальный learner + evaluator +
+  auxiliary package: уникальные тексты и response IDs, ровно один принимаемый
+  вариант, минимум три ловушки, точное покрытие всех неверных IDs, отсутствие
+  feedback у non-choice и уникальность локальных разборов.
+- Новые blockers:
+  `single_choice_response_ids_not_unique`,
+  `single_choice_wrong_feedback_missing`,
+  `single_choice_wrong_feedback_not_unique`,
+  `single_choice_feedback_target_invalid`,
+  `non_choice_response_feedback_forbidden`,
+  `mode_choice_feedback_not_pair_specific`.
+- Focused GREEN:
+  `npx tsx tests/learning_v2_authoring_guardrails_2026_08_28_gate.ts`,
+  `npx tsx tests/learning_v2_static_owner_review_html_v1_gate.ts`,
+  `npx tsx tests/learning_v2_lesson1_session_03_word_first_gate.ts`.
+  Owner HTML пересобирается только после итогового preflight; session 3
+  остаётся `DRAFT` до личного owner review.
+
+## Atomic answer labels + session 3 concise-mode correction — 2026-08-28
+
+- Новое прямое решение владельца: правильный вариант, каждый дистрактор и
+  подпись пары — одна формулировка без списков через `/`; расширенные варианты
+  остаются только в описании словарной карточки или критически необходимом
+  объяснении.
+- В текущей английской сессии 3 option projection отделена от богатых
+  словарных переводов. Исправлены все восемь локалей; карточные значения и
+  ручной feedback не урезались. Locked-source сессии 2 не переподписывался:
+  его ретроактивная правка требует отдельного переоткрытия/owner review.
+- В сессии 3 оставлен один полнофразовый `phrase_builder`, второй контакт стал
+  `listen_build_dictation`; инструкция `speed_match` больше не пересказывает
+  видимое число пар. Позднейшее owner-решение от 2026-08-28 ограничило саму
+  сетку четырьмя настоящими парами.
+- Постоянный projection gate выдаёт
+  `single_choice_compound_option_forbidden`; focused gate дополнительно
+  проверяет atomic labels в `pairGrid` и во всех собранных response options.
+- Перед owner review обязательно выполнить
+  `npm run learning-v2:owner-review-ready-gate`: команда пересобирает HTML и
+  проверяет свежесть live-макета.
+
+## Lightweight source-backed owner review HTML — 2026-08-28
+
+- По прямому решению владельца добавлен отдельный лёгкий HTML-player для
+  проверки в Codex без Expo, Metro, Firebase и bootstrap всего приложения.
+  Команда `npm run learning-v2:owner-review-html` заново собирает данные из
+  канонического source/registry, затем поднимает loopback-only страницу
+  `http://127.0.0.1:59690/`. Артефакт лежит в ignored-папке
+  `.codex-tmp/learning-v2-owner-review/index.html`.
+- Picker выводит ровно reviewable English sessions: session 1 `LOCKED` и
+  session 2 `DRAFT`. Sessions 3–56 в bundle не попадают. Внутри доступны три
+  полных intro, word-first карточки в точке первого контакта, feedback,
+  back/next, pocket слов, audio через браузерный DEV voice и реальная запись
+  микрофона через `MediaRecorder`, а также отдельные renderer-ы всех режимов,
+  фактически присутствующих в source sessions 1–2.
+- Во время точной сборки найден и устранён источник прежнего падения session 2:
+  её source уже ссылался на `LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1`, но сам
+  экспорт и точная 17-шаговая choreography отсутствовали. Новый узкий gate
+  фиксирует plan id, соответствие source и сборку 20 карточек (3 intro + 17
+  practice); mode-native gate не ослаблялся.
+- GREEN: `npx tsx tests/learning_v2_session_02_mode_native_plan_v1_gate.ts`,
+  `npx tsx tests/learning_v2_static_owner_review_bundle_v1_gate.ts`,
+  `npx tsx tests/learning_v2_static_owner_review_html_v1_gate.ts`,
+  `node tests/learning_v2_static_owner_review_server_v1_gate.mjs` и
+  `npm run learning-v2:owner-review-html:build`. В Codex in-app browser лично
+  проверены picker, открытие session 2, все три intro, переход к first-contact
+  карточке `happy` и mobile layout. Deploy, TTS, commit и push не выполнялись.
+
+## Codex web player for English sessions 1–2 — repaired 2026-08-28
+
+- Owner blocker reproduced in the real Codex in-app browser. The authoring
+  picker/player crashed for two independent reasons: the native Text render
+  patch attempted indexed writes to a web `CSSStyleDeclaration`, and Firebase
+  Analytics attempted `getApp()` before a default web Firebase app existed.
+- Web capability guards now keep the native Text patch and native Firebase
+  telemetry off the web path while preserving them on Android/iOS. In DEV web
+  only, the focused Learning V2 authoring picker/player also skips unrelated
+  full-app bootstrap work; `/home`, production web and native startup retain
+  their existing behavior.
+- The real clickable entry point is
+  `http://127.0.0.1:8085/learning_v2_authoring_preview`. It exposes exactly
+  English session 1 (`LOCKED`) and session 2 (`DRAFT`); sessions 3–56 remain
+  blocked by the registry. Both rows were opened in the actual source-backed
+  mobile player in the Codex browser, not an HTML mock.
+- Focused GREEN commands:
+  `npx tsx tests/learning_v2_codex_web_preview_runtime_gate.ts`,
+  `npx tsx tests/learning_v2_authoring_device_preview_route.test.ts`,
+  `npx tsx tests/learning_v2_authoring_device_preview_player_contract.test.ts`,
+  `npx tsx tests/learning_v2_authoring_device_preview_v1.test.ts`.
+- A later owner retest exposed the remaining startup problem: a background
+  `scripts/metro-phone.ps1 -Restart` watchdog kept replacing the focused web
+  server with `--dev-client --lan`. A connected iOS dev client then requested
+  an iOS bundle while Codex requested web; Metro compiled both platforms,
+  reached the 5 GB heap limit and left the browser on the splash screen.
+- The durable resource-safe command is now
+  `npm run learning-v2:codex-preview`. It uses `--web --localhost --port 8085
+  --max-workers 1`, never `--dev-client` or `--lan`, so another device cannot
+  trigger a concurrent native bundle. The contract is enforced by
+  `tests/learning_v2_codex_web_preview_runtime_gate.ts`. Both session 1 and
+  session 2 were reopened after a clean run, and the picker was left visible
+  in Codex. No deploy, TTS, commit or push was performed.
+
+## English session 2 — Text Bible review candidate 2026-08-28
+
+- Новое прямое решение владельца `«Давай сессия 2 теперь»` принято как
+  повторное одобрение актуальной session 1. Реестр теперь честно фиксирует
+  `LOCKED 1 / CURRENT 2 DRAFT / FORBIDDEN 3–56`; исходники будущих сессий не
+  изменялись.
+- Три интро session 2 вручную переписаны по Text Bible во всех восьми
+  локалях: только уже известные `I` и `am`, короткая схема
+  `concept → formula → trap`, semantic runs для английского и порядок верных
+  ответов `2 → 3 → 1`. Слова следующих тем не переносятся в урок 1.
+- Первые контакты `happy / sad / tired / fine` вручную переписаны во всех
+  восьми локалях. Guidance объясняет только само новое слово и не учит его
+  через ещё неизвестные английские сравнения; хитрые фонетические,
+  орфографические и смысловые ловушки остаются в post-choice feedback.
+- GREEN без тяжёлой общей сборки: session-2 mode-native word-first gate,
+  beginner-safe guidance gate, targeted mode-native authoring gate,
+  curriculum-boundary gate, no-repeated-target+family gate, distractor gate
+  (`24` authored / `192` localized / `0` findings) и английский preflight.
+  Quality evaluator возвращает только один ожидаемый пункт
+  `quality_review_missing`; прочих контентных findings нет.
+- Exact DRAFT fingerprint:
+  `4c78e0c78b6070858d87f6f1e2b697a22b8663989cbcc59ebef0e4e8eb625ad2`.
+  Живой authoring-маршрут отвечает HTTP 200. Сессия намеренно остаётся
+  `DRAFT`, пока независимое review и личное прохождение владельца не дадут
+  право на `AUTO_PASS/LOCKED`. Session 3 не открывалась; deploy, TTS, commit,
+  push и правки испанского контура не выполнялись.
+
+## English session 1 — Text Bible AUTO_PASS candidate 2026-08-28
+
+- Более новое решение владельца из `СТАРТ В2` повторно открыло английскую
+  session 1 после прежнего телефонного одобрения. Текущий реестр теперь честно
+  показывает `LOCKED none / CURRENT 1 AUTO_PASS / FORBIDDEN 2–56`; session 2
+  остаётся замороженной до независимого review и повторного owner review.
+- Три интро, все 12 word-first guidance и phrase feedback вручную приведены к
+  `БИБЛИЯ_ТЕКСТОВ_LEARNING_V2`: только уже введённые слова, короткий живой
+  редакторский текст, восемь самостоятельных locale-native версий. Новый
+  `learning_v2_session1_text_bible_gate.ts` проходит без findings.
+- Repeat & Compare снова использует нормативный выделенный
+  `useLearningV2LocalHoldToTalkV1`, а не конкурирующий тяжёлый `SpeakingPanel`.
+  `startVoiceCapture` и `stopVoiceCapture` деструктурированы как стабильные
+  callbacks; footer сохраняет один hold-to-talk target и канонический
+  `VoiceEqualizer`. Варианты интро расширены до краёв своей панели через
+  `marginHorizontal: -14` без уменьшения touch target.
+- Английский preflight больше не загружает испанский source: испанская ветка
+  подключается lazy только при `--target es`. Это сохраняет обещанную
+  независимость контуров и не меняет испанский контент.
+- GREEN: 21 focused session-1 source/runtime/editorial gates плюс отдельные
+  lifecycle и authoring-registry gates, включая
+  runtime-native, word-first, answer-order, production-audio, rune integration
+  и Text Bible; `learning-v2:mode-native-authoring-gate -- --target=en
+  --session=1`; distractor gate — 12 authored / 96 localized / 0 findings;
+  `learning-v2:lesson1-authoring-preflight -- --session 1`.
+- Exact candidate fingerprint:
+  `d73f1e1f2cdcd6b548b28129e2f990a5a1df51fb85dac04141003f4757d9b1dc`.
+  Это `AUTO_PASS`, не `OWNER_APPROVED` и не `LOCKED`: следующий обязательный
+  шаг — независимый review, затем личная проверка владельца. Deploy, TTS,
+  commit, push и правки испанского learner-facing source не выполнялись.
+
+## Session 2 beginner-safe guidance + Repeat lifecycle repair 2026-08-26
+
+- Owner correction: first-exposure word descriptions must never explain a new
+  target through other unknown English words. Session 2 recognition guidance
+  for `happy`, `sad`, `tired`, and `fine` was manually rewritten in all eight
+  interface locales to contain only the target's meaning and its own
+  pronunciation cues. Phonetic neighbours remain only as post-choice
+  distractor feedback, where their locale-native meaning is explained.
+- `scripted_repeat_compare` package projection no longer appends
+  `targetPhrase` to the instruction. The native renderer already owns the
+  separate large target layer, so the screen now says the action once and
+  shows `happy` once.
+- The direct-player hold target now has a 40 px retention area. On Android its
+  lightweight lifecycle hook uses the same app-owned PCM recorder plus local
+  neural transcription as ordinary lessons when available, avoiding the OEM
+  SpeechRecognizer endpointer that can close immediately; the existing system
+  recognizer remains the guarded fallback. Permission, cancel, background and
+  generation ownership stay inside the dedicated hook.
+- New RED→GREEN focused gates:
+  `learning_v2_repeat_compare_prompt_target_separation_2026_08_26_gate.ts`,
+  `learning_v2_session2_beginner_safe_word_guidance_2026_08_26_gate.ts`, and
+  the expanded `learning_v2_local_hold_to_talk_lifecycle_2026_08_26_gate.ts`.
+  Session-2 mode-native word-first and Repeat premium UI gates also pass.
+  No TTS, deploy, push or commit was performed.
+
+## DEV map unlock for owner testing 2026-08-26
+
+- На странице карты Learning V2 добавлен локальный переключатель
+  `DEV: открыть все / DEV: вернуть замки`. Он существует только при
+  `__DEV__ && ENABLE_DEV_TOOLS`, имеет switch-семантику и доступную область
+  нажатия 44 px. В production элемент не рендерится.
+- Переключатель снимает замки только в presentation-слое карты. Он не пишет
+  AsyncStorage, не меняет learner progress, реестр authoring, награды или
+  статусы `LOCKED/CURRENT/FORBIDDEN`. После выключения сразу возвращаются
+  реальные состояния карты.
+- Для английского урока 1 все 56 узлов открываются через отдельный
+  `dev_unlocked_drafts_v1` preview. Этот путь сохраняет
+  `preview_only_no_learner_writes`; обычный `authoring_v1` по-прежнему строго
+  ограничен owner-review реестром.
+- Один старый черновик session 18 ссылался на диагностические варианты,
+  которых уже нет в текущей choreography. Только DEV-preview может заменить
+  отсутствующие варианты доступными карточками; релизный builder сохраняет
+  прежний строгий throw и gate не ослаблен.
+- GREEN: `npx tsx tests/learning_v2_dev_unlock_all_sessions_gate.ts`
+  последовательно собрал playable-пакеты sessions 1–56 и подтвердил отсутствие
+  learner writes. Deploy, push, commit и TTS не выполнялись.
+
+## Session 1 owner approval + Session 2 mode-native candidate 2026-08-26
+
+- Владелец явно подтвердил: `сессию 1 одобряю`. Английская session 1 теперь
+  `LOCKED` с fingerprint
+  `8a3310dfe561c6a3145787246fd23ee9e23fd834be53cea3d5d86d6cf5dda914`;
+  шесть телефонных mode-parity receipts переведены в `PASS`. Реестр честно
+  сдвинут на `CURRENT 2 / DRAFT / FORBIDDEN 3–56`.
+- Старый черновик session 2 с `not` отменён как выход за границу урока 1.
+  Новый канонический результат — `I am целиком`: только утвердительная рамка
+  `I am + состояние`, четыре новых слова `happy / sad / tired / fine` и четыре
+  фразы `I am happy / sad / tired / fine`. Сокращение, отрицание и вопросы не
+  вводятся. Словарь и утвердительные фразы session 2 теперь являются её
+  собственными source-файлами и не импортируют/не алиасят session 3.
+- Три интро написаны редакторски во всех восьми локалях. Английские фрагменты
+  имеют отдельные semantic runs и не окрашиваются красным без реальной ошибки.
+  Каждое новое слово получает прямо перед первым заданием компактную карточку:
+  точное словарное определение + короткий живой образ, транскрипция, звук и
+  сохранение. Тексты локалей написаны вручную; генератора описаний нет.
+- После трёх интро идут 17 реальных mode-native контактов без одинакового
+  режима подряд:
+  `SRC → LC → SRC → LC → CG → LC → CG → LC → LB → PB → CG → PB → SM → PB → CG → LC → SRC`.
+  Задания сборки и диктанта работают с полными фразами, а не с бессмысленным
+  одиночным токеном. Все шесть активных режимов присутствуют. Speed Match имеет
+  ровно восемь уже открытых слов: `I, am, here, ready, happy, sad, tired, fine`.
+  У каждого контакта есть вручную локализованная инструкция именно под его
+  реальную операцию; source → shard больше не подменяет повторение текстом про
+  выбор и не называет смысловой выбор грамматическим.
+- Реальный путь `source → shard → learner/evaluator/auxiliary → device run`
+  собран. Все 17 правильных ответов принимаются локальным device evaluator;
+  DEV authoring preview возвращает `3 intro + 17 practice`, четыре
+  interleaved word cards и готовые speech texts. Телефонный URL:
+  `http://127.0.0.1:8085/learning-v2/session/lesson-01%3Asession%3A02?runtimeMode=direct_v1&previewMode=authoring_v1&previewOrigin=course&releaseEnvironment=lab&releaseSeasonId=learning-v2&lessonOrdinal=1&sessionOrdinal=2`.
+- GREEN: session-2 focused mode-native/word-first/device gate; targeted
+  mode-native authoring gate; distractor gate (`24` authored distractors,
+  `192` localized rows, `0` findings); authoring preflight; scoped ESLint
+  (`0` errors/warnings). Будущие sessions 3–56 сохранили исходный fingerprint;
+  исторический export отрицательных фраз оставлен отдельно только для их
+  замороженных черновиков. После исправлений проведено повторное независимое
+  TypeScript/content review: blocker/finding не осталось.
+- Session 2 остаётся `DRAFT`: не переводить в `LOCKED` без явного owner review.
+  Deploy, push, commit, TTS generation и правки испанского контура не делались.
+
+## Session 1 UI + word-definition repair 2026-08-26
+
+- Practice footer now follows the original lesson geometry: equal icon/caption
+  columns without per-action pills. Voice is present only for the approved
+  repeat/compare mode and uses the real local hold-to-talk hook plus the shared
+  equalizer. The intro attempt HUD is a normal header accessory instead of an
+  absolute overlay; the intro question keeps its answer buttons but no longer
+  wraps them in a second common card.
+- The word-pocket full-screen overlay now consumes the stable top safe-area, so
+  its title and close/list controls cannot enter the iOS status bar.
+- Final TypeScript review found and fixed three runtime edges: the card body is
+  now the bounded scroll region while the only Continue CTA stays reachable;
+  all pocket headings/empty/close copy follow the active interface locale; and
+  the repeat/compare microphone becomes visibly and accessibly disabled after a
+  correct answer or while the attempt controller is not active. The dedicated
+  review-regressions gate is PASS.
+- Every session-1 first-contact word (`I`, `am`, `here`, `ready`) now carries a
+  manually authored dictionary-precise definition for every interface locale.
+  Runtime displays it directly below the exact compact flip card; the reverse
+  side remains translation-only. The historical wire name
+  `playfulMeaningByLocale` is retained for source/shard/package compatibility
+  and is now normatively defined in `СТАРТ В2`, the content style bible, lesson
+  rules and the mode-native contract.
+- Owner phone finding: the definition originally inherited `textSecond` and
+  became illegible over the dimmed overlay. It now uses the same readable
+  `textPrimary` semantic token as the overlay heading/hint. The editorial
+  definition gate rejects any return to muted/accent/target colour.
+- Focused PASS: interleaved word-card gate, editorial-definition package gate,
+  original-footer/safe-layout gate, word-pocket gate, owner-reported-issues
+  gate, Arena-primitives gate, targeted ESLint (0 errors), and
+  `learning-v2:lesson1-authoring-preflight -- --session 1`. Registry remains
+  `CURRENT 1 / DRAFT`; sessions 2–56 remain forbidden.
+- Honest remaining HOLD is unchanged: focused mode-native authoring reports six
+  missing physical-device state/motion parity receipts, one for each active
+  mode. No receipt was fabricated and the gate was not weakened. Metro DEV is
+  running on port 8085 with two workers for owner phone review. No deploy,
+  commit, TTS generation or Spanish edit occurred.
+
 ## Shared session attempts seam 2026-08-26 — owner-approved UI, runtime and golden evidence
 
 - The owner approved the visual direction and renamed the user-facing resource
@@ -15882,3 +16244,209 @@ large pre-existing Expo Router warnings were not treated as parity evidence.
 Open the actual Lesson 1 → Session 1 course slot on the phone, collect the six
 receipts, repair any physical defect test-first, and stop for owner review. Do
 not mark session 1 `LOCKED` and do not proceed to session 2.
+
+## Continuation 2026-08-26 — owner phone findings and restart-with-energy
+
+Scope remains English lesson 1, session 1 only. The owner found four concrete
+runtime/content regressions during phone review; each was repaired without
+opening sessions 2–56:
+
+- intro question feedback now comes from the exact authored
+  `introPages[n].question.explanationByLocale`; the practice-wide distractor
+  explanation catalogue can no longer spill into an intro page;
+- the A0 meaning task no longer exposes the unexplained label «быть — словарная
+  форма»; its manually localized competing meaning is now «я» / the native
+  learner-locale equivalent, with diagnostic feedback;
+- a new-word card stays interactive during entry, flips on immediate press,
+  slowly pulses its flip hint, and flies/fades between the measured card and
+  measured footer-pocket centres instead of guessing from screen height or
+  disappearing halfway; a synchronous ref lock prevents double Continue;
+- the report flag was removed from the top chrome and docked bottom-left above
+  the footer in both practice and intro surfaces, with bottom safe-area inset.
+
+Durable card save/remove also has a per-word synchronous ref lock, so two taps
+before React rerenders cannot enqueue two writes. Restart resets telemetry
+start/time/stage refs, allowing the newly paid run to emit its own start and
+duration. The restart accessibility label announces the visible `−1`/`∞`
+energy cost.
+
+The exhausted-attempts modal now also offers a localized «Начать заново» action
+with the existing `assets/images/energy/energy-start-cost.webp` asset and
+`−1`/`∞` state. The direct player uses the canonical durable
+`useEnergySessionIntent` + `confirmSpendOne` flow. Only `spent` or `unlimited`
+starts a fresh run; a ref latch rejects a double tap, the run gets a new ID,
+and `acknowledgeSessionStart` closes the accepted debit+grant receipt. The
+player does not emit a fake energy animation: `EnergyContext` emits the standard
+`energy_spent_on_start` flight after the canonical composite operation.
+
+The permanent authoring rules were strengthened in `СТАРТ В2.md` and the style
+bible: intro feedback may never be an aggregate practice catalogue, and A0
+learner copy may not require unexplained methodological jargon such as
+«словарная форма».
+
+### Fresh low-resource evidence
+
+- PASS: `session_attempts_economy_gate.ts`.
+- PASS: `energy_session_callsites_contract.ts` (21 production files).
+- PASS: `learning_v2_session_attempts_runtime_gate.ts`.
+- PASS: new-word overlay, session-1 task semantics, exact intro-feedback and
+  report-dock focused gates (7/7 combined gates passed).
+- PASS: `learning-v2:lesson1-authoring-preflight -- --session 1` — curriculum
+  boundary, device preview, 12 distractors / 96 locale variants / 0 findings,
+  `LOCKED: none`, `CURRENT: 1`, `DRAFT`, `FORBIDDEN: 2-56`.
+- Scoped ESLint reported 0 errors; warnings are pre-existing in the shared dirty
+  player. Heavy Jest was deliberately stopped after it stalled with 59–60 Node
+  processes on the shared machine; its semaphore slot was released.
+- A fresh read-only TypeScript/React review first returned five actionable
+  findings (double taps, heuristic flight, safe-area dock, telemetry reset and
+  restart a11y). After the fixes, the same fresh reviewer returned `PASS` with
+  no new actionable findings.
+
+The honest global status remains `HOLD` solely for six physical
+`mockup_parity_not_pass` receipts: `listen_choose`,
+`listen_build_dictation`, `phrase_builder`, `speed_match`,
+`context_gap_grammar`, and `scripted_repeat_compare`. Phone confirmation is
+still required for the exact card flight endpoint, immediate flip/continue,
+energy flight, microphone/audio, motion and reduced-motion behavior. Do not
+mark the session `LOCKED` and do not proceed to session 2 without owner review.
+
+## Continuation 2026-08-26 — immediate word unlock and stable voice hold
+
+The owner subsequently approved English lesson 1 session 1; the fresh registry
+state is now `LOCKED 1 / CURRENT 2 DRAFT / FORBIDDEN 3-56`. This continuation
+changes only the shared runtime/UI needed to review session 2. It does not lock,
+author, or advance another session.
+
+The new-word lifecycle now records a lesson unlock at the first visible
+presentation of the blocking card. It no longer waits for Continue or session
+completion. The scoped registry exposes hydration state, so a retry waits for
+storage and suppresses an already-seen lexical item without a one-frame flash.
+Authoring preview writes to the separate
+`learning-v2:authoring-preview-unlocked-words:v1:*` namespace; the DEV map
+dictionary merges learner and preview rows, while release builds read only the
+learner namespace. Continue performs only an idempotent fallback retry plus the
+approved decorative card flight.
+
+`scripted_repeat_compare` now has the 116 px ringed reference-audio control used
+by the approved audio-mode family, separate centred target typography, and a
+stable 120 px capture/status stage. The reference control remains mounted and
+disabled during capture. The local hold hook stores transcript callbacks in
+refs, and the player binds the individual stable `startVoiceCapture` and
+`stopVoiceCapture` callbacks; `requesting/listening` rerenders can no longer
+replace the active Pressable lifecycle. Report controls are bottom-right above
+the footer in both practice and intro.
+
+Permanent contracts were updated in `СТАРТ В2.md`,
+`MODE_NATIVE_AUTHORING_CONTRACT.ru.md`, and
+`LEARNING_CONTENT_STYLE_BIBLE.ru.md`. The approved design and execution plan are
+in `docs/superpowers/specs/2026-08-26-learning-v2-voice-and-word-unlock-design.md`
+and `docs/superpowers/plans/2026-08-26-learning-v2-voice-and-word-unlock.md`.
+
+### Fresh low-resource evidence
+
+- PASS: unlocked-word storage, immediate-unlock, hold lifecycle, premium
+  Repeat & Compare UI, report dock, map dictionary, interleaved-card and
+  new-word-overlay focused gates (8/8).
+- PASS: `npm run learning-v2:lesson1-authoring-preflight -- --session 2` —
+  curriculum boundary, device preview, 12 distractors / 96 localized
+  distractors / 0 findings, `LOCKED 1`, `CURRENT 2 DRAFT`, `FORBIDDEN 3-56`.
+- One attempted single-file Jest hook run was terminated near 4 GB heap before
+  executing tests. The shared semaphore slot was released immediately; Jest
+  was replaced with the deterministic lightweight lifecycle gate and was not
+  retried, in accordance with the owner's low-resource requirement.
+- Physical phone hold/audio and interrupted-session persistence still require
+  owner verification in the already running DEV build; no physical receipt is
+  claimed by this continuation.
+
+## Continuation 2026-08-28 — owner-approved session 2, guarded session 3 review
+
+The owner approved English lesson 1 session 2. The authoritative authoring
+registry is now `LOCKED 1-2 / CURRENT 3 DRAFT / FORBIDDEN 4-56`; session 3 must
+not be locked without a new explicit owner approval and session 4 must not be
+authored yet.
+
+Session 3 was rewritten inside the lesson-1 boundary as the single operation
+`I am -> I'm`. It introduces only `I'm`, presents it through three word-first
+contacts, and then practises six already-grounded meanings (`here`, `ready`,
+`happy`, `sad`, `tired`, `fine`) in 17 non-adjacent mode-native interactions.
+All six permitted families are present; Speed Match contains eight known-word
+pairs. The intro, per-locale feedback and explanations are manually authored
+for all eight required interface locales. No question, negation, second-person
+or later-lesson grammar was introduced.
+
+The permanent guard layer, wired directly into
+`learning-v2:lesson1-authoring-preflight`, now checks locale/script mismatch, overstuffed intro
+pages, forbidden A0 learner jargon, exact single-choice correctness and
+distractor counts, option uniqueness, and locale-aware learner-projection
+integrity. The quality gate now includes visible distractor tokens in its
+curriculum vocabulary check and permits previously grounded vocabulary from
+the same session curriculum, instead of incorrectly treating it as leakage.
+The static owner-review contract was advanced to expose only sessions 1-3.
+
+### Fresh low-resource evidence
+
+- PASS: `npx tsx tests/learning_v2_lesson1_session_03_word_first_gate.ts`.
+- PASS: `npx tsx tests/learning_v2_authoring_guardrails_2026_08_28_gate.ts`.
+- PASS: `npx tsx scripts/learning_v2_current_session_integrity_gate.ts --session 3`.
+- PASS: `npm run learning-v2:mode-native-authoring-gate -- --target=en --session=3`.
+- PASS: `npm run learning-v2:lesson1-authoring-preflight -- --session 3`;
+  reported `LOCKED 1-2`, `CURRENT 3 DRAFT`, `FORBIDDEN 4-56`.
+- PASS: static owner-review bundle, HTML and server gates. The fresh playable
+  bundle contains sessions 1, 2 and 3 at
+  `.codex-tmp/learning-v2-owner-review/index.html`; the local review server is
+  responding at `http://127.0.0.1:59690/`.
+
+The required independent TypeScript review initially found four important
+gaps. All were corrected and the focused re-review returned `PASS`: wrong
+`listen_choose` feedback now contrasts the selected and heard meanings in all
+eight locales; projection integrity iterates all required locales; both
+vocabulary contacts and phrase/builder sources require at least three distinct
+authored traps; and session-3 Speed Match carries explicit `knownItems`
+metadata whose eight targets are checked against the actual `pairGrid` during
+source-to-shard assembly.
+
+No heavy Jest/TypeScript suite, TTS, API call, deploy, commit or push was run.
+Spanish deletions and edits visible in the shared dirty worktree belong to the
+owner/other task and were not changed by this continuation.
+
+## Continuation 2026-08-28 — English session 4 ready for owner review
+
+The authoritative English registry is now `LOCKED 1-3 / CURRENT 4 DRAFT /
+FORBIDDEN 5-56`. Session 4 remains DRAFT and must not be locked or followed by
+session 5 without explicit owner approval.
+
+Session 4 stays inside the known `I am / I’m` grammar and introduces three
+genuinely new lexical states: `set`, `done`, and `free`. Each word receives its
+blocking card plus recognize, retrieve-meaning, and build-form contacts before
+phrase use. Six phrases (`I am/I’m set`, `done`, `free`) are practised across
+17 mode-native interactions. All six active families appear, adjacent families
+never repeat, and Speed Match contains exactly four atomic pairs.
+
+New permanent guards are wired into the authoring preflight:
+
+- every session must introduce 1–5 vocabulary targets not previously declared
+  as new;
+- a repeated prior target cannot be reissued as new;
+- any first appearance of `to`, negation, a question, article, new subject,
+  demonstrative/possessive form, `have`, modal, or grammar-tagged feature must
+  be declared in `session map.teaches` and receive a full 3-intro + 17-practice
+  session;
+- the grammar guard inspects both metadata and English phrase surfaces, so a
+  missing feature tag cannot bypass it;
+- forbidden English sessions 5–56 are protected by direct file-byte hashes and
+  are no longer executed by focused preflight;
+- the owner-review bundle test derives visible sessions from the registry, and
+  the ready gate now starts a temporary static server when no review server is
+  already running, then closes it.
+
+Fresh low-resource evidence:
+
+- PASS: `npx tsx tests/learning_v2_lesson1_session_04_word_first_gate.ts`.
+- PASS: `npx tsx tests/learning_v2_mode_native_authoring_gate.ts --target=en --session=4`.
+- PASS: `npm run learning-v2:lesson1-authoring-preflight -- --session 4`;
+  reported `LOCKED 1-3`, `CURRENT 4 DRAFT`, `FORBIDDEN 5-56`.
+- PASS: `npm run learning-v2:owner-review-ready-gate`; fresh HTML contains
+  sessions 1–4 at `.codex-tmp/learning-v2-owner-review/index.html`.
+
+No heavy Jest/typecheck/build, TTS, API call, deployment, commit, push, or
+Spanish edit was performed.

@@ -9,8 +9,8 @@
  *   1) Админ копирует пачку репортов из админки → вставляет в ЛЛМ.
  *   2) ЛЛМ чинит подтверждённые баги в коде, готовит вежливые ответы юзерам,
  *      пишет replies.json и запускает этот скрипт.
- *   3) Каждый юзер получает ответ в колокольчик приложения; если подтвердилось —
- *      с кнопкой «Забрать осколки» (клейм через CF claimReportReward).
+ *   3) Каждый юзер получает ответ в приложении; если проблема подтверждена и
+ *      исправлена — с кнопкой «Получить» (клейм через CF claimReportReward).
  *
  * Запуск:
  *   node scripts/reply_to_reports.mjs replies.json --dry-run   - preview only; no writes
@@ -22,7 +22,8 @@
  *     "uid": "stable-uid-юзера",         // поле uid из выгрузки
  *     "title": "Спасибо за репорт!",     // заголовок уведомления НА ЯЗЫКЕ ЮЗЕРА
  *     "body": "Ошибка исправлена…",      // 2-4 предложения, вежливо, на языке юзера
- *     "shards": 1,                        // 1+ если подтвердилось, 0 если нет
+ *     "resolution": "confirmed_fixed",   // подтверждённая и уже исправленная проблема
+ *     "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 },
  *     "reportCollection": "error_reports" // опционально, дефолт error_reports
  *   }
  *
@@ -47,9 +48,54 @@ const REPORT_COLLECTIONS = new Set([
 ]);
 const HELPFUL_REPORTS_CONFIRMED_KEY = 'helpful_error_reports_confirmed_v1';
 const TOP_HELPERS_COLLECTION = 'top_helpers';
-const SHARDS_MAX = 100;
 const TITLE_MAX = 120;
 const BODY_MAX = 1200;
+const REPORT_RESOLUTIONS = new Set(['confirmed_fixed', 'duplicate', 'in_progress', 'rejected', 'unconfirmed']);
+const LEGACY_RESOLUTION_MAP = Object.freeze({
+  confirmed_investigating: 'in_progress',
+  content_review: 'in_progress',
+  stale_content_not_reproduced: 'unconfirmed',
+  not_reproduced: 'unconfirmed',
+  by_design: 'rejected',
+  user_error: 'rejected',
+  no_issue_details: 'rejected',
+});
+const REPORT_REWARD_BUNDLES = Object.freeze({
+  none: Object.freeze({ version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 }),
+  minor: Object.freeze({ version: 1, severity: 'minor', spins: 1, runes: 300, pearls: 1 }),
+  serious: Object.freeze({ version: 1, severity: 'serious', spins: 2, runes: 600, pearls: 5 }),
+  critical: Object.freeze({ version: 1, severity: 'critical', spins: 3, runes: 1000, pearls: 10 }),
+});
+
+function bundleHasReward(bundle) {
+  return bundle.spins > 0 || bundle.runes > 0 || bundle.pearls > 0;
+}
+
+function exactRewardBundle(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const tier = REPORT_REWARD_BUNDLES[String(value.severity || '')];
+  if (!tier) return null;
+  return Number(value.version) === tier.version
+    && Number(value.spins) === tier.spins
+    && Number(value.runes) === tier.runes
+    && Number(value.pearls) === tier.pearls
+    ? tier
+    : null;
+}
+
+function rewardLabel(bundle) {
+  return bundle.severity === 'none'
+    ? 'без награды'
+    : `${bundle.spins} спин · ${bundle.runes} рун · ${bundle.pearls} жемч.`;
+}
+
+function sanitizePreparedReplyBody(value) {
+  return String(value || '')
+    .replace(/(^|[.!?]\s+)[^.!?\n]*(?:вам\s+(?:начисл\p{L}*|нарах\p{L}*)|за\s+(?:находку|знахідку)\s+(?:начисл\p{L}*|нарах\p{L}*))[^.!?\n]*[.!?]?/giu, '$1')
+    .replace(/(^|[.!?]\s+)(?=[^.!?\n]*(?:жемчуж\p{L}*|перлин\p{L}*|спин\p{L}*|рун\p{L}*))(?=[^.!?\n]*(?:забрат\p{L}*|отрим\p{L}*|получ\p{L}*|награ\p{L}*|бонус\p{L}*|подяк\p{L}*))[^.!?\n]*[.!?]?/giu, '$1')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
 
 /**
  * Публичные поля профиля для проекции борда «Топ хелперов».
@@ -137,21 +183,32 @@ const clean = rows.map((row, i) => {
   const reportId = String(row.reportId ?? '').trim();
   const uid = String(row.uid ?? '').trim();
   const title = String(row.title ?? '').trim().slice(0, TITLE_MAX);
-  const body = String(row.body ?? '').trim().slice(0, BODY_MAX);
-  const shards = Math.floor(Number(row.shards ?? 0));
+  const body = sanitizePreparedReplyBody(row.body).slice(0, BODY_MAX);
+  const legacyShards = Math.floor(Number(row.shards ?? 0));
+  const rawResolution = String(row.resolution ?? (legacyShards > 0 ? 'confirmed_fixed' : 'unconfirmed')).trim();
+  const resolution = LEGACY_RESOLUTION_MAP[rawResolution] || rawResolution;
+  const rewardBundle = row.rewardBundle === undefined
+    ? (legacyShards > 0 && resolution === 'confirmed_fixed'
+      ? REPORT_REWARD_BUNDLES.minor
+      : REPORT_REWARD_BUNDLES.none)
+    : exactRewardBundle(row.rewardBundle);
   const reportCollection = String(row.reportCollection ?? 'error_reports').trim();
   if (!reportId) fail(`${at}: пустой reportId`);
   if (!uid || uid === 'unknown' || uid === 'test_uid_abc123') fail(`${at}: невалидный uid "${uid}"`);
   if (!title || !body) fail(`${at}: пустой title/body`);
-  if (!Number.isFinite(shards) || shards < 0 || shards > SHARDS_MAX) fail(`${at}: shards должен быть 0..${SHARDS_MAX}`);
+  if (!REPORT_RESOLUTIONS.has(resolution)) fail(`${at}: неизвестный resolution "${resolution}"`);
+  if (!rewardBundle) fail(`${at}: rewardBundle должен точно совпадать с одним из уровней none/minor/serious/critical`);
+  if (bundleHasReward(rewardBundle) && resolution !== 'confirmed_fixed') {
+    fail(`${at}: награда разрешена только при resolution=confirmed_fixed`);
+  }
   if (!REPORT_COLLECTIONS.has(reportCollection)) fail(`${at}: неизвестная reportCollection "${reportCollection}"`);
-  return { reportId, uid, title, body, shards, reportCollection };
+  return { reportId, uid, title, body, resolution, rewardBundle, reportCollection };
 });
 
 if (dryRun) {
   console.log(`🔍 DRY-RUN: ${clean.length} ответ(ов)\n`);
   for (const item of clean) {
-    console.log(`  · ${item.reportCollection}/${item.reportId} → users/${item.uid.slice(0, 10)}… (+${item.shards}💎)`);
+    console.log(`  · ${item.reportCollection}/${item.reportId} → users/${item.uid.slice(0, 10)}… (${rewardLabel(item.rewardBundle)})`);
     console.log(`    «${item.title}» — ${item.body.slice(0, 120)}${item.body.length > 120 ? '…' : ''}`);
   }
   console.log('\n🔍 DRY-RUN завершён — ничего не записано и Firebase Admin не инициализирован.');
@@ -182,7 +239,7 @@ async function sendOne(item) {
   // Публичный профиль для проекции борда (то же, что читает Зал славы). Читаем до
   // транзакции: leaderboard редко меняется, лишний tx.get на каждый ответ — трата.
   let helperProjection = null;
-  if (item.shards > 0) {
+  if (bundleHasReward(item.rewardBundle)) {
     // 3 источника профиля читаем параллельно: users.progress → leaderboard → САМ РЕПОРТ
     // (userName/userLevel/userXP). Репорт — самый надёжный источник имени/уровня хелпера.
     const [leaderboardSnap, userSnap, reportProfileSnap] = await Promise.all([
@@ -205,12 +262,19 @@ async function sendOne(item) {
     if (!reportSnap.exists) return { status: 'missing' };
     const report = reportSnap.data() ?? {};
     if (typeof report.replyMessageId === 'string' && report.replyMessageId) return { status: 'skip' };
+    if (bundleHasReward(item.rewardBundle)
+        && String(report.status || '') !== 'fixed'
+        && String(report.resolution || '') !== 'confirmed_fixed') {
+      throw new Error('report is not server-confirmed as fixed');
+    }
 
     tx.set(messageRef, {
       kind: 'report_reply',
       title: item.title,
       body: item.body,
-      shards: item.shards,
+      rewardBundle: item.rewardBundle,
+      coins: 0,
+      resolution: item.resolution,
       claimed: false,
       claimedAtMs: null,
       reportCollection: item.reportCollection,
@@ -231,7 +295,9 @@ async function sendOne(item) {
         messageId: messageRef.id,
         title: item.title,
         body: item.body,
-        shards: item.shards,
+        rewardBundle: item.rewardBundle,
+        coins: 0,
+        resolution: item.resolution,
         claimed: false,
         claimedAtMs: null,
         reportCollection: item.reportCollection,
@@ -245,7 +311,7 @@ async function sendOne(item) {
     // Подтверждённый репорт: двигаем счётчик титула И публичную проекцию борда
     // «Топ хелперов» в той же транзакции — чтобы рейтинг на борде и счётчик титула
     // никогда не разъезжались (зеркало functions/src/report_replies.ts).
-    if (item.shards > 0) {
+    if (bundleHasReward(item.rewardBundle)) {
       tx.set(userRef, {
         progress: { [HELPFUL_REPORTS_CONFIRMED_KEY]: admin.firestore.FieldValue.increment(1) },
       }, { merge: true });
@@ -262,7 +328,9 @@ async function sendOne(item) {
       status: 'answered',
       replyMessageId: messageRef.id,
       replyNotificationId: notificationRef.id,
-      replyShards: item.shards,
+      replyCoins: 0,
+      replyRewardBundle: item.rewardBundle,
+      resolution: item.resolution,
       repliedAt: nowIso,
       repliedBy: 'llm_reply_script',
     }, { merge: true });
@@ -272,7 +340,13 @@ async function sendOne(item) {
       adminEmail: 'llm_reply_script',
       action: 'reply_to_report',
       uid: item.uid,
-      details: { reportCollection: item.reportCollection, reportId: item.reportId, shards: item.shards, title: item.title },
+      details: {
+        reportCollection: item.reportCollection,
+        reportId: item.reportId,
+        rewardBundle: item.rewardBundle,
+        resolution: item.resolution,
+        title: item.title,
+      },
     });
 
     return { status: 'sent', messageId: messageRef.id, notificationId: notificationRef.id };
@@ -283,7 +357,7 @@ async function sendOne(item) {
   console.log(`${dryRun ? '🔍 DRY-RUN' : '📨 Рассылка'}: ${clean.length} ответ(ов)\n`);
   let sent = 0, skipped = 0, missing = 0, errors = 0;
   for (const item of clean) {
-    const label = `${item.reportCollection}/${item.reportId} → users/${item.uid.slice(0, 10)}… (+${item.shards}💎)`;
+    const label = `${item.reportCollection}/${item.reportId} → users/${item.uid.slice(0, 10)}… (${rewardLabel(item.rewardBundle)})`;
     try {
       const res = await sendOne(item);
       if (res.status === 'sent') { sent++; console.log(`  ✅ ${label}`); }

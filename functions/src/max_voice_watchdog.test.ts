@@ -134,6 +134,7 @@ const NOW = 1_800_000_000_000;
 const AUTH = 'auth-1';
 const STABLE = 'stable-1';
 const QUOTA_PATH = `voice_call_quotas/${voiceQuotaDocId(STABLE)}`;
+const WALLET_PATH = `voice_minute_wallets/${STABLE}`;
 const RATE_PATH = `voice_mint_rate_limits/${voiceMintRateDocId(AUTH, STABLE)}`;
 const BUDGET_PATH = 'voice_cost_daily/current';
 
@@ -179,6 +180,33 @@ afterEach(() => {
 });
 
 describe('runMaxVoiceWatchdogOnce', () => {
+  it('settles a hung paid-minute reserve through the same exactly-once charge journal', async () => {
+    docs.set(QUOTA_PATH, hangingReserve({
+      accessType: 'paid_minutes',
+      paidReservationRootSessionId: 's1',
+      paidReservationTotalSec: 320,
+      paidConsumedSec: 0,
+    }));
+    docs.set(WALLET_PATH, {
+      schemaVersion: 1, ownerStableId: STABLE,
+      grantedSeconds: 1_800, refundedSeconds: 0, chargedSeconds: 0,
+      reservedSeconds: 320, availableSeconds: 1_480, eventCount: 1,
+      activeReservationSessionId: 's1', reservationRootSessionId: 's1',
+    });
+
+    const first = await runMaxVoiceWatchdogOnce(db(), NOW);
+    const second = await runMaxVoiceWatchdogOnce(db(), NOW + 1_000);
+
+    expect(first.settled).toBe(1);
+    expect(second.settled).toBe(0);
+    expect(docs.get(WALLET_PATH)).toMatchObject({
+      chargedSeconds: 140, reservedSeconds: 0, availableSeconds: 1_660,
+    });
+    const charges = [...docs.entries()].filter(([path]) => path.startsWith('voice_minute_events/vm_call_charge_'));
+    expect(charges).toHaveLength(1);
+    expect(charges[0][1]).toMatchObject({ kind: 'call_charge', sessionId: 's1', seconds: 140 });
+  });
+
   it('settles a hung reserve by the LAST heartbeat, not the full reserve', async () => {
     docs.set(QUOTA_PATH, hangingReserve());
 

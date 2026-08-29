@@ -38,11 +38,12 @@ describe('account-scoped bonus energy store', () => {
     });
     await expect(restoreBonusEnergy(1, expiresAt, token)).resolves.toMatchObject({
       amount: 3,
+      capacity: 3,
       expiresAt,
     });
 
     const scopedKey = giftAccountStorageKey(BONUS_ENERGY_KEY, token)!;
-    await expect(AsyncStorage.getItem(scopedKey)).resolves.toBe(JSON.stringify({ amount: 3, expiresAt }));
+    await expect(AsyncStorage.getItem(scopedKey)).resolves.toBe(JSON.stringify({ amount: 3, capacity: 3, expiresAt }));
     await expect(AsyncStorage.getItem(BONUS_ENERGY_KEY)).resolves.toBeNull();
   });
 
@@ -89,6 +90,15 @@ describe('account-scoped bonus energy store', () => {
       await expect(consumeBonusEnergy(1, token, lease)).resolves.toMatchObject({ spent: 1, remaining: 1 });
       await expect(restoreBonusEnergy(1, expiresAt, token, lease)).resolves.toMatchObject({ amount: 2 });
     });
+  });
+
+  test('keeps temporary capacity after all bonus units are spent', async () => {
+    const token = beginAccountGeneration('energy-owner-a');
+    const expiresAt = Date.now() + 60_000;
+    await restoreBonusEnergy(3, expiresAt, token);
+
+    await expect(consumeBonusEnergy(3, token)).resolves.toMatchObject({ spent: 3, remaining: 0 });
+    await expect(readBonusEnergy(token)).resolves.toEqual({ amount: 0, capacity: 3, expiresAt });
   });
 
   test.each(['{bad', '{"amount":0,"expiresAt":9999999999999}', '{"amount":"3","expiresAt":9999999999999}'])

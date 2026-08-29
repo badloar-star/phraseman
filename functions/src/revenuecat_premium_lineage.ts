@@ -5,7 +5,7 @@ export const MAX_OWNER_LINEAGES = 64;
 export const MAX_OWNER_CANDIDATES = 16;
 export const PREMIUM_RC_GRACE_MS = 72 * 60 * 60 * 1000;
 
-export type PremiumPlan = 'monthly' | 'yearly' | 'lifetime' | 'max_monthly';
+export type PremiumPlan = 'monthly' | 'yearly' | 'lifetime';
 
 export type PremiumLineageEvent = {
   eventId: string;
@@ -108,12 +108,15 @@ function positiveSafeMs(raw: unknown): number | null {
   return Number.isSafeInteger(value) && value > 0 ? value : null;
 }
 
-function eventPlan(productId: string): PremiumPlan {
+function eventPlan(productId: string): PremiumPlan | null {
   const value = productId.toLowerCase();
-  if (/^phraseman_max_monthly_v1(?::monthly-base)?$/.test(value)) return 'max_monthly';
-  if (/lifetime|forever|one.?time|onetime|perpetual/.test(value)) return 'lifetime';
-  if (/year|yearly|annual|12.?month/.test(value)) return 'yearly';
-  return 'monthly';
+  if (value === 'phraseman_premium_lifetime_v1') return 'lifetime';
+  if (/^phraseman_premium_yearly(?:_[0-9]{1,6})?(?::[a-z0-9][a-z0-9-]*)?$/.test(value)) return 'yearly';
+  if (/^phraseman_premium_monthly(?:_[0-9]{1,6})?(?::[a-z0-9][a-z0-9-]*)?$/.test(value)) return 'monthly';
+  if (value === 'premium_lifetime') return 'lifetime';
+  if (value === 'premium_yearly' || value === 'phraseman_premium_yearly') return 'yearly';
+  if (value === 'premium_monthly' || value === 'phraseman_premium_monthly') return 'monthly';
+  return null;
 }
 
 function canonicalLineageParts(raw: Record<string, unknown>): string[] | null {
@@ -144,6 +147,7 @@ export function normalizePremiumLineageEvent(raw: Record<string, unknown>): Norm
   const [appId, environment, store, originalTransactionId] = parts;
   const productId = bounded(raw.product_id) ?? '';
   const plan = eventPlan(productId);
+  if (plan === null) return { status: 'quarantine', reason: 'unmanaged_premium_product', rawFingerprint };
   const expirationAtMs = positiveSafeMs(raw.expiration_at_ms);
   const transactionId = bounded(raw.transaction_id);
   const cancelReason = bounded(raw.cancel_reason, true) ?? '';
@@ -572,16 +576,13 @@ export function aggregatePremiumLineages(
   }
   const active = lineages.filter((lineage) => activeLineage(lineage, nowMs));
   active.sort((a, b) => {
-    const maxA = a.plan === 'max_monthly' ? 1 : 0;
-    const maxB = b.plan === 'max_monthly' ? 1 : 0;
-    if (maxA !== maxB) return maxB - maxA;
     const lifetimeA = a.plan === 'lifetime' ? 1 : 0;
     const lifetimeB = b.plan === 'lifetime' ? 1 : 0;
     if (lifetimeA !== lifetimeB) return lifetimeB - lifetimeA;
     const expiryA = a.activeThroughMs ?? Number.MAX_SAFE_INTEGER;
     const expiryB = b.activeThroughMs ?? Number.MAX_SAFE_INTEGER;
     if (expiryA !== expiryB) return expiryB - expiryA;
-    const planRank = (plan: PremiumPlan) => plan === 'max_monthly' ? 4 : plan === 'yearly' ? 2 : plan === 'monthly' ? 1 : 3;
+    const planRank = (plan: PremiumPlan) => plan === 'yearly' ? 2 : plan === 'monthly' ? 1 : 3;
     if (planRank(a.plan) !== planRank(b.plan)) return planRank(b.plan) - planRank(a.plan);
     return a.lineageHash.localeCompare(b.lineageHash);
   });
@@ -609,7 +610,7 @@ export function aggregatePremiumLineages(
   }
   const legacyPlan = String(existingProgress.premium_plan ?? '').trim().toLowerCase();
   const looksLikeLegacyRc = legacyPlan === 'monthly' || legacyPlan === 'yearly'
-    || legacyPlan === 'lifetime' || legacyPlan === 'max_monthly';
+    || legacyPlan === 'lifetime';
   const hasCanonicalAccessEvidence = lineages.some((lineage) => (
     (Number.isSafeInteger(lineage.lastAccessEventTimeMs) && lineage.lastAccessEventTimeMs > 0)
     || (Number.isSafeInteger(lineage.lastGrantEventTimeMs) && lineage.lastGrantEventTimeMs > 0)

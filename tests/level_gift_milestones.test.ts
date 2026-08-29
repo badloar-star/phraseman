@@ -324,13 +324,19 @@ describe('level gift milestone rewards', () => {
     expect(mockStorage.avatar_aura_gift_owned_v1).toBeUndefined();
   });
 
+  // зачем: владелец 2026-08-27 заменил витрину на Avatar100 (73–126 без 90).
+  // Смысл сторожа прежний — люди/подарочные аватары в витрину не попадают;
+  // изменился только состав: старые платные 41–72 и 90 сняты с продажи навсегда.
   it('keeps people and animal avatars out of the shard shop', () => {
-    expect(CUSTOM_AVATAR_SHOP).toHaveLength(22);
+    expect(CUSTOM_AVATAR_SHOP).toHaveLength(53);
     expect(CUSTOM_AVATAR_SHOP.every((avatar) => !isCustomAvatarGiftOnly(avatar.id))).toBe(true);
     expect(CUSTOM_AVATAR_SHOP.every((avatar) => isCustomAvatarShardShop(avatar.id))).toBe(true);
     expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-21')).toBe(false);
-    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-41')).toBe(true);
-    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-62')).toBe(true);
+    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-41')).toBe(false);
+    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-62')).toBe(false);
+    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-90')).toBe(false);
+    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-73')).toBe(true);
+    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-126')).toBe(true);
     expect(CUSTOM_AVATAR_GIFT_POOL.some((avatar) => isCustomAvatarGiftOnly(avatar.id))).toBe(true);
     expect(CUSTOM_AVATAR_GIFT_POOL.some((avatar) => avatar.id === 'custom-gen-41')).toBe(false);
     expect(CUSTOM_AVATAR_GIFT_POOL.some((avatar) => avatar.id === 'custom-gen-62')).toBe(false);

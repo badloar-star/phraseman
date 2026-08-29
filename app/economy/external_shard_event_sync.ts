@@ -122,6 +122,21 @@ export async function syncConfirmedExternalShardEventsFromCloud(): Promise<{
       });
       if (result.status !== 'applied' && result.status !== 'already-applied') continue;
       if (!isCurrent()) break;
+      if (event.source === 'report_reply' && event.kind === 'confirmed_report_reward_bundle') {
+        try {
+          const { applyConfirmedReportRewardBundleExtrasFromEvent } = await import('../report_reward_bundle');
+          await applyConfirmedReportRewardBundleExtrasFromEvent(
+            event.eventId,
+            event.payload.rewardBundle,
+            ownerStableId,
+          );
+        } catch {
+          // The pearl operation above is idempotent. Leave the marker absent so
+          // the exact rune/spin grants are retried after interruption.
+          continue;
+        }
+      }
+      if (!isCurrent()) break;
       await AsyncStorage.setItem(markerKey, JSON.stringify({
         status: result.status,
         requestedDelta: event.delta,

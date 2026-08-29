@@ -59,6 +59,7 @@ export default function FlashcardsFilterDropdown({
               {triLang(lang, {
                 ru: 'Все',
                 uk: 'Всі',
+                en: 'All',
                 es: 'Todas',
                 'pt-BR': 'Todas',
                 vi: 'Tất cả',

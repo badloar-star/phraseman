@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createHash } from 'node:crypto';
+import * as levelSpinStarGrants from '../app/level_spin_star_grants';
 import {
   beginAccountGeneration,
   captureAccountGeneration,
@@ -35,6 +36,19 @@ type ExactOperation = Readonly<{
   }> }>;
 }>;
 
+type ExactPracticeRuneOperation = Readonly<{
+  schemaVersion: 'client-practice-rune-operation.v1';
+  operationId: string;
+  ownerStableId: string;
+  activity: 'flashcards_blitz';
+  sessionKey: string;
+  completionOrdinal: number;
+  amount: number;
+  reason: 'practice_session_reward';
+  createdAtMs: number;
+  requestFingerprint: string;
+}>;
+
 const storage: Record<string, string> = {};
 let visibleProgress: { stars: number; starsEarnedTotal: number };
 
@@ -60,6 +74,31 @@ function exactOperation(index: number, lane: 'base' | 'premium' = 'base'): Exact
       requestId, lane, giftId: 'stars_10', amount: 10,
     }) }),
   });
+}
+
+function exactPracticeRuneOperation(amount = 9): ExactPracticeRuneOperation {
+  const operation = {
+    schemaVersion: 'client-practice-rune-operation.v1' as const,
+    operationId: 'practice_rune:flashcards_blitz_attempt1_1',
+    ownerStableId: 'account-a',
+    activity: 'flashcards_blitz' as const,
+    sessionKey: 'attempt1',
+    completionOrdinal: 1,
+    amount,
+    reason: 'practice_session_reward' as const,
+    createdAtMs: 1_800_000_000_000,
+  };
+  const requestFingerprint = createHash('sha256').update(JSON.stringify({
+    schemaVersion: 1,
+    ownerStableId: operation.ownerStableId,
+    activity: operation.activity,
+    sessionKey: operation.sessionKey,
+    completionOrdinal: operation.completionOrdinal,
+    amount: operation.amount,
+    reason: operation.reason,
+    createdAtMs: operation.createdAtMs,
+  })).digest('hex');
+  return Object.freeze({ ...operation, requestFingerprint });
 }
 
 function bridgeMocks() {
@@ -126,6 +165,163 @@ test('offline credit is durable, visible after restart, and replay stays exactly
   await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false });
   expect(visibleProgress.stars).toBe(250);
   expect((await readUnifiedLevelSpinStars(token)).balance).toBe(250);
+});
+
+test('practice credit is durable and visible before any network acknowledgement', async () => {
+  const api = levelSpinStarGrants as typeof levelSpinStarGrants & {
+    commitPracticeRuneGrantLocally?: (
+      token: ReturnType<typeof captureAccountGeneration>,
+      operation: ExactPracticeRuneOperation,
+    ) => Promise<void>;
+  };
+  expect(typeof api.commitPracticeRuneGrantLocally).toBe('function');
+  const token = captureAccountGeneration();
+  const operation = exactPracticeRuneOperation();
+  await api.commitPracticeRuneGrantLocally!(token, operation);
+  expect(visibleProgress).toEqual(expect.objectContaining({ stars: 9, starsEarnedTotal: 9 }));
+
+  visibleProgress = { stars: 0, starsEarnedTotal: 0 };
+  await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false });
+  expect(visibleProgress).toEqual(expect.objectContaining({ stars: 9, starsEarnedTotal: 9 }));
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(9);
+
+  await api.commitPracticeRuneGrantLocally!(token, operation);
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(9);
+  const journalKey = levelSpinStarGrants.practiceRuneJournalStorageKey(
+    operation.ownerStableId, operation.operationId,
+  );
+  expect(JSON.parse(storage[journalKey])).toEqual(expect.objectContaining({
+    schemaVersion: 'client-practice-rune-journal-entry.v1',
+    accountGeneration: token.generation,
+    balanceBefore: 0,
+    balanceAfter: 9,
+    operation,
+    result: expect.objectContaining({
+      kind: 'practice_rune_credit', amount: 9, balanceBefore: 0, balanceAfter: 9,
+    }),
+  }));
+
+  await levelSpinStarGrants.acknowledgePracticeRuneGrantLocally(token, operation, {
+    materialized: true,
+    operationId: operation.operationId,
+    requestFingerprint: operation.requestFingerprint,
+    replayed: false,
+    starsBalance: 9,
+    starsEarnedTotal: 9,
+    starsSeq: 1,
+  });
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(9);
+  expect((await readUnifiedLevelSpinStars(token)).earnedTotal).toBe(9);
+  await api.commitPracticeRuneGrantLocally!(token, operation);
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(9);
+  visibleProgress = { stars: 0, starsEarnedTotal: 0 };
+  await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false });
+  expect(visibleProgress).toEqual(expect.objectContaining({ stars: 9, starsEarnedTotal: 9 }));
+  expect(storage[journalKey]).toBeDefined();
+  await levelSpinStarGrants.acknowledgePracticeRuneGrantLocally(token, operation, {
+    materialized: true,
+    operationId: operation.operationId,
+    requestFingerprint: operation.requestFingerprint,
+    replayed: true,
+    starsBalance: 9,
+    starsEarnedTotal: 9,
+    starsSeq: 2,
+  });
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(9);
+  expect((await readUnifiedLevelSpinStars(token)).earnedTotal).toBe(9);
+});
+
+test('newer server snapshots do not double an unacknowledged practice credit', async () => {
+  const token = captureAccountGeneration();
+  const operation = exactPracticeRuneOperation();
+  await levelSpinStarGrants.commitPracticeRuneGrantLocally(token, operation);
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(9);
+
+  expect((await mergeLevelSpinServerStars(token, {
+    stars: 9, starsEarnedTotal: 9, starsSeq: 1,
+  })).balance).toBe(9);
+  expect(visibleProgress.stars).toBe(9);
+
+  await levelSpinStarGrants.acknowledgePracticeRuneGrantLocally(token, operation, {
+    materialized: true,
+    operationId: operation.operationId,
+    requestFingerprint: operation.requestFingerprint,
+    replayed: true,
+    starsBalance: 9,
+    starsEarnedTotal: 9,
+    starsSeq: 1,
+  });
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(9);
+});
+
+test('practice prepare recovery creates the full semantic journal before clearing intent', async () => {
+  const token = captureAccountGeneration();
+  const operation = exactPracticeRuneOperation();
+  const normalMultiSet = (AsyncStorage.multiSet as jest.Mock).getMockImplementation();
+  (AsyncStorage.multiSet as jest.Mock)
+    .mockImplementationOnce(async (pairs: [string, string][]) => normalMultiSet?.(pairs))
+    .mockRejectedValueOnce(new Error('fault_after_practice_prepare'));
+
+  await expect(levelSpinStarGrants.commitPracticeRuneGrantLocally(token, operation))
+    .rejects.toThrow('fault_after_practice_prepare');
+  expect(JSON.parse(storage[levelSpinStarPreparedKey('account-a')])).toEqual([operation]);
+  const journalKey = levelSpinStarGrants.practiceRuneJournalStorageKey(
+    operation.ownerStableId, operation.operationId,
+  );
+  expect(storage[journalKey]).toBeUndefined();
+
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
+    pairs.forEach(([key, value]) => { storage[key] = value; });
+  });
+  await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false });
+  expect(JSON.parse(storage[levelSpinStarPreparedKey('account-a')])).toEqual([]);
+  expect(JSON.parse(storage[journalKey])).toEqual(expect.objectContaining({
+    schemaVersion: 'client-practice-rune-journal-entry.v1',
+    accountGeneration: token.generation,
+    balanceBefore: 0,
+    balanceAfter: 9,
+    operation,
+    result: {
+      kind: 'practice_rune_credit',
+      subjectId: operation.operationId,
+      amount: 9,
+      balanceBefore: 0,
+      balanceAfter: 9,
+    },
+  }));
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(9);
+});
+
+test('practice acknowledgement from a lagging server cannot lower a newer local wallet', async () => {
+  visibleProgress = { stars: 300, starsEarnedTotal: 300 };
+  const token = captureAccountGeneration();
+  const operation = exactPracticeRuneOperation();
+  await levelSpinStarGrants.commitPracticeRuneGrantLocally(token, operation);
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(309);
+
+  await levelSpinStarGrants.acknowledgePracticeRuneGrantLocally(token, operation, {
+    materialized: true,
+    operationId: operation.operationId,
+    requestFingerprint: operation.requestFingerprint,
+    replayed: false,
+    starsBalance: 9,
+    starsEarnedTotal: 9,
+    starsSeq: 1,
+  });
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(309);
+  expect((await readUnifiedLevelSpinStars(token)).earnedTotal).toBe(309);
+  await readUnifiedLevelSpinStars(token); // compacts to the durable acknowledged tombstone
+  await levelSpinStarGrants.acknowledgePracticeRuneGrantLocally(token, operation, {
+    materialized: true,
+    operationId: operation.operationId,
+    requestFingerprint: operation.requestFingerprint,
+    replayed: true,
+    starsBalance: 9,
+    starsEarnedTotal: 9,
+    starsSeq: 2,
+  });
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(309);
+  expect((await readUnifiedLevelSpinStars(token)).earnedTotal).toBe(309);
 });
 
 test('malformed non-null projection is preserved and recovery fails closed', async () => {

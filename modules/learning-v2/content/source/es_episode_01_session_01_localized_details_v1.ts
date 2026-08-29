@@ -597,6 +597,8 @@ export const ES_SESSION_01_LOCALIZED_DETAILS: Readonly<
 
   'es-e01-s01-es-verdad': {
     ru: { meaning: 'Это правда', explanation: 'Так подтверждают чужие слова в разговоре. Verdad — существительное, но с ser работает как оценка.', distractors: [
+      { value: 'Eres', reason: 'Eres — это «ты». Про «это» (безличную оценку) — только es.', trapType: 'grammar' },
+      { value: 'Soy', reason: 'Soy — про себя. Оценка ситуации не о говорящем — es.', trapType: 'grammar' },
       { value: 'verdadero', reason: 'Verdadero — «истинный» как признак предмета. Устойчивая реакция — именно es verdad.' , trapType: 'grammar' },
       { value: 'verdadera', reason: 'Verdadera — то же прилагательное в женском роде. Здесь нужно существительное verdad, не прилагательное.' , trapType: 'grammar' },
     ],
@@ -610,6 +612,8 @@ export const ES_SESSION_01_LOCALIZED_DETAILS: Readonly<
         { value: 'verdadera', reason: 'Verdadera — то же прилагательное в женском роде. Здесь нужно существительное verdad, не прилагательное.' , trapType: 'grammar' },
       ]}]},
     uk: { meaning: 'Це правда', explanation: 'Так підтверджують чужі слова в розмові. Verdad — іменник, але з ser працює як оцінка.', distractors: [
+      { value: 'Eres', reason: 'Eres — це «ти». Про «це» (безособову оцінку) — тільки es.', trapType: 'grammar' },
+      { value: 'Soy', reason: 'Soy — про себе. Оцінка ситуації не про мовця — es.', trapType: 'grammar' },
       { value: 'verdadero', reason: 'Verdadero — «істинний» як ознака предмета. Стійка реакція — саме es verdad.' , trapType: 'grammar' },
       { value: 'verdadera', reason: 'Verdadera — той самий прикметник у жіночому роді. Тут потрібен іменник verdad, не прикметник.' , trapType: 'grammar' },
     ],
@@ -623,6 +627,8 @@ export const ES_SESSION_01_LOCALIZED_DETAILS: Readonly<
         { value: 'verdadera', reason: 'Verdadera — той самий прикметник у жіночому роді. Тут потрібен іменник verdad, не прикметник.' , trapType: 'grammar' },
       ]}]},
     en: { meaning: 'That is true', explanation: 'This is how you confirm someone else’s words. Verdad is a noun, but with ser it works as a verdict.', distractors: [
+      { value: 'Eres', reason: 'Eres is “you”. For “this” (an impersonal verdict), only es works.', trapType: 'grammar' },
+      { value: 'Soy', reason: 'Soy is about yourself. A verdict about the situation is not about the speaker — es.', trapType: 'grammar' },
       { value: 'verdadero', reason: 'Verdadero is “true” as a quality of a thing. The fixed reaction is exactly es verdad.' , trapType: 'grammar' },
       { value: 'verdadera', reason: 'Verdadera is the same adjective in feminine form. Here you need the noun verdad, not an adjective.' , trapType: 'grammar' },
     ],
@@ -636,6 +642,8 @@ export const ES_SESSION_01_LOCALIZED_DETAILS: Readonly<
         { value: 'verdadera', reason: 'Verdadera is the same adjective in feminine form. Here you need the noun verdad, not an adjective.' , trapType: 'grammar' },
       ]}]},
     'pt-BR': { meaning: 'Isso é verdade', explanation: 'É assim que se confirma o que outra pessoa disse. Verdad é substantivo, mas com ser funciona como um veredito.', distractors: [
+      { value: 'Eres', reason: 'Eres é “você”. Para “isso” (um veredito impessoal), só es funciona.', trapType: 'grammar' },
+      { value: 'Soy', reason: 'Soy é sobre você mesmo. Um veredito sobre a situação não é sobre quem fala — es.', trapType: 'grammar' },
       { value: 'verdadero', reason: 'Verdadero é “verdadeiro” como qualidade de uma coisa. A reação fixa é exatamente es verdad.' , trapType: 'grammar' },
       { value: 'verdadera', reason: 'Verdadera é o mesmo adjetivo no feminino. Aqui precisa do substantivo verdad, não de um adjetivo.' , trapType: 'grammar' },
     ],
@@ -649,6 +657,8 @@ export const ES_SESSION_01_LOCALIZED_DETAILS: Readonly<
         { value: 'verdadera', reason: 'Verdadera é o mesmo adjetivo no feminino. Aqui precisa do substantivo verdad, não de um adjetivo.' , trapType: 'grammar' },
       ]}]},
     vi: { meaning: 'Điều đó đúng', explanation: 'Đây là cách xác nhận lời người khác. Verdad là danh từ, nhưng đi với ser thì hoạt động như một nhận định.', distractors: [
+      { value: 'Eres', reason: 'Eres nghĩa là “bạn”. Với “điều này” (nhận định vô nhân xưng), chỉ es mới đúng.', trapType: 'grammar' },
+      { value: 'Soy', reason: 'Soy là nói về bản thân. Nhận định về tình huống không phải về người nói — es.', trapType: 'grammar' },
       { value: 'verdadero', reason: 'Verdadero là “đúng thật” như một đặc tính của sự vật. Phản ứng cố định chính là es verdad.' , trapType: 'grammar' },
       { value: 'verdadera', reason: 'Verdadera là cùng một tính từ ở dạng giống cái. Ở đây cần danh từ verdad, không phải tính từ.' , trapType: 'grammar' },
     ],
@@ -662,6 +672,8 @@ export const ES_SESSION_01_LOCALIZED_DETAILS: Readonly<
         { value: 'verdadera', reason: 'Verdadera là cùng một tính từ ở dạng giống cái. Ở đây cần danh từ verdad, không phải tính từ.' , trapType: 'grammar' },
       ]}]},
     id: { meaning: 'Itu benar', explanation: 'Begini cara menegaskan kata-kata orang lain. Verdad adalah kata benda, tapi dengan ser berfungsi sebagai penilaian.', distractors: [
+      { value: 'Eres', reason: 'Eres berarti "kamu". Untuk "ini" (penilaian impersonal), hanya es yang tepat.', trapType: 'grammar' },
+      { value: 'Soy', reason: 'Soy tentang diri sendiri. Penilaian tentang situasi bukan tentang penutur — es.', trapType: 'grammar' },
       { value: 'verdadero', reason: 'Verdadero adalah "benar" sebagai sifat suatu benda. Reaksi tetapnya adalah es verdad.' , trapType: 'grammar' },
       { value: 'verdadera', reason: 'Verdadera adalah kata sifat yang sama dalam bentuk feminin. Di sini perlu kata benda verdad, bukan kata sifat.' , trapType: 'grammar' },
     ],
@@ -675,6 +687,8 @@ export const ES_SESSION_01_LOCALIZED_DETAILS: Readonly<
         { value: 'verdadera', reason: 'Verdadera adalah kata sifat yang sama dalam bentuk feminin. Di sini perlu kata benda verdad, bukan kata sifat.' , trapType: 'grammar' },
       ]}]},
     tr: { meaning: 'Bu doğru', explanation: 'Başkasının sözlerini böyle doğrularsınız. Verdad bir isimdir, ama ser ile bir yargı gibi çalışır.', distractors: [
+      { value: 'Eres', reason: 'Eres "sen" demektir. "Bu" hakkında kişisiz bir yargıda sadece es kullanılır.', trapType: 'grammar' },
+      { value: 'Soy', reason: 'Soy kendiniz hakkındadır. Durum hakkındaki bir yargı konuşan hakkında değildir — es.', trapType: 'grammar' },
       { value: 'verdadero', reason: 'Verdadero bir şeyin niteliği olarak "doğru" demektir. Sabit tepki tam olarak es verdad\'dır.' , trapType: 'grammar' },
       { value: 'verdadera', reason: 'Verdadera aynı sıfatın dişil biçimidir. Burada sıfat değil, verdad ismi gerekir.' , trapType: 'grammar' },
     ],
@@ -688,6 +702,8 @@ export const ES_SESSION_01_LOCALIZED_DETAILS: Readonly<
         { value: 'verdadera', reason: 'Verdadera aynı sıfatın dişil biçimidir. Burada sıfat değil, verdad ismi gerekir.' , trapType: 'grammar' },
       ]}]},
     pl: { meaning: 'To prawda', explanation: 'Tak potwierdza się czyjeś słowa. Verdad to rzeczownik, ale z ser działa jak osąd.', distractors: [
+      { value: 'Eres', reason: 'Eres to „ty”. Dla „to” (bezosobowy osąd) pasuje tylko es.', trapType: 'grammar' },
+      { value: 'Soy', reason: 'Soy dotyczy ciebie samego. Osąd o sytuacji nie dotyczy mówiącego — es.', trapType: 'grammar' },
       { value: 'verdadero', reason: 'Verdadero to „prawdziwy” jako cecha przedmiotu. Stała reakcja to dokładnie es verdad.' , trapType: 'grammar' },
       { value: 'verdadera', reason: 'Verdadera to ten sam przymiotnik w rodzaju żeńskim. Tu potrzebny jest rzeczownik verdad, nie przymiotnik.' , trapType: 'grammar' },
     ],

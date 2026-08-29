@@ -29,4 +29,12 @@ describe('unified team notification center', () => {
     expect(source).toContain('Уведомление удалено');
     expect(source).toContain('Вернуть');
   });
+
+  it('does not duplicate modern report replies or let an unclaimed reward be deleted', () => {
+    const inbox = fs.readFileSync(path.join(ROOT, 'components', 'AppMessagesInbox.tsx'), 'utf8');
+    expect(inbox).toContain("mode === 'notification-center'");
+    expect(inbox).toContain('filterAppMessagesSnapshotForNotificationCenter(filtered)');
+    expect(source).toContain('const hasUnclaimedReportReward = row.type === \'report_reply\'');
+    expect(source).toContain('{!hasUnclaimedReportReward ? (');
+  });
 });

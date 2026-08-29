@@ -142,6 +142,32 @@ export const DEV_IAP_BYPASS = DEV_MODE && !IS_STORE_RELEASE;
 export const DEV_CONTENT_UNLOCK = DEV_MODE && !IS_STORE_RELEASE;
 
 /**
+ * DEV-ONLY, ВРЕМЕННО (владелец, 2026-08-28): пока авторы Learning V2 пишут
+ * испанские сессии быстрее, чем для них генерируется bundled-озвучка,
+ * звуковые задания (listen_choose/listen_build_dictation/scripted_repeat_
+ * compare) внутри написанной, но ещё не озвученной сессии показываются БЕЗ
+ * звука — задание остаётся текстовым/интерактивным, а его audioTargetIds
+ * обнуляются ДО прохождения аудио-гейта. Это не обход крипто-контракта
+ * (course_session_audio_child_v1.ts): для сессии без единого audioTargetId
+ * гейт `needsAudio` сам по себе не срабатывает, значит подписанные mp3
+ * по-прежнему не подделываются — их просто не требуют.
+ *
+ * зачем именно так, а не заглушки в аудио-чайлде: schema там жёстко
+ * фиксирует count/fingerprint для каждого interactionId с audioTargetIds —
+ * пустая заглушка проваливает validate() (см. комментарий в
+ * bundledLearningV2CourseSessionMaterialV3, инцидент с испанской сессией 2).
+ *
+ * ⚠️ ВЛАДЕЛЕЦ ЛИЧНО СКАЖЕТ «конец периода разработки» — тогда этот флаг
+ * убрать целиком (не просто выключить), а сессии либо получат настоящую
+ * озвучку и попадут в ES_BUNDLED_AUDIO_SESSIONS, либо останутся закрытыми
+ * потолком, как раньше. До этого момента флаг живёт только в dev-сборке
+ * (`!IS_STORE_RELEASE` гасит его в сторе так же, как ENABLE_DEV_TOOLS).
+ */
+export const DEV_LEARNING_V2_AUDIOLESS_SESSIONS_INTENT = true;
+export const DEV_LEARNING_V2_AUDIOLESS_SESSIONS =
+  DEV_LEARNING_V2_AUDIOLESS_SESSIONS_INTENT && DEV_MODE && !IS_STORE_RELEASE;
+
+/**
  * Анимации переходов между экранами (slide вместо мгновенного появления/fade).
  *
  * OWNER UPDATE (2026-08-25): production-навигация обязана реагировать мгновенно.

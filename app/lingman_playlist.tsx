@@ -45,8 +45,8 @@ export default function LingmanPlaylistScreen() {
   const playlist = catalog?.playlists.find((item) => item.id === playlistId);
   const videos = useMemo(() => catalog?.videos.filter((video) => video.playlistIds.includes(playlistId)) ?? [], [catalog, playlistId]);
   const copy = {
-    playAll: triLang(lang, { ru: 'Воспроизвести всё', uk: 'Відтворити все', es: 'Play all', 'pt-BR': 'Reproduzir tudo', vi: 'Phát tất cả', id: 'Putar semua', tr: 'Tümünü oynat', pl: 'Odtwórz wszystko' }),
-    empty: triLang(lang, { ru: 'Видео этого плейлиста пока недоступны.', uk: 'Відео цього плейлиста поки недоступні.', es: 'Playlist videos are not available yet.', 'pt-BR': 'Os vídeos ainda não estão disponíveis.', vi: 'Video chưa khả dụng.', id: 'Video belum tersedia.', tr: 'Videolar henüz kullanılamıyor.', pl: 'Filmy nie są jeszcze dostępne.' }),
+    playAll: triLang(lang, { ru: 'Воспроизвести всё', uk: 'Відтворити все', en: 'Play all', es: 'Reproducir todo', 'pt-BR': 'Reproduzir tudo', vi: 'Phát tất cả', id: 'Putar semua', tr: 'Tümünü oynat', pl: 'Odtwórz wszystko' }),
+    empty: triLang(lang, { ru: 'Видео этого плейлиста пока недоступны.', uk: 'Відео цього плейлиста поки недоступні.', en: 'Playlist videos are not available yet.', es: 'Los vídeos de esta lista aún no están disponibles.', 'pt-BR': 'Os vídeos ainda não estão disponíveis.', vi: 'Video chưa khả dụng.', id: 'Video belum tersedia.', tr: 'Videolar henüz kullanılamıyor.', pl: 'Filmy nie są jeszcze dostępne.' }),
   };
 
   useEffect(() => {

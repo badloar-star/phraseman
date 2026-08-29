@@ -423,6 +423,15 @@ function buildSessionShardFromSource(source) {
                 authored.modePayload.family !== authored.family) {
                 throw new Error(`session_source_mode_native_step_mismatch:${index + 4}`);
             }
+            if (authored.modePayload.family === 'speed_match' &&
+                authored.target.kind === 'vocabulary_grid' &&
+                authored.target.knownItems) {
+                const metadataTargets = authored.target.knownItems.map((item) => item.target);
+                const payloadTargets = authored.modePayload.pairGrid.map((item) => item.target);
+                if (metadataTargets.length !== payloadTargets.length ||
+                    metadataTargets.some((target, itemIndex) => target !== payloadTargets[itemIndex]))
+                    throw new Error(`session_source_speed_match_metadata_mismatch:${index + 4}`);
+            }
         });
     }
     const introPages = source.introPages.map((page, index) => {
@@ -477,8 +486,13 @@ function buildSessionShardFromSource(source) {
         const vocabulary = step.targetKind === 'vocabulary'
             ? source.newVocabulary?.[step.sourceVocabularyIndex ?? -1]
             : undefined;
+        const authoredKnownGrid = authoredModeStep?.target.kind === 'vocabulary_grid'
+            ? authoredModeStep.target.knownItems
+            : undefined;
         const gridVocabulary = step.targetKind === 'vocabulary_grid'
-            ? step.sourceVocabularyIndices?.map((sourceIndex) => source.newVocabulary?.[sourceIndex])
+            ? (authoredKnownGrid?.length
+                ? authoredKnownGrid
+                : step.sourceVocabularyIndices?.map((sourceIndex) => source.newVocabulary?.[sourceIndex]))
             : undefined;
         if ((step.targetKind === 'vocabulary' && (!vocabulary || !vocabularyStage)) ||
             (step.targetKind === 'vocabulary_grid' && !gridVocabulary?.every(Boolean)))
@@ -627,6 +641,9 @@ function buildSessionShardFromSource(source) {
             introQuestionId: slot <= 3 ? intro.pages[slot - 1].question.questionId : null,
             contentItem,
             ...learnerCopy,
+            ...(authoredModeStep?.instruction
+                ? { instructionByLocale: expandLocalized(authoredModeStep.instruction) }
+                : {}),
             modePayload: authoredModeStep?.modePayload ?? null,
             audioScript: AUDIO_FAMILIES.has(family)
                 ? {

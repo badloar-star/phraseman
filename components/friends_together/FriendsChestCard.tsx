@@ -38,13 +38,13 @@ export interface FriendsChestCardProps {
 }
 
 /** Статус-пилюля — ОДНО слово/фраза, без цифр (закон макета). */
-function statusLabel(model: WeeklyChestModel, devMode: boolean, L: (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) => string): string {
+function statusLabel(model: WeeklyChestModel, devMode: boolean, L: (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) => string): string {
   if (devMode && model.state === 'claimed') return 'Собрано · DEV';
-  if (model.state === 'claimed') return L('Искры собраны', 'Іскри зібрано', 'Chispas recogidas', 'Faíscas coletadas', 'Đã thu thập tia lửa', 'Percikan terkumpul', 'Kıvılcımlar toplandı', 'Iskry zebrane');
-  if (model.canClaim) return L('Искры готовы', 'Іскри готові', 'Chispas listas', 'Faíscas prontas', 'Tia lửa đã sẵn sàng', 'Percikan siap', 'Kıvılcımlar hazır', 'Iskry gotowe');
-  if (model.tier >= 3) return L('Общее пламя', 'Спільне полум’я', 'Llama compartida', 'Chama compartilhada', 'Ngọn lửa chung', 'Api bersama', 'Ortak alev', 'Wspólny płomień');
-  if (model.tier >= 2) return L('Пламя', 'Полум’я', 'Llama', 'Chama', 'Ngọn lửa', 'Api', 'Alev', 'Płomień');
-  return L('Искра', 'Іскра', 'Chispa', 'Faísca', 'Tia lửa', 'Percikan', 'Kıvılcım', 'Iskra');
+  if (model.state === 'claimed') return L('Искры собраны', 'Іскри зібрано', 'Sparks collected', 'Chispas recogidas', 'Faíscas coletadas', 'Đã thu thập tia lửa', 'Percikan terkumpul', 'Kıvılcımlar toplandı', 'Iskry zebrane');
+  if (model.canClaim) return L('Искры готовы', 'Іскри готові', 'Sparks ready', 'Chispas listas', 'Faíscas prontas', 'Tia lửa đã sẵn sàng', 'Percikan siap', 'Kıvılcımlar hazır', 'Iskry gotowe');
+  if (model.tier >= 3) return L('Общее пламя', 'Спільне полум’я', 'Shared flame', 'Llama compartida', 'Chama compartilhada', 'Ngọn lửa chung', 'Api bersama', 'Ortak alev', 'Wspólny płomień');
+  if (model.tier >= 2) return L('Пламя', 'Полум’я', 'Flame', 'Llama', 'Chama', 'Ngọn lửa', 'Api', 'Alev', 'Płomień');
+  return L('Искра', 'Іскра', 'Spark', 'Chispa', 'Faísca', 'Tia lửa', 'Percikan', 'Kıvılcım', 'Iskra');
 }
 
 function TierTick({ leftPercent }: { leftPercent: number }) {
@@ -67,8 +67,8 @@ function FriendsChestCard({ model, onClaim, claimBusy = false, ownerVisible = tr
   const flameAssetKey = `friends-shared-flame-${themeMode}-${visual.stage}`;
   const [failedFlameAssetKey, setFailedFlameAssetKey] = useState<string | null>(null);
   const flameImageFailed = failedFlameAssetKey === flameAssetKey;
-  const L = (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
-    triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  const L = (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang as any, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
   const isGold = model.tier >= 2;
   const barColor = isGold ? t.gold : t.accent;
@@ -108,7 +108,7 @@ function FriendsChestCard({ model, onClaim, claimBusy = false, ownerVisible = tr
     transform: [{ scale: visual.scale * (1 + rock.value * 0.035) }],
   }), [visual.scale]);
 
-  const claimLabel = L('Собрать искры', 'Зібрати іскри', 'Recoger chispas', 'Coletar faíscas', 'Thu thập tia lửa', 'Kumpulkan percikan', 'Kıvılcımları topla', 'Zbierz iskry');
+  const claimLabel = L('Собрать искры', 'Зібрати іскри', 'Collect sparks', 'Recoger chispas', 'Coletar faíscas', 'Thu thập tia lửa', 'Kumpulkan percikan', 'Kıvılcımları topla', 'Zbierz iskry');
 
   return (
     <TonalSurface testID={testID} tone="card" radius={18} style={styles.card}>
@@ -137,7 +137,7 @@ function FriendsChestCard({ model, onClaim, claimBusy = false, ownerVisible = tr
         </View>
         <View style={styles.grow}>
           <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700' }}>
-            {L('Общее пламя', 'Спільне полум’я', 'Llama compartida', 'Chama compartilhada', 'Ngọn lửa chung', 'Api bersama', 'Ortak alev', 'Wspólny płomień')}
+            {L('Общее пламя', 'Спільне полум’я', 'Shared flame', 'Llama compartida', 'Chama compartilhada', 'Ngọn lửa chung', 'Api bersama', 'Ortak alev', 'Wspólny płomień')}
           </Text>
           <View style={styles.progWrap}>
             <View style={[styles.progTrack, { backgroundColor: t.bgSurface2 }]}>

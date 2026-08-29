@@ -63,8 +63,8 @@ import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
-import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
@@ -623,13 +623,8 @@ function MistakePracticeSessionScreen() {
         stopForToday: result.requeue?.kind === 'stop_for_today',
       });
       if (attemptEffect === 'attempts_exhausted') {
-        // SpeakingPanel receives holdActive=false before the modal appears, so
-        // no partial capture can continue beneath the recovery surface.
+        // Stop the held capture before the automatic same-card reset.
         setSpeechHeld(false);
-        attemptsModalTimerRef.current = setTimeout(
-          () => setShowAttemptsModal(true),
-          SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
-        );
       }
     } finally {
       submissionLatchRef.current = false;
@@ -710,15 +705,17 @@ function MistakePracticeSessionScreen() {
     });
   }, [attemptSessionId, attempts.registerVerdict, session?.sessionId]);
 
-  const recoverMistakePracticeAttempts = useCallback(async (source: 'gift' | 'runes') => {
-    try {
-      if (source === 'gift') await attempts.recoverWithGift();
-      else await attempts.recoverWithRunes();
-      setShowAttemptsModal(false);
-    } catch {
-      // Corrective feedback and the prepared scheduler transition stay intact.
-    }
-  }, [attempts.recoverWithGift, attempts.recoverWithRunes]);
+  const resetMistakePracticeAfterSessionRuneForfeit = useCallback(() => {
+    setShowAttemptsModal(false);
+    setSpeechHeld(false);
+  }, []);
+
+  useSessionAttemptAutoReset({
+    phase: attempts.state.phase,
+    forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
+    restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
+    onRestored: resetMistakePracticeAfterSessionRuneForfeit,
+  });
 
   const endExhaustedMistakePractice = useCallback(() => {
     attempts.endAttemptsSession();
@@ -1109,16 +1106,6 @@ OK: ${entry.exercise.correctAnswer}`}
         onCancel={() => setHideConfirmVisible(false)}
         onConfirm={() => void hideCurrentMistake()}
         testIDPrefix="mistake-practice-hide"
-      />
-      <SessionAttemptsRecoveryModal
-        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
-        locale={lang}
-        giftCount={attempts.giftCount}
-        runeBalance={attempts.runeBalance ?? 0}
-        busy={attempts.recoveryBusy}
-        onUseGift={() => { void recoverMistakePracticeAttempts('gift'); }}
-        onSpendRunes={() => { void recoverMistakePracticeAttempts('runes'); }}
-        onEndSession={endExhaustedMistakePractice}
       />
       {runeFlight.flight && (
         <LearningV2RuneFlight

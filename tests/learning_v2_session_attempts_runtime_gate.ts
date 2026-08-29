@@ -21,9 +21,9 @@ const players = [
 for (const player of players) {
   assert.ok(
     player.source.includes("SessionAttemptsHud") &&
-      player.source.includes("SessionAttemptsRecoveryModal") &&
-      player.source.includes("useSessionAttempts"),
-    `${player.name} must mount the shared attempts HUD, modal, and controller`,
+      player.source.includes("useSessionAttempts") &&
+      player.source.includes("useSessionAttemptAutoReset"),
+    `${player.name} must mount the shared attempts HUD, controller, and automatic reset`,
   );
   assert.ok(
     player.source.includes('verdict: "pedagogical_wrong"') ||
@@ -32,14 +32,14 @@ for (const player of players) {
   );
   assert.ok(
     player.source.includes("attempts_exhausted") &&
-      player.source.includes("awaiting_recovery"),
-    `${player.name} must stop on the third wrong and wait for recovery`,
+      player.source.includes("restoreAfterSessionRuneForfeit"),
+    `${player.name} must restore hearts after the third wrong`,
   );
   assert.ok(
-    player.source.includes("recoverWithGift") &&
-      player.source.includes("recoverWithRunes") &&
-      player.source.includes("endAttemptsSession"),
-    `${player.name} must expose all three recovery decisions`,
+    !player.source.includes("SessionAttemptsRecoveryModal") &&
+      !player.source.includes("recoverWithGift") &&
+      !player.source.includes("recoverWithRunes"),
+    `${player.name} must not expose retired recovery choices`,
   );
 }
 
@@ -55,23 +55,39 @@ assert.ok(
     direct.includes("voiceCancelRef.current()") &&
     direct.includes("managedAudio.stop()") &&
     direct.includes("stopPreviewAudio()"),
-  "the direct player must stop voice and audio before showing the exhausted modal",
+  "the direct player retains owned voice and audio cleanup",
 );
 assert.ok(
-  direct.includes("recoverCurrentLearningV2Attempt") &&
-    direct.includes("setShowAttemptsModal(false)") &&
+  direct.includes("resetLearningV2AfterSessionRuneForfeit") &&
+    direct.includes("setSessionRunes(0)") &&
     !direct.includes("setPracticeIndex(0); // session-attempt-recovery"),
-  "recovery must keep the exact practice index and resume the same activity",
+  "automatic reset must keep the exact practice index and clear only session runes",
 );
-
+assert.ok(
+  !direct.includes("emitAppEvent(\"energy_spent_on_start\"") &&
+    !direct.includes("emitAppEvent('energy_spent_on_start'"),
+  "the player must not fake the energy flight; EnergyContext emits it only after the atomic debit+grant commit",
+);
+assert.ok(
+  direct.includes("telemetryStartSentRef.current = false") &&
+    direct.includes('sessionStageRef.current = "intro"') &&
+    direct.includes("sessionStartedAtRef.current = null"),
+  "a paid fresh run must start a fresh telemetry lifecycle instead of inheriting the exhausted run",
+);
+assert.ok(
+  direct.includes("newWordSaveBusyRef.current.has(lexicalItemId)") &&
+    direct.includes("newWordSaveBusyRef.current.add(lexicalItemId)") &&
+    direct.includes("newWordSaveBusyRef.current.delete(lexicalItemId)"),
+  "durable word-card save/remove must be synchronously locked against double taps",
+);
 const route = players[1].source;
 assert.ok(
   route.includes("stopAttemptMediaBeforeRecovery") &&
     route.includes("stopLocalAudioPlayback()"),
-  "the released route must stop owned audio before showing the exhausted modal",
+  "the released route retains owned audio cleanup",
 );
 assert.ok(
-  route.includes("recoverCurrentLearningV2Attempt") &&
+  route.includes("resetLearningV2RouteAfterSessionRuneForfeit") &&
     !route.includes("setCardIndex(3); // session-attempt-recovery"),
   "released-route recovery must keep the exact task/card index",
 );

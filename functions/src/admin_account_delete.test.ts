@@ -182,7 +182,9 @@ describe('protected admin account deletion queue', () => {
     expect(source).toContain('ENFORCE_APP_CHECK_SENSITIVE');
     expect(source).toContain('if (!request.app)');
     expect(source).toContain("hasPermission(role, 'users.delete')");
-    expect(source).toContain('enqueueAccountDeletionJob(db, identity.authUid, identity.stableUid)');
+    expect(source).toContain('fenceAccountDeletionRoots(db, identity.authUid, identity.stableUid, closureCutoffMs)');
+    expect(source).toContain('resolveAccountDeleteIdentityClosure(');
+    expect(source).toContain('identityClosure,');
     expect(source).toContain("state: 'pending_enqueue'");
     expect(source).toContain('requestFingerprint');
     expect(source).toContain("action: 'account.delete.queue'");

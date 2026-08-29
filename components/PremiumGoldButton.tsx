@@ -37,6 +37,7 @@ function PremiumGoldButton({ active, f, paywallContext = 'no_energy', onPress, c
     triLang(lang, {
       ru: 'Получить Плюс',
       uk: 'Отримати Plus',
+      en: 'Get Plus',
       es: 'Obtener Plus',
       'pt-BR': 'Obter Plus',
       vi: 'Nhận Plus',

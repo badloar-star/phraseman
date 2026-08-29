@@ -36,7 +36,6 @@ import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
-import SessionAttemptsRecoveryModal from '../components/session_attempts/SessionAttemptsRecoveryModal';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Reanimated, {
@@ -84,6 +83,7 @@ import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_captur
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { captureAccountGeneration } from './account_generation';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
+import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
 /** Акцент блица (words #4A9EFF / phrases #40C080 / arena #E05050 / listening #9C6ADE). */
@@ -555,10 +555,6 @@ export default function FlashcardsBlitzSession() {
 
       if (attemptEffect === 'attempts_exhausted') {
         pauseBlitzCountdown();
-        timersRef.current.push(setTimeout(
-          () => setShowAttemptsModal(true),
-          SESSION_ATTEMPTS_MOTION.exhaustedModalDelayMs,
-        ));
         return;
       }
       timersRef.current.push(
@@ -580,20 +576,20 @@ export default function FlashcardsBlitzSession() {
     ],
   );
 
-  const recoverBlitzAttempts = useCallback(async (source: 'gift' | 'runes') => {
-    try {
-      if (source === 'gift') await attempts.recoverWithGift();
-      else await attempts.recoverWithRunes();
-      setShowAttemptsModal(false);
-      setBtnStates(IDLE_BTNS);
-      setLocked(false);
-      shownAtRef.current = Date.now();
-      resumeBlitzCountdown();
-    } catch {
-      // Shared modal keeps the current question paused and exposes the error
-      // through its disabled/resource state. No progress or timer is lost.
-    }
-  }, [attempts.recoverWithGift, attempts.recoverWithRunes, resumeBlitzCountdown]);
+  const resetBlitzAfterSessionRuneForfeit = useCallback(() => {
+    setShowAttemptsModal(false);
+    setBtnStates(IDLE_BTNS);
+    setLocked(false);
+    shownAtRef.current = Date.now();
+    resumeBlitzCountdown();
+  }, [resumeBlitzCountdown]);
+
+  useSessionAttemptAutoReset({
+    phase: attempts.state.phase,
+    forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
+    restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
+    onRestored: resetBlitzAfterSessionRuneForfeit,
+  });
 
   const endExhaustedBlitz = useCallback(() => {
     attempts.endAttemptsSession();
@@ -1125,16 +1121,6 @@ RU: ${question.card.translation}`}
         {deckPickerSheet}
       </SafeAreaView>
       <NoEnergyModal visible={energyGate === 'denied'} onClose={leave} />
-      <SessionAttemptsRecoveryModal
-        visible={showAttemptsModal && attempts.state.phase === 'awaiting_recovery'}
-        locale={lang}
-        giftCount={attempts.giftCount}
-        runeBalance={attempts.runeBalance ?? 0}
-        busy={attempts.recoveryBusy}
-        onUseGift={() => { void recoverBlitzAttempts('gift'); }}
-        onSpendRunes={() => { void recoverBlitzAttempts('runes'); }}
-        onEndSession={endExhaustedBlitz}
-      />
       {runeFlight.flight && (
         <LearningV2RuneFlight
           key={runeFlight.flight.key}

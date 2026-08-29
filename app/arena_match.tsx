@@ -205,6 +205,8 @@ function ArenaMatchGenerationScreen({
 
   const [plan, setPlan] = useState<ArenaMatchPlanWire | null>(() => preparedEntry?.plan ?? null);
   const [planError, setPlanError] = useState(false);
+  /** Тик ожидания готовности аккаунта: без него загрузка плана не повторялась. */
+  const [planAccountTick, setPlanAccountTick] = useState(0);
   const [restored, setRestored] = useState<ArenaLocalMatchState | null>(null);
   const [restoreChecked, setRestoreChecked] = useState(preparedRoute);
   /**
@@ -238,7 +240,18 @@ function ArenaMatchGenerationScreen({
     if (!active || !matchId || plan || planError || !restoreChecked || restored) return;
     let alive = true;
     const entryAccount = planAccountRef.current;
-    if (!entryAccount || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) return;
+    /**
+     * зачем (владелец 2026-08-29, «открываю матч — пустой экран»): аккаунт на
+     * холодном старте поднимается позже, чем монтируется экран, и эффект молча
+     * выходил НАВСЕГДА — повторить его было нечем (в зависимостях нет ничего,
+     * что менялось бы от готовности аккаунта). План не грузился, planError не
+     * ставился, рендер оставался на защитной ветке. Пробуем ещё раз, пока
+     * аккаунт не активируется.
+     */
+    if (!entryAccount || !isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) {
+      const retry = setTimeout(() => { if (alive) setPlanAccountTick((tick) => tick + 1); }, 500);
+      return () => { alive = false; clearTimeout(retry); };
+    }
     void arenaEntryPrefetchStart(matchId)
       .then((prepared) => {
         if (alive && isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) {
@@ -253,7 +266,7 @@ function ArenaMatchGenerationScreen({
         setPlanError(true);
       });
     return () => { alive = false; };
-  }, [active, matchId, plan, planError, planScope, restoreChecked, restored]);
+  }, [active, matchId, plan, planAccountTick, planError, planScope, restoreChecked, restored]);
 
   /* ---- живой прогресс соперника ---- */
   const live = useArenaOpponentLive(matchId, plan?.opponent.seat ?? null, active && Boolean(plan));
@@ -970,12 +983,27 @@ function ArenaMatchGenerationScreen({
   }
 
   if (!plan || !match || !hud) {
-    // Защитная ветка пока прямой вход ждёт план. Текста ожидания здесь
-    // намеренно нет: поиск остаётся на предыдущем экране, а VS не монтируется
-    // до готовности реальных данных.
+    /**
+     * Защитная ветка пока прямой вход ждёт план.
+     *
+     * зачем (владелец 2026-08-29, «открываю „вернуться в матч“ — пустой экран,
+     * и назад тоже пустой»): ветка рисовала голый <View> без слов и без единой
+     * кнопки. Это тупик: если план не придёт (профилю сервер оставил
+     * activeMatchId от матча, который так и не начался, или подготовка молча
+     * вышла до готовности аккаунта), человек упирался в пустоту, из которой
+     * некуда деться. Пустой экран без выхода — всегда поломка, поэтому здесь
+     * теперь есть и объяснение ожидания, и дорога назад в Арену.
+     */
     return (
       <ArenaScreen title={arenaText(lang, 'title')} variant="play" scroll={false}>
-        <View style={styles.center} />
+        <View style={styles.center}>
+          <Text accessibilityLiveRegion="polite" style={[styles.failureHint, hintLine, { color: P.muted }]}>
+            {arenaText(lang, 'preparing')}
+          </Text>
+          <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>
+            {arenaText(lang, 'home')}
+          </V2Cta>
+        </View>
       </ArenaScreen>
     );
   }

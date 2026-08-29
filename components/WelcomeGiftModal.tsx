@@ -325,6 +325,7 @@ function WelcomeGiftModal({ visible, onClose, testID }: Props) {
                   pointerEvents="none"
                   accessibilityElementsHidden
                   animatedProps={pearlsAnimatedProps as never}
+                  underlineColorAndroid="transparent"
                   style={[styles.tileAmount, { color: t.textPrimary, fontFamily: ds.fontFamily }]}
                 />
                 <Text
@@ -350,6 +351,7 @@ function WelcomeGiftModal({ visible, onClose, testID }: Props) {
                   pointerEvents="none"
                   accessibilityElementsHidden
                   animatedProps={runesAnimatedProps as never}
+                  underlineColorAndroid="transparent"
                   style={[styles.tileAmount, { color: t.textPrimary, fontFamily: ds.fontFamily }]}
                 />
                 <Text
@@ -493,6 +495,7 @@ const styles = StyleSheet.create({
     fontVariant: ['tabular-nums'],
     textAlign: 'center',
     minWidth: 86,
+    padding: 0,
   },
   tileWord: {
     marginTop: 2,

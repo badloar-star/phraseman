@@ -117,9 +117,14 @@ export function startRemoteAccountDeletionMonitor(
         },
         (error: unknown) => {
           if (!errorCode(error).includes('permission-denied')) return;
+          // зачем: user-not-found = Firebase больше не знает этот аккаунт — это
+          // единственная надёжная улика удаления. user-disabled раньше тоже
+          // триггерил полный локальный wipe + смена identity, но disabled это
+          // бан/модерация, а не удаление — банили живого платящего юзера и его
+          // же за это стирали. Убрано по итогам аудита 2026-08-28.
           void user!.reload().catch((reloadError: unknown) => {
             const code = errorCode(reloadError);
-            if (code.includes('user-not-found') || code.includes('user-disabled')) reportDeleted(uid);
+            if (code.includes('user-not-found')) reportDeleted(uid);
           });
         },
       );

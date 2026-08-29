@@ -8,14 +8,22 @@ export function isRevenueCatMaxProductId(raw: unknown): boolean {
   return /^phraseman_max_monthly_v1(?::monthly-base)?$/i.test(clean(raw));
 }
 
+export function isRevenueCatVoiceMinuteProductId(raw: unknown): boolean {
+  return /^phraseman_voice_minutes_(?:30|120|300)$/i.test(clean(raw));
+}
+
+function isRevenueCatPremiumProductId(raw: unknown): boolean {
+  const value = clean(raw).toLowerCase();
+  if (isRevenueCatMaxProductId(value) || isRevenueCatVoiceMinuteProductId(value)) return false;
+  return /^(?:phraseman_(?:premium_)?|premium_)(?:monthly|yearly|annual|lifetime)(?:_[a-z0-9]+)*(?::(?:monthly|yearly|annual|lifetime)-base)?$/.test(value);
+}
+
 export function activeRevenueCatMaxEntitlement(
   info: CustomerInfo | null | undefined,
 ): Record<string, any> | null {
-  const active = (info?.entitlements?.active ?? {}) as Record<string, Record<string, any>>;
-  const entitlement = active.max ?? null;
-  return entitlement && isRevenueCatMaxProductId(entitlement.productIdentifier)
-    ? entitlement
-    : null;
+  // Retired MAX receipts remain detectable by product id but never grant access.
+  void info;
+  return null;
 }
 
 export function revenueCatCustomerInfoHasMaxAccess(
@@ -29,7 +37,8 @@ export function activeRevenueCatPremiumEntitlement(
   info: CustomerInfo | null | undefined,
 ): Record<string, any> | null {
   const active = (info?.entitlements?.active ?? {}) as Record<string, Record<string, any>>;
-  return active.premium ?? activeRevenueCatMaxEntitlement(info);
+  const premium = active.premium ?? null;
+  return premium && isRevenueCatPremiumProductId(premium.productIdentifier) ? premium : null;
 }
 
 /** Generic access checks must never accept unrelated RevenueCat products. */

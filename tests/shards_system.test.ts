@@ -3,7 +3,7 @@ import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, co
 import { __resetAccountGenerationForTests, beginAccountGeneration, captureAccountGeneration, invalidateAccountGeneration, withAccountTransitionLock } from '../app/account_generation';
 import { emitAppEvent } from '../app/events';
 import { bumpLifetimeShardsEarned, bumpLifetimeShardsSpent } from '../app/lifetime_profile_stats';
-import { CLIENT_SHARD_OPERATION_PREFIX } from '../app/economy/client_shard_operation_ledger';
+import { CLIENT_SHARD_OPERATION_PREFIX, clientShardPreparedStorageKey } from '../app/economy/client_shard_operation_ledger';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -70,6 +70,21 @@ describe('shards_system guards and one-time awards', () => {
     await transition;
     return result;
   }
+
+  it('clears a terminal prepared record and completes the replacement purchase on the same tap', async () => {
+    mockStorage.shards_balance = '20';
+    mockStorage[clientShardPreparedStorageKey('test-owner')] = '{corrupt prepared operation';
+
+    await expect(commitShardCompositeOperation({
+      operationId: 'energy:one-tap-recovery:0001',
+      amount: 5,
+      reason: 'buy_energy',
+      grant: { kind: 'energy_refill', subjectId: 'base_energy', payload: { current: 5 } },
+      localWrites: [['energy_state', JSON.stringify({ current: 5, lastRecoveryTime: 1 })]],
+    })).resolves.toMatchObject({ status: 'applied', balanceAfter: 15 });
+    expect(mockStorage[clientShardPreparedStorageKey('test-owner')]).toBeUndefined();
+    expect(mockStorage.energy_state).toContain('"current":5');
+  });
 
   it('does not publish debit post-commit effects into an account switched behind the ledger lock', async () => {
     mockStorage.shards_balance = '20';

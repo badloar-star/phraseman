@@ -7,9 +7,7 @@ import { syncRevenueCatProjectionForAccount } from './revenuecat_projection_sync
 import { DebugLogger } from './debug-logger';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
 import {
-  activeRevenueCatMaxEntitlement,
   activeRevenueCatPremiumEntitlement,
-  isRevenueCatMaxProductId,
   revenueCatCustomerInfoHasPremiumAccess,
 } from './revenuecat_premium_access';
 import {
@@ -17,6 +15,7 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
   type AccountGenerationToken,
+  type AccountTransitionLockLease,
 } from './account_generation';
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
@@ -287,13 +286,14 @@ function accountGenerationIsCurrent(generation: AccountGenerationToken): boolean
 async function writeRealPremiumStorageForGeneration(
   generation: AccountGenerationToken,
   write: () => Promise<void>,
+  inheritedLease?: AccountTransitionLockLease,
 ): Promise<boolean> {
   if (!accountGenerationIsCurrent(generation)) return false;
   return withAccountTransitionLock(async () => {
     if (!accountGenerationIsCurrent(generation)) return false;
     await write();
     return accountGenerationIsCurrent(generation);
-  });
+  }, inheritedLease);
 }
 
 type RealPremiumRefreshSnapshot = Readonly<{
@@ -344,14 +344,10 @@ function refreshRealPremiumInBackground(
           if (!accountGenerationIsCurrent(generation)) return;
           DebugLogger.error('premium_guard:revenuecat_projection_sync', error, 'warning');
         }
-        const entitlement = activeRevenueCatMaxEntitlement(info as any)
-          ?? activeRevenueCatPremiumEntitlement(info as any)
-          ?? {};
+        const entitlement = activeRevenueCatPremiumEntitlement(info as any) ?? {};
         const productId = String(entitlement.productIdentifier ?? (info as any)?.activeSubscriptions?.[0] ?? '').trim();
         const productKey = productId.toLowerCase();
-        const inferredPlan = isRevenueCatMaxProductId(productId)
-          ? 'max_monthly'
-          : /lifetime|forever|one.?time|onetime|perpetual/.test(productKey)
+        const inferredPlan = /lifetime|forever|one.?time|onetime|perpetual/.test(productKey)
           ? 'lifetime'
           : /year|yearly|annual|12.?month/.test(productKey)
             ? 'yearly'
@@ -413,8 +409,17 @@ export async function __waitForPremiumBackgroundRefreshForTests(): Promise<void>
  * Verifies real store/trial Premium status.
  * Admin-issued grants are intentionally excluded: those are VIP access now.
  */
-export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
-  const generation = captureAccountGeneration();
+type PremiumLeaseReadOptions = Readonly<{
+  generation?: AccountGenerationToken;
+  lease?: AccountTransitionLockLease;
+  bypassCache?: boolean;
+  allowCloudRefresh?: boolean;
+}>;
+
+export async function getVerifiedRealPremiumStatus(
+  options?: PremiumLeaseReadOptions,
+): Promise<boolean> {
+  const generation = options?.generation ?? captureAccountGeneration();
   if (!accountGenerationIsCurrent(generation)) return false;
   const finish = (result: boolean) => cacheReal(result, generation);
   const pairs = await AsyncStorage.multiGet([
@@ -436,7 +441,7 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   const adminOverride = pairs.find(p => p[0] === 'admin_premium_override')?.[1];
   const normalizedPlan = String(plan ?? '').trim().toLowerCase();
   const storePlan = normalizedPlan === 'monthly' || normalizedPlan === 'yearly'
-    || normalizedPlan === 'annual' || normalizedPlan === 'lifetime' || normalizedPlan === 'max_monthly';
+    || normalizedPlan === 'annual' || normalizedPlan === 'lifetime';
   const hasVerifiedStoreEvidence = active === 'true' && storePlan && (
     normalizedPlan === 'lifetime' || lastSeen > 0 || rcExpiry > 0 || expiry > 0
   );
@@ -451,7 +456,8 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   if (resolveTesterNoPremiumOverride(noPremium)) return finish(false);
   // Return cached result if still fresh
   if (
-    _cachedRealResult !== null
+    !options?.bypassCache
+    && _cachedRealResult !== null
     && _realCacheGeneration === generation.generation
     && Date.now() - _realCacheTime < CACHE_TTL_MS
   ) {
@@ -473,7 +479,7 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
     if (active !== 'true') {
       const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
         AsyncStorage.setItem('premium_active', 'true')
-      ));
+      ), options?.lease);
       if (!persisted) return false;
     }
     return accountGenerationIsCurrent(generation);
@@ -493,7 +499,7 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   if (adminExplicitRevoked) {
     const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
       AsyncStorage.setItem('premium_active', 'false')
-    ));
+    ), options?.lease);
     return persisted ? finish(false) : false;
   }
   if (legacyAdminGrant) return finish(false);
@@ -503,7 +509,7 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
     if (active === 'true') {
       const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
         AsyncStorage.setItem('premium_active', 'false')
-      ));
+      ), options?.lease);
       if (!persisted) return false;
     }
     return finish(false);
@@ -523,7 +529,7 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
         ['premium_active', 'true'],
         [RC_LAST_SEEN_KEY, String(now)],
       ])
-    ));
+    ), options?.lease);
     if (persisted) {
       lastSeen = now;
       localAccess = true;
@@ -535,14 +541,14 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
   if (!localAccess && active === 'true') {
     const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
       AsyncStorage.setItem('premium_active', 'false')
-    ));
+    ), options?.lease);
     if (!persisted) return false;
   }
   return accountGenerationIsCurrent(generation) ? finish(localAccess) : false;
 }
 
-export async function getVerifiedVipStatus(): Promise<boolean> {
-  const generation = captureAccountGeneration();
+export async function getVerifiedVipStatus(options?: PremiumLeaseReadOptions): Promise<boolean> {
+  const generation = options?.generation ?? captureAccountGeneration();
   if (!accountGenerationIsCurrent(generation)) return false;
   const stableId = generation.stableId!;
   const finish = (result: boolean) => cacheVip(result, generation);
@@ -555,7 +561,8 @@ export async function getVerifiedVipStatus(): Promise<boolean> {
   if (resolveTesterNoPremiumOverride(noPremiumVip)) return finish(false);
 
   if (
-    _cachedVipResult !== null
+    !options?.bypassCache
+    && _cachedVipResult !== null
     && _vipCacheGeneration === generation.generation
     && Date.now() - _vipCacheTime < CACHE_TTL_MS
   ) {
@@ -584,8 +591,10 @@ export async function getVerifiedVipStatus(): Promise<boolean> {
   return finish(vipState.active);
 }
 
-export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
-  const generation = captureAccountGeneration();
+export async function getVerifiedPremiumAccessStatus(
+  options?: PremiumLeaseReadOptions,
+): Promise<boolean> {
+  const generation = options?.generation ?? captureAccountGeneration();
   if (!accountGenerationIsCurrent(generation)) return false;
   const finish = (result: boolean) => cacheAccess(result, generation);
   // Тестер «Снять премиум» — dev/preview kill-switch на ВЕСЬ премиум-доступ:
@@ -598,7 +607,8 @@ export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
   if (resolveTesterNoPremiumOverride(noPremiumAccess)) return finish(false);
 
   if (
-    _cachedAccessResult !== null
+    !options?.bypassCache
+    && _cachedAccessResult !== null
     && _accessCacheGeneration === generation.generation
     && Date.now() - _accessCacheTime < CACHE_TTL_MS
   ) {
@@ -611,8 +621,8 @@ export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
   if (!accountGenerationIsCurrent(generation)) return false;
 
   const [realPremium, vip] = await Promise.all([
-    getVerifiedRealPremiumStatus().catch(() => false),
-    getVerifiedVipStatus().catch(() => false),
+    getVerifiedRealPremiumStatus(options).catch(() => false),
+    getVerifiedVipStatus(options).catch(() => false),
   ]);
   if (!accountGenerationIsCurrent(generation)) return false;
   if (realPremium || vip) return finish(true);
@@ -628,18 +638,39 @@ export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
     return finish(true);
   }
 
+  if (options?.allowCloudRefresh === false) return finish(false);
   const cloudRefreshed = await refreshPremiumAccessFromCloudIfNeeded(generation);
   if (!accountGenerationIsCurrent(generation)) return false;
   if (cloudRefreshed) {
     invalidatePremiumCache();
     const [realAfterCloud, vipAfterCloud] = await Promise.all([
-      getVerifiedRealPremiumStatus().catch(() => false),
-      getVerifiedVipStatus().catch(() => false),
+      getVerifiedRealPremiumStatus(options).catch(() => false),
+      getVerifiedVipStatus(options).catch(() => false),
     ]);
     return accountGenerationIsCurrent(generation) ? finish(realAfterCloud || vipAfterCloud) : false;
   }
 
   return finish(false);
+}
+
+/**
+ * Mutation-time Premium/Plus authorization. It deliberately bypasses all
+ * entitlement caches and reuses the caller's active account-transition lease,
+ * so expiry/revocation is read after lease acquisition without a nested-lock
+ * deadlock. Cloud restore is excluded from this fail-closed mutation gate;
+ * ordinary premium hydration can refresh it before a later retry.
+ */
+export async function getVerifiedPremiumAccessStatusForAccountLease(
+  generation: AccountGenerationToken,
+  lease: AccountTransitionLockLease,
+): Promise<boolean> {
+  if (!accountGenerationIsCurrent(generation)) return false;
+  return getVerifiedPremiumAccessStatus({
+    generation,
+    lease,
+    bypassCache: true,
+    allowCloudRefresh: false,
+  });
 }
 
 /** Backwards-compatible name used by feature gates: means Premium-level access, including VIP. */

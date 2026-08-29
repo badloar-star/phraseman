@@ -16,12 +16,12 @@ export function MaxTutorTopicNotice({ topic, mode, lang }: Props) {
   const { theme: t, f } = useTheme();
   const text = mode === 'free_talk'
     ? triLang(lang, {
-      ru: `Свободный разговор: ${topic}`, uk: `Вільна розмова: ${topic}`, es: `Conversación libre: ${topic}`,
+      ru: `Свободный разговор: ${topic}`, uk: `Вільна розмова: ${topic}`, en: `Free conversation: ${topic}`, es: `Conversación libre: ${topic}`,
       'pt-BR': `Conversa livre: ${topic}`, vi: `Trò chuyện tự do: ${topic}`, id: `Percakapan bebas: ${topic}`,
       tr: `Serbest konuşma: ${topic}`, pl: `Swobodna rozmowa: ${topic}`,
     })
     : triLang(lang, {
-      ru: `Хорошо, говорим про ${topic}`, uk: `Добре, говоримо про ${topic}`, es: `Bien, hablamos de ${topic}`,
+      ru: `Хорошо, говорим про ${topic}`, uk: `Добре, говоримо про ${topic}`, en: `Okay, let's talk about ${topic}`, es: `Bien, hablamos de ${topic}`,
       'pt-BR': `Certo, vamos falar sobre ${topic}`, vi: `Được, ta nói về ${topic}`, id: `Baik, kita bahas ${topic}`,
       tr: `Tamam, ${topic} hakkında konuşalım`, pl: `Dobrze, rozmawiamy o ${topic}`,
     });

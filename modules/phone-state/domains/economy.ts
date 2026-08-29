@@ -20,6 +20,9 @@ const ZERO_DELTA_GRANT_KINDS = new Set([
   'attempt_restore_inventory_credit',
   'attempt_restore_inventory_consume',
   'session_attempt_recovery_rune_debit',
+  'paid_level_spin_rune_purchase',
+  'customization_rune_purchase',
+  'customization_selection_v1',
 ]);
 const STAR_CREDIT_AMOUNTS = Object.freeze({
   stars_10: 10, stars_20: 20, stars_50: 50, stars_100: 100,
@@ -114,6 +117,68 @@ export type SessionAttemptRuneRecoveryExactResultV1 = Readonly<{
   requestFingerprint: string;
 }>;
 
+export type PaidLevelSpinRuneOperationV1 = Readonly<{
+  schemaVersion: 'client-paid-level-spin-rune-operation.v1';
+  operationId: string;
+  ownerStableId: string;
+  accountGeneration: number;
+  requestId: string;
+  giftId: string;
+  catalogVersion: number;
+  runeDelta: -300;
+  price: 300;
+  balanceBefore: number;
+  balanceAfter: number;
+  reason: 'paid_level_spin';
+  createdAtMs: number;
+  requestFingerprint: string;
+}>;
+
+export type CustomizationRunePurchaseExactResultV1 = Readonly<{
+  schemaVersion: 'client-customization-rune-operation.v1';
+  operationId: string;
+  ownerStableId: string;
+  accountGeneration: number;
+  avatarId: string;
+  artVersion?: 'showcase-v1' | 'avatar100-v1';
+  ownedValue: string;
+  avatarValue: string;
+  applyInput?: Readonly<{
+    avatarValue: string;
+    storedAuraSelection: string | null;
+    level: number;
+    frameId: string;
+    cloudSyncMode?: 'immediate' | 'deferred';
+  }>;
+  runeDelta: number;
+  price: number;
+  balanceBefore: number;
+  balanceAfter: number;
+  reason: 'custom_avatar' | 'custom_avatar_restyle';
+  createdAtMs: number;
+  requestFingerprint: string;
+}>;
+
+export type CustomizationSelectionExactResultV1 = Readonly<{
+  schemaVersion: 'customization-selection-operation.v1';
+  operationId: string;
+  ownerStableId: string;
+  lineage: number;
+  accountGeneration: number;
+  parentOperationId: string | null;
+  revision: number;
+  source: 'user' | 'external' | 'legacy';
+  occurrenceId?: string;
+  selection: Readonly<{
+    avatarValue: string;
+    frameId: string;
+    storedAuraSelection: string | null;
+    level: number;
+  }>;
+  createdAtMs: number;
+  requestFingerprint: string;
+}>;
+
 export type AttemptRestoreGiftInventoryState = Readonly<{
   credits: readonly AttemptRestoreGiftCreditV1[];
   consumes: readonly AttemptRestoreGiftConsumeV1[];
@@ -151,6 +216,93 @@ export function attemptRestoreGiftConsumeOperationId(sessionId: string, recovery
 
 export function sessionAttemptRuneRecoveryOperationId(sessionId: string, recoveryOrdinal: number): string {
   return `session_attempt_recovery:${sessionId}:${recoveryOrdinal}`;
+}
+
+export function paidLevelSpinOperationId(requestId: string): string | null {
+  return STAR_REQUEST_ID.test(requestId) ? `paid_level_spin:${requestId}` : null;
+}
+
+const PAID_LEVEL_SPIN_GIFTS_V6 = new Set<string>([
+  'xp_250', 'xp_500', 'xp_1000', 'xp_3000', 'xp_5000',
+  'pearls_5', 'pearls_10', 'pearls_20',
+  'stars_10', 'stars_20', 'stars_50',
+  'energy_full', 'energy_plus2', 'hint_1', 'hint_3', 'chain_shield_1', 'attempt_restore_all',
+  'xp_bank_150', 'xp_bank_300', 'xp_2x_24h',
+  'xp_10000', 'xp_25000', 'pearls_50', 'pearls_100', 'stars_100', 'stars_250',
+  'energy_plus3', 'xp_bank_600', 'xp_2x_48h',
+  'xp_50000', 'pearls_250', 'pearls_500', 'stars_500', 'stars_1000',
+  'plus_days_3', 'plus_days_7', 'cosmetic_avatar_aura', 'cosmetic_theme', 'cosmetic_avatar_common',
+]);
+
+function paidLevelSpinGiftAllowed(giftId: unknown, catalogVersion: unknown): giftId is string {
+  if (typeof giftId !== 'string' || !Number.isInteger(catalogVersion)) return false;
+  if (catalogVersion === 6) return PAID_LEVEL_SPIN_GIFTS_V6.has(giftId);
+  if (catalogVersion === 5) return giftId !== 'attempt_restore_all' && PAID_LEVEL_SPIN_GIFTS_V6.has(giftId);
+  if (catalogVersion === 4) return giftId !== 'attempt_restore_all'
+    && giftId !== 'cosmetic_avatar_common' && PAID_LEVEL_SPIN_GIFTS_V6.has(giftId);
+  if (catalogVersion === 3) return giftId !== 'attempt_restore_all'
+    && giftId !== 'cosmetic_avatar_common' && giftId !== 'cosmetic_theme'
+    && PAID_LEVEL_SPIN_GIFTS_V6.has(giftId);
+  if (catalogVersion === 2) return giftId !== 'attempt_restore_all'
+    && giftId !== 'cosmetic_avatar_common' && giftId !== 'cosmetic_theme'
+    && giftId !== 'cosmetic_avatar_aura' && PAID_LEVEL_SPIN_GIFTS_V6.has(giftId);
+  return false;
+}
+
+export function parsePaidLevelSpinRuneOperation(input: unknown): PaidLevelSpinRuneOperationV1 | null {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const value = input as Partial<PaidLevelSpinRuneOperationV1>;
+  const requestId = String(value.requestId ?? '');
+  const balanceBefore = Number(value.balanceBefore);
+  const balanceAfter = Number(value.balanceAfter);
+  if (!exactKeys(value, [
+    'schemaVersion', 'operationId', 'ownerStableId', 'accountGeneration', 'requestId',
+    'giftId', 'catalogVersion', 'runeDelta', 'price', 'balanceBefore', 'balanceAfter',
+    'reason', 'createdAtMs', 'requestFingerprint',
+  ])
+    || value.schemaVersion !== 'client-paid-level-spin-rune-operation.v1'
+    || value.operationId !== paidLevelSpinOperationId(requestId)
+    || !validOwnerStableId(value.ownerStableId)
+    || !Number.isSafeInteger(value.accountGeneration) || Number(value.accountGeneration) < 1
+    || !paidLevelSpinGiftAllowed(value.giftId, value.catalogVersion)
+    || value.runeDelta !== -300
+    || value.price !== 300
+    || !Number.isSafeInteger(balanceBefore) || balanceBefore < 300
+    || !Number.isSafeInteger(balanceAfter) || balanceAfter !== balanceBefore - 300
+    || value.reason !== 'paid_level_spin'
+    || !Number.isSafeInteger(value.createdAtMs) || Number(value.createdAtMs) < 0
+    || !STAR_FINGERPRINT.test(String(value.requestFingerprint ?? ''))) return null;
+  return value as PaidLevelSpinRuneOperationV1;
+}
+
+export async function paidLevelSpinRuneFingerprint(
+  input: Omit<PaidLevelSpinRuneOperationV1, 'schemaVersion' | 'requestFingerprint'>,
+): Promise<string> {
+  return Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    JSON.stringify({
+      schemaVersion: 1,
+      operationId: input.operationId,
+      ownerStableId: input.ownerStableId,
+      accountGeneration: input.accountGeneration,
+      requestId: input.requestId,
+      giftId: input.giftId,
+      catalogVersion: input.catalogVersion,
+      runeDelta: input.runeDelta,
+      price: input.price,
+      balanceBefore: input.balanceBefore,
+      balanceAfter: input.balanceAfter,
+      reason: input.reason,
+      createdAtMs: input.createdAtMs,
+    }),
+  );
+}
+
+export async function hasValidPaidLevelSpinRuneFingerprint(input: unknown): Promise<boolean> {
+  const exact = parsePaidLevelSpinRuneOperation(input);
+  if (!exact) return false;
+  const { schemaVersion: _schemaVersion, requestFingerprint, ...payload } = exact;
+  return requestFingerprint === await paidLevelSpinRuneFingerprint(payload);
 }
 
 export function parseAttemptRestoreGiftCreditExactResult(input: unknown): AttemptRestoreGiftCreditV1 | null {
@@ -227,6 +379,196 @@ export function parseSessionAttemptRuneRecoveryExactResult(
     || !Number.isSafeInteger(value.createdAtMs) || Number(value.createdAtMs) < 0
     || !STAR_FINGERPRINT.test(String(value.requestFingerprint ?? ''))) return null;
   return value as SessionAttemptRuneRecoveryExactResultV1;
+}
+
+const CUSTOMIZATION_OPERATION_ID = /^[A-Za-z0-9_.:-]{1,200}$/;
+const CUSTOMIZATION_ENTITY_ID = /^[A-Za-z0-9_.-]{1,160}$/;
+const CUSTOMIZATION_AVATAR_VALUE = /^custom:([A-Za-z0-9_.-]{1,160}):([A-Za-z0-9_.-]{1,80}):black(?::(showcase-v1|avatar100-v1))?$/;
+const CUSTOMIZATION_OWNED_VALUE = /^(?:(showcase-v1|avatar100-v1)\|)?([A-Za-z0-9_.-]{1,80}):black$/;
+
+function validCustomizationApplyInput(
+  input: unknown,
+  avatarValue: string,
+): input is NonNullable<CustomizationRunePurchaseExactResultV1['applyInput']> {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return false;
+  const value = input as NonNullable<CustomizationRunePurchaseExactResultV1['applyInput']>;
+  const allowed = [
+    'avatarValue', 'storedAuraSelection', 'level', 'frameId',
+    ...(value.cloudSyncMode === undefined ? [] : ['cloudSyncMode']),
+  ];
+  return exactKeys(value, allowed)
+    && value.avatarValue === avatarValue
+    && (value.storedAuraSelection === null
+      || (typeof value.storedAuraSelection === 'string' && value.storedAuraSelection.length <= 160))
+    && Number.isSafeInteger(value.level) && value.level >= 1
+    && typeof value.frameId === 'string' && CUSTOMIZATION_ENTITY_ID.test(value.frameId)
+    && (value.cloudSyncMode === undefined
+      || value.cloudSyncMode === 'immediate'
+      || value.cloudSyncMode === 'deferred');
+}
+
+export function parseCustomizationRunePurchaseExactResult(
+  input: unknown,
+): CustomizationRunePurchaseExactResultV1 | null {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const value = input as Partial<CustomizationRunePurchaseExactResultV1>;
+  const allowed = [
+    'schemaVersion', 'operationId', 'ownerStableId', 'accountGeneration', 'avatarId',
+    ...(value.artVersion === undefined ? [] : ['artVersion']),
+    'ownedValue', 'avatarValue',
+    ...(value.applyInput === undefined ? [] : ['applyInput']),
+    'runeDelta', 'price', 'balanceBefore', 'balanceAfter', 'reason', 'createdAtMs',
+    'requestFingerprint',
+  ];
+  const ownedValue = String(value.ownedValue ?? '');
+  const ownedMatch = CUSTOMIZATION_OWNED_VALUE.exec(ownedValue);
+  const avatarValue = String(value.avatarValue ?? '');
+  const avatarMatch = CUSTOMIZATION_AVATAR_VALUE.exec(avatarValue);
+  const price = Number(value.price);
+  const balanceBefore = Number(value.balanceBefore);
+  const balanceAfter = Number(value.balanceAfter);
+  if (!exactKeys(value, allowed)
+    || value.schemaVersion !== 'client-customization-rune-operation.v1'
+    || !CUSTOMIZATION_OPERATION_ID.test(String(value.operationId ?? ''))
+    || !validOwnerStableId(value.ownerStableId)
+    || !Number.isSafeInteger(value.accountGeneration) || Number(value.accountGeneration) < 1
+    || !CUSTOMIZATION_ENTITY_ID.test(String(value.avatarId ?? ''))
+    || !ownedMatch || !avatarMatch || avatarMatch[1] !== value.avatarId
+    || ownedMatch[2] !== avatarMatch[2]
+    || (ownedMatch[1] || undefined) !== (avatarMatch[3] || undefined)
+    || value.artVersion !== (avatarMatch[3] || undefined)
+    || (value.applyInput !== undefined && !validCustomizationApplyInput(value.applyInput, avatarValue))
+    || !Number.isSafeInteger(price) || price <= 0
+    || value.runeDelta !== -price
+    || !Number.isSafeInteger(balanceBefore) || balanceBefore < price
+    || !Number.isSafeInteger(balanceAfter) || balanceAfter !== balanceBefore - price
+    || (value.reason !== 'custom_avatar' && value.reason !== 'custom_avatar_restyle')
+    || !Number.isSafeInteger(value.createdAtMs) || Number(value.createdAtMs) < 0
+    || !STAR_FINGERPRINT.test(String(value.requestFingerprint ?? ''))) return null;
+  return value as CustomizationRunePurchaseExactResultV1;
+}
+
+export async function customizationRunePurchaseFingerprint(
+  input: Omit<CustomizationRunePurchaseExactResultV1, 'schemaVersion' | 'requestFingerprint'>,
+): Promise<string> {
+  return Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    JSON.stringify({
+      schemaVersion: 1,
+      operationId: input.operationId,
+      ownerStableId: input.ownerStableId,
+      accountGeneration: input.accountGeneration,
+      avatarId: input.avatarId,
+      artVersion: input.artVersion ?? null,
+      ownedValue: input.ownedValue,
+      avatarValue: input.avatarValue,
+      applyInput: input.applyInput ?? null,
+      runeDelta: input.runeDelta,
+      price: input.price,
+      balanceBefore: input.balanceBefore,
+      balanceAfter: input.balanceAfter,
+      reason: input.reason,
+      createdAtMs: input.createdAtMs,
+    }),
+  );
+}
+
+export async function hasValidCustomizationRunePurchaseFingerprint(input: unknown): Promise<boolean> {
+  const exact = parseCustomizationRunePurchaseExactResult(input);
+  if (!exact) return false;
+  const { schemaVersion: _schemaVersion, requestFingerprint, ...payload } = exact;
+  return requestFingerprint === await customizationRunePurchaseFingerprint(payload);
+}
+
+function validCustomizationSelection(input: unknown): input is CustomizationSelectionExactResultV1['selection'] {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return false;
+  const value = input as CustomizationSelectionExactResultV1['selection'];
+  return exactKeys(value, ['avatarValue', 'frameId', 'storedAuraSelection', 'level'])
+    && typeof value.avatarValue === 'string' && value.avatarValue.trim().length > 0 && value.avatarValue.length <= 240
+    && typeof value.frameId === 'string' && value.frameId.trim().length > 0 && value.frameId.length <= 160
+    && (value.storedAuraSelection === null
+      || (typeof value.storedAuraSelection === 'string' && value.storedAuraSelection.length <= 160))
+    && Number.isSafeInteger(value.level) && value.level >= 1;
+}
+
+export function parseCustomizationSelectionExactResult(
+  input: unknown,
+): CustomizationSelectionExactResultV1 | null {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const value = input as Partial<CustomizationSelectionExactResultV1>;
+  const allowed = [
+    'schemaVersion', 'operationId', 'ownerStableId', 'lineage', 'accountGeneration',
+    'parentOperationId', 'revision', 'source',
+    ...(value.occurrenceId === undefined ? [] : ['occurrenceId']),
+    'selection', 'createdAtMs', 'requestFingerprint',
+  ];
+  if (!exactKeys(value, allowed)
+    || value.schemaVersion !== 'customization-selection-operation.v1'
+    || !CUSTOMIZATION_OPERATION_ID.test(String(value.operationId ?? ''))
+    || !validOwnerStableId(value.ownerStableId)
+    || !Number.isSafeInteger(value.lineage) || Number(value.lineage) < 1
+    || !Number.isSafeInteger(value.accountGeneration) || Number(value.accountGeneration) < 1
+    || (value.parentOperationId !== null
+      && !CUSTOMIZATION_OPERATION_ID.test(String(value.parentOperationId ?? '')))
+    || !Number.isSafeInteger(value.revision) || Number(value.revision) < 1
+    || (value.source !== 'user' && value.source !== 'external' && value.source !== 'legacy')
+    || (value.source === 'external'
+      && (typeof value.occurrenceId !== 'string' || !value.occurrenceId.trim() || value.occurrenceId.length > 200))
+    || !validCustomizationSelection(value.selection)
+    || !Number.isSafeInteger(value.createdAtMs) || Number(value.createdAtMs) < 0
+    || !STAR_FINGERPRINT.test(String(value.requestFingerprint ?? ''))) return null;
+  return value as CustomizationSelectionExactResultV1;
+}
+
+export async function customizationSelectionFingerprint(
+  input: Omit<CustomizationSelectionExactResultV1, 'schemaVersion' | 'requestFingerprint'>,
+): Promise<string> {
+  return Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    JSON.stringify({
+      schemaVersion: 1,
+      operationId: input.operationId,
+      ownerStableId: input.ownerStableId,
+      lineage: input.lineage,
+      accountGeneration: input.accountGeneration,
+      parentOperationId: input.parentOperationId,
+      revision: input.revision,
+      source: input.source,
+      occurrenceId: input.occurrenceId ?? null,
+      selection: input.selection,
+      createdAtMs: input.createdAtMs,
+    }),
+  );
+}
+
+export async function hasValidCustomizationSelectionFingerprint(input: unknown): Promise<boolean> {
+  const exact = parseCustomizationSelectionExactResult(input);
+  if (!exact) return false;
+  const { schemaVersion: _schemaVersion, requestFingerprint, ...payload } = exact;
+  return requestFingerprint === await customizationSelectionFingerprint(payload);
+}
+
+export function customizationSelectionFromEconomyProjection(
+  projection: EconomyProjection | EconomyReducerState,
+  ownerStableId: string,
+  lineage: number,
+): CustomizationSelectionExactResultV1 | null {
+  let winner: CustomizationSelectionExactResultV1 | null = null;
+  for (const receipt of Object.values(projection.receipts)) {
+    if (receipt.delta !== 0 || receipt.grant.kind !== 'customization_selection_v1') continue;
+    const exact = parseCustomizationSelectionExactResult(receipt.grant.exactResult);
+    if (!exact
+      || receipt.operationId !== exact.operationId
+      || receipt.grant.entitlementId !== exact.operationId
+      || exact.ownerStableId !== ownerStableId
+      || exact.lineage !== lineage) continue;
+    if (!winner
+      || exact.revision > winner.revision
+      || (exact.revision === winner.revision && exact.operationId.localeCompare(winner.operationId) > 0)) {
+      winner = exact;
+    }
+  }
+  return winner;
 }
 
 export async function hasValidAttemptRestoreGiftCreditFingerprint(input: unknown): Promise<boolean> {
@@ -453,6 +795,15 @@ function validate(operation: OrdinaryEconomyOperation): void {
   const sessionAttemptRuneRecovery = operation.grant?.kind === 'session_attempt_recovery_rune_debit'
     ? parseSessionAttemptRuneRecoveryExactResult(operation.grant.exactResult)
     : null;
+  const paidLevelSpinRunePurchase = operation.grant?.kind === 'paid_level_spin_rune_purchase'
+    ? parsePaidLevelSpinRuneOperation(operation.grant.exactResult)
+    : null;
+  const customizationRunePurchase = operation.grant?.kind === 'customization_rune_purchase'
+    ? parseCustomizationRunePurchaseExactResult(operation.grant.exactResult)
+    : null;
+  const customizationSelection = operation.grant?.kind === 'customization_selection_v1'
+    ? parseCustomizationSelectionExactResult(operation.grant.exactResult)
+    : null;
   if (
     !operation.operationId.trim()
     || !Number.isSafeInteger(operation.delta)
@@ -484,6 +835,21 @@ function validate(operation: OrdinaryEconomyOperation): void {
         || operation.delta !== 0
         || operation.operationId !== sessionAttemptRuneRecovery.operationId
         || operation.grant.entitlementId !== sessionAttemptRuneRecovery.operationId))
+    || (operation.grant?.kind === 'paid_level_spin_rune_purchase'
+      && (!paidLevelSpinRunePurchase
+        || operation.delta !== 0
+        || operation.operationId !== paidLevelSpinRunePurchase.operationId
+        || operation.grant.entitlementId !== paidLevelSpinRunePurchase.operationId))
+    || (operation.grant?.kind === 'customization_rune_purchase'
+      && (!customizationRunePurchase
+        || operation.delta !== 0
+        || operation.operationId !== customizationRunePurchase.operationId
+        || operation.grant.entitlementId !== customizationRunePurchase.operationId))
+    || (operation.grant?.kind === 'customization_selection_v1'
+      && (!customizationSelection
+        || operation.delta !== 0
+        || operation.operationId !== customizationSelection.operationId
+        || operation.grant.entitlementId !== customizationSelection.operationId))
   ) throw new Error('phone_state_economy_composite_invalid');
 }
 

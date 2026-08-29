@@ -80,8 +80,9 @@ export function dailyQuotaView(remainingSec: number, maxSec: number): {
     fraction,
     tone,
     seconds,
-    // Ровно 60с — это ещё честная «1 мин», секунды нужны строго ниже минуты.
-    lastMinute: safeRemaining < 60,
+    // Ровно 60с — это ещё честная «1 мин». Секунды нужны только пока звонок
+    // реально продолжается: нулевой остаток снова показываем как «0 мин».
+    lastMinute: safeRemaining > 0 && safeRemaining < 60,
   };
 }
 

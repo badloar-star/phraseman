@@ -15,6 +15,7 @@ describe('session attempts copy', () => {
       expect(copy.exhaustedBody.trim()).not.toBe('');
       expect(copy.useGift.trim()).not.toBe('');
       expect(copy.restoreForRunes.trim()).not.toBe('');
+      expect(copy.restartWithEnergy.trim()).not.toBe('');
       expect(copy.endSession.trim()).not.toBe('');
       expect(copy.notEnoughRunes(1).trim()).not.toBe('');
       expect(copy.permanentGift.trim()).not.toBe('');
@@ -29,6 +30,7 @@ describe('session attempts copy', () => {
     expect(copy.exhaustedBody).toBe('Восстановите все 3 попытки и повторите этот вопрос.');
     expect(copy.useGift).toBe('Использовать подарок');
     expect(copy.restoreForRunes).toBe('Восстановить · 25 рун');
+    expect(copy.restartWithEnergy).toBe('Начать заново');
     expect(copy.endSession).toBe('Завершить сессию');
     expect(copy.permanentGift).toBe('Без срока действия');
     expect(copy.attemptsStatus(2, 3)).toBe('Попытки: 2 из 3');

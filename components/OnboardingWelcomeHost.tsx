@@ -44,6 +44,7 @@ import WelcomeGiftModal from './WelcomeGiftModal';
 import { useOverlayVisible } from './OverlayArbiter';
 import { getRemoteBool } from '../app/remote_flags';
 import { onAppEvent } from '../app/events';
+import { subscribeAccountGeneration } from '../app/account_generation';
 import {
   clearOnboardingWelcomePending,
   isOnboardingWelcomePending,
@@ -112,9 +113,18 @@ export default function OnboardingWelcomeHost() {
 
     checkPending();
     const sub = onAppEvent('onboarding_welcome_pending_raised', checkPending);
+    // Если холодный старт/вход занял больше 15 секунд, первый ensure закончит
+    // ожидание без ошибки. Активная генерация будит выдачу снова, поэтому
+    // диагностический таймаут никогда не превращается в потерянный подарок.
+    const accountGenerationSubscription = subscribeAccountGeneration((token) => {
+      if (token.phase === 'active' && token.stableId?.trim()) {
+        void ensureWelcomeGiftGranted();
+      }
+    });
     return () => {
       alive = false;
       sub.remove();
+      accountGenerationSubscription.remove();
     };
   }, []);
 

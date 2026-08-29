@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { useRouter } from 'expo-router';
 import MaxVoiceConsentModal from '../components/MaxVoiceConsentModal';
@@ -7,7 +7,6 @@ import { useTheme } from '../components/ThemeContext';
 import { soundDirector } from '../modules/audio/sound_director';
 import { safeRouterBack } from './navigation_back';
 import {
-  hasAiVoiceConsentDecision,
   isAiVoiceConsentGranted,
   isAiVoiceConsentHydrated,
   recordAiVoiceConsentToCloud,
@@ -21,25 +20,25 @@ export default function MaxVoiceConsentGate({ children }: { children: React.Reac
   const router = useRouter();
   const [ready, setReady] = useState(isAiVoiceConsentHydrated() && isAiVoiceConsentGranted());
   const [visible, setVisible] = useState(false);
+  const leavingRef = useRef(false);
 
   const leave = useCallback(() => {
     safeRouterBack(router, '/(tabs)/home' as never);
   }, [router]);
 
   const evaluate = useCallback(() => {
+    if (leavingRef.current) return;
     if (!isAiVoiceConsentHydrated()) return;
     if (isAiVoiceConsentGranted()) {
       setReady(true);
       setVisible(false);
       return;
     }
-    if (hasAiVoiceConsentDecision()) {
-      setVisible(false);
-      leave();
-      return;
-    }
+    setReady(false);
+    // «Не сейчас» — временный отказ, а не пожизненная блокировка MAX.
+    // На следующем осознанном входе снова даём пользователю выбор.
     setVisible(true);
-  }, [leave]);
+  }, []);
 
   useEffect(() => {
     evaluate();
@@ -58,6 +57,7 @@ export default function MaxVoiceConsentGate({ children }: { children: React.Reac
   }, []);
 
   const decline = useCallback(() => {
+    leavingRef.current = true;
     setVisible(false);
     void setAiVoiceConsent('denied').then(() => {
       void recordAiVoiceConsentToCloud();

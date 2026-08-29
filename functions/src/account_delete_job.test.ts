@@ -1,6 +1,8 @@
 import {
   accountDeleteJobId,
+  accountDeleteIdentityClosureHash,
   enqueueAccountDeletionJob,
+  fenceAccountDeletionCredential,
   processAccountDeletionJob,
   type AccountDeleteJobDocument,
 } from './account_delete_job';
@@ -74,6 +76,13 @@ function makeDbStub(initial?: StoredDoc) {
   return {
     db: db as unknown as FirebaseFirestore.Firestore,
     read: () => Array.from(docs.entries()).find(([key]) => key.startsWith('account_deletion_jobs/'))?.[1] as AccountDeleteJobDocument | undefined,
+    readCollection: (collection: string) => (
+      Array.from(docs.entries()).find(([key]) => key.startsWith(`${collection}/`))?.[1]
+    ),
+    readDoc: (collection: string, id: string) => docs.get(`${collection}/${id}`),
+    listCollection: (collection: string) => Array.from(docs.entries())
+      .filter(([key]) => key.startsWith(`${collection}/`))
+      .map(([, value]) => value),
   };
 }
 
@@ -103,6 +112,81 @@ describe('account deletion job enqueue', () => {
     });
   });
 
+  it('atomically freezes a sorted identity closure and denies every member before the job is visible', async () => {
+    const { db, read, listCollection } = makeDbStub();
+
+    await enqueueAccountDeletionJob(
+      db,
+      'auth-456',
+      'stable-123',
+      1_000,
+      undefined,
+      ['stable-123', 'alias-b', 'auth-456', 'alias-a'],
+    );
+
+    expect(read()).toMatchObject({
+      identityClosure: ['alias-a', 'alias-b', 'auth-456', 'stable-123'],
+      identityClosureVersion: 1,
+      identityClosureHash: expect.stringMatching(/^[a-f0-9]{64}$/),
+      closureCutoffMs: 1_000,
+    });
+    expect(listCollection('account_deletion_permanent_denials')).toHaveLength(4);
+  });
+
+  it('keeps a credential receipt expiry fixed across idempotent enqueue retries', async () => {
+    const { db, readCollection } = makeDbStub();
+    const receipt = { operationId: 'op-fixed-expiry', capabilityHash: 'cap-hash' };
+
+    await fenceAccountDeletionCredential(db, 'auth-456', 'stable-123', 900, receipt);
+    await enqueueAccountDeletionJob(db, 'auth-456', 'stable-123', 1_000, receipt);
+    const firstExpiry = readCollection('account_deletion_credential_receipts')?.expiresAtMs;
+    await enqueueAccountDeletionJob(db, 'auth-456', 'stable-123', 2_000, receipt);
+
+    expect(readCollection('account_deletion_credential_receipts')?.expiresAtMs).toBe(firstExpiry);
+  });
+
+  it('rejects a corrupt existing credential receipt stage during enqueue', async () => {
+    const { db, readCollection } = makeDbStub();
+    const receipt = { operationId: 'op-corrupt-stage', capabilityHash: 'cap-hash' };
+    await fenceAccountDeletionCredential(db, 'auth-456', 'stable-123', 900, receipt);
+    await enqueueAccountDeletionJob(db, 'auth-456', 'stable-123', 1_000, receipt);
+    readCollection('account_deletion_credential_receipts')!.stage = 'surprise';
+
+    await expect(
+      enqueueAccountDeletionJob(db, 'auth-456', 'stable-123', 2_000, receipt),
+    ).rejects.toThrow('account_delete_receipt_stage_invalid');
+  });
+
+  it('fences root identities without exposing a worker job until the full closure commits', async () => {
+    const { db, read, readCollection, listCollection } = makeDbStub();
+    const receipt = { operationId: 'op-fence-first', capabilityHash: 'cap-hash' };
+
+    await fenceAccountDeletionCredential(db, 'auth-456', 'stable-123', 900, receipt);
+
+    expect(read()).toBeUndefined();
+    expect(readCollection('account_deletion_credential_receipts')).toMatchObject({
+      stage: 'closure_fenced',
+      authUid: 'auth-456',
+      stableUid: 'stable-123',
+      authUidHash: expect.stringMatching(/^[a-f0-9]{64}$/),
+      stableUidHash: expect.stringMatching(/^[a-f0-9]{64}$/),
+    });
+    expect(listCollection('account_deletion_permanent_denials')).toHaveLength(2);
+
+    await enqueueAccountDeletionJob(
+      db,
+      'auth-456',
+      'stable-123',
+      1_000,
+      receipt,
+      ['auth-456', 'stable-123', 'alias-a'],
+    );
+    expect(read()).toMatchObject({ identityClosure: ['alias-a', 'auth-456', 'stable-123'] });
+    expect(readCollection('account_deletion_credential_receipts')).toMatchObject({
+      stage: 'closure_committed',
+    });
+  });
+
   it('rejects a duplicate request that resolves to a different stable uid', async () => {
     const { db } = makeDbStub();
     await enqueueAccountDeletionJob(db, 'auth-456', 'stable-123', 1_000);
@@ -122,6 +206,10 @@ describe('account deletion job enqueue', () => {
       attempts: 1,
       createdAtMs: 1_000,
       updatedAtMs: 1_500,
+      identityClosure: ['auth-456', 'stable-123'],
+      identityClosureVersion: 1,
+      identityClosureHash: accountDeleteIdentityClosureHash(['auth-456', 'stable-123']),
+      closureCutoffMs: 1_000,
     });
 
     const result = await enqueueAccountDeletionJob(db, 'auth-456', 'stable-123', 2_000);
@@ -141,6 +229,10 @@ describe('account deletion job enqueue', () => {
       lastError: 'permanent failure',
       createdAtMs: 1_000,
       updatedAtMs: 1_500,
+      identityClosure: ['auth-456', 'stable-123'],
+      identityClosureVersion: 1,
+      identityClosureHash: accountDeleteIdentityClosureHash(['auth-456', 'stable-123']),
+      closureCutoffMs: 1_000,
     });
 
     const result = await enqueueAccountDeletionJob(db, 'auth-456', 'stable-123', 2_000);
@@ -161,6 +253,10 @@ describe('account deletion job worker', () => {
     attempts: 0,
     createdAtMs: 1_000,
     updatedAtMs: 1_000,
+    identityClosure: ['auth-456', 'stable-123'],
+    identityClosureVersion: 1,
+    identityClosureHash: accountDeleteIdentityClosureHash(['auth-456', 'stable-123']),
+    closureCutoffMs: 1_000,
   });
 
   it('claims a queued job, runs the deletion, and marks it completed', async () => {
@@ -174,7 +270,13 @@ describe('account deletion job worker', () => {
 
     await processAccountDeletionJob(db, 'job-1', execute, 2_000);
 
-    expect(execute).toHaveBeenCalledWith(db, 'stable-123', 'auth-456');
+    expect(execute).toHaveBeenCalledWith(
+      db,
+      'stable-123',
+      'auth-456',
+      1_000,
+      ['auth-456', 'stable-123'],
+    );
     expect(read()).toMatchObject({
       status: 'completed',
       attempts: 1,
@@ -184,6 +286,19 @@ describe('account deletion job worker', () => {
     });
     expect(read()).not.toHaveProperty('authUid');
     expect(read()).not.toHaveProperty('stableUid');
+  });
+
+  it('fails closed without executing when a queued job closure omits an immutable root', async () => {
+    const { db } = makeDbStub({
+      ...queuedJob(),
+      identityClosure: ['stable-123'],
+    });
+    const execute = jest.fn();
+
+    await expect(processAccountDeletionJob(db, 'job-1', execute, 2_000))
+      .rejects.toThrow('account_delete_job_closure_invalid');
+
+    expect(execute).not.toHaveBeenCalled();
   });
 
   it('returns a failed execution to queued and rethrows for platform retry', async () => {

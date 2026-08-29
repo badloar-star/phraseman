@@ -22,8 +22,8 @@ import {
 import BoonChestModal from './BoonChestModal';
 
 function makeL(lang: Lang) {
-  return (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
-    triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  return (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 }
 
 export default function PerfectWeekHost() {
@@ -104,7 +104,7 @@ export default function PerfectWeekHost() {
   if (!visible) return null;
 
   const title = L(
-    'Идеальная неделя', 'Ідеальний тиждень', 'Semana perfecta', 'Semana perfeita',
+    'Идеальная неделя', 'Ідеальний тиждень', 'Perfect week', 'Semana perfecta', 'Semana perfeita',
     'Tuần hoàn hảo', 'Minggu sempurna', 'Kusursuz hafta', 'Idealny tydzień',
   );
   // зачем (владелец, 2026-08-26): наградой были жемчужины — заменены на спины
@@ -117,6 +117,7 @@ export default function PerfectWeekHost() {
   const rewardLine = L(
     `Награда за неделю — ${pwSpins} ${pwRuSpin} начислено`,
     `Нагорода за тиждень — ${pwSpins} ${pwUkSpin} зараховано`,
+    `Weekly reward — ${pwSpins} ${pwSpins === 1 ? 'spin' : 'spins'} credited`,
     `Recompensa de la semana: ${pwSpins} ${pwSpins === 1 ? 'giro añadido' : 'giros añadidos'}`,
     `Recompensa da semana: ${pwSpins} ${pwSpins === 1 ? 'giro creditado' : 'giros creditados'}`,
     `Phần thưởng tuần — đã cộng ${pwSpins} lượt quay`,
@@ -125,11 +126,11 @@ export default function PerfectWeekHost() {
     `Nagroda za tydzień — dodano ${pwSpins} ${pwSpins === 1 ? 'spin' : 'spinów'}`,
   );
   const tapHint = L(
-    'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Toca para abrir', 'Toque para abrir',
+    'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Tap to open', 'Toca para abrir', 'Toque para abrir',
     'Nhấn để mở', 'Ketuk untuk membuka', 'Açmak için dokun', 'Dotknij, aby otworzyć',
   );
-  const claimCta = L('Забрать', 'Забрати', 'Recoger', 'Pegar', 'Nhận', 'Ambil', 'Al', 'Odbierz');
-  const closeLabel = L('Закрыть', 'Закрити', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij');
+  const claimCta = L('Забрать', 'Забрати', 'Claim', 'Recoger', 'Pegar', 'Nhận', 'Ambil', 'Al', 'Odbierz');
+  const closeLabel = L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij');
 
   return (
     <BoonChestModal

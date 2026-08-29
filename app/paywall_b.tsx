@@ -70,7 +70,7 @@ export default function PaywallB() {
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, resumeLessonId, impression: analyticsImpression });
   const sticky = useStickyCta();
   const router = useRouter();
-  // зачем: MAX — отдельный тариф со своей покупкой (modules/max_subscription/purchase),
+  // MAX — отдельный экран неистекающих пакетов минут,
   // не план внутри usePaywallPurchase — витрина уводит на готовый /max_paywall.
   const openMaxPaywall = () => router.push({ pathname: '/max_paywall', params: { source: `paywall_${VARIANT.toLowerCase()}` } });
 
@@ -141,8 +141,8 @@ export default function PaywallB() {
   const hadPremiumEver = getStatsCache().hadPremiumEver;
   const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
   const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
-  const title = LP(copy.titleRu, copy.titleUk, copy.titleEs, planned.title);
-  const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle);
+  const title = LP(copy.titleRu, copy.titleUk, copy.titleRu, copy.titleEs, planned.title);
+  const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleRu, copy.subtitleEs, planned.subtitle);
 
   const isLifetimeSel = p.selected === 'lifetime';
   const price = isLifetimeSel ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
@@ -245,7 +245,7 @@ export default function PaywallB() {
                 ctx={ctx}
                 lang={lang as Lang}
                 chrome={chrome}
-                tagTexts={tags.map((tag) => LP(tag.ru, tag.uk, tag.es, tag))}
+                tagTexts={tags.map((tag) => LP(tag.ru, tag.uk, tag.ru, tag.es, tag))}
                 profile={profile}
                 mirror={mirror}
                 percentileLine={percentileLine}

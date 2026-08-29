@@ -41,6 +41,16 @@ describe('account generation', () => {
     const token = beginInitialAccountGeneration('resolved-anon-uid');
     expect(token).not.toBeNull();
     expect(isCurrentAccountGeneration(token!, 'resolved-anon-uid')).toBe(true);
+
+    expect(beginInitialAccountGeneration('late-local-uid')).toBeNull();
+    expect(captureAccountGeneration()).toEqual(token);
+  });
+
+  it('does not let late boot activation replace an account adopted by recovery', () => {
+    const adopted = beginAccountGeneration('recovered-stable-uid');
+
+    expect(beginInitialAccountGeneration('stale-local-uid')).toBeNull();
+    expect(captureAccountGeneration()).toEqual(adopted);
   });
 
   it('invalidates work from the previous account', () => {

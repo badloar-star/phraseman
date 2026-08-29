@@ -60,10 +60,10 @@ function FriendsChestModal({ visible, tier, starsGranted, xpBoostMinutes, streak
     setFailedFlameAssetKey(null);
   }, [flameAssetKey]);
   const impact = useRewardImpactHybrid({ visible, rarity, impactSoundId: 'pm.reward.chest_open', scope: 'friends-chest-modal' });
-  const L = (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
-    triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
-  const title = L('Награда за неделю вместе', 'Нагорода за тиждень разом', 'Recompensa por la semana juntos', 'Recompensa pela semana juntos', 'Phần thưởng cho tuần cùng nhau', 'Hadiah untuk sepekan bersama', 'Birlikte geçen hafta ödülü', 'Nagroda za tydzień razem');
-  const claimLabel = L('Забрать', 'Забрати', 'Recoger', 'Resgatar', 'Nhận', 'Ambil', 'Al', 'Odbierz');
+  const L = (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang as any, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  const title = L('Награда за неделю вместе', 'Нагорода за тиждень разом', 'Reward for a week together', 'Recompensa por la semana juntos', 'Recompensa pela semana juntos', 'Phần thưởng cho tuần cùng nhau', 'Hadiah untuk sepekan bersama', 'Birlikte geçen hafta ödülü', 'Nagroda za tydzień razem');
+  const claimLabel = L('Забрать', 'Забрати', 'Claim', 'Recoger', 'Resgatar', 'Nhận', 'Ambil', 'Al', 'Odbierz');
   // зачем (иерархия): на верхнем тире наград стало шесть — одной строкой через
   // точки это читается как список, а не как награда. Делим на два уровня:
   // ГЛАВНОЕ — то, что прибавилось числом (руны и опыт), крупным весом;
@@ -75,13 +75,13 @@ function FriendsChestModal({ visible, tier, starsGranted, xpBoostMinutes, streak
     // `stars` = руны; склонение берём из того же runeWord, что и весь остальной
     // интерфейс рун, — иначе «15 рун» разошлось бы с «15 руны».
     starsGranted > 0 ? `+${starsGranted} ${runeWord(lang as any, starsGranted)}` : '',
-    xpGranted > 0 ? `+${xpGranted} ${L('опыта', 'досвіду', 'de experiencia', 'de experiência', 'kinh nghiệm', 'pengalaman', 'deneyim', 'doświadczenia')}` : '',
+    xpGranted > 0 ? `+${xpGranted} ${L('опыта', 'досвіду', 'XP', 'de experiencia', 'de experiência', 'kinh nghiệm', 'pengalaman', 'deneyim', 'doświadczenia')}` : '',
   ].filter(Boolean).join(' · ');
   const bonusRewards = [
-    energyRefilled ? L('Полная энергия', 'Повна енергія', 'Energía llena', 'Energia cheia', 'Năng lượng đầy', 'Energi penuh', 'Enerji dolu', 'Pełna energia') : '',
-    xpBoostMinutes > 0 ? `×2 XP · ${xpBoostMinutes} ${L('мин', 'хв', 'min', 'min', 'phút', 'mnt', 'dk', 'min')}` : '',
-    streakShield ? L('Щит', 'Щит', 'Escudo', 'Escudo', 'Khiên', 'Perisai', 'Kalkan', 'Tarcza') : '',
-    aura ? L('Аура', 'Аура', 'Aura', 'Aura', 'Hào quang', 'Aura', 'Aura', 'Aura') : '',
+    energyRefilled ? L('Полная энергия', 'Повна енергія', 'Full energy', 'Energía llena', 'Energia cheia', 'Năng lượng đầy', 'Energi penuh', 'Enerji dolu', 'Pełna energia') : '',
+    xpBoostMinutes > 0 ? `×2 XP · ${xpBoostMinutes} ${L('мин', 'хв', 'min', 'min', 'min', 'phút', 'mnt', 'dk', 'min')}` : '',
+    streakShield ? L('Щит', 'Щит', 'Shield', 'Escudo', 'Escudo', 'Khiên', 'Perisai', 'Kalkan', 'Tarcza') : '',
+    aura ? L('Аура', 'Аура', 'Aura', 'Aura', 'Aura', 'Hào quang', 'Aura', 'Aura', 'Aura') : '',
   ].filter(Boolean).join(' · ');
 
   return (

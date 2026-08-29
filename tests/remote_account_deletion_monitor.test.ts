@@ -96,6 +96,23 @@ describe('remote account deletion monitor', () => {
     expect(onDeleted).toHaveBeenCalledTimes(1);
   });
 
+  it('does NOT wipe a disabled (banned/moderated) account — disabled is not deleted', async () => {
+    const disabledUserError = Object.assign(new Error('user disabled'), { code: 'auth/user-disabled' });
+    authUser!.reload.mockRejectedValueOnce(disabledUserError);
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { startRemoteAccountDeletionMonitor } = require('../app/remote_account_deletion_monitor');
+    const onDeleted = jest.fn(async () => true);
+
+    startRemoteAccountDeletionMonitor(onDeleted);
+    markerListeners[0].error(Object.assign(new Error('denied'), { code: 'firestore/permission-denied' }));
+    await Promise.resolve();
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(authUser!.reload).toHaveBeenCalledTimes(1);
+    expect(onDeleted).not.toHaveBeenCalled();
+  });
+
   it('does not permanently report a uid when handling fails and retries while it remains active', async () => {
     jest.useFakeTimers();
     const { startRemoteAccountDeletionMonitor } = require('../app/remote_account_deletion_monitor');

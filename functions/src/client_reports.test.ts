@@ -209,6 +209,45 @@ describe('submitClientReport', () => {
     expect(reportDocs('user_reports')).toHaveLength(5);
   });
 
+  test('rejects a durable retry after the authenticated stable owner changes', async () => {
+    await expect(callSubmitClientReport({
+      kind: 'error_report',
+      expectedStableUid: 'stable-other-account',
+      idempotencyKey: 'support_123_owner_bound',
+      payload: {
+        screen: 'settings_support',
+        dataId: 'settings_support_request',
+        dataText: 'In-app support request',
+        comment: 'The button does not respond after reconnecting.',
+      },
+    })).rejects.toMatchObject({
+      code: 'failed-precondition',
+      message: 'report_owner_changed',
+    });
+    expect(reportDocs('error_reports')).toHaveLength(0);
+  });
+
+  test('replays the same receipt for a retried idempotent support report', async () => {
+    const request = {
+      kind: 'error_report',
+      expectedStableUid: 'stable-reporter',
+      idempotencyKey: 'support_123_same_operation',
+      payload: {
+        screen: 'settings_support',
+        dataId: 'settings_support_request',
+        dataText: 'In-app support request',
+        comment: 'The lesson button does not respond after reconnecting.',
+      },
+    };
+
+    const first = await callSubmitClientReport(request);
+    const retry = await callSubmitClientReport(request);
+
+    expect(retry).toEqual(first);
+    expect(reportDocs('error_reports')).toHaveLength(1);
+    expect(collectionDocs('client_report_rate_limits')[0]?.data).toMatchObject({ count: 1 });
+  });
+
   test('atomically records a release-aware server aggregate without uid or report text', async () => {
     await callSubmitClientReport({
       kind: 'app_error',
@@ -229,5 +268,67 @@ describe('submitClientReport', () => {
     expect(markers).toHaveLength(1);
     expect(markers[0][0]).toMatch(/\/affected_users\/[a-f0-9]{64}$/);
     expect(JSON.stringify(markers[0])).not.toMatch(/auth-reporter|stable-reporter/i);
+  });
+
+  test('stores only independently allowlisted support diagnostics', async () => {
+    const now = Date.now();
+    await callSubmitClientReport({
+      kind: 'error_report',
+      payload: {
+        screen: 'settings_support',
+        dataId: 'settings_support_request',
+        dataText: 'In-app support request',
+        comment: 'Avatar purchase is stuck.',
+        diagnostics: {
+          version: 1,
+          capturedAtMs: now,
+          token: 'Bearer private-token',
+          events: [{
+            atMs: now - 100,
+            event: 'customization_purchase',
+            screen: '/avatar_select',
+            result: 'error',
+            reason: 'transaction_failed',
+            subject: 'avatar',
+            action: 'avatar:purchase_confirm',
+            email: 'person@example.com',
+            stack: 'private stack',
+            tags: { receipt: 'secret' },
+          }],
+        },
+      },
+    });
+
+    const report = reportDocs('error_reports')[0];
+    expect(report.diagnostics).toEqual({
+      version: 1,
+      capturedAtMs: now,
+      events: [{
+        atMs: now - 100,
+        event: 'customization_purchase',
+        screen: '/avatar_select',
+        result: 'error',
+        reason: 'transaction_failed',
+        subject: 'avatar',
+        action: 'avatar:purchase_confirm',
+      }],
+    });
+    expect(JSON.stringify(report.diagnostics)).not.toMatch(/person@example|Bearer|private stack|receipt|secret/i);
+  });
+
+  test('accepts the report while dropping invalid diagnostics', async () => {
+    const result = await callSubmitClientReport({
+      kind: 'error_report',
+      payload: {
+        screen: 'settings_support',
+        dataId: 'settings_support_request',
+        dataText: 'In-app support request',
+        comment: 'The settings screen is frozen.',
+        diagnostics: { version: 99, events: [{ event: 'raw_log', message: 'private' }] },
+      },
+    });
+
+    expect(result).toMatchObject({ ok: true, collection: 'error_reports' });
+    expect(reportDocs('error_reports')[0]).not.toHaveProperty('diagnostics');
   });
 });

@@ -1,5 +1,7 @@
-import { AUTHORED_EPISODE_01_SESSIONS } from "../modules/learning-v2/content/source/authored_sessions_v1";
-import { allAuthoredEsEpisode01Sessions } from "../modules/learning-v2/content/source/es_authored_sessions_v1";
+import { createHash } from "node:crypto";
+import { readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+import { authoredLearningV2SessionSource } from "../modules/learning-v2/content/source/authored_sessions_v1";
 import {
   authoringRegistryForTargetLanguage,
   isV2AuthoringTargetLanguage,
@@ -7,6 +9,32 @@ import {
   type V2AuthoringTargetLanguage,
 } from "../modules/learning-v2/content/source/lesson1_authoring_registry_v1";
 import { learningV2SessionContentFingerprint } from "../modules/learning-v2/content/source/learning_content_quality_gate_v1";
+import { assertLearningV2CurrentSessionIntegrityV1 } from "./learning_v2_current_session_integrity_gate";
+import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
+
+const SOURCE_DIRECTORY = join(
+  __dirname,
+  "../modules/learning-v2/content/source",
+);
+
+function forbiddenEnglishSessionFilesFingerprint(sessionOrdinal: number): string {
+  const padded = String(sessionOrdinal).padStart(2, "0");
+  const prefix = `episode_01_session_${padded}`;
+  const files = readdirSync(SOURCE_DIRECTORY)
+    .filter((name) => name.startsWith(prefix) && name.endsWith(".ts"))
+    .sort();
+  if (files.length === 0) {
+    return hashCanonicalBody([]);
+  }
+  return hashCanonicalBody(
+    files.map((name) => [
+      name,
+      createHash("sha256")
+        .update(readFileSync(join(SOURCE_DIRECTORY, name)))
+        .digest("hex"),
+    ]),
+  );
+}
 
 function readRequestedSessionOrdinal(
   argv: readonly string[],
@@ -48,6 +76,7 @@ function readTargetLanguage(argv: readonly string[]): V2AuthoringTargetLanguage 
 // ContentFingerprint = hashCanonicalBody(source), языконезависимая).
 function actualFingerprints(
   targetLanguage: V2AuthoringTargetLanguage,
+  visibleSessionOrdinals: ReadonlySet<number>,
 ): Readonly<Record<number, string | null>> {
   // зачем null, а не пропуск ключа: canonicalJsonV1 внутри preflight
   // fail-closed отклоняет undefined как значение (см. тест
@@ -57,12 +86,27 @@ function actualFingerprints(
     Array.from({ length: 56 }, (_, index) => [index + 1, null as string | null]),
   );
   if (targetLanguage === "en") {
-    for (const source of AUTHORED_EPISODE_01_SESSIONS) {
-      base[source.requiredSessionOrdinal] = learningV2SessionContentFingerprint(source);
+    for (let sessionOrdinal = 1; sessionOrdinal <= 56; sessionOrdinal += 1) {
+      if (visibleSessionOrdinals.has(sessionOrdinal)) {
+        const source = authoredLearningV2SessionSource(sessionOrdinal);
+        if (source) {
+          base[source.requiredSessionOrdinal] = learningV2SessionContentFingerprint(source);
+        }
+      } else {
+        base[sessionOrdinal] = forbiddenEnglishSessionFilesFingerprint(sessionOrdinal);
+      }
     }
     return Object.freeze(base);
   }
   if (targetLanguage === "es") {
+    // зачем lazy require: английский и испанский authoring-контуры обязаны
+    // проходить preflight независимо. Испанский source может подключать свои
+    // DEV/runtime зависимости; английская проверка не должна загружать их и
+    // падать внутри Node CLI до чтения собственного реестра.
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { allAuthoredEsEpisode01Sessions } = require(
+      "../modules/learning-v2/content/source/es_authored_sessions_v1"
+    ) as typeof import("../modules/learning-v2/content/source/es_authored_sessions_v1");
     for (const source of allAuthoredEsEpisode01Sessions()) {
       base[source.requiredSessionOrdinal] = learningV2SessionContentFingerprint(source);
     }
@@ -81,11 +125,26 @@ function main(): void {
   const requestedSessionOrdinal = readRequestedSessionOrdinal(argv);
   const targetLanguage = readTargetLanguage(argv);
   const registry = authoringRegistryForTargetLanguage(targetLanguage);
+  const currentSessionOrdinal = registry.find(
+    (entry) => entry.status !== "LOCKED",
+  )?.sessionOrdinal;
+  const visibleSessionOrdinals = new Set(
+    registry
+      .filter(
+        (entry) =>
+          entry.status === "LOCKED" ||
+          entry.sessionOrdinal === currentSessionOrdinal,
+      )
+      .map((entry) => entry.sessionOrdinal),
+  );
   const preflight = lesson1AuthoringPreflightV1(
     requestedSessionOrdinal,
-    actualFingerprints(targetLanguage),
+    actualFingerprints(targetLanguage, visibleSessionOrdinals),
     registry,
   );
+  if (targetLanguage === "en" && requestedSessionOrdinal !== undefined) {
+    assertLearningV2CurrentSessionIntegrityV1(requestedSessionOrdinal);
+  }
   const currentEntry = registry.find(
     (entry) => entry.sessionOrdinal === preflight.currentSessionOrdinal,
   );

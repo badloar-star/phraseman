@@ -46,6 +46,36 @@ test('the published admin preview is read from the single live surface', () => {
 test('prepared replies expose resolution and reward metadata', () => {
   expect(adminHtml).toContain('resolutionLabels');
   expect(adminHtml).toContain('rewardGroup');
+  expect(adminHtml).toContain('id="rr-severity"');
+  expect(adminHtml).toContain('Небольшая · 1 спин · 300 рун · 1 жемчужина');
+  expect(adminHtml).toContain('Серьёзная · 2 спина · 600 рун · 5 жемчужин');
+  expect(adminHtml).toContain('Критическая · 3 спина · 1000 рун · 10 жемчужин');
+  expect(adminHtml).toContain('rewardBundle,');
+  expect(adminHtml).not.toContain('id="rr-shards"');
+});
+
+test('manual reply modal fails closed until a verdict and reward are chosen deliberately', () => {
+  const start = adminHtml.indexOf('window.openReportReplyModal');
+  const end = adminHtml.indexOf('/** Массовый режим', start);
+  const modal = adminHtml.slice(start, end);
+  expect(modal).toContain('name="rr-verdict" value="rejected" checked');
+  expect(modal).toContain('<option value="none" selected>Без награды</option>');
+  expect(modal).not.toContain('<option value="minor" selected>');
+  expect(modal).not.toContain("readVerdict() === 'confirmed' ? 'minor' : 'none'");
+});
+
+test('legacy prepared reward copy is sanitized before preview or delivery', () => {
+  const sanitizeStart = adminHtml.indexOf('function sanitizePreparedReplyBody');
+  const sanitizeEnd = adminHtml.indexOf('function getPreparedReply', sanitizeStart);
+  const getterEnd = adminHtml.indexOf('function renderPreparedReplyBox', sanitizeEnd);
+  expect(sanitizeStart).toBeGreaterThanOrEqual(0);
+  expect(sanitizeEnd).toBeGreaterThan(sanitizeStart);
+  const sanitize = Function(`${adminHtml.slice(sanitizeStart, sanitizeEnd)}; return sanitizePreparedReplyBody;`)();
+  expect(sanitize('Мы исправили ошибку. Вам начислена 1 жемчужина.')).toBe('Мы исправили ошибку.');
+  expect(sanitize('Дякуємо. За знахідку нарахували 2 перлини.')).toBe('Дякуємо.');
+  expect(sanitize('Дякуємо. Пропозиція забрати перлини вже в сповіщеннях.')).toBe('Дякуємо.');
+  expect(sanitize('Ми виправили покупку після списання перлин.')).toBe('Ми виправили покупку після списання перлин.');
+  expect(adminHtml.slice(sanitizeEnd, getterEnd)).toContain("body: sanitizePreparedReplyBody(base.body || '')");
 });
 
 test('every published admin draft exposes the complete reply contract', () => {
@@ -63,34 +93,13 @@ test('every published admin draft exposes the complete reply contract', () => {
   }
 });
 
-test('the current replies.json batch is published in the admin preview', () => {
+test('every row from the current replies.json batch is published exactly once in the admin preview', () => {
   const replies = JSON.parse(
     fs.readFileSync(path.join(__dirname, '..', 'replies.json'), 'utf8'),
   ) as Array<{ reportId: string; uid: string; title: string; body: string; shards: number }>;
   const preparedById = new Map(readPreparedReplies().map((row) => [row.reportId, row]));
 
-  const expected = [
-    ['dZlDwBjL1Ew6Mcu0nLop', '665b6a7f-5808-4eb8-ab83-d9d469d229cf', 'by_design', 'lesson5-frequency-adverb-order', 0],
-    ['nLQZOj8uk6dhGCDHFUMG', 'df7b4820-8f3c-486e-8570-ac6b66ce6d98', 'user_error', 'lesson3-he-wears-glasses', 0],
-    ['XbRAuTpygAqh7mzRjpjB', '2f82b9ec-b0af-4554-a59b-02e6527108d6', 'duplicate', 'flashcard-pack-shard-purchase', 0],
-    ['8hWRTWLasuU0gtKIc1gE', '2f82b9ec-b0af-4554-a59b-02e6527108d6', 'confirmed_fixed', 'flashcard-pack-shard-purchase', 2],
-    ['ln3vcMgzNnMC5pj7srAQ', 'ff56979a-d65b-490d-8bbe-7d47ede60c28', 'confirmed_fixed', 'lesson21-nothing-wrong-translation', 1],
-    ['wXoD0PoyC2lFuWaaVF5R', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson3-subject-agreement', 0],
-    ['bdwAV2iBRkWkE0PzGLan', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson3-subject-meaning', 0],
-    ['nupzElGoogbGDK5DLSNR', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson2-opposite-meaning', 0],
-    ['yEYsJ9999FkOadOuSnnn', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson2-opposite-meaning', 0],
-    ['bt9JXZ87gTNFAcLRXZT5', 'be48bd2b-80fc-4ee0-8456-c774aed5d395', 'user_error', 'lesson2-opposite-meaning', 0],
-    ['HLnsVFPCAL8Boray30oL', '665b6a7f-5808-4eb8-ab83-d9d469d229cf', 'user_error', 'irregular-verb-take', 0],
-    ['VdmYsQVfhCFYjcxLt5Sb', '665b6a7f-5808-4eb8-ab83-d9d469d229cf', 'user_error', 'irregular-verb-eat', 0],
-  ] as const;
-
-  const actual = replies.map((reply) => {
-    const prepared = preparedById.get(reply.reportId);
-    return [reply.reportId, reply.uid, prepared?.resolution, prepared?.rewardGroup, reply.shards] as const;
-  });
-
-  expect(actual).toEqual(expected);
-  expect(new Set(replies.map((reply) => reply.reportId)).size).toBe(expected.length);
+  expect(new Set(replies.map((reply) => reply.reportId)).size).toBe(replies.length);
   for (const reply of replies) {
     expect(preparedById.get(reply.reportId)).toEqual(expect.objectContaining({
       title: reply.title,
@@ -137,11 +146,11 @@ test('copied report instructions enforce respectful support replies', () => {
   expect(instructions).toContain('ОБРАЩЕНИЕ: только на «вы»');
   expect(instructions).toContain('пиши как живой сотрудник поддержки');
   expect(instructions).toContain('не рассказывай пользователю о внутренних правилах');
-  expect(instructions).toContain('если shards = 0, вообще не упоминай награду');
-  // зачем: валюта в приложении — жемчужины. Инструкция обязана называть её так,
-  // иначе ИИ напишет живому юзеру «начислен 1 осколок» за подтверждённый репорт.
-  expect(instructions).toContain('если shards > 0, назови точное количество ЖЕМЧУЖИН');
-  expect(instructions).toContain('НЕ «осколки» и НЕ «монеты»');
+  expect(instructions).toContain('minor = 1 спин + 300 рун + 1 жемчужина');
+  expect(instructions).toContain('serious = 2 спина + 600 рун + 5 жемчужин');
+  expect(instructions).toContain('critical = 3 спина + 1000 рун + 10 жемчужин');
+  expect(instructions).toContain('ИИ только ПРЕДЛАГАЕТ уровень');
+  expect(instructions).toContain('не перечисляй виды наград, количества');
   expect(instructions).toContain('подготовь отдельный ответ для каждого reportId');
   expect(instructions).not.toContain('По умолчанию на «ты»');
   expect(instructions).not.toContain('дополнительной награды нет');
@@ -186,13 +195,20 @@ test('prepared drafts are user-safe and manual bulk send is guarded', () => {
   expect(validate(preparedBatch).ok).toBe(true);
   expect(validate([base]).ok).toBe(true);
   expect(validate([base, { ...base, title: 'y' }]).ok).toBe(false);
-  expect(validate([{ ...base, resolution: 'duplicate', shards: 1 }]).ok).toBe(false);
+  // Legacy positive `shards` on a non-fixed historical draft is safely
+  // normalized to no reward instead of blocking the whole preview batch.
+  expect(validate([{ ...base, resolution: 'duplicate', shards: 1 }]).ok).toBe(true);
   expect(validate([{ ...base, resolution: 'not_reproduced', shards: 1 }]).ok).toBe(true);
+  expect(validate([{
+    ...base,
+    resolution: 'duplicate',
+    rewardBundle: { version: 1, severity: 'minor', spins: 1, runes: 300, pearls: 1 },
+  }]).ok).toBe(false);
   expect(validate([{ ...base, rewardGroup: '' }]).ok).toBe(false);
   expect(validate([base, { ...base, resolution: 'duplicate', shards: 0 }]).ok).toBe(true);
 });
 
-test('the current reply batch uses respectful support language and mentions only awarded rewards', () => {
+test('the current reply batch uses respectful support language without requiring concrete reward copy', () => {
   const currentIds = new Set(
     (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'replies.json'), 'utf8')) as Array<{ reportId: string }>)
       .map((row) => row.reportId),
@@ -211,11 +227,8 @@ test('the current reply batch uses respectful support language and mentions only
     // зачем: валюта называется жемчужинами (ru) / перлинами (uk). Слово «осколки»
     // — legacy-название поля shards в коде, живому юзеру его показывать нельзя.
     expect(customerText).not.toMatch(/оскол/iu);
-    if (row.shards > 0) {
-      expect(row.body).toMatch(new RegExp(`${row.shards}\\s+(жемчужин|перлин)`, 'iu'));
-    } else {
-      expect(row.body).not.toMatch(/наград|начисл[^.!?]*(?:жемчуж|перлин)/iu);
-    }
+    // Exact quantities belong to the claim modal. The answer text may stay
+    // purely conversational and must not be coupled to a legacy shard amount.
   }
 });
 

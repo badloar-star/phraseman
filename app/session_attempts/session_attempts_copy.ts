@@ -10,6 +10,7 @@ export type SessionAttemptsCopy = {
   exhaustedBody: string;
   useGift: string;
   restoreForRunes: string;
+  restartWithEnergy: string;
   endSession: string;
   permanentGift: string;
   notEnoughRunes: (missing: number) => string;
@@ -22,6 +23,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     exhaustedBody: 'Восстановите все 3 попытки и повторите этот вопрос.',
     useGift: 'Использовать подарок',
     restoreForRunes: 'Восстановить · 25 рун',
+    restartWithEnergy: 'Начать заново',
     endSession: 'Завершить сессию',
     permanentGift: 'Без срока действия',
     notEnoughRunes: (missing) => `Нужно ещё ${missing} ${missing === 1 ? 'руну' : 'рун'}`,
@@ -32,6 +34,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     exhaustedBody: 'Відновіть усі 3 спроби й повторіть це запитання.',
     useGift: 'Використати подарунок',
     restoreForRunes: 'Відновити · 25 рун',
+    restartWithEnergy: 'Почати заново',
     endSession: 'Завершити сесію',
     permanentGift: 'Без терміну дії',
     notEnoughRunes: (missing) => `Потрібно ще ${missing} рун`,
@@ -42,6 +45,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     exhaustedBody: 'Restore all 3 attempts and retry this question.',
     useGift: 'Use gift',
     restoreForRunes: 'Restore · 25 runes',
+    restartWithEnergy: 'Start over',
     endSession: 'End session',
     permanentGift: 'Never expires',
     notEnoughRunes: (missing) => `You need ${missing} more rune${missing === 1 ? '' : 's'}`,
@@ -52,6 +56,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     exhaustedBody: 'Recupera los 3 intentos y repite esta pregunta.',
     useGift: 'Usar regalo',
     restoreForRunes: 'Recuperar · 25 runas',
+    restartWithEnergy: 'Empezar de nuevo',
     endSession: 'Terminar sesión',
     permanentGift: 'No caduca',
     notEnoughRunes: (missing) => `Te faltan ${missing} runas`,
@@ -62,6 +67,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     exhaustedBody: 'Recupere as 3 tentativas e repita esta pergunta.',
     useGift: 'Usar presente',
     restoreForRunes: 'Recuperar · 25 runas',
+    restartWithEnergy: 'Começar de novo',
     endSession: 'Encerrar sessão',
     permanentGift: 'Não expira',
     notEnoughRunes: (missing) => `Faltam ${missing} runas`,
@@ -72,6 +78,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     exhaustedBody: 'Khôi phục cả 3 lượt thử và làm lại câu hỏi này.',
     useGift: 'Dùng quà',
     restoreForRunes: 'Khôi phục · 25 rune',
+    restartWithEnergy: 'Bắt đầu lại',
     endSession: 'Kết thúc phiên',
     permanentGift: 'Không hết hạn',
     notEnoughRunes: (missing) => `Bạn cần thêm ${missing} rune`,
@@ -82,6 +89,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     exhaustedBody: 'Pulihkan semua 3 kesempatan dan ulangi pertanyaan ini.',
     useGift: 'Gunakan hadiah',
     restoreForRunes: 'Pulihkan · 25 rune',
+    restartWithEnergy: 'Mulai lagi',
     endSession: 'Akhiri sesi',
     permanentGift: 'Tidak kedaluwarsa',
     notEnoughRunes: (missing) => `Kamu perlu ${missing} rune lagi`,
@@ -92,6 +100,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     exhaustedBody: '3 denemenin hepsini yenile ve bu soruyu tekrar dene.',
     useGift: 'Hediyeyi kullan',
     restoreForRunes: 'Yenile · 25 rün',
+    restartWithEnergy: 'Baştan başla',
     endSession: 'Oturumu bitir',
     permanentGift: 'Süresi dolmaz',
     notEnoughRunes: (missing) => `${missing} rüne daha ihtiyacın var`,
@@ -102,6 +111,7 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     exhaustedBody: 'Odnów wszystkie 3 próby i powtórz to pytanie.',
     useGift: 'Użyj prezentu',
     restoreForRunes: 'Odnów · 25 run',
+    restartWithEnergy: 'Zacznij od nowa',
     endSession: 'Zakończ sesję',
     permanentGift: 'Bez terminu ważności',
     notEnoughRunes: (missing) => `Potrzebujesz jeszcze ${missing} run`,

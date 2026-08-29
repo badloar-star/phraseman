@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Раунд 4 — Золотая середина</title>
+<style>
+  :root{
+    --bg:#1c1e15; --card:#262921; --card2:#2e3227; --gold:#C9A84C; --gold-dim:#8a7434;
+    --text:#ece7d9; --muted:#a9a58f; --ok:#9fce8f;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{background:var(--bg); color:var(--text); font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; padding:32px 16px 120px}
+  .wrap{max-width:860px; margin:0 auto}
+  h1{font-size:28px; font-weight:800; letter-spacing:.2px}
+  h1 b{color:var(--gold)}
+  .sub{color:var(--muted); margin-top:6px; max-width:640px}
+  .progress{position:sticky; top:0; z-index:5; background:linear-gradient(var(--bg) 75%, transparent); padding:14px 0 18px; margin-top:8px}
+  .bar{height:10px; border-radius:6px; background:var(--card2); overflow:hidden; box-shadow:inset 0 1px 3px rgba(0,0,0,.4)}
+  .bar i{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--gold-dim),var(--gold)); border-radius:6px; transition:width .25s}
+  .ptext{font-size:13px; color:var(--muted); margin-top:6px}
+  h2{font-size:20px; margin:38px 0 6px; color:var(--gold)}
+  .h2sub{color:var(--muted); font-size:14px; margin-bottom:16px}
+  .card{background:var(--card); border-radius:18px; padding:18px 18px 16px; margin-bottom:14px; box-shadow:0 4px 14px rgba(0,0,0,.35)}
+  .card.done{background:#242c1f}
+  .name{font-weight:700; font-size:17px}
+  .name small{color:var(--muted); font-weight:500; font-size:13px; margin-left:8px}
+  .desc{color:var(--muted); font-size:14px; margin:4px 0 12px}
+  .row{display:flex; flex-wrap:wrap; gap:10px}
+  button{cursor:pointer; font:inherit; border:0; border-radius:12px; padding:10px 16px; background:var(--card2); color:var(--text); box-shadow:0 2px 6px rgba(0,0,0,.3); transition:transform .06s, background .15s}
+  button:active{transform:scale(.96)}
+  .play{min-width:96px; font-weight:700}
+  .play.playing{background:#3a4030; color:var(--gold)}
+  .pickrow{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap}
+  .pick{padding:8px 18px; font-weight:700; color:var(--muted)}
+  .pick.on{background:var(--gold); color:#221d0d; box-shadow:0 3px 10px rgba(201,168,76,.35)}
+  .pick.none.on{background:#6b4a42; color:#f2d9d2}
+  .status{font-size:12px; color:var(--ok); margin-top:8px; min-height:16px}
+  .toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%); background:var(--gold); color:#221d0d; font-weight:700; padding:10px 22px; border-radius:14px; opacity:0; pointer-events:none; transition:opacity .2s; box-shadow:0 6px 20px rgba(0,0,0,.45)}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Раунд 4 — <b>Золотая середина</b></h1>
+  <p class="sub">Правило раунда: чёткая музыкальная нота + тёплый матовый тембр. Без «блеска и хрусталя» (раунд 1) и без «глухого шума» (раунд 2). Сгенерировано ElevenLabs 2026‑08‑29. Жми ▶, выбирай вариант — сохраняется сразу. Повторный клик по выбору снимает отметку.</p>
+
+  <div class="progress">
+    <div class="bar"><i id="barfill"></i></div>
+    <div class="ptext" id="ptext">0 из 31 отмечено</div>
+  </div>
+
+  <div id="list"></div>
+</div>
+<div class="toast" id="toast">Сохранено</div>
+
+<script>
+const SOUNDS = [
+  {sec:'Переделки — в прошлых раундах владелец отверг все варианты', secsub:'Три новых прочтения каждого. У learn_correct / lesson_begin / complete_perfect в приложении пока живут старые v1 — это кандидаты на замену.'},
+  {id:'pm_learn_correct',    n:3, title:'Верный ответ в уроке', desc:'Самый частый звук обучения (громкость в приложении 0.42). A — челеста, B — маримба, C — арфа.'},
+  {id:'pm_learn_hint_reveal',n:3, title:'Открылась подсказка', desc:'Тихое «раскрытие» в задании (0.30). A — челеста со слайдом, B — флажолеты арфы, C — вибрафон без мотора.'},
+  {id:'pm_tap_blocked',      n:3, title:'Тап по заблокированной кнопке', desc:'НОВОЕ событие: вежливый отказ, теперь с ясной низкой нотой (не глухой стук). A — маримба, B — фагот, C — контрабас пиццикато.'},
+  {id:'pm_lesson_begin',     n:3, title:'Вход в урок (интро)', desc:'Тихий «вдох» под фейд интро-карточки (0.18). Теперь с нотой внутри, не просто шум. A — струнные+челеста, B — арфа, C — валторна.'},
+  {id:'pm_complete_perfect', n:3, title:'Идеальная сессия', desc:'Все ответы верные (0.58). Фирменный мотив «три ноты вверх». A — челеста+струнные, B — маримба+арфа, C — валторна.'},
+  {id:'pm_onboarding_step',  n:3, title:'Шаг онбординга пройден', desc:'НОВОЕ событие: крошечное подтверждение шага настройки. A — челеста, B — пиццикато, C — дерево+маримба.'},
+  {id:'ar_countdown_go',     n:3, title:'Арена: старт матча', desc:'Отсчёт кончился, первый вопрос (0.55). A — литавра+струнные, B — валторна+щётка, C — струнный подъём.'},
+  {id:'ar_answer_correct',   n:3, title:'Арена: верный ответ', desc:'Частый и короткий, без пафоса (0.42). A — челеста, B — маримба, C — арфа+колокольчик.'},
+  {id:'ar_answer_first',     n:3, title:'Арена: верный раньше соперника', desc:'Главное микро-достижение, ярче обычного (0.48). A — челеста+рим-акцент, B — маримба+щётка, C — арфа+литавра.'},
+  {id:'ar_rank_up',          n:3, title:'Арена: ранг повышен', desc:'Редкая церемония (0.55). A — мотив челесты+валторна, B — фанфара горн+арфа, C — струнные+медь.'},
+
+  {sec:'Арена — впервые озвучена', secsub:'21 событие, которые ждали файлов с пустым источником. По два прочтения: A — тёплый интерфейсный, B — игровой/кинематографичный.'},
+  {id:'ar_search_start',     n:2, title:'Начался поиск соперника', desc:'Нажал «Играть» (0.35). Собранный, без агрессии.'},
+  {id:'ar_search_loop',      n:2, loop:true, title:'Ожидание поиска (луп)', desc:'Очень тихая пульсация, играет по кругу (0.12). Кнопка ▶ зацикливает — нажми ещё раз, чтобы остановить.'},
+  {id:'ar_opponent_found',   n:2, title:'Соперник найден', desc:'Заставка «против» (0.60). Уверенно, но дружелюбно.'},
+  {id:'ar_task_in',          n:2, title:'Новый вопрос выехал', desc:'Каждый раунд, тихий и короткий (0.24).'},
+  {id:'ar_option_tap',       n:2, title:'Тап по варианту ответа', desc:'Самое частое касание Арены (0.20). Построен для быстрых повторов.'},
+  {id:'ar_answer_wrong',     n:2, title:'Неверный ответ', desc:'Правило владельца: не унижает (0.28). A — кларнет, B — фагот.'},
+  {id:'ar_opponent_answered',n:2, title:'Соперник ответил', desc:'Тихий нейтральный сигнал на его стороне (0.22).'},
+  {id:'ar_timer_tick',       n:2, title:'Тик таймера (последние секунды)', desc:'Каждую секунду, одинаковый (0.30). Срочно, но без паники.'},
+  {id:'ar_timeout',          n:2, title:'Время вышло', desc:'Спокойно и честно (0.34).'},
+  {id:'ar_combo_start',      n:2, title:'Серия началась', desc:'Обещание, сдержанно (0.38).'},
+  {id:'ar_combo_up',         n:2, title:'Серия растёт', desc:'Короткая радость на каждый шаг серии (0.40).'},
+  {id:'ar_combo_break',      n:2, title:'Серия оборвалась', desc:'Мягко, без драмы (0.26).'},
+  {id:'ar_pair_match',       n:2, title:'Пары: пара сошлась', desc:'Быстрые серии тапов по доске (0.34).'},
+  {id:'ar_pair_miss',        n:2, title:'Пары: мимо', desc:'Нейтрально, не ругает (0.24).'},
+  {id:'ar_pair_clear',       n:2, title:'Пары: доска собрана', desc:'Финал доски (0.46).'},
+  {id:'ar_result_draw',      n:2, title:'Ничья в матче', desc:'Ровная фраза — ни вверх, ни вниз (0.42).'},
+  {id:'ar_star_fly',         n:2, title:'Звезда полетела', desc:'Отрыв звезды к счётчику (0.26).'},
+  {id:'ar_star_land',        n:2, title:'Звезда приземлилась', desc:'Фиксация в счётчике (0.34).'},
+  {id:'ar_goal_complete',    n:2, title:'Дневная цель закрыта', desc:'Мотив награды (0.44).'},
+  {id:'ar_reward_unlock',    n:2, title:'Награда разблокирована', desc:'Сундук/награда Арены (0.50).'},
+  {id:'ar_rank_down',        n:2, title:'Ранг понижен', desc:'Достойно и по-доброму — человек должен вернуться (0.34).'},
+];
+
+const LETTERS=['a','b','c'];
+let choices={};
+let cur=null, curBtn=null;
+
+function file(id,letter){ return '/r4/'+id+'_r4'+letter+'.mp3'; }
+
+function stopCurrent(){
+  if(cur){ cur.pause(); cur.currentTime=0; cur=null; }
+  if(curBtn){ curBtn.classList.remove('playing'); curBtn=null; }
+}
+
+function playVar(id,letter,loop,btn){
+  if(curBtn===btn){ stopCurrent(); return; }
+  stopCurrent();
+  cur=new Audio(file(id,letter));
+  cur.loop=!!loop;
+  curBtn=btn; btn.classList.add('playing');
+  cur.onended=()=>{ if(curBtn===btn){ btn.classList.remove('playing'); curBtn=null; cur=null; } };
+  cur.play();
+}
+
+async function save(id,variant){
+  const cardEl=document.getElementById('card_'+id);
+  const prev=choices[id];
+  const next=(prev===variant)?null:variant;
+  try{
+    await fetch('/pick4',{method:'POST',body:JSON.stringify({id,variant:next})});
+    if(next===null) delete choices[id]; else choices[id]=next;
+    render(cardEl,id);
+    updateProgress();
+    toast(next===null?'Отметка снята':'Сохранено: '+(next==='none'?'ни один':next.toUpperCase()));
+  }catch(e){ toast('Ошибка сохранения'); }
+}
+
+function render(cardEl,id){
+  const v=choices[id];
+  cardEl.classList.toggle('done',v!==undefined);
+  cardEl.querySelectorAll('.pick').forEach(b=>{
+    b.classList.toggle('on', b.dataset.v===v);
+  });
+  cardEl.querySelector('.status').textContent =
+    v===undefined?'' : (v==='none'?'Отмечено: ни один не подходит':'Выбран вариант '+v.toUpperCase());
+}
+
+function updateProgress(){
+  const total=SOUNDS.filter(s=>s.id).length;
+  const done=Object.keys(choices).length;
+  document.getElementById('barfill').style.width=(done/total*100)+'%';
+  document.getElementById('ptext').textContent=done+' из '+total+' отмечено';
+}
+
+let toastTimer=null;
+function toast(t){
+  const el=document.getElementById('toast');
+  el.textContent=t; el.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.classList.remove('show'),1400);
+}
+
+function build(){
+  const list=document.getElementById('list');
+  for(const s of SOUNDS){
+    if(s.sec){
+      const h=document.createElement('h2'); h.textContent=s.sec; list.appendChild(h);
+      const hs=document.createElement('div'); hs.className='h2sub'; hs.textContent=s.secsub||''; list.appendChild(hs);
+      continue;
+    }
+    const card=document.createElement('div');
+    card.className='card'; card.id='card_'+s.id;
+    const plays=LETTERS.slice(0,s.n).map(l=>
+      `<button class="play" data-l="${l}">▶ ${l.toUpperCase()}</button>`).join('');
+    const picks=LETTERS.slice(0,s.n).map(l=>
+      `<button class="pick" data-v="${l}">${l.toUpperCase()}</button>`).join('')+
+      `<button class="pick none" data-v="none">Ни один</button>`;
+    card.innerHTML=`
+      <div class="name">${s.title}<small>${s.id}</small></div>
+      <div class="desc">${s.desc}</div>
+      <div class="row">${plays}</div>
+      <div class="pickrow">${picks}</div>
+      <div class="status"></div>`;
+    card.querySelectorAll('.play').forEach(b=>{
+      b.onclick=()=>playVar(s.id,b.dataset.l,s.loop,b);
+    });
+    card.querySelectorAll('.pick').forEach(b=>{
+      b.onclick=()=>save(s.id,b.dataset.v);
+    });
+    list.appendChild(card);
+  }
+}
+
+(async function init(){
+  build();
+  try{ choices=await (await fetch('/choices4')).json(); }catch(e){ choices={}; }
+  for(const s of SOUNDS){ if(s.id) render(document.getElementById('card_'+s.id),s.id); }
+  updateProgress();
+})();
+</script>
+</body>
+</html>

@@ -15,6 +15,7 @@ import { getSessionAttemptsCopy } from '../../app/session_attempts/session_attem
 import { SESSION_ATTEMPTS_MAX } from '../../app/session_attempts/session_attempts_domain';
 import { SESSION_ATTEMPTS_MOTION } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { soundDirector } from '../../modules/audio/sound_director';
 import { useTheme } from '../ThemeContext';
 
 type Props = {
@@ -183,6 +184,29 @@ function SessionAttemptsHud({ remaining, locale, total = SESSION_ATTEMPTS_MAX, t
   const safeTotal = Math.max(1, Math.floor(total));
   const safeRemaining = Math.min(safeTotal, Math.max(0, Math.floor(remaining)));
   const accessibilityLabel = getSessionAttemptsCopy(locale).attemptsStatus(safeRemaining, safeTotal);
+
+  // зачем: звук сердечек живёт в HUD, а не в 10 экранах-хостах — потеря и
+  // восстановление видны здесь как смена remaining. Первый рендер молчит
+  // (prev=null): при входе в сессию текущее состояние не озвучивается.
+  const prevRemainingRef = useRef<number | null>(null);
+  useEffect(() => {
+    const prev = prevRemainingRef.current;
+    prevRemainingRef.current = safeRemaining;
+    if (prev === null || safeRemaining === prev) return undefined;
+    if (safeRemaining < prev) {
+      // зачем: потеря совпадает по времени с pm.learn.needs_work неверного
+      // ответа; задержка 300мс разводит их в последовательность «ответ →
+      // сердечко ушло» и попадает в shake-фазу анимации HeartSlot.
+      const timer = setTimeout(() => {
+        soundDirector.request('pm.hearts.lost', { scope: 'session-attempts' });
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+    // Восстановление (за руны/подарком) звучит сразу: модалка уже закрылась,
+    // конкурирующих звуков в этот момент нет.
+    soundDirector.request('pm.hearts.restored', { scope: 'session-attempts' });
+    return undefined;
+  }, [safeRemaining]);
 
   return (
     <View

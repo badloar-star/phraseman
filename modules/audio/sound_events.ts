@@ -16,6 +16,9 @@ export type SoundFamily =
   | 'economy'
   | 'max'
   | 'profile'
+  // зачем: сердечки (система попыток session_attempts) — отдельное семейство,
+  // как и планировалось при одобрении звуков 2026-08-28.
+  | 'hearts'
   // зачем: нажатия — отдельное семейство, чтобы их можно было приглушать
   // независимо от наград и обучения (звучат чаще всего остального).
   | 'ui';
@@ -301,14 +304,15 @@ export const SOUND_EVENTS = Object.freeze({
 
   'pm.energy.spend': event(require('../../assets/audio/sfx/v1/energy/pm_energy_spend_v1.m4a'), 0.26, 44, 300, 300, 'energy'),
 
-  // Сердечки/жизни в приложении НЕ реализованы — механики нет ни в одном
-  // экране (проверено 2026-08-28 поиском heartsLeft/loseHeart/livesLeft).
-  // Звуки владелец одобрил, файлы лежат в assets/audio/sfx/v1/hearts/, но
-  // объявлять события нельзя: контракт call-sites требует место вызова, а
-  // положить звук в бандл без единого вызова — мёртвый вес.
-  // Появится механика — раскомментировать и расставить вызовы:
-  //   'pm.hearts.lost': event(require('../../assets/audio/sfx/v1/hearts/pm_heart_lost_v1.m4a'), 0.30, 64, 400, 500, 'hearts'),
-  //   'pm.hearts.restored': event(require('../../assets/audio/sfx/v1/hearts/pm_hearts_restored_v1.m4a'), 0.48, 78, 2000, 1200, 'hearts'),
+  // зачем: механика сердечек СУЩЕСТВУЕТ — это система попыток session_attempts
+  // (SESSION_ATTEMPTS_MAX=3, HUD на 10 экранах: flashcards_*, learning-v2,
+  // lesson1, lesson_words, mistake_practice…). Вывод 2026-08-28 «механики нет»
+  // был ошибкой поиска: искали heartsLeft/loseHeart/livesLeft, а имена другие.
+  // Файлы одобрены владельцем на слух (choices_final: оба «a»), вызовы живут в
+  // components/session_attempts/SessionAttemptsHud.tsx — одна точка покрывает
+  // все экраны (потеря = remaining упал, восстановление = вырос).
+  'pm.hearts.lost': event(require('../../assets/audio/sfx/v1/hearts/pm_heart_lost_v1.m4a'), 0.30, 64, 400, 500, 'hearts'),
+  'pm.hearts.restored': event(require('../../assets/audio/sfx/v1/hearts/pm_hearts_restored_v1.m4a'), 0.48, 78, 2000, 1200, 'hearts'),
 
   // Успешная покупка: до этого был только звук отказа и старта, самого
   // подтверждения покупки не звучало.

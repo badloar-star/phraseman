@@ -14,6 +14,8 @@ const CHOICES2 = path.join(DIR, 'choices2.json');
 const CHOICES3 = path.join(DIR, 'choices3.json');
 // зачем: единая страница вместо трёх — свой файл выбора, прошлые не трогаем.
 const CHOICESF = path.join(DIR, 'choices_final.json');
+// зачем: раунд 4 (2026-08-29, ElevenLabs) — переделки отвергнутых + вся Арена.
+const CHOICES4 = path.join(DIR, 'choices4.json');
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -31,8 +33,8 @@ const server = http.createServer((req, res) => {
 
   // Сохранение одной отметки. Пишем сразу — чтобы выбор не потерялся,
   // если страницу закроют не дойдя до конца списка.
-  if (req.method === 'POST' && (url.pathname === '/pick' || url.pathname === '/pick2' || url.pathname === '/pick3' || url.pathname === '/pickF')) {
-    const target = url.pathname === '/pickF' ? CHOICESF : url.pathname === '/pick3' ? CHOICES3 : url.pathname === '/pick2' ? CHOICES2 : CHOICES;
+  if (req.method === 'POST' && (url.pathname === '/pick' || url.pathname === '/pick2' || url.pathname === '/pick3' || url.pathname === '/pickF' || url.pathname === '/pick4')) {
+    const target = url.pathname === '/pick4' ? CHOICES4 : url.pathname === '/pickF' ? CHOICESF : url.pathname === '/pick3' ? CHOICES3 : url.pathname === '/pick2' ? CHOICES2 : CHOICES;
     let body = '';
     req.on('data', (c) => { body += c; });
     req.on('end', () => {
@@ -49,8 +51,8 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (url.pathname === '/choices' || url.pathname === '/choices2' || url.pathname === '/choices3' || url.pathname === '/choicesF') {
-    const src = url.pathname === '/choicesF' ? CHOICESF : url.pathname === '/choices3' ? CHOICES3 : url.pathname === '/choices2' ? CHOICES2 : CHOICES;
+  if (url.pathname === '/choices' || url.pathname === '/choices2' || url.pathname === '/choices3' || url.pathname === '/choicesF' || url.pathname === '/choices4') {
+    const src = url.pathname === '/choices4' ? CHOICES4 : url.pathname === '/choicesF' ? CHOICESF : url.pathname === '/choices3' ? CHOICES3 : url.pathname === '/choices2' ? CHOICES2 : CHOICES;
     res.writeHead(200, TYPES['.json']).end(JSON.stringify(readFile(src), null, 2));
     return;
   }

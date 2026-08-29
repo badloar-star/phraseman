@@ -2,6 +2,14 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "sound-preview",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/appsprojects/phraseman/docs/sound/preview/server.js"
+      ],
+      "port": 8777
+    },
+    {
       "name": "paywall-main",
       "runtimeExecutable": "npx",
       "runtimeArgs": [

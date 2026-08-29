@@ -49,8 +49,11 @@ describe('semantic sound event catalog', () => {
     const enabled = ids.filter((id) => SOUND_EVENTS[id].source !== null);
     const disabled = ids.filter((id) => SOUND_EVENTS[id].source === null);
 
-    expect(ids).toHaveLength(142);
-    expect(enabled).toHaveLength(116);
+    // зачем 2026-08-29: +2 события сердечек (pm.hearts.lost/restored) — файлы
+    // были одобрены владельцем ещё 28.08, а механика session_attempts живая;
+    // вызовы в SessionAttemptsHud. 142 -> 144, включённых 116 -> 118.
+    expect(ids).toHaveLength(144);
+    expect(enabled).toHaveLength(118);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });

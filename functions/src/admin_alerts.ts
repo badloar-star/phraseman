@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from './cron_heartbeat';
 import { defineSecret } from 'firebase-functions/params';
 import { onDocumentCreated, onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
@@ -297,7 +298,7 @@ export const adminAlertOnContentReport = onDocumentCreated(
 // Hourly digest now only covers the overflow beyond the immediate-send cap.
 export const adminAlertContentReportDigest = onSchedule(
   { schedule: '0 * * * *', timeZone: 'UTC', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] },
-  async () => {
+  withCronHeartbeat('adminAlertContentReportDigest', async () => {
     const cfg = await readAlertsConfig();
     if (!cfg || cfg.enabled === false) return;
     const pending = Number(cfg.pendingContentReports || 0);
@@ -316,8 +317,7 @@ export const adminAlertContentReportDigest = onSchedule(
       `<i>Открой админку → Reports.</i>`;
     const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
     if (ok) await markSent('contentReportDigest');
-  },
-);
+  }));
 
 // ── 4. Spike in cancellations / refunds ──────────────────────────────────────
 // Counts events in a rolling 1h window; alerts once when the window crosses the

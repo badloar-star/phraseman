@@ -12,6 +12,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from './cron_heartbeat';
 import * as functions from 'firebase-functions/v2';
 import { defineSecret } from 'firebase-functions/params';
 import type { Firestore } from 'firebase-admin/firestore';
@@ -219,10 +220,9 @@ export async function runMaxVoiceWatchdogOnce(db: Firestore, nowMs: number = Dat
 
 export const maxVoiceWatchdog = functions.scheduler.onSchedule(
   { schedule: 'every 10 minutes', timeZone: 'UTC', region: REGION, memory: '256MiB', timeoutSeconds: 300 },
-  async () => {
+  withCronHeartbeat('maxVoiceWatchdog', async () => {
     await runMaxVoiceWatchdogOnce(admin.firestore(), Date.now());
-  },
-);
+  }));
 
 function providerHealthErrorId(nowMs: number): string {
   // Один app_errors document в час: Telegram/Jarvis получают сигнал, но outage
@@ -264,7 +264,7 @@ export const maxVoiceProviderHealth = functions.scheduler.onSchedule(
     maxInstances: 1,
     secrets: [OPENAI_API_KEY],
   },
-  async () => {
+  withCronHeartbeat('maxVoiceProviderHealth', async () => {
     const nowMs = Date.now();
     const db = admin.firestore();
     const startedAtMs = nowMs;
@@ -289,5 +289,4 @@ export const maxVoiceProviderHealth = functions.scheduler.onSchedule(
       });
       throw error;
     }
-  },
-);
+  }));

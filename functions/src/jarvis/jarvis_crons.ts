@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from '../cron_heartbeat';
 import { defineSecret } from 'firebase-functions/params';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { logger } from 'firebase-functions';
@@ -208,7 +209,7 @@ async function readTotalUsers(db: FirebaseFirestore.Firestore): Promise<number> 
  * прогревает картину и логирует итог. Отправка в Telegram появится на Р3,
  * когда владелец даст Telegram ID.
  */
-export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTIONS, async () => {
+export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTIONS, withCronHeartbeat('jarvisDailyDepartmentsCron', async () => {
   const db = admin.firestore();
   const nowMs = Date.now();
 
@@ -544,7 +545,7 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
   await purgeExpiredApprovalTokens(db, nowMs).catch((error) => {
     logger.warn('jarvis_daily_departments: token purge failed', error);
   });
-});
+}));
 
 /**
  * Строит narrative для digest поверх готовых decisions. НИКОГДА не бросает
@@ -651,7 +652,7 @@ async function purgeExpiredApprovalTokens(db: FirebaseFirestore.Firestore, nowMs
  * Суточная точка истории бизнес-тиров + подъём храповика. В отличие от
  * бэкфилла здесь есть настоящий замер активных пользователей за этот день.
  */
-export const jarvisDailyBusinessHistoryCron = onSchedule(HISTORY_SCHEDULE_OPTIONS, async () => {
+export const jarvisDailyBusinessHistoryCron = onSchedule(HISTORY_SCHEDULE_OPTIONS, withCronHeartbeat('jarvisDailyBusinessHistoryCron', async () => {
   const db = admin.firestore();
   const nowMs = Date.now();
 
@@ -693,7 +694,7 @@ export const jarvisDailyBusinessHistoryCron = onSchedule(HISTORY_SCHEDULE_OPTION
     dayMoneyCoverage: point.dayMoneyCoverage,
     tier: snapshot.tier,
   });
-});
+}));
 
 /**
  * Ежемесячное напоминание пересмотреть устав продукта.
@@ -723,7 +724,7 @@ const KNOWLEDGE_REVIEW_SCHEDULE_OPTIONS = {
 
 const KNOWLEDGE_REVIEW_ADMIN_URL = 'https://phraseman-ea0b3.web.app/legacy.html#product-charter';
 
-export const jarvisProductKnowledgeReviewCron = onSchedule(KNOWLEDGE_REVIEW_SCHEDULE_OPTIONS, async () => {
+export const jarvisProductKnowledgeReviewCron = onSchedule(KNOWLEDGE_REVIEW_SCHEDULE_OPTIONS, withCronHeartbeat('jarvisProductKnowledgeReviewCron', async () => {
   const nowMs = Date.now();
   // Файлы лежат рядом с кодом и читаются из кэша — обращений к Firestore нет.
   const due = selectKnowledgeReviewsDue(readBusinessKnowledge(), nowMs);
@@ -745,4 +746,4 @@ export const jarvisProductKnowledgeReviewCron = onSchedule(KNOWLEDGE_REVIEW_SCHE
     files: due.map((status) => status.file),
     sent,
   });
-});
+}));

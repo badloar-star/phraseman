@@ -3,6 +3,7 @@
 // курса и стоила 236 МБ из 380 МБ основного бандла, то есть за неё платили
 // все 240 функций при каждом холодном старте. Деплой: functions:content.
 import * as admin from "firebase-admin";
+import { withCronHeartbeat } from './cron_heartbeat';
 import * as functions from "firebase-functions/v2";
 import { getLevelFromXP } from "./xp_levels";
 import {
@@ -166,7 +167,6 @@ const {
 const {
   referralEnsureMyCode,
   referralApply,
-  referralOnUserProgressUpdated,
   referralClaimVipReward,
   referralListMyInvites,
 } = require("./referral");
@@ -352,7 +352,9 @@ exports.referralEnsureMyCode = referralEnsureMyCode;
 exports.referralApply = referralApply;
 // зачем: функция создана в 04668600d, но экспорт потерялся при последующем рефакторинге
 // index.ts — восстановлено 2026-08-17, второй путь квалификации (отложенная покупка) не деплоился.
-exports.referralOnUserProgressUpdated = referralOnUserProgressUpdated;
+// зачем (аудит 2026-08-29): два триггера на users/{userId} слиты в один —
+// см. users_write_router.ts. Старые имена удаляются из прода functions:delete.
+exports.usersWriteRouter = require("./users_write_router").usersWriteRouter;
 exports.referralClaimVipReward = referralClaimVipReward;
 exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
@@ -435,27 +437,24 @@ export const computeLeaderboardStatsCron = functions.scheduler.onSchedule(
     memory: "1GiB",
     timeoutSeconds: 540,
   },
-  async () => {
+  withCronHeartbeat('computeLeaderboardStatsCron', async () => {
     await computeLeaderboardStats();
-  },
-);
+  }));
 
 // ─── Weekly XP reset cron (XP-02) ────────────────────────────────────────────
 // Runs every Monday 00:00 UTC. Zeroes progress.weekly_xp for ALL users without
 // touching progress.user_total_xp. Cron expression '0 0 * * 1' = at 00:00 on Monday.
 export const resetWeeklyXpCron = functions.scheduler.onSchedule(
   { schedule: "0 0 * * 1", timeZone: "UTC" },
-  async () => {
+  withCronHeartbeat('resetWeeklyXpCron', async () => {
     await resetWeeklyXp();
-  },
-);
+  }));
 
 export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
   { schedule: "0 4 * * *", timeZone: "UTC" },
-  async () => {
+  withCronHeartbeat('cleanupExpiredAppMessagesCron', async () => {
     await cleanupExpiredAppMessages();
-  },
-);
+  }));
 
 // ─── Re-engagement push cron ─────────────────────────────────────────────────
 // Runs daily at 10:00 UTC. Scans users/, finds players whose streak is about to
@@ -471,7 +470,7 @@ export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
  */
 export const maxLessonReminderCron = functions.scheduler.onSchedule(
   { schedule: "5 * * * *", timeZone: "UTC" },
-  async () => {
+  withCronHeartbeat('maxLessonReminderCron', async () => {
     const { runLessonReminderPush } = await import("./max_lesson_reminder_push");
     const summary = await runLessonReminderPush();
     if (summary.candidates > 0 || summary.sent > 0) {
@@ -483,12 +482,11 @@ export const maxLessonReminderCron = functions.scheduler.onSchedule(
           `sent ${summary.sent}/${summary.eligible} eligible.`,
       );
     }
-  },
-);
+  }));
 
 export const reEngagePushCron = functions.scheduler.onSchedule(
   { schedule: "0 10 * * *", timeZone: "UTC" },
-  async () => {
+  withCronHeartbeat('reEngagePushCron', async () => {
     const summary = await runReEngagePush();
     console.log("reEngagePushCron", JSON.stringify(summary));
     if (summary.failedChunks > 0) {
@@ -502,8 +500,7 @@ export const reEngagePushCron = functions.scheduler.onSchedule(
         `reEngagePushCron: ${summary.candidates} candidates found but 0 pushes sent — all chunks failed.`,
       );
     }
-  },
-);
+  }));
 
 // Runs daily at 09:00 UTC. Scans users/, finds paid subscriptions/VIP whose
 // concrete expiry is ~3 days out, and sends a warm localized "your Plus renews
@@ -518,7 +515,7 @@ export const premiumExpiryReminderCron = functions.scheduler.onSchedule(
     memory: "1GiB",
     timeoutSeconds: 540,
   },
-  async () => {
+  withCronHeartbeat('premiumExpiryReminderCron', async () => {
     const summary = await runPremiumExpiryReminder();
     console.log("premiumExpiryReminderCron", JSON.stringify(summary));
     if (summary.candidates > 0 && summary.sent === 0) {
@@ -526,8 +523,7 @@ export const premiumExpiryReminderCron = functions.scheduler.onSchedule(
         `premiumExpiryReminderCron: ${summary.candidates} candidates found but 0 pushes sent — check Expo Push API.`,
       );
     }
-  },
-);
+  }));
 
 // Owner requirement 2026-08-11: one bounded mailbox poll per hour.
 // Pulls support emails via IMAP into support_inbox. Needs the
@@ -541,10 +537,9 @@ export const gmailSupportPullCron = functions.scheduler.onSchedule(
     timeoutSeconds: 300,
     secrets: [GMAIL_SUPPORT_APP_PASSWORD],
   },
-  async () => {
+  withCronHeartbeat('gmailSupportPullCron', async () => {
     await runSupportInboxPullCron();
-  },
-);
+  }));
 
 // Owner requirement 2026-08-16: "если на сообщение уже ответили, на него не
 // надо повторно отвечать". gmailSupportPullCron only reads INBOX — a reply
@@ -561,10 +556,9 @@ export const gmailSupportOwnerReplyDetectionCron = functions.scheduler.onSchedul
     timeoutSeconds: 300,
     secrets: [GMAIL_SUPPORT_APP_PASSWORD],
   },
-  async () => {
+  withCronHeartbeat('gmailSupportOwnerReplyDetectionCron', async () => {
     await runSupportOwnerReplyDetectionCron();
-  },
-);
+  }));
 
 export const supportOwnerAlertRetryCron = functions.scheduler.onSchedule(
   {
@@ -575,10 +569,9 @@ export const supportOwnerAlertRetryCron = functions.scheduler.onSchedule(
     timeoutSeconds: 120,
     secrets: [ADMIN_ALERT_BOT_TOKEN, JARVIS_TELEGRAM_CONFIG],
   },
-  async () => {
+  withCronHeartbeat('supportOwnerAlertRetryCron', async () => {
     await runSupportOwnerAlertRetryCron();
-  },
-);
+  }));
 
 export const supportReplyDispatchSweeperCron = functions.scheduler.onSchedule(
   {
@@ -588,10 +581,9 @@ export const supportReplyDispatchSweeperCron = functions.scheduler.onSchedule(
     memory: "256MiB",
     timeoutSeconds: 120,
   },
-  async () => {
+  withCronHeartbeat('supportReplyDispatchSweeperCron', async () => {
     await runSupportReplyDispatchSweeper();
-  },
-);
+  }));
 
 export const supportAutoReplyRetryCron = functions.scheduler.onSchedule(
   {
@@ -607,10 +599,9 @@ export const supportAutoReplyRetryCron = functions.scheduler.onSchedule(
       JARVIS_TELEGRAM_CONFIG,
     ],
   },
-  async () => {
+  withCronHeartbeat('supportAutoReplyRetryCron', async () => {
     await runSupportAutoReplyRetryCron();
-  },
-);
+  }));
 
 // This checks only already prepared reviews; it does not poll Gmail. A ten
 // minute cadence keeps the promised three-hour window bounded to 3h–3h10m.
@@ -623,10 +614,9 @@ export const supportTelegramAutoSendDeadlineCron =
       memory: "256MiB",
       timeoutSeconds: 120,
     },
-    async () => {
+    withCronHeartbeat('supportTelegramAutoSendDeadlineCron', async () => {
       await runSupportTelegramAutoSendDeadline();
-    },
-  );
+    }));
 
 // Recovers only pending or abandoned pre-delivery jobs. The durable SMTP
 // operation remains the authority: delivery_unknown is terminal and is never
@@ -646,10 +636,9 @@ export const supportTelegramReplyJobRecoveryCron =
         JARVIS_TELEGRAM_CONFIG,
       ],
     },
-    async () => {
+    withCronHeartbeat('supportTelegramReplyJobRecoveryCron', async () => {
       await runSupportTelegramReplyJobRecovery();
-    },
-  );
+    }));
 
 // ── Community (UGC) packs ─────────────────────────────────────────────────────
 export {

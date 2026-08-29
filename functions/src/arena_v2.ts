@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from './cron_heartbeat';
 import { createHash, createHmac, randomBytes } from 'crypto';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { onDocumentWritten } from 'firebase-functions/v2/firestore';
@@ -3881,7 +3882,7 @@ async function cleanupExpiredArenaInvites(now: number): Promise<{ expired: numbe
 export const arenaV2CleanupHourly = onSchedule({
   region: 'us-central1', schedule: 'every 60 minutes', timeoutSeconds: 120,
   memory: '256MiB', maxInstances: 1, secrets: ARENA_V2_SECRET_NAMES,
-}, async () => {
+}, withCronHeartbeat('arenaV2CleanupHourly', async () => {
   const now = nowMs();
   const nowTimestamp = timestamp(now);
   const inviteCleanup = await cleanupExpiredArenaInvites(now);
@@ -3920,4 +3921,4 @@ export const arenaV2CleanupHourly = onSchedule({
     expiredInvites: inviteCleanup.expired,
     deletedInvites: inviteCleanup.deleted,
   }));
-});
+}));

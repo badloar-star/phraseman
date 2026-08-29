@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from './cron_heartbeat';
 import { onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { executeAccountDeletion } from './account_delete';
@@ -84,7 +85,6 @@ export async function sweepAccountDeletionJobs(
 
 export const accountDeleteRetryCron = onSchedule(
   ACCOUNT_DELETE_RETRY_OPTIONS,
-  async () => {
+  withCronHeartbeat('accountDeleteRetryCron', async () => {
     await sweepAccountDeletionJobs(admin.firestore());
-  },
-);
+  }));

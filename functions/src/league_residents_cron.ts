@@ -15,6 +15,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from './cron_heartbeat';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import {
   RESIDENT_FILL_THRESHOLD,
@@ -57,7 +58,7 @@ export const leagueResidentsTickCron = onSchedule(
     memory: '256MiB',
     region: 'us-central1',
   },
-  async () => {
+  withCronHeartbeat('leagueResidentsTickCron', async () => {
     const db = admin.firestore();
     const weekId = currentWeekId();
     const now = Date.now();
@@ -123,5 +124,4 @@ export const leagueResidentsTickCron = onSchedule(
       touched,
       skipped,
     }));
-  },
-);
+  }));

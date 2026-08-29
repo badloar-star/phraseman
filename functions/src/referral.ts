@@ -742,9 +742,14 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
  * НИЧЕГО не пишем (pull): он конвертирует приглашение в прокрут (referralClaimSpin).
  * Отсекаем запись миграции снапшота (isSnapshotMigrationWrite). onDocumentWritten: и create, и update.
  */
-export const referralOnUserProgressUpdated = functions.firestore.onDocumentWritten(
-  { document: `${USERS}/{userId}`, region: REGION },
-  async (event) => {
+// зачем (аудит 2026-08-29): раньше это был САМОСТОЯТЕЛЬНЫЙ onDocumentWritten на
+// users/{userId} — вторая функция (vipReconcileOrphanGrant) висела на том же
+// документе, и каждая запись любого пользователя оплачивала ДВЕ инвокации.
+// Тело без изменений; триггер теперь один — usersWriteRouter.
+export async function handleReferralUsersWrite(
+  event: Parameters<Parameters<typeof functions.firestore.onDocumentWritten>[1]>[0],
+): Promise<void> {
+  {
     const userId = event.params.userId as string;
     const after = event.data?.after.data();
     if (!after) return;
@@ -767,8 +772,8 @@ export const referralOnUserProgressUpdated = functions.firestore.onDocumentWritt
 
     const db = admin.firestore();
     await markRefereeQualified(db, userId);
-  },
-);
+  }
+}
 
 type InviteState = {
   refereeStableId: string;

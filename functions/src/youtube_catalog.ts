@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from './cron_heartbeat';
 import { defineSecret } from 'firebase-functions/params';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
@@ -414,9 +415,9 @@ export const youtubeCatalogSyncCron = onSchedule({
   timeoutSeconds: 120,
   memory: '512MiB',
   secrets: [YOUTUBE_DATA_API_KEY],
-}, async () => {
+}, withCronHeartbeat('youtubeCatalogSyncCron', async () => {
   await runYoutubeCatalogSync({ trigger: 'cron' });
-});
+}));
 
 export const adminGetYoutubeCatalogWorkspace = onCall(
   { ...ADMIN_SENSITIVE_WRITE_OPTIONS, invoker: 'public' },

@@ -1,5 +1,5 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser, ensureStableAuthLink, ensureStableAuthLinkForStableId } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLink, ensureStableAuthLinkForStableId, ensureStableAuthLinkForStableIdDetailed } from './cloud_sync';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getAuthUserId } from './user_id_policy';
 import {
@@ -109,11 +109,35 @@ async function ensureFriendsStableAuthLink(
   action: string,
   tags: Record<string, string | number | boolean | null | undefined> = {},
 ): Promise<boolean> {
-  const ok = await ensureStableAuthLink();
-  if (!ok) {
-    logFriendsHealth('friends:auth_link_failed', new Error('stable auth link unavailable'), { action, ...tags });
+  // зачем (аудит 2026-08-29): 144 записи «stable auth link unavailable» за две
+  // недели — и НИ ОДНА не говорила, ПОЧЕМУ привязка не удалась. Правило
+  // «сперва логи»: берём detailed-путь и пишем провал с настоящей причиной
+  // (failure/source) и состоянием identity — иначе следующий круг диагностики
+  // снова слепой.
+  if (!(await import('./config')).CLOUD_SYNC_ENABLED) return true;
+  const stableId = await ensureAnonUser().catch(() => null);
+  if (!stableId) {
+    logFriendsHealth('friends:auth_link_failed', new Error('anon_user_unavailable'), {
+      action, failure: 'anon_user_unavailable', ...tags,
+    });
+    return false;
   }
-  return ok;
+  const detailed = await ensureStableAuthLinkForStableIdDetailed(stableId).catch((e: unknown) => ({
+    ok: false as const,
+    failure: `threw:${String((e as Error)?.message ?? e).slice(0, 60)}`,
+    source: 'exception',
+    authUid: null,
+  }));
+  if (!detailed.ok) {
+    logFriendsHealth('friends:auth_link_failed', new Error(String((detailed as { failure?: string }).failure ?? 'unknown')), {
+      action,
+      failure: String((detailed as { failure?: string }).failure ?? 'unknown'),
+      source: String((detailed as { source?: string }).source ?? 'unknown'),
+      hasAuthUid: Boolean((detailed as { authUid?: string | null }).authUid),
+      ...tags,
+    });
+  }
+  return detailed.ok;
 }
 
 export const FRIEND_REQUEST_VIEWER_AUTH_LINK_TIMEOUT_MS = 15_000;

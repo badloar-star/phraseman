@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from './cron_heartbeat';
 import { onDocumentCreated } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 
@@ -122,7 +123,7 @@ export const notifyOnFriendAccepted = onDocumentCreated(
 /** Ежедневная чистка: сносим события старше 30 дней по всем пользователям. */
 export const userNotificationsCleanupCron = onSchedule(
   { region: REGION, schedule: 'every day 04:20', timeZone: 'UTC' },
-  async () => {
+  withCronHeartbeat('userNotificationsCleanupCron', async () => {
     const db = admin.firestore();
     const cutoff = Date.now() - NOTIFICATION_MAX_AGE_MS;
     // Ограниченное число итераций за прогон — хвост доберёт следующий день.
@@ -138,5 +139,4 @@ export const userNotificationsCleanupCron = onSchedule(
       await batch.commit();
       if (snap.size < CLEANUP_BATCH_SIZE) return;
     }
-  },
-);
+  }));

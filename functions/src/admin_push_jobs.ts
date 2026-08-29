@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from './cron_heartbeat';
 import { onDocumentCreated } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 
@@ -557,7 +558,7 @@ export const adminPushJobCreated = onDocumentCreated(
 
 export const adminPushJobsCron = onSchedule(
   { region: REGION, schedule: 'every 6 hours', timeZone: 'UTC', timeoutSeconds: 540, memory: '512MiB' },
-  async () => {
+  withCronHeartbeat('adminPushJobsCron', async () => {
     const db = admin.firestore();
     const activeSnap = await db
       .collection('admin_push_jobs')
@@ -579,5 +580,4 @@ export const adminPushJobsCron = onSchedule(
       const result = await processAdminPushJob(doc.id);
       console.log('adminPushJobsCron', JSON.stringify({ jobId: doc.id, ...result }));
     }
-  },
-);
+  }));

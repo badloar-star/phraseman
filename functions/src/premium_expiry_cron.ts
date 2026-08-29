@@ -23,6 +23,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from './cron_heartbeat';
 import * as functions from 'firebase-functions/v2';
 import {
   ACCOUNT_DELETE_PERMANENT_DENIALS,
@@ -294,7 +295,6 @@ export async function sweepExpiredPremium(now: number = Date.now()): Promise<Swe
 // (строка/число/Timestamp) и лежат в четырёх местах — цена ошибки высока.
 export const premiumExpiryCron = functions.scheduler.onSchedule(
   { schedule: 'every 24 hours', timeZone: 'UTC', region: REGION, memory: '1GiB', timeoutSeconds: 540 },
-  async () => {
+  withCronHeartbeat('premiumExpiryCron', async () => {
     await sweepExpiredPremium();
-  },
-);
+  }));

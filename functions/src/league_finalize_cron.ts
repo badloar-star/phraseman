@@ -19,6 +19,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from './cron_heartbeat';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { isResidentMember } from './league_residents';
 
@@ -172,7 +173,7 @@ export const leagueFinalizeCron = onSchedule(
     memory: '512MiB',
     region: 'us-central1',
   },
-  async () => {
+  withCronHeartbeat('leagueFinalizeCron', async () => {
     const db = admin.firestore();
     const weekId = getPreviousWeekId();
     const xpPromotion = await loadXpPromotionConfig(db);
@@ -245,5 +246,4 @@ export const leagueFinalizeCron = onSchedule(
     await flushBatch();
     console.log(`leagueFinalizeCron: processed=${processed} groups, written=${written} user results`);
     return;
-  },
-);
+  }));

@@ -126,9 +126,11 @@ function extinguishPatch(canonicalStableId: string, now: number): ProgressMap {
   };
 }
 
-export const vipReconcileOrphanGrant = functions.firestore.onDocumentWritten(
-  { document: `${USERS}/{userId}`, region: REGION },
-  async (event) => {
+// зачем (аудит 2026-08-29): объединено в usersWriteRouter — см. referral.ts.
+export async function handleVipOrphanUsersWrite(
+  event: Parameters<Parameters<typeof functions.firestore.onDocumentWritten>[1]>[0],
+): Promise<void> {
+  {
     const after = event.data?.after.exists ? event.data?.after.data() : undefined;
     if (!after) return;
 
@@ -174,4 +176,5 @@ export const vipReconcileOrphanGrant = functions.firestore.onDocumentWritten(
       tx.set(orphanRef, { progress: orphanPatch }, { merge: true });
       writeAccessProjectionFromPatch(tx, orphanRef, orphanProgress, orphanPatch, now);
     });
-  });
+  }
+}

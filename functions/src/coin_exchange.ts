@@ -22,6 +22,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from './cron_heartbeat';
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
@@ -339,7 +340,7 @@ export const adminSetCoinExchangeRate = onCall(HOT_CALLABLE_OPTIONS, async (requ
 
 export const recalcCoinExchangeRate = onSchedule(
   { schedule: RECALC_SCHEDULE, timeZone: RECALC_TIMEZONE, region: REGION },
-  async () => {
+  withCronHeartbeat('recalcCoinExchangeRate', async () => {
     const db = admin.firestore();
     const exchangeRef = db.doc(EXCHANGE_DOC_PATH);
     const nowMs = Date.now();
@@ -378,8 +379,7 @@ export const recalcCoinExchangeRate = onSchedule(
         to: result.nextRate,
       });
     });
-  },
-);
+  }));
 
 // ── adminGetCoinExchangeCenter (Центр монет Admin V2) ───────────────────────
 //

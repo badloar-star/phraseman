@@ -1334,6 +1334,13 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Пульс кронов (аудит 2026-08-29): по документу на крон, пишет только
+    // Admin SDK из withCronHeartbeat. Умерший крон теперь отличим от живого
+    // без похода в Cloud Logging.
+    match /cron_heartbeats/{cronName} {
+      allow read, write: if false;
+    }
+
     // Recovery secrets, rate-limit state, and audit events are server-only.
     // Cloud Functions use the Admin SDK, which bypasses Firestore Rules.
     match /auth_recovery_codes/{document=**} {

@@ -16,6 +16,7 @@
 // List-Unsubscribe: это маркетинговая, а не транзакционная почта.
 // ============================================================================
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
+import { withCronHeartbeat } from './cron_heartbeat';
 import * as logger from 'firebase-functions/logger';
 import { defineString } from 'firebase-functions/params';
 import { onRequest } from 'firebase-functions/v2/https';
@@ -428,7 +429,7 @@ export const webLeadNudgeCron = onSchedule(
     // зачем: догоняющие письма тоже несут ссылку отписки
     secrets: [RESEND_API_KEY, ...EMAIL_UNSUBSCRIBE_SECRETS],
   },
-  async () => {
+  withCronHeartbeat('webLeadNudgeCron', async () => {
     const db = getFirestore();
     const snap = await db.collection(LEADS_COLLECTION).where('status', '==', 'active').limit(300).get();
     if (snap.empty) return;
@@ -477,5 +478,4 @@ export const webLeadNudgeCron = onSchedule(
       }, { merge: true });
     }
     logger.info('webLeadNudgeCron done', { checked: snap.size, sent });
-  },
-);
+  }));

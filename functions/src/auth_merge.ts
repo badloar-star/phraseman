@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { withCronHeartbeat } from './cron_heartbeat';
 import { createHash, randomUUID } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { onDocumentCreated } from 'firebase-functions/v2/firestore';
@@ -1412,7 +1413,7 @@ export const accountMergeOutboxRetryCron = onSchedule({
   region: 'us-central1',
   memory: '256MiB',
   timeoutSeconds: 300,
-}, async () => {
+}, withCronHeartbeat('accountMergeOutboxRetryCron', async () => {
   const db = admin.firestore();
   const [pending, running] = await Promise.all([
     db.collection(ACCOUNT_MERGE_OUTBOX).where('status', '==', 'pending').limit(20).get(),
@@ -1423,7 +1424,7 @@ export const accountMergeOutboxRetryCron = onSchedule({
     if (doc.data()?.status === 'running' && Number(doc.data()?.leaseUntilMs ?? 0) > now) continue;
     await processAccountMergeOutboxJob(db, doc.id, now);
   }
-});
+}));
 
 const REFERRAL_ATTRIBUTIONS = 'referral_attributions';
 const REFERRAL_CODES = 'referral_codes';

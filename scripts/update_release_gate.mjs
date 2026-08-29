@@ -124,9 +124,34 @@ function validateBranch() {
   return true;
 }
 
+function validateCleanTree() {
+  // зачем (инцидент 2026-08-29): в релизных версиях 1.6.9–1.6.13 падали экраны
+  // с «Property 'peekVoiceMinutes' doesn't exist» и «'CLUB_NAME_EN'» — OTA-бандл
+  // был собран из ГРЯЗНОГО дерева, где часть модулей уже переписана, а их
+  // потребители ещё старые. Оба символа в зафиксированном дереве живы; класс
+  // бага — публикация из непроверяемого состояния. OTA теперь возможен только
+  // из чистого дерева: каждая строка бандла соответствует коммиту.
+  const res = spawnSync('git', ['status', '--porcelain'], { cwd: ROOT, encoding: 'utf8' });
+  const dirty = String(res.stdout || '').trim();
+  if (res.status !== 0) {
+    console.error('[release-gate] git status failed:', String(res.stderr || '').slice(0, 200));
+    return false;
+  }
+  if (dirty) {
+    console.error('\n[release-gate] ДЕРЕВО ГРЯЗНОЕ — OTA запрещён.');
+    console.error('[release-gate] Незакоммиченные файлы (первые 15):');
+    dirty.split('\n').slice(0, 15).forEach((l) => console.error('   ' + l));
+    console.error('[release-gate] Закоммить (или убери) изменения и повтори. Обход не предусмотрен.');
+    return false;
+  }
+  console.log('[release-gate] Дерево чистое — бандл будет соответствовать коммиту.');
+  return true;
+}
+
 function main() {
   console.log(`[release-gate] mode: ${mode}${dryRun ? ' (dry-run)' : ''}`);
   if (!validateBranch()) process.exit(1);
+  if (mode === 'full' && !dryRun && !validateCleanTree()) process.exit(1);
 
   if (mode === 'full' && !validateReleaseCard(readCard())) process.exit(1);
 

@@ -17,6 +17,21 @@ const LEAGUE_ASSETS = [
   { id: 11, slug: 'vishaya', icon: 'league-icon-vishaya.webp' },
 ] as const;
 
+const EXPECTED_SIGILS = [
+  'open-book',
+  'quill-scroll',
+  'owl-mask',
+  'knowledge-compass',
+  'astrolabe',
+  'knowledge-tree',
+  'celestial-map',
+  'alchemical-flame',
+  'crystalline-eye',
+  'eclipse-archive',
+  'mind-constellation',
+  'eternal-library-light',
+] as const;
+
 async function getAlphaBounds(filePath: string): Promise<{ padL: number; padT: number; padR: number; padB: number }> {
   const { data, info } = await sharp(filePath).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   let minX = info.width;
@@ -76,6 +91,23 @@ async function getTallDarkSideColumns(filePath: string): Promise<number[]> {
 }
 
 describe('league visual assets', () => {
+  it('keeps the approved knowledge-relic progression in the asset manifest', () => {
+    const manifest = JSON.parse(fs.readFileSync(
+      path.join(process.cwd(), 'assets', 'images', 'levels', 'league-v6-icons', 'manifest.json'),
+      'utf8',
+    ));
+
+    expect(manifest.version).toBe('league-knowledge-relics-v1');
+    expect(manifest.leagues).toHaveLength(12);
+    expect(manifest.leagues.map((entry: { sigil: string }) => entry.sigil)).toEqual(EXPECTED_SIGILS);
+    expect(manifest.output.quality).toBeGreaterThanOrEqual(58);
+    expect(manifest.output.quality).toBeLessThanOrEqual(80);
+    expect(manifest.designRules).toEqual(expect.arrayContaining([
+      expect.stringMatching(/volumetric 3D hexahedron/i),
+      expect.stringMatching(/integrated symbolic relief/i),
+    ]));
+  });
+
   it('keeps every league wired to bundled heraldry assets', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app', 'league_engine.ts'), 'utf8');
 

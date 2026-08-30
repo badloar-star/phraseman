@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import sharp from 'sharp';
 
 const ROOT = process.cwd();
@@ -7,13 +8,12 @@ const DEFAULT_SOURCE = path.join(
   ROOT,
   '.codex-tmp',
   'league-assets',
-  'icon-dalli-sources',
-  'league_icons_v1',
-  'league_icons_atlas_v1.png',
+  'knowledge-relics',
+  'league_knowledge_relics_atlas_v1.png',
 );
 const OUT_DIR = path.join(ROOT, 'assets', 'images', 'levels', 'league-v6-icons');
-const REPORT_DIR = path.join(ROOT, '.codex-tmp', 'league-assets');
-const CONTACT_SHEET_PATH = path.join(REPORT_DIR, 'league-v6-icons-contact.png');
+const REPORT_DIR = path.join(ROOT, '.codex-tmp', 'league-assets', 'knowledge-relics');
+const CONTACT_SHEET_PATH = path.join(REPORT_DIR, 'contact-sheet.webp');
 const MANIFEST_PATH = path.join(OUT_DIR, 'manifest.json');
 
 const ICON_SIZE = 384;
@@ -23,18 +23,18 @@ const GRID_ROWS = 4;
 const GUTTER_TRIM = 14;
 
 const LEAGUES = [
-  { id: 0, slug: 'med', title: 'Copper league' },
-  { id: 1, slug: 'bronz', title: 'Bronze league' },
-  { id: 2, slug: 'serebro', title: 'Silver league' },
-  { id: 3, slug: 'zoloto', title: 'Gold league' },
-  { id: 4, slug: 'platina', title: 'Platinum league' },
-  { id: 5, slug: 'izumrud', title: 'Emerald league' },
-  { id: 6, slug: 'sapfir', title: 'Sapphire league' },
-  { id: 7, slug: 'rubin', title: 'Ruby league' },
-  { id: 8, slug: 'almaz', title: 'Diamond league' },
-  { id: 9, slug: 'cherniy-almaz', title: 'Black diamond league' },
-  { id: 10, slug: 'efir', title: 'Ether league' },
-  { id: 11, slug: 'vishaya', title: 'Supreme league' },
+  { id: 0, slug: 'med', title: 'Copper league', sigil: 'open-book', progression: 'first opened page of knowledge' },
+  { id: 1, slug: 'bronz', title: 'Bronze league', sigil: 'quill-scroll', progression: 'recorded knowledge and disciplined study' },
+  { id: 2, slug: 'serebro', title: 'Silver league', sigil: 'owl-mask', progression: 'watchful wisdom and pattern recognition' },
+  { id: 3, slug: 'zoloto', title: 'Gold league', sigil: 'knowledge-compass', progression: 'confident navigation through ideas' },
+  { id: 4, slug: 'platina', title: 'Platinum league', sigil: 'astrolabe', progression: 'measured understanding of complex systems' },
+  { id: 5, slug: 'izumrud', title: 'Emerald league', sigil: 'knowledge-tree', progression: 'living synthesis and branching mastery' },
+  { id: 6, slug: 'sapfir', title: 'Sapphire league', sigil: 'celestial-map', progression: 'knowledge extended into the cosmos' },
+  { id: 7, slug: 'rubin', title: 'Ruby league', sigil: 'alchemical-flame', progression: 'ideas transformed into power' },
+  { id: 8, slug: 'almaz', title: 'Diamond league', sigil: 'crystalline-eye', progression: 'clarity that sees hidden structure' },
+  { id: 9, slug: 'cherniy-almaz', title: 'Black diamond league', sigil: 'eclipse-archive', progression: 'command of concealed and forbidden knowledge' },
+  { id: 10, slug: 'efir', title: 'Ether league', sigil: 'mind-constellation', progression: 'intelligence linked beyond matter' },
+  { id: 11, slug: 'vishaya', title: 'Supreme league', sigil: 'eternal-library-light', progression: 'limitless knowledge made eternal' },
 ];
 
 const args = parseArgs(process.argv.slice(2));
@@ -55,6 +55,7 @@ if (!sourceMeta.width || !sourceMeta.height) {
 }
 
 const records = [];
+const sourceSha256 = createHash('sha256').update(fs.readFileSync(sourcePath)).digest('hex');
 
 for (const league of LEAGUES) {
   const col = league.id % GRID_COLS;
@@ -103,7 +104,7 @@ for (const league of LEAGUES) {
     .toBuffer({ resolveWithObject: true });
   cleanFinalIconSideBars(finalIcon.data, finalIcon.info);
   await sharp(finalIcon.data, { raw: finalIcon.info })
-    .webp({ quality: 96, alphaQuality: 98, effort: 6 })
+    .webp({ quality: 76, alphaQuality: 92, effort: 6 })
     .toFile(outputPath);
 
   const outMeta = await sharp(outputPath).metadata();
@@ -123,15 +124,17 @@ for (const league of LEAGUES) {
 }
 
 const manifest = {
-  version: 'league-v6-codex-dalli-icons',
+  version: 'league-knowledge-relics-v1',
   generatedAt: new Date().toISOString(),
   source: path.relative(ROOT, sourcePath).replaceAll('\\', '/'),
+  sourceSha256,
   grid: { columns: GRID_COLS, rows: GRID_ROWS, gutterTrim: GUTTER_TRIM },
-  output: { width: ICON_SIZE, height: ICON_SIZE, innerSize: INNER_SIZE, format: 'webp', quality: 96 },
+  output: { width: ICON_SIZE, height: ICON_SIZE, innerSize: INNER_SIZE, format: 'webp', quality: 76 },
   designRules: [
-    'Codex/DALL-E atlas is used only as raw source; final app icons are transparent WebP cutouts.',
-    'Icons are centered on a stable 384x384 canvas to avoid legacy per-league offsets.',
-    'No text, numbers, logos, characters, or UI are allowed in league icons.',
+    'Every league is a volumetric 3D hexahedron in one premium escalating relic family.',
+    'Every knowledge motif is an integrated symbolic relief fused into the front face, never a detached literal object or scene.',
+    'The atlas is used only as raw source; final app icons are centered transparent WebP cutouts on a stable 384x384 canvas.',
+    'No text, numbers, logos, characters, scenery, or UI are allowed in league icons.',
   ],
   leagues: records,
 };
@@ -438,7 +441,7 @@ async function writeContactSheet(recordsForSheet) {
     },
   })
     .composite(composites)
-    .png()
+    .webp({ quality: 82, effort: 5 })
     .toFile(CONTACT_SHEET_PATH);
 }
 

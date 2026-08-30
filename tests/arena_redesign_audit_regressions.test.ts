@@ -36,7 +36,10 @@ describe('Arena redesign audit regressions', () => {
     expect(hub.indexOf('testID="arena-hub-play"')).toBeLessThan(hub.indexOf('<ArenaDailyGoals'));
     // Звёздная лестница (2026-08-23): вместо очков — победы до следующего ранга.
     expect(summary).toContain('winsToNextRank');
-    expect(summary).toContain('model.streak');
+    expect(summary).toContain('arenaRankShieldAsset');
+    expect(summary).not.toContain('model.streak');
+    expect(summary).not.toContain("arenaText(lang, 'wins')");
+    expect(summary).not.toContain("arenaText(lang, 'losses')");
   });
 
   it('keeps every matching pair in one shared visual row', () => {
@@ -70,4 +73,5 @@ describe('Arena redesign audit regressions', () => {
     expect(read('app/config.ts')).not.toContain('ENABLE_ARENA');
     expect(read('app/_layout.tsx')).not.toContain('ENABLE_ARENA');
   });
+
 });

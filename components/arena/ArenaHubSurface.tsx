@@ -278,7 +278,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
 
   const todayContent = (
     <>
-      <ArenaHubSummary model={hub} />
+      <ArenaHubSummary model={hub} active={active} reduceMotion={reduceMotion} />
       <PressableHybrid
         testID="arena-hub-play"
         variant="primary"

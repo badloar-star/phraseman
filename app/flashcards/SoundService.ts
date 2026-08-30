@@ -1,8 +1,17 @@
 /**
  * cards-2.0: звуковой сервис раздела «Карточки» (§5 мастер-плана) — КАРКАС (E1).
  * Сразу на `expo-audio` (expo-av deprecated в SDK 54, удаляется в 55 — двойной
- * реализации пула не делаем). `app/exclusive_short_sfx.ts` НЕ трогаем — им
- * пользуются чужие домены (achievements, arena, level_up и т.д.).
+ * реализации пула не делаем).
+ *
+ * зачем 2026-08-30 (рантайм-аудит §R1): сервис больше НЕ трогает глобальную
+ * аудио-сессию. Раньше он звал setAudioModeAsync({playsInSilentMode:true})
+ * напрямую, мимо audio_session_coordinator, и навсегда перетирал канон
+ * приложения (UI-звуки уважают mute-переключатель iPhone; mute пробивает
+ * только РЕЧЬ через spoken-лизу). Из-за этого поведение silent-switch
+ * зависело от порядка экранов, а кэш audioModeReady считал режим вечным,
+ * хотя первая же озвучка урока его сбрасывала. Теперь: SFX карточек уважают
+ * mute как весь UI; TTS пробивает mute лизой (инъецированный useAudio().speak
+ * делает это сам, фолбэк ниже берёт claimSpokenAudio).
  *
  * Правила:
  * - очередь: SFX (≤400мс) → пауза 120мс → TTS, никогда одновременно;
@@ -16,7 +25,7 @@
  */
 import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
+import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
 import {
   hapticError,
   hapticLightImpact,
@@ -25,6 +34,8 @@ import {
   hapticTap,
 } from '../../hooks/use-haptics';
 import { FC_SFX_TTS_GAP_MS } from '../../constants/flashcards_motion';
+import { claimSpokenAudio } from '../../modules/audio/audio_runtime_arbiter';
+import { getSoundSettingsSnapshot } from '../../modules/audio/sound_settings';
 import { DebugLogger } from '../debug-logger';
 
 // ── SFX ────────────────────────────────────────────────────────────────────────
@@ -74,18 +85,6 @@ const POOL_SIZE = 2; // два плеера на звук — быстрые п�
 
 type PoolEntry = { players: AudioPlayer[]; next: number };
 const pool = new Map<FcSfxName, PoolEntry>();
-let audioModeReady: Promise<void> | null = null;
-
-function ensureFcAudioMode(): Promise<void> {
-  if (audioModeReady) return audioModeReady;
-  // §5: mixWithOthers глобально (duckOthers — только в режиме «Слушание», E10);
-  // playsInSilentMode: true — иначе iOS в беззвучном режиме молчит.
-  audioModeReady = setAudioModeAsync({
-    playsInSilentMode: true,
-    interruptionMode: 'mixWithOthers',
-  }).catch(() => {});
-  return audioModeReady;
-}
 
 function getPlayer(name: FcSfxName): AudioPlayer | null {
   try {
@@ -159,9 +158,12 @@ export async function setFcAutoSpeakEnabled(on: boolean): Promise<void> {
 
 /** Воспроизвести короткий SFX из пула. Синхронный fire-and-forget, ошибки глотаем. */
 export function playSfx(name: FcSfxName): void {
+  // зачем 2026-08-30 (§R7): общий тумблер «Звуки» приложения обязан глушить и
+  // карточки — раньше они слушали только свой fc_sfx_on и звенели при
+  // выключенных звуках. Локальный тумблер остаётся дополнительным фильтром.
+  if (!getSoundSettingsSnapshot().effectsEnabled) return;
   if (!isFcSfxEnabled()) return;
   try {
-    void ensureFcAudioMode();
     const p = getPlayer(name);
     if (!p) return;
     // seekTo(0) перед play — плеер из пула мог остановиться в конце файла
@@ -208,22 +210,46 @@ export function setFcTtsSpeaker(fn: TtsSpeakFn | null): void {
 }
 
 function speakNow(text: string, opts?: FcSpeakOpts): void {
-  // §5: `playsInSilentMode: true` ДО первого TTS — иначе iOS в беззвучном молчит.
-  void ensureFcAudioMode();
   const fn = ttsSpeakFn;
   if (fn) {
+    // Инъецированный useAudio().speak сам берёт spoken-лизу (claimSpokenAudio)
+    // → SPOKEN_AUDIO_MODE на время речи: mute-переключатель iOS пробивается
+    // штатно, глобальную сессию здесь трогать не нужно.
     fn(text, opts?.rate, { language: opts?.language, onDone: opts?.onDone });
     return;
   }
   try {
     const Speech = require('expo-speech') as typeof import('expo-speech');
     Speech.stop();
+    // зачем 2026-08-30 (§R1): фолбэк-речь тоже обязана идти под spoken-лизой —
+    // иначе в беззвучном iOS она молчит (канон UI_SFX_AUDIO_MODE это
+    // playsInSilentMode:false). null-клейм = голос выключен глобально или идёт
+    // запись: молчим и честно зовём onDone, чтобы очередь экрана не зависла.
+    const claim = claimSpokenAudio(() => {
+      try { Speech.stop(); } catch (e) {
+        DebugLogger.error('SoundService:Speech.stop', e instanceof Error ? e : new Error(String(e)), 'warning');
+      }
+    });
+    if (!claim) {
+      DebugLogger.info('SoundService:speakNow', 'skip: claimSpokenAudio=null (voice off или запись)');
+      opts?.onDone?.();
+      return;
+    }
+    const finish = (): void => {
+      claim.release();
+      opts?.onDone?.();
+    };
     Speech.speak(text, {
       language: opts?.language ?? 'en-US',
       ...(opts?.rate != null ? { rate: opts.rate } : {}),
       volume: 1,
       pitch: 1,
-      onDone: opts?.onDone,
+      onDone: finish,
+      onStopped: () => claim.release(),
+      onError: (e) => {
+        DebugLogger.error('SoundService:Speech.speak', e instanceof Error ? e : new Error(String(e)), 'warning');
+        finish();
+      },
     });
   } catch (e) {
       DebugLogger.error('SoundService:Speech', e instanceof Error ? e : new Error(String(e)), 'warning');

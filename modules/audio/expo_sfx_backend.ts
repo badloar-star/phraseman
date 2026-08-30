@@ -36,9 +36,17 @@ type ActivePlayback = {
   entry: CacheEntry;
   player: SfxPlayerLike;
   subscription: SubscriptionLike | null;
+  /** Слотовое (не allowConcurrent) воспроизведение — только его гасит stopExclusive. */
+  exclusive: boolean;
 };
 
-const DEFAULT_CACHE_SIZE = 6;
+// зачем 12 (аудит §R8, 2026-08-30): рабочий набор одного урока — 8-10 разных
+// событий (correct, needs_work, оба тапа, сердечки, completion, тики XP…),
+// кэш на 6 выселял плееры каждый ход, и первый play каждого звука платил
+// латентность создания ExoPlayer/буферизации (expo-audio не префетчит,
+// issue #42900). 12 закрывает набор урока с запасом; ~12 нативных плееров —
+// копейки по памяти.
+const DEFAULT_CACHE_SIZE = 12;
 // A broken/native-stalled rewind must never keep the global sound slot busy.
 // Normal rewinds settle well before this; the fallback is only for a Promise
 // that never resolves or rejects on a problematic ExoPlayer instance.
@@ -59,6 +67,7 @@ export class ExpoSfxBackend {
     eventId: SoundEventId,
     source: number,
     volume: number,
+    exclusive: boolean,
     onEnded: () => void,
   ): boolean {
     try {
@@ -145,7 +154,7 @@ export class ExpoSfxBackend {
           }
         }
       });
-      this.activePlayback.set(playbackToken, { token: playbackToken, entry, player, subscription });
+      this.activePlayback.set(playbackToken, { token: playbackToken, entry, player, subscription, exclusive });
 
       let seekFallbackTimer: ReturnType<typeof setTimeout> | null = null;
       let startReleased = false;
@@ -187,12 +196,42 @@ export class ExpoSfxBackend {
     }
   }
 
-  stop(): void {
+  /**
+   * зачем разделение (аудит §R5, 2026-08-30): прежний единый stop() гасил ВСЕ
+   * плейбеки, включая allowConcurrent (полёт руны, хвост learn_correct) — хотя
+   * им обещан собственный плеер вне слота. Преемпт и точечные stopActiveEvent
+   * касаются только слотового звука; полная тишина нужна лишь записи,
+   * выключателю звуков и dispose.
+   */
+  stopExclusive(): void {
+    for (const [token, playback] of [...this.activePlayback.entries()]) {
+      if (playback.exclusive) this.stopPlayback(token);
+    }
+  }
+
+  stopAll(): void {
     for (const token of [...this.activePlayback.keys()]) this.stopPlayback(token);
   }
 
+  /**
+   * Тёплый прогрев: создать нативные плееры заранее, ничего не проигрывая —
+   * первый реальный play частого события стартует без латентности создания
+   * и первичной буферизации (expo-audio не префетчит сам, issue #42900).
+   */
+  prewarm(entries: ReadonlyArray<{ eventId: SoundEventId; source: number }>): void {
+    for (const { eventId, source } of entries) {
+      try {
+        this.ensure(eventId, source);
+      } catch {
+        // Прогрев — оптимизация: не готов нативный слой — просто пропускаем,
+        // реальный play создаст плеер обычным путём.
+      }
+    }
+    this.evictIdleEntries();
+  }
+
   dispose(): void {
-    this.stop();
+    this.stopAll();
     for (const entry of this.cache.values()) {
       try { entry.player.remove(); } catch (e) {
       console.warn('[silent-catch] expo_sfx_backend:startAfterSeek', e instanceof Error ? e.message : String(e));

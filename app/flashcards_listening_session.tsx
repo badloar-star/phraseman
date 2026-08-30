@@ -34,7 +34,6 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useKeepAwake } from 'expo-keep-awake';
-import { setAudioModeAsync } from 'expo-audio';
 import { useTheme } from '../components/ThemeContext';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
@@ -358,13 +357,11 @@ export default function FlashcardsListeningSession() {
   const executeEffectRef = useRef(executeEffect);
   executeEffectRef.current = executeEffect;
 
-  // ── Аудио-режим §5: duckOthers + silent-mode на сессию, mixWithOthers назад ─
-  useEffect(() => {
-    setAudioModeAsync({ playsInSilentMode: true, interruptionMode: 'duckOthers' }).catch(() => {});
-    return () => {
-      setAudioModeAsync({ playsInSilentMode: true, interruptionMode: 'mixWithOthers' }).catch(() => {});
-    };
-  }, []);
+  // зачем 2026-08-30 (§R1): прямой setAudioModeAsync удалён — он писал в
+  // глобальную сессию мимо audio_session_coordinator и воевал с каноном
+  // (UI-звуки уважают mute). duckOthers+silent на время речи теперь даёт
+  // spoken-лиза внутри useAudio().speak / SoundService автоматически, и режим
+  // сам возвращается к UI_SFX после реплики — ручного cleanup не нужно.
 
   // ── Загрузка карточек + голосов, создание машины, автостарт ───────────────
   useEffect(() => {

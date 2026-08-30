@@ -23,6 +23,10 @@ const SOURCES = [
   'components/arena/ArenaTimerRing.tsx',
   'components/arena/ArenaVersusIntro.tsx',
   'components/arena/ArenaDailyGoals.tsx',
+  // зачем 2026-08-30 (аудит §R4): rankUp/rankDown реально звучат на такте
+  // анимации лестницы, а их мёртвые дубли в arena_results удалены — файл
+  // лестницы обязан участвовать в проверке расстановки.
+  'components/arena/ArenaRankHybrid.tsx',
   'hooks/use_arena_sound.ts',
 ];
 
@@ -30,9 +34,8 @@ const all = SOURCES.map((rel) => fs.readFileSync(path.join(ROOT, rel), 'utf8')).
 
 /** Звуки, которые звучат не по коду экрана, а по готовности файлов. */
 const NOT_WIRED_YET: readonly ArenaSoundKey[] = [
-  // Фон поиска — зацикленная подложка; включать её до появления файла нечем,
-  // а пустой цикл в директоре смысла не имеет.
-  'searchLoop',
+  // зачем пусто (2026-08-30): searchLoop подключён — интервал в
+  // arena_matchmaking повторяет бесшовный 3с-файл, пока идёт поиск.
 ];
 
 describe('вызовы идут через каталог', () => {

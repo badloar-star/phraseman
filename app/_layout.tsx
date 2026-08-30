@@ -1577,6 +1577,21 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     void setManagedAudioMode(UI_SFX_AUDIO_MODE)
       .catch(() => { /* не критично: воспроизведение возможно и с дефолтным режимом */ });
+    // зачем прогрев (аудит §R8, 2026-08-30): expo-audio не буферизует до
+    // play(), и самый первый запуск каждого звука платил латентность создания
+    // нативного плеера. Греем самые частые события сильно ПОСЛЕ старта
+    // (3.5с — холодный старт и первый кадр уже позади), это ~5 лёгких
+    // createAudioPlayer в фоне.
+    const prewarmTimer = setTimeout(() => {
+      soundDirector.prewarm([
+        'pm.learn.correct',
+        'pm.learn.needs_work',
+        'pm.ui.tap_soft',
+        'pm.ui.tap_primary',
+        'pm.complete.micro',
+      ]);
+    }, 3500);
+    return () => clearTimeout(prewarmTimer);
   }, []);
 
   useEffect(() => {

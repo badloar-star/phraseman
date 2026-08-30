@@ -550,10 +550,12 @@ export default function ArenaResultsScreen() {
     // зачем: в рейтинговом матче звук звезды играет такт ранга ровно в момент
     // посадки (onStarBeatImpact) — дубль при монтировании убран.
     if (Number(reward?.starsEarned ?? 0) > 0 && match.mode !== 'ranked') playSound('starLand');
-    // Повышение и понижение ранга — самое громкое, что бывает после матча.
-    const rankEvent = String((reward as { rankEvent?: unknown } | undefined)?.rankEvent ?? '');
-    if (rankEvent === 'tier_up') playSound('rankUp');
-    if (rankEvent === 'tier_down') playSound('rankDown');
+    // зачем удалены вызовы rankUp/rankDown (аудит §R4, 2026-08-30): они были
+    // структурно-мёртвыми — в этом же тике только что стартовал звук результата
+    // (priority 90, слот на 1.2–2.5с), и ранг (88/82) всегда дропался по
+    // priority без queueIfBusy. Слышимый звук ранга играет ArenaRankHybrid на
+    // такте анимации лестницы (единственная ветка сюда — ranked, quick вышел
+    // выше). Возвращать вызов сюда нельзя без dedupe с Hybrid — будет дубль.
     if (Array.isArray((reward as { tierRewards?: unknown[] } | undefined)?.tierRewards)) {
       playSound('rewardUnlock');
     }

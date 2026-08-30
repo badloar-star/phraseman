@@ -17,7 +17,9 @@ describe('SoundArbiter', () => {
   test('allows one active SFX and only a higher priority request can preempt it', () => {
     const { arbiter } = setup();
     expect(arbiter.request('pm.system.info')).toMatchObject({ kind: 'play', preempt: false });
-    expect(arbiter.request('pm.learn.hint_reveal')).toEqual({ kind: 'drop', reason: 'priority' });
+    // pm.subscription.manage_open (36) — низкий приоритет; прежний участник
+    // pm.learn.hint_reveal удалён владельцем навсегда (2026-08-30).
+    expect(arbiter.request('pm.subscription.manage_open')).toEqual({ kind: 'drop', reason: 'priority' });
     expect(arbiter.request('pm.system.error_recoverable')).toMatchObject({
       kind: 'play',
       eventId: 'pm.system.error_recoverable',

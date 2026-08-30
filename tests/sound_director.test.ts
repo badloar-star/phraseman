@@ -12,17 +12,22 @@ class FakeClock implements SoundClock {
 }
 
 class FakeBackend implements SfxPlaybackBackend {
-  plays: Array<{ eventId: string; volume: number }> = [];
+  plays: Array<{ eventId: string; volume: number; exclusive: boolean }> = [];
   stopCount = 0;
+  stopExclusiveCount = 0;
+  stopAllCount = 0;
   disposeCount = 0;
   onEnded: (() => void) | null = null;
 
-  play(eventId: any, _source: number, volume: number, onEnded: () => void) {
-    this.plays.push({ eventId, volume });
+  play(eventId: any, _source: number, volume: number, exclusive: boolean, onEnded: () => void) {
+    this.plays.push({ eventId, volume, exclusive });
     this.onEnded = onEnded;
     return true;
   }
-  stop() { this.stopCount += 1; this.onEnded = null; }
+  // зачем два стопа (аудит §R5): преемпт гасит только слотовый звук,
+  // полная тишина — запись/выключатель/dispose. stopCount — совокупный.
+  stopExclusive() { this.stopCount += 1; this.stopExclusiveCount += 1; this.onEnded = null; }
+  stopAll() { this.stopCount += 1; this.stopAllCount += 1; this.onEnded = null; }
   dispose() { this.disposeCount += 1; }
 }
 
@@ -54,10 +59,12 @@ describe('SoundDirector', () => {
     const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
 
     expect(director.request('pm.system.info').kind).toBe('play');
-    expect(backend.plays).toEqual([{ eventId: 'pm.system.info', volume: 0.28 }]);
+    expect(backend.plays).toEqual([{ eventId: 'pm.system.info', volume: 0.28, exclusive: true }]);
     expect(director.request('pm.system.error_recoverable')).toMatchObject({ kind: 'play', preempt: true });
-    expect(backend.stopCount).toBe(1);
-    expect(backend.plays.at(-1)).toEqual({ eventId: 'pm.system.error_recoverable', volume: 0.3 });
+    // Преемпт обязан гасить только слотовый звук — не allowConcurrent-хвосты.
+    expect(backend.stopExclusiveCount).toBe(1);
+    expect(backend.stopAllCount).toBe(0);
+    expect(backend.plays.at(-1)).toEqual({ eventId: 'pm.system.error_recoverable', volume: 0.3, exclusive: true });
   });
 
   test('disabling effects immediately stops native playback and blocks new starts', () => {
@@ -251,11 +258,12 @@ describe('SoundDirector', () => {
       const clock = new FakeClock();
       const director = new SoundDirector(backend, new SoundArbiter(clock));
 
-      expect(director.request('pm.learn.hint_reveal', { queueIfBusy: true }).kind).toBe('play');
+      // pm.subscription.manage_open (36) вместо удалённого hint_reveal (2026-08-30).
+      expect(director.request('pm.subscription.manage_open', { queueIfBusy: true }).kind).toBe('play');
       // pm.system.error_recoverable (higher priority) preempts immediately —
       // no retry needed, no drop happens in the first place.
       expect(director.request('pm.system.error_recoverable')).toMatchObject({ kind: 'play', preempt: true });
-      expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.learn.hint_reveal', 'pm.system.error_recoverable']);
+      expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.subscription.manage_open', 'pm.system.error_recoverable']);
     });
 
     test('going silent (setEffectsEnabled false) before the retry fires cancels it', () => {
@@ -288,8 +296,8 @@ describe('ExpoSfxBackend', () => {
       return player;
     }, 3);
 
-    backend.play('pm.learn.correct', 1, 0.42, jest.fn());
-    backend.play('pm.reward.rune_flight_start', 2, 0.22, jest.fn());
+    backend.play('pm.learn.correct', 1, 0.42, true, jest.fn());
+    backend.play('pm.reward.rune_flight_start', 2, 0.22, true, jest.fn());
 
     expect(made).toHaveLength(2);
     expect(made[0].calls).not.toContain('pause');
@@ -305,9 +313,9 @@ describe('ExpoSfxBackend', () => {
       return player;
     }, 2);
 
-    backend.play('pm.system.info', 1, 0.28, jest.fn());
-    backend.play('pm.system.success', 2, 0.34, jest.fn());
-    backend.play('pm.system.warning', 3, 0.34, jest.fn());
+    backend.play('pm.system.info', 1, 0.28, true, jest.fn());
+    backend.play('pm.system.success', 2, 0.34, true, jest.fn());
+    backend.play('pm.system.warning', 3, 0.34, true, jest.fn());
 
     expect(backend.getCacheSize()).toBe(3);
     expect(made).toHaveLength(3);
@@ -320,7 +328,7 @@ describe('ExpoSfxBackend', () => {
     const ended = jest.fn();
     const backend = new ExpoSfxBackend(() => player, 2);
 
-    expect(backend.play('pm.learn.correct', 1, 0.42, ended)).toBe(true);
+    expect(backend.play('pm.learn.correct', 1, 0.42, true, ended)).toBe(true);
     expect(player.volume).toBe(0.42);
     player.emitPlaying();
     player.emitEnded();
@@ -354,7 +362,7 @@ describe('ExpoSfxBackend', () => {
 
     const backend = new ExpoSfxBackend(() => player, 2);
     const ended = jest.fn();
-    expect(backend.play('pm.learn.correct', 1, 0.42, ended)).toBe(true);
+    expect(backend.play('pm.learn.correct', 1, 0.42, true, ended)).toBe(true);
     expect(calls.filter((c) => c === 'play')).toHaveLength(1);
 
     // Плеер догрузился, но не поехал — ранний play() пропал.
@@ -392,7 +400,7 @@ describe('ExpoSfxBackend', () => {
 
     const backend = new ExpoSfxBackend(() => player, 2);
     const ended = jest.fn();
-    expect(backend.play('pm.learn.correct', 1, 0.42, ended)).toBe(true);
+    expect(backend.play('pm.learn.correct', 1, 0.42, true, ended)).toBe(true);
     expect(playCalls).toBe(1);
 
     listener({ isLoaded: true, playing: false });
@@ -402,7 +410,7 @@ describe('ExpoSfxBackend', () => {
 
     // The failed generation is fully released; the same backend can serve the
     // next sound instead of retaining an invisible global audio lock.
-    expect(backend.play('pm.system.info', 2, 0.28, jest.fn())).toBe(true);
+    expect(backend.play('pm.system.info', 2, 0.28, true, jest.fn())).toBe(true);
   });
 
   test('waits for an asynchronous rewind before replaying a cached sound', async () => {
@@ -418,7 +426,7 @@ describe('ExpoSfxBackend', () => {
     };
     const backend = new ExpoSfxBackend(() => player, 2);
 
-    expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
+    expect(backend.play('pm.system.info', 1, 0.28, true, jest.fn())).toBe(true);
     expect(calls).not.toContain('play');
 
     finishSeek();
@@ -440,7 +448,7 @@ describe('ExpoSfxBackend', () => {
       };
       const backend = new ExpoSfxBackend(() => player, 2);
 
-      expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
+      expect(backend.play('pm.system.info', 1, 0.28, true, jest.fn())).toBe(true);
       expect(calls).not.toContain('play');
 
       jest.advanceTimersByTime(199);
@@ -468,8 +476,8 @@ describe('ExpoSfxBackend', () => {
     };
     const backend = new ExpoSfxBackend(() => player, 2);
 
-    expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
-    expect(backend.play('pm.system.info', 1, 0.28, jest.fn())).toBe(true);
+    expect(backend.play('pm.system.info', 1, 0.28, true, jest.fn())).toBe(true);
+    expect(backend.play('pm.system.info', 1, 0.28, true, jest.fn())).toBe(true);
     expect(seekResolvers).toHaveLength(2);
 
     seekResolvers[0]();
@@ -509,7 +517,7 @@ describe('ExpoSfxBackend', () => {
 
     const backend = new ExpoSfxBackend(() => player, 2);
     const ended = jest.fn();
-    backend.play('pm.learn.timer_warning', 1, 0.34, ended);
+    backend.play('pm.learn.timer_warning', 1, 0.34, true, ended);
 
     // Ложный ENDED от переиспользуемого плеера, ДО первого настоящего playing.
     emit({ didJustFinish: true });
@@ -547,7 +555,7 @@ describe('ExpoSfxBackend', () => {
 
       const backend = new ExpoSfxBackend(() => player, 2);
       const ended = jest.fn();
-      backend.play('pm.learn.timer_warning', 1, 0.34, ended);
+      backend.play('pm.learn.timer_warning', 1, 0.34, true, ended);
 
       jest.advanceTimersByTime(500);
       emit({ didJustFinish: true });

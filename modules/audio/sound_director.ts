@@ -14,8 +14,13 @@ import {
 } from '@/app/audio_session_coordinator';
 
 export interface SfxPlaybackBackend {
-  play(eventId: SoundEventId, source: number, volume: number, onEnded: () => void): boolean;
-  stop(): void;
+  play(eventId: SoundEventId, source: number, volume: number, exclusive: boolean, onEnded: () => void): boolean;
+  /** Гасит только слотовые (не allowConcurrent) плейбеки — преемпт и точечные стопы. */
+  stopExclusive(): void;
+  /** Полная тишина: запись, выключение звуков, dispose. */
+  stopAll(): void;
+  /** Создать плееры заранее, не играя — латентность первого запуска. Опционален. */
+  prewarm?(entries: ReadonlyArray<{ eventId: SoundEventId; source: number }>): void;
   dispose(): void;
 }
 
@@ -56,9 +61,25 @@ export class SoundDirector {
       this.clearDeferredTimer();
       this.deferredPlayback = null;
       this.clearPriorityRetryTimer();
-      this.backend.stop();
+      this.backend.stopAll();
       this.activePlayback = null;
     }
+  }
+
+  /**
+   * зачем (аудит §R8, 2026-08-30): expo-audio не буферизует до play(), и самый
+   * первый запуск каждого звука платит латентность создания плеера. Экраны
+   * с плотным звуком (урок) зовут это на старте с самыми частыми событиями —
+   * первый верный ответ звучит мгновенно, а не после прогрева.
+   */
+  prewarm(eventIds: readonly SoundEventId[]): void {
+    if (!this.backend.prewarm) return;
+    const entries: Array<{ eventId: SoundEventId; source: number }> = [];
+    for (const eventId of eventIds) {
+      const source = SOUND_EVENTS[eventId].source;
+      if (source) entries.push({ eventId, source });
+    }
+    if (entries.length) this.backend.prewarm(entries);
   }
 
   /**
@@ -101,7 +122,8 @@ export class SoundDirector {
       this.clearDeferredTimer();
       this.deferredPlayback = null;
       this.clearPriorityRetryTimer();
-      this.backend.stop();
+      // Полная тишина: любой эффект из динамика попадёт в микрофон.
+      this.backend.stopAll();
       this.activePlayback = null;
     }
   }
@@ -113,7 +135,8 @@ export class SoundDirector {
       || SOUND_EVENTS[active.eventId].family !== 'completion'
       || active.scope !== scope) return false;
     this.clearPriorityRetryTimer();
-    this.backend.stop();
+    // Точечный стоп: allowConcurrent-звуки (полёт руны и т.п.) не задеваем.
+    this.backend.stopExclusive();
     this.arbiter.finishActive(active.requestId);
     this.activePlayback = null;
     return true;
@@ -125,7 +148,7 @@ export class SoundDirector {
     if (cancelledDeferred) this.deferredPlayback = null;
     if (!active || active.eventId !== eventId || active.scope !== scope) return cancelledDeferred;
     this.clearPriorityRetryTimer();
-    this.backend.stop();
+    this.backend.stopExclusive();
     this.arbiter.finishActive(active.requestId);
     this.activePlayback = null;
     return true;
@@ -152,13 +175,16 @@ export class SoundDirector {
       return;
     }
     if (decision.preempt) {
-      this.backend.stop();
+      // зачем stopExclusive (аудит §R5): преемпт вытесняет только слотовый
+      // звук; параллельные allowConcurrent-плееры доигрывают свои хвосты.
+      this.backend.stopExclusive();
       this.activePlayback = null;
     }
     const started = this.backend.play(
       decision.eventId,
       definition.source,
       definition.volume,
+      !definition.allowConcurrent,
       () => {
         this.arbiter.finishActive(decision.requestId);
         if (this.activePlayback?.requestId === decision.requestId) {

@@ -1,7 +1,8 @@
 {
-  "version": "league-v6-codex-dalli-icons",
-  "generatedAt": "2026-06-21T21:36:12.330Z",
-  "source": ".codex-tmp/league-assets/icon-dalli-sources/league_icons_v1/league_icons_atlas_v1.png",
+  "version": "league-knowledge-relics-v1",
+  "generatedAt": "2026-08-30T19:31:34.515Z",
+  "source": ".codex-tmp/league-assets/knowledge-relics/league_knowledge_relics_atlas_v1.png",
+  "sourceSha256": "c808fc8a4b62180c83dbf571121fed248ce504744112955ac377c6d9cbc33186",
   "grid": {
     "columns": 3,
     "rows": 4,
@@ -12,241 +13,266 @@
     "height": 384,
     "innerSize": 312,
     "format": "webp",
-    "quality": 96
+    "quality": 76
   },
   "designRules": [
-    "Codex/DALL-E atlas is used only as raw source; final app icons are transparent WebP cutouts.",
-    "Icons are centered on a stable 384x384 canvas to avoid legacy per-league offsets.",
-    "No text, numbers, logos, characters, or UI are allowed in league icons."
+    "Every league is a volumetric 3D hexahedron in one premium escalating relic family.",
+    "Every knowledge motif is an integrated symbolic relief fused into the front face, never a detached literal object or scene.",
+    "The atlas is used only as raw source; final app icons are centered transparent WebP cutouts on a stable 384x384 canvas.",
+    "No text, numbers, logos, characters, scenery, or UI are allowed in league icons."
   ],
   "leagues": [
     {
       "id": 0,
       "slug": "med",
       "title": "Copper league",
+      "sigil": "open-book",
+      "progression": "first opened page of knowledge",
       "file": "league-icon-med.webp",
       "path": "assets/images/levels/league-v6-icons/league-icon-med.webp",
       "crop": {
         "left": 14,
         "top": 14,
-        "width": 313,
-        "height": 356
+        "width": 334,
+        "height": 334
       },
-      "sourceVisibleWidth": 246,
-      "sourceVisibleHeight": 323,
+      "sourceVisibleWidth": 281,
+      "sourceVisibleHeight": 319,
       "width": 384,
       "height": 384,
       "hasAlpha": true,
-      "bytes": 44986
+      "bytes": 20384
     },
     {
       "id": 1,
       "slug": "bronz",
       "title": "Bronze league",
+      "sigil": "quill-scroll",
+      "progression": "recorded knowledge and disciplined study",
       "file": "league-icon-bronz.webp",
       "path": "assets/images/levels/league-v6-icons/league-icon-bronz.webp",
       "crop": {
-        "left": 355,
+        "left": 376,
         "top": 14,
-        "width": 314,
-        "height": 356
+        "width": 334,
+        "height": 334
       },
-      "sourceVisibleWidth": 259,
-      "sourceVisibleHeight": 324,
+      "sourceVisibleWidth": 280,
+      "sourceVisibleHeight": 318,
       "width": 384,
       "height": 384,
       "hasAlpha": true,
-      "bytes": 47770
+      "bytes": 21836
     },
     {
       "id": 2,
       "slug": "serebro",
       "title": "Silver league",
+      "sigil": "owl-mask",
+      "progression": "watchful wisdom and pattern recognition",
       "file": "league-icon-serebro.webp",
       "path": "assets/images/levels/league-v6-icons/league-icon-serebro.webp",
       "crop": {
-        "left": 697,
+        "left": 738,
         "top": 14,
-        "width": 313,
-        "height": 356
+        "width": 334,
+        "height": 334
       },
-      "sourceVisibleWidth": 260,
-      "sourceVisibleHeight": 324,
+      "sourceVisibleWidth": 288,
+      "sourceVisibleHeight": 318,
       "width": 384,
       "height": 384,
       "hasAlpha": true,
-      "bytes": 49240
+      "bytes": 21570
     },
     {
       "id": 3,
       "slug": "zoloto",
       "title": "Gold league",
+      "sigil": "knowledge-compass",
+      "progression": "confident navigation through ideas",
       "file": "league-icon-zoloto.webp",
       "path": "assets/images/levels/league-v6-icons/league-icon-zoloto.webp",
       "crop": {
         "left": 14,
-        "top": 398,
-        "width": 313,
-        "height": 356
+        "top": 376,
+        "width": 334,
+        "height": 334
       },
-      "sourceVisibleWidth": 258,
-      "sourceVisibleHeight": 334,
+      "sourceVisibleWidth": 287,
+      "sourceVisibleHeight": 319,
       "width": 384,
       "height": 384,
       "hasAlpha": true,
-      "bytes": 45642
+      "bytes": 23840
     },
     {
       "id": 4,
       "slug": "platina",
       "title": "Platinum league",
+      "sigil": "astrolabe",
+      "progression": "measured understanding of complex systems",
       "file": "league-icon-platina.webp",
       "path": "assets/images/levels/league-v6-icons/league-icon-platina.webp",
       "crop": {
-        "left": 355,
-        "top": 398,
-        "width": 314,
-        "height": 356
+        "left": 376,
+        "top": 376,
+        "width": 334,
+        "height": 334
       },
-      "sourceVisibleWidth": 257,
-      "sourceVisibleHeight": 335,
+      "sourceVisibleWidth": 283,
+      "sourceVisibleHeight": 320,
       "width": 384,
       "height": 384,
       "hasAlpha": true,
-      "bytes": 41326
+      "bytes": 23128
     },
     {
       "id": 5,
       "slug": "izumrud",
       "title": "Emerald league",
+      "sigil": "knowledge-tree",
+      "progression": "living synthesis and branching mastery",
       "file": "league-icon-izumrud.webp",
       "path": "assets/images/levels/league-v6-icons/league-icon-izumrud.webp",
       "crop": {
-        "left": 697,
-        "top": 398,
-        "width": 313,
-        "height": 356
+        "left": 738,
+        "top": 376,
+        "width": 334,
+        "height": 334
       },
-      "sourceVisibleWidth": 258,
-      "sourceVisibleHeight": 335,
+      "sourceVisibleWidth": 288,
+      "sourceVisibleHeight": 319,
       "width": 384,
       "height": 384,
       "hasAlpha": true,
-      "bytes": 57624
+      "bytes": 23918
     },
     {
       "id": 6,
       "slug": "sapfir",
       "title": "Sapphire league",
+      "sigil": "celestial-map",
+      "progression": "knowledge extended into the cosmos",
       "file": "league-icon-sapfir.webp",
       "path": "assets/images/levels/league-v6-icons/league-icon-sapfir.webp",
       "crop": {
         "left": 14,
-        "top": 782,
-        "width": 313,
-        "height": 356
+        "top": 738,
+        "width": 334,
+        "height": 334
       },
-      "sourceVisibleWidth": 254,
-      "sourceVisibleHeight": 337,
+      "sourceVisibleWidth": 285,
+      "sourceVisibleHeight": 321,
       "width": 384,
       "height": 384,
       "hasAlpha": true,
-      "bytes": 44762
+      "bytes": 22884
     },
     {
       "id": 7,
       "slug": "rubin",
       "title": "Ruby league",
+      "sigil": "alchemical-flame",
+      "progression": "ideas transformed into power",
       "file": "league-icon-rubin.webp",
       "path": "assets/images/levels/league-v6-icons/league-icon-rubin.webp",
       "crop": {
-        "left": 355,
-        "top": 782,
-        "width": 314,
-        "height": 356
+        "left": 376,
+        "top": 738,
+        "width": 334,
+        "height": 334
       },
-      "sourceVisibleWidth": 258,
-      "sourceVisibleHeight": 340,
+      "sourceVisibleWidth": 281,
+      "sourceVisibleHeight": 320,
       "width": 384,
       "height": 384,
       "hasAlpha": true,
-      "bytes": 45212
+      "bytes": 22122
     },
     {
       "id": 8,
       "slug": "almaz",
       "title": "Diamond league",
+      "sigil": "crystalline-eye",
+      "progression": "clarity that sees hidden structure",
       "file": "league-icon-almaz.webp",
       "path": "assets/images/levels/league-v6-icons/league-icon-almaz.webp",
       "crop": {
-        "left": 697,
-        "top": 782,
-        "width": 313,
-        "height": 356
+        "left": 738,
+        "top": 738,
+        "width": 334,
+        "height": 334
       },
-      "sourceVisibleWidth": 257,
-      "sourceVisibleHeight": 337,
+      "sourceVisibleWidth": 290,
+      "sourceVisibleHeight": 321,
       "width": 384,
       "height": 384,
       "hasAlpha": true,
-      "bytes": 48058
+      "bytes": 24892
     },
     {
       "id": 9,
       "slug": "cherniy-almaz",
       "title": "Black diamond league",
+      "sigil": "eclipse-archive",
+      "progression": "command of concealed and forbidden knowledge",
       "file": "league-icon-cherniy-almaz.webp",
       "path": "assets/images/levels/league-v6-icons/league-icon-cherniy-almaz.webp",
       "crop": {
         "left": 14,
-        "top": 1166,
-        "width": 313,
-        "height": 356
+        "top": 1100,
+        "width": 334,
+        "height": 334
       },
-      "sourceVisibleWidth": 249,
-      "sourceVisibleHeight": 332,
+      "sourceVisibleWidth": 286,
+      "sourceVisibleHeight": 330,
       "width": 384,
       "height": 384,
       "hasAlpha": true,
-      "bytes": 43290
+      "bytes": 20918
     },
     {
       "id": 10,
       "slug": "efir",
       "title": "Ether league",
+      "sigil": "mind-constellation",
+      "progression": "intelligence linked beyond matter",
       "file": "league-icon-efir.webp",
       "path": "assets/images/levels/league-v6-icons/league-icon-efir.webp",
       "crop": {
-        "left": 355,
-        "top": 1166,
-        "width": 314,
-        "height": 356
+        "left": 376,
+        "top": 1100,
+        "width": 334,
+        "height": 334
       },
-      "sourceVisibleWidth": 268,
-      "sourceVisibleHeight": 332,
+      "sourceVisibleWidth": 282,
+      "sourceVisibleHeight": 330,
       "width": 384,
       "height": 384,
       "hasAlpha": true,
-      "bytes": 43852
+      "bytes": 23246
     },
     {
       "id": 11,
       "slug": "vishaya",
       "title": "Supreme league",
+      "sigil": "eternal-library-light",
+      "progression": "limitless knowledge made eternal",
       "file": "league-icon-vishaya.webp",
       "path": "assets/images/levels/league-v6-icons/league-icon-vishaya.webp",
       "crop": {
-        "left": 697,
-        "top": 1166,
-        "width": 313,
-        "height": 356
+        "left": 738,
+        "top": 1100,
+        "width": 334,
+        "height": 334
       },
-      "sourceVisibleWidth": 275,
-      "sourceVisibleHeight": 335,
+      "sourceVisibleWidth": 293,
+      "sourceVisibleHeight": 334,
       "width": 384,
       "height": 384,
       "hasAlpha": true,
-      "bytes": 48954
+      "bytes": 23900
     }
   ]
 }

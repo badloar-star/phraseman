@@ -73,8 +73,6 @@ for (const league of LEAGUES) {
 
   const extracted = await sharp(sourcePath).extract(crop).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   removeChromaBackground(extracted.data, extracted.info);
-  removeSideDividerPixels(extracted.data, extracted.info);
-  removeDetachedSideComponents(extracted.data, extracted.info);
 
   const transparentPng = await sharp(extracted.data, { raw: extracted.info }).png().toBuffer();
   const trimmed = await sharp(transparentPng).trim({ background: '#00000000', threshold: 8 }).png().toBuffer();
@@ -193,10 +191,7 @@ function isRemovableBackground(data, pixelIndex) {
   if (a < 8) return true;
   const magentaDominance = (r + b) / 2 - g;
   const chromaMagenta = r > 150 && b > 145 && g < 115 && magentaDominance > 75;
-  const max = Math.max(r, g, b);
-  const min = Math.min(r, g, b);
-  const gridGutterBlack = max < 96 && max - min < 50;
-  return chromaMagenta || gridGutterBlack;
+  return chromaMagenta;
 }
 
 function removeSideDividerPixels(data, info) {

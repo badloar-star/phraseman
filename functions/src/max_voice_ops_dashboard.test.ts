@@ -12,6 +12,14 @@ function deps(rows = [emptyMaxVoiceOpsDaily('2026-08-21', NOW)]): MaxVoiceOpsDas
     readDays: jest.fn(async () => rows),
     appendAudit: jest.fn(async () => undefined),
     readUsage: jest.fn(async () => ({ calls: 3, seconds: 900, estCostUsd: 0.75, transcriptionCostUsd: 0.05 })),
+    readRecon: jest.fn(async () => [{
+      dayKey: '2026-08-20',
+      status: 'ok',
+      note: 'Наши токены совпадают со счётчиками OpenAI в пределах порога.',
+      drift: { audioInPct: 1.2, audioOutPct: 0.8, costPct: 1 },
+      ours: { estCostUsd: 0.7 },
+      openai: { estCostUsd: 0.71 },
+    }]),
   };
 }
 
@@ -73,7 +81,13 @@ describe('MAX operations dashboard', () => {
       source: 'voice_call_billing',
       basis: 'usage_tokens_x_price_table',
       allTime: { calls: 3, seconds: 900, estCostUsd: 0.75 },
+      recon: {
+        latest: { dayKey: '2026-08-20', status: 'ok', oursCostUsd: 0.7, openaiCostUsd: 0.71 },
+      },
     });
+    // Сверка запрашивается за 7 дней, заканчивая ВЧЕРА (сегодня сверит завтрашний крон).
+    expect((d.readRecon as jest.Mock).mock.calls[0][0]).toHaveLength(7);
+    expect((d.readRecon as jest.Mock).mock.calls[0][0][6]).toBe('2026-08-20');
   });
 
   test('a failed usage aggregation degrades to usage:null without breaking the dashboard', async () => {

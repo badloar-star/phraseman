@@ -49,6 +49,8 @@ export interface MaxVoiceOpsDashboardDependencies {
    * выкачиваются (правило Джарвиса), одна агрегация на окно.
    */
   readonly readUsage: (sinceMs: number | null) => Promise<MaxVoiceUsageMoneyTotals>;
+  /** Доки дневной сверки с OpenAI (max_voice_usage_recon) за последние дни. */
+  readonly readRecon: (dayKeys: readonly string[]) => Promise<readonly unknown[]>;
 }
 
 function record(value: unknown): value is Record<string, unknown> {
@@ -140,6 +142,31 @@ export async function getMaxVoiceOpsDashboard(request: RequestShape, deps: MaxVo
   const monthStartMs = Date.UTC(nowDate.getUTCFullYear(), nowDate.getUTCMonth(), 1);
   // Минуты/деньги — параллельно с дневными агрегатами; сбой агрегации не
   // роняет остальной дашборд (usage: null + причина в консоли функции).
+  // Сверка с OpenAI: последние 7 дней, кроме сегодняшнего (его сверит
+  // завтрашний крон). Битые доки отбрасываются построчно.
+  const reconDayKeys = dayKeysEndingAt(nowMs - DAY_MS, 7);
+  const reconRows = await deps.readRecon(reconDayKeys).then((rows) => rows
+    .flatMap((raw) => {
+      if (!record(raw)) return [];
+      const dayKey = typeof raw.dayKey === 'string' ? raw.dayKey : '';
+      const status = typeof raw.status === 'string' ? raw.status : '';
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(dayKey) || status === '') return [];
+      const ours = record(raw.ours) ? raw.ours : {};
+      const openai = record(raw.openai) ? raw.openai : null;
+      return [{
+        dayKey,
+        status,
+        note: typeof raw.note === 'string' ? raw.note.slice(0, 300) : '',
+        drift: record(raw.drift) ? raw.drift : null,
+        oursCostUsd: Number(ours.estCostUsd) || 0,
+        openaiCostUsd: openai ? Number(openai.estCostUsd) || 0 : null,
+      }];
+    })
+    .sort((a, b) => a.dayKey.localeCompare(b.dayKey)),
+  ).catch((error) => {
+    console.error('max_voice_ops_dashboard recon read failed', error);
+    return [] as never[];
+  });
   const [rawRows, usage] = await Promise.all([
     deps.readDays(dayKeys),
     Promise.all([
@@ -155,6 +182,10 @@ export async function getMaxVoiceOpsDashboard(request: RequestShape, deps: MaxVo
       allTime,
       currentMonth,
       window: windowTotals,
+      recon: {
+        latest: reconRows.length > 0 ? reconRows[reconRows.length - 1] : null,
+        days: reconRows,
+      },
     })).catch((error) => {
       console.error('max_voice_ops_dashboard usage aggregation failed', error);
       return null;
@@ -267,6 +298,12 @@ export const adminGetMaxVoiceOpsDashboard = onCall({
         estCostUsd: Math.max(0, num(data.estCostUsd)),
         transcriptionCostUsd: Math.max(0, num(data.transcriptionCostUsd)),
       };
+    },
+    readRecon: async (dayKeys) => {
+      const snapshots = await db.getAll(
+        ...dayKeys.map((dayKey) => db.collection('max_voice_usage_recon').doc(dayKey)),
+      );
+      return snapshots.filter((snapshot) => snapshot.exists).map((snapshot) => snapshot.data());
     },
   });
 });

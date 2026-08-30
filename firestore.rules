@@ -1986,6 +1986,12 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Дневная сверка расхода MAX с OpenAI Usage API (агрегаты без PII).
+    // Пишет только крон maxVoiceUsageRecon; админка читает через callable.
+    match /max_voice_usage_recon/{dayKey} {
+      allow read, write: if false;
+    }
+
     // Verified store receipts and explicit admin minute-grant events share this
     // immutable ledger. Events and the rebuildable projection are Admin-SDK
     // only. A client may read only the bounded wallet view returned by
@@ -3135,6 +3141,7 @@ service cloud.firestore {
         && collection != 'voice_tutor_memory'
         && collection != 'voice_call_quotas'
         && collection != 'max_voice_ops_daily'
+        && collection != 'max_voice_usage_recon'
         && collection != 'promo_codes'
         && collection != 'gift_certificate_deliveries'
         && collection != 'admin_gift_certificate_batch_operations'

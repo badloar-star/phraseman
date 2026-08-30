@@ -20,6 +20,7 @@
 export { maxVoicePreflight, maxVoiceMint } from '../functions/src/max_voice_mint';
 export { maxVoiceHeartbeat, maxVoiceSessionEnd } from '../functions/src/max_voice_session_end';
 export { maxVoiceWatchdog, maxVoiceProviderHealth } from '../functions/src/max_voice_watchdog';
+export { maxVoiceUsageRecon } from '../functions/src/max_voice_usage_recon';
 export { maxVoiceSafetyReport } from '../functions/src/max_voice_safety';
 export { maxVoiceFinalize } from '../functions/src/max_voice_finalize';
 export {

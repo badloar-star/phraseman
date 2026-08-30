@@ -4,6 +4,7 @@ import path from 'path';
 import {
   createDailyJourneyGiftInventoryController,
   dailyJourneyGiftArtDescriptor,
+  dailyJourneyRuneImageSource,
   type DailyJourneyGiftInventoryItem,
   type DailyJourneyGiftInventoryProjection,
 } from '../app/daily_journey_gift_inventory_adapter';
@@ -49,10 +50,10 @@ function makeHarness() {
   const clearViews = jest.fn<void, []>();
   const markSnapshotSeen = jest.fn<Promise<boolean>, [number, TestToken]>().mockResolvedValue(true);
   const claimGift = jest.fn<Promise<unknown>, [string, TestToken]>().mockResolvedValue({ status: 'claimed' });
-  const closeClaim = jest.fn<void, []>();
+  const clearClaimView = jest.fn<void, []>();
   const setClaimBusy = jest.fn<void, [string | null]>();
   const reportError = jest.fn<void, [string, unknown]>();
-  const controller = createDailyJourneyGiftInventoryController<LegacySnapshot, TestToken, TestDailyItem>({
+  const controllerDependencies = {
     captureToken: () => currentToken,
     isTokenCurrent: (token: TestToken) => token === currentToken,
     loadLegacy,
@@ -62,10 +63,13 @@ function makeHarness() {
     clearViews,
     markSnapshotSeen,
     claimGift,
-    closeClaim,
+    clearClaimView,
     setClaimBusy,
     reportError,
-  });
+  };
+  const controller = createDailyJourneyGiftInventoryController<LegacySnapshot, TestToken, TestDailyItem>(
+    controllerDependencies,
+  );
   return {
     controller,
     loadLegacy,
@@ -75,7 +79,7 @@ function makeHarness() {
     clearViews,
     markSnapshotSeen,
     claimGift,
-    closeClaim,
+    clearClaimView,
     setClaimBusy,
     reportError,
     switchAccount: () => {
@@ -179,9 +183,53 @@ describe('Daily Journey Gifts inventory controller', () => {
     h.claimGift.mockResolvedValueOnce({ status: 'claimed' });
     await expect(h.controller.claim(item)).resolves.toBe('claimed');
     expect(h.claimGift).toHaveBeenCalledTimes(2);
-    expect(h.closeClaim).toHaveBeenCalledTimes(1);
+    expect(h.clearClaimView).toHaveBeenCalledTimes(2);
     expect(h.loadLegacy).toHaveBeenCalledTimes(2);
     expect(h.loadDaily).toHaveBeenCalledTimes(2);
+  });
+
+  it('clears claim UI on deactivate and ignores a resolving stale claim before clean reactivation', async () => {
+    const h = makeHarness();
+    await h.controller.activate();
+    expect(h.clearClaimView).toHaveBeenCalledTimes(1);
+    const pendingClaim = deferred<unknown>();
+    h.claimGift.mockReset().mockReturnValueOnce(pendingClaim.promise);
+    const claim = h.controller.claim(pendingGift('blur-resolve', 1));
+
+    h.controller.deactivate();
+
+    expect(h.controller.isClaimBusy('blur-resolve')).toBe(false);
+    expect(h.clearClaimView).toHaveBeenCalledTimes(2);
+    const uiWritesAtDeactivate = h.setClaimBusy.mock.calls.length + h.clearClaimView.mock.calls.length;
+    pendingClaim.resolve({ status: 'claimed' });
+    await expect(claim).resolves.toBe('ignored');
+    expect(h.setClaimBusy.mock.calls.length + h.clearClaimView.mock.calls.length).toBe(uiWritesAtDeactivate);
+
+    await h.controller.activate();
+    expect(h.clearClaimView).toHaveBeenCalledTimes(3);
+    expect(h.loadLegacy).toHaveBeenCalledTimes(2);
+    expect(h.loadDaily).toHaveBeenCalledTimes(2);
+  });
+
+  it('clears claim UI on deactivate and ignores a rejecting stale claim without reporting or writing UI', async () => {
+    const h = makeHarness();
+    await h.controller.activate();
+    expect(h.clearClaimView).toHaveBeenCalledTimes(1);
+    const pendingClaim = deferred<unknown>();
+    h.claimGift.mockReset().mockReturnValueOnce(pendingClaim.promise);
+    const claim = h.controller.claim(pendingGift('blur-reject', 1));
+
+    h.controller.deactivate();
+    const uiWritesAtDeactivate = h.setClaimBusy.mock.calls.length + h.clearClaimView.mock.calls.length;
+    pendingClaim.reject(new Error('late-rejection'));
+
+    await expect(claim).resolves.toBe('ignored');
+    expect(h.clearClaimView).toHaveBeenCalledTimes(2);
+    expect(h.setClaimBusy.mock.calls.length + h.clearClaimView.mock.calls.length).toBe(uiWritesAtDeactivate);
+    expect(h.reportError).not.toHaveBeenCalledWith('daily_claim', expect.anything());
+
+    await h.controller.activate();
+    expect(h.clearClaimView).toHaveBeenCalledTimes(3);
   });
 });
 
@@ -199,6 +247,8 @@ describe('Daily Journey projection in the Gifts inventory', () => {
   it('renders committed square art without depending on preview-only modules or mini copy', () => {
     expect(source).not.toContain('DailyJourneyRevealScene');
     expect(source).not.toContain('dailyJourneyRewardPreviewModel');
+    expect(source).not.toContain('RuneGlyph');
+    expect(source).toContain('source={dailyJourneyRuneImageSource()}');
     expect(source).toContain('testID={`daily-journey-gift-${item.operationId}`}');
     expect(source).toContain('key={dailyJourneyGiftItemKey(item)}');
     expect(source).toContain('size={size * 0.78}');
@@ -211,8 +261,21 @@ describe('Daily Journey projection in the Gifts inventory', () => {
     expect(tileSource).not.toContain('<Text');
   });
 
+  it('resolves the approved committed rune raster through a static asset require', () => {
+    expect(dailyJourneyRuneImageSource()).toBe('test-file-stub');
+    const adapterSource = readSource('app/daily_journey_gift_inventory_adapter.ts');
+    expect(adapterSource).toContain("require('../assets/images/level-spin-rewards/stars_10.webp')");
+    expect(source).toContain('size={size * 0.78}');
+    const artStart = source.indexOf('const DailyJourneyGiftArt');
+    const artEnd = source.indexOf('const DailyJourneyGiftTile');
+    const artSource = source.slice(artStart, artEnd);
+    expect(artSource).toContain('style={{ width: size, height: size }}');
+    expect(artSource).not.toContain('size={size * 0.82}');
+  });
+
   it('wires lifecycle and event reloads through the settling controller', () => {
     expect(source).toContain('claimGift: claimDailyJourneyGift');
+    expect(source).toContain('clearClaimView: () => {');
     expect(source).toContain("onAppEvent('daily_journey_gifts_changed'");
     expect(source).toContain('void inventoryController.reloadDaily();');
     expect(source).toContain('void inventoryController.reloadAll();');
@@ -220,5 +283,7 @@ describe('Daily Journey projection in the Gifts inventory', () => {
     expect(source).toContain('void inventoryController.activate();');
     expect(source).toContain('inventoryController.deactivate();');
     expect(source).toContain('accountGenerationSubscription.remove();');
+    expect(source.indexOf('inventoryController.deactivate();'))
+      .toBeLessThan(source.indexOf('accountGenerationSubscription.remove();'));
   });
 });

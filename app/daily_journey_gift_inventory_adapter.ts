@@ -1,3 +1,12 @@
+import type { ImageSourcePropType } from 'react-native';
+
+const DAILY_JOURNEY_RUNE_IMAGE_SOURCE = require('../assets/images/level-spin-rewards/stars_10.webp') as ImageSourcePropType;
+
+/** Clean-checkout rune raster shared with the approved Daily Journey reveal. */
+export function dailyJourneyRuneImageSource(): ImageSourcePropType {
+  return DAILY_JOURNEY_RUNE_IMAGE_SOURCE;
+}
+
 export type DailyJourneyGiftArtReward = Readonly<{
   kind: 'pearls' | 'energy_full' | 'energy_plus' | 'runes' | 'freeze' | 'spins';
   amount: number;
@@ -58,7 +67,7 @@ export type DailyJourneyGiftInventoryControllerDependencies<LegacySnapshot, Toke
   clearViews: () => void;
   markSnapshotSeen: (revision: number, token: Token) => Promise<boolean>;
   claimGift: (operationId: string, token: Token) => Promise<unknown>;
-  closeClaim: () => void;
+  clearClaimView: () => void;
   setClaimBusy: (operationId: string | null) => void;
   reportError: (scope: DailyJourneyGiftInventoryErrorScope, error: unknown) => void;
 }>;
@@ -101,6 +110,16 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
       dependencies.reportError(scope, error);
     } catch {
       // Diagnostics must never turn a settled UI reload into an unhandled rejection.
+    }
+  };
+
+  const clearExternalClaimView = (scope: 'daily_claim' | 'account_reset'): boolean => {
+    try {
+      dependencies.clearClaimView();
+      return true;
+    } catch (error) {
+      report(scope, error);
+      return false;
     }
   };
 
@@ -191,13 +210,9 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
     await Promise.all([reloadLegacy(), reloadDaily()]);
   };
 
-  const clearClaimBusy = (): void => {
+  const clearClaimLifecycle = (scope: 'daily_claim' | 'account_reset'): void => {
     claimsInFlight.clear();
-    try {
-      dependencies.setClaimBusy(null);
-    } catch (error) {
-      report('account_reset', error);
-    }
+    clearExternalClaimView(scope);
   };
 
   const activate = async (): Promise<void> => {
@@ -209,6 +224,7 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
     acknowledgementRunId += 1;
     acknowledgementInFlight = false;
     lastDisplayedSnapshot = null;
+    clearClaimLifecycle('account_reset');
     await reloadAll();
   };
 
@@ -221,7 +237,7 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
     acknowledgementRunId += 1;
     acknowledgementInFlight = false;
     lastDisplayedSnapshot = null;
-    claimsInFlight.clear();
+    clearClaimLifecycle('account_reset');
   };
 
   const resetForAccount = async (reloadActiveAccount: boolean): Promise<void> => {
@@ -232,7 +248,7 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
     acknowledgementRunId += 1;
     acknowledgementInFlight = false;
     lastDisplayedSnapshot = null;
-    clearClaimBusy();
+    clearClaimLifecycle('account_reset');
     try {
       dependencies.clearViews();
     } catch (error) {
@@ -256,21 +272,23 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
     }
 
     claimsInFlight.set(item.operationId, epoch);
+    let claimViewCleared = false;
     try {
       dependencies.setClaimBusy(item.operationId);
       await dependencies.claimGift(item.operationId, token);
       if (!isLive(token, epoch)) return 'ignored';
-      dependencies.closeClaim();
+      claimViewCleared = clearExternalClaimView('daily_claim');
       await reloadAll();
       return 'claimed';
     } catch (error) {
+      if (!isLive(token, epoch)) return 'ignored';
       report('daily_claim', error);
       return 'failed';
     } finally {
       if (claimsInFlight.get(item.operationId) === epoch) {
         claimsInFlight.delete(item.operationId);
       }
-      if (isLive(token, epoch)) {
+      if (isLive(token, epoch) && !claimViewCleared) {
         try {
           dependencies.setClaimBusy(null);
         } catch (error) {

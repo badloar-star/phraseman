@@ -30,7 +30,6 @@ import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
 import LevelSpinRewardArt from '../components/LevelSpinRewardArt';
-import { RuneGlyph } from '../components/RuneGlyph';
 import SpinTicketArt from '../components/SpinTicketArt';
 import { isLightThemeMode } from '../constants/theme';
 import { getStreakFreezeIconVariant } from '../constants/streakIconAssets';
@@ -83,6 +82,7 @@ import {
 import {
   createDailyJourneyGiftInventoryController,
   dailyJourneyGiftArtDescriptor,
+  dailyJourneyRuneImageSource,
 } from './daily_journey_gift_inventory_adapter';
 
 // зачем 2026-08-03 (владелец: «полностью измени цвета градиентов подарков,
@@ -276,14 +276,12 @@ const DailyJourneyGiftArt = memo(function DailyJourneyGiftArt({
   reward,
   size,
   themeMode,
-  themeGold,
   fallbackColor,
   accessibilityLabel,
 }: {
   reward: DailyJourneyGiftRewardV1;
   size: number;
   themeMode: ThemeMode;
-  themeGold: string;
   fallbackColor: string;
   accessibilityLabel: string;
 }) {
@@ -300,14 +298,14 @@ const DailyJourneyGiftArt = memo(function DailyJourneyGiftArt({
   }
   if (art.kind === 'rune') {
     return (
-      <View
+      <Image
+        source={dailyJourneyRuneImageSource()}
+        style={{ width: size, height: size }}
+        contentFit="contain"
         accessible
         accessibilityRole="image"
         accessibilityLabel={accessibilityLabel}
-        style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}
-      >
-        <RuneGlyph size={size * 0.82} color={themeGold} />
-      </View>
+      />
     );
   }
   if (art.kind === 'spin') {
@@ -336,14 +334,13 @@ const DailyJourneyGiftArt = memo(function DailyJourneyGiftArt({
  * the identity of the tile. It deliberately has no level, expiry chip, title,
  * amount, or mini-copy: the artwork is the entire visual payload.
  */
-const DailyJourneyGiftTile = memo(function DailyJourneyGiftTile({ item, size, lang, themeMode, surface, themeAccent, themeGold, onPress }: {
+const DailyJourneyGiftTile = memo(function DailyJourneyGiftTile({ item, size, lang, themeMode, surface, themeAccent, onPress }: {
   item: DailyJourneyGiftPendingItem;
   size: number;
   lang: Parameters<typeof giftTitleForLang>[1];
   themeMode: ThemeMode;
   surface: [string, string];
   themeAccent: string;
-  themeGold: string;
   onPress: (item: DailyJourneyGiftPendingItem) => void;
 }) {
   return (
@@ -368,7 +365,6 @@ const DailyJourneyGiftTile = memo(function DailyJourneyGiftTile({ item, size, la
           reward={item.reward}
           size={size * 0.78}
           themeMode={themeMode}
-          themeGold={themeGold}
           fallbackColor={themeAccent}
           accessibilityLabel={dailyJourneyGiftA11yLabel(item, lang)}
         />
@@ -492,9 +488,7 @@ export default function LevelGiftsInventoryScreen() {
     setMultiplierBreakdown(null);
     setUserName('');
     setSelected(null);
-    setSelectedDailyJourneyGift(null);
     setSelectedInfoGift(null);
-    setDailyJourneyClaimBusyId(null);
   }, []);
 
   const reportInventoryError = useCallback((scope: string, error: unknown) => {
@@ -527,7 +521,10 @@ export default function LevelGiftsInventoryScreen() {
       clearViews: clearInventoryViews,
       markSnapshotSeen: markDailyJourneyGiftSnapshotSeen,
       claimGift: claimDailyJourneyGift,
-      closeClaim: () => setSelectedDailyJourneyGift(null),
+      clearClaimView: () => {
+        setSelectedDailyJourneyGift(null);
+        setDailyJourneyClaimBusyId(null);
+      },
       setClaimBusy: setDailyJourneyClaimBusyId,
       reportError: reportInventoryError,
     })
@@ -904,7 +901,6 @@ export default function LevelGiftsInventoryScreen() {
                     lang={lang}
                     themeMode={themeMode}
                     themeAccent={t.accent}
-                    themeGold={t.gold}
                     surface={[t.bgCard, t.bgSurface]}
                     onPress={setSelectedDailyJourneyGift}
                   />
@@ -1001,7 +997,6 @@ export default function LevelGiftsInventoryScreen() {
                 reward={selectedDailyJourneyGift.reward}
                 size={184}
                 themeMode={themeMode}
-                themeGold={t.gold}
                 fallbackColor={t.accent}
                 accessibilityLabel={dailyJourneyGiftA11yLabel(selectedDailyJourneyGift, lang)}
               />

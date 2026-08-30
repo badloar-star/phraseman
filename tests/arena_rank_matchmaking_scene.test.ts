@@ -29,6 +29,8 @@ describe('ranked Arena matchmaking scene', () => {
     expect(scene).toContain('withSequence(');
     expect(scene).toContain('withTiming(');
     expect(scene).toContain('cancelAnimation(');
+    expect(scene).toContain('duration: 260');
+    expect(scene).not.toContain('duration: 520');
     expect(scene).toMatch(/!active\s*\|\|\s*reduceMotion/);
     expect(scene).toContain('translateY');
     expect(scene).not.toContain('setInterval');

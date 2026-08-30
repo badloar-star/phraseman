@@ -10,13 +10,28 @@ describe('Arena rank-shield versus intro', () => {
     expect(intro).toContain('youRankIndex?: number | null;');
     expect(intro).toContain('opponentRankIndex?: number | null;');
     expect(intro).toContain('arenaRankShieldAssetForRankIndex');
-    expect(intro).toContain('<Image source={youRankAsset}');
-    expect(intro).toContain('<Image source={opponentRankAsset}');
+    expect(intro).toContain('<Image accessible={false} source={youRankAsset}');
+    expect(intro).toContain('<Image accessible={false} source={opponentRankAsset}');
     expect(intro).not.toContain('AvatarView');
     expect(intro).toContain("you?.name ?? '—'");
     expect(intro).toContain("opponent?.name ?? '—'");
     expect(intro).toContain('countdownTick');
     expect(intro).toContain('countdownGo');
+  });
+
+  it('uses physical, cancellable motion and exposes both rank labels to accessibility', () => {
+    const intro = read('components/arena/ArenaVersusIntro.tsx');
+    expect(intro).toContain('const digitOpacity = useSharedValue(0);');
+    expect(intro).toContain('0.92 + 0.08 * vs.value');
+    expect(intro).not.toContain('Easing.in(');
+    expect(intro).toContain('cancelAnimation(left);');
+    expect(intro).toContain('cancelAnimation(right);');
+    expect(intro).toContain('cancelAnimation(vs);');
+    expect(intro).toContain('cancelAnimation(digitScale);');
+    expect(intro).toContain('cancelAnimation(digitOpacity);');
+    expect(intro).toContain('accessibilityLabel={youA11yLabel}');
+    expect(intro).toContain('accessibilityLabel={opponentA11yLabel}');
+    expect(intro).toContain('arenaRankView(');
   });
 
   it('passes route rank context into the intro and preserves the gameplay HUD', () => {

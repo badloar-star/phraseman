@@ -54,8 +54,8 @@ function ArenaRankMatchmakingSceneComponent({
     if (!active || reduceMotion) return undefined;
 
     entrance.value = 0;
-    entrance.value = withTiming(1, { duration: 520, easing: Easing.out(Easing.cubic) });
-    float.value = withDelay(420, withRepeat(
+    entrance.value = withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) });
+    float.value = withDelay(220, withRepeat(
       withSequence(
         withTiming(1, { duration: 1_800, easing: Easing.inOut(Easing.sin) }),
         withTiming(0, { duration: 1_800, easing: Easing.inOut(Easing.sin) }),

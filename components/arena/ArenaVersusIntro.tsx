@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Image, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, {
+  cancelAnimation,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -15,6 +16,9 @@ import { hapticMediumImpact, hapticHeavyImpact } from '../../hooks/use-haptics';
 import type { ArenaPlayer } from '../../modules/arena/contract';
 import { useArenaSound } from '../../hooks/use_arena_sound';
 import { arenaRankShieldAssetForRankIndex } from './arena_rank_shield_assets';
+import { ARENA_STARS_PER_RANK, arenaRankView } from '../../modules/arena/rank_engine';
+import { arenaText } from '../../modules/arena/copy';
+import { useLang } from '../LangContext';
 
 /**
  * Сцена «соперник найден → 3-2-1 → старт».
@@ -34,6 +38,11 @@ import { arenaRankShieldAssetForRankIndex } from './arena_rank_shield_assets';
 const SPRING = { damping: 14, stiffness: 200, mass: 0.8 } as const;
 const ENTER_MS = 620;
 const DIGIT_MS = 700;
+const TIER_COPY = [
+  'tierBronze', 'tierSilver', 'tierGold', 'tierPlatinum',
+  'tierDiamond', 'tierMaster', 'tierGrandmaster', 'tierLegend',
+] as const;
+const ROMAN = ['', 'I', 'II', 'III'] as const;
 
 function ArenaVersusIntroBase({
   you,
@@ -54,6 +63,7 @@ function ArenaVersusIntroBase({
   onDone: () => void;
 }) {
   const P = useTournamentPalette();
+  const { lang } = useLang();
   const reduceMotion = useReduceMotion();
   const playSound = useArenaSound();
   const { width } = useWindowDimensions();
@@ -67,11 +77,26 @@ function ArenaVersusIntroBase({
   const opponentRankAsset = typeof opponentRankIndex === 'number'
     ? arenaRankShieldAssetForRankIndex(opponentRankIndex)
     : null;
+  const youRankLabel = youRankAsset && typeof youRankIndex === 'number'
+    ? (() => {
+        const rank = arenaRankView(youRankIndex * ARENA_STARS_PER_RANK);
+        return `${arenaText(lang, TIER_COPY[rank.tierIndex])} ${ROMAN[rank.division]}`;
+      })()
+    : null;
+  const opponentRankLabel = opponentRankAsset && typeof opponentRankIndex === 'number'
+    ? (() => {
+        const rank = arenaRankView(opponentRankIndex * ARENA_STARS_PER_RANK);
+        return `${arenaText(lang, TIER_COPY[rank.tierIndex])} ${ROMAN[rank.division]}`;
+      })()
+    : null;
+  const youA11yLabel = [you?.name ?? '—', youRankLabel].filter(Boolean).join('. ');
+  const opponentA11yLabel = [opponent?.name ?? '—', opponentRankLabel].filter(Boolean).join('. ');
 
   const left = useSharedValue(0);
   const right = useSharedValue(0);
   const vs = useSharedValue(0);
-  const digitScale = useSharedValue(0);
+  const digitScale = useSharedValue(0.94);
+  const digitOpacity = useSharedValue(0);
 
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
@@ -95,11 +120,22 @@ function ArenaVersusIntroBase({
         // игрок слышал бы «3…1».
         playSound('countdownTick');
         void hapticMediumImpact();
-        if (reduceMotion) { digitScale.value = 1; return; }
-        digitScale.value = 0.4;
+        cancelAnimation(digitScale);
+        cancelAnimation(digitOpacity);
+        if (reduceMotion) {
+          digitScale.value = 1;
+          digitOpacity.value = 1;
+          return;
+        }
+        digitScale.value = 0.92;
+        digitOpacity.value = 0;
         digitScale.value = withSequence(
-          withSpring(1.1, { damping: 10, stiffness: 240 }),
-          withTiming(0.86, { duration: DIGIT_MS - 260, easing: Easing.in(Easing.quad) }),
+          withSpring(1.04, { damping: 12, stiffness: 240 }),
+          withDelay(150, withTiming(0.98, { duration: 180, easing: Easing.out(Easing.cubic) })),
+        );
+        digitOpacity.value = withSequence(
+          withTiming(1, { duration: 140, easing: Easing.out(Easing.cubic) }),
+          withDelay(300, withTiming(0, { duration: 180, easing: Easing.out(Easing.cubic) })),
         );
       }, ENTER_MS + index * DIGIT_MS));
     });
@@ -116,8 +152,15 @@ function ArenaVersusIntroBase({
       setSequenceDone(true);
     }, ENTER_MS + 3 * DIGIT_MS + 380));
 
-    return () => { timers.forEach(clearTimeout); };
-  }, [digitScale, left, playSound, reduceMotion, right, vs]);
+    return () => {
+      timers.forEach(clearTimeout);
+      cancelAnimation(left);
+      cancelAnimation(right);
+      cancelAnimation(vs);
+      cancelAnimation(digitScale);
+      cancelAnimation(digitOpacity);
+    };
+  }, [digitOpacity, digitScale, left, playSound, reduceMotion, right, vs]);
 
   useEffect(() => {
     if (!ready || !sequenceDone || doneRef.current) return;
@@ -140,36 +183,36 @@ function ArenaVersusIntroBase({
   }));
   const vsStyle = useAnimatedStyle(() => ({
     opacity: Math.min(1, vs.value),
-    transform: [{ scale: vs.value }],
+    transform: [{ scale: 0.92 + 0.08 * vs.value }],
   }));
   const digitStyle = useAnimatedStyle(() => ({
-    opacity: Math.min(1, digitScale.value * 1.6),
+    opacity: digitOpacity.value,
     transform: [{ scale: digitScale.value }],
   }));
 
   return (
     <View style={styles.root} accessibilityLiveRegion="polite">
       <View style={styles.players}>
-        <Animated.View style={[styles.player, leftStyle]}>
+        <Animated.View accessible accessibilityLabel={youA11yLabel} style={[styles.player, leftStyle]}>
           {youRankAsset ? (
-            <Image source={youRankAsset} resizeMode="contain" style={{ width: shieldSize, height: shieldSize }} />
+            <Image accessible={false} source={youRankAsset} resizeMode="contain" style={{ width: shieldSize, height: shieldSize }} />
           ) : (
             <View testID="arena-versus-you-rank-neutral" style={styles.neutralRank} />
           )}
-          <Text maxFontSizeMultiplier={1.4} style={[styles.name, { color: P.text }]}>{you?.name ?? '—'}</Text>
+          <Text accessible={false} maxFontSizeMultiplier={1.4} style={[styles.name, { color: P.text }]}>{you?.name ?? '—'}</Text>
         </Animated.View>
 
         <Animated.View style={[styles.vsPlate, vsStyle, { backgroundColor: P.accent }]}>
           <Text style={[styles.vsText, { color: P.accentText }]}>VS</Text>
         </Animated.View>
 
-        <Animated.View style={[styles.player, rightStyle]}>
+        <Animated.View accessible accessibilityLabel={opponentA11yLabel} style={[styles.player, rightStyle]}>
           {opponentRankAsset ? (
-            <Image source={opponentRankAsset} resizeMode="contain" style={{ width: shieldSize, height: shieldSize }} />
+            <Image accessible={false} source={opponentRankAsset} resizeMode="contain" style={{ width: shieldSize, height: shieldSize }} />
           ) : (
             <View testID="arena-versus-opponent-rank-neutral" style={styles.neutralRank} />
           )}
-          <Text maxFontSizeMultiplier={1.4} style={[styles.name, { color: P.text }]}>{opponent?.name ?? '—'}</Text>
+          <Text accessible={false} maxFontSizeMultiplier={1.4} style={[styles.name, { color: P.text }]}>{opponent?.name ?? '—'}</Text>
         </Animated.View>
       </View>
 

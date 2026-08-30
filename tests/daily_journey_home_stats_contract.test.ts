@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import ts from 'typescript';
 
 import {
   createDailyJourneyHomeGrantController,
@@ -525,6 +526,52 @@ describe('Home source wiring for Daily Journey', () => {
 });
 
 describe('Statistics Daily Journey unread controller', () => {
+  test('stops an active hop for zero unread, deactivation, and dispose', async () => {
+    expect(typeof maybeCreateStatsUnreadController).toBe('function');
+    if (!maybeCreateStatsUnreadController) return;
+
+    const unread = [2, 0];
+    const startHop = jest.fn();
+    const stopHop = jest.fn();
+    const controller = maybeCreateStatsUnreadController<Token>({
+      captureToken: () => ({ generation: 1, stableId: 'owner-a', phase: 'active' }),
+      isTokenCurrent: () => true,
+      readProjection: async () => ({ unreadCount: unread.shift() ?? 0 }),
+      displayUnreadCount: jest.fn(), startHop, stopHop,
+      shouldReduceMotion: () => false, reportError: jest.fn(),
+    });
+    await controller.activate();
+    expect(startHop).toHaveBeenCalledTimes(1);
+    await controller.reload();
+    expect(stopHop).toHaveBeenCalledTimes(1);
+    controller.deactivate();
+    controller.dispose();
+    expect(stopHop).toHaveBeenCalledTimes(3);
+  });
+
+  test('clears a blurred old owner before a failed activation reload can expose it', async () => {
+    expect(typeof maybeCreateStatsUnreadController).toBe('function');
+    if (!maybeCreateStatsUnreadController) return;
+
+    let token: Token = { generation: 1, stableId: 'owner-a', phase: 'active' };
+    const displayed: number[] = [];
+    const controller = maybeCreateStatsUnreadController<Token>({
+      captureToken: () => token,
+      isTokenCurrent: (candidate) => candidate.generation === token.generation && candidate.stableId === token.stableId,
+      readProjection: async () => {
+        if (token.stableId === 'owner-b') throw new Error('owner-b storage unavailable');
+        return { unreadCount: 4 };
+      },
+      displayUnreadCount: (count) => displayed.push(count),
+      startHop: jest.fn(), stopHop: jest.fn(), shouldReduceMotion: () => false, reportError: jest.fn(),
+    });
+    await controller.activate();
+    controller.deactivate();
+    token = { generation: 2, stableId: 'owner-b', phase: 'active' };
+    await controller.activate();
+    expect(displayed).toEqual([4, 0]);
+  });
+
   test('keeps the legacy pending badge separate while projection requests are focus, account, and last-request guarded', async () => {
     expect(typeof maybeCreateStatsUnreadController).toBe('function');
     if (!maybeCreateStatsUnreadController) return;
@@ -625,14 +672,30 @@ describe('Statistics source wiring for Daily Journey', () => {
     expect(stats).not.toContain('markDailyJourneyGiftSnapshotSeen');
   });
 
-  test('uses transform-only lifecycle-bound hop and accessible 44px direct inventory button', () => {
+  test('uses a bounded transform-only lifecycle-bound hop and accessible combined-count inventory button', () => {
+    const parsed = ts.transpileModule(stats, {
+      compilerOptions: { jsx: ts.JsxEmit.ReactNative, target: ts.ScriptTarget.ES2022 },
+      reportDiagnostics: true,
+      fileName: 'streak_stats.tsx',
+    });
+    expect(parsed.diagnostics?.filter((diagnostic) => diagnostic.category === ts.DiagnosticCategory.Error)).toHaveLength(0);
     expect(stats).toContain('useReduceMotion()');
     expect(stats).toContain('cancelAnimation(dailyJourneyUnreadHop)');
     expect(stats).toContain('withRepeat(withSequence(');
     expect(stats).toContain('transform: [{ translateY: dailyJourneyUnreadHop.value }]');
     expect(stats).toContain('useNativeDriver: true');
+    expect(stats).toContain('withDelay(6000, withTiming(0, { duration: 1 }))');
+    expect(stats).toContain('duration: 110');
+    expect(stats).toContain('duration: 160');
+    expect(stats).toContain('Easing.bezier(0.77, 0, 0.175, 1)');
+    expect(stats).not.toContain('Easing.in(');
+    expect(stats).toContain('statsRuntimeActive');
     expect(stats).toMatch(/testID="stats-header-gifts"[\s\S]{0,2600}dailyJourneyUnreadCount/);
-    expect(stats).toMatch(/testID="stats-header-gifts"[\s\S]{0,2600}width: 44, height: 44/);
+    expect(stats).toMatch(/testID="stats-header-gifts"[\s\S]{0,5000}width: 44, height: 44/);
     expect(stats).toContain('Unseen Daily Journey gifts');
+    expect(stats).toContain('accessibilityRole="button"');
+    expect(stats).toContain('pendingGiftCount > 0 && dailyJourneyUnreadCount > 0');
+    expect(stats).toMatch(/<Reanimated\.View style=\{dailyJourneyUnreadHopStyle\}>\s*<TouchableOpacity[\s\S]{0,2400}testID="stats-header-gifts"/);
+    expect(stats).not.toMatch(/<Reanimated\.View style=\{dailyJourneyUnreadHopStyle\}>\s*<TouchableOpacity[\s\S]{0,500}testID="stats-header-spins"/);
   });
 });

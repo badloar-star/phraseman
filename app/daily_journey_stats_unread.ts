@@ -17,6 +17,7 @@ export function createDailyJourneyStatsUnreadController<Token>(dependencies: Rea
   let disposed = false;
   let request = 0;
   let hopping = false;
+  let displayedToken: Token | null = null;
 
   const stopHop = (force = false) => {
     if (force || hopping) dependencies.stopHop();
@@ -40,9 +41,18 @@ export function createDailyJourneyStatsUnreadController<Token>(dependencies: Rea
     if (!active || disposed) return;
     const currentRequest = ++request;
     const token = dependencies.captureToken();
+    // A projection belongs to one owner/generation. Clear it before awaiting a
+    // new read, so a failed read for the next account cannot leave old data on
+    // screen while this tab was blurred.
+    if (displayedToken !== null && !dependencies.isTokenCurrent(displayedToken)) {
+      displayedToken = null;
+      dependencies.displayUnreadCount(0);
+      stopHop(true);
+    }
     try {
       const projection = await dependencies.readProjection(token);
       if (disposed || !active || currentRequest !== request || !dependencies.isTokenCurrent(token)) return;
+      displayedToken = token;
       applyUnreadCount(projection.unreadCount);
     } catch (error) {
       if (!disposed && active && currentRequest === request && dependencies.isTokenCurrent(token)) {
@@ -60,12 +70,13 @@ export function createDailyJourneyStatsUnreadController<Token>(dependencies: Rea
     deactivate: () => {
       active = false;
       request += 1;
-      stopHop();
+      stopHop(true);
     },
     reload,
     resetForAccount: async () => {
       if (disposed) return;
       request += 1;
+      displayedToken = null;
       stopHop();
       dependencies.displayUnreadCount(0);
       if (active) await reload();
@@ -75,7 +86,8 @@ export function createDailyJourneyStatsUnreadController<Token>(dependencies: Rea
       disposed = true;
       active = false;
       request += 1;
-      stopHop();
+      displayedToken = null;
+      stopHop(true);
     },
   });
 }

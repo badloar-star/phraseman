@@ -3369,9 +3369,9 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         cancelAnimation(dailyJourneyUnreadHop);
         // Reanimated transform animations useNativeDriver: true by design; no layout property changes here.
         dailyJourneyUnreadHop.value = withRepeat(withSequence(
-            withTiming(-4, { duration: 120, easing: Easing.out(Easing.quad) }),
-            withTiming(0, { duration: 180, easing: Easing.in(Easing.quad) }),
-            withDelay(1800, withTiming(0, { duration: 1 })),
+            withTiming(-4, { duration: 110, easing: Easing.bezier(0.22, 1, 0.36, 1) }),
+            withTiming(0, { duration: 160, easing: Easing.bezier(0.77, 0, 0.175, 1) }),
+            withDelay(6000, withTiming(0, { duration: 1 })),
         ), -1, false);
     }, [dailyJourneyUnreadHop]);
     const dailyJourneyUnreadController = useMemo(() => createDailyJourneyStatsUnreadController({
@@ -3537,6 +3537,10 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         return () => { cancelled = true; };
     }, []));
     useFocusEffect(useCallback(() => {
+        if (!statsRuntimeActive) {
+            dailyJourneyUnreadController.deactivate();
+            return undefined;
+        }
         void dailyJourneyUnreadController.activate().catch(() => {});
         const giftsSubscription = onAppEvent('daily_journey_gifts_changed', () => {
             void dailyJourneyUnreadController.reload().catch(() => {});
@@ -3549,7 +3553,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             accountSubscription.remove();
             dailyJourneyUnreadController.deactivate();
         };
-    }, [dailyJourneyUnreadController]));
+    }, [dailyJourneyUnreadController, statsRuntimeActive]));
     useEffect(() => () => dailyJourneyUnreadController.dispose(), [dailyJourneyUnreadController]);
     useEffect(() => {
         const subscription = onAppEvent('level_spin_balance_changed', () => {
@@ -4161,15 +4165,15 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     pl: pendingGiftCount > 0 ? `${pendingGiftCount} ${pendingGiftCount === 1 ? 'prezent' : 'prezentów'}` : 'Prezenty',
                   })}
                   accessibilityLabel={triLang(lang, {
-                    ru: dailyJourneyUnreadCount > 0 ? `Непросмотренные подарки Daily Journey: ${dailyJourneyUnreadCount}` : 'Подарки',
-                    uk: dailyJourneyUnreadCount > 0 ? `Непереглянуті подарунки Daily Journey: ${dailyJourneyUnreadCount}` : 'Подарунки',
-                    en: dailyJourneyUnreadCount > 0 ? `Unseen Daily Journey gifts: ${dailyJourneyUnreadCount}` : 'Gifts',
-                    es: dailyJourneyUnreadCount > 0 ? `Regalos sin ver de Daily Journey: ${dailyJourneyUnreadCount}` : 'Regalos',
-                    'pt-BR': dailyJourneyUnreadCount > 0 ? `Presentes não vistos do Daily Journey: ${dailyJourneyUnreadCount}` : 'Presentes',
-                    vi: dailyJourneyUnreadCount > 0 ? `Quà Daily Journey chưa xem: ${dailyJourneyUnreadCount}` : 'Quà',
-                    id: dailyJourneyUnreadCount > 0 ? `Hadiah Daily Journey belum dilihat: ${dailyJourneyUnreadCount}` : 'Hadiah',
-                    tr: dailyJourneyUnreadCount > 0 ? `Görülmemiş Daily Journey hediyeleri: ${dailyJourneyUnreadCount}` : 'Hediyeler',
-                    pl: dailyJourneyUnreadCount > 0 ? `Nieobejrzane prezenty Daily Journey: ${dailyJourneyUnreadCount}` : 'Prezenty',
+                    ru: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Подарки: ${pendingGiftCount}. Непросмотренные подарки Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Непросмотренные подарки Daily Journey: ${dailyJourneyUnreadCount}` : ruGiftPhrase(pendingGiftCount),
+                    uk: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Подарунки: ${pendingGiftCount}. Непереглянуті подарунки Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Непереглянуті подарунки Daily Journey: ${dailyJourneyUnreadCount}` : ukGiftPhrase(pendingGiftCount),
+                    en: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Gifts: ${pendingGiftCount}. Unseen Daily Journey gifts: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Unseen Daily Journey gifts: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} gift${pendingGiftCount === 1 ? '' : 's'}` : 'Gifts'),
+                    es: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Regalos: ${pendingGiftCount}. Regalos sin ver de Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Regalos sin ver de Daily Journey: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} regalo${pendingGiftCount === 1 ? '' : 's'}` : 'Regalos'),
+                    'pt-BR': pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Presentes: ${pendingGiftCount}. Presentes não vistos do Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Presentes não vistos do Daily Journey: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} presente${pendingGiftCount === 1 ? '' : 's'}` : 'Presentes'),
+                    vi: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Quà: ${pendingGiftCount}. Quà Daily Journey chưa xem: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Quà Daily Journey chưa xem: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} quà` : 'Quà'),
+                    id: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Hadiah: ${pendingGiftCount}. Hadiah Daily Journey belum dilihat: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Hadiah Daily Journey belum dilihat: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} hadiah` : 'Hadiah'),
+                    tr: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Hediyeler: ${pendingGiftCount}. Görülmemiş Daily Journey hediyeleri: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Görülmemiş Daily Journey hediyeleri: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} hediye` : 'Hediyeler'),
+                    pl: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Prezenty: ${pendingGiftCount}. Nieobejrzane prezenty Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Nieobejrzane prezenty Daily Journey: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} ${pendingGiftCount === 1 ? 'prezent' : 'prezentów'}` : 'Prezenty'),
                   })}
                   activeOpacity={0.82}
                   onPress={() => {
@@ -4185,7 +4189,13 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                       <Text style={{ color: t.bgCard, fontSize: 9, fontWeight: '900' }}>{pendingGiftCount}</Text>
                     </View>
                   ) : null}
+                  {dailyJourneyUnreadCount > 0 ? (
+                    <View testID="stats-header-daily-journey-unread" style={{ position: 'absolute', bottom: 3, left: 3, minWidth: 15, height: 15, borderRadius: 8, paddingHorizontal: 3, alignItems: 'center', justifyContent: 'center', backgroundColor: t.correct }}>
+                      <Text style={{ color: t.correctText, fontSize: 8, fontWeight: '900' }}>{dailyJourneyUnreadCount}</Text>
+                    </View>
+                  ) : null}
                 </TouchableOpacity>
+                </Reanimated.View>
                 </View>
               </View>
 

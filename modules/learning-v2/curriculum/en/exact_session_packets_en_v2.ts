@@ -10,6 +10,7 @@ import {
   LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2,
   LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2,
 } from "./lexical_progression_en_v2";
+import { LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2 } from "./session_lexical_assignments_en_v2";
 
 export type LearningV2EnglishIntroPlanItemV2 = Readonly<{
   slot: 1 | 2 | 3;
@@ -131,6 +132,12 @@ if (new Set(MODE_SEQUENCE).size !== LEARNING_V2_ACTIVE_MODE_FAMILIES_V2.length) 
 const operationById = new Map(
   LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2.map((operation) => [operation.id, operation]),
 );
+const lexicalAssignmentBySessionId = new Map(
+  LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2.map((assignment) => [
+    assignment.sessionId,
+    assignment,
+  ]),
+);
 
 const sessionId = (lessonOrdinal: number, sessionOrdinal: number): `lesson-${string}:session:${string}` =>
   `lesson-${String(lessonOrdinal).padStart(2, "0")}:session:${String(sessionOrdinal).padStart(2, "0")}`;
@@ -245,16 +252,21 @@ export const LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2: readonly LearningV2En
       const focusOperationIds = grammarOperationIds.length > 0
         ? grammarOperationIds
         : reviewOperationIds;
-      const examples = canonicalExamples(focusOperationIds);
+      const exactSessionId = sessionId(chapter.lessonOrdinal, sessionOrdinal);
+      const lexicalAssignment = lexicalAssignmentBySessionId.get(exactSessionId);
+      const examples = lexicalAssignment?.canonicalExamples ?? canonicalExamples(focusOperationIds);
       const newLexicalSenseIds = role === "checkpoint"
         ? Object.freeze([])
-        : lexicalSenseIdsAt(absoluteSessionOrdinal, "new");
-      const retrievalLexicalSenseIds = lexicalSenseIdsAt(absoluteSessionOrdinal, "retrieval");
+        : lexicalAssignment
+          ? Object.freeze(lexicalAssignment.newSenses.map((sense) => sense.id))
+          : lexicalSenseIdsAt(absoluteSessionOrdinal, "new");
+      const retrievalLexicalSenseIds = lexicalAssignment
+        ? lexicalAssignment.retrievalSenseIds
+        : lexicalSenseIdsAt(absoluteSessionOrdinal, "retrieval");
       const groundedLexicalSenseIds = unique([
         ...newLexicalSenseIds,
         ...retrievalLexicalSenseIds,
       ]);
-      const exactSessionId = sessionId(chapter.lessonOrdinal, sessionOrdinal);
       const prerequisiteSessionIds = unique(
         focusOperationIds.flatMap((operationId) =>
           (operationById.get(operationId)?.prerequisiteOperationIds ?? [])

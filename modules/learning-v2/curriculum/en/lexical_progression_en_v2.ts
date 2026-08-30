@@ -1,5 +1,6 @@
 import { LEARNING_V2_ENGLISH_LEXICAL_SENSES_V1 } from "./lexical_senses_en_v1";
 import { LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2 } from "./grammar_operations_en_v2";
+import { LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2 } from "./session_lexical_assignments_en_v2";
 
 export type LearningV2EnglishPlannedLexicalSenseV2 = Readonly<{
   id: string;
@@ -37,33 +38,35 @@ const normalizedExamplesByOperation = LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2.
   text: ` ${operation.positiveExamples.join(" ").toLowerCase().replace(/[^a-z]+/g, " ")} `,
 }));
 
-const courseStartOperation = LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2.find(
-  (operation) => operation.id === "en.grammar.present_be_affirmative.i_am",
+const explicitIntroductions = LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2.flatMap(
+  (assignment) => assignment.newSenses.map((sense) => ({ assignment, sense })),
 );
-if (!courseStartOperation) {
-  throw new Error("learning_v2_course_start_i_am_operation_missing");
-}
-
-// PRE-A1 has no hidden learner vocabulary. These two manually curated senses
-// are introduced on the first encounter and ground both canonical I am frames.
-const COURSE_START_CANDIDATES = Object.freeze([
-  Object.freeze({
-    sense: Object.freeze({ english: "here", glossRu: "здесь", partOfSpeech: "adverb" }),
-    operation: courseStartOperation,
-  }),
-  Object.freeze({
-    sense: Object.freeze({ english: "ready", glossRu: "готовый; готовая", partOfSpeech: "adjective" }),
-    operation: courseStartOperation,
-  }),
-]);
+const explicitIntroductionBySenseId = new Map(
+  explicitIntroductions.map(({ assignment, sense }) => [sense.id, assignment]),
+);
+const explicitlyAssignedEnglish = new Set(
+  explicitIntroductions.map(({ sense }) => sense.english.toLowerCase()),
+);
+const explicitCandidates = explicitIntroductions.map(({ assignment, sense }) => {
+  const operation = LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2.find(
+    (candidate) => candidate.id === assignment.grammarOperationId,
+  );
+  if (!operation) {
+    throw new Error(`learning_v2_lexical_assignment_operation_missing:${assignment.grammarOperationId}`);
+  }
+  return Object.freeze({ sense, operation });
+});
 
 // V1 is only a bounded glossary candidate pool. Its scenario-first lesson
 // order is never inherited: every accepted form must be independently grounded
 // in an approved V2 grammar-operation example and is re-timed by that operation.
 const candidates = Object.freeze([
-  ...COURSE_START_CANDIDATES,
+  ...explicitCandidates,
   ...LEARNING_V2_ENGLISH_LEXICAL_SENSES_V1
-    .filter((sense) => !["hello", "name", "here", "ready"].includes(sense.english.toLowerCase()))
+    .filter((sense) =>
+      !["hello", "name"].includes(sense.english.toLowerCase()) &&
+      !explicitlyAssignedEnglish.has(sense.english.toLowerCase())
+    )
     .flatMap((sense) => {
       const grounding = normalizedExamplesByOperation.find(({ text }) =>
         text.includes(` ${sense.english.toLowerCase()} `),
@@ -76,6 +79,8 @@ const candidateIndexWithinOperation = new Map<string, number>();
 
 export const LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2: readonly LearningV2EnglishPlannedLexicalSenseV2[] = Object.freeze(
   candidates.map(({ sense, operation }) => {
+    const senseId = `en.${senseSlug(sense.english)}.${senseSlug(sense.partOfSpeech)}.01`;
+    const explicitIntroduction = explicitIntroductionBySenseId.get(senseId);
     const operationIndexWithinLesson = LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2
       .filter((candidate) => candidate.lessonOrdinal === operation.lessonOrdinal)
       .findIndex((candidate) => candidate.id === operation.id);
@@ -85,19 +90,19 @@ export const LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2: readonly LearningV2E
     const candidateIndex = candidateIndexWithinOperation.get(operation.id) ?? 0;
     candidateIndexWithinOperation.set(operation.id, candidateIndex + 1);
     const sessionOffsetWithinChapter = Math.floor(candidateIndex / 2);
-    if (sessionOffsetWithinChapter > 7) {
+    if (!explicitIntroduction && sessionOffsetWithinChapter > 7) {
       throw new Error(`learning_v2_lexical_grounding_capacity_exceeded:${operation.id}`);
     }
-    const introductionAbsoluteSessionOrdinal =
-      ((operation.lessonOrdinal - 1) * 56) +
-      (operationIndexWithinLesson * 8) +
-      sessionOffsetWithinChapter +
-      1;
+    const introductionAbsoluteSessionOrdinal = explicitIntroduction?.absoluteSessionOrdinal ??
+      (((operation.lessonOrdinal - 1) * 56) +
+        (operationIndexWithinLesson * 8) +
+        sessionOffsetWithinChapter +
+        1);
     const retrievalOrdinals = [...new Set([8, 56, 112, 224]
       .map((distance) => Math.min(1_792, introductionAbsoluteSessionOrdinal + distance)))]
       .filter((ordinal) => ordinal > introductionAbsoluteSessionOrdinal);
     return Object.freeze({
-      id: `en.${senseSlug(sense.english)}.${senseSlug(sense.partOfSpeech)}.01`,
+      id: senseId,
       english: sense.english,
       glossRu: sense.glossRu,
       partOfSpeech: sense.partOfSpeech,
@@ -119,19 +124,44 @@ export const LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2: readonly LearningV2E
   }),
 );
 
-export const LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2: readonly LearningV2EnglishPlannedLexicalRetrievalEdgeV2[] = Object.freeze(
-  LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2.flatMap((sense) =>
-    sense.neededBySessionIds.slice(1).map((targetSessionId) => {
-      const [lessonPart, sessionPart] = targetSessionId.split(":session:");
-      const targetLessonOrdinal = Number(lessonPart.replace("lesson-", ""));
-      const targetSessionOrdinal = Number(sessionPart);
-      return Object.freeze({
-        senseId: sense.id,
-        sourceAbsoluteSessionOrdinal: sense.introductionAbsoluteSessionOrdinal,
-        targetAbsoluteSessionOrdinal: ((targetLessonOrdinal - 1) * 56) + targetSessionOrdinal,
-        changedContextRequired: true as const,
-        samePromptForbidden: true as const,
-      });
-    }),
-  ),
+const scheduledRetrievalEdges = LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2.flatMap((sense) =>
+  sense.neededBySessionIds.slice(1).map((targetSessionId) => {
+    const [lessonPart, sessionPart] = targetSessionId.split(":session:");
+    const targetLessonOrdinal = Number(lessonPart.replace("lesson-", ""));
+    const targetSessionOrdinal = Number(sessionPart);
+    return Object.freeze({
+      senseId: sense.id,
+      sourceAbsoluteSessionOrdinal: sense.introductionAbsoluteSessionOrdinal,
+      targetAbsoluteSessionOrdinal: ((targetLessonOrdinal - 1) * 56) + targetSessionOrdinal,
+      changedContextRequired: true as const,
+      samePromptForbidden: true as const,
+    });
+  }),
 );
+
+const plannedSenseById = new Map(
+  LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2.map((sense) => [sense.id, sense]),
+);
+const assignedRetrievalEdges = LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2.flatMap(
+  (assignment) => assignment.retrievalSenseIds.map((senseId) => {
+    const sense = plannedSenseById.get(senseId);
+    if (!sense) {
+      throw new Error(`learning_v2_assigned_retrieval_sense_missing:${assignment.sessionId}:${senseId}`);
+    }
+    if (sense.introductionAbsoluteSessionOrdinal >= assignment.absoluteSessionOrdinal) {
+      throw new Error(`learning_v2_assigned_retrieval_not_after_introduction:${assignment.sessionId}:${senseId}`);
+    }
+    return Object.freeze({
+      senseId,
+      sourceAbsoluteSessionOrdinal: sense.introductionAbsoluteSessionOrdinal,
+      targetAbsoluteSessionOrdinal: assignment.absoluteSessionOrdinal,
+      changedContextRequired: true as const,
+      samePromptForbidden: true as const,
+    });
+  }),
+);
+
+export const LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2: readonly LearningV2EnglishPlannedLexicalRetrievalEdgeV2[] = Object.freeze([
+  ...assignedRetrievalEdges,
+  ...scheduledRetrievalEdges,
+]);

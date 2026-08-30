@@ -14,7 +14,11 @@ const markers = [
   "Probability and deduction",
   "COURSE START AMENDMENT — OWNER REVIEW REQUIRED",
   "первая сессия теперь учит только I + am",
-  "97</b><span>planned senses · 382 возвратов",
+  "128</b><span>planned senses · 545 возвратов",
+  "en.happy.adjective.01",
+  "en.scared.adjective.01",
+  "en.tall.adjective.01",
+  "en.important.adjective.01",
   "восемь локализаций создаются вручную только последовательно",
   "PLANNED_NOT_AUTHORED",
 ];

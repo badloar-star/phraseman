@@ -109,6 +109,37 @@ if (firstChapterSenseIds.size !== 20) {
   findings.push(`course_start_unique_sense_count:${firstChapterSenseIds.size}`);
 }
 
+const expectedSecondChapterNewLexicon = new Map<number, readonly string[]>([
+  [1, ["en.tall.adjective.01", "en.short.adjective.01", "en.young.adjective.01"]],
+  [2, ["en.old.adjective.01", "en.kind.adjective.01", "en.funny.adjective.01"]],
+  [3, ["en.smart.adjective.01", "en.strong.adjective.01", "en.quiet.adjective.01"]],
+  [4, ["en.loud.adjective.01", "en.friendly.adjective.01", "en.helpful.adjective.01"]],
+  [5, ["en.small.adjective.01", "en.big.adjective.01", "en.clean.adjective.01"]],
+  [6, ["en.dirty.adjective.01", "en.open.adjective.01", "en.closed.adjective.01"]],
+  [7, ["en.easy.adjective.01", "en.difficult.adjective.01", "en.important.adjective.01"]],
+  [8, []],
+]);
+
+const secondChapterPackets = packets.filter(
+  (packet) => packet.lessonOrdinal === 1 && packet.chapterOrdinal === 2,
+);
+for (const packet of secondChapterPackets) {
+  const expected = [...(expectedSecondChapterNewLexicon.get(packet.sessionWithinChapter) ?? [])].sort();
+  const actual = [...packet.newLexicalSenseIds].sort();
+  if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+    findings.push(
+      `he_she_it_lexicon_mismatch:${packet.sessionId}:expected=${expected.join(",")}:actual=${actual.join(",")}`,
+    );
+  }
+}
+
+const secondChapterSenseIds = new Set(
+  secondChapterPackets.flatMap((packet) => packet.newLexicalSenseIds),
+);
+if (secondChapterSenseIds.size !== 21) {
+  findings.push(`he_she_it_unique_sense_count:${secondChapterSenseIds.size}`);
+}
+
 assert.equal(
   findings.length,
   0,

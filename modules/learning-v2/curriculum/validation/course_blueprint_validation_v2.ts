@@ -333,7 +333,7 @@ export function validateLearningV2CourseBlueprintV2(
   const lexicalSenseIds = new Set(input.lexicalSenses.map((sense) => sense.id));
   const exampleOwners = new Map<string, LearningV2EnglishGrammarOperationV2[]>();
   for (const operation of input.grammarOperations) {
-    for (const example of operation.positiveExamples) {
+    for (const example of operation.canonicalLexicalExamples) {
       const owners = exampleOwners.get(example) ?? [];
       owners.push(operation);
       exampleOwners.set(example, owners);

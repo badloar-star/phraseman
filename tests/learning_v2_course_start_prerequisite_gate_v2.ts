@@ -33,8 +33,8 @@ assert.equal(firstSession?.sessionId, "lesson-01:session:01", "course_start_pack
 assert.deepEqual(firstSession?.grammarOperationIds, [expectedOperationIds[0]], "course_start_owns_only_i_am");
 assert.deepEqual(
   [...(firstSession?.newLexicalSenseIds ?? [])].sort(),
-  ["en.here.adverb.01", "en.ready.adjective.01"],
-  "course_start_explicitly_introduces_here_and_ready",
+  ["en.fine.adjective.01", "en.here.adverb.01", "en.ready.adjective.01"],
+  "course_start_explicitly_introduces_here_ready_and_fine",
 );
 assert.equal(firstSession?.canonicalExamples.includes("They are here."), false, "future_are_example_forbidden");
 assert.equal(

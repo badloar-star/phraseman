@@ -1,3 +1,5 @@
+import { LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2 } from "./session_lexical_assignments_en_v2";
+
 export type LearningV2EnglishGrammarOperationV2 = Readonly<{
   id: string;
   lessonOrdinal: number;
@@ -6,6 +8,7 @@ export type LearningV2EnglishGrammarOperationV2 = Readonly<{
   decisionRuleRu: string;
   formBoundary: readonly string[];
   positiveExamples: readonly [string, string];
+  canonicalLexicalExamples: readonly string[];
   diagnosticErrorIds: readonly string[];
   prerequisiteOperationIds: readonly string[];
   prohibitedExtensionIds: readonly string[];
@@ -233,6 +236,15 @@ export const LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2: readonly LearningV2Engli
       decisionRuleRu,
       formBoundary: Object.freeze([form]),
       positiveExamples: Object.freeze([exampleOne, exampleTwo]) as readonly [string, string],
+      canonicalLexicalExamples: Object.freeze([
+        ...new Set([
+          exampleOne,
+          exampleTwo,
+          ...LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2
+            .filter((assignment) => assignment.grammarOperationId === id)
+            .flatMap((assignment) => assignment.canonicalExamples),
+        ]),
+      ]),
       diagnosticErrorIds: Object.freeze([`${id}.wrong_form_or_meaning`]),
       prerequisiteOperationIds,
       prohibitedExtensionIds: Object.freeze([`${majorSystemId}.outside_approved_boundary`]),

@@ -60,9 +60,9 @@ const courseStartFindings = [
     ? null
     : "course_start_examples_not_prerequisite_safe",
   JSON.stringify([...(courseStartPacket?.newLexicalSenseIds ?? [])].sort()) ===
-      JSON.stringify(["en.here.adverb.01", "en.ready.adjective.01"])
+      JSON.stringify(["en.fine.adjective.01", "en.here.adverb.01", "en.ready.adjective.01"])
     ? null
-    : "course_start_here_ready_not_explicitly_introduced",
+    : "course_start_here_ready_fine_not_explicitly_introduced",
 ].filter((finding): finding is string => finding !== null);
 
 const countsPass =

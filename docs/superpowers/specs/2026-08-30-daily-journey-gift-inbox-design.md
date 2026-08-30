@@ -1,7 +1,9 @@
 # Daily Journey: delivery animation, gift inbox, and unread entry points
 
-**Owner approval:** 2026-08-30  
-**Surface:** React Native Home, Daily Journey modal, Statistics, and the existing Gifts inventory  
+**Owner approval:** 2026-08-30
+
+**Surface:** React Native Home, Daily Journey modal, Statistics, and the existing Gifts inventory
+
 **Scope:** the current Dev-only repeated grant path plus reusable runtime contracts for the later once-per-day host
 
 ## 1. Outcome

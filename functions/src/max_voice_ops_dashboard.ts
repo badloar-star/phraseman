@@ -1,8 +1,10 @@
 import * as admin from 'firebase-admin';
+import { AggregateField } from 'firebase-admin/firestore';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 
 import { hasPermission, roleFromAdminToken } from './admin/permissions';
 import { ENFORCE_APP_CHECK_ADMIN } from './callable_options';
+import { VOICE_BILLING_COLLECTION } from './max_voice_session_end';
 import {
   applyMaxVoiceOpsDelta,
   emptyMaxVoiceOpsDaily,
@@ -28,10 +30,25 @@ type AuditRow = Readonly<{
   createdAtMs: number;
 }>;
 
+/** Сумма фактического потребления по строкам voice_call_billing. */
+export interface MaxVoiceUsageMoneyTotals {
+  readonly calls: number;
+  readonly seconds: number;
+  readonly estCostUsd: number;
+  readonly transcriptionCostUsd: number;
+}
+
 export interface MaxVoiceOpsDashboardDependencies {
   readonly nowMs: () => number;
   readonly readDays: (dayKeys: readonly string[]) => Promise<readonly unknown[]>;
   readonly appendAudit: (row: AuditRow) => Promise<void>;
+  /**
+   * зачем (владелец 2026-08-30): «сколько минут MAX использовано в общем и
+   * сколько это стоило денег реально (точно)». Серверная sum-агрегация по
+   * voice_call_billing (sinceMs=null — за всё время) — документы НЕ
+   * выкачиваются (правило Джарвиса), одна агрегация на окно.
+   */
+  readonly readUsage: (sinceMs: number | null) => Promise<MaxVoiceUsageMoneyTotals>;
 }
 
 function record(value: unknown): value is Record<string, unknown> {
@@ -119,7 +136,30 @@ export async function getMaxVoiceOpsDashboard(request: RequestShape, deps: MaxVo
   const { days } = normalizeInput(request.data);
   const nowMs = deps.nowMs();
   const dayKeys = dayKeysEndingAt(nowMs, days);
-  const rawRows = await deps.readDays(dayKeys);
+  const nowDate = new Date(nowMs);
+  const monthStartMs = Date.UTC(nowDate.getUTCFullYear(), nowDate.getUTCMonth(), 1);
+  // Минуты/деньги — параллельно с дневными агрегатами; сбой агрегации не
+  // роняет остальной дашборд (usage: null + причина в консоли функции).
+  const [rawRows, usage] = await Promise.all([
+    deps.readDays(dayKeys),
+    Promise.all([
+      deps.readUsage(null),
+      deps.readUsage(monthStartMs),
+      deps.readUsage(nowMs - days * DAY_MS),
+    ]).then(([allTime, currentMonth, windowTotals]) => ({
+      // Источник и метод — прямо в ответе, чтобы админка честно подписывала
+      // цифру: фактические токены каждой сессии × официальный прайс
+      // (кэш-скидка и транскрипция учтены; priceTableDate — в каждой строке).
+      source: VOICE_BILLING_COLLECTION,
+      basis: 'usage_tokens_x_price_table',
+      allTime,
+      currentMonth,
+      window: windowTotals,
+    })).catch((error) => {
+      console.error('max_voice_ops_dashboard usage aggregation failed', error);
+      return null;
+    }),
+  ]);
   const rowsByDay = new Map<string, MaxVoiceOpsDailyV1>();
   for (const raw of rawRows.slice(0, 30)) {
     const normalized = safeDaily(raw, dayKeys[0]);
@@ -156,6 +196,7 @@ export async function getMaxVoiceOpsDashboard(request: RequestShape, deps: MaxVo
       requestedDays: dayKeys.length,
     },
     health: health(totals.callsStarted, totals.callsConnected, totals.reviewsReady, completed, totals.reconnectAttempts, totals.reconnectRecovered),
+    usage,
     totals,
     rates: {
       mintSuccess: ratio(totals.mintsSucceeded, totals.mintsRequested),
@@ -208,6 +249,24 @@ export const adminGetMaxVoiceOpsDashboard = onCall({
     },
     appendAudit: async (row) => {
       await db.collection('admin_log').add(row);
+    },
+    readUsage: async (sinceMs) => {
+      let query: FirebaseFirestore.Query = db.collection(VOICE_BILLING_COLLECTION);
+      if (sinceMs !== null) query = query.where('createdAtMs', '>=', sinceMs);
+      const snapshot = await query.aggregate({
+        calls: AggregateField.count(),
+        seconds: AggregateField.sum('seconds'),
+        estCostUsd: AggregateField.sum('estCostUsd'),
+        transcriptionCostUsd: AggregateField.sum('transcriptionCostUsd'),
+      }).get();
+      const data = snapshot.data();
+      const num = (value: unknown): number => (Number.isFinite(Number(value)) ? Number(value) : 0);
+      return {
+        calls: Math.max(0, Math.floor(num(data.calls))),
+        seconds: Math.max(0, num(data.seconds)),
+        estCostUsd: Math.max(0, num(data.estCostUsd)),
+        transcriptionCostUsd: Math.max(0, num(data.transcriptionCostUsd)),
+      };
     },
   });
 });

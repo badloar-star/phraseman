@@ -11,6 +11,7 @@ function deps(rows = [emptyMaxVoiceOpsDaily('2026-08-21', NOW)]): MaxVoiceOpsDas
     nowMs: () => NOW,
     readDays: jest.fn(async () => rows),
     appendAudit: jest.fn(async () => undefined),
+    readUsage: jest.fn(async () => ({ calls: 3, seconds: 900, estCostUsd: 0.75, transcriptionCostUsd: 0.05 })),
   };
 }
 
@@ -55,5 +56,35 @@ describe('MAX operations dashboard', () => {
     }));
     expect(d.appendAudit).toHaveBeenCalledWith({ action: 'max_ops_read', actorUid: 'admin-1', days: 30, createdAtMs: NOW });
     expect(JSON.stringify((d.appendAudit as jest.Mock).mock.calls[0][0])).not.toMatch(/metric|locale|level|session|uid.*uid/i);
+  });
+
+  // зачем (владелец 2026-08-30): «сколько минут MAX использовано в общем и
+  // сколько это стоило денег реально». Три окна агрегации: всё время, текущий
+  // UTC-месяц, выбранный период дашборда; сбой агрегации не роняет дашборд.
+  test('attaches usage money totals for all-time, current month, and the selected window', async () => {
+    const d = deps();
+    const result = await getMaxVoiceOpsDashboard(request('owner', { days: 7 }), d);
+
+    expect(d.readUsage).toHaveBeenCalledTimes(3);
+    expect((d.readUsage as jest.Mock).mock.calls[0][0]).toBeNull();
+    expect((d.readUsage as jest.Mock).mock.calls[1][0]).toBe(Date.UTC(2026, 7, 1));
+    expect((d.readUsage as jest.Mock).mock.calls[2][0]).toBe(NOW - 7 * 86_400_000);
+    expect(result.usage).toMatchObject({
+      source: 'voice_call_billing',
+      basis: 'usage_tokens_x_price_table',
+      allTime: { calls: 3, seconds: 900, estCostUsd: 0.75 },
+    });
+  });
+
+  test('a failed usage aggregation degrades to usage:null without breaking the dashboard', async () => {
+    const d = {
+      ...deps(),
+      readUsage: jest.fn(async () => { throw new Error('aggregation unavailable'); }),
+    };
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+    const result = await getMaxVoiceOpsDashboard(request('owner', { days: 7 }), d);
+    expect(result.usage).toBeNull();
+    expect(result.totals).toBeDefined();
+    jest.restoreAllMocks();
   });
 });

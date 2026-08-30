@@ -31,7 +31,7 @@ const spinAvatarIndex = (id: string): number | null => {
 };
 
 /**
- * Spin-only pool approved by the owner: every generated avatar 01..125.
+ * Spin-only pool: every retained generated avatar whose ID is eligible for spins.
  * Legacy `custom-01..35` entries are intentionally excluded.
  */
 export const SPIN_CUSTOM_AVATAR_GIFT_POOL: readonly CustomAvatarDef[] = Object.freeze(

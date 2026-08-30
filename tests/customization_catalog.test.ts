@@ -109,9 +109,8 @@ describe('customization catalog', () => {
     ['custom-gen-83', 100],
     ['custom-gen-93', 150],
     ['custom-gen-103', 300],
-    ['custom-gen-113', 500],
+    ['custom-gen-114', 500],
     ['custom-gen-123', 1000],
-    ['custom-gen-126', 3000],
   ] as const)('prices Avatar100 avatar %s at %i pearls', (id, cost) => {
     const item = buildAvatarCatalog({
       ownedAvatars: {},
@@ -122,9 +121,8 @@ describe('customization catalog', () => {
     expect(item?.availability).toEqual({ kind: 'shards', cost });
   });
 
-  // зачем: витрина теперь — только Avatar100 (73–126 без 90). В ярусе 100 жемчужин
-  // девять позиций именно потому, что ID 90 исключён владельцем.
-  it('sorts purchasable avatars by price and keeps all Avatar100 tier sizes', () => {
+  // зачем: витрина содержит только явно сохранённые Avatar100-пары.
+  it('sorts purchasable avatars by price and keeps the retained tier sizes', () => {
     const items = buildAvatarCatalog({
       ownedAvatars: {},
       giftedAvatarId: null,
@@ -137,14 +135,14 @@ describe('customization catalog', () => {
     expect(costs).toEqual([...costs].sort((left, right) => left - right));
     expect(costs.filter((cost) => cost === 50)).toHaveLength(0);
     expect(costs.filter((cost) => cost === 90)).toHaveLength(0);
-    expect(costs.filter((cost) => cost === 70)).toHaveLength(10);
-    expect(costs.filter((cost) => cost === 100)).toHaveLength(9);
-    expect(costs.filter((cost) => cost === 150)).toHaveLength(10);
-    expect(costs.filter((cost) => cost === 300)).toHaveLength(10);
-    expect(costs.filter((cost) => cost === 500)).toHaveLength(10);
-    expect(costs.filter((cost) => cost === 1000)).toHaveLength(3);
-    expect(costs.filter((cost) => cost === 3000)).toHaveLength(1);
-    expect(costs).toHaveLength(53);
+    expect(costs.filter((cost) => cost === 70)).toHaveLength(5);
+    expect(costs.filter((cost) => cost === 100)).toHaveLength(6);
+    expect(costs.filter((cost) => cost === 150)).toHaveLength(6);
+    expect(costs.filter((cost) => cost === 300)).toHaveLength(9);
+    expect(costs.filter((cost) => cost === 500)).toHaveLength(3);
+    expect(costs.filter((cost) => cost === 1000)).toHaveLength(2);
+    expect(costs.filter((cost) => cost === 3000)).toHaveLength(0);
+    expect(costs).toHaveLength(31);
   });
 
   it('localizes every showcase avatar name in all supported languages', () => {

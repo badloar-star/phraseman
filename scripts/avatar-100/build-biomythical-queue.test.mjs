@@ -2,19 +2,20 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { buildBiomythicalQueue } from './build-biomythical-queue.mjs';
+import { BIOMYTHICAL_AVATARS } from './biomythical-map.mjs';
 
 test('builds the complete sequential V3 reset queue without touching the 50-pearl tier', () => {
   const queue = buildBiomythicalQueue({ rootDir: 'C:\\workspace' });
 
   assert.equal(queue.version, 3);
-  assert.equal(queue.total, 107);
+  assert.equal(queue.total, 64);
   assert.equal(queue.completed, 0);
-  assert.equal(queue.items.length, 107);
+  assert.equal(queue.items.length, 64);
   assert.ok(queue.items.every(({ status }) => status === 'pending'));
   assert.ok(queue.items.every(({ id }) => id >= 73));
   assert.ok(queue.items.every(({ id }) => id > 72));
 
-  for (let id = 73; id <= 125; id += 1) {
+  for (const id of BIOMYTHICAL_AVATARS.map((entry) => entry.id)) {
     const items = queue.items.filter((item) => item.id === id);
     assert.deepEqual(items.map(({ variant }) => variant), ['black', 'white'], `ID ${id}`);
     for (const item of items) {
@@ -28,10 +29,4 @@ test('builds the complete sequential V3 reset queue without touching the 50-pear
     }
   }
 
-  const absolute = queue.items.filter(({ id }) => id === 126);
-  assert.equal(absolute.length, 1);
-  assert.equal(absolute[0].variant, 'black');
-  assert.match(absolute[0].prompt, /seated/i);
-  assert.match(absolute[0].prompt, /imperial astral snow leopard/i);
-  assert.match(absolute[0].prompt, /accepted light variant/i);
 });

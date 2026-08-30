@@ -28,7 +28,7 @@ describe('avatar 100 prompts', () => {
 
     const files = fs.readdirSync(promptsDir).sort();
     expect(files).toEqual([
-      'custom-idea-100-master.txt',
+      'custom-idea-101-master.txt',
       'custom-idea-108-master.txt',
       'custom-idea-120-master.txt',
       'custom-idea-129-master.txt',
@@ -36,7 +36,7 @@ describe('avatar 100 prompts', () => {
       'custom-idea-147-master.txt',
       'custom-idea-157-master.txt',
       'custom-idea-63-master.txt',
-      'custom-idea-74-master.txt',
+      'custom-idea-75-master.txt',
       'custom-idea-87-master.txt',
     ]);
 

@@ -52,9 +52,6 @@ Avoid: ${entry.house.avoid.join(', ')}; generic fantasy; hooded oracle; crown; c
 }
 
 function tierDirection(price) {
-  if (price === 3000) {
-    return 'Rarity direction: Absolute showcase tier; one imperial astral snow leopard that is beautiful, noble, and visibly priceless. Preserve coherent feline anatomy with four natural feline limbs, a powerful chest, elegant head, long expressive tail, and a layered celestial mantle grown organically from the shoulders. It must feel more prestigious and commanding than every 1000-pearl creature; no rainbow; no horror, monster jaw, generic dragon, or clutter; no detached halo, orbital ring, scenery, humanoid, or machine.';
-  }
   if (price === 300) {
     return 'Rarity direction: recognizable real apex predator; legendary natural strength; controlled iconic pose; refined gold and obsidian craft attached to the anatomy.';
   }
@@ -71,18 +68,14 @@ function tierDirection(price) {
 }
 
 export function buildVariantPrompt({ id, subject, price, variant }) {
-  if (!Number.isInteger(id) || !subject || ![50, 70, 100, 150, 300, 500, 1000, 3000].includes(price)
+  if (!Number.isInteger(id) || !subject || ![50, 70, 100, 150, 300, 500, 1000].includes(price)
     || !['black', 'white'].includes(variant)) {
     throw new Error('Variant prompt requires id, subject, supported price, and black|white variant');
   }
   const starter = price <= 70;
-  const variantDirection = price === 3000
-    ? variant === 'black'
-      ? 'Variant direction: BLACK Absolute artwork for a warm light card. This must be an independent generation, not a recolor or negative. Use a poised walking three-quarter stance with black-diamond, champagne gold, and restrained cold-white embedded constellations.'
-      : 'Variant direction: WHITE Absolute artwork for a dark navy card. This must be an independent generation, not a recolor or negative. Use a distinct seated three-quarter stance with moonstone, platinum, champagne gold, and restrained cold-white embedded constellations.'
-    : variant === 'black'
-      ? `Variant direction: BLACK artwork for a warm light card. This must be an independent generation, not a recolor or negative. Use a grounded three-quarter pose with ${starter ? 'charcoal, warm cocoa, matte natural texture, and one restrained turquoise accent' : 'deep obsidian, blackened bronze, controlled gold, and selective tier accents'}.`
-      : `Variant direction: WHITE artwork for a dark navy card. This must be an independent generation, not a recolor or negative. Use a distinct dynamic three-quarter pose with ${starter ? 'ivory, cream, matte tactile texture, and one restrained pale-blue accent' : 'ivory, moonstone, platinum, pale gold, and selective tier accents'}.`;
+  const variantDirection = variant === 'black'
+    ? `Variant direction: BLACK artwork for a warm light card. This must be an independent generation, not a recolor or negative. Use a grounded three-quarter pose with ${starter ? 'charcoal, warm cocoa, matte natural texture, and one restrained turquoise accent' : 'deep obsidian, blackened bronze, controlled gold, and selective tier accents'}.`
+    : `Variant direction: WHITE artwork for a dark navy card. This must be an independent generation, not a recolor or negative. Use a distinct dynamic three-quarter pose with ${starter ? 'ivory, cream, matte tactile texture, and one restrained pale-blue accent' : 'ivory, moonstone, platinum, pale gold, and selective tier accents'}.`;
   const finish = starter
     ? 'a polished but deliberately restrained collectible avatar asset'
     : 'a premium sculptural achievement-style avatar asset';

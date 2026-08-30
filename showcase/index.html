@@ -228,53 +228,6 @@
         box-shadow: 0 18px 60px
           color-mix(in srgb, var(--accent) 12%, transparent);
       }
-      .tier[data-price="3000"] {
-        margin-top: 76px;
-        padding: 28px;
-        border: 1px solid rgba(246, 213, 137, 0.32);
-        border-radius: 42px;
-        background: #080a0f;
-        box-shadow:
-          0 0 0 5px #030407,
-          0 0 0 6px rgba(246, 213, 137, 0.16),
-          0 34px 100px rgba(0, 0, 0, 0.52);
-      }
-      .tier[data-price="3000"] .tier-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .tier[data-price="3000"] .avatar-card {
-        border-color: rgba(246, 213, 137, 0.72);
-        background: #0c1018;
-        box-shadow:
-          inset 0 0 0 4px #07090e,
-          inset 0 0 0 5px rgba(246, 213, 137, 0.2),
-          0 24px 80px rgba(246, 213, 137, 0.1);
-      }
-      .tier[data-price="3000"] .avatar-card::before,
-      .tier[data-price="3000"] .avatar-card::after {
-        position: absolute;
-        z-index: 1;
-        width: 42px;
-        height: 42px;
-        pointer-events: none;
-        content: "";
-      }
-      .tier[data-price="3000"] .avatar-card::before {
-        top: 11px;
-        left: 11px;
-        border-top: 2px solid var(--accent);
-        border-left: 2px solid var(--accent);
-      }
-      .tier[data-price="3000"] .avatar-card::after {
-        right: 11px;
-        bottom: 11px;
-        border-right: 2px solid var(--accent);
-        border-bottom: 2px solid var(--accent);
-      }
-      .tier[data-price="3000"] .pair {
-        width: min(100%, 1100px);
-        margin-inline: auto;
-      }
       .card-top {
         display: flex;
         justify-content: space-between;
@@ -407,10 +360,6 @@
         }
       }
       @media (max-width: 540px) {
-        .tier[data-price="3000"] {
-          padding: 10px;
-          border-radius: 30px;
-        }
         .avatar-card {
           padding: 16px;
           border-radius: 26px;
@@ -457,7 +406,7 @@
       <header class="hero">
         <div>
           <div class="eyebrow">Phraseman · Avatar Collection</div>
-          <h1>64 пары аватаров</h1>
+          <h1>42 пары аватаров</h1>
           <p class="lead">
             Тёмная и светлая версии — самостоятельные генерации. Коллекция
             отсортирована по цене: каждый следующий уровень заметнее, сложнее и
@@ -535,15 +484,7 @@
         >
           1000 <small>3</small>
         </button>
-        <button
-          class="filter"
-          type="button"
-          data-price="3000"
-          aria-pressed="false"
-        >
-          3000 <small>1</small>
-        </button>
-        <span class="result-count" id="resultCount">Показано: 64 пары</span>
+        <span class="result-count" id="resultCount">Показано: 42 пары</span>
       </nav>
 
       <div id="catalog" class="loading" aria-live="polite" aria-busy="true">
@@ -553,14 +494,6 @@
 
     <script>
       const ASSET_BASE = "https://phraseman-ea0b3.web.app/avatars";
-      const EXTRA_SHOWCASE_ENTRY = {
-        assetId: 126,
-        name: "imperial-astral-leopard",
-        label: "Императорский астральный барс",
-        price: 3000,
-        tier: "absolute",
-        collection: "showcase-only",
-      };
       const tierMeta = {
         50: {
           name: "Стартовые",
@@ -597,13 +530,8 @@
           note: "Первозданные сверхсущества: цельная анатомия, масса и встроенная энергия без радуги.",
           accent: "#fde047",
         },
-        3000: {
-          name: "Абсолют",
-          note: "Единственный Императорский астральный барс — благородный, красивый и заметно дороже каждого предыдущего уровня.",
-          accent: "#f6d589",
-        },
       };
-      const prices = [50, 70, 100, 150, 300, 500, 1000, 3000];
+      const prices = [50, 70, 100, 150, 300, 500, 1000];
       const catalog = document.querySelector("#catalog");
       const resultCount = document.querySelector("#resultCount");
       const buttons = [...document.querySelectorAll(".filter")];
@@ -657,9 +585,7 @@
         const displayNumber = avatar.assetId - 22;
         const subject = escapeHtml(avatar.label);
         const slug = escapeHtml(slugify(avatar.name));
-        const base = avatar.assetId === 126
-          ? "../admin/v2/avatars/custom-idea-126"
-          : `${ASSET_BASE}/custom-idea-${avatar.assetId}`;
+        const base = `${ASSET_BASE}/custom-idea-${avatar.assetId}`;
         return `<article class="avatar-card" aria-labelledby="avatar-${avatar.assetId}-title">
         <div class="card-top">
           <div class="identity">
@@ -722,11 +648,11 @@
           return response.text();
         })
         .then((source) => {
-          entries = [...parseShowcase(source), EXTRA_SHOWCASE_ENTRY].sort(
+          entries = parseShowcase(source).sort(
             (left, right) => left.assetId - right.assetId,
           );
-          if (entries.length !== 64)
-            throw new Error(`Ожидалось 64 пары, получено ${entries.length}`);
+          if (entries.length !== 42)
+            throw new Error(`Ожидалось 42 пары, получено ${entries.length}`);
           render("all");
         })
         .catch((error) => {

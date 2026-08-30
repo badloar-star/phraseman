@@ -391,13 +391,13 @@ test('spin avatar gift can select the full custom-gen pool and a retry does not 
 
   await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), opts)).resolves.toMatchObject({
     success: true,
-    cosmeticUnlocked: { kind: 'avatar', id: 'custom-gen-125' },
+    cosmeticUnlocked: { kind: 'avatar', id: 'custom-gen-124' },
   });
   await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), opts)).resolves.toMatchObject({
     success: true,
-    cosmeticUnlocked: { kind: 'avatar', id: 'custom-gen-125' },
+    cosmeticUnlocked: { kind: 'avatar', id: 'custom-gen-124' },
   });
-  expect(Object.keys(JSON.parse(storage.custom_avatar_owned_v1))).toEqual(['custom-gen-125']);
+  expect(Object.keys(JSON.parse(storage.custom_avatar_owned_v1))).toEqual(['custom-gen-124']);
   expect(random).toHaveBeenCalledTimes(3);
 });
 

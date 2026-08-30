@@ -12,17 +12,16 @@ import {
 const ROOT = path.resolve(__dirname, '..');
 
 function expectedAvatar100Ids(): string[] {
-  const ids: string[] = [];
-  for (let id = 73; id <= 126; id += 1) {
-    if (id !== 90) ids.push(`custom-gen-${id}`);
-  }
-  return ids;
+  return [
+    73, 75, 76, 77, 81, 83, 86, 87, 88, 89, 92, 93, 94, 96, 99, 101,
+    102, 103, 104, 105, 106, 107, 108, 109, 111, 112, 114, 118, 120, 123, 124,
+  ].map((id) => `custom-gen-${id}`);
 }
 
 describe('Avatar100 active catalog', () => {
-  it('offers only the 53 approved Avatar100 pairs', () => {
+  it('offers only the 31 retained Avatar100 pairs', () => {
     expect(CUSTOM_AVATAR_SHOP.map((avatar) => avatar.id)).toEqual(expectedAvatar100Ids());
-    expect(CUSTOM_AVATAR_SHOP).toHaveLength(53);
+    expect(CUSTOM_AVATAR_SHOP).toHaveLength(31);
   });
 
   it('hides every retired unowned avatar but preserves owned and active legacy avatars', () => {
@@ -118,7 +117,7 @@ describe('Avatar100 active catalog', () => {
     expect(source).toContain('avatar100-v1');
   });
 
-  it('resolves 106 distinct hosted urls that are staged for deploy', () => {
+  it('resolves 62 distinct hosted urls that are staged for deploy', () => {
     const urls = new Set<string>();
     for (const id of CUSTOM_AVATAR_SHOP.map((avatar) => avatar.id)) {
       for (const ink of ['black', 'white'] as const) {
@@ -131,8 +130,8 @@ describe('Avatar100 active catalog', () => {
         expect(fs.existsSync(path.join(ROOT, 'admin/v2/avatars/avatar100-v1', fileName))).toBe(true);
       }
     }
-    expect(urls.size).toBe(106);
-    expect(fs.readdirSync(path.join(ROOT, 'admin/v2/avatars/avatar100-v1'))).toHaveLength(106);
+    expect(urls.size).toBe(62);
+    expect(fs.readdirSync(path.join(ROOT, 'admin/v2/avatars/avatar100-v1'))).toHaveLength(62);
   });
 
   // зачем: витрина обязана совпадать с приёмкой генерации по ID, файлу и цене.
@@ -152,7 +151,7 @@ describe('Avatar100 active catalog', () => {
       /'custom-gen-(\d+)': \{ name: '([^']*)', labelRu: '[^']*', price: (\d+),/g,
     )];
 
-    expect(rows).toHaveLength(53);
+    expect(rows).toHaveLength(31);
     for (const [, rawId, name, rawPrice] of rows) {
       const id = Number(rawId);
       const black = queue.items.find((item) => item.id === id && item.variant === 'black');

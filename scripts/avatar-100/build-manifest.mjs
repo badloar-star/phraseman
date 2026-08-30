@@ -8,7 +8,7 @@ const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(SCRIPT_DIR, '..', '..');
 const SOURCE_SPEC = 'docs/superpowers/specs/2026-08-24-phraseman-100-diverse-avatars-design.md';
 const HOUSES_PATH = path.join(ROOT, 'content', 'avatar-100', 'houses.json');
-const PILOT_ASSET_INDEXES = [63, 74, 87, 100, 108, 120, 129, 137, 147, 157];
+const PILOT_ASSET_INDEXES = [63, 75, 87, 101, 108, 120, 129, 137, 147, 157];
 const SUBJECT_TYPES = {
   C: 'creature',
   A: 'artifact',

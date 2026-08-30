@@ -50,7 +50,7 @@ describe('avatar 100 manifest', () => {
     }
 
     expect(manifest.pilotAssetIndexes).toEqual([
-      63, 74, 87, 100, 108, 120, 129, 137, 147, 157,
+      63, 75, 87, 101, 108, 120, 129, 137, 147, 157,
     ]);
   });
 });

@@ -45,23 +45,6 @@ Output intent: a clean source on chroma matte for later transparent extraction a
 `;
 }
 
-function absoluteLeopardPrompt() {
-  return `Use case: stylized-concept
-Asset: Phraseman avatar custom-idea-126-black, price 3000 pearls, Absolute tier
-Primary request: create exactly one Imperial Astral Snow Leopard, the most beautiful and visibly expensive avatar in the full collection.
-Creature contract: recognizable real-animal body plan of a powerful adult snow leopard, elevated by an organic celestial mantle grown continuously from the shoulder and chest fur. Preserve the identity of the accepted light variant while making a fully independent dark generation.
-Variant direction: BLACK artwork for the warm light showcase card. This is an independent generation, not a recolor, mirror, negative, or edit of the accepted light variant.
-Exact anatomy: exactly four natural feline legs, four complete paws, one elegant feline head, two ears, one muscular torso, and one long coherent snow-leopard tail. No wings, horns, crown, armor, jewelry, or detached celestial objects.
-Pose: seated in a poised three-quarter presentation, all four paws anatomically readable, chest upright, tail resting in one elegant curve around the body; clearly different from the accepted light variant while both remain seated.
-Rarity and materials: black-diamond fur, champagne-gold organic mantle fibers, restrained cold-white constellations embedded inside the fur, exceptional sculptural detail, noble calm power, and greater prestige than every 1000-pearl creature. Beautiful and aspirational, never horror.
-Background: one perfectly flat saturated chroma matte, acid green #00F56A, uniform corner to corner and excluded from every subject color; no gradient, shadow, floor, scenery, halo, vignette, texture, or checkerboard.
-Composition: exactly one centered creature; full silhouette with generous empty margin on all four sides; both ears, every paw, and the complete tail fully visible; nothing touches the canvas edge; square canvas.
-Manual anatomy review required before accepting the image: count all four legs and paws, verify one continuous tail, correct seated pelvis and spine, clean facial symmetry, and no fused or duplicated anatomy.
-Constraints: no human or humanoid; no robot, machine, vehicle, mechanical armor, weapon, generic dragon, world eater, monster jaw, rainbow, text, logo, watermark, frame, pedestal, detached halo, orbit, shard, spark, smoke, scenery, extra creature, or crop.
-Output intent: a clean source on chroma matte for later transparent extraction and normalization to 512 x 512 WebP.
-`;
-}
-
 function queueItem({ rootDir, entry, variant, prompt }) {
   const promptPath = path.join(
     rootDir,
@@ -94,24 +77,6 @@ export function buildBiomythicalQueue({ rootDir = PROJECT_ROOT } = {}) {
     variant,
     prompt: variantPrompt(entry, variant),
   })));
-
-  const leopardEntry = {
-    id: 126,
-    price: 3000,
-    name: 'Imperial Astral Snow Leopard',
-    labelRu: 'Императорский астральный барс',
-    baseAnimal: 'snow-leopard-like Absolute creature',
-    anatomy: 'exactly four feline legs, four complete paws, one head, two ears, and one long coherent tail',
-    signature: 'black-diamond fur with a champagne-gold organic celestial mantle',
-    darkPose: 'seated in a poised three-quarter presentation with all four paws visible and the tail resting in one elegant curve',
-    lightPose: 'accepted existing seated pose',
-  };
-  items.push(queueItem({
-    rootDir,
-    entry: leopardEntry,
-    variant: 'black',
-    prompt: absoluteLeopardPrompt(),
-  }));
 
   return {
     version: 3,

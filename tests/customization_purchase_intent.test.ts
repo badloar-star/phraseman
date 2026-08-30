@@ -130,7 +130,7 @@ describe('customization purchase intent', () => {
           avatarValue: '18', frameId: 'frame-18', storedAuraSelection: null, level: 18,
         },
         restoreOperationId: 'customization_dev_restore:test-cycle',
-        suppressedAvatarIds: ['custom-gen-73', 'custom-gen-74'],
+        suppressedAvatarIds: ['custom-gen-73', 'custom-gen-75'],
         suppressedAuraIds: [],
       }),
     });
@@ -148,7 +148,7 @@ describe('customization purchase intent', () => {
       localWrites: expect.arrayContaining([expect.arrayContaining([receiptKey])]),
     }));
     expect(JSON.parse(memory.values.get(receiptKey)!)).toMatchObject({
-      suppressedAvatarIds: ['custom-gen-74'],
+      suppressedAvatarIds: ['custom-gen-75'],
     });
   });
 

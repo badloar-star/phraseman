@@ -23,7 +23,7 @@ test('builds independent dark and light prompts with safe matte and silhouette c
 });
 
 test('encodes the approved 500 and 1000 predator ladder without rainbow treatment', () => {
-  const mythic = buildVariantPrompt({ id: 113, subject: 'obsidian direwolf', price: 500, variant: 'black' });
+  const mythic = buildVariantPrompt({ id: 114, subject: 'obsidian direwolf', price: 500, variant: 'black' });
   const primordial = buildVariantPrompt({ id: 123, subject: 'eclipse world-serpent', price: 1000, variant: 'white' });
 
   assert.match(mythic, /aggressive mythical apex predator/);
@@ -31,22 +31,11 @@ test('encodes the approved 500 and 1000 predator ladder without rainbow treatmen
   assert.match(primordial, /no rainbow or generic full-spectrum treatment/);
 });
 
-test('encodes the showcase-only 3000 Absolute as an imperial astral snow leopard', () => {
-  const dark = buildVariantPrompt({ id: 126, subject: 'imperial astral snow leopard', price: 3000, variant: 'black' });
-  const light = buildVariantPrompt({ id: 126, subject: 'imperial astral snow leopard', price: 3000, variant: 'white' });
-
-  for (const prompt of [dark, light]) {
-    assert.match(prompt, /Absolute/);
-    assert.match(prompt, /imperial astral snow leopard/);
-    assert.match(prompt, /beautiful, noble, and visibly priceless/);
-    assert.match(prompt, /four natural feline limbs/);
-    assert.match(prompt, /no rainbow/);
-    assert.match(prompt, /no detached halo, orbital ring, scenery, humanoid, or machine/);
-    assert.match(prompt, /no crop/);
-  }
-  assert.match(dark, /black-diamond, champagne gold, and restrained cold-white embedded constellations/);
-  assert.match(light, /moonstone, platinum, champagne gold, and restrained cold-white embedded constellations/);
-  assert.notEqual(dark, light);
+test('rejects the retired 3000-pearl prompt tier', () => {
+  assert.throws(
+    () => buildVariantPrompt({ id: 127, subject: 'retired absolute concept', price: 3000, variant: 'black' }),
+    /requires id, subject, supported price/,
+  );
 });
 
 test('keeps the 50-pearl starter tier intentionally simpler than premium tiers', () => {

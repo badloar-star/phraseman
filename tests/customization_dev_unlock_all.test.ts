@@ -45,7 +45,7 @@ describe('session-only customization DEV sandbox', () => {
       baseline,
     );
     const previewed = previewInCustomizationDevSandbox(enabled.sandbox, 'owner-a', {
-      avatarValue: 'custom:custom-gen-74:forest:black',
+      avatarValue: 'custom:custom-gen-75:forest:black',
       storedAuraSelection: 'aura-nimbus',
     });
 

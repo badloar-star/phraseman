@@ -1670,7 +1670,17 @@ function captureAuthSignInFailure(provider: AuthProviderId, stage: string, detai
   try {
     const d = detail.replace(/\s+/g, ' ').slice(0, 280);
     recordError(new Error(`auth_signin:${provider}:${stage}:${d}`), 'auth_signin');
-    const severity = EXPECTED_AUTH_FAILURE_STAGES.has(stage) ? 'warning' : 'critical';
+    // зачем транзиенты → warning (2026-08-30): гонка холодного старта Android
+    // (anon-auth/App Check ещё поднимаются) даёт identity_unavailable на первой
+    // попытке auth_link, а вход самолечится следующей попыткой — оба живых
+    // кейса v1.6.14 (13:55 и 04:23) успешно вошли через минуту после алерта.
+    // Critical-канал (Firestore + Telegram) держим для детерминированных
+    // отказов (mismatch/retired/unknown); транзиент — в локальный журнал.
+    const transientAuthLink = stage === 'auth_link'
+      && [...AUTH_LINK_TRANSIENT_FAILURES].some((code) => detail.endsWith(`:${code}`));
+    const severity = EXPECTED_AUTH_FAILURE_STAGES.has(stage) || transientAuthLink
+      ? 'warning'
+      : 'critical';
     // logAppError плавает в фоне: try/catch вокруг НЕ ловит async-reject плавающего
     // промиса → любой внутренний сбой логгера становился uncaught «(in promise)»
     // поверх исходной ошибки входа. Диагностика не должна ухудшать исходный путь.

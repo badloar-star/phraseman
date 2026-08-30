@@ -30,6 +30,18 @@ describe('Arena hub floating rank hero', () => {
     expect(source).not.toMatch(/withTiming\([^\n]*(width|height|top|left)/);
   });
 
+  it('shows progress once on entry, pulses slowly, then fades it away', () => {
+    const source = read('components/arena/ArenaHubSummary.tsx');
+    expect(source).toContain('if (!active || !rankKnown)');
+    expect(source).toContain('withDelay(2600, withTiming(0, { duration: 1000, easing }))');
+    expect(source).toContain('withTiming(1.045, { duration: 1800, easing })');
+    expect(source).toContain('withTiming(1, { duration: 1800, easing })');
+    expect(source).toContain('opacity: progressOpacity.value');
+    expect(source).toContain('transform: [{ scale: progressScale.value }]');
+    expect(source).toContain('cancelAnimation(progressOpacity)');
+    expect(source).toContain('cancelAnimation(progressScale)');
+  });
+
   it('receives the existing runtime and reduced-motion state from the hub', () => {
     const source = read('components/arena/ArenaHubSurface.tsx');
     expect(source).toContain('<ArenaHubSummary model={hub} active={active} reduceMotion={reduceMotion} />');

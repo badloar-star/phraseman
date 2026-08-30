@@ -6,6 +6,7 @@ import Animated, {
   cancelAnimation,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withRepeat,
   withSequence,
   withTiming,
@@ -33,8 +34,11 @@ export function ArenaHubSummary({ model, active, reduceMotion }: ArenaHubSummary
   const P = useTournamentPalette();
   const { lang } = useLang();
   const rank = model.rank;
+  const rankKnown = rank !== null;
   const shieldY = useSharedValue(0);
   const starsY = useSharedValue(0);
+  const progressOpacity = useSharedValue(0);
+  const progressScale = useSharedValue(1);
 
   useEffect(() => {
     cancelAnimation(shieldY);
@@ -68,11 +72,46 @@ export function ArenaHubSummary({ model, active, reduceMotion }: ArenaHubSummary
     };
   }, [active, reduceMotion, shieldY, starsY]);
 
+  useEffect(() => {
+    cancelAnimation(progressOpacity);
+    cancelAnimation(progressScale);
+    progressOpacity.value = 0;
+    progressScale.value = 1;
+
+    if (!active || !rankKnown) return undefined;
+
+    if (reduceMotion) {
+      progressOpacity.value = withSequence(
+        withTiming(1, { duration: 250 }),
+        withDelay(1700, withTiming(0, { duration: 700 })),
+      );
+    } else {
+      const easing = Easing.inOut(Easing.ease);
+      progressOpacity.value = withSequence(
+        withTiming(1, { duration: 700, easing }),
+        withDelay(2600, withTiming(0, { duration: 1000, easing })),
+      );
+      progressScale.value = withSequence(
+        withTiming(1.045, { duration: 1800, easing }),
+        withTiming(1, { duration: 1800, easing }),
+      );
+    }
+
+    return () => {
+      cancelAnimation(progressOpacity);
+      cancelAnimation(progressScale);
+    };
+  }, [active, progressOpacity, progressScale, rankKnown, reduceMotion]);
+
   const shieldStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: shieldY.value }],
   }));
   const starsStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: starsY.value }],
+  }));
+  const progressStyle = useAnimatedStyle(() => ({
+    opacity: progressOpacity.value,
+    transform: [{ scale: progressScale.value }],
   }));
 
   const rankLabel = rank
@@ -110,7 +149,9 @@ export function ArenaHubSummary({ model, active, reduceMotion }: ArenaHubSummary
       <Animated.View accessible={false} style={[styles.starsStage, starsStyle]}>
         <ArenaRankStars filled={rank?.starsInRank ?? 0} size={38} />
       </Animated.View>
-      <Text accessible={false} style={[styles.progress, { color: P.muted }]}>{progressLabel}</Text>
+      <Animated.View accessible={false} style={[styles.progressStage, progressStyle]}>
+        <Text style={[styles.progress, { color: P.muted }]}>{progressLabel}</Text>
+      </Animated.View>
     </View>
   );
 }
@@ -151,6 +192,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 18,
     fontWeight: '800',
-    marginTop: 2,
   },
+  progressStage: { width: '100%', alignItems: 'center', marginTop: 2 },
 });

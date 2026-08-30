@@ -23,9 +23,11 @@ export type LearningV2EnglishActivityPlanItemV2 = Readonly<{
   slot: number;
   modeFamily: LearningV2ModeFamilyV2;
   operationIds: readonly string[];
+  targetLexicalSenseIds: readonly string[];
   canonicalExample: string;
   support: LearningV2SupportV2;
   independentEvidence: boolean;
+  scored: boolean;
   learnerPayloadStatus: "REQUIRES_MANUAL_AUTHORING";
 }>;
 
@@ -53,6 +55,8 @@ export type LearningV2EnglishExactSessionPacketV2 = Readonly<{
     changedContextRequired: true;
     copiedTrainingPromptForbidden: true;
     support: "minimal" | "none";
+    trainingPromptSignature: string;
+    probePromptSignature: string;
   }>;
   sourceEvidenceRefs: readonly string[];
   learnerFacingAuthoringStatus: "PLANNED_NOT_AUTHORED";
@@ -190,14 +194,17 @@ function introPlan(operationIds: readonly string[]): readonly LearningV2EnglishI
 function activityPlan(
   operationIds: readonly string[],
   examples: readonly string[],
+  lexicalSenseIds: readonly string[],
 ): readonly LearningV2EnglishActivityPlanItemV2[] {
   return Object.freeze(MODE_SEQUENCE.map((modeFamily, index) => Object.freeze({
     slot: index + 4,
     modeFamily,
     operationIds,
+    targetLexicalSenseIds: lexicalSenseIds,
     canonicalExample: examples[index % examples.length] ?? "[MANUAL EXAMPLE REQUIRED]",
     support: SUPPORT_SEQUENCE[index],
     independentEvidence: index >= 15,
+    scored: index >= 3,
     learnerPayloadStatus: "REQUIRES_MANUAL_AUTHORING" as const,
   })));
 }
@@ -243,6 +250,11 @@ export const LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2: readonly LearningV2En
         ? Object.freeze([])
         : lexicalSenseIdsAt(absoluteSessionOrdinal, "new");
       const retrievalLexicalSenseIds = lexicalSenseIdsAt(absoluteSessionOrdinal, "retrieval");
+      const groundedLexicalSenseIds = unique([
+        ...newLexicalSenseIds,
+        ...retrievalLexicalSenseIds,
+      ]);
+      const exactSessionId = sessionId(chapter.lessonOrdinal, sessionOrdinal);
       const prerequisiteSessionIds = unique(
         focusOperationIds.flatMap((operationId) =>
           (operationById.get(operationId)?.prerequisiteOperationIds ?? [])
@@ -252,7 +264,7 @@ export const LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2: readonly LearningV2En
       );
 
       return Object.freeze({
-        sessionId: sessionId(chapter.lessonOrdinal, sessionOrdinal),
+        sessionId: exactSessionId,
         absoluteSessionOrdinal,
         lessonOrdinal: chapter.lessonOrdinal,
         chapterOrdinal: chapter.chapterOrdinal,
@@ -274,11 +286,13 @@ export const LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2: readonly LearningV2En
             : "Новых senses нет: используются только уже известные слова, необходимые для чистой проверки грамматики.",
         canonicalExamples: examples,
         introPlan: introPlan(focusOperationIds),
-        activityPlan: activityPlan(focusOperationIds, examples),
+        activityPlan: activityPlan(focusOperationIds, examples, groundedLexicalSenseIds),
         independentProbe: Object.freeze({
           changedContextRequired: true as const,
           copiedTrainingPromptForbidden: true as const,
           support: role === "checkpoint" ? "none" as const : "minimal" as const,
+          trainingPromptSignature: `${exactSessionId}:training-context`,
+          probePromptSignature: `${exactSessionId}:changed-transfer-context`,
         }),
         sourceEvidenceRefs: sourceEvidenceRefs(focusOperationIds, chapter.sourceEvidenceRefs),
         learnerFacingAuthoringStatus: "PLANNED_NOT_AUTHORED" as const,

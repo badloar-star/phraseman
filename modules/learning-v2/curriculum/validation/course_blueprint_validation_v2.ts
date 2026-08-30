@@ -8,6 +8,9 @@ import {
   type LearningV2PracticeInteractionV2,
   type LearningV2SpeedMatchPayloadV2,
 } from "../contracts/course_blueprint_v2";
+import type { LearningV2EnglishExactSessionPacketV2 } from "../en/exact_session_packets_en_v2";
+import type { LearningV2EnglishGrammarOperationV2 } from "../en/grammar_operations_en_v2";
+import type { LearningV2EnglishLexicalSenseV2 } from "../en/lexical_senses_en_v2";
 
 export type LearningV2CurriculumFindingV2 = Readonly<{
   severity: "blocker";
@@ -314,5 +317,123 @@ export function validateLearningV2SessionActivitySequenceV2(
       ));
     }
   }
+  return Object.freeze(findings);
+}
+
+export type LearningV2CourseBlueprintValidationInputV2 = Readonly<{
+  grammarOperations: readonly LearningV2EnglishGrammarOperationV2[];
+  lexicalSenses: readonly LearningV2EnglishLexicalSenseV2[];
+  sessionPackets: readonly LearningV2EnglishExactSessionPacketV2[];
+}>;
+
+export function validateLearningV2CourseBlueprintV2(
+  input: LearningV2CourseBlueprintValidationInputV2,
+): readonly LearningV2CurriculumFindingV2[] {
+  const findings: LearningV2CurriculumFindingV2[] = [];
+  const operationById = new Map(input.grammarOperations.map((operation) => [operation.id, operation]));
+  const lexicalSenseIds = new Set(input.lexicalSenses.map((sense) => sense.id));
+  const exampleOwners = new Map<string, LearningV2EnglishGrammarOperationV2[]>();
+  for (const operation of input.grammarOperations) {
+    for (const example of operation.positiveExamples) {
+      const owners = exampleOwners.get(example) ?? [];
+      owners.push(operation);
+      exampleOwners.set(example, owners);
+    }
+  }
+
+  for (const packet of input.sessionPackets) {
+    const focusOperationIds = new Set([
+      ...packet.grammarOperationIds,
+      ...packet.reviewOperationIds,
+    ]);
+
+    for (const [index, intro] of packet.introPlan.entries()) {
+      for (const operationId of intro.operationIds) {
+        if (!focusOperationIds.has(operationId)) {
+          findings.push(finding(
+            "intro_operation_outside_packet",
+            `${packet.sessionId}.introPlan[${index}].operationIds`,
+            `Intro references “${operationId}”, which is outside the packet grammar/review focus.`,
+          ));
+        }
+      }
+    }
+
+    for (const [index, activity] of packet.activityPlan.entries()) {
+      for (const operationId of activity.operationIds) {
+        if (!focusOperationIds.has(operationId)) {
+          findings.push(finding(
+            "practice_operation_outside_intro_or_review",
+            `${packet.sessionId}.activityPlan[${index}].operationIds`,
+            `Practice references “${operationId}”, which was not introduced or declared for review.`,
+          ));
+        }
+      }
+    }
+
+    for (const [index, example] of packet.canonicalExamples.entries()) {
+      const owners = exampleOwners.get(example) ?? [];
+      const hasFocusOwner = owners.some((owner) => focusOperationIds.has(owner.id));
+      const futureOwner = owners.find((owner) => owner.lessonOrdinal > packet.lessonOrdinal);
+      if (!hasFocusOwner && futureOwner) {
+        findings.push(finding(
+          "canonical_example_future_grammar",
+          `${packet.sessionId}.canonicalExamples[${index}]`,
+          `Canonical example belongs to future operation “${futureOwner.id}”.`,
+        ));
+      }
+      if (!hasFocusOwner) {
+        findings.push(finding(
+          "canonical_example_missing_operation_form",
+          `${packet.sessionId}.canonicalExamples[${index}]`,
+          "Canonical example does not instantiate an operation owned by this packet.",
+        ));
+      }
+    }
+
+    for (const operationId of focusOperationIds) {
+      const operation = operationById.get(operationId);
+      if (operation && operation.lessonOrdinal > packet.lessonOrdinal) {
+        findings.push(finding(
+          "packet_future_grammar_forbidden",
+          `${packet.sessionId}.grammarFocus`,
+          `Operation “${operationId}” belongs to future lesson ${operation.lessonOrdinal}.`,
+        ));
+      }
+    }
+
+    for (const senseId of packet.newLexicalSenseIds) {
+      const groundedContactsBeforeScoring = packet.activityPlan.filter(
+        (activity) => !activity.scored && activity.targetLexicalSenseIds.includes(senseId),
+      ).length;
+      if (!lexicalSenseIds.has(senseId) || groundedContactsBeforeScoring < 3) {
+        findings.push(finding(
+          "new_lexeme_absent_from_grounded_contacts",
+          `${packet.sessionId}.newLexicalSenseIds`,
+          `New sense “${senseId}” needs at least three meaning-bearing contacts before its first scored use.`,
+        ));
+      }
+    }
+
+    if (packet.role === "checkpoint" && packet.grammarOperationIds.length > 0) {
+      findings.push(finding(
+        "checkpoint_new_grammar_forbidden",
+        `${packet.sessionId}.grammarOperationIds`,
+        "Checkpoint sessions may retrieve and integrate only already introduced grammar.",
+      ));
+    }
+
+    if (
+      packet.independentProbe.changedContextRequired !== true ||
+      packet.independentProbe.trainingPromptSignature === packet.independentProbe.probePromptSignature
+    ) {
+      findings.push(finding(
+        "independent_probe_not_changed_context",
+        `${packet.sessionId}.independentProbe`,
+        "The independent probe must use a changed context and a different prompt signature.",
+      ));
+    }
+  }
+
   return Object.freeze(findings);
 }

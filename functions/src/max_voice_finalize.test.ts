@@ -302,3 +302,66 @@ describe('maxVoiceReviewSystemPrompt', () => {
     expect(prompt).toContain('Never assess pronunciation, accent, phonemes, fluency scores, or audio quality');
   });
 });
+
+// зачем (владелец 2026-08-30): «сохранять результат КАЖДОЙ сессии, даже если
+// она длилась минуту; назвал имя — должен знать; должен знать, о чём говорили
+// в прошлой сессии». Пробник пишет память в reviewOnly (факты/lastTalk без
+// счётчиков урока), lastTalk доезжает из ревью до memoryUpdate.
+describe('память каждой сессии: пробник и lastTalk', () => {
+  it('минутный пробник (format trial) пишет память reviewOnly с фактами и lastTalk', async () => {
+    const h = harness();
+    h.review.mockResolvedValueOnce({
+      worked: [],
+      correction: null,
+      tomorrowActions: ['Повтори одну фразу.'],
+      targetPhrase: null,
+      nextTopic: null,
+      memory: {
+        facts: ['I go to the park yesterday'],
+        recurringErrors: [],
+        resolvedErrors: [],
+        lastTalk: 'Introductions and ordering a coffee',
+      },
+    } as unknown as ReturnType<typeof h.review> extends Promise<infer R> ? R : never);
+    const payload = input('session-trial-minute');
+    const request = (payload.data as { request: Record<string, unknown> }).request;
+    request.format = 'trial';
+    request.durationSec = 58;
+    request.tutorEvidence = { homeworkItems: [], safetyFlags: [] };
+
+    await finalizeMaxVoiceRequest(payload, h.deps);
+
+    expect(h.memoryUpdates[0]).toMatchObject({
+      isTutor: true,
+      reviewOnly: true,
+      telemetry: false,
+      lastTalk: 'Introductions and ordering a coffee',
+    });
+  });
+
+  it('tutor-урок остаётся полным мерджем с телеметрией и прокинутым lastTalk', async () => {
+    const h = harness();
+    h.review.mockResolvedValueOnce({
+      worked: ['Ты ответил полным предложением.'],
+      correction: null,
+      tomorrowActions: ['Скажи фразу три раза.'],
+      targetPhrase: null,
+      nextTopic: 'Past weekend',
+      memory: {
+        facts: [],
+        recurringErrors: [],
+        resolvedErrors: [],
+        lastTalk: 'Your weekend plans and the park',
+      },
+    } as unknown as ReturnType<typeof h.review> extends Promise<infer R> ? R : never);
+
+    await finalizeMaxVoiceRequest(input('session-tutor-lasttalk'), h.deps);
+
+    expect(h.memoryUpdates[0]).toMatchObject({
+      isTutor: true,
+      reviewOnly: false,
+      telemetry: true,
+      lastTalk: 'Your weekend plans and the park',
+    });
+  });
+});

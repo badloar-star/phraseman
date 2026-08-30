@@ -100,6 +100,12 @@ export interface TutorMemory {
   homework: string[];
   /** Тема, которую учитель обещал на следующий раз. */
   nextTopic: string;
+  /**
+   * «О чём говорили в прошлый раз» — одна короткая английская фраза из разбора
+   * (владелец 2026-08-30: «он должен знать, о чём говорили в прошлой сессии»).
+   * Перезаписывается каждым уроком; пишет её в том числе пробник (reviewOnly).
+   */
+  lastTalkSummary: string;
   /** Сколько уроков-звонков было. */
   callCount: number;
   lastCallAtMs: number;
@@ -145,6 +151,7 @@ export const TUTOR_MEMORY_EMPTY: TutorMemory = Object.freeze({
   recurringErrors: [],
   homework: [],
   nextTopic: '',
+  lastTalkSummary: '',
   callCount: 0,
   lastCallAtMs: 0,
   lastCefr: 'A1',
@@ -391,6 +398,7 @@ export function parseTutorMemory(raw: unknown): TutorMemory {
     recurringErrors: activeIssues.map((issue) => issue.label),
     homework: cleanList(d.homework, TUTOR_MEMORY_HOMEWORK_MAX),
     nextTopic: cleanItem(d.nextTopic),
+    lastTalkSummary: isSensitiveMemoryText(d.lastTalkSummary) ? '' : cleanItem(d.lastTalkSummary),
     callCount: Math.floor(num(d.callCount)),
     lastCallAtMs,
     lastCefr,
@@ -514,6 +522,8 @@ export interface TutorMemoryUpdate {
   /** Домашка на следующий раз (заменяет прошлую: она либо сдана, либо устарела). */
   homework?: unknown;
   nextTopic?: unknown;
+  /** «О чём говорили» из разбора; пустое/undefined — не менять сохранённое. */
+  lastTalk?: unknown;
   cefr?: unknown;
   /** Просьба ученика за урок ('more_english' | 'more_native' | 'default' → ''); undefined — не менять. */
   languagePreference?: unknown;
@@ -631,6 +641,15 @@ export function mergeTutorMemory(
     || update.languagePreference === ''
     ? prev.languagePreference
     : asTutorLanguagePreference(update.languagePreference) || null;
+  // «О чём говорили» перезаписывается каждым НОВЫМ уроком (в т.ч. reviewOnly-
+  // пробником); ретрай того же sessionId и пустой/чувствительный кандидат
+  // сохраняют прежнее значение.
+  const lastTalkCandidate = cleanItem(update.lastTalk);
+  const nextLastTalkSummary = duplicateSession
+    ? prev.lastTalkSummary
+    : lastTalkCandidate !== '' && !isSensitiveMemoryText(lastTalkCandidate)
+      ? lastTalkCandidate
+      : prev.lastTalkSummary;
   const memoryProjection: TutorMemory = {
     ...prev,
     schemaVersion: 2,
@@ -643,6 +662,7 @@ export function mergeTutorMemory(
     facts: conversationHooks.map((hook) => hook.text),
     recurringErrors: activeIssues.map((issue) => issue.label),
     languagePreference: nextLanguagePreference,
+    lastTalkSummary: nextLastTalkSummary,
   };
   if (update.reviewOnly === true || duplicateSession) {
     // Второй этап того же звонка может принести вывод модели (факты/ошибки),
@@ -761,6 +781,12 @@ export function renderTutorMemoryBlock(memory: TutorMemory, nowMs: number): stri
   } else {
     const days = daysSince(memory.lastCallAtMs, nowMs);
       lines.push(`Lessons so far: ${memory.callCount}.${days === null ? '' : days === 0 ? ' Last lesson: today.' : days === 1 ? ' Last lesson: yesterday.' : ` Last lesson: ${days} days ago.`}`);
+  }
+  if (memory.lastTalkSummary) {
+    // зачем (владелец 2026-08-30): «он должен знать, о чём говорили в прошлой
+    // сессии». Одна строка темы + мягкое приглашение продолжить нить — без
+    // обязательного пересказа, чтобы урок не начинался с прошлого урока.
+    lines.push(`Last time you talked about: ${memory.lastTalkSummary}. If it feels natural, briefly pick this thread up when you greet them.`);
   }
   if (memory.preferredName) lines.push(`Preferred name: ${memory.preferredName}.`);
   if (memory.learningGoal) lines.push(`Learning goal: ${memory.learningGoal}.`);

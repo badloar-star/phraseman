@@ -437,3 +437,59 @@ describe('план обучения: очередь повторения реч�
     expect(selectTutorLessonType(parseTutorMemory({ callCount: 2 }), NOW)).toBe('free_talk');
   });
 });
+
+// зачем (владелец 2026-08-30): «он должен знать, о чём говорили в прошлой
+// сессии» — lastTalkSummary перезаписывается новым уроком, переживает ретрай
+// того же sessionId, отбрасывает чувствительный текст и попадает в промпт.
+describe('lastTalkSummary', () => {
+  const base = { ...TUTOR_MEMORY_EMPTY, stableUid: 'stable-x' };
+
+  it('новый урок перезаписывает тему; пустой кандидат сохраняет прежнюю', () => {
+    const first = mergeTutorMemory(base, {
+      sessionId: 'vs-1', lastTalk: 'Ordering coffee and small talk', nowMs: 1_000,
+    });
+    expect(first.lastTalkSummary).toBe('Ordering coffee and small talk');
+
+    const second = mergeTutorMemory(first, { sessionId: 'vs-2', lastTalk: '', nowMs: 2_000 });
+    expect(second.lastTalkSummary).toBe('Ordering coffee and small talk');
+
+    const third = mergeTutorMemory(second, {
+      sessionId: 'vs-3', lastTalk: 'Hotel check-in practice', nowMs: 3_000,
+    });
+    expect(third.lastTalkSummary).toBe('Hotel check-in practice');
+  });
+
+  it('ретрай того же sessionId не перетирает более свежую тему', () => {
+    const first = mergeTutorMemory(base, { sessionId: 'vs-1', lastTalk: 'Topic A', nowMs: 1_000 });
+    const second = mergeTutorMemory(first, { sessionId: 'vs-2', lastTalk: 'Topic B', nowMs: 2_000 });
+    const retryOfFirst = mergeTutorMemory(second, { sessionId: 'vs-2', lastTalk: 'Topic A stale', nowMs: 2_500 });
+    expect(retryOfFirst.lastTalkSummary).toBe('Topic B');
+  });
+
+  it('чувствительный кандидат отбрасывается фильтром PII', () => {
+    const merged = mergeTutorMemory(base, {
+      sessionId: 'vs-1', lastTalk: 'They said my password is qwerty', nowMs: 1_000,
+    });
+    expect(merged.lastTalkSummary).toBe('');
+  });
+
+  it('reviewOnly-пробник пишет тему, но не двигает счётчик уроков', () => {
+    const merged = mergeTutorMemory(base, {
+      sessionId: 'vs-trial', reviewOnly: true, lastTalk: 'Introductions with Mia', nowMs: 1_000,
+    });
+    expect(merged.lastTalkSummary).toBe('Introductions with Mia');
+    expect(merged.callCount).toBe(0);
+    expect(merged.recentSessionIds).toEqual([]);
+  });
+
+  it('рендер блока памяти включает тему прошлого урока', () => {
+    const withTalk = { ...base, callCount: 2, lastCallAtMs: 500, lastTalkSummary: 'Ordering coffee' };
+    const block = renderTutorMemoryBlock(withTalk, 1_000);
+    expect(block).toContain('Last time you talked about: Ordering coffee.');
+  });
+
+  it('парсер отбрасывает чувствительный сохранённый текст', () => {
+    expect(parseTutorMemory({ lastTalkSummary: 'my password is 12345' }).lastTalkSummary).toBe('');
+    expect(parseTutorMemory({ lastTalkSummary: 'Talking about hobbies' }).lastTalkSummary).toBe('Talking about hobbies');
+  });
+});

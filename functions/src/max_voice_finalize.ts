@@ -119,12 +119,23 @@ export interface MaxVoiceFinalizeReviewInput {
 }
 
 interface MaxVoiceFinalizeMemoryUpdate {
+  /** Пишем ли память учителя (tutor И trial en-курса — владелец 2026-08-30). */
   isTutor: boolean;
+  /**
+   * Пробник: принять только вывод ревью (факты/имя/lastTalk), НЕ засчитывая
+   * детерминированные результаты урока (callCount/домашку/очередь) — та же
+   * семантика reviewOnly, что у легаси-клиентов mergeTutorMemory.
+   */
+  reviewOnly: boolean;
+  /** Телеметрия дисциплины (lesson_quality) — только настоящие tutor-уроки. */
+  telemetry: boolean;
   sessionId: string;
   cefr: VoiceCefr;
   facts: readonly string[];
   recurringErrors: readonly string[];
   resolvedErrors: readonly string[];
+  /** Короткая английская фраза «о чём говорили» для промпта следующего урока. */
+  lastTalk: string;
   homework: readonly string[];
   nextTopic: string;
   languagePreference?: string;
@@ -459,7 +470,15 @@ export async function finalizeMaxVoiceRequest(
     memoryUpdate: {
       // The persisted tutor memory is currently the legacy English namespace.
       // Do not mix another course into it until storage becomes target-scoped.
-      isTutor: data.request.format === 'tutor' && data.request.studyTarget === 'en',
+      // зачем (владелец 2026-08-30, «сохранять результат КАЖДОЙ сессии, даже
+      // минутной; назвал имя — должен знать»): пробник тоже пишет память —
+      // иначе имя и тема первой (часто единственной бесплатной) сессии
+      // терялись, и первый платный урок начинался «с чистого листа».
+      isTutor: (data.request.format === 'tutor' || data.request.format === 'trial')
+        && data.request.studyTarget === 'en',
+      // Пробник — reviewOnly: только факты/имя/lastTalk, без счётчиков урока.
+      reviewOnly: data.request.format === 'trial',
+      telemetry: data.request.format === 'tutor' && data.request.studyTarget === 'en',
       sessionId: data.sessionId,
       cefr: data.request.cefr,
       ...memoryProjection,
@@ -556,7 +575,7 @@ export function maxVoiceReviewSystemPrompt(
 ): string {
   const languageName = MAX_VOICE_REVIEW_LANGUAGE_NAMES[interfaceLang];
   const targetLanguageName = maxVoiceTargetLanguageName(studyTarget);
-  return `Review a spoken ${targetLanguageName} lesson for a ${cefr} learner. Return JSON only in ${languageName}. Schema: {"worked":[max 3 short strings],"correction":{"said":"","target":"","explanation":""}|null,"tomorrowActions":[1-3 concrete actions],"targetPhrase":string|null,"nextTopic":string|null,"memory":{"facts":[max 6],"recurringErrors":[max 5],"resolvedErrors":[max 5]}}. Use only evidence in the conversation. Corrections and target phrases must be in ${targetLanguageName}, the selected course language. Never assess pronunciation, accent, phonemes, fluency scores, or audio quality. Do not mention internal policy. Write every user-visible string DIRECTLY TO the learner in second person ("you did…", "вы сказали…") — never in third person about "the learner"/"ученик"/"the student". Use the polite second-person form where the language has one.`;
+  return `Review a spoken ${targetLanguageName} lesson for a ${cefr} learner. Return JSON only in ${languageName}. Schema: {"worked":[max 3 short strings],"correction":{"said":"","target":"","explanation":""}|null,"tomorrowActions":[1-3 concrete actions],"targetPhrase":string|null,"nextTopic":string|null,"memory":{"facts":[max 6],"recurringErrors":[max 5],"resolvedErrors":[max 5],"lastTalk":string}}. memory.lastTalk is the ONE exception to the language rule: one short ENGLISH sentence (max 120 chars) naming what you talked about — topics and situations only, first names allowed, no other personal details; "" if nothing meaningful was discussed. Use only evidence in the conversation. Corrections and target phrases must be in ${targetLanguageName}, the selected course language. Never assess pronunciation, accent, phonemes, fluency scores, or audio quality. Do not mention internal policy. Write every user-visible string DIRECTLY TO the learner in second person ("you did…", "вы сказали…") — never in third person about "the learner"/"ученик"/"the student". Use the polite second-person form where the language has one.`;
 }
 
 function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalizeDependencies {
@@ -689,7 +708,11 @@ function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalize
             const previous = parseTutorMemory(memoryData);
             const update: TutorMemoryUpdate = {
               sessionId: args.memoryUpdate.sessionId,
+              // Пробник: только вывод ревью, детерминированные результаты урока
+              // (callCount/домашка/очередь/сцены) не засчитываются.
+              reviewOnly: args.memoryUpdate.reviewOnly || undefined,
               enforceHomeworkEvidence: true,
+              lastTalk: args.memoryUpdate.lastTalk,
               facts: args.memoryUpdate.facts,
               recurringErrors: args.memoryUpdate.recurringErrors,
               resolvedErrors: args.memoryUpdate.resolvedErrors,
@@ -739,7 +762,7 @@ function productionDependencies(db: Firestore, apiKey: string): MaxVoiceFinalize
         stage: 'review_ready',
         latencyMs: Math.max(0, Date.now() - args.receipt.completedAtMs),
       });
-      if (args.memoryUpdate.isTutor) {
+      if (args.memoryUpdate.telemetry) {
         // зачем: владелец 2026-08-22 — дисциплина боевой модели (end_call,
         // домашка, цель, флаги) как счётчики в ops; текст не пишется, дедуп
         // по sessionId живёт внутри recordMaxVoiceOpsOnce.

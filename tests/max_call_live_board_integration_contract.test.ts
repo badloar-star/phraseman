@@ -20,8 +20,12 @@ describe('MAX tutor live-board call integration', () => {
   it('derives visible turn status from the real audio owner without a thinking label', () => {
     const copy = fs.readFileSync(path.join(__dirname, '../app/max_voice_copy.ts'), 'utf8');
     expect(copy).toContain("eqOwner: MaxCallUiState['eqOwner']");
-    expect(copy).toContain("maxSpeaking: 'MAX говорит'");
-    expect(copy).toContain("speak: 'Говори'");
+    // зачем (владелец 2026-08-30): «убери тексты "Говори" / "MAX говорит"» —
+    // чей ход, показывают орб и субтитры; словесные статусы только у
+    // нештатных состояний (reconnect/failed/wrap-up).
+    expect(copy).not.toContain('maxSpeaking');
+    expect(copy).not.toContain("speak:");
+    expect(copy).toContain('void eqOwner;');
     expect(session).not.toContain("ru: 'Собеседник думает…'");
     expect(session).toContain('maxVoicePhaseLabel(phase, uiState.eqOwner, lang)');
     expect(session).not.toContain('reconnectShown');

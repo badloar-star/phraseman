@@ -37,6 +37,12 @@ export interface MaxVoiceReviewMemoryProjection {
   readonly facts: readonly string[];
   readonly recurringErrors: readonly string[];
   readonly resolvedErrors: readonly string[];
+  /**
+   * «О чём говорили в прошлый раз» — одна короткая АНГЛИЙСКАЯ фраза для хвоста
+   * промпта следующего урока (владелец 2026-08-30: «он должен знать, о чём
+   * говорили в прошлой сессии»). '' — модель ничего не дала.
+   */
+  readonly lastTalk: string;
 }
 
 const MAX_TEXT_CHARS = 240;
@@ -79,6 +85,8 @@ export function sanitizeMaxVoiceMemoryProjection(raw: unknown): MaxVoiceReviewMe
     facts: list(value.facts, 6),
     recurringErrors: list(value.recurringErrors, 5),
     resolvedErrors: list(value.resolvedErrors, 5),
+    // Хвост промпта дорог: 160 символов хватает на тему, а не пересказ.
+    lastTalk: Array.from(safeText(value.lastTalk)).slice(0, 160).join(''),
   };
 }
 

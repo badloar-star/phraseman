@@ -68,9 +68,15 @@ export const SOUND_EVENTS = Object.freeze({
   // случайного даблтапа/гонки, не суррогат персистентности.
   'pm.app.welcome': event(require('../../assets/audio/sfx/v1/app/pm_app_welcome_v1.m4a'), 0.40, 65, 8000, 2300, 'app'),
 
-  'pm.learn.correct': event(require('../../assets/audio/sfx/v1/learning/pm_learn_correct_v1.m4a'), 0.42, 70, 160, 380, 'learning', { mixWithVoice: true, allowConcurrent: true }),
+  // зачем 2026-08-30: файл заменён на выбор раунда 5 (маримба, вариант B);
+  // durationMs — честная длина нового файла с естественным хвостом. Звук
+  // allowConcurrent: хвосты соседних верных ответов накладываются как удары
+  // настоящей маримбы, слот арбитра не держится.
+  'pm.learn.correct': event(require('../../assets/audio/sfx/v1/learning/pm_learn_correct_v1.m4a'), 0.42, 70, 160, 2000, 'learning', { mixWithVoice: true, allowConcurrent: true }),
   'pm.learn.needs_work': event(require('../../assets/audio/sfx/v1/learning/pm_learn_needs_work_v1.m4a'), 0.28, 68, 220, 320, 'learning'),
-  'pm.learn.hint_reveal': event(require('../../assets/audio/sfx/v1/learning/pm_learn_hint_reveal_v1.m4a'), 0.30, 38, 500, 340, 'learning'),
+  // pm.learn.hint_reveal УДАЛЁН НАВСЕГДА (владелец 2026-08-30, раунд 5:
+  // «ни один — не надо их вообще»). Подсказка раскрывается без звука, haptic
+  // остаётся. Не возвращать и не перегенерировать.
   // зачем 2026-08-03 (владелец: «тики звучат непонятно как — то в середине
   // раунда, то в конце»): кулдаун 1200 мс был ДЛИННЕЕ секундного шага отсчёта
   // и глотал каждый второй тик — 5-3-1 вместо 5-4-3-2-1 в турнире, «3…1» без
@@ -86,7 +92,8 @@ export const SOUND_EVENTS = Object.freeze({
   // зачем: тихая атмосферная подложка под уже существующий header-fade интро
   // урока (app/lesson_intro_screens.tsx). Однократность на lessonId держит
   // dedupeKey в вызове; cooldown — только защита от двойного mount подряд.
-  'pm.lesson.begin': event(require('../../assets/audio/sfx/v1/learning/pm_lesson_begin_v1.m4a'), 0.18, 20, 4000, 2300, 'learning'),
+  // зачем 2026-08-30: файл заменён на выбор раунда 5 (арфа, вариант B).
+  'pm.lesson.begin': event(require('../../assets/audio/sfx/v1/learning/pm_lesson_begin_v1.m4a'), 0.18, 20, 4000, 2960, 'learning'),
 
   'pm.voice.record_ready': event(require('../../assets/audio/sfx/v1/voice/pm_voice_record_ready_v1.m4a'), 0.40, 95, 450, 220, 'voice', { platform: 'ios' }),
   'pm.voice.turn_ready': event(require('../../assets/audio/sfx/v1/voice/pm_voice_turn_ready_v1.m4a'), 0.34, 82, 700, 300, 'voice'),
@@ -94,7 +101,8 @@ export const SOUND_EVENTS = Object.freeze({
 
   'pm.complete.micro': event(require('../../assets/audio/sfx/v1/completion/pm_complete_micro_v1.m4a'), 0.46, 74, 1800, 780, 'completion'),
   'pm.complete.session': event(require('../../assets/audio/sfx/v1/completion/pm_complete_session_v1.m4a'), 0.52, 80, 3000, 1100, 'completion'),
-  'pm.complete.perfect': event(require('../../assets/audio/sfx/v1/completion/pm_complete_perfect_v1.m4a'), 0.58, 86, 5000, 1350, 'completion'),
+  // зачем 2026-08-30: файл заменён на выбор раунда 5 (маримба+арфа, вариант B).
+  'pm.complete.perfect': event(require('../../assets/audio/sfx/v1/completion/pm_complete_perfect_v1.m4a'), 0.58, 86, 5000, 3000, 'completion'),
   'pm.complete.exam_pass': event(require('../../assets/audio/sfx/v1/completion/pm_complete_exam_pass_v1.m4a'), 0.60, 90, 6000, 1650, 'completion'),
   'pm.complete.exam_retry': event(require('../../assets/audio/sfx/v1/completion/pm_complete_exam_retry_v1.m4a'), 0.34, 72, 2500, 920, 'completion'),
   'pm.complete.star_1': event(require('../../assets/audio/sfx/v1/completion/pm_complete_star_1_v1.m4a'), 0.38, 74, 180, 340, 'completion'),
@@ -194,43 +202,47 @@ export const SOUND_EVENTS = Object.freeze({
   /**
    * Звуки Арены.
    *
-   * Источник пуст НАМЕРЕННО: файлы генерирует владелец через Adobe Firefly по
-   * промптам из `docs/arena/SOUND_PROMPTS.md`, и их пока нет. Директор молча
-   * пропускает события без источника, поэтому места вызова уже расставлены и
-   * работают — когда файл кладут в `assets/sounds/ar/`, меняется ровно одна
-   * строка здесь. Заглушек в коде экранов при этом не появляется.
+   * 2026-08-30, раунд 5 (живые инструменты): владелец выбрал ШЕСТЬ звуков —
+   * они подключены ниже. Остальные события помечены «ОТВЕРГНУТО» — владелец
+   * отметил «ни один» со словами «не надо их вообще»: эти места остаются
+   * немыми НАВСЕГДА, файлы к ним не генерировать и не подключать. `star_land`
+   * владелец не отметил вовсе — оставлен немым до отдельного решения.
+   * Источник null директор пропускает молча, вызовы на экранах живут и ничего
+   * не ломают.
    *
-   * Числа не выдуманы здесь: они взяты из `modules/arena/sound_catalog.ts`, и
-   * тест `arena_sound_catalog` падает при первом же расхождении.
+   * Числа зеркалятся с `modules/arena/sound_catalog.ts`, тест
+   * `arena_sound_catalog` падает при первом же расхождении.
    */
-  'pm.arena.search_start': event(null, 0.35, 55, 600, 400, 'arena'),
-  'pm.arena.search_loop': event(null, 0.12, 20, 1800, 2000, 'arena'),
-  'pm.arena.opponent_found': event(null, 0.6, 78, 1500, 700, 'arena'),
+  'pm.arena.search_start': event(require('../../assets/audio/sfx/v1/arena/ar_search_start_v1.m4a'), 0.35, 55, 600, 2000, 'arena'),
+  // зачем: единственный луп Арены — файл 3с бесшовный, повторный запрос идёт
+  // интервалом из arena_matchmaking (см. там), cooldown 1800 гасит дребезг.
+  'pm.arena.search_loop': event(require('../../assets/audio/sfx/v1/arena/ar_search_loop_v1.m4a'), 0.12, 20, 1800, 3000, 'arena'),
+  'pm.arena.opponent_found': event(null, 0.6, 78, 1500, 700, 'arena'), // ОТВЕРГНУТО 2026-08-30
   'pm.arena.countdown_tick': event(require('../../assets/audio/sfx/v1/arena/ar_countdown_tick_v1.m4a'), 0.34, 62, 700, 200, 'arena'),
-  'pm.arena.countdown_go': event(null, 0.55, 74, 1200, 500, 'arena'),
-  'pm.arena.task_in': event(null, 0.24, 40, 500, 260, 'arena'),
-  'pm.arena.option_tap': event(null, 0.2, 30, 60, 120, 'arena'),
-  'pm.arena.answer_correct': event(null, 0.42, 70, 160, 380, 'arena'),
-  'pm.arena.answer_first': event(null, 0.48, 72, 160, 460, 'arena'),
-  'pm.arena.answer_wrong': event(null, 0.28, 68, 220, 320, 'arena'),
-  'pm.arena.opponent_answered': event(null, 0.22, 45, 400, 200, 'arena'),
-  'pm.arena.timer_tick': event(null, 0.3, 60, 700, 140, 'arena'),
-  'pm.arena.timeout': event(null, 0.34, 66, 500, 420, 'arena'),
-  'pm.arena.combo_start': event(null, 0.38, 64, 600, 420, 'arena'),
-  'pm.arena.combo_up': event(null, 0.4, 65, 300, 380, 'arena'),
-  'pm.arena.combo_break': event(null, 0.26, 58, 600, 340, 'arena'),
-  'pm.arena.pair_match': event(null, 0.34, 66, 80, 180, 'arena'),
-  'pm.arena.pair_miss': event(null, 0.24, 62, 120, 200, 'arena'),
-  'pm.arena.pair_clear': event(null, 0.46, 74, 800, 520, 'arena'),
+  'pm.arena.countdown_go': event(require('../../assets/audio/sfx/v1/arena/ar_countdown_go_v1.m4a'), 0.55, 74, 1200, 1390, 'arena'),
+  'pm.arena.task_in': event(null, 0.24, 40, 500, 260, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.option_tap': event(null, 0.2, 30, 60, 120, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.answer_correct': event(null, 0.42, 70, 160, 380, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.answer_first': event(null, 0.48, 72, 160, 460, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.answer_wrong': event(null, 0.28, 68, 220, 320, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.opponent_answered': event(null, 0.22, 45, 400, 200, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.timer_tick': event(null, 0.3, 60, 700, 140, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.timeout': event(null, 0.34, 66, 500, 420, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.combo_start': event(null, 0.38, 64, 600, 420, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.combo_up': event(null, 0.4, 65, 300, 380, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.combo_break': event(null, 0.26, 58, 600, 340, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.pair_match': event(null, 0.34, 66, 80, 180, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.pair_miss': event(null, 0.24, 62, 120, 200, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.pair_clear': event(null, 0.46, 74, 800, 520, 'arena'), // ОТВЕРГНУТО 2026-08-30
   'pm.arena.result_win': event(require('../../assets/audio/sfx/v1/arena/ar_result_win_v1.m4a'), 0.55, 90, 2000, 1400, 'arena'),
   'pm.arena.result_loss': event(require('../../assets/audio/sfx/v1/arena/ar_result_loss_v1.m4a'), 0.38, 90, 2000, 1200, 'arena'),
-  'pm.arena.result_draw': event(null, 0.42, 90, 2000, 1100, 'arena'),
-  'pm.arena.star_fly': event(null, 0.26, 50, 70, 240, 'arena'),
-  'pm.arena.star_land': event(null, 0.34, 56, 90, 260, 'arena'),
-  'pm.arena.goal_complete': event(null, 0.44, 76, 1500, 700, 'arena'),
-  'pm.arena.reward_unlock': event(null, 0.5, 84, 1500, 900, 'arena'),
-  'pm.arena.rank_up': event(null, 0.55, 88, 2000, 1300, 'arena'),
-  'pm.arena.rank_down': event(null, 0.34, 82, 2000, 900, 'arena'),
+  'pm.arena.result_draw': event(require('../../assets/audio/sfx/v1/arena/ar_result_draw_v1.m4a'), 0.42, 90, 2000, 2480, 'arena'),
+  'pm.arena.star_fly': event(null, 0.26, 50, 70, 240, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.star_land': event(null, 0.34, 56, 90, 260, 'arena'), // не отмечен владельцем в раунде 5
+  'pm.arena.goal_complete': event(null, 0.44, 76, 1500, 700, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.reward_unlock': event(null, 0.5, 84, 1500, 900, 'arena'), // ОТВЕРГНУТО 2026-08-30
+  'pm.arena.rank_up': event(require('../../assets/audio/sfx/v1/arena/ar_rank_up_v1.m4a'), 0.55, 88, 2000, 3000, 'arena'),
+  'pm.arena.rank_down': event(require('../../assets/audio/sfx/v1/arena/ar_rank_down_v1.m4a'), 0.34, 82, 2000, 2480, 'arena'),
 
   // Карточки. Файлы сгенерированы владельцем через Firefly
   // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).
@@ -301,6 +313,15 @@ export const SOUND_EVENTS = Object.freeze({
   // Нажатия. Громкость намеренно низкая: звучат чаще всего остального.
   'pm.ui.tap_soft': event(require('../../assets/audio/sfx/v1/ui/pm_tap_soft_v1.m4a'), 0.12, 12, 40, 200, 'ui'),
   'pm.ui.tap_primary': event(require('../../assets/audio/sfx/v1/ui/pm_tap_primary_v1.m4a'), 0.14, 16, 40, 250, 'ui'),
+  // зачем 2026-08-30: вежливый отказ на тап по заблокированному (выбор
+  // раунда 5, маримба A, 146мс). Низкая ясная нота вместо глухого стука —
+  // урок двух отвергнутых раундов.
+  'pm.ui.tap_blocked': event(require('../../assets/audio/sfx/v1/ui/pm_tap_blocked_v1.m4a'), 0.16, 30, 300, 150, 'ui'),
+
+  // зачем 2026-08-30: шаг онбординга пройден (выбор раунда 5, калимба B).
+  // Частый в первые минуты жизни аккаунта, поэтому тихий и с большим
+  // приоритетом ниже learning-сигналов.
+  'pm.onboarding.step': event(require('../../assets/audio/sfx/v1/app/pm_onboarding_step_v1.m4a'), 0.22, 28, 150, 2000, 'app'),
 
   'pm.energy.spend': event(require('../../assets/audio/sfx/v1/energy/pm_energy_spend_v1.m4a'), 0.26, 44, 300, 300, 'energy'),
 

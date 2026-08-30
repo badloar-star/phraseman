@@ -94,7 +94,7 @@ describe('semantic sound event call sites', () => {
     // место их вызова. Если экран переименуют или вызов потеряют при рефакторе,
     // упадёт этот тест, а не «где-то стало тихо» на устройстве владельца.
     const expected: Record<string, string> = {
-      'pm.learn.hint_reveal': path.join('hooks', 'use-hint-reveal-cue.ts'),
+      // pm.learn.hint_reveal удалён навсегда (владелец 2026-08-30, раунд 5).
       'pm.learn.timer_expired': path.join('hooks', 'use-timer-tick-cue.ts'),
       'pm.system.warning': path.join('components', 'ActionToast.tsx'),
       'pm.system.destructive_done': path.join('components', 'DeleteAccountConfirmModal.tsx'),
@@ -112,7 +112,7 @@ describe('semantic sound event call sites', () => {
     // только на слой глубже. Ровно так pm.learn.timer_warning считался
     // подключённым, пока у use-timer-tick-cue не было ни одного потребителя.
     const cueHooks = [
-      'useHintRevealCue',
+      // useHintRevealCue удалён вместе со звуком подсказки (2026-08-30).
       'useTimerTickCue',
       'useTurnReadyCue',
       'useNoSpeechCue',

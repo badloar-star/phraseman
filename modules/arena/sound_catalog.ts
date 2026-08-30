@@ -47,15 +47,17 @@ export type ArenaSoundSpec = Readonly<{
 }>;
 
 export const ARENA_SOUNDS: readonly ArenaSoundSpec[] = Object.freeze([
-  { key: 'searchStart', file: 'ar_search_start.mp3', eventId: 'pm.arena.search_start', volume: 0.35, durationMs: 400, cooldownMs: 600, priority: 55 },
-  { key: 'searchLoop', file: 'ar_search_loop.mp3', eventId: 'pm.arena.search_loop', volume: 0.12, durationMs: 2000, cooldownMs: 1800, priority: 20 },
+  // зачем 2026-08-30: durations шести подключённых звуков — честные длины
+  // файлов раунда 5 (реальный путь assets/audio/sfx/v1/arena/*.m4a).
+  { key: 'searchStart', file: 'ar_search_start.mp3', eventId: 'pm.arena.search_start', volume: 0.35, durationMs: 2000, cooldownMs: 600, priority: 55 },
+  { key: 'searchLoop', file: 'ar_search_loop.mp3', eventId: 'pm.arena.search_loop', volume: 0.12, durationMs: 3000, cooldownMs: 1800, priority: 20 },
   { key: 'opponentFound', file: 'ar_opponent_found.mp3', eventId: 'pm.arena.opponent_found', volume: 0.60, durationMs: 700, cooldownMs: 1500, priority: 78 },
 
   // Отсчёт: кулдаун СТРОГО короче секундного шага, иначе глотается каждый
   // второй тик и игрок слышит «3…1» вместо «3, 2, 1». На этом уже обжигались
   // в турнире, см. комментарий у pm.learn.timer_warning.
   { key: 'countdownTick', file: 'ar_countdown_tick.mp3', eventId: 'pm.arena.countdown_tick', volume: 0.34, durationMs: 200, cooldownMs: 700, priority: 62 },
-  { key: 'countdownGo', file: 'ar_countdown_go.mp3', eventId: 'pm.arena.countdown_go', volume: 0.55, durationMs: 500, cooldownMs: 1200, priority: 74 },
+  { key: 'countdownGo', file: 'ar_countdown_go.mp3', eventId: 'pm.arena.countdown_go', volume: 0.55, durationMs: 1390, cooldownMs: 1200, priority: 74 },
 
   { key: 'taskIn', file: 'ar_task_in.mp3', eventId: 'pm.arena.task_in', volume: 0.24, durationMs: 260, cooldownMs: 500, priority: 40 },
   { key: 'optionTap', file: 'ar_option_tap.mp3', eventId: 'pm.arena.option_tap', volume: 0.20, durationMs: 120, cooldownMs: 60, priority: 30 },
@@ -82,7 +84,7 @@ export const ARENA_SOUNDS: readonly ArenaSoundSpec[] = Object.freeze([
 
   { key: 'resultWin', file: 'ar_result_win.mp3', eventId: 'pm.arena.result_win', volume: 0.55, durationMs: 1400, cooldownMs: 2000, priority: 90 },
   { key: 'resultLoss', file: 'ar_result_loss.mp3', eventId: 'pm.arena.result_loss', volume: 0.38, durationMs: 1200, cooldownMs: 2000, priority: 90 },
-  { key: 'resultDraw', file: 'ar_result_draw.mp3', eventId: 'pm.arena.result_draw', volume: 0.42, durationMs: 1100, cooldownMs: 2000, priority: 90 },
+  { key: 'resultDraw', file: 'ar_result_draw.mp3', eventId: 'pm.arena.result_draw', volume: 0.42, durationMs: 2480, cooldownMs: 2000, priority: 90 },
 
   { key: 'starFly', file: 'ar_star_fly.mp3', eventId: 'pm.arena.star_fly', volume: 0.26, durationMs: 240, cooldownMs: 70, priority: 50 },
   { key: 'starLand', file: 'ar_star_land.mp3', eventId: 'pm.arena.star_land', volume: 0.34, durationMs: 260, cooldownMs: 90, priority: 56 },
@@ -90,8 +92,8 @@ export const ARENA_SOUNDS: readonly ArenaSoundSpec[] = Object.freeze([
   { key: 'goalComplete', file: 'ar_goal_complete.mp3', eventId: 'pm.arena.goal_complete', volume: 0.44, durationMs: 700, cooldownMs: 1500, priority: 76 },
   { key: 'rewardUnlock', file: 'ar_reward_unlock.mp3', eventId: 'pm.arena.reward_unlock', volume: 0.50, durationMs: 900, cooldownMs: 1500, priority: 84 },
 
-  { key: 'rankUp', file: 'ar_rank_up.mp3', eventId: 'pm.arena.rank_up', volume: 0.55, durationMs: 1300, cooldownMs: 2000, priority: 88 },
-  { key: 'rankDown', file: 'ar_rank_down.mp3', eventId: 'pm.arena.rank_down', volume: 0.34, durationMs: 900, cooldownMs: 2000, priority: 82 },
+  { key: 'rankUp', file: 'ar_rank_up.mp3', eventId: 'pm.arena.rank_up', volume: 0.55, durationMs: 3000, cooldownMs: 2000, priority: 88 },
+  { key: 'rankDown', file: 'ar_rank_down.mp3', eventId: 'pm.arena.rank_down', volume: 0.34, durationMs: 2480, cooldownMs: 2000, priority: 82 },
 ]);
 
 const BY_KEY = new Map(ARENA_SOUNDS.map((spec) => [spec.key, spec]));

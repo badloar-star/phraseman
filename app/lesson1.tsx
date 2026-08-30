@@ -52,7 +52,6 @@ import { useAudio } from '../hooks/use-audio';
 import { prefetchPhraseAudio } from '../hooks/phrase_audio_prefetch';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
-import { useHintRevealCue } from '../hooks/use-hint-reveal-cue';
 import fk from './feedback/feedback_kit';
 import { comboLevelFor } from './feedback/combo_engine';
 import ComboRing from '../components/feedback/ComboRing';
@@ -597,7 +596,6 @@ const LessonContent = React.memo(function LessonContent({
   // release if the on-device recognizer misbehaves in production.
   // «Устно»: учитываем «Пульт» — если фича переведена в «Фри», замок снят у всех.
   const speakingIsPremium = useFeatureAccess('speaking');
-  const { playHintReveal } = useHintRevealCue();
   const speakingFeatureEnabled = isSpeakingEnabled();
   const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
   const speakingPhraseKey = `${displayCell}:${realPhraseIdx}:${phraseEnterKey}`;
@@ -1529,10 +1527,8 @@ const LessonContent = React.memo(function LessonContent({
                     // чтобы никогда не спрятать верный вариант. Кредит при этом не тратим.
                     const hasCorrectTile = wordOptionItems.some(o => o.isCorrectOption);
                     if (!hasCorrectTile) return;
-                    // зачем: звук подсказки — ПОСЛЕ страховки выше. Если 50/50 не
-                    // применилось (рассинхрон плиток) и кредит не потрачен, звучать
-                    // нечему: пользователь подсказку так и не получил.
-                    playHintReveal();
+                    // зачем (владелец 2026-08-30): звук подсказки удалён НАВСЕГДА —
+                    // в раунде 5 отверг все варианты («ни один — не надо их вообще»).
                     const totalTiles = wordOptionItems.length;
                     const keepCount = Math.max(2, Math.ceil(totalTiles / 2));
                     const dimCount = Math.min(wrongIdx.length, Math.max(0, totalTiles - keepCount));

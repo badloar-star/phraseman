@@ -237,6 +237,23 @@ export default function ArenaMatchmakingScreen() {
     setLeaseRefreshTick(0);
   }, [playSound, requestIdKey, energyGate]);
 
+  // зачем (владелец 2026-08-30, раунд 5): тихий луп ожидания поиска. Файл 3с
+  // бесшовный; первый запуск через 2.1с (searchStart как раз отзвучал),
+  // дальше интервал 3.05с — чуть длиннее файла, cooldown 1800 гасит дребезг.
+  // Луп глохнет, как только матч найден: под заставкой «против» он неуместен.
+  useEffect(() => {
+    if (energyGate !== 'ok' || matchId) return undefined;
+    let interval: ReturnType<typeof setInterval> | null = null;
+    const first = setTimeout(() => {
+      playSound('searchLoop');
+      interval = setInterval(() => playSound('searchLoop'), 3050);
+    }, 2100);
+    return () => {
+      clearTimeout(first);
+      if (interval) clearInterval(interval);
+    };
+  }, [playSound, energyGate, matchId, requestIdKey]);
+
   // `null` принимается наравне с `undefined`: подписка на очередь отдаёт
   // именно null, пока билета ещё нет, и без этого проверка типов краснела.
   const adoptBotSchedule = useCallback((ticket?: { joinedAtMs?: number; botDueAtMs?: number } | null) => {

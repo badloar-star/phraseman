@@ -47,7 +47,6 @@ import { useAudio } from '../hooks/use-audio';
 import { loadFlashcards, peekFlashcardsCache, type Flashcard } from '../hooks/use-flashcards';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
-import { useHintRevealCue } from '../hooks/use-hint-reveal-cue';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import {
@@ -878,7 +877,6 @@ function FlashcardsSwipeScreen() {
   const flashcardsAccess = useFeatureAccess('flashcards');
   const audio = useAudio();
   const { playCorrect } = useCorrectSound();
-  const { playHintReveal } = useHintRevealCue();
 
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang);
@@ -2552,10 +2550,8 @@ function FlashcardsSwipeScreen() {
   const revealCurrent = useCallback(() => {
     if (attempts.state.phase !== 'active' || !currentPrompt || feedback || settling || settlingRef.current) return;
     void hapticTap();
-    // зачем: раскрытие подсказки — осознанное действие ученика (счётчик hints,
-    // сброс серии), поэтому у него свой звук, а не общий «тап». Ставим после
-    // ранних return'ов: на заблокированной карточке звука быть не должно.
-    playHintReveal();
+    // зачем (владелец 2026-08-30): звук подсказки удалён НАВСЕГДА — в раунде 5
+    // отверг все варианты («ни один — не надо их вообще»). Остаётся haptic.
     const key = currentPrompt.card.trainingKey;
     const cardProgress = progressRef.current[key] ?? emptyProgress();
     cardProgress.hints += 1;
@@ -2568,7 +2564,7 @@ function FlashcardsSwipeScreen() {
       streak: 0,
     }));
     setFeedback({ kind: 'hint', prompt: currentPrompt });
-  }, [attempts.state.phase, currentPrompt, feedback, settling, updateCardMemory, playHintReveal]);
+  }, [attempts.state.phase, currentPrompt, feedback, settling, updateCardMemory]);
 
   const continueAfterFeedback = useCallback(() => {
     if (attempts.state.phase !== 'active' || !feedback) return;

@@ -50,7 +50,10 @@ describe('каталог', () => {
       expect(spec.volume).toBeGreaterThan(0);
       expect(spec.volume).toBeLessThanOrEqual(0.7);
       expect(spec.durationMs).toBeGreaterThan(0);
-      expect(spec.durationMs).toBeLessThanOrEqual(2000);
+      // зачем 2026-08-30: раунд 5 — живые инструменты с естественным хвостом,
+      // церемонии (rank_up, search_loop) достигают 3с. Потолок поднят вслед
+      // за фактом, а не ослаблен: длиннее 3с в Арене по-прежнему нечему быть.
+      expect(spec.durationMs).toBeLessThanOrEqual(3000);
     }
   });
 

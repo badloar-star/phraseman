@@ -48,6 +48,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import { GoogleSignInButton, AppleSignInButton } from './AuthProviderButtons';
 import TypewriterText from './onboarding_aha/TypewriterText';
 import { hapticTap } from '../hooks/use-haptics';
+import { soundDirector } from '../modules/audio/sound_director';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
@@ -569,6 +570,10 @@ function useStepSlide(step: CleanOnboardingStep): {
 
   useEffect(() => {
     if (step === displayStep) return;
+    // зачем (владелец 2026-08-30, раунд 5): шаг онбординга сменился — тихая
+    // калимба. Единая точка на все шаги: сюда сходятся и кнопки, и
+    // автопереходы; dedupe по имени шага не даёт повтора при возврате.
+    soundDirector.request('pm.onboarding.step', { scope: 'onboarding', dedupeKey: `step-${step}` });
     if (reduceMotion) {
       opacity.setValue(1);
       translateX.setValue(0);

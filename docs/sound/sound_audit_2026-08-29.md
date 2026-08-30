@@ -62,6 +62,34 @@
 переделывать и его). Файлы: `preview/r5/*.mp3` (сырьё трёх волн в `r5/raw*`,
 не коммитится).
 
+### ✅ ВЫБОР РАУНДА 5 ПРИМЕНЁН (2026-08-30)
+
+Владелец отслушал и решил; правило: **«ни один» = место не озвучивается вообще**.
+
+**Подключены 11:** заменены `pm_learn_correct` (маримба B), `pm_lesson_begin`
+(арфа B), `pm_complete_perfect` (маримба+арфа B); новые события
+`pm.ui.tap_blocked` (маримба A — вызов на появление любой гейт-модалки в
+`app/(tabs)/lessons.tsx`) и `pm.onboarding.step` (калимба B — вызов на смену
+шага в `useStepSlide`, `components/CleanOnboarding.tsx`); Арена:
+`countdown_go` C, `search_start` B, `search_loop` A (луп 3с — интервал в
+`arena_matchmaking.tsx`, глохнет при найденном матче), `result_draw` E,
+`rank_up` D, `rank_down` D. Все m4a −14 LUFS / пик −1 дБ / моно 48 кГц,
+длительности в реестре и каталоге арены — честные, по файлам.
+
+**Удалён навсегда:** `pm.learn.hint_reveal` — событие, файл, хук
+`use-hint-reveal-cue` и вызовы в lesson1/flashcards_swipe (подсказка теперь
+только с haptic). **Отвергнуты навсегда (19):** пометки «ОТВЕРГНУТО
+2026-08-30» в реестре — opponent_found, task_in, option_tap, answer_correct,
+answer_first, answer_wrong, opponent_answered, timer_tick, timeout,
+combo_start/up/break, pair_match/miss/clear, star_fly, goal_complete,
+reward_unlock; `star_land` владелец не отметил — нем до отдельного решения.
+
+Сторожа: реестр 145 событий / 125 с файлами, каталог арены (потолок
+длительности поднят до 3с — живые хвосты), wiring — зелёные; call_sites
+красен только по 7 ДОсуществующим сиротам (§3). Пере-замерить профили
+`SOUND_MOTION` для трёх заменённых звуков (пульс SoundWavePulse живёт на
+старых таймингах — визуальная мелочь).
+
 ### 2.1 (история) Раунд 4 — 72 звука (ElevenLabs SFX, ~518 кредитов) — забракован
 
 Папка: `docs/sound/preview/r4/` (обработаны: тишина в начале срезана, пики

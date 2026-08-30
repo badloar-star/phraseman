@@ -75,7 +75,7 @@ import {
 } from "../../constants/goldTheme";
 import { OLIVE_GRADIENTS, oliveShadow } from "../../constants/oliveTheme";
 import { getLessonExamIcon } from "../../constants/generatedThemeIconAssets";
-import type { ThemeMode } from "../../constants/theme";
+import { isLightThemeMode, type ThemeMode } from "../../constants/theme";
 import GoldBevel from "../../components/GoldBevel";
 import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS, ENABLE_DEV_STUDY_TARGET_LANG } from "../config";
 import {
@@ -101,6 +101,7 @@ import {
   subscribeLearningV2WalletBalance,
   type LearningV2WalletBalanceSnapshot,
 } from "../learning_v2_wallet_balance_store";
+import { soundDirector } from "../../modules/audio/sound_director";
 import { WALLET_SUBUNITS_PER_STAR } from "../../modules/learning-v2/contracts/wallet";
 import {
   hydrateLearningV2SessionStarResults,
@@ -690,9 +691,9 @@ const LessonCard = React.memo(function LessonCard({
   onLearningV2PressIn,
   onLearningV2Press,
 }: LessonCardProps) {
-  const isSagePorcelainCard = _themeMode === "sagePorcelain";
+  const isSagePorcelainCard = isLightThemeMode(_themeMode);
   const isOliveTheme = _themeMode === "olive";
-  const lockedCardHasLightFill = _themeMode === "sagePorcelain";
+  const lockedCardHasLightFill = isLightThemeMode(_themeMode);
   // зачем: 100% прогресс заливает ВСЮ ширину карточки градиентом [bg, lightenHex(bg,1.28)] —
   // текст «УРОК N» стоит у левого края (start x:0), т.е. фактически на САМОМ bg без lighten.
   // Аудит нашёл пограничный случай: midnight B2 (тон 0.92, bg #9B54EB) даёт тёмному тексту
@@ -1878,7 +1879,7 @@ export default function LessonsTab({
   const headerTopPad = isRetainedTab ? 12 : insets.top + 12;
   const isGoldTheme = themeMode === "gold";
   const isOliveTheme = themeMode === "olive";
-  const isSagePorcelainTheme = themeMode === "sagePorcelain";
+  const isSagePorcelainTheme = isLightThemeMode(themeMode);
   const goldBright = GOLD_RICH.champagne;
   const goldAntique = GOLD_RICH.agedGold;
   const goldHairline = GOLD_RICH.hairline;
@@ -2616,6 +2617,15 @@ export default function LessonsTab({
         lessonNum: number;
       }
   >(null);
+  // зачем (владелец 2026-08-30, раунд 5): тап по заблокированному контенту —
+  // вежливый отказ с низкой нотой (pm.ui.tap_blocked). Одна точка на все пять
+  // видов гейта: звук идёт на ПОЯВЛЕНИЕ модалки блокировки, а не на каждый
+  // setGateModal-вызов.
+  const gateModalKind = gateModal?.kind ?? null;
+  useEffect(() => {
+    if (gateModalKind === null) return;
+    soundDirector.request('pm.ui.tap_blocked', { scope: 'lessons-gate' });
+  }, [gateModalKind]);
   const mountedRef = useRef(true);
   const scoresLoadRef = useRef<{
     target: string;
@@ -4173,7 +4183,7 @@ export default function LessonsTab({
               key={learningV2RuneFlight.key}
               from={learningV2RuneFlight.from}
               to={learningV2RuneFlight.to}
-              color={t.gold}
+              count={1}
               onDone={clearLearningV2RuneFlight}
             />
           ) : null}

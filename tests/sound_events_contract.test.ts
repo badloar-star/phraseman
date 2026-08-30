@@ -10,14 +10,13 @@ import {
 
 const MISSING_EVENTS: SoundEventId[] = [
   'pm.reward.vip_finale',
-  // зачем 2026-08-24: Арена завела 28 событий с source: null НАМЕРЕННО —
-  // файлы генерирует владелец через Firefly (docs/arena/SOUND_PROMPTS.md),
-  // директор молча пропускает события без источника. Сторож обновлён вслед
-  // за фактом: 61 -> 89 событий, включённых по-прежнему 60.
-  'pm.arena.search_start',
-  'pm.arena.search_loop',
+  // зачем 2026-08-30 (раунд 5): владелец подключил 6 звуков Арены
+  // (search_start, search_loop, countdown_go, result_draw, rank_up,
+  // rank_down) — они ушли из этого списка. Остальные 19 отвергнуты
+  // словами «ни один — не надо их вообще»: события остаются немыми
+  // НАВСЕГДА, файлы не генерировать (star_land — не отмечен, ждёт
+  // отдельного решения). Директор молча пропускает события без источника.
   'pm.arena.opponent_found',
-  'pm.arena.countdown_go',
   'pm.arena.task_in',
   'pm.arena.option_tap',
   'pm.arena.answer_correct',
@@ -32,15 +31,10 @@ const MISSING_EVENTS: SoundEventId[] = [
   'pm.arena.pair_match',
   'pm.arena.pair_miss',
   'pm.arena.pair_clear',
-  'pm.arena.result_draw',
   'pm.arena.star_fly',
   'pm.arena.star_land',
   'pm.arena.goal_complete',
   'pm.arena.reward_unlock',
-  'pm.arena.rank_up',
-  'pm.arena.rank_down',
-  // зачем 2026-08-25: событие празднования Plus заведено параллельной сессией,
-  // файл к нему ещё не сгенерирован — директор молча пропускает такие события.
 ];
 
 describe('semantic sound event catalog', () => {
@@ -49,11 +43,11 @@ describe('semantic sound event catalog', () => {
     const enabled = ids.filter((id) => SOUND_EVENTS[id].source !== null);
     const disabled = ids.filter((id) => SOUND_EVENTS[id].source === null);
 
-    // зачем 2026-08-29: +2 события сердечек (pm.hearts.lost/restored) — файлы
-    // были одобрены владельцем ещё 28.08, а механика session_attempts живая;
-    // вызовы в SessionAttemptsHud. 142 -> 144, включённых 116 -> 118.
-    expect(ids).toHaveLength(144);
-    expect(enabled).toHaveLength(118);
+    // зачем 2026-08-30 (раунд 5, выбор владельца): −1 hint_reveal (удалён
+    // навсегда), +2 новых (ui.tap_blocked, onboarding.step), +6 арен получили
+    // файлы. 144 -> 145 событий, включённых 118 -> 125.
+    expect(ids).toHaveLength(145);
+    expect(enabled).toHaveLength(125);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });
@@ -62,7 +56,8 @@ describe('semantic sound event catalog', () => {
     expect(SOUND_EVENTS['pm.learn.correct']).toMatchObject({
       volume: 0.42,
       priority: 70,
-      durationMs: 380,
+      // зачем 2026-08-30: файл раунда 5 (маримба) с естественным хвостом.
+      durationMs: 2000,
       cooldownMs: 160,
       family: 'learning',
       mixWithVoice: true,

@@ -19,6 +19,7 @@ import {
   useWindowDimensions,
   View,
   type ImageSourcePropType,
+  type ViewStyle,
 } from 'react-native';
 import Svg, { Circle, Defs, RadialGradient as SvgRadialGradient, Stop } from 'react-native-svg';
 
@@ -499,17 +500,6 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         if (!finished) return;
         later(() => {
           lifecycleRef.current.startFlight(token);
-          const out = Animated.parallel([
-            Animated.timing(journalAlive, { toValue: 0, duration: 240, useNativeDriver: true }),
-            Animated.timing(backdrop, { toValue: 0, duration: 280, useNativeDriver: true }),
-            Animated.timing(skipOp, { toValue: 0, duration: 200, useNativeDriver: true }),
-          ]);
-          runningRef.current = out;
-          out.start(({ finished: outFinished }) => {
-            if (!outFinished) return;
-            runningRef.current = null;
-            lifecycleRef.current.completeFlight(token, true);
-          });
         }, 1100);
       });
     }, [backdrop, bloomIn, finishDelivered, haloOp, journalAlive, journalIn, labelIn, later,
@@ -659,12 +649,13 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
                 const received = reward.day < normalizedDay;
                 const isToday = reward.day === normalizedDay;
                 const art = rewardImageSource(isToday ? currentReward : reward, themeMode);
-                const enter = {
+                const enterTransform: NonNullable<Animated.WithAnimatedValue<ViewStyle['transform']>> = [
+                  { translateY: tileIn[i].interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) },
+                  { scale: tileIn[i].interpolate({ inputRange: [0, 1], outputRange: [0.88, 1] }) },
+                ];
+                const enter: Animated.AnimatedProps<ViewStyle> = {
                   opacity: tileIn[i],
-                  transform: [
-                    { translateY: tileIn[i].interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) },
-                    { scale: tileIn[i].interpolate({ inputRange: [0, 1], outputRange: [0.88, 1] }) },
-                  ],
+                  transform: enterTransform,
                 };
                 const tile = (
                   <View testID={`daily-journey-day-${reward.day}`} style={styles.tileClip}>
@@ -689,8 +680,12 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
                   </View>
                 );
                 if (isToday) {
+                  const todayTransform: NonNullable<Animated.WithAnimatedValue<ViewStyle['transform']>> = [
+                    ...enterTransform,
+                    { scale: pulseScale },
+                  ];
                   return (
-                    <Animated.View key={reward.day} ref={todayTileRef as React.Ref<View>} style={[styles.cell, enter, { transform: [...enter.transform, { scale: pulseScale }] }]}>
+                    <Animated.View key={reward.day} ref={todayTileRef as React.Ref<View>} style={[styles.cell, enter, { transform: todayTransform }]}>
                       <Animated.View pointerEvents="none" style={[styles.halo, { opacity: haloOp }]}>
                         <Svg width="100%" height="100%" viewBox="0 0 100 100">
                           <Defs>

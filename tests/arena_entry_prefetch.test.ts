@@ -359,7 +359,7 @@ describe('Arena entry prefetch production singleton source contract', () => {
   test('keeps matchmaking visible until the shared prepared entry succeeds', () => {
     const matchmaking = fs.readFileSync(path.resolve(__dirname, '../app/arena_matchmaking.tsx'), 'utf8');
     const prefetchAt = matchmaking.indexOf('arenaEntryPrefetchStart(matchId)');
-    const navigationAt = matchmaking.indexOf("params: { matchId, prepared: '1' }");
+    const navigationAt = matchmaking.indexOf("params: { matchId, prepared: '1', ...(viewerStarsParam ? { viewerStars: viewerStarsParam } : {}) }");
 
     expect(matchmaking).toContain("import { arenaEntryPrefetchStart } from './arena_entry_prefetch';");
     expect(prefetchAt).toBeGreaterThan(0);

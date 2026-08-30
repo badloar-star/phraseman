@@ -4,12 +4,14 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLang } from '../components/LangContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaSearchPulse } from '../components/arena/ArenaSearchPulse';
+import { ArenaRankMatchmakingScene } from '../components/arena/ArenaRankMatchmakingScene';
 import { V2Card, V2Cta } from '../components/ui/v2_ui';
 import { useTournamentPalette } from '../components/ui/v2_theme';
 import { arenaText } from '../modules/arena/copy';
 import { arenaEntryFailure } from '../modules/arena/duel_plan';
 import { ARENA_QUICK_BOT_ANSWER_GRACE_MS, ARENA_QUICK_FALLBACK_MAX_MS, ARENA_QUICK_SEARCH_GIVE_UP_MS, ARENA_RANKED_HEARTBEAT_MS, type ArenaQueueMode } from '../modules/arena/contract';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import { arenaReplacementBotDelayMs } from '../modules/arena/matchmaking_state';
 import { useArenaSound } from '../hooks/use_arena_sound';
@@ -79,10 +81,15 @@ export default function ArenaMatchmakingScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const P = useTournamentPalette();
-  const params = useLocalSearchParams<{ mode?: string; requestId?: string; stableUid?: string; resumeQueue?: string }>();
+  const params = useLocalSearchParams<{ mode?: string; requestId?: string; stableUid?: string; resumeQueue?: string; viewerStars?: string }>();
   const mode: ArenaQueueMode = params.mode === 'ranked' ? 'ranked' : 'quick';
   const resumesPaidQueue = params.resumeQueue === '1';
   const active = useRuntimeActive();
+  const reduceMotion = useReduceMotion();
+  const viewerStarsParam = typeof params.viewerStars === 'string' && /^\d+$/.test(params.viewerStars)
+    ? params.viewerStars
+    : null;
+  const viewerStars = viewerStarsParam === null ? null : Number(viewerStarsParam);
   const now = useVisibleWallClock(active, 1_000);
   const explicitRequestId = typeof params.requestId === 'string' && params.requestId
     ? params.requestId
@@ -489,7 +496,7 @@ export default function ArenaMatchmakingScreen() {
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
     void arenaEntryPrefetchStart(matchId).then(() => {
       if (!alive) return;
-      router.replace({ pathname: '/arena_match', params: { matchId, prepared: '1' } } as never);
+      router.replace({ pathname: '/arena_match', params: { matchId, prepared: '1', ...(viewerStarsParam ? { viewerStars: viewerStarsParam } : {}) } } as never);
     }).catch((reason) => {
       if (!alive) return;
       const failure = arenaEntryFailure(reason);
@@ -504,7 +511,7 @@ export default function ArenaMatchmakingScreen() {
       alive = false;
       if (retryTimer) clearTimeout(retryTimer);
     };
-  }, [active, entryRetryTick, matchId, mode, requestId, resumeSearchAfterAssignedMatch, router]);
+  }, [active, entryRetryTick, matchId, mode, requestId, resumeSearchAfterAssignedMatch, router, viewerStarsParam]);
 
   useEffect(() => {
     if (!active || !matchId) return undefined;
@@ -685,7 +692,15 @@ export default function ArenaMatchmakingScreen() {
               длинном ожидании начинает раздражать — у вращения нет ни начала,
               ни конца. Волна по сетке живёт циклами, глаз отдыхает на паузе.
               Владелец выбрал этот вариант из пяти (2026-08-16). */}
-          <ArenaSearchPulse />
+          {mode === 'ranked' ? (
+            <ArenaRankMatchmakingScene
+              viewerStars={viewerStars}
+              active={active}
+              reduceMotion={reduceMotion}
+            />
+          ) : (
+            <ArenaSearchPulse />
+          )}
           <Text
             testID="arena-search-elapsed"
             style={[styles.elapsed, { color: P.text }]}

@@ -48,6 +48,8 @@ export type AppEventMap = {
   onboarding_welcome_pending_raised: undefined;
   /** Подарок лояльности (72ч для существующих free-юзеров) активирован/откатан — пересчитать доступ. */
   loyalty_gift_changed: undefined;
+  /** Immutable daily-journey gift inbox or its seen watermark changed. */
+  daily_journey_gifts_changed: undefined;
   gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
   avatar_dna_invitation_requested: { source: 'first_achievement' };

@@ -234,13 +234,11 @@ describe('экран Арены пользуется снимком', () => {
     expect(source).not.toContain('hubLoading');
   });
 
-  it('даже без данных рисуются живые блоки и карточка Today с честным неизвестным прогрессом', () => {
-    expect(source).toContain('<ArenaHubSummary model={hub} />');
+  it('даже без данных рисуются ранговый hero и дневные цели', () => {
+    expect(source).toContain('<ArenaHubSummary model={hub} active={active} reduceMotion={reduceMotion} />');
     expect(source).toContain('<ArenaDailyGoals model={hub.goals} />');
-    expect(source).toContain('value={today?.completedTasks ?? null}');
     expect(source).not.toMatch(/\{\s*home\s*\?\s*<ArenaHubSummary/);
     expect(source).not.toMatch(/\{\s*home\s*\?\s*<ArenaDailyGoals/);
-    expect(source).not.toMatch(/\{\s*today\s*\?\s*<V2Card/);
   });
 
   it('сетевой сбой показывает компактное офлайн-сообщение, а серверный — прежнюю карточку', () => {

@@ -231,11 +231,12 @@ describe('неизвестная награда не выдаётся за но�
 describe('ноль не подменяет незнание', () => {
   const read = (rel: string) => fs.readFileSync(path.resolve(__dirname, '..', rel), 'utf8');
 
-  it('плотная сводка хаба рисует прочерк, пока статистика неизвестна', () => {
+  it('ранговый hero рисует нейтральный щит, пустые звёзды и прочерк, пока ранг неизвестен', () => {
     const summary = read('components/arena/ArenaHubSummary.tsx');
-    expect(summary).toContain("stats?.wins ?? '—'");
-    expect(summary).toContain("stats?.losses ?? '—'");
-    expect(summary).toContain("model.streak ?? '—'");
+    expect(summary).toContain('<Ionicons name="shield-outline"');
+    expect(summary).toContain('<ArenaRankStars filled={rank?.starsInRank ?? 0} size={38} />');
+    expect(summary).toMatch(/const rankLabel = rank[\s\S]*?: '—';/);
+    expect(summary).not.toContain('model.stats');
   });
 
   it('топы не выдают чужой тир за свой', () => {

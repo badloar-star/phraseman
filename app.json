@@ -106,7 +106,9 @@
       ],
       "googleServicesFile": "./GoogleService-Info.plist",
       "entitlements": {
-        "com.apple.security.application-groups": ["group.app.phraseman.widget"],
+        "com.apple.security.application-groups": [
+          "group.app.phraseman.widget"
+        ],
         "com.apple.developer.devicecheck.appattest-environment": "production"
       },
       "infoPlist": {
@@ -230,7 +232,8 @@
       "@bacons/apple-targets",
       "./plugins/withIosDailyPhraseWidgetAppGroup",
       "./plugins/withIosFirebaseFunctionsSwift63Workaround",
-      "./plugins/withIosFirebaseCrashlyticsUpload"
+      "./plugins/withIosFirebaseCrashlyticsUpload",
+      "./plugins/with_async_storage_db_size.js"
     ],
     "experiments": {
       "typedRoutes": true,

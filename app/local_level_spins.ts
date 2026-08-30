@@ -785,6 +785,48 @@ export async function grantLocalReportRewardSpins(
   }, accountTransitionLockLease);
 }
 
+/**
+ * Daily Journey delayed-use Spin grant. The claim operation is hashed into a
+ * bounded deterministic credit family, so a retry can materialize 1..5 exact
+ * credits without minting a second set.
+ */
+export async function grantLocalDailyJourneySpins(
+  claimOperationId: string,
+  count: number,
+  token: AccountGenerationToken,
+  accountTransitionLockLease?: AccountTransitionLockLease,
+): Promise<boolean> {
+  const owner = token.stableId?.trim();
+  const stableClaimId = claimOperationId.trim();
+  const safeCount = Math.trunc(count);
+  if (!owner
+    || !/^daily-journey-gift-claim:[A-Za-z0-9][A-Za-z0-9_.:-]{7,159}$/.test(stableClaimId)
+    || safeCount < 1
+    || safeCount > 5
+    || !isCurrentAccountGeneration(token, owner)) return false;
+  const claimHash = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    `daily-journey-spin:${owner}:${stableClaimId}`,
+  );
+  if (!isCurrentAccountGeneration(token, owner)) return false;
+  const ids = Array.from({ length: safeCount }, (_, index) => (
+    `local_spin_daily_journey_${claimHash.slice(0, 40)}_${index + 1}`
+  ));
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(token, owner)) return false;
+    const current = await loadLocalState(owner);
+    if (!isCurrentAccountGeneration(token, owner)) return false;
+    const missingIds = ids.filter((id) => !current.issuedCreditIds.includes(id));
+    if (missingIds.length === 0) return true;
+    await writeLocalState({
+      ...current,
+      credits: [...current.credits, ...missingIds.map((id) => ({ id, level: 2 }))],
+      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, ...missingIds]),
+    });
+    return isCurrentAccountGeneration(token, owner);
+  }, accountTransitionLockLease);
+}
+
 export async function recoverLocalLevelSpin(): Promise<LocalLevelSpinReceipt | null> {
   const owner = ownerFromDevice();
   if (!owner) return null;

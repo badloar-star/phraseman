@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { beginAccountGeneration, captureAccountGeneration } from '../app/account_generation';
 import {
   claimLocalLevelSpin,
+  grantLocalDailyJourneySpins,
   grantLocalDevSpin,
   grantLocalLessonCompletionSpin,
   LOCAL_LEVEL_SPIN_STATE_KEY,
@@ -9,7 +10,11 @@ import {
 import { LEVEL_SPIN_GIFT_JOURNAL_KEY } from '../app/level_up_storage_keys';
 
 jest.mock('@react-native-async-storage/async-storage');
-jest.mock('expo-crypto', () => ({ randomUUID: jest.fn(() => '11111111-1111-4111-8111-111111111111') }));
+jest.mock('expo-crypto', () => ({
+  CryptoDigestAlgorithm: { SHA256: 'SHA256' },
+  digestStringAsync: jest.fn(async () => 'a'.repeat(64)),
+  randomUUID: jest.fn(() => '11111111-1111-4111-8111-111111111111'),
+}));
 
 const storage: Record<string, string> = {};
 const stateKey = `${LOCAL_LEVEL_SPIN_STATE_KEY}:account-a`;
@@ -56,4 +61,22 @@ test('a replay cannot mint again after more than 160 later source awards', async
   const state = JSON.parse(storage[stateKey]!) as { issuedCreditIds: string[] };
   expect(state.issuedCreditIds).toHaveLength(162);
   expect(state.issuedCreditIds[0]).toBe('local_spin_lesson_en-1');
+});
+
+test('Daily Journey grants five durable credits once for one stable claim id', async () => {
+  const token = captureAccountGeneration();
+  const claimId = 'daily-journey-gift-claim:daily-spin-five-0001';
+
+  await expect(grantLocalDailyJourneySpins(claimId, 5, token)).resolves.toBe(true);
+  await expect(grantLocalDailyJourneySpins(claimId, 5, token)).resolves.toBe(true);
+
+  const state = JSON.parse(storage[stateKey]!) as {
+    credits: { id: string }[];
+    issuedCreditIds: string[];
+  };
+  expect(state.credits).toHaveLength(5);
+  expect(state.issuedCreditIds).toEqual(Array.from(
+    { length: 5 },
+    (_, index) => `local_spin_daily_journey_${'a'.repeat(40)}_${index + 1}`,
+  ));
 });

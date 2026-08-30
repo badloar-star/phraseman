@@ -16,6 +16,10 @@ import {
   withAccountTransitionLock,
   type AccountGenerationToken,
 } from './account_generation';
+import {
+  applyDailyJourneyGiftActivation,
+  finalizeDailyJourneyGiftActivation,
+} from './daily_journey_gift_activation';
 import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
 
@@ -81,6 +85,16 @@ type DailyJourneyGiftPreparedV1 = Readonly<{
   preparedAtMs: number;
 }>;
 
+type DailyJourneyGiftClaimPreparedV1 = Readonly<{
+  schemaVersion: 'daily-journey-gift-claim-prepared.v1';
+  claimOperationId: string;
+  ownerStableId: string;
+  occurrence: DailyJourneyGiftOccurrenceV1;
+  occurrenceFingerprint: string;
+  reward: DailyJourneyGiftRewardV1;
+  preparedAtMs: number;
+}>;
+
 export type DailyJourneyGiftClaimReceiptV1 = Readonly<{
   schemaVersion: 'daily-journey-gift-claim-receipt.v1';
   claimOperationId: string;
@@ -119,6 +133,10 @@ function claimReceiptKey(ownerStableId: string, operationId: string): string {
   return `${CLAIM_RECEIPT_PREFIX}${ownerPart(ownerStableId)}:${operationPart(operationId)}`;
 }
 
+function claimPreparedKey(ownerStableId: string): string {
+  return `${CLAIM_RECEIPT_PREFIX}${ownerPart(ownerStableId)}:__prepared__:`;
+}
+
 export function dailyJourneyGiftClaimOperationId(operationId: string): string {
   return `daily-journey-gift-claim:${operationId}`;
 }
@@ -128,6 +146,10 @@ export function dailyJourneyGiftClaimReceiptStorageKey(
   operationId: string,
 ): string {
   return claimReceiptKey(ownerStableId, operationId);
+}
+
+export function dailyJourneyGiftClaimPreparedStorageKey(ownerStableId: string): string {
+  return claimPreparedKey(ownerStableId);
 }
 
 function ownKeys(value: object): string[] {
@@ -407,6 +429,39 @@ function parseClaimReceipt(
     return Object.freeze({ status: 'valid', receipt: Object.freeze(value) });
   } catch {
     return Object.freeze({ status: 'corrupt' });
+  }
+}
+
+async function parseClaimPrepared(
+  raw: string | null,
+  ownerStableId: string,
+  token: AccountGenerationToken,
+): Promise<DailyJourneyGiftClaimPreparedV1 | null> {
+  if (raw === null) return null;
+  try {
+    const value = JSON.parse(raw) as DailyJourneyGiftClaimPreparedV1;
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+    assertExactKeys(value, [
+      'schemaVersion', 'claimOperationId', 'ownerStableId', 'occurrence',
+      'occurrenceFingerprint', 'reward', 'preparedAtMs',
+    ]);
+    const occurrence = await accountAwait(token, () => parseVerifiedOccurrence(
+      JSON.stringify(value.occurrence),
+      ownerStableId,
+      token,
+    ));
+    if (value.schemaVersion !== 'daily-journey-gift-claim-prepared.v1'
+      || value.ownerStableId !== ownerStableId
+      || !occurrence
+      || value.claimOperationId !== dailyJourneyGiftClaimOperationId(occurrence.operationId)
+      || value.occurrenceFingerprint !== occurrence.payloadFingerprint
+      || JSON.stringify(value.reward) !== JSON.stringify(occurrence.reward)
+      || !Number.isSafeInteger(value.preparedAtMs)
+      || value.preparedAtMs < occurrence.createdAtMs) return null;
+    return Object.freeze({ ...value, occurrence, reward: occurrence.reward });
+  } catch (error) {
+    if (error instanceof Error && error.message === 'daily_journey_account_stale') throw error;
+    return null;
   }
 }
 
@@ -752,6 +807,220 @@ export async function readDailyJourneyGiftClaimState(
   } finally {
     if (recovered) emitDailyJourneyGiftsChangedBestEffort();
   }
+}
+
+type ClaimInspection =
+  | Readonly<{ status: 'prepared'; prepared: DailyJourneyGiftClaimPreparedV1 }>
+  | Readonly<{ status: 'already_claimed' }>
+  | Readonly<{ status: 'missing' }>;
+
+async function withDailyJourneyJournalLock<T>(
+  token: AccountGenerationToken,
+  work: (ownerStableId: string) => Promise<T>,
+): Promise<T> {
+  return accountAwait(token, () => withAccountTransitionLock(async () => withStorageLock(async () => {
+    const ownerStableId = assertCurrentToken(token);
+    const value = await work(ownerStableId);
+    assertCurrentToken(token);
+    return value;
+  })));
+}
+
+async function inspectOrPrepareClaim(
+  operationId: string,
+  token: AccountGenerationToken,
+): Promise<ClaimInspection> {
+  return withDailyJourneyJournalLock(token, async (ownerStableId) => {
+    const preparedRaw = await accountAwait(
+      token,
+      () => AsyncStorage.getItem(claimPreparedKey(ownerStableId)),
+    );
+    if (preparedRaw !== null) {
+      const prepared = await accountAwait(
+        token,
+        () => parseClaimPrepared(preparedRaw, ownerStableId, token),
+      );
+      if (!prepared) throw new Error('daily_journey_claim_prepared_corrupt');
+      return Object.freeze({ status: 'prepared' as const, prepared });
+    }
+    const durable = await accountAwait(token, () => readValidatedJournal(ownerStableId, token));
+    const occurrence = durable.occurrences.find((candidate) => candidate.operationId === operationId);
+    if (!occurrence) return Object.freeze({ status: 'missing' as const });
+    const receiptRaw = await accountAwait(
+      token,
+      () => AsyncStorage.getItem(claimReceiptKey(ownerStableId, operationId)),
+    );
+    const receipt = parseClaimReceipt(receiptRaw, occurrence);
+    if (receipt.status === 'corrupt') throw new Error('daily_journey_claim_receipt_corrupt');
+    if (receipt.status === 'valid') return Object.freeze({ status: 'already_claimed' as const });
+    const prepared: DailyJourneyGiftClaimPreparedV1 = Object.freeze({
+      schemaVersion: 'daily-journey-gift-claim-prepared.v1',
+      claimOperationId: dailyJourneyGiftClaimOperationId(operationId),
+      ownerStableId,
+      occurrence,
+      occurrenceFingerprint: occurrence.payloadFingerprint,
+      reward: occurrence.reward,
+      preparedAtMs: Math.max(Date.now(), occurrence.createdAtMs),
+    });
+    await accountAwait(token, () => AsyncStorage.setItem(
+      claimPreparedKey(ownerStableId),
+      JSON.stringify(prepared),
+    ));
+    const verifiedRaw = await accountAwait(
+      token,
+      () => AsyncStorage.getItem(claimPreparedKey(ownerStableId)),
+    );
+    const verified = await accountAwait(
+      token,
+      () => parseClaimPrepared(verifiedRaw, ownerStableId, token),
+    );
+    if (!verified || JSON.stringify(verified) !== JSON.stringify(prepared)) {
+      throw new Error('daily_journey_claim_prepared_write_unverified');
+    }
+    return Object.freeze({ status: 'prepared' as const, prepared: verified });
+  });
+}
+
+async function preparedClaimHasReceipt(
+  prepared: DailyJourneyGiftClaimPreparedV1,
+  token: AccountGenerationToken,
+): Promise<boolean> {
+  return withDailyJourneyJournalLock(token, async (ownerStableId) => {
+    if (prepared.ownerStableId !== ownerStableId) throw new Error('daily_journey_account_stale');
+    const raw = await accountAwait(
+      token,
+      () => AsyncStorage.getItem(claimReceiptKey(ownerStableId, prepared.occurrence.operationId)),
+    );
+    const receipt = parseClaimReceipt(raw, prepared.occurrence);
+    if (receipt.status === 'corrupt') throw new Error('daily_journey_claim_receipt_corrupt');
+    return receipt.status === 'valid';
+  });
+}
+
+async function persistPreparedClaimReceipt(
+  prepared: DailyJourneyGiftClaimPreparedV1,
+  token: AccountGenerationToken,
+): Promise<boolean> {
+  return withDailyJourneyJournalLock(token, async (ownerStableId) => {
+    if (prepared.ownerStableId !== ownerStableId) throw new Error('daily_journey_account_stale');
+    const durable = await accountAwait(token, () => readValidatedJournal(ownerStableId, token));
+    const occurrence = durable.occurrences.find(
+      (candidate) => candidate.operationId === prepared.occurrence.operationId,
+    );
+    if (!occurrence || JSON.stringify(occurrence) !== JSON.stringify(prepared.occurrence)) {
+      throw new Error('daily_journey_claim_occurrence_conflict');
+    }
+    const receiptKey = claimReceiptKey(ownerStableId, occurrence.operationId);
+    const receiptRaw = await accountAwait(token, () => AsyncStorage.getItem(receiptKey));
+    const existing = parseClaimReceipt(receiptRaw, occurrence);
+    if (existing.status === 'corrupt') throw new Error('daily_journey_claim_receipt_corrupt');
+    if (existing.status === 'valid') return false;
+    const currentPreparedRaw = await accountAwait(
+      token,
+      () => AsyncStorage.getItem(claimPreparedKey(ownerStableId)),
+    );
+    const currentPrepared = await accountAwait(
+      token,
+      () => parseClaimPrepared(currentPreparedRaw, ownerStableId, token),
+    );
+    if (!currentPrepared || JSON.stringify(currentPrepared) !== JSON.stringify(prepared)) {
+      throw new Error('daily_journey_claim_prepared_conflict');
+    }
+    const receipt: DailyJourneyGiftClaimReceiptV1 = Object.freeze({
+      schemaVersion: 'daily-journey-gift-claim-receipt.v1',
+      claimOperationId: prepared.claimOperationId,
+      operationId: occurrence.operationId,
+      ownerStableId,
+      occurrenceFingerprint: occurrence.payloadFingerprint,
+      reward: occurrence.reward,
+      claimedAtMs: Math.max(Date.now(), occurrence.createdAtMs),
+    });
+    await accountAwait(token, () => AsyncStorage.setItem(receiptKey, JSON.stringify(receipt)));
+    const verifiedRaw = await accountAwait(token, () => AsyncStorage.getItem(receiptKey));
+    const verified = parseClaimReceipt(verifiedRaw, occurrence);
+    if (verified.status !== 'valid' || JSON.stringify(verified.receipt) !== JSON.stringify(receipt)) {
+      throw new Error('daily_journey_claim_receipt_write_unverified');
+    }
+    return true;
+  });
+}
+
+async function clearPreparedClaim(
+  prepared: DailyJourneyGiftClaimPreparedV1,
+  token: AccountGenerationToken,
+): Promise<void> {
+  await withDailyJourneyJournalLock(token, async (ownerStableId) => {
+    const receiptRaw = await accountAwait(
+      token,
+      () => AsyncStorage.getItem(claimReceiptKey(ownerStableId, prepared.occurrence.operationId)),
+    );
+    const receipt = parseClaimReceipt(receiptRaw, prepared.occurrence);
+    if (receipt.status !== 'valid') throw new Error('daily_journey_claim_receipt_write_unverified');
+    const preparedKey = claimPreparedKey(ownerStableId);
+    const currentRaw = await accountAwait(token, () => AsyncStorage.getItem(preparedKey));
+    if (currentRaw === null) return;
+    const current = await accountAwait(token, () => parseClaimPrepared(currentRaw, ownerStableId, token));
+    if (!current || JSON.stringify(current) !== JSON.stringify(prepared)) {
+      throw new Error('daily_journey_claim_prepared_conflict');
+    }
+    await accountAwait(token, () => AsyncStorage.removeItem(preparedKey));
+    const remaining = await accountAwait(token, () => AsyncStorage.getItem(preparedKey));
+    if (remaining !== null) throw new Error('daily_journey_claim_prepared_clear_failed');
+  });
+}
+
+async function completePreparedClaim(
+  prepared: DailyJourneyGiftClaimPreparedV1,
+  token: AccountGenerationToken,
+): Promise<'claimed' | 'already_claimed'> {
+  const alreadyDurable = await accountAwait(
+    token,
+    () => preparedClaimHasReceipt(prepared, token),
+  );
+  if (!alreadyDurable) {
+    await accountAwait(token, () => applyDailyJourneyGiftActivation(
+      prepared.occurrence,
+      prepared.claimOperationId,
+      token,
+    ));
+  }
+  const created = await accountAwait(
+    token,
+    () => persistPreparedClaimReceipt(prepared, token),
+  );
+  await accountAwait(token, () => finalizeDailyJourneyGiftActivation(
+    prepared.occurrence,
+    prepared.claimOperationId,
+    token,
+  ));
+  await accountAwait(token, () => clearPreparedClaim(prepared, token));
+  emitDailyJourneyGiftsChangedBestEffort();
+  return created ? 'claimed' : 'already_claimed';
+}
+
+export async function claimDailyJourneyGift(
+  operationId: string,
+  token: AccountGenerationToken = captureAccountGeneration(),
+): Promise<{ status: 'claimed' | 'already_claimed' }> {
+  if (typeof operationId !== 'string' || !OPERATION_ID_RE.test(operationId)) {
+    throw new Error('daily_journey_claim_invalid');
+  }
+  const ownerStableId = assertCurrentToken(token);
+  const recoveredOccurrence = await withDailyJourneyJournalLock(token, async () => (
+    accountAwait(token, () => recoverPrepared(ownerStableId, token))
+  ));
+  if (recoveredOccurrence) emitDailyJourneyGiftsChangedBestEffort();
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const inspection = await accountAwait(token, () => inspectOrPrepareClaim(operationId, token));
+    if (inspection.status === 'missing') throw new Error('daily_journey_claim_missing');
+    if (inspection.status === 'already_claimed') return { status: 'already_claimed' };
+    const status = await accountAwait(
+      token,
+      () => completePreparedClaim(inspection.prepared, token),
+    );
+    if (inspection.prepared.occurrence.operationId === operationId) return { status };
+  }
+  throw new Error('daily_journey_claim_recovery_exhausted');
 }
 
 export { DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES };

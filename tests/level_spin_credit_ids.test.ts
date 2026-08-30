@@ -15,6 +15,7 @@ describe('shared local Spin credit ID contract', () => {
     // поэтому проверяем и реальную длину, а не только префикс.
     'local_spin_chest_2026-W35_grp1_uid1_league_spin_0',
     `local_spin_chest_${'a'.repeat(100)}`,
+    `local_spin_daily_journey_${'a'.repeat(40)}_5`,
   ];
 
   it.each(storedCredits)('accepts stored credit source %s', (creditId) => {

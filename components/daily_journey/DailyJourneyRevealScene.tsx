@@ -22,8 +22,6 @@ import {
 } from 'react-native';
 import Svg, { Circle, Defs, RadialGradient as SvgRadialGradient, Stop } from 'react-native-svg';
 
-import { levelSpinRewardImageSource } from '../../app/level_spin_reward_assets';
-import { themeUiAsset } from '../../app/theme_ui_assets';
 import { getStreakFreezeIconVariant } from '../../constants/streakIconAssets';
 import { hapticLightImpact, hapticSuccess, hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -94,24 +92,32 @@ const HERO_CENTER_Y_RATIO = 0.33;
 const RAYS_TURN_MS = 36_000;
 const RAYS_TURN_B_MS = 44_000;
 
-export function rewardImageSource(
-  reward: DailyJourneyReward,
-  themeMode: Parameters<typeof themeUiAsset>[0],
-): ImageSourcePropType {
+const DAILY_JOURNEY_STATIC_ART = Object.freeze({
+  pearls_10: require('../../assets/images/level-spin-rewards/pearls_10.webp'),
+  pearls_20: require('../../assets/images/level-spin-rewards/pearls_20.webp'),
+  pearls_50: require('../../assets/images/level-spin-rewards/pearls_50.webp'),
+  pearls_100: require('../../assets/images/level-spin-rewards/pearls_100.webp'),
+  pearls_250: require('../../assets/images/level-spin-rewards/pearls_250.webp'),
+  runes: require('../../assets/images/level-spin-rewards/stars_100.webp'),
+  energy_full: require('../../assets/images/level-spin-rewards/energy_full.webp'),
+  energy_plus: require('../../assets/images/level-spin-rewards/energy_plus2.webp'),
+  spins: require('../../assets/images/level-spin-rewards/chain_shield_1.webp'),
+});
+
+export function rewardImageSource(reward: Pick<DailyJourneyReward, 'kind' | 'amount'>, themeMode: Parameters<typeof getStreakFreezeIconVariant>[0]): ImageSourcePropType {
   // зачем: единственный маппер «награда → арт» для сцены и её хостов;
   // прежний дубль в dev-модалке удалён вместе с её старой вёрсткой.
   switch (reward.kind) {
     case 'pearls':
-      return levelSpinRewardImageSource(`pearls_${reward.amount}`, themeMode)
-        ?? levelSpinRewardImageSource('pearls_100', themeMode)!;
+      return DAILY_JOURNEY_STATIC_ART[`pearls_${reward.amount}` as keyof typeof DAILY_JOURNEY_STATIC_ART] ?? DAILY_JOURNEY_STATIC_ART.pearls_100;
     case 'runes':
-      return themeUiAsset(themeMode, 'rune');
+      return DAILY_JOURNEY_STATIC_ART.runes;
     case 'energy_full':
-      return levelSpinRewardImageSource('energy_full', themeMode)!;
+      return DAILY_JOURNEY_STATIC_ART.energy_full;
     case 'energy_plus':
-      return levelSpinRewardImageSource(reward.amount >= 3 ? 'energy_plus3' : 'energy_plus2', themeMode)!;
+      return DAILY_JOURNEY_STATIC_ART.energy_plus;
     case 'spins':
-      return themeUiAsset(themeMode, 'spinTicket');
+      return DAILY_JOURNEY_STATIC_ART.spins;
     case 'freeze':
       return getStreakFreezeIconVariant(themeMode).source;
   }
@@ -636,7 +642,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
               {chapter.map((reward, i) => {
                 const received = reward.day < normalizedDay;
                 const isToday = reward.day === normalizedDay;
-                const art = rewardImageSource(reward, themeMode);
+                const art = rewardImageSource(isToday ? currentReward : reward, themeMode);
                 const enter = {
                   opacity: tileIn[i],
                   transform: [

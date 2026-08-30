@@ -56,6 +56,8 @@ export type AppEventMap = {
    * inbox. occurrenceId = null в DEV-превью, где durable-запись не создаётся.
    */
   daily_journey_delivered: { day: number; occurrenceId: string | null };
+  /** «Сокровищница»: инвентарь карточек изменился (дроп/restore). */
+  collectibles_changed: undefined;
   gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
   avatar_dna_invitation_requested: { source: 'first_achievement' };

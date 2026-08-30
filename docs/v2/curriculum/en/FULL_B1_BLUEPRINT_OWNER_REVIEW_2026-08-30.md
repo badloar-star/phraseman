@@ -1,7 +1,7 @@
 # English Learning V2 — Full B1 Blueprint V2 receipt
 
 **Дата:** 2026-08-30  
-**Статус:** `PENDING OWNER REVIEW`
+**Статус:** `OWNER APPROVED`
 **Canonical fingerprint:**
 `ce1163d02a965e843e56a17c306ff4f14d55033ba21e75d7fbb082557fb61c1a`
 
@@ -52,6 +52,16 @@ Fingerprint
 **SUPERSEDED BY OWNER DECISION — FULL B1 GRAMMAR-FIRST REBUILD**. Его старый
 `APPROVED` не переносится на новый canonical body.
 
+## Новое owner approval
+
+Владелец просмотрел свежий owner map с указанным выше fingerprint и ответил
+`давай` непосредственно на запрос его утвердить. Поэтому статус
+`ownerApproval = APPROVED` относится только к
+`ce1163d02a965e843e56a17c306ff4f14d55033ba21e75d7fbb082557fb61c1a`.
+Любое изменение canonical body меняет hash и автоматически возвращает
+`PENDING`. Это approval curriculum-плана, но не learner-facing текстов,
+локализаций, аудио или отдельных сессий.
+
 ## Обязательный маршрут продолжения
 
 1. Прочитать `docs/v2/СТАРТ В2.md` полностью.
@@ -60,8 +70,8 @@ Fingerprint
 3. Прочитать этот receipt и проверить fingerprint.
 4. Выполнить `npx tsx scripts/learning_v2_curriculum_blueprint_gate_v2.ts`.
 5. Зафиксировать `ON TRACK` или точный `HOLD` до редактирования.
-6. До owner approval не писать learner-facing content и не менять порядок
-   grammar/lexical progression.
+6. Сверить preserved Sessions 1–3 с exact packets последовательно; не менять
+   порядок grammar/lexical progression.
 7. Пересобрать map:
    `npx tsx scripts/build_learning_v2_curriculum_owner_map_v2.ts`.
 8. Выполнить `node tests/learning_v2_curriculum_owner_map_v2_gate.mjs` и focused
@@ -88,5 +98,6 @@ LEARNING V2 CURRICULUM OWNER MAP V2 GATE: PASS
 lessons=32 chapters=224 packets=1792
 ```
 
-`ownerApproval` менять нельзя. Следующее owner decision относится только к
-точному fingerprint, показанному в этом receipt и свежем owner map.
+Следующий разрешённый этап — conformance-аудит Session 1 против exact packet.
+Session 2 не редактируется, пока Session 1 не приведена к нулю findings и не
+получила собственный learner-facing status по действующему authoring contract.

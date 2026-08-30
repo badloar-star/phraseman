@@ -45,7 +45,7 @@ const countsPass =
   manifest.introPlanItemCount === 5_376 &&
   manifest.activityPlanItemCount === 30_464;
 const fingerprintPass = /^[a-f0-9]{64}$/.test(manifest.fingerprint);
-const approvalPass = manifest.ownerApproval === "PENDING";
+const approvalPass = manifest.ownerApproval === "APPROVED";
 const pass =
   countsPass &&
   fingerprintPass &&

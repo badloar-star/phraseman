@@ -13,7 +13,7 @@ const manifest = LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_MANIFEST_V2;
 assert.equal(blueprint.scope.lessons.length, 32, "lesson_count");
 assert.equal(blueprint.chapters.length, 224, "chapter_count");
 assert.equal(blueprint.sessionPackets.length, 1_792, "session_packet_count");
-assert.equal(blueprint.ownerApproval, "PENDING", "owner_approval_must_start_pending");
+assert.equal(blueprint.ownerApproval, "APPROVED", "exact_owner_approved_fingerprint");
 assert.match(blueprint.blueprintFingerprint, /^[a-f0-9]{64}$/, "fingerprint_shape");
 assert.equal(
   hashLearningV2EnglishCourseBlueprintBodyV2(LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_BODY_V2),
@@ -34,7 +34,7 @@ assert.notEqual(
 assert.deepEqual(manifest, {
   schemaVersion: "learning-v2-english-course-blueprint.v2",
   fingerprint: blueprint.blueprintFingerprint,
-  ownerApproval: "PENDING",
+  ownerApproval: "APPROVED",
   lessonCount: 32,
   chapterCount: 224,
   sessionPacketCount: 1_792,

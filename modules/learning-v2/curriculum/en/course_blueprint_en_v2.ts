@@ -30,6 +30,9 @@ export function hashLearningV2EnglishCourseBlueprintBodyV2(body: unknown): strin
     .digest("hex");
 }
 
+export const LEARNING_V2_ENGLISH_OWNER_APPROVED_BLUEPRINT_FINGERPRINT_V2 =
+  "ce1163d02a965e843e56a17c306ff4f14d55033ba21e75d7fbb082557fb61c1a" as const;
+
 export const LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_BODY_V2 = Object.freeze({
   schemaVersion: "learning-v2-english-course-blueprint.v2" as const,
   targetLanguage: "en" as const,
@@ -45,10 +48,15 @@ export const LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_BODY_V2 = Object.freeze({
   coverageMatrices: LEARNING_V2_ENGLISH_COVERAGE_MATRICES_V2,
 });
 
+const blueprintFingerprint = hashLearningV2EnglishCourseBlueprintBodyV2(
+  LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_BODY_V2,
+);
+
 export const LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V2 = Object.freeze({
   ...LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_BODY_V2,
-  blueprintFingerprint: hashLearningV2EnglishCourseBlueprintBodyV2(
-    LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_BODY_V2,
-  ),
-  ownerApproval: "PENDING" as const,
+  blueprintFingerprint,
+  ownerApproval:
+    blueprintFingerprint === LEARNING_V2_ENGLISH_OWNER_APPROVED_BLUEPRINT_FINGERPRINT_V2
+      ? "APPROVED" as const
+      : "PENDING" as const,
 });

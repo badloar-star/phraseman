@@ -8,6 +8,9 @@ const blueprint = LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V2;
 const manifest = LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_MANIFEST_V2;
 const plannedLexicalSenseCount = blueprint.lexicalSenses.length;
 const lexicalRetrievalEdgeCount = blueprint.lexicalRetrievalEdges.length;
+const ownerHeading = manifest.ownerApproval === "APPROVED"
+  ? "FULL B1 GRAMMAR-FIRST · OWNER APPROVED"
+  : "FULL B1 GRAMMAR-FIRST · OWNER REVIEW REQUIRED";
 const outputDir = resolve(".codex-tmp/learning-v2-curriculum-owner-map");
 const outputPath = join(outputDir, "index.html");
 
@@ -84,7 +87,7 @@ const html = `<!doctype html>
 <body>
   <main class="shell">
     <header class="top">
-      <div><div class="eyebrow">Learning V2 · English curriculum</div><h1>FULL B1 GRAMMAR-FIRST · OWNER REVIEW REQUIRED</h1><p class="lede">Кликабельная карта фиксирует весь порядок грамматики заранее: 32 грамматических урока, 224 главы и 1 792 точных планировочных пакета. Learner-facing тексты пишутся только последовательно после отдельного одобрения fingerprint.</p></div>
+      <div><div class="eyebrow">Learning V2 · English curriculum</div><h1>${ownerHeading}</h1><p class="lede">Кликабельная карта фиксирует весь порядок грамматики заранее: 32 грамматических урока, 224 главы и 1 792 точных планировочных пакета. Learner-facing тексты пишутся только последовательно после отдельного одобрения fingerprint.</p></div>
       <aside class="status" aria-label="Статус утверждения"><strong>OWNER ${manifest.ownerApproval}</strong><div class="hash">${manifest.fingerprint}</div></aside>
     </header>
     <div class="notice">SUPERSEDED BY OWNER DECISION — FULL B1 GRAMMAR-FIRST REBUILD. Старый blueprint и его approval не действуют. Новый порядок грамматики, лексические введения и интервальные возвраты зафиксированы; learner-facing тексты и восемь локализаций создаются вручную только последовательно после owner approval.</div>

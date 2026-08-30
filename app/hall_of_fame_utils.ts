@@ -249,8 +249,7 @@ export const updateStreakOnActivity = async (
     const effectiveAccountToken = capturedToken.phase === 'active' ? capturedToken : undefined;
     const recoveredProtectedDay = effectiveAccountToken
       ? await recoverDailyJourneyProtectedDay(effectiveAccountToken, accountTransitionLockLease)
-      : false;
-    let protectedResultPersisted = recoveredProtectedDay;
+      : null;
     await repairDevSeededStreakInStorage();
 
     // Ключ дня — ЛОКАЛЬНАЯ дата устройства: пользователь, занимающийся каждый
@@ -260,6 +259,7 @@ export const updateStreakOnActivity = async (
     // на переходный период принимают И старый (UTC), И новый (локальный) ключ —
     // last_active_date, записанный ДО этого апдейта, ещё может быть в старой схеме.
     const today = getLocalDayKey();
+    let protectedResultPersisted = recoveredProtectedDay?.protectedDayDate === today;
     const lastActiveKey = 'last_active_date';
     const lastActive = await AsyncStorage.getItem(lastActiveKey);
 

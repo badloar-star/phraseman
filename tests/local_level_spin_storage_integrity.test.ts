@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { beginAccountGeneration, captureAccountGeneration } from '../app/account_generation';
+import { emitAppEvent } from '../app/events';
 import {
   claimLocalLevelSpin,
   grantLocalDailyJourneySpins,
@@ -13,6 +14,7 @@ import {
 } from '../app/level_up_storage_keys';
 
 jest.mock('@react-native-async-storage/async-storage');
+jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('expo-crypto', () => ({
   CryptoDigestAlgorithm: { SHA256: 'SHA256' },
   digestStringAsync: jest.fn(async () => 'a'.repeat(64)),
@@ -144,8 +146,11 @@ test('Daily Journey retry trusts owner authority after state-only partial write 
 
   await expect(grantLocalDailyJourneySpins(claimId, 2, token))
     .rejects.toThrow('simulated_cache_write_failure');
+  (emitAppEvent as jest.Mock).mockClear();
   await expect(grantLocalDailyJourneySpins(claimId, 2, token)).resolves.toBe(true);
 
   const state = JSON.parse(storage[stateKey]!) as { credits: { id: string }[] };
   expect(state.credits).toHaveLength(2);
+  expect(emitAppEvent).toHaveBeenCalledTimes(1);
+  expect(emitAppEvent).toHaveBeenCalledWith('level_spin_balance_changed');
 });

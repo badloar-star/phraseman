@@ -822,7 +822,9 @@ export async function grantLocalDailyJourneySpins(
         LEVEL_SPIN_BALANCE_CACHE_KEY,
         JSON.stringify({ owner, balance: current.credits.length }),
       );
-      return isCurrentAccountGeneration(token, owner);
+      if (!isCurrentAccountGeneration(token, owner)) return false;
+      emitAppEvent('level_spin_balance_changed');
+      return true;
     }
     const nextState: LocalSpinState = {
       ...current,

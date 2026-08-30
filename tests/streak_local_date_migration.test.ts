@@ -17,7 +17,7 @@ jest.mock('../app/daily_journey_freeze_ledger', () => ({
 }));
 jest.mock('../app/daily_journey_protected_day', () => ({
   commitDailyJourneyProtectedDay: jest.fn(),
-  recoverDailyJourneyProtectedDay: jest.fn().mockResolvedValue(false),
+  recoverDailyJourneyProtectedDay: jest.fn().mockResolvedValue(null),
 }));
 
 let simulatedZone = 'UTC';

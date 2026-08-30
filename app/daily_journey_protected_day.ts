@@ -23,6 +23,11 @@ export type DailyJourneyProtectedDayInput = Readonly<{
   streakCount: number;
 }>;
 
+export type DailyJourneyProtectedDayRecovery = Readonly<{
+  protectedDayDate: string;
+  streakCount: number;
+}>;
+
 type DailyJourneyProtectedDayPreparedV1 = Readonly<{
   schemaVersion: 'daily-journey-protected-day-prepared.v1';
   ownerStableId: string;
@@ -148,14 +153,14 @@ async function executePrepared(
   prepared: DailyJourneyProtectedDayPreparedV1,
   token: AccountGenerationToken,
   lease: AccountTransitionLockLease,
-): Promise<boolean> {
+): Promise<DailyJourneyProtectedDayRecovery | null> {
   const consumed = await accountAwait(
     token,
     () => consumeDailyJourneyFreeze(prepared.useOperationId, token, lease),
   );
   if (!consumed) {
     await accountAwait(token, () => clearPrepared(prepared, token));
-    return false;
+    return null;
   }
   await accountAwait(token, () => persistLegacyPersonalProgressScalar(
     AsyncStorage,
@@ -175,7 +180,10 @@ async function executePrepared(
     throw new Error('daily_journey_protected_day_result_not_durable');
   }
   await accountAwait(token, () => clearPrepared(prepared, token));
-  return true;
+  return Object.freeze({
+    protectedDayDate: prepared.protectedDayDate,
+    streakCount: prepared.streakCount,
+  });
 }
 
 export async function commitDailyJourneyProtectedDay(
@@ -221,18 +229,18 @@ export async function commitDailyJourneyProtectedDay(
       }
       prepared = verified;
     }
-    return executePrepared(prepared, token, lease);
+    return (await executePrepared(prepared, token, lease)) !== null;
   }, accountTransitionLockLease));
 }
 
 export async function recoverDailyJourneyProtectedDay(
   token: AccountGenerationToken = captureAccountGeneration(),
   accountTransitionLockLease?: AccountTransitionLockLease,
-): Promise<boolean> {
+): Promise<DailyJourneyProtectedDayRecovery | null> {
   return accountAwait(token, () => withAccountTransitionLock(async (lease) => {
     const ownerStableId = assertCurrent(token);
     const raw = await accountAwait(token, () => AsyncStorage.getItem(preparedKey(ownerStableId)));
-    if (raw === null) return false;
+    if (raw === null) return null;
     const prepared = await accountAwait(token, () => parsePrepared(raw, ownerStableId, token));
     if (!prepared) throw new Error('daily_journey_protected_day_prepared_corrupt');
     return executePrepared(prepared, token, lease);

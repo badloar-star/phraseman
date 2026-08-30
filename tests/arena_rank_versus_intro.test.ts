@@ -21,6 +21,7 @@ describe('Arena rank-shield versus intro', () => {
 
   it('passes route rank context into the intro and preserves the gameplay HUD', () => {
     const match = read('app/arena_match.tsx');
+    const hub = read('components/arena/ArenaHubSurface.tsx');
     expect(match).toContain('type ArenaMatchRouteParams = { matchId?: string; prepared?: string; viewerStars?: string };');
     expect(match).toContain('const introViewerRankIndex = arenaViewerRankIndex(viewerStars);');
     expect(match).toContain('youRankIndex={introViewerRankIndex}');
@@ -29,6 +30,8 @@ describe('Arena rank-shield versus intro', () => {
     expect(match).toContain('<ArenaPlayers');
     expect(match).toContain('players={players}');
     expect(match).toContain('scoreUid={plan.viewerSeat}');
+    expect(hub).toContain("params: { matchId: action.matchId, ...(rankedViewerStars ? { viewerStars: rankedViewerStars } : {}) }");
+    expect(hub).toContain("params: { matchId: home.activeMatch?.matchId, ...(rankedViewerStars ? { viewerStars: rankedViewerStars } : {}) }");
   });
 
   it('keeps ranked opponents within the existing same-or-neighbour server rule', () => {

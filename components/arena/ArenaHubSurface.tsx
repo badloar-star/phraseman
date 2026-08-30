@@ -254,7 +254,10 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
       activeQueue: home?.activeQueue,
     });
     if (action.kind === 'resume_match') {
-      router.push({ pathname: '/arena_match', params: { matchId: action.matchId } } as never);
+      router.push({
+        pathname: '/arena_match',
+        params: { matchId: action.matchId, ...(rankedViewerStars ? { viewerStars: rankedViewerStars } : {}) },
+      } as never);
       return;
     }
     if (action.kind === 'resume_queue') {
@@ -320,7 +323,10 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
           body={arenaText(lang, 'subtitle')}
           disabled={activeMatchBlock !== 'ok'}
           disabledHint={activeMatchBlock === 'ok' ? undefined : blockHint(activeMatchBlock)}
-          onPress={() => router.push({ pathname: '/arena_match', params: { matchId: home.activeMatch?.matchId } } as never)}
+          onPress={() => router.push({
+            pathname: '/arena_match',
+            params: { matchId: home.activeMatch?.matchId, ...(rankedViewerStars ? { viewerStars: rankedViewerStars } : {}) },
+          } as never)}
         />
       ) : activeQueue ? (
         <ArenaFeatureRow

@@ -12,6 +12,7 @@ import { evaluateSafety, moderateUserText, recordSafetyFlag, SAFETY_SYSTEM_INSTR
 import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import {
   canonicalizeDialogTurnState,
+  DIALOG_REPEAT_RETRY_INSTRUCTION,
   DialogRepeatedReplyError,
   generateDialogWithRepeatGuard,
   sanitizeDialogGameState,
@@ -873,10 +874,7 @@ export const premiumDialogSend = onCall({
             messages[0],
             {
               role: 'system',
-              content:
-                'QUALITY RETRY: Your previous draft repeated an earlier assistant reply. '
-                + 'Use a clearly different formulation, acknowledge the learner’s newest message, '
-                + 'and move to the next unfinished objective. Do not restart the scene.',
+              content: DIALOG_REPEAT_RETRY_INSTRUCTION,
             },
             ...messages.slice(1),
           ];

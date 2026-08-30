@@ -49,6 +49,11 @@ const NEAR_REPEAT_THRESHOLD = 0.8;
 const MIN_NEAR_REPEAT_WORDS = 6;
 const MIN_REPEATED_OPENING_WORDS = 4;
 
+export const DIALOG_REPEAT_RETRY_INSTRUCTION =
+  'QUALITY RETRY: Your previous draft repeated an earlier assistant reply. '
+  + 'Use a clearly different formulation, acknowledge the learner’s newest message, '
+  + 'and move to the next unfinished objective. Do not restart the scene.';
+
 function clampInteger(value: unknown, min: number, max: number, fallback: number): number {
   const parsed = Number(value);
   if (!Number.isFinite(parsed)) return fallback;

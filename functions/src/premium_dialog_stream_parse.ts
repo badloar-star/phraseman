@@ -9,14 +9,11 @@
 /**
  * Инкрементально достаёт содержимое поля `reply` из НЕДОПИСАННОГО JSON.
  *
- * В игровом режиме модель возвращает JSON-конверт, а не голый текст. Чтобы человек
- * видел реплику по мере набора, а не после закрывающей скобки, вынимаем строку
- * reply прямо из частичного JSON. Работает потому, что в промпте reply стоит
- * ПЕРВЫМ полем конверта.
+ * В игровом режиме модель возвращает JSON-конверт, а не голый текст. Парсер
+ * сохраняется как защита provider-boundary и для диагностики неполных чанков;
+ * пользовательский поток публикуется только после проверки всего ответа.
  *
- * Функция МОНОТОННА: с ростом входа результат может только удлиняться. На этом
- * держится отправка дельт — сервер шлёт лишь «хвост», сравнивая длину с уже
- * отправленным.
+ * Функция МОНОТОННА: с ростом входа результат может только удлиняться.
  */
 export function extractPartialReply(partialJson: string): string {
   const key = '"reply"';
@@ -49,4 +46,23 @@ export function extractPartialReply(partialJson: string): string {
     out += ch;
   }
   return out;
+}
+
+export interface AcceptedDialogDelta {
+  type: 'delta';
+  text: string;
+  [key: string]: unknown;
+}
+
+/** Публикует только уже проверенную полную реплику небольшими SSE-дельтами. */
+export function emitAcceptedDialogReply(
+  reply: string,
+  write: (event: AcceptedDialogDelta) => void,
+  chunkSize = 48,
+): void {
+  const safeChunkSize = Math.max(1, Math.min(256, Math.floor(chunkSize) || 48));
+  for (let offset = 0; offset < reply.length; offset += safeChunkSize) {
+    const text = reply.slice(offset, offset + safeChunkSize);
+    if (text) write({ type: 'delta', text });
+  }
 }

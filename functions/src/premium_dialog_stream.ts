@@ -34,6 +34,7 @@ import {
   isGameMode,
   parseGameEnvelope,
   releaseDailyQuota,
+  sanitizeGameStateForRequest,
   sanitizeHistory,
   sanitizeMemory,
   sanitizeObjectives,
@@ -42,10 +43,15 @@ import {
   type ChatMessage,
   type PremiumDialogRequest,
 } from './premium_dialog';
+import {
+  DIALOG_REPEAT_RETRY_INSTRUCTION,
+  DialogRepeatedReplyError,
+  generateDialogWithRepeatGuard,
+} from './premium_dialog_quality';
 // Чистый парсер вынесен отдельно, чтобы тест не поднимал весь граф функций.
-import { extractPartialReply } from './premium_dialog_stream_parse';
+import { emitAcceptedDialogReply, extractPartialReply } from './premium_dialog_stream_parse';
 
-export { extractPartialReply };
+export { emitAcceptedDialogReply, extractPartialReply };
 
 if (!admin.apps.length) admin.initializeApp();
 
@@ -56,8 +62,9 @@ const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
  *
  * зачем: владелец сообщил, что «ИИ очень долго думает и отвечает». Аудит показал:
  * модель начинает отвечать через ~0.5-0.8с, но callable-функция ждала ПОСЛЕДНИЙ
- * токен и отдавала текст целиком — человек ждал 3-6 секунд молча. Здесь ответ
- * уходит на клиент по мере генерации (SSE), поэтому первое слово видно почти сразу.
+ * токен и отдавала текст целиком. Provider-поток здесь сохраняет короткий запрос,
+ * но кандидат буферизуется до language/safety/repeat-проверок; затем принятый
+ * ответ выпускается несколькими SSE-дельтами без отвергнутого черновика.
  *
  * Почему onRequest, а не onCall: callable-протокол Firebase не умеет стримить —
  * он отдаёт один JSON после завершения. Поэтому здесь ручная проверка ID-токена
@@ -83,7 +90,8 @@ function sseWrite(res: { write: (chunk: string) => void }, event: StreamEvent): 
 
 /**
  * Разбор SSE-потока OpenAI. Возвращает накопленный текст и usage.
- * onDelta зовётся на каждый новый кусочек — им мы кормим клиента.
+ * onDelta остаётся provider-boundary callback; пользовательский SSE вызывается
+ * только после проверки полного кандидата.
  */
 async function readOpenAiStream(
   body: NodeJS.ReadableStream,
@@ -269,6 +277,7 @@ export const premiumDialogStream = onRequest({
   ];
 
   const gameMode = mode === 'scenario' && isGameMode(data) && modelSupportsJsonObject(dialogModel);
+  const gameState = gameMode ? sanitizeGameStateForRequest(data) : null;
 
   const failStream = async (code: string): Promise<void> => {
     // Сбой провайдера не должен съедать дневную реплику — как и в callable.
@@ -283,94 +292,102 @@ export const premiumDialogStream = onRequest({
   };
 
   try {
-    const upstream = await fetch(OPENAI_CHAT_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: dialogModel,
-        max_tokens: gameMode ? GAME_OUTPUT_TOKENS : MAX_OUTPUT_TOKENS,
-        messages,
-        temperature: 0.8,
-        stream: true,
-        stream_options: { include_usage: true },
-        ...(gameMode ? { response_format: { type: 'json_object' } } : {}),
-      }),
-    });
-
-    if (!upstream.ok || !upstream.body) {
-      const detail = await upstream.text().catch(() => '');
-      console.error('premium_dialog_stream chat failed', {
-        status: upstream.status,
-        model: dialogModel,
-        mode,
-        detail: detail.slice(0, 500),
-      });
-      await failStream('dialog_provider_failed');
-      return;
-    }
-
-    // Заголовки SSE. X-Accel-Buffering отключает буферизацию прокси — без него
-    // кадры копились бы и стриминг превратился обратно в «ждём весь ответ».
+    // Открываем SSE до provider-вызова, но не публикуем его черновики. Тогда при
+    // полном отказе anti-repeat клиент получает только системный error-кадр.
     res.setHeader('Content-Type', 'text/event-stream; charset=utf-8');
     res.setHeader('Cache-Control', 'no-cache, no-transform');
     res.setHeader('Connection', 'keep-alive');
     res.setHeader('X-Accel-Buffering', 'no');
     res.flushHeaders?.();
 
-    let accumulated = '';
-    let sentChars = 0;
-    const pushVisible = (visible: string): void => {
-      if (visible.length <= sentChars) return;
-      sseWrite(res, { type: 'delta', text: visible.slice(sentChars) });
-      sentChars = visible.length;
+    const usage = { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 };
+    const accepted = await generateDialogWithRepeatGuard(async (attempt) => {
+      const attemptMessages: ChatMessage[] = attempt === 0
+        ? messages
+        : [
+            messages[0],
+            { role: 'system', content: DIALOG_REPEAT_RETRY_INSTRUCTION },
+            ...messages.slice(1),
+          ];
+      const upstream = await fetch(OPENAI_CHAT_URL, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: dialogModel,
+          max_tokens: gameMode ? GAME_OUTPUT_TOKENS : MAX_OUTPUT_TOKENS,
+          messages: attemptMessages,
+          temperature: 0.8,
+          stream: true,
+          stream_options: { include_usage: true },
+          ...(gameMode ? { response_format: { type: 'json_object' } } : {}),
+        }),
+      });
+
+      if (!upstream.ok || !upstream.body) {
+        const detail = await upstream.text().catch(() => '');
+        console.error('premium_dialog_stream chat failed', {
+          status: upstream.status,
+          model: dialogModel,
+          mode,
+          detail: detail.slice(0, 500),
+        });
+        throw new Error('dialog_provider_failed');
+      }
+
+      // Provider-чанки полностью буферизуются. Пока кандидат не прошёл общий
+      // repeat guard, ни один его символ не попадает в пользовательский SSE.
+      const generated = await readOpenAiStream(
+        upstream.body as unknown as NodeJS.ReadableStream,
+        () => {},
+      );
+      usage.prompt_tokens += Number(generated.usage.prompt_tokens ?? 0);
+      usage.completion_tokens += Number(generated.usage.completion_tokens ?? 0);
+      usage.total_tokens += Number(generated.usage.total_tokens ?? 0);
+
+      let reply = '';
+      let candidateTurnState: unknown = null;
+      if (gameMode) {
+        const env = parseGameEnvelope(
+          generated.full,
+          sanitizeObjectives(data.objectives).map((objective) => objective.id),
+          gameState ?? undefined,
+        );
+        reply = env?.reply ?? '';
+        candidateTurnState = env?.turnState ?? null;
+      } else {
+        reply = text(generated.full, 1800);
+      }
+
+      if (!reply) {
+        console.error('premium_dialog_stream empty reply', { model: dialogModel, mode });
+        throw new Error('dialog_empty_reply');
+      }
+
+      const safeMessage = sanitizeRegulatedAdviceReply(reply, studyTarget);
+      if (safeMessage !== reply) {
+        reply = safeMessage;
+        candidateTurnState = null;
+      }
+      assertDialogReplyMatchesTarget(reply, studyTarget);
+      return { reply, turnState: candidateTurnState };
+    }, history);
+
+    const assistantMessage = accepted.value.reply;
+    const turnState = accepted.value.turnState;
+    const quality = {
+      ...accepted.quality,
+      gameModeAvailable: !isGameMode(data) || gameMode,
     };
 
-    const { full, usage } = await readOpenAiStream(
-      upstream.body as unknown as NodeJS.ReadableStream,
-      (piece) => {
-        if (gameMode) {
-          // В игровом режиме показываем ТОЛЬКО содержимое reply, а не сырой JSON.
-          accumulated += piece;
-          pushVisible(extractPartialReply(accumulated));
-        } else {
-          sseWrite(res, { type: 'delta', text: piece });
-          sentChars += piece.length;
-        }
-      },
+    // Только принятый полный ответ выпускается небольшими дельтами. Первый
+    // отвергнутый кандидат физически не мог попасть в этот writer.
+    emitAcceptedDialogReply(
+      assistantMessage,
+      (event) => sseWrite(res, event),
     );
-
-    let assistantMessage = '';
-    let turnState: unknown = null;
-    if (gameMode) {
-      const env = parseGameEnvelope(full, sanitizeObjectives(data.objectives).map((o) => o.id));
-      assistantMessage = env?.reply ?? '';
-      turnState = env?.turnState ?? null;
-    } else {
-      assistantMessage = text(full, 1800);
-    }
-
-    if (!assistantMessage) {
-      console.error('premium_dialog_stream empty reply', { model: dialogModel, mode });
-      await failStream('dialog_empty_reply');
-      return;
-    }
-
-    // Те же два постфильтра, что и в callable: регулируемые советы и языковой замок.
-    const safeMessage = sanitizeRegulatedAdviceReply(assistantMessage, studyTarget);
-    if (safeMessage !== assistantMessage) {
-      assistantMessage = safeMessage;
-      turnState = null;
-    }
-    try {
-      assertDialogReplyMatchesTarget(assistantMessage, studyTarget);
-    } catch {
-      console.warn('premium_dialog_stream reply language mismatch', { model: dialogModel, mode });
-      await failStream('dialog_provider_failed');
-      return;
-    }
 
     // Финальный кадр: авторитетный текст (клиент ЗАМЕНЯЕТ им накопленный стрим,
     // чтобы постфильтры точно применились) + игровое состояние + остаток квоты.
@@ -380,6 +397,7 @@ export const premiumDialogStream = onRequest({
       turnState,
       remainingQuota: remaining,
       model: dialogModel,
+      quality,
     });
     res.end();
 
@@ -408,6 +426,12 @@ export const premiumDialogStream = onRequest({
       mode,
       error: String((error as Error)?.message ?? error).slice(0, 500),
     });
-    await failStream('dialog_provider_failed');
+    await failStream(
+      error instanceof DialogRepeatedReplyError
+        ? error.code
+        : String((error as Error)?.message ?? '').includes('dialog_empty_reply')
+          ? 'dialog_empty_reply'
+          : 'dialog_provider_failed',
+    );
   }
 });

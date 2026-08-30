@@ -12,9 +12,82 @@ export interface DialogRepeatAssessment {
   bucket: 'none' | 'medium' | 'high' | 'exact';
 }
 
+export interface SanitizedDialogGameState {
+  exchangeIndex: number;
+  mood: number;
+  objectivesMet: string[];
+  noProgressTurns: number;
+}
+
+export interface CanonicalDialogTurnState {
+  mood: number;
+  objectivesMet: string[];
+  outcome: 'ongoing' | 'success' | 'lost_patience' | 'stalled';
+  characterReaction: unknown;
+  coachTips: unknown;
+}
+
 const NEAR_REPEAT_THRESHOLD = 0.8;
 const MIN_NEAR_REPEAT_WORDS = 6;
 const MIN_REPEATED_OPENING_WORDS = 4;
+
+function clampInteger(value: unknown, min: number, max: number, fallback: number): number {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.max(min, Math.min(max, Math.round(parsed)));
+}
+
+export function sanitizeDialogGameState(
+  value: unknown,
+  objectiveIds: readonly string[],
+  seedMood: number,
+): SanitizedDialogGameState {
+  const raw = value && typeof value === 'object' ? (value as Record<string, unknown>) : {};
+  const allowedObjectives = new Set(objectiveIds);
+  const suppliedObjectives = Array.isArray(raw.objectivesMet) ? raw.objectivesMet : [];
+  const objectivesMet = [...new Set(suppliedObjectives.map(String))]
+    .filter((id) => allowedObjectives.has(id))
+    .slice(0, 12);
+
+  return {
+    exchangeIndex: clampInteger(raw.exchangeIndex, 1, 32, 1),
+    mood: clampInteger(raw.mood, 0, 100, clampInteger(seedMood, 0, 100, 70)),
+    objectivesMet,
+    noProgressTurns: clampInteger(raw.noProgressTurns, 0, 32, 0),
+  };
+}
+
+export function canonicalizeDialogTurnState(
+  raw: Record<string, unknown>,
+  prior: SanitizedDialogGameState,
+  objectiveIds: readonly string[],
+): CanonicalDialogTurnState {
+  const allowedObjectives = new Set(objectiveIds);
+  const currentObjectives = Array.isArray(raw.objectivesMet)
+    ? raw.objectivesMet.map(String)
+    : [];
+  const objectivesMet = [...new Set([...prior.objectivesMet, ...currentObjectives])]
+    .filter((id) => allowedObjectives.has(id));
+  const mood = clampInteger(raw.mood, 0, 100, prior.mood);
+  const allObjectivesMet =
+    objectiveIds.length > 0 && objectiveIds.every((id) => objectivesMet.includes(id));
+  const outcome =
+    mood === 0
+      ? 'lost_patience'
+      : allObjectivesMet
+        ? 'success'
+        : prior.exchangeIndex >= 8
+          ? 'stalled'
+          : 'ongoing';
+
+  return {
+    mood,
+    objectivesMet,
+    outcome,
+    characterReaction: raw.characterReaction,
+    coachTips: raw.coachTips,
+  };
+}
 
 export function normalizeDialogReply(value: unknown): string {
   return String(value ?? '')

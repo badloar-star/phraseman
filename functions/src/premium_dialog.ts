@@ -10,6 +10,11 @@ import { resolveRemoteBool, aiGloballyDisabled } from './remote_gates';
 import { LANGUAGE_CONTRACT_VERSION, assertAiOutputLanguage, assertAiStudyLanguage, resolveAiOutputLang, resolveStudyTarget, studyTargetName, type StudyTarget } from './ai_language_contract';
 import { evaluateSafety, moderateUserText, recordSafetyFlag, SAFETY_SYSTEM_INSTRUCTION } from './ai_safety';
 import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
+import {
+  canonicalizeDialogTurnState,
+  sanitizeDialogGameState,
+  type SanitizedDialogGameState,
+} from './premium_dialog_quality';
 
 // A targeted/isolated deployment can load this module directly instead of lib/index.js.
 // Keep the bootstrap idempotent so both entry points share the same default Admin app.
@@ -35,11 +40,10 @@ const TRANSLATION_CACHE_COLLECTION = 'premium_dialog_translations';
 const MAX_USER_TEXT = 2000;
 // ПЕРФ: 8 ходов x 1000 знаков давали до ~2000 токенов ввода на КАЖДУЮ реплику —
 // это и деньги, и время предзаполнения (ощущается как «ИИ долго думает»).
-// зачем: 6 ходов x 400 знаков = ~600 токенов истории на КАЖДУЮ реплику.
-// Сцена живёт 5-8 обменов, а модель уверенно держит нить по 4 последним ходам
-// (2 полных обмена) — дальше история дублирует то, что уже сказано в реплике.
-// 4 x 300 = ~300 токенов: вдвое дешевле при той же связности.
-const MAX_HISTORY_TURNS = 4;
+// зачем (аудит повторов 2026-08-30): 4 сообщения означали только 2 обмена —
+// модель забывала уже выполненную цель и возвращалась к прежнему вопросу.
+// 8 x 300 сохраняют 4 обмена, а накопительный gameState несёт более старые факты.
+const MAX_HISTORY_TURNS = 8;
 const MAX_HISTORY_CONTENT = 300;
 export const MAX_OUTPUT_TOKENS = 200;
 // Игровой режим: reply (жёстко режется до 1500 знаков ~375 токенов) + mood +
@@ -87,6 +91,8 @@ export interface PremiumDialogRequest {
    */
   objectives?: unknown;
   temperament?: unknown;
+  /** Накопительное состояние короткой scenario-сцены перед текущим ходом. */
+  gameState?: unknown;
 }
 
 /** Память из профиля и новой истории ошибок. Все поля опциональны. */
@@ -321,6 +327,7 @@ Output ONLY your spoken reply. No stage directions, no markdown, except the [[..
 const SCENARIO_STYLE = `SCENARIO ROLEPLAY STYLE (applies to every scene):
 - If the chat history already contains an assistant opener, continue from the learner's message; do not greet again.
 - Speak from inside the scene as your character. NEVER describe the scenario from outside, NEVER say "the learner", and NEVER repeat the setting as narration.
+- Do not repeat a question you already asked. React to the new learner message and move toward the next unfinished goal.
 - Stay in character. Show personality and mood through TONE, warmth and reactions — never through harder words or longer sentences. Even a difficult or impatient character speaks at level {CEFR}, in {TARGET_LANG}, in short simple sentences.
 - Feel like a real individual, not a script: warmer to politeness and progress, cooler or shorter when the scene calls for it. Kind by DEFAULT, but not a doormat.
 - RUDENESS / INSULTS: if they are rude, hostile, or insult you ("you are fat", "shut up", swearing), do NOT brush it off, pretend it was a compliment, or stay cheerful. Get noticeably cooler and shorter and set a boundary in simple {TARGET_LANG} ("That's not kind." / "Please don't talk to me like that."). Stay at level {CEFR}, in {TARGET_LANG}; warmth visibly drops. Never insult back; get firmer each rude turn.
@@ -413,6 +420,21 @@ export function isGameMode(data: PremiumDialogRequest): boolean {
   return sanitizeObjectives(data.objectives).length > 0;
 }
 
+export function sanitizeGameStateForRequest(
+  data: PremiumDialogRequest,
+): SanitizedDialogGameState | null {
+  const objectives = sanitizeObjectives(data.objectives);
+  if (objectives.length === 0) return null;
+  const temperament = (data.temperament ?? {}) as Record<string, unknown>;
+  const patience = sanitizePatience(temperament.patience);
+  const warmth = sanitizeWarmth(temperament.warmth);
+  return sanitizeDialogGameState(
+    data.gameState,
+    objectives.map((objective) => objective.id),
+    startMood(patience, warmth),
+  );
+}
+
 /**
  * Добавка к scenario-промпту: правила скрытого mood-счётчика, целей, исхода и
  * формат JSON-ответа. Пусто, если клиент не прислал objectives.
@@ -424,6 +446,12 @@ function gameBlock(data: PremiumDialogRequest, cefr: string, interfaceLang: stri
   const patience = sanitizePatience(temp.patience);
   const warmth = sanitizeWarmth(temp.warmth);
   const seedMood = startMood(patience, warmth);
+  const objectiveIds = objectives.map((objective) => objective.id);
+  const state = sanitizeGameStateForRequest(data)
+    ?? sanitizeDialogGameState(undefined, objectiveIds, seedMood);
+  const completed = state.objectivesMet.length > 0 ? state.objectivesMet.join(', ') : 'none';
+  const unfinished = objectiveIds.filter((id) => !state.objectivesMet.includes(id));
+  const unfinishedText = unfinished.length > 0 ? unfinished.join(', ') : 'none';
   const objLines = objectives.map((o) => `  - ${o.id}: ${o.en}`).join('\n');
   const learnerLangName = DIALOG_LEARNER_LANG_NAME[interfaceLang] ?? DIALOG_LEARNER_LANG_NAME.ru;
   const targetName = studyTargetName(studyTarget);
@@ -437,7 +465,11 @@ function gameBlock(data: PremiumDialogRequest, cefr: string, interfaceLang: stri
 GAME STATE (track secretly, report as JSON; the learner never sees the numbers):
 - Sub-goals (mark done when accomplished):
 ${objLines}
-- Your patience level is ${patience}, warmth ${warmth}. Start "mood" at about ${seedMood} (0..100).
+- Your patience level is ${patience}, warmth ${warmth}.
+- This is exchange ${state.exchangeIndex}. Current mood is ${state.mood}; continue from it and never reset it.
+- Already completed: ${completed}. Still unfinished: ${unfinishedText}.
+- Consecutive turns without a new completed goal before this reply: ${state.noProgressTurns}.
+- Do not ask the same question again. Acknowledge the learner's newest answer and advance to an unfinished goal.
 - Move mood by REAL amounts so the learner feels your reaction (the app shows your face):
   - Politeness or progress: +5..+10.
   - Rudeness, insults, hostility: -25..-40 in one turn. Two rude turns can reach 0.
@@ -535,6 +567,7 @@ function extractReplyBestEffort(raw: string): string {
 export function parseGameEnvelope(
   content: string,
   objectiveIds?: string[],
+  priorState?: SanitizedDialogGameState,
 ): { reply: string; turnState: unknown; truncated?: boolean } | null {
   const trimmed = content.trim();
   // Снимаем возможные ```json … ``` ограждения.
@@ -558,6 +591,13 @@ export function parseGameEnvelope(
     const best = extractReplyBestEffort(unfenced);
     if (!best) return null;
     return { reply: best, turnState: null, truncated: true };
+  }
+
+  if (priorState && Array.isArray(objectiveIds) && objectiveIds.length > 0) {
+    return {
+      reply,
+      turnState: canonicalizeDialogTurnState(parsed, priorState, objectiveIds),
+    };
   }
 
   // success требует ВСЕ под-цели (аудит H4): если модель объявила success, но
@@ -803,6 +843,7 @@ export const premiumDialogSend = onCall({
   // неподдерживающих моделей диалог идёт обычным текстом без игровой механики.
   const gameMode =
     mode === 'scenario' && isGameMode(data) && modelSupportsJsonObject(dialogModel);
+  const gameState = gameMode ? sanitizeGameStateForRequest(data) : null;
   if (mode === 'scenario' && isGameMode(data) && !gameMode) {
     console.warn('premium_dialog game mode disabled — model lacks json_object support', {
       dialogModel,
@@ -848,7 +889,11 @@ export const premiumDialogSend = onCall({
     if (gameMode) {
       // Парсим конверт. parseGameEnvelope сам достаёт reply даже из обрезанного
       // JSON (best-effort, аудит H1) и понижает success без всех целей (H4).
-      const env = parseGameEnvelope(rawContent, sanitizeObjectives(data.objectives).map((o) => o.id));
+      const env = parseGameEnvelope(
+        rawContent,
+        sanitizeObjectives(data.objectives).map((o) => o.id),
+        gameState ?? undefined,
+      );
       if (env && env.reply) {
         assistantMessage = env.reply;
         turnState = env.turnState;

@@ -101,6 +101,7 @@ describe('premium dialog prompt language isolation', () => {
     expect(prompt).toContain('NEVER describe the scenario from outside');
     expect(prompt).toContain('NEVER say "the learner"');
     expect(prompt).toContain('NEVER repeat the setting as narration');
+    expect(prompt).toContain('Do not repeat a question you already asked');
   });
 
   it('keeps regulated professional advice out of every live dialog prompt', () => {

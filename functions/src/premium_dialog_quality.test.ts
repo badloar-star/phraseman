@@ -1,4 +1,9 @@
-import { assessDialogRepeat, normalizeDialogReply } from './premium_dialog_quality';
+import {
+  assessDialogRepeat,
+  canonicalizeDialogTurnState,
+  normalizeDialogReply,
+  sanitizeDialogGameState,
+} from './premium_dialog_quality';
 
 describe('dialog repeat quality guard', () => {
   it('normalizes markers, case, punctuation and whitespace', () => {
@@ -48,5 +53,70 @@ describe('dialog repeat quality guard', () => {
         { role: 'user', content: 'What size would you like?' },
       ]),
     ).toMatchObject({ repeated: false });
+  });
+});
+
+describe('dialog carried game state', () => {
+  it('clamps numbers, removes duplicates and rejects unknown objectives', () => {
+    expect(
+      sanitizeDialogGameState(
+        {
+          exchangeIndex: 999,
+          mood: -4,
+          objectivesMet: ['order', 'evil', 'order'],
+          noProgressTurns: 99,
+        },
+        ['order', 'pay'],
+        80,
+      ),
+    ).toEqual({
+      exchangeIndex: 32,
+      mood: 0,
+      objectivesMet: ['order'],
+      noProgressTurns: 32,
+    });
+  });
+
+  it('uses a safe first-turn state when the client sends nothing', () => {
+    expect(sanitizeDialogGameState(undefined, ['order'], 85)).toEqual({
+      exchangeIndex: 1,
+      mood: 85,
+      objectivesMet: [],
+      noProgressTurns: 0,
+    });
+  });
+
+  it('keeps old objectives and deterministically succeeds', () => {
+    expect(
+      canonicalizeDialogTurnState(
+        { mood: 70, objectivesMet: ['pay'], outcome: 'ongoing' },
+        { exchangeIndex: 4, mood: 75, objectivesMet: ['order'], noProgressTurns: 0 },
+        ['order', 'pay'],
+      ),
+    ).toMatchObject({
+      mood: 70,
+      objectivesMet: ['order', 'pay'],
+      outcome: 'success',
+    });
+  });
+
+  it('prioritizes lost patience over success', () => {
+    expect(
+      canonicalizeDialogTurnState(
+        { mood: 0, objectivesMet: ['pay'] },
+        { exchangeIndex: 4, mood: 10, objectivesMet: ['order'], noProgressTurns: 0 },
+        ['order', 'pay'],
+      ).outcome,
+    ).toBe('lost_patience');
+  });
+
+  it('stalls an unfinished scenario at exchange eight', () => {
+    expect(
+      canonicalizeDialogTurnState(
+        { mood: 70, objectivesMet: [], outcome: 'ongoing' },
+        { exchangeIndex: 8, mood: 70, objectivesMet: [], noProgressTurns: 7 },
+        ['order'],
+      ).outcome,
+    ).toBe('stalled');
   });
 });

@@ -66,15 +66,35 @@ describe('premium dialog game mechanics', () => {
     it('low-patience temperament seeds a lower start mood than high', () => {
       const high = buildScenarioSystemPrompt('A2', { objectives, temperament: { patience: 'high' } });
       const low = buildScenarioSystemPrompt('A2', { objectives, temperament: { patience: 'low' } });
-      expect(high).toContain('mood" at about 85');
-      expect(low).toContain('mood" at about 55');
+      expect(high).toContain('Current mood is 85');
+      expect(low).toContain('Current mood is 55');
     });
 
     it('warmth shifts the seed mood (H7: matches client temperamentStartMood)', () => {
       const warm = buildScenarioSystemPrompt('A2', { objectives, temperament: { patience: 'high', warmth: 'warm' } });
       const cold = buildScenarioSystemPrompt('A2', { objectives, temperament: { patience: 'high', warmth: 'cold' } });
-      expect(warm).toContain('mood" at about 90'); // 85 + 5
-      expect(cold).toContain('mood" at about 80'); // 85 - 5
+      expect(warm).toContain('Current mood is 90'); // 85 + 5
+      expect(cold).toContain('Current mood is 80'); // 85 - 5
+    });
+
+    it('injects carried state instead of restarting the scene', () => {
+      const prompt = buildScenarioSystemPrompt('A2', {
+        objectives,
+        temperament: { patience: 'high', warmth: 'warm' },
+        gameState: {
+          exchangeIndex: 6,
+          mood: 63,
+          objectivesMet: ['order_drink'],
+          noProgressTurns: 2,
+        },
+      });
+
+      expect(prompt).toContain('This is exchange 6');
+      expect(prompt).toContain('Current mood is 63');
+      expect(prompt).toContain('Already completed: order_drink');
+      expect(prompt).toContain('Still unfinished: ask_price');
+      expect(prompt).toContain('Do not ask the same question again');
+      expect(prompt).not.toContain('Start "mood"');
     });
 
     it('strips control chars from objective text (H10: prompt-injection guard)', () => {

@@ -1,7 +1,7 @@
 # Саунд-дизайн ежедневного путешествия: пять вариантов
 
 Дата: 2026-08-30
-Статус: дизайн утверждён владельцем; разрешена платная генерация ElevenLabs Sound Effects.
+Статус: завершено — 20 Sound Effects сгенерированы, пять master/tap-пакетов опубликованы в `docs/design/daily-journey-audio/manifest.json`, подключены к `docs/design/daily-journey-rewards-prototype.html` и встроены в автономный visual companion `daily-journey-audio-v1.html`.
 
 ## 1. Цель
 

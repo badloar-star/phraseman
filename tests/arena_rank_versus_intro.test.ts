@@ -24,7 +24,8 @@ describe('Arena rank-shield versus intro', () => {
     expect(match).toContain('type ArenaMatchRouteParams = { matchId?: string; prepared?: string; viewerStars?: string };');
     expect(match).toContain('const introViewerRankIndex = arenaViewerRankIndex(viewerStars);');
     expect(match).toContain('youRankIndex={introViewerRankIndex}');
-    expect(match).toContain('opponentRankIndex={plan.opponent.rank}');
+    expect(match).toContain('const introOpponentRankIndex = plan?.opponent.rank ?? null;');
+    expect(match).toContain('opponentRankIndex={introOpponentRankIndex}');
     expect(match).toContain('<ArenaPlayers');
     expect(match).toContain('players={players}');
     expect(match).toContain('scoreUid={plan.viewerSeat}');

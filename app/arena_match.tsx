@@ -754,6 +754,7 @@ function ArenaMatchGenerationScreen({
     : null;
   const introYou = playerIdentities.find((player) => player.uid === plan?.viewerSeat);
   const introOpponent = playerIdentities.find((player) => player.uid === plan?.opponent.seat);
+  const introOpponentRankIndex = plan?.opponent.rank ?? null;
 
   /**
    * Просрочка и звёзды звучат по ЗАКРЫТОМУ заданию, а не по фазе: фаза может
@@ -979,7 +980,7 @@ function ArenaMatchGenerationScreen({
             you={introYou}
             opponent={introOpponent}
             youRankIndex={introViewerRankIndex}
-            opponentRankIndex={plan.opponent.rank}
+            opponentRankIndex={introOpponentRankIndex}
             goLabel={arenaText(lang, 'title')}
             ready={introReady}
             onDone={finishIntro}

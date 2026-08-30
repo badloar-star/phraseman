@@ -227,6 +227,22 @@ it('removes every daily journey owner journal surface and preserves device setti
   expect(store.app_theme).toBe('dark');
 });
 
+it('removes owner spin credits and idempotency state during account-switch or deletion wipe', async () => {
+  const ownerSpinStateKey = 'local_level_spin_state_v1:owner-a';
+  store[ownerSpinStateKey] = JSON.stringify({
+    schemaVersion: 'local-level-spin-state.v1',
+    owner: 'owner-a',
+    credits: [{ id: 'local_spin_daily_journey_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_1', level: 2 }],
+    issuedCreditIds: ['local_spin_daily_journey_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_1'],
+  });
+  store.app_theme = 'device-only-sentinel';
+
+  await wipeLocalAccountData();
+
+  expect(store[ownerSpinStateKey]).toBeUndefined();
+  expect(store.app_theme).toBe('device-only-sentinel');
+});
+
 it('clears the in-memory personal-plan state when the current account is wiped', async () => {
   await savePersonalPlanState(createDefaultPersonalPlanState({
     planId: 'gavan',

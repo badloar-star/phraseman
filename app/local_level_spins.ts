@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 
+import { LOCAL_LEVEL_SPIN_STATE_KEY } from '../constants/local_level_spin_storage_keys';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -47,13 +48,12 @@ import {
 } from '../modules/phone-state/domains/economy';
 import { DebugLogger } from './debug-logger';
 export { localLevelSpinReceiptToInventory, type LocalLevelSpinReceipt } from './level_spin_local_contract';
+export { LOCAL_LEVEL_SPIN_STATE_KEY } from '../constants/local_level_spin_storage_keys';
 
 /**
- * Device-owned Spin state. A cloud copy may be added later, but no remote call
- * is permitted on the interactive Spin path.
+ * Owner-scoped, device-local Spin state. A cloud copy may be added later, but
+ * no remote call is permitted on the interactive Spin path.
  */
-export const LOCAL_LEVEL_SPIN_STATE_KEY = 'local_level_spin_state_v1';
-
 /**
  * Разрешённые идентификаторы кредита спина — ОДИН список на оба фильтра
  * загрузки (сам кредит и ключ идемпотентности).

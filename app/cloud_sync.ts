@@ -108,6 +108,7 @@ import {
   CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
 } from '../constants/customization_storage_keys';
 import { DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES } from '../constants/daily_journey_gift_storage_keys';
+import { LOCAL_LEVEL_SPIN_ACCOUNT_LOCAL_PREFIXES } from '../constants/local_level_spin_storage_keys';
 import {
   clearCustomizationAccountLocalState,
   customizationAccountLocalKeysFrom,
@@ -688,6 +689,7 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'client_shard_phone_state_outbox_v1:',
   'client_shard_semantic_paid_v1:',
   // Owner-scoped level-Spin star composite journal and local projection.
+  ...LOCAL_LEVEL_SPIN_ACCOUNT_LOCAL_PREFIXES,
   'level_spin_star_grant_outbox_v1:',
   'level_spin_star_projection_v1:',
   'level_spin_star_prepared_v1:',

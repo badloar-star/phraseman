@@ -2159,107 +2159,107 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
         })}</Text>
           {totalStreak >= 3 && (<TouchableOpacity activeOpacity={0.75} style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }} onPress={async () => {
                 const _ru = [
-                    `Моя цепочка в Phraseman — ${totalStreak} дней! 🪶 Я мощнее, чем утренняя доза кофеина. Кто догонит?`,
-                    `${totalStreak} дней подряд в Phraseman! 🏆 Стабильность — моё второе имя. Английский уже как родной! 🪶`,
-                    `Видишь это перо? 🪶 Моя цепочка уже ${totalStreak} дней в Phraseman! Ни дня без английского, ни дня без побед!`,
-                    `${totalStreak} дней подряд в Phraseman! Моя дисциплина официально вышла на новый уровень. Не останавливайте меня! 🪶`,
+                    `Моя цепочка в Phraseman — ${totalStreak} дней! 🔥 Я мощнее, чем утренняя доза кофеина. Кто догонит?`,
+                    `${totalStreak} дней подряд в Phraseman! 🏆 Стабильность — моё второе имя. Английский уже как родной! 🔥`,
+                    `Видишь этот огонь? 🔥 Моя цепочка уже ${totalStreak} дней в Phraseman! Ни дня без английского, ни дня без побед!`,
+                    `${totalStreak} дней подряд в Phraseman! Моя дисциплина официально вышла на новый уровень. Не останавливайте меня! 🔥`,
                     `Говорят, привычка формируется 21 день. У меня уже ${totalStreak}! Phraseman — это уже стиль жизни. ☕️📖`,
-                    `Моё перо прогресса крепнет быстрее моего желания уйти в отпуск! 🪶 ${totalStreak} дней в деле!`,
-                    `Моё перо прогресса сияет всё ярче! 🪶 ${totalStreak} дней подряд. Кто сможет побить мой рекорд?`,
+                    `Моя цепочка в Phraseman горит ярче моего желания уйти в отпуск! 🔥 ${totalStreak} дней в деле!`,
+                    `Моя цепочка в Phraseman горит ярче солнца! 🔥 ${totalStreak} дней подряд. Кто сможет побить мой рекорд?`,
                     `${totalStreak} дней в Phraseman! 🏆 Маленькими шагами к большой цели. Мой английский говорит мне «спасибо»!`,
-                    `Не сбавляю темп! 🪶 ${totalStreak} дней обучения в Phraseman. Стабильность — признак мастерства!`,
-                    `Моё перо уже набрало силу! 🪶 ${totalStreak} дней подряд в Phraseman. Английский стал моей полезной привычкой.`,
+                    `Не сбавляю темп! 🔥 ${totalStreak} дней обучения в Phraseman. Стабильность — признак мастерства!`,
+                    `Не подходите близко — я горяч! 🔥 ${totalStreak} дней подряд в Phraseman. Английский стал моей полезной привычкой.`,
                     `Бегу марафон по английскому. Уже ${totalStreak}-й день в Phraseman без остановок! 🏃‍♀️ Кто со мной?`,
                 ];
                 const _uk = [
-                    `Мій стрік у Phraseman — ${totalStreak} днів! 🪶 Я потужніший за ранкову дозу кофеїну. Хто наздожене?`,
-                    `${totalStreak} днів поспіль у Phraseman! 🏆 Стабільність — моє друге ім\'я. Англійська вже як рідна! 🪶`,
-                    `Бачиш це перо? 🪶 Це мій стрік ${totalStreak} днів у Phraseman! Жодного дня без англійської, жодного дня без перемог!`,
-                    `${totalStreak} днів поспіль у Phraseman! Моя дисципліна офіційно вийшла на новий рівень. Не зупиняйте мене! 🪶`,
+                    `Мій стрік у Phraseman — ${totalStreak} днів! 🔥 Я потужніший за ранкову дозу кофеїну. Хто наздожене?`,
+                    `${totalStreak} днів поспіль у Phraseman! 🏆 Стабільність — моє друге ім\'я. Англійська вже як рідна! 🔥`,
+                    `Бачиш цей вогонь? 🔥 Це мій стрік ${totalStreak} днів у Phraseman! Жодного дня без англійської, жодного дня без перемог!`,
+                    `${totalStreak} днів поспіль у Phraseman! Моя дисципліна офіційно вийшла на новий рівень. Не зупиняйте мене! 🔥`,
                     `Кажуть, звичка формується 21 день. У мене вже ${totalStreak}! Phraseman — це вже стиль життя. ☕️📖`,
-                    `Моє перо прогресу міцнішає швидше за бажання піти у відпустку! 🪶 ${totalStreak} днів у справі!`,
-                    `Моє перо прогресу сяє дедалі яскравіше! 🪶 ${totalStreak} днів поспіль. Хто зможе побити мій рекорд?`,
+                    `Мій стрік у Phraseman горить яскравіше за моє бажання піти у відпустку! 🔥 ${totalStreak} днів у справі!`,
+                    `Мій стрік у Phraseman горить яскравіше за сонце! 🔥 ${totalStreak} днів поспіль. Хто зможе побити мій рекорд?`,
                     `${totalStreak} днів у Phraseman! 🏆 Маленькими кроками до великої мети. Моя англійська каже мені «дякую»!`,
-                    `Не збавляю темп! 🪶 ${totalStreak} днів навчання у Phraseman. Стабільність — ознака майстерності!`,
-                    `Моє перо вже набрало силу! 🪶 ${totalStreak} днів стріку у Phraseman. Англійська стала моєю корисною звичкою.`,
+                    `Не збавляю темп! 🔥 ${totalStreak} днів навчання у Phraseman. Стабільність — ознака майстерності!`,
+                    `Не підходьте близько — я гарячий! 🔥 ${totalStreak} днів стріку у Phraseman. Англійська стала моєю корисною звичкою.`,
                     `Біжу марафон з англійської. Вже ${totalStreak}-й день у Phraseman без зупинок! 🏃‍♀️ Хто зі мною?`,
                 ];
                 const _es = [
-                    `Mi racha en Phraseman: ¡${totalStreak} días! 🪶 Más fuerte que el café de la mañana. ¿Quién me alcanza?`,
-                    `¡${totalStreak} días seguidos en Phraseman! 🏆 La constancia es mi segundo nombre. ¡El inglés ya se siente natural! 🪶`,
-                    `¿Ves esta pluma? 🪶 Es mi racha de ${totalStreak} días en Phraseman. Ni un día sin inglés, ni un día sin ganar.`,
-                    `¡${totalStreak} días seguidos en Phraseman! Mi disciplina subió de nivel. ¡No me frenes! 🪶`,
+                    `Mi racha en Phraseman: ¡${totalStreak} días! 🔥 Más fuerte que el café de la mañana. ¿Quién me alcanza?`,
+                    `¡${totalStreak} días seguidos en Phraseman! 🏆 La constancia es mi segundo nombre. ¡El inglés ya se siente natural! 🔥`,
+                    `¿Ves ese fuego? 🔥 Es mi racha de ${totalStreak} días en Phraseman. Ni un día sin inglés, ni un día sin ganar.`,
+                    `¡${totalStreak} días seguidos en Phraseman! Mi disciplina subió de nivel. ¡No me frenes! 🔥`,
                     `Dicen que un hábito tarda 21 días. ¡Yo llevo ${totalStreak}! Phraseman ya es estilo de vida. ☕️📖`,
-                    `¡Mi pluma de progreso gana fuerza cada día! 🪶 ${totalStreak} días y sumando.`,
-                    `¡Mi pluma de progreso brilla cada vez más! 🪶 ${totalStreak} días seguidos. ¿Quién bate mi récord?`,
+                    `¡Mi racha en Phraseman arde más que mis ganas de vacaciones! 🔥 ${totalStreak} días y sumando.`,
+                    `¡Mi racha en Phraseman brilla más que el sol! 🔥 ${totalStreak} días seguidos. ¿Quién bate mi récord?`,
                     `¡${totalStreak} días en Phraseman! 🏆 Paso a paso hacia la meta. ¡Mi inglés me lo agradece!`,
-                    `¡No bajo el ritmo! 🪶 ${totalStreak} días estudiando en Phraseman. ¡La constancia es maestría!`,
-                    `¡Mi pluma ya ganó fuerza! 🪶 ${totalStreak} días de racha en Phraseman. El inglés ya es mi buen hábito.`,
+                    `¡No bajo el ritmo! 🔥 ${totalStreak} días estudiando en Phraseman. ¡La constancia es maestría!`,
+                    `¡Cuidado, que quemo! 🔥 ${totalStreak} días de racha en Phraseman. El inglés ya es mi buen hábito.`,
                     `Maratón de inglés: día ${totalStreak} en Phraseman sin parar. 🏃 ¿Quién se une?`,
                 ];
                 const _ptBR = [
-                    `Minha sequência no Phraseman: ${totalStreak} dias! 🪶 Mais forte que o café da manhã. Quem me alcança?`,
-                    `${totalStreak} dias seguidos no Phraseman! 🏆 Constância é meu sobrenome. O inglês já flui! 🪶`,
-                    `Tá vendo esta pena? 🪶 É minha sequência de ${totalStreak} dias no Phraseman. Nenhum dia sem inglês, nenhum dia sem vitória!`,
-                    `${totalStreak} dias seguidos no Phraseman! Minha disciplina subiu de nível. Não me segura! 🪶`,
+                    `Minha sequência no Phraseman: ${totalStreak} dias! 🔥 Mais forte que o café da manhã. Quem me alcança?`,
+                    `${totalStreak} dias seguidos no Phraseman! 🏆 Constância é meu sobrenome. O inglês já flui! 🔥`,
+                    `Tá vendo esse fogo? 🔥 É minha sequência de ${totalStreak} dias no Phraseman. Nenhum dia sem inglês, nenhum dia sem vitória!`,
+                    `${totalStreak} dias seguidos no Phraseman! Minha disciplina subiu de nível. Não me segura! 🔥`,
                     `Dizem que um hábito leva 21 dias. Eu já estou em ${totalStreak}! Phraseman virou estilo de vida. ☕️📖`,
-                    `Minha pena de progresso ganha força a cada dia! 🪶 ${totalStreak} dias em ação!`,
-                    `Minha pena de progresso brilha cada vez mais! 🪶 ${totalStreak} dias seguidos. Quem bate meu recorde?`,
+                    `Minha sequência no Phraseman queima mais que minha vontade de tirar férias! 🔥 ${totalStreak} dias em ação!`,
+                    `Minha sequência no Phraseman brilha mais que o sol! 🔥 ${totalStreak} dias seguidos. Quem bate meu recorde?`,
                     `${totalStreak} dias no Phraseman! 🏆 Passo a passo rumo à meta. Meu inglês agradece!`,
-                    `Sem perder o ritmo! 🪶 ${totalStreak} dias estudando no Phraseman. Constância é maestria!`,
-                    `Minha pena já ganhou força! 🪶 ${totalStreak} dias de sequência no Phraseman. O inglês já é meu bom hábito.`,
+                    `Sem perder o ritmo! 🔥 ${totalStreak} dias estudando no Phraseman. Constância é maestria!`,
+                    `Cuidado, tô pegando fogo! 🔥 ${totalStreak} dias de sequência no Phraseman. O inglês já é meu bom hábito.`,
                     `Maratona de inglês: dia ${totalStreak} no Phraseman sem parar! 🏃 Quem vem comigo?`,
                 ];
                 const _vi = [
-                    `Chuỗi ngày của tôi trên Phraseman: ${totalStreak} ngày! 🪶 Mạnh hơn cả ly cà phê sáng. Ai đuổi kịp nào?`,
-                    `${totalStreak} ngày liên tiếp trên Phraseman! 🏆 Kiên trì là tên đệm của tôi. Tiếng Anh đã thành tự nhiên! 🪶`,
-                    `Thấy chiếc lông vũ này chứ? 🪶 Đó là chuỗi ${totalStreak} ngày của tôi trên Phraseman. Không ngày nào thiếu tiếng Anh!`,
-                    `${totalStreak} ngày liên tiếp trên Phraseman! Kỷ luật của tôi đã lên một tầm cao mới. Đừng cản tôi! 🪶`,
+                    `Chuỗi ngày của tôi trên Phraseman: ${totalStreak} ngày! 🔥 Mạnh hơn cả ly cà phê sáng. Ai đuổi kịp nào?`,
+                    `${totalStreak} ngày liên tiếp trên Phraseman! 🏆 Kiên trì là tên đệm của tôi. Tiếng Anh đã thành tự nhiên! 🔥`,
+                    `Thấy ngọn lửa này chứ? 🔥 Đó là chuỗi ${totalStreak} ngày của tôi trên Phraseman. Không ngày nào thiếu tiếng Anh!`,
+                    `${totalStreak} ngày liên tiếp trên Phraseman! Kỷ luật của tôi đã lên một tầm cao mới. Đừng cản tôi! 🔥`,
                     `Người ta nói thói quen cần 21 ngày. Tôi đã ${totalStreak} ngày! Phraseman giờ là phong cách sống. ☕️📖`,
-                    `Chiếc lông vũ tiến bộ của tôi mạnh hơn mỗi ngày! 🪶 ${totalStreak} ngày rồi!`,
-                    `Chiếc lông vũ tiến bộ của tôi ngày càng tỏa sáng! 🪶 ${totalStreak} ngày liên tiếp. Ai phá được kỷ lục của tôi?`,
+                    `Chuỗi ngày trên Phraseman của tôi cháy hơn cả mong muốn đi nghỉ! 🔥 ${totalStreak} ngày rồi!`,
+                    `Chuỗi ngày của tôi trên Phraseman sáng hơn mặt trời! 🔥 ${totalStreak} ngày liên tiếp. Ai phá được kỷ lục của tôi?`,
                     `${totalStreak} ngày trên Phraseman! 🏆 Từng bước nhỏ đến mục tiêu lớn. Tiếng Anh của tôi cảm ơn tôi!`,
-                    `Không giảm tốc! 🪶 ${totalStreak} ngày học trên Phraseman. Kiên trì là dấu hiệu của bậc thầy!`,
-                    `Chiếc lông vũ của tôi đã mạnh lên! 🪶 ${totalStreak} ngày liên tiếp trên Phraseman. Tiếng Anh đã thành thói quen tốt.`,
+                    `Không giảm tốc! 🔥 ${totalStreak} ngày học trên Phraseman. Kiên trì là dấu hiệu của bậc thầy!`,
+                    `Cẩn thận, tôi đang nóng đây! 🔥 ${totalStreak} ngày liên tiếp trên Phraseman. Tiếng Anh đã thành thói quen tốt.`,
                     `Chạy marathon tiếng Anh. Đã sang ngày ${totalStreak} trên Phraseman không nghỉ! 🏃 Ai cùng tôi nào?`,
                 ];
                 const _id = [
-                    `Rentetan harianku di Phraseman: ${totalStreak} hari! 🪶 Lebih kuat dari kopi pagi. Siapa yang bisa menyusul?`,
-                    `${totalStreak} hari berturut-turut di Phraseman! 🏆 Konsistensi nama tengahku. Bahasa Inggris terasa makin natural! 🪶`,
-                    `Lihat bulu ini? 🪶 Itu rentetan ${totalStreak} hariku di Phraseman. Tak ada hari tanpa bahasa Inggris!`,
-                    `${totalStreak} hari berturut-turut di Phraseman! Disiplinku naik level. Jangan hentikan aku! 🪶`,
+                    `Rentetan harianku di Phraseman: ${totalStreak} hari! 🔥 Lebih kuat dari kopi pagi. Siapa yang bisa menyusul?`,
+                    `${totalStreak} hari berturut-turut di Phraseman! 🏆 Konsistensi nama tengahku. Bahasa Inggris terasa makin natural! 🔥`,
+                    `Lihat api ini? 🔥 Itu rentetan ${totalStreak} hariku di Phraseman. Tak ada hari tanpa bahasa Inggris!`,
+                    `${totalStreak} hari berturut-turut di Phraseman! Disiplinku naik level. Jangan hentikan aku! 🔥`,
                     `Katanya kebiasaan terbentuk dalam 21 hari. Aku sudah ${totalStreak}! Phraseman jadi gaya hidup. ☕️📖`,
-                    `Bulu progresku semakin kuat setiap hari! 🪶 ${totalStreak} hari beraksi!`,
-                    `Bulu progresku semakin bersinar! 🪶 ${totalStreak} hari berturut-turut. Siapa yang bisa mengalahkan rekorku?`,
+                    `Rentetanku di Phraseman menyala lebih panas dari keinginanku berlibur! 🔥 ${totalStreak} hari beraksi!`,
+                    `Rentetanku di Phraseman bersinar lebih terang dari matahari! 🔥 ${totalStreak} hari berturut-turut. Siapa yang bisa mengalahkan rekorku?`,
                     `${totalStreak} hari di Phraseman! 🏆 Langkah demi langkah menuju tujuan. Bahasa Inggrisku berterima kasih!`,
-                    `Tak mengendurkan tempo! 🪶 ${totalStreak} hari belajar di Phraseman. Konsistensi tanda keahlian!`,
-                    `Bulu progresku sudah semakin kuat! 🪶 ${totalStreak} hari beruntun di Phraseman. Bahasa Inggris jadi kebiasaan baikku.`,
+                    `Tak mengendurkan tempo! 🔥 ${totalStreak} hari belajar di Phraseman. Konsistensi tanda keahlian!`,
+                    `Hati-hati, aku lagi panas! 🔥 ${totalStreak} hari beruntun di Phraseman. Bahasa Inggris jadi kebiasaan baikku.`,
                     `Maraton bahasa Inggris. Sudah hari ke-${totalStreak} di Phraseman tanpa henti! 🏃 Siapa ikut?`,
                 ];
                 const _tr = [
-                    `Phraseman'deki serim: ${totalStreak} gün! 🪶 Sabah kahvesinden bile güçlü. Yetişebilen var mı?`,
-                    `${totalStreak} gün üst üste Phraseman'de! 🏆 İstikrar benim ikinci adım. İngilizce artık ana dilim gibi! 🪶`,
-                    `Bu tüyü görüyor musun? 🪶 Phraseman'de ${totalStreak} günlük serim! İngilizcesiz bir gün yok, zafersiz bir gün yok!`,
-                    `${totalStreak} gün üst üste Phraseman'de! Disiplinim resmen yeni bir seviyeye çıktı. Beni durdurmayın! 🪶`,
+                    `Phraseman'deki serim: ${totalStreak} gün! 🔥 Sabah kahvesinden bile güçlü. Yetişebilen var mı?`,
+                    `${totalStreak} gün üst üste Phraseman'de! 🏆 İstikrar benim ikinci adım. İngilizce artık ana dilim gibi! 🔥`,
+                    `Bu ateşi görüyor musun? 🔥 Phraseman'de ${totalStreak} günlük serim! İngilizcesiz bir gün yok, zafersiz bir gün yok!`,
+                    `${totalStreak} gün üst üste Phraseman'de! Disiplinim resmen yeni bir seviyeye çıktı. Beni durdurmayın! 🔥`,
                     `Alışkanlık 21 günde oluşur derler. Bende çoktan ${totalStreak} oldu! Phraseman artık bir yaşam tarzı. ☕️📖`,
-                    `İlerleme tüyüm her gün daha da güçleniyor! 🪶 ${totalStreak} gündür iş başında!`,
-                    `İlerleme tüyüm giderek daha parlak! 🪶 ${totalStreak} gün üst üste. Rekorumu kim kırabilir?`,
+                    `Phraseman'deki serim tatile çıkma isteğimden bile parlak yanıyor! 🔥 ${totalStreak} gündür iş başında!`,
+                    `Phraseman'deki serim güneşten bile parlak! 🔥 ${totalStreak} gün üst üste. Rekorumu kim kırabilir?`,
                     `Phraseman'de ${totalStreak} gün! 🏆 Küçük adımlarla büyük hedefe. İngilizcem bana teşekkür ediyor!`,
-                    `Tempoyu düşürmüyorum! 🪶 Phraseman'de ${totalStreak} gün çalışma. İstikrar ustalığın işaretidir!`,
-                    `İlerleme tüyüm güç kazandı! 🪶 Phraseman'de ${totalStreak} gün üst üste. İngilizce artık iyi bir alışkanlığım.`,
+                    `Tempoyu düşürmüyorum! 🔥 Phraseman'de ${totalStreak} gün çalışma. İstikrar ustalığın işaretidir!`,
+                    `Yaklaşma, yanıyorum! 🔥 Phraseman'de ${totalStreak} gün üst üste. İngilizce artık iyi bir alışkanlığım.`,
                     `İngilizce maratonu. Phraseman'de durmadan ${totalStreak}. gün! 🏃 Benimle gelen?`,
                 ];
                 const _pl = [
-                    `Moja seria w Phraseman: ${totalStreak} dni! 🪶 Mocniejsza niż poranna kawa. Kto mnie dogoni?`,
-                    `${totalStreak} dni z rzędu w Phraseman! 🏆 Konsekwencja to moje drugie imię. Angielski wchodzi naturalnie! 🪶`,
-                    `Widzisz to pióro? 🪶 To moja seria ${totalStreak} dni w Phraseman! Ani dnia bez angielskiego, ani dnia bez zwycięstwa!`,
-                    `${totalStreak} dni z rzędu w Phraseman! Moja dyscyplina oficjalnie weszła na wyższy poziom. Nie zatrzymujcie mnie! 🪶`,
+                    `Moja seria w Phraseman: ${totalStreak} dni! 🔥 Mocniejsza niż poranna kawa. Kto mnie dogoni?`,
+                    `${totalStreak} dni z rzędu w Phraseman! 🏆 Konsekwencja to moje drugie imię. Angielski wchodzi naturalnie! 🔥`,
+                    `Widzisz ten ogień? 🔥 To moja seria ${totalStreak} dni w Phraseman! Ani dnia bez angielskiego, ani dnia bez zwycięstwa!`,
+                    `${totalStreak} dni z rzędu w Phraseman! Moja dyscyplina oficjalnie weszła na wyższy poziom. Nie zatrzymujcie mnie! 🔥`,
                     `Mówią, że nawyk tworzy się przez 21 dni. Ja mam już ${totalStreak}! Phraseman to już styl życia. ☕️📖`,
-                    `Moje pióro postępu rośnie w siłę każdego dnia! 🪶 ${totalStreak} dni w akcji!`,
-                    `Moje pióro postępu świeci coraz jaśniej! 🪶 ${totalStreak} dni z rzędu. Kto pobije mój rekord?`,
+                    `Moja seria w Phraseman płonie mocniej niż chęć urlopu! 🔥 ${totalStreak} dni w akcji!`,
+                    `Moja seria w Phraseman świeci jaśniej niż słońce! 🔥 ${totalStreak} dni z rzędu. Kto pobije mój rekord?`,
                     `${totalStreak} dni w Phraseman! 🏆 Małymi krokami do wielkiego celu. Mój angielski mi dziękuje!`,
-                    `Nie zwalniam tempa! 🪶 ${totalStreak} dni nauki w Phraseman. Konsekwencja to oznaka mistrzostwa!`,
-                    `Moje pióro już nabrało siły! 🪶 ${totalStreak} dni serii w Phraseman. Angielski stał się moim dobrym nawykiem.`,
+                    `Nie zwalniam tempa! 🔥 ${totalStreak} dni nauki w Phraseman. Konsekwencja to oznaka mistrzostwa!`,
+                    `Nie podchodź — jestem rozgrzany! 🔥 ${totalStreak} dni serii w Phraseman. Angielski stał się moim dobrym nawykiem.`,
                     `Biegnę maraton z angielskiego. Już ${totalStreak}. dzień w Phraseman bez przerwy! 🏃 Kto ze mną?`,
                 ];
                 const _byLang: Record<string, string[]> = {
@@ -3382,9 +3382,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         startHop: startDailyJourneyUnreadHop,
         stopHop: stopDailyJourneyUnreadHop,
         shouldReduceMotion: () => reduceMotion,
-        reportError: () => {
-            // Keep the last visible unread projection when local storage is temporarily unavailable.
-        },
+        reportError: () => {},
     }), [reduceMotion, startDailyJourneyUnreadHop, stopDailyJourneyUnreadHop]);
     const [freezeConfirmVisible, setFreezeConfirmVisible] = useState(false);
     const [freezeNeedShardsModal, setFreezeNeedShardsModal] = useState(false);
@@ -3418,6 +3416,21 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         });
         return () => { cancelled = true; };
     }, []));
+    useFocusEffect(useCallback(() => {
+        void dailyJourneyUnreadController.activate().catch(() => {});
+        const giftsSubscription = onAppEvent('daily_journey_gifts_changed', () => {
+            void dailyJourneyUnreadController.reload().catch(() => {});
+        });
+        const accountSubscription = subscribeAccountGeneration(() => {
+            void dailyJourneyUnreadController.resetForAccount().catch(() => {});
+        });
+        return () => {
+            giftsSubscription.remove();
+            accountSubscription.remove();
+            dailyJourneyUnreadController.deactivate();
+        };
+    }, [dailyJourneyUnreadController]));
+    useEffect(() => () => dailyJourneyUnreadController.dispose(), [dailyJourneyUnreadController]);
     useEffect(() => {
         const sub = onAppEvent('streak_revive_offer', () => {
             void refreshReviveOffer();
@@ -3536,21 +3549,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         });
         return () => { cancelled = true; };
     }, []));
-    useFocusEffect(useCallback(() => {
-        void dailyJourneyUnreadController.activate().catch(() => {});
-        const giftsSubscription = onAppEvent('daily_journey_gifts_changed', () => {
-            void dailyJourneyUnreadController.reload().catch(() => {});
-        });
-        const accountSubscription = subscribeAccountGeneration(() => {
-            void dailyJourneyUnreadController.resetForAccount().catch(() => {});
-        });
-        return () => {
-            giftsSubscription.remove();
-            accountSubscription.remove();
-            dailyJourneyUnreadController.deactivate();
-        };
-    }, [dailyJourneyUnreadController]));
-    useEffect(() => () => dailyJourneyUnreadController.dispose(), [dailyJourneyUnreadController]);
     useEffect(() => {
         const subscription = onAppEvent('level_spin_balance_changed', () => {
             void readLocalLevelSpinBalance().then(setSpinBalance).catch(() => {});
@@ -4129,6 +4127,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 })}
                 </FlowText>
                 <Reanimated.View style={spinButtonPulseStyle}>
+                <Reanimated.View style={dailyJourneyUnreadHopStyle}>
                 <TouchableOpacity
                   testID="stats-header-spins"
                   accessibilityRole="button"
@@ -4146,7 +4145,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   ) : null}
                 </TouchableOpacity>
                 </Reanimated.View>
-                <Reanimated.View style={dailyJourneyUnreadHopStyle}>
                 <TouchableOpacity
                   testID="stats-header-gifts"
                   accessibilityHint={triLang(lang, {
@@ -4159,6 +4157,17 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     id: pendingGiftCount > 0 ? `${pendingGiftCount} hadiah` : 'Hadiah',
                     tr: pendingGiftCount > 0 ? `${pendingGiftCount} hediye` : 'Hediyeler',
                     pl: pendingGiftCount > 0 ? `${pendingGiftCount} ${pendingGiftCount === 1 ? 'prezent' : 'prezentów'}` : 'Prezenty',
+                  })}
+                  accessibilityLabel={triLang(lang, {
+                    ru: dailyJourneyUnreadCount > 0 ? `Непросмотренные подарки Daily Journey: ${dailyJourneyUnreadCount}` : 'Подарки',
+                    uk: dailyJourneyUnreadCount > 0 ? `Непереглянуті подарунки Daily Journey: ${dailyJourneyUnreadCount}` : 'Подарунки',
+                    en: dailyJourneyUnreadCount > 0 ? `Unseen Daily Journey gifts: ${dailyJourneyUnreadCount}` : 'Gifts',
+                    es: dailyJourneyUnreadCount > 0 ? `Regalos sin ver de Daily Journey: ${dailyJourneyUnreadCount}` : 'Regalos',
+                    'pt-BR': dailyJourneyUnreadCount > 0 ? `Presentes não vistos do Daily Journey: ${dailyJourneyUnreadCount}` : 'Presentes',
+                    vi: dailyJourneyUnreadCount > 0 ? `Quà Daily Journey chưa xem: ${dailyJourneyUnreadCount}` : 'Quà',
+                    id: dailyJourneyUnreadCount > 0 ? `Hadiah Daily Journey belum dilihat: ${dailyJourneyUnreadCount}` : 'Hadiah',
+                    tr: dailyJourneyUnreadCount > 0 ? `Görülmemiş Daily Journey hediyeleri: ${dailyJourneyUnreadCount}` : 'Hediyeler',
+                    pl: dailyJourneyUnreadCount > 0 ? `Nieobejrzane prezenty Daily Journey: ${dailyJourneyUnreadCount}` : 'Prezenty',
                   })}
                   activeOpacity={0.82}
                   onPress={() => {
@@ -4174,7 +4183,13 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                       <Text style={{ color: t.bgCard, fontSize: 9, fontWeight: '900' }}>{pendingGiftCount}</Text>
                     </View>
                   ) : null}
+                  {dailyJourneyUnreadCount > 0 ? (
+                    <View testID="stats-header-daily-journey-unread" style={{ position: 'absolute', bottom: 3, left: 3, minWidth: 15, height: 15, borderRadius: 8, paddingHorizontal: 3, alignItems: 'center', justifyContent: 'center', backgroundColor: t.correct }}>
+                      <Text style={{ color: t.correctText, fontSize: 8, fontWeight: '900' }}>{dailyJourneyUnreadCount}</Text>
+                    </View>
+                  ) : null}
                 </TouchableOpacity>
+                </Reanimated.View>
                 </View>
               </View>
 

@@ -36,5 +36,5 @@ const body = Object.freeze({
 export const LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V1 = Object.freeze({
   ...body,
   blueprintFingerprint: hashCanonicalBody(body),
-  ownerApproval: "APPROVED" as const,
+  ownerApproval: "SUPERSEDED" as const,
 });

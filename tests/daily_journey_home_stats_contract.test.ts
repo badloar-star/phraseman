@@ -9,6 +9,7 @@ import {
   type DailyJourneyHomeTargetRect,
 } from '../app/daily_journey_home_orchestration';
 import * as dailyJourneyHomeOrchestration from '../app/daily_journey_home_orchestration';
+import * as dailyJourneyStatsUnread from '../app/daily_journey_stats_unread';
 import { dailyJourneyRewardPayloadForDay } from '../components/dev/dailyJourneyRewardPreviewModel';
 import type { DailyJourneyGiftInput } from '../app/daily_journey_gift_inbox';
 
@@ -46,6 +47,29 @@ const maybeMeasureTarget = (dailyJourneyHomeOrchestration as unknown as Readonly
     timeoutMs?: number;
   }>) => Promise<DailyJourneyHomeTargetRect | null>;
 }>).measureDailyJourneyHomeTarget;
+
+type StatsUnreadController = Readonly<{
+  activate: () => Promise<void>;
+  deactivate: () => void;
+  reload: () => Promise<void>;
+  resetForAccount: () => Promise<void>;
+  dispose: () => void;
+}>;
+
+type StatsUnreadControllerFactory = <TokenValue>(dependencies: Readonly<{
+  captureToken: () => TokenValue;
+  isTokenCurrent: (token: TokenValue) => boolean;
+  readProjection: (token: TokenValue) => Promise<Readonly<{ unreadCount: number }>>;
+  displayUnreadCount: (count: number) => void;
+  startHop: () => void;
+  stopHop: () => void;
+  shouldReduceMotion: () => boolean;
+  reportError: (stage: 'projection', error: unknown) => void;
+}>) => StatsUnreadController;
+
+const maybeCreateStatsUnreadController = (dailyJourneyStatsUnread as unknown as Readonly<{
+  createDailyJourneyStatsUnreadController?: StatsUnreadControllerFactory;
+}>).createDailyJourneyStatsUnreadController;
 
 function occurrence(input: {
   operationId: string;
@@ -497,5 +521,118 @@ describe('Home source wiring for Daily Journey', () => {
     expect(home).toContain('resetForAccount()');
     expect(home).toContain('dailyJourneyDeliveryController.setActive(homeRuntimeActive)');
     expect(home).not.toContain('markDailyJourneyGiftSnapshotSeen');
+  });
+});
+
+describe('Statistics Daily Journey unread controller', () => {
+  test('keeps the legacy pending badge separate while projection requests are focus, account, and last-request guarded', async () => {
+    expect(typeof maybeCreateStatsUnreadController).toBe('function');
+    if (!maybeCreateStatsUnreadController) return;
+
+    let token: Token = { generation: 1, stableId: 'owner-a', phase: 'active' };
+    const unread: number[] = [];
+    const pending: { resolve: (count: number) => void; reject: (error: Error) => void }[] = [];
+    const startHop = jest.fn();
+    const stopHop = jest.fn();
+    const reportError = jest.fn();
+    const controller = maybeCreateStatsUnreadController<Token>({
+      captureToken: () => token,
+      isTokenCurrent: (candidate) => candidate.generation === token.generation && candidate.stableId === token.stableId,
+      readProjection: () => new Promise((resolve, reject) => pending.push({
+        resolve: (count) => resolve({ unreadCount: count }),
+        reject,
+      })),
+      displayUnreadCount: (count) => unread.push(count),
+      startHop,
+      stopHop,
+      shouldReduceMotion: () => false,
+      reportError,
+    });
+
+    const first = controller.activate();
+    const second = controller.reload();
+    pending[1].resolve(3);
+    await second;
+    pending[0].resolve(9);
+    await first;
+    expect(unread).toEqual([3]);
+    expect(startHop).toHaveBeenCalledTimes(1);
+    expect(stopHop).toHaveBeenCalledTimes(0);
+
+    const failed = controller.reload();
+    pending[2].reject(new Error('storage unavailable'));
+    await failed;
+    expect(unread).toEqual([3]);
+    expect(reportError).toHaveBeenCalledWith('projection', expect.any(Error));
+
+    token = { generation: 2, stableId: 'owner-b', phase: 'active' };
+    const switched = controller.resetForAccount();
+    expect(unread).toEqual([3, 0]);
+    expect(stopHop).toHaveBeenCalledTimes(1);
+    pending[3].resolve(2);
+    await switched;
+    expect(unread).toEqual([3, 0, 2]);
+    expect(startHop).toHaveBeenCalledTimes(2);
+
+    const late = controller.reload();
+    controller.deactivate();
+    pending[4].resolve(7);
+    await late;
+    expect(unread).toEqual([3, 0, 2]);
+    expect(stopHop).toHaveBeenCalledTimes(2);
+    controller.dispose();
+  });
+
+  test('suppresses and resets the hop for reduced motion and zero unread', async () => {
+    expect(typeof maybeCreateStatsUnreadController).toBe('function');
+    if (!maybeCreateStatsUnreadController) return;
+
+    let reduceMotion = true;
+    const startHop = jest.fn();
+    const stopHop = jest.fn();
+    const controller = maybeCreateStatsUnreadController<Token>({
+      captureToken: () => ({ generation: 1, stableId: 'owner-a', phase: 'active' }),
+      isTokenCurrent: () => true,
+      readProjection: async () => ({ unreadCount: 1 }),
+      displayUnreadCount: jest.fn(),
+      startHop,
+      stopHop,
+      shouldReduceMotion: () => reduceMotion,
+      reportError: jest.fn(),
+    });
+
+    await controller.activate();
+    expect(startHop).not.toHaveBeenCalled();
+    expect(stopHop).toHaveBeenCalledTimes(1);
+    reduceMotion = false;
+    await controller.reload();
+    expect(startHop).toHaveBeenCalledTimes(1);
+    controller.dispose();
+  });
+});
+
+describe('Statistics source wiring for Daily Journey', () => {
+  const stats = read('app/streak_stats.tsx');
+
+  test('keeps pending inventory badge intact and adds a separate unread affordance without marking seen', () => {
+    expect(stats).toContain('const [pendingGiftCount, setPendingGiftCount]');
+    expect(stats).toContain('const [dailyJourneyUnreadCount, setDailyJourneyUnreadCount]');
+    expect(stats).toContain("onAppEvent('daily_journey_gifts_changed'");
+    expect(stats).toContain('dailyJourneyUnreadHop');
+    expect(stats).toContain('testID="stats-header-daily-journey-unread"');
+    expect(stats).toContain('dailyJourneyUnreadCount > 0 ?');
+    expect(stats).toContain("router.push('/level_gifts_inventory' as any)");
+    expect(stats).not.toContain('markDailyJourneyGiftSnapshotSeen');
+  });
+
+  test('uses transform-only lifecycle-bound hop and accessible 44px direct inventory button', () => {
+    expect(stats).toContain('useReduceMotion()');
+    expect(stats).toContain('cancelAnimation(dailyJourneyUnreadHop)');
+    expect(stats).toContain('withRepeat(withSequence(');
+    expect(stats).toContain('transform: [{ translateY: dailyJourneyUnreadHop.value }]');
+    expect(stats).toContain('useNativeDriver: true');
+    expect(stats).toMatch(/testID="stats-header-gifts"[\s\S]{0,2600}dailyJourneyUnreadCount/);
+    expect(stats).toMatch(/testID="stats-header-gifts"[\s\S]{0,2600}width: 44, height: 44/);
+    expect(stats).toContain('Unseen Daily Journey gifts');
   });
 });

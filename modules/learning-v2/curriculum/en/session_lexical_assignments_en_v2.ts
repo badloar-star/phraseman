@@ -17,6 +17,7 @@ export type LearningV2EnglishSessionLexicalAssignmentV2 = Readonly<{
 const I_AM_OPERATION_ID = "en.grammar.present_be_affirmative.i_am";
 const HE_SHE_IT_IS_OPERATION_ID = "en.grammar.present_be_affirmative.he_she_it_is";
 const YOU_WE_THEY_ARE_OPERATION_ID = "en.grammar.present_be_affirmative.you_we_they_are";
+const FULL_BE_CHOICE_OPERATION_ID = "en.grammar.present_be_affirmative.full_form_choice";
 
 const sense = (
   english: string,
@@ -286,6 +287,86 @@ readonly LearningV2EnglishSessionLexicalAssignmentV2[] = Object.freeze([
     ],
     ["en.rich.adjective.01", "en.poor.adjective.01", "en.famous.adjective.01"],
     ["They are married.", "They are single.", "They are different."],
+  ),
+
+  // Chapter 4 interleaves all previously introduced subject groups so the
+  // learner chooses am/is/are from the subject instead of memorising one row.
+  assignment(
+    25,
+    FULL_BE_CHOICE_OPERATION_ID,
+    [
+      sense("proud", "гордый"),
+      sense("ashamed", "стыдно"),
+      sense("surprised", "удивлённый"),
+    ],
+    ["en.married.adjective.01", "en.single.adjective.01", "en.different.adjective.01"],
+    ["I am proud.", "She is ashamed.", "They are surprised."],
+  ),
+  assignment(
+    26,
+    FULL_BE_CHOICE_OPERATION_ID,
+    [
+      sense("bored", "скучно"),
+      sense("confused", "растерянный"),
+      sense("worried", "обеспокоенный"),
+    ],
+    ["en.proud.adjective.01", "en.ashamed.adjective.01", "en.surprised.adjective.01"],
+    ["You are bored.", "He is confused.", "We are worried."],
+  ),
+  assignment(
+    27,
+    FULL_BE_CHOICE_OPERATION_ID,
+    [
+      sense("awake", "не спит"),
+      sense("asleep", "спит"),
+      sense("available", "доступен"),
+    ],
+    ["en.bored.adjective.01", "en.confused.adjective.01", "en.worried.adjective.01"],
+    ["I am awake.", "She is asleep.", "They are available."],
+  ),
+  assignment(
+    28,
+    FULL_BE_CHOICE_OPERATION_ID,
+    [
+      sense("correct", "правильный"),
+      sense("certain", "уверен"),
+      sense("serious", "серьёзный"),
+    ],
+    ["en.awake.adjective.01", "en.asleep.adjective.01", "en.available.adjective.01"],
+    ["It is correct.", "I am certain.", "You are serious."],
+  ),
+  assignment(
+    29,
+    FULL_BE_CHOICE_OPERATION_ID,
+    [
+      sense("local", "местный"),
+      sense("foreign", "иностранный"),
+      sense("online", "в сети"),
+    ],
+    ["en.correct.adjective.01", "en.certain.adjective.01", "en.serious.adjective.01"],
+    ["It is local.", "They are foreign.", "We are online."],
+  ),
+  assignment(
+    30,
+    FULL_BE_CHOICE_OPERATION_ID,
+    [
+      sense("alive", "жив"),
+      sense("dead", "мёртв"),
+      sense("missing", "пропал"),
+    ],
+    ["en.local.adjective.01", "en.foreign.adjective.01", "en.online.adjective.01"],
+    ["He is alive.", "It is dead.", "She is missing."],
+  ),
+  assignment(
+    31,
+    FULL_BE_CHOICE_OPERATION_ID,
+    [
+      sense("equal", "равны"),
+      sense("similar", "похожи"),
+      sense("separate", "раздельны"),
+    ],
+    ["en.alive.adjective.01", "en.dead.adjective.01", "en.missing.adjective.01"],
+    ["They are equal.", "We are similar.", "They are separate."],
   ),
 ]);
 

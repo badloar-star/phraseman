@@ -171,6 +171,37 @@ if (thirdChapterSenseIds.size !== 21) {
   findings.push(`you_we_they_unique_sense_count:${thirdChapterSenseIds.size}`);
 }
 
+const expectedFourthChapterNewLexicon = new Map<number, readonly string[]>([
+  [1, ["en.proud.adjective.01", "en.ashamed.adjective.01", "en.surprised.adjective.01"]],
+  [2, ["en.bored.adjective.01", "en.confused.adjective.01", "en.worried.adjective.01"]],
+  [3, ["en.awake.adjective.01", "en.asleep.adjective.01", "en.available.adjective.01"]],
+  [4, ["en.correct.adjective.01", "en.certain.adjective.01", "en.serious.adjective.01"]],
+  [5, ["en.local.adjective.01", "en.foreign.adjective.01", "en.online.adjective.01"]],
+  [6, ["en.alive.adjective.01", "en.dead.adjective.01", "en.missing.adjective.01"]],
+  [7, ["en.equal.adjective.01", "en.similar.adjective.01", "en.separate.adjective.01"]],
+  [8, []],
+]);
+
+const fourthChapterPackets = packets.filter(
+  (packet) => packet.lessonOrdinal === 1 && packet.chapterOrdinal === 4,
+);
+for (const packet of fourthChapterPackets) {
+  const expected = [...(expectedFourthChapterNewLexicon.get(packet.sessionWithinChapter) ?? [])].sort();
+  const actual = [...packet.newLexicalSenseIds].sort();
+  if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+    findings.push(
+      `full_be_choice_lexicon_mismatch:${packet.sessionId}:expected=${expected.join(",")}:actual=${actual.join(",")}`,
+    );
+  }
+}
+
+const fourthChapterSenseIds = new Set(
+  fourthChapterPackets.flatMap((packet) => packet.newLexicalSenseIds),
+);
+if (fourthChapterSenseIds.size !== 21) {
+  findings.push(`full_be_choice_unique_sense_count:${fourthChapterSenseIds.size}`);
+}
+
 assert.equal(
   findings.length,
   0,

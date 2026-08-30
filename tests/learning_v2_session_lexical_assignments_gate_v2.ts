@@ -37,6 +37,16 @@ const expectedYouWeTheyLexicon = new Map<string, readonly string[]>([
   ["lesson-01:session:23", ["married", "single", "different"]],
 ]);
 
+const expectedFullBeChoiceLexicon = new Map<string, readonly string[]>([
+  ["lesson-01:session:25", ["proud", "ashamed", "surprised"]],
+  ["lesson-01:session:26", ["bored", "confused", "worried"]],
+  ["lesson-01:session:27", ["awake", "asleep", "available"]],
+  ["lesson-01:session:28", ["correct", "certain", "serious"]],
+  ["lesson-01:session:29", ["local", "foreign", "online"]],
+  ["lesson-01:session:30", ["alive", "dead", "missing"]],
+  ["lesson-01:session:31", ["equal", "similar", "separate"]],
+]);
+
 const sessionIds = assignments.map((assignment) => assignment.sessionId);
 if (new Set(sessionIds).size !== sessionIds.length) {
   findings.push("assignment_session_ids_not_unique");
@@ -142,6 +152,23 @@ for (const [sessionId, expectedEnglish] of expectedYouWeTheyLexicon) {
   }
 }
 
+for (const [sessionId, expectedEnglish] of expectedFullBeChoiceLexicon) {
+  const assignment = assignments.find((candidate) => candidate.sessionId === sessionId);
+  if (!assignment) {
+    findings.push(`full_be_choice_assignment_missing:${sessionId}`);
+    continue;
+  }
+  const actualEnglish = assignment.newSenses.map((sense) => sense.english);
+  if (JSON.stringify(actualEnglish) !== JSON.stringify(expectedEnglish)) {
+    findings.push(
+      `full_be_choice_lexicon_mismatch:${sessionId}:expected=${expectedEnglish.join(",")}:actual=${actualEnglish.join(",")}`,
+    );
+  }
+  if (assignment.grammarOperationId !== "en.grammar.present_be_affirmative.full_form_choice") {
+    findings.push(`full_be_choice_operation_mismatch:${sessionId}:${assignment.grammarOperationId}`);
+  }
+}
+
 if (assignments.some((assignment) => assignment.sessionId === "lesson-01:session:08")) {
   findings.push("course_start_checkpoint_must_not_have_lexical_assignment");
 }
@@ -150,6 +177,9 @@ if (assignments.some((assignment) => assignment.sessionId === "lesson-01:session
 }
 if (assignments.some((assignment) => assignment.sessionId === "lesson-01:session:24")) {
   findings.push("you_we_they_checkpoint_must_not_have_lexical_assignment");
+}
+if (assignments.some((assignment) => assignment.sessionId === "lesson-01:session:32")) {
+  findings.push("full_be_choice_checkpoint_must_not_have_lexical_assignment");
 }
 
 const courseStartSenseCount = assignments
@@ -173,6 +203,13 @@ if (youWeTheySenseCount !== 21) {
   findings.push(`you_we_they_sense_count:${youWeTheySenseCount}`);
 }
 
+const fullBeChoiceSenseCount = assignments
+  .filter((assignment) => expectedFullBeChoiceLexicon.has(assignment.sessionId))
+  .reduce((count, assignment) => count + assignment.newSenses.length, 0);
+if (fullBeChoiceSenseCount !== 21) {
+  findings.push(`full_be_choice_sense_count:${fullBeChoiceSenseCount}`);
+}
+
 assert.equal(
   findings.length,
   0,
@@ -180,5 +217,5 @@ assert.equal(
 );
 
 process.stdout.write(
-  `LEARNING V2 SESSION LEXICAL ASSIGNMENTS GATE V2: PASS assignments=${assignments.length} course_start_senses=${courseStartSenseCount} he_she_it_senses=${heSheItSenseCount} you_we_they_senses=${youWeTheySenseCount}\n`,
+  `LEARNING V2 SESSION LEXICAL ASSIGNMENTS GATE V2: PASS assignments=${assignments.length} course_start_senses=${courseStartSenseCount} he_she_it_senses=${heSheItSenseCount} you_we_they_senses=${youWeTheySenseCount} full_be_choice_senses=${fullBeChoiceSenseCount}\n`,
 );

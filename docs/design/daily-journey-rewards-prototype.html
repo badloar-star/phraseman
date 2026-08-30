@@ -378,6 +378,43 @@
     .scrubber { width: 100%; accent-color: var(--lime); cursor: pointer; }
     .timecode { min-width: 62px; color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; text-align: right; }
 
+    .sound-console {
+      width: min(650px, 96vw);
+      padding: 14px 16px 16px;
+      display: grid;
+      gap: 12px;
+      border-radius: 22px;
+      background: rgba(24, 28, 21, 0.9);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.32), inset 0 1px rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+    }
+    .sound-console-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .sound-console-title { margin: 0; color: var(--ivory); font-size: 16px; font-weight: 700; }
+    .sound-toggle {
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: 15px;
+      background: var(--lime);
+      color: var(--on-lime);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .sound-packs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+    .sound-packs::-webkit-scrollbar { display: none; }
+    .sound-pack {
+      flex: 0 0 auto;
+      min-width: 88px;
+      min-height: 44px;
+      padding: 0 12px;
+      border-radius: 14px;
+      background: var(--panel-raised);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .sound-pack:hover { color: var(--ivory); }
+    .sound-pack.is-selected { background: var(--lime); color: var(--on-lime); }
+
     .tweaks-launcher {
       position: fixed;
       z-index: 90;
@@ -505,6 +542,22 @@
       <input class="scrubber" id="scrubber" type="range" min="0" max="6200" value="0" aria-label="Таймлайн анимации">
       <output class="timecode" id="timecode" for="scrubber">0,0 / 6,2</output>
     </section>
+
+    <section class="sound-console" aria-label="Варианты саунд-дизайна">
+      <div class="sound-console-head">
+        <h2 class="sound-console-title">Саунд-дизайн</h2>
+        <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false">Включить звук</button>
+      </div>
+      <div class="sound-packs" role="group" aria-label="Пять вариантов звучания">
+        <button class="sound-pack is-selected" data-sound-pack="crystal" type="button" aria-pressed="true">Кристалл</button>
+        <button class="sound-pack" data-sound-pack="runes" type="button" aria-pressed="false">Руны</button>
+        <button class="sound-pack" data-sound-pack="arcade" type="button" aria-pressed="false">Игра</button>
+        <button class="sound-pack" data-sound-pack="cinematic" type="button" aria-pressed="false">Кино</button>
+        <button class="sound-pack" data-sound-pack="tactile" type="button" aria-pressed="false">Тактильно</button>
+      </div>
+      <audio id="sceneAudio" preload="auto"></audio>
+      <audio id="tapAudio" preload="auto"></audio>
+    </section>
   </main>
 
   <button class="tweaks-launcher" id="tweaksLauncher" type="button" aria-expanded="false" aria-controls="tweaksPanel">Tweaks</button>
@@ -557,11 +610,20 @@
 
     const chapterNames = Object.freeze(['Пробуждение', 'Разгон', 'Ритм', 'Сила', 'Вершина']);
     const duration = 6200;
+    const soundPacks = Object.freeze({
+      crystal: Object.freeze({ master: 'daily-journey-audio/crystal-master.mp3', tap: 'daily-journey-audio/crystal-tap.mp3' }),
+      runes: Object.freeze({ master: 'daily-journey-audio/runes-master.mp3', tap: 'daily-journey-audio/runes-tap.mp3' }),
+      arcade: Object.freeze({ master: 'daily-journey-audio/arcade-master.mp3', tap: 'daily-journey-audio/arcade-tap.mp3' }),
+      cinematic: Object.freeze({ master: 'daily-journey-audio/cinematic-master.mp3', tap: 'daily-journey-audio/cinematic-tap.mp3' }),
+      tactile: Object.freeze({ master: 'daily-journey-audio/tactile-master.mp3', tap: 'daily-journey-audio/tactile-tap.mp3' }),
+    });
     const nativeReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let selectedDay = 3;
     let chapterOffset = 0;
     let userReduceMotion = false;
     let sceneDismissed = false;
+    let selectedSoundPack = 'crystal';
+    let soundEnabled = false;
 
     const $ = (id) => document.getElementById(id);
     const overlay = $('rewardOverlay');
@@ -577,6 +639,11 @@
     const scrubber = $('scrubber');
     const timecode = $('timecode');
     const playPause = $('playPause');
+    const sceneAudio = $('sceneAudio');
+    const tapAudio = $('tapAudio');
+
+    sceneAudio.src = soundPacks[selectedSoundPack].master;
+    tapAudio.src = soundPacks[selectedSoundPack].tap;
 
     const clamp01 = (value) => Math.max(0, Math.min(1, value));
     const range = (time, start, end) => clamp01((time - start) / (end - start));
@@ -787,28 +854,83 @@
       },
     });
 
+    function stopSceneAudio() {
+      sceneAudio.pause();
+      sceneAudio.currentTime = 0;
+    }
+
+    function syncSceneAudio(elapsedMs, shouldPlay) {
+      const target = Math.max(0, Math.min(duration / 1000, elapsedMs / 1000));
+      if (Math.abs(sceneAudio.currentTime - target) > 0.08) sceneAudio.currentTime = target;
+      if (soundEnabled && shouldPlay) void sceneAudio.play().catch(() => {});
+    }
+
+    function playTapAudio() {
+      if (!soundEnabled) return;
+      tapAudio.currentTime = 0;
+      void tapAudio.play().catch(() => {});
+    }
+
+    function selectSoundPack(id) {
+      if (!soundPacks[id] || id === selectedSoundPack) return;
+      selectedSoundPack = id;
+      stopSceneAudio();
+      tapAudio.pause();
+      tapAudio.currentTime = 0;
+      sceneAudio.src = soundPacks[id].master;
+      tapAudio.src = soundPacks[id].tap;
+      sceneAudio.load();
+      tapAudio.load();
+      document.querySelectorAll('[data-sound-pack]').forEach((button) => {
+        const selected = button.dataset.soundPack === id;
+        button.classList.toggle('is-selected', selected);
+        button.setAttribute('aria-pressed', String(selected));
+      });
+      if (soundEnabled) replayForMotionPreference();
+    }
+
     function replayForMotionPreference() {
       if (userReduceMotion || nativeReduceMotion.matches) {
+        stopSceneAudio();
         controller.pause();
         controller.seek(6200);
         playPause.textContent = 'Воспроизвести';
         return;
       }
       controller.replay();
+      syncSceneAudio(0, true);
     }
 
-    $('skipScene').addEventListener('click', () => controller.skip());
-    $('closeScene').addEventListener('click', () => controller.dismiss());
-    $('applyGift').addEventListener('click', () => controller.dismiss());
-    $('laterGift').addEventListener('click', () => controller.dismiss());
+    $('skipScene').addEventListener('click', () => { stopSceneAudio(); controller.skip(); });
+    $('closeScene').addEventListener('click', () => { stopSceneAudio(); controller.dismiss(); });
+    $('applyGift').addEventListener('click', () => { stopSceneAudio(); playTapAudio(); controller.dismiss(); });
+    $('laterGift').addEventListener('click', () => { stopSceneAudio(); playTapAudio(); controller.dismiss(); });
     $('replay').addEventListener('click', replayForMotionPreference);
     playPause.addEventListener('click', () => {
       if (controller.elapsed() >= duration) { replayForMotionPreference(); return; }
-      if (controller.isPlaying()) controller.pause(); else controller.play();
+      if (controller.isPlaying()) {
+        controller.pause();
+        sceneAudio.pause();
+      } else {
+        controller.play();
+        syncSceneAudio(controller.elapsed(), true);
+      }
     });
     scrubber.addEventListener('input', (event) => {
       controller.pause();
-      controller.seek(Number(event.target.value));
+      sceneAudio.pause();
+      const elapsedMs = Number(event.target.value);
+      controller.seek(elapsedMs);
+      syncSceneAudio(elapsedMs, false);
+    });
+    $('soundToggle').addEventListener('click', (event) => {
+      soundEnabled = !soundEnabled;
+      event.currentTarget.setAttribute('aria-pressed', String(soundEnabled));
+      event.currentTarget.textContent = soundEnabled ? 'Выключить звук' : 'Включить звук';
+      if (soundEnabled) replayForMotionPreference(); else stopSceneAudio();
+    });
+    document.querySelectorAll('[data-sound-pack]').forEach((button) => {
+      button.addEventListener('click', () => selectSoundPack(button.dataset.soundPack));
     });
 
     $('tweaksLauncher').addEventListener('click', () => {
@@ -835,7 +957,11 @@
       replayForMotionPreference();
     });
     nativeReduceMotion.addEventListener?.('change', replayForMotionPreference);
-    window.addEventListener('pagehide', () => controller.destroy(), { once: true });
+    window.addEventListener('pagehide', () => {
+      controller.destroy();
+      stopSceneAudio();
+      tapAudio.pause();
+    }, { once: true });
 
     renderJourney();
     applyFrame(0);

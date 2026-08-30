@@ -76,3 +76,25 @@ test('publishes five synchronized masters and taps without secrets', async () =>
     assert.ok((await readFile(tapUrl)).length > 0, `${pack.id} tap is empty`);
   }
 });
+
+test('HTML exposes five local sound packs and synchronized controls', async () => {
+  const html = await readFile(
+    new URL('../docs/design/daily-journey-rewards-prototype.html', import.meta.url),
+    'utf8',
+  );
+
+  for (const id of ['crystal', 'runes', 'arcade', 'cinematic', 'tactile']) {
+    assert.match(html, new RegExp(`data-sound-pack="${id}"`));
+  }
+  for (const token of [
+    'sceneAudio',
+    'tapAudio',
+    'soundEnabled',
+    'syncSceneAudio',
+    'stopSceneAudio',
+  ]) {
+    assert.match(html, new RegExp(token));
+  }
+  assert.match(html, /skipScene[\s\S]*stopSceneAudio/);
+  assert.doesNotMatch(html, /api\.elevenlabs|ELEVENLABS_API_KEY|xi-api-key/);
+});

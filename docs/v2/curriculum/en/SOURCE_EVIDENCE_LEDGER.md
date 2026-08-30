@@ -61,6 +61,15 @@ owner-approved product decisions unless a source explicitly supports them.
 - Does not establish: that 209 product hours guarantee A2, nor that every
   learner reaches the same level.
 
+### EV-CAM-B1-GRAMMAR-01 — Cambridge B1 grammar and language specification
+
+- Label: `PRIMARY_STANDARD`
+- Source: [Cambridge B1 Preliminary handbook](https://www.cambridgeenglish.org/Images/557771-b1-preliminary-handbook-2020.pdf)
+- Use: constrain the functional B1 grammar coverage boundary and verify that
+  the course spine includes the common form/meaning systems needed by B1 tasks.
+- Does not establish: Phraseman's exact 32-lesson order, seven-chapter split,
+  interaction counts or product mode choreography.
+
 ### EV-DIST-01 — distributed practice
 
 - Label: `PRIMARY_RESEARCH`
@@ -117,6 +126,16 @@ owner-approved product decisions unless a source explicitly supports them.
 - Source: `docs/v2/03-learning-architecture-and-curriculum.md`
 - Constraint: course starts at A0/PRE_A1 and targets strong functional A1 plus
   selected early-A2 tasks; it does not promise certification or guaranteed A2.
+
+### OC-FULL-B1-SCOPE-01
+
+- Label: `OWNER_CONTRACT`
+- Source:
+  `docs/superpowers/specs/2026-08-30-learning-v2-english-full-b1-grammar-first-blueprint-design.md`
+- Constraint: this later explicit owner decision supersedes `OC-SCOPE-01` for
+  the replacement English blueprint. Exactly 32 grammar-first lessons progress
+  from zero support through a functional B1 boundary; every lesson owns a new
+  major grammar system, and checkpoints exist only inside lessons.
 
 ### OC-ORCHESTRATION-01
 

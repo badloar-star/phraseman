@@ -1,6 +1,6 @@
 # Learning V2 English — Research Dossier
 
-**Статус:** `DRAFT / RESEARCH`, prerequisite для полного English blueprint.  
+**Статус:** `REBUILD V2 / OWNER-APPROVED SCOPE`, prerequisite для полного English blueprint.
 **Target language:** English.  
 **Interface locales:** `ru`, `uk`, `es`, `pt-BR`, `vi`, `id`, `tr`, `pl`.  
 **Evidence ledger:** [`SOURCE_EVIDENCE_LEDGER.md`](./SOURCE_EVIDENCE_LEDGER.md).  
@@ -11,14 +11,20 @@ blueprint, gates, owner map и owner-approved fingerprint.
 
 ## 1. Честная граница курса
 
-Курс начинает с нулевой опоры (`A0/PRE_A1`) и строит сильную функциональную
-базу A1 с отдельными ранними A2-задачами, которые нужны 32 сценариям. Он не
-обещает CEFR-сертификат и не гарантирует достижение A2 каждому ученику.
+Курс начинает с нулевой опоры (`A0/PRE_A1`) и последовательно закрывает
+грамматические системы до границы **функционального B1**. Каждый из 32 уроков
+вводит новый крупный грамматический контур; контрольными бывают только сессии
+внутри урока, но не урок целиком. Курс не обещает CEFR-сертификат и не
+гарантирует достижение B1 каждому ученику: итог зависит от прохождения,
+удержания и переноса навыка. `[EV-CEFR-01, EV-CEFR-02,
+EV-CAM-B1-GRAMMAR-01, OC-FULL-B1-SCOPE-01]`
 
-Нормативный результат — не «знать список правил», а выполнять ограниченные
-действия: представиться, понять и уточнить простую информацию, рассказать о
-повседневном, решить базовую бытовую/поездочную задачу и связно описать простой
-опыт или следующий шаг. `[EV-CEFR-01, EV-CEFR-02, OC-SCOPE-01]`
+Нормативный результат — не «знать список правил», а применять изученные системы
+в наблюдаемых действиях уровня до B1: описывать настоящее, прошлое и планы;
+уточнять информацию; выражать условия, обязанность и вероятность; связывать
+мысли; передавать сообщение; объяснять опыт и причину решения.
+`[EV-CEFR-01, EV-CEFR-02, EV-CAM-B1-GRAMMAR-01,
+OC-FULL-B1-SCOPE-01]`
 
 Около 209 запланированных часов — ёмкость продукта, а не доказательство уровня.
 Продолжительность используется только для sanity-check и требует реального
@@ -171,16 +177,18 @@ blueprint, gates, owner map и owner-approved fingerprint.
 
 ### 4.10 Ограничения
 
-В основной обязательный план не входят без отдельного owner decision:
+В основной обязательный план входят ограниченные B1-контуры Passive Voice,
+Zero/First/Second Conditional, defining relative clauses и Reported Speech.
+Они получают собственные уроки и не могут быть скрыты внутри лексической темы.
 
-- полный пассив;
-- все типы условных предложений как система;
-- mixed conditionals;
-- полный reported-speech backshift;
-- сложные non-finite clauses и participial clauses;
+Без отдельного owner decision за границей остаются:
+
+- Third и Mixed Conditionals;
+- полный reported-speech backshift со всеми исключениями;
+- reporting passive, reduced relatives и сложные non-finite clauses;
 - академическая письменная грамматика;
-- редкие tense/aspect комбинации;
-- исчерпывающая система артиклей и фразовых глаголов.
+- редкие tense/aspect комбинации и perfect modal deduction;
+- исчерпывающая система артиклей, determiner-ов и фразовых глаголов.
 
 Если сценарий будто требует исключённую конструкцию, меняется формулировка
 сценария либо владелец явно расширяет scope; скрытое введение запрещено.
@@ -386,10 +394,10 @@ authority всего курса. Повтор одной и той же конс
 
 1. точное число новых lexical senses по обычному session role;
 2. spacing intervals для разных типов grammar/lexicon;
-3. точная граница selected early-A2 constructs;
+3. точная глубина отдельных A2+/B1 extensions внутри уже утверждённых границ;
 4. какие irregular forms являются core productive, а какие recognition-only;
 5. pronunciation inventory и порядок sound contrasts;
-6. допустимый объём reported meaning в уроке 30;
+6. допустимый объём bounded backshift в уроке 30;
 7. место и глубина `too/enough`, superlatives и Present Perfect contrasts;
 8. locale-native transfer review для всех восьми интерфейсных языков.
 
@@ -411,4 +419,4 @@ Research dossier получает PASS только когда:
 - independent linguistic review не нашёл hidden prerequisites;
 - владелец утвердил dossier fingerprint.
 
-Текущий статус: `DRAFT / HOLD FOR GRAPH MATERIALIZATION`.
+Текущий статус: `SCOPE PASS / HOLD FOR OPERATION REGISTRY, DAG AND 1,792 PACKETS`.

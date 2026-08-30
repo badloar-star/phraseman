@@ -215,7 +215,7 @@ export type LearningV2SupportV2 = "maximum" | "high" | "medium" | "low" | "minim
 export type LearningV2BlueprintApprovalV2 = "PENDING" | "APPROVED";
 ```
 
-Add `LearningV2ChoiceOptionV2` with `optionId`, `text`, `isCorrect`, `diagnosticErrorId`, and `feedbackByLocale` for exactly `ru/en/es/fr/de/it/pt/uk`. Add mode-native payload unions so `speed_match` owns exactly four `pairs`, builders own whole-word `tiles`, and choice modes own exactly four `options`.
+Add `LearningV2ChoiceOptionV2` with `optionId`, `text`, `isCorrect`, `diagnosticErrorId`, and `feedbackByLocale` for exactly `ru/uk/es/pt-BR/vi/id/tr/pl`. Add mode-native payload unions so `speed_match` owns exactly four `pairs`, builders own whole-word `tiles`, and choice modes own exactly four `options`.
 
 Every audio-bearing payload also contains:
 
@@ -567,11 +567,11 @@ git commit -m "feat: author 224 dependency-safe chapter blueprints"
 
 ```ts
 for (const sense of SENSES) {
-  assert.deepEqual(Object.keys(sense.definitionByLocale).sort(), ["de", "en", "es", "fr", "it", "pt", "ru", "uk"]);
+  assert.deepEqual(Object.keys(sense.definitionByLocale).sort(), ["es", "id", "pl", "pt-BR", "ru", "tr", "uk", "vi"]);
   assert.ok(sense.audioAssetId.length > 0);
   assert.ok(sense.neededBySessionIds.length > 0);
   assert.ok(EDGES.some((edge) => edge.senseId === sense.id && edge.targetAbsoluteSessionOrdinal > sense.introductionAbsoluteSessionOrdinal));
-  assert.equal(sense.definitionByLocale.en.includes(sense.english), false, `${sense.id}:definition_must_not_be_circular`);
+  assert.equal(Object.values(sense.definitionByLocale).some((definition) => definition.toLowerCase().includes(sense.english.toLowerCase())), false, `${sense.id}:definition_must_not_be_circular`);
 }
 assert.equal(SESSIONS_WITH_MORE_THAN_TWO_NEW_SENSES.length, 0);
 ```
@@ -589,7 +589,7 @@ export type LearningV2EnglishLexicalSenseV2 = Readonly<{
   id: string;
   english: string;
   partOfSpeech: string;
-  definitionByLocale: Readonly<Record<"ru" | "en" | "es" | "fr" | "de" | "it" | "pt" | "uk", string>>;
+  definitionByLocale: Readonly<Record<"ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl", string>>;
   audioAssetId: string;
   firstEncounterCard: Readonly<{
     blockingBeforeFirstInteraction: true;

@@ -709,6 +709,11 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'customization_selection_head_v1:',
   'customization_selection_outbox_v1:',
   'customization_selection_quarantine_v1:',
+  // Daily Journey gift inbox WAL, immutable roots, projection and future claims.
+  'daily_journey_gift_occurrence_v1:',
+  'daily_journey_gift_prepared_v1:',
+  'daily_journey_gift_projection_v1:',
+  'daily_journey_gift_claim_receipt_v1:',
   'external_economy_result_v1:',
   'external_economy_event_applied_v1:',
 ] as const;

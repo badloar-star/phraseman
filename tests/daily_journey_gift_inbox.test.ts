@@ -111,6 +111,23 @@ it('recovers the same prepared intent after a torn occurrence/projection commit'
   expect((await readDailyJourneyGiftProjection(token)).pendingCount).toBe(1);
 });
 
+it('emits once when replaying A recovers a torn prepared B', async () => {
+  const token = beginAccountGeneration('owner-a');
+  const operationA = gift('daily-dev-recovery-event-a');
+  const operationB = gift('daily-dev-recovery-event-b');
+  await commitDailyJourneyGift(operationA, token);
+  (emitAppEvent as jest.Mock).mockClear();
+  (AsyncStorage.multiSet as jest.Mock).mockRejectedValueOnce(new Error('simulated_torn_commit'));
+  await expect(commitDailyJourneyGift(operationB, token)).rejects.toThrow('simulated_torn_commit');
+
+  const replay = await commitDailyJourneyGift(operationA, token);
+
+  expect(replay.status).toBe('already_committed');
+  expect(emitAppEvent).toHaveBeenCalledTimes(1);
+  expect(emitAppEvent).toHaveBeenCalledWith('daily_journey_gifts_changed');
+  expect(await readDailyJourneyGiftProjection(token)).toMatchObject({ pendingCount: 2, unreadCount: 2 });
+});
+
 it('keeps two deliberate dev occurrences pending and unread', async () => {
   const token = beginAccountGeneration('owner-a');
   await commitDailyJourneyGift(gift('daily-dev-deliberate-0001'), token);

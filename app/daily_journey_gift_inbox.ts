@@ -420,6 +420,7 @@ export async function commitDailyJourneyGift(
   const ownerStableId = assertCurrentToken(token);
   const fingerprint = await payloadFingerprint(ownerStableId, input);
   assertCurrentToken(token);
+  let recoveredDurableChange = false;
   const result = await withAccountTransitionLock(async () => withStorageLock(async () => {
     assertCurrentToken(token);
     const pendingRaw = await AsyncStorage.getItem(preparedKey(ownerStableId));
@@ -432,6 +433,7 @@ export async function commitDailyJourneyGift(
         throw new Error('daily_journey_occurrence_conflict');
       }
       const recovered = await finalizePrepared(pending, token);
+      recoveredDurableChange = true;
       if (recovered.operationId === input.operationId) {
         return { status: 'committed' as const, occurrence: recovered };
       }
@@ -481,7 +483,9 @@ export async function commitDailyJourneyGift(
     }
     return { status: 'committed' as const, occurrence: await finalizePrepared(prepared, token) };
   }));
-  if (result.status === 'committed') emitAppEvent('daily_journey_gifts_changed');
+  if (recoveredDurableChange || result.status === 'committed') {
+    emitAppEvent('daily_journey_gifts_changed');
+  }
   return result;
 }
 

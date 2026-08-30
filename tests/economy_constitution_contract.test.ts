@@ -190,7 +190,13 @@ describe('Economy Constitution — client authority is a permanent source contra
       'customization_selection_head_v1:',
       'customization_selection_outbox_v1:',
       'customization_selection_quarantine_v1:',
+      'daily_journey_gift_occurrence_v1:',
+      'daily_journey_gift_prepared_v1:',
+      'daily_journey_gift_projection_v1:',
+      'daily_journey_gift_claim_receipt_v1:',
     ]) expect(cloudSync).toContain(`'${prefix}'`);
+    expect(cloudSync).toContain('isLearningV2AccountLocalKey(key)');
+    expect(cloudSync).toContain("if (finalResidue.length > 0) throw new Error('account_wipe_incomplete')");
   });
 
   test('Spin star persistence overlays unacked composites and accepts only newer server revisions', () => {

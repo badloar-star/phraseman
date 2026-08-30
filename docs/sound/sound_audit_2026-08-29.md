@@ -361,3 +361,19 @@ xp_counter_* …) → вечные evict/create, первый play каждог�
 preloading), #42709 (interrupt/resume «zombie» при установке expo-audio),
 #41670 (mixWithOthers на Android с 1.1.0), Apple Audio Session Programming
 Guide (silent switch: ambient vs playback).
+
+## §R-статус: волны починки применены (2026-08-30, коммит 2404edaf9)
+
+| Пункт | Статус |
+|---|---|
+| R1 сессия | ✅ SoundService/listening → через координатор; фолбэк-TTS под spoken-лизой; канон один: UI-звуки уважают mute, речь пробивает лизой |
+| R3 fk.correct/wrong | ✅ закреплено «немые намеренно» (паттерн отказов владельца по вердиктам быстрых игр) |
+| R4 ранг | ✅ мёртвые вызовы удалены; ArenaRankHybrid добавлен в wiring-сторож; searchLoop отмечен подключённым |
+| R5 stop | ✅ stopExclusive/stopAll; преемпт не рвёт allowConcurrent-хвосты |
+| R7 тумблер | ✅ карточки уважают общий uiSounds |
+| R8 латентность | ✅ кэш 12 + prewarm 5 частых через 3.5с после старта |
+| R2 тапы (565 точек) | ⏳ ждёт решения владельца: какие поверхности озвучивать (миграция на PressableHybrid) |
+| R6 Android resume-призрак | ⏳ отдельная волна (нужны interruption-события/AppState-страж для длинных плееров) |
+| 7 сирот + useTurnReadyCue | ⏳ отдельная волна; rune_flight_land заблокирован сессией level-spin |
+
+Мелочи (Date.now-часы, один priority-retry-таймер) — задокументированы, не чинились.

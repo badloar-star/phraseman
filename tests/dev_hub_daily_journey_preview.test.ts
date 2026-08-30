@@ -78,7 +78,8 @@ describe('Dev Hub daily journey preview', () => {
     expect(component).toContain('targetRectToPoint(targetRect)');
     expect(component).toContain("emitAppEvent('daily_journey_delivered'");
     expect(component).toContain('landedOccurrenceRef.current');
-    expect(component).toContain('completedRunRef.current');
+    expect(component).toContain('completedIdentityRef.current');
+    expect(component).toContain('stage?.identity === identity');
     expect(component).toContain('const identity = occurrence ?');
     expect(component).toContain('measureDailyJourneyRevealTarget(abort.signal)');
     expect(component).toContain('reward={occurrence?.reward ?? reward}');

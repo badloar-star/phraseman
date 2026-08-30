@@ -22,13 +22,20 @@ const semanticFindings = validateLearningV2CourseBlueprintV2({
   lexicalSenses: blueprint.lexicalSenses,
   sessionPackets: blueprint.sessionPackets,
 });
-const lessonsWithPlannedNewLexicon = new Set(
+const lessonsWithPlannedLexicalProgression = new Set(
   blueprint.sessionPackets
-    .filter((packet) => packet.newLexicalSenseIds.length > 0)
+    .filter(
+      (packet) =>
+        packet.newLexicalSenseIds.length > 0 ||
+        packet.retrievalLexicalSenseIds.length > 0,
+    )
     .map((packet) => packet.lessonOrdinal),
 );
 const lexicalScopeFindings = blueprint.scope.lessons
-  .filter((lesson) => !lessonsWithPlannedNewLexicon.has(lesson.lessonOrdinal))
+  .filter(
+    (lesson) =>
+      !lessonsWithPlannedLexicalProgression.has(lesson.lessonOrdinal),
+  )
   .map((lesson) => `lesson_lexical_progression_missing:${lesson.lessonOrdinal}`);
 
 const countsPass =

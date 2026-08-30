@@ -10,7 +10,6 @@ import {
 } from "../contracts/course_blueprint_v2";
 import type { LearningV2EnglishExactSessionPacketV2 } from "../en/exact_session_packets_en_v2";
 import type { LearningV2EnglishGrammarOperationV2 } from "../en/grammar_operations_en_v2";
-import type { LearningV2EnglishLexicalSenseV2 } from "../en/lexical_senses_en_v2";
 
 export type LearningV2CurriculumFindingV2 = Readonly<{
   severity: "blocker";
@@ -322,7 +321,7 @@ export function validateLearningV2SessionActivitySequenceV2(
 
 export type LearningV2CourseBlueprintValidationInputV2 = Readonly<{
   grammarOperations: readonly LearningV2EnglishGrammarOperationV2[];
-  lexicalSenses: readonly LearningV2EnglishLexicalSenseV2[];
+  lexicalSenses: readonly Readonly<{ id: string }>[];
   sessionPackets: readonly LearningV2EnglishExactSessionPacketV2[];
 }>;
 

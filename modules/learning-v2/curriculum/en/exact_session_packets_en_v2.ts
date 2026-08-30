@@ -7,9 +7,9 @@ import {
 import { LEARNING_V2_ENGLISH_CHAPTER_BLUEPRINTS_V2 } from "./chapter_blueprints_en_v2";
 import { LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2 } from "./grammar_operations_en_v2";
 import {
-  LEARNING_V2_ENGLISH_LEXICAL_RETRIEVAL_EDGES_V2,
-  LEARNING_V2_ENGLISH_LEXICAL_SENSES_V2,
-} from "./lexical_senses_en_v2";
+  LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2,
+  LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2,
+} from "./lexical_progression_en_v2";
 
 export type LearningV2EnglishIntroPlanItemV2 = Readonly<{
   slot: 1 | 2 | 3;
@@ -215,13 +215,13 @@ function lexicalSenseIdsAt(
 ): readonly string[] {
   if (kind === "new") {
     return Object.freeze(
-      LEARNING_V2_ENGLISH_LEXICAL_SENSES_V2
+      LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2
         .filter((sense) => sense.introductionAbsoluteSessionOrdinal === absoluteSessionOrdinal)
         .map((sense) => sense.id),
     );
   }
   return unique(
-    LEARNING_V2_ENGLISH_LEXICAL_RETRIEVAL_EDGES_V2
+    LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2
       .filter((edge) => edge.targetAbsoluteSessionOrdinal === absoluteSessionOrdinal)
       .map((edge) => edge.senseId),
   );

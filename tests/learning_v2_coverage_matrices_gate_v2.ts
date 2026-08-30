@@ -5,7 +5,7 @@ import {
   LEARNING_V2_ENGLISH_LEXICAL_COVERAGE_MATRIX_V2,
 } from "../modules/learning-v2/curriculum/en/coverage_matrices_en_v2";
 import { LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2 } from "../modules/learning-v2/curriculum/en/grammar_operations_en_v2";
-import { LEARNING_V2_ENGLISH_LEXICAL_SENSES_V2 } from "../modules/learning-v2/curriculum/en/lexical_senses_en_v2";
+import { LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2 } from "../modules/learning-v2/curriculum/en/lexical_progression_en_v2";
 
 assert.equal(
   LEARNING_V2_ENGLISH_GRAMMAR_COVERAGE_MATRIX_V2.length,
@@ -21,7 +21,7 @@ for (const row of LEARNING_V2_ENGLISH_GRAMMAR_COVERAGE_MATRIX_V2) {
 
 assert.equal(
   LEARNING_V2_ENGLISH_LEXICAL_COVERAGE_MATRIX_V2.length,
-  LEARNING_V2_ENGLISH_LEXICAL_SENSES_V2.length,
+  LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2.length,
   "lexical_matrix_row_count",
 );
 for (const row of LEARNING_V2_ENGLISH_LEXICAL_COVERAGE_MATRIX_V2) {

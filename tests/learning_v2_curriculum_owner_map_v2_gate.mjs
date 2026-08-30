@@ -13,8 +13,8 @@ const markers = [
   "Present be affirmative",
   "Probability and deduction",
   "SUPERSEDED BY OWNER DECISION — FULL B1 GRAMMAR-FIRST REBUILD",
-  "LEXICAL HOLD",
-  "16 локализованных seed-senses",
+  "96</b><span>planned senses · 378 возвратов",
+  "восемь локализаций создаются вручную только последовательно",
   "PLANNED_NOT_AUTHORED",
 ];
 for (const marker of markers) assert.ok(html.includes(marker), `owner_map_marker_missing:${marker}`);

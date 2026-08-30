@@ -1,9 +1,9 @@
 # English Learning V2 — Full B1 Blueprint V2 receipt
 
 **Дата:** 2026-08-30  
-**Статус:** `PENDING / MANUAL HOLD`  
+**Статус:** `PENDING OWNER REVIEW`
 **Canonical fingerprint:**
-`dfc4c7af7050feac6657950eb8ffdcae225c4dc410284b8c5ca830c49a6b6157`
+`ce1163d02a965e843e56a17c306ff4f14d55033ba21e75d7fbb082557fb61c1a`
 
 ## Что уже материализовано
 
@@ -15,6 +15,10 @@
 - 5 376 intro-функций `concept → formula → trap`;
 - 30 464 mode-native activity-плана, по 17 на packet;
 - 224 checkpoint packets без новой грамматики и новой scored-лексики;
+- 96 grammar-grounded planned lexical senses: каждое слово встречается в
+  canonical example своей grammar operation, `hello` и `name` исключены;
+- 378 changed-context retrieval edges; в каждом из 32 уроков есть новое
+  введение либо осмысленное извлечение уже знакомой лексики;
 - семантические gates для атомарных вариантов, одного правильного ответа,
   уникальных дистракторов, response-specific feedback, четырёх Speed Match
   pairs, запрета сборки по буквам, audio replay/preload, hold-release speech,
@@ -29,19 +33,17 @@ Learner-facing тексты интро, exercise prompts, дистракторы
 восемь локализаций и audio scripts не создавались массово. Каждый packet имеет
 явный статус `PLANNED_NOT_AUTHORED`; это curriculum intent, не готовая сессия.
 
-Lexical ledger пока содержит только 16 полностью локализованных seed-senses.
-Этого недостаточно для курса из 32 уроков и 1 792 сессий. Старый V1-реестр на
-280 senses нельзя автоматически скопировать: он привязан к отвергнутой
-scenario-first последовательности (`hello/name`, review-only lessons) и может
-внести слова до нужной грамматики или без связи с canonical examples.
+Из 96 planned senses только 16 seed-senses уже имеют полностью написанные
+locale-native определения. Это не blocker blueprint: массово придумывать
+карточечные определения для восьми локалей на planning-stage запрещено.
+Остальные определения имеют честный статус `REQUIRES_MANUAL_AUTHORING` и будут
+написаны последовательно вместе с exact session после утверждения fingerprint.
 
-Поэтому текущий blueprint находится в `MANUAL HOLD`, несмотря на нулевые
-структурные и семантические findings. Следующий этап — построить новую
-grammar-grounded lexical progression: useful senses, first encounter, минимум
-три meaning-bearing контакта до первого score и future changed-context
-retrieval. Механическая квота на каждую сессию запрещена, но все 32 урока
-должны развивать полезный словарь, а пустой lexical plan обязан иметь точную
-педагогическую причину и explicit known sense IDs.
+Старый V1-реестр использован только как словарный candidate pool. Его
+scenario-first порядок не наследуется. Gate разрешает кандидат только если
+его точная форма уже встречается в canonical example утверждённой V2 grammar
+operation; `hello/name`, будущее грамматическое содержание, механическая квота
+и машинные определения запрещены.
 
 ## Старый approval
 
@@ -58,8 +60,8 @@ Fingerprint
 3. Прочитать этот receipt и проверить fingerprint.
 4. Выполнить `npx tsx scripts/learning_v2_curriculum_blueprint_gate_v2.ts`.
 5. Зафиксировать `ON TRACK` или точный `HOLD` до редактирования.
-6. Работать только над lexical breadth и связанными exact packets; не писать
-   learner-facing content.
+6. До owner approval не писать learner-facing content и не менять порядок
+   grammar/lexical progression.
 7. Пересобрать map:
    `npx tsx scripts/build_learning_v2_curriculum_owner_map_v2.ts`.
 8. Выполнить `node tests/learning_v2_curriculum_owner_map_v2_gate.mjs` и focused
@@ -76,9 +78,15 @@ packets=1792 intros=5376 practices=30464 checkpoints=224
 LEARNING V2 SEMANTIC ALIGNMENT GATE V2: PASS
 future_grammar=0 ungrounded_lexicon=0 copied_probes=0
 
+LEARNING V2 LEXICAL PROGRESSION GATE V2: PASS
+planned_senses=96 retrieval_edges=378 lessons=32
+
+LEARNING V2 CURRICULUM BLUEPRINT V2 GATE: PASS
+scope_findings=0 dag_findings=0 semantic_findings=0 lexical_scope_findings=0
+
 LEARNING V2 CURRICULUM OWNER MAP V2 GATE: PASS
 lessons=32 chapters=224 packets=1792
 ```
 
-`ownerApproval` менять нельзя. Следующее owner decision запрашивается только
-после устранения lexical blocker и пересборки всех fingerprints/artifacts.
+`ownerApproval` менять нельзя. Следующее owner decision относится только к
+точному fingerprint, показанному в этом receipt и свежем owner map.

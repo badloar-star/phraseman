@@ -1,9 +1,9 @@
 import { LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2 } from "./exact_session_packets_en_v2";
 import { LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2 } from "./grammar_operations_en_v2";
 import {
-  LEARNING_V2_ENGLISH_LEXICAL_RETRIEVAL_EDGES_V2,
-  LEARNING_V2_ENGLISH_LEXICAL_SENSES_V2,
-} from "./lexical_senses_en_v2";
+  LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2,
+  LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2,
+} from "./lexical_progression_en_v2";
 
 export type LearningV2EnglishGrammarCoverageRowV2 = Readonly<{
   operationId: string;
@@ -60,7 +60,7 @@ export const LEARNING_V2_ENGLISH_GRAMMAR_COVERAGE_MATRIX_V2: readonly LearningV2
 );
 
 export const LEARNING_V2_ENGLISH_LEXICAL_COVERAGE_MATRIX_V2: readonly LearningV2EnglishLexicalCoverageRowV2[] = Object.freeze(
-  LEARNING_V2_ENGLISH_LEXICAL_SENSES_V2.map((sense) => {
+  LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2.map((sense) => {
     const introductionSessionId = sessionIdFromAbsoluteOrdinal(sense.introductionAbsoluteSessionOrdinal);
     const introductionPacket = LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2.find(
       (packet) => packet.sessionId === introductionSessionId,
@@ -74,7 +74,7 @@ export const LEARNING_V2_ENGLISH_LEXICAL_COVERAGE_MATRIX_V2: readonly LearningV2
       introductionSessionId,
       groundedContactActivityIds: Object.freeze(groundedContactActivityIds),
       futureRetrievalSessionIds: unique(
-        LEARNING_V2_ENGLISH_LEXICAL_RETRIEVAL_EDGES_V2
+        LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2
           .filter((edge) => edge.senseId === sense.id)
           .map((edge) => sessionIdFromAbsoluteOrdinal(edge.targetAbsoluteSessionOrdinal)),
       ),

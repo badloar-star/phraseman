@@ -27,6 +27,16 @@ const expectedHeSheItLexicon = new Map<string, readonly string[]>([
   ["lesson-01:session:15", ["easy", "difficult", "important"]],
 ]);
 
+const expectedYouWeTheyLexicon = new Map<string, readonly string[]>([
+  ["lesson-01:session:17", ["welcome", "safe", "right"]],
+  ["lesson-01:session:18", ["wrong", "early", "lucky"]],
+  ["lesson-01:session:19", ["together", "alone", "nearby"]],
+  ["lesson-01:session:20", ["lost", "prepared", "careful"]],
+  ["lesson-01:session:21", ["inside", "outside", "upstairs"]],
+  ["lesson-01:session:22", ["rich", "poor", "famous"]],
+  ["lesson-01:session:23", ["married", "single", "different"]],
+]);
+
 const sessionIds = assignments.map((assignment) => assignment.sessionId);
 if (new Set(sessionIds).size !== sessionIds.length) {
   findings.push("assignment_session_ids_not_unique");
@@ -115,11 +125,31 @@ for (const [sessionId, expectedEnglish] of expectedHeSheItLexicon) {
   }
 }
 
+for (const [sessionId, expectedEnglish] of expectedYouWeTheyLexicon) {
+  const assignment = assignments.find((candidate) => candidate.sessionId === sessionId);
+  if (!assignment) {
+    findings.push(`you_we_they_assignment_missing:${sessionId}`);
+    continue;
+  }
+  const actualEnglish = assignment.newSenses.map((sense) => sense.english);
+  if (JSON.stringify(actualEnglish) !== JSON.stringify(expectedEnglish)) {
+    findings.push(
+      `you_we_they_lexicon_mismatch:${sessionId}:expected=${expectedEnglish.join(",")}:actual=${actualEnglish.join(",")}`,
+    );
+  }
+  if (assignment.grammarOperationId !== "en.grammar.present_be_affirmative.you_we_they_are") {
+    findings.push(`you_we_they_operation_mismatch:${sessionId}:${assignment.grammarOperationId}`);
+  }
+}
+
 if (assignments.some((assignment) => assignment.sessionId === "lesson-01:session:08")) {
   findings.push("course_start_checkpoint_must_not_have_lexical_assignment");
 }
 if (assignments.some((assignment) => assignment.sessionId === "lesson-01:session:16")) {
   findings.push("he_she_it_checkpoint_must_not_have_lexical_assignment");
+}
+if (assignments.some((assignment) => assignment.sessionId === "lesson-01:session:24")) {
+  findings.push("you_we_they_checkpoint_must_not_have_lexical_assignment");
 }
 
 const courseStartSenseCount = assignments
@@ -136,6 +166,13 @@ if (heSheItSenseCount !== 21) {
   findings.push(`he_she_it_sense_count:${heSheItSenseCount}`);
 }
 
+const youWeTheySenseCount = assignments
+  .filter((assignment) => expectedYouWeTheyLexicon.has(assignment.sessionId))
+  .reduce((count, assignment) => count + assignment.newSenses.length, 0);
+if (youWeTheySenseCount !== 21) {
+  findings.push(`you_we_they_sense_count:${youWeTheySenseCount}`);
+}
+
 assert.equal(
   findings.length,
   0,
@@ -143,5 +180,5 @@ assert.equal(
 );
 
 process.stdout.write(
-  `LEARNING V2 SESSION LEXICAL ASSIGNMENTS GATE V2: PASS assignments=${assignments.length} course_start_senses=${courseStartSenseCount} he_she_it_senses=${heSheItSenseCount}\n`,
+  `LEARNING V2 SESSION LEXICAL ASSIGNMENTS GATE V2: PASS assignments=${assignments.length} course_start_senses=${courseStartSenseCount} he_she_it_senses=${heSheItSenseCount} you_we_they_senses=${youWeTheySenseCount}\n`,
 );

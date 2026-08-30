@@ -101,6 +101,15 @@ const EN_SESSION_1_STRICT_GATES_FORBIDDEN_FUTURE_FINGERPRINT =
 // fingerprints и не может дрейфовать во время работы над третьей.
 const EN_SESSION_4_FORBIDDEN_FUTURE_FINGERPRINT =
   "b5f9d9bcf814bc59e5c749e65d6c2b66aba83eda87aa1383cd692239906a6a9b";
+// зачем снова открыта Session 1 (владелец, 2026-08-30, «давай» после показа
+// exact Full B1 fingerprint): новый curriculum approval не переутверждает
+// старые learner-facing Sessions 1–3. Они сверяются последовательно с новым
+// packet graph, поэтому текущая Session 1 DRAFT, а байтовое состояние 2–56
+// заморожено этим агрегатным fingerprint до её отдельного AUTO_PASS/review.
+const OWNER_APPROVED_FULL_B1_BLUEPRINT_REOPEN_SESSION_01 =
+  "owner-approved-full-b1-blueprint-reopen-session-01-2026-08-30";
+const EN_FULL_B1_SESSION_01_FORBIDDEN_FUTURE_FINGERPRINT =
+  "e77aa6f2b95f260bf467c2abfbd39fef6053c1e8c1606a2b708cffbfdf156ea8";
 // зачем пересчитано (2026-08-27, во время mode-native переписи испанской
 // сессии 1): исходное значение было зафиксировано на другом снимке диапазона
 // 2-56 — старые (pre-mode-native) сессии 2-33 продолжали существовать в
@@ -143,36 +152,11 @@ function buildEnglishRegistry(): Lesson1AuthoringRegistryEntryV1[] {
     if (sessionOrdinal === 1) {
       return {
         sessionOrdinal,
-        status: "LOCKED" as const,
-        lockedFingerprint: EN_SESSION_1_STRICT_GATES_LOCKED_FINGERPRINT,
-        ownerDecisionRef: OWNER_REQUIRED_GLOBAL_GRAMMAR_INTRO_AND_NO_LETTER_GATE,
-        unlockDecisionRef: OWNER_REOPENED_EN_SESSIONS_1_TO_3_FOR_STRICT_GATES,
-      };
-    }
-    if (sessionOrdinal === 2) {
-      return {
-        sessionOrdinal,
-        status: "LOCKED" as const,
-        lockedFingerprint: EN_SESSION_2_STRICT_GATES_LOCKED_FINGERPRINT,
-        ownerDecisionRef: OWNER_REQUIRED_GLOBAL_GRAMMAR_INTRO_AND_NO_LETTER_GATE,
-        unlockDecisionRef: OWNER_REOPENED_EN_SESSIONS_1_TO_3_FOR_STRICT_GATES,
-      };
-    }
-    if (sessionOrdinal === 3) {
-      return {
-        sessionOrdinal,
-        status: "LOCKED" as const,
-        lockedFingerprint: EN_SESSION_3_LOCKED_FINGERPRINT,
-        ownerDecisionRef: OWNER_REQUIRED_GLOBAL_GRAMMAR_INTRO_AND_NO_LETTER_GATE,
-        unlockDecisionRef: OWNER_ORDERED_EN_SESSIONS_1_TO_3_STRICT_REWRITE,
-      };
-    }
-    if (sessionOrdinal === 4) {
-      return {
-        sessionOrdinal,
         status: "DRAFT" as const,
-        forbiddenFutureFingerprint: EN_SESSION_4_FORBIDDEN_FUTURE_FINGERPRINT,
-        unlockDecisionRef: OWNER_APPROVED_EN_SESSION_3,
+        forbiddenFutureFingerprint:
+          EN_FULL_B1_SESSION_01_FORBIDDEN_FUTURE_FINGERPRINT,
+        unlockDecisionRef:
+          OWNER_APPROVED_FULL_B1_BLUEPRINT_REOPEN_SESSION_01,
       };
     }
     return { sessionOrdinal, status: "DRAFT" as const };

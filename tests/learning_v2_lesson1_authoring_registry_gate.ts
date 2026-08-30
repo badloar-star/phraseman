@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { createRequire } from "node:module";
 import { join } from "node:path";
-import { AUTHORED_EPISODE_01_SESSIONS } from "../modules/learning-v2/content/source/authored_sessions_v1";
-import { learningV2SessionContentFingerprint } from "../modules/learning-v2/content/source/learning_content_quality_gate_v1";
+import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
 
 const ROOT = join(__dirname, "..");
 const modulePath = join(
@@ -51,60 +51,60 @@ const registryModule = require(modulePath) as {
 assert.equal(registryModule.LESSON1_AUTHORING_REGISTRY_V1.length, 56);
 assert.deepEqual(
   registryModule.LESSON1_AUTHORING_REGISTRY_V1.map((entry) => entry.status),
-  ["LOCKED", "LOCKED", "LOCKED", ...Array.from({ length: 53 }, () => "DRAFT")],
+  Array.from({ length: 56 }, () => "DRAFT"),
 );
 assert.match(
   registryModule.LESSON1_AUTHORING_REGISTRY_V1[0]?.unlockDecisionRef ?? "",
-  /owner-reopened-en-lesson-01-sessions-01-03-for-strict-gates-2026-08-28/u,
+  /owner-approved-full-b1-blueprint-reopen-session-01-2026-08-30/u,
 );
 assert.equal(
-  registryModule.LESSON1_AUTHORING_REGISTRY_V1[0]?.lockedFingerprint,
-  "a275efa0823ed7520c40bda1709e65ddb0387f6729eb7fa6ccccd75ea791dd56",
-);
-assert.equal(
-  registryModule.LESSON1_AUTHORING_REGISTRY_V1[1]?.lockedFingerprint,
-  "b62808281db481b8bc7563d7d5c7447ae54d99c929124111776723ad2bc2d961",
-);
-assert.equal(
-  registryModule.LESSON1_AUTHORING_REGISTRY_V1[2]?.lockedFingerprint,
-  "059c616af0ad12f959f58f7845ee6620a9b66b380986d1073ce20cf98fb129be",
-);
-assert.equal(
-  registryModule.LESSON1_AUTHORING_REGISTRY_V1[3]?.forbiddenFutureFingerprint,
-  "203a283824a0453677dd38ca4a0c34eb6d556ee58776106a008a3f84ca15c049",
+  registryModule.LESSON1_AUTHORING_REGISTRY_V1[0]?.forbiddenFutureFingerprint,
+  "e77aa6f2b95f260bf467c2abfbd39fef6053c1e8c1606a2b708cffbfdf156ea8",
 );
 
 const actualFingerprints = Object.fromEntries(
   Array.from({ length: 56 }, (_, index) => [index + 1, null as string | null]),
 ) as Record<number, string | null>;
-for (const source of AUTHORED_EPISODE_01_SESSIONS) {
-  actualFingerprints[source.requiredSessionOrdinal] =
-    learningV2SessionContentFingerprint(source);
+const sourceDirectory = join(ROOT, "modules", "learning-v2", "content", "source");
+const sourceFiles = readdirSync(sourceDirectory);
+for (let sessionOrdinal = 2; sessionOrdinal <= 56; sessionOrdinal += 1) {
+  const prefix = `episode_01_session_${String(sessionOrdinal).padStart(2, "0")}`;
+  const files = sourceFiles
+    .filter((name) => name.startsWith(prefix) && name.endsWith(".ts"))
+    .sort();
+  actualFingerprints[sessionOrdinal] = hashCanonicalBody(
+    files.map((name) => [
+      name,
+      createHash("sha256")
+        .update(readFileSync(join(sourceDirectory, name)))
+        .digest("hex"),
+    ]),
+  );
 }
 assert.deepEqual(
-  registryModule.lesson1AuthoringPreflightV1(4, actualFingerprints),
+  registryModule.lesson1AuthoringPreflightV1(1, actualFingerprints),
   {
-    lockedThrough: 3,
-    currentSessionOrdinal: 4,
-    forbiddenFrom: 5,
+    lockedThrough: 0,
+    currentSessionOrdinal: 1,
+    forbiddenFrom: 2,
   },
 );
 assert.deepEqual(
   registryModule.lesson1AuthoringPreflightV1(undefined, actualFingerprints),
   {
-    lockedThrough: 3,
-    currentSessionOrdinal: 4,
-    forbiddenFrom: 5,
+    lockedThrough: 0,
+    currentSessionOrdinal: 1,
+    forbiddenFrom: 2,
   },
 );
 assert.throws(
   () => registryModule.lesson1AuthoringPreflightV1(2, actualFingerprints),
-  /lesson1_authoring_out_of_order:requested=2:current=4:lockedThrough=3/u,
+  /lesson1_authoring_out_of_order:requested=2:current=1:lockedThrough=0/u,
 );
 
 const driftedRegistry = registryModule.LESSON1_AUTHORING_REGISTRY_V1.map(
   (entry) =>
-    entry.sessionOrdinal === 4
+    entry.sessionOrdinal === 1
       ? {
           ...entry,
           forbiddenFutureFingerprint: "deliberate-drift-for-red-green-proof",
@@ -114,20 +114,20 @@ const driftedRegistry = registryModule.LESSON1_AUTHORING_REGISTRY_V1.map(
 assert.throws(
   () =>
     registryModule.lesson1AuthoringPreflightV1(
-      4,
+      1,
       actualFingerprints,
       driftedRegistry,
     ),
-  /lesson1_forbidden_future_fingerprint_drift:range=5-56/u,
+  /lesson1_forbidden_future_fingerprint_drift:range=2-56/u,
 );
 
 const futureDraftDrift = {
   ...actualFingerprints,
-  5: "deliberate-future-draft-drift-for-red-green-proof",
+  2: "deliberate-future-draft-drift-for-red-green-proof",
 };
 assert.throws(
-  () => registryModule.lesson1AuthoringPreflightV1(4, futureDraftDrift),
-  /lesson1_forbidden_future_fingerprint_drift:range=5-56/u,
+  () => registryModule.lesson1AuthoringPreflightV1(1, futureDraftDrift),
+  /lesson1_forbidden_future_fingerprint_drift:range=2-56/u,
 );
 
 const packageJson = JSON.parse(

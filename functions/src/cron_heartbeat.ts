@@ -38,7 +38,9 @@ async function writeHeartbeat(
       // Последняя ошибка остаётся видимой до следующего УСПЕШНОГО прогона:
       // так «мигающий» крон (падает через раз) не прячет свой предыдущий сбой.
       ...(ok ? { lastError: admin.firestore.FieldValue.delete() } : {
-        lastError: String(errorMessage ?? 'unknown').slice(0, 300),
+        // зачем 600 (2026-08-30): FAILED_PRECONDITION несёт ссылку create_composite,
+        // и 300 символов отрезали base64-хвост с ПОЛЯМИ индекса — самое ценное.
+        lastError: String(errorMessage ?? 'unknown').slice(0, 600),
         lastErrorAtMs: nowMs,
       }),
       ...(Object.keys(extra).length > 0 ? { extra } : {}),

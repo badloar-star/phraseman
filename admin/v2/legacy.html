@@ -48993,6 +48993,9 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
 
   const PM_V5_REFRESHERS = {
     'control-panel': () => pmV5SafeCall('loadControlPanel'),
+    // зачем (2026-08-30): без рефрешера V5-координатор вешал на вкладку
+    // «Источник обновления не подключён», хотя данные грузились fallback'ом.
+    'diagnostics': () => pmV5SafeCall('loadDiagnosticsOverview', true),
     'jarvis': () => pmV5SafeCall('loadJarvisAllDecisions', true),
     'jarvis-plans': () => pmV5SafeCall('loadJarvisPlans', true),
     'product-charter': () => pmV5SafeCall('loadProductCharter', true),

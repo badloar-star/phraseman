@@ -200,7 +200,14 @@ function SessionAttemptsHud({ remaining, locale, total = SESSION_ATTEMPTS_MAX, t
       // ответа; задержка 300мс разводит их в последовательность «ответ →
       // сердечко ушло» и попадает в shake-фазу анимации HeartSlot.
       const timer = setTimeout(() => {
-        soundDirector.request('pm.hearts.lost', { scope: 'session-attempts' });
+        // зачем rateLimit (аудит 2026-08-30): в ту же секунду уже стартуют
+        // pm.learn.needs_work и возможный pm.ui.tap_primary — общий бюджет
+        // 2 старта/сек молча глотал бы сердечко третьим. Свой scope-бюджет
+        // не ослабляет защиту от спама остальному приложению.
+        soundDirector.request('pm.hearts.lost', {
+          scope: 'session-attempts',
+          rateLimit: { maxStarts: 4, windowMs: 1000 },
+        });
       }, 300);
       return () => clearTimeout(timer);
     }

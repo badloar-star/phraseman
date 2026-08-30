@@ -1,5 +1,12 @@
 # Аудит звука Phraseman — 2026-08-29 (максимальный)
 
+> **Дополнение 2026-08-30: РАНТАЙМ-АУДИТ «как звуки работают» — см. §R в конце
+> файла.** Найдены: война двух систем за одну iOS-сессию (silent switch ведёт
+> себя по-разному в зависимости от порядка экранов), 565 немых точек касания
+> при одобренном звуке тапа, немые fk.correct/wrong, структурно-мёртвые вызовы
+> ранга в arena_results, слепой backend.stop(), Android-автовоскрешение звука
+> после звонка.
+
 Заказ владельца: «максимальный аудит всех мест под звук + изучить стиль + создать
 по несколько супер-идеальных звуков, чтобы приложение зазвучало; сейчас звуки
 рандомно засунуты».
@@ -233,3 +240,124 @@ level-spin не закоммитит `economy.ts`/`LevelSpinFinishLine.tsx`.
 4. **Персональный план (13) + модалки (10) + энергия (2) + лесенка сердечек** —
    промпты готовы в редакции 3 и ECONOMY_TAPS_ARENA, генерировать раундом 5.
 5. Мёртвые mp3 и `gen_ui_sounds.cjs` — удалить.
+
+---
+
+# §R. Рантайм-аудит 2026-08-30 — «как звуки на самом деле работают»
+
+Метод: полное чтение ядра (`sound_director` / `sound_arbiter` /
+`expo_sfx_backend` / `audio_activity` / `audio_session_coordinator` /
+`audio_runtime_arbiter` / `celebrationBackgroundPlayer` / `SoundService` /
+`feedback_kit`), сверка с нативным кодом `expo-audio@1.1.1` (AudioModule.kt)
+и известными issue экосистемы. Стек: expo SDK 54, expo-audio 1.1.1 (expo-av
+удалён), expo-speech 14.
+
+## Архитектура (как задумано — и это хорошая архитектура)
+
+Заявки идут в `SoundDirector.request(id)` → `SoundArbiter` решает
+play/defer/drop (тумблер → наличие файла → запись → речь(+250мс тишины после) →
+dedupe → cooldown → бюджет 2 старта/сек (scope-оверрайды) → приоритет
+единственного слота, allowConcurrent — вне слота) → `ExpoSfxBackend` (LRU-кэш
+6 плееров, лечение Android ExoPlayer: ложный ранний ENDED, async seekTo,
+retry по isLoaded). Глобальной iOS/Android-сессией владеет
+`audio_session_coordinator.setManagedAudioMode` (очередь переходов) под
+управлением `audio_activity` (лизы: recording > spoken > ui). Речь/эмбиент
+владеют эксклюзивом через `audio_runtime_arbiter` (claim с отзывом).
+
+## 🔴 R1. Война за глобальную аудио-сессию — ГЛАВНОЕ «работает неправильно»
+
+Политика по дизайну: `UI_SFX_AUDIO_MODE.playsInSilentMode: false` — UI-звуки
+уважают беззвучный переключатель iPhone (это соответствует Apple HIG для UI
+SFX; контент — уроки/TTS — идёт в SPOKEN с true). НО:
+
+- `app/flashcards/SoundService.ts:83` и `app/flashcards_listening_session.tsx:363,365`
+  зовут `setAudioModeAsync` НАПРЯМУЮ, мимо координатора → (а) обходят очередь
+  `transitionTail` — гонка с переходами речи/записи; (б) ставят
+  `playsInSilentMode: true` для ВСЕГО приложения.
+- Итог на iPhone с выключенным звонком: до захода в Карточки pm.*-звуки
+  молчат (задумано), после захода — ВСЁ приложение начинает звучать в
+  беззвучном; первая же озвучка возвращает UI_SFX (false) — и уже КАРТОЧКИ
+  замолкают, хотя их кэш `audioModeReady` уверен, что режим стоит. Поведение
+  зависит от порядка экранов = «рандомные» жалобы, невоспроизводимые баги.
+- Починка: все setAudioModeAsync → через setManagedAudioMode; ОДНО решение
+  владельца о silent switch для UI-звуков; кэш audioModeReady убрать.
+
+## 🔴 R2. Канал доставки тапов не раскатан: 565 немых точек касания
+
+Одобренные владельцем `pm.ui.tap_soft/tap_primary` вызываются ТОЛЬКО из
+`components/PressableHybrid.tsx:82` (33 файла-потребителя). При этом
+`fk.tap()` (18 вызовов) и прямые `hapticTap()` (547 вызовов) — вибрация БЕЗ
+звука. «Мягкое приятное нажатие», ради которого шёл раунд 3, слышно на малой
+доле управляющих кнопок. Правило «плитки/буквы — без звука» соблюдать при
+раскатке (нельзя тупо вшить звук в hapticTap). Путь: миграция управляющих
+кнопок на PressableHybrid либо параллельный вызов в точках кнопок.
+
+## 🟡 R3. fk.correct()/fk.wrong() — полностью немые
+
+`app/feedback/feedback_kit.ts:62-71`: только хаптика, опции rateLimit
+принимаются и игнорируются. Шесть вызовов турнира (ради которых 04.08
+строился scoped rateLimit) сегодня не издают ни звука. Либо это осознанное
+«вердикты турнира без звука» — тогда убрать мёртвые опции и обновить память,
+либо потеря функциональности при вычищении «эффекта серии».
+
+## 🟡 R4. Структурно-мёртвые вызовы ранга — app/arena_results.tsx:555-556
+
+В одном тике: result_win/loss/draw (priority 90, слот на 1.2–2.5с) → сразу
+rankUp (88) / rankDown (82) без queueIfBusy → всегда drop 'priority'.
+Слышимый звук ранга реально идёт из ArenaRankHybrid (на такте анимации).
+Дубль удалить или дать queueIfBusy — иначе при рефакторе анимации ранг
+внезапно «замолчит навсегда».
+
+## 🟡 R5. backend.stop() слеп — гасит и allowConcurrent-плееры
+
+`ExpoSfxBackend.stop()` останавливает ВСЕ активные плейбеки. Вызывается при:
+preempt более приоритетного, stopActiveEvent, stopActiveCompletion,
+setRecordingActive. Значит preempt чужого события обрывает и «независимые»
+звуки (полёт руны, learn_correct-хвост), хотя allowConcurrent обещает им
+собственный плеер вне слота. Нужен адресный stop(token/eventId) + stopAll
+только для записи.
+
+## 🟡 R6. Android: жизнь после звонка (натив AudioModule.kt)
+
+В mixWithOthers фокус НЕ запрашивается (наши SFX не паузят чужую музыку и
+наоборот — страшилка issue #36034 нас не касается, поддержка mixWithOthers
+на Android добавлена в 1.1.0). Но в SPOKEN/duck-режиме фокус берётся, и:
+- LOSS_TRANSIENT (звонок): все плееры pause с isPaused=true → на GAIN натив
+  САМ зовёт play() — фраза/подложка «воскресает» спустя минуты, возможно уже
+  на другом экране. Наши обёртки об этом не знают.
+- LOSS (навсегда, чужой плеер взял фокус): pause БЕЗ isPaused → вечная пауза;
+  плеер фраз спасает watchdog (hooks/phrase_audio_player.ts:65,481), SFX
+  короткие — некритично.
+Рекомендация: подписка на interruption-события (или на AppState+фокус-прокси)
+и явный stop наших длинных плееров при LOSS_TRANSIENT.
+
+## 🟡 R7. Карточки игнорируют общий тумблер «Звуки»
+
+SoundService слушает только свой `fc_sfx_on`; `uiSounds=false` в настройках
+приложения не глушит fc_*. Пользователь выключил звуки — карточки звенят.
+
+## ⚡ R8. Латентность первого воспроизведения
+
+expo-audio не префетчит буфер до play() (issue #42900 «preloading not
+implemented»), а LRU-кэш бекенда на 6 плееров МЕНЬШЕ рабочего набора урока
+(correct, needs_work, tap_soft, tap_primary, hearts.lost, complete.*,
+xp_counter_* …) → вечные evict/create, первый play каждого звука — с
+задержкой буферизации. Рекомендация: кэш до ~12 + тёплый prewarm топ-5
+событий после первого кадра экрана урока.
+
+## Мелочи
+
+- Арбитр живёт на Date.now() (`sound_clock`) — скачок системных часов ломает
+  кулдауны; monotonic-часы надёжнее.
+- Коммент SoundService ссылается на несуществующий app/exclusive_short_sfx.ts.
+- schedulePriorityRetry — один таймер: новый priority-drop затирает
+  запланированный ретрай предыдущего (редко, слышится как пропавший тик).
+- Починено по ходу аудита: pm.hearts.lost получил scope-rateLimit 4/сек —
+  общий бюджет 2/сек мог молча глотать сердечко третьим стартом за секунду
+  (needs_work + tap_primary + hearts.lost).
+
+Источники ресёрча: expo docs (Audio), expo/expo issues #36034 (Android паузит
+соседей; в нашей версии нейтрализовано mixWithOthers), #42900 (нет
+preloading), #42709 (interrupt/resume «zombie» при установке expo-audio),
+#41670 (mixWithOthers на Android с 1.1.0), Apple Audio Session Programming
+Guide (silent switch: ambient vs playback).

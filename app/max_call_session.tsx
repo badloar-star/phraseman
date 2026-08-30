@@ -84,6 +84,8 @@ import {
 import { MaxCallLiveCaptionView } from './max_call_live_caption_view';
 import { setLastMaxCallResult } from './max_voice_review';
 import { handleMaxVoiceSessionEndResult } from './max_voice_xp_award';
+import { writeMaxVoiceAccessPeek } from '../modules/voice_minutes/peek_cache';
+import { ingestMaxHomeworkIntoTrainer } from './max_homework_trainer_ingest';
 import { invalidateMaxTutorPreview } from './max_tutor_preview';
 import { maxVoiceStudyTarget } from './max_target_gate';
 import { getMaxHomeOrbLayers } from './max_home_orb_assets';
@@ -494,6 +496,17 @@ function MaxCallSessionContent() {
           // серию. Начисление идемпотентно (eventId по sessionId), двойной end
           // и поздний сеттл detached-минта отсекаются внутри обработчика.
           handleMaxVoiceSessionEndResult({ sessionId: req.sessionId, response, lang });
+          // Пробник, потративший хоть секунду, израсходован НАВСЕГДА — пишем в
+          // peek сразу, чтобы следующий вход на пре-экран не обещал «3 мин»
+          // (скрин юзера, владелец 2026-08-30). Нулевой charged сервер сам
+          // возвращает вместе с пробником — peek не трогаем.
+          const endedMint = clientRef.current?.mintResult();
+          const charged = Number((response as Record<string, unknown> | null)?.chargedSec);
+          if (endedMint?.trialVariant
+            && endedMint.session_id === req.sessionId
+            && Number.isFinite(charged) && charged > 0) {
+            writeMaxVoiceAccessPeek('none');
+          }
           return response;
         }),
       exchangeSdp,
@@ -919,6 +932,19 @@ function MaxCallSessionContent() {
       };
       const accountKey = await getStableId();
       await putMaxFinalizeEnvelope(accountKey, draft, nowMs);
+      // зачем (ингест 2026-08-30): домашка учителя становится карточками
+      // Тренажёра ЗДЕСЬ, локально и до навигации (одно чтение + одна запись
+      // AsyncStorage через mutex-очередь стора) — обещание «фразы будут в
+      // Тренажёре» выполняется до того, как человек успеет его проверить.
+      const homeworkIngest = tutor && tutor.homeworkItems.length > 0
+        ? await ingestMaxHomeworkIntoTrainer({
+            items: tutor.homeworkItems,
+            lang,
+            studyTarget: callStudyTarget,
+            sessionId,
+            nowMs,
+          })
+        : null;
       setLastMaxCallResult({
         history,
         durationSec,
@@ -936,7 +962,9 @@ function MaxCallSessionContent() {
         // durationSec вычитать не нужно, иначе минуты занижаются и человеку
         // могут честно, но неверно, сказать «минуты закончились».
         dayRemainingSec: dayRemainingAfter,
-        ...(tutor ? { tutor } : {}),
+        ...(tutor
+          ? { tutor: { ...tutor, homeworkSavedToTrainer: homeworkIngest?.savedToTrainer === true } }
+          : {}),
       });
       if (isTutor) invalidateMaxTutorPreview();
       router.replace({ pathname: '/max_voice_review', params: { sessionId } } as any);

@@ -333,11 +333,11 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
       DebugLogger.error('max_call_tutor_tools:passed', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
         return {
-          // зачем (аудит MAX 2026-08-30): прежний текст обещал «added to their
-          // Trainer», учитель повторял это вслух — а ингеста в тренажёр не
-          // существует. Обещаем ровно то, что происходит: разбор после урока и
-          // устное повторение в следующих звонках (phraseQueue сервера).
-          output: `Homework saved (${unique.length}): ${homework.join(' | ')}. It will be shown to the learner after the lesson, and you will ask them to say these phrases again in the next lessons.`,
+          // зачем (2026-08-30, вторая итерация): обещание «saved to their
+          // Trainer» снова ПРАВДА — ингест домашки в карточки Тренажёра
+          // реализован (max_homework_trainer_ingest, вызывается финализацией
+          // звонка). Плюс устное повторение в следующих уроках (phraseQueue).
+          output: `Homework saved (${unique.length}): ${homework.join(' | ')}. It will be shown to the learner after the lesson, saved to their Trainer as cards, and you will ask them to say these phrases again in the next lessons.`,
           respond: true,
         };
       }

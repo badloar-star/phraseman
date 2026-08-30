@@ -53,7 +53,12 @@ import MaxVoiceConsentGate from './max_voice_consent_gate';
 import { maxVoiceStudyTarget } from './max_target_gate';
 import VoiceMinutePackSheet from '../modules/voice_minutes/VoiceMinutePackSheet';
 import { readVoiceMinuteWalletStatus, type VoiceMinuteWalletStatus } from '../modules/voice_minutes/wallet';
-import { peekVoiceMinutes, writeVoiceMinutePeek } from '../modules/voice_minutes/peek_cache';
+import {
+  peekMaxVoiceAccess,
+  peekVoiceMinutes,
+  writeMaxVoiceAccessPeek,
+  writeVoiceMinutePeek,
+} from '../modules/voice_minutes/peek_cache';
 
 /**
  * Пре-экран «Позвонить» (спека, раздел 1: max_call_prestart).
@@ -255,7 +260,11 @@ function MaxCallPrestartContent() {
         setPreflight(parsePreflight({ limits: limitsBeforeReserve(mint.limits) }, format));
         // Сервер сам решил, пробник это или полный MAX: trialVariant ≠ null —
         // единственный честный признак trial-доступа в ответе минта.
-        setMintAccess(mint.access ?? (mint.trialVariant ? 'trial' : 'admin'));
+        const resolvedAccess = mint.access ?? (mint.trialVariant ? 'trial' : 'admin');
+        setMintAccess(resolvedAccess);
+        // Подтверждённый путь — в peek: следующий вход покажет честный первый
+        // кадр без «3 мин → 0 мин» (скрин юзера, владелец 2026-08-30).
+        writeMaxVoiceAccessPeek(resolvedAccess);
         setPreflightReason(null);
         setPrepState('ready');
         // зачем: линия готова к разговору — сигнал ставим сразу на переходе в
@@ -271,7 +280,11 @@ function MaxCallPrestartContent() {
       (error) => {
         if (!active) return;
         setPreflight(null);
-        setPreflightReason(maxVoiceFailureReason(error, 'preflight_failed'));
+        const reason = maxVoiceFailureReason(error, 'preflight_failed');
+        setPreflightReason(reason);
+        // Пробник израсходован — запоминаем: без этого каждый вход сначала
+        // обещал «3 мин» и лишь после отказа сервера показывал честный ноль.
+        if (reason === 'voice_max_required') writeMaxVoiceAccessPeek('none');
         setPrepState('failed');
         // Отклонённый promise нельзя переиспользовать при ручном повторе.
         abandonPremint(key, releaseUnusedMint);
@@ -292,6 +305,16 @@ function MaxCallPrestartContent() {
   const isTrialFormat = format === 'trial';
   // Отказ voice_max_required = пробник сожжён: пул этого тарифа всё равно 3 мин.
   const maxRequired = preflightReason === 'voice_max_required';
+  // зачем (владелец 2026-08-30, скрин юзера «может они есть, иногда так
+  // отображается, но по итогу их 0»): до ответа сервера экран оптимистично
+  // обещал «3 мин» ЛЮБОМУ без кошелька — включая того, чей единственный
+  // пробник давно израсходован; через секунду число падало в красный ноль.
+  // Peek хранит последний ПОДТВЕРЖДЁННЫЙ сервером путь доступа: 'none' даёт
+  // честный ноль с первого кадра. Работает только до ответа сервера этого
+  // входа — дальше правда из mintAccess/preflightReason, как раньше.
+  const trialBurnedHint = mintAccess === null
+    && preflightReason === null
+    && peekMaxVoiceAccess() === 'none';
   // зачем (владелец 2026-08-29, «сначала показывает 3 минуты, потом 109»): пока
   // кошелёк не ответил, minuteWallet === null, доступ считался пробником и
   // экран рисовал пробниковые 3 минуты — платящему показывали чужой остаток.
@@ -329,7 +352,7 @@ function MaxCallPrestartContent() {
   const dayRemainingSec = paidAccess
     ? (paidWalletSec ?? preflight?.dayRemainingSec ?? 0)
     : trialAccess
-      ? (maxRequired ? 0 : trialPoolSec)
+      ? (maxRequired || trialBurnedHint ? 0 : trialPoolSec)
       : preflight?.dayRemainingSec ?? DEFAULT_DAY_SEC;
   const dayMaxSec = paidAccess
     ? dayRemainingSec

@@ -69,6 +69,8 @@ export interface MaxCallResult {
     goalProgress: { goalId: string; mastery: number; evidence?: 'scene' | 'novel_context'; sceneId?: string } | null;
     goal: { id: string; level: string; title: { en: string; ru: string; uk: string } & Partial<Record<Lang, string>>; mastery: number; sceneIds: string[] } | null;
     lessonsSoFar: number;
+    /** Домашка легла в Тренажёр (ингест 2026-08-30) — экран показывает подтверждение. */
+    homeworkSavedToTrainer?: boolean;
   };
   cefr?: string;
   devMode?: boolean;
@@ -330,6 +332,11 @@ export default function MaxVoiceReview() {
     setXpAward(peekMaxVoiceXpAward(activeSessionId));
     return subscribeMaxVoiceXpAward(activeSessionId, setXpAward);
   }, [activeSessionId]);
+
+  // зачем (ингест домашки 2026-08-30): учитель вслух обещает «фразы будут в
+  // Тренажёре» — подтверждаем это глазами, когда карточки реально созданы.
+  const homeworkInTrainer = localResult?.tutor?.homeworkSavedToTrainer === true
+    && (localResult?.tutor?.homeworkItems?.length ?? 0) > 0;
 
   const goHome = () => {
     hapticTap();
@@ -752,6 +759,24 @@ export default function MaxVoiceReview() {
                 <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', lineHeight: Math.round(f.bodyLg * 1.38) }} maxFontSizeMultiplier={2}>{action}</Text>
               </View>
             ))}
+            {homeworkInTrainer ? (
+              <View testID="max-voice-review-homework-in-trainer" style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 16 }}>
+                <Ionicons name="albums" size={18} color={t.accent} />
+                <Text style={{ flex: 1, color: t.accent, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={2}>
+                  {triLang(lang, {
+                    ru: 'Фразы урока уже ждут в Тренажёре',
+                    en: 'The lesson phrases are already in your Trainer',
+                    uk: 'Фрази уроку вже чекають у Тренажері',
+                    es: 'Las frases de la clase ya están en tu Entrenador',
+                    'pt-BR': 'As frases da aula já estão no seu Treinador',
+                    vi: 'Các cụm từ của bài học đã có trong Trình luyện tập',
+                    id: 'Frasa pelajaran sudah ada di Trainer-mu',
+                    tr: 'Ders cümleleri Antrenörüne eklendi',
+                    pl: 'Frazy z lekcji już czekają w Trenerze',
+                  })}
+                </Text>
+              </View>
+            ) : null}
             {projection?.targetPhrase ? (
               <View testID="max-voice-review-target-phrase" style={{ borderRadius: 16, backgroundColor: t.accentBg, padding: 14, marginTop: 18 }}>
                 <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase' }} maxFontSizeMultiplier={2}>{c.targetPhrase}</Text>

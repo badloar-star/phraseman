@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Image, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -9,19 +9,19 @@ import Animated, {
   withTiming,
   Easing,
 } from 'react-native-reanimated';
-import AvatarView from '../AvatarView';
 import { useTournamentPalette } from '../ui/v2_theme';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { hapticMediumImpact, hapticHeavyImpact } from '../../hooks/use-haptics';
 import type { ArenaPlayer } from '../../modules/arena/contract';
 import { useArenaSound } from '../../hooks/use_arena_sound';
+import { arenaRankShieldAssetForRankIndex } from './arena_rank_shield_assets';
 
 /**
  * Сцена «соперник найден → 3-2-1 → старт».
  *
  * Владелец (2026-08-12): анимация отсчёта обязательна, планка — «уровень
  * Duolingo и лучше». Здесь три такта:
- *   1. аватары вылетают с двух сторон навстречу, между ними падает VS;
+ *   1. щиты рангов вылетают с двух сторон навстречу, между ними падает VS;
  *   2. отсчёт 3-2-1 — каждая цифра прилетает с масштабом, пульсирует и гаснет,
  *      на каждой цифре средний хаптик;
  *   3. старт: тяжёлый хаптик и вызов onDone. Вспышки акцентом на весь экран
@@ -38,12 +38,16 @@ const DIGIT_MS = 700;
 function ArenaVersusIntroBase({
   you,
   opponent,
+  youRankIndex,
+  opponentRankIndex,
   goLabel,
   ready = true,
   onDone,
 }: {
   you?: ArenaPlayer;
   opponent?: ArenaPlayer;
+  youRankIndex?: number | null;
+  opponentRankIndex?: number | null;
   goLabel: string;
   /** Финальный кадр остаётся на экране, пока план матча ещё загружается. */
   ready?: boolean;
@@ -57,6 +61,12 @@ function ArenaVersusIntroBase({
   const [go, setGo] = useState(false);
   const [sequenceDone, setSequenceDone] = useState(false);
   const doneRef = useRef(false);
+  const youRankAsset = typeof youRankIndex === 'number'
+    ? arenaRankShieldAssetForRankIndex(youRankIndex)
+    : null;
+  const opponentRankAsset = typeof opponentRankIndex === 'number'
+    ? arenaRankShieldAssetForRankIndex(opponentRankIndex)
+    : null;
 
   const left = useSharedValue(0);
   const right = useSharedValue(0);
@@ -115,11 +125,10 @@ function ArenaVersusIntroBase({
     onDone();
   }, [onDone, ready, sequenceDone]);
 
-  // Узкий экран (320 pt) не вмещает две колонки по 108 pt плюс плашку VS:
-  // ряд не переносится и не сжимается, крайние аватары просто уезжали за
-  // край. Поэтому колонки тянутся, а аватар уменьшается вместе с ними.
+  // Узкий экран (320 pt) не вмещает две колонки плюс плашку VS. Поэтому
+  // колонки тянутся, а щит уменьшается вместе с ними.
   const narrow = width < 350;
-  const avatarSize = narrow ? 62 : 78;
+  const shieldSize = narrow ? 86 : 112;
   const travel = Math.min(190, width * 0.45);
   const leftStyle = useAnimatedStyle(() => ({
     opacity: left.value,
@@ -142,7 +151,11 @@ function ArenaVersusIntroBase({
     <View style={styles.root} accessibilityLiveRegion="polite">
       <View style={styles.players}>
         <Animated.View style={[styles.player, leftStyle]}>
-          <AvatarView avatar={you?.avatar} auraId={you?.aura} size={avatarSize} animateAura={false} ownerActive />
+          {youRankAsset ? (
+            <Image source={youRankAsset} resizeMode="contain" style={{ width: shieldSize, height: shieldSize }} />
+          ) : (
+            <View testID="arena-versus-you-rank-neutral" style={styles.neutralRank} />
+          )}
           <Text maxFontSizeMultiplier={1.4} style={[styles.name, { color: P.text }]}>{you?.name ?? '—'}</Text>
         </Animated.View>
 
@@ -151,7 +164,11 @@ function ArenaVersusIntroBase({
         </Animated.View>
 
         <Animated.View style={[styles.player, rightStyle]}>
-          <AvatarView avatar={opponent?.avatar} auraId={opponent?.aura} size={avatarSize} animateAura={false} ownerActive />
+          {opponentRankAsset ? (
+            <Image source={opponentRankAsset} resizeMode="contain" style={{ width: shieldSize, height: shieldSize }} />
+          ) : (
+            <View testID="arena-versus-opponent-rank-neutral" style={styles.neutralRank} />
+          )}
           <Text maxFontSizeMultiplier={1.4} style={[styles.name, { color: P.text }]}>{opponent?.name ?? '—'}</Text>
         </Animated.View>
       </View>
@@ -172,6 +189,14 @@ const styles = StyleSheet.create({
   root: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 30 },
   players: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 14, alignSelf: 'stretch', paddingHorizontal: 12 },
   player: { alignItems: 'center', gap: 8, flex: 1, maxWidth: 108 },
+  neutralRank: {
+    width: 70,
+    height: 82,
+    borderRadius: 22,
+    borderWidth: 2,
+    borderColor: 'rgba(126, 140, 132, 0.28)',
+    backgroundColor: 'rgba(126, 140, 132, 0.06)',
+  },
   name: { fontSize: 14, fontWeight: '800', textAlign: 'center', flexShrink: 1 },
   vsPlate: { width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center' },
   vsText: { fontSize: 15, fontWeight: '900' },

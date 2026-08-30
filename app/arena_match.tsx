@@ -86,6 +86,7 @@ import {
 import { arenaResultPreview } from '../modules/arena/result_preview';
 import { arenaFinishRetryDelay } from '../modules/arena/finish_retry';
 import { ARENA_FINAL_SCORE_COUNT_MS } from '../modules/arena/final_score_count';
+import { arenaViewerRankIndex } from '../modules/arena/rank_matchmaking_visual';
 
 /**
  * Matchmaking заранее запечатывает входной план. Экран синхронно забирает
@@ -103,7 +104,7 @@ import { ARENA_FINAL_SCORE_COUNT_MS } from '../modules/arena/final_score_count';
  *
  * Строки «Сервер проверяет ответ…» здесь больше нет и быть не может.
  */
-type ArenaMatchRouteParams = { matchId?: string; prepared?: string };
+type ArenaMatchRouteParams = { matchId?: string; prepared?: string; viewerStars?: string };
 type ArenaCoherentResult = Readonly<{
   settled?: boolean;
   match?: ArenaMatch;
@@ -171,6 +172,10 @@ function ArenaMatchGenerationScreen({
   const preparedRoute = params.prepared === '1' && Boolean(preparedEntry);
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
+  const viewerStars = typeof params.viewerStars === 'string' && /^\d+$/.test(params.viewerStars)
+    ? Number(params.viewerStars)
+    : null;
+  const introViewerRankIndex = arenaViewerRankIndex(viewerStars);
   const playSound = useArenaSound();
   const mountedRef = useRef(true);
   useEffect(() => () => { mountedRef.current = false; }, []);
@@ -973,6 +978,8 @@ function ArenaMatchGenerationScreen({
           <ArenaVersusIntro
             you={introYou}
             opponent={introOpponent}
+            youRankIndex={introViewerRankIndex}
+            opponentRankIndex={plan.opponent.rank}
             goLabel={arenaText(lang, 'title')}
             ready={introReady}
             onDone={finishIntro}

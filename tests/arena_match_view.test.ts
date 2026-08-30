@@ -758,7 +758,7 @@ describe('почему матч не начался — словами, а не 
     const matchmaking = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_matchmaking.tsx'), 'utf8');
     const introBranch = source.indexOf('const shouldShowIntro =');
     const planWaitBranch = source.indexOf('if (!plan || !match || !hud)');
-    expect(matchmaking).toContain("params: { matchId, prepared: '1' }");
+    expect(matchmaking).toContain("params: { matchId, prepared: '1', ...(viewerStarsParam ? { viewerStars: viewerStarsParam } : {}) }");
     expect(source).toContain('arenaEntryPrefetchClaim(matchId)');
     expect(source).toContain("const preparedRoute = params.prepared === '1' && Boolean(preparedEntry);");
     expect(source).toContain('useState<ArenaMatchPlanWire | null>(() => preparedEntry?.plan ?? null)');

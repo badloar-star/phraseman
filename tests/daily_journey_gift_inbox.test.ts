@@ -121,6 +121,63 @@ it('recovers the same prepared intent after a torn occurrence/projection commit'
   expect((await readDailyJourneyGiftProjection(token)).pendingCount).toBe(1);
 });
 
+it('recovers when a torn multiSet persisted only the projection', async () => {
+  const token = beginAccountGeneration('owner-a');
+  const operation = gift('daily-dev-projection-only-torn');
+  (AsyncStorage.multiSet as jest.Mock).mockImplementationOnce(async (
+    pairs: readonly (readonly [string, string])[],
+  ) => {
+    const projectionPair = pairs.find(([key]) => key.startsWith('daily_journey_gift_projection_v1:'));
+    if (!projectionPair) throw new Error('missing_projection_pair');
+    storage[projectionPair[0]] = projectionPair[1];
+    throw new Error('simulated_projection_only_torn_commit');
+  });
+
+  await expect(commitDailyJourneyGift(operation, token))
+    .rejects.toThrow('simulated_projection_only_torn_commit');
+  expect(Object.keys(storage).some((key) => key.startsWith('daily_journey_gift_prepared_v1:'))).toBe(true);
+  expect(storage[occurrenceStorageKey('owner-a', operation.operationId)]).toBeUndefined();
+
+  const recovered = await commitDailyJourneyGift(operation, token);
+
+  expect(recovered.status).toBe('committed');
+  expect(await readDailyJourneyGiftProjection(token)).toMatchObject({
+    pendingCount: 1,
+    unreadCount: 1,
+    latestRevision: 1,
+  });
+  expect(Object.keys(storage).some((key) => key.startsWith('daily_journey_gift_prepared_v1:'))).toBe(false);
+  expect((await commitDailyJourneyGift(operation, token)).status).toBe('already_committed');
+});
+
+it('recovers when a torn multiSet persisted only the occurrence', async () => {
+  const token = beginAccountGeneration('owner-a');
+  const operation = gift('daily-dev-occurrence-only-torn');
+  (AsyncStorage.multiSet as jest.Mock).mockImplementationOnce(async (
+    pairs: readonly (readonly [string, string])[],
+  ) => {
+    const occurrencePair = pairs.find(([key]) => key.startsWith('daily_journey_gift_occurrence_v1:'));
+    if (!occurrencePair) throw new Error('missing_occurrence_pair');
+    storage[occurrencePair[0]] = occurrencePair[1];
+    throw new Error('simulated_occurrence_only_torn_commit');
+  });
+
+  await expect(commitDailyJourneyGift(operation, token))
+    .rejects.toThrow('simulated_occurrence_only_torn_commit');
+  expect(storage[occurrenceStorageKey('owner-a', operation.operationId)]).toBeDefined();
+
+  const recovered = await commitDailyJourneyGift(operation, token);
+
+  expect(recovered.status).toBe('committed');
+  expect(await readDailyJourneyGiftProjection(token)).toMatchObject({
+    pendingCount: 1,
+    unreadCount: 1,
+    latestRevision: 1,
+  });
+  expect(Object.keys(storage).some((key) => key.startsWith('daily_journey_gift_prepared_v1:'))).toBe(false);
+  expect((await commitDailyJourneyGift(operation, token)).status).toBe('already_committed');
+});
+
 it('emits once when replaying A recovers a torn prepared B', async () => {
   const token = beginAccountGeneration('owner-a');
   const operationA = gift('daily-dev-recovery-event-a');

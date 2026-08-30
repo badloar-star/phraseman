@@ -490,7 +490,12 @@ async function finalizePrepared(
   const occurrences = await accountAwait(token, () => readOccurrences(ownerStableId, token));
   const state = await accountAwait(token, () => readProjectionState(ownerStableId, token));
   const headRevision = occurrences.length === 0 ? 0 : occurrences[occurrences.length - 1].revision;
-  if (state.latestRevision > headRevision) throw new Error('daily_journey_projection_ahead');
+  const projectionOnlyTornWrite = !existing
+    && prepared.occurrence.revision === headRevision + 1
+    && state.latestRevision === prepared.occurrence.revision;
+  if (state.latestRevision > headRevision && !projectionOnlyTornWrite) {
+    throw new Error('daily_journey_projection_ahead');
+  }
   if (existing) {
     if (headRevision !== prepared.occurrence.revision
       || (state.latestRevision !== headRevision && state.latestRevision !== headRevision - 1)) {
@@ -498,7 +503,7 @@ async function finalizePrepared(
     }
   } else if (prepared.occurrence.revision !== headRevision + 1) {
     throw new Error('daily_journey_prepared_revision_conflict');
-  } else if (state.latestRevision !== headRevision) {
+  } else if (state.latestRevision !== headRevision && !projectionOnlyTornWrite) {
     throw new Error('daily_journey_projection_behind');
   }
   const latestRevision = prepared.occurrence.revision;

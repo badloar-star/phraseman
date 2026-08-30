@@ -31,4 +31,13 @@ describe('Arena hub floating rank hero', () => {
     const source = read('components/arena/ArenaHubSurface.tsx');
     expect(source).toContain('<ArenaHubSummary model={hub} active={active} reduceMotion={reduceMotion} />');
   });
+
+  it('reserves the full hero geometry in the loading skeleton', () => {
+    const source = read('components/arena/ArenaHubSkeleton.tsx');
+    expect(source).toContain('styles.rankCard');
+    expect(source).toContain('styles.rankShield');
+    expect(source).toContain('width={148}');
+    expect(source).toContain('height={168}');
+    expect(source).not.toContain('styles.rankHead');
+  });
 });

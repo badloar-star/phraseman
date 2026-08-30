@@ -110,7 +110,7 @@ export function ArenaHubSummary({ model, active, reduceMotion }: ArenaHubSummary
           )}
         </Animated.View>
         <Animated.View accessible={false} style={[styles.starsStage, starsStyle]}>
-          {rank ? <ArenaRankStars filled={rank.starsInRank} size={38} /> : null}
+          <ArenaRankStars filled={rank?.starsInRank ?? 0} size={38} />
         </Animated.View>
         <Text accessible={false} style={[styles.progress, { color: P.muted }]}>{progressLabel}</Text>
       </View>

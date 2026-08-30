@@ -10,15 +10,15 @@ import type { TournamentV2 } from '../ui/v2_theme';
  * пустоту» — ни одного состояния загрузки. Раньше при пустом warm-снимке
  * (первый запуск приложения, снимок ещё не записан) экран рисовал пустые/
  * выключенные карточки и ничего не объяснял. Показываем заглушки ТОЧНО той
- * же геометрии, что и настоящий контент вкладки «Сегодня» (ArenaHubLive +
+ * же геометрии, что и настоящий контент вкладки «Сегодня» (ArenaHubSummary +
  * ArenaDailyGoals + today-карточка из app/arena.tsx + строки ArenaFeatureRow),
  * чтобы приход данных не двигал вёрстку ни на пиксель (Performance Bible →
  * layout stability). Показывается только когда нет вообще ничего — если
  * есть тёплый снимок, экран сразу рисует его, скелетон не мигает.
  *
  * Геометрия зеркалит:
- * - ArenaHubLive.styles.card (V2Card pad=16, rankHead+track+meta) —
- *   components/arena/ArenaHubLive.tsx
+ * - ArenaHubSummary.styles.hero (V2Card pad=16, title+shield+stars+progress) —
+ *   components/arena/ArenaHubSummary.tsx
  * - ArenaDailyGoals.styles.card (V2Card pad=16, head + 3×goal) —
  *   components/arena/ArenaDailyGoals.tsx
  * - todayCard в app/arena.tsx (styles.todayCard/todayHead/todayNumber)
@@ -71,14 +71,19 @@ function ArenaHubSkeletonComponent({ palette }: ArenaHubSkeletonProps) {
 
   return (
     <View testID="arena-hub-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-      {/* Карточка ранга — ArenaHubLive.styles.card */}
-      <View style={[styles.card, { backgroundColor: palette.surfaceGradB }]}>
-        <View style={styles.rankHead}>
-          <SkeletonBlock width="52%" height={20} borderRadius={9} baseColor={bone} highlightColor={shine} />
-          <SkeletonBlock width={40} height={14} borderRadius={7} baseColor={bone} highlightColor={shine} />
-        </View>
-        <SkeletonBlock width="100%" height={10} borderRadius={6} baseColor={bone} highlightColor={shine} />
-        <SkeletonBlock width={110} height={12} borderRadius={6} baseColor={bone} highlightColor={shine} />
+      {/* Карточка ранга — ArenaHubSummary.styles.hero */}
+      <View style={[styles.card, styles.rankCard, { backgroundColor: palette.surfaceGradB }]}>
+        <SkeletonBlock width="48%" height={24} borderRadius={12} baseColor={bone} highlightColor={shine} />
+        <SkeletonBlock
+          width={148}
+          height={168}
+          borderRadius={48}
+          baseColor={bone}
+          highlightColor={shine}
+          style={styles.rankShield}
+        />
+        <SkeletonBlock width={142} height={38} borderRadius={19} baseColor={bone} highlightColor={shine} />
+        <SkeletonBlock width={180} height={14} borderRadius={7} baseColor={bone} highlightColor={shine} />
       </View>
 
       {/* Карточка целей дня — ArenaDailyGoals.styles.card */}
@@ -119,7 +124,8 @@ export const ArenaHubSkeleton = memo(ArenaHubSkeletonComponent);
 const styles = StyleSheet.create({
   // borderRadius совпадает с V2Card (radius.lg - 2 = 24), padding = pad 16
   card: { borderRadius: 24, padding: 16, gap: 8 },
-  rankHead: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: 10 },
+  rankCard: { minHeight: 332, alignItems: 'center', justifyContent: 'center', gap: 10 },
+  rankShield: { marginVertical: 2 },
   goalsCard: { gap: 12, marginTop: 16 },
   head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
   goal: { gap: 6 },

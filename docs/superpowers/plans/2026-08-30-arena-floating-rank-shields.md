@@ -194,12 +194,12 @@ Use exactly this structured prompt and request a genuinely transparent backgroun
 Use case: stylized-concept
 Asset type: premium mobile-game rank shield master sheet for Phraseman
 Primary request: exactly 24 unique heraldic rank shields arranged as a strict 8-column by 3-row grid; each column is one tier family and each row is its progression III, II, I
-Subject: columns from left to right are Bronze, Silver, Gold, Platinum, Diamond, Master, Grandmaster, Legend; rows from top to bottom are III, II, I; within each column keep the same silhouette language, material family and colors while increasing ornament, glow and prestige from III to II to I
+Subject: columns from left to right are Bronze, Silver, Gold, Platinum, Diamond, Master, Grandmaster, Legend; rows from top to bottom are III, II, I; every shield represents language learning and knowledge; III centers an open-book emblem, II evolves the book with a luminous speech/sound symbol, I grows a knowledge crystal from the book and gains page-shaped wings; within each column keep the same silhouette language, material family and colors while increasing ornament, glow and prestige from III to II to I
 Style/medium: extremely polished premium mobile-game UI asset, dimensional metal and enamel, friendly energetic Phraseman aesthetic, crisp silhouette, readable at 132 px, refined stylized 3D rendering
 Color palette: Bronze warm patina; Silver cold matte silver; Gold saturated noble gold; Platinum icy white-blue; Diamond cyan crystal; Master violet and gold arcane metal; Grandmaster crimson and black premium alloy; Legend white gold with lime and subtle prismatic Phraseman energy
 Composition/framing: orthographic front view, one centered shield per equal cell, generous transparent separation, identical scale and lighting, no overlap, no perspective tilt
 Lighting/mood: premium studio rim light contained inside each object, triumphant and aspirational, never dark or threatening
-Materials/textures: metal, enamel and crystal with clean game-ready highlights; increasingly elaborate but uncluttered from III to I
+Materials/textures: metal, enamel, luminous pages and knowledge crystal with clean game-ready highlights; increasingly elaborate but uncluttered from III to I
 Constraints: genuinely transparent background; exactly 24 shields; no text, no letters, no Roman numerals, no numbers, no logos, no characters, no weapons, no skulls, no rectangular plates, no cast shadow outside each cell, no watermark
 Avoid: gritty e-sports, medieval horror, muddy colors, tiny details, duplicated shields, inconsistent camera angle, background scenery
 ```

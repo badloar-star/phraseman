@@ -5,14 +5,47 @@ import {
   createDailyJourneyHomeGrantController,
   createDailyJourneyHomeLandingGate,
   createDailyJourneyHomeProjectionController,
+  type DailyJourneyHomeDelivery,
   type DailyJourneyHomeTargetRect,
 } from '../app/daily_journey_home_orchestration';
+import * as dailyJourneyHomeOrchestration from '../app/daily_journey_home_orchestration';
 import { dailyJourneyRewardPayloadForDay } from '../components/dev/dailyJourneyRewardPreviewModel';
+import type { DailyJourneyGiftInput } from '../app/daily_journey_gift_inbox';
 
 const ROOT = path.join(__dirname, '..');
 const read = (relative: string): string => fs.readFileSync(path.join(ROOT, relative), 'utf8');
 
 type Token = Readonly<{ generation: number; stableId: string | null; phase: 'active' | 'transitioning' }>;
+
+type DeliveryController<TokenValue> = Readonly<{
+  setActive: (active: boolean) => void;
+  offer: (delivery: DailyJourneyHomeDelivery, token: TokenValue) => 'shown' | 'deferred' | 'stale';
+  complete: () => void;
+  landed: (occurrenceId: string | null) => 'pulsed' | 'ignored';
+  resetForAccount: () => void;
+  dispose: () => void;
+}>;
+
+type DeliveryControllerFactory = <TokenValue>(dependencies: Readonly<{
+  isTokenCurrent: (token: TokenValue) => boolean;
+  displayDelivery: (delivery: (DailyJourneyHomeDelivery & Readonly<{ run: number }>) | null) => void;
+  startPulse: () => void;
+  stopPulse: () => void;
+  shouldReduceMotion: () => boolean;
+}>) => DeliveryController<TokenValue>;
+
+const maybeCreateDeliveryController = (dailyJourneyHomeOrchestration as unknown as Readonly<{
+  createDailyJourneyHomeDeliveryController?: DeliveryControllerFactory;
+}>).createDailyJourneyHomeDeliveryController;
+
+const maybeMeasureTarget = (dailyJourneyHomeOrchestration as unknown as Readonly<{
+  measureDailyJourneyHomeTarget?: (dependencies: Readonly<{
+    measure: (callback: (x: number, y: number, width: number, height: number) => void) => void;
+    isCurrent: () => boolean;
+    windowHeight: number;
+    timeoutMs?: number;
+  }>) => Promise<DailyJourneyHomeTargetRect | null>;
+}>).measureDailyJourneyHomeTarget;
 
 function occurrence(input: {
   operationId: string;
@@ -163,7 +196,201 @@ describe('Daily Journey Home orchestration', () => {
 
     await expect(controller.press()).resolves.toBe('opened');
     expect(reportError).toHaveBeenCalledWith('measure', expect.any(Error));
-    expect(enqueueModal).toHaveBeenCalledWith(expect.objectContaining({ targetRect: null }));
+    expect(enqueueModal.mock.calls[0][0]).toEqual(expect.objectContaining({ targetRect: null }));
+  });
+
+  test('commit completed after blur defers the exact occurrence and focus resumes it once', async () => {
+    expect(typeof maybeCreateDeliveryController).toBe('function');
+    if (!maybeCreateDeliveryController) return;
+
+    let token: Token = { generation: 1, stableId: 'owner-a', phase: 'active' };
+    let runtime = { active: true, epoch: 1 };
+    let releaseCommit!: (value: ReturnType<typeof occurrence>) => void;
+    const displayed: ((DailyJourneyHomeDelivery & Readonly<{ run: number }>) | null)[] = [];
+    const deliveryController = maybeCreateDeliveryController<Token>({
+      isTokenCurrent: (candidate) => candidate.generation === token.generation && candidate.stableId === token.stableId,
+      displayDelivery: (delivery) => displayed.push(delivery),
+      startPulse: jest.fn(),
+      stopPulse: jest.fn(),
+      shouldReduceMotion: () => false,
+    });
+    deliveryController.setActive(true);
+
+    const grant = createDailyJourneyHomeGrantController<Token>({
+      createOperationId: () => 'blur-commit-0000-0000-000000000001',
+      captureToken: () => token,
+      isTokenCurrent: (candidate: Token) => candidate.generation === token.generation,
+      captureRuntimeEpoch: () => runtime.epoch,
+      isRuntimeActive: (epoch: number) => runtime.active && runtime.epoch === epoch,
+      commit: (_input: DailyJourneyGiftInput) => new Promise<{ status: 'committed'; occurrence: ReturnType<typeof occurrence> }>((resolve) => {
+        releaseCommit = (committedOccurrence) => resolve({ status: 'committed', occurrence: committedOccurrence });
+      }),
+      measureTarget: async () => ({ x: 1, y: 2, width: 3, height: 4 }),
+      enqueueModal: (delivery: DailyJourneyHomeDelivery, ownerToken: Token) => { deliveryController.offer(delivery, ownerToken); },
+      deferModal: (delivery: DailyJourneyHomeDelivery, ownerToken: Token) => { deliveryController.offer(delivery, ownerToken); },
+      reportError: jest.fn(),
+    } as unknown as Parameters<typeof createDailyJourneyHomeGrantController<Token>>[0] & {
+      captureRuntimeEpoch: () => number;
+      isRuntimeActive: (epoch: number) => boolean;
+      deferModal: (delivery: DailyJourneyHomeDelivery, ownerToken: Token) => void;
+    });
+
+    const pending = grant.press();
+    runtime = { active: false, epoch: 2 };
+    deliveryController.setActive(false);
+    releaseCommit(occurrence({
+      operationId: 'daily_journey_dev:blur-commit-0000-0000-000000000001',
+      cycle: 1,
+      day: 1,
+      reward: dailyJourneyRewardPayloadForDay(1),
+    }));
+
+    await expect(pending).resolves.toBe('deferred');
+    expect(displayed.filter(Boolean)).toHaveLength(0);
+    runtime = { active: true, epoch: 3 };
+    deliveryController.setActive(true);
+    deliveryController.setActive(true);
+    expect(displayed.filter(Boolean)).toHaveLength(1);
+    expect(displayed.at(-1)?.occurrence.operationId).toContain('blur-commit');
+  });
+
+  test('blur while measurement is pending ignores its rect and safely defers the modal', async () => {
+    expect(typeof maybeCreateDeliveryController).toBe('function');
+    if (!maybeCreateDeliveryController) return;
+
+    const token: Token = { generation: 1, stableId: 'owner-a', phase: 'active' };
+    let runtime = { active: true, epoch: 1 };
+    let releaseMeasure!: (rect: DailyJourneyHomeTargetRect) => void;
+    const displayed: ((DailyJourneyHomeDelivery & Readonly<{ run: number }>) | null)[] = [];
+    const deliveryController = maybeCreateDeliveryController<Token>({
+      isTokenCurrent: () => true,
+      displayDelivery: (delivery) => displayed.push(delivery),
+      startPulse: jest.fn(),
+      stopPulse: jest.fn(),
+      shouldReduceMotion: () => false,
+    });
+    deliveryController.setActive(true);
+    const measureTarget = jest.fn(() => new Promise<DailyJourneyHomeTargetRect>((resolve) => { releaseMeasure = resolve; }));
+    const grant = createDailyJourneyHomeGrantController<Token>({
+      createOperationId: () => 'blur-measure-0000-0000-000000000001',
+      captureToken: () => token,
+      isTokenCurrent: () => true,
+      captureRuntimeEpoch: () => runtime.epoch,
+      isRuntimeActive: (epoch: number) => runtime.active && runtime.epoch === epoch,
+      commit: async (input: DailyJourneyGiftInput) => ({ status: 'committed' as const, occurrence: occurrence(input) }),
+      measureTarget,
+      enqueueModal: (delivery: DailyJourneyHomeDelivery, ownerToken: Token) => { deliveryController.offer(delivery, ownerToken); },
+      deferModal: (delivery: DailyJourneyHomeDelivery, ownerToken: Token) => { deliveryController.offer(delivery, ownerToken); },
+      reportError: jest.fn(),
+    } as unknown as Parameters<typeof createDailyJourneyHomeGrantController<Token>>[0] & {
+      captureRuntimeEpoch: () => number;
+      isRuntimeActive: (epoch: number) => boolean;
+      deferModal: (delivery: DailyJourneyHomeDelivery, ownerToken: Token) => void;
+    });
+
+    const pending = grant.press();
+    await Promise.resolve();
+    expect(measureTarget).toHaveBeenCalledTimes(1);
+    runtime = { active: false, epoch: 2 };
+    deliveryController.setActive(false);
+    releaseMeasure({ x: 11, y: 12, width: 200, height: 160 });
+    await expect(pending).resolves.toBe('deferred');
+    runtime = { active: true, epoch: 3 };
+    deliveryController.setActive(true);
+    expect(displayed.at(-1)?.targetRect).toBeNull();
+  });
+
+  test('account switch drops deferred UI and inactive or duplicate landings are true no-ops', () => {
+    expect(typeof maybeCreateDeliveryController).toBe('function');
+    if (!maybeCreateDeliveryController) return;
+
+    let token: Token = { generation: 1, stableId: 'owner-a', phase: 'active' };
+    let reduced = false;
+    const displayDelivery = jest.fn();
+    const startPulse = jest.fn();
+    const stopPulse = jest.fn();
+    const deliveryController = maybeCreateDeliveryController<Token>({
+      isTokenCurrent: (candidate) => candidate.generation === token.generation && candidate.stableId === token.stableId,
+      displayDelivery,
+      startPulse,
+      stopPulse,
+      shouldReduceMotion: () => reduced,
+    });
+    const oldDelivery = Object.freeze({
+      occurrence: occurrence({
+        operationId: 'daily_journey_dev:old-account', cycle: 1, day: 1, reward: dailyJourneyRewardPayloadForDay(1),
+      }),
+      targetRect: null,
+    });
+    expect(deliveryController.offer(oldDelivery, token)).toBe('deferred');
+    token = { generation: 2, stableId: 'owner-b', phase: 'active' };
+    deliveryController.resetForAccount();
+    deliveryController.setActive(true);
+    expect(displayDelivery).not.toHaveBeenCalledWith(expect.objectContaining({ occurrence: oldDelivery.occurrence }));
+
+    const currentDelivery = Object.freeze({
+      occurrence: occurrence({
+        operationId: 'daily_journey_dev:current-account', cycle: 1, day: 2, reward: dailyJourneyRewardPayloadForDay(2),
+      }),
+      targetRect: null,
+    });
+    expect(deliveryController.offer(currentDelivery, token)).toBe('shown');
+    expect(deliveryController.landed('wrong-occurrence')).toBe('ignored');
+    expect(deliveryController.landed(currentDelivery.occurrence.operationId)).toBe('pulsed');
+    const stopsBeforeDuplicate = stopPulse.mock.calls.length;
+    expect(deliveryController.landed(currentDelivery.occurrence.operationId)).toBe('ignored');
+    expect(startPulse).toHaveBeenCalledTimes(1);
+    expect(stopPulse).toHaveBeenCalledTimes(stopsBeforeDuplicate);
+
+    const nextDelivery = Object.freeze({
+      occurrence: occurrence({
+        operationId: 'daily_journey_dev:next-run', cycle: 1, day: 3, reward: dailyJourneyRewardPayloadForDay(3),
+      }),
+      targetRect: null,
+    });
+    expect(deliveryController.offer(nextDelivery, token)).toBe('deferred');
+    deliveryController.complete();
+    expect(stopPulse).toHaveBeenCalledTimes(stopsBeforeDuplicate + 1);
+
+    deliveryController.setActive(false);
+    expect(displayDelivery).toHaveBeenLastCalledWith(null);
+    expect(deliveryController.landed(currentDelivery.occurrence.operationId)).toBe('ignored');
+    expect(startPulse).toHaveBeenCalledTimes(1);
+    reduced = true;
+    deliveryController.setActive(true);
+    expect(displayDelivery).toHaveBeenLastCalledWith(expect.objectContaining({ occurrence: nextDelivery.occurrence }));
+    expect(deliveryController.landed(nextDelivery.occurrence.operationId)).toBe('ignored');
+    expect(startPulse).toHaveBeenCalledTimes(1);
+
+    const displaysBeforeDispose = displayDelivery.mock.calls.length;
+    deliveryController.dispose();
+    expect(displayDelivery).toHaveBeenCalledTimes(displaysBeforeDispose);
+  });
+
+  test('measurement times out at 300ms and ignores a late native callback', async () => {
+    expect(typeof maybeMeasureTarget).toBe('function');
+    if (!maybeMeasureTarget) return;
+
+    jest.useFakeTimers();
+    try {
+      let nativeCallback!: (x: number, y: number, width: number, height: number) => void;
+      const result = maybeMeasureTarget({
+        measure: (callback) => { nativeCallback = callback; },
+        isCurrent: () => true,
+        windowHeight: 800,
+      });
+      jest.advanceTimersByTime(299);
+      let settled = false;
+      void result.then(() => { settled = true; });
+      await Promise.resolve();
+      expect(settled).toBe(false);
+      jest.advanceTimersByTime(1);
+      await expect(result).resolves.toBeNull();
+      nativeCallback(10, 20, 300, 180);
+      await expect(result).resolves.toBeNull();
+    } finally {
+      jest.useRealTimers();
+    }
   });
 
   test('projection reloads are focus/account/request guarded and source failure preserves the visible count', async () => {
@@ -250,7 +477,7 @@ describe('Home source wiring for Daily Journey', () => {
     expect(home).toContain('toValue: 1.035');
     expect(home).toContain('transform: [{ scale: dailyJourneyPulseAnim }]');
     expect(home).toContain('stopDailyJourneyPulse');
-    expect(home).toContain('if (next) stopDailyJourneyPulse();');
+    expect(home).toContain('measureDailyJourneyHomeTarget');
   });
 
   test('keeps Spin centered and routes unread Gift from its independent right slot', () => {
@@ -259,12 +486,16 @@ describe('Home source wiring for Daily Journey', () => {
     expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,220}position: 'absolute'[\s\S]{0,100}right: 0/);
     expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,1200}nav\.push\('\/level_gifts_inventory'\)/);
     expect(home).toContain('{dailyJourneyUnreadCount > 0 ? (');
+    expect(home).toContain('testID="home-stats-bottom-row"');
+    expect(home).not.toContain('{(homeSpinBalance > 0 || dailyJourneyUnreadCount > 0) ? (');
   });
 
   test('reloads on inbox events and account changes without marking seen on Home', () => {
     expect(home).toContain("onAppEvent('daily_journey_gifts_changed'");
+    expect(home).not.toContain("onAppEvent('daily_journey_delivered'");
     expect(home).toContain('subscribeAccountGeneration');
     expect(home).toContain('resetForAccount()');
+    expect(home).toContain('dailyJourneyDeliveryController.setActive(homeRuntimeActive)');
     expect(home).not.toContain('markDailyJourneyGiftSnapshotSeen');
   });
 });

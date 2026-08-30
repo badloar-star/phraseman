@@ -131,10 +131,11 @@ import { registerDailyJourneyRevealTargetMeasurer } from '../../components/daily
 import DailyJourneyRewardPreviewModal from '../../components/dev/DailyJourneyRewardPreviewModal';
 import { commitDailyJourneyGift, readDailyJourneyGiftProjection } from '../daily_journey_gift_inbox';
 import {
+  createDailyJourneyHomeDeliveryController,
   createDailyJourneyHomeGrantController,
-  createDailyJourneyHomeLandingGate,
   createDailyJourneyHomeProjectionController,
-  type DailyJourneyHomeDelivery,
+  measureDailyJourneyHomeTarget,
+  type DailyJourneyHomePresentedDelivery,
   type DailyJourneyHomeTargetRect,
 } from '../daily_journey_home_orchestration';
 import { soundDirector } from '../../modules/audio/sound_director';
@@ -1169,14 +1170,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // вход «Подарок» в независимом правом слоте, пока есть непрочитанные.
     const dailyJourneyPulseAnim = useRef(new Animated.Value(1)).current;
     const dailyJourneyPulseAnimationRef = useRef<Animated.CompositeAnimation | null>(null);
-    const dailyJourneyLandingGateRef = useRef(createDailyJourneyHomeLandingGate());
     const homeStatsCardRef = useRef<View | null>(null);
     const dailyJourneyReduceMotion = useReduceMotion();
+    const dailyJourneyReduceMotionRef = useRef(dailyJourneyReduceMotion);
+    dailyJourneyReduceMotionRef.current = dailyJourneyReduceMotion;
+    const dailyJourneyRuntimeRef = useRef({ active: false, epoch: 0 });
     const [dailyJourneyUnreadCount, setDailyJourneyUnreadCount] = useState(0);
-    const [dailyJourneyDelivery, setDailyJourneyDelivery] = useState<(DailyJourneyHomeDelivery & Readonly<{ run: number }>) | null>(null);
-    const dailyJourneyDeliveryRef = useRef<(DailyJourneyHomeDelivery & Readonly<{ run: number }>) | null>(null);
-    const dailyJourneyDeliveryQueueRef = useRef<(DailyJourneyHomeDelivery & Readonly<{ run: number }>)[]>([]);
-    const dailyJourneyDeliveryRunRef = useRef(0);
+    const [dailyJourneyDelivery, setDailyJourneyDelivery] = useState<DailyJourneyHomePresentedDelivery | null>(null);
 
     const reportDailyJourneyHomeError = useCallback((scope: string, error: unknown, showFeedback = false) => {
         DebugLogger.error(`home:daily_journey:${scope}`, error instanceof Error ? error : new Error(String(error)), 'warning');
@@ -1209,11 +1209,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         dailyJourneyPulseAnim.setValue(1);
     }, [dailyJourneyPulseAnim]);
 
-    const handleDailyJourneyLanded = useCallback((occurrenceId: string | null) => {
-        if (!dailyJourneyLandingGateRef.current.shouldPulse(occurrenceId, dailyJourneyReduceMotion)) {
-            dailyJourneyPulseAnim.setValue(1);
-            return;
-        }
+    const startDailyJourneyPulse = useCallback(() => {
         stopDailyJourneyPulse();
         const animation = Animated.sequence([
             Animated.timing(dailyJourneyPulseAnim, { toValue: 1.035, duration: 180, easing: Easing.out(Easing.cubic), useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }), // guard-ok: native transform only
@@ -1223,96 +1219,87 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         animation.start(() => {
             if (dailyJourneyPulseAnimationRef.current === animation) dailyJourneyPulseAnimationRef.current = null;
         });
-    }, [dailyJourneyPulseAnim, dailyJourneyReduceMotion, stopDailyJourneyPulse]);
+    }, [dailyJourneyPulseAnim, stopDailyJourneyPulse]);
 
-    const measureDailyJourneyStatsCard = useCallback(() => new Promise<DailyJourneyHomeTargetRect | null>((resolve) => {
+    const measureDailyJourneyStatsCard = useCallback((runtimeEpoch = dailyJourneyRuntimeRef.current.epoch): Promise<DailyJourneyHomeTargetRect | null> => {
         const node = homeStatsCardRef.current;
-        if (!homeRuntimeActive || !node || typeof node.measureInWindow !== 'function') {
-            resolve(null);
-            return;
+        if (!node || typeof node.measureInWindow !== 'function') {
+            return Promise.resolve(null);
         }
-        node.measureInWindow((x, y, width, height) => {
-            const windowHeight = Dimensions.get('window').height;
-            if (!Number.isFinite(x) || !Number.isFinite(y) || width <= 0 || height <= 0 || y + height <= 0 || y >= windowHeight) {
-                resolve(null);
-                return;
-            }
-            resolve(Object.freeze({ x, y, width, height }));
+        return measureDailyJourneyHomeTarget({
+            measure: (callback) => node.measureInWindow(callback),
+            isCurrent: () => dailyJourneyRuntimeRef.current.active
+                && dailyJourneyRuntimeRef.current.epoch === runtimeEpoch,
+            windowHeight: Dimensions.get('window').height,
         });
-    }), [homeRuntimeActive]);
+    }, []);
     const measureDailyJourneyStatsCardRef = useRef(measureDailyJourneyStatsCard);
     measureDailyJourneyStatsCardRef.current = measureDailyJourneyStatsCard;
 
-    const enqueueDailyJourneyDelivery = useCallback((delivery: DailyJourneyHomeDelivery) => {
-        stopDailyJourneyPulse();
-        const queued = Object.freeze({ ...delivery, run: ++dailyJourneyDeliveryRunRef.current });
-        if (dailyJourneyDeliveryRef.current) {
-            dailyJourneyDeliveryQueueRef.current.push(queued);
-            return;
-        }
-        dailyJourneyDeliveryRef.current = queued;
-        setDailyJourneyDelivery(queued);
-    }, [stopDailyJourneyPulse]);
-    const enqueueDailyJourneyDeliveryRef = useRef(enqueueDailyJourneyDelivery);
-    enqueueDailyJourneyDeliveryRef.current = enqueueDailyJourneyDelivery;
+    const dailyJourneyDeliveryController = useMemo(() => createDailyJourneyHomeDeliveryController<AccountGenerationToken>({
+        isTokenCurrent: isCurrentAccountGeneration,
+        displayDelivery: setDailyJourneyDelivery,
+        startPulse: startDailyJourneyPulse,
+        stopPulse: stopDailyJourneyPulse,
+        shouldReduceMotion: () => dailyJourneyReduceMotionRef.current,
+    }), [startDailyJourneyPulse, stopDailyJourneyPulse]);
 
     const completeDailyJourneyDelivery = useCallback(() => {
-        const next = dailyJourneyDeliveryQueueRef.current.shift() ?? null;
-        // The just-landed pulse must remain visible. Only a queued new run
-        // cancels it before that next modal starts.
-        if (next) stopDailyJourneyPulse();
-        dailyJourneyDeliveryRef.current = next;
-        setDailyJourneyDelivery(next);
-    }, [stopDailyJourneyPulse]);
+        dailyJourneyDeliveryController.complete();
+    }, [dailyJourneyDeliveryController]);
 
-    const clearDailyJourneyDeliveries = useCallback(() => {
-        dailyJourneyDeliveryQueueRef.current = [];
-        dailyJourneyDeliveryRef.current = null;
-        setDailyJourneyDelivery(null);
-        stopDailyJourneyPulse();
-    }, [stopDailyJourneyPulse]);
+    const handleDailyJourneyLanded = useCallback((occurrenceId: string | null) => {
+        dailyJourneyDeliveryController.landed(occurrenceId);
+    }, [dailyJourneyDeliveryController]);
 
     const dailyJourneyGrantController = useMemo(() => createDailyJourneyHomeGrantController<AccountGenerationToken>({
         createOperationId: () => Crypto.randomUUID(),
         captureToken: captureAccountGeneration,
         isTokenCurrent: isCurrentAccountGeneration,
+        captureRuntimeEpoch: () => dailyJourneyRuntimeRef.current.epoch,
+        isRuntimeActive: (epoch) => dailyJourneyRuntimeRef.current.active
+            && dailyJourneyRuntimeRef.current.epoch === epoch,
         commit: (input, token) => commitDailyJourneyGift(input, token),
-        measureTarget: () => measureDailyJourneyStatsCardRef.current(),
-        enqueueModal: (delivery) => enqueueDailyJourneyDeliveryRef.current(delivery),
+        measureTarget: (epoch) => measureDailyJourneyStatsCardRef.current(epoch),
+        enqueueModal: (delivery, token) => { dailyJourneyDeliveryController.offer(delivery, token); },
+        deferModal: (delivery, token) => { dailyJourneyDeliveryController.offer(delivery, token); },
         reportError: (scope, error) => reportDailyJourneyHomeError(scope, error, scope !== 'measure'),
-    }), [reportDailyJourneyHomeError]);
+    }), [dailyJourneyDeliveryController, reportDailyJourneyHomeError]);
 
     useEffect(() => {
+        dailyJourneyRuntimeRef.current = {
+            active: homeRuntimeActive,
+            epoch: dailyJourneyRuntimeRef.current.epoch + 1,
+        };
+        dailyJourneyDeliveryController.setActive(homeRuntimeActive);
         if (homeRuntimeActive) {
             void dailyJourneyProjectionController.activate().catch((error) => reportDailyJourneyHomeError('projection_activate', error));
         } else {
             dailyJourneyProjectionController.deactivate();
-            stopDailyJourneyPulse();
         }
-    }, [dailyJourneyProjectionController, homeRuntimeActive, reportDailyJourneyHomeError, stopDailyJourneyPulse]);
+    }, [dailyJourneyDeliveryController, dailyJourneyProjectionController, homeRuntimeActive, reportDailyJourneyHomeError]);
 
     useEffect(() => {
         if (!homeRuntimeActive) return undefined;
         const changedSub = onAppEvent('daily_journey_gifts_changed', () => {
             void dailyJourneyProjectionController.reload().catch((error) => reportDailyJourneyHomeError('projection_event', error));
         });
-        const deliveredSub = onAppEvent('daily_journey_delivered', ({ occurrenceId }) => {
-            handleDailyJourneyLanded(occurrenceId);
-            void dailyJourneyProjectionController.reload().catch((error) => reportDailyJourneyHomeError('projection_delivered', error));
-        });
         return () => {
             changedSub.remove();
-            deliveredSub.remove();
         };
-    }, [dailyJourneyProjectionController, handleDailyJourneyLanded, homeRuntimeActive, reportDailyJourneyHomeError]);
+    }, [dailyJourneyProjectionController, homeRuntimeActive, reportDailyJourneyHomeError]);
 
     useEffect(() => {
         const accountSub = subscribeAccountGeneration(() => {
-            clearDailyJourneyDeliveries();
+            dailyJourneyRuntimeRef.current = {
+                ...dailyJourneyRuntimeRef.current,
+                epoch: dailyJourneyRuntimeRef.current.epoch + 1,
+            };
+            dailyJourneyDeliveryController.resetForAccount();
             void dailyJourneyProjectionController.resetForAccount().catch((error) => reportDailyJourneyHomeError('projection_account', error));
         });
         return () => accountSub.remove();
-    }, [clearDailyJourneyDeliveries, dailyJourneyProjectionController, reportDailyJourneyHomeError]);
+    }, [dailyJourneyDeliveryController, dailyJourneyProjectionController, reportDailyJourneyHomeError]);
 
     useEffect(() => {
         // DevHub preview compatibility: it has no direct Home target prop, so
@@ -1322,18 +1309,20 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             return rect ? { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 } : null;
         });
         return unregister;
-    }, [homeRuntimeActive]);
+    }, []);
 
     useEffect(() => {
         if (dailyJourneyReduceMotion) stopDailyJourneyPulse();
     }, [dailyJourneyReduceMotion, stopDailyJourneyPulse]);
 
     useEffect(() => () => {
+        dailyJourneyRuntimeRef.current = {
+            active: false,
+            epoch: dailyJourneyRuntimeRef.current.epoch + 1,
+        };
+        dailyJourneyDeliveryController.dispose();
         dailyJourneyProjectionController.dispose();
-        dailyJourneyDeliveryQueueRef.current = [];
-        dailyJourneyDeliveryRef.current = null;
-        stopDailyJourneyPulse();
-    }, [dailyJourneyProjectionController, stopDailyJourneyPulse]);
+    }, [dailyJourneyDeliveryController, dailyJourneyProjectionController]);
     const eliteStatusEntrance = useRef(new Animated.Value(1)).current;
     const eliteQuickTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
     const eliteActivityTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
@@ -3384,11 +3373,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   В ПОТОКЕ под рядом дней
                   недели, а не абсолютом поверх: пилюля 44px перекрывала бы
                   подпись «Вс» в правом углу. */}
-              {(homeSpinBalance > 0 || dailyJourneyUnreadCount > 0) ? (
-              // зачем (спека Daily Journey, п. 6): «Спин» остаётся ровно по
-              // центру, «Подарок» живёт в независимом правом слоте (absolute)
-              // и не сдвигает центр при появлении/исчезновении любого из них.
-              <View style={{ marginTop: eliteStatsCompact ? 12 : 14, minHeight: 44, justifyContent: 'center' }}>
+              {/* зачем (спека Daily Journey, п. 6): «Спин» остаётся ровно по
+                  центру, «Подарок» живёт в независимом правом слоте (absolute)
+                  и не сдвигает центр при появлении/исчезновении любого из них.
+                  Сам ряд всегда зарезервирован: commit/unread не меняет высоту
+                  уже измеренной карточки и центр цели доставки. */}
+              <View testID="home-stats-bottom-row" style={{ marginTop: eliteStatsCompact ? 12 : 14, minHeight: 44, justifyContent: 'center' }}>
               {homeSpinBalance > 0 ? (
                 <Animated.View
                   testID="home-spin-fab"
@@ -3517,7 +3507,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 </View>
               ) : null}
               </View>
-              ) : null}
               {showStatsPulseHint && (<Animated.Text accessibilityLiveRegion="polite" style={{
                     color: t.accent,
                     fontSize: 13,

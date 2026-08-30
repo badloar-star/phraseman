@@ -19,13 +19,15 @@ export type DailyJourneyHomeDelivery = Readonly<{
 export type DailyJourneyHomeGrantErrorScope = 'commit' | 'measure' | 'modal' | 'account_stale';
 
 export type DailyJourneyHomeGrantController = Readonly<{
-  press: () => Promise<'opened' | 'failed' | 'stale'>;
+  press: () => Promise<'opened' | 'deferred' | 'failed' | 'stale'>;
 }>;
 
 export function createDailyJourneyHomeGrantController<Token>(dependencies: Readonly<{
   createOperationId: () => string;
   captureToken: () => Token;
   isTokenCurrent: (token: Token) => boolean;
+  captureRuntimeEpoch?: () => number;
+  isRuntimeActive?: (epoch: number) => boolean;
   commit: (
     input: DailyJourneyGiftInput,
     token: Token,
@@ -33,8 +35,9 @@ export function createDailyJourneyHomeGrantController<Token>(dependencies: Reado
     status: 'committed' | 'already_committed';
     occurrence: DailyJourneyGiftOccurrenceV1;
   }>>;
-  measureTarget: () => Promise<DailyJourneyHomeTargetRect | null>;
-  enqueueModal: (delivery: DailyJourneyHomeDelivery) => void;
+  measureTarget: (runtimeEpoch: number) => Promise<DailyJourneyHomeTargetRect | null>;
+  enqueueModal: (delivery: DailyJourneyHomeDelivery, token: Token) => void;
+  deferModal?: (delivery: DailyJourneyHomeDelivery, token: Token) => void;
   reportError: (scope: DailyJourneyHomeGrantErrorScope, error: unknown) => void;
 }>): DailyJourneyHomeGrantController {
   let pressOrdinal = 0;
@@ -47,7 +50,7 @@ export function createDailyJourneyHomeGrantController<Token>(dependencies: Reado
     }
   };
 
-  const press = async (): Promise<'opened' | 'failed' | 'stale'> => {
+  const press = async (): Promise<'opened' | 'deferred' | 'failed' | 'stale'> => {
     // Reserve every logical grant synchronously. Rapid taps therefore cannot
     // share a day or id while either durable commit is still pending.
     const ordinal = pressOrdinal;
@@ -56,6 +59,8 @@ export function createDailyJourneyHomeGrantController<Token>(dependencies: Reado
     const cycle = Math.floor(ordinal / 50) + 1;
     const operationId = `daily_journey_dev:${dependencies.createOperationId()}`;
     const token = dependencies.captureToken();
+    const runtimeEpoch = dependencies.captureRuntimeEpoch?.() ?? 0;
+    const isRuntimeActive = (): boolean => dependencies.isRuntimeActive?.(runtimeEpoch) ?? true;
 
     if (!dependencies.isTokenCurrent(token)) {
       report('account_stale', new Error('daily_journey_home_account_stale'));
@@ -81,9 +86,27 @@ export function createDailyJourneyHomeGrantController<Token>(dependencies: Reado
       return 'stale';
     }
 
+    const present = (delivery: DailyJourneyHomeDelivery, deferred: boolean): 'opened' | 'deferred' | 'failed' => {
+      try {
+        if (deferred && dependencies.deferModal) {
+          dependencies.deferModal(delivery, token);
+          return 'deferred';
+        }
+        dependencies.enqueueModal(delivery, token);
+        return deferred ? 'deferred' : 'opened';
+      } catch (error) {
+        report('modal', error);
+        return 'failed';
+      }
+    };
+
+    if (!isRuntimeActive()) {
+      return present(Object.freeze({ occurrence: committed.occurrence, targetRect: null }), true);
+    }
+
     let targetRect: DailyJourneyHomeTargetRect | null = null;
     try {
-      targetRect = await dependencies.measureTarget();
+      targetRect = await dependencies.measureTarget(runtimeEpoch);
     } catch (error) {
       // Measurement is presentation-only. The verified occurrence stays real
       // and the modal uses its stable top-center fallback.
@@ -95,16 +118,10 @@ export function createDailyJourneyHomeGrantController<Token>(dependencies: Reado
       return 'stale';
     }
 
-    try {
-      dependencies.enqueueModal(Object.freeze({
-        occurrence: committed.occurrence,
-        targetRect,
-      }));
-    } catch (error) {
-      report('modal', error);
-      return 'failed';
+    if (!isRuntimeActive()) {
+      return present(Object.freeze({ occurrence: committed.occurrence, targetRect: null }), true);
     }
-    return 'opened';
+    return present(Object.freeze({ occurrence: committed.occurrence, targetRect }), false);
   };
 
   return Object.freeze({ press });
@@ -220,5 +237,169 @@ export function createDailyJourneyHomeLandingGate(): DailyJourneyHomeLandingGate
       }
       return !reduceMotion;
     },
+  });
+}
+
+export type DailyJourneyHomePresentedDelivery = DailyJourneyHomeDelivery & Readonly<{ run: number }>;
+
+export type DailyJourneyHomeDeliveryController<Token> = Readonly<{
+  setActive: (active: boolean) => void;
+  offer: (delivery: DailyJourneyHomeDelivery, token: Token) => 'shown' | 'deferred' | 'stale';
+  complete: () => void;
+  landed: (occurrenceId: string | null) => 'pulsed' | 'ignored';
+  resetForAccount: () => void;
+  dispose: () => void;
+}>;
+
+/**
+ * Owns delivery UI independently from the durable journal. Blur hides and
+ * defers the exact committed occurrence; focus shows it once if its account
+ * generation is still current. Duplicate/stale landing callbacks are no-ops.
+ */
+export function createDailyJourneyHomeDeliveryController<Token>(dependencies: Readonly<{
+  isTokenCurrent: (token: Token) => boolean;
+  displayDelivery: (delivery: DailyJourneyHomePresentedDelivery | null) => void;
+  startPulse: () => void;
+  stopPulse: () => void;
+  shouldReduceMotion: () => boolean;
+}>): DailyJourneyHomeDeliveryController<Token> {
+  type Entry = Readonly<{ delivery: DailyJourneyHomeDelivery; token: Token }>;
+
+  let active = false;
+  let disposed = false;
+  let visible: (Entry & Readonly<{ presented: DailyJourneyHomePresentedDelivery }>) | null = null;
+  let pending: Entry[] = [];
+  let run = 0;
+  const landingGate = createDailyJourneyHomeLandingGate();
+
+  const showNext = (): void => {
+    if (!active || disposed || visible) return;
+    while (pending.length > 0) {
+      const entry = pending.shift() as Entry;
+      if (!dependencies.isTokenCurrent(entry.token)) continue;
+      const presented = Object.freeze({ ...entry.delivery, run: ++run });
+      visible = Object.freeze({ ...entry, presented });
+      dependencies.displayDelivery(presented);
+      return;
+    }
+    dependencies.displayDelivery(null);
+  };
+
+  const setActive = (nextActive: boolean): void => {
+    if (disposed || active === nextActive) return;
+    active = nextActive;
+    if (!active) {
+      if (visible) {
+        pending.unshift(Object.freeze({
+          delivery: Object.freeze({ ...visible.delivery, targetRect: null }),
+          token: visible.token,
+        }));
+        visible = null;
+        dependencies.displayDelivery(null);
+      }
+      dependencies.stopPulse();
+      return;
+    }
+    showNext();
+  };
+
+  const offer = (delivery: DailyJourneyHomeDelivery, token: Token): 'shown' | 'deferred' | 'stale' => {
+    if (disposed || !dependencies.isTokenCurrent(token)) return 'stale';
+    const entry = Object.freeze({ delivery, token });
+    if (!active || visible) {
+      pending.push(entry);
+      return 'deferred';
+    }
+    pending.push(entry);
+    showNext();
+    return 'shown';
+  };
+
+  const complete = (): void => {
+    if (disposed || !visible) return;
+    visible = null;
+    if (!active) {
+      dependencies.displayDelivery(null);
+      return;
+    }
+    if (pending.length > 0) dependencies.stopPulse();
+    showNext();
+  };
+
+  const landed = (occurrenceId: string | null): 'pulsed' | 'ignored' => {
+    if (disposed || !active || !visible || occurrenceId !== visible.delivery.occurrence.operationId) {
+      return 'ignored';
+    }
+    if (!landingGate.shouldPulse(occurrenceId, dependencies.shouldReduceMotion())) return 'ignored';
+    dependencies.startPulse();
+    return 'pulsed';
+  };
+
+  const resetForAccount = (): void => {
+    pending = [];
+    visible = null;
+    dependencies.displayDelivery(null);
+    dependencies.stopPulse();
+  };
+
+  const dispose = (): void => {
+    if (disposed) return;
+    disposed = true;
+    active = false;
+    pending = [];
+    visible = null;
+    dependencies.stopPulse();
+  };
+
+  return Object.freeze({ setActive, offer, complete, landed, resetForAccount, dispose });
+}
+
+const DAILY_JOURNEY_HOME_MEASURE_TIMEOUT_MS = 300;
+
+/** Bounded native measurement. Epoch/focus cancellation and late callbacks resolve to the stable fallback. */
+export function measureDailyJourneyHomeTarget(dependencies: Readonly<{
+  measure: (callback: (x: number, y: number, width: number, height: number) => void) => void;
+  isCurrent: () => boolean;
+  windowHeight: number;
+  timeoutMs?: number;
+}>): Promise<DailyJourneyHomeTargetRect | null> {
+  return new Promise((resolve) => {
+    let settled = false;
+    let timeout: ReturnType<typeof setTimeout> | null = null;
+    const finish = (rect: DailyJourneyHomeTargetRect | null): void => {
+      if (settled) return;
+      settled = true;
+      if (timeout) clearTimeout(timeout);
+      resolve(rect);
+    };
+
+    timeout = setTimeout(() => finish(null), dependencies.timeoutMs ?? DAILY_JOURNEY_HOME_MEASURE_TIMEOUT_MS);
+    if (!dependencies.isCurrent()) {
+      finish(null);
+      return;
+    }
+
+    try {
+      dependencies.measure((x, y, width, height) => {
+        if (settled || !dependencies.isCurrent()) {
+          finish(null);
+          return;
+        }
+        if (!Number.isFinite(x)
+          || !Number.isFinite(y)
+          || !Number.isFinite(width)
+          || !Number.isFinite(height)
+          || width <= 0
+          || height <= 0
+          || y + height <= 0
+          || y >= dependencies.windowHeight) {
+          finish(null);
+          return;
+        }
+        finish(Object.freeze({ x, y, width, height }));
+      });
+    } catch {
+      finish(null);
+    }
   });
 }

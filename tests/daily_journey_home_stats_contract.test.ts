@@ -693,7 +693,7 @@ describe('Statistics source wiring for Daily Journey', () => {
     expect(stats).toMatch(/testID="stats-header-gifts"[\s\S]{0,2600}dailyJourneyUnreadCount/);
     expect(stats).toMatch(/testID="stats-header-gifts"[\s\S]{0,5000}width: 44, height: 44/);
     expect(stats).toContain('Unseen Daily Journey gifts');
-    expect(stats).toContain('accessibilityRole="button"');
+    expect(stats).toMatch(/testID="stats-header-gifts"[\s\S]{0,500}accessibilityRole="button"/);
     expect(stats).toContain('pendingGiftCount > 0 && dailyJourneyUnreadCount > 0');
     expect(stats).toMatch(/<Reanimated\.View style=\{dailyJourneyUnreadHopStyle\}>\s*<TouchableOpacity[\s\S]{0,2400}testID="stats-header-gifts"/);
     expect(stats).not.toMatch(/<Reanimated\.View style=\{dailyJourneyUnreadHopStyle\}>\s*<TouchableOpacity[\s\S]{0,500}testID="stats-header-spins"/);

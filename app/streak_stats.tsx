@@ -4153,6 +4153,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 <Reanimated.View style={dailyJourneyUnreadHopStyle}>
                 <TouchableOpacity
                   testID="stats-header-gifts"
+                  accessibilityRole="button"
                   accessibilityHint={triLang(lang, {
                     ru: ruGiftPhrase(pendingGiftCount),
                     uk: ukGiftPhrase(pendingGiftCount),

@@ -208,6 +208,7 @@ describe('Economy Constitution — client authority is a permanent source contra
       'daily_journey_freeze_operation_v1:',
       'daily_journey_freeze_prepared_v1:',
       'daily_journey_freeze_projection_v1:',
+      'daily_journey_protected_day_prepared_v1:',
     ]) expect(dailyJourneyFreezeKeys).toContain(`'${prefix}'`);
     expect(cloudSync).toContain('...DAILY_JOURNEY_FREEZE_ACCOUNT_LOCAL_PREFIXES');
     expect(cloudSync).toContain('isLearningV2AccountLocalKey(key)');

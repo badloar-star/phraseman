@@ -31,10 +31,17 @@ export async function removeOwnerLevelGiftEffectReceipts(ownerStableId: string):
     Object.entries(current).filter(([key]) => !key.startsWith(prefix)),
   );
   if (Object.keys(retained).length === Object.keys(current).length) return;
+  const expectedDurableRaw = Object.keys(retained).length === 0
+    ? null
+    : JSON.stringify(retained);
   if (Object.keys(retained).length === 0) {
     await AsyncStorage.removeItem(LEVEL_GIFT_EFFECT_RECEIPTS_KEY);
   } else {
-    await AsyncStorage.setItem(LEVEL_GIFT_EFFECT_RECEIPTS_KEY, JSON.stringify(retained));
+    await AsyncStorage.setItem(LEVEL_GIFT_EFFECT_RECEIPTS_KEY, expectedDurableRaw!);
+  }
+  const durableRaw = await AsyncStorage.getItem(LEVEL_GIFT_EFFECT_RECEIPTS_KEY);
+  if (durableRaw !== expectedDurableRaw) {
+    throw new Error('account_wipe_incomplete');
   }
   await assertNoOwnerLevelGiftEffectReceipts(ownerStableId);
 }

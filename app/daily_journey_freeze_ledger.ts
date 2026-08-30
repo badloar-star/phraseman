@@ -10,6 +10,7 @@ import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
   withAccountTransitionLock,
+  type AccountTransitionLockLease,
   type AccountGenerationToken,
 } from './account_generation';
 import { withStorageLock } from './storage_mutex';
@@ -278,17 +279,20 @@ async function finalizePrepared(
   if (existing && JSON.stringify(existing) !== JSON.stringify(prepared.operation)) {
     throw new Error('daily_journey_freeze_operation_conflict');
   }
-  if (!existing && prepared.operation.revision !== operations.length + 1) {
+  const priorOperations = existing
+    ? operations.filter((operation) => operation.operationId !== prepared.operation.operationId)
+    : operations;
+  if (prepared.operation.revision !== priorOperations.length + 1
+    || (existing && prepared.operation.revision !== operations.length)) {
     throw new Error('daily_journey_freeze_prepared_conflict');
   }
-  const nextOperations = existing ? operations : [...operations, prepared.operation];
+  const nextOperations = [...priorOperations, prepared.operation];
+  const priorProjection = projectionFrom(ownerStableId, priorOperations);
   const projection = projectionFrom(ownerStableId, nextOperations);
   const projectionRaw = await accountAwait(token, () => AsyncStorage.getItem(projectionKey(ownerStableId)));
-  const currentProjection = parseProjection(projectionRaw, ownerStableId);
-  const head = operations.length;
-  if (projectionRaw !== null && (!currentProjection
-    || (currentProjection.latestRevision !== head
-      && currentProjection.latestRevision !== prepared.operation.revision))) {
+  const exactPriorProjectionRaw = priorOperations.length === 0 ? null : JSON.stringify(priorProjection);
+  const exactNextProjectionRaw = JSON.stringify(projection);
+  if (projectionRaw !== exactPriorProjectionRaw && projectionRaw !== exactNextProjectionRaw) {
     throw new Error('daily_journey_freeze_projection_corrupt');
   }
   await accountAwait(token, () => AsyncStorage.multiSet([
@@ -312,14 +316,18 @@ async function recoverPrepared(ownerStableId: string, token: AccountGenerationTo
 async function withFreezeLock<T>(
   token: AccountGenerationToken,
   work: (ownerStableId: string) => Promise<T>,
+  accountTransitionLockLease?: AccountTransitionLockLease,
 ): Promise<T> {
-  return accountAwait(token, () => withAccountTransitionLock(async () => withStorageLock(async () => {
-    const ownerStableId = assertCurrent(token);
-    await recoverPrepared(ownerStableId, token);
-    const value = await work(ownerStableId);
-    assertCurrent(token);
-    return value;
-  })));
+  return accountAwait(token, () => withAccountTransitionLock(
+    async () => withStorageLock(async () => {
+      const ownerStableId = assertCurrent(token);
+      await recoverPrepared(ownerStableId, token);
+      const value = await work(ownerStableId);
+      assertCurrent(token);
+      return value;
+    }),
+    accountTransitionLockLease,
+  ));
 }
 
 function sameSemantic(
@@ -344,6 +352,7 @@ async function appendOperation(
     amount: number;
   }>,
   token: AccountGenerationToken,
+  accountTransitionLockLease?: AccountTransitionLockLease,
 ): Promise<'applied' | 'already_applied' | 'unavailable'> {
   return withFreezeLock(token, async (ownerStableId) => {
     const journal = await accountAwait(token, () => readJournal(ownerStableId, token));
@@ -385,7 +394,7 @@ async function appendOperation(
     }
     await accountAwait(token, () => finalizePrepared(verified, token));
     return 'applied';
-  });
+  }, accountTransitionLockLease);
 }
 
 export async function commitDailyJourneyFreezeGrant(
@@ -415,6 +424,7 @@ export async function commitDailyJourneyFreezeGrant(
 export async function consumeDailyJourneyFreeze(
   useOperationId: string,
   token: AccountGenerationToken = captureAccountGeneration(),
+  accountTransitionLockLease?: AccountTransitionLockLease,
 ): Promise<boolean> {
   if (!USE_ID_RE.test(useOperationId)) throw new Error('daily_journey_freeze_consume_invalid');
   const status = await appendOperation({
@@ -423,7 +433,7 @@ export async function consumeDailyJourneyFreeze(
     sourceId: useOperationId,
     sourceFingerprint: null,
     amount: 1,
-  }, token);
+  }, token, accountTransitionLockLease);
   return status !== 'unavailable';
 }
 

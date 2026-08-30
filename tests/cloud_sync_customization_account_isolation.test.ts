@@ -248,6 +248,7 @@ it('removes every owner-local Daily Journey freeze journal surface', async () =>
     'daily_journey_freeze_operation_v1:owner-a:grant-a',
     'daily_journey_freeze_prepared_v1:owner-a',
     'daily_journey_freeze_projection_v1:owner-a',
+    'daily_journey_protected_day_prepared_v1:owner-a',
   ];
   accountKeys.forEach((key) => { store[key] = 'owner-a-protection'; });
   store.app_theme = 'device-only-sentinel';
@@ -290,6 +291,21 @@ it('fails account wipe when shared receipt storage silently retains the departin
 
   await expect(wipeLocalAccountData()).rejects.toThrow('account_wipe_incomplete');
   expect(store.level_gift_effect_receipts_v1).toContain(ownerAKey);
+});
+
+it('fails account wipe when shared receipt storage silently drops retained owner-B bytes', async () => {
+  const ownerAKey = `${localStableId}:daily-journey:hash-a:energy-full:energy_full:primary`;
+  const ownerBKey = 'owner-b:daily-journey:hash-b:energy-plus:energy_plus2:primary';
+  store.level_gift_effect_receipts_v1 = JSON.stringify({
+    [ownerAKey]: { giftId: 'energy_full', status: 'applied' },
+    [ownerBKey]: { giftId: 'energy_plus2', status: 'applied' },
+  });
+  (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+    store[key] = key === 'level_gift_effect_receipts_v1' ? '{}' : value;
+  });
+
+  await expect(wipeLocalAccountData()).rejects.toThrow('account_wipe_incomplete');
+  expect(store.level_gift_effect_receipts_v1).toBe('{}');
 });
 
 it('clears the in-memory personal-plan state when the current account is wiped', async () => {

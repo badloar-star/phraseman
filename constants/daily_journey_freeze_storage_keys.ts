@@ -1,9 +1,11 @@
 export const DAILY_JOURNEY_FREEZE_OPERATION_PREFIX = 'daily_journey_freeze_operation_v1:';
 export const DAILY_JOURNEY_FREEZE_PREPARED_PREFIX = 'daily_journey_freeze_prepared_v1:';
 export const DAILY_JOURNEY_FREEZE_PROJECTION_PREFIX = 'daily_journey_freeze_projection_v1:';
+export const DAILY_JOURNEY_PROTECTED_DAY_PREPARED_PREFIX = 'daily_journey_protected_day_prepared_v1:';
 
 export const DAILY_JOURNEY_FREEZE_ACCOUNT_LOCAL_PREFIXES = Object.freeze([
   DAILY_JOURNEY_FREEZE_OPERATION_PREFIX,
   DAILY_JOURNEY_FREEZE_PREPARED_PREFIX,
   DAILY_JOURNEY_FREEZE_PROJECTION_PREFIX,
+  DAILY_JOURNEY_PROTECTED_DAY_PREPARED_PREFIX,
 ]);

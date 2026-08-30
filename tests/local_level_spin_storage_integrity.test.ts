@@ -7,7 +7,10 @@ import {
   grantLocalLessonCompletionSpin,
   LOCAL_LEVEL_SPIN_STATE_KEY,
 } from '../app/local_level_spins';
-import { LEVEL_SPIN_GIFT_JOURNAL_KEY } from '../app/level_up_storage_keys';
+import {
+  LEVEL_SPIN_BALANCE_CACHE_KEY,
+  LEVEL_SPIN_GIFT_JOURNAL_KEY,
+} from '../app/level_up_storage_keys';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('expo-crypto', () => ({
@@ -81,33 +84,61 @@ test('Daily Journey grants five durable credits once for one stable claim id', a
   ));
 });
 
-test('Daily Journey grant fails closed when storage silently drops the authoritative owner state', async () => {
+test('Daily Journey repeated silent owner drops never update cache and retry grants exactly once', async () => {
   const token = captureAccountGeneration();
-  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
-    pairs.forEach(([key, value]) => {
-      if (key !== stateKey) storage[key] = value;
-    });
+  storage[stateKey] = JSON.stringify({
+    owner: 'account-a',
+    credits: [],
+    issuedLevels: [],
+    issuedCreditIds: [],
+    activeReceipt: null,
+    closedRequestIds: [],
   });
+  const priorCache = JSON.stringify({ owner: 'account-a', balance: 0 });
+  storage[LEVEL_SPIN_BALANCE_CACHE_KEY] = priorCache;
+  (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+    if (key !== stateKey) storage[key] = value;
+  });
+  const claimId = 'daily-journey-gift-claim:daily-spin-silent-drop-0001';
+
+  await expect(grantLocalDailyJourneySpins(claimId, 2, token))
+    .rejects.toThrow('local_daily_journey_spin_state_not_durable');
+  await expect(grantLocalDailyJourneySpins(claimId, 2, token))
+    .rejects.toThrow('local_daily_journey_spin_state_not_durable');
+  expect(storage[LEVEL_SPIN_BALANCE_CACHE_KEY]).toBe(priorCache);
+  expect((JSON.parse(storage[stateKey]) as { credits: unknown[] }).credits).toHaveLength(0);
+
+  (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+    storage[key] = value;
+  });
+  await expect(grantLocalDailyJourneySpins(claimId, 2, token)).resolves.toBe(true);
+  await expect(grantLocalDailyJourneySpins(claimId, 2, token)).resolves.toBe(true);
+  expect((JSON.parse(storage[stateKey]) as { credits: unknown[] }).credits).toHaveLength(2);
+});
+
+test('Daily Journey grant preserves credits migrated from the derived balance cache', async () => {
+  const token = captureAccountGeneration();
+  storage[LEVEL_SPIN_BALANCE_CACHE_KEY] = JSON.stringify({ owner: 'account-a', balance: 2 });
 
   await expect(grantLocalDailyJourneySpins(
-    'daily-journey-gift-claim:daily-spin-silent-drop-0001',
-    2,
+    'daily-journey-gift-claim:daily-spin-after-migration-0001',
+    1,
     token,
-  )).rejects.toThrow('local_daily_journey_spin_state_not_durable');
-  expect(storage[stateKey]).toBeUndefined();
+  )).resolves.toBe(true);
+
+  const state = JSON.parse(storage[stateKey]) as { credits: unknown[] };
+  expect(state.credits).toHaveLength(3);
 });
 
 test('Daily Journey retry trusts owner authority after state-only partial write and never duplicates', async () => {
   const token = captureAccountGeneration();
   let failAfterOwnerWrite = true;
-  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
-    const [ownerPair] = pairs;
-    storage[ownerPair[0]] = ownerPair[1];
-    if (failAfterOwnerWrite) {
+  (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+    if (key === LEVEL_SPIN_BALANCE_CACHE_KEY && failAfterOwnerWrite) {
       failAfterOwnerWrite = false;
       throw new Error('simulated_cache_write_failure');
     }
-    pairs.slice(1).forEach(([key, value]) => { storage[key] = value; });
+    storage[key] = value;
   });
   const claimId = 'daily-journey-gift-claim:daily-spin-partial-0001';
 

@@ -16,7 +16,10 @@ import { isStreakFreezeActiveToday } from './streak_freeze';
 import { getCardStreakShieldStatus, tryConsumeCardStreakShield } from './profile_card_streak_shield';
 import { STREAK_WEEK_MARKERS_KEY, addDaysToDateKey, recordStreakWeekMarker } from './streak_week_markers';
 import { consumeFriendChainShield } from './friend_gifts';
-import { consumeDailyJourneyFreeze } from './daily_journey_freeze_ledger';
+import {
+  commitDailyJourneyProtectedDay,
+  recoverDailyJourneyProtectedDay,
+} from './daily_journey_protected_day';
 import { markActiveDay } from './friends_together/together_days';
 import {
   getLocalDayKey,
@@ -33,6 +36,7 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
   type AccountGenerationToken,
+  type AccountTransitionLockLease,
 } from './account_generation';
 import { DebugLogger } from './debug-logger';
 
@@ -238,10 +242,15 @@ export const migrateWeekPointsIfNeeded = async (): Promise<void> => {
 // Вызывать при ЛЮБОМ начислении опыта
 export const updateStreakOnActivity = async (
   accountToken?: AccountGenerationToken,
+  accountTransitionLockLease?: AccountTransitionLockLease,
 ): Promise<number> => {
   try {
     const capturedToken = accountToken ?? captureAccountGeneration();
     const effectiveAccountToken = capturedToken.phase === 'active' ? capturedToken : undefined;
+    const recoveredProtectedDay = effectiveAccountToken
+      ? await recoverDailyJourneyProtectedDay(effectiveAccountToken, accountTransitionLockLease)
+      : false;
+    let protectedResultPersisted = recoveredProtectedDay;
     await repairDevSeededStreakInStorage();
 
     // Ключ дня — ЛОКАЛЬНАЯ дата устройства: пользователь, занимающийся каждый
@@ -307,10 +316,13 @@ export const updateStreakOnActivity = async (
       // 5. Client-authoritative Daily Journey freeze. It is consumed from its
       // immutable owner journal before consulting server-owned friend shields.
       else if (lastActive && missedExactlyOneDay && effectiveAccountToken
-        && await consumeDailyJourneyFreeze(
-          `daily-journey-missed-day:${lastActive}:${today}`,
-          effectiveAccountToken,
-        )) {
+        && await commitDailyJourneyProtectedDay({
+          useOperationId: `daily-journey-missed-day:${lastActive}:${today}`,
+          lastActiveDate: lastActive,
+          protectedDayDate: today,
+          streakCount: streak,
+        }, effectiveAccountToken, accountTransitionLockLease)) {
+        protectedResultPersisted = true;
         await recordStreakWeekMarker(addDaysToDateKey(lastActive, 1), 'freeze').catch(() => {});
         emitAppEvent('action_toast', {
           type: 'reward',
@@ -396,8 +408,10 @@ export const updateStreakOnActivity = async (
     }
 
     // Сохраняем цепочку
-    await persistLegacyPersonalProgressScalar(AsyncStorage, 'streak_count', streak);
-    await AsyncStorage.setItem(lastActiveKey, today);
+    if (!protectedResultPersisted) {
+      await persistLegacyPersonalProgressScalar(AsyncStorage, 'streak_count', streak);
+      await AsyncStorage.setItem(lastActiveKey, today);
+    }
 
     // зачем («Вместе», friends_together): рядом с last_active_date копим ПОЛНУЮ
     // историю активных дней (окно 120 дней) — она нужна другим людям (друзьям),
@@ -469,6 +483,7 @@ const addOrUpdateScoreUnsafe = async (
   lang: string,
   avatar?: string,
   accountToken?: AccountGenerationToken,
+  accountTransitionLockLease?: AccountTransitionLockLease,
 ) => {
   // Разрешаем отрицательный опыт для списания ставок (wagers)
   if (!name || delta === 0) return;
@@ -603,7 +618,7 @@ const addOrUpdateScoreUnsafe = async (
 
   // ── 5. Цепочка и week_days_done — только при положительном начислении ────────
   if (delta > 0) {
-    await updateStreakOnActivity(accountToken);
+    await updateStreakOnActivity(accountToken, accountTransitionLockLease);
   }
 
   // ── 6. Синхронизируем клуб недели (fire-and-forget)
@@ -626,9 +641,16 @@ export const addOrUpdateScore = async (
     await addOrUpdateScoreUnsafe(name, delta, lang, avatar);
     return;
   }
-  await withAccountTransitionLock(async () => {
+  await withAccountTransitionLock(async (accountTransitionLockLease) => {
     if (!isCurrentAccountGeneration(accountToken)) return;
-    await addOrUpdateScoreUnsafe(name, delta, lang, avatar, accountToken);
+    await addOrUpdateScoreUnsafe(
+      name,
+      delta,
+      lang,
+      avatar,
+      accountToken,
+      accountTransitionLockLease,
+    );
   });
 };
 

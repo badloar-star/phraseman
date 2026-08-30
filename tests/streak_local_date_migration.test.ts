@@ -15,6 +15,10 @@ import { beginAccountGeneration } from '../app/account_generation';
 jest.mock('../app/daily_journey_freeze_ledger', () => ({
   consumeDailyJourneyFreeze: jest.fn(),
 }));
+jest.mock('../app/daily_journey_protected_day', () => ({
+  commitDailyJourneyProtectedDay: jest.fn(),
+  recoverDailyJourneyProtectedDay: jest.fn().mockResolvedValue(false),
+}));
 
 let simulatedZone = 'UTC';
 
@@ -54,7 +58,10 @@ jest.mock('../app/local_date', () => {
 });
 
 import { updateStreakOnActivity, checkStreakLossPending } from '../app/hall_of_fame_utils';
-import { consumeDailyJourneyFreeze } from '../app/daily_journey_freeze_ledger';
+import {
+  commitDailyJourneyProtectedDay,
+  recoverDailyJourneyProtectedDay,
+} from '../app/daily_journey_protected_day';
 import { isRepairEligible } from '../app/streak_repair';
 
 describe('streak transition: evening in UTC+10 (Australia/Brisbane, no DST)', () => {
@@ -183,17 +190,24 @@ describe('streak transition: repair eligibility respects local day across the mi
   it('consumes Daily Journey protection before server shield and preserves the streak', async () => {
     jest.useFakeTimers().setSystemTime(new Date('2026-07-06T10:00:00.000Z'));
     const token = beginAccountGeneration('owner-a');
-    (consumeDailyJourneyFreeze as jest.Mock).mockResolvedValue(true);
+    (commitDailyJourneyProtectedDay as jest.Mock).mockImplementation(async (input) => {
+      await AsyncStorage.setItem('streak_count', String(input.streakCount));
+      await AsyncStorage.setItem('last_active_date', input.protectedDayDate);
+      return true;
+    });
     await AsyncStorage.multiSet([
       ['last_active_date', '2026-07-04'],
       ['streak_count', '8'],
     ]);
 
     await expect(updateStreakOnActivity(token)).resolves.toBe(8);
-    expect(consumeDailyJourneyFreeze).toHaveBeenCalledWith(
-      'daily-journey-missed-day:2026-07-04:2026-07-06',
-      token,
-    );
+    expect(recoverDailyJourneyProtectedDay).toHaveBeenCalledWith(token, undefined);
+    expect(commitDailyJourneyProtectedDay).toHaveBeenCalledWith({
+      useOperationId: 'daily-journey-missed-day:2026-07-04:2026-07-06',
+      lastActiveDate: '2026-07-04',
+      protectedDayDate: '2026-07-06',
+      streakCount: 8,
+    }, token, undefined);
   });
 });
 

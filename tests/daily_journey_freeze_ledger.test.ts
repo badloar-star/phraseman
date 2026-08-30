@@ -21,6 +21,7 @@ jest.mock('expo-crypto', () => ({
 }));
 
 const storage: Record<string, string> = {};
+const projectionKey = 'daily_journey_freeze_projection_v1:owner-a';
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -118,6 +119,104 @@ it('recovers an occurrence-only torn grant without minting twice', async () => {
     latestRevision: 1,
   });
 });
+
+it('recovers an operation-only torn consume at revision two from the exact prior projection', async () => {
+  const token = beginAccountGeneration('owner-a');
+  await commitDailyJourneyFreezeGrant({
+    claimOperationId: 'daily-journey-gift-claim:freeze-consume-head-0001',
+    amount: 2,
+    occurrenceFingerprint: 'e'.repeat(64),
+  }, token);
+  let tearOnce = true;
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (
+    pairs: readonly (readonly [string, string])[],
+  ) => {
+    if (tearOnce) {
+      tearOnce = false;
+      const [operation] = pairs;
+      storage[operation[0]] = operation[1];
+      throw new Error('simulated_consume_operation_only');
+    }
+    pairs.forEach(([key, value]) => { storage[key] = value; });
+  });
+  const useId = 'daily-journey-missed-day:2026-08-28:2026-08-30';
+
+  await expect(consumeDailyJourneyFreeze(useId, token))
+    .rejects.toThrow('simulated_consume_operation_only');
+  await expect(consumeDailyJourneyFreeze(useId, token)).resolves.toBe(true);
+  await expect(readDailyJourneyFreezeProjection(token)).resolves.toMatchObject({
+    grantedCount: 2,
+    consumedCount: 1,
+    remainingCount: 1,
+    latestRevision: 2,
+  });
+});
+
+it('recovers a projection-only torn consume at revision two only from the exact next projection', async () => {
+  const token = beginAccountGeneration('owner-a');
+  await commitDailyJourneyFreezeGrant({
+    claimOperationId: 'daily-journey-gift-claim:freeze-projection-head-0001',
+    amount: 2,
+    occurrenceFingerprint: 'f'.repeat(64),
+  }, token);
+  let tearOnce = true;
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (
+    pairs: readonly (readonly [string, string])[],
+  ) => {
+    if (tearOnce) {
+      tearOnce = false;
+      const [, projection] = pairs;
+      storage[projection[0]] = projection[1];
+      throw new Error('simulated_consume_projection_only');
+    }
+    pairs.forEach(([key, value]) => { storage[key] = value; });
+  });
+  const useId = 'daily-journey-missed-day:2026-08-27:2026-08-29';
+
+  await expect(consumeDailyJourneyFreeze(useId, token))
+    .rejects.toThrow('simulated_consume_projection_only');
+  await expect(consumeDailyJourneyFreeze(useId, token)).resolves.toBe(true);
+  await expect(readDailyJourneyFreezeProjection(token)).resolves.toMatchObject({
+    consumedCount: 1,
+    remainingCount: 1,
+    latestRevision: 2,
+  });
+});
+
+it.each(['operation-only', 'projection-only'] as const)(
+  'rejects %s recovery when the explanatory projection bytes are corrupt',
+  async (tearKind) => {
+    const token = beginAccountGeneration('owner-a');
+    await commitDailyJourneyFreezeGrant({
+      claimOperationId: `daily-journey-gift-claim:freeze-corrupt-${tearKind}`,
+      amount: 2,
+      occurrenceFingerprint: '1'.repeat(64),
+    }, token);
+    let tearOnce = true;
+    (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (
+      pairs: readonly (readonly [string, string])[],
+    ) => {
+      if (tearOnce) {
+        tearOnce = false;
+        const pair = tearKind === 'operation-only' ? pairs[0] : pairs[1];
+        storage[pair[0]] = pair[1];
+        throw new Error(`simulated_${tearKind}`);
+      }
+      pairs.forEach(([key, value]) => { storage[key] = value; });
+    });
+    const useId = `daily-journey-missed-day:corrupt:${tearKind}`;
+    await expect(consumeDailyJourneyFreeze(useId, token)).rejects.toThrow(`simulated_${tearKind}`);
+    const projection = JSON.parse(storage[projectionKey]) as Record<string, number>;
+    storage[projectionKey] = JSON.stringify({
+      ...projection,
+      grantedCount: 9,
+      remainingCount: tearKind === 'operation-only' ? 9 : 8,
+    });
+
+    await expect(consumeDailyJourneyFreeze(useId, token))
+      .rejects.toThrow('daily_journey_freeze_projection_corrupt');
+  },
+);
 
 it('rejects a stale owner token at the async storage boundary', async () => {
   const token = beginAccountGeneration('owner-a');

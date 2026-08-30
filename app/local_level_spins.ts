@@ -817,20 +817,32 @@ export async function grantLocalDailyJourneySpins(
     const current = await loadLocalState(owner);
     if (!isCurrentAccountGeneration(token, owner)) return false;
     const missingIds = ids.filter((id) => !current.issuedCreditIds.includes(id));
-    if (missingIds.length === 0) return true;
+    if (missingIds.length === 0) {
+      await AsyncStorage.setItem(
+        LEVEL_SPIN_BALANCE_CACHE_KEY,
+        JSON.stringify({ owner, balance: current.credits.length }),
+      );
+      return isCurrentAccountGeneration(token, owner);
+    }
     const nextState: LocalSpinState = {
       ...current,
       credits: [...current.credits, ...missingIds.map((id) => ({ id, level: 2 }))],
       issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, ...missingIds]),
     };
     const expectedAuthoritativeBytes = JSON.stringify(nextState);
-    await writeLocalState(nextState);
+    await AsyncStorage.setItem(localLevelSpinStateKey(owner), expectedAuthoritativeBytes);
     if (!isCurrentAccountGeneration(token, owner)) return false;
     const durableAuthoritativeBytes = await AsyncStorage.getItem(localLevelSpinStateKey(owner));
     if (!isCurrentAccountGeneration(token, owner)) return false;
     if (durableAuthoritativeBytes !== expectedAuthoritativeBytes) {
       throw new Error('local_daily_journey_spin_state_not_durable');
     }
+    await AsyncStorage.setItem(
+      LEVEL_SPIN_BALANCE_CACHE_KEY,
+      JSON.stringify({ owner, balance: nextState.credits.length }),
+    );
+    if (!isCurrentAccountGeneration(token, owner)) return false;
+    emitAppEvent('level_spin_balance_changed');
     return true;
   }, accountTransitionLockLease);
 }

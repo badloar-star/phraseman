@@ -37,6 +37,8 @@ describe('ai dialog callable error mapping', () => {
   it('maps provider failures separately from network failures', () => {
     expect(classifyPremiumDialogError({ code: 'functions/unavailable', message: 'dialog_provider_failed' }))
       .toBe('provider_unavailable');
+    expect(classifyPremiumDialogError({ code: 'functions/unavailable', message: 'dialog_repeated_reply' }))
+      .toBe('provider_unavailable');
     expect(classifyPremiumDialogError({ code: 'functions/internal', message: 'INTERNAL' }))
       .toBe('provider_unavailable');
     expect(classifyPremiumDialogError(new Error('network request failed'))).toBe('network');

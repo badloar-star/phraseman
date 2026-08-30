@@ -41,6 +41,22 @@ export interface DialogMemory {
   summary?: string;
 }
 
+export interface DialogGameStateInput {
+  exchangeIndex: number;
+  mood: number;
+  objectivesMet: string[];
+  noProgressTurns: number;
+}
+
+export interface DialogQualityMeta {
+  repeatDetected: boolean;
+  repeatReason: 'none' | 'exact' | 'near';
+  similarityBucket: 'none' | 'medium' | 'high' | 'exact';
+  regenerationAttempted: boolean;
+  regenerationSucceeded: boolean;
+  gameModeAvailable: boolean;
+}
+
 export interface PremiumDialogRequest {
   mode: 'scenario' | 'companion';
   userText: string;
@@ -67,6 +83,8 @@ export interface PremiumDialogRequest {
    */
   objectives?: { id: string; en: string }[];
   temperament?: { patience: 'high' | 'medium' | 'low'; warmth: 'warm' | 'neutral' | 'cold' };
+  /** Каноническое состояние сценария перед текущим ходом. */
+  gameState?: DialogGameStateInput;
 }
 
 export interface PremiumDialogResponse {
@@ -81,6 +99,8 @@ export interface PremiumDialogResponse {
    * Тип намеренно `unknown` — контракт защищён парсером, а не структурой.
    */
   turnState?: unknown;
+  /** Только обезличенные флаги качества; тексты диалога сюда не входят. */
+  quality?: DialogQualityMeta;
 }
 
 export type PremiumDialogErrorKind =
@@ -111,6 +131,7 @@ export function classifyPremiumDialogError(error: unknown): PremiumDialogErrorKi
   if (
     text.includes('dialog_provider_failed') ||
     text.includes('dialog_empty_reply') ||
+    text.includes('dialog_repeated_reply') ||
     // Стриминг оборвался/недоступен — для человека это тот же «сбой у провайдера»
     // с кнопкой «Повторить», а не загадочный код.
     text.includes('dialog_stream_incomplete') ||
@@ -275,6 +296,7 @@ function premiumDialogSendRequestKey(req: PremiumDialogRequest): string {
     isPremium: req.isPremium,
     objectives: req.objectives,
     temperament: req.temperament,
+    gameState: req.gameState,
   });
 }
 

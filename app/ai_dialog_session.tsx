@@ -62,6 +62,7 @@ import {
   classifyPremiumDialogError,
   getPremiumDialogErrorMessage,
   type DialogChatTurn,
+  type DialogQualityMeta,
   type PremiumDialogErrorKind,
   type PremiumDialogReviewResponse,
 } from './ai_dialog_client';
@@ -813,16 +814,64 @@ function AiDialogSession() {
     [gameEnabled, scenario.id, awardDialogXp],
   );
 
-  // Игровые поля для запроса (под-цели в формате сервера + темперамент).
-  const gameRequestFields = useMemo(
-    () =>
+  // Игровые поля строим непосредственно перед отправкой: так сервер получает
+  // актуальное настроение и накопленные цели, а не заново начинает сценарий.
+  const buildGameRequestFields = useCallback(
+    (exchangeIndex: number) =>
       gameEnabled
         ? {
             objectives: objectives.map((o) => ({ id: o.id, en: o.en || o.id })),
             temperament,
+            gameState: {
+              exchangeIndex,
+              mood,
+              objectivesMet: Array.from(objectivesMet),
+              noProgressTurns: stuckTurnsRef.current,
+            },
           }
         : {},
-    [gameEnabled, objectives, temperament],
+    [gameEnabled, objectives, temperament, mood, objectivesMet],
+  );
+
+  const applyAcceptedTurn = useCallback(
+    (
+      res: { turnState: unknown; quality?: DialogQualityMeta; model?: string },
+      exchangeIndex: number,
+    ) => {
+      if (res.quality) {
+        void trackEvent('ai_dialog_reply_quality', {
+          scenarioId: scenario.id,
+          exchangeIndex,
+          model: res.model || 'unknown',
+          repeatDetected: res.quality.repeatDetected,
+          repeatReason: res.quality.repeatReason,
+          similarityBucket: res.quality.similarityBucket,
+          regenerationAttempted: res.quality.regenerationAttempted,
+          regenerationSucceeded: res.quality.regenerationSucceeded,
+          gameModeAvailable: res.quality.gameModeAvailable,
+        });
+      }
+
+      // Модели без надёжного JSON не должны держать сценарий бесконечно. Ровно
+      // после рекомендуемых восьми обменов закрываем только такой fallback-путь;
+      // нормальный игровой режим по-прежнему завершается серверным outcome.
+      if (
+        gameEnabled &&
+        res.quality?.gameModeAvailable === false &&
+        exchangeIndex >= RECOMMENDED_EXCHANGES
+      ) {
+        applyTurnState({
+          mood,
+          objectivesMet: Array.from(objectivesMet),
+          outcome: 'stalled',
+          characterReaction: '',
+          coachTips: [],
+        });
+        return;
+      }
+      applyTurnState(res.turnState);
+    },
+    [applyTurnState, gameEnabled, mood, objectivesMet, scenario.id],
   );
 
   const send = useCallback(
@@ -864,13 +913,18 @@ function AiDialogSession() {
         interfaceLang: lang,
         studyTarget,
         isPremium: hasPremiumAccess,
-        ...gameRequestFields,
+        ...buildGameRequestFields(exchangeIndex),
       };
       try {
         // Основной путь — стриминг: реплика печатается по мере генерации.
         // зачем: раньше ответ приходил целиком после последнего токена, и человек
         // 3-6 секунд смотрел на пустой пузырь — это и есть «ИИ долго думает».
-        let res: { assistantMessage: string; turnState: unknown };
+        let res: {
+          assistantMessage: string;
+          turnState: unknown;
+          quality?: DialogQualityMeta;
+          model?: string;
+        };
         try {
           let draft = '';
           const streamed = await callPremiumDialogStream(payload, {
@@ -879,7 +933,12 @@ function AiDialogSession() {
               setStreamingText(draft);
             },
           });
-          res = { assistantMessage: streamed.assistantMessage, turnState: streamed.turnState };
+          res = {
+            assistantMessage: streamed.assistantMessage,
+            turnState: streamed.turnState,
+            quality: streamed.quality,
+            model: streamed.model,
+          };
         } catch (streamError) {
           // Фолбэк на обычный callable — ТОЛЬКО когда сервер гарантированно не
           // начал работу (не списал квоту, не звал OpenAI). Иначе повтор снял бы
@@ -890,7 +949,12 @@ function AiDialogSession() {
           if (!canFallback) throw streamError;
           setStreamingText('');
           const fallback = await callPremiumDialogSend(payload);
-          res = { assistantMessage: fallback.assistantMessage, turnState: fallback.turnState };
+          res = {
+            assistantMessage: fallback.assistantMessage,
+            turnState: fallback.turnState,
+            quality: fallback.quality,
+            model: fallback.model,
+          };
         }
         // Финальный текст авторитетен (сервер применил постфильтры) — он и
         // становится репликой, а черновик стрима гасим в том же кадре, чтобы
@@ -898,7 +962,7 @@ function AiDialogSession() {
         setStreamingText('');
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
         // Игровое состояние хода (настроение/цели/исход). Безопасно при отсутствии.
-        applyTurnState(res.turnState);
+        applyAcceptedTurn(res, exchangeIndex);
       } catch (error) {
         // зачем (аудит 2026-08-29): диалоги не писали отказы никуда — «ИИ
         // молчит» было невидимо с сервера. Отказ ответа — ядро фичи: critical.
@@ -917,7 +981,7 @@ function AiDialogSession() {
         setSending(false);
       }
     },
-    [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, userExchanges, buildHistory, scenario, router, lang, studyTarget, gameRequestFields, applyTurnState],
+    [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, userExchanges, buildHistory, scenario, router, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn],
   );
 
   // Держим ссылку свежей: обработчик 'end' голосового ввода объявлен ВЫШЕ send и
@@ -990,6 +1054,7 @@ function AiDialogSession() {
     // История БЕЗ последней реплики пользователя (она уже в messages, передаём как userText).
     const priorMessages = messages.slice(0, -1);
     const history: DialogChatTurn[] = priorMessages.map((m) => ({ role: m.role, content: m.text }));
+    const exchangeIndex = messages.filter((message) => message.role === 'user').length;
 
     setLastErrorMessage('');
     setLastErrorKind(null);
@@ -1008,11 +1073,16 @@ function AiDialogSession() {
       interfaceLang: lang,
       studyTarget,
       isPremium: hasPremiumAccess,
-      ...gameRequestFields,
+      ...buildGameRequestFields(exchangeIndex),
     };
     try {
       // Повтор тоже стримит — иначе после ошибки человек снова ждал бы молча.
-      let res: { assistantMessage: string; turnState: unknown };
+      let res: {
+        assistantMessage: string;
+        turnState: unknown;
+        quality?: DialogQualityMeta;
+        model?: string;
+      };
       try {
         let draft = '';
         const streamed = await callPremiumDialogStream(payload, {
@@ -1021,18 +1091,28 @@ function AiDialogSession() {
             setStreamingText(draft);
           },
         });
-        res = { assistantMessage: streamed.assistantMessage, turnState: streamed.turnState };
+        res = {
+          assistantMessage: streamed.assistantMessage,
+          turnState: streamed.turnState,
+          quality: streamed.quality,
+          model: streamed.model,
+        };
       } catch (streamError) {
         // Фолбэк только когда сервер точно не начал работу (см. send выше).
         const canFallback = streamError instanceof DialogStreamError && streamError.notStarted;
         if (!canFallback) throw streamError;
         setStreamingText('');
         const fallback = await callPremiumDialogSend(payload);
-        res = { assistantMessage: fallback.assistantMessage, turnState: fallback.turnState };
+        res = {
+          assistantMessage: fallback.assistantMessage,
+          turnState: fallback.turnState,
+          quality: fallback.quality,
+          model: fallback.model,
+        };
       }
       setStreamingText('');
       setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
-      applyTurnState(res.turnState);
+      applyAcceptedTurn(res, exchangeIndex);
     } catch (error) {
       setStreamingText('');
       void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, retry: true });
@@ -1041,7 +1121,7 @@ function AiDialogSession() {
     } finally {
       setSending(false);
     }
-  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, messages, scenario, router, lang, studyTarget, gameRequestFields, applyTurnState]);
+  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, messages, scenario, router, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn]);
 
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.

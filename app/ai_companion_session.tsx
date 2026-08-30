@@ -99,6 +99,7 @@ function AiCompanionSession() {
   ]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
+  const [lastErrorMessage, setLastErrorMessage] = useState('');
   const scrollRef = useRef<FlatList<UiMessage>>(null);
   const memoryRef = useRef<DialogMemory | null>(null);
 
@@ -153,6 +154,7 @@ function AiCompanionSession() {
       void trackEvent('ai_dialog_message_sent', { scenarioId: 'companion', exchangeIndex });
 
       const history = buildHistory();
+      setLastErrorMessage('');
       setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
       setInput('');
       setSending(true);
@@ -160,10 +162,7 @@ function AiCompanionSession() {
         const res = await sendToTheo(trimmed, history);
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
       } catch (error) {
-        setMessages((prev) => [
-          ...prev,
-          { role: 'assistant', text: getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }) },
-        ]);
+        setLastErrorMessage(getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }));
       } finally {
         setSending(false);
       }
@@ -367,8 +366,31 @@ function AiCompanionSession() {
             ) : null}
           />
 
+          {lastErrorMessage ? (
+            <View
+              testID="ai-companion-system-error"
+              accessibilityRole="alert"
+              style={{
+                marginHorizontal: 16,
+                marginBottom: 8,
+                borderRadius: 14,
+                paddingVertical: 12,
+                paddingHorizontal: 14,
+                backgroundColor: glassFill(t.bgSurface, 0.72),
+                flexDirection: 'row',
+                alignItems: 'flex-start',
+                gap: 10,
+              }}
+            >
+              <Ionicons name="alert-circle-outline" size={20} color={t.textMuted} style={{ marginTop: 2 }} />
+              <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.35), flex: 1 }}>
+                {lastErrorMessage}
+              </Text>
+            </View>
+          ) : null}
+
           {/* Подсказка направления: не готовый ответ, а помощь сформулировать свою реплику. */}
-          {lastIsAssistant && !sending && (
+          {lastIsAssistant && !sending && !lastErrorMessage && (
             <View style={{ paddingHorizontal: 16, paddingBottom: 6 }}>
               <View
                 style={{

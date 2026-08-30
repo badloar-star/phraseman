@@ -19,13 +19,14 @@
 import { getApp } from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
 import { DebugLogger } from './debug-logger';
+import type { DialogQualityMeta } from './ai_dialog_client';
 
 const FUNCTIONS_REGION = 'us-central1';
 
 /** Кадр, который присылает сервер. */
 type StreamFrame =
   | { type: 'delta'; text?: unknown }
-  | { type: 'done'; assistantMessage?: unknown; turnState?: unknown; remainingQuota?: unknown; model?: unknown }
+  | { type: 'done'; assistantMessage?: unknown; turnState?: unknown; remainingQuota?: unknown; model?: unknown; quality?: unknown }
   | { type: 'error'; code?: unknown };
 
 export interface DialogStreamResult {
@@ -33,6 +34,7 @@ export interface DialogStreamResult {
   turnState: unknown;
   remainingQuota: number;
   model: string;
+  quality?: DialogQualityMeta;
 }
 
 export interface DialogStreamCallbacks {
@@ -173,6 +175,10 @@ export function callPremiumDialogStream(
               turnState: frame.turnState ?? null,
               remainingQuota: Number(frame.remainingQuota ?? 0),
               model: String(frame.model ?? ''),
+              quality:
+                frame.quality && typeof frame.quality === 'object'
+                  ? frame.quality as DialogQualityMeta
+                  : undefined,
             };
           } else if (frame.type === 'error') {
             const code = String(frame.code ?? 'dialog_provider_failed');

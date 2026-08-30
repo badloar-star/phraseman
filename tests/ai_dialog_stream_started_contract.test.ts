@@ -6,8 +6,9 @@ describe('dialog stream started-frame contract', () => {
 
   it('recognizes started as a server frame before deciding fallback safety', () => {
     expect(source).toContain("| { type: 'started' }");
-    expect(source).toContain('sawAnyFrame = true;');
     expect(source).toContain("if (frame.type === 'started')");
-    expect(source).toContain("new DialogStreamError('network', !sawAnyFrame)");
+    expect(source).toContain("new DialogStreamError('network', false)");
+    expect(source).toContain("new DialogStreamError('dialog_stream_incomplete', false)");
+    expect(source).not.toContain('!sawAnyFrame');
   });
 });

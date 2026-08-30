@@ -3,8 +3,8 @@
  *
  * зачем: владелец сообщил, что «ИИ очень долго думает и отвечает». Реальная
  * причина не в модели: callable-функция ждала последний токен и отдавала текст
- * целиком, поэтому человек 3-6 секунд смотрел на пустой пузырь. Здесь текст
- * приходит по мере генерации, и первое слово появляется почти сразу.
+ * целиком. Сервер теперь буферизует короткий provider-черновик до repeat/safety
+ * проверки и затем выпускает только принятый ответ несколькими SSE-дельтами.
  *
  * Почему XMLHttpRequest, а не fetch: в React Native (0.81) fetch НЕ поддерживает
  * потоковое чтение тела — `response.body` не даёт ReadableStream, весь ответ
@@ -158,7 +158,6 @@ export function callPremiumDialogStream(
 
       const xhr = new XMLHttpRequest();
       let cursor = 0;
-      let sawAnyFrame = false;
       let result: DialogStreamResult | null = null;
 
       const handleChunk = (): void => {
@@ -166,7 +165,6 @@ export function callPremiumDialogStream(
         const { frames, nextFrom } = drainFrames(raw, cursor);
         cursor = nextFrom;
         for (const frame of frames) {
-          sawAnyFrame = true;
           if (frame.type === 'started') {
             // Служебный ack: quota/provider pipeline уже начались. Данных UI нет.
           } else if (frame.type === 'delta') {
@@ -233,15 +231,16 @@ export function callPremiumDialogStream(
           const done = result;
           finish(() => resolve(done));
         } else {
-          // Соединение закрылось без финального кадра. Если поток уже шёл —
-          // сервер начал работу, повторять нельзя.
-          finish(() => reject(new DialogStreamError('dialog_stream_incomplete', !sawAnyFrame)));
+          // После xhr.send() отсутствие done — неопределённый исход: сервер мог
+          // принять запрос и списать квоту, даже если ни один frame не доехал.
+          finish(() => reject(new DialogStreamError('dialog_stream_incomplete', false)));
         }
       };
 
       xhr.onerror = () => {
-        // Сеть не поднялась и ни одного кадра не пришло → сервер не начинал.
-        finish(() => reject(new DialogStreamError('network', !sawAnyFrame)));
+        // Асинхронный network error после xhr.send() никогда не доказывает, что
+        // сервер не начал работу. Callable fallback здесь мог бы списать дважды.
+        finish(() => reject(new DialogStreamError('network', false)));
       };
       xhr.ontimeout = () => {
         // Таймаут = «мы не знаем, что там». Никогда не считаем это notStarted.

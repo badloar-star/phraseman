@@ -182,7 +182,6 @@ export const SOUND_EVENTS = Object.freeze({
   // выбран только ПЕРВЫЙ звук варианта «Игра» — intro. Пульсы, reveal, tap и
   // четыре остальных направления в приложение не подключать.
   'pm.reward.daily_journey_intro': event(require('../../assets/audio/sfx/v1/reward/pm_reward_daily_journey_intro_v1.m4a'), 0.42, 68, 0, 2560, 'reward'),
-  'pm.reward.collectible': event(require('../../assets/audio/sfx/v1/reward/pm_reward_collectible_v1.m4a'), 0.54, 82, 4500, 1180, 'reward'),
 
   // Level Spin is a short, authored sequence. Each cue has a separate asset so
   // visual phase changes can trigger it exactly instead of relying on timers.

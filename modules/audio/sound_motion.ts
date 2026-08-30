@@ -73,7 +73,6 @@ export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProf
   'pm.reward.premium_finale': { audibleMs: 398, attackMs: 23, hits: [23, 94], shape: 'double', bright: 0.01 },
   'pm.reward.vip_open': { audibleMs: 609, attackMs: 141, hits: [47, 141, 211, 281, 375], shape: 'multi', bright: 0.01 },
   'pm.reward.daily_journey_intro': { audibleMs: 1087, attackMs: 81, hits: [81, 282, 362], shape: 'triple', bright: 0.0725 },
-  'pm.reward.collectible': { audibleMs: 328, attackMs: 31, hits: [31, 78, 297], shape: 'triple', bright: 0.96 },
   // ─── Празднование v6: карты ударов из docs/design/CELEBRATION_SOUND_PROMPTS.md ───
   // зачем: визуальные события сцен стоят ровно на этих миллисекундах
   // (components/premium_celebration/CelebrationSceneViews.tsx). Правишь тут —

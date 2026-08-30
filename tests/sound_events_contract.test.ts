@@ -45,7 +45,8 @@ describe('semantic sound event catalog', () => {
 
     // зачем 2026-08-30 (раунд 5, выбор владельца): −1 hint_reveal (удалён
     // навсегда), +2 новых (ui.tap_blocked, onboarding.step), +6 арен получили
-    // файлы. 144 -> 145 событий, включённых 118 -> 125.
+    // файлы. После полного retirement коллекционных предметов каталог содержит
+    // 144 / 124; Daily Journey добавляет ровно один intro-cue: 145 / 125.
     expect(ids).toHaveLength(145);
     expect(enabled).toHaveLength(125);
     expect(disabled).toEqual(MISSING_EVENTS);
@@ -104,6 +105,22 @@ describe('semantic sound event catalog', () => {
     expect(SOUND_EVENTS).not.toHaveProperty(rejectedEventId);
     rejectedAssets.forEach((asset) => expect(fs.existsSync(asset)).toBe(false));
     expect(lessonSource).not.toContain(rejectedEventId);
+  });
+
+  test('keeps the retired collectible cue out of the runtime catalog', () => {
+    const retiredEventId = 'pm.reward.collectible';
+    const retiredAsset = path.resolve(
+      __dirname,
+      '../assets/audio/sfx/v1/reward/pm_reward_collectible_v1.m4a',
+    );
+    const motionSource = fs.readFileSync(
+      path.resolve(__dirname, '../modules/audio/sound_motion.ts'),
+      'utf8',
+    );
+
+    expect(SOUND_EVENTS).not.toHaveProperty(retiredEventId);
+    expect(fs.existsSync(retiredAsset)).toBe(false);
+    expect(motionSource).not.toContain(retiredEventId);
   });
 });
 

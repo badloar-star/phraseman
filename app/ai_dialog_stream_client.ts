@@ -25,6 +25,7 @@ const FUNCTIONS_REGION = 'us-central1';
 
 /** Кадр, который присылает сервер. */
 type StreamFrame =
+  | { type: 'started' }
   | { type: 'delta'; text?: unknown }
   | { type: 'done'; assistantMessage?: unknown; turnState?: unknown; remainingQuota?: unknown; model?: unknown; quality?: unknown }
   | { type: 'error'; code?: unknown };
@@ -166,7 +167,9 @@ export function callPremiumDialogStream(
         cursor = nextFrom;
         for (const frame of frames) {
           sawAnyFrame = true;
-          if (frame.type === 'delta') {
+          if (frame.type === 'started') {
+            // Служебный ack: quota/provider pipeline уже начались. Данных UI нет.
+          } else if (frame.type === 'delta') {
             const piece = typeof frame.text === 'string' ? frame.text : '';
             if (piece) callbacks.onDelta(piece);
           } else if (frame.type === 'done') {

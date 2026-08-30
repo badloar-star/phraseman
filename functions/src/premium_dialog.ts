@@ -424,6 +424,20 @@ export function isGameMode(data: PremiumDialogRequest): boolean {
   return sanitizeObjectives(data.objectives).length > 0;
 }
 
+/** Убирает JSON-only игровой блок, если выбранная модель его не поддерживает. */
+export function scenarioPromptDataForModel(
+  data: PremiumDialogRequest,
+  model: string,
+): PremiumDialogRequest {
+  if (!isGameMode(data) || modelSupportsJsonObject(model)) return data;
+  return {
+    ...data,
+    objectives: undefined,
+    temperament: undefined,
+    gameState: undefined,
+  };
+}
+
 export function sanitizeGameStateForRequest(
   data: PremiumDialogRequest,
 ): SanitizedDialogGameState | null {
@@ -797,10 +811,16 @@ export const premiumDialogSend = onCall({
   if (quotaResult.status === 'rejected') throw quotaResult.reason;
   const remaining = quotaResult.value;
 
+  const gameMode =
+    mode === 'scenario' && isGameMode(data) && modelSupportsJsonObject(dialogModel);
+  const promptData = mode === 'scenario'
+    ? scenarioPromptDataForModel(data, dialogModel)
+    : data;
+
   const baseSystemPrompt =
     mode === 'companion'
       ? buildCompanionSystemPrompt(cefr, sanitizeMemory(data.memory), data.interfaceLang, data.studyTarget)
-      : buildScenarioSystemPrompt(cefr, data);
+      : buildScenarioSystemPrompt(cefr, promptData);
   // Safety-инструкция входит в ЛЮБОЙ режим — но теперь она внутри
   // renderGlobalRules, в стабильном префиксе (кэш OpenAI). Раньше её клеили
   // здесь, в хвосте: правило работало, но рвало кэш. Поведение то же.
@@ -845,8 +865,6 @@ export const premiumDialogSend = onCall({
   // модель надёжно поддерживает response_format json_object — иначе запрос упал
   // бы HTTP 400 (дефолтная gpt-4.1-nano его не поддерживает; аудит C1). Для
   // неподдерживающих моделей диалог идёт обычным текстом без игровой механики.
-  const gameMode =
-    mode === 'scenario' && isGameMode(data) && modelSupportsJsonObject(dialogModel);
   const gameState = gameMode ? sanitizeGameStateForRequest(data) : null;
   if (mode === 'scenario' && isGameMode(data) && !gameMode) {
     console.warn('premium_dialog game mode disabled — model lacks json_object support', {

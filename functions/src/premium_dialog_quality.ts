@@ -95,7 +95,7 @@ export function canonicalizeDialogTurnState(
   const allObjectivesMet =
     objectiveIds.length > 0 && objectiveIds.every((id) => objectivesMet.includes(id));
   const outcome =
-    mood === 0
+    raw.outcome === 'lost_patience' || mood === 0
       ? 'lost_patience'
       : allObjectivesMet
         ? 'success'
@@ -117,13 +117,19 @@ export function normalizeDialogReply(value: unknown): string {
     .replace(/\[\[|\]\]/g, '')
     .normalize('NFKC')
     .toLocaleLowerCase('en-US')
+    .replace(/[’‘]/g, "'")
     .replace(/[^\p{L}\p{N}'’]+/gu, ' ')
     .trim()
     .replace(/\s+/g, ' ');
 }
 
-function firstSentence(value: string): string {
-  return value.split(/(?<=[.!?])\s+/u)[0] ?? value;
+function meaningfulLead(value: string): string {
+  const sentences = value.match(/[^.!?]+[.!?]?/gu)?.map((sentence) => sentence.trim()) ?? [];
+  const question = sentences.find((sentence) => sentence.endsWith('?'));
+  if (question) return question;
+  return sentences.find((sentence) => words(sentence).length >= MIN_REPEATED_OPENING_WORDS)
+    ?? sentences[0]
+    ?? value;
 }
 
 function words(value: string): string[] {
@@ -165,7 +171,7 @@ export function assessDialogRepeat(
     return { repeated: false, reason: 'none', score: 0, bucket: 'none' };
   }
 
-  const candidateOpening = firstSentence(candidate);
+  const candidateOpening = meaningfulLead(candidate);
   const normalizedOpening = normalizeDialogReply(candidateOpening);
   let bestScore = 0;
 
@@ -177,7 +183,7 @@ export function assessDialogRepeat(
       return { repeated: true, reason: 'exact', score: 1, bucket: 'exact' };
     }
 
-    const previousOpening = firstSentence(item.content);
+    const previousOpening = meaningfulLead(item.content);
     const normalizedPreviousOpening = normalizeDialogReply(previousOpening);
     if (
       normalizedOpening === normalizedPreviousOpening &&

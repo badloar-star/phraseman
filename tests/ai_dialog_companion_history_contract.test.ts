@@ -14,4 +14,10 @@ describe('ai companion history contract', () => {
     expect(source).toContain('testID="ai-companion-system-error"');
     expect(source).toContain('{lastErrorMessage ? (');
   });
+
+  it('records companion quality metadata without transcript content', () => {
+    expect(source).toContain("trackEvent('ai_dialog_reply_quality'");
+    expect(source).toContain("mode: 'companion'");
+    expect(source).not.toContain('ai_dialog_reply_quality_text');
+  });
 });

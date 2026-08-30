@@ -31,6 +31,7 @@ import {
   asInterfaceLang,
   buildCompanionSystemPrompt,
   buildScenarioSystemPrompt,
+  scenarioPromptDataForModel,
 } from './premium_dialog';
 
 const {
@@ -102,6 +103,26 @@ describe('premium dialog prompt language isolation', () => {
     expect(prompt).toContain('NEVER say "the learner"');
     expect(prompt).toContain('NEVER repeat the setting as narration');
     expect(prompt).toContain('Do not repeat a question you already asked');
+  });
+
+  it('removes JSON-only game instructions for a model without JSON mode', () => {
+    const data = {
+      interfaceLang: 'ru',
+      role: 'a friendly barista',
+      setting: 'a cafe',
+      goalEn: 'order coffee',
+      objectives: [{ id: 'order', en: 'order a drink' }],
+      temperament: { patience: 'high', warmth: 'warm' },
+      gameState: { exchangeIndex: 4, mood: 80, objectivesMet: [], noProgressTurns: 1 },
+    };
+
+    const prompt = buildScenarioSystemPrompt(
+      'A2',
+      scenarioPromptDataForModel(data, 'gpt-4.1-nano'),
+    );
+
+    expect(prompt).not.toContain('GAME STATE (track secretly, report as JSON');
+    expect(prompt).not.toContain('OUTPUT FORMAT: respond with a single JSON object');
   });
 
   it('keeps regulated professional advice out of every live dialog prompt', () => {

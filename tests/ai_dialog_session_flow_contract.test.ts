@@ -9,6 +9,7 @@ describe('ai dialog session flow contract', () => {
     expect(source).toContain('finishDialog');
     expect(source).toContain('Завершить');
     expect(source).toContain('gameModeAvailable === false');
+    expect(source).toContain('!res.turnState');
     expect(source).toContain('exchangeIndex >= RECOMMENDED_EXCHANGES');
     expect(source).not.toContain('/ {MAX_EXCHANGES}');
   });
@@ -18,6 +19,12 @@ describe('ai dialog session flow contract', () => {
     expect(source).toContain('exchangeIndex');
     expect(source).toContain('objectivesMet: Array.from(objectivesMet)');
     expect(source).toContain('noProgressTurns: stuckTurnsRef.current');
+  });
+
+  it('records privacy-safe quality metadata with mode and outcome', () => {
+    expect(source).toContain("trackEvent('ai_dialog_reply_quality'");
+    expect(source).toContain("mode: 'scenario'");
+    expect(source).toContain('outcome: qualityTurnState.outcome');
   });
 
   it('shows a Russian next-step recommendation instead of tappable canned answers', () => {

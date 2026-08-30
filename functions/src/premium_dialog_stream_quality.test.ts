@@ -39,4 +39,13 @@ describe('buffered dialog stream quality', () => {
     expect(source).toContain('quality,');
     expect(source).not.toContain("sseWrite(res, { type: 'delta', text: piece })");
   });
+
+  it('marks the request started before the buffered provider call', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'premium_dialog_stream.ts'), 'utf8');
+    const started = source.indexOf("sseWrite(res, { type: 'started' });");
+    const generation = source.indexOf('generateDialogWithRepeatGuard(async (attempt) =>');
+
+    expect(started).toBeGreaterThan(0);
+    expect(generation).toBeGreaterThan(started);
+  });
 });

@@ -161,6 +161,21 @@ function AiCompanionSession() {
       try {
         const res = await sendToTheo(trimmed, history);
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
+        if (res.quality) {
+          void trackEvent('ai_dialog_reply_quality', {
+            scenarioId: 'companion',
+            mode: 'companion',
+            exchangeIndex,
+            model: res.model || 'unknown',
+            repeatDetected: res.quality.repeatDetected,
+            repeatReason: res.quality.repeatReason,
+            similarityBucket: res.quality.similarityBucket,
+            regenerationAttempted: res.quality.regenerationAttempted,
+            regenerationSucceeded: res.quality.regenerationSucceeded,
+            gameModeAvailable: res.quality.gameModeAvailable,
+            outcome: 'ongoing',
+          });
+        }
       } catch (error) {
         setLastErrorMessage(getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }));
       } finally {

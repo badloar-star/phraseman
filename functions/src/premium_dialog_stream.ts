@@ -39,6 +39,7 @@ import {
   sanitizeMemory,
   sanitizeObjectives,
   sanitizeRegulatedAdviceReply,
+  scenarioPromptDataForModel,
   text,
   type ChatMessage,
   type PremiumDialogRequest,
@@ -80,7 +81,7 @@ const MAX_USER_TEXT = 2000;
 
 /** Один кадр SSE. */
 interface StreamEvent {
-  type: 'delta' | 'done' | 'error';
+  type: 'started' | 'delta' | 'done' | 'error';
   [key: string]: unknown;
 }
 
@@ -244,10 +245,14 @@ export const premiumDialogStream = onRequest({
   const remaining = quotaResult.value;
 
   const history = sanitizeHistory(data.history);
+  const gameMode = mode === 'scenario' && isGameMode(data) && modelSupportsJsonObject(dialogModel);
+  const promptData = mode === 'scenario'
+    ? scenarioPromptDataForModel(data, dialogModel)
+    : data;
   const baseSystemPrompt =
     mode === 'companion'
       ? buildCompanionSystemPrompt(cefr, sanitizeMemory(data.memory), data.interfaceLang, data.studyTarget)
-      : buildScenarioSystemPrompt(cefr, data);
+      : buildScenarioSystemPrompt(cefr, promptData);
   // Safety уже внутри baseSystemPrompt (renderGlobalRules, стабильный префикс —
   // кэш OpenAI). Приклеивать её здесь второй раз значило бы и удвоить блок в
   // промпте, и порвать кэш ровно так, как это делалось до удешевления.
@@ -276,7 +281,6 @@ export const premiumDialogStream = onRequest({
     { role: 'user', content: userText },
   ];
 
-  const gameMode = mode === 'scenario' && isGameMode(data) && modelSupportsJsonObject(dialogModel);
   const gameState = gameMode ? sanitizeGameStateForRequest(data) : null;
 
   const failStream = async (code: string): Promise<void> => {
@@ -299,6 +303,9 @@ export const premiumDialogStream = onRequest({
     res.setHeader('Connection', 'keep-alive');
     res.setHeader('X-Accel-Buffering', 'no');
     res.flushHeaders?.();
+    // Quota уже списана: любой последующий сетевой обрыв имеет неопределённый
+    // исход и НЕ должен запускать callable fallback на клиенте.
+    sseWrite(res, { type: 'started' });
 
     const usage = { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 };
     const accepted = await generateDialogWithRepeatGuard(async (attempt) => {

@@ -839,8 +839,10 @@ function AiDialogSession() {
       exchangeIndex: number,
     ) => {
       if (res.quality) {
+        const qualityTurnState = parseTurnState(res.turnState);
         void trackEvent('ai_dialog_reply_quality', {
           scenarioId: scenario.id,
+          mode: 'scenario',
           exchangeIndex,
           model: res.model || 'unknown',
           repeatDetected: res.quality.repeatDetected,
@@ -849,6 +851,7 @@ function AiDialogSession() {
           regenerationAttempted: res.quality.regenerationAttempted,
           regenerationSucceeded: res.quality.regenerationSucceeded,
           gameModeAvailable: res.quality.gameModeAvailable,
+          outcome: qualityTurnState.outcome,
         });
       }
 
@@ -857,7 +860,7 @@ function AiDialogSession() {
       // нормальный игровой режим по-прежнему завершается серверным outcome.
       if (
         gameEnabled &&
-        res.quality?.gameModeAvailable === false &&
+        (res.quality?.gameModeAvailable === false || !res.turnState) &&
         exchangeIndex >= RECOMMENDED_EXCHANGES
       ) {
         applyTurnState({

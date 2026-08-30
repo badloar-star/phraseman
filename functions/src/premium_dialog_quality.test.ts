@@ -13,6 +13,12 @@ describe('dialog repeat quality guard', () => {
     );
   });
 
+  it('normalizes curly and straight apostrophes identically', () => {
+    expect(normalizeDialogReply('What’s your name?')).toBe(
+      normalizeDialogReply("What's your name?"),
+    );
+  });
+
   it('detects exact repeats and A-B-C-A cycles', () => {
     const history = [
       { role: 'assistant' as const, content: 'What size would you like?' },
@@ -38,6 +44,22 @@ describe('dialog repeat quality guard', () => {
     expect(
       assessDialogRepeat('Would you like to pay with cash or by card now?', history),
     ).toMatchObject({ repeated: true, reason: 'near' });
+  });
+
+  it('detects the same question behind different short acknowledgements', () => {
+    expect(
+      assessDialogRepeat('Okay! What size would you like?', [
+        { role: 'assistant', content: 'Great! What size would you like?' },
+      ]),
+    ).toMatchObject({ repeated: true, reason: 'exact' });
+  });
+
+  it('allows a shared acknowledgement when the actual question changes', () => {
+    expect(
+      assessDialogRepeat('Thank you for telling me. Would you like coffee?', [
+        { role: 'assistant', content: 'Thank you for telling me. Would you like tea?' },
+      ]),
+    ).toMatchObject({ repeated: false, reason: 'none' });
   });
 
   it('does not reject harmless short acknowledgements', () => {
@@ -106,6 +128,16 @@ describe('dialog carried game state', () => {
       canonicalizeDialogTurnState(
         { mood: 0, objectivesMet: ['pay'] },
         { exchangeIndex: 4, mood: 10, objectivesMet: ['order'], noProgressTurns: 0 },
+        ['order', 'pay'],
+      ).outcome,
+    ).toBe('lost_patience');
+  });
+
+  it('preserves an explicit lost-patience terminal outcome above success', () => {
+    expect(
+      canonicalizeDialogTurnState(
+        { mood: 15, objectivesMet: ['pay'], outcome: 'lost_patience' },
+        { exchangeIndex: 4, mood: 20, objectivesMet: ['order'], noProgressTurns: 0 },
         ['order', 'pay'],
       ).outcome,
     ).toBe('lost_patience');

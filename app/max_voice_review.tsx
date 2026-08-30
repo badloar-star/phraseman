@@ -25,6 +25,11 @@ import { trackEvent } from './analytics';
 import { minutesUntilDailyQuotaResetUtc } from './max_call_daily_quota';
 import type { TranscriptTurn } from './max_call_transcript';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import {
+  peekMaxVoiceXpAward,
+  subscribeMaxVoiceXpAward,
+  type MaxVoiceXpAwardState,
+} from './max_voice_xp_award';
 import { submitMaxVoiceFeedback } from './max_voice_feedback_client';
 import {
   dequeueVoiceFeedback,
@@ -311,6 +316,20 @@ export default function MaxVoiceReview() {
   const activeSessionId = projection?.sessionId ?? (reviewState.kind === 'pending'
     ? reviewState.envelope.sessionId
     : requestedSessionId);
+
+  // зачем (аудит MAX 2026-08-30): «+N XP» за урок. Сумму считает сервер и
+  // возвращает в ответе maxVoiceSessionEnd; ответ обычно доезжает раньше, чем
+  // открывается разбор, поэтому первый кадр читает снимок синхронно, а
+  // подписка ловит поздний ответ без опроса. Хук обязан жить выше ранних
+  // return (правило хуков этого файла, см. комментарий у resetMinutes).
+  const [xpAward, setXpAward] = useState<MaxVoiceXpAwardState | null>(() => (
+    activeSessionId ? peekMaxVoiceXpAward(activeSessionId) : null
+  ));
+  useEffect(() => {
+    if (!activeSessionId) return undefined;
+    setXpAward(peekMaxVoiceXpAward(activeSessionId));
+    return subscribeMaxVoiceXpAward(activeSessionId, setXpAward);
+  }, [activeSessionId]);
 
   const goHome = () => {
     hapticTap();
@@ -620,6 +639,13 @@ export default function MaxVoiceReview() {
             <Text ref={readyTitleRef} accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', lineHeight: Math.round(f.h2 * 1.25), marginTop: 8 }} maxFontSizeMultiplier={2}>
               {projection?.hero || c.completed}
             </Text>
+            {xpAward && xpAward.credited && xpAward.serverXp > 0 ? (
+              // Появляется, когда сервер подтвердил сумму (обычно до открытия
+              // экрана); liveRegion озвучивает поздний ответ без перечитывания.
+              <Text testID="max-voice-review-xp" accessibilityLiveRegion="polite" style={{ color: t.accent, fontSize: f.body, fontWeight: '900', marginTop: 10 }} maxFontSizeMultiplier={2}>
+                {`+${xpAward.serverXp} XP`}
+              </Text>
+            ) : null}
             {goalImproved ? <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '800', marginTop: 10 }} maxFontSizeMultiplier={2}>{c.goalProgress}</Text> : null}
             {endedInBackground ? (
               <Text testID="max-voice-review-background-note" style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', marginTop: 10 }} maxFontSizeMultiplier={2}>{c.endedBackground}</Text>

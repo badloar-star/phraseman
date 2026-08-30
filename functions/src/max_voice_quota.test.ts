@@ -218,6 +218,127 @@ describe('reserveVoiceSeconds', () => {
     });
   });
 
+  // зачем (аудит 2026-08-30, «платящий заперт до ~20 минут»): kill app на
+  // пре-экране оставлял платную резервацию, и до этого фикса ЛЮБАЯ живая
+  // платная запись отбивала новый минт безусловно — до прохода watchdog-крона.
+  // Мёртвая платная сессия обязана вытесняться теми же окнами, что и
+  // календарная (45с без активации / 75с тишины), с атомарным закрытием
+  // кошелька в той же транзакции.
+  it('supersedes a dead never-activated PAID premint and frees its wallet reservation atomically', async () => {
+    const { db, state, docs } = makeDb(liveDoc({
+      activeSessionId: 'paid-dead',
+      accessType: 'paid_minutes',
+      sessionStartedAtMs: NOW - 50_000,
+      activatedAtMs: 0,
+      lastHeartbeatMs: NOW - 50_000, // «свежий» штамп создания, но алло не было
+      expiresAtMs: NOW + 300_000,
+      reservedSec: 320,
+      paidReservationRootSessionId: 'paid-dead',
+      paidReservationTotalSec: 320,
+      paidConsumedSec: 0,
+      dailyUsedSec: 0,
+      monthlyUsedSec: 0,
+    }));
+    docs.set(`voice_minute_wallets/${STABLE}`, {
+      schemaVersion: 1, ownerStableId: STABLE,
+      grantedSeconds: 7_200, refundedSeconds: 0, chargedSeconds: 0,
+      reservedSeconds: 320, availableSeconds: 6_880,
+      activeReservationSessionId: 'paid-dead', reservationRootSessionId: 'paid-dead',
+      eventCount: 1,
+    });
+
+    const result = await reserveVoiceSeconds(db, {
+      ...LIMITS, sessionId: 'paid-2', accessType: 'paid_minutes', nowMs: NOW,
+    });
+
+    expect(result.reservedSec).toBe(320);
+    expect(result.staleRefundedSec).toBe(320); // «алло» не было — весь резерв назад
+    expect(state.data).toMatchObject({
+      activeSessionId: 'paid-2',
+      accessType: 'paid_minutes',
+      paidReservationRootSessionId: 'paid-2',
+      paidConsumedSec: 0,
+    });
+    expect(docs.get(`voice_minute_wallets/${STABLE}`)).toMatchObject({
+      chargedSeconds: 0, // прожито 0с — деньги не тронуты
+      reservedSeconds: 320,
+      activeReservationSessionId: 'paid-2',
+      availableSeconds: 6_880,
+    });
+    // Звонка не было — charge-событие не пишется.
+    expect([...docs.keys()].filter((path) => path.startsWith('voice_minute_events/'))).toHaveLength(0);
+  });
+
+  it('supersedes a silently-dead PAID call charging only its heartbeat seconds (event written)', async () => {
+    const { db, state, docs } = makeDb(liveDoc({
+      activeSessionId: 'paid-dead',
+      accessType: 'paid_minutes',
+      sessionStartedAtMs: NOW - 300_000,
+      activatedAtMs: NOW - 200_000,
+      lastHeartbeatMs: NOW - 100_000, // прожито 100с от активации, тишина 100с > 75с
+      expiresAtMs: NOW - 1_000,
+      reservedSec: 320,
+      paidReservationRootSessionId: 'paid-dead',
+      paidReservationTotalSec: 320,
+      paidConsumedSec: 0,
+      dailyUsedSec: 0,
+      monthlyUsedSec: 0,
+    }));
+    docs.set(`voice_minute_wallets/${STABLE}`, {
+      schemaVersion: 1, ownerStableId: STABLE,
+      grantedSeconds: 7_200, refundedSeconds: 0, chargedSeconds: 0,
+      reservedSeconds: 320, availableSeconds: 6_880,
+      activeReservationSessionId: 'paid-dead', reservationRootSessionId: 'paid-dead',
+      eventCount: 1,
+    });
+
+    const result = await reserveVoiceSeconds(db, {
+      ...LIMITS, sessionId: 'paid-2', accessType: 'paid_minutes', nowMs: NOW,
+    });
+
+    expect(result.reservedSec).toBe(320);
+    expect(result.staleRefundedSec).toBe(220); // 320 − 100 прожитых
+    expect(docs.get(`voice_minute_wallets/${STABLE}`)).toMatchObject({
+      chargedSeconds: 100,
+      reservedSeconds: 320,
+      activeReservationSessionId: 'paid-2',
+      availableSeconds: 7_200 - 100 - 320,
+    });
+    const chargeEvents = [...docs.entries()]
+      .filter(([path]) => path.startsWith('voice_minute_events/'))
+      .map(([, data]) => data);
+    expect(chargeEvents).toHaveLength(1);
+    expect(chargeEvents[0]).toMatchObject({ kind: 'call_charge', seconds: 100, sessionId: 'paid-dead' });
+    expect(state.data).toMatchObject({ activeSessionId: 'paid-2' });
+  });
+
+  it('still rejects while a PAID call heartbeats within the live window (no parallel paid calls)', async () => {
+    const { db, docs } = makeDb(liveDoc({
+      activeSessionId: 'paid-live',
+      accessType: 'paid_minutes',
+      activatedAtMs: NOW - 100_000,
+      lastHeartbeatMs: NOW - 10_000,
+      expiresAtMs: NOW + 300_000,
+      reservedSec: 320,
+      paidReservationTotalSec: 320,
+    }));
+    docs.set(`voice_minute_wallets/${STABLE}`, {
+      schemaVersion: 1, ownerStableId: STABLE,
+      grantedSeconds: 7_200, refundedSeconds: 0, chargedSeconds: 0,
+      reservedSeconds: 320, availableSeconds: 6_880,
+      activeReservationSessionId: 'paid-live', reservationRootSessionId: 'paid-live',
+      eventCount: 1,
+    });
+
+    await expect(reserveVoiceSeconds(db, {
+      ...LIMITS, sessionId: 'paid-2', accessType: 'paid_minutes', nowMs: NOW,
+    })).rejects.toMatchObject({ code: 'failed-precondition', message: 'voice_session_active' });
+    expect(docs.get(`voice_minute_wallets/${STABLE}`)).toMatchObject({
+      activeReservationSessionId: 'paid-live',
+      reservedSeconds: 320,
+    });
+  });
+
   it('reserves min(cap+tail, day, month) and charges it to both windows', async () => {
     const { db, state } = makeDb();
 

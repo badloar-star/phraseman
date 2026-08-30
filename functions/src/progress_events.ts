@@ -29,6 +29,12 @@ export const PROGRESS_EVENT_TYPES = [
   'diagnostic_test',
   'plan_task_complete',
   'wager_win',
+  // зачем (аудит MAX 2026-08-30): XP голосового урока считал ТОЛЬКО сервер
+  // (maxVoiceSessionEnd → billing.xpAwarded), а клиенту начислить его было
+  // нечем — источника в контракте не существовало, и платный урок не двигал
+  // ни уровень, ни серию. Значение приходит уже посчитанным и капнутым
+  // сервером MAX (дневной кэп xpDailyCap там же), клиент передаёт его как есть.
+  'max_voice',
 ] as const;
 
 export type ProgressEventType = typeof PROGRESS_EVENT_TYPES[number];
@@ -149,6 +155,10 @@ const EVENT_XP_CAP: Record<ProgressEventType, number> = {
   diagnostic_test: 2500,
   plan_task_complete: 1500,
   wager_win: 20000,
+  // Дневной потолок MAX-звонков (xpDailyCap в max_voice_config, дефолт 300)
+  // применён на сервере MAX ещё до клиента; здесь — потолок ОДНОГО события
+  // от подделанного xpDelta, той же величины.
+  max_voice: 300,
 };
 
 /**

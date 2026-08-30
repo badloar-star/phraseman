@@ -121,7 +121,12 @@ export type XPSource =
   | 'exam_complete'
   | 'achievement_reward'
   | 'level_up_bonus'
-  | 'plan_task_complete';    // Завершение задачи персонального плана
+  | 'plan_task_complete'    // Завершение задачи персонального плана
+  // зачем (аудит MAX 2026-08-30): опыт голосового урока MAX. Сервер звонка
+  // (maxVoiceSessionEnd) уже посчитал и капнул сумму — клиентские множители к
+  // ней НЕ применяются (источник намеренно не в isEarnedXP), иначе начисление
+  // разошлось бы с billing.xpAwarded.
+  | 'max_voice';
 
 interface XPResult {
   finalDelta: number;
@@ -164,6 +169,7 @@ function progressEventTypeForSource(source: XPSource): ProgressEventType | null 
     case 'level_up_bonus':
     case 'plan_task_complete':
     case 'wager_win':
+    case 'max_voice':
       return source;
     case 'wager_bet':
       return null;

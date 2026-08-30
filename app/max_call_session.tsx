@@ -83,6 +83,7 @@ import {
 } from './max_call_live_caption';
 import { MaxCallLiveCaptionView } from './max_call_live_caption_view';
 import { setLastMaxCallResult } from './max_voice_review';
+import { handleMaxVoiceSessionEndResult } from './max_voice_xp_award';
 import { invalidateMaxTutorPreview } from './max_tutor_preview';
 import { maxVoiceStudyTarget } from './max_target_gate';
 import { getMaxHomeOrbLayers } from './max_home_orb_assets';
@@ -487,7 +488,14 @@ function MaxCallSessionContent() {
           ...(cefr !== undefined ? { cefr } : {}),
           ...(format === 'companion' ? {} : { scenarioId }),
           channel: 'realtime',
-        } as unknown as Record<string, unknown>),
+        } as unknown as Record<string, unknown>).then((response) => {
+          // зачем (аудит MAX 2026-08-30): сервер возвращает посчитанный XP урока,
+          // а клиент его выбрасывал — платный звонок не двигал ни уровень, ни
+          // серию. Начисление идемпотентно (eventId по sessionId), двойной end
+          // и поздний сеттл detached-минта отсекаются внутри обработчика.
+          handleMaxVoiceSessionEndResult({ sessionId: req.sessionId, response, lang });
+          return response;
+        }),
       exchangeSdp,
       // InCallManager.stop() освобождает native voiceChat session, после чего
       // возвращаем общий expo-audio coordinator в обычный UI-режим.
@@ -881,10 +889,11 @@ function MaxCallSessionContent() {
           format,
           ...(format === 'companion' ? {} : { scenarioId }),
           cefr: normalizedCefr,
-          // зачем: MaxVoiceInterfaceLang — контракт с сервером финализации MAX,
-          // английского там пока нет — сужаем на RU, как остальные контентные
-          // фолбэки без en в проекте.
-          interfaceLang: lang === 'en' ? 'ru' : lang,
+          // зачем (аудит 2026-08-30): прежнее сужение en→ru отдавало
+          // EN-интерфейсу разбор урока НА РУССКОМ. Сервер финализации принимает
+          // 'en' с деплоя functions:max 2026-08-30 — сужение снято; типы Lang и
+          // MaxVoiceInterfaceLang теперь совпадают, расхождение поймает tsc.
+          interfaceLang: lang,
           studyTarget: callStudyTarget,
           endReason: endReasonRef.current,
           ...(tutor?.goalProgress?.goalId || tutor?.goal?.id

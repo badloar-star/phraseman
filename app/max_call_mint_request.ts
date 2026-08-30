@@ -327,7 +327,8 @@ export function prefetchMaxTutorPreview(
         ? { limits: envelope.limits as Record<string, unknown> }
         : {}),
       // Доступ из того же ответа: без него минуты по limits врут для free/plus.
-      ...(envelope.access === 'trial' || envelope.access === 'max'
+      // Сервер шлёт 'trial' | 'paid_minutes' | 'admin' (кошелёк минут, 2026-08-29).
+      ...(envelope.access === 'trial' || envelope.access === 'paid_minutes' || envelope.access === 'admin'
         ? { access: envelope.access }
         : {}),
     };

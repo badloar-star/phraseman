@@ -53,7 +53,11 @@ const MAX_TURN_CHARS = 1_000;
 
 type VoiceFormat = 'scenario' | 'companion' | 'trial' | 'tutor';
 type VoiceCefr = 'A1' | 'A2' | 'B1' | 'B2';
-type InterfaceLang = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+// зачем ('en', аудит 2026-08-30): интерфейс на английском уже раскатан, а
+// контракт его не знал — клиент сужал en→ru, и разбор урока приходил на
+// русском. Сервер обязан принять 'en' РАНЬШЕ, чем клиент начнёт его слать
+// (invalid-argument здесь терминален для outbox — разбор терялся бы навсегда).
+type InterfaceLang = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl' | 'en';
 type PhraseResult = 'pass' | 'needs_work' | 'uncertain' | 'invalid';
 
 interface FinalizeRequest {
@@ -247,7 +251,7 @@ function parseFinalizeData(raw: unknown): ParsedFinalizeData {
     throw new HttpsError('invalid-argument', 'max_finalize_cefr_invalid');
   }
   const interfaceLang = cleanText(requestRaw.interfaceLang, 5, true);
-  if (!['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'].includes(interfaceLang)) {
+  if (!['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'en'].includes(interfaceLang)) {
     throw new HttpsError('invalid-argument', 'max_finalize_interface_lang_invalid');
   }
   if (requestRaw.studyTarget !== undefined && !['en', 'fr', 'es'].includes(cleanText(requestRaw.studyTarget, 2, true))) {
@@ -367,6 +371,7 @@ const FALLBACK_ACTION: Record<InterfaceLang, string> = {
   id: 'Ulangi satu frasa berguna dari percakapan.',
   tr: 'Konuşmadaki yararlı bir cümleyi tekrarla.',
   pl: 'Powtórz jedno przydatne zdanie z rozmowy.',
+  en: 'Repeat one useful phrase from the conversation.',
 };
 
 function phraseEvidence(results: FinalizeRequest['phraseResults']): MaxVoiceReviewReceiptV1['phraseEvidence'] {
@@ -533,7 +538,7 @@ function receiptFromDoc(data: Record<string, unknown>, sessionId: string, stable
 
 const MAX_VOICE_REVIEW_LANGUAGE_NAMES: Record<InterfaceLang, string> = {
   ru: 'Russian', uk: 'Ukrainian', es: 'Spanish', 'pt-BR': 'Brazilian Portuguese',
-  vi: 'Vietnamese', id: 'Indonesian', tr: 'Turkish', pl: 'Polish',
+  vi: 'Vietnamese', id: 'Indonesian', tr: 'Turkish', pl: 'Polish', en: 'English',
 };
 
 /**

@@ -41,7 +41,10 @@ export type ProgressEventType =
   // зачем: порядок обязан совпадать с PROGRESS_EVENT_TYPES в functions/src/progress_events.ts —
   // tests/progress_event_type_contract сверяет списки как упорядоченные, чтобы новый тип события
   // нельзя было завести только на одной стороне.
-  | 'wager_win';
+  | 'wager_win'
+  // зачем (аудит MAX 2026-08-30): опыт голосового урока MAX. Сумму считает и
+  // капит сервер звонка (maxVoiceSessionEnd), сюда она приходит готовой.
+  | 'max_voice';
 
 export type ProgressEventRequest = {
   eventId?: string;

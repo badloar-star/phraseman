@@ -76,7 +76,12 @@ export interface MaxVoiceConfig {
   tutorName: string;
   tutorVoice: string;
   graceTailSec: number;
-  /** Дневной потолок — общий для всех платных тиров (растягивает месячный пакет). */
+  /**
+   * Дневной потолок КАЛЕНДАРНЫХ доступов (trial/admin). К купленным минутам
+   * (accessType 'paid_minutes') НЕ применяется — пейвол прямо обещает «без
+   * дневного лимита», estimateQuotaRemaining/резерв ведут их только по
+   * кошельку (подтверждено владельцем текстом пейвола, аудит 2026-08-30).
+   */
   dailyVoiceSecMax: number;
   /** Месячный пакет тира MAX (отдельная подписка на голосового учителя). */
   monthlyVoiceSecMax: number;

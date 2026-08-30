@@ -27,10 +27,19 @@ import type { Firestore } from 'firebase-admin/firestore';
 import { resolveAccountDeleteIdentityClosure } from './account_delete';
 import { MAX_VOICE_LIFETIME_TRIAL_RESERVE_SEC } from './max_voice_config';
 import {
+  VOICE_MINUTE_EVENT_COLLECTION,
+  VOICE_MINUTE_WALLET_COLLECTION,
+  projectVoiceMinuteWalletReserve,
+  projectVoiceMinuteWalletSettle,
   reserveVoiceMinuteWalletInTransaction,
   settleVoiceMinuteWalletInTransaction,
   transferVoiceMinuteWalletReservationInTransaction,
+  validateVoiceMinuteEventReplay,
+  voiceMinuteWalletFromData,
   type VoiceMinuteAccessType,
+  type VoiceMinuteCallChargeEvent,
+  type VoiceMinuteEvent,
+  type VoiceMinuteWallet,
 } from './voice_minutes';
 
 export const VOICE_QUOTA_COLLECTION = 'voice_call_quotas';
@@ -477,13 +486,20 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
     const activeSessionId = str(data.activeSessionId);
     const prevReserved = Math.max(0, Math.floor(num(data.reservedSec)));
     let staleRefundedSec = 0;
+    // зачем (аудит 2026-08-30, «платящий заперт до ~20 минут»): мёртвая ПЛАТНАЯ
+    // сессия раньше не вытеснялась вовсе (безусловный voice_session_active до
+    // проверок свежести) — kill app на пре-экране блокировал линию до прохода
+    // watchdog-крона. Прежний страх «вытеснение по счётчикам квоты подвесит или
+    // задвоит секунды кошелька» снят не отменой защиты, а атомарностью: кошелёк
+    // закрывается ТОЙ ЖЕ транзакцией (проекции ниже), причём все чтения идут до
+    // первой записи (правило транзакций Firestore) — поэтому здесь только
+    // ГОТОВИМ вытеснение, а пишем его вместе с новым резервом в конце.
+    let evictedPaid: {
+      wallet: VoiceMinuteWallet | null;
+      chargeEvent: VoiceMinuteCallChargeEvent | null;
+      chargeEventRef: FirebaseFirestore.DocumentReference | null;
+    } | null = null;
     if (activeSessionId && prevReserved > 0) {
-      // Paid reservations are bound to the wallet session id. Let the shared
-      // watchdog close them atomically; never evict one using quota counters
-      // alone because that would strand or double-spend wallet seconds.
-      if (data.accessType === 'paid_minutes') {
-        throw new HttpsError('failed-precondition', 'voice_session_active');
-      }
       const lastHeartbeatMs = num(data.lastHeartbeatMs, num(data.sessionStartedAtMs));
       // зачем (аудит 2026-08-24, владелец «связь не установилась»): резерв
       // пишет lastHeartbeatMs = now ПРИ СОЗДАНИИ, ещё до звонка. Поэтому
@@ -516,23 +532,93 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
         ? Math.max(0, Math.ceil((num(data.lastHeartbeatMs, startedAt) - startedAt) / 1000))
         : prevReserved;
       const consumed = Math.min(prevReserved, hbElapsedSec);
-      staleRefundedSec = prevReserved - consumed;
-      win.dailyUsedSec = Math.max(0, win.dailyUsedSec - staleRefundedSec);
-      win.monthlyUsedSec = Math.max(0, win.monthlyUsedSec - staleRefundedSec);
+      if (data.accessType === 'paid_minutes') {
+        // Мёртвая платная сессия: закрываем её резервацию кошелька по последнему
+        // heartbeat (premint без «алло» платит 0 — часы от активации, как выше).
+        const deadWalletRef = db.collection(VOICE_MINUTE_WALLET_COLLECTION).doc(args.stableUid);
+        const deadWalletSnap = await tx.get(deadWalletRef);
+        const deadWallet = voiceMinuteWalletFromData(
+          args.stableUid,
+          (deadWalletSnap.data() ?? {}) as Record<string, unknown>,
+        );
+        if (deadWallet.activeReservationSessionId !== activeSessionId
+          || deadWallet.reservedSeconds <= 0) {
+          // Рассинхрон: кошелёк уже свободен (watchdog/settle успели раньше, а
+          // док квоты не дочистился). Чинится перезаписью дока квоты ниже;
+          // деньги уже сведены той стороной, storno бюджета не наше.
+          evictedPaid = { wallet: null, chargeEvent: null, chargeEventRef: null };
+        } else {
+          const reservationTotalSec = Math.max(prevReserved, Math.floor(num(data.paidReservationTotalSec)));
+          const consumedBeforeSec = Math.min(
+            reservationTotalSec,
+            Math.max(0, Math.floor(num(data.paidConsumedSec))),
+          );
+          const settle = projectVoiceMinuteWalletSettle(deadWallet, {
+            activeSessionId,
+            rootSessionId: str(data.paidReservationRootSessionId) || activeSessionId,
+            reservationTotalSeconds: reservationTotalSec,
+            chargedSeconds: Math.min(reservationTotalSec, consumedBeforeSec + consumed),
+            occurredAtMs: now,
+          });
+          let chargeEventRef: FirebaseFirestore.DocumentReference | null = null;
+          if (settle.chargeEvent) {
+            chargeEventRef = db.collection(VOICE_MINUTE_EVENT_COLLECTION).doc(settle.chargeEvent.eventId);
+            const existingSnap = await tx.get(chargeEventRef);
+            if (existingSnap.exists) {
+              // Событие уже есть при живой резервации — сломанный инвариант;
+              // replay-проверка отличит дубликат от подмены, но писать нельзя.
+              validateVoiceMinuteEventReplay(
+                (existingSnap.data() ?? {}) as unknown as VoiceMinuteEvent,
+                settle.chargeEvent,
+              );
+              throw new Error('voice_minute_charge_already_applied');
+            }
+          }
+          evictedPaid = { wallet: settle.wallet, chargeEvent: settle.chargeEvent, chargeEventRef };
+          // Наружу — неиспользованный хвост: mint сторнирует его в дневном
+          // бюджетном счётчике, как и для календарного вытеснения.
+          staleRefundedSec = settle.refundedSeconds;
+        }
+      } else {
+        staleRefundedSec = prevReserved - consumed;
+        win.dailyUsedSec = Math.max(0, win.dailyUsedSec - staleRefundedSec);
+        win.monthlyUsedSec = Math.max(0, win.monthlyUsedSec - staleRefundedSec);
+      }
     }
 
     if (args.accessType === 'paid_minutes') {
-      let paidReserve;
+      let paidReserve: { reservedSeconds: number; availableSeconds: number };
       try {
-        paidReserve = await reserveVoiceMinuteWalletInTransaction(tx, db, {
-          ownerStableId: args.stableUid,
-          sessionId: args.sessionId,
-          requestedSeconds: Math.floor(
-            Math.max(0, args.formatCapSec) + Math.max(0, args.graceTailSec),
-          ),
-          minimumSeconds: MIN_VOICE_RESERVE_SEC,
-          occurredAtMs: now,
-        });
+        const requestedSeconds = Math.floor(
+          Math.max(0, args.formatCapSec) + Math.max(0, args.graceTailSec),
+        );
+        if (evictedPaid?.wallet) {
+          // База — кошелёк ПОСЛЕ вытеснения; повторное чтение хелпером запрещено
+          // (все чтения транзакции уже сделаны), поэтому проекция + свои записи.
+          const projected = projectVoiceMinuteWalletReserve(evictedPaid.wallet, {
+            sessionId: args.sessionId,
+            requestedSeconds,
+            minimumSeconds: MIN_VOICE_RESERVE_SEC,
+            occurredAtMs: now,
+          });
+          if (evictedPaid.chargeEvent && evictedPaid.chargeEventRef) {
+            tx.set(evictedPaid.chargeEventRef, evictedPaid.chargeEvent, { merge: false });
+          }
+          tx.set(
+            db.collection(VOICE_MINUTE_WALLET_COLLECTION).doc(args.stableUid),
+            projected.wallet,
+            { merge: false },
+          );
+          paidReserve = { reservedSeconds: projected.reservedSeconds, availableSeconds: projected.availableSeconds };
+        } else {
+          paidReserve = await reserveVoiceMinuteWalletInTransaction(tx, db, {
+            ownerStableId: args.stableUid,
+            sessionId: args.sessionId,
+            requestedSeconds,
+            minimumSeconds: MIN_VOICE_RESERVE_SEC,
+            occurredAtMs: now,
+          });
+        }
       } catch (error) {
         const reason = error instanceof Error ? error.message : '';
         if (reason === 'voice_minutes_insufficient') {
@@ -623,6 +709,19 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
       );
     }
 
+    // Календарный резерв ПОСЛЕ вытеснения платной сессии (кошелёк опустел —
+    // гейты увели в trial/admin): закрытие кошелька мёртвой сессии пишется
+    // той же транзакцией, иначе её резервация повисла бы навсегда.
+    if (evictedPaid?.wallet) {
+      if (evictedPaid.chargeEvent && evictedPaid.chargeEventRef) {
+        tx.set(evictedPaid.chargeEventRef, evictedPaid.chargeEvent, { merge: false });
+      }
+      tx.set(
+        db.collection(VOICE_MINUTE_WALLET_COLLECTION).doc(args.stableUid),
+        evictedPaid.wallet,
+        { merge: false },
+      );
+    }
     tx.set(ref, {
       quotaIdentityVersion: VOICE_QUOTA_IDENTITY_VERSION,
       quotaIdentityClosureProof: suppliedClosureProof,

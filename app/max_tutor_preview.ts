@@ -17,11 +17,16 @@ export interface MaxTutorPreview {
   limits?: Record<string, unknown>;
   /**
    * зачем (владелец 2026-08-26): limits.dayRemainingSec — всегда общий
-   * 20-минутный пул MAX, даже когда доступ trial. Кто рисует минуты по этому
+   * пул MAX, даже когда доступ trial. Кто рисует минуты по этому
    * превью (бейдж Главной), обязан знать доступ, иначе free/plus видит «20м»
    * вместо реальных 3 минут пробника.
+   *
+   * зачем ('paid_minutes'/'admin', аудит 2026-08-30): сервер с переезда на
+   * кошелёк минут шлёт access 'trial' | 'paid_minutes' | 'admin' — прежний
+   * литерал 'max' не приходил никогда, и платный доступ выживал только потому,
+   * что падал в ветку dayRemainingSec. Тип приведён к серверному контракту.
    */
-  access?: 'max' | 'trial';
+  access?: 'paid_minutes' | 'admin' | 'trial';
 }
 
 export interface MaxTutorPreviewKeyParams {

@@ -807,7 +807,7 @@ export function renderTutorMemoryBlock(memory: TutorMemory, nowMs: number): stri
  */
 export const TUTOR_APP_DIGEST_FALLBACK = `WHAT THE APP OFFERS (so you can advise concrete next steps; never invent features)
 - Lessons: short phrase-based lessons on the main tab; each has phrases, listening and speaking practice.
-- Trainer (flashcards): spaced repetition of the learner's weak words and phrases; you can put phrases there yourself (assign_homework).
+- Trainer (flashcards): spaced repetition of the learner's weak words and phrases.
 - Dialogs: text role-play scenes with an AI partner (cafe, hotel, doctor, etc.).
 - Calls with you: this daily voice lesson.
 - Streak: a daily streak of activity; XP for lessons, trainer and speaking; pearls (in-app currency) for rewards.

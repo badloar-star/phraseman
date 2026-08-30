@@ -1,6 +1,8 @@
 export type MaxVoiceFormat = 'scenario' | 'companion' | 'trial' | 'tutor';
 export type MaxVoiceCefr = 'A1' | 'A2' | 'B1' | 'B2';
-export type MaxVoiceInterfaceLang = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
+// 'en' принят сервером с 2026-08-30 (деплой раньше клиента — обязателен:
+// invalid-argument терминален для outbox и терял бы разбор).
+export type MaxVoiceInterfaceLang = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl' | 'en';
 export type MaxVoiceStudyTarget = 'en' | 'fr' | 'es';
 export type MaxVoiceEndReason = 'completed' | 'capped' | 'dropped' | 'background' | 'failed';
 export type MaxVoicePhraseResult = 'pass' | 'needs_work' | 'uncertain' | 'invalid';

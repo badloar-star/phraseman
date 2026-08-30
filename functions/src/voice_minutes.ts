@@ -514,6 +514,41 @@ export async function readVoiceMinuteWallet(
   return voiceMinuteWalletFromData(owner, (snap.data() ?? {}) as Record<string, unknown>);
 }
 
+/**
+ * Чистая проекция резерва: тот же расчёт, что reserveVoiceMinuteWalletInTransaction,
+ * но без чтений/записей — для вызывающих, которым Firestore-правило «все чтения
+ * до первой записи» не позволяет дать хелперу читать кошелёк самому (вытеснение
+ * мёртвой платной сессии внутри reserveVoiceSeconds, аудит 2026-08-30).
+ */
+export function projectVoiceMinuteWalletReserve(
+  wallet: VoiceMinuteWallet,
+  args: Readonly<{
+    sessionId: string;
+    requestedSeconds: number;
+    minimumSeconds: number;
+    occurredAtMs: number;
+  }>,
+): { wallet: VoiceMinuteWallet; reservedSeconds: number; availableSeconds: number } {
+  const sessionId = cleanRequired(args.sessionId, 'voice_minute_session_id_required');
+  const requestedSeconds = positiveInteger(args.requestedSeconds, 'voice_minute_seconds_invalid');
+  const minimumSeconds = positiveInteger(args.minimumSeconds, 'voice_minute_seconds_invalid');
+  const occurredAtMs = nonNegativeInteger(args.occurredAtMs, 'voice_minute_time_invalid');
+  if (wallet.reservedSeconds > 0 || wallet.activeReservationSessionId) {
+    throw new Error('voice_minute_reservation_active');
+  }
+  const reservedSeconds = Math.min(requestedSeconds, wallet.availableSeconds);
+  if (reservedSeconds < minimumSeconds) throw new Error('voice_minutes_insufficient');
+  const next: VoiceMinuteWallet = {
+    ...wallet,
+    reservedSeconds,
+    availableSeconds: Math.max(0, wallet.netSeconds - reservedSeconds),
+    activeReservationSessionId: sessionId,
+    reservationRootSessionId: sessionId,
+    updatedAtMs: occurredAtMs,
+  };
+  return { wallet: next, reservedSeconds, availableSeconds: next.availableSeconds };
+}
+
 export async function reserveVoiceMinuteWalletInTransaction(
   tx: Transaction,
   db: Firestore,
@@ -526,31 +561,15 @@ export async function reserveVoiceMinuteWalletInTransaction(
   }>,
 ): Promise<{ reservedSeconds: number; availableSeconds: number }> {
   const ownerStableId = cleanRequired(args.ownerStableId, 'voice_minute_owner_required');
-  const sessionId = cleanRequired(args.sessionId, 'voice_minute_session_id_required');
-  const requestedSeconds = positiveInteger(args.requestedSeconds, 'voice_minute_seconds_invalid');
-  const minimumSeconds = positiveInteger(args.minimumSeconds, 'voice_minute_seconds_invalid');
-  const occurredAtMs = nonNegativeInteger(args.occurredAtMs, 'voice_minute_time_invalid');
   const walletRef = db.collection(VOICE_MINUTE_WALLET_COLLECTION).doc(ownerStableId);
   const walletSnap = await tx.get(walletRef);
   const wallet = voiceMinuteWalletFromData(
     ownerStableId,
     (walletSnap.data() ?? {}) as Record<string, unknown>,
   );
-  if (wallet.reservedSeconds > 0 || wallet.activeReservationSessionId) {
-    throw new Error('voice_minute_reservation_active');
-  }
-  const reservedSeconds = Math.min(requestedSeconds, wallet.availableSeconds);
-  if (reservedSeconds < minimumSeconds) throw new Error('voice_minutes_insufficient');
-  const next = {
-    ...wallet,
-    reservedSeconds,
-    availableSeconds: Math.max(0, wallet.netSeconds - reservedSeconds),
-    activeReservationSessionId: sessionId,
-    reservationRootSessionId: sessionId,
-    updatedAtMs: occurredAtMs,
-  };
-  tx.set(walletRef, next, { merge: false });
-  return { reservedSeconds, availableSeconds: next.availableSeconds };
+  const projected = projectVoiceMinuteWalletReserve(wallet, args);
+  tx.set(walletRef, projected.wallet, { merge: false });
+  return { reservedSeconds: projected.reservedSeconds, availableSeconds: projected.availableSeconds };
 }
 
 export async function transferVoiceMinuteWalletReservationInTransaction(
@@ -583,19 +602,29 @@ export async function transferVoiceMinuteWalletReservationInTransaction(
   }, { merge: false });
 }
 
-export async function settleVoiceMinuteWalletInTransaction(
-  tx: Transaction,
-  db: Firestore,
+/**
+ * Чистая проекция сеттлмента платной резервации: та же математика и валидации,
+ * что settleVoiceMinuteWalletInTransaction, но без чтений/записей. Проверку
+ * дубликата charge-события проекция сделать не может — её обязан выполнить
+ * вызывающий (tx.get по chargeEvent.eventId + validateVoiceMinuteEventReplay)
+ * ДО своих записей. Нужна вытеснению мёртвой платной сессии внутри
+ * reserveVoiceSeconds (аудит 2026-08-30), где чтения и записи разнесены.
+ */
+export function projectVoiceMinuteWalletSettle(
+  wallet: VoiceMinuteWallet,
   args: Readonly<{
-    ownerStableId: string;
     activeSessionId: string;
     rootSessionId: string;
     reservationTotalSeconds: number;
     chargedSeconds: number;
     occurredAtMs: number;
   }>,
-): Promise<{ chargedSeconds: number; refundedSeconds: number; wallet: VoiceMinuteWallet }> {
-  const ownerStableId = cleanRequired(args.ownerStableId, 'voice_minute_owner_required');
+): {
+  wallet: VoiceMinuteWallet;
+  chargeEvent: VoiceMinuteCallChargeEvent | null;
+  chargedSeconds: number;
+  refundedSeconds: number;
+} {
   const activeSessionId = cleanRequired(args.activeSessionId, 'voice_minute_session_id_required');
   const rootSessionId = cleanRequired(args.rootSessionId, 'voice_minute_session_id_required');
   const reservationTotalSeconds = positiveInteger(
@@ -607,37 +636,20 @@ export async function settleVoiceMinuteWalletInTransaction(
     nonNegativeInteger(args.chargedSeconds, 'voice_minute_seconds_invalid'),
   );
   const occurredAtMs = nonNegativeInteger(args.occurredAtMs, 'voice_minute_time_invalid');
-  const walletRef = db.collection(VOICE_MINUTE_WALLET_COLLECTION).doc(ownerStableId);
-  const walletSnap = await tx.get(walletRef);
-  const wallet = voiceMinuteWalletFromData(
-    ownerStableId,
-    (walletSnap.data() ?? {}) as Record<string, unknown>,
-  );
   if (wallet.activeReservationSessionId !== activeSessionId
     || wallet.reservationRootSessionId !== rootSessionId
     || wallet.reservedSeconds !== reservationTotalSeconds) {
     throw new Error('voice_minute_reservation_mismatch');
   }
 
-  let chargeEvent: VoiceMinuteCallChargeEvent | null = null;
-  let chargeEventRef: FirebaseFirestore.DocumentReference | null = null;
-  if (chargedSeconds > 0) {
-    chargeEvent = createVoiceMinuteCallChargeEvent({
+  const chargeEvent = chargedSeconds > 0
+    ? createVoiceMinuteCallChargeEvent({
       sessionId: rootSessionId,
-      ownerStableId,
+      ownerStableId: wallet.ownerStableId,
       chargedSeconds,
       occurredAtMs,
-    });
-    chargeEventRef = db.collection(VOICE_MINUTE_EVENT_COLLECTION).doc(chargeEvent.eventId);
-    const existingSnap = await tx.get(chargeEventRef);
-    if (existingSnap.exists) {
-      validateVoiceMinuteEventReplay(
-        eventFromSnapshot((existingSnap.data() ?? {}) as Record<string, unknown>),
-        chargeEvent,
-      );
-      throw new Error('voice_minute_charge_already_applied');
-    }
-  }
+    })
+    : null;
 
   const nextChargedSeconds = wallet.chargedSeconds + chargedSeconds;
   const netSeconds = wallet.grantedSeconds - wallet.refundedSeconds - nextChargedSeconds;
@@ -653,11 +665,51 @@ export async function settleVoiceMinuteWalletInTransaction(
     activeReservationSessionId: null,
     reservationRootSessionId: null,
   };
-  if (chargeEvent && chargeEventRef) tx.set(chargeEventRef, chargeEvent, { merge: false });
-  tx.set(walletRef, nextWallet, { merge: false });
   return {
+    wallet: nextWallet,
+    chargeEvent,
     chargedSeconds,
     refundedSeconds: reservationTotalSeconds - chargedSeconds,
-    wallet: nextWallet,
+  };
+}
+
+export async function settleVoiceMinuteWalletInTransaction(
+  tx: Transaction,
+  db: Firestore,
+  args: Readonly<{
+    ownerStableId: string;
+    activeSessionId: string;
+    rootSessionId: string;
+    reservationTotalSeconds: number;
+    chargedSeconds: number;
+    occurredAtMs: number;
+  }>,
+): Promise<{ chargedSeconds: number; refundedSeconds: number; wallet: VoiceMinuteWallet }> {
+  const ownerStableId = cleanRequired(args.ownerStableId, 'voice_minute_owner_required');
+  const walletRef = db.collection(VOICE_MINUTE_WALLET_COLLECTION).doc(ownerStableId);
+  const walletSnap = await tx.get(walletRef);
+  const wallet = voiceMinuteWalletFromData(
+    ownerStableId,
+    (walletSnap.data() ?? {}) as Record<string, unknown>,
+  );
+  const projected = projectVoiceMinuteWalletSettle(wallet, args);
+
+  if (projected.chargeEvent) {
+    const chargeEventRef = db.collection(VOICE_MINUTE_EVENT_COLLECTION).doc(projected.chargeEvent.eventId);
+    const existingSnap = await tx.get(chargeEventRef);
+    if (existingSnap.exists) {
+      validateVoiceMinuteEventReplay(
+        eventFromSnapshot((existingSnap.data() ?? {}) as Record<string, unknown>),
+        projected.chargeEvent,
+      );
+      throw new Error('voice_minute_charge_already_applied');
+    }
+    tx.set(chargeEventRef, projected.chargeEvent, { merge: false });
+  }
+  tx.set(walletRef, projected.wallet, { merge: false });
+  return {
+    chargedSeconds: projected.chargedSeconds,
+    refundedSeconds: projected.refundedSeconds,
+    wallet: projected.wallet,
   };
 }

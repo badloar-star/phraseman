@@ -12,7 +12,10 @@ import { evaluateSafety, moderateUserText, recordSafetyFlag, SAFETY_SYSTEM_INSTR
 import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import {
   canonicalizeDialogTurnState,
+  DialogRepeatedReplyError,
+  generateDialogWithRepeatGuard,
   sanitizeDialogGameState,
+  type DialogQualityMeta,
   type SanitizedDialogGameState,
 } from './premium_dialog_quality';
 
@@ -851,92 +854,129 @@ export const premiumDialogSend = onCall({
     });
   }
 
-  let json: OpenAIChatResponse;
   let assistantMessage: string;
   let turnState: unknown = null;
+  let quality: DialogQualityMeta = {
+    repeatDetected: false,
+    repeatReason: 'none' as const,
+    similarityBucket: 'none' as const,
+    regenerationAttempted: false,
+    regenerationSucceeded: false,
+    gameModeAvailable: !isGameMode(data) || gameMode,
+  };
+  const usage = { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 };
   try {
-    const response = await fetch(OPENAI_CHAT_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: dialogModel,
-        // Игровой конверт (reply + 4 поля + coachTips) длиннее обычной реплики —
-        // даём вдвое больше токенов, чтобы JSON не обрезался по бюджету (аудит M2).
-        max_tokens: gameMode ? GAME_OUTPUT_TOKENS : MAX_OUTPUT_TOKENS,
-        messages,
-        temperature: 0.8,
-        ...(gameMode ? { response_format: { type: 'json_object' } } : {}),
-      }),
-    });
-
-    if (!response.ok) {
-      const detail = await response.text().catch(() => '');
-      console.error('premium_dialog chat failed', {
-        status: response.status,
-        model: dialogModel,
-        mode,
-        scenarioId: text(data.scenarioId, 80) || null,
-        detail: detail.slice(0, 500),
+    const accepted = await generateDialogWithRepeatGuard(async (attempt) => {
+      const attemptMessages: ChatMessage[] = attempt === 0
+        ? messages
+        : [
+            messages[0],
+            {
+              role: 'system',
+              content:
+                'QUALITY RETRY: Your previous draft repeated an earlier assistant reply. '
+                + 'Use a clearly different formulation, acknowledge the learner’s newest message, '
+                + 'and move to the next unfinished objective. Do not restart the scene.',
+            },
+            ...messages.slice(1),
+          ];
+      const response = await fetch(OPENAI_CHAT_URL, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: dialogModel,
+          // Игровой конверт (reply + 4 поля + coachTips) длиннее обычной реплики —
+          // даём вдвое больше токенов, чтобы JSON не обрезался по бюджету (аудит M2).
+          max_tokens: gameMode ? GAME_OUTPUT_TOKENS : MAX_OUTPUT_TOKENS,
+          messages: attemptMessages,
+          temperature: 0.8,
+          ...(gameMode ? { response_format: { type: 'json_object' } } : {}),
+        }),
       });
-      throw new HttpsError('unavailable', 'dialog_provider_failed');
-    }
 
-    json = (await response.json()) as OpenAIChatResponse;
-    const rawContent = text(json.choices?.[0]?.message?.content, 1800);
-    if (gameMode) {
-      // Парсим конверт. parseGameEnvelope сам достаёт reply даже из обрезанного
-      // JSON (best-effort, аудит H1) и понижает success без всех целей (H4).
-      const env = parseGameEnvelope(
-        rawContent,
-        sanitizeObjectives(data.objectives).map((o) => o.id),
-        gameState ?? undefined,
-      );
-      if (env && env.reply) {
-        assistantMessage = env.reply;
-        turnState = env.turnState;
-        if (env.truncated) {
-          console.warn('premium_dialog game envelope truncated — reply recovered, turnState dropped', {
+      if (!response.ok) {
+        const detail = await response.text().catch(() => '');
+        console.error('premium_dialog chat failed', {
+          status: response.status,
+          model: dialogModel,
+          mode,
+          scenarioId: text(data.scenarioId, 80) || null,
+          detail: detail.slice(0, 500),
+        });
+        throw new HttpsError('unavailable', 'dialog_provider_failed');
+      }
+
+      const json = (await response.json()) as OpenAIChatResponse;
+      usage.prompt_tokens += Number(json.usage?.prompt_tokens ?? 0);
+      usage.completion_tokens += Number(json.usage?.completion_tokens ?? 0);
+      usage.total_tokens += Number(json.usage?.total_tokens ?? 0);
+      const rawContent = text(json.choices?.[0]?.message?.content, 1800);
+      let reply = rawContent;
+      let candidateTurnState: unknown = null;
+      if (gameMode) {
+        // Парсим конверт. parseGameEnvelope сам достаёт reply даже из обрезанного
+        // JSON (best-effort, аудит H1) и понижает success без всех целей (H4).
+        const env = parseGameEnvelope(
+          rawContent,
+          sanitizeObjectives(data.objectives).map((o) => o.id),
+          gameState ?? undefined,
+        );
+        if (env && env.reply) {
+          reply = env.reply;
+          candidateTurnState = env.turnState;
+          if (env.truncated) {
+            console.warn('premium_dialog game envelope truncated — reply recovered, turnState dropped', {
+              scenarioId: text(data.scenarioId, 80) || null,
+            });
+          }
+        } else {
+          // Даже best-effort reply не нашёлся → НЕ показываем юзеру сырой JSON.
+          console.error('premium_dialog game envelope unrecoverable — no reply extractable', {
             scenarioId: text(data.scenarioId, 80) || null,
           });
+          reply = '';
         }
-      } else {
-        // Даже best-effort reply не нашёлся → НЕ показываем юзеру сырой JSON,
-        // а бросаем «пустой ответ» (обработается как сбой провайдера, аудит H1).
-        console.error('premium_dialog game envelope unrecoverable — no reply extractable', {
+      }
+      if (!reply) {
+        console.error('premium_dialog empty reply', {
+          model: dialogModel,
+          mode,
           scenarioId: text(data.scenarioId, 80) || null,
         });
-        assistantMessage = '';
+        throw new HttpsError('unavailable', 'dialog_empty_reply');
       }
-    } else {
-      assistantMessage = rawContent;
-    }
-    if (!assistantMessage) {
-      console.error('premium_dialog empty reply', {
+      const safeReply = sanitizeRegulatedAdviceReply(reply, studyTarget);
+      if (safeReply !== reply) {
+        console.warn('premium_dialog regulated advice reply sanitized', {
+          mode,
+          scenarioId: text(data.scenarioId, 80) || null,
+          studyTarget,
+        });
+        reply = safeReply;
+        candidateTurnState = null;
+      }
+      assertDialogReplyMatchesTarget(reply, studyTarget);
+      return { reply, turnState: candidateTurnState };
+    }, history);
+
+    assistantMessage = accepted.value.reply;
+    turnState = accepted.value.turnState;
+    quality = {
+      ...accepted.quality,
+      gameModeAvailable: !isGameMode(data) || gameMode,
+    };
+    if (quality.regenerationAttempted) {
+      console.warn('premium_dialog repeated reply regenerated', {
         model: dialogModel,
         mode,
         scenarioId: text(data.scenarioId, 80) || null,
+        reason: quality.repeatReason,
+        similarityBucket: quality.similarityBucket,
       });
-      throw new HttpsError('unavailable', 'dialog_empty_reply');
     }
-    const safeAssistantMessage = sanitizeRegulatedAdviceReply(assistantMessage, studyTarget);
-    if (safeAssistantMessage !== assistantMessage) {
-      console.warn('premium_dialog regulated advice reply sanitized', {
-        mode,
-        scenarioId: text(data.scenarioId, 80) || null,
-        studyTarget,
-      });
-      assistantMessage = safeAssistantMessage;
-      turnState = null;
-    }
-    // ЯЗЫК-ЗАМОК: реплика собеседника ОБЯЗАНА быть на ИЗУЧАЕМОМ языке (studyTarget).
-    // Если модель сорвалась на язык ученика (русский/украинский/…), отклоняем как сбой
-    // провайдера — клиент покажет «не получилось, повтори», а НЕ реплику не на том
-    // языке. Снимаем [[...]]-маркеры перед проверкой, чтобы они не мешали детектору;
-    // порог скрипта (40%) не ловит отдельное эхо-слово ученика.
-    assertDialogReplyMatchesTarget(assistantMessage, studyTarget);
   } catch (error) {
     // И Plus, и админский режим «Фри» используют дневную квоту; сбой провайдера
     // не должен съедать её.
@@ -949,6 +989,9 @@ export const premiumDialogSend = onCall({
     });
     // Опасное сообщение флагуется даже если провайдер упал — юзер его уже отправил.
     await flushSafetyFlags();
+    if (error instanceof DialogRepeatedReplyError) {
+      throw new HttpsError('unavailable', 'dialog_repeated_reply');
+    }
     if (error instanceof HttpsError) throw error;
     console.error('premium_dialog provider exception', {
       model: dialogModel,
@@ -959,7 +1002,6 @@ export const premiumDialogSend = onCall({
     throw new HttpsError('unavailable', 'dialog_provider_failed');
   }
 
-  const usage = json.usage ?? {};
   // ПЕРФ: запись биллинга НЕ блокирует ответ — текст уже готов, а await держал
   // пользователя ещё ~0.1-0.2с. Дожидаемся её вместе с safety-флагами ниже, одним
   // Promise.all, чтобы обе записи гарантированно легли до завершения инстанса
@@ -1000,6 +1042,7 @@ export const premiumDialogSend = onCall({
     // Игровое состояние хода (null, если не игровой режим или JSON не распарсился).
     // Клиент разбирает через parseTurnState с собственным фолбэком.
     turnState,
+    quality,
   };
 });
 

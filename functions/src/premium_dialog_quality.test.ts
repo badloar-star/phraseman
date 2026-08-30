@@ -1,6 +1,7 @@
 import {
   assessDialogRepeat,
   canonicalizeDialogTurnState,
+  generateDialogWithRepeatGuard,
   normalizeDialogReply,
   sanitizeDialogGameState,
 } from './premium_dialog_quality';
@@ -118,5 +119,38 @@ describe('dialog carried game state', () => {
         ['order'],
       ).outcome,
     ).toBe('stalled');
+  });
+});
+
+describe('dialog repeat regeneration', () => {
+  const history = [
+    { role: 'assistant' as const, content: 'What size would you like?' },
+    { role: 'user' as const, content: 'Large, please.' },
+  ];
+
+  it('regenerates once and returns the novel candidate', async () => {
+    const generate = jest.fn()
+      .mockResolvedValueOnce({ reply: 'What size would you like?', value: 1 })
+      .mockResolvedValueOnce({ reply: 'Would you prefer a small or large cup?', value: 2 });
+
+    const out = await generateDialogWithRepeatGuard(generate, history);
+
+    expect(generate).toHaveBeenNthCalledWith(1, 0);
+    expect(generate).toHaveBeenNthCalledWith(2, 1);
+    expect(out.value.value).toBe(2);
+    expect(out.quality).toMatchObject({
+      repeatDetected: true,
+      regenerationAttempted: true,
+      regenerationSucceeded: true,
+    });
+  });
+
+  it('throws dialog_repeated_reply after the second repeat', async () => {
+    const generate = jest.fn().mockResolvedValue({ reply: 'What size would you like?' });
+
+    await expect(generateDialogWithRepeatGuard(generate, history)).rejects.toMatchObject({
+      code: 'dialog_repeated_reply',
+    });
+    expect(generate).toHaveBeenCalledTimes(2);
   });
 });

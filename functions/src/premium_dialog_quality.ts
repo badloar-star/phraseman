@@ -1,7 +1,7 @@
 export type DialogRepeatReason = 'none' | 'exact' | 'near';
 
 export interface DialogHistoryMessage {
-  role: 'user' | 'assistant';
+  role: 'system' | 'user' | 'assistant';
   content: string;
 }
 
@@ -10,6 +10,24 @@ export interface DialogRepeatAssessment {
   reason: DialogRepeatReason;
   score: number;
   bucket: 'none' | 'medium' | 'high' | 'exact';
+}
+
+export interface DialogQualityMeta {
+  repeatDetected: boolean;
+  repeatReason: DialogRepeatReason;
+  similarityBucket: DialogRepeatAssessment['bucket'];
+  regenerationAttempted: boolean;
+  regenerationSucceeded: boolean;
+  gameModeAvailable: boolean;
+}
+
+export class DialogRepeatedReplyError extends Error {
+  readonly code = 'dialog_repeated_reply';
+
+  constructor() {
+    super('dialog_repeated_reply');
+    this.name = 'DialogRepeatedReplyError';
+  }
 }
 
 export interface SanitizedDialogGameState {
@@ -176,5 +194,49 @@ export function assessDialogRepeat(
     reason: repeated ? 'near' : 'none',
     score: bestScore,
     bucket: bestScore >= NEAR_REPEAT_THRESHOLD ? 'high' : bestScore >= 0.5 ? 'medium' : 'none',
+  };
+}
+
+/**
+ * Проверяет полный готовый ответ и допускает ровно одну внутреннюю регенерацию.
+ * Первый кандидат никогда не возвращается вызывающему, если признан повтором.
+ */
+export async function generateDialogWithRepeatGuard<
+  TGenerate extends (attempt: 0 | 1) => Promise<{ reply: string }>,
+>(
+  generate: TGenerate,
+  history: readonly DialogHistoryMessage[],
+): Promise<{ value: Awaited<ReturnType<TGenerate>>; quality: DialogQualityMeta }> {
+  type GeneratedValue = Awaited<ReturnType<TGenerate>>;
+  const first = await generate(0) as GeneratedValue;
+  const firstAssessment = assessDialogRepeat(first.reply, history);
+  if (!firstAssessment.repeated) {
+    return {
+      value: first,
+      quality: {
+        repeatDetected: false,
+        repeatReason: 'none',
+        similarityBucket: firstAssessment.bucket,
+        regenerationAttempted: false,
+        regenerationSucceeded: false,
+        gameModeAvailable: true,
+      },
+    };
+  }
+
+  const second = await generate(1) as GeneratedValue;
+  const secondAssessment = assessDialogRepeat(second.reply, history);
+  if (secondAssessment.repeated) throw new DialogRepeatedReplyError();
+
+  return {
+    value: second,
+    quality: {
+      repeatDetected: true,
+      repeatReason: firstAssessment.reason,
+      similarityBucket: firstAssessment.bucket,
+      regenerationAttempted: true,
+      regenerationSucceeded: true,
+      gameModeAvailable: true,
+    },
   };
 }

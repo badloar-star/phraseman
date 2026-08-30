@@ -1,5 +1,10 @@
 import type { ImageSourcePropType } from 'react-native';
-import type { ArenaTierKey } from '../../modules/arena/rank_engine';
+import {
+  ARENA_RANK_COUNT,
+  ARENA_STARS_PER_RANK,
+  arenaRankView,
+  type ArenaTierKey,
+} from '../../modules/arena/rank_engine';
 
 export type ArenaRankDivision = 1 | 2 | 3;
 
@@ -51,4 +56,14 @@ export function arenaRankShieldAsset(
   division: ArenaRankDivision,
 ): ImageSourcePropType {
   return ASSETS[tierKey][division];
+}
+
+export function arenaRankShieldAssetForRankIndex(
+  rankIndex: number,
+): ImageSourcePropType | null {
+  if (!Number.isInteger(rankIndex) || rankIndex < 0 || rankIndex >= ARENA_RANK_COUNT) {
+    return null;
+  }
+  const view = arenaRankView(rankIndex * ARENA_STARS_PER_RANK);
+  return arenaRankShieldAsset(view.tierKey, view.division);
 }

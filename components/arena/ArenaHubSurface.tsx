@@ -52,6 +52,11 @@ const TOAST_TIER_COPY = [
 ] as const;
 const TOAST_ROMAN: Record<1 | 2 | 3, string> = { 1: 'I', 2: 'II', 3: 'III' };
 
+export function arenaRankStarsRouteParam(value: unknown): string | undefined {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return undefined;
+  return String(Math.max(0, Math.trunc(value)));
+}
+
 export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible?: boolean }>) {
   const router = useRouter();
   const { lang } = useLang();
@@ -240,6 +245,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
       disabled: !enabled,
     };
   });
+  const rankedViewerStars = arenaRankStarsRouteParam(home?.profile.rating);
 
   const onPlay = useCallback(() => {
     const action = arenaMatchButtonAction({
@@ -257,11 +263,12 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
         requestId: action.requestId,
         stableUid: action.stableUid,
         resumeQueue: '1',
+        ...(action.mode === 'ranked' && rankedViewerStars ? { viewerStars: rankedViewerStars } : {}),
       } } as never);
       return;
     }
     setModeSheetOpen(true);
-  }, [home?.activeMatch?.matchId, home?.activeQueue, home?.availability.enabled, router]);
+  }, [home?.activeMatch?.matchId, home?.activeQueue, home?.availability.enabled, rankedViewerStars, router]);
 
   const onSelectMode = useCallback((key: ArenaModeKey) => {
     if (baseBlock !== 'ok') return;
@@ -271,10 +278,14 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     router.push((choice.params ? {
       pathname: choice.route,
       params: choice.route === '/arena_matchmaking'
-        ? { ...choice.params, requestId: createArenaRequestId('queue') }
+        ? {
+          ...choice.params,
+          requestId: createArenaRequestId('queue'),
+          ...(key === 'ranked' && rankedViewerStars ? { viewerStars: rankedViewerStars } : {}),
+        }
         : choice.params,
     } : choice.route) as never);
-  }, [baseBlock, home?.availability, router]);
+  }, [baseBlock, home?.availability, rankedViewerStars, router]);
 
   const todayContent = (
     <>
@@ -319,7 +330,13 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
           body={activeQueue.mode === 'ranked' ? arenaText(lang, 'rankedHint') : arenaText(lang, 'quickHint')}
           disabled={baseBlock !== 'ok'}
           disabledHint={baseBlock === 'ok' ? undefined : blockHint(baseBlock)}
-          onPress={() => router.push({ pathname: '/arena_matchmaking', params: { mode: activeQueue.mode, requestId: activeQueue.requestId, stableUid: activeQueue.stableUid, resumeQueue: '1' } } as never)}
+          onPress={() => router.push({ pathname: '/arena_matchmaking', params: {
+            mode: activeQueue.mode,
+            requestId: activeQueue.requestId,
+            stableUid: activeQueue.stableUid,
+            resumeQueue: '1',
+            ...(activeQueue.mode === 'ranked' && rankedViewerStars ? { viewerStars: rankedViewerStars } : {}),
+          } } as never)}
         />
       ) : null}
       {expansionServerFailure ? <ArenaStateNotice state="error" onRetry={load} /> : null}
@@ -334,7 +351,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     <>
     <ArenaScreen
       title={arenaText(lang, 'title')}
-      showBack={false}
+      onBack={() => router.replace('/(tabs)/home' as never)}
       bottomContentInset={tabContentBottomPad}
       overlay={nextRankToastVisible ? (
         <ArenaNextRankToast

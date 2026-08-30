@@ -15,6 +15,12 @@ describe('Arena hub surface C', () => {
     expect(source).not.toContain('<ArenaFeatureRow accent icon="play"');
   });
 
+  it('keeps the standard back affordance and returns to Home', () => {
+    const source = read('components/arena/ArenaHubSurface.tsx');
+    expect(source).toContain("onBack={() => router.replace('/(tabs)/home' as never)}");
+    expect(source).not.toContain('showBack={false}');
+  });
+
   it('keeps enabled mode rows free of explanatory subtitles', () => {
     const hub = read('components/arena/ArenaHubSurface.tsx');
     expect(hub).toContain("body: enabled");

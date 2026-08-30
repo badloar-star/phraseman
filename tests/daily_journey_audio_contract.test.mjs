@@ -1,12 +1,18 @@
 import assert from 'node:assert/strict';
+import { execFile } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+import { promisify } from 'node:util';
+import { fileURLToPath } from 'node:url';
 
 import {
   AUDIO_CUES,
   SOUND_PACKS,
   TIMELINE_MS,
 } from '../scripts/daily_journey_audio_catalog.mjs';
+
+const execFileAsync = promisify(execFile);
+const audioRoot = new URL('../docs/design/daily-journey-audio/', import.meta.url);
 
 test('defines five speech-free packs and twenty paid cues', () => {
   assert.equal(SOUND_PACKS.length, 5);
@@ -47,4 +53,26 @@ test('generator is checkpointed and never leaks its key', async () => {
   assert.match(source, /character-cost/i);
   assert.doesNotMatch(source, /console\.(?:log|error)\([^\n]*apiKey/);
   assert.doesNotMatch(source, /text-to-speech/i);
+});
+
+test('publishes five synchronized masters and taps without secrets', async () => {
+  const publicManifestText = await readFile(new URL('manifest.json', audioRoot), 'utf8');
+  const publicManifest = JSON.parse(publicManifestText);
+
+  assert.equal(publicManifest.packs.length, 5);
+  assert.doesNotMatch(publicManifestText, /apiKey|xi-api-key|sk_/i);
+
+  for (const pack of SOUND_PACKS) {
+    const masterUrl = new URL(`${pack.id}-master.mp3`, audioRoot);
+    const tapUrl = new URL(`${pack.id}-tap.mp3`, audioRoot);
+    const { stdout } = await execFileAsync('ffprobe', [
+      '-v', 'error',
+      '-show_entries', 'format=duration',
+      '-of', 'default=noprint_wrappers=1:nokey=1',
+      fileURLToPath(masterUrl),
+    ]);
+    const duration = Number.parseFloat(stdout.trim());
+    assert.ok(duration >= 6.15 && duration <= 6.25, `${pack.id}: ${duration}`);
+    assert.ok((await readFile(tapUrl)).length > 0, `${pack.id} tap is empty`);
+  }
 });

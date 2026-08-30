@@ -113,7 +113,18 @@ async function requestSound(apiKey, job) {
 
     const retryable = response.status === 429 || response.status >= 500;
     if (!retryable || attempt === retryDelaysMs.length) {
-      throw new Error(`ElevenLabs sound generation failed for ${job.id}: HTTP ${response.status}`);
+      let safeDetail = '';
+      try {
+        const body = await response.json();
+        const status = typeof body?.detail?.status === 'string' ? body.detail.status : '';
+        const message = typeof body?.detail?.message === 'string' ? body.detail.message : '';
+        safeDetail = [status, message].filter(Boolean).join(': ');
+      } catch {
+        safeDetail = '';
+      }
+      throw new Error(
+        `ElevenLabs sound generation failed for ${job.id}: HTTP ${response.status}${safeDetail ? ` (${safeDetail})` : ''}`,
+      );
     }
     await new Promise((resolve) => setTimeout(resolve, retryDelaysMs[attempt]));
   }

@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-30T12:13:50.423Z",
+  "timelineMs": {
+    "duration": 6200,
+    "pulses": [
+      2800,
+      3230,
+      3660
+    ],
+    "reveal": 4100
+  },
+  "packs": [
+    {
+      "id": "crystal",
+      "label": "Кристалл",
+      "master": {
+        "file": "crystal-master.mp3",
+        "bytes": 99936,
+        "sha256": "16413273af4802098ebc6dd827e5bede84f75028612defc371afd2fbc5776ee0",
+        "durationSeconds": 6.18
+      },
+      "tap": {
+        "file": "crystal-tap.mp3",
+        "bytes": 9239,
+        "sha256": "43cf8271d0f2a14f4c8a6523eceb867446c38045c50ad802a602b3b30e36b094",
+        "durationSeconds": 0.5
+      }
+    },
+    {
+      "id": "runes",
+      "label": "Руны",
+      "master": {
+        "file": "runes-master.mp3",
+        "bytes": 99936,
+        "sha256": "4c40f084bbdb4d952c8b7546c4f879cb8ef80db27d451eac1e7d01fd1e218361",
+        "durationSeconds": 6.18
+      },
+      "tap": {
+        "file": "runes-tap.mp3",
+        "bytes": 9239,
+        "sha256": "fe15aadc0f57826e27990b4bf994916c20d27b268a26098fa0a800d41d4d0c8d",
+        "durationSeconds": 0.5
+      }
+    },
+    {
+      "id": "arcade",
+      "label": "Игра",
+      "master": {
+        "file": "arcade-master.mp3",
+        "bytes": 99936,
+        "sha256": "88bb5fe21299f89942ef87d53988179c8a94f98d6a04b62e4898a9356ce4ec47",
+        "durationSeconds": 6.18
+      },
+      "tap": {
+        "file": "arcade-tap.mp3",
+        "bytes": 9239,
+        "sha256": "0e45108bc0c448dfd1048a2cf904c59ea3daf5217f98e44343348bff4f25289b",
+        "durationSeconds": 0.5
+      }
+    },
+    {
+      "id": "cinematic",
+      "label": "Кино",
+      "master": {
+        "file": "cinematic-master.mp3",
+        "bytes": 99936,
+        "sha256": "af1d91280598c9ae431f496d9eaaab43a45f162fcfaae5113408fb1859a17a75",
+        "durationSeconds": 6.18
+      },
+      "tap": {
+        "file": "cinematic-tap.mp3",
+        "bytes": 9239,
+        "sha256": "a4b77cc834561d5a056eadc6a35632202e1c98baee2d67199ea7fdc56565f2f8",
+        "durationSeconds": 0.5
+      }
+    },
+    {
+      "id": "tactile",
+      "label": "Тактильность",
+      "master": {
+        "file": "tactile-master.mp3",
+        "bytes": 99936,
+        "sha256": "ea4bf6ed633888be88c252f5f5f30630c9359bbfbfc2025ec6905abb6745991c",
+        "durationSeconds": 6.18
+      },
+      "tap": {
+        "file": "tactile-tap.mp3",
+        "bytes": 9239,
+        "sha256": "0121a94d889a999b79d9d95837e1076d23de05d13ed49a67851858a659b1af3f",
+        "durationSeconds": 0.5
+      }
+    }
+  ]
+}

@@ -22,6 +22,14 @@ const semanticFindings = validateLearningV2CourseBlueprintV2({
   lexicalSenses: blueprint.lexicalSenses,
   sessionPackets: blueprint.sessionPackets,
 });
+const lessonsWithPlannedNewLexicon = new Set(
+  blueprint.sessionPackets
+    .filter((packet) => packet.newLexicalSenseIds.length > 0)
+    .map((packet) => packet.lessonOrdinal),
+);
+const lexicalScopeFindings = blueprint.scope.lessons
+  .filter((lesson) => !lessonsWithPlannedNewLexicon.has(lesson.lessonOrdinal))
+  .map((lesson) => `lesson_lexical_progression_missing:${lesson.lessonOrdinal}`);
 
 const countsPass =
   manifest.lessonCount === 32 &&
@@ -37,7 +45,8 @@ const pass =
   approvalPass &&
   scopeFindings.length === 0 &&
   dagFindings.length === 0 &&
-  semanticFindings.length === 0;
+  semanticFindings.length === 0 &&
+  lexicalScopeFindings.length === 0;
 
 if (!pass) {
   process.stderr.write("LEARNING V2 CURRICULUM BLUEPRINT V2 GATE: HOLD\n");
@@ -45,7 +54,7 @@ if (!pass) {
     `counts_pass=${countsPass} fingerprint_pass=${fingerprintPass} approval_pass=${approvalPass}\n`,
   );
   process.stderr.write(
-    `scope_findings=${scopeFindings.length} dag_findings=${dagFindings.length} semantic_findings=${semanticFindings.length}\n`,
+    `scope_findings=${scopeFindings.length} dag_findings=${dagFindings.length} semantic_findings=${semanticFindings.length} lexical_scope_findings=${lexicalScopeFindings.length}\n`,
   );
   process.exitCode = 1;
 } else {
@@ -57,7 +66,7 @@ if (!pass) {
     `intro_plan_items=${manifest.introPlanItemCount} activity_plan_items=${manifest.activityPlanItemCount}\n`,
   );
   process.stdout.write(
-    `scope_findings=${scopeFindings.length} dag_findings=${dagFindings.length} semantic_findings=${semanticFindings.length}\n`,
+    `scope_findings=${scopeFindings.length} dag_findings=${dagFindings.length} semantic_findings=${semanticFindings.length} lexical_scope_findings=${lexicalScopeFindings.length}\n`,
   );
   process.stdout.write(
     `owner_approval=${manifest.ownerApproval} fingerprint=${manifest.fingerprint}\n`,

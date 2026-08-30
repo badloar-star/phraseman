@@ -85,8 +85,8 @@ const html = `<!doctype html>
       <div><div class="eyebrow">Learning V2 · English curriculum</div><h1>FULL B1 GRAMMAR-FIRST · OWNER REVIEW REQUIRED</h1><p class="lede">Кликабельная карта фиксирует весь порядок грамматики заранее: 32 грамматических урока, 224 главы и 1 792 точных планировочных пакета. Learner-facing тексты пишутся только последовательно после отдельного одобрения fingerprint.</p></div>
       <aside class="status" aria-label="Статус утверждения"><strong>OWNER ${manifest.ownerApproval}</strong><div class="hash">${manifest.fingerprint}</div></aside>
     </header>
-    <div class="notice">SUPERSEDED BY OWNER DECISION — FULL B1 GRAMMAR-FIRST REBUILD. Старый blueprint и его approval не действуют.</div>
-    <section class="stats" aria-label="Сводка"><div class="stat"><b>32</b><span>урока грамматики</span></div><div class="stat"><b>224</b><span>главы</span></div><div class="stat"><b>1 792</b><span>session packets</span></div><div class="stat"><b>0</b><span>semantic findings</span></div></section>
+    <div class="notice">SUPERSEDED BY OWNER DECISION — FULL B1 GRAMMAR-FIRST REBUILD. Старый blueprint и его approval не действуют. LEXICAL HOLD: пока материализованы только 16 локализованных seed-senses; до расширения словаря owner approval и learner authoring запрещены.</div>
+    <section class="stats" aria-label="Сводка"><div class="stat"><b>32</b><span>урока грамматики</span></div><div class="stat"><b>224</b><span>главы</span></div><div class="stat"><b>1 792</b><span>session packets</span></div><div class="stat"><b>16</b><span>seed senses · HOLD</span></div></section>
     <div class="toolbar"><div><h2 id="viewTitle">Все уроки</h2><div class="crumb" id="crumb">Present be affirmative → Probability and deduction</div></div><button class="back hidden" id="backButton" type="button">Назад</button></div>
     <section class="grid" id="cards" aria-live="polite"></section>
   </main>

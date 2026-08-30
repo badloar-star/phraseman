@@ -3,7 +3,11 @@ import {
   arenaResultHasAnnounce,
   arenaTierKeyForRating,
 } from '../modules/arena/result_view';
-import { ARENA_TIER_KEYS } from '../modules/arena/rank_engine';
+import {
+  ARENA_DIVISIONS_PER_TIER,
+  ARENA_STARS_PER_RANK,
+  ARENA_TIER_KEYS,
+} from '../modules/arena/rank_engine';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -160,7 +164,7 @@ describe('есть ли что объявлять', () => {
 describe('тир по очкам', () => {
   it('считается для любого значения', () => {
     expect(arenaTierKeyForRating(0)).toBe(ARENA_TIER_KEYS[0]);
-    expect(arenaTierKeyForRating(300)).toBe(ARENA_TIER_KEYS[1]);
+    expect(arenaTierKeyForRating(ARENA_DIVISIONS_PER_TIER * ARENA_STARS_PER_RANK)).toBe(ARENA_TIER_KEYS[1]);
     expect(arenaTierKeyForRating(999_999)).toBe(ARENA_TIER_KEYS[ARENA_TIER_KEYS.length - 1]);
     expect(arenaTierKeyForRating(NaN)).toBe(ARENA_TIER_KEYS[0]);
   });
@@ -216,7 +220,7 @@ describe('неизвестная награда не выдаётся за но�
   it('счёт неизвестного игрока тоже не превращается в ноль', () => {
     const players = fs.readFileSync(path.resolve(__dirname, '..', 'components/arena/ArenaPlayers.tsx'), 'utf8');
     expect(players).toContain('player && knownScore !== null');
-    expect(players).toContain('? <V2Counter value={shownScore} />');
+    expect(players).toContain('<V2Counter value={shownScore} />');
   });
 });
 

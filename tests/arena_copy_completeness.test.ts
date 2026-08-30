@@ -5,9 +5,10 @@ const ROOT = path.resolve(__dirname, '..');
 const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 
 /**
- * Каждая строка Арены существует на всех восьми языках.
+ * Каждая строка Арены существует на всех девяти языках.
  *
- * `arenaText` разбирает массив по позициям: восьмая — польский. Массив из семи
+ * `arenaText` разбирает массив по позициям: третья — английский, девятая —
+ * польский. Массив из восьми
  * элементов даёт `undefined`, `triLang` возвращает его как есть, и на экране
  * появляется пустое место. Ни типы, ни сборка этого не ловят: массив строк
  * остаётся массивом строк какой угодно длины.
@@ -15,7 +16,7 @@ const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
  * Заметить пропажу можно только на устройстве с этим языком — то есть у
  * игрока, а не у нас.
  */
-const LANGS = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+const LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 
 const FILES: Readonly<Record<string, number>> = {
   // Файл → сколько ключей в нём должно быть НЕ МЕНЬШЕ. Число нужно, чтобы
@@ -33,7 +34,7 @@ function entries(rel: string): readonly Entry[] {
   const re = /^ {2}([A-Za-z0-9_]+):\s*\[([\s\S]*?)\],\s*$/gm;
   let match = re.exec(source);
   while (match) {
-    const values = (match[2] as string).match(/'(?:[^'\\]|\\.)*'/g) ?? [];
+    const values = (match[2] as string).match(/'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"/g) ?? [];
     out.push({ key: match[1] as string, values: values.map((v) => v.slice(1, -1)) });
     match = re.exec(source);
   }
@@ -46,7 +47,7 @@ describe('Arena copy completeness', () => {
       expect(entries(rel).length).toBeGreaterThanOrEqual(minimum);
     });
 
-    test(`${rel}: у каждой строки восемь языков`, () => {
+    test(`${rel}: у каждой строки девять языков`, () => {
       const broken = entries(rel)
         .filter((entry) => entry.values.length !== LANGS.length)
         .map((entry) => `${entry.key}: ${entry.values.length}`);
@@ -64,9 +65,9 @@ describe('Arena copy completeness', () => {
     });
   }
 
-  test('разбор по позициям всё ещё рассчитан на восемь языков', () => {
-    // Девятый язык добавляется осознанно: он меняет и порядок разбора, и все
-    // массивы разом. Пусть это будет решением, а не случайностью.
-    expect(read('modules/arena/copy.ts')).toContain('const [ru, uk, es, ptBR, vi, id, tr, pl] = C[key]');
+  test('разбор по позициям всё ещё рассчитан на девять языков', () => {
+    // Десятый язык должен добавляться осознанно: он меняет порядок разбора и
+    // все массивы разом. Пусть это будет решением, а не случайностью.
+    expect(read('modules/arena/copy.ts')).toContain('const [ru, uk, en, es, ptBR, vi, id, tr, pl] = C[key]');
   });
 });

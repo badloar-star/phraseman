@@ -26,7 +26,7 @@ const pushed: unknown[] = [];
 const home = (overrides: Record<string, unknown> = {}) => ({
   ok: true,
   availability: { enabled: true, quickEnabled: true, rankedEnabled: true, friendEnabled: true, rewardsEnabled: true, spinEnabled: false },
-  profile: { rating: 900, rank: 3, spinsAvailable: 0, rankName: 'Bronze', dailyDayKey: '2026-08-20', todayKey: '2026-08-20', dailyMatches: 2, dailyFirstAnswers: 4, dailyWins: 1 },
+  profile: { rating: 9, rank: 3, spinsAvailable: 0, rankName: 'Silver', dailyDayKey: '2026-08-20', todayKey: '2026-08-20', dailyMatches: 2, dailyFirstAnswers: 4, dailyWins: 1 },
   ...overrides,
 });
 const expansion = (overrides: Record<string, unknown> = {}) => ({
@@ -40,7 +40,11 @@ const expansion = (overrides: Record<string, unknown> = {}) => ({
 jest.mock('react-native', () => {
   const ReactNativeTest = jest.requireActual<typeof import('react')>('react');
   const Pressable = ({ disabled, onPress, ...props }: any) => ReactNativeTest.createElement('Pressable', { ...props, disabled, onPress: disabled ? undefined : onPress });
-  return { View: 'View', Text: 'Text', Pressable, StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => Array.isArray(style) ? Object.assign({}, ...style.filter(Boolean)) : style } };
+  return {
+    View: 'View', Text: 'Text', Pressable,
+    Platform: { OS: 'web', select: (options: Record<string, unknown>) => options.web ?? options.default },
+    StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => Array.isArray(style) ? Object.assign({}, ...style.filter(Boolean)) : style },
+  };
 });
 jest.mock('react-native-reanimated', () => {
   const easing = { out: (value: unknown) => value, inOut: (value: unknown) => value, quad: 'quad' };
@@ -69,6 +73,8 @@ jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: (
 jest.mock('../hooks/use_feature_intro', () => ({ useFeatureIntro: () => ({ visible: false, dismiss: jest.fn() }) }));
 jest.mock('../app/feature_intro_registry', () => ({ featureIntroById: () => null }));
 jest.mock('../components/FeatureIntroModal', () => () => null);
+jest.mock('../components/RuneBalanceChip', () => () => null);
+jest.mock('../components/arena/ArenaNextRankToast', () => ({ ArenaNextRankToast: () => null }));
 jest.mock('../components/PressableHybrid', () => {
   const ReactTest = jest.requireActual<typeof import('react')>('react');
   return {
@@ -106,7 +112,7 @@ jest.mock('../modules/arena/home_cache', () => ({
 jest.mock('../components/arena/ArenaScreen', () => ({ ArenaScreen: ({ children, headerRight }: any) => h('View', null, headerRight, children) }));
 jest.mock('../components/ui/v2_ui', () => ({ V2Card: ({ children }: any) => h('View', null, children), V2Cta: ({ children, disabled, accessibilityHint, onPress }: any) => h('Pressable', { accessibilityRole: 'button', accessibilityLabel: children, disabled, accessibilityHint, onPress }, h('Text', null, children)) }));
 jest.mock('../components/arena/ArenaHubSummary', () => ({ ArenaHubSummary: ({ model }: any) => h('View', null,
-  h('Text', { testID: 'hub-live' }, model.rank ? `rank:${model.rank.rp}` : 'rank:unknown'),
+  h('Text', { testID: 'hub-live' }, model.rank ? `rank:${model.rank.tierKey}-${model.rank.division}-${model.rank.starsInRank}` : 'rank:unknown'),
   h('Text', { testID: 'last-match' }, model.lastMatch?.matchId ?? 'match:unknown'),
 ) }));
 jest.mock('../components/arena/ArenaModeSheet', () => ({ ArenaModeSheet: ({ visible, options, onSelect }: any) => visible ? h('View', null, ...options.map((option: any) => h('Pressable', { key: option.key, accessibilityRole: 'button', accessibilityLabel: option.title, disabled: option.disabled, accessibilityHint: option.body, onPress: () => onSelect(option.key) }))) : null }));
@@ -133,15 +139,13 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     pushed.length = 0;
   });
 
-  it('renders neutral live, goals, and Today immediately without a skeleton while disk and network remain unresolved', async () => {
+  it('renders neutral live data immediately without a skeleton while disk and network remain unresolved', async () => {
     homeRequests.push(deferred());
     expansionRequests.push(deferred());
     const screen = await render(h(ArenaHubScreen));
 
     expect(screen.getByTestId('hub-live').props.children).toBe('rank:unknown');
     expect(screen.getByTestId('daily-goals').props.children).toBe('daily:unknown');
-    expect(screen.getByText('Today')).toBeTruthy();
-    expect(screen.getByTestId('today-progress').props.children).toBe('unknown');
     expect(screen.queryByTestId('arena-hub-skeleton')).toBeNull();
     await screen.unmount();
   });
@@ -152,9 +156,8 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     expansionRequests.push(deferred());
     const screen = await render(h(ArenaHubScreen));
 
-    expect(screen.getByTestId('hub-live').props.children).toBe('rank:900');
+    expect(screen.getByTestId('hub-live').props.children).toBe('rank:silver-3-0');
     expect(screen.getByTestId('daily-goals').props.children).toBe('daily:unknown');
-    expect(screen.getByTestId('today-progress').props.children).toBe('unknown');
     expect(screen.queryByLabelText('Continue today')).toBeNull();
     await screen.unmount();
   });
@@ -177,7 +180,7 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     await fireEvent.press(screen.getByTestId('arena-hub-play'));
     expect(screen.getByLabelText('Quick').props.disabled).toBe(true);
     expect(screen.getByLabelText('Quick').props.accessibilityHint).toBe('Fresh data returns when the network returns.');
-    expect(screen.getByLabelText('Start today').props.disabled).toBe(true);
+    expect(screen.queryByLabelText('Start today')).toBeNull();
     await screen.unmount();
   });
 
@@ -195,19 +198,19 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     await flush();
     await act(async () => {
       screen.getByTestId('arena-hub-offline').props.onPress();
-      newHome.resolve(home({ profile: { ...home().profile, rating: 777 } }));
+      newHome.resolve(home({ profile: { ...home().profile, rating: 12 } }));
       newExpansion.resolve(expansion({ wallet: { walletStars: 77 } }));
       await flush();
     });
     expect(rememberWarm).toHaveBeenCalledTimes(3);
     expect(rememberWarm).toHaveBeenNthCalledWith(1, expect.objectContaining({
-      home: expect.objectContaining({ profile: expect.objectContaining({ rating: 777 }) }),
+      home: expect.objectContaining({ profile: expect.objectContaining({ rating: 12 }) }),
     }));
     expect(rememberWarm).toHaveBeenNthCalledWith(2, expect.objectContaining({
       expansion: expect.objectContaining({ wallet: { walletStars: 77 } }),
     }));
     expect(rememberWarm).toHaveBeenNthCalledWith(3, expect.objectContaining({
-      home: expect.objectContaining({ profile: expect.objectContaining({ rating: 777 }) }),
+      home: expect.objectContaining({ profile: expect.objectContaining({ rating: 12 }) }),
       expansion: expect.objectContaining({ wallet: { walletStars: 77 } }),
     }));
     rememberWarm.mockClear();
@@ -217,7 +220,7 @@ describe('ArenaHubScreen offline-first orchestration', () => {
       await flush();
     });
 
-    expect(screen.getByTestId('hub-live').props.children).toBe('rank:777');
+    expect(screen.getByTestId('hub-live').props.children).toBe('rank:silver-2-0');
     expect(rememberWarm).not.toHaveBeenCalled();
     await screen.unmount();
   });

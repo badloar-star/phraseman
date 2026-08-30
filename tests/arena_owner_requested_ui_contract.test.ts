@@ -56,9 +56,10 @@ describe('Arena owner-requested runtime surface', () => {
     expect(question).toContain('options: { gap: 8 }');
     expect(question).toContain('displayTerminalPunctuation');
     expect(question).toContain('shouldShowArenaBuilderPunctuation');
+    expect(question).toContain('role="prompt"');
     expect(question).toContain('role="target"');
     expect(question).toContain('role="native"');
-    expect(bilingual).toContain('role="prompt"');
+    expect(bilingual).toContain('role: ArenaTextRole');
     expect(bilingual).toContain('introTargetTextColor');
     expect(bilingual).not.toContain('P.gold');
     expect(bilingual).toContain('fontFamily:');

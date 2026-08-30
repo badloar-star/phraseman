@@ -132,7 +132,12 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(matchmaking).toContain('resumeSearchAfterAssignedMatch');
     expect(matchmaking).toContain('arenaReplacementBotDelayMs(Math.random())');
     expect(matchmaking.match(/useArenaQueue\(/g)).toHaveLength(1);
-    expect(matchmaking.match(/setInterval\(/g)).toHaveLength(1);
+    // Два независимых цикла по решениям владельца: серверный heartbeat поиска
+    // и тихий 3-секундный sound-loop. Оба живут только на активном экране и
+    // очищаются своими эффектами; второй не создаёт ещё одну очередь.
+    expect(matchmaking.match(/setInterval\(/g)).toHaveLength(2);
+    expect(matchmaking).toContain("setInterval(() => playSound('searchLoop'), 3050)");
+    expect(matchmaking).toContain('setInterval(() => { void reconcile(); }, ARENA_RANKED_HEARTBEAT_MS)');
   });
 
   /**

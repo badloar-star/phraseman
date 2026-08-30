@@ -1,6 +1,6 @@
 import type { EpisodeSourcePhrase } from './episode_01_source_v1';
 import { ES_EPISODE_01_SESSION_25_PHRASES } from './es_episode_01_session_25_phrases_v1';
-import { ES_EPISODE_01_SESSION_26_PHRASES } from './es_episode_01_session_26_phrases_v1';
+import { ES_TRANSPLANTED_S26_PHRASES } from './es_episode_01_transplanted_s26_v1';
 import { ES_EPISODE_01_SESSION_27_PHRASES } from './es_episode_01_session_27_phrases_v1';
 
 // зачем этот файл (владелец, 2026-08-25, карта сессий es_episode_01_session_map_v1.ts,
@@ -36,7 +36,9 @@ function findPhrase(
 }
 
 const ES_S25 = ES_EPISODE_01_SESSION_25_PHRASES;
-const ES_S26 = ES_EPISODE_01_SESSION_26_PHRASES;
+// зачем (2026-08-30): сессия 26 удалена владельцем; одиннадцать её somos-фраз
+// пересажены байт в байт в transplanted_material.
+const ES_S26 = ES_TRANSPLANTED_S26_PHRASES;
 const ES_S27 = ES_EPISODE_01_SESSION_27_PHRASES;
 
 export const ES_EPISODE_01_SESSION_31_VOICE_PHRASES: readonly EpisodeSourcePhrase[] =

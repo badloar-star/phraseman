@@ -13,6 +13,7 @@ import { useGuardedNav } from '../../hooks/use-guarded-nav';
 import { usePremium } from '../../components/PremiumContext';
 import { useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Crypto from 'expo-crypto';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
@@ -126,6 +127,16 @@ import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfScreenMount, perfNavStart } from '../perf-monitor';
 import { emitAppEvent, onAppEvent } from '../events';
+import { registerDailyJourneyRevealTargetMeasurer } from '../../components/daily_journey/dailyJourneyRevealTargetBridge';
+import DailyJourneyRewardPreviewModal from '../../components/dev/DailyJourneyRewardPreviewModal';
+import { commitDailyJourneyGift, readDailyJourneyGiftProjection } from '../daily_journey_gift_inbox';
+import {
+  createDailyJourneyHomeGrantController,
+  createDailyJourneyHomeLandingGate,
+  createDailyJourneyHomeProjectionController,
+  type DailyJourneyHomeDelivery,
+  type DailyJourneyHomeTargetRect,
+} from '../daily_journey_home_orchestration';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { ensureAnonUser } from '../cloud_sync';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
@@ -1153,6 +1164,176 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const statsHintPulseAnim = useRef(new Animated.Value(1)).current;
     const statsPulseSessionRef = useRef(false);
     const [showStatsPulseHint, setShowStatsPulseHint] = useState(false);
+    // зачем (спека Daily Journey 2026-08-30, пп. 5.9 и 6): подтверждение
+    // доставки — один сдержанный пульс карточки «Статистика» (1→1.035→1) и
+    // вход «Подарок» в независимом правом слоте, пока есть непрочитанные.
+    const dailyJourneyPulseAnim = useRef(new Animated.Value(1)).current;
+    const dailyJourneyPulseAnimationRef = useRef<Animated.CompositeAnimation | null>(null);
+    const dailyJourneyLandingGateRef = useRef(createDailyJourneyHomeLandingGate());
+    const homeStatsCardRef = useRef<View | null>(null);
+    const dailyJourneyReduceMotion = useReduceMotion();
+    const [dailyJourneyUnreadCount, setDailyJourneyUnreadCount] = useState(0);
+    const [dailyJourneyDelivery, setDailyJourneyDelivery] = useState<(DailyJourneyHomeDelivery & Readonly<{ run: number }>) | null>(null);
+    const dailyJourneyDeliveryRef = useRef<(DailyJourneyHomeDelivery & Readonly<{ run: number }>) | null>(null);
+    const dailyJourneyDeliveryQueueRef = useRef<(DailyJourneyHomeDelivery & Readonly<{ run: number }>)[]>([]);
+    const dailyJourneyDeliveryRunRef = useRef(0);
+
+    const reportDailyJourneyHomeError = useCallback((scope: string, error: unknown, showFeedback = false) => {
+        DebugLogger.error(`home:daily_journey:${scope}`, error instanceof Error ? error : new Error(String(error)), 'warning');
+        if (!showFeedback) return;
+        emitAppEvent('action_toast', {
+            type: 'error',
+            messageRu: 'Подарок не сохранён. Попробуй ещё раз.',
+            messageUk: 'Подарунок не збережено. Спробуй ще раз.',
+            messageEs: 'No se guardó el regalo. Inténtalo de nuevo.',
+            messagePtBr: 'O presente não foi salvo. Tente novamente.',
+            messageVi: 'Chưa lưu được quà. Hãy thử lại.',
+            messageId: 'Hadiah belum tersimpan. Coba lagi.',
+            messageTr: 'Hediye kaydedilemedi. Tekrar dene.',
+            messagePl: 'Nie zapisano prezentu. Spróbuj ponownie.',
+        });
+    }, []);
+
+    const dailyJourneyProjectionController = useMemo(() => createDailyJourneyHomeProjectionController<AccountGenerationToken>({
+        captureToken: captureAccountGeneration,
+        isTokenCurrent: isCurrentAccountGeneration,
+        readProjection: (token) => readDailyJourneyGiftProjection(token),
+        displayUnreadCount: setDailyJourneyUnreadCount,
+        reportError: (scope, error) => reportDailyJourneyHomeError(scope, error),
+    }), [reportDailyJourneyHomeError]);
+
+    const stopDailyJourneyPulse = useCallback(() => {
+        dailyJourneyPulseAnimationRef.current?.stop();
+        dailyJourneyPulseAnimationRef.current = null;
+        dailyJourneyPulseAnim.stopAnimation();
+        dailyJourneyPulseAnim.setValue(1);
+    }, [dailyJourneyPulseAnim]);
+
+    const handleDailyJourneyLanded = useCallback((occurrenceId: string | null) => {
+        if (!dailyJourneyLandingGateRef.current.shouldPulse(occurrenceId, dailyJourneyReduceMotion)) {
+            dailyJourneyPulseAnim.setValue(1);
+            return;
+        }
+        stopDailyJourneyPulse();
+        const animation = Animated.sequence([
+            Animated.timing(dailyJourneyPulseAnim, { toValue: 1.035, duration: 180, easing: Easing.out(Easing.cubic), useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }), // guard-ok: native transform only
+            Animated.timing(dailyJourneyPulseAnim, { toValue: 1, duration: 240, easing: Easing.inOut(Easing.quad), useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }), // guard-ok: native transform only
+        ]);
+        dailyJourneyPulseAnimationRef.current = animation;
+        animation.start(() => {
+            if (dailyJourneyPulseAnimationRef.current === animation) dailyJourneyPulseAnimationRef.current = null;
+        });
+    }, [dailyJourneyPulseAnim, dailyJourneyReduceMotion, stopDailyJourneyPulse]);
+
+    const measureDailyJourneyStatsCard = useCallback(() => new Promise<DailyJourneyHomeTargetRect | null>((resolve) => {
+        const node = homeStatsCardRef.current;
+        if (!homeRuntimeActive || !node || typeof node.measureInWindow !== 'function') {
+            resolve(null);
+            return;
+        }
+        node.measureInWindow((x, y, width, height) => {
+            const windowHeight = Dimensions.get('window').height;
+            if (!Number.isFinite(x) || !Number.isFinite(y) || width <= 0 || height <= 0 || y + height <= 0 || y >= windowHeight) {
+                resolve(null);
+                return;
+            }
+            resolve(Object.freeze({ x, y, width, height }));
+        });
+    }), [homeRuntimeActive]);
+    const measureDailyJourneyStatsCardRef = useRef(measureDailyJourneyStatsCard);
+    measureDailyJourneyStatsCardRef.current = measureDailyJourneyStatsCard;
+
+    const enqueueDailyJourneyDelivery = useCallback((delivery: DailyJourneyHomeDelivery) => {
+        stopDailyJourneyPulse();
+        const queued = Object.freeze({ ...delivery, run: ++dailyJourneyDeliveryRunRef.current });
+        if (dailyJourneyDeliveryRef.current) {
+            dailyJourneyDeliveryQueueRef.current.push(queued);
+            return;
+        }
+        dailyJourneyDeliveryRef.current = queued;
+        setDailyJourneyDelivery(queued);
+    }, [stopDailyJourneyPulse]);
+    const enqueueDailyJourneyDeliveryRef = useRef(enqueueDailyJourneyDelivery);
+    enqueueDailyJourneyDeliveryRef.current = enqueueDailyJourneyDelivery;
+
+    const completeDailyJourneyDelivery = useCallback(() => {
+        const next = dailyJourneyDeliveryQueueRef.current.shift() ?? null;
+        // The just-landed pulse must remain visible. Only a queued new run
+        // cancels it before that next modal starts.
+        if (next) stopDailyJourneyPulse();
+        dailyJourneyDeliveryRef.current = next;
+        setDailyJourneyDelivery(next);
+    }, [stopDailyJourneyPulse]);
+
+    const clearDailyJourneyDeliveries = useCallback(() => {
+        dailyJourneyDeliveryQueueRef.current = [];
+        dailyJourneyDeliveryRef.current = null;
+        setDailyJourneyDelivery(null);
+        stopDailyJourneyPulse();
+    }, [stopDailyJourneyPulse]);
+
+    const dailyJourneyGrantController = useMemo(() => createDailyJourneyHomeGrantController<AccountGenerationToken>({
+        createOperationId: () => Crypto.randomUUID(),
+        captureToken: captureAccountGeneration,
+        isTokenCurrent: isCurrentAccountGeneration,
+        commit: (input, token) => commitDailyJourneyGift(input, token),
+        measureTarget: () => measureDailyJourneyStatsCardRef.current(),
+        enqueueModal: (delivery) => enqueueDailyJourneyDeliveryRef.current(delivery),
+        reportError: (scope, error) => reportDailyJourneyHomeError(scope, error, scope !== 'measure'),
+    }), [reportDailyJourneyHomeError]);
+
+    useEffect(() => {
+        if (homeRuntimeActive) {
+            void dailyJourneyProjectionController.activate().catch((error) => reportDailyJourneyHomeError('projection_activate', error));
+        } else {
+            dailyJourneyProjectionController.deactivate();
+            stopDailyJourneyPulse();
+        }
+    }, [dailyJourneyProjectionController, homeRuntimeActive, reportDailyJourneyHomeError, stopDailyJourneyPulse]);
+
+    useEffect(() => {
+        if (!homeRuntimeActive) return undefined;
+        const changedSub = onAppEvent('daily_journey_gifts_changed', () => {
+            void dailyJourneyProjectionController.reload().catch((error) => reportDailyJourneyHomeError('projection_event', error));
+        });
+        const deliveredSub = onAppEvent('daily_journey_delivered', ({ occurrenceId }) => {
+            handleDailyJourneyLanded(occurrenceId);
+            void dailyJourneyProjectionController.reload().catch((error) => reportDailyJourneyHomeError('projection_delivered', error));
+        });
+        return () => {
+            changedSub.remove();
+            deliveredSub.remove();
+        };
+    }, [dailyJourneyProjectionController, handleDailyJourneyLanded, homeRuntimeActive, reportDailyJourneyHomeError]);
+
+    useEffect(() => {
+        const accountSub = subscribeAccountGeneration(() => {
+            clearDailyJourneyDeliveries();
+            void dailyJourneyProjectionController.resetForAccount().catch((error) => reportDailyJourneyHomeError('projection_account', error));
+        });
+        return () => accountSub.remove();
+    }, [clearDailyJourneyDeliveries, dailyJourneyProjectionController, reportDailyJourneyHomeError]);
+
+    useEffect(() => {
+        // DevHub preview compatibility: it has no direct Home target prop, so
+        // this bridge returns the same measured Statistics-card center.
+        const unregister = registerDailyJourneyRevealTargetMeasurer(async () => {
+            const rect = await measureDailyJourneyStatsCardRef.current();
+            return rect ? { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 } : null;
+        });
+        return unregister;
+    }, [homeRuntimeActive]);
+
+    useEffect(() => {
+        if (dailyJourneyReduceMotion) stopDailyJourneyPulse();
+    }, [dailyJourneyReduceMotion, stopDailyJourneyPulse]);
+
+    useEffect(() => () => {
+        dailyJourneyProjectionController.dispose();
+        dailyJourneyDeliveryQueueRef.current = [];
+        dailyJourneyDeliveryRef.current = null;
+        stopDailyJourneyPulse();
+    }, [dailyJourneyProjectionController, stopDailyJourneyPulse]);
     const eliteStatusEntrance = useRef(new Animated.Value(1)).current;
     const eliteQuickTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
     const eliteActivityTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
@@ -3203,12 +3384,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   В ПОТОКЕ под рядом дней
                   недели, а не абсолютом поверх: пилюля 44px перекрывала бы
                   подпись «Вс» в правом углу. */}
+              {(homeSpinBalance > 0 || dailyJourneyUnreadCount > 0) ? (
+              // зачем (спека Daily Journey, п. 6): «Спин» остаётся ровно по
+              // центру, «Подарок» живёт в независимом правом слоте (absolute)
+              // и не сдвигает центр при появлении/исчезновении любого из них.
+              <View style={{ marginTop: eliteStatsCompact ? 12 : 14, minHeight: 44, justifyContent: 'center' }}>
               {homeSpinBalance > 0 ? (
                 <Animated.View
                   testID="home-spin-fab"
                   style={{
                     alignSelf: 'center',
-                    marginTop: eliteStatsCompact ? 12 : 14,
                     transform: [{ scale: homeSpinPulse }],
                   }}
                 >
@@ -3281,6 +3466,58 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   </TapScale>
                 </Animated.View>
               ) : null}
+              {dailyJourneyUnreadCount > 0 ? (
+                <View testID="home-gift-entry" style={{ position: 'absolute', right: 0, top: 0, bottom: 0, justifyContent: 'center' }}>
+                  <TapScale
+                    testID="home-gift-entry-button"
+                    accessibilityRole="button"
+                    accessibilityLiveRegion="polite"
+                    accessibilityLabel={triLang(lang, {
+                      ru: `Подарки: ${dailyJourneyUnreadCount}`, uk: `Подарунки: ${dailyJourneyUnreadCount}`,
+                      en: `Gifts: ${dailyJourneyUnreadCount}`,
+                      es: `Regalos: ${dailyJourneyUnreadCount}`, 'pt-BR': `Presentes: ${dailyJourneyUnreadCount}`,
+                      vi: `Quà tặng: ${dailyJourneyUnreadCount}`, id: `Hadiah: ${dailyJourneyUnreadCount}`,
+                      tr: `Hediyeler: ${dailyJourneyUnreadCount}`, pl: `Prezenty: ${dailyJourneyUnreadCount}`,
+                    })}
+                    scaleTo={0.97}
+                    hitSlop={10}
+                    onPress={() => {
+                      // зачем (спека, п. 6): прямой маршрут в существующие
+                      // «Подарки»; непрочитанное гасит сам экран инвентаря
+                      // после первой успешной загрузки, а не этот тап.
+                      hapticTap();
+                      nav.push('/level_gifts_inventory');
+                    }}
+                    style={{ borderRadius: 16 }}
+                  >
+                    <LinearGradient
+                      colors={['rgba(255,255,255,0.26)', 'rgba(255,255,255,0)']}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 0, y: 1 }}
+                      style={{
+                        minWidth: 52,
+                        minHeight: 44,
+                        borderRadius: 16,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: t.accent,
+                        borderBottomWidth: 4,
+                        borderBottomColor: 'rgba(0,0,0,0.30)',
+                      }}
+                    >
+                      {/* Метка доступности на кнопке, значок декоративный — как у «Спина». */}
+                      <Ionicons name="gift" size={22} color={t.correctText} />
+                    </LinearGradient>
+                    <View testID="home-gift-entry-count" style={{ position: 'absolute', top: -5, right: -5, minWidth: 21, height: 21, borderRadius: 10, paddingHorizontal: 5, alignItems: 'center', justifyContent: 'center', backgroundColor: t.gold }}>
+                      <Text maxFontSizeMultiplier={1} style={{ color: '#211500', fontSize: 12, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                        {dailyJourneyUnreadCount}
+                      </Text>
+                    </View>
+                  </TapScale>
+                </View>
+              ) : null}
+              </View>
+              ) : null}
               {showStatsPulseHint && (<Animated.Text accessibilityLiveRegion="polite" style={{
                     color: t.accent,
                     fontSize: 13,
@@ -3338,6 +3575,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     style={{ width: 40, minHeight: 46, alignItems: 'center', justifyContent: 'center' }}
                   >
                     <Ionicons name="flask-outline" size={21} color={t.heroTextPrimary} />
+                  </TouchableOpacity>
+                )}
+                {ENABLE_DEV_TOOLS && (
+                  <TouchableOpacity
+                    testID="home-dev-daily-journey-button"
+                    accessibilityRole="button"
+                    accessibilityLabel="DEV: выдать следующий подарок путешествия"
+                    accessibilityHint="Сохраняет реальный подарок, затем показывает доставку"
+                    activeOpacity={0.72}
+                    onPress={() => {
+                      hapticTap();
+                      void dailyJourneyGrantController.press().catch((error) => {
+                        reportDailyJourneyHomeError('grant_unhandled', error, true);
+                      });
+                    }}
+                    style={{ width: 44, minHeight: 46, alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <Ionicons name="gift-outline" size={21} color={t.heroTextPrimary} />
                   </TouchableOpacity>
                 )}
                 {/* зачем: дев-кнопка «проиграть намёк» (владелец, 2026-08-27) —
@@ -3402,12 +3657,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               Компаса. Полная статистика — по тапу на статус-строку (/streak_stats). */}
           <Animated.View style={sectionStyle(1)}>
           {/* Герой: серия + уровень + XP + неделя (вернул владелец) — тап открывает статистику */}
-          <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={[{ marginHorizontal: 8, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : isOliveTheme ? oliveShadow(2) : null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
+          {/* зачем (спека Daily Journey, п. 5.9): обёртка несёт пульс доставки
+              (1→1.035→1) и является целью полёта награды — measureInWindow по
+              ней даёт кадр самой карточки (маргины перенесены сюда же). */}
+          <Animated.View ref={homeStatsCardRef as React.Ref<View>} collapsable={false} style={{ marginHorizontal: 8, marginBottom: 12, transform: [{ scale: dailyJourneyPulseAnim }] }}>
+          <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={isGoldTheme ? goldShadow(3) : isOliveTheme ? oliveShadow(2) : null} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
             <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : 24, borderWidth: 0, borderColor: 'transparent', padding: 18, minHeight: HOME_STATS_CARD_MIN_HEIGHT, overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
               {renderHomeHeroStatus()}
             </LinearGradient>
           </TouchableOpacity>
+          </Animated.View>
 
           {/* БЫСТРЫЙ СТАРТ: Уроки / МАКС / Карточки при доступном MAX.
               зачем: владелец вернул ряд плиток вместо трёх колец — иконка сама
@@ -4223,6 +4483,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 void clearPendingResult();
             }}/>)}
       {/* Приветствие-знакомство со спотлайт-подсветкой блоков — один раз при первом входе. */}
+      {dailyJourneyDelivery ? (
+        <DailyJourneyRewardPreviewModal
+          visible
+          day={dailyJourneyDelivery.occurrence.day}
+          run={dailyJourneyDelivery.run}
+          occurrence={dailyJourneyDelivery.occurrence}
+          targetRect={dailyJourneyDelivery.targetRect}
+          onLanded={handleDailyJourneyLanded}
+          onDeliveryComplete={completeDailyJourneyDelivery}
+        />
+      ) : null}
       {/* Сохранённые карточки слетаются в плитку «Карточки». Оверлей поверх всего:
           места не занимает, поэтому первый кадр главной остаётся стабильным. */}
       <SavedCardsFlight

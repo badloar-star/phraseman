@@ -98,7 +98,7 @@ The controller owns one clock and exposes play, pause, seek, replay, skip, and d
 
 ```js
 function createSceneController({ onFrame, onFinish }) {
-  const duration = 9300;
+  const duration = 6200;
   let elapsed = 0;
   let startedAt = 0;
   let playing = false;
@@ -122,7 +122,8 @@ function createSceneController({ onFrame, onFinish }) {
     pause() { playing = false; cancelAnimationFrame(raf); },
     seek(ms) { elapsed = Math.max(0, Math.min(duration, ms)); onFrame(elapsed, duration); },
     replay() { elapsed = 0; onFrame(0, duration); this.play(); },
-    skip() { elapsed = 6200; onFrame(elapsed, duration); playing = true; startedAt = performance.now(); cancelAnimationFrame(raf); raf = requestAnimationFrame(frame); },
+    skip() { playing = false; cancelAnimationFrame(raf); elapsed = duration; onFrame(duration, duration); onFinish(); },
+    dismiss() { playing = false; cancelAnimationFrame(raf); },
     destroy() { playing = false; cancelAnimationFrame(raf); },
   });
 }
@@ -144,8 +145,7 @@ function sceneValues(time) {
   const dissolve = easeOut(range(time, 4100, 4700));
   const hero = easeOut(range(time, 4700, 5600));
   const detail = easeOut(range(time, 5600, 6200));
-  const exit = easeOut(range(time, 8800, 9300));
-  return { intro, pulse, dissolve, hero, detail, exit };
+  return { intro, pulse, dissolve, hero, detail };
 }
 ```
 
@@ -170,13 +170,17 @@ function rewardCopy(reward) {
 
 - [ ] **Step 4: Add reduced-motion behavior**
 
-When `matchMedia('(prefers-reduced-motion: reduce)').matches` or the prototype toggle is enabled, render the final detail state immediately with a short opacity transition and no pulse, rays, impact, or translation.
+When `matchMedia('(prefers-reduced-motion: reduce)').matches` or the prototype toggle is enabled, render the final detail state immediately with no pulse, rays, impact, or translation. Do not schedule automatic closing.
+
+- [ ] **Step 5: Make the reward modal the permanent final station**
+
+At `6200 ms`, stop the controller and keep the gift-detail modal visible. Add full-width `Применить` and `Позже` actions with touch targets at least 44 px high. Remove the intermediate `Твой язык сегодня` screen. `Пропустить` must synchronously render this same final state and stop; it must not resume the timeline.
 
 ### Task 3: Add prototype controls and deliver to the visual companion
 
 **Files:**
 - Modify: `docs/design/daily-journey-rewards-prototype.html`
-- Create exact copy: `.superpowers/brainstorm/8698-1788080522/content/daily-journey-final.html`
+- Create browser-preview copy: `.superpowers/brainstorm/8698-1788080522/content/daily-journey-final-station-v3.html`
 - Create junction if absent: `.superpowers/brainstorm/8698-1788080522/assets` → `assets`
 
 - [ ] **Step 1: Add playback controls**
@@ -186,10 +190,10 @@ Provide visible prototype-only controls outside the phone:
 ```html
 <button id="playPause" type="button">Пауза</button>
 <button id="replay" type="button">Повторить</button>
-<input id="scrubber" type="range" min="0" max="9300" value="0" aria-label="Таймлайн анимации">
+<input id="scrubber" type="range" min="0" max="6200" value="0" aria-label="Таймлайн анимации">
 ```
 
-The in-modal `Пропустить` and close buttons remain 44×44 px or larger and never change reward state.
+The in-modal `Пропустить` and close buttons remain 44×44 px or larger and never change reward state. `Пропустить` immediately stops on the final gift modal; the final `Применить` and `Позже` buttons remain visible until the user chooses one.
 
 - [ ] **Step 2: Add the hidden Tweaks panel**
 
@@ -216,15 +220,17 @@ $session = 'C:\appsprojects\phraseman\.superpowers\brainstorm\8698-1788080522'
 if (-not (Test-Path "$session\assets")) {
   New-Item -ItemType Junction -Path "$session\assets" -Target 'C:\appsprojects\phraseman\assets' | Out-Null
 }
-Copy-Item -LiteralPath 'docs\design\daily-journey-rewards-prototype.html' -Destination "$session\content\daily-journey-final.html" -Force
+Copy-Item -LiteralPath 'docs\design\daily-journey-rewards-prototype.html' -Destination "$session\content\daily-journey-final-station-v3.html" -Force
 ```
+
+If the visual-companion server does not serve the asset junction, mechanically replace only the six local WebP path strings in the preview copy with `data:image/webp;base64` values read from those same project files. Keep the persistent source HTML on repository-relative paths.
 
 - [ ] **Step 4: Run the final deterministic checks**
 
 Run:
 
 ```powershell
-node -e "const fs=require('fs');const p='docs/design/daily-journey-rewards-prototype.html';const s=fs.readFileSync(p,'utf8');const checks=[[/aspect-ratio:\s*1/,'square'],[/max=\"50\"/,'50-day'],[/prefers-reduced-motion/,'reduced-motion'],[/9300/,'timeline'],[/reward-assets|assets\/images/,'assets']];for(const [re,n] of checks)if(!re.test(s))throw new Error(n);if(/OpenAI|fetch\(|XMLHttpRequest/.test(s))throw new Error('external-write-or-api');console.log('final_contract_ok')"
+node -e "const fs=require('fs');const p='docs/design/daily-journey-rewards-prototype.html';const s=fs.readFileSync(p,'utf8');const checks=[[/aspect-ratio:\s*1/,'square'],[/max=\"50\"/,'50-day'],[/prefers-reduced-motion/,'reduced-motion'],[/const duration = 6200;/,'timeline'],[/id=\"applyGift\"/,'apply'],[/id=\"laterGift\"/,'later'],[/reward-assets|assets\/images/,'assets']];for(const [re,n] of checks)if(!re.test(s))throw new Error(n);if(/Твой язык сегодня|OpenAI|fetch\(|XMLHttpRequest/.test(s))throw new Error('forbidden-surface-or-api');console.log('final_contract_ok')"
 ```
 
 Expected: `final_contract_ok`.

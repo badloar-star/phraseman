@@ -61,7 +61,11 @@ import {
   withAccountTransitionLock,
   withRestoreApplicationLock,
 } from './account_generation';
-import { clearStableId, setStableId } from './stable_id';
+import { clearStableId, peekStableId, setStableId } from './stable_id';
+import {
+  assertNoOwnerLevelGiftEffectReceipts,
+  removeOwnerLevelGiftEffectReceipts,
+} from './level_gift_effect_receipt_cleanup';
 import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
 import { emitAppEvent } from './events';
 import { patchAppSnapshotFromAuthoritativeCloudProgress } from './app_snapshot_store';
@@ -108,6 +112,7 @@ import {
   CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
 } from '../constants/customization_storage_keys';
 import { DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES } from '../constants/daily_journey_gift_storage_keys';
+import { DAILY_JOURNEY_FREEZE_ACCOUNT_LOCAL_PREFIXES } from '../constants/daily_journey_freeze_storage_keys';
 import { LOCAL_LEVEL_SPIN_ACCOUNT_LOCAL_PREFIXES } from '../constants/local_level_spin_storage_keys';
 import {
   clearCustomizationAccountLocalState,
@@ -714,6 +719,8 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'customization_selection_quarantine_v1:',
   // Daily Journey gift inbox WAL, immutable roots, projection and future claims.
   ...DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES,
+  // Daily Journey client-authoritative freeze WAL, immutable roots and projection.
+  ...DAILY_JOURNEY_FREEZE_ACCOUNT_LOCAL_PREFIXES,
   'external_economy_result_v1:',
   'external_economy_event_applied_v1:',
 ] as const;
@@ -4267,6 +4274,9 @@ async function wipeLocalAccountDataUnsafe(): Promise<void> {
 }
 
 async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
+  const receiptOwnerStableId = captureAccountGeneration().stableId?.trim()
+    || peekStableId()?.trim()
+    || null;
   const { cancelPendingGeneratedNicknameRetry } = await import('./nickname_guard');
   cancelPendingGeneratedNicknameRetry();
   const accountKeys = await collectAccountLocalDataKeys();
@@ -4288,12 +4298,18 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
     !KEEP.has(key) && !isCustomizationAccountLocalKey(key)
   ));
   await removeExactly(toRemove);
+  if (receiptOwnerStableId) {
+    await removeOwnerLevelGiftEffectReceipts(receiptOwnerStableId);
+  }
   await clearCustomizationAccountLocalState();
   // Generation-bound writers are the primary barrier. This final scan is
   // defense-in-depth for a callback that committed during the first removal.
   const lateLearningV2Keys = (await listLearningV2AccountLocalKeys())
     .filter((key) => !KEEP.has(key));
   await removeExactly(lateLearningV2Keys);
+  if (receiptOwnerStableId) {
+    await removeOwnerLevelGiftEffectReceipts(receiptOwnerStableId);
+  }
   const knownAccountKeys = new Set(accountLocalDataKeysForToday());
   const finalResidue = (await listAllAccountLocalStorageKeys()).filter((key) =>
     !KEEP.has(key) && (
@@ -4303,6 +4319,9 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
       || isVipSnapshotStorageKey(key)
     ));
   if (finalResidue.length > 0) throw new Error('account_wipe_incomplete');
+  if (receiptOwnerStableId) {
+    await assertNoOwnerLevelGiftEffectReceipts(receiptOwnerStableId);
+  }
   // Сбрасываем in-memory bookkeeping синка
   lastSuccessfulSyncAt = 0;
   lastActivityStampAt = 0;

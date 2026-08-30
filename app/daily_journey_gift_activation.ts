@@ -5,6 +5,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import type { DailyJourneyGiftOccurrenceV1 } from './daily_journey_gift_inbox';
+import { commitDailyJourneyFreezeGrant } from './daily_journey_freeze_ledger';
 import { emitAppEvent } from './events';
 import { getEffectiveMaxEnergyValue, getEnergyState } from './energy_system';
 import {
@@ -96,12 +97,6 @@ function innerOccurrenceIds(
 ): readonly string[] {
   if (occurrence.reward.kind === 'energy_full') return [`daily-journey:${hash.slice(0, 40)}:energy-full`];
   if (occurrence.reward.kind === 'energy_plus') return [`daily-journey:${hash.slice(0, 40)}:energy-plus`];
-  if (occurrence.reward.kind === 'freeze') {
-    return Object.freeze(Array.from(
-      { length: occurrence.reward.amount },
-      (_, index) => `daily-journey:${hash.slice(0, 40)}:freeze:${index + 1}`,
-    ));
-  }
   return Object.freeze([]);
 }
 
@@ -115,7 +110,7 @@ async function applyInventoryEffect(
   let giftId: string;
   if (kind === 'energy_full') giftId = 'energy_full';
   else if (kind === 'energy_plus') giftId = `energy_plus${occurrence.reward.amount}`;
-  else giftId = 'chain_shield_1';
+  else giftId = `energy_plus${occurrence.reward.amount}`;
   const gift = requiredGift(giftId);
   let currentEnergy = 0;
   let maxEnergy = 0;
@@ -198,9 +193,20 @@ export async function applyDailyJourneyGiftActivation(
       return;
     case 'energy_full':
     case 'energy_plus':
-    case 'freeze':
       await applyInventoryEffect(occurrence, hash, token);
       return;
+    case 'freeze': {
+      const result = await commitDailyJourneyFreezeGrant({
+        claimOperationId,
+        amount: occurrence.reward.amount,
+        occurrenceFingerprint: occurrence.payloadFingerprint,
+      }, token);
+      assertCurrent(token, occurrence.ownerStableId);
+      if (result.status !== 'applied' && result.status !== 'already_applied') {
+        throw new Error('daily_journey_activation_effect_failed');
+      }
+      return;
+    }
   }
 }
 

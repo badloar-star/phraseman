@@ -96,6 +96,25 @@ describe('K2 owned/purchased union restore (offline purchases survive cloud-wins
       });
     });
 
+    it('does not revoke owner-scoped Daily Journey freeze authority when cloud has no friend shield', async () => {
+      const operationKey = 'daily_journey_freeze_operation_v1:owner-a:grant-a';
+      const projectionKey = 'daily_journey_freeze_projection_v1:owner-a';
+      await AsyncStorage.multiSet([
+        [operationKey, 'immutable-daily-journey-operation'],
+        [projectionKey, 'client-authoritative-projection'],
+        ['chain_shield', JSON.stringify({ daysLeft: 2 })],
+      ]);
+
+      await expect(__cloudSyncTestHooks.applyRestoreFromUserDoc({
+        exists: true,
+        data: () => ({ progress: { user_total_xp: '0', streak_count: '0' } }),
+      })).resolves.toBe(true);
+
+      await expect(AsyncStorage.getItem('chain_shield')).resolves.toBeNull();
+      await expect(AsyncStorage.getItem(operationKey)).resolves.toBe('immutable-daily-journey-operation');
+      await expect(AsyncStorage.getItem(projectionKey)).resolves.toBe('client-authoritative-projection');
+    });
+
     it('removes a stale local club voucher after another device consumes canonical 1 to 0', async () => {
       await AsyncStorage.setItem('club_gift_free_boost_v1', '1');
 

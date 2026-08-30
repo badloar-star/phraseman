@@ -203,6 +203,13 @@ describe('Economy Constitution — client authority is a permanent source contra
     const localSpinKeys = read('constants/local_level_spin_storage_keys.ts');
     expect(localSpinKeys).toContain("'local_level_spin_state_v1:'");
     expect(cloudSync).toContain('...LOCAL_LEVEL_SPIN_ACCOUNT_LOCAL_PREFIXES');
+    const dailyJourneyFreezeKeys = read('constants/daily_journey_freeze_storage_keys.ts');
+    for (const prefix of [
+      'daily_journey_freeze_operation_v1:',
+      'daily_journey_freeze_prepared_v1:',
+      'daily_journey_freeze_projection_v1:',
+    ]) expect(dailyJourneyFreezeKeys).toContain(`'${prefix}'`);
+    expect(cloudSync).toContain('...DAILY_JOURNEY_FREEZE_ACCOUNT_LOCAL_PREFIXES');
     expect(cloudSync).toContain('isLearningV2AccountLocalKey(key)');
     expect(cloudSync).toContain("if (finalResidue.length > 0) throw new Error('account_wipe_incomplete')");
   });

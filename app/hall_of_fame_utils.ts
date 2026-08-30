@@ -16,6 +16,7 @@ import { isStreakFreezeActiveToday } from './streak_freeze';
 import { getCardStreakShieldStatus, tryConsumeCardStreakShield } from './profile_card_streak_shield';
 import { STREAK_WEEK_MARKERS_KEY, addDaysToDateKey, recordStreakWeekMarker } from './streak_week_markers';
 import { consumeFriendChainShield } from './friend_gifts';
+import { consumeDailyJourneyFreeze } from './daily_journey_freeze_ledger';
 import { markActiveDay } from './friends_together/together_days';
 import {
   getLocalDayKey,
@@ -303,7 +304,22 @@ export const updateStreakOnActivity = async (
       else if (lastActive === null) {
         streak = 1;
       }
-      // 5. Chain Shield активен — защищает от потери цепочки
+      // 5. Client-authoritative Daily Journey freeze. It is consumed from its
+      // immutable owner journal before consulting server-owned friend shields.
+      else if (lastActive && missedExactlyOneDay && effectiveAccountToken
+        && await consumeDailyJourneyFreeze(
+          `daily-journey-missed-day:${lastActive}:${today}`,
+          effectiveAccountToken,
+        )) {
+        await recordStreakWeekMarker(addDaysToDateKey(lastActive, 1), 'freeze').catch(() => {});
+        emitAppEvent('action_toast', {
+          type: 'reward',
+          messageRu: `Подарок путешествия спас цепочку ${streak} дн. 🧊`,
+          messageUk: `Подарунок подорожі врятував ланцюжок ${streak} дн. 🧊`,
+          messageEs: `El regalo del viaje salvó tu racha de ${streak} días 🧊`,
+        });
+      }
+      // 6. Chain Shield активен — защищает от потери цепочки
       else if (lastActive && missedExactlyOneDay) {
         const csRaw = await AsyncStorage.getItem('chain_shield');
         if (csRaw) {
@@ -368,7 +384,7 @@ export const updateStreakOnActivity = async (
           streak = 1;
         }
       }
-      // 6. Цепочка потеряна
+      // 7. Цепочка потеряна
       else {
         const prevStreak = streak;
         logStreakLost(prevStreak);

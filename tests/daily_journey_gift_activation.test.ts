@@ -19,6 +19,8 @@ import {
   finalizeDailyJourneyGiftActivation,
 } from '../app/daily_journey_gift_activation';
 import { getEffectiveMaxEnergyValue, getEnergyState } from '../app/energy_system';
+import { commitDailyJourneyFreezeGrant } from '../app/daily_journey_freeze_ledger';
+import { emitAppEvent } from '../app/events';
 import {
   applyGift,
   confirmDeferredLocalLevelGiftEffectReceipt,
@@ -41,6 +43,7 @@ jest.mock('../app/energy_system', () => ({
   getEnergyState: jest.fn(),
   getEffectiveMaxEnergyValue: jest.fn(),
 }));
+jest.mock('../app/daily_journey_freeze_ledger', () => ({ commitDailyJourneyFreezeGrant: jest.fn() }));
 jest.mock('../app/level_gift_system', () => ({
   GIFT_POOL: [
     { id: 'energy_full' },
@@ -92,6 +95,7 @@ beforeEach(() => {
   (grantLocalDailyJourneySpins as jest.Mock).mockResolvedValue(true);
   (getEnergyState as jest.Mock).mockResolvedValue({ current: 2, lastRecoveryTime: 123 });
   (getEffectiveMaxEnergyValue as jest.Mock).mockResolvedValue(5);
+  (commitDailyJourneyFreezeGrant as jest.Mock).mockResolvedValue({ status: 'applied' });
   (applyGift as jest.Mock).mockResolvedValue({ success: true });
   (confirmDeferredLocalLevelGiftEffectReceipt as jest.Mock).mockResolvedValue(true);
 });
@@ -141,13 +145,18 @@ it.each(rewardCases)('maps $kind amount $amount exactly and activates only on cl
       reward.amount,
       token,
     );
+  } else if (reward.kind === 'freeze') {
+    expect(commitDailyJourneyFreezeGrant).toHaveBeenCalledWith({
+      claimOperationId,
+      amount: reward.amount,
+      occurrenceFingerprint: committed.occurrence.payloadFingerprint,
+    }, token);
+    expect(applyGift).not.toHaveBeenCalled();
   } else {
     const expectedGiftId = reward.kind === 'energy_full'
       ? 'energy_full'
-      : reward.kind === 'energy_plus'
-        ? `energy_plus${reward.amount}`
-        : 'chain_shield_1';
-    expect(applyGift).toHaveBeenCalledTimes(reward.kind === 'freeze' ? reward.amount : 1);
+      : `energy_plus${reward.amount}`;
+    expect(applyGift).toHaveBeenCalledTimes(1);
     (applyGift as jest.Mock).mock.calls.forEach(([gift, _name, _current, _max, _set, options]) => {
       expect(gift.id).toBe(expectedGiftId);
       expect(options).toEqual(expect.objectContaining({
@@ -171,6 +180,37 @@ it('returns already_claimed without applying a duplicate effect', async () => {
   expect(await claimDailyJourneyGift(operationId, token)).toEqual({ status: 'claimed' });
   expect(await claimDailyJourneyGift(operationId, token)).toEqual({ status: 'already_claimed' });
   expect(commitShardCreditOperation).toHaveBeenCalledTimes(1);
+});
+
+it('re-emits invalidation when prepared removal deleted durable state and then threw', async () => {
+  const token = beginAccountGeneration('owner-a');
+  const operationId = 'daily-remove-then-throw-0001';
+  await commitDailyJourneyGift({
+    operationId,
+    source: 'daily_journey_dev',
+    cycle: 1,
+    day: 1,
+    reward: { kind: 'pearls', amount: 10 },
+  }, token);
+  const preparedKey = dailyJourneyGiftClaimPreparedStorageKey('owner-a');
+  let throwAfterPreparedDelete = true;
+  (AsyncStorage.removeItem as jest.Mock).mockImplementation(async (key: string) => {
+    delete storage[key];
+    if (key === preparedKey && throwAfterPreparedDelete) {
+      throwAfterPreparedDelete = false;
+      throw new Error('simulated_process_death_after_remove');
+    }
+  });
+
+  await expect(claimDailyJourneyGift(operationId, token))
+    .rejects.toThrow('simulated_process_death_after_remove');
+  expect(commitShardCreditOperation).toHaveBeenCalledTimes(1);
+  (emitAppEvent as jest.Mock).mockClear();
+
+  await expect(claimDailyJourneyGift(operationId, token))
+    .resolves.toEqual({ status: 'already_claimed' });
+  expect(commitShardCreditOperation).toHaveBeenCalledTimes(1);
+  expect(emitAppEvent).toHaveBeenCalledWith('daily_journey_gifts_changed');
 });
 
 it('keeps a failed effect intent pending and retries with the same stable downstream id', async () => {

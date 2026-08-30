@@ -1013,7 +1013,13 @@ export async function claimDailyJourneyGift(
   for (let attempt = 0; attempt < 3; attempt += 1) {
     const inspection = await accountAwait(token, () => inspectOrPrepareClaim(operationId, token));
     if (inspection.status === 'missing') throw new Error('daily_journey_claim_missing');
-    if (inspection.status === 'already_claimed') return { status: 'already_claimed' };
+    if (inspection.status === 'already_claimed') {
+      // A prior attempt may have durably removed its prepared WAL entry and
+      // then died before publishing UI invalidation. Replaying a verified
+      // immutable receipt is economically inert, so emitting again is safe.
+      emitDailyJourneyGiftsChangedBestEffort();
+      return { status: 'already_claimed' };
+    }
     const status = await accountAwait(
       token,
       () => completePreparedClaim(inspection.prepared, token),

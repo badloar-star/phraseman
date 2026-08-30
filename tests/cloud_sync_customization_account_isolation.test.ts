@@ -243,6 +243,55 @@ it('removes owner spin credits and idempotency state during account-switch or de
   expect(store.app_theme).toBe('device-only-sentinel');
 });
 
+it('removes every owner-local Daily Journey freeze journal surface', async () => {
+  const accountKeys = [
+    'daily_journey_freeze_operation_v1:owner-a:grant-a',
+    'daily_journey_freeze_prepared_v1:owner-a',
+    'daily_journey_freeze_projection_v1:owner-a',
+  ];
+  accountKeys.forEach((key) => { store[key] = 'owner-a-protection'; });
+  store.app_theme = 'device-only-sentinel';
+
+  await wipeLocalAccountData();
+
+  accountKeys.forEach((key) => expect(store[key]).toBeUndefined());
+  expect(store.app_theme).toBe('device-only-sentinel');
+});
+
+it('filters shared level-gift effect receipts by owner while preserving other owners and device settings', async () => {
+  const ownerAKey = `${localStableId}:daily-journey:hash-a:energy-full:energy_full:primary`;
+  const ownerBKey = 'owner-b:daily-journey:hash-b:energy-plus:energy_plus2:primary';
+  const deviceOnlyKey = 'device-only-receipt-sentinel';
+  store.level_gift_effect_receipts_v1 = JSON.stringify({
+    [ownerAKey]: { giftId: 'energy_full', status: 'applied' },
+    [ownerBKey]: { giftId: 'energy_plus2', status: 'applied' },
+    [deviceOnlyKey]: { giftId: 'energy_full', status: 'applied' },
+  });
+  store.app_theme = 'device-only-sentinel';
+
+  await wipeLocalAccountData();
+
+  expect(JSON.parse(store.level_gift_effect_receipts_v1)).toEqual({
+    [ownerBKey]: { giftId: 'energy_plus2', status: 'applied' },
+    [deviceOnlyKey]: { giftId: 'energy_full', status: 'applied' },
+  });
+  expect(store.app_theme).toBe('device-only-sentinel');
+});
+
+it('fails account wipe when shared receipt storage silently retains the departing owner', async () => {
+  const ownerAKey = `${localStableId}:daily-journey:hash-a:energy-full:energy_full:primary`;
+  store.level_gift_effect_receipts_v1 = JSON.stringify({
+    [ownerAKey]: { giftId: 'energy_full', status: 'applied' },
+    'owner-b:gift-b:energy_full:primary': { giftId: 'energy_full', status: 'applied' },
+  });
+  (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+    if (key !== 'level_gift_effect_receipts_v1') store[key] = value;
+  });
+
+  await expect(wipeLocalAccountData()).rejects.toThrow('account_wipe_incomplete');
+  expect(store.level_gift_effect_receipts_v1).toContain(ownerAKey);
+});
+
 it('clears the in-memory personal-plan state when the current account is wiped', async () => {
   await savePersonalPlanState(createDefaultPersonalPlanState({
     planId: 'gavan',

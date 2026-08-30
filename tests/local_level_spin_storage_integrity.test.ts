@@ -80,3 +80,41 @@ test('Daily Journey grants five durable credits once for one stable claim id', a
     (_, index) => `local_spin_daily_journey_${'a'.repeat(40)}_${index + 1}`,
   ));
 });
+
+test('Daily Journey grant fails closed when storage silently drops the authoritative owner state', async () => {
+  const token = captureAccountGeneration();
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
+    pairs.forEach(([key, value]) => {
+      if (key !== stateKey) storage[key] = value;
+    });
+  });
+
+  await expect(grantLocalDailyJourneySpins(
+    'daily-journey-gift-claim:daily-spin-silent-drop-0001',
+    2,
+    token,
+  )).rejects.toThrow('local_daily_journey_spin_state_not_durable');
+  expect(storage[stateKey]).toBeUndefined();
+});
+
+test('Daily Journey retry trusts owner authority after state-only partial write and never duplicates', async () => {
+  const token = captureAccountGeneration();
+  let failAfterOwnerWrite = true;
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
+    const [ownerPair] = pairs;
+    storage[ownerPair[0]] = ownerPair[1];
+    if (failAfterOwnerWrite) {
+      failAfterOwnerWrite = false;
+      throw new Error('simulated_cache_write_failure');
+    }
+    pairs.slice(1).forEach(([key, value]) => { storage[key] = value; });
+  });
+  const claimId = 'daily-journey-gift-claim:daily-spin-partial-0001';
+
+  await expect(grantLocalDailyJourneySpins(claimId, 2, token))
+    .rejects.toThrow('simulated_cache_write_failure');
+  await expect(grantLocalDailyJourneySpins(claimId, 2, token)).resolves.toBe(true);
+
+  const state = JSON.parse(storage[stateKey]!) as { credits: { id: string }[] };
+  expect(state.credits).toHaveLength(2);
+});

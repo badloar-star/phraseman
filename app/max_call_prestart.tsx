@@ -52,6 +52,7 @@ import {
 import MaxVoiceConsentGate from './max_voice_consent_gate';
 import { maxVoiceStudyTarget } from './max_target_gate';
 import VoiceMinutePackSheet from '../modules/voice_minutes/VoiceMinutePackSheet';
+import { primeVoiceMinutePackages } from '../modules/voice_minutes/packages_cache';
 import { readVoiceMinuteWalletStatus, type VoiceMinuteWalletStatus } from '../modules/voice_minutes/wallet';
 import {
   peekMaxVoiceAccess,
@@ -206,6 +207,12 @@ function MaxCallPrestartContent() {
         writeVoiceMinutePeek(wallet.availableSeconds + wallet.reservedSeconds);
       })
       .catch(() => {});
+    // зачем (владелец 2026-08-30, «модал купить минуты грузится долго»):
+    // пакеты RevenueCat греются здесь, заранее — к тапу «Купить минуты» шит
+    // открывается с готовыми ценами из кэша, без сетевого ожидания.
+    void primeVoiceMinutePackages().catch(() => {
+      // Сеть подведёт — шит честно загрузит сам и покажет свой отказ.
+    });
     return () => { active = false; };
   }, []);
 

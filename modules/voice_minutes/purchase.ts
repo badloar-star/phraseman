@@ -1,6 +1,7 @@
 import type { CustomerInfo, MakePurchaseResult, PurchasesOfferings, PurchasesPackage } from 'react-native-purchases';
 
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../../app/account_generation';
+import { DebugLogger } from '../../app/debug-logger';
 import { initRevenueCat, syncRevenueCatIdentity } from '../../app/revenuecat_init';
 import {
   clearPendingVoiceMinutePurchase,
@@ -101,12 +102,22 @@ export async function executeVoiceMinutePurchase(
 }
 
 export async function loadVoiceMinutePackages(): Promise<VoiceMinutePack[]> {
+  // [MINUTE-PACKS] Постоянный замер двух медленных фаз (правило «сперва логи»):
+  // владелец 2026-08-30 — «модал грузится долго»; по этому логу видно, кто
+  // тормозит — init SDK или сам магазин (getOfferings).
+  const startedAtMs = Date.now();
   await initRevenueCat();
+  const initDoneMs = Date.now();
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const Purchases = require('react-native-purchases').default as {
     getOfferings: () => Promise<PurchasesOfferings>;
   };
-  return selectVoiceMinutePackages(await Purchases.getOfferings());
+  const packs = selectVoiceMinutePackages(await Purchases.getOfferings());
+  DebugLogger.info(
+    '[MINUTE-PACKS]',
+    `load: init ${initDoneMs - startedAtMs}ms, offerings ${Date.now() - initDoneMs}ms, packs ${packs.length}`,
+  );
+  return packs;
 }
 
 export async function purchaseVoiceMinutePack(pack: VoiceMinutePack): Promise<VoiceMinutePurchaseResult> {

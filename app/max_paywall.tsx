@@ -10,6 +10,7 @@ import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import VoiceMinutePackSheet from '../modules/voice_minutes/VoiceMinutePackSheet';
+import { primeVoiceMinutePackages } from '../modules/voice_minutes/packages_cache';
 import { readVoiceMinuteWalletStatus, type VoiceMinuteWalletStatus } from '../modules/voice_minutes/wallet';
 import { maxPaywallAnalyticsSource } from '../modules/max_subscription/paywall_state';
 import { trackEvent } from './analytics';
@@ -40,6 +41,9 @@ export default function MaxPaywall() {
   useEffect(() => {
     let current = true;
     void readVoiceMinuteWalletStatus().then((next) => { if (current) setWallet(next); }).catch(() => {});
+    // зачем (2026-08-30): греем пакеты RevenueCat до тапа «Купить минуты» —
+    // шит открывается с ценами мгновенно, из кэша.
+    void primeVoiceMinutePackages().catch(() => {});
     return () => { current = false; };
   }, []);
 

@@ -5,14 +5,17 @@ import { useLang } from '../../components/LangContext';
 import { useTheme } from '../../components/ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
+import { purchaseVoiceMinutePack, type VoiceMinutePack } from './purchase';
 import {
-  loadVoiceMinutePackages,
-  purchaseVoiceMinutePack,
-  type VoiceMinutePack,
-} from './purchase';
+  peekVoiceMinutePackages,
+  peekVoiceMinutePriceStrings,
+  primeVoiceMinutePackages,
+} from './packages_cache';
+import { peekVoiceMinutes } from './peek_cache';
 import { VOICE_MINUTE_PRODUCTS } from './catalog';
 import { grantVoiceMinutesInDev, isVoiceMinuteDevGrantAvailable } from './dev_grant';
 import { readVoiceMinuteWalletStatus, type VoiceMinuteWalletStatus } from './wallet';
+import { DebugLogger } from '../../app/debug-logger';
 
 type Props = Readonly<{
   onCredited?: (wallet: VoiceMinuteWalletStatus) => void;
@@ -26,22 +29,27 @@ const minutesFromSeconds = (seconds: number): string => (seconds / 60).toLocaleS
 export default function VoiceMinutePackPanel({ onCredited, onBusyChange }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const [packs, setPacks] = useState<VoiceMinutePack[]>([]);
+  // зачем (владелец 2026-08-30, «модал грузится долго»): первый кадр — из
+  // кэша пакетов (прогретого пре-экраном/пейволом), баланс — из peek минут;
+  // сеть лишь подтверждает. Спиннеры остаются только холодному первому запуску.
+  const [packs, setPacks] = useState<VoiceMinutePack[]>(() => peekVoiceMinutePackages() ?? []);
   const [wallet, setWallet] = useState<VoiceMinuteWalletStatus | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => peekVoiceMinutePackages() === null);
   const [purchaseBusy, setPurchaseBusy] = useState(false);
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
+  // зачем (Библия текстов, правило 3: живой человек, без канцелярита):
+  // «оплату разовой покупки в магазине» → простыми словами и короче.
   const purchaseHint = triLang(lang, {
-    ru: 'Откроет оплату разовой покупки в магазине. Минуты не сгорают.',
-    en: 'Opens store payment for a one-time purchase. Minutes never expire.',
-    uk: 'Відкриє оплату разової покупки в магазині. Хвилини не згорають.',
-    es: 'Abre el pago en la tienda para una compra única. Los minutos no caducan.',
-    'pt-BR': 'Abre o pagamento na loja para uma compra avulsa. Os minutos não expiram.',
-    vi: 'Mở thanh toán trong cửa hàng cho giao dịch một lần. Số phút không hết hạn.',
-    id: 'Membuka pembayaran toko untuk pembelian sekali. Menit tidak kedaluwarsa.',
-    tr: 'Tek seferlik satın alma için mağaza ödemesini açar. Dakikaların süresi dolmaz.',
-    pl: 'Otwiera płatność w sklepie za jednorazowy zakup. Minuty nie wygasają.',
+    ru: 'Разовая покупка в магазине. Минуты не сгорают.',
+    en: 'A one-time store purchase. Minutes never expire.',
+    uk: 'Разова покупка в магазині. Хвилини не згорають.',
+    es: 'Compra única en la tienda. Los minutos no caducan.',
+    'pt-BR': 'Compra única na loja. Os minutos não expiram.',
+    vi: 'Mua một lần trong cửa hàng. Số phút không hết hạn.',
+    id: 'Pembelian sekali di toko. Menit tidak kedaluwarsa.',
+    tr: 'Mağazadan tek seferlik satın alma. Dakikaların süresi dolmaz.',
+    pl: 'Jednorazowy zakup w sklepie. Minuty nie wygasają.',
   });
   const priceLoadingLabel = triLang(lang, {
     ru: 'Загружаем цену…', en: 'Loading price…', uk: 'Завантажуємо ціну…', es: 'Cargando precio…',
@@ -59,13 +67,20 @@ export default function VoiceMinutePackPanel({ onCredited, onBusyChange }: Props
     return () => { if (purchaseBusy) onBusyChange?.(false); };
   }, [onBusyChange, purchaseBusy]);
 
-  const refresh = useCallback(async () => {
-    setLoading(true);
+  const refresh = useCallback(async (force = false) => {
+    const startedAt = Date.now();
+    // Кэш свежий → primeVoiceMinutePackages вернётся мгновенно, спиннер цен
+    // даже не мигнёт; force — только ручной «Попробовать снова».
+    if (peekVoiceMinutePackages() === null || force) setLoading(true);
     setError('');
     const [catalogResult, walletResult] = await Promise.allSettled([
-      loadVoiceMinutePackages(),
+      primeVoiceMinutePackages(force),
       readVoiceMinuteWalletStatus(),
     ]);
+    DebugLogger.info(
+      '[MINUTE-PACKS]',
+      `panel refresh in ${Date.now() - startedAt}ms: catalog=${catalogResult.status} wallet=${walletResult.status}`,
+    );
 
     const availablePacks = catalogResult.status === 'fulfilled'
       ? catalogResult.value.filter((pack) => pack.priceString.trim() !== '')
@@ -101,15 +116,15 @@ export default function VoiceMinutePackPanel({ onCredited, onBusyChange }: Props
       }));
     } else if (!walletReady) {
       setError(triLang(lang, {
-        ru: 'Баланс пока не загрузился. Пакеты и цены уже доступны.',
-        en: 'Your balance has not loaded yet. Packs and prices are available.',
-        uk: 'Баланс ще не завантажився. Пакети й ціни вже доступні.',
-        es: 'El saldo aún no se cargó. Los paquetes y precios están disponibles.',
-        'pt-BR': 'O saldo ainda não carregou. Os pacotes e preços estão disponíveis.',
-        vi: 'Số dư chưa tải. Các gói và giá đã sẵn sàng.',
-        id: 'Saldo belum dimuat. Paket dan harga sudah tersedia.',
-        tr: 'Bakiye henüz yüklenmedi. Paketler ve fiyatlar hazır.',
-        pl: 'Saldo jeszcze się nie wczytało. Pakiety i ceny są dostępne.',
+        ru: 'Баланс ещё грузится, но купить уже можно.',
+        en: 'Your balance is still loading, but you can already buy.',
+        uk: 'Баланс ще вантажиться, але купити вже можна.',
+        es: 'El saldo aún se está cargando, pero ya puedes comprar.',
+        'pt-BR': 'O saldo ainda está carregando, mas você já pode comprar.',
+        vi: 'Số dư đang tải, nhưng bạn đã có thể mua.',
+        id: 'Saldo masih dimuat, tapi kamu sudah bisa membeli.',
+        tr: 'Bakiye hâlâ yükleniyor ama satın alabilirsin.',
+        pl: 'Saldo jeszcze się wczytuje, ale możesz już kupować.',
       }));
     }
     setLoading(false);
@@ -179,30 +194,34 @@ export default function VoiceMinutePackPanel({ onCredited, onBusyChange }: Props
           pl: 'Konto się zmieniło. Otwórz ten ekran ponownie.',
         }));
       } else {
+        // Библия: коротко и по-человечески; главное — успокоить, что минуты
+        // придут сами, дожимать ничего не надо.
         setError(triLang(lang, {
-          ru: 'Платёж обрабатывается. Минуты появятся только после подтверждения магазина.',
-          en: 'Payment is processing. Minutes appear only after the store confirms it.',
-          uk: 'Платіж обробляється. Хвилини з’являться лише після підтвердження магазину.',
-          es: 'El pago se está procesando. Los minutos aparecerán tras la confirmación de la tienda.',
-          'pt-BR': 'O pagamento está sendo processado. Os minutos aparecerão após a confirmação da loja.',
-          vi: 'Thanh toán đang được xử lý. Phút chỉ xuất hiện sau khi cửa hàng xác nhận.',
-          id: 'Pembayaran sedang diproses. Menit muncul setelah dikonfirmasi toko.',
-          tr: 'Ödeme işleniyor. Dakikalar mağaza onayından sonra görünür.',
-          pl: 'Płatność jest przetwarzana. Minuty pojawią się po potwierdzeniu sklepu.',
+          ru: 'Магазин ещё подтверждает платёж — минуты придут сразу после этого.',
+          en: 'The store is still confirming the payment — minutes will arrive right after.',
+          uk: 'Магазин ще підтверджує платіж — хвилини прийдуть одразу після цього.',
+          es: 'La tienda aún confirma el pago; los minutos llegarán justo después.',
+          'pt-BR': 'A loja ainda está confirmando o pagamento — os minutos chegam logo depois.',
+          vi: 'Cửa hàng đang xác nhận thanh toán — số phút sẽ đến ngay sau đó.',
+          id: 'Toko masih mengonfirmasi pembayaran — menit akan masuk setelahnya.',
+          tr: 'Mağaza ödemeyi hâlâ onaylıyor — dakikalar hemen ardından gelecek.',
+          pl: 'Sklep jeszcze potwierdza płatność — minuty pojawią się zaraz potem.',
         }));
       }
     } catch (purchaseError) {
       if (!(purchaseError as { userCancelled?: boolean })?.userCancelled) {
+        // Библия: без двойного пассива; главный страх человека — «деньги ушли,
+        // минут нет» — отвечаем на него прямо.
         setError(triLang(lang, {
-          ru: 'Не удалось получить результат. Платёж или подтверждение ещё обрабатывается магазином.',
-          en: 'Confirmation is unavailable. The payment or minute credit may still be processing in the store.',
-          uk: 'Не вдалося отримати підтвердження. Платіж або нарахування ще обробляється магазином.',
-          es: 'No se pudo confirmar. El pago o los minutos pueden seguir procesándose en la tienda.',
-          'pt-BR': 'Não foi possível confirmar. O pagamento ou os minutos podem ainda estar em processamento na loja.',
-          vi: 'Chưa thể xác nhận. Thanh toán hoặc số phút có thể vẫn đang được cửa hàng xử lý.',
-          id: 'Konfirmasi belum tersedia. Pembayaran atau kredit menit mungkin masih diproses toko.',
-          tr: 'Onay alınamadı. Ödeme veya dakika yüklemesi mağazada hâlâ işleniyor olabilir.',
-          pl: 'Nie udało się potwierdzić. Płatność lub minuty mogą nadal być przetwarzane przez sklep.',
+          ru: 'Магазин пока не подтвердил платёж. Если деньги списались — минуты начислятся сами.',
+          en: 'The store has not confirmed the payment yet. If you were charged, the minutes will arrive on their own.',
+          uk: 'Магазин поки не підтвердив платіж. Якщо гроші списалися — хвилини нарахуються самі.',
+          es: 'La tienda aún no confirmó el pago. Si se cobró, los minutos llegarán solos.',
+          'pt-BR': 'A loja ainda não confirmou o pagamento. Se foi cobrado, os minutos chegarão sozinhos.',
+          vi: 'Cửa hàng chưa xác nhận thanh toán. Nếu đã trừ tiền, số phút sẽ tự được cộng.',
+          id: 'Toko belum mengonfirmasi pembayaran. Jika sudah terpotong, menit akan masuk sendiri.',
+          tr: 'Mağaza ödemeyi henüz onaylamadı. Para çekildiyse dakikalar kendiliğinden gelecek.',
+          pl: 'Sklep jeszcze nie potwierdził płatności. Jeśli pobrano środki, minuty dojdą same.',
         }));
       }
     } finally {
@@ -229,7 +248,12 @@ export default function VoiceMinutePackPanel({ onCredited, onBusyChange }: Props
           vi: 'Khả dụng', id: 'Tersedia', tr: 'Kullanılabilir', pl: 'Dostępne',
         })}</Text>
         <Text style={[styles.balanceValue, { color: t.textPrimary, fontSize: f.h1 }]}>
-          {wallet ? minutesFromSeconds(wallet.availableSeconds) : '—'} {triLang(lang, {
+          {(() => {
+            // Первый кадр — из peek последнего известного остатка; ответ
+            // callable затем его подтверждает (правда всегда за сервером).
+            const seconds = wallet?.availableSeconds ?? peekVoiceMinutes()?.seconds ?? null;
+            return seconds === null ? '—' : minutesFromSeconds(seconds);
+          })()} {triLang(lang, {
             ru: 'мин', en: 'min', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min',
           })}
         </Text>
@@ -237,21 +261,28 @@ export default function VoiceMinutePackPanel({ onCredited, onBusyChange }: Props
 
       <Text style={[styles.hint, { color: t.textMuted, fontSize: f.sub }]}>
         {triLang(lang, {
-          ru: 'Купленные минуты не сгорают и не имеют дневного лимита.',
-          en: 'Purchased minutes never expire and have no daily cap.',
-          uk: 'Придбані хвилини не згорають і не мають денного ліміту.',
-          es: 'Los minutos comprados no caducan y no tienen límite diario.',
-          'pt-BR': 'Os minutos comprados não expiram e não têm limite diário.',
-          vi: 'Phút đã mua không hết hạn và không có giới hạn hằng ngày.',
-          id: 'Menit yang dibeli tidak kedaluwarsa dan tanpa batas harian.',
-          tr: 'Satın alınan dakikaların süresi dolmaz ve günlük sınırı yoktur.',
-          pl: 'Kupione minuty nie wygasają i nie mają limitu dziennego.',
+          // Единая формула с пейволом MAX («не сгорают и без дневного лимита») —
+          // короче и без «не имеют» (Библия: без канцелярита).
+          ru: 'Минуты не сгорают и без дневного лимита.',
+          en: 'Minutes never expire — no daily cap.',
+          uk: 'Хвилини не згорають і без денного ліміту.',
+          es: 'Los minutos no caducan y sin límite diario.',
+          'pt-BR': 'Os minutos não expiram e sem limite diário.',
+          vi: 'Phút không hết hạn và không có giới hạn ngày.',
+          id: 'Menit tidak kedaluwarsa dan tanpa batas harian.',
+          tr: 'Dakikalar süresiz ve günlük sınırsız.',
+          pl: 'Minuty nie wygasają i bez limitu dziennego.',
         })}
       </Text>
 
       {packSlots.map((slot) => {
         const pack = slot.pack;
-        const priceLabel = pack?.priceString || (loading ? priceLoadingLabel : priceUnavailableLabel);
+        // Последний известный ценник (диск) показываем сразу; кнопка оживёт,
+        // когда доедет живой пакет — покупке нужен настоящий PurchasesPackage.
+        const cachedPrice = peekVoiceMinutePriceStrings()?.[slot.productId] ?? '';
+        const priceLabel = pack?.priceString
+          || cachedPrice
+          || (loading ? priceLoadingLabel : priceUnavailableLabel);
         const disabled = purchaseBusy || (!pack && !devGrantEnabled);
         return (
         <Pressable
@@ -295,13 +326,13 @@ export default function VoiceMinutePackPanel({ onCredited, onBusyChange }: Props
         <View style={styles.processing} accessibilityLiveRegion="polite">
           <ActivityIndicator color={t.accent} />
           <Text style={[styles.processingText, { color: t.textMuted, fontSize: f.sub }]}>
-            {status || triLang(lang, { ru: 'Проверяем начисление минут…', en: 'Verifying your minute credit…', uk: 'Перевіряємо нарахування хвилин…', es: 'Verificando tus minutos…', 'pt-BR': 'Verificando seus minutos…', vi: 'Đang xác minh số phút…', id: 'Memverifikasi kredit menit…', tr: 'Dakika yüklemesi doğrulanıyor…', pl: 'Weryfikujemy naliczenie minut…' })}
+            {status || triLang(lang, { ru: 'Подтверждаем покупку…', en: 'Confirming your purchase…', uk: 'Підтверджуємо покупку…', es: 'Confirmando tu compra…', 'pt-BR': 'Confirmando sua compra…', vi: 'Đang xác nhận giao dịch…', id: 'Mengonfirmasi pembelian…', tr: 'Satın alma onaylanıyor…', pl: 'Potwierdzamy zakup…' })}
           </Text>
         </View>
       ) : null}
       {error ? <Text accessibilityLiveRegion="assertive" style={[styles.error, { color: t.wrong, fontSize: f.sub }]}>{error}</Text> : null}
       {!loading && (packs.length !== VOICE_MINUTE_PRODUCTS.length || wallet === null) ? (
-        <Pressable accessibilityRole="button" onPress={() => void refresh()} style={styles.retry}>
+        <Pressable accessibilityRole="button" onPress={() => void refresh(true)} style={styles.retry}>
           <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '700' }}>{triLang(lang, {
             ru: 'Попробовать снова', en: 'Try again', uk: 'Спробувати знову', es: 'Intentar de nuevo',
             'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',

@@ -54,7 +54,9 @@ describe('MAX minute-wallet surfaces', () => {
     expect(panel).toContain('minHeight: 84');
     expect(panel).not.toContain('Деньги не списаны');
     expect(panel).not.toContain('You were not charged');
-    expect(panel).toContain('подтверждение ещё обрабатывается');
+    // зачем (Библия текстов, 2026-08-30): отказ подтверждения отвечает на
+    // главный страх «деньги списались, минут нет» прямо и без канцелярита.
+    expect(panel).toContain('минуты начислятся сами');
   });
 
   it('shows the minute number alone, without a title caption above it', () => {

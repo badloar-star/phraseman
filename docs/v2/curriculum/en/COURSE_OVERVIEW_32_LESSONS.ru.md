@@ -1,6 +1,11 @@
 # Learning V2 English — Course Overview: 32 lessons
 
-**Статус:** `BOUNDARIES MATERIALIZED / FULL BLUEPRINT OWNER REVIEW REQUIRED`.  
+**Статус:** `SUPERSEDED SCENARIO OVERVIEW / НЕ CURRENT CURRICULUM AUTHORITY`.
+Текущий grammar-first Full B1 порядок определяется
+`FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md`,
+`full_b1_scope_en_v2.ts` и exact packets V2. Ниже сохранён исторический
+scenario shell; его checkpoint-lessons и старые lexical exceptions нельзя
+использовать для продолжения курса.
 **Назначение:** заморозить scenario shell, lesson grammar boundaries,
 prerequisites, lexical domains и future-topic exclusions до раскладки 224 глав
 и 1 792 session packets.  
@@ -387,6 +392,8 @@ mastery score; retrieval-only также допустим с явной прич
 - owner manually reviews the full 224-chapter / 1 792-packet projection before
   learner-facing Session 4 authoring.
 
-Текущий статус: `STRUCTURAL PASS / OWNER FINGERPRINT APPROVAL PENDING`.
+Исторический статус этого superseded shell: `STRUCTURAL PASS / OWNER FINGERPRINT APPROVED` для
+`013e742080c20d6a71fc731dc55ac26aaeb0e1fda2d3e6fd59712b65fdc1695a`.
+Следующий gate: conformance audit Sessions 1–3 до открытия Session 4.
 Канонический receipt:
 [`FULL_COURSE_BLUEPRINT_OWNER_REVIEW_2026-08-28.md`](./FULL_COURSE_BLUEPRINT_OWNER_REVIEW_2026-08-28.md).

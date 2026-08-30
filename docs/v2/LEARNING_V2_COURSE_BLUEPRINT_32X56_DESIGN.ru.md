@@ -188,10 +188,10 @@ boundary, а не случайная подборка режимов.
 - recall edges из предыдущих глав;
 - будущий delayed probe.
 
-Восьмая сессия главы всегда checkpoint и не вводит новую grammar operation.
-Она обычно работает как lexical retrieval/transfer; новое слово допустимо
-только если оно не влияет на scored mastery probe и действительно нужно
-сценарию, а не добавлено ради квоты.
+Восьмая сессия главы всегда checkpoint и не вводит новую grammar operation или
+новый lexical sense. Она работает только как retrieval/transfer уже введённого
+материала. Sessions 1–7 каждой главы вводят 1–5 полезных новых senses с
+word-first grounding до scored use.
 
 ---
 
@@ -288,19 +288,18 @@ independent/delayed evidence.
 ### 8.3 Lexicon rule
 
 - лексика учитывается на уровне значения, а не только spelling;
-- каждый packet явно выбирает `introduce_and_retrieve` либо `retrieval_only`;
-- teaching/application sessions по умолчанию вводят полезные новые senses и
-  одновременно повторяют более ранние;
-- `retrieval_only` допустим для checkpoint, voice, delayed retrieval, targeted
-  repair или сложного transfer, но требует конкретной причины и sense IDs;
+- Sessions 1–7 каждой главы всегда имеют `introduce_and_retrieve`, вводят 1–5
+  полезных новых senses и одновременно повторяют более ранние;
+- Session 8 всегда имеет `retrieval_only`, точные ранее введённые sense IDs и
+  ноль новых senses;
 - новое значение имеет одну first-introduction session;
 - до phrase use оно получает word-first grounding;
 - каждое важное значение имеет recognition, retrieval, productive и delayed
   contacts;
 - одинаковое написание с новым значением считается новым lexical sense, но не
   новым словом без пояснения;
-- точная numeric quota новых слов является product hypothesis и калибруется
-  пилотом; механическая квота на каждую сессию запрещена;
+- numeric boundary 1–5 для non-checkpoint и 0 для checkpoint является прямым
+  owner contract; filler ради формального выполнения boundary запрещён;
 - новое слово обязано обслуживать can-do, grammar focus или утверждённый
   transfer edge; filler ради counts запрещён;
 - blueprint обязан показывать регулярный lexical growth по каждой главе и
@@ -479,27 +478,28 @@ dossier и собственный curriculum blueprint. Наличие англ�
 13. `lexical_sense_first_introduction_unique`;
 14. `word_first_before_phrase_use`;
 15. `lexical_plan_role_required`;
-16. `lexical_progress_or_review_reason_required`;
-17. `new_lexical_sense_serves_can_do`;
-18. `new_lexical_sense_has_retrieval_edges`;
-19. `retrieval_only_has_exact_senses_and_reason`;
-20. `review_learning_delta_required`;
-21. `review_no_identical_prompt_as_evidence`;
-22. `phrase_frames_required`;
-23. `canonical_examples_count_2_to_4`;
-24. `canonical_examples_natural_and_unique`;
-25. `canonical_examples_no_future_construct`;
-26. `canonical_examples_only_allowed_lexical_senses`;
-27. `blueprint_no_bulk_learner_facing_bank`;
-28. `grammar_coverage_no_missing_stage`;
-29. `lexical_ledger_no_forgotten_core_target`;
-30. `can_do_no_orphan_activity`;
-31. `delayed_probe_distinct_from_training`;
-32. `source_evidence_reference_required`;
-33. `owner_map_fingerprint_fresh`;
-34. `authoring_source_matches_exact_packet`;
-35. `target_language_blueprint_not_english_copy`;
-36. `existing_authored_session_conformance`.
+16. `noncheckpoint_new_lexicon_required`;
+17. `checkpoint_new_lexicon_forbidden`;
+18. `new_lexical_sense_serves_can_do`;
+19. `new_lexical_sense_has_retrieval_edges`;
+20. `retrieval_only_has_exact_senses_and_reason`;
+21. `review_learning_delta_required`;
+22. `review_no_identical_prompt_as_evidence`;
+23. `phrase_frames_required`;
+24. `canonical_examples_count_2_to_4`;
+25. `canonical_examples_natural_and_unique`;
+26. `canonical_examples_no_future_construct`;
+27. `canonical_examples_only_allowed_lexical_senses`;
+28. `blueprint_no_bulk_learner_facing_bank`;
+29. `grammar_coverage_no_missing_stage`;
+30. `lexical_ledger_no_forgotten_core_target`;
+31. `can_do_no_orphan_activity`;
+32. `delayed_probe_distinct_from_training`;
+33. `source_evidence_reference_required`;
+34. `owner_map_fingerprint_fresh`;
+35. `authoring_source_matches_exact_packet`;
+36. `target_language_blueprint_not_english_copy`;
+37. `existing_authored_session_conformance`.
 
 Гейт проверяет данные, а не слова в документации. Ослаблять гейт ради зелёного
 CI запрещено.
@@ -560,7 +560,8 @@ Blueprint считается готовым к возобновлению learne
 - prerequisite DAG не содержит циклов, future refs или hidden prerequisites;
 - grammar coverage не имеет orphan или forgotten constructs;
 - lexical ledger не имеет повторного first introduction;
-- каждый packet имеет lexical progress или валидный retrieval-only reason;
+- каждый non-checkpoint packet имеет 1–5 новых senses, а каждый checkpoint —
+  0 новых senses и точный retrieval set;
 - lexical growth распределён по курсу, а новые senses имеют будущие retrieval
   edges;
 - каждая review session имеет измеримый learning delta;

@@ -165,11 +165,11 @@ owner-approved product decisions unless a source explicitly supports them.
 ### PH-LEXICON-01
 
 - Label: `PRODUCT_HYPOTHESIS`
-- Hypothesis: ordinary teaching/application sessions should normally combine a
-  small bounded set of useful new lexical senses with retrieval of earlier
-  senses. Retrieval-only sessions are appropriate when checkpoint, voice,
-  delayed retrieval, targeted repair or transfer load would make new material
-  harmful. A universal per-session quota is not assumed.
+- Owner-updated product rule: Sessions 1–7 of every chapter combine 1–5 useful
+  new lexical senses with retrieval of earlier senses. Session 8 is the only
+  retrieval-only role and introduces zero new senses. Voice, delayed
+  retrieval, targeted repair and transfer remain compatible by grounding new
+  words before scored use.
 - Required evidence: completion time, independent/delayed recall,
   cognitive-load telemetry and lexical-growth distribution across chapters.
 

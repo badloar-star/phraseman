@@ -10,7 +10,10 @@
 2. `docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md`.
 3. `docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md`.
 4. Target-language `RESEARCH_DOSSIER` и `SOURCE_EVIDENCE_LEDGER`.
-5. Target-language `COURSE_OVERVIEW_32_LESSONS`.
+5. Current target-language 32-lesson authority. Для English это
+   `en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md` и canonical V2 modules;
+   `en/COURSE_OVERVIEW_32_LESSONS.ru.md` помечен `SUPERSEDED` и читается только
+   как исторический scenario shell.
 6. Exact lesson blueprint, exact chapter и exact next session packet.
 7. Для learner-facing authoring также полностью перечитать применимые:
    `БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md`, `MODE_NATIVE_AUTHORING_CONTRACT.ru.md`,
@@ -34,31 +37,30 @@
 
 ## 3. Проверить lexical plan
 
-Каждая сессия явно имеет одну из двух ролей:
+Каждая сессия явно имеет одну из двух ролей. Более новое прямое решение
+владельца 2026-08-30 отменяет прежние исключения для voice/repair/transfer:
 
-### `introduce_and_retrieve`
+### `introduce_and_retrieve` — обязательно для Sessions 1–7 каждой главы
 
-- новые lexical senses реально нужны primary can-do;
+- вводится 1–5 новых lexical senses, реально нужных primary can-do;
 - каждое новое значение имеет уникальный first-introduction packet;
 - word-first grounding происходит до обязательного phrase use;
 - одновременно возвращаются ранее изученные senses;
 - для нового sense уже назначены later-session, later-lesson и delayed
   retrieval contacts.
 
-### `retrieval_only`
+### `retrieval_only` — только Session 8 checkpoint
 
-- есть конкретная причина: checkpoint, voice, delayed retrieval, targeted
-  repair, сложный transfer или предотвращение cognitive overload;
+- `newLexicalSenseIds` строго пуст;
 - перечислены точные ранее введённые sense IDs;
-- это не отговорка «не хватило новых слов» и не бесконечное повторение одного
-  маленького набора;
-- следующая глава/последующие sessions продолжают запланированный lexical
-  growth.
+- scored mastery probe использует только ранее введённую лексику;
+- checkpoint не маскирует новое слово как «контекстное».
 
-Механическая квота новых слов в каждой сессии запрещена. Одновременно запрещён
-курс, который перестал давать новые слова: owner map должен показывать
-регулярный lexical growth по всем главам и возвращение важных words для
-закрепления.
+Число само по себе не оправдывает filler. Однако пустая не-контрольная сессия
+теперь является машинным `HOLD`: автор обязан подобрать 1–5 частотных полезных
+значений, естественно совместимых с текущей грамматикой. Owner map должен
+показывать и first introduction, и последующее закрепление каждого важного
+sense.
 
 ## 4. Проверить полезность отработки
 

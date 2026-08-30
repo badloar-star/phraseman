@@ -5,11 +5,50 @@
 
 ## Статус
 
+### CURRENT V2 AUTHORITY — 2026-08-30
+
+- Full B1 grammar-first canonical fingerprint:
+  `a8e60213590c364a4ae0c1b1ce62b8b5bda541f48a54159e0823867445281559`.
+- Approval: `OWNER REVIEW REQUIRED`. Ранее утверждённый `ce1163d…c1a`
+  superseded после Session 1 preflight: он использовал `am/is/are` и
+  `here/ready` до prerequisite-safe введения.
+- Counts: `32 lessons / 224 chapters / 1 792 exact planning packets / 155
+  grammar operations / 5 376 intro plans / 30 464 activity plans`.
+- Lexical-density rewrite: `128 grammar-grounded planned senses / 545
+  changed-context retrieval edges` на текущем промежуточном body. Каждая из
+  1 568 не-контрольных сессий обязана иметь 1–5 новых senses; 224 checkpoints
+  обязаны иметь 0. Пока 1 484 lexical-density findings не закрыты, aggregate
+  gate остаётся `HOLD`.
+  17 seed definitions локализованы полностью, остальные определения имеют
+  `REQUIRES_MANUAL_AUTHORING` и пишутся последовательно после approval.
+- Старый fingerprint `013e7420…c1695a` — `SUPERSEDED`; старый approval не
+  переносится на новый canonical body.
+- Точный свежий receipt:
+  [`en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md`](./en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md).
+- Gate: `npx tsx scripts/learning_v2_curriculum_blueprint_gate_v2.ts`.
+- Owner map: `.codex-tmp/learning-v2-curriculum-owner-map/index.html`, build
+  `npx tsx scripts/build_learning_v2_curriculum_owner_map_v2.ts`.
+
+Этот блок имеет приоритет над историческим статусом ниже. Следующее законное
+действие — показать владельцу новый exact fingerprint и получить явный
+approval. До него Session 1 не редактируется; Session 2 также заморожена.
+
 - Архитектура: owner-approved 2026-08-28.
-- Английский blueprint: материализован, structural gates `PASS`, owner review
-  полного fingerprint ожидается.
-- Learner-facing Session 4+: `HOLD` до owner-approved полного fingerprint.
-- Сессии 1–3: сохранены; после готовности blueprint проходят conformance audit.
+- Английский blueprint: материализован, structural gates `PASS`, fingerprint
+  `013e742080c20d6a71fc731dc55ac26aaeb0e1fda2d3e6fd59712b65fdc1695a`
+  явно утверждён владельцем 2026-08-30.
+- Learner-facing Session 4+: `HOLD`.
+- Сессии 1–3: свежий conformance audit завершён с `14 findings`; старые
+  learner sources не соответствуют новым exact packets, а packets Sessions 1
+  и 2 не связывают заявленные новые слова `hello` / `name` со своими
+  canonical examples.
+- Следующий bounded scope: сначала owner decision о точечной поправке первых
+  трёх packets; любое изменение canonical body создаёт новый fingerprint и
+  требует нового явного owner approval. До этого learner sources не
+  переписываются.
+
+Точный receipt:
+[`en/SESSIONS_01_03_CONFORMANCE_AUDIT_2026-08-30.md`](./en/SESSIONS_01_03_CONFORMANCE_AUDIT_2026-08-30.md).
 
 ## Порядок чтения
 
@@ -20,7 +59,9 @@
 3. [`../LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md`](../LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md)
    — архитектура курса 32 × 56.
 4. Target-language `RESEARCH_DOSSIER` и `SOURCE_EVIDENCE_LEDGER`.
-5. Target-language `COURSE_OVERVIEW_32_LESSONS`.
+5. Current target-language 32-lesson authority. Для English это
+   `en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md` и canonical V2 modules;
+   старый `en/COURSE_OVERVIEW_32_LESSONS.ru.md` имеет статус `SUPERSEDED`.
 6. Target-language `FULL_COURSE_BLUEPRINT_OWNER_REVIEW` — текущие counts,
    canonical artifacts, candidate fingerprint и owner-approval state.
 7. Exact lesson blueprint.
@@ -72,8 +113,8 @@ feedback и восемь локализаций создаются только 
 - выбранный урок содержит ровно 7 глав и 56 session packets;
 - exact packet имеет одну новую grammar operation либо явный review set;
 - все prerequisites уже объяснены в более ранних packets;
-- exact packet имеет lexical plan: полезные новые senses плюс retrieval либо
-  обоснованный `retrieval-only` с точными sense IDs;
+- exact packet имеет lexical plan: Sessions 1–7 главы содержат 1–5 полезных
+  новых senses плюс retrieval, Session 8 содержит только точные retrieval IDs;
 - review packet фиксирует измеримый `learningDelta`, а не повторяет прежний
   prompt без изменения поддержки, задержки, контекста или output demand;
 - exact packet содержит phrase frames, allowed lexical slots, forbidden forms и
@@ -94,7 +135,7 @@ feedback и восемь локализаций создаются только 
 2. prerequisite edges;
 3. lesson boundary и prohibited constructs;
 4. lexical first-introduction и retrieval edges;
-5. lexical progress либо валидную retrieval-only причину;
+5. lexical progress в не-контрольной сессии либо checkpoint без новой лексики;
 6. learning delta каждой review session;
 7. intro → practice → probe alignment;
 8. owner-map freshness.

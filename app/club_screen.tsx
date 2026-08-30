@@ -2,7 +2,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Reanimated from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
-import { View, Text, TouchableOpacity, Animated, Easing, type FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Animated, Easing, useWindowDimensions, type FlatList } from 'react-native';
 import { Image } from 'expo-image';
 import { hapticTap } from '../hooks/use-haptics';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -120,6 +120,7 @@ import {
 import { leaguePublicName } from './league_public_name';
 import { LeagueBonusMission } from '../components/league/LeagueBonusMission';
 import { LeagueCompetitionScene } from '../components/league/LeagueCompetitionScene';
+import { LeagueAmbientRelic } from '../components/league/LeagueAmbientRelic';
 import { LeagueRaceFeed, type LeagueRaceFeedItem } from '../components/league/LeagueRaceFeed';
 import { LeagueChestTeaserModal } from '../components/league/LeagueChestTeaserModal';
 import { LeagueHotHoursChip } from '../components/league/LeagueHotHoursChip';
@@ -128,6 +129,7 @@ import { participantsLabel } from '../components/league/leagueStatusShared';
 import { LeagueLeaderboardRow, type LeagueLeaderboardZone } from '../components/league/LeagueLeaderboardRow';
 import type { LeagueHubPalette } from '../components/league/leagueHubPalette';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 // v2 — bumped после фикса race на signInAnonymously + остановки резервной записи
 // в league_state_v3. Старый таймер мог хранить «не обновлять» с момента, когда
@@ -417,6 +419,8 @@ export default function ClubScreen() {
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
   const runtimeActive = useRuntimeActive();
+  const reduceMotion = useReduceMotion();
+  const { width: viewportWidth } = useWindowDimensions();
   const runtimeActiveRef = useRef(runtimeActive);
   runtimeActiveRef.current = runtimeActive;
   const { theme: t, f, themeMode } = useTheme();
@@ -1622,7 +1626,13 @@ export default function ClubScreen() {
 
   return (
     <ScreenGradient>
-    <SafeAreaView style={{ flex:1 }}>
+    <LeagueAmbientRelic
+      source={myLeague.imageUri}
+      active={runtimeActive}
+      reduceMotion={reduceMotion}
+      viewportWidth={viewportWidth}
+    />
+    <SafeAreaView style={{ flex:1, zIndex: 1 }}>
       <ContentWrap>
       <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
       {/* Хедер */}

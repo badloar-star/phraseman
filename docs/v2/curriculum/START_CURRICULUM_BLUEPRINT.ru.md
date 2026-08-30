@@ -8,16 +8,16 @@
 ### CURRENT V2 AUTHORITY — 2026-08-30
 
 - Full B1 grammar-first canonical fingerprint:
-  `a8e60213590c364a4ae0c1b1ce62b8b5bda541f48a54159e0823867445281559`.
+  `b98f142c5bb3fab63153a68e38e1f875a4139d11fb7de5a29dd26de46e0554f8`.
 - Approval: `OWNER REVIEW REQUIRED`. Ранее утверждённый `ce1163d…c1a`
   superseded после Session 1 preflight: он использовал `am/is/are` и
   `here/ready` до prerequisite-safe введения.
 - Counts: `32 lessons / 224 chapters / 1 792 exact planning packets / 155
   grammar operations / 5 376 intro plans / 30 464 activity plans`.
-- Lexical-density rewrite: `128 grammar-grounded planned senses / 545
+- Lexical-density rewrite: `146 grammar-grounded planned senses / 638
   changed-context retrieval edges` на текущем промежуточном body. Каждая из
   1 568 не-контрольных сессий обязана иметь 1–5 новых senses; 224 checkpoints
-  обязаны иметь 0. Пока 1 484 lexical-density findings не закрыты, aggregate
+  обязаны иметь 0. Пока 1 479 lexical-density findings не закрыты, aggregate
   gate остаётся `HOLD`.
   17 seed definitions локализованы полностью, остальные определения имеют
   `REQUIRES_MANUAL_AUTHORING` и пишутся последовательно после approval.

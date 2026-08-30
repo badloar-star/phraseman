@@ -50,6 +50,12 @@ export type AppEventMap = {
   loyalty_gift_changed: undefined;
   /** Immutable daily-journey gift inbox or its seen watermark changed. */
   daily_journey_gifts_changed: undefined;
+  /**
+   * Сцена «Дар дня» долетела до цели (спека 2026-08-30, п. 5.8 — landing
+   * acknowledgement): главная пульсирует карточку «Статистика» и перечитывает
+   * inbox. occurrenceId = null в DEV-превью, где durable-запись не создаётся.
+   */
+  daily_journey_delivered: { day: number; occurrenceId: string | null };
   gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
   avatar_dna_invitation_requested: { source: 'first_achievement' };
@@ -87,8 +93,6 @@ export type AppEventMap = {
   season_cosmetics_changed: undefined;
   /** Платная дорожка сезона куплена/разблокирована — экран дорожки открывает pass-клеймы. */
   season_pass_plus_changed: undefined;
-  /** «Сокровищница»: инвентарь карточек изменился (дроп/restore) — обновить счётчики и сетки. */
-  collectibles_changed: undefined;
   /** После успешного signInWithProvider — обновить секцию "Аккаунт" в Settings, etc. */
   auth_provider_linked: undefined;
   /** Начисление осколков: анимация на главной + глобальный reward-тост (GlobalShardsEarnedHost). */

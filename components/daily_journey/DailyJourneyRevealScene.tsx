@@ -8,6 +8,7 @@ import React, {
   useImperativeHandle,
   useMemo,
   useRef,
+  useState,
 } from 'react';
 import {
   Animated,
@@ -34,6 +35,7 @@ import {
   dailyJourneyRewardForDay,
   normalizeDailyJourneyDay,
   type DailyJourneyReward,
+  type DailyJourneyRewardPayload,
 } from '../dev/dailyJourneyRewardPreviewModel';
 
 // зачем: владелец попросил «супер премиальную» хореографию вместо текущей
@@ -42,10 +44,9 @@ import {
 // журнал главы → удар сердца на сегодняшнем дне → раскрытие → полёт награды
 // в карточку «Статистика» → приземление. Ноль решений пользователя, ноль
 // текста наград; единственный контрол — «Пропустить», который ведёт в полёт
-// и НЕ отменяет уже записанную доставку. Файл отделён от
-// components/dev/DailyJourneyRewardPreviewModal.tsx сознательно: ту модалку
-// в момент написания правила параллельная сессия, а сцена — будущий общий
-// хост (dev-обёртка подключит её, когда освободится).
+// и НЕ отменяет уже записанную доставку. Сцена — общий хост хореографии:
+// dev-обёртка components/dev/DailyJourneyRewardPreviewModal.tsx рендерит её
+// внутри Modal, будущий боевой хост подключится так же.
 // Референс таймингов: артефакт «Дар дня» (сессия 2026-08-30).
 
 export type DailyJourneyRevealTarget = Readonly<{ x: number; y: number }>;
@@ -60,12 +61,16 @@ type Props = Readonly<{
   day: number;
   /** Каждый показ — новый run: перезапускает хореографию и дедуп звука. */
   run: number;
+  /** Composite host identity: same run with a replacement occurrence is new. */
+  deliveryId?: string;
   /**
    * Куда летит награда (центр карточки «Статистика» в координатах окна).
    * Хост меряет через measureInWindow; null/не задано — стабильный фоллбэк
    * «верхний центр» из спеки, доставка не откатывается.
    */
   targetPoint?: DailyJourneyRevealTarget | null;
+  /** Durable occurrence payload wins over mutable day-table data. */
+  reward?: DailyJourneyRewardPayload;
   /** Полёт завершён, сцена погасла: хост закрывает Modal и пульсирует карточку. */
   onDelivered: () => void;
 }>;
@@ -89,13 +94,12 @@ const HERO_CENTER_Y_RATIO = 0.33;
 const RAYS_TURN_MS = 36_000;
 const RAYS_TURN_B_MS = 44_000;
 
-function rewardImageSource(
+export function rewardImageSource(
   reward: DailyJourneyReward,
   themeMode: Parameters<typeof themeUiAsset>[0],
 ): ImageSourcePropType {
-  // зачем: копия маппера из dev-модалки — тот файл сейчас пишет другая
-  // сессия, править его нельзя; после подключения сцены модалка возьмёт
-  // маппер отсюда и дубль исчезнет.
+  // зачем: единственный маппер «награда → арт» для сцены и её хостов;
+  // прежний дубль в dev-модалке удалён вместе с её старой вёрсткой.
   switch (reward.kind) {
     case 'pearls':
       return levelSpinRewardImageSource(`pearls_${reward.amount}`, themeMode)
@@ -128,15 +132,16 @@ function buildStars(width: number, height: number) {
 }
 
 const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>(
-  function DailyJourneyRevealScene({ visible, day, run, targetPoint, onDelivered }, ref) {
+  function DailyJourneyRevealScene({ visible, day, run, deliveryId, targetPoint, reward, onDelivered }, ref) {
     const { width, height } = useWindowDimensions();
     const { theme: t, themeMode, f } = useTheme();
     const reduceMotion = useReduceMotion();
+    const sequenceKey = deliveryId ?? String(run);
 
     const normalizedDay = normalizeDailyJourneyDay(day);
     const chapter = useMemo(() => dailyJourneyChapterForDay(normalizedDay), [normalizedDay]);
     const chapterNumber = dailyJourneyChapterNumber(normalizedDay);
-    const currentReward = useMemo(() => dailyJourneyRewardForDay(normalizedDay), [normalizedDay]);
+    const currentReward = useMemo(() => reward ?? dailyJourneyRewardForDay(normalizedDay), [normalizedDay, reward]);
     const heroArt = rewardImageSource(currentReward, themeMode);
     const cardWidth = Math.min(420, width - 24);
 
@@ -151,7 +156,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         })),
       // зачем: новая россыпь на каждый показ, но стабильная внутри показа.
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      [run],
+      [sequenceKey],
     );
 
     /* ── Animated-значения: только transform/opacity, native driver ── */
@@ -185,6 +190,8 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
     const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
     const todayTileRef = useRef<View | null>(null);
     const deliveredRef = useRef(false);
+    const sequenceRef = useRef(0);
+    const [skipAvailable, setSkipAvailable] = useState(false);
 
     const later = useCallback((fn: () => void, ms: number) => {
       timersRef.current.push(setTimeout(fn, ms));
@@ -273,6 +280,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       }
       deliveredRef.current = true;
       phaseRef.current = 'done';
+      setSkipAvailable(false);
       stopIntroSound();
       hapticSuccess();
       onDelivered();
@@ -285,6 +293,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         return;
       }
       phaseRef.current = 'flight';
+      setSkipAvailable(false);
       runningRef.current?.stop();
       clearTimers();
       applyRevealEndState();
@@ -299,14 +308,14 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         Animated.timing(heroTx, { toValue: dx, duration: 640, easing: Easing.inOut(Easing.cubic), useNativeDriver: true }),
         Animated.sequence([
           Animated.timing(heroTy, { toValue: -14, duration: 150, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
-          Animated.timing(heroTy, { toValue: dy, duration: 490, easing: Easing.in(Easing.quad), useNativeDriver: true }),
+          Animated.timing(heroTy, { toValue: dy, duration: 490, easing: Easing.bezier(0.77, 0, 0.175, 1), useNativeDriver: true }),
         ]),
         Animated.sequence([
           Animated.timing(heroRot, { toValue: 1, duration: 200, easing: Easing.out(Easing.quad), useNativeDriver: true }),
           Animated.timing(heroRot, { toValue: 0, duration: 440, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
         ]),
         Animated.timing(heroScale, { toValue: 0.16, duration: 640, easing: Easing.inOut(Easing.cubic), useNativeDriver: true }),
-        Animated.timing(backdrop, { toValue: 0, duration: 500, delay: 120, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
+        Animated.timing(backdrop, { toValue: 0, duration: 500, delay: 120, easing: Easing.bezier(0.23, 1, 0.32, 1), useNativeDriver: true }),
         Animated.timing(raysOp, { toValue: 0, duration: 300, useNativeDriver: true }),
         Animated.timing(glowIn, { toValue: 0, duration: 340, useNativeDriver: true }),
         Animated.timing(skipOp, { toValue: 0, duration: 200, useNativeDriver: true }),
@@ -320,6 +329,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         // доставку — подарок уже записан; хост получает onDelivered в любом
         // исходе, кроме размонтирования сцены.
         djLog(`flight finished=${finished} dx=${dx | 0} dy=${dy | 0}`);
+        if (!finished) return;
         runningRef.current = null;
         finishDelivered();
       });
@@ -331,6 +341,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       // завершает доставку тем же коротким кроссфейдом, что и обычный ход.
       if (phaseRef.current === 'done') return;
       phaseRef.current = 'flight';
+      setSkipAvailable(false);
       runningRef.current?.stop();
       clearTimers();
       const out = Animated.parallel([
@@ -340,7 +351,8 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         Animated.timing(heroOp, { toValue: 0, duration: 200, useNativeDriver: true }),
       ]);
       runningRef.current = out;
-      out.start(() => {
+      out.start(({ finished }) => {
+        if (!finished) return;
         runningRef.current = null;
         finishDelivered();
       });
@@ -348,6 +360,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
 
     const skipToDelivery = useCallback(() => {
       djLog(`skip requested at phase=${phaseRef.current} reduceMotion=${reduceMotion}`);
+      if (phaseRef.current === 'flight' || phaseRef.current === 'done') return;
       hapticTap();
       if (reduceMotion) finishReducedMotion();
       else startFlight();
@@ -356,8 +369,9 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
     useImperativeHandle(ref, () => ({ skipToDelivery }), [skipToDelivery]);
 
     /* ── Акты 0–III: интро-хореография ── */
-    const startIntro = useCallback(async () => {
+    const startIntro = useCallback(async (sequence: number) => {
       phaseRef.current = 'intro';
+      setSkipAvailable(true);
       const tj = (v: Animated.Value, toValue: number, duration: number, delay = 0, easing = Easing.out(Easing.poly(5))) =>
         Animated.timing(v, { toValue, duration, delay, easing, useNativeDriver: true });
 
@@ -406,17 +420,23 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       runningRef.current = intro;
 
       // Хаптика по расписанию актов: тик журнала и два лёгких удара сердца.
-      later(() => hapticTap(), 620);
+      later(() => {
+        if (sequenceRef.current === sequence) hapticTap();
+      }, 620);
       const act2Start = 620 + 200 + slot * 36 + 140 + 700 + 120;
-      later(() => hapticLightImpact(), act2Start + 100);
-      later(() => hapticLightImpact(), act2Start + 500);
+      later(() => {
+        if (sequenceRef.current === sequence) hapticLightImpact();
+      }, act2Start + 100);
+      later(() => {
+        if (sequenceRef.current === sequence) hapticLightImpact();
+      }, act2Start + 500);
 
       await new Promise<void>((resolve) => intro.start(() => resolve()));
-      if (phaseRef.current !== 'intro') return; // «Пропустить» уже увёл в полёт
+      if (sequenceRef.current !== sequence || phaseRef.current !== 'intro') return;
 
       // Акт III «Раскрытие»: журнал тает, награда вырывается из плитки.
       const { dx, dy } = await measureTileDelta();
-      if (phaseRef.current !== 'intro') return;
+      if (sequenceRef.current !== sequence || phaseRef.current !== 'intro') return;
       heroTx.setValue(dx); heroTy.setValue(dy); heroOp.setValue(1);
       const reveal = Animated.parallel([
         Animated.timing(journalAlive, { toValue: 0, duration: 400, easing: Easing.in(Easing.cubic), useNativeDriver: true }),
@@ -438,24 +458,28 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
 
       runningRef.current = reveal;
       await new Promise<void>((resolve) => reveal.start(() => resolve()));
-      if (phaseRef.current !== 'intro') return;
+      if (sequenceRef.current !== sequence || phaseRef.current !== 'intro') return;
 
-      later(() => startFlight(), 500);
+      later(() => {
+        if (sequenceRef.current === sequence) startFlight();
+      }, 500);
     }, [backdrop, bloomIn, chapter, haloOp, headerDim, heroOp, heroScale, heroTx, heroTy,
       journalAlive, journalIn, labelIn, later, measureTileDelta, normalizedDay, pulse, raysOp,
-      raysTurnA, raysTurnB, recede, shimmer, shock, skipOp, sparkVals, sparks, startFlight,
+      glowIn, raysTurnA, raysTurnB, recede, shimmer, shock, skipOp, sparkVals, sparks, startFlight,
       tileIn, titleIn]);
 
     /* ── Reduce motion: детерминированный кроссфейд без полёта и пульсов ── */
     const startReducedMotion = useCallback(() => {
       phaseRef.current = 'intro';
+      setSkipAvailable(true);
       backdrop.setValue(1); bloomIn.setValue(1); skipOp.setValue(1);
       labelIn.setValue(1); titleIn.setValue(1);
       tileIn.forEach((v) => v.setValue(1));
       haloOp.setValue(1);
       const fadeIn = Animated.timing(journalIn, { toValue: 1, duration: 240, easing: Easing.out(Easing.quad), useNativeDriver: true });
       runningRef.current = fadeIn;
-      fadeIn.start(() => {
+      fadeIn.start(({ finished }) => {
+        if (!finished) return;
         later(() => {
           const out = Animated.parallel([
             Animated.timing(journalAlive, { toValue: 0, duration: 240, useNativeDriver: true }),
@@ -463,7 +487,8 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
             Animated.timing(skipOp, { toValue: 0, duration: 200, useNativeDriver: true }),
           ]);
           runningRef.current = out;
-          out.start(() => {
+          out.start(({ finished: outFinished }) => {
+            if (!outFinished) return;
             runningRef.current = null;
             finishDelivered();
           });
@@ -472,6 +497,8 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
     }, [backdrop, bloomIn, finishDelivered, haloOp, journalAlive, journalIn, labelIn, later,
       skipOp, tileIn, titleIn]);
 
+    // A run is the sole choreography identity; callback/target re-renders do
+    // not restart delivery. Their host wrappers retain the latest callbacks.
     useEffect(() => {
       if (!visible) {
         runningRef.current?.stop();
@@ -479,24 +506,29 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         clearTimers();
         stopIntroSound();
         phaseRef.current = 'idle';
+        setSkipAvailable(false);
         return undefined;
       }
+      const sequence = sequenceRef.current + 1;
+      sequenceRef.current = sequence;
       resetScene();
+      setSkipAvailable(false);
       soundDirector.request('pm.reward.daily_journey_intro', {
         scope: 'daily-journey-reveal',
-        dedupeKey: `daily-journey-reveal-${run}`,
+        dedupeKey: `daily-journey-reveal-${sequenceKey}`,
       });
       if (reduceMotion) {
         startReducedMotion();
       } else {
-        startIntro().catch((e) => {
+        startIntro(sequence).catch((e) => {
           // зачем: немой обрыв хореографии оставил бы вечный чёрный экран;
           // логируем причину и честно завершаем доставку кроссфейдом.
           djLog(`intro chain failed, delivering via fallback:`, e);
-          startFlight();
+          if (sequenceRef.current === sequence) startFlight();
         });
       }
       return () => {
+        sequenceRef.current += 1;
         runningRef.current?.stop();
         runningRef.current = null;
         clearTimers();
@@ -505,9 +537,10 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         // runningRef — глушим явно, чтобы скрытая сцена не тикала фоном.
         raysTurnA.stopAnimation();
         raysTurnB.stopAnimation();
+        setSkipAvailable(false);
       };
-    }, [clearTimers, reduceMotion, resetScene, run, startFlight, startIntro, startReducedMotion,
-      stopIntroSound, visible]);
+    }, [clearTimers, reduceMotion, resetScene, sequenceKey, startFlight, startIntro, startReducedMotion,
+      stopIntroSound, visible, raysTurnA, raysTurnB]);
 
     /* ── интерполяции ── */
     const journalOpacity = Animated.multiply(journalIn, journalAlive);
@@ -561,7 +594,12 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         </Animated.View>
 
         {/* Единственный контрол сцены */}
-        <Animated.View style={[styles.skipWrap, { opacity: skipOp }]}>
+        <Animated.View
+          pointerEvents={skipAvailable ? 'auto' : 'none'}
+          accessibilityElementsHidden={!skipAvailable}
+          importantForAccessibility={skipAvailable ? 'auto' : 'no-hide-descendants'}
+          style={[styles.skipWrap, { opacity: skipOp }]}
+        >
           <Pressable
             testID="daily-journey-skip"
             accessibilityRole="button"

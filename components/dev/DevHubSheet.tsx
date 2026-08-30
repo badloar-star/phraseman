@@ -35,6 +35,7 @@ import LevelUpThresholdModal, { type LevelUpPreviewVariant } from '../LevelUpThr
 import ResultsSequence from '../feedback/ResultsSequence';
 import { SpinRewardPlaque } from '../SpinRewardPlaque';
 import WelcomeGiftModal from '../WelcomeGiftModal';
+import DailyJourneyRewardPreviewModal from './DailyJourneyRewardPreviewModal';
 import { useOverlayVisible } from '../OverlayArbiter';
 import { usePremium } from '../PremiumContext';
 import { useTheme } from '../ThemeContext';
@@ -85,6 +86,11 @@ type PreviewState =
   | Readonly<{
       type: 'welcome-gift';
       variant?: never;
+      run: number;
+    }>
+  | Readonly<{
+      type: 'daily-journey';
+      day: number;
       run: number;
     }>;
 
@@ -144,6 +150,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState('');
   const runRef = useRef(0);
+  const dailyJourneyDayRef = useRef(3);
   const headingRef = useRef<Text>(null);
   const headingFocusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closingRef = useRef(false);
@@ -287,6 +294,15 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     hapticTap();
     runRef.current += 1;
     setPreview({ type: 'welcome-gift', run: runRef.current });
+    requestClose(true);
+  }, [requestClose]);
+
+  const openDailyJourneyPreview = useCallback(() => {
+    hapticTap();
+    runRef.current += 1;
+    const day = dailyJourneyDayRef.current;
+    dailyJourneyDayRef.current = day >= 50 ? 1 : day + 1;
+    setPreview({ type: 'daily-journey', day, run: runRef.current });
     requestClose(true);
   }, [requestClose]);
 
@@ -452,6 +468,9 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'preview-welcome-gift':
         openWelcomeGiftPreview();
         return;
+      case 'preview-daily-journey':
+        openDailyJourneyPreview();
+        return;
       case 'preview-league-promoted':
         openLeaguePreview('promoted');
         return;
@@ -531,7 +550,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         } as never));
         return;
     }
-  }, [applyPlusOverride, openLeaguePreview, openLessonResultsPreview, openPreview, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview]);
+  }, [applyPlusOverride, openDailyJourneyPreview, openLeaguePreview, openLessonResultsPreview, openPreview, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
   const milestone = preview?.type === 'level-up' && preview.variant === 'milestone';
@@ -786,6 +805,21 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
           visible={!visible && devSurfaceGranted}
           onClose={() => closePreview()}
           testID="dev-welcome-gift-preview"
+        />
+      ) : null}
+
+      {preview?.type === 'daily-journey' ? (
+        <DailyJourneyRewardPreviewModal
+          key={preview.run}
+          visible={!visible && preview?.type === 'daily-journey'}
+          day={preview.day}
+          run={preview.run}
+          onDelivered={() => {
+            // зачем: по спеке у сцены нет кнопок решения — модалка закрывается
+            // сама после полёта награды; в превью ничего не начисляется.
+            closePreview('DEV: доставка «Дара дня» проиграна. Награда не начислялась.');
+            onOpen?.();
+          }}
         />
       ) : null}
 

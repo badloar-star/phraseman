@@ -57,7 +57,7 @@ function targetRectToPoint(targetRect: DailyJourneyRewardDeliveryTargetRect | nu
 export default function DailyJourneyRewardPreviewModal({
   visible,
   occurrence,
-  reward: _reward,
+  reward,
   targetRect,
   day,
   run,
@@ -73,29 +73,37 @@ export default function DailyJourneyRewardPreviewModal({
   const landedOccurrenceRef = useRef<string | null>(null);
   const completedRunRef = useRef<number | null>(null);
   const deliveryDay = occurrence?.day ?? day;
+  const identity = occurrence ? `${run}:${occurrence.operationId}` : `preview:${run}:${deliveryDay}`;
+  const callbacksRef = useRef({ occurrence, onLanded, onDeliveryComplete, onDelivered, deliveryDay });
+  callbacksRef.current = { occurrence, onLanded, onDeliveryComplete, onDelivered, deliveryDay };
 
+  // A target rect is intentionally captured once per delivery identity; a Home
+  // re-measure during flight must never restart a committed sequence.
   useEffect(() => {
     if (!visible) {
       setStage(null);
       return undefined;
     }
+    const abort = new AbortController();
     let alive = true;
     const directTarget = targetRectToPoint(targetRect);
-    const measuredTarget = directTarget ? Promise.resolve(directTarget) : measureDailyJourneyRevealTarget();
+    const measuredTarget = directTarget ? Promise.resolve(directTarget) : measureDailyJourneyRevealTarget(abort.signal);
     void measuredTarget.then((targetPoint) => {
       // Экран под Modal уже не скроллится — точка стабильна до конца полёта.
       if (alive) setStage({ targetPoint });
     });
     return () => {
       alive = false;
+      abort.abort();
     };
-  }, [run, targetRect, visible]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [identity, visible]);
 
   useEffect(() => {
     if (!visible) return;
     landedOccurrenceRef.current = null;
     completedRunRef.current = null;
-  }, [run, visible]);
+  }, [identity, visible]);
 
   const skipToDelivery = useCallback(() => {
     sceneRef.current?.skipToDelivery();
@@ -104,19 +112,20 @@ export default function DailyJourneyRewardPreviewModal({
   const handleDelivered = useCallback(() => {
     // зачем (спека, п. 5.8): landing acknowledgement — главная по событию
     // пульсирует карточку «Статистика» и перечитывает inbox подарков.
-    emitAppEvent('daily_journey_delivered', {
-      day: normalizeDailyJourneyDay(deliveryDay),
-      occurrenceId: occurrence?.operationId ?? null,
-    });
-    if (occurrence && landedOccurrenceRef.current !== occurrence.operationId) {
-      landedOccurrenceRef.current = occurrence.operationId;
-      onLanded?.(occurrence.operationId);
-    }
     if (completedRunRef.current === run) return;
     completedRunRef.current = run;
-    onDeliveryComplete?.();
-    onDelivered?.();
-  }, [deliveryDay, occurrence, onDelivered, onDeliveryComplete, onLanded, run]);
+    const current = callbacksRef.current;
+    emitAppEvent('daily_journey_delivered', {
+      day: normalizeDailyJourneyDay(current.deliveryDay),
+      occurrenceId: current.occurrence?.operationId ?? null,
+    });
+    if (current.occurrence && landedOccurrenceRef.current !== current.occurrence.operationId) {
+      landedOccurrenceRef.current = current.occurrence.operationId;
+      current.onLanded?.(current.occurrence.operationId);
+    }
+    current.onDeliveryComplete?.();
+    current.onDelivered?.();
+  }, [run]);
 
   const sceneVisible = visible && stage !== null;
   return (
@@ -134,6 +143,8 @@ export default function DailyJourneyRewardPreviewModal({
           visible={sceneVisible}
           day={deliveryDay}
           run={run}
+          deliveryId={identity}
+          reward={occurrence?.reward ?? reward}
           targetPoint={stage?.targetPoint ?? null}
           onDelivered={handleDelivered}
         />

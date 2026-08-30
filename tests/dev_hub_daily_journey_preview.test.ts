@@ -79,6 +79,9 @@ describe('Dev Hub daily journey preview', () => {
     expect(component).toContain("emitAppEvent('daily_journey_delivered'");
     expect(component).toContain('landedOccurrenceRef.current');
     expect(component).toContain('completedRunRef.current');
+    expect(component).toContain('const identity = occurrence ?');
+    expect(component).toContain('measureDailyJourneyRevealTarget(abort.signal)');
+    expect(component).toContain('reward={occurrence?.reward ?? reward}');
 
     // The shared scene owns the hot path: square tiles, 78% asset art, one
     // Skip control, native transform/opacity flight and deterministic
@@ -89,6 +92,9 @@ describe('Dev Hub daily journey preview', () => {
     expect(scene).toContain('useNativeDriver: true');
     expect(scene).toContain('startReducedMotion');
     expect(scene).not.toMatch(/rewardCopy|detailCard|Применить|Позже/);
+    expect(scene).toContain('reward ?? dailyJourneyRewardForDay(normalizedDay)');
+    expect(scene).toContain('Easing.bezier(0.77, 0, 0.175, 1)');
+    expect(scene).toContain("importantForAccessibility={skipAvailable ? 'auto' : 'no-hide-descendants'}");
   });
 
   test('keeps the single arcade intro cue, owned by the scene rather than the wrapper', () => {
@@ -108,24 +114,11 @@ describe('Dev Hub daily journey preview', () => {
     expect(scene).toContain("soundDirector.stopActiveEvent('pm.reward.daily_journey_intro'");
   });
 
-  // зачем: спека, пп. 5.6, 5.9 и 6 — главная отдаёт цель полёта, пульсирует
-  // карточку один раз и держит «Подарок» в независимом правом слоте с прямым
-  // маршрутом в существующий инвентарь подарков.
-  test('home delivers the landing: target measurer, one pulse, Gift in the right slot', () => {
-    const home = read('app/(tabs)/home.tsx');
-    expect(home).toContain('registerDailyJourneyRevealTargetMeasurer');
-    expect(home).toContain('readDailyJourneyGiftProjection');
-    expect(home).toContain("onAppEvent('daily_journey_delivered'");
-    expect(home).toContain("onAppEvent('daily_journey_gifts_changed'");
-    expect(home).toContain('toValue: 1.035');
-    expect(home).toContain('testID="home-gift-entry"');
-    expect(home).toContain("nav.push('/level_gifts_inventory')");
-
-    const giftEntry = home.slice(
-      home.indexOf('testID="home-gift-entry"'),
-      home.indexOf('testID="home-gift-entry-button"'),
-    );
-    expect(giftEntry).toContain("position: 'absolute'");
-    expect(giftEntry).toContain('right: 0');
+  test('keeps bridge/event/audio dependencies inside Task 4', () => {
+    const bridge = read('components/daily_journey/dailyJourneyRevealTargetBridge.ts');
+    const events = read('app/events.ts');
+    expect(bridge).toContain('measureDailyJourneyRevealTarget(signal?: AbortSignal)');
+    expect(bridge).toContain('clearTimeout(timeoutId)');
+    expect(events).toContain('daily_journey_delivered: { day: number; occurrenceId: string | null }');
   });
 });

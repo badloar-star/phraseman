@@ -129,7 +129,6 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.streak.saved': event(require('../../assets/audio/sfx/v1/streak/pm_streak_saved_v1.m4a'), 0.54, 84, 5000, 1080, 'streak'),
 
   'pm.reward.small': event(require('../../assets/audio/sfx/v1/reward/pm_reward_small_v1.m4a'), 0.42, 64, 1800, 720, 'reward', { deferAfterVoice: true }),
-  'pm.reward.collectible': event(require('../../assets/audio/sfx/v1/reward/pm_reward_collectible_v1.m4a'), 0.54, 82, 4500, 1180, 'reward'),
   'pm.reward.achievement': event(require('../../assets/audio/sfx/v1/reward/pm_reward_achievement_v1.m4a'), 0.55, 84, 4500, 1120, 'reward'),
   'pm.reward.level_up': event(require('../../assets/audio/sfx/v1/reward/pm_reward_level_up_v1.m4a'), 0.58, 88, 5500, 1350, 'reward'),
   'pm.reward.chest_open': event(require('../../assets/audio/sfx/v1/reward/pm_reward_chest_open_v1.m4a'), 0.58, 86, 4500, 1420, 'reward'),
@@ -179,6 +178,10 @@ export const SOUND_EVENTS = Object.freeze({
   // зачем: финальный аккорд, когда перевёрнута последняя карточка пака —
   // конфетти уже есть визуально, звука к нему не было.
   'pm.reward.pack_complete': event(require('../../assets/audio/sfx/v1/reward/pm_reward_pack_complete_v1.m4a'), 0.50, 80, 3000, 1000, 'reward'),
+  // зачем (владелец, 2026-08-30): из пяти кандидатов ежедневного путешествия
+  // выбран только ПЕРВЫЙ звук варианта «Игра» — intro. Пульсы, reveal, tap и
+  // четыре остальных направления в приложение не подключать.
+  'pm.reward.daily_journey_intro': event(require('../../assets/audio/sfx/v1/reward/pm_reward_daily_journey_intro_v1.m4a'), 0.42, 68, 0, 2560, 'reward'),
 
   // Level Spin is a short, authored sequence. Each cue has a separate asset so
   // visual phase changes can trigger it exactly instead of relying on timers.

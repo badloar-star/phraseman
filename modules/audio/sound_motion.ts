@@ -66,13 +66,13 @@ export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProf
   'pm.energy.refilled': { audibleMs: 531, attackMs: 281, hits: [94, 156, 219, 281, 344, 391], shape: 'multi', bright: 0.05 },
   'pm.streak.saved': { audibleMs: 297, attackMs: 78, hits: [78, 156], shape: 'double', bright: 0.97 },
   'pm.reward.small': { audibleMs: 422, attackMs: 156, hits: [63, 156], shape: 'double', bright: 0.96 },
-  'pm.reward.collectible': { audibleMs: 328, attackMs: 31, hits: [31, 78, 297], shape: 'triple', bright: 0.96 },
   'pm.reward.achievement': { audibleMs: 406, attackMs: 141, hits: [109, 250], shape: 'double', bright: 0.96 },
   'pm.reward.level_up': { audibleMs: 900, attackMs: 350, hits: [25, 200, 350, 500, 600], shape: 'multi', bright: 0.13 },
   'pm.reward.chest_open': { audibleMs: 398, attackMs: 141, hits: [141, 188, 328], shape: 'triple', bright: 0.02 },
   'pm.reward.premium_open': { audibleMs: 867, attackMs: 234, hits: [164, 234, 305, 375, 445, 516], shape: 'multi', bright: 0.01 },
   'pm.reward.premium_finale': { audibleMs: 398, attackMs: 23, hits: [23, 94], shape: 'double', bright: 0.01 },
   'pm.reward.vip_open': { audibleMs: 609, attackMs: 141, hits: [47, 141, 211, 281, 375], shape: 'multi', bright: 0.01 },
+  'pm.reward.daily_journey_intro': { audibleMs: 1087, attackMs: 81, hits: [81, 282, 362], shape: 'triple', bright: 0.0725 },
   // ─── Празднование v6: карты ударов из docs/design/CELEBRATION_SOUND_PROMPTS.md ───
   // зачем: визуальные события сцен стоят ровно на этих миллисекундах
   // (components/premium_celebration/CelebrationSceneViews.tsx). Правишь тут —

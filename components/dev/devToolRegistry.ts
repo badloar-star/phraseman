@@ -19,6 +19,7 @@ export type DevToolAction =
   | 'preview-lesson-results'
   | 'preview-spin-reward'
   | 'preview-welcome-gift'
+  | 'preview-daily-journey'
   | 'preview-league-promoted'
   | 'preview-league-demoted'
   | 'preview-league-stay'
@@ -81,7 +82,7 @@ export type DevToolSection = Readonly<{
   id: string;
   order: number;
   title: string;
-  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline' | 'card-outline' | 'cart-outline' | 'school-outline' | 'diamond-outline';
+  icon: 'call-outline' | 'sparkles-outline' | 'key-outline' | 'trophy-outline' | 'rocket-outline' | 'card-outline' | 'cart-outline' | 'school-outline' | 'diamond-outline' | 'gift-outline';
   testID: string;
   /**
    * Секция свёрнута при открытии хаба.
@@ -320,6 +321,29 @@ export const DEV_TOOL_SECTIONS = [
         action: 'open-shop',
         icon: 'cart-outline',
         testID: 'dev-open-shop',
+      },
+    ],
+  },
+  // зачем (владелец, 2026-08-30): 50-дневный модал ежедневных подарков
+  // сначала проходит визуальную и функциональную приёмку в DEV Hub. Здесь
+  // показывается настоящий нативный компонент, но выдача награды намеренно
+  // не подключена — кошелёк, энергия и серия пользователя не меняются.
+  {
+    id: 'daily-journey-preview',
+    order: 8,
+    title: 'Ежедневные подарки',
+    icon: 'gift-outline',
+    testID: 'dev-hub-section-daily-journey',
+    tools: [
+      {
+        id: 'daily-journey',
+        order: 10,
+        title: 'Путешествие · 50 дней',
+        detail: 'Полная анимация. Каждый запуск показывает следующий день; реальные награды не начисляются.',
+        actionLabel: 'Показать',
+        action: 'preview-daily-journey',
+        icon: 'gift-outline',
+        testID: 'dev-preview-daily-journey',
       },
     ],
   },

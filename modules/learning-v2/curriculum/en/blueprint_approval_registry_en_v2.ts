@@ -24,4 +24,16 @@ export const LEARNING_V2_ENGLISH_BLUEPRINT_APPROVAL_REGISTRY_V2: Readonly<
       reason:
         "OWNER_DECISION_FULL_B1_GRAMMAR_FIRST_REBUILD_2026_08_30" as const,
     }),
+  "ce1163d02a965e843e56a17c306ff4f14d55033ba21e75d7fbb082557fb61c1a":
+    Object.freeze({
+      status: "SUPERSEDED" as const,
+      reason:
+        "COURSE_START_PREREQUISITE_AND_LEXICAL_GROUNDING_DEFECT_2026_08_30" as const,
+    }),
+  "3a4ca1422a6125bb317121c312c0166fdb595ee90111f297c480c8a82b7716e4":
+    Object.freeze({
+      status: "PENDING" as const,
+      reason:
+        "OWNER_REVIEW_REQUIRED_AFTER_COURSE_START_PREREQUISITE_AMENDMENT_2026_08_30" as const,
+    }),
 });

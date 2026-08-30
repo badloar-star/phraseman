@@ -37,17 +37,40 @@ const normalizedExamplesByOperation = LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2.
   text: ` ${operation.positiveExamples.join(" ").toLowerCase().replace(/[^a-z]+/g, " ")} `,
 }));
 
+const courseStartOperation = LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2.find(
+  (operation) => operation.id === "en.grammar.present_be_affirmative.i_am",
+);
+if (!courseStartOperation) {
+  throw new Error("learning_v2_course_start_i_am_operation_missing");
+}
+
+// PRE-A1 has no hidden learner vocabulary. These two manually curated senses
+// are introduced on the first encounter and ground both canonical I am frames.
+const COURSE_START_CANDIDATES = Object.freeze([
+  Object.freeze({
+    sense: Object.freeze({ english: "here", glossRu: "здесь", partOfSpeech: "adverb" }),
+    operation: courseStartOperation,
+  }),
+  Object.freeze({
+    sense: Object.freeze({ english: "ready", glossRu: "готовый; готовая", partOfSpeech: "adjective" }),
+    operation: courseStartOperation,
+  }),
+]);
+
 // V1 is only a bounded glossary candidate pool. Its scenario-first lesson
 // order is never inherited: every accepted form must be independently grounded
 // in an approved V2 grammar-operation example and is re-timed by that operation.
-const candidates = LEARNING_V2_ENGLISH_LEXICAL_SENSES_V1
-  .filter((sense) => !["hello", "name"].includes(sense.english.toLowerCase()))
-  .flatMap((sense) => {
-    const grounding = normalizedExamplesByOperation.find(({ text }) =>
-      text.includes(` ${sense.english.toLowerCase()} `),
-    );
-    return grounding ? [{ sense, operation: grounding.operation }] : [];
-  });
+const candidates = Object.freeze([
+  ...COURSE_START_CANDIDATES,
+  ...LEARNING_V2_ENGLISH_LEXICAL_SENSES_V1
+    .filter((sense) => !["hello", "name", "here", "ready"].includes(sense.english.toLowerCase()))
+    .flatMap((sense) => {
+      const grounding = normalizedExamplesByOperation.find(({ text }) =>
+        text.includes(` ${sense.english.toLowerCase()} `),
+      );
+      return grounding ? [{ sense, operation: grounding.operation }] : [];
+    }),
+]);
 
 const candidateIndexWithinOperation = new Map<string, number>();
 

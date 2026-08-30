@@ -1,23 +1,23 @@
 # English Learning V2 — Full B1 Blueprint V2 receipt
 
 **Дата:** 2026-08-30  
-**Статус:** `OWNER APPROVED`
+**Статус:** `OWNER REVIEW REQUIRED`
 **Canonical fingerprint:**
-`ce1163d02a965e843e56a17c306ff4f14d55033ba21e75d7fbb082557fb61c1a`
+`3a4ca1422a6125bb317121c312c0166fdb595ee90111f297c480c8a82b7716e4`
 
 ## Что уже материализовано
 
 - 32 урока; каждый урок развивает новую крупную грамматическую систему;
-- 154 атомарные grammar operations с prerequisite-safe порядком;
-- ацикличный DAG: 154 nodes, 153 edges, 0 cycles, 0 unreachable nodes;
+- 155 атомарных grammar operations с prerequisite-safe порядком;
+- ацикличный DAG: 155 nodes, 154 edges, 0 cycles, 0 unreachable nodes;
 - 224 главы, по 7 глав в каждом уроке;
 - 1 792 exact planning packets, по 56 на урок;
 - 5 376 intro-функций `concept → formula → trap`;
 - 30 464 mode-native activity-плана, по 17 на packet;
 - 224 checkpoint packets без новой грамматики и новой scored-лексики;
-- 96 grammar-grounded planned lexical senses: каждое слово встречается в
+- 97 grammar-grounded planned lexical senses: каждое слово встречается в
   canonical example своей grammar operation, `hello` и `name` исключены;
-- 378 changed-context retrieval edges; в каждом из 32 уроков есть новое
+- 382 changed-context retrieval edges; в каждом из 32 уроков есть новое
   введение либо осмысленное извлечение уже знакомой лексики;
 - семантические gates для атомарных вариантов, одного правильного ответа,
   уникальных дистракторов, response-specific feedback, четырёх Speed Match
@@ -33,7 +33,7 @@ Learner-facing тексты интро, exercise prompts, дистракторы
 восемь локализаций и audio scripts не создавались массово. Каждый packet имеет
 явный статус `PLANNED_NOT_AUTHORED`; это curriculum intent, не готовая сессия.
 
-Из 96 planned senses только 16 seed-senses уже имеют полностью написанные
+Из 97 planned senses только 17 seed-senses уже имеют полностью написанные
 locale-native определения. Это не blocker blueprint: массово придумывать
 карточечные определения для восьми локалей на planning-stage запрещено.
 Остальные определения имеют честный статус `REQUIRES_MANUAL_AUTHORING` и будут
@@ -52,15 +52,20 @@ Fingerprint
 **SUPERSEDED BY OWNER DECISION — FULL B1 GRAMMAR-FIRST REBUILD**. Его старый
 `APPROVED` не переносится на новый canonical body.
 
-## Новое owner approval
+## Course-start amendment после approval
 
-Владелец просмотрел свежий owner map с указанным выше fingerprint и ответил
-`давай` непосредственно на запрос его утвердить. Поэтому статус
-`ownerApproval = APPROVED` относится только к
-`ce1163d02a965e843e56a17c306ff4f14d55033ba21e75d7fbb082557fb61c1a`.
-Любое изменение canonical body меняет hash и автоматически возвращает
-`PENDING`. Это approval curriculum-плана, но не learner-facing текстов,
-локализаций, аудио или отдельных сессий.
+Fingerprint
+`ce1163d02a965e843e56a17c306ff4f14d55033ba21e75d7fbb082557fb61c1a`
+был явно утверждён владельцем ответом `давай`, но последующий обязательный
+Session 1 preflight обнаружил дефект верхнего плана: первая операция требовала
+`am/is/are` и использовала `here/ready` как якобы известные до их введения.
+Такой fingerprint переведён в `SUPERSEDED` и больше не разрешает authoring.
+
+В amended body первая операция атомарна: только `I + am`; `here` и `ready`
+явно вводятся как два новых manual-localized sense в Session 1. Паттерны
+`he/she/it + is`, `you/we/they + are`, выбор полной формы и contractions
+получили отдельные prerequisite-safe главы. Новый exact fingerprint выше имеет
+`ownerApproval = PENDING` до отдельного явного решения владельца.
 
 ## Обязательный маршрут продолжения
 
@@ -89,15 +94,17 @@ LEARNING V2 SEMANTIC ALIGNMENT GATE V2: PASS
 future_grammar=0 ungrounded_lexicon=0 copied_probes=0
 
 LEARNING V2 LEXICAL PROGRESSION GATE V2: PASS
-planned_senses=96 retrieval_edges=378 lessons=32
+planned_senses=97 retrieval_edges=382 lessons=32
 
-LEARNING V2 CURRICULUM BLUEPRINT V2 GATE: PASS
-scope_findings=0 dag_findings=0 semantic_findings=0 lexical_scope_findings=0
+LEARNING V2 COURSE START PREREQUISITE GATE V2: PASS
+Session 1 = I + am; NEW here + ready; later be patterns forbidden
 
 LEARNING V2 CURRICULUM OWNER MAP V2 GATE: PASS
 lessons=32 chapters=224 packets=1792
 ```
 
-Следующий разрешённый этап — conformance-аудит Session 1 против exact packet.
-Session 2 не редактируется, пока Session 1 не приведена к нулю findings и не
-получила собственный learner-facing status по действующему authoring contract.
+Следующий разрешённый этап — owner review exact fingerprint
+`3a4ca1422a6125bb317121c312c0166fdb595ee90111f297c480c8a82b7716e4`.
+До явного approval learner-facing Session 1 не редактируется. После approval
+возобновляется её последовательный conformance-аудит; Session 2 остаётся
+замороженной до нуля findings Session 1.

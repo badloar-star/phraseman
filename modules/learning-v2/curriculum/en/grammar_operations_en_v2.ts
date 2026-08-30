@@ -27,9 +27,10 @@ type OperationSeed = readonly [
 const operation = (...seed: OperationSeed): OperationSeed => Object.freeze(seed);
 
 const OPERATION_SEEDS: readonly OperationSeed[] = Object.freeze([
-  operation(1, "present_be_affirmative", "subject_pronouns", "Назвать участника фразы.", "Перед am, is или are ставь явное подлежащее.", "I; you; he; she; it; we; they", "I am here.", "They are here."),
-  operation(1, "present_be_affirmative", "agreement", "Связать подлежащее с состоянием или признаком.", "После I выбирай am, после he/she/it — is, после you/we/they — are.", "subject + am|is|are + complement", "She is ready.", "We are ready."),
-  operation(1, "present_be_affirmative", "full_forms", "Сказать полную утвердительную фразу.", "В полной форме не пропускай am, is или are.", "I am; he is; we are", "You are right.", "It is cold."),
+  operation(1, "present_be_affirmative", "i_am", "Сообщить о себе через I am.", "Когда говоришь о себе, ставь am сразу после I.", "I + am + complement", "I am here.", "I am ready."),
+  operation(1, "present_be_affirmative", "he_she_it_is", "Сообщить о человеке или предмете через is.", "После he, she или it ставь is.", "he|she|it + is + complement", "She is ready.", "It is here."),
+  operation(1, "present_be_affirmative", "you_we_they_are", "Сообщить о собеседнике или группе через are.", "После you, we или they ставь are.", "you|we|they + are + complement", "You are ready.", "They are here."),
+  operation(1, "present_be_affirmative", "full_form_choice", "Выбрать полную форму be по подлежащему.", "С I выбирай am, с he/she/it — is, с you/we/they — are.", "subject + am|is|are + complement", "We are ready.", "He is here."),
   operation(1, "present_be_affirmative", "contractions", "Сказать утвердительную фразу естественно и короче.", "Соединяй местоимение и be апострофом, не меняя значение.", "I'm; you're; he's; she's; it's; we're; they're", "I'm ready.", "We're early."),
 
   operation(2, "present_be_questions_negatives", "negation", "Отрицать состояние или факт.", "Ставь not сразу после am, is или are.", "subject + am|is|are + not", "I am not busy.", "They are not late."),

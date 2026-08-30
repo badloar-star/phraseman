@@ -77,6 +77,16 @@ const sense = (
 };
 
 export const LEARNING_V2_ENGLISH_LEXICAL_SENSES_V2: readonly LearningV2EnglishLexicalSenseV2[] = Object.freeze([
+  sense("here.adverb.01", "here", "adverb", definitions(
+    "В этом месте, где находится говорящий.",
+    "У цьому місці, де перебуває мовець.",
+    "En este lugar, donde se encuentra quien habla.",
+    "Neste lugar, onde está a pessoa que fala.",
+    "Ở nơi người nói đang có mặt.",
+    "Di tempat orang yang berbicara berada.",
+    "Konuşan kişinin bulunduğu bu yerde.",
+    "W tym miejscu, w którym znajduje się osoba mówiąca.",
+  ), 1),
   sense("ready.adjective.01", "ready", "adjective", definitions(
     "Состояние человека, который подготовлен и может начать.",
     "Стан людини, яка підготувалася й може почати.",
@@ -96,7 +106,7 @@ export const LEARNING_V2_ENGLISH_LEXICAL_SENSES_V2: readonly LearningV2EnglishLe
     "Keadaan kekurangan tenaga setelah banyak beraktivitas.",
     "Bir uğraştan sonra enerjinin azalması durumu.",
     "Stan małej ilości energii po wysiłku.",
-  ), 1),
+  ), 11),
   sense("usually.adverb.01", "usually", "adverb", definitions(
     "Так происходит в большинстве обычных случаев.",
     "Так відбувається в більшості звичайних випадків.",

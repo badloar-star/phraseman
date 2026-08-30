@@ -37,6 +37,20 @@ const lexicalScopeFindings = blueprint.scope.lessons
       !lessonsWithPlannedLexicalProgression.has(lesson.lessonOrdinal),
   )
   .map((lesson) => `lesson_lexical_progression_missing:${lesson.lessonOrdinal}`);
+const courseStartOperation = blueprint.grammarOperations[0];
+const courseStartPacket = blueprint.sessionPackets[0];
+const courseStartFindings = [
+  courseStartOperation?.id === "en.grammar.present_be_affirmative.i_am"
+    ? null
+    : "course_start_atomic_i_am_operation_missing",
+  JSON.stringify(courseStartOperation?.positiveExamples) === JSON.stringify(["I am here.", "I am ready."])
+    ? null
+    : "course_start_examples_not_prerequisite_safe",
+  JSON.stringify([...(courseStartPacket?.newLexicalSenseIds ?? [])].sort()) ===
+      JSON.stringify(["en.here.adverb.01", "en.ready.adjective.01"])
+    ? null
+    : "course_start_here_ready_not_explicitly_introduced",
+].filter((finding): finding is string => finding !== null);
 
 const countsPass =
   manifest.lessonCount === 32 &&
@@ -53,7 +67,8 @@ const pass =
   scopeFindings.length === 0 &&
   dagFindings.length === 0 &&
   semanticFindings.length === 0 &&
-  lexicalScopeFindings.length === 0;
+  lexicalScopeFindings.length === 0 &&
+  courseStartFindings.length === 0;
 
 if (!pass) {
   process.stderr.write("LEARNING V2 CURRICULUM BLUEPRINT V2 GATE: HOLD\n");
@@ -61,7 +76,7 @@ if (!pass) {
     `counts_pass=${countsPass} fingerprint_pass=${fingerprintPass} approval_pass=${approvalPass}\n`,
   );
   process.stderr.write(
-    `scope_findings=${scopeFindings.length} dag_findings=${dagFindings.length} semantic_findings=${semanticFindings.length} lexical_scope_findings=${lexicalScopeFindings.length}\n`,
+    `scope_findings=${scopeFindings.length} dag_findings=${dagFindings.length} semantic_findings=${semanticFindings.length} lexical_scope_findings=${lexicalScopeFindings.length} course_start_findings=${courseStartFindings.length}\n`,
   );
   process.exitCode = 1;
 } else {
@@ -73,7 +88,7 @@ if (!pass) {
     `intro_plan_items=${manifest.introPlanItemCount} activity_plan_items=${manifest.activityPlanItemCount}\n`,
   );
   process.stdout.write(
-    `scope_findings=${scopeFindings.length} dag_findings=${dagFindings.length} semantic_findings=${semanticFindings.length} lexical_scope_findings=${lexicalScopeFindings.length}\n`,
+    `scope_findings=${scopeFindings.length} dag_findings=${dagFindings.length} semantic_findings=${semanticFindings.length} lexical_scope_findings=${lexicalScopeFindings.length} course_start_findings=${courseStartFindings.length}\n`,
   );
   process.stdout.write(
     `owner_approval=${manifest.ownerApproval} fingerprint=${manifest.fingerprint}\n`,

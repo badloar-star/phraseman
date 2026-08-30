@@ -22,6 +22,16 @@ describe('DailyJourneyRevealLifecycle', () => {
     expect(events).toEqual(['intro', 'flight']);
   });
 
+  test.each(['skip', 'back', 'escape'] as const)('reduced-motion %s advances its preflight once', (action) => {
+    const events: string[] = [];
+    const lifecycle = new DailyJourneyRevealLifecycle();
+    const token = lifecycle.begin({ identity: '1:reduced', targetPoint: null, reducedMotion: true,
+      onIntro: () => events.push('intro'), onFlight: () => events.push('flight'), onDelivered: () => events.push('done') });
+    lifecycle[action](token);
+    lifecycle.completeFlight(token, true);
+    expect(events).toEqual(['intro', 'flight', 'done']);
+  });
+
   test('rerenders with a target, callback, dimensions or motion preference do not restart the same identity', () => {
     const events: string[] = [];
     const lifecycle = new DailyJourneyRevealLifecycle();
@@ -57,5 +67,19 @@ describe('DailyJourneyRevealLifecycle', () => {
     const token = lifecycle.begin({ identity: '1:op-a', targetPoint: null, reducedMotion: false, onIntro: () => undefined, onFlight: () => undefined, onDelivered: delivered });
     lifecycle.startFlight(token); lifecycle.completeFlight(token, false);
     expect(delivered).not.toHaveBeenCalled();
+  });
+
+  test('a stale completion token cannot deliver the next occurrence', () => {
+    const events: string[] = [];
+    const lifecycle = new DailyJourneyRevealLifecycle();
+    const a = lifecycle.begin({ identity: '1:a', targetPoint: null, reducedMotion: false,
+      onIntro: () => undefined, onFlight: () => undefined, onDelivered: () => events.push('a') });
+    lifecycle.startFlight(a);
+    const b = lifecycle.begin({ identity: '1:b', targetPoint: null, reducedMotion: false,
+      onIntro: () => undefined, onFlight: () => undefined, onDelivered: () => events.push('b') });
+    lifecycle.startFlight(b);
+    lifecycle.completeFlight(a, true);
+    lifecycle.completeFlight(b, true);
+    expect(events).toEqual(['b']);
   });
 });

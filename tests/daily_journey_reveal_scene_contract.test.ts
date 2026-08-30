@@ -94,4 +94,18 @@ describe('DailyJourneyRevealScene contract', () => {
     expect(src).toMatch(/deliveredRef/);
     expect(src).toMatch(/onDelivered suppressed/);
   });
+
+  test('точный art map использует билет спина и все существующие rune/energy варианты', () => {
+    expect(src).toContain("assets/images/spin/spin_ticket.webp");
+    expect(src).toContain('energy_plus2.webp');
+    expect(src).toContain('energy_plus3.webp');
+    expect(src).toContain('stars_500.webp');
+    expect(src).toContain('stars_1000.webp');
+    expect(src).toContain('reward.amount === 3');
+  });
+
+  test('финальный выход раскрытия — сильный ease-out без Easing.in', () => {
+    expect(src).not.toMatch(/Easing\.in\(/);
+    expect(src).toContain('Easing.bezier(0.23, 1, 0.32, 1)');
+  });
 });

@@ -4,8 +4,8 @@ export type DailyJourneyRevealLifecycleStart = Readonly<{
   identity: string;
   targetPoint: DailyJourneyRevealTarget | null;
   reducedMotion: boolean;
-  onIntro: () => void;
-  onFlight: (snapshot: Readonly<{ targetPoint: DailyJourneyRevealTarget | null; reducedMotion: boolean }>) => void;
+  onIntro: (token: number) => void;
+  onFlight: (snapshot: Readonly<{ targetPoint: DailyJourneyRevealTarget | null; reducedMotion: boolean }>, token: number) => void;
   onDelivered: () => void;
 }>;
 
@@ -21,8 +21,8 @@ export class DailyJourneyRevealLifecycle {
   begin(start: DailyJourneyRevealLifecycleStart): number {
     if (this.current?.identity === start.identity) return this.current.token;
     const token = ++this.nextToken;
-    this.current = { token, identity: start.identity, phase: start.reducedMotion ? 'flight' : 'intro', start };
-    start.onIntro();
+    this.current = { token, identity: start.identity, phase: 'intro', start };
+    start.onIntro(token);
     return token;
   }
 
@@ -36,7 +36,7 @@ export class DailyJourneyRevealLifecycle {
     const current = this.current;
     if (!current || current.token !== token || current.phase !== 'intro') return;
     current.phase = 'flight';
-    current.start.onFlight({ targetPoint: current.start.targetPoint, reducedMotion: current.start.reducedMotion });
+    current.start.onFlight({ targetPoint: current.start.targetPoint, reducedMotion: current.start.reducedMotion }, token);
   }
 
   completeFlight(token: number, finished: boolean): void {

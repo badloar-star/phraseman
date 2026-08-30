@@ -99,10 +99,16 @@ const DAILY_JOURNEY_STATIC_ART = Object.freeze({
   pearls_50: require('../../assets/images/level-spin-rewards/pearls_50.webp'),
   pearls_100: require('../../assets/images/level-spin-rewards/pearls_100.webp'),
   pearls_250: require('../../assets/images/level-spin-rewards/pearls_250.webp'),
-  runes: require('../../assets/images/level-spin-rewards/stars_100.webp'),
+  // Only 100/500/1000 rune art exists in the tracked catalogue. Other
+  // nominal Daily Journey amounts deliberately share the canonical 100-rune
+  // artwork rather than inventing bundle dependencies.
+  stars_100: require('../../assets/images/level-spin-rewards/stars_100.webp'),
+  stars_500: require('../../assets/images/level-spin-rewards/stars_500.webp'),
+  stars_1000: require('../../assets/images/level-spin-rewards/stars_1000.webp'),
   energy_full: require('../../assets/images/level-spin-rewards/energy_full.webp'),
-  energy_plus: require('../../assets/images/level-spin-rewards/energy_plus2.webp'),
-  spins: require('../../assets/images/level-spin-rewards/chain_shield_1.webp'),
+  energy_plus2: require('../../assets/images/level-spin-rewards/energy_plus2.webp'),
+  energy_plus3: require('../../assets/images/level-spin-rewards/energy_plus3.webp'),
+  spins: require('../../assets/images/spin/spin_ticket.webp'),
 });
 
 export function rewardImageSource(reward: Pick<DailyJourneyReward, 'kind' | 'amount'>, themeMode: Parameters<typeof getStreakFreezeIconVariant>[0]): ImageSourcePropType {
@@ -112,11 +118,12 @@ export function rewardImageSource(reward: Pick<DailyJourneyReward, 'kind' | 'amo
     case 'pearls':
       return DAILY_JOURNEY_STATIC_ART[`pearls_${reward.amount}` as keyof typeof DAILY_JOURNEY_STATIC_ART] ?? DAILY_JOURNEY_STATIC_ART.pearls_100;
     case 'runes':
-      return DAILY_JOURNEY_STATIC_ART.runes;
+      return DAILY_JOURNEY_STATIC_ART[`stars_${reward.amount}` as keyof typeof DAILY_JOURNEY_STATIC_ART]
+        ?? DAILY_JOURNEY_STATIC_ART.stars_100;
     case 'energy_full':
       return DAILY_JOURNEY_STATIC_ART.energy_full;
     case 'energy_plus':
-      return DAILY_JOURNEY_STATIC_ART.energy_plus;
+      return reward.amount === 3 ? DAILY_JOURNEY_STATIC_ART.energy_plus3 : DAILY_JOURNEY_STATIC_ART.energy_plus2;
     case 'spins':
       return DAILY_JOURNEY_STATIC_ART.spins;
     case 'freeze':
@@ -298,7 +305,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
     }, [onDelivered, stopIntroSound]);
 
     /* ── Акт IV+V: полёт по дуге и растворение сцены ── */
-    const startFlight = useCallback(() => {
+    const startFlight = useCallback((token: number) => {
       if (phaseRef.current === 'flight' || phaseRef.current === 'done') {
         djLog(`startFlight ignored: phase=${phaseRef.current}`);
         return;
@@ -342,12 +349,12 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         djLog(`flight finished=${finished} dx=${dx | 0} dy=${dy | 0}`);
         if (!finished) return;
         runningRef.current = null;
-        lifecycleRef.current.completeFlight(lifecycleTokenRef.current, true);
+        lifecycleRef.current.completeFlight(token, true);
       });
     }, [applyRevealEndState, backdrop, clearTimers, finishDelivered, glowIn, heroCenter.x,
       heroCenter.y, heroOp, heroRot, heroScale, heroTx, heroTy, raysOp, resolveTarget, skipOp]);
 
-    const finishReducedMotion = useCallback(() => {
+    const finishReducedMotion = useCallback((token: number) => {
       // зачем (спека, п. 5): с reduce motion полёта нет вообще — «Пропустить»
       // завершает доставку тем же коротким кроссфейдом, что и обычный ход.
       if (phaseRef.current === 'done') return;
@@ -365,7 +372,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       out.start(({ finished }) => {
         if (!finished) return;
         runningRef.current = null;
-        lifecycleRef.current.completeFlight(lifecycleTokenRef.current, true);
+        lifecycleRef.current.completeFlight(token, true);
       });
     }, [backdrop, clearTimers, finishDelivered, heroOp, journalAlive, skipOp]);
 
@@ -379,7 +386,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
     useImperativeHandle(ref, () => ({ skipToDelivery }), [skipToDelivery]);
 
     /* ── Акты 0–III: интро-хореография ── */
-    const startIntro = useCallback(async (sequence: number) => {
+    const startIntro = useCallback(async (sequence: number, token: number) => {
       phaseRef.current = 'intro';
       setSkipAvailable(true);
       const tj = (v: Animated.Value, toValue: number, duration: number, delay = 0, easing = Easing.out(Easing.poly(5))) =>
@@ -449,7 +456,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       if (sequenceRef.current !== sequence || phaseRef.current !== 'intro') return;
       heroTx.setValue(dx); heroTy.setValue(dy); heroOp.setValue(1);
       const reveal = Animated.parallel([
-        Animated.timing(journalAlive, { toValue: 0, duration: 400, easing: Easing.in(Easing.cubic), useNativeDriver: true }),
+        Animated.timing(journalAlive, { toValue: 0, duration: 400, easing: Easing.bezier(0.23, 1, 0.32, 1), useNativeDriver: true }),
         Animated.timing(heroTx, { toValue: 0, duration: 620, delay: 60, easing: Easing.out(Easing.poly(5)), useNativeDriver: true }),
         Animated.timing(heroTy, { toValue: 0, duration: 620, delay: 60, easing: Easing.out(Easing.poly(5)), useNativeDriver: true }),
         Animated.sequence([
@@ -471,7 +478,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       if (!revealFinished || sequenceRef.current !== sequence || phaseRef.current !== 'intro') return;
 
       later(() => {
-        if (sequenceRef.current === sequence) lifecycleRef.current.startFlight(lifecycleTokenRef.current);
+        if (sequenceRef.current === sequence) lifecycleRef.current.startFlight(token);
       }, 500);
     }, [backdrop, bloomIn, chapter, haloOp, headerDim, heroOp, heroScale, heroTx, heroTy,
       journalAlive, journalIn, labelIn, later, measureTileDelta, normalizedDay, pulse, raysOp,
@@ -479,7 +486,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       tileIn, titleIn]);
 
     /* ── Reduce motion: детерминированный кроссфейд без полёта и пульсов ── */
-    const startReducedMotion = useCallback(() => {
+    const startReducedMotion = useCallback((token: number) => {
       phaseRef.current = 'intro';
       setSkipAvailable(true);
       backdrop.setValue(1); bloomIn.setValue(1); skipOp.setValue(1);
@@ -491,6 +498,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       fadeIn.start(({ finished }) => {
         if (!finished) return;
         later(() => {
+          lifecycleRef.current.startFlight(token);
           const out = Animated.parallel([
             Animated.timing(journalAlive, { toValue: 0, duration: 240, useNativeDriver: true }),
             Animated.timing(backdrop, { toValue: 0, duration: 280, useNativeDriver: true }),
@@ -500,7 +508,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
           out.start(({ finished: outFinished }) => {
             if (!outFinished) return;
             runningRef.current = null;
-            lifecycleRef.current.completeFlight(lifecycleTokenRef.current, true);
+            lifecycleRef.current.completeFlight(token, true);
           });
         }, 1100);
       });
@@ -525,19 +533,19 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       setSkipAvailable(false);
       lifecycleTokenRef.current = lifecycleRef.current.begin({
         identity: sequenceKey,
-        targetPoint,
+        targetPoint: targetPoint ?? null,
         reducedMotion: reduceMotion,
-        onIntro: () => {
+        onIntro: (token) => {
           soundDirector.request('pm.reward.daily_journey_intro', {
             scope: 'daily-journey-reveal', dedupeKey: `daily-journey-reveal-${sequenceKey}`,
           });
-          if (reduceMotion) startReducedMotion();
-          else startIntro(sequence).catch((e) => {
+          if (reduceMotion) startReducedMotion(token);
+          else startIntro(sequence, token).catch((e) => {
             djLog(`intro chain failed, delivering via fallback:`, e);
-            if (sequenceRef.current === sequence) lifecycleRef.current.startFlight(lifecycleTokenRef.current);
+            if (sequenceRef.current === sequence) lifecycleRef.current.startFlight(token);
           });
         },
-        onFlight: () => { if (reduceMotion) finishReducedMotion(); else startFlight(); },
+        onFlight: (_snapshot, token) => { if (reduceMotion) finishReducedMotion(token); else startFlight(token); },
         onDelivered: finishDelivered,
       });
       return () => {

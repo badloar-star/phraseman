@@ -200,15 +200,30 @@ function positiveMin(values: number[], fallback = 0): number {
   return positive.length > 0 ? Math.min(...positive) : fallback;
 }
 
-function hasLifetimeTrialEvidence(data: Record<string, unknown>): boolean {
-  return positiveMin([
-    num(data.lifetimeTrialUsedAtMs),
-    num(data.trialUsedAtMs),
-    num(data.trialProviderMintedAtMs),
-    num(data.activatedAtMs),
-    num(data.lastSettledAtMs),
-    num(data.monthlyUsedSec),
-  ]) > 0 || str(data.trialReservationSessionId) !== '';
+/**
+ * Расход lifetime-пробника ДОКАЗАН только подтверждённым минтом провайдера
+ * (trialProviderMintedAtMs>0) или явной парой trialUsedAtMs+sessionId, которую
+ * пишет одна транзакция резерва.
+ *
+ * зачем (владелец 2026-08-30, скрин «пробник был, но 0 минут»): прежний список
+ * включал activatedAtMs/lastSettledAtMs/monthlyUsedSec — ЛЮБАЯ голосовая
+ * активность строки (в т.ч. старой эпохи месячных минут) сжигала пробник при
+ * мердже идентичностей, вопреки решению владельца 2026-08-24. Маркер мёртвой
+ * НЕАКТИВИРОВАННОЙ заготовки (kill app на пре-экране) — провизорный, не
+ * доказательство: резерв её вытеснит и вернёт маркер той же транзакцией.
+ */
+function hasLifetimeTrialEvidence(data: Record<string, unknown>, nowMs: number): boolean {
+  const providerMintedAtMs = num(data.trialProviderMintedAtMs);
+  const trialUsedAtMs = num(data.trialUsedAtMs);
+  const reservationSessionId = str(data.trialReservationSessionId);
+  const proven = providerMintedAtMs > 0 || (trialUsedAtMs > 0 && reservationSessionId !== '');
+  if (!proven) return false;
+  const holdsDeadUnactivatedPremint = reservationSessionId !== ''
+    && str(data.activeSessionId) === reservationSessionId
+    && num(data.reservedSec) > 0
+    && num(data.activatedAtMs) <= 0
+    && nowMs - num(data.lastHeartbeatMs, num(data.sessionStartedAtMs)) > VOICE_UNACTIVATED_RESERVE_GRACE_MS;
+  return !holdsDeadUnactivatedPremint;
 }
 
 export function mergeLegacyVoiceQuotaData(
@@ -222,15 +237,23 @@ export function mergeLegacyVoiceQuotaData(
   const dailyUsedSec = windows.reduce((sum, win) => sum + win.dailyUsedSec, 0);
   const monthlyUsedSec = windows.reduce((sum, win) => sum + win.monthlyUsedSec, 0);
   const active = ranked.find((row) => str(row.activeSessionId) !== '' && num(row.reservedSec) > 0);
-  const lifetimeTrialUsedAtMs = positiveMin(rows.flatMap((row) => [
-    num(row.lifetimeTrialUsedAtMs),
-    num(row.trialUsedAtMs),
-    num(row.activatedAtMs),
-    num(row.lastSettledAtMs),
-    num(row.monthlyUsedSec) > 0 ? now : 0,
-  ]));
+  // зачем (владелец 2026-08-30): lifetime-маркер выводим ТОЛЬКО из доказанного
+  // расхода (подтверждённый провайдером минт или явная пара резерва). Прежние
+  // широкие сигналы (activatedAtMs/lastSettledAtMs/monthlyUsedSec) сжигали
+  // неиспользованный пробник любому, у кого была ЛЮБАЯ голосовая история, —
+  // вопреки решению 2026-08-24; голый lifetimeTrialUsedAtMs без доказательств
+  // в той же строке — продукт прежнего широкого мерджа, его не переносим.
+  const provenTrialUsedAt = (row: Record<string, unknown>): number => {
+    const provider = num(row.trialProviderMintedAtMs);
+    const used = num(row.trialUsedAtMs);
+    // Штамп расхода — момент РЕЗЕРВА (used); подтверждение провайдера лишь
+    // доказывает его и подстраховывает, если сам used потерялся.
+    if (provider > 0) return used > 0 ? used : provider;
+    return used > 0 && str(row.trialReservationSessionId) !== '' ? used : 0;
+  };
+  const lifetimeTrialUsedAtMs = positiveMin(rows.map(provenTrialUsedAt));
   const explicitTrialRows = [...rows]
-    .filter((row) => num(row.trialUsedAtMs) > 0)
+    .filter((row) => provenTrialUsedAt(row) > 0)
     .sort((a, b) => num(a.trialUsedAtMs) - num(b.trialUsedAtMs));
   // Any confirmed provider mint must dominate an unconfirmed reservation.
   // Otherwise releasing the earlier unminted session could clear the merged
@@ -273,9 +296,11 @@ export function mergeLegacyVoiceQuotaData(
     dailyUsedSec,
     monthlyUsedSec,
     lifetimeTrialUsedAtMs: lifetimeTrialUsedAtMs || null,
+    // Без доказанного источника пара не восстанавливается: голый штамп без
+    // sessionId — то самое загрязнение, ради которого правило и сужено.
     trialUsedAtMs: trialSource
       ? Math.max(0, num(trialSource.trialUsedAtMs)) || null
-      : lifetimeTrialUsedAtMs || null,
+      : null,
     trialReservationSessionId: trialSource ? str(trialSource.trialReservationSessionId) || null : null,
     trialProviderMintedAtMs: trialSource ? Math.max(0, num(trialSource.trialProviderMintedAtMs)) : 0,
     maxAllowanceMonthResetAtMs: hasCurrentMaxAllowanceMarker ? monthResetAtMs : 0,
@@ -472,13 +497,15 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
       }
       // A tombstone is still authoritative negative evidence: an old revision
       // can merge-write trial fields after migration without changing closure.
-      if ([...evidenceRows.values()].some(hasLifetimeTrialEvidence)) {
+      if ([...evidenceRows.values()].some((row) => hasLifetimeTrialEvidence(row, now))) {
         throw new HttpsError('permission-denied', 'voice_max_required');
       }
     }
     const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
-    if (args.consumeLifetimeTrial
-      && positiveMin([num(data.lifetimeTrialUsedAtMs), num(data.trialUsedAtMs)]) > 0) {
+    // То же узкое правило, что в гейте и в closure-проверке выше: доказанный
+    // расход жжёт, провизорный маркер мёртвой заготовки — нет (её вытеснит
+    // блок ниже и перепишет маркеры этой же транзакцией).
+    if (args.consumeLifetimeTrial && hasLifetimeTrialEvidence(data, now)) {
       throw new HttpsError('permission-denied', 'voice_max_required');
     }
     const win = normalizeWindows(data, now);
@@ -499,6 +526,8 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
       chargeEvent: VoiceMinuteCallChargeEvent | null;
       chargeEventRef: FirebaseFirestore.DocumentReference | null;
     } | null = null;
+    /** Очистка провизорного trial-маркера мёртвой заготовки — в оба tx.set ниже. */
+    let deadTrialMarkerClear: Record<string, unknown> | null = null;
     if (activeSessionId && prevReserved > 0) {
       const lastHeartbeatMs = num(data.lastHeartbeatMs, num(data.sessionStartedAtMs));
       // зачем (аудит 2026-08-24, владелец «связь не установилась»): резерв
@@ -583,6 +612,22 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
         staleRefundedSec = prevReserved - consumed;
         win.dailyUsedSec = Math.max(0, win.dailyUsedSec - staleRefundedSec);
         win.monthlyUsedSec = Math.max(0, win.monthlyUsedSec - staleRefundedSec);
+        // Вытесняем мёртвую TRIAL-заготовку, не прожившую ни секунды, — её
+        // lifetime-маркер возвращается той же транзакцией (владелец 2026-08-30:
+        // «пробник был, но показывает 0 минут»; та же продуктовая позиция, что
+        // возврат при chargedSec=0 в settle 2026-08-29). Новый trial-резерв
+        // ниже перепишет маркеры свежими значениями сам; для нового admin-
+        // доступа очистку добавляем явно.
+        if (data.accessType === 'trial'
+          && consumed === 0
+          && str(data.trialReservationSessionId) === activeSessionId) {
+          deadTrialMarkerClear = {
+            trialUsedAtMs: null,
+            lifetimeTrialUsedAtMs: null,
+            trialReservationSessionId: null,
+            trialProviderMintedAtMs: 0,
+          };
+        }
       }
     }
 
@@ -640,6 +685,8 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
         dailyUsedSec: win.dailyUsedSec,
         monthlyUsedSec: win.monthlyUsedSec,
         accessType: 'paid_minutes',
+        // Мёртвая trial-заготовка могла держать провизорный маркер — чистим.
+        ...(deadTrialMarkerClear ?? {}),
         activeSessionId: args.sessionId,
         sessionStartedAtMs: now,
         activatedAtMs: 0,
@@ -753,6 +800,9 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
       paidReservationRootSessionId: null,
       paidReservationTotalSec: 0,
       paidConsumedSec: 0,
+      // Очистка провизорного маркера мёртвой заготовки — ДО consume-спреда:
+      // свежий trial-резерв перепишет её новыми маркерами, admin — оставит чистой.
+      ...(deadTrialMarkerClear ?? {}),
       ...(args.consumeLifetimeTrial ? {
         lifetimeTrialUsedAtMs: now,
         trialUsedAtMs: now,
@@ -1004,6 +1054,14 @@ export interface VoiceReleaseArgs {
   reason?: string;
   /** Caller proved that provider mint failed before any token was issued. */
   restoreLifetimeTrial?: boolean;
+  /**
+   * зачем (владелец 2026-08-30): watchdog закрывает заготовку, НЕ прожившую ни
+   * секунды («алло» не было), у которой провайдер-токен УЖЕ был выпущен. По
+   * продуктовой позиции 2026-08-29 (возврат при chargedSec=0) пробник в этом
+   * случае возвращается, хотя trialProviderMintedAtMs > 0. Флаг ставит только
+   * watchdog для briefing_abandoned; провал минта живёт прежним строгим путём.
+   */
+  allowMintedTrialRestore?: boolean;
   nowMs?: number;
 }
 
@@ -1155,7 +1213,7 @@ export async function releaseVoiceReservation(db: Firestore, args: VoiceReleaseA
     }
     const restoreUnmintedTrial = args.restoreLifetimeTrial === true
       && str(data.trialReservationSessionId) === args.sessionId
-      && num(data.trialProviderMintedAtMs) <= 0;
+      && (num(data.trialProviderMintedAtMs) <= 0 || args.allowMintedTrialRestore === true);
     const restoreLifetimeMarker = restoreUnmintedTrial
       && (num(data.lifetimeTrialUsedAtMs) <= 0
         || num(data.lifetimeTrialUsedAtMs) === num(data.trialUsedAtMs));

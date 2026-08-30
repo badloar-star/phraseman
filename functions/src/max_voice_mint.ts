@@ -49,6 +49,7 @@ import { maxVoiceStudyTarget, maxVoiceTargetLanguageName } from './max_voice_tar
 import {
   LEGACY_VOICE_QUOTA_EXHAUSTED_REASON,
   VOICE_QUOTA_COLLECTION,
+  VOICE_UNACTIVATED_RESERVE_GRACE_MS,
   confirmVoiceTrialMinted,
   ensureCanonicalVoiceQuota,
   releaseVoiceReservation,
@@ -270,23 +271,48 @@ export interface VoiceTrialState {
 /**
  * Пробник доступен ровно один раз за жизнь стабильного аккаунта.
  *
- * Только выделенные trial-маркеры доказывают расход бесплатного пробника.
- * activatedAtMs, lastSettledAtMs и monthlyUsedSec описывают обычные звонки и
- * подписочную историю; использовать их как trial-маркер нельзя — после
- * миграции MAX в покупаемые минуты это отбирало неиспользованные 3 минуты.
+ * Расход ДОКАЗАН только одним из двух:
+ *   • trialProviderMintedAtMs > 0 — провайдер реально выдал токен пробника;
+ *   • trialUsedAtMs > 0 ВМЕСТЕ с trialReservationSessionId — явная пара,
+ *     которую пишет только транзакция резерва пробника.
+ *
+ * зачем (владелец 2026-08-30, скрин «пробник был, но показывает 0 минут»):
+ * прежний максимум по lifetimeTrialUsedAtMs/trialUsedAtMs сжигал пробник и от
+ * МИГРАЦИОННОГО ЗАГРЯЗНЕНИЯ — mergeLegacyVoiceQuotaData исторически выводил
+ * lifetime-маркер из ЛЮБОЙ голосовой активности (activatedAtMs/lastSettledAtMs/
+ * monthlyUsedSec) и копировал его в trialUsedAtMs БЕЗ sessionId. Решение
+ * владельца 2026-08-24 прямо запрещает считать это расходом. Узкое правило
+ * самолечит загрязнённые аккаунты на первом же входе; настоящий расход
+ * (подтверждённый провайдером или явная пара) остаётся сожжённым.
  */
 export function resolveTrialState(
   quotaData: Record<string, unknown> | undefined,
   _config: MaxVoiceConfig,
-  _nowMs: number,
+  nowMs: number,
 ): VoiceTrialState {
   const data = quotaData ?? {};
-  const trialUsageMarker = Math.max(
-    0,
-    num(data.lifetimeTrialUsedAtMs),
-    num(data.trialUsedAtMs),
-  );
-  return { available: trialUsageMarker <= 0, usedAtMs: trialUsageMarker };
+  const providerMintedAtMs = num(data.trialProviderMintedAtMs);
+  const trialUsedAtMs = num(data.trialUsedAtMs);
+  const reservationSessionId = text(data.trialReservationSessionId, 80);
+  // Штамп расхода — момент резерва; подтверждение провайдера лишь доказывает его.
+  const provenUsedAtMs = providerMintedAtMs > 0
+    ? (trialUsedAtMs > 0 ? trialUsedAtMs : providerMintedAtMs)
+    : trialUsedAtMs > 0 && reservationSessionId !== ''
+      ? trialUsedAtMs
+      : 0;
+  if (provenUsedAtMs <= 0) return { available: true, usedAtMs: 0 };
+  // Маркер держит МЁРТВАЯ неактивированная заготовка (kill app на пре-экране):
+  // «алло» не было, heartbeat молчит дольше стартового окна. Такой расход —
+  // провизорный: гейт пропускает, а транзакция резерва вытеснит заготовку и
+  // атомарно вернёт маркер (см. reserveVoiceSeconds). Без этого человек ждал
+  // бы watchdog до ~10 минут с честным, но обидным «0 минут».
+  const holdsDeadUnactivatedPremint = reservationSessionId !== ''
+    && text(data.activeSessionId, 80) === reservationSessionId
+    && num(data.reservedSec) > 0
+    && num(data.activatedAtMs) <= 0
+    && nowMs - num(data.lastHeartbeatMs, num(data.sessionStartedAtMs)) > VOICE_UNACTIVATED_RESERVE_GRACE_MS;
+  if (holdsDeadUnactivatedPremint) return { available: true, usedAtMs: 0 };
+  return { available: false, usedAtMs: provenUsedAtMs };
 }
 
 export type VoiceTrialVariant = 'companion' | 'scenario';
@@ -493,7 +519,24 @@ async function resolveVoiceGates(
     }
   }
 
-  console.warn('max_voice_mint rejected', { reason: 'voice_max_required' });
+  // [MAX-TRIAL-GATE] Постоянная диагностика отказа (правило «сперва логи»):
+  // печатаем ВСЕ маркеры, решившие ветку, — по этой строке владелец за один
+  // grep видит, ПОЧЕМУ конкретному аккаунту не дали пробник: настоящий расход
+  // (providerMinted>0 / явная пара), загрязнение мерджа (пара без sessionId)
+  // или мёртвая заготовка. Без PII: только временные штампы и id сессии.
+  console.warn('[MAX-TRIAL-GATE] voice_max_required', {
+    paidAvailableSec: paidWallet.availableSeconds,
+    // trial === null → маркер сожжён; non-null → тир выключен админкой.
+    trialMarkerAvailable: trial !== null,
+    trialProviderMintedAtMs: num(quotaData.trialProviderMintedAtMs),
+    trialUsedAtMs: num(quotaData.trialUsedAtMs),
+    lifetimeTrialUsedAtMs: num(quotaData.lifetimeTrialUsedAtMs),
+    trialReservationSessionId: text(quotaData.trialReservationSessionId, 80) || null,
+    activeSessionId: text(quotaData.activeSessionId, 80) || null,
+    activatedAtMs: num(quotaData.activatedAtMs),
+    reservedSec: num(quotaData.reservedSec),
+    heartbeatAgeMs: num(quotaData.lastHeartbeatMs) > 0 ? nowMs - num(quotaData.lastHeartbeatMs) : null,
+  });
   await rejectBeforeReserve('paywall');
   throw new HttpsError('permission-denied', 'voice_max_required');
 }

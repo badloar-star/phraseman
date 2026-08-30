@@ -117,8 +117,19 @@ export async function runMaxVoiceWatchdogOnce(db: Firestore, nowMs: number = Dat
       if (heartbeatElapsedSec <= 0) {
         // Минт был, но звонок так и не начался (бросил брифинг / SDP не дошёл):
         // полный возврат резерва + минт не считается в rate limit (floor 1 внутри).
+        // зачем (владелец 2026-08-30, «пробник был, но 0 минут»): раньше
+        // watchdog возвращал СЕКУНДЫ, но не lifetime-маркер — kill app на
+        // пре-экране сжигал единственный пробник навсегда, хотя человек не
+        // сказал ни слова. Ни секунды не прожито → пробник возвращается
+        // (продуктовая позиция 2026-08-29, зеркально возврату при chargedSec=0).
         const result = await releaseVoiceReservation(db, {
-          authUid, stableUid, sessionId, reason: 'briefing_abandoned', nowMs,
+          authUid,
+          stableUid,
+          sessionId,
+          reason: 'briefing_abandoned',
+          restoreLifetimeTrial: true,
+          allowMintedTrialRestore: true,
+          nowMs,
         });
         if (!result.alreadySettled) {
           stats.released += 1;

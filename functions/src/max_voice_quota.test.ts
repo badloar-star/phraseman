@@ -564,7 +564,16 @@ describe('reserveVoiceSeconds', () => {
   });
 
   it('rejects another lifetime trial even when the prior reservation is no longer active', async () => {
-    const { db } = makeDb({ trialUsedAtMs: NOW - 1, activeSessionId: null, reservedSec: 0 });
+    // зачем (2026-08-30): расход обязан быть ДОКАЗАННЫМ — закрытая сессия
+    // оставляет явную пару + подтверждение провайдера. Голый trialUsedAtMs без
+    // sessionId больше не жжёт (это миграционное загрязнение, self-heal).
+    const { db } = makeDb({
+      trialUsedAtMs: NOW - 1,
+      trialReservationSessionId: 'trial-settled',
+      trialProviderMintedAtMs: NOW - 1,
+      activeSessionId: null,
+      reservedSec: 0,
+    });
 
     await expect(reserveVoiceSeconds(db, {
       ...LIMITS,
@@ -776,6 +785,75 @@ describe('reserveVoiceSeconds', () => {
     expect(result.staleRefundedSec).toBe(320); // звонка не было — весь резерв назад
     expect(state.data).toMatchObject({ activeSessionId: 's2' });
     expect(VOICE_UNACTIVATED_RESERVE_GRACE_MS).toBe(45_000);
+  });
+
+  // зачем (владелец 2026-08-30, «пробник был, но показывает 0 минут»):
+  // kill app на пре-экране сжигал единственный lifetime-пробник — маркер
+  // ставится при резерве, а вытеснение возвращало только секунды. Мёртвая
+  // TRIAL-заготовка (0 прожитых секунд) обязана вернуть и маркер, атомарно.
+  it('supersedes a dead never-activated TRIAL premint and RESTORES the lifetime marker for a fresh trial', async () => {
+    const { db, state } = makeDb(liveDoc({
+      activeSessionId: 'trial-dead',
+      accessType: 'trial',
+      sessionStartedAtMs: NOW - 50_000,
+      activatedAtMs: 0,
+      lastHeartbeatMs: NOW - 50_000,
+      expiresAtMs: NOW + 300_000,
+      reservedSec: 200,
+      dailyUsedSec: 200,
+      monthlyUsedSec: 200,
+      trialUsedAtMs: NOW - 50_000,
+      lifetimeTrialUsedAtMs: NOW - 50_000,
+      trialReservationSessionId: 'trial-dead',
+      trialProviderMintedAtMs: NOW - 49_000,
+    }));
+
+    const result = await reserveVoiceSeconds(db, {
+      ...LIMITS,
+      sessionId: 'trial-2',
+      consumeLifetimeTrial: true,
+      accessType: 'trial',
+      nowMs: NOW,
+    });
+
+    expect(result.reservedSec).toBe(320);
+    expect(result.staleRefundedSec).toBe(200); // 0 прожитых — весь резерв назад
+    // Свежий trial-резерв переписал маркеры НОВОЙ сессией — право не потеряно
+    // и не задвоено: новая пара доказуема, старая исчезла.
+    expect(state.data).toMatchObject({
+      activeSessionId: 'trial-2',
+      trialReservationSessionId: 'trial-2',
+      trialUsedAtMs: NOW,
+      trialProviderMintedAtMs: 0,
+    });
+  });
+
+  it('admin reserve over a dead TRIAL premint clears the provisional marker (trial stays owed)', async () => {
+    const { db, state } = makeDb(liveDoc({
+      activeSessionId: 'trial-dead',
+      accessType: 'trial',
+      sessionStartedAtMs: NOW - 50_000,
+      activatedAtMs: 0,
+      lastHeartbeatMs: NOW - 50_000,
+      expiresAtMs: NOW + 300_000,
+      reservedSec: 200,
+      dailyUsedSec: 200,
+      monthlyUsedSec: 200,
+      trialUsedAtMs: NOW - 50_000,
+      lifetimeTrialUsedAtMs: NOW - 50_000,
+      trialReservationSessionId: 'trial-dead',
+      trialProviderMintedAtMs: NOW - 49_000,
+    }));
+
+    await reserveVoiceSeconds(db, { ...LIMITS, sessionId: 'admin-1', nowMs: NOW });
+
+    expect(state.data).toMatchObject({
+      activeSessionId: 'admin-1',
+      trialUsedAtMs: null,
+      lifetimeTrialUsedAtMs: null,
+      trialReservationSessionId: null,
+      trialProviderMintedAtMs: 0,
+    });
   });
 
   // Обратная сторона того же фикса: пока заготовка МОЛОЖЕ стартового окна,
@@ -1333,5 +1411,65 @@ describe('settleVoiceSessionWithXp (P1-13: settle + XP + снимок одной
 
     expect(result.alreadySettled).toBe(true);
     expect(state.data!.activeSessionId).toBe('other'); // чужой резерв цел
+  });
+});
+
+// зачем (владелец 2026-08-30): watchdog закрывает брошенную заготовку с
+// allowMintedTrialRestore — «алло» не было, пробник возвращается, даже если
+// провайдер-токен уже выпускался. Строгий путь провала минта (без флага)
+// по-прежнему возвращает только неподтверждённый провайдером резерв.
+describe('releaseVoiceReservation: возврат lifetime-пробника', () => {
+  const burnedPremint = () => liveDoc({
+    activeSessionId: 'trial-dead',
+    accessType: 'trial',
+    activatedAtMs: 0,
+    reservedSec: 200,
+    dailyUsedSec: 200,
+    monthlyUsedSec: 200,
+    trialUsedAtMs: NOW - 50_000,
+    lifetimeTrialUsedAtMs: NOW - 50_000,
+    trialReservationSessionId: 'trial-dead',
+    trialProviderMintedAtMs: NOW - 49_000,
+  });
+
+  it('watchdog-путь (allowMintedTrialRestore) возвращает маркер заготовки с выпущенным токеном', async () => {
+    const { db, state } = makeDb(burnedPremint());
+
+    const result = await releaseVoiceReservation(db, {
+      authUid: AUTH,
+      stableUid: STABLE,
+      sessionId: 'trial-dead',
+      reason: 'briefing_abandoned',
+      restoreLifetimeTrial: true,
+      allowMintedTrialRestore: true,
+      nowMs: NOW,
+    });
+
+    expect(result.refundedSec).toBe(200);
+    expect(state.data).toMatchObject({
+      activeSessionId: null,
+      trialUsedAtMs: null,
+      lifetimeTrialUsedAtMs: null,
+      trialReservationSessionId: null,
+      trialProviderMintedAtMs: 0,
+    });
+  });
+
+  it('строгий путь провала минта БЕЗ флага не трогает подтверждённый провайдером маркер', async () => {
+    const { db, state } = makeDb(burnedPremint());
+
+    await releaseVoiceReservation(db, {
+      authUid: AUTH,
+      stableUid: STABLE,
+      sessionId: 'trial-dead',
+      reason: 'mint_failed',
+      restoreLifetimeTrial: true,
+      nowMs: NOW,
+    });
+
+    expect(state.data).toMatchObject({
+      trialUsedAtMs: NOW - 50_000,
+      trialProviderMintedAtMs: NOW - 49_000,
+    });
   });
 });

@@ -254,7 +254,7 @@ describe('gate order (App Check → kill switch → subscription → quota → m
   // пожизненный пробный звонок до 3 минут на стабильный аккаунт.
   it('без подписки и с израсходованным пробником линия ЗАКРЫТА пейволом', async () => {
     setConfig({ devTestUids: [] });
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS }); // пробник использован вчера
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS }); // пробник использован вчера
 
     await expect(callMint()).rejects.toMatchObject({
       code: 'permission-denied',
@@ -270,7 +270,7 @@ describe('gate order (App Check → kill switch → subscription → quota → m
 
   it('оплаченный пакет минут открывает линию без дневного или месячного коммерческого лимита', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
 
     const res = await callMint();
     expect(res).toMatchObject({ ok: true, value: 'ek_test_123' });
@@ -282,7 +282,7 @@ describe('gate order (App Check → kill switch → subscription → quota → m
 
   it('старый MAX entitlement больше не открывает платную линию', async () => {
     mockResolveMaxTier.mockResolvedValue(true as never);
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     await expect(callMint()).rejects.toMatchObject({
       code: 'permission-denied',
       message: 'voice_max_required',
@@ -323,7 +323,7 @@ describe('gate order (App Check → kill switch → subscription → quota → m
 
   it('апгрейд Free -> Плюс/Про не выдаёт второй пробный звонок', async () => {
     mockResolvePremium.mockResolvedValue(true as never);
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - 3 * 365 * DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - 3 * 365 * DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - 3 * 365 * DAY_MS });
 
     await expect(callMint()).rejects.toMatchObject({
       code: 'permission-denied',
@@ -344,14 +344,57 @@ describe('gate order (App Check → kill switch → subscription → quota → m
     });
   });
 
+  // зачем (владелец 2026-08-30, «пробник был, но показывает 0 минут»):
+  // расход доказан ТОЛЬКО подтверждённым минтом провайдера или явной парой
+  // trialUsedAtMs+sessionId из транзакции резерва. Голые штампы без
+  // доказательств — миграционное загрязнение старого широкого мерджа,
+  // они пробник НЕ жгут (self-heal при первом же входе).
   it.each([
-    ['current marker', { trialUsedAtMs: NOW - DAY_MS }],
-    ['lifetime marker', { lifetimeTrialUsedAtMs: NOW - DAY_MS }],
-  ])('закрывает пробник только по выделенному %s', (_label, marker) => {
+    ['подтверждённый провайдером минт', { trialProviderMintedAtMs: NOW - DAY_MS }],
+    ['явная пара резерва', { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'vs_used' }],
+  ])('закрывает пробник по доказанному расходу: %s', (_label, marker) => {
     expect(resolveTrialState(marker, currentConfig, NOW)).toEqual({
       available: false,
       usedAtMs: NOW - DAY_MS,
     });
+  });
+
+  it.each([
+    ['голый trialUsedAtMs без sessionId (загрязнение мерджа)', { trialUsedAtMs: NOW - DAY_MS }],
+    ['голый lifetime-маркер без доказательств', { lifetimeTrialUsedAtMs: NOW - DAY_MS }],
+    ['оба голых штампа сразу', { trialUsedAtMs: NOW - DAY_MS, lifetimeTrialUsedAtMs: NOW - DAY_MS }],
+  ])('НЕ жжёт пробник недоказанным маркером: %s', (_label, marker) => {
+    expect(resolveTrialState(marker, currentConfig, NOW)).toEqual({
+      available: true,
+      usedAtMs: 0,
+    });
+  });
+
+  it('маркер мёртвой неактивированной заготовки — провизорный: гейт пропускает', () => {
+    // Kill app на пре-экране: провайдер-токен выпущен, «алло» не было,
+    // heartbeat молчит дольше стартового окна (45с). Резерв вытеснит заготовку
+    // и вернёт маркер той же транзакцией — гейт не должен отбивать человека.
+    const deadPremint = {
+      trialUsedAtMs: NOW - 60_000,
+      lifetimeTrialUsedAtMs: NOW - 60_000,
+      trialReservationSessionId: 'vs_dead',
+      trialProviderMintedAtMs: NOW - 59_000,
+      activeSessionId: 'vs_dead',
+      reservedSec: 200,
+      activatedAtMs: 0,
+      sessionStartedAtMs: NOW - 60_000,
+      lastHeartbeatMs: NOW - 60_000,
+    };
+    expect(resolveTrialState(deadPremint, currentConfig, NOW)).toEqual({
+      available: true,
+      usedAtMs: 0,
+    });
+    // Та же заготовка, но СВЕЖАЯ (offer/SDP ещё летят) — защищена, расход держится.
+    expect(resolveTrialState({
+      ...deadPremint,
+      sessionStartedAtMs: NOW - 10_000,
+      lastHeartbeatMs: NOW - 10_000,
+    }, currentConfig, NOW).available).toBe(false);
   });
 
   it('без подписки, но со свежим пробником — звонок в пробном формате', async () => {
@@ -363,7 +406,7 @@ describe('gate order (App Check → kill switch → subscription → quota → m
   });
 
   it('админский доступ остаётся отдельным от платного кошелька', async () => {
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     await expect(callAdminMint()).resolves.toMatchObject({ ok: true, value: 'ek_test_123' });
   });
 
@@ -387,7 +430,7 @@ describe('gate order (App Check → kill switch → subscription → quota → m
     // Всё закрыто сразу — побеждает самый ранний гейт.
     mockAiDisabled.mockResolvedValue(true as never);
     setConfig({ gate_ai_voice_call: false });
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS }); // пробник тоже недоступен
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS }); // пробник тоже недоступен
     await expect(callMint()).rejects.toMatchObject({ message: 'ai_globally_disabled' });
 
     mockAiDisabled.mockResolvedValue(false as never);
@@ -407,7 +450,7 @@ describe('gate order (App Check → kill switch → subscription → quota → m
 
   it('refuses a paid wallet below the minimum reserve before creating a reservation', async () => {
     givePaidMinutes(59);
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
 
     await expect(callMint()).rejects.toMatchObject({
       code: 'permission-denied',
@@ -426,7 +469,7 @@ describe('gate order (App Check → kill switch → subscription → quota → m
   it('без подписки и пробника линия закрыта — решает серверный тир', async () => {
     mockResolvePremium.mockResolvedValue(false as never);
     mockResolveMaxTier.mockResolvedValue(false as never);
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     await expect(callMint()).rejects.toMatchObject({ message: 'voice_max_required' });
   });
 });
@@ -482,7 +525,7 @@ describe('rate limit — 60 fresh mints/hour, reconnects excluded', () => {
 describe('пробник без подписки', () => {
   it('купленные минуты используются после исчерпания пробника', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     const res = await callMint({ cefr: 'B1' });
     expect(res.trialVariant).toBeNull();
     expect(res.ok).toBe(true);
@@ -516,7 +559,7 @@ describe('пробник без подписки', () => {
   });
 
   it('израсходованный пробник закрывает линию пейволом', async () => {
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     await expect(callMint({})).rejects.toMatchObject({
       code: 'permission-denied',
       message: 'voice_max_required',
@@ -524,7 +567,7 @@ describe('пробник без подписки', () => {
   });
 
   it('пробник не обновляется ни через полгода, ни через несколько лет', async () => {
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - 3 * 365 * DAY_MS, monthResetAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - 3 * 365 * DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - 3 * 365 * DAY_MS, monthResetAtMs: NOW - DAY_MS });
     await expect(callMint({})).rejects.toMatchObject({
       code: 'permission-denied',
       message: 'voice_max_required',
@@ -549,7 +592,7 @@ describe('budget ladder', () => {
   it('80–100%: платный тир не режется, сессия капается на 300с', async () => {
     // Ступень soft режет только access:'trial', не купленные минуты.
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     docs.set(BUDGET_PATH, { dayKey: utcDayKey(NOW), estUsd: 20 });
 
     const res = await callMint({ format: 'companion' }); // кап формата 480 → soft-кап 300
@@ -594,7 +637,7 @@ describe('budget ladder', () => {
 
   it('a successful mint reserves the session cost estimate in the daily counter', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     await callMint(); // scenario: резерв 320с
     const budget = docs.get(BUDGET_PATH)!;
     expect(budget.dayKey).toBe(utcDayKey(NOW));
@@ -604,8 +647,9 @@ describe('budget ladder', () => {
 
 describe('reconnect vs gates & budget — live sessions are never dropped', () => {
   it('trial user with a spent trial can still reconnect a live trial call', async () => {
-    // Free-юзер: первый пробный минт уже проштамповал trialUsedAtMs=NOW.
-    liveSession({ trialUsedAtMs: NOW });
+    // Free-юзер: первый пробный минт уже проштамповал ДОКАЗАННУЮ пару
+    // (trialUsedAtMs+sessionId) и подтверждение провайдера — как в проде.
+    liveSession({ trialUsedAtMs: NOW, trialReservationSessionId: 's1', trialProviderMintedAtMs: NOW });
 
     const res = await callMint({ reconnectOf: 's1', heartbeatElapsedSec: 80 });
 
@@ -690,7 +734,7 @@ describe('reconnect vs gates & budget — live sessions are never dropped', () =
 describe('mint response contract — both key spellings + limits', () => {
   it('returns camelCase and snake_case duplicates of expiresAt/sessionId/maxSeconds', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     const res = await callMint({ cefr: 'B1' });
 
     expect(res.expires_at).toBe(res.expiresAt);
@@ -702,7 +746,7 @@ describe('mint response contract — both key spellings + limits', () => {
 
   it('limits carry the per-session cap, per-CEFR hint delay and the daily max', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     mockResolvePremium.mockResolvedValue(true as never);
     const res = await callMint({ cefr: 'B1' });
 
@@ -723,7 +767,7 @@ describe('mint response contract — both key spellings + limits', () => {
 describe('server-pinned session config (section 4)', () => {
   it('retries one transient OpenAI mint failure without double-reserving quota', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     fetchMock
       .mockResolvedValueOnce({ ok: false, status: 503, text: async () => 'temporary' })
       .mockResolvedValueOnce({
@@ -739,7 +783,7 @@ describe('server-pinned session config (section 4)', () => {
 
   it('falls back to the official minimal profile when an advanced field is rejected', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     fetchMock
       .mockResolvedValueOnce({
         ok: false,
@@ -783,7 +827,7 @@ describe('server-pinned session config (section 4)', () => {
 
   it('sends the full realtime session config; the client controls none of it', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     const res = await callMint({
       cefr: 'A1',
       format: 'scenario',
@@ -854,7 +898,7 @@ describe('server-pinned session config (section 4)', () => {
 
   it('releases the reservation, the budget estimate and the rate slot when OpenAI fails', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     fetchMock.mockResolvedValue({ ok: false, status: 500, text: async () => 'boom' });
 
     await expect(callMint()).rejects.toMatchObject({ code: 'unavailable', message: 'voice_provider_failed' });
@@ -901,7 +945,7 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
 
   it('reports access and remaining quota without touching tokens or reserves', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     mockResolvePremium.mockResolvedValue(true as never);
     const res = await preflight({ auth: { uid: AUTH }, data: {} });
 
@@ -947,7 +991,7 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
   it('lets an ordinary account preflight without an admin claim or allowlist', async () => {
     givePaidMinutes();
     setConfig({ devTestUids: [] });
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
 
     await expect(preflight({ auth: { uid: AUTH }, data: {} }))
       .resolves.toMatchObject({ ok: true, allowed: true, access: 'paid_minutes' });
@@ -955,7 +999,7 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
 
   it('returns a read-only tutor preview without minting or reserving a call', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     docs.set(`voice_tutor_memory/${voiceTutorMemoryDocId(AUTH, STABLE)}`, { callCount: 3, goalMastery: {} });
     const res = await preflight({
       auth: { uid: AUTH },
@@ -977,7 +1021,7 @@ describe('maxVoicePreflight — same gates, no mint, no reservation', () => {
 describe("format 'tutor' — личный учитель", () => {
   it('минт учителя: свой голос, инструменты, память и устав в instructions, tutor-блок в ответе', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     okProvider();
     docs.set(`voice_tutor_memory/${voiceTutorMemoryDocId(AUTH, STABLE)}`, {
       facts: ['name is Olga', 'lives in Kyiv'],
@@ -1046,7 +1090,7 @@ describe("format 'tutor' — личный учитель", () => {
 
   it('первый урок без памяти и без устава: MAX преподаёт язык выбранного курса', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     okProvider();
     __resetTutorCharterCacheForTests(); // выжимка устава кэшируется на инстанс 1ч
     const res = await callMint({ format: 'tutor', cefr: 'B1', interfaceLang: 'ru', studyTarget: 'fr' });
@@ -1062,7 +1106,7 @@ describe("format 'tutor' — личный учитель", () => {
 
   it('совместимый профиль поднимает учителя без инструментов (аварийный путь), сцены/компаньон tutor-блока не получают', async () => {
     givePaidMinutes();
-    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS });
+    docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
     fetchMock
       .mockResolvedValueOnce({ ok: false, status: 400, text: async () => 'bad tools' })
       .mockResolvedValueOnce({ ok: true, json: async () => ({ value: 'ek_compat', expires_at: 1 }) });

@@ -3382,7 +3382,9 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         startHop: startDailyJourneyUnreadHop,
         stopHop: stopDailyJourneyUnreadHop,
         shouldReduceMotion: () => reduceMotion,
-        reportError: () => {},
+        reportError: () => {
+            // Keep the last visible unread projection when local storage is temporarily unavailable.
+        },
     }), [reduceMotion, startDailyJourneyUnreadHop, stopDailyJourneyUnreadHop]);
     const [freezeConfirmVisible, setFreezeConfirmVisible] = useState(false);
     const [freezeNeedShardsModal, setFreezeNeedShardsModal] = useState(false);
@@ -3416,21 +3418,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         });
         return () => { cancelled = true; };
     }, []));
-    useFocusEffect(useCallback(() => {
-        void dailyJourneyUnreadController.activate().catch(() => {});
-        const giftsSubscription = onAppEvent('daily_journey_gifts_changed', () => {
-            void dailyJourneyUnreadController.reload().catch(() => {});
-        });
-        const accountSubscription = subscribeAccountGeneration(() => {
-            void dailyJourneyUnreadController.resetForAccount().catch(() => {});
-        });
-        return () => {
-            giftsSubscription.remove();
-            accountSubscription.remove();
-            dailyJourneyUnreadController.deactivate();
-        };
-    }, [dailyJourneyUnreadController]));
-    useEffect(() => () => dailyJourneyUnreadController.dispose(), [dailyJourneyUnreadController]);
     useEffect(() => {
         const sub = onAppEvent('streak_revive_offer', () => {
             void refreshReviveOffer();
@@ -3549,6 +3536,21 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         });
         return () => { cancelled = true; };
     }, []));
+    useFocusEffect(useCallback(() => {
+        void dailyJourneyUnreadController.activate().catch(() => {});
+        const giftsSubscription = onAppEvent('daily_journey_gifts_changed', () => {
+            void dailyJourneyUnreadController.reload().catch(() => {});
+        });
+        const accountSubscription = subscribeAccountGeneration(() => {
+            void dailyJourneyUnreadController.resetForAccount().catch(() => {});
+        });
+        return () => {
+            giftsSubscription.remove();
+            accountSubscription.remove();
+            dailyJourneyUnreadController.deactivate();
+        };
+    }, [dailyJourneyUnreadController]));
+    useEffect(() => () => dailyJourneyUnreadController.dispose(), [dailyJourneyUnreadController]);
     useEffect(() => {
         const subscription = onAppEvent('level_spin_balance_changed', () => {
             void readLocalLevelSpinBalance().then(setSpinBalance).catch(() => {});
@@ -4127,7 +4129,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 })}
                 </FlowText>
                 <Reanimated.View style={spinButtonPulseStyle}>
-                <Reanimated.View style={dailyJourneyUnreadHopStyle}>
                 <TouchableOpacity
                   testID="stats-header-spins"
                   accessibilityRole="button"
@@ -4145,6 +4146,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   ) : null}
                 </TouchableOpacity>
                 </Reanimated.View>
+                <Reanimated.View style={dailyJourneyUnreadHopStyle}>
                 <TouchableOpacity
                   testID="stats-header-gifts"
                   accessibilityHint={triLang(lang, {
@@ -4183,13 +4185,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                       <Text style={{ color: t.bgCard, fontSize: 9, fontWeight: '900' }}>{pendingGiftCount}</Text>
                     </View>
                   ) : null}
-                  {dailyJourneyUnreadCount > 0 ? (
-                    <View testID="stats-header-daily-journey-unread" style={{ position: 'absolute', bottom: 3, left: 3, minWidth: 15, height: 15, borderRadius: 8, paddingHorizontal: 3, alignItems: 'center', justifyContent: 'center', backgroundColor: t.correct }}>
-                      <Text style={{ color: t.correctText, fontSize: 8, fontWeight: '900' }}>{dailyJourneyUnreadCount}</Text>
-                    </View>
-                  ) : null}
                 </TouchableOpacity>
-                </Reanimated.View>
                 </View>
               </View>
 

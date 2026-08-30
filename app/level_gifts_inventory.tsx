@@ -1,10 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { Image } from 'expo-image';
 import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { AppState, Dimensions, Platform, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   cancelAnimation,
@@ -50,7 +51,11 @@ import {
   type ActiveLevelGiftInventoryItem,
 } from './level_gift_active_inventory';
 import { getCurrentMultiplierBreakdown, type MultiplierBreakdown } from './xp_manager';
-import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+} from './account_generation';
 import { onAppEvent } from './events';
 import {
   fetchLevelSpinStatus,
@@ -65,6 +70,13 @@ import {
 } from './gift_gradient_palette';
 import type { ThemeMode } from '../constants/theme';
 import { DebugLogger } from './debug-logger';
+import {
+  claimDailyJourneyGift,
+  markDailyJourneyGiftSnapshotSeen,
+  readDailyJourneyGiftProjection,
+  type DailyJourneyGiftPendingItem,
+} from './daily_journey_gift_inbox';
+import { rewardImageSource } from '../components/daily_journey/DailyJourneyRevealScene';
 
 // зачем 2026-08-03 (владелец: «полностью измени цвета градиентов подарков,
 // сделай под каждую тему свои цвета и форму градиента»): здесь жили giftAccent
@@ -89,6 +101,10 @@ function pendingGiftItemKey(item: PendingLevelGiftInventoryItem): string {
     return `single-${item.level}-${item.dualPart}`;
   }
   return `${item.kind}-${item.level}`;
+}
+
+function dailyJourneyGiftItemKey(item: DailyJourneyGiftPendingItem): string {
+  return item.operationId;
 }
 
 const giftTone = (accent: string, alpha: string): string =>
@@ -227,12 +243,71 @@ const GiftTile = memo(function GiftTile({ item, size, lang, themeMode, nameColor
   );
 });
 
+const dailyJourneyGiftA11yLabel = (
+  item: DailyJourneyGiftPendingItem,
+  lang: Parameters<typeof giftTitleForLang>[1],
+): string => triLang(lang, {
+  ru: `Подарок ежедневного пути, день ${item.day}`,
+  uk: `Подарунок щоденного шляху, день ${item.day}`,
+  en: `Daily Journey gift, day ${item.day}`,
+  es: `Regalo del viaje diario, día ${item.day}`,
+  'pt-BR': `Presente da jornada diária, dia ${item.day}`,
+  vi: `Quà Hành trình hằng ngày, ngày ${item.day}`,
+  id: `Hadiah Perjalanan Harian, hari ${item.day}`,
+  tr: `Günlük Yolculuk hediyesi, ${item.day}. gün`,
+  pl: `Prezent Dziennej Podróży, dzień ${item.day}`,
+});
+
+/**
+ * Daily Journey is a separate occurrence source, so its real operation ID is
+ * the identity of the tile. It deliberately has no level, expiry chip, title,
+ * amount, or mini-copy: the artwork is the entire visual payload.
+ */
+const DailyJourneyGiftTile = memo(function DailyJourneyGiftTile({ item, size, lang, themeMode, surface, themeAccent, onPress }: {
+  item: DailyJourneyGiftPendingItem;
+  size: number;
+  lang: Parameters<typeof giftTitleForLang>[1];
+  themeMode: ThemeMode;
+  surface: [string, string];
+  themeAccent: string;
+  onPress: (item: DailyJourneyGiftPendingItem) => void;
+}) {
+  return (
+    <TapScale
+      testID={`daily-journey-gift-${item.operationId}`}
+      accessibilityRole="button"
+      accessibilityLabel={dailyJourneyGiftA11yLabel(item, lang)}
+      onPress={() => {
+        hapticTap();
+        onPress(item);
+      }}
+      scaleTo={0.95}
+      style={{ width: size, height: size, borderRadius: 22 }}
+    >
+      <LinearGradient
+        colors={[giftTone(themeAccent, '30'), surface[0], surface[1]] as [string, string, string]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={{ width: size, height: size, borderRadius: 22, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <Image
+          source={rewardImageSource(item.reward, themeMode)}
+          style={{ width: size * 0.78, height: size * 0.78 }}
+          contentFit="contain"
+          accessible={false}
+        />
+      </LinearGradient>
+    </TapScale>
+  );
+});
+
 export default function LevelGiftsInventoryScreen() {
   const router = useRouter();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { theme: t, f, themeMode } = useTheme();
   const [items, setItems] = useState<PendingLevelGiftInventoryItem[]>([]);
+  const [dailyJourneyItems, setDailyJourneyItems] = useState<DailyJourneyGiftPendingItem[]>([]);
   const [activeItems, setActiveItems] = useState<ActiveLevelGiftInventoryItem[]>([]);
   const [multiplierBreakdown, setMultiplierBreakdown] = useState<MultiplierBreakdown | null>(null);
   const [spinBalance, setSpinBalance] = useState<number | null>(() => {
@@ -286,7 +361,12 @@ export default function LevelGiftsInventoryScreen() {
     });
   const [userName, setUserName] = useState('');
   const [selected, setSelected] = useState<PendingLevelGiftInventoryItem | null>(null);
+  const [selectedDailyJourneyGift, setSelectedDailyJourneyGift] = useState<DailyJourneyGiftPendingItem | null>(null);
+  const [dailyJourneyClaimBusyId, setDailyJourneyClaimBusyId] = useState<string | null>(null);
   const [selectedInfoGift, setSelectedInfoGift] = useState<ActiveLevelGiftInventoryItem | null>(null);
+  const inventoryLifecycleRef = useRef({ active: false, loadRequestId: 0 });
+  const initialSeenAttemptedRef = useRef(false);
+  const dailyJourneyClaimBusyRef = useRef(new Set<string>());
   /**
    * Раздел подарков — ОДИН список, без вкладок.
    *
@@ -315,17 +395,45 @@ export default function LevelGiftsInventoryScreen() {
     return Math.floor((usableWidth - TILE_GRID_GAP * (TILES_PER_ROW - 1)) / TILES_PER_ROW);
   }, []);
 
-  const loadData = useCallback(async () => {
-    const [nextItems, nextActiveItems, nextMultiplierBreakdown, nameRaw] = await Promise.all([
+  const reloadGiftSources = useCallback(async ({ markSnapshotSeen }: { markSnapshotSeen: boolean }) => {
+    const accountToken = captureAccountGeneration();
+    const stableId = accountToken.stableId;
+    const loadRequestId = ++inventoryLifecycleRef.current.loadRequestId;
+    if (!stableId
+      || !inventoryLifecycleRef.current.active
+      || !isCurrentAccountGeneration(accountToken, stableId)) return;
+
+    const existingGiftDataPromise = Promise.all([
       loadPendingLevelGiftInventory(studyTarget),
       loadActiveLevelGiftInventory(lang, Date.now(), studyTarget),
       getCurrentMultiplierBreakdown(),
       AsyncStorage.getItem('user_name'),
+    ]).then(([nextItems, nextActiveItems, nextMultiplierBreakdown, nameRaw]) => ({
+      nextItems,
+      nextActiveItems,
+      nextMultiplierBreakdown,
+      nameRaw,
+    }));
+    const [existingGiftData, dailyJourneySnapshot] = await Promise.all([
+      existingGiftDataPromise,
+      readDailyJourneyGiftProjection(accountToken),
     ]);
-    setItems(nextItems);
-    setActiveItems(nextActiveItems);
-    setMultiplierBreakdown(nextMultiplierBreakdown);
-    setUserName(nameRaw || '');
+    if (!inventoryLifecycleRef.current.active
+      || loadRequestId !== inventoryLifecycleRef.current.loadRequestId
+      || !isCurrentAccountGeneration(accountToken, stableId)) return;
+
+    setItems(existingGiftData.nextItems);
+    setActiveItems(existingGiftData.nextActiveItems);
+    setMultiplierBreakdown(existingGiftData.nextMultiplierBreakdown);
+    setUserName(existingGiftData.nameRaw || '');
+    setDailyJourneyItems(dailyJourneySnapshot.pending);
+
+    if (markSnapshotSeen && !initialSeenAttemptedRef.current) {
+      initialSeenAttemptedRef.current = true;
+      if (dailyJourneySnapshot.latestRevision > 0) {
+        await markDailyJourneyGiftSnapshotSeen(dailyJourneySnapshot.latestRevision, accountToken);
+      }
+    }
   }, [lang, studyTarget]);
 
   const loadSpinBalance = useCallback(async () => {
@@ -350,30 +458,63 @@ export default function LevelGiftsInventoryScreen() {
   }, []);
 
   useFocusEffect(useCallback(() => {
-    let active = true;
-    void loadData();
+    inventoryLifecycleRef.current.active = true;
+    inventoryLifecycleRef.current.loadRequestId += 1;
+    initialSeenAttemptedRef.current = false;
+    void reloadGiftSources({ markSnapshotSeen: true }).catch((error) => {
+      DebugLogger.error('level_gifts_inventory:load', error instanceof Error ? error : new Error(String(error)), 'warning');
+    });
     void loadSpinBalance();
     const subscription = onAppEvent('level_spin_balance_changed', () => {
-      if (!active) return;
-      void loadData();
+      if (!inventoryLifecycleRef.current.active) return;
+      void reloadGiftSources({ markSnapshotSeen: false });
       const accountToken = captureAccountGeneration();
       const stableId = accountToken.stableId;
       if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
       const cached = peekLevelSpinBalance(stableId);
       if (cached !== null) setSpinBalance(cached);
     });
+    const dailyJourneySubscription = onAppEvent('daily_journey_gifts_changed', () => {
+      if (!inventoryLifecycleRef.current.active) return;
+      void reloadGiftSources({ markSnapshotSeen: !initialSeenAttemptedRef.current });
+    });
+    const accountGenerationSubscription = subscribeAccountGeneration((accountToken) => {
+      if (!inventoryLifecycleRef.current.active) return;
+      inventoryLifecycleRef.current.loadRequestId += 1;
+      initialSeenAttemptedRef.current = false;
+      dailyJourneyClaimBusyRef.current.clear();
+      setItems([]);
+      setDailyJourneyItems([]);
+      setActiveItems([]);
+      setMultiplierBreakdown(null);
+      setUserName('');
+      setSelected(null);
+      setSelectedDailyJourneyGift(null);
+      setSelectedInfoGift(null);
+      setDailyJourneyClaimBusyId(null);
+      setSpinBalance(accountToken.phase === 'active' && accountToken.stableId
+        ? peekLevelSpinBalance(accountToken.stableId) ?? null
+        : null);
+      if (accountToken.phase === 'active' && accountToken.stableId) {
+        void reloadGiftSources({ markSnapshotSeen: true });
+        void loadSpinBalance();
+      }
+    });
     return () => {
-      active = false;
+      inventoryLifecycleRef.current.active = false;
+      inventoryLifecycleRef.current.loadRequestId += 1;
       subscription.remove();
+      dailyJourneySubscription.remove();
+      accountGenerationSubscription.remove();
     };
-  }, [loadData, loadSpinBalance]));
+  }, [loadSpinBalance, reloadGiftSources]));
 
   // зачем: таймер дошёл до нуля — подарок сгорел; ряд уходит плавным
   // layout-переходом, а перезагрузка данных заодно вычищает его из хранилища.
   const handleGiftExpired = useCallback(() => {
     animateNextLayoutTransition();
-    void loadData();
-  }, [loadData]);
+    void reloadGiftSources({ markSnapshotSeen: false });
+  }, [reloadGiftSources]);
 
   const closeGiftModal = (claimed = false) => {
     if (claimed && selected) {
@@ -384,8 +525,35 @@ export default function LevelGiftsInventoryScreen() {
     // A claimed close is optimistic: reloading here races the background
     // journal commit and can reinsert the stale tile. The modal refreshes after
     // application settles; cancelled closes still refresh immediately.
-    if (!claimed) void loadData();
+    if (!claimed) void reloadGiftSources({ markSnapshotSeen: false });
   };
+
+  const handleDailyJourneyClaim = useCallback(async (item: DailyJourneyGiftPendingItem) => {
+    if (dailyJourneyClaimBusyRef.current.has(item.operationId)) return;
+    const accountToken = captureAccountGeneration();
+    const stableId = accountToken.stableId;
+    if (!stableId
+      || !inventoryLifecycleRef.current.active
+      || !isCurrentAccountGeneration(accountToken, stableId)) return;
+
+    dailyJourneyClaimBusyRef.current.add(item.operationId);
+    setDailyJourneyClaimBusyId(item.operationId);
+    try {
+      await claimDailyJourneyGift(item.operationId, accountToken);
+      if (!inventoryLifecycleRef.current.active
+        || !isCurrentAccountGeneration(accountToken, stableId)) return;
+      setSelectedDailyJourneyGift(null);
+      await reloadGiftSources({ markSnapshotSeen: false });
+    } catch (error) {
+      DebugLogger.error('level_gifts_inventory:daily_journey_claim', error instanceof Error ? error : new Error(String(error)), 'warning');
+    } finally {
+      dailyJourneyClaimBusyRef.current.delete(item.operationId);
+      if (inventoryLifecycleRef.current.active
+        && isCurrentAccountGeneration(accountToken, stableId)) {
+        setDailyJourneyClaimBusyId((current) => current === item.operationId ? null : current);
+      }
+    }
+  }, [reloadGiftSources]);
 
   return (
     <ScreenGradient artBackdrop="levelGifts">
@@ -615,7 +783,7 @@ export default function LevelGiftsInventoryScreen() {
               </View>
             )}
             {/* Совсем пусто: ни действующих бонусов, ни неоткрытых подарков. */}
-            {activeItems.length === 0 && items.length === 0 ? (
+            {activeItems.length === 0 && items.length === 0 && dailyJourneyItems.length === 0 ? (
               <LinearGradient
                 colors={emptyGiftSurface}
                 start={{ x: 0, y: 0 }}
@@ -660,7 +828,7 @@ export default function LevelGiftsInventoryScreen() {
             {/* зачем 2026-08-23: активные бонусы уже наверху и занимают экран.
                 Второй крупный пустой блок на пол-экрана конкурировал бы с ними
                 за внимание — здесь достаточно тихой строки. */}
-            {items.length === 0 && activeItems.length > 0 ? (
+            {items.length === 0 && dailyJourneyItems.length === 0 && activeItems.length > 0 ? (
               <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 5, paddingHorizontal: 2, paddingVertical: 4 }}>
                 {triLang(lang, {
                   ru: 'Неоткрытых подарков нет — новые за уровни появятся здесь.',
@@ -676,8 +844,20 @@ export default function LevelGiftsInventoryScreen() {
               </Text>
             ) : null}
             {/* Сетка неоткрытых подарков — под действующими бонусами. */}
-            {items.length > 0 ? (
+            {items.length > 0 || dailyJourneyItems.length > 0 ? (
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: TILE_GRID_GAP }}>
+                {dailyJourneyItems.map((item) => (
+                  <DailyJourneyGiftTile
+                    key={dailyJourneyGiftItemKey(item)}
+                    item={item}
+                    size={tileSize}
+                    lang={lang}
+                    themeMode={themeMode}
+                    themeAccent={t.accent}
+                    surface={[t.bgCard, t.bgSurface]}
+                    onPress={setSelectedDailyJourneyGift}
+                  />
+                ))}
                 {items.map((item) => (
                   <GiftTile
                     key={pendingGiftItemKey(item)}
@@ -726,7 +906,7 @@ export default function LevelGiftsInventoryScreen() {
             onGiftApplyFailed={selected.dualPart
               ? (gift, accountToken) => restoreDualGiftPartAfterFailedClaim(selected.level, selected.dualPart!, gift, accountToken)
               : undefined}
-            onGiftApplySettled={loadData}
+            onGiftApplySettled={() => reloadGiftSources({ markSnapshotSeen: false })}
             saveOnDismiss={false}
             applyAsPremium={selected.spinOccurrence?.lane === 'premium' || selected.dualPart ? true : undefined}
             occurrenceId={selected.spinOccurrence?.occurrenceId ?? `level:${selected.level}:${selected.dualPart ?? 'f2p'}`}
@@ -747,6 +927,55 @@ export default function LevelGiftsInventoryScreen() {
             studyTarget={studyTarget}
           />
         )}
+        <CenteredDialogShell
+          visible={selectedDailyJourneyGift !== null}
+          onClose={() => {
+            if (selectedDailyJourneyGift
+              && dailyJourneyClaimBusyRef.current.has(selectedDailyJourneyGift.operationId)) return;
+            setSelectedDailyJourneyGift(null);
+          }}
+          title={triLang(lang, {
+            ru: 'Подарок', uk: 'Подарунок', en: 'Gift', es: 'Regalo', 'pt-BR': 'Presente',
+            vi: 'Quà', id: 'Hadiah', tr: 'Hediye', pl: 'Prezent',
+          })}
+          closeLabel={triLang(lang, {
+            ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
+            vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
+          })}
+          testID="daily-journey-gift-claim-modal"
+        >
+          {selectedDailyJourneyGift ? (
+            <View style={{ alignItems: 'center', gap: 18 }}>
+              <Image
+                source={rewardImageSource(selectedDailyJourneyGift.reward, themeMode)}
+                style={{ width: 184, height: 184 }}
+                contentFit="contain"
+                accessibilityLabel={dailyJourneyGiftA11yLabel(selectedDailyJourneyGift, lang)}
+              />
+              <TapScale
+                testID="daily-journey-gift-claim"
+                accessibilityRole="button"
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Применить подарок', uk: 'Застосувати подарунок', en: 'Apply gift',
+                  es: 'Usar regalo', 'pt-BR': 'Usar presente', vi: 'Dùng quà',
+                  id: 'Pakai hadiah', tr: 'Hediyeyi kullan', pl: 'Użyj prezentu',
+                })}
+                disabled={dailyJourneyClaimBusyId === selectedDailyJourneyGift.operationId}
+                onPress={() => void handleDailyJourneyClaim(selectedDailyJourneyGift)}
+                style={{ alignSelf: 'stretch', borderRadius: 16 }}
+              >
+                <View style={{ minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accent, opacity: dailyJourneyClaimBusyId === selectedDailyJourneyGift.operationId ? 0.62 : 1 }}>
+                  <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>
+                    {triLang(lang, {
+                      ru: 'Использовать', uk: 'Застосувати', en: 'Apply', es: 'Usar', 'pt-BR': 'Usar',
+                      vi: 'Dùng', id: 'Pakai', tr: 'Kullan', pl: 'Użyj',
+                    })}
+                  </Text>
+                </View>
+              </TapScale>
+            </View>
+          ) : null}
+        </CenteredDialogShell>
         <CenteredDialogShell
           visible={selectedInfoGift?.informationKind === 'attempt_restore_all'}
           onClose={() => setSelectedInfoGift(null)}

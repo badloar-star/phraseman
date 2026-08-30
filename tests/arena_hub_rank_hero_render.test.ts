@@ -86,6 +86,7 @@ describe('ArenaHubSummary rank hero runtime rendering', () => {
     const images = screen.root.queryAll((node) => node.type === 'Image');
     expect(images).toHaveLength(1);
     expect(images[0]?.props.source).toEqual({ testUri: 'gold-ii.webp' });
+    expect(images[0]?.props.style).toEqual({ width: 210, height: 224 });
 
     const stars = screen.root.queryAll((node) => node.type === 'ArenaStarGlyph');
     expect(stars).toHaveLength(3);

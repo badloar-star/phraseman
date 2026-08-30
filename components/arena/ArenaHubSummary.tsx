@@ -13,7 +13,6 @@ import Animated, {
 import type { ArenaHubModel } from '../../modules/arena/hub_view';
 import { arenaText } from '../../modules/arena/copy';
 import { useLang } from '../LangContext';
-import { V2Card } from '../ui/v2_ui';
 import { useTournamentPalette } from '../ui/v2_theme';
 import { ArenaRankStars } from './ArenaRankStars';
 import { arenaRankShieldAsset } from './arena_rank_shield_assets';
@@ -89,42 +88,40 @@ export function ArenaHubSummary({ model, active, reduceMotion }: ArenaHubSummary
     : rankLabel;
 
   return (
-    <V2Card pad={16} style={styles.card}>
-      <View
-        testID="arena-rank-hero"
-        style={styles.hero}
-        accessible
-        accessibilityLabel={accessibilityLabel}
-      >
-        <Text accessible={false} style={[styles.rank, { color: P.text }]}>{rankLabel}</Text>
-        <Animated.View accessible={false} style={[styles.shieldStage, shieldStyle]}>
-          {rank ? (
-            <Image
-              source={arenaRankShieldAsset(rank.tierKey, rank.division)}
-              style={styles.shield}
-              resizeMode="contain"
-              accessibilityIgnoresInvertColors
-            />
-          ) : (
-            <Ionicons name="shield-outline" size={116} color={P.muted} />
-          )}
-        </Animated.View>
-        <Animated.View accessible={false} style={[styles.starsStage, starsStyle]}>
-          <ArenaRankStars filled={rank?.starsInRank ?? 0} size={38} />
-        </Animated.View>
-        <Text accessible={false} style={[styles.progress, { color: P.muted }]}>{progressLabel}</Text>
-      </View>
-    </V2Card>
+    <View
+      testID="arena-rank-hero"
+      style={styles.hero}
+      accessible
+      accessibilityLabel={accessibilityLabel}
+    >
+      <Text accessible={false} style={[styles.rank, { color: P.text }]}>{rankLabel}</Text>
+      <Animated.View accessible={false} style={[styles.shieldStage, shieldStyle]}>
+        {rank ? (
+          <Image
+            source={arenaRankShieldAsset(rank.tierKey, rank.division)}
+            style={styles.shield}
+            resizeMode="contain"
+            accessibilityIgnoresInvertColors
+          />
+        ) : (
+          <Ionicons name="shield-outline" size={150} color={P.muted} />
+        )}
+      </Animated.View>
+      <Animated.View accessible={false} style={[styles.starsStage, starsStyle]}>
+        <ArenaRankStars filled={rank?.starsInRank ?? 0} size={38} />
+      </Animated.View>
+      <Text accessible={false} style={[styles.progress, { color: P.muted }]}>{progressLabel}</Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  card: { overflow: 'visible' },
   hero: {
-    minHeight: 300,
+    minHeight: 342,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 4,
+    paddingVertical: 6,
+    overflow: 'visible',
   },
   rank: {
     maxWidth: '100%',
@@ -135,13 +132,13 @@ const styles = StyleSheet.create({
     letterSpacing: -0.4,
   },
   shieldStage: {
-    width: 148,
-    height: 168,
-    marginTop: 8,
+    width: 210,
+    height: 224,
+    marginTop: 4,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  shield: { width: 148, height: 168 },
+  shield: { width: 210, height: 224 },
   starsStage: {
     minHeight: 52,
     alignItems: 'center',

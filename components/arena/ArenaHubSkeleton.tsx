@@ -17,7 +17,7 @@ import type { TournamentV2 } from '../ui/v2_theme';
  * есть тёплый снимок, экран сразу рисует его, скелетон не мигает.
  *
  * Геометрия зеркалит:
- * - ArenaHubSummary.styles.hero (V2Card pad=16, title+shield+stars+progress) —
+ * - ArenaHubSummary.styles.hero (transparent title+shield+stars+progress) —
  *   components/arena/ArenaHubSummary.tsx
  * - ArenaDailyGoals.styles.card (V2Card pad=16, head + 3×goal) —
  *   components/arena/ArenaDailyGoals.tsx
@@ -71,13 +71,13 @@ function ArenaHubSkeletonComponent({ palette }: ArenaHubSkeletonProps) {
 
   return (
     <View testID="arena-hub-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-      {/* Карточка ранга — ArenaHubSummary.styles.hero */}
-      <View style={[styles.card, styles.rankCard, { backgroundColor: palette.surfaceGradB }]}>
+      {/* Прозрачный hero ранга — ArenaHubSummary.styles.hero */}
+      <View style={styles.rankHero}>
         <SkeletonBlock width="48%" height={24} borderRadius={12} baseColor={bone} highlightColor={shine} />
         <SkeletonBlock
-          width={148}
-          height={168}
-          borderRadius={48}
+          width={210}
+          height={224}
+          borderRadius={64}
           baseColor={bone}
           highlightColor={shine}
           style={styles.rankShield}
@@ -124,7 +124,7 @@ export const ArenaHubSkeleton = memo(ArenaHubSkeletonComponent);
 const styles = StyleSheet.create({
   // borderRadius совпадает с V2Card (radius.lg - 2 = 24), padding = pad 16
   card: { borderRadius: 24, padding: 16, gap: 8 },
-  rankCard: { minHeight: 332, alignItems: 'center', justifyContent: 'center', gap: 10 },
+  rankHero: { minHeight: 342, alignItems: 'center', justifyContent: 'center', gap: 8, overflow: 'visible' },
   rankShield: { marginVertical: 2 },
   goalsCard: { gap: 12, marginTop: 16 },
   head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },

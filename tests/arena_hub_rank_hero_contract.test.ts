@@ -10,7 +10,10 @@ describe('Arena hub floating rank hero', () => {
     expect(source).toContain('arenaRankShieldAsset');
     expect(source).toContain('<ArenaRankStars');
     expect(source).toContain('size={38}');
+    expect(source).toContain('shield: { width: 210, height: 224 }');
     expect(source).toContain("arenaText(lang, 'rankNext')");
+    expect(source).not.toContain('<V2Card');
+    expect(source).not.toContain("from '../ui/v2_ui'");
     expect(source).not.toContain("arenaText(lang, 'wins')");
     expect(source).not.toContain("arenaText(lang, 'losses')");
     expect(source).not.toContain("arenaText(lang, 'streakLabel')");
@@ -34,10 +37,11 @@ describe('Arena hub floating rank hero', () => {
 
   it('reserves the full hero geometry in the loading skeleton', () => {
     const source = read('components/arena/ArenaHubSkeleton.tsx');
-    expect(source).toContain('styles.rankCard');
+    expect(source).toContain('styles.rankHero');
     expect(source).toContain('styles.rankShield');
-    expect(source).toContain('width={148}');
-    expect(source).toContain('height={168}');
+    expect(source).toContain('width={210}');
+    expect(source).toContain('height={224}');
+    expect(source).not.toContain('styles.rankCard');
     expect(source).not.toContain('styles.rankHead');
   });
 });

@@ -238,7 +238,8 @@ export async function applySeasonRewardLocal(
     case 'time_machine': {
       const res = await reviveStreak({ free: true });
       if (res.ok) return { ok: true };
-      return { ok: false, failReason: res.reason === 'no_offer' ? 'no_streak_gap' : 'unknown' };
+      const reviveReason = 'reason' in res ? res.reason : undefined;
+      return { ok: false, failReason: reviveReason === 'no_offer' ? 'no_streak_gap' : 'unknown' };
     }
     case 'card_pack':
       await addOwnedPackId(SEASON1_CARD_PACK_ID);

@@ -1,6 +1,6 @@
 import type { EpisodeSourcePhrase, EpisodeSourcePhraseLocalizedDetails, EpisodeSourceWord } from './episode_01_source_v1';
 import { EPISODE_01_SESSION_01_WORD_FIRST_PHRASES } from './episode_01_session_01_phrases_word_first_v1';
-import { EPISODE_01_SESSION_04_WORD_FIRST_PHRASES } from './episode_01_session_04_phrases_word_first_v1';
+import { EPISODE_01_SESSION_04_READINESS_PHRASES } from './episode_01_session_04_phrases_word_first_v1';
 import { EPISODE_01_SESSION_06_VOCABULARY_V1 } from './episode_01_session_06_vocabulary_v1';
 
 const LOCALES = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
@@ -48,7 +48,7 @@ function localizedNovelWord(target: NovelTarget, locale: Locale) {
 }
 
 const I_AM_MODEL = EPISODE_01_SESSION_01_WORD_FIRST_PHRASES[0]!;
-const IM_MODEL = EPISODE_01_SESSION_04_WORD_FIRST_PHRASES[0]!;
+const IM_MODEL = EPISODE_01_SESSION_04_READINESS_PHRASES[0]!;
 function knownRootWords(contracted: boolean): readonly EpisodeSourceWord[] {
   return contracted ? [IM_MODEL.words[0]!] : [I_AM_MODEL.words[0]!, I_AM_MODEL.words[1]!];
 }

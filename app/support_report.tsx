@@ -162,10 +162,10 @@ export default function SupportReportScreen() {
             <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10 }}>
               <Ionicons name="shield-checkmark-outline" size={20} color={t.textSecond} />
               <View style={{ flex: 1 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.small, fontWeight: '700' }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '700' }}>
                   {L('Техническая диагностика', 'Технічна діагностика', 'Technical diagnostics', 'Diagnóstico técnico', 'Diagnóstico técnico', 'Chẩn đoán kỹ thuật', 'Diagnostik teknis', 'Teknik tanılama', 'Diagnostyka techniczna')}
                 </Text>
-                <Text style={{ color: t.textSecond, fontSize: f.small, lineHeight: f.small * 1.4, marginTop: 4 }}>
+                <Text style={{ color: t.textSecond, fontSize: f.caption, lineHeight: f.caption * 1.4, marginTop: 4 }}>
                   {L(
                     'К этому обращению прикрепятся только недавние технические действия. Без текста сообщений, паролей и платёжных данных.',
                     'До цього звернення додадуться лише недавні технічні дії. Без тексту повідомлень, паролів і платіжних даних.',
@@ -189,7 +189,7 @@ export default function SupportReportScreen() {
                   onPress={() => setShowDiagnostics((value) => !value)}
                   style={{ minHeight: 44, alignSelf: 'flex-start', justifyContent: 'center', marginTop: 6 }}
                 >
-                  <Text style={{ color: t.accent, fontSize: f.small, fontWeight: '800' }}>
+                  <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '800' }}>
                     {showDiagnostics
                       ? L('Скрыть', 'Сховати', 'Hide', 'Ocultar', 'Ocultar', 'Ẩn', 'Sembunyikan', 'Gizle', 'Ukryj')
                       : L('Посмотреть', 'Переглянути', 'View', 'Ver', 'Ver', 'Xem', 'Lihat', 'Görüntüle', 'Zobacz')}

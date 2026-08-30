@@ -15,6 +15,9 @@ export const LEARNING_V2_NEUTRAL_LESSON1_SESSION_IDS_V1 = Object.freeze(
 export function learningV2CourseAccordionInputFromNeutralProgressV1(
   state: Lesson1LocalProgressState,
   expandedLessonOrdinal: number | null,
+  // зачем параметр (2026-08-30): модель карты стала требовать scope-ключ
+  // проекции; у нейтральной фикстуры его задаёт вызывающий тест.
+  projectionScopeKey: string,
 ): LearningV2CourseAccordionMapInputV1 {
   if (
     state.requiredSessionIds.length !==
@@ -36,6 +39,7 @@ export function learningV2CourseAccordionInputFromNeutralProgressV1(
     (sessionId) => state.sessions[sessionId] !== "completed",
   );
   return Object.freeze({
+    projectionScopeKey,
     expandedLessonOrdinal,
     completedSessionIds: Object.freeze(completedSessionIds),
     currentSessionId:

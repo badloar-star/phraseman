@@ -186,14 +186,24 @@ export function assertLearningV2CurriculumSessionPacketV1(
     fail("learning_v2_curriculum_packet_lexical_plan_role_invalid");
   }
 
+  // зачем (2026-08-30): вход валидируется как unknown; спискам сенсов нужен
+  // явный narrow до string[] — не прошёл: тот же fail, что и у соседей.
+  const senseListOf = (value: unknown, code: string): readonly string[] => {
+    if (!Array.isArray(value) || value.some((item) => typeof item !== "string")) fail(code);
+    return value as readonly string[];
+  };
+  const newLexicalSenseIds = senseListOf(input.newLexicalSenseIds, "learning_v2_curriculum_packet_new_senses_invalid");
+  const retrievalLexicalSenseIds = senseListOf(input.retrievalLexicalSenseIds, "learning_v2_curriculum_packet_retrieval_senses_invalid");
+  const allowedLexicalSlotSenseIds = senseListOf(input.allowedLexicalSlotSenseIds, "learning_v2_curriculum_packet_allowed_slots_invalid");
+
   if (input.lexicalPlanRole === "retrieval_only") {
     if (!isNonEmptyString(input.lexicalReviewOnlyReason)) {
       fail("learning_v2_curriculum_packet_retrieval_only_reason_required");
     }
-    if (input.newLexicalSenseIds.length > 0) {
+    if (newLexicalSenseIds.length > 0) {
       fail("learning_v2_curriculum_packet_retrieval_only_new_senses_forbidden");
     }
-    if (input.retrievalLexicalSenseIds.length === 0) {
+    if (retrievalLexicalSenseIds.length === 0) {
       fail("learning_v2_curriculum_packet_retrieval_only_senses_required");
     }
   } else if (input.lexicalReviewOnlyReason !== null) {
@@ -201,8 +211,8 @@ export function assertLearningV2CurriculumSessionPacketV1(
   }
 
   if (
-    !input.newLexicalSenseIds.every((senseId) =>
-      input.allowedLexicalSlotSenseIds.includes(senseId),
+    !newLexicalSenseIds.every((senseId) =>
+      allowedLexicalSlotSenseIds.includes(senseId),
     )
   ) {
     fail("learning_v2_curriculum_packet_new_sense_outside_allowed_slots");

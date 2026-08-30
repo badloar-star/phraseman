@@ -2,6 +2,7 @@
 export type FriendCodeLocalizer = (
   ru: string,
   uk: string,
+  en: string,
   es: string,
   ptBr: string,
   vi: string,
@@ -14,6 +15,7 @@ const SELF_FRIEND_CODE_MESSAGES = [
   {
     ru: 'Сам с собой в друзья? Философски красиво, но технически нет. Другой код, пожалуйста.',
     uk: 'Сам із собою в друзі? Філософськи гарно, але технічно ні. Інший код, будь ласка.',
+    en: 'Friends with yourself? Philosophically beautiful, technically no. Another code, please.',
     es: '¿Amigo de ti mismo? Filosóficamente bonito, pero técnicamente no. Otro código, por favor.',
     'pt-BR': 'Amigo de si mesmo? Filosoficamente bonito, mas tecnicamente não. Outro código, por favor.',
     ptBr: 'Amigo de si mesmo? Filosoficamente bonito, mas tecnicamente não. Outro código, por favor.',
@@ -25,6 +27,7 @@ const SELF_FRIEND_CODE_MESSAGES = [
   {
     ru: 'Сюрприз: этот код твой. Добавить себя не выйдет — пригласи кого-нибудь настоящего.',
     uk: 'Сюрприз: це твій код. Додати себе не вийде — запроси когось справжнього.',
+    en: "Surprise: that code is yours. You can't add yourself — invite someone real.",
     es: 'Sorpresa: ese código es tuyo. No puedes añadirte — invita a alguien de verdad.',
     'pt-BR': 'Surpresa: esse código é seu. Não dá para adicionar você mesmo — convide alguém de verdade.',
     ptBr: 'Surpresa: esse código é seu. Não dá para adicionar você mesmo — convide alguém de verdade.',
@@ -36,6 +39,7 @@ const SELF_FRIEND_CODE_MESSAGES = [
   {
     ru: 'Поймал себя в ловушку. Отличный код, но он твой — введи код того, кого хочешь в друзья.',
     uk: 'Піймав себе в пастці. Чудовий код, але він твій — введи код того, кого хочеш у друзі.',
+    en: "You caught yourself. Great code, but it's yours — enter the code of someone you want as a friend.",
     es: 'Te pillaste a ti mismo. Buen código, pero es el tuyo — pon el de quien quieras tener de amigo.',
     'pt-BR': 'Você caiu na própria armadilha. Ótimo código, mas ele é seu — digite o código de quem você quer adicionar.',
     ptBr: 'Você caiu na própria armadilha. Ótimo código, mas ele é seu — digite o código de quem você quer adicionar.',
@@ -49,5 +53,5 @@ const SELF_FRIEND_CODE_MESSAGES = [
 export function randomSelfFriendCodeMessage(L: FriendCodeLocalizer): string {
   const i = Math.floor(Math.random() * SELF_FRIEND_CODE_MESSAGES.length);
   const row = SELF_FRIEND_CODE_MESSAGES[i];
-  return L(row.ru, row.uk, row.es, row.ptBr, row.vi, row.id, row.tr, row.pl);
+  return L(row.ru, row.uk, row.en, row.es, row.ptBr, row.vi, row.id, row.tr, row.pl);
 }

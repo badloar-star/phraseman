@@ -58,7 +58,7 @@ function localizedPhraseField(index: number, field: 'meaning' | 'explanation'): 
   if (!phrase?.localizedDetails) throw new Error(`session_03_phrase_details_missing:${index}`);
   return Object.fromEntries(LEARNING_V2_INTERFACE_LOCALES.map((locale) => {
     const detail = phrase.localizedDetails?.[locale];
-    if (locale === 'en' && !detail) return [locale, `${UNTRANSLATED_MARKER}${phrase.localizedDetails!.ru[field]}`];
+    if (locale === 'en' && !detail) return [locale, `${UNTRANSLATED_MARKER}${phrase.localizedDetails!.ru![field]}`];
     if (!detail) throw new Error(`session_03_phrase_locale_missing:${index}:${locale}`);
     return [locale, detail[field]];
   })) as LearningV2Localized<string>;
@@ -116,7 +116,9 @@ const LISTEN_CONTRAST = Object.freeze({
 } satisfies Readonly<Record<string, LocalizedSource>>);
 
 function listenContrastFeedback(correctIndex: number, candidateIndex: number): LearningV2Localized<string> {
-  const authored = LISTEN_CONTRAST[`${correctIndex}:${candidateIndex}`];
+  // зачем каст (2026-08-30): ключ-шаблон не сужается до литеральных ключей
+  // Readonly-словаря; отсутствие пары честно бросает строкой ниже.
+  const authored = (LISTEN_CONTRAST as Record<string, (typeof LISTEN_CONTRAST)[keyof typeof LISTEN_CONTRAST]>)[`${correctIndex}:${candidateIndex}`];
   if (!authored) throw new Error(`session_03_listen_contrast_missing:${correctIndex}:${candidateIndex}`);
   return L(authored);
 }
@@ -197,7 +199,7 @@ const SPEED_WORDS = Object.freeze(
 const SPEED_IDS = SPEED_WORDS.map((word) => `e01-s03-pair-${word.target.toLowerCase()}`);
 const speedMatch: LearningV2ModeNativePayloadV1 = Object.freeze({
   family: 'speed_match', pairGrid: Object.freeze(SPEED_WORDS.map((word, index) => {
-    const meaning = ATOMIC_SPEED_MEANINGS[word.target];
+    const meaning = (ATOMIC_SPEED_MEANINGS as Record<string, (typeof ATOMIC_SPEED_MEANINGS)[keyof typeof ATOMIC_SPEED_MEANINGS]>)[word.target];
     if (!meaning) throw new Error(`session_03_atomic_speed_meaning_missing:${word.target}`);
     return { pairId: SPEED_IDS[index]!, target: word.target, meaningByLocale: L(meaning) };
   })),

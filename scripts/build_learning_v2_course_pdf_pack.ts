@@ -10,6 +10,11 @@ const ROOT = resolve(process.cwd());
 const OUTPUT_DIR = resolve(ROOT, "output/pdf/learning-v2-course-continuation-pack-2026-08-28");
 const TEMP_DIR = resolve(ROOT, "tmp/pdfs/learning-v2-course-continuation-pack");
 const FINGERPRINT = LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V1.blueprintFingerprint;
+const OWNER_APPROVAL = LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V1.ownerApproval;
+const OWNER_STATUS_LABEL =
+  OWNER_APPROVAL === "APPROVED"
+    ? "Owner-approved fingerprint · recorded 2026-08-30"
+    : "Candidate fingerprint · owner approval pending";
 
 const OUTPUTS = Object.freeze({
   start: join(OUTPUT_DIR, "00_START_HERE_ONE_PROMPT.pdf"),
@@ -166,7 +171,7 @@ async function sourceDocumentsHtml(
     const markdown = await readFile(absolute, "utf8");
     sections.push(`<section class="source-doc"><div class="source-label">SOURCE · ${esc(sourcePath)}</div>${await renderMarkdown(markdown, markedModule)}</section>`);
   }
-  return htmlShell(title, `<section class="cover"><div class="eyebrow">Phraseman · Learning V2</div><h1>${esc(title)}</h1><p class="lede">${esc(subtitle)}</p><div class="status">Candidate fingerprint · owner approval pending</div><div class="fingerprint">${FINGERPRINT}</div></section>${sections.join("\n")}`);
+  return htmlShell(title, `<section class="cover"><div class="eyebrow">Phraseman · Learning V2</div><h1>${esc(title)}</h1><p class="lede">${esc(subtitle)}</p><div class="status">${esc(OWNER_STATUS_LABEL)}</div><div class="fingerprint">${FINGERPRINT}</div></section>${sections.join("\n")}`);
 }
 
 async function readOwnerMapData(): Promise<any> {
@@ -240,7 +245,7 @@ function courseBlueprintHtml(ownerMapData: any, introDocsHtml: string): string {
   const grammarRows = operations.map((operation) => `<tr class="registry-row"><td>${esc(operation.id)}</td><td>${operation.lessonOrdinal}</td><td>${esc(operation.communicativeFunction)}</td><td>${list(operation.formBoundary)}</td><td>${list(operation.prerequisiteOperationIds)}</td><td>${list(operation.prohibitedExtensionIds)}</td><td>${list(operation.sourceEvidenceRefs)}</td></tr>`).join("");
   const lexicalRows = senses.map((sense) => `<tr class="registry-row"><td>${esc(sense.id)}</td><td>${esc(sense.english)}</td><td>${esc(sense.glossRu)}</td><td>${esc(sense.partOfSpeech)}</td><td>${sense.lessonOrdinal}</td><td>${esc((retrievalBySense.get(sense.id) ?? []).join(" · "))}</td><td>${list(sense.sourceEvidenceRefs)}</td></tr>`).join("");
 
-  const body = `<section class="cover"><div class="eyebrow">Canonical English curriculum data</div><h1>Полный English Course Blueprint · 32 × 56</h1><p class="lede">Все 32 lesson boundaries, 224 chapter outcomes, 1 792 exact session packets, grammar registry, prerequisite DAG, lexical sense ledger, retrieval graph и coverage references.</p><div class="summary-grid"><div class="metric"><b>32</b>урока</div><div class="metric"><b>224</b>главы</div><div class="metric"><b>1 792</b>пакета</div><div class="metric"><b>280</b>lexical senses</div></div><div class="status">STRUCTURAL PASS · OWNER APPROVAL PENDING</div><div class="fingerprint">${FINGERPRINT}</div></section>
+  const body = `<section class="cover"><div class="eyebrow">Canonical English curriculum data</div><h1>Полный English Course Blueprint · 32 × 56</h1><p class="lede">Все 32 lesson boundaries, 224 chapter outcomes, 1 792 exact session packets, grammar registry, prerequisite DAG, lexical sense ledger, retrieval graph и coverage references.</p><div class="summary-grid"><div class="metric"><b>32</b>урока</div><div class="metric"><b>224</b>главы</div><div class="metric"><b>1 792</b>пакета</div><div class="metric"><b>280</b>lexical senses</div></div><div class="status">STRUCTURAL PASS · OWNER ${esc(OWNER_APPROVAL)}</div><div class="fingerprint">${FINGERPRINT}</div></section>
     ${introDocsHtml}
     <section class="page-break"><h1>Grammar operation registry</h1><p>Всего операций: ${operations.length}. DAG edges: ${blueprint.grammarPrerequisiteDag.edges.length}. Findings: ${dagFindings.length}.</p><table><thead><tr><th>ID</th><th>L</th><th>Function</th><th>Form boundary</th><th>Prerequisites</th><th>Prohibited extensions</th><th>Evidence</th></tr></thead><tbody>${grammarRows}</tbody></table></section>
     <section class="page-break"><h1>Lexical sense ledger и retrieval graph</h1><p>Sense IDs: ${senses.length}. Retrieval edges: ${blueprint.lexicalRetrievalEdges.length}.</p><table><thead><tr><th>ID</th><th>English</th><th>RU gloss</th><th>POS</th><th>First lesson</th><th>Retrieval targets</th><th>Evidence</th></tr></thead><tbody>${lexicalRows}</tbody></table></section>
@@ -260,7 +265,6 @@ async function writePdf(page: Page, html: string, outputPath: string, landscape 
     headerTemplate: `<div style="font:7px 'Segoe UI',Arial;color:#687a73;width:100%;padding:0 12mm;">Phraseman · Learning V2 · ${esc(FINGERPRINT.slice(0, 12))}</div>`,
     footerTemplate: `<div style="font:7px 'Segoe UI',Arial;color:#687a73;width:100%;padding:0 12mm;display:flex;justify-content:space-between;"><span>Owner reference · 2026-08-28</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>`,
     margin: { top: "14mm", right: "13mm", bottom: "15mm", left: "13mm" },
-    timeout: 120_000,
   });
 }
 
@@ -388,7 +392,7 @@ async function main(): Promise<void> {
     "PHRASEMAN LEARNING V2 COURSE CONTINUATION PACK",
     "Read 00_START_HERE_ONE_PROMPT.pdf first.",
     `English reference fingerprint: ${FINGERPRINT}`,
-    "Owner approval state: PENDING",
+    `Owner approval state: ${OWNER_APPROVAL}`,
     ...Object.values(OUTPUTS).map((value) => value),
   ].join("\r\n") + "\r\n", "utf8");
   await assertOutputs();

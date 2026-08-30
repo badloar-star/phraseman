@@ -151,7 +151,11 @@ export const TournamentBackdrop = memo(function TournamentBackdrop({ variant, ca
   const themeBg = BG_GRADIENTS[themeMode] ?? [P.bg, P.bg, P.bg];
   // Тихие экраны (бой/разбор) чуть глушим к базовому фону, чтобы контент
   // читался — но отталкиваемся от общей палитры, а не от своей.
-  const screenBg = (quiet ? [themeBg[0], themeBg[1], P.bg] : themeBg) as readonly [string, string, string];
+  const screenBg: readonly [string, string, string] = [
+    themeBg[0] ?? P.bg,
+    themeBg[1] ?? P.bg,
+    quiet ? P.bg : themeBg[2] ?? P.bg,
+  ];
 
   return (
     <View

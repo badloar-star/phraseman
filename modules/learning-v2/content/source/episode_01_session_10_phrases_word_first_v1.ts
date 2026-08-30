@@ -90,14 +90,21 @@ const COPY: Readonly<Record<string, Readonly<Record<Locale, Copy>>>> = {
   },
 };
 
-function vocabularyWord(locale?: Locale): EpisodeSourceWord {
+type LocalizedPhraseWord = NonNullable<NonNullable<EpisodeSourcePhrase['localizedDetails']>[Locale]>['words'][number];
+// зачем union (2026-08-30): локализованная ветка обязана отдавать форму
+// details.words (reason-поле), а корневая — EpisodeSourceWord.
+function vocabularyWord(locale?: Locale): EpisodeSourceWord | LocalizedPhraseWord {
   const entry = EPISODE_01_SESSION_10_VOCABULARY_V1[0]!;
   const details = entry.contacts.build_form;
   if (locale) {
     return {
       correct: entry.target,
       prompt: details.guidance[locale]!,
-      distractors: details.distractors.map((trap) => ({ value: trap.value, reason: trap.feedback[locale]!, trapType: trap.trapType })),
+      distractors: details.distractors.map((trap) => ({
+        value: trap.value,
+        reason: trap.feedback[locale]!,
+        trapType: trap.trapType,
+      })),
     };
   }
   return {
@@ -121,12 +128,14 @@ function phrase(english: keyof typeof COPY): EpisodeSourcePhrase {
   const isAlone = english === 'You are not alone';
   if (!positive && !isAlone) throw new Error(`missing_positive_model:${english}`);
   const rootBase = positive?.words.slice(0, 2) ?? POSITIVE['You are here']!.words.slice(0, 2);
-  const rootTail = isAlone ? [vocabularyWord()] : positive!.words.slice(2);
+  // зачем каст (2026-08-30): без locale ветка отдаёт EpisodeSourceWord;
+  // union в сигнатуре нужен только локализованной ветке.
+  const rootTail = isAlone ? [vocabularyWord() as EpisodeSourceWord] : positive!.words.slice(2);
   const localizedDetails = Object.fromEntries(LOCALES.map((locale) => {
     const baseWords = positive?.localizedDetails?.[locale]?.words.slice(0, 2) ?? POSITIVE['You are here']!.localizedDetails![locale]!.words.slice(0, 2);
     const tail = isAlone ? [vocabularyWord(locale)] : positive!.localizedDetails![locale]!.words.slice(2);
     const notWord = NOT_MODEL.localizedDetails![locale]!.words[2]!;
-    const words = [...baseWords, notWord, ...tail];
+    const words: LocalizedPhraseWord[] = [...baseWords, notWord, ...(tail as LocalizedPhraseWord[])];
     return [locale, { ...COPY[english][locale], words, distractors: words.flatMap((word) => word.distractors) } satisfies EpisodeSourcePhraseLocalizedDetails];
   })) as NonNullable<EpisodeSourcePhrase['localizedDetails']>;
   const notWord = NOT_MODEL.words[2]!;

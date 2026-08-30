@@ -1,4 +1,4 @@
-import type { LearningV2NewWordAudioStateV1 } from "./learning_v2_new_word_encounter_copy_v1";
+import type { LearningV2NewWordAudioStateV1 } from "./learning_v2_new_word_encounter_copy";
 
 export function learningV2NewWordAudioEnabledV1(
   state: LearningV2NewWordAudioStateV1,

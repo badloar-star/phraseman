@@ -10,6 +10,9 @@ const TERMS = [...CORRECT, ...WRONG].sort((left, right) => right.length - left.l
 function runs(body: LocalizedSource): LocalizedIntroRunsSource {
   return Object.fromEntries(LOCALES.map((locale) => {
     const text = body[locale];
+    // зачем guard (2026-08-30): body типизирован Partial по локалям —
+    // отсутствие локали должно падать с кодом, как соседние проверки.
+    if (!text) throw new Error(`intro_locale_missing:${locale}`);
     const result: LearningV2IntroTextRunV1[] = [];
     let cursor = 0;
     while (cursor < text.length) {

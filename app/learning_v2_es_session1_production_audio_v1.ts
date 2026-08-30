@@ -113,6 +113,7 @@ function transcriptForInteraction(
     payload?.family !== "listen_choose" &&
     payload?.family !== "listen_build_dictation" &&
     payload?.family !== "scripted_repeat_compare"
+    || payload.referenceAudio == null
   ) {
     throw new Error("learning_v2_es_session1_audio_payload_missing");
   }

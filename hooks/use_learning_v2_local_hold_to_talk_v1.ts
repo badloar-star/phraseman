@@ -209,7 +209,7 @@ export function useLearningV2LocalHoldToTalkV1(
       freeSpeech: targetText.trim().length === 0,
     });
     function launchSystemRecognition() {
-      if (!current() || !holdPressRef.current) return;
+      if (!current() || !holdPressRef.current || !speechModule) return;
       try {
         speechModule.start(startOptions);
       } catch {

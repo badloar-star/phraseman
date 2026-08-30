@@ -29,7 +29,7 @@ function bodyRuns(
         }),
       ),
     ]),
-  ) as NonNullable<SessionSourceIntroPage['bodyRuns']>;
+  ) as unknown as NonNullable<SessionSourceIntroPage['bodyRuns']>;
 }
 
 export const EPISODE_01_SESSION_01_WORD_FIRST_TITLE = L({

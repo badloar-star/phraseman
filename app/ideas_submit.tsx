@@ -71,7 +71,7 @@ export default function IdeasSubmitScreen() {
         L('Идея отправлена', 'Ідею надіслано', 'Idea sent', 'Idea enviada', 'Ideia enviada', 'Ý tưởng đã gửi', 'Ide terkirim', 'Fikir gönderildi', 'Pomysł wysłany'),
         L(
           'Спасибо! Мы прочитаем твою идею. Если возьмём её в работу — откроем тебе Plus на год.',
-          'Дякуємо! Ми прочитаємо твою ідею. Якщо візьмемо її в роботу — відкриємо тобі Plus на рік.',
+          'Дякуємо! Ми прочитаємо твою ідею. Якщо візьмемо її в роботу — відкриємо тобі Plus на рік.', "Thank you! We will read your idea. If we take it on, we'll unlock Plus for you for a year.",
           '¡Gracias! Leeremos tu idea. Si la llevamos a cabo, te damos Plus por un año.',
           'Obrigado! Vamos ler sua ideia. Se ela entrar no trabalho, liberamos Plus por um ano.',
           'Cảm ơn! Chúng tôi sẽ đọc ý tưởng của bạn. Nếu đưa vào làm, chúng tôi sẽ mở Plus cho bạn trong một năm.',
@@ -91,8 +91,8 @@ export default function IdeasSubmitScreen() {
           ? L('Уже приняли идею сегодня', 'Вже прийняли ідею сьогодні', 'We already received an idea today', 'Ya recibimos una idea hoy', 'Já recebemos uma ideia hoje', 'Hôm nay chúng tôi đã nhận một ý tưởng', 'Kami sudah menerima ide hari ini', 'Bugün zaten bir fikir aldık', 'Dziś przyjęliśmy już pomysł')
           : L('Что-то пошло не так', 'Щось пішло не так', 'Something went wrong', 'Algo salió mal', 'Algo deu errado', 'Đã xảy ra lỗi', 'Ada yang bermasalah', 'Bir şeyler ters gitti', 'Coś poszło nie tak'),
         isLimited
-          ? L('Можно отправить одну идею в день. Возвращайся завтра со следующей.', 'Можна надіслати одну ідею на день. Повертайся завтра з наступною.', 'Puedes enviar una idea al día. Vuelve mañana con la siguiente.', 'Você pode enviar uma ideia por dia. Volte amanhã com a próxima.', 'Bạn có thể gửi một ý tưởng mỗi ngày. Hãy quay lại vào ngày mai.', 'Kamu bisa mengirim satu ide per hari. Kembali besok.', 'Günde bir fikir gönderebilirsin. Sonraki fikir için yarın gel.', 'Możesz wysłać jeden pomysł dziennie. Wróć jutro z kolejnym.')
-          : L('Не получилось отправить идею. Проверь связь и попробуй снова.', 'Не вдалося надіслати ідею. Перевір зв’язок і спробуй знову.', 'No se pudo enviar la idea. Revisa la conexión e inténtalo de nuevo.', 'Não conseguimos enviar a ideia. Verifique a conexão e tente de novo.', 'Không gửi được ý tưởng. Hãy kiểm tra kết nối và thử lại.', 'Ide belum bisa dikirim. Periksa koneksi dan coba lagi.', 'Fikir gönderilemedi. Bağlantını kontrol edip tekrar dene.', 'Nie udało się wysłać pomysłu. Sprawdź połączenie i spróbuj ponownie.'),
+          ? L('Можно отправить одну идею в день. Возвращайся завтра со следующей.', 'Можна надіслати одну ідею на день. Повертайся завтра з наступною.', "You can send one idea per day. Come back tomorrow with the next one.", 'Puedes enviar una idea al día. Vuelve mañana con la siguiente.', 'Você pode enviar uma ideia por dia. Volte amanhã com a próxima.', 'Bạn có thể gửi một ý tưởng mỗi ngày. Hãy quay lại vào ngày mai.', 'Kamu bisa mengirim satu ide per hari. Kembali besok.', 'Günde bir fikir gönderebilirsin. Sonraki fikir için yarın gel.', 'Możesz wysłać jeden pomysł dziennie. Wróć jutro z kolejnym.')
+          : L('Не получилось отправить идею. Проверь связь и попробуй снова.', 'Не вдалося надіслати ідею. Перевір зв’язок і спробуй знову.', "Couldn't send the idea. Check your connection and try again.", 'No se pudo enviar la idea. Revisa la conexión e inténtalo de nuevo.', 'Não conseguimos enviar a ideia. Verifique a conexão e tente de novo.', 'Không gửi được ý tưởng. Hãy kiểm tra kết nối và thử lại.', 'Ide belum bisa dikirim. Periksa koneksi dan coba lagi.', 'Fikir gönderilemedi. Bağlantını kontrol edip tekrar dene.', 'Nie udało się wysłać pomysłu. Sprawdź połączenie i spróbuj ponownie.'),
         L('Вернуться в настройки', 'Повернутися в налаштування', 'Back to settings', 'Volver a ajustes', 'Voltar aos ajustes', 'Về cài đặt', 'Kembali ke pengaturan', 'Ayarlara dön', 'Wróć do ustawień'),
       );
     } finally {
@@ -147,7 +147,7 @@ export default function IdeasSubmitScreen() {
             <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: f.body * 1.4, textAlign: 'center', marginTop: 8 }}>
               {L(
                 'Поделись идеей, которая поможет Phraseman стать лучше. Если она откликнется нам и мы решим воплотить её в приложении, в знак благодарности откроем тебе Plus на целый год.',
-                'Поділися ідеєю, яка допоможе зробити Phraseman кращим. Якщо вона відгукнеться нам і ми вирішимо втілити її в застосунку, на знак подяки відкриємо тобі Plus на цілий рік.',
+                'Поділися ідеєю, яка допоможе зробити Phraseman кращим. Якщо вона відгукнеться нам і ми вирішимо втілити її в застосунку, на знак подяки відкриємо тобі Plus на цілий рік.', "Share an idea that could make Phraseman better. If it resonates and we build it, we'll thank you with a whole year of Plus.",
                 'Comparte una idea que ayude a mejorar Phraseman. Si nos inspira y decidimos llevarla a la app, te daremos Plus durante un año como agradecimiento.',
                 'Compartilhe uma ideia que ajude a melhorar o Phraseman. Se ela nos inspirar e decidirmos trazê-la para o app, você ganha Plus por um ano como agradecimento.',
                 'Hãy chia sẻ một ý tưởng giúp Phraseman tốt hơn. Nếu ý tưởng ấy truyền cảm hứng cho chúng tôi và được đưa vào ứng dụng, bạn sẽ nhận Plus một năm như lời cảm ơn.',
@@ -178,7 +178,7 @@ export default function IdeasSubmitScreen() {
             accessibilityLabel={L('Опиши свою идею', 'Опиши свою ідею', 'Describe your idea', 'Describe tu idea', 'Descreva sua ideia', 'Mô tả ý tưởng của bạn', 'Jelaskan idemu', 'Fikrini anlat', 'Opisz swój pomysł')}
             value={idea}
             onChangeText={setIdea}
-            placeholder={L('Что можно сделать лучше? Опиши как получится — мы разберёмся.', 'Що можна зробити краще? Опиши як виходить — ми розберемося.', '¿Qué podemos mejorar? Cuéntanoslo como te salga.', 'O que podemos melhorar? Conte do seu jeito.', 'Chúng tôi có thể cải thiện điều gì? Hãy viết theo cách của bạn.', 'Apa yang bisa kami buat lebih baik? Ceritakan dengan caramu.', 'Neyi daha iyi yapabiliriz? Aklındaki gibi anlat.', 'Co możemy ulepszyć? Opisz to po swojemu.')}
+            placeholder={L('Что можно сделать лучше? Опиши как получится — мы разберёмся.', 'Що можна зробити краще? Опиши як виходить — ми розберемося.', "What could be better? Describe it any way you like — we'll figure it out.", '¿Qué podemos mejorar? Cuéntanoslo como te salga.', 'O que podemos melhorar? Conte do seu jeito.', 'Chúng tôi có thể cải thiện điều gì? Hãy viết theo cách của bạn.', 'Apa yang bisa kami buat lebih baik? Ceritakan dengan caramu.', 'Neyi daha iyi yapabiliriz? Aklındaki gibi anlat.', 'Co możemy ulepszyć? Opisz to po swojemu.')}
             placeholderTextColor={t.textGhost}
             multiline
             maxLength={2000}

@@ -6,7 +6,14 @@ import { arenaPromptSegments, type ArenaTextRole } from '../../modules/arena/are
 import { useTheme } from '../ThemeContext';
 import { useTournamentPalette } from '../ui/v2_theme';
 
-type Props = TextProps & Readonly<{ children: string; role: ArenaTextRole }>;
+// зачем interface+Omit (2026-08-30): пересечение TextProps & {children: string}
+// в проектном контексте схлопывалось в необъектный тип (TS2700) и валило 50
+// ошибок в ArenaQuestion («children expects never»). Явное наследование с
+// вырезанным children разрывает конфликт и не меняет поведение.
+// зачем Omit и 'role' (2026-08-30): RN добавил собственный ARIA-проп `role`
+// с union-литералами; пересечение с нашим ArenaTextRole не имеет общих
+// значений, и TS схлопывал ВЕСЬ Props в never — 50 ошибок в ArenaQuestion.
+type Props = Omit<TextProps, 'children' | 'role'> & Readonly<{ children: string; role: ArenaTextRole }>;
 
 const targetFontFamily = Platform.select({ ios: 'Avenir Next', android: 'sans-serif-medium', default: 'system-ui' });
 const nativeFontFamily = Platform.select({ ios: 'System', android: 'sans-serif', default: 'system-ui' });

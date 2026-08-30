@@ -2,14 +2,14 @@ import type { EpisodeSourcePhrase } from './episode_01_source_v1';
 import { EPISODE_01_SESSION_01_WORD_FIRST_PHRASES } from './episode_01_session_01_phrases_word_first_v1';
 import { EPISODE_01_SESSION_02_WORD_FIRST_PHRASES } from './episode_01_session_02_phrases_word_first_v1';
 import { EPISODE_01_SESSION_03_WORD_FIRST_PHRASES } from './episode_01_session_03_phrases_word_first_v1';
-import { EPISODE_01_SESSION_04_WORD_FIRST_PHRASES } from './episode_01_session_04_phrases_word_first_v1';
+import { EPISODE_01_SESSION_04_READINESS_PHRASES } from './episode_01_session_04_phrases_word_first_v1';
 import { EPISODE_01_SESSION_06_WORD_FIRST_PHRASES } from './episode_01_session_06_phrases_word_first_v1';
 
 const KNOWN = [
   ...EPISODE_01_SESSION_01_WORD_FIRST_PHRASES,
   ...EPISODE_01_SESSION_02_WORD_FIRST_PHRASES,
   ...EPISODE_01_SESSION_03_WORD_FIRST_PHRASES,
-  ...EPISODE_01_SESSION_04_WORD_FIRST_PHRASES,
+  ...EPISODE_01_SESSION_04_READINESS_PHRASES,
   ...EPISODE_01_SESSION_06_WORD_FIRST_PHRASES,
 ] as const;
 

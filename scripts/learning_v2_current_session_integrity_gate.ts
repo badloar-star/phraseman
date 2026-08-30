@@ -158,7 +158,8 @@ export function assertLearningV2NoLetterLevelAssemblyV1(source: SessionSource): 
     const payload = step.modePayload;
     if (payload.family !== "phrase_builder" && payload.family !== "listen_build_dictation") continue;
     const target = payload.family === "phrase_builder" ? payload.targetPhrase : payload.hiddenTargetPhrase;
-    const completeWords = target.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/gu) ?? [];
+    // зачем аннотация (2026-08-30): ?? [] выводил never[] и ломал includes.
+    const completeWords: string[] = target.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/gu) ?? [];
     if (completeWords.length === 0) {
       throw new Error(`builder_target_has_no_complete_words:${source.requiredSessionOrdinal}:${index + 1}`);
     }

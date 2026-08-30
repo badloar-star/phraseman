@@ -105,6 +105,9 @@ export const EPISODE_01_SESSION_03_CONTRACTION_PHRASES: readonly EpisodeSourcePh
   BASES.map((base, index) => {
     const key = KEYS[index]!;
     const details = localizedDetails(base, key);
+    // зачем guard (2026-08-30): ru в типе локалей опционален, но для
+    // авторского источника обязан существовать — падаем с кодом, а не тихо.
+    if (!details.ru) throw new Error(`session_03_details_ru_missing:${key}`);
     return {
       id: `e01-s03-im-${key}`,
       english: `I'm ${key}`,

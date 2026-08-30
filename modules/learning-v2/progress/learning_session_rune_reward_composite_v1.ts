@@ -132,13 +132,18 @@ function publicationEvidence(
     if (typeof input[key] !== "string" || !HASH.test(input[key]) ||
       input[key] === "0".repeat(64)) return fail();
   }
+  // зачем каст (2026-08-30): цикл выше строго проверил каждый ключ как
+  // 64-hex строку — narrow не переживает выход из цикла, тип доносим явно.
+  const verified = input as Readonly<Record<
+    "activeRootFingerprint" | "activeHeadFingerprint" | "packageFingerprint"
+    | "childSetFingerprint" | "sourceFingerprint", string>> & { releaseId: string };
   return Object.freeze({
-    releaseId: input.releaseId,
-    activeRootFingerprint: input.activeRootFingerprint,
-    activeHeadFingerprint: input.activeHeadFingerprint,
-    packageFingerprint: input.packageFingerprint,
-    childSetFingerprint: input.childSetFingerprint,
-    sourceFingerprint: input.sourceFingerprint,
+    releaseId: verified.releaseId,
+    activeRootFingerprint: verified.activeRootFingerprint,
+    activeHeadFingerprint: verified.activeHeadFingerprint,
+    packageFingerprint: verified.packageFingerprint,
+    childSetFingerprint: verified.childSetFingerprint,
+    sourceFingerprint: verified.sourceFingerprint,
   });
 }
 
@@ -186,12 +191,21 @@ export function resolveLearningV2SessionRuneRewardPublicationTokenV1(
     ready.learnerSourceLocale,
     LEARNING_V2_EN_L1_S1_COURSE_SESSION_ID_V1,
   );
-  if (material.introChild.introFingerprint !== canonical.intro.introFingerprint ||
-    material.learnerChild.learnerFingerprint !== canonical.learner.learnerFingerprint ||
+  // зачем (2026-08-30): canonical распарсен с unknown-полями; форма
+  // отпечатков фиксирована контрактом публикации — несовпадение честно
+  // валит fail(), тип доносим явно.
+  const canonicalTyped = canonical as Readonly<{
+    intro: Readonly<{ introFingerprint: string }>;
+    learner: Readonly<{ learnerFingerprint: string }>;
+    evaluatorCapsule: Readonly<{ capsuleSetFingerprint: string }>;
+    auxiliary: Readonly<{ auxiliaryFingerprint: string }>;
+  }>;
+  if (material.introChild.introFingerprint !== canonicalTyped.intro.introFingerprint ||
+    material.learnerChild.learnerFingerprint !== canonicalTyped.learner.learnerFingerprint ||
     material.evaluatorCapsuleChild.capsuleSetFingerprint !==
-      canonical.evaluatorCapsule.capsuleSetFingerprint ||
+      canonicalTyped.evaluatorCapsule.capsuleSetFingerprint ||
     material.auxiliaryChild.auxiliaryFingerprint !==
-      canonical.auxiliary.auxiliaryFingerprint) return fail();
+      canonicalTyped.auxiliary.auxiliaryFingerprint) return fail();
   const evidence = publicationEvidence({
     releaseId: material.releaseId,
     activeRootFingerprint: material.activeRootFingerprint,

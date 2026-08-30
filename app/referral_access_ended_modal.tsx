@@ -27,6 +27,7 @@ interface ReferralAccessEndedModalProps {
   L: (
     ru: string,
     uk: string,
+    en: string,
     es: string,
     ptBr: string,
     vi: string,
@@ -61,6 +62,7 @@ export function ReferralAccessEndedModal({
   const title = L(
     'Доступ можно открыть снова',
     'Доступ можна відкрити знову',
+    'You can open access again',
     'Puedes abrir el acceso de nuevo',
     'Você pode abrir o acesso de novo',
     'Bạn có thể mở lại quyền truy cập',
@@ -73,6 +75,7 @@ export function ReferralAccessEndedModal({
   const bodyKeep = L(
     'Всё, что ты открыл — осталось с тобой.',
     'Все, що ти відкрив — залишилось з тобою.',
+    'Everything you unlocked stays with you.',
     'Todo lo que abriste sigue siendo tuyo.',
     'Tudo o que você abriu continua com você.',
     'Mọi thứ bạn đã mở khoá vẫn là của bạn.',
@@ -85,6 +88,7 @@ export function ReferralAccessEndedModal({
   const bodyInvite = L(
     'Позови ещё друга — и доступ вернётся.',
     'Запроси ще друга — і доступ повернеться.',
+    'Invite one more friend and access will return.',
     'Invita a otro amigo y el acceso regresará.',
     'Convide mais um amigo e o acesso voltará.',
     'Mời thêm một người bạn và quyền truy cập sẽ trở lại.',
@@ -97,6 +101,7 @@ export function ReferralAccessEndedModal({
   const btnInvite = L(
     'Пригласить друга',
     'Запросити друга',
+    'Invite a friend',
     'Invitar a un amigo',
     'Convidar um amigo',
     'Mời một người bạn',
@@ -109,6 +114,7 @@ export function ReferralAccessEndedModal({
   const btnFullAccess = L(
     'Открыть полный доступ',
     'Відкрити повний доступ',
+    'Open full access',
     'Abrir acceso completo',
     'Abrir acesso completo',
     'Mở quyền truy cập đầy đủ',
@@ -120,6 +126,7 @@ export function ReferralAccessEndedModal({
   const closeLabel = L(
     'Закрыть',
     'Закрити',
+    'Close',
     'Cerrar',
     'Fechar',
     'Đóng',

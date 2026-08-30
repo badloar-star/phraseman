@@ -169,12 +169,12 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
               accessibilityLabel={view.tokens[index]}
               onPress={() => !locked && setTokens((old) => old.filter((_, itemIndex) => itemIndex !== tokenIndex))}
             >
-              <ArenaBilingualText role="target">{view.tokens[index]}</ArenaBilingualText>
+              <ArenaBilingualText role="target">{view.tokens[index] ?? ''}</ArenaBilingualText>
             </V2Chip>
           ))}
           {shouldShowArenaBuilderPunctuation(tokens.length, view.displayTerminalPunctuation) ? (
             <ArenaBilingualText accessible={false} role="target" style={styles.builderPunctuation}>
-              {view.displayTerminalPunctuation}
+              {view.displayTerminalPunctuation ?? ''}
             </ArenaBilingualText>
           ) : null}
         </ScrollView>

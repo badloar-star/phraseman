@@ -1007,10 +1007,10 @@ function LearningV2LegacySessionScreen() {
           objective: true,
           content: {
             sourceKind: "learning_v2",
-            sourceId: currentTaskId,
+            sourceId: String(currentTaskId),
             canonicalTarget: correctAnswer,
             sourceMeaning: prompt,
-            lessonId: payload.lessonId,
+            lessonId: String(payload.lessonId),
             tokens: targetTokens,
             distractors: tileTokens.map((tile) => tile.text),
           },

@@ -41,7 +41,9 @@ function HeartSlot({ index, filled, activeColor, emptyColor }: HeartSlotProps) {
   const y = useSharedValue(0);
   const rotation = useSharedValue(0);
   const haloOpacity = useSharedValue(0);
-  const haloScale = useSharedValue(SESSION_ATTEMPTS_MOTION.haloStartScale);
+  // зачем <number> (2026-08-30): as const в MOTION давал литеральный тип
+  // 0.55, и анимация к haloEndScale не типизировалась.
+  const haloScale = useSharedValue<number>(SESSION_ATTEMPTS_MOTION.haloStartScale);
 
   useEffect(() => {
     cancelAnimation(opacity);

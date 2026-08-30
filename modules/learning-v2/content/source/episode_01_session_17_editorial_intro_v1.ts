@@ -2,6 +2,13 @@ import type {
   LocalizedIntroRunsSource,
   LocalizedSource,
 } from "./session_shard_from_source_v1";
+// зачем (2026-08-30): body типизирован Partial по локалям — отсутствие
+// локали обязано падать с кодом (session_17), а не давать undefined в раны.
+function requireEditorialLocaleText(text: string | undefined, locale: string): string {
+  if (!text) throw new Error(`session_17_editorial_locale_missing:${locale}`);
+  return text;
+}
+
 
 type Locale = "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl";
 const LOCALES: readonly Locale[] = ["ru", "uk", "es", "pt-BR", "vi", "id", "tr", "pl"];
@@ -71,6 +78,6 @@ export const EPISODE_01_SESSION_17_EDITORIAL_RUNS_V1: readonly LocalizedIntroRun
   Object.freeze(EPISODE_01_SESSION_17_EDITORIAL_INTRO_V1.map((body, index) =>
     Object.freeze(Object.fromEntries(LOCALES.map((locale) => [
       locale,
-      semanticRuns(body[locale], TARGETS[index]!.correct, TARGETS[index]!.wrong),
-    ])) as LocalizedIntroRunsSource),
+      semanticRuns(requireEditorialLocaleText(body[locale], locale), TARGETS[index]!.correct, TARGETS[index]!.wrong),
+    ])) as unknown as LocalizedIntroRunsSource),
   ));

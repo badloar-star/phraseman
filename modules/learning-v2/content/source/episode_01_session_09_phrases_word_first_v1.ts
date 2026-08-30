@@ -1,7 +1,7 @@
 import type { EpisodeSourcePhrase, EpisodeSourcePhraseLocalizedDetails, EpisodeSourceWord } from './episode_01_source_v1';
 import { EPISODE_01_SESSION_01_WORD_FIRST_PHRASES } from './episode_01_session_01_phrases_word_first_v1';
 import { EPISODE_01_SESSION_03_WORD_FIRST_PHRASES } from './episode_01_session_03_phrases_word_first_v1';
-import { EPISODE_01_SESSION_04_WORD_FIRST_PHRASES } from './episode_01_session_04_phrases_word_first_v1';
+import { EPISODE_01_SESSION_04_READINESS_PHRASES } from './episode_01_session_04_phrases_word_first_v1';
 import { EPISODE_01_SESSION_06_WORD_FIRST_PHRASES } from './episode_01_session_06_phrases_word_first_v1';
 import { EPISODE_01_SESSION_09_VOCABULARY_V1 } from './episode_01_session_09_vocabulary_v1';
 
@@ -120,7 +120,7 @@ const TAIL_MODELS: Readonly<Record<string, EpisodeSourcePhrase>> = Object.freeze
   here: EPISODE_01_SESSION_01_WORD_FIRST_PHRASES[0]!, ready: EPISODE_01_SESSION_01_WORD_FIRST_PHRASES[1]!,
   happy: EPISODE_01_SESSION_03_WORD_FIRST_PHRASES[0]!, sad: EPISODE_01_SESSION_03_WORD_FIRST_PHRASES[1]!,
   tired: EPISODE_01_SESSION_03_WORD_FIRST_PHRASES[2]!, fine: EPISODE_01_SESSION_03_WORD_FIRST_PHRASES[3]!,
-  busy: EPISODE_01_SESSION_04_WORD_FIRST_PHRASES[5]!, teacher: EPISODE_01_SESSION_06_WORD_FIRST_PHRASES[0]!,
+  busy: EPISODE_01_SESSION_04_READINESS_PHRASES[5]!, teacher: EPISODE_01_SESSION_06_WORD_FIRST_PHRASES[0]!,
   artist: EPISODE_01_SESSION_06_WORD_FIRST_PHRASES[2]!,
 });
 

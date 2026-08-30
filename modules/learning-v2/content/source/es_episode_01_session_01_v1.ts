@@ -8,7 +8,7 @@ import {
 import { ES_EPISODE_01_SESSION_01_PHRASES } from './es_episode_01_session_01_phrases_v1';
 import { ES_EPISODE_01_SESSION_01_VOCABULARY_V1 } from './es_episode_01_session_01_vocabulary_v1';
 import { ES_EPISODE_01_SESSION_01_MODE_NATIVE_PRACTICE_V1 } from './es_episode_01_session_01_mode_native_v1';
-import { LESSON1_ES_SESSION_01_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
+import { LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
 
 /**
  * Испанский курс, эпизод 1 «Ser: какой и кто», сессия 1 «Это легко» —
@@ -38,7 +38,7 @@ import { LESSON1_ES_SESSION_01_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_
  * авторит все 17 interactions с испанским family-native payload (свои audio
  * id, свои испанские фонетические/семантические ловушки — НЕ перенос
  * английских), lesson1SessionChoreographyV1 сверяет их против
- * session01ModeNativeStepsV1() через LESSON1_ES_SESSION_01_MODE_NATIVE_PLAN_ID_V1
+ * session01ModeNativeStepsV1() через LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
  * (session_shard_from_source_v1.ts бросает session_source_mode_native_step_mismatch
  * при любом расхождении family/purpose/learningStage/target).
  */
@@ -52,7 +52,7 @@ export const ES_EPISODE_01_SESSION_01_SOURCE: SessionSource = Object.freeze({
   // зачем: без этого choreography молча берёт kind из английской карты по
   // тому же номеру сессии (session_shard_from_source_v1.ts, sessionKindOverride).
   sessionKindOverride: 'words_then_phrases',
-  modeNativePlanId: LESSON1_ES_SESSION_01_MODE_NATIVE_PLAN_ID_V1,
+  modeNativePlanId: LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1,
   modeNativePractice: ES_EPISODE_01_SESSION_01_MODE_NATIVE_PRACTICE_V1,
   title: ES_EPISODE_01_SESSION_01_WORD_FIRST_TITLE,
   summary: ES_EPISODE_01_SESSION_01_WORD_FIRST_SUMMARY,

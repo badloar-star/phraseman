@@ -161,6 +161,6 @@ export const EPISODE_01_SESSION_17_EDITORIAL_COPY_V1: Readonly<Record<string, Lo
 export const EPISODE_01_SESSION_17_EDITORIAL_MEANINGS_V1 = Object.freeze(
   Object.fromEntries(Object.entries(EPISODE_01_SESSION_17_EDITORIAL_COPY_V1).map(([target, details]) => [
     target,
-    Object.fromEntries(Object.entries(details).map(([locale, detail]) => [locale, detail.meaning])) as LocalizedSource,
+    Object.fromEntries(Object.entries(details).map(([locale, detail]) => [locale, detail.meaning])) as unknown as LocalizedSource,
   ])),
 );

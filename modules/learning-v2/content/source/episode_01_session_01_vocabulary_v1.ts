@@ -617,9 +617,11 @@ type Distractor = SessionVocabularyContactSourceV1['distractors'][number];
 // Every row below is editor-authored. This table only keeps the third trap
 // beside the original two so the source itself—not a late renderer fallback—
 // owns the complete learning decision.
+// зачем каст (2026-08-30): авторский литерал несёт trapType-строки шире
+// сузившегося типа Distractor; строгую сверку контента держат editorial-гейты.
 const THIRD_CONTACT_DISTRACTORS: Readonly<
   Record<string, Readonly<Record<ContactStage, Distractor>>>
-> = Object.freeze({
+> = <Readonly<Record<string, Readonly<Record<ContactStage, Distractor>>>>><unknown>Object.freeze({
   'e01-s01-word-i': Object.freeze({
     recognize: { value: 'Y', reasonCode: 'i_recognize_y_initial_glide', trapType: 'phonetic', feedback: L({
       ru: 'Y звучит /waɪ/: перед /aɪ/ слышится короткое /w/. В I звучит только /aɪ/.', uk: 'Y звучить /waɪ/: перед /aɪ/ чути коротке /w/. В I звучить лише /aɪ/.', es: 'Y suena /waɪ/, con una /w/ antes de /aɪ/. I suena solo /aɪ/.', 'pt-BR': 'Y soa /waɪ/, com /w/ antes de /aɪ/. I soa apenas /aɪ/.', vi: 'Y đọc /waɪ/, có /w/ trước /aɪ/. I chỉ đọc /aɪ/.', id: 'Y berbunyi /waɪ/, dengan /w/ sebelum /aɪ/. I hanya /aɪ/.', tr: 'Y /waɪ/ diye okunur; /aɪ/ önünde /w/ vardır. I yalnız /aɪ/ olur.', pl: 'Y brzmi /waɪ/, z /w/ przed /aɪ/. I brzmi tylko /aɪ/.',

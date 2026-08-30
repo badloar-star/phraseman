@@ -129,7 +129,9 @@ export function MaxCallLiveCaptionView({
             provenance="external"
             integrityText={rail}
             maxFontSizeMultiplier={2}
-            numberOfLines={AI_LANE_LINES}
+            // зачем без numberOfLines (2026-08-30): FlowText-семейство
+            // запрещает обрезку — она рвёт контроль целостности внешнего
+            // текста; высоту полосы держит вёрстка контейнера.
             style={{
               color: t.textPrimary,
               fontSize: captionFontSize,

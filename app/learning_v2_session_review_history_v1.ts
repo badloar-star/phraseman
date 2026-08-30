@@ -73,6 +73,9 @@ export function reduceLearningV2SessionReviewHistoryV1(
   }
 
   if (state.answered[state.visibleIndex]) return transition(state);
+  // зачем guard (2026-08-30): union событий дискриминирован по kind — сюда
+  // приходит только "answer", но типу это нужно сказать явно.
+  if (event.kind !== "answer") return transition(state);
   const answered = Object.freeze({
     ...state.answered,
     [state.visibleIndex]: event.outcome,

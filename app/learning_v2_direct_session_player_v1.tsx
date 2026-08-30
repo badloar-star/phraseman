@@ -1393,12 +1393,17 @@ export default function LearningV2DirectSessionPlayerV1() {
           learnerAttempts: attempts,
           hintUsed,
         });
-        if (runeAward > 0) {
+        // зачем !== 0 (2026-08-30): > 0 не сужает union 0|1|2|3.
+        if (runeAward !== 0) {
           const claimedRuneAward = runeAwardLedgerRef.current.claim(
             practice.interactionId,
-            runeAward,
+            // зачем каст (2026-08-30): значение не-const, narrowing из
+            // if !== 0 не доносится до аргумента.
+            runeAward as 1 | 2 | 3,
           );
-          if (claimedRuneAward > 0) awardSessionRunes(claimedRuneAward);
+          // зачем каст (2026-08-30): claim возвращает вложенные 1|2|3 или 0;
+          // гвард > 0 исключает 0, тип доносим явно.
+          if (claimedRuneAward > 0) awardSessionRunes(claimedRuneAward as 1 | 2 | 3);
         }
         if (!isAuthoringPreview && lessonOrdinal && sessionOrdinal)
           trackLearningV2Telemetry(
@@ -1857,7 +1862,8 @@ export default function LearningV2DirectSessionPlayerV1() {
   if (finaleStars !== null) {
     // Празднование поверх пустого экрана сессии: прогресс и звёзды уже
     // записаны, сцена только показывает результат и уводит на карту.
-    const quality = finaleStars >= 1 ? copy.quality[finaleStars] : null;
+    // зачем === 0 (2026-08-30): >= 1 не сужает литеральный union 0|1|2|3.
+    const quality = finaleStars === 0 ? null : copy.quality[finaleStars as 1 | 2 | 3];
     return (
       <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
         <LearningV2SessionFinale

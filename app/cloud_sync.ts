@@ -107,6 +107,7 @@ import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
 import {
   CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
 } from '../constants/customization_storage_keys';
+import { DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES } from '../constants/daily_journey_gift_storage_keys';
 import {
   clearCustomizationAccountLocalState,
   customizationAccountLocalKeysFrom,
@@ -710,10 +711,7 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'customization_selection_outbox_v1:',
   'customization_selection_quarantine_v1:',
   // Daily Journey gift inbox WAL, immutable roots, projection and future claims.
-  'daily_journey_gift_occurrence_v1:',
-  'daily_journey_gift_prepared_v1:',
-  'daily_journey_gift_projection_v1:',
-  'daily_journey_gift_claim_receipt_v1:',
+  ...DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES,
   'external_economy_result_v1:',
   'external_economy_event_applied_v1:',
 ] as const;

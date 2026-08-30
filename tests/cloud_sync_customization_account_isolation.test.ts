@@ -211,6 +211,22 @@ it('removes purchase recovery and spend ledger during account switch wipe', asyn
   expect(getAppSnapshot().customization).toBeUndefined();
 });
 
+it('removes every daily journey owner journal surface and preserves device settings', async () => {
+  const accountKeys = [
+    'daily_journey_gift_occurrence_v1:owner-a:gift-a',
+    'daily_journey_gift_prepared_v1:owner-a',
+    'daily_journey_gift_projection_v1:owner-a',
+    'daily_journey_gift_claim_receipt_v1:owner-a:gift-a',
+  ];
+  accountKeys.forEach((key) => { store[key] = 'private-owner-pixels'; });
+  store.app_theme = 'dark';
+
+  await wipeLocalAccountData();
+
+  accountKeys.forEach((key) => expect(store[key]).toBeUndefined());
+  expect(store.app_theme).toBe('dark');
+});
+
 it('clears the in-memory personal-plan state when the current account is wiped', async () => {
   await savePersonalPlanState(createDefaultPersonalPlanState({
     planId: 'gavan',

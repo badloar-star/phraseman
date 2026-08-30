@@ -2,6 +2,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 
 import {
+  DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES,
+  DAILY_JOURNEY_GIFT_CLAIM_RECEIPT_PREFIX,
+  DAILY_JOURNEY_GIFT_OCCURRENCE_PREFIX,
+  DAILY_JOURNEY_GIFT_PREPARED_PREFIX,
+  DAILY_JOURNEY_GIFT_PROJECTION_PREFIX,
+} from '../constants/daily_journey_gift_storage_keys';
+
+import {
   captureAccountGeneration,
   isCapturedAccountGenerationToken,
   isCurrentAccountGeneration,
@@ -11,10 +19,10 @@ import {
 import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
 
-const OCCURRENCE_PREFIX = 'daily_journey_gift_occurrence_v1:';
-const PREPARED_PREFIX = 'daily_journey_gift_prepared_v1:';
-const PROJECTION_PREFIX = 'daily_journey_gift_projection_v1:';
-const CLAIM_RECEIPT_PREFIX = 'daily_journey_gift_claim_receipt_v1:';
+const OCCURRENCE_PREFIX = DAILY_JOURNEY_GIFT_OCCURRENCE_PREFIX;
+const PREPARED_PREFIX = DAILY_JOURNEY_GIFT_PREPARED_PREFIX;
+const PROJECTION_PREFIX = DAILY_JOURNEY_GIFT_PROJECTION_PREFIX;
+const CLAIM_RECEIPT_PREFIX = DAILY_JOURNEY_GIFT_CLAIM_RECEIPT_PREFIX;
 const OPERATION_ID_RE = /^[A-Za-z0-9][A-Za-z0-9_.:-]{7,159}$/;
 const FINGERPRINT_RE = /^[a-f0-9]{64}$/;
 const MAX_REWARD_AMOUNT = 1_000_000;
@@ -73,11 +81,13 @@ type DailyJourneyGiftPreparedV1 = Readonly<{
   preparedAtMs: number;
 }>;
 
-type DailyJourneyGiftClaimReceiptV1 = Readonly<{
+export type DailyJourneyGiftClaimReceiptV1 = Readonly<{
   schemaVersion: 'daily-journey-gift-claim-receipt.v1';
+  claimOperationId: string;
   operationId: string;
   ownerStableId: string;
   occurrenceFingerprint: string;
+  reward: DailyJourneyGiftRewardV1;
   claimedAtMs: number;
 }>;
 
@@ -109,6 +119,17 @@ function claimReceiptKey(ownerStableId: string, operationId: string): string {
   return `${CLAIM_RECEIPT_PREFIX}${ownerPart(ownerStableId)}:${operationPart(operationId)}`;
 }
 
+export function dailyJourneyGiftClaimOperationId(operationId: string): string {
+  return `daily-journey-gift-claim:${operationId}`;
+}
+
+export function dailyJourneyGiftClaimReceiptStorageKey(
+  ownerStableId: string,
+  operationId: string,
+): string {
+  return claimReceiptKey(ownerStableId, operationId);
+}
+
 function ownKeys(value: object): string[] {
   return Object.keys(value).sort();
 }
@@ -130,12 +151,19 @@ function normalizeInput(input: DailyJourneyGiftInput): DailyJourneyGiftInput {
     throw new Error('daily_journey_occurrence_invalid');
   }
   assertExactKeys(input.reward, ['kind', 'amount']);
-  const operationId = String(input.operationId ?? '');
+  if (typeof input.operationId !== 'string'
+    || typeof input.cycle !== 'number'
+    || typeof input.day !== 'number'
+    || typeof input.reward.kind !== 'string'
+    || typeof input.reward.amount !== 'number') {
+    throw new Error('daily_journey_occurrence_invalid');
+  }
+  const operationId = input.operationId;
   const source = input.source;
-  const cycle = Number(input.cycle);
-  const day = Number(input.day);
+  const cycle = input.cycle;
+  const day = input.day;
   const kind = input.reward.kind;
-  const amount = Number(input.reward.amount);
+  const amount = input.reward.amount;
   const validKind = kind === 'pearls'
     || kind === 'runes'
     || kind === 'spins'
@@ -160,7 +188,12 @@ function normalizeInput(input: DailyJourneyGiftInput): DailyJourneyGiftInput {
   });
 }
 
-function canonicalPayload(ownerStableId: string, input: DailyJourneyGiftInput): string {
+function canonicalPayload(
+  ownerStableId: string,
+  input: DailyJourneyGiftInput,
+  revision: number,
+  createdAtMs: number,
+): string {
   return JSON.stringify({
     schemaVersion: 'daily-journey-gift-occurrence.v1',
     operationId: input.operationId,
@@ -169,13 +202,20 @@ function canonicalPayload(ownerStableId: string, input: DailyJourneyGiftInput): 
     cycle: input.cycle,
     day: input.day,
     reward: { kind: input.reward.kind, amount: input.reward.amount },
+    revision,
+    createdAtMs,
   });
 }
 
-async function payloadFingerprint(ownerStableId: string, input: DailyJourneyGiftInput): Promise<string> {
+async function payloadFingerprint(
+  ownerStableId: string,
+  input: DailyJourneyGiftInput,
+  revision: number,
+  createdAtMs: number,
+): Promise<string> {
   return Crypto.digestStringAsync(
     Crypto.CryptoDigestAlgorithm.SHA256,
-    canonicalPayload(ownerStableId, input),
+    canonicalPayload(ownerStableId, input, revision, createdAtMs),
   );
 }
 
@@ -199,6 +239,28 @@ function assertCurrentToken(token: AccountGenerationToken): string {
     throw new Error('daily_journey_account_stale');
   }
   return ownerStableId;
+}
+
+async function accountAwait<T>(
+  token: AccountGenerationToken,
+  operation: () => Promise<T>,
+): Promise<T> {
+  assertCurrentToken(token);
+  const value = await operation();
+  assertCurrentToken(token);
+  return value;
+}
+
+function sameInput(
+  occurrence: DailyJourneyGiftOccurrenceV1,
+  input: DailyJourneyGiftInput,
+): boolean {
+  return occurrence.operationId === input.operationId
+    && occurrence.source === input.source
+    && occurrence.cycle === input.cycle
+    && occurrence.day === input.day
+    && occurrence.reward.kind === input.reward.kind
+    && occurrence.reward.amount === input.reward.amount;
 }
 
 function parseOccurrenceShape(raw: string | null, ownerStableId: string): DailyJourneyGiftOccurrenceV1 | null {
@@ -225,10 +287,16 @@ function parseOccurrenceShape(raw: string | null, ownerStableId: string): DailyJ
 async function parseVerifiedOccurrence(
   raw: string | null,
   ownerStableId: string,
+  token: AccountGenerationToken,
 ): Promise<DailyJourneyGiftOccurrenceV1 | null> {
   const occurrence = parseOccurrenceShape(raw, ownerStableId);
   if (!occurrence) return null;
-  const expected = await payloadFingerprint(ownerStableId, occurrenceInput(occurrence));
+  const expected = await accountAwait(token, () => payloadFingerprint(
+    ownerStableId,
+    occurrenceInput(occurrence),
+    occurrence.revision,
+    occurrence.createdAtMs,
+  ));
   return expected === occurrence.payloadFingerprint ? occurrence : null;
 }
 
@@ -272,14 +340,18 @@ function parseProjectionState(
   }
 }
 
-async function readOccurrences(ownerStableId: string): Promise<DailyJourneyGiftOccurrenceV1[]> {
+async function readOccurrences(
+  ownerStableId: string,
+  token: AccountGenerationToken,
+): Promise<DailyJourneyGiftOccurrenceV1[]> {
   const prefix = occurrenceOwnerPrefix(ownerStableId);
-  const keys = (await AsyncStorage.getAllKeys()).filter((key) => key.startsWith(prefix)).sort();
+  const allKeys = await accountAwait(token, () => AsyncStorage.getAllKeys());
+  const keys = allKeys.filter((key) => key.startsWith(prefix)).sort();
   if (keys.length === 0) return [];
-  const rows = await AsyncStorage.multiGet(keys);
+  const rows = await accountAwait(token, () => AsyncStorage.multiGet(keys));
   const occurrences: DailyJourneyGiftOccurrenceV1[] = [];
   for (const [key, raw] of rows) {
-    const occurrence = await parseVerifiedOccurrence(raw, ownerStableId);
+    const occurrence = await accountAwait(token, () => parseVerifiedOccurrence(raw, ownerStableId, token));
     if (!occurrence || key !== occurrenceKey(ownerStableId, occurrence.operationId)) {
       throw new Error('daily_journey_occurrence_corrupt');
     }
@@ -288,7 +360,10 @@ async function readOccurrences(ownerStableId: string): Promise<DailyJourneyGiftO
   occurrences.sort((left, right) => left.revision - right.revision);
   const revisions = new Set<number>();
   const operationIds = new Set<string>();
-  for (const occurrence of occurrences) {
+  for (const [index, occurrence] of occurrences.entries()) {
+    if (occurrence.revision !== index + 1) {
+      throw new Error('daily_journey_occurrence_revision_gap');
+    }
     if (revisions.has(occurrence.revision) || operationIds.has(occurrence.operationId)) {
       throw new Error('daily_journey_occurrence_corrupt');
     }
@@ -298,55 +373,103 @@ async function readOccurrences(ownerStableId: string): Promise<DailyJourneyGiftO
   return occurrences;
 }
 
+type ParsedClaimReceipt =
+  | Readonly<{ status: 'absent' }>
+  | Readonly<{ status: 'valid'; receipt: DailyJourneyGiftClaimReceiptV1 }>
+  | Readonly<{ status: 'corrupt' }>;
+
 function parseClaimReceipt(
   raw: string | null,
   occurrence: DailyJourneyGiftOccurrenceV1,
-): DailyJourneyGiftClaimReceiptV1 | null {
-  if (!raw) return null;
+): ParsedClaimReceipt {
+  if (raw === null) return Object.freeze({ status: 'absent' });
   try {
     const value = JSON.parse(raw) as DailyJourneyGiftClaimReceiptV1;
-    if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+    if (!value || typeof value !== 'object' || Array.isArray(value)) {
+      return Object.freeze({ status: 'corrupt' });
+    }
     assertExactKeys(value, [
-      'schemaVersion', 'operationId', 'ownerStableId', 'occurrenceFingerprint', 'claimedAtMs',
+      'schemaVersion', 'claimOperationId', 'operationId', 'ownerStableId',
+      'occurrenceFingerprint', 'reward', 'claimedAtMs',
     ]);
     if (value.schemaVersion !== 'daily-journey-gift-claim-receipt.v1'
+      || value.claimOperationId !== dailyJourneyGiftClaimOperationId(occurrence.operationId)
       || value.ownerStableId !== occurrence.ownerStableId
       || value.operationId !== occurrence.operationId
       || value.occurrenceFingerprint !== occurrence.payloadFingerprint
-      || !Number.isSafeInteger(value.claimedAtMs) || value.claimedAtMs < occurrence.createdAtMs) return null;
-    return Object.freeze(value);
+      || !value.reward || typeof value.reward !== 'object' || Array.isArray(value.reward)
+      || ownKeys(value.reward).join('\u0000') !== ['amount', 'kind'].join('\u0000')
+      || value.reward.kind !== occurrence.reward.kind
+      || value.reward.amount !== occurrence.reward.amount
+      || !Number.isSafeInteger(value.claimedAtMs) || value.claimedAtMs < occurrence.createdAtMs) {
+      return Object.freeze({ status: 'corrupt' });
+    }
+    return Object.freeze({ status: 'valid', receipt: Object.freeze(value) });
   } catch {
-    return null;
+    return Object.freeze({ status: 'corrupt' });
   }
 }
 
-async function isClaimed(occurrence: DailyJourneyGiftOccurrenceV1): Promise<boolean> {
-  const raw = await AsyncStorage.getItem(claimReceiptKey(occurrence.ownerStableId, occurrence.operationId));
-  return parseClaimReceipt(raw, occurrence) !== null;
+async function isClaimed(
+  occurrence: DailyJourneyGiftOccurrenceV1,
+  token: AccountGenerationToken,
+): Promise<boolean> {
+  const raw = await accountAwait(token, () => AsyncStorage.getItem(
+    claimReceiptKey(occurrence.ownerStableId, occurrence.operationId),
+  ));
+  const parsed = parseClaimReceipt(raw, occurrence);
+  if (parsed.status === 'corrupt') throw new Error('daily_journey_claim_receipt_corrupt');
+  return parsed.status === 'valid';
 }
 
 async function parsePrepared(
   raw: string | null,
   ownerStableId: string,
+  token: AccountGenerationToken,
 ): Promise<DailyJourneyGiftPreparedV1 | null> {
   if (!raw) return null;
   try {
     const value = JSON.parse(raw) as DailyJourneyGiftPreparedV1;
     if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
     assertExactKeys(value, ['schemaVersion', 'ownerStableId', 'occurrence', 'preparedAtMs']);
-    const occurrence = await parseVerifiedOccurrence(JSON.stringify(value.occurrence), ownerStableId);
+    const occurrence = await accountAwait(token, () => parseVerifiedOccurrence(
+      JSON.stringify(value.occurrence),
+      ownerStableId,
+      token,
+    ));
     if (value.schemaVersion !== 'daily-journey-gift-prepared.v1'
       || value.ownerStableId !== ownerStableId
       || !occurrence
       || !Number.isSafeInteger(value.preparedAtMs) || value.preparedAtMs < 0) return null;
     return Object.freeze({ ...value, occurrence });
-  } catch {
+  } catch (error) {
+    if (error instanceof Error && error.message === 'daily_journey_account_stale') throw error;
     return null;
   }
 }
 
-async function readProjectionState(ownerStableId: string): Promise<DailyJourneyGiftProjectionStateV1> {
-  return parseProjectionState(await AsyncStorage.getItem(projectionKey(ownerStableId)), ownerStableId);
+async function readProjectionState(
+  ownerStableId: string,
+  token: AccountGenerationToken,
+): Promise<DailyJourneyGiftProjectionStateV1> {
+  const raw = await accountAwait(token, () => AsyncStorage.getItem(projectionKey(ownerStableId)));
+  return parseProjectionState(raw, ownerStableId);
+}
+
+async function readValidatedJournal(
+  ownerStableId: string,
+  token: AccountGenerationToken,
+): Promise<Readonly<{
+  occurrences: readonly DailyJourneyGiftOccurrenceV1[];
+  state: DailyJourneyGiftProjectionStateV1;
+  headRevision: number;
+}>> {
+  const occurrences = await accountAwait(token, () => readOccurrences(ownerStableId, token));
+  const state = await accountAwait(token, () => readProjectionState(ownerStableId, token));
+  const headRevision = occurrences.length === 0 ? 0 : occurrences[occurrences.length - 1].revision;
+  if (state.latestRevision > headRevision) throw new Error('daily_journey_projection_ahead');
+  if (state.latestRevision < headRevision) throw new Error('daily_journey_projection_behind');
+  return Object.freeze({ occurrences, state, headRevision });
 }
 
 async function finalizePrepared(
@@ -356,44 +479,52 @@ async function finalizePrepared(
   const ownerStableId = assertCurrentToken(token);
   if (prepared.ownerStableId !== ownerStableId) throw new Error('daily_journey_account_stale');
   const key = occurrenceKey(ownerStableId, prepared.occurrence.operationId);
-  const existingRaw = await AsyncStorage.getItem(key);
-  assertCurrentToken(token);
+  const existingRaw = await accountAwait(token, () => AsyncStorage.getItem(key));
+  let existing: DailyJourneyGiftOccurrenceV1 | null = null;
   if (existingRaw !== null) {
-    const existing = await parseVerifiedOccurrence(existingRaw, ownerStableId);
+    existing = await accountAwait(token, () => parseVerifiedOccurrence(existingRaw, ownerStableId, token));
     if (!existing || JSON.stringify(existing) !== JSON.stringify(prepared.occurrence)) {
       throw new Error('daily_journey_occurrence_conflict');
     }
   }
-  const occurrences = await readOccurrences(ownerStableId);
-  assertCurrentToken(token);
-  const sameRevision = occurrences.find((item) => item.revision === prepared.occurrence.revision);
-  if (sameRevision && sameRevision.operationId !== prepared.occurrence.operationId) {
-    throw new Error('daily_journey_occurrence_conflict');
+  const occurrences = await accountAwait(token, () => readOccurrences(ownerStableId, token));
+  const state = await accountAwait(token, () => readProjectionState(ownerStableId, token));
+  const headRevision = occurrences.length === 0 ? 0 : occurrences[occurrences.length - 1].revision;
+  if (state.latestRevision > headRevision) throw new Error('daily_journey_projection_ahead');
+  if (existing) {
+    if (headRevision !== prepared.occurrence.revision
+      || (state.latestRevision !== headRevision && state.latestRevision !== headRevision - 1)) {
+      throw new Error('daily_journey_prepared_revision_conflict');
+    }
+  } else if (prepared.occurrence.revision !== headRevision + 1) {
+    throw new Error('daily_journey_prepared_revision_conflict');
+  } else if (state.latestRevision !== headRevision) {
+    throw new Error('daily_journey_projection_behind');
   }
-  const state = await readProjectionState(ownerStableId);
-  assertCurrentToken(token);
-  const latestRevision = Math.max(
-    state.latestRevision,
-    prepared.occurrence.revision,
-    ...occurrences.map((item) => item.revision),
-  );
+  const latestRevision = prepared.occurrence.revision;
   const nextState: DailyJourneyGiftProjectionStateV1 = {
     ...state,
     latestRevision,
   };
-  await AsyncStorage.multiSet([
+  await accountAwait(token, () => AsyncStorage.multiSet([
     [key, JSON.stringify(prepared.occurrence)],
     [projectionKey(ownerStableId), JSON.stringify(nextState)],
-  ]);
-  assertCurrentToken(token);
-  const verifiedRaw = await AsyncStorage.getItem(key);
-  assertCurrentToken(token);
-  const verified = await parseVerifiedOccurrence(verifiedRaw, ownerStableId);
+  ]));
+  const verifiedRaw = await accountAwait(token, () => AsyncStorage.getItem(key));
+  const verified = await accountAwait(token, () => parseVerifiedOccurrence(
+    verifiedRaw,
+    ownerStableId,
+    token,
+  ));
   if (!verified || JSON.stringify(verified) !== JSON.stringify(prepared.occurrence)) {
     throw new Error('daily_journey_occurrence_write_unverified');
   }
-  await AsyncStorage.removeItem(preparedKey(ownerStableId));
-  assertCurrentToken(token);
+  const durable = await accountAwait(token, () => readValidatedJournal(ownerStableId, token));
+  if (durable.headRevision !== prepared.occurrence.revision
+    || durable.occurrences[durable.occurrences.length - 1]?.operationId !== prepared.occurrence.operationId) {
+    throw new Error('daily_journey_occurrence_write_unverified');
+  }
+  await accountAwait(token, () => AsyncStorage.removeItem(preparedKey(ownerStableId)));
   return verified;
 }
 
@@ -401,12 +532,19 @@ async function recoverPrepared(
   ownerStableId: string,
   token: AccountGenerationToken,
 ): Promise<DailyJourneyGiftOccurrenceV1 | null> {
-  const raw = await AsyncStorage.getItem(preparedKey(ownerStableId));
-  assertCurrentToken(token);
+  const raw = await accountAwait(token, () => AsyncStorage.getItem(preparedKey(ownerStableId)));
   if (raw === null) return null;
-  const prepared = await parsePrepared(raw, ownerStableId);
+  const prepared = await accountAwait(token, () => parsePrepared(raw, ownerStableId, token));
   if (!prepared) throw new Error('daily_journey_prepared_corrupt');
-  return finalizePrepared(prepared, token);
+  return accountAwait(token, () => finalizePrepared(prepared, token));
+}
+
+function emitDailyJourneyGiftsChangedBestEffort(): void {
+  try {
+    emitAppEvent('daily_journey_gifts_changed');
+  } catch {
+    // A durable journal commit remains authoritative even if a UI listener fails.
+  }
 }
 
 export async function commitDailyJourneyGift(
@@ -418,75 +556,82 @@ export async function commitDailyJourneyGift(
 }> {
   const input = normalizeInput(rawInput);
   const ownerStableId = assertCurrentToken(token);
-  const fingerprint = await payloadFingerprint(ownerStableId, input);
-  assertCurrentToken(token);
   let recoveredDurableChange = false;
-  const result = await withAccountTransitionLock(async () => withStorageLock(async () => {
-    assertCurrentToken(token);
-    const pendingRaw = await AsyncStorage.getItem(preparedKey(ownerStableId));
-    assertCurrentToken(token);
-    if (pendingRaw !== null) {
-      const pending = await parsePrepared(pendingRaw, ownerStableId);
-      if (!pending) throw new Error('daily_journey_prepared_corrupt');
-      if (pending.occurrence.operationId === input.operationId
-        && pending.occurrence.payloadFingerprint !== fingerprint) {
-        throw new Error('daily_journey_occurrence_conflict');
+  let requestedDurableChange = false;
+  try {
+    return await accountAwait(token, () => withAccountTransitionLock(async () => withStorageLock(async () => {
+      assertCurrentToken(token);
+      const pendingRaw = await accountAwait(token, () => AsyncStorage.getItem(preparedKey(ownerStableId)));
+      if (pendingRaw !== null) {
+        const pending = await accountAwait(token, () => parsePrepared(pendingRaw, ownerStableId, token));
+        if (!pending) throw new Error('daily_journey_prepared_corrupt');
+        if (pending.occurrence.operationId === input.operationId && !sameInput(pending.occurrence, input)) {
+          throw new Error('daily_journey_occurrence_conflict');
+        }
+        const recovered = await accountAwait(token, () => finalizePrepared(pending, token));
+        recoveredDurableChange = true;
+        if (recovered.operationId === input.operationId) {
+          return { status: 'committed' as const, occurrence: recovered };
+        }
       }
-      const recovered = await finalizePrepared(pending, token);
-      recoveredDurableChange = true;
-      if (recovered.operationId === input.operationId) {
-        return { status: 'committed' as const, occurrence: recovered };
-      }
-    }
 
-    const key = occurrenceKey(ownerStableId, input.operationId);
-    const existingRaw = await AsyncStorage.getItem(key);
-    assertCurrentToken(token);
-    if (existingRaw !== null) {
-      const existing = await parseVerifiedOccurrence(existingRaw, ownerStableId);
-      if (!existing || existing.payloadFingerprint !== fingerprint) {
-        throw new Error('daily_journey_occurrence_conflict');
+      const durable = await accountAwait(token, () => readValidatedJournal(ownerStableId, token));
+      const existing = durable.occurrences.find((item) => item.operationId === input.operationId);
+      if (existing) {
+        if (!sameInput(existing, input)) throw new Error('daily_journey_occurrence_conflict');
+        return { status: 'already_committed' as const, occurrence: existing };
       }
-      return { status: 'already_committed' as const, occurrence: existing };
-    }
 
-    const occurrences = await readOccurrences(ownerStableId);
-    assertCurrentToken(token);
-    const latestRevision = occurrences.reduce((latest, item) => Math.max(latest, item.revision), 0);
-    const occurrence: DailyJourneyGiftOccurrenceV1 = Object.freeze({
-      schemaVersion: 'daily-journey-gift-occurrence.v1',
-      operationId: input.operationId,
-      ownerStableId,
-      source: input.source,
-      cycle: input.cycle,
-      day: input.day,
-      reward: input.reward,
-      revision: latestRevision + 1,
-      createdAtMs: Date.now(),
-      payloadFingerprint: fingerprint,
-    });
-    const prepared: DailyJourneyGiftPreparedV1 = Object.freeze({
-      schemaVersion: 'daily-journey-gift-prepared.v1',
-      ownerStableId,
-      occurrence,
-      preparedAtMs: Date.now(),
-    });
-    await AsyncStorage.setItem(preparedKey(ownerStableId), JSON.stringify(prepared));
-    assertCurrentToken(token);
-    const durablePrepared = await parsePrepared(
-      await AsyncStorage.getItem(preparedKey(ownerStableId)),
-      ownerStableId,
-    );
-    assertCurrentToken(token);
-    if (!durablePrepared || JSON.stringify(durablePrepared) !== JSON.stringify(prepared)) {
-      throw new Error('daily_journey_prepared_write_unverified');
+      const createdAtMs = Date.now();
+      const revision = durable.headRevision + 1;
+      const fingerprint = await accountAwait(token, () => payloadFingerprint(
+        ownerStableId,
+        input,
+        revision,
+        createdAtMs,
+      ));
+      const occurrence: DailyJourneyGiftOccurrenceV1 = Object.freeze({
+        schemaVersion: 'daily-journey-gift-occurrence.v1',
+        operationId: input.operationId,
+        ownerStableId,
+        source: input.source,
+        cycle: input.cycle,
+        day: input.day,
+        reward: input.reward,
+        revision,
+        createdAtMs,
+        payloadFingerprint: fingerprint,
+      });
+      const prepared: DailyJourneyGiftPreparedV1 = Object.freeze({
+        schemaVersion: 'daily-journey-gift-prepared.v1',
+        ownerStableId,
+        occurrence,
+        preparedAtMs: Date.now(),
+      });
+      await accountAwait(token, () => AsyncStorage.setItem(
+        preparedKey(ownerStableId),
+        JSON.stringify(prepared),
+      ));
+      const durablePreparedRaw = await accountAwait(
+        token,
+        () => AsyncStorage.getItem(preparedKey(ownerStableId)),
+      );
+      const durablePrepared = await accountAwait(
+        token,
+        () => parsePrepared(durablePreparedRaw, ownerStableId, token),
+      );
+      if (!durablePrepared || JSON.stringify(durablePrepared) !== JSON.stringify(prepared)) {
+        throw new Error('daily_journey_prepared_write_unverified');
+      }
+      const committed = await accountAwait(token, () => finalizePrepared(prepared, token));
+      requestedDurableChange = true;
+      return { status: 'committed' as const, occurrence: committed };
+    })));
+  } finally {
+    if (recoveredDurableChange || requestedDurableChange) {
+      emitDailyJourneyGiftsChangedBestEffort();
     }
-    return { status: 'committed' as const, occurrence: await finalizePrepared(prepared, token) };
-  }));
-  if (recoveredDurableChange || result.status === 'committed') {
-    emitAppEvent('daily_journey_gifts_changed');
   }
-  return result;
 }
 
 export async function readDailyJourneyGiftProjection(
@@ -500,44 +645,44 @@ export async function readDailyJourneyGiftProjection(
 }> {
   const ownerStableId = assertCurrentToken(token);
   let recovered = false;
-  const projection = await withAccountTransitionLock(async () => withStorageLock(async () => {
-    assertCurrentToken(token);
-    recovered = (await recoverPrepared(ownerStableId, token)) !== null;
-    const occurrences = await readOccurrences(ownerStableId);
-    assertCurrentToken(token);
-    const state = await readProjectionState(ownerStableId);
-    assertCurrentToken(token);
-    const latestRevision = occurrences.reduce((latest, item) => Math.max(latest, item.revision), 0);
-    if (state.seenRevision > latestRevision) throw new Error('daily_journey_projection_corrupt');
-    const pending: DailyJourneyGiftPendingItem[] = [];
-    for (const occurrence of occurrences) {
-      if (!await isClaimed(occurrence)) pending.push(Object.freeze({ ...occurrence, claimState: 'pending' }));
-    }
-    assertCurrentToken(token);
-    const displayedRevisions = latestRevision > 0
-      ? [...new Set([...state.displayedRevisions, latestRevision])]
-        .sort((a, b) => a - b)
-        .slice(-MAX_DISPLAYED_REVISIONS)
-      : state.displayedRevisions;
-    const nextState: DailyJourneyGiftProjectionStateV1 = {
-      ...state,
-      latestRevision,
-      displayedRevisions,
-    };
-    if (JSON.stringify(nextState) !== JSON.stringify(state)) {
-      await AsyncStorage.setItem(projectionKey(ownerStableId), JSON.stringify(nextState));
+  try {
+    return await accountAwait(token, () => withAccountTransitionLock(async () => withStorageLock(async () => {
       assertCurrentToken(token);
-    }
-    return {
-      pending: Object.freeze(pending),
-      pendingCount: pending.length,
-      unreadCount: pending.filter((item) => item.revision > state.seenRevision).length,
-      latestRevision,
-      seenRevision: state.seenRevision,
-    };
-  }));
-  if (recovered) emitAppEvent('daily_journey_gifts_changed');
-  return projection;
+      recovered = (await accountAwait(token, () => recoverPrepared(ownerStableId, token))) !== null;
+      const durable = await accountAwait(token, () => readValidatedJournal(ownerStableId, token));
+      const pending: DailyJourneyGiftPendingItem[] = [];
+      for (const occurrence of durable.occurrences) {
+        const claimed = await accountAwait(token, () => isClaimed(occurrence, token));
+        if (!claimed) pending.push(Object.freeze({ ...occurrence, claimState: 'pending' }));
+      }
+      const displayedRevisions = durable.headRevision > 0
+        ? [...new Set([...durable.state.displayedRevisions, durable.headRevision])]
+          .sort((a, b) => a - b)
+          .slice(-MAX_DISPLAYED_REVISIONS)
+        : durable.state.displayedRevisions;
+      const nextState: DailyJourneyGiftProjectionStateV1 = {
+        ...durable.state,
+        displayedRevisions,
+      };
+      if (JSON.stringify(nextState) !== JSON.stringify(durable.state)) {
+        await accountAwait(token, () => AsyncStorage.setItem(
+          projectionKey(ownerStableId),
+          JSON.stringify(nextState),
+        ));
+      }
+      return {
+        pending: Object.freeze(pending),
+        pendingCount: pending.length,
+        unreadCount: durable.occurrences.filter(
+          (item) => item.revision > durable.state.seenRevision,
+        ).length,
+        latestRevision: durable.headRevision,
+        seenRevision: durable.state.seenRevision,
+      };
+    })));
+  } finally {
+    if (recovered) emitDailyJourneyGiftsChangedBestEffort();
+  }
 }
 
 export async function markDailyJourneyGiftSnapshotSeen(
@@ -547,31 +692,35 @@ export async function markDailyJourneyGiftSnapshotSeen(
   if (!isCapturedAccountGenerationToken(token) || !isCurrentAccountGeneration(token) || !token.stableId) return false;
   const ownerStableId = token.stableId;
   let recovered = false;
-  const updated = await withAccountTransitionLock(async () => withStorageLock(async () => {
-    if (!isCurrentAccountGeneration(token, ownerStableId)) return false;
-    recovered = (await recoverPrepared(ownerStableId, token)) !== null;
-    const occurrences = await readOccurrences(ownerStableId);
-    if (!isCurrentAccountGeneration(token, ownerStableId)) return false;
-    const latestRevision = occurrences.reduce((latest, item) => Math.max(latest, item.revision), 0);
-    const state = await readProjectionState(ownerStableId);
-    if (!Number.isSafeInteger(snapshotRevision)
-      || snapshotRevision < 1
-      || snapshotRevision > latestRevision
-      || snapshotRevision <= state.seenRevision
-      || !state.displayedRevisions.includes(snapshotRevision)) return false;
-    const nextState: DailyJourneyGiftProjectionStateV1 = {
-      ...state,
-      latestRevision,
-      seenRevision: snapshotRevision,
-      displayedRevisions: state.displayedRevisions.filter((revision) => revision > snapshotRevision),
-    };
-    await AsyncStorage.setItem(projectionKey(ownerStableId), JSON.stringify(nextState));
-    if (!isCurrentAccountGeneration(token, ownerStableId)) return false;
-    const verified = await readProjectionState(ownerStableId);
-    return verified.seenRevision === snapshotRevision;
-  }));
-  if (recovered || updated) emitAppEvent('daily_journey_gifts_changed');
-  return updated;
+  let updated = false;
+  try {
+    updated = await accountAwait(token, () => withAccountTransitionLock(async () => withStorageLock(async () => {
+      assertCurrentToken(token);
+      recovered = (await accountAwait(token, () => recoverPrepared(ownerStableId, token))) !== null;
+      const durable = await accountAwait(token, () => readValidatedJournal(ownerStableId, token));
+      if (!Number.isSafeInteger(snapshotRevision)
+        || snapshotRevision < 1
+        || snapshotRevision > durable.headRevision
+        || snapshotRevision <= durable.state.seenRevision
+        || !durable.state.displayedRevisions.includes(snapshotRevision)) return false;
+      const nextState: DailyJourneyGiftProjectionStateV1 = {
+        ...durable.state,
+        seenRevision: snapshotRevision,
+        displayedRevisions: durable.state.displayedRevisions.filter(
+          (revision) => revision > snapshotRevision,
+        ),
+      };
+      await accountAwait(token, () => AsyncStorage.setItem(
+        projectionKey(ownerStableId),
+        JSON.stringify(nextState),
+      ));
+      const verified = await accountAwait(token, () => readProjectionState(ownerStableId, token));
+      return verified.seenRevision === snapshotRevision;
+    })));
+    return updated;
+  } finally {
+    if (recovered || updated) emitDailyJourneyGiftsChangedBestEffort();
+  }
 }
 
 export async function readDailyJourneyGiftClaimState(
@@ -584,25 +733,23 @@ export async function readDailyJourneyGiftClaimState(
     || !token.stableId) return 'missing';
   const ownerStableId = token.stableId;
   let recovered = false;
-  const state = await withAccountTransitionLock(async () => withStorageLock(async () => {
-    if (!isCurrentAccountGeneration(token, ownerStableId)) return 'missing' as const;
-    recovered = (await recoverPrepared(ownerStableId, token)) !== null;
-    const raw = await AsyncStorage.getItem(occurrenceKey(ownerStableId, operationId));
-    if (!isCurrentAccountGeneration(token, ownerStableId)) return 'missing' as const;
-    const occurrence = await parseVerifiedOccurrence(raw, ownerStableId);
-    if (!occurrence || occurrence.operationId !== operationId) return 'missing' as const;
-    return await isClaimed(occurrence) ? 'claimed' as const : 'pending' as const;
-  }));
-  if (recovered) emitAppEvent('daily_journey_gifts_changed');
-  return state;
+  try {
+    return await accountAwait(token, () => withAccountTransitionLock(async () => withStorageLock(async () => {
+      assertCurrentToken(token);
+      recovered = (await accountAwait(token, () => recoverPrepared(ownerStableId, token))) !== null;
+      const durable = await accountAwait(token, () => readValidatedJournal(ownerStableId, token));
+      const occurrence = durable.occurrences.find((item) => item.operationId === operationId);
+      if (!occurrence) return 'missing' as const;
+      return await accountAwait(token, () => isClaimed(occurrence, token))
+        ? 'claimed' as const
+        : 'pending' as const;
+    })));
+  } finally {
+    if (recovered) emitDailyJourneyGiftsChangedBestEffort();
+  }
 }
 
-export const DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES = Object.freeze([
-  OCCURRENCE_PREFIX,
-  PREPARED_PREFIX,
-  PROJECTION_PREFIX,
-  CLAIM_RECEIPT_PREFIX,
-]);
+export { DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES };
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

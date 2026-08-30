@@ -190,11 +190,15 @@ describe('Economy Constitution — client authority is a permanent source contra
       'customization_selection_head_v1:',
       'customization_selection_outbox_v1:',
       'customization_selection_quarantine_v1:',
+    ]) expect(cloudSync).toContain(`'${prefix}'`);
+    const dailyJourneyKeys = read('constants/daily_journey_gift_storage_keys.ts');
+    for (const prefix of [
       'daily_journey_gift_occurrence_v1:',
       'daily_journey_gift_prepared_v1:',
       'daily_journey_gift_projection_v1:',
       'daily_journey_gift_claim_receipt_v1:',
-    ]) expect(cloudSync).toContain(`'${prefix}'`);
+    ]) expect(dailyJourneyKeys).toContain(`'${prefix}'`);
+    expect(cloudSync).toContain('...DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES');
     expect(cloudSync).toContain('isLearningV2AccountLocalKey(key)');
     expect(cloudSync).toContain("if (finalResidue.length > 0) throw new Error('account_wipe_incomplete')");
   });

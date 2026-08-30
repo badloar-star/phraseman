@@ -31,6 +31,16 @@ const gift = (operationId: string, amount = 10) => ({
   reward: { kind: 'pearls' as const, amount },
 });
 
+const ownerPart = (ownerStableId: string): string => encodeURIComponent(ownerStableId);
+const occurrenceStorageKey = (ownerStableId: string, operationId: string): string =>
+  `daily_journey_gift_occurrence_v1:${ownerPart(ownerStableId)}:${encodeURIComponent(operationId)}`;
+const claimReceiptStorageKey = (ownerStableId: string, operationId: string): string =>
+  `daily_journey_gift_claim_receipt_v1:${ownerPart(ownerStableId)}:${encodeURIComponent(operationId)}`;
+
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
 beforeEach(() => {
   jest.clearAllMocks();
   __resetAccountGenerationForTests();
@@ -184,4 +194,149 @@ it('does not clear unread state when the durable seen write fails', async () => 
 it('returns missing for unknown operations without fabricating a claim receipt', async () => {
   const token = beginAccountGeneration('owner-a');
   expect(await readDailyJourneyGiftClaimState('daily-dev-does-not-exist', token)).toBe('missing');
+});
+
+it('fails closed when a durable occurrence was deleted before allocating another revision', async () => {
+  const token = beginAccountGeneration('owner-a');
+  const first = await commitDailyJourneyGift(gift('daily-dev-delete-head-0001'), token);
+  await commitDailyJourneyGift(gift('daily-dev-delete-head-0002'), token);
+  delete storage[occurrenceStorageKey('owner-a', first.occurrence.operationId)];
+
+  await expect(commitDailyJourneyGift(gift('daily-dev-delete-head-0003'), token))
+    .rejects.toThrow('daily_journey_occurrence_revision_gap');
+  expect(storage[occurrenceStorageKey('owner-a', 'daily-dev-delete-head-0003')]).toBeUndefined();
+});
+
+it('fails closed when the persisted projection is ahead of the immutable journal', async () => {
+  const token = beginAccountGeneration('owner-a');
+  const committed = await commitDailyJourneyGift(gift('daily-dev-projection-ahead'), token);
+  delete storage[occurrenceStorageKey('owner-a', committed.occurrence.operationId)];
+
+  await expect(readDailyJourneyGiftProjection(token)).rejects.toThrow('daily_journey_projection_ahead');
+});
+
+it.each([
+  ['revision', 7],
+  ['createdAtMs', 1],
+])('detects modified occurrence %s metadata', async (field, value) => {
+  const token = beginAccountGeneration('owner-a');
+  const committed = await commitDailyJourneyGift(gift(`daily-dev-metadata-${field}`), token);
+  const key = occurrenceStorageKey('owner-a', committed.occurrence.operationId);
+  storage[key] = JSON.stringify({ ...JSON.parse(storage[key]), [field]: value });
+
+  await expect(readDailyJourneyGiftProjection(token)).rejects.toThrow('daily_journey_occurrence_corrupt');
+});
+
+it('uses a stable golden SHA-256 vector that binds revision and creation metadata', async () => {
+  jest.spyOn(Date, 'now').mockReturnValue(1_700_000_000_000);
+  const token = beginAccountGeneration('owner-a');
+
+  const committed = await commitDailyJourneyGift(gift('daily-dev-golden-hash-0001'), token);
+
+  expect(committed.occurrence.payloadFingerprint)
+    .toBe('5a463191a8ab139f11f0684ab89fe730e4f95fa3de32991bdb0632be26069906');
+});
+
+it.each([
+  [{ ...gift('daily-dev-wrong-operation-id'), operationId: 42 as never }],
+  [{ ...gift('daily-dev-wrong-cycle-type'), cycle: '1' as never }],
+  [{ ...gift('daily-dev-wrong-day-type'), day: '1' as never }],
+  [{ ...gift('daily-dev-wrong-amount-type'), reward: { kind: 'pearls' as const, amount: '10' as never } }],
+])('rejects wrong runtime field types %#', async (input) => {
+  const token = beginAccountGeneration('owner-a');
+  await expect(commitDailyJourneyGift(input, token)).rejects.toThrow('daily_journey_occurrence_invalid');
+});
+
+it('checks account generation immediately after storage discovery before reading owner rows', async () => {
+  const token = beginAccountGeneration('owner-a');
+  await commitDailyJourneyGift(gift('daily-dev-mid-read-switch'), token);
+  const keys = Object.keys(storage);
+  (AsyncStorage.multiGet as jest.Mock).mockClear();
+  (AsyncStorage.getAllKeys as jest.Mock).mockImplementationOnce(async () => {
+    beginAccountGeneration('owner-b');
+    return keys;
+  });
+
+  await expect(readDailyJourneyGiftProjection(token)).rejects.toThrow('daily_journey_account_stale');
+  expect(AsyncStorage.multiGet).not.toHaveBeenCalled();
+});
+
+it('counts a valid claimed-but-unseen occurrence as unread while removing it from pending', async () => {
+  const token = beginAccountGeneration('owner-a');
+  const { occurrence } = await commitDailyJourneyGift(gift('daily-dev-claimed-unseen'), token);
+  storage[claimReceiptStorageKey('owner-a', occurrence.operationId)] = JSON.stringify({
+    schemaVersion: 'daily-journey-gift-claim-receipt.v1',
+    claimOperationId: `daily-journey-gift-claim:${occurrence.operationId}`,
+    operationId: occurrence.operationId,
+    ownerStableId: occurrence.ownerStableId,
+    occurrenceFingerprint: occurrence.payloadFingerprint,
+    reward: occurrence.reward,
+    claimedAtMs: occurrence.createdAtMs + 1,
+  });
+
+  expect(await readDailyJourneyGiftClaimState(occurrence.operationId, token)).toBe('claimed');
+  expect(await readDailyJourneyGiftProjection(token)).toMatchObject({ pendingCount: 0, unreadCount: 1 });
+});
+
+it.each([
+  ['{torn-json'],
+  [JSON.stringify({ schemaVersion: 'daily-journey-gift-claim-receipt.v1' })],
+])('fails closed for a non-null corrupt claim receipt %#', async (receiptRaw) => {
+  const token = beginAccountGeneration('owner-a');
+  const { occurrence } = await commitDailyJourneyGift(gift('daily-dev-corrupt-claim'), token);
+  storage[claimReceiptStorageKey('owner-a', occurrence.operationId)] = receiptRaw;
+
+  await expect(readDailyJourneyGiftClaimState(occurrence.operationId, token))
+    .rejects.toThrow('daily_journey_claim_receipt_corrupt');
+  await expect(readDailyJourneyGiftProjection(token))
+    .rejects.toThrow('daily_journey_claim_receipt_corrupt');
+});
+
+it('fails closed when a claim receipt reward does not exactly match the occurrence', async () => {
+  const token = beginAccountGeneration('owner-a');
+  const { occurrence } = await commitDailyJourneyGift(gift('daily-dev-mismatch-claim'), token);
+  storage[claimReceiptStorageKey('owner-a', occurrence.operationId)] = JSON.stringify({
+    schemaVersion: 'daily-journey-gift-claim-receipt.v1',
+    claimOperationId: `daily-journey-gift-claim:${occurrence.operationId}`,
+    operationId: occurrence.operationId,
+    ownerStableId: occurrence.ownerStableId,
+    occurrenceFingerprint: occurrence.payloadFingerprint,
+    reward: { kind: 'pearls', amount: occurrence.reward.amount + 1 },
+    claimedAtMs: occurrence.createdAtMs + 1,
+  });
+
+  await expect(readDailyJourneyGiftProjection(token))
+    .rejects.toThrow('daily_journey_claim_receipt_corrupt');
+});
+
+it('emits a recovered-B change exactly once when requested C then fails with its original conflict', async () => {
+  const token = beginAccountGeneration('owner-a');
+  const operationA = gift('daily-dev-recover-b-fail-c-a');
+  await commitDailyJourneyGift(operationA, token);
+  (emitAppEvent as jest.Mock).mockClear();
+  (AsyncStorage.multiSet as jest.Mock).mockRejectedValueOnce(new Error('simulated_torn_commit'));
+  await expect(commitDailyJourneyGift(gift('daily-dev-recover-b-fail-c-b'), token))
+    .rejects.toThrow('simulated_torn_commit');
+  (emitAppEvent as jest.Mock).mockImplementationOnce(() => {
+    throw new Error('simulated_listener_failure');
+  });
+
+  await expect(commitDailyJourneyGift({ ...operationA, reward: { kind: 'pearls', amount: 11 } }, token))
+    .rejects.toThrow('daily_journey_occurrence_conflict');
+  expect(emitAppEvent).toHaveBeenCalledTimes(1);
+  expect(emitAppEvent).toHaveBeenCalledWith('daily_journey_gifts_changed');
+});
+
+it('emits recovery before preserving a later projection read corruption error', async () => {
+  const token = beginAccountGeneration('owner-a');
+  const { occurrence } = await commitDailyJourneyGift(gift('daily-dev-recovery-read-a'), token);
+  (emitAppEvent as jest.Mock).mockClear();
+  (AsyncStorage.multiSet as jest.Mock).mockRejectedValueOnce(new Error('simulated_torn_commit'));
+  await expect(commitDailyJourneyGift(gift('daily-dev-recovery-read-b'), token))
+    .rejects.toThrow('simulated_torn_commit');
+  storage[claimReceiptStorageKey('owner-a', occurrence.operationId)] = '{torn-claim';
+
+  await expect(readDailyJourneyGiftProjection(token))
+    .rejects.toThrow('daily_journey_claim_receipt_corrupt');
+  expect(emitAppEvent).toHaveBeenCalledTimes(1);
 });

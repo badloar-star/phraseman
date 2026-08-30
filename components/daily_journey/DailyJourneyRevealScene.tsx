@@ -27,6 +27,7 @@ import { hapticLightImpact, hapticSuccess, hapticTap } from '../../hooks/use-hap
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { useTheme } from '../ThemeContext';
+import { DailyJourneyRevealLifecycle } from './dailyJourneyRevealLifecycle';
 import {
   dailyJourneyChapterForDay,
   dailyJourneyChapterNumber,
@@ -197,6 +198,10 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
     const todayTileRef = useRef<View | null>(null);
     const deliveredRef = useRef(false);
     const sequenceRef = useRef(0);
+    // The controller owns delivery identity independently of React renders.
+    // Its token invalidates delayed animation callbacks after cleanup.
+    const lifecycleRef = useRef(new DailyJourneyRevealLifecycle());
+    const lifecycleTokenRef = useRef(0);
     const [skipAvailable, setSkipAvailable] = useState(false);
 
     const later = useCallback((fn: () => void, ms: number) => {
@@ -337,7 +342,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         djLog(`flight finished=${finished} dx=${dx | 0} dy=${dy | 0}`);
         if (!finished) return;
         runningRef.current = null;
-        finishDelivered();
+        lifecycleRef.current.completeFlight(lifecycleTokenRef.current, true);
       });
     }, [applyRevealEndState, backdrop, clearTimers, finishDelivered, glowIn, heroCenter.x,
       heroCenter.y, heroOp, heroRot, heroScale, heroTx, heroTy, raysOp, resolveTarget, skipOp]);
@@ -360,7 +365,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       out.start(({ finished }) => {
         if (!finished) return;
         runningRef.current = null;
-        finishDelivered();
+        lifecycleRef.current.completeFlight(lifecycleTokenRef.current, true);
       });
     }, [backdrop, clearTimers, finishDelivered, heroOp, journalAlive, skipOp]);
 
@@ -368,9 +373,8 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       djLog(`skip requested at phase=${phaseRef.current} reduceMotion=${reduceMotion}`);
       if (phaseRef.current === 'flight' || phaseRef.current === 'done') return;
       hapticTap();
-      if (reduceMotion) finishReducedMotion();
-      else startFlight();
-    }, [finishReducedMotion, reduceMotion, startFlight]);
+      lifecycleRef.current.skip(lifecycleTokenRef.current);
+    }, []);
 
     useImperativeHandle(ref, () => ({ skipToDelivery }), [skipToDelivery]);
 
@@ -437,8 +441,8 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         if (sequenceRef.current === sequence) hapticLightImpact();
       }, act2Start + 500);
 
-      await new Promise<void>((resolve) => intro.start(() => resolve()));
-      if (sequenceRef.current !== sequence || phaseRef.current !== 'intro') return;
+      const introFinished = await new Promise<boolean>((resolve) => intro.start(({ finished }) => resolve(finished)));
+      if (!introFinished || sequenceRef.current !== sequence || phaseRef.current !== 'intro') return;
 
       // Акт III «Раскрытие»: журнал тает, награда вырывается из плитки.
       const { dx, dy } = await measureTileDelta();
@@ -463,11 +467,11 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       Animated.timing(raysTurnB, { toValue: 1, duration: RAYS_TURN_B_MS, easing: Easing.linear, useNativeDriver: true }).start();
 
       runningRef.current = reveal;
-      await new Promise<void>((resolve) => reveal.start(() => resolve()));
-      if (sequenceRef.current !== sequence || phaseRef.current !== 'intro') return;
+      const revealFinished = await new Promise<boolean>((resolve) => reveal.start(({ finished }) => resolve(finished)));
+      if (!revealFinished || sequenceRef.current !== sequence || phaseRef.current !== 'intro') return;
 
       later(() => {
-        if (sequenceRef.current === sequence) startFlight();
+        if (sequenceRef.current === sequence) lifecycleRef.current.startFlight(lifecycleTokenRef.current);
       }, 500);
     }, [backdrop, bloomIn, chapter, haloOp, headerDim, heroOp, heroScale, heroTx, heroTy,
       journalAlive, journalIn, labelIn, later, measureTileDelta, normalizedDay, pulse, raysOp,
@@ -496,7 +500,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
           out.start(({ finished: outFinished }) => {
             if (!outFinished) return;
             runningRef.current = null;
-            finishDelivered();
+            lifecycleRef.current.completeFlight(lifecycleTokenRef.current, true);
           });
         }, 1100);
       });
@@ -519,20 +523,23 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       sequenceRef.current = sequence;
       resetScene();
       setSkipAvailable(false);
-      soundDirector.request('pm.reward.daily_journey_intro', {
-        scope: 'daily-journey-reveal',
-        dedupeKey: `daily-journey-reveal-${sequenceKey}`,
+      lifecycleTokenRef.current = lifecycleRef.current.begin({
+        identity: sequenceKey,
+        targetPoint,
+        reducedMotion: reduceMotion,
+        onIntro: () => {
+          soundDirector.request('pm.reward.daily_journey_intro', {
+            scope: 'daily-journey-reveal', dedupeKey: `daily-journey-reveal-${sequenceKey}`,
+          });
+          if (reduceMotion) startReducedMotion();
+          else startIntro(sequence).catch((e) => {
+            djLog(`intro chain failed, delivering via fallback:`, e);
+            if (sequenceRef.current === sequence) lifecycleRef.current.startFlight(lifecycleTokenRef.current);
+          });
+        },
+        onFlight: () => { if (reduceMotion) finishReducedMotion(); else startFlight(); },
+        onDelivered: finishDelivered,
       });
-      if (reduceMotion) {
-        startReducedMotion();
-      } else {
-        startIntro(sequence).catch((e) => {
-          // зачем: немой обрыв хореографии оставил бы вечный чёрный экран;
-          // логируем причину и честно завершаем доставку кроссфейдом.
-          djLog(`intro chain failed, delivering via fallback:`, e);
-          if (sequenceRef.current === sequence) startFlight();
-        });
-      }
       return () => {
         sequenceRef.current += 1;
         runningRef.current?.stop();
@@ -543,10 +550,11 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         // runningRef — глушим явно, чтобы скрытая сцена не тикала фоном.
         raysTurnA.stopAnimation();
         raysTurnB.stopAnimation();
-        setSkipAvailable(false);
+        lifecycleRef.current.dispose();
       };
-    }, [clearTimers, reduceMotion, resetScene, sequenceKey, startFlight, startIntro, startReducedMotion,
-      stopIntroSound, visible, raysTurnA, raysTurnB]);
+    // target/callback/layout changes are deliberately snapshotted at start.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sequenceKey, visible]);
 
     /* ── интерполяции ── */
     const journalOpacity = Animated.multiply(journalIn, journalAlive);

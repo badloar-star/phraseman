@@ -27,9 +27,11 @@ import {
   isCurrentAccountGeneration,
   type AccountGenerationToken,
 } from './account_generation';
-import { commitShardCreditOperation } from './shards_system';
-import { enqueueLevelSpinStarGrant } from './level_spin_star_grants';
-import { grantLocalQuestSpins } from './local_level_spins';
+// зачем ленивые импорты экономики (см. applyQuestRewards): статические
+// втягивали этот модуль в цепочку загрузки кошельков и порождали require-циклы
+// (cloud_sync -> ... -> level_spin_star_grants -> quests_client), а цикл даёт
+// неинициализированные значения на старте. Награда выдаётся редко — платить
+// циклом за неё нельзя.
 
 const FUNCTIONS_REGION = 'us-central1';
 const LOG = '[QUESTS]';
@@ -140,10 +142,17 @@ export function peekActiveQuest(): QuestSnapshot | null {
 async function readCache(stableId: string): Promise<CachedQuest | null> {
   try {
     const raw = await AsyncStorage.getItem(cacheKey(stableId));
-    if (!raw) return null;
+    if (!raw) {
+      // Ранний выход обязан называть причину: пустой кэш и битый кэш лечатся
+      // по-разному, а внешне выглядят одинаково («задания нет»).
+      console.log(`${LOG} cache_miss key=${cacheKey(stableId)}`);
+      return null;
+    }
     const parsed = JSON.parse(raw) as Record<string, unknown>;
     const fetchedAtMs = Math.max(0, Math.trunc(Number(parsed.fetchedAtMs ?? 0)));
-    return Object.freeze({ fetchedAtMs, quest: normalizeQuest(parsed.quest) });
+    const quest = normalizeQuest(parsed.quest);
+    console.log(`${LOG} cache_read quest=${quest?.questId ?? 'none'} fetchedAtMs=${fetchedAtMs} bytes=${raw.length}`);
+    return Object.freeze({ fetchedAtMs, quest });
   } catch (error) {
     // Битый кэш — не повод падать: перечитаем из сети.
     DebugLogger.warn('quests:cache_read_failed', String(error));
@@ -370,6 +379,7 @@ async function applyQuestRewards(
     const operationId = `quest:${questId}:${reward.kind}:${index}`;
     switch (reward.kind) {
       case 'pearls': {
+        const { commitShardCreditOperation } = await import('./shards_system');
         const result = await commitShardCreditOperation({
           operationId,
           amount: reward.amount,
@@ -394,6 +404,7 @@ async function applyQuestRewards(
           console.warn(`${LOG} apply_runes_failed quest=${questId} reason=amount_not_payable amount=${reward.amount}`);
           throw new Error('quest_reward_runes_unsupported');
         }
+        const { enqueueLevelSpinStarGrant } = await import('./level_spin_star_grants');
         for (const [giftIndex, giftId] of giftIds.entries()) {
           await enqueueLevelSpinStarGrant({
             token,
@@ -406,6 +417,7 @@ async function applyQuestRewards(
         break;
       }
       case 'spins': {
+        const { grantLocalQuestSpins } = await import('./local_level_spins');
         const granted = await grantLocalQuestSpins(`${questId}_${index}`, reward.amount, token);
         console.log(`${LOG} apply_spins quest=${questId} amount=${reward.amount} granted=${granted}`);
         break;

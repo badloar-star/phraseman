@@ -4,7 +4,6 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { initFirebaseAppCheckIfAvailable } from '../app_check_init';
 import type { LevelSpinStarCreditExactResult } from '../../modules/phone-state/domains/economy';
-import { reportQuestProgress } from '../quests_client';
 
 /** Callable v2 задеплоєні в us-central1 (як у admin getFunctions(..., 'us-central1')). */
 const FUNCTIONS_REGION = 'us-central1';
@@ -50,10 +49,21 @@ export async function callCommunitySubmitPackForReview(data: {
   // ОТПРАВКЕ на ревью (решение владельца 2026-08-31) — момент под контролем
   // человека. Точка здесь одна на все пути отправки (редактор и экран набора),
   // иначе один из путей молча не засчитывался бы.
-  void reportQuestProgress({
-    kind: 'community_pack_submit',
-    eventId: `pack_${result.submissionId}`,
-  });
+  //
+  // Импорт ЛЕНИВЫЙ намеренно: статический втягивал quests_client в цепочку
+  // загрузки экономики (cloud_sync → … → level_spin_star_grants) и порождал
+  // require-циклы, а они дают неинициализированные значения на старте.
+  void (async () => {
+    try {
+      const { reportQuestProgress } = await import('../quests_client');
+      await reportQuestProgress({
+        kind: 'community_pack_submit',
+        eventId: `pack_${result.submissionId}`,
+      });
+    } catch (error) {
+      DebugLogger.warn('community_packs:quest_report_failed', String(error));
+    }
+  })();
   return result;
 }
 

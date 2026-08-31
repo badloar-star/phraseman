@@ -780,14 +780,26 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }, [focusTick, homeRuntimeActive, lang]);
     // «Задания»: читаем при заходе на Главную. Сеть трогается не чаще раза в
     // 30 минут (TTL внутри loadActiveQuest), фоновых таймеров нет.
+    //
+    // зачем подписка на поколение аккаунта: на холодном старте экран
+    // монтируется РАНЬШЕ, чем готова личность, и первый вызов честно выходит
+    // с `no_stable_id`. Без повторного запроса после активации задание не
+    // появлялось до следующего захода — тот самый класс бага «механизм есть,
+    // а данных не дали» (проверено на эмуляторе 2026-08-31 по логам [QUESTS]).
     useEffect(() => {
         if (!homeRuntimeActive) return undefined;
         let cancelled = false;
-        void (async () => {
-            const quest = await loadActiveQuest();
-            if (!cancelled) setActiveQuest(quest);
-        })();
-        return () => { cancelled = true; };
+        const refreshQuest = () => {
+            void (async () => {
+                const quest = await loadActiveQuest();
+                if (!cancelled) setActiveQuest(quest);
+            })();
+        };
+        refreshQuest();
+        const subscription = subscribeAccountGeneration(() => {
+            if (!cancelled) refreshQuest();
+        });
+        return () => { cancelled = true; subscription.remove(); };
     }, [focusTick, homeRuntimeActive]);
     useEffect(() => {
         if (!openSurveyLaunch) return undefined;

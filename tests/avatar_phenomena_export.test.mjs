@@ -23,3 +23,27 @@ test('exports exactly one marked built-in image result to its checkpoint path', 
   const checkpoint = JSON.parse(await readFile(path.join(path.dirname(destination), 'prompt.json'), 'utf8'));
   assert.deepEqual(checkpoint, { id: 'custom-phen-01', ink: 'black', status: 'accepted', prompt });
 });
+
+test('checkpoints a returned generated-images path with prompt, hash, and reference', async () => {
+  const { checkpointGeneratedImage } = await import('../scripts/avatar-phenomena/export-rollout-image.mjs');
+  const temp = await mkdtemp(path.join(os.tmpdir(), 'avatar-phenomena-checkpoint-'));
+  const generatedPath = path.join(temp, 'generated.png');
+  const destination = path.join(temp, 'raw', 'source.png');
+  await sharp({ create: { width: 1024, height: 1024, channels: 3, background: '#FF00B8' } }).png().toFile(generatedPath);
+
+  const receipt = await checkpointGeneratedImage({
+    generatedPath,
+    destination,
+    id: 'custom-phen-02',
+    ink: 'white',
+    prompt: 'Matching Yang Wind Spiral',
+    reference: 'raw/custom-phen-02/black/source.png',
+  });
+
+  assert.equal(receipt.width, 1024);
+  assert.match(receipt.sha256, /^[a-f0-9]{64}$/);
+  const checkpoint = JSON.parse(await readFile(path.join(path.dirname(destination), 'prompt.json'), 'utf8'));
+  assert.equal(checkpoint.status, 'accepted');
+  assert.equal(checkpoint.reference, 'raw/custom-phen-02/black/source.png');
+  assert.equal(checkpoint.sha256, receipt.sha256);
+});

@@ -43,6 +43,7 @@ import {
   primeMaxTutorPreview,
   type MaxTutorPreview,
 } from './max_tutor_preview';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
 
 const FUNCTIONS_REGION = 'us-central1';
@@ -345,6 +346,98 @@ export function prefetchMaxTutorPreview(
         : {}),
     };
   }, nowMs);
+}
+
+/**
+ * Заголовки уроков для раздела «Уроки с МАКСом» на языке интерфейса.
+ *
+ * зачем (владелец 2026-08-31): в каталоге человек должен читать «Заказать в
+ * кафе», а не a1_greet. 78×9 строк в бандле — ~40 КБ (бандл-диета запрещает),
+ * поэтому их знает сервер и шлёт только нужный язык (~4.5 КБ).
+ *
+ * Кэш на диске: список МЕНЯЕТСЯ ТОЛЬКО С РЕЛИЗОМ, поэтому один запрос на язык
+ * и дальше мгновенный первый кадр без сети. Логи [MAX-TITLES] постоянные —
+ * правило «сперва логи»: молчащая витрина выглядит как «раздел сломан».
+ */
+const CATALOG_TITLES_KEY = '@phraseman/max/catalog-titles/v1';
+let catalogTitlesMemory: { lang: string; titles: Record<string, string> } | null = null;
+
+/** Мгновенный доступ к заголовкам из памяти процесса (первый кадр, без await). */
+export function peekMaxCatalogTitles(lang: string): Record<string, string> | null {
+  return catalogTitlesMemory && catalogTitlesMemory.lang === lang
+    ? catalogTitlesMemory.titles
+    : null;
+}
+
+/** Поднять заголовки с диска в память — вызывается на входе в раздел. */
+export async function bootMaxCatalogTitles(lang: string): Promise<Record<string, string> | null> {
+  if (catalogTitlesMemory?.lang === lang) return catalogTitlesMemory.titles;
+  try {
+    const raw = await AsyncStorage.getItem(`${CATALOG_TITLES_KEY}/${lang}`);
+    if (!raw) {
+      DebugLogger.info('[MAX-TITLES]', `disk miss lang=${lang} — заголовки придут из сети`);
+      return null;
+    }
+    const parsed = JSON.parse(raw) as unknown;
+    const titles = sanitizeCatalogTitles(parsed);
+    if (!titles) {
+      DebugLogger.warn('[MAX-TITLES]', `disk corrupt lang=${lang} — игнорируем и перезапросим`);
+      return null;
+    }
+    catalogTitlesMemory = { lang, titles };
+    DebugLogger.info('[MAX-TITLES]', `disk hit lang=${lang} count=${Object.keys(titles).length}`);
+    return titles;
+  } catch (e) {
+    DebugLogger.warn('[MAX-TITLES]', `disk read failed lang=${lang}: ${e instanceof Error ? e.message : String(e)}`);
+    return null;
+  }
+}
+
+/** Недоверенный ввод: принимаем только карту слаг→короткая строка. */
+function sanitizeCatalogTitles(value: unknown): Record<string, string> | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const out: Record<string, string> = {};
+  for (const [id, raw] of Object.entries(value as Record<string, unknown>)) {
+    if (!/^[a-z0-9_]{1,80}$/u.test(id)) continue;
+    if (typeof raw !== 'string') continue;
+    const title = raw.trim().replace(/\s+/gu, ' ').slice(0, 140);
+    if (title !== '') out[id] = title;
+  }
+  return Object.keys(out).length > 0 ? out : null;
+}
+
+/** Запросить заголовки у сервера и запомнить (память + диск). */
+export async function fetchMaxCatalogTitles(
+  params: MaxCallParams,
+): Promise<Record<string, string> | null> {
+  const lang = params.interfaceLang ?? 'ru';
+  const startedAt = Date.now();
+  try {
+    const raw = await maxVoiceCallable<unknown>('maxVoicePreflight')({
+      format: 'tutor',
+      cefr: params.cefr,
+      interfaceLang: lang,
+      studyTarget: maxVoiceStudyTarget(params.studyTarget),
+      withCatalogTitles: true,
+    });
+    const envelope = raw && typeof raw === 'object' ? raw as Record<string, unknown> : {};
+    const titles = sanitizeCatalogTitles(envelope.catalogTitles);
+    if (!titles) {
+      // Ранний выход обязан объяснять себя: старый сервер поля не шлёт, и это
+      // не ошибка — каталог просто покажет то, что уже знает.
+      DebugLogger.warn('[MAX-TITLES]', `net: сервер не прислал catalogTitles за ${Date.now() - startedAt}мс (старая версия функций?)`);
+      return null;
+    }
+    catalogTitlesMemory = { lang, titles };
+    void AsyncStorage.setItem(`${CATALOG_TITLES_KEY}/${lang}`, JSON.stringify(titles)).catch((e) => {
+      DebugLogger.warn('[MAX-TITLES]', `disk write failed: ${e instanceof Error ? e.message : String(e)}`);
+    });
+    DebugLogger.info('[MAX-TITLES]', `net ok lang=${lang} count=${Object.keys(titles).length} за ${Date.now() - startedAt}мс`);
+    return titles;
+  } catch (e) {
+    DebugLogger.warn('[MAX-TITLES]', `net failed lang=${lang} за ${Date.now() - startedAt}мс: ${e instanceof Error ? e.message : String(e)}`);
+    return null;
+  }
 }
 
 /**

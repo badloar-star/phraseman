@@ -1,4 +1,5 @@
 import {
+  CAN_DO_GOALS,
   canDoGoalById,
   canDoProgress,
   levelFromMastery,
@@ -239,6 +240,22 @@ export function buildTutorPreview(input: {
     catalogMastery: compactMastery(input.memory.goalMastery),
     progress: { done: progress.done, total: progress.total, level: goalLevel },
   };
+}
+
+/**
+ * Заголовки ВСЕХ уроков на языке интерфейса — витрина каталога.
+ *
+ * зачем (владелец 2026-08-31): в разделе человек должен видеть «Заказать в
+ * кафе», а не технический id a1_greet. Держать 78×9 строк в бандле нельзя
+ * (~40 КБ, правило бандл-диеты), а сервер знает язык интерфейса и шлёт только
+ * нужные ~4.5 КБ. Отдаём ТОЛЬКО по явному запросу каталога: обычному звонку
+ * этот список не нужен, и раздувать ответ минта на каждый разговор незачем.
+ */
+export function catalogTitles(interfaceLang: string): Record<string, string> {
+  const lang = previewLanguage(interfaceLang);
+  const out: Record<string, string> = {};
+  for (const goal of CAN_DO_GOALS) out[goal.id] = goal.title[lang] || goal.title.en;
+  return out;
 }
 
 /** Карта звёзд без нулей: пустые ступени восстанавливаются клиентом как 0. */

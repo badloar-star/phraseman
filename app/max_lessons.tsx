@@ -43,7 +43,13 @@ import {
   type MaxLessonTopic,
 } from './max_lesson_catalog';
 import { maxTutorPreviewKey, peekMaxTutorPreview } from './max_tutor_preview';
-import { guessLearnerCefr, prefetchMaxTutorPreview } from './max_call_mint_request';
+import {
+  bootMaxCatalogTitles,
+  fetchMaxCatalogTitles,
+  guessLearnerCefr,
+  peekMaxCatalogTitles,
+  prefetchMaxTutorPreview,
+} from './max_call_mint_request';
 import { isAiVoiceConsentGranted } from './max_voice_consent';
 import { useStudyTarget } from '../components/StudyTargetContext';
 
@@ -77,6 +83,40 @@ export default function MaxLessonsScreen() {
   // Тик перерисовки после фоновой догрузки: сам ответ лежит в кэше превью,
   // держать его копию в состоянии незачем — это был бы второй источник правды.
   const [, setRefreshTick] = useState(0);
+
+  // Заголовки уроков: память → диск → сеть. Экран уже отрисован (в худшем
+  // случае с id вместо названий), поэтому ждать нечего и спиннера нет.
+  useEffect(() => {
+    let active = true;
+    if (Object.keys(titles).length > 0) return () => { active = false; };
+    void bootMaxCatalogTitles(lang).then((fromDisk) => {
+      if (!active) return;
+      if (fromDisk) {
+        setTitles(fromDisk);
+        return;
+      }
+      if (!isAiVoiceConsentGranted()) {
+        // Ранний выход объясняет себя: без согласия на обработку голоса сети
+        // быть не должно. Это штатный путь, а не ошибка.
+        DebugLogger.info('[MAX-LESSONS]', 'titles skipped: voice consent not granted yet');
+        return;
+      }
+      void fetchMaxCatalogTitles({
+        format: 'tutor',
+        scenarioId: 'coffee',
+        cefr: guessLearnerCefr(),
+        devMode: false,
+        interfaceLang: lang,
+        studyTarget,
+      }).then((fromNet) => {
+        if (active && fromNet) setTitles(fromNet);
+      });
+    });
+    return () => { active = false; };
+    // titles намеренно НЕ в зависимостях: эффект должен отработать один раз на
+    // язык, иначе setTitles внутри него запускал бы сам себя по кругу.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang, studyTarget]);
 
   // Догрузка звёзд, когда Главная не успела прогреть превью (заход по диплинку,
   // холодный старт). Экран УЖЕ отрисован из кэша или нулями — спиннера нет,
@@ -121,15 +161,10 @@ export default function MaxLessonsScreen() {
   const recommendedId = useMemo(() => recommendedMaxLessonId(mastery, level), [mastery, level]);
 
   // Названия уроков локализованы на сервере (CAN_DO_GOALS.title). Дублировать
-  // 78×9 строк в бандле нельзя — правило бандл-диеты. Пока сервер не ответил,
-  // показываем название текущего урока (оно уже в превью), остальные — по id.
-  const titles: LessonTitles = useMemo(() => {
-    const out: LessonTitles = {};
-    if (cachedPreview?.goalId && cachedPreview.goalTitle) {
-      out[cachedPreview.goalId] = cachedPreview.goalTitle;
-    }
-    return out;
-  }, [cachedPreview]);
+  // 78×9 строк в бандле нельзя (~40 КБ, бандл-диета), поэтому сервер шлёт
+  // только язык интерфейса и клиент кэширует их на диск: список меняется лишь
+  // с релизом, значит один запрос на язык — и дальше мгновенно.
+  const [titles, setTitles] = useState<LessonTitles>(() => peekMaxCatalogTitles(lang) ?? {});
 
   /**
    * Плоский список «заголовок уровня + строки уроков» для FlatList.

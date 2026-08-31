@@ -45,7 +45,7 @@ import {
   planUpcomingLessons,
   renderCanDoGoalBlock,
 } from './max_voice_can_do_goals';
-import { buildTutorPreview } from './max_voice_tutor_preview';
+import { buildTutorPreview, catalogTitles } from './max_voice_tutor_preview';
 import { maxVoiceStudyTarget, maxVoiceTargetLanguageName } from './max_voice_target_language';
 import {
   LEGACY_VOICE_QUOTA_EXHAUSTED_REASON,
@@ -695,6 +695,10 @@ export const maxVoicePreflight = onCall({
       })
     : null;
 
+  // Витрина каталога: заголовки всех уроков на языке интерфейса. Только по
+  // явному запросу раздела — обычному звонку список не нужен (~4.5 КБ), и
+  // раздувать им каждый ответ было бы платой ни за что.
+  const wantsCatalog = data.withCatalogTitles === true && format === 'tutor';
   return {
     ok: true,
     allowed: true,
@@ -702,6 +706,7 @@ export const maxVoicePreflight = onCall({
     trialVariant: ctx.trialVariant,
     degradeMode: ctx.config.degradeMode,
     ...(tutorPreview ? { tutorPreview } : {}),
+    ...(wantsCatalog ? { catalogTitles: catalogTitles(text(data.interfaceLang, 8)) } : {}),
     limits: {
       dayRemainingSec,
       monthRemainingSec,

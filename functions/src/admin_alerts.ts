@@ -168,6 +168,25 @@ export const adminAlertOnCriticalError = onDocumentCreated(
     if (severity !== 'critical') return;
     const cfg = await readAlertsConfig();
     if (!alertTypeEnabled(cfg, 'criticalError')) return;
+    // зачем дедуп (инцидент владельца 2026-08-31): один залипший локальный
+    // замок слал 13 одинаковых critical за 40 секунд — канал утонул, и
+    // владелец решил, что приложение мертво. Повторы одной и той же пары
+    // «контекст + пользователь» держим 30 минут: первое письмо приходит
+    // сразу, остальные молчат. Стоимость — один точечный get/set на алерт.
+    const dedupeKey = `${String(data.context ?? 'unknown')}|${String(data.uid ?? 'anon')}`
+      .replace(/[^A-Za-z0-9_.:|-]/g, '_').slice(0, 200);
+    const dedupeRef = admin.firestore().collection('admin_alert_dedupe').doc(dedupeKey);
+    const nowMs = Date.now();
+    const dedupeSnap = await dedupeRef.get().catch(() => null);
+    const lastSentAtMs = Number(dedupeSnap?.data()?.lastSentAtMs ?? 0);
+    if (Number.isFinite(lastSentAtMs) && nowMs - lastSentAtMs < CRITICAL_ALERT_DEDUPE_MS) {
+      await dedupeRef.set({
+        suppressed: admin.firestore.FieldValue.increment(1),
+        lastSuppressedAtMs: nowMs,
+      }, { merge: true }).catch(() => {});
+      return;
+    }
+    const suppressedSince = Number(dedupeSnap?.data()?.suppressed ?? 0);
     const message = escapeHtml(clip(data.message || data.context, 600) || 'нет описания');
     const errorName = clip(data.errorName, 120);
     const feature = escapeHtml(clip(data.feature || data.context, 120) || '—');
@@ -183,8 +202,21 @@ export const adminAlertOnCriticalError = onDocumentCreated(
       `${errorName ? `<b>${escapeHtml(errorName)}</b>: ` : ''}${message}\n` +
       `${stack ? `<pre>${escapeHtml(stack)}</pre>\n` : ''}` +
       `\n<i>Открой админку → App Health.</i>`;
-    const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
-    if (ok) await markSent('criticalError');
+    const ok = await sendTelegramAlert(
+      ADMIN_ALERT_BOT_TOKEN.value(),
+      suppressedSince > 0 ? `${text}
+<i>Повторов с прошлого письма: ${suppressedSince}</i>` : text,
+      cfg,
+    );
+    if (ok) {
+      await markSent('criticalError');
+      await dedupeRef.set({
+        lastSentAtMs: nowMs,
+        suppressed: 0,
+        context: String(data.context ?? '').slice(0, 120),
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      }, { merge: true }).catch(() => {});
+    }
   },
 );
 
@@ -193,6 +225,8 @@ export const adminAlertOnCriticalError = onDocumentCreated(
 // reporter, device). A rolling 1h window caps immediate messages so a broken
 // lesson can't flood the chat; overflow is summarised by the hourly digest.
 const CONTENT_REPORT_IMMEDIATE_PER_HOUR = 6;
+/** Окно тишины для повторов одного и того же critical (контекст+uid). */
+const CRITICAL_ALERT_DEDUPE_MS = 30 * 60 * 1000;
 const CONTENT_REPORT_WINDOW_MS = 60 * 60 * 1000;
 const TELEGRAM_TEXT_LIMIT = 4096;
 

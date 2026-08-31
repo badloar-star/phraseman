@@ -957,6 +957,42 @@ export async function isAccountDeleteIdentityQuarantined(
   return shouldQuarantineAccountDeleteIdentity(raw, authUser);
 }
 
+/**
+ * Снятие ПРОСРОЧЕННОГО замка удаления (инцидент владельца 2026-08-31).
+ *
+ * зачем отдельная функция, а не clearAccountDeletePendingAuthLock():
+ * штатное снятие требует фазы 'ready' с cleanupAuthorized — просроченный
+ * замок в prepared/local_data_cleared этой проверки не пройдёт никогда, и
+ * именно поэтому он жил в Keychain 56 дней. Здесь снимаем ОБЕ половины
+ * (запись + якорь) напрямую: срок вышел, сервер защищён своими средствами
+ * (permanent denial + tombstone), а устройству держать мёртвый след незачем.
+ */
+async function forceClearExpiredAccountDeleteLock(): Promise<void> {
+  const secureStore = getSecureStore();
+  if (!secureStore) return;
+  try {
+    await Promise.all([
+      secureStore.deleteItemAsync(ACCOUNT_DELETE_PENDING_AUTH_SECURE_KEY),
+      secureStore.deleteItemAsync(ACCOUNT_DELETE_PENDING_AUTH_ANCHOR_KEY),
+    ]);
+    await AsyncStorage.removeItem(ACCOUNT_DELETE_PENDING_AUTH_KEY).catch(() => {});
+    knownGuardState = 'none';
+    knownDeletedProviderUid = null;
+  } catch (e) {
+    // зачем (запрет немого catch): не смогли снять — замок останется и
+    // проверка снова придёт сюда; причина обязана быть видна.
+    DebugLogger.error(
+      'account_delete_quarantine:expired_clear_failed',
+      e instanceof Error ? e : new Error(String(e)),
+      'warning',
+    );
+  }
+}
+
+/** Один critical на запуск + защита от параллельных чисток. */
+let expiredReleaseReported = false;
+let expiredLockCleanupInFlight = false;
+
 export async function assertAccountDeleteStableIdentityAvailable(
   candidateStableId?: string | null,
 ): Promise<void> {
@@ -973,11 +1009,28 @@ export async function assertAccountDeleteStableIdentityAvailable(
     inspection.status === 'expired'
     && (inspection.lock.phase === 'prepared' || inspection.lock.phase === 'local_data_cleared')
   ) {
-    DebugLogger.error(
-      'account_delete_quarantine:expired_released',
-      new Error(`phase=${inspection.lock.phase} ageMs=${Date.now() - inspection.lock.createdAt}`),
-      'critical',
-    );
+    // зачем ЧИСТКА, а не просто return (инцидент владельца 2026-08-31):
+    // просроченный замок отпускали, но НЕ СНИМАЛИ — он оставался в Keychain
+    // навсегда. getStableId() зовётся десятками раз за запуск, поэтому один
+    // мёртвый замок (возраст 56 дней!) слал critical-алерт каждые две
+    // секунды: 13 писем за 40 секунд. Убираем его физически — тогда и
+    // проверка станет мгновенной, и канал алертов замолчит.
+    if (!expiredLockCleanupInFlight) {
+      expiredLockCleanupInFlight = true;
+      void forceClearExpiredAccountDeleteLock().finally(() => {
+        expiredLockCleanupInFlight = false;
+      });
+    }
+    // Один раз на запуск: событие важное (замок пережил свой срок), но
+    // повторять его на каждый вызов — топить канал.
+    if (!expiredReleaseReported) {
+      expiredReleaseReported = true;
+      DebugLogger.error(
+        'account_delete_quarantine:expired_released',
+        new Error(`phase=${inspection.lock.phase} ageMs=${Date.now() - inspection.lock.createdAt}`),
+        'warning',
+      );
+    }
     return;
   }
   if (

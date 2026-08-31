@@ -135,14 +135,14 @@ describe('customization catalog', () => {
     expect(costs).toEqual([...costs].sort((left, right) => left - right));
     expect(costs.filter((cost) => cost === 50)).toHaveLength(0);
     expect(costs.filter((cost) => cost === 90)).toHaveLength(0);
-    expect(costs.filter((cost) => cost === 70)).toHaveLength(5);
-    expect(costs.filter((cost) => cost === 100)).toHaveLength(6);
-    expect(costs.filter((cost) => cost === 150)).toHaveLength(6);
-    expect(costs.filter((cost) => cost === 300)).toHaveLength(9);
-    expect(costs.filter((cost) => cost === 500)).toHaveLength(3);
-    expect(costs.filter((cost) => cost === 1000)).toHaveLength(2);
+    expect(costs.filter((cost) => cost === 70)).toHaveLength(8);
+    expect(costs.filter((cost) => cost === 100)).toHaveLength(9);
+    expect(costs.filter((cost) => cost === 150)).toHaveLength(9);
+    expect(costs.filter((cost) => cost === 300)).toHaveLength(12);
+    expect(costs.filter((cost) => cost === 500)).toHaveLength(6);
+    expect(costs.filter((cost) => cost === 1000)).toHaveLength(5);
     expect(costs.filter((cost) => cost === 3000)).toHaveLength(0);
-    expect(costs).toHaveLength(31);
+    expect(costs).toHaveLength(49);
   });
 
   it('localizes every showcase avatar name in all supported languages', () => {

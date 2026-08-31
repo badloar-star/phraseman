@@ -51,6 +51,37 @@ test('generates a UUID on first launch', async () => {
   expect(id.length).toBeGreaterThan(0);
 });
 
+test('starts with AsyncStorage identity when secure guard is unreadable and no delete lock was seen', async () => {
+  const SS = require('expo-secure-store');
+  SS.getItemAsync.mockRejectedValue(new Error('keychain unavailable'));
+  const { getStableId } = require('../app/stable_id');
+
+  const id = await getStableId();
+
+  expect(id).toMatch(/^uuid-/);
+  expect(asyncStore['phraseman_stable_uid_cache']).toBe(id);
+  const generation = require('../app/account_generation');
+  expect(generation.captureAccountGeneration()).toMatchObject({
+    stableId: id,
+    phase: 'active',
+  });
+});
+
+test('still rejects stable identity when a visible delete lock fails its secure anchor check', async () => {
+  secureStore['account_delete_pending_auth_v2'] = JSON.stringify({
+    operationId: 'delete-visible',
+    providerUid: 'deleted-provider',
+    stableId: 'deleted-stable',
+    source: 'local',
+    phase: 'local_data_cleared',
+    createdAt: Date.now(),
+    expiresAt: Date.now() + 60_000,
+  });
+  const { getStableId } = require('../app/stable_id');
+
+  await expect(getStableId()).rejects.toThrow('account_delete_guard_anchor_required');
+});
+
 test('returns same UUID on second call (in-memory cache)', async () => {
   const { getStableId } = require('../app/stable_id');
   const id1 = await getStableId();

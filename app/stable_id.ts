@@ -20,7 +20,10 @@ import * as Crypto from 'expo-crypto';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO } from './config';
 import { beginInitialAccountGeneration, invalidateAccountGeneration } from './account_generation';
-import { assertAccountDeleteStableIdentityAvailable } from './account_delete_quarantine';
+import {
+  assertAccountDeleteStableIdentityAvailable,
+  isAccountDeleteGuardNoLockSeenError,
+} from './account_delete_quarantine';
 import { DebugLogger } from './debug-logger';
 
 const SECURE_KEY = 'phraseman_stable_uid';
@@ -63,6 +66,23 @@ function getSecureStore(): SecureStoreModule | null {
 }
 
 /**
+ * Startup may continue only for the guard's explicit "no lock was seen" case.
+ * A visible, malformed, or quarantined delete record still fails closed.
+ */
+async function assertStableIdentityAvailableAtStartup(candidateStableId?: string | null): Promise<void> {
+  try {
+    await assertAccountDeleteStableIdentityAvailable(candidateStableId);
+  } catch (error) {
+    if (!isAccountDeleteGuardNoLockSeenError(error)) throw error;
+    DebugLogger.error(
+      'stable_id:delete_guard_unreadable_without_lock',
+      error instanceof Error ? error : new Error(String(error)),
+      'warning',
+    );
+  }
+}
+
+/**
  * Опции SecureStore для stable_id:
  *   • keychainService — фиксированный namespace на iOS.
  *   • keychainAccessible: AFTER_FIRST_UNLOCK — стандарт для не-критичных long-lived
@@ -91,10 +111,10 @@ export function peekStableId(): string | null {
 }
 
 async function readOrCreateStableId(epoch: number): Promise<string> {
-  await assertAccountDeleteStableIdentityAvailable();
+  await assertStableIdentityAvailableAtStartup();
   assertCurrentStableIdRead(epoch);
   if (cachedId) {
-    await assertAccountDeleteStableIdentityAvailable(cachedId);
+    await assertStableIdentityAvailableAtStartup(cachedId);
     assertCurrentStableIdRead(epoch);
     beginInitialAccountGeneration(cachedId);
     return cachedId;
@@ -125,7 +145,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
     }
       }
       if (stored) {
-        await assertAccountDeleteStableIdentityAvailable(stored);
+        await assertStableIdentityAvailableAtStartup(stored);
         assertCurrentStableIdRead(epoch);
         cachedId = stored;
         await AsyncStorage.setItem(ASYNC_KEY, stored);
@@ -145,7 +165,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
     const cached = await AsyncStorage.getItem(ASYNC_KEY);
     assertCurrentStableIdRead(epoch);
     if (cached) {
-      await assertAccountDeleteStableIdentityAvailable(cached);
+      await assertStableIdentityAvailableAtStartup(cached);
       assertCurrentStableIdRead(epoch);
       cachedId = cached;
       if (SecureStore && opts) {
@@ -161,7 +181,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
   // Создаём новый ID
   const newId = Crypto.randomUUID();
   assertCurrentStableIdRead(epoch);
-  await assertAccountDeleteStableIdentityAvailable(newId);
+  await assertStableIdentityAvailableAtStartup(newId);
   assertCurrentStableIdRead(epoch);
 
   if (SecureStore && opts) {

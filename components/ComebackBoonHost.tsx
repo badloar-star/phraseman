@@ -34,11 +34,32 @@ export default function ComebackBoonHost() {
 
   useEffect(() => {
     let alive = true;
-    checkComebackEligible()
-      .then((eligible) => {
-        if (alive && eligible) setWantShow(true);
-      })
-      .catch(() => {});
+    // зачем (владелец, 2026-08-31: «модал «мы скучали» завис на экране входа и
+    // ничего не нажимается»): хост смонтирован в RootLayout, то есть живёт и до
+    // входа/онбординга. Без этого гейта RN Modal вылезал ПОВЕРХ экрана входа и
+    // перехватывал все тапы — под ним нажать было нечего. Тот же гейт, что уже
+    // стоит в MysteryMondayHost и BoonActivatedHost; onboarding_done пишется '1'.
+    // Гейт стоит ДО setWantShow, поэтому слот арбитра не занимается зря.
+    void (async () => {
+      const onboardingDone = await AsyncStorage.getItem('onboarding_done').catch((e) => {
+        DebugLogger.error(
+          'ComebackBoonHost:onboarding_gate',
+          e instanceof Error ? e : new Error(String(e)),
+          'warning',
+        );
+        return null;
+      });
+      if (!alive || onboardingDone !== '1') return;
+      const eligible = await checkComebackEligible().catch((e) => {
+        DebugLogger.error(
+          'ComebackBoonHost:eligible',
+          e instanceof Error ? e : new Error(String(e)),
+          'warning',
+        );
+        return false;
+      });
+      if (alive && eligible) setWantShow(true);
+    })();
     return () => {
       alive = false;
     };

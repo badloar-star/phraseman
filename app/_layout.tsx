@@ -3,6 +3,15 @@ import { isForcedOnboardingForQaRuntime } from './onboarding_runtime_gate';
 // зачем: временный диагностический маркер — ищем, где виснет холодный старт
 // (чёрный экран без краша). Убрать после локализации причины.
 console.warn('[BOOT] _layout module eval START');
+// зачем (владелец, 2026-08-31: «вход стал идти секунд 40 на сплеш экране»):
+// временная трассировка холодного старта. Печатает КАЖДОЕ звено цепочки до
+// первого кадра с миллисекундами от запуска JS — чтобы увидеть, кто именно
+// держит сплеш, а не гадать. Убрать после локализации причины.
+const BOOT_T0 = Date.now();
+export function bootMark(step: string, extra?: unknown): void {
+  const ms = Date.now() - BOOT_T0;
+  console.warn(`[BOOTSPLASH] +${ms}ms ${step}${extra === undefined ? '' : ' :: ' + JSON.stringify(extra)}`);
+}
 import 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -1708,13 +1717,27 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   const nativeSplashCanHide = fontsReady && ready
     && (effectiveShowOnboarding || isBanned || firstContentReady);
+  // зачем (трассировка 2026-08-31): печатаем, КАКОЙ из трёх флагов держит сплеш.
+  // Без этого «висит 40 секунд» неотличимо от «ждём шрифты» / «ждём первый кадр».
+  useEffect(() => {
+    bootMark('splash gate', {
+      fontsReady,
+      ready,
+      firstContentReady,
+      effectiveShowOnboarding,
+      isBanned,
+      canHide: nativeSplashCanHide,
+    });
+  }, [fontsReady, ready, firstContentReady, effectiveShowOnboarding, isBanned, nativeSplashCanHide]);
   useEffect(() => {
     if (!nativeSplashCanHide) return;
+    bootMark('SplashScreen.hideAsync() — сплеш скрыт');
     void SplashScreen.hideAsync();
   }, [nativeSplashCanHide]);
 
   useEffect(() => {
     const sub = onAppEvent('app_first_content_ready', () => {
+      bootMark('app_first_content_ready event received');
       if (firstContentReadyTimerRef.current) return;
       firstContentReadyTimerRef.current = setTimeout(() => {
         firstContentReadyTimerRef.current = null;
@@ -1732,7 +1755,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   useEffect(() => {
     if (!ready || effectiveShowOnboarding || isBanned || firstContentReady) return;
-    const timer = setTimeout(() => setFirstContentReady(true), FIRST_CONTENT_READY_FALLBACK_MS);
+    const timer = setTimeout(() => {
+      bootMark('firstContentReady FALLBACK fired (экран не прислал событие)');
+      setFirstContentReady(true);
+    }, FIRST_CONTENT_READY_FALLBACK_MS);
     return () => clearTimeout(timer);
   }, [effectiveShowOnboarding, firstContentReady, isBanned, ready]);
 
@@ -2369,10 +2395,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     };
 
     const bootstrap = async () => {
-      if (authRecoveryBootstrapInFlight) return;
+      if (authRecoveryBootstrapInFlight) {
+        bootMark('bootstrap SKIPPED (already in flight)');
+        return;
+      }
       authRecoveryBootstrapInFlight = true;
       try {
+      bootMark('bootstrap START -> ensureFreshPostDeletionIdentity');
       const freshIdentity = await ensureFreshPostDeletionIdentity('startup');
+      bootMark('ensureFreshPostDeletionIdentity DONE', { status: freshIdentity.status, phase: freshIdentity.phase });
       const pendingDeleteRecovered = freshIdentity.status !== 'fatal_local_guard';
       if (effectDisposed) return;
       if (!pendingDeleteRecovered) {
@@ -2402,9 +2433,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       }
       authRecoveryBootAbort = new AbortController();
       const recoveryAbort = authRecoveryBootAbort;
+      bootMark('runAuthRecoveryBootGate START');
       const recoveryGate = await runAuthRecoveryBootGate({
         signal: authRecoveryBootAbort.signal,
       });
+      bootMark('runAuthRecoveryBootGate DONE', recoveryGate);
       if (authRecoveryBootAbort === recoveryAbort) authRecoveryBootAbort = null;
       if (effectDisposed) return;
       if (recoveryGate.result !== 'proceed') {
@@ -2423,8 +2456,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       clearAuthRecoveryBootRetry();
       let startupStableId: string;
       try {
+        bootMark('getStableId START');
         startupStableId = await getStableId();
+        bootMark('getStableId DONE');
       } catch (identityError) {
+        bootMark('getStableId THREW -> setReady(true), early return', String(identityError));
         // зачем (аудит 2026-08-29, вечный сплеш): застрявший замок удаления
         // заставлял getStableId бросать account_delete_identity_quarantined,
         // бросок пролетал мимо внутреннего catch (он парен с try ниже), внешний
@@ -2526,10 +2562,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // Возрастная группа — для безопасного режима (фичи-гейты) с первого кадра.
         hydrateAgeGateFromStorage().catch(() => {}),
       ]);
+      bootMark('startupLocalHydration RACE START (budget 350ms)');
       await Promise.race([
         startupLocalHydration,
         new Promise<void>((resolve) => setTimeout(resolve, 350)),
       ]).catch(() => {});
+      bootMark('startupLocalHydration RACE DONE');
       void startupLocalHydration.catch(() => {});
       // Сразу читаем осколки в фоне — к моменту «Главной» peekLastKnownShardsBalance уже с кэшем.
       void getStableId()
@@ -2595,6 +2633,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       void preloadPrimaryTabImages().catch(() => {});
 
       if (safetyTimer) clearTimeout(safetyTimer);
+      bootMark('setReady(true) — bootstrap COMPLETE');
       setReady(true);
       // зачем (владелец, 2026-08-26): «все старые кто после обновы откроет
       // приложение тоже» должны получить подарок — CleanOnboarding ставит флаг

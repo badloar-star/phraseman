@@ -73,6 +73,13 @@ export default function PerfectWeekHost() {
             || !eligible
             || !isBoonModifierActive('perfect_week')
           ) return;
+          // зачем (владелец, 2026-08-31, вместе с фиксом «мы скучали»): хост живёт
+          // в RootLayout, то есть и до входа/онбординга. Без гейта RN Modal вылезал
+          // поверх экрана входа и перехватывал тапы. Здесь это ВДВОЙНЕ опасно:
+          // claim() ниже списывает награду ДО показа — на экране входа человек
+          // потерял бы сундук, не увидев его. Гейт стоит до claim().
+          const onboardingDone = await AsyncStorage.getItem('onboarding_done').catch(() => null);
+          if (!alive || currentGeneration !== generation || onboardingDone !== '1') return;
         // КРИТИЧНО: фиксируем claim СРАЗУ при решении показать сундук, ДО рендера модалки.
         // Раньше отметка «забрано» писалась только по тапу/закрытию — если юзер быстро
         // сворачивал/выгружал приложение, запись не успевала, и на холодном старте тот же

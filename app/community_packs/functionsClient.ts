@@ -4,6 +4,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { initFirebaseAppCheckIfAvailable } from '../app_check_init';
 import type { LevelSpinStarCreditExactResult } from '../../modules/phone-state/domains/economy';
+import { reportQuestProgress } from '../quests_client';
 
 /** Callable v2 задеплоєні в us-central1 (як у admin getFunctions(..., 'us-central1')). */
 const FUNCTIONS_REGION = 'us-central1';
@@ -42,8 +43,18 @@ export async function callCommunitySubmitPackForReview(data: {
   authorStableId: string;
   payload: unknown;
   updatePackId?: string;
+  submissionKey?: string;
 }): Promise<{ submissionId: string }> {
-  return callFunction<typeof data, { submissionId: string }>('communitySubmitPackForReview', data);
+  const result = await callFunction<typeof data, { submissionId: string }>('communitySubmitPackForReview', data);
+  // зачем: задание «создай набор и поделись с сообществом» засчитывается по
+  // ОТПРАВКЕ на ревью (решение владельца 2026-08-31) — момент под контролем
+  // человека. Точка здесь одна на все пути отправки (редактор и экран набора),
+  // иначе один из путей молча не засчитывался бы.
+  void reportQuestProgress({
+    kind: 'community_pack_submit',
+    eventId: `pack_${result.submissionId}`,
+  });
+  return result;
 }
 
 /**
@@ -258,6 +269,7 @@ export type CommunitySellerInboxEvent = {
   result?: string;
   message?: string | null;
   submissionId?: string;
+  submissionKey?: string | null;
   studyTarget?: 'en' | 'fr';
   /** UGC-набір (подія з адмінки) — у листі мають бути titleRu/titleUk; `packId` — для дозавантаження в клієнті. */
   packId?: string | null;

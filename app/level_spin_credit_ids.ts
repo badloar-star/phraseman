@@ -4,7 +4,12 @@
 // пропадал бы при каждом перезапуске вместе с защитой от дубля — тот самый
 // класс бага из инцидента 2026-08-23 (session_/arena_ranked_ выдавали спин
 // повторно). Ключ длиннее прочих: в нём id клейма + id дропа + индекс.
-const LOCAL_SPIN_NON_LEVEL_SOURCE = '(?:dev|lesson|session|arena_ranked|chest|report|daily_journey)_[A-Za-z0-9_-]{1,128}';
+// зачем 'quest' (владелец, 2026-08-31): задания выдают спины как награду.
+// Префикс ОБЯЗАН быть здесь — иначе фильтр загрузки сотрёт кредит вместе с
+// защитой от дубля, и спин выдался бы повторно после каждого перезапуска.
+// Ровно этот класс бага уже срабатывал дважды (память
+// project_spin_credit_id_filter_trap).
+const LOCAL_SPIN_NON_LEVEL_SOURCE = '(?:dev|lesson|session|arena_ranked|chest|report|daily_journey|quest)_[A-Za-z0-9_-]{1,128}';
 
 const LOCAL_SPIN_CREDIT_ID_RE = new RegExp(
   `^local_spin_(?:v1_\\d{3}|${LOCAL_SPIN_NON_LEVEL_SOURCE})$`,

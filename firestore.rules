@@ -89,6 +89,14 @@ service cloud.firestore {
         || collection == 'max_voice_feedback';
     }
 
+    // Private deletion diagnostics and real-money shard lifecycle records are
+    // Admin-SDK/callable-owned. Exact match blocks below keep the one bounded
+    // browser-admin list operation that is still supported, while this helper
+    // prevents the overlapping generic admin match from granting anything else.
+    function isServerOwnedSensitiveRoot(collection) {
+      return collection.matches('(account_deletion_diagnostics|revenuecat_shard_(transactions|refund_reversals|denials))');
+    }
+
     function isServerOwnedSupportRoot(collection) {
       return collection.matches('support_auto_reply_(reservations|counters)')
         || collection.matches('support_telegram_(reviews|edit_sessions|reply_jobs)')
@@ -1690,6 +1698,19 @@ service cloud.firestore {
         allow update, delete: if false;
       }
 
+      // Прогресс по заданиям. Читает владелец (модал показывает «сколько
+      // осталось»), пишет только сервер: иначе счётчик задания можно было бы
+      // выкрутить с устройства и забрать награду, ничего не сделав.
+      match /quest_progress/{questId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow create, update, delete: if false;
+
+        match /events/{eventId} {
+          allow read: if userDocOwnerMatchesAuth(userId);
+          allow create, update, delete: if false;
+        }
+      }
+
       match /gift_perk_consumptions/{receiptId} {
         allow read: if userDocOwnerMatchesAuth(userId);
         allow create, update, delete: if false;
@@ -2267,6 +2288,19 @@ service cloud.firestore {
     }
     match /shard_survey_rate_limits/{uid} {
       allow read, write: if false;
+    }
+
+    // «Задания» (quests). Конфиги пишет только админ через callable (Admin SDK
+    // обходит rules), игроки получают задание исключительно ответом questGetActive —
+    // прямого чтения коллекции у них нет: иначе очередь будущих заданий и их
+    // награды были бы видны заранее.
+    match /quests/{questId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+    match /quest_stats/{questId} {
+      allow read: if isAdmin();
+      allow write: if false;
     }
 
     match /daily_phrases/{phraseId} {
@@ -3152,6 +3186,7 @@ service cloud.firestore {
         && !isServerOwnedAgentRoot(collection)
         && !isServerOwnedAuthRoot(collection)
         && !isServerOwnedSupportRoot(collection)
+        && !isServerOwnedSensitiveRoot(collection)
         && collection != 'business_tier_history'
         && collection != 'business_tier_peak'
         && collection != 'business_tier_backfill_state'
@@ -3217,6 +3252,12 @@ service cloud.firestore {
     }
     match /revenuecat_shard_transactions/{transactionId} {
       allow list: if isAdmin();
+    }
+    match /revenuecat_shard_refund_reversals/{docId} {
+      allow read, write: if false;
+    }
+    match /revenuecat_shard_denials/{docId} {
+      allow read, write: if false;
     }
     match /users_dedup_archive/{userId} {
       allow create, update: if isAdmin();

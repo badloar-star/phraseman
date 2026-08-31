@@ -67,10 +67,10 @@ export { LOCAL_LEVEL_SPIN_STATE_KEY } from '../constants/local_level_spin_storag
  */
 const LOCAL_RESULT_TTL_MS = 72 * 60 * 60 * 1000;
 const MAX_PAID_LEVEL_SPIN_OUTBOX = 4_096;
-// «Второй шанс» остаётся распознаваемым для уже выданных квитанций, но больше
-// не участвует в новых розыгрышах: три попытки теперь восстанавливаются
-// автоматически после обнуления сессионных рун.
-const RETIRED_LEVEL_SPIN_REWARD_IDS = ['attempt_restore_all'] as const;
+// Награды в этом списке остаются распознаваемыми для старых квитанций, но не
+// участвуют в новых розыгрышах. «Второй шанс» — актуальный расходуемый подарок:
+// он должен выпадать и затем автоматически применяться при третьей ошибке.
+const RETIRED_LEVEL_SPIN_REWARD_IDS = [] as const;
 
 type LocalSpinCredit = { id: string; level: number };
 type LocalSpinState = {
@@ -86,6 +86,23 @@ type LocalSpinState = {
 
 function ownerFromDevice(): string | null {
   return captureAccountGeneration().stableId ?? null;
+}
+
+/**
+ * Отчёт о спине в систему «Задания».
+ *
+ * зачем ленивый require: quests_client импортирует этот модуль (ему нужна
+ * выдача спинов как награды), поэтому статический импорт замкнул бы цикл и
+ * один из модулей получил бы undefined на старте. Ошибку глотать нельзя —
+ * пишем причину (запрет немого catch).
+ */
+async function reportSpinToQuests(requestId: string): Promise<void> {
+  try {
+    const { reportQuestProgress } = await import('./quests_client');
+    await reportQuestProgress({ kind: 'spin_wheel', eventId: `spin_${requestId}` });
+  } catch (error) {
+    DebugLogger.warn('local_level_spins:quest_report_failed', String(error));
+  }
 }
 
 function localLevelSpinStateKey(owner: string): string {
@@ -849,6 +866,71 @@ export async function grantLocalDailyJourneySpins(
   }, accountTransitionLockLease);
 }
 
+/**
+ * Спины как награда за «Задание» (владелец, 2026-08-31).
+ *
+ * зачем именно так: повторяет договор grantLocalDailyJourneySpins — кредиты
+ * детерминированы по questId, поэтому повтор после обрыва сети не удваивает
+ * баланс, а запись проверяется на долговечность (иначе награда «показана, но
+ * не начислена» — класс бага project_reward_shown_not_credited_class).
+ */
+export async function grantLocalQuestSpins(
+  questClaimId: string,
+  count: number,
+  token: AccountGenerationToken,
+  accountTransitionLockLease?: AccountTransitionLockLease,
+): Promise<boolean> {
+  const owner = token.stableId?.trim();
+  const safeClaimId = String(questClaimId ?? '').trim().replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 100);
+  const safeCount = Math.trunc(count);
+  if (!owner || !safeClaimId || safeCount < 1 || safeCount > 10 || !isCurrentAccountGeneration(token, owner)) {
+    return false;
+  }
+  const claimHash = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    `quest-spin:${owner}:${safeClaimId}`,
+  );
+  if (!isCurrentAccountGeneration(token, owner)) return false;
+  const ids = Array.from({ length: safeCount }, (_, index) => (
+    `local_spin_quest_${claimHash.slice(0, 40)}_${index + 1}`
+  ));
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(token, owner)) return false;
+    const current = await loadLocalState(owner);
+    if (!isCurrentAccountGeneration(token, owner)) return false;
+    const missingIds = ids.filter((id) => !current.issuedCreditIds.includes(id));
+    if (missingIds.length === 0) {
+      await AsyncStorage.setItem(
+        LEVEL_SPIN_BALANCE_CACHE_KEY,
+        JSON.stringify({ owner, balance: current.credits.length }),
+      );
+      if (!isCurrentAccountGeneration(token, owner)) return false;
+      emitAppEvent('level_spin_balance_changed');
+      return true;
+    }
+    const nextState: LocalSpinState = {
+      ...current,
+      credits: [...current.credits, ...missingIds.map((id) => ({ id, level: 2 }))],
+      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, ...missingIds]),
+    };
+    const expectedAuthoritativeBytes = JSON.stringify(nextState);
+    await AsyncStorage.setItem(localLevelSpinStateKey(owner), expectedAuthoritativeBytes);
+    if (!isCurrentAccountGeneration(token, owner)) return false;
+    const durableAuthoritativeBytes = await AsyncStorage.getItem(localLevelSpinStateKey(owner));
+    if (!isCurrentAccountGeneration(token, owner)) return false;
+    if (durableAuthoritativeBytes !== expectedAuthoritativeBytes) {
+      throw new Error('local_quest_spin_state_not_durable');
+    }
+    await AsyncStorage.setItem(
+      LEVEL_SPIN_BALANCE_CACHE_KEY,
+      JSON.stringify({ owner, balance: nextState.credits.length }),
+    );
+    if (!isCurrentAccountGeneration(token, owner)) return false;
+    emitAppEvent('level_spin_balance_changed');
+    return true;
+  }, accountTransitionLockLease);
+}
+
 export async function recoverLocalLevelSpin(): Promise<LocalLevelSpinReceipt | null> {
   const owner = ownerFromDevice();
   if (!owner) return null;
@@ -1041,6 +1123,10 @@ export async function claimLocalLevelSpin(): Promise<LocalLevelSpinReceipt> {
       [LEVEL_SPIN_PENDING_REVEAL_KEY, JSON.stringify({ owner, receipt })],
     ]);
     emitAppEvent('level_spin_balance_changed');
+    // зачем: задание «крути колесо N раз». requestId уникален на спин, поэтому
+    // повтор отчёта после обрыва сети не накрутит счётчик. Вызов не должен
+    // влиять на сам спин — он полностью фоновый.
+    void reportSpinToQuests(receipt.requestId);
     return receipt;
   });
 }
@@ -1142,5 +1228,8 @@ export async function claimLocalLevelSpinWithRunes(): Promise<LocalLevelSpinRece
 
   await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false });
   void syncPendingPaidLevelSpinRunePurchases(token).catch(() => {});
+  // зачем (владелец 2026-08-31): «крутить можно за 300 рун — тоже должно
+  // засчитываться». Платный спин идёт в задание наравне с бесплатным.
+  void reportSpinToQuests(receipt.requestId);
   return receipt;
 }

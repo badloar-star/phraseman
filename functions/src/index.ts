@@ -197,7 +197,7 @@ const { submitExplainReport } = require("./explain/explain_reports");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { vipRevokeMine } = require("./vip_revoke");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { collectiblesClaimDrop } = require("./collectibles");
+const { collectiblesClaimDrop } = require("./collectibles_retired");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   submitShardSurvey,
@@ -205,6 +205,19 @@ const {
   adminWriteShardSurvey,
   adminDeleteShardSurvey,
 } = require("./shard_survey");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+// «Задания»: владелец назначает квест из админки, игрок выполняет и забирает
+// награду. Очередь разбирается сама при заходе игрока — крона нет.
+const {
+  questGetActive,
+  questReportProgress,
+  questClaimReward,
+  adminWriteQuest,
+  adminActivateQuest,
+  adminArchiveQuest,
+  adminDeleteQuest,
+  adminListQuests,
+} = require("./quests");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { shardsApplyDelta } = require("./shards_apply_delta");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -376,8 +389,7 @@ exports.userNotificationsCleanupCron = userNotificationsCleanupCron;
 exports.explainMistake = explainMistake;
 exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;
-// Сокровищница (collectibles): фича в проде. CF в deploy:safe whitelist,
-// клиент защищён kill-switch'ом collectibles_enabled (Remote Config, default true).
+// Compatibility tombstone: old installed clients receive a permanent no-drop result.
 exports.collectiblesClaimDrop = collectiblesClaimDrop;
 exports.progressSubmitEvent = progressSubmitEvent;
 exports.progressMigrateSnapshot = progressMigrateSnapshot;
@@ -393,6 +405,14 @@ exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
 exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
 exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
 exports.submitShardSurvey = submitShardSurvey;
+exports.questGetActive = questGetActive;
+exports.questReportProgress = questReportProgress;
+exports.questClaimReward = questClaimReward;
+exports.adminWriteQuest = adminWriteQuest;
+exports.adminActivateQuest = adminActivateQuest;
+exports.adminArchiveQuest = adminArchiveQuest;
+exports.adminDeleteQuest = adminDeleteQuest;
+exports.adminListQuests = adminListQuests;
 exports.getActiveShardSurvey = getActiveShardSurvey;
 exports.adminWriteShardSurvey = adminWriteShardSurvey;
 exports.adminDeleteShardSurvey = adminDeleteShardSurvey;

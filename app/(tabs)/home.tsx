@@ -36,7 +36,7 @@ import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationV
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../../components/VipCelebrationModal';
-import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, type ThemeMode } from '../../constants/theme';
+import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, isLightThemeMode, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
 import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../../constants/oliveTheme';
 import { configureAccordionLayout } from '../../constants/layoutAnimation';
@@ -73,6 +73,14 @@ import { loadAllMedals, countMedals } from '../medal_utils';
 import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import SurveyTaskCard from '../../components/SurveyTaskCard';
+import QuestTaskCard from '../../components/QuestTaskCard';
+import QuestSheetModal from '../../components/QuestSheetModal';
+import {
+  claimQuestReward,
+  loadActiveQuest,
+  peekActiveQuest,
+  type QuestSnapshot,
+} from '../quests_client';
 import SurveySheetModal from '../../components/survey/SurveySheetModal';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
 import { fetchActiveSurveyWithRetry } from '../survey_client';
@@ -133,11 +141,11 @@ import { commitDailyJourneyGift, readDailyJourneyGiftProjection } from '../daily
 import {
   createDailyJourneyHomeDeliveryController,
   createDailyJourneyHomeGrantController,
-  createDailyJourneyHomeProjectionController,
-  measureDailyJourneyHomeTarget,
-  type DailyJourneyHomePresentedDelivery,
-  type DailyJourneyHomeTargetRect,
-} from '../daily_journey_home_orchestration';
+      createDailyJourneyHomeProjectionController,
+      measureDailyJourneyHomeTarget,
+      type DailyJourneyHomePresentedDelivery,
+      type DailyJourneyHomeTargetRect,
+    } from '../daily_journey_home_orchestration';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { ensureAnonUser } from '../cloud_sync';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
@@ -157,6 +165,11 @@ import { isAiVoiceConsentGranted } from '../max_voice_consent';
 import { isMaxVoiceEntryVisible } from '../max_voice_flags';
 import { maxVoiceTeacherAccessibilityLabel } from '../max_target_gate';
 import { getHomeLastLessonImage } from '../home_last_lesson_assets';
+import { getHomeMistakesImage } from '../home_mistakes_assets';
+import { resolveHomeLearningPriority } from '../home_learning_priority_card';
+import { getMistakePracticeReadyCount } from '../mistake_practice_insights';
+import { trackMistakePracticeEvent } from '../mistake_practice_analytics';
+import MistakePracticeSetupSheet from '../../components/mistake-practice/MistakePracticeSetupSheet';
 import { isStreakFreezeActiveToday } from '../streak_freeze';
 import {
     addDaysToDateKey,
@@ -166,7 +179,8 @@ import {
 } from '../streak_week_markers';
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
-import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../../constants/streakIconAssets';
+import { getStreakFeatherIconVariant, getStreakFreezeIconVariant } from '../../constants/streakIconAssets';
+import { themeUiAsset } from '../theme_ui_assets';
 import { themedToastChrome } from '../../constants/themedToastChrome';
 import { themedWeekDot } from '../../constants/weekDotTheme';
 import { noAndroidOutline } from '../../constants/androidGlow';
@@ -177,11 +191,11 @@ const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
 const CONTENT_W = Math.min(SCREEN_W, 640);
+const DEV_HOME_MISTAKES_READY_COUNT = 10;
 // Rollback: set false to return to the previous elite home status card.
 // Android Fabric/Yoga can abort when NativeAnimated mutates Home view props during startup.
 const HOME_ANIMATION_USE_NATIVE_DRIVER = true;
 const HOME_SELECTED_TITLE_KEY = 'home_selected_title_key_v1';
-const STREAK_WEEK_FREEZE_ICE = require('../../assets/images/streak_overlays/streak-freeze-ice.webp');
 /** Сесійний прапор: після першого успішного loadData дочірні mounts не показують «рівень 1» кадр. */
 let homeStatsLoadedOnce = false;
 /**
@@ -208,6 +222,9 @@ let homeBelowFoldReadyOnce = false;
  * бОльшую из двух, чтобы готовое содержимое гарантированно влезало без обрезки.
  */
 const HOME_STATS_CARD_MIN_HEIGHT = 196;
+// Static require first: every bundled Daily Journey raster must have one live,
+// deterministic consumer so Metro can package it and asset audits can prove use.
+const HOME_DAILY_JOURNEY_GIFT_ART = require('../../assets/images/daily_journey/home_gift_button.webp');
 const GREETINGS_RU = [
     'Твой лингвистический дзен', 'Время покорять вершины', 'Зарядись знаниями', 'Твой мозг скажет «спасибо»',
     'Готов к новым инсайтам?', 'Мир ждет твоего слова', 'На шаг ближе к цели', 'Твой интеллект в тонусе',
@@ -582,12 +599,65 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         stableId: string;
         dayKey: string;
     } | null>(null);
+    // «Задания» (владелец 2026-08-31): активное задание из админки. Первый кадр
+    // берётся из синхронного peek — без «пусто, потом прыжок» (Performance Bible).
+    const [activeQuest, setActiveQuest] = useState<QuestSnapshot | null>(() => peekActiveQuest());
+    const [questSheetOpen, setQuestSheetOpen] = useState(false);
+    const [questBusy, setQuestBusy] = useState(false);
+    const [questError, setQuestError] = useState<string | null>(null);
     const [openSurveyLaunch, setOpenSurveyLaunch] = useState<SurveyLaunch | null>(null);
     const openSurveyAccountGenerationRef = useRef<AccountGenerationToken | null>(null);
     const closeSurveySheet = useCallback(() => {
         openSurveyAccountGenerationRef.current = null;
         setOpenSurveyLaunch(null);
     }, []);
+    // Задание ведёт человека прямо в нужный раздел — искать путь самому не надо.
+    const handleQuestOpenTarget = useCallback((quest: QuestSnapshot) => {
+        setQuestSheetOpen(false);
+        switch (quest.kind) {
+            case 'community_pack_submit':
+                router.push('/community_pack_create' as any);
+                return;
+            case 'invite_friend':
+                router.push('/referrals' as any);
+                return;
+            case 'spin_wheel':
+                router.push('/level_reward_spin' as any);
+                return;
+            case 'watch_video':
+                router.push('/lingman_videos' as any);
+                return;
+            case 'arena_matches':
+                router.push('/arena_matchmaking' as any);
+                return;
+            case 'flashcards_reviewed':
+                router.push('/flashcards' as any);
+                return;
+            default:
+                // Учебные цели (руны, опыт, занятия, серия) выполняются самим
+                // обучением — ведём в уроки, а не оставляем человека на месте.
+                router.push('/(tabs)/lessons' as any);
+        }
+    }, []);
+    const handleQuestClaim = useCallback((quest: QuestSnapshot) => {
+        if (questBusy) return;
+        setQuestBusy(true);
+        setQuestError(null);
+        // Оптимистично: кнопка гаснет, состояние меняется сразу; отказ откатит.
+        const previous = quest;
+        setActiveQuest({ ...quest, phase: 'claimed' });
+        void (async () => {
+            const result = await claimQuestReward(quest.questId);
+            if (result.status === 'claimed') {
+                setQuestSheetOpen(false);
+                const refreshed = await loadActiveQuest({ forceRemote: true });
+                setActiveQuest(refreshed);
+                return;
+            }
+            setActiveQuest(previous);
+            setQuestError(result.messageRu);
+        })().finally(() => setQuestBusy(false));
+    }, [questBusy]);
     const handleSurveyDurablyReconciled = useCallback((completed: SurveyDurableScope) => {
         setSurveyOffer((current) => {
             if (!current) return current;
@@ -652,7 +722,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // зачем (владелец 2026-08-26): limits.dayRemainingSec — общий 20-минутный
         // пул MAX даже при trial-доступе; free/plus видели «20м» вместо реальных
         // 3 минут пробника. При access==='trial' бейдж показывает кап пробника.
-        const badgeSeconds = (preview: { limits?: Record<string, unknown>; access?: 'max' | 'trial' }): number | null => {
+        const badgeSeconds = (preview: { limits?: Record<string, unknown>; access?: 'paid_minutes' | 'admin' | 'trial' }): number | null => {
             if (!preview.limits) return null;
             const view = parsePreflight({ limits: preview.limits }, preview.access === 'trial' ? 'trial' : 'tutor');
             return preview.access === 'trial' ? view.capSec ?? 180 : view.dayRemainingSec;
@@ -708,6 +778,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         })();
         return () => { cancelled = true; };
     }, [focusTick, homeRuntimeActive, lang]);
+    // «Задания»: читаем при заходе на Главную. Сеть трогается не чаще раза в
+    // 30 минут (TTL внутри loadActiveQuest), фоновых таймеров нет.
+    useEffect(() => {
+        if (!homeRuntimeActive) return undefined;
+        let cancelled = false;
+        void (async () => {
+            const quest = await loadActiveQuest();
+            if (!cancelled) setActiveQuest(quest);
+        })();
+        return () => { cancelled = true; };
+    }, [focusTick, homeRuntimeActive]);
     useEffect(() => {
         if (!openSurveyLaunch) return undefined;
         const openedAccount = openSurveyAccountGenerationRef.current;
@@ -826,6 +907,26 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         progress: number;
         score: string;
     } | null>(() => buildLastLessonFromHydration(lang, studyTarget) ?? null);
+    const mistakeStudyTarget = studyTarget === 'en' || studyTarget === 'fr' ? studyTarget : null;
+    const [mistakeAccountGeneration, setMistakeAccountGeneration] = useState(captureAccountGeneration);
+    const mistakeAccountGenerationKey = `${mistakeAccountGeneration.generation}:${mistakeAccountGeneration.phase}:${mistakeAccountGeneration.stableId ?? ''}`;
+    const [mistakeReadySnapshot, setMistakeReadySnapshot] = useState<{
+        target: string;
+        ownerKey: string;
+        count: number;
+    } | null>(null);
+    const [mistakeSheetVisible, setMistakeSheetVisible] = useState(false);
+    const [devMistakesCardOverride, setDevMistakesCardOverride] = useState<'mistakes' | 'last_lesson' | null>(null);
+    const devMistakesCardEnabled = devMistakesCardOverride === 'mistakes';
+    const mistakeReadyCount = mistakeReadySnapshot?.target === String(studyTarget)
+        && mistakeReadySnapshot.ownerKey === mistakeAccountGenerationKey
+        ? mistakeReadySnapshot.count
+        : 0;
+    const effectiveMistakeReadyCount = ENABLE_DEV_TOOLS && devMistakesCardOverride === 'mistakes'
+        ? DEV_HOME_MISTAKES_READY_COUNT
+        : ENABLE_DEV_TOOLS && devMistakesCardOverride === 'last_lesson'
+            ? 0
+            : mistakeReadyCount;
     const [requestedReportReply, setRequestedReportReply] = useState<UserNotification | null>(null);
     const handleReportReplyBannerOpen = useCallback((notification: UserNotification) => {
         setRequestedReportReply(notification);
@@ -879,6 +980,51 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }));
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
     const { isPremium, isVip, isPro, hasPremiumAccess } = usePremium();
+    useEffect(() => {
+        const applyMistakeAccountGeneration = (token: AccountGenerationToken) => {
+            setMistakeAccountGeneration(token);
+            setMistakeReadySnapshot(null);
+            setMistakeSheetVisible(false);
+            setDevMistakesCardOverride(null);
+        };
+        // Subscribe first, then reconcile the current snapshot: account activation
+        // may happen between render and this passive effect, and that notification
+        // must not be lost or the Home counter can stay on a stale generation.
+        const subscription = subscribeAccountGeneration(applyMistakeAccountGeneration);
+        applyMistakeAccountGeneration(captureAccountGeneration());
+        return () => subscription.remove();
+    }, []);
+    useEffect(() => {
+        if (!homeRuntimeActive) return undefined;
+        if (!mistakeStudyTarget || mistakeAccountGeneration.phase !== 'active') {
+            setMistakeReadySnapshot(null);
+            return undefined;
+        }
+
+        let cancelled = false;
+        const requestOwner = mistakeAccountGeneration;
+        const requestOwnerKey = mistakeAccountGenerationKey;
+        void getMistakePracticeReadyCount(mistakeStudyTarget)
+            .then((count) => {
+                if (cancelled || !isCurrentAccountGeneration(requestOwner, requestOwner.stableId)) return;
+                setMistakeReadySnapshot({
+                    target: String(studyTarget),
+                    ownerKey: requestOwnerKey,
+                    count,
+                });
+            })
+            .catch(() => {
+                if (cancelled || !isCurrentAccountGeneration(requestOwner, requestOwner.stableId)) return;
+                setMistakeReadySnapshot({
+                    target: String(studyTarget),
+                    ownerKey: requestOwnerKey,
+                    count: 0,
+                });
+            });
+        return () => {
+            cancelled = true;
+        };
+    }, [focusTick, homeRuntimeActive, mistakeAccountGeneration, mistakeAccountGenerationKey, mistakeStudyTarget, studyTarget]);
     const [userAvatar, setUserAvatar] = useState(() => initialVisuals.avatar);
     const [userAvatarAura, setUserAvatarAura] = useState<string | null>(() => initialVisuals.aura);
     // зачем: владелец (2026-08-27) — новичок не догадывается, что аватарка
@@ -924,7 +1070,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [streakAtRisk, setStreakAtRisk] = useState(false);
     const [reviveOffer, setReviveOffer] = useState<StreakReviveOffer | null>(null);
     const [reviveModalVisible, setReviveModalVisible] = useState(false);
-    const reviveOverlayVisible = useOverlayVisible('streakRevive', reviveModalVisible);
+    const reviveOverlayVisible = useOverlayVisible('streakRevive', homeRuntimeActive && reviveModalVisible);
     const [homeProfilePlayer, setHomeProfilePlayer] = useState<PlayerInfo | null>(null);
     const [titleModalVisible, setTitleModalVisible] = useState(false);
     const [selectedTitleKey, setSelectedTitleKey] = useState<string | null>(null);
@@ -942,11 +1088,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // остаётся true до показа. Этот ref не даёт повторно ставить модалку/таймер на каждом
     // прогоне loadData до закрытия (раньше эту роль играл преждевременный consume).
     const celebrationQueuedRef = useRef(false);
-    const celebrationOverlayVisible = useOverlayVisible('premiumCelebration', celebrationVisible);
+    const celebrationOverlayVisible = useOverlayVisible('premiumCelebration', homeRuntimeActive && celebrationVisible);
     const [vipCelebrationVisible, setVipCelebrationVisible] = useState(false);
     const [vipCelebrationMarker, setVipCelebrationMarker] = useState<string | null>(null);
     const vipCelebrationQueuedMarkerRef = useRef<string | null>(null);
-    const vipCelebrationOverlayVisible = useOverlayVisible('vipCelebration', vipCelebrationVisible);
+    const vipCelebrationOverlayVisible = useOverlayVisible('vipCelebration', homeRuntimeActive && vipCelebrationVisible);
     const [premiumFreezeUsed, setPremiumFreezeUsed] = useState(() => hh?.premiumFreezeUsed ?? false);
     const [lessonsCompleted, setLessonsCompleted] = useState(() => hh?.lessonsCompleted ?? 0);
     const [pageScrollEnabled, setPageScrollEnabled] = useState(true);
@@ -959,7 +1105,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const homeEnergyMax = Math.max(1, energyMax + energyBonusCapacity);
     const showHomeEnergy = !hasPremiumAccess;
     const energyRecoveryMinutes = Math.max(1, Math.round(energyRecoveryIntervalMs / 60000));
-    const isSketchLightTheme = themeMode === 'sagePorcelain';
+    const isSketchLightTheme = isLightThemeMode(themeMode);
     const isLightTheme = isSketchLightTheme;
     const isGoldTheme = themeMode === 'gold';
     const isOliveTheme = themeMode === 'olive';
@@ -981,7 +1127,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         string
     ];
     const leagueBonusPalette = getLeagueBonusPalette(t, themeMode);
-    const isPaperHomeTheme = themeMode === 'sagePorcelain';
+    const isPaperHomeTheme = isLightThemeMode(themeMode);
     const lightPanelBg = t.bgCard;
     const lightPanelBorder = t.border;
     const lightPanelIconBg = t.accentBg;
@@ -1017,9 +1163,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         : 'rgba(255,245,252,0.38)';
     const energyFilledColor = t.gold;
     const sketchShardAccent = isSketchLightTheme ? '#6245B2' : '#A78BFA';
-    const streakFireIconVariant = getStreakFireIconVariant(themeMode, streak);
+    const streakFeatherIconVariant = getStreakFeatherIconVariant(themeMode, streak);
     const streakFreezeIconVariant = getStreakFreezeIconVariant(themeMode);
-    const streakIconVariant = freezeActive ? streakFreezeIconVariant : streakFireIconVariant;
+    const streakIconVariant = freezeActive ? streakFreezeIconVariant : streakFeatherIconVariant;
     const streakIconInactive = !freezeActive && streak <= 0;
     const streakIconGlowStyle = streakIconInactive
         ? null
@@ -1171,12 +1317,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const dailyJourneyPulseAnim = useRef(new Animated.Value(1)).current;
     const dailyJourneyPulseAnimationRef = useRef<Animated.CompositeAnimation | null>(null);
     const homeStatsCardRef = useRef<View | null>(null);
+    const homeGiftEntryTargetRef = useRef<View | null>(null);
     const dailyJourneyReduceMotion = useReduceMotion();
     const dailyJourneyReduceMotionRef = useRef(dailyJourneyReduceMotion);
     dailyJourneyReduceMotionRef.current = dailyJourneyReduceMotion;
     const dailyJourneyRuntimeRef = useRef({ active: false, epoch: 0 });
     const [dailyJourneyUnreadCount, setDailyJourneyUnreadCount] = useState(0);
     const [dailyJourneyDelivery, setDailyJourneyDelivery] = useState<DailyJourneyHomePresentedDelivery | null>(null);
+    const dailyJourneyDeliveryRef = useRef<DailyJourneyHomePresentedDelivery | null>(null);
+    dailyJourneyDeliveryRef.current = dailyJourneyDelivery;
+    const dailyJourneyDeferredPulseRef = useRef(false);
+    const dailyJourneyOverlayVisible = useOverlayVisible('dailyJourneyDev', dailyJourneyDelivery != null);
 
     const reportDailyJourneyHomeError = useCallback((scope: string, error: unknown, showFeedback = false) => {
         DebugLogger.error(`home:daily_journey:${scope}`, error instanceof Error ? error : new Error(String(error)), 'warning');
@@ -1185,6 +1336,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             type: 'error',
             messageRu: 'Подарок не сохранён. Попробуй ещё раз.',
             messageUk: 'Подарунок не збережено. Спробуй ще раз.',
+            messageEn: 'The gift was not saved. Try again.',
             messageEs: 'No se guardó el regalo. Inténtalo de nuevo.',
             messagePtBr: 'O presente não foi salvo. Tente novamente.',
             messageVi: 'Chưa lưu được quà. Hãy thử lại.',
@@ -1221,8 +1373,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         });
     }, [dailyJourneyPulseAnim, stopDailyJourneyPulse]);
 
-    const measureDailyJourneyStatsCard = useCallback((runtimeEpoch = dailyJourneyRuntimeRef.current.epoch): Promise<DailyJourneyHomeTargetRect | null> => {
-        const node = homeStatsCardRef.current;
+    const measureDailyJourneyGiftTarget = useCallback((runtimeEpoch = dailyJourneyRuntimeRef.current.epoch): Promise<DailyJourneyHomeTargetRect | null> => {
+        const node = homeGiftEntryTargetRef.current;
         if (!node || typeof node.measureInWindow !== 'function') {
             return Promise.resolve(null);
         }
@@ -1233,8 +1385,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             windowHeight: Dimensions.get('window').height,
         });
     }, []);
-    const measureDailyJourneyStatsCardRef = useRef(measureDailyJourneyStatsCard);
-    measureDailyJourneyStatsCardRef.current = measureDailyJourneyStatsCard;
+    const measureDailyJourneyGiftTargetRef = useRef(measureDailyJourneyGiftTarget);
+    measureDailyJourneyGiftTargetRef.current = measureDailyJourneyGiftTarget;
 
     const dailyJourneyDeliveryController = useMemo(() => createDailyJourneyHomeDeliveryController<AccountGenerationToken>({
         isTokenCurrent: isCurrentAccountGeneration,
@@ -1260,11 +1412,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         isRuntimeActive: (epoch) => dailyJourneyRuntimeRef.current.active
             && dailyJourneyRuntimeRef.current.epoch === epoch,
         commit: (input, token) => commitDailyJourneyGift(input, token),
-        measureTarget: (epoch) => measureDailyJourneyStatsCardRef.current(epoch),
+        measureTarget: (epoch) => measureDailyJourneyGiftTargetRef.current(epoch),
         enqueueModal: (delivery, token) => { dailyJourneyDeliveryController.offer(delivery, token); },
         deferModal: (delivery, token) => { dailyJourneyDeliveryController.offer(delivery, token); },
         reportError: (scope, error) => reportDailyJourneyHomeError(scope, error, scope !== 'measure'),
     }), [dailyJourneyDeliveryController, reportDailyJourneyHomeError]);
+
+    useEffect(() => {
+        const deliveredSub = onAppEvent('daily_journey_delivered', ({ occurrenceId }) => {
+            // Home's own dev delivery has an explicit onLanded callback below.
+            if (dailyJourneyDeliveryRef.current) return;
+            if (!dailyJourneyRuntimeRef.current.active) {
+                dailyJourneyDeferredPulseRef.current = occurrenceId !== null;
+                return;
+            }
+            if (occurrenceId !== null && !dailyJourneyReduceMotionRef.current) startDailyJourneyPulse();
+        });
+        return () => deliveredSub.remove();
+    }, [startDailyJourneyPulse]);
 
     useEffect(() => {
         dailyJourneyRuntimeRef.current = {
@@ -1274,10 +1439,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         dailyJourneyDeliveryController.setActive(homeRuntimeActive);
         if (homeRuntimeActive) {
             void dailyJourneyProjectionController.activate().catch((error) => reportDailyJourneyHomeError('projection_activate', error));
+            if (dailyJourneyDeferredPulseRef.current) {
+                dailyJourneyDeferredPulseRef.current = false;
+                if (!dailyJourneyReduceMotionRef.current) startDailyJourneyPulse();
+            }
         } else {
             dailyJourneyProjectionController.deactivate();
         }
-    }, [dailyJourneyDeliveryController, dailyJourneyProjectionController, homeRuntimeActive, reportDailyJourneyHomeError]);
+    }, [dailyJourneyDeliveryController, dailyJourneyProjectionController, focusTick, homeRuntimeActive, reportDailyJourneyHomeError, startDailyJourneyPulse]);
 
     useEffect(() => {
         if (!homeRuntimeActive) return undefined;
@@ -1290,22 +1459,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }, [dailyJourneyProjectionController, homeRuntimeActive, reportDailyJourneyHomeError]);
 
     useEffect(() => {
-        const accountSub = subscribeAccountGeneration(() => {
+        const accountSub = subscribeAccountGeneration((token) => {
             dailyJourneyRuntimeRef.current = {
                 ...dailyJourneyRuntimeRef.current,
                 epoch: dailyJourneyRuntimeRef.current.epoch + 1,
             };
             dailyJourneyDeliveryController.resetForAccount();
+            dailyJourneyGrantController.resetForAccount();
             void dailyJourneyProjectionController.resetForAccount().catch((error) => reportDailyJourneyHomeError('projection_account', error));
         });
         return () => accountSub.remove();
-    }, [dailyJourneyDeliveryController, dailyJourneyProjectionController, reportDailyJourneyHomeError]);
+    }, [dailyJourneyDeliveryController, dailyJourneyGrantController, dailyJourneyProjectionController, reportDailyJourneyHomeError]);
 
     useEffect(() => {
         // DevHub preview compatibility: it has no direct Home target prop, so
-        // this bridge returns the same measured Statistics-card center.
+        // this bridge returns the center of the stable Gift-button slot.
         const unregister = registerDailyJourneyRevealTargetMeasurer(async () => {
-            const rect = await measureDailyJourneyStatsCardRef.current();
+            const rect = await measureDailyJourneyGiftTargetRef.current();
             return rect ? { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 } : null;
         });
         return unregister;
@@ -2747,7 +2917,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     ) => {
         if (marker === 'freeze') {
             const iceSize = Math.round(size * 1.34);
-            return <Image source={STREAK_WEEK_FREEZE_ICE} style={{ width: iceSize, height: iceSize }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Заморозка серии', en: 'Streak freeze', uk: 'Заморозка серії', es: 'Congelación de racha', 'pt-BR': 'Congelamento da sequência', vi: 'Đóng băng chuỗi', id: 'Pembekuan rentetan', tr: 'Seri dondurma', pl: 'Zamrożenie serii' })} />;
+            return <Image source={themeUiAsset(themeMode, 'streakIce')} style={{ width: iceSize, height: iceSize }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Заморозка серии', en: 'Streak freeze', uk: 'Заморозка серії', es: 'Congelación de racha', 'pt-BR': 'Congelamento da sequência', vi: 'Đóng băng chuỗi', id: 'Pembekuan rentetan', tr: 'Seri dondurma', pl: 'Zamrożenie serii' })} />;
         }
         if (marker === 'revive' || marker === 'repair') {
             return <Ionicons name="checkmark" size={checkSize} color={checkColor}/>;
@@ -2887,12 +3057,32 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const menuImages = getHomeMenuImages(themeMode);
         const maxOrbLayers = getMaxHomeOrbLayers(themeMode);
         const lastLessonImage = getHomeLastLessonImage(themeMode);
+        const homeMistakesImage = getHomeMistakesImage(themeMode);
         // зачем: имя урока раньше «запекалось» в состояние lastLesson при монтировании
         // и после смены языка интерфейса оставалось на старом языке (укр. экран —
         // русское название). Резолвим по текущему lang в рендере, как lessons.tsx.
         const lastLessonName = lastLesson == null
             ? ''
             : (lessonNamesForStudyTarget(lang, studyTarget)[lastLesson.id - 1] ?? lastLesson.name);
+        const homeMistakesTitle = triLang(lang, {
+            ru: 'Мои ошибки',
+            uk: 'Мої помилки',
+            en: 'My mistakes',
+            es: 'Mis errores',
+            'pt-BR': 'Meus erros',
+            vi: 'Lỗi của tôi',
+            id: 'Kesalahan saya',
+            tr: 'Hatalarım',
+            pl: 'Moje błędy',
+        });
+        const homeLearningPriority = resolveHomeLearningPriority(effectiveMistakeReadyCount);
+        const showMistakesCard = homeLearningPriority === 'mistakes';
+        const priorityCardVisible = showMistakesCard || lastLesson !== null;
+        const priorityCardTitle = showMistakesCard ? homeMistakesTitle : lastLessonName;
+        const priorityCardImage = showMistakesCard ? homeMistakesImage : lastLessonImage;
+        const priorityCardCounter = showMistakesCard
+            ? String(effectiveMistakeReadyCount)
+            : `${Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}/50`;
         const homeQuickRowPad = 8;
         const homeQuickRowGap = 14;
         const homeQuickTileWidth = maxVoiceVisible
@@ -2904,6 +3094,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeQuickIconLegacySize = Math.max(96, homeQuickIconPlateSize + 14);
         const homeQuickIconRadius = isGoldTheme ? 26 : 30;
         const homeLastLessonArtSize = 124;
+        const homeMistakesArtSize = 112;
+        const priorityCardArtSize = showMistakesCard ? homeMistakesArtSize : homeLastLessonArtSize;
         const homeLastLessonArtSlotWidth = 92;
         const homeLastLessonArtSlotHeight = 72;
         const homeTodayIconSize = 112;
@@ -3264,7 +3456,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         gap: eliteStatsCompact ? 4 : 6,
                       }}
                     >
-                      <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={homeHeroStreakIconSize}/>
+                      <StreakChainIcon themeMode={themeMode} breathing={homeRuntimeActive} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={homeHeroStreakIconSize}/>
                       <Animated.Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 23, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 27, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }}>
                         {displayStreak}
                       </Animated.Text>
@@ -3376,9 +3568,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               {/* зачем (спека Daily Journey, п. 6): «Спин» остаётся ровно по
                   центру, «Подарок» живёт в независимом правом слоте (absolute)
                   и не сдвигает центр при появлении/исчезновении любого из них.
-                  Сам ряд всегда зарезервирован: commit/unread не меняет высоту
-                  уже измеренной карточки и центр цели доставки. */}
-              <View testID="home-stats-bottom-row" style={{ marginTop: eliteStatsCompact ? 12 : 14, minHeight: 44, justifyContent: 'center' }}>
+                  Ряд существует только пока есть хотя бы одна кнопка: после
+                  просмотра последнего подарка карточка возвращается к обычной
+                  высоте, а отдельная absolute-цель сохраняет точку полёта. */}
+              {(homeSpinBalance > 0 || dailyJourneyUnreadCount > 0) ? (
+              <View testID="home-stats-bottom-row" style={{ marginTop: eliteStatsCompact ? 12 : 14, height: 44, justifyContent: 'center' }}>
               {homeSpinBalance > 0 ? (
                 <Animated.View
                   testID="home-spin-fab"
@@ -3456,8 +3650,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   </TapScale>
                 </Animated.View>
               ) : null}
-              {dailyJourneyUnreadCount > 0 ? (
-                <View testID="home-gift-entry" style={{ position: 'absolute', right: 0, top: 0, bottom: 0, justifyContent: 'center' }}>
+                <View
+                  testID="home-gift-entry"
+                  ref={homeGiftEntryTargetRef as React.Ref<View>}
+                  collapsable={false}
+                  style={{ position: 'absolute', right: 0, top: 0, bottom: 0, minWidth: 104, justifyContent: 'center' }}
+                >
+                {dailyJourneyUnreadCount > 0 ? (
                   <TapScale
                     testID="home-gift-entry-button"
                     accessibilityRole="button"
@@ -3472,10 +3671,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     scaleTo={0.97}
                     hitSlop={10}
                     onPress={() => {
-                      // зачем (спека, п. 6): прямой маршрут в существующие
-                      // «Подарки»; непрочитанное гасит сам экран инвентаря
-                      // после первой успешной загрузки, а не этот тап.
-                      hapticTap();
+                      // Home гасит только свою проекцию сразу; экран подарков
+                      // после успешного рендера подтверждает seen уже долговечно.
+                      dailyJourneyProjectionController.markInventoryOpened();
                       nav.push('/level_gifts_inventory');
                     }}
                     style={{ borderRadius: 16 }}
@@ -3485,18 +3683,28 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       start={{ x: 0, y: 0 }}
                       end={{ x: 0, y: 1 }}
                       style={{
-                        minWidth: 52,
+                        minWidth: 104,
                         minHeight: 44,
                         borderRadius: 16,
+                        paddingLeft: 9,
+                        paddingRight: 11,
+                        flexDirection: 'row',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        gap: 9,
                         backgroundColor: t.accent,
                         borderBottomWidth: 4,
                         borderBottomColor: 'rgba(0,0,0,0.30)',
                       }}
                     >
-                      {/* Метка доступности на кнопке, значок декоративный — как у «Спина». */}
-                      <Ionicons name="gift" size={22} color={t.correctText} />
+                      {/* Метка доступности на кнопке, сгенерированный ассет декоративный. */}
+                      <Image source={HOME_DAILY_JOURNEY_GIFT_ART} style={{ width: 24, height: 24 }} contentFit="contain" accessible={false} />
+                      <Text maxFontSizeMultiplier={1} style={{ color: t.correctText, fontSize: 15, fontWeight: '900', letterSpacing: 0.15 }}>
+                        {triLang(lang, {
+                          ru: 'Подарок', uk: 'Подарунок', en: 'Gift', es: 'Regalo', 'pt-BR': 'Presente',
+                          vi: 'Quà', id: 'Hadiah', tr: 'Hediye', pl: 'Prezent',
+                        })}
+                      </Text>
                     </LinearGradient>
                     <View testID="home-gift-entry-count" style={{ position: 'absolute', top: -5, right: -5, minWidth: 21, height: 21, borderRadius: 10, paddingHorizontal: 5, alignItems: 'center', justifyContent: 'center', backgroundColor: t.gold }}>
                       <Text maxFontSizeMultiplier={1} style={{ color: '#211500', fontSize: 12, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
@@ -3504,9 +3712,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       </Text>
                     </View>
                   </TapScale>
+                ) : null}
                 </View>
-              ) : null}
               </View>
+              ) : (
+                <View
+                  testID="home-gift-entry-target"
+                  ref={homeGiftEntryTargetRef as React.Ref<View>}
+                  collapsable={false}
+                  pointerEvents="none"
+                  style={{ position: 'absolute', right: 0, bottom: 0, width: 104, height: 44 }}
+                />
+              )}
               {showStatsPulseHint && (<Animated.Text accessibilityLiveRegion="polite" style={{
                     color: t.accent,
                     fontSize: 13,
@@ -3603,6 +3820,49 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     <Ionicons name="hand-left-outline" size={21} color={t.heroTextPrimary} />
                   </TouchableOpacity>
                 )}
+                {/* DEV-only fixture: switches the shared priority slot between
+                    the real last lesson and 10 in-memory practice mistakes.
+                    It never writes fake learning events into the user journal. */}
+                {ENABLE_DEV_TOOLS && (
+                  <TouchableOpacity
+                    testID="home-dev-mistakes-toggle"
+                    accessibilityRole="button"
+                    accessibilityLabel={devMistakesCardEnabled
+                      ? 'DEV: показать плашку последнего урока'
+                      : 'DEV: показать плашку с десятью ошибками'}
+                    accessibilityHint="Переключает тестовую плашку без изменения учебных данных"
+                    accessibilityState={{ selected: devMistakesCardEnabled }}
+                    activeOpacity={0.72}
+                    hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                    onPress={() => {
+                      hapticTap();
+                      setMistakeSheetVisible(false);
+                      setDevMistakesCardOverride((current) => (
+                        current === 'mistakes' ? 'last_lesson' : 'mistakes'
+                      ));
+                    }}
+                    style={{
+                      width: 44,
+                      minHeight: 46,
+                      borderRadius: 14,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: devMistakesCardEnabled ? t.wrongBg : 'transparent',
+                    }}
+                  >
+                    <Ionicons
+                      name={devMistakesCardEnabled ? 'alert-circle' : 'swap-horizontal-outline'}
+                      size={20}
+                      color={devMistakesCardEnabled ? t.wrong : t.heroTextPrimary}
+                    />
+                    <Text
+                      maxFontSizeMultiplier={1}
+                      style={{ color: devMistakesCardEnabled ? t.wrong : t.heroTextPrimary, fontSize: 9, fontWeight: '900', lineHeight: 10 }}
+                    >
+                      10
+                    </Text>
+                  </TouchableOpacity>
+                )}
                 </View>
                 ) : null}
                 {!homeHeaderCompact ? <View style={{ flex: 1, minWidth: 0 }} /> : null}
@@ -3647,8 +3907,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           <Animated.View style={sectionStyle(1)}>
           {/* Герой: серия + уровень + XP + неделя (вернул владелец) — тап открывает статистику */}
           {/* зачем (спека Daily Journey, п. 5.9): обёртка несёт пульс доставки
-              (1→1.035→1) и является целью полёта награды — measureInWindow по
-              ней даёт кадр самой карточки (маргины перенесены сюда же). */}
+              (1→1.035→1); отдельный стабильный слот внутри карточки является
+              точной целью полёта награды. */}
           <Animated.View ref={homeStatsCardRef as React.Ref<View>} collapsable={false} style={{ marginHorizontal: 8, marginBottom: 12, transform: [{ scale: dailyJourneyPulseAnim }] }}>
           <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={isGoldTheme ? goldShadow(3) : isOliveTheme ? oliveShadow(2) : null} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
             <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : 24, borderWidth: 0, borderColor: 'transparent', padding: 18, minHeight: HOME_STATS_CARD_MIN_HEIGHT, overflow: 'hidden' }}>
@@ -3835,22 +4095,36 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
 
           </Animated.View>
 
-          {/* ПРОДОЛЖИТЬ УРОК (карточка — только после первого захода в любой урок / last_opened_lesson) */}
+          {/* Единый приоритетный слот: при 10+ активных ошибках «Мои ошибки»
+              занимает ровно место «Продолжить урок»; ниже порога остаётся урок. */}
           {(<Animated.View style={sectionStyle(2)}>
 
-          {/* зачем: владелец (2026-08-02) — плашка плана заменена плашкой последнего
-              открытого урока: один тап продолжает учёбу ровно там, где остановился.
-              Форма — как у рядов «Сегодня» (вызовы дня): компактная иконка,
-              название и счётчик справа. */}
-          {lastLesson == null ? null : (
+          {priorityCardVisible ? (
             <TouchableOpacity
-              testID="home-continue-lesson"
+              testID={showMistakesCard ? 'home-mistakes-card' : 'home-continue-lesson'}
               accessible={true}
               accessibilityRole="button"
-              accessibilityLabel={`${s.home.continueBtn}: ${lastLessonName}`}
+              accessibilityLabel={showMistakesCard
+                ? `${homeMistakesTitle}: ${effectiveMistakeReadyCount}`
+                : `${s.home.continueBtn}: ${lastLessonName}`}
               activeOpacity={0.82}
               onPress={() => {
                 hapticTap();
+                if (showMistakesCard) {
+                  trackMistakePracticeEvent('mistake_practice_menu_opened', {
+                    study_target: mistakeStudyTarget ?? studyTarget,
+                    entry_source: 'home',
+                    ready_count: effectiveMistakeReadyCount,
+                    plus_access: hasPremiumAccess,
+                  });
+                  if (!hasPremiumAccess) {
+                    router.push({ pathname: '/premium_modal', params: { context: 'mistake_practice' } } as any);
+                    return;
+                  }
+                  setMistakeSheetVisible(true);
+                  return;
+                }
+                if (!lastLesson) return;
                 logFeatureOpened('lesson_menu');
                 trackFeatureOpened('lesson_menu').catch(() => { });
                 perfNavStart('lesson_menu');
@@ -3862,22 +4136,37 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 8, minHeight: 72 }}>
                   <View style={{ width: homeLastLessonArtSlotWidth, height: homeLastLessonArtSlotHeight, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <LightSketchMenuImage source={lastLessonImage} width={homeLastLessonArtSize} height={homeLastLessonArtSize} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
+                    <LightSketchMenuImage source={priorityCardImage} width={priorityCardArtSize} height={priorityCardArtSize} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
                   </View>
                   <View style={{ flex: 1, minWidth: 0 }}>
-                    <FlowText testID="home-continue-lesson-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
-                      {lastLessonName}
+                    <FlowText testID={showMistakesCard ? 'home-mistakes-title' : 'home-continue-lesson-title'} provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
+                      {priorityCardTitle}
                     </FlowText>
                   </View>
                   <View style={{ minWidth: 30, alignItems: 'flex-end', flexShrink: 0 }}>
                     <Text style={{ color: homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] /* guard-ok: правый счётчик прогресса */ }}>
-                      {Math.max(0, Math.min(50, lastLesson.progress))}/50
+                      {priorityCardCounter}
                     </Text>
                   </View>
                 </View>
               </LinearGradient>
             </TouchableOpacity>
-          )}
+          ) : null}
+
+          {/* «Задание» — сразу под карточкой последнего урока (владелец
+              2026-08-31). Забранное и просроченное не показываем: плашка
+              существует, только пока с ней есть что делать. */}
+          {activeQuest && activeQuest.phase !== 'claimed' && activeQuest.phase !== 'expired' ? (
+            <QuestTaskCard
+              quest={activeQuest}
+              onOpen={(quest) => {
+                hapticTap();
+                setQuestError(null);
+                setActiveQuest(quest);
+                setQuestSheetOpen(true);
+              }}
+            />
+          ) : null}
 
           <ReportReplyHomeBanner
             active={homeRuntimeActive}
@@ -4472,9 +4761,42 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 void clearPendingResult();
             }}/>)}
       {/* Приветствие-знакомство со спотлайт-подсветкой блоков — один раз при первом входе. */}
+      <QuestSheetModal
+        quest={activeQuest}
+        visible={questSheetOpen && activeQuest !== null}
+        busy={questBusy}
+        errorRu={questError}
+        onClose={() => { setQuestSheetOpen(false); setQuestError(null); }}
+        onOpenTarget={handleQuestOpenTarget}
+        onClaim={handleQuestClaim}
+      />
+      <MistakePracticeSetupSheet
+        visible={mistakeSheetVisible}
+        readyCount={effectiveMistakeReadyCount}
+        onClose={() => setMistakeSheetVisible(false)}
+        onStart={(length) => {
+          trackMistakePracticeEvent('mistake_practice_setup_started', {
+            study_target: mistakeStudyTarget ?? studyTarget,
+            entry_source: 'home',
+            requested_length: length,
+            ready_count: effectiveMistakeReadyCount,
+          });
+          setMistakeSheetVisible(false);
+          router.push({
+            pathname: '/mistake_practice_session',
+            params: {
+              length,
+              devMistakes: devMistakesCardEnabled ? '10' : undefined,
+              devMistakesSeed: devMistakesCardEnabled
+                ? `${Date.now()}-${Math.floor(Math.random() * 1_000_000)}`
+                : undefined,
+            },
+          } as any);
+        }}
+      />
       {dailyJourneyDelivery ? (
         <DailyJourneyRewardPreviewModal
-          visible
+          visible={dailyJourneyOverlayVisible}
           day={dailyJourneyDelivery.occurrence.day}
           run={dailyJourneyDelivery.run}
           occurrence={dailyJourneyDelivery.occurrence}

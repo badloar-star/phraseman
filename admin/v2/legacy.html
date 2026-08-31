@@ -11958,6 +11958,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   <div id="admin-nav-gift-certificates" class="tab" role="button" tabindex="0" onclick="switchTab('gift-certificates')" onkeydown="if (event.currentTarget.closest('.tabs')?.dataset.navEdit !== 'true' &amp;&amp; (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); switchTab('gift-certificates'); }" title="Создать, скачать и отправить реальные подарочные сертификаты">Подарочные сертификаты</div>
   <div class="tab" onclick="switchTab('cancel-surveys')">Cancel surveys</div>
   <div class="tab" onclick="switchTab('surveys')" title="Опросы за осколки: сводка ответов, лента, редактор, CSV" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">📊 Опросы</div>
+  <div class="tab" onclick="switchTab('quests')" title="Задания: очередь, награды, активация, статистика выполнения" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fcd34d;font-weight:700">🏁 Задания</div>
   <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Placas y mensajes">Плашки и сообщения</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
   <div class="tab" onclick="switchTab('youtube-catalog')" title="Каналы, плейлисты и премьеры YouTube" style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.35);color:#fca5a5;font-weight:700">▶ YouTube-каталог</div>
@@ -12045,11 +12046,6 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-speaking_enabled" class="cp-toggle" onchange="saveControlPanelBool('speaking_enabled', this.checked)" disabled/><span id="cp-bool-label-speaking_enabled" class="cp-bool-chip">…</span></label>
       </div>
       <div class="cp-switch-row">
-        <div class="cp-switch-ico">💎</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">«Сокровищница» (коллекционные)</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Дроп коллекционных фраз из уроков.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-collectibles_enabled" class="cp-toggle" onchange="saveControlPanelBool('collectibles_enabled', this.checked)" disabled/><span id="cp-bool-label-collectibles_enabled" class="cp-bool-chip">…</span></label>
-      </div>
-      <div class="cp-switch-row">
         <div class="cp-switch-ico">🛡</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Диагностика обращений</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Локальная безопасная история; отправляется только вместе с обращением пользователя.</div></div>
         <label title="Аварийно отключает запись и прикрепление новых диагностических событий" style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-support_diagnostics_enabled" class="cp-toggle" onchange="saveControlPanelBool('support_diagnostics_enabled', this.checked)" disabled/><span id="cp-bool-label-support_diagnostics_enabled" class="cp-bool-chip">…</span></label>
@@ -12071,7 +12067,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       </div>
       <div class="cp-switch-row">
         <div class="cp-switch-ico">♾️</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fbbf24">Кнопка «Навсегда» (lifetime) — ПРОДАЖА СНЯТА</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Продажа Pro убрана 24.08.2026 по решению владельца, её место занял MAX. Этот тумблер сейчас НИ НА ЧТО не влияет: в коде стоит пломба LIFETIME_SALE_RETIRED (app/paywall_purchase.ts). Купившие Pro доступ сохраняют.</div></div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fbbf24">Phraseman Pro — разовая покупка</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Показывает предложение Pro на обычных пейволах, если пакет доступен в магазине. Выключение скрывает продажу без отзыва уже купленного доступа. В онбординге Pro не показывается.</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-lifetime_button_enabled" class="cp-toggle" onchange="saveControlPanelBool('lifetime_button_enabled', this.checked)" disabled/><span id="cp-bool-label-lifetime_button_enabled" class="cp-bool-chip">…</span></label>
       </div>
       <div class="cp-switch-row">
@@ -13253,6 +13249,96 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         <div class="ytc-pane-head"><div><h3 class="ytc-pane-title">Последние изменения</h3><div class="ytc-pane-copy">Причина, автор и ревизия</div></div></div>
         <div id="ytc-history" class="ytc-history"></div>
       </section>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Задания (quests) ══ -->
+<div id="tab-quests" class="reports-tab pm-v4-page" data-pm-v4-section="quests">
+  <div class="pm-v4-section-header" data-pm-v4-header="quests"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Задания</h2><div class="pm-v4-section-sub">Очередь заданий, награды и статистика выполнения.</div></div></div>
+
+  <div style="max-width:1080px;margin-bottom:16px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+      <div style="max-width:720px">
+        <h2 style="margin:0 0 6px;font-size:20px;color:#f4f4f5">Задания на Главной</h2>
+        <p style="margin:0;color:#a1a1aa;font-size:13.5px;line-height:1.55">
+          Задание появляется пульсирующей плашкой под карточкой последнего урока. Одновременно активно только одно; остальные ждут в очереди и поднимаются сами, когда текущее закончится, либо в назначенную дату.
+        </p>
+      </div>
+      <button type="button" onclick="window.openQuestEditor &amp;&amp; window.openQuestEditor(null)" title="Создать новое задание. Сначала оно попадёт в очередь; активировать можно отдельной кнопкой." style="background:rgba(251,191,36,0.14);border-color:rgba(251,191,36,0.4);color:#fcd34d;font-weight:800;min-height:42px">Создать задание</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <button type="button" onclick="window.loadQuests &amp;&amp; window.loadQuests(true)" title="Перечитать список заданий и статистику">Обновить список</button>
+      <span id="q-status" style="color:#a1a1aa;font-size:13px">Загрузка…</span>
+    </div>
+  </div>
+
+  <div id="q-active-block" style="margin-bottom:22px"></div>
+
+  <h3 style="margin:0 0 8px;font-size:15px;color:#d4d4d8">Очередь и архив</h3>
+  <div id="q-list"></div>
+
+  <!-- Редактор задания -->
+  <div id="q-editor" style="display:none;margin-top:22px;padding:16px;border:1px solid rgba(228,228,231,0.12);border-radius:12px;background:rgba(22,24,30,0.6)">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px">
+      <div>
+        <h3 id="q-editor-title" style="margin:0 0 4px;font-size:18px;color:#f4f4f5">Новое задание</h3>
+        <div style="color:#a1a1aa;font-size:13px;line-height:1.5">Заполни текст, который увидит человек, выбери тип, цель и награды.</div>
+      </div>
+      <button type="button" onclick="window.closeQuestEditor &amp;&amp; window.closeQuestEditor()" title="Закрыть без сохранения">Закрыть</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:16px">
+      <label style="display:flex;flex-direction:column;gap:5px;color:#a1a1aa;font-size:12px">
+        Идентификатор (латиница, цифры, _)
+        <input id="q-id" type="text" placeholder="create_pack_september" style="min-height:38px"/>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:5px;color:#a1a1aa;font-size:12px">
+        Тип задания
+        <select id="q-kind" onchange="window.onQuestKindChange &amp;&amp; window.onQuestKindChange()" style="min-height:38px"></select>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:5px;color:#a1a1aa;font-size:12px">
+        <span id="q-target-label">Цель</span>
+        <input id="q-target" type="number" min="1" value="1" style="min-height:38px"/>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:5px;color:#a1a1aa;font-size:12px">
+        Сколько часов живёт (по умолчанию 72)
+        <input id="q-duration" type="number" min="1" max="720" value="72" style="min-height:38px"/>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:5px;color:#a1a1aa;font-size:12px">
+        Дата старта из очереди (пусто = сразу, как освободится)
+        <input id="q-scheduled" type="datetime-local" style="min-height:38px"/>
+      </label>
+      <label style="display:flex;flex-direction:column;gap:5px;color:#a1a1aa;font-size:12px">
+        Позиция в очереди (меньше = раньше)
+        <input id="q-order" type="number" min="0" value="0" style="min-height:38px"/>
+      </label>
+    </div>
+
+    <label style="display:flex;flex-direction:column;gap:5px;color:#a1a1aa;font-size:12px;margin-bottom:12px">
+      Заголовок задания (русский обязателен)
+      <input id="q-title-ru" type="text" placeholder="Собери свой набор карточек" style="min-height:38px"/>
+    </label>
+    <label style="display:flex;flex-direction:column;gap:5px;color:#a1a1aa;font-size:12px;margin-bottom:6px">
+      Описание — что нужно сделать (русский обязателен)
+      <textarea id="q-body-ru" rows="4" oninput="window.onQuestBodyInput &amp;&amp; window.onQuestBodyInput()" placeholder="Выбери любую тему, которая тебе близка, собери из неё набор карточек и поделись с сообществом. Твой набор может оказаться именно тем, что кто-то давно искал." style="min-height:96px"></textarea>
+    </label>
+    <div id="q-body-hint" style="color:#a1a1aa;font-size:12px;margin-bottom:16px">0 / 600 знаков. Пиши простым, тёплым языком — без канцелярита.</div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px">
+      <h4 style="margin:0;font-size:14px;color:#d4d4d8">Награды</h4>
+      <button type="button" onclick="window.addQuestReward &amp;&amp; window.addQuestReward()" title="Добавить ещё одну награду к этому заданию">+ Добавить награду</button>
+    </div>
+    <div id="q-rewards" style="display:flex;flex-direction:column;gap:10px;margin-bottom:8px"></div>
+    <div style="color:#a1a1aa;font-size:12px;line-height:1.55;margin-bottom:18px">
+      Руны выдаются подарками номиналом 10, 20, 50, 100, 250, 500 и 1000 — сумма должна складываться из них (например 300 = 250 + 50, а 3000 = три раза по 1000). Другие суммы сервер не примет.
+    </div>
+
+    <div id="q-editor-error" style="display:none;color:#fca5a5;font-size:13px;line-height:1.5;margin-bottom:12px;padding:10px 12px;border-radius:10px;background:rgba(239,68,68,0.1)"></div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button type="button" onclick="window.saveQuest &amp;&amp; window.saveQuest()" style="background:rgba(52,211,153,0.14);border-color:rgba(52,211,153,0.4);color:#6ee7b7;font-weight:800;min-height:42px">Сохранить в очередь</button>
+      <button type="button" onclick="window.closeQuestEditor &amp;&amp; window.closeQuestEditor()" style="min-height:42px">Отмена</button>
     </div>
   </div>
 </div>
@@ -15235,6 +15321,22 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         <article class="max-ops-kpi"><div class="max-ops-kpi-label">Успешное соединение</div><div id="max-ops-kpi-connection" class="max-ops-kpi-value">—</div><div id="max-ops-kpi-connection-sub" class="max-ops-kpi-sub">—</div></article>
         <article class="max-ops-kpi"><div class="max-ops-kpi-label">Готовый разбор</div><div id="max-ops-kpi-review" class="max-ops-kpi-value">—</div><div id="max-ops-kpi-review-sub" class="max-ops-kpi-sub">—</div></article>
         <article class="max-ops-kpi"><div class="max-ops-kpi-label">Восстановление связи</div><div id="max-ops-kpi-reconnect" class="max-ops-kpi-value">—</div><div id="max-ops-kpi-reconnect-sub" class="max-ops-kpi-sub">—</div></article>
+      </div>
+
+      <!-- зачем (владелец 2026-08-30): «сколько минут MAX использовано в общем
+           и сколько это стоило денег реально (точно)». Источник —
+           voice_call_billing: фактические usage-токены каждой завершённой
+           сессии × официальный прайс OpenAI (кэш-скидка и транскрипция
+           учтены). Серверная sum-агрегация, документы не выкачиваются. -->
+      <div class="max-ops-section">
+        <h3>Минуты и деньги</h3><p>Фактические токены каждой сессии × прайс OpenAI (кэш-скидка и транскрипция учтены). Источник: voice_call_billing, включая watchdog-сессии.</p>
+        <p id="max-ops-usage-recon" data-recon="unknown">Сверка с OpenAI: данные ещё не загружены.</p>
+        <div class="max-ops-kpis" aria-label="Минуты и себестоимость MAX">
+          <article class="max-ops-kpi"><div class="max-ops-kpi-label">Минуты за всё время</div><div id="max-ops-usage-minutes-all" class="max-ops-kpi-value">—</div><div id="max-ops-usage-minutes-all-sub" class="max-ops-kpi-sub">—</div></article>
+          <article class="max-ops-kpi"><div class="max-ops-kpi-label">Себестоимость за всё время</div><div id="max-ops-usage-cost-all" class="max-ops-kpi-value">—</div><div id="max-ops-usage-cost-all-sub" class="max-ops-kpi-sub">—</div></article>
+          <article class="max-ops-kpi"><div class="max-ops-kpi-label">Минуты в этом месяце</div><div id="max-ops-usage-minutes-month" class="max-ops-kpi-value">—</div><div id="max-ops-usage-minutes-month-sub" class="max-ops-kpi-sub">—</div></article>
+          <article class="max-ops-kpi"><div class="max-ops-kpi-label">Себестоимость в этом месяце</div><div id="max-ops-usage-cost-month" class="max-ops-kpi-value">—</div><div id="max-ops-usage-cost-month-sub" class="max-ops-kpi-sub">—</div></article>
+        </div>
       </div>
 
       <div class="max-ops-section">
@@ -17373,6 +17475,43 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     document.getElementById('max-ops-kpi-review-sub').textContent = `${maxOpsNumber(totals.reviewsReady)} готово · ${maxOpsNumber(totals.reviewsFailed)} ошибок`;
     document.getElementById('max-ops-kpi-reconnect').textContent = maxOpsPercent(rates.reconnectRecovery);
     document.getElementById('max-ops-kpi-reconnect-sub').textContent = `${maxOpsNumber(totals.reconnectRecovered)} из ${maxOpsNumber(totals.reconnectAttempts)}`;
+    // Минуты и деньги (usage) — из sum-агрегаций voice_call_billing; при сбое
+    // агрегации сервер отдаёт usage:null, карточки честно показывают прочерк.
+    const usage = data && typeof data.usage === 'object' ? data.usage : null;
+    const usageMinutes = (bucket) => bucket ? Math.round(maxOpsNumber(bucket.seconds) / 60).toLocaleString('ru-RU') + ' мин' : '—';
+    const usageCost = (bucket) => bucket ? '$' + maxOpsNumber(bucket.estCostUsd).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '—';
+    const usageCalls = (bucket) => bucket ? `${maxOpsNumber(bucket.calls).toLocaleString('ru-RU')} сессий` : 'агрегация недоступна';
+    const usageTranscription = (bucket) => bucket ? `в т.ч. транскрипция $${maxOpsNumber(bucket.transcriptionCostUsd).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : 'агрегация недоступна';
+    document.getElementById('max-ops-usage-minutes-all').textContent = usageMinutes(usage && usage.allTime);
+    document.getElementById('max-ops-usage-minutes-all-sub').textContent = usageCalls(usage && usage.allTime);
+    document.getElementById('max-ops-usage-cost-all').textContent = usageCost(usage && usage.allTime);
+    document.getElementById('max-ops-usage-cost-all-sub').textContent = usageTranscription(usage && usage.allTime);
+    document.getElementById('max-ops-usage-minutes-month').textContent = usageMinutes(usage && usage.currentMonth);
+    document.getElementById('max-ops-usage-minutes-month-sub').textContent = usageCalls(usage && usage.currentMonth);
+    document.getElementById('max-ops-usage-cost-month').textContent = usageCost(usage && usage.currentMonth);
+    document.getElementById('max-ops-usage-cost-month-sub').textContent = usageTranscription(usage && usage.currentMonth);
+    // Дневная сверка с OpenAI Usage API (крон maxVoiceUsageRecon).
+    const reconHost = document.getElementById('max-ops-usage-recon');
+    if (reconHost) {
+      const recon = usage && usage.recon ? usage.recon.latest : null;
+      if (!recon) {
+        reconHost.textContent = 'Сверка с OpenAI: ещё не выполнялась (крон стартует ночью по UTC).';
+        reconHost.dataset.recon = 'unknown';
+      } else if (recon.status === 'no_admin_key') {
+        reconHost.textContent = 'Сверка с OpenAI: нужен админ-ключ — firebase functions:secrets:set OPENAI_ADMIN_API_KEY.';
+        reconHost.dataset.recon = 'warning';
+      } else if (recon.status === 'drift') {
+        reconHost.textContent = `Сверка с OpenAI (${recon.dayKey}): РАСХОЖДЕНИЕ — ${String(recon.note || '')}`;
+        reconHost.dataset.recon = 'critical';
+      } else if (recon.status === 'api_error') {
+        reconHost.textContent = `Сверка с OpenAI (${recon.dayKey}): Usage API не ответил, повтор следующей ночью.`;
+        reconHost.dataset.recon = 'warning';
+      } else {
+        const openaiCost = recon.openaiCostUsd == null ? '—' : '$' + maxOpsNumber(recon.openaiCostUsd).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        reconHost.textContent = `Сверка с OpenAI (${recon.dayKey}): сходится — у нас $${maxOpsNumber(recon.oursCostUsd).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}, у OpenAI ${openaiCost}.`;
+        reconHost.dataset.recon = 'ok';
+      }
+    }
     const updated = maxOpsNumber(status.lastAggregateAtMs);
     document.getElementById('max-ops-last-update').textContent = updated ? `Последний агрегат: ${new Date(updated).toLocaleString('ru-RU')}` : 'Последний агрегат: время неизвестно';
     const trend = Array.isArray(data?.trend) ? data.trend.slice(0, 30) : [];
@@ -22826,6 +22965,9 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     if (tab === 'surveys' && typeof window.loadShardSurveys === 'function') {
       void window.loadShardSurveys();
     }
+    if (tab === 'quests' && typeof window.loadQuests === 'function') {
+      void window.loadQuests(false);
+    }
     if (tab === 'review-promo' && !isLocalAdminVisualTestMode() && !window._vipSurveyLoaded && typeof window.loadVipSurveyResponses === 'function') {
       void window.loadVipSurveyResponses(false);
     }
@@ -23840,6 +23982,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     'promo-codes': 'Промокоды',
     'gift-certificates': 'Подарочные сертификаты',
     'cancel-surveys': 'Опросы отмены',
+    'quests': 'Задания',
     'review-promo': 'Опрос Plus',
     'app-messages': 'Плашки и сообщения',
     'remote-config': 'Удалённая конфигурация',
@@ -26436,7 +26579,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   }
 
   /**
-   * Внутренние вердикты админки (9 штук) → 5 значений, которые принимает сервер
+   * Внутренние вердикты админки и прямые статусы черновиков → 5 значений, которые принимает сервер
    * (REPORT_RESOLUTIONS в functions/src/report_replies.ts).
    * зачем: 2026-07-25 бэкенд сменил контракт adminReplyToReport со `shards: 0..100`
    * на `{resolution, coins: 0|1}`, а админка продолжала слать shards — сервер падал
@@ -26445,11 +26588,14 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   const SERVER_RESOLUTION_BY_VERDICT = {
     confirmed_fixed: 'confirmed_fixed',
     // Награда выдаётся только после исправления; расследуемый баг остаётся in_progress.
+    in_progress: 'in_progress',
     confirmed_investigating: 'in_progress',
     content_review: 'in_progress',
     duplicate: 'duplicate',
+    unconfirmed: 'unconfirmed',
     stale_content_not_reproduced: 'unconfirmed',
     not_reproduced: 'unconfirmed',
+    rejected: 'rejected',
     by_design: 'rejected',
     user_error: 'rejected',
     no_issue_details: 'rejected',
@@ -26717,14 +26863,42 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     "hbMiD4aBVVNYKjGoI2Tf": {title:"Спасибо, проблему подтвердили",body:"Спасибо, что подробно описали — мы подтвердили: в редких случаях прогресс по разделам теории может откатываться назад после синхронизации между устройствами, из-за чего пройденные разделы снова показывают замок. Уже разбираемся с причиной. За находку начислили 2 жемчужины.",shards:2,resolution:"confirmed_investigating",rewardGroup:"theory-sections-seen-cloud-regression"},
     "avQyys79PtQdEVAMaezg": {title:"Спасибо, проверили баланс",body:"Спасибо, что написали! Мы проверили: сейчас в каталоге две новые колоды стоят по 30 жемчужин (Phrasal Verbs и Movie & Series) — вот их с балансом 17 открыть нельзя, и это ожидаемо. Остальные колоды в каталоге по 15 жемчужин должны открываться нормально — если у вас и с ними не выходит, напишите ещё раз, разберём отдельно.",shards:0,resolution:"not_reproduced",rewardGroup:"flashcards-pack-price-confusion"},
     "fpEobl4BidR4TF8LNt4e": {title:"Дякуємо, розбираємось",body:"Дякуємо, що написали. Ми підтвердили: іноді після покупки статус підписки на сервері оновлюється не миттєво, і через це діалог ще кілька хвилин може не відкриватись, хоча покупка вже пройшла. Спробуйте, будь ласка, ще раз трохи пізніше або перезапустіть застосунок — і напишіть нам, якщо не допоможе. За знахідку нарахували 1 перлину.",shards:1,resolution:"confirmed_investigating",rewardGroup:"ai-dialog-premium-sync-delay"},
+    "knworKaIf7i2M4DpVSx1": {title:"Озвучку заданий поправили",body:"Спасибо, что сообщили. Мы обновили загрузку и воспроизведение фраз на слух, поэтому, пожалуйста, установите актуальную версию приложения.",shards:0,resolution:"duplicate",rewardGroup:"reported-phrase-audio-silent-2026-08-30",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "iZIZR4CuOAbQpyejk6h4": {title:"Звук в заданиях исправлен",body:"Спасибо, вы помогли найти проблему с воспроизведением фраз на слух. Мы обновили загрузку озвучки; в актуальной версии звук снова работает, поэтому, пожалуйста, обновите приложение. Вы сможете получить приятный бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"reported-phrase-audio-silent-2026-08-30",rewardBundle:{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "qvykLKgpTx6XpCTP8Hr7": {title:"Уточнили проверку артиклей",body:"Спасибо за внимательность. В изолированной фразе возможны и a book, и the book — выбор зависит от контекста, поэтому мы добавили оба варианта; изменение появится со следующим обновлением приложения.",shards:0,resolution:"duplicate",rewardGroup:"lesson11-article-context-variants",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "7Z0397QHKi8J6R3asJ9I": {title:"Уточнили вариант с problem",body:"Спасибо, вы верно заметили зависимость артикля от контекста. Теперь задание принимает и a problem, и the problem; изменение вступит в силу со следующим обновлением приложения.",shards:0,resolution:"duplicate",rewardGroup:"lesson11-article-context-variants",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "EAHeMvvA86jydqNwObWC": {title:"Исправили проверку артиклей",body:"Спасибо, вы нашли настоящую неоднозначность. Без дополнительного контекста допустимы и a letter, и the letter, поэтому теперь задание принимает оба варианта; изменение появится со следующим обновлением приложения. Вы сможете получить приятный бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson11-article-context-variants",rewardBundle:{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "U0tTjZB72NRchPVnuHu1": {title:"Проверили пример в уроке",body:"Спасибо за сообщение. Мы проверили эту фразу и теорию урока — пример на месте, а повторить его исчезновение не удалось. Если это случится снова, отправьте, пожалуйста, сообщение прямо с экрана, где пример не отображается.",shards:0,resolution:"unconfirmed",rewardGroup:"lesson3-example-not-reproduced",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "b8f8126b6419107389f87da12e7da41c4a51e3bac506741394d99da93faeff46": {title:"Проверяем синхронизацию прогресса",body:"Спасибо, что подробно описали переход на новый телефон. Разница между уровнями требует отдельной проверки привязки учётной записи и сохранённого прогресса, и мы продолжаем разбираться. Пока, пожалуйста, не удаляйте приложение со старого телефона.",shards:0,resolution:"in_progress",rewardGroup:"account-progress-sync-manual-review",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "OxxAycDM37L0ksFMFnTt": {title:"Нужно уточнить карточку",body:"Спасибо за сообщение. В отчёте не сохранилась сама карточка с give and receive, поэтому мы не смогли понять, что именно показано неверно. Если ошибка повторится, отправьте, пожалуйста, отчёт прямо с этой карточки и коротко укажите ожидаемый вариант.",shards:0,resolution:"unconfirmed",rewardGroup:"flashcards-custom-give-receive-unspecified",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "hHPVIHPDqXraZOKp20Ou": {title:"Проверили сообщение о карточках",body:"Спасибо, что обратили внимание. Названия рябины, бузины и барбариса сами по себе являются допустимой лексикой, но без конкретной карточки мы не смогли проверить, почему они появились в этом задании. Если это повторится, отправьте отчёт с самой карточки.",shards:0,resolution:"unconfirmed",rewardGroup:"flashcards-custom-berries-unspecified",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "rNHthbiAipWXNlTEPPnW": {title:"Как пользоваться каталогом карточек",body:"Спасибо за вопрос. В каталоге выберите подходящий набор и добавьте его в свою коллекцию, а затем откройте карточки и запустите удобный режим тренировки. Ошибку в работе каталога по этому сообщению мы не нашли.",shards:0,resolution:"rejected",rewardGroup:"flashcards-catalog-guidance",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "2VwqG4KDqWirFWhrJYdT": {title:"Нужно увидеть саму карточку",body:"Спасибо за сообщение. Сочетания old man и old woman могут быть правильными в зависимости от смысла, а конкретная карточка в отчёте не сохранилась, поэтому подтвердить ошибку не удалось. Если она появится снова, отправьте отчёт прямо с неё.",shards:0,resolution:"unconfirmed",rewardGroup:"flashcards-custom-old-man-unspecified",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "B6EzovpHq8yCdVON7R0S": {title:"Как начать работу со своими карточками",body:"Спасибо за вопрос. В разделе своих карточек сначала добавьте слово или фразу с переводом, затем выберите созданный набор и запустите тренировку. По этому сообщению поломку приложения мы не обнаружили.",shards:0,resolution:"rejected",rewardGroup:"flashcards-custom-guidance",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "U0LOlJiiF3TsB70wXJiD": {title:"Проверили cook и prepare",body:"Спасибо за вопрос. Cook dinner и prepare lunch — две разные фразы: оба глагола могут переводиться как «готовить», но здесь отличаются и действие, и сам приём пищи. Поэтому при перестановке слов смысл исходного задания меняется, и ошибки в проверке мы не нашли.",shards:0,resolution:"rejected",rewardGroup:"lesson11-cook-prepare-distinct",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "vYAZWUzkWCwBDJcRdLq5": {title:"Проверили фразу I like driving",body:"Спасибо за внимательность. В английском driving может обозначать вождение как занятие без слова car, поэтому I like driving полностью передаёт смысл «мне нравится водить машину». Ошибки в этой фразе мы не нашли.",shards:0,resolution:"rejected",rewardGroup:"lesson22-driving-intransitive",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "DtpB3dFuQRQ60Nd6Yysq": {title:"Не удалось понять сообщение",body:"Мы не смогли определить, о какой проблеме идёт речь. Если что-то работает неправильно, пожалуйста, опишите экран, действие и ожидаемый результат — тогда мы сможем всё проверить.",shards:0,resolution:"rejected",rewardGroup:"support-gibberish",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "j5Q8JDem31Of8mA2t6Ub": {title:"Проверили начало фразы",body:"Спасибо за сообщение. Мы сверили фразу You must listen и допустимый вариант You have to listen, но неверное первое слово воспроизвести не смогли. Если это повторится, отправьте, пожалуйста, отчёт после выбора спорного слова.",shards:0,resolution:"unconfirmed",rewardGroup:"lesson10-first-word-unconfirmed",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "3eZuyhrQBRlKRa0afuCA": {title:"Исправили отображение награды",body:"Спасибо за подробное описание — в старой версии кнопка могла отмечать получение, хотя баланс не менялся. Мы исправили экран: теперь отметка появляется только после реального изменения баланса, поэтому, пожалуйста, обновите приложение. Вы сможете получить приятный бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"achievement-false-pearl-claim",rewardBundle:{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "Utf4DbSQPEjlAtmuTHMP": {title:"Обновили подбор фраз в тренажёре",body:"Спасибо, вы верно заметили повторение одного и того же набора. Мы заменили старый подбор на практику по вашим реальным ошибкам, поэтому в актуальной версии тренировка меняется вместе с вашим прогрессом; пожалуйста, обновите приложение. Вы сможете получить приятный бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"legacy-trainer-repeat",rewardBundle:{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "DB9nO3YmvuGV0zP7qQir": {title:"Исправили проверку who и that",body:"Спасибо, что подробно описали противоречие. Для человека естественно who, но в таком предложении допустимо и that, поэтому теперь задание принимает оба варианта; изменение появится со следующим обновлением приложения.",shards:0,resolution:"duplicate",rewardGroup:"lesson30-who-that-alternatives",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "BB7grqoMsl2ORvUhW0Tu": {title:"Исправили вариант про сестру",body:"Спасибо, вы заметили реальную неоднозначность. В этой фразе who естественно для человека, а that тоже грамматически допустимо, поэтому теперь задание принимает оба ответа; изменение вступит в силу со следующим обновлением приложения. Вы сможете получить приятный бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson30-who-that-alternatives",rewardBundle:{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "djHjrvEe3usfSeB0BXBo": {title:"Проверили смену неправильных глаголов",body:"Спасибо за сообщение. Раздел начинает с первого ещё не освоенного глагола и переходит дальше после правильного прохождения всех трёх его форм, поэтому be может повторяться, пока этот шаг не завершён. Ошибки в текущей последовательности мы не нашли.",shards:0,resolution:"rejected",rewardGroup:"irregular-verbs-progression-by-design",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "S4LWqhrYM4Hq9e1DMKxC": {title:"Озвучку этого задания поправили",body:"Спасибо, что дополнительно отправили видео. Мы исправили привязку звука к вариантам ответа, поэтому, пожалуйста, обновите приложение до актуальной версии.",shards:0,resolution:"duplicate",rewardGroup:"personal-plan-one-audio-per-phrase",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "8AC6UKeMoLr61RJaUndg": {title:"Исправили несовпадение звука и вариантов",body:"Спасибо, вы точно описали ошибку. Мы исправили привязку озвучки: теперь в задании звучит именно та фраза, которая есть среди вариантов; исправление доступно в актуальной версии приложения. Пожалуйста, обновите приложение — вы сможете получить приятный бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-one-audio-per-phrase",rewardBundle:{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "t6xW1NeOqRY7GDOsjfkn": {title:"Добавили естественный порядок слов",body:"Спасибо, вы правы: Does he call often? и Does he often call? оба звучат естественно. Мы добавили второй вариант в проверку; изменение вступит в силу со следующим обновлением приложения. Вы сможете получить приятный бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson5-often-position-alternative",rewardBundle:{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "y15nA7LDWpsY7m6OZNyL": {title:"Звук в четвёртом уроке исправлен",body:"Спасибо, вы помогли обнаружить пропавшую озвучку. Мы обновили загрузку этой фразы и восстановили воспроизведение; исправление доступно в актуальной версии приложения, поэтому, пожалуйста, обновитесь. Вы сможете получить приятный бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson4-phrase-audio",rewardBundle:{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
   };
   const resolutionLabels = {
     confirmed_fixed: '\u0418\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043e',
+    in_progress: '\u0412 \u0440\u0430\u0431\u043e\u0442\u0435',
     confirmed_investigating: '\u041f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u043e, \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c',
     content_review: '\u041d\u0443\u0436\u043d\u0430 \u043f\u0440\u0430\u0432\u043a\u0430 \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0430',
     duplicate: '\u0414\u0443\u0431\u043b\u0438\u043a\u0430\u0442',
+    unconfirmed: '\u041d\u0435 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u043b\u043e\u0441\u044c',
     stale_content_not_reproduced: '\u0421\u0442\u0430\u0440\u044b\u0439 \u043c\u0430\u0440\u0448\u0440\u0443\u0442 / \u043d\u0435 \u0432\u043e\u0441\u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0441\u044f',
     not_reproduced: '\u041d\u0435 \u0432\u043e\u0441\u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0441\u044f',
+    rejected: '\u041e\u0442\u043a\u043b\u043e\u043d\u0435\u043d\u043e',
     by_design: '\u0422\u0430\u043a \u0437\u0430\u0434\u0443\u043c\u0430\u043d\u043e',
     user_error: '\u041e\u0448\u0438\u0431\u043a\u0430 \u0432 \u043e\u0442\u0432\u0435\u0442\u0435 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f',
     no_issue_details: '\u041d\u0435\u0434\u043e\u0441\u0442\u0430\u0442\u043e\u0447\u043d\u043e \u0434\u0435\u0442\u0430\u043b\u0435\u0439',
@@ -26951,10 +27125,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   };
 
   function validatePreparedReplyBatch(preparedRows) {
-    const validResolutions = new Set([
-      'confirmed_fixed', 'confirmed_investigating', 'content_review', 'duplicate',
-      'stale_content_not_reproduced', 'not_reproduced', 'by_design', 'user_error', 'no_issue_details',
-    ]);
+    const validResolutions = new Set(Object.keys(SERVER_RESOLUTION_BY_VERDICT));
     const nonRewarding = new Set([
       'duplicate', 'stale_content_not_reproduced', 'by_design', 'user_error', 'no_issue_details',
     ]);
@@ -32540,13 +32711,6 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     { key: 'avatar_dna_rollout_pct', label: 'Студия персонажа: доля пользователей, %', def: 0, min: 0, max: 100 },
     { key: 'league_xp_promotion_threshold', label: 'Лиги: XP для перехода вверх', def: 1000, min: 1, max: 1000000 },
     { key: 'streak_freeze_cost_shards', label: 'Серия: цена заморозки (осколки)', def: 10, min: 0, max: 9999 },
-    { key: 'collectibles_drop_chance_pct', label: 'Карточки: шанс дропа, % (0–100)', def: 15, min: 0, max: 100 },
-    { key: 'collectibles_daily_cap_free', label: 'Карточки: дневной кап (free)', def: 3, min: 0, max: 999 },
-    { key: 'collectibles_daily_cap_premium', label: 'Карточки: дневной кап (premium)', def: 4, min: 0, max: 999 },
-    { key: 'collectibles_attempt_cap', label: 'Карточки: лимит попыток/день', def: 24, min: 1, max: 9999 },
-    { key: 'collectibles_pity_epic_at', label: 'Карточки: гарантия epic+ через N дропов', def: 15, min: 1, max: 9999 },
-    { key: 'collectibles_pity_legendary_at', label: 'Карточки: гарантия legendary через N', def: 35, min: 1, max: 9999 },
-    { key: 'collectibles_set_bonus_shards', label: 'Карточки: осколков за сбор сета', def: 15, min: 0, max: 9999 },
     { key: 'referral_reward_days', label: 'Рефералы: дней Plus за друга (другу и пригласившему)', def: 7, min: 0, max: 3650 },
     { key: 'referral_max_claims_month', label: 'Рефералы: кап наград/месяц (антифрод)', def: 30, min: 0, max: 100000 },
     { key: 'referral_max_claims_day', label: 'Рефералы: кап наград/день (анти-фарм)', def: 3, min: 0, max: 100000 },
@@ -32556,11 +32720,10 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     { key: 'avatar_dna_enabled', label: 'Студия персонажа включена', def: false },
     { key: 'ai_global_disable', label: '⛔ ВЫКЛЮЧИТЬ ВЕСЬ ИИ (галочка = ИИ выключен у всех)', def: false },
     { key: 'speaking_enabled', label: 'Режим «Устно» включён', def: true },
-    { key: 'collectibles_enabled', label: '«Сокровищница» (коллекционные) включена', def: true },
     { key: 'support_diagnostics_enabled', label: 'Диагностика обращений включена', def: true },
     { key: 'explain_enabled', label: '«Объясни как для 5-летнего» включена', def: true },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
-    { key: 'lifetime_button_enabled', label: 'Кнопка «Навсегда» (lifetime) — продажа снята 24.08.2026', def: false },
+    { key: 'lifetime_button_enabled', label: 'Phraseman Pro — разовая покупка', def: true },
     { key: 'ideas_enabled', label: 'Раздел «Идеи» (год Плюс за идею)', def: false },
     { key: 'paywall_timers_enabled', label: 'Пейволы: таймеры срочности (выкл = скрыть у всех)', def: true },
     { key: 'paywall_reviews_enabled', label: 'Пейволы: отзывы «что говорят ученики» (выкл = скрыть у всех)', def: true },
@@ -33923,12 +34086,11 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   const CP_FEATURE_TOGGLES = [
     { key: 'ai_global_disable',        label: '⛔ ВЫКЛЮЧИТЬ ВЕСЬ ИИ',            def: false, hint: 'ГЛАВНЫЙ РУБИЛЬНИК. Галочка = весь ИИ выключен у всех живьём (без релиза): Компас, «Объясни», разбор ошибок, диалоги и комментарий дня. Ручные вызовы → забавная плашка «Компас отдыхает»; фоновые → тихо не запускаются. Деньги на ИИ не тратятся. Снять галочку → всё возвращается.' },
     { key: 'speaking_enabled',         label: 'Режим «Устно»',                 def: true,  hint: 'Произношение/говорение в уроках и тренере.' },
-    { key: 'collectibles_enabled',     label: '«Сокровищница» (коллекционные)', def: true,  hint: 'Дроп коллекционных фраз из уроков.' },
     { key: 'support_diagnostics_enabled', label: 'Диагностика обращений',        def: true,  hint: 'Локальная allowlist-история. В облако уходит только вместе с явно отправленным обращением; выкл — аварийный стоп записи и вложения.' },
     { key: 'explain_enabled',          label: '«Объясни как для 5-летнего»',     def: true,  hint: 'Кнопка объяснения фразы (платный ИИ). Дефолт ON (kill-switch).' },
     { key: 'referral_enabled',         label: 'Реферальная программа',          def: true,  hint: 'Дефолт ON (kill-switch). Нужна задеплоенная invite-страница.' },
     { key: 'league_xp_promotion_enabled', label: 'Лиги: переход по XP',         def: false, hint: 'Временный переход вверх по порогу XP.' },
-    { key: 'lifetime_button_enabled',  label: 'Кнопка «Навсегда» (lifetime)',   def: false, hint: 'ПРОДАЖА СНЯТА 24.08.2026 (владелец): Pro убран с пейволов, его место занял MAX. Тумблер сейчас ни на что не влияет — в коде пломба LIFETIME_SALE_RETIRED. Купившие сохраняют доступ.' },
+    { key: 'lifetime_button_enabled',  label: 'Phraseman Pro — разовая покупка', def: true, hint: 'Показывает Pro на обычных пейволах, если пакет доступен в магазине. Выключение скрывает предложение без отзыва уже купленного доступа. В онбординге Pro не показывается.' },
     { key: 'ideas_enabled',            label: 'Раздел «Идеи»',                  def: false, hint: 'Юзер шлёт идею → год Плюс при одобрении (вкладка «Идеи»).' },
     { key: 'promo_codes_enabled',      label: 'Промокоды в настройках',          def: false, hint: 'Sell-switch. Вкл → пункт «Промокоды» виден в настройках и сервер принимает promoCodeRedeem; выкл → скрыто и promo_disabled.' },
     { key: 'paywall_timers_enabled',   label: 'Пейволы: таймеры срочности',      def: true,  hint: 'Вкл по умолчанию. Выкл → блок обратного отсчёта «старой цены» (и плашка «цена сохранена») прячется на всех пейволах A/B/C у всех живьём, без релиза.' },
@@ -40626,6 +40788,372 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
   }
 
   // ══════════════════════════════════════════════════════════════════════════
+  // ══════════════════════════════════════════════════════════════════════════
+  // Задания (quests): очередь, редактор, активация, статистика.
+  //
+  // зачем (владелец 2026-08-31): владелец назначает задание, оно появляется на
+  // Главной пульсирующей плашкой. Активно одновременно ТОЛЬКО одно; остальные
+  // ждут в очереди и поднимаются сами. Все записи идут через защищённые
+  // callable (adminWriteQuest / adminActivateQuest / adminArchiveQuest /
+  // adminDeleteQuest); прямых записей в Firestore из админки нет.
+  //
+  // Экономия: список читается ОДНИМ вызовом adminListQuests (сервер отдаёт
+  // конфиги вместе со счётчиками), один раз за сессию + по кнопке «Обновить».
+  // ══════════════════════════════════════════════════════════════════════════
+  const QUEST_KINDS = [
+    { id: 'community_pack_submit', label: 'Создать набор и отправить в сообщество', unit: 'раз', fixedTarget: 1 },
+    { id: 'invite_friend',        label: 'Пригласить друга',                       unit: 'друзей', fixedTarget: null },
+    { id: 'earn_runes',           label: 'Заработать руны',                        unit: 'рун', fixedTarget: null },
+    { id: 'spin_wheel',           label: 'Крутить колесо наград',                  unit: 'раз', fixedTarget: null },
+    { id: 'watch_video',          label: 'Смотреть видео',                         unit: 'минут', fixedTarget: null },
+    { id: 'complete_lessons',     label: 'Пройти занятия',                         unit: 'занятий', fixedTarget: null },
+    { id: 'arena_matches',        label: 'Сыграть матчи на Арене',                 unit: 'матчей', fixedTarget: null },
+    { id: 'streak_days',          label: 'Держать серию дней',                     unit: 'дней', fixedTarget: null },
+    { id: 'flashcards_reviewed',  label: 'Потренировать карточки',                 unit: 'карточек', fixedTarget: null },
+    { id: 'earn_xp',              label: 'Заработать опыт',                        unit: 'XP', fixedTarget: null },
+  ];
+  const QUEST_REWARD_KINDS = [
+    { id: 'pearls',      label: 'Жемчуг',          min: 1,  max: 500 },
+    { id: 'runes',       label: 'Руны',            min: 10, max: 3000 },
+    { id: 'spins',       label: 'Спины',           min: 1,  max: 10 },
+    { id: 'plus_days',   label: 'Дни Plus',        min: 1,  max: 60 },
+    { id: 'energy_full', label: 'Полная энергия',  min: 1,  max: 1 },
+    { id: 'freeze',      label: 'Заморозка серии', min: 1,  max: 3 },
+  ];
+  const QUEST_STATUS_LABEL = {
+    active: 'Активно',
+    queued: 'В очереди',
+    expired: 'Срок вышел',
+    archived: 'Снято',
+  };
+
+  let _quests = [];
+  let _questRewardRows = [];
+  let _questEditingId = null;
+  let _fnQuests = {};
+
+  function qFn(name) {
+    if (!_fnQuests[name] && typeof httpsCallable === 'function' && functionsUs) {
+      _fnQuests[name] = httpsCallable(functionsUs, name);
+    }
+    if (!_fnQuests[name]) throw new Error('Защищённый callable недоступен.');
+    return _fnQuests[name];
+  }
+
+  function qEsc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+  }
+
+  function qRewardText(rewards) {
+    if (!Array.isArray(rewards) || rewards.length === 0) return '—';
+    return rewards.map((r) => {
+      const meta = QUEST_REWARD_KINDS.find((k) => k.id === r.kind);
+      return `${qEsc(meta ? meta.label : r.kind)} ×${Number(r.amount) || 0}`;
+    }).join(' · ');
+  }
+
+  function qKindLabel(kind) {
+    const meta = QUEST_KINDS.find((k) => k.id === kind);
+    return meta ? meta.label : kind;
+  }
+
+  window.loadQuests = async function loadQuests(force) {
+    const statusEl = document.getElementById('q-status');
+    if (window._questsLoaded && !force) return;
+    try {
+      if (statusEl) statusEl.textContent = 'Загрузка заданий…';
+      const res = await qFn('adminListQuests')({});
+      const data = (res && res.data) || {};
+      _quests = Array.isArray(data.quests) ? data.quests : [];
+      window._questsLoaded = true;
+      if (statusEl) statusEl.textContent = `Заданий: ${_quests.length}`;
+      window.renderQuests();
+    } catch (e) {
+      window._questsLoaded = false;
+      // Причину показываем дословно: «что-то пошло не так» не даёт починить.
+      if (statusEl) statusEl.textContent = `Не удалось загрузить: ${(e && e.message) || e}`;
+      console.warn('[QUESTS-ADMIN] load failed', e);
+    }
+  };
+
+  window.renderQuests = function renderQuests() {
+    const activeEl = document.getElementById('q-active-block');
+    const listEl = document.getElementById('q-list');
+    if (!activeEl || !listEl) return;
+
+    const active = _quests.find((q) => q.status === 'active') || null;
+    if (active) {
+      const done = Number(active.completedCount) || 0;
+      const claimed = Number(active.claimedCount) || 0;
+      activeEl.innerHTML = `
+        <div style="padding:16px;border-radius:14px;background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.32)">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div style="min-width:260px">
+              <div style="color:#fcd34d;font-size:12px;font-weight:800;margin-bottom:4px">СЕЙЧАС АКТИВНО · осталось ${Number(active.hoursLeft) || 0} ч</div>
+              <div style="color:#f4f4f5;font-size:17px;font-weight:800;margin-bottom:4px">${qEsc((active.title && active.title.ru) || active.questId)}</div>
+              <div style="color:#a1a1aa;font-size:13px;line-height:1.5;max-width:640px">${qEsc((active.body && active.body.ru) || '')}</div>
+              <div style="color:#a1a1aa;font-size:12.5px;margin-top:8px">Тип: ${qEsc(qKindLabel(active.kind))} · Цель: ${Number(active.target) || 1} · Награды: ${qRewardText(active.rewards)}</div>
+            </div>
+            <div style="display:flex;gap:18px;flex-wrap:wrap">
+              <div><div style="color:#a1a1aa;font-size:11.5px">Выполнили</div><div style="color:#f4f4f5;font-size:22px;font-weight:800">${done}</div></div>
+              <div><div style="color:#a1a1aa;font-size:11.5px">Забрали награду</div><div style="color:#6ee7b7;font-size:22px;font-weight:800">${claimed}</div></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+            <button type="button" onclick="window.openQuestEditor('${qEsc(active.questId)}')">Изменить текст</button>
+            <button type="button" onclick="window.archiveQuest('${qEsc(active.questId)}')" style="color:#fca5a5">Снять с показа</button>
+          </div>
+        </div>`;
+    } else {
+      activeEl.innerHTML = `
+        <div style="padding:16px;border-radius:14px;background:rgba(22,24,30,0.6);color:#a1a1aa;font-size:13.5px;line-height:1.55">
+          Сейчас активного задания нет. Создай задание и нажми «Активировать» — либо оно поднимется из очереди само.
+        </div>`;
+    }
+
+    const rest = _quests.filter((q) => q.status !== 'active');
+    if (rest.length === 0) {
+      listEl.innerHTML = '<div style="color:#a1a1aa;font-size:13px">Очередь пуста.</div>';
+      return;
+    }
+    listEl.innerHTML = rest.map((q) => {
+      const done = Number(q.completedCount) || 0;
+      const claimed = Number(q.claimedCount) || 0;
+      const scheduled = Number(q.scheduledStartMs) || 0;
+      const scheduledText = scheduled > 0
+        ? ` · старт ${new Date(scheduled).toLocaleString('ru-RU')}`
+        : '';
+      const canActivate = q.status === 'queued';
+      return `
+        <div style="padding:14px;border-radius:12px;background:rgba(22,24,30,0.6);margin-bottom:10px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div style="min-width:260px;flex:1">
+              <div style="color:#a1a1aa;font-size:11.5px;font-weight:700;margin-bottom:4px">${qEsc(QUEST_STATUS_LABEL[q.status] || q.status)} · очередь ${Number(q.queueOrder) || 0}${scheduledText}</div>
+              <div style="color:#f4f4f5;font-size:15.5px;font-weight:700;margin-bottom:3px">${qEsc((q.title && q.title.ru) || q.questId)}</div>
+              <div style="color:#a1a1aa;font-size:12.5px">Тип: ${qEsc(qKindLabel(q.kind))} · Цель: ${Number(q.target) || 1} · ${Number(q.durationHours) || 72} ч · Награды: ${qRewardText(q.rewards)}</div>
+              ${(done || claimed) ? `<div style="color:#a1a1aa;font-size:12.5px;margin-top:5px">Выполнили: ${done} · Забрали: ${claimed}</div>` : ''}
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              ${canActivate ? `<button type="button" onclick="window.activateQuest('${qEsc(q.questId)}')" style="background:rgba(251,191,36,0.14);border-color:rgba(251,191,36,0.4);color:#fcd34d;font-weight:700">Активировать</button>` : ''}
+              <button type="button" onclick="window.openQuestEditor('${qEsc(q.questId)}')">Изменить</button>
+              <button type="button" onclick="window.deleteQuest('${qEsc(q.questId)}')" style="color:#fca5a5">Удалить</button>
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+  };
+
+  window.onQuestKindChange = function onQuestKindChange() {
+    const kindEl = document.getElementById('q-kind');
+    const labelEl = document.getElementById('q-target-label');
+    const targetEl = document.getElementById('q-target');
+    if (!kindEl || !labelEl || !targetEl) return;
+    const meta = QUEST_KINDS.find((k) => k.id === kindEl.value);
+    if (!meta) return;
+    labelEl.textContent = `Цель, ${meta.unit}`;
+    if (meta.fixedTarget !== null) {
+      targetEl.value = String(meta.fixedTarget);
+      targetEl.disabled = true;
+    } else {
+      targetEl.disabled = false;
+      if (Number(targetEl.value) <= 1) targetEl.value = '3';
+    }
+  };
+
+  window.onQuestBodyInput = function onQuestBodyInput() {
+    const bodyEl = document.getElementById('q-body-ru');
+    const hintEl = document.getElementById('q-body-hint');
+    if (!bodyEl || !hintEl) return;
+    const len = String(bodyEl.value || '').length;
+    hintEl.textContent = `${len} / 600 знаков. Пиши простым, тёплым языком — без канцелярита.`;
+    hintEl.style.color = len > 600 ? '#fca5a5' : '#a1a1aa';
+  };
+
+  function qRenderRewardRows() {
+    const wrap = document.getElementById('q-rewards');
+    if (!wrap) return;
+    if (_questRewardRows.length === 0) {
+      wrap.innerHTML = '<div style="color:#a1a1aa;font-size:12.5px">Награды пока не добавлены.</div>';
+      return;
+    }
+    wrap.innerHTML = _questRewardRows.map((row, index) => {
+      const options = QUEST_REWARD_KINDS.map((k) => (
+        `<option value="${k.id}"${k.id === row.kind ? ' selected' : ''}>${qEsc(k.label)}</option>`
+      )).join('');
+      return `
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <select onchange="window.updateQuestReward(${index},'kind',this.value)" style="min-width:190px;min-height:38px">${options}</select>
+          <input type="number" min="1" value="${Number(row.amount) || 1}" oninput="window.updateQuestReward(${index},'amount',this.value)" style="width:130px;min-height:38px"/>
+          <button type="button" onclick="window.removeQuestReward(${index})" style="color:#fca5a5">Убрать</button>
+        </div>`;
+    }).join('');
+  }
+
+  window.addQuestReward = function addQuestReward() {
+    _questRewardRows = [..._questRewardRows, { kind: 'pearls', amount: 10 }];
+    qRenderRewardRows();
+  };
+  window.updateQuestReward = function updateQuestReward(index, field, value) {
+    _questRewardRows = _questRewardRows.map((row, i) => (
+      i === index ? { ...row, [field]: field === 'amount' ? Math.max(0, Math.floor(Number(value) || 0)) : value } : row
+    ));
+  };
+  window.removeQuestReward = function removeQuestReward(index) {
+    _questRewardRows = _questRewardRows.filter((_, i) => i !== index);
+    qRenderRewardRows();
+  };
+
+  window.openQuestEditor = function openQuestEditor(questId) {
+    const editor = document.getElementById('q-editor');
+    const kindEl = document.getElementById('q-kind');
+    if (!editor || !kindEl) return;
+    _questEditingId = questId || null;
+    const existing = questId ? _quests.find((q) => q.questId === questId) : null;
+
+    kindEl.innerHTML = QUEST_KINDS.map((k) => `<option value="${k.id}">${qEsc(k.label)}</option>`).join('');
+
+    document.getElementById('q-editor-title').textContent = existing ? 'Изменить задание' : 'Новое задание';
+    document.getElementById('q-id').value = existing ? existing.questId : '';
+    document.getElementById('q-id').disabled = Boolean(existing);
+    kindEl.value = existing ? existing.kind : QUEST_KINDS[0].id;
+    document.getElementById('q-target').value = existing ? String(existing.target || 1) : '1';
+    document.getElementById('q-duration').value = existing ? String(existing.durationHours || 72) : '72';
+    document.getElementById('q-order').value = existing ? String(existing.queueOrder || 0) : '0';
+    document.getElementById('q-title-ru').value = existing && existing.title ? (existing.title.ru || '') : '';
+    document.getElementById('q-body-ru').value = existing && existing.body ? (existing.body.ru || '') : '';
+    const scheduledEl = document.getElementById('q-scheduled');
+    if (existing && Number(existing.scheduledStartMs) > 0) {
+      const d = new Date(Number(existing.scheduledStartMs));
+      const pad = (n) => String(n).padStart(2, '0');
+      scheduledEl.value = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    } else {
+      scheduledEl.value = '';
+    }
+    _questRewardRows = existing && Array.isArray(existing.rewards)
+      ? existing.rewards.map((r) => ({ kind: r.kind, amount: Number(r.amount) || 1 }))
+      : [{ kind: 'pearls', amount: 10 }];
+
+    qRenderRewardRows();
+    window.onQuestKindChange();
+    window.onQuestBodyInput();
+    document.getElementById('q-editor-error').style.display = 'none';
+    editor.style.display = 'block';
+    editor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  window.closeQuestEditor = function closeQuestEditor() {
+    const editor = document.getElementById('q-editor');
+    if (editor) editor.style.display = 'none';
+    _questEditingId = null;
+  };
+
+  function qShowEditorError(message) {
+    const el = document.getElementById('q-editor-error');
+    if (!el) return;
+    el.textContent = message;
+    el.style.display = 'block';
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  window.saveQuest = async function saveQuest() {
+    const questId = String(document.getElementById('q-id').value || '').trim();
+    const kind = document.getElementById('q-kind').value;
+    const target = Math.max(1, Math.floor(Number(document.getElementById('q-target').value) || 1));
+    const durationHours = Math.max(1, Math.floor(Number(document.getElementById('q-duration').value) || 72));
+    const queueOrder = Math.max(0, Math.floor(Number(document.getElementById('q-order').value) || 0));
+    const titleRu = String(document.getElementById('q-title-ru').value || '').trim();
+    const bodyRu = String(document.getElementById('q-body-ru').value || '').trim();
+    const scheduledRaw = String(document.getElementById('q-scheduled').value || '').trim();
+    const scheduledStartMs = scheduledRaw ? new Date(scheduledRaw).getTime() : 0;
+
+    if (!/^[a-z0-9_]{1,64}$/.test(questId)) {
+      qShowEditorError('Идентификатор: только маленькие латинские буквы, цифры и подчёркивание.');
+      return;
+    }
+    if (!titleRu) { qShowEditorError('Заголовок обязателен.'); return; }
+    if (!bodyRu) { qShowEditorError('Описание обязательно.'); return; }
+    if (bodyRu.length > 600) { qShowEditorError('Описание длиннее 600 знаков — сократи.'); return; }
+    if (_questRewardRows.length === 0) { qShowEditorError('Добавь хотя бы одну награду.'); return; }
+
+    const quest = {
+      questId,
+      kind,
+      target,
+      title: { ru: titleRu },
+      body: { ru: bodyRu },
+      rewards: _questRewardRows.map((r) => ({ kind: r.kind, amount: Math.floor(Number(r.amount) || 0) })),
+      durationHours,
+      queueOrder,
+      scheduledStartMs: Number.isFinite(scheduledStartMs) ? scheduledStartMs : 0,
+      status: 'queued',
+    };
+
+    try {
+      await qFn('adminWriteQuest')({ quest });
+      window.closeQuestEditor();
+      showToast('Задание сохранено в очередь', 'ok');
+      await window.loadQuests(true);
+    } catch (e) {
+      // Сервер возвращает причину человеческим языком — показываем её как есть.
+      qShowEditorError((e && e.message) || String(e));
+      console.warn('[QUESTS-ADMIN] save failed', e);
+    }
+  };
+
+  window.activateQuest = async function activateQuest(questId) {
+    const quest = _quests.find((q) => q.questId === questId);
+    const confirmed = await showConfirmModal({
+      title: 'Активировать задание?',
+      desc: `«${(quest && quest.title && quest.title.ru) || questId}» появится у всех на Главной и будет жить ${(quest && quest.durationHours) || 72} ч. Пока оно активно, другое задание назначить нельзя.`,
+      confirmLabel: 'Активировать',
+    });
+    if (!confirmed) return;
+    try {
+      await qFn('adminActivateQuest')({ questId });
+      showToast('Задание активировано', 'ok');
+      await window.loadQuests(true);
+    } catch (e) {
+      showToast((e && e.message) || String(e), 'warn');
+      console.warn('[QUESTS-ADMIN] activate failed', e);
+    }
+  };
+
+  window.archiveQuest = async function archiveQuest(questId) {
+    const confirmed = await showConfirmModal({
+      title: 'Снять задание с показа?',
+      desc: 'Плашка исчезнет у всех. Кто уже выполнил, но не забрал награду, забрать её больше не сможет.',
+      confirmLabel: 'Снять',
+      danger: true,
+    });
+    if (!confirmed) return;
+    try {
+      await qFn('adminArchiveQuest')({ questId });
+      showToast('Задание снято', 'ok');
+      await window.loadQuests(true);
+    } catch (e) {
+      showToast((e && e.message) || String(e), 'warn');
+      console.warn('[QUESTS-ADMIN] archive failed', e);
+    }
+  };
+
+  window.deleteQuest = async function deleteQuest(questId) {
+    const confirmed = await showConfirmModal({
+      title: 'Удалить задание из очереди?',
+      desc: `«${questId}» исчезнет из списка. Статистика по нему сохранится.`,
+      confirmLabel: 'Удалить',
+      danger: true,
+    });
+    if (!confirmed) return;
+    try {
+      await qFn('adminDeleteQuest')({ questId });
+      showToast('Задание удалено', 'ok');
+      await window.loadQuests(true);
+    } catch (e) {
+      showToast((e && e.message) || String(e), 'warn');
+      console.warn('[QUESTS-ADMIN] delete failed', e);
+    }
+  };
+
   // Опросы за осколки (shard-survey): сводка, лента, редактор, CSV.
   // Читает shard_surveys / shard_survey_stats / shard_survey_responses.
   // зачем: раньше звало несуществующие adminPreviewVoiceResearchMutation/
@@ -47934,7 +48462,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     'explain-cache':'Кэш объяснений','compass':'Компас','ban-list':'Бан-лист',
     'premium':'Реальный Plus','vip':'Admin Plus','plus-radar':'Диагностика Plus',
     'promo-codes':'Промокоды','gift-certificates':'Подарочные сертификаты',
-    'cancel-surveys':'Причины отмены','surveys':'Опросы за осколки','review-promo':'Опрос Plus',
+    'cancel-surveys':'Причины отмены','surveys':'Опросы за осколки','quests':'Задания','review-promo':'Опрос Plus',
     'referrals':'Рефералы','app-messages':'Сообщения пользователям',
     'ugc-purchases':'Покупки наборов','refunds':'Центр возвратов','community-packs':'Наборы сообщества',
     'card-packs':'Наборы карточек','daily-phrases':'Фразы дня','push-notify':'Push-уведомления',
@@ -49047,6 +49575,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     'gift-certificates': () => pmV5SafeCall('loadGiftCertificates'),
     'cancel-surveys': () => pmV5SafeCall('loadCancelSurveys', true),
     'surveys': () => pmV5SafeCall('loadShardSurveys', true),
+    'quests': () => pmV5SafeCall('loadQuests', true),
     'review-promo': () => pmV5SafeCall('loadVipSurveyResponses', true),
     'referrals': () => pmV5SafeCall('loadReferralsData', true, false),
     'app-messages': () => pmV5SafeCall('loadAppMessages', true),

@@ -1220,6 +1220,11 @@ export {
 // вызовом; cron_heartbeats/deletion_diagnostics закрыты правилами наглухо,
 // браузеру их отдаёт только Admin SDK этой callable.
 export { adminGetDiagnosticsOverview } from "./admin_diagnostics_overview";
+// зачем (владелец, 2026-08-31): отложенное удаление 14 дней — статус для
+// модалки «Восстановить аккаунт?» и сама отмена удаления.
+export { accountDeleteStatusMine, accountDeleteRestoreMine } from "./account_delete_restore";
+// ИИ-аудитор покрытия удаления: смотрит карту базы, ничего не удаляет.
+export { adminAuditAccountDeleteCoverage } from "./account_delete_ai_audit";
 // зачем (владелец, 2026-08-23): кнопка публикации курса в админке
 // (admin/v2/legacy.html) зовёт adminPublishAuthoredLearningV2Course — это
 // доставка контента без OTA: опубликовал, и приложение видит новый материал.

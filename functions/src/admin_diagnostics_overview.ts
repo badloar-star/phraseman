@@ -5,6 +5,7 @@ import { hasPermission, type AdminPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { CRON_HEARTBEATS } from './cron_heartbeat';
 import { ACCOUNT_DELETE_DIAGNOSTICS } from './account_delete';
+import { accountDeleteGraceDaysLeft } from './account_delete_grace';
 
 /*
  * Панель «Диагностика» в админке — последний хвост аудита 2026-08-29.
@@ -28,6 +29,8 @@ const HEARTBEATS_LIMIT = 60;
 const DELETION_RUNS_LIMIT = 20;
 const APP_ERRORS_LIMIT = 120;
 const ECONOMY_DAYS_LIMIT = 7;
+const PENDING_DELETES_LIMIT = 50;
+const RESTORES_LIMIT = 20;
 
 /**
  * Кроны, для которых сутки тишины — норма.
@@ -72,7 +75,9 @@ export const adminGetDiagnosticsOverview = onCall(
     const db = admin.firestore();
     const nowMs = Date.now();
 
-    const [heartbeatsSnap, deletionsSnap, errorsSnap, economySnap] = await Promise.all([
+    // зачем (владелец, 2026-08-31): аккаунты на отложенном удалении обязаны
+    // быть ВИДНЫ — сколько ждут, сколько дней осталось, кто уже созрел.
+    const [heartbeatsSnap, deletionsSnap, errorsSnap, economySnap, pendingSnap, restoresSnap] = await Promise.all([
       db.collection(CRON_HEARTBEATS).limit(HEARTBEATS_LIMIT).get(),
       db.collection(ACCOUNT_DELETE_DIAGNOSTICS)
         .orderBy('startedAtMs', 'desc').limit(DELETION_RUNS_LIMIT).get(),
@@ -80,6 +85,11 @@ export const adminGetDiagnosticsOverview = onCall(
         .orderBy('createdAt', 'desc').limit(APP_ERRORS_LIMIT).get(),
       db.collection('economy_daily_stats')
         .orderBy('createdAtMs', 'desc').limit(ECONOMY_DAYS_LIMIT).get(),
+      // Заявки на удаление, ожидающие своего срока: узкий запрос по статусу.
+      db.collection('account_deletion_jobs')
+        .where('status', '==', 'queued').limit(PENDING_DELETES_LIMIT).get(),
+      db.collection('account_deletion_restores')
+        .orderBy('restoredAtMs', 'desc').limit(RESTORES_LIMIT).get(),
     ]);
 
     // ── Пульс кронов: сервер сам решает, кто «молчит», чтобы у эвристики
@@ -179,8 +189,35 @@ export const adminGetDiagnosticsOverview = onCall(
       };
     });
 
+    const pendingDeletes = pendingSnap.docs.map((doc) => {
+      const data = doc.data() as Row;
+      const deadlineMs = ms(data.graceDeadlineMs) || ms(data.nextAttemptAtMs);
+      return {
+        jobId: text(data.jobId, 60) || doc.id,
+        stableUidHash: text(data.stableUidHash, 16),
+        createdAtMs: ms(data.createdAtMs),
+        deadlineMs,
+        daysLeft: accountDeleteGraceDaysLeft(deadlineMs, nowMs),
+        // Созревшие, но ещё не исполненные — первый признак, что воркер отстал.
+        due: deadlineMs > 0 && deadlineMs <= nowMs,
+        attempts: ms(data.attempts),
+        lastError: text(data.lastError, 200) || null,
+      };
+    }).sort((left, right) => left.deadlineMs - right.deadlineMs);
+
+    const restores = restoresSnap.docs.map((doc) => {
+      const data = doc.data() as Row;
+      return {
+        jobId: text(data.jobId, 60) || doc.id,
+        stableUidHash: text(data.stableUidHash, 16),
+        restoredAtMs: ms(data.restoredAtMs),
+      };
+    });
+
     return {
       generatedAtMs: nowMs,
+      pendingDeletes,
+      restores,
       crons,
       deletionRuns,
       errorGroups,

@@ -339,16 +339,44 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
               pl: 'Usunąć konto?',
             })}
           </Text>
+          {/* зачем (владелец, 2026-08-31): человек должен ВИДЕТЬ, что удаление
+              не мгновенное — 14 дней на случай, если нажал случайно. Это же
+              снимает страх необратимости и даёт честный путь назад.
+              Тон утвердительный: обещание, а не предупреждение. */}
+          <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 6, lineHeight: 22 }}>
+            {L({
+              ru: 'Аккаунт будет удалён через 14 дней',
+              uk: 'Акаунт буде видалено через 14 днів',
+              es: 'La cuenta se eliminará en 14 días',
+              'pt-BR': 'A conta será excluída em 14 dias',
+              vi: 'Tài khoản sẽ bị xóa sau 14 ngày',
+              id: 'Akun akan dihapus dalam 14 hari',
+              tr: 'Hesap 14 gün sonra silinecek',
+              pl: 'Konto zostanie usunięte za 14 dni',
+            })}
+          </Text>
+          <Text style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 14, lineHeight: 20 }}>
+            {L({
+              ru: 'Эти дни нужны, чтобы вернуть аккаунт, если удаление было случайным. Просто войди снова — мы предложим восстановить.',
+              uk: 'Ці дні потрібні, щоб повернути акаунт, якщо видалення було випадковим. Просто увійди знову — ми запропонуємо відновити.',
+              es: 'Esos días sirven para recuperar la cuenta si la eliminaste sin querer. Solo vuelve a entrar y te ofreceremos restaurarla.',
+              'pt-BR': 'Esses dias servem para recuperar a conta se a exclusão foi sem querer. É só entrar de novo e ofereceremos restaurá-la.',
+              vi: 'Những ngày này để bạn lấy lại tài khoản nếu lỡ tay xóa. Chỉ cần đăng nhập lại, chúng tôi sẽ đề nghị khôi phục.',
+              id: 'Hari-hari ini untuk mengembalikan akun jika terhapus tanpa sengaja. Masuk lagi saja, kami akan menawarkan pemulihan.',
+              tr: 'Bu günler, yanlışlıkla sildiysen hesabı geri alman için. Tekrar giriş yap, geri yüklemeyi önereceğiz.',
+              pl: 'Te dni służą odzyskaniu konta, jeśli usunięcie było przypadkowe. Po prostu zaloguj się ponownie — zaproponujemy przywrócenie.',
+            })}
+          </Text>
           <Text style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 12, lineHeight: 20 }}>
             {L({
-              ru: 'Активные данные аккаунта будут удалены или обезличены:',
-              uk: 'Активні дані акаунта буде видалено або знеособлено:',
-              es: 'Los datos activos de la cuenta se eliminarán o se desidentificarán:',
-              'pt-BR': 'Os dados ativos da conta serão excluídos ou anonimizados:',
-              vi: 'Dữ liệu tài khoản đang hoạt động sẽ được xóa hoặc ẩn danh hóa:',
-              id: 'Data aktif akun akan dihapus atau dianonimkan:',
-              tr: 'Aktif hesap verileri silinecek veya anonim hale getirilecek:',
-              pl: 'Aktywne dane konta zostaną usunięte lub zanonimizowane:',
+              ru: 'Данные на этом телефоне удалятся сразу. Через 14 дней будут удалены или обезличены:',
+              uk: 'Дані на цьому телефоні видаляться одразу. Через 14 днів буде видалено або знеособлено:',
+              es: 'Los datos de este teléfono se borran ya. En 14 días se eliminarán o se desidentificarán:',
+              'pt-BR': 'Os dados neste telefone somem agora. Em 14 dias serão excluídos ou anonimizados:',
+              vi: 'Dữ liệu trên máy này xóa ngay. Sau 14 ngày sẽ được xóa hoặc ẩn danh hóa:',
+              id: 'Data di ponsel ini terhapus sekarang. Dalam 14 hari akan dihapus atau dianonimkan:',
+              tr: 'Bu telefondaki veriler hemen silinir. 14 gün sonra silinecek veya anonimleştirilecek:',
+              pl: 'Dane na tym telefonie znikają od razu. Za 14 dni zostaną usunięte lub zanonimizowane:',
             })}
           </Text>
           {[

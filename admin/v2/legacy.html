@@ -14169,6 +14169,19 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     <div id="diag-errors"><div class="reports-empty">Загрузка…</div></div>
   </section>
 
+  <section aria-label="Аккаунты на удалении" style="margin-bottom:14px">
+    <div style="font-weight:800;color:#e2e8f0;margin:0 0 8px">⏳ Аккаунты на удалении <span id="diag-pending-count" style="color:#64748b;font-weight:600"></span></div>
+    <div id="diag-pending"><div class="reports-empty">Загрузка…</div></div>
+  </section>
+
+  <section aria-label="Проверка покрытия удаления" style="margin-bottom:14px">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 8px">
+      <div style="font-weight:800;color:#e2e8f0">🤖 Проверка покрытия удаления</div>
+      <button onclick="runAccountDeleteCoverageAudit()" style="background:rgba(167,139,250,0.14);border:1px solid rgba(167,139,250,0.4);color:#c4b5fd;font-weight:700;min-height:36px;padding:6px 12px;border-radius:7px;cursor:pointer">Проверить</button>
+    </div>
+    <div id="diag-coverage"><div class="reports-empty">ИИ сверит карту базы с планом удаления и покажет коллекции, где мог остаться хвост. Ничего не удаляет.</div></div>
+  </section>
+
   <section aria-label="Экономика (обезличенный агрегат)">
     <div style="font-weight:800;color:#e2e8f0;margin:0 0 8px">🪙 Экономика — обезличенные дневные счётчики</div>
     <div id="diag-economy"><div class="reports-empty">Загрузка…</div></div>
@@ -17552,9 +17565,12 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     maxOpsRenderMetrics('max-ops-quota-metrics', [
       ['Резервов', maxOpsNumber(totals.quotaReservations)], ['Закрыто резервов', maxOpsNumber(totals.quotaSettlements)], ['Закрыто watchdog', maxOpsNumber(totals.watchdogSettlements)], ['Завершений watchdog', maxOpsNumber(totals.watchdogEnds)], ['Невозможный порядок', maxOpsNumber(totals.impossibleSequences)],
     ]);
-    const usage = distributions.providerUsage || {};
+    // зачем переименование (2026-08-31): в этой же функции выше уже объявлен
+    // `usage` (data.usage) — повторный const ломал ВЕСЬ module-скрипт админки
+    // с SyntaxError, то есть страница не выполняла ни строки JS.
+    const providerUsage = distributions.providerUsage || {};
     maxOpsRenderMetrics('max-ops-provider-metrics', [
-      ['Audio input tokens', maxOpsNumber(usage.audioInputTokens).toLocaleString('ru-RU')], ['Audio output tokens', maxOpsNumber(usage.audioOutputTokens).toLocaleString('ru-RU')], ['Cached tokens', maxOpsNumber(usage.cachedTokens).toLocaleString('ru-RU')], ['Text tokens', maxOpsNumber(usage.textTokens).toLocaleString('ru-RU')], ['Оценка стоимости', '$' + (maxOpsNumber(usage.estimatedCostMicros) / 1_000_000).toFixed(2)],
+      ['Audio input tokens', maxOpsNumber(providerUsage.audioInputTokens).toLocaleString('ru-RU')], ['Audio output tokens', maxOpsNumber(providerUsage.audioOutputTokens).toLocaleString('ru-RU')], ['Cached tokens', maxOpsNumber(providerUsage.cachedTokens).toLocaleString('ru-RU')], ['Text tokens', maxOpsNumber(providerUsage.textTokens).toLocaleString('ru-RU')], ['Оценка стоимости', '$' + (maxOpsNumber(usage.estimatedCostMicros) / 1_000_000).toFixed(2)],
     ]);
   }
 
@@ -22740,6 +22756,28 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         + '<td style="white-space:nowrap;color:#94a3b8;font-size:12px">' + diagAge(g.lastAtMs) + '</td></tr>').join('')
       + '</tbody></table>') : '<div class="reports-empty">Свежих ошибок нет — тишина честная, канал живой.</div>';
 
+    const pending = Array.isArray(data.pendingDeletes) ? data.pendingDeletes : [];
+    const due = pending.filter((p) => p.due).length;
+    const pendingCount = document.getElementById('diag-pending-count');
+    if (pendingCount) pendingCount.textContent = pending.length
+      ? ('· ' + pending.length + ' шт' + (due ? ' · созрело: ' + due : ''))
+      : '· пусто';
+    const pendingBox = document.getElementById('diag-pending');
+    if (pendingBox) pendingBox.innerHTML = pending.length
+      ? ('<table class="club-clean-table" style="width:100%"><thead><tr><th style="text-align:left">Заявка</th><th>Осталось</th><th>Подана</th><th>Попыток</th><th style="text-align:left">Ошибка</th></tr></thead><tbody>'
+        + pending.map((p) => {
+          const tone = p.due ? 'color:#fbbf24;font-weight:700' : 'color:#94a3b8';
+          return '<tr><td style="font-family:monospace;font-size:12px">' + diagEsc(p.jobId) + '</td>'
+            + '<td style="text-align:center;' + tone + '">' + (p.due ? 'созрело' : (p.daysLeft + ' дн')) + '</td>'
+            + '<td style="text-align:center;color:#94a3b8;font-size:12px">' + diagAge(p.createdAtMs) + '</td>'
+            + '<td style="text-align:center">' + (p.attempts || 0) + '</td>'
+            + '<td style="color:#fca5a5;font-size:12px;max-width:320px;word-break:break-word">' + diagEsc(p.lastError || '') + '</td></tr>';
+        }).join('') + '</tbody></table>'
+        + (Array.isArray(data.restores) && data.restores.length
+          ? '<div style="color:#6ee7b7;font-size:12px;margin-top:8px">↩ Восстановлено недавно: ' + data.restores.length + '</div>'
+          : ''))
+      : '<div class="reports-empty">Заявок на удаление нет.</div>';
+
     const days = Array.isArray(data.economyDays) ? data.economyDays : [];
     const ecoBox = document.getElementById('diag-economy');
     if (ecoBox) ecoBox.innerHTML = days.length ? ('<table class="club-clean-table" style="width:100%"><thead><tr><th>День</th><th>Операций</th><th>Начислено</th><th>Потрачено</th><th>Аномалий</th></tr></thead><tbody>'
@@ -22753,6 +22791,33 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       }).join('')
       + '</tbody></table>') : '<div class="reports-empty">Счётчиков пока нет — данные пойдут с релизом клиента (до него нули честные).</div>';
   }
+
+  // зачем (владелец, 2026-08-31): ИИ проверяет ПОКРЫТИЕ удаления, а не удаляет.
+  // Смотрит только имена коллекций — ни одного uid/email наружу не уходит.
+  window.runAccountDeleteCoverageAudit = async function() {
+    const box = document.getElementById('diag-coverage');
+    if (box) box.innerHTML = '<div class="reports-empty">ИИ сверяет карту базы…</div>';
+    try {
+      const call = httpsCallable(functionsUs, 'adminAuditAccountDeleteCoverage');
+      const { data } = await call({});
+      const suspects = Array.isArray(data.suspects) ? data.suspects : [];
+      if (!box) return;
+      box.innerHTML = '<div style="color:#94a3b8;font-size:13px;margin-bottom:8px">Коллекций в базе: <b>' + (data.collectionsTotal || 0)
+        + '</b> · чистится планом: <b>' + (data.coveredCount || 0) + '</b> · вне плана: <b>' + (data.unknownCount || 0) + '</b>'
+        + (data.aiAvailable ? '' : ' · <span style="color:#fbbf24">ИИ недоступен, показаны только числа</span>') + '</div>'
+        + (data.summary ? '<div style="color:#e2e8f0;font-size:13.5px;margin-bottom:10px">' + diagEsc(data.summary) + '</div>' : '')
+        + (suspects.length
+          ? suspects.map((sp) => {
+            const c = sp.confidence === 'high' ? '#fca5a5' : sp.confidence === 'medium' ? '#fbbf24' : '#94a3b8';
+            return '<div style="background:#10141d;border-radius:9px;padding:9px 12px;margin-bottom:6px">'
+              + '<b style="font-family:monospace;font-size:13px;color:' + c + '">' + diagEsc(sp.collection) + '</b>'
+              + '<div style="color:#94a3b8;font-size:12.5px;margin-top:3px">' + diagEsc(sp.why || '') + '</div></div>';
+          }).join('')
+          : '<div class="reports-empty">Подозрительных коллекций не найдено — план удаления покрывает личные данные.</div>');
+    } catch (e) {
+      if (box) box.innerHTML = '<div class="reports-empty">Не удалось проверить: ' + diagEsc(e?.message || e) + '</div>';
+    }
+  };
 
   window.switchTab = function(tab, opts) {
     const options = opts || {};

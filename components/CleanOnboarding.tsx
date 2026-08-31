@@ -113,6 +113,7 @@ import {
   signInWithProvider,
   type AuthProviderId,
 } from '../app/auth_provider';
+import { fetchAccountDeleteStatus, restoreDeletedAccount } from '../app/account_delete_restore_client';
 
 const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.webp');
 // Иконка приложения — плитка слева в карточке пуша макета телефона (Bevel, кадры 7/10).
@@ -302,6 +303,70 @@ function firstNameOf(displayName: string | null | undefined): string | null {
  * Один разбор на оба экрана входа: людям — понятная фраза, разработчику в DEV —
  * код под ней, чтобы диагноз ставился с одного тапа, а не вслепую.
  */
+/**
+ * Аккаунт удаляется, но 14 дней ещё можно вернуть (владелец, 2026-08-31).
+ *
+ * зачем: раньше вход в такой аккаунт был тупиком с сухим текстом «этот аккаунт
+ * ещё удаляется». Теперь спрашиваем прямо — согласился, снимаем заявку на
+ * сервере, и тот же провайдер пускает внутрь со всем прогрессом.
+ *
+ * Возвращает true, если удаление отменено и вход можно повторить.
+ */
+async function offerAccountRestore(lang: Lang): Promise<boolean> {
+  const status = await fetchAccountDeleteStatus();
+  if (!status?.pending || !status.restorable) return false;
+  const days = Math.max(1, Number(status.daysLeft ?? 1));
+  const agreed = await new Promise<boolean>((resolve) => {
+    Alert.alert(
+      triLang(lang, {
+        ru: 'Восстановить аккаунт?',
+        uk: 'Відновити акаунт?',
+        en: 'Restore your account?',
+        es: '¿Restaurar la cuenta?',
+        'pt-BR': 'Restaurar a conta?',
+        vi: 'Khôi phục tài khoản?',
+        id: 'Pulihkan akun?',
+        tr: 'Hesap geri yüklensin mi?',
+        pl: 'Przywrócić konto?',
+      }),
+      triLang(lang, {
+        ru: `Этот аккаунт помечен на удаление. Осталось ${days} дн. — весь прогресс ещё на месте и вернётся полностью.`,
+        uk: `Цей акаунт позначено на видалення. Лишилося ${days} дн. — увесь прогрес на місці й повернеться повністю.`,
+        en: `This account is scheduled for deletion. ${days} day(s) left — all your progress is intact and comes back in full.`,
+        es: `Esta cuenta está marcada para eliminarse. Quedan ${days} día(s): todo tu progreso sigue intacto y vuelve completo.`,
+        'pt-BR': `Esta conta está marcada para exclusão. Faltam ${days} dia(s): todo o seu progresso está intacto e volta completo.`,
+        vi: `Tài khoản này đang chờ xóa. Còn ${days} ngày — toàn bộ tiến trình vẫn nguyên và sẽ trở lại đầy đủ.`,
+        id: `Akun ini dijadwalkan untuk dihapus. Sisa ${days} hari — seluruh progresmu utuh dan kembali sepenuhnya.`,
+        tr: `Bu hesap silinmek üzere işaretli. ${days} gün kaldı — tüm ilerlemen duruyor ve eksiksiz geri gelir.`,
+        pl: `To konto jest oznaczone do usunięcia. Zostało ${days} dni — cały postęp jest nienaruszony i wróci w całości.`,
+      }),
+      [
+        {
+          text: triLang(lang, {
+            ru: 'Не восстанавливать', uk: 'Не відновлювати', en: "Don't restore",
+            es: 'No restaurar', 'pt-BR': 'Não restaurar', vi: 'Không khôi phục',
+            id: 'Jangan pulihkan', tr: 'Geri yükleme', pl: 'Nie przywracaj',
+          }),
+          style: 'cancel',
+          onPress: () => resolve(false),
+        },
+        {
+          text: triLang(lang, {
+            ru: 'Восстановить', uk: 'Відновити', en: 'Restore',
+            es: 'Restaurar', 'pt-BR': 'Restaurar', vi: 'Khôi phục',
+            id: 'Pulihkan', tr: 'Geri yükle', pl: 'Przywróć',
+          }),
+          onPress: () => resolve(true),
+        },
+      ],
+      { cancelable: false },
+    );
+  });
+  if (!agreed) return false;
+  const outcome = await restoreDeletedAccount();
+  return outcome.ok;
+}
+
 function describeAuthError(raw: string, lang: Lang): string {
   const code = String(raw || '');
   let human = 'Не получилось войти. Попробуй ещё раз.';
@@ -2487,6 +2552,23 @@ function CleanOnboarding({
         }
         // Удаление аккаунта двухфазное (disabled → стирание через 2-3 минуты), вход в
         // это окно даёт auth/user-disabled — describeAuthError говорит об этом прямо.
+        // зачем (владелец, 2026-08-31): аккаунт на удалении — не тупик.
+        // Пока идут 14 дней, предлагаем вернуть его прямо здесь; согласие
+        // снимает заявку, и человек повторяет вход обычным тапом.
+        if (result.error === 'account_delete_pending' && await offerAccountRestore(lang)) {
+          setAuthError(triLang(lang, {
+            ru: 'Аккаунт восстановлен. Войди ещё раз — весь прогресс на месте.',
+            uk: 'Акаунт відновлено. Увійди ще раз — увесь прогрес на місці.',
+            en: 'Your account is restored. Sign in again — all progress is there.',
+            es: 'Tu cuenta está restaurada. Entra de nuevo: todo el progreso sigue ahí.',
+            'pt-BR': 'Sua conta foi restaurada. Entre de novo: todo o progresso está lá.',
+            vi: 'Tài khoản đã được khôi phục. Hãy đăng nhập lại — toàn bộ tiến trình vẫn còn.',
+            id: 'Akunmu dipulihkan. Masuk lagi — semua progres ada di sana.',
+            tr: 'Hesabın geri yüklendi. Tekrar giriş yap — tüm ilerlemen yerinde.',
+            pl: 'Konto zostało przywrócone. Zaloguj się ponownie — cały postęp jest na miejscu.',
+          }));
+          return;
+        }
         setAuthError(describeAuthError(result.error, lang));
         return;
       }
@@ -2552,6 +2634,23 @@ function CleanOnboarding({
         // причины различаются так же, как на экране «уже есть аккаунт», а в
         // DEV-сборке под текстом виден сырой код ошибки (native/firebase) —
         // без него диагностировать вход вслепую невозможно.
+        // зачем (владелец, 2026-08-31): аккаунт на удалении — не тупик.
+        // Пока идут 14 дней, предлагаем вернуть его прямо здесь; согласие
+        // снимает заявку, и человек повторяет вход обычным тапом.
+        if (result.error === 'account_delete_pending' && await offerAccountRestore(lang)) {
+          setAuthError(triLang(lang, {
+            ru: 'Аккаунт восстановлен. Войди ещё раз — весь прогресс на месте.',
+            uk: 'Акаунт відновлено. Увійди ще раз — увесь прогрес на місці.',
+            en: 'Your account is restored. Sign in again — all progress is there.',
+            es: 'Tu cuenta está restaurada. Entra de nuevo: todo el progreso sigue ahí.',
+            'pt-BR': 'Sua conta foi restaurada. Entre de novo: todo o progresso está lá.',
+            vi: 'Tài khoản đã được khôi phục. Hãy đăng nhập lại — toàn bộ tiến trình vẫn còn.',
+            id: 'Akunmu dipulihkan. Masuk lagi — semua progres ada di sana.',
+            tr: 'Hesabın geri yüklendi. Tekrar giriş yap — tüm ilerlemen yerinde.',
+            pl: 'Konto zostało przywrócone. Zaloguj się ponownie — cały postęp jest na miejscu.',
+          }));
+          return;
+        }
         setAuthError(describeAuthError(result.error, lang));
         return;
       }

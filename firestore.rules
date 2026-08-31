@@ -1342,6 +1342,14 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Журнал отмен удаления (grace 14 дней, владелец 2026-08-31).
+    // Внутри только хеши и время — ни uid, ни email. Пишет и читает
+    // исключительно Admin SDK: клиент отменяет удаление через callable
+    // accountDeleteRestoreMine, напрямую сюда не ходит.
+    match /account_deletion_restores/{jobId} {
+      allow read, write: if false;
+    }
+
     // Пульс кронов (аудит 2026-08-29): по документу на крон, пишет только
     // Admin SDK из withCronHeartbeat. Умерший крон теперь отличим от живого
     // без похода в Cloud Logging.

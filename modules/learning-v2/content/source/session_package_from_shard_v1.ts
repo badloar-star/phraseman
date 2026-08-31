@@ -78,7 +78,10 @@ import {
 import { esEpisode01Session01FeedbackByTarget } from './es_episode_01_session_01_task_feedback_v1';
 import { learningV2NewWordCardEditorialV1 } from './learning_v2_new_word_card_editorial_v1';
 import { esLearningV2NewWordCardEditorialV1 } from './es_learning_v2_new_word_card_editorial_v1';
-import { learningV2ModeNativeAudioTargetIdsV1 } from '../../contracts/mode_native_payload_v1';
+import {
+  learningV2ModeNativeAudioTargetIdsV1,
+  type LearningV2ModeNativePayloadV1,
+} from '../../contracts/mode_native_payload_v1';
 
 /**
  * Соль для криптографического обязательства ответа. Контракт требует ровно
@@ -124,6 +127,99 @@ const FAMILY_INPUT_MODE = Object.freeze({
 } as const);
 
 type SupportedFamily = keyof typeof FAMILY_INPUT_MODE;
+
+const REQUIRED_PRACTICE_FAMILIES = Object.freeze([
+  'phrase_builder',
+  'listen_choose',
+  'listen_build_dictation',
+  'context_gap_grammar',
+  'speed_match',
+  'scripted_repeat_compare',
+] as const satisfies readonly SupportedFamily[]);
+
+const normalizePrimaryTaskTargetV1 = (value: string): string => value
+  .normalize('NFKC')
+  .split('’').join("'")
+  .toLocaleLowerCase('en')
+  .replace(/[^a-z0-9']+/gu, ' ')
+  .trim();
+
+const primaryTaskTargetV1 = (
+  card: LearningV2GeneratedSessionCardV1,
+): string => {
+  const payload = card.modePayload as LearningV2ModeNativePayloadV1 | null;
+  if (!payload) return card.contentItem.target.text;
+  if (payload.family === 'phrase_builder') return payload.targetPhrase;
+  if (payload.family === 'listen_choose') {
+    // зачем guard (2026-08-31): referenceAudio опционален в типе payload —
+    // без проверки сборка functions падает TS18047 и блокирует ЛЮБОЙ деплой.
+    if (!payload.referenceAudio) throw new Error(`learning_v2_listen_choose_audio_missing:${card.cardId}`);
+    return payload.referenceAudio.transcript;
+  }
+  if (payload.family === 'listen_build_dictation') return payload.hiddenTargetPhrase;
+  if (payload.family === 'scripted_repeat_compare') return payload.targetPhrase;
+  if (payload.family === 'speed_match') {
+    return `board:${payload.pairGrid
+      .map((entry) => normalizePrimaryTaskTargetV1(entry.target))
+      .sort()
+      .join('|')}`;
+  }
+  // зачем каст (2026-08-31): в этой точке остаётся только context_gap-семейство,
+  // но union по family здесь уже не сужается — доносим форму явно.
+  const gap = payload as Extract<LearningV2ModeNativePayloadV1, { gappedTargetPhrase: string }>;
+  const correctId = gap.choiceFeedback.find((entry) => entry.correct)?.responseId;
+  const correctText = gap.gapOptions.find((entry) => entry.responseId === correctId)?.text;
+  if (!correctText) throw new Error(`learning_v2_context_gap_correct_target_missing:${card.cardId}`);
+  return gap.gappedTargetPhrase.replace('___', correctText);
+};
+
+const selectNonRepeatingPracticeCardsV1 = (
+  cards: readonly LearningV2GeneratedSessionCardV1[],
+  reservedTargets: readonly string[] = [],
+): readonly LearningV2GeneratedSessionCardV1[] => {
+  const signatures = cards.map((card) =>
+    normalizePrimaryTaskTargetV1(primaryTaskTargetV1(card)),
+  );
+  let requiredSelection: readonly number[] | null = null;
+  const visit = (
+    familyIndex: number,
+    selected: readonly number[],
+    usedTargets: ReadonlySet<string>,
+  ): boolean => {
+    if (familyIndex === REQUIRED_PRACTICE_FAMILIES.length) {
+      if (!selected.some((index) => cards[index]!.purpose === 'independent_check')) return false;
+      requiredSelection = selected;
+      return true;
+    }
+    const family = REQUIRED_PRACTICE_FAMILIES[familyIndex]!;
+    const candidateIndices = cards
+      .map((_, index) => index)
+      .filter((index) => cards[index]!.family === family)
+      .sort((left, right) =>
+        family === 'scripted_repeat_compare'
+          ? Number(cards[right]!.purpose === 'independent_check')
+            - Number(cards[left]!.purpose === 'independent_check')
+          : left - right);
+    for (const index of candidateIndices) {
+      const signature = signatures[index]!;
+      if (usedTargets.has(signature)) continue;
+      if (visit(
+        familyIndex + 1,
+        [...selected, index],
+        new Set([...usedTargets, signature]),
+      )) return true;
+    }
+    return false;
+  };
+  visit(
+    0,
+    [],
+    new Set(reservedTargets.map((target) => normalizePrimaryTaskTargetV1(target))),
+  );
+  if (!requiredSelection) return cards;
+  const selected = new Set<number>(requiredSelection);
+  return cards.filter((_, index) => selected.has(index));
+};
 
 /**
  * Назначение карточки в шарде и в рантайме называется по-разному.
@@ -881,7 +977,15 @@ export function buildSessionChildBodiesFromShard(
   } as never);
 
   // Практика начинается со слота 4: слоты 1–3 заняты вопросами интро.
-  const practiceCards = shard.cards.filter((card) => card.taskSlot >= 4);
+  const authoredPracticeCards = shard.cards.filter((card) => card.taskSlot >= 4);
+  const introPrimaryTargets = shard.intro.pages.map((page) => String(
+    (page.question.choicesByLocale as Record<string, readonly string[]>).ru?.[
+      page.question.correctChoiceIndex
+    ] ?? '',
+  ));
+  const practiceCards = shard.episodeOrdinal === 2
+    ? selectNonRepeatingPracticeCardsV1(authoredPracticeCards, introPrimaryTargets)
+    : authoredPracticeCards;
   const choiceCards = shard.requiredSessionOrdinal === 15
     ? shard.cards
     : practiceCards;
@@ -1068,7 +1172,7 @@ export function buildSessionChildBodiesFromShard(
   // and silently skipped later ones.
   const newWordOrderByCardId = new Map<string, number>();
   const introducedLexicalItemIds = new Set<string>();
-  for (const card of practiceCards) {
+  for (const card of authoredPracticeCards) {
     if (introducedLexicalItemIds.size >= vocabularyCount) break;
     const lexicalItemId = card.contentItem.intentId.replace(
       /:contact-\d+$/u,
@@ -1081,7 +1185,22 @@ export function buildSessionChildBodiesFromShard(
     }
     if (introducedLexicalItemIds.has(lexicalItemId)) continue;
     introducedLexicalItemIds.add(lexicalItemId);
-    newWordOrderByCardId.set(card.cardId, introducedLexicalItemIds.size);
+  }
+  const pendingNewWordIds = new Set(introducedLexicalItemIds);
+  for (const card of practiceCards) {
+    const lexicalItemId = card.contentItem.intentId.replace(
+      /:contact-\d+$/u,
+      '',
+    );
+    if (!pendingNewWordIds.has(lexicalItemId)) continue;
+    const orderWithinSession = [...introducedLexicalItemIds].indexOf(lexicalItemId) + 1;
+    newWordOrderByCardId.set(card.cardId, orderWithinSession);
+    pendingNewWordIds.delete(lexicalItemId);
+  }
+  if (pendingNewWordIds.size > 0) {
+    throw new Error(
+      `learning_v2_unique_primary_task_new_word_missing:${[...pendingNewWordIds].join(',')}`,
+    );
   }
   // зачем interactionId переопределён для интро-карточек (инцидент
   // 2026-08-17): card.cardId (card-episode-01-s01-01) и

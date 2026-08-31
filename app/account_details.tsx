@@ -327,7 +327,9 @@ export default function AccountDetailsScreen() {
               accessibilityRole="button"
               accessibilityLabel={logoutActionLabel}
               activeOpacity={0.7}
-              onPress={() => { doHaptic(); setLogoutStage('confirm'); }}
+              // зачем (владелец, 2026-08-31): «никаких модалов, просто мгновенный
+              // выход» — окно подтверждения убрано, выход стартует сразу.
+              onPress={() => { doHaptic(); setLogoutStage('wiping'); }}
               style={{
                 height: 52, borderRadius: SETTINGS_GROUP_RADIUS,
                 backgroundColor: surface.panel,

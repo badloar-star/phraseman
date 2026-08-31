@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import { createHash } from 'crypto';
 import { HttpsError } from 'firebase-functions/v2/https';
+import { ACCOUNT_DELETE_GRACE_MS, accountDeleteGraceDeadlineMs } from './account_delete_grace';
 
 export const ACCOUNT_DELETE_JOBS = 'account_deletion_jobs';
 export const ACCOUNT_DELETE_TOMBSTONES = 'account_deletion_tombstones';
@@ -26,6 +27,9 @@ export type AccountDeleteJobDocument = {
   identityClosureVersion: 1;
   closureCutoffMs: number;
   nextAttemptAtMs?: number;
+  /** Момент, когда удаление становится необратимым (grace 14 дней). */
+  graceDeadlineMs?: number;
+  graceMs?: number;
   retentionUntilMs?: number;
   createdAt?: FirebaseFirestore.FieldValue;
   updatedAt?: FirebaseFirestore.FieldValue;
@@ -328,9 +332,12 @@ export async function enqueueAccountDeletionJob(
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     }, { merge: true });
+    // Дедлайн дублируется в tombstone: по нему клиент строит модал
+    // «Восстановить аккаунт?» и текст «удаление через N дней».
     tx.set(tombstoneRef, {
       jobId,
       status: 'pending',
+      graceDeadlineMs: accountDeleteGraceDeadlineMs(nowMs),
       authUidHash: sha256(authUid),
       stableUidHash: sha256(stableUid),
       updatedAtMs: nowMs,
@@ -398,6 +405,10 @@ export async function enqueueAccountDeletionJob(
       return { jobId, status, created: false };
     }
 
+    // зачем grace (владелец, 2026-08-31): 14 дней на «передумать» после
+    // случайного удаления. Локальные данные стёрты сразу, но серверные живут
+    // до дедлайна — воркер возьмёт задачу только после nextAttemptAtMs.
+    const graceDeadlineMs = accountDeleteGraceDeadlineMs(nowMs);
     tx.create(ref, {
       jobId,
       authUid,
@@ -406,7 +417,9 @@ export async function enqueueAccountDeletionJob(
       stableUidHash: sha256(stableUid),
       status: 'queued',
       attempts: 0,
-      nextAttemptAtMs: nowMs,
+      nextAttemptAtMs: graceDeadlineMs,
+      graceDeadlineMs,
+      graceMs: ACCOUNT_DELETE_GRACE_MS,
       createdAtMs: nowMs,
       updatedAtMs: nowMs,
       identityClosure: frozenClosure,

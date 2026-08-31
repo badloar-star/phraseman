@@ -95,12 +95,11 @@ export default function MaxLessonsScreen() {
         setTitles(fromDisk);
         return;
       }
-      if (!isAiVoiceConsentGranted()) {
-        // Ранний выход объясняет себя: без согласия на обработку голоса сети
-        // быть не должно. Это штатный путь, а не ошибка.
-        DebugLogger.info('[MAX-LESSONS]', 'titles skipped: voice consent not granted yet');
-        return;
-      }
+      // зачем (проверка на эмуляторе 2026-08-31): согласие на обработку ГОЛОСА
+      // здесь не требуется — заголовки уроков это витрина, а не запись речи.
+      // Прежний гейт давал ровно тот баг, который видно на скриншоте: человек
+      // до первого звонка читал технические id (a1_daily_routine) вместо
+      // «Мой день», хотя названия давно готовы на сервере.
       void fetchMaxCatalogTitles({
         format: 'tutor',
         scenarioId: 'coffee',
@@ -206,11 +205,13 @@ export default function MaxLessonsScreen() {
       'pt-BR': 'Aulas com o MAX', vi: 'Bài học với MAX', id: 'Pelajaran dengan MAX',
       tr: "MAX'la dersler", pl: 'Lekcje z MAXem',
     }),
-    doneOf: (a: number, b: number) => triLang(lang, {
-      ru: `${a} из ${b} уроков пройдено`, uk: `${a} з ${b} уроків пройдено`, en: `${a} of ${b} lessons done`,
-      es: `${a} de ${b} clases completadas`, 'pt-BR': `${a} de ${b} aulas concluídas`,
-      vi: `Đã xong ${a}/${b} bài học`, id: `${a} dari ${b} pelajaran selesai`,
-      tr: `${b} dersten ${a} tanesi tamam`, pl: `${a} z ${b} lekcji ukończonych`,
+    // Подпись под цифрой НЕ повторяет её («0 из 78» под «0 / 78» — пустой шум).
+    // Она называет, что за число: уроков пройдено.
+    lessonsDone: triLang(lang, {
+      ru: 'уроков пройдено', uk: 'уроків пройдено', en: 'lessons completed',
+      es: 'clases completadas', 'pt-BR': 'aulas concluídas',
+      vi: 'bài học đã xong', id: 'pelajaran selesai',
+      tr: 'ders tamamlandı', pl: 'lekcji ukończonych',
     }),
     recommended: triLang(lang, {
       ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar',
@@ -276,7 +277,7 @@ export default function MaxLessonsScreen() {
                   <Text style={{ color: t.textMuted, fontSize: f.numMd, fontWeight: '800' }}>{` / ${MAX_LESSON_CATALOG.length}`}</Text>
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 4 }} maxFontSizeMultiplier={2}>
-                  {c.doneOf(done, MAX_LESSON_CATALOG.length)}
+                  {c.lessonsDone}
                 </Text>
               </View>
 
@@ -286,7 +287,9 @@ export default function MaxLessonsScreen() {
               <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ gap: 8, paddingBottom: 14 }}
+                // paddingRight: последний чип не должен липнуть к краю экрана —
+                // без него он выглядит обрезанным (видно на скриншоте проверки).
+                contentContainerStyle={{ gap: 8, paddingBottom: 14, paddingRight: 14 }}
               >
                 <TopicChip
                   label={c.all}

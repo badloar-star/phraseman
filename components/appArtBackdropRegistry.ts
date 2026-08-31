@@ -39,6 +39,11 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   friends: 'friends',
   settings: 'settings',
   lesson_menu: 'lessons',
+  // зачем (владелец 2026-08-31): раздел «Уроки с МАКСом» — такой же список
+  // занятий, как обычные уроки, поэтому берёт их фон. Без записи маршрут падал
+  // в фон Главной и писал предупреждение в каждый заход (видно в логах
+  // эмулятора), а сторож assertAppArtBackdropRoute на нём бросает ошибку.
+  max_lessons: 'lessons',
   lesson1: 'lessonPractice',
   lesson_words: 'lessonPractice',
   lesson_irregular_verbs: 'lessons',

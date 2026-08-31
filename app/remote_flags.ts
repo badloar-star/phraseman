@@ -78,13 +78,6 @@ export type RemoteBoolKey =
   // kill-switch: боты работают как сейчас, админ может выключить их в «Пульте»
   // живьём — тогда матчатся только реальные игроки друг с другом, а при пустой
   // очереди соперник не подставляется. Включение возвращает ботов обратно.
-  // Таймеры «срочности» (анонс повышения цены) на всех пейволах A/B/C. Дефолт
-  // TRUE = kill-switch: блок urgency (обратный отсчёт + «Сейчас X / скоро ~2X»
-  // и grace-плашка «цена сохранена») показывается как сейчас. Админ ставит false
-  // в «Пульте» → весь блок прячется у всех живьём (onSnapshot), без релиза. Гейт
-  // стоит в app/paywall_purchase.ts (urgency форсится в неактивное пустое
-  // состояние), сам PaywallPriceUrgency тогда возвращает null во всех режимах.
-  | 'paywall_timers_enabled'
   | 'paywall_reviews_enabled'
   // Принудительное обновление (force-update). Дефолт FALSE = выключено (страховка
   // от случайной блокировки всех). Когда true И версия приложения < min_app_version
@@ -314,9 +307,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Боты в Арене: дефолт TRUE = kill-switch (боты включены как сейчас). Админ
   // ставит false в «Пульте» → бот-фолбэк отключается у всех живьём (onSnapshot),
   // остаётся только реальный матчмейкинг; true возвращает ботов.
-  // Таймеры срочности на пейволах: дефолт TRUE = kill-switch (показываются как
-  // сейчас). Админ ставит false в «Пульте» → блок urgency прячется у всех живьём.
-  paywall_timers_enabled: true,
   paywall_reviews_enabled: true,
   // Force-update: дефолт FALSE = выключено (страховка). true + версия < min →
   // полноэкранный блок «обнови приложение». Включается из «Пульта» живьём.
@@ -638,12 +628,6 @@ export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
 export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
 export const isSupportDiagnosticsEnabled = () => getRemoteBool('support_diagnostics_enabled');
 /** Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт true. */
-/**
- * Таймеры «срочности» (анонс повышения цены) на пейволах A/B/C. Дефолт true =
- * показываются как сейчас. false (из «Пульта») → блок urgency скрыт у всех живьём.
- * Гейт применяется в app/paywall_purchase.ts.
- */
-export const isPaywallTimersEnabled = () => getRemoteBool('paywall_timers_enabled');
 export const isPaywallReviewsEnabled = () => getRemoteBool('paywall_reviews_enabled');
 
 // ── Force-update (минимальная версия) ───────────────────────────────────────

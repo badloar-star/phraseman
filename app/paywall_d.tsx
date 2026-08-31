@@ -39,7 +39,6 @@ import {
 import { PersonalizationProofCard } from '../components/paywall/PaywallProofCards';
 import PaywallPlanTiles from '../components/paywall/PaywallPlanTiles';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
-import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
 import { PaywallEntrance } from '../components/paywall/PaywallMotion';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
@@ -197,20 +196,7 @@ export default function PaywallD() {
               )}
             </PaywallEntrance>
 
-            <PaywallEntrance index={3}>
-              <PaywallPriceUrgency
-                lang={lang as Lang}
-                chrome={chrome}
-                urgency={p.urgency}
-                currentPrice={price}
-                futurePrice={p.futurePrice}
-                period={period}
-                compact
-                isLifetime={isLifetimeSel}
-              />
-            </PaywallEntrance>
-
-            <PaywallEntrance index={4} style={S.ctaWrap} onLayout={isOnboarding ? sticky.onCtaLayout : undefined}>
+            <PaywallEntrance index={3} style={S.ctaWrap} onLayout={isOnboarding ? sticky.onCtaLayout : undefined}>
               <PaywallCtaBlock
                 lang={lang as Lang}
                 chrome={chrome}
@@ -227,11 +213,11 @@ export default function PaywallD() {
               />
             </PaywallEntrance>
 
-            <PaywallEntrance index={5}>
+            <PaywallEntrance index={4}>
               <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
             </PaywallEntrance>
 
-            <PaywallEntrance index={6}>
+            <PaywallEntrance index={5}>
               <PersonalizationProofCard
                 ctx={ctx}
                 lang={lang as Lang}
@@ -242,13 +228,13 @@ export default function PaywallD() {
               />
             </PaywallEntrance>
 
-            <PaywallEntrance index={7}>
+            <PaywallEntrance index={6}>
               <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
             </PaywallEntrance>
 
             <View style={S.spacer} />
 
-            <PaywallEntrance index={8}>
+            <PaywallEntrance index={7}>
               <PaywallLegalDisclosure
                 lang={lang as Lang}
                 chrome={chrome}

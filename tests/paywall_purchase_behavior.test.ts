@@ -31,7 +31,6 @@ jest.mock('../app/revenuecat_init', () => ({
 }));
 jest.mock('../app/remote_flags', () => ({
   isLifetimeButtonEnabled: jest.fn(() => false),
-  isPaywallTimersEnabled: jest.fn(() => false),
 }));
 jest.mock('../app/premium_revenuecat_state', () => ({
   customerInfoConfirmsProductAccess: jest.fn(() => false),
@@ -47,11 +46,6 @@ jest.mock('../app/paywall_pricing', () => ({
 jest.mock('../app/paywall_trial_info', () => ({
   getTrialInfo: jest.fn(() => ({ hasTrial: false })),
   trialDaysOrDefault: jest.fn(() => 3),
-}));
-jest.mock('../app/paywall_urgency', () => ({
-  activateUrgencyIfNeeded: jest.fn(async () => {}),
-  getUrgencyState: jest.fn(async () => ({ isActive: false, remainingMs: 0, remainingFormatted: '00:00:00' })),
-  getDoubledPrice: jest.fn((s: string) => s),
 }));
 jest.mock('../app/paywall_trial_offer', () => ({ shouldShowExitTrialOffer: jest.fn(() => false) }));
 jest.mock('../app/paywall_funnel', () => ({ logPaywallFunnel: jest.fn() }));
@@ -73,7 +67,6 @@ jest.mock('../app/paywall_dev_preview', () => ({
   DEV_PREVIEW_YEARLY_PER_MONTH: '',
   DEV_PREVIEW_LIFETIME_PRICE: '',
   DEV_PREVIEW_LIFETIME_PACKAGE: undefined,
-  DEV_PREVIEW_URGENCY: { isActive: false, remainingMs: 0, remainingFormatted: '00:00:00' },
 }));
 jest.mock('../app/analytics', () => ({ trackEvent: jest.fn() }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));

@@ -52,13 +52,10 @@ describe('paywall tonal surfaces contract', () => {
   it('keeps proof and plan cards borderless while using the shared tonal surface', () => {
     const proof = fs.readFileSync(path.join(ROOT, 'components', 'paywall', 'PaywallProofCards.tsx'), 'utf8');
     const plans = fs.readFileSync(path.join(ROOT, 'components', 'paywall', 'PaywallPlanCards.tsx'), 'utf8');
-    const urgency = fs.readFileSync(path.join(ROOT, 'components', 'paywall', 'PaywallPriceUrgency.tsx'), 'utf8');
 
     expect(proof).toContain('backgroundColor: chrome.cardBg');
     expect(proof).toContain('borderWidth: 0');
     expect(plans).toContain('backgroundColor: sel ? chrome.cardBgStrong : cardBg');
     expect(plans).toContain('borderWidth: 0');
-    expect(urgency).toContain('backgroundColor: chrome.cardBgStrong');
-    expect(urgency).toContain('compactActiveWrap: { borderRadius: 18, borderWidth: 0');
   });
 });

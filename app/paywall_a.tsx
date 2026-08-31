@@ -39,7 +39,6 @@ import {
 import { PersonalizationProofCard } from '../components/paywall/PaywallProofCards';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
-import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
 import { PaywallEntrance } from '../components/paywall/PaywallMotion';
@@ -205,20 +204,7 @@ export default function PaywallA() {
               )}
             </PaywallEntrance>
 
-            <PaywallEntrance index={3}>
-              <PaywallPriceUrgency
-                lang={lang as Lang}
-                chrome={chrome}
-                urgency={p.urgency}
-                currentPrice={price}
-                futurePrice={p.futurePrice}
-                period={period}
-                compact
-                isLifetime={isLifetimeSel}
-              />
-            </PaywallEntrance>
-
-            <PaywallEntrance index={4} style={S.ctaWrap} onLayout={isOnboarding ? sticky.onCtaLayout : undefined}>
+            <PaywallEntrance index={3} style={S.ctaWrap} onLayout={isOnboarding ? sticky.onCtaLayout : undefined}>
               <PaywallCtaBlock
                 lang={lang as Lang}
                 chrome={chrome}
@@ -235,11 +221,11 @@ export default function PaywallA() {
               />
             </PaywallEntrance>
 
-            <PaywallEntrance index={5}>
+            <PaywallEntrance index={4}>
               <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
             </PaywallEntrance>
 
-            <PaywallEntrance index={6}>
+            <PaywallEntrance index={5}>
               <PersonalizationProofCard
                 ctx={ctx}
                 lang={lang as Lang}
@@ -253,7 +239,7 @@ export default function PaywallA() {
             {/* Полный таймлайн триала «сегодня→напомним→списание» теперь и на «Компакт»:
                 показывается только при реальной бесплатной intro-фазе из стора. */}
             {p.trialDays && (
-              <PaywallEntrance index={7}>
+              <PaywallEntrance index={6}>
                 <PaywallTrialTimeline
                   lang={lang as Lang}
                   chrome={chrome}
@@ -266,13 +252,13 @@ export default function PaywallA() {
 
             {/* зачем: контекстные бенефиты переехали в хиро (PaywallHeroExplain) —
                 нижний дубль под сгибом удалён по аудиту «пейволы-объясняют». */}
-            <PaywallEntrance index={9}>
+            <PaywallEntrance index={8}>
               <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
             </PaywallEntrance>
 
             <View style={S.spacer} />
 
-            <PaywallEntrance index={10}>
+            <PaywallEntrance index={9}>
               <PaywallLegalDisclosure
                 lang={lang as Lang}
                 chrome={chrome}

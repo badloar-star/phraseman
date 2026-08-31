@@ -443,14 +443,22 @@ describe('owner runtime direction contract', () => {
     expect(source).not.toContain('Math.max(10, Math.min(TYPE_MS');
   });
 
-  it('keeps paywall urgency countdown static, without per-second ticking or storage polling', () => {
-    const source = read('components/paywall/PaywallPriceUrgency.tsx');
+  // зачем: владелец не принимал решения о «таймере повышения цены» на пейволе —
+  // блок срочности (анонс роста цены, цена x2, плашка «цена сохранена») удалён
+  // целиком по прямому указанию. Сторож не даёт вернуть его следующей сессии.
+  it('keeps the paywall free of price-increase urgency mechanics', () => {
+    expect(fs.existsSync(path.join(ROOT, 'components', 'paywall', 'PaywallPriceUrgency.tsx'))).toBe(false);
+    expect(fs.existsSync(path.join(ROOT, 'app', 'paywall_urgency.ts'))).toBe(false);
 
-    // Статичная дата конца окна старой цены: вычисляется один раз из remainingMs,
-    // без живого тикающего таймера и без перечитывания storage каждую секунду.
-    expect(source).toContain('const raiseDate = formatRaiseDate(new Date(Date.now() + Math.max(0, urgency.remainingMs)), lang)');
-    expect(source).not.toContain('setInterval(');
-    expect(source).not.toContain('getUrgencyState().then');
+    for (const screen of ['paywall_a', 'paywall_b', 'paywall_c', 'paywall_d', 'paywall_g']) {
+      const source = read(`app/${screen}.tsx`);
+      expect(source).not.toContain('PaywallPriceUrgency');
+      expect(source).not.toContain('futurePrice');
+    }
+
+    const hook = read('app/paywall_purchase.ts');
+    expect(hook).not.toContain('getDoubledPrice');
+    expect(hook).not.toContain('paywall_urgency');
   });
 
   it('keeps streak stats boost countdowns on one shared visible wall clock', () => {

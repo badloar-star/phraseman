@@ -12087,7 +12087,6 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       <div class="cp-switch-row">
         <div class="cp-switch-ico">⏳</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Пейволы: таймеры срочности</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Вкл по умолчанию — на пейволах показывается блок обратного отсчёта «старой цены» (и плашка «цена сохранена»). Выкл → блок срочности скрыт на всех пейволах A/B/C у всех живьём, без релиза.</div></div>
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-paywall_timers_enabled" class="cp-toggle" onchange="saveControlPanelBool('paywall_timers_enabled', this.checked)" disabled/><span id="cp-bool-label-paywall_timers_enabled" class="cp-bool-chip">…</span></label>
       </div>
       <div class="cp-switch-row">
         <div class="cp-switch-ico">💬</div>
@@ -32725,7 +32724,6 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     { key: 'league_xp_promotion_enabled', label: 'Лиги: временный переход по XP включён', def: false },
     { key: 'lifetime_button_enabled', label: 'Phraseman Pro — разовая покупка', def: true },
     { key: 'ideas_enabled', label: 'Раздел «Идеи» (год Плюс за идею)', def: false },
-    { key: 'paywall_timers_enabled', label: 'Пейволы: таймеры срочности (выкл = скрыть у всех)', def: true },
     { key: 'paywall_reviews_enabled', label: 'Пейволы: отзывы «что говорят ученики» (выкл = скрыть у всех)', def: true },
   ];
 
@@ -34093,7 +34091,6 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
     { key: 'lifetime_button_enabled',  label: 'Phraseman Pro — разовая покупка', def: true, hint: 'Показывает Pro на обычных пейволах, если пакет доступен в магазине. Выключение скрывает предложение без отзыва уже купленного доступа. В онбординге Pro не показывается.' },
     { key: 'ideas_enabled',            label: 'Раздел «Идеи»',                  def: false, hint: 'Юзер шлёт идею → год Плюс при одобрении (вкладка «Идеи»).' },
     { key: 'promo_codes_enabled',      label: 'Промокоды в настройках',          def: false, hint: 'Sell-switch. Вкл → пункт «Промокоды» виден в настройках и сервер принимает promoCodeRedeem; выкл → скрыто и promo_disabled.' },
-    { key: 'paywall_timers_enabled',   label: 'Пейволы: таймеры срочности',      def: true,  hint: 'Вкл по умолчанию. Выкл → блок обратного отсчёта «старой цены» (и плашка «цена сохранена») прячется на всех пейволах A/B/C у всех живьём, без релиза.' },
     { key: 'paywall_reviews_enabled',  label: 'Пейволы: отзывы учеников',        def: true,  hint: 'Вкл по умолчанию. Выкл → секция «Что говорят ученики» пропадает на всех пейволах A/B/C у всех живьём, без релиза. Ничего не ломается — блок просто исчезает. Вкл возвращает.' },
     { key: 'video_button_enabled',     label: 'Кнопка «Видео» на главной',       def: true,  hint: 'Вкл по умолчанию. Выкл → иконка-плей с входом на экран видео прячется в шапке главной у всех живьём, без релиза. Какой канал показывать — настраивается в карточке «YouTube-канал» (вкладка Remote Config).' },
     { key: 'intro_full_access_enabled', label: 'Подарок «3 дня» новым юзерам',    def: false, hint: 'Выкл по умолчанию. Включение выдаёт будущим новичкам 72ч полного доступа и приветственный модал. Уже выданные подарки не отбираются — активные докатывают свои часы.' },

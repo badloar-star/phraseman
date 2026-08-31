@@ -14,7 +14,6 @@ import {
   isMaintenanceBanner,
   isMaintenanceBlock,
   getMaintenanceText,
-  isPaywallTimersEnabled,
   getStreakFreezeCostShards,
   isVersionBelow,
   shouldForceUpdate,
@@ -64,7 +63,6 @@ describe('remote_flags', () => {
       expect(getRemoteBool('speaking_enabled')).toBe(true);
       expect(getRemoteBool('weekly_review_ai_v2_enabled')).toBe(true);
       expect(isLeagueXpPromotionEnabled()).toBe(false);
-      expect(isPaywallTimersEnabled()).toBe(true);
       expect(getStreakFreezeCostShards()).toBe(10);
       expect(isManualUpdateEnabled()).toBe(false);
       expect(getManualUpdateCampaignId()).toBe('');
@@ -206,15 +204,6 @@ describe('remote_flags', () => {
       expect(getRemoteBool('explain_enabled')).toBe(true);
       applyRemoteConfigSnapshot({ bools: { explain_enabled: false } });
       expect(getRemoteBool('explain_enabled')).toBe(false);
-    });
-
-    it('paywall_timers_enabled defaults true (kill-switch), snapshot can disable', () => {
-      expect(isPaywallTimersEnabled()).toBe(true);
-      applyRemoteConfigSnapshot({ bools: { paywall_timers_enabled: false } });
-      expect(isPaywallTimersEnabled()).toBe(false);
-      // повторный снапшот без ключа возвращает дефолт (полная замена)
-      applyRemoteConfigSnapshot({ bools: { referral_enabled: true } });
-      expect(isPaywallTimersEnabled()).toBe(true);
     });
   });
 

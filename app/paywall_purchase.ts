@@ -19,7 +19,7 @@ import * as Crypto from 'expo-crypto';
 import Purchases, { INTRO_ELIGIBILITY_STATUS, PURCHASES_ERROR_CODE, type PurchasesPackage } from 'react-native-purchases';
 
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
-import { isLifetimeButtonEnabled, isPaywallTimersEnabled } from './remote_flags';
+import { isLifetimeButtonEnabled } from './remote_flags';
 import {
   customerInfoConfirmsProductAccess,
   inferPremiumPlanFromProductId,
@@ -30,7 +30,6 @@ import {
 import { computeSavingsPct, computePerDayString } from './paywall_pricing';
 import { getTrialInfo, type TrialEligibility, type TrialInfo } from './paywall_trial_info';
 import { readOnboardingNotificationChoice } from './onboarding_notification_choice';
-import { activateUrgencyIfNeeded, getUrgencyState, getDoubledPrice, type UrgencyState } from './paywall_urgency';
 import { shouldShowExitTrialOffer } from './paywall_trial_offer';
 import { logPaywallFunnel } from './paywall_funnel';
 import type { PaywallAbVariant } from './paywall_variant';
@@ -49,7 +48,6 @@ import {
   DEV_PREVIEW_YEARLY_PER_MONTH,
   DEV_PREVIEW_LIFETIME_PRICE,
   DEV_PREVIEW_LIFETIME_PACKAGE,
-  DEV_PREVIEW_URGENCY,
 } from './paywall_dev_preview';
 import { trackEvent } from './analytics';
 import { createPaywallAnalyticsImpression, paywallImpressionParams, type PaywallAnalyticsImpression } from './paywall_analytics_impression';
@@ -256,33 +254,6 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const [restoring, setRestoring] = useState(false);
   const operationRef = useRef<'purchase' | 'restore' | null>(null);
   const [lifetimeEnabled, setLifetimeEnabled] = useState(() => isLifetimeButtonEnabled());
-  const [urgency, setUrgency] = useState<UrgencyState>({ isActive: false, remainingMs: 0, remainingFormatted: '00:00:00' });
-
-  // Окно «старой цены» (77ч): активируем при первом показе пейвола и читаем
-  // состояние. Тик раз в секунду живёт в PaywallPriceUrgency — здесь только старт.
-  // Гейт «Пульта»: при выключенном paywall_timers_enabled НЕ запускаем окно и
-  // держим пустое неактивное состояние — тогда PaywallPriceUrgency возвращает
-  // null во всех режимах (включая grace), и блок срочности скрыт у всех живьём.
-  useEffect(() => {
-    let dead = false;
-    void (async () => {
-      try {
-        if (!isPaywallTimersEnabled()) {
-          if (!dead) setUrgency({ isActive: false, remainingMs: 0, remainingFormatted: '00:00:00' });
-          return;
-        }
-        await activateUrgencyIfNeeded();
-        const s = await getUrgencyState();
-        // dev-превью: показываем таймер всегда, даже если 77ч-окно у этого
-        // устройства уже истекло (в стор-сборке используем реальный s).
-        if (!dead) setUrgency(DEV_IAP_BYPASS && !s.isActive ? DEV_PREVIEW_URGENCY : s);
-      } catch (e) {
-      // некритично
-      DebugLogger.error('paywall_purchase:s', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-    })();
-    return () => { dead = true; };
-  }, []);
 
   useEffect(() => {
     const subscription = onAppEvent('remote_config_changed', () => {
@@ -461,11 +432,6 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const trialDays = selected === 'lifetime' ? null : subscriptionTrialDays;
   const selectedAvailable = DEV_IAP_BYPASS || Boolean(selectedPkg);
   const ctaDisabled = purchasing || loading || restoring || !selectedAvailable;
-
-  // «Будущая» цена выбранного плана (×2 из реальной цены стора) — ТОЛЬКО для
-  // отображения в PaywallPriceUrgency; в Purchases никогда не уходит.
-  const selectedPrice = selected === 'lifetime' ? lifetimePrice : selected === 'yearly' ? yearlyPrice : monthlyPrice;
-  const futurePrice = useMemo(() => (selectedPrice ? getDoubledPrice(selectedPrice) : null), [selectedPrice]);
 
   const selectPlan = useCallback((plan: PaywallPlan) => {
     if (plan === 'lifetime' && !lifetimeAvailable) return;
@@ -1072,7 +1038,6 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     lifetimePrice, lifetimeAvailable,
     savingsPct, perDayLabel,
     trial, trialDays, ctaDisabled, selectedAvailable,
-    urgency, futurePrice,
     handlePurchase, handleRestore, handleClose,
     exitOffer,
   };

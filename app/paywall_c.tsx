@@ -39,7 +39,6 @@ import {
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
-import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
 import { PersonalizationProofCard, CompareCard, FaqCard } from '../components/paywall/PaywallProofCards';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
@@ -259,20 +258,7 @@ export default function PaywallC() {
               )}
             </PaywallEntrance>
 
-            <PaywallEntrance index={3}>
-              <PaywallPriceUrgency
-                lang={lang as Lang}
-                chrome={chrome}
-                urgency={p.urgency}
-                currentPrice={price}
-                futurePrice={p.futurePrice}
-                period={period}
-                compact
-                isLifetime={isLifetimeSel}
-              />
-            </PaywallEntrance>
-
-            <PaywallEntrance index={4} style={S.ctaWrap} onLayout={isOnboarding ? sticky.onCtaLayout : undefined}>
+            <PaywallEntrance index={3} style={S.ctaWrap} onLayout={isOnboarding ? sticky.onCtaLayout : undefined}>
               <PaywallCtaBlock
                 lang={lang as Lang}
                 chrome={chrome}
@@ -290,7 +276,7 @@ export default function PaywallC() {
             </PaywallEntrance>
 
             {/* ── галерея доказательств: скроллить НЕ обязательно ── */}
-            <PaywallEntrance index={5}>
+            <PaywallEntrance index={4}>
               <PersonalizationProofCard
                 ctx={ctx}
                 lang={lang as Lang}
@@ -303,7 +289,7 @@ export default function PaywallC() {
             </PaywallEntrance>
 
             {p.trialDays && (
-              <PaywallEntrance index={6}>
+              <PaywallEntrance index={5}>
                 <PaywallTrialTimeline
                   lang={lang as Lang}
                   chrome={chrome}
@@ -314,20 +300,20 @@ export default function PaywallC() {
               </PaywallEntrance>
             )}
 
-            <PaywallEntrance index={7}>
+            <PaywallEntrance index={6}>
               <PaywallSectionDivider label={doubtersDividerLabel(lang as Lang)} chrome={chrome} />
             </PaywallEntrance>
-            <PaywallEntrance index={8}>
+            <PaywallEntrance index={7}>
               <CompareCard lang={lang as Lang} chrome={chrome} />
             </PaywallEntrance>
-            <PaywallEntrance index={9}>
+            <PaywallEntrance index={8}>
               <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
             </PaywallEntrance>
-            <PaywallEntrance index={10}>
+            <PaywallEntrance index={9}>
               <FaqCard lang={lang as Lang} chrome={chrome} trialDays={p.trialDays} priceLine={priceLine} />
             </PaywallEntrance>
 
-            <PaywallEntrance index={11} style={S.repeatCta}>
+            <PaywallEntrance index={10} style={S.repeatCta}>
               <PaywallCtaBlock
                 lang={lang as Lang}
                 chrome={chrome}
@@ -343,7 +329,7 @@ export default function PaywallC() {
               />
             </PaywallEntrance>
 
-            <PaywallEntrance index={12}>
+            <PaywallEntrance index={11}>
               <PaywallLegalDisclosure
                 lang={lang as Lang}
                 chrome={chrome}

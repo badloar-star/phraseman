@@ -2,10 +2,9 @@
 // paywall_dev_preview.ts — плейсхолдеры пейвола для dev-сборки (DEV_IAP_BYPASS).
 //
 // Зачем: в dev-рантайме (Metro) RevenueCat не опрашивается (DEV_IAP_BYPASS=true в
-// app/config.ts), поэтому реальных пакетов и цен нет. Без них на пейволе ИСЧЕЗАЛИ
-// два элемента, которые должны быть видны ВСЕГДА (и в dev, и в релизе):
-//   • таймер «старой цены» (PaywallPriceUrgency скрыт при пустой currentPrice);
-//   • кнопка Phraseman Pro (lifetimeAvailable=false без пакета lifetime).
+// app/config.ts), поэтому реальных пакетов и цен нет. Без них на пейволе ИСЧЕЗАЛА
+// кнопка Phraseman Pro (lifetimeAvailable=false без пакета lifetime), которая
+// должна быть видна ВСЕГДА (и в dev, и в релизе).
 //
 // Эти строки — ТОЛЬКО для отображения в dev. В реальную покупку они НЕ уходят:
 // в dev ветка DEV_IAP_BYPASS в usePaywallPurchase показывает честное preview-сообщение,
@@ -13,18 +12,6 @@
 // вовсе — там и цены, и пакет lifetime приходят из RevenueCat как обычно.
 // ════════════════════════════════════════════════════════════════════════════
 import type { PurchasesPackage } from 'react-native-purchases';
-import type { UrgencyState } from './paywall_urgency';
-
-/**
- * Активное urgency-состояние для dev-превью: фиксированный таймер «осталось ~76:00:00».
- * PaywallPriceUrgency считает живой тик локально от remainingMs; storage/state
- * проверяется только при истечении окна, поэтому dev-блок таймера остаётся лёгким.
- */
-export const DEV_PREVIEW_URGENCY: UrgencyState = {
-  isActive: true,
-  remainingMs: 76 * 60 * 60 * 1000,
-  remainingFormatted: '76:00:00',
-};
 
 /** Демо-цены для dev-превью пейвола (формат строки стора). */
 export const DEV_PREVIEW_MONTHLY_PRICE = '€5,99';

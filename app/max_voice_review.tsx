@@ -47,6 +47,8 @@ import type {
   MaxVoiceReviewReceiptV1,
 } from './max_voice_finalize_types';
 import { projectMaxReview } from './max_voice_review_projection';
+import { computeVoiceCallMetrics } from './max_voice_metrics';
+import { appendSpeechSample } from './max_speech_history';
 import { getStableId } from './stable_id';
 import { DebugLogger } from './debug-logger';
 
@@ -133,6 +135,9 @@ function copy(lang: Lang) {
     speakingTime: triLang(lang, { ru: 'Ты говорил', en: 'You spoke', uk: 'Ти говорив', es: 'Hablaste', 'pt-BR': 'Você falou', vi: 'Bạn đã nói', id: 'Kamu berbicara', tr: 'Sen konuştun', pl: 'Mówiłeś' }),
     duration: triLang(lang, { ru: 'Длительность разговора', en: 'Conversation duration', uk: 'Тривалість розмови', es: 'Duración de la conversación', 'pt-BR': 'Duração da conversa', vi: 'Thời lượng cuộc trò chuyện', id: 'Durasi percakapan', tr: 'Konuşma süresi', pl: 'Czas rozmowy' }),
     goalProgress: triLang(lang, { ru: 'Цель использована увереннее', en: 'You used the goal more confidently', uk: 'Ціль використано впевненіше', es: 'Usaste el objetivo con más seguridad', 'pt-BR': 'Você usou o objetivo com mais confiança', vi: 'Bạn đã dùng mục tiêu tự tin hơn', id: 'Kamu memakai tujuan dengan lebih yakin', tr: 'Hedefi daha güvenli kullandın', pl: 'Cel został użyty pewniej' }),
+    // Не «не сдал», а «продолжим»: тема остаётся в работе, это правда и это
+    // не приговор. Формулировка нейтральная, без похвалы и без укора.
+    goalContinues: triLang(lang, { ru: 'Продолжим эту тему на следующем уроке', en: "We'll continue this topic next lesson", uk: 'Продовжимо цю тему наступного уроку', es: 'Seguiremos este tema en la próxima clase', 'pt-BR': 'Vamos continuar este tema na próxima aula', vi: 'Chúng ta sẽ tiếp tục chủ đề này ở bài sau', id: 'Kita lanjutkan topik ini di pelajaran berikutnya', tr: 'Bu konuya bir sonraki derste devam edeceğiz', pl: 'Wrócimy do tego tematu na następnej lekcji' }),
     retry: triLang(lang, { ru: 'Проверить ещё раз', en: 'Check again', uk: 'Перевірити ще раз', es: 'Comprobar de nuevo', 'pt-BR': 'Verificar novamente', vi: 'Kiểm tra lại', id: 'Periksa lagi', tr: 'Tekrar kontrol et', pl: 'Sprawdź ponownie' }),
     home: triLang(lang, { ru: 'На главную', en: 'Go home', uk: 'На головну', es: 'Ir al inicio', 'pt-BR': 'Ir ao início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfa', pl: 'Strona główna' }),
     callAgain: triLang(lang, { ru: 'Позвонить ещё раз', en: 'Call again', uk: 'Подзвонити ще раз', es: 'Llamar otra vez', 'pt-BR': 'Ligar de novo', vi: 'Gọi lại', id: 'Telepon lagi', tr: 'Tekrar ara', pl: 'Zadzwoń ponownie' }),
@@ -318,6 +323,53 @@ export default function MaxVoiceReview() {
   const activeSessionId = projection?.sessionId ?? (reviewState.kind === 'pending'
     ? reviewState.envelope.sessionId
     : requestedSessionId);
+
+  // зачем (владелец 2026-08-31, «общая статистика чтобы видеть максимум инфы»):
+  // здесь и только здесь копится история замеров речи. Формулы трендов были
+  // написаны давно, но НЕ ВЫЗЫВАЛИСЬ НИОТКУДА — считать было не из чего, никто
+  // не сохранял замеры (класс бага «механизм есть, а данных не дали»).
+  //
+  // Пишем ровно один раз на сессию: ключ записи — sessionId, повторный заход в
+  // разбор (или возврат по кнопке «назад») не должен удваивать статистику.
+  const speechSampleWrittenRef = useRef<string>('');
+  useEffect(() => {
+    if (!activeSessionId || speechSampleWrittenRef.current === activeSessionId) return;
+    if (speechSec === null || speechSec <= 0) return;
+    // История есть только в запросе разбора: в проекции её нет (сервер её не
+    // возвращает — расшифровка речи не покидает устройство дольше одного
+    // разбора). Пусто — словарь не посчитаем, но время речи запишем.
+    // atMs в запросе разбора не передаётся (серверу метка времени реплики не
+    // нужна), а метрикам он не важен — они считают только роль и текст.
+    const history: TranscriptTurn[] = (pendingHistory ?? []).map((turn) => ({
+      role: turn.role,
+      text: turn.text,
+      atMs: 0,
+    }));
+    const metrics = computeVoiceCallMetrics(history, {
+      speechSec,
+      weakWords: [],
+      durationSec,
+    });
+    // Итоги фраз живут только в запросе разбора (в проекции их нет): при
+    // заходе по диплинку в готовый разбор их не будет — тогда пишем нули по
+    // фразам, а время речи и словарь всё равно попадут в статистику.
+    const results: readonly { result: 'pass' | 'needs_work' | 'uncertain' | 'invalid' }[] =
+      pendingRequest?.phraseResults ?? [];
+    speechSampleWrittenRef.current = activeSessionId;
+    void appendSpeechSample({
+      atMs: Date.now(),
+      speechSec,
+      uniqueWords: metrics.uniqueWords,
+      // «Чистая» фраза — произнесённая уверенно; uncertain/invalid нейтральны
+      // и в знаменатель не идут, иначе плохая связь портила бы процент.
+      cleanPhrases: results.filter((r) => r.result === 'pass').length,
+      totalPhrases: results.filter((r) => r.result === 'pass' || r.result === 'needs_work').length,
+    });
+    DebugLogger.info(
+      '[MAX-SPEECH]',
+      `замер сессии ${activeSessionId}: реплик=${metrics.userTurns} речь=${speechSec}с слов=${metrics.uniqueWords} длиннейшая=${metrics.longestTurnWords}`,
+    );
+  }, [activeSessionId, durationSec, pendingHistory, pendingRequest, speechSec]);
 
   // зачем (аудит MAX 2026-08-30): «+N XP» за урок. Сумму считает сервер и
   // возвращает в ответе maxVoiceSessionEnd; ответ обычно доезжает раньше, чем
@@ -654,6 +706,20 @@ export default function MaxVoiceReview() {
               </Text>
             ) : null}
             {goalImproved ? <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '800', marginTop: 10 }} maxFontSizeMultiplier={2}>{c.goalProgress}</Text> : null}
+            {/* зачем (владелец 2026-08-31): слова «не сдал» на экране нет и не
+                будет. Но и молчать нельзя — человек не понимает, что дальше и
+                почему звёзд не прибавилось. Говорим то, что правда: тема
+                продолжится на следующем уроке. Показываем только когда цель
+                РЕАЛЬНО была в работе, иначе это шум на свободном разговоре. */}
+            {!goalImproved && projection?.goal ? (
+              <Text
+                testID="max-voice-review-goal-continues"
+                style={{ color: t.textSecond, fontSize: f.body, fontWeight: '800', marginTop: 10 }}
+                maxFontSizeMultiplier={2}
+              >
+                {c.goalContinues}
+              </Text>
+            ) : null}
             {endedInBackground ? (
               <Text testID="max-voice-review-background-note" style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', marginTop: 10 }} maxFontSizeMultiplier={2}>{c.endedBackground}</Text>
             ) : null}

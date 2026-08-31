@@ -1799,6 +1799,217 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     requiredAccountLevel: 60,
     nextStepHintRu: 'Чётко повтори проблему и попроси решение или живого оператора.',
   },
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // Сцены-интервью для «рассказательных» целей раздела «Уроки с МАКСом»
+  // (владелец 2026-08-31).
+  //
+  // зачем: 12 целей курса не имели НИ ОДНОЙ сцены проверки — «расскажи о
+  // семье», «мой день», «числа и время». Для них легко придумать упражнение и
+  // трудно — живую сцену, поэтому их и пропустили. Но без сцены цель не
+  // доходит до высшей ступени штатным путём: applyGoalProgress требует либо
+  // выполненной сцены, либо импровизации в новом контексте, а импровизация
+  // менее надёжна и непредсказуема.
+  //
+  // Решение: не выдумывать «магазин чисел», а взять естественную форму, где
+  // человек РАССКАЗЫВАЕТ о себе, — знакомство, анкета, разговор с соседом.
+  // Персонаж расспрашивает, ученик отвечает: цель проверяется речью, а не
+  // подстановкой. Все сцены безопасны по теме и не давят на личное: собеседник
+  // принимает короткий ответ и не выпытывает подробности (правило «MAX сам
+  // отступает от больной темы»).
+  // ═══════════════════════════════════════════════════════════════════════
+  {
+    id: 'new_colleague_family',
+    category: 'social',
+    titleRu: 'Новый коллега о семье',
+    goalRu: 'Расскажи, кто у тебя в семье, и спроси собеседника о его семье',
+    role: 'a friendly new colleague on a coffee break',
+    setting: 'a quiet office kitchen on your first week',
+    goalEn: 'say who is in your family, tell one small thing about them, and ask about theirs',
+    persona:
+      'Your name is Sam. You are a warm, unhurried colleague who shows photos of your dog and asks easy questions. '
+      + 'You never push: if the learner gives a short answer, you happily accept it and talk about your own family instead.',
+    cefr: 'A1',
+    icon: 'people-outline',
+    active: true,
+    nextStepHintRu: 'Назови двух родных и скажи по одной фразе о каждом.',
+  },
+  {
+    id: 'gym_signup_form',
+    category: 'everyday',
+    titleRu: 'Запись в спортзал',
+    goalRu: 'Продиктуй возраст, телефон и адрес — по цифрам',
+    role: 'a receptionist filling in a membership form',
+    setting: 'the front desk of a neighbourhood gym',
+    goalEn: 'give your age, phone number and house number clearly, digit by digit',
+    persona:
+      'Your name is Nadia. You are brisk but kind, and you read every number back to confirm it. '
+      + 'When you mishear, you ask once more cheerfully — never with irritation.',
+    cefr: 'A1',
+    icon: 'clipboard-outline',
+    active: true,
+    nextStepHintRu: 'Продиктуй номер по цифрам и подтверди, когда его повторят.',
+  },
+  {
+    id: 'class_schedule_talk',
+    category: 'everyday',
+    titleRu: 'Расписание занятий',
+    goalRu: 'Договорись о дне и времени занятия',
+    role: 'a language school administrator offering class times',
+    setting: 'a small school office with a wall timetable',
+    goalEn: 'ask what times are free, say which day and hour suit you, and confirm the slot',
+    persona:
+      'Your name is Priya. You offer two or three options at a time and repeat the chosen day and hour back. '
+      + 'You are patient with hesitation and never rush the learner into deciding.',
+    cefr: 'A1',
+    icon: 'calendar-outline',
+    active: true,
+    nextStepHintRu: 'Назови день недели и время, потом подтверди запись.',
+  },
+  {
+    id: 'neighbour_morning_routine',
+    category: 'social',
+    titleRu: 'Сосед о твоём дне',
+    goalRu: 'Расскажи, как проходит твой обычный день',
+    role: 'a chatty neighbour walking a dog every morning',
+    setting: 'the entrance of your building, early morning',
+    goalEn: 'describe your usual day: when you get up, what you do, when you finish',
+    persona:
+      'Your name is Tom. You are a cheerful early riser who compares everything to your own routine. '
+      + 'You react with small surprise ("So early!") and keep the exchange light.',
+    cefr: 'A1',
+    icon: 'sunny-outline',
+    active: true,
+    nextStepHintRu: 'Расскажи три вещи, которые делаешь каждый день, и во сколько.',
+  },
+  {
+    id: 'flatmate_room_tour',
+    category: 'everyday',
+    titleRu: 'Показать комнату',
+    goalRu: 'Опиши своё жильё: комнаты и что в них есть',
+    role: 'someone looking for a room to rent',
+    setting: 'a short video call while you show the flat',
+    goalEn: 'describe your home: how many rooms it has and what is in them',
+    persona:
+      'Your name is Alex. You are polite and easy to please, asking simple questions about size and light. '
+      + 'You never comment on how modest or expensive the place looks.',
+    cefr: 'A1',
+    icon: 'home-outline',
+    active: true,
+    nextStepHintRu: 'Назови комнаты и скажи, что стоит в каждой.',
+  },
+  {
+    id: 'club_skills_chat',
+    category: 'social',
+    titleRu: 'Что ты умеешь',
+    goalRu: 'Расскажи, что умеешь и чего пока нет',
+    role: 'a volunteer coordinator matching people to tasks',
+    setting: 'a friendly community club sign-up table',
+    goalEn: 'say what you can do, what you cannot do yet, and ask what is needed',
+    persona:
+      'Your name is Maya. You are encouraging and treat "I cannot" as completely normal, '
+      + 'immediately offering a task that fits what the learner can already do.',
+    cefr: 'A1',
+    icon: 'construct-outline',
+    active: true,
+    nextStepHintRu: 'Скажи два умения и одно, чему хочешь научиться.',
+  },
+  {
+    id: 'monday_catchup',
+    category: 'social',
+    titleRu: 'Как прошли выходные',
+    goalRu: 'Расскажи, что делал вчера или на выходных',
+    role: 'a colleague catching up on Monday morning',
+    setting: 'the first minutes of a work day',
+    goalEn: 'say what you did yesterday or at the weekend, in order',
+    persona:
+      'Your name is Chris. You share your own weekend in one short sentence, then listen. '
+      + 'You ask "and then?" to keep the story moving, never demanding detail.',
+    cefr: 'A2',
+    icon: 'time-outline',
+    active: true,
+    nextStepHintRu: 'Расскажи три события вчерашнего дня по порядку.',
+  },
+  {
+    id: 'trip_story_swap',
+    category: 'travel',
+    titleRu: 'История из поездки',
+    goalRu: 'Расскажи о поездке: куда ездил и что там было',
+    role: 'a fellow traveller waiting at the same gate',
+    setting: 'an airport waiting area with time to spare',
+    goalEn: 'tell where you went, what you saw and what happened, using past forms',
+    persona:
+      'Your name is Elena. You are a seasoned traveller who trades one story for another. '
+      + 'You react with genuine curiosity and pick up any detail the learner offers.',
+    cefr: 'A2',
+    icon: 'airplane-outline',
+    active: true,
+    nextStepHintRu: 'Скажи, куда ездил, что видел и что случилось.',
+  },
+  {
+    id: 'video_call_now',
+    category: 'social',
+    titleRu: 'Что происходит сейчас',
+    goalRu: 'Опиши, что вокруг тебя происходит прямо сейчас',
+    role: 'a friend who called you on video',
+    setting: 'a short spontaneous video call',
+    goalEn: 'describe what is happening around you right now and what you are doing',
+    persona:
+      'Your name is Dana. You call at a random moment and ask what the learner is up to. '
+      + 'You describe your own surroundings too, so the exchange feels mutual.',
+    cefr: 'A2',
+    icon: 'videocam-outline',
+    active: true,
+    nextStepHintRu: 'Скажи, что делаешь ты и что делают люди вокруг.',
+  },
+  {
+    id: 'interview_experience',
+    category: 'social',
+    titleRu: 'Твой опыт',
+    goalRu: 'Расскажи, что ты уже делал в жизни',
+    role: 'a course tutor deciding which group suits you',
+    setting: 'a short informal placement chat',
+    goalEn: 'say what you have already done or tried, and how long you have done it',
+    persona:
+      'Your name is Robert. You are curious about experience, not achievements, '
+      + 'and you make small experience sound valuable rather than thin.',
+    cefr: 'B1',
+    icon: 'ribbon-outline',
+    active: true,
+    nextStepHintRu: 'Скажи, что уже пробовал и как долго этим занимался.',
+  },
+  {
+    id: 'plans_next_year',
+    category: 'social',
+    titleRu: 'Планы на будущее',
+    goalRu: 'Расскажи о планах и о том, что, по-твоему, будет',
+    role: 'an old friend you have not seen for a year',
+    setting: 'a long unhurried evening conversation',
+    goalEn: 'talk about your plans, what you are going to do and what you think will happen',
+    persona:
+      'Your name is Lena. You are warm and forward-looking, sharing your own plans first. '
+      + 'You accept "I do not know yet" as a perfectly good answer and move on.',
+    cefr: 'B1',
+    icon: 'compass-outline',
+    active: true,
+    nextStepHintRu: 'Назови один точный план и одно предположение о будущем.',
+  },
+  {
+    id: 'moving_day_help',
+    category: 'everyday',
+    titleRu: 'Помощь на переезде',
+    goalRu: 'Объясни действия обычными фразовыми глаголами',
+    role: 'a friend helping you move furniture',
+    setting: 'a flat full of boxes on moving day',
+    goalEn: 'tell your friend what to pick up, put down, turn around and take away',
+    persona:
+      'Your name is Marco. You are strong, jokey and literal: you do exactly what you are told, '
+      + 'so vague instructions produce funny results and a cheerful "say that again?".',
+    cefr: 'B1',
+    icon: 'cube-outline',
+    active: true,
+    nextStepHintRu: 'Дай три указания подряд, каждое — с фразовым глаголом.',
+  },
 ];
 
 export function getScenarioById(id: string): DialogScenario | undefined {

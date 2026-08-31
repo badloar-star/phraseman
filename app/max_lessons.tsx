@@ -51,6 +51,8 @@ import {
   prefetchMaxTutorPreview,
 } from './max_call_mint_request';
 import { isAiVoiceConsentGranted } from './max_voice_consent';
+import { loadSpeechHistory, peekSpeechHistory } from './max_speech_history';
+import { computeVoiceTrends, type VoiceTrends } from './max_voice_metrics';
 import { useStudyTarget } from '../components/StudyTargetContext';
 
 /** Названия уроков приходят с сервера; до первого ответа показываем id-независимую заглушку. */
@@ -80,6 +82,26 @@ export default function MaxLessonsScreen() {
   const level = cachedPreview?.catalogProgress.level ?? cachedPreview?.goalLevel ?? 'A1';
 
   const [topic, setTopic] = useState<MaxLessonTopic | null>(null);
+  // Тренды речи за 28 дней. Первый кадр — из памяти процесса (без await), диск
+  // догоняет: цифры не должны появляться рывком после отрисовки.
+  const [trends, setTrends] = useState<VoiceTrends | null>(() => {
+    const cached = peekSpeechHistory();
+    return cached ? computeVoiceTrends(cached, Date.now()) : null;
+  });
+
+  useEffect(() => {
+    let active = true;
+    void loadSpeechHistory().then((samples) => {
+      if (!active) return;
+      const computed = computeVoiceTrends(samples, Date.now());
+      setTrends(computed);
+      DebugLogger.info(
+        '[MAX-SPEECH]',
+        `тренды за 28 дней: минут=${computed.spokeMinutes} слов=${computed.vocabWords} чистых=${computed.cleanPhrasePct ?? 'мало данных'}`,
+      );
+    });
+    return () => { active = false; };
+  }, []);
   // Тик перерисовки после фоновой догрузки: сам ответ лежит в кэше превью,
   // держать его копию в состоянии незачем — это был бы второй источник правды.
   const [, setRefreshTick] = useState(0);
@@ -213,6 +235,22 @@ export default function MaxLessonsScreen() {
       vi: 'bài học đã xong', id: 'pelajaran selesai',
       tr: 'ders tamamlandı', pl: 'lekcji ukończonych',
     }),
+    // Подписи статистики: короткие, называют число, а не пересказывают его.
+    spokeMinutes: triLang(lang, {
+      ru: 'минут речи', uk: 'хвилин мовлення', en: 'minutes spoken', es: 'minutos hablados',
+      'pt-BR': 'minutos falados', vi: 'phút đã nói', id: 'menit bicara',
+      tr: 'konuşma dakikası', pl: 'minut mówienia',
+    }),
+    vocabWords: triLang(lang, {
+      ru: 'слов в речи', uk: 'слів у мовленні', en: 'words used', es: 'palabras usadas',
+      'pt-BR': 'palavras usadas', vi: 'từ đã dùng', id: 'kata dipakai',
+      tr: 'kullanılan kelime', pl: 'użytych słów',
+    }),
+    cleanPhrases: triLang(lang, {
+      ru: 'без ошибок', uk: 'без помилок', en: 'clean phrases', es: 'frases correctas',
+      'pt-BR': 'frases corretas', vi: 'câu chuẩn', id: 'frasa benar',
+      tr: 'hatasız cümle', pl: 'bez błędów',
+    }),
     recommended: triLang(lang, {
       ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar',
       'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj',
@@ -279,6 +317,43 @@ export default function MaxLessonsScreen() {
                 <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 4 }} maxFontSizeMultiplier={2}>
                   {c.lessonsDone}
                 </Text>
+
+                {/* Честная статистика речи за 28 дней. Показываем ТОЛЬКО когда
+                    замеры есть: пустые нули на первом заходе выглядели бы как
+                    «ты ничего не сделал» — ровно то, чего владелец не хочет
+                    видеть на экране. Метрики измеримые, не выдуманные:
+                    сколько минут человек реально говорил и сколько разных слов
+                    произнёс (правило «показывать прогресс честно»). */}
+                {trends && trends.spokeMinutes > 0 ? (
+                  <View style={{ flexDirection: 'row', gap: 18, marginTop: 16 }}>
+                    <View style={{ flex: 1 }}>
+                      <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+                        {trends.spokeMinutes}
+                      </Text>
+                      <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginTop: 3 }} maxFontSizeMultiplier={2}>
+                        {c.spokeMinutes}
+                      </Text>
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+                        {trends.vocabWords}
+                      </Text>
+                      <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginTop: 3 }} maxFontSizeMultiplier={2}>
+                        {c.vocabWords}
+                      </Text>
+                    </View>
+                    {trends.cleanPhrasePct !== null ? (
+                      <View style={{ flex: 1 }}>
+                        <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+                          {`${trends.cleanPhrasePct}%`}
+                        </Text>
+                        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginTop: 3 }} maxFontSizeMultiplier={2}>
+                          {c.cleanPhrases}
+                        </Text>
+                      </View>
+                    ) : null}
+                  </View>
+                ) : null}
               </View>
 
               {/* Фильтр по темам: горизонтальный ряд, пять тем плюс «Все».

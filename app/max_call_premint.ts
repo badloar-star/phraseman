@@ -32,12 +32,26 @@ export interface PremintKeyParams {
   cefr?: string;
   devMode?: boolean;
   studyTarget?: string;
+  /**
+   * Урок из каталога (раздел «Уроки с МАКСом»). Входит в ключ, потому что
+   * сервер строит instructions под КОНКРЕТНУЮ цель: заготовка, прогретая под
+   * «Заказать в кафе», не годится для «Спросить дорогу» — иначе человек начал
+   * бы урок, которого не выбирал.
+   */
+  goalId?: string;
 }
 
 /** Ключ заготовки: те же параметры, из которых сервер строит instructions. */
 export function premintKey(params: PremintKeyParams): string {
   const scenario = params.format === 'companion' ? '' : (params.scenarioId ?? '');
-  return [params.format, scenario, params.cefr ?? '', params.devMode ? 'dev' : '', params.studyTarget ?? 'en'].join('|');
+  return [
+    params.format,
+    scenario,
+    params.cefr ?? '',
+    params.devMode ? 'dev' : '',
+    params.studyTarget ?? 'en',
+    params.goalId ?? '',
+  ].join('|');
 }
 
 type PremintState = 'pending' | 'handoff' | 'claimed' | 'abandoned';

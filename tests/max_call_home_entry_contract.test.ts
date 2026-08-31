@@ -12,13 +12,18 @@ describe('MAX call is a Home-owned preloaded experience', () => {
   const captionView = read(path.join('app', 'max_call_live_caption_view.tsx'));
   const review = read(path.join('app', 'max_voice_review.tsx'));
 
-  it('opens the premint preparation screen from Home before the live call', () => {
+  // зачем (владелец 2026-08-31): плитка Главной ведёт в РАЗДЕЛ «Уроки с
+  // МАКСом», а не сразу в звонок — «уроков большое кол-во, это всё в разделе
+  // макс». Прежний контракт («плитка → prestart, греем связь на тапе») отменён
+  // сознательно, это НЕ регрессия: греть связь на заходе в каталог значило бы
+  // резервировать минуты тем, кто просто листает список.
+  it('opens the lessons section from Home, and the call is prepared one screen deeper', () => {
     const maxEntry = home.slice(home.indexOf("key: 'max'"), home.indexOf("key: 'flashcards'"));
 
-    expect(maxEntry).toContain("pathname: '/max_call_prestart'");
-    expect(maxEntry).toContain('nav.push({');
-    expect(maxEntry).not.toContain('router.push({');
+    expect(maxEntry).toContain("nav.push('/max_lessons'");
     expect(maxEntry).not.toContain("pathname: '/max_call_session'");
+    // Связь греется там, где намерение звонить однозначно, — не в каталоге.
+    expect(maxEntry).not.toContain('beginPremint(');
     expect(prestart).toContain('beginPremint(');
     expect(prestart).toContain('markPremintHandoff(key)');
     expect(prestart).toContain("pathname: '/max_call_session'");
@@ -35,19 +40,17 @@ describe('MAX call is a Home-owned preloaded experience', () => {
   it('prefetches and premints only after consent while keeping navigation available to the consent gate', () => {
     const maxEntry = home.slice(home.indexOf("key: 'max'"), home.indexOf("key: 'flashcards'"));
 
+    // Превью (read-only, без резерва минут) греется на фокусе Главной и
+    // только после согласия — это правило осталось: оно питает и бейдж минут,
+    // и звёзды каталога, не создавая ни токена, ни резерва.
     expect(home).toContain('prefetchMaxTutorPreview(maxTutorCallParams)');
     expect(home).toContain('if (!homeRuntimeActive || !maxVoiceVisible || !isAiVoiceConsentGranted()) return;');
     expect(home).toContain('isAiVoiceConsentGranted()');
     expect(home).not.toContain('beginMaxTutorEntry();');
-    expect(maxEntry).toContain('if (isAiVoiceConsentGranted()) {');
-    expect(maxEntry).toContain('beginPremint(');
-    expect(maxEntry.indexOf('if (isAiVoiceConsentGranted()) {'))
-      .toBeLessThan(maxEntry.indexOf('beginPremint('));
-    const consentChecks = [...maxEntry.matchAll(/isAiVoiceConsentGranted\(\)/g)]
-      .map((match) => match.index);
-    expect(consentChecks.length).toBeGreaterThanOrEqual(2);
-    expect(consentChecks[1]).toBeLessThan(maxEntry.indexOf('beginPremint('));
-    expect(maxEntry).toContain('nav.push({');
+    // А вот ЗАГОТОВКА связи с плитки убрана (владелец 2026-08-31): она держит
+    // серверный резерв минут, а тап теперь означает «открыть каталог».
+    expect(maxEntry).not.toContain('beginPremint(');
+    expect(maxEntry).toContain("nav.push('/max_lessons'");
     expect(home).not.toContain('setInterval(prefetchMaxTutorPreview');
     const paramsStart = home.indexOf('const maxTutorCallParams');
     const paramsEnd = home.indexOf('useEffect(() =>', paramsStart);
@@ -63,7 +66,10 @@ describe('MAX call is a Home-owned preloaded experience', () => {
   it('keeps MAX visible and openable for every current course while preserving its target through routes', () => {
     expect(home).toContain('const maxVoiceVisible = useMemo(() => isMaxVoiceEntryVisible(), []);');
     expect(home).not.toContain('isMaxVoiceEntryVisible() && maxVoiceContentAvailableForTarget');
-    expect(home).toContain("params: { format: 'tutor', cefr: maxTutorCallParams.cefr, studyTarget }");
+    // Параметры звонка (format/cefr/studyTarget) теперь собирает экран урока:
+    // Главная открывает каталог, а курс и уровень известны на экране раздела.
+    // Сам изучаемый язык по-прежнему обязан доезжать до звонка без подмены.
+    expect(prestart).toContain('studyTarget: callStudyTarget');
 
     for (const route of [prestart, session]) {
       expect(route).not.toContain('maxVoiceContentAvailableForTarget');

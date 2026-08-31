@@ -207,6 +207,11 @@ export interface MaxVoiceMintRequest {
    * попадает в общий prompt cache (рычаг 3, владелец 2026-08-23).
    */
   syllabusBlock?: string;
+  /**
+   * Урок, выбранный в разделе «Уроки с МАКСом» (id речевой цели).
+   * Пусто — сервер сам берёт следующую незакрытую цель, как было до раздела.
+   */
+  requestedGoalId?: string;
   learnerSnapshot?: string;
 }
 

@@ -141,6 +141,16 @@ export interface MaxCallParams {
   interfaceLang?: string;
   /** Изучаемый язык — учитель ведёт урок именно на нём и не переключается по просьбе. */
   studyTarget?: string;
+  /**
+   * Урок, выбранный человеком в разделе «Уроки с МАКСом».
+   *
+   * зачем (владелец 2026-08-31): «можно идти поочерёдно или выбрать 1 из уроков
+   * из раздела и запустить». Без этого поля сервер всегда вёл СВОЮ следующую
+   * цель, и выбор урока в каталоге был бы ложным обещанием: человек тапает
+   * «Заказать в кафе», а MAX учит здороваться. Пусто — сервер сам выбирает
+   * следующую цель, как раньше.
+   */
+  goalId?: string;
 }
 
 /**
@@ -317,6 +327,8 @@ export function prefetchMaxTutorPreview(
       cefr: params.cefr,
       interfaceLang: params.interfaceLang ?? 'ru',
       studyTarget: maxVoiceStudyTarget(params.studyTarget),
+      // Урок из каталога: превью обязано показать ту же цель, что поведёт MAX.
+      ...(params.goalId ? { requestedGoalId: params.goalId } : {}),
     });
     const envelope = raw && typeof raw === 'object' ? raw as Record<string, unknown> : {};
     const preview = parseMaxTutorPreview(envelope.tutorPreview, params.interfaceLang ?? 'ru');
@@ -355,6 +367,8 @@ export async function buildTutorMintExtras(params: MaxCallParams): Promise<Parti
     // кэшируется; личный снимок идёт следом и остаётся уникальным (рычаг 3).
     syllabusBlock: buildLessonSyllabusBlock(callStudyTarget),
     learnerSnapshot: await buildLearnerSnapshot(cefr, callStudyTarget),
+    // Урок, выбранный в каталоге. Пусто — сервер сам берёт следующую цель.
+    ...(params.goalId ? { requestedGoalId: params.goalId } : {}),
   };
 }
 

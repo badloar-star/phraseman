@@ -38,6 +38,7 @@ import {
   tutorLessonTypeFor,
 } from './max_voice_tutor_memory';
 import {
+  canDoGoalById,
   canDoProgress,
   levelFromMastery,
   pickNextGoal,
@@ -688,6 +689,9 @@ export const maxVoicePreflight = onCall({
         interfaceLang: text(data.interfaceLang, 8),
         tutorName: ctx.config.tutorName,
         nowMs,
+        // Тот же выбранный урок, что уйдёт в минт: превью и звонок обязаны
+        // показывать одну и ту же цель, иначе экран обещает не то.
+        requestedGoalId: text(data.requestedGoalId, 80),
       })
     : null;
 
@@ -1110,7 +1114,19 @@ export const maxVoiceMint = onCall({
   const goalLevel = tutorMemory && goalProgressNow && goalProgressNow.done > 0
     ? levelFromMastery(tutorMemory.goalMastery, cefr)
     : cefr;
-  const currentGoal = tutorMemory ? pickNextGoal(tutorMemory.goalMastery, goalLevel) : null;
+  // зачем (владелец 2026-08-31, раздел «Уроки с МАКСом»): человек выбрал урок в
+  // каталоге — ведём ИМЕННО его, иначе выбор был бы ложным обещанием (тапнул
+  // «Заказать в кафе», а MAX учит здороваться). Id проверяем по каталогу:
+  // неизвестный или подделанный диплинком молча падает в обычный порядок, а не
+  // ломает урок. Пусто — прежнее поведение: следующая незакрытая цель.
+  const requestedGoalId = text(data.requestedGoalId, 80);
+  const requestedGoal = requestedGoalId ? canDoGoalById(requestedGoalId) : undefined;
+  if (requestedGoalId && !requestedGoal) {
+    console.warn('max_voice_mint: unknown requestedGoalId, falling back to next goal', { requestedGoalId });
+  }
+  const currentGoal = tutorMemory
+    ? (requestedGoal ?? pickNextGoal(tutorMemory.goalMastery, goalLevel))
+    : null;
   const tutorPreview = tutorMemory
     ? buildTutorPreview({
         memory: tutorMemory,
@@ -1118,6 +1134,7 @@ export const maxVoiceMint = onCall({
         interfaceLang: text(data.interfaceLang, 8),
         tutorName: config.tutorName,
         nowMs,
+        requestedGoalId,
       })
     : null;
   const goalBlock = tutorMemory && currentGoal && goalProgressNow

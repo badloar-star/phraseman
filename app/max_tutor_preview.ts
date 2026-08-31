@@ -27,6 +27,15 @@ export interface MaxTutorPreview {
    * что падал в ветку dayRemainingSec. Тип приведён к серверному контракту.
    */
   access?: 'paid_minutes' | 'admin' | 'trial';
+  /**
+   * зачем (владелец 2026-08-31, раздел «Уроки с МАКСом»): каталогу нужны звёзды
+   * КАЖДОГО урока, а не только текущего (goalMastery выше — ступень текущей
+   * цели, это другое поле, менять его нельзя: на него смотрит табличка миссии).
+   * Сервер шлёт только ненулевые ступени, отсутствие ключа = 0 звёзд.
+   */
+  catalogMastery: Record<string, number>;
+  /** Шапка раздела: закрыто целей / всего и честный уровень по закрытым целям. */
+  catalogProgress: { done: number; total: number; level: string };
 }
 
 export interface MaxTutorPreviewKeyParams {
@@ -34,6 +43,12 @@ export interface MaxTutorPreviewKeyParams {
   cefr?: string;
   interfaceLang?: string;
   studyTarget?: string;
+  /**
+   * Урок из каталога. Обязан входить в ключ: без него превью урока «Заказать в
+   * кафе» перезаписало бы кэш урока «Спросить дорогу», и следующий экран
+   * показал бы чужую цель из свежего кэша.
+   */
+  goalId?: string;
 }
 
 export const MAX_TUTOR_PREVIEW_TTL_MS = 5 * 60_000;
@@ -82,11 +97,48 @@ export function parseMaxTutorPreview(value: unknown, interfaceLang: string): Max
     goalMastery: count(goal.mastery, 3),
     displayTitle: text(source.displayTitle, 120) || goalTitle || `Lesson ${lessonOrdinal}`,
     outcome: text(source.outcome, 180) || goalTitle,
+    catalogMastery: parseCatalogMastery(source.catalogMastery),
+    catalogProgress: parseCatalogProgress(source.progress),
+  };
+}
+
+/**
+ * Карта звёзд каталога из ответа сервера. Ключи — id уроков, значения 0–3.
+ * Старый сервер поля не шлёт — тогда карта пустая и каталог рисует нули, а не
+ * падает: раздел обязан открываться на любой версии функций.
+ */
+function parseCatalogMastery(value: unknown): Record<string, number> {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+  const out: Record<string, number> = {};
+  for (const [id, raw] of Object.entries(value as Record<string, unknown>)) {
+    // id урока — короткий слаг вида a1_greet; всё прочее игнорируем молча,
+    // это недоверенный ввод, а не ошибка.
+    if (!/^[a-z0-9_]{1,80}$/u.test(id)) continue;
+    const n = Number(raw);
+    if (!Number.isFinite(n) || n <= 0) continue;
+    out[id] = Math.min(3, Math.max(0, Math.floor(n)));
+  }
+  return out;
+}
+
+function parseCatalogProgress(value: unknown): { done: number; total: number; level: string } {
+  const src = value && typeof value === 'object' ? value as Record<string, unknown> : {};
+  const total = count(src.total, 500);
+  return {
+    done: Math.min(count(src.done, 500), total || 500),
+    total,
+    level: text(src.level, 8) || 'A1',
   };
 }
 
 export function maxTutorPreviewKey(params: MaxTutorPreviewKeyParams): string {
-  return [params.format, params.cefr ?? '', params.interfaceLang ?? '', params.studyTarget ?? ''].join('|');
+  return [
+    params.format,
+    params.cefr ?? '',
+    params.interfaceLang ?? '',
+    params.studyTarget ?? '',
+    params.goalId ?? '',
+  ].join('|');
 }
 
 interface CacheEntry {

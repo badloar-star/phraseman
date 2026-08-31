@@ -267,14 +267,21 @@ describe('энергия платится за старт активности',
     expect(read('app/personal_plan_theory.tsx')).toContain('showEnergyCost={theoryStartsPaidTask}');
   });
 
-  it('урок с MAX показывает цену и списывает энергию только при реальном старте', () => {
+  // зачем (владелец 2026-08-31): урок MAX НЕ стоит энергии. Минуты уже плата за
+  // вход, и второй барьер поверх платного бил именно по платящим — человек с
+  // купленными 300 минутами не попадал в урок из-за пустой шкалы энергии.
+  // Прежний контракт («MAX показывает цену и списывает энергию») отменён; этот
+  // сторож теперь охраняет ОТСУТСТВИЕ энергии, чтобы её не вернули по привычке.
+  it('урок с MAX не стоит энергии: единственная валюта урока — купленные минуты', () => {
     const prestart = read('app/max_call_prestart.tsx');
-    expect(prestart).toContain("import EnergyCostBadge from '../components/EnergyCostBadge'");
-    expect(prestart).toContain('testID="max-call-start-energy-cost"');
-    expect(prestart).toContain('confirmSpendOne: confirmMaxLessonEnergy');
-    expect(prestart).toContain('if (isTutor)');
-    expect(prestart).toContain('setMaxLessonNoEnergy(true)');
-    expect(prestart).toContain('<NoEnergyModal');
+    expect(prestart).not.toContain('EnergyCostBadge');
+    expect(prestart).not.toContain('max-call-start-energy-cost');
+    expect(prestart).not.toContain('confirmSpendOne');
+    expect(prestart).not.toContain('NoEnergyModal');
+    expect(prestart).not.toContain('useEnergySessionIntent');
+    // Кнопка старта не должна ждать готовности энергии: именно такое условие
+    // закрывало Арену «энергия не готова» при живой энергии.
+    expect(prestart).not.toContain('energyReady');
   });
 
   it('цена рисуется только когда конкретный тап действительно начинает новую оплату', () => {

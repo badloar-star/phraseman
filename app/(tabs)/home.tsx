@@ -3146,34 +3146,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 }),
                 onPress: () => {
                     hapticTap();
-                    // зачем (владелец 2026-08-23): «раздел должен быть всегда
-                    // прогрет, чтобы я больше не видел "Подготавливаем связь"».
-                    // Заготовка стартует В МОМЕНТ ТАПА, до навигации: пока едет
-                    // анимация перехода, связь уже готовится, и пре-экран
-                    // переиспользует её (beginPremint отдаёт живой слот с тем же
-                    // ключом). Греть заранее для всех нельзя — заготовка держит
-                    // серверный резерв минут, значит только по явному намерению
-                    // И после согласия на обработку голоса. До согласия сразу
-                    // открываем gate; он сам запустит premint после «Разрешить».
-                    if (isAiVoiceConsentGranted()) {
-                        void import('../max_call_premint').then(({ beginPremint, premintKey }) =>
-                            import('../max_call_mint_request').then(({ initialMintRequest, performMaxVoiceMint, releaseUnusedMint }) => {
-                                if (!isAiVoiceConsentGranted()) return;
-                                beginPremint(
-                                    premintKey(maxTutorCallParams),
-                                    () => performMaxVoiceMint(maxTutorCallParams, initialMintRequest(maxTutorCallParams)),
-                                    Date.now(),
-                                    releaseUnusedMint,
-                                );
-                            }),
-                        ).catch(() => {
-                            // Прогрев — оптимизация: пре-экран сам запустит заготовку.
-                        });
-                    }
-                    nav.push({
-                            pathname: '/max_call_prestart',
-                        params: { format: 'tutor', cefr: maxTutorCallParams.cefr, studyTarget },
-                    } as never);
+                    // зачем (владелец 2026-08-31): плитка ведёт в РАЗДЕЛ уроков,
+                    // а не сразу в звонок — «уроков большое кол-во, цельных,
+                    // понятных чему там юзер научится, это всё в разделе макс».
+                    //
+                    // Прогрев связи отсюда УБРАН намеренно. Заготовка держит
+                    // серверный резерв минут, а теперь тап означает «посмотреть
+                    // список», а не «звонить»: греть на каждый заход в каталог
+                    // значило бы резервировать минуты тем, кто просто листает.
+                    // Связь греется на экране урока — там намерение однозначно.
+                    nav.push('/max_lessons' as never);
                 },
             },
             {

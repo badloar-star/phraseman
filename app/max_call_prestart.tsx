@@ -9,10 +9,7 @@ import StatsCardArtSurface from '../components/StatsCardArtSurface';
 import MaxHomeOrb from '../components/home/MaxHomeOrb';
 import MaxDailyQuotaMeter from '../components/max/MaxDailyQuotaMeter';
 import MaxLessonMissionPlaque from '../components/max/MaxLessonMissionPlaque';
-import EnergyCostBadge from '../components/EnergyCostBadge';
-import NoEnergyModal from '../components/NoEnergyModal';
 import { glassFill } from '../components/GlassSurface';
-import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -50,6 +47,7 @@ import {
   type MaxTutorPreview,
 } from './max_tutor_preview';
 import MaxVoiceConsentGate from './max_voice_consent_gate';
+import { DebugLogger } from './debug-logger';
 import { maxVoiceStudyTarget } from './max_target_gate';
 import VoiceMinutePackSheet from '../modules/voice_minutes/VoiceMinutePackSheet';
 import { primeVoiceMinutePackages } from '../modules/voice_minutes/packages_cache';
@@ -140,14 +138,10 @@ function MaxCallPrestartContent() {
   const { studyTarget } = useStudyTarget();
   const reduceMotion = useReduceMotion();
   const router = useRouter();
-  const {
-    confirmSpendOne: confirmMaxLessonEnergy,
-    acknowledgeSessionStart,
-    energyReady: maxLessonEnergyReady,
-  } = useEnergy();
-  const [maxLessonNoEnergy, setMaxLessonNoEnergy] = useState(false);
+  // Энергия за урок MAX не берётся (владелец 2026-08-31) — контекст энергии,
+  // намерение сессии и модалка «нет энергии» здесь больше не нужны.
   const startInFlightRef = useRef(false);
-  const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string; studyTarget?: string }>();
+  const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string; studyTarget?: string; goalId?: string }>();
 
   const format: 'scenario' | 'companion' | 'trial' | 'tutor' =
     params.format === 'companion' || params.format === 'trial' || params.format === 'tutor'
@@ -155,7 +149,6 @@ function MaxCallPrestartContent() {
       : 'scenario';
   const isTutor = format === 'tutor';
   const scenarioId = String(params.scenarioId ?? 'coffee');
-  const maxLessonEnergyIntent = useEnergySessionIntent('max_tutor', scenarioId);
   const devMode = params.devMode === '1';
   const scenario = useMemo(
     () => (format === 'companion' || format === 'tutor' ? undefined : getScenarioById(scenarioId)),
@@ -164,9 +157,14 @@ function MaxCallPrestartContent() {
 
   const cefr = typeof params.cefr === 'string' && params.cefr !== '' ? params.cefr : undefined;
   const callStudyTarget = maxVoiceStudyTarget(params.studyTarget ?? studyTarget);
+  // Урок из каталога: только безопасный слаг, иначе поле игнорируем — параметр
+  // навигации это недоверенный ввод (диплинк может принести что угодно).
+  const requestedGoalId = typeof params.goalId === 'string' && /^[a-z0-9_]{1,80}$/u.test(params.goalId)
+    ? params.goalId
+    : undefined;
   const callParams: MaxCallParams = useMemo(
-    () => ({ format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget: callStudyTarget }),
-    [format, scenarioId, cefr, devMode, lang, callStudyTarget],
+    () => ({ format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget: callStudyTarget, goalId: requestedGoalId }),
+    [format, scenarioId, cefr, devMode, lang, callStudyTarget, requestedGoalId],
   );
   const key = premintKey(callParams);
   const previewKey = maxTutorPreviewKey(callParams);
@@ -205,8 +203,14 @@ function MaxCallPrestartContent() {
         setMinuteWallet(wallet);
         // Резерв идущего звонка — не трата: кэшируем то же число, что видит глаз.
         writeVoiceMinutePeek(wallet.availableSeconds + wallet.reservedSeconds);
+        DebugLogger.info('[MAX-PRESTART]', `wallet ok: available=${wallet.availableSeconds}s reserved=${wallet.reservedSeconds}s`);
       })
-      .catch(() => {});
+      // зачем (владелец 2026-08-31, «раздел макс просто пустой экран»): немой
+      // catch запрещён правилом проекта — молчащий кошелёк выглядел как пустой
+      // экран без единой строки в логах. Причина пишется ВСЕГДА.
+      .catch((e) => {
+        DebugLogger.warn('[MAX-PRESTART]', `wallet failed: ${e instanceof Error ? e.message : String(e)}`);
+      });
     // зачем (владелец 2026-08-30, «модал купить минуты грузится долго»):
     // пакеты RevenueCat греются здесь, заранее — к тапу «Купить минуты» шит
     // открывается с готовыми ценами из кэша, без сетевого ожидания.
@@ -224,12 +228,24 @@ function MaxCallPrestartContent() {
       setTutorPreview(cached);
       if (cached.limits) setPreflight(parsePreflight({ limits: cached.limits }, format));
     }
+    DebugLogger.info('[MAX-PRESTART]', `preview effect: cached=${cached ? 'hit' : 'miss'} key=${previewKey} lang=${lang} target=${callStudyTarget}`);
     void prefetchMaxTutorPreview(callParams).then((preview) => {
-      if (!active || !preview) return;
+      if (!active) {
+        DebugLogger.info('[MAX-PRESTART]', 'preview dropped: screen already unmounted');
+        return;
+      }
+      if (!preview) {
+        // Ранний выход обязан объяснять себя: пустое превью раньше было
+        // неотличимо от сетевой ошибки, а экран при этом молчал.
+        DebugLogger.warn('[MAX-PRESTART]', 'preview empty: server returned no tutorPreview, keeping fallback');
+        return;
+      }
       setTutorPreview(preview);
       if (preview.limits) setPreflight(parsePreflight({ limits: preview.limits }, format));
-    }).catch(() => {
+      DebugLogger.info('[MAX-PRESTART]', `preview ok: goal=${preview.goalId || 'none'} level=${preview.goalLevel} lesson=${preview.lessonOrdinal} access=${preview.access ?? 'unknown'}`);
+    }).catch((e) => {
       // Preview is non-blocking: preserve stale cache or the authored fallback.
+      DebugLogger.warn('[MAX-PRESTART]', `preview failed: ${e instanceof Error ? e.message : String(e)}`);
     });
     return () => { active = false; };
   }, [callParams, format, isTutor, previewKey]);
@@ -372,7 +388,11 @@ function MaxCallPrestartContent() {
   const noMinutesLeft = dayRemainingSec < 60 && !maxRequired;
   // Premint дозревает на экране цели. CTA открывается только после готовности,
   // чтобы первый тап вёл сразу в разговор, а не переносил ожидание в звонок.
-  const startReady = prepState === 'ready' && !noMinutesLeft && (!isTutor || maxLessonEnergyReady);
+  // зачем (владелец 2026-08-31): урок MAX больше не стоит энергии, поэтому
+  // кнопка старта НЕ ждёт её готовности. Прежнее условие держало кнопку
+  // недоступной, пока шкала энергии не догрузится, — тот же класс бага, что
+  // закрывал Арену «энергия не готова» при живой энергии.
+  const startReady = prepState === 'ready' && !noMinutesLeft;
 
   useEffect(() => {
     startCtaReveal.stopAnimation();
@@ -465,19 +485,11 @@ function MaxCallPrestartContent() {
       return;
     }
     startInFlightRef.current = true;
-    if (isTutor) {
-      const energyResult = await confirmMaxLessonEnergy(maxLessonEnergyIntent);
-      if (energyResult === 'cancelled') {
-        startInFlightRef.current = false;
-        return;
-      }
-      if (energyResult === 'insufficient') {
-        startInFlightRef.current = false;
-        setMaxLessonNoEnergy(true);
-        return;
-      }
-      if (energyResult === 'spent') void acknowledgeSessionStart(maxLessonEnergyIntent.operationId);
-    }
+    // зачем (владелец 2026-08-31): урок MAX больше НЕ стоит энергии. Минуты уже
+    // плата за вход, и второй барьер поверх платного бил именно по платящим:
+    // человек с купленными 300 минутами не попадал в урок из-за пустой шкалы
+    // энергии и честно читал это как обман. Энергия осталась у бесплатных
+    // активностей, где она и есть ритм приложения.
     // Заготовку заберёт экран звонка — cleanup этого экрана её не отпустит.
     markPremintHandoff(key);
     // startReady гарантирует готовый premint: экран звонка не ждёт его сеть.
@@ -508,6 +520,18 @@ function MaxCallPrestartContent() {
     setMinuteSheetVisible(false);
     setPrepAttempt((attempt) => attempt + 1);
   };
+
+  // зачем (владелец 2026-08-31, «раздел макс просто пустой экран в релизе»):
+  // единая точка, где видно, КАКУЮ ветку выбрал экран и какие значения это
+  // решили. Без неё пустой экран неотличим от белого рендера, отказа минта и
+  // не смонтированного гейта согласия — три разные причины с одним симптомом.
+  DebugLogger.info(
+    '[MAX-PRESTART]',
+    `render: branch=${isTutor ? 'tutor' : 'scenario'} format=${format} prep=${prepState} `
+    + `preview=${tutorPreview ? 'yes' : 'fallback'} preflight=${preflight ? 'yes' : 'no'} `
+    + `reason=${preflightReason ?? 'none'} access=${mintAccess ?? 'pending'} `
+    + `wallet=${minuteWallet ? `${minuteWallet.availableSeconds}s` : 'unknown'}`,
+  );
 
   if (isTutor) {
     const heroAccessibilityLabel = triLang(lang, {
@@ -706,7 +730,8 @@ function MaxCallPrestartContent() {
                     gap: 10,
                   }}
                 >
-                  <EnergyCostBadge testID="max-call-start-energy-cost" />
+                  {/* Значок стоимости энергии убран: урок MAX за энергию
+                      больше не берут (владелец 2026-08-31). */}
                   <Ionicons name="call" size={22} color={t.correctText} />
                   <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={2}>
                     {/* Подготовка остаётся на этом экране; эта CTA появляется
@@ -747,10 +772,8 @@ function MaxCallPrestartContent() {
             </Pressable>
           </ScrollView>
         </SafeAreaView>
-        <NoEnergyModal
-          visible={maxLessonNoEnergy}
-          onClose={() => setMaxLessonNoEnergy(false)}
-        />
+        {/* Модалка «нет энергии» убрана вместе с платой энергией за урок:
+            единственная валюта урока — купленные минуты. */}
         <VoiceMinutePackSheet
           visible={minuteSheetVisible}
           onClose={() => setMinuteSheetVisible(false)}

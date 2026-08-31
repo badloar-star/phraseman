@@ -1,4 +1,5 @@
 import {
+  canDoGoalById,
   canDoProgress,
   levelFromMastery,
   pickNextGoal,
@@ -22,6 +23,16 @@ export interface MaxVoiceTutorPreview {
   goal: { id: string; level: string; title: CanDoGoal['title']; mastery: number } | null;
   displayTitle: string;
   outcome: string;
+  /**
+   * зачем (владелец 2026-08-31, раздел «Уроки с МАКСом»): каталогу нужны звёзды
+   * КАЖДОГО урока, а не только текущего. Отдаём компактной картой id→mastery и
+   * только для НЕнулевых — у новичка поле пустое, у ветерана это ≤78 коротких
+   * пар вместо отдельного запроса. Firestore-чтений это не добавляет: память
+   * ученика уже прочитана вызывающим (preflight/mint), считаем из неё.
+   */
+  catalogMastery: Record<string, number>;
+  /** Прогресс для шапки раздела: закрыто / всего и честный текущий уровень. */
+  progress: { done: number; total: number; level: string };
 }
 
 type PreviewLanguage = MaxTextLanguage;
@@ -189,12 +200,20 @@ export function buildTutorPreview(input: {
   interfaceLang: string;
   tutorName: string;
   nowMs: number;
+  /**
+   * Урок, выбранный в каталоге (раздел «Уроки с МАКСом», владелец 2026-08-31).
+   * Превью ОБЯЗАНО показывать именно его, иначе экран подготовки обещает один
+   * урок, а звонок ведёт другой — та же цель должна попасть и сюда, и в минт.
+   * Неизвестный id игнорируется: показываем следующую цель, как раньше.
+   */
+  requestedGoalId?: string;
 }): MaxVoiceTutorPreview {
   const progress = canDoProgress(input.memory.goalMastery);
   const goalLevel = progress.done > 0
     ? levelFromMastery(input.memory.goalMastery, input.cefr)
     : input.cefr;
-  const goal = pickNextGoal(input.memory.goalMastery, goalLevel);
+  const requested = input.requestedGoalId ? canDoGoalById(input.requestedGoalId) : undefined;
+  const goal = requested ?? pickNextGoal(input.memory.goalMastery, goalLevel);
   const lessonType = selectTutorLessonType(input.memory, input.nowMs);
   const lessonOrdinal = input.memory.callCount + 1;
   const lang = previewLanguage(input.interfaceLang);
@@ -216,5 +235,17 @@ export function buildTutorPreview(input: {
       : null,
     displayTitle: titleFor(goal, lessonType, lessonOrdinal, lang),
     outcome: outcomeFor(goal, lessonType, lang).slice(0, 180),
+    // Только ненулевые ступени: у новичка объект пуст, ветеран передаёт ≤78 пар.
+    catalogMastery: compactMastery(input.memory.goalMastery),
+    progress: { done: progress.done, total: progress.total, level: goalLevel },
   };
+}
+
+/** Карта звёзд без нулей: пустые ступени восстанавливаются клиентом как 0. */
+function compactMastery(mastery: Record<string, number>): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const [id, value] of Object.entries(mastery)) {
+    if (Number.isFinite(value) && value > 0) out[id] = Math.min(3, Math.max(0, Math.floor(value)));
+  }
+  return out;
 }

@@ -12,6 +12,7 @@ import React, {
 } from 'react';
 import {
   Animated,
+  AccessibilityInfo,
   Easing,
   Pressable,
   StyleSheet,
@@ -28,22 +29,31 @@ import { hapticLightImpact, hapticSuccess, hapticTap } from '../../hooks/use-hap
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { useTheme } from '../ThemeContext';
+import { useLang } from '../LangContext';
 import { DailyJourneyRevealLifecycle } from './dailyJourneyRevealLifecycle';
 import {
   dailyJourneyChapterForDay,
   dailyJourneyChapterNumber,
+  dailyJourneyRuneArtRewardId,
   dailyJourneyRewardForDay,
   normalizeDailyJourneyDay,
   type DailyJourneyReward,
   type DailyJourneyRewardPayload,
-} from '../dev/dailyJourneyRewardPreviewModel';
+} from '../../app/daily_journey_rewards';
+import {
+  dailyJourneyChapterTitle,
+  dailyJourneyRewardDisplayLabel,
+  dailyJourneySkipLabel,
+  dailyJourneyTileAccessibilityLabel,
+} from '../../app/daily_journey_copy';
 
 // зачем: владелец попросил «супер премиальную» хореографию вместо текущей
 // модалки с кнопками. Сцена реализует одобренную спеку
 // docs/superpowers/specs/2026-08-30-daily-journey-gift-inbox-design.md:
 // журнал главы → удар сердца на сегодняшнем дне → раскрытие → полёт награды
-// в карточку «Статистика» → приземление. Ноль решений пользователя, ноль
-// текста наград; единственный контрол — «Пропустить», который ведёт в полёт
+// в иконку подарка «Статистики» → приземление. Ноль решений пользователя;
+// короткое имя награды появляется только в момент раскрытия. Единственный контрол
+// — «Пропустить», который ведёт в полёт
 // и НЕ отменяет уже записанную доставку. Сцена — общий хост хореографии:
 // dev-обёртка components/dev/DailyJourneyRewardPreviewModal.tsx рендерит её
 // внутри Modal, будущий боевой хост подключится так же.
@@ -59,12 +69,13 @@ export type DailyJourneyRevealSceneHandle = Readonly<{
 type Props = Readonly<{
   visible: boolean;
   day: number;
+  cycle?: number;
   /** Каждый показ — новый run: перезапускает хореографию и дедуп звука. */
   run: number;
   /** Composite host identity: same run with a replacement occurrence is new. */
   deliveryId?: string;
   /**
-   * Куда летит награда (центр карточки «Статистика» в координатах окна).
+     * Куда летит награда (центр кнопки подарка «Статистики» в координатах окна).
    * Хост меряет через measureInWindow; null/не задано — стабильный фоллбэк
    * «верхний центр» из спеки, доставка не откатывается.
    */
@@ -74,8 +85,6 @@ type Props = Readonly<{
   /** Полёт завершён, сцена погасла: хост закрывает Modal и пульсирует карточку. */
   onDelivered: () => void;
 }>;
-
-export const DAILY_JOURNEY_CHAPTER_NAMES = ['Пробуждение', 'Разгон', 'Ритм', 'Сила', 'Вершина'] as const;
 
 const LOG = '[DAILY-JOURNEY-REVEAL]';
 // зачем: правило «логи на ранних выходах и в catch — навсегда», но в проде
@@ -99,11 +108,12 @@ const DAILY_JOURNEY_STATIC_ART = Object.freeze({
   pearls_20: require('../../assets/images/level-spin-rewards/pearls_20.webp'),
   pearls_50: require('../../assets/images/level-spin-rewards/pearls_50.webp'),
   pearls_100: require('../../assets/images/level-spin-rewards/pearls_100.webp'),
+  // The approved 150 amount has no dedicated raster; preserve the exact
+  // economic amount while reusing the closest tracked visual asset.
+  pearls_150: require('../../assets/images/level-spin-rewards/pearls_100.webp'),
   pearls_250: require('../../assets/images/level-spin-rewards/pearls_250.webp'),
-  // Only 100/500/1000 rune art exists in the tracked catalogue. Other
-  // nominal Daily Journey amounts deliberately share the canonical 100-rune
-  // artwork rather than inventing bundle dependencies.
   stars_100: require('../../assets/images/level-spin-rewards/stars_100.webp'),
+  stars_250: require('../../assets/images/level-spin-rewards/stars_250.webp'),
   stars_500: require('../../assets/images/level-spin-rewards/stars_500.webp'),
   stars_1000: require('../../assets/images/level-spin-rewards/stars_1000.webp'),
   energy_full: require('../../assets/images/level-spin-rewards/energy_full.webp'),
@@ -119,8 +129,7 @@ export function rewardImageSource(reward: Pick<DailyJourneyReward, 'kind' | 'amo
     case 'pearls':
       return DAILY_JOURNEY_STATIC_ART[`pearls_${reward.amount}` as keyof typeof DAILY_JOURNEY_STATIC_ART] ?? DAILY_JOURNEY_STATIC_ART.pearls_100;
     case 'runes':
-      return DAILY_JOURNEY_STATIC_ART[`stars_${reward.amount}` as keyof typeof DAILY_JOURNEY_STATIC_ART]
-        ?? DAILY_JOURNEY_STATIC_ART.stars_100;
+      return DAILY_JOURNEY_STATIC_ART[dailyJourneyRuneArtRewardId(reward.amount)];
     case 'energy_full':
       return DAILY_JOURNEY_STATIC_ART.energy_full;
     case 'energy_plus':
@@ -147,16 +156,28 @@ function buildStars(width: number, height: number) {
 }
 
 const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>(
-  function DailyJourneyRevealScene({ visible, day, run, deliveryId, targetPoint, reward, onDelivered }, ref) {
+    function DailyJourneyRevealScene({ visible, day, cycle = 1, run, deliveryId, targetPoint, reward, onDelivered }, ref) {
     const { width, height } = useWindowDimensions();
     const { theme: t, themeMode, f } = useTheme();
-    const reduceMotion = useReduceMotion();
+    const { lang } = useLang();
+      const reduceMotion = useReduceMotion();
+      const reduceMotionRef = useRef(reduceMotion);
+      reduceMotionRef.current = reduceMotion;
     const sequenceKey = deliveryId ?? String(run);
 
     const normalizedDay = normalizeDailyJourneyDay(day);
     const chapter = useMemo(() => dailyJourneyChapterForDay(normalizedDay), [normalizedDay]);
-    const chapterNumber = dailyJourneyChapterNumber(normalizedDay);
+      const normalizedCycle = Number.isFinite(cycle) ? Math.max(1, Math.round(cycle)) : 1;
+      const chapterNumber = (normalizedCycle - 1) * 5 + dailyJourneyChapterNumber(normalizedDay);
     const currentReward = useMemo(() => reward ?? dailyJourneyRewardForDay(normalizedDay), [normalizedDay, reward]);
+    const rewardDisplayLabel = dailyJourneyRewardDisplayLabel(currentReward, lang);
+    const skipCopy = dailyJourneySkipLabel(lang);
+    const todayAccessibilityLabel = dailyJourneyTileAccessibilityLabel(
+      normalizedDay,
+      currentReward,
+      lang,
+      'today',
+    );
     const heroArt = rewardImageSource(currentReward, themeMode);
     const cardWidth = Math.min(420, width - 24);
 
@@ -180,7 +201,6 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
     const skipOp = useRef(new Animated.Value(0)).current;
     const journalIn = useRef(new Animated.Value(0)).current;
     const journalAlive = useRef(new Animated.Value(1)).current;
-    const labelIn = useRef(new Animated.Value(0)).current;
     const titleIn = useRef(new Animated.Value(0)).current;
     const headerDim = useRef(new Animated.Value(1)).current;
     const tileIn = useRef(chapter.map(() => new Animated.Value(0))).current;
@@ -193,6 +213,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
     const heroTx = useRef(new Animated.Value(0)).current;
     const heroTy = useRef(new Animated.Value(0)).current;
     const heroRot = useRef(new Animated.Value(0)).current;
+    const rewardLabelOp = useRef(new Animated.Value(0)).current;
     const glowIn = useRef(new Animated.Value(0)).current;
     const raysOp = useRef(new Animated.Value(0)).current;
     const raysTurnA = useRef(new Animated.Value(0)).current;
@@ -267,30 +288,31 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
     const resetScene = useCallback(() => {
       backdrop.setValue(0); bloomIn.setValue(0); skipOp.setValue(0);
       journalIn.setValue(0); journalAlive.setValue(1);
-      labelIn.setValue(0); titleIn.setValue(0); headerDim.setValue(1);
+      titleIn.setValue(0); headerDim.setValue(1);
       tileIn.forEach((v) => v.setValue(0));
       recede.setValue(0); pulse.setValue(0); haloOp.setValue(0); shimmer.setValue(0);
       heroOp.setValue(0); heroScale.setValue(0.27); heroTx.setValue(0); heroTy.setValue(0);
-      heroRot.setValue(0); glowIn.setValue(0);
+      heroRot.setValue(0); rewardLabelOp.setValue(0); glowIn.setValue(0);
       raysOp.setValue(0); raysTurnA.setValue(0); raysTurnB.setValue(0);
       shock.setValue(0);
       sparkVals.forEach((v) => v.setValue(0));
       deliveredRef.current = false;
-    }, [backdrop, bloomIn, glowIn, haloOp, headerDim, heroOp, heroRot, heroScale, heroTx, heroTy,
-      journalAlive, journalIn, labelIn, pulse, raysOp, raysTurnA, raysTurnB, recede, shimmer, shock,
+    }, [backdrop, bloomIn, glowIn, haloOp, headerDim, heroOp, heroRot, heroScale, heroTx, heroTy, rewardLabelOp,
+      journalAlive, journalIn, pulse, raysOp, raysTurnA, raysTurnB, recede, shimmer, shock,
       skipOp, sparkVals, tileIn, titleIn]);
 
     /** Мгновенно выставить конец акта III (герой в центре, журнал погашен). */
     const applyRevealEndState = useCallback(() => {
       backdrop.setValue(1); bloomIn.setValue(1); skipOp.setValue(1);
       journalIn.setValue(1); journalAlive.setValue(0);
-      labelIn.setValue(1); titleIn.setValue(1); headerDim.setValue(0.45);
+      titleIn.setValue(1); headerDim.setValue(0.45);
       tileIn.forEach((v) => v.setValue(1));
       recede.setValue(1); pulse.setValue(0); haloOp.setValue(1);
       heroOp.setValue(1); heroScale.setValue(1); heroTx.setValue(0); heroTy.setValue(0);
+      rewardLabelOp.setValue(1);
       glowIn.setValue(1); raysOp.setValue(1);
-    }, [backdrop, bloomIn, glowIn, haloOp, headerDim, heroOp, heroScale, heroTx, heroTy,
-      journalAlive, journalIn, labelIn, pulse, raysOp, recede, skipOp, tileIn, titleIn]);
+    }, [backdrop, bloomIn, glowIn, haloOp, headerDim, heroOp, heroScale, heroTx, heroTy, rewardLabelOp,
+      journalAlive, journalIn, pulse, raysOp, recede, skipOp, tileIn, titleIn]);
 
     const finishDelivered = useCallback(() => {
       if (deliveredRef.current) {
@@ -338,6 +360,9 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         Animated.timing(raysOp, { toValue: 0, duration: 300, useNativeDriver: true }),
         Animated.timing(glowIn, { toValue: 0, duration: 340, useNativeDriver: true }),
         Animated.timing(skipOp, { toValue: 0, duration: 200, useNativeDriver: true }),
+        // Подпись остаётся с подарком почти до цели и растворяется только на
+        // последних 210 мс полёта, а не за полсекунды до его старта.
+        Animated.timing(rewardLabelOp, { toValue: 0, duration: 180, delay: 430, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
       ]);
       const settle = Animated.timing(heroOp, { toValue: 0, duration: 120, useNativeDriver: true });
 
@@ -352,8 +377,8 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         runningRef.current = null;
         lifecycleRef.current.completeFlight(token, true);
       });
-    }, [applyRevealEndState, backdrop, clearTimers, finishDelivered, glowIn, heroCenter.x,
-      heroCenter.y, heroOp, heroRot, heroScale, heroTx, heroTy, raysOp, resolveTarget, skipOp]);
+    }, [applyRevealEndState, backdrop, clearTimers, glowIn, heroCenter.x,
+      heroCenter.y, heroOp, heroRot, heroScale, heroTx, heroTy, raysOp, resolveTarget, rewardLabelOp, skipOp]);
 
     const finishReducedMotion = useCallback((token: number) => {
       // зачем (спека, п. 5): с reduce motion полёта нет вообще — «Пропустить»
@@ -375,14 +400,14 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         runningRef.current = null;
         lifecycleRef.current.completeFlight(token, true);
       });
-    }, [backdrop, clearTimers, finishDelivered, heroOp, journalAlive, skipOp]);
+    }, [backdrop, clearTimers, heroOp, journalAlive, skipOp]);
 
     const skipToDelivery = useCallback(() => {
       djLog(`skip requested at phase=${phaseRef.current} reduceMotion=${reduceMotion}`);
       if (phaseRef.current === 'flight' || phaseRef.current === 'done') return;
       hapticTap();
       lifecycleRef.current.skip(lifecycleTokenRef.current);
-    }, []);
+    }, [reduceMotion]);
 
     useImperativeHandle(ref, () => ({ skipToDelivery }), [skipToDelivery]);
 
@@ -412,7 +437,6 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       const todayDelay = 200 + slot * 36 + 140;
       const act1 = Animated.parallel([
         tj(journalIn, 1, 420, 0, Easing.out(Easing.exp)),
-        tj(labelIn, 1, 300, 90),
         tj(titleIn, 1, 300, 150),
         ...wave,
         tj(tileIn[todayIdx], 1, 360, todayDelay, Easing.out(Easing.back(1.2))),
@@ -467,6 +491,11 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         Animated.timing(shock, { toValue: 1, duration: 720, delay: 220, easing: Easing.out(Easing.exp), useNativeDriver: true }),
         Animated.timing(glowIn, { toValue: 1, duration: 520, delay: 180, easing: Easing.out(Easing.quad), useNativeDriver: true }),
         Animated.timing(raysOp, { toValue: 1, duration: 500, delay: 220, easing: Easing.out(Easing.quad), useNativeDriver: true }),
+        Animated.sequence([
+          Animated.timing(rewardLabelOp, { toValue: 1, duration: 260, easing: Easing.out(Easing.quad), useNativeDriver: true }),
+          // Сохраняем прежнюю длительность акта, но не гасим подпись до полёта.
+          Animated.delay(1_140),
+        ]),
         ...sparkVals.map((v, i) =>
           Animated.timing(v, { toValue: 1, duration: sparks[i].duration, delay: sparks[i].delay, easing: Easing.out(Easing.quad), useNativeDriver: true })),
       ]);
@@ -482,8 +511,8 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         if (sequenceRef.current === sequence) lifecycleRef.current.startFlight(token);
       }, 500);
     }, [backdrop, bloomIn, chapter, haloOp, headerDim, heroOp, heroScale, heroTx, heroTy,
-      journalAlive, journalIn, labelIn, later, measureTileDelta, normalizedDay, pulse, raysOp,
-      glowIn, raysTurnA, raysTurnB, recede, shimmer, shock, skipOp, sparkVals, sparks, startFlight,
+      journalAlive, journalIn, later, measureTileDelta, normalizedDay, pulse, raysOp, rewardLabelOp,
+      glowIn, raysTurnA, raysTurnB, recede, shimmer, shock, skipOp, sparkVals, sparks,
       tileIn, titleIn]);
 
     /* ── Reduce motion: детерминированный кроссфейд без полёта и пульсов ── */
@@ -491,7 +520,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       phaseRef.current = 'intro';
       setSkipAvailable(true);
       backdrop.setValue(1); bloomIn.setValue(1); skipOp.setValue(1);
-      labelIn.setValue(1); titleIn.setValue(1);
+      titleIn.setValue(1);
       tileIn.forEach((v) => v.setValue(1));
       haloOp.setValue(1);
       const fadeIn = Animated.timing(journalIn, { toValue: 1, duration: 240, easing: Easing.out(Easing.quad), useNativeDriver: true });
@@ -502,7 +531,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
           lifecycleRef.current.startFlight(token);
         }, 1100);
       });
-    }, [backdrop, bloomIn, finishDelivered, haloOp, journalAlive, journalIn, labelIn, later,
+    }, [backdrop, bloomIn, haloOp, journalIn, later,
       skipOp, tileIn, titleIn]);
 
     // A run is the sole choreography identity; callback/target re-renders do
@@ -519,9 +548,11 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
       }
       const sequence = sequenceRef.current + 1;
       sequenceRef.current = sequence;
+      const lifecycle = lifecycleRef.current;
       resetScene();
       setSkipAvailable(false);
-      lifecycleTokenRef.current = lifecycleRef.current.begin({
+      void AccessibilityInfo.announceForAccessibility(todayAccessibilityLabel);
+      lifecycleTokenRef.current = lifecycle.begin({
         identity: sequenceKey,
         targetPoint: targetPoint ?? null,
         reducedMotion: reduceMotion,
@@ -535,7 +566,7 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
             if (sequenceRef.current === sequence) lifecycleRef.current.startFlight(token);
           });
         },
-        onFlight: (_snapshot, token) => { if (reduceMotion) finishReducedMotion(token); else startFlight(token); },
+          onFlight: (_snapshot, token) => { if (reduceMotionRef.current) finishReducedMotion(token); else startFlight(token); },
         onDelivered: finishDelivered,
       });
       return () => {
@@ -548,18 +579,23 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
         // runningRef — глушим явно, чтобы скрытая сцена не тикала фоном.
         raysTurnA.stopAnimation();
         raysTurnB.stopAnimation();
-        lifecycleRef.current.dispose();
+        lifecycle.dispose();
       };
     // target/callback/layout changes are deliberately snapshotted at start.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [sequenceKey, visible]);
+      }, [sequenceKey, visible]);
+
+      useEffect(() => {
+        if (visible && reduceMotion && phaseRef.current === 'intro') {
+          lifecycleRef.current.startFlight(lifecycleTokenRef.current);
+        }
+      }, [reduceMotion, visible]);
 
     /* ── интерполяции ── */
     const journalOpacity = Animated.multiply(journalIn, journalAlive);
     const journalShift = journalIn.interpolate({ inputRange: [0, 1], outputRange: [14, 0] });
     const journalScaleIn = journalIn.interpolate({ inputRange: [0, 1], outputRange: [0.965, 1] });
     const journalScaleOut = journalAlive.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] });
-    const labelOpacity = Animated.multiply(labelIn, headerDim);
     const titleOpacity = Animated.multiply(titleIn, headerDim);
     const recedeOpacity = recede.interpolate({ inputRange: [0, 1], outputRange: [1, 0.32] });
     const recedeScale = recede.interpolate({ inputRange: [0, 1], outputRange: [1, 0.965] });
@@ -615,12 +651,12 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
           <Pressable
             testID="daily-journey-skip"
             accessibilityRole="button"
-            accessibilityLabel="Пропустить анимацию"
+            accessibilityLabel={skipCopy.accessibility}
             hitSlop={8}
             onPress={skipToDelivery}
             style={({ pressed }) => [styles.skip, { backgroundColor: t.bgCard }, pressed && styles.pressed]}
           >
-            <Text style={[styles.skipText, { color: t.textPrimary, fontSize: f.label }]}>Пропустить</Text>
+            <Text style={[styles.skipText, { color: t.textPrimary, fontSize: f.label }]}>{skipCopy.visible}</Text>
           </Pressable>
         </Animated.View>
 
@@ -638,11 +674,8 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
           ]}
         >
           <LinearGradient colors={[t.bgSurface2 ?? t.bgSurface, t.bgCard]} start={{ x: 0.8, y: 0 }} end={{ x: 0.2, y: 1 }} style={styles.journalFill}>
-            <Animated.Text style={[styles.jrLabel, { color: gold, fontSize: f.caption, opacity: labelOpacity }]}>
-              ДЕНЬ {normalizedDay} ИЗ 50
-            </Animated.Text>
             <Animated.Text style={[styles.jrTitle, { color: t.textPrimary, fontSize: f.h2, opacity: titleOpacity }]}>
-              Глава {chapterNumber} · {DAILY_JOURNEY_CHAPTER_NAMES[chapterNumber - 1]}
+              {dailyJourneyChapterTitle(chapterNumber, lang)}
             </Animated.Text>
             <View style={styles.grid}>
               {chapter.map((reward, i) => {
@@ -658,7 +691,18 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
                   transform: enterTransform,
                 };
                 const tile = (
-                  <View testID={`daily-journey-day-${reward.day}`} style={styles.tileClip}>
+                  <View
+                    testID={`daily-journey-day-${reward.day}`}
+                    style={styles.tileClip}
+                    accessible
+                    accessibilityRole="image"
+                    accessibilityLabel={dailyJourneyTileAccessibilityLabel(
+                      reward.day,
+                      isToday ? currentReward : reward,
+                      lang,
+                      received ? 'received' : isToday ? 'today' : 'upcoming',
+                    )}
+                  >
                     <LinearGradient
                       colors={isToday ? [t.accentBg ?? t.bgSurface, t.bgSurface] : [t.bgSurface, t.bgCard]}
                       start={{ x: 0.7, y: 0 }} end={{ x: 0.3, y: 1 }}
@@ -784,6 +828,15 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
             />
           ))}
           <Image source={heroArt} style={styles.heroArt} contentFit="contain" accessible={false} />
+          <Animated.View
+            testID="daily-journey-reward-label"
+            accessible={false}
+            style={[styles.rewardLabelWrap, { opacity: rewardLabelOp }]}
+          >
+            <Text style={[styles.rewardLabelText, { color: '#F7F5FF', fontSize: f.body }]}>
+              {rewardDisplayLabel}
+            </Text>
+          </Animated.View>
         </Animated.View>
       </View>
     );
@@ -807,8 +860,7 @@ const styles = StyleSheet.create({
     elevation: 20,
   },
   journalFill: { borderRadius: 26, paddingHorizontal: 16, paddingTop: 18, paddingBottom: 16, overflow: 'hidden' },
-  jrLabel: { fontWeight: '700', letterSpacing: 1.4, textAlign: 'center' },
-  jrTitle: { marginTop: 7, marginBottom: 16, fontWeight: '700', letterSpacing: -0.3, textAlign: 'center' },
+  jrTitle: { marginBottom: 16, fontWeight: '700', letterSpacing: -0.3, textAlign: 'center' },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   cell: { flexBasis: '18%', flexGrow: 1 },
   tileClip: { position: 'relative', aspectRatio: 1, borderRadius: 14, overflow: 'hidden' },
@@ -826,4 +878,12 @@ const styles = StyleSheet.create({
   ray: { position: 'absolute', left: '50%', top: '50%', marginLeft: -1.5, marginTop: -(HERO_SIZE + 20) / 2, width: 3, height: HERO_SIZE + 20, borderRadius: 2, opacity: 0.5 },
   spark: { position: 'absolute', left: HERO_SIZE / 2 - 2.5, top: HERO_SIZE * 0.58, width: 5, height: 5, borderRadius: 3 },
   heroArt: { width: HERO_SIZE, height: HERO_SIZE },
+  rewardLabelWrap: {
+    position: 'absolute', top: HERO_SIZE + 12, left: -70, width: HERO_SIZE + 140,
+    alignItems: 'center', paddingHorizontal: 12,
+  },
+  rewardLabelText: {
+    fontWeight: '700', lineHeight: 24, letterSpacing: -0.2, textAlign: 'center',
+    textShadowColor: 'rgba(0,0,0,0.72)', textShadowOffset: { width: 0, height: 2 }, textShadowRadius: 6,
+  },
 });

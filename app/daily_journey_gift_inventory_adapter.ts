@@ -1,11 +1,4 @@
-import type { ImageSourcePropType } from 'react-native';
-
-const DAILY_JOURNEY_RUNE_IMAGE_SOURCE = require('../assets/images/level-spin-rewards/stars_10.webp') as ImageSourcePropType;
-
-/** Clean-checkout rune raster shared with the approved Daily Journey reveal. */
-export function dailyJourneyRuneImageSource(): ImageSourcePropType {
-  return DAILY_JOURNEY_RUNE_IMAGE_SOURCE;
-}
+import { dailyJourneyRuneArtRewardId } from './daily_journey_rewards';
 
 export type DailyJourneyGiftArtReward = Readonly<{
   kind: 'pearls' | 'energy_full' | 'energy_plus' | 'runes' | 'freeze' | 'spins';
@@ -16,9 +9,62 @@ export type DailyJourneyGiftInventoryItem = Readonly<{
   operationId: string;
 }>;
 
+export type DailyJourneyGiftVisualItem<
+  Item extends DailyJourneyGiftInventoryItem & Readonly<{ revision: number }>,
+> = Readonly<Item & Readonly<{ isUnseen: boolean }>>;
+
+/**
+ * Captures the durable seen boundary in immutable view data. The journal item is
+ * never mutated, so marking a rendered snapshot seen cannot rewrite history.
+ */
+export function dailyJourneyGiftVisualItems<
+  Item extends DailyJourneyGiftInventoryItem & Readonly<{ revision: number }>,
+>(projection: Readonly<{
+  pending: readonly Item[];
+  seenRevision: number;
+}>): readonly DailyJourneyGiftVisualItem<Item>[] {
+  return Object.freeze(projection.pending
+    .map((item) => Object.freeze({
+      ...item,
+      isUnseen: item.revision > projection.seenRevision,
+    }))
+    .sort((left, right) => {
+      if (left.isUnseen !== right.isUnseen) return left.isUnseen ? -1 : 1;
+      return right.revision - left.revision;
+    }));
+}
+
+/**
+ * Keeps a newly received tile highlighted for the whole focused inventory
+ * visit, even after the durable seen revision advances and a subscription
+ * reloads the projection. A new Set represents the next visit and therefore
+ * intentionally drops the temporary tint.
+ */
+export function preserveDailyJourneyGiftSessionHighlights<
+  Item extends DailyJourneyGiftInventoryItem & Readonly<{
+    revision: number;
+    isUnseen: boolean;
+  }>,
+>(
+  items: readonly Item[],
+  highlightedOperationIds: Set<string>,
+): readonly Item[] {
+  for (const item of items) {
+    if (item.isUnseen) highlightedOperationIds.add(item.operationId);
+  }
+  return Object.freeze(items
+    .map((item) => Object.freeze({
+      ...item,
+      isUnseen: item.isUnseen || highlightedOperationIds.has(item.operationId),
+    }) as Item)
+    .sort((left, right) => {
+      if (left.isUnseen !== right.isUnseen) return left.isUnseen ? -1 : 1;
+      return right.revision - left.revision;
+    }));
+}
+
 export type DailyJourneyGiftArtDescriptor =
   | Readonly<{ kind: 'level_spin'; rewardId: string }>
-  | Readonly<{ kind: 'rune' }>
   | Readonly<{ kind: 'spin' }>
   | Readonly<{ kind: 'freeze' }>;
 
@@ -28,9 +74,15 @@ export function dailyJourneyGiftArtDescriptor(
 ): DailyJourneyGiftArtDescriptor {
   switch (reward.kind) {
     case 'pearls':
-      return Object.freeze({ kind: 'level_spin', rewardId: `pearls_${reward.amount}` });
+      return Object.freeze({
+        kind: 'level_spin',
+        rewardId: reward.amount === 150 ? 'pearls_100' : `pearls_${reward.amount}`,
+      });
     case 'runes':
-      return Object.freeze({ kind: 'rune' });
+      return Object.freeze({
+        kind: 'level_spin',
+        rewardId: dailyJourneyRuneArtRewardId(reward.amount),
+      });
     case 'spins':
       return Object.freeze({ kind: 'spin' });
     case 'energy_full':
@@ -65,6 +117,7 @@ export type DailyJourneyGiftInventoryControllerDependencies<LegacySnapshot, Toke
   displayLegacy: (snapshot: LegacySnapshot) => void;
   displayDaily: (items: readonly Item[]) => void;
   clearViews: () => void;
+  recordSnapshotDisplayed: (revision: number, token: Token) => Promise<boolean>;
   markSnapshotSeen: (revision: number, token: Token) => Promise<boolean>;
   claimGift: (operationId: string, token: Token) => Promise<unknown>;
   clearClaimView: () => void;
@@ -78,6 +131,7 @@ export type DailyJourneyGiftInventoryController<Item extends DailyJourneyGiftInv
   reloadAll: () => Promise<void>;
   reloadDaily: () => Promise<void>;
   resetForAccount: (reloadActiveAccount: boolean) => Promise<void>;
+  acknowledgeDisplayedSnapshot: () => Promise<void>;
   claim: (item: Item) => Promise<'claimed' | 'failed' | 'ignored'>;
   isClaimBusy: (operationId: string) => boolean;
 }>;
@@ -94,7 +148,7 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
   let lifecycleEpoch = 0;
   let legacyRequestId = 0;
   let dailyRequestId = 0;
-  let acknowledgeDisplayedSnapshot = false;
+  let shouldAcknowledgeDisplayedSnapshot = false;
   let acknowledgementInFlight = false;
   let acknowledgementRunId = 0;
   let lastDisplayedSnapshot: Readonly<{
@@ -143,21 +197,23 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
   };
 
   const acknowledgeLatestDisplayedSnapshot = async (): Promise<void> => {
-    if (!acknowledgeDisplayedSnapshot || acknowledgementInFlight) return;
+    if (!shouldAcknowledgeDisplayedSnapshot || acknowledgementInFlight) return;
     acknowledgementInFlight = true;
     const runId = ++acknowledgementRunId;
     try {
-      while (acknowledgeDisplayedSnapshot && runId === acknowledgementRunId) {
+      while (shouldAcknowledgeDisplayedSnapshot && runId === acknowledgementRunId) {
         const candidate = lastDisplayedSnapshot;
         if (!candidate || !isLive(candidate.token, candidate.epoch)) return;
         if (candidate.requestId !== dailyRequestId) return;
         if (candidate.revision < 1) {
-          acknowledgeDisplayedSnapshot = false;
+          shouldAcknowledgeDisplayedSnapshot = false;
           return;
         }
 
         let marked = false;
         try {
+          const recorded = await dependencies.recordSnapshotDisplayed(candidate.revision, candidate.token);
+          if (!recorded) return;
           marked = await dependencies.markSnapshotSeen(candidate.revision, candidate.token);
         } catch (error) {
           if (isLive(candidate.token, candidate.epoch)) report('daily_mark_seen', error);
@@ -173,7 +229,7 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
           && candidateIsStillDisplayed
           && candidate.requestId === dailyRequestId
           && isLive(candidate.token, candidate.epoch)) {
-          acknowledgeDisplayedSnapshot = false;
+          shouldAcknowledgeDisplayedSnapshot = false;
           return;
         }
         if (candidateIsStillDisplayed) return;
@@ -198,7 +254,6 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
         epoch,
         requestId,
       });
-      await acknowledgeLatestDisplayedSnapshot();
     } catch (error) {
       if (active && epoch === lifecycleEpoch && requestId === dailyRequestId) {
         report('daily_load', error);
@@ -220,7 +275,7 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
     lifecycleEpoch += 1;
     legacyRequestId += 1;
     dailyRequestId += 1;
-    acknowledgeDisplayedSnapshot = true;
+    shouldAcknowledgeDisplayedSnapshot = false;
     acknowledgementRunId += 1;
     acknowledgementInFlight = false;
     lastDisplayedSnapshot = null;
@@ -233,7 +288,7 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
     lifecycleEpoch += 1;
     legacyRequestId += 1;
     dailyRequestId += 1;
-    acknowledgeDisplayedSnapshot = false;
+    shouldAcknowledgeDisplayedSnapshot = false;
     acknowledgementRunId += 1;
     acknowledgementInFlight = false;
     lastDisplayedSnapshot = null;
@@ -244,7 +299,7 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
     lifecycleEpoch += 1;
     legacyRequestId += 1;
     dailyRequestId += 1;
-    acknowledgeDisplayedSnapshot = true;
+    shouldAcknowledgeDisplayedSnapshot = false;
     acknowledgementRunId += 1;
     acknowledgementInFlight = false;
     lastDisplayedSnapshot = null;
@@ -298,12 +353,19 @@ export function createDailyJourneyGiftInventoryController<LegacySnapshot, Token,
     }
   };
 
+  const acknowledgeDisplayedSnapshot = async (): Promise<void> => {
+    if (!active) return;
+    shouldAcknowledgeDisplayedSnapshot = true;
+    await acknowledgeLatestDisplayedSnapshot();
+  };
+
   return Object.freeze({
     activate,
     deactivate,
     reloadAll,
     reloadDaily,
     resetForAccount,
+    acknowledgeDisplayedSnapshot,
     claim,
     isClaimBusy: (operationId: string) => claimsInFlight.has(operationId),
   });

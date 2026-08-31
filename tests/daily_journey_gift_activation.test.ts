@@ -58,7 +58,7 @@ jest.mock('../app/level_gift_system', () => ({
 const storage: Record<string, string> = {};
 
 const rewardCases: readonly DailyJourneyGiftRewardV1[] = [
-  ...[10, 20, 50, 100, 250].map((amount) => ({ kind: 'pearls' as const, amount })),
+  ...[10, 20, 50, 100, 150, 250].map((amount) => ({ kind: 'pearls' as const, amount })),
   ...[100, 200, 300, 400, 500, 600, 700, 750, 800, 1000]
     .map((amount) => ({ kind: 'runes' as const, amount })),
   ...[1, 2, 3, 5].map((amount) => ({ kind: 'spins' as const, amount })),

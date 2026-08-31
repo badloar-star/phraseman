@@ -30,7 +30,7 @@ import { noAndroidOutline } from '../constants/androidGlow';
 import { soundDirector } from '../modules/audio/sound_director';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { SoundEventId } from '../modules/audio/sound_events';
-import { actionToastToneLabel } from './action_toast_copy';
+import { actionToastToneLabel, resolveActionToastMessage } from './action_toast_copy';
 
 type ToastPayload = {
   type: ToastType;
@@ -39,6 +39,7 @@ type ToastPayload = {
   motionVariant?: 'classic' | 'hybrid';
   messageRu: string;
   messageUk?: string;
+  messageEn?: string;
   /** ES (UI en español). Si falta y `lang === "es"`, se usa un texto breve según `type`. */
   messageEs?: string;
   messagePtBr?: string;
@@ -421,25 +422,7 @@ function ActionToast() {
 
   if (!toast || !overlayVisible) return null;
 
-  const esFallback =
-    toast.type === 'error'
-      ? 'Algo salió mal.'
-      : toast.type === 'success'
-        ? 'Hecho.'
-        : toast.type === 'reward'
-          ? '¡Premio!'
-          : toast.type === 'warning'
-            ? 'Atención.'
-            : 'Listo.';
-  const message =
-    lang === 'uk' ? (toast.messageUk ?? toast.messageRu)
-      : lang === 'es' ? (toast.messageEs ?? esFallback)
-        : lang === 'pt-BR' ? (toast.messagePtBr ?? toast.messageRu)
-          : lang === 'vi' ? (toast.messageVi ?? toast.messageRu)
-            : lang === 'id' ? (toast.messageId ?? toast.messageRu)
-              : lang === 'tr' ? (toast.messageTr ?? toast.messageRu)
-                : lang === 'pl' ? (toast.messagePl ?? toast.messageRu)
-                  : toast.messageRu;
+  const message = resolveActionToastMessage(toast, lang);
   const tone = TOAST_TONES[toast.type];
   const toneLabel = tone.label[lang] ?? tone.label.ru;
   const chrome = themedToastChrome(themeMode, t);

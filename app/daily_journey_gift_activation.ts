@@ -20,7 +20,7 @@ import { commitShardCreditOperation } from './shards_system';
 
 const RUNE_DENOMINATIONS = Object.freeze([1_000, 500, 250, 100, 50, 20, 10] as const);
 const SUPPORTED_AMOUNTS: Readonly<Record<DailyJourneyGiftOccurrenceV1['reward']['kind'], readonly number[]>> = Object.freeze({
-  pearls: Object.freeze([10, 20, 50, 100, 250]),
+  pearls: Object.freeze([10, 20, 50, 100, 150, 250]),
   runes: Object.freeze([100, 200, 300, 400, 500, 600, 700, 750, 800, 1_000]),
   spins: Object.freeze([1, 2, 3, 5]),
   energy_full: Object.freeze([1]),

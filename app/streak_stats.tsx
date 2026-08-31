@@ -3356,6 +3356,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const [pendingGiftCount, setPendingGiftCount] = useState(_sc.pendingGiftCount);
     const [spinBalance, setSpinBalance] = useState(0);
     const [dailyJourneyUnreadCount, setDailyJourneyUnreadCount] = useState(0);
+    const [dailyJourneyPendingCount, setDailyJourneyPendingCount] = useState(0);
+    const combinedPendingGiftCount = pendingGiftCount + dailyJourneyPendingCount;
     const spinButtonPulse = useSharedValue(1);
     const spinButtonPulseStyle = useAnimatedStyle(() => ({ transform: [{ scale: spinButtonPulse.value }] }));
     const dailyJourneyUnreadHop = useSharedValue(0);
@@ -3379,6 +3381,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         isTokenCurrent: (token) => isCurrentAccountGeneration(token, token.stableId),
         readProjection: readDailyJourneyGiftProjection,
         displayUnreadCount: setDailyJourneyUnreadCount,
+        displayPendingCount: setDailyJourneyPendingCount,
         startHop: startDailyJourneyUnreadHop,
         stopHop: stopDailyJourneyUnreadHop,
         shouldReduceMotion: () => reduceMotion,
@@ -4153,41 +4156,42 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 <Reanimated.View style={dailyJourneyUnreadHopStyle}>
                 <TouchableOpacity
                   testID="stats-header-gifts"
+                  hitSlop={8}
                   accessibilityRole="button"
                   accessibilityHint={triLang(lang, {
-                    ru: ruGiftPhrase(pendingGiftCount),
-                    uk: ukGiftPhrase(pendingGiftCount),
-                    en: pendingGiftCount > 0 ? `${pendingGiftCount} gift${pendingGiftCount === 1 ? '' : 's'}` : 'Gifts',
-                    es: pendingGiftCount > 0 ? `${pendingGiftCount} regalo${pendingGiftCount === 1 ? '' : 's'}` : 'Regalos',
-                    'pt-BR': pendingGiftCount > 0 ? `${pendingGiftCount} presente${pendingGiftCount === 1 ? '' : 's'}` : 'Presentes',
-                    vi: pendingGiftCount > 0 ? `${pendingGiftCount} quà` : 'Quà',
-                    id: pendingGiftCount > 0 ? `${pendingGiftCount} hadiah` : 'Hadiah',
-                    tr: pendingGiftCount > 0 ? `${pendingGiftCount} hediye` : 'Hediyeler',
-                    pl: pendingGiftCount > 0 ? `${pendingGiftCount} ${pendingGiftCount === 1 ? 'prezent' : 'prezentów'}` : 'Prezenty',
+                    ru: ruGiftPhrase(combinedPendingGiftCount),
+                    uk: ukGiftPhrase(combinedPendingGiftCount),
+                    en: combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} gift${combinedPendingGiftCount === 1 ? '' : 's'}` : 'Gifts',
+                    es: combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} regalo${combinedPendingGiftCount === 1 ? '' : 's'}` : 'Regalos',
+                    'pt-BR': combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} presente${combinedPendingGiftCount === 1 ? '' : 's'}` : 'Presentes',
+                    vi: combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} quà` : 'Quà',
+                    id: combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} hadiah` : 'Hadiah',
+                    tr: combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} hediye` : 'Hediyeler',
+                    pl: combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} ${combinedPendingGiftCount === 1 ? 'prezent' : 'prezentów'}` : 'Prezenty',
                   })}
                   accessibilityLabel={triLang(lang, {
-                    ru: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Подарки: ${pendingGiftCount}. Непросмотренные подарки Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Непросмотренные подарки Daily Journey: ${dailyJourneyUnreadCount}` : ruGiftPhrase(pendingGiftCount),
-                    uk: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Подарунки: ${pendingGiftCount}. Непереглянуті подарунки Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Непереглянуті подарунки Daily Journey: ${dailyJourneyUnreadCount}` : ukGiftPhrase(pendingGiftCount),
-                    en: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Gifts: ${pendingGiftCount}. Unseen Daily Journey gifts: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Unseen Daily Journey gifts: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} gift${pendingGiftCount === 1 ? '' : 's'}` : 'Gifts'),
-                    es: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Regalos: ${pendingGiftCount}. Regalos sin ver de Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Regalos sin ver de Daily Journey: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} regalo${pendingGiftCount === 1 ? '' : 's'}` : 'Regalos'),
-                    'pt-BR': pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Presentes: ${pendingGiftCount}. Presentes não vistos do Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Presentes não vistos do Daily Journey: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} presente${pendingGiftCount === 1 ? '' : 's'}` : 'Presentes'),
-                    vi: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Quà: ${pendingGiftCount}. Quà Daily Journey chưa xem: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Quà Daily Journey chưa xem: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} quà` : 'Quà'),
-                    id: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Hadiah: ${pendingGiftCount}. Hadiah Daily Journey belum dilihat: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Hadiah Daily Journey belum dilihat: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} hadiah` : 'Hadiah'),
-                    tr: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Hediyeler: ${pendingGiftCount}. Görülmemiş Daily Journey hediyeleri: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Görülmemiş Daily Journey hediyeleri: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} hediye` : 'Hediyeler'),
-                    pl: pendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Prezenty: ${pendingGiftCount}. Nieobejrzane prezenty Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Nieobejrzane prezenty Daily Journey: ${dailyJourneyUnreadCount}` : (pendingGiftCount > 0 ? `${pendingGiftCount} ${pendingGiftCount === 1 ? 'prezent' : 'prezentów'}` : 'Prezenty'),
+                    ru: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Подарки: ${combinedPendingGiftCount}. Непросмотренные подарки Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Непросмотренные подарки Daily Journey: ${dailyJourneyUnreadCount}` : ruGiftPhrase(combinedPendingGiftCount),
+                    uk: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Подарунки: ${combinedPendingGiftCount}. Непереглянуті подарунки Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Непереглянуті подарунки Daily Journey: ${dailyJourneyUnreadCount}` : ukGiftPhrase(combinedPendingGiftCount),
+                    en: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Gifts: ${combinedPendingGiftCount}. Unseen Daily Journey gifts: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Unseen Daily Journey gifts: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} gift${combinedPendingGiftCount === 1 ? '' : 's'}` : 'Gifts'),
+                    es: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Regalos: ${combinedPendingGiftCount}. Regalos sin ver de Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Regalos sin ver de Daily Journey: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} regalo${combinedPendingGiftCount === 1 ? '' : 's'}` : 'Regalos'),
+                    'pt-BR': combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Presentes: ${combinedPendingGiftCount}. Presentes não vistos do Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Presentes não vistos do Daily Journey: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} presente${combinedPendingGiftCount === 1 ? '' : 's'}` : 'Presentes'),
+                    vi: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Quà: ${combinedPendingGiftCount}. Quà Daily Journey chưa xem: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Quà Daily Journey chưa xem: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} quà` : 'Quà'),
+                    id: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Hadiah: ${combinedPendingGiftCount}. Hadiah Daily Journey belum dilihat: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Hadiah Daily Journey belum dilihat: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} hadiah` : 'Hadiah'),
+                    tr: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Hediyeler: ${combinedPendingGiftCount}. Görülmemiş Daily Journey hediyeleri: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Görülmemiş Daily Journey hediyeleri: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} hediye` : 'Hediyeler'),
+                    pl: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Prezenty: ${combinedPendingGiftCount}. Nieobejrzane prezenty Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Nieobejrzane prezenty Daily Journey: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} ${combinedPendingGiftCount === 1 ? 'prezent' : 'prezentów'}` : 'Prezenty'),
                   })}
                   activeOpacity={0.82}
                   onPress={() => {
                     hapticTap();
                     router.push('/level_gifts_inventory' as any);
                   }}
-                  style={[{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', marginLeft: 10, overflow: 'hidden', borderWidth: 0 }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'streak')]}
+                  style={[{ width: 48, height: 48, borderRadius: 15, alignItems: 'center', justifyContent: 'center', marginLeft: 10, overflow: 'hidden', borderWidth: 0 }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'streak')]}
                 >
                   <LinearGradient colors={statsCardGradient(t)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}/>
-                  <Ionicons name="gift-outline" size={20} color={pendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode)) : t.textMuted}/>
-                  {pendingGiftCount > 0 ? (
+                  <Ionicons name="gift-outline" size={20} color={combinedPendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode)) : t.textMuted}/>
+                  {combinedPendingGiftCount > 0 ? (
                     <View style={{ position: 'absolute', top: 4, right: 4, minWidth: 16, height: 16, borderRadius: 8, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode) }}>
-                      <Text style={{ color: t.bgCard, fontSize: 9, fontWeight: '900' }}>{pendingGiftCount}</Text>
+                      <Text style={{ color: t.bgCard, fontSize: 9, fontWeight: '900' }}>{combinedPendingGiftCount}</Text>
                     </View>
                   ) : null}
                   {dailyJourneyUnreadCount > 0 ? (

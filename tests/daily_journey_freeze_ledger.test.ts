@@ -8,6 +8,7 @@ import {
 import {
   commitDailyJourneyFreezeGrant,
   consumeDailyJourneyFreeze,
+  consumeDailyJourneyFreezeBatch,
   readDailyJourneyFreezeProjection,
   readEffectiveStreakProtection,
 } from '../app/daily_journey_freeze_ledger';
@@ -66,6 +67,181 @@ it('commits an immutable exact grant once and consumes each stable protection us
   });
   await expect(commitDailyJourneyFreezeGrant({ ...input, amount: 1 }, token))
     .rejects.toThrow('daily_journey_freeze_operation_conflict');
+});
+
+it('atomically refuses an undersupplied batch without consuming any freeze', async () => {
+  const token = beginAccountGeneration('owner-a');
+  await commitDailyJourneyFreezeGrant({
+    claimOperationId: 'daily-journey-gift-claim:freeze-batch-short-0001',
+    amount: 1,
+    occurrenceFingerprint: '7'.repeat(64),
+  }, token);
+
+  await expect(consumeDailyJourneyFreezeBatch([
+    'daily-journey-series-gap:aaaaaaaaaaaaaaaaaaaaaaaa:c1:2026-08-30',
+    'daily-journey-series-gap:aaaaaaaaaaaaaaaaaaaaaaaa:c1:2026-08-31',
+  ], token)).resolves.toEqual({ status: 'unavailable', consumedCount: 0 });
+  await expect(readDailyJourneyFreezeProjection(token)).resolves.toMatchObject({
+    consumedCount: 0,
+    remainingCount: 1,
+  });
+  expect(storage['daily_journey_freeze_prepared_v1:owner-a']).toBeUndefined();
+});
+
+it('recovers one torn composite batch before Hall can consume its reserved remainder', async () => {
+  const token = beginAccountGeneration('owner-a');
+  await commitDailyJourneyFreezeGrant({
+    claimOperationId: 'daily-journey-gift-claim:freeze-batch-crash-0001',
+    amount: 2,
+    occurrenceFingerprint: '2'.repeat(64),
+  }, token);
+  const useOperationIds = [
+    'daily-journey-series-gap:aaaaaaaaaaaaaaaaaaaaaaaa:c1:2026-08-30',
+    'daily-journey-series-gap:aaaaaaaaaaaaaaaaaaaaaaaa:c1:2026-08-31',
+  ] as const;
+  let tearOnce = true;
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (
+    pairs: readonly (readonly [string, string])[],
+  ) => {
+    if (tearOnce) {
+      tearOnce = false;
+      const [operation] = pairs;
+      storage[operation[0]] = operation[1];
+      throw new Error('simulated_composite_batch_operation_only');
+    }
+    pairs.forEach(([key, value]) => { storage[key] = value; });
+  });
+
+  await expect(consumeDailyJourneyFreezeBatch(useOperationIds, token))
+    .rejects.toThrow('simulated_composite_batch_operation_only');
+  await expect(consumeDailyJourneyFreeze('hall-of-fame:after-batch-crash', token))
+    .resolves.toBe(false);
+  await expect(consumeDailyJourneyFreezeBatch(useOperationIds, token))
+    .resolves.toEqual({ status: 'already_applied', consumedCount: 0 });
+  await expect(readDailyJourneyFreezeProjection(token)).resolves.toMatchObject({
+    grantedCount: 2,
+    consumedCount: 2,
+    remainingCount: 0,
+    latestRevision: 2,
+  });
+
+  const operations = Object.entries(storage)
+    .filter(([key]) => key.startsWith('daily_journey_freeze_operation_v1:owner-a:'))
+    .map(([, raw]) => JSON.parse(raw) as Record<string, unknown>);
+  const composite = operations.find((operation) => operation.kind === 'consume_batch');
+  expect(operations).toHaveLength(2);
+  expect(composite).toMatchObject({
+    schemaVersion: 'daily-journey-freeze-operation.v2',
+    operationId: `daily-journey-freeze-consume-batch:${useOperationIds[0]}`,
+    sourceId: useOperationIds[0],
+    sourceFingerprint: createHash('sha256')
+      .update(JSON.stringify(useOperationIds))
+      .digest('hex'),
+    amount: 2,
+    useOperationIds: [...useOperationIds],
+  });
+});
+
+it('rejects the same composite operation id with a different ordered missed-day list', async () => {
+  const token = beginAccountGeneration('owner-a');
+  await commitDailyJourneyFreezeGrant({
+    claimOperationId: 'daily-journey-gift-claim:freeze-batch-conflict-0001',
+    amount: 2,
+    occurrenceFingerprint: '3'.repeat(64),
+  }, token);
+  await commitDailyJourneyFreezeGrant({
+    claimOperationId: 'daily-journey-gift-claim:freeze-batch-conflict-0002',
+    amount: 2,
+    occurrenceFingerprint: '4'.repeat(64),
+  }, token);
+  const stableFirst = 'daily-journey-series-gap:aaaaaaaaaaaaaaaaaaaaaaaa:c1:2026-08-30';
+  await expect(consumeDailyJourneyFreezeBatch([
+    stableFirst,
+    'daily-journey-series-gap:aaaaaaaaaaaaaaaaaaaaaaaa:c1:2026-08-31',
+  ], token)).resolves.toEqual({ status: 'applied', consumedCount: 2 });
+
+  await expect(consumeDailyJourneyFreezeBatch([
+    stableFirst,
+    'daily-journey-series-gap:aaaaaaaaaaaaaaaaaaaaaaaa:c1:2026-09-01',
+  ], token)).rejects.toThrow('daily_journey_freeze_operation_conflict');
+  await expect(readDailyJourneyFreezeProjection(token)).resolves.toMatchObject({
+    consumedCount: 2,
+    remainingCount: 2,
+  });
+});
+
+it('fails closed when a legacy grant is mislabeled as a composite v2 operation', async () => {
+  const token = beginAccountGeneration('owner-a');
+  const useOperationIds = [
+    'daily-journey-series-gap:aaaaaaaaaaaaaaaaaaaaaaaa:c1:2026-08-30',
+  ];
+  const sourceFingerprint = createHash('sha256')
+    .update(JSON.stringify(useOperationIds))
+    .digest('hex');
+  const body = {
+    schemaVersion: 'daily-journey-freeze-operation.v2',
+    operationId: 'daily-journey-gift-claim:cross-version-0001',
+    ownerStableId: 'owner-a',
+    kind: 'grant',
+    sourceId: 'daily-journey-gift-claim:cross-version-0001',
+    sourceFingerprint,
+    amount: 1,
+    revision: 1,
+    createdAtMs: 1,
+    useOperationIds,
+  };
+  const operation = {
+    ...body,
+    payloadFingerprint: createHash('sha256').update(JSON.stringify(body)).digest('hex'),
+  };
+  storage[
+    `daily_journey_freeze_operation_v1:owner-a:${encodeURIComponent(operation.operationId)}`
+  ] = JSON.stringify(operation);
+  storage[projectionKey] = JSON.stringify({
+    schemaVersion: 'daily-journey-freeze-projection.v1',
+    ownerStableId: 'owner-a',
+    grantedCount: 1,
+    consumedCount: 0,
+    remainingCount: 1,
+    latestRevision: 1,
+  });
+
+  await expect(readDailyJourneyFreezeProjection(token))
+    .rejects.toThrow('daily_journey_freeze_operation_corrupt');
+});
+
+it('holds the shared transition and storage locks across the whole batch', async () => {
+  const token = beginAccountGeneration('owner-a');
+  await commitDailyJourneyFreezeGrant({
+    claimOperationId: 'daily-journey-gift-claim:freeze-batch-race-0001',
+    amount: 2,
+    occurrenceFingerprint: '8'.repeat(64),
+  }, token);
+  let entered!: () => void;
+  let release!: () => void;
+  const enteredBatch = new Promise<void>((resolve) => { entered = resolve; });
+  const releaseBatch = new Promise<void>((resolve) => { release = resolve; });
+  const digest = require('expo-crypto').digestStringAsync as jest.Mock;
+  digest.mockImplementationOnce(async (_algorithm: string, value: string) => {
+    entered();
+    await releaseBatch;
+    return createHash('sha256').update(value).digest('hex');
+  });
+
+  const batch = consumeDailyJourneyFreezeBatch([
+    'daily-journey-series-gap:aaaaaaaaaaaaaaaaaaaaaaaa:c1:2026-08-30',
+    'daily-journey-series-gap:aaaaaaaaaaaaaaaaaaaaaaaa:c1:2026-08-31',
+  ], token);
+  await enteredBatch;
+  const competing = consumeDailyJourneyFreeze('hall-of-fame:competing-day', token);
+  release();
+
+  await expect(batch).resolves.toEqual({ status: 'applied', consumedCount: 2 });
+  await expect(competing).resolves.toBe(false);
+  await expect(readDailyJourneyFreezeProjection(token)).resolves.toMatchObject({
+    consumedCount: 2,
+    remainingCount: 0,
+  });
 });
 
 it('keeps committed Daily Journey protection effective after cloud restore removes a missing server shield', async () => {

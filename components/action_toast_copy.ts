@@ -1,3 +1,5 @@
+import type { Lang } from '../constants/i18n';
+
 // ─── Словарь тонов ActionToast ───
 // зачем: сторож i18n (scripts/scan_untranslated_ui.mjs) считает объект тонов
 // с полями ru/uk/es/... непереведённым UI, если эти поля не лежат внутри
@@ -22,6 +24,14 @@ const UK: typeof RU = {
   info: 'Повідомлення',
   warning: 'Увага',
   reward: 'Нагорода',
+};
+
+const EN: typeof RU = {
+  success: 'Done',
+  error: 'Something went wrong',
+  info: 'Message',
+  warning: 'Attention',
+  reward: 'Reward',
 };
 
 const ES: typeof RU = {
@@ -82,6 +92,7 @@ export function actionToastToneLabel(kind: ActionToastToneKey): Record<string, s
   return {
     ru: RU[kind],
     uk: UK[kind],
+    en: EN[kind],
     es: ES[kind],
     'pt-BR': PT_BR[kind],
     vi: VI[kind],
@@ -89,4 +100,41 @@ export function actionToastToneLabel(kind: ActionToastToneKey): Record<string, s
     tr: TR[kind],
     pl: PL[kind],
   };
+}
+
+export type LocalizedActionToastMessage = Readonly<{
+  type: ActionToastToneKey;
+  messageRu: string;
+  messageUk?: string;
+  messageEn?: string;
+  messageEs?: string;
+  messagePtBr?: string;
+  messageVi?: string;
+  messageId?: string;
+  messageTr?: string;
+  messagePl?: string;
+}>;
+
+export function resolveActionToastMessage(
+  toast: LocalizedActionToastMessage,
+  lang: Lang,
+): string {
+  const esFallback = toast.type === 'error'
+    ? 'Algo salió mal.'
+    : toast.type === 'success'
+      ? 'Hecho.'
+      : toast.type === 'reward'
+        ? '¡Premio!'
+        : toast.type === 'warning'
+          ? 'Atención.'
+          : 'Listo.';
+  if (lang === 'uk') return toast.messageUk ?? toast.messageRu;
+  if (lang === 'en') return toast.messageEn ?? toast.messageRu;
+  if (lang === 'es') return toast.messageEs ?? esFallback;
+  if (lang === 'pt-BR') return toast.messagePtBr ?? toast.messageRu;
+  if (lang === 'vi') return toast.messageVi ?? toast.messageRu;
+  if (lang === 'id') return toast.messageId ?? toast.messageRu;
+  if (lang === 'tr') return toast.messageTr ?? toast.messageRu;
+  if (lang === 'pl') return toast.messagePl ?? toast.messageRu;
+  return toast.messageRu;
 }

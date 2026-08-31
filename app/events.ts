@@ -156,6 +156,7 @@ export type AppEventMap = {
     motionVariant?: 'classic' | 'hybrid';
     messageRu: string;
     messageUk?: string;
+    messageEn?: string;
     /** Испанский UX (например dev); если нет — ActionToast использует базовую строку */
     messageEs?: string;
     messagePtBr?: string;
@@ -206,15 +207,16 @@ export type AppEventMap = {
   friend_gift_push_opened: undefined;
 };
 
-/** RU + UK + ES для `action_toast` без дублирования полей. */
+/** Canonical locale payload for `action_toast` without duplicating field mapping. */
 export function actionToastTri(
   type: AppEventMap['action_toast']['type'],
-  m: { ru: string; uk: string; es: string } & PlannedTriLangCopy,
+  m: { ru: string; uk: string; es: string; en?: string } & PlannedTriLangCopy,
 ): AppEventMap['action_toast'] {
   return {
     type,
     messageRu: m.ru,
     messageUk: m.uk,
+    messageEn: m.en,
     messageEs: m.es,
     messagePtBr: m['pt-BR'],
     messageVi: m.vi,

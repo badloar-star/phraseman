@@ -1,3 +1,5 @@
+import { isForcedOnboardingForQaRuntime } from './onboarding_runtime_gate';
+
 // зачем: временный диагностический маркер — ищем, где виснет холодный старт
 // (чёрный экран без краша). Убрать после локализации причины.
 console.warn('[BOOT] _layout module eval START');
@@ -196,6 +198,7 @@ import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from 
 import { hasMeaningfulLocalAccountData } from './local_account_data';
 import { decideStartupCloudRecoveryPresentation } from './startup_cloud_recovery_presentation';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
+import DailyJourneyProductionModalHost from '../components/daily_journey/DailyJourneyProductionModalHost';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
 import { ProductAnalyticsRuntimeObserver } from './product_analytics_runtime_observer';
@@ -2446,10 +2449,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       safetyTimer = setTimeout(() => setReady(true), 1200);
       onboardingPathRef.current = false;
       deferLessonPrimeRef.current = false;
-      const forceOnboardingForQA =
-        typeof __DEV__ !== 'undefined' &&
-        __DEV__ &&
-        process.env.EXPO_PUBLIC_FORCE_ONBOARDING_QA === '1';
+      const forceOnboardingForQA = isForcedOnboardingForQaRuntime();
 
       // зачем (ускорение сплэша, 2026-08-25): чтение onboarding_done/XP-ключей
       // стартует ПАРАЛЛЕЛЬНО с локальной гидрацией ниже, а не после её race —
@@ -3497,6 +3497,7 @@ export default function RootLayout() {
               <AchievementProvider>
                 <OverlayArbiterProvider>
                     <AppContent fontsReady={fontsReady} />
+                    <DailyJourneyProductionModalHost />
                     {/* зачем: приветствие после онбординга — над ГЛАВНОЙ, а не
                         поверх последнего экрана анкеты (владелец, 2026-07-27).
                         Ключ onboardingWelcome стоит первым в приоритете арбитра,

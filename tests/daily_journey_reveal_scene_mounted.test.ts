@@ -28,6 +28,8 @@ jest.mock('react-native', () => {
     return animation;
   };
   return {
+  AccessibilityInfo: { announceForAccessibility: jest.fn() },
+  Platform: { OS: 'ios' },
   Animated: {
     Value,
     timing: jest.fn(() => makeAnimation('timing')),
@@ -57,6 +59,7 @@ jest.mock('../components/ThemeContext', () => ({
     themeMode: 'indigo', f: { caption: 12, title: 24, body: 16, small: 12 },
   }),
 }));
+jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'en' }) }));
 jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => true }));
 jest.mock('../hooks/use-haptics', () => ({
   hapticLightImpact: jest.fn(), hapticSuccess: jest.fn(), hapticTap: jest.fn(),

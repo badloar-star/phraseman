@@ -6,8 +6,9 @@
 export function createDailyJourneyStatsUnreadController<Token>(dependencies: Readonly<{
   captureToken: () => Token;
   isTokenCurrent: (token: Token) => boolean;
-  readProjection: (token: Token) => Promise<Readonly<{ unreadCount: number }>>;
+  readProjection: (token: Token) => Promise<Readonly<{ unreadCount: number; pendingCount?: number }>>;
   displayUnreadCount: (count: number) => void;
+  displayPendingCount?: (count: number) => void;
   startHop: () => void;
   stopHop: () => void;
   shouldReduceMotion: () => boolean;
@@ -47,12 +48,14 @@ export function createDailyJourneyStatsUnreadController<Token>(dependencies: Rea
     if (displayedToken !== null && !dependencies.isTokenCurrent(displayedToken)) {
       displayedToken = null;
       dependencies.displayUnreadCount(0);
+      dependencies.displayPendingCount?.(0);
       stopHop(true);
     }
     try {
       const projection = await dependencies.readProjection(token);
       if (disposed || !active || currentRequest !== request || !dependencies.isTokenCurrent(token)) return;
       displayedToken = token;
+      dependencies.displayPendingCount?.(Math.max(0, Math.floor(projection.pendingCount ?? 0) || 0));
       applyUnreadCount(projection.unreadCount);
     } catch (error) {
       if (!disposed && active && currentRequest === request && dependencies.isTokenCurrent(token)) {
@@ -79,6 +82,7 @@ export function createDailyJourneyStatsUnreadController<Token>(dependencies: Rea
       displayedToken = null;
       stopHop();
       dependencies.displayUnreadCount(0);
+      dependencies.displayPendingCount?.(0);
       if (active) await reload();
     },
     dispose: () => {

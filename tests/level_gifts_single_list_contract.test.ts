@@ -57,22 +57,25 @@ describe('вкладок больше нет', () => {
   });
 });
 
-describe('один список: активные сверху, неоткрытые снизу', () => {
+describe('один список: свежие сверху, активные и просмотренные ниже', () => {
   test('действующие бонусы показываются без всяких условий вкладки', () => {
     expect(SCREEN).toContain('{activeItems.length > 0 && (');
   });
 
   test('сетка неоткрытых подарков показывается в том же списке', () => {
-    expect(SCREEN).toContain('{items.length > 0 ? (');
+    expect(SCREEN).toContain('{items.length > 0 || settledDailyJourneyItems.length > 0 ? (');
   });
 
-  test('активные бонусы стоят в разметке ВЫШЕ сетки неоткрытых', () => {
-    // Порядок владельца: «сразу видели, что этот активирован».
+  test('свежие подарки стоят выше активных, а просмотренные — ниже', () => {
+    // Порядок владельца 2026-08-31: новые подарки всегда сверху.
+    const freshAt = SCREEN.indexOf('{freshDailyJourneyItems.map((item) => (');
     const activeAt = SCREEN.indexOf('{activeItems.length > 0 && (');
-    const tilesAt = SCREEN.indexOf('{items.length > 0 ? (');
+    const settledAt = SCREEN.indexOf('{settledDailyJourneyItems.map((item) => (');
+    expect(freshAt).toBeGreaterThan(-1);
     expect(activeAt).toBeGreaterThan(-1);
-    expect(tilesAt).toBeGreaterThan(-1);
-    expect(activeAt).toBeLessThan(tilesAt);
+    expect(settledAt).toBeGreaterThan(-1);
+    expect(freshAt).toBeLessThan(activeAt);
+    expect(activeAt).toBeLessThan(settledAt);
   });
 
   test('у списка один общий заголовок вместо двух вкладок', () => {
@@ -84,12 +87,12 @@ describe('пустые состояния честны для единого с�
   test('крупное пустое состояние — только когда нет НИЧЕГО', () => {
     // Раньше это была пустая вкладка «Активные», и текст врал про половину
     // экрана: говорил только про применённые бонусы.
-    expect(SCREEN).toContain('{activeItems.length === 0 && items.length === 0 ? (');
+    expect(SCREEN).toContain('{activeItems.length === 0 && items.length === 0 && dailyJourneyItems.length === 0 ? (');
     expect(SCREEN).toContain("ru: 'Подарков пока нет'");
   });
 
   test('когда активные есть, а неоткрытых нет — тихая строка, не блок на пол-экрана', () => {
-    expect(SCREEN).toContain('{items.length === 0 && activeItems.length > 0 ? (');
+    expect(SCREEN).toContain('{items.length === 0 && dailyJourneyItems.length === 0 && activeItems.length > 0 ? (');
     expect(SCREEN).toContain("ru: 'Неоткрытых подарков нет — новые за уровни появятся здесь.'");
   });
 });

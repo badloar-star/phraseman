@@ -2,7 +2,7 @@ import type {
   DailyJourneyGiftInput,
   DailyJourneyGiftOccurrenceV1,
 } from './daily_journey_gift_inbox';
-import { dailyJourneyRewardPayloadForDay } from '../components/dev/dailyJourneyRewardPreviewModel';
+import { dailyJourneyRewardPayloadForDay } from './daily_journey_rewards';
 
 export type DailyJourneyHomeTargetRect = Readonly<{
   x: number;
@@ -20,6 +20,7 @@ export type DailyJourneyHomeGrantErrorScope = 'commit' | 'measure' | 'modal' | '
 
 export type DailyJourneyHomeGrantController = Readonly<{
   press: () => Promise<'opened' | 'deferred' | 'failed' | 'stale'>;
+  resetForAccount: () => void;
 }>;
 
 export function createDailyJourneyHomeGrantController<Token>(dependencies: Readonly<{
@@ -41,6 +42,7 @@ export function createDailyJourneyHomeGrantController<Token>(dependencies: Reado
   reportError: (scope: DailyJourneyHomeGrantErrorScope, error: unknown) => void;
 }>): DailyJourneyHomeGrantController {
   let pressOrdinal = 0;
+  const retryQueue: DailyJourneyGiftInput[] = [];
 
   const report = (scope: DailyJourneyHomeGrantErrorScope, error: unknown): void => {
     try {
@@ -51,13 +53,22 @@ export function createDailyJourneyHomeGrantController<Token>(dependencies: Reado
   };
 
   const press = async (): Promise<'opened' | 'deferred' | 'failed' | 'stale'> => {
-    // Reserve every logical grant synchronously. Rapid taps therefore cannot
-    // share a day or id while either durable commit is still pending.
-    const ordinal = pressOrdinal;
-    pressOrdinal += 1;
-    const day = (ordinal % 50) + 1;
-    const cycle = Math.floor(ordinal / 50) + 1;
-    const operationId = `daily_journey_dev:${dependencies.createOperationId()}`;
+    // A failed commit is ambiguous: storage may have accepted it and lost only
+    // the response. Retry that exact immutable input. Concurrent taps still
+    // reserve fresh ordinals because failures enter the queue only on settle.
+    const retryInput = retryQueue.shift();
+    const ordinal = retryInput ? null : pressOrdinal++;
+    const day = retryInput?.day ?? ((ordinal as number) % 50) + 1;
+    const cycle = retryInput?.cycle ?? Math.floor((ordinal as number) / 50) + 1;
+    const operationId = retryInput?.operationId
+      ?? `daily_journey_dev:${dependencies.createOperationId()}`;
+    const input: DailyJourneyGiftInput = retryInput ?? Object.freeze({
+      operationId,
+      source: 'daily_journey_dev',
+      cycle,
+      day,
+      reward: dailyJourneyRewardPayloadForDay(day),
+    });
     const token = dependencies.captureToken();
     const runtimeEpoch = dependencies.captureRuntimeEpoch?.() ?? 0;
     const isRuntimeActive = (): boolean => dependencies.isRuntimeActive?.(runtimeEpoch) ?? true;
@@ -69,14 +80,9 @@ export function createDailyJourneyHomeGrantController<Token>(dependencies: Reado
 
     let committed: Awaited<ReturnType<typeof dependencies.commit>>;
     try {
-      committed = await dependencies.commit(Object.freeze({
-        operationId,
-        source: 'daily_journey_dev',
-        cycle,
-        day,
-        reward: dailyJourneyRewardPayloadForDay(day),
-      }), token);
+      committed = await dependencies.commit(input, token);
     } catch (error) {
+      retryQueue.unshift(input);
       report('commit', error);
       return 'failed';
     }
@@ -124,13 +130,92 @@ export function createDailyJourneyHomeGrantController<Token>(dependencies: Reado
     return present(Object.freeze({ occurrence: committed.occurrence, targetRect }), false);
   };
 
-  return Object.freeze({ press });
+  const resetForAccount = (): void => {
+    retryQueue.length = 0;
+    pressOrdinal = 0;
+  };
+
+  return Object.freeze({ press, resetForAccount });
+}
+
+export type DailyJourneyProductionPresentationErrorScope = 'measure' | 'offer' | 'release';
+
+/**
+ * Presentation is deliberately downstream of the durable gift commit. A
+ * missing target only selects the scene's top-center fallback; it can never
+ * suppress or undo the committed occurrence.
+ */
+export async function offerDailyJourneyProductionDelivery<Token>(dependencies: Readonly<{
+  occurrence: DailyJourneyGiftOccurrenceV1;
+  token: Token;
+  runtimeEpoch: number;
+  measureTarget: (runtimeEpoch: number) => Promise<DailyJourneyHomeTargetRect | null>;
+  isTokenCurrent: (token: Token) => boolean;
+  rememberToken: (operationId: string, token: Token) => void;
+  forgetToken: (operationId: string) => void;
+  offer: (delivery: DailyJourneyHomeDelivery, token: Token) => 'shown' | 'deferred' | 'stale';
+  releasePresentation: (operationId: string) => void;
+  reportError: (scope: DailyJourneyProductionPresentationErrorScope, error: unknown) => void;
+}>): Promise<'shown' | 'deferred' | 'stale' | 'failed'> {
+  const operationId = dependencies.occurrence.operationId;
+  const report = (scope: DailyJourneyProductionPresentationErrorScope, error: unknown): void => {
+    try {
+      dependencies.reportError(scope, error);
+    } catch {
+      // Diagnostics are never allowed to turn delivery into an unhandled task.
+    }
+  };
+  const forget = (): void => {
+    try {
+      dependencies.forgetToken(operationId);
+    } catch (error) {
+      report('release', error);
+    }
+  };
+  const release = (): void => {
+    try {
+      dependencies.releasePresentation(operationId);
+    } catch (error) {
+      report('release', error);
+    }
+  };
+
+  let targetRect: DailyJourneyHomeTargetRect | null = null;
+  try {
+    targetRect = await dependencies.measureTarget(dependencies.runtimeEpoch);
+  } catch (error) {
+    report('measure', error);
+  }
+
+  if (!dependencies.isTokenCurrent(dependencies.token)) {
+    release();
+    return 'stale';
+  }
+
+  try {
+    dependencies.rememberToken(operationId, dependencies.token);
+    const offered = dependencies.offer(
+      Object.freeze({ occurrence: dependencies.occurrence, targetRect }),
+      dependencies.token,
+    );
+    if (offered === 'stale') {
+      forget();
+      release();
+    }
+    return offered;
+  } catch (error) {
+    forget();
+    release();
+    report('offer', error);
+    return 'failed';
+  }
 }
 
 export type DailyJourneyHomeProjectionController = Readonly<{
   activate: () => Promise<void>;
   deactivate: () => void;
   reload: () => Promise<void>;
+  markInventoryOpened: () => void;
   resetForAccount: () => Promise<void>;
   dispose: () => void;
 }>;
@@ -196,6 +281,20 @@ export function createDailyJourneyHomeProjectionController<Token>(dependencies: 
     requestId += 1;
   };
 
+  const markInventoryOpened = (): void => {
+    if (disposed) return;
+    // The destination screen performs the durable seen write after it has
+    // rendered the inventory. Home only clears its projection immediately and
+    // invalidates a stale read, preventing the last gift button from flashing
+    // again while Back restores this screen.
+    requestId += 1;
+    try {
+      dependencies.displayUnreadCount(0);
+    } catch (error) {
+      report(error);
+    }
+  };
+
   const resetForAccount = async (): Promise<void> => {
     if (disposed) return;
     lifecycleEpoch += 1;
@@ -215,7 +314,7 @@ export function createDailyJourneyHomeProjectionController<Token>(dependencies: 
     requestId += 1;
   };
 
-  return Object.freeze({ activate, deactivate, reload, resetForAccount, dispose });
+  return Object.freeze({ activate, deactivate, reload, markInventoryOpened, resetForAccount, dispose });
 }
 
 export type DailyJourneyHomeLandingGate = Readonly<{

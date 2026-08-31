@@ -5,8 +5,8 @@ import TapScale from '../components/TapScale';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { memo, useCallback, useMemo, useState } from 'react';
-import { AppState, Dimensions, Platform, StyleSheet, Text, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { AppState, Dimensions, InteractionManager, Platform, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   cancelAnimation,
   useAnimatedStyle,
@@ -58,7 +58,7 @@ import {
   subscribeAccountGeneration,
   type AccountGenerationToken,
 } from './account_generation';
-import { onAppEvent } from './events';
+import { emitAppEvent, onAppEvent } from './events';
 import {
   fetchLevelSpinStatus,
   peekLevelSpinBalance,
@@ -75,6 +75,7 @@ import { DebugLogger } from './debug-logger';
 import {
   claimDailyJourneyGift,
   markDailyJourneyGiftSnapshotSeen,
+  recordDailyJourneyGiftSnapshotDisplayed,
   readDailyJourneyGiftProjection,
   type DailyJourneyGiftPendingItem,
   type DailyJourneyGiftRewardV1,
@@ -82,8 +83,14 @@ import {
 import {
   createDailyJourneyGiftInventoryController,
   dailyJourneyGiftArtDescriptor,
-  dailyJourneyRuneImageSource,
+  dailyJourneyGiftVisualItems,
+  preserveDailyJourneyGiftSessionHighlights,
+  type DailyJourneyGiftVisualItem,
 } from './daily_journey_gift_inventory_adapter';
+import {
+  dailyJourneyRewardAccessibilityLabel,
+  dailyJourneyRewardDisplayLabel,
+} from './daily_journey_copy';
 
 // зачем 2026-08-03 (владелец: «полностью измени цвета градиентов подарков,
 // сделай под каждую тему свои цвета и форму градиента»): здесь жили giftAccent
@@ -99,6 +106,7 @@ import {
 const TILE_GRID_GAP = 10;
 const GRID_SCREEN_PAD = 16;
 const TILES_PER_ROW = 3;
+const DAILY_JOURNEY_UNSEEN_PRESENTATION_MS = 1400;
 
 function pendingGiftItemKey(item: PendingLevelGiftInventoryItem): string {
   if (item.kind === 'single' && item.spinOccurrence) {
@@ -260,17 +268,39 @@ const GiftTile = memo(function GiftTile({ item, size, lang, themeMode, nameColor
 const dailyJourneyGiftA11yLabel = (
   item: DailyJourneyGiftPendingItem,
   lang: Parameters<typeof giftTitleForLang>[1],
-): string => triLang(lang, {
-  ru: `Подарок ежедневного пути, день ${item.day}`,
-  uk: `Подарунок щоденного шляху, день ${item.day}`,
-  en: `Daily Journey gift, day ${item.day}`,
-  es: `Regalo del viaje diario, día ${item.day}`,
-  'pt-BR': `Presente da jornada diária, dia ${item.day}`,
-  vi: `Quà Hành trình hằng ngày, ngày ${item.day}`,
-  id: `Hadiah Perjalanan Harian, hari ${item.day}`,
-  tr: `Günlük Yolculuk hediyesi, ${item.day}. gün`,
-  pl: `Prezent Dziennej Podróży, dzień ${item.day}`,
-});
+  isUnseen = false,
+): string => {
+  const rewardLabel = dailyJourneyRewardAccessibilityLabel(item.reward, lang);
+  const unseenPrefix = isUnseen
+    ? `${triLang(lang, {
+        ru: 'Новый подарок', uk: 'Новий подарунок', en: 'New gift', es: 'Regalo nuevo',
+        'pt-BR': 'Presente novo', vi: 'Quà mới', id: 'Hadiah baru', tr: 'Yeni hediye', pl: 'Nowy prezent',
+      })}. `
+    : '';
+  return `${unseenPrefix}${triLang(lang, {
+    ru: `Подарок ежедневного пути, день ${item.day}`,
+    uk: `Подарунок щоденного шляху, день ${item.day}`,
+    en: `Daily Journey gift, day ${item.day}`,
+    es: `Regalo del viaje diario, día ${item.day}`,
+    'pt-BR': `Presente da jornada diária, dia ${item.day}`,
+    vi: `Quà Hành trình hằng ngày, ngày ${item.day}`,
+    id: `Hadiah Perjalanan Harian, hari ${item.day}`,
+    tr: `Günlük Yolculuk hediyesi, ${item.day}. gün`,
+    pl: `Prezent Dziennej Podróży, dzień ${item.day}`,
+  })}. ${rewardLabel}`;
+};
+
+const dailyJourneyGiftClaimA11yLabel = (
+  item: DailyJourneyGiftPendingItem,
+  lang: Parameters<typeof giftTitleForLang>[1],
+): string => {
+  const action = triLang(lang, {
+    ru: 'Применить подарок', uk: 'Застосувати подарунок', en: 'Apply gift',
+    es: 'Usar regalo', 'pt-BR': 'Usar presente', vi: 'Dùng quà',
+    id: 'Pakai hadiah', tr: 'Hediyeyi kullan', pl: 'Użyj prezentu',
+  });
+  return `${action}. ${dailyJourneyRewardAccessibilityLabel(item.reward, lang)}`;
+};
 
 const DailyJourneyGiftArt = memo(function DailyJourneyGiftArt({
   reward,
@@ -293,18 +323,6 @@ const DailyJourneyGiftArt = memo(function DailyJourneyGiftArt({
         size={size}
         accessibilityLabel={accessibilityLabel}
         fallbackColor={fallbackColor}
-      />
-    );
-  }
-  if (art.kind === 'rune') {
-    return (
-      <Image
-        source={dailyJourneyRuneImageSource()}
-        style={{ width: size, height: size }}
-        contentFit="contain"
-        accessible
-        accessibilityRole="image"
-        accessibilityLabel={accessibilityLabel}
       />
     );
   }
@@ -331,45 +349,85 @@ const DailyJourneyGiftArt = memo(function DailyJourneyGiftArt({
 
 /**
  * Daily Journey is a separate occurrence source, so its real operation ID is
- * the identity of the tile. It deliberately has no level, expiry chip, title,
- * amount, or mini-copy: the artwork is the entire visual payload.
+ * the identity of the tile. It has no level or expiry chip, but its exact
+ * localized reward is visible below the art: similar silhouettes can represent
+ * different amounts and must not force the user to guess.
  */
-const DailyJourneyGiftTile = memo(function DailyJourneyGiftTile({ item, size, lang, themeMode, surface, themeAccent, onPress }: {
-  item: DailyJourneyGiftPendingItem;
+const DailyJourneyGiftTile = memo(function DailyJourneyGiftTile({ item, size, lang, themeMode, surface, themeAccent, nameColor, onPress }: {
+  item: DailyJourneyGiftVisualItem<DailyJourneyGiftPendingItem>;
   size: number;
   lang: Parameters<typeof giftTitleForLang>[1];
   themeMode: ThemeMode;
   surface: [string, string];
   themeAccent: string;
-  onPress: (item: DailyJourneyGiftPendingItem) => void;
+  nameColor: string;
+  onPress: (item: DailyJourneyGiftVisualItem<DailyJourneyGiftPendingItem>) => void;
 }) {
+  const rewardLabel = dailyJourneyRewardDisplayLabel(item.reward, lang);
+  const reducedMotion = useReducedMotion();
+  const unseenPulse = useSharedValue(1);
+  const unseenPulseStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: unseenPulse.value }],
+  }));
+
+  useEffect(() => {
+    cancelAnimation(unseenPulse);
+    unseenPulse.value = 1;
+    const presentationTask = InteractionManager.runAfterInteractions(() => {
+      if (item.isUnseen && !reducedMotion) {
+        unseenPulse.value = withSequence(
+          withTiming(1.08, { duration: 360 }),
+          withTiming(1, { duration: 640 }),
+        );
+      }
+    });
+    return () => {
+      presentationTask.cancel();
+      cancelAnimation(unseenPulse);
+      unseenPulse.value = 1;
+    };
+  }, [item.isUnseen, reducedMotion, unseenPulse]);
+
   return (
-    <TapScale
-      testID={`daily-journey-gift-${item.operationId}`}
-      accessibilityRole="button"
-      accessibilityLabel={dailyJourneyGiftA11yLabel(item, lang)}
-      onPress={() => {
-        hapticTap();
-        onPress(item);
-      }}
-      scaleTo={0.95}
-      style={{ width: size, height: size, borderRadius: 22 }}
-    >
-      <LinearGradient
-        colors={[giftTone(themeAccent, '30'), surface[0], surface[1]] as [string, string, string]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={{ width: size, height: size, borderRadius: 22, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}
+    <View style={{ width: size }}>
+      <Animated.View
+        testID={`daily-journey-gift-pulse-${item.operationId}`}
+        style={[{ width: size, height: size }, unseenPulseStyle]}
       >
-        <DailyJourneyGiftArt
-          reward={item.reward}
-          size={size * 0.78}
-          themeMode={themeMode}
-          fallbackColor={themeAccent}
-          accessibilityLabel={dailyJourneyGiftA11yLabel(item, lang)}
-        />
-      </LinearGradient>
-    </TapScale>
+      <TapScale
+        testID={`daily-journey-gift-${item.operationId}`}
+        accessibilityRole="button"
+        accessibilityLabel={dailyJourneyGiftA11yLabel(item, lang, item.isUnseen)}
+        onPress={() => onPress(item)}
+        scaleTo={0.95}
+        style={{ width: size, height: size, borderRadius: 22 }}
+      >
+        <LinearGradient
+          colors={[
+            giftTone(themeAccent, item.isUnseen ? '48' : '30'),
+            item.isUnseen ? giftTone(themeAccent, '18') : surface[0],
+            surface[1],
+          ] as [string, string, string]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={{ width: size, height: size, borderRadius: 22, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}
+        >
+          <DailyJourneyGiftArt
+            reward={item.reward}
+            size={size * 0.78}
+            themeMode={themeMode}
+            fallbackColor={themeAccent}
+            accessibilityLabel={dailyJourneyGiftA11yLabel(item, lang, item.isUnseen)}
+          />
+        </LinearGradient>
+      </TapScale>
+      </Animated.View>
+      <Text
+        style={{ marginTop: 8, fontSize: 13, lineHeight: 17, minHeight: 34, fontWeight: '800', letterSpacing: -0.1, textAlign: 'center', color: nameColor }}
+      >
+        {rewardLabel}
+      </Text>
+    </View>
   );
 });
 
@@ -379,7 +437,16 @@ export default function LevelGiftsInventoryScreen() {
   const { studyTarget } = useStudyTarget();
   const { theme: t, f, themeMode } = useTheme();
   const [items, setItems] = useState<PendingLevelGiftInventoryItem[]>([]);
-  const [dailyJourneyItems, setDailyJourneyItems] = useState<readonly DailyJourneyGiftPendingItem[]>([]);
+  const [dailyJourneyItems, setDailyJourneyItems] = useState<readonly DailyJourneyGiftVisualItem<DailyJourneyGiftPendingItem>[]>([]);
+  const dailyJourneySessionHighlightsRef = useRef(new Set<string>());
+  const freshDailyJourneyItems = useMemo(
+    () => dailyJourneyItems.filter((item) => item.isUnseen),
+    [dailyJourneyItems],
+  );
+  const settledDailyJourneyItems = useMemo(
+    () => dailyJourneyItems.filter((item) => !item.isUnseen),
+    [dailyJourneyItems],
+  );
   const [activeItems, setActiveItems] = useState<ActiveLevelGiftInventoryItem[]>([]);
   const [multiplierBreakdown, setMultiplierBreakdown] = useState<MultiplierBreakdown | null>(null);
   const [spinBalance, setSpinBalance] = useState<number | null>(() => {
@@ -433,7 +500,7 @@ export default function LevelGiftsInventoryScreen() {
     });
   const [userName, setUserName] = useState('');
   const [selected, setSelected] = useState<PendingLevelGiftInventoryItem | null>(null);
-  const [selectedDailyJourneyGift, setSelectedDailyJourneyGift] = useState<DailyJourneyGiftPendingItem | null>(null);
+  const [selectedDailyJourneyGift, setSelectedDailyJourneyGift] = useState<DailyJourneyGiftVisualItem<DailyJourneyGiftPendingItem> | null>(null);
   const [dailyJourneyClaimBusyId, setDailyJourneyClaimBusyId] = useState<string | null>(null);
   const [selectedInfoGift, setSelectedInfoGift] = useState<ActiveLevelGiftInventoryItem | null>(null);
   /**
@@ -445,8 +512,9 @@ export default function LevelGiftsInventoryScreen() {
    * «Инвентарь / Активные» (2026-08-03) лечили симптом «подарок исчез» ценой
    * переключения — активированный подарок уезжал на соседний экран, и человек
    * всё равно не видел результата своего действия там, где его совершил.
-   * Теперь активированные бонусы стоят первыми в том же списке, а неоткрытые
-   * подарки — под ними: смена вида происходит на месте.
+   * Теперь свежие подарки стоят первыми до выхода из раздела, затем идут
+   * активированные бонусы, а уже просмотренные неоткрытые подарки — под ними.
+   * Смена вида происходит в одном списке без отдельной вкладки.
    *
    * Почему не «та же плитка меняет вид»: активный бонус и подарок в инвентаре —
    * разные сущности в данных. Подарок при применении уходит из pending-канала,
@@ -482,6 +550,7 @@ export default function LevelGiftsInventoryScreen() {
   }, [lang, studyTarget]);
 
   const clearInventoryViews = useCallback(() => {
+    dailyJourneySessionHighlightsRef.current.clear();
     setItems([]);
     setDailyJourneyItems([]);
     setActiveItems([]);
@@ -497,28 +566,54 @@ export default function LevelGiftsInventoryScreen() {
       error instanceof Error ? error : new Error(String(error)),
       'warning',
     );
+    if (scope === 'daily_claim') {
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: 'Не удалось применить подарок. Попробуйте ещё раз.',
+        messageUk: 'Не вдалося застосувати подарунок. Спробуйте ще раз.',
+        messageEn: 'Could not apply the gift. Try again.',
+        messageEs: 'No se pudo usar el regalo. Inténtalo de nuevo.',
+        messagePtBr: 'Não foi possível usar o presente. Tente novamente.',
+        messageVi: 'Không thể dùng quà. Hãy thử lại.',
+        messageId: 'Hadiah tidak dapat dipakai. Coba lagi.',
+        messageTr: 'Hediye kullanılamadı. Tekrar deneyin.',
+        messagePl: 'Nie udało się użyć prezentu. Spróbuj ponownie.',
+      });
+    }
   }, []);
 
   const inventoryController = useMemo(() => (
     createDailyJourneyGiftInventoryController<
       LegacyGiftInventorySnapshot,
       AccountGenerationToken,
-      DailyJourneyGiftPendingItem
+      DailyJourneyGiftVisualItem<DailyJourneyGiftPendingItem>
     >({
       captureToken: captureAccountGeneration,
       isTokenCurrent: (accountToken) => accountToken.phase === 'active'
         && accountToken.stableId !== null
         && isCurrentAccountGeneration(accountToken, accountToken.stableId),
       loadLegacy: loadLegacyGiftSnapshot,
-      loadDaily: (accountToken) => readDailyJourneyGiftProjection(accountToken),
+      loadDaily: async (accountToken) => {
+        const projection = await readDailyJourneyGiftProjection(accountToken);
+        return {
+          pending: dailyJourneyGiftVisualItems(projection),
+          latestRevision: projection.latestRevision,
+        };
+      },
       displayLegacy: (snapshot) => {
         setItems(snapshot.items);
         setActiveItems(snapshot.activeItems);
         setMultiplierBreakdown(snapshot.multiplierBreakdown);
         setUserName(snapshot.userName);
       },
-      displayDaily: setDailyJourneyItems,
+      displayDaily: (nextItems) => {
+        setDailyJourneyItems(preserveDailyJourneyGiftSessionHighlights(
+          nextItems,
+          dailyJourneySessionHighlightsRef.current,
+        ));
+      },
       clearViews: clearInventoryViews,
+      recordSnapshotDisplayed: recordDailyJourneyGiftSnapshotDisplayed,
       markSnapshotSeen: markDailyJourneyGiftSnapshotSeen,
       claimGift: claimDailyJourneyGift,
       clearClaimView: () => {
@@ -529,6 +624,24 @@ export default function LevelGiftsInventoryScreen() {
       reportError: reportInventoryError,
     })
   ), [clearInventoryViews, loadLegacyGiftSnapshot, reportInventoryError]);
+
+  useLayoutEffect(() => {
+    const hasUnseenItems = dailyJourneyItems.some((item) => item.isUnseen);
+    if (!hasUnseenItems) {
+      void inventoryController.acknowledgeDisplayedSnapshot();
+      return undefined;
+    }
+    let acknowledgementTimer: ReturnType<typeof setTimeout> | null = null;
+    const presentationTask = InteractionManager.runAfterInteractions(() => {
+      acknowledgementTimer = setTimeout(() => {
+        void inventoryController.acknowledgeDisplayedSnapshot();
+      }, DAILY_JOURNEY_UNSEEN_PRESENTATION_MS);
+    });
+    return () => {
+      presentationTask.cancel();
+      if (acknowledgementTimer !== null) clearTimeout(acknowledgementTimer);
+    };
+  }, [dailyJourneyItems, inventoryController]);
 
   const loadSpinBalance = useCallback(async () => {
     const accountToken = captureAccountGeneration();
@@ -577,6 +690,7 @@ export default function LevelGiftsInventoryScreen() {
     });
     return () => {
       inventoryController.deactivate();
+      dailyJourneySessionHighlightsRef.current.clear();
       subscription.remove();
       dailyJourneySubscription.remove();
       accountGenerationSubscription.remove();
@@ -624,7 +738,7 @@ export default function LevelGiftsInventoryScreen() {
               })}
             </Text>
             <Animated.View style={spinPulseStyle}>
-              <TapScale
+                  <TapScale
                 testID="level-gifts-spins-button"
                 accessibilityRole="button"
                 accessibilityLiveRegion="polite"
@@ -706,11 +820,28 @@ export default function LevelGiftsInventoryScreen() {
               </LinearGradient>
             </View>
             <View testID="level-gifts-inventory" style={{ gap: 10 }}>
-              {/* Заголовок единого списка. Вкладок нет: активные бонусы и
-                  неоткрытые подарки живут вместе, активные — первыми. */}
+              {/* Заголовок единого списка. Вкладок нет: свежие подарки идут
+                  первыми, затем активные бонусы и просмотренные подарки. */}
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
                 {triLang(lang, { ru: 'Твои подарки', uk: 'Твої подарунки', en: 'Your gifts', es: 'Tus regalos', 'pt-BR': 'Seus presentes', vi: 'Quà của bạn', id: 'Hadiahmu', tr: 'Hediyelerin', pl: 'Twoje prezenty' })}
               </Text>
+            {freshDailyJourneyItems.length > 0 ? (
+              <View testID="fresh-daily-journey-gifts" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: TILE_GRID_GAP }}>
+                {freshDailyJourneyItems.map((item) => (
+                  <DailyJourneyGiftTile
+                    key={dailyJourneyGiftItemKey(item)}
+                    item={item}
+                    size={tileSize}
+                    lang={lang}
+                    themeMode={themeMode}
+                    themeAccent={t.accent}
+                    surface={[t.bgCard, t.bgSurface]}
+                    nameColor={t.textPrimary}
+                    onPress={setSelectedDailyJourneyGift}
+                  />
+                ))}
+              </View>
+            ) : null}
             {activeItems.length > 0 && (
               <View style={{ gap: 10 }}>
                 {activeItems.map((gift) => {
@@ -890,10 +1021,10 @@ export default function LevelGiftsInventoryScreen() {
                 })}
               </Text>
             ) : null}
-            {/* Сетка неоткрытых подарков — под действующими бонусами. */}
-            {items.length > 0 || dailyJourneyItems.length > 0 ? (
+            {/* Уже просмотренные неоткрытые подарки — под действующими бонусами. */}
+            {items.length > 0 || settledDailyJourneyItems.length > 0 ? (
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: TILE_GRID_GAP }}>
-                {dailyJourneyItems.map((item) => (
+                {settledDailyJourneyItems.map((item) => (
                   <DailyJourneyGiftTile
                     key={dailyJourneyGiftItemKey(item)}
                     item={item}
@@ -902,6 +1033,7 @@ export default function LevelGiftsInventoryScreen() {
                     themeMode={themeMode}
                     themeAccent={t.accent}
                     surface={[t.bgCard, t.bgSurface]}
+                    nameColor={t.textPrimary}
                     onPress={setSelectedDailyJourneyGift}
                   />
                 ))}
@@ -981,10 +1113,12 @@ export default function LevelGiftsInventoryScreen() {
               && inventoryController.isClaimBusy(selectedDailyJourneyGift.operationId)) return;
             setSelectedDailyJourneyGift(null);
           }}
-          title={triLang(lang, {
-            ru: 'Подарок', uk: 'Подарунок', en: 'Gift', es: 'Regalo', 'pt-BR': 'Presente',
-            vi: 'Quà', id: 'Hadiah', tr: 'Hediye', pl: 'Prezent',
-          })}
+          title={selectedDailyJourneyGift
+            ? dailyJourneyRewardDisplayLabel(selectedDailyJourneyGift.reward, lang)
+            : triLang(lang, {
+                ru: 'Подарок', uk: 'Подарунок', en: 'Gift', es: 'Regalo', 'pt-BR': 'Presente',
+                vi: 'Quà', id: 'Hadiah', tr: 'Hediye', pl: 'Prezent',
+              })}
           closeLabel={triLang(lang, {
             ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
             vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
@@ -1003,12 +1137,9 @@ export default function LevelGiftsInventoryScreen() {
               <TapScale
                 testID="daily-journey-gift-claim"
                 accessibilityRole="button"
-                accessibilityLabel={triLang(lang, {
-                  ru: 'Применить подарок', uk: 'Застосувати подарунок', en: 'Apply gift',
-                  es: 'Usar regalo', 'pt-BR': 'Usar presente', vi: 'Dùng quà',
-                  id: 'Pakai hadiah', tr: 'Hediyeyi kullan', pl: 'Użyj prezentu',
-                })}
-                disabled={dailyJourneyClaimBusyId === selectedDailyJourneyGift.operationId}
+                    accessibilityLabel={dailyJourneyGiftClaimA11yLabel(selectedDailyJourneyGift, lang)}
+                    disabled={dailyJourneyClaimBusyId === selectedDailyJourneyGift.operationId}
+                    accessibilityState={{ disabled: dailyJourneyClaimBusyId === selectedDailyJourneyGift.operationId, busy: dailyJourneyClaimBusyId === selectedDailyJourneyGift.operationId }}
                 onPress={() => void inventoryController.claim(selectedDailyJourneyGift)}
                 style={{ alignSelf: 'stretch', borderRadius: 16 }}
               >

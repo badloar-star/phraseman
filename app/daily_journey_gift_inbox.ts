@@ -694,6 +694,29 @@ export async function commitDailyJourneyGift(
   }
 }
 
+/**
+ * Reads the newest immutable production occurrence.  The production host uses
+ * the journal itself as its progress source, so a crash between commit and UI
+ * presentation cannot advance a second mutable counter or mint twice.
+ */
+export async function readLatestDailyJourneyProductionOccurrence(
+  token: AccountGenerationToken = captureAccountGeneration(),
+): Promise<DailyJourneyGiftOccurrenceV1 | null> {
+  const ownerStableId = assertCurrentToken(token);
+  let recovered = false;
+  try {
+    return await accountAwait(token, () => withAccountTransitionLock(async () => withStorageLock(async () => {
+      assertCurrentToken(token);
+      recovered = (await accountAwait(token, () => recoverPrepared(ownerStableId, token))) !== null;
+      const durable = await accountAwait(token, () => readValidatedJournal(ownerStableId, token));
+      const production = durable.occurrences.filter((item) => item.source === 'daily_journey');
+      return production.length > 0 ? production[production.length - 1] : null;
+    })));
+  } finally {
+    if (recovered) emitDailyJourneyGiftsChangedBestEffort();
+  }
+}
+
 export async function readDailyJourneyGiftProjection(
   token: AccountGenerationToken = captureAccountGeneration(),
 ): Promise<{
@@ -715,21 +738,6 @@ export async function readDailyJourneyGiftProjection(
         const claimed = await accountAwait(token, () => isClaimed(occurrence, token));
         if (!claimed) pending.push(Object.freeze({ ...occurrence, claimState: 'pending' }));
       }
-      const displayedRevisions = durable.headRevision > 0
-        ? [...new Set([...durable.state.displayedRevisions, durable.headRevision])]
-          .sort((a, b) => a - b)
-          .slice(-MAX_DISPLAYED_REVISIONS)
-        : durable.state.displayedRevisions;
-      const nextState: DailyJourneyGiftProjectionStateV1 = {
-        ...durable.state,
-        displayedRevisions,
-      };
-      if (JSON.stringify(nextState) !== JSON.stringify(durable.state)) {
-        await accountAwait(token, () => AsyncStorage.setItem(
-          projectionKey(ownerStableId),
-          JSON.stringify(nextState),
-        ));
-      }
       return {
         pending: Object.freeze(pending),
         pendingCount: pending.length,
@@ -743,6 +751,37 @@ export async function readDailyJourneyGiftProjection(
   } finally {
     if (recovered) emitDailyJourneyGiftsChangedBestEffort();
   }
+}
+
+/** Records a revision only after the inventory's React tree has committed it. */
+export async function recordDailyJourneyGiftSnapshotDisplayed(
+  snapshotRevision: number,
+  token: AccountGenerationToken = captureAccountGeneration(),
+): Promise<boolean> {
+  if (!isCapturedAccountGenerationToken(token) || !isCurrentAccountGeneration(token) || !token.stableId) return false;
+  const ownerStableId = token.stableId;
+  return accountAwait(token, () => withAccountTransitionLock(async () => withStorageLock(async () => {
+    assertCurrentToken(token);
+    await accountAwait(token, () => recoverPrepared(ownerStableId, token));
+    const durable = await accountAwait(token, () => readValidatedJournal(ownerStableId, token));
+    if (!Number.isSafeInteger(snapshotRevision)
+      || snapshotRevision < 1
+      || snapshotRevision > durable.headRevision
+      || snapshotRevision <= durable.state.seenRevision) return false;
+    if (durable.state.displayedRevisions.includes(snapshotRevision)) return true;
+    const nextState: DailyJourneyGiftProjectionStateV1 = {
+      ...durable.state,
+      displayedRevisions: [...durable.state.displayedRevisions, snapshotRevision]
+        .sort((a, b) => a - b)
+        .slice(-MAX_DISPLAYED_REVISIONS),
+    };
+    await accountAwait(token, () => AsyncStorage.setItem(
+      projectionKey(ownerStableId),
+      JSON.stringify(nextState),
+    ));
+    const verified = await accountAwait(token, () => readProjectionState(ownerStableId, token));
+    return verified.displayedRevisions.includes(snapshotRevision);
+  })));
 }
 
 export async function markDailyJourneyGiftSnapshotSeen(

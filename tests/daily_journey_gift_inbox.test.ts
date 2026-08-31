@@ -7,6 +7,7 @@ import {
 } from '../app/account_generation';
 import {
   commitDailyJourneyGift,
+  recordDailyJourneyGiftSnapshotDisplayed,
   markDailyJourneyGiftSnapshotSeen,
   readDailyJourneyGiftClaimState,
   readDailyJourneyGiftProjection,
@@ -213,7 +214,9 @@ it('advances seen only to a displayed revision and leaves a concurrent gift unre
   await commitDailyJourneyGift(gift('daily-dev-seen-000000001'), token);
   const displayed = await readDailyJourneyGiftProjection(token);
 
+  expect(await markDailyJourneyGiftSnapshotSeen(displayed.latestRevision, token)).toBe(false);
   expect(await markDailyJourneyGiftSnapshotSeen(displayed.latestRevision + 1, token)).toBe(false);
+  expect(await recordDailyJourneyGiftSnapshotDisplayed(displayed.latestRevision, token)).toBe(true);
   await commitDailyJourneyGift(gift('daily-dev-seen-000000002'), token);
   expect(await markDailyJourneyGiftSnapshotSeen(displayed.latestRevision, token)).toBe(true);
 
@@ -225,6 +228,7 @@ it('does not clear unread state when a seen write uses a stale owner token', asy
   const firstToken = beginAccountGeneration('owner-a');
   await commitDailyJourneyGift(gift('daily-dev-stale-seen-001'), firstToken);
   const displayed = await readDailyJourneyGiftProjection(firstToken);
+  expect(await recordDailyJourneyGiftSnapshotDisplayed(displayed.latestRevision, firstToken)).toBe(true);
   beginAccountGeneration('owner-b');
 
   expect(await markDailyJourneyGiftSnapshotSeen(displayed.latestRevision, firstToken)).toBe(false);
@@ -240,6 +244,7 @@ it('does not clear unread state when the durable seen write fails', async () => 
   const token = beginAccountGeneration('owner-a');
   await commitDailyJourneyGift(gift('daily-dev-failed-seen-01'), token);
   const displayed = await readDailyJourneyGiftProjection(token);
+  expect(await recordDailyJourneyGiftSnapshotDisplayed(displayed.latestRevision, token)).toBe(true);
   (AsyncStorage.setItem as jest.Mock).mockRejectedValueOnce(new Error('simulated_seen_write_failure'));
 
   await expect(markDailyJourneyGiftSnapshotSeen(displayed.latestRevision, token))

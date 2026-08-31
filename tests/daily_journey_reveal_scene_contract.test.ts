@@ -29,11 +29,28 @@ describe('DailyJourneyRevealScene contract', () => {
     expect(src).not.toMatch(/daily-journey-later/);
   });
 
+  test('убирает счётчик из 50 и гасит имя награды только под конец полёта подарка', () => {
+    expect(src).not.toContain('dailyJourneyDayProgress');
+    expect(src).toContain('dailyJourneyRewardDisplayLabel(currentReward, lang)');
+    expect(src).toContain('testID="daily-journey-reward-label"');
+    expect(src).toContain('const rewardLabelOp = useRef(new Animated.Value(0)).current');
+    const revealSource = src.slice(src.indexOf('const reveal = Animated.parallel'), src.indexOf('// Свет живёт конечно'));
+    const flightSource = src.slice(src.indexOf('const flight = Animated.parallel'), src.indexOf('const settle = Animated.timing'));
+    expect(revealSource).toMatch(/Animated\.timing\(rewardLabelOp, \{ toValue: 1, duration: 260/);
+    expect(revealSource).toContain('Animated.delay(1_140)');
+    expect(revealSource).not.toMatch(/Animated\.timing\(rewardLabelOp, \{ toValue: 0/);
+    expect(src).toMatch(/applyRevealEndState[\s\S]{0,900}rewardLabelOp\.setValue\(1\)/);
+    expect(flightSource).toMatch(/Animated\.timing\(rewardLabelOp, \{ toValue: 0, duration: 180, delay: 430/);
+    expect(src).toMatch(/rewardLabelWrap:\s*\{\s*position:\s*'absolute'/);
+  });
+
   test('единственный контрол: «Пропустить» с ролью и меткой', () => {
     expect(src).toMatch(/daily-journey-skip/);
     expect(src).toMatch(/Пропустить/);
     expect(src).toMatch(/accessibilityRole="button"/);
-    expect(src).toMatch(/accessibilityLabel="Пропустить анимацию"/);
+    expect(src).toMatch(/accessibilityLabel=\{skipCopy\.accessibility\}/);
+    expect(src).toContain('dailyJourneyTileAccessibilityLabel(');
+    expect(src).toContain('AccessibilityInfo.announceForAccessibility(');
   });
 
   test('lifecycle ratchet: без бесконечных циклов, свет конечной длительности', () => {
@@ -54,7 +71,7 @@ describe('DailyJourneyRevealScene contract', () => {
   test('спека п.5: арт занимает 78% плитки, сетка главы из модели', () => {
     expect(src).toMatch(/width:\s*'78%'/);
     expect(src).toMatch(/dailyJourneyChapterForDay/);
-    expect(src).toMatch(/from '\.\.\/dev\/dailyJourneyRewardPreviewModel'/);
+    expect(src).toMatch(/from '\.\.\/\.\.\/app\/daily_journey_rewards'/);
   });
 
   test('спека п.5.2: единственный звук — существующее интро, со стопом', () => {
@@ -95,13 +112,33 @@ describe('DailyJourneyRevealScene contract', () => {
     expect(src).toMatch(/onDelivered suppressed/);
   });
 
+  test('skip diagnostic callback tracks the current reduced-motion preference', () => {
+    const skipCallback = src.match(/const skipToDelivery = useCallback\([\s\S]*?\n\s*\}, \[[^\]]*\]\);/)?.[0] ?? '';
+    expect(skipCallback).toContain('reduceMotion=${reduceMotion}');
+    expect(skipCallback).toMatch(/\}, \[reduceMotion\]\);/);
+  });
+
   test('точный art map использует билет спина и все существующие rune/energy варианты', () => {
     expect(src).toContain("assets/images/spin/spin_ticket.webp");
     expect(src).toContain('energy_plus2.webp');
     expect(src).toContain('energy_plus3.webp');
+    expect(src).toContain('stars_250.webp');
     expect(src).toContain('stars_500.webp');
     expect(src).toContain('stars_1000.webp');
     expect(src).toContain('reward.amount === 3');
+    expect(src).toContain('pearls_150:');
+    expect(src).toContain('dailyJourneyRuneArtRewardId(reward.amount)');
+  });
+
+  test('uses the durable cycle for absolute chapter numbering across 50-day loops', () => {
+    expect(src).toContain('cycle?: number');
+    expect(src).toContain('(normalizedCycle - 1) * 5 + dailyJourneyChapterNumber(normalizedDay)');
+  });
+
+  test('switching Reduce Motion on during intro accelerates the active run to reduced delivery', () => {
+    expect(src).toContain('reduceMotionRef.current = reduceMotion');
+    expect(src).toContain('if (visible && reduceMotion && phaseRef.current === \'intro\')');
+    expect(src).toContain('lifecycleRef.current.startFlight(lifecycleTokenRef.current)');
   });
 
   test('финальный выход раскрытия — сильный ease-out без Easing.in', () => {

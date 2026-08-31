@@ -6,6 +6,7 @@ import {
   dailyJourneyChapterForDay,
   dailyJourneyRewardPayloadForDay,
 } from '../components/dev/dailyJourneyRewardPreviewModel';
+import { DAILY_JOURNEY_REWARDS as PRODUCTION_REWARDS } from '../app/daily_journey_rewards';
 
 const ROOT = path.resolve(__dirname, '..');
 const read = (relativePath: string): string => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
@@ -43,6 +44,10 @@ describe('Dev Hub daily journey preview', () => {
       .every((reward: { amount: number }) => reward.amount >= 100)).toBe(true);
     expect(DAILY_JOURNEY_REWARDS.some((reward) => /aura|avatar/.test(reward.kind))).toBe(false);
     expect(dailyJourneyRewardPayloadForDay(1)).toEqual({ kind: 'pearls', amount: 10 });
+    expect(PRODUCTION_REWARDS[35]).toEqual({ day: 36, kind: 'pearls', amount: 150 });
+    expect(PRODUCTION_REWARDS[40]).toEqual({ day: 41, kind: 'pearls', amount: 150 });
+    expect(read('components/dev/dailyJourneyRewardPreviewModel.ts'))
+      .toContain("export * from '../../app/daily_journey_rewards'");
   });
 
   // зачем: по спеке 2026-08-30 модалка — только Modal-хост сцены
@@ -89,7 +94,7 @@ describe('Dev Hub daily journey preview', () => {
     // reduced-motion delivery. The wrapper only adapts durable delivery data.
     expect(scene).toContain("tileClip: { position: 'relative', aspectRatio: 1");
     expect(scene).toContain("tileArt: { width: '78%', height: '78%' }");
-    expect(scene.match(/<Text[^>]*>Пропустить<\/Text>/g)).toHaveLength(1);
+    expect(scene.match(/\{skipCopy\.visible\}<\/Text>/g)).toHaveLength(1);
     expect(scene).toContain('useNativeDriver: true');
     expect(scene).toContain('startReducedMotion');
     expect(scene).not.toMatch(/rewardCopy|detailCard|Применить|Позже/);

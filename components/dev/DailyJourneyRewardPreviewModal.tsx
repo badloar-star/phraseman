@@ -8,7 +8,7 @@ import DailyJourneyRevealScene, {
   type DailyJourneyRevealTarget,
 } from '../daily_journey/DailyJourneyRevealScene';
 import { measureDailyJourneyRevealTarget } from '../daily_journey/dailyJourneyRevealTargetBridge';
-import { normalizeDailyJourneyDay, type DailyJourneyRewardPayload } from './dailyJourneyRewardPreviewModel';
+import { normalizeDailyJourneyDay, type DailyJourneyRewardPayload } from '../../app/daily_journey_rewards';
 
 // зачем: владелец заменил старую dev-модалку с кнопками решения на «супер
 // премиальную» сцену DailyJourneyRevealScene (спека
@@ -34,6 +34,7 @@ type Props = Readonly<{
   /** Measured Statistics-card rect; a missing/invalid rect uses scene fallback. */
   targetRect?: DailyJourneyRewardDeliveryTargetRect | null;
   day: number;
+  cycle?: number;
   run: number;
   /** Landing acknowledgement for a real committed occurrence. */
   onLanded?: (occurrenceId: string) => void;
@@ -60,6 +61,7 @@ export default function DailyJourneyRewardPreviewModal({
   reward,
   targetRect,
   day,
+  cycle,
   run,
   onLanded,
   onDeliveryComplete,
@@ -73,6 +75,7 @@ export default function DailyJourneyRewardPreviewModal({
   const landedOccurrenceRef = useRef<string | null>(null);
   const completedIdentityRef = useRef<string | null>(null);
   const deliveryDay = occurrence?.day ?? day;
+  const deliveryCycle = occurrence?.cycle ?? cycle ?? 1;
   const identity = occurrence ? `${run}:${occurrence.operationId}` : `preview:${run}:${deliveryDay}`;
   const callbacksRef = useRef({ occurrence, onLanded, onDeliveryComplete, onDelivered, deliveryDay });
   callbacksRef.current = { occurrence, onLanded, onDeliveryComplete, onDelivered, deliveryDay };
@@ -143,6 +146,7 @@ export default function DailyJourneyRewardPreviewModal({
           ref={sceneRef}
           visible={sceneVisible}
           day={deliveryDay}
+          cycle={deliveryCycle}
           run={run}
           deliveryId={identity}
           reward={occurrence?.reward ?? reward}

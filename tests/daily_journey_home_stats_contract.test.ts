@@ -6,6 +6,7 @@ import {
   createDailyJourneyHomeGrantController,
   createDailyJourneyHomeLandingGate,
   createDailyJourneyHomeProjectionController,
+  offerDailyJourneyProductionDelivery,
   type DailyJourneyHomeDelivery,
   type DailyJourneyHomeTargetRect,
 } from '../app/daily_journey_home_orchestration';
@@ -60,8 +61,9 @@ type StatsUnreadController = Readonly<{
 type StatsUnreadControllerFactory = <TokenValue>(dependencies: Readonly<{
   captureToken: () => TokenValue;
   isTokenCurrent: (token: TokenValue) => boolean;
-  readProjection: (token: TokenValue) => Promise<Readonly<{ unreadCount: number }>>;
+  readProjection: (token: TokenValue) => Promise<Readonly<{ unreadCount: number; pendingCount?: number }>>;
   displayUnreadCount: (count: number) => void;
+  displayPendingCount?: (count: number) => void;
   startHop: () => void;
   stopHop: () => void;
   shouldReduceMotion: () => boolean;
@@ -93,6 +95,97 @@ function occurrence(input: {
 }
 
 describe('Daily Journey Home orchestration', () => {
+  test('app scope owns production eligibility and durable presentation independently of the active tab', () => {
+    const home = read('app/(tabs)/home.tsx');
+    const root = read('app/_layout.tsx');
+    const host = read('components/daily_journey/DailyJourneyProductionModalHost.tsx');
+    expect(root).toContain('<DailyJourneyProductionModalHost />');
+    expect(root.indexOf('<OverlayArbiterProvider>')).toBeLessThan(root.indexOf('<DailyJourneyProductionModalHost />'));
+    expect(host).toContain("const [appActive, setAppActive] = useState(AppState.currentState === 'active')");
+    expect(host).toContain("useOverlayVisible('dailyJourney', appActive && delivery != null)");
+    expect(host).toContain('productionHost.run()');
+    expect(host).toContain('productionHost.markPresented(');
+    expect(host).toContain("AppState.addEventListener('change'");
+    expect(host).toContain("if (AppState.currentState !== 'active') return;");
+    expect(host).toContain('millisecondsUntilNextLocalDay()');
+    expect(host).toContain('subscribeAccountGeneration');
+    expect(home).not.toContain('createDefaultDailyJourneyProductionHostController');
+    expect(home).not.toContain('dailyJourneyProductionHost.run()');
+  });
+
+  test('production presentation survives measurement failure and offers the committed gift with fallback target', async () => {
+    const item = occurrence({
+      operationId: 'production-measure-failure', cycle: 1, day: 1,
+      reward: dailyJourneyRewardPayloadForDay(1),
+    });
+    const offer = jest.fn(() => 'shown' as const);
+    const reportError = jest.fn();
+    const releasePresentation = jest.fn();
+
+    await expect(offerDailyJourneyProductionDelivery({
+      occurrence: item,
+      token: { generation: 1, stableId: 'owner-a', phase: 'active' } as Token,
+      runtimeEpoch: 9,
+      measureTarget: async () => { throw new Error('measure exploded'); },
+      isTokenCurrent: () => true,
+      rememberToken: jest.fn(),
+      forgetToken: jest.fn(),
+      offer,
+      releasePresentation,
+      reportError,
+    })).resolves.toBe('shown');
+
+    expect(offer).toHaveBeenCalledWith(
+      Object.freeze({ occurrence: item, targetRect: null }),
+      expect.objectContaining({ stableId: 'owner-a' }),
+    );
+    expect(reportError).toHaveBeenCalledWith('measure', expect.any(Error));
+    expect(releasePresentation).not.toHaveBeenCalled();
+  });
+
+  test('production offer exceptions settle, report and release the presentation reservation', async () => {
+    const item = occurrence({
+      operationId: 'production-offer-failure', cycle: 1, day: 2,
+      reward: dailyJourneyRewardPayloadForDay(2),
+    });
+    const reportError = jest.fn();
+    const releasePresentation = jest.fn();
+    const forgetToken = jest.fn();
+
+    await expect(offerDailyJourneyProductionDelivery({
+      occurrence: item,
+      token: { generation: 1, stableId: 'owner-a', phase: 'active' } as Token,
+      runtimeEpoch: 10,
+      measureTarget: async () => null,
+      isTokenCurrent: () => true,
+      rememberToken: jest.fn(),
+      forgetToken,
+      offer: () => { throw new Error('offer exploded'); },
+      releasePresentation,
+      reportError,
+    })).resolves.toBe('failed');
+
+    expect(forgetToken).toHaveBeenCalledWith(item.operationId);
+    expect(releasePresentation).toHaveBeenCalledWith(item.operationId);
+    expect(reportError).toHaveBeenCalledWith('offer', expect.any(Error));
+  });
+
+  test('Home gift entry relies on TapScale haptics and does not vibrate twice', () => {
+    const home = read('app/(tabs)/home.tsx');
+    const start = home.indexOf('testID="home-gift-entry-button"');
+    const end = home.indexOf('</TapScale>', start);
+    expect(start).toBeGreaterThan(-1);
+    expect(home.slice(start, end)).not.toContain('hapticTap()');
+  });
+
+  test('Home keeps only target measurement and a one-shot deferred landing pulse', () => {
+    const home = read('app/(tabs)/home.tsx');
+    expect(home).toContain("onAppEvent('daily_journey_delivered'");
+    expect(home).toContain('dailyJourneyDeferredPulseRef');
+    expect(home).toContain('registerDailyJourneyRevealTargetMeasurer');
+    expect(home).not.toContain('millisecondsUntilNextLocalDay()');
+  });
+
   test('each press owns a fresh operation id, cycles 1..50 without a limit, and opens only after durable commit', async () => {
     let generation = 1;
     const order: string[] = [];
@@ -182,6 +275,65 @@ describe('Daily Journey Home orchestration', () => {
     expect(reportError).toHaveBeenCalledWith('commit', expect.any(Error));
     expect(measureTarget).not.toHaveBeenCalled();
     expect(enqueueModal).not.toHaveBeenCalled();
+  });
+
+  test('ambiguous Dev commit retry reuses its exact id/day until success, then a deliberate press advances', async () => {
+    const inputs: DailyJourneyGiftInput[] = [];
+    let uuid = 0;
+    let fail = true;
+    const controller = createDailyJourneyHomeGrantController<Token>({
+      createOperationId: () => `retry-0000-0000-0000-${String(++uuid).padStart(12, '0')}`,
+      captureToken: () => ({ generation: 1, stableId: 'owner-a', phase: 'active' }),
+      isTokenCurrent: () => true,
+      commit: async (input) => {
+        inputs.push(input);
+        if (fail) {
+          fail = false;
+          throw new Error('response lost');
+        }
+        return { status: 'committed' as const, occurrence: occurrence(input) };
+      },
+      measureTarget: async () => null,
+      enqueueModal: jest.fn(),
+      reportError: jest.fn(),
+    });
+
+    expect(await controller.press()).toBe('failed');
+    expect(await controller.press()).toBe('opened');
+    expect(await controller.press()).toBe('opened');
+
+    expect(inputs[0]).toMatchObject({ day: 1, cycle: 1 });
+    expect(inputs[1]).toEqual(inputs[0]);
+    expect(inputs[2]).toMatchObject({ day: 2, cycle: 1 });
+    expect(inputs[2]?.operationId).not.toBe(inputs[1]?.operationId);
+  });
+
+  test('account reset drops an ambiguous Dev retry instead of committing account A input under account B', async () => {
+    let token: Token = { generation: 1, stableId: 'owner-a', phase: 'active' };
+    const inputs: DailyJourneyGiftInput[] = [];
+    let uuid = 0;
+    const controller = createDailyJourneyHomeGrantController<Token>({
+      createOperationId: () => `account-retry-${++uuid}`,
+      captureToken: () => token,
+      isTokenCurrent: (candidate) => candidate.generation === token.generation && candidate.stableId === token.stableId,
+      commit: async (input) => {
+        inputs.push(input);
+        if (token.stableId === 'owner-a') throw new Error('ambiguous A commit');
+        return { status: 'committed', occurrence: occurrence(input) };
+      },
+      measureTarget: async () => null,
+      enqueueModal: jest.fn(),
+      reportError: jest.fn(),
+    });
+
+    await expect(controller.press()).resolves.toBe('failed');
+    token = { generation: 2, stableId: 'owner-b', phase: 'active' };
+    controller.resetForAccount();
+    await expect(controller.press()).resolves.toBe('opened');
+
+    expect(inputs).toHaveLength(2);
+    expect(inputs[1].operationId).not.toBe(inputs[0].operationId);
+    expect(inputs[1]).toMatchObject({ cycle: 1, day: 1 });
   });
 
   test('account switch after commit suppresses modal for the old account', async () => {
@@ -456,11 +608,18 @@ describe('Daily Journey Home orchestration', () => {
     await accountReload;
     expect(unread).toEqual([3, 0, 2]);
 
+    const openedReload = controller.reload();
+    controller.markInventoryOpened();
+    expect(unread).toEqual([3, 0, 2, 0]);
+    pendingReads[4].resolve(7);
+    await openedReload;
+    expect(unread).toEqual([3, 0, 2, 0]);
+
     const blurredReload = controller.reload();
     controller.deactivate();
-    pendingReads[4].resolve(7);
+    pendingReads[5].resolve(7);
     await blurredReload;
-    expect(unread).toEqual([3, 0, 2]);
+    expect(unread).toEqual([3, 0, 2, 0]);
     await expect(controller.reload()).resolves.toBeUndefined();
     controller.dispose();
   });
@@ -487,16 +646,20 @@ describe('Home source wiring for Daily Journey', () => {
   });
 
   test('passes the committed occurrence and measured rect to the modal and closes only on delivery complete', () => {
+    expect(home).toContain("useOverlayVisible('dailyJourneyDev', dailyJourneyDelivery != null)");
     expect(home).toContain('<DailyJourneyRewardPreviewModal');
+    expect(home).toContain('visible={dailyJourneyOverlayVisible}');
+    expect(home).not.toMatch(/<DailyJourneyRewardPreviewModal\s+visible\s+day=/);
     expect(home).toContain('occurrence={dailyJourneyDelivery.occurrence}');
     expect(home).toContain('targetRect={dailyJourneyDelivery.targetRect}');
     expect(home).toContain('onLanded={handleDailyJourneyLanded}');
     expect(home).toContain('onDeliveryComplete={completeDailyJourneyDelivery}');
   });
 
-  test('measures and transform-pulses the existing stats card with lifecycle cancellation', () => {
+  test('measures the stable Gift slot and transform-pulses the existing stats card', () => {
     expect(home).toContain('testID="home-stats-card"');
     expect(home).toContain('ref={homeStatsCardRef as React.Ref<View>}');
+    expect(home).toContain('ref={homeGiftEntryTargetRef as React.Ref<View>}');
     expect(home).toContain('collapsable={false}');
     expect(home).toContain('measureInWindow');
     expect(home).toContain('toValue: 1.035');
@@ -505,19 +668,35 @@ describe('Home source wiring for Daily Journey', () => {
     expect(home).toContain('measureDailyJourneyHomeTarget');
   });
 
-  test('keeps Spin centered and routes unread Gift from its independent right slot', () => {
+  test('keeps Spin centered and removes the empty action row after unread clears', () => {
     expect(home.indexOf('testID="home-spin-fab"')).toBeLessThan(home.indexOf('testID="home-gift-entry"'));
     expect(home).toMatch(/testID="home-spin-fab"[\s\S]{0,260}alignSelf: 'center'/);
     expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,220}position: 'absolute'[\s\S]{0,100}right: 0/);
     expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,1200}nav\.push\('\/level_gifts_inventory'\)/);
-    expect(home).toContain('{dailyJourneyUnreadCount > 0 ? (');
-    expect(home).toContain('testID="home-stats-bottom-row"');
-    expect(home).not.toContain('{(homeSpinBalance > 0 || dailyJourneyUnreadCount > 0) ? (');
+    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,350}ref=\{homeGiftEntryTargetRef as React\.Ref<View>\}[\s\S]{0,350}collapsable=\{false\}[\s\S]{0,350}\{dailyJourneyUnreadCount > 0 \? \(/);
+    expect(home).toMatch(/\{\(homeSpinBalance > 0 \|\| dailyJourneyUnreadCount > 0\) \? \(\s*<View testID="home-stats-bottom-row"[\s\S]{0,180}height: 44/);
+    expect(home).toMatch(/testID="home-gift-entry-target"[\s\S]{0,220}ref=\{homeGiftEntryTargetRef as React\.Ref<View>\}[\s\S]{0,220}pointerEvents="none"[\s\S]{0,300}position: 'absolute'/);
+    expect(home).toContain('dailyJourneyProjectionController.markInventoryOpened();');
+    expect(home.indexOf('dailyJourneyProjectionController.markInventoryOpened();')).toBeLessThan(home.indexOf("nav.push('/level_gifts_inventory')"));
+    expect(home).not.toContain('Сам ряд всегда зарезервирован');
+  });
+
+  test('mirrors the elongated Spin control and uses a generated Gift asset', () => {
+    expect(home).toContain('<SpinTicketArt size={24} accessibilityLabel="" />');
+    expect(home).toContain("require('../../assets/images/daily_journey/home_gift_button.webp')");
+    expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,2600}minWidth: 104[\s\S]{0,500}flexDirection: 'row'[\s\S]{0,500}gap: 9/);
+    expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,3000}<Image source=\{HOME_DAILY_JOURNEY_GIFT_ART\}[\s\S]{0,240}width: 24, height: 24/);
+    expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,3400}ru: 'Подарок'/);
+    expect(home.slice(home.indexOf('testID="home-gift-entry-button"'), home.indexOf('</TapScale>', home.indexOf('testID="home-gift-entry-button"'))))
+      .not.toContain('<Ionicons name="gift"');
+    const assetPath = path.join(ROOT, 'assets/images/daily_journey/home_gift_button.webp');
+    expect(fs.existsSync(assetPath)).toBe(true);
+    expect(fs.statSync(assetPath).size).toBeLessThan(100_000);
   });
 
   test('reloads on inbox events and account changes without marking seen on Home', () => {
     expect(home).toContain("onAppEvent('daily_journey_gifts_changed'");
-    expect(home).not.toContain("onAppEvent('daily_journey_delivered'");
+    expect(home).toContain("onAppEvent('daily_journey_delivered'");
     expect(home).toContain('subscribeAccountGeneration');
     expect(home).toContain('resetForAccount()');
     expect(home).toContain('dailyJourneyDeliveryController.setActive(homeRuntimeActive)');
@@ -630,6 +809,24 @@ describe('Statistics Daily Journey unread controller', () => {
     controller.dispose();
   });
 
+  test('keeps a seen but unclaimed Daily Journey gift in the Statistics pending total', async () => {
+    expect(typeof maybeCreateStatsUnreadController).toBe('function');
+    if (!maybeCreateStatsUnreadController) return;
+    const unread: number[] = [];
+    const pending: number[] = [];
+    const controller = maybeCreateStatsUnreadController<Token>({
+      captureToken: () => ({ generation: 1, stableId: 'owner-a', phase: 'active' }),
+      isTokenCurrent: () => true,
+      readProjection: async () => ({ unreadCount: 0, pendingCount: 1 }),
+      displayUnreadCount: (count) => unread.push(count),
+      displayPendingCount: (count) => pending.push(count),
+      startHop: jest.fn(), stopHop: jest.fn(), shouldReduceMotion: () => false, reportError: jest.fn(),
+    });
+    await controller.activate();
+    expect(unread).toEqual([0]);
+    expect(pending).toEqual([1]);
+  });
+
   test('suppresses and resets the hop for reduced motion and zero unread', async () => {
     expect(typeof maybeCreateStatsUnreadController).toBe('function');
     if (!maybeCreateStatsUnreadController) return;
@@ -664,6 +861,9 @@ describe('Statistics source wiring for Daily Journey', () => {
   test('keeps pending inventory badge intact and adds a separate unread affordance without marking seen', () => {
     expect(stats).toContain('const [pendingGiftCount, setPendingGiftCount]');
     expect(stats).toContain('const [dailyJourneyUnreadCount, setDailyJourneyUnreadCount]');
+    expect(stats).toContain('const [dailyJourneyPendingCount, setDailyJourneyPendingCount]');
+    expect(stats).toContain('const combinedPendingGiftCount = pendingGiftCount + dailyJourneyPendingCount');
+    expect(stats).toContain('displayPendingCount: setDailyJourneyPendingCount');
     expect(stats).toContain("onAppEvent('daily_journey_gifts_changed'");
     expect(stats).toContain('dailyJourneyUnreadHop');
     expect(stats).toContain('testID="stats-header-daily-journey-unread"');
@@ -691,10 +891,10 @@ describe('Statistics source wiring for Daily Journey', () => {
     expect(stats).not.toContain('Easing.in(');
     expect(stats).toContain('statsRuntimeActive');
     expect(stats).toMatch(/testID="stats-header-gifts"[\s\S]{0,2600}dailyJourneyUnreadCount/);
-    expect(stats).toMatch(/testID="stats-header-gifts"[\s\S]{0,5000}width: 44, height: 44/);
+    expect(stats).toMatch(/testID="stats-header-gifts"[\s\S]{0,200}hitSlop=\{8\}[\s\S]{0,5500}width: 48, height: 48/);
     expect(stats).toContain('Unseen Daily Journey gifts');
     expect(stats).toMatch(/testID="stats-header-gifts"[\s\S]{0,500}accessibilityRole="button"/);
-    expect(stats).toContain('pendingGiftCount > 0 && dailyJourneyUnreadCount > 0');
+    expect(stats).toContain('combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0');
     expect(stats).toMatch(/<Reanimated\.View style=\{dailyJourneyUnreadHopStyle\}>\s*<TouchableOpacity[\s\S]{0,2400}testID="stats-header-gifts"/);
     expect(stats).not.toMatch(/<Reanimated\.View style=\{dailyJourneyUnreadHopStyle\}>\s*<TouchableOpacity[\s\S]{0,500}testID="stats-header-spins"/);
   });

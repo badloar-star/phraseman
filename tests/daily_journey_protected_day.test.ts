@@ -21,6 +21,11 @@ jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/friend_gifts', () => ({
   consumeFriendChainShield: jest.fn(),
 }));
+// This unit owns streak/freeze durability, not the fire-and-forget achievement
+// pipeline spawned by hall_of_fame_utils after a successful active day.
+jest.mock('../app/achievements', () => ({
+  checkAchievements: jest.fn(async () => []),
+}));
 jest.mock('expo-crypto', () => ({
   CryptoDigestAlgorithm: { SHA256: 'SHA256' },
   digestStringAsync: jest.fn(async (_algorithm: string, value: string) =>

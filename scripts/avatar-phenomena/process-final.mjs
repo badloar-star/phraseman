@@ -7,7 +7,9 @@ import sharp from 'sharp';
 import {
   PHENOMENA_GENERATION_CATALOG,
   PHENOMENA_INKS,
+  PHENOMENA_WORKSPACE,
   finalPathFor,
+  promptPathFor,
   rawPathFor,
 } from './catalog.mjs';
 
@@ -132,12 +134,30 @@ async function runCli() {
     : PHENOMENA_GENERATION_CATALOG;
   if (selected.length === 0) throw new Error(`avatar_phenomena_unknown_id: ${selectedId}`);
   let count = 0;
+  const manifestPath = path.join(ROOT, PHENOMENA_WORKSPACE, 'approved-manifest.json');
   for (const item of selected) {
     for (const ink of PHENOMENA_INKS) {
-      await processFinalAsset({
-        input: path.join(ROOT, rawPathFor(item.id, ink)),
-        output: path.join(ROOT, finalPathFor(item.id, ink)),
+      const rawPath = path.join(ROOT, rawPathFor(item.id, ink));
+      const finalPath = path.join(ROOT, finalPathFor(item.id, ink));
+      const receipt = await processFinalAsset({
+        input: rawPath,
+        output: finalPath,
         matteHex: item.matteHex,
+      });
+      const checkpoint = JSON.parse(await readFile(path.join(ROOT, promptPathFor(item.id, ink)), 'utf8'));
+      await appendApprovedManifestEntry(manifestPath, {
+        id: item.id,
+        ink,
+        price: item.price,
+        artVersion: 'phenomena-v1',
+        status: 'approved',
+        prompt: checkpoint.prompt,
+        rawPath: rawPathFor(item.id, ink).replaceAll('\\', '/'),
+        rawSha256: await sha256(rawPath),
+        finalPath: finalPathFor(item.id, ink).replaceAll('\\', '/'),
+        finalSha256: receipt.sha256,
+        sourceBounds: receipt.sourceBounds,
+        approval: checkpoint.approval,
       });
       count += 1;
     }

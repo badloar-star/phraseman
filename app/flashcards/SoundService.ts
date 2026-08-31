@@ -366,7 +366,6 @@ export function __resetFcSoundServiceForTests(): void {
   cachedSfxOn = null;
   cachedAutoSpeakOn = null;
   ttsSpeakFn = null;
-  audioModeReady = null;
   pool.clear();
   cancelPendingFcTts();
 }

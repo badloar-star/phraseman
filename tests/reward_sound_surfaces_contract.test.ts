@@ -7,7 +7,7 @@ const read = (relativePath: string) => fs.readFileSync(path.join(root, relativeP
 describe('reward sound surfaces', () => {
   test('visual reward surfaces request their dedicated events', () => {
     expect(read('components/AchievementToast.tsx')).toContain("soundDirector.request('pm.reward.achievement'");
-    expect(read('components/CollectibleDropModal.tsx')).toContain("soundDirector.request('pm.reward.collectible'");
+    expect(read('components/CollectibleDropModal.tsx')).toContain("soundDirector.request('pm.reward.chest_open'");
     expect(read('components/BoonChestModal.tsx')).toContain("soundDirector.request('pm.reward.chest_open'");
     expect(read('app/_layout.tsx')).toContain("soundDirector.request('pm.reward.level_up'");
   });

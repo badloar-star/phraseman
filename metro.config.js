@@ -133,6 +133,16 @@ const storeReleaseVipSurveyDevAuthStubPath = path.join(
   'store_release_stubs',
   'vip_survey_dev_auth_stub.ts',
 );
+const storeReleaseCoinExchangeOutboxStubPath = path.join(
+  __dirname,
+  'store_release_stubs',
+  'coin_exchange_wallet_outbox_stub.ts',
+);
+const storeReleaseSessionRuneCompositeStubPath = path.join(
+  __dirname,
+  'store_release_stubs',
+  'learning_session_rune_reward_composite_stub.ts',
+);
 const storeReleaseDevModules = new Set([
   './_admin_settings_testers',
   './_admin_intro_preview',
@@ -183,6 +193,26 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
     return {
       type: 'sourceFile',
       filePath: storeReleaseVipSurveyDevAuthStubPath,
+    };
+  }
+
+  if (
+    process.env.EXPO_PUBLIC_STORE_RELEASE === '1' &&
+    moduleName === './coin_exchange_wallet_outbox'
+  ) {
+    return {
+      type: 'sourceFile',
+      filePath: storeReleaseCoinExchangeOutboxStubPath,
+    };
+  }
+
+  if (
+    process.env.EXPO_PUBLIC_STORE_RELEASE === '1' &&
+    moduleName === '../modules/learning-v2/progress/learning_session_rune_reward_composite_v1'
+  ) {
+    return {
+      type: 'sourceFile',
+      filePath: storeReleaseSessionRuneCompositeStubPath,
     };
   }
 

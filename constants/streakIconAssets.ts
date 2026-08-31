@@ -370,6 +370,9 @@ export function getStreakFireIconVariant(
   };
 }
 
+/** Compatibility name used by the home hero while the feather asset rollout remains deferred. */
+export const getStreakFeatherIconVariant = getStreakFireIconVariant;
+
 export function getStreakFreezeIconVariant(
   themeMode: ThemeMode,
 ): StreakIconVariant {

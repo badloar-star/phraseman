@@ -40,6 +40,7 @@ import { DebugLogger } from './debug-logger';
 // Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.
 export type AnalyticsEvent =
   | GovernedProductAnalyticsEventName
+  | 'ai_dialog_reply_quality'
   // Consent-gated product navigation/session analytics (schema v1).
   | 'product_session_start'
   | 'product_session_resume'

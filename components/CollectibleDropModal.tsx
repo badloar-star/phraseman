@@ -69,7 +69,7 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
   useEffect(() => {
     if (!outcome || isHybrid) return;
     void hapticSuccess();
-    soundDirector.request('pm.reward.collectible', {
+    soundDirector.request('pm.reward.chest_open', {
       scope: 'collectible-drop',
       dedupeKey: `${outcome.setId}:${outcome.cardId}`,
     });

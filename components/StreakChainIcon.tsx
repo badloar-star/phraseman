@@ -9,6 +9,7 @@ interface StreakChainIconProps {
   streakDays: number;
   frozen?: boolean;
   inactive?: boolean;
+  breathing?: boolean;
   size: number;
   style?: StyleProp<ImageStyle>;
 }

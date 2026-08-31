@@ -1844,9 +1844,23 @@ async function runSignInWithProvider(
   let pendingDeleteBeforeCredential: AccountDeletePendingAuthLock | null;
   try {
     pendingDeleteBeforeCredential = await readPendingDeleteTransition();
-  } catch {
-    captureAuthSignInFailure(provider, 'guard', 'account_delete_guard_unavailable');
-    return { result: 'error', error: 'account_delete_guard_unavailable' };
+  } catch (guardError) {
+    // зачем (инцидент 2026-08-31, iOS 1.6.15): нечитаемый замок ЗАПИРАЛ вход
+    // насовсем. Но «не смогли прочитать» ≠ «этот аккаунт удаляется»: класс
+    // noLockSeen означает, что следов удаления мы НЕ видели (нет модуля,
+    // сорвалось чтение Keychain) — запирать человека на этом нельзя, сервер
+    // всё равно авторитетно классифицирует identity на стадии stable-link
+    // (identity_retired / permanent denial). Повреждённый ВИДИМЫЙ замок
+    // по-прежнему fail-closed.
+    captureAuthSignInFailure(
+      provider,
+      'guard',
+      `account_delete_guard_unavailable:${guardError instanceof Error ? guardError.message : 'unknown'}`,
+    );
+    if (!isAccountDeleteGuardNoLockSeenError(guardError)) {
+      return { result: 'error', error: 'account_delete_guard_unavailable' };
+    }
+    pendingDeleteBeforeCredential = null;
   }
   // зачем: ИНЦИДЕНТ 2026-08-25 — замок удаления имеет право действовать только
   // против СВОЕЙ identity. Чужая (несовпадающая по uid) провайдер-сессия не
@@ -2016,9 +2030,17 @@ async function runSignInWithProvider(
   let pendingDelete: AccountDeletePendingAuthLock | null;
   try {
     pendingDelete = await readAccountDeletePendingAuth(firebaseProviderUid);
-  } catch {
-    captureAuthSignInFailure(provider, 'guard', 'account_delete_guard_unavailable');
-    return { result: 'error', error: 'account_delete_guard_unavailable' };
+  } catch (guardError) {
+    // зачем: см. выше — noLockSeen не запирает вход, сервер классифицирует сам.
+    captureAuthSignInFailure(
+      provider,
+      'guard',
+      `account_delete_guard_unavailable:${guardError instanceof Error ? guardError.message : 'unknown'}`,
+    );
+    if (!isAccountDeleteGuardNoLockSeenError(guardError)) {
+      return { result: 'error', error: 'account_delete_guard_unavailable' };
+    }
+    pendingDelete = null;
   }
   // зачем: ИНЦИДЕНТ 2026-08-25 — деструктивный ход по замку разрешён только
   // когда вошедший провайдер И ЕСТЬ удаляемая identity (uid совпадает). Чужой

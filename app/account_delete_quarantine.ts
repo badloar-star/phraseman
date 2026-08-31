@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 export const ACCOUNT_DELETE_PENDING_AUTH_KEY = 'account_delete_pending_auth_v1';
 export const ACCOUNT_DELETE_PENDING_AUTH_SECURE_KEY = 'account_delete_pending_auth_v2';
@@ -809,8 +810,43 @@ export async function readAccountDeletePendingAuthRaw(): Promise<string | null> 
     throw new Error('account_delete_guard_anchor_required');
   }
   if (recordLock && anchor && !anchorMatchesLock(anchor, recordLock)) {
-    knownGuardState = 'malformed';
-    throw new Error('account_delete_guard_disagreement');
+    // зачем САМОЛЕЧЕНИЕ (инцидент 2026-08-31, iOS 1.6.15, UID #e5c3):
+    // расхождение якоря и записи ЗАПИРАЛО человека наглухо — вход падал
+    // account_delete_guard_unavailable, старт спотыкался, а повторное
+    // «Удалить» отвечало pending_guard_persist_failed, потому что запись
+    // нового замка требует совпадения с якорем. Выхода не было вообще.
+    //
+    // Расхождение возможно только у ОДНОЙ И ТОЙ ЖЕ операции: если
+    // operationId/providerUid/identity разные — это чужие следы, и такой
+    // случай по-прежнему честно валится. Совпали ключевые поля — значит
+    // прошлая попытка удаления оборвалась между записью якоря и записи
+    // (убитый процесс/сбой Keychain): доверяем БОЛЕЕ ПОЛНОЙ стороне
+    // (v3-якорь описывает завершённый переход) и продолжаем, а не запираем.
+    const sameOperation = anchor.operationId === recordLock.operationId
+      && anchor.providerUid === recordLock.providerUid
+      && anchor.deletedStableId === recordLock.stableId;
+    if (!sameOperation) {
+      knownGuardState = 'malformed';
+      throw new Error('account_delete_guard_disagreement');
+    }
+    const healed = anchor.version === 3 ? preparedLockFromAnchor(anchor) : recordLock;
+    const healedRaw = JSON.stringify(healed);
+    // Приводим обе стороны к одному состоянию, чтобы расхождение не всплыло
+    // при следующем чтении. Отказ записи не критичен: значение уже выбрано.
+    void persistAccountDeletePendingAuthLock(healed).catch((persistError: unknown) => {
+      DebugLogger.error(
+        'account_delete_quarantine:disagreement_heal_persist',
+        persistError instanceof Error ? persistError : new Error(String(persistError)),
+        'warning',
+      );
+    });
+    DebugLogger.error(
+      'account_delete_quarantine:disagreement_healed',
+      new Error(`anchorVersion=${anchor.version} lockPhase=${recordLock.phase} chosen=${anchor.version === 3 ? 'anchor' : 'record'}`),
+      'critical',
+    );
+    rememberGuardState(healedRaw);
+    return healedRaw;
   }
   if (recordLock && anchor) {
     const raw = JSON.stringify(recordLock);
@@ -937,7 +973,6 @@ export async function assertAccountDeleteStableIdentityAvailable(
     inspection.status === 'expired'
     && (inspection.lock.phase === 'prepared' || inspection.lock.phase === 'local_data_cleared')
   ) {
-    const { DebugLogger } = require('./debug-logger') as typeof import('./debug-logger');
     DebugLogger.error(
       'account_delete_quarantine:expired_released',
       new Error(`phase=${inspection.lock.phase} ageMs=${Date.now() - inspection.lock.createdAt}`),

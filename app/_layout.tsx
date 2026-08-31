@@ -2432,16 +2432,18 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // человек висел на заставке вечно; переустановка не лечит (Keychain).
         // Теперь идём тем же graceful-путём, что recoveryGate!=proceed выше:
         // приложение открывается и предлагает восстановление входа.
+        // зачем БЕЗ ШТОРКИ (владелец, 2026-08-31): вчерашний фикс вечного
+        // сплеша поднимал здесь окно «Всё в безопасности», и на iOS оно
+        // вылезало ПРИ КАЖДОМ запуске — гонка чтения Keychain повторяется на
+        // каждом холодном старте. Человек ничего не удалял и не терял: замка
+        // мы не видели, идентичность на месте. Приложение обязано просто
+        // открыться молча; след остаётся в журнале, а не в лице пользователя.
         DebugLogger.error(
           '_layout:startup_stable_id',
           identityError instanceof Error ? identityError : new Error(String(identityError)),
-          'critical',
+          'warning',
         );
         setReady(true);
-        if (!startupAuthRecoveryOfferedRef.current) {
-          startupAuthRecoveryOfferedRef.current = true;
-          setStartupAuthRecoveryVisible(true);
-        }
         return;
       }
       beginInitialAccountGeneration(startupStableId);

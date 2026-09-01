@@ -678,7 +678,13 @@ export const maxVoicePreflight = onCall({
   }
   const format = formatOf(data, ctx.access, ctx.trialVariant);
   const studyTarget = maxVoiceStudyTarget(data.studyTarget);
-  const tutorPreview = format === 'tutor'
+  // зачем (проверка на эмуляторе 2026-09-01): пробник тоже урок с учителем —
+  // formatOf возвращает для него 'trial', но ведёт его тот же MAX и по той же
+  // цели. Прежнее условие лишало новичков и превью, и звёзд каталога: раздел
+  // встречал их пустым списком с техническими id. Запрошенный клиентом формат
+  // (data.format) для витрины важнее серверного тарифа.
+  const wantsTutorPreview = format === 'tutor' || text(data.format, 20) === 'tutor';
+  const tutorPreview = wantsTutorPreview
     ? buildTutorPreview({
         // Tutor memory is not target-scoped yet. Never leak English homework
         // into another course; those courses start from a clean preview.
@@ -698,7 +704,13 @@ export const maxVoicePreflight = onCall({
   // Витрина каталога: заголовки всех уроков на языке интерфейса. Только по
   // явному запросу раздела — обычному звонку список не нужен (~4.5 КБ), и
   // раздувать им каждый ответ было бы платой ни за что.
-  const wantsCatalog = data.withCatalogTitles === true && format === 'tutor';
+  // зачем (проверка на эмуляторе 2026-09-01): условие `format === 'tutor'`
+  // отсекало КАЖДОГО, кто на пробнике: formatOf принудительно возвращает
+  // 'trial' для trial-доступа, и раздел показывал технические id вместо
+  // названий именно новичкам — тем, кому витрина нужнее всего. Заголовки
+  // уроков не зависят от типа доступа: это статичный список, а не персональные
+  // данные. Условие — только явный запрос каталога.
+  const wantsCatalog = data.withCatalogTitles === true;
   return {
     ok: true,
     allowed: true,

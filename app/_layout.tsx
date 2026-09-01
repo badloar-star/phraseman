@@ -48,6 +48,16 @@ import './runes_system';
 // после занятия. Ставится рядом с кошельком и до первого кадра: событие
 // runes_balance_updated летит уже на старте, пропустить его нельзя.
 import { startLeagueWeekRunesTracking } from './league_week_runes';
+// зачем (владелец, 2026-09-01: «заработал руны в любом месте — на главной они
+// со всех сторон слетаются в счётчик»): начисление случается там, где Главной
+// нет в дереве (урок, спин, модалка приза), и его событие к возврату домой
+// давно потеряно. Очередь копит дельты на уровне приложения — как и трекер лиги
+// выше, она обязана слушать раньше первого кадра, иначе награда со старта
+// (спин) не попадёт в анимацию.
+import {
+  installRewardFlightQueue,
+  resetRewardFlightQueue,
+} from './reward_flight_queue';
 import { LangProvider, useLang } from '../components/LangContext';
 import IntroFullAccessModal from '../components/IntroFullAccessModal';
 import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetContext';
@@ -1478,6 +1488,17 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     });
     return () => subscription.remove();
   }, []);
+
+  // Очередь наград для анимации сбора на Главной: слушает кошельки всё время
+  // жизни приложения, а не только пока показана Главная.
+  useEffect(() => installRewardFlightQueue(), []);
+
+  // Смена аккаунта — накопленное чужое НЕ должно прилететь в счётчик нового
+  // пользователя (класс бага «чужие пиксели после смены аккаунта»,
+  // см. project_account_generation_stale_cache_class).
+  useEffect(() => {
+    resetRewardFlightQueue();
+  }, [accountGeneration.generation]);
 
   useEffect(() => {
     if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;

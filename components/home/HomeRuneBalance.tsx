@@ -4,6 +4,15 @@ import { Image } from 'expo-image';
 
 const HOME_HEADER_RUNE_ASSET = require('../../assets/images/level-spin-rewards/stars_10.webp');
 
+/**
+ * Тот же ассет для тех, кто рисует руну РЯДОМ со счётчиком, а не сам счётчик —
+ * например летящие частицы сбора наград (HomeRewardCollectFlight).
+ *
+ * зачем экспорт, а не второй require: путь к валюте обязан жить в одном месте.
+ * Разойдись он — частица летела бы одной картинкой, а приземлялась в другую.
+ */
+export const HOME_RUNE_ICON_SOURCE = HOME_HEADER_RUNE_ASSET;
+
 type HomeRuneBalanceProps = Readonly<{
   balance: number;
   color: string;

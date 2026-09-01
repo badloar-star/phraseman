@@ -121,7 +121,12 @@ import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../persona
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
 import HomeYoutubeFeatureCard from '../../components/home/HomeYoutubeFeatureCard';
-import HomeRuneBalance from '../../components/home/HomeRuneBalance';
+import HomeRuneBalance, { HOME_RUNE_ICON_SOURCE } from '../../components/home/HomeRuneBalance';
+// зачем (владелец, 2026-09-01): заработанные в любом месте руны и жемчужины при
+// возврате на Главную слетаются со всех сторон в свои счётчики. Материал копит
+// app/reward_flight_queue.ts, оркестрацию держит хук — home.tsx и так огромен.
+import HomeRewardCollectFlight from '../../components/home/HomeRewardCollectFlight';
+import { useHomeRewardCollect } from '../../components/home/use_home_reward_collect';
 import { runeAmount } from '../../constants/runes';
 import { ruKnowledgeShardsAfterNumber, ukKnowledgeShardsAfterNumber } from '../../constants/shard_plurals';
 import MaxHomeOrb from '../../components/home/MaxHomeOrb';
@@ -1290,6 +1295,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const shardsAnim = useRef(new Animated.Value(1)).current;
     const shardsBonusAnim = useRef(new Animated.Value(0)).current;
     const [shardsBonusText, setShardsBonusText] = useState('');
+
+    // Сбор наград: частицы со всех сторон экрана в счётчики валют.
+    //
+    // Гейт homeRuntimeActive — тот же, что у остальных эффектов Главной: на
+    // премаунте таба анимация не запускается и первый кадр не делит поток.
+    const homeRewardCollectReduceMotion = useReduceMotion();
+    const rewardCollect = useHomeRewardCollect(
+        homeRuntimeActive,
+        homeRewardCollectReduceMotion,
+    );
 
     useEffect(() => {
         const profile = appSnapshot.profile;
@@ -3200,6 +3215,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const eliteCardY = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
         const eliteCardScale = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] });
         const homeHeaderShardIconSource = coinIconForBalance(shardsBalance, themeMode);
+        // Ассет руны для летящих частиц — ТОТ ЖЕ файл, что рисует HomeRuneBalance
+        // в шапке. Одна валюта обязана выглядеть одинаково: частица другой
+        // картинкой читалась бы как другая награда.
+        const homeHeaderRuneIconSource = HOME_RUNE_ICON_SOURCE;
         // зачем (аудит 2026-08-24): валюты переехали в строку заголовка «Быстрый
         // старт», где текст 13px. Прежние 34px (жемчужина) и 30px (руна по
         // умолчанию) там и спорили между собой, и подавляли заголовок втрое.
@@ -3959,7 +3978,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   hitSlop={{ top: 10, bottom: 10, left: 4, right: 4 }}
                   style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}
                 >
-                  <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
+                  {/* Две шкалы вместо одной: shardsAnim — подскок от «+N» за урок,
+                      shardsPulse — вспышка приземления собранных частиц. Слить их
+                      в одно значение нельзя: события независимы и затирали бы
+                      друг друга на полпути. Замер цели полёта берём с этой же
+                      обёртки — центр иконки, а не край кнопки. */}
+                  <Animated.View
+                    ref={rewardCollect.measureShardsTarget}
+                    collapsable={false}
+                    style={{ transform: [{ scale: shardsAnim }, { scale: rewardCollect.shardsPulse }], flexDirection: 'row', alignItems: 'center', gap: 3 }}
+                  >
                     {/* guard-ok: декоративная иконка — метка на кнопке-родителе */}
                     <Image source={homeHeaderShardIconSource} style={{ width: homeQuickCurrencyIconSize, height: homeQuickCurrencyIconSize }} contentFit="contain" contentPosition="center" accessible={false} accessibilityElementsHidden importantForAccessibility="no" />
                     <Text maxFontSizeMultiplier={1} style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }} numberOfLines={1}>{shardsBalance}</Text>
@@ -3997,6 +4025,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     nav.push('/runes_wallet');
                   }}
                 >
+                  {/* Обёртка нужна ровно для двух вещей: замер цели полёта
+                      (центр счётчика в координатах окна) и вспышка приземления.
+                      Сам HomeRuneBalance не трогаем — он общий для Главной,
+                      Арены, Лиги и карточки цели. */}
+                  <Animated.View
+                    ref={rewardCollect.measureRunesTarget}
+                    collapsable={false}
+                    style={{ transform: [{ scale: rewardCollect.runesPulse }] }}
+                  >
                   <HomeRuneBalance
                     balance={runesBalance}
                     color={isGoldTheme ? GOLD_RICH.paleGold : t.gold}
@@ -4008,6 +4045,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     standaloneA11y={false}
                     accessibilityLabel={homeRunesA11yLabel}
                   />
+                  </Animated.View>
                 </TouchableOpacity>
               </View>
             </View>
@@ -4513,6 +4551,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             </TouchableOpacity>
           </View>
         </View>
+      ) : null}
+
+      {/* Сбор наград: частицы валюты слетаются со всех сторон в свой счётчик.
+          Монтируется ТОЛЬКО на время волны — в покое на экране нет ни одного
+          лишнего узла и ни одной живой анимации (Performance Bible). */}
+      {rewardCollect.state.wave !== null && rewardCollect.state.target !== null ? (
+        <HomeRewardCollectFlight
+          amount={rewardCollect.state.amount}
+          target={rewardCollect.state.target}
+          source={rewardCollect.state.wave === 'runes'
+            ? homeHeaderRuneIconSource
+            : homeHeaderShardIconSource}
+          // Звук отрыва даёт только первая волна: вторая (жемчужины) идёт через
+          // 220 мс, и второй вдох прозвучал бы как эхо, а не как новая награда.
+          playStartSound={rewardCollect.state.wave === 'runes'}
+          onDone={rewardCollect.onWaveDone}
+        />
       ) : null}
 
       {/* Energy Tooltip — Modal чтобы не обрезался */}

@@ -1,5 +1,9 @@
 import * as crypto from 'crypto';
 import * as admin from 'firebase-admin';
+import {
+  accountStateFromSnapshots,
+  assertAccountUsable,
+} from './account_gate';
 import { defineSecret, defineString } from 'firebase-functions/params';
 import { onDocumentCreated } from 'firebase-functions/v2/firestore';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
@@ -509,9 +513,14 @@ export const authRequestRecoveryCode = onCall(REQUEST_RECOVERY_CALLABLE_OPTIONS,
           tx.get(rateRef),
         ]);
 
-      if (currentMarkerSnap.exists || targetTombstoneSnap.exists || currentDenialSnap.exists || targetStableDenialSnap.exists) {
-        throw new HttpsError('failed-precondition', 'account_delete_pending');
-      }
+      // зачем через ЕДИНУЮ ДВЕРЬ (этап 1): раньше здесь ВСЕГДА отдавался
+      // account_delete_pending, то есть при завершённом удалении сервер обещал
+      // возможность вернуть аккаунт, которой уже нет. Дверь отвечает честно.
+      assertAccountUsable(accountStateFromSnapshots({
+        markers: [currentMarkerSnap, targetTombstoneSnap],
+        denials: [currentDenialSnap, targetStableDenialSnap],
+        subject: 'auth',
+      }));
       if (!userSnap.exists) {
         throw new HttpsError('failed-precondition', 'recovery_no_email');
       }
@@ -537,10 +546,9 @@ export const authRequestRecoveryCode = onCall(REQUEST_RECOVERY_CALLABLE_OPTIONS,
         Promise.all(targetMarkerRefs.map((ref) => tx.get(ref))),
         Promise.all(targetDenialRefs.map((ref) => tx.get(ref))),
       ]);
-      if (targetMarkerSnaps.some((snapshot) => snapshot.exists)
-        || targetDenialSnaps.some((snapshot) => snapshot.exists)) {
-        throw new HttpsError('failed-precondition', 'account_delete_pending');
-      }
+      assertAccountUsable(accountStateFromSnapshots({
+        markers: targetMarkerSnaps, denials: targetDenialSnaps, subject: 'auth',
+      }));
       targetAnchorSnaps.forEach((snapshot, index) => {
         assertTargetAnchorIfPresent(snapshot, stableId, targetProviderUids[index], targetProvider);
       });
@@ -702,9 +710,11 @@ async function performAtomicRecoveryRelink(params: {
   ) {
     throwIdentityMismatch();
   }
-  if (markerSnap.exists || targetTombstoneSnap.exists || newUidDenialSnap.exists || targetStableDenialSnap.exists) {
-    throw new HttpsError('failed-precondition', 'account_delete_pending');
-  }
+  assertAccountUsable(accountStateFromSnapshots({
+    markers: [markerSnap, targetTombstoneSnap],
+    denials: [newUidDenialSnap, targetStableDenialSnap],
+    subject: 'auth',
+  }));
   if (!userSnap.exists) {
     throw new HttpsError('failed-precondition', 'recovery_target_missing');
   }
@@ -729,10 +739,9 @@ async function performAtomicRecoveryRelink(params: {
     Promise.all(targetMarkerRefs.map((ref) => tx.get(ref))),
     Promise.all(targetDenialRefs.map((ref) => tx.get(ref))),
   ]);
-  if (targetMarkerSnaps.some((snapshot) => snapshot.exists)
-    || targetDenialSnaps.some((snapshot) => snapshot.exists)) {
-    throw new HttpsError('failed-precondition', 'account_delete_pending');
-  }
+  assertAccountUsable(accountStateFromSnapshots({
+    markers: targetMarkerSnaps, denials: targetDenialSnaps, subject: 'auth',
+  }));
   targetAnchorSnaps.forEach((snapshot, index) => {
     assertTargetAnchorIfPresent(
       snapshot,
@@ -1736,9 +1745,11 @@ async function readAndValidateHandoffIdentity(
     tx.get(authDenialRef),
     tx.get(stableDenialRef),
   ]);
-  if (markerSnap.exists || tombstoneSnap.exists || authDenialSnap.exists || stableDenialSnap.exists) {
-    throw new HttpsError('failed-precondition', 'account_delete_pending');
-  }
+  assertAccountUsable(accountStateFromSnapshots({
+    markers: [markerSnap, tombstoneSnap],
+    denials: [authDenialSnap, stableDenialSnap],
+    subject: 'auth',
+  }));
   if (!linkSnap.exists || !userSnap.exists) {
     throw new HttpsError('permission-denied', 'recovery_handoff_identity_mismatch');
   }

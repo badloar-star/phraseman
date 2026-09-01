@@ -6,6 +6,10 @@ import { onDocumentCreated } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import {
+  accountStateFromSnapshots,
+  assertAccountUsable,
+} from './account_gate';
+import {
   ACCOUNT_DELETE_AUTH_MARKERS,
   ACCOUNT_DELETE_PERMANENT_DENIALS,
   ACCOUNT_DELETE_TOMBSTONES,
@@ -440,9 +444,13 @@ async function reserveStableAccountMerge(
           tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId)),
           tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(stableId))),
         ]);
-        if (tombstoneSnap.exists || denialSnap.exists) {
-          throw new HttpsError('failed-precondition', 'account_delete_pending');
-        }
+        // зачем через ЕДИНУЮ ДВЕРЬ (этап 1): раньше здесь ВСЕГДА отдавался
+        // account_delete_pending — то есть при уже ЗАВЕРШЁННОМ удалении сервер
+        // обещал, что аккаунт ещё можно вернуть. Дверь различает 14 дней и
+        // смерть, и клиент показывает верное: модал либо чистый профиль.
+        assertAccountUsable(accountStateFromSnapshots({
+          marker: tombstoneSnap, denial: denialSnap, subject: 'stable',
+        }));
         if (!userSnap.exists) throw new HttpsError('failed-precondition', 'stable_id_missing');
         return { stableId, data: (userSnap.data() ?? {}) as Record<string, unknown>, ref };
       })();
@@ -470,9 +478,9 @@ async function reserveStableAccountMerge(
       resolveCanonical(rawA),
       resolveCanonical(rawB),
     ]);
-    if (authMarkerSnap.exists || authDenialSnap.exists) {
-      throw new HttpsError('failed-precondition', 'account_delete_pending');
-    }
+    assertAccountUsable(accountStateFromSnapshots({
+      marker: authMarkerSnap, denial: authDenialSnap, subject: 'auth',
+    }));
     const xpA = asCleanInt((resolvedA.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
     const xpB = asCleanInt((resolvedB.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
     const linkedStableId = cleanStr(authLinkSnap.data()?.stable_id);
@@ -570,9 +578,13 @@ async function mergeStableAccountsTransactionally(
           tx.get(tombstoneRef),
           tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(stableId))),
         ]);
-        if (tombstoneSnap.exists || denialSnap.exists) {
-          throw new HttpsError('failed-precondition', 'account_delete_pending');
-        }
+        // зачем через ЕДИНУЮ ДВЕРЬ (этап 1): раньше здесь ВСЕГДА отдавался
+        // account_delete_pending — то есть при уже ЗАВЕРШЁННОМ удалении сервер
+        // обещал, что аккаунт ещё можно вернуть. Дверь различает 14 дней и
+        // смерть, и клиент показывает верное: модал либо чистый профиль.
+        assertAccountUsable(accountStateFromSnapshots({
+          marker: tombstoneSnap, denial: denialSnap, subject: 'stable',
+        }));
         if (!userSnap.exists) {
           throw new HttpsError('failed-precondition', 'stable_id_missing');
         }
@@ -609,9 +621,9 @@ async function mergeStableAccountsTransactionally(
       tx.get(authMarkerRef),
       tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(authUid))),
     ]);
-    if (authMarkerSnap.exists || authDenialSnap.exists) {
-      throw new HttpsError('failed-precondition', 'account_delete_pending');
-    }
+    assertAccountUsable(accountStateFromSnapshots({
+      marker: authMarkerSnap, denial: authDenialSnap, subject: 'auth',
+    }));
 
     const [resolvedA, resolvedB] = await Promise.all([
       resolveCanonical(rawA),

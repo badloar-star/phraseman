@@ -571,6 +571,14 @@ afterEach(() => {
   jest.restoreAllMocks();
 });
 
+/*
+ * зачем эти ожидания изменены (этап 1, 01.09.2026): восстановление по почте
+ * раньше отвечало account_delete_pending ВСЕГДА — то есть и по завершённому
+ * удалению обещало, что аккаунт можно вернуть. Метки в фикстурах ниже
+ * (`{ at }`, `{ deletedAt }`) не несут ни статуса, ни срока, значит по новому
+ * правилу это мёртвый аккаунт. Главная гарантия тестов не изменилась: код
+ * восстановления НЕ выдаётся и личность НЕ меняется.
+ */
 describe('hashRecoveryCode', () => {
   it('детерминированный sha256(salt + code), соль меняет хэш', () => {
     const { hashRecoveryCode } = require('./auth_recovery');
@@ -687,7 +695,7 @@ describe('authRequestRecoveryCode', () => {
     const before = storeSnapshot();
 
     await expect(callRequest({ stableId: STABLE }))
-      .rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'identity_retired' });
     const { sendTransactionalEmail } = require('./admin_email');
     expect(sendTransactionalEmail).not.toHaveBeenCalled();
     expect(writeLog).toEqual([]);
@@ -712,7 +720,7 @@ describe('authRequestRecoveryCode', () => {
     };
 
     await expect(callRequest({ stableId: STABLE }))
-      .rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'identity_retired' });
     const { sendTransactionalEmail } = require('./admin_email');
     expect(sendTransactionalEmail).not.toHaveBeenCalled();
     expect(docs.get(`auth_recovery_codes/${STABLE}`)).toBeUndefined();
@@ -1038,7 +1046,7 @@ describe('authConfirmRecoveryCode', () => {
     writeLog.length = 0;
 
     await expect(callConfirm({ stableId: STABLE, code }, 'replacement-google-uid'))
-      .rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'identity_retired' });
     expect(writeLog).toEqual([]);
     expect(identitySnapshot()).toEqual(beforeIdentity);
     expect(storeSnapshot()).toEqual(before);
@@ -1066,7 +1074,7 @@ describe('authConfirmRecoveryCode', () => {
     };
 
     await expect(callConfirm({ stableId: STABLE, code }, 'replacement-google-uid'))
-      .rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'identity_retired' });
     expect(docs.get(`auth_recovery_codes/${STABLE}`)).toEqual(codeBefore);
     expect(docs.get('auth_links/replacement-google-uid')).toBeUndefined();
     expect(collectionDocs('auth_recovery_events')).toHaveLength(0);
@@ -1472,7 +1480,7 @@ describe('authConfirmRecoveryCode', () => {
     const identityBefore = identitySnapshot();
     writeLog.length = 0;
     await expect(callConfirm({ stableId: STABLE, code: emailedCode() }, 'new-google-uid'))
-      .rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'identity_retired' });
     expect(docs.get('auth_links/new-google-uid')).toBeUndefined();
     expect(writeLog).toEqual([]);
     expect(identitySnapshot()).toEqual(identityBefore);
@@ -1586,7 +1594,8 @@ describe('recovery custom-token handoff', () => {
     ['deletion marker', async (eventId: string) => {
       docs.set('account_deletion_auth_markers/handoff-google-uid', { at: NOW });
       return callIssueHandoff(eventId);
-    }, 'account_delete_pending'],
+      // Метка без статуса и срока = завершённое удаление (см. примечание выше).
+    }, 'identity_retired'],
     ['disabled Admin Auth user', async (eventId: string) => {
       mockAdminGetUser.mockResolvedValueOnce({
         uid: 'handoff-google-uid', disabled: true, emailVerified: true,
@@ -1791,7 +1800,7 @@ describe('recovery custom-token handoff', () => {
     docs.set('account_deletion_auth_markers/handoff-google-uid', { at: NOW });
 
     await expect(callCompleteHandoff(eventId)).rejects.toMatchObject({
-      code: 'failed-precondition', message: 'account_delete_pending',
+      code: 'failed-precondition', message: 'identity_retired',
     });
   });
 });

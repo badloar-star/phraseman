@@ -1210,9 +1210,14 @@ describe('mergeStableAccounts', () => {
       return runTransaction(fn);
     };
 
+    // зачем изменено (этап 1, 01.09.2026): метка без graceDeadlineMs больше НЕ
+    // считается живым grace — обещать возврат нечем. Раньше слияние всегда
+    // отвечало account_delete_pending, даже по завершённому удалению, то есть
+    // врало человеку про возможность вернуть аккаунт. Главная гарантия теста
+    // не изменилась: слияние НЕ происходит.
     await expect(
       mergeStableAccounts(db as any, 'google-delete-race', 'stable-a', 'stable-b', NOW),
-    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'identity_retired' });
     expect(store.users['stable-b']?.identityHidden).not.toBe(true);
   });
 
@@ -1251,7 +1256,7 @@ describe('mergeStableAccounts', () => {
 
     await expect(
       mergeStableAccounts(db as any, 'google-tombstone-race', 'stable-raw', 'stable-b', NOW),
-    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'identity_retired' });
     expect(store.users['stable-b']?.identityHidden).not.toBe(true);
   });
 
@@ -1282,7 +1287,29 @@ describe('mergeStableAccounts', () => {
 
     await expect(
       mergeStableAccounts(db as any, 'google-denial-race', 'stable-raw', 'stable-b', NOW),
+    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'identity_retired' });
+    expect(store.users['stable-b']?.identityHidden).not.toBe(true);
+  });
+
+  it('внутри 14 дней отвечает pending — человеку положено предложение вернуть аккаунт', async () => {
+    // зачем этот тест (этап 1, 01.09.2026): прежде слияние отвечало
+    // account_delete_pending ВСЕГДА, поэтому «различение» было мнимым. Теперь
+    // проверяем настоящую пользу двери: живой grace отличается от смерти.
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': { firebaseAuthUid: 'google-grace', progress: { user_total_xp: '100' } },
+        'stable-b': { firebaseAuthUid: 'google-grace', progress: { user_total_xp: '50' } },
+      },
+    });
+    store.account_deletion_auth_markers['google-grace'] = {
+      status: 'pending',
+      graceDeadlineMs: NOW + 14 * 24 * 60 * 60 * 1000,
+    };
+
+    await expect(
+      mergeStableAccounts(db as any, 'google-grace', 'stable-a', 'stable-b', NOW),
     ).rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+    // Главная гарантия та же: слияние НЕ состоялось.
     expect(store.users['stable-b']?.identityHidden).not.toBe(true);
   });
 

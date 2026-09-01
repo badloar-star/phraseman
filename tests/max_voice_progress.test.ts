@@ -1,13 +1,13 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// «Было → Стало» для статистики раздела MAX (макет 04, выбор владельца).
+// Ряд столбиков для статистики раздела MAX (макет владельца со столбиками).
 //
-// Опасное место — честность сравнения. Показать «рост» там, где раньше просто
-// не было звонков, значит соврать человеку в лицо: с нуля растёт что угодно.
+// Опасное место — честность роста. Показать «↑» там, где предыдущий отрезок
+// пуст, значит соврать человеку: с нуля растёт что угодно.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import {
-  PROGRESS_HALF_MS,
-  computeVoiceProgress,
+  WEEKLY_BARS,
+  computeVoiceWeeklySeries,
   type VoiceCallTrendSample,
 } from '../app/max_voice_metrics';
 
@@ -22,61 +22,44 @@ const sample = (daysAgo: number, over: Partial<VoiceCallTrendSample> = {}): Voic
   ...over,
 });
 
-describe('computeVoiceProgress', () => {
-  it('делит окно пополам: старое в «было», свежее в «стало»', () => {
-    const out = computeVoiceProgress([sample(20, { speechSec: 120 }), sample(3, { speechSec: 300 })], NOW);
-    expect(out.spokeMinutes.before).toBe(2);
-    expect(out.spokeMinutes.after).toBe(5);
-    expect(out.comparable).toBe(true);
+describe('computeVoiceWeeklySeries', () => {
+  it('рисует ровно WEEKLY_BARS столбиков', () => {
+    const out = computeVoiceWeeklySeries([], NOW);
+    expect(out.bars).toHaveLength(WEEKLY_BARS);
+    expect(out.filledBars).toBe(0);
   });
 
-  it('не выдаёт рост за прогресс, если раньше звонков не было', () => {
-    // Первый месяц человека: сравнивать не с чем.
-    const out = computeVoiceProgress([sample(2), sample(1)], NOW);
-    expect(out.comparable).toBe(false);
-    expect(out.spokeMinutes.before).toBe(0);
+  it('замер этой же миллисекунды попадает в последний столбик', () => {
+    // Иначе только что законченный урок проваливался бы между делениями.
+    const out = computeVoiceWeeklySeries([sample(0, { speechSec: 180 })], NOW);
+    expect(out.bars[out.bars.length - 1]).toBe(3);
+    expect(out.filledBars).toBe(1);
   });
 
-  it('замер этой же миллисекунды попадает в «стало»', () => {
-    // Иначе только что законченный урок исчезал бы из статистики.
-    const out = computeVoiceProgress([sample(0)], NOW);
-    expect(out.spokeMinutes.after).toBe(1);
-  });
-
-  it('замеры старше окна не учитываются вовсе', () => {
-    const out = computeVoiceProgress([sample(40, { speechSec: 6000 })], NOW);
-    expect(out.spokeMinutes.before).toBe(0);
-    expect(out.spokeMinutes.after).toBe(0);
-  });
-
-  it('процент чистых фраз скрыт, пока хоть одна половина без выборки', () => {
-    // Три звонка есть только в свежей половине — пары нет, сравнивать нечестно.
-    const out = computeVoiceProgress([sample(3), sample(2), sample(1)], NOW);
-    expect(out.cleanPhrasePct).toBeNull();
-  });
-
-  it('процент показывается парой, когда выборка есть с обеих сторон', () => {
-    const out = computeVoiceProgress(
-      [
-        sample(20, { cleanPhrases: 2, totalPhrases: 10 }),
-        sample(19, { cleanPhrases: 2, totalPhrases: 10 }),
-        sample(18, { cleanPhrases: 2, totalPhrases: 10 }),
-        sample(3, { cleanPhrases: 9, totalPhrases: 10 }),
-        sample(2, { cleanPhrases: 9, totalPhrases: 10 }),
-        sample(1, { cleanPhrases: 9, totalPhrases: 10 }),
-      ],
+  it('считает рост последнего отрезка к предыдущему', () => {
+    // Шаг столбика — 3.5 дня: 5 дней назад это предыдущий отрезок.
+    const out = computeVoiceWeeklySeries(
+      [sample(5, { speechSec: 600 }), sample(1, { speechSec: 900 })],
       NOW,
     );
-    expect(out.cleanPhrasePct).toEqual({ before: 20, after: 90 });
+    expect(out.changePct).toBe(50);
   });
 
-  it('падение показывается честно, а не прячется', () => {
-    const out = computeVoiceProgress([sample(20, { speechSec: 600 }), sample(2, { speechSec: 60 })], NOW);
-    expect(out.spokeMinutes.before).toBe(10);
-    expect(out.spokeMinutes.after).toBe(1);
+  it('не делит на ноль: рост с пустого отрезка не показывается', () => {
+    const out = computeVoiceWeeklySeries([sample(1, { speechSec: 600 })], NOW);
+    expect(out.changePct).toBeNull();
   });
 
-  it('половина окна — ровно 14 дней', () => {
-    expect(PROGRESS_HALF_MS).toBe(14 * 24 * 60 * 60 * 1000);
+  it('падение показывается отрицательным числом', () => {
+    const out = computeVoiceWeeklySeries(
+      [sample(5, { speechSec: 600 }), sample(1, { speechSec: 300 })],
+      NOW,
+    );
+    expect(out.changePct).toBe(-50);
+  });
+
+  it('замеры старше окна в ряд не попадают', () => {
+    const out = computeVoiceWeeklySeries([sample(40, { speechSec: 6000 })], NOW);
+    expect(out.bars.every((b) => b === 0)).toBe(true);
   });
 });

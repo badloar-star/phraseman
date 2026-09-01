@@ -1,55 +1,61 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // MaxLessonsStatsSheet — прогресс речи для раздела «Уроки с МАКСом».
 //
-// зачем (владелец 2026-09-01): выбран макет 04 «Было → Стало». Абсолютная
-// цифра человеку ничего не говорит — «120 минут» это много или мало? Мотивирует
-// РАЗНИЦА с собой прежним. Поэтому каждая метрика показана парой: тихое число
-// «было» слева, крупное «стало» справа, между ними стрелка.
+// зачем (владелец 2026-09-01, показал три макета — «вот так делай»):
+//   1) столбики минут речи по отрезкам + рост «↑62%» к прошлому отрезку;
+//   2) три кольца — минуты, слова, проценты чистых фраз;
+//   3) плотный список: крупное число слева, что это — справа.
+// Порядок сверху вниз: динамика → текущее состояние → детали. Каждый блок
+// отвечает на свой вопрос, поэтому они не дублируют друг друга.
 //
-// Планка — раздел «Статистика» (эталон владельца): крупные числа весом 900,
-// скругление 18, разделение тоном, без единой обводки. Числа «стало»
-// докручиваются тем же StatCountUpText, что и там: рост читается движением,
-// а «было» стоит неподвижно — прошлое не растёт.
+// Планка — раздел «Статистика» (эталон владельца): числа весом 900,
+// скругление 18–22, разделение тоном, ни одной обводки. Столбики и кольца —
+// те же StatBars/StatScoreRing, что и в эталоне: одинаковая физика анимации
+// и скраб-пузырь достаются даром, а раздел ощущается частью приложения.
 //
 // Показываем ТОЛЬКО измеренное. Ни одной выдуманной метрики: время речи,
 // разнообразие слов и доля чистых фраз считаются из настоящих замеров
 // (app/max_speech_history.ts). Пока замеров нет — честно говорим об этом,
 // а не рисуем нули, которые читаются как «ты ничего не сделал».
 //
-// Честность сравнения: если в прошлой половине окна звонков не было
-// (comparable=false), пары НЕ показываем. Рост «с нуля» — это первый месяц,
-// а не достижение, и врать об этом нельзя.
+// Пустые отрезки в ряду НЕ прячем (решение владельца): ряд показывает, что
+// накопится — сегодняшний столбик есть, прошлых нет. Это честнее пустого
+// места и объясняет человеку, откуда возьмётся история.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import Reanimated, { FadeInDown } from 'react-native-reanimated';
 
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
-import { StatCountUpText } from '../stats/StatCountUpText';
+import { StatBars, type StatBar } from '../stats/StatBars';
+import { StatScoreRing } from '../stats/StatScoreRing';
 import { useTheme } from '../ThemeContext';
 import { triLang, type Lang } from '../../constants/i18n';
-import type { VoiceProgress, VoiceTrends } from '../../app/max_voice_metrics';
+import type { VoiceTrends, VoiceWeeklySeries } from '../../app/max_voice_metrics';
 
 interface Props {
   visible: boolean;
   onClose: () => void;
   trends: VoiceTrends | null;
-  /** Пары «было → стало». null — история ещё не поднята с диска. */
-  progress: VoiceProgress | null;
+  /** Ряд столбиков и рост к прошлому отрезку. null — история не поднята. */
+  series: VoiceWeeklySeries | null;
   done: number;
   total: number;
   level: string;
   lang: Lang;
 }
 
+/** Потолок шкалы слов для кольца: выше него разница уже не читается. */
+const VOCAB_RING_SCALE = 500;
+/** Потолок шкалы минут для кольца — примерно месяц активных занятий. */
+const MINUTES_RING_SCALE = 120;
+
 export default function MaxLessonsStatsSheet({
-  visible, onClose, trends, progress, done, total, level, lang,
+  visible, onClose, trends, series, done, total, level, lang,
 }: Props) {
   const { theme: t, f } = useTheme();
   const hasSpeech = trends !== null && trends.spokeMinutes > 0;
-  // Пары показываем, только если есть с чем сравнивать. Иначе — текущие цифры.
-  const showPairs = progress !== null && progress.comparable;
 
   const c = {
     close: triLang(lang, {
@@ -67,24 +73,22 @@ export default function MaxLessonsStatsSheet({
       es: 'nivel oral', 'pt-BR': 'nível de fala', vi: 'trình độ nói',
       id: 'level bicara', tr: 'konuşma seviyesi', pl: 'poziom mówienia',
     }),
-    // Заголовок пар: две недели назад против этих двух недель.
-    twoWeeks: triLang(lang, {
-      ru: 'Две недели назад → сейчас', uk: 'Два тижні тому → зараз',
-      en: 'Two weeks ago → now', es: 'Hace dos semanas → ahora',
-      'pt-BR': 'Duas semanas atrás → agora', vi: 'Hai tuần trước → bây giờ',
-      id: 'Dua minggu lalu → sekarang', tr: 'İki hafta önce → şimdi',
-      pl: 'Dwa tygodnie temu → teraz',
+    minutesSpoken: triLang(lang, {
+      ru: 'минут речи', uk: 'хвилин мовлення', en: 'minutes spoken',
+      es: 'minutos hablados', 'pt-BR': 'minutos falados', vi: 'phút đã nói',
+      id: 'menit bicara', tr: 'konuşma dakikası', pl: 'minut mowy',
     }),
-    lastMonth: triLang(lang, {
-      ru: 'За последний месяц', uk: 'За останній місяць', en: 'Over the last month',
-      es: 'En el último mes', 'pt-BR': 'No último mês', vi: 'Trong tháng qua',
-      id: 'Sebulan terakhir', tr: 'Son bir ayda', pl: 'W ostatnim miesiącu',
+    now: triLang(lang, {
+      ru: 'сейчас', uk: 'зараз', en: 'now', es: 'ahora', 'pt-BR': 'agora',
+      vi: 'bây giờ', id: 'sekarang', tr: 'şimdi', pl: 'teraz',
     }),
-    spoke: triLang(lang, {
-      ru: 'минут своей речи', uk: 'хвилин власного мовлення', en: 'minutes you spoke',
-      es: 'minutos hablados por ti', 'pt-BR': 'minutos falados por você',
-      vi: 'phút bạn đã nói', id: 'menit kamu bicara', tr: 'senin konuşma dakikan',
-      pl: 'minut twojej mowy',
+    min: triLang(lang, {
+      ru: 'мин', uk: 'хв', en: 'min', es: 'min', 'pt-BR': 'min',
+      vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min',
+    }),
+    words: triLang(lang, {
+      ru: 'слов', uk: 'слів', en: 'words', es: 'palabras', 'pt-BR': 'palavras',
+      vi: 'từ', id: 'kata', tr: 'kelime', pl: 'słów',
     }),
     vocab: triLang(lang, {
       ru: 'разных слов сказано', uk: 'різних слів сказано', en: 'different words used',
@@ -110,6 +114,23 @@ export default function MaxLessonsStatsSheet({
     }),
   };
 
+  // Столбики нормализуются к своему максимуму: важна форма ряда, а не
+  // абсолютная высота. Пустые отрезки остаются «пеньками» — видно, что было
+  // тихо, и видно, куда расти.
+  const bars = useMemo<StatBar[]>(() => {
+    if (!series) return [];
+    const peak = Math.max(1, ...series.bars);
+    const lastIndex = series.bars.length - 1;
+    return series.bars.map((minutes, i) => ({
+      key: `bar-${i}`,
+      ratio: minutes / peak,
+      active: minutes > 0,
+      highlight: i === lastIndex,
+      bottomLabel: i === lastIndex ? c.now : '',
+      scrubLabel: `${minutes} ${c.min}`,
+    }));
+  }, [series, c.now, c.min]);
+
   return (
     <HybridSheetShell
       visible={visible}
@@ -119,82 +140,111 @@ export default function MaxLessonsStatsSheet({
       glowColor={t.accent}
     >
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 18, paddingBottom: 26, gap: 14 }}
+        contentContainerStyle={{ paddingHorizontal: 18, paddingBottom: 26, gap: 12 }}
         showsVerticalScrollIndicator={false}
       >
-        {/* Два главных числа рядом: сколько уроков закрыто и на каком уровне
-            человек сейчас говорит. Уровень честный — по закрытым целям. */}
-        <View style={{ flexDirection: 'row', gap: 12 }}>
-          <View style={{ flex: 1, borderRadius: 18, backgroundColor: t.bgSurface, padding: 16 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.numMd + 2, fontWeight: '900' }} maxFontSizeMultiplier={1.8}>
-              {done}
-              <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '800' }}>{` / ${total}`}</Text>
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginTop: 4 }} maxFontSizeMultiplier={1.8}>
-              {c.lessons}
-            </Text>
-          </View>
-          <View style={{ flex: 1, borderRadius: 18, backgroundColor: t.bgSurface, padding: 16 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.numMd + 2, fontWeight: '900' }} maxFontSizeMultiplier={1.8}>
-              {level}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginTop: 4 }} maxFontSizeMultiplier={1.8}>
-              {c.levelNow}
-            </Text>
-          </View>
-        </View>
-
         {hasSpeech ? (
-          showPairs ? (
-            // Макет 04: каждая метрика — своя карточка с парой «было → стало».
-            <View style={{ gap: 12 }}>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', paddingHorizontal: 2 }} maxFontSizeMultiplier={1.8}>
-                {c.twoWeeks}
-              </Text>
-              <ProgressPairCard
-                before={progress.spokeMinutes.before}
-                after={progress.spokeMinutes.after}
-                label={c.spoke}
-                delayMs={80}
-              />
-              <ProgressPairCard
-                before={progress.vocabWords.before}
-                after={progress.vocabWords.after}
-                label={c.vocab}
-                delayMs={160}
-              />
-              {progress.cleanPhrasePct !== null ? (
-                <ProgressPairCard
-                  before={progress.cleanPhrasePct.before}
-                  after={progress.cleanPhrasePct.after}
-                  label={c.clean}
-                  suffix="%"
-                  delayMs={240}
+          <>
+            {/* ① Динамика: крупное число, рост к прошлому отрезку, ряд столбиков. */}
+            <Reanimated.View
+              entering={FadeInDown.duration(320)}
+              style={{ borderRadius: 22, backgroundColor: t.bgSurface, padding: 18, gap: 16 }}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  <Text
+                    style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}
+                    maxFontSizeMultiplier={1.5}
+                    numberOfLines={1}
+                  >
+                    {trends.spokeMinutes}
+                  </Text>
+                  <Text
+                    style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', marginTop: 2 }}
+                    maxFontSizeMultiplier={1.6}
+                  >
+                    {c.minutesSpoken}
+                  </Text>
+                </View>
+                {series?.changePct !== null && series !== null ? (
+                  <ChangeBadge pct={series.changePct as number} />
+                ) : null}
+              </View>
+
+              {bars.length > 0 ? (
+                <StatBars
+                  bars={bars}
+                  accent={t.accent}
+                  inactiveColor={t.bgSurface2}
+                  height={112}
+                  topLabelColor={t.textPrimary}
+                  topLabelMutedColor={t.textMuted}
+                  bottomLabelColor={t.textSecond}
+                  bottomLabelMutedColor={t.textMuted}
+                  delayMs={140}
+                  scrubEnabled
+                  scrubHighlightColor={t.accent}
+                  scrubBubbleBg={t.bgSurface2}
+                  scrubValueColor={t.textPrimary}
+                  scrubCaptionColor={t.textMuted}
                 />
               ) : null}
-            </View>
-          ) : (
-            // Сравнивать не с чем — показываем текущие цифры, без ложного роста.
-            <View style={{ borderRadius: 18, backgroundColor: t.bgSurface, padding: 16, gap: 14 }}>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }} maxFontSizeMultiplier={1.8}>
-                {c.lastMonth}
-              </Text>
-              <StatLine value={String(trends.spokeMinutes)} label={c.spoke} />
-              <StatLine value={String(trends.vocabWords)} label={c.vocab} />
+            </Reanimated.View>
+
+            {/* ② Текущее состояние тремя кольцами — читается одним взглядом. */}
+            <Reanimated.View
+              entering={FadeInDown.delay(90).duration(320)}
+              style={{ flexDirection: 'row', gap: 10 }}
+            >
+              <RingCard
+                progress={Math.min(100, (trends.spokeMinutes / MINUTES_RING_SCALE) * 100)}
+                value={trends.spokeMinutes}
+                caption={c.min}
+                accent={t.accent}
+                delayMs={200}
+              />
+              <RingCard
+                progress={Math.min(100, (trends.vocabWords / VOCAB_RING_SCALE) * 100)}
+                value={trends.vocabWords}
+                caption={c.words}
+                accent={t.accent}
+                delayMs={280}
+              />
               {trends.cleanPhrasePct !== null ? (
-                <StatLine value={`${trends.cleanPhrasePct}%`} label={c.clean} />
+                <RingCard
+                  progress={trends.cleanPhrasePct}
+                  value={trends.cleanPhrasePct}
+                  caption="%"
+                  accent={t.accent}
+                  delayMs={360}
+                />
               ) : null}
+            </Reanimated.View>
+
+            {/* ③ Детали списком: число ведёт, подпись поясняет тоном потише. */}
+            <View style={{ gap: 8 }}>
+              <StatRow value={String(trends.vocabWords)} label={c.vocab} delayMs={180} />
+              {trends.cleanPhrasePct !== null ? (
+                <StatRow value={`${trends.cleanPhrasePct}%`} label={c.clean} delayMs={230} />
+              ) : null}
+              <StatRow value={`${done} / ${total}`} label={c.lessons} delayMs={280} />
+              <StatRow value={level} label={c.levelNow} delayMs={330} />
             </View>
-          )
+          </>
         ) : (
           // Пустое состояние объясняет, что будет здесь, — а не показывает нули.
-          <View style={{ borderRadius: 18, backgroundColor: t.bgSurface, padding: 18 }}>
-            <Text
-              style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', lineHeight: f.body * 1.45 }}
-              maxFontSizeMultiplier={1.8}
-            >
-              {c.empty}
-            </Text>
+          <View style={{ gap: 12 }}>
+            <View style={{ borderRadius: 22, backgroundColor: t.bgSurface, padding: 18 }}>
+              <Text
+                style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', lineHeight: f.body * 1.45 }}
+                maxFontSizeMultiplier={1.8}
+              >
+                {c.empty}
+              </Text>
+            </View>
+            {/* Уроки и уровень известны и без единого звонка — показываем их. */}
+            <StatRow value={`${done} / ${total}`} label={c.lessons} delayMs={80} />
+            <StatRow value={level} label={c.levelNow} delayMs={130} />
           </View>
         )}
       </ScrollView>
@@ -203,90 +253,114 @@ export default function MaxLessonsStatsSheet({
 }
 
 /**
- * Карточка одной метрики: «было» тихо, стрелка, «стало» крупно.
+ * Значок роста «↑62%».
  *
- * Иерархия делает работу за подпись: прошлое приглушено и мельче, настоящее
- * ведёт размером и весом. Докручивается ТОЛЬКО «стало» — прошлое неподвижно,
- * поэтому движение читается как рост, а не как общая анимация появления.
+ * Спад показываем честно, но не красным: тревожный цвет за неделю без занятий
+ * демотивирует сильнее, чем помогает, — приглушаем тоном, а не пугаем.
  */
-function ProgressPairCard({
-  before, after, label, suffix = '', delayMs,
+function ChangeBadge({ pct }: { pct: number }) {
+  const { theme: t, f } = useTheme();
+  const grew = pct >= 0;
+  return (
+    <View
+      accessible
+      accessibilityLabel={`${grew ? '+' : ''}${pct}%`}
+      style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}
+    >
+      <Text
+        style={{ color: grew ? t.accent : t.textMuted, fontSize: f.body, fontWeight: '900' }}
+        maxFontSizeMultiplier={1.4}
+      >
+        {grew ? '↑' : '↓'}
+      </Text>
+      <Text
+        style={{ color: grew ? t.accent : t.textMuted, fontSize: f.bodyLg, fontWeight: '900' }}
+        maxFontSizeMultiplier={1.4}
+        numberOfLines={1}
+      >
+        {`${Math.abs(pct)}%`}
+      </Text>
+    </View>
+  );
+}
+
+/** Кольцо-метрика: доля заполнения показывает состояние без чтения цифры. */
+function RingCard({
+  progress, value, caption, accent, delayMs,
 }: {
-  before: number;
-  after: number;
-  label: string;
-  suffix?: string;
+  progress: number;
+  value: number;
+  caption: string;
+  accent: string;
   delayMs: number;
 }) {
   const { theme: t, f } = useTheme();
-  const grew = after > before;
-
   return (
-    <Reanimated.View
-      entering={FadeInDown.delay(delayMs).duration(320)}
-      // Пара озвучивается одной фразой: по отдельности «12» и «47» не связаны
-      // между собой, и вся мысль макета для незрячего человека пропадает.
+    <View
       accessible
-      accessibilityLabel={`${label}: ${before}${suffix} → ${after}${suffix}`}
-      style={{ borderRadius: 18, backgroundColor: t.bgSurface, padding: 16, gap: 10 }}
+      accessibilityLabel={`${value} ${caption}`}
+      style={{
+        flex: 1,
+        borderRadius: 20,
+        backgroundColor: t.bgSurface,
+        paddingVertical: 16,
+        alignItems: 'center',
+      }}
     >
-      <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 10 }}>
-        <Text
-          style={{ color: t.textMuted, fontSize: f.numMd, fontWeight: '900' }}
-          maxFontSizeMultiplier={1.6}
-          numberOfLines={1}
-        >
-          {`${before}${suffix}`}
-        </Text>
-        <Text
-          style={{ color: t.textMuted, fontSize: f.body, fontWeight: '900' }}
-          maxFontSizeMultiplier={1.6}
-          accessibilityElementsHidden
-          importantForAccessibility="no"
-        >
-          →
-        </Text>
-        <StatCountUpText
-          value={after}
-          suffix={suffix}
-          delayMs={delayMs + 120}
-          numberOfLines={1}
-          style={{
-            // Рост подсвечен акцентом, спад — обычным цветом текста: падение
-            // показываем честно, но не красим тревожно, это демотивирует.
-            color: grew ? t.accent : t.textPrimary,
-            fontSize: f.numLg,
-            fontWeight: '900',
-          }}
-        />
-      </View>
+      <StatScoreRing
+        progress={progress}
+        centerValue={value}
+        accent={accent}
+        trackColor={t.bgSurface2}
+        size={86}
+        strokeWidth={8}
+        centerColor={t.textPrimary}
+        subColor={t.textMuted}
+        delayMs={delayMs}
+        centerTextStyle={{ fontSize: f.numMd, fontWeight: '900' }}
+      />
       <Text
-        style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700' }}
-        maxFontSizeMultiplier={1.8}
+        style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '800', marginTop: 8 }}
+        maxFontSizeMultiplier={1.6}
+        numberOfLines={1}
       >
-        {label}
+        {caption}
       </Text>
-    </Reanimated.View>
+    </View>
   );
 }
 
 /** Строка «число — что это». Число ведёт, подпись поясняет тоном потише. */
-function StatLine({ value, label }: { value: string; label: string }) {
+function StatRow({ value, label, delayMs }: { value: string; label: string; delayMs: number }) {
   const { theme: t, f } = useTheme();
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 10 }}>
+    <Reanimated.View
+      entering={FadeInDown.delay(delayMs).duration(300)}
+      accessible
+      accessibilityLabel={`${value} — ${label}`}
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 14,
+        borderRadius: 18,
+        backgroundColor: t.bgSurface,
+        paddingVertical: 16,
+        paddingHorizontal: 18,
+      }}
+    >
       <Text
-        style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900', minWidth: 62 }}
-        maxFontSizeMultiplier={1.8}
+        style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900', minWidth: 78 }}
+        maxFontSizeMultiplier={1.5}
+        numberOfLines={1}
       >
         {value}
       </Text>
       <Text
         style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', flex: 1 }}
-        maxFontSizeMultiplier={1.8}
+        maxFontSizeMultiplier={1.7}
       >
         {label}
       </Text>
-    </View>
+    </Reanimated.View>
   );
 }

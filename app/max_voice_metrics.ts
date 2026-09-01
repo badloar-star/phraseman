@@ -150,77 +150,62 @@ export function computeVoiceTrends(samples: VoiceCallTrendSample[], nowMs: numbe
   };
 }
 
-/** Одна пара «было → стало»: сколько было в прошлой половине окна и сколько стало. */
-export interface VoiceProgressPair {
-  before: number;
-  after: number;
-}
+/** Сколько недельных столбиков рисуем. Четыре недели = окно тренда. */
+export const WEEKLY_BARS = 7;
 
-export interface VoiceProgress {
-  /** Минуты собственной речи за половину окна. */
-  spokeMinutes: VoiceProgressPair;
-  /** Разных слов за половину окна. */
-  vocabWords: VoiceProgressPair;
-  /** Доля чистых фраз, %. null — выборка мала, показывать нечестно. */
-  cleanPhrasePct: VoiceProgressPair | null;
-  /** false — ранняя половина пуста: сравнивать не с чем, это ещё не рост. */
-  comparable: boolean;
-}
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+/** Шаг столбиков — половина недели: 7 делений покрывают окно и дают плотный ряд. */
+const BAR_STEP_MS = WEEK_MS / 2;
 
-/** Половина окна тренда: «раньше» — первые 14 дней, «сейчас» — последние 14. */
-export const PROGRESS_HALF_MS = TREND_WINDOW_MS / 2;
+export interface VoiceWeeklySeries {
+  /** Минуты речи по отрезкам, слева старое → справа «сейчас». */
+  bars: number[];
+  /** Рост последнего отрезка к предыдущему, %. null — сравнивать не с чем. */
+  changePct: number | null;
+  /** Сколько отрезков реально содержат замеры: 0 — истории ещё нет. */
+  filledBars: number;
+}
 
 /**
- * Посчитать «было → стало» за две половины окна.
+ * Ряд столбиков «минуты речи по отрезкам» + рост последнего к предыдущему.
  *
- * зачем (владелец 2026-09-01, макет 04 «Было → Стало»): цифра сама по себе
- * ничего не говорит — «120 минут» это много или мало? Человека мотивирует
- * РАЗНИЦА с собой прежним, а не абсолютное число.
+ * зачем (владелец 2026-09-01, показал макет со столбиками и «↑62%»): один
+ * столбик выше соседнего рассказывает динамику быстрее любой подписи.
  *
- * Честность важнее красоты: если в ранней половине не было ни одного звонка,
- * рост показывать нельзя — «с нуля до чего угодно» это не прогресс, а первый
- * месяц. Тогда comparable=false, и экран покажет просто текущие цифры.
+ * Пустые отрезки НЕ прячем — по решению владельца ряд показывает, что
+ * накопится: сегодняшний столбик есть, прошлых нет. Это честно и объясняет
+ * человеку, откуда возьмётся история, вместо пустого места.
  */
-export function computeVoiceProgress(
+export function computeVoiceWeeklySeries(
   samples: VoiceCallTrendSample[],
   nowMs: number,
-): VoiceProgress {
-  const windowStart = nowMs - TREND_WINDOW_MS;
-  const midpoint = nowMs - PROGRESS_HALF_MS;
+): VoiceWeeklySeries {
+  const bars: number[] = [];
+  let filledBars = 0;
 
-  const sum = (from: number, to: number) => {
+  for (let i = WEEKLY_BARS - 1; i >= 0; i -= 1) {
+    const to = nowMs - i * BAR_STEP_MS;
+    const from = to - BAR_STEP_MS;
     let speechSec = 0;
-    let vocab = 0;
-    let clean = 0;
-    let total = 0;
     let calls = 0;
     for (const s of samples) {
-      if (s.atMs < from || s.atMs >= to) continue;
+      // Правая граница включающая только у последнего отрезка: замер этой же
+      // миллисекунды обязан попасть в «сейчас», а не потеряться между делениями.
+      const withinRight = i === 0 ? s.atMs <= to : s.atMs < to;
+      if (s.atMs <= from || !withinRight) continue;
       speechSec += Math.max(0, s.speechSec);
-      vocab += Math.max(0, s.uniqueWords);
-      clean += Math.max(0, s.cleanPhrases);
-      total += Math.max(0, s.totalPhrases);
       calls += 1;
     }
-    return { speechSec, vocab, clean, total, calls };
-  };
+    if (calls > 0) filledBars += 1;
+    bars.push(Math.round(speechSec / 60));
+  }
 
-  // Верхняя граница «сейчас» — nowMs + 1: замер, записанный этой же миллисекундой,
-  // обязан попасть в текущую половину, иначе только что законченный урок исчезает.
-  const before = sum(windowStart, midpoint);
-  const after = sum(midpoint, nowMs + 1);
+  // Рост считаем только когда предыдущий отрезок ненулевой: деление на ноль
+  // дало бы «↑∞», а «с нуля до чего угодно» — это не рост, а начало.
+  const last = bars[bars.length - 1] ?? 0;
+  const prev = bars[bars.length - 2] ?? 0;
+  const changePct = prev > 0 ? Math.round(((last - prev) / prev) * 100) : null;
 
-  const pct = (v: { clean: number; total: number; calls: number }): number | null =>
-    v.calls >= CLEAN_PHRASE_MIN_CALLS && v.total > 0 ? Math.round((v.clean / v.total) * 100) : null;
-  const beforePct = pct(before);
-  const afterPct = pct(after);
-
-  return {
-    spokeMinutes: { before: Math.round(before.speechSec / 60), after: Math.round(after.speechSec / 60) },
-    vocabWords: { before: before.vocab, after: after.vocab },
-    // Процент показываем парой, только если обе половины набрали выборку —
-    // иначе получится сравнение измеренного с выдуманным.
-    cleanPhrasePct: beforePct !== null && afterPct !== null ? { before: beforePct, after: afterPct } : null,
-    comparable: before.calls > 0,
-  };
+  return { bars, changePct, filledBars };
 }
+

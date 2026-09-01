@@ -61,11 +61,11 @@ import VoiceMinutePackSheet from '../modules/voice_minutes/VoiceMinutePackSheet'
 import { readVoiceMinuteWalletStatus } from '../modules/voice_minutes/wallet';
 import { peekVoiceMinutes, writeVoiceMinutePeek } from '../modules/voice_minutes/peek_cache';
 import {
-  computeVoiceProgress,
   computeVoiceTrends,
+  computeVoiceWeeklySeries,
   type VoiceCallTrendSample,
-  type VoiceProgress,
   type VoiceTrends,
+  type VoiceWeeklySeries,
 } from './max_voice_metrics';
 import { useStudyTarget } from '../components/StudyTargetContext';
 
@@ -142,15 +142,15 @@ export default function MaxLessonsScreen() {
   }, []);
 
   // ── Тренды речи для листа статистики ──────────────────────────────────────
-  // зачем: тренды и пары «было → стало» держим ОДНИМ состоянием и считаем от
+  // зачем: тренды и ряд столбиков держим ОДНИМ состоянием и считаем от
   // одного Date.now(). Двумя отдельными они разъезжались бы по времени расчёта,
-  // и на границе суток итог месяца не сходился бы с суммой половин.
+  // и на границе суток итог месяца не сходился бы с суммой отрезков.
   const speechStatsOf = useCallback((samples: VoiceCallTrendSample[]) => {
     const nowMs = Date.now();
-    return { trends: computeVoiceTrends(samples, nowMs), progress: computeVoiceProgress(samples, nowMs) };
+    return { trends: computeVoiceTrends(samples, nowMs), series: computeVoiceWeeklySeries(samples, nowMs) };
   }, []);
 
-  const [speechStats, setSpeechStats] = useState<{ trends: VoiceTrends; progress: VoiceProgress } | null>(() => {
+  const [speechStats, setSpeechStats] = useState<{ trends: VoiceTrends; series: VoiceWeeklySeries } | null>(() => {
     // Синхронный peek: лист открывается с готовыми цифрами, без первого кадра
     // с пустотой (Performance Bible — первый кадр = финальная геометрия).
     const cached = peekSpeechHistory();
@@ -484,7 +484,7 @@ export default function MaxLessonsScreen() {
         visible={statsVisible}
         onClose={() => setStatsVisible(false)}
         trends={speechStats?.trends ?? null}
-        progress={speechStats?.progress ?? null}
+        series={speechStats?.series ?? null}
         done={done}
         total={MAX_LESSON_CATALOG.length}
         level={level}

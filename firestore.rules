@@ -1440,6 +1440,28 @@ service cloud.firestore {
         allow read, write: if false;
       }
 
+      // Сохранённые карточки владельца, вынесенные из документа users/{userId}.
+      //
+      // зачем: progress.flashcards_v1 хранил весь список карточек одной JSON-строкой
+      // внутри документа и рос без предела. 2026-09-01 он пробил лимит документа в
+      // 1 МБ у трёх самых активных аккаунтов — запись в документ стала отклоняться
+      // целиком (INVALID_ARGUMENT), и у людей молча перестал сохраняться весь
+      // прогресс, а не только карточки. Карточки живут страницами здесь
+      // (см. app/flashcards_cloud_pages.ts, миграция —
+      // functions/scripts/migrate_flashcards_to_pages.js).
+      //
+      // Отдельного запрета «не возвращать карточки в progress» тут сознательно НЕТ:
+      // проверено боем 2026-09-01 — клиентская запись в users/{id}.progress закрыта
+      // для всех аккаунтов (прогресс идёт через callable progressSubmitEvent на
+      // Admin SDK), поэтому старая сборка физически не может вернуть список в
+      // документ. Такое правило было бы мёртвым кодом.
+      //
+      // Пишет только владелец (личные данные, сервер их не порождает); delete нужен,
+      // чтобы схлопывать лишние страницы после удаления карточек.
+      match /flashcard_pages/{pageId} {
+        allow read, write: if userDocOwnerMatchesAuth(userId);
+      }
+
       // Durable roulette credits and the server-owned migration marker are
       // written only by Cloud Functions through Admin SDK. Clients consume the
       // callable projection instead of reading or mutating ledger documents.

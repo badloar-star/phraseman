@@ -63,7 +63,7 @@ describe('MAX Voice review server wiring', () => {
     // Проброс studyTarget в сессию: буквальное «studyTarget,» сломалось, когда
     // в параметры добавили goalId (2026-08-31) — сторожим смысл, не запятую.
     expect(prestart).toMatch(/studyTarget: callStudyTarget|studyTarget,/);
-    expect(session).toContain('studyTarget,');
+    expect(session).toMatch(/studyTarget: callStudyTarget|studyTarget,/);
     expect(prestart).not.toContain("studyTarget: format === 'tutor' ? 'en' : studyTarget");
     expect(session).not.toContain("studyTarget: isTutor ? 'en' : studyTarget");
   });

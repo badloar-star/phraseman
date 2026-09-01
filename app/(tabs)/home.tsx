@@ -127,6 +127,7 @@ import HomeRuneBalance, { HOME_RUNE_ICON_SOURCE } from '../../components/home/Ho
 // app/reward_flight_queue.ts, оркестрацию держит хук — home.tsx и так огромен.
 import HomeRewardCollectFlight from '../../components/home/HomeRewardCollectFlight';
 import { useHomeRewardCollect } from '../../components/home/use_home_reward_collect';
+import { useHomeXpBarFill } from '../../components/home/use_home_xp_bar_fill';
 import { runeAmount } from '../../constants/runes';
 import { ruKnowledgeShardsAfterNumber, ukKnowledgeShardsAfterNumber } from '../../constants/shard_plurals';
 import MaxHomeOrb from '../../components/home/MaxHomeOrb';
@@ -1296,12 +1297,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const shardsBonusAnim = useRef(new Animated.Value(0)).current;
     const [shardsBonusText, setShardsBonusText] = useState('');
 
+    // Ширина дорожки опыта — якорь масштабирования заливки (см. onLayout ниже).
+    const [homeXpBarWidth, setHomeXpBarWidth] = useState(0);
+    // Прогресс уровня считается ЗДЕСЬ, а не только в renderNewHome: хук
+    // наливания обязан жить на верхнем уровне компонента. getXPProgress —
+    // чистая функция от totalXP, второй вызов ничего не стоит.
+    const homeXpBarPercent = getXPProgress(totalXP).progress * 100;
+
     // Сбор наград: частицы со всех сторон экрана в счётчики валют.
     //
     // Гейт homeRuntimeActive — тот же, что у остальных эффектов Главной: на
     // премаунте таба анимация не запускается и первый кадр не делит поток.
     const homeRewardCollectReduceMotion = useReduceMotion();
     const rewardCollect = useHomeRewardCollect(
+        homeRuntimeActive,
+        homeRewardCollectReduceMotion,
+    );
+    const homeXpBarFill = useHomeXpBarFill(
+        homeXpBarPercent,
         homeRuntimeActive,
         homeRewardCollectReduceMotion,
     );
@@ -3080,7 +3093,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     </>);
     // ── Новый стиль главного экрана ──────────────────────────────────────────
     const renderNewHome = () => {
-        const { level, progress } = getXPProgress(totalXP);
+        // progress здесь больше не нужен: полосу опыта наливает useHomeXpBarFill
+        // по homeXpBarPercent, посчитанному на верхнем уровне компонента.
+        const { level } = getXPProgress(totalXP);
         const menuImages = getHomeMenuImages(themeMode);
         const maxOrbLayers = getMaxHomeOrbLayers(themeMode);
         const lastLessonImage = getHomeLastLessonImage(themeMode);
@@ -3190,7 +3205,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // не рендерился, поэтому «Аттестация» числилась в
         // коде как разделы главной, которых пользователь не видит. Реальный ряд —
         // visibleQuickItems (Урок / МАКС / Карточки), см. рендер ниже.
-        const xpPct = Math.min(100, Math.max(0, Math.round(progress * 100)));
         const eliteStatsCompact = CONTENT_W < 370;
         const eliteAvatarSize = eliteStatsCompact ? 54 : 60;
         const eliteStreakColumnWidth = eliteStatsCompact ? 102 : 116;
@@ -3526,15 +3540,53 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     </TouchableOpacity>
                   </View>
 
-                  <View style={{
+                  <View
+                    // Ширина дорожки нужна как якорь масштабирования заливки.
+                    // Замер пассивный, вёрстку не двигает и высоту не меняет,
+                    // поэтому layout stability не страдает.
+                    onLayout={(event) => {
+                      const width = event.nativeEvent.layout.width;
+                      if (width > 0 && Math.abs(width - homeXpBarWidth) > 0.5) {
+                        setHomeXpBarWidth(width);
+                      }
+                    }}
+                    style={{
                     height: 18,
                     borderRadius: 999,
                     overflow: 'hidden',
                     backgroundColor: isPaperHomeTheme ? homeThemeTrackBg : isGoldTheme ? 'rgba(0,0,0,0.36)' : 'rgba(255,255,255,0.09)',
                     borderWidth: 0,
                   }}>
-                    <LinearGradient colors={isPaperHomeTheme ? [t.accent, t.accent] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 999, overflow: 'hidden' }}>
-                    </LinearGradient>
+                    {/* Полоса опыта наливается, а не проставляется мгновенно
+                        (владелец, 2026-09-01: «чуть преувеличиться и заполниться,
+                        как в играх»). Масштабируем, а не меняем width: scaleX
+                        живёт на UI-потоке и не пересчитывает layout каждый кадр.
+                        Заливка рисуется на ПОЛНУЮ ширину, поэтому нужен левый
+                        якорь — иначе она росла бы от центра в обе стороны. */}
+                    <Animated.View
+                      style={homeXpBarWidth > 0 ? {
+                        width: '100%',
+                        height: '100%',
+                        transform: [
+                          // Сдвиг на половину дорожки влево, масштаб, сдвиг
+                          // обратно — так центр масштабирования оказывается на
+                          // ЛЕВОМ крае, и полоса растёт слева направо.
+                          { translateX: -homeXpBarWidth / 2 },
+                          { scaleX: homeXpBarFill.scaleX },
+                          { translateX: homeXpBarWidth / 2 },
+                        ],
+                      } : {
+                        // Дорожка ещё не измерена (первый кадр): якоря нет, и
+                        // масштаб пошёл бы от ЦЕНТРА. Рисуем обычной шириной —
+                        // первый кадр сразу верный, анимация подхватит со
+                        // следующего (layout stability: никакого прыжка).
+                        width: `${Math.min(100, Math.max(0, homeXpBarPercent))}%` as any,
+                        height: '100%',
+                      }}
+                    >
+                      <LinearGradient colors={isPaperHomeTheme ? [t.accent, t.accent] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: '100%', height: '100%', borderRadius: 999, overflow: 'hidden' }}>
+                      </LinearGradient>
+                    </Animated.View>
                   </View>
 
                 </View>

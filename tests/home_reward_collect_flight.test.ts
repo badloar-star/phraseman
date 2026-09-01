@@ -18,6 +18,7 @@ import {
   subscribeRewardFlight,
 } from '../app/reward_flight_queue';
 import {
+  HOME_REWARD_DEMO_MODES,
   rewardFlightDurationMs,
   rewardFlightParticleCount,
   rewardFlightSpawnPoint,
@@ -196,5 +197,44 @@ describe('тайминг и геометрия волны', () => {
     const second = rewardFlightSpawnPoint(3, 390, 844, { x: 200, y: 80 });
 
     expect(first).toEqual(second);
+  });
+});
+
+describe('дев-кнопка: порядок режимов', () => {
+  it('шесть режимов ровно в том порядке, который задал владелец', () => {
+    // Дословно: всё → руны+жемчуг → руны → жемчуг → опыт → опыт+руны.
+    // Порядок — требование владельца, а не деталь реализации: перестановка
+    // сломала бы привычку «третье нажатие показывает руны».
+    const shape = HOME_REWARD_DEMO_MODES.map((mode) => ({
+      runes: mode.runes > 0,
+      shards: mode.shards > 0,
+      xp: mode.xp,
+    }));
+
+    expect(shape).toEqual([
+      { runes: true, shards: true, xp: true },
+      { runes: true, shards: true, xp: false },
+      { runes: true, shards: false, xp: false },
+      { runes: false, shards: true, xp: false },
+      { runes: false, shards: false, xp: true },
+      { runes: true, shards: false, xp: true },
+    ]);
+  });
+
+  it('каждый режим что-то показывает и подписан', () => {
+    for (const mode of HOME_REWARD_DEMO_MODES) {
+      expect(mode.runes > 0 || mode.shards > 0 || mode.xp).toBe(true);
+      expect(mode.label.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('демо-суммы дают видимый каскад, но не джекпот', () => {
+    for (const mode of HOME_REWARD_DEMO_MODES) {
+      if (mode.runes > 0) {
+        const count = rewardFlightParticleCount(mode.runes);
+        expect(count).toBeGreaterThanOrEqual(5);
+        expect(count).toBeLessThanOrEqual(14);
+      }
+    }
   });
 });

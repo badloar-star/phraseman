@@ -65,6 +65,14 @@ export interface UseHomeRewardCollectResult {
   readonly measureShardsTarget: (ref: MeasurableView | null) => void;
   /** Волна долетела — вызывает оверлей. */
   readonly onWaveDone: () => void;
+  /**
+   * Демо-запуск для дев-кнопки: проиграть полёт, НЕ трогая очередь наград.
+   *
+   * зачем (владелец, 2026-09-01): анимацию нужно смотреть по требованию, а не
+   * ждать реального начисления. Очередь при этом не расходуется — иначе
+   * настоящая награда, лежащая в ней, была бы «съедена» просмотром.
+   */
+  readonly playDemo: (runes: number, shards: number) => void;
 }
 
 export function useHomeRewardCollect(
@@ -275,6 +283,43 @@ export function useHomeRewardCollect(
   }, [finish, later, reduceMotion, runWave]);
 
   /**
+   * Демо: те же волны, но суммы приходят снаружи и очередь не трогается.
+   *
+   * Специально переиспользует runWave/finish, а не свою копию: демо обязано
+   * показывать РОВНО то, что увидит пользователь, иначе им нельзя проверять
+   * настоящую анимацию.
+   */
+  const playDemo = useCallback((runes: number, shards: number) => {
+    if (runningRef.current) {
+      DebugLogger.info('reward_flight:demo_busy', JSON.stringify({ runes, shards }));
+      return;
+    }
+    if (runes <= 0 && shards <= 0) return;
+    refreshTargets();
+    runningRef.current = true;
+    DebugLogger.info('reward_flight:demo', JSON.stringify({ runes, shards, reduceMotion }));
+
+    if (reduceMotion) {
+      runningRef.current = false;
+      setState({ wave: null, amount: 0, target: null });
+      soundDirector.request('pm.reward.rune_count_done', PULSE_SOUND_OPTIONS);
+      return;
+    }
+
+    const playShards = () => {
+      if (!runWave('shards', shards, finish)) finish();
+    };
+    const startedRunes = runWave('runes', runes, () => {
+      if (shards > 0) later(playShards, WAVE_GAP_MS);
+      else finish();
+    });
+    if (!startedRunes) {
+      if (shards > 0) playShards();
+      else finish();
+    }
+  }, [finish, later, reduceMotion, refreshTargets, runWave]);
+
+  /**
    * Проигрывание накопленного: руны → пауза → жемчужины.
    *
    * Отличие от forcePlay: сперва проверяем, измерены ли цели. Полёт в неизмеренный
@@ -335,5 +380,6 @@ export function useHomeRewardCollect(
     measureRunesTarget,
     measureShardsTarget,
     onWaveDone,
+    playDemo,
   };
 }

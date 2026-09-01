@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { Animated, Easing } from 'react-native';
 
 /**
@@ -31,6 +31,15 @@ const FILL_EASE = Easing.bezier(0.22, 0.9, 0.24, 1);
 export interface HomeXpBarFill {
   /** Значение для transform: [{ scaleX }] — 0..1 от полной ширины дорожки. */
   readonly scaleX: Animated.Value;
+  /**
+   * Демо-прогон для дев-кнопки: полоса откатывается назад и снова наливается
+   * до реального значения.
+   *
+   * зачем (владелец, 2026-09-01): наливание видно только в момент изменения
+   * опыта, а ждать реального урока ради проверки анимации нельзя. Настоящий
+   * прогресс при этом не меняется — двигается ТОЛЬКО картинка.
+   */
+  readonly playDemo: () => void;
 }
 
 /**
@@ -99,5 +108,22 @@ export function useHomeXpBarFill(
     ]).start();
   }, [active, reduceMotion, scaleX, target]);
 
-  return { scaleX };
+  const playDemo = useCallback(() => {
+    if (reduceMotion) {
+      scaleX.setValue(target);
+      return;
+    }
+    // Откат — заметный, но не в ноль: полоса, упавшая в самое начало, читается
+    // как потеря прогресса, а не как демонстрация наливания.
+    const from = Math.max(0, target - 0.45);
+    const peak = Math.min(1, target + OVERSHOOT);
+    scaleX.stopAnimation();
+    scaleX.setValue(from);
+    Animated.sequence([
+      Animated.timing(scaleX, { toValue: peak, duration: 620, easing: FILL_EASE, useNativeDriver: true }),
+      Animated.spring(scaleX, { toValue: target, useNativeDriver: true, friction: 6, tension: 90 }),
+    ]).start();
+  }, [reduceMotion, scaleX, target]);
+
+  return { scaleX, playDemo };
 }

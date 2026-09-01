@@ -128,6 +128,7 @@ import HomeRuneBalance, { HOME_RUNE_ICON_SOURCE } from '../../components/home/Ho
 import HomeRewardCollectFlight from '../../components/home/HomeRewardCollectFlight';
 import { useHomeRewardCollect } from '../../components/home/use_home_reward_collect';
 import { useHomeXpBarFill } from '../../components/home/use_home_xp_bar_fill';
+import { HOME_REWARD_DEMO_MODES } from '../reward_flight_particles';
 import { runeAmount } from '../../constants/runes';
 import { ruKnowledgeShardsAfterNumber, ukKnowledgeShardsAfterNumber } from '../../constants/shard_plurals';
 import MaxHomeOrb from '../../components/home/MaxHomeOrb';
@@ -1318,6 +1319,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         homeRuntimeActive,
         homeRewardCollectReduceMotion,
     );
+
+    // Дев-кнопка «показать анимацию»: шесть режимов по кругу (владелец,
+    // 2026-09-01). Смотреть анимацию нужно по требованию, а не выжидая реальное
+    // начисление, и по отдельности — иначе не видно, что именно сломалось.
+    //
+    // Очередь наград НЕ расходуется: демо получает суммы напрямую, поэтому
+    // настоящая награда, ждущая показа, не «съедается» просмотром.
+    const [homeDemoStep, setHomeDemoStep] = useState(0);
+    const homeDemoModes = HOME_REWARD_DEMO_MODES;
+    const homeDemoMode = homeDemoModes[homeDemoStep % homeDemoModes.length];
+    const runHomeRewardDemo = useCallback(() => {
+        const mode = homeDemoModes[homeDemoStep % homeDemoModes.length];
+        setHomeDemoStep((step) => (step + 1) % homeDemoModes.length);
+        if (mode.xp) homeXpBarFill.playDemo();
+        if (mode.runes > 0 || mode.shards > 0) {
+            rewardCollect.playDemo(mode.runes, mode.shards);
+        }
+    }, [homeDemoModes, homeDemoStep, homeXpBarFill, rewardCollect]);
 
     useEffect(() => {
         const profile = appSnapshot.profile;
@@ -3833,6 +3852,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     onRequestedReportReplyHandled={handleRequestedReportReplyHandled}
                   />
                 ) : null}
+                {/* зачем (владелец, 2026-09-01): из хедера убраны дев-кнопки
+                    «подарок путешествия» и «намёк на аватарке». Колба остаётся:
+                    это ЕДИНСТВЕННЫЙ вход в Dev Hub, без неё вся дев-панель
+                    становится недоступна. */}
                 {ENABLE_DEV_TOOLS && (
                   <TouchableOpacity
                     testID="home-dev-hub-button"
@@ -3848,41 +3871,32 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     <Ionicons name="flask-outline" size={21} color={t.heroTextPrimary} />
                   </TouchableOpacity>
                 )}
+                {/* зачем (владелец, 2026-09-01): кнопка проигрывает анимацию
+                    сбора наград по требованию. Каждое нажатие — следующий режим
+                    по кругу: всё → руны+жемчуг → руны → жемчуг → опыт → опыт+руны.
+                    Подпись показывает, что проиграет СЕЙЧАС, чтобы не считать
+                    нажатия в уме. Очередь настоящих наград не расходуется. */}
                 {ENABLE_DEV_TOOLS && (
                   <TouchableOpacity
-                    testID="home-dev-daily-journey-button"
+                    testID="home-dev-reward-demo"
                     accessibilityRole="button"
-                    accessibilityLabel="DEV: выдать следующий подарок путешествия"
-                    accessibilityHint="Сохраняет реальный подарок, затем показывает доставку"
+                    accessibilityLabel={`DEV: проиграть анимацию — ${homeDemoMode.label}`}
+                    accessibilityHint="Каждое нажатие переключает набор анимаций"
                     activeOpacity={0.72}
+                    hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                     onPress={() => {
                       hapticTap();
-                      void dailyJourneyGrantController.press().catch((error) => {
-                        reportDailyJourneyHomeError('grant_unhandled', error, true);
-                      });
+                      runHomeRewardDemo();
                     }}
                     style={{ width: 44, minHeight: 46, alignItems: 'center', justifyContent: 'center' }}
                   >
-                    <Ionicons name="gift-outline" size={21} color={t.heroTextPrimary} />
-                  </TouchableOpacity>
-                )}
-                {/* зачем: дев-кнопка «проиграть намёк» (владелец, 2026-08-27) —
-                    посмотреть покачивание аватарки сразу, не выжидая период и не
-                    сбрасывая бюджет сессий. Стоит рядом с Dev Hub под тем же
-                    ENABLE_DEV_TOOLS, который жёстко выключен в стор-сборке. */}
-                {ENABLE_DEV_TOOLS && (
-                  <TouchableOpacity
-                    testID="home-dev-avatar-nudge-button"
-                    accessibilityRole="button"
-                    accessibilityLabel="Проиграть намёк на аватарке"
-                    activeOpacity={0.72}
-                    onPress={() => {
-                      hapticTap();
-                      setAvatarNudgeDevToken((token) => token + 1);
-                    }}
-                    style={{ width: 40, minHeight: 46, alignItems: 'center', justifyContent: 'center' }}
-                  >
-                    <Ionicons name="hand-left-outline" size={21} color={t.heroTextPrimary} />
+                    <Ionicons name="sparkles-outline" size={20} color={t.heroTextPrimary} />
+                    <Text
+                      maxFontSizeMultiplier={1}
+                      style={{ color: t.heroTextPrimary, fontSize: 9, fontWeight: '900', lineHeight: 10 }}
+                    >
+                      {homeDemoMode.label}
+                    </Text>
                   </TouchableOpacity>
                 )}
                 {/* DEV-only fixture: switches the shared priority slot between

@@ -638,11 +638,24 @@ describe('Daily Journey Home orchestration', () => {
 describe('Home source wiring for Daily Journey', () => {
   const home = read('app/(tabs)/home.tsx');
 
-  test('keeps Dev Hub and adds a separately gated 44px Daily Journey grant control', () => {
+  /**
+   * Владелец 2026-09-01 убрал из хедера Главной дев-кнопку выдачи подарка
+   * (и «намёк на аватарке»), оставив только колбу Dev Hub, переключатель плашки
+   * и кнопку показа анимаций. Прежняя версия теста требовала СУЩЕСТВОВАНИЯ той
+   * кнопки — то есть сторожила отменённое правило и ломала сборку на прямом
+   * указании владельца.
+   *
+   * Теперь сторожим то, что осталось важным: сама механика выдачи подарка жива
+   * (контроллер и его сброс при смене аккаунта никуда не делись), а вход в
+   * Dev Hub из хедера — единственный, и его удалять нельзя.
+   */
+  test('keeps Dev Hub entry and the grant controller after the header cleanup', () => {
     expect(home).toContain('testID="home-dev-hub-button"');
-    expect(home).toContain('testID="home-dev-daily-journey-button"');
-    expect(home).toMatch(/\{ENABLE_DEV_TOOLS && \(\s*<TouchableOpacity\s+testID="home-dev-daily-journey-button"/);
-    expect(home).toMatch(/home-dev-daily-journey-button[\s\S]{0,900}minHeight: 46/);
+    expect(home).toContain('dailyJourneyGrantController');
+    expect(home).toContain('dailyJourneyGrantController.resetForAccount()');
+    // Кнопки, убранные владельцем, обратно не возвращаем.
+    expect(home).not.toContain('testID="home-dev-daily-journey-button"');
+    expect(home).not.toContain('testID="home-dev-avatar-nudge-button"');
   });
 
   test('passes the committed occurrence and measured rect to the modal and closes only on delivery complete', () => {

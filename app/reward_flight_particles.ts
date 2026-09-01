@@ -36,6 +36,34 @@ export interface RewardFlightPoint {
   readonly y: number;
 }
 
+/**
+ * Режимы дев-кнопки «показать анимацию» на Главной, по кругу.
+ *
+ * зачем (владелец, 2026-09-01, дословный порядок): «первое нажатие — сразу
+ * всё, второе — руны и жемчуг, третье — только руны, четвёртое — только
+ * жемчуг, пятое — только опыт, шестое — опыт и руны». Проверять анимации
+ * поодиночке нужно, чтобы видеть, какая именно сломалась.
+ *
+ * Суммы взяты крупными, но не джекпотом: столько частиц человек реально увидит
+ * при хорошей награде, и по ним видно каскад.
+ */
+export interface RewardDemoMode {
+  /** Подпись на кнопке — коротко, что сейчас проиграет. */
+  readonly label: string;
+  readonly runes: number;
+  readonly shards: number;
+  readonly xp: boolean;
+}
+
+export const HOME_REWARD_DEMO_MODES: readonly RewardDemoMode[] = Object.freeze([
+  { label: 'ВСЁ', runes: 120, shards: 40, xp: true },
+  { label: 'Р+Ж', runes: 120, shards: 40, xp: false },
+  { label: 'Р', runes: 120, shards: 0, xp: false },
+  { label: 'Ж', runes: 0, shards: 40, xp: false },
+  { label: 'XP', runes: 0, shards: 0, xp: true },
+  { label: 'XP+Р', runes: 120, shards: 0, xp: true },
+]);
+
 /** Длительность полёта одной частицы. */
 export const REWARD_FLIGHT_MS = 900;
 /** Задержка между частицами: каскад делает сбор читаемым, а не «пыхом». */

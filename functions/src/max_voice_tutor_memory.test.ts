@@ -19,6 +19,7 @@ import {
   parseTutorMemory,
   renderTutorCharterDigest,
   renderTutorMemoryBlock,
+  TUTOR_MEMORY_BLOCK_MAX_CHARS,
   voiceTutorMemoryDocId,
 } from './max_voice_tutor_memory';
 import { parseProductCharter } from './jarvis/product_charter';
@@ -506,5 +507,68 @@ describe('каталог речевых целей', () => {
     // будет ходить на уроки и не понимать, почему прогресс не двигается.
     const sceneless = CAN_DO_GOALS.filter((g) => g.sceneIds.length === 0).map((g) => g.id);
     expect(sceneless).toEqual([]);
+  });
+});
+
+describe('аудит 2026-09-01: зачёт цели и бюджет блока памяти', () => {
+  it('звезда за цель, выбранную из каталога (не «следующую»), засчитывается', () => {
+    // Раньше expectedGoalId всегда был «первой незакрытой по каталогу», и
+    // выбранная человеком цель молча выбрасывалась: «записано» — не записано.
+    const prev = parseTutorMemory({ goalMastery: { a1_greet: 1 }, lastCefr: 'A1' });
+    const chosen = CAN_DO_GOALS.find((g) => g.level === 'A1' && g.id !== 'a1_greet');
+    if (!chosen) throw new Error('нет второй цели A1');
+    const next = mergeTutorMemory(prev, {
+      sessionId: 'session-chosen',
+      goalId: chosen.id,
+      goalProgress: { goalId: chosen.id, mastery: 1 },
+      cefr: 'A1',
+      nowMs: NOW,
+    }, { passCount: 0 });
+    expect(next.goalMastery[chosen.id]).toBe(1);
+  });
+
+  it('повтор уже закрытой цели не выбрасывает прогресс по ней', () => {
+    const prev = parseTutorMemory({ goalMastery: { a1_greet: 3 }, lastCefr: 'A1' });
+    const next = mergeTutorMemory(prev, {
+      sessionId: 'session-repeat',
+      goalId: 'a1_greet',
+      goalProgress: { goalId: 'a1_greet', mastery: 3 },
+      cefr: 'A1',
+      nowMs: NOW,
+    }, { passCount: 0 });
+    expect(next.goalMastery.a1_greet).toBe(3);
+  });
+
+  it('без goalId старых клиентов ожидание остаётся «следующей по каталогу»', () => {
+    const prev = parseTutorMemory({ goalMastery: {}, lastCefr: 'A1' });
+    const first = CAN_DO_GOALS.find((g) => g.level === 'A1');
+    if (!first) throw new Error('нет цели A1');
+    const next = mergeTutorMemory(prev, {
+      sessionId: 'session-legacy',
+      goalProgress: { goalId: first.id, mastery: 1 },
+      cefr: 'A1',
+      nowMs: NOW,
+    }, { passCount: 0 });
+    expect(next.goalMastery[first.id]).toBe(1);
+  });
+
+  it('переполненный блок памяти теряет старые ошибки, а не план сегодняшнего урока', () => {
+    const long = (n: number, w: string) => Array.from({ length: n }, (_, i) => `${w} ${i} ${'x'.repeat(110)}`);
+    const memory = parseTutorMemory({
+      preferredName: 'Olga',
+      activeIssues: long(8, 'issue').map((label, i) => ({ id: `a${i}`, label, evidenceCount: 2, lastSeenAtMs: NOW })),
+      resolvedIssues: long(12, 'resolved').map((label, i) => ({ id: `r${i}`, label, resolvedAtMs: NOW })),
+      homework: long(6, 'homework'),
+      phraseQueue: [{ text: 'I would like tea', box: 0, dueAtMs: NOW - DAY }],
+      languagePreference: 'more_target',
+      callCount: 9,
+      lastCallAtMs: NOW - DAY,
+    });
+    const block = renderTutorMemoryBlock(memory, NOW);
+    expect(block.length).toBeLessThanOrEqual(TUTOR_MEMORY_BLOCK_MAX_CHARS);
+    expect(block).toContain("TODAY'S LESSON TYPE");
+    expect(block).toContain('PHRASES DUE FOR SPOKEN RETRIEVAL TODAY');
+    expect(block).toContain('LANGUAGE PREFERENCE');
+    expect(block).toContain('more)');
   });
 });

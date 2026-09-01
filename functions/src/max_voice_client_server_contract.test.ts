@@ -45,6 +45,15 @@ jest.mock('./callable_options', () => ({
   ENFORCE_APP_CHECK_OPENAI: false,
 }));
 
+// зачем: 2026-08-29 в max_call_client появился DebugLogger, а он тянет
+// app_health → expo-constants/react-native, которые серверный jest не парсит.
+// Сюит молча умер целиком («Test suite failed to run»), и контракт клиент↔сервер
+// по деньгам (XP, стоимость минут) три дня никто не сторожил. Логгер здесь не
+// предмет проверки — подменяем пустышкой.
+jest.mock('../../app/debug-logger', () => ({
+  DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn(), debug: jest.fn() },
+}));
+
 import {
   createMaxCallClient,
   sessionEndEnrichment,

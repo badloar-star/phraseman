@@ -531,6 +531,8 @@ export interface TutorMemoryUpdate {
   phraseResults?: readonly TutorPhraseResult[];
   /** Сцена-задача: 'done' | 'partial' | 'skipped' | '' (end_scene outcome). */
   sceneOutcome?: unknown;
+  /** Цель, которую реально вели в уроке (из плана минта). Сверка для goalProgress. */
+  goalId?: unknown;
   /** Прогресс по цели за урок (mark_goal_progress): { goalId, mastery 0–3 }. Mastery не убывает. */
   goalProgress?: {
     goalId: unknown;
@@ -686,7 +688,16 @@ export function mergeTutorMemory(
   const progressBefore = canDoProgress(prev.goalMastery);
   const cefrFloor = cleanItem(update.cefr).slice(0, 2).toUpperCase() || prev.lastCefr || 'A1';
   const goalLevel = progressBefore.done > 0 ? levelFromMastery(prev.goalMastery, cefrFloor) : cefrFloor;
-  const expectedGoalId = pickNextGoal(prev.goalMastery, goalLevel)?.id ?? '';
+  // зачем (аудит 2026-09-01): раньше «ожидаемой» всегда считалась СЛЕДУЮЩАЯ
+  // незакрытая цель по порядку каталога. Но раздел «Уроки с МАКСом» даёт
+  // выбрать любую цель, а промпт прямо поощряет повтор уже закрытой — и обе
+  // молча выбрасывались: учитель говорил «записано», сервер не записывал.
+  // Ожидаемая цель — та, что реально вели в уроке (клиент шлёт её в goalId);
+  // порядок каталога — только запасной вариант для старых клиентов без неё.
+  const taughtGoalId = String(update.goalId ?? '').trim();
+  const expectedGoalId = canDoGoalById(taughtGoalId)
+    ? taughtGoalId
+    : (pickNextGoal(prev.goalMastery, goalLevel)?.id ?? '');
   return {
     ...memoryProjection,
     homework: homework.length > 0 ? homework : [],
@@ -718,7 +729,14 @@ export function applyGoalProgress(
   const goalId = String(progress.goalId ?? '').trim();
   const goal = canDoGoalById(goalId);
   if (!goal) return prev;
-  if (expectedGoalId && goalId !== expectedGoalId) return prev;
+  if (expectedGoalId && goalId !== expectedGoalId) {
+    // Ранний выход обязан говорить, что именно он выбросил — класс бага
+    // «награду показали, но не начислили» ловится только по этому логу.
+    console.warn('[MAX-GOAL-MISMATCH] mark_goal_progress dropped', {
+      goalId, expectedGoalId, requestedMastery: Number(progress.mastery),
+    });
+    return prev;
+  }
   const n = Number(progress.mastery);
   if (!Number.isFinite(n)) return prev;
   const requested = Math.min(3, Math.max(0, Math.floor(n)));
@@ -826,15 +844,22 @@ export function renderTutorMemoryBlock(memory: TutorMemory, nowMs: number): stri
   if (memory.learningGoal) lines.push(`Learning goal: ${memory.learningGoal}.`);
   if (memory.pacePreference) lines.push(`PACE PREFERENCE: ${memory.pacePreference}.`);
   const relevantHooks = memory.conversationHooks.slice(0, 2);
-  if (relevantHooks.length > 0) lines.push(`Relevant conversation hooks: ${relevantHooks.map((hook) => hook.text).join('; ')}.`);
+  // зачем (аудит 2026-09-01): у ветерана четыре списка ниже (крючки, активные
+  // ошибки, решённые, домашка) на потолках дают ~4800 знаков при лимите блока
+  // 2600, и финальный slice резал ХВОСТ — тип сегодняшнего урока, фразы на
+  // повторение и языковое предпочтение. Теперь каждый список ужимается сам по
+  // своему бюджету (старые элементы отпадают первыми), а хвост доходит целым.
+  if (relevantHooks.length > 0) {
+    lines.push(`Relevant conversation hooks: ${clipJoin(relevantHooks.map((hook) => hook.text), '; ', 300)}.`);
+  }
   if (memory.activeIssues.length > 0) {
-    lines.push(`Active learning issues: ${memory.activeIssues.map((issue) => issue.label).join('; ')}. Correct these gently when they recur.`);
+    lines.push(`Active learning issues: ${clipJoin(memory.activeIssues.map((issue) => issue.label), '; ', 420)}. Correct these gently when they recur.`);
   }
   if (memory.resolvedIssues.length > 0) {
-    lines.push(`Already resolved: ${memory.resolvedIssues.map((issue) => issue.label).join('; ')}. Do not reteach unless it returns.`);
+    lines.push(`Already resolved: ${clipJoin(memory.resolvedIssues.map((issue) => issue.label), '; ', 300)}. Do not reteach unless it returns.`);
   }
   if (memory.homework.length > 0) {
-    lines.push(`Homework you gave last time (check it early in this lesson, ask them to SAY each phrase): ${memory.homework.join(' | ')}.`);
+    lines.push(`Homework you gave last time (check it early in this lesson, ask them to SAY each phrase): ${clipJoin(memory.homework, ' | ', 360)}.`);
   }
   if (memory.nextTopic) lines.push(`You promised today's topic would be: ${memory.nextTopic}.`);
   // План урока: тип сегодняшнего урока и созревшие фразы для повторения речи.
@@ -856,7 +881,33 @@ export function renderTutorMemoryBlock(memory: TutorMemory, nowMs: number): stri
     lines.push('LANGUAGE PREFERENCE: the learner asked you to explain and speak MORE in their native language than the level default — honor it.');
   }
   const text = lines.join('\n');
-  return text.length > TUTOR_MEMORY_BLOCK_MAX_CHARS ? text.slice(0, TUTOR_MEMORY_BLOCK_MAX_CHARS) : text;
+  if (text.length > TUTOR_MEMORY_BLOCK_MAX_CHARS) {
+    // Страховка. После пер-списочных бюджетов сюда попадать не должны; если
+    // попали — это сигнал, что бюджеты разъехались, и молчать нельзя.
+    console.warn('[MAX-MEMORY-CLIP] memory block over budget, tail cut', { length: text.length, max: TUTOR_MEMORY_BLOCK_MAX_CHARS });
+    return text.slice(0, TUTOR_MEMORY_BLOCK_MAX_CHARS);
+  }
+  return text;
+}
+
+/**
+ * Склеить элементы в строку не длиннее budget: берём с начала (свежее — впереди
+ * по контракту списков памяти), остаток заменяем «… (+N more)». Никогда не
+ * режет элемент посередине.
+ */
+function clipJoin(items: readonly string[], sep: string, budget: number): string {
+  const kept: string[] = [];
+  let length = 0;
+  for (const item of items) {
+    const add = (kept.length > 0 ? sep.length : 0) + item.length;
+    if (length + add > budget) break;
+    kept.push(item);
+    length += add;
+  }
+  const dropped = items.length - kept.length;
+  if (dropped <= 0) return kept.join(sep);
+  if (kept.length === 0) return `${items[0].slice(0, Math.max(0, budget - 1))}…`;
+  return `${kept.join(sep)} … (+${dropped} more)`;
 }
 
 // ── Знание приложения (устав из админки) ────────────────────────────────────

@@ -1024,6 +1024,22 @@ let expiredLockCleanupInFlight = false;
 export async function assertAccountDeleteStableIdentityAvailable(
   candidateStableId?: string | null,
 ): Promise<void> {
+  // зачем (владелец, 2026-09-01: «вход стал идти секунд 40 на сплеш экране»):
+  // эта проверка стоит ВНУТРИ getStableId(), а его зовут 85 мест, десятки раз
+  // за один запуск — и КАЖДЫЙ вызов делал полное чтение Keychain (две
+  // параллельные getItemAsync внутри readAccountDeletePendingAuthRaw), даже
+  // когда id уже лежал в памяти: readOrCreateStableId зовёт нас ДВАЖДЫ подряд.
+  // Итого сотни последовательных обращений к Keychain на старте — он на iOS
+  // медленный, отсюда и десятки секунд на заставке. Тот же порядок величины
+  // уже видели рядом: «13 писем за 40 секунд» в ветке просроченного замка.
+  //
+  // Когда достоверно известно, что замка НЕТ (knownGuardState === 'none' —
+  // его ставит rememberGuardState на каждом чтении, а также снятие/чистка
+  // замка), результат этой функции в пределах запуска измениться не может:
+  // все ветки ниже требуют существующего замка. Значит читать хранилище
+  // повторно незачем. Это НЕ новый источник правды: появление замка всегда
+  // проходит через persist/remember, которые состояние обновляют.
+  if (knownGuardState === 'none') return;
   const raw = await readAccountDeletePendingAuthRaw();
   const inspection = inspectAccountDeletePendingAuth(raw);
   // зачем (аудит 2026-08-29): у замка в фазе prepared/local_data_cleared НЕ

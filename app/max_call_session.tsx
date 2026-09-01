@@ -100,6 +100,8 @@ import {
   maxVoicePhaseLabel,
 } from './max_voice_copy';
 import { DebugLogger } from './debug-logger';
+import { safeRouterBack } from './navigation_back';
+import MaxLessonCountdown from '../components/max/MaxLessonCountdown';
 
 /**
  * Экран MAX-звонка (спека, раздел 6). Экран ТОНКИЙ: вся хореография транспорта
@@ -132,6 +134,15 @@ const TUTOR_TWO_MIN_LEAD_SEC = 120;
 const TUTOR_GOODBYE_LEAD_SEC = 45;
 /** Заметка ждёт паузы учителя не дольше этого — иначе уходит как есть. */
 const TUTOR_NOTE_DEFER_MAX_MS = 15_000;
+/**
+ * Напоминание о темпе. Отдельный префикс, НЕ «TIME NOTE:» — иначе учитель примет
+ * его за сигнал о времени и начнёт прощаться посреди урока.
+ * Совпадает с TUTOR_PACE_NOTE_PREFIX в functions/src/max_voice_prompt.ts.
+ */
+const TUTOR_PACE_NOTE_PREFIX = 'PACE NOTE:';
+const TUTOR_PACE_NOTE = `${TUTOR_PACE_NOTE_PREFIX} keep speaking at HALF your natural speed — VOICE RULES 0 applies at every level and every turn, for the whole lesson. If you have been speeding up, slow down now.`;
+/** Как часто повторять напоминание о темпе. */
+const PACE_NOTE_EVERY_MS = 100_000;
 /** Явная просьба закончить никогда не может зависнуть на модели дольше 12с. */
 const LEARNER_END_HARD_GUARD_MS = 12_000;
 /** Тёплый тон голоса ИИ — един для ореола и баров эквалайзера. */
@@ -758,6 +769,22 @@ function MaxCallSessionContent() {
       };
       at(TUTOR_TWO_MIN_LEAD_SEC, `${TUTOR_TIME_NOTE_PREFIX} about 2 minutes left — finish the current activity and start the wrap-up (praise, homework, next topic, goodbye).`);
       at(TUTOR_GOODBYE_LEAD_SEC, `${TUTOR_TIME_NOTE_PREFIX} 45 seconds left — say goodbye now in one or two short turns, then call end_call.`);
+      // зачем (владелец 2026-09-01): «всегда по умолчанию очень медленно, как с
+      // детьми». Одной инструкции в начале промпта не хватает: на длинном звонке
+      // она размывается растущим контекстом разговора, и MAX незаметно ускоряется.
+      // Заметка повторяет правило каждые PACE_NOTE_EVERY_MS и уходит в паузу
+      // между репликами (sendTutorNoteWhenQuiet), поэтому не перебивает урок.
+      // Стоит ноль: это уже открытый веб-сокет, не запрос к Firestore.
+      const lastPaceNoteAtMs = deadlines.hardAtMs - TUTOR_TWO_MIN_LEAD_SEC * 1000;
+      for (
+        let noteAtMs = startedAt + PACE_NOTE_EVERY_MS;
+        noteAtMs < lastPaceNoteAtMs;
+        noteAtMs += PACE_NOTE_EVERY_MS
+      ) {
+        tutorNoteTimersRef.current.push(
+          setTimeout(() => sendTutorNoteWhenQuiet(TUTOR_PACE_NOTE), Math.max(0, noteAtMs - startedAt)),
+        );
+      }
     } else {
       wrapTimerRef.current = setTimeout(() => {
         clientRef.current?.sendWrapUp();
@@ -1117,26 +1144,12 @@ function MaxCallSessionContent() {
   const breathing = phase === 'connecting' || phase === 'thinking';
   const hint = maxVoicePhaseLabel(phase, uiState.eqOwner, lang);
   const failureActions = maxVoiceFailureActions(lang);
-  // Пока идёт отсчёт — он и есть главное сообщение экрана: человек должен
-  // понимать, что урок вот-вот начнётся и что выйти ещё можно.
-  const countdownText = countdownLeft > 0
-    ? triLang(lang, {
-      ru: `Урок начнётся через ${countdownLeft}`,
-      uk: `Урок почнеться через ${countdownLeft}`,
-      en: `Lesson starts in ${countdownLeft}`,
-      es: `La clase empieza en ${countdownLeft}`,
-      'pt-BR': `A aula começa em ${countdownLeft}`,
-      vi: `Bài học bắt đầu sau ${countdownLeft}`,
-      id: `Pelajaran mulai dalam ${countdownLeft}`,
-      tr: `Ders ${countdownLeft} saniye sonra başlıyor`,
-      pl: `Lekcja zacznie się za ${countdownLeft}`,
-    })
-    : '';
-  const liveStatus = countdownText !== ''
-    ? countdownText
-    : phase === 'connecting' && isTutor && tutorGoal.title !== ''
-      ? tutorGoal.title
-      : phase !== 'failed' ? hint : '';
+  // зачем (владелец 2026-09-01: «таймер точно как на макете»): отсчёт —
+  // отдельный оверлей с тающим кольцом, а не строка в статусе. Строку владелец
+  // забраковал: он выбирал макет 09 с кольцом, цифрой и кнопкой «Отменить».
+  const liveStatus = phase === 'connecting' && isTutor && tutorGoal.title !== ''
+    ? tutorGoal.title
+    : phase !== 'failed' ? hint : '';
 
   useEffect(() => {
     if (hardAtMs === null || phase === 'failed' || phase === 'ended') return undefined;
@@ -1621,6 +1634,24 @@ function MaxCallSessionContent() {
             </View>
           </View>
         </Modal>
+
+        {/* Отсчёт перед уроком — макет 09, выбранный владельцем. Поверх всего:
+            пока он идёт, человек видит, что именно начнётся, и может выйти. */}
+        {countdownLeft > 0 ? (
+          <MaxLessonCountdown
+            secondsLeft={countdownLeft}
+            totalSeconds={countdownFrom}
+            lessonTitle={tutorGoal.title}
+            lang={lang}
+            onCancel={() => {
+              // Отмена = обычный выход со звонка. Минуты не тратятся: сервер
+              // считает секунды от первой реплики MAX, а не от соединения.
+              DebugLogger.info('[MAX-CALL]', `отсчёт отменён на ${countdownLeft}с — урок не начат`);
+              setCountdownLeft(0);
+              safeRouterBack(router, '/max_lessons');
+            }}
+          />
+        ) : null}
       </SafeAreaView>
     </ScreenGradient>
   );

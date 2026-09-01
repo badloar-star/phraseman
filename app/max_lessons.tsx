@@ -46,7 +46,7 @@ import {
   recommendedMaxLessonId,
   type MaxLessonCatalogItem,
 } from './max_lesson_catalog';
-import { maxTutorPreviewKey, peekMaxTutorPreview } from './max_tutor_preview';
+import { invalidateMaxTutorPreview, maxTutorPreviewKey, peekMaxTutorPreview } from './max_tutor_preview';
 import {
   bootMaxCatalogTitles,
   fetchMaxCatalogTitles,
@@ -454,7 +454,13 @@ export default function MaxLessonsScreen() {
           setWalletSec(total);
           writeVoiceMinutePeek(total);
           setMinuteSheetVisible(false);
-          DebugLogger.info('[MAX-LESSONS]', `минуты пополнены: стало ${total}с`);
+          // зачем (владелец 2026-09-01, «не то количество минут, расходится»):
+          // превью помнит ПРЕЖНИЙ тип доступа. Пополнили кошелёк — сервер уже
+          // считает доступ платным, но экран звонка ещё берёт из кэша «trial,
+          // 3 минуты» и показывает не те минуты. Сбрасываем кэш, чтобы
+          // следующий заход спросил сервер заново.
+          invalidateMaxTutorPreview();
+          DebugLogger.info('[MAX-LESSONS]', `минуты пополнены: стало ${total}с, кэш превью сброшен`);
         }}
       />
 

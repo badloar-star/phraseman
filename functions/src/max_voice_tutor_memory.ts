@@ -796,6 +796,18 @@ export function renderTutorMemoryBlock(memory: TutorMemory, nowMs: number): stri
     const days = daysSince(memory.lastCallAtMs, nowMs);
       lines.push(`Lessons so far: ${memory.callCount}.${days === null ? '' : days === 0 ? ' Last lesson: today.' : days === 1 ? ' Last lesson: yesterday.' : ` Last lesson: ${days} days ago.`}`);
   }
+  // зачем: знакомство бывает ЧАСТИЧНЫМ — человек назвал имя, но отмахнулся от
+  // вопроса о цели (промпт это прямо разрешает). Без этих строк «уже знакомы»
+  // значило «больше ничего не спрашивай никогда», и цель обучения оставалась
+  // неизвестной навсегда. Спрашиваем один раз и мягко, а не устраиваем допрос.
+  if (alreadyMet) {
+    if ((memory.preferredName ?? '') === '') {
+      lines.push('You still do not know what to call them. Find one natural moment to ask, once — never make it feel like an interview.');
+    }
+    if ((memory.learningGoal ?? '') === '') {
+      lines.push('You still do not know why they are learning English. Find one natural moment to ask, once — never make it feel like an interview.');
+    }
+  }
   if (memory.lastTalkSummary) {
     // зачем (владелец 2026-08-30): «он должен знать, о чём говорили в прошлой
     // сессии». Одна строка темы + мягкое приглашение продолжить нить — без

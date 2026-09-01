@@ -42,6 +42,7 @@ import {
 } from './max_call_premint';
 import { getMaxHomeOrbLayers } from './max_home_orb_assets';
 import {
+  invalidateMaxTutorPreview,
   maxTutorPreviewKey,
   peekMaxTutorPreview,
   type MaxTutorPreview,
@@ -450,6 +451,10 @@ function MaxCallPrestartContent() {
       'pt-BR': 'Hoje você vai transformar palavras conhecidas em fala real.', vi: 'Hôm nay bạn sẽ biến những từ quen thuộc thành lời nói thực tế.', id: 'Hari ini kamu akan mengubah kata yang dikenal menjadi percakapan nyata.',
       tr: 'Bugün bildiğin kelimeleri gerçek konuşmaya dönüştüreceksin.', pl: 'Dziś zamienisz znane słowa w prawdziwą rozmowę.',
     }),
+    // Запасное превью до ответа сервера: каталог пуст, прогресс нулевой —
+    // экран подготовки ими не пользуется, но тип обязан быть полным.
+    catalogMastery: {},
+    catalogProgress: { done: 0, total: 0, level: cefr ?? 'A1' },
   };
   const maxOrbLayers = getMaxHomeOrbLayers(themeMode);
   const startCall = async () => {
@@ -518,6 +523,12 @@ function MaxCallPrestartContent() {
   const onMinutesCredited = (wallet: VoiceMinuteWalletStatus) => {
     setMinuteWallet(wallet);
     setMinuteSheetVisible(false);
+    // зачем (владелец 2026-09-01, «не то количество минут»): превью помнит
+    // ПРЕЖНИЙ тип доступа. После пополнения сервер уже считает доступ платным,
+    // а экран без сброса кэша показывал бы «пробник, 3 минуты» при полном
+    // кошельке — ровно то расхождение, которое заметил владелец.
+    invalidateMaxTutorPreview();
+    DebugLogger.info('[MAX-PRESTART]', `минуты пополнены: ${wallet.availableSeconds}с, кэш превью сброшен`);
     setPrepAttempt((attempt) => attempt + 1);
   };
 

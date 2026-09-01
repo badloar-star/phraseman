@@ -18,7 +18,7 @@
 // из peek-кэша превью синхронно, до всякой сети. Сеть только уточняет.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -108,9 +108,15 @@ export default function MaxLessonsScreen() {
 
   // Заголовки уроков: память → диск → сеть. Экран уже отрисован (в худшем
   // случае с id вместо названий), поэтому ждать нечего и спиннера нет.
+  // Защита от повторных запросов: эффект перезапускается при смене языка
+  // курса, и без этого замка раздел стучался в сеть трижды за один заход
+  // (видно в логах эмулятора). Один запрос на язык — больше не нужно.
+  const titlesRequestedRef = useRef<string>('');
   useEffect(() => {
     let active = true;
     if (Object.keys(titles).length > 0) return () => { active = false; };
+    if (titlesRequestedRef.current === lang) return () => { active = false; };
+    titlesRequestedRef.current = lang;
     void bootMaxCatalogTitles(lang).then((fromDisk) => {
       if (!active) return;
       if (fromDisk) {

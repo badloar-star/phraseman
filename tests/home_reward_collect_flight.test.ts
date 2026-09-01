@@ -17,6 +17,9 @@ import {
   resetRewardFlightQueue,
   subscribeRewardFlight,
 } from '../app/reward_flight_queue';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
 import {
   HOME_REWARD_DEMO_MODES,
   REWARD_FLIGHT_COUNT_MS,
@@ -282,5 +285,41 @@ describe('пульсация счётчика — макет «Гибрид»', 
     // высокой: разреженный пунктир выглядит бедно.
     expect(REWARD_FLIGHT_STAGGER_MS).toBeLessThanOrEqual(45);
     expect(REWARD_FLIGHT_MS).toBeGreaterThanOrEqual(400);
+  });
+});
+
+describe('две волны подряд: руны, затем жемчужины', () => {
+  /** Пауза между волнами (WAVE_GAP_MS в use_home_reward_collect). */
+  const WAVE_GAP_MS = 220;
+  /** Запас страховочного таймера поверх длительности волны. */
+  const TIMEOUT_PAD_MS = 400;
+
+  it('страховка первой волны накрывает старт второй — нужна сверка номера', () => {
+    // Класс бага (владелец 2026-09-01: «полёт жемчугов то есть, то нет»):
+    // жемчужины стартуют через WAVE_GAP после конца рун, а страховка рун
+    // падает через TIMEOUT_PAD после их конца. Если PAD > GAP — таймер первой
+    // волны срабатывает УЖЕ ВНУТРИ второй и закрывает её на взлёте.
+    //
+    // Тест фиксирует сам факт перекрытия: пока оно есть, сверка waveId в
+    // runWave обязательна и удалять её нельзя.
+    expect(TIMEOUT_PAD_MS).toBeGreaterThan(WAVE_GAP_MS);
+  });
+
+  it('сверка номера волны присутствует в коде', () => {
+    // Структурная проверка: логику двух волн в jest не поднять (хук тянет
+    // Reanimated и половину приложения), но исчезновение сверки поймать можно.
+    const src = readFileSync(
+      join(__dirname, '..', 'components', 'home', 'use_home_reward_collect.ts'),
+      'utf8',
+    );
+    expect(src).toContain('const myWaveId = waveIdRef.current;');
+    expect(src).toMatch(/waveIdRef\.current === myWaveId/);
+    // key оверлея по номеру волны — иначе React переиспользует смонтированный
+    // компонент и эффекты полёта второй волны не запускаются.
+    const home = readFileSync(
+      join(__dirname, '..', 'app', '(tabs)', 'home.tsx'),
+      'utf8',
+    );
+    expect(home).toContain('key={rewardCollect.state.waveId}');
   });
 });

@@ -54,6 +54,15 @@ export interface MeasurableView {
 }
 
 export interface HomeRewardCollectState {
+  /**
+   * Номер волны, растёт на каждый запуск.
+   *
+   * зачем (владелец, 2026-09-01: «полёт жемчугов то есть, то нет»): служит
+   * React-ключом оверлея. Без него вторая волна переиспользовала уже
+   * смонтированный компонент, чьи эффекты полёта отработали и заново не
+   * запускались — частицы просто не появлялись.
+   */
+  readonly waveId: number;
   /** Какая волна летит прямо сейчас (null — ничего не летит). */
   readonly wave: RewardCollectWave | null;
   /** Сумма текущей волны — задаёт число частиц. */
@@ -129,10 +138,14 @@ export function useHomeRewardCollect(
   const balancesRef = useRef(balances);
   balancesRef.current = balances;
   const [state, setState] = useState<HomeRewardCollectState>({
+    waveId: 0,
     wave: null,
     amount: 0,
     target: null,
   });
+  // Счётчик волн живёт в ref: он не должен сам по себе вызывать ре-рендер,
+  // его значение лишь попадает в следующий setState.
+  const waveIdRef = useRef(0);
 
   // 0 — покой, 1 — удар. Частицы поднимают значение сами, из своего worklet.
   const runesImpact = useSharedValue(0);
@@ -294,7 +307,7 @@ export function useHomeRewardCollect(
 
   const finish = useCallback(() => {
     runningRef.current = false;
-    if (mountedRef.current) setState({ wave: null, amount: 0, target: null });
+    if (mountedRef.current) setState((c) => ({ ...c, wave: null, amount: 0, target: null }));
     soundDirector.request('pm.reward.rune_count_done', PULSE_SOUND_OPTIONS);
   }, []);
 
@@ -312,7 +325,8 @@ export function useHomeRewardCollect(
         );
         return false;
       }
-      setState({ wave, amount, target });
+      waveIdRef.current += 1;
+      setState({ waveId: waveIdRef.current, wave, amount, target });
       // Волна закрывается без пульса: счётчик бьётся сам, из оверлея.
       waveDoneRef.current = onFinished;
 
@@ -328,11 +342,20 @@ export function useHomeRewardCollect(
       // Страховка: если оверлей по какой-то причине не сообщит о завершении
       // (экран увели, кадр не собрался), волна всё равно закроется — иначе
       // оверлей завис бы поверх Главной навсегда.
+      //
+      // Таймер СВЕРЯЕТ номер волны.
+      //
+      // зачем (владелец, 2026-09-01: «полёт жемчугов то есть, то нет»): волна
+      // жемчужин стартует через 220мс после конца рун, а страховка рун падает
+      // через 400мс после их конца — то есть уже ВНУТРИ волны жемчужин, через
+      // 180мс после её старта. Без сверки она закрывала чужую волну на взлёте,
+      // и жемчужины пропадали.
+      const myWaveId = waveIdRef.current;
       later(() => {
-        if (waveDoneRef.current) {
+        if (waveDoneRef.current && waveIdRef.current === myWaveId) {
           DebugLogger.warn(
             'reward_flight:wave_timeout',
-            JSON.stringify({ wave, amount }),
+            JSON.stringify({ wave, amount, waveId: myWaveId }),
           );
           const done = waveDoneRef.current;
           waveDoneRef.current = null;
@@ -363,7 +386,7 @@ export function useHomeRewardCollect(
       // отзывается, чтобы человек понял, что награда пришла (правило доступности
       // — убираем перемещение, а не обратную связь).
       runningRef.current = false;
-      setState({ wave: null, amount: 0, target: null });
+      setState((c) => ({ ...c, wave: null, amount: 0, target: null }));
       soundDirector.request('pm.reward.rune_count_done', PULSE_SOUND_OPTIONS);
       return;
     }
@@ -419,7 +442,7 @@ export function useHomeRewardCollect(
 
     if (reduceMotion) {
       runningRef.current = false;
-      setState({ wave: null, amount: 0, target: null });
+      setState((c) => ({ ...c, wave: null, amount: 0, target: null }));
       soundDirector.request('pm.reward.rune_count_done', PULSE_SOUND_OPTIONS);
       return;
     }

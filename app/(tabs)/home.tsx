@@ -4665,6 +4665,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           лишнего узла и ни одной живой анимации (Performance Bible). */}
       {rewardCollect.state.wave !== null && rewardCollect.state.target !== null ? (
         <HomeRewardCollectFlight
+          // key по волне — ОБЯЗАТЕЛЕН.
+          //
+          // зачем (владелец, 2026-09-01: «анимация полёта жемчугов то есть, то
+          // её нет»): вторая волна (жемчужины) идёт через 220мс после рун, и
+          // без key React переиспользует ТОТ ЖЕ смонтированный оверлей. Его
+          // useEffect'ы с полётом частиц уже отработали и заново не
+          // запускаются, а useMemo с траекториями возвращает прежний массив,
+          // когда число частиц совпало. Отсюда и «то есть, то нет»: волна
+          // играла только если сумма жемчужин давала ДРУГОЕ число частиц, чем
+          // руны. С key оверлей монтируется заново на каждую волну.
+          key={rewardCollect.state.waveId}
           amount={rewardCollect.state.amount}
           target={rewardCollect.state.target}
           source={rewardCollect.state.wave === 'runes'

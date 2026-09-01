@@ -65,8 +65,11 @@ function getSecureStore(): SecureStoreModule | null {
 }
 
 /**
- * Startup may continue only for the guard's explicit "no lock was seen" case.
- * A visible, malformed, or quarantined delete record still fails closed.
+ * Старт продолжается ВСЕГДА: локальный след удаления больше не запирает вход
+ * (правило отменено 2026-09-01, коммит 97fdf2083). Любая причина — след не
+ * виден, повреждён или в незавершённой фазе — уходит в журнал уровнем
+ * warning, а приложение открывается. Правду об удалении держит сервер:
+ * tombstone + permanent denial + accountDeleteStatusMine.
  */
 async function assertStableIdentityAvailableAtStartup(candidateStableId?: string | null): Promise<void> {
   try {

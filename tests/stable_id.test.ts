@@ -67,7 +67,12 @@ test('starts with AsyncStorage identity when secure guard is unreadable and no d
   });
 });
 
-test('still rejects stable identity when a visible delete lock fails its secure anchor check', async () => {
+test('a half-written delete lock is discarded and still yields a working identity', async () => {
+  // зачем переписан (правило отменено коммитом 97fdf2083): раньше запись без
+  // якоря БРОСАЛА, getStableId умирал на каждом из десятков вызовов за
+  // запуск — мёртвый старт и поток алертов, а снять след было нечем
+  // (Keychain переживает переустановку). Теперь мусор стирается, человек
+  // получает рабочий id, а правду об удалении держит сервер.
   secureStore['account_delete_pending_auth_v2'] = JSON.stringify({
     operationId: 'delete-visible',
     providerUid: 'deleted-provider',
@@ -79,7 +84,12 @@ test('still rejects stable identity when a visible delete lock fails its secure 
   });
   const { getStableId } = require('../app/stable_id');
 
-  await expect(getStableId()).rejects.toThrow('account_delete_guard_anchor_required');
+  const id = await getStableId();
+
+  expect(id).toMatch(/^uuid-/);
+  // Сломанный след снят физически — иначе он ожил бы на следующем запуске.
+  expect(secureStore['account_delete_pending_auth_v2']).toBeUndefined();
+  expect(secureStore['account_delete_pending_auth_anchor_v2']).toBeUndefined();
 });
 
 test('returns same UUID on second call (in-memory cache)', async () => {
@@ -230,7 +240,7 @@ test('failed clear remains transitioning and invalidates captured work', async (
   expect(generation.captureAccountGeneration().phase).toBe('transitioning');
 });
 
-test('prepared deletion guard makes a concurrent set wait and reject instead of resurrecting identity', async () => {
+test('a fresh account id may be adopted mid-deletion without waiting for the guard', async () => {
   const SS = require('expo-secure-store');
   const quarantine = require('../app/account_delete_quarantine');
   const stable = require('../app/stable_id');
@@ -255,10 +265,43 @@ test('prepared deletion guard makes a concurrent set wait and reject instead of 
 
   release();
   await expect(clearing).resolves.toBeUndefined();
-  await expect(setting).rejects.toThrow('account_delete_identity_quarantined');
-  expect(secureStore['phraseman_stable_uid']).toBeUndefined();
-  expect(asyncStore['phraseman_stable_uid_cache']).toBeUndefined();
+
+  // зачем переписан (владелец, 2026-09-01): «если человек удалил аккаунт, всё
+  // стёрлось сразу, и вход в другой аккаунт не должен конфликтовать ни с
+  // какими данными». Прежний запрет держал ЧУЖОЙ, новый id заложником чужого
+  // удаления: сесть в другой аккаунт было нельзя, пока след не дойдёт до
+  // терминальной фазы — а он мог не дойти никогда. Данные удаляемого уже
+  // стёрты (clearStableId выше), поэтому смешивать нечего.
+  await expect(setting).resolves.toBeUndefined();
+  expect(secureStore['phraseman_stable_uid']).toBe('foreign-after-delete');
+  expect(asyncStore['phraseman_stable_uid_cache']).toBe('foreign-after-delete');
+
+  // Порядок обязателен: запись новой личности идёт ПОСЛЕ снятия старой,
+  // иначе гонка вернула бы удаляемый id поверх нового.
   expect(JSON.parse(secureStore['account_delete_pending_auth_v2']).phase).toBe('prepared');
+});
+
+test('the deleted account id itself is never resurrected while its deletion is live', async () => {
+  // Обратная сторона правила выше: чужой id — можно, СВОЙ удаляемый — нельзя,
+  // иначе удаление откатило бы само себя и данные вернулись бы на телефон.
+  const quarantine = require('../app/account_delete_quarantine');
+  const stable = require('../app/stable_id');
+  const deletedId = await stable.getStableId();
+  const createdAt = Date.now();
+  await expect(quarantine.persistAccountDeletePendingAuthLock({
+    operationId: 'delete-op-self',
+    providerUid: 'provider-self',
+    stableId: deletedId,
+    source: 'local',
+    phase: 'server_enqueued',
+    createdAt,
+    expiresAt: createdAt + 60_000,
+  })).resolves.toBe(true);
+  await stable.clearStableId();
+
+  await expect(stable.setStableId(deletedId))
+    .rejects.toThrow('account_delete_deleted_stable_id_denied');
+  expect(secureStore['phraseman_stable_uid']).toBeUndefined();
 });
 
 test('strict clear drains a paused stable-id load before verifying every storage layer empty', async () => {

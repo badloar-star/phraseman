@@ -116,8 +116,14 @@ function readAccountDeleteGraceDeadline(
   if (!snap?.exists) return null;
   const data = snap.data() ?? {};
   if (String(data.status ?? '') !== 'pending') return null;
-  const deadline = Number(data.graceDeadlineMs);
-  if (!Number.isFinite(deadline) || deadline <= 0) return null;
+  // зачем СТРОГИЙ тип, а не Number(): enqueue пишет дедлайн только числом.
+  // Строка сюда попадает лишь при порче или ручной правке документа, а
+  // Number('9999999999999') прошло бы как «живой grace» — человеку пообещали бы
+  // восстановление, которого accountDeleteRestoreMine не выполнит (он читает
+  // то же поле числом). Обещание без выполнения — известный класс бага в этом
+  // проекте, поэтому при любом сомнении отвечаем строго: аккаунт мёртв.
+  const deadline = data.graceDeadlineMs;
+  if (typeof deadline !== 'number' || !Number.isFinite(deadline) || deadline <= 0) return null;
   return deadline > Date.now() ? deadline : null;
 }
 

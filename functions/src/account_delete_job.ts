@@ -499,6 +499,24 @@ export async function processAccountDeletionJob(
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       lastError: admin.firestore.FieldValue.delete(),
     });
+    // зачем метки тоже переводим в 'running' (самопроверка 2026-09-01):
+    // вход решает про grace по tombstone/маркеру, а не по job. Раньше они
+    // оставались 'pending' ВСЁ время работы воркера (обновлялись только в
+    // конце) — и человек в этот момент видел бы «Восстановить аккаунт?», а
+    // accountDeleteRestoreMine отказал бы: данные уже частично снесены.
+    // Обещание без выполнения — известный класс бага в этом проекте.
+    tx.set(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableUid), {
+      status: 'running',
+      startedAtMs: nowMs,
+      updatedAtMs: nowMs,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+    tx.set(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid), {
+      status: 'running',
+      startedAtMs: nowMs,
+      updatedAtMs: nowMs,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
     return { authUid, stableUid, attempts, leaseToken, closureCutoffMs, identityClosure };
   });
 

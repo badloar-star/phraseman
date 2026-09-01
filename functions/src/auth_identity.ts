@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { upsertEmailContact } from './email_contacts';
+import { findAccountByAlias, verifyAccountHit } from './account_id_lookup';
 import {
   accountStateFromSnapshots,
   assertAccountUsable,
@@ -1330,6 +1331,31 @@ export async function resolveStableUidForAuth(
 ): Promise<string> {
   await assertAccountDeletionNotPending(db, authUid);
   const stableId = normalizeStableId(requestedStableId);
+
+  // ── ЕДИНОЕ ИМЯ: первая ступень опознания (этап 3, владелец 01.09.2026) ──
+  // зачем: ниже человек опознаётся ШЕСТЬЮ способами подряд, и каждый — шанс
+  // промахнуться; из этих промахов и рождаются «не могу войти» и пустые
+  // профили. Таблица соответствия (этап 2, 8747 записей на 4703 аккаунта)
+  // отвечает одним чтением по известному id — это и надёжнее, и ДЕШЕВЛЕ
+  // прежнего пути, где findStableUidForProviderAuth делает два запроса с
+  // limit(20).
+  //
+  // Не нашли или карта устарела — молча идём прежним путём. Поэтому ступень
+  // обратима: худшее, что она может сделать, — вернуть нас к нынешнему
+  // поведению.
+  const aliasHit = await findAccountByAlias(db, authUid)
+    ?? (stableId ? await findAccountByAlias(db, stableId) : null);
+  if (aliasHit && await verifyAccountHit(db, aliasHit)) {
+    await assertStableDeletionNotPending(db, aliasHit.stableId);
+    return finalizeStableIdentitySelection(
+      db,
+      authUid,
+      { stableUid: aliasHit.stableId, sourceStableIds: [aliasHit.stableId] },
+      options,
+      true,
+    );
+  }
+
   const authLinkAnchor = await findLiveAuthLinkAnchor(db, authUid);
   if (authLinkAnchor?.selection) {
     return finalizeStableIdentitySelection(db, authUid, authLinkAnchor.selection, options, false);

@@ -1,3 +1,4 @@
+import { accountIdIndexDocId } from './account_id';
 import {
   cleanupLegacyAuthIdentityDuplicates,
   ensureAuthLinkDoc,
@@ -197,6 +198,16 @@ async function captureOutcome(promise: Promise<unknown>): Promise<{
       message: (error as { message?: unknown })?.message,
     };
   }
+}
+
+/**
+ * Пути карты имён, которые обязана записать транзакция рождения аккаунта.
+ *
+ * зачем через настоящий accountIdIndexDocId: псевдонимы лежат по ХЕШУ, и
+ * хардкод хешей в тесте разошёлся бы с продом при любой смене схемы id.
+ */
+function accountIndexPaths(...aliases: string[]): string[] {
+  return [...new Set(aliases)].map((a) => `account_id_index/${accountIdIndexDocId(a)}`);
 }
 
 function expectSingleTransactionPaths(commits: string[][], expectedPaths: string[]): void {
@@ -1365,6 +1376,7 @@ describe('ensureStableLinkForAuth', () => {
       identityReady: true,
     });
     expect(store.users['stable-new-1']).toEqual({
+      accountId: expect.stringMatching(/^acc_[0-9a-f]{32}$/),
       firebaseAuthUid: 'anon-auth-1',
       updatedAt: 1_777_000_000_000,
     });
@@ -1376,6 +1388,7 @@ describe('ensureStableLinkForAuth', () => {
       'users/stable-new-1',
       'auth_links/anon-auth-1',
       'jarvis_growth_daily/2026-04-24',
+      ...accountIndexPaths('stable-new-1', 'anon-auth-1'),
     ]);
   });
 
@@ -1402,6 +1415,9 @@ describe('ensureStableLinkForAuth', () => {
       identityReady: true,
     });
     expect(store.users['stable-new-provider']).toEqual({
+      // зачем expect.stringMatching: имя выдаётся случайным (128 бит), поэтому
+      // сверяем форму, а не значение.
+      accountId: expect.stringMatching(/^acc_[0-9a-f]{32}$/),
       firebaseAuthUid: 'google-auth-new',
       linkedAuth: {
         provider: 'google',
@@ -1429,6 +1445,7 @@ describe('ensureStableLinkForAuth', () => {
       'users/stable-new-provider',
       'auth_links/google-auth-new',
       'jarvis_growth_daily/2026-04-24',
+      ...accountIndexPaths('stable-new-provider', 'google-auth-new'),
     ]);
   });
 
@@ -1458,6 +1475,7 @@ describe('ensureStableLinkForAuth', () => {
       'users/fresh-anonymous-same-id',
       'auth_links/fresh-anonymous-same-id',
       'jarvis_growth_daily/2026-04-24',
+      ...accountIndexPaths('fresh-anonymous-same-id'),
     ]);
   });
 
@@ -1495,6 +1513,7 @@ describe('ensureStableLinkForAuth', () => {
       'users/stable-new-apple',
       'auth_links/apple-auth-new',
       'jarvis_growth_daily/2026-04-24',
+      ...accountIndexPaths('stable-new-apple', 'apple-auth-new'),
     ]);
   });
 

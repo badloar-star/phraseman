@@ -4,6 +4,13 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { upsertEmailContact } from './email_contacts';
 import { findAccountByAlias, verifyAccountHit } from './account_id_lookup';
 import {
+  ACCOUNT_ID_FIELD,
+  ACCOUNT_ID_INDEX,
+  newAccountId,
+  accountIdIndexDocId,
+  cleanAliases,
+} from './account_id';
+import {
   accountStateFromSnapshots,
   assertAccountUsable,
   readAuthAccountState,
@@ -796,6 +803,29 @@ async function repairIdentityDocumentsAtomically(
         }
       }
 
+      // ── САМОПОДДЕРЖАНИЕ КАРТЫ ИМЁН (этап 3) ────────────────────────────
+      // зачем: без этого таблица соответствия устаревает с первого же нового
+      // человека — новые аккаунты и новые привязки в неё не попадут, и
+      // опознание по одному имени тихо перестанет работать для всех, кто
+      // пришёл после миграции. Это ровно класс бага «механизм есть, а данных
+      // не дали», который в проекте повторялся многократно.
+      //
+      // Пишем В ТОЙ ЖЕ транзакции, что и сами документы личности: карта не
+      // имеет права разойтись с реальностью даже на мгновение.
+      const accountIdForIndex = String(
+        (currentUserData as Record<string, unknown>)[ACCOUNT_ID_FIELD] ?? '',
+      ).trim();
+      if (accountIdForIndex) {
+        for (const { alias, kind } of cleanAliases([
+          { alias: stableId, kind: 'stable' },
+          { alias: authUid, kind: 'auth' },
+        ])) {
+          transaction.set(db.collection(ACCOUNT_ID_INDEX).doc(accountIdIndexDocId(alias)), {
+            accountId: accountIdForIndex, alias, kind, stableId, updatedAt: now,
+          }, { merge: true });
+        }
+      }
+
       return { userAuthUidChanged };
     });
   } catch (error) {
@@ -1500,8 +1530,14 @@ async function bootstrapMissingStableIdentity(
       }
 
       previouslyObservedMissingTarget = true;
+      // зачем имя СРАЗУ при рождении аккаунта (этап 3): иначе новые люди
+      // остаются вне новой схемы, карта имён устаревает с первого же дня, и
+      // опознание по одному имени работает только для тех, кто был до
+      // миграции. Класс «механизм есть, а данных не дали».
+      const freshAccountId = newAccountId();
       const userData: Record<string, unknown> = {
         firebaseAuthUid: authUid,
+        [ACCOUNT_ID_FIELD]: freshAccountId,
         updatedAt: now,
       };
       const authLinkData: Record<string, unknown> = {
@@ -1535,6 +1571,16 @@ async function bootstrapMissingStableIdentity(
 
       transaction.create(userRef, userData);
       transaction.create(authLinkRef, authLinkData);
+      // Новый аккаунт сразу попадает в карту имён — в ТОЙ ЖЕ транзакции,
+      // чтобы карта не могла разойтись с реальностью даже на мгновение.
+      for (const { alias, kind } of cleanAliases([
+        { alias: stableId, kind: 'stable' },
+        { alias: authUid, kind: 'auth' },
+      ])) {
+        transaction.set(db.collection(ACCOUNT_ID_INDEX).doc(accountIdIndexDocId(alias)), {
+          accountId: freshAccountId, alias, kind, stableId, updatedAt: now,
+        }, { merge: true });
+      }
       writeFirstAuthLinkGrowthAggregate(db, transaction, now);
       return { status: 'bootstrapped', stableUid: stableId };
     });

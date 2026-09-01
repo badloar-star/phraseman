@@ -87,6 +87,8 @@ function assertRequest(request: unknown): asserts request is MaxVoiceFinalizeReq
     if (!Number.isInteger(progress.mastery) || Number(progress.mastery) < 0 || Number(progress.mastery) > 3) {
       throw new Error('max_finalize_goal_progress_invalid');
     }
+    // 'novel_context' отменён (2026-09-01), но в очереди на диске могут лежать
+    // записи старой сборки — их не рвём, сервер зачтёт как mastery 2.
     if (progress.evidence !== undefined && !['scene', 'novel_context'].includes(String(progress.evidence))) {
       throw new Error('max_finalize_goal_progress_invalid');
     }

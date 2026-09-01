@@ -60,7 +60,9 @@ describe('MAX Voice review server wiring', () => {
     expect(halo).toContain('const FEATHER_LAYERS = [');
     expect(halo).toContain('useSharedValue(1)');
     expect(halo).toContain('useReduceMotion()');
-    expect(prestart).toContain('studyTarget,');
+    // Проброс studyTarget в сессию: буквальное «studyTarget,» сломалось, когда
+    // в параметры добавили goalId (2026-08-31) — сторожим смысл, не запятую.
+    expect(prestart).toMatch(/studyTarget: callStudyTarget|studyTarget,/);
     expect(session).toContain('studyTarget,');
     expect(prestart).not.toContain("studyTarget: format === 'tutor' ? 'en' : studyTarget");
     expect(session).not.toContain("studyTarget: isTutor ? 'en' : studyTarget");

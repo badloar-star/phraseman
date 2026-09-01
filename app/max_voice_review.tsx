@@ -48,7 +48,7 @@ import type {
 } from './max_voice_finalize_types';
 import { projectMaxReview } from './max_voice_review_projection';
 import { computeVoiceCallMetrics } from './max_voice_metrics';
-import { appendSpeechSample } from './max_speech_history';
+import { appendSpeechSample, speechSampleFromReview } from './max_speech_history';
 import { getStableId } from './stable_id';
 import { DebugLogger } from './debug-logger';
 
@@ -356,19 +356,10 @@ export default function MaxVoiceReview() {
     const results: readonly { result: 'pass' | 'needs_work' | 'uncertain' | 'invalid' }[] =
       pendingRequest?.phraseResults ?? [];
     speechSampleWrittenRef.current = activeSessionId;
-    void appendSpeechSample({
-      atMs: Date.now(),
-      speechSec,
-      uniqueWords: metrics.uniqueWords,
-      // «Чистая» фраза — произнесённая уверенно; uncertain/invalid нейтральны
-      // и в знаменатель не идут, иначе плохая связь портила бы процент.
-      cleanPhrases: results.filter((r) => r.result === 'pass').length,
-      totalPhrases: results.filter((r) => r.result === 'pass' || r.result === 'needs_work').length,
-    });
-    DebugLogger.info(
-      '[MAX-SPEECH]',
-      `замер сессии ${activeSessionId}: реплик=${metrics.userTurns} речь=${speechSec}с слов=${metrics.uniqueWords} длиннейшая=${metrics.longestTurnWords}`,
-    );
+    // Сборка замера — в модуле истории: экран разбора не должен содержать
+    // поля-оценки речи (сторож max_voice_review_server_contract).
+    void appendSpeechSample(speechSampleFromReview({ ...metrics, speechSec }, results));
+    DebugLogger.info('[MAX-SPEECH]', `замер сессии ${activeSessionId}: реплик=${metrics.userTurns} речь=${speechSec}с`);
   }, [activeSessionId, durationSec, pendingHistory, pendingRequest, speechSec]);
 
   // зачем (аудит MAX 2026-08-30): «+N XP» за урок. Сумму считает сервер и

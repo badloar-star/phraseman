@@ -177,7 +177,7 @@ export type TutorSceneOutcome = 'done' | 'partial' | 'skipped';
 export interface TutorGoalProgress {
   goalId: string;
   mastery: number;
-  evidence?: 'scene' | 'novel_context';
+  evidence?: 'scene';
   sceneId?: string;
 }
 

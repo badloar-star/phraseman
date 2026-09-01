@@ -417,7 +417,7 @@ export interface PremiumDialogReviewRequest {
   goalProgress?: {
     goalId: string;
     mastery: number;
-    evidence?: 'scene' | 'novel_context';
+    evidence?: 'scene';
     sceneId?: string;
   };
 }

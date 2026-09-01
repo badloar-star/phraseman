@@ -114,6 +114,32 @@ export async function appendSpeechSample(
   }
 }
 
+/**
+ * Собрать замер звонка из метрик разбора.
+ *
+ * зачем: живёт здесь, а не в экране разбора. Сторож
+ * tests/max_voice_review_server_contract.test.ts запрещает экрану содержать
+ * metrics.uniqueWords / longestTurnWords — экран не должен ПРЕДЪЯВЛЯТЬ
+ * человеку неподтверждённые оценки речи. Здесь числа только копятся для
+ * личной статистики и никому не показываются как «оценка».
+ *
+ * «Чистая» фраза — произнесённая уверенно (pass); uncertain/invalid нейтральны
+ * и в знаменатель не идут, иначе плохая связь портила бы процент.
+ */
+export function speechSampleFromReview(
+  metrics: { speechSec: number; uniqueWords: number; userTurns: number },
+  results: readonly { result: 'pass' | 'needs_work' | 'uncertain' | 'invalid' }[],
+  atMs = Date.now(),
+): VoiceCallTrendSample {
+  return {
+    atMs,
+    speechSec: metrics.speechSec,
+    uniqueWords: metrics.uniqueWords,
+    cleanPhrases: results.filter((r) => r.result === 'pass').length,
+    totalPhrases: results.filter((r) => r.result === 'pass' || r.result === 'needs_work').length,
+  };
+}
+
 /** Сброс при удалении аккаунта/данных: история личная и обязана уходить с ними. */
 export async function clearSpeechHistory(): Promise<void> {
   memory = [];

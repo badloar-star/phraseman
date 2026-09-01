@@ -24,7 +24,8 @@ export interface MaxVoiceFinalizeRequestV1 {
   readonly goalProgress?: {
     readonly goalId: string;
     readonly mastery: number;
-    readonly evidence?: 'scene' | 'novel_context';
+    /** Только 'scene': путь через novel_context отменён владельцем 2026-09-01. */
+    readonly evidence?: 'scene';
     readonly sceneId?: string;
   };
   readonly phraseResults: readonly {

@@ -298,6 +298,8 @@ function parseFinalizeData(raw: unknown): ParsedFinalizeData {
     const row = object(requestRaw.goalProgress, 'max_finalize_goal_progress_invalid');
     onlyKeys(row, ['goalId', 'mastery', 'evidence', 'sceneId']);
     const mastery = finiteInt(row.mastery, 3);
+    // 'novel_context' принимаем ТОЛЬКО ради совместимости: старые сборки могли
+    // положить его в очередь отправки. Звезду он не даёт (applyGoalProgress).
     let evidence: 'scene' | 'novel_context' | undefined;
     if (row.evidence !== undefined) {
       const cleaned = cleanText(row.evidence, 16, true);

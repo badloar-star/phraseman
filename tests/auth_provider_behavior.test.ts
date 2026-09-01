@@ -387,6 +387,28 @@ beforeEach(() => {
   waitForRestoreApplicationIdleWithDeadline.mockResolvedValue(true);
 });
 
+/**
+ * Бюджет локального wipe (ACCOUNT_DELETE_LOCAL_WIPE_TIMEOUT_MS).
+ *
+ * зачем читать из исходника, а не дублировать числом: 01.09.2026 бюджет
+ * подняли с 1 с до 5 с (одна секунда давала ложный таймаут на реальном iOS),
+ * а тесты остались перематывать 1 с — и 23 теста начали ВИСЕТЬ до жестокого
+ * таймаута jest вместо честного падения по assert, утаскивая за собой
+ * незавершённый flight удаления и роняя ещё 21 соседний тест. Константа не
+ * экспортируется (внутренняя деталь), поэтому берём её значение из файла:
+ * следующее изменение бюджета тесты переживут сами.
+ */
+const LOCAL_WIPE_DEADLINE_MS = (() => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const source = require('fs').readFileSync(
+    require('path').join(__dirname, '..', 'app', 'auth_provider.ts'),
+    'utf8',
+  ) as string;
+  const match = source.match(/const ACCOUNT_DELETE_LOCAL_WIPE_TIMEOUT_MS\s*=\s*([\d_]+);/);
+  if (!match) throw new Error('ACCOUNT_DELETE_LOCAL_WIPE_TIMEOUT_MS not found in auth_provider.ts');
+  return Number(match[1].replaceAll('_', ''));
+})();
+
 let lastLoadedAuthProviderStorage: { getItem: (key: string) => Promise<string | null> };
 
 function loadAuthProvider(
@@ -1281,13 +1303,16 @@ test('timed-out local wipe remains a single joined flight and cannot clear a fre
   try {
     const first = authProvider.beginAccountDeletion();
     await waitForCall(wipeLocalAccountData, 'wipeLocalAccountData');
-    await jest.advanceTimersByTimeAsync(1_000);
+    // зачем: полный локальный wipe — цепочка нативных шагов, и её бюджет
+    // намеренно поднят до 5 с (одна секунда давала ложный таймаут на реальном
+    // iOS). Тест обязан перематывать ВЕСЬ бюджет, иначе висит на первом await.
+    await jest.advanceTimersByTimeAsync(LOCAL_WIPE_DEADLINE_MS);
     await expect(first).resolves.toEqual({ ok: false, reason: 'local_wipe_unverified' });
 
     const retry = authProvider.beginAccountDeletion();
     await Promise.resolve();
     expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
-    await jest.advanceTimersByTimeAsync(1_000);
+    await jest.advanceTimersByTimeAsync(LOCAL_WIPE_DEADLINE_MS);
     await expect(retry).resolves.toEqual({ ok: false, reason: 'local_wipe_unverified' });
     expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
     expect(accountGeneration.beginAccountGeneration).not.toHaveBeenCalled();
@@ -1306,6 +1331,7 @@ test('timed-out local wipe remains a single joined flight and cannot clear a fre
 });
 
 test('a hung local_data_cleared guard write cannot freeze the deletion handoff', async () => {
+  jest.useFakeTimers();
   authState.isAnonymous = false;
   const secureStore = require('expo-secure-store') as {
     setItemAsync: jest.Mock;
@@ -1317,16 +1343,26 @@ test('a hung local_data_cleared guard write cannot freeze the deletion handoff',
   });
   const authProvider = loadAuthProvider();
   try {
-    const outcome = await Promise.race([
+    // зачем: смысл теста — «зависшая запись НЕ морозит UI навсегда», а не
+    // «уложились в 1.3 с». Сторож даёт зависшей записи бюджет локального wipe
+    // (5 с), поэтому гонку ведём с запасом поверх бюджета. Часы фальшивые:
+    // на реальных тест честно спал бы 5 секунд, а при следующем изменении
+    // бюджета снова ВИСЕЛ бы вместо падения по assert.
+    const race = Promise.race([
       authProvider.beginAccountDeletion(),
-      new Promise<'ui_timeout'>((resolve) => setTimeout(() => resolve('ui_timeout'), 1_300)),
+      new Promise<'ui_timeout'>((resolve) => (
+        setTimeout(() => resolve('ui_timeout'), LOCAL_WIPE_DEADLINE_MS + 1_500)
+      )),
     ]);
+    await jest.advanceTimersByTimeAsync(LOCAL_WIPE_DEADLINE_MS + 1_500);
+    const outcome = await race;
     expect(outcome).toEqual({ ok: false, reason: 'local_wipe_unverified' });
     expect(startCloudDeletionEnqueue).not.toHaveBeenCalled();
     expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1'))
       .toContain('"phase":"prepared"');
   } finally {
     secureStore.setItemAsync.mockImplementation(originalSetItem);
+    jest.useRealTimers();
   }
 });
 

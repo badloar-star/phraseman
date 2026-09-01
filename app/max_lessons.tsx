@@ -214,6 +214,14 @@ export default function MaxLessonsScreen() {
       out.push({ kind: 'header', key: `h_${lvl}`, level: lvl });
       for (const lesson of inLevel) out.push({ kind: 'lesson', key: lesson.id, lesson });
     }
+    // зачем (владелец 2026-09-01, «нет ни 1 урока списка»): пустой список при
+    // живой шапке неотличим от «каталог не загрузился». Лог показывает РАЗМЕР
+    // источника и результата — сразу видно, каталог пуст или отвалилась
+    // отрисовка. Остаётся навсегда: без него симптом молчит.
+    DebugLogger.info(
+      '[MAX-LESSONS]',
+      `список: каталог=${MAX_LESSON_CATALOG.length} фильтр=${topic ?? 'все'} видимых=${visible.length} строк=${out.length}`,
+    );
     return out;
   }, [topic]);
 
@@ -307,9 +315,16 @@ export default function MaxLessonsScreen() {
           contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 28 }}
           showsVerticalScrollIndicator={false}
           // Первый экран рисуется сразу, остальное — по мере прокрутки.
+          // зачем (владелец 2026-09-01, «нет ни 1 урока списка»): без flex:1
+          // FlatList внутри SafeAreaView схлопывается в нулевую высоту — шапка
+          // видна, а список нет. На эмуляторе прошло случайно, на телефоне —
+          // пустой экран.
+          style={{ flex: 1 }}
+          // removeClippedSubviews УБРАН намеренно: на Android он давно известен
+          // тем, что выбрасывает строки из дерева и оставляет пустоту. Выигрыш
+          // на 78 коротких строках мизерный, риск пустого раздела — нет.
           initialNumToRender={12}
           windowSize={7}
-          removeClippedSubviews
           ListHeaderComponent={(
             <View>
               {/* Прогресс курса. Уровень здесь НЕ показываем — решение

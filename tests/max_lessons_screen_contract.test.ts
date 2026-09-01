@@ -53,6 +53,18 @@ describe('экран раздела «Уроки с МАКСом»', () => {
     expect(screen).toContain('initialNumToRender');
   });
 
+  it('у списка есть высота и нет removeClippedSubviews', () => {
+    // Найдено владельцем 2026-09-01: раздел открывался с шапкой и пустотой.
+    // Две причины, обе невидимы в тестах и на эмуляторе:
+    //   • без flex:1 FlatList внутри SafeAreaView схлопывается в ноль высоты;
+    //   • removeClippedSubviews на Android выбрасывает строки из дерева.
+    const list = screen.slice(screen.indexOf('<FlatList'), screen.indexOf('renderItem'));
+    expect(list).toContain('style={{ flex: 1 }}');
+    // Ищем свойство, а не упоминание: объяснение «почему убрали» в комментарии
+    // должно остаться, иначе следующий разработчик вернёт ловушку.
+    expect(list).not.toMatch(/^\s*removeClippedSubviews\s*$/mu);
+  });
+
   it('первый кадр не ждёт сеть и не показывает спиннер', () => {
     expect(screen).toContain('peekMaxTutorPreview');
     expect(screen).toContain('peekMaxCatalogTitles');

@@ -2,7 +2,6 @@
 // зачем: каждый пункт запускает РЕАЛЬНУЮ поверхность приложения (не бутафорию).
 // Шард пополняется независимо от других (мультиагентная параллель без конфликтов).
 import React from 'react';
-import { LevelUpShowcaseHost } from '../hosts/LevelUpShowcaseHost';
 import LevelSpinRewardModal from '../../../LevelSpinRewardModal';
 import { SpinRewardPlaque } from '../../../SpinRewardPlaque';
 import type { GiftDef } from '../../../../app/level_gift_system';
@@ -23,14 +22,12 @@ const DEMO_GIFT: GiftDef = {
   weight: 1,
 };
 
-// зачем: LevelUpThresholdModal — портал-оверлей, которым владеет родитель.
-// Гибрид «Световод + Чекан» — ЕДИНСТВЕННАЯ реализация (2026-08-16,
-// project_motion_program.md), поэтому один пункт на вариант, без пары
-// «текущий вид / · гибрид».
-const renderLevelUpStandard = ({ visible, onClose }: { visible: boolean; onClose: () => void }) =>
-  React.createElement(LevelUpShowcaseHost, { visible, onClose, variant: 'standard' });
-const renderLevelUpMilestone = ({ visible, onClose }: { visible: boolean; onClose: () => void }) =>
-  React.createElement(LevelUpShowcaseHost, { visible, onClose, variant: 'milestone' });
+// зачем (владелец, 2026-09-01): полноэкранная модалка повышения уровня
+// УДАЛЕНА целиком. Повышение теперь играется на Главной — полоска доливается,
+// аватарка подпрыгивает, цифра меняется (components/home/use_home_level_up_celebration.ts),
+// а следом всплывает плашка спина ниже по этому же шарду. Смотреть анимацию
+// повышения нужно дев-кнопкой на Главной (режимы ЛВЛ / ЛВЛ3), а не здесь:
+// это НАСТОЯЩАЯ поверхность, а витрина показывает только модалки.
 
 function renderSpinRewardModal({ visible, onClose }: { visible: boolean; onClose: () => void }) {
   return React.createElement(LevelSpinRewardModal, {
@@ -76,20 +73,6 @@ export const SECTION: ShowcaseSection = {
   order: 15,
   title: cs('levelup_spins_section_title'),
   items: [
-    {
-      id: 'levelup_threshold_standard',
-      title: cs('levelup_threshold_standard_title'),
-      detail: cs('real_modal'),
-      kind: 'render',
-      render: renderLevelUpStandard,
-    },
-    {
-      id: 'levelup_threshold_milestone',
-      title: cs('levelup_threshold_milestone_title'),
-      detail: cs('real_modal'),
-      kind: 'render',
-      render: renderLevelUpMilestone,
-    },
     {
       id: 'level_spin_reward_modal',
       title: cs('level_spin_reward_modal_title'),

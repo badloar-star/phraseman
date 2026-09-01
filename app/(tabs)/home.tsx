@@ -127,7 +127,8 @@ import HomeRuneBalance, { HOME_RUNE_ICON_SOURCE } from '../../components/home/Ho
 // app/reward_flight_queue.ts, оркестрацию держит хук — home.tsx и так огромен.
 import HomeRewardCollectFlight from '../../components/home/HomeRewardCollectFlight';
 import { useHomeRewardCollect } from '../../components/home/use_home_reward_collect';
-import { useHomeLevelUpCelebration } from '../../components/home/use_home_level_up_celebration';
+import { levelUpSpinPlaqueDelayMs, useHomeLevelUpCelebration } from '../../components/home/use_home_level_up_celebration';
+import { SpinRewardPlaque } from '../../components/SpinRewardPlaque';
 import { useHomeXpBarFill } from '../../components/home/use_home_xp_bar_fill';
 import { HOME_REWARD_DEMO_MODES } from '../reward_flight_particles';
 // зачем отдельное имя: в этом файле `Animated` — из react-native и им пользуются
@@ -1348,6 +1349,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // что наливает полосу, и на время цепочки глушит обычное наливание.
     const homeLevelUpCelebrationRef = useRef<((from: number, to: number) => void) | null>(null);
     const [homeLevelUpPlaying, setHomeLevelUpPlaying] = useState(false);
+    /**
+     * Чек спина, показываемого плашкой «+1 СПИН» после цепочки повышения.
+     *
+     * зачем (владелец, 2026-09-01): «спин появляется отдельно сразу же за
+     * этим». Это ТА ЖЕ плашка, что в результатах урока и арены — единый вид
+     * награды во всех местах. null — плашки нет.
+     */
+    const [homeLevelUpSpinReceipt, setHomeLevelUpSpinReceipt] = useState<string | null>(null);
+    /** Таймеры цепочки: без уборки плашка всплыла бы на уже покинутом экране. */
+    const celebrationTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
     const homeXpBarFill = useHomeXpBarFill(
         homeXpBarPercent,
         homeRuntimeActive,
@@ -2934,6 +2945,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             if (!celebration) return;
             if (__DEV__) console.log('[HOME-LEVELUP] playing on home', { celebration, totalXP });
             play(celebration.fromLevel, celebration.toLevel);
+            // Плашка «+1 СПИН» — та же самая, что показывают результаты урока и
+            // арены (components/SpinRewardPlaque). Раньше спин за УРОВЕНЬ она
+            // показывала внутри удалённой модалки поздравления; владелец
+            // 2026-09-01: «спин появляется отдельно сразу же за этим». Ждём
+            // конца цепочки, чтобы плашка не перебивала прыжок аватарки.
+            //
+            // receiptId — уровень: тот же чек, что и у durable-начисления
+            // спина, поэтому повторный заход на Главную не проиграет плашку
+            // второй раз (SpinRewardPlaque дедуплицирует по нему сам).
+            const spinChainMs = levelUpSpinPlaqueDelayMs(celebration.fromLevel, celebration.toLevel);
+            const plaqueTimer = setTimeout(() => {
+                if (cancelled) return;
+                setHomeLevelUpSpinReceipt(`level_spin_v1_${String(celebration.toLevel).padStart(3, '0')}`);
+            }, spinChainMs);
+            celebrationTimersRef.current.push(plaqueTimer);
             // Человек ТОЧНО увидел новый уровень — на этот момент повешен
             // разовый апселл премиума на 5-м уровне (раньше он висел на кнопке
             // «Готово» удалённой модалки поздравления).
@@ -2949,6 +2975,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             cancelled = true;
             task.cancel();
             subscription.remove();
+            celebrationTimersRef.current.forEach(clearTimeout);
+            celebrationTimersRef.current = [];
         };
     }, [homeRuntimeActive, totalXP]);
     useEffect(() => {
@@ -4790,6 +4818,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             : rewardCollect.shardsImpact}
           onDone={rewardCollect.onWaveDone}
         />
+      ) : null}
+
+      {/* Плашка «+1 СПИН» после цепочки повышения уровня.
+          Тот же компонент, что в результатах урока и арены — одна награда
+          обязана выглядеть одинаково везде. Всплывает и улетает вверх сама,
+          поэтому box-none: под ней экран остаётся кликабельным. */}
+      {homeLevelUpSpinReceipt ? (
+        <View pointerEvents="none" style={{ position: 'absolute', left: 0, right: 0, top: '38%', alignItems: 'center' }}>
+          <SpinRewardPlaque
+            amount={1}
+            receiptId={homeLevelUpSpinReceipt}
+            visible
+            soundScope="home-level-up-spin"
+            onComplete={() => setHomeLevelUpSpinReceipt(null)}
+            testID="home-level-up-spin-plaque"
+          />
+        </View>
       ) : null}
 
       {/* Energy Tooltip — Modal чтобы не обрезался */}

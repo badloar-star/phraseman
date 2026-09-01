@@ -14,8 +14,6 @@ export type DevToolAction =
   | 'open-paywall-g'
   | 'open-paywall-onboarding'
   | 'open-max-paywall'
-  | 'preview-level-standard'
-  | 'preview-level-milestone'
   | 'preview-lesson-results'
   | 'preview-spin-reward'
   | 'preview-welcome-gift'
@@ -354,26 +352,6 @@ export const DEV_TOOL_SECTIONS = [
     icon: 'sparkles-outline',
     testID: 'dev-hub-section-previews',
     tools: [
-      {
-        id: 'level-standard',
-        order: 10,
-        title: 'Обычное повышение',
-        detail: 'Быстрый вариант со спином. Прогресс не изменится.',
-        actionLabel: 'Показать',
-        action: 'preview-level-standard',
-        icon: 'flash-outline',
-        testID: 'dev-preview-level-up-standard',
-      },
-      {
-        id: 'level-milestone',
-        order: 20,
-        title: 'Каждый 5-й уровень',
-        detail: 'Более заметная анимация и спин без начисления награды.',
-        actionLabel: 'Показать',
-        action: 'preview-level-milestone',
-        icon: 'sparkles-outline',
-        testID: 'dev-preview-level-up-milestone',
-      },
       {
         id: 'lesson-results',
         order: 30,

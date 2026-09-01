@@ -201,3 +201,19 @@ export function useHomeLevelUpCelebration(
 }
 
 export const HOME_LEVEL_UP_AVATAR_HOP_MS = AVATAR_HOP_MS;
+
+/**
+ * Когда после старта цепочки показывать плашку «+1 СПИН».
+ *
+ * зачем (владелец, 2026-09-01): «спин появляется отдельно сразу же за этим» —
+ * то есть ПОСЛЕ того, как полоска долилась и аватарка прыгнула, а не поверх
+ * них. Считаем полную длительность цепочки: каждый уровень = долив до края +
+ * щелчок, плюс наливка остатка в конце.
+ *
+ * Живёт здесь, рядом с самими таймингами: разъедься эти числа — плашка начнёт
+ * перебивать прыжок аватарки, и никто не поймёт почему.
+ */
+export function levelUpSpinPlaqueDelayMs(fromLevel: number, toLevel: number): number {
+  const steps = Math.max(1, Math.trunc(toLevel) - Math.trunc(fromLevel));
+  return steps * (FILL_TO_EDGE_MS + LEVEL_BEAT_MS) + REFILL_MS;
+}

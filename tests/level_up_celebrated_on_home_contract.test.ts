@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
 const ROOT = process.cwd();
@@ -92,5 +92,34 @@ describe('level-up is celebrated on Home, never as a global modal', () => {
   test('the chain is bounded so a long catch-up cannot lock the screen', () => {
     expect(queue).toContain('MAX_CELEBRATION_CHAIN');
     expect(player).toContain('reduceMotion');
+  });
+
+  test('the congratulation modal is deleted from the codebase, not just unmounted', () => {
+    // Владелец 2026-09-01: «модалку повышения уровня или экран тот удали весь».
+    // Файлы удалены целиком, включая дев-витрину — чтобы модалка не вернулась
+    // «на посмотреть» и не утянула за собой старое поведение.
+    for (const relative of [
+      ['components', 'LevelUpThresholdModal.tsx'],
+      ['components', 'LevelUpThresholdModalHybrid.tsx'],
+      ['components', 'levelUpThresholdTheme.ts'],
+      ['components', 'dev', 'motion_showcase', 'hosts', 'LevelUpShowcaseHost.tsx'],
+    ]) {
+      expect(existsSync(join(ROOT, ...relative))).toBe(false);
+    }
+  });
+
+  test('the spin plaque survived the modal removal and plays after the chain', () => {
+    // Плашка «+1 СПИН» показывалась ВНУТРИ модалки — вместе с ней показ спина
+    // за уровень исчез бы молча. Владелец: «спин появляется отдельно сразу же
+    // за этим», поэтому она переехала на Главную, после цепочки.
+    expect(home).toContain('SpinRewardPlaque');
+    expect(home).toContain('levelUpSpinPlaqueDelayMs');
+    expect(home).toContain('homeLevelUpSpinReceipt');
+    // Задержка считается из тех же констант, что ведут цепочку — иначе плашка
+    // начнёт перебивать прыжок аватарки.
+    expect(player).toContain('export function levelUpSpinPlaqueDelayMs');
+    expect(player).toContain('FILL_TO_EDGE_MS + LEVEL_BEAT_MS');
+    // Компонент плашки — общий с результатами урока и арены, не копия.
+    expect(existsSync(join(ROOT, 'components', 'SpinRewardPlaque.tsx'))).toBe(true);
   });
 });

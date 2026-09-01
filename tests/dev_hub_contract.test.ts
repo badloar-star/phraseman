@@ -59,9 +59,7 @@ describe('DEV center bottom sheet', () => {
     expect(registry).toContain("id: 'cancel-flow'");
     expect(registry).toContain("action: 'run-onboarding'");
     expect(registry).toContain("action: 'open-motion-showcase'");
-    expect(registry).toContain("action: 'preview-level-standard'");
     expect(registry).toContain("action: 'open-max-voice'");
-    expect(registry).toContain("action: 'preview-level-milestone'");
     expect(registry).toContain("action: 'preview-lesson-results'");
     expect(registry).toContain("action: 'preview-spin-reward'");
     expect(registry).toContain("action: 'preview-league-promoted'");
@@ -89,6 +87,9 @@ describe('DEV center bottom sheet', () => {
       'full-modes',
       'paywalls',
       'shop',
+      // Раздел добавлен коммитом de6127987 (daily-journey), список секций тогда
+      // не обновили — сторож падал до этой правки.
+      'daily-journey-preview',
       'level-previews',
       'league',
       'subscription',
@@ -111,14 +112,15 @@ describe('DEV center bottom sheet', () => {
     // Магазин: единственный вход в приложении — этот пункт. Если появится
     // второй вход, правило владельца нарушено — тест обязан упасть.
     expect(ordered[6].tools.map((tool: { id: string }) => tool.id)).toEqual(['shop-screen']);
-    expect(ordered[7].tools.map((tool: { id: string }) => tool.id)).toEqual([
-      'level-standard',
-      'level-milestone',
+    expect(ordered[7].tools.map((tool: { id: string }) => tool.id)).toEqual(['daily-journey']);
+    // level-standard и level-milestone удалены вместе с модалкой поздравления
+    // (владелец, 2026-09-01): повышение играется на Главной, дев-кнопкой.
+    expect(ordered[8].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'lesson-results',
       'spin-reward',
       'welcome-gift',
     ]);
-    expect(ordered[8].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    expect(ordered[9].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'league-promoted',
       'league-demoted',
       'league-stay',
@@ -127,8 +129,8 @@ describe('DEV center bottom sheet', () => {
     // «Проверка рун» — семь кнопок, по одной на каждый настоящий экран,
     // и секция СВЁРНУТА (тот же приём, что и у пейволов — не оттеснять
     // остальные инструменты вниз).
-    expect(ordered[11].collapsed).toBe(true);
-    expect(ordered[11].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    expect(ordered[12].collapsed).toBe(true);
+    expect(ordered[12].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'runes-lesson',
       'runes-vocabulary',
       'runes-irregular-verbs',
@@ -252,16 +254,20 @@ describe('DEV center bottom sheet', () => {
     expect(stay.prevLeagueId).toBe(stay.newLeagueId);
   });
 
-  test('previews standard and fifth-level variants with spins but no progress mutations', () => {
+  test('carries no level-up congratulation preview any more', () => {
+    // зачем (владелец, 2026-09-01): полноэкранная модалка повышения уровня
+    // УДАЛЕНА целиком — файлы, дев-превью и пункты реестра. Повышение играется
+    // на Главной (дев-кнопка, режимы ЛВЛ / ЛВЛ3), а не модалкой поверх экрана.
     expect(fs.existsSync(sheetPath)).toBe(true);
     if (!fs.existsSync(sheetPath)) return;
     const sheet = read('components/dev/DevHubSheet.tsx');
+    const registry = read('components/dev/devToolRegistry.ts');
 
-    expect(sheet).toContain('<LevelUpThresholdModal');
-    expect(sheet).toContain("variant={preview?.variant ?? 'standard'}");
-    expect(sheet).toContain('spinReward={true}');
-    expect(sheet).toContain("openPreview('standard')");
-    expect(sheet).toContain("openPreview('milestone')");
+    expect(sheet).not.toContain('LevelUpThresholdModal');
+    expect(sheet).not.toContain("type: 'level-up'");
+    expect(registry).not.toContain('preview-level-standard');
+    expect(registry).not.toContain('preview-level-milestone');
+    // Дев-панель по-прежнему не лезет в реальный прогресс.
     expect(sheet).not.toMatch(/xp_manager|level_spin_level_up_queue|level_up_bonus_outbox|firebase|firestore/i);
   });
 
@@ -275,21 +281,6 @@ describe('DEV center bottom sheet', () => {
     expect(sheet).toContain("type: 'spin-plaque'");
     expect(sheet).toContain('amount={1}');
     expect(sheet).not.toMatch(/claimLevelSpin|levelRewardSpinClaim/);
-  });
-
-  test('closes the DEV Modal before mounting a level-up preview', () => {
-    const sheet = read('components/dev/DevHubSheet.tsx');
-
-    // зачем 2026-08-16: гибрид «Световод + Чекан» стал единственная реализация
-    // (project_motion_program.md) — LevelUpThresholdModalHybrid ведёт свой
-    // собственный вход (reanimated), локальный previewRun/animatePreview
-    // driver-таймлайн DevHubSheet больше не нужен. Инвариант "DEV Modal
-    // закрывается ДО показа превью" остаётся и проверяется напрямую.
-    expect(sheet).toContain('requestClose(true);');
-    expect(sheet).toContain('visible={!visible && preview !== null}');
-    expect(sheet).toContain('onShow={() => {}}');
-    expect(sheet).not.toContain('previewRun');
-    expect(sheet).not.toContain('animatePreview');
   });
 
   test('scopes local Plus state to the active account and never mutates real entitlements', async () => {

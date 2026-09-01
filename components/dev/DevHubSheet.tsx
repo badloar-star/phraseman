@@ -31,7 +31,6 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
-import LevelUpThresholdModal, { type LevelUpPreviewVariant } from '../LevelUpThresholdModal';
 import ResultsSequence from '../feedback/ResultsSequence';
 import { SpinRewardPlaque } from '../SpinRewardPlaque';
 import WelcomeGiftModal from '../WelcomeGiftModal';
@@ -63,11 +62,6 @@ export type DevHubSheetProps = Readonly<{
 }>;
 
 type PreviewState =
-  | Readonly<{
-      type: 'level-up';
-      variant: LevelUpPreviewVariant;
-      run: number;
-    }>
   | Readonly<{
       type: 'lesson-results';
       variant?: never;
@@ -270,13 +264,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     },
   }), [requestClose, sheetY]);
 
-  const openPreview = useCallback((variant: LevelUpPreviewVariant) => {
-    hapticTap();
-    runRef.current += 1;
-    setPreview({ type: 'level-up', variant, run: runRef.current });
-    requestClose(true);
-  }, [requestClose]);
-
   const openLessonResultsPreview = useCallback(() => {
     hapticTap();
     runRef.current += 1;
@@ -453,12 +440,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'open-max-paywall':
         requestClose(false, () => router.push({ pathname: '/max_paywall', params: { source: 'dev_hub' } } as never));
         return;
-      case 'preview-level-standard':
-        openPreview('standard');
-        return;
-      case 'preview-level-milestone':
-        openPreview('milestone');
-        return;
       case 'preview-lesson-results':
         openLessonResultsPreview();
         return;
@@ -550,10 +531,9 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         } as never));
         return;
     }
-  }, [applyPlusOverride, openDailyJourneyPreview, openLeaguePreview, openLessonResultsPreview, openPreview, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview]);
+  }, [applyPlusOverride, openDailyJourneyPreview, openLeaguePreview, openLessonResultsPreview, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
-  const milestone = preview?.type === 'level-up' && preview.variant === 'milestone';
   const overrideLabel = plusOverride === 'granted'
     ? 'DEV-выдача активна'
     : plusOverride === 'removed'
@@ -699,31 +679,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
           </Animated.View>
         </View>
       </Modal>
-
-      {preview?.type === 'level-up' ? (
-        <LevelUpThresholdModal
-          key={preview?.run ?? 0}
-          visible={!visible && preview !== null}
-          variant={preview?.variant ?? 'standard'}
-          level={milestone ? 20 : 13}
-          themeMode={themeMode}
-          kicker={milestone ? 'КАЖДЫЙ ПЯТЫЙ УРОВЕНЬ' : 'УРОВЕНЬ ПОВЫШЕН'}
-          headline={`Уровень ${milestone ? 20 : 13}`}
-          message={milestone
-            ? 'Особый порог: более праздничная анимация. Уровень и награды не записываются.'
-            : 'Обычное повышение уровня. XP, уровень и награды профиля не изменяются.'}
-          xpLabel="Бонус уровня"
-          xpValue="+100 XP"
-          titleLabel="Новый титул"
-          energyLabel="Энергия"
-          energyValue={(amount) => `Теперь ${amount} энергии в день`}
-          spinReward={true}
-          spinReceiptId={`dev-level-spin-${preview?.run ?? 0}`}
-          continueLabel="Готово"
-          onShow={() => {}}
-          onContinue={() => closePreview()}
-        />
-      ) : null}
 
       <Modal
         testID="dev-lesson-results-preview"

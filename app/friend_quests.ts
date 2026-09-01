@@ -5,6 +5,7 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { commitConfirmedExternalShardEvent } from './shards_system';
+import { enqueueHomeLevelUpCelebrationForLevels } from './home_level_up_celebration_queue';
 import { enqueueAuthoritativeLevelSpinLevels } from './level_spin_level_up_queue';
 import { persistAuthoritativeLevelSpinBalance } from './level_reward_spins_client';
 import {
@@ -186,7 +187,11 @@ export async function claimFriendQuestReward(questId: string): Promise<FriendQue
       if (!levels || !isCurrentAccountGeneration(accountGeneration, stableId)) return;
       await persistAuthoritativeLevelSpinBalance(stableId, res.data.levelSpinBalance as number);
       if (!isCurrentAccountGeneration(accountGeneration, stableId)) return;
-      if (levels.length > 0) await enqueueAuthoritativeLevelSpinLevels(levels);
+      if (levels.length > 0) {
+        await enqueueAuthoritativeLevelSpinLevels(levels);
+        // Празднование на Главной вместо удалённой модалки поздравления.
+        enqueueHomeLevelUpCelebrationForLevels(levels);
+      }
     });
     return res.data;
   })().finally(() => {

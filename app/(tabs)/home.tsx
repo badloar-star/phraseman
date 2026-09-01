@@ -55,7 +55,7 @@ import {
     HOME_FEATURE_TIPS_RESET_EVENT,
 } from '../home_feature_tips';
 import { BRAND_SHARDS_ES } from '../../constants/terms_es';
-import { hapticTap } from '../../hooks/use-haptics';
+import { hapticCelebrate, hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -127,6 +127,7 @@ import HomeRuneBalance, { HOME_RUNE_ICON_SOURCE } from '../../components/home/Ho
 // app/reward_flight_queue.ts, оркестрацию держит хук — home.tsx и так огромен.
 import HomeRewardCollectFlight from '../../components/home/HomeRewardCollectFlight';
 import { useHomeRewardCollect } from '../../components/home/use_home_reward_collect';
+import { useHomeLevelUpCelebration } from '../../components/home/use_home_level_up_celebration';
 import { useHomeXpBarFill } from '../../components/home/use_home_xp_bar_fill';
 import { HOME_REWARD_DEMO_MODES } from '../reward_flight_particles';
 // зачем отдельное имя: в этом файле `Animated` — из react-native и им пользуются
@@ -146,6 +147,7 @@ import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfScreenMount, perfNavStart } from '../perf-monitor';
 import { emitAppEvent, onAppEvent } from '../events';
+import { takeHomeLevelUpCelebration } from '../home_level_up_celebration_queue';
 import { registerDailyJourneyRevealTargetMeasurer } from '../../components/daily_journey/dailyJourneyRevealTargetBridge';
 import DailyJourneyRewardPreviewModal from '../../components/dev/DailyJourneyRewardPreviewModal';
 import { commitDailyJourneyGift, readDailyJourneyGiftProjection } from '../daily_journey_gift_inbox';
@@ -1337,11 +1339,42 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // новые, поэтому счётчик крутится от «минус прилетевшее» к текущему.
         { runes: runesBalance, shards: shardsBalance },
     );
+    // Повышение уровня играется ТОЛЬКО здесь, на Главной (владелец,
+    // 2026-09-01). Полноэкранная модалка поздравления удалена: она всплывала на
+    // любом экране в непредсказуемый момент и показывала старый уровень из
+    // durable-очереди («был 40 — поздравляем, уровень 13»).
+    //
+    // Порядок объявления важен: игрок цепочки владеет той же Animated.Value,
+    // что наливает полосу, и на время цепочки глушит обычное наливание.
+    const homeLevelUpCelebrationRef = useRef<((from: number, to: number) => void) | null>(null);
+    const [homeLevelUpPlaying, setHomeLevelUpPlaying] = useState(false);
     const homeXpBarFill = useHomeXpBarFill(
         homeXpBarPercent,
         homeRuntimeActive,
         homeRewardCollectReduceMotion,
+        homeLevelUpPlaying,
     );
+    const homeLevelUpCelebration = useHomeLevelUpCelebration(
+        homeXpBarFill.scaleX,
+        homeXpBarPercent,
+        homeRewardCollectReduceMotion,
+        // Щелчок уровня: тот же звук, что играла модалка поздравления.
+        // dedupeKey по уровню — цепочка 12→14 даёт два разных щелчка, а
+        // повторный заход на Главную того же уровня не звучит дважды.
+        useCallback((level: number) => {
+            soundDirector.request('pm.reward.level_up', {
+                scope: 'home-level-up',
+                dedupeKey: String(level),
+            });
+            void hapticCelebrate();
+        }, []),
+    );
+    homeLevelUpCelebrationRef.current = homeLevelUpCelebration.play;
+    // playing живёт в state отдельно: useHomeXpBarFill обязан узнать о
+    // приостановке В ТОМ ЖЕ рендере, что и запуск цепочки.
+    useEffect(() => {
+        setHomeLevelUpPlaying(homeLevelUpCelebration.playing);
+    }, [homeLevelUpCelebration.playing]);
 
     // Иконки валют объявлены на ВЕРХНЕМ уровне компонента, а не внутри
     // renderNewHome.
@@ -2865,6 +2898,53 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const subscription = onAppEvent('level_spin_balance_changed', refreshHomeSpinBalance);
         return () => subscription.remove();
     }, [refreshHomeSpinBalance]);
+
+    // ── Повышение уровня: проигрываем на Главной, когда экран реально показан ──
+    //
+    // зачем (владелец, 2026-09-01): раньше это была полноэкранная модалка,
+    // которая всплывала на ЛЮБОМ экране и «ждала какую-то очередь». Теперь
+    // праздник ждёт Главную: полоска доливается до конца, аватарка подпрыгивает,
+    // цифра уровня меняется. Спин остаётся отдельно — золотой плашкой рядом.
+    //
+    // Гейт homeRuntimeActive — тот же, что у остальных эффектов: на премаунте
+    // таба цепочка не стартует и первый кадр не делит поток.
+    useEffect(() => {
+        if (!homeRuntimeActive) return undefined;
+
+        let cancelled = false;
+        const tryPlay = () => {
+            if (cancelled) return;
+            const play = homeLevelUpCelebrationRef.current;
+            if (!play) {
+                // guard-ok: ранний выход обязан назвать причину — иначе
+                // «анимации нет» без единого следа (правило «сперва логи»).
+                if (__DEV__) console.log('[HOME-LEVELUP] skip: player not mounted yet');
+                return;
+            }
+            // Сверяем по ФАКТИЧЕСКОМУ опыту: очередь могла запомнить уровень,
+            // который человек давно перерос. Именно это и давало «уровень 13
+            // при 40-м» в старой модалке.
+            const celebration = takeHomeLevelUpCelebration(totalXP);
+            if (!celebration) return;
+            if (__DEV__) console.log('[HOME-LEVELUP] playing on home', { celebration, totalXP });
+            play(celebration.fromLevel, celebration.toLevel);
+            // Человек ТОЧНО увидел новый уровень — на этот момент повешен
+            // разовый апселл премиума на 5-м уровне (раньше он висел на кнопке
+            // «Готово» удалённой модалки поздравления).
+            emitAppEvent('home_level_up_celebrated', { level: celebration.toLevel });
+        };
+
+        // Уровень мог вырасти, пока Главная была размонтирована — проверяем
+        // сразу после первого кадра, а не в момент монтирования.
+        const task = InteractionManager.runAfterInteractions(tryPlay);
+        // …и пока Главная открыта: урок/арена могут идти поверх неё.
+        const subscription = onAppEvent('home_level_up_celebration_pending', tryPlay);
+        return () => {
+            cancelled = true;
+            task.cancel();
+            subscription.remove();
+        };
+    }, [homeRuntimeActive, totalXP]);
     useEffect(() => {
         // Пульс — единственный «зов» кнопки. Крутится только на активной вкладке,
         // на UI-треде (useNativeDriver) и молчит при «уменьшить движение».
@@ -3150,7 +3230,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const renderNewHome = () => {
         // progress здесь больше не нужен: полосу опыта наливает useHomeXpBarFill
         // по homeXpBarPercent, посчитанному на верхнем уровне компонента.
-        const { level } = getXPProgress(totalXP);
+        const { level: accountLevel } = getXPProgress(totalXP);
+        // Во время цепочки повышения цифру ведёт игрок анимации: она обязана
+        // смениться РОВНО в тот кадр, когда полоска коснулась края и аватарка
+        // подпрыгнула, а не раньше вместе с пересчётом опыта.
+        const level = homeLevelUpCelebration.displayLevel ?? accountLevel;
         const menuImages = getHomeMenuImages(themeMode);
         const maxOrbLayers = getMaxHomeOrbLayers(themeMode);
         const lastLessonImage = getHomeLastLessonImage(themeMode);
@@ -3497,13 +3581,20 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     dotColor={homeThemePanelAccent}
                     devPlayToken={ENABLE_DEV_TOOLS ? avatarNudgeDevToken : undefined}
                   >
-                    <AvatarView
-                      avatar={userAvatar}
-                      level={level}
-                      size={homeHeroAvatarSize}
-                      auraId={effectiveUserAvatarAura}
-                      ownerActive={homeRuntimeActive}
-                    />
+                    {/* Прыжок аватарки в момент повышения уровня. Обёртка, а не
+                        проп внутрь AvatarView: подпрыгивать должна вся аватарка
+                        целиком вместе с рамкой и аурой. Кастомная аватарка при
+                        этом НЕ меняется (владелец) — уровневую подменяет
+                        xp_manager, здесь только движение. */}
+                    <Animated.View style={{ transform: [{ scale: homeLevelUpCelebration.avatarHop }] }}>
+                      <AvatarView
+                        avatar={userAvatar}
+                        level={level}
+                        size={homeHeroAvatarSize}
+                        auraId={effectiveUserAvatarAura}
+                        ownerActive={homeRuntimeActive}
+                      />
+                    </Animated.View>
                   </AvatarNudge>
                 </TouchableOpacity>
 

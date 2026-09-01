@@ -51,6 +51,16 @@ export function useHomeXpBarFill(
   percent: number,
   active: boolean,
   reduceMotion: boolean,
+  /**
+   * Цепочка повышения уровня сейчас ведёт полосу сама.
+   *
+   * зачем (владелец, 2026-09-01): при левел-апе полоса доливается до края,
+   * щёлкает уровень и падает в ноль — этим управляет
+   * useHomeLevelUpCelebration. Обычное наливание в это время обязано молчать:
+   * иначе оно дёрнет полосу к новому проценту прямо посреди цепочки и вместо
+   * «долилась до конца» человек увидит рывок назад.
+   */
+  suspended = false,
 ): HomeXpBarFill {
   const target = Math.min(1, Math.max(0, (Number.isFinite(percent) ? percent : 0) / 100));
   // Стартуем СРАЗУ с правильной величины: первый кадр обязан быть финальной
@@ -69,6 +79,11 @@ export function useHomeXpBarFill(
       scaleX.setValue(target);
       return;
     }
+
+    // Цепочка левел-апа владеет полосой — не вмешиваемся даже значением.
+    // previousRef уже сдвинут выше, поэтому после цепочки обычное наливание
+    // не «догонит» задним числом уже показанное изменение.
+    if (suspended) return;
 
     // Ничего не изменилось — незачем трогать анимацию.
     if (Math.abs(target - previous) < 0.0005) return;
@@ -106,7 +121,7 @@ export function useHomeXpBarFill(
         tension: 90,
       }),
     ]).start();
-  }, [active, reduceMotion, scaleX, target]);
+  }, [active, reduceMotion, scaleX, suspended, target]);
 
   const playDemo = useCallback(() => {
     if (reduceMotion) {

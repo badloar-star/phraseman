@@ -61,19 +61,14 @@ import {
 import { LangProvider, useLang } from '../components/LangContext';
 import IntroFullAccessModal from '../components/IntroFullAccessModal';
 import { StudyTargetProvider, useStudyTarget } from '../components/StudyTargetContext';
-import LevelUpThresholdModal from '../components/LevelUpThresholdModal';
 import {
   repairPendingLevelUpRewards,
   retryPendingLevelUpRewards,
 } from './level_up_reward_reconciler';
-import {
-  acknowledgePendingLevelSpinLevelUp,
-  loadPendingLevelSpinLevelUps,
-} from './level_spin_level_up_queue';
-import {
-  drainPendingLevelUpBonusIntents,
-  persistLevelUpBonusIntent,
-} from './level_up_bonus_outbox';
+import { drainPendingLevelUpBonusIntents } from './level_up_bonus_outbox';
+// Разовое закрытие долга удалённой модалки поздравления (владелец, 2026-09-01).
+import { settleRetiredLevelUpModalDebt } from './level_up_modal_retirement_migration';
+import { resetHomeLevelUpCelebrations } from './home_level_up_celebration_queue';
 import {
   beginInitialAccountGeneration,
   captureAccountGeneration,
@@ -81,10 +76,7 @@ import {
   withAccountTransitionLock,
   type AccountGenerationToken,
 } from './account_generation';
-import {
-  canAcknowledgeLevelUpForAccount,
-  isLevelUpAccountTokenCurrent,
-} from './level_up_account_guard';
+import { isLevelUpAccountTokenCurrent } from './level_up_account_guard';
 import { isCurrentAccountGeneration } from './account_generation';
 import { getStableId } from './stable_id';
 import Onboarding from '../components/onboarding';
@@ -102,9 +94,7 @@ import PromoBanner from '../components/PromoBanner';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
-import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { triLang, type Lang } from '../constants/i18n';
-import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { getInstalledAppVersion } from './app_version';
 import { ENABLE_DEV_TOOLS, ENABLE_TOURNAMENTS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
@@ -228,11 +218,6 @@ import {
   safeRouterBack,
   shouldHandleGlobalHardwareBack,
 } from './navigation_back';
-import {
-  cancelScheduledAnimatedStateUpdates,
-  scheduleTrackedAnimatedStateUpdate,
-  type ScheduledAnimatedStateUpdate,
-} from '../components/animationScheduling';
 import {
   checkLeagueBonusAvailability,
   buildLeagueBonusSeenKey,
@@ -650,10 +635,6 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
   );
 }
 
-function levelSpinCreditId(level: number): string {
-  return `level_spin_v1_${String(level).padStart(3, '0')}`;
-}
-
 async function preloadVectorIconFonts() {
   await Promise.all([
     Ionicons.loadFont(),
@@ -819,66 +800,45 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
   }
 };
 
-// ── Глобальная очередь повышений уровня — показывает модалки независимо от экрана ──
-function GlobalLevelUpHandler() {
-  const { isDark, themeMode } = useTheme();
+// ── Награды за повышение уровня — без модалок ──
+/**
+ * GlobalLevelUpRewards — доводит до конца выдачу наград за уровень.
+ *
+ * зачем (владелец, 2026-09-01): полноэкранная модалка поздравления УДАЛЕНА.
+ * Она всплывала «когда попало» — на любом экране, по старту, по foreground,
+ * по уходу со спина — и брала уровень из durable-очереди непоказанных
+ * показов. Очередь чистилась ТОЛЬКО по кнопке «Готово», поэтому один
+ * недожатый показ жил месяцами: человек на 40-м уровне видел
+ * «Поздравляем, уровень 13».
+ *
+ * Показ повышения переехал на Главную (app/home_level_up_celebration_queue.ts
+ * + components/home/use_home_level_up_celebration.ts): полоска доливается до
+ * конца, аватарка подпрыгивает, цифра уровня меняется. Спин остаётся отдельно
+ * — золотой плашкой «Спины: N» рядом.
+ *
+ * Здесь осталась ТОЛЬКО безопасность наград — то, что нельзя терять:
+ *  • retry/repair недовыданных наград за уровень;
+ *  • выплата durable-outbox бонусов (теперь это только ДОЛГ за старые
+ *    непоказанные уровни; новые интенты больше не создаются);
+ *  • разовая миграция закрытия долга и чистки очереди показов;
+ *  • прогрев арта аур/достижений и виджет «фраза дня» (жили здесь же).
+ *
+ * Компонент ничего не рисует.
+ */
+function GlobalLevelUpRewards() {
   const { lang } = useLang();
+  const { themeMode } = useTheme();
   const { studyTarget } = useStudyTarget();
   const { hasPremiumAccess } = usePremium();
+  const [userName, setUserName] = useState('');
+  // Путь нужен апселлу ниже: во время турнира перебивать экран нельзя.
   const pathname = usePathname();
   const pathnameRef = useRef(pathname);
   pathnameRef.current = pathname;
-  const wasLevelSpinRouteRef = useRef(pathname === '/level_reward_spin');
-  const tournamentInterruptionProtected = isTournamentInterruptionProtectedPath(pathname);
 
-  const [showLevelUp, setShowLevelUp] = useState(false);
-  /** Удерживает слот арбитра, пока Spin-финализация завершает durable acknowledge. */
-  const [levelUpTransitioning, setLevelUpTransitioning] = useState(false);
-  const [currentLevel, setCurrentLevel] = useState(0);
-  const [currentAccountLevel, setCurrentAccountLevel] = useState(0);
-  const [userName, setUserName] = useState('');
-  const queueRef    = useRef<number[]>([]);
-  const isShowingRef = useRef(false);
-  const dismissingLevelUpRef = useRef(false);
-  const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
-  /** Сериализация flush: двойной await getItem до removeItem давал дубликаты уровня в queueRef. */
-  const flushQueueBusyRef = useRef(false);
-  const flushQueueRetryRef = useRef(false);
-  const queuedAccountTokenRef = useRef<AccountGenerationToken | null>(null);
-  const modalAccountTokenRef = useRef<AccountGenerationToken | null>(null);
-  const modalLevelRef = useRef(0);
-
-  const resetLevelUpChainForAccountChange = useCallback(() => {
-    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
-    queueRef.current = [];
-    queuedAccountTokenRef.current = null;
-    modalAccountTokenRef.current = null;
-    modalLevelRef.current = 0;
-    isShowingRef.current = false;
-    dismissingLevelUpRef.current = false;
-    setShowLevelUp(false);
-    setLevelUpTransitioning(false);
-    setCurrentLevel(0);
-    setCurrentAccountLevel(0);
-    setUserName('');
-  }, []);
-
-  const showNext = useCallback(async () => {
-    const accountToken = queuedAccountTokenRef.current;
-    if (!isLevelUpAccountTokenCurrent(accountToken)) {
-      resetLevelUpChainForAccountChange();
-      return;
-    }
-    if (queueRef.current.length === 0) { isShowingRef.current = false; return; }
-    if (pathnameRef.current === '/level_reward_spin') { isShowingRef.current = false; return; }
-    dismissingLevelUpRef.current = false;
-    setLevelUpTransitioning(false);
-    const lvl = queueRef.current[0];
-    modalAccountTokenRef.current = accountToken;
-    modalLevelRef.current = lvl;
-    setCurrentLevel(lvl);
-    setShowLevelUp(true);
-  }, [resetLevelUpChainForAccountChange]);
+  /** Сериализация flush: два параллельных прогона давали двойную работу. */
+  const flushBusyRef = useRef(false);
+  const flushRetryRef = useRef(false);
 
   const drainLevelUpBonusOutbox = useCallback(async () => {
     try {
@@ -903,17 +863,23 @@ function GlobalLevelUpHandler() {
         });
       });
     } catch (error) {
-      // The intent stays durable and is retried at the next boot/foreground.
-      if (__DEV__) console.warn('[_layout] level-up bonus retry pending', error);
+      // Интент остаётся durable и повторится на следующем старте/foreground.
+      // guard-ok: правило владельца «сперва логи» требует, чтобы КАЖДЫЙ catch
+      // назвал причину и в проде — немой catch уже стоил месяцев мёртвых фич.
+      console.warn('[LEVELUP-REWARDS] bonus retry pending', error);
     }
   }, [userName]);
 
-  const flushQueue = useCallback(async () => {
-    if (flushQueueBusyRef.current) {
-      flushQueueRetryRef.current = true;
+  /**
+   * Доводим награды до конца и закрываем долг удалённой модалки.
+   * Очереди показов больше нет — ничего не ставим в очередь на показ.
+   */
+  const flushRewards = useCallback(async () => {
+    if (flushBusyRef.current) {
+      flushRetryRef.current = true;
       return;
     }
-    flushQueueBusyRef.current = true;
+    flushBusyRef.current = true;
     const flushToken = captureAccountGeneration();
     try {
       await withAccountTransitionLock(async () => {
@@ -922,67 +888,105 @@ function GlobalLevelUpHandler() {
         if (!isLevelUpAccountTokenCurrent(flushToken)) return;
         await repairPendingLevelUpRewards({ premium: !!hasPremiumAccess, studyTarget });
         if (!isLevelUpAccountTokenCurrent(flushToken)) return;
-        const [spinLevels, [[, name], [, xpRaw]]] = await Promise.all([
-          loadPendingLevelSpinLevelUps(),
-          AsyncStorage.multiGet(['user_name', 'user_total_xp']),
-        ]);
+        const storedName = await AsyncStorage.getItem('user_name');
         if (!isLevelUpAccountTokenCurrent(flushToken)) return;
-
-        // Runtime level-up presentation is Spin-only. Legacy single/dual gifts
-        // stay durable in Gifts inventory but no longer enter the global overlay queue.
-        // PENDING_LEVEL_SPIN_LEVEL_UP_QUEUE_KEY is loaded through the account-scoped queue module.
-        const activeLevel = isShowingRef.current ? queueRef.current[0] : undefined;
-        queueRef.current = activeLevel
-          ? [activeLevel, ...spinLevels.filter((level) => level !== activeLevel)]
-          : spinLevels;
-        queuedAccountTokenRef.current = flushToken;
-        if (name) setUserName(name);
-        setCurrentAccountLevel(getLevelFromXP(parseInt(xpRaw || '0', 10) || 0));
-
-        if (!isShowingRef.current && queueRef.current.length > 0) {
-          isShowingRef.current = true;
-          queueMicrotask(showNext);
-        }
+        if (storedName) setUserName(storedName);
       });
+      // Разовая выплата долга за старые непоказанные уровни — ВНЕ замка
+      // аккаунта: миграция берёт его сама пошагово, вложенный захват был бы
+      // дедлоком. Созданные интенты выплачивает drain ниже.
+      if (isLevelUpAccountTokenCurrent(flushToken)) {
+        const settledLang: Lang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+        const settled = await settleRetiredLevelUpModalDebt(settledLang);
+        if (settled > 0) {
+          if (__DEV__) console.log('[LEVELUP-REWARDS] retired-modal debt settled', { levels: settled });
+          await drainLevelUpBonusOutbox();
+        }
+      }
     } catch (e) {
-      if (__DEV__) console.warn('[_layout]', e);
+      // guard-ok: ранний отказ выдачи наград обязан назвать причину и в проде.
+      console.warn('[LEVELUP-REWARDS] flush failed', e);
     } finally {
-      flushQueueBusyRef.current = false;
-      if (flushQueueRetryRef.current) {
-        flushQueueRetryRef.current = false;
-        queueMicrotask(() => { void flushQueue(); });
+      flushBusyRef.current = false;
+      if (flushRetryRef.current) {
+        flushRetryRef.current = false;
+        queueMicrotask(() => { void flushRewards(); });
       }
     }
-  }, [hasPremiumAccess, showNext, studyTarget]);
+  }, [drainLevelUpBonusOutbox, hasPremiumAccess, lang, studyTarget]);
 
   useEffect(() => {
     const sub = subscribeAccountGeneration((token) => {
-      resetLevelUpChainForAccountChange();
+      // Смена аккаунта: чужой праздник на Главной показывать нельзя.
+      resetHomeLevelUpCelebrations();
+      setUserName('');
       if (token.phase === 'active') queueMicrotask(() => {
         void drainLevelUpBonusOutbox();
-        void flushQueue();
+        void flushRewards();
       });
     });
     return () => sub.remove();
-  }, [drainLevelUpBonusOutbox, flushQueue, resetLevelUpChainForAccountChange]);
+  }, [drainLevelUpBonusOutbox, flushRewards]);
 
   useEffect(() => {
-    // Проверяем очередь при старте (с задержкой, чтобы onboarding не перекрывал)
+    // Задержка та же, что была: не мешаем онбордингу и первому кадру.
     const t = setTimeout(() => {
       void drainLevelUpBonusOutbox();
-      void flushQueue();
+      void flushRewards();
     }, 500);
-    const sub = onAppEvent('level_up_pending', flushQueue);
+    const sub = onAppEvent('level_up_pending', flushRewards);
     return () => {
       clearTimeout(t);
       sub.remove();
     };
-  }, [drainLevelUpBonusOutbox, flushQueue]);
+  }, [drainLevelUpBonusOutbox, flushRewards]);
+
+  /**
+   * Разовый апселл премиума на 5-м уровне.
+   *
+   * зачем: механика монетизации, которая раньше висела на кнопке «Готово»
+   * удалённой модалки поздравления. Модалки нет — но апселл терять нельзя,
+   * поэтому он переехал на момент, когда человек ТОЧНО увидел новый уровень:
+   * праздник на Главной уже проигран (полоска долилась, аватарка прыгнула,
+   * цифра сменилась). Показывать раньше — значит перебивать саму анимацию.
+   */
+  useEffect(() => {
+    const sub = onAppEvent('home_level_up_celebrated', ({ level }) => {
+      if (level !== 5 || hasPremiumAccess) return;
+      const accountToken = captureAccountGeneration();
+      void withAccountTransitionLock(async () => {
+        if (!isLevelUpAccountTokenCurrent(accountToken)) return;
+        try {
+          const prem = await getVerifiedPremiumStatus().catch(() => false);
+          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
+          const introState = await getIntroFullAccessState().catch(() => null);
+          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
+          if (introState?.expiredUnseen === true) return;
+          const [{ canShowAfterWinUpsell, markAfterWinUpsellShown }, { trackEvent }] = await Promise.all([
+            import('./after_win_upsell_gate'),
+            import('./analytics'),
+          ]);
+          if (!(await canShowAfterWinUpsell({ isPremium: prem, nowMs: Date.now() }))) return;
+          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
+          if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
+          // Navigation first: a failed push must not consume the cooldown.
+          globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as any);
+          await markAfterWinUpsellShown(Date.now());
+          await trackEvent('afterwin_upsell_shown', { source: 'level_up' });
+          void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(() => {});
+        } catch (e) {
+          // guard-ok: молчаливый отказ апселла = потерянная выручка без следа.
+          DebugLogger.error('_layout:levelUpUpsell', e instanceof Error ? e : new Error(String(e)), 'warning');
+        }
+      });
+    });
+    return () => sub.remove();
+  }, [hasPremiumAccess]);
 
   // зачем: слои аур живут в Storage (Фаза 4 «Бандл-диеты», 2026-08-24). За уровни
-  // выдают новые ауры, и подарок показывает кольцо СРАЗУ — поэтому прогреваем
-  // каталог по событию повышения уровня, задолго до открытия подарка. Награда
-  // за достижение может всплыть тостом в тот же момент, поэтому греем и полку.
+  // выдают новые ауры, а аватарка на Главной обновляется СРАЗУ в момент прыжка —
+  // поэтому греем каталог по событию повышения, задолго до показа. Награда за
+  // достижение может всплыть тостом в тот же момент, поэтому греем и полку.
   useEffect(() => {
     const sub = onAppEvent('level_up_pending', () => {
       prefetchAllAvatarAuraArt();
@@ -991,39 +995,27 @@ function GlobalLevelUpHandler() {
     return () => sub.remove();
   }, []);
 
-  useEffect(() => {
-    const wasLevelSpinRoute = wasLevelSpinRouteRef.current;
-    wasLevelSpinRouteRef.current = pathname === '/level_reward_spin';
-    if (wasLevelSpinRoute && pathname !== '/level_reward_spin') {
-      queueMicrotask(() => { void flushQueue(); });
-    }
-  }, [flushQueue, pathname]);
-
   const lastForegroundFlushAtRef = useRef(0);
   useEffect(() => {
     let scheduledFlush: { cancel: () => void } | null = null;
     const sub = AppState.addEventListener('change', (state) => {
       if (state !== 'active') return;
       // зачем: foreground-путь — лишь страховка на пропущенное level_up_pending;
-      // событие само зовёт flushQueue мгновенно. Троттл гасит частые сворачивания.
+      // событие само зовёт flush мгновенно. Троттл гасит частые сворачивания.
       const now = Date.now();
       if (now - lastForegroundFlushAtRef.current < FOREGROUND_FLUSH_MIN_MS) return;
       lastForegroundFlushAtRef.current = now;
       scheduledFlush?.cancel();
       scheduledFlush = scheduleCoalescedForegroundTask('root_level_up_queue_flush', async () => {
         await drainLevelUpBonusOutbox();
-        await flushQueue();
+        await flushRewards();
       });
     });
     return () => {
       sub.remove();
       scheduledFlush?.cancel();
     };
-  }, [drainLevelUpBonusOutbox, flushQueue]);
-
-  useEffect(() => () => {
-    cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
-  }, []);
+  }, [drainLevelUpBonusOutbox, flushRewards]);
 
   // зачем: у виджета «фраза дня» нет английского контента (DailyPhraseInterfaceLang
   // = SourceLocale, en не входит) — сужаем на RU, как остальные контентные
@@ -1074,195 +1066,7 @@ function GlobalLevelUpHandler() {
     return () => task.cancel();
   }, [themeMode]);
 
-  const showLevelFiveUpsellAfterFinalSpin = useCallback((
-    completedLevel: number,
-    accountToken: AccountGenerationToken,
-  ) => {
-    // Existing one-time free-user conversion moment, now bound to the final
-    // Spin receipt instead of the retired gift-modal close callback.
-    void withAccountTransitionLock(async () => {
-      if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-      try {
-        if (completedLevel !== 5 || hasPremiumAccess) return;
-        const prem = await getVerifiedPremiumStatus().catch(() => false);
-        if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-        const introState = await getIntroFullAccessState().catch(() => null);
-        if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-        if (introState?.expiredUnseen === true) return;
-        const [{ canShowAfterWinUpsell, markAfterWinUpsellShown }, { trackEvent }] = await Promise.all([
-          import('./after_win_upsell_gate'),
-          import('./analytics'),
-        ]);
-        if (!(await canShowAfterWinUpsell({ isPremium: prem, nowMs: Date.now() }))) return;
-        if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-        if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
-        // Navigation first: a failed push must not consume the cooldown.
-        globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as any);
-        await markAfterWinUpsellShown(Date.now());
-        await trackEvent('afterwin_upsell_shown', { source: 'level_up' });
-        void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(() => {});
-      } catch (e) {
-      // no-op
-      DebugLogger.error('_layout:introState', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-    });
-  }, [hasPremiumAccess]);
-
-  const finalizeSpinLevelUp = () => {
-    const accountToken = modalAccountTokenRef.current;
-    const level = modalLevelRef.current;
-    if (!accountToken || !canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-    if (!Number.isInteger(level) || level <= 0 || dismissingLevelUpRef.current) return;
-    dismissingLevelUpRef.current = true;
-    setLevelUpTransitioning(true);
-    // зачем: гибрид (LevelUpThresholdModalHybrid) ведёт свой собственный выход
-    // (reanimated), Animated.Value-гейт больше не нужен — но порядок операций
-    // (тот же 220мс зазор перед записью прогресса/наград) сохраняем таймером,
-    // чтобы колбэки прогресса не сдвинулись и не начали гонку с закрытием Modal.
-    const exitTimer = setTimeout(() => {
-      if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) {
-        dismissingLevelUpRef.current = false;
-        setLevelUpTransitioning(false);
-        return;
-      }
-      scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
-        void (async () => {
-          const l: Lang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
-          try {
-            const persisted = await persistLevelUpBonusIntent(level, l);
-            if (!persisted) throw new Error('level_up_bonus_intent_not_persisted');
-            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-            await acknowledgePendingLevelSpinLevelUp(level);
-          } catch {
-            if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-            dismissingLevelUpRef.current = false;
-            setLevelUpTransitioning(false);
-            setShowLevelUp(true);
-            return;
-          }
-          if (!canAcknowledgeLevelUpForAccount(accountToken, queuedAccountTokenRef.current)) return;
-          queueRef.current = queueRef.current.filter((queuedLevel) => queuedLevel !== level);
-          modalAccountTokenRef.current = null;
-          modalLevelRef.current = 0;
-          dismissingLevelUpRef.current = false;
-          void drainLevelUpBonusOutbox();
-          setShowLevelUp(false);
-          setLevelUpTransitioning(false);
-          if (queueRef.current.length > 0) {
-            queueMicrotask(() => { void showNext(); });
-          } else {
-            isShowingRef.current = false;
-            showLevelFiveUpsellAfterFinalSpin(level, accountToken);
-          }
-        })();
-      });
-    }, 220);
-    scheduledStateUpdatesRef.current.push({ cancel: () => clearTimeout(exitTimer) });
-  };
-
-  const newTitleDef = getTitleForLevel(currentLevel);
-  const isNewTitle  = newTitleDef.minLevel === currentLevel;
-  const titleColor  = getTitleColor(currentLevel, isDark);
-  const levelUpOverlayVisible = useOverlayVisible(
-    'levelUp',
-    !tournamentInterruptionProtected && (showLevelUp || levelUpTransitioning),
-  );
-  const isCatchUpLevelReward = currentAccountLevel > currentLevel;
-  const levelUpKickerText = isCatchUpLevelReward
-    ? (lang === 'uk' ? 'Нагорода за рівень' : lang === 'es' ? 'Recompensa de nivel' : 'Награда за уровень')
-    : (lang === 'uk' ? 'Новий рівень' : lang === 'es' ? 'Nuevo nivel' : 'Новый уровень');
-  return (
-    <>
-      {/* Variant B — Threshold. Reward state and queue lifecycle stay owned by GlobalLevelUpHandler. */}
-      <LevelUpThresholdModal
-        variant={currentLevel % 5 === 0 ? 'milestone' : 'standard'}
-        visible={levelUpOverlayVisible && showLevelUp}
-        level={currentLevel}
-        themeMode={themeMode}
-        kicker={levelUpKickerText}
-        headline={triLang(lang, {
-          ru: 'УРОВЕНЬ ' + currentLevel,
-          uk: 'РІВЕНЬ ' + currentLevel,
-          en: 'LEVEL ' + currentLevel,
-          es: 'NIVEL ' + currentLevel,
-          'pt-BR': 'NÍVEL ' + currentLevel,
-          vi: 'CẤP ' + currentLevel,
-          id: 'LEVEL ' + currentLevel,
-          tr: 'SEVİYE ' + currentLevel,
-          pl: 'POZIOM ' + currentLevel,
-        })}
-        message={''}
-        xpLabel={triLang(lang, {
-          ru: 'Бонус уровня',
-          uk: 'Бонус рівня',
-          en: 'Level bonus',
-          es: 'Bono de nivel',
-          'pt-BR': 'Bônus de nível',
-          vi: 'Thưởng cấp độ',
-          id: 'Bonus level',
-          tr: 'Seviye bonusu',
-          pl: 'Bonus poziomu',
-        })}
-        xpValue={'+100 XP'}
-        titleLabel={triLang(lang, {
-          ru: 'Новый титул',
-          uk: 'Новий титул',
-          en: 'New title',
-          es: 'Nuevo título',
-          'pt-BR': 'Novo título',
-          vi: 'Danh hiệu mới',
-          id: 'Gelar baru',
-          tr: 'Yeni unvan',
-          pl: 'Nowy tytuł',
-        })}
-        titleReward={isNewTitle ? newTitleDef.titleEN : undefined}
-        titleColor={titleColor}
-        energyLabel={triLang(lang, {
-          ru: 'Энергия',
-          uk: 'Енергія',
-          en: 'Energy',
-          es: 'Energía',
-          'pt-BR': 'Energia',
-          vi: 'Năng lượng',
-          id: 'Energi',
-          tr: 'Enerji',
-          pl: 'Energia',
-        })}
-        energyReward={currentLevel === 50 ? getMaxEnergyForLevel(currentLevel) : undefined}
-        energyValue={(amount) => triLang(lang, {
-          ru: 'Теперь ' + amount + ' энергии в день',
-          uk: 'Тепер ' + amount + ' енергії на день',
-          en: 'Now ' + amount + ' energy per day',
-          es: 'Ahora tienes ' + amount + ' de energía diaria',
-          'pt-BR': 'Agora você tem ' + amount + ' de energia por dia',
-          vi: 'Giờ bạn có ' + amount + ' năng lượng mỗi ngày',
-          id: 'Sekarang ' + amount + ' energi per hari',
-          tr: 'Artık günde ' + amount + ' enerji',
-          pl: 'Teraz masz ' + amount + ' energii dziennie',
-        })}
-        spinReward
-        spinReceiptId={levelSpinCreditId(currentLevel)}
-        continueLabel={triLang(lang, {
-          ru: 'Готово',
-          uk: 'Готово',
-          en: 'Done',
-          es: 'Listo',
-          'pt-BR': 'Pronto',
-          vi: 'Xong',
-          id: 'Selesai',
-          tr: 'Tamam',
-          pl: 'Gotowe',
-        })}
-        onShow={() => {
-          soundDirector.request('pm.reward.level_up', {
-            scope: 'level-up-modal',
-            dedupeKey: String(currentLevel),
-          });
-        }}
-        onContinue={finalizeSpinLevelUp}
-      />
-    </>
-  );
+  return null;
 }
 
 const BAN_CACHE_KEY = 'ban_status_cached_v1';
@@ -3567,7 +3371,7 @@ export default function RootLayout() {
                     <OnboardingWelcomeHost />
                     <AchievementToast />
                     <ActionToast />
-                    <GlobalLevelUpHandler />
+                    <GlobalLevelUpRewards />
                     <GlobalShardsEarnedHost />
                     {/* зачем: анимация списания 1 ⚡ за старт активности —
                         глобальная, потому что точек списания девять, и на

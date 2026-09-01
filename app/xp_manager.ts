@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistLegacyPersonalProgressScalar } from '../modules/phone-state/legacy_mirror';
 import { storageGetString, storageGetNumber, storageSetString } from '../lib/storage';
 import { markCloudSyncPending } from './cloud_sync';
+import { enqueueHomeLevelUpCelebration } from './home_level_up_celebration_queue';
 import { enqueueLevelSpinLevelUps } from './level_spin_level_up_queue';
 import { checkAchievements } from './achievements';
 import { getXPMultiplier } from './club_boosts';
@@ -793,6 +794,12 @@ export const registerXP = async (
         await (options?.accountTransitionLockLease
           ? enqueueLevelSpinLevelUps(prevLvl, newLvl, options.accountTransitionLockLease)
           : enqueueLevelSpinLevelUps(prevLvl, newLvl));
+        // зачем (владелец, 2026-09-01): полноэкранная модалка поздравления
+        // удалена — повышение играется на Главной (полоска доливается до конца,
+        // аватарка подпрыгивает и обновляется, цифра уровня меняется). Ставим
+        // праздник в очередь СРАЗУ после durable-начисления спинов: спины уже
+        // выданы, поэтому пропущенная анимация ничего не стоит.
+        enqueueHomeLevelUpCelebration(prevLvl, newLvl);
         if (!isXpAccountGenerationCurrent(accountToken)) return staleResult(totalMultiplier);
         // Обновляем аватар и рамку по финальному уровню
         const currentAvatar = await storageGetString('user_avatar');

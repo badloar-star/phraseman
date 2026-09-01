@@ -10,6 +10,7 @@ import { mergeStreakByActivityDate } from './streak_safety';
 import { getCanonicalUserId } from './user_id_policy';
 import { getCurrentWeekStartIso } from './weekly_xp';
 import { getLevelFromXP } from '../constants/theme';
+import { enqueueHomeLevelUpCelebrationForLevels } from './home_level_up_celebration_queue';
 import { enqueueAuthoritativeLevelSpinLevels } from './level_spin_level_up_queue';
 import { persistAuthoritativeLevelSpinBalance } from './level_reward_spins_client';
 import {
@@ -639,6 +640,8 @@ export async function mirrorProgressResultToLocal(result: ProgressEventResult): 
   const mintedLevels = [...new Set(mintedCredits.map((credit) => credit.level))].sort((a, b) => a - b);
   if (mintedLevels.length > 0) {
     await enqueueAuthoritativeLevelSpinLevels(mintedLevels);
+    // Празднование на Главной вместо удалённой модалки поздравления.
+    enqueueHomeLevelUpCelebrationForLevels(mintedLevels);
   }
 }
 

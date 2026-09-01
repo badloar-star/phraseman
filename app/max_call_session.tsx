@@ -1089,12 +1089,54 @@ function MaxCallSessionContent() {
     if ((phase === 'listening' || phase === 'thinking') && pendingTutorNoteRef.current) flushPendingTutorNote();
   }, [phase]);
   const haloColor = haloColorFor(phase, t);
+  /**
+   * Обратный отсчёт перед началом урока (решение владельца 2026-09-01: 5 секунд).
+   *
+   * зачем: урок теперь открывается из каталога СРАЗУ звонком, без экрана
+   * подготовки. Отсчёт — единственная защита от случайного тапа: пока он идёт,
+   * человек видит, что сейчас начнётся, и может выйти кнопкой завершения.
+   *
+   * Соединение при этом НЕ ЖДЁТ отсчёта — оно уже идёт параллельно, иначе
+   * терялся бы весь смысл прогрева. Минуты не тратятся в любом случае: сервер
+   * считает секунды от первой реплики (voiceSessionClockStartMs → activatedAtMs),
+   * а не от соединения.
+   */
+  const countdownFrom = (() => {
+    const raw = Number(params.countdown);
+    return Number.isFinite(raw) && raw > 0 && raw <= 10 ? Math.floor(raw) : 0;
+  })();
+  const [countdownLeft, setCountdownLeft] = useState(countdownFrom);
+  useEffect(() => {
+    if (countdownLeft <= 0) return undefined;
+    // Секунда за секундой; на нуле таймер сам останавливается и больше не
+    // рисуется — дальше экран живёт обычной жизнью звонка.
+    const id = setTimeout(() => setCountdownLeft((n) => Math.max(0, n - 1)), 1000);
+    return () => clearTimeout(id);
+  }, [countdownLeft]);
+
   const breathing = phase === 'connecting' || phase === 'thinking';
   const hint = maxVoicePhaseLabel(phase, uiState.eqOwner, lang);
   const failureActions = maxVoiceFailureActions(lang);
-  const liveStatus = phase === 'connecting' && isTutor && tutorGoal.title !== ''
-    ? tutorGoal.title
-    : phase !== 'failed' ? hint : '';
+  // Пока идёт отсчёт — он и есть главное сообщение экрана: человек должен
+  // понимать, что урок вот-вот начнётся и что выйти ещё можно.
+  const countdownText = countdownLeft > 0
+    ? triLang(lang, {
+      ru: `Урок начнётся через ${countdownLeft}`,
+      uk: `Урок почнеться через ${countdownLeft}`,
+      en: `Lesson starts in ${countdownLeft}`,
+      es: `La clase empieza en ${countdownLeft}`,
+      'pt-BR': `A aula começa em ${countdownLeft}`,
+      vi: `Bài học bắt đầu sau ${countdownLeft}`,
+      id: `Pelajaran mulai dalam ${countdownLeft}`,
+      tr: `Ders ${countdownLeft} saniye sonra başlıyor`,
+      pl: `Lekcja zacznie się za ${countdownLeft}`,
+    })
+    : '';
+  const liveStatus = countdownText !== ''
+    ? countdownText
+    : phase === 'connecting' && isTutor && tutorGoal.title !== ''
+      ? tutorGoal.title
+      : phase !== 'failed' ? hint : '';
 
   useEffect(() => {
     if (hardAtMs === null || phase === 'failed' || phase === 'ended') return undefined;

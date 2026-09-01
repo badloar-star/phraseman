@@ -56,6 +56,19 @@ describe('экран раздела «Уроки с МАКСом»', () => {
     expect(open).not.toContain('max_call_prestart');
   });
 
+  it('перед уроком идёт отсчёт с возможностью выйти', () => {
+    // Владелец 2026-09-01: 5 секунд. Урок открывается сразу звонком, и отсчёт —
+    // единственная защита от случайного тапа. Соединение при этом НЕ ждёт его:
+    // связь готовится параллельно, иначе терялся бы смысл прогрева.
+    const session = read(path.join('app', 'max_call_session.tsx'));
+    expect(screen).toContain("countdown: '5'");
+    expect(session).toContain('countdownLeft');
+    expect(session).toContain('params.countdown');
+    // Отсчёт не должен блокировать старт клиента.
+    const startBlock = session.slice(session.indexOf('void client.start('), session.indexOf('void client.start(') + 400);
+    expect(startBlock).not.toContain('countdown');
+  });
+
   it('рекомендованный урок греется заранее, и только он один', () => {
     // Заготовка держит серверный резерв минут: греть весь экран значило бы
     // занимать несколько резервов и упереться в voice_session_active.

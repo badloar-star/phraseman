@@ -42,6 +42,20 @@ export interface HomeLevelUpCelebrationPlayer {
   readonly playing: boolean;
   /** Запустить цепочку fromLevel → toLevel. */
   readonly play: (fromLevel: number, toLevel: number) => void;
+  /**
+   * Дев-прогон для кнопки на Главной: проигрывает цепочку из `levels`
+   * повышений от ТЕКУЩЕГО уровня.
+   *
+   * зачем (владелец, 2026-09-01): «в едер дев кнопку добавь, чтобы можно было
+   * вызвать и посмотреть». Ждать реального повышения ради проверки анимации
+   * нельзя, а очередь настоящих праздников трогать нельзя тем более — она
+   * одноразовая, просмотр «съел» бы живой праздник.
+   *
+   * Настоящий опыт и уровень НЕ меняются: цифра на экране идёт от displayLevel,
+   * который живёт только на время цепочки, а после неё экран возвращается к
+   * реальному значению.
+   */
+  readonly playDemo: (currentLevel: number, levels: number) => void;
 }
 
 /**
@@ -171,7 +185,19 @@ export function useHomeLevelUpCelebration(
     step(from + 1);
   }, [barScaleX, clearTimers, hopAvatar, reduceMotion]);
 
-  return { displayLevel, avatarHop, playing, play };
+  const playDemo = useCallback((currentLevel: number, levels: number) => {
+    const from = Math.trunc(currentLevel);
+    const count = Math.max(1, Math.trunc(levels));
+    if (!Number.isFinite(from) || from <= 0) {
+      // Ранний выход обязан назвать причину: иначе «кнопка не работает» без следа.
+      if (__DEV__) console.log('[HOME-LEVELUP] demo skipped: bad current level', { currentLevel, levels });
+      return;
+    }
+    if (__DEV__) console.log('[HOME-LEVELUP] demo play', { from, to: from + count });
+    play(from, from + count);
+  }, [play]);
+
+  return { displayLevel, avatarHop, playing, play, playDemo };
 }
 
 export const HOME_LEVEL_UP_AVATAR_HOP_MS = AVATAR_HOP_MS;

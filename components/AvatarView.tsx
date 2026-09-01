@@ -80,6 +80,24 @@ function AvatarView({ avatar, avatarV2, localDNA, totalXP, level, size = 44, sty
   const avatarDef = getAvatarByIndex(avatarIndex);
   const avatarImage = avatarDef?.image;
   const fallbackLevel = avatarImage ? resolvedLevel : avatarIndex;
+
+  // [LEVEL-DRIFT] Диагностика жалобы 2026-09-01 (uid 22408047): «шестигранник
+  // показывает 50, а рядом уровень 13». Цифра на аватарке идёт от avatarIndex
+  // (значение ключа user_avatar), а текст «Уровень N» рядом — от totalXP. Это
+  // ДВА независимых источника, и они разъезжаются. Логируем оба и то, откуда
+  // каждый пришёл, чтобы поставить диагноз по фактам, а не по догадке.
+  if (__DEV__ && avatarIndex !== resolvedLevel) {
+    console.log('[LEVEL-DRIFT] AvatarView: индекс аватарки != уровень', {
+      avatarRaw: avatar ?? null,
+      avatarIndex,
+      resolvedLevel,
+      levelProp: level ?? null,
+      totalXpProp: totalXP ?? null,
+      hasAvatarImage: !!avatarImage,
+      fallbackLevelShown: fallbackLevel,
+      size,
+    });
+  }
   const material = getLevelAvatarMaterial(avatarIndex);
   const portraitUrl = avatarV2?.state === 'ready' ? avatarV2.portraitUrl : null;
   const [failedPortraitUrl, setFailedPortraitUrl] = React.useState<string | null>(null);

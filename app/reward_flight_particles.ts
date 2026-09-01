@@ -44,6 +44,10 @@ export interface RewardFlightPoint {
  * жемчуг, пятое — только опыт, шестое — опыт и руны». Проверять анимации
  * поодиночке нужно, чтобы видеть, какая именно сломалась.
  *
+ * Седьмой и восьмой режимы добавлены в тот же день, когда полноэкранная
+ * модалка повышения уровня была удалена и праздник переехал на Главную:
+ * посмотреть левел-ап иначе можно только реально набрав уровень.
+ *
  * Суммы взяты крупными, но не джекпотом: столько частиц человек реально увидит
  * при хорошей награде, и по ним видно каскад.
  */
@@ -53,6 +57,14 @@ export interface RewardDemoMode {
   readonly runes: number;
   readonly shards: number;
   readonly xp: boolean;
+  /**
+   * Сколько уровней проиграть цепочкой повышения (0 — режим не про левел-ап).
+   *
+   * зачем: полоска доливается до края, аватарка подпрыгивает, цифра уровня
+   * меняется. Настоящий опыт при этом НЕ начисляется и очередь праздников не
+   * трогается — двигается только картинка.
+   */
+  readonly levelUps?: number;
 }
 
 export const HOME_REWARD_DEMO_MODES: readonly RewardDemoMode[] = Object.freeze([
@@ -62,6 +74,10 @@ export const HOME_REWARD_DEMO_MODES: readonly RewardDemoMode[] = Object.freeze([
   { label: 'Ж', runes: 0, shards: 40, xp: false },
   { label: 'XP', runes: 0, shards: 0, xp: true },
   { label: 'XP+Р', runes: 120, shards: 0, xp: true },
+  // Левел-ап: один уровень и цепочка. Полёт частиц здесь выключен — иначе
+  // не видно, что именно делает сама анимация повышения.
+  { label: 'ЛВЛ', runes: 0, shards: 0, xp: false, levelUps: 1 },
+  { label: 'ЛВЛ3', runes: 0, shards: 0, xp: false, levelUps: 3 },
 ]);
 
 /**

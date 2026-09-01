@@ -1401,11 +1401,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const runHomeRewardDemo = useCallback(() => {
         const mode = homeDemoModes[homeDemoStep % homeDemoModes.length];
         setHomeDemoStep((step) => (step + 1) % homeDemoModes.length);
+        // Левел-ап ведёт полосу сам, поэтому обычное наливание в этом режиме
+        // не запускаем — иначе две анимации подрались бы за одну Animated.Value.
+        if (mode.levelUps && mode.levelUps > 0) {
+            homeLevelUpCelebration.playDemo(getLevelFromXP(totalXP), mode.levelUps);
+            return;
+        }
         if (mode.xp) homeXpBarFill.playDemo();
         if (mode.runes > 0 || mode.shards > 0) {
             rewardCollect.playDemo(mode.runes, mode.shards);
         }
-    }, [homeDemoModes, homeDemoStep, homeXpBarFill, rewardCollect]);
+    }, [homeDemoModes, homeDemoStep, homeLevelUpCelebration, homeXpBarFill, rewardCollect, totalXP]);
 
     useEffect(() => {
         const profile = appSnapshot.profile;
@@ -3994,10 +4000,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   </TouchableOpacity>
                 )}
                 {/* зачем (владелец, 2026-09-01): кнопка проигрывает анимацию
-                    сбора наград по требованию. Каждое нажатие — следующий режим
-                    по кругу: всё → руны+жемчуг → руны → жемчуг → опыт → опыт+руны.
-                    Подпись показывает, что проиграет СЕЙЧАС, чтобы не считать
-                    нажатия в уме. Очередь настоящих наград не расходуется. */}
+                    по требованию. Каждое нажатие — следующий режим по кругу:
+                    всё → руны+жемчуг → руны → жемчуг → опыт → опыт+руны →
+                    левел-ап → цепочка из трёх уровней. Подпись показывает, что
+                    проиграет СЕЙЧАС, чтобы не считать нажатия в уме.
+                    Ни очередь наград, ни очередь праздников не расходуются:
+                    демо двигает только картинку, настоящий опыт и уровень не
+                    меняются. */}
                 {ENABLE_DEV_TOOLS && (
                   <TouchableOpacity
                     testID="home-dev-reward-demo"

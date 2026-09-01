@@ -260,6 +260,8 @@ import {
   normalizeLegacyFreeLessonCap,
 } from './legacy_free_lesson_access';
 import { DebugLogger } from './debug-logger';
+import { readFlashcardPages, writeFlashcardPages } from './flashcards_cloud_pages';
+import type { StudyTarget as FlashcardStudyTarget } from './study_target';
 
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
 const FRENCH_SYNC_EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
@@ -2962,6 +2964,17 @@ async function buildGiftEntitlementStickyPairs(cloudData: Record<string, string 
   return { pairs, removeKeys };
 }
 
+/**
+ * Отказ Firestore из-за переполнения документа (жёсткий лимит 1 МБ).
+ * зачем: этот отказ роняет ВЕСЬ set целиком — вместе с XP, стриком и уроками,
+ * а не только «лишнее» поле. Его нельзя терять в общем catch: 2026-09-01 он
+ * молча стоил трём самым активным аккаунтам месяцев прогресса.
+ */
+function isDocumentTooLargeError(error: unknown): boolean {
+  const message = error instanceof Error ? error.message : String(error);
+  return /exceeds the maximum allowed size|INVALID_ARGUMENT/i.test(message);
+}
+
 async function doSyncToCloud(): Promise<void> {
   if (!pendingSync) return;
   pendingSync = false;
@@ -3022,9 +3035,48 @@ async function doSyncToCloud(): Promise<void> {
     } catch (e) {
       DebugLogger.error('cloud_sync:snapRaw', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
+    // ── Карточки: вне документа users/{stableId} ───────────────────────────────
+    // зачем: progress.flashcards_v1 хранил весь список карточек одной JSON-строкой
+    // и рос без предела. 2026-09-01 он раздул документы трёх самых активных
+    // аккаунтов до 1100-1129 КБ при жёстком лимите Firestore в 1 МБ — запись в
+    // документ стала отклоняться ЦЕЛИКОМ (INVALID_ARGUMENT), и у этих людей молча
+    // перестал сохраняться весь прогресс, а не только карточки. Теперь список
+    // уезжает в подколлекцию flashcard_pages страницами, а из патча исключается.
+    // Порядок важен: сначала успешная запись страниц, и только потом ключ
+    // выбрасывается — иначе при отказе облака карточки исчезли бы из обоих мест.
+    const flashcardCloudKeys = new Map<string, FlashcardStudyTarget>([
+      ['flashcards_v1', 'en'],
+      [flashcardsSavedKey('fr'), 'fr'],
+    ]);
+    const offloadedFlashcardKeys = new Set<string>();
+    for (const [key, target] of flashcardCloudKeys) {
+      const value = data[key];
+      if (value === null || value === undefined) continue;
+      // Страницы пишем только когда список реально изменился с прошлого синка —
+      // иначе каждый такт стоил бы N записей на ровном месте.
+      if (cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) {
+        offloadedFlashcardKeys.add(key);
+        continue;
+      }
+      const pagesWritten = await writeFlashcardPages(uid, target, String(value));
+      if (!isSyncGenerationCurrent()) return;
+      if (pagesWritten !== null) {
+        offloadedFlashcardKeys.add(key);
+      } else {
+        // Ранний выход: страницы не записались — ключ НЕ выбрасываем, пусть едет
+        // в документе как раньше. Причина уже залогирована в writeFlashcardPages.
+        DebugLogger.warn(
+          'cloud_sync:flashcards',
+          `offload failed key=${key} target=${target} — записываем в документ как раньше`,
+        );
+      }
+    }
+
     const progressPatch: Record<string, string | null> = {};
     for (const [key, value] of Object.entries(data)) {
       if (!shouldSyncPremiumProgressField(key, value, data)) continue;
+      // Карточки уже в подколлекции — в документ их не дублируем.
+      if (offloadedFlashcardKeys.has(key)) continue;
       // Premium/VIP-поля клиент НИКОГДА не пишет в облако: их авторитетный источник —
       // RevenueCat webhook / Telegram / admin-панель (Admin SDK). Firestore rules
       // (progressHasNoPremiumWrites) отклонят такую запись для обычного юзера и уронят
@@ -3097,6 +3149,18 @@ async function doSyncToCloud(): Promise<void> {
   } catch (e) {
     // зачем: раньше здесь была одна строка без контекста, и разбор permission-denied
     // (26 отказов за вечер 26.08) пришлось вести по firestore.rules вместо лога.
+    // Переполнение документа (лимит Firestore 1 МБ) — отдельная ветка и critical.
+    // зачем: 2026-09-01 именно этот отказ месяцами оставался невидимым (логи стояли
+    // под __DEV__, а в сторовой сборке __DEV__ = false), пока у трёх самых активных
+    // аккаунтов молча не сохранялся ВЕСЬ прогресс. critical уходит в Firestore
+    // через logAppError, поэтому повторение будет видно в админке сразу.
+    if (isDocumentTooLargeError(e)) {
+      DebugLogger.error(
+        'cloud_sync:doc_too_large',
+        e instanceof Error ? e : new Error(String(e)),
+        'critical',
+      );
+    }
     // Печатаем uid и состав записи — какое из правил users/{userId} отклонило set,
     // видно сразу, без реконструкции payload по коду.
     if (__DEV__) {
@@ -3328,6 +3392,42 @@ async function applyRestoreFromUserDoc(
     || (shouldPreferCloudOnSuspiciousGap && !hasPendingProgressEvents)
     || cloudXP > localXP
     || (cloudXP === localXP && cloudStreak > localStreak);
+
+  // [LEVEL-DRIFT] Диагностика жалобы 2026-09-01 (uid 22408047): «после урока
+  // ничего не поменялось, а после рестарта уровень упал до 12», «руны со 155
+  // на 52», «однажды показало 41, хотя был 42». Симптом — откат прогресса
+  // назад. Здесь ЕДИНСТВЕННОЕ место, где облако может перезаписать локальный
+  // прогресс МЕНЬШИМ значением: ветки phoneStateOwnsCore и
+  // progressServerAuthoritative не сравнивают числа вообще.
+  //
+  // Печатаем КАЖДОЕ значение, решившее ветку, а не голое true/false — иначе по
+  // логу нельзя понять, почему откатило.
+  if (shouldRestoreCloudProgress && cloudXP < localXP) {
+    console.warn('[LEVEL-DRIFT] cloud_sync: облако ОТКАТЫВАЕТ локальный прогресс назад', {
+      localXP,
+      cloudXP,
+      xpLost: localXP - cloudXP,
+      localStreak,
+      cloudStreak,
+      // какая именно ветка разрешила откат:
+      phoneStateOwnsCore,
+      progressServerAuthoritative,
+      hasPendingProgressEvents,
+      shouldPreferCloudOnSuspiciousGap,
+      localLastActive: localLastActiveRaw ?? null,
+      cloudAvatar: cloudData['user_avatar'] ?? null,
+    });
+  } else if (__DEV__) {
+    console.log('[LEVEL-DRIFT] cloud_sync: решение по прогрессу', {
+      localXP,
+      cloudXP,
+      shouldRestoreCloudProgress,
+      phoneStateOwnsCore,
+      progressServerAuthoritative,
+      hasPendingProgressEvents,
+      shouldPreferCloudOnSuspiciousGap,
+    });
+  }
   if (shouldRestoreCloudProgress && progressServerAuthoritative) {
     assertCurrent();
     // Do this before AsyncStorage writes. SQLITE_FULL may reject persistence,
@@ -3658,6 +3758,30 @@ async function applyRestoreFromUserDoc(
     pairs.push(['streak_last_date', mergedStreak.lastActive]);
   }
   if (cloudData['achievements_state']) pairs.push(['achievements_v1', cloudData['achievements_state']]);
+  // ── Карточки из подколлекции flashcard_pages ───────────────────────────────
+  // зачем: у мигрированных аккаунтов поля progress.flashcards_v1 в документе
+  // больше нет (см. writeFlashcardPages), и общий цикл restore его не увидит —
+  // без этого чтения человек на новом устройстве остался бы без карточек.
+  // Документ остаётся источником для ещё не мигрированных аккаунтов.
+  const restoreUid = await getCanonicalUserId().catch((error) => {
+    DebugLogger.warn('cloud_sync:flashcards', `restore: uid недоступен (${String(error)})`);
+    return null;
+  });
+  assertCurrent();
+  if (restoreUid) {
+    for (const [key, target] of ([
+      ['flashcards_v1', 'en'],
+      [flashcardsSavedKey('fr'), 'fr'],
+    ] as Array<[string, FlashcardStudyTarget]>)) {
+      // Документ главнее, только если он ещё содержит карточки (аккаунт не мигрирован).
+      if (cloudData[key] !== null && cloudData[key] !== undefined) continue;
+      const fromPages = await readFlashcardPages(restoreUid, target);
+      assertCurrent();
+      if (fromPages) pairs.push([key, fromPages]);
+    }
+  } else {
+    DebugLogger.warn('cloud_sync:flashcards', 'restore: нет canonical uid — страницы карточек пропущены');
+  }
   if (!cloudData['flashcards_v1'] && cloudData['flashcards']) pairs.push(['flashcards_v1', String(cloudData['flashcards'])]);
   if (cloudData['lang']) pairs.push(['app_lang', cloudData['lang']]);
   if (cloudData['user_avatar_frame']) pairs.push(['user_frame', cloudData['user_avatar_frame']]);

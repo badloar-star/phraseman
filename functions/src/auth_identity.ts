@@ -3,6 +3,12 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { upsertEmailContact } from './email_contacts';
 import {
+  accountStateFromSnapshots,
+  assertAccountUsable,
+  readAuthAccountState,
+  readStableAccountState,
+} from './account_gate';
+import {
   ACCOUNT_DELETE_AUTH_MARKERS,
   ACCOUNT_DELETE_PERMANENT_DENIALS,
   ACCOUNT_DELETE_TOMBSTONES,
@@ -79,54 +85,6 @@ function throwIdentityRetired(subject: RetiredIdentitySubject): never {
   });
 }
 
-/**
- * Аккаунт ещё в grace-периоде: удаление ЗАЯВЛЕНО, но данные целы.
- *
- * зачем (владелец, 2026-09-01): «при попытке зайти появляется модал
- * восстановить аккаунт? если да то заходит нормально без проблем». Прежде вход
- * во время 14 дней отвечал `identity_retired` — тем же кодом, что и после
- * настоящего удаления, — и приложение молча заводило ПУСТОЙ профиль. Человек
- * не получал предложения вернуть аккаунт, ради которого grace и вводился.
- *
- * Отличать по факту существования метки нельзя: маркер, tombstone и постоянные
- * отказы пишутся СРАЗУ при подаче заявки и живут все 14 дней. Единственный
- * честный признак — поле `status` в самой метке.
- */
-function throwAccountDeletePending(
-  subject: RetiredIdentitySubject,
-  graceDeadlineMs: number,
-): never {
-  throw new HttpsError('failed-precondition', 'account_delete_pending', {
-    subject,
-    graceDeadlineMs,
-    recovery: 'offer_restore',
-  });
-}
-
-/**
- * Читает статус следа удаления: идёт grace или аккаунт уже мёртв.
- *
- * Постоянный отказ (`permanent_denials`) намеренно НЕ несёт grace: он ставится
- * закрытием личности и снимается только восстановлением. Поэтому решение
- * принимает та метка, у которой есть `status` — маркер или tombstone.
- */
-function readAccountDeleteGraceDeadline(
-  snap: FirebaseFirestore.DocumentSnapshot | null | undefined,
-): number | null {
-  if (!snap?.exists) return null;
-  const data = snap.data() ?? {};
-  if (String(data.status ?? '') !== 'pending') return null;
-  // зачем СТРОГИЙ тип, а не Number(): enqueue пишет дедлайн только числом.
-  // Строка сюда попадает лишь при порче или ручной правке документа, а
-  // Number('9999999999999') прошло бы как «живой grace» — человеку пообещали бы
-  // восстановление, которого accountDeleteRestoreMine не выполнит (он читает
-  // то же поле числом). Обещание без выполнения — известный класс бага в этом
-  // проекте, поэтому при любом сомнении отвечаем строго: аккаунт мёртв.
-  const deadline = data.graceDeadlineMs;
-  if (typeof deadline !== 'number' || !Number.isFinite(deadline) || deadline <= 0) return null;
-  return deadline > Date.now() ? deadline : null;
-}
-
 function throwIdentityCheckUnavailable(error: unknown): never {
   if (error instanceof HttpsError) throw error;
   throw new HttpsError('unavailable', 'identity_check_unavailable');
@@ -144,42 +102,23 @@ async function assertAccountDeletionNotPending(
   db: admin.firestore.Firestore,
   authUid: string,
 ): Promise<void> {
-  const [marker, permanentDenial] = await Promise.all([
-    readIdentityOrThrow(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid).get()),
-    readIdentityOrThrow(
-      db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
-        .doc(accountDeletePermanentDenialId(authUid))
-        .get(),
-    ),
-  ]);
-  if (marker.exists || permanentDenial.exists) {
-    // зачем порядок (владелец, 2026-09-01): grace проверяется ПЕРВЫМ, иначе
-    // живой аккаунт хоронится тем же кодом, что и удалённый, и человек
-    // теряет предложение «Восстановить аккаунт?».
-    const graceDeadlineMs = readAccountDeleteGraceDeadline(marker);
-    if (graceDeadlineMs !== null) throwAccountDeletePending('auth', graceDeadlineMs);
-    throwIdentityRetired('auth');
-  }
+  // зачем через ЕДИНУЮ ДВЕРЬ (этап 1, владелец 01.09.2026): раньше каждая из
+  // 122 проверок читала метки сама, своей формой — и 01.09 сразу две из них
+  // оказались с дырами. Теперь смысл «пускать ли» живёт в одном месте
+  // (account_gate.ts), а здесь остаётся только обёртка недоступности базы.
+  //
+  // readIdentityOrThrow обязателен: сбой сети НЕ должен выглядеть как «аккаунт
+  // жив» — иначе при отвале Firestore открылся бы доступ к удаляемому аккаунту.
+  const state = await readIdentityOrThrow(readAuthAccountState(db, authUid));
+  assertAccountUsable(state);
 }
 
 async function assertStableDeletionNotPending(
   db: admin.firestore.Firestore,
   stableId: string,
 ): Promise<void> {
-  const [tombstone, permanentDenial] = await Promise.all([
-    readIdentityOrThrow(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId).get()),
-    readIdentityOrThrow(
-      db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
-        .doc(accountDeletePermanentDenialId(stableId))
-        .get(),
-    ),
-  ]);
-  if (tombstone.exists || permanentDenial.exists) {
-    // Тот же порядок, что и для auth-метки: пока идут 14 дней, аккаунт жив.
-    const graceDeadlineMs = readAccountDeleteGraceDeadline(tombstone);
-    if (graceDeadlineMs !== null) throwAccountDeletePending('stable', graceDeadlineMs);
-    throwIdentityRetired('stable');
-  }
+  const state = await readIdentityOrThrow(readStableAccountState(db, stableId));
+  assertAccountUsable(state);
 }
 
 async function assertStableAccountMergeNotPending(
@@ -694,25 +633,15 @@ async function repairIdentityDocumentsAtomically(
         options.writeUser ? transaction.get(existingOwnerQuery) : Promise.resolve(null),
       ]);
 
-      // Тот же порядок, что и в проверках входа: grace ≠ смерть аккаунта.
-      // Без этого починка личности внутри 14 дней возвращала identity_retired,
-      // и вход уходил заводить пустой профиль вместо предложения восстановить.
-      if (authMarkerSnap.exists || authPermanentDenialSnap.exists) {
-        const graceDeadlineMs = readAccountDeleteGraceDeadline(authMarkerSnap);
-        if (graceDeadlineMs !== null) throwAccountDeletePending('auth', graceDeadlineMs);
-        throwIdentityRetired('auth');
-      }
-      if (
-        tombstoneSnaps.some((snap) => snap.exists)
-        || permanentDenialSnaps.some((snap) => snap.exists)
-      ) {
-        const graceTombstone = tombstoneSnaps.find(
-          (snap) => readAccountDeleteGraceDeadline(snap) !== null,
-        );
-        const graceDeadlineMs = readAccountDeleteGraceDeadline(graceTombstone);
-        if (graceDeadlineMs !== null) throwAccountDeletePending('stable', graceDeadlineMs);
-        throwIdentityRetired('stable');
-      }
+      // Решение принимает ЕДИНАЯ ДВЕРЬ по уже прочитанным снапшотам: логика
+      // «grace или смерть» не должна дублироваться на каждой транзакции —
+      // именно из такого дублирования и рождались дыры.
+      assertAccountUsable(accountStateFromSnapshots({
+        marker: authMarkerSnap, denial: authPermanentDenialSnap, subject: 'auth',
+      }));
+      assertAccountUsable(accountStateFromSnapshots({
+        markers: tombstoneSnaps, denials: permanentDenialSnaps, subject: 'stable',
+      }));
 
       const currentUserData = userSnap?.data() ?? {};
       const currentUserAuthUid = String(currentUserData.firebaseAuthUid ?? '').trim();
@@ -728,11 +657,9 @@ async function repairIdentityDocumentsAtomically(
               .doc(accountDeletePermanentDenialId(currentLinkStableId)),
           ),
         ]);
-        if (currentLinkTombstone.exists || currentLinkPermanentDenial.exists) {
-          const graceDeadlineMs = readAccountDeleteGraceDeadline(currentLinkTombstone);
-          if (graceDeadlineMs !== null) throwAccountDeletePending('stable', graceDeadlineMs);
-          throwIdentityRetired('stable');
-        }
+        assertAccountUsable(accountStateFromSnapshots({
+          marker: currentLinkTombstone, denial: currentLinkPermanentDenial, subject: 'stable',
+        }));
       }
       const currentOwnerIds = (existingOwnerSnap?.docs ?? []).map((doc) => doc.id).sort();
       const userAlreadyTarget = Boolean(
@@ -1487,18 +1414,12 @@ async function bootstrapMissingStableIdentity(
         transaction.get(existingIdentityQuery),
       ]);
 
-      // Тот же порядок, что и во всех проверках входа: пока идут 14 дней,
-      // аккаунт ЖИВ и человеку положен модал восстановления.
-      if (authMarkerSnap.exists || authPermanentDenialSnap.exists) {
-        const graceDeadlineMs = readAccountDeleteGraceDeadline(authMarkerSnap);
-        if (graceDeadlineMs !== null) throwAccountDeletePending('auth', graceDeadlineMs);
-        throwIdentityRetired('auth');
-      }
-      if (tombstoneSnap.exists || stablePermanentDenialSnap.exists) {
-        const graceDeadlineMs = readAccountDeleteGraceDeadline(tombstoneSnap);
-        if (graceDeadlineMs !== null) throwAccountDeletePending('stable', graceDeadlineMs);
-        throwIdentityRetired('stable');
-      }
+      assertAccountUsable(accountStateFromSnapshots({
+        marker: authMarkerSnap, denial: authPermanentDenialSnap, subject: 'auth',
+      }));
+      assertAccountUsable(accountStateFromSnapshots({
+        marker: tombstoneSnap, denial: stablePermanentDenialSnap, subject: 'stable',
+      }));
 
       if (authLinkSnap.exists) {
         const linkedStableId = normalizeStableId(authLinkSnap.data()?.stable_id);
@@ -1515,11 +1436,9 @@ async function bootstrapMissingStableIdentity(
                 .doc(accountDeletePermanentDenialId(linkedStableId)),
             ),
           ]);
-        if (linkedTombstoneSnap.exists || linkedPermanentDenialSnap.exists) {
-          const graceDeadlineMs = readAccountDeleteGraceDeadline(linkedTombstoneSnap);
-          if (graceDeadlineMs !== null) throwAccountDeletePending('stable', graceDeadlineMs);
-          throwIdentityRetired('stable');
-        }
+        assertAccountUsable(accountStateFromSnapshots({
+          marker: linkedTombstoneSnap, denial: linkedPermanentDenialSnap, subject: 'stable',
+        }));
         if (!linkedUserSnap.exists) {
           throw new HttpsError('permission-denied', 'stable_id_mismatch');
         }
@@ -1548,11 +1467,9 @@ async function bootstrapMissingStableIdentity(
                 .doc(accountDeletePermanentDenialId(authoritativeStableId)),
             ),
           ]);
-        if (authoritativeTombstoneSnap.exists || authoritativePermanentDenialSnap.exists) {
-          const graceDeadlineMs = readAccountDeleteGraceDeadline(authoritativeTombstoneSnap);
-          if (graceDeadlineMs !== null) throwAccountDeletePending('stable', graceDeadlineMs);
-          throwIdentityRetired('stable');
-        }
+        assertAccountUsable(accountStateFromSnapshots({
+          marker: authoritativeTombstoneSnap, denial: authoritativePermanentDenialSnap, subject: 'stable',
+        }));
         return { status: 'authoritative', stableUid: authoritativeStableId, identityReady: false };
       }
 
@@ -1755,10 +1672,10 @@ export async function ensureStableLinkForAuth(
       // Google/Apple. Внутри grace аккаунт ЖИВ — ротировать привязку на свежий
       // пустой профиль здесь нельзя, иначе человек получит чистый экран вместо
       // предложения вернуть свой прогресс, и вернуть его будет уже некуда.
-      const linkedGraceDeadlineMs = readAccountDeleteGraceDeadline(linkedTombstone);
-      if (linkedStableRetired && linkedGraceDeadlineMs !== null) {
-        throwAccountDeletePending('stable', linkedGraceDeadlineMs);
-      }
+      const linkedState = accountStateFromSnapshots({
+        marker: linkedTombstone, denial: linkedDenial, subject: 'stable',
+      });
+      if (linkedState.kind === 'grace') assertAccountUsable(linkedState);
       if (linkedStableRetired && stableId && linkedStableId !== stableId) {
         await rotateRetiredProviderStableLink(
           db,

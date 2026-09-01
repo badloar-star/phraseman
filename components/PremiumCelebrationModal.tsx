@@ -309,13 +309,17 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
 
   // зачем (владелец 2026-08-25): кнопка «Позвонить MAX» раньше только закрывала
   // окно, хотя текст обещал звонок. /max_call_prestart — тот же экран, на
-  // который ведёт кнопка звонка с главной (см. app/(tabs)/home.tsx), сам
-  // разбирается с mint/лимитами по умолчанию (format не передаём — экран
-  // уходит в дефолтную ветку 'companion').
+  // который ведёт кнопка звонка с главной (см. app/(tabs)/home.tsx).
+  //
+  // format обязателен. Без него экран уходил в дефолт 'scenario' — отыгрыш
+  // сценки вместо урока с учителем: без памяти об ученике, без цели урока и
+  // без правил медленной речи. Человек, ТОЛЬКО ЧТО купивший премиум, получал
+  // не то, что ему обещали. (Прежний комментарий уверял, что дефолт —
+  // 'companion'; он разошёлся с кодом, см. app/max_call_prestart.tsx.)
   const handleCtaPress = useCallback(() => {
     hapticSuccess();
     handleClose();
-    if (isMax) router.push('/max_call_prestart' as never);
+    if (isMax) router.push({ pathname: '/max_call_prestart', params: { format: 'tutor' } } as never);
   }, [handleClose, isMax, router]);
 
   /** Тап: первый — досмотреть всё сразу, второй — закрыть. */

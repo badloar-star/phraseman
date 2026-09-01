@@ -15,8 +15,10 @@
 //
 // Показываем ТОЛЬКО измеренное. Ни одной выдуманной метрики: время речи,
 // разнообразие слов и доля чистых фраз считаются из настоящих замеров
-// (app/max_speech_history.ts). Пока замеров нет — честно говорим об этом,
-// а не рисуем нули, которые читаются как «ты ничего не сделал».
+// (app/max_speech_history.ts). Пока замеров нет — те же блоки с нулями:
+// отдельного урезанного вида у новичка НЕТ (владелец 2026-09-01: «должны быть
+// все элементы — и график, и три кружка, и плашки внизу»). Так человек сразу
+// видит, что именно здесь будет наполняться.
 //
 // Пустые отрезки в ряду НЕ прячем (решение владельца): ряд показывает, что
 // накопится — сегодняшний столбик есть, прошлых нет. Это честнее пустого
@@ -32,7 +34,7 @@ import { StatBars, type StatBar } from '../stats/StatBars';
 import { StatScoreRing } from '../stats/StatScoreRing';
 import { useTheme } from '../ThemeContext';
 import { triLang, type Lang } from '../../constants/i18n';
-import type { VoiceTrends, VoiceWeeklySeries } from '../../app/max_voice_metrics';
+import { WEEKLY_BARS, type VoiceTrends, type VoiceWeeklySeries } from '../../app/max_voice_metrics';
 
 interface Props {
   visible: boolean;
@@ -55,7 +57,13 @@ export default function MaxLessonsStatsSheet({
   visible, onClose, trends, series, done, total, level, lang,
 }: Props) {
   const { theme: t, f } = useTheme();
-  const hasSpeech = trends !== null && trends.spokeMinutes > 0;
+
+  // Ноль — это тоже честное состояние: блоки те же самые, просто пустые.
+  // Отдельного урезанного вида у новичка нет (владелец 2026-09-01: «должны
+  // быть все элементы — и график, и три кружка, и плашки внизу»).
+  const spokeMinutes = trends?.spokeMinutes ?? 0;
+  const vocabWords = trends?.vocabWords ?? 0;
+  const cleanPhrasePct = trends?.cleanPhrasePct ?? null;
 
   const c = {
     close: triLang(lang, {
@@ -101,27 +109,19 @@ export default function MaxLessonsStatsSheet({
       es: 'frases sin errores', 'pt-BR': 'frases sem erros', vi: 'câu không lỗi',
       id: 'frasa tanpa kesalahan', tr: 'hatasız cümle', pl: 'fraz bez błędów',
     }),
-    empty: triLang(lang, {
-      ru: 'Пройди первый урок — здесь появится, сколько ты говорил и какими словами.',
-      uk: 'Пройди перший урок — тут з’явиться, скільки ти говорив і якими словами.',
-      en: 'Take your first lesson — this will show how much you spoke and which words you used.',
-      es: 'Haz tu primera clase: aquí verás cuánto hablaste y con qué palabras.',
-      'pt-BR': 'Faça sua primeira aula: aqui verá quanto falou e com quais palavras.',
-      vi: 'Hãy học bài đầu tiên — ở đây sẽ hiện bạn đã nói bao nhiêu và bằng những từ nào.',
-      id: 'Ikuti pelajaran pertama — di sini akan muncul berapa lama kamu bicara dan kata apa saja.',
-      tr: 'İlk dersini yap — burada ne kadar konuştuğun ve hangi kelimeleri kullandığın görünecek.',
-      pl: 'Zrób pierwszą lekcję — pojawi się tu, ile mówiłeś i jakimi słowami.',
-    }),
   };
 
   // Столбики нормализуются к своему максимуму: важна форма ряда, а не
   // абсолютная высота. Пустые отрезки остаются «пеньками» — видно, что было
   // тихо, и видно, куда расти.
   const bars = useMemo<StatBar[]>(() => {
-    if (!series) return [];
-    const peak = Math.max(1, ...series.bars);
-    const lastIndex = series.bars.length - 1;
-    return series.bars.map((minutes, i) => ({
+    // История ещё не поднята с диска — рисуем пустой ряд той же длины, а не
+    // прячем график: иначе первый кадр без него, и лист прыгает по высоте,
+    // когда данные приходят (Performance Bible — первый кадр = финальный).
+    const values = series?.bars ?? new Array<number>(WEEKLY_BARS).fill(0);
+    const peak = Math.max(1, ...values);
+    const lastIndex = values.length - 1;
+    return values.map((minutes, i) => ({
       key: `bar-${i}`,
       ratio: minutes / peak,
       active: minutes > 0,
@@ -143,110 +143,92 @@ export default function MaxLessonsStatsSheet({
         contentContainerStyle={{ paddingHorizontal: 18, paddingBottom: 26, gap: 12 }}
         showsVerticalScrollIndicator={false}
       >
-        {hasSpeech ? (
-          <>
-            {/* ① Динамика: крупное число, рост к прошлому отрезку, ряд столбиков. */}
-            <Reanimated.View
-              entering={FadeInDown.duration(320)}
-              style={{ borderRadius: 22, backgroundColor: t.bgSurface, padding: 18, gap: 16 }}
-            >
-              <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
-                <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text
-                    style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}
-                    maxFontSizeMultiplier={1.5}
-                    numberOfLines={1}
-                  >
-                    {trends.spokeMinutes}
-                  </Text>
-                  <Text
-                    style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', marginTop: 2 }}
-                    maxFontSizeMultiplier={1.6}
-                  >
-                    {c.minutesSpoken}
-                  </Text>
-                </View>
-                {series?.changePct !== null && series !== null ? (
-                  <ChangeBadge pct={series.changePct as number} />
-                ) : null}
+          {/* ① Динамика: крупное число, рост к прошлому отрезку, ряд столбиков. */}
+          <Reanimated.View
+            entering={FadeInDown.duration(320)}
+            style={{ borderRadius: 22, backgroundColor: t.bgSurface, padding: 18, gap: 16 }}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <Text
+                  style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}
+                  maxFontSizeMultiplier={1.5}
+                  numberOfLines={1}
+                >
+                  {spokeMinutes}
+                </Text>
+                <Text
+                  style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', marginTop: 2 }}
+                  maxFontSizeMultiplier={1.6}
+                >
+                  {c.minutesSpoken}
+                </Text>
               </View>
-
-              {bars.length > 0 ? (
-                <StatBars
-                  bars={bars}
-                  accent={t.accent}
-                  inactiveColor={t.bgSurface2}
-                  height={112}
-                  topLabelColor={t.textPrimary}
-                  topLabelMutedColor={t.textMuted}
-                  bottomLabelColor={t.textSecond}
-                  bottomLabelMutedColor={t.textMuted}
-                  delayMs={140}
-                  scrubEnabled
-                  scrubHighlightColor={t.accent}
-                  scrubBubbleBg={t.bgSurface2}
-                  scrubValueColor={t.textPrimary}
-                  scrubCaptionColor={t.textMuted}
-                />
+              {series?.changePct !== null && series !== null ? (
+                <ChangeBadge pct={series.changePct as number} />
               ) : null}
-            </Reanimated.View>
-
-            {/* ② Текущее состояние тремя кольцами — читается одним взглядом. */}
-            <Reanimated.View
-              entering={FadeInDown.delay(90).duration(320)}
-              style={{ flexDirection: 'row', gap: 10 }}
-            >
-              <RingCard
-                progress={Math.min(100, (trends.spokeMinutes / MINUTES_RING_SCALE) * 100)}
-                value={trends.spokeMinutes}
-                caption={c.min}
-                accent={t.accent}
-                delayMs={200}
-              />
-              <RingCard
-                progress={Math.min(100, (trends.vocabWords / VOCAB_RING_SCALE) * 100)}
-                value={trends.vocabWords}
-                caption={c.words}
-                accent={t.accent}
-                delayMs={280}
-              />
-              {trends.cleanPhrasePct !== null ? (
-                <RingCard
-                  progress={trends.cleanPhrasePct}
-                  value={trends.cleanPhrasePct}
-                  caption="%"
-                  accent={t.accent}
-                  delayMs={360}
-                />
-              ) : null}
-            </Reanimated.View>
-
-            {/* ③ Детали списком: число ведёт, подпись поясняет тоном потише. */}
-            <View style={{ gap: 8 }}>
-              <StatRow value={String(trends.vocabWords)} label={c.vocab} delayMs={180} />
-              {trends.cleanPhrasePct !== null ? (
-                <StatRow value={`${trends.cleanPhrasePct}%`} label={c.clean} delayMs={230} />
-              ) : null}
-              <StatRow value={`${done} / ${total}`} label={c.lessons} delayMs={280} />
-              <StatRow value={level} label={c.levelNow} delayMs={330} />
             </View>
-          </>
-        ) : (
-          // Пустое состояние объясняет, что будет здесь, — а не показывает нули.
-          <View style={{ gap: 12 }}>
-            <View style={{ borderRadius: 22, backgroundColor: t.bgSurface, padding: 18 }}>
-              <Text
-                style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', lineHeight: f.body * 1.45 }}
-                maxFontSizeMultiplier={1.8}
-              >
-                {c.empty}
-              </Text>
-            </View>
-            {/* Уроки и уровень известны и без единого звонка — показываем их. */}
-            <StatRow value={`${done} / ${total}`} label={c.lessons} delayMs={80} />
-            <StatRow value={level} label={c.levelNow} delayMs={130} />
+
+            {bars.length > 0 ? (
+              <StatBars
+                bars={bars}
+                accent={t.accent}
+                inactiveColor={t.bgSurface2}
+                height={112}
+                topLabelColor={t.textPrimary}
+                topLabelMutedColor={t.textMuted}
+                bottomLabelColor={t.textSecond}
+                bottomLabelMutedColor={t.textMuted}
+                delayMs={140}
+                scrubEnabled
+                scrubHighlightColor={t.accent}
+                scrubBubbleBg={t.bgSurface2}
+                scrubValueColor={t.textPrimary}
+                scrubCaptionColor={t.textMuted}
+              />
+            ) : null}
+          </Reanimated.View>
+
+          {/* ② Текущее состояние тремя кольцами — читается одним взглядом. */}
+          <Reanimated.View
+            entering={FadeInDown.delay(90).duration(320)}
+            style={{ flexDirection: 'row', gap: 10 }}
+          >
+            <RingCard
+              progress={Math.min(100, (spokeMinutes / MINUTES_RING_SCALE) * 100)}
+              value={spokeMinutes}
+              caption={c.min}
+              accent={t.accent}
+              delayMs={200}
+            />
+            <RingCard
+              progress={Math.min(100, (vocabWords / VOCAB_RING_SCALE) * 100)}
+              value={vocabWords}
+              caption={c.words}
+              accent={t.accent}
+              delayMs={280}
+            />
+            {/* Третье кольцо на месте всегда: владелец просил три кружка.
+                Выборка мала (меньше CLEAN_PHRASE_MIN_CALLS звонков) — процент
+                ещё не посчитан, показываем 0, а не убираем кольцо и не рушим
+                ряд из трёх в ряд из двух. */}
+            <RingCard
+              progress={cleanPhrasePct ?? 0}
+              value={cleanPhrasePct ?? 0}
+              caption="%"
+              accent={t.accent}
+              delayMs={360}
+            />
+          </Reanimated.View>
+
+          {/* ③ Детали списком: число ведёт, подпись поясняет тоном потише. */}
+          <View style={{ gap: 8 }}>
+            <StatRow value={String(vocabWords)} label={c.vocab} delayMs={180} />
+            <StatRow value={`${cleanPhrasePct ?? 0}%`} label={c.clean} delayMs={230} />
+            <StatRow value={`${done} / ${total}`} label={c.lessons} delayMs={280} />
+            <StatRow value={level} label={c.levelNow} delayMs={330} />
           </View>
-        )}
+        
       </ScrollView>
     </HybridSheetShell>
   );

@@ -6,7 +6,10 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withDelay,
+  withSequence,
+  withSpring,
   withTiming,
+  type SharedValue,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 
@@ -47,12 +50,30 @@ const PARTICLE_SIZE = 22;
  */
 const FLIGHT_EASE = Easing.bezier(0.22, 0.9, 0.24, 1);
 
+const FLIGHT_SOUND_OPTIONS = { scope: 'home-reward-collect' } as const;
+
+/** Щелчок приземления. Зовётся с UI-потока через мост — звук всё равно асинхронен. */
+function playLandSound(): void {
+  soundDirector.request('pm.reward.rune_flight_land', FLIGHT_SOUND_OPTIONS);
+}
+
 interface ParticleProps {
   index: number;
   isLast: boolean;
   from: RewardFlightPoint;
   to: RewardFlightPoint;
   source: ImageSourcePropType;
+  /**
+   * Пульс счётчика, общий для всей волны.
+   *
+   * зачем (владелец, 2026-09-01: «увеличение цифры будто заторможено и не
+   * связано с самим полётом»): раньше счётчик дёргался ОДИН раз и только
+   * когда долетала ПОСЛЕДНЯЯ частица — через мост UI→JS, то есть с двойным
+   * запозданием. Теперь по счётчику бьёт КАЖДАЯ частица ровно в момент своего
+   * касания, и удар живёт на том же UI-потоке, что и полёт: рассинхрону
+   * взяться неоткуда.
+   */
+  impact: SharedValue<number>;
   onLastDone: () => void;
 }
 
@@ -62,6 +83,7 @@ const FlightParticle = memo(function FlightParticle({
   from,
   to,
   source,
+  impact,
   onLastDone,
 }: ParticleProps) {
   const progress = useSharedValue(0);
@@ -72,11 +94,25 @@ const FlightParticle = memo(function FlightParticle({
     progress.value = withDelay(
       index * REWARD_FLIGHT_STAGGER_MS,
       withTiming(1, { duration: REWARD_FLIGHT_MS, easing: FLIGHT_EASE }, (finished) => {
+        'worklet';
         if (!finished) return;
+        // Удар по счётчику — прямо здесь, на UI-потоке, в кадре касания.
+        // Каждая частица подбрасывает счётчик и он оседает обратно; частицы
+        // идут каскадом, поэтому счётчик «набухает» вместе с потоком, а не
+        // дёргается один раз в конце.
+        impact.value = withSequence(
+          withSpring(1, { damping: 9, stiffness: 700, mass: 0.35 }),
+          withSpring(0, { damping: 15, stiffness: 260, mass: 0.6 }),
+        );
+        // Через мост уходят только звук и закрытие волны: и то и другое
+        // асинхронно по своей природе, к синхронности удара отношения не имеет.
+        // Звук даёт ПЕРВАЯ долетевшая частица — по одному щелчку на волну,
+        // иначе 14 наложенных ударов превратятся в треск.
+        if (index === 0) scheduleOnRN(playLandSound);
         if (isLast) scheduleOnRN(onLastDone);
       }),
     );
-  }, [index, isLast, onLastDone, progress]);
+  }, [impact, index, isLast, onLastDone, progress]);
 
   const style = useAnimatedStyle(() => {
     const p = progress.value;
@@ -86,7 +122,9 @@ const FlightParticle = memo(function FlightParticle({
     return {
       // Появление быстрое (частица влетает уже в движении), гашение — у самой
       // цели, чтобы она не «протыкала» счётчик насквозь.
-      opacity: p < 0.12 ? p / 0.12 : p > 0.9 ? Math.max(0, 1 - (p - 0.9) * 10) : 1,
+      // Гашение начинается на 97%, а не на 90%: раньше частица исчезала
+      // заметно НЕ долетев, и удар счётчика выглядел беспричинным.
+      opacity: p < 0.12 ? p / 0.12 : p > 0.97 ? Math.max(0, 1 - (p - 0.97) * 33) : 1,
       transform: [
         { translateX: dx * p - dy * arc },
         { translateY: dy * p + dx * arc },
@@ -128,16 +166,20 @@ export interface HomeRewardCollectFlightProps {
   source: ImageSourcePropType;
   /** Первая волна играет звук отрыва; вторая (жемчужины) молчит. */
   playStartSound?: boolean;
+  /**
+   * Пульс счётчика этой валюты: 0 — покой, 1 — удар. Живёт на UI-потоке,
+   * поэтому счётчик реагирует В КАДР касания частицы, без моста и задержки.
+   */
+  impact: SharedValue<number>;
   onDone: () => void;
 }
-
-const FLIGHT_SOUND_OPTIONS = { scope: 'home-reward-collect' } as const;
 
 export const HomeRewardCollectFlight = memo(function HomeRewardCollectFlight({
   amount,
   target,
   source,
   playStartSound = true,
+  impact,
   onDone,
 }: HomeRewardCollectFlightProps) {
   const rootRef = useRef<View>(null);
@@ -195,6 +237,7 @@ export const HomeRewardCollectFlight = memo(function HomeRewardCollectFlight({
           from={particle.from}
           to={particle.to}
           source={source}
+          impact={impact}
           onLastDone={onDone}
         />
       ))}

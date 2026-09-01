@@ -129,6 +129,10 @@ import HomeRewardCollectFlight from '../../components/home/HomeRewardCollectFlig
 import { useHomeRewardCollect } from '../../components/home/use_home_reward_collect';
 import { useHomeXpBarFill } from '../../components/home/use_home_xp_bar_fill';
 import { HOME_REWARD_DEMO_MODES } from '../reward_flight_particles';
+// зачем отдельное имя: в этом файле `Animated` — из react-native и им пользуются
+// сотни мест. Пульс счётчиков живёт на Reanimated (UI-поток), поэтому его
+// компонент импортируется как Reanimated, а не подменяет существующий.
+import Reanimated from 'react-native-reanimated';
 import { runeAmount } from '../../constants/runes';
 import { ruKnowledgeShardsAfterNumber, ukKnowledgeShardsAfterNumber } from '../../constants/shard_plurals';
 import MaxHomeOrb from '../../components/home/MaxHomeOrb';
@@ -4057,16 +4061,26 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       в одно значение нельзя: события независимы и затирали бы
                       друг друга на полпути. Замер цели полёта берём с этой же
                       обёртки — центр иконки, а не край кнопки. */}
-                  <Animated.View
+                  {/* Две обёртки, а не одна: удар от прилетевших частиц живёт на
+                      Reanimated (UI-поток, кадр в кадр с полётом), а подскок от
+                      «+N» за урок — на старом Animated. Один узел два движка не
+                      делят, поэтому они вложены, а не слиты в один transform. */}
+                  <Reanimated.View
                     ref={rewardCollect.measureShardsTarget}
                     collapsable={false}
-                    style={{ transform: [{ scale: shardsAnim }, { scale: rewardCollect.shardsPulse }], flexDirection: 'row', alignItems: 'center', gap: 3 }}
+                    style={rewardCollect.shardsPulseStyle}
+                  >
+                  <Animated.View
+                    style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}
                   >
                     {/* guard-ok: декоративная иконка — метка на кнопке-родителе */}
                     <Image source={homeHeaderShardIconSource} style={{ width: homeQuickCurrencyIconSize, height: homeQuickCurrencyIconSize }} contentFit="contain" contentPosition="center" accessible={false} accessibilityElementsHidden importantForAccessibility="no" />
                     <Text maxFontSizeMultiplier={1} style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }} numberOfLines={1}>{shardsBalance}</Text>
                   </Animated.View>
-                  {/* Всплывающее «+N» держится у самой иконки, которую увеличивает. */}
+                  </Reanimated.View>
+                  {/* Всплывающее «+N» держится у самой иконки, которую увеличивает.
+                      Стоит СНАРУЖИ обёртки удара: иначе надпись подпрыгивала бы
+                      вместе со счётчиком на каждую прилетевшую частицу. */}
                   <Animated.Text
                     testID="home-shards-bonus"
                     accessibilityElementsHidden
@@ -4103,10 +4117,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       (центр счётчика в координатах окна) и вспышка приземления.
                       Сам HomeRuneBalance не трогаем — он общий для Главной,
                       Арены, Лиги и карточки цели. */}
-                  <Animated.View
+                  <Reanimated.View
                     ref={rewardCollect.measureRunesTarget}
                     collapsable={false}
-                    style={{ transform: [{ scale: rewardCollect.runesPulse }] }}
+                    style={rewardCollect.runesPulseStyle}
                   >
                   <HomeRuneBalance
                     balance={runesBalance}
@@ -4119,7 +4133,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     standaloneA11y={false}
                     accessibilityLabel={homeRunesA11yLabel}
                   />
-                  </Animated.View>
+                  </Reanimated.View>
                 </TouchableOpacity>
               </View>
             </View>
@@ -4640,6 +4654,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           // Звук отрыва даёт только первая волна: вторая (жемчужины) идёт через
           // 220 мс, и второй вдох прозвучал бы как эхо, а не как новая награда.
           playStartSound={rewardCollect.state.wave === 'runes'}
+          // Пульс той валюты, что летит: по нему бьёт каждая долетевшая частица.
+          impact={rewardCollect.state.wave === 'runes'
+            ? rewardCollect.runesImpact
+            : rewardCollect.shardsImpact}
           onDone={rewardCollect.onWaveDone}
         />
       ) : null}

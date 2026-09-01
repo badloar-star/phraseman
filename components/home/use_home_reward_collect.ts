@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, View } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
+import {
+  useAnimatedStyle,
+  useSharedValue,
+  type SharedValue,
+} from 'react-native-reanimated';
 
 import {
   consumePendingRewardFlight,
@@ -55,14 +60,31 @@ const PULSE_SOUND_OPTIONS = { scope: 'home-reward-collect' } as const;
 
 export interface UseHomeRewardCollectResult {
   readonly state: HomeRewardCollectState;
-  /** Пульс счётчика рун — вешается на transform: [{ scale }]. */
-  readonly runesPulse: Animated.Value;
-  /** Пульс счётчика жемчужин. */
-  readonly shardsPulse: Animated.Value;
-  /** ref-колбэк на обёртку счётчика рун: сам меряет центр в координатах окна. */
-  readonly measureRunesTarget: (ref: MeasurableView | null) => void;
+  /**
+   * Готовый стиль счётчика рун — вешается на Animated.View (Reanimated).
+   *
+   * зачем стиль, а не голое значение (владелец, 2026-09-01: «увеличение цифры
+   * будто заторможено и не связано с полётом»): пульс считается на UI-потоке
+   * там же, где летят частицы, поэтому удар приходится ровно в кадр касания.
+   * Прежний Animated.Value жил в JS-потоке и запаздывал на мост.
+   */
+  readonly runesPulseStyle: StyleProp<ViewStyle>;
+  /** Готовый стиль счётчика жемчужин. */
+  readonly shardsPulseStyle: StyleProp<ViewStyle>;
+  /** Сырой пульс рун — отдаётся оверлею, который по нему бьёт. */
+  readonly runesImpact: SharedValue<number>;
+  /** Сырой пульс жемчужин. */
+  readonly shardsImpact: SharedValue<number>;
+  /**
+   * ref-колбэк на обёртку счётчика рун.
+   *
+   * Тип намеренно `unknown`: узел приходит от Reanimated.View, чей ref-тип —
+   * внутренний Component<AnimatedProps<…>>, а нам от него нужен ровно один
+   * метод measureInWindow. Сужаем внутри, а не тащим сюда чужой тип.
+   */
+  readonly measureRunesTarget: (ref: unknown) => void;
   /** ref-колбэк на обёртку счётчика жемчужин. */
-  readonly measureShardsTarget: (ref: MeasurableView | null) => void;
+  readonly measureShardsTarget: (ref: unknown) => void;
   /** Волна долетела — вызывает оверлей. */
   readonly onWaveDone: () => void;
   /**
@@ -85,8 +107,18 @@ export function useHomeRewardCollect(
     target: null,
   });
 
-  const runesPulse = useRef(new Animated.Value(1)).current;
-  const shardsPulse = useRef(new Animated.Value(1)).current;
+  // 0 — покой, 1 — удар. Частицы поднимают значение сами, из своего worklet.
+  const runesImpact = useSharedValue(0);
+  const shardsImpact = useSharedValue(0);
+
+  // Масштаб счётчика от удара. Держим скромным (максимум +26%): счётчик стоит
+  // в плотной строке заголовка, и крупный скачок толкал бы соседей.
+  const runesPulseStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: 1 + runesImpact.value * 0.26 }],
+  }));
+  const shardsPulseStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: 1 + shardsImpact.value * 0.26 }],
+  }));
 
   const runesTargetRef = useRef<RewardFlightPoint | null>(null);
   const shardsTargetRef = useRef<RewardFlightPoint | null>(null);
@@ -153,11 +185,18 @@ export function useHomeRewardCollect(
     [],
   );
 
-  const measureRunesTarget = useCallback((ref: MeasurableView | null) => {
-    runesNodeRef.current = ref;
+  /** Узел годится, только если умеет measureInWindow — больше нам ничего не надо. */
+  const asMeasurable = (ref: unknown): MeasurableView | null => (
+    typeof (ref as MeasurableView | null)?.measureInWindow === 'function'
+      ? (ref as MeasurableView)
+      : null
+  );
+
+  const measureRunesTarget = useCallback((ref: unknown) => {
+    runesNodeRef.current = asMeasurable(ref);
   }, []);
-  const measureShardsTarget = useCallback((ref: MeasurableView | null) => {
-    shardsNodeRef.current = ref;
+  const measureShardsTarget = useCallback((ref: unknown) => {
+    shardsNodeRef.current = asMeasurable(ref);
   }, []);
 
   /** Освежить обе цели перед запуском волны. */
@@ -166,21 +205,14 @@ export function useHomeRewardCollect(
     measureNode(shardsNodeRef.current, shardsTargetRef);
   }, [measureNode]);
 
-  /** Пульс счётчика в момент приземления — «вспышка», которую просил владелец. */
-  const pulse = useCallback(
-    (value: Animated.Value) => {
-      if (reduceMotion) return;
-      value.stopAnimation();
-      value.setValue(1);
-      Animated.sequence([
-        // Разгон короткий: счётчик отзывается сразу, как нажатая кнопка.
-        Animated.spring(value, { toValue: 1.32, useNativeDriver: true, friction: 3.4, tension: 180 }),
-        Animated.spring(value, { toValue: 1, useNativeDriver: true, friction: 5.5, tension: 140 }),
-      ]).start();
-      soundDirector.request('pm.reward.rune_flight_land', PULSE_SOUND_OPTIONS);
-    },
-    [reduceMotion],
-  );
+  // Пульса-функции здесь БОЛЬШЕ НЕТ.
+  //
+  // зачем (владелец, 2026-09-01: «увеличение цифры будто заторможено и не
+  // связано с самим полётом»): раньше счётчик дёргался отсюда, из JS-потока, и
+  // ровно один раз — когда через мост прилетало «долетела последняя частица».
+  // Между касанием и ударом набегала задержка, и связь с полётом рвалась.
+  // Теперь по счётчику бьёт каждая частица из своего worklet (см. impact в
+  // HomeRewardCollectFlight), а хук лишь владеет shared value.
 
   const finish = useCallback(() => {
     runningRef.current = false;
@@ -203,10 +235,8 @@ export function useHomeRewardCollect(
         return false;
       }
       setState({ wave, amount, target });
-      waveDoneRef.current = () => {
-        pulse(wave === 'runes' ? runesPulse : shardsPulse);
-        onFinished();
-      };
+      // Волна закрывается без пульса: счётчик уже отработал каждое касание.
+      waveDoneRef.current = onFinished;
       // Страховка: если оверлей по какой-то причине не сообщит о завершении
       // (экран увели, кадр не собрался), волна всё равно закроется — иначе
       // оверлей завис бы поверх Главной навсегда.
@@ -223,7 +253,7 @@ export function useHomeRewardCollect(
       }, rewardFlightDurationMs(amount) + 400);
       return true;
     },
-    [later, pulse, runesPulse, shardsPulse],
+    [later],
   );
 
   const onWaveDone = useCallback(() => {
@@ -375,11 +405,13 @@ export function useHomeRewardCollect(
 
   return {
     state,
-    runesPulse,
-    shardsPulse,
     measureRunesTarget,
     measureShardsTarget,
     onWaveDone,
     playDemo,
+    runesPulseStyle,
+    shardsPulseStyle,
+    runesImpact,
+    shardsImpact,
   };
 }

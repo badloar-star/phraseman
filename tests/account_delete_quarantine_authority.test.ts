@@ -1,6 +1,18 @@
 jest.mock('expo-secure-store');
 jest.mock('@react-native-async-storage/async-storage');
 
+// зачем: снятие сломанного следа обязано быть ВИДНО в журнале (владелец,
+// «сперва логи»), но ровно одной записью уровня warning — а не потоком
+// алертов, из-за которого устройства становились непригодны 31.08-01.09.
+const mockDebugLoggerError = jest.fn();
+jest.mock('../app/debug-logger', () => ({
+  DebugLogger: {
+    error: (...args: unknown[]) => mockDebugLoggerError(...args),
+    log: jest.fn(),
+    warn: jest.fn(),
+  },
+}));
+
 const RECORD_KEY = 'account_delete_pending_auth_v2';
 const ANCHOR_KEY = 'account_delete_pending_auth_anchor_v2';
 const MIRROR_KEY = 'account_delete_pending_auth_v1';
@@ -45,7 +57,48 @@ beforeEach(() => {
 
   const asyncStorage = require('@react-native-async-storage/async-storage');
   asyncStorage.__reset();
+  mockDebugLoggerError.mockReset();
 });
+
+/**
+ * Общая проверка отменённого правила «локальный замок запирает вход»
+ * (снос замка — коммит 97fdf2083, инциденты 31.08-01.09).
+ *
+ * зачем именно так: сломанный след раньше БРОСАЛ исключение, приложение
+ * закрывалось, а снять след было нечем — устройства владельца стали
+ * непригодны. Теперь мусор обязан быть СТЁРТ физически (обе половины
+ * SecureStore + зеркало), чтение отдаёт null, вход НЕ заперт, а факт
+ * попадает в журнал ровно одной записью уровня warning.
+ */
+async function expectBrokenGuardDiscarded(
+  quarantine: typeof import('../app/account_delete_quarantine'),
+  raw: string | null,
+): Promise<void> {
+  expect(raw).toBeNull();
+
+  const secure = require('expo-secure-store');
+  expect(secure.__rows[RECORD_KEY]).toBeUndefined();
+  expect(secure.__rows[ANCHOR_KEY]).toBeUndefined();
+  const asyncStorage = require('@react-native-async-storage/async-storage');
+  expect(await asyncStorage.getItem(MIRROR_KEY)).toBeNull();
+
+  // Вход не заперт НИ для кого: ни для удалённого провайдера, ни для анонима.
+  expect(quarantine.shouldQuarantineAccountDeleteIdentity(
+    raw,
+    { uid: 'deleted-provider', isAnonymous: false },
+    2_000,
+  )).toBe(false);
+  await expect(quarantine.isAccountDeleteIdentityQuarantined(
+    { uid: 'deleted-provider', isAnonymous: false },
+  )).resolves.toBe(false);
+
+  // Ровно одна запись в журнале, уровень warning, а не critical.
+  const discardCalls = mockDebugLoggerError.mock.calls.filter(
+    ([context]: [string]) => context === 'account_delete_quarantine:broken_guard_discarded',
+  );
+  expect(discardCalls).toHaveLength(1);
+  expect(discardCalls[0][2]).toBe('warning');
+}
 
 test('valid immutable anchor reconstructs a malformed mutable record conservatively as prepared', async () => {
   const secure = require('expo-secure-store');
@@ -66,16 +119,19 @@ test('valid immutable anchor reconstructs a malformed mutable record conservativ
 test.each([
   ['missing', null],
   ['malformed', '{broken'],
-])('valid mutable record with %s anchor fails closed', async (_case, anchorRaw) => {
-  const secure = require('expo-secure-store');
-  secure.__rows[RECORD_KEY] = JSON.stringify(lock());
-  if (anchorRaw !== null) secure.__rows[ANCHOR_KEY] = anchorRaw;
-  const quarantine = require('../app/account_delete_quarantine');
+])(
+  'half-written record with %s anchor is discarded and never locks entry',
+  async (_case, anchorRaw) => {
+    const secure = require('expo-secure-store');
+    secure.__rows[RECORD_KEY] = JSON.stringify(lock());
+    if (anchorRaw !== null) secure.__rows[ANCHOR_KEY] = anchorRaw;
+    const quarantine = require('../app/account_delete_quarantine');
 
-  await expect(quarantine.readAccountDeletePendingAuthRaw()).rejects.toThrow(
-    /account_delete_guard_(anchor_required|secure_read_failed)/,
-  );
-});
+    const raw = await quarantine.readAccountDeletePendingAuthRaw();
+
+    await expectBrokenGuardDiscarded(quarantine, raw);
+  },
+);
 
 test('valid mutable record with unreadable anchor fails closed', async () => {
   const secure = require('expo-secure-store');
@@ -92,15 +148,18 @@ test('valid mutable record with unreadable anchor fails closed', async () => {
   );
 });
 
-test('matching records are required; disagreement fails closed', async () => {
+test('disagreeing halves are discarded instead of locking entry forever', async () => {
+  // Реальный инцидент UID #e5c3: половины пришли от РАЗНЫХ операций, и
+  // прежнее «самолечение» такой случай не чинило — вход, старт и повторное
+  // удаление были заблокированы разом, выхода не было ни одного.
   const secure = require('expo-secure-store');
   secure.__rows[RECORD_KEY] = JSON.stringify(lock());
   secure.__rows[ANCHOR_KEY] = JSON.stringify(anchor({ deletedStableId: 'other-stable' }));
   const quarantine = require('../app/account_delete_quarantine');
 
-  await expect(quarantine.readAccountDeletePendingAuthRaw()).rejects.toThrow(
-    'account_delete_guard_disagreement',
-  );
+  const raw = await quarantine.readAccountDeletePendingAuthRaw();
+
+  await expectBrokenGuardDiscarded(quarantine, raw);
 });
 
 test('both unreadable authoritative records fail closed even when AsyncStorage is empty', async () => {
@@ -274,15 +333,17 @@ test('exact record read-back mismatch rejects guard persistence before deletion 
   await expect(quarantine.persistAccountDeletePendingAuthLock(lock({ phase: 'prepared' }))).resolves.toBe(false);
 });
 
-test('anchor rejects a non-string deleted stable id instead of normalizing it to null', async () => {
+test('anchor with a non-string deleted stable id is invalid, not normalized to null', async () => {
+  // Якорь по-прежнему СТРОГИЙ: 42 не превращается в null и якорем не
+  // считается. Меняется только последствие — след стирается, а не запирает.
   const secure = require('expo-secure-store');
   secure.__rows[RECORD_KEY] = JSON.stringify(lock());
   secure.__rows[ANCHOR_KEY] = JSON.stringify(anchor({ deletedStableId: 42 }));
   const quarantine = require('../app/account_delete_quarantine');
 
-  await expect(quarantine.readAccountDeletePendingAuthRaw()).rejects.toThrow(
-    'account_delete_guard_anchor_required',
-  );
+  const raw = await quarantine.readAccountDeletePendingAuthRaw();
+
+  await expectBrokenGuardDiscarded(quarantine, raw);
 });
 
 test('empty stable id in secure mutable record is malformed and reconstructed prepared from anchor', async () => {

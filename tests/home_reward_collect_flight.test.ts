@@ -19,8 +19,10 @@ import {
 } from '../app/reward_flight_queue';
 import {
   HOME_REWARD_DEMO_MODES,
+  REWARD_FLIGHT_MAX_BEATS,
   REWARD_FLIGHT_MS,
   REWARD_FLIGHT_STAGGER_MS,
+  rewardFlightBeatIndexes,
   rewardFlightDurationMs,
   rewardFlightParticleCount,
   rewardFlightSpawnPoint,
@@ -241,31 +243,57 @@ describe('дев-кнопка: порядок режимов', () => {
   });
 });
 
-describe('пульсация счётчика: толчки не должны слипаться', () => {
-  /**
-   * Длительность одного толчка счётчика — 45мс вверх + 60мс вниз.
-   * Значения живут в HomeRewardCollectFlight (worklet частицы); здесь
-   * зафиксированы как контракт, потому что связь с шагом каскада критична.
-   */
-  const IMPACT_TOTAL_MS = 45 + 60;
+describe('пульсация счётчика', () => {
+  /** Толчок: 120мс вверх + 150мс вниз (значения в HomeRewardCollectFlight). */
+  const IMPACT_TOTAL_MS = 120 + 150;
 
-  it('толчок успевает вернуться ДО следующего касания', () => {
-    // Класс бага (владелец 2026-09-01: «преувеличивается 1 раз, а должен
-    // пульсировать с каждой руной»): при шаге 55мс удар длился дольше
-    // интервала, следующий перебивал его на взлёте, и серия толчков
-    // склеивалась в одно слитное вздутие.
-    expect(IMPACT_TOTAL_MS).toBeLessThan(REWARD_FLIGHT_STAGGER_MS);
+  it('счётчик бьётся НЕСКОЛЬКО раз, а не на каждую частицу', () => {
+    // Класс бага (владелец 2026-09-01: «не должен дёргаться как бешеный с
+    // каждой руной»): удар на каждое касание при 14 частицах читался как
+    // тряска, а не как пульс.
+    for (const amount of [4, 10, 50, 120, 500, 2000]) {
+      const particles = rewardFlightParticleCount(amount);
+      const beats = rewardFlightBeatIndexes(particles);
+
+      expect(beats.length).toBeGreaterThanOrEqual(1);
+      expect(beats.length).toBeLessThanOrEqual(REWARD_FLIGHT_MAX_BEATS);
+      // Главное: ударов ЗАМЕТНО меньше, чем частиц.
+      if (particles > 4) expect(beats.length).toBeLessThan(particles);
+    }
   });
 
-  it('шаг каскада различим глазом, а не сливается в дрожь', () => {
-    // Ниже ~90мс отдельные толчки перестают читаться как отдельные.
-    expect(REWARD_FLIGHT_STAGGER_MS).toBeGreaterThanOrEqual(90);
+  it('последний удар совпадает с последней частицей — финал не провисает', () => {
+    for (const particles of [3, 5, 8, 11, 14]) {
+      const beats = rewardFlightBeatIndexes(particles);
+      expect(beats[beats.length - 1]).toBe(particles - 1);
+    }
+  });
+
+  it('удары не наступают друг другу на пятки', () => {
+    // Пауза между ударами обязана быть не короче самого толчка, иначе
+    // следующий перебьёт предыдущий на взлёте и они снова слипнутся.
+    for (const particles of [5, 6, 8, 11, 14]) {
+      const beats = rewardFlightBeatIndexes(particles);
+      for (let i = 1; i < beats.length; i += 1) {
+        const gapMs = (beats[i] - beats[i - 1]) * REWARD_FLIGHT_STAGGER_MS;
+        expect(gapMs).toBeGreaterThanOrEqual(IMPACT_TOTAL_MS);
+      }
+    }
+  });
+
+  it('короткая волна бьётся один раз, а не дважды впритык', () => {
+    // На 3-4 частицах два толчка встали бы вплотную — оставляем один.
+    expect(rewardFlightBeatIndexes(3)).toEqual([2]);
+    expect(rewardFlightBeatIndexes(4)).toEqual([3]);
+  });
+
+  it('пустая волна не бьёт вовсе', () => {
+    expect(rewardFlightBeatIndexes(0)).toEqual([]);
+    expect(rewardFlightBeatIndexes(-3)).toEqual([]);
   });
 
   it('даже джекпот укладывается в разумную длительность', () => {
-    // 14 частиц — потолок. Волна не должна превращаться в ожидание.
-    expect(rewardFlightDurationMs(2000)).toBeLessThanOrEqual(2400);
-    // При этом полёт не мгновенный — иначе каскад не увидеть.
+    expect(rewardFlightDurationMs(2000)).toBeLessThanOrEqual(2000);
     expect(REWARD_FLIGHT_MS).toBeGreaterThanOrEqual(400);
   });
 });

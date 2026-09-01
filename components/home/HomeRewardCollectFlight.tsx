@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, View, type ImageSourcePropType } from 'react-native';
+import { Dimensions, StyleSheet, View, type ImageSourcePropType } from 'react-native';
 import { Image } from 'expo-image';
 import Animated, {
   Easing,
@@ -12,10 +12,12 @@ import Animated, {
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 
+import { DebugLogger } from '../../app/debug-logger';
 import { soundDirector } from '../../modules/audio/sound_director';
 import {
   REWARD_FLIGHT_MS,
   REWARD_FLIGHT_STAGGER_MS,
+  rewardFlightBeatIndexes,
   rewardFlightParticleCount,
   rewardFlightSpawnPoint,
   type RewardFlightPoint,
@@ -78,6 +80,15 @@ interface ParticleProps {
    * взяться неоткуда.
    */
   impact: SharedValue<number>;
+  /**
+   * Бьёт ли ЭТА частица по счётчику.
+   *
+   * зачем не каждая (владелец, 2026-09-01: «не должен дёргаться как бешеный с
+   * каждой руной... пульсирует правдоподобно несколько раз»): при 14 частицах
+   * удар на каждую читался как тряска. Бьют 2–4 частицы, распределённые по
+   * волне (см. rewardFlightBeatIndexes).
+   */
+  beats: boolean;
   onLastDone: () => void;
 }
 
@@ -88,6 +99,7 @@ const FlightParticle = memo(function FlightParticle({
   to,
   source,
   impact,
+  beats,
   onLastDone,
 }: ParticleProps) {
   const progress = useSharedValue(0);
@@ -104,22 +116,19 @@ const FlightParticle = memo(function FlightParticle({
         // Каждая частица подбрасывает счётчик и он оседает обратно; частицы
         // идут каскадом, поэтому счётчик «набухает» вместе с потоком, а не
         // дёргается один раз в конце.
-        // Толчок ОБЯЗАН уложиться в интервал между касаниями (115мс), иначе
-        // следующий удар перебьёт этот на взлёте и серия толчков склеится в
-        // одно слитное вздутие — ровно то, что владелец увидел как
-        // «преувеличивается один раз».
+        // 120 + 150 = 270мс — укладывается в минимальную паузу между ударами
+        // (280мс при пяти частицах), поэтому толчок успевает отработать
+        // целиком и следующий не перебивает его на взлёте.
         //
-        // Поэтому не пружина, а короткий timing: у пружины нет гарантии
-        // длительности, она «доседает» сотни миллисекунд и накладывается сама
-        // на себя.
-        //
-        // 45 + 60 = 105мс — ЦЕЛИКОМ внутри шага 115мс. Счётчик успевает
-        // вернуться в покой до следующего касания, поэтому видна серия
-        // отдельных толчков, а не одна нарастающая горка.
-        impact.value = withSequence(
-          withTiming(1, { duration: 45, easing: IMPACT_UP_EASE }),
-          withTiming(0, { duration: 60, easing: IMPACT_DOWN_EASE }),
-        );
+        // Не пружина, а timing: у пружины нет гарантии длительности, она
+        // «доседает» сотни миллисекунд и накладывается сама на себя — именно
+        // так толчки и слипались в одно вздутие.
+        if (beats) {
+          impact.value = withSequence(
+            withTiming(1, { duration: 120, easing: IMPACT_UP_EASE }),
+            withTiming(0, { duration: 150, easing: IMPACT_DOWN_EASE }),
+          );
+        }
         // Через мост уходят только звук и закрытие волны: и то и другое
         // асинхронно по своей природе, к синхронности удара отношения не имеет.
         // Звук даёт ПЕРВАЯ долетевшая частица — по одному щелчку на волну,
@@ -128,7 +137,7 @@ const FlightParticle = memo(function FlightParticle({
         if (isLast) scheduleOnRN(onLastDone);
       }),
     );
-  }, [impact, index, isLast, onLastDone, progress]);
+  }, [beats, impact, index, isLast, onLastDone, progress]);
 
   const style = useAnimatedStyle(() => {
     const p = progress.value;
@@ -199,11 +208,27 @@ export const HomeRewardCollectFlight = memo(function HomeRewardCollectFlight({
   onDone,
 }: HomeRewardCollectFlightProps) {
   const rootRef = useRef<View>(null);
+  // Стартовое значение — РАЗМЕР ОКНА, а не null.
+  //
+  // зачем (владелец, 2026-09-01: «иногда пропадает анимация полёта, а
+  // увеличение счётчика есть»): раньше частицы ждали measureInWindow внутри
+  // onLayout. Цепочка асинхронная (layout → замер → setState → ре-рендер), и
+  // когда она не успевала, particles оставался ПУСТЫМ: полёта не было вовсе,
+  // а волну через пару секунд закрывал страховочный таймер — счётчик при этом
+  // всё равно отрабатывал. Ровно то, что владелец и увидел.
+  //
+  // Оверлей растянут на absoluteFill, поэтому его origin почти всегда (0,0), а
+  // размеры равны окну. Берём это СРАЗУ и рисуем первый кадр без ожидания;
+  // фактический замер приходит следом и уточняет origin, если экран смещён
+  // (планшетный сплит, модальная подложка).
   const [frame, setFrame] = useState<{
     origin: RewardFlightPoint;
     width: number;
     height: number;
-  } | null>(null);
+  }>(() => {
+    const window = Dimensions.get('window');
+    return { origin: { x: 0, y: 0 }, width: window.width, height: window.height };
+  });
 
   // Звук отрыва — ОДИН на всю волну, а не на каждую частицу: 14 наложенных
   // вдохов дали бы шум вместо полёта (тот же приём, что в LearningV2RuneFlight).
@@ -213,11 +238,16 @@ export const HomeRewardCollectFlight = memo(function HomeRewardCollectFlight({
   }, [playStartSound]);
 
   const count = rewardFlightParticleCount(amount);
+  // Кто из частиц бьёт по счётчику: 2–4 удара на волну, а не удар на каждую.
+  const beatSet = useMemo(
+    () => new Set(rewardFlightBeatIndexes(count)),
+    [count],
+  );
 
   // Траектории считаются один раз на волну: пересчёт в рендере дал бы новую
   // геометрию при каждом ре-рендере Главной и частицы бы прыгали.
   const particles = useMemo(() => {
-    if (!frame || count <= 0) return [];
+    if (count <= 0) return [];
     const localTarget = {
       x: target.x - frame.origin.x,
       y: target.y - frame.origin.y,
@@ -237,11 +267,27 @@ export const HomeRewardCollectFlight = memo(function HomeRewardCollectFlight({
       style={StyleSheet.absoluteFill}
       onLayout={(event) => {
         const { width, height } = event.nativeEvent.layout;
-        // Координаты цели приходят в системе ОКНА (measureInWindow), а частицы
-        // живут внутри оверлея — переводим один раз, как это делает
-        // LearningV2RuneFlight.
+        // Уточнение уже нарисованного кадра, а НЕ условие его появления.
+        // Координаты цели приходят в системе окна (measureInWindow), а частицы
+        // живут внутри оверлея — если оверлей смещён, переводим origin.
         rootRef.current?.measureInWindow((x, y) => {
-          setFrame({ origin: { x, y }, width, height });
+          if (!Number.isFinite(x) || !Number.isFinite(y) || width <= 0 || height <= 0) {
+            // Немой отказ запрещён: без причины в логе «полёт пропал» снова
+            // будет неотлаживаемым.
+            DebugLogger.warn(
+              'reward_flight:overlay_measure_invalid',
+              JSON.stringify({ x, y, width, height }),
+            );
+            return;
+          }
+          setFrame((current) => (
+            current.origin.x === x
+              && current.origin.y === y
+              && current.width === width
+              && current.height === height
+              ? current // та же геометрия — не будим ре-рендер посреди полёта
+              : { origin: { x, y }, width, height }
+          ));
         });
       }}
     >
@@ -254,6 +300,7 @@ export const HomeRewardCollectFlight = memo(function HomeRewardCollectFlight({
           to={particle.to}
           source={source}
           impact={impact}
+          beats={beatSet.has(particle.key)}
           onLastDone={onDone}
         />
       ))}

@@ -52,6 +52,10 @@ import {
 } from './max_call_mint_request';
 import { isAiVoiceConsentGranted } from './max_voice_consent';
 import { loadSpeechHistory, peekSpeechHistory } from './max_speech_history';
+import MaxLessonsStatsSheet from '../components/max/MaxLessonsStatsSheet';
+import VoiceMinutePackSheet from '../modules/voice_minutes/VoiceMinutePackSheet';
+import { readVoiceMinuteWalletStatus } from '../modules/voice_minutes/wallet';
+import { peekVoiceMinutes, writeVoiceMinutePeek } from '../modules/voice_minutes/peek_cache';
 import { computeVoiceTrends, type VoiceTrends } from './max_voice_metrics';
 import { useStudyTarget } from '../components/StudyTargetContext';
 
@@ -82,6 +86,40 @@ export default function MaxLessonsScreen() {
   const level = cachedPreview?.catalogProgress.level ?? cachedPreview?.goalLevel ?? 'A1';
 
   const [topic, setTopic] = useState<MaxLessonTopic | null>(null);
+  const [minuteSheetVisible, setMinuteSheetVisible] = useState(false);
+  const [statsVisible, setStatsVisible] = useState(false);
+
+  /**
+   * Остаток минут для шапки.
+   *
+   * зачем (владелец 2026-09-01, «индикатор сколько минут всего осталось»):
+   * первый кадр берётся из peek-кэша СИНХРОННО — цифра не должна прыгать с
+   * нуля на реальную через секунду (правило стабильности первого кадра).
+   * Сеть только уточняет.
+   */
+  const [walletSec, setWalletSec] = useState<number | null>(() => peekVoiceMinutes()?.seconds ?? null);
+  // guard-ok: клиент НИЧЕГО не списывает и не понижает. Здесь только показ:
+  // читаем серверный остаток и переводим секунды в минуты для глаза. Источник
+  // истины по минутам — серверный кошелёк, списывает их минт при звонке.
+  const minutesLeft = walletSec === null ? '—' : String(Math.max(0, Math.floor(walletSec / 60)));
+
+  useEffect(() => {
+    let active = true;
+    void readVoiceMinuteWalletStatus()
+      .then((w) => {
+        if (!active) return;
+        const total = w.availableSeconds + w.reservedSeconds;
+        setWalletSec(total);
+        writeVoiceMinutePeek(total);
+        DebugLogger.info('[MAX-LESSONS]', `кошелёк: доступно=${w.availableSeconds}с резерв=${w.reservedSeconds}с`);
+      })
+      .catch((e) => {
+        // Немой catch запрещён: без минут раздел всё равно открывается, но
+        // причина «почему прочерк вместо числа» обязана быть видна.
+        DebugLogger.warn('[MAX-LESSONS]', `кошелёк не прочитан: ${e instanceof Error ? e.message : String(e)}`);
+      });
+    return () => { active = false; };
+  }, []);
   // Тренды речи за 28 дней. Первый кадр — из памяти процесса (без await), диск
   // догоняет: цифры не должны появляться рывком после отрисовки.
   const [trends, setTrends] = useState<VoiceTrends | null>(() => {
@@ -187,6 +225,56 @@ export default function MaxLessonsScreen() {
   const done = useMemo(() => maxLessonsDone(mastery), [mastery]);
   const recommendedId = useMemo(() => recommendedMaxLessonId(mastery, level), [mastery, level]);
 
+  /**
+   * Прогрев рекомендованного урока.
+   *
+   * зачем (владелец 2026-09-01): «уроки должны быть прогреты и готовы ещё до
+   * того, как раздел откроется» — тогда тап сразу превращается в разговор, без
+   * паузы на подготовку связи.
+   *
+   * Греем РОВНО ОДИН урок — тот, что подсвечен (решение владельца). Заготовка
+   * держит серверный резерв минут: греть весь видимый экран значило бы
+   * занимать несколько резервов разом, и сервер отказал бы по
+   * voice_session_active. Остальные уроки готовятся в момент тапа — экран
+   * звонка умеет это сам.
+   */
+  const warmedRef = useRef<string>('');
+  useEffect(() => {
+    if (!recommendedId || warmedRef.current === recommendedId) return;
+    if (!isAiVoiceConsentGranted()) {
+      DebugLogger.info('[MAX-LESSONS]', 'прогрев пропущен: нет согласия на обработку голоса');
+      return;
+    }
+    const lesson = MAX_LESSON_CATALOG.find((l) => l.id === recommendedId);
+    if (!lesson) return;
+    warmedRef.current = recommendedId;
+    const callParams = {
+      format: 'tutor' as const,
+      scenarioId: 'coffee',
+      cefr: lesson.level,
+      devMode: false,
+      interfaceLang: lang,
+      studyTarget,
+      goalId: lesson.id,
+    };
+    DebugLogger.info('[MAX-LESSONS]', `прогрев урока ${lesson.id} (${lesson.level})`);
+    void import('./max_call_premint').then(({ beginPremint, premintKey }) =>
+      import('./max_call_mint_request').then(({ initialMintRequest, performMaxVoiceMint, releaseUnusedMint }) => {
+        if (!isAiVoiceConsentGranted()) return;
+        beginPremint(
+          premintKey(callParams),
+          () => performMaxVoiceMint(callParams, initialMintRequest(callParams)),
+          Date.now(),
+          releaseUnusedMint,
+        );
+      }),
+    ).catch((e) => {
+      // Прогрев — оптимизация, не критичный путь: не вышло, значит связь
+      // подготовится при тапе. Но причина обязана быть видна.
+      DebugLogger.warn('[MAX-LESSONS]', `прогрев не удался: ${e instanceof Error ? e.message : String(e)}`);
+    });
+  }, [lang, recommendedId, studyTarget]);
+
   // Названия уроков локализованы на сервере (CAN_DO_GOALS.title). Дублировать
   // 78×9 строк в бандле нельзя (~40 КБ, бандл-диета), поэтому сервер шлёт
   // только язык интерфейса и клиент кэширует их на диск: список меняется лишь
@@ -225,22 +313,43 @@ export default function MaxLessonsScreen() {
     return out;
   }, [topic]);
 
+  // Защита от двойного тапа: урок теперь открывает ЗВОНОК, и второй тап по
+  // соседней строке за те же полсекунды создал бы второй экран разговора с
+  // собственным резервом минут. Замок снимается при уходе с экрана.
+  const openingRef = useRef(false);
   const openLesson = useCallback((lesson: MaxLessonCatalogItem) => {
+    if (openingRef.current) {
+      DebugLogger.info('[MAX-LESSONS]', `повторный тап проигнорирован: уже открываем урок`);
+      return;
+    }
+    openingRef.current = true;
+    // Экран остаётся в стеке; вернулся назад — можно открывать снова.
+    setTimeout(() => { openingRef.current = false; }, 1200);
     DebugLogger.info('[MAX-LESSONS]', `open lesson=${lesson.id} level=${lesson.level} stars=${maxLessonStars(mastery, lesson.id)}`);
     // Урок = звонок с этой целью. Экран подготовки уже умеет формат 'tutor';
     // цель передаём параметром, чтобы сервер вёл именно её, а не «следующую».
+    // зачем (владелец 2026-09-01): «при открытии любого урока должен начинаться
+    // звонок сразу», без промежуточного экрана с минутами. Ведём прямо в
+    // разговор: экран звонка сам готовит связь, если заготовка не подоспела.
+    //
+    // Деньги при этом в безопасности, и это не допущение: сервер считает
+    // секунды от АКТИВАЦИИ (voiceSessionClockStartMs — activatedAtMs, то есть
+    // от первой реплики), а не от соединения. Пока идёт отсчёт и человек может
+    // отменить — минуты не тратятся.
     router.push({
-      pathname: '/max_call_prestart',
-      params: { format: 'tutor', cefr: lesson.level, studyTarget, goalId: lesson.id },
+      pathname: '/max_call_session',
+      params: {
+        format: 'tutor',
+        cefr: lesson.level,
+        studyTarget,
+        goalId: lesson.id,
+        // Отсчёт перед началом урока: 5 секунд на передумать (решение владельца).
+        countdown: '5',
+      },
     } as never);
   }, [mastery, router, studyTarget]);
 
   const c = useMemo(() => ({
-    title: triLang(lang, {
-      ru: 'Уроки с МАКСом', uk: 'Уроки з МАКСом', en: 'Lessons with MAX', es: 'Clases con MAX',
-      'pt-BR': 'Aulas com o MAX', vi: 'Bài học với MAX', id: 'Pelajaran dengan MAX',
-      tr: "MAX'la dersler", pl: 'Lekcje z MAXem',
-    }),
     // Подпись под цифрой НЕ повторяет её («0 из 78» под «0 / 78» — пустой шум).
     // Она называет, что за число: уроков пройдено.
     lessonsDone: triLang(lang, {
@@ -249,21 +358,19 @@ export default function MaxLessonsScreen() {
       vi: 'bài học đã xong', id: 'pelajaran selesai',
       tr: 'ders tamamlandı', pl: 'lekcji ukończonych',
     }),
-    // Подписи статистики: короткие, называют число, а не пересказывают его.
-    spokeMinutes: triLang(lang, {
-      ru: 'минут речи', uk: 'хвилин мовлення', en: 'minutes spoken', es: 'minutos hablados',
-      'pt-BR': 'minutos falados', vi: 'phút đã nói', id: 'menit bicara',
-      tr: 'konuşma dakikası', pl: 'minut mówienia',
+    minutesLeft: triLang(lang, {
+      ru: 'мин', uk: 'хв', en: 'min', es: 'min', 'pt-BR': 'min',
+      vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min',
     }),
-    vocabWords: triLang(lang, {
-      ru: 'слов в речи', uk: 'слів у мовленні', en: 'words used', es: 'palabras usadas',
-      'pt-BR': 'palavras usadas', vi: 'từ đã dùng', id: 'kata dipakai',
-      tr: 'kullanılan kelime', pl: 'użytych słów',
+    buyLabel: triLang(lang, {
+      ru: 'Купить минуты', uk: 'Купити хвилини', en: 'Buy minutes', es: 'Comprar minutos',
+      'pt-BR': 'Comprar minutos', vi: 'Mua phút', id: 'Beli menit',
+      tr: 'Dakika satın al', pl: 'Kup minuty',
     }),
-    cleanPhrases: triLang(lang, {
-      ru: 'без ошибок', uk: 'без помилок', en: 'clean phrases', es: 'frases correctas',
-      'pt-BR': 'frases corretas', vi: 'câu chuẩn', id: 'frasa benar',
-      tr: 'hatasız cümle', pl: 'bez błędów',
+    statsLabel: triLang(lang, {
+      ru: 'Мой прогресс', uk: 'Мій прогрес', en: 'My progress', es: 'Mi progreso',
+      'pt-BR': 'Meu progresso', vi: 'Tiến độ của tôi', id: 'Progres saya',
+      tr: 'İlerlemem', pl: 'Mój postęp',
     }),
     recommended: triLang(lang, {
       ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar',
@@ -287,24 +394,73 @@ export default function MaxLessonsScreen() {
   return (
     <ScreenGradient>
       <SafeAreaView testID="max-lessons-screen" style={{ flex: 1 }}>
-        {/* Шапка: та же геометрия, что на экране подготовки звонка — переход
-            между экранами не должен «прыгать». */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12, paddingHorizontal: 14 }}>
+        {/* зачем (владелец 2026-09-01): заголовок «Уроки с МАКСом» убран — он
+            занимал самое ценное место и не нёс информации: человек и так знает,
+            куда вошёл. Вместо него ГЛАВНОЕ ЧИСЛО экрана: сколько минут осталось
+            говорить. Рядом два действия, которые владелец просил вынести
+            наверх, — купить минуты и посмотреть прогресс. */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 10, paddingBottom: 14, paddingHorizontal: 14, gap: 10 }}>
           <TouchableOpacity
             accessibilityRole="button"
             accessibilityLabel={c.back}
             onPressIn={() => { void hapticTap(); }}
             onPress={() => { safeRouterBack(router, '/(tabs)/home' as any); }}
             style={{
-              width: 48, height: 48, borderRadius: 24, backgroundColor: t.bgCard,
-              justifyContent: 'center', alignItems: 'center', marginRight: 12,
+              width: 44, height: 44, borderRadius: 22, backgroundColor: t.bgCard,
+              justifyContent: 'center', alignItems: 'center',
             }}
           >
             <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
           </TouchableOpacity>
-          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900', flex: 1 }} maxFontSizeMultiplier={2}>
-            {c.title}
-          </Text>
+
+          {/* Остаток минут. Цифра крупная и живая, слово «минут» — тише:
+              иерархия внутри одной строки, без подписи снизу (запрет владельца). */}
+          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'baseline', gap: 6 }}>
+            <Text
+              style={{ color: t.textPrimary, fontSize: f.numMd + 6, fontWeight: '900' }}
+              maxFontSizeMultiplier={1.6}
+              numberOfLines={1}
+            >
+              {minutesLeft}
+            </Text>
+            <Text
+              style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800' }}
+              maxFontSizeMultiplier={1.6}
+              numberOfLines={1}
+            >
+              {c.minutesLeft}
+            </Text>
+          </View>
+
+          <TouchableOpacity
+            testID="max-lessons-stats"
+            accessibilityRole="button"
+            accessibilityLabel={c.statsLabel}
+            onPressIn={() => { void hapticTap(); }}
+            onPress={() => setStatsVisible(true)}
+            style={{
+              width: 44, height: 44, borderRadius: 22, backgroundColor: t.bgCard,
+              justifyContent: 'center', alignItems: 'center',
+            }}
+          >
+            <Ionicons name="stats-chart" size={19} color={t.textPrimary} />
+          </TouchableOpacity>
+
+          {/* Покупка минут — акцентная: это единственное действие на экране,
+              которое возвращает возможность говорить, когда минуты кончились. */}
+          <TouchableOpacity
+            testID="max-lessons-buy-minutes"
+            accessibilityRole="button"
+            accessibilityLabel={c.buyLabel}
+            onPressIn={() => { void hapticTap(); }}
+            onPress={() => setMinuteSheetVisible(true)}
+            style={{
+              width: 44, height: 44, borderRadius: 22, backgroundColor: t.accent,
+              justifyContent: 'center', alignItems: 'center',
+            }}
+          >
+            <Ionicons name="add" size={24} color={t.correctText} />
+          </TouchableOpacity>
         </View>
 
         <FlatList
@@ -330,51 +486,31 @@ export default function MaxLessonsScreen() {
               {/* Прогресс курса. Уровень здесь НЕ показываем — решение
                   владельца: уровень объявляется торжественно при повышении, а
                   не висит счётчиком, который давит на новичка каждый заход. */}
-              <View style={{ borderRadius: 20, backgroundColor: t.bgSurface, padding: 16, marginBottom: 14 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.numMd + 4, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-                  {done}
-                  <Text style={{ color: t.textMuted, fontSize: f.numMd, fontWeight: '800' }}>{` / ${MAX_LESSON_CATALOG.length}`}</Text>
-                </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 4 }} maxFontSizeMultiplier={2}>
-                  {c.lessonsDone}
-                </Text>
-
-                {/* Честная статистика речи за 28 дней. Показываем ТОЛЬКО когда
-                    замеры есть: пустые нули на первом заходе выглядели бы как
-                    «ты ничего не сделал» — ровно то, чего владелец не хочет
-                    видеть на экране. Метрики измеримые, не выдуманные:
-                    сколько минут человек реально говорил и сколько разных слов
-                    произнёс (правило «показывать прогресс честно»). */}
-                {trends && trends.spokeMinutes > 0 ? (
-                  <View style={{ flexDirection: 'row', gap: 18, marginTop: 16 }}>
-                    <View style={{ flex: 1 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-                        {trends.spokeMinutes}
-                      </Text>
-                      <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginTop: 3 }} maxFontSizeMultiplier={2}>
-                        {c.spokeMinutes}
-                      </Text>
-                    </View>
-                    <View style={{ flex: 1 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-                        {trends.vocabWords}
-                      </Text>
-                      <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginTop: 3 }} maxFontSizeMultiplier={2}>
-                        {c.vocabWords}
-                      </Text>
-                    </View>
-                    {trends.cleanPhrasePct !== null ? (
-                      <View style={{ flex: 1 }}>
-                        <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-                          {`${trends.cleanPhrasePct}%`}
-                        </Text>
-                        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginTop: 3 }} maxFontSizeMultiplier={2}>
-                          {c.cleanPhrases}
-                        </Text>
-                      </View>
-                    ) : null}
-                  </View>
-                ) : null}
+              {/* зачем (владелец 2026-09-01): крупная карточка прогресса
+                  съедала верх экрана ради двух цифр. Прогресс остался, но
+                  превратился в тонкую полосу: сколько закрыто — видно, а место
+                  отдано урокам. Подробные цифры речи живут в листе статистики
+                  (кнопка в шапке), где их и ищут осознанно. */}
+              <View style={{ marginBottom: 16, gap: 8 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
+                  <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800' }} maxFontSizeMultiplier={2}>
+                    {c.lessonsDone}
+                  </Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+                    {`${done} / ${MAX_LESSON_CATALOG.length}`}
+                  </Text>
+                </View>
+                {/* Полоса заполняется тоном акцента — без обводки (запрет владельца). */}
+                <View style={{ height: 6, borderRadius: 3, backgroundColor: t.bgSurface, overflow: 'hidden' }}>
+                  <View
+                    style={{
+                      width: `${Math.min(100, Math.round((done / MAX_LESSON_CATALOG.length) * 100))}%`,
+                      height: '100%',
+                      borderRadius: 3,
+                      backgroundColor: t.accent,
+                    }}
+                  />
+                </View>
               </View>
 
               {/* Фильтр по темам: горизонтальный ряд, пять тем плюс «Все».
@@ -427,6 +563,32 @@ export default function MaxLessonsScreen() {
           )}
         />
       </SafeAreaView>
+
+      {/* Покупка минут прямо из раздела: человек видит остаток в шапке и может
+          пополнить, не уходя к уроку и не упираясь в отказ посреди звонка. */}
+      <VoiceMinutePackSheet
+        visible={minuteSheetVisible}
+        onClose={() => setMinuteSheetVisible(false)}
+        onCredited={(wallet) => {
+          // Optimistic UI: число в шапке меняется СРАЗУ после покупки, не
+          // дожидаясь следующего чтения кошелька.
+          const total = wallet.availableSeconds + wallet.reservedSeconds;
+          setWalletSec(total);
+          writeVoiceMinutePeek(total);
+          setMinuteSheetVisible(false);
+          DebugLogger.info('[MAX-LESSONS]', `минуты пополнены: стало ${total}с`);
+        }}
+      />
+
+      <MaxLessonsStatsSheet
+        visible={statsVisible}
+        onClose={() => setStatsVisible(false)}
+        trends={trends}
+        done={done}
+        total={MAX_LESSON_CATALOG.length}
+        level={level}
+        lang={lang}
+      />
     </ScreenGradient>
   );
 }
@@ -472,6 +634,9 @@ function LessonRow({
   onPress: (lesson: MaxLessonCatalogItem) => void;
 }) {
   const { theme: t, f } = useTheme();
+  // Урок закрыт на трёх звёздах (решение владельца). Он НЕ исчезает и остаётся
+  // доступным: «войдя в урок MAX должен помнить, что юзер его уже прошёл».
+  const done = stars >= 3;
   return (
     <TouchableOpacity
       testID={`max-lesson-${lesson.id}`}
@@ -484,9 +649,11 @@ function LessonRow({
       style={{
         minHeight: 60,
         borderRadius: 16,
-        // Рекомендованный урок выделен тоном фона, без рамки и без ярлыка
-        // мелким шрифтом под названием (оба — запреты владельца).
+        // Три состояния, все различаются ТОНОМ, без единой рамки (запрет
+        // владельца): рекомендованный — акцентный фон; пройденный — приглушён,
+        // он уже сделан и не должен спорить за внимание; обычный — ровный.
         backgroundColor: recommended ? t.accentBg : t.bgSurface,
+        opacity: done && !recommended ? 0.72 : 1,
         paddingVertical: 13,
         paddingHorizontal: 15,
         flexDirection: 'row',

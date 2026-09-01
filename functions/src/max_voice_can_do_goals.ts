@@ -333,6 +333,13 @@ export function renderCanDoGoalBlock(
       ? `Target phrases: ${goal.phrases.join(' | ')}. Grammar focus: ${goal.grammar}.`
       : `Course language: ${targetName}. Select 2-3 level-appropriate ${targetName} phrases for this goal. Never use the English catalog phrases as target content. Use grammar appropriate to this goal and level in ${targetName}.`,
     goal.sceneIds.length > 0 ? `Check it in a scene task, e.g. start_scene("${goal.sceneIds[0]}").` : 'Check it with a mini role-play you invent.',
+    // зачем (владелец 2026-09-01): «войдя в урок, MAX должен помнить, что юзер
+    // его уже прошёл, и предложить пройтись снова, если есть желание». Урок не
+    // закрывается навсегда — человек возвращается к нему сам, и встречать его
+    // как новичка было бы обидно и странно.
+    m >= 3
+      ? 'THE LEARNER HAS ALREADY CLOSED THIS GOAL and chose to come back to it. Open by acknowledging that warmly in one short sentence ("We did this one — want another round?"), then run it as PRACTICE, not as first teaching: skip the introduction, go almost straight to using it, and raise the bar a little (faster pace, a less predictable situation, a harder variation). Never re-teach it from zero and never imply they forgot it. If they say they only wanted to look, let them go without a lecture.'
+      : 'This goal is still in progress — teach it as usual.',
     'At the end call mark_goal_progress: 1 = tried with help, 2 = mostly independent, 3 = independent transfer after prior evidence plus a relevant completed scene (or a changed-context mini role-play when no scene is catalogued).',
     'Do not announce an aggregate count of completed goals. Keep the learner focused on the one current speaking goal.',
   ];

@@ -249,7 +249,7 @@ function MaxCallSessionContent() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const router = useRouter();
-  const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string; studyTarget?: string }>();
+  const params = useLocalSearchParams<{ format?: string; scenarioId?: string; cefr?: string; devMode?: string; studyTarget?: string; goalId?: string; countdown?: string }>();
 
   const format: MaxVoiceMintRequest['format'] =
     params.format === 'companion' || params.format === 'trial' || params.format === 'tutor'
@@ -403,7 +403,13 @@ function MaxCallSessionContent() {
     const heartbeatCallable = maxVoiceCallable<unknown>('maxVoiceHeartbeat');
     const endCallable = maxVoiceCallable<unknown>('maxVoiceSessionEnd');
     const safetyReportCallable = maxVoiceCallable<unknown>('maxVoiceSafetyReport');
-    const callParams: MaxCallParams = { format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget: callStudyTarget };
+    // Урок, выбранный в каталоге. Слаг проверяем: параметр навигации —
+    // недоверенный ввод (диплинк принесёт что угодно), а неизвестный id молча
+    // уронил бы урок в «следующую цель» без объяснения.
+    const requestedGoalId = typeof params.goalId === 'string' && /^[a-z0-9_]{1,80}$/u.test(params.goalId)
+      ? params.goalId
+      : undefined;
+    const callParams: MaxCallParams = { format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget: callStudyTarget, goalId: requestedGoalId };
     const key = premintKey(callParams);
     if (isTutor) {
       // Тот же каталог, что ушёл в промпт — теперь СТАБИЛЬНЫЙ (рычаг 2, кэш):

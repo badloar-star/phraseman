@@ -37,6 +37,37 @@ describe('экран раздела «Уроки с МАКСом»', () => {
     expect(screen).not.toMatch(/из \$\{b\} уроков пройдено/u);
   });
 
+  it('в шапке нет заголовка, зато есть минуты, покупка и статистика', () => {
+    // Владелец 2026-09-01: «убери текст Уроки с МАКСом». Заголовок занимал
+    // лучшее место и не нёс информации — человек знает, куда вошёл. Вместо
+    // него главное число экрана (остаток минут) и два действия.
+    expect(screen).not.toMatch(/title: triLang/u);
+    expect(screen).toContain('minutesLeft');
+    expect(screen).toContain('max-lessons-buy-minutes');
+    expect(screen).toContain('max-lessons-stats');
+  });
+
+  it('урок открывает ЗВОНОК, а не экран подготовки', () => {
+    // Владелец: «при открытии любого урока должен начинаться звонок сразу».
+    // Деньги в безопасности: сервер считает секунды от активации
+    // (voiceSessionClockStartMs), а не от соединения.
+    const open = screen.slice(screen.indexOf('const openLesson'), screen.indexOf('const c = useMemo'));
+    expect(open).toContain("pathname: '/max_call_session'");
+    expect(open).not.toContain('max_call_prestart');
+  });
+
+  it('рекомендованный урок греется заранее, и только он один', () => {
+    // Заготовка держит серверный резерв минут: греть весь экран значило бы
+    // занимать несколько резервов и упереться в voice_session_active.
+    expect(screen).toContain('beginPremint');
+    const warm = screen.slice(screen.indexOf('const warmedRef'));
+    const warmBlock = warm.slice(0, warm.indexOf('}, [lang, recommendedId, studyTarget]);'));
+    expect(warmBlock).toContain('recommendedId');
+    expect(warmBlock).toContain('isAiVoiceConsentGranted');
+    // Греем ровно один урок: цикла по каталогу здесь быть не должно.
+    expect(warmBlock).not.toMatch(/MAX_LESSON_CATALOG\.forEach|for \(const lesson of MAX_LESSON_CATALOG/u);
+  });
+
   it('последний чип фильтра не липнет к краю экрана', () => {
     const chipsRow = screen.slice(screen.indexOf('Фильтр по темам'), screen.indexOf('renderItem'));
     expect(chipsRow).toContain('paddingRight');

@@ -1,29 +1,42 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // MaxLessonsStatsSheet — прогресс речи для раздела «Уроки с МАКСом».
 //
-// зачем (владелец 2026-09-01): «кнопка прогресса статистики уроков» в шапке
-// раздела. Раньше цифры висели крупной карточкой поверх списка и съедали
-// экран у того, ради чего человек пришёл, — у самих уроков. Теперь они
-// открываются осознанно, по кнопке, и могут позволить себе быть подробными.
+// зачем (владелец 2026-09-01): выбран макет 04 «Было → Стало». Абсолютная
+// цифра человеку ничего не говорит — «120 минут» это много или мало? Мотивирует
+// РАЗНИЦА с собой прежним. Поэтому каждая метрика показана парой: тихое число
+// «было» слева, крупное «стало» справа, между ними стрелка.
+//
+// Планка — раздел «Статистика» (эталон владельца): крупные числа весом 900,
+// скругление 18, разделение тоном, без единой обводки. Числа «стало»
+// докручиваются тем же StatCountUpText, что и там: рост читается движением,
+// а «было» стоит неподвижно — прошлое не растёт.
 //
 // Показываем ТОЛЬКО измеренное. Ни одной выдуманной метрики: время речи,
 // разнообразие слов и доля чистых фраз считаются из настоящих замеров
 // (app/max_speech_history.ts). Пока замеров нет — честно говорим об этом,
 // а не рисуем нули, которые читаются как «ты ничего не сделал».
+//
+// Честность сравнения: если в прошлой половине окна звонков не было
+// (comparable=false), пары НЕ показываем. Рост «с нуля» — это первый месяц,
+// а не достижение, и врать об этом нельзя.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
+import Reanimated, { FadeInDown } from 'react-native-reanimated';
 
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
+import { StatCountUpText } from '../stats/StatCountUpText';
 import { useTheme } from '../ThemeContext';
 import { triLang, type Lang } from '../../constants/i18n';
-import type { VoiceTrends } from '../../app/max_voice_metrics';
+import type { VoiceProgress, VoiceTrends } from '../../app/max_voice_metrics';
 
 interface Props {
   visible: boolean;
   onClose: () => void;
   trends: VoiceTrends | null;
+  /** Пары «было → стало». null — история ещё не поднята с диска. */
+  progress: VoiceProgress | null;
   done: number;
   total: number;
   level: string;
@@ -31,10 +44,12 @@ interface Props {
 }
 
 export default function MaxLessonsStatsSheet({
-  visible, onClose, trends, done, total, level, lang,
+  visible, onClose, trends, progress, done, total, level, lang,
 }: Props) {
   const { theme: t, f } = useTheme();
   const hasSpeech = trends !== null && trends.spokeMinutes > 0;
+  // Пары показываем, только если есть с чем сравнивать. Иначе — текущие цифры.
+  const showPairs = progress !== null && progress.comparable;
 
   const c = {
     close: triLang(lang, {
@@ -51,6 +66,14 @@ export default function MaxLessonsStatsSheet({
       ru: 'уровень речи', uk: 'рівень мовлення', en: 'speaking level',
       es: 'nivel oral', 'pt-BR': 'nível de fala', vi: 'trình độ nói',
       id: 'level bicara', tr: 'konuşma seviyesi', pl: 'poziom mówienia',
+    }),
+    // Заголовок пар: две недели назад против этих двух недель.
+    twoWeeks: triLang(lang, {
+      ru: 'Две недели назад → сейчас', uk: 'Два тижні тому → зараз',
+      en: 'Two weeks ago → now', es: 'Hace dos semanas → ahora',
+      'pt-BR': 'Duas semanas atrás → agora', vi: 'Hai tuần trước → bây giờ',
+      id: 'Dua minggu lalu → sekarang', tr: 'İki hafta önce → şimdi',
+      pl: 'Dwa tygodnie temu → teraz',
     }),
     lastMonth: triLang(lang, {
       ru: 'За последний месяц', uk: 'За останній місяць', en: 'Over the last month',
@@ -122,16 +145,47 @@ export default function MaxLessonsStatsSheet({
         </View>
 
         {hasSpeech ? (
-          <View style={{ borderRadius: 18, backgroundColor: t.bgSurface, padding: 16, gap: 14 }}>
-            <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }} maxFontSizeMultiplier={1.8}>
-              {c.lastMonth}
-            </Text>
-            <StatLine value={String(trends.spokeMinutes)} label={c.spoke} />
-            <StatLine value={String(trends.vocabWords)} label={c.vocab} />
-            {trends.cleanPhrasePct !== null ? (
-              <StatLine value={`${trends.cleanPhrasePct}%`} label={c.clean} />
-            ) : null}
-          </View>
+          showPairs ? (
+            // Макет 04: каждая метрика — своя карточка с парой «было → стало».
+            <View style={{ gap: 12 }}>
+              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', paddingHorizontal: 2 }} maxFontSizeMultiplier={1.8}>
+                {c.twoWeeks}
+              </Text>
+              <ProgressPairCard
+                before={progress.spokeMinutes.before}
+                after={progress.spokeMinutes.after}
+                label={c.spoke}
+                delayMs={80}
+              />
+              <ProgressPairCard
+                before={progress.vocabWords.before}
+                after={progress.vocabWords.after}
+                label={c.vocab}
+                delayMs={160}
+              />
+              {progress.cleanPhrasePct !== null ? (
+                <ProgressPairCard
+                  before={progress.cleanPhrasePct.before}
+                  after={progress.cleanPhrasePct.after}
+                  label={c.clean}
+                  suffix="%"
+                  delayMs={240}
+                />
+              ) : null}
+            </View>
+          ) : (
+            // Сравнивать не с чем — показываем текущие цифры, без ложного роста.
+            <View style={{ borderRadius: 18, backgroundColor: t.bgSurface, padding: 16, gap: 14 }}>
+              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }} maxFontSizeMultiplier={1.8}>
+                {c.lastMonth}
+              </Text>
+              <StatLine value={String(trends.spokeMinutes)} label={c.spoke} />
+              <StatLine value={String(trends.vocabWords)} label={c.vocab} />
+              {trends.cleanPhrasePct !== null ? (
+                <StatLine value={`${trends.cleanPhrasePct}%`} label={c.clean} />
+              ) : null}
+            </View>
+          )
         ) : (
           // Пустое состояние объясняет, что будет здесь, — а не показывает нули.
           <View style={{ borderRadius: 18, backgroundColor: t.bgSurface, padding: 18 }}>
@@ -145,6 +199,74 @@ export default function MaxLessonsStatsSheet({
         )}
       </ScrollView>
     </HybridSheetShell>
+  );
+}
+
+/**
+ * Карточка одной метрики: «было» тихо, стрелка, «стало» крупно.
+ *
+ * Иерархия делает работу за подпись: прошлое приглушено и мельче, настоящее
+ * ведёт размером и весом. Докручивается ТОЛЬКО «стало» — прошлое неподвижно,
+ * поэтому движение читается как рост, а не как общая анимация появления.
+ */
+function ProgressPairCard({
+  before, after, label, suffix = '', delayMs,
+}: {
+  before: number;
+  after: number;
+  label: string;
+  suffix?: string;
+  delayMs: number;
+}) {
+  const { theme: t, f } = useTheme();
+  const grew = after > before;
+
+  return (
+    <Reanimated.View
+      entering={FadeInDown.delay(delayMs).duration(320)}
+      // Пара озвучивается одной фразой: по отдельности «12» и «47» не связаны
+      // между собой, и вся мысль макета для незрячего человека пропадает.
+      accessible
+      accessibilityLabel={`${label}: ${before}${suffix} → ${after}${suffix}`}
+      style={{ borderRadius: 18, backgroundColor: t.bgSurface, padding: 16, gap: 10 }}
+    >
+      <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 10 }}>
+        <Text
+          style={{ color: t.textMuted, fontSize: f.numMd, fontWeight: '900' }}
+          maxFontSizeMultiplier={1.6}
+          numberOfLines={1}
+        >
+          {`${before}${suffix}`}
+        </Text>
+        <Text
+          style={{ color: t.textMuted, fontSize: f.body, fontWeight: '900' }}
+          maxFontSizeMultiplier={1.6}
+          accessibilityElementsHidden
+          importantForAccessibility="no"
+        >
+          →
+        </Text>
+        <StatCountUpText
+          value={after}
+          suffix={suffix}
+          delayMs={delayMs + 120}
+          numberOfLines={1}
+          style={{
+            // Рост подсвечен акцентом, спад — обычным цветом текста: падение
+            // показываем честно, но не красим тревожно, это демотивирует.
+            color: grew ? t.accent : t.textPrimary,
+            fontSize: f.numLg,
+            fontWeight: '900',
+          }}
+        />
+      </View>
+      <Text
+        style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700' }}
+        maxFontSizeMultiplier={1.8}
+      >
+        {label}
+      </Text>
+    </Reanimated.View>
   );
 }
 

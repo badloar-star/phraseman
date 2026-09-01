@@ -149,3 +149,78 @@ export function computeVoiceTrends(samples: VoiceCallTrendSample[], nowMs: numbe
     cleanPhrasePct,
   };
 }
+
+/** Одна пара «было → стало»: сколько было в прошлой половине окна и сколько стало. */
+export interface VoiceProgressPair {
+  before: number;
+  after: number;
+}
+
+export interface VoiceProgress {
+  /** Минуты собственной речи за половину окна. */
+  spokeMinutes: VoiceProgressPair;
+  /** Разных слов за половину окна. */
+  vocabWords: VoiceProgressPair;
+  /** Доля чистых фраз, %. null — выборка мала, показывать нечестно. */
+  cleanPhrasePct: VoiceProgressPair | null;
+  /** false — ранняя половина пуста: сравнивать не с чем, это ещё не рост. */
+  comparable: boolean;
+}
+
+/** Половина окна тренда: «раньше» — первые 14 дней, «сейчас» — последние 14. */
+export const PROGRESS_HALF_MS = TREND_WINDOW_MS / 2;
+
+/**
+ * Посчитать «было → стало» за две половины окна.
+ *
+ * зачем (владелец 2026-09-01, макет 04 «Было → Стало»): цифра сама по себе
+ * ничего не говорит — «120 минут» это много или мало? Человека мотивирует
+ * РАЗНИЦА с собой прежним, а не абсолютное число.
+ *
+ * Честность важнее красоты: если в ранней половине не было ни одного звонка,
+ * рост показывать нельзя — «с нуля до чего угодно» это не прогресс, а первый
+ * месяц. Тогда comparable=false, и экран покажет просто текущие цифры.
+ */
+export function computeVoiceProgress(
+  samples: VoiceCallTrendSample[],
+  nowMs: number,
+): VoiceProgress {
+  const windowStart = nowMs - TREND_WINDOW_MS;
+  const midpoint = nowMs - PROGRESS_HALF_MS;
+
+  const sum = (from: number, to: number) => {
+    let speechSec = 0;
+    let vocab = 0;
+    let clean = 0;
+    let total = 0;
+    let calls = 0;
+    for (const s of samples) {
+      if (s.atMs < from || s.atMs >= to) continue;
+      speechSec += Math.max(0, s.speechSec);
+      vocab += Math.max(0, s.uniqueWords);
+      clean += Math.max(0, s.cleanPhrases);
+      total += Math.max(0, s.totalPhrases);
+      calls += 1;
+    }
+    return { speechSec, vocab, clean, total, calls };
+  };
+
+  // Верхняя граница «сейчас» — nowMs + 1: замер, записанный этой же миллисекундой,
+  // обязан попасть в текущую половину, иначе только что законченный урок исчезает.
+  const before = sum(windowStart, midpoint);
+  const after = sum(midpoint, nowMs + 1);
+
+  const pct = (v: { clean: number; total: number; calls: number }): number | null =>
+    v.calls >= CLEAN_PHRASE_MIN_CALLS && v.total > 0 ? Math.round((v.clean / v.total) * 100) : null;
+  const beforePct = pct(before);
+  const afterPct = pct(after);
+
+  return {
+    spokeMinutes: { before: Math.round(before.speechSec / 60), after: Math.round(after.speechSec / 60) },
+    vocabWords: { before: before.vocab, after: after.vocab },
+    // Процент показываем парой, только если обе половины набрали выборку —
+    // иначе получится сравнение измеренного с выдуманным.
+    cleanPhrasePct: beforePct !== null && afterPct !== null ? { before: beforePct, after: afterPct } : null,
+    comparable: before.calls > 0,
+  };
+}

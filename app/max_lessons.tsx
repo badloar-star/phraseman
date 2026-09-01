@@ -60,7 +60,13 @@ import MaxLessonsStatsSheet from '../components/max/MaxLessonsStatsSheet';
 import VoiceMinutePackSheet from '../modules/voice_minutes/VoiceMinutePackSheet';
 import { readVoiceMinuteWalletStatus } from '../modules/voice_minutes/wallet';
 import { peekVoiceMinutes, writeVoiceMinutePeek } from '../modules/voice_minutes/peek_cache';
-import { computeVoiceTrends, type VoiceTrends } from './max_voice_metrics';
+import {
+  computeVoiceProgress,
+  computeVoiceTrends,
+  type VoiceCallTrendSample,
+  type VoiceProgress,
+  type VoiceTrends,
+} from './max_voice_metrics';
 import { useStudyTarget } from '../components/StudyTargetContext';
 
 /** Названия уроков приходят с сервера (там они локализованы на 9 языков). */
@@ -136,19 +142,29 @@ export default function MaxLessonsScreen() {
   }, []);
 
   // ── Тренды речи для листа статистики ──────────────────────────────────────
-  const [trends, setTrends] = useState<VoiceTrends | null>(() => {
+  // зачем: тренды и пары «было → стало» держим ОДНИМ состоянием и считаем от
+  // одного Date.now(). Двумя отдельными они разъезжались бы по времени расчёта,
+  // и на границе суток итог месяца не сходился бы с суммой половин.
+  const speechStatsOf = useCallback((samples: VoiceCallTrendSample[]) => {
+    const nowMs = Date.now();
+    return { trends: computeVoiceTrends(samples, nowMs), progress: computeVoiceProgress(samples, nowMs) };
+  }, []);
+
+  const [speechStats, setSpeechStats] = useState<{ trends: VoiceTrends; progress: VoiceProgress } | null>(() => {
+    // Синхронный peek: лист открывается с готовыми цифрами, без первого кадра
+    // с пустотой (Performance Bible — первый кадр = финальная геометрия).
     const cached = peekSpeechHistory();
-    return cached ? computeVoiceTrends(cached, Date.now()) : null;
+    return cached ? speechStatsOf(cached) : null;
   });
 
   useEffect(() => {
     let active = true;
     void loadSpeechHistory().then((samples) => {
       if (!active) return;
-      setTrends(computeVoiceTrends(samples, Date.now()));
+      setSpeechStats(speechStatsOf(samples));
     });
     return () => { active = false; };
-  }, []);
+  }, [speechStatsOf]);
 
   // ── Заголовки уроков: память → диск → сеть ────────────────────────────────
   // Один запрос на язык: список меняется только с релизом.
@@ -467,7 +483,8 @@ export default function MaxLessonsScreen() {
       <MaxLessonsStatsSheet
         visible={statsVisible}
         onClose={() => setStatsVisible(false)}
-        trends={trends}
+        trends={speechStats?.trends ?? null}
+        progress={speechStats?.progress ?? null}
         done={done}
         total={MAX_LESSON_CATALOG.length}
         level={level}

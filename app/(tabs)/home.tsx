@@ -1320,6 +1320,19 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         homeRewardCollectReduceMotion,
     );
 
+    // Иконки валют объявлены на ВЕРХНЕМ уровне компонента, а не внутри
+    // renderNewHome.
+    //
+    // зачем: их читает не только шапка, но и оверлей полёта частиц, который
+    // рендерится в главном return — за пределами renderNewHome. Когда они жили
+    // внутри той функции, экран падал «Property 'homeHeaderRuneIconSource'
+    // doesn't exist» на первом же кадре.
+    const homeHeaderShardIconSource = coinIconForBalance(shardsBalance, themeMode);
+    // Ассет руны для летящих частиц — ТОТ ЖЕ файл, что рисует HomeRuneBalance
+    // в шапке. Одна валюта обязана выглядеть одинаково: частица другой
+    // картинкой читалась бы как другая награда.
+    const homeHeaderRuneIconSource = HOME_RUNE_ICON_SOURCE;
+
     // Дев-кнопка «показать анимацию»: шесть режимов по кругу (владелец,
     // 2026-09-01). Смотреть анимацию нужно по требованию, а не выжидая реальное
     // начисление, и по отдельности — иначе не видно, что именно сломалось.
@@ -3247,11 +3260,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const eliteWeekDayFontSize = Math.max(12, f.label - 1);
         const eliteCardY = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
         const eliteCardScale = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] });
-        const homeHeaderShardIconSource = coinIconForBalance(shardsBalance, themeMode);
-        // Ассет руны для летящих частиц — ТОТ ЖЕ файл, что рисует HomeRuneBalance
-        // в шапке. Одна валюта обязана выглядеть одинаково: частица другой
-        // картинкой читалась бы как другая награда.
-        const homeHeaderRuneIconSource = HOME_RUNE_ICON_SOURCE;
         // зачем (аудит 2026-08-24): валюты переехали в строку заголовка «Быстрый
         // старт», где текст 13px. Прежние 34px (жемчужина) и 30px (руна по
         // умолчанию) там и спорили между собой, и подавляли заголовок втрое.

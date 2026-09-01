@@ -313,7 +313,15 @@ describe('accountDelete query plan', () => {
   });
 
   it('never deletes a fresh auth link merely because it reuses the deleted email', () => {
-    expect(accountDeleteEmailQueryCollections()).toEqual(['website_contact_inbox']);
+    // Гарантия прежняя: по адресу чистятся ТОЛЬКО контактные коллекции.
+    // auth_links сюда не входит — свежая привязка с тем же адресом принадлежит
+    // уже другому поколению аккаунта и обязана пережить удаление.
+    const collections = accountDeleteEmailQueryCollections();
+    expect(collections).not.toContain('auth_links');
+    expect(collections).not.toContain('users');
+    // email_contacts добавлена 2026-09-01: ИИ-аудит покрытия нашёл её вне плана,
+    // и после «полного» удаления в базе оставались почта, имя и stable_id.
+    expect(collections).toEqual(['website_contact_inbox', 'email_contacts']);
   });
 
   it('deletes only contact rows created no later than the frozen deletion cutoff', () => {

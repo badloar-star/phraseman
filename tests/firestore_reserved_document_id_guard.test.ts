@@ -216,7 +216,9 @@ describe('Firestore reserved document ids', () => {
     // удаление данных человека.
     expect(source).toContain('account_delete_sent_index_marker_unreadable');
     expect(source).toContain('account_delete_sent_index_unreadable');
-    // Причина отказа обязана доезжать до job.lastError, а не стираться.
-    expect(source).toContain('`account_delete_failed: ${');
+    // Причина отказа обязана доезжать до job.lastError, а не стираться:
+    // безликое 'account_delete_failed' скрывало баг __index__ пять боевых
+    // удалений подряд. В сообщении обязаны быть стадия, код и текст ошибки.
+    expect(source).toContain('`account_delete_failed at ${stage} | ${code} | ${message}`');
   });
 });

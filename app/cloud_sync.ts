@@ -965,7 +965,14 @@ export type CloudAccessFailureReason =
   | 'identity_unavailable'
   | 'transport_unavailable';
 
-export type StableAuthLinkFailure = CloudAccessFailureReason | 'stable_id_mismatch' | 'identity_retired';
+export type StableAuthLinkFailure =
+  | CloudAccessFailureReason
+  | 'stable_id_mismatch'
+  | 'identity_retired'
+  // зачем отдельный класс (владелец, 2026-09-01): аккаунт на удалении, но
+  // 14 дней ещё идут и данные ЦЕЛЫ. Прежде он схлопывался в identity_retired,
+  // и вход молча заводил пустой профиль вместо «Восстановить аккаунт?».
+  | 'account_delete_pending';
 
 export type StableAuthLinkEnsureResult = {
   ok: boolean;
@@ -995,9 +1002,10 @@ function classifyCloudAccessFailure(
   const code = String((error as { code?: unknown })?.code ?? '').toLowerCase();
   const message = String((error as { message?: unknown })?.message ?? error).toLowerCase();
   const combined = `${code} ${message}`;
-  if (combined.includes('identity_retired') || combined.includes('account_delete_pending')) {
-    return 'identity_retired';
-  }
+  // Порядок важен: pending проверяется ПЕРВЫМ. Оба кода про удаление, но
+  // pending обратим (есть кнопка «Восстановить»), а retired — нет.
+  if (combined.includes('account_delete_pending')) return 'account_delete_pending';
+  if (combined.includes('identity_retired')) return 'identity_retired';
   if (combined.includes('stable_id_mismatch')) return 'stable_id_mismatch';
   if (combined.includes('auth_required')) return 'identity_unavailable';
 
@@ -2736,6 +2744,11 @@ export async function ensureCloudMutationIdentity(
     emitAppEvent('identity_retired', { source: 'cloud_mutation', subject });
     return { status: 'retired', subject };
   }
+  // account_delete_pending намеренно падает сюда, в 'pending' (владелец,
+  // 2026-09-01): grace ещё идёт, и слать identity_retired нельзя — фоновая
+  // запись снесла бы живую личность, которую человек ещё может вернуть.
+  // Запись просто не проходит, данные на сервере целы, а модал восстановления
+  // покажет вход.
   return { status: 'pending' };
 }
 

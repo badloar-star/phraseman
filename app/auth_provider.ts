@@ -2174,6 +2174,14 @@ async function runSignInWithProvider(
         }
         return { result: 'error', error: 'identity_retired' };
       }
+      // зачем (владелец, 2026-09-01): аккаунт на удалении, но 14 дней ещё идут.
+      // НЕ заводим свежую личность — данные целы, и человеку положен модал
+      // «Восстановить аккаунт?». Прежде этот случай схлопывался в
+      // identity_retired и молча выдавал пустой профиль.
+      if (linkedRemote.failure === 'account_delete_pending') {
+        logAuthEvent('auth_signin_account_delete_pending', { provider, scope: 'remote' });
+        return { result: 'error', error: 'account_delete_pending' };
+      }
       return { result: 'error', error: 'auth_link_failed' };
     }
     outcome = {
@@ -2230,6 +2238,12 @@ async function runSignInWithProvider(
           return { result: 'created_new', email: firebaseEmail, displayName: providerDisplayName };
         }
         return { result: 'error', error: 'identity_retired' };
+      }
+      // Тот же grace, что и на remote-ветке: аккаунт жив, ротировать личность
+      // нельзя — иначе человек потеряет прогресс, который ещё можно вернуть.
+      if (linkedLocal.failure === 'account_delete_pending') {
+        logAuthEvent('auth_signin_account_delete_pending', { provider, scope: 'local' });
+        return { result: 'error', error: 'account_delete_pending' };
       }
       // Тихий deferred link: провайдер-вход УЖЕ состоялся (Firebase-сессия жива
       // и переживёт рестарт), упала только фоновая серверная привязка по

@@ -15,6 +15,9 @@ import {
 // Префикс синтетических жителей: комната без ЖИВЫХ считается пустой и удаляется,
 // иначе после ухода последнего человека остался бы призрак из ботов.
 import { RESIDENT_UID_PREFIX } from './league_residents';
+// зачем: id контактной записи считается ТЕМ ЖЕ хешем, что и при записи —
+// иначе удаление промахнётся мимо документа и данные тихо переживут запрос.
+import { emailContactDocId } from './email_contacts';
 // Обратный индекс исходящих заявок в друзья — без него удаление аккаунта
 // перебирало всю коллекцию users (см. shared/friend_requests_index_contract.ts).
 import {
@@ -884,8 +887,69 @@ async function deleteEmailMatches(
   }
 }
 
+/**
+ * Контактная запись по адресу почты (`email_contacts`).
+ *
+ * зачем (владелец, 2026-09-01): ИИ-аудит покрытия нашёл эту коллекцию ВНЕ плана
+ * удаления — после «полного» удаления в базе оставались email, имя, uid
+ * провайдера и stable_id человека. Это прямая персональная запись, и GDPR-запрос
+ * её обязан уносить.
+ *
+ * Почему не `delete` целиком: тот же документ держит след ПОКУПКИ на сайте
+ * (`siteOrderIds`, `siteLastAmountCents`) — его сносить нельзя, это финансовая
+ * запись, и приходит она не из приложения. Поэтому стираем приложенческую
+ * половину поимённо, а документ удаляем только когда сайтового следа нет —
+ * тогда после чистки в нём не осталось бы ничего, кроме самого адреса.
+ *
+ * Firebase-экономия: доступ по детерминированному id (хеш адреса), без единого
+ * запроса-скана — одно чтение и одна запись на адрес.
+ */
+async function deleteEmailContactRecords(
+  db: admin.firestore.Firestore,
+  emails: string[],
+  ctx: DeleteContext,
+  stats: DeleteStats,
+): Promise<void> {
+  for (const email of emails) {
+    const ref = db.collection('email_contacts').doc(emailContactDocId(email));
+    const snap = await ref.get().catch((e) => {
+      // зачем (запрет немого catch): не прочитали — персональные данные
+      // останутся, и об этом обязан знать журнал стадии.
+      accountDeleteLog(ctx, 'email_contacts:unreadable', stats, {
+        message: String((e as { message?: unknown })?.message ?? e).slice(0, 160),
+      });
+      return null;
+    });
+    if (!snap?.exists) continue;
+    const data = snap.data() ?? {};
+    const hasSiteTrace = Boolean(
+      data.siteLastOrderId
+      || (Array.isArray(data.siteOrderIds) && data.siteOrderIds.length > 0)
+      || Number(data.siteSeenCount ?? 0) > 0,
+    );
+    if (!hasSiteTrace) {
+      await deleteDocTree(ctx, ref);
+      continue;
+    }
+    await ref.set({
+      appLastProvider: admin.firestore.FieldValue.delete(),
+      appLastProviderUid: admin.firestore.FieldValue.delete(),
+      appLastStableId: admin.firestore.FieldValue.delete(),
+      appLastDisplayName: admin.firestore.FieldValue.delete(),
+      appLastDevicePlatform: admin.firestore.FieldValue.delete(),
+      appLastSignInAt: admin.firestore.FieldValue.delete(),
+      appLastSignInAtIso: admin.firestore.FieldValue.delete(),
+      appProviderUids: admin.firestore.FieldValue.delete(),
+      appStableIds: admin.firestore.FieldValue.delete(),
+      appSeenCount: admin.firestore.FieldValue.delete(),
+      accountDeletedAtMs: Date.now(),
+    }, { merge: true });
+    stats.docsUpdated += 1;
+  }
+}
+
 function accountDeleteEmailQueryCollections(): string[] {
-  return ['website_contact_inbox'];
+  return ['website_contact_inbox', 'email_contacts'];
 }
 
 function emailMatchDocumentBelongsToDeletionGeneration(
@@ -1428,6 +1492,12 @@ export async function executeAccountDeletion(
       }
     });
     await runDeleteStage(ctx, stats, 'email_matches', () => deleteEmailMatches(db, emails, ctx, stats));
+    // зачем отдельной стадией (владелец, 2026-09-01): контактные записи лежат
+    // по хешу адреса, а не по uid — общий план по личностям их не находил, и
+    // почта переживала «полное» удаление. Найдено ИИ-аудитом покрытия.
+    await runDeleteStage(ctx, stats, 'email_contacts', () => (
+      deleteEmailContactRecords(db, emails, ctx, stats)
+    ));
     await runDeleteStage(ctx, stats, 'league_groups', async () => {
       for (const identity of identities) await removeFromLeagueGroups(db, identity, stats);
     });

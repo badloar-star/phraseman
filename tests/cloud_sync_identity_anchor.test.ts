@@ -47,9 +47,14 @@ describe('cloud sync identity anchor', () => {
     expect(mockCallable).toHaveBeenCalledTimes(2);
   });
 
+  // зачем изменено 2026-09-01 (владелец): раньше оба кода схлопывались в
+  // identity_retired. Это и убивало модал «Восстановить аккаунт?»: внутри
+  // 14-дневного grace вход отвечал «аккаунт мёртв», и приложение молча заводило
+  // ПУСТОЙ профиль вместо предложения вернуть прогресс. Коды обязаны
+  // различаться — pending обратим, retired нет.
   it.each([
     ['identity_retired', 'identity_retired'],
-    ['account_delete_pending', 'identity_retired'],
+    ['account_delete_pending', 'account_delete_pending'],
   ])('classifies failed-precondition %s as %s', (message, expected) => {
     expect(__cloudSyncTestHooks.classifyCloudAccessFailure({
       code: 'functions/failed-precondition',

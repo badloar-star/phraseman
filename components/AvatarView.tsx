@@ -74,30 +74,30 @@ function AvatarImageWithFallback({
 }
 
 function AvatarView({ avatar, avatarV2, localDNA, totalXP, level, size = 44, style, auraId, auraVisualSize, animateAura = true, ownerActive }: Props) {
-  const resolvedLevel = level ?? (totalXP !== undefined ? getLevelFromXP(totalXP) : 1);
+  // Уровень известен, только если его передали явно или дали опыт. Часть
+  // вызывающих (соперник в арене, строка друга) даёт ТОЛЬКО картинку — там
+  // уровня нет, и выдумывать его нельзя.
+  const knownLevel = level ?? (totalXP !== undefined ? getLevelFromXP(totalXP) : null);
+  const resolvedLevel = knownLevel ?? 1;
   const customAvatar = parseCustomAvatarValue(avatar);
   const avatarIndex = avatar && /^\d+$/.test(avatar) ? parseInt(avatar) : resolvedLevel;
   const avatarDef = getAvatarByIndex(avatarIndex);
   const avatarImage = avatarDef?.image;
-  const fallbackLevel = avatarImage ? resolvedLevel : avatarIndex;
 
-  // [LEVEL-DRIFT] Диагностика жалобы 2026-09-01 (uid 22408047): «шестигранник
-  // показывает 50, а рядом уровень 13». Цифра на аватарке идёт от avatarIndex
-  // (значение ключа user_avatar), а текст «Уровень N» рядом — от totalXP. Это
-  // ДВА независимых источника, и они разъезжаются. Логируем оба и то, откуда
-  // каждый пришёл, чтобы поставить диагноз по фактам, а не по догадке.
-  if (__DEV__ && avatarIndex !== resolvedLevel) {
-    console.log('[LEVEL-DRIFT] AvatarView: индекс аватарки != уровень', {
-      avatarRaw: avatar ?? null,
-      avatarIndex,
-      resolvedLevel,
-      levelProp: level ?? null,
-      totalXpProp: totalXP ?? null,
-      hasAvatarImage: !!avatarImage,
-      fallbackLevelShown: fallbackLevel,
-      size,
-    });
-  }
+  // ЦИФРА НА ЗНАЧКЕ = УРОВЕНЬ ЧЕЛОВЕКА, а не индекс картинки.
+  //
+  // зачем (жалоба «Издевательство», 2026-09-01): человек видел на Главной
+  // шестигранник с числом 50 и надпись «Уровень 13» рядом. Проверка его данных
+  // подтвердила: user_avatar = "50" (легендарная аватарка, выданная как
+  // VIP-награда), а настоящий уровень по опыту — 12. Номер косметики выдавал
+  // себя за уровень.
+  //
+  // Когда уровень ИЗВЕСТЕН — показываем только его: он не зависит от того,
+  // какую аватарку человеку выдали. Когда неизвестен (соперник в арене — там
+  // передают одну картинку) — прежнее поведение, индекс: это лучше, чем
+  // нарисовать всем «1». Сама картинка всегда берётся по avatarIndex, награду
+  // не отбираем.
+  const fallbackLevel = knownLevel ?? avatarIndex;
   const material = getLevelAvatarMaterial(avatarIndex);
   const portraitUrl = avatarV2?.state === 'ready' ? avatarV2.portraitUrl : null;
   const [failedPortraitUrl, setFailedPortraitUrl] = React.useState<string | null>(null);

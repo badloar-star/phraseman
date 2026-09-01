@@ -3393,17 +3393,20 @@ async function applyRestoreFromUserDoc(
     || cloudXP > localXP
     || (cloudXP === localXP && cloudStreak > localStreak);
 
-  // [LEVEL-DRIFT] Диагностика жалобы 2026-09-01 (uid 22408047): «после урока
-  // ничего не поменялось, а после рестарта уровень упал до 12», «руны со 155
-  // на 52», «однажды показало 41, хотя был 42». Симптом — откат прогресса
-  // назад. Здесь ЕДИНСТВЕННОЕ место, где облако может перезаписать локальный
+  // Откат прогресса назад — потеря данных, и он обязан оставлять след НАВСЕГДА.
+  //
+  // зачем (жалоба «Издевательство», 2026-09-01): человек сообщил «после урока
+  // ничего не поменялось, а после рестарта уровень упал до 12» и «дни со 155 на
+  // 52». Здесь ЕДИНСТВЕННОЕ место, где облако может перезаписать локальный
   // прогресс МЕНЬШИМ значением: ветки phoneStateOwnsCore и
   // progressServerAuthoritative не сравнивают числа вообще.
   //
   // Печатаем КАЖДОЕ значение, решившее ветку, а не голое true/false — иначе по
   // логу нельзя понять, почему откатило.
   if (shouldRestoreCloudProgress && cloudXP < localXP) {
-    console.warn('[LEVEL-DRIFT] cloud_sync: облако ОТКАТЫВАЕТ локальный прогресс назад', {
+    // guard-ok: молчаливый откат прогресса — тот самый класс немых багов,
+    // который правило владельца «сперва логи» и запрещает.
+    console.warn('[PROGRESS-ROLLBACK] облако откатывает локальный прогресс назад', {
       localXP,
       cloudXP,
       xpLost: localXP - cloudXP,
@@ -3416,16 +3419,6 @@ async function applyRestoreFromUserDoc(
       shouldPreferCloudOnSuspiciousGap,
       localLastActive: localLastActiveRaw ?? null,
       cloudAvatar: cloudData['user_avatar'] ?? null,
-    });
-  } else if (__DEV__) {
-    console.log('[LEVEL-DRIFT] cloud_sync: решение по прогрессу', {
-      localXP,
-      cloudXP,
-      shouldRestoreCloudProgress,
-      phoneStateOwnsCore,
-      progressServerAuthoritative,
-      hasPendingProgressEvents,
-      shouldPreferCloudOnSuspiciousGap,
     });
   }
   if (shouldRestoreCloudProgress && progressServerAuthoritative) {

@@ -7,7 +7,6 @@ import Animated, {
   useSharedValue,
   withDelay,
   withSequence,
-  withSpring,
   withTiming,
   type SharedValue,
 } from 'react-native-reanimated';
@@ -49,6 +48,11 @@ const PARTICLE_SIZE = 22;
  * ease-in здесь запрещён — он «залипает» на старте, а глаз смотрит именно туда.
  */
 const FLIGHT_EASE = Easing.bezier(0.22, 0.9, 0.24, 1);
+
+/** Удар вверх — резкий, чтобы толчок читался как попадание, а не как наплыв. */
+const IMPACT_UP_EASE = Easing.out(Easing.quad);
+/** Возврат — чуть мягче, но всё равно быстрый: счётчик должен успеть осесть. */
+const IMPACT_DOWN_EASE = Easing.inOut(Easing.quad);
 
 const FLIGHT_SOUND_OPTIONS = { scope: 'home-reward-collect' } as const;
 
@@ -100,9 +104,21 @@ const FlightParticle = memo(function FlightParticle({
         // Каждая частица подбрасывает счётчик и он оседает обратно; частицы
         // идут каскадом, поэтому счётчик «набухает» вместе с потоком, а не
         // дёргается один раз в конце.
+        // Толчок ОБЯЗАН уложиться в интервал между касаниями (115мс), иначе
+        // следующий удар перебьёт этот на взлёте и серия толчков склеится в
+        // одно слитное вздутие — ровно то, что владелец увидел как
+        // «преувеличивается один раз».
+        //
+        // Поэтому не пружина, а короткий timing: у пружины нет гарантии
+        // длительности, она «доседает» сотни миллисекунд и накладывается сама
+        // на себя.
+        //
+        // 45 + 60 = 105мс — ЦЕЛИКОМ внутри шага 115мс. Счётчик успевает
+        // вернуться в покой до следующего касания, поэтому видна серия
+        // отдельных толчков, а не одна нарастающая горка.
         impact.value = withSequence(
-          withSpring(1, { damping: 9, stiffness: 700, mass: 0.35 }),
-          withSpring(0, { damping: 15, stiffness: 260, mass: 0.6 }),
+          withTiming(1, { duration: 45, easing: IMPACT_UP_EASE }),
+          withTiming(0, { duration: 60, easing: IMPACT_DOWN_EASE }),
         );
         // Через мост уходят только звук и закрытие волны: и то и другое
         // асинхронно по своей природе, к синхронности удара отношения не имеет.

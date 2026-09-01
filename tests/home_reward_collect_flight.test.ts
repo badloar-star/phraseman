@@ -19,6 +19,8 @@ import {
 } from '../app/reward_flight_queue';
 import {
   HOME_REWARD_DEMO_MODES,
+  REWARD_FLIGHT_MS,
+  REWARD_FLIGHT_STAGGER_MS,
   rewardFlightDurationMs,
   rewardFlightParticleCount,
   rewardFlightSpawnPoint,
@@ -236,5 +238,34 @@ describe('дев-кнопка: порядок режимов', () => {
         expect(count).toBeLessThanOrEqual(14);
       }
     }
+  });
+});
+
+describe('пульсация счётчика: толчки не должны слипаться', () => {
+  /**
+   * Длительность одного толчка счётчика — 45мс вверх + 60мс вниз.
+   * Значения живут в HomeRewardCollectFlight (worklet частицы); здесь
+   * зафиксированы как контракт, потому что связь с шагом каскада критична.
+   */
+  const IMPACT_TOTAL_MS = 45 + 60;
+
+  it('толчок успевает вернуться ДО следующего касания', () => {
+    // Класс бага (владелец 2026-09-01: «преувеличивается 1 раз, а должен
+    // пульсировать с каждой руной»): при шаге 55мс удар длился дольше
+    // интервала, следующий перебивал его на взлёте, и серия толчков
+    // склеивалась в одно слитное вздутие.
+    expect(IMPACT_TOTAL_MS).toBeLessThan(REWARD_FLIGHT_STAGGER_MS);
+  });
+
+  it('шаг каскада различим глазом, а не сливается в дрожь', () => {
+    // Ниже ~90мс отдельные толчки перестают читаться как отдельные.
+    expect(REWARD_FLIGHT_STAGGER_MS).toBeGreaterThanOrEqual(90);
+  });
+
+  it('даже джекпот укладывается в разумную длительность', () => {
+    // 14 частиц — потолок. Волна не должна превращаться в ожидание.
+    expect(rewardFlightDurationMs(2000)).toBeLessThanOrEqual(2400);
+    // При этом полёт не мгновенный — иначе каскад не увидеть.
+    expect(REWARD_FLIGHT_MS).toBeGreaterThanOrEqual(400);
   });
 });

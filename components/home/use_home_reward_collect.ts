@@ -111,13 +111,18 @@ export function useHomeRewardCollect(
   const runesImpact = useSharedValue(0);
   const shardsImpact = useSharedValue(0);
 
-  // Масштаб счётчика от удара. Держим скромным (максимум +26%): счётчик стоит
-  // в плотной строке заголовка, и крупный скачок толкал бы соседей.
+  // Масштаб счётчика от удара: +34% на пике.
+  //
+  // зачем крупнее прежних 26% (владелец, 2026-09-01: «должен ПУЛЬСИРОВАТЬ с
+  // каждой руной»): толчок теперь короткий (105мс, чтобы успеть вернуться до
+  // следующего касания), а короткое движение читается хуже длинного — нужна
+  // бОльшая амплитуда, иначе серия толчков сливается в дрожь. Выше не берём:
+  // счётчик стоит в плотной строке заголовка и начал бы толкать соседей.
   const runesPulseStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: 1 + runesImpact.value * 0.26 }],
+    transform: [{ scale: 1 + runesImpact.value * 0.34 }],
   }));
   const shardsPulseStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: 1 + shardsImpact.value * 0.26 }],
+    transform: [{ scale: 1 + shardsImpact.value * 0.34 }],
   }));
 
   const runesTargetRef = useRef<RewardFlightPoint | null>(null);

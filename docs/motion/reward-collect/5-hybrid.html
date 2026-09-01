@@ -44,7 +44,7 @@
   }
   .plus.gold{color:var(--pale)} .plus.pearl{color:#BFE9F6}
   .stage{position:absolute;inset:0;pointer-events:none;z-index:4}
-  .p{position:absolute;width:20px;height:20px;border-radius:50%;
+  .p{position:absolute;width:40px;height:40px;border-radius:50%;
      background:radial-gradient(circle at 34% 30%,var(--pale),var(--gold) 62%,#8A6F26);
      will-change:transform,opacity}
   .p.pearl{background:radial-gradient(circle at 34% 30%,#EAF9FF,var(--pearl) 62%,#3E7F94)}
@@ -101,6 +101,8 @@
 <div class="spec">
   <h2>Тайминги</h2>
   <table>
+    <tr><td>Частица</td><td>40 px — вдвое крупнее иконки счётчика (22 px)</td></tr>
+    <tr><td>Масштаб</td><td>44 px на старте → 20 px у цели: садится вровень со счётчиком</td></tr>
     <tr><td>Полёт</td><td>540 мс, ease-out с дугой</td></tr>
     <tr><td>Каскад</td><td>38 мс — плотный «хвост кометы», частицы почти сливаются</td></tr>
     <tr><td>Удар</td><td>ОДИН, на 65% волны: +20%, 140 мс вверх / 240 мс вниз</td></tr>
@@ -141,14 +143,14 @@ function wave(kind,n){
     const sx=tx+Math.cos(a)*R, sy=ty+Math.sin(a)*R*0.95;
     const p=document.createElement('div');
     p.className='p '+cfg.cls;
-    p.style.left=(sx-10)+'px'; p.style.top=(sy-10)+'px';
+    p.style.left=(sx-20)+'px'; p.style.top=(sy-20)+'px';
     stage.appendChild(p);
     p.animate([
-      {transform:'translate(0,0) scale(1.05)',opacity:0},
-      {transform:'translate(0,0) scale(1.05)',opacity:1,offset:.09},
-      {transform:`translate(${(tx-sx)*.5+18}px,${(ty-sy)*.5-30}px) scale(.72)`,offset:.55},
-      {transform:`translate(${tx-sx}px,${ty-sy}px) scale(.28)`,opacity:1,offset:.97},
-      {transform:`translate(${tx-sx}px,${ty-sy}px) scale(.16)`,opacity:0}
+      {transform:'translate(0,0) scale(1.1)',opacity:0},
+      {transform:'translate(0,0) scale(1.1)',opacity:1,offset:.09},
+      {transform:`translate(${(tx-sx)*.5+18}px,${(ty-sy)*.5-30}px) scale(.8)`,offset:.55},
+      {transform:`translate(${tx-sx}px,${ty-sy}px) scale(.5)`,opacity:1,offset:.97},
+      {transform:`translate(${tx-sx}px,${ty-sy}px) scale(.36)`,opacity:0}
     ],{duration:FLY,delay:i*STAG,fill:'forwards',easing:'cubic-bezier(.22,.9,.24,1)'})
     .onfinish=()=>p.remove();
   }

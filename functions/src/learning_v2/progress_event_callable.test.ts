@@ -48,6 +48,14 @@ const requestBody = {
   projection: { starSlotId: 'slot-1', previousBestStars: 0, candidateStars: 2, activityId: 'activity-1', progressCompatibilityKey: 'compat-1' },
 };
 
+/*
+ * зачем ожидания изменены (этап 1, 01.09.2026): проверки переведены на единую
+ * дверь, и код отказа стал честным. Прежде отвечало account_delete_pending
+ * ВСЕГДА — то есть и по завершённому удалению обещало, что аккаунт можно
+ * вернуть. Метки в фикстурах ниже не несут ни срока (graceDeadlineMs), ни
+ * живого статуса, значит это завершённое удаление → identity_retired.
+ * ГЛАВНАЯ гарантия тестов не изменилась: отказ происходит, записей нет.
+ */
 describe('V2 progress callable auth adapter', () => {
   it('fails closed for missing and malformed Firebase auth UIDs', () => {
     expect(() => normalizeProgressAuthUid(undefined)).toThrow(HttpsError);
@@ -192,7 +200,7 @@ describe('V2 progress callable auth adapter', () => {
         }),
       }),
     } as any;
-    await expect(readProgressAccountBinding(tombstonedDb, 'auth-user')).rejects.toThrow('account_delete_pending');
+    await expect(readProgressAccountBinding(tombstonedDb, 'auth-user')).rejects.toThrow('identity_retired');
   });
 
   it('rejects a progress request whose scope hash is from another account generation', async () => {

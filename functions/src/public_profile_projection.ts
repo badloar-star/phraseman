@@ -1,3 +1,7 @@
+import {
+  accountStateFromSnapshots,
+  assertAccountUsable,
+} from './account_gate';
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { resolveStableUidForAuth } from './auth_identity';
@@ -159,9 +163,13 @@ export const publicProfileProjectMine = onCall(HOT_CALLABLE_OPTIONS, async (requ
       transaction.get(db.collection('account_deletion_auth_markers').doc(request.auth!.uid)),
       transaction.get(db.collection('account_deletion_tombstones').doc(stableUid)),
     ]);
-    if (authDeletionMarker.exists || stableDeletionTombstone.exists) {
-      throw new HttpsError('failed-precondition', 'account_delete_pending');
-    }
+    // зачем через ЕДИНУЮ ДВЕРЬ (этап 1): раньше отвечало account_delete_pending
+    // всегда, то есть и по завершённому удалению обещало возможность вернуть
+    // аккаунт. Запись в профиль не проходит в обоих случаях, но человек
+    // получает честный ответ.
+    assertAccountUsable(accountStateFromSnapshots({
+      markers: [authDeletionMarker, stableDeletionTombstone], subject: 'stable',
+    }));
     if (!userSnapshot.exists) throw new HttpsError('failed-precondition', 'canonical_user_missing');
     const user = userSnapshot.data() ?? {};
     if (user.identityHidden === true) throw new HttpsError('failed-precondition', 'identity_hidden');

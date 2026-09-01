@@ -1,3 +1,7 @@
+import {
+  accountStateFromSnapshots,
+  assertAccountUsable,
+} from '../account_gate';
 import * as admin from 'firebase-admin';
 import {
   CallableRequest,
@@ -234,7 +238,10 @@ export async function readProgressAccountBinding(
     db.collection('users').doc(stableUid).get(),
     db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableUid).get(),
   ]);
-  if (tombstoneSnap.exists) throw new HttpsError('failed-precondition', 'account_delete_pending');
+  // зачем через ЕДИНУЮ ДВЕРЬ (этап 1): прогресс в удаляемый аккаунт не пишем в
+  // любом случае, но код отказа обязан быть честным — внутри 14 дней аккаунт
+  // ещё можно вернуть, после них уже нет.
+  assertAccountUsable(accountStateFromSnapshots({ marker: tombstoneSnap, subject: 'stable' }));
   const data = userSnap.data() ?? {};
   // accountGeneration is the V2 spelling; generation is accepted only as a legacy server field.
   const accountGeneration = normalizeProgressGeneration(

@@ -1,3 +1,7 @@
+import {
+  accountStateFromSnapshots,
+  assertAccountUsable,
+} from './account_gate';
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { createAuditRecord } from './admin/audit_contract';
@@ -150,9 +154,11 @@ export const adminRepairAuthLink = onCall({ region: REGION, enforceAppCheck: fal
       tx.get(userRef),
       tx.get(targetTombstoneRef),
     ]);
-    if (targetTombstoneSnap.exists) {
-      throw new HttpsError('failed-precondition', 'account_delete_pending');
-    }
+    // зачем через ЕДИНУЮ ДВЕРЬ (этап 1): починка не трогает удаляемый аккаунт
+    // в любом случае, но код отказа обязан различать 14 дней и смерть.
+    assertAccountUsable(accountStateFromSnapshots({
+      marker: targetTombstoneSnap, subject: 'stable',
+    }));
     if (!userSnap.exists) throw new HttpsError('not-found', 'user not found');
     const userData = userSnap.data() ?? {};
     const linked = readLinkedAuth(userData);
@@ -169,9 +175,7 @@ export const adminRepairAuthLink = onCall({ region: REGION, enforceAppCheck: fal
       tx.get(linkRef),
       tx.get(markerRef),
     ]);
-    if (markerSnap.exists) {
-      throw new HttpsError('failed-precondition', 'account_delete_pending');
-    }
+    assertAccountUsable(accountStateFromSnapshots({ marker: markerSnap, subject: 'auth' }));
     const linkData = linkSnap.data() ?? {};
     const linkedStableId = text(linkData.stable_id, 160);
     if (linkSnap.exists && linkedStableId && linkedStableId !== input.uid) {
@@ -181,9 +185,9 @@ export const adminRepairAuthLink = onCall({ region: REGION, enforceAppCheck: fal
         tx.get(displacedUserRef),
         tx.get(displacedTombstoneRef),
       ]);
-      if (displacedTombstoneSnap.exists) {
-        throw new HttpsError('failed-precondition', 'account_delete_pending');
-      }
+      assertAccountUsable(accountStateFromSnapshots({
+        marker: displacedTombstoneSnap, subject: 'stable',
+      }));
       if (displacedUserSnap.exists && displacedUserSnap.data()?.identityHidden !== true) {
         throw new HttpsError('failed-precondition', 'provider_link_conflict');
       }
@@ -359,10 +363,10 @@ export const adminRelinkProvider = onCall({ region: REGION, enforceAppCheck: fal
       tx.get(targetTombstoneRef),
     ]);
     if (!userSnap.exists) throw new HttpsError('not-found', 'user not found');
-    if (markerSnap.exists || targetTombstoneSnap.exists) {
-      // Инвариант ensureAuthLinkDoc: uid с незавершённым удалением не привязываем.
-      throw new HttpsError('failed-precondition', 'account_delete_pending');
-    }
+    // Инвариант ensureAuthLinkDoc: uid с незавершённым удалением не привязываем.
+    assertAccountUsable(accountStateFromSnapshots({
+      markers: [markerSnap, targetTombstoneSnap], subject: 'auth',
+    }));
 
     const userData = userSnap.data() ?? {};
     const linked = readLinkedAuth(userData);
@@ -378,9 +382,9 @@ export const adminRelinkProvider = onCall({ region: REGION, enforceAppCheck: fal
       Promise.all(previousProviderLinkRefs.map((ref) => tx.get(ref))),
       Promise.all(previousProviderMarkerRefs.map((ref) => tx.get(ref))),
     ]);
-    if (previousProviderMarkerSnaps.some((snapshot) => snapshot.exists)) {
-      throw new HttpsError('failed-precondition', 'account_delete_pending');
-    }
+    assertAccountUsable(accountStateFromSnapshots({
+      markers: previousProviderMarkerSnaps, subject: 'auth',
+    }));
     const linkData = linkSnap.data() ?? {};
     const previousLinkedStableId = text(linkData.stable_id, 160);
     const displacedStableId = previousLinkedStableId && previousLinkedStableId !== input.uid
@@ -394,9 +398,9 @@ export const adminRelinkProvider = onCall({ region: REGION, enforceAppCheck: fal
         tx.get(displacedUserRef),
         tx.get(displacedTombstoneRef),
       ]);
-      if (displacedTombstoneSnap.exists) {
-        throw new HttpsError('failed-precondition', 'account_delete_pending');
-      }
+      assertAccountUsable(accountStateFromSnapshots({
+        marker: displacedTombstoneSnap, subject: 'stable',
+      }));
       if (displacedUserSnap.exists && displacedUserSnap.data()?.identityHidden !== true) {
         throw new HttpsError('failed-precondition', 'provider_link_conflict');
       }

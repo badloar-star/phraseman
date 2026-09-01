@@ -231,6 +231,14 @@ afterEach(() => {
   jest.useRealTimers();
 });
 
+/*
+ * зачем ожидания изменены (этап 1, 01.09.2026): проверки переведены на единую
+ * дверь, и код отказа стал честным. Прежде отвечало account_delete_pending
+ * ВСЕГДА — то есть и по завершённому удалению обещало, что аккаунт можно
+ * вернуть. Метки в фикстурах ниже не несут ни срока (graceDeadlineMs), ни
+ * живого статуса, значит это завершённое удаление → identity_retired.
+ * ГЛАВНАЯ гарантия тестов не изменилась: отказ происходит, записей нет.
+ */
 describe('adminRepairAuthLink — доступ', () => {
   it('enforces App Check in registration and at runtime for both mutating callables', async () => {
     const { adminRepairAuthLink, adminRelinkProvider } = require('./admin_auth_repair');
@@ -362,7 +370,7 @@ describe('adminRepairAuthLink — починка дрифта', () => {
     const before = storeSnapshot();
     await expect(callRepair(baseInput)).rejects.toMatchObject({
       code: 'failed-precondition',
-      message: 'account_delete_pending',
+      message: 'identity_retired',
     });
     expect(storeSnapshot()).toEqual(before);
   });
@@ -525,7 +533,7 @@ describe('adminRelinkProvider', () => {
     const before = storeSnapshot();
 
     await expect(callRelink({ ...baseInput, providerUid: 'manual-uid-9' }))
-      .rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'identity_retired' });
     expect(storeSnapshot()).toEqual(before);
   });
 
@@ -571,7 +579,7 @@ describe('adminRelinkProvider', () => {
     seedLinkedUser();
     docs.set('account_deletion_auth_markers/manual-uid-9', { at: NOW });
     await expect(callRelink({ ...baseInput, providerUid: 'manual-uid-9' }))
-      .rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+      .rejects.toMatchObject({ code: 'failed-precondition', message: 'identity_retired' });
     expect(docs.get('auth_links/manual-uid-9')).toBeUndefined();
   });
 });

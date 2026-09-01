@@ -728,6 +728,22 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // Firestore это не добавляет, только достаёт то, что уже пришло.
     const maxPreviewKey = maxTutorPreviewKey(maxTutorCallParams);
     const [maxDayRemainingSec, setMaxDayRemainingSec] = useState<number | null>(null);
+    // зачем (владелец 2026-09-01, «названия сперва открываются как коды»):
+    // заголовки уроков лежат на диске, но поднимались только при входе в раздел
+    // — и первую долю секунды человек видел скелетоны вместо названий. Поднимаем
+    // их заранее, пока он на Главной: сети это не стоит (чтение с диска), а
+    // раздел открывается сразу с готовыми названиями.
+    useEffect(() => {
+        if (!homeRuntimeActive || !maxVoiceVisible) return;
+        void import('../max_call_mint_request')
+            .then(({ bootMaxCatalogTitles }) => bootMaxCatalogTitles(lang))
+            .catch(() => {
+                // Прогрев с диска — оптимизация: не вышло, раздел поднимет сам.
+                // Молчаливо глотать нельзя, но и шуметь в лог Главной незачем —
+                // сам bootMaxCatalogTitles уже пишет причину под [MAX-TITLES].
+            });
+    }, [homeRuntimeActive, lang, maxVoiceVisible]);
+
     useEffect(() => {
         if (!homeRuntimeActive || !maxVoiceVisible || !isAiVoiceConsentGranted()) return;
         // зачем (владелец 2026-08-26): limits.dayRemainingSec — общий 20-минутный

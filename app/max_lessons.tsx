@@ -477,6 +477,11 @@ export default function MaxLessonsScreen() {
  * зачем: остаток должен читаться формой, а не строчкой текста. Дуга
  * заполняется до MINUTES_FULL_SCALE; всё, что больше, показывает полный круг —
  * «минут много» честнее, чем растягивать шкалу до бесконечности.
+ *
+ * ⚠️ Дуга рисуется СРАЗУ на финальном значении, без анимации заполнения.
+ * Это не упущение: владелец уже отверг такую анимацию у кольца глав
+ * (app/(tabs)/lessons.tsx, AnimatedChapterCircle) — прогресс «наливался на
+ * глазах» при каждом открытии экрана и раздражал. Не возвращать.
  */
 function MinutesDial({
   minutes, caption, done, total,
@@ -561,7 +566,12 @@ function LessonCard({
   // Урок закрыт на трёх звёздах. Он НЕ исчезает и остаётся доступным: MAX
   // помнит, что ученик его проходил, и предлагает повторить.
   const done = stars >= 3;
-  const label = title || lesson.id;
+  // зачем (владелец 2026-09-01, «названия сперва открываются на английском как
+  // коды»): технический id (a1_greet) НИКОГДА не показывается человеку. Пока
+  // заголовки едут с диска или из сети, строка держит место скелетоном той же
+  // высоты — первый кадр совпадает с финальным (Performance Bible), и текст не
+  // подменяется на глазах.
+  const label = title;
 
   return (
     <TouchableOpacity
@@ -593,18 +603,33 @@ function LessonCard({
               {labels.continueLabel}
             </Text>
           ) : null}
-          <Text
-            style={{
-              color: t.textPrimary,
-              fontSize: expanded ? f.bodyLg : f.body,
-              fontWeight: '800',
-              lineHeight: (expanded ? f.bodyLg : f.body) * 1.3,
-            }}
-            numberOfLines={3}
-            maxFontSizeMultiplier={1.8}
-          >
-            {label}
-          </Text>
+          {label !== '' ? (
+            <Text
+              style={{
+                color: t.textPrimary,
+                fontSize: expanded ? f.bodyLg : f.body,
+                fontWeight: '800',
+                lineHeight: (expanded ? f.bodyLg : f.body) * 1.3,
+              }}
+              numberOfLines={3}
+              maxFontSizeMultiplier={1.8}
+            >
+              {label}
+            </Text>
+          ) : (
+            // Скелетон ровно той высоты, что займёт строка названия: список не
+            // «прыгает», когда заголовки доезжают (правило стабильности первого
+            // кадра). Тон приглушён — это ожидание, а не содержимое.
+            <View
+              style={{
+                height: (expanded ? f.bodyLg : f.body) * 1.3,
+                width: '72%',
+                borderRadius: 7,
+                backgroundColor: t.textMuted,
+                opacity: 0.16,
+              }}
+            />
+          )}
         </View>
         {!expanded ? <Stars value={stars} /> : null}
       </View>

@@ -210,6 +210,25 @@ Privacy Policy сверена, отдельное разрешение влад�
 
 ---
 
+## 5.1. Как деплоить функции MAX
+
+Функции MAX живут в **отдельной кодовой базе `max`** (папка `functions-max`,
+реэкспорт из `functions/src/*`). Обычная команда с именем функции падает:
+
+```
+Error: No function matches the filter: default:maxVoicePreflight
+```
+
+Правильная форма — с именем кодовой базы:
+
+```
+npx firebase deploy --only "functions:max:maxVoicePreflight,functions:max:maxVoiceMint" --project phraseman-ea0b3
+```
+
+Проверено 2026-09-01: без деплоя раздел показывает технические id вместо
+названий, и логи говорят об этом прямым текстом
+(`[MAX-TITLES] net: сервер не прислал catalogTitles (старая версия функций?)`).
+
 ## 6. Проверки перед релизом раздела
 
 - **Privacy Policy:** голос обрабатывается сторонним сервисом (OpenAI Realtime).

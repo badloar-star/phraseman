@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2 — Поток</title>
+<style>
+  :root{
+    --bg:#0E1116; --panel:#161B22; --gold:#C9A84C; --pale:#F5E3A3;
+    --pearl:#8FD4E8; --text:#E8EAED; --muted:#8B93A1;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:24px 16px 40px;
+  }
+  h1{font-size:20px;font-weight:800;margin:0 0 4px}
+  .lead{color:var(--muted);font-size:13px;margin:0 0 20px;text-align:center;max-width:380px}
+  .phone{
+    position:relative; width:min(390px,100%); height:600px;
+    background:linear-gradient(160deg,#1A2029,#12161C);
+    border-radius:28px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,.55);
+  }
+  .header{
+    position:absolute; top:0; left:0; right:0; height:64px;
+    display:flex; align-items:center; justify-content:flex-end; gap:14px;
+    padding:0 18px; z-index:5;
+  }
+  .counter{display:flex;align-items:center;gap:6px;will-change:transform}
+  .coin{
+    width:26px;height:26px;border-radius:50%;
+    background:radial-gradient(circle at 34% 30%,var(--pale),var(--gold) 62%,#8A6F26);
+    box-shadow:0 2px 6px rgba(0,0,0,.4), inset 0 -2px 4px rgba(0,0,0,.25);
+  }
+  .coin.pearl{background:radial-gradient(circle at 34% 30%,#EAF9FF,var(--pearl) 62%,#3E7F94)}
+  .num{font-size:17px;font-weight:900;font-variant-numeric:tabular-nums}
+  .num.gold{color:var(--pale)} .num.pearl{color:#BFE9F6}
+  .stage{position:absolute;inset:0;pointer-events:none;z-index:4}
+  .p{position:absolute;width:20px;height:20px;border-radius:50%;
+     background:radial-gradient(circle at 34% 30%,var(--pale),var(--gold) 62%,#8A6F26);
+     will-change:transform,opacity}
+  .p.pearl{background:radial-gradient(circle at 34% 30%,#EAF9FF,var(--pearl) 62%,#3E7F94)}
+  .body{position:absolute;top:80px;left:18px;right:18px;color:var(--muted);font-size:13px}
+  .card{background:rgba(255,255,255,.045);border-radius:18px;padding:16px;margin-bottom:10px}
+  .card b{color:var(--text);display:block;margin-bottom:4px;font-size:14px}
+  .controls{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+  button{
+    background:var(--panel);color:var(--text);border:0;border-radius:12px;
+    padding:11px 18px;font-size:14px;font-weight:700;cursor:pointer;
+    transition:transform .16s cubic-bezier(.23,1,.32,1),background .16s ease;
+  }
+  button:hover{background:#1E252F}
+  button:active{transform:scale(.97)}
+  button.primary{background:var(--gold);color:#1A1206}
+  .spec{
+    margin-top:22px;max-width:min(390px,100%);background:var(--panel);
+    border-radius:16px;padding:16px;font-size:13px;color:var(--muted);
+  }
+  .spec h2{font-size:13px;color:var(--text);margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em}
+  .spec table{width:100%;border-collapse:collapse}
+  .spec td{padding:3px 0;vertical-align:top}
+  .spec td:first-child{color:var(--text);white-space:nowrap;padding-right:12px}
+</style>
+</head>
+<body>
+<h1>2 — Поток</h1>
+<p class="lead">Число докручивается НЕПРЕРЫВНО, пока летят частицы — как заправка бака. Счётчик не дёргается вообще, растёт только цифра и лёгкое свечение.</p>
+
+<div class="phone">
+  <div class="header">
+    <div class="counter" id="cShards"><div class="coin pearl"></div><div class="num pearl" id="nShards">40</div></div>
+    <div class="counter" id="cRunes"><div class="coin"></div><div class="num gold" id="nRunes">1240</div></div>
+  </div>
+  <div class="body">
+    <div class="card"><b>Быстрый старт</b>Урок · МАКС · Карточки</div>
+    <div class="card"><b>Цель недели</b>Лига · 3 место</div>
+  </div>
+  <div class="stage" id="stage"></div>
+</div>
+
+<div class="controls">
+  <button class="primary" onclick="play('runes')">Руны</button>
+  <button onclick="play('shards')">Жемчуг</button>
+  <button onclick="play('both')">Оба</button>
+</div>
+
+<div class="spec">
+  <h2>Тайминги</h2>
+  <table>
+    <tr><td>Полёт</td><td>560 мс, ease-out — влетают уже в движении</td></tr>
+    <tr><td>Каскад</td><td>55 мс между частицами</td></tr>
+    <tr><td>Число</td><td>растёт по мере прилёта: каждая частица добавляет свою долю</td></tr>
+    <tr><td>Счётчик</td><td>НЕ пульсирует; вместо этого свечение 0→1→0 за 240 мс на каждый прилёт</td></tr>
+    <tr><td>Финал</td><td>одна мягкая волна масштаба +14% в конце, 260 мс</td></tr>
+  </table>
+</div>
+
+<script>
+const TARGETS = {
+  runes:{el:'cRunes',num:'nRunes',cls:'',cur:1240,glow:'rgba(245,227,163,.9)'},
+  shards:{el:'cShards',num:'nShards',cls:'pearl',cur:40,glow:'rgba(143,212,232,.9)'}
+};
+const FLY=560, STAG=55;
+let busy=false;
+
+/** Свечение вместо тряски: счётчик «наливается» светом на каждый прилёт. */
+function glow(el,color){
+  el.animate(
+    [{filter:'drop-shadow(0 0 0 transparent)'},
+     {filter:`drop-shadow(0 0 10px ${color})`,offset:.35},
+     {filter:'drop-shadow(0 0 0 transparent)'}],
+    {duration:240,easing:'ease-out'}
+  );
+}
+
+function wave(kind,n,total){
+  const cfg=TARGETS[kind];
+  const stage=document.getElementById('stage');
+  const box=stage.getBoundingClientRect();
+  const t=document.getElementById(cfg.el).getBoundingClientRect();
+  const tx=t.left-box.left+t.width/2, ty=t.top-box.top+t.height/2;
+  const R=Math.hypot(box.width,box.height)*0.9;
+  const numEl=document.getElementById(cfg.num);
+  const counterEl=document.getElementById(cfg.el);
+  const per=total/n; // сколько добавляет одна частица
+  const start=cfg.cur;
+
+  for(let i=0;i<n;i++){
+    const a=i*2.399963+(i%2?-.18:.32);
+    const sx=tx+Math.cos(a)*R, sy=ty+Math.sin(a)*R*0.95;
+    const p=document.createElement('div');
+    p.className='p '+cfg.cls;
+    p.style.left=(sx-10)+'px'; p.style.top=(sy-10)+'px';
+    stage.appendChild(p);
+    const anim=p.animate([
+      {transform:'translate(0,0) scale(1.05)',opacity:0},
+      {transform:'translate(0,0) scale(1.05)',opacity:1,offset:.1},
+      {transform:`translate(${(tx-sx)*.5}px,${(ty-sy)*.5 - 26}px) scale(.75)`,offset:.55},
+      {transform:`translate(${tx-sx}px,${ty-sy}px) scale(.3)`,opacity:1,offset:.96},
+      {transform:`translate(${tx-sx}px,${ty-sy}px) scale(.2)`,opacity:0}
+    ],{duration:FLY,delay:i*STAG,fill:'forwards',easing:'cubic-bezier(.22,.9,.24,1)'});
+
+    anim.onfinish=()=>{
+      p.remove();
+      // Число растёт ИМЕННО в момент прилёта — связь очевидна.
+      cfg.cur=Math.round(start+per*(i+1));
+      numEl.textContent=cfg.cur;
+      glow(counterEl,cfg.glow);
+    };
+  }
+
+  const dur=FLY+(n-1)*STAG;
+  setTimeout(()=>{
+    counterEl.animate(
+      [{transform:'scale(1)'},{transform:'scale(1.14)',offset:.4},{transform:'scale(1)'}],
+      {duration:260,easing:'cubic-bezier(.23,1,.32,1)'}
+    );
+  },dur);
+  return dur;
+}
+
+function play(what){
+  if(busy) return; busy=true;
+  let end=0;
+  if(what==='runes'||what==='both') end=wave('runes',12,120);
+  if(what==='shards') end=wave('shards',8,40);
+  if(what==='both'){ setTimeout(()=>wave('shards',8,40),300); end+=300+700; }
+  setTimeout(()=>busy=false,end+400);
+}
+</script>
+</body>
+</html>

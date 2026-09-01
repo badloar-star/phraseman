@@ -14,7 +14,13 @@ import {
 } from '../../app/reward_flight_queue';
 import { DebugLogger } from '../../app/debug-logger';
 import { soundDirector } from '../../modules/audio/sound_director';
-import { rewardFlightDurationMs, type RewardFlightPoint } from '../../app/reward_flight_particles';
+import {
+  REWARD_FLIGHT_COUNT_MS,
+  REWARD_FLIGHT_HIT_AT,
+  REWARD_FLIGHT_TAIL_MS,
+  rewardFlightDurationMs,
+  type RewardFlightPoint,
+} from '../../app/reward_flight_particles';
 
 /**
  * Управление сбором наград на Главной: когда запускать волну, куда лететь,
@@ -76,6 +82,17 @@ export interface UseHomeRewardCollectResult {
   /** Сырой пульс жемчужин. */
   readonly shardsImpact: SharedValue<number>;
   /**
+   * Число, которое НАДО ПОКАЗЫВАТЬ в счётчике (вместо сырого баланса).
+   *
+   * зачем (макет «Гибрид», владелец 2026-09-01): пока летит волна, число
+   * докручивается от старого значения к новому, а не прыгает скачком. Скачок
+   * рвёт связь «прилетело → выросло»: глаз видит движение частиц и статичную
+   * цифру. Вне волны возвращает переданный баланс как есть.
+   */
+  readonly displayRunes: (balance: number) => number;
+  /** То же для жемчужин. */
+  readonly displayShards: (balance: number) => number;
+  /**
    * ref-колбэк на обёртку счётчика рун.
    *
    * Тип намеренно `unknown`: узел приходит от Reanimated.View, чей ref-тип —
@@ -100,7 +117,17 @@ export interface UseHomeRewardCollectResult {
 export function useHomeRewardCollect(
   active: boolean,
   reduceMotion: boolean,
+  /**
+   * Текущие балансы — нужны докрутке как ТОЧКА ОТСЧЁТА.
+   *
+   * К моменту волны баланс УЖЕ новый (награда начислена, снапшот обновлён),
+   * поэтому докрутка идёт от «баланс минус прилетевшее» к «баланс». Так число
+   * растёт синхронно с частицами, а не прыгает до их вылета.
+   */
+  balances: { runes: number; shards: number },
 ): UseHomeRewardCollectResult {
+  const balancesRef = useRef(balances);
+  balancesRef.current = balances;
   const [state, setState] = useState<HomeRewardCollectState>({
     wave: null,
     amount: 0,
@@ -219,6 +246,52 @@ export function useHomeRewardCollect(
   // Теперь по счётчику бьёт каждая частица из своего worklet (см. impact в
   // HomeRewardCollectFlight), а хук лишь владеет shared value.
 
+  /**
+   * Докрутка числа в счётчике.
+   *
+   * Отдельный лёгкий раннер на requestAnimationFrame, а не Animated: значение
+   * нужно КАК ЧИСЛО для отрисовки текстом, а не как стиль. Ре-рендерится
+   * только счётчик — Главная целиком не перерисовывается.
+   *
+   * Кривая ease-out БЕЗ перелёта: цифра, проскочившая финальное значение и
+   * вернувшаяся назад, читается как ошибка, а не как оживление.
+   */
+  const [rollRunes, setRollRunes] = useState<number | null>(null);
+  const [rollShards, setRollShards] = useState<number | null>(null);
+  const rollRafRef = useRef<Record<RewardCollectWave, number | null>>({ runes: null, shards: null });
+
+  const startRoll = useCallback((wave: RewardCollectWave, from: number, to: number) => {
+    if (from === to) return;
+    const setter = wave === 'runes' ? setRollRunes : setRollShards;
+    const prev = rollRafRef.current[wave];
+    if (prev !== null) cancelAnimationFrame(prev);
+
+    const t0 = Date.now();
+    const step = () => {
+      if (!mountedRef.current) return;
+      const p = Math.min(1, (Date.now() - t0) / REWARD_FLIGHT_COUNT_MS);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setter(Math.round(from + (to - from) * eased));
+      if (p < 1) {
+        rollRafRef.current[wave] = requestAnimationFrame(step);
+      } else {
+        rollRafRef.current[wave] = null;
+        // Отпускаем показ: дальше счётчик снова рисует настоящий баланс.
+        setter(null);
+      }
+    };
+    rollRafRef.current[wave] = requestAnimationFrame(step);
+  }, []);
+
+  const displayRunes = useCallback(
+    (balance: number) => (rollRunes ?? balance),
+    [rollRunes],
+  );
+  const displayShards = useCallback(
+    (balance: number) => (rollShards ?? balance),
+    [rollShards],
+  );
+
   const finish = useCallback(() => {
     runningRef.current = false;
     if (mountedRef.current) setState({ wave: null, amount: 0, target: null });
@@ -240,8 +313,18 @@ export function useHomeRewardCollect(
         return false;
       }
       setState({ wave, amount, target });
-      // Волна закрывается без пульса: счётчик уже отработал каждое касание.
+      // Волна закрывается без пульса: счётчик бьётся сам, из оверлея.
       waveDoneRef.current = onFinished;
+
+      // Докрутка стартует ВМЕСТЕ с ударом счётчика (65% волны), а не в конце:
+      // число, меняющееся после приземления всех частиц, читается как лаг.
+      const waveMs = rewardFlightDurationMs(amount) - REWARD_FLIGHT_TAIL_MS;
+      const to = wave === 'runes' ? balancesRef.current.runes : balancesRef.current.shards;
+      const from = Math.max(0, to - amount);
+      later(
+        () => startRoll(wave, from, to),
+        Math.round(waveMs * REWARD_FLIGHT_HIT_AT),
+      );
       // Страховка: если оверлей по какой-то причине не сообщит о завершении
       // (экран увели, кадр не собрался), волна всё равно закроется — иначе
       // оверлей завис бы поверх Главной навсегда.
@@ -258,7 +341,7 @@ export function useHomeRewardCollect(
       }, rewardFlightDurationMs(amount) + 400);
       return true;
     },
-    [later],
+    [later, startRoll],
   );
 
   const onWaveDone = useCallback(() => {
@@ -413,6 +496,8 @@ export function useHomeRewardCollect(
     measureRunesTarget,
     measureShardsTarget,
     onWaveDone,
+    displayRunes,
+    displayShards,
     playDemo,
     runesPulseStyle,
     shardsPulseStyle,

@@ -15,9 +15,11 @@ import { scheduleOnRN } from 'react-native-worklets';
 import { DebugLogger } from '../../app/debug-logger';
 import { soundDirector } from '../../modules/audio/sound_director';
 import {
+  REWARD_FLIGHT_HIT_AT,
+  REWARD_FLIGHT_HIT_DOWN_MS,
+  REWARD_FLIGHT_HIT_UP_MS,
   REWARD_FLIGHT_MS,
   REWARD_FLIGHT_STAGGER_MS,
-  rewardFlightBeatIndexes,
   rewardFlightParticleCount,
   rewardFlightSpawnPoint,
   type RewardFlightPoint,
@@ -79,16 +81,6 @@ interface ParticleProps {
    * касания, и удар живёт на том же UI-потоке, что и полёт: рассинхрону
    * взяться неоткуда.
    */
-  impact: SharedValue<number>;
-  /**
-   * Бьёт ли ЭТА частица по счётчику.
-   *
-   * зачем не каждая (владелец, 2026-09-01: «не должен дёргаться как бешеный с
-   * каждой руной... пульсирует правдоподобно несколько раз»): при 14 частицах
-   * удар на каждую читался как тряска. Бьют 2–4 частицы, распределённые по
-   * волне (см. rewardFlightBeatIndexes).
-   */
-  beats: boolean;
   onLastDone: () => void;
 }
 
@@ -98,8 +90,6 @@ const FlightParticle = memo(function FlightParticle({
   from,
   to,
   source,
-  impact,
-  beats,
   onLastDone,
 }: ParticleProps) {
   const progress = useSharedValue(0);
@@ -116,28 +106,12 @@ const FlightParticle = memo(function FlightParticle({
         // Каждая частица подбрасывает счётчик и он оседает обратно; частицы
         // идут каскадом, поэтому счётчик «набухает» вместе с потоком, а не
         // дёргается один раз в конце.
-        // 120 + 150 = 270мс — укладывается в минимальную паузу между ударами
-        // (280мс при пяти частицах), поэтому толчок успевает отработать
-        // целиком и следующий не перебивает его на взлёте.
-        //
-        // Не пружина, а timing: у пружины нет гарантии длительности, она
-        // «доседает» сотни миллисекунд и накладывается сама на себя — именно
-        // так толчки и слипались в одно вздутие.
-        if (beats) {
-          impact.value = withSequence(
-            withTiming(1, { duration: 120, easing: IMPACT_UP_EASE }),
-            withTiming(0, { duration: 150, easing: IMPACT_DOWN_EASE }),
-          );
-        }
-        // Через мост уходят только звук и закрытие волны: и то и другое
-        // асинхронно по своей природе, к синхронности удара отношения не имеет.
-        // Звук даёт ПЕРВАЯ долетевшая частица — по одному щелчку на волну,
-        // иначе 14 наложенных ударов превратятся в треск.
-        if (index === 0) scheduleOnRN(playLandSound);
+        // Через мост уходит только закрытие волны — оно асинхронно по своей
+        // природе. Удар счётчика и звук живут выше, на уровне волны.
         if (isLast) scheduleOnRN(onLastDone);
       }),
     );
-  }, [beats, impact, index, isLast, onLastDone, progress]);
+  }, [index, isLast, onLastDone, progress]);
 
   const style = useAnimatedStyle(() => {
     const p = progress.value;
@@ -193,7 +167,7 @@ export interface HomeRewardCollectFlightProps {
   playStartSound?: boolean;
   /**
    * Пульс счётчика этой валюты: 0 — покой, 1 — удар. Живёт на UI-потоке,
-   * поэтому счётчик реагирует В КАДР касания частицы, без моста и задержки.
+   * поэтому идёт кадр в кадр с полётом, без моста и задержки.
    */
   impact: SharedValue<number>;
   onDone: () => void;
@@ -238,11 +212,29 @@ export const HomeRewardCollectFlight = memo(function HomeRewardCollectFlight({
   }, [playStartSound]);
 
   const count = rewardFlightParticleCount(amount);
-  // Кто из частиц бьёт по счётчику: 2–4 удара на волну, а не удар на каждую.
-  const beatSet = useMemo(
-    () => new Set(rewardFlightBeatIndexes(count)),
-    [count],
-  );
+  const waveMs = count > 0
+    ? REWARD_FLIGHT_MS + (count - 1) * REWARD_FLIGHT_STAGGER_MS
+    : 0;
+
+  // ОДИН удар счётчика на всю волну — макет «Гибрид».
+  //
+  // зачем не на каждую частицу (владелец 2026-09-01): удар на касание читался
+  // как тряска. Здесь счётчик отзывается один раз мягкой волной на 65% полёта,
+  // когда прилетело большинство — то есть ДО конца, иначе реакция выглядит
+  // запоздалой.
+  useEffect(() => {
+    if (waveMs <= 0) return;
+    impact.value = withDelay(
+      Math.round(waveMs * REWARD_FLIGHT_HIT_AT),
+      withSequence(
+        withTiming(1, { duration: REWARD_FLIGHT_HIT_UP_MS, easing: IMPACT_UP_EASE }),
+        withTiming(0, { duration: REWARD_FLIGHT_HIT_DOWN_MS, easing: IMPACT_DOWN_EASE }),
+      ),
+    );
+    // Звук приземления — вместе с ударом, а не в конце волны.
+    const timer = setTimeout(playLandSound, Math.round(waveMs * REWARD_FLIGHT_HIT_AT));
+    return () => clearTimeout(timer);
+  }, [impact, waveMs]);
 
   // Траектории считаются один раз на волну: пересчёт в рендере дал бы новую
   // геометрию при каждом ре-рендере Главной и частицы бы прыгали.
@@ -299,8 +291,6 @@ export const HomeRewardCollectFlight = memo(function HomeRewardCollectFlight({
           from={particle.from}
           to={particle.to}
           source={source}
-          impact={impact}
-          beats={beatSet.has(particle.key)}
           onLastDone={onDone}
         />
       ))}

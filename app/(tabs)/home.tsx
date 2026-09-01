@@ -1333,6 +1333,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const rewardCollect = useHomeRewardCollect(
         homeRuntimeActive,
         homeRewardCollectReduceMotion,
+        // Балансы — точка отсчёта для докрутки числа: к моменту волны они уже
+        // новые, поэтому счётчик крутится от «минус прилетевшее» к текущему.
+        { runes: runesBalance, shards: shardsBalance },
     );
     const homeXpBarFill = useHomeXpBarFill(
         homeXpBarPercent,
@@ -4091,7 +4094,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   >
                     {/* guard-ok: декоративная иконка — метка на кнопке-родителе */}
                     <Image source={homeHeaderShardIconSource} style={{ width: homeQuickCurrencyIconSize, height: homeQuickCurrencyIconSize }} contentFit="contain" contentPosition="center" accessible={false} accessibilityElementsHidden importantForAccessibility="no" />
-                    <Text maxFontSizeMultiplier={1} style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }} numberOfLines={1}>{shardsBalance}</Text>
+                    <Text maxFontSizeMultiplier={1} style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }} numberOfLines={1}>{rewardCollect.displayShards(shardsBalance)}</Text>
                   </Animated.View>
                   </Reanimated.View>
                   {/* Всплывающее «+N» держится у самой иконки, которую увеличивает.
@@ -4139,7 +4142,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     style={rewardCollect.runesPulseStyle}
                   >
                   <HomeRuneBalance
-                    balance={runesBalance}
+                    balance={rewardCollect.displayRunes(runesBalance)}
                     color={isGoldTheme ? GOLD_RICH.paleGold : t.gold}
                     iconSize={homeQuickCurrencyIconSize}
                     valueSize={15}

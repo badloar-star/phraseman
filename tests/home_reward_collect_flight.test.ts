@@ -19,10 +19,13 @@ import {
 } from '../app/reward_flight_queue';
 import {
   HOME_REWARD_DEMO_MODES,
-  REWARD_FLIGHT_MAX_BEATS,
+  REWARD_FLIGHT_COUNT_MS,
+  REWARD_FLIGHT_HIT_AT,
+  REWARD_FLIGHT_HIT_DOWN_MS,
+  REWARD_FLIGHT_HIT_UP_MS,
   REWARD_FLIGHT_MS,
   REWARD_FLIGHT_STAGGER_MS,
-  rewardFlightBeatIndexes,
+  REWARD_FLIGHT_TAIL_MS,
   rewardFlightDurationMs,
   rewardFlightParticleCount,
   rewardFlightSpawnPoint,
@@ -243,57 +246,41 @@ describe('дев-кнопка: порядок режимов', () => {
   });
 });
 
-describe('пульсация счётчика', () => {
-  /** Толчок: 120мс вверх + 150мс вниз (значения в HomeRewardCollectFlight). */
-  const IMPACT_TOTAL_MS = 120 + 150;
+describe('пульсация счётчика — макет «Гибрид»', () => {
+  const HIT_TOTAL_MS = REWARD_FLIGHT_HIT_UP_MS + REWARD_FLIGHT_HIT_DOWN_MS;
+  const waveMs = (amount: number) => rewardFlightDurationMs(amount) - REWARD_FLIGHT_TAIL_MS;
 
-  it('счётчик бьётся НЕСКОЛЬКО раз, а не на каждую частицу', () => {
-    // Класс бага (владелец 2026-09-01: «не должен дёргаться как бешеный с
-    // каждой руной»): удар на каждое касание при 14 частицах читался как
-    // тряска, а не как пульс.
-    for (const amount of [4, 10, 50, 120, 500, 2000]) {
-      const particles = rewardFlightParticleCount(amount);
-      const beats = rewardFlightBeatIndexes(particles);
+  it('удар приходит ДО конца волны, а не после', () => {
+    // Класс бага (владелец 2026-09-01 + NN/g): счётчик, реагирующий после
+    // приземления последней частицы, читается как «интерфейс тормозит».
+    expect(REWARD_FLIGHT_HIT_AT).toBeGreaterThan(0.4);
+    expect(REWARD_FLIGHT_HIT_AT).toBeLessThan(1);
+  });
 
-      expect(beats.length).toBeGreaterThanOrEqual(1);
-      expect(beats.length).toBeLessThanOrEqual(REWARD_FLIGHT_MAX_BEATS);
-      // Главное: ударов ЗАМЕТНО меньше, чем частиц.
-      if (particles > 4) expect(beats.length).toBeLessThan(particles);
+  it('удар успевает отработать до конца волны', () => {
+    // Иначе счётчик останется раздутым в момент, когда всё уже прилетело.
+    for (const amount of [4, 50, 120, 2000]) {
+      const hitAt = waveMs(amount) * REWARD_FLIGHT_HIT_AT;
+      expect(hitAt + HIT_TOTAL_MS).toBeLessThanOrEqual(waveMs(amount) + 400);
     }
   });
 
-  it('последний удар совпадает с последней частицей — финал не провисает', () => {
-    for (const particles of [3, 5, 8, 11, 14]) {
-      const beats = rewardFlightBeatIndexes(particles);
-      expect(beats[beats.length - 1]).toBe(particles - 1);
-    }
+  it('докрутка числа не длиннее самой волны на мелкой награде', () => {
+    // Число обязано успокоиться примерно тогда же, когда сядут частицы.
+    // Иначе цифра ещё крутится, а на экране уже пусто.
+    expect(REWARD_FLIGHT_COUNT_MS).toBeLessThanOrEqual(800);
+    expect(REWARD_FLIGHT_COUNT_MS).toBeGreaterThanOrEqual(300);
   });
 
-  it('удары не наступают друг другу на пятки', () => {
-    // Пауза между ударами обязана быть не короче самого толчка, иначе
-    // следующий перебьёт предыдущий на взлёте и они снова слипнутся.
-    for (const particles of [5, 6, 8, 11, 14]) {
-      const beats = rewardFlightBeatIndexes(particles);
-      for (let i = 1; i < beats.length; i += 1) {
-        const gapMs = (beats[i] - beats[i - 1]) * REWARD_FLIGHT_STAGGER_MS;
-        expect(gapMs).toBeGreaterThanOrEqual(IMPACT_TOTAL_MS);
-      }
-    }
+  it('вся сцена укладывается в 1.2 секунды даже на джекпоте', () => {
+    // Порог из исследования: дольше — включается «дайте пропустить».
+    expect(rewardFlightDurationMs(2000)).toBeLessThanOrEqual(1200);
   });
 
-  it('короткая волна бьётся один раз, а не дважды впритык', () => {
-    // На 3-4 частицах два толчка встали бы вплотную — оставляем один.
-    expect(rewardFlightBeatIndexes(3)).toEqual([2]);
-    expect(rewardFlightBeatIndexes(4)).toEqual([3]);
-  });
-
-  it('пустая волна не бьёт вовсе', () => {
-    expect(rewardFlightBeatIndexes(0)).toEqual([]);
-    expect(rewardFlightBeatIndexes(-3)).toEqual([]);
-  });
-
-  it('даже джекпот укладывается в разумную длительность', () => {
-    expect(rewardFlightDurationMs(2000)).toBeLessThanOrEqual(2000);
+  it('каскад плотный — залп читается щедрым', () => {
+    // Плотность больше не влияет на счётчик (удар один), поэтому её держим
+    // высокой: разреженный пунктир выглядит бедно.
+    expect(REWARD_FLIGHT_STAGGER_MS).toBeLessThanOrEqual(45);
     expect(REWARD_FLIGHT_MS).toBeGreaterThanOrEqual(400);
   });
 });

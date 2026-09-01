@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Сбор наград — макеты</title>
+<style>
+  :root{--bg:#0E1116;--panel:#161B22;--gold:#C9A84C;--pale:#F5E3A3;--text:#E8EAED;--muted:#8B93A1}
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    padding:32px 20px 60px;
+  }
+  .wrap{max-width:760px;margin:0 auto}
+  h1{font-size:26px;font-weight:900;margin:0 0 6px}
+  .sub{color:var(--muted);margin:0 0 28px}
+  .grid{display:grid;gap:12px}
+  a.card{
+    display:block;background:var(--panel);border-radius:18px;padding:18px 20px;
+    text-decoration:none;color:inherit;
+    transition:transform .16s cubic-bezier(.23,1,.32,1),background .16s ease;
+  }
+  a.card:hover{background:#1C232D;transform:translateY(-2px)}
+  a.card:active{transform:scale(.99)}
+  .n{color:var(--gold);font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+  .t{font-size:18px;font-weight:800;margin:2px 0 6px}
+  .d{color:var(--muted);font-size:14px;margin:0}
+  .tag{
+    display:inline-block;margin-top:10px;font-size:12px;font-weight:700;
+    background:rgba(201,168,76,.14);color:var(--pale);padding:4px 10px;border-radius:8px;
+  }
+  .note{
+    margin-top:28px;background:var(--panel);border-radius:16px;padding:18px 20px;
+    color:var(--muted);font-size:14px;
+  }
+  .note b{color:var(--text)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Сбор наград на Главной</h1>
+  <p class="sub">Три подхода к анимации «валюта слетается в счётчик». Открой каждый и понажимай кнопки — они живые.</p>
+
+  <div class="grid">
+    <a class="card" href="1-magnet.html">
+      <div class="n">Вариант 1</div>
+      <div class="t">Магнит</div>
+      <p class="d">Монетки рассыпаны по экрану, зависают, потом их резко притягивает. Счётчик бьётся один раз, когда прилетела основная масса.</p>
+      <span class="tag">как в Coin Master / Clash Royale</span>
+    </a>
+
+    <a class="card" href="2-stream.html">
+      <div class="n">Вариант 2</div>
+      <div class="t">Поток</div>
+      <p class="d">Число докручивается непрерывно, пока летят частицы. Счётчик не дёргается вообще — только свечение на каждый прилёт.</p>
+      <span class="tag">самый спокойный</span>
+    </a>
+
+    <a class="card" href="5-hybrid.html">
+      <div class="n">Вариант 3</div>
+      <div class="t">Гибрид</div>
+      <p class="d">Плотный красивый залп, но счётчик реагирует один раз мягкой волной. Число докручивается, сверху всплывает «+N».</p>
+      <span class="tag">✓ ВЫБРАН — перенесён в приложение</span>
+    </a>
+  </div>
+
+  <div class="note">
+    <b>Что сравнивать.</b> Сколько раз дёргается счётчик · читается ли связь «прилетело → выросло» ·
+    не слишком ли долго · не выглядит ли дёшево. Выбран «Гибрид» — он перенесён в приложение.
+  </div>
+</div>
+</body>
+</html>

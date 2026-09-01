@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5 — Гибрид</title>
+<style>
+  :root{
+    --bg:#0E1116; --panel:#161B22; --gold:#C9A84C; --pale:#F5E3A3;
+    --pearl:#8FD4E8; --text:#E8EAED; --muted:#8B93A1;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:24px 16px 40px;
+  }
+  h1{font-size:20px;font-weight:800;margin:0 0 4px}
+  .lead{color:var(--muted);font-size:13px;margin:0 0 20px;text-align:center;max-width:380px}
+  .phone{
+    position:relative; width:min(390px,100%); height:600px;
+    background:linear-gradient(160deg,#1A2029,#12161C);
+    border-radius:28px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,.55);
+  }
+  .header{
+    position:absolute; top:0; left:0; right:0; height:64px;
+    display:flex; align-items:center; justify-content:flex-end; gap:14px;
+    padding:0 18px; z-index:5;
+  }
+  .counter{position:relative;display:flex;align-items:center;gap:6px;will-change:transform}
+  .coin{
+    width:26px;height:26px;border-radius:50%;
+    background:radial-gradient(circle at 34% 30%,var(--pale),var(--gold) 62%,#8A6F26);
+    box-shadow:0 2px 6px rgba(0,0,0,.4), inset 0 -2px 4px rgba(0,0,0,.25);
+  }
+  .coin.pearl{background:radial-gradient(circle at 34% 30%,#EAF9FF,var(--pearl) 62%,#3E7F94)}
+  .num{font-size:17px;font-weight:900;font-variant-numeric:tabular-nums}
+  .num.gold{color:var(--pale)} .num.pearl{color:#BFE9F6}
+  /* Всплывающее «+N» — отдельный слой, не двигает счётчик */
+  .plus{
+    position:absolute;top:-14px;right:0;font-size:13px;font-weight:900;
+    opacity:0;pointer-events:none;white-space:nowrap;
+  }
+  .plus.gold{color:var(--pale)} .plus.pearl{color:#BFE9F6}
+  .stage{position:absolute;inset:0;pointer-events:none;z-index:4}
+  .p{position:absolute;width:20px;height:20px;border-radius:50%;
+     background:radial-gradient(circle at 34% 30%,var(--pale),var(--gold) 62%,#8A6F26);
+     will-change:transform,opacity}
+  .p.pearl{background:radial-gradient(circle at 34% 30%,#EAF9FF,var(--pearl) 62%,#3E7F94)}
+  .body{position:absolute;top:80px;left:18px;right:18px;color:var(--muted);font-size:13px}
+  .card{background:rgba(255,255,255,.045);border-radius:18px;padding:16px;margin-bottom:10px}
+  .card b{color:var(--text);display:block;margin-bottom:4px;font-size:14px}
+  .controls{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+  button{
+    background:var(--panel);color:var(--text);border:0;border-radius:12px;
+    padding:11px 18px;font-size:14px;font-weight:700;cursor:pointer;
+    transition:transform .16s cubic-bezier(.23,1,.32,1),background .16s ease;
+  }
+  button:hover{background:#1E252F}
+  button:active{transform:scale(.97)}
+  button.primary{background:var(--gold);color:#1A1206}
+  .spec{
+    margin-top:22px;max-width:min(390px,100%);background:var(--panel);
+    border-radius:16px;padding:16px;font-size:13px;color:var(--muted);
+  }
+  .spec h2{font-size:13px;color:var(--text);margin:0 0 8px;text-transform:uppercase;letter-spacing:.06em}
+  .spec table{width:100%;border-collapse:collapse}
+  .spec td{padding:3px 0;vertical-align:top}
+  .spec td:first-child{color:var(--text);white-space:nowrap;padding-right:12px}
+</style>
+</head>
+<body>
+<h1>5 — Гибрид</h1>
+<p class="lead">Плотный красивый залп частиц, но счётчик реагирует ОДИН раз — мягкой волной, когда прилетело большинство. Число докручивается, сверху всплывает «+N».</p>
+
+<div class="phone">
+  <div class="header">
+    <div class="counter" id="cShards">
+      <div class="coin pearl"></div><div class="num pearl" id="nShards">40</div>
+      <div class="plus pearl" id="pShards">+40</div>
+    </div>
+    <div class="counter" id="cRunes">
+      <div class="coin"></div><div class="num gold" id="nRunes">1240</div>
+      <div class="plus gold" id="pRunes">+120</div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="card"><b>Быстрый старт</b>Урок · МАКС · Карточки</div>
+    <div class="card"><b>Цель недели</b>Лига · 3 место</div>
+  </div>
+  <div class="stage" id="stage"></div>
+</div>
+
+<div class="controls">
+  <button class="primary" onclick="play('runes')">Руны</button>
+  <button onclick="play('shards')">Жемчуг</button>
+  <button onclick="play('both')">Оба</button>
+</div>
+
+<div class="spec">
+  <h2>Тайминги</h2>
+  <table>
+    <tr><td>Полёт</td><td>540 мс, ease-out с дугой</td></tr>
+    <tr><td>Каскад</td><td>38 мс — плотный «хвост кометы», частицы почти сливаются</td></tr>
+    <tr><td>Удар</td><td>ОДИН, на 65% волны: +20%, 140 мс вверх / 240 мс вниз</td></tr>
+    <tr><td>«+N»</td><td>всплывает на 14 px вверх, живёт 900 мс, гаснет 300 мс</td></tr>
+    <tr><td>Число</td><td>докручивается 620 мс с ease-out — обгоняет и мягко доезжает</td></tr>
+    <tr><td>Итого</td><td>джекпот 14 частиц — 1.1 с от старта до покоя</td></tr>
+  </table>
+</div>
+
+<script>
+const TARGETS = {
+  runes:{el:'cRunes',num:'nRunes',plus:'pRunes',cls:'',cur:1240,add:120},
+  shards:{el:'cShards',num:'nShards',plus:'pShards',cls:'pearl',cur:40,add:40}
+};
+const FLY=540, STAG=38, HIT=0.65;
+let busy=false;
+
+function countUp(el,from,to,ms){
+  const t0=performance.now();
+  (function step(now){
+    const p=Math.min(1,(now-t0)/ms);
+    const e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(from+(to-from)*e);
+    if(p<1) requestAnimationFrame(step);
+  })(t0);
+}
+
+function wave(kind,n){
+  const cfg=TARGETS[kind];
+  const stage=document.getElementById('stage');
+  const box=stage.getBoundingClientRect();
+  const t=document.getElementById(cfg.el).getBoundingClientRect();
+  const tx=t.left-box.left+t.width/2, ty=t.top-box.top+t.height/2;
+  const R=Math.hypot(box.width,box.height)*0.9;
+
+  for(let i=0;i<n;i++){
+    const a=i*2.399963+(i%2?-.18:.32);
+    const sx=tx+Math.cos(a)*R, sy=ty+Math.sin(a)*R*0.95;
+    const p=document.createElement('div');
+    p.className='p '+cfg.cls;
+    p.style.left=(sx-10)+'px'; p.style.top=(sy-10)+'px';
+    stage.appendChild(p);
+    p.animate([
+      {transform:'translate(0,0) scale(1.05)',opacity:0},
+      {transform:'translate(0,0) scale(1.05)',opacity:1,offset:.09},
+      {transform:`translate(${(tx-sx)*.5+18}px,${(ty-sy)*.5-30}px) scale(.72)`,offset:.55},
+      {transform:`translate(${tx-sx}px,${ty-sy}px) scale(.28)`,opacity:1,offset:.97},
+      {transform:`translate(${tx-sx}px,${ty-sy}px) scale(.16)`,opacity:0}
+    ],{duration:FLY,delay:i*STAG,fill:'forwards',easing:'cubic-bezier(.22,.9,.24,1)'})
+    .onfinish=()=>p.remove();
+  }
+
+  const total=FLY+(n-1)*STAG;
+  setTimeout(()=>{
+    // Один мягкий удар — без резкого рывка, «волна» а не «щелчок»
+    document.getElementById(cfg.el).animate(
+      [{transform:'scale(1)'},{transform:'scale(1.20)',offset:.37},{transform:'scale(1)'}],
+      {duration:380,easing:'cubic-bezier(.23,1,.32,1)'}
+    );
+    // «+N» всплывает отдельным слоем и не двигает счётчик
+    const plus=document.getElementById(cfg.plus);
+    plus.textContent='+'+cfg.add;
+    plus.animate([
+      {opacity:0,transform:'translateY(0)'},
+      {opacity:1,transform:'translateY(-8px)',offset:.25},
+      {opacity:1,transform:'translateY(-11px)',offset:.7},
+      {opacity:0,transform:'translateY(-16px)'}
+    ],{duration:1200,easing:'cubic-bezier(.23,1,.32,1)'});
+
+    const to=cfg.cur+cfg.add;
+    countUp(document.getElementById(cfg.num),cfg.cur,to,620);
+    cfg.cur=to;
+  },total*HIT);
+
+  return total;
+}
+
+function play(what){
+  if(busy) return; busy=true;
+  let end=0;
+  if(what==='runes'||what==='both') end=wave('runes',12);
+  if(what==='shards') end=wave('shards',8);
+  if(what==='both'){ setTimeout(()=>wave('shards',8),300); end+=300+700; }
+  setTimeout(()=>busy=false,end+600);
+}
+</script>
+</body>
+</html>

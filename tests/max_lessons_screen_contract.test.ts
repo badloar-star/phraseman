@@ -31,9 +31,10 @@ describe('экран раздела «Уроки с МАКСом»', () => {
     expect(starsBlock).toContain('isAiVoiceConsentGranted');
   });
 
-  it('подпись под счётчиком не дублирует сам счётчик', () => {
+  it('прогресс курса подписан числом, без дублирующего текста', () => {
     // Было «0 из 78 уроков пройдено» прямо под «0 / 78» — пустой шум.
-    expect(screen).toContain('lessonsDone');
+    // В макете «Циферблат» под кольцом стоит только «3 / 78».
+    expect(screen).toMatch(/\$\{done\} \/ \$\{total\}/u);
     expect(screen).not.toMatch(/из \$\{b\} уроков пройдено/u);
   });
 
@@ -51,7 +52,7 @@ describe('экран раздела «Уроки с МАКСом»', () => {
     // Владелец: «при открытии любого урока должен начинаться звонок сразу».
     // Деньги в безопасности: сервер считает секунды от активации
     // (voiceSessionClockStartMs), а не от соединения.
-    const open = screen.slice(screen.indexOf('const openLesson'), screen.indexOf('const c = useMemo'));
+    const open = screen.slice(screen.indexOf('const startLesson'), screen.indexOf('const c = useMemo'));
     expect(open).toContain("pathname: '/max_call_session'");
     expect(open).not.toContain('max_call_prestart');
   });
@@ -81,9 +82,32 @@ describe('экран раздела «Уроки с МАКСом»', () => {
     expect(warmBlock).not.toMatch(/MAX_LESSON_CATALOG\.forEach|for \(const lesson of MAX_LESSON_CATALOG/u);
   });
 
-  it('последний чип фильтра не липнет к краю экрана', () => {
-    const chipsRow = screen.slice(screen.indexOf('Фильтр по темам'), screen.indexOf('renderItem'));
-    expect(chipsRow).toContain('paddingRight');
+  it('чипов-фильтров на экране нет', () => {
+    // Владелец 2026-09-01: «убери эти кнопки — Все, Общение, Каждый день,
+    // они не нужны такими». Ряд чипов удалён вместе с фильтрацией по теме:
+    // тема урока теперь видна внутри раскрытой карточки.
+    expect(screen).not.toContain('TopicChip');
+    expect(screen).not.toContain('MAX_LESSON_TOPICS');
+  });
+
+  it('минуты показаны кольцом — макет «Циферблат»', () => {
+    // Выбор владельца из десяти макетов: остаток минут читается формой
+    // раньше, чем цифрой.
+    expect(screen).toContain('MinutesDial');
+    expect(screen).toContain('react-native-svg');
+    expect(screen).toContain('max-lessons-minutes');
+  });
+
+  it('тап раскрывает карточку, а звонок начинает кнопка внутри', () => {
+    // Владелец: «при нажатии на блок он сначала увеличивался, тот что был до
+    // — уменьшается». Раскрытие НИЧЕГО не запускает: случайный тап по списку
+    // не должен тратить минуты.
+    expect(screen).toContain('openId');
+    expect(screen).toContain('animateNextLayoutTransition');
+    expect(screen).toContain('max-lesson-start-');
+    // Открывает звонок только startLesson, не toggleLesson.
+    const toggle = screen.slice(screen.indexOf('const toggleLesson'), screen.indexOf('const openingRef'));
+    expect(toggle).not.toContain('router.push');
   });
 
   it('маршрут раздела зарегистрирован в реестре фонов', () => {

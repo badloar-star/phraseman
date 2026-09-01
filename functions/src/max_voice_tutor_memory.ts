@@ -776,8 +776,22 @@ function daysSince(lastMs: number, nowMs: number): number | null {
 export function renderTutorMemoryBlock(memory: TutorMemory, nowMs: number): string {
   const lines: string[] = ['WHAT YOU REMEMBER ABOUT THIS LEARNER'];
   lines.push('Use at most ONE relevant memory detail naturally when it helps the lesson. Never announce that a profile or memory is stored. Never infer missing facts or mention rejected/sensitive candidates.');
-  if (memory.callCount <= 0) {
+  // зачем (владелец 2026-09-01: «урок второй раз запустил и он снова спросил
+  // моё имя и откуда я, а не продолжил урок»): у ПРОБНИКА callCount намеренно
+  // не растёт (reviewOnly — детерминированные итоги урока не засчитываются),
+  // зато имя и факты сохраняются. Проверять только счётчик было ошибкой: MAX
+  // видел ноль, считал урок первым и знакомился заново с человеком, которого
+  // уже знает по имени. Признак знакомства — не счётчик, а сама память.
+  const alreadyMet = memory.callCount > 0
+    || (memory.preferredName ?? '') !== ''
+    || (memory.learningGoal ?? '') !== ''
+    || memory.facts.length > 0;
+  if (!alreadyMet) {
     lines.push('This is your FIRST lesson together. Learn their name and one or two things about them, warmly.');
+  } else if (memory.callCount <= 0) {
+    // Знакомы, но счётчик пуст (пробник). Ни в коем случае не знакомиться
+    // заново: это выглядит как «он меня забыл» и обижает сильнее всего.
+    lines.push('YOU HAVE ALREADY MET THIS LEARNER. Never ask their name or where they are from again — you know them (see below). Greet them like someone you know and go straight into the lesson.');
   } else {
     const days = daysSince(memory.lastCallAtMs, nowMs);
       lines.push(`Lessons so far: ${memory.callCount}.${days === null ? '' : days === 0 ? ' Last lesson: today.' : days === 1 ? ' Last lesson: yesterday.' : ` Last lesson: ${days} days ago.`}`);

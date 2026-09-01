@@ -22,7 +22,6 @@ import { IS_EXPO_GO } from './config';
 import { beginInitialAccountGeneration, invalidateAccountGeneration } from './account_generation';
 import {
   assertAccountDeleteStableIdentityAvailable,
-  isAccountDeleteGuardNoLockSeenError,
 } from './account_delete_quarantine';
 import { DebugLogger } from './debug-logger';
 
@@ -73,9 +72,16 @@ async function assertStableIdentityAvailableAtStartup(candidateStableId?: string
   try {
     await assertAccountDeleteStableIdentityAvailable(candidateStableId);
   } catch (error) {
-    if (!isAccountDeleteGuardNoLockSeenError(error)) throw error;
+    // зачем НИКОГДА не бросать наружу (владелец, 2026-09-01): эта функция
+    // живёт внутри getStableId(), а он зовётся десятки раз за запуск — любой
+    // бросок отсюда означал мёртвый старт и лавину алертов. Единственный
+    // оставшийся класс (`deleted_stable_id_denied`) говорит «этот локальный
+    // id принадлежит удаляемому аккаунту» — правильная реакция на него не
+    // «сломать приложение», а ВЗЯТЬ НОВЫЙ id: удаление уже стёрло данные,
+    // человеку нужен чистый профиль. Ротацию делает вызывающий код по
+    // отсутствию идентичности; здесь просто не мешаем ему работать.
     DebugLogger.error(
-      'stable_id:delete_guard_unreadable_without_lock',
+      'stable_id:delete_guard_ignored',
       error instanceof Error ? error : new Error(String(error)),
       'warning',
     );

@@ -2403,7 +2403,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       try {
       bootMark('bootstrap START -> ensureFreshPostDeletionIdentity');
       const freshIdentity = await ensureFreshPostDeletionIdentity('startup');
-      bootMark('ensureFreshPostDeletionIdentity DONE', { status: freshIdentity.status, phase: freshIdentity.phase });
+      bootMark('ensureFreshPostDeletionIdentity DONE', { status: freshIdentity.status, phase: 'phase' in freshIdentity ? String(freshIdentity.phase ?? '') : '' });
       const pendingDeleteRecovered = freshIdentity.status !== 'fatal_local_guard';
       if (effectDisposed) return;
       if (!pendingDeleteRecovered) {

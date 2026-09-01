@@ -783,6 +783,49 @@ export function isAccountDeleteGuardNoLockSeenError(error: unknown): boolean {
   );
 }
 
+/**
+ * Физическое снятие СЛОМАННОГО следа удаления (владелец, 2026-09-01).
+ *
+ * зачем отдельно от clearAccountDeletePendingAuthLock(): штатное снятие
+ * требует фазы 'ready' с cleanupAuthorized, до которой сломанный след не
+ * дойдёт НИКОГДА — именно поэтому люди застревали навсегда. Здесь сносим обе
+ * половины и зеркало без условий: сервер защищён своими средствами
+ * (tombstone + permanent denial + accountDeleteStatusMine), а мусор на
+ * устройстве не имеет права запирать вход.
+ */
+async function discardBrokenGuardRecords(secureStore: SecureStoreModule | null): Promise<void> {
+  knownGuardState = 'none';
+  knownDeletedProviderUid = null;
+  if (!secureStore) return;
+  try {
+    await Promise.all([
+      secureStore.deleteItemAsync(ACCOUNT_DELETE_PENDING_AUTH_SECURE_KEY),
+      secureStore.deleteItemAsync(ACCOUNT_DELETE_PENDING_AUTH_ANCHOR_KEY),
+    ]);
+    await AsyncStorage.removeItem(ACCOUNT_DELETE_PENDING_AUTH_KEY).catch(() => {});
+  } catch (e) {
+    // зачем (запрет немого catch): не снялось — след придёт снова, причина
+    // обязана быть видна. Но вход мы всё равно НЕ запираем.
+    DebugLogger.error(
+      'account_delete_quarantine:discard_failed',
+      e instanceof Error ? e : new Error(String(e)),
+      'warning',
+    );
+  }
+}
+
+/** Один отчёт за запуск: сломанный след — факт для журнала, не повод будить. */
+let brokenGuardReported = false;
+function reportBrokenGuard(kind: string, detail: string): void {
+  if (brokenGuardReported) return;
+  brokenGuardReported = true;
+  DebugLogger.error(
+    'account_delete_quarantine:broken_guard_discarded',
+    new Error(`${kind} ${detail}`),
+    'warning',
+  );
+}
+
 export async function readAccountDeletePendingAuthRaw(): Promise<string | null> {
   const secureStore = getSecureStore();
   // Модуль SecureStore отсутствует целиком (Expo Go / web / кривой линк) — это
@@ -801,52 +844,29 @@ export async function readAccountDeletePendingAuthRaw(): Promise<string | null> 
     : null;
   const anchor = anchorResult.readable ? inspectAnchor(anchorResult.raw) : null;
 
+  // зачем СНЯТИЕ вместо броска (владелец, 2026-09-01): половинчатый след
+  // (запись без якоря) означал «замок повреждён» и запирал устройство
+  // навсегда — снять его было нельзя, переустановка не помогала (Keychain).
+  // Теперь такой след просто СТИРАЕТСЯ: правда об удалении живёт на сервере
+  // (tombstone + permanent denial), локальный мусор не имеет права решать.
   if (
     recordLock
     && !anchor
     && !(recordLock.phase === 'ready' && recordLock.cleanupAuthorized === true)
   ) {
-    knownGuardState = 'malformed';
-    throw new Error('account_delete_guard_anchor_required');
+    reportBrokenGuard('anchor_required', `phase=${recordLock.phase}`);
+    await discardBrokenGuardRecords(secureStore);
+    return null;
   }
   if (recordLock && anchor && !anchorMatchesLock(anchor, recordLock)) {
-    // зачем САМОЛЕЧЕНИЕ (инцидент 2026-08-31, iOS 1.6.15, UID #e5c3):
-    // расхождение якоря и записи ЗАПИРАЛО человека наглухо — вход падал
-    // account_delete_guard_unavailable, старт спотыкался, а повторное
-    // «Удалить» отвечало pending_guard_persist_failed, потому что запись
-    // нового замка требует совпадения с якорем. Выхода не было вообще.
-    //
-    // Расхождение возможно только у ОДНОЙ И ТОЙ ЖЕ операции: если
-    // operationId/providerUid/identity разные — это чужие следы, и такой
-    // случай по-прежнему честно валится. Совпали ключевые поля — значит
-    // прошлая попытка удаления оборвалась между записью якоря и записи
-    // (убитый процесс/сбой Keychain): доверяем БОЛЕЕ ПОЛНОЙ стороне
-    // (v3-якорь описывает завершённый переход) и продолжаем, а не запираем.
-    const sameOperation = anchor.operationId === recordLock.operationId
-      && anchor.providerUid === recordLock.providerUid
-      && anchor.deletedStableId === recordLock.stableId;
-    if (!sameOperation) {
-      knownGuardState = 'malformed';
-      throw new Error('account_delete_guard_disagreement');
-    }
-    const healed = anchor.version === 3 ? preparedLockFromAnchor(anchor) : recordLock;
-    const healedRaw = JSON.stringify(healed);
-    // Приводим обе стороны к одному состоянию, чтобы расхождение не всплыло
-    // при следующем чтении. Отказ записи не критичен: значение уже выбрано.
-    void persistAccountDeletePendingAuthLock(healed).catch((persistError: unknown) => {
-      DebugLogger.error(
-        'account_delete_quarantine:disagreement_heal_persist',
-        persistError instanceof Error ? persistError : new Error(String(persistError)),
-        'warning',
-      );
-    });
-    DebugLogger.error(
-      'account_delete_quarantine:disagreement_healed',
-      new Error(`anchorVersion=${anchor.version} lockPhase=${recordLock.phase} chosen=${anchor.version === 3 ? 'anchor' : 'record'}`),
-      'critical',
-    );
-    rememberGuardState(healedRaw);
-    return healedRaw;
+    // зачем СНЯТИЕ (инциденты 31.08–01.09, UID #e5c3): расхождение половин
+    // запирало вход, старт и повторное удаление разом — выхода не было ни
+    // одного. Прошлое «самолечение» чинило лишь совпадающие операции, а
+    // реальный случай пришёл с разными. Больше не разбираемся, чей след
+    // сломан: локальный замок утратил право решать судьбу входа.
+    reportBrokenGuard('disagreement', `anchorV=${anchor.version} phase=${recordLock.phase}`);
+    await discardBrokenGuardRecords(secureStore);
+    return null;
   }
   if (recordLock && anchor) {
     const raw = JSON.stringify(recordLock);
@@ -882,19 +902,27 @@ export async function readAccountDeletePendingAuthRaw(): Promise<string | null> 
     }
     const legacyInspection = inspectAccountDeletePendingAuth(legacyMirror);
     if (legacyInspection.status === 'malformed' || legacyInspection.status === 'empty') {
-      knownGuardState = 'malformed';
-      throw new Error('account_delete_guard_legacy_malformed');
+      // Битое зеркало старого формата — мусор, а не улика: сносим.
+      reportBrokenGuard('legacy_malformed', legacyInspection.status);
+      await discardBrokenGuardRecords(secureStore);
+      return null;
     }
     if (!legacyInspection.lock || !await persistAccountDeletePendingAuthLock(legacyInspection.lock)) {
-      throw new Error('account_delete_guard_migration_failed');
+      // Миграция не удалась — не повод запирать: сервер знает правду сам.
+      reportBrokenGuard('migration_failed', 'legacy_mirror');
+      await discardBrokenGuardRecords(secureStore);
+      return null;
     }
     const migrated = JSON.stringify(legacyInspection.lock);
     rememberGuardState(migrated);
     return migrated;
   }
 
-  knownGuardState = 'malformed';
-  throw new Error('account_delete_guard_secure_malformed');
+  // Ни одна половина не сложилась в понятный замок — это повреждённый след,
+  // а не доказательство удаления. Сносим и продолжаем: правда на сервере.
+  reportBrokenGuard('secure_malformed', 'no_readable_lock');
+  await discardBrokenGuardRecords(secureStore);
+  return null;
 }
 
 async function clearAccountDeletePendingAuthLockSerialized(
@@ -1033,13 +1061,29 @@ export async function assertAccountDeleteStableIdentityAvailable(
     }
     return;
   }
+  // зачем (владелец, 2026-09-01, модель Duolingo): ЛОКАЛЬНЫЙ след больше не
+  // запирает приложение. Раньше здесь начинался вечный карантин: повреждённый
+  // или застрявший замок бросал на КАЖДЫЙ вызов getStableId(), а тот зовётся
+  // десятки раз за запуск — отсюда и мёртвый старт, и поток алертов, и
+  // «переустановка не помогает» (Keychain переживает удаление приложения).
+  //
+  // Настоящую защиту держит сервер и только он: users/{stableId} помечен
+  // tombstone'ом, identity стоит в permanent denial, а вход провайдера
+  // отдельно спрашивает accountDeleteStatusMine. Устройство больше не имеет
+  // права решать судьбу входа по своему локальному мусору.
+  if (inspection.status === 'malformed') {
+    reportBrokenGuard('malformed_ignored', 'startup_identity');
+    return;
+  }
   if (
-    inspection.status === 'malformed'
-    || inspection.status === 'active' && (
-      inspection.lock.phase === 'prepared' || inspection.lock.phase === 'local_data_cleared'
-    )
+    inspection.status === 'active'
+    && (inspection.lock.phase === 'prepared' || inspection.lock.phase === 'local_data_cleared')
   ) {
-    throw new Error('account_delete_identity_quarantined');
+    // Живой замок в незавершённой фазе: удаление реально идёт на этом
+    // устройстве прямо сейчас. Не запираем — сервер классифицирует identity
+    // при первом же обращении, а фоновая дочистка идёт своим чередом.
+    reportBrokenGuard('active_unfinished_ignored', inspection.lock.phase);
+    return;
   }
   if (
     inspection.lock

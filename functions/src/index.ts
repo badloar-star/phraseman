@@ -92,6 +92,8 @@ const {
   authRecoveryHint,
 } = require("./auth_identity");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { accountClaimMine } = require("./account_claim");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   authRequestRecoveryCode,
   authConfirmRecoveryCode,
@@ -312,6 +314,8 @@ exports.leagueSyncMyBoost = leagueSyncMyBoost;
 exports.leagueActivateGroupBoost = leagueActivateGroupBoost;
 exports.authEnsureStableLink = authEnsureStableLink;
 exports.authStampAnonOwnership = authStampAnonOwnership;
+// зачем (этап 4): аккаунт выдаёт сервер, а не телефон — см. account_claim.ts.
+exports.accountClaimMine = accountClaimMine;
 exports.authRecoveryHint = authRecoveryHint;
 exports.authRequestRecoveryCode = authRequestRecoveryCode;
 exports.authConfirmRecoveryCode = authConfirmRecoveryCode;

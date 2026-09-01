@@ -594,6 +594,11 @@ function MaxCallSessionContent() {
       },
     });
     clientRef.current = client;
+    // зачем (владелец 2026-09-01): «прогрев закончился раньше, и таймер ещё на
+    // экране, а он уже говорит на фоне». Удержание ставим ДО start(): иначе
+    // быстрое соединение успеет проскочить, и MAX заговорит под отсчёт.
+    // Соединение при этом идёт как обычно — ждёт только начало разговора.
+    if (countdownFromRef.current > 0) client.holdStart(true);
     void client.start({
       format,
       scenarioId: format === 'companion' ? undefined : scenarioId,
@@ -1133,6 +1138,10 @@ function MaxCallSessionContent() {
     return Number.isFinite(raw) && raw > 0 && raw <= 10 ? Math.floor(raw) : 0;
   })();
   const [countdownLeft, setCountdownLeft] = useState(countdownFrom);
+  // Эффект звонка создаётся один раз и state не видит — держим длительность
+  // отсчёта в ref, чтобы решение «придержать старт» было доступно там же.
+  const countdownFromRef = useRef(countdownFrom);
+  countdownFromRef.current = countdownFrom;
   useEffect(() => {
     if (countdownLeft <= 0) return undefined;
     // Секунда за секундой; на нуле таймер сам останавливается и больше не
@@ -1140,6 +1149,18 @@ function MaxCallSessionContent() {
     const id = setTimeout(() => setCountdownLeft((n) => Math.max(0, n - 1)), 1000);
     return () => clearTimeout(id);
   }, [countdownLeft]);
+
+  // Отсчёт кончился — отпускаем разговор. Если соединение уже готово, MAX
+  // заговорит сразу; если ещё нет — заговорит, как только поднимется.
+  // Отмена ставит countdownLeft в 0 так же, как естественный конец отсчёта.
+  // Без этого флага выход по «Отменить» снимал бы удержание, и MAX успевал
+  // заговорить уже на уходе с экрана.
+  const countdownCancelledRef = useRef(false);
+  useEffect(() => {
+    if (countdownFrom <= 0 || countdownLeft > 0 || countdownCancelledRef.current) return;
+    DebugLogger.info('[MAX-CALL]', 'отсчёт завершён — снимаем удержание, разговор начинается');
+    clientRef.current?.holdStart(false);
+  }, [countdownFrom, countdownLeft]);
 
   const breathing = phase === 'connecting' || phase === 'thinking';
   const hint = maxVoicePhaseLabel(phase, uiState.eqOwner, lang);
@@ -1647,6 +1668,7 @@ function MaxCallSessionContent() {
               // Отмена = обычный выход со звонка. Минуты не тратятся: сервер
               // считает секунды от первой реплики MAX, а не от соединения.
               DebugLogger.info('[MAX-CALL]', `отсчёт отменён на ${countdownLeft}с — урок не начат`);
+              countdownCancelledRef.current = true;
               setCountdownLeft(0);
               safeRouterBack(router, '/max_lessons');
             }}

@@ -85,8 +85,11 @@ export default function MaxLessonCountdown({
       style={{
         position: 'absolute',
         left: 0, right: 0, top: 0, bottom: 0,
-        // Экран звонка виден позади приглушённым: человек понимает, куда попал.
-        backgroundColor: 'rgba(12,11,20,0.82)',
+        // ПЛОТНЫЙ фон, не полупрозрачный. Прозрачность (была 0.82) показывала
+        // сквозь отсчёт весь экран звонка — «Цель урока», микрофон, кнопку
+        // назад: выглядело как наложение двух экранов, а не как отсчёт.
+        // Цвет берём из темы, чтобы он совпал с фоном приложения.
+        backgroundColor: t.bgPrimary,
         alignItems: 'center',
         justifyContent: 'center',
         gap: 26,

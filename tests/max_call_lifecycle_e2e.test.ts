@@ -1111,3 +1111,45 @@ describe('E2E: причины завершения на границе клие�
     expect(h.endCalls[0].endReason).toBe('capped');
   });
 });
+
+// ── Удержание старта на время экранного отсчёта ─────────────────────────────
+
+describe('E2E: отсчёт «урок начинается» придерживает разговор', () => {
+  it('под отсчёт MAX молчит и биллинг не начат, после — говорит', async () => {
+    // Владелец 2026-09-01: «прогрев закончился раньше, и таймер ещё на экране,
+    // а он уже говорит на фоне — так нельзя». Соединение при этом не ждём:
+    // прогрев ценен, он убирает паузу перед первой фразой.
+    const h = createHarness();
+    h.client.holdStart(true);
+    await bringUpCall(h);
+    const dc = h.pc().dc;
+
+    // Соединение поднялось, но приветствия нет — и heartbeat не ушёл,
+    // а именно он открывает счёт минут (activatedAtMs на сервере).
+    expect(dc.sentOfType('response.create')).toHaveLength(0);
+
+    h.client.holdStart(false);
+    // Отсчёт кончился — говорим сразу, соединение уже готово.
+    expect(dc.sentOfType('response.create')).toHaveLength(1);
+
+    await h.client.end();
+  });
+
+  it('без удержания поведение прежнее: приветствие сразу', async () => {
+    const h = createHarness();
+    await bringUpCall(h);
+    expect(h.pc().dc.sentOfType('response.create')).toHaveLength(1);
+    await h.client.end();
+  });
+
+  it('отпустить дважды не делает двух приветствий', async () => {
+    // Защита от гонки: эффект экрана может сработать повторно.
+    const h = createHarness();
+    h.client.holdStart(true);
+    await bringUpCall(h);
+    h.client.holdStart(false);
+    h.client.holdStart(false);
+    expect(h.pc().dc.sentOfType('response.create')).toHaveLength(1);
+    await h.client.end();
+  });
+});

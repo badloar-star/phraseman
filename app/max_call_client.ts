@@ -463,6 +463,18 @@ export interface MaxCallClient {
   /** Аккумулятор usage-токенов из response.done (для heartbeat/сеттлмента). */
   usageTotals(): VoiceUsageTotals;
   start(req: MaxVoiceMintRequest): Promise<void>;
+  /**
+   * Придержать начало разговора, пока на экране идёт отсчёт «урок начинается».
+   *
+   * зачем (владелец 2026-09-01): «прогрев закончился раньше, и таймер ещё на
+   * экране, а он уже говорит на фоне — так нельзя». Соединение мы НЕ
+   * задерживаем (прогрев ценен, он и убирает паузу перед первой фразой),
+   * но приветствие и первый heartbeat ждут конца отсчёта.
+   *
+   * Первый heartbeat — это ещё и начало биллинга (activatedAtMs), поэтому
+   * удержание заодно чинит списание минут за секунды отсчёта.
+   */
+  holdStart(hold: boolean): void;
   /** Мьют локального микрофона (grace при blur, reconnect-фаза 1). */
   setMuted(muted: boolean): void;
   /**
@@ -570,6 +582,11 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
   // (response.done + output_audio_buffer.stopped в любом порядке), либо по
   // страховочному таймеру, либо явным unmute юзера / реконнектом.
   let greetingHold = false;
+  // Удержание старта разговора на время экранного отсчёта: соединение идёт,
+  // но MAX молчит и биллинг не начат. startPending — «соединились, пока ждали».
+  let startHeld = false;
+  let startPending = false;
+  let conversationBegun = false;
   let greetingResponseDone = false;
   let greetingAudioStarted = false;
   let greetingAudioStopped = false;
@@ -1009,10 +1026,28 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     if (deps.onLevels) statsTimer = setInterval(pollStats, MAX_CALL_STATS_POLL_MS);
     setPhase('active');
     emitUi({ type: 'connected' });
-    // Первый heartbeat — СРАЗУ («алло», elapsed 0). зачем: минт может быть
-    // сделан заранее на пре-экране (premint), и сервер считает секунды разговора
-    // от первого heartbeat (activatedAtMs), а не от минта — иначе раздумья
-    // перед тапом списывались бы как разговор. Фоновый вызов, UI не ждёт.
+    // Разговор начинается отдельно: пока на экране идёт отсчёт, MAX молчит и
+    // счётчик минут не запущен. Соединение при этом уже готово — когда отсчёт
+    // кончится, первая фраза прозвучит без паузы на прогрев.
+    if (startHeld) {
+      startPending = true;
+      return;
+    }
+    beginConversation();
+  }
+
+  /**
+   * Начало РАЗГОВОРА (не соединения): первый heartbeat и приветствие.
+   *
+   * Первый heartbeat — СРАЗУ («алло», elapsed 0). зачем: минт может быть
+   * сделан заранее на пре-экране (premint), и сервер считает секунды разговора
+   * от первого heartbeat (activatedAtMs), а не от минта — иначе раздумья
+   * перед тапом списывались бы как разговор. Фоновый вызов, UI не ждёт.
+   */
+  function beginConversation(): void {
+    if (isTornDown() || conversationBegun) return;
+    conversationBegun = true;
+    startPending = false;
     sendHeartbeat();
     // Микрофон закрыт на время приветствия — см. MAX_CALL_GREETING_HOLD_MAX_MS.
     beginGreetingHold();
@@ -1024,6 +1059,12 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
         instructions: mint?.tutor?.greetingInstructions || INITIAL_GREETING_INSTRUCTIONS,
         max_output_tokens: INJECTED_MAX_TOKENS,
     });
+  }
+
+  function holdStart(hold: boolean): void {
+    startHeld = hold;
+    // Отсчёт кончился, а соединение успело подняться — говорим прямо сейчас.
+    if (!hold && startPending) beginConversation();
   }
 
   function requestResponse(response?: Record<string, unknown>): boolean {
@@ -1769,6 +1810,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     mintResult: () => mint,
     usageTotals: () => ({ ...usage }),
     start,
+    holdStart,
     setMuted,
     bargeIn,
     sendWrapUp,

@@ -268,9 +268,15 @@ describe('createTutorToolRunner', () => {
     transfer.handle('mark_goal_progress', { goal_id: 'a1_greet', mastery: 3, transfer_evidence: 'scene' });
     expect(transfer.goalProgress()).toEqual({ goalId: 'a1_greet', mastery: 3, evidence: 'scene', sceneId: 'a1_one' });
 
-    const invented = makeRunner({ id: 'a1_family', mastery: 2, sceneIds: [] }).runner;
-    invented.handle('mark_goal_progress', { goal_id: 'a1_family', mastery: 3, transfer_evidence: 'novel_context' });
-    expect(invented.goalProgress()).toEqual({ goalId: 'a1_family', mastery: 3, evidence: 'novel_context' });
+    // Третья звезда — ТОЛЬКО за сцену (владелец 2026-09-01). Раньше её открывал
+    // и 'novel_context', но клиент подтверждал «3/3», а сервер ставил 2:
+    // ученик слышал обещание трёх звёзд и видел две.
+    const invented = makeRunner({ id: 'a1_family', mastery: 2, sceneIds: ['a1_one'] }).runner;
+    const out = invented.handle('mark_goal_progress', {
+      goal_id: 'a1_family', mastery: 3, transfer_evidence: 'novel_context',
+    });
+    expect(out.output).toContain('approved transfer scene');
+    expect(invented.goalProgress()).toEqual({ goalId: 'a1_family', mastery: 2 });
   });
 
   it('assign_homework без значения отклоняется целиком; полные пары уходят в тренажёр', () => {

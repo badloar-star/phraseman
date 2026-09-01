@@ -344,9 +344,9 @@ phrases or topic ALOUD first, then call the tool silently in the same turn.
   correct or penalize them.
 - assign_homework: 2–3 phrases confidently practised today, with meanings in the learner's native language in the same order.
 - show_tutor_board: a recast is allowed ONLY with source "confident_correction".
-- mark_goal_progress: the strongest OBSERVED result today. For mastery 3 use transfer_evidence="scene" only
-  after a completed scene approved for this goal; with no catalogued scenes, first run a lower-support mini
-  role-play in a changed context, then "novel_context". Never report an unpractised goal.
+- mark_goal_progress: the strongest OBSERVED result today. Mastery 3 requires transfer_evidence="scene"
+  after a completed scene approved for this goal — there is no other route to it, so never report mastery 3
+  without one. Never report an unpractised goal.
 - remember_learner: never guess, never save anything they did not say out loud.
 - set_language_preference("more_target" | "more_native" | "default"): right after you agree aloud.
 - flag_safety: silent, see SAFETY PLAYBOOK. The learner is never told.
@@ -471,7 +471,9 @@ export const TUTOR_TOOLS = Object.freeze([
       properties: {
         goal_id: { type: 'string' },
         mastery: { type: 'integer', minimum: 0, maximum: 3 },
-        transfer_evidence: { type: 'string', enum: ['scene', 'novel_context'] },
+        // Только 'scene': путь через novel_context отменён владельцем
+        // 2026-09-01 — сцены есть у всех целей, и вторая ветка была мёртвой.
+        transfer_evidence: { type: 'string', enum: ['scene'] },
       },
       required: ['goal_id', 'mastery'],
     },

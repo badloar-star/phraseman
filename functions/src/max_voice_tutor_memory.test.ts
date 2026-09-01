@@ -22,6 +22,7 @@ import {
   voiceTutorMemoryDocId,
 } from './max_voice_tutor_memory';
 import { parseProductCharter } from './jarvis/product_charter';
+import { CAN_DO_GOALS } from './max_voice_can_do_goals';
 
 const NOW = 1_800_000_000_000;
 const DAY = 86_400_000;
@@ -156,10 +157,14 @@ describe('mergeTutorMemory', () => {
       goalId: 'a1_greet', mastery: 3, evidence: 'scene', sceneId: 'first_meeting',
     }, 'done', 'a1_greet')).toEqual({ a1_greet: 3 });
 
-    const inventedAtTwo = { a1_family: 2 };
-    expect(applyGoalProgress(inventedAtTwo, {
-      goalId: 'a1_family', mastery: 3, evidence: 'novel_context',
-    }, '', 'a1_family')).toEqual({ a1_family: 3 });
+    // Третья звезда даётся ТОЛЬКО за выполненную сцену переноса: путь через
+    // «novel_context» отменён владельцем 2026-09-01, когда выяснилось, что он
+    // недостижим — сцены есть у всех целей.
+    const withScene = CAN_DO_GOALS.find((g) => g.sceneIds.length > 0);
+    if (!withScene) throw new Error('нет ни одной цели со сценой — пересмотри проверку');
+    expect(applyGoalProgress({ [withScene.id]: 2 }, {
+      goalId: withScene.id, mastery: 3, evidence: 'novel_context',
+    }, '', withScene.id)).toEqual({ [withScene.id]: 2 });
   });
   it('свежие факты и ошибки — впереди, решённые ошибки уходят, домашка заменяется, счётчик растёт', () => {
     const prev = parseTutorMemory({
@@ -491,5 +496,15 @@ describe('lastTalkSummary', () => {
   it('парсер отбрасывает чувствительный сохранённый текст', () => {
     expect(parseTutorMemory({ lastTalkSummary: 'my password is 12345' }).lastTalkSummary).toBe('');
     expect(parseTutorMemory({ lastTalkSummary: 'Talking about hobbies' }).lastTalkSummary).toBe('Talking about hobbies');
+  });
+});
+
+describe('каталог речевых целей', () => {
+  it('у каждой цели есть сцена переноса — иначе третья звезда недостижима', () => {
+    // зачем (владелец 2026-09-01): третью звезду открывает ТОЛЬКО выполненная
+    // сцена. Цель без сцен молча застрянет на двух звёздах навсегда — человек
+    // будет ходить на уроки и не понимать, почему прогресс не двигается.
+    const sceneless = CAN_DO_GOALS.filter((g) => g.sceneIds.length === 0).map((g) => g.id);
+    expect(sceneless).toEqual([]);
   });
 });

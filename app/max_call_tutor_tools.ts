@@ -423,15 +423,16 @@ export function createTutorToolRunner(deps: TutorToolRunnerDeps): TutorToolRunne
             goalProgress = { goalId, mastery, evidence: 'scene', sceneId: completedSceneId };
             return { output: `Goal ${goalId} mastery ${mastery}/3 recorded.`, respond: false };
           }
-          if (evidence !== 'novel_context') {
-            goalProgress = { goalId, mastery: 2 };
-            return {
-              output: 'Mastery 3 needs a lower-support mini role-play in a new context. Mastery 2 recorded.',
-              respond: false,
-            };
-          }
-          goalProgress = { goalId, mastery, evidence: 'novel_context' };
-          return { output: `Goal ${goalId} mastery ${mastery}/3 recorded.`, respond: false };
+          // зачем (владелец 2026-09-01): третья звезда даётся ТОЛЬКО за
+          // выполненную сцену. Прежняя ветка подтверждала учителю «3/3
+          // записано» по evidence='novel_context', а сервер всё равно ставил 2
+          // (applyGoalProgress) — ученик слышал обещание трёх звёзд и видел
+          // две. Отвечаем ровно то, что реально зачтётся.
+          goalProgress = { goalId, mastery: 2 };
+          return {
+            output: 'Mastery 3 requires a completed transfer scene for this goal. Mastery 2 recorded.',
+            respond: false,
+          };
         }
         goalProgress = { goalId, mastery };
         return { output: `Goal ${goalId} mastery ${goalProgress.mastery}/3 recorded.`, respond: false };

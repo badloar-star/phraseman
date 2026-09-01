@@ -728,12 +728,20 @@ export function applyGoalProgress(
   // ступень требует уже накопленных доказательств и выполненной сцены переноса.
   let mastery = Math.min(requested, current + 1);
   if (mastery >= 3) {
+    // Третья звезда — ТОЛЬКО за выполненную сцену переноса.
+    //
+    // зачем (владелец 2026-09-01): раньше у целей без каталожных сцен третью
+    // звезду открывал «novel_context» — заявление учителя, что ученик применил
+    // умение где-то ещё. После того как все 78 целей получили свои сцены, эта
+    // ветка стала недостижимой, то есть мёртвым кодом с видимостью правила.
+    // Владелец выбрал один понятный путь для всех целей вместо двух.
+    //
+    // Цель без сцен теперь недостижима для тройки в принципе — это осознанно:
+    // добавите такую цель, сторож ниже (в тестах) о ней скажет.
     const evidence = String(progress.evidence ?? '').trim();
     const sceneId = String(progress.sceneId ?? '').trim();
-    const hasCataloguedScenes = goal.sceneIds.length > 0;
-    const validTransfer = hasCataloguedScenes
-      ? evidence === 'scene' && String(sceneOutcome ?? '') === 'done' && goal.sceneIds.includes(sceneId)
-      : evidence === 'novel_context';
+    const validTransfer =
+      evidence === 'scene' && String(sceneOutcome ?? '') === 'done' && goal.sceneIds.includes(sceneId);
     if (!validTransfer) mastery = 2;
   }
   if (mastery <= current) return prev;

@@ -117,8 +117,14 @@ test('the public API validates and rate-limits site reports before creating erro
   assert.doesNotMatch(reportBranch, /req\.body\s*\}/);
 });
 
-test('scheduled cleanup removes expired site-report rate buckets', () => {
+// зачем: дворник-крон заменён TTL-политикой Firestore (аудит расходов 2026-09-02).
+// Контракт теперь сторожит две вещи: коллекция жалоб числится в TTL-реестре
+// (иначе политику на неё никто не поставит), и в кодбазе нет ни одного
+// onSchedule — каждый крон здесь стоил денег и падал.
+test('site-report rate buckets expire through the Firestore TTL registry, not a cron', () => {
   const source = fs.readFileSync(path.join(__dirname, 'index.js'), 'utf8');
-  const cleanup = source.slice(source.indexOf('exports.cleanupEnglishTestAnalytics'));
-  assert.match(cleanup, /name:\s*'english_test_report_rate_limits',\s*field:\s*'expiresAt'/);
+  const registry = source.slice(source.indexOf('exports.ENGLISH_TEST_TTL_COLLECTIONS'));
+  assert.match(registry, /name:\s*'english_test_report_rate_limits',\s*field:\s*'expiresAt'/);
+  assert.doesNotMatch(source, /onSchedule\(/);
+  assert.doesNotMatch(source, /firebase-functions\/v2\/scheduler/);
 });

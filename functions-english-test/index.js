@@ -4,7 +4,6 @@
  */
 
 const { onRequest, onCall } = require('firebase-functions/v2/https');
-const { onSchedule } = require('firebase-functions/v2/scheduler');
 const { defineSecret } = require('firebase-functions/params');
 const { initializeApp } = require('firebase-admin/app');
 const { FieldValue, getFirestore } = require('firebase-admin/firestore');
@@ -899,55 +898,33 @@ function sanitizeAnalyticsResponse(data) {
   return safe;
 }
 
-// ---------- Scheduled Functions ----------
-
-exports.finalizeStaleEnglishTests = onSchedule({
-  schedule: 'every 30 minutes',
-  region: 'us-central1',
-  maxInstances: 1,
-}, async (event) => {
-  const staleTime = Date.now() - 45 * 60000; // 45 minutes
-  const snap = await db
-    .collection('english_test_attempts')
-    .where('status', '==', 'active')
-    .where('updatedAtMs', '<', staleTime)
-    .limit(500)
-    .get();
-
-  const batch = db.batch();
-  for (const doc of snap.docs) {
-    batch.update(doc.ref, {
-      status: 'abandoned',
-      updatedAtMs: Date.now(),
-    });
-  }
-  await batch.commit();
-  console.log(`Finalized ${snap.docs.length} stale attempts`);
-});
-
-exports.cleanupEnglishTestAnalytics = onSchedule({
-  schedule: 'every day 03:00',
-  region: 'us-central1',
-  maxInstances: 1,
-}, async (event) => {
-  const now = new Date();
-
-  const collections = [
-    { name: 'english_test_attempts', field: 'expiresAt' },
-    { name: 'english_test_clients', field: 'expiresAt' },
-    { name: 'english_test_daily', field: 'expiresAt' },
-    { name: 'english_test_rate_limits', field: 'expiresAt' },
-    { name: 'english_test_completion_rate_limits', field: 'expiresAt' },
-    { name: 'english_test_report_rate_limits', field: 'expiresAt' },
-  ];
-
-  for (const { name, field } of collections) {
-    const snap = await db.collection(name).where(field, '<', now).limit(500).get();
-    const batch = db.batch();
-    for (const doc of snap.docs) {
-      batch.delete(doc.ref);
-    }
-    await batch.commit();
-    console.log(`Cleaned up ${snap.docs.length} docs from ${name}`);
-  }
-});
+// ---------- Retention: Firestore TTL вместо кронов ----------
+//
+// зачем (владелец 2026-09-02, аудит расходов): здесь жили два крона.
+//
+//   finalizeStaleEnglishTests — каждые 30 минут помечал «активные» попытки,
+//   не обновлявшиеся 45 минут, как abandoned. Он ПАДАЛ КАЖДЫЙ ЗАПУСК с
+//   FAILED_PRECONDITION (нет составного индекса status+updatedAtMs), 48 раз в
+//   сутки, а 4–13 августа его контейнер оплачивался ~18 часов в день. При этом
+//   его результат ни на что не влиял: adminEnglishTestAnalytics считает
+//   'active' и 'abandoned' одинаково (оба = «начал»). Удалён без замены.
+//
+//   cleanupEnglishTestAnalytics — раз в сутки удалял документы с истёкшим
+//   expiresAt. Ту же работу бесплатно делает TTL-политика Firestore, функция
+//   для этого не нужна. Реестр ниже — единственный источник правды о том, на
+//   каких коллекциях должна стоять политика (поле всегда expiresAt, значение
+//   пишется как Date → Timestamp, что TTL и требует):
+//
+//     gcloud firestore fields ttls update expiresAt --enable-ttl \
+//       --collection-group=<name> --project=phraseman-ea0b3
+//
+// Возвращать onSchedule сюда нельзя: каждый крон = отдельное задание Cloud
+// Scheduler ($0.10/мес сверх трёх бесплатных) + холодные старты.
+exports.ENGLISH_TEST_TTL_COLLECTIONS = Object.freeze([
+  { name: 'english_test_attempts', field: 'expiresAt', days: ATTEMPT_TTL_DAYS },
+  { name: 'english_test_clients', field: 'expiresAt', days: CLIENT_TTL_DAYS },
+  { name: 'english_test_daily', field: 'expiresAt', days: DAILY_TTL_DAYS },
+  { name: 'english_test_rate_limits', field: 'expiresAt', days: 1 },
+  { name: 'english_test_completion_rate_limits', field: 'expiresAt', days: 1 },
+  { name: 'english_test_report_rate_limits', field: 'expiresAt', days: 1 },
+]);

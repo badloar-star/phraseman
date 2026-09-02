@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { maxConnectTrace } from './max_call_connect_trace';
 import {
   AccessibilityInfo,
   AppState,
@@ -57,6 +58,7 @@ import {
   abandonPremint,
   claimPremint,
   enqueueRelease,
+  setMaxCallLineBusy,
   isPremintUsable,
   mintAfterRelease,
   premintKey,
@@ -191,12 +193,27 @@ async function exchangeSdp(offerSdp: string, clientSecret: string): Promise<stri
     });
     const body = await res.text();
     if (!res.ok) {
+      // зачем (владелец 2026-09-02): статус и тело отказа realtime-endpoint
+      // жили только в __DEV__ — на боевой сборке причина исчезала, и «связь не
+      // установилась» нельзя было отличить от истёкшего токена или 429.
+      maxConnectTrace('sdp.http_error', {
+        status: res.status,
+        body: body.slice(0, 300),
+      });
       if (__DEV__) console.warn('[MAX Voice] SDP exchange failed', res.status, body.slice(0, 300));
       throw new Error(`sdp_exchange_http_${res.status}`);
     }
     return body;
   } catch (error) {
-    if (controller.signal.aborted) throw new Error('server_timeout');
+    if (controller.signal.aborted) {
+      maxConnectTrace('sdp.aborted', { timeoutMs: SDP_HTTP_TIMEOUT_MS });
+      throw new Error('server_timeout');
+    }
+    // ЗАПРЕТ немого пробрасывания: сетевые исключения (DNS, TLS, offline)
+    // приходили сюда без следа.
+    maxConnectTrace('sdp.threw', {
+      error: error instanceof Error ? error.message : String(error),
+    });
     throw error;
   } finally {
     clearTimeout(timeoutId);
@@ -404,6 +421,9 @@ function MaxCallSessionContent() {
     if (!native) {
       // OTA поверх бинарника без webrtc: вход должен был быть скрыт гейтом, но
       // прямой deeplink обязан деградировать честно, без краша.
+      maxConnectTrace('native.unavailable', {
+        note: 'loadMaxVoiceNative() returned null — see native.* steps above for the exact reason',
+      });
       if (__DEV__) console.warn('[MAX Voice] native_unavailable: rebuild the iOS development client');
       // Заготовку пре-экрана никто не заберёт — вернуть резерв серверу.
       abandonPremint(premintKey({ format, scenarioId, cefr, devMode, studyTarget: callStudyTarget }), releaseUnusedMint);
@@ -599,6 +619,12 @@ function MaxCallSessionContent() {
     // быстрое соединение успеет проскочить, и MAX заговорит под отсчёт.
     // Соединение при этом идёт как обычно — ждёт только начало разговора.
     if (countdownFromRef.current > 0) client.holdStart(true);
+    // зачем (владелец 2026-09-02, лог 20:23:07): экран уроков остаётся
+    // смонтированным под экраном звонка и его прогрев стрелял НАСТОЯЩИМ минтом
+    // прямо в живую сессию. Занимаем линию на всё время звонка — прогревы
+    // обязаны её пропустить (isMaxCallLineBusy), иначе они либо тратят платный
+    // вызов впустую, либо создают резерв, блокирующий следующий звонок.
+    setMaxCallLineBusy(true);
     void client.start({
       format,
       scenarioId: format === 'companion' ? undefined : scenarioId,
@@ -622,6 +648,9 @@ function MaxCallSessionContent() {
       if (graceTimerRef.current !== null) clearTimeout(graceTimerRef.current);
       for (const id of tutorNoteTimersRef.current) clearTimeout(id);
       tutorNoteTimersRef.current = [];
+      // Линию отпускаем ПЕРЕД end(): teardown асинхронный, а держать флаг до
+      // его конца значило бы глушить прогревы уже после ухода с экрана.
+      setMaxCallLineBusy(false);
       // Уход с экрана = завершение звонка (идемпотентно, сеттлмент — внутри).
       void client.end(endReasonRef.current);
     };

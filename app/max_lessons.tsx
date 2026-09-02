@@ -253,9 +253,21 @@ export default function MaxLessonsScreen() {
       goalId: lesson.id,
     };
     DebugLogger.info('[MAX-LESSONS]', `прогрев урока ${lesson.id} (${lesson.level})`);
-    void import('./max_call_premint').then(({ beginPremint, premintKey }) =>
+    void import('./max_call_premint').then(({ beginPremint, premintKey, isMaxCallLineBusy }) =>
       import('./max_call_mint_request').then(({ initialMintRequest, performMaxVoiceMint, releaseUnusedMint }) => {
         if (!isAiVoiceConsentGranted()) return;
+        // зачем (владелец 2026-09-02, лог 20:23:07): этот экран остаётся
+        // смонтированным под экраном звонка, и прогрев стрелял НАСТОЯЩИМ
+        // минтом в живую сессию — платный вызов впустую плюс мусорный
+        // voice_session_active. Хуже: успей он создать резерв, следующий
+        // звонок упёрся бы в него ровно как в исходном баге.
+        if (isMaxCallLineBusy()) {
+          // Ранний выход объясняет себя: прогрев вернётся сам, когда линия
+          // освободится (эффект перезапустится по смене рекомендации).
+          warmedRef.current = '';
+          DebugLogger.info('[MAX-LESSONS]', 'прогрев пропущен: идёт звонок, линия занята');
+          return;
+        }
         beginPremint(
           premintKey(callParams),
           () => performMaxVoiceMint(callParams, initialMintRequest(callParams)),

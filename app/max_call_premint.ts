@@ -99,6 +99,28 @@ export function isPremintUsable(mint: MaxVoiceMintResponse, createdAtMs: number,
 }
 
 /**
+ * Линия занята живым звонком: экран звонка держит её от старта до teardown.
+ *
+ * зачем (владелец 2026-09-02, лог 20:23:07): прогрев рекомендованного урока
+ * (max_lessons) создаёт НАСТОЯЩИЙ резерв и стрелял, пока звонок уже шёл —
+ * экран уроков остаётся смонтированным под экраном звонка, и его эффект
+ * перезапускался. Лучший исход такого выстрела — платный вызов впустую и
+ * мусорный voice_session_active в логах; ХУДШИЙ — прогрев успевает создать
+ * резерв и блокирует СЛЕДУЮЩИЙ звонок ровно так же, как в исходном баге.
+ */
+let callLineBusy = false;
+
+/** Экран звонка: занять линию (старт) и отпустить (teardown). Идемпотентно. */
+export function setMaxCallLineBusy(busy: boolean): void {
+  callLineBusy = busy;
+}
+
+/** Прогревам: можно ли сейчас трогать линию (создавать резерв). */
+export function isMaxCallLineBusy(): boolean {
+  return callLineBusy;
+}
+
+/**
  * Запустить заготовку. Живая (pending/handoff) заготовка с тем же ключом
  * переиспользуется — повторный mount пре-экрана не плодит минтов. Заготовка с
  * ДРУГИМ ключом отпускается через release: параллельных резервов не бывает.
@@ -172,6 +194,7 @@ export function enqueueRelease(task: () => Promise<void> | void): void {
 }
 
 export function __resetPremintForTests(): void {
+  callLineBusy = false;
   slot = null;
   releaseChain = Promise.resolve();
 }

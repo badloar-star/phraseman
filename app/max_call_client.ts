@@ -13,6 +13,11 @@
 // data channel в MaxCallUiEvent, ничего не выдумывая из локальных таймеров.
 
 import { DebugLogger } from './debug-logger';
+import {
+  maxConnectTrace,
+  maxConnectTraceBegin,
+  maxConnectTraceFail,
+} from './max_call_connect_trace';
 import type {
   MaxVoiceNativeModule,
   MediaStreamLike,
@@ -571,6 +576,24 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
   // ре-минта, chain — кап попыток, graceTimer — фаза 1 (4с тишины с мьютом).
   let startReq: MaxVoiceMintRequest | null = null;
   let chain: ReconnectChainState | null = null;
+  /**
+   * Минт, который сейчас в полёте (ещё не разрешился в `mint`).
+   *
+   * зачем (владелец 2026-09-02, лог voice_session_active ×5): teardown
+   * отправлял отчёт о завершении только при `mint !== null`. Уход с экрана
+   * ДО «алло» оставлял серверный резерв висеть, и следующие звонки того же
+   * человека били в свой же резерв — «не удалось установить связь» подряд,
+   * пока не протухнет окно. Ссылка на промис позволяет закрыть сессию, даже
+   * когда её session_id прилетел уже после ухода.
+   */
+  let inFlightMint: Promise<MaxVoiceMintResponse> | null = null;
+  /**
+   * true — закрытие позднего минта взял на себя teardown. Отдельный флаг, а не
+   * проверка `inFlightMint === null`: ссылка обнуляется и просто по разрешению
+   * промиса, и по этому признаку нельзя отличить «teardown забрал» от «минт
+   * доехал сам» — на такой догадке резерв снова остался бы висеть.
+   */
+  let teardownClaimedMint = false;
   let graceTimer: ReturnType<typeof setTimeout> | null = null;
   let reminting = false;
   // Мьют, который ПРОСИЛ юзер: grace-мьют реконнекта не должен «размьючивать»
@@ -1227,17 +1250,40 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
    * Кап чейна из limits минта (canReconnect/nextChain); исчерпан → failed.
    */
   async function doRemint(kind: 'auto' | 'manual'): Promise<void> {
-    if (isTornDown() || phase !== 'reconnecting' || reminting) return;
+    if (isTornDown() || phase !== 'reconnecting' || reminting) {
+      maxConnectTrace('remint.skipped', { kind, phase, reminting });
+      return;
+    }
     const prevMint = mint;
     if (!prevMint || !startReq || !chain) {
+      // Печатаем, ЧЕГО именно не хватило: три разные причины давали один текст.
+      maxConnectTrace('remint.no_state', {
+        kind,
+        hasMint: Boolean(prevMint),
+        hasStartReq: Boolean(startReq),
+        hasChain: Boolean(chain),
+      });
       showReconnectFailed('reconnect_exhausted');
       return;
     }
     const caps = reconnectCapsFromLimits(prevMint.limits);
     if (!canReconnect(chain, kind, caps)) {
+      maxConnectTrace('remint.cap_reached', {
+        kind,
+        autoCount: chain.autoCount,
+        manualCount: chain.manualCount,
+        capAuto: caps.auto,
+        capManual: caps.manual,
+      });
       showReconnectFailed('reconnect_exhausted');
       return;
     }
+    maxConnectTrace('remint.begin', {
+      kind,
+      attemptAuto: chain.autoCount,
+      attemptManual: chain.manualCount,
+      prevSessionId: prevMint.session_id,
+    });
     chain = nextChain(chain, kind);
     reminting = true;
 
@@ -1358,7 +1404,21 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
   }
 
   function showReconnectFailed(reason: string): void {
-    if (isTornDown()) return;
+    // зачем (владелец 2026-09-02): именно этот путь рисует экран «Не удалось
+    // восстановить связь». Он НЕ проходит через fail(), поэтому был полностью
+    // немым — самый частый видимый отказ не оставлял ни одной строки.
+    maxConnectTraceFail(`reconnect:${reason}`, {
+      phase,
+      autoCount: chain?.autoCount ?? -1,
+      manualCount: chain?.manualCount ?? -1,
+      sessionId: mint?.session_id ?? null,
+      iceState: pc?.iceConnectionState ?? 'no_pc',
+      dcState: dc?.readyState ?? 'no_dc',
+    });
+    if (isTornDown()) {
+      maxConnectTrace('reconnect_failed.ignored_torn_down', { phase });
+      return;
+    }
     reminting = false;
     if (graceTimer !== null) {
       clearTimeout(graceTimer);
@@ -1398,6 +1458,9 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     connection.oniceconnectionstatechange = () => {
       if (connection !== pc) return; // stale PC после ре-минта
       const state = connection.iceConnectionState;
+      // Печатаем САМО значение состояния: «связь не установилась» без него —
+      // догадка, а с ним видно, дошло ли ICE вообще до checking/connected.
+      maxConnectTrace('ice.state', { state: state ?? 'unknown', phase });
       if (state === 'disconnected' || state === 'failed') {
         // Фаза 1 реконнекта: grace 4с с мьютом локального трека, ничего не
         // рвём — мобильные сети часто восстанавливаются сами. Не ожило —
@@ -1425,7 +1488,15 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
 
   /** ICE и data channel сходятся в один контролируемый reconnect-путь. */
   function beginReconnect(): void {
-    if (phase !== 'active') return;
+    if (phase !== 'active') {
+      maxConnectTrace('reconnect.ignored_not_active', { phase });
+      return;
+    }
+    maxConnectTrace('reconnect.begin', {
+      iceState: pc?.iceConnectionState ?? 'no_pc',
+      dcState: dc?.readyState ?? 'no_dc',
+      graceMs: RECONNECT_GRACE_MS,
+    });
     // response.done мог потеряться вместе с линией. После восстановления UI
     // начинает новый ход, поэтому старый локальный lock не должен жить вечно.
     responseActive = false;
@@ -1564,6 +1635,31 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     }
     }
 
+    // Резерв мог быть создан сервером, а session_id ещё не долететь до клиента
+    // (уход с экрана в первые секунды, отказ минта после создания резерва).
+    // зачем (владелец 2026-09-02): без этого ветка ниже молчала при mint=null,
+    // и брошенный резерв блокировал СВОИ ЖЕ следующие звонки до истечения окна —
+    // ровно то, что в логах выглядело как пять voice_session_active подряд.
+    if (!mint && inFlightMint) {
+      const pending = inFlightMint;
+      inFlightMint = null;
+      teardownClaimedMint = true;
+      maxConnectTrace('teardown.awaiting_inflight_mint', { reason, failMessage });
+      void pending.then(
+        (lateMint) => {
+          maxConnectTrace('teardown.settled_inflight_mint', { sessionId: lateMint.session_id });
+          settleDetachedMint(lateMint, 0);
+        },
+        (e) => {
+          // Минт не состоялся — резерва нет, закрывать нечего. Причину пишем:
+          // немой путь здесь и породил исходный баг.
+          maxConnectTrace('teardown.inflight_mint_failed', {
+            error: e instanceof Error ? e.message : String(e),
+          });
+        },
+      );
+    }
+
     // Отчёт сеттлмента — один раз и только если сессия была заминчена
     // (до минта серверу нечего закрывать, release резерва делает preflight-слой).
     if (hadSession && mint) {
@@ -1600,25 +1696,58 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
   }
 
   function fail(message: string): Promise<void> {
+    // зачем (владелец 2026-09-02): ЛЮБОЙ отказ звонка проходит здесь. Раньше
+    // это была немая точка — человек видел «не удалось установить связь», а в
+    // логах не оставалось ни причины, ни фазы, на которой всё оборвалось.
+    maxConnectTraceFail(message, {
+      phase,
+      sessionId: mint?.session_id ?? null,
+      pcState: pc?.iceConnectionState ?? 'no_pc',
+      dcState: dc?.readyState ?? 'no_dc',
+      hasMint: Boolean(mint),
+      alreadyEnding: Boolean(endPromise),
+    });
     if (endPromise) return endPromise;
     endPromise = doTeardown('failed', message);
     return endPromise;
   }
 
   async function start(req: MaxVoiceMintRequest): Promise<void> {
-    if (phase !== 'idle') return; // Повторный start — программная ошибка, no-op.
+    if (phase !== 'idle') {
+      // Ранний выход обязан объяснять себя: «звонок не начался» без строки в
+      // логе неотличимо от «начался и упал».
+      maxConnectTrace('start.ignored_not_idle', { phase });
+      return; // Повторный start — программная ошибка, no-op.
+    }
     startReq = req; // запоминаем для ре-минтов reconnect-чейна
+    // Идентификатор звонка до минта — только формат: серверный session_id
+    // ещё не выдан, а трасса обязана начинаться с самого первого шага.
+    maxConnectTraceBegin(`${req.format}:${req.scenarioId ?? req.requestedGoalId ?? 'auto'}`, {
+      format: req.format,
+      cefr: req.cefr ?? null,
+      studyTarget: req.studyTarget ?? null,
+      isReconnect: Boolean(req.reconnectOf),
+      devMode: Boolean(req.devMode),
+    });
 
     setPhase('preflight');
     if (deps.preflight) {
       try {
         await deps.preflight();
-      } catch {
+        maxConnectTrace('preflight.ok');
+      } catch (e) {
+        // ЗАПРЕТ немого catch: раньше причина преflight-отказа терялась целиком.
+        maxConnectTrace('preflight.threw', {
+          error: e instanceof Error ? e.message : String(e),
+        });
         await fail('preflight_failed');
         return;
       }
     }
-    if (isTornDown()) return;
+    if (isTornDown()) {
+      maxConnectTrace('start.torn_down_after_preflight');
+      return;
+    }
 
     setPhase('minting');
     // Настраиваем voiceChat + speaker до создания микрофонного трека. Это
@@ -1629,6 +1758,13 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     const offerPromise = createLocalOffer();
 
     const mintPromise = deps.mint(req);
+    // Держим ссылку, пока минт не разрешится: teardown обязан уметь закрыть
+    // резерв, о котором клиент ещё не знает (см. inFlightMint).
+    inFlightMint = mintPromise;
+    teardownClaimedMint = false;
+    void mintPromise.catch(() => undefined).then(() => {
+      if (inFlightMint === mintPromise) inFlightMint = null;
+    });
     const startResults = Promise.allSettled([offerPromise, mintPromise]);
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
     const timeout = new Promise<'timeout'>((resolve) => {
@@ -1637,12 +1773,19 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     const settled = await Promise.race([startResults, timeout]);
     if (timeoutId !== null) clearTimeout(timeoutId);
 
+    maxConnectTrace('start.race_settled', {
+      outcome: settled === 'timeout' ? 'timeout' : 'settled',
+      timeoutMs: MAX_CALL_START_TIMEOUT_MS,
+    });
     if (settled === 'timeout') {
       // Оба исходных промиса продолжают жить. Поздний локальный ресурс закрываем,
       // поздний успешный минт немедленно сеттлим — резерв не ждёт watchdog.
       // createLocalOffer публикует PC/stream сразу: fail() закрывает готовые
       // ресурсы, а helper сам дочистит те, что появятся уже после teardown.
       void offerPromise.catch(() => {});
+      // Владение поздним минтом остаётся ЗДЕСЬ: снимаем ссылку, иначе teardown
+      // ниже закроет ту же сессию вторым отчётом (двойной settle).
+      if (inFlightMint === mintPromise) inFlightMint = null;
       void mintPromise.then((lateMint) => settleDetachedMint(lateMint, 0)).catch(() => {});
       await fail('server_timeout');
       return;
@@ -1652,10 +1795,29 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     if (isTornDown()) {
       // end() мог завершиться, пока mint/offer ещё исполнялись. Локальные
       // ресурсы уже закрыты teardown/helper'ом, но поздний серверный резерв
-      // нужно закрыть явно — основной teardown его ещё не видел.
-      if (mintResultState.status === 'fulfilled') settleDetachedMint(mintResultState.value);
+      // нужно закрыть явно — если основной teardown его ещё не видел.
+      // Если его уже забрал teardown (teardownClaimedMint), закрытие за ним:
+      // повторный settle здесь дал бы второй отчёт по той же сессии.
+      if (inFlightMint === mintPromise) inFlightMint = null;
+      const settleHere = mintResultState.status === 'fulfilled' && !teardownClaimedMint;
+      if (settleHere) settleDetachedMint(mintResultState.value);
+      maxConnectTrace('start.torn_down_after_race', {
+        mintStatus: mintResultState.status,
+        teardownClaimedMint,
+        settledHere: settleHere,
+      });
       return;
     }
+    maxConnectTrace('start.offer_and_mint', {
+      offerStatus: offerResult.status,
+      mintStatus: mintResultState.status,
+      offerError: offerResult.status === 'rejected'
+        ? String((offerResult.reason as Error)?.message ?? offerResult.reason)
+        : null,
+      mintError: mintResultState.status === 'rejected'
+        ? String((mintResultState.reason as Error)?.message ?? mintResultState.reason)
+        : null,
+    });
     if (offerResult.status === 'rejected' || mintResultState.status === 'rejected') {
       // Если сервер уже выдал токен/резерв, делаем его видимым teardown до fail.
       if (mintResultState.status === 'fulfilled') mint = mintResultState.value;
@@ -1673,6 +1835,8 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     // createLocalOffer уже опубликовал PC/DC/stream для безопасного
     // конкурентного teardown; здесь закрепляем только серверную сессию.
     mint = mintResult;
+    // Сессия закреплена: дальше её закрывает обычная ветка teardown по `mint`.
+    if (inFlightMint === mintPromise) inFlightMint = null;
     // Корень reconnect-чейна — первая сессия: по нему сервер связывает биллинг.
     chain = makeReconnectChain(mintResult.session_id);
     channel.onmessage = (event) => handleDcMessage(event?.data);
@@ -1683,24 +1847,56 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
 
     setPhase('connecting');
     let answerSdp: string;
+    const sdpStartedAt = Date.now();
+    maxConnectTrace('sdp.request', {
+      sessionId: mintResult.session_id,
+      offerSdpLen: local.offerSdp.length,
+    });
     try {
       answerSdp = await deps.exchangeSdp(local.offerSdp, mintResult.value);
+      maxConnectTrace('sdp.answer_ok', {
+        durationMs: Date.now() - sdpStartedAt,
+        answerSdpLen: answerSdp.length,
+      });
     } catch (error) {
       const detail = String((error as Error)?.message ?? '');
+      maxConnectTrace('sdp.answer_failed', {
+        durationMs: Date.now() - sdpStartedAt,
+        detail,
+      });
       await fail(detail === 'server_timeout' ? 'server_timeout' : 'sdp_exchange_failed');
       return;
     }
-    if (isTornDown()) return;
+    if (isTornDown()) {
+      maxConnectTrace('start.torn_down_after_sdp');
+      return;
+    }
 
     setPhase('configuring');
     try {
       await connection.setRemoteDescription({ type: 'answer', sdp: answerSdp });
-    } catch {
+      maxConnectTrace('remote_description.ok', {
+        iceState: connection.iceConnectionState ?? 'unknown',
+        dcState: channel.readyState ?? 'unknown',
+      });
+    } catch (e) {
+      // ЗАПРЕТ немого catch: сюда приходят самые непонятные отказы стека.
+      maxConnectTrace('remote_description.threw', {
+        error: e instanceof Error ? e.message : String(e),
+      });
       await fail('set_remote_description_failed');
       return;
     }
     connectTimer = setTimeout(() => {
       connectTimer = null;
+      // Ключевой кадр диагностики: если звонок «не соединился», ровно здесь
+      // видно, чего именно не дождались — открытия data channel или ICE.
+      maxConnectTrace('connect_timer.fired', {
+        phase,
+        iceState: connection.iceConnectionState ?? 'unknown',
+        dcState: channel.readyState ?? 'unknown',
+        timeoutMs: MAX_CALL_CONNECT_TIMEOUT_MS,
+      });
       if (phase === 'configuring') void fail('connection_timeout');
     }, MAX_CALL_CONNECT_TIMEOUT_MS);
     // Data channel мог открыться до того, как мы навесили onopen (гонка в

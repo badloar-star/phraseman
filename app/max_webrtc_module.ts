@@ -13,6 +13,8 @@
 // означает «MAX-звонок на этом бинарнике невозможен» — вход скрывается
 // (max_voice_flags.isMaxVoiceEntryVisible), остаётся текст/half-duplex.
 
+import { maxConnectTrace } from './max_call_connect_trace';
+
 /** Аудио-трек (локальный микрофон или remote-голос ИИ). */
 export interface MediaStreamTrackLike {
   /** Мьют без остановки трека: enabled=false шлёт тишину (barge-in, grace). */
@@ -81,9 +83,18 @@ function guardedRequireWebRtc(): Record<string, unknown> | null {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const mod: unknown = require('react-native-webrtc');
-    if (mod === null || typeof mod !== 'object') return null;
+    if (mod === null || typeof mod !== 'object') {
+      // зачем: без этой строки «нет нативного WebRTC» было неотличимо от
+      // «пакет есть, но отдал не объект» — оба выхода молчали одинаково.
+      maxConnectTrace('native.webrtc.bad_export', { typeofMod: typeof mod });
+      return null;
+    }
     return mod as Record<string, unknown>;
-  } catch {
+  } catch (e) {
+    // ЗАПРЕТ немого catch: именно пустой catch месяцами прятал причину.
+    maxConnectTrace('native.webrtc.require_threw', {
+      error: e instanceof Error ? e.message : String(e),
+    });
     return null;
   }
 }
@@ -92,9 +103,15 @@ function guardedRequireInCall(): Record<string, unknown> | null {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const mod: unknown = require('react-native-incall-manager');
-    if (mod === null || typeof mod !== 'object') return null;
+    if (mod === null || typeof mod !== 'object') {
+      maxConnectTrace('native.incall.bad_export', { typeofMod: typeof mod });
+      return null;
+    }
     return mod as Record<string, unknown>;
-  } catch {
+  } catch (e) {
+    maxConnectTrace('native.incall.require_threw', {
+      error: e instanceof Error ? e.message : String(e),
+    });
     return null;
   }
 }
@@ -106,20 +123,40 @@ function guardedRequireInCall(): Record<string, unknown> | null {
  */
 export function loadMaxVoiceNative(): MaxVoiceNativeModule | null {
   const webrtc = guardedRequireWebRtc();
-  if (!webrtc) return null;
+  if (!webrtc) return null; // причина уже записана внутри guardedRequireWebRtc
   const RTCPeerConnection = webrtc.RTCPeerConnection;
   const mediaDevices = webrtc.mediaDevices as
     | { getUserMedia?: unknown }
     | undefined;
   // Guard против стаба без нужных методов (пакет есть, нативной части нет).
-  if (typeof RTCPeerConnection !== 'function') return null;
-  if (!mediaDevices || typeof mediaDevices.getUserMedia !== 'function') return null;
+  // зачем: раньше эти три выхода были немыми и неразличимыми — «звонок
+  // невозможен» приходило без ответа на вопрос ПОЧЕМУ именно.
+  if (typeof RTCPeerConnection !== 'function') {
+    maxConnectTrace('native.webrtc.no_peer_connection', {
+      typeofRTCPeerConnection: typeof RTCPeerConnection,
+      exportKeys: Object.keys(webrtc).slice(0, 20).join(','),
+    });
+    return null;
+  }
+  if (!mediaDevices || typeof mediaDevices.getUserMedia !== 'function') {
+    maxConnectTrace('native.webrtc.no_get_user_media', {
+      hasMediaDevices: Boolean(mediaDevices),
+      typeofGetUserMedia: typeof mediaDevices?.getUserMedia,
+    });
+    return null;
+  }
 
   const incall = guardedRequireInCall();
-  if (!incall) return null;
+  if (!incall) return null; // причина уже записана внутри guardedRequireInCall
   // incall-manager экспортирует инстанс дефолтом; старые сборки — напрямую.
   const InCallManager = (incall.default ?? incall) as InCallManagerLike | null;
-  if (!InCallManager || typeof InCallManager.start !== 'function') return null;
+  if (!InCallManager || typeof InCallManager.start !== 'function') {
+    maxConnectTrace('native.incall.no_start', {
+      hasInstance: Boolean(InCallManager),
+      typeofStart: typeof InCallManager?.start,
+    });
+    return null;
+  }
 
   return {
     RTCPeerConnection: RTCPeerConnection as MaxVoiceNativeModule['RTCPeerConnection'],

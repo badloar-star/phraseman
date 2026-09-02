@@ -1032,3 +1032,65 @@ describe('учитель: function calling, system notes, endAfterAudio', () => 
     expect(JSON.stringify(greeting)).toContain('Start the lesson now (tutor).');
   });
 });
+
+// зачем (владелец 2026-09-02, лог: пять voice_session_active подряд): teardown
+// отправлял отчёт о завершении ТОЛЬКО при mint !== null. Уход с экрана до того,
+// как минт разрешился, оставлял серверный резерв висеть — и следующие звонки
+// ТОГО ЖЕ человека били в свой же резерв, показывая «не удалось установить
+// связь», пока не протухнет окно неактивированного резерва (45с).
+describe('брошенный резерв: teardown до ответа минта', () => {
+  it('закрывает сессию, чей session_id прилетел уже ПОСЛЕ ухода с экрана', async () => {
+    const lateMint: MaxVoiceMintResponse = {
+      value: 'late-secret',
+      session_id: 'sess-late',
+      max_seconds: 300,
+      wrapUpText: '[WRAP_UP]',
+    };
+    // Держатель в объекте: присваивание внутри исполнителя промиса TS сужает
+    // до never, если писать в `let` напрямую.
+    const gate: { resolve: (value: MaxVoiceMintResponse) => void } = { resolve: () => {} };
+    const h = makeHarness({
+      mint: jest.fn().mockImplementation(
+        () => new Promise<MaxVoiceMintResponse>((resolve) => { gate.resolve = resolve; }),
+      ),
+    });
+    const client = createMaxCallClient(h.deps);
+    void client.start({ format: 'scenario', scenarioId: 'coffee', cefr: 'A2' });
+    await Promise.resolve();
+
+    // Человек уходит с экрана, пока минт ещё в полёте.
+    await client.end('dropped');
+    expect(h.deps.end).not.toHaveBeenCalled();
+
+    // Сервер всё-таки выдал резерв — его обязаны закрыть, иначе он заблокирует
+    // следующие звонки этого же человека.
+    gate.resolve(lateMint);
+    await Promise.resolve();
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(h.deps.end).toHaveBeenCalledWith(
+      expect.objectContaining({ sessionId: 'sess-late', endReason: 'dropped', elapsedSec: 0 }),
+    );
+  });
+
+  it('не зовёт end, когда минт упал — резерва нет, закрывать нечего', async () => {
+    const gate: { reject: (reason: Error) => void } = { reject: () => {} };
+    const h = makeHarness({
+      mint: jest.fn().mockImplementation(
+        () => new Promise<MaxVoiceMintResponse>((_resolve, reject) => { gate.reject = reject; }),
+      ),
+    });
+    const client = createMaxCallClient(h.deps);
+    void client.start({ format: 'scenario', scenarioId: 'coffee', cefr: 'A2' });
+    await Promise.resolve();
+
+    await client.end('dropped');
+    gate.reject(new Error('voice_session_active'));
+    await Promise.resolve();
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(h.deps.end).not.toHaveBeenCalled();
+  });
+});

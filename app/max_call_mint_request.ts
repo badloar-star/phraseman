@@ -9,6 +9,7 @@
 // резолвит. Здесь — единственная реализация.
 
 import { getApp } from '@react-native-firebase/app';
+import { maxConnectTrace } from './max_call_connect_trace';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
@@ -299,6 +300,13 @@ export async function performMaxVoiceMint(
   params: MaxCallParams,
   req: MaxVoiceMintRequest,
 ): Promise<MaxVoiceMintResponse> {
+  const startedAt = Date.now();
+  maxConnectTrace('mint.request', {
+    format: params.format,
+    cefr: params.cefr ?? null,
+    scenarioId: req.scenarioId ?? null,
+    isReconnect: Boolean(req.reconnectOf),
+  });
   try {
     const extras = params.format === 'tutor'
       ? await buildTutorMintExtras(params)
@@ -306,10 +314,29 @@ export async function performMaxVoiceMint(
     const data = await maxVoiceCallable<unknown>('maxVoiceMint')(
       { ...extras, ...req } as unknown as Record<string, unknown>,
     );
-    return parseMintResponse(data);
+    const parsed = parseMintResponse(data);
+    maxConnectTrace('mint.ok', {
+      durationMs: Date.now() - startedAt,
+      sessionId: parsed.session_id,
+      hasSecret: Boolean(parsed.value),
+    });
+    return parsed;
   } catch (error) {
+    const reason = maxVoiceFailureReason(error, 'mint_failed');
+    // зачем (владелец 2026-09-02): reason схлопывает любую серверную ошибку в
+    // 'mint_failed', а сырая причина (код callable, message, details) была
+    // видна только в __DEV__ — на боевой сборке терялась навсегда. Теперь она
+    // переживает перезапуск: без неё «не удалось установить связь» неразличимо
+    // между квотой, авторизацией, сетью и падением функции.
+    maxConnectTrace('mint.failed', {
+      durationMs: Date.now() - startedAt,
+      reason,
+      code: (error as { code?: unknown })?.code ?? null,
+      message: error instanceof Error ? error.message : String(error),
+      details: (error as { details?: unknown })?.details ?? null,
+    });
     if (__DEV__) console.warn('[MAX Voice] mint failed', error);
-    throw new MaxVoiceStageError(maxVoiceFailureReason(error, 'mint_failed'), error);
+    throw new MaxVoiceStageError(reason, error);
   }
 }
 

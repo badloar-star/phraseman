@@ -10,8 +10,10 @@ import {
   abandonPremint,
   beginPremint,
   claimPremint,
+  isMaxCallLineBusy,
   isPremintUsable,
   markPremintHandoff,
+  setMaxCallLineBusy,
   mintAfterRelease,
   premintKey,
 } from '../app/max_call_premint';
@@ -175,5 +177,34 @@ describe('очередь release → следующий минт (защита �
     await flush();
     expect(fresh).toHaveBeenCalledTimes(1);
     await expect(promise).resolves.toMatchObject({ session_id: 's2' });
+  });
+});
+
+// зачем (владелец 2026-09-02, лог 20:23:07): прогрев рекомендованного урока на
+// экране «Уроки с МАКСом» создаёт НАСТОЯЩИЙ резерв (performMaxVoiceMint) и
+// стрелял, пока звонок уже шёл — экран остаётся смонтированным под экраном
+// звонка, и его эффект перезапускался. Лучший исход — платный вызов впустую и
+// мусорный voice_session_active; худший — прогрев успевает создать резерв и
+// блокирует СЛЕДУЮЩИЙ звонок ровно как в исходном баге.
+describe('линия занята живым звонком: прогревы её не трогают', () => {
+  beforeEach(() => {
+    __resetPremintForTests();
+  });
+
+  it('по умолчанию линия свободна', () => {
+    expect(isMaxCallLineBusy()).toBe(false);
+  });
+
+  it('экран звонка занимает линию и отпускает её', () => {
+    setMaxCallLineBusy(true);
+    expect(isMaxCallLineBusy()).toBe(true);
+    setMaxCallLineBusy(false);
+    expect(isMaxCallLineBusy()).toBe(false);
+  });
+
+  it('сброс для тестов освобождает линию — залипший флаг заглушил бы прогрев навсегда', () => {
+    setMaxCallLineBusy(true);
+    __resetPremintForTests();
+    expect(isMaxCallLineBusy()).toBe(false);
   });
 });

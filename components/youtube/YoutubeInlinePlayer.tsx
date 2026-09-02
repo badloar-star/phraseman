@@ -1,17 +1,21 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import type { WebViewMessageEvent } from 'react-native-webview';
 import WebView from 'react-native-webview';
 import {
   buildLingmanEmbedHtml,
+  LINGMAN_PLAYER_BRIDGE_SOURCE,
   LINGMAN_YOUTUBE_EMBED_BASE_URL,
 } from '../../app/lingman_youtube';
 import { getLingmanYoutubeChrome } from '../../app/lingman_youtube_chrome';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
+import { useVideoWatchEnergyBoost } from '../../hooks/use_video_watch_energy_boost';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity';
+import VideoEnergyBoostBadge from './VideoEnergyBoostBadge';
 
 const LINGMAN_WEBVIEW_ORIGIN_WHITELIST = [
   'https://www.youtube.com',
@@ -71,6 +75,22 @@ export default function YoutubeInlinePlayer({
   const [playerError, setPlayerError] = useState(false);
   const [playerKey, setPlayerKey] = useState(0);
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
+  // Ускорение восстановления энергии, пока видео реально играет (владелец
+  // 2026-09-02). Хук сам решает, положено ли оно этому человеку.
+  const { boostVisible, setPlaying } = useVideoWatchEnergyBoost();
+
+  // Родитель снимает active (ушли с экрана, свернули приложение, закрыли
+  // карточку) — WebView размонтируется и сообщения от него больше не придут.
+  // Гасим отсчёт сами, иначе последний отрезок остался бы «играющим».
+  useEffect(() => {
+    if (!active) setPlaying(false);
+  }, [active, setPlaying]);
+  // Смена ролика или перезапуск после ошибки — тоже пауза до нового плея.
+  useEffect(() => {
+    setPlaying(false);
+  }, [playerKey, setPlaying, videoId]);
+  // Размонтирование плеера закрывает отсчёт при любом пути ухода.
+  useEffect(() => () => setPlaying(false), [setPlaying]);
 
   const copy = useMemo(() => ({
     close: triLang(lang, { ru: 'Закрыть видео', uk: 'Закрити відео', en: 'Close video', es: 'Cerrar vídeo', 'pt-BR': 'Fechar vídeo', vi: 'Đóng video', id: 'Tutup video', tr: 'Videoyu kapat', pl: 'Zamknij wideo' }),
@@ -103,7 +123,28 @@ export default function YoutubeInlinePlayer({
     </View>
   ), [chrome.accent]);
   const handleLoadStart = useCallback(() => setPlayerError(false), []);
-  const handlePlayerError = useCallback(() => setPlayerError(true), []);
+  // зачем (владелец 2026-09-02): ускорение энергии обязано прекращаться при
+  // любой поломке плеера — иначе «сломанное видео» продолжало бы копить время.
+  const handlePlayerError = useCallback(() => {
+    setPlayerError(true);
+    setPlaying(false);
+  }, [setPlaying]);
+
+  // Мост из embed-HTML: единственный источник правды о том, играет ли видео.
+  const handlePlayerMessage = useCallback((event: WebViewMessageEvent) => {
+    const raw = event?.nativeEvent?.data;
+    if (typeof raw !== 'string' || raw.length === 0) return;
+    try {
+      const parsed = JSON.parse(raw) as { source?: unknown; type?: unknown; playing?: unknown };
+      // Чужие сообщения (сам YouTube шлёт свои) молча игнорируем — но только их.
+      if (parsed?.source !== LINGMAN_PLAYER_BRIDGE_SOURCE || parsed?.type !== 'playback') return;
+      setPlaying(parsed.playing === true);
+    } catch {
+      // Не JSON — это не наш мост (YouTube шлёт и свои сообщения). Пишем
+      // причину: без неё поломка моста однажды тихо остановит начисление.
+      if (__DEV__) console.log(`[VIDEO-ENERGY] bridge: unparsable message=${raw.slice(0, 64)}`);
+    }
+  }, [setPlaying]);
 
   if (!active) return null;
 
@@ -124,6 +165,7 @@ export default function YoutubeInlinePlayer({
           startInLoadingState
           renderLoading={renderLoading}
           onLoadStart={handleLoadStart}
+          onMessage={handlePlayerMessage}
           onError={handlePlayerError}
           onHttpError={handlePlayerError}
           onShouldStartLoadWithRequest={(request) => shouldKeepLingmanPlayerNavigationInApp(request.url)}
@@ -143,6 +185,10 @@ export default function YoutubeInlinePlayer({
           </TouchableOpacity>
         </View>
       )}
+      {/* Значок ускорения живёт внутри поверхности плеера, поэтому он одинаково
+          работает и в карточке, и в превью — во всех трёх местах, где плеер
+          монтируется (раздел «Видео», плейлист, карточка на Главной). */}
+      <VideoEnergyBoostBadge visible={boostVisible} testID="video-energy-boost-badge" />
       {presentation === 'preview' ? (
         <View pointerEvents="box-none" style={styles.previewActions}>
           {onClose ? (

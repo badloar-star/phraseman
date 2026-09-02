@@ -504,6 +504,21 @@ export async function markLingmanYoutubeSectionOpened(): Promise<void> {
   await AsyncStorage.setItem(STORAGE_LAST_OPENED_AT, String(Date.now()));
 }
 
+/**
+ * Тип сообщения, которое embed шлёт в RN через `window.ReactNativeWebView`.
+ * `playing` — видео реально идёт (YT.PlayerState.PLAYING), всё остальное — нет.
+ */
+export type LingmanPlayerBridgeMessage = {
+  source: 'lingman-player';
+  type: 'playback';
+  playing: boolean;
+  /** Сырое состояние YT для диагностики: -1 unstarted, 0 ended, 1 playing, 2 paused, 3 buffering, 5 cued. */
+  state: number;
+};
+
+/** Единый маркер моста — по нему RN отличает свои сообщения от чужих. */
+export const LINGMAN_PLAYER_BRIDGE_SOURCE = 'lingman-player';
+
 export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boolean } = {}): string {
   const baseOrigin = LINGMAN_YOUTUBE_EMBED_BASE_URL.replace(/\/$/, '');
   const playerParams = new URLSearchParams({
@@ -515,6 +530,11 @@ export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boo
   });
   if (options.autoplay) playerParams.set('autoplay', '1');
   const embedUrl = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?${playerParams.toString()}`;
+  // зачем (владелец 2026-09-02): ускорение энергии считается только пока видео
+  // РЕАЛЬНО играет, поэтому нужен честный сигнал play/pause. Берём его из
+  // YouTube IFrame API (enablejsapi уже был включён) и пробрасываем в RN одним
+  // маленьким сообщением. Никаких данных о пользователе не уходит — только
+  // «играет / не играет» и числовой код состояния для диагностики.
   return `<!doctype html>
 <html>
   <head>
@@ -527,11 +547,56 @@ export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boo
   </head>
   <body>
     <iframe
+      id="lingman-player"
       src="${embedUrl}"
       title="Phraseman YouTube video"
       allow="${options.autoplay ? 'autoplay; ' : ''}accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen
       referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <script>
+      (function () {
+        var lastPlaying = null;
+        function post(playing, state) {
+          if (lastPlaying === playing) return;
+          lastPlaying = playing;
+          try {
+            window.ReactNativeWebView && window.ReactNativeWebView.postMessage(JSON.stringify({
+              source: '${LINGMAN_PLAYER_BRIDGE_SOURCE}',
+              type: 'playback',
+              playing: playing,
+              state: state
+            }));
+          } catch (e) {
+            /* мост недоступен — плеер обязан продолжать играть, ускорение просто не начислится */
+          }
+        }
+        function onReady() {
+          try {
+            var player = new window.YT.Player('lingman-player', {
+              events: {
+                onStateChange: function (event) {
+                  var state = event && typeof event.data === 'number' ? event.data : -1;
+                  post(state === window.YT.PlayerState.PLAYING, state);
+                },
+                onError: function () { post(false, -1); }
+              }
+            });
+            // Ссылку держим, чтобы сборщик мусора не убрал подписку.
+            window.__lingmanPlayer = player;
+          } catch (e) {
+            post(false, -1);
+          }
+        }
+        window.onYouTubeIframeAPIReady = onReady;
+        var api = document.createElement('script');
+        api.src = 'https://www.youtube.com/iframe_api';
+        api.onerror = function () { post(false, -1); };
+        document.body.appendChild(api);
+        // Уходя со страницы, честно гасим отсчёт: иначе последний отрезок
+        // остался бы «играющим» навсегда.
+        window.addEventListener('pagehide', function () { post(false, -1); });
+      })();
+    </script>
   </body>
 </html>`;
 }

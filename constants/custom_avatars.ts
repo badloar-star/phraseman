@@ -279,17 +279,22 @@ function showcaseAvatarLabels(avatar: CustomAvatarDef): CustomAvatarLocalizedLab
   };
 }
 
+// зачем: подписи цветов отстали от палитры — id остались от прежнего набора, а
+// сами градиенты переписали. Человек видел «Золото» на ярко-зелёном (royal =
+// Verdant), «Корал-голд» на синем (ruby = Cobalt), «Форест-голд» на фиолетовом
+// (magma = Amethyst) — разошлись ВСЕ десять. Имя теперь описывает фактический
+// оттенок из CUSTOM_AVATAR_GRADIENTS.colors, а не историю id.
 const CUSTOM_AVATAR_GRADIENT_LABELS: Record<string, CustomAvatarLocalizedLabel> = {
-  aurora: { ru: 'Графит', uk: 'Графіт', es: 'Grafito', 'pt-BR': 'Grafite', vi: 'Than chì', id: 'Grafit', tr: 'Grafit', pl: 'Grafit' },
-  ember: { ru: 'Скетч', uk: 'Скетч', es: 'Sketch', 'pt-BR': 'Esboço', vi: 'Phác thảo', id: 'Sketsa', tr: 'Eskiz', pl: 'Szkic' },
-  cosmic: { ru: 'Форест', uk: 'Форест', es: 'Forest', 'pt-BR': 'Floresta', vi: 'Rừng', id: 'Hutan', tr: 'Orman', pl: 'Las' },
-  forest: { ru: 'Неон', uk: 'Неон', es: 'Neón', 'pt-BR': 'Neon', vi: 'Neon', id: 'Neon', tr: 'Neon', pl: 'Neon' },
-  citrine: { ru: 'Корал', uk: 'Корал', es: 'Coral', 'pt-BR': 'Coral', vi: 'San hô', id: 'Koral', tr: 'Mercan', pl: 'Koral' },
-  royal: { ru: 'Золото', uk: 'Золото', es: 'Oro', 'pt-BR': 'Ouro', vi: 'Vàng', id: 'Emas', tr: 'Altın', pl: 'Złoto' },
-  ruby: { ru: 'Корал-голд', uk: 'Корал-голд', es: 'Coral oro', 'pt-BR': 'Coral dourado', vi: 'San hô vàng', id: 'Koral Emas', tr: 'Mercan Altın', pl: 'Koralowe złoto' },
-  magma: { ru: 'Форест-голд', uk: 'Форест-голд', es: 'Forest oro', 'pt-BR': 'Floresta dourada', vi: 'Rừng vàng', id: 'Hutan Emas', tr: 'Orman Altın', pl: 'Leśne złoto' },
-  noirgold: { ru: 'Черное золото', uk: 'Чорне золото', es: 'Oro negro', 'pt-BR': 'Ouro negro', vi: 'Vàng đen', id: 'Emas Hitam', tr: 'Siyah Altın', pl: 'Czarne złoto' },
-  sakura: { ru: 'Скетч-корал', uk: 'Скетч-корал', es: 'Sketch coral', 'pt-BR': 'Esboço coral', vi: 'Phác thảo san hô', id: 'Sketsa Koral', tr: 'Mercan Eskiz', pl: 'Koralowy szkic' },
+  aurora: { ru: 'Аврора', uk: 'Аврора', es: 'Aurora', 'pt-BR': 'Aurora', vi: 'Cực quang', id: 'Aurora', tr: 'Kutup Işığı', pl: 'Zorza' },
+  ember: { ru: 'Небула', uk: 'Небула', es: 'Nebulosa', 'pt-BR': 'Nebulosa', vi: 'Tinh vân', id: 'Nebula', tr: 'Bulutsu', pl: 'Mgławica' },
+  cosmic: { ru: 'Магма', uk: 'Магма', es: 'Magma', 'pt-BR': 'Magma', vi: 'Dung nham', id: 'Magma', tr: 'Magma', pl: 'Magma' },
+  forest: { ru: 'Бездна', uk: 'Безодня', es: 'Abismo', 'pt-BR': 'Abismo', vi: 'Vực thẳm', id: 'Palung', tr: 'Uçurum', pl: 'Otchłań' },
+  citrine: { ru: 'Дюна', uk: 'Дюна', es: 'Duna', 'pt-BR': 'Duna', vi: 'Cồn cát', id: 'Dune', tr: 'Kumul', pl: 'Wydma' },
+  royal: { ru: 'Изумруд', uk: 'Смарагд', es: 'Esmeralda', 'pt-BR': 'Esmeralda', vi: 'Ngọc lục bảo', id: 'Zamrud', tr: 'Zümrüt', pl: 'Szmaragd' },
+  ruby: { ru: 'Кобальт', uk: 'Кобальт', es: 'Cobalto', 'pt-BR': 'Cobalto', vi: 'Coban', id: 'Kobalt', tr: 'Kobalt', pl: 'Kobalt' },
+  magma: { ru: 'Аметист', uk: 'Аметист', es: 'Amatista', 'pt-BR': 'Ametista', vi: 'Thạch anh tím', id: 'Kecubung', tr: 'Ametist', pl: 'Ametyst' },
+  noirgold: { ru: 'Расплав золота', uk: 'Розплав золота', es: 'Oro fundido', 'pt-BR': 'Ouro fundido', vi: 'Vàng nóng chảy', id: 'Emas Cair', tr: 'Erimiş Altın', pl: 'Płynne złoto' },
+  sakura: { ru: 'Розовая туманность', uk: 'Рожева туманність', es: 'Nebulosa rosa', 'pt-BR': 'Nebulosa rosa', vi: 'Tinh vân hồng', id: 'Nebula Merah Muda', tr: 'Gül Bulutsusu', pl: 'Różowa mgławica' },
 };
 
 // зачем: прежние подложки были почти чёрными до середины (яркость 20–35), а цвет

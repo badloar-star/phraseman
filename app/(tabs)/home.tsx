@@ -174,8 +174,8 @@ import {
   type MaxCallParams,
 } from '../max_call_mint_request';
 import { maxTutorPreviewKey, peekMaxTutorPreview } from '../max_tutor_preview';
-import { resolveVoiceMinutesView } from '../../modules/voice_minutes/entitlement_view';
-import { peekMaxVoiceAccess, peekVoiceMinutes } from '../../modules/voice_minutes/peek_cache';
+import { preferFreshAccess, resolveVoiceMinutesView } from '../../modules/voice_minutes/entitlement_view';
+import { peekMaxVoiceAccess, peekVoiceMinutes, writeMaxVoiceAccessPeek } from '../../modules/voice_minutes/peek_cache';
 import { isAiVoiceConsentGranted } from '../max_voice_consent';
 import { isMaxVoiceEntryVisible } from '../max_voice_flags';
 import { maxVoiceTeacherAccessibilityLabel } from '../max_target_gate';
@@ -732,6 +732,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // Firestore это не добавляет, только достаёт то, что уже пришло.
     const maxPreviewKey = maxTutorPreviewKey(maxTutorCallParams);
     const [maxDayRemainingSec, setMaxDayRemainingSec] = useState<number | null>(null);
+    /** Чей бейдж сейчас показан: сброс только при реальной смене владельца. */
+    const maxAccountOwnerRef = useRef<string | null>(captureAccountGeneration().stableId?.trim() || null);
+    /** Тик пересчёта бейджа после смены аккаунта (без ожидания фокуса). */
+    const [maxAccountTick, setMaxAccountTick] = useState(0);
     // зачем (владелец 2026-09-01, «названия сперва открываются как коды»):
     // заголовки уроков лежат на диске, но поднимались только при входе в раздел
     // — и первую долю секунды человек видел скелетоны вместо названий. Поднимаем
@@ -756,41 +760,77 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // → 0, неизвестно → бейджа нет. Сюда же входит кошелёк из peek-кэша —
         // платящему нельзя показывать пробниковые 3 из превью.
         const badgeSeconds = (
-            preview: { limits?: Record<string, unknown>; access?: 'paid_minutes' | 'admin' | 'trial' },
-            origin: 'cache' | 'network',
+            preview: { limits?: Record<string, unknown>; access?: 'paid_minutes' | 'admin' | 'trial' } | null,
+            origin: 'cache' | 'network' | 'peek' | 'denied',
         ): number | null => {
+            const peekAccess = peekMaxVoiceAccess();
             const view = resolveVoiceMinutesView({
                 walletSec: peekVoiceMinutes()?.seconds ?? null,
-                access: preview.access ?? peekMaxVoiceAccess(),
-                sessionCapSec: preview.limits?.sessionCapSec,
-                dayRemainingSec: preview.limits?.dayRemainingSec,
+                // Свежий вердикт сервера сильнее кэша превью: у сожжённого
+                // пробника рефреш всегда падает, и в кэше навсегда 'trial'.
+                access: preferFreshAccess(preview?.access, peekAccess),
+                sessionCapSec: preview?.limits?.sessionCapSec,
+                dayRemainingSec: preview?.limits?.dayRemainingSec,
             });
             // Постоянная диагностика: одна строка объясняет цифру на бейдже.
             DebugLogger.info(
                 '[MAX-MINUTES]',
                 `home badge: seconds=${view.seconds ?? 'null'} source=${view.source} origin=${origin} `
-                + `access=${preview.access ?? 'none'} peekAccess=${peekMaxVoiceAccess() ?? 'none'} `
+                + `access=${preview?.access ?? 'none'} peekAccess=${peekAccess ?? 'none'} `
                 + `walletPeek=${peekVoiceMinutes()?.seconds ?? 'none'} `
-                + `dayRemaining=${String(preview.limits?.dayRemainingSec ?? 'none')} `
-                + `cap=${JSON.stringify(preview.limits?.sessionCapSec ?? null)}`,
+                + `dayRemaining=${String(preview?.limits?.dayRemainingSec ?? 'none')} `
+                + `cap=${JSON.stringify(preview?.limits?.sessionCapSec ?? null)}`,
             );
             return view.seconds;
         };
         const cached = peekMaxTutorPreview(maxPreviewKey, Date.now(), true);
-        if (cached) setMaxDayRemainingSec(badgeSeconds(cached, 'cache'));
+        // зачем (ревью 2026-09-02): бейдж считался ТОЛЬКО при живом превью. У
+        // сожжённого пробника превью не приходит никогда (сервер отвечает
+        // voice_max_required), и бейдж застывал на прежних «3м» или не рисовался
+        // вовсе. Считаем всегда: peek-ов достаточно для честного числа.
+        setMaxDayRemainingSec(badgeSeconds(cached, cached ? 'cache' : 'peek'));
+        // Поздний ответ прежнего аккаунта не должен ставить своё число новому.
+        const requestOwner = captureAccountGeneration();
         void prefetchMaxTutorPreview(maxTutorCallParams).then((preview) => {
+            if (!isCurrentAccountGeneration(requestOwner, requestOwner.stableId)) return;
             if (preview) setMaxDayRemainingSec(badgeSeconds(preview, 'network'));
         }).catch((e) => {
+            if (!isCurrentAccountGeneration(requestOwner, requestOwner.stableId)) return;
             // Прогрев — оптимизация, но причина обязана быть видна: иначе
             // «бейджа нет» неотличимо от «сервер отказал».
-            DebugLogger.warn('[MAX-MINUTES]', `home badge prefetch failed: ${e instanceof Error ? e.message : String(e)}`);
+            const reason = e instanceof Error ? e.message : String(e);
+            // voice_max_required = пробник сожжён и минут нет. Это ПОДТВЕРЖДЁННЫЙ
+            // ответ сервера, а не сбой связи: фиксируем его в peek и показываем
+            // честный ноль, иначе бейдж врал бы прежним числом до перезапуска.
+            if (reason.includes('voice_max_required')) {
+                writeMaxVoiceAccessPeek('none');
+                setMaxDayRemainingSec(0);
+            } else {
+                setMaxDayRemainingSec(badgeSeconds(cached, 'peek'));
+            }
+            DebugLogger.warn('[MAX-MINUTES]', `home badge prefetch failed: ${reason}`);
         });
-    }, [focusTick, homeRuntimeActive, maxPreviewKey, maxTutorCallParams, maxVoiceVisible]);
+    }, [focusTick, homeRuntimeActive, maxPreviewKey, maxTutorCallParams, maxVoiceVisible, maxAccountTick]);
     // зачем (владелец 2026-09-02, вход с другого аккаунта в том же процессе):
     // число бейджа живёт в состоянии Главной и переживало смену пользователя —
     // второй аккаунт видел минуты первого, пока не дозреет свежее превью.
+    //
+    // Сбрасываем ТОЛЬКО при реальной смене владельца (образец рун ниже и
+    // peek_cache): событие поколения летит и на обычном старте после первого
+    // кадра, а безусловный сброс гасил бейдж до следующего фокуса. Тик в deps
+    // эффекта выше — чтобы пересчёт запустился сам, не дожидаясь фокуса.
     useEffect(() => {
-        const subscription = subscribeAccountGeneration(() => setMaxDayRemainingSec(null));
+        const subscription = subscribeAccountGeneration((token) => {
+            const nextOwner = token.stableId?.trim() || null;
+            if (nextOwner !== null && nextOwner === maxAccountOwnerRef.current) return;
+            if (maxAccountOwnerRef.current === null && token.phase === 'active') {
+                maxAccountOwnerRef.current = nextOwner;
+                return;
+            }
+            maxAccountOwnerRef.current = nextOwner;
+            setMaxDayRemainingSec(null);
+            setMaxAccountTick((n) => n + 1);
+        });
         return () => subscription.remove();
     }, []);
     const homeRuntimeActiveRef = useRef(homeRuntimeActive);

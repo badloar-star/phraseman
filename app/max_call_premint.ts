@@ -140,6 +140,14 @@ export function beginPremint(
   const promise = afterPendingRelease(mintFn);
   // Отклонённая заготовка, которую никто не забрал, не должна становиться
   // unhandled rejection: забирающий сам обработает через свой await.
+  //
+  // Слот при этом НЕ снимаем: экран звонка обязан суметь её забрать (claim) и
+  // сделать одну честную попытку свежего минта — это проверяет тест «упавшая
+  // заготовка: release не зовётся, claim отдаёт отклонённый промис». Ревью
+  // 2026-09-02 предлагало снимать слот, но это сломало бы тот путь; за упавшей
+  // заготовкой резерва нет, поэтому висящий слот ничего не держит, а
+  // abandonForeignPremint отпустит её обычным порядком (release упавшего
+  // промиса — no-op).
   promise.catch(() => {});
   slot = { key, promise, createdAtMs: nowMs, state: 'pending' };
   return slot;
@@ -164,10 +172,31 @@ export function abandonForeignPremint(
   keepKey: string,
   release: (mint: MaxVoiceMintResponse) => Promise<void> | void,
 ): string | null {
-  if (!slot || slot.key === keepKey || slot.state !== 'pending') return null;
+  // 'handoff' тоже отпускаем: заготовку пре-экрана забирает ТОЛЬКО экран
+  // звонка, и раз он пришёл с другим ключом — забирать её больше некому
+  // (ревью 2026-09-02: иначе её резерв висит до 45-секундной эвикции).
+  if (!slot || slot.key === keepKey) return null;
+  if (slot.state !== 'pending' && slot.state !== 'handoff') return null;
   const foreignKey = slot.key;
+  const previous = slot.state;
+  slot.state = 'pending'; // abandonPremint отпускает только pending
   abandonPremint(foreignKey, release);
+  if (slot && slot.key === foreignKey) slot.state = previous; // не отпустилась — вернуть как было
   return foreignKey;
+}
+
+/**
+ * Дождаться, пока хвост release'ов реально долетит до сервера — БЕЗ потолка
+ * `PREMINT_RELEASE_WAIT_MS`.
+ *
+ * зачем (ревью 2026-09-02): `mintAfterRelease` ждёт максимум 3с, а чужой минт в
+ * логе владельца шёл 9с (холодный старт функции). Через 3с свой минт уходил
+ * параллельно и снова ловил `voice_session_active` — ровно тот отказ, который
+ * правка чинила. Когда мы САМИ отпустили чужую заготовку, ждать надо честно:
+ * её резерв уже создан на сервере, и без его возврата минт обречён.
+ */
+export function awaitPendingReleases(): Promise<void> {
+  return releaseChain.then(() => undefined, () => undefined);
 }
 
 /** Пре-экран перед навигацией: заготовку заберёт экран звонка, cleanup её не трогает. */

@@ -412,6 +412,13 @@ export function monthlyVoiceCapFor(
   // У пробника месячного пакета нет, но своя единственная
   // сессия должна поместиться — иначе резерв упрётся в ноль и звонок не
   // состоится вовсе. Разовость держит trialUsedAtMs, а не месячный счётчик.
+  //
+  // зачем (ревью 2026-09-02, после снятия админ-пула): кап считался как
+  // «пул пробника МИНУС месячный расход». У бывших админов (и любого дока с
+  // накопленным monthlyUsedSec) 141с прошлых звонков хватало, чтобы пробник
+  // отвечал voice_monthly_quota_exhausted вместо обещанных владельцем 3 минут.
+  // Календарный расход к разовому пробнику отношения не имеет — берём полный
+  // пул и не даём месячному счётчику его съесть (см. estimateQuotaRemaining).
   if (access === 'trial') return config.trialCallSec + config.graceTailSec;
   return config.monthlyVoiceSecMax;
 }
@@ -495,8 +502,17 @@ async function resolveVoiceGates(
 
   const isReconnect = text(data.reconnectOf, 80) !== '';
   if (isReconnect) {
-    const activeAccess = quotaData.accessType === 'paid_minutes' ? 'paid_minutes' : 'trial';
-    logAccessDecision(activeAccess, 'reconnect keeps the active reservation tier');
+    // зачем (ревью 2026-09-02): после снятия админ-пула любой не-платный док
+    // резолвился в 'trial' — включая ЖИВУЮ сессию со старым accessType 'admin'
+    // (звонок начат до деплоя). Её ре-минт подменял урок с учителем пробной
+    // сценой в кофейне с Mia. Реконнект обязан сохранять тир активного резерва
+    // как есть; 'admin' остаётся только для таких доживающих сессий.
+    const activeAccess: VoiceMinuteAccessType = quotaData.accessType === 'paid_minutes'
+      ? 'paid_minutes'
+      : quotaData.accessType === 'admin'
+        ? 'admin'
+        : 'trial';
+    logAccessDecision(activeAccess, `reconnect keeps the active reservation tier (doc=${text(quotaData.accessType, 20) || 'none'})`);
     return {
       db, authUid, stableUid, config, isPremium, quotaData,
       access: activeAccess,
@@ -571,6 +587,17 @@ export function estimateQuotaRemaining(
   }
   const dailyUsed = nowMs >= num(quotaData.resetAtMs) ? 0 : Math.max(0, num(quotaData.dailyUsedSec));
   const monthlyUsed = nowMs >= num(quotaData.monthResetAtMs) ? 0 : Math.max(0, num(quotaData.monthlyUsedSec));
+  // Пробник — разовый и не МЕСЯЧНЫЙ: его единственность держат
+  // trialUsedAtMs/trialReservationSessionId, а накопленный расход прошлых
+  // звонков (в т.ч. админских до снятия пула) не должен съедать его пул.
+  // Дневной лимит при этом остаётся общим правилом линии — его обходить нельзя
+  // (тест «rejects when the day quota is exhausted»).
+  if (tier?.access === 'trial') {
+    return {
+      dayRemainingSec: Math.max(0, config.dailyVoiceSecMax - dailyUsed),
+      monthRemainingSec: config.trialCallSec + config.graceTailSec,
+    };
+  }
   // Без тира (старые вызовы) считаем по максимальному пакету — прежнее поведение.
   const monthlyCap = tier
     ? monthlyVoiceCapFor(config, tier.access)

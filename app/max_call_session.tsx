@@ -57,6 +57,7 @@ import {
 import {
   abandonForeignPremint,
   abandonPremint,
+  awaitPendingReleases,
   claimPremint,
   enqueueRelease,
   setMaxCallLineBusy,
@@ -418,6 +419,15 @@ function MaxCallSessionContent() {
   // -------------------------------------------------------------------------
   // Жизненный цикл клиента: собрать deps → start; teardown идемпотентен.
   useEffect(() => {
+    // Ключ заготовки считаем ДО проверки native: ветка отказа обязана отпустить
+    // ту же заготовку, что прогрел раздел уроков (ревью 2026-09-02 — раньше она
+    // звала ключ без goalId и резерв висел до 45-секундной эвикции).
+    const requestedGoalIdEarly = typeof params.goalId === 'string' && /^[a-z0-9_]{1,80}$/u.test(params.goalId)
+      ? params.goalId
+      : undefined;
+    const premintKeyForCall = premintKey({
+      format, scenarioId, cefr, devMode, studyTarget: callStudyTarget, goalId: requestedGoalIdEarly,
+    });
     const native = loadMaxVoiceNative();
     if (!native) {
       // OTA поверх бинарника без webrtc: вход должен был быть скрыт гейтом, но
@@ -427,7 +437,9 @@ function MaxCallSessionContent() {
       });
       if (__DEV__) console.warn('[MAX Voice] native_unavailable: rebuild the iOS development client');
       // Заготовку пре-экрана никто не заберёт — вернуть резерв серверу.
-      abandonPremint(premintKey({ format, scenarioId, cefr, devMode, studyTarget: callStudyTarget }), releaseUnusedMint);
+      // И свою (по правильному ключу), и чужую: забирать их больше некому.
+      abandonPremint(premintKeyForCall, releaseUnusedMint);
+      abandonForeignPremint(premintKeyForCall, releaseUnusedMint);
       setUiState((prev) => reduceMaxCallUi(prev, { type: 'fail', reason: 'native_unavailable' }));
       return;
     }
@@ -442,7 +454,7 @@ function MaxCallSessionContent() {
       ? params.goalId
       : undefined;
     const callParams: MaxCallParams = { format, scenarioId, cefr, devMode, interfaceLang: lang, studyTarget: callStudyTarget, goalId: requestedGoalId };
-    const key = premintKey(callParams);
+    const key = premintKeyForCall;
     if (isTutor) {
       // Тот же каталог, что ушёл в промпт — теперь СТАБИЛЬНЫЙ (рычаг 2, кэш):
       // не зависит ни от уровня, ни от дня. Обе точки обязаны звать одну и ту
@@ -510,7 +522,18 @@ function MaxCallSessionContent() {
       // второй получает voice_session_active (лог 20:56:48→20:56:59).
       // mintAfterRelease ниже дождётся возврата чужого резерва.
       const foreign = abandonForeignPremint(key, releaseUnusedMint);
-      if (foreign) maxConnectTrace('premint.foreign_released', { foreignKey: foreign, ownKey: key });
+      if (foreign) {
+        maxConnectTrace('premint.foreign_released', { foreignKey: foreign, ownKey: key });
+        // зачем (ревью 2026-09-02): mintAfterRelease ждёт максимум 3с, а чужой
+        // минт в логе владельца шёл 9с (холодный старт функции). Через 3с наш
+        // минт уходил параллельно и снова ловил voice_session_active — ровно
+        // тот отказ, который правка чинит. Раз мы САМИ отпустили чужую
+        // заготовку, её резерв уже создан: ждём возврата честно, без потолка.
+        const waitStartedAt = Date.now();
+        await awaitPendingReleases();
+        maxConnectTrace('premint.foreign_release_done', { waitedMs: Date.now() - waitStartedAt });
+        return performMaxVoiceMint(callParams, req);
+      }
       return mintAfterRelease(() => performMaxVoiceMint(callParams, req));
     };
 

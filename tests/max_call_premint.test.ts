@@ -9,6 +9,7 @@ import {
   __resetPremintForTests,
   abandonForeignPremint,
   abandonPremint,
+  awaitPendingReleases,
   beginPremint,
   claimPremint,
   isMaxCallLineBusy,
@@ -274,5 +275,71 @@ describe('abandonForeignPremint — чужая заготовка отпуска
     await flush();
     await own;
     expect(order).toEqual(['release:start', 'release:done', 'own-mint']);
+  });
+
+  // зачем (ревью 2026-09-02): mintAfterRelease ждёт максимум 3с, а чужой минт в
+  // логе владельца шёл 9с (холодный старт функции). Через 3с свой минт уходил
+  // параллельно и снова ловил voice_session_active. Когда мы САМИ отпустили
+  // чужую заготовку, ждать надо честно — awaitPendingReleases без потолка.
+  it('awaitPendingReleases ждёт дольше PREMINT_RELEASE_WAIT_MS, а mintAfterRelease — нет', async () => {
+    const order: string[] = [];
+    let finishRelease: () => void = () => {};
+    const release = jest.fn().mockImplementation(() => new Promise<void>((resolve) => {
+      order.push('release:start');
+      finishRelease = () => { order.push('release:done'); resolve(); };
+    }));
+    beginPremint(FOREIGN, () => Promise.resolve(mintOf('sess-foreign')), NOW, release);
+    abandonForeignPremint(OWN, release);
+    await flush();
+
+    // Старый путь: через 3с потолок отпускает минт вперёд release'а.
+    let cappedStarted = false;
+    void mintAfterRelease(async () => { cappedStarted = true; return mintOf('sess-capped'); });
+    jest.advanceTimersByTime(PREMINT_RELEASE_WAIT_MS + 1);
+    await flush();
+    await flush();
+    expect(cappedStarted).toBe(true);
+    expect(order).toEqual(['release:start']);
+
+    // Новый путь: ждём честно — минт не стартует, пока release не завершён.
+    let honestStarted = false;
+    const honest = awaitPendingReleases().then(() => { honestStarted = true; });
+    jest.advanceTimersByTime(PREMINT_RELEASE_WAIT_MS * 5);
+    await flush();
+    await flush();
+    expect(honestStarted).toBe(false);
+
+    finishRelease();
+    await honest;
+    expect(honestStarted).toBe(true);
+    expect(order).toEqual(['release:start', 'release:done']);
+  });
+
+  it('заготовка пре-экрана в handoff с ЧУЖИМ ключом тоже отпускается', async () => {
+    const release = jest.fn().mockResolvedValue(undefined);
+    beginPremint(FOREIGN, () => Promise.resolve(mintOf('sess-handoff')), NOW, release);
+    markPremintHandoff(FOREIGN);
+
+    expect(abandonForeignPremint(OWN, release)).toBe(FOREIGN);
+    await flush();
+    await flush();
+    expect(release).toHaveBeenCalledWith(mintOf('sess-handoff'));
+    expect(claimPremint(FOREIGN)).toBeNull();
+  });
+
+  // зачем: ревью 2026-09-02 предлагало снимать слот упавшей заготовки, но это
+  // сломало бы существующий контракт «claim отдаёт отклонённый промис, экран
+  // делает свежий минт». За упавшей заготовкой резерва НЕТ, поэтому её
+  // отпускание безопасно и никого не блокирует.
+  it('упавшую чужую заготовку можно отпустить: release упавшего промиса — no-op', async () => {
+    const release = jest.fn().mockResolvedValue(undefined);
+    beginPremint(FOREIGN, () => Promise.reject(new Error('voice_session_active')), NOW, release);
+    await flush();
+
+    expect(abandonForeignPremint(OWN, release)).toBe(FOREIGN);
+    await flush();
+    await flush();
+    expect(release).not.toHaveBeenCalled();
+    expect(claimPremint(FOREIGN)).toBeNull();
   });
 });

@@ -44,11 +44,26 @@ export interface VoiceMinutesView {
 export interface VoiceMinutesInputs {
   /** availableSeconds + reservedSeconds кошелька; null — кошелёк ещё не прочитан. */
   walletSec: number | null;
+  /**
+   * availableSeconds кошелька БЕЗ резерва — по нему сервер решает платность
+   * (`resolveVoiceGates`: `paidWallet.availableSeconds >= 60`).
+   *
+   * зачем (ревью 2026-09-02): сиротский резерв 620с делал кошелёк
+   * available=0 / reserved=620 — клиент по сумме считал доступ платным и рисовал
+   * «10 минут», а сервер отдавал пробник или пейвол. Показываем сумму (резерв
+   * вернётся), но ПЛАТНОСТЬ решаем тем же числом, что и сервер.
+   * Не передан — падаем на walletSec (старое поведение).
+   */
+  walletAvailableSec?: number | null;
   /** Последний подтверждённый сервером доступ; null — сервер ещё не отвечал. */
   access: VoiceMinutesAccess | null;
   /** limits.sessionCapSec из превью/минта (число или объект по форматам). */
   sessionCapSec?: unknown;
-  /** limits.dayRemainingSec — только для устаревшего 'admin'. */
+  /**
+   * limits.dayRemainingSec из превью/минта. Для платного доступа сервер кладёт
+   * сюда остаток кошелька (`estimateQuotaRemaining`) — это свежая правда, и она
+   * спасает бейдж, когда кошелёк на этом экране ещё не читали.
+   */
   dayRemainingSec?: unknown;
 }
 
@@ -69,27 +84,52 @@ export function trialCapSecFrom(sessionCapSec: unknown): number {
 
 export function resolveVoiceMinutesView(inputs: VoiceMinutesInputs): VoiceMinutesView {
   const wallet = finite(inputs.walletSec);
-  if (wallet !== null && wallet >= VOICE_PAID_MIN_SEC) {
-    return { seconds: Math.floor(wallet), source: 'paid' };
+  // Платность — по available (как сервер); показ — по сумме с резервом.
+  const walletAvailable = inputs.walletAvailableSec === undefined
+    ? wallet
+    : finite(inputs.walletAvailableSec);
+  const serverDaySec = finite(inputs.dayRemainingSec);
+  if (walletAvailable !== null && walletAvailable >= VOICE_PAID_MIN_SEC) {
+    return { seconds: Math.floor(wallet ?? walletAvailable), source: 'paid' };
   }
   if (inputs.access === 'paid_minutes') {
     // guard-ok: только ПОКАЗ. Модуль ничего не списывает и не пишет — баланс
     // живёт на сервере (voice_minute_wallets), здесь лишь floor для экрана.
-    // Сервер считает доступ платным, а кошелёк ещё не дочитан (или уже пуст):
-    // показываем то, что знаем, — ноль честнее пробниковых 3.
-    return { seconds: Math.max(0, Math.floor(wallet ?? 0)), source: 'paid' };
+    // зачем (ревью 2026-09-02, регрессия): раньше здесь возвращался ноль, когда
+    // кошелёк на экране не читали, — платящий видел красный «0м» вместо своего
+    // остатка. Сервер в том же ответе прислал dayRemainingSec = остаток кошелька:
+    // берём его. Нет ни кошелька, ни ответа сервера — прочерк, НЕ ноль.
+    if (wallet !== null) return { seconds: Math.max(0, Math.floor(wallet)), source: 'paid' };
+    if (serverDaySec !== null) return { seconds: Math.max(0, Math.floor(serverDaySec)), source: 'paid' };
+    return { seconds: null, source: 'unknown' };
   }
   if (inputs.access === 'none') return { seconds: 0, source: 'trial_used' };
   if (inputs.access === 'trial') {
     return { seconds: trialCapSecFrom(inputs.sessionCapSec), source: 'trial' };
   }
   if (inputs.access === 'admin') {
-    const day = finite(inputs.dayRemainingSec);
-    return day === null
+    return serverDaySec === null
       ? { seconds: null, source: 'unknown' }
-      : { seconds: Math.max(0, Math.floor(day)), source: 'day_pool' };
+      : { seconds: Math.max(0, Math.floor(serverDaySec)), source: 'day_pool' };
   }
   return { seconds: null, source: 'unknown' };
+}
+
+/**
+ * Какой доступ считать правдой, когда превью и peek расходятся.
+ *
+ * зачем (ревью 2026-09-02): у сожжённого пробника рефреш превью ВСЕГДА падает
+ * (`voice_max_required`), и в кэше навсегда остаётся старое `'trial'` — бейдж
+ * показывал «3м» там, где минут нет. `'none'` — подтверждённый сервером отказ,
+ * он новее любого кэша; `'paid_minutes'` из peek тоже сильнее устаревшего
+ * `'trial'` (человек купил минуты между кадрами).
+ */
+export function preferFreshAccess(
+  previewAccess: VoiceMinutesAccess | null | undefined,
+  peekAccess: VoiceMinutesAccess | null | undefined,
+): VoiceMinutesAccess | null {
+  if (peekAccess === 'none' || peekAccess === 'paid_minutes') return peekAccess;
+  return previewAccess ?? peekAccess ?? null;
 }
 
 /** Минуты для показа: floor, не меньше нуля; null пробрасывается как есть. */

@@ -1,4 +1,4 @@
-import { subscribeAccountGeneration } from './account_generation';
+import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
 
 export type MaxTutorLessonType = 'new_material' | 'review_and_scene' | 'free_talk';
 
@@ -182,15 +182,24 @@ export function primeMaxTutorPreview(
   const pending = fetched
     .then((value) => {
       if (!value) throw new Error('max_tutor_preview_malformed');
+      // зачем (ревью 2026-09-02): ключ кэша не содержит аккаунта. Если пока
+      // запрос был в полёте, аккаунт сменился и кэш очистили, запись СТАРОГО
+      // пользователя воскресала под тем же ключом — новый видел чужие минуты,
+      // доступ и звёзды, а раздел уроков даже не шёл в сеть («превью уже есть»).
+      // Пишем только если наша запись всё ещё в кэше.
+      if (cache.get(key) !== entry) return value;
       entry.value = value;
       entry.updatedAtMs = nowMs;
       entry.pending = null;
       cache.set(key, entry);
+      rememberCacheOwner();
       return value;
     })
     .catch((error) => {
-      entry.pending = null;
-      cache.set(key, entry);
+      if (cache.get(key) === entry) {
+        entry.pending = null;
+        cache.set(key, entry);
+      }
       throw error;
     });
   entry.pending = pending;
@@ -205,16 +214,38 @@ export function invalidateMaxTutorPreview(key?: string): void {
 
 export function clearMaxTutorPreviewCacheForTests(): void {
   cache.clear();
+  cacheOwnerStableId = null;
 }
 
 // зачем (владелец 2026-09-02, вход с другого аккаунта в том же процессе):
 // ключ кэша — параметры звонка (формат/уровень/язык/цель), АККАУНТА в ключе
 // нет. После смены пользователя Главная и раздел уроков поднимали превью
 // прежнего: его доступ, его минуты, его звёзды каталога. Владелец видел «20м»
-// админского пула первого аккаунта на втором. Тот же образец, что у
-// peek_cache минут и energy_peek_cache: смена поколения аккаунта = чистый кэш.
-subscribeAccountGeneration(() => {
+// админского пула первого аккаунта на втором.
+//
+// Сбрасываем ТОЛЬКО при реальной смене владельца — образец peek_cache минут и
+// energy_peek_cache (ревью 2026-09-02): событие поколения летит и на обычном
+// старте после первого кадра (cloud_sync зовёт beginInitialAccountGeneration),
+// и безусловная очистка выбрасывала уже прогретое превью — раздел уроков
+// открывался с «—» и нулевыми звёздами, а Главная шла в сеть повторно.
+let cacheOwnerStableId: string | null = null;
+
+/** Запомнить владельца кэша при записи (зовётся из primeMaxTutorPreview). */
+function rememberCacheOwner(): void {
+  cacheOwnerStableId = captureAccountGeneration().stableId?.trim() || null;
+}
+
+subscribeAccountGeneration((token) => {
+  const nextOwner = token.stableId?.trim() || null;
+  if (nextOwner !== null && nextOwner === cacheOwnerStableId) return;
+  if (cacheOwnerStableId === null && cache.size > 0 && token.phase === 'active') {
+    // Кэш прогрет до того, как поколение стало активным (обычный старт) —
+    // это тот же пользователь: присваиваем владельца, не выбрасывая работу.
+    cacheOwnerStableId = nextOwner;
+    return;
+  }
   cache.clear();
+  cacheOwnerStableId = nextOwner;
 });
 
 /* expo-router route shim: app/ files are treated as routes and need a default export. */

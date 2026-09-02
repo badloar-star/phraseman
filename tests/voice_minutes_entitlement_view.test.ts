@@ -3,6 +3,7 @@
 // одна чистая функция; этот сторож фиксирует правило владельца «3 минуты для
 // всех, кто не купил, и точное число, а не рандом».
 import {
+  preferFreshAccess,
   resolveVoiceMinutesView,
   trialCapSecFrom,
   voiceMinutesToDisplay,
@@ -44,14 +45,54 @@ describe('resolveVoiceMinutesView — единый источник цифры �
       .toEqual({ seconds: null, source: 'unknown' });
   });
 
-  it('платный доступ по серверу при пустом/непрочитанном кошельке — ноль, не пробник', () => {
+  // зачем (ревью 2026-09-02): раньше здесь возвращался ноль — платящий на
+  // Главной (кошелёк там не читают) видел красный «0м» вместо своего остатка,
+  // хотя сервер прислал его в том же ответе.
+  it('платный доступ без прочитанного кошелька берёт остаток от сервера, а не ноль', () => {
+    expect(resolveVoiceMinutesView({ walletSec: null, access: 'paid_minutes', dayRemainingSec: 5893 }))
+      .toEqual({ seconds: 5893, source: 'paid' });
+  });
+
+  it('платный доступ без кошелька И без ответа сервера — прочерк, НЕ ноль', () => {
     expect(resolveVoiceMinutesView({ walletSec: null, access: 'paid_minutes' }))
-      .toEqual({ seconds: 0, source: 'paid' });
+      .toEqual({ seconds: null, source: 'unknown' });
   });
 
   it('кошелёк меньше минуты платным не считается', () => {
     expect(resolveVoiceMinutesView({ walletSec: 45, access: 'trial' }))
       .toEqual({ seconds: 180, source: 'trial' });
+  });
+
+  // зачем (ревью 2026-09-02): сиротский резерв 620с давал кошелёк
+  // available=0/reserved=620. Клиент по сумме считал доступ платным и обещал
+  // «10 минут», а сервер (он смотрит available) отдавал пробник или пейвол.
+  it('платность решает available, показ — сумма с резервом', () => {
+    // Висит сиротский резерв: сервер платным этот доступ НЕ считает.
+    expect(resolveVoiceMinutesView({ walletSec: 620, walletAvailableSec: 0, access: 'trial' }))
+      .toEqual({ seconds: 180, source: 'trial' });
+    // Живой звонок платящего: available 5873 + резерв 620 → показываем сумму.
+    expect(resolveVoiceMinutesView({ walletSec: 6493, walletAvailableSec: 5873, access: 'paid_minutes' }))
+      .toEqual({ seconds: 6493, source: 'paid' });
+  });
+});
+
+// зачем (ревью 2026-09-02): у сожжённого пробника рефреш превью ВСЕГДА падает
+// (voice_max_required), и в кэше навсегда остаётся 'trial' — бейдж показывал
+// «3м» там, где минут нет.
+describe('preferFreshAccess — свежий вердикт сервера сильнее устаревшего кэша', () => {
+  it("подтверждённый 'none' перебивает устаревший 'trial' из превью", () => {
+    expect(preferFreshAccess('trial', 'none')).toBe('none');
+  });
+
+  it("купленные минуты из peek перебивают устаревший 'trial'", () => {
+    expect(preferFreshAccess('trial', 'paid_minutes')).toBe('paid_minutes');
+  });
+
+  it('в остальных случаях превью ведёт, peek — запасной', () => {
+    expect(preferFreshAccess('trial', null)).toBe('trial');
+    expect(preferFreshAccess(null, 'trial')).toBe('trial');
+    expect(preferFreshAccess('paid_minutes', 'trial')).toBe('paid_minutes');
+    expect(preferFreshAccess(null, null)).toBeNull();
   });
 });
 

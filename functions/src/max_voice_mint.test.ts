@@ -423,6 +423,44 @@ describe('gate order (App Check → kill switch → subscription → quota → m
     expect(docs.get(QUOTA_PATH)).toMatchObject({ accessType: 'trial' });
   });
 
+  // зачем (ревью 2026-09-02): после снятия админ-пула владелец ВПЕРВЫЕ начинает
+  // тратить купленные минуты — раньше isAdmin возвращался до проверки кошелька.
+  it('claim admin с купленными минутами идёт платной веткой и резервирует кошелёк', async () => {
+    givePaidMinutes();
+    const res = await callAdminMint();
+    expect(res).toMatchObject({ ok: true, access: 'paid_minutes' });
+    expect(docs.get(QUOTA_PATH)).toMatchObject({ accessType: 'paid_minutes' });
+    expect(Number((docs.get(WALLET_PATH) as DocData).reservedSeconds)).toBeGreaterThan(0);
+  });
+
+  // зачем (ревью 2026-09-02): у бывшего админа в доке накоплен monthlyUsedSec от
+  // прежних звонков. Кап пробника считался «пул МИНУС месячный расход», и 141с
+  // истории хватало, чтобы вместо обещанных 3 минут прилетал отказ по квоте.
+  it('бывший админ с накопленным месячным расходом всё равно получает пробник', async () => {
+    // Месячный расход прошлых админских звонков; дневной лимит НЕ трогаем —
+    // он остаётся общим правилом линии и обходить его правка не должна.
+    docs.set(QUOTA_PATH, {
+      accessType: 'admin',
+      monthlyUsedSec: 900,
+      dailyUsedSec: 0,
+      monthResetAtMs: NOW + DAY_MS,
+      resetAtMs: NOW + 3_600_000,
+    });
+    const res = await callAdminMint();
+    expect(res).toMatchObject({ ok: true, access: 'trial' });
+    expect(res.trialVariant).toBeTruthy();
+  });
+
+  // зачем (ревью 2026-09-02): живая сессия со старым accessType 'admin' при
+  // обрыве ре-минтилась как trial — урок с учителем подменялся пробной сценой.
+  it("реконнект живой 'admin'-сессии не подменяет учителя пробной сценой", async () => {
+    liveSession({ accessType: 'admin' });
+    const res = await callMint({ reconnectOf: 's1' });
+    expect(res.access).not.toBe('trial');
+    expect(res.trialVariant).toBeNull();
+    expect(JSON.stringify(lastFetchBody())).not.toContain(TRIAL_SCENARIO_BLOCK);
+  });
+
   it("сервер больше нигде не выдаёт access 'admin' (сторож по исходнику)", () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'src', 'max_voice_mint.ts'), 'utf8');
     expect(source).not.toMatch(/access:\s*'admin'/u);

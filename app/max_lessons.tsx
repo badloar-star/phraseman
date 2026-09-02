@@ -60,7 +60,7 @@ import MaxLessonsStatsSheet from '../components/max/MaxLessonsStatsSheet';
 import VoiceMinutePackSheet from '../modules/voice_minutes/VoiceMinutePackSheet';
 import { readVoiceMinuteWalletStatus } from '../modules/voice_minutes/wallet';
 import { peekMaxVoiceAccess, peekVoiceMinutes, writeVoiceMinutePeek } from '../modules/voice_minutes/peek_cache';
-import { resolveVoiceMinutesView, voiceMinutesToDisplay } from '../modules/voice_minutes/entitlement_view';
+import { preferFreshAccess, resolveVoiceMinutesView, voiceMinutesToDisplay } from '../modules/voice_minutes/entitlement_view';
 import {
   computeVoiceTrends,
   computeVoiceWeeklySeries,
@@ -120,6 +120,8 @@ export default function MaxLessonsScreen() {
 
   // ── Минуты для кольца ─────────────────────────────────────────────────────
   const [walletSec, setWalletSec] = useState<number | null>(() => peekVoiceMinutes()?.seconds ?? null);
+  /** availableSeconds БЕЗ резерва — тем же числом сервер решает платность. */
+  const [walletAvailableSec, setWalletAvailableSec] = useState<number | null>(null);
   // guard-ok: клиент НИЧЕГО не списывает. Только показ.
   // зачем (владелец 2026-09-02, скрин «Главная 20м, здесь 0»): кольцо считало
   // только купленные минуты, а бейдж Главной — доступ из превью. Один аккаунт,
@@ -130,7 +132,10 @@ export default function MaxLessonsScreen() {
   const peekedAccess = peekMaxVoiceAccess();
   const minutesView = resolveVoiceMinutesView({
     walletSec,
-    access: previewAccess ?? peekedAccess,
+    // Платность решает available (как сервер): сиротский резерв не должен
+    // обещать минуты, которых сервер не даст (ревью 2026-09-02).
+    walletAvailableSec: walletAvailableSec,
+    access: preferFreshAccess(previewAccess, peekedAccess),
     sessionCapSec: cachedPreview?.limits?.sessionCapSec,
     dayRemainingSec: cachedPreview?.limits?.dayRemainingSec,
   });
@@ -155,6 +160,7 @@ export default function MaxLessonsScreen() {
         if (!active) return;
         const total = w.availableSeconds + w.reservedSeconds;
         setWalletSec(total);
+        setWalletAvailableSec(w.availableSeconds);
         writeVoiceMinutePeek(total);
         DebugLogger.info('[MAX-LESSONS]', `кошелёк: доступно=${w.availableSeconds}с резерв=${w.reservedSeconds}с`);
       })
@@ -524,6 +530,7 @@ export default function MaxLessonsScreen() {
           // Optimistic UI: кольцо перерисовывается СРАЗУ после покупки.
           const total = wallet.availableSeconds + wallet.reservedSeconds;
           setWalletSec(total);
+          setWalletAvailableSec(wallet.availableSeconds);
           writeVoiceMinutePeek(total);
           setMinuteSheetVisible(false);
           // зачем (владелец 2026-09-01, «не то количество минут, расходится»):

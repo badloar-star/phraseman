@@ -735,7 +735,16 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
     const monthlyUsageForCap = args.maxMonthlyAllowance
       ? Math.max(0, win.monthlyUsedSec - maxAllowanceUsageBaselineSec)
       : win.monthlyUsedSec;
-    const monthRemaining = Math.max(0, Math.floor(args.monthlyVoiceSecMax) - monthlyUsageForCap);
+    // зачем (ревью 2026-09-02, после снятия админ-пула): для ПРОБНИКА
+    // monthlyVoiceSecMax — это пул одного звонка (180+20с), и вычитание из него
+    // календарного расхода прошлых звонков превращало обещанные владельцем
+    // «3 минуты всем, кто не купил» в voice_monthly_quota_exhausted: 141с
+    // истории (у бывших админов — обычное дело) съедали пробник целиком.
+    // Разовость пробника держат trialUsedAtMs/trialReservationSessionId, а не
+    // месячный счётчик. Дневной лимит при этом остаётся общим правилом линии.
+    const monthRemaining = args.accessType === 'trial'
+      ? Math.floor(args.monthlyVoiceSecMax)
+      : Math.max(0, Math.floor(args.monthlyVoiceSecMax) - monthlyUsageForCap);
     const reservedSec = Math.floor(Math.min(
       Math.max(0, args.formatCapSec) + Math.max(0, args.graceTailSec),
       dayRemaining,
@@ -796,7 +805,10 @@ export async function reserveVoiceSeconds(db: Firestore, args: VoiceReserveArgs)
       lastHeartbeatElapsedSec: 0,
       // Свежий минт = новый корень чейна реконнектов.
       reconnectChain: { rootId: args.sessionId, count: 0, gapSecTotal: 0 },
-      accessType: args.accessType ?? (args.consumeLifetimeTrial ? 'trial' : 'admin'),
+      // зачем (ревью 2026-09-02): дефолт 'admin' молча заводил бы новые
+      // admin-доки, если будущий вызывающий забудет передать accessType —
+      // а админ-пула больше нет. Безопасный дефолт теперь 'trial'.
+      accessType: args.accessType ?? (args.consumeLifetimeTrial ? 'trial' : 'trial'),
       paidReservationRootSessionId: null,
       paidReservationTotalSec: 0,
       paidConsumedSec: 0,
@@ -851,6 +863,16 @@ export async function settleVoiceSession(db: Firestore, args: VoiceSettleArgs): 
     const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
     const reservedSec = Math.max(0, Math.floor(num(data.reservedSec)));
     if (str(data.activeSessionId) !== str(args.sessionId) || reservedSec <= 0) {
+      // Тот же немой выход, что прятал сиротский резерв в settleVoiceSessionWithXp
+      // (владелец 2026-09-02). Этот путь зовёт watchdog — именно он подбирает
+      // сироту через час, и его молчание делало утечку невидимой.
+      console.warn('[MAX-SETTLE] skipped: not the active reservation (settleVoiceSession)', {
+        requestedSessionId: str(args.sessionId),
+        activeSessionId: str(data.activeSessionId) || null,
+        lastSettledSessionId: str(data.lastSettledSessionId) || null,
+        reservedSec,
+        accessType: str(data.accessType) || null,
+      });
       return { chargedSec: 0, refundedSec: 0, alreadySettled: true };
     }
     const win = normalizeWindows(data, now);
@@ -1185,10 +1207,22 @@ export async function releaseVoiceReservation(db: Firestore, args: VoiceReleaseA
   const now = args.nowMs ?? Date.now();
   return db.runTransaction(async (tx) => {
     const owner = await resolveVoiceReservationOwner(db, tx, args);
-    if (!owner) return { chargedSec: 0, refundedSec: 0, alreadySettled: true };
+    if (!owner) {
+      console.warn('[MAX-SETTLE] release skipped: no reservation owner', {
+        requestedSessionId: str(args.sessionId),
+      });
+      return { chargedSec: 0, refundedSec: 0, alreadySettled: true };
+    }
     const { data, ref } = owner;
     const reservedSec = Math.max(0, Math.floor(num(data.reservedSec)));
     if (str(data.activeSessionId) !== str(args.sessionId) || reservedSec <= 0) {
+      console.warn('[MAX-SETTLE] release skipped: not the active reservation', {
+        requestedSessionId: str(args.sessionId),
+        activeSessionId: str(data.activeSessionId) || null,
+        lastSettledSessionId: str(data.lastSettledSessionId) || null,
+        reservedSec,
+        accessType: str(data.accessType) || null,
+      });
       return { chargedSec: 0, refundedSec: 0, alreadySettled: true };
     }
     const win = normalizeWindows(data, now);

@@ -284,11 +284,16 @@ function MaxCallPrestartContent() {
         setPreflight(parsePreflight({ limits: limitsBeforeReserve(mint.limits) }, format));
         // Сервер сам решил, пробник это или полный MAX: trialVariant ≠ null —
         // единственный честный признак trial-доступа в ответе минта.
-        const resolvedAccess = mint.access ?? (mint.trialVariant ? 'trial' : 'admin');
-        setMintAccess(resolvedAccess);
+        // зачем (ревью 2026-09-02): фолбэк 'admin' записывал в persisted peek
+        // тип, которого сервер больше не выдаёт, — и следующий первый кадр
+        // показывал дневной пул вместо реальных минут. Без access от сервера
+        // доверяем только явному признаку пробника.
+        const resolvedAccess: 'paid_minutes' | 'admin' | 'trial' | null =
+          mint.access ?? (mint.trialVariant ? 'trial' : null);
+        if (resolvedAccess) setMintAccess(resolvedAccess);
         // Подтверждённый путь — в peek: следующий вход покажет честный первый
         // кадр без «3 мин → 0 мин» (скрин юзера, владелец 2026-08-30).
-        writeMaxVoiceAccessPeek(resolvedAccess);
+        if (resolvedAccess) writeMaxVoiceAccessPeek(resolvedAccess);
         setPreflightReason(null);
         setPrepState('ready');
         // зачем: линия готова к разговору — сигнал ставим сразу на переходе в
@@ -506,6 +511,11 @@ function MaxCallPrestartContent() {
         ...(cefr !== undefined ? { cefr } : {}),
         ...(devMode ? { devMode: '1' } : {}),
         studyTarget: callStudyTarget,
+        // зачем (ревью 2026-09-02): goalId входит в ключ заготовки. Пре-экран
+        // его принимал, но НЕ передавал дальше — экран звонка считал другой
+        // ключ, не забирал прогретую заготовку и минтил заново поверх её
+        // резерва (voice_session_active).
+        ...(requestedGoalId ? { goalId: requestedGoalId } : {}),
       },
     } as any);
   };

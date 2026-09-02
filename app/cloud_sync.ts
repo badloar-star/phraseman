@@ -433,10 +433,6 @@ export const SYNC_KEYS = [
   // её один раз по метке at (см. energy_system.applyAdminEnergyCommand) — energy_state
   // остаётся client-owned, команда лишь одноразовый триггер из облака на устройство.
   'admin_energy_command',
-  // «Сокровищница»: server-owned (см. SERVER_OWNED_PROGRESS_KEYS) — в SYNC_KEYS
-  // только ради restoreFromCloud; в исходящий патч не попадают.
-  'collectibles_owned_v1',
-  'collectibles_state_v1',
   'profile_card_level',
   'profile_card_theme',
   'profile_card_motion',
@@ -940,7 +936,15 @@ const DEFAULT_STABLE_AUTH_LINK_CACHE_TTL_MS = 7 * 24 * 60 * 60_000;
  * когда владелец включит флаг, чтобы снять факты с реального устройства.
  * Снять вместе с логом [AUTH-LOOP] после починки.
  */
-export const AUTH_LOOP_TRACE_ENABLED = false;
+export const AUTH_LOOP_TRACE_ENABLED = true;
+
+/**
+ * Счётчик вызовов за сессию приложения — чтобы лавина была видна с первого
+ * взгляда, без выуживания отдельных строк. Владелец просто пользуется
+ * приложением, а я читаю .expo/metro-console.log сам.
+ */
+let _authLinkCallNo = 0;
+const _authLinkFirstCallAtMs = Date.now();
 /** Ожидание чужого syncInFlight без лимита оставляло «Сменить аккаунт» на вечном спиннере при «зависшем» Firestore. */
 const FORCE_SYNC_WAIT_INFLIGHT_MS = 25_000;
 const FORCE_SYNC_FIRESTORE_WRITE_MS = 35_000;
@@ -1254,7 +1258,7 @@ const PREMIUM_PROGRESS_KEYS = new Set([
   'loyalty_gift_granted_at_ms',
 ]);
 
-// Ключи, которые ВЫДАЁТ ТОЛЬКО СЕРВЕР (CF collectiblesClaimDrop и т.п.).
+// Ключи, которые выдаёт только сервер.
 // Клиент их в облако НИКОГДА не шлёт — они в blocklist progressHasNoPremiumWrites
 // (firestore.rules), и любая исходящая запись уронит весь set целиком, как с
 // premium-ключами. Отличие от PREMIUM_PROGRESS_KEYS: исключение безусловное
@@ -1275,8 +1279,6 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
   // progress_events. Keep it restoreable via SYNC_KEYS, but never include it in
   // an outbound client patch or the rules reject the whole progress update.
   'unlocked_lessons',
-  'collectibles_owned_v1',
-  'collectibles_state_v1',
   'chain_shield',
   'gift_xp_multiplier',
   'club_gift_free_boost_v1',
@@ -1530,14 +1532,13 @@ function targetScopedRestoreInfo(key: string): { domain: string; id: string } | 
 
 // K2: owned/purchased-ключи (покупки за осколки / выдачи), которые restore в ветке
 // «облако победило» НЕЛЬЗЯ слепо перезаписывать облаком: офлайн-покупка (пак флешкарт,
-// аура, аватар, карточка Сокровищницы), ещё не доехавшая до облака, исчезала бы.
+// аура или аватар), ещё не доехавшая до облака, исчезала бы.
 // Владение строго аддитивно — мержим объединением (union), как mergeOwnedFlagMap
 // в sticky-ветке. Базовые имена; матчатся и target-scoped варианты
 // (flashcards_v2::fr::flashcards_owned_packs_v1 и т.п.).
 const OWNED_UNION_RESTORE_BASE_KEYS = new Set<string>([
   'avatar_aura_owned_v1',          // {[id]: true}
   'custom_avatar_owned_v1',        // {[id]: 'gradient:logoColor'}
-  'collectibles_owned_v1',         // {[id]: count}
   'flashcards_owned_packs_v1',     // ["packId", ...]
   'community_owned_pack_ids_v1',   // ["packId", ...]
   'flashcards_market_dev_owned_v1',// ["packId", ...]
@@ -1569,8 +1570,8 @@ function parseOwnedRestoreJson(raw: string | null | undefined): unknown {
 
 /**
  * Union-merge owned-значения при restore: массив id — объединение множеств;
- * объект-мапа — ключи из обоих источников (числа берут max — счётчик карточек
- * Сокровищницы не должен регрессировать; прочие конфликты обычно решает облако).
+ * объект-мапа — ключи из обоих источников (числа берут max; прочие конфликты
+ * обычно решает облако).
  * Для raw-зеркала custom_avatar_owned_v1 локальная версия конфликта авторитетна:
  * облако не содержит operation lineage и потому не может доказать, что его
  * restyle новее локально зафиксированной покупки.
@@ -1597,8 +1598,8 @@ function mergeOwnedRestoreValue(
   // примитив просочился бы в owned-ключ при пустом облаке (аудит фикса K2).
   if (!local || typeof local !== 'object') return cloudValue;
   // Локаль — валидная object-мапа, но облако нечитаемо (пустая строка / битый JSON).
-  // Владение аддитивно: НЕ роняем реальные локальные покупки (аватары/ауры/счётчики
-  // Сокровищницы) в пользу пустого облака — иначе в cloud-wins ветке офлайн-покупки
+  // Владение аддитивно: НЕ роняем реальные локальные покупки (аватары/ауры)
+  // в пользу пустого облака — иначе в cloud-wins ветке офлайн-покупки
   // терялись бы. local тут заведомо непустая строка (прошли local!==null выше).
   if (!cloud || typeof cloud !== 'object') return localValue as string;
   const cloudMap = cloud as Record<string, unknown>;
@@ -2331,8 +2332,14 @@ export async function ensureStableAuthLinkForStableIdDetailed(
   // Лог печатает САМО значение, решившее ветку, и стек вызывающего.
   // Убрать после починки; строки в catch ниже остаются навсегда.
   if (__DEV__ || AUTH_LOOP_TRACE_ENABLED) {
+    _authLinkCallNo += 1;
+    const willCallNetwork = options.requireAuthoritative === true || hasFreshMetadata || !cacheHit;
     const caller = new Error().stack?.split('\n').slice(2, 5).join(' <- ').replace(/\s+/g, ' ') ?? 'unknown';
     console.log('[AUTH-LOOP] ensureStableAuthLink', JSON.stringify({
+      // Порядковый номер и минуты с запуска: лавину видно сразу по номеру,
+      // без выуживания отдельных строк из лога.
+      callNo: _authLinkCallNo,
+      minSinceStart: Math.round((Date.now() - _authLinkFirstCallAtMs) / 6000) / 10,
       stableId: stableId.slice(0, 8),
       authUid: authUid.slice(0, 8),
       requireAuthoritative: options.requireAuthoritative === true,
@@ -2340,7 +2347,15 @@ export async function ensureStableAuthLinkForStableIdDetailed(
       metadataKeys: hasFreshMetadata ? Object.keys(metadata as object) : [],
       cacheHit,
       willUseCache: !options.requireAuthoritative && !hasFreshMetadata && cacheHit,
-      willCallNetwork: options.requireAuthoritative === true || hasFreshMetadata || !cacheHit,
+      willCallNetwork,
+      // Почему пошли в сеть, если пошли: сразу видно, какая ветка решила.
+      networkReason: !willCallNetwork
+        ? 'none'
+        : options.requireAuthoritative === true
+          ? 'requireAuthoritative'
+          : hasFreshMetadata
+            ? 'freshMetadata'
+            : 'cacheMiss',
       inFlight: stableAuthLinkPromise != null,
       caller,
     }));
@@ -3115,7 +3130,7 @@ async function doSyncToCloud(): Promise<void> {
       // (progressHasNoPremiumWrites) отклонят такую запись для обычного юзера и уронят
       // весь set целиком (вместе с XP/streak). Поэтому вычищаем их из patch заранее.
       if (PREMIUM_PROGRESS_KEYS.has(key)) continue;
-      // Server-owned ключи (Сокровищница): пишет только CF, исходящая запись
+      // Server-owned ключи пишет только CF, исходящая запись
       // была бы отклонена rules и уронила бы весь set.
       if (isServerOwnedProgressKey(key)) continue;
       if (!cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) progressPatch[key] = value;
@@ -3579,7 +3594,7 @@ async function applyRestoreFromUserDoc(
       cloudData[AVATAR_AURA_OWNED_KEY],
     );
     if (mergedOwnedAuras !== null) stickyPairs.push([AVATAR_AURA_OWNED_KEY, mergedOwnedAuras]);
-    // K2: остальные owned-ключи (паки флешкарт, аватары, Сокровищница) — тот же принцип:
+    // K2: остальные owned-ключи (паки флешкарт, аватары) — тот же принцип:
     // покупка/выдача с другого девайса догоняет устройство и в local-wins ветке. Union;
     // ауры уже обработаны выше, fr-scoped ключи идут через buildFrenchTargetStickyRestorePairs.
     const stickyOwnedKeys = getRuntimeSyncKeys().filter((k) =>
@@ -4147,7 +4162,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
       // Иначе Firestore rules отклонят force-sync целиком при смене устройства/аккаунта
       // и юзер не сможет завершить миграцию прогресса. См. progressHasNoPremiumWrites.
       else if (PREMIUM_PROGRESS_KEYS.has(key)) delete data[key];
-      // Server-owned ключи (Сокровищница) — та же причина: пишет только CF.
+      // Server-owned ключи — та же причина: пишет только CF.
       else if (isServerOwnedProgressKey(key)) delete data[key];
     }
 

@@ -36,6 +36,7 @@ import { isFeatureFreeForEveryone } from '../app/feature_gates';
 import { emitAppEvent } from '../app/events';
 import type { EnergyStartResult } from './energy_start_confirmation';
 import { peekEnergy, writePeekEnergy } from '../app/energy_peek_cache';
+import { markEnergySpendStage } from '../app/energy_spend_latency_trace';
 import { soundDirector } from '../modules/audio/sound_director';
 import {
   acknowledgeEnergySessionStart as acknowledgeEnergySessionStartInLedger,
@@ -385,6 +386,58 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // после её удаления (владелец 2026-08-24) остаётся null, и EnergySpendFlightHost
   // сам берёт запасной путь — от счётчика энергии вверху экрана.
   const motionTargetRef = useRef<{ x: number; y: number } | null>(null);
+  /**
+   * Молния уже запущена оптимистично в ЭТОМ старте — леджеру эмитить второй раз
+   * нельзя, иначе человек увидит две вспышки за одно списание.
+   */
+  const optimisticFlightRef = useRef(false);
+
+  /**
+   * Откат необоснованной молнии: списание не состоялось, анимацию гасим.
+   * Причина пишется всегда — молчаливый откат прятал бы реальную поломку
+   * списания за «просто мигнуло».
+   */
+  const rollbackOptimisticFlight = useCallback((reason: string) => {
+    if (!optimisticFlightRef.current) return;
+    optimisticFlightRef.current = false;
+    // Цифру возвращаем НЕ обратной арифметикой, а из авторитетных refs: между
+    // оптимистичным вычетом и отказом заряд мог измениться (долив по таймеру,
+    // подарок). Прибавка «сколько отняли» вернула бы неверное число.
+    setEnergy(energyRef.current);
+    setBonusEnergy(bonusRef.current);
+    setRefundCredit(refundCreditRef.current);
+    // Лог диагностический (в UI не попадает) — держим латиницей, иначе сторож
+    // непереведённых строк считает его текстом интерфейса.
+    DebugLogger.warn('EnergyContext:spend', `optimistic energy flight rolled back: ${reason}`);
+    emitAppEvent('energy_spend_rolled_back', undefined);
+  }, []);
+
+  /**
+   * Оптимистичный вычет ТОЛЬКО из отображения: счётчик в шапке уменьшается в
+   * одном кадре с молнией, пока запись в леджер идёт фоном. Авторитетные refs
+   * не трогаем — по ним считается «хватает ли заряда» на следующий старт.
+   *
+   * Порядок ОБЯЗАН совпадать с планировщиком леджера (planEnergySessionDebit):
+   * бонус → кредит возврата → база. Иначе при живом кредите возврата цифра
+   * сначала уменьшится не там, а после записи дёрнется на правильное место.
+   *
+   * guard-ok (DATA-SAFETY-GUARD): это НЕ «клиент понижает баланс». Источник
+   * истины остаётся прежним — леджер и refs, которые он же и заполняет через
+   * applySessionProjection. Здесь меняется ТОЛЬКО отображаемое число на время
+   * полёта молнии (десятые доли секунды), и любой исход возвращает цифру к
+   * авторитетному значению: успех — через applySessionProjection по факту
+   * записи, отказ — через rollbackOptimisticFlight из refs. Списанием
+   * по-прежнему распоряжается леджер, а не этот вычет.
+   */
+  const applyOptimisticSpendToDisplay = useCallback((cost: number) => {
+    const fromBonus = Math.min(bonusRef.current, cost);
+    const afterBonus = cost - fromBonus;
+    const fromRefundCredit = Math.min(afterBonus, refundCreditRef.current);
+    const fromBase = afterBonus - fromRefundCredit;
+    if (fromBonus > 0) setBonusEnergy(Math.max(0, bonusRef.current - fromBonus));
+    if (fromRefundCredit > 0) setRefundCredit(Math.max(0, refundCreditRef.current - fromRefundCredit));
+    if (fromBase > 0) setEnergy(Math.max(0, energyRef.current - fromBase));
+  }, []);
 
   const applySessionProjection = useCallback((projection: EnergySessionProjection) => {
     energyRef.current = projection.baseEnergy;
@@ -665,7 +718,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     if (!energyReadyRef.current) await load();
     if (!energyReadyRef.current) throw new Error('energy_state_unavailable');
     const accountToken = captureAccountGeneration();
+    const traceKey = intent.grant?.subjectId ? `spend:${intent.grant.subjectId}` : 'spend';
+    markEnergySpendStage(traceKey, 'waiting for shared account lock');
     return withAccountTransitionLock(async (accountTransitionLockLease) => {
+      markEnergySpendStage(traceKey, 'account lock acquired');
       if (!isCurrentAccountGeneration(accountToken)) return false;
       if (isUnlimitedRef.current) return true;
       const result = await commitEnergySessionStart(
@@ -675,15 +731,23 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         energySessionBootIdRef.current,
         { accountToken, accountTransitionLockLease },
       );
+      markEnergySpendStage(traceKey, `ledger commit (status=${result.status})`);
       if (result.status === 'insufficient') return false;
       if (result.status === 'failed') throw new Error(`energy_session_start_failed:${result.reason}`);
       applySessionProjection(result.projection);
       if (result.status === 'applied') {
-        emitAppEvent('energy_spent_on_start', { amount: 1, target: motionTargetRef.current ?? undefined });
+        // зачем: при старте через confirmSpend* молния уже летит с момента
+        // намерения — второй эмит дал бы две вспышки за одно списание.
+        // Прямые вызовы spendOne (минуя confirm) флага не ставят и эмитят как раньше.
         // зачем: списание энергии проходило беззвучно — значок молнии в шапке
         // просто уменьшался. Звук ставим только на 'applied' (реальное списание),
         // а не на 'insufficient': отказ озвучивает pm.energy.empty из своей модалки.
-        soundDirector.request('pm.energy.spend', { scope: 'energy-spend' });
+        // Звук идёт ВМЕСТЕ с молнией: при оптимистичном старте оба ушли раньше,
+        // здесь бы он прозвучал вторым эхом уже после анимации.
+        if (!optimisticFlightRef.current) {
+          emitAppEvent('energy_spent_on_start', { amount: 1, target: motionTargetRef.current ?? undefined });
+          soundDirector.request('pm.energy.spend', { scope: 'energy-spend' });
+        }
       }
       void syncEnergyPushRef.current?.();
       return true;
@@ -744,7 +808,9 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       if (result.status === 'failed') throw new Error(`energy_session_start_failed:${result.reason}`);
 
       applySessionProjection(result.projection);
-      if (result.status === 'applied') {
+      if (result.status === 'applied' && !optimisticFlightRef.current) {
+        // Молния уже летит с момента намерения (см. confirmSpendAmount) — второй
+        // эмит дал бы две вспышки за одно списание.
         emitAppEvent('energy_spent_on_start', { amount: n, target: motionTargetRef.current ?? undefined });
       }
       void syncEnergyPushRef.current?.();
@@ -754,13 +820,43 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   }, [applySessionProjection, currentSessionProjection, load]);
 
   const confirmSpendAmount = useCallback(async (n: number, intent: EnergySessionIntent): Promise<EnergyStartResult> => {
+    // зачем: трассировка [ENERGY-SPEND-LAT] — владелец видит «минус энергия»
+    // иногда не мгновенно. Метим КАЖДОЕ звено со значением, которое его решило,
+    // чтобы чинить по фактам, а не по догадке. См. app/energy_spend_latency_trace.ts.
+    const traceKey = intent.grant?.subjectId ? `spend:${intent.grant.subjectId}` : 'spend';
     try {
       const cost = Math.max(0, Math.floor(n));
       if (cost <= 0) return 'unlimited';
-      if (!energyReadyRef.current) await load();
+      if (!energyReadyRef.current) {
+        markEnergySpendStage(traceKey, 'waiting for load (cold context: energyReady=false)');
+        await load();
+        markEnergySpendStage(traceKey, `load finished (energyReady=${energyReadyRef.current})`);
+      }
       if (!energyReadyRef.current) return 'cancelled';
       if (isUnlimitedRef.current) return 'unlimited';
       if (bonusRef.current + refundCreditRef.current + energyRef.current < cost) return 'insufficient';
+
+      // ── Optimistic UI: молния летит СЕЙЧАС, запись догоняет фоном ──────────
+      // зачем (владелец, 2026-09-02, «минус энергия иногда не сразу»): раньше
+      // событие анимации ждало физической записи в леджер — SHA-256 через мост,
+      // ~10 последовательных обращений к AsyncStorage, полный getAllKeys() и
+      // ОБЩИЙ замок аккаунта (его же берут достижения, аватар, восстановление).
+      // Любой из этих участков даёт заметную паузу, отсюда «иногда».
+      //
+      // К этой строке уже проверено локально: контекст прогрет, безлимита нет,
+      // заряда хватает. Значит намерение обосновано — показываем его немедленно.
+      // Вторая половина правила обязательна: если списание всё-таки не пройдёт,
+      // ниже летит energy_spend_rolled_back и молния гаснет.
+      optimisticFlightRef.current = true;
+      // Счётчик в шапке двигаем ВМЕСТЕ с молнией, иначе заряд прилетит в цифру,
+      // которая ещё показывает старое значение. Двигаем ТОЛЬКО отображаемое
+      // состояние: energyRef/bonusRef остаются авторитетом для проверки «хватает
+      // ли заряда» — иначе следующее списание посчитает по выдуманному числу.
+      // Порядок тот же, что в леджере: сперва бонус, потом база.
+      applyOptimisticSpendToDisplay(cost);
+      emitAppEvent('energy_spent_on_start', { amount: cost, target: motionTargetRef.current ?? undefined });
+      soundDirector.request('pm.energy.spend', { scope: 'energy-spend' });
+      markEnergySpendStage(traceKey, 'flight started optimistically (enough charge)');
 
     // зачем: владелец 2026-08-24 — окно «Потратить 1 энергию и начать?» убрано.
     // Лишний тап на каждый старт мешал, а цена и так видна прямо на кнопке
@@ -776,14 +872,24 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     // и стартом. Молния летит фоном поверх уже открывшегося экрана —
     // отклик мгновенный, а списание всё равно видно.
       const spent = cost === 1 ? await spendOne(intent) : await spendAmount(cost, intent);
-      if (!spent) return 'insufficient';
+      if (!spent) {
+        // Локально заряд был, а леджер списать не смог (гонка с подарком,
+        // параллельное списание, смена аккаунта). Гасим необоснованную молнию.
+        rollbackOptimisticFlight('ledger_refused');
+        return 'insufficient';
+      }
       return 'spent';
-    } catch {
+    } catch (error) {
       // Storage/account-generation failures are not lack of energy. They use
       // the existing no-entry path and, crucially, never start for free.
+      // зачем: причину пишем ВСЕГДА — немой catch уже прятал мёртвые функции
+      // месяцами (см. project_image_preload_silently_dead).
+      rollbackOptimisticFlight(error instanceof Error ? error.message : 'unknown');
       return 'cancelled';
+    } finally {
+      optimisticFlightRef.current = false;
     }
-  }, [load, spendAmount, spendOne]);
+  }, [applyOptimisticSpendToDisplay, load, rollbackOptimisticFlight, spendAmount, spendOne]);
 
   const confirmSpendOne = useCallback(
     (intent: EnergySessionIntent): Promise<EnergyStartResult> => confirmSpendAmount(1, intent),

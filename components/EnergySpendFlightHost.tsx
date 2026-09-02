@@ -79,6 +79,21 @@ function EnergySpendFlightHost() {
     return () => { sub.remove(); };
   }, [play]);
 
+  // зачем (владелец, 2026-09-02): молния теперь стартует ОПТИМИСТИЧНО — сразу
+  // по намерению, не дожидаясь записи в леджер. Обязательная вторая половина
+  // правила: если списание не состоялось, полёт гасим немедленно, иначе человек
+  // увидит списание, которого не было.
+  useEffect(() => {
+    const sub = onAppEvent('energy_spend_rolled_back', () => {
+      animRef.current?.stop();
+      animRef.current = null;
+      queuedRequestRef.current = null;
+      runningRef.current = false;
+      setVisible(false);
+    });
+    return () => { sub.remove(); };
+  }, []);
+
   if (!visible) return null;
 
   const sourceX = Math.max(18, width - MOTION.sourceRightPx - FLIGHT_ASSET_SIZE / 2);

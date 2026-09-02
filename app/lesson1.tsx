@@ -2640,12 +2640,12 @@ function LessonScreen() {
   useEffect(() => {
     const traceKey = `spend:${String(lessonId)}`;
     if (!energyReady) {
-      markEnergySpendStage(traceKey, 'гейт energyReady=false — эффект списания ещё не стартовал');
+      markEnergySpendStage(traceKey, 'gate energyReady=false - spend effect not started yet');
       return;
     }
     if (entryEnergyGateLessonRef.current === lessonId) return;
     entryEnergyGateLessonRef.current = lessonId;
-    markEnergySpendStage(traceKey, 'гейт пройден (energyReady=true), зовём confirmSpendOne');
+    markEnergySpendStage(traceKey, 'gate passed (energyReady=true), calling confirmSpendOne');
     let active = true;
     void confirmSpendOneRef.current(lessonEnergyIntent).then(result => {
       endEnergySpendTrace(traceKey, String(result));

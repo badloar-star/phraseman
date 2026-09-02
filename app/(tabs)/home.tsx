@@ -146,7 +146,7 @@ import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProf
 import { getForegroundUsageMs } from '../foreground_usage_ms';
 import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
-import { perfMark, perfScreenMount, perfNavStart } from '../perf-monitor';
+import { perfMark, perfSteps, perfScreenMount, perfNavStart } from '../perf-monitor';
 import { emitAppEvent, onAppEvent } from '../events';
 import { takeHomeLevelUpCelebration } from '../home_level_up_celebration_queue';
 import { registerDailyJourneyRevealTargetMeasurer } from '../../components/daily_journey/dailyJourneyRevealTargetBridge';
@@ -2321,6 +2321,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         streakScaleAnim.stopAnimation();
         streakScaleAnim.setValue(1);
         const endPerf = perfMark('home:loadData');
+        // зачем (владелец 2026-09-02): загрузка Главной ~1 с при пороге 300 мс.
+        // Отсечки показывают, КАКОЙ шаг её съедает, чтобы не чинить наугад.
+        // Снять вместе с диагностикой после починки.
+        const step = perfSteps('home:loadData');
         try {
             const [homeStoragePairs, currentWeekMarkers, weekPts, shardsBal, premiumSignalPairs, personalProgress] = await Promise.all([
                 AsyncStorage.multiGet([
@@ -2335,6 +2339,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 AsyncStorage.multiGet(['premium_active']),
                 hydratePersonalProgress().catch(() => getPersonalProgressSnapshot()),
             ]);
+            step('parallel6');
             const homeStorage = new Map(homeStoragePairs);
             const name = homeStorage.get('user_name') ?? null;
             const streakVal = String(personalProgress.streakCount);
@@ -2401,6 +2406,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             }
             const xpSnap = hydratedStats.totalXp;
             const curLvlSnap = getLevelFromXP(xpSnap);
+            step('streak');
             const [[, savedAvSnap], [, savedFrSnap], [, savedAuraSnap]] = await AsyncStorage.multiGet(['user_avatar', 'user_frame', USER_AVATAR_AURA_KEY]);
             const liveProfileVisuals = sharedSnapshotAtHydration.profile?.source === 'live'
                 ? resolveHomeProfileVisuals({ snapshot: sharedSnapshotAtHydration.profile })
@@ -2442,6 +2448,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 }
             }
             setWeekPoints(weekPts);
+            step('avatar');
             const [specialTitleStoragePairs, achievementStates] = await Promise.all([
                 AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY]),
                 loadAchievementStates().catch(() => []),
@@ -2463,6 +2470,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             let done = 0;
             const lastOpenedKey = lastOpenedLessonKey(studyTarget);
             const lessonKeys = Array.from({ length: 32 }, (_, i) => lessonProgressKey(i + 1, studyTarget));
+            step('titles+achievements+greeting');
+            step('titles+achievements');
             const lessonEntriesWithLastOpened = await AsyncStorage.multiGet([...lessonKeys, lastOpenedKey]);
             const lessonEntries = lessonEntriesWithLastOpened.slice(0, lessonKeys.length);
             const lastLessonIdKey = lessonEntriesWithLastOpened[lessonKeys.length]?.[1] ?? null;
@@ -2540,6 +2549,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 setLastLesson(null);
             }
             // Крупная карта «Рівень / Ланцюжок»: не ждём лігу, медалі и ошибки — щоб не ловити вічний спінер.
+            step('lessons+unlockLoop');
             const [freezeStoragePairs, baseMulti] = await Promise.all([
                 AsyncStorage.multiGet(['streak_freeze', 'premium_free_freeze_used']),
                 getCurrentMultiplier(),
@@ -2779,6 +2789,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         }
         finally {
             endPerf();
+            // Раскладка по шагам печатается в finally — она нужна и когда загрузка
+            // упала на середине: видно, на каком именно шаге оборвалось.
+            step.end();
             homeStatsLoadedOnce = true;
             if (mountedRef.current)
                 markHomeStatsReady();

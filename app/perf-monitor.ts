@@ -24,6 +24,42 @@ export function perfMark(label: string): () => void {
 }
 
 /**
+ * Замер с промежуточными отсечками — когда общая цифра известна, но непонятно,
+ * КАКОЙ шаг её съел.
+ *
+ * зачем (владелец 2026-09-02): загрузка Главной ~1 секунда при пороге 300 мс,
+ * а внутри неё десяток последовательных чтений диска. Без отсечек пришлось бы
+ * гадать, какое именно звено тормозит — правило «сперва логи» это запрещает.
+ *
+ *   const step = perfSteps('home:loadData');
+ *   await a(); step('storage');
+ *   await b(); step('lessons');
+ *   step.end();   // печатает всю раскладку одной строкой
+ */
+export function perfSteps(label: string): ((name: string) => void) & { end: () => void } {
+  if (!IS_DEV) {
+    // В релизе замер не нужен: возвращаем пустышку той же формы.
+    const noop = (_name: string): void => {};
+    return Object.assign(noop, { end: () => {} });
+  }
+  const start = Date.now();
+  let last = start;
+  const parts: string[] = [];
+  const step = (name: string): void => {
+    const now = Date.now();
+    parts.push(`${name}=${now - last}ms`);
+    last = now;
+  };
+  return Object.assign(step, {
+    end: () => {
+      const total = Date.now() - start;
+      const flag = total > SLOW_THRESHOLD_MS ? '  ⚠️ SLOW' : '';
+      console.log(`[PERF-STEPS] ${label}: total=${total}ms · ${parts.join(' · ')}${flag}`);
+    },
+  });
+}
+
+/**
  * Замер навигационного перехода — вызывается в useEffect экрана при монтировании.
  *
  * Использование в экране:

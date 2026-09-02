@@ -14,7 +14,15 @@ describe('cloud sync account-transition race contract', () => {
   test('outbound sync is generation-bound at the user write and local marker boundaries', () => {
     expect(cloudSyncSource).toContain('const syncGeneration = captureAccountGeneration()');
     expect(cloudSyncSource).toContain('isCurrentAccountGeneration(syncGeneration, uid)');
-    expect(cloudSyncSource).toMatch(/if \(!isSyncGenerationCurrent\(\)\) return;\r?\n\s+await docRef\.set\(/);
+    // зачем (2026-09-02): запись документа переехала с `docRef.set(...)` на
+    // точечное обновление progress по dot-notation — `set(merge:true)` заменял
+    // вложенную карту целиком, из-за чего правила видели «удаление» server-owned
+    // ключей и рубили ВЕСЬ set (разбор [SYNC-DENY], см.
+    // cloud_sync_nested_progress_write_contract). Требование сторожа не
+    // изменилось: проверка поколения обязана стоять ВПЛОТНУЮ к сетевой записи.
+    expect(cloudSyncSource).toMatch(
+      /if \(!isSyncGenerationCurrent\(\)\) return;\r?\n\s+const wrote = await writeUserDocWithNestedProgress\(/,
+    );
     expect(cloudSyncSource).toMatch(/if \(!isSyncGenerationCurrent\(\)\) return;\r?\n\s+await AsyncStorage\.setItem\(LAST_SYNC_SNAPSHOT_KEY/);
   });
 

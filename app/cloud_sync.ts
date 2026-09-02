@@ -3064,6 +3064,74 @@ function isDocumentTooLargeError(error: unknown): boolean {
   return /exceeds the maximum allowed size|INVALID_ARGUMENT/i.test(message);
 }
 
+/**
+ * Записать корневые поля users/{uid} и точечно обновить вложенную карту progress.
+ *
+ * зачем (владелец 2026-09-02, разбор боевых логов [SYNC-DENY]):
+ * `set({ merge: true })` мержит ТОЛЬКО верхний уровень — вложенная карта
+ * `progress` заменяется целиком. Для Firestore Rules это значит, что каждый
+ * ключ, лежащий в облаке, но отсутствующий в патче, попадает в `removedKeys()`,
+ * а `affectedKeys()` = addedKeys ∪ removedKeys ∪ changedKeys. Так запрещённые
+ * ключи (`chain_shield`, `gift_xp_multiplier`, `club_gift_free_boost_v1`,
+ * `user_total_xp`, `streak_count`…) считались «затронутыми» просто потому, что
+ * клиент их не прислал, и правила рубили ВЕСЬ set — вместе с XP и аватаром.
+ * В логах отказа `blockedKeys: []`: виноваты были не отправленные ключи, а
+ * ПОТЕРЯННЫЕ.
+ *
+ * Здесь progress обновляется по dot-notation: правило видит только реально
+ * меняемые ключи, остальные остаются в документе нетронутыми.
+ *
+ * Возвращает true, если запись прошла. Бросает исходную ошибку наружу —
+ * разбор и логирование причины остаются на вызывающем.
+ */
+async function writeUserDocWithNestedProgress(
+  docRef: { set: (data: unknown, options?: unknown) => Promise<unknown>; update: (data: unknown) => Promise<unknown> },
+  rootPatch: Readonly<Record<string, unknown>>,
+  progressPatch: Readonly<Record<string, string | null>>,
+): Promise<boolean> {
+  const progressKeys = Object.keys(progressPatch);
+  const hasRoot = Object.keys(rootPatch).length > 0;
+  if (progressKeys.length === 0) {
+    if (!hasRoot) return false;
+    // Корневых полей мало и они всегда «свои» — обычный merge тут безопасен:
+    // вложенных карт в rootPatch нет, затирать нечего.
+    await docRef.set({ ...rootPatch }, { merge: true });
+    return true;
+  }
+
+  // FieldPath принимает сегмент КАК ЕСТЬ. Строковый путь 'progress.<key>' здесь
+  // ненадёжен: имена ключей содержат `::` (`language_profile_v1::en`,
+  // `target_stats_v2::fr::pos_mastery_v1`), и парсер пути может их не принять.
+  // Проверено по боевой базе: точек внутри имён ключей нет ни одного.
+  let FieldPathCtor: (new (...segments: string[]) => unknown) | null = null;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const firestoreModule = require('@react-native-firebase/firestore');
+    const firestoreFn = firestoreModule.default ?? firestoreModule;
+    FieldPathCtor = firestoreFn?.FieldPath ?? firestoreModule?.FieldPath ?? null;
+  } catch (error) {
+    // зачем: немой catch уже прятал эту аварию месяцами — причина пишется всегда.
+    DebugLogger.warn('cloud_sync:fieldPath', `FieldPath unavailable, falling back to string paths: ${String(error)}`);
+  }
+
+  const updatePayload: unknown[] = [];
+  const stringPayload: Record<string, unknown> = {};
+  for (const key of progressKeys) {
+    const value = progressPatch[key];
+    if (FieldPathCtor) updatePayload.push(new FieldPathCtor('progress', key), value);
+    else stringPayload[`progress.${key}`] = value;
+  }
+  for (const [key, value] of Object.entries(rootPatch)) {
+    if (FieldPathCtor) updatePayload.push(new FieldPathCtor(key), value);
+    else stringPayload[key] = value;
+  }
+
+  const updateFn = docRef.update as unknown as (...args: unknown[]) => Promise<unknown>;
+  if (FieldPathCtor) await updateFn.apply(docRef, updatePayload);
+  else await updateFn.call(docRef, stringPayload);
+  return true;
+}
+
 async function doSyncToCloud(): Promise<void> {
   if (!pendingSync) return;
   pendingSync = false;
@@ -3218,17 +3286,40 @@ async function doSyncToCloud(): Promise<void> {
     // Авторитетный писатель — authEnsureStableLink (functions/src/auth_identity.ts:737),
     // он сам отслеживает userAuthUidChanged и обновляет поле при каждом расхождении.
     if (!isSyncGenerationCurrent()) return;
-    await docRef.set(
-      {
-        ...(data['user_avatar'] ? { user_avatar: data['user_avatar'] } : {}),
-        ...(data['user_avatar_frame'] ? { user_avatar_frame: data['user_avatar_frame'] } : {}),
-        ...(hasProgressPatch ? { progress: progressPatch } : {}),
-        ...(needActivityStamp || needHeartbeat || shouldSendCreatedAt ? { updatedAt: now, last_active_at: now } : {}),
-        ...(shouldSendCreatedAt ? { created_at: now } : {}),
-      },
-      { merge: true }
-    );
+    /**
+     * зачем (владелец 2026-09-02, разбор по боевым логам [SYNC-DENY]):
+     * `set(..., { merge: true })` мержит ТОЛЬКО верхний уровень — вложенная карта
+     * `progress` заменяется ЦЕЛИКОМ. Для правил это значит, что каждый ключ,
+     * который лежит в облаке, но отсутствует в патче, попадает в removedKeys(),
+     * а `affectedKeys()` = addedKeys ∪ removedKeys ∪ changedKeys. Поэтому
+     * запрещённые ключи, ЛЕЖАЩИЕ в документе (chain_shield, gift_xp_multiplier,
+     * club_gift_free_boost_v1, user_total_xp, streak_count…), считались
+     * «затронутыми» просто потому, что клиент их не прислал — и правила
+     * hasNoServerGiftPerkWrites / progressHasNoPremiumWrites рубили ВЕСЬ set.
+     *
+     * Факты из лога: `blockedKeys: []` при отказе — виноваты были не отправленные
+     * ключи, а ПОТЕРЯННЫЕ. Прошлая правка вычищала запрещённые ключи из патча и
+     * тем самым делала ровно то, что вызывает отказ.
+     *
+     * Точечное обновление по dot-notation трогает только реально меняемые ключи:
+     * остальные остаются в документе и в affectedKeys() не попадают.
+     * FieldPath берётся вместо строки с точками — имена ключей содержат `::`
+     * (`language_profile_v1::en`), и парсинг строкового пути на них ненадёжен;
+     * FieldPath принимает сегмент как есть, без экранирования.
+     */
+    const rootPatch: Record<string, unknown> = {
+      ...(data['user_avatar'] ? { user_avatar: data['user_avatar'] } : {}),
+      ...(data['user_avatar_frame'] ? { user_avatar_frame: data['user_avatar_frame'] } : {}),
+      ...(needActivityStamp || needHeartbeat || shouldSendCreatedAt ? { updatedAt: now, last_active_at: now } : {}),
+      ...(shouldSendCreatedAt ? { created_at: now } : {}),
+    };
+    // зачем: проверка поколения обязана стоять ВПЛОТНУЮ к записи — иначе между
+    // ней и сетевым вызовом открывается окно, в котором успевает смениться
+    // аккаунт, и патч уедет чужому. Сторож гонки (cloud_sync_account_race_contract)
+    // проверяет именно это соседство.
     if (!isSyncGenerationCurrent()) return;
+    const wrote = await writeUserDocWithNestedProgress(docRef, rootPatch, progressPatch);
+    if (!wrote) return;
     lastSuccessfulSyncAt = now;
     if (needActivityStamp || needHeartbeat || shouldSendCreatedAt) {
       lastActivityStampAt = now;
@@ -3302,6 +3393,32 @@ async function doSyncToCloud(): Promise<void> {
         'cloud_sync:permission_denied',
         e instanceof Error ? e : new Error(String(e)),
         'critical',
+      );
+    } else if (String(code).includes('not-found')) {
+      /**
+       * зачем (владелец 2026-09-02): переход с `set(merge)` на точечный `update`
+       * поменял поведение при ОТСУТСТВУЮЩЕМ документе — `set` его создавал,
+       * `update` падает с not-found. Данные от этого не теряются: правило
+       * `allow create: if false` и раньше запрещало клиенту создавать
+       * users/{uid}, документ заводит сервер (authEnsureStableLink). Но без
+       * своей ветки отказ выглядел бы безымянным «write failed», и следующий
+       * разбор снова начинался бы с нуля.
+       *
+       * Что это значит на практике: личность ещё не забутстрапана сервером.
+       * Прогресс остаётся на устройстве и уедет следующей синхронизацией, как
+       * только authEnsureStableLink создаст документ.
+       */
+      console.warn('[SYNC-DENY] users doc missing — ждём серверный бутстрап личности', {
+        uid,
+        authUid: getAuthUserId(),
+        progressKeyCount: Object.keys(progressPatch).length,
+        code,
+        reason: e instanceof Error ? e.message : String(e),
+      });
+      DebugLogger.error(
+        'cloud_sync:user_doc_missing',
+        e instanceof Error ? e : new Error(String(e)),
+        'warning',
       );
     } else {
       console.warn('[SYNC-DENY] users write failed', {
@@ -4264,17 +4381,23 @@ export async function forceSyncToCloud(): Promise<boolean> {
       pendingSync = false;
       return false;
     }
+    // зачем (владелец 2026-09-02): та же авария, что в doSyncToCloud, и здесь она
+    // ДОРОЖЕ — это перенос прогресса при смене устройства. `set` с вложенной
+    // картой заменял progress ЦЕЛИКОМ, поэтому вырезанные выше запрещённые ключи
+    // (chain_shield, user_total_xp, streak_count…) выглядели для правил как
+    // УДАЛЁННЫЕ, попадали в affectedKeys() и рубили запись вместе со всей
+    // миграцией. Точечное обновление трогает только присланные ключи.
     await withTimeout(
-      docRef.set(
+      writeUserDocWithNestedProgress(
+        docRef,
         {
-          progress: data,
           ...(data['user_avatar'] ? { user_avatar: data['user_avatar'] } : {}),
           ...(data['user_avatar_frame'] ? { user_avatar_frame: data['user_avatar_frame'] } : {}),
           updatedAt: now,
           last_active_at: now,
           ...(shouldSendCreatedAt ? { created_at: now } : {}),
         },
-        { merge: true },
+        data,
       ),
       FORCE_SYNC_FIRESTORE_WRITE_MS,
       'firestore_set',
@@ -4291,7 +4414,24 @@ export async function forceSyncToCloud(): Promise<boolean> {
     }
     return true;
   } catch (e) {
-    if (__DEV__) console.warn('[cloud_sync] forceSyncToCloud failed', e);
+    /**
+     * зачем (владелец 2026-09-02): под `if (__DEV__)` этот отказ в сторовой
+     * сборке не логировался ВООБЩЕ, а это перенос прогресса при смене
+     * устройства — цена молчания здесь выше, чем у обычного такта синка.
+     * Тот же класс бага, из-за которого отказ doSyncToCloud был невидим
+     * месяцами. Логи в catch остаются навсегда.
+     */
+    const code = (e as { code?: string } | null)?.code ?? '';
+    console.warn('[SYNC-DENY] forceSyncToCloud failed', {
+      uid,
+      code,
+      reason: e instanceof Error ? e.message : String(e),
+    });
+    DebugLogger.error(
+      'cloud_sync:force_sync_failed',
+      e instanceof Error ? e : new Error(String(e)),
+      'critical',
+    );
     pendingSync = false;
     return false;
   }

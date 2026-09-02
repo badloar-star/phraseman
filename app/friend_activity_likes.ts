@@ -2,7 +2,7 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import * as Crypto from 'expo-crypto';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
@@ -118,17 +118,38 @@ function normalizeLikeState(data: Record<string, unknown>): FriendActivityLikeSt
   };
 }
 
+/**
+ * зачем (владелец 2026-09-02): здесь клиент сам писал `firebaseAuthUid` прямо в
+ * users/{stableUid}. Это поле server-owned (firestore.rules
+ * serverOwnedUserIdentityFields), и правило hasNoServerIdentityWrites запрещает
+ * его клиенту БЕЗУСЛОВНО — исключения нет даже для админского токена. То есть
+ * запись падала с permission-denied ВСЕГДА, а лайк при этом продолжал работать
+ * только потому, что связь уже была проставлена сервером в другом месте.
+ *
+ * Авторитетный писатель ровно один — callable authEnsureStableLink на Admin SDK.
+ * Общий помощник ходит именно туда и делит кэш с остальным приложением, поэтому
+ * лишнего сетевого вызова на каждый лайк здесь не появляется.
+ */
 async function ensureActivityLikeAuthLink(stableUid: string): Promise<void> {
   const authUid = getAuthUserId();
-  if (!authUid) return;
-  const db = getDb();
-  if (!db) return;
+  if (!authUid) {
+    // Ранний выход обязан называть причину: без неё «лайк не проходит»
+    // выглядел бы как отказ сервера, а не как отсутствие авторизации.
+    DebugLogger.warn('friend_activity_likes:authLink', `link skipped: authUid отсутствует (stableUid=${stableUid})`);
+    return;
+  }
   try {
-    await db.collection('users').doc(stableUid).set({ firebaseAuthUid: authUid }, { merge: true });
-  } catch (e) {
-      // Existing sync usually owns this link; callable will enforce it server-side.
-      DebugLogger.error('friend_activity_likes:db', e instanceof Error ? e : new Error(String(e)), 'warning');
+    const linked = await ensureStableAuthLinkForStableId(stableUid);
+    if (!linked) {
+      DebugLogger.warn(
+        'friend_activity_likes:authLink',
+        `link not confirmed for stableUid=${stableUid} — callable friendLikeActivity проверит связь сам`,
+      );
     }
+  } catch (e) {
+    // Не блокируем лайк: связь всё равно проверяется на сервере внутри callable.
+    DebugLogger.error('friend_activity_likes:authLink', e instanceof Error ? e : new Error(String(e)), 'warning');
+  }
 }
 
 async function fetchLegacyActivityLikeStates(

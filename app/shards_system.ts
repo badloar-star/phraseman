@@ -665,7 +665,10 @@ const logShardTransaction = async (
       ts: new Date().toISOString(),
     });
   } catch (e) {
-    if (__DEV__) console.warn('[shards_system]', e);
+    // зачем: под `if (__DEV__)` отказ записи журнала транзакций был невидим в
+    // сторовой сборке — а это единственный след, по которому разбирают споры
+    // «жемчужины пропали». Логи в catch остаются навсегда.
+    DebugLogger.error('shards_system:shardLog', e instanceof Error ? e : new Error(String(e)), 'warning');
   }
 };
 
@@ -1951,7 +1954,10 @@ const markOneTimeClaimInCloud = async (
       });
     });
   } catch (e) {
-    if (__DEV__) console.warn('[shards_system]', e);
+    // зачем: это маркер «одноразовая награда уже выдана». Молчащий отказ здесь
+    // означает, что награду могут выдать повторно (или наоборот — потерять
+    // отметку о выдаче), и никто об этом не узнает.
+    DebugLogger.error('shards_system:oneTimeClaim', e instanceof Error ? e : new Error(String(e)), 'warning');
   }
 };
 
@@ -2025,12 +2031,23 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
             amount: totalAmount,
             createdAt: firestore.FieldValue.serverTimestamp(),
           });
-          transaction.set(userRef, {
-            shards: next,
-            shards_updated_at_ms: updatedAtMs,
-            shards_updated_op: 'earn',
-            shards_updated_reason: source,
-          }, { merge: true });
+          /**
+           * зачем (владелец 2026-09-02): здесь стояла ещё и запись
+           * `transaction.set(userRef, { shards: next, ... })`. Поле `shards` в
+           * корне users закрыто правилом hasNoShardWrites БЕЗУСЛОВНО, поэтому
+           * она роняла ВСЮ транзакцию — а вместе с ней и claimRef, маркер
+           * «одноразовая награда выдана».
+           *
+           * Последствие было хуже, чем просто отказ записи: при падении
+           * транзакции newBalance == null, и код ниже уходит в ветку «уже
+           * получено», где событие лишь помечается локально. То есть
+           * одноразовая награда МОЛЧА не начислялась.
+           *
+           * Баланс от этой записи не зависел: авторитет — локальный журнал
+           * (client_economy_*), см. mirrorServerShardBalanceLocal ниже. Чтение
+           * облачного значения выше оставлено: оно поднимает базу до максимума
+           * из локального и legacy-облачного, что защищает старые аккаунты.
+           */
           return next;
         });
         if (!isCurrent()) return 0;
@@ -2164,44 +2181,35 @@ export const onStreakUpdated = async (
 };
 
 // ── Синхронизация с Firestore ─────────────────────────────────────────────
+/**
+ * Раньше зеркалила локальный баланс в users/{uid}.shards. Больше НЕ пишет.
+ *
+ * зачем (владелец 2026-09-02): поле `shards` в корне users закрыто правилом
+ * hasNoShardWrites БЕЗУСЛОВНО — исключения нет даже для админского токена, это
+ * сделано намеренно («звезда — общая валюта приложения, а не локальный
+ * счётчик»). То есть запись падала с permission-denied ВСЕГДА, а немой catch
+ * под `__DEV__` прятал это в сторовой сборке полностью.
+ *
+ * Баланс при этом не терялся и не теряется: авторитетный кошелёк давно живёт в
+ * личном журнале (client_economy_*, см. readPersonalEconomyProjection на
+ * сервере), локальная запись и журнал идут ДО этого вызова, а legacy-поле
+ * читается ровно один раз при заведении журнала — там прямо записано
+ * «One-way migration only: Firestore is passive storage».
+ *
+ * Чтение legacy-поля СОЗНАТЕЛЬНО оставлено нетронутым: на нём держится перенос
+ * баланса старых аккаунтов при первой миграции.
+ *
+ * Заодно снят лишний `userRef.get()` перед обречённой записью — он стоил одно
+ * чтение Firestore на КАЖДОЕ начисление жемчужин и ничего не решал.
+ */
 const syncShardsToCloud = async (
-  balance: number,
-  meta?: ShardBalanceMeta | null,
-  accountToken?: AccountGenerationToken,
-  expectedStableId?: string,
+  _balance: number,
+  _meta?: ShardBalanceMeta | null,
+  _accountToken?: AccountGenerationToken,
+  _expectedStableId?: string,
 ): Promise<void> => {
-  try {
-    const safeBalance = parseShardBalance(balance);
-    if (safeBalance === null) return;
-    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
-    const operationToken = accountToken ?? captureAccountGeneration();
-    const ownerStableId = expectedStableId ?? operationToken.stableId;
-    if (!ownerStableId || !isCurrentAccountGeneration(operationToken, ownerStableId)) return;
-    const uid = await getCanonicalUserId();
-    if (uid !== ownerStableId || !isCurrentAccountGeneration(operationToken, ownerStableId)) return;
-    const db = firestore();
-    const userRef = db.collection('users').doc(uid);
-    const effectiveMeta = meta ?? await readBalanceMeta() ?? localWriteStamp('replace', 'sync');
-    if (!isCurrentAccountGeneration(operationToken, ownerStableId)) return;
-    // Таймаут, чтобы фоновый синк не висел вечно на заблокированном Firebase и не
-    // копил зависшие Firestore-запросы при каждой покупке. Best-effort: при таймауте просто
-    // выходим, локальный баланс до-синхронизируется при следующем сетевом вызове.
-    const snap = await runWithTimeout(userRef.get(), SHARD_CLOUD_TX_TIMEOUT_MS);
-    if (!isCurrentAccountGeneration(operationToken, ownerStableId)) return;
-    const cloudUpdatedAt = snap.exists ? parseUpdatedAtMs(snap.data()?.shards_updated_at_ms) : null;
-    if (cloudUpdatedAt !== null && cloudUpdatedAt > effectiveMeta.updatedAtMs) return;
-    await runWithTimeout(
-      userRef.set({
-        shards: safeBalance,
-        shards_updated_at_ms: effectiveMeta.updatedAtMs,
-        shards_updated_op: effectiveMeta.op,
-        shards_updated_reason: effectiveMeta.reason,
-      }, { merge: true }),
-      SHARD_CLOUD_TX_TIMEOUT_MS,
-    );
-  } catch (e) {
-    if (__DEV__) console.warn('[shards_system]', e);
-  }
+  // Осознанный no-op. Оставлен вызываемым, чтобы не переписывать десяток точек
+  // начисления: авторитет кошелька — журнал, а не документ users.
 };
 
 /**
@@ -2709,9 +2717,14 @@ export const loadShardsFromCloud = async (isCallerCurrent: () => boolean = () =>
       .catch(() => {});
     await import('./economy/external_shard_event_sync')
       .then(({ syncConfirmedExternalShardEventsFromCloud }) => syncConfirmedExternalShardEventsFromCloud())
-      .catch(() => {});
+      .catch((error: unknown) => {
+        // Немой catch здесь однажды скрыл бы неприход подтверждённых начислений.
+        DebugLogger.warn('shards_system:externalEventSync', `sync failed: ${String(error)}`);
+      });
   } catch (e) {
-    if (__DEV__) console.warn('[shards_system]', e);
+    // зачем: загрузка баланса из облака. Молчащий отказ = человек видит старый
+    // баланс и не понимает, куда делись начисленные жемчужины.
+    DebugLogger.error('shards_system:loadFromCloud', e instanceof Error ? e : new Error(String(e)), 'warning');
   }
 };
 

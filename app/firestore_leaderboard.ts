@@ -145,22 +145,41 @@ async function ensureNameCallableAuthReady(timeoutMs: number): Promise<string | 
 
 async function forceNameStableAuthLink(stableId: string): Promise<boolean> {
   const authUid = getAuthUserId();
-  if (!authUid) return false;
+  if (!authUid) {
+    DebugLogger.warn('firestore_leaderboard:authLink', `link skipped: authUid отсутствует (stableId=${stableId})`);
+    return false;
+  }
   try {
     const fn = callable<{ stableId: string }, { ok: boolean; stableUid: string; authUid: string }>('authEnsureStableLink');
     await withTimeout(fn({ stableId }), NAME_AUTH_LINK_VERIFY_TIMEOUT_MS, 'name_auth_link_callable');
     return true;
-  } catch {
-    const db = getFirestore();
-    if (!db) return false;
+  } catch (callableError) {
+    /**
+     * зачем (владелец 2026-09-02): здесь стоял fallback, который сам писал
+     * `firebaseAuthUid` прямо в users/{stableId}. Это поле server-owned
+     * (firestore.rules serverOwnedUserIdentityFields), и правило
+     * hasNoServerIdentityWrites запрещает его клиенту БЕЗУСЛОВНО — исключения
+     * нет даже для админского токена. То есть fallback не мог сработать
+     * никогда: он гарантированно падал с permission-denied, а двойной немой
+     * catch (`catch { return false; }`) прятал причину полностью.
+     *
+     * Авторитетный писатель ровно один — callable authEnsureStableLink на
+     * Admin SDK (functions/src/auth_identity.ts). Поэтому вместо запрещённой
+     * записи повторяем законный путь через общий помощник: он делит кэш и
+     * гонки с остальным приложением, а не заводит свой канал.
+     */
+    DebugLogger.warn(
+      'firestore_leaderboard:authLink',
+      `callable authEnsureStableLink failed (${String(callableError)}) — повторяем через общий помощник`,
+    );
     try {
-      await withTimeout(
-        db.collection('users').doc(stableId).set({ firebaseAuthUid: authUid, updatedAt: Date.now() }, { merge: true }),
-        NAME_AUTH_LINK_VERIFY_TIMEOUT_MS,
-        'name_auth_link_firestore',
+      return await ensureStableAuthLinkForStableId(stableId);
+    } catch (retryError) {
+      DebugLogger.error(
+        'firestore_leaderboard:authLink',
+        retryError instanceof Error ? retryError : new Error(String(retryError)),
+        'warning',
       );
-      return true;
-    } catch {
       return false;
     }
   }

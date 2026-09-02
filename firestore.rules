@@ -1968,8 +1968,24 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // зачем (владелец 2026-09-02): документы этой коллекции адресуются
+    // stableUid — так их заводит админка (admin_access_controls.ts) и так их
+    // читает ВЕСЬ сервер: турниры, лиги, лидерборд, коды друзей, сундук лиги.
+    // Соседнее правило friend_requests ниже проверяет
+    // `banned_users/$(senderUid)` рядом с canonicalUserMatchesAuth(senderUid) —
+    // то есть тоже по stableUid.
+    //
+    // Прежнее условие требовало `request.auth.uid == docId`, то есть authUid.
+    // stableUid и authUid — РАЗНЫЕ значения по определению, поэтому владелец
+    // физически не мог прочитать собственный документ бана: за вечер 02.09 в
+    // логе 23 отказа `_layout:banned` и 19 `public_profile_snapshot:banDoc`.
+    // Оба вызова fail-soft, поэтому авария была молчаливой: проверка бана
+    // всегда падала в «не забанен», а публикация профиля тихо пропускала
+    // проверку бана.
+    //
+    // Пишет по-прежнему только админ через аудируемый callable.
     match /banned_users/{docId} {
-      allow read:  if isAdmin() || (request.auth != null && request.auth.uid == docId);
+      allow read:  if isAdmin() || canonicalUserMatchesAuth(docId);
       allow write: if isAdmin();
     }
 

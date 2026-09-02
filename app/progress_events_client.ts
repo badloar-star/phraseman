@@ -723,9 +723,39 @@ async function doFlush(stableId: string): Promise<number> {
             attempts,
             nextRetryAt: Date.now() + delay,
           }));
+          // [PROGRESS-STUCK] Голова очереди не проходит — и она БЛОКИРУЕТ всё,
+          // что стоит за ней (ниже break). Такой отказ считается временным и
+          // повторяется вечно, поэтому застрявшая голова означает, что опыт
+          // человека НАВСЕГДА перестаёт доходить до сервера, молча.
+          //
+          // зачем (расследование 2026-09-02): у 43 из 46 недавно активных
+          // пользователей серверный прогресс заморожен, последнее событие во
+          // всей базе — 19 августа. Причину отказа не видно ниоткуда: в проде
+          // эта ветка не писала ни строчки. Логируем ПРИЧИНУ и номер попытки —
+          // без них диагноз ставить нечем.
+          //
+          // guard-ok: тихая потеря прогресса — ровно тот класс немых багов,
+          // который правило владельца «сперва логи» и запрещает.
+          console.warn('[PROGRESS-STUCK] голова очереди не уходит на сервер', {
+            eventId: next.eventId,
+            type: next.type,
+            attempts,
+            retryInMs: delay,
+            queueLength: remaining.length,
+            eventAgeMs: Date.now() - (Number(next.clientCreatedAt) || Date.now()),
+            appVersion: next.appVersion ?? null,
+            reason: progressErrorDiagnostic(error),
+          });
           transientFailure = true;
           break;
         }
+        // guard-ok: событие ушло в мёртвую очередь — опыт за него не доедет
+        // никогда, и это обязано остаться в логе.
+        console.warn('[PROGRESS-STUCK] событие отброшено навсегда', {
+          eventId: next.eventId,
+          type: next.type,
+          reason: progressErrorDiagnostic(error),
+        });
         markTerminalProgressEvent(stableId, next.eventId);
         await appendDeadLetter(stableId, next, error).catch(() => {});
         remaining.shift();

@@ -988,10 +988,33 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
 
   const event = normalizeProgressEvent(request.data);
   const db = admin.firestore();
-  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId, {
-    requireKnownIdentity: true,
-    repairLinks: false,
-  });
+  // Отказ опознания рвал функцию БЕЗ ЕДИНОЙ ЗАПИСИ в логе.
+  //
+  // зачем (расследование 2026-09-02): у 43 из 46 недавно активных людей
+  // серверный прогресс заморожен, последнее событие во всей базе — 19 августа,
+  // и все события шлёт версия 1.5.x. Причину было не установить: логи молчали,
+  // потому что исключение улетало отсюда наверх без обработки. Теперь КАЖДЫЙ
+  // отказ называет себя, и по нему видно, чей телефон и на чём споткнулся.
+  let stableUid: string;
+  try {
+    stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId, {
+      requireKnownIdentity: true,
+      repairLinks: false,
+    });
+  } catch (error) {
+    // guard-ok: молчаливый отказ приёма прогресса — потеря данных человека.
+    console.warn(JSON.stringify({
+      event: 'progress_submit_identity_rejected',
+      authUid,
+      requestedStableId: typeof request.data?.stableId === 'string' ? request.data.stableId : null,
+      eventType: event.type,
+      eventId: event.eventId,
+      appVersion: typeof request.data?.appVersion === 'string' ? request.data.appVersion : null,
+      platform: typeof request.data?.platform === 'string' ? request.data.platform : null,
+      reason: error instanceof HttpsError ? `${error.code}:${error.message}` : String(error),
+    }));
+    throw error;
+  }
 
   const userRef = db.collection('users').doc(stableUid);
   const ledgerRef = userRef.collection('progress_events').doc(safeDocId(event.eventId));

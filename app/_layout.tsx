@@ -16,7 +16,7 @@ import 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { createTapLatencyCaptureHandler } from './tap_latency_trace';
+import { createTapLatencyCaptureHandler, createTapLatencyTouchEndHandler } from './tap_latency_trace';
 import { TapLatencyNavProbe } from '../components/TapLatencyNavProbe';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, useGlobalSearchParams, usePathname, useRouter, router as globalRouter } from 'expo-router';
@@ -3323,6 +3323,8 @@ const styles = StyleSheet.create({
 // в capture-фазе корня, не захватывая responder. Когда трассировка выключена
 // (release без EXPO_PUBLIC_TAP_LATENCY_TRACE=1) — это undefined, обработчика нет.
 const tapLatencyCaptureHandler = createTapLatencyCaptureHandler();
+// onTouchEnd корня всплывает от любой кнопки: отсюда берём момент отпускания пальца.
+const tapLatencyTouchEndHandler = createTapLatencyTouchEndHandler();
 
 export default function RootLayout() {
   console.warn('[BOOT] RootLayout render');
@@ -3354,6 +3356,7 @@ export default function RootLayout() {
     <GestureHandlerRootView
       style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}
       onStartShouldSetResponderCapture={tapLatencyCaptureHandler}
+      onTouchEnd={tapLatencyTouchEndHandler}
     >
     <ErrorBoundary>
       <SafeAreaProvider initialMetrics={stableInitialWindowMetrics}>

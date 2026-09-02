@@ -3,6 +3,7 @@
  * Осколки только внутри приложения; вывода в фиат нет.
  */
 import * as admin from 'firebase-admin';
+import { createHash } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
@@ -444,6 +445,10 @@ function safeCardBackKey(p: SubmissionPayload): string {
   return UGC_CARD_BACK_KEYS.has(k) ? k : UGC_CARD_BACK_DEFAULT_KEY;
 }
 
+function submissionPayloadHash(payload: SubmissionPayload): string {
+  return createHash('sha256').update(JSON.stringify(payload)).digest('hex');
+}
+
 function authorNetShards(price: number): number {
   const fee = Math.floor((price * PLATFORM_FEE_BPS) / 10_000);
   const net = price - fee;
@@ -462,22 +467,27 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
   const requestedAuthorStableId = String(request.data?.authorStableId ?? '').trim();
   const rawPayload = request.data?.payload as SubmissionPayload | undefined;
   const updatePackId = String(request.data?.updatePackId ?? '').trim();
+  const submissionKey = String(request.data?.submissionKey ?? '').trim();
   if (!requestedAuthorStableId) {
     throw new HttpsError('invalid-argument', 'authorStableId required');
   }
   if (!rawPayload) {
     throw new HttpsError('invalid-argument', 'payload required');
   }
+  if (submissionKey && !/^[A-Za-z0-9_-]{8,128}$/.test(submissionKey)) {
+    throw new HttpsError('invalid-argument', 'submissionKey invalid');
+  }
   const payload = normalizeSubmissionPayload(rawPayload);
+  const payloadHash = submissionPayloadHash(payload);
 
   const db = admin.firestore();
   const authorStableId = await resolveStableUidForAuth(db, callerAuthUid, requestedAuthorStableId, {
     requireKnownIdentity: true,
   });
-  const subRef = db.collection(COMMUNITY_SUBMISSIONS).doc();
   const now = Date.now();
 
   if (updatePackId) {
+    const subRef = db.collection(COMMUNITY_SUBMISSIONS).doc();
     const dup = await db
       .collection(COMMUNITY_SUBMISSIONS)
       .where('editTargetPackId', '==', updatePackId)
@@ -540,14 +550,52 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
     return { submissionId: subRef.id };
   }
 
-  await subRef.set({
-    status: 'pending',
-    authorStableId,
-    submittedAt: now,
-    payload,
-    submissionKind: 'create',
-    callerAuthUid,
-  });
+  const deterministicId = submissionKey
+    ? `create_${createHash('sha256').update(`${authorStableId}\0${submissionKey}`).digest('hex')}`
+    : '';
+  const submissions = db.collection(COMMUNITY_SUBMISSIONS);
+  const subRef = deterministicId ? submissions.doc(deterministicId) : submissions.doc();
+  if (submissionKey) {
+    await db.runTransaction(async (tx) => {
+      const existing = await tx.get(subRef);
+      if (existing.exists) {
+        const data = existing.data() as Record<string, unknown>;
+        if (
+          String(data.authorStableId ?? '') !== authorStableId
+          || String(data.submissionKey ?? '') !== submissionKey
+          || String(data.submissionKind ?? '') !== 'create'
+        ) {
+          throw new HttpsError('aborted', 'submission idempotency collision');
+        }
+        const storedPayload = data.payload as SubmissionPayload | undefined;
+        const storedPayloadHash = String(data.payloadHash ?? '').trim()
+          || (storedPayload ? submissionPayloadHash(normalizeSubmissionPayload(storedPayload)) : '');
+        if (!storedPayloadHash || storedPayloadHash !== payloadHash) {
+          throw new HttpsError('failed-precondition', 'submission payload changed for this attempt');
+        }
+        return;
+      }
+      tx.create(subRef, {
+        status: 'pending',
+        authorStableId,
+        submittedAt: now,
+        payload,
+        submissionKind: 'create',
+        submissionKey,
+        payloadHash,
+        callerAuthUid,
+      });
+    });
+  } else {
+    await subRef.set({
+      status: 'pending',
+      authorStableId,
+      submittedAt: now,
+      payload,
+      submissionKind: 'create',
+      callerAuthUid,
+    });
+  }
   return { submissionId: subRef.id };
 });
 
@@ -584,6 +632,7 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
       authorStableId?: string;
       payload?: SubmissionPayload;
       editTargetPackId?: string;
+      submissionKey?: string;
     };
     if (d.status !== 'pending') {
       throw new HttpsError('failed-precondition', 'Submission is not pending');
@@ -600,6 +649,7 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
         type: 'moderation_result',
         result,
         submissionId,
+        submissionKey: String(d.submissionKey ?? '').trim() || null,
         studyTarget,
         message: msgForInbox,
         titleRu: (d.payload?.titleRu ?? '').trim().slice(0, 200) || null,
@@ -2047,21 +2097,27 @@ export const communityListSellerInbox = onCall({ enforceAppCheck: ENFORCE_APP_CH
     throw new HttpsError('invalid-argument', 'authorStableId required');
   }
   const limit = Math.min(50, Math.max(1, Math.floor(Number(request.data?.limit) || 20)));
+  const afterEventId = String(request.data?.afterEventId ?? '').trim();
+  if (afterEventId && !/^[A-Za-z0-9_-]{1,128}$/.test(afterEventId)) {
+    throw new HttpsError('invalid-argument', 'afterEventId invalid');
+  }
 
   const db = admin.firestore();
   const authorStableId = await resolveStableUidForAuth(db, request.auth.uid, requestedAuthorStableId, {
     requireKnownIdentity: true,
   });
-  const snap = await db
+  let inboxQuery = db
     .collection('users')
     .doc(authorStableId)
     .collection(SELLER_INBOX)
     .where('seen', '==', false)
-    .limit(limit)
-    .get();
+    .orderBy(admin.firestore.FieldPath.documentId());
+  if (afterEventId) inboxQuery = inboxQuery.startAfter(afterEventId);
+  const snap = await inboxQuery.limit(limit).get();
 
   const events = snap.docs.map((d) => ({ id: d.id, ...(d.data() as Record<string, unknown>) }));
-  return { events };
+  const nextCursor = snap.docs.length === limit ? snap.docs[snap.docs.length - 1]?.id : undefined;
+  return nextCursor ? { events, nextCursor } : { events };
 });
 
 /**

@@ -70,13 +70,15 @@ describe('tournament backend hardening source contracts', () => {
   it('keeps tasks-per-round equal to 4 across server, planner and blueprint', () => {
     const planner = fs.readFileSync(path.join(__dirname, 'tournament_pool_plan.ts'), 'utf8');
     const blueprint = fs.readFileSync(path.join(__dirname, 'tournament_ai_blueprint.ts'), 'utf8');
-    const round = fs.readFileSync(
-      path.join(__dirname, '..', '..', 'app', 'tournament_round.tsx'), 'utf8');
+    // зачем (2026-09-02): раньше здесь читался экран app/tournament_round.tsx и
+    // сверялось, что клиент ждёт те же 4 задания. Экран удалён вместе с
+    // клиентской частью турниров, тест падал с ENOENT ещё до снятия функций.
+    // Серверные константы сверяем по-прежнему — они кормят Арену через
+    // tournament_pool_plan; клиентскую половину сверять больше не с чем.
 
     expect(planner).toContain('export const TASKS_PER_ROUND = 4;');
     expect(blueprint).toContain('export const TASKS_PER_ROUND = 4;');
     expect(source).toContain('const DEFAULT_TASKS_PER_ROUND = 4;');
-    expect(round).toContain('const QUESTIONS_PER_ROUND = 4;');
   });
 
   it('does not use client elapsedMs to mint a speed bonus', () => {
@@ -145,7 +147,6 @@ describe('tournament backend hardening source contracts', () => {
     expect(source).toContain('export async function tournamentSubmitTaskAnswerTransaction');
     expect(source).toContain("kind: 'tournament_task_answer_v1'");
     expect(source).toContain("throw new HttpsError('already-exists', 'task_answer_idempotency_key_mismatch')");
-    expect(index).toContain('tournamentSubmitTaskAnswer,');
     expect(rules).toMatch(/match \/tournamentRooms\/\{roomId\}\/taskSecrets\/\{taskId\}[\s\S]*?allow read, write: if false;/);
   });
 
@@ -157,14 +158,36 @@ describe('tournament backend hardening source contracts', () => {
     expect(source).toContain("source: 'tournament_lobby_leave', eventId: joinAttemptId");
     expect(source).toContain('joinAttemptId,');
     expect(source).toContain("throw new HttpsError('failed-precondition', 'room_not_leaveable')");
-    expect(index).toContain('tournamentLeave,');
   });
 
   it('offers participant-triggered deadline advancement with the scheduler as fallback', () => {
     expect(source).toContain('export const tournamentAdvanceRound = onCall');
     expect(source).toContain('room.participantAuthUids?.includes(authUid)');
-    expect(index).toContain('tournamentAdvanceRound,');
     expect(source).toContain("throw new HttpsError('failed-precondition', 'deadline_not_elapsed')");
+  });
+
+  // зачем (владелец, 2026-09-02): турниры сняты с деплоя ПОЛНОСТЬЮ — 29 callable
+  // удалены из прода ради стоимости (каждая = сервис Cloud Run в каждом полном
+  // деплое). Проверки выше сторожат ЛОГИКУ в tournaments.ts — она остаётся на
+  // диске, потому что Арена импортирует tournament_core и
+  // tournament_pool_publication. А этот тест сторожит новое правило: ни одна
+  // турнирная функция не должна вернуться в прод попутной правкой.
+  // Сработал — значит кто-то вернул экспорт; возврат турниров = отдельное
+  // задание владельца, а не починка теста.
+  it('keeps every tournament callable out of the deployed surface', () => {
+    for (const name of [
+      'tournamentJoin,',
+      'tournamentLeave,',
+      'tournamentAdvanceRound,',
+      'tournamentSubmitTaskAnswer,',
+      'tournamentClaimReward,',
+      'tournamentStartNow,',
+      'tournamentWeeklyBankInfo,',
+      'adminGetTournamentSchedule,',
+      'adminTournamentPoolStats,',
+    ]) {
+      expect(index).not.toContain(name);
+    }
   });
 
   it('never manufactures bot reactions while creating or filling a room', () => {

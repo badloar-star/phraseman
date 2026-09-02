@@ -19,7 +19,14 @@
 
 export { maxVoicePreflight, maxVoiceMint } from '../functions/src/max_voice_mint';
 export { maxVoiceHeartbeat, maxVoiceSessionEnd } from '../functions/src/max_voice_session_end';
-export { maxVoiceWatchdog, maxVoiceProviderHealth } from '../functions/src/max_voice_watchdog';
+// зачем (владелец 2026-09-02, аудит расходов): maxVoiceProviderHealth снят с
+// деплоя. Замер за 30 дней: проба НЕ поймала ни одной деградации OpenAI — все
+// её ошибки в логах это падения деплоя самой пробы («Quota exceeded for CPU»).
+// Настоящую поломку провайдера всё равно видно раньше и точнее: maxVoiceWatchdog
+// разбирает зависшие живые звонки, а отказ минта уходит в Telegram-алерт.
+// Проба стоила 720 запусков и 720 минтов ключа OpenAI в месяц ради нуля пользы.
+// Код в max_voice_watchdog.ts оставлен: вернуть = снова экспортировать здесь.
+export { maxVoiceWatchdog } from '../functions/src/max_voice_watchdog';
 export { maxVoiceUsageRecon } from '../functions/src/max_voice_usage_recon';
 export { maxVoiceSafetyReport } from '../functions/src/max_voice_safety';
 export { maxVoiceFinalize } from '../functions/src/max_voice_finalize';

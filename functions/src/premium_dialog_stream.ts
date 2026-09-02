@@ -152,16 +152,6 @@ export const premiumDialogStream = onRequest({
 
   const data = (req.body ?? {}) as PremiumDialogRequest & { warmupPing?: unknown };
 
-  // Прогрев инстанса — самым первым делом, до Firestore и до валидации полей.
-  // зачем: minInstances: 0 (осознанная экономия, сторож
-  // ai_functions_warm_instance_contract). Клиент будит инстанс, пока человек
-  // читает брифинг и печатает, — отправка попадает на тёплый сервер. Ping обязан
-  // быть бесплатным: ниже идут чтения Firestore и списание квоты.
-  if (data.warmupPing === true) {
-    res.status(200).json({ ok: true, model: 'warmup-ping' });
-    return;
-  }
-
   // Ручная проверка ID-токена: callable делает это внутри, здесь — сами.
   const authHeader = String(req.headers.authorization ?? '');
   const idToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : '';
@@ -175,6 +165,15 @@ export const premiumDialogStream = onRequest({
     authUid = decoded.uid;
   } catch {
     res.status(401).json({ error: 'auth_required' });
+    return;
+  }
+
+  // Прогрев инстанса идёт сразу после проверки bearer Firebase Auth, но всё ещё
+  // до Firestore, проверки доступа/полей, квоты и OpenAI. Клиент уже передаёт
+  // свежий ID token, поэтому анонимный трафик больше не может бесплатно будить
+  // функцию, а легальный ping сохраняет нулевое число Firestore/provider вызовов.
+  if (data.warmupPing === true) {
+    res.status(200).json({ ok: true, model: 'warmup-ping' });
     return;
   }
 

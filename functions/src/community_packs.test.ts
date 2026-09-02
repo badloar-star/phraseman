@@ -17,12 +17,16 @@ type FakeCollection = {
   doc: (id?: string) => FakeRef;
   add: (data: DocData) => Promise<FakeRef>;
   where: (field: string, op: string, value: unknown) => FakeQuery;
+  orderBy: (field: string) => FakeQuery;
+  startAfter: (value: string) => FakeQuery;
   limit: (count: number) => FakeQuery;
   get: () => Promise<FakeQuerySnap>;
 };
 
 type FakeQuery = {
   where: (field: string, op: string, value: unknown) => FakeQuery;
+  orderBy: (field: string) => FakeQuery;
+  startAfter: (value: string) => FakeQuery;
   limit: (count: number) => FakeQuery;
   get: () => Promise<FakeQuerySnap>;
 };
@@ -159,25 +163,45 @@ function readFieldPath(data: DocData, field: string): unknown {
   );
 }
 
-function queryCollection(path: string, filters: Array<[string, unknown]>, limitCount?: number): FakeQuerySnap {
+function queryCollection(
+  path: string,
+  filters: Array<[string, unknown]>,
+  limitCount?: number,
+  orderByDocumentId = false,
+  startAfterId?: string,
+): FakeQuerySnap {
   const prefix = `${path}/`;
-  const docs = Array.from(mockDocs.entries())
+  let matches = Array.from(mockDocs.entries())
     .filter(([docPath]) => docPath.startsWith(prefix) && !docPath.slice(prefix.length).includes('/'))
     .map(([docPath, data]) => ({ ref: makeRef(docPath), data }))
-    .filter(({ data }) => filters.every(([field, value]) => readFieldPath(data, field) === value))
+    .filter(({ data }) => filters.every(([field, value]) => readFieldPath(data, field) === value));
+  if (orderByDocumentId) matches = matches.sort((a, b) => a.ref.id.localeCompare(b.ref.id));
+  if (startAfterId) matches = matches.filter(({ ref }) => ref.id > startAfterId);
+  const docs = matches
     .slice(0, limitCount ?? Number.MAX_SAFE_INTEGER)
     .map(({ ref }) => snapFor(ref));
   return { empty: docs.length === 0, docs };
 }
 
-function makeQuery(path: string, filters: Array<[string, unknown]> = [], limitCount?: number): FakeQuery {
+function makeQuery(
+  path: string,
+  filters: Array<[string, unknown]> = [],
+  limitCount?: number,
+  orderByDocumentId = false,
+  startAfterId?: string,
+): FakeQuery {
   return {
     where: (field: string, op: string, value: unknown) => {
       if (op !== '==') throw new Error(`Unsupported op ${op}`);
-      return makeQuery(path, [...filters, [field, value]], limitCount);
+      return makeQuery(path, [...filters, [field, value]], limitCount, orderByDocumentId, startAfterId);
     },
-    limit: (count: number) => makeQuery(path, filters, count),
-    get: async () => queryCollection(path, filters, limitCount),
+    orderBy: (field: string) => {
+      if (field !== '__name__') throw new Error(`Unsupported orderBy ${field}`);
+      return makeQuery(path, filters, limitCount, true, startAfterId);
+    },
+    startAfter: (value: string) => makeQuery(path, filters, limitCount, orderByDocumentId, value),
+    limit: (count: number) => makeQuery(path, filters, count, orderByDocumentId, startAfterId),
+    get: async () => queryCollection(path, filters, limitCount, orderByDocumentId, startAfterId),
   };
 }
 
@@ -191,6 +215,8 @@ function makeCollection(path: string): FakeCollection {
       return ref;
     },
     where: (field: string, op: string, value: unknown) => makeQuery(path).where(field, op, value),
+    orderBy: (field: string) => makeQuery(path).orderBy(field),
+    startAfter: (value: string) => makeQuery(path).startAfter(value),
     limit: (count: number) => makeQuery(path).limit(count),
     get: async () => queryCollection(path, []),
   };
@@ -273,7 +299,12 @@ jest.mock('firebase-functions/params', () => ({
 
 jest.mock('firebase-admin', () => {
   const firestore = jest.fn(() => buildDb());
-  (firestore as unknown as { FieldValue: Record<string, unknown> }).FieldValue = {
+  const firestoreStatics = firestore as unknown as {
+    FieldPath: Record<string, unknown>;
+    FieldValue: Record<string, unknown>;
+  };
+  firestoreStatics.FieldPath = { documentId: () => '__name__' };
+  firestoreStatics.FieldValue = {
     increment: (by: number) => ({ __op: 'increment', by }),
     serverTimestamp: () => ({ __op: 'serverTimestamp' }),
     delete: () => ({ __op: 'delete' }),
@@ -369,6 +400,120 @@ describe('community pack callable ownership', () => {
     // Ключевое: автор — атакующий, а НЕ подставленная жертва.
     expect(submissions[0].authorStableId).toBe('attacker');
     expect(submissions[0].authorStableId).not.toBe('victim');
+  });
+
+  test('replays the same create submission for a stable client key', async () => {
+    const data = {
+      authorStableId: 'attacker',
+      payload: submissionPayload(),
+      submissionKey: 'local_pack_1779000000000_attempt_1',
+    };
+
+    const first = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', data);
+    const retry = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', data);
+
+    expect(retry).toEqual(first);
+    const submissions = Array.from(mockDocs.entries())
+      .filter(([path]) => path.startsWith('community_pack_submissions/'));
+    expect(submissions).toHaveLength(1);
+    expect(submissions[0][1]).toMatchObject({
+      authorStableId: 'attacker',
+      submissionKind: 'create',
+      submissionKey: data.submissionKey,
+    });
+  });
+
+  test('creates a new pending submission for a new durable attempt after rejection', async () => {
+    const base = {
+      authorStableId: 'attacker',
+      payload: submissionPayload(),
+    };
+    const first = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', {
+      ...base,
+      submissionKey: 'local_pack_1779000000000_attempt_1',
+    });
+    mockDocs.set(`community_pack_submissions/${first.submissionId}`, {
+      ...mockDocs.get(`community_pack_submissions/${first.submissionId}`),
+      status: 'rejected',
+    });
+
+    const second = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', {
+      ...base,
+      submissionKey: 'local_pack_1779000000000_attempt_2',
+    });
+
+    expect(second.submissionId).not.toBe(first.submissionId);
+    expect(mockDocs.get(`community_pack_submissions/${first.submissionId}`)?.status).toBe('rejected');
+    expect(mockDocs.get(`community_pack_submissions/${second.submissionId}`)).toMatchObject({
+      status: 'pending',
+      submissionKey: 'local_pack_1779000000000_attempt_2',
+    });
+    expect([...mockDocs.keys()].filter((path) => path.startsWith('community_pack_submissions/'))).toHaveLength(2);
+  });
+
+  test('rejects payload mismatch when replaying one attempt key and preserves the original payload', async () => {
+    const firstPayload = submissionPayload();
+    const submissionKey = 'local_pack_1779000000000_attempt_1';
+    const first = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', {
+      authorStableId: 'attacker',
+      payload: firstPayload,
+      submissionKey,
+    });
+    const changedPayload = { ...submissionPayload(), title: 'Changed after ambiguous response' };
+
+    await expect(callCommunity('communitySubmitPackForReview', {
+      authorStableId: 'attacker',
+      payload: changedPayload,
+      submissionKey,
+    })).rejects.toMatchObject({ code: 'failed-precondition' });
+    expect(mockDocs.get(`community_pack_submissions/${first.submissionId}`)?.payload).toMatchObject({
+      titleRu: 'Starter pack',
+    });
+    expect([...mockDocs.keys()].filter((path) => path.startsWith('community_pack_submissions/'))).toHaveLength(1);
+  });
+
+  test('copies the durable attempt key into a rejection inbox event', async () => {
+    const submissionKey = 'local_pack_1779000000000_attempt_1';
+    const submitted = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', {
+      authorStableId: 'attacker',
+      payload: submissionPayload(),
+      submissionKey,
+    });
+    const mod = require('./community_packs');
+
+    await mod.communityModerateSubmission({
+      auth: { token: { admin: true } },
+      data: { submissionId: submitted.submissionId, action: 'reject', moderatorMessage: 'Needs changes' },
+    });
+
+    const inbox = [...mockDocs.entries()]
+      .filter(([path]) => path.startsWith('users/attacker/community_seller_inbox/'))
+      .map(([, data]) => data);
+    expect(inbox).toHaveLength(1);
+    expect(inbox[0]).toMatchObject({
+      type: 'moderation_result',
+      result: 'rejected',
+      submissionId: submitted.submissionId,
+      submissionKey,
+    });
+
+    const listed = await callCommunity<{
+      events: { submissionId?: string; submissionKey?: string }[];
+    }>('communityListSellerInbox', { authorStableId: 'attacker', limit: 20 });
+    expect(listed.events).toHaveLength(1);
+    expect(listed.events[0]).toMatchObject({
+      submissionId: submitted.submissionId,
+      submissionKey,
+    });
+  });
+
+  test('rejects a create submission key that is unsafe as an idempotency token', async () => {
+    await expect(callCommunity('communitySubmitPackForReview', {
+      authorStableId: 'attacker',
+      payload: submissionPayload(),
+      submissionKey: '../unsafe/key',
+    })).rejects.toMatchObject({ code: 'invalid-argument' });
+    expect([...mockDocs.keys()].filter((path) => path.startsWith('community_pack_submissions/'))).toHaveLength(0);
   });
 
   test('ignores a spoofed buyer stable id and never touches the victim balance', async () => {
@@ -1603,6 +1748,43 @@ describe('community pack callable ownership', () => {
 
     expect(result.events).toHaveLength(1);
     expect(result.events[0].id).toBe('event-1');
+  });
+
+  test('lists seller inbox with a validated document-id cursor', async () => {
+    for (let index = 1; index <= 55; index += 1) {
+      const id = `event-${String(index).padStart(3, '0')}`;
+      mockDocs.set(`users/attacker/community_seller_inbox/${id}`, {
+        seen: false,
+        type: 'moderation_result',
+      });
+    }
+
+    const first = await callCommunity<{
+      events: { id: string }[];
+      nextCursor?: string;
+    }>('communityListSellerInbox', { authorStableId: 'attacker', limit: 50 });
+    expect(first.events).toHaveLength(50);
+    expect(first.events[0].id).toBe('event-001');
+    expect(first.events[49].id).toBe('event-050');
+    expect(first.nextCursor).toBe('event-050');
+
+    const second = await callCommunity<{
+      events: { id: string }[];
+      nextCursor?: string;
+    }>('communityListSellerInbox', {
+      authorStableId: 'attacker',
+      limit: 50,
+      afterEventId: first.nextCursor,
+    });
+    expect(second.events.map((event) => event.id)).toEqual([
+      'event-051', 'event-052', 'event-053', 'event-054', 'event-055',
+    ]);
+    expect(second.nextCursor).toBeUndefined();
+
+    await expect(callCommunity('communityListSellerInbox', {
+      authorStableId: 'attacker',
+      afterEventId: '../unsafe-cursor',
+    })).rejects.toMatchObject({ code: 'invalid-argument' });
   });
 
   test('rejects marking another seller inbox seen', async () => {

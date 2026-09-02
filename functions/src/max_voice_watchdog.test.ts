@@ -1,5 +1,8 @@
 // Тест №13 спеки: дожим висящих резервов по ПОСЛЕДНЕМУ heartbeat (не полным
 // резервом), briefing_abandoned для минтов без старта, декремент rate limit с floor.
+import fs from 'fs';
+import path from 'path';
+
 type DocData = Record<string, any>;
 
 // ── in-memory Firestore fake с поддержкой where-чейна watchdog-запроса ──────
@@ -341,10 +344,22 @@ describe('scheduled wrapper', () => {
     expect((maxVoiceWatchdog as any).__opts).toMatchObject({ schedule: 'every 10 minutes', timeZone: 'UTC' });
   });
 
-  it('probes the provider every 10 minutes with one instance and the OpenAI secret', () => {
-    expect(MAX_VOICE_PROVIDER_HEALTH_SCHEDULE).toBe('every 10 minutes');
+  // зачем (владелец 2026-09-02, аудит расходов): maxVoiceProviderHealth СНЯТА
+  // с деплоя. Замер за 30 дней: она не поймала ни одной деградации OpenAI —
+  // все её ошибки в логах это падения деплоя самой пробы. Код и настройки
+  // оставлены (вернуть = экспорт в functions-max/index.ts), поэтому проверки
+  // её поведения ниже остаются валидными. Здесь сторожим новое правило:
+  // проба не должна вернуться в прод попутной правкой.
+  it('keeps the provider probe out of the deployed surface', () => {
+    const maxIndex = fs.readFileSync(
+      path.join(__dirname, '..', '..', 'functions-max', 'index.ts'), 'utf8');
+    expect(maxIndex).toContain('maxVoiceWatchdog');
+    expect(maxIndex).not.toMatch(/export \{[^}]*maxVoiceProviderHealth/);
+  });
+
+  it('still carries a bounded one-instance config if it is ever re-enabled', () => {
+    expect(MAX_VOICE_PROVIDER_HEALTH_SCHEDULE).toBe('every 60 minutes');
     expect((maxVoiceProviderHealth as any).__opts).toMatchObject({
-      schedule: 'every 10 minutes',
       timeZone: 'UTC',
       maxInstances: 1,
       timeoutSeconds: 30,

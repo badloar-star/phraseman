@@ -11,6 +11,7 @@
  */
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { resolveStableUidForAuth } from './auth_identity';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { getLevelFromXP } from './xp_levels';
 
@@ -265,6 +266,48 @@ async function fetchOneProfile(db: admin.firestore.Firestore, uid: string): Prom
   return buildFriendProfile(uid, lbData, userData);
 }
 
+async function authorizedProfileUids(
+  db: admin.firestore.Firestore,
+  callerStableUid: string,
+  requestedUids: string[],
+): Promise<string[]> {
+  const authorized = new Set<string>();
+  const friendCandidates = requestedUids.filter((uid) => {
+    if (uid === callerStableUid) {
+      authorized.add(uid);
+      return false;
+    }
+    return true;
+  });
+  if (friendCandidates.length === 0) return [...authorized];
+
+  const edgeRefs = friendCandidates.flatMap((friendUid) => [
+    db.collection('users').doc(callerStableUid).collection('friends').doc(friendUid),
+    db.collection('users').doc(friendUid).collection('friends').doc(callerStableUid),
+  ]);
+  const edgeSnaps = await db.getAll(...edgeRefs);
+  friendCandidates.forEach((friendUid, index) => {
+    if (edgeSnaps[index * 2]?.exists && edgeSnaps[index * 2 + 1]?.exists) {
+      authorized.add(friendUid);
+    }
+  });
+  return [...authorized];
+}
+
+function responseForRequestedUids(
+  requestedUids: string[],
+  authorizedUids: ReadonlySet<string>,
+  authorizedProfiles: ProfilesResponse,
+): ProfilesResponse {
+  const profiles: Record<string, FriendPublicProfile | null> = {};
+  for (const uid of requestedUids) {
+    profiles[uid] = authorizedUids.has(uid)
+      ? authorizedProfiles.profiles[uid] ?? null
+      : null;
+  }
+  return { ok: true, profiles };
+}
+
 export const friendsGetProfiles = onCall(CALLABLE_BASE, async (request): Promise<ProfilesResponse> => {
   if (!request.auth?.uid) {
     throw new HttpsError('unauthenticated', 'Auth required');
@@ -275,13 +318,25 @@ export const friendsGetProfiles = onCall(CALLABLE_BASE, async (request): Promise
   }
   const uids = [...new Set(rawUids.map((u) => String(u ?? '').trim()).filter(Boolean))].slice(0, MAX_UIDS_PER_CALL);
 
-  const cacheKey = uids.slice().sort().join(',');
-  const cached = readServerCache(cacheKey);
-  if (cached) return cached;
-
   const db = admin.firestore();
+  const callerStableUid = await resolveStableUidForAuth(
+    db,
+    request.auth.uid,
+    undefined,
+    { repairLinks: false },
+  );
+  const authorizedUids = await authorizedProfileUids(db, callerStableUid, uids);
+  const authorizedSet = new Set(authorizedUids);
+
+  // Profiles include private users/{uid}.progress fields, so cached responses
+  // are scoped by canonical caller AND the freshly verified mutual-friend set.
+  // A removed friendship produces a different key and cannot reuse stale data.
+  const cacheKey = `${callerStableUid}\n${authorizedUids.slice().sort().join(',')}`;
+  const cached = readServerCache(cacheKey);
+  if (cached) return responseForRequestedUids(uids, authorizedSet, cached);
+
   const entries = await Promise.all(
-    uids.map(async (uid): Promise<[string, FriendPublicProfile | null]> => {
+    authorizedUids.map(async (uid): Promise<[string, FriendPublicProfile | null]> => {
       try {
         return [uid, await fetchOneProfile(db, uid)];
       } catch (e) {
@@ -296,5 +351,5 @@ export const friendsGetProfiles = onCall(CALLABLE_BASE, async (request): Promise
 
   const result: ProfilesResponse = { ok: true, profiles };
   writeServerCache(cacheKey, result);
-  return result;
+  return responseForRequestedUids(uids, authorizedSet, result);
 });

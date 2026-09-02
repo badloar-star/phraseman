@@ -1,6 +1,7 @@
 import {
   formatContentReportAlert,
   formatContentReportAlertSafe,
+  formatCriticalErrorAlert,
   isAuthFailureErrorDoc,
   nextAuthFailureSpikeState,
 } from './admin_alerts';
@@ -204,5 +205,65 @@ describe('nextAuthFailureSpikeState', () => {
     });
     expect(res).toMatchObject({ shouldAlert: false, count: 1 });
     expect(res.window.stages).toEqual({});
+  });
+});
+
+// ── Critical error alert ─────────────────────────────────────────────────────
+// Регрессия 31.08.2026: экран «Друзья» падал с «Maximum update depth exceeded»
+// (петля измерения ListHeaderComponent в FlashList v2). Алерт приходил как
+// «react · root» с минифицированным стеком Hermes, по которому НЕЛЬЗЯ было
+// понять место падения. Диагноз (componentStack) лежал в tags, но в сообщение
+// не попадал вообще. Эти тесты держат канал диагностики живым.
+describe('formatCriticalErrorAlert', () => {
+  const crash = {
+    context: 'react:error_boundary',
+    feature: 'react',
+    screen: 'FriendsTabScreen',
+    severity: 'critical',
+    errorName: 'Error',
+    message: 'Maximum update depth exceeded.',
+    stack: 'at getRootForUpdatedFiber (index.bundle:21580:174)',
+    platform: 'ios',
+    appVersion: '1.6.14',
+    uid: 'stable_abcd2458',
+    tags: {
+      componentStack: 'in RecyclerViewComponent\n    in FriendsTabScreen',
+      culprit: 'RecyclerViewComponent',
+    },
+  };
+
+  it('показывает componentStack — без него невозможно найти упавший компонент', () => {
+    const text = formatCriticalErrorAlert(crash);
+    expect(text).toContain('RecyclerViewComponent');
+    expect(text).toContain('FriendsTabScreen');
+    expect(text).toContain('Где:');
+  });
+
+  it('ставит реальный экран в заголовок вместо бесполезного root', () => {
+    const text = formatCriticalErrorAlert(crash);
+    expect(text).toContain('Feature: react · FriendsTabScreen');
+  });
+
+  it('не шлёт имя пользователя во внешний канал, только хвост uid', () => {
+    const text = formatCriticalErrorAlert({ ...crash, userName: 'Лена' });
+    expect(text).not.toContain('Лена');
+    expect(text).toContain('#2458');
+  });
+
+  it('экранирует HTML в componentStack (parse_mode=HTML не должен ломаться)', () => {
+    const text = formatCriticalErrorAlert({
+      ...crash,
+      tags: { componentStack: '<script>alert(1)</script>' },
+    });
+    expect(text).not.toContain('<script>');
+    expect(text).toContain('&lt;script&gt;');
+  });
+
+  it('переживает отсутствие тегов и мусор вместо них', () => {
+    expect(() => formatCriticalErrorAlert({ ...crash, tags: undefined })).not.toThrow();
+    expect(() => formatCriticalErrorAlert({ ...crash, tags: 'сломано' })).not.toThrow();
+    const text = formatCriticalErrorAlert({ ...crash, tags: null });
+    expect(text).toContain('Critical error');
+    expect(text).not.toContain('Где:');
   });
 });

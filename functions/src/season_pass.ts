@@ -102,10 +102,7 @@ export const seasonClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
 });
 
 /**
- * seasonRedeemConsumable — активация серверных расходников (магнит коллекции,
- * билет турнира). Персональный множитель дропа/бесплатный вход пишутся сюда
- * же (collectiblesClaimDrop и tournaments.ts читают эти поля — расширение
- * их логики отдельным коммитом; здесь сама выдача флага пользователю).
+ * seasonRedeemConsumable — активация серверных расходников турнира и клуба.
  */
 export const seasonRedeemConsumable = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
@@ -115,7 +112,7 @@ export const seasonRedeemConsumable = onCall(HOT_CALLABLE_OPTIONS, async (reques
   const { seasonId, giftId, kind } = request.data ?? {};
   if (!isValidSeasonId(seasonId)) throw new HttpsError('invalid-argument', 'seasonId invalid');
   if (typeof giftId !== 'string' || giftId.length < 3) throw new HttpsError('invalid-argument', 'giftId invalid');
-  if (kind !== 'collection_magnet' && kind !== 'tournament_ticket' && kind !== 'club_totem') {
+  if (kind !== 'tournament_ticket' && kind !== 'club_totem') {
     throw new HttpsError('invalid-argument', 'unsupported kind');
   }
   // Old installed clients may still submit a saved Season Pass ticket. Keep
@@ -139,14 +136,11 @@ export const seasonRedeemConsumable = onCall(HOT_CALLABLE_OPTIONS, async (reques
       };
     }
 
-    const now = Date.now();
     let clubGiftFreeBoostCount: number | undefined;
     const patch: Record<string, unknown> =
-      kind === 'collection_magnet'
-        ? { 'progress.season_collection_magnet_v1': JSON.stringify({ multiplier: 2, expiresAt: now + 24 * 60 * 60 * 1000 }) }
-        : kind === 'tournament_ticket'
-          ? { 'progress.season_tournament_ticket_v1': JSON.stringify({ usesLeft: 1, expiresAt: now + 72 * 60 * 60 * 1000 }) }
-          : (() => {
+      kind === 'tournament_ticket'
+        ? { 'progress.season_tournament_ticket_v1': JSON.stringify({ usesLeft: 1, expiresAt: Date.now() + 72 * 60 * 60 * 1000 }) }
+        : (() => {
             const user = userSnap.data() ?? {};
             const progress = user.progress && typeof user.progress === 'object'
               ? user.progress as Record<string, unknown>
@@ -163,7 +157,7 @@ export const seasonRedeemConsumable = onCall(HOT_CALLABLE_OPTIONS, async (reques
               club_gift_free_boost_v1: String(clubGiftFreeBoostCount),
               'progress.club_gift_free_boost_v1': String(clubGiftFreeBoostCount),
             };
-          })();
+        })();
 
     tx.set(claimRef, {
       giftId,

@@ -933,6 +933,14 @@ async function readAccountSwitchBackupRowsExactly(
   return rows;
 }
 const DEFAULT_STABLE_AUTH_LINK_CACHE_TTL_MS = 7 * 24 * 60 * 60_000;
+
+/**
+ * зачем (владелец 2026-09-02, аудит расходов): временная трассировка лавины
+ * вызовов authEnsureStableLink. В dev пишет всегда; в релизной сборке — только
+ * когда владелец включит флаг, чтобы снять факты с реального устройства.
+ * Снять вместе с логом [AUTH-LOOP] после починки.
+ */
+export const AUTH_LOOP_TRACE_ENABLED = false;
 /** Ожидание чужого syncInFlight без лимита оставляло «Сменить аккаунт» на вечном спиннере при «зависшем» Firestore. */
 const FORCE_SYNC_WAIT_INFLIGHT_MS = 25_000;
 const FORCE_SYNC_FIRESTORE_WRITE_MS = 35_000;
@@ -2312,7 +2320,32 @@ export async function ensureStableAuthLinkForStableIdDetailed(
 
   const key = `${stableId}:${authUid}`;
   const hasFreshMetadata = metadata != null && Object.keys(metadata).length > 0;
-  if (!options.requireAuthoritative && !hasFreshMetadata && await readStableAuthLinkCache(key)) {
+  const cacheHit = await readStableAuthLinkCache(key);
+  // зачем (владелец 2026-09-02): в проде видно 105 и 93 вызова authEnsureStableLink
+  // за сутки с ОДНОГО устройства, пиками по 6–11 в минуту, все с кодом 200 —
+  // то есть клиент ходит в сеть, хотя сервер отвечает нормально. Кэш живёт
+  // 7 дней, значит эти вызовы идут МИМО него: единственные два пути —
+  // requireAuthoritative и свежие метаданные. Прежде чем ослаблять
+  // requireAuthoritative (он защищает от записи в ЧУЖОЙ аккаунт — инцидент
+  // подмены stable_id 2026-08-25), нужны факты: кто именно зовёт и почему.
+  // Лог печатает САМО значение, решившее ветку, и стек вызывающего.
+  // Убрать после починки; строки в catch ниже остаются навсегда.
+  if (__DEV__ || AUTH_LOOP_TRACE_ENABLED) {
+    const caller = new Error().stack?.split('\n').slice(2, 5).join(' <- ').replace(/\s+/g, ' ') ?? 'unknown';
+    console.log('[AUTH-LOOP] ensureStableAuthLink', JSON.stringify({
+      stableId: stableId.slice(0, 8),
+      authUid: authUid.slice(0, 8),
+      requireAuthoritative: options.requireAuthoritative === true,
+      hasFreshMetadata,
+      metadataKeys: hasFreshMetadata ? Object.keys(metadata as object) : [],
+      cacheHit,
+      willUseCache: !options.requireAuthoritative && !hasFreshMetadata && cacheHit,
+      willCallNetwork: options.requireAuthoritative === true || hasFreshMetadata || !cacheHit,
+      inFlight: stableAuthLinkPromise != null,
+      caller,
+    }));
+  }
+  if (!options.requireAuthoritative && !hasFreshMetadata && cacheHit) {
     return { ok: true, requestedStableId: stableId, stableUid: stableId, authUid, source: 'cache' };
   }
   const promiseKey = [key, hasFreshMetadata ? 'metadata' : '', options.requireAuthoritative ? 'authoritative' : '']

@@ -6,12 +6,8 @@ import * as admin from "firebase-admin";
 import { withCronHeartbeat } from './cron_heartbeat';
 import * as functions from "firebase-functions/v2";
 import { getLevelFromXP } from "./xp_levels";
-import {
-  HELP_BOARD_DECOMMISSIONED_EXPORTS,
-  compassChatDailyCronDisabled,
-  helpBoardCompassRetryCronDisabled,
-  helpBoardGenerateCompassForTopicDisabled,
-} from "./help_board_decommission";
+// зачем: импорт надгробий Help Board снят вместе с их экспортом
+// (владелец, 2026-09-02) — см. комментарий ниже по файлу.
 
 admin.initializeApp();
 
@@ -341,14 +337,14 @@ exports.nameGenerateAndReserve = nameGenerateAndReserve;
 exports.nameReserve = nameReserve;
 exports.nameReleaseMine = nameReleaseMine;
 exports.leagueChestClaim = leagueChestClaim;
-// зачем: Help Board и Compass-чат удалены владельцем (9af87817d), но живут в
-// проде — гасим надгробиями, чтобы старые клиенты получали внятный отказ,
-// а не ошибку соединения. Подробности — в help_board_decommission.ts.
-Object.assign(exports, HELP_BOARD_DECOMMISSIONED_EXPORTS);
-exports.helpBoardGenerateCompassForTopic =
-  helpBoardGenerateCompassForTopicDisabled;
-exports.helpBoardCompassRetryCron = helpBoardCompassRetryCronDisabled;
-exports.compassChatDailyCron = compassChatDailyCronDisabled;
+// ⛔ Надгробия Help Board и Compass сняты с деплоя (владелец, 2026-09-02).
+// зачем: они ставились 2026-07-16, чтобы старые клиенты получали внятный отказ
+// вместо ошибки соединения. Задачу свою отработали: за 30 дней у всех десяти
+// callable-надгробий РОВНО НОЛЬ вызовов, а 703 вызова
+// helpBoardCompassRetryCron — это крон будил сам себя ради пустого тела.
+// Клиент 1.6.15 их не зовёт. Каждое надгробие = сервис Cloud Run в каждом
+// полном деплое, поэтому дешевле убрать, чем держать.
+// Файл help_board_decommission.ts оставлен на диске как история решения.
 exports.friendEnsureMyCode = friendEnsureMyCode;
 exports.friendLookupUser = friendLookupUser;
 exports.friendLikeActivity = friendLikeActivity;
@@ -551,69 +547,30 @@ export const premiumExpiryReminderCron = functions.scheduler.onSchedule(
     }
   }));
 
-// Owner requirement 2026-08-11: one bounded mailbox poll per hour.
-// Pulls support emails via IMAP into support_inbox. Needs the
-// GMAIL_SUPPORT_APP_PASSWORD secret; if missing, logs and no-ops (never throws).
-export const gmailSupportPullCron = functions.scheduler.onSchedule(
-  {
-    schedule: "every 60 minutes",
-    timeZone: "UTC",
-    region: "us-central1",
-    memory: "512MiB",
-    timeoutSeconds: 300,
-    secrets: [GMAIL_SUPPORT_APP_PASSWORD],
-  },
-  withCronHeartbeat('gmailSupportPullCron', async () => {
-    await runSupportInboxPullCron();
-  }));
-
-// Owner requirement 2026-08-16: "если на сообщение уже ответили, на него не
-// надо повторно отвечать". gmailSupportPullCron only reads INBOX — a reply
-// the owner sends directly from Gmail (not through the admin panel) was
-// invisible to Jarvis, leaving a stale Telegram card with live buttons for
-// an already-answered question. This scans Sent on the same hourly cadence
-// as the INBOX pull (same bounded-poll budget, no extra load).
-export const gmailSupportOwnerReplyDetectionCron = functions.scheduler.onSchedule(
-  {
-    schedule: "every 60 minutes",
-    timeZone: "UTC",
-    region: "us-central1",
-    memory: "512MiB",
-    timeoutSeconds: 300,
-    secrets: [GMAIL_SUPPORT_APP_PASSWORD],
-  },
-  withCronHeartbeat('gmailSupportOwnerReplyDetectionCron', async () => {
-    await runSupportOwnerReplyDetectionCron();
-  }));
-
-export const supportOwnerAlertRetryCron = functions.scheduler.onSchedule(
+// ── Поддержка: ОДИН диспетчер вместо семи кронов ────────────────────────────
+//
+// зачем (владелец, 2026-09-02, аудит расходов): здесь стояли семь отдельных
+// onSchedule — четыре с тактом 10 минут и три часовых. Это 21 600 запусков в
+// месяц, каждый со своим холодным стартом, ради 2–4 реальных событий в НЕДЕЛЮ
+// (замер по логам WARNING+ за 7 дней). Плюс каждое расписание — отдельное
+// задание Cloud Scheduler ($0.10/мес сверх трёх бесплатных).
+//
+// Теперь один тик каждые 10 минут раздаёт работу сам:
+//   • каждый тик (обещание владельца «3 часа ± 10 минут» на автоотправку в
+//     Telegram и быстрый подхват зависших задач доставки) — deadline и recovery;
+//   • раз в 30 минут — ретраи алертов владельцу и подметание очереди ответов:
+//     это ретраи, им не нужен десятиминутный такт;
+//   • раз в час, на тике :00 — разбор почты (IMAP), детект ответов владельца и
+//     ретрай автоответов. Ровно та частота, что была.
+//
+// Пульс каждой задачи пишется под ПРЕЖНИМ именем: панель здоровья кронов в
+// админке и adminAlertOnCronHeartbeat продолжают работать без правок.
+//
+// Правило: одна упавшая задача НЕ должна отменить остальные. Поэтому каждая
+// обёрнута отдельно, а причина падения логируется (немой catch запрещён).
+export const supportOpsCron = functions.scheduler.onSchedule(
   {
     schedule: "every 10 minutes",
-    timeZone: "UTC",
-    region: "us-central1",
-    memory: "256MiB",
-    timeoutSeconds: 120,
-    secrets: [ADMIN_ALERT_BOT_TOKEN, JARVIS_TELEGRAM_CONFIG],
-  },
-  withCronHeartbeat('supportOwnerAlertRetryCron', async () => {
-    await runSupportOwnerAlertRetryCron();
-  }));
-
-export const supportReplyDispatchSweeperCron = functions.scheduler.onSchedule(
-  {
-    schedule: "every 10 minutes",
-    timeZone: "UTC",
-    region: "us-central1",
-    memory: "256MiB",
-    timeoutSeconds: 120,
-  },
-  withCronHeartbeat('supportReplyDispatchSweeperCron', async () => {
-    await runSupportReplyDispatchSweeper();
-  }));
-
-export const supportAutoReplyRetryCron = functions.scheduler.onSchedule(
-  {
-    schedule: "every 60 minutes",
     timeZone: "UTC",
     region: "us-central1",
     memory: "512MiB",
@@ -625,46 +582,60 @@ export const supportAutoReplyRetryCron = functions.scheduler.onSchedule(
       JARVIS_TELEGRAM_CONFIG,
     ],
   },
-  withCronHeartbeat('supportAutoReplyRetryCron', async () => {
-    await runSupportAutoReplyRetryCron();
-  }));
+  async () => {
+    const startedAtMs = Date.now();
+    const minuteOfHour = new Date(startedAtMs).getUTCMinutes();
+    // Такты считаем от минуты часа, а не от счётчика в базе: диспетчер остаётся
+    // без состояния, а пропущенный тик не сдвигает расписание навсегда.
+    const everyThirtyMin = minuteOfHour % 30 < 10;
+    const hourly = minuteOfHour < 10;
 
-// This checks only already prepared reviews; it does not poll Gmail. A ten
-// minute cadence keeps the promised three-hour window bounded to 3h–3h10m.
-export const supportTelegramAutoSendDeadlineCron =
-  functions.scheduler.onSchedule(
-    {
-      schedule: "every 10 minutes",
-      timeZone: "UTC",
-      region: "us-central1",
-      memory: "256MiB",
-      timeoutSeconds: 120,
-    },
-    withCronHeartbeat('supportTelegramAutoSendDeadlineCron', async () => {
-      await runSupportTelegramAutoSendDeadline();
-    }));
+    // зачем: runXxx объявлены как Promise<unknown>, а withCronHeartbeat ждёт
+    // Promise<void | HeartbeatExtra> и событие первым аргументом. Гасим оба
+    // расхождения здесь, чтобы не трогать сигнатуры support_inbox.
+    // зачем: runXxx объявлены как Promise<unknown>, а withCronHeartbeat ждёт
+    // Promise<void | HeartbeatExtra>. Гасим расхождение здесь, чтобы не менять
+    // сигнатуры support_inbox — их разделяют другие вызывающие.
+    const voidly = (run: () => Promise<unknown>) => async (): Promise<void> => {
+      await run();
+    };
+    const tasks: Array<{ name: string; due: boolean; run: () => Promise<void> }> = [
+      { name: 'supportTelegramAutoSendDeadlineCron', due: true, run: voidly(runSupportTelegramAutoSendDeadline) },
+      { name: 'supportTelegramReplyJobRecoveryCron', due: true, run: voidly(runSupportTelegramReplyJobRecovery) },
+      { name: 'supportOwnerAlertRetryCron', due: everyThirtyMin, run: voidly(runSupportOwnerAlertRetryCron) },
+      { name: 'supportReplyDispatchSweeperCron', due: everyThirtyMin, run: voidly(runSupportReplyDispatchSweeper) },
+      { name: 'gmailSupportPullCron', due: hourly, run: voidly(runSupportInboxPullCron) },
+      { name: 'gmailSupportOwnerReplyDetectionCron', due: hourly, run: voidly(runSupportOwnerReplyDetectionCron) },
+      { name: 'supportAutoReplyRetryCron', due: hourly, run: voidly(runSupportAutoReplyRetryCron) },
+    ];
 
-// Recovers only pending or abandoned pre-delivery jobs. The durable SMTP
-// operation remains the authority: delivery_unknown is terminal and is never
-// blindly retried here.
-export const supportTelegramReplyJobRecoveryCron =
-  functions.scheduler.onSchedule(
-    {
-      schedule: "every 10 minutes",
-      timeZone: "UTC",
-      region: "us-central1",
-      memory: "512MiB",
-      timeoutSeconds: 300,
-      secrets: [
-        GMAIL_SUPPORT_APP_PASSWORD,
-        SUPPORT_OPENAI_API_KEY,
-        ADMIN_ALERT_BOT_TOKEN,
-        JARVIS_TELEGRAM_CONFIG,
-      ],
-    },
-    withCronHeartbeat('supportTelegramReplyJobRecoveryCron', async () => {
-      await runSupportTelegramReplyJobRecovery();
+    const ran: string[] = [];
+    const failed: string[] = [];
+    for (const task of tasks) {
+      if (!task.due) continue;
+      try {
+        // undefined как событие: сами задачи его не читают — им важен только
+        // пульс под прежним именем (панель здоровья + adminAlertOnCronHeartbeat).
+        await withCronHeartbeat<undefined>(task.name, task.run)(undefined);
+        ran.push(task.name);
+      } catch (error) {
+        failed.push(task.name);
+        console.error('support_ops_cron_task_failed', JSON.stringify({
+          task: task.name,
+          minuteOfHour,
+          reason: error instanceof Error ? error.message : String(error),
+        }));
+      }
+    }
+    console.log('support_ops_cron_tick', JSON.stringify({
+      minuteOfHour,
+      everyThirtyMin,
+      hourly,
+      ran,
+      failed,
+      durationMs: Date.now() - startedAtMs,
     }));
+  });
 
 // ── Community (UGC) packs ─────────────────────────────────────────────────────
 export {
@@ -1000,26 +971,18 @@ export { webLeadCapture, webLeadNudgeCron } from "./web_leads";
 // (tournamentFillBots, tournamentAdvanceRooms) и один раз в 5 минут
 // (tournamentCreateRooms). Они просыпались только чтобы упереться в `if
 // (!TOURNAMENTS_RELEASED) return;` — ~95 000 холостых запусков в месяц за деньги.
-// Экспорт снят => Firebase удаляет расписания. Callable-функции турниров
-// оставлены на месте: они и так фейлятся гейтом, а tournamentClaimReward нужен,
-// чтобы никто не потерял уже начисленную награду.
+// Экспорт снят => Firebase удаляет расписания.
+//
+// ⛔ ФУЛЛ-УДАЛЕНИЕ ТУРНИРОВ ИЗ ПРОДА (владелец, 2026-09-02, аудит расходов).
+// зачем: 23.08 сняли кроны, но 29 callable остались задеплоены. Каждая — это
+// отдельный сервис Cloud Run: он попадает в КАЖДЫЙ полный деплой (а полный
+// деплой 507 функций стоит $2–6) и держит свой образ в Artifact Registry.
+// Проверено перед снятием: приложение 1.6.15 не зовёт их ни разу;
+// tournamentClaimReward — 0 вызовов за 60 дней (терять нечего);
+// tournamentWeeklyBankInfo стучал только клиент 1.6.7 и УЖЕ получал 401.
+// Модули ./tournaments и ./tournament_* НЕ удалены с диска намеренно: Арена
+// импортирует tournament_core и tournament_pool_publication (arena_v2.ts:16,59).
 // Возврат = отдельное задание владельца, не попутная правка.
-export {
-  tournamentJoin,
-  tournamentLeave,
-  tournamentForfeit,
-  tournamentAdvanceRound,
-  tournamentRoundReview,
-  tournamentSubmitSpeedMatchAttempt,
-  tournamentSubmitTaskAnswer,
-  tournamentSubmitAnswers,
-  tournamentFinalize,
-  tournamentClaimReward,
-  // зачем 2026-07-27 (владелец): дев-турнир убран, дев-логика не используется.
-  // Мгновенный вход теперь даёт ОБЫЧНЫЙ турнир по требованию.
-  tournamentStartNow,
-} from "./tournaments";
-export { adminSeedBotProfiles } from "./tournament_bots";
 
 // Управление конфигом Арены из админки. Без документа arena_v2_config/current
 // бэкенд Арены отказывает во всём — это и есть корневая причина «не работает».
@@ -1091,43 +1054,15 @@ export {
   arenaStarPurchase,
   arenaStarEquip,
 } from "./arena_expansion";
-// Раздел «Турниры» в админке: ИИ-генерация, ревью-очередь, публикация в пул,
-// статистика готовности раундов и расписание слотов.
-export {
-  adminGenerateTournamentTasksAi,
-  adminListTournamentTasks,
-  adminMutateTournamentTasks,
-  adminEditTournamentTask,
-  adminFillTournamentPool,
-  adminGetTournamentModeMix,
-  adminSetTournamentModeMix,
-  adminGenerateTournamentAudioTasksAi,
-  adminTournamentPoolStats,
-  adminGetTournamentSchedule,
-  adminSetTournamentSchedule,
-  adminSetTournamentCurated,
-  adminGetTournamentCurated,
-} from "./admin_tournament_tasks";
+// ⛔ Раздел «Турниры» в админке снят с деплоя вместе с остальными турнирными
+// функциями (владелец, 2026-09-02). Вкладки турниров в admin/v2/legacy.html
+// перестанут отвечать — это ожидаемо, режим выключен с 2026-08-10.
+// Модули ./admin_tournament_tasks и ./admin_tournament_full остаются на диске.
 
-// Генерация ЦЕЛОГО турнира одним вызовом: 4 раунда × 6 заданий, каждому
-// режиму свой тип вопроса (ситуация / пропуск / поиск ошибки / сборка).
-export {
-  adminGenerateTournamentAi,
-  // Папки вопросов: перегенерация одного и массовые действия по папке.
-  adminRegenerateTournamentTask,
-  adminBulkTournamentFolder,
-} from "./admin_tournament_full";
-
-// Недельный банк турниров: копится с каждого турнира, раздаётся тройке лучших
-// по сумме очков в ночь воскресенья (крон) либо вручную из админки.
-// ⛔ tournamentWeeklyBankCron снят с деплоя вместе с остальными турнирными
-// кронами (владелец, 2026-08-23). Ручная выплата из админки остаётся доступной.
-export {
-  adminPayoutTournamentWeeklyBank,
-  adminSetTournamentEconomy,
-  adminGetTournamentEconomy,
-  tournamentWeeklyBankInfo,
-} from "./tournament_weekly_payout";
+// ⛔ Недельный банк турниров снят с деплоя целиком (владелец, 2026-09-02):
+// крон убран 2026-08-23, теперь уходят и ручная выплата, и чтение банка.
+// tournamentWeeklyBankInfo давал 4 569 вызовов/мес от клиента 1.6.7, и все они
+// уже отвечали 401 — то есть функция не работала и до удаления.
 
 // Learning V2 delayed evidence: server-classified, idempotent receipt finalization.
 export { finalizeLearningV2DelayedCandidate } from "./learning_v2_delayed_callable";

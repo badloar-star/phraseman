@@ -66,13 +66,12 @@ export const BOT_AVATAR_GRADIENT_IDS = [
  * (владелец, 2026-08-27: «должны быть только аватары которые в продаже, а не
  * вообще весь рандом — те которые не подключены»).
  *
- * Правда о продаже живёт на клиенте: `CUSTOM_AVATAR_SHOP` в
- * constants/custom_avatars.ts = `AVATAR100_CATALOG` (constants/avatar100_assets.ts).
- * Это ряд 73…126 без 90 — ровно 53 позиции.
+ * Правда о продаже живёт на клиенте: `CUSTOM_AVATAR_SHOP` объединяет
+ * `AVATAR100_CATALOG` и `AVATAR_PHENOMENA_CATALOG`.
  *
  * Чего здесь НЕТ и почему:
  * • 01–40 — подарочный пул (`CUSTOM_AVATAR_GIFT_POOL`), за жемчуг не продаётся;
- * • 41–72 и 90 — сняты с продажи навсегда (`isRetiredCustomAvatarSale`).
+ * • 41–72 и прежние/забракованные ID без карточки — не продаются.
  *   Прежние владельцы их носят, но купить нельзя — бот в таком аватаре
  *   рекламировал бы то, чего в магазине нет.
  *
@@ -81,15 +80,35 @@ export const BOT_AVATAR_GRADIENT_IDS = [
  * тест читает сам каталог и падает, если списки разошлись.
  */
 export const BOT_CUSTOM_AVATAR_MIN = 73;
-export const BOT_CUSTOM_AVATAR_MAX = 126;
-/** Снят с продажи внутри диапазона — пропускается при выборе. */
-export const BOT_CUSTOM_AVATAR_EXCLUDED: readonly number[] = [90];
+export const BOT_CUSTOM_AVATAR_MAX = 124;
+/** ID без активной карточки в Avatar100 — пропускаются при выборе. */
+export const BOT_CUSTOM_AVATAR_EXCLUDED: readonly number[] = [
+  74, 78, 79, 80, 82, 84, 85, 90, 91, 95, 97, 98,
+  100, 110, 113, 115, 116, 117, 119, 121, 122,
+];
 
 /** Номера продающихся аватаров: диапазон минус исключения. */
 export const BOT_SELLABLE_AVATAR_NUMBERS: readonly number[] = Array.from(
   { length: BOT_CUSTOM_AVATAR_MAX - BOT_CUSTOM_AVATAR_MIN + 1 },
   (_, offset) => BOT_CUSTOM_AVATAR_MIN + offset,
 ).filter((number) => !BOT_CUSTOM_AVATAR_EXCLUDED.includes(number));
+
+export type BotSellableAvatar = Readonly<{
+  id: string;
+  artVersion: 'avatar100-v1' | 'phenomena-v1';
+}>;
+
+/** Полный клиентский ассортимент, включая 18 новых явлений. */
+export const BOT_SELLABLE_AVATARS: readonly BotSellableAvatar[] = [
+  ...BOT_SELLABLE_AVATAR_NUMBERS.map((number) => ({
+    id: `custom-gen-${String(number).padStart(2, '0')}`,
+    artVersion: 'avatar100-v1' as const,
+  })),
+  ...Array.from({ length: 18 }, (_, index) => ({
+    id: `custom-phen-${String(index + 1).padStart(2, '0')}`,
+    artVersion: 'phenomena-v1' as const,
+  })),
+];
 
 /** Доля ботов с купленным аватаром витрины вместо уровневого номера. */
 export const BOT_SHOWCASE_AVATAR_CHANCE = 0.12;
@@ -122,15 +141,12 @@ function pick<T>(pool: readonly T[], value: number): T {
 
 /** Строка кастом-аватара в формате клиента: custom:<id>:<градиент>:<цвет>. */
 export function botShowcaseAvatarValue(seed: string): string {
-  // Выбор ИЗ СПИСКА продающихся, а не из диапазона: внутри 73…126 есть дыра
-  // (90 снят с продажи), и бросок по диапазону иногда попадал бы прямо в неё.
-  const number = pick(BOT_SELLABLE_AVATAR_NUMBERS, unit(seed, 'shop-avatar'));
-  // Двузначные id дополняются нулём, трёхзначные остаются как есть —
-  // ровно так они записаны в constants/custom_avatars.ts.
-  const id = `custom-gen-${String(number).padStart(2, '0')}`;
+  // Выбор ИЗ СПИСКА продающихся, а не из диапазона: так версия арта всегда
+  // атомарно привязана к entitlement и бот не рекламирует снятую позицию.
+  const avatar = pick(BOT_SELLABLE_AVATARS, unit(seed, 'shop-avatar'));
   const gradient = pick(BOT_AVATAR_GRADIENT_IDS, unit(seed, 'shop-gradient'));
   const logoColor = unit(seed, 'shop-logo') < 0.5 ? 'black' : 'white';
-  return `custom:${id}:${gradient}:${logoColor}`;
+  return `custom:${avatar.id}:${gradient}:${logoColor}:${avatar.artVersion}`;
 }
 
 /**

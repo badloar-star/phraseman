@@ -40,8 +40,16 @@ import {
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
-/** Provider probe cadence: catches contract/key/model drift before user traffic. */
-export const MAX_VOICE_PROVIDER_HEALTH_SCHEDULE = 'every 10 minutes';
+/**
+ * Provider probe cadence: catches contract/key/model drift before user traffic.
+ *
+ * зачем (владелец 2026-09-02, аудит расходов): было 'every 10 minutes' =
+ * 4 320 запусков и 4 320 минтов ключа OpenAI в месяц ради проверки живости.
+ * Проба ловит дрейф контракта/ключа/модели — это события уровня «раз в недели»,
+ * им не нужен десятиминутный такт. Час оставляет тот же сигнал, но в 6 раз
+ * дешевле и по нашему счёту, и по нагрузке на провайдера.
+ */
+export const MAX_VOICE_PROVIDER_HEALTH_SCHEDULE = 'every 60 minutes';
 
 /**
  * Свежий heartbeat = сессия ещё жива (например, reconnect-чейн в процессе или

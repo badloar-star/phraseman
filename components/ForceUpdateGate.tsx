@@ -28,6 +28,8 @@ import {
   isCampaignDismissed,
   markCampaignDismissed,
 } from '../app/campaign_dismissals';
+import { STORE_URL_IOS, STORE_URL_ANDROID } from '../app/config';
+import { DebugLogger } from '../app/debug-logger';
 
 type GateMode = 'force' | 'optional';
 
@@ -66,8 +68,17 @@ function currentComparableForTarget(targetBuild: string): string {
     : currentAppVersion();
 }
 
+// зачем: владелец включает окно обновления в «Пульте» и ждёт, что оно покажется.
+// Раньше при пустых store_url_* в remote_config гейт молча возвращал null и окно
+// не появлялось НИ У КОГО — без единого лога (класс бага «механизм есть, данных
+// не дали»). Ссылки на сторы у нас постоянные и уже лежат в app/config.ts,
+// поэтому remote-значение теперь лишь ПЕРЕОПРЕДЕЛЯЕТ дефолт, а не является
+// обязательным условием показа.
 function storeUrlForPlatform(): string {
-  return String((Platform.OS === 'ios' ? getStoreUrlIos() : getStoreUrlAndroid()) || '').trim();
+  const override = String((Platform.OS === 'ios' ? getStoreUrlIos() : getStoreUrlAndroid()) || '').trim();
+  if (override) return override;
+  const fallback = Platform.OS === 'ios' ? STORE_URL_IOS : STORE_URL_ANDROID;
+  return String(fallback || '').trim();
 }
 
 // Голос Компаса (канон): даже блокирующее окно говорит от первого лица, тепло.
@@ -146,26 +157,54 @@ function readLegacyForceState(lang: string, userId: string | null): GateState | 
 }
 
 async function readManualState(lang: string, userId: string | null): Promise<GateState | null> {
+  // зачем: единый префикс [MANUAL-UPDATE] — владелец одним grep видит, почему
+  // включённое в «Пульте» окно не показалось. Каждый ранний выход печатает
+  // ЗНАЧЕНИЕ, которое его решило, а не голое true/false.
   const storeUrl = storeUrlForPlatform();
-  if (!storeUrl) return null;
+  if (!storeUrl) {
+    console.warn('[MANUAL-UPDATE] skip: no store url', {
+      platform: Platform.OS,
+      remoteIos: getStoreUrlIos(),
+      remoteAndroid: getStoreUrlAndroid(),
+    });
+    return null;
+  }
 
+  const enabled = isFlagEnabledForUser('manual_update_enabled', userId);
   const campaignId = getManualUpdateCampaignId().trim();
   const mode = getManualUpdateMode();
   const platformFilter = getManualUpdatePlatform();
   const targetBuild = getManualUpdateTargetBuild().trim();
+  const currentBuild = currentComparableForTarget(targetBuild);
   const dismissedKey = campaignDismissalKey('manual_update', campaignId);
   const alreadySeen = mode === 'optional' ? await isCampaignDismissed(dismissedKey) : false;
   const shouldShow = shouldShowManualUpdate({
-    enabled: isFlagEnabledForUser('manual_update_enabled', userId),
+    enabled,
     campaignId,
     mode,
-    currentBuild: currentComparableForTarget(targetBuild),
+    currentBuild,
     targetBuild,
     platformFilter,
     platform: Platform.OS,
     seenCampaignIds: alreadySeen ? [campaignId] : [],
   });
-  if (!shouldShow) return null;
+  if (!shouldShow) {
+    console.warn('[MANUAL-UPDATE] skip: gate says no', {
+      enabled,
+      campaignId,
+      mode,
+      platformFilter,
+      platform: Platform.OS,
+      targetBuild,
+      currentBuild,
+      alreadySeen,
+      userId,
+    });
+    return null;
+  }
+  console.log('[MANUAL-UPDATE] showing modal', {
+    campaignId, mode, platformFilter, platform: Platform.OS, targetBuild, currentBuild, storeUrl,
+  });
 
   const title = getManualUpdateTitle(lang).trim() || defaultTitle(lang);
   const body = getManualUpdateBody(lang).trim() || defaultBody(lang);
@@ -224,7 +263,20 @@ export default function ForceUpdateGate() {
       void markCampaignDismissed(campaignDismissalKey('manual_update', gate.campaignId));
       setGate(null);
     }
-    void Linking.openURL(gate.storeUrl).catch(() => {});
+    // зачем: запрет немого catch — если стор не открылся, причина обязана попасть
+    // в лог, иначе «нажал Обновить и ничего» останется навсегда без диагноза.
+    void Linking.openURL(gate.storeUrl).catch((e) => {
+      console.warn('[MANUAL-UPDATE] store open failed', {
+        storeUrl: gate.storeUrl,
+        campaignId: gate.campaignId,
+        reason: e instanceof Error ? e.message : String(e),
+      });
+      DebugLogger.error(
+        'ForceUpdateGate:openStore',
+        e instanceof Error ? e : new Error(String(e)),
+        'warning',
+      );
+    });
   };
 
   return (

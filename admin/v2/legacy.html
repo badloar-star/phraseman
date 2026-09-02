@@ -12247,8 +12247,14 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         <label>Target build / version<input type="text" id="cp-manual-update-target-build" placeholder="1.5.44"/></label>
         <label>Заголовок RU<input type="text" id="cp-manual-update-title-ru"/></label>
         <label>Кнопка RU<input type="text" id="cp-manual-update-cta-ru" placeholder="Обновить"/></label>
+        <label>Заголовок UK<input type="text" id="cp-manual-update-title-uk"/></label>
+        <label>Кнопка UK<input type="text" id="cp-manual-update-cta-uk" placeholder="Оновити"/></label>
+        <label>Заголовок ES<input type="text" id="cp-manual-update-title-es"/></label>
+        <label>Кнопка ES<input type="text" id="cp-manual-update-cta-es" placeholder="Actualizar"/></label>
       </div>
       <label style="display:grid;gap:5px;margin-top:10px">Текст RU<textarea id="cp-manual-update-body-ru" rows="2"></textarea></label>
+      <label style="display:grid;gap:5px;margin-top:10px">Текст UK<textarea id="cp-manual-update-body-uk" rows="2"></textarea></label>
+      <label style="display:grid;gap:5px;margin-top:10px">Текст ES<textarea id="cp-manual-update-body-es" rows="2"></textarea></label>
       <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
         <button type="button" class="cp-btn" onclick="saveManualUpdateConfig(false)" title="Сохранить параметры, сохранив текущее состояние выключателя">Сохранить manual modal</button>
         <button type="button" class="cp-btn" onclick="saveManualUpdateConfig(true)" title="Сохранить параметры и сразу включить окно обновления">Показать окно</button>
@@ -34612,6 +34618,12 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       cpSetValue('cp-manual-update-title-ru', texts.manual_update_title_ru);
       cpSetValue('cp-manual-update-body-ru', texts.manual_update_body_ru);
       cpSetValue('cp-manual-update-cta-ru', texts.manual_update_cta_ru);
+      cpSetValue('cp-manual-update-title-uk', texts.manual_update_title_uk);
+      cpSetValue('cp-manual-update-body-uk', texts.manual_update_body_uk);
+      cpSetValue('cp-manual-update-cta-uk', texts.manual_update_cta_uk);
+      cpSetValue('cp-manual-update-title-es', texts.manual_update_title_es);
+      cpSetValue('cp-manual-update-body-es', texts.manual_update_body_es);
+      cpSetValue('cp-manual-update-cta-es', texts.manual_update_cta_es);
       cpRemoteStatus('cp-force-status', 'Настройки обновления загружены.', '#4ade80');
     } catch (error) {
       cpRemoteStatus('cp-force-status', 'Ошибка чтения: ' + (error?.message || error), '#f87171');
@@ -34653,6 +34665,9 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         manual_update_platform: cpValue('cp-manual-update-platform'), manual_update_campaign_id: campaign,
         manual_update_target_build: target, manual_update_title_ru: cpValue('cp-manual-update-title-ru'),
         manual_update_body_ru: cpValue('cp-manual-update-body-ru'), manual_update_cta_ru: cpValue('cp-manual-update-cta-ru'),
+        manual_update_title_uk: cpValue('cp-manual-update-title-uk'), manual_update_body_uk: cpValue('cp-manual-update-body-uk'),
+        manual_update_cta_uk: cpValue('cp-manual-update-cta-uk'), manual_update_title_es: cpValue('cp-manual-update-title-es'),
+        manual_update_body_es: cpValue('cp-manual-update-body-es'), manual_update_cta_es: cpValue('cp-manual-update-cta-es'),
       });
       await window.saveControlPanelBool('manual_update_enabled', enabled);
       cpRenderStandaloneBool('manual_update_enabled', enabled);

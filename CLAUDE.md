@@ -100,7 +100,8 @@ Workflow, массовый grep по всему репозиторию.
 
 Файлы Арены (`modules/arena/**`, `components/arena/**`, `app/arena*`,
 `functions/src/arena_*`, `tests/arena_*`, `docs/arena/**`,
-`components/tournament/TournamentBackdrop.tsx`) переписываются по прямому
+`components/ui/V2Backdrop.tsx` — бывший `components/tournament/TournamentBackdrop.tsx`,
+переехал вместе с фоном Арены) переписываются по прямому
 заданию владельца. Их **нельзя** откатывать (`git revert`, `git checkout`
 чужой версии) и нельзя перезаписывать из своего буфера. Работа уже дважды
 терялась именно так. Подробности и порядок восстановления — в

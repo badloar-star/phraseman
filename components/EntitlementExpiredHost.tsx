@@ -15,7 +15,6 @@ import {
   type AccountGenerationToken,
 } from '../app/account_generation';
 import { emitAppEvent, onAppEvent } from '../app/events';
-import { isTournamentInterruptionProtectedPath } from '../app/tournament_interruption_guard';
 import {
   getVerifiedPremiumAccessStatus,
   getVerifiedRealPremiumStatus,
@@ -128,13 +127,9 @@ function EntitlementExpiredHost() {
   const rouletteOn = useReferralRouletteEnabled();
   const pathnameRef = useRef(pathname);
   pathnameRef.current = pathname;
-  const tournamentInterruptionProtected = isTournamentInterruptionProtectedPath(pathname);
   const [kind, setKind] = useState<Kind | null>(null);
   const [accountGeneration, setAccountGeneration] = useState(captureAccountGeneration);
-  const overlayVisible = useOverlayVisible(
-    'entitlementExpired',
-    kind != null && !tournamentInterruptionProtected,
-  );
+  const overlayVisible = useOverlayVisible('entitlementExpired', kind != null);
 
   const maybeShow = useCallback(async (k: Kind, expectedAccount: AccountGenerationToken) => {
     if (!entitlementAccountIsCurrent(expectedAccount)) return;
@@ -312,10 +307,8 @@ function EntitlementExpiredHost() {
       value={tx.value}
       ctaLabel={tx.cta}
       onCta={() => {
-        if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
         const context = normalizedKind === 'premium' ? 'premium_expired' : 'vip_expired';
         navigateAfterModalClose(markShownAndClose, () => {
-          if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
           router.push({
             pathname: '/premium_modal',
             params: { context },
@@ -327,9 +320,7 @@ function EntitlementExpiredHost() {
           за друга». Продление остаётся главным CTA, реферал — tonal-кнопкой ниже. */
       secondaryLabel={rouletteOn ? tx.invite : undefined}
       onSecondary={rouletteOn ? () => {
-        if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
         navigateAfterModalClose(markShownAndClose, () => {
-          if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
           router.push({ pathname: '/referrals' } as never);
         });
       } : undefined}

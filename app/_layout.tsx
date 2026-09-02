@@ -140,7 +140,6 @@ import { hydrateAgeGateFromStorage } from './age_gate';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
-import { isTournamentInterruptionProtectedPath } from './tournament_interruption_guard';
 import { tryGrantPremiumMonthlyWagerFromLevelUp } from './streak_wager';
 import { incrementSessionCount } from './review_utils';
 import { checkForUpdate, UpdateInfo } from './update_check';
@@ -970,7 +969,6 @@ function GlobalLevelUpRewards() {
           ]);
           if (!(await canShowAfterWinUpsell({ isPremium: prem, nowMs: Date.now() }))) return;
           if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-          if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
           // Navigation first: a failed push must not consume the cooldown.
           globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as any);
           await markAfterWinUpsellShown(Date.now());
@@ -1205,7 +1203,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const pathname = usePathname();
   const pathnameRef = useRef(pathname);
   pathnameRef.current = pathname;
-  const tournamentInterruptionProtected = isTournamentInterruptionProtectedPath(pathname);
   const coldExamBestPctRestoreOptions = useMemo(() => ({
     canPublishExamBestPctOverlay: () => {
       const currentPath = pathnameRef.current;
@@ -2659,7 +2656,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   const checkIntroFullAccessEndedModal = useCallback(async () => {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
-    if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
     const state = await getIntroFullAccessState().catch(() => null);
     if (!state?.expiredUnseen) return;
     if (await hasVerifiedRealPremiumOrVip()) {
@@ -2667,7 +2663,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       return;
     }
     if (state?.expiredUnseen) {
-      if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
       setIntroFullAccessModal('ended');
       // Воронка: показана модалка «72 часа закончились» — главный момент конверсии.
       void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_shown', {})).catch(() => {});
@@ -2699,7 +2694,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // иначе разрыв всегда ~0. Не показываем одновременно с intro_ended (не два пейвола разом).
   const checkWinbackOffer = useCallback(async () => {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
-    if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
     try {
       const { shouldShowWinback, markWinbackShown, recordLastActive } = await import('./winback_offer');
       const isPremium = await hasVerifiedRealPremiumOrVip();
@@ -2710,7 +2704,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
       const show = !introPending && (await shouldShowWinback({ isPremium, nowMs }));
       if (show) {
-        if (isTournamentInterruptionProtectedPath(pathnameRef.current)) return;
         // Сначала навигация, потом отметка — если push упадёт, не «сжигаем» окно winback.
         globalRouter.push({ pathname: '/premium_modal', params: { context: 'streak', source: 'winback' } } as any);
         await markWinbackShown(nowMs);
@@ -2898,7 +2891,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // do not let that stale request cover the lobby or a live question.
   const introFullAccessModalVisible = useOverlayVisible(
     'introFullAccess',
-    !tournamentInterruptionProtected && introFullAccessModal !== null,
+    introFullAccessModal !== null,
   );
   const postOnboardingScreenTintOpacity = postOnboardingGoldBridgeAnim.interpolate({
     inputRange: [0, 1],
@@ -2915,8 +2908,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   // Expo Router requires the root layout to mount a navigator on the first
   // render. Startup, onboarding, and blocked-account states cover it as overlays.
-  const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned
-    && !tournamentInterruptionProtected;
+  const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned;
   const startupSplashVisible = !fontsReady || !ready
     || (!effectiveShowOnboarding && !isBanned && !firstContentReady);
   // OWNER 2026-08-25: route shell обязан сменяться без искусственной задержки.
@@ -3234,7 +3226,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
     {/* Bottomsheet первого урока после онбординга */}
     <IntroFullAccessModal
-      visible={appOverlaysEnabled && !tournamentInterruptionProtected && introFullAccessModalVisible}
+      visible={appOverlaysEnabled && introFullAccessModalVisible}
       variant={introFullAccessModal ?? 'welcome'}
       onPrimaryPress={() => {
         void closeIntroFullAccessModal('primary');

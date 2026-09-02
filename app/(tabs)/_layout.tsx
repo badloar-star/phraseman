@@ -1,4 +1,4 @@
-﻿import React, { useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+﻿import React, { Profiler, useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { Freeze } from 'react-freeze';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
 import { View, TouchableOpacity, StyleSheet, Animated, Easing, AppState } from 'react-native';
@@ -15,7 +15,7 @@ import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
 import { TabProvider, useTabNav } from '../TabContext';
 import { hapticTap } from '../../hooks/use-haptics';
-import { noteTapAction } from '../tap_latency_trace';
+import { createTapLatencyProfilerHandler, noteTapAction } from '../tap_latency_trace';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { HOME_ENTRANCE } from '../../constants/motion';
 // зачем: гибрид таббара («жидкое золото») живёт в реальном таббаре под dev-флагом —
@@ -23,6 +23,7 @@ import { HOME_ENTRANCE } from '../../constants/motion';
 import { useDevTabBarMotionVariant } from '../../hooks/dev_motion_variant';
 import { TABBAR_HYBRID } from '../../constants/motionHybrid';
 import { OLIVE_RICH } from '../../constants/oliveTheme';
+import { isLightThemeMode } from '../../constants/theme';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import HomeScreen       from './home';
@@ -118,6 +119,17 @@ function prewarmDeferredTabScreen(idx: number): boolean {
     if (__DEV__) console.warn(`[tabs] prewarm failed for tab ${idx}:`, error);
     return false;
   }
+}
+
+// зачем: трассировка [TAP-LAT] — Profiler вокруг содержимого панели таба показывает,
+// сколько раз и как долго React рендерил панель после тапа/возврата (разморозка,
+// каскады setState). Обёртка живёт ВНЕ TabPane, чтобы не трогать контракт
+// «<Freeze freeze={freezeActive}>{children}</Freeze>» (tab_freeze_handoff_contract).
+// Когда трассировка выключена — обработчика нет и дети рендерятся как есть.
+const tapLatencyProfilerOnRender = createTapLatencyProfilerHandler();
+function TabRenderProbe({ id, children }: { id: string; children: React.ReactNode }) {
+  if (!tapLatencyProfilerOnRender) return <>{children}</>;
+  return <Profiler id={id} onRender={tapLatencyProfilerOnRender}>{children}</Profiler>;
 }
 
 function DeferredTabScreen({
@@ -260,12 +272,14 @@ function LessonsPaneBoundary({
         pointerEvents={coverLessons ? 'none' : 'auto'}
       >
         <TabPane freezeWanted={freezeWanted}>
-          <DeferredTabScreen
-            key={`lessons-${privacy.epoch}`}
-            shouldLoad={shouldLoad}
-            loadScreen={loadLessonsScreen}
-            screenProps={{ overlayIdentityEpoch: privacy.epoch, presentation: 'tab' }}
-          />
+          <TabRenderProbe id="tab:lessons">
+            <DeferredTabScreen
+              key={`lessons-${privacy.epoch}`}
+              shouldLoad={shouldLoad}
+              loadScreen={loadLessonsScreen}
+              screenProps={{ overlayIdentityEpoch: privacy.epoch, presentation: 'tab' }}
+            />
+          </TabRenderProbe>
         </TabPane>
       </View>
       {coverLessons ? (
@@ -468,7 +482,7 @@ function TabScaffold({
   const tabMotionVariant = useDevTabBarMotionVariant();
   const reduceMotion = useReduceMotion();
   const isTabHybrid = tabMotionVariant === 'hybrid';
-  const isSagePorcelainTabChrome = themeMode === 'sagePorcelain';
+  const isSagePorcelainTabChrome = isLightThemeMode(themeMode);
   const isOliveTheme = themeMode === 'olive';
   const tabPillBackground = isSagePorcelainTabChrome ? t.accent : isOliveTheme ? OLIVE_RICH.panel : TAB_UNDERLAY_DIM_BG;
   const tabIconActive = isSagePorcelainTabChrome ? t.correctText : isOliveTheme ? OLIVE_RICH.champagne : t.accent;
@@ -678,8 +692,17 @@ function TabScaffold({
     notifyFirstContentReady();
   }, [notifyFirstContentReady]);
 
+  // The tab scaffold owns the system safe area above retained tab screens.
+  // Match that strip to Lessons so the Home artwork cannot bleed above it.
+  const scaffoldArtBackdrop = visualIdx === 1 ? 'lessons' : 'home';
+  const scaffoldStaticParallaxY = visualIdx === 0 ? HOME_ENTRANCE.bgDriftPx : undefined;
+
   return (
-    <ScreenGradient artBackdrop="home" style={{ flex: 1 }} staticParallaxY={HOME_ENTRANCE.bgDriftPx}>
+    <ScreenGradient
+      artBackdrop={scaffoldArtBackdrop}
+      style={{ flex: 1 }}
+      staticParallaxY={scaffoldStaticParallaxY}
+    >
       {/* Затемняющий верхний край: одна маска на все табы, от самого верха экрана
           (вне paddingTop-обёртки), opacity привязан к скроллу активного таба. */}
       <TopFadeMask scrollY={topFadeScroll?.scrollY} zIndex={2} />
@@ -1114,7 +1137,7 @@ function ReleasedTabLayout() {
     // (свайп-драг показывает соседнюю панель — она не должна быть пустой).
     const freezeWanted = (logicalIdx: number) => Math.abs(logicalTabToPhysicalPage(logicalIdx) - physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE;
     return [
-      show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><HomeScreen onOpenDevHub={openDevHub} /></TabPane> : placeholder('ph-home'),
+      show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><TabRenderProbe id="tab:home"><HomeScreen onOpenDevHub={openDevHub} /></TabRenderProbe></TabPane> : placeholder('ph-home'),
       show(1) ? (
         <LessonsPaneBoundary
           key="lessons"
@@ -1122,9 +1145,9 @@ function ReleasedTabLayout() {
           shouldLoad={shouldLoad(1)}
         />
       ) : placeholder('ph-lessons'),
-      show(2) ? <TabPane key="arena" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadArenaScreen} /></TabPane> : placeholder('ph-arena'),
-      show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
-      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
+      show(2) ? <TabPane key="arena" freezeWanted={freezeWanted(2)}><TabRenderProbe id="tab:arena"><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadArenaScreen} /></TabRenderProbe></TabPane> : placeholder('ph-arena'),
+      show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><TabRenderProbe id="tab:friends"><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabRenderProbe></TabPane> : placeholder('ph-friends'),
+      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabRenderProbe></TabPane> : placeholder('ph-settings'),
     ];
   }, [activeIdx, mountedTabs, openDevHub, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
 

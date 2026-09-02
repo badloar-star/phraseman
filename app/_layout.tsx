@@ -16,7 +16,7 @@ import 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { createTapLatencyCaptureHandler, createTapLatencyTouchEndHandler } from './tap_latency_trace';
+import { createTapLatencyCaptureHandler, createTapLatencyProfilerHandler, createTapLatencyTouchEndHandler } from './tap_latency_trace';
 import { TapLatencyNavProbe } from '../components/TapLatencyNavProbe';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, useGlobalSearchParams, usePathname, useRouter, router as globalRouter } from 'expo-router';
@@ -30,7 +30,7 @@ import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import { redirectSystemPath } from './+native-intent';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { Profiler, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, AppState, BackHandler, Easing, InteractionManager, LogBox, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
@@ -3102,7 +3102,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     <MaintenanceGate />
     <PromoBanner />
 
-    {stackTree}
+    {tapLatencyProfilerOnRender
+      ? <Profiler id="stack" onRender={tapLatencyProfilerOnRender}>{stackTree}</Profiler>
+      : stackTree}
 
     {postOnboardingGoldBridgeVisible && (
       <Animated.View
@@ -3325,6 +3327,9 @@ const styles = StyleSheet.create({
 const tapLatencyCaptureHandler = createTapLatencyCaptureHandler();
 // onTouchEnd корня всплывает от любой кнопки: отсюда берём момент отпускания пальца.
 const tapLatencyTouchEndHandler = createTapLatencyTouchEndHandler();
+// Profiler вокруг дерева стека: сколько раз и как долго React рендерил экраны от
+// касания до кадра. Когда трассировка выключена — undefined, Profiler не оборачивается.
+const tapLatencyProfilerOnRender = createTapLatencyProfilerHandler();
 
 export default function RootLayout() {
   console.warn('[BOOT] RootLayout render');

@@ -14,10 +14,15 @@
  *   • обработчик→коммит — рендер + коммит экрана назначения (тяжёлый маунт);
  *   • коммит→кадр      — ожидание следующего кадра после коммита (включая всё,
  *                        чем JS занят сразу после коммита: эффекты, колбэки I/O).
+ * Вторая строка (↳) объясняет «коммит→кадр»: сколько длинных отрезков JS был занят
+ * после коммита и какие React-поддеревья сколько раз и как долго рендерились от
+ * момента касания (данные <Profiler> вокруг стека и панелей табов).
  * Без этих цифр любая «починка» — угадывание; с ними видно, что чинить первым.
  *
  * Стоимость: две JS-функции на касание (touchStart в capture-фазе корня без
- * захвата responder + touchEnd корня) и один слушатель состояния навигации.
+ * захвата responder + touchEnd корня), один слушатель состояния навигации,
+ * колбэки Profiler (в production-сборке React их не вызывает) и короткая серия
+ * setTimeout(0) после коммита навигации — только пока не пришёл следующий кадр.
  * В release трассировка ВЫКЛЮЧЕНА, если не задан EXPO_PUBLIC_TAP_LATENCY_TRACE=1.
  *
  * Как читать: grep '[TAP-LAT]' в .expo/metro-console.log (dev) или logcat /
@@ -39,7 +44,14 @@ const TOUCH_TO_NAV_MAX_MS = 3000;
 const SLOW_RELEASE_TO_HANDLER_MS = 16;
 /** Порог «медленного» открытия экрана целиком (от отпускания до кадра). */
 const SLOW_TOTAL_MS = 100;
+/** Отрезок занятости JS после коммита, который считаем «длинной задачей». */
+const LONG_TASK_MS = 50;
+/** Предохранитель сэмплера после коммита: дольше не ждём кадр (приложение ушло в фон). */
+const POST_COMMIT_SAMPLER_MAX_MS = 5000;
+/** Рендеры короче этого не запоминаем — шум. */
+const RENDER_MIN_MS = 1;
 const RING_SIZE = 60;
+const RENDERS_MAX = 40;
 
 type TouchMark = Readonly<{
   downJsAt: number;
@@ -48,6 +60,7 @@ type TouchMark = Readonly<{
   upNativeTs: number | null;
 }>;
 type ActionMark = Readonly<{ at: number; label: string }>;
+type RenderMark = Readonly<{ id: string; phase: string; durationMs: number; at: number }>;
 
 export type TapLatencySample = Readonly<{
   /** Экран, который открылся (имя маршрута). */
@@ -68,12 +81,17 @@ export type TapLatencySample = Readonly<{
   commitToFrameMs: number | null;
   /** Отпускание пальца → кадр с новым экраном. Это и есть «задержка, которую чувствует человек». */
   releaseToFrameMs: number | null;
+  /** Длинные (>50 мс) отрезки занятости JS между коммитом и кадром. */
+  postCommitLongTasksMs: ReadonlyArray<number>;
+  /** Рендеры Profiler-поддеревьев от касания до кадра. */
+  renders: ReadonlyArray<RenderMark>;
   /** Date.now() момента коммита. */
   at: number;
 }>;
 
 let lastTouch: TouchMark | null = null;
 let lastAction: ActionMark | null = null;
+let rendersSinceTouch: ReadonlyArray<RenderMark> = [];
 let recent: ReadonlyArray<TapLatencySample> = [];
 
 /** Монотонные миллисекунды; в RN есть performance.now(), на всякий случай — Date.now(). */
@@ -117,6 +135,26 @@ function remember(sample: TapLatencySample): void {
   recent = [...recent.slice(-(RING_SIZE - 1)), sample];
 }
 
+/** «stack 2×(118/31мс) · tab:home 9×(220/80/…)» — по поддеревьям, самые тяжёлые первыми. */
+function formatRenders(renders: ReadonlyArray<RenderMark>): string {
+  if (renders.length === 0) return 'рендеров нет';
+  const byId = new Map<string, number[]>();
+  for (const render of renders) {
+    byId.set(render.id, [...(byId.get(render.id) ?? []), render.durationMs]);
+  }
+  const groups = [...byId.entries()]
+    .map(([id, durations]) => ({ id, durations, total: durations.reduce((sum, value) => sum + value, 0) }))
+    .sort((a, b) => b.total - a.total)
+    .slice(0, 4);
+  return groups
+    .map(({ id, durations, total }) => {
+      const shown = durations.slice(0, 5).map((value) => Math.round(value)).join('/');
+      const tail = durations.length > 5 ? '/…' : '';
+      return `${id} ${durations.length}×(${shown}${tail}мс, всего ${Math.round(total)}мс)`;
+    })
+    .join(' · ');
+}
+
 type TouchEventLike = { nativeEvent?: { timestamp?: number } };
 
 /**
@@ -140,6 +178,21 @@ export function createTapLatencyTouchEndHandler(): ((event: TouchEventLike) => v
   };
 }
 
+/** Колбэк для <Profiler onRender>: совместим с ProfilerOnRenderCallback (лишние аргументы игнорируем). */
+export type TapLatencyProfilerHandler = (
+  id: string,
+  phase: 'mount' | 'update' | 'nested-update',
+  actualDuration: number,
+) => void;
+
+/** Когда трассировка выключена — undefined: Profiler не оборачивается вовсе. */
+export function createTapLatencyProfilerHandler(): TapLatencyProfilerHandler | undefined {
+  if (!TAP_LATENCY_TRACE_ENABLED) return undefined;
+  return (id, phase, actualDuration) => {
+    noteRender(id, phase, actualDuration);
+  };
+}
+
 /** Касание началось (capture-фаза корня). */
 export function noteTapTouchDown(nativeTimestamp?: number): void {
   if (!TAP_LATENCY_TRACE_ENABLED) return;
@@ -150,6 +203,7 @@ export function noteTapTouchDown(nativeTimestamp?: number): void {
     upNativeTs: null,
   };
   lastAction = null;
+  rendersSinceTouch = [];
 }
 
 /** Палец отпущен (onTouchEnd корня). Метку действия НЕ сбрасываем: onPress мог уже сработать в этом же тике. */
@@ -158,6 +212,16 @@ export function noteTapTouchUp(nativeTimestamp?: number): void {
   const touch = lastTouch;
   if (!touch || touch.upJsAt !== null) return;
   lastTouch = { ...touch, upJsAt: nowMs(), upNativeTs: finiteOrNull(nativeTimestamp) };
+}
+
+/** Рендер Profiler-поддерева (стек, панель таба). Копится от касания до следующего касания. */
+export function noteRender(id: string, phase: string, actualDurationMs: number): void {
+  if (!TAP_LATENCY_TRACE_ENABLED) return;
+  if (!Number.isFinite(actualDurationMs) || actualDurationMs < RENDER_MIN_MS) return;
+  rendersSinceTouch = [
+    ...rendersSinceTouch.slice(-(RENDERS_MAX - 1)),
+    { id, phase, durationMs: round1(actualDurationMs), at: nowMs() },
+  ];
 }
 
 /** Момент отпускания: если onTouchEnd ещё не пришёл (тот же тик), считаем отпусканием сам обработчик. */
@@ -187,6 +251,37 @@ export function noteTapAction(label: string): void {
 }
 
 /**
+ * Сэмплер занятости JS после коммита: setTimeout(0) тикает, пока JS свободен;
+ * если между тиками прошло больше LONG_TASK_MS — JS был занят этот отрезок.
+ * Останавливается, когда пришёл кадр (stop()) или по предохранителю.
+ */
+function startPostCommitSampler(commitAt: number): { stop: (frameAt: number) => ReadonlyArray<number> } {
+  const gaps: number[] = [];
+  let lastTick = commitAt;
+  let running = true;
+  const tick = () => {
+    if (!running) return;
+    const t = nowMs();
+    const gap = t - lastTick;
+    if (gap > LONG_TASK_MS) gaps.push(round1(gap));
+    lastTick = t;
+    if (t - commitAt > POST_COMMIT_SAMPLER_MAX_MS) {
+      running = false;
+      return;
+    }
+    setTimeout(tick, 0);
+  };
+  setTimeout(tick, 0);
+  return {
+    stop: (frameAt: number) => {
+      running = false;
+      const tailGap = frameAt - lastTick;
+      return tailGap > LONG_TASK_MS ? [...gaps, round1(tailGap)] : [...gaps];
+    },
+  };
+}
+
+/**
  * Навигация закоммитила новый экран. Вызывается пробником из слушателя 'state'
  * контейнера навигации — то есть ПОСЛЕ рендера и коммита экрана назначения.
  * Следующим кадром дописываем «коммит→кадр» и печатаем итог.
@@ -200,9 +295,12 @@ export function noteTapNavigationCommit(route: string, from: string | null): voi
   const fromTap = touch !== null && touchAgeMs !== null && touchAgeMs <= TOUCH_TO_NAV_MAX_MS;
   const release = touch && fromTap ? releaseAt(touch, action) : null;
   const handlerStart = fromTap ? (action?.at ?? release) : null;
+  const sampler = startPostCommitSampler(commitAt);
 
   requestAnimationFrame(() => {
     const frameAt = nowMs();
+    const longTasks = sampler.stop(frameAt);
+    const renders = rendersSinceTouch;
     const commitToFrame = round1(frameAt - commitAt);
     const sample: TapLatencySample = {
       route,
@@ -214,12 +312,18 @@ export function noteTapNavigationCommit(route: string, from: string | null): voi
       handlerToCommitMs: handlerStart !== null ? round1(commitAt - handlerStart) : null,
       commitToFrameMs: commitToFrame,
       releaseToFrameMs: release !== null ? round1(frameAt - release) : null,
+      postCommitLongTasksMs: longTasks,
+      renders,
       at: Date.now(),
     };
     remember(sample);
+    const busyLine = longTasks.length === 0
+      ? 'JS после коммита свободен'
+      : `JS после коммита занят: ${longTasks.length} отрезк. >${LONG_TASK_MS}мс (${longTasks.map((value) => Math.round(value)).join('/')}мс)`;
     if (!fromTap) {
       console.log(
-        `${LOG_PREFIX} → ${route}${from ? ` (из ${from})` : ''} · без касания (редирект/таймер) · коммит→кадр ${formatMs(commitToFrame)}`,
+        `${LOG_PREFIX} → ${route}${from ? ` (из ${from})` : ''} · без касания (редирект/таймер) · коммит→кадр ${formatMs(commitToFrame)}`
+          + `\n${LOG_PREFIX}    ↳ ${busyLine} · рендеры: ${formatRenders(renders)}`,
       );
       return;
     }
@@ -231,7 +335,8 @@ export function noteTapNavigationCommit(route: string, from: string | null): voi
         + ` · отпускание→обработчик ${formatMs(sample.releaseToHandlerMs)}`
         + ` · обработчик→коммит ${formatMs(sample.handlerToCommitMs)}`
         + ` · коммит→кадр ${formatMs(sample.commitToFrameMs)}`
-        + ` · ОТ ОТПУСКАНИЯ ДО КАДРА ${formatMs(sample.releaseToFrameMs)}${slow}`,
+        + ` · ОТ ОТПУСКАНИЯ ДО КАДРА ${formatMs(sample.releaseToFrameMs)}${slow}`
+        + `\n${LOG_PREFIX}    ↳ ${busyLine} · рендеры от касания: ${formatRenders(renders)}`,
     );
   });
 }

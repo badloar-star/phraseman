@@ -66,6 +66,42 @@ function packTitle(
 }
 
 /**
+ * Тёплый снимок последнего собранного списка наборов.
+ *
+ * зачем (владелец: «открывая раздел тренировки, экран отметить наборы моргает»):
+ * список собирается пятью асинхронными чтениями, поэтому экран выбора наборов
+ * КАЖДЫЙ раз показывал спиннер и лишь потом список — смена состояния читалась
+ * как моргание. Снимок позволяет отрисовать первый кадр сразу готовым, а сеть/
+ * хранилище догоняют фоном и подменяют список только если состав изменился.
+ * Ключ включает язык: заголовки наборов локализованы.
+ */
+let _warmDeckOptions: { key: string; options: DeckSheetOption[] } | null = null;
+
+function deckOptionsCacheKey(mode: FcPresetMode, lang: Lang): string {
+  // Список у всех режимов одинаковый (см. loadFcDeckOptions), режим в ключе
+  // оставлен только чтобы будущее расхождение по режимам не отдало чужой снимок.
+  return `${mode}::${lang}`;
+}
+
+/** Синхронный снимок для первого кадра. null — снимка ещё нет, нужен спиннер. */
+export function peekFcDeckOptions(mode: FcPresetMode, lang: Lang): DeckSheetOption[] | null {
+  const key = deckOptionsCacheKey(mode, lang);
+  return _warmDeckOptions?.key === key ? _warmDeckOptions.options : null;
+}
+
+/** Совпадают ли списки по составу — чтобы не менять ссылку и не перерисовывать зря. */
+export function sameDeckOptions(a: DeckSheetOption[], b: DeckSheetOption[]): boolean {
+  if (a === b) return true;
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i += 1) {
+    const x = a[i];
+    const y = b[i];
+    if (x.deckId !== y.deckId || x.count !== y.count || x.title !== y.title) return false;
+  }
+  return true;
+}
+
+/**
  * Наборы для шита выбора — одинаковый список у всех трёх режимов.
  *
  * FIX (владелец, 2026-08-13): раньше у режима «Тренировка» первой строкой шёл
@@ -79,7 +115,6 @@ export async function loadFcDeckOptions(
   mode: FcPresetMode,
   lang: Lang,
 ): Promise<DeckSheetOption[]> {
-  void mode;
   const cl = contentLang(lang);
   const [savedCards, customCards, ownedIds, communityIds, ownedTitles] = await Promise.all([
     loadDeckCards({ kind: 'saved' }, cl).catch(() => []),
@@ -142,7 +177,13 @@ export async function loadFcDeckOptions(
   );
   for (const deck of packDecks) if (deck) out.push(deck);
 
-  return out;
+  // Снимок для мгновенного первого кадра следующего открытия экрана.
+  const key = deckOptionsCacheKey(mode, lang);
+  const warm = _warmDeckOptions?.key === key ? _warmDeckOptions.options : null;
+  // Тот же состав — держим ПРЕЖНЮЮ ссылку, чтобы экран не перерисовывался зря.
+  _warmDeckOptions = { key, options: warm && sameDeckOptions(warm, out) ? warm : out };
+
+  return _warmDeckOptions.options;
 }
 
 // ── Все доступные источники карточек (сохранённые + мои + ВСЕ наборы) ────────

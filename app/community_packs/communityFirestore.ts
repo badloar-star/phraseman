@@ -122,8 +122,42 @@ export function sortCommunityMarketPacksBySocial(a: FlashcardMarketPack, b: Flas
 /** @deprecated Cards 2.1 §2.3: сортировка по рейтингу заменена на сортировку по лайкам. */
 export const sortCommunityMarketPacksByRating = sortCommunityMarketPacksBySocial;
 
-export async function loadPublishedCommunityMarketPacks(studyTarget?: RuntimeStudyTarget): Promise<FlashcardMarketPack[]> {
+/**
+ * Тёплый кэш опубликованного каталога сообщества.
+ *
+ * зачем (Firebase-экономия): запрос читает до 80 документов, а зовут его хаб
+ * карточек при КАЖДОМ фокусе и витрина «Лучшее у сообщества». Без кэша каждое
+ * возвращение на экран стоило десятки чтений. Каталог сообщества меняется
+ * медленно (модерация), поэтому 6 часов — безопасный TTL; pull-to-refresh и
+ * явная кнопка «Повторить» проходят мимо кэша через `forceRemote`.
+ */
+const COMMUNITY_CATALOG_TTL_MS = 6 * 60 * 60 * 1000;
+let _communityCatalogCache: {
+  key: string;
+  at: number;
+  packs: FlashcardMarketPack[];
+} | null = null;
+
+/** Синхронный снимок для первого кадра. null — снимка нет, нужен спиннер. */
+export function peekPublishedCommunityMarketPacks(
+  studyTarget?: RuntimeStudyTarget,
+): FlashcardMarketPack[] | null {
+  const key = String(studyTarget ?? 'default');
+  if (!_communityCatalogCache || _communityCatalogCache.key !== key) return null;
+  if (Date.now() - _communityCatalogCache.at > COMMUNITY_CATALOG_TTL_MS) return null;
+  return _communityCatalogCache.packs;
+}
+
+export async function loadPublishedCommunityMarketPacks(
+  studyTarget?: RuntimeStudyTarget,
+  opts?: { forceRemote?: boolean },
+): Promise<FlashcardMarketPack[]> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return [];
+  const cacheKey = String(studyTarget ?? 'default');
+  if (!opts?.forceRemote) {
+    const warm = peekPublishedCommunityMarketPacks(studyTarget);
+    if (warm) return warm;
+  }
   try {
     const snap = await firestore()
       .collection(COMMUNITY_PACKS_COLLECTION)
@@ -134,12 +168,15 @@ export async function loadPublishedCommunityMarketPacks(studyTarget?: RuntimeStu
       .map((d) => mapCommunityPackDocToMarket(d.id, d.data() as Record<string, unknown>, { studyTarget }))
       .filter(Boolean) as FlashcardMarketPack[];
     list.sort(sortCommunityMarketPacksBySocial);
-    return list.slice(0, 40);
+    const out = list.slice(0, 40);
+    _communityCatalogCache = { key: cacheKey, at: Date.now(), packs: out };
+    return out;
   } catch (e) {
     // зачем: вкладка «Сообщество» тихо показывала пустой список без единой
     // подсказки в логах — владелец видел 0 наборов при 2 published в базе.
     if (__DEV__) console.warn('[communityFirestore] loadPublishedCommunityMarketPacks failed', e);
-    return [];
+    // Отказ сети не должен обнулять уже показанный каталог — отдаём прошлый снимок.
+    return _communityCatalogCache?.key === cacheKey ? _communityCatalogCache.packs : [];
   }
 }
 

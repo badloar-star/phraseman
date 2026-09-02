@@ -1,5 +1,5 @@
 /**
- * Cards 2.1 §5.3 — каталог наборов сообщества (правая позиция таббара «Наборы»).
+ * Cards 2.1 §5.3 — каталог наборов сообщества из хаба карточек.
  *
  * Раньше это был хаб-дашборд раздела на `/flashcards`; после §5.1 вход в раздел ведёт
  * на сохранённые карточки, а бывший хаб стал экраном каталога: только «Мои наборы»
@@ -24,6 +24,7 @@ import {
   BackHandler,
   Easing,
   Platform,
+  Pressable,
   StatusBar,
   StyleSheet,
   TextInput,
@@ -45,7 +46,6 @@ import { safeRouterBack } from './navigation_back';
 import { primeFlashcardsCollectionCache } from './flashcards/useCollectionData';
 import FlashcardsCategoryHub from './flashcards/FlashcardsCategoryHub';
 import { packTileArtRevision } from './flashcards/packMarketplaceIcons';
-import FlashcardsTabBar, { FC_TABBAR_HEIGHT, useFcTabBarScroll } from './flashcards/FlashcardsTabBar';
 import {
   fallbackBundledMarketPacks,
   loadMarketplacePacks,
@@ -54,11 +54,12 @@ import {
   type FlashcardMarketPack,
 } from './flashcards/marketplace';
 import { loadCommunityOwnedPackIds } from './community_packs/communityOwnedStorage';
-import { loadLocalAuthorPacks, mergeLocalAuthorPacks } from './community_packs/localAuthorPacks';
+import { isLocalAuthorPackId, loadLocalAuthorPacks, mergeLocalAuthorPacks } from './community_packs/localAuthorPacks';
 import {
   fetchCommunityPackMeta,
   loadAuthorCommunityPacksPendingUpdate,
   loadPublishedCommunityMarketPacks,
+  peekPublishedCommunityMarketPacks,
   sortCommunityMarketPacksBySocial,
 } from './community_packs/communityFirestore';
 import { getCanonicalUserId } from './user_id_policy';
@@ -98,7 +99,16 @@ export default function FlashcardsPacksScreen() {
   const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(
     () => peekWarmMarketplacePacks() ?? fallbackBundledMarketPacks(),
   );
-  const [communityPacks, setCommunityPacks] = useState<FlashcardMarketPack[]>([]);
+  /**
+   * зачем (владелец: «раздел открывается и происходит скачок, моргание»):
+   * каталог сообщества стартовал ПУСТЫМ и наполнялся после ответа сети — первый
+   * кадр показывал пустоту, следующий список. Тёплый снимок каталога (кэш 6 ч в
+   * communityFirestore) даёт готовый первый кадр, сеть догоняет фоном и меняет
+   * состояние только при изменившемся отпечатке (commFpRef).
+   */
+  const [communityPacks, setCommunityPacks] = useState<FlashcardMarketPack[]>(
+    () => peekPublishedCommunityMarketPacks() ?? [],
+  );
   const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
   const [hubAuthorStableId, setHubAuthorStableId] = useState<string | null>(null);
@@ -165,6 +175,10 @@ export default function FlashcardsPacksScreen() {
     'pt-BR': 'Pacotes da comunidade', vi: 'Bộ thẻ cộng đồng', id: 'Paket komunitas',
     tr: 'Topluluk paketleri', pl: 'Zestawy społeczności',
   });
+  const createPackLabel = triLang(lang, {
+    ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un pack',
+    'pt-BR': 'Criar um pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur', pl: 'Utwórz zestaw',
+  });
 
   const scrollY = useRef(new Animated.Value(0)).current;
   const parallaxY = useMemo(
@@ -176,28 +190,18 @@ export default function FlashcardsPacksScreen() {
       }),
     [scrollY],
   );
-  /**
-   * §5.2: капсула таббара сжимается при скролле — как на главной.
-   * Скролл этого экрана уже занят нативным параллаксом орбов, поэтому таббар
-   * подключён `listener`-ом того же `Animated.event`: покадрово это пара
-   * арифметических операций и запись shared value, без `setState` и без
-   * повторного onScroll-моста (сама анимация капсулы идёт на UI-потоке).
-   */
-  const tabScroll = useFcTabBarScroll();
   const onHubScroll = useMemo(
     () =>
       Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
         useNativeDriver: Platform.OS !== 'web',
-        listener: tabScroll.onScroll,
       }),
-    [scrollY, tabScroll],
+    [scrollY],
   );
 
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
-  // зачем (владелец, 2026-08-16): фолбек '/flashcards' уводил в СОСЕДНЮЮ позицию
-  // того же таббара карточек, а не наружу — раздел замыкался сам на себя.
+  // `/flashcards` теперь единый хаб: каталог является его дочерним экраном.
   const leavePacks = useCallback(() => {
-    safeRouterBack(router, '/(tabs)/home' as any);
+    safeRouterBack(router, '/flashcards' as any);
   }, [router]);
 
   /** Throttle Firestore-запросов: повторный focus не должен пересохранять list при беглом переключении. */
@@ -212,6 +216,18 @@ export default function FlashcardsPacksScreen() {
     packs
       .map((p) => `${packTileArtRevision(p)}:${p.likesCount ?? 0}:${p.addedCount ?? 0}:${p.cardCount}:${p.updatedAt}:${p.listingStatus ?? ''}`)
       .join('|');
+
+  /**
+   * зачем: посев из тёплого снимка наполнил communityPacks ещё до первой
+   * загрузки, а отпечаток остался пустым — первый же ответ сети с ТЕМ ЖЕ
+   * составом всё равно менял состояние и перерисовывал каталог. Засеваем
+   * отпечаток тем, что реально показано на первом кадре.
+   */
+  const commFpSeededRef = useRef(false);
+  if (!commFpSeededRef.current) {
+    commFpSeededRef.current = true;
+    if (communityPacks.length > 0) commFpRef.current = computeMarketFp(communityPacks);
+  }
 
   const loadHubMarket = useCallback(async (opts?: { force?: boolean }) => {
     const now = Date.now();
@@ -242,7 +258,7 @@ export default function FlashcardsPacksScreen() {
        * относится к Firestore-каталогу и не должен задерживать локальные наборы.
        */
       setCommunityPacks((prev) => {
-        const cloudOnly = prev.filter((p) => p.listingStatus !== 'local_only');
+        const cloudOnly = prev.filter((p) => !isLocalAuthorPackId(p.id));
         const next = [...cloudOnly, ...mergeLocalAuthorPacks(cloudOnly, localAuthored, studyTarget)];
         const fp = computeMarketFp(next);
         if (fp === commFpRef.current) return prev;
@@ -481,13 +497,13 @@ export default function FlashcardsPacksScreen() {
             style={styles.scrollView}
             contentContainerStyle={[
               styles.scrollContent,
-              { paddingBottom: Math.max(insets.bottom, 16) + 12 + FC_TABBAR_HEIGHT },
+              { paddingBottom: Math.max(insets.bottom, 16) + 84 },
             ]}
             showsVerticalScrollIndicator
             keyboardShouldPersistTaps="handled"
             bounces
             alwaysBounceVertical={false}
-            onScroll={reduceMotion ? tabScroll.onScroll : onHubScroll}
+            onScroll={reduceMotion ? undefined : onHubScroll}
             scrollEventThrottle={16}
           >
             <FlashcardsCategoryHub
@@ -507,9 +523,32 @@ export default function FlashcardsPacksScreen() {
             />
           </Animated.ScrollView>
         </View>
-
-        {/* Cards 2.1 §5.2: тот же таббар раздела, правая позиция активна */}
-        <FlashcardsTabBar lang={lang} t={t} active="packs" bottomInset={insets.bottom} scroll={tabScroll} />
+        <View pointerEvents="box-none" style={[styles.createFabDock, { bottom: Math.max(insets.bottom, 16) }]}>
+          <Pressable
+            testID="flashcards-packs-create"
+            accessibilityLabel={createPackLabel}
+            accessibilityRole="button"
+            accessible
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            onPress={() => {
+              void hapticTap();
+              router.push({
+                pathname: '/community_pack_create',
+                params: { origin: 'community' },
+              } as never);
+            }}
+            style={({ pressed }) => [
+              styles.createFab,
+              {
+                backgroundColor: t.accent,
+                opacity: pressed ? 0.82 : 1,
+                transform: [{ scale: pressed ? 0.96 : 1 }],
+              },
+            ]}
+          >
+            <Ionicons name="add" size={32} color={t.correctText} />
+          </Pressable>
+        </View>
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -520,6 +559,25 @@ const styles = StyleSheet.create({
   scrollRegion: { flex: 1, minHeight: 0 },
   scrollView: { flex: 1, minHeight: 0 },
   scrollContent: { paddingTop: 16 },
+  createFabDock: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    zIndex: 10,
+  },
+  createFab: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.24,
+    shadowRadius: 8,
+  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',

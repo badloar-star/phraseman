@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BackHandler, StyleSheet, Text, View } from 'react-native';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { DebugLogger } from './debug-logger';
 import Animated, { FadeIn, FadeInDown, SlideInRight, ZoomIn } from 'react-native-reanimated';
 
 import { arenaTaskRenderable } from '../modules/arena/task_adapter';
@@ -646,9 +648,20 @@ function ArenaMatchGenerationScreen({
   });
 
   /* ---- выход ---- */
+  // зачем: взводится ПЕРЕД самим уходом, чтобы перехватчик beforeRemove
+  // пропустил нашу же навигацию и не спросил про сдачу второй раз.
+  const leavingRef = useRef(false);
+
   const forfeitNow = useCallback(() => {
+    leavingRef.current = true;
     match?.abandon();
-    if (matchId) void arenaV2Forfeit(matchId).catch(() => {});
+    // зачем: запрет немого catch — молчащий отказ сдачи оставлял матч живым на
+    // сервере, и следующий вход упирался в arena_active_match_exists.
+    if (matchId) {
+      void arenaV2Forfeit(matchId).catch((reason) => {
+        DebugLogger.warn('arena_match', `forfeit rejected match=${matchId}: ${String(reason)}`);
+      });
+    }
     router.replace('/arena' as never);
   }, [match, matchId, router]);
 
@@ -664,6 +677,32 @@ function ArenaMatchGenerationScreen({
     });
     return () => subscription.remove();
   }, [active, confirmForfeit]);
+
+  /**
+   * зачем (владелец 2026-09-02): BackHandler ловит ТОЛЬКО аппаратную кнопку
+   * Android. На iOS её нет, поэтому экранная стрелка «Назад» и любой
+   * router.back() уводили с рейтингового матча БЕЗ вопроса о сдаче и без
+   * вызова arenaV2Forfeit — матч оставался висеть на сервере, а счёт и
+   * анимация поражения не показывались. Перехватываем сам уход с экрана:
+   * пока идёт живой матч, отменяем навигацию и показываем то же окно сдачи,
+   * что и на Android. Уход по forfeitNow() (router.replace) проходит уже
+   * после abandon(), поэтому leavingRef пропускает его без повторного вопроса.
+   */
+  const navigation = useNavigation();
+  useEffect(() => {
+    if (!active) return undefined;
+    const unsubscribe = navigation.addListener('beforeRemove' as never, ((event: {
+      preventDefault: () => void;
+      data?: { action?: { type?: string } };
+    }) => {
+      if (leavingRef.current) return;
+      event.preventDefault();
+      DebugLogger.info('arena_match', `back intercepted action=${
+        String(event.data?.action?.type ?? 'unknown')} matchId=${matchId ?? 'none'}`);
+      confirmForfeit();
+    }) as never);
+    return unsubscribe;
+  }, [active, confirmForfeit, matchId, navigation]);
 
   /* ---- звуки, привязанные к смене состояния ---- */
   const lastTaskRef = useRef(-1);

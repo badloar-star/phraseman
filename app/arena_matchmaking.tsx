@@ -9,7 +9,7 @@ import { V2Card, V2Cta } from '../components/ui/v2_ui';
 import { useTournamentPalette } from '../components/ui/v2_theme';
 import { arenaText } from '../modules/arena/copy';
 import { arenaEntryFailure } from '../modules/arena/duel_plan';
-import { ARENA_QUICK_BOT_ANSWER_GRACE_MS, ARENA_QUICK_FALLBACK_MAX_MS, ARENA_QUICK_SEARCH_GIVE_UP_MS, ARENA_RANKED_HEARTBEAT_MS, type ArenaQueueMode } from '../modules/arena/contract';
+import { ARENA_QUICK_BOT_ANSWER_GRACE_MS, ARENA_QUICK_FALLBACK_MAX_MS, ARENA_QUICK_SEARCH_GIVE_UP_MS, ARENA_RANKED_FALLBACK_MAX_MS, ARENA_RANKED_HEARTBEAT_MS, ARENA_RANKED_SEARCH_GIVE_UP_MS, type ArenaQueueMode } from '../modules/arena/contract';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
@@ -19,6 +19,7 @@ import {
   arenaV2FindMatch,
   arenaV2QueueCancel,
   arenaV2QuickBotFallback,
+  arenaV2RankedBotFallback,
   arenaV2ReleaseStaleMatch,
   createArenaRequestId,
   useArenaQueue,
@@ -277,8 +278,12 @@ export default function ArenaMatchmakingScreen() {
      * поиск ровно в тот момент, когда соперник уже назначен.
      */
     serverBotDueDelayMsRef.current = Math.max(0, due - joined);
-    setBotDelayMs(Math.max(0, Math.min(ARENA_QUICK_FALLBACK_MAX_MS, due - joined)));
-  }, []);
+    // зачем (владелец 2026-09-02): потолок обязан быть ПО РЕЖИМУ. Рейтинговое
+    // окно сервера — до 60 с, и quick-потолок в 20 с резал его, из-за чего
+    // клиент просил бота раньше срока и получал arena_ranked_bot_too_early.
+    const capMs = mode === 'quick' ? ARENA_QUICK_FALLBACK_MAX_MS : ARENA_RANKED_FALLBACK_MAX_MS;
+    setBotDelayMs(Math.max(0, Math.min(capMs, due - joined)));
+  }, [mode]);
 
   useEffect(() => {
     if (!active || matchId) return;
@@ -396,7 +401,13 @@ export default function ArenaMatchmakingScreen() {
   }, [adoptBotSchedule, queue.value, requestId]);
 
   useEffect(() => {
-    if (!active || matchId || mode !== 'quick' || botDelayMs === null) return undefined;
+    // зачем (владелец 2026-09-02, лог 16:37:33 → 16:39:23): условие mode !== 'quick'
+    // выключало запрос бота в рейтинге ЦЕЛИКОМ. Сервер честно назначал botDueAtMs
+    // (38.6 с), клиент печатал его в лог и не делал НИЧЕГО — поиск висел, пока
+    // человек не уходил сам, и энергия не возвращалась. Серверная функция
+    // arenaV2RankedBotFallback и обёртка в arena_client.ts уже существовали:
+    // не хватало только вызова.
+    if (!active || matchId || botDelayMs === null) return undefined;
     if (quickFallbackRequests.has(requestId)) return undefined;
     let cancelled = false;
     // botDelayMs — это (botDueAtMs - joinedAtMs) СЕРВЕРА, поэтому и отсчитывать
@@ -432,7 +443,8 @@ export default function ArenaMatchmakingScreen() {
       botRequestInFlightRef.current = true;
       DebugLogger.info('arena_matchmaking', `bot fallback requested after=${
         Date.now() - (queueConfirmedAtMsRef.current ?? queueAttemptStartedAtMsRef.current)}ms`);
-      void arenaV2QuickBotFallback(requestId).then((result) => {
+      const requestBot = mode === 'quick' ? arenaV2QuickBotFallback : arenaV2RankedBotFallback;
+      void requestBot(requestId).then((result) => {
         clearTimeout(unstick);
         botRequestInFlightRef.current = false;
         DebugLogger.info('arena_matchmaking', `bot fallback matched match=${result.matchId}`);
@@ -449,8 +461,11 @@ export default function ArenaMatchmakingScreen() {
         // зачем: пауза 5 с на отказ выбрасывала поиск далеко за 20 секунд.
         // Отказы здесь почти всегда временные (часы забежали, сеть моргнула),
         // и повтор стоит один вызов — держим его коротким.
-        setBotRetryAtMs(Date.now()
-          + (String(reason).includes('arena_quick_bot_too_early') ? 1_500 : 2_000));
+        // зачем: у рейтинга свой код отказа (arena_ranked_bot_too_early) — без
+        // него «часы забежали» лечилось бы медленной веткой в 2 с.
+        const tooEarly = String(reason).includes('arena_quick_bot_too_early')
+          || String(reason).includes('arena_ranked_bot_too_early');
+        setBotRetryAtMs(Date.now() + (tooEarly ? 1_500 : 2_000));
       });
     }, Math.max(0, fireAtMs - Date.now()));
     return () => { cancelled = true; clearTimeout(timer); };
@@ -603,7 +618,12 @@ export default function ArenaMatchmakingScreen() {
    * бота; таймер живёт только на видимом экране (active), фонового счёта нет.
    */
   useEffect(() => {
-    if (!active || matchId || energyGate !== 'ok' || mode !== 'quick') return undefined;
+    // зачем (владелец 2026-09-02): сдача поиска работала только в быстром матче.
+    // В рейтинге её не было ВООБЩЕ: поиск не заканчивался никогда, и списанная
+    // энергия не возвращалась — человек уходил сам, потеряв 1 ⚡. Теперь предел
+    // действует в обоих режимах, но со СВОИМИ сроками (рейтинг ждёт живого
+    // соперника дольше — до 66 с против 26 с).
+    if (!active || matchId || energyGate !== 'ok') return undefined;
     /**
      * зачем (владелец 2026-08-29): пока сервер не подтвердил очередь, обещание
      * «соперник за 20 секунд» ещё не начало действовать — отсчитывать сдачу
@@ -622,8 +642,11 @@ export default function ArenaMatchmakingScreen() {
      * повтор; клиентский потолок остаётся страховкой для старых билетов.
      */
     const serverDue = serverBotDueDelayMsRef.current;
+    const baseGiveUpMs = mode === 'quick'
+      ? ARENA_QUICK_SEARCH_GIVE_UP_MS
+      : ARENA_RANKED_SEARCH_GIVE_UP_MS;
     const giveUpDelayMs = Math.max(
-      ARENA_QUICK_SEARCH_GIVE_UP_MS,
+      baseGiveUpMs,
       (serverDue ?? 0) + ARENA_QUICK_BOT_ANSWER_GRACE_MS,
     );
     const giveUpAtMs = queueConfirmedAtMsRef.current + giveUpDelayMs;

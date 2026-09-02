@@ -1,18 +1,18 @@
 /**
- * Ускорение энергии за просмотр видео: склейка «сигнал плеера → зачёт времени».
+ * Ускорение энергии за просмотр видео: склейка «сигнал плеера → подтяжка таймера».
  *
- * зачем (владелец 2026-09-02): пока видео играет, энергия восстанавливается за
- * 10 минут вместо 30. Считаем ЧЕСТНО — только реально проигранное время (см.
- * app/energy_video_watch_credit.ts). Пауза мгновенно останавливает зачёт, плей
- * возобновляет.
+ * зачем (владелец 2026-09-02): «запустил плеер — 1 энергия за 10 минут». Как
+ * только видео пошло, остаток до следующей единицы подтягивается к 10 минутам
+ * (если был больше) и дальше течёт обычным ходом. Пауза ничего не отбирает:
+ * недосмотренное время просто продолжает идти как обычно.
  *
  * Кому даём: только тем, у кого лимит энергии реально есть. У Plus/Max энергия
  * безлимитная — им ускорять нечего, и значок им не показываем, иначе он обещал
  * бы то, что для них бессмысленно.
  *
- * Зачёт идёт отрезками (не одним куском в конце), чтобы долгий просмотр не
- * пропал, если приложение убьют: каждые VIDEO_WATCH_FLUSH_MS накопленное
- * записывается на диск, а остаток дописывается при паузе/размонтировании.
+ * Почему подтяжка повторяется по таймеру, а не делается один раз: остаток тает
+ * обычным ходом, и когда очередная единица доливается, счётчик начинает новый
+ * 30-минутный круг — его снова нужно подтянуть к цели, пока видео идёт.
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -22,11 +22,11 @@ import { creditVideoWatchSegment } from '../app/energy_video_watch_credit';
 import { DebugLogger } from '../app/debug-logger';
 
 /**
- * Как часто «сбрасываем» накопленный просмотр на диск. Минута — компромисс:
- * запись раз в минуту не нагружает диск, а потеря при падении процесса
- * ограничена одной минутой просмотра.
+ * Как часто перепроверяем остаток, пока видео играет. Полминуты: достаточно
+ * часто, чтобы после долива очередной единицы счётчик не успел показать
+ * «30 минут», и достаточно редко, чтобы не тревожить диск.
  */
-const VIDEO_WATCH_FLUSH_MS = 60 * 1000;
+const VIDEO_WATCH_RECHECK_MS = 30 * 1000;
 
 export type VideoWatchEnergyBoost = {
   /** Показывать ли значок ускорения над плеером (видео идёт И лимит есть). */
@@ -39,74 +39,53 @@ export function useVideoWatchEnergyBoost(): VideoWatchEnergyBoost {
   const { isUnlimited, energyReady, reload } = useEnergy();
   const [playing, setPlayingState] = useState(false);
 
-  /** Момент начала текущего непрерывного отрезка просмотра (0 — не идёт). */
-  const segmentStartedAtRef = useRef(0);
-  const flushTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   // Через ref, чтобы размонтирование не тянуло за собой пересоздание колбэков.
   const reloadRef = useRef(reload);
   reloadRef.current = reload;
 
   /**
-   * Записывает всё, что накопилось с начала отрезка, и начинает новый отрезок
-   * (или закрывает его, если `continueSegment === false`).
+   * Подтягивает остаток до следующей единицы к 10 минутам. Идемпотентна: если
+   * остаток уже 10 минут или меньше, ничего не делает и говорит почему.
    */
-  const flushSegment = useCallback(async (continueSegment: boolean) => {
-    const startedAt = segmentStartedAtRef.current;
-    if (startedAt <= 0) return;
-    const now = Date.now();
-    // Новый отрезок начинаем СРАЗУ, до await: иначе просмотр между началом
-    // записи и её завершением потерялся бы.
-    segmentStartedAtRef.current = continueSegment ? now : 0;
-
-    const watchedMs = now - startedAt;
-    // Часы могли уехать назад (смена таймзоны, ручная правка времени) — тогда
-    // отрезок отрицательный. Молча пропускаем, но с причиной в логе.
-    if (watchedMs <= 0) {
-      DebugLogger.error(
-        'use_video_watch_energy_boost:flush',
-        new Error(`non_positive_segment:${watchedMs}`),
-        'warning',
-      );
-      return;
-    }
-
+  const applyBoostNow = useCallback(async (trigger: string) => {
     // зачем (порядок важен): долив энергии в EnergyContext читает energy_state
-    // ВНЕ общего замка, а пишет уже внутри него. Значит свежий кредит, попавший
-    // между его чтением и записью, был бы затёрт старой меткой — подаренное
-    // время просто исчезло бы. Поэтому сначала даём доливу отработать целиком,
-    // и только потом пишем свой сдвиг: наша запись атомарна (весь цикл
-    // читать-менять-писать идёт под withStorageLock), так что после неё
-    // затирать уже нечем.
+    // ВНЕ общего замка, а пишет уже внутри него. Значит свежая подтяжка,
+    // попавшая между его чтением и записью, была бы затёрта старой меткой.
+    // Поэтому сначала даём доливу отработать целиком, и только потом пишем свой
+    // сдвиг: наша запись атомарна (весь цикл читать-менять-писать идёт под
+    // withStorageLock), так что после неё затирать уже нечем.
     await reloadRef.current().catch((e: unknown) => {
       DebugLogger.error(
-        'use_video_watch_energy_boost:reload_before_credit',
+        'use_video_watch_energy_boost:reload_before_boost',
         e instanceof Error ? e : new Error(String(e)),
         'warning',
       );
     });
 
-    const outcome = await creditVideoWatchSegment(watchedMs);
+    // Длительность больше не влияет на результат (подтягиваем до цели, а не
+    // пропорционально просмотренному), но модуль требует непустой отрезок —
+    // передаём минимально допустимый.
+    const outcome = await creditVideoWatchSegment(1000);
     if (!outcome.applied) {
       // Каждый отказ обязан назвать причину — иначе механизм умирает молча.
-      // Это не ошибка (полная энергия — штатный отказ), поэтому обычный лог с
-      // общим префиксом [VIDEO-ENERGY] для grep по всей цепочке.
+      // Это не ошибка: «остаток уже меньше цели» — штатный и частый случай.
       if (__DEV__) {
-        console.log(`[VIDEO-ENERGY] credit skipped: reason=${outcome.reason} watchedMs=${watchedMs}`);
+        console.log(`[VIDEO-ENERGY] boost skipped (${trigger}): reason=${outcome.reason}`);
       }
       return;
     }
     if (__DEV__) {
       console.log(
-        `[VIDEO-ENERGY] credited: watchedMs=${outcome.watchedMs} bonusMs=${outcome.bonusMs}`
+        `[VIDEO-ENERGY] boost applied (${trigger}): срезано ${Math.round(outcome.bonusMs / 1000)}с`
         + ` lastRecoveryTime=${outcome.lastRecoveryTime}`,
       );
     }
-    // Диск уже сдвинут — второй перечёт показывает результат: таймер «до +1»
-    // сокращается сразу, а не на следующем тике, и энергия доливается, если
-    // подаренного времени хватило на целый интервал.
+    // Диск уже сдвинут — перечёт показывает результат: счётчик «до +1» падает
+    // до 10 минут сразу, а не на следующем тике.
     await reloadRef.current().catch((e: unknown) => {
       DebugLogger.error(
-        'use_video_watch_energy_boost:reload_after_credit',
+        'use_video_watch_energy_boost:reload_after_boost',
         e instanceof Error ? e : new Error(String(e)),
         'warning',
       );
@@ -120,35 +99,32 @@ export function useVideoWatchEnergyBoost(): VideoWatchEnergyBoost {
     setPlayingState((prev) => (prev === next ? prev : next));
   }, []);
 
-  // Старт/стоп отсчёта. Единственное место, где отрезок открывается и
-  // закрывается, — чтобы состояние не разъехалось между обработчиками.
+  // Старт/стоп подтяжки. Единственное место, где заводится и снимается таймер.
   useEffect(() => {
-    const counting = playing && eligible;
-    if (counting) {
-      if (segmentStartedAtRef.current === 0) segmentStartedAtRef.current = Date.now();
-      flushTimerRef.current = setInterval(() => { void flushSegment(true); }, VIDEO_WATCH_FLUSH_MS);
-      return () => {
-        if (flushTimerRef.current) {
-          clearInterval(flushTimerRef.current);
-          flushTimerRef.current = null;
-        }
-        // Закрываем отрезок при любом уходе: пауза, размонтирование плеера,
-        // потеря права на ускорение. Незаписанный хвост иначе пропал бы.
-        void flushSegment(false);
-      };
-    }
-    return undefined;
-  }, [playing, eligible, flushSegment]);
+    if (!(playing && eligible)) return undefined;
+    // Сразу по «плей», а не через полминуты: иначе человек включает видео и
+    // какое-то время видит прежние 30 минут — ровно то, на что владелец указал.
+    void applyBoostNow('play');
+    timerRef.current = setInterval(() => { void applyBoostNow('tick'); }, VIDEO_WATCH_RECHECK_MS);
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+      // Паузу специально НЕ откатываем (решение владельца): уже подтянутое
+      // время остаётся человеку и дальше идёт обычным ходом.
+    };
+  }, [playing, eligible, applyBoostNow]);
 
   // Уход в фон = видео больше не смотрят. YouTube в WebView всё равно встаёт на
   // паузу, но onStateChange из свёрнутого приложения может и не доехать —
-  // закрываем отрезок сами, иначе фоновое время засчиталось бы как просмотр.
+  // гасим отсчёт сами, иначе фоновое время продолжало бы подтягивать таймер.
   useEffect(() => {
     const subscription = AppState.addEventListener('change', (state: AppStateStatus) => {
-      if (state !== 'active') void flushSegment(false);
+      if (state !== 'active') setPlayingState(false);
     });
     return () => subscription.remove();
-  }, [flushSegment]);
+  }, []);
 
   return { boostVisible: playing && eligible, setPlaying };
 }

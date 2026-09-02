@@ -2,23 +2,32 @@
  * Ускорение восстановления энергии за просмотр видео.
  *
  * зачем (владелец 2026-09-02): пока человек смотрит видео в приложении, единица
- * энергии обязана восстанавливаться за 10 минут вместо обычных 30. Владелец
- * выбрал «честный зачёт просмотра»: ускоряется не абстрактный период, а РОВНО
- * то время, что видео реально играло. Посмотрел 10 минут — эти 10 минут
- * засчитались как 30. Поставил на паузу — зачёт мгновенно прекращается.
+ * энергии восстанавливается за 10 минут вместо обычных 30. Владелец
+ * сформулировал это буквально: «запустил плеер — 1 энергия за 10 минут».
+ *
+ * Поэтому механика простая и предсказуемая: как только видео пошло, остаток до
+ * следующей единицы ПОДТЯГИВАЕТСЯ к 10 минутам, если он был больше, и дальше
+ * течёт обычным ходом. Посмотрел десять минут — энергия пришла.
+ *
+ * Что НЕ делаем:
+ *  - не увеличиваем остаток: если до энергии оставалось 5 минут, видео их не
+ *    удлиняет до десяти. Ускорение обязано только ускорять.
+ *  - не отбираем при паузе (решение владельца): досмотрел 4 минуты из десяти —
+ *    оставшиеся 6 идут дальше обычным ходом. Возврат к прежнему остатку
+ *    выглядел бы обманом — цифра прыгнула бы вверх.
  *
  * Почему НЕ через override интервала (как сундук лиги и turbo_regen).
- * Override меняет длину интервала целиком и на период. Он не умеет «полминуты
- * быстро, полминуты обычно»: при паузе интервал вернулся бы к 30 минутам, и
- * уже накопленный прогресс пересчитался бы по новой длине — таймер прыгал бы
- * вверх-вниз на каждой паузе. Поэтому здесь другой механизм: мы не трогаем
- * интервал, а сдвигаем `lastRecoveryTime` назад на подаренное время. Для всех
- * трёх читателей энергии (EnergyContext, energy_system, energy_peek_cache) это
- * выглядит как «прошло больше времени» — они считают `now - lastRecoveryTime` и
- * не требуют ни строчки правок.
+ * Override меняет длину интервала целиком и на период. При паузе он вернул бы
+ * интервал к 30 минутам, и уже накопленный прогресс пересчитался бы по новой
+ * длине — таймер прыгал бы вверх-вниз на каждой паузе. Здесь вместо этого
+ * сдвигается `lastRecoveryTime`: для всех трёх читателей энергии
+ * (EnergyContext, energy_system, energy_peek_cache) это выглядит как «прошло
+ * больше времени», и правок им не требуется.
  *
- * Сдвиг назад безопасен: он лишь приближает момент долива, никогда не отнимает
- * энергию и не может дать больше, чем реально просмотрено × множитель.
+ * История бага: первая версия срезала остаток пропорционально просмотренному
+ * (минута за три). Арифметически честно, но на экране читалось не как
+ * «10 минут»: включив видео при остатке 28 минут, человек видел 28, потом 26…
+ * Владелец справедливо указал, что договаривались о другом.
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -28,49 +37,28 @@ import { withStorageLock } from './storage_mutex';
 
 const ENERGY_STORAGE_KEY = 'energy_state';
 
-/** Целевой интервал восстановления, пока видео реально играет. */
-// зачем: владелец назвал ровно эти числа — 10 минут вместо 30. Живут здесь
-// одной парой, чтобы множитель нельзя было разъехать с целевым интервалом.
+/**
+ * Остаток до следующей единицы, пока видео играет. Ровно то число, которое
+ * назвал владелец: «1 энергия за 10 минут во время просмотра».
+ */
 export const VIDEO_WATCH_TARGET_RECOVERY_MS = 10 * 60 * 1000;
 
 /**
- * Во сколько раз минута просмотра «стоит» дороже обычной минуты.
- * База 30 мин / цель 10 мин = 3. Считается от ЖИВОГО интервала (пульт может
- * менять базу), поэтому это функция, а не константа.
+ * Целевой остаток, к которому подтягивается таймер при живом просмотре.
+ * Никогда не больше базового интервала: если пульт опустит базу ниже 10 минут,
+ * просмотр просто перестаёт что-либо менять, но никогда не ЗАМЕДЛЯЕТ.
  */
-export function getVideoWatchSpeedMultiplier(): number {
+export function getVideoWatchTargetRemainingMs(): number {
   const base = getEnergyRecoveryIntervalMs();
-  if (!Number.isFinite(base) || base <= 0) return 1;
-  const multiplier = base / VIDEO_WATCH_TARGET_RECOVERY_MS;
-  // Ускорение, а не замедление: если пульт опустит базу ниже 10 минут, просмотр
-  // просто перестаёт что-либо менять, но никогда не тормозит восстановление.
-  return multiplier > 1 ? multiplier : 1;
-}
-
-/**
- * Сколько «лишнего» времени дарит один отрезок просмотра.
- * 10 минут просмотра при множителе 3 → 20 минут сверх реально прошедших.
- */
-export function watchedMsToBonusMs(watchedMs: number): number {
-  if (!Number.isFinite(watchedMs) || watchedMs <= 0) return 0;
-  const multiplier = getVideoWatchSpeedMultiplier();
-  if (multiplier <= 1) return 0;
-  return Math.floor(watchedMs * (multiplier - 1));
+  if (!Number.isFinite(base) || base <= 0) return VIDEO_WATCH_TARGET_RECOVERY_MS;
+  return Math.min(VIDEO_WATCH_TARGET_RECOVERY_MS, base);
 }
 
 /**
  * Отрезки короче этого не засчитываем: случайный тап «плей/пауза» не должен
- * плодить записи на диск. Одна секунда просмотра всё равно ничего не решает.
+ * плодить записи на диск.
  */
 const MIN_CREDITED_SEGMENT_MS = 1000;
-
-/**
- * Потолок ОДНОГО отрезка. Защищает от испорченных часов и от «телефон уснул
- * с открытым плеером на всю ночь»: WebView в фоне всё равно не играет, а
- * гигантский отрезок мгновенно залил бы весь запас. 30 минут непрерывного
- * просмотра за раз — с запасом для самого длинного урока.
- */
-const MAX_CREDITED_SEGMENT_MS = 30 * 60 * 1000;
 
 type StoredEnergy = { current?: unknown; lastRecoveryTime?: unknown };
 
@@ -79,8 +67,8 @@ export type WatchCreditOutcome =
   | { applied: true; watchedMs: number; bonusMs: number; lastRecoveryTime: number };
 
 /**
- * Засчитывает отрезок просмотра: сдвигает `lastRecoveryTime` назад на бонусное
- * время. Возвращает исход — вызывающий решает, обновлять ли UI.
+ * Подтягивает остаток до следующей единицы к 10 минутам, пока идёт просмотр.
+ * Возвращает исход — вызывающий решает, обновлять ли UI.
  *
  * Пишем под общим `withStorageLock`: тот же ключ трогают трата энергии, долив и
  * подарки — читать-менять-писать без замка означало бы потерянную запись.
@@ -95,18 +83,13 @@ export async function creditVideoWatchSegment(watchedMs: number): Promise<WatchC
     // мёртвые механизмы в этом проекте (см. CLAUDE.md «сперва логи»).
     return { applied: false, reason: `segment_too_short:${rawWatched}` };
   }
-  const clampedWatched = Math.min(rawWatched, MAX_CREDITED_SEGMENT_MS);
-  const bonusMs = watchedMsToBonusMs(clampedWatched);
-  if (bonusMs <= 0) {
-    return { applied: false, reason: `no_bonus:multiplier=${getVideoWatchSpeedMultiplier()}` };
-  }
 
   try {
     return await withStorageLock(async (): Promise<WatchCreditOutcome> => {
       const raw = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
       if (!raw) {
         // Состояния ещё нет: энергия полная по определению (её создаст первая
-        // загрузка с максимумом). Дарить нечего.
+        // загрузка с максимумом). Ускорять нечего.
         return { applied: false, reason: 'no_energy_state' };
       }
       let parsed: StoredEnergy;
@@ -130,22 +113,30 @@ export async function creditVideoWatchSegment(watchedMs: number): Promise<WatchC
       }
 
       const now = Date.now();
-      // Потолок сдвига: метка не должна уехать в будущее и не должна уйти
-      // дальше, чем «прямо сейчас минус один полный интервал». Иначе накопленный
-      // бонус превратился бы в пачку энергии за один кадр, а лишнее всё равно
-      // сгорает при доливе до максимума — храним только один шаг вперёд.
-      const floor = now - getEnergyRecoveryIntervalMs();
-      const shifted = Math.max(floor, lastRecoveryTime - bonusMs);
-      if (shifted >= lastRecoveryTime) {
-        return { applied: false, reason: 'already_at_floor' };
+      const interval = getEnergyRecoveryIntervalMs();
+      const target = getVideoWatchTargetRemainingMs();
+      // Остаток считаем той же формулой, что и EnergyContext (см. строку с
+      // `recoveryMsRef.current - (elapsed % recoveryMsRef.current)`) — иначе
+      // значок над плеером и полоска энергии показывали бы разные числа.
+      const elapsed = Math.max(0, now - lastRecoveryTime);
+      const remaining = interval - (elapsed % interval);
+
+      // Уже быстрее целевого (или ровно на нём) — трогать нечего. Ускорение
+      // никогда не удлиняет ожидание: остаток 5 минут так и останется пятью.
+      if (remaining <= target) {
+        return { applied: false, reason: `already_faster:remaining=${remaining} target=${target}` };
       }
+
+      // Подтягиваем метку назад ровно настолько, чтобы остаток стал целевым.
+      const cut = remaining - target;
+      const shifted = lastRecoveryTime - cut;
 
       const next = { ...parsed, lastRecoveryTime: shifted };
       await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(next));
       return {
         applied: true,
-        watchedMs: clampedWatched,
-        bonusMs: lastRecoveryTime - shifted,
+        watchedMs: Math.floor(rawWatched),
+        bonusMs: cut,
         lastRecoveryTime: shifted,
       };
     });

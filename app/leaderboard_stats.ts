@@ -40,6 +40,15 @@ const getFirestore = () => {
 let _memCache: { data: GlobalLeaderboardStats; fetchedAt: number } | null = null;
 
 /**
+ * зачем (владелец 2026-09-02, аудит расходов): отметка «документа нет» живёт по
+ * тому же TTL, что и данные. Без неё каждый заход на экран читал Firestore
+ * заново — 11% всех чтений проекта уходило в пустоту (73 000 в сутки).
+ * 0 = отрицательного ответа не было.
+ */
+let _negativeCachedAt = 0;
+const NEGATIVE_CACHE_KEY = 'leaderboard_stats_absent_v1';
+
+/**
  * Загружает leaderboard_stats/global из Firestore (кэш 1 час в памяти + AsyncStorage).
  * Возвращает null если нет сети или функция ещё ни разу не отработала.
  */
@@ -47,6 +56,23 @@ export async function fetchLeaderboardStats(): Promise<GlobalLeaderboardStats | 
   // Память — самый быстрый кэш
   if (_memCache && Date.now() - _memCache.fetchedAt < CACHE_TTL_MS) {
     return _memCache.data;
+  }
+
+  // Отрицательный ответ тоже кэшируется: документа нет — не спрашиваем чаще TTL.
+  if (_negativeCachedAt && Date.now() - _negativeCachedAt < CACHE_TTL_MS) {
+    return null;
+  }
+  if (!_negativeCachedAt) {
+    try {
+      const rawAbsent = await AsyncStorage.getItem(NEGATIVE_CACHE_KEY);
+      const absentAt = rawAbsent ? Number(rawAbsent) : 0;
+      if (Number.isFinite(absentAt) && absentAt > 0) {
+        _negativeCachedAt = absentAt;
+        if (Date.now() - absentAt < CACHE_TTL_MS) return null;
+      }
+    } catch (e) {
+      DebugLogger.error('leaderboard_stats:neg_cache_read', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
   }
 
   // AsyncStorage — переживает перезапуск приложения
@@ -66,15 +92,39 @@ export async function fetchLeaderboardStats(): Promise<GlobalLeaderboardStats | 
 
   // Firestore
   const db = getFirestore();
-  if (!db) return null;
+  if (!db) {
+    // зачем: ранний выход обязан говорить причину — иначе «данных нет» и
+    // «Firestore не поднялся» выглядят одинаково (правило «сперва логи»).
+    DebugLogger.error('leaderboard_stats:no_db', new Error('firestore_unavailable'), 'warning');
+    return null;
+  }
   try {
     const snap = await db.collection('leaderboard_stats').doc('global').get();
-    if (!snap.exists) return null;
+    if (!snap.exists) {
+      // зачем (владелец 2026-09-02, аудит расходов): раньше здесь стоял голый
+      // `return null` — отсутствие документа НЕ запоминалось, и каждый заход на
+      // экран снова читал Firestore. Замер: 11% всех чтений проекта (73 000 в
+      // сутки, 2.2 млн в месяц) — это чтения несуществующих документов, и они
+      // растут вместе с активностью людей, то есть их делает приложение.
+      // Отрицательный ответ живёт по тому же TTL, что и положительный: пока
+      // крон не создаст документ, спрашивать чаще раза в час бессмысленно.
+      _negativeCachedAt = Date.now();
+      await AsyncStorage.setItem(NEGATIVE_CACHE_KEY, String(_negativeCachedAt)).catch((e) => {
+        DebugLogger.error('leaderboard_stats:neg_cache_write', e instanceof Error ? e : new Error(String(e)), 'warning');
+      });
+      return null;
+    }
     const data = snap.data() as GlobalLeaderboardStats;
     _memCache = { data, fetchedAt: Date.now() };
-    await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(_memCache)).catch(() => {});
+    _negativeCachedAt = 0;
+    await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(_memCache)).catch((e) => {
+      DebugLogger.error('leaderboard_stats:cache_write', e instanceof Error ? e : new Error(String(e)), 'warning');
+    });
     return data;
-  } catch {
+  } catch (e) {
+    // зачем: немой catch запрещён — молча проглоченная сетевая ошибка выглядит
+    // как «статистики нет» и уводит диагностику не туда.
+    DebugLogger.error('leaderboard_stats:fetch', e instanceof Error ? e : new Error(String(e)), 'warning');
     return null;
   }
 }
@@ -82,6 +132,12 @@ export async function fetchLeaderboardStats(): Promise<GlobalLeaderboardStats | 
 /** Сбросить кэш (для pull-to-refresh). */
 export function invalidateLeaderboardStatsCache(): void {
   _memCache = null;
+  // зачем: жест пользователя обязан пробивать и отрицательный кэш — иначе
+  // потянул экран, а он молча вернул «данных нет» из отметки часовой давности.
+  _negativeCachedAt = 0;
+  AsyncStorage.removeItem(NEGATIVE_CACHE_KEY).catch((e) => {
+    DebugLogger.error('leaderboard_stats:neg_cache_clear', e instanceof Error ? e : new Error(String(e)), 'warning');
+  });
 }
 
 /**

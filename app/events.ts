@@ -105,6 +105,13 @@ export type AppEventMap = {
   app_messages_local_changed: undefined;
   /** Remote Config обновился (admin → Firestore) — перечитать зависящие от флагов экраны/A-B. */
   remote_config_changed: undefined;
+  /**
+   * Зачем (владелец 2026-09-02): показать окно обновления ТОЛЬКО на этом
+   * устройстве из дев-хаба. Без этого проверить окно можно было только
+   * включив его в Пульте сразу ВСЕМ живым пользователям. Ничего не пишет
+   * в remote_config и не влияет на другие устройства.
+   */
+  update_modal_preview: { mode: 'force' | 'optional' };
   /** Серверный каталог продажи косметики обновлён; экраны перечитывают доступность. */
   cosmetic_asset_catalog_changed: undefined;
   /** «Сундук недели» (mystery_monday) забран — плашка TodaysBoonStrip должна сразу сменить текст на «уже открыт». */

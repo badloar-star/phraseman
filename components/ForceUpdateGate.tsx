@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Platform, Pressable, Linking } from 'react-native';
+import { View, Text, Platform, Pressable, Linking, AccessibilityInfo } from 'react-native';
+import Animated, {
+  Easing,
+  FadeIn,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 import Constants from 'expo-constants';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -223,6 +234,8 @@ export default function ForceUpdateGate() {
   const { themeMode } = useTheme();
   const [userId, setUserId] = useState<string | null>(null);
   const [gate, setGate] = useState<GateState | null>(null);
+  // Пока открыт предпросмотр, обычный поток не перерисовывает окно.
+  const previewRef = React.useRef(false);
 
   useEffect(() => {
     let dead = false;
@@ -233,12 +246,46 @@ export default function ForceUpdateGate() {
   useEffect(() => {
     let dead = false;
     const refresh = () => {
+      // Предпросмотр из дев-хаба главнее конфига: пока он открыт, обновление
+      // remote_config не должно смахивать окно с экрана.
+      if (previewRef.current) return;
       void readGateState(lang, userId).then((next) => { if (!dead) setGate(next); });
     };
     refresh();
     const sub = onAppEvent('remote_config_changed', refresh);
     return () => { dead = true; sub.remove(); };
   }, [lang, userId]);
+
+  /**
+   * зачем (владелец 2026-09-02): дев-хаб показывает НАСТОЯЩЕЕ окно на этом
+   * телефоне. Раньше единственным способом его увидеть было включить показ в
+   * Пульте — то есть сразу всем живым пользователям. Здесь состояние собирается
+   * локально, remote_config не читается и не пишется.
+   */
+  useEffect(() => {
+    const sub = onAppEvent('update_modal_preview', (payload) => {
+      const mode: GateMode = payload?.mode === 'force' ? 'force' : 'optional';
+      const storeUrl = storeUrlForPlatform();
+      if (!storeUrl) {
+        console.warn('[MANUAL-UPDATE] предпросмотр отменён: нет ссылки на стор', {
+          platform: Platform.OS,
+        });
+        return;
+      }
+      previewRef.current = true;
+      setGate({
+        source: 'manual',
+        mode,
+        campaignId: 'dev_preview',
+        title: getManualUpdateTitle(lang).trim() || defaultTitle(lang),
+        body: getManualUpdateBody(lang).trim() || defaultBody(lang),
+        cta: getManualUpdateCta(lang).trim() || defaultCta(lang),
+        storeUrl,
+      });
+      console.log('[MANUAL-UPDATE] предпросмотр из дев-хаба', { mode, storeUrl });
+    });
+    return () => sub.remove();
+  }, [lang]);
 
   // ВАЖНО: НЕ помечаем optional-кампанию «просмотренной» в момент показа.
   // Раньше тут стоял useEffect, который писал dismissal сразу при рендере модалки.
@@ -248,18 +295,108 @@ export default function ForceUpdateGate() {
   // Теперь dismissal пишется ТОЛЬКО по реальному действию пользователя
   // (closeOptional / openStore) — окно держится на экране, пока его не закроют.
 
+  /**
+   * зачем (владелец 2026-09-02, «премиальные модалы»): движение — часть смысла,
+   * а не украшение. Свободное окно ПОДНИМАЕТСЯ снизу (приложение видно за ним,
+   * уйти можно), принудительное ОСЕДАЕТ сверху на сплошной фон — жест
+   * закрывшегося шлагбаума. Разницу видно до того, как прочитан текст.
+   *
+   * Хуки стоят ДО раннего возврата: правило хуков React запрещает вызывать их
+   * условно, иначе при появлении окна порядок хуков разъедется и экран упадёт.
+   */
+  const forced = gate?.mode === 'force';
+  // зачем: бесконечная пульсация обязана замирать в фоне и на невидимом
+  // экране, иначе она греет батарею впустую (контракт perf_freeze).
+  const runtimeActive = useRuntimeActive();
+  const enter = useSharedValue(0);
+  const halo = useSharedValue(0);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    let dead = false;
+    void AccessibilityInfo.isReduceMotionEnabled()
+      .then((on) => { if (!dead) setReduceMotion(on); })
+      .catch((e) => {
+        // зачем: запрет немого catch. Не смогли узнать настройку — считаем, что
+        // движение разрешено, но причина обязана попасть в лог.
+        console.warn('[MANUAL-UPDATE] reduce-motion check failed', {
+          reason: e instanceof Error ? e.message : String(e),
+        });
+      });
+    return () => { dead = true; };
+  }, []);
+
+  useEffect(() => {
+    if (!gate) { enter.value = 0; return; }
+    if (reduceMotion) { enter.value = 1; return; }
+    enter.value = 0;
+    enter.value = withTiming(1, {
+      duration: forced ? 560 : 520,
+      easing: Easing.bezier(0.16, 1, 0.3, 1),
+    });
+  }, [enter, forced, gate, reduceMotion]);
+
+  useEffect(() => {
+    // Пульсация вокруг знака — ТОЛЬКО там, где выхода нет: уйти нельзя, и
+    // внимание должно оставаться на действии. В свободном окне это было бы
+    // давлением без причины.
+    if (!gate || !forced || reduceMotion || !runtimeActive) { halo.value = 0; return; }
+    halo.value = withDelay(400, withRepeat(
+      withSequence(
+        withTiming(1, { duration: 1500, easing: Easing.bezier(0.22, 1, 0.36, 1) }),
+        withTiming(0, { duration: 0 }),
+      ),
+      -1,
+      false,
+    ));
+  }, [forced, gate, halo, reduceMotion, runtimeActive]);
+
+  const sheetStyle = useAnimatedStyle(() => ({
+    opacity: enter.value,
+    transform: [
+      // Свободное всплывает снизу (+28), принудительное оседает сверху (-15).
+      { translateY: (1 - enter.value) * (forced ? -15 : 28) },
+      { scale: forced ? 1 + (1 - enter.value) * 0.025 : 1 - (1 - enter.value) * 0.03 },
+    ],
+  }));
+
+  const haloStyle = useAnimatedStyle(() => ({
+    opacity: (1 - halo.value) * 0.6,
+    transform: [{ scale: 1 + halo.value * 0.55 }],
+  }));
+
   if (!gate) return null;
 
   const optional = gate.mode === 'optional';
 
+  /**
+   * зачем: в ПРЕДПРОСМОТРЕ крестик обязан работать и в принудительном режиме —
+   * иначе разработчик, нажав «Принудительное окно» в дев-хабе, запер бы себе
+   * приложение до перезапуска. В боевом показе поведение прежнее: force закрыть
+   * нельзя.
+   */
+  const preview = gate.campaignId === 'dev_preview';
+  const closable = optional || preview;
+
   const closeOptional = () => {
-    if (!optional) return;
+    if (!closable) return;
+    if (preview) {
+      previewRef.current = false;
+      setGate(null);
+      console.log('[MANUAL-UPDATE] предпросмотр закрыт');
+      return;
+    }
     void markCampaignDismissed(campaignDismissalKey('manual_update', gate.campaignId));
     setGate(null);
   };
 
   const openStore = () => {
-    if (optional) {
+    if (preview) {
+      // Предпросмотр не должен записываться как настоящая показанная кампания:
+      // иначе боевое окно с тем же id больше никогда не показалось бы.
+      previewRef.current = false;
+      setGate(null);
+    } else if (optional) {
       void markCampaignDismissed(campaignDismissalKey('manual_update', gate.campaignId));
       setGate(null);
     }
@@ -280,32 +417,35 @@ export default function ForceUpdateGate() {
   };
 
   return (
-    <View
+    <Animated.View
+      entering={reduceMotion ? undefined : FadeIn.duration(forced ? 360 : 420)}
       style={{
         position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-        backgroundColor: optional ? 'rgba(11, 11, 18, 0.72)' : '#0b0b12',
+        // Свободное окно оставляет приложение видимым за полупрозрачной
+        // подложкой; принудительное гасит его целиком — за ним ничего нет.
+        backgroundColor: optional ? 'rgba(8, 8, 13, 0.76)' : '#08080d',
         alignItems: 'center', justifyContent: 'center',
         paddingHorizontal: 24,
         zIndex: 10000, elevation: 10000,
       }}
     >
-      <View
-        style={{
+      <Animated.View
+        style={[{
           width: '100%',
           maxWidth: 420,
           borderRadius: 22,
           backgroundColor: '#121826',
-          borderWidth: 0,
-          borderColor: '#26324a',
+          // зачем: обводки контейнеров запрещены правилами владельца — глубину
+          // держим тоном и тенью, а не рамкой.
           padding: 22,
           shadowColor: '#000',
-          shadowOpacity: 0.24,
-          shadowRadius: 28,
-          shadowOffset: { width: 0, height: 14 },
-          elevation: 12,
-        }}
+          shadowOpacity: 0.42,
+          shadowRadius: 34,
+          shadowOffset: { width: 0, height: 18 },
+          elevation: 14,
+        }, sheetStyle]}
       >
-        {optional && (
+        {closable && (
           <Pressable
             accessibilityRole="button"
             accessibilityLabel={triLang(lang as Lang, {
@@ -342,13 +482,31 @@ export default function ForceUpdateGate() {
             width: 54,
             height: 54,
             borderRadius: 18,
-            backgroundColor: '#eef2ff',
+            // зачем: янтарь у принудительного окна — это СЕМАНТИКА запрета, а не
+            // второй акцент. Синий остаётся цветом обычного, необязательного
+            // предложения обновиться.
+            backgroundColor: forced ? '#3a2408' : '#eef2ff',
             alignItems: 'center',
             justifyContent: 'center',
             marginBottom: 16,
           }}
         >
-          <Ionicons name="phone-portrait-outline" size={28} color={'#4338ca'} />
+          {forced && (
+            <Animated.View
+              pointerEvents="none"
+              style={[{
+                position: 'absolute',
+                top: 0, left: 0, right: 0, bottom: 0,
+                borderRadius: 18,
+                backgroundColor: 'rgba(251, 191, 36, 0.28)',
+              }, haloStyle]}
+            />
+          )}
+          <Ionicons
+            name={forced ? 'lock-closed' : 'arrow-up-circle-outline'}
+            size={28}
+            color={forced ? '#fbbf24' : '#4338ca'}
+          />
         </View>
 
         <Text style={{ color: '#fff', fontSize: 22, lineHeight: 28, fontWeight: '800', marginBottom: 10 }}>
@@ -364,7 +522,9 @@ export default function ForceUpdateGate() {
           style={({ pressed }) => ({
             minHeight: 50,
             borderRadius: 14,
-            backgroundColor: pressed ? '#4f46e5' : '#6366f1',
+            backgroundColor: forced
+              ? (pressed ? '#b45309' : '#d97706')
+              : (pressed ? '#4f46e5' : '#6366f1'),
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'row',
@@ -377,7 +537,7 @@ export default function ForceUpdateGate() {
           </Text>
         </Pressable>
 
-        {optional && (
+        {closable && (
           <Pressable
             accessibilityRole="button"
             onPress={closeOptional}
@@ -405,7 +565,7 @@ export default function ForceUpdateGate() {
             </Text>
           </Pressable>
         )}
-      </View>
-    </View>
+      </Animated.View>
+    </Animated.View>
   );
 }

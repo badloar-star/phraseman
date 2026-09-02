@@ -12238,6 +12238,17 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
         <label>Платформа<select id="cp-manual-update-platform"><option value="">iOS и Android</option><option value="ios">iOS</option><option value="android">Android</option></select></label>
         <label>Campaign ID<input type="text" id="cp-manual-update-campaign" placeholder="manual_update_2026_08_20_a"/></label>
         <label>Target build / version<input type="text" id="cp-manual-update-target-build" placeholder="1.5.44"/></label>
+      </div>
+
+      <!-- зачем (владелец 2026-09-02): готовые тексты одним кликом. Текст
+           остаётся полностью редактируемым: заготовка просто заполняет поля
+           сразу на трёх языках, чтобы не набирать девять полей вручную. -->
+      <div style="margin-top:14px">
+        <div style="font-size:12px;font-weight:700;color:#cbd5e1;margin-bottom:8px">Готовые тексты</div>
+        <div id="cp-manual-update-presets" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:12px">
         <label>Заголовок RU<input type="text" id="cp-manual-update-title-ru"/></label>
         <label>Кнопка RU<input type="text" id="cp-manual-update-cta-ru" placeholder="Обновить"/></label>
         <label>Заголовок UK<input type="text" id="cp-manual-update-title-uk"/></label>
@@ -34635,6 +34646,7 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       // зачем: подсказка «кто увидит» должна отражать СОХРАНЁННОЕ состояние,
       // а не черновик в полях — иначе она врёт про боевую картину.
       if (typeof cpRenderManualUpdateWho === 'function') cpRenderManualUpdateWho();
+      if (typeof cpRenderManualUpdatePresets === 'function') cpRenderManualUpdatePresets(null);
       cpRemoteStatus('cp-force-status', 'Настройки обновления загружены.', '#4ade80');
     } catch (error) {
       cpRemoteStatus('cp-force-status', 'Ошибка чтения: ' + (error?.message || error), '#f87171');
@@ -34695,6 +34707,168 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
    * без возможности закрыть окно. Теперь намерение выражается самой кнопкой, а
    * принудительный режим требует явного подтверждения.
    */
+  /**
+   * Зачем (владелец 2026-09-02): текст окна задаётся вручную и может быть любым,
+   * но набирать девять полей на трёх языках каждый раз — долго. Заготовка
+   * заполняет поля и сразу ставит подходящий режим; дальше текст правится
+   * как угодно — ничего не заблокировано.
+   */
+  const CP_MANUAL_UPDATE_PRESETS = [
+    {
+      "id": "release",
+      "label": "Обычный релиз",
+      "mode": "optional",
+      "ru": {
+        "t": "Вышла новая версия",
+        "b": "Быстрее открываются уроки и починили пропажу прогресса. Обновление займёт меньше минуты.",
+        "c": "Обновить"
+      },
+      "uk": {
+        "t": "Вийшла нова версія",
+        "b": "Швидше відкриваються уроки та полагодили зникнення прогресу. Оновлення займе менше хвилини.",
+        "c": "Оновити"
+      },
+      "es": {
+        "t": "Nueva versión disponible",
+        "b": "Las lecciones abren más rápido y arreglamos la pérdida de progreso. Tarda menos de un minuto.",
+        "c": "Actualizar"
+      }
+    },
+    {
+      "id": "features",
+      "label": "Новые возможности",
+      "mode": "optional",
+      "ru": {
+        "t": "Обновление готово",
+        "b": "Новые тренажёры и заметно быстрее словарь. Всё, что уже пройдено, останется на месте.",
+        "c": "Обновить"
+      },
+      "uk": {
+        "t": "Оновлення готове",
+        "b": "Нові тренажери та помітно швидший словник. Усе, що вже пройдено, залишиться на місці.",
+        "c": "Оновити"
+      },
+      "es": {
+        "t": "Actualización lista",
+        "b": "Nuevos ejercicios y un diccionario mucho más rápido. Todo tu avance se conserva.",
+        "c": "Actualizar"
+      }
+    },
+    {
+      "id": "fixes",
+      "label": "Важные исправления",
+      "mode": "optional",
+      "ru": {
+        "t": "Мы починили несколько ошибок",
+        "b": "Исправили потерю занятий и сбои при входе. Рекомендуем обновиться, чтобы они не повторились.",
+        "c": "Обновить"
+      },
+      "uk": {
+        "t": "Ми полагодили кілька помилок",
+        "b": "Виправили втрату занять і збої під час входу. Радимо оновитися, щоб вони не повторювались.",
+        "c": "Оновити"
+      },
+      "es": {
+        "t": "Corregimos varios errores",
+        "b": "Arreglamos la pérdida de clases y los fallos al entrar. Te recomendamos actualizar.",
+        "c": "Actualizar"
+      }
+    },
+    {
+      "id": "incompatible",
+      "label": "Версия не работает",
+      "mode": "force",
+      "ru": {
+        "t": "Эта версия больше не работает",
+        "b": "Сервер перешёл на новый формат данных. Пока приложение не обновлено, занятия открыть не получится.",
+        "c": "Обновить"
+      },
+      "uk": {
+        "t": "Ця версія більше не працює",
+        "b": "Сервер перейшов на новий формат даних. Поки застосунок не оновлено, заняття відкрити не вийде.",
+        "c": "Оновити"
+      },
+      "es": {
+        "t": "Esta versión ya no funciona",
+        "b": "El servidor cambió el formato de datos. Sin actualizar no podrás abrir las clases.",
+        "c": "Actualizar"
+      }
+    },
+    {
+      "id": "required",
+      "label": "Обязательное обновление",
+      "mode": "force",
+      "ru": {
+        "t": "Дальше только с новой версией",
+        "b": "Мы починили потерю занятий и переписали синхронизацию. Старая сборка эти данные прочитать не сможет.",
+        "c": "Обновить"
+      },
+      "uk": {
+        "t": "Далі лише з новою версією",
+        "b": "Ми полагодили втрату занять і переписали синхронізацію. Стара збірка ці дані прочитати не зможе.",
+        "c": "Оновити"
+      },
+      "es": {
+        "t": "Solo puedes seguir con la nueva versión",
+        "b": "Arreglamos la pérdida de clases y rehicimos la sincronización. La versión antigua no puede leer estos datos.",
+        "c": "Actualizar"
+      }
+    },
+    {
+      "id": "security",
+      "label": "Безопасность",
+      "mode": "force",
+      "ru": {
+        "t": "Обновление безопасности",
+        "b": "Мы закрыли уязвимость в защите аккаунта. Работа продолжится сразу после обновления.",
+        "c": "Обновить"
+      },
+      "uk": {
+        "t": "Оновлення безпеки",
+        "b": "Ми закрили вразливість у захисті акаунта. Робота продовжиться одразу після оновлення.",
+        "c": "Оновити"
+      },
+      "es": {
+        "t": "Actualización de seguridad",
+        "b": "Cerramos una vulnerabilidad en la protección de la cuenta. Podrás seguir justo después de actualizar.",
+        "c": "Actualizar"
+      }
+    }
+  ];
+
+  window.applyManualUpdatePreset = function(id) {
+    const preset = CP_MANUAL_UPDATE_PRESETS.find((item) => item.id === id);
+    if (!preset) return;
+    cpSetValue('cp-manual-update-mode', preset.mode);
+    ['ru', 'uk', 'es'].forEach((lang) => {
+      cpSetValue('cp-manual-update-title-' + lang, preset[lang].t);
+      cpSetValue('cp-manual-update-body-' + lang, preset[lang].b);
+      cpSetValue('cp-manual-update-cta-' + lang, preset[lang].c);
+    });
+    cpRenderManualUpdatePresets(id);
+    cpRemoteStatus('cp-force-status', 'Текст подставлен. Можно править и показать.', '#4ade80');
+  };
+
+  window.cpRenderManualUpdatePresets = function(activeId) {
+    const host = document.getElementById('cp-manual-update-presets');
+    if (!host) return;
+    host.innerHTML = '';
+    CP_MANUAL_UPDATE_PRESETS.forEach((preset) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'cp-btn';
+      button.textContent = preset.label;
+      button.title = preset.ru.t + '. ' + preset.ru.b;
+      const force = preset.mode === 'force';
+      const active = preset.id === activeId;
+      button.style.cssText = 'padding:8px 13px;border-radius:999px;font-size:12.5px;font-weight:700;'
+        + 'min-height:34px;background:' + (active ? (force ? '#7f1d1d' : '#312e81') : (force ? '#2a1616' : '#1b1f34'))
+        + ';color:' + (force ? '#fca5a5' : '#c7d2fe') + ';';
+      button.onclick = () => window.applyManualUpdatePreset(preset.id);
+      host.appendChild(button);
+    });
+  };
+
   window.showManualUpdate = async function(mode) {
     const force = mode === 'force';
     if (force) {

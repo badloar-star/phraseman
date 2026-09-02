@@ -440,6 +440,16 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'open-max-paywall':
         requestClose(false, () => router.push({ pathname: '/max_paywall', params: { source: 'dev_hub' } } as never));
         return;
+      // зачем (владелец 2026-09-02): показать НАСТОЯЩЕЕ окно обновления на этом
+      // телефоне. Хаб закрывается до показа, иначе native Modal хаба останется
+      // поверх окна и его не будет видно. Ничего не пишется в remote_config,
+      // поэтому другие пользователи окна не увидят.
+      case 'preview-update-modal-optional':
+        requestClose(false, () => emitAppEvent('update_modal_preview', { mode: 'optional' }));
+        return;
+      case 'preview-update-modal-force':
+        requestClose(false, () => emitAppEvent('update_modal_preview', { mode: 'force' }));
+        return;
       case 'preview-lesson-results':
         openLessonResultsPreview();
         return;

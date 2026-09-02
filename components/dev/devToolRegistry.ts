@@ -37,7 +37,12 @@ export type DevToolAction =
   | 'open-dev-runes-blitz'
   | 'open-dev-runes-flashcards-training'
   | 'open-dev-runes-mistake-practice'
-  | 'open-dev-runes-speaking';
+  | 'open-dev-runes-speaking'
+  // Зачем (владелец 2026-09-02): окно обновления нельзя было увидеть иначе
+  // как включив его в Пульте ВСЕМ живым пользователям. Здесь оно
+  // показывается только на этом устройстве, без записи в remote_config.
+  | 'preview-update-modal-optional'
+  | 'preview-update-modal-force';
 
 export type DevToolIcon =
   | 'call-outline'
@@ -93,6 +98,44 @@ export type DevToolSection = Readonly<{
 }>;
 
 export const DEV_TOOL_SECTIONS = [
+  /**
+   * зачем (владелец 2026-09-02): «добавь его в дев-хаб сразу в самый верх, чтобы
+   * он полностью рабочий был». order: 0 ставит секцию выше онбординга. Обе
+   * кнопки открывают НАСТОЯЩЕЕ окно обновления с реальной анимацией и реальной
+   * кнопкой в магазин — отличие от боевого показа только в том, что окно
+   * поднимается локально и не трогает remote_config, то есть его видит один
+   * этот телефон, а не все пользователи.
+   */
+  {
+    id: 'update-modal-preview',
+    order: 0,
+    title: 'Окно обновления',
+    icon: 'rocket-outline',
+    testID: 'dev-section-update-modal',
+    tools: [
+      {
+        id: 'update-modal-optional',
+        order: 10,
+        title: 'Свободное окно',
+        detail: 'Поднимается снизу, приложение видно за подложкой. Есть крестик и «Не сейчас».',
+        actionLabel: 'Показать',
+        action: 'preview-update-modal-optional',
+        icon: 'rocket-outline',
+        testID: 'dev-update-modal-optional',
+      },
+      {
+        id: 'update-modal-force',
+        order: 20,
+        title: 'Принудительное окно',
+        detail: 'Оседает сверху на сплошной фон. Ни крестика, ни «Не сейчас», ни кнопки назад.',
+        actionLabel: 'Показать',
+        action: 'preview-update-modal-force',
+        icon: 'shield-checkmark-outline',
+        testID: 'dev-update-modal-force',
+        tone: 'danger',
+      },
+    ],
+  },
   // зачем 16.08.2026: владелец не нашёл кнопку запуска онбординга, когда она
   // стояла внизу списка. Секция объявлена ПЕРВОЙ в массиве и с минимальным
   // order — так её видно сразу, а локальные секции остаются ниже без правок.

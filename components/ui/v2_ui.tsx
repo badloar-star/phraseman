@@ -174,7 +174,12 @@ type ChipProps = {
   selected?: boolean;
   /** Читалка экрана: без метки вариант ответа звучит как «кнопка». */
   accessibilityLabel?: string;
-  /** Semantic answer-tile contract: the label stays intact while the tile grows. */
+  /**
+   * Контракт плитки-ответа: подпись остаётся целой, а плитка растёт под неё.
+   * Длинный вариант ПЕРЕНОСИТСЯ по словам — без сжатия шрифта и без многоточия.
+   * Имя пропа историческое (когда-то значило numberOfLines={1}); менять его
+   * нельзя — на строку `singleLine` завязаны контрактные сторожа Learning V2.
+   */
   singleLine?: boolean;
 };
 
@@ -182,9 +187,6 @@ type ChipProps = {
  * Чип V2: диагональный градиент, нижняя 3D-кромка, блик сверху.
  * Нажатие — просадка на кромку (translateY 3px), как в эталоне.
  */
-/* eslint-disable text-integrity/no-unsafe-text-truncation -- V2Chip is the
- * shared semantic answer-tile primitive. `singleLine` preserves an authored
- * token as one visual unit and uses font fitting instead of ellipsis. */
 export const V2Chip = memo(function V2Chip({
   children, onPress, verdict = 'idle', block, style, textStyle, disabled,
   accessibilityLabel, left, right, selected, singleLine,
@@ -255,13 +257,21 @@ export const V2Chip = memo(function V2Chip({
           </View>
         ) : (
           <Text
-            // This is the shared semantic primitive for owner-approved answer
-            // tiles: shrink only as a last resort; never split a word inside
-            // its button. Call sites use `singleLine`, not raw truncation.
-            numberOfLines={singleLine ? 1 : undefined}
-            adjustsFontSizeToFit={singleLine}
-            minimumFontScale={singleLine ? 0.68 : undefined}
-            style={[block ? styles.optText : styles.chipText, { color: ink }, textStyle]}
+            // зачем: `singleLine` — это контракт «токен не рвётся и не
+            // обрезается», а НЕ «влезь в одну строку любой ценой». Раньше
+            // здесь стоял adjustsFontSizeToFit + minimumFontScale 0.68: он
+            // ужимал длинные варианты до нечитаемого кегля (прямой запрет
+            // владельца, см. шапку файла) и ломал храповик стабильности
+            // лэйаута. Теперь длинный вариант ПЕРЕНОСИТСЯ: плитки заданы через
+            // minHeight/maxWidth, поэтому кнопка растёт вниз, а не сжимает
+            // текст. Слово целиком не рвётся благодаря запрету переносов
+            // внутри слова у RN по умолчанию.
+            style={[
+              block ? styles.optText : styles.chipText,
+              singleLine ? styles.wrapText : null,
+              { color: ink },
+              textStyle,
+            ]}
           >
             {children}
           </Text>
@@ -270,7 +280,6 @@ export const V2Chip = memo(function V2Chip({
     </View>
   );
 });
-/* eslint-enable text-integrity/no-unsafe-text-truncation */
 
 /** Гнездо в банке слов: место чипа сохранено, банк не «прыгает». */
 export const V2ChipGhost = memo(function V2ChipGhost({ label }: { label: string }) {
@@ -524,6 +533,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   optText: { fontSize: 16.5, fontWeight: '700', letterSpacing: 0.1, lineHeight: 22 },
+  // зачем: вариант ответа переносится по словам и центрируется — плитка
+  // растёт вниз (minHeight, не height), текст не сжимается и не обрезается.
+  wrapText: { textAlign: 'center', flexShrink: 1 },
   optRow: { flexDirection: 'row', alignItems: 'center', gap: 14, minWidth: 0 },
   optCopy: { flex: 1, minWidth: 0 },
   dim: { opacity: 0.38 },

@@ -3379,6 +3379,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // коде как разделы главной, которых пользователь не видит. Реальный ряд —
         // visibleQuickItems (Урок / МАКС / Карточки), см. рендер ниже.
         const eliteStatsCompact = CONTENT_W < 370;
+        // зачем (владелец 2026-09-02): «Спин» и «Подарок» наезжали друг на
+        // друга — спин стоит по центру ряда, подарок абсолютом справа, и на
+        // узкой карточке их половины пересекались (счётчик спина уезжал под
+        // подарок). Раскладку по спеке Daily Journey п.6 не трогаем — ужимаем
+        // сами кнопки, когда видны обе: половина ряда минус зазор 10 — это
+        // предельная ширина каждой, из неё считаем кегль и внутренние отступы.
+        const homeActionRowBothVisible = homeSpinBalance > 0 && dailyJourneyUnreadCount > 0;
+        // marginHorizontal: 8 у обёртки (×2) + padding: 18 у градиента (×2) = 52.
+        const homeActionRowInnerW = Math.max(0, CONTENT_W - 52);
+        const homeActionMaxW = homeActionRowBothVisible
+            ? Math.max(96, Math.floor(homeActionRowInnerW / 2) - 5)
+            : 999;
+        const homeActionTight = homeActionRowBothVisible && homeActionMaxW < 150;
+        const homeActionIconSize = homeActionTight ? 20 : 24;
+        const homeActionFontSize = homeActionTight ? 13 : 15;
+        const homeActionGap = homeActionTight ? 6 : 9;
+        const homeActionCountBox = homeActionTight ? 26 : 30;
         const eliteAvatarSize = eliteStatsCompact ? 54 : 60;
         const eliteStreakColumnWidth = eliteStatsCompact ? 102 : 116;
         const eliteStreakIconBox = freezeActive
@@ -3847,17 +3864,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       start={{ x: 0, y: 0 }}
                       end={{ x: 1, y: 1 }}
                       style={{
-                        minWidth: 104,
+                        minWidth: Math.min(104, homeActionMaxW),
+                        maxWidth: homeActionMaxW,
                         minHeight: 44,
                         borderRadius: 16,
                         // зачем: слева теперь значок спина, а не пустое поле —
                         // отступ уменьшен, чтобы плашка не разъехалась.
-                        paddingLeft: 9,
-                        paddingRight: 7,
+                        paddingLeft: homeActionTight ? 7 : 9,
+                        paddingRight: homeActionTight ? 6 : 7,
                         flexDirection: 'row',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        gap: 9,
+                        gap: homeActionGap,
                         borderBottomWidth: 4,
                         borderBottomColor: '#A96F06',
                       }}
@@ -3866,23 +3884,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                           значок — один и тот же во всех местах, где спин упоминается
                           (эта кнопка, награда сундука лиги, «Подарки», итог Арены).
                           Метка доступности уже на кнопке, поэтому значок декоративный. */}
-                      <SpinTicketArt size={24} accessibilityLabel="" />
-                      <Text maxFontSizeMultiplier={1} style={{ color: '#211500', fontSize: 15, fontWeight: '900', letterSpacing: 0.15 }}>
+                      <SpinTicketArt size={homeActionIconSize} accessibilityLabel="" />
+                      <Text maxFontSizeMultiplier={1} numberOfLines={1} style={{ color: '#211500', fontSize: homeActionFontSize, fontWeight: '900', letterSpacing: 0.15, flexShrink: 1 }}>
                         {triLang(lang, {
                           ru: 'Спин', uk: 'Спін', en: 'Spin', es: 'Giro', 'pt-BR': 'Giro',
                           vi: 'Quay', id: 'Putar', tr: 'Çevir', pl: 'Spin',
                         })}
                       </Text>
                       <View testID="home-spin-fab-count" style={{
-                        minWidth: 30,
-                        height: 30,
+                        minWidth: homeActionCountBox,
+                        height: homeActionCountBox,
                         borderRadius: 10,
-                        paddingHorizontal: 7,
+                        paddingHorizontal: homeActionTight ? 5 : 7,
                         alignItems: 'center',
                         justifyContent: 'center',
                         backgroundColor: 'rgba(33,21,0,0.14)',
+                        flexShrink: 0,
                       }}>
-                        <Text maxFontSizeMultiplier={1} style={{ color: '#211500', fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                        <Text maxFontSizeMultiplier={1} style={{ color: '#211500', fontSize: homeActionFontSize, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
                           {homeSpinBalance}
                         </Text>
                       </View>
@@ -3894,7 +3913,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   testID="home-gift-entry"
                   ref={homeGiftEntryTargetRef as React.Ref<View>}
                   collapsable={false}
-                  style={{ position: 'absolute', right: 0, top: 0, bottom: 0, minWidth: 104, justifyContent: 'center' }}
+                  style={{ position: 'absolute', right: 0, top: 0, bottom: 0, minWidth: Math.min(104, homeActionMaxW), maxWidth: homeActionMaxW, justifyContent: 'center', alignItems: 'flex-end' }}
                 >
                 {dailyJourneyUnreadCount > 0 ? (
                   <TapScale
@@ -3923,23 +3942,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       start={{ x: 0, y: 0 }}
                       end={{ x: 0, y: 1 }}
                       style={{
-                        minWidth: 104,
+                        minWidth: Math.min(104, homeActionMaxW),
+                        maxWidth: homeActionMaxW,
                         minHeight: 44,
                         borderRadius: 16,
-                        paddingLeft: 9,
-                        paddingRight: 11,
+                        paddingLeft: homeActionTight ? 7 : 9,
+                        paddingRight: homeActionTight ? 9 : 11,
                         flexDirection: 'row',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        gap: 9,
+                        gap: homeActionGap,
                         backgroundColor: t.accent,
                         borderBottomWidth: 4,
                         borderBottomColor: 'rgba(0,0,0,0.30)',
                       }}
                     >
                       {/* Метка доступности на кнопке, сгенерированный ассет декоративный. */}
-                      <Image source={HOME_DAILY_JOURNEY_GIFT_ART} style={{ width: 24, height: 24 }} contentFit="contain" accessible={false} />
-                      <Text maxFontSizeMultiplier={1} style={{ color: t.correctText, fontSize: 15, fontWeight: '900', letterSpacing: 0.15 }}>
+                      <Image source={HOME_DAILY_JOURNEY_GIFT_ART} style={{ width: homeActionIconSize, height: homeActionIconSize }} contentFit="contain" accessible={false} />
+                      <Text maxFontSizeMultiplier={1} numberOfLines={1} style={{ color: t.correctText, fontSize: homeActionFontSize, fontWeight: '900', letterSpacing: 0.15, flexShrink: 1 }}>
                         {triLang(lang, {
                           ru: 'Подарок', uk: 'Подарунок', en: 'Gift', es: 'Regalo', 'pt-BR': 'Presente',
                           vi: 'Quà', id: 'Hadiah', tr: 'Hediye', pl: 'Prezent',

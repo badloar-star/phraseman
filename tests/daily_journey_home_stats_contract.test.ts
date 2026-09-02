@@ -695,10 +695,17 @@ describe('Home source wiring for Daily Journey', () => {
   });
 
   test('mirrors the elongated Spin control and uses a generated Gift asset', () => {
-    expect(home).toContain('<SpinTicketArt size={24} accessibilityLabel="" />');
+    // зачем (владелец 2026-09-02): размеры обеих кнопок больше не константы —
+    // когда «Спин» и «Подарок» видны одновременно, они наезжали друг на друга
+    // на узкой карточке, поэтому кегль/иконка/зазор считаются из ширины ряда.
+    // Сторож проверяет ЗЕРКАЛЬНОСТЬ: обе кнопки берут размеры из одних и тех
+    // же homeAction*-метрик, а у подарка по-прежнему свой сгенерированный ассет.
+    expect(home).toContain('<SpinTicketArt size={homeActionIconSize} accessibilityLabel="" />');
     expect(home).toContain("require('../../assets/images/daily_journey/home_gift_button.webp')");
-    expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,2600}minWidth: 104[\s\S]{0,500}flexDirection: 'row'[\s\S]{0,500}gap: 9/);
-    expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,3000}<Image source=\{HOME_DAILY_JOURNEY_GIFT_ART\}[\s\S]{0,240}width: 24, height: 24/);
+    expect(home).toContain('const homeActionRowBothVisible = homeSpinBalance > 0 && dailyJourneyUnreadCount > 0;');
+    expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,2600}minWidth: Math\.min\(104, homeActionMaxW\)[\s\S]{0,600}flexDirection: 'row'[\s\S]{0,600}gap: homeActionGap/);
+    expect(home).toMatch(/testID="home-spin-fab-button"[\s\S]{0,2600}minWidth: Math\.min\(104, homeActionMaxW\)[\s\S]{0,600}gap: homeActionGap/);
+    expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,3000}<Image source=\{HOME_DAILY_JOURNEY_GIFT_ART\}[\s\S]{0,300}width: homeActionIconSize, height: homeActionIconSize/);
     expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,3400}ru: 'Подарок'/);
     expect(home.slice(home.indexOf('testID="home-gift-entry-button"'), home.indexOf('</TapScale>', home.indexOf('testID="home-gift-entry-button"'))))
       .not.toContain('<Ionicons name="gift"');

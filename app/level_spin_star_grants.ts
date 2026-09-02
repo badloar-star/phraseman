@@ -551,12 +551,24 @@ function withOperations(
   });
 }
 
+// зачем (владелец, 2026-09-02, письмо «level_spin_star_projection_corrupt» из
+// practice_runes): прежняя версия требовала, чтобы ВСЕ траты рун сошлись в один
+// и тот же восстановленный баланс, иначе бросала corrupt. Инвариант невыполним
+// на живом аккаунте: траты (покупка аватарки, платный спин, пересдача) никогда
+// не компактятся и копятся навсегда, а их balanceBefore записан в базисе того
+// момента. Первый же ack сервера двигает serverBalance — и старая трата даёт
+// один candidate, новая другой. Практика падала на observeCurrentSnapshot и
+// РУНЫ ЗА СЕССИЮ НЕ НАЧИСЛЯЛИСЬ ВООБЩЕ (класс «награду показали, но не начислили»).
+// Теперь истина — САМАЯ СВЕЖАЯ трата: её balanceBefore единственный записан в
+// актуальном базисе, старые устарели по определению, а не «испорчены».
 function inferredServerBalanceFromRecoveryOperations(projection: LevelSpinStarProjection): number | null {
   const ordered = [...projection.operations].sort((left, right) => (
     left.createdAtMs - right.createdAtMs || left.operationId.localeCompare(right.operationId)
   ));
   let localOverlayBefore = 0;
   let inferred: number | null = null;
+  let inferredFromOperationId: string | null = null;
+  let divergentCount = 0;
   for (const operation of ordered) {
     if (operation.schemaVersion === 'client-level-spin-star-operation.v1'
       || operation.schemaVersion === 'client-practice-rune-operation.v1') {
@@ -567,13 +579,37 @@ function inferredServerBalanceFromRecoveryOperations(projection: LevelSpinStarPr
     }
     const candidate = operation.balanceBefore - localOverlayBefore;
     if (!Number.isSafeInteger(candidate) || candidate < 0) {
-      throw new Error('level_spin_star_projection_corrupt');
+      // Отрицательный/нецелый кандидат — трата старше текущего базиса: её
+      // balanceBefore меньше накопленного overlay. Это не порча, а устаревание.
+      // Пропускаем: свежая трата ниже по списку даст корректное значение.
+      DebugLogger.info('level_spin_star_grants:inferred_candidate_stale', JSON.stringify({
+        operationId: operation.operationId,
+        schemaVersion: operation.schemaVersion,
+        balanceBefore: operation.balanceBefore,
+        localOverlayBefore,
+        candidate,
+        serverSeq: projection.serverSeq,
+        serverBalance: projection.serverBalance,
+      }));
+      localOverlayBefore += operation.runeDelta;
+      continue;
     }
-    if (inferred !== null && inferred !== candidate) {
-      throw new Error('level_spin_star_projection_corrupt');
-    }
+    if (inferred !== null && inferred !== candidate) divergentCount += 1;
     inferred = candidate;
+    inferredFromOperationId = operation.operationId;
     localOverlayBefore += operation.runeDelta;
+  }
+  if (divergentCount > 0) {
+    // Раньше здесь был throw. Расхождение ожидаемо и само по себе не порча —
+    // логируем, чтобы аномальные объёмы были видны, и берём свежее значение.
+    DebugLogger.info('level_spin_star_grants:inferred_divergent', JSON.stringify({
+      divergentCount,
+      inferred,
+      inferredFromOperationId,
+      operations: ordered.length,
+      serverSeq: projection.serverSeq,
+      serverBalance: projection.serverBalance,
+    }));
   }
   return inferred;
 }
@@ -584,19 +620,31 @@ function observeCurrentSnapshot(projection: LevelSpinStarProjection): LevelSpinS
   const visibleBalance = Math.max(0, Math.trunc(progress.stars ?? 0));
   const visibleEarned = Math.max(0, Math.trunc(progress.starsEarnedTotal ?? 0));
   const inferredServerBalance = inferredServerBalanceFromRecoveryOperations(projection);
+  // зачем (владелец, 2026-09-02): здесь тоже был throw — при serverSeq === 0 и
+  // расхождении с восстановленным балансом. Он ронял начисление рун за практику
+  // целиком. Расхождение решаем в пользу БОЛЬШЕГО значения: занизить баланс —
+  // отнять у человека честно заработанное, а завысить нельзя, потому что оба
+  // числа получены из его же локальных записей.
   if (projection.serverSeq === 0
     && inferredServerBalance !== null
     && projection.serverBalance !== 0
     && projection.serverBalance !== inferredServerBalance) {
-    throw new Error('level_spin_star_projection_corrupt');
+    DebugLogger.info('level_spin_star_grants:observe_seq0_mismatch', JSON.stringify({
+      serverBalance: projection.serverBalance,
+      inferredServerBalance,
+      visibleBalance,
+      operations: projection.operations.length,
+    }));
   }
   return Object.freeze({
     ...projection,
     serverBalance: projection.serverSeq === 0
-      ? inferredServerBalance ?? Math.max(
-          projection.serverBalance,
-          Math.max(0, visibleBalance - unacknowledgedTotal(projection)),
-        )
+      ? inferredServerBalance !== null
+        ? Math.max(projection.serverBalance, inferredServerBalance)
+        : Math.max(
+            projection.serverBalance,
+            Math.max(0, visibleBalance - unacknowledgedTotal(projection)),
+          )
       : projection.serverBalance,
     serverEarnedTotal: Math.max(
       projection.serverEarnedTotal,
@@ -816,10 +864,40 @@ async function recoverProjection(
       pending.set(operation.operationId, operation);
     }
     if (pending.size > MAX_PENDING_STAR_OPERATIONS) throw new Error('level_spin_star_outbox_full');
-    const compactedOperations = projection.operations.filter((operation) => (
-      operation.schemaVersion === 'client-level-spin-star-operation.v1'
-      && projection.acknowledged[operation.operationId] === operation.requestFingerprint
+    // зачем (владелец, 2026-09-02): траты рун не подпадали НИ ПОД ОДНО условие
+    // компакции — у них другая схема и им никогда не проставляется acknowledged.
+    // Они копились навсегда (потолок 262 144), раздували проекцию и ломали
+    // восстановление баланса устаревшими balanceBefore. Как только сервер
+    // подтвердил свой базис (serverSeq > 0), все траты, кроме самой свежей,
+    // больше ничего не доказывают: их balanceBefore записан в снятом базисе.
+    // Свежую храним — по ней восстанавливается баланс на чистом старте.
+    const spendOperations = projection.operations.filter((operation) => (
+      operation.schemaVersion !== 'client-level-spin-star-operation.v1'
+      && operation.schemaVersion !== 'client-practice-rune-operation.v1'
     ));
+    const newestSpendOperationId = spendOperations.length > 0
+      ? [...spendOperations].sort((left, right) => (
+          left.createdAtMs - right.createdAtMs || left.operationId.localeCompare(right.operationId)
+        ))[spendOperations.length - 1].operationId
+      : null;
+    const staleSpendOperations = projection.serverSeq > 0
+      ? spendOperations.filter((operation) => operation.operationId !== newestSpendOperationId)
+      : [];
+    if (staleSpendOperations.length > 0) {
+      DebugLogger.info('level_spin_star_grants:spend_compaction', JSON.stringify({
+        stale: staleSpendOperations.length,
+        keptOperationId: newestSpendOperationId,
+        serverSeq: projection.serverSeq,
+        serverBalance: projection.serverBalance,
+      }));
+    }
+    const compactedOperations = [
+      ...projection.operations.filter((operation) => (
+        operation.schemaVersion === 'client-level-spin-star-operation.v1'
+        && projection.acknowledged[operation.operationId] === operation.requestFingerprint
+      )),
+      ...staleSpendOperations,
+    ];
     if (compactedOperations.length > 0) {
       const compactedOperationIds = new Set(compactedOperations.map((operation) => operation.operationId));
       if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
@@ -1673,16 +1751,27 @@ export async function syncPendingLevelSpinStarGrants(
             current.filter((candidate) => candidate.operationId !== operation.operationId),
           )],
         ]);
+        // зачем (владелец, 2026-09-02): здесь ack-метки стирались ЦЕЛИКОМ
+        // (acknowledged: {}), хотя в recoverProjection practice-метки намеренно
+        // сохраняются — у практики нет своей durable-квитанции, и её overlay
+        // снимается ТОЛЬКО меткой. Стёртая метка возвращала уже зачтённую руну
+        // в overlay, то есть задваивала её. Сохраняем practice-метки и тут.
+        const compactedIds = next.operations.filter((candidate) => (
+          next.acknowledged[candidate.operationId] === candidate.requestFingerprint
+          && !candidate.operationId.startsWith('practice_rune:')
+        ));
+        const compactedIdSet = new Set(compactedIds.map((candidate) => candidate.operationId));
         const compacted: LevelSpinStarProjection = Object.freeze({
           ...next,
           operations: Object.freeze(next.operations.filter((candidate) => (
-            next.acknowledged[candidate.operationId] !== candidate.requestFingerprint
+            !compactedIdSet.has(candidate.operationId)
           ))),
-          acknowledged: Object.freeze({}),
+          acknowledged: Object.freeze(Object.fromEntries(
+            Object.entries(next.acknowledged).filter(([operationId]) => (
+              !compactedIdSet.has(operationId) || operationId.startsWith('practice_rune:')
+            )),
+          )),
         });
-        const compactedIds = next.operations.filter((candidate) => (
-          next.acknowledged[candidate.operationId] === candidate.requestFingerprint
-        ));
         if (compactedIds.length > 0) {
           await AsyncStorage.multiRemove(compactedIds.map((candidate) => (
             operationStorageKey(ownerStableId, candidate.operationId)

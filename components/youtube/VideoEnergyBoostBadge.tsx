@@ -6,18 +6,29 @@
  * появляется по плею и исчезает по паузе — он честный индикатор работающего
  * ускорения, а не украшение.
  *
+ * Владелец выбрал вариант C: одна строка «+1 через 7:12» с символом энергии.
+ * Тихо и без лишних слов — работу ускорения показывает сам счётчик, который на
+ * глазах тает втрое быстрее обычного.
+ *
+ * ВРЕМЯ БЕРЁТСЯ ТОЛЬКО ИЗ useEnergyCountdown — требование владельца: источник
+ * времени обязан быть один, иначе цифры разойдутся между значком, полоской
+ * энергии в шапке и модалкой «нет энергии». Своего таймера здесь нет и быть не
+ * должно; тот же счётчик уже питает EnergyBar, NoEnergyModal и
+ * LessonEnergyLightning.
+ *
  * Почему сам себе фон, а не тема: значок лежит поверх ЧЁРНОГО кадра видео, где
  * тёмная тема даёт нечитаемый контраст. Поэтому подложка тёмно-стеклянная с
  * собственной непрозрачностью, а текст белый — 4.5:1 держится в обеих темах.
  * Обводки нет (запрет владельца): форму держат тон подложки и скругление.
  */
 
-import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Easing, StyleSheet, Text } from 'react-native';
+import React, { memo, useEffect, useRef, useState } from 'react';
+import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
 import { triLang } from '../../constants/i18n';
 import { LUM } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { useEnergyCountdown } from '../EnergyContext';
 import { useLang } from '../LangContext';
 
 const ENERGY_IMAGE = require('../../assets/images/energy/energy-start-cost.webp');
@@ -31,10 +42,13 @@ type VideoEnergyBoostBadgeProps = {
 function VideoEnergyBoostBadge({ visible, testID }: VideoEnergyBoostBadgeProps) {
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
+  // Тикаем только пока значок на экране: скрытый счётчик — лишние ре-рендеры
+  // поверх играющего видео.
+  const { formattedTime } = useEnergyCountdown({ visible });
   const enter = useRef(new Animated.Value(visible ? 1 : 0)).current;
   // Держим смонтированным на время выходной анимации: иначе значок исчезал бы
   // рывком, а по правилу движения выход обязан быть короче входа, но плавным.
-  const [mounted, setMounted] = React.useState(visible);
+  const [mounted, setMounted] = useState(visible);
 
   useEffect(() => {
     if (visible) setMounted(true);
@@ -57,17 +71,20 @@ function VideoEnergyBoostBadge({ visible, testID }: VideoEnergyBoostBadgeProps) 
   }, [enter, reduceMotion, visible]);
 
   if (!mounted) return null;
+  // Пустая строка = энергия полная или безлимит: обещать «+1» в этот момент
+  // было бы враньём, а свой запасной текст развёл бы источники времени.
+  if (!formattedTime) return null;
 
   const label = triLang(lang, {
-    ru: 'Энергия копится быстрее',
-    uk: 'Енергія накопичується швидше',
-    en: 'Energy refills faster',
-    es: 'La energía se recarga más rápido',
-    'pt-BR': 'A energia recarrega mais rápido',
-    vi: 'Năng lượng hồi nhanh hơn',
-    id: 'Energi terisi lebih cepat',
-    tr: 'Enerji daha hızlı doluyor',
-    pl: 'Energia ładuje się szybciej',
+    ru: `+1 через ${formattedTime}`,
+    uk: `+1 через ${formattedTime}`,
+    en: `+1 in ${formattedTime}`,
+    es: `+1 en ${formattedTime}`,
+    'pt-BR': `+1 em ${formattedTime}`,
+    vi: `+1 sau ${formattedTime}`,
+    id: `+1 dalam ${formattedTime}`,
+    tr: `${formattedTime} sonra +1`,
+    pl: `+1 za ${formattedTime}`,
   });
 
   const translateY = enter.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] });
@@ -88,9 +105,12 @@ function VideoEnergyBoostBadge({ visible, testID }: VideoEnergyBoostBadgeProps) 
         accessible={false}
         importantForAccessibility="no"
       />
-      <Text maxFontSizeMultiplier={1.2} style={styles.label} numberOfLines={1}>
-        {label}
-      </Text>
+      <View style={styles.labelWrap}>
+        {/* Моноширинные цифры: без них строка дёргается на каждой смене секунды. */}
+        <Text maxFontSizeMultiplier={1.2} style={styles.label} numberOfLines={1}>
+          {label}
+        </Text>
+      </View>
     </Animated.View>
   );
 }
@@ -104,7 +124,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    maxWidth: '72%',
+    maxWidth: '66%',
     paddingLeft: 6,
     paddingRight: 12,
     paddingVertical: 6,
@@ -113,12 +133,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(5,8,18,0.82)',
   },
   icon: { width: 20, height: 20 },
+  labelWrap: { flexShrink: 1 },
   label: {
-    flexShrink: 1,
     color: '#FFFFFF',
     fontSize: 12,
     lineHeight: 16,
     fontWeight: '800',
+    fontVariant: ['tabular-nums'],
   },
 });
 

@@ -1292,6 +1292,44 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
   ACHIEVEMENT_ACCESS_PRO_PAID_KEY,
 ]);
 
+/**
+ * зачем (владелец 2026-09-02): зеркало блок-листов firestore.rules
+ * (blockedPremiumProgressKeys + серверные ключи progress). Нужно ТОЛЬКО для
+ * диагностики отказа: лог печатает 800 ключей, RN обрезает строку на ~144, и
+ * виновника в ней не видно. Эта функция называет нарушителя сама.
+ *
+ * Список ведётся вручную в двух местах (правила и клиент) и уже расходился —
+ * поэтому здесь он полный, включая ключи, которых нет в клиентских фильтрах.
+ */
+const RULES_BLOCKED_PROGRESS_KEYS: ReadonlySet<string> = new Set([
+  'premium_plan', 'premium_expiry', 'premium_rc_product_id', 'premium_rc_period_type',
+  'premium_rc_store', 'premium_rc_environment', 'premium_rc_event_type',
+  'premium_rc_updated_at', 'premium_rc_expiry_ms', 'premium_rc_purchased_at_ms',
+  'premium_rc_cancelled_at', 'premium_rc_active_lineage', 'premium_rc_reconcile_needed',
+  'admin_premium_override', 'premium_admin_grant_at', 'had_premium_ever',
+  'vip_active', 'vip_plan', 'vip_from', 'vip_until', 'vip_admin_override',
+  'vip_admin_grant_at', 'vip_migrated_from_admin_grant_at',
+  'intro_access_until_ms', 'intro_access_granted_at_ms',
+  'loyalty_gift_until_ms', 'loyalty_gift_granted_at_ms',
+  'referral_vip_last_source', 'promo_vip_last_code',
+  'lesson1_pass_live', 'lesson_progress_v2::fr::lesson1_pass_live',
+  'collectibles_owned_v1', 'collectibles_state_v1',
+  'profile_card_level', 'shard_survey_last_at_ms',
+  'achievement_access_plus_paid_v1', 'achievement_access_pro_paid_v1',
+  'referral_spin_credits', 'level_reward_spin_balance', 'referral_spins_total',
+  'referral_spin_ledger_version', 'referral_spin_ledger_migrated_at_ms',
+  // серверные ключи прогресса (тот же update-блок правил)
+  'user_total_xp', 'user_prev_xp', 'user_level', 'weekly_xp', 'weekly_xp_period_start',
+  'week_points', 'week_points_v2', 'streak_count', 'last_active_date', 'streak_last_date',
+  'unlocked_lessons', 'chain_shield', 'gift_xp_multiplier', 'club_gift_free_boost_v1',
+]);
+
+/** Ключи патча, которые правила Firestore запрещают клиенту писать. */
+export function findRulesBlockedKeys(keys: readonly string[]): string[] {
+  return keys.filter((key) => RULES_BLOCKED_PROGRESS_KEYS.has(key)
+    || isServerOwnedProgressKey(key));
+}
+
 export const isServerOwnedProgressKey = (key: string): boolean => {
   if (SERVER_OWNED_PROGRESS_KEYS.has(key)) return true;
   if (/^lesson\d+_(?:best_score|pass_count|progress|cellIndex)$/.test(key)) return true;
@@ -2331,7 +2369,10 @@ export async function ensureStableAuthLinkForStableIdDetailed(
   // подмены stable_id 2026-08-25), нужны факты: кто именно зовёт и почему.
   // Лог печатает САМО значение, решившее ветку, и стек вызывающего.
   // Убрать после починки; строки в catch ниже остаются навсегда.
-  if (__DEV__ || AUTH_LOOP_TRACE_ENABLED) {
+  // зачем: в тестовой среде глобальной __DEV__ нет, и голая ссылка роняла два
+  // контрактных теста синхронизации с ReferenceError. Тот же приём защиты
+  // уже применён выше в этом файле. Поведение в приложении не меняется.
+  if ((typeof __DEV__ !== 'undefined' && __DEV__) || AUTH_LOOP_TRACE_ENABLED) {
     _authLinkCallNo += 1;
     const willCallNetwork = options.requireAuthoritative === true || hasFreshMetadata || !cacheHit;
     const caller = new Error().stack?.split('\n').slice(2, 5).join(' <- ').replace(/\s+/g, ' ') ?? 'unknown';
@@ -3035,6 +3076,10 @@ async function doSyncToCloud(): Promise<void> {
   const syncGeneration = captureAccountGeneration();
   const isSyncGenerationCurrent = () => isCurrentAccountGeneration(syncGeneration, uid);
   if (!isSyncGenerationCurrent()) return;
+  // зачем: патч объявлен ДО try, чтобы обработчик отказа мог напечатать его
+  // состав. Именно списка ключей и не хватало, чтобы понять, какое поле роняет
+  // весь set (правило update проверяет шесть условий сразу).
+  const progressPatch: Record<string, string | null> = {};
   try {
     // зачем: облачные мутации выполняем только под подтверждённой каноничной
     // идентичностью — иначе очередь может дописать чужому аккаунту.
@@ -3120,7 +3165,7 @@ async function doSyncToCloud(): Promise<void> {
       }
     }
 
-    const progressPatch: Record<string, string | null> = {};
+
     for (const [key, value] of Object.entries(data)) {
       if (!shouldSyncPremiumProgressField(key, value, data)) continue;
       // Карточки уже в подколлекции — в документ их не дублируем.
@@ -3211,17 +3256,47 @@ async function doSyncToCloud(): Promise<void> {
     }
     // Печатаем uid и состав записи — какое из правил users/{userId} отклонило set,
     // видно сразу, без реконструкции payload по коду.
-    if (__DEV__) {
-      const code = (e as { code?: string } | null)?.code ?? '';
-      if (String(code).includes('permission-denied')) {
-        console.warn(
-          '[cloud_sync] doSyncToCloud rejected by rules',
-          { uid, authUid: getAuthUserId(), authMatchesStableId: getAuthUserId() === uid },
-          e,
-        );
-      } else {
-        console.warn('[cloud_sync] doSyncToCloud failed', e);
-      }
+    const code = (e as { code?: string } | null)?.code ?? '';
+    if (String(code).includes('permission-denied')) {
+      /**
+       * зачем (владелец 2026-09-02): прежний лог печатал только
+       * authMatchesStableId, и это ЛОЖНЫЙ след — stableId и authUid разные по
+       * определению, они и не должны совпадать. Диагностика 02.09 показала, что
+       * личность у отказа была в полном порядке (auth_links и обратная ссылка на
+       * месте, маркеров удаления нет), а запись всё равно резалась. Значит режет
+       * СОСТАВ патча: правило update для users/{userId} проверяет ещё шесть
+       * условий, и любое запрещённое поле роняет весь set целиком — вместе с XP.
+       * Без списка ключей причину не найти, поэтому печатаем сами ключи (не
+       * значения — в них личные данные).
+       *
+       * Логи СОЗНАТЕЛЬНО вне __DEV__: ровно из-за `if (__DEV__)` этот отказ
+       * месяцами оставался невидимым в сторовой сборке, пока у трёх активных
+       * аккаунтов молча не сохранялся весь прогресс.
+       */
+      console.warn('[SYNC-DENY] users write rejected by rules', {
+        uid,
+        authUid: getAuthUserId(),
+        progressKeyCount: Object.keys(progressPatch).length,
+        // Главное поле: ключи, которые правила запрещают. Пусто → причина не в
+        // составе патча (смотри размер документа и остальные условия update).
+        blockedKeys: findRulesBlockedKeys(Object.keys(progressPatch)),
+        // Первые 40 ключей — на случай, если нарушителей нет и нужен контекст.
+        progressKeysHead: Object.keys(progressPatch).slice(0, 40),
+        sentProgress: Object.keys(progressPatch).length > 0,
+        code,
+        reason: e instanceof Error ? e.message : String(e),
+      });
+      DebugLogger.error(
+        'cloud_sync:permission_denied',
+        e instanceof Error ? e : new Error(String(e)),
+        'critical',
+      );
+    } else {
+      console.warn('[SYNC-DENY] users write failed', {
+        uid,
+        code,
+        reason: e instanceof Error ? e.message : String(e),
+      });
     }
   }
 }

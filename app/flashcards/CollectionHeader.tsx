@@ -8,10 +8,9 @@
  * Замечания владельца после теста на iPhone:
  *   • на экране НАБОРА строки поиска по карточкам быть не должно
  *     (в «Сохранённых» поиск остаётся) — контейнер шлёт `showSearch={false}`;
- *   • «Слушать» и «Тренировать» переехали СЮДА, наверх, компактными
- *     иконками без подписей (раньше — широкие кнопки с текстом внизу экрана);
+ *   • режимы тренировки выбираются на хабе карточек, шапка коллекции их не дублирует;
  *   • у набора видно НИК автора, а не технический идентификатор;
- *   • своя (ещё не опубликованная) коллекция получает кнопку «Сделать публичным».
+ *   • своя (ещё не опубликованная) коллекция получает кнопку «Отправить в сообщество».
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useMemo } from 'react';
@@ -24,11 +23,9 @@ import { packTitleForInterface, type FlashcardMarketPack } from './marketplace';
 import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
 import type { FcCollectionViewMode } from './collection_view_prefs';
 import type { FilterGroup } from './selectors';
-import EnergyCostBadge from '../../components/EnergyCostBadge';
 
-const MODE_BUTTON_SIZE = 30;
-const MODE_ICON_SIZE = 14;
-const VIEW_TOGGLE_ICON_SIZE = 13;
+const VIEW_TOGGLE_SIZE = 40;
+const VIEW_TOGGLE_ICON_SIZE = 18;
 
 type Props = {
   t: Theme;
@@ -53,11 +50,7 @@ type Props = {
   searchInput: string;
   searchActive: boolean;
   onSearchInput: (v: string) => void;
-  /** Компактные иконки «Слушать» / «Тренировать» вверху (§ замечание владельца). */
-  showModeButtons?: boolean;
-  onListen?: () => void;
-  onTrain?: () => void;
-  /** «Сделать публичным» — только для своей ещё не опубликованной коллекции. */
+  /** «Отправить в сообщество» — только для своей ещё не опубликованной коллекции. */
   showPublish?: boolean;
   publishBusy?: boolean;
   onPublish?: () => void;
@@ -84,9 +77,6 @@ export default function CollectionHeader({
   searchInput,
   searchActive,
   onSearchInput,
-  showModeButtons = false,
-  onListen,
-  onTrain,
   showPublish = false,
   publishBusy = false,
   onPublish,
@@ -148,65 +138,29 @@ export default function CollectionHeader({
     'pt-BR': 'Filtro', vi: 'Bộ lọc', id: 'Filter', tr: 'Filtre', pl: 'Filtr',
   });
 
-  const listenA11yLabel = triLang(lang, {
-    ru: 'Слушать', uk: 'Слухати', en: 'Listen', es: 'Escuchar',
-    'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Słuchaj',
-  });
-  const trainA11yLabel = triLang(lang, {
-    ru: 'Тренировать', uk: 'Тренувати', en: 'Train', es: 'Entrenar',
-    'pt-BR': 'Treinar', vi: 'Luyện tập', id: 'Latih', tr: 'Çalış', pl: 'Trenuj',
-  });
-  const publishLabel = triLang(lang, {
-    ru: 'Сделать публичным',
-    uk: 'Зробити публічним',
-    en: 'Make public',
-    es: 'Hacer público',
-    'pt-BR': 'Tornar público',
-    vi: 'Công khai bộ thẻ',
-    id: 'Jadikan publik',
-    tr: 'Herkese açık yap',
-    pl: 'Udostępnij publicznie',
-  });
+  const viewToggleLabel = viewMode === 'list'
+    ? triLang(lang, {
+        ru: 'Показать как набор', uk: 'Показати як набір', en: 'Show as a deck', es: 'Mostrar como mazo',
+        'pt-BR': 'Mostrar como conjunto', vi: 'Hiển thị dạng bộ thẻ', id: 'Tampilkan sebagai set',
+        tr: 'Deste olarak göster', pl: 'Pokaż jako zestaw',
+      })
+    : triLang(lang, {
+        ru: 'Показать списком', uk: 'Показати списком', en: 'Show as a list', es: 'Mostrar como lista',
+        'pt-BR': 'Mostrar como lista', vi: 'Hiển thị dạng danh sách', id: 'Tampilkan sebagai daftar',
+        tr: 'Liste olarak göster', pl: 'Pokaż jako listę',
+      });
 
-  /** Компактная иконочная кнопка режима — без подписи (§ замечание владельца). */
-  const modeButton = (
-    key: 'listen' | 'train',
-    icon: 'headset-outline' | 'barbell-outline',
-    a11y: string,
-    onPress: (() => void) | undefined,
-  ) => (
-    <View style={{ width: MODE_BUTTON_SIZE, height: MODE_BUTTON_SIZE, position: 'relative', overflow: 'visible' }}>
-    <TouchableOpacity
-      testID={key === 'listen' ? 'fc-listen-deck' : 'fc-train-deck'}
-      accessibilityLabel={key === 'listen' ? 'qa-fc-listen-deck' : 'qa-fc-train-deck'}
-      accessibilityRole="button"
-      accessibilityHint={a11y}
-      accessible
-      onPress={onPress}
-      activeOpacity={0.85}
-      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      style={{
-        width: MODE_BUTTON_SIZE,
-        height: MODE_BUTTON_SIZE,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: key === 'train' ? t.accent : `${t.accent}66`,
-        backgroundColor: key === 'train' ? t.accent : `${t.accent}14`,
-      }}
-    >
-      <Ionicons name={icon} size={MODE_ICON_SIZE} color={key === 'train' ? t.correctText : t.accent} />
-    </TouchableOpacity>
-      <EnergyCostBadge
-        micro
-        testID={key === 'listen'
-          ? 'flashcards-collection-listen-energy-cost'
-          : 'flashcards-collection-train-energy-cost'}
-        style={{ right: -2 }}
-      />
-    </View>
-  );
+  const publishLabel = triLang(lang, {
+    ru: 'Отправить в сообщество',
+    uk: 'Надіслати до спільноти',
+    en: 'Send to community',
+    es: 'Enviar a la comunidad',
+    'pt-BR': 'Enviar para a comunidade',
+    vi: 'Gửi tới cộng đồng',
+    id: 'Kirim ke komunitas',
+    tr: 'Topluluğa gönder',
+    pl: 'Wyślij do społeczności',
+  });
 
   return (
     <>
@@ -217,35 +171,58 @@ export default function CollectionHeader({
           borderBottomWidth: 0.5, borderBottomColor: t.border,
         }}
       >
-        <TouchableOpacity testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={onBack} style={{ width: 40 }} hitSlop={{ top:12,bottom:12,left:12,right:12 }}>
+        <TouchableOpacity
+          testID="flashcards-header-back"
+          accessibilityLabel={triLang(lang, {
+            ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
+            vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+          })}
+          accessibilityRole="button"
+          accessible
+          onPress={onBack}
+          style={{ width: 40 }}
+          hitSlop={{ top:12,bottom:12,left:12,right:12 }}
+        >
           <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
         </TouchableOpacity>
+        {/*
+          зачем: динамическое сжатие шрифта (adjustsFontSizeToFit) здесь запрещено —
+          на iOS оно ужимает КОРОТКИЕ варианты до крошечного кегля (класс регрессии,
+          AGENTS.md → Layout stability, храповик tests/layout_stability_contract).
+          Длинные заголовки лечим вёрсткой: кегль уже подобран по ширине экрана
+          (titleFontSize), а остаток переносится на вторую строку. Названия наборов
+          пользовательские (до 200 символов на сервере), поэтому вторая строка при
+          переполнении обрезается многоточием — но кегль остаётся читаемым всегда.
+          Шапка без фиксированной высоты (alignItems:'center'), поэтому вторая
+          строка растит строку целиком, а кнопки остаются по центру — без прыжка.
+        */}
         <Text
           style={{
             fontWeight: '700', letterSpacing: 0.2, color: t.textPrimary, fontSize: titleFontSize,
+            lineHeight: Math.round(titleFontSize * 1.2),
             flex: 1, minWidth: 0, textAlign: 'center', paddingHorizontal: 4,
           }}
-          numberOfLines={1}
+          numberOfLines={2}
           maxFontSizeMultiplier={1.2}
         >
           {headerTitle}
         </Text>
         <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 6, flexShrink: 0 }}>
-          {/* Режимы «Слушать» / «Тренировать» — компактно, только иконки */}
-          {showModeButtons && modeButton('listen', 'headset-outline', listenA11yLabel, onListen)}
-          {showModeButtons && modeButton('train', 'barbell-outline', trainA11yLabel, onTrain)}
           {/* E11: переключатель «Список / Набор» (персист fc_collection_view_v1) */}
           {showViewToggle && (
             <TouchableOpacity
               testID="fc-view-toggle"
-              accessibilityLabel="qa-fc-view-toggle"
+              accessibilityLabel={viewToggleLabel}
+              accessibilityRole="button"
               accessible
               onPress={onToggleViewMode}
               hitSlop={{ top:11,bottom:11,left:9,right:9 }}
               style={{
-                paddingHorizontal: 7,
-                paddingVertical: 5,
-                borderRadius: 10,
+                width: VIEW_TOGGLE_SIZE,
+                height: VIEW_TOGGLE_SIZE,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 13,
                 borderWidth: 1,
                 borderColor: viewMode === 'deck' ? t.accent : t.border,
                 backgroundColor: viewMode === 'deck' ? `${t.accent}18` : 'transparent',
@@ -261,18 +238,24 @@ export default function CollectionHeader({
           {/* E11: фильтр на всех вкладках, где есть группы источников */}
           {filterGroups.length > 0 && (
             <TouchableOpacity
+              accessibilityLabel={filterLabel}
+              accessibilityRole="button"
+              accessibilityState={{ expanded: filterOpen }}
               onPress={onToggleFilterOpen}
               hitSlop={{ top:8,bottom:8,left:8,right:8 }}
               style={{
                 flexDirection: 'row', alignItems: 'center', gap: 3,
-                paddingHorizontal: 10, paddingVertical: 5,
+                minHeight: 40, paddingHorizontal: 10,
                 borderRadius: 12, borderWidth: 1,
                 borderColor: activeFilter !== 'all' ? t.accent : t.border,
                 backgroundColor: activeFilter !== 'all' ? t.accent + '18' : 'transparent',
               }}
             >
               <Ionicons name="filter-outline" size={12} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
-              <Text style={{ fontSize: f.caption, fontWeight: '600', color: activeFilter !== 'all' ? t.accent : t.textSecond }}>
+              <Text
+                numberOfLines={1}
+                style={{ maxWidth: screenW < 360 ? 44 : 86, fontSize: f.caption, fontWeight: '600', color: activeFilter !== 'all' ? t.accent : t.textSecond }}
+              >
                 {activeFilter === 'all'
                   ? filterLabel
                   : (filterOptions.find(o => o.key === activeFilter)?.label ?? filterLabel)}
@@ -298,7 +281,7 @@ export default function CollectionHeader({
         </View>
       ) : null}
 
-      {/* «Сделать публичным» — своя ещё не опубликованная коллекция */}
+      {/* «Отправить в сообщество» — своя ещё не опубликованная коллекция */}
       {showPublish ? (
         <TouchableOpacity
           testID="fc-pack-publish"

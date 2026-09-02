@@ -279,6 +279,25 @@ export default function MaxLessonsScreen() {
       // Прогрев — оптимизация: не вышло, значит связь подготовится при старте.
       DebugLogger.warn('[MAX-LESSONS]', `прогрев не удался: ${e instanceof Error ? e.message : String(e)}`);
     });
+
+    // зачем (владелец 2026-09-02, факт из Firestore): этот экран СОЗДАВАЛ
+    // заготовку, но НИКОГДА её не отпускал. Прогрет урок a1_greet, человек жмёт
+    // a1_numbers_age — ключи разные, экран звонка чужую заготовку не заберёт, и
+    // её серверный резерв (620с) остаётся сиротой: клиент про эту сессию не
+    // знает, а settle по сессии звонка уходит в alreadySettled (id не совпал).
+    // В базе это выглядело так: activeSessionId=vs_04ad1bd7 (прогрев),
+    // lastSettledSessionId=vs_a3529b76 (звонок), reservedSec=620 — и следующие
+    // звонки били в этот сиротский резерв с voice_session_active.
+    return () => {
+      void import('./max_call_premint').then(({ abandonPremint, premintKey }) =>
+        import('./max_call_mint_request').then(({ releaseUnusedMint }) => {
+          abandonPremint(premintKey(callParams), releaseUnusedMint);
+        }),
+      ).catch((e) => {
+        // Ранний выход обязан объясняться: непущенная заготовка держит минуты.
+        DebugLogger.warn('[MAX-LESSONS]', `отпускание прогрева не удалось: ${e instanceof Error ? e.message : String(e)}`);
+      });
+    };
   }, [lang, recommendedId, studyTarget]);
 
   // ── Список: заголовки уровней + уроки ─────────────────────────────────────

@@ -76,6 +76,7 @@ import {
 } from './lesson_analytics_attempt';
 import { trackLessonStart, trackLessonAbandoned, trackAnswer, trackEnergyHit } from './user_stats';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
+import { beginEnergySpendTrace, endEnergySpendTrace, markEnergySpendStage } from './energy_spend_latency_trace';
 import { getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
 import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import type { LessonPhrase } from './lesson_data_types';
@@ -457,9 +458,7 @@ interface LessonContentProps {
   comboCount: number;
   showTapHint: boolean;
   setShowTapHint: (val: boolean) => void;
-  showToBeHint: boolean;
   phraseWordIdx: number;
-  hintPulseAnim: Animated.Value;
   wasWrong: boolean;
   textInputRef: React.RefObject<TextInput>;
   settings: any;
@@ -539,9 +538,7 @@ const LessonContent = React.memo(function LessonContent({
   comboCount,
   showTapHint,
   setShowTapHint,
-  showToBeHint,
   phraseWordIdx,
-  hintPulseAnim,
   wasWrong,
   textInputRef,
   settings,
@@ -777,11 +774,10 @@ const LessonContent = React.memo(function LessonContent({
         word,
         index: i,
         isCorrectOption,
-        shouldShowHint: showToBeHint && cellIndex < 2 && isCorrectOption,
         displayText,
       };
     });
-  }, [shuffled, phraseEnterKey, phraseWordIdx, contrExpanded, currentCorrectWord, currentValidContraction, showToBeHint, cellIndex, s.lesson.noArticle]);
+  }, [shuffled, phraseEnterKey, phraseWordIdx, contrExpanded, currentCorrectWord, currentValidContraction, s.lesson.noArticle]);
   const selectedAnswerMatchesAlternative = Boolean(
     gradeAlts?.length && isCorrectAnswer(selectedAnswer, gradeTarget, gradeAlts)
   );
@@ -1388,14 +1384,16 @@ const LessonContent = React.memo(function LessonContent({
             style={{ paddingHorizontal: lessonHorizontalPadding, paddingTop: linkedSliceCompact ? 2 : 4, paddingBottom: linkedSliceCompact ? 2 : 4 }}
           >
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
-              {wordOptionItems.map(({ optionKey, word, index: i, isCorrectOption, shouldShowHint, displayText }) => {
+              {wordOptionItems.map(({ optionKey, word, index: i, isCorrectOption, displayText }) => {
                 return (
                   <Animated.View
                     key={optionKey}
                     style={{
                     width: '48%',
                     marginBottom: linkedSliceCompact ? 5 : (compact ? 7 : 10),
-                    opacity: (fiftyFiftyActive && fiftyFiftyDimmed.has(i)) ? 0.22 : (shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] }))
+                    // зачем: владелец убрал подсказку-пульсацию правильного слова на первых
+                    // фразах урока 1 — осталось только приглушение от «50 на 50».
+                    opacity: (fiftyFiftyActive && fiftyFiftyDimmed.has(i)) ? 0.22 : 1
                   }}>
                     {(() => {
                       // Плитка вспыхивает АКЦЕНТНЫМ цветом темы при нажатии (единый
@@ -2125,7 +2123,6 @@ function LessonScreen() {
   const [showIntroScreens, setShowIntroScreens] = useState(false);
   const [introGateReady, setIntroGateReady] = useState(false);
   const consumedReplayIntroTokenRef = useRef<string | null>(null);
-  const [showToBeHint, setShowToBeHint] = useState(false);
   // No energy modal after 3 failed taps
   const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
   const [failedTapCount, setFailedTapCount] = useState(0);
@@ -2140,8 +2137,6 @@ function LessonScreen() {
   const fadeAnim    = useRef(new Animated.Value(0)).current;
   const toastAnim   = useRef(new Animated.Value(0)).current;
   const cursorAnim  = useRef(new Animated.Value(1)).current;
-  const hintPulseAnim = useRef(new Animated.Value(0.4)).current;
-  const hintLoopRef = useRef<Animated.CompositeAnimation | null>(null);
   const autoTimer   = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Пока в дочернем LessonContent открыта панель «Скажи вслух», авто-переход к
   // следующей фразе заморожен: юзер хочет остаться на фразе (переслушать эталон/
@@ -2479,32 +2474,6 @@ function LessonScreen() {
     }, Platform.OS === 'android' ? 90 : 30);
   }, [settings.speechRate, speakAudio, stopAudio, studyTarget]);
 
-  // Pulsing animation for to-be hint (only on first phrase of lesson 1)
-  useEffect(() => {
-    if (lessonRuntimeActive && showToBeHint && cellIndex < 2) {
-      hintLoopRef.current = Animated.loop(
-        Animated.sequence([
-          Animated.timing(hintPulseAnim, {
-            toValue: 1,
-            duration: 600,
-            useNativeDriver: true,
-          }),
-          Animated.timing(hintPulseAnim, {
-            toValue: 0.4,
-            duration: 600,
-            useNativeDriver: true,
-          }),
-        ])
-      );
-      hintLoopRef.current.start();
-    } else {
-      hintPulseAnim.setValue(0.4);
-    }
-    return () => {
-      hintLoopRef.current?.stop();
-    };
-  }, [cellIndex, hintPulseAnim, lessonRuntimeActive, showToBeHint]);
-
   // Reset failed tap counter when energy recovers or phrase changes
   useEffect(() => {
     if (currentEnergy > 0) {
@@ -2661,12 +2630,25 @@ function LessonScreen() {
   // одна единица за тот же урок. Латч живёт по lessonId, поэтому переход на
   // ДРУГОЙ урок (смена lessonId) честно платится заново, а возврат в тот же —
   // нет. Размонтирование экрана сбрасывает ref естественным образом.
+  // зачем: трассировка [ENERGY-SPEND-LAT] начинается на МОНТИРОВАНИИ экрана, а
+  // не на energyReady — иначе ожидание самого гейта (главный подозреваемый в
+  // «анимация не сразу») осталось бы за кадром замера.
   useEffect(() => {
-    if (!energyReady) return;
+    beginEnergySpendTrace(`spend:${String(lessonId)}`);
+  }, [lessonId]);
+
+  useEffect(() => {
+    const traceKey = `spend:${String(lessonId)}`;
+    if (!energyReady) {
+      markEnergySpendStage(traceKey, 'гейт energyReady=false — эффект списания ещё не стартовал');
+      return;
+    }
     if (entryEnergyGateLessonRef.current === lessonId) return;
     entryEnergyGateLessonRef.current = lessonId;
+    markEnergySpendStage(traceKey, 'гейт пройден (energyReady=true), зовём confirmSpendOne');
     let active = true;
     void confirmSpendOneRef.current(lessonEnergyIntent).then(result => {
+      endEnergySpendTrace(traceKey, String(result));
       if (!active) return;
       if (result === 'spent') void acknowledgeSessionStart(lessonEnergyIntent.operationId);
       if (result === 'insufficient') showEnergyEmptyFeedback();
@@ -2865,12 +2847,6 @@ function LessonScreen() {
         AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(() => {});
       }
 
-      // Подсказка (подсветка правильного слова) только для урока 1 при первом посещении
-      if (lessonId === 1 && startCell === 0 && !sp) {
-        setShowToBeHint(true);
-      } else {
-        setShowToBeHint(false);
-      }
       setCellIndex(startCell);
 
       // Перемешиваем слова для стартовой фразы (с пропуском ведущих «-» позиций)
@@ -3251,14 +3227,6 @@ function LessonScreen() {
     // при исключении в коде ниже — иначе экран навсегда перестал бы принимать ответы.
     answerInFlightRef.current = false;
 
-    // ==================== NEW: Handle to-be hint and encouragement screens ====================
-    if (isRight) {
-      // Disable correct-word hint after first two tests
-      if (cellIndex === 1) {
-        setShowToBeHint(false);
-      }
-
-    }
     fadeAnim.stopAnimation(() => {
       if (reduceMotion) {
         fadeAnim.setValue(1);
@@ -3995,9 +3963,7 @@ function LessonScreen() {
             comboCount={comboCount}
             showTapHint={showTapHint}
             setShowTapHint={setShowTapHint}
-            showToBeHint={showToBeHint}
             phraseWordIdx={phraseWordIdx}
-            hintPulseAnim={hintPulseAnim}
             wasWrong={wasWrong}
             textInputRef={textInputRef}
             settings={settings}

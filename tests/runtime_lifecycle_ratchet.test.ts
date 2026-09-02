@@ -106,7 +106,10 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
     ['playing: boolean', 'equalizerMotionMode({ playing', 'cancelAnimation('],
   ),
   'app/language_welcome.tsx': { owner: 'disabled', reason: 'Only a documentation reference to Animated.loop remains; the final screen explicitly has no repeating motion.', requiredTokens: ['НИКАКИХ withRepeat(-1)/Animated.loop'] },
-  'app/lesson1.tsx': runtime('Lesson cursor and hint loops require focused foreground runtime.', ['!lessonRuntimeActive || selectedWords.length > 0', 'lessonRuntimeActive && showToBeHint']),
+  // зачем 2026-09-02: пульсация подсказки правильного слова удалена по требованию
+  // владельца — в lesson1 остался единственный повторяющийся луп (мигание курсора),
+  // и он по-прежнему привязан к runtime; сторож не ослаблен, охраняемых лупов меньше.
+  'app/lesson1.tsx': runtime('Lesson cursor loop requires focused foreground runtime.', ['!lessonRuntimeActive || selectedWords.length > 0']),
   'app/lesson_complete.tsx': runtime('Completion decoration requires focused foreground runtime.', ['!lessonCompleteRuntimeActive || !seqDone', 'bounce.stop()']),
   'app/lesson_intro_screens.tsx': runtime('Intro hint and CTA loops require focused foreground runtime.', ['!lessonIntroRuntimeActive || allRevealed', '!lessonIntroRuntimeActive || !ctaReady']),
   'app/level_gifts_inventory.tsx': guarded('Spin pulse runs only on the focused foreground inventory and cancels on blur.'),

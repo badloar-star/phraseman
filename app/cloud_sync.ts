@@ -3178,6 +3178,18 @@ async function doSyncToCloud(): Promise<void> {
       // Server-owned ключи пишет только CF, исходящая запись
       // была бы отклонена rules и уронила бы весь set.
       if (isServerOwnedProgressKey(key)) continue;
+      // зачем (владелец 2026-09-02): последний рубеж — сверка с ПОЛНЫМ зеркалом
+      // блок-листов firestore.rules. Два фильтра выше исторически у́же правил:
+      // сверка списков 02.09 нашла 13 ключей, которые правила режут, а клиент не
+      // фильтровал (referral_spin_*, collectibles_*, lesson1_pass_live,
+      // premium_rc_active_lineage и др.), и PREMIUM_PROGRESS_KEYS вдобавок
+      // отсеивает premium условно (shouldSyncPremiumProgressField), тогда как
+      // правило blockedPremiumProgressKeys режет их ВСЕГДА. Любой такой ключ в
+      // патче роняет весь set целиком — вместе с XP, стриком и аватаром, потому
+      // что правило update проверяет шесть условий на один документ.
+      // Списки ведутся вручную в двух файлах и уже расходились, поэтому сверка
+      // идёт здесь, а не только в логе отказа.
+      if (findRulesBlockedKeys([key]).length > 0) continue;
       if (!cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) progressPatch[key] = value;
     }
 

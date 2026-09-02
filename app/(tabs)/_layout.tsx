@@ -15,6 +15,7 @@ import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
 import { TabProvider, useTabNav } from '../TabContext';
 import { hapticTap } from '../../hooks/use-haptics';
+import { noteTapAction } from '../tap_latency_trace';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { HOME_ENTRANCE } from '../../constants/motion';
 // зачем: гибрид таббара («жидкое золото») живёт в реальном таббаре под dev-флагом —
@@ -1056,6 +1057,9 @@ function ReleasedTabLayout() {
 
   /** Тап по таббару — немедленно обновляем UI, URL обновляем асинхронно. */
   const handleTabChange = useCallback((idx: number) => {
+    // зачем: метка [TAP-LAT] для тапа по табу — отделяет отклик таббара от
+    // разморозки (react-freeze) и коммита панели назначения.
+    noteTapAction(`tab:${idx}`);
     markExamBestPctTabActivity(idx);
     setVisualIdx(idx);
     const physical = logicalTabToPhysicalPage(idx);

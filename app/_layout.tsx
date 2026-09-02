@@ -16,6 +16,8 @@ import 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createTapLatencyCaptureHandler } from './tap_latency_trace';
+import { TapLatencyNavProbe } from '../components/TapLatencyNavProbe';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, useGlobalSearchParams, usePathname, useRouter, router as globalRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -3325,6 +3327,11 @@ const styles = StyleSheet.create({
   },
 });
 
+// зачем: трассировка [TAP-LAT] (аудит мгновенности 2026-09-02) метит КАЖДОЕ касание
+// в capture-фазе корня, не захватывая responder. Когда трассировка выключена
+// (release без EXPO_PUBLIC_TAP_LATENCY_TRACE=1) — это undefined, обработчика нет.
+const tapLatencyCaptureHandler = createTapLatencyCaptureHandler();
+
 export default function RootLayout() {
   console.warn('[BOOT] RootLayout render');
   // Fonts are embedded through the expo-font config plugin in native builds.
@@ -3352,7 +3359,10 @@ export default function RootLayout() {
     || fontWaitElapsed;
 
   return (
-    <GestureHandlerRootView style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
+    <GestureHandlerRootView
+      style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}
+      onStartShouldSetResponderCapture={tapLatencyCaptureHandler}
+    >
     <ErrorBoundary>
       <SafeAreaProvider initialMetrics={stableInitialWindowMetrics}>
       <PremiumProvider>
@@ -3389,6 +3399,7 @@ export default function RootLayout() {
                     <BillingIssueToastHost />
                     <ThemedBlockingAlertHost />
                     <PhoneStateRecoveryScreen />
+                    <TapLatencyNavProbe />
                 </OverlayArbiterProvider>
               </AchievementProvider>
             </EnergyProvider>

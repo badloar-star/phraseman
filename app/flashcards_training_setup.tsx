@@ -414,10 +414,11 @@ export default function FlashcardsTrainingSetupScreen() {
               </View>
             ) : decks.length === 0 ? (
               <View style={styles.emptyBox}>
-                <Text style={[
-                  styles.message,
-                  { color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.45) },
-                ]}>{emptyLabel}</Text>
+                {/*
+                  зачем: строка-сводка выше уже говорит это — второй раз тот
+                  же текст был бы дублем. Витрина есть — показываем её, нет —
+                  единственное сообщение остаётся в сводке.
+                */}
                 {suggestedPacks.length > 0 ? (
                   <>
                     <Text style={[

@@ -145,6 +145,31 @@ export function beginPremint(
   return slot;
 }
 
+/**
+ * Отпустить заготовку с ДРУГИМ ключом, если она ещё висит: экран звонка обязан
+ * звать это перед собственным минтом, а сам минт делать через mintAfterRelease —
+ * тогда он дождётся возврата чужого резерва и не упрётся в voice_session_active.
+ *
+ * зачем (владелец 2026-09-02, лог 20:56:48→20:56:59): раздел уроков прогрел
+ * a1_greet, человек нажал a1_ask_name. Ключи разные → claimPremint вернул null
+ * → экран звонка запустил СВОЙ минт ПАРАЛЛЕЛЬНО с прогревом. Прогрев успел
+ * первым (mint.ok 20:56:57), звонок пришёл вторым и получил «линия занята»
+ * (mint.failed 20:56:59). Сервер прав: два резерва на одного нельзя. Ошибка
+ * клиента — он не отпустил заготовку, которую не собирался использовать.
+ *
+ * Возвращает ключ отпущенной заготовки (для лога) или null, если отпускать
+ * было нечего.
+ */
+export function abandonForeignPremint(
+  keepKey: string,
+  release: (mint: MaxVoiceMintResponse) => Promise<void> | void,
+): string | null {
+  if (!slot || slot.key === keepKey || slot.state !== 'pending') return null;
+  const foreignKey = slot.key;
+  abandonPremint(foreignKey, release);
+  return foreignKey;
+}
+
 /** Пре-экран перед навигацией: заготовку заберёт экран звонка, cleanup её не трогает. */
 export function markPremintHandoff(key: string): void {
   if (slot && slot.key === key && slot.state === 'pending') slot.state = 'handoff';

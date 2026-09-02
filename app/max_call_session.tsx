@@ -55,6 +55,7 @@ import {
   type TutorLiveUiState,
 } from './max_tutor_live_board_state';
 import {
+  abandonForeignPremint,
   abandonPremint,
   claimPremint,
   enqueueRelease,
@@ -490,16 +491,26 @@ function MaxCallSessionContent() {
     // иначе свежий резерв упрётся в voice_session_active.
     const mintFirst = async (req: MaxVoiceMintRequest): Promise<MaxVoiceMintResponse> => {
       const entry = claimPremint(key);
+      maxConnectTrace('premint.claim', { key, claimed: Boolean(entry) });
       if (entry) {
         try {
           const ready = await entry.promise;
-          if (isPremintUsable(ready, entry.createdAtMs, Date.now())) return ready;
+          const usable = isPremintUsable(ready, entry.createdAtMs, Date.now());
+          maxConnectTrace('premint.ready', { sessionId: ready.session_id, usable, ageMs: Date.now() - entry.createdAtMs });
+          if (usable) return ready;
           enqueueRelease(() => releaseUnusedMint(ready));
         } catch (e) {
       // Заготовка упала — одна честная попытка свежего минта ниже.
+      maxConnectTrace('premint.failed', { error: e instanceof Error ? e.message : String(e) });
       DebugLogger.error('max_call_session:ready', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
       }
+      // зачем (владелец 2026-09-02): прогрет ДРУГОЙ урок — его заготовку надо
+      // отпустить ДО своего минта, иначе два резерва встречаются на сервере и
+      // второй получает voice_session_active (лог 20:56:48→20:56:59).
+      // mintAfterRelease ниже дождётся возврата чужого резерва.
+      const foreign = abandonForeignPremint(key, releaseUnusedMint);
+      if (foreign) maxConnectTrace('premint.foreign_released', { foreignKey: foreign, ownKey: key });
       return mintAfterRelease(() => performMaxVoiceMint(callParams, req));
     };
 

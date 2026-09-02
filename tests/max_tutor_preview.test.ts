@@ -22,6 +22,9 @@ describe('MAX tutor preview parser and cache', () => {
       tutorName: 'Max', lessonOrdinal: 4, lessonType: 'new_material', dueCount: 1, homeworkCount: 0,
       nextTopic: 'Introductions', goalId: 'a1_greet', goalTitle: 'Поздороваться', goalLevel: 'A1',
       goalMastery: 1, displayTitle: 'Первый контакт',
+      // Поля каталога (раздел «Уроки с МАКСом», 2026-08-31): старый сервер их
+      // не шлёт — парсер обязан отдавать пустые, а не падать.
+      catalogMastery: {}, catalogProgress: { done: 0, total: 0, level: 'A1' },
       outcome: 'Научишься уверенно здороваться.',
     });
     expect(parseMaxTutorPreview({ lessonOrdinal: 'bad' }, 'ru')).toBeNull();

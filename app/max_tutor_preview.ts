@@ -1,3 +1,5 @@
+import { subscribeAccountGeneration } from './account_generation';
+
 export type MaxTutorLessonType = 'new_material' | 'review_and_scene' | 'free_talk';
 
 export interface MaxTutorPreview {
@@ -204,6 +206,16 @@ export function invalidateMaxTutorPreview(key?: string): void {
 export function clearMaxTutorPreviewCacheForTests(): void {
   cache.clear();
 }
+
+// зачем (владелец 2026-09-02, вход с другого аккаунта в том же процессе):
+// ключ кэша — параметры звонка (формат/уровень/язык/цель), АККАУНТА в ключе
+// нет. После смены пользователя Главная и раздел уроков поднимали превью
+// прежнего: его доступ, его минуты, его звёзды каталога. Владелец видел «20м»
+// админского пула первого аккаунта на втором. Тот же образец, что у
+// peek_cache минут и energy_peek_cache: смена поколения аккаунта = чистый кэш.
+subscribeAccountGeneration(() => {
+  cache.clear();
+});
 
 /* expo-router route shim: app/ files are treated as routes and need a default export. */
 export default function __RouteShim() {

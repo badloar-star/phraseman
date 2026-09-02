@@ -59,7 +59,8 @@ import { loadSpeechHistory, peekSpeechHistory } from './max_speech_history';
 import MaxLessonsStatsSheet from '../components/max/MaxLessonsStatsSheet';
 import VoiceMinutePackSheet from '../modules/voice_minutes/VoiceMinutePackSheet';
 import { readVoiceMinuteWalletStatus } from '../modules/voice_minutes/wallet';
-import { peekVoiceMinutes, writeVoiceMinutePeek } from '../modules/voice_minutes/peek_cache';
+import { peekMaxVoiceAccess, peekVoiceMinutes, writeVoiceMinutePeek } from '../modules/voice_minutes/peek_cache';
+import { resolveVoiceMinutesView, voiceMinutesToDisplay } from '../modules/voice_minutes/entitlement_view';
 import {
   computeVoiceTrends,
   computeVoiceWeeklySeries,
@@ -119,9 +120,33 @@ export default function MaxLessonsScreen() {
 
   // ── Минуты для кольца ─────────────────────────────────────────────────────
   const [walletSec, setWalletSec] = useState<number | null>(() => peekVoiceMinutes()?.seconds ?? null);
-  // guard-ok: клиент НИЧЕГО не списывает. Только показ: читаем серверный
-  // остаток и переводим секунды в минуты. Источник истины — серверный кошелёк.
-  const minutesLeft = walletSec === null ? null : Math.max(0, Math.floor(walletSec / 60));
+  // guard-ok: клиент НИЧЕГО не списывает. Только показ.
+  // зачем (владелец 2026-09-02, скрин «Главная 20м, здесь 0»): кольцо считало
+  // только купленные минуты, а бейдж Главной — доступ из превью. Один аккаунт,
+  // две разные цифры. Теперь обе точки зовут ОДИН расчёт (entitlement_view):
+  // купленные → кошелёк; пробник цел → его кап (3 мин); сожжён → 0; неизвестно
+  // → прочерк, а не выдуманное число.
+  const previewAccess = cachedPreview?.access ?? null;
+  const peekedAccess = peekMaxVoiceAccess();
+  const minutesView = resolveVoiceMinutesView({
+    walletSec,
+    access: previewAccess ?? peekedAccess,
+    sessionCapSec: cachedPreview?.limits?.sessionCapSec,
+    dayRemainingSec: cachedPreview?.limits?.dayRemainingSec,
+  });
+  const minutesLeft = voiceMinutesToDisplay(minutesView);
+  useEffect(() => {
+    // Постоянная диагностика: по одной строке видно, КАКОЕ правило дало цифру
+    // и откуда пришёл каждый вход (кошелёк / превью / peek).
+    DebugLogger.info(
+      '[MAX-MINUTES]',
+      `lessons ring: minutes=${minutesLeft ?? '—'} source=${minutesView.source} `
+      + `wallet=${walletSec === null ? 'unread' : `${walletSec}s`} `
+      + `access=${previewAccess ?? 'preview:none'}/${peekedAccess ?? 'peek:none'} `
+      + `cap=${JSON.stringify(cachedPreview?.limits?.sessionCapSec ?? null)} `
+      + `preview=${cachedPreview ? 'cache' : 'none'}`,
+    );
+  }, [minutesLeft, minutesView.source, walletSec, previewAccess, peekedAccess]);
 
   useEffect(() => {
     let active = true;

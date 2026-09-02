@@ -472,17 +472,31 @@ async function resolveVoiceGates(
     readVoiceMinuteWallet(db, stableUid),
   ]);
 
-  if (isAdmin) {
-    return {
-      db, authUid, stableUid, config, isPremium, quotaData,
-      access: 'admin', paidAvailableSec: paidWallet.availableSeconds,
-      trialVariant: null, nowMs,
-    };
-  }
+  // зачем (владелец 2026-09-02): АДМИН-ПУЛА БОЛЬШЕ НЕТ. Раньше claim admin
+  // давал отдельный дневной пул 20 мин без покупки — и аккаунт поддержки
+  // (support@, тоже admin) показывал «20м» там, где всем остальным положено 3.
+  // Правило владельца дословно: «строго три минуты для всех, кто не купил
+  // минуты». Админы идут той же лестницей, что и все: купленные минуты →
+  // пробник → пейвол. Тип 'admin' в VoiceMinuteAccessType оставлен только
+  // ради старых доков квоты — новых решений с ним сервер не принимает.
+  //
+  // [MAX-ACCESS] — постоянная строка диагностики решения о доступе: по ней
+  // владелец за один grep видит, ПОЧЕМУ конкретный вызов получил такой тариф.
+  const logAccessDecision = (access: VoiceMinuteAccessType, why: string): void => {
+    console.log('[MAX-ACCESS]', {
+      access,
+      why,
+      isAdmin,
+      isPremium,
+      paidAvailableSec: paidWallet.availableSeconds,
+      quotaAccessType: text(quotaData.accessType, 20) || null,
+    });
+  };
 
   const isReconnect = text(data.reconnectOf, 80) !== '';
   if (isReconnect) {
     const activeAccess = quotaData.accessType === 'paid_minutes' ? 'paid_minutes' : 'trial';
+    logAccessDecision(activeAccess, 'reconnect keeps the active reservation tier');
     return {
       db, authUid, stableUid, config, isPremium, quotaData,
       access: activeAccess,
@@ -499,6 +513,7 @@ async function resolveVoiceGates(
   // лежали нетронутыми. Пробник теперь берётся только когда платить нечем: так
   // он и остаётся тем, чем задуман — пробой для того, у кого минут нет.
   if (paidWallet.availableSeconds >= 60) {
+    logAccessDecision('paid_minutes', 'wallet has >= 60s');
     return {
       db, authUid, stableUid, config, isPremium, quotaData,
       access: 'paid_minutes', paidAvailableSec: paidWallet.availableSeconds,
@@ -512,6 +527,7 @@ async function resolveVoiceGates(
       db, stableUid, authUid, isPremium, config, nowMs,
     );
     if (tierTrialEnabled) {
+      logAccessDecision('trial', 'lifetime trial intact, tier enabled, variant=' + String(trial));
       return {
         db, authUid, stableUid, config, isPremium, quotaData,
         access: 'trial', paidAvailableSec: paidWallet.availableSeconds,

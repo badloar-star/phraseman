@@ -405,9 +405,27 @@ describe('gate order (App Check → kill switch → subscription → quota → m
     expect(res.trialVariant).toBeTruthy();
   });
 
-  it('админский доступ остаётся отдельным от платного кошелька', async () => {
+  // зачем (владелец 2026-09-02): «строго три минуты для всех, кто не купил
+  // минуты». Claim admin раньше давал отдельный дневной пул без покупки — и
+  // аккаунт поддержки показывал «20м». Админ-пула больше нет: та же лестница,
+  // что у всех (кошелёк → пробник → пейвол).
+  it('claim admin НЕ даёт отдельного пула: сожжённый пробник и пустой кошелёк → пейвол', async () => {
     docs.set(QUOTA_PATH, { trialUsedAtMs: NOW - DAY_MS, trialReservationSessionId: 'trial-spent', trialProviderMintedAtMs: NOW - DAY_MS });
-    await expect(callAdminMint()).resolves.toMatchObject({ ok: true, value: 'ek_test_123' });
+    await expect(callAdminMint()).rejects.toMatchObject({ code: 'permission-denied', message: 'voice_max_required' });
+  });
+
+  it('claim admin с целым пробником получает обычный пробник, а не access admin', async () => {
+    docs.set(QUOTA_PATH, {});
+    const res = await callAdminMint();
+    expect(res).toMatchObject({ ok: true, value: 'ek_test_123' });
+    expect(res.access).toBe('trial');
+    expect(res.trialVariant).toBeTruthy();
+    expect(docs.get(QUOTA_PATH)).toMatchObject({ accessType: 'trial' });
+  });
+
+  it("сервер больше нигде не выдаёт access 'admin' (сторож по исходнику)", () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'max_voice_mint.ts'), 'utf8');
+    expect(source).not.toMatch(/access:\s*'admin'/u);
   });
 
   it('never answers dev_admin_required again (the DEV gate is gone for good)', async () => {

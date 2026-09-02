@@ -965,6 +965,17 @@ export async function settleVoiceSessionWithXp(
     const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
     const reservedSec = Math.max(0, Math.floor(num(data.reservedSec)));
     if (str(data.activeSessionId) !== str(args.sessionId) || reservedSec <= 0) {
+      // зачем (владелец 2026-09-02, факт из Firestore): этот ранний выход
+      // молчал, и утечка резерва была невидима — прогрев перезаписал
+      // activeSessionId, settle звонка ушёл сюда как «уже закрыто», а резерв
+      // кошелька на 620с остался сиротой на час. Печатаем, ЧТО не совпало.
+      console.warn('[MAX-SETTLE] skipped: not the active reservation', {
+        requestedSessionId: str(args.sessionId),
+        activeSessionId: str(data.activeSessionId) || null,
+        lastSettledSessionId: str(data.lastSettledSessionId) || null,
+        reservedSec,
+        accessType: str(data.accessType) || null,
+      });
       return { chargedSec: 0, refundedSec: 0, alreadySettled: true, xpAwarded: 0, snapshot: data };
     }
     const win = normalizeWindows(data, now);

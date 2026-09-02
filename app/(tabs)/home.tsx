@@ -36,7 +36,7 @@ import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationV
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../../components/VipCelebrationModal';
-import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, isLightThemeMode, type ThemeMode } from '../../constants/theme';
+import { getXPProgress, getLevelFromXP, isLightThemeMode, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
 import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../../constants/oliveTheme';
 import { configureAccordionLayout } from '../../constants/layoutAnimation';
@@ -174,7 +174,8 @@ import {
   type MaxCallParams,
 } from '../max_call_mint_request';
 import { maxTutorPreviewKey, peekMaxTutorPreview } from '../max_tutor_preview';
-import { parsePreflight } from '../max_call_prestart';
+import { resolveVoiceMinutesView } from '../../modules/voice_minutes/entitlement_view';
+import { peekMaxVoiceAccess, peekVoiceMinutes } from '../../modules/voice_minutes/peek_cache';
 import { isAiVoiceConsentGranted } from '../max_voice_consent';
 import { isMaxVoiceEntryVisible } from '../max_voice_flags';
 import { maxVoiceTeacherAccessibilityLabel } from '../max_target_gate';
@@ -749,22 +750,49 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
 
     useEffect(() => {
         if (!homeRuntimeActive || !maxVoiceVisible || !isAiVoiceConsentGranted()) return;
-        // зачем (владелец 2026-08-26): limits.dayRemainingSec — общий 20-минутный
-        // пул MAX даже при trial-доступе; free/plus видели «20м» вместо реальных
-        // 3 минут пробника. При access==='trial' бейдж показывает кап пробника.
-        const badgeSeconds = (preview: { limits?: Record<string, unknown>; access?: 'paid_minutes' | 'admin' | 'trial' }): number | null => {
-            if (!preview.limits) return null;
-            const view = parsePreflight({ limits: preview.limits }, preview.access === 'trial' ? 'trial' : 'tutor');
-            return preview.access === 'trial' ? view.capSec ?? 180 : view.dayRemainingSec;
+        // зачем (владелец 2026-09-02, скрин «Главная 20м, раздел уроков 0»):
+        // бейдж и кольцо уроков считали цифру по-разному. Теперь один расчёт
+        // (entitlement_view): купленные → кошелёк, пробник цел → 3 мин, сожжён
+        // → 0, неизвестно → бейджа нет. Сюда же входит кошелёк из peek-кэша —
+        // платящему нельзя показывать пробниковые 3 из превью.
+        const badgeSeconds = (
+            preview: { limits?: Record<string, unknown>; access?: 'paid_minutes' | 'admin' | 'trial' },
+            origin: 'cache' | 'network',
+        ): number | null => {
+            const view = resolveVoiceMinutesView({
+                walletSec: peekVoiceMinutes()?.seconds ?? null,
+                access: preview.access ?? peekMaxVoiceAccess(),
+                sessionCapSec: preview.limits?.sessionCapSec,
+                dayRemainingSec: preview.limits?.dayRemainingSec,
+            });
+            // Постоянная диагностика: одна строка объясняет цифру на бейдже.
+            DebugLogger.info(
+                '[MAX-MINUTES]',
+                `home badge: seconds=${view.seconds ?? 'null'} source=${view.source} origin=${origin} `
+                + `access=${preview.access ?? 'none'} peekAccess=${peekMaxVoiceAccess() ?? 'none'} `
+                + `walletPeek=${peekVoiceMinutes()?.seconds ?? 'none'} `
+                + `dayRemaining=${String(preview.limits?.dayRemainingSec ?? 'none')} `
+                + `cap=${JSON.stringify(preview.limits?.sessionCapSec ?? null)}`,
+            );
+            return view.seconds;
         };
         const cached = peekMaxTutorPreview(maxPreviewKey, Date.now(), true);
-        if (cached?.limits) setMaxDayRemainingSec(badgeSeconds(cached));
+        if (cached) setMaxDayRemainingSec(badgeSeconds(cached, 'cache'));
         void prefetchMaxTutorPreview(maxTutorCallParams).then((preview) => {
-            if (preview?.limits) setMaxDayRemainingSec(badgeSeconds(preview));
-        }).catch(() => {
-            // Read-only warmup is opportunistic; prestart keeps a local fallback.
+            if (preview) setMaxDayRemainingSec(badgeSeconds(preview, 'network'));
+        }).catch((e) => {
+            // Прогрев — оптимизация, но причина обязана быть видна: иначе
+            // «бейджа нет» неотличимо от «сервер отказал».
+            DebugLogger.warn('[MAX-MINUTES]', `home badge prefetch failed: ${e instanceof Error ? e.message : String(e)}`);
         });
     }, [focusTick, homeRuntimeActive, maxPreviewKey, maxTutorCallParams, maxVoiceVisible]);
+    // зачем (владелец 2026-09-02, вход с другого аккаунта в том же процессе):
+    // число бейджа живёт в состоянии Главной и переживало смену пользователя —
+    // второй аккаунт видел минуты первого, пока не дозреет свежее превью.
+    useEffect(() => {
+        const subscription = subscribeAccountGeneration(() => setMaxDayRemainingSec(null));
+        return () => subscription.remove();
+    }, []);
     const homeRuntimeActiveRef = useRef(homeRuntimeActive);
     // Home may mount while another retained tab owns runtime work.
     const homeDataDirtyRef = useRef(true);
@@ -1656,7 +1684,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 Animated.timing(energyTooltipAnim, { toValue: 0, duration: 220, useNativeDriver: true }).start(() => {
                     setEnergyTooltip((p) => ({ ...p, visible: false }));
                 });
-            }, 3000);
+                // зачем (2026-09-02): в подсказку добавилась строка про ускорение за
+                // просмотр видео — на 3 секунды весь блок уже не прочитывается.
+            }, 5000);
         };
         const openWithAnchor = (measured: EnergyTooltipAnchor | null) => {
             const fresh = measured && measured.w > 0 && measured.h >= 0
@@ -2504,10 +2534,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             // ниже по списку, чтобы кнопка всегда открывала то, что можно учить.
             if (lastId && lastId >= 1 && lastId <= 32) {
                 try {
-                    const { isLessonUnlockedByEarnedProgress } = await import('../lesson_lock_system');
-                    while (lastId > 1 && !(await isLessonUnlockedByEarnedProgress(lastId, studyTarget))) {
-                        lastId -= 1;
-                    }
+                    // зачем (владелец 2026-09-02): здесь стоял цикл
+                    // `while (await isLessonUnlockedByEarnedProgress(...))` — до 31
+                    // итерации, каждая с 2+ чтениями диска. Замер [PERF-STEPS]:
+                    // 8 346 мс из 9 247 всей загрузки Главной. Пакетная версия
+                    // читает всё одним multiGet и решает в памяти; логика доступа
+                    // та же.
+                    const { resolveLastAvailableLessonId } = await import('../lesson_lock_system');
+                    lastId = await resolveLastAvailableLessonId(lastId, studyTarget);
                 } catch (e) {
       // не смогли проверить — оставляем как есть, экран урока сам покажет гейт
       DebugLogger.error('home:lastId', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -4933,7 +4967,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             })}
                     </Text>
                   </View>
-                  {energyCount < energyMax && timeUntilNextEnergy ? (<View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#2C2C2E', borderRadius: 10, paddingVertical: 8, paddingHorizontal: 12, marginBottom: getNextEnergyUnlockLevel(level) !== null ? 8 : 0 }}>
+                  {energyCount < energyMax && timeUntilNextEnergy ? (<View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#2C2C2E', borderRadius: 10, paddingVertical: 8, paddingHorizontal: 12, marginBottom: 8 }}>
                       <Text style={{ color: '#8E8E93', fontSize: 12 }}>
                         {triLang(lang, {
                     ru: 'Через',
@@ -4951,19 +4985,22 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         {timeUntilNextEnergy}
                       </Text>
                     </View>) : null}
-                  {getNextEnergyUnlockLevel(level) !== null && (<Text style={{ color: '#8E8E93', fontSize: 11, textAlign: 'center', marginTop: energyCount >= energyMax ? 4 : 0 }}>
+                  {/* зачем: владелец 2026-09-02 — вместо «следующий слот на уровне N»
+                      подсказка про ускорение за просмотр видео (30 мин → 10 мин, ровно втрое,
+                      см. VIDEO_WATCH_TARGET_RECOVERY_MS в app/energy_video_watch_credit.ts). */}
+                  <Text style={{ color: '#8E8E93', fontSize: 11, textAlign: 'center', marginTop: energyCount >= energyMax ? 4 : 0 }}>
                       {triLang(lang, {
-                    ru: `Следующий слот энергии на уровне ${getNextEnergyUnlockLevel(level)}`,
-                    uk: `Наступний слот енергії на рівні ${getNextEnergyUnlockLevel(level)}`,
-                    en: `Once you hit level ${getNextEnergyUnlockLevel(level)}, your max energy will go up`,
-                    es: `Al alcanzar el nivel ${getNextEnergyUnlockLevel(level)}, tu energía máxima subirá`,
-                    'pt-BR': `Ao alcançar o nível ${getNextEnergyUnlockLevel(level)}, sua energia máxima vai aumentar`,
-                    vi: `Khi đạt cấp ${getNextEnergyUnlockLevel(level)}, năng lượng tối đa của bạn sẽ tăng`,
-                    id: `Saat mencapai level ${getNextEnergyUnlockLevel(level)}, energi maksimummu akan naik`,
-                    tr: `${getNextEnergyUnlockLevel(level)}. seviyeye ulaşınca maksimum enerjin artacak`,
-                    pl: `Po osiągnięciu poziomu ${getNextEnergyUnlockLevel(level)} twoja maksymalna energia wzrośnie`,
+                    ru: 'Во время просмотра видео в приложении энергия возвращается втрое быстрее',
+                    uk: 'Під час перегляду відео в застосунку енергія відновлюється втричі швидше',
+                    en: 'While you watch videos in the app, energy comes back three times faster',
+                    es: 'Mientras ves videos en la app, la energía se recupera tres veces más rápido',
+                    'pt-BR': 'Enquanto você assiste a vídeos no app, a energia volta três vezes mais rápido',
+                    vi: 'Khi bạn xem video trong ứng dụng, năng lượng hồi phục nhanh gấp ba lần',
+                    id: 'Saat kamu menonton video di aplikasi, energi pulih tiga kali lebih cepat',
+                    tr: 'Uygulamada video izlerken enerji üç kat daha hızlı dolar',
+                    pl: 'Podczas oglądania filmów w aplikacji energia wraca trzy razy szybciej',
                 })}
-                    </Text>)}
+                    </Text>
                 </>)}
             </View>
           </Animated.View>

@@ -7,6 +7,7 @@ import {
   PREMINT_MIN_TOKEN_REMAINING_MS,
   PREMINT_RELEASE_WAIT_MS,
   __resetPremintForTests,
+  abandonForeignPremint,
   abandonPremint,
   beginPremint,
   claimPremint,
@@ -206,5 +207,72 @@ describe('линия занята живым звонком: прогревы е
     setMaxCallLineBusy(true);
     __resetPremintForTests();
     expect(isMaxCallLineBusy()).toBe(false);
+  });
+});
+
+// зачем (владелец 2026-09-02, лог 20:56:48→20:56:59): раздел уроков прогрел
+// a1_greet, человек нажал a1_ask_name. Ключи разные → claimPremint вернул null
+// → экран звонка минтил ПАРАЛЛЕЛЬНО с прогревом → второй получил «линия
+// занята». Чужая заготовка обязана отпускаться ДО своего минта, а свой минт —
+// ждать её возврата (mintAfterRelease).
+describe('abandonForeignPremint — чужая заготовка отпускается до своего минта', () => {
+  const FOREIGN = 'tutor|coffee|A1||en|a1_greet';
+  const OWN = 'tutor|coffee|A1||en|a1_ask_name';
+  const mintOf = (id: string): MaxVoiceMintResponse => ({
+    value: 'v', session_id: id, max_seconds: 300, wrapUpText: '[WRAP_UP]',
+  });
+
+  beforeEach(() => {
+    __resetPremintForTests();
+  });
+
+  it('отпускает pending-заготовку с ДРУГИМ ключом и возвращает её ключ', async () => {
+    const release = jest.fn().mockResolvedValue(undefined);
+    beginPremint(FOREIGN, () => Promise.resolve(mintOf('sess-foreign')), NOW, release);
+
+    expect(abandonForeignPremint(OWN, release)).toBe(FOREIGN);
+    // Минт заготовки идёт через afterPendingRelease (несколько прыжков
+    // микротасков), потом release — flush дважды с запасом.
+    await flush();
+    await flush();
+    expect(release).toHaveBeenCalledWith(mintOf('sess-foreign'));
+    // Отпущенную больше никому не отдаём.
+    expect(claimPremint(FOREIGN)).toBeNull();
+  });
+
+  it('свою заготовку не трогает', () => {
+    const release = jest.fn().mockResolvedValue(undefined);
+    beginPremint(OWN, () => Promise.resolve(mintOf('sess-own')), NOW, release);
+
+    expect(abandonForeignPremint(OWN, release)).toBeNull();
+    expect(release).not.toHaveBeenCalled();
+    expect(claimPremint(OWN)).not.toBeNull();
+  });
+
+  it('без заготовки — null и ни одного вызова release', () => {
+    const release = jest.fn().mockResolvedValue(undefined);
+    expect(abandonForeignPremint(OWN, release)).toBeNull();
+    expect(release).not.toHaveBeenCalled();
+  });
+
+  it('свой минт через mintAfterRelease стартует ТОЛЬКО после возврата чужого резерва', async () => {
+    const order: string[] = [];
+    let finishRelease: () => void = () => {};
+    const release = jest.fn().mockImplementation(() => new Promise<void>((resolve) => {
+      order.push('release:start');
+      finishRelease = () => { order.push('release:done'); resolve(); };
+    }));
+    beginPremint(FOREIGN, () => Promise.resolve(mintOf('sess-foreign')), NOW, release);
+
+    abandonForeignPremint(OWN, release);
+    const own = mintAfterRelease(async () => { order.push('own-mint'); return mintOf('sess-own'); });
+    await flush();
+    await flush();
+    expect(order).toEqual(['release:start']);
+
+    finishRelease();
+    await flush();
+    await own;
+    expect(order).toEqual(['release:start', 'release:done', 'own-mint']);
   });
 });

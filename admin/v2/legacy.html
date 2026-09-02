@@ -12208,19 +12208,12 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
 
   <div class="cp-group-label">🚦 Обновления и доступ</div>
 
-  <details class="cp-card" id="cp-boons-raw-card">
-    <summary class="cp-card-title" style="color:#fbbf24;cursor:pointer">🗓 Недельные бонусы — RAW JSON</summary>
-    <div class="cp-card-sub">Диагностическое зеркало сохранённого <code>weekly_boons_config</code>. Редактируй расписание в карточке Weekly Boons ниже.</div>
-    <textarea id="cp-boons-json" rows="7" readonly spellcheck="false" style="width:100%;margin-top:12px;background:#121219;border:1px solid #2a2a3a;color:#9ca3af;padding:10px;border-radius:8px;resize:vertical;font-family:ui-monospace,monospace;font-size:12px;box-sizing:border-box"></textarea>
-    <div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap">
-      <button type="button" class="cp-btn" onclick="loadControlPanelBoons()" title="Перечитать сырое значение недельных бонусов; ничего не сохраняет" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать</button>
-      <span id="cp-boons-status" class="cp-status-chip"></span>
-    </div>
-  </details>
-
-  <details class="cp-card cp-card-danger" id="cp-update-config-card">
-    <summary class="cp-card-title" style="color:#f87171;cursor:pointer">🚀 Управление обновлением приложения</summary>
-    <div class="cp-card-sub">Force-update блокирует слишком старую версию. Manual update показывает управляемое окно независимо от минимальной версии.</div>
+  <!-- зачем (владелец 2026-09-02): карточка поднята первой в разделе и
+       открыта по умолчанию (open). Это главный рычаг раздела, а раньше до него
+       было два шага: прокрутить мимо диагностического JSON и раскрыть карточку. -->
+  <details class="cp-card cp-card-danger" id="cp-update-config-card" open>
+    <summary class="cp-card-title" style="color:#f87171;cursor:pointer">🚀 Окно обновления</summary>
+    <div class="cp-card-sub">Два способа попросить людей обновиться. Свободное окно можно закрыть, принудительное — нет.</div>
     <div class="cp-switch-row" style="margin-top:8px">
       <div class="cp-switch-ico">🚀</div><div style="flex:1"><b>Force-update</b><div class="cp-muted">Главный аварийный выключатель.</div></div>
       <label title="Включить или выключить принудительное обновление"><input type="checkbox" id="cp-bool-force_update_enabled" class="cp-toggle cp-toggle-danger" onchange="saveControlPanelBool('force_update_enabled', this.checked)" disabled/><span id="cp-bool-label-force_update_enabled" class="cp-bool-chip cp-bool-chip-danger">…</span></label>
@@ -12255,11 +12248,26 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       <label style="display:grid;gap:5px;margin-top:10px">Текст RU<textarea id="cp-manual-update-body-ru" rows="2"></textarea></label>
       <label style="display:grid;gap:5px;margin-top:10px">Текст UK<textarea id="cp-manual-update-body-uk" rows="2"></textarea></label>
       <label style="display:grid;gap:5px;margin-top:10px">Текст ES<textarea id="cp-manual-update-body-es" rows="2"></textarea></label>
-      <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
-        <button type="button" class="cp-btn" onclick="saveManualUpdateConfig(false)" title="Сохранить параметры, сохранив текущее состояние выключателя">Сохранить manual modal</button>
-        <button type="button" class="cp-btn" onclick="saveManualUpdateConfig(true)" title="Сохранить параметры и сразу включить окно обновления">Показать окно</button>
-        <button type="button" class="cp-btn" onclick="disableManualUpdateModal()" title="Немедленно выключить управляемое окно обновления">Выключить окно</button>
+      <!-- зачем: два сценария в один клик. Раньше, чтобы показать окно,
+           надо было вручную выбрать режим в списке и только потом жать кнопку;
+           ошибка в режиме стоила бы блокировки всех пользователей. -->
+      <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;align-items:center">
+        <button type="button" class="cp-btn" onclick="showManualUpdate('optional')" title="Сохранит тексты и покажет окно, которое можно закрыть" style="background:#1e293b;color:#a5b4fc;padding:10px 16px;border-radius:9px;font-weight:700;min-height:40px">Предложить обновиться</button>
+        <button type="button" class="cp-btn" onclick="showManualUpdate('force')" title="Сохранит тексты и покажет окно БЕЗ кнопки закрытия" style="background:#3f1d1d;color:#fca5a5;padding:10px 16px;border-radius:9px;font-weight:700;min-height:40px">Обязательное обновление</button>
+        <button type="button" class="cp-btn" onclick="disableManualUpdateModal()" title="Немедленно убрать окно у всех" style="background:#1f2937;color:#e5e7eb;padding:10px 16px;border-radius:9px;min-height:40px">Убрать окно</button>
+        <button type="button" class="cp-btn" onclick="saveManualUpdateConfig(false)" title="Только сохранить тексты, не меняя состояние окна" style="background:#111827;color:#9ca3af;padding:10px 16px;border-radius:9px;min-height:40px">Сохранить черновик</button>
       </div>
+      <div id="cp-manual-update-who" style="margin-top:10px;font-size:12.5px;color:#9ca3af;line-height:1.5"></div>
+    </div>
+  </details>
+
+  <details class="cp-card" id="cp-boons-raw-card">
+    <summary class="cp-card-title" style="color:#fbbf24;cursor:pointer">🗓 Недельные бонусы — RAW JSON</summary>
+    <div class="cp-card-sub">Диагностическое зеркало сохранённого <code>weekly_boons_config</code>. Редактируй расписание в карточке Weekly Boons ниже.</div>
+    <textarea id="cp-boons-json" rows="7" readonly spellcheck="false" style="width:100%;margin-top:12px;background:#121219;border:1px solid #2a2a3a;color:#9ca3af;padding:10px;border-radius:8px;resize:vertical;font-family:ui-monospace,monospace;font-size:12px;box-sizing:border-box"></textarea>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap">
+      <button type="button" class="cp-btn" onclick="loadControlPanelBoons()" title="Перечитать сырое значение недельных бонусов; ничего не сохраняет" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать</button>
+      <span id="cp-boons-status" class="cp-status-chip"></span>
     </div>
   </details>
 
@@ -34624,6 +34632,9 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       cpSetValue('cp-manual-update-title-es', texts.manual_update_title_es);
       cpSetValue('cp-manual-update-body-es', texts.manual_update_body_es);
       cpSetValue('cp-manual-update-cta-es', texts.manual_update_cta_es);
+      // зачем: подсказка «кто увидит» должна отражать СОХРАНЁННОЕ состояние,
+      // а не черновик в полях — иначе она врёт про боевую картину.
+      if (typeof cpRenderManualUpdateWho === 'function') cpRenderManualUpdateWho();
       cpRemoteStatus('cp-force-status', 'Настройки обновления загружены.', '#4ade80');
     } catch (error) {
       cpRemoteStatus('cp-force-status', 'Ошибка чтения: ' + (error?.message || error), '#f87171');
@@ -34671,10 +34682,51 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       });
       await window.saveControlPanelBool('manual_update_enabled', enabled);
       cpRenderStandaloneBool('manual_update_enabled', enabled);
+      if (typeof cpRenderManualUpdateWho === 'function') cpRenderManualUpdateWho();
       cpRemoteStatus('cp-force-status', enabled ? 'Manual update включён.' : 'Manual update сохранён и выключен.', '#4ade80');
     } catch (error) {
       cpRemoteStatus('cp-force-status', 'Ошибка manual update: ' + (error?.message || error), '#f87171');
     }
+  };
+
+  /**
+   * Зачем: один клик вместо двух шагов. Режим выбирался в выпадающем списке
+   * отдельно от кнопки показа — забытый переключатель мог запереть ВСЕХ пользователей
+   * без возможности закрыть окно. Теперь намерение выражается самой кнопкой, а
+   * принудительный режим требует явного подтверждения.
+   */
+  window.showManualUpdate = async function(mode) {
+    const force = mode === 'force';
+    if (force) {
+      const platform = cpValue('cp-manual-update-platform');
+      const who = platform === 'ios' ? 'iOS' : platform === 'android' ? 'Android' : 'iOS и Android';
+      const ok = window.confirm(
+        'Окно БЕЗ кнопки закрытия увидят все на ' + who + '.
+
+'
+        + 'Пока оно включено, люди не смогут пользоваться приложением, пока не обновятся.
+
+Продолжить?');
+      if (!ok) return;
+    }
+    cpSetValue('cp-manual-update-mode', force ? 'force' : 'optional');
+    await window.saveManualUpdateConfig(true);
+    cpRenderManualUpdateWho();
+  };
+
+  /** Живая подсказка под кнопками: кто именно увидит окно и с каким выходом. */
+  window.cpRenderManualUpdateWho = function() {
+    const host = document.getElementById('cp-manual-update-who');
+    if (!host) return;
+    const on = document.getElementById('cp-bool-manual_update_enabled')?.checked === true;
+    if (!on) { host.textContent = 'Сейчас окно никому не показывается.'; return; }
+    const platform = cpValue('cp-manual-update-platform');
+    const who = platform === 'ios' ? 'iOS' : platform === 'android' ? 'Android' : 'iOS и Android';
+    const force = cpValue('cp-manual-update-mode') === 'force';
+    const target = cpValue('cp-manual-update-target-build');
+    const limit = target ? ' с версией ниже ' + target : '';
+    host.textContent = 'Сейчас окно видят на ' + who + limit
+      + (force ? '. Закрыть его нельзя.' : '. Его можно закрыть, показ один раз.');
   };
 
   window.disableManualUpdateModal = async function() {

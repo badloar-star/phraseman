@@ -4,32 +4,42 @@ import path from 'path';
 /*
  * Сторож этапов 2-3: одно имя и опознание по нему.
  *
- * зачем: опознание по account_id встроено ПЕРВОЙ ступенью в путь входа всех
- * людей. Если её сдвинуть ниже или убрать, вход тихо вернётся к шести
- * последовательным способам — и вместе с ними вернутся «не могу войти» и
- * пустые профили. Обычные тесты входа этого не заметят: они проверяют
- * результат, а не то, каким путём он получен.
+ * зачем: опознание по account_id встроено в путь входа всех людей и обязано
+ * заменять дорогой поисковый запрос, а не живую привязку. Обычные тесты входа
+ * порядок ступеней не заметят: они проверяют результат, а не то, каким путём
+ * он получен.
+ *
+ * ИСТОРИЯ ПРАВИЛА (аудит 2026-09-02). Первая редакция требовала карту ПЕРВОЙ
+ * ступенью — до auth_links. На боевой базе у 62 аккаунтов (двое с подпиской)
+ * карта вела не туда, куда auth_links, и вход отвечал stable_id_mismatch, а
+ * клиент на этот код ротирует личность — пустой профиль. Теперь правило:
+ * живая привязка главнее карты; карта — ниже привязки, но выше поискового
+ * запроса. Сдвинуть карту НИЖЕ запроса нельзя — исчезнет экономия; поднять
+ * ВЫШЕ привязки нельзя — вернётся регрессия.
  */
 describe('одно имя аккаунта', () => {
   const identity = fs.readFileSync(path.join(__dirname, 'auth_identity.ts'), 'utf8');
   const lookup = fs.readFileSync(path.join(__dirname, 'account_id_lookup.ts'), 'utf8');
   const contract = fs.readFileSync(path.join(__dirname, 'account_id.ts'), 'utf8');
 
-  it('опознание по имени стоит ПЕРВЫМ, до всех прежних способов', () => {
+  it('опознание по имени стоит ПОСЛЕ живой привязки и ДО поискового запроса', () => {
     const byAlias = identity.indexOf('const aliasHit = await findAccountByAlias(');
     const anchor = identity.indexOf('const authLinkAnchor = await findLiveAuthLinkAnchor(');
     const byProvider = identity.indexOf('const authoritativeByAuth = await findStableUidForProviderAuth(');
-    expect(byAlias).toBeGreaterThan(0);
-    expect(anchor).toBeGreaterThan(byAlias);
+    expect(anchor).toBeGreaterThan(0);
+    expect(byAlias).toBeGreaterThan(anchor);
     expect(byProvider).toBeGreaterThan(byAlias);
   });
 
-  it('найденный аккаунт проверяется, а не берётся на веру', () => {
+  it('найденный аккаунт проверяется, а не берётся на веру — и обязан принадлежать этому uid', () => {
     // Индекс — карта, а не источник правды: аккаунт мог быть слит уже после
     // её заполнения. Вести человека по устаревшей карте = пустой профиль.
-    expect(identity).toContain('await verifyAccountHit(db, aliasHit)');
+    // Владение по firebaseAuthUid — то, что нашёл бы прежний авторитетный
+    // запрос; подсказки провайдера и легаси-документы решает прежняя лестница.
+    expect(identity).toContain('await verifyAccountHit(db, aliasHit, authUid)');
     expect(lookup).toContain('identityHidden === true');
-    expect(lookup).toContain('=== hit.accountId');
+    expect(lookup).toMatch(/[!=]== hit\.accountId/);
+    expect(lookup).toContain('owner === ownerAuthUid');
   });
 
   it('новая ступень не может уронить вход', () => {

@@ -2290,3 +2290,110 @@ describe('ensureStableLinkForAuth', () => {
     expect(result).toEqual({ ok: true, stableUid, authUid, identityReady: true });
   });
 });
+
+describe('карта имён подчинена живой привязке (аудит 2026-09-02)', () => {
+  beforeEach(() => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_777_000_000_000);
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  const ACC_REAL = 'acc_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+  const ACC_LEGACY = 'acc_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb';
+
+  /**
+   * Боевой случай платящего Apple-пользователя: auth_links → настоящий
+   * аккаунт, карта имён → пустой легаси-документ с id = auth uid. Пока карта
+   * стояла первой, assertStableOwner отвечал stable_id_mismatch.
+   */
+  function divergedStore() {
+    return {
+      auth_links: { 'apple-auth': { stable_id: 'real-stable', provider: 'apple' } },
+      users: {
+        'real-stable': {
+          firebaseAuthUid: 'apple-auth',
+          accountId: ACC_REAL,
+          progress: { user_total_xp: '0' },
+          updatedAt: 222,
+        },
+        'apple-auth': { accountId: ACC_LEGACY, updatedAt: 111 },
+      },
+      account_id_index: {
+        [accountIdIndexDocId('apple-auth')]: {
+          alias: 'apple-auth', kind: 'stable', stableId: 'apple-auth', accountId: ACC_LEGACY,
+        },
+      },
+    };
+  }
+
+  it('привязка и карта расходятся → побеждает привязка, без stable_id_mismatch, карта чинится сама', async () => {
+    const { db, store } = makeDbStub(divergedStore());
+
+    await expect(resolveStableUidForAuth(db as any, 'apple-auth')).resolves.toBe('real-stable');
+    // Самоподдержание карты (этап 3) дописывает верную запись при починке связей.
+    expect(store.account_id_index[accountIdIndexDocId('apple-auth')]).toMatchObject({
+      stableId: 'real-stable', accountId: ACC_REAL,
+    });
+  });
+
+  it('тот же случай на пути входа через провайдера (repairLinks:false)', async () => {
+    const { db } = makeDbStub(divergedStore());
+
+    await expect(resolveStableUidForAuth(db as any, 'apple-auth', 'real-stable', {
+      allowProviderRelink: true,
+      repairLinks: false,
+    })).resolves.toBe('real-stable');
+  });
+
+  it('вход целиком (ensureStableLinkForAuth) возвращает привязанный аккаунт и чинит карту', async () => {
+    const { db, store } = makeDbStub(divergedStore());
+
+    const result = await ensureStableLinkForAuth(db as any, 'apple-auth', 'real-stable', 'apple.com');
+
+    expect(result.stableUid).toBe('real-stable');
+    expect(store.auth_links['apple-auth']).toMatchObject({ stable_id: 'real-stable' });
+    expect(store.account_id_index[accountIdIndexDocId('apple-auth')]).toMatchObject({
+      stableId: 'real-stable', accountId: ACC_REAL,
+    });
+  });
+
+  it('без привязки карта отвечает одним чтением, если документ принадлежит uid', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'owned-stable': { firebaseAuthUid: 'anon-auth', accountId: ACC_REAL, updatedAt: 1 },
+      },
+      account_id_index: {
+        [accountIdIndexDocId('anon-auth')]: {
+          alias: 'anon-auth', kind: 'auth', stableId: 'owned-stable', accountId: ACC_REAL,
+        },
+      },
+    });
+
+    await expect(resolveStableUidForAuth(db as any, 'anon-auth')).resolves.toBe('owned-stable');
+  });
+
+  it('без привязки карта, ведущая на пустой легаси-документ с id = uid, не перебивает документ-владельца', async () => {
+    // Второй боевой класс: тай-брейк миграции выбрал легаси-документ, а
+    // прогресс человека — в UUID-документе с firebaseAuthUid = uid.
+    const { db } = makeDbStub({
+      users: {
+        'anon-auth': { accountId: ACC_LEGACY, updatedAt: 1 },
+        'owned-stable': {
+          firebaseAuthUid: 'anon-auth',
+          accountId: ACC_REAL,
+          progress: { user_total_xp: '500' },
+          updatedAt: 2,
+        },
+      },
+      account_id_index: {
+        [accountIdIndexDocId('anon-auth')]: {
+          alias: 'anon-auth', kind: 'stable', stableId: 'anon-auth', accountId: ACC_LEGACY,
+        },
+      },
+    });
+
+    await expect(resolveStableUidForAuth(db as any, 'anon-auth')).resolves.toBe('owned-stable');
+  });
+});

@@ -35,8 +35,12 @@ const xpOf = (x) => parseInt(String((x?.progress || {}).user_total_xp ?? '0'), 1
   console.log(APPLY ? '### БОЕВОЙ ПРОГОН ###\n' : '### СУХОЙ ПРОГОН (ничего не пишется) ###\n');
 
   const [usersSnap, linksSnap, ownerSnap, indexSnap] = await Promise.all([
+    // зачем 'updatedAt' в списке (аудит 2026-09-02): без него тай-брейк «при
+    // равенстве — к недавно обновлённому» был мёртв — Number(undefined) давал 0
+    // у всех, и ничьи решал алфавит id. Так пустой легаси-документ платящего
+    // пользователя обошёл его настоящий аккаунт.
     db.collection('users').select(
-      'firebaseAuthUid', 'linkedAuth', 'identityHidden', 'canonicalStableId', 'progress', ACCOUNT_ID_FIELD,
+      'firebaseAuthUid', 'linkedAuth', 'identityHidden', 'canonicalStableId', 'progress', 'updatedAt', ACCOUNT_ID_FIELD,
     ).get(),
     db.collection('auth_links').select('stable_id').get(),
     db.collection('account_identity_owner_map').select('canonicalStableId').get(),
@@ -70,7 +74,11 @@ const xpOf = (x) => parseInt(String((x?.progress || {}).user_total_xp ?? '0'), 1
   }
 
   // 3. Провайдерские uid из таблицы привязок.
-  linksSnap.forEach((d) => addAlias(s((d.data() || {}).stable_id), d.id, 'auth'));
+  const linkTarget = new Map();
+  linksSnap.forEach((d) => {
+    linkTarget.set(d.id, s((d.data() || {}).stable_id));
+    addAlias(s((d.data() || {}).stable_id), d.id, 'auth');
+  });
 
   // 4. Скрытые следы слияний: их id тоже должны вести к победителю, иначе
   //    старые ссылки после перехода станут «никуда».
@@ -125,9 +133,15 @@ const xpOf = (x) => parseInt(String((x?.progress || {}).user_total_xp ?? '0'), 1
   for (const [alias, ids] of claimants) {
     const unique = [...new Set(ids)];
     if (unique.length === 1) { aliasOwner.set(alias, unique[0]); continue; }
+    // зачем живая привязка первой (аудит 2026-09-02): auth_links пишет сам вход
+    // с устройства — это аккаунт, которым человек входит СЕЙЧАС. Карта, ведущая
+    // в другое место, даёт stable_id_mismatch на входе и пустой профиль; так
+    // случилось у 62 аккаунтов, двое из них с подпиской.
+    const anchored = linkTarget.get(alias);
     const ranked = unique
       .map((id) => ({ id, xp: xpOf(byId.get(id)), at: Number(byId.get(id)?.updatedAt) || 0 }))
-      .sort((a, b) => (b.xp - a.xp) || (b.at - a.at) || a.id.localeCompare(b.id));
+      .sort((a, b) => (Number(b.id === anchored) - Number(a.id === anchored))
+        || (b.xp - a.xp) || (b.at - a.at) || a.id.localeCompare(b.id));
     const winner = ranked[0];
     const contested = ranked.filter((r) => r.xp > 0).length > 1;
     // РЕШЕНИЕ ВЛАДЕЛЬЦА 01.09.2026: правило «больше прогресса» применяется и к

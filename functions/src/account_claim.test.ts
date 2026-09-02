@@ -119,3 +119,64 @@ describe('сервер выдаёт аккаунт', () => {
     await expect(claimAccountForAuth(db, AUTH)).rejects.toThrow('identity_retired');
   });
 });
+
+describe('живая привязка главнее карты (аудит 2026-09-02)', () => {
+  const ACC_REAL = 'acc_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+  const ACC_LEGACY = 'acc_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb';
+
+  it('карта ведёт на другой документ → отдаём аккаунт из auth_links, чиним карту, ничего не создаём', async () => {
+    // Ровно случай платящего Apple-пользователя: привязка на настоящий аккаунт,
+    // а карта — на пустой легаси-документ с id = auth uid.
+    const { db, docs } = fakeDb({
+      [`auth_links/${AUTH}`]: { stable_id: 'real-stable' },
+      'users/real-stable': { accountId: ACC_REAL, firebaseAuthUid: AUTH },
+      [indexPath(AUTH)]: { accountId: ACC_LEGACY, stableId: AUTH, kind: 'stable' },
+      [`users/${AUTH}`]: { accountId: ACC_LEGACY },
+    });
+    const res = await claimAccountForAuth(db, AUTH);
+
+    expect(res).toEqual({ accountId: ACC_REAL, stableId: 'real-stable', created: false });
+    // Привязку не тронули, второго аккаунта нет, карта теперь согласна с привязкой.
+    expect(docs[`auth_links/${AUTH}`]).toMatchObject({ stable_id: 'real-stable' });
+    expect(Object.keys(docs).filter((k) => k.startsWith('users/'))).toHaveLength(2);
+    expect(docs[indexPath(AUTH)]).toMatchObject({ accountId: ACC_REAL, stableId: 'real-stable', kind: 'auth' });
+    expect(docs[indexPath('real-stable')]).toMatchObject({ accountId: ACC_REAL, stableId: 'real-stable', kind: 'stable' });
+  });
+
+  it('привязка есть, а uid в карте нет → второй аккаунт не заводим, карту дописываем', async () => {
+    // Слияние/восстановление/админская починка пишут auth_links, но не карту.
+    const { db, docs } = fakeDb({
+      [`auth_links/${AUTH}`]: { stable_id: 'real-stable' },
+      'users/real-stable': { accountId: ACC_REAL, firebaseAuthUid: AUTH },
+    });
+    const res = await claimAccountForAuth(db, AUTH);
+
+    expect(res).toEqual({ accountId: ACC_REAL, stableId: 'real-stable', created: false });
+    expect(Object.keys(docs).filter((k) => k.startsWith('users/'))).toEqual(['users/real-stable']);
+    expect(docs[indexPath(AUTH)]).toMatchObject({ accountId: ACC_REAL, stableId: 'real-stable' });
+  });
+
+  it('у привязанного аккаунта ещё нет имени → имя получает ОН, а не новый документ', async () => {
+    const { db, docs } = fakeDb({
+      [`auth_links/${AUTH}`]: { stable_id: 'real-stable' },
+      'users/real-stable': { firebaseAuthUid: AUTH, progress: { user_total_xp: '777' } },
+    });
+    const res = await claimAccountForAuth(db, AUTH);
+
+    expect(res.created).toBe(false);
+    expect(res.stableId).toBe('real-stable');
+    expect(res.accountId).toMatch(/^acc_[0-9a-f]{32}$/);
+    expect(docs['users/real-stable']).toMatchObject({ accountId: res.accountId, progress: { user_total_xp: '777' } });
+    expect(docs[indexPath(AUTH)]).toMatchObject({ accountId: res.accountId, stableId: 'real-stable' });
+  });
+
+  it('привязка ведёт на слитый документ → её не берём, решает обычный путь', async () => {
+    const { db } = fakeDb({
+      [`auth_links/${AUTH}`]: { stable_id: 'merged-away' },
+      'users/merged-away': { accountId: ACC_LEGACY, identityHidden: true },
+    });
+    const res = await claimAccountForAuth(db, AUTH);
+    expect(res.created).toBe(true);
+    expect(res.stableId).not.toBe('merged-away');
+  });
+});

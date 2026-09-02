@@ -90,10 +90,17 @@ export async function findAccountByAlias(
  * зачем отдельной проверкой: индекс — карта, а не источник правды. Аккаунт мог
  * быть слит или скрыт уже после заполнения таблицы, и вести человека по
  * устаревшей записи нельзя — ровно так и появляются «пустые профили».
+ *
+ * `ownerAuthUid` (аудит 2026-09-02): при опознании на входе принимаем только
+ * документ, которым этот uid владеет по firebaseAuthUid — ровно то, что нашёл
+ * бы прежний авторитетный запрос. Псевдоним провайдера (linkedAuth.providerUid)
+ * и легаси-документ с id = uid — лишь подсказки: прежняя лестница решала по
+ * ним сама, и менять её решения карта не имеет права.
  */
 export async function verifyAccountHit(
   db: admin.firestore.Firestore,
   hit: AccountLookupHit,
+  ownerAuthUid?: string,
 ): Promise<boolean> {
   let snap: admin.firestore.DocumentSnapshot;
   try {
@@ -110,5 +117,17 @@ export async function verifyAccountHit(
   if (data.identityHidden === true) return false;
   // Имя в документе обязано совпасть с именем в индексе: расхождение означает,
   // что карта устарела, и доверять ей нельзя.
-  return String(data[ACCOUNT_ID_FIELD] ?? '').trim() === hit.accountId;
+  if (String(data[ACCOUNT_ID_FIELD] ?? '').trim() !== hit.accountId) return false;
+  if (ownerAuthUid === undefined) return true;
+  const owner = String(data.firebaseAuthUid ?? '').trim();
+  if (owner === ownerAuthUid) return true;
+  // Ранний выход обязан быть виден (правило проекта): по этому событию видно,
+  // сколько входов карта отдаёт прежней лестнице и почему.
+  console.log(JSON.stringify({
+    event: 'account_id_lookup_not_owned',
+    matchedKind: hit.matchedKind,
+    ownerPresent: Boolean(owner),
+    selfKeyed: hit.stableId === ownerAuthUid,
+  }));
+  return false;
 }

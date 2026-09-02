@@ -46,6 +46,84 @@ export type AccountClaimResult = Readonly<{
 }>;
 
 /**
+ * Живая привязка auth_links главнее карты имён (аудит 2026-09-02).
+ *
+ * зачем: карта — офлайн-снимок, а auth_links пишет сам вход с устройства.
+ * Если человек уже привязан к живому аккаунту, ему положен ИМЕННО он — даже
+ * когда его uid в карте нет (слияние, восстановление и админская починка
+ * перепривязывают auth_links, не трогая карту; на боевой базе такой uid уже
+ * есть) или карта ведёт на другой документ (62 случая после миграции).
+ * Иначе сервер завёл бы человеку второй, пустой аккаунт и перекинул бы на
+ * него привязку — самозахват собственного аккаунта.
+ *
+ * Возвращает null, если привязки нет или она ведёт на мёртвый документ, —
+ * тогда решает обычный путь ниже. Расхождение карты чиним здесь же, одной
+ * транзакцией: иначе следующее опознание снова ушло бы не туда.
+ *
+ * Firebase-экономия: в согласном случае три точечных чтения и ни одной записи.
+ */
+async function adoptAnchoredAccount(
+  db: admin.firestore.Firestore,
+  authUid: string,
+  nowMs: number,
+): Promise<AccountClaimResult | null> {
+  const linkSnap = await db.collection('auth_links').doc(authUid).get();
+  const linkedStableId = String(linkSnap.data()?.stable_id ?? '').trim();
+  if (!linkSnap.exists || !linkedStableId) return null;
+
+  const userRef = db.collection('users').doc(linkedStableId);
+  const userSnap = await userRef.get();
+  const data = userSnap.exists ? userSnap.data() ?? {} : null;
+  if (!data || data.identityHidden === true) {
+    // Ранний выход обязан быть виден (правило проекта).
+    console.warn(JSON.stringify({
+      event: 'account_claim_anchor_unusable',
+      reason: data ? 'identity_hidden' : 'user_missing',
+    }));
+    return null;
+  }
+
+  const knownAccountId = String(data[ACCOUNT_ID_FIELD] ?? '').trim();
+  const indexHit = await findAccountByAlias(db, authUid);
+  const indexAgrees = Boolean(knownAccountId)
+    && indexHit?.stableId === linkedStableId
+    && indexHit?.accountId === knownAccountId;
+  if (indexAgrees) {
+    return { accountId: knownAccountId, stableId: linkedStableId, created: false };
+  }
+
+  let accountId = knownAccountId || newAccountId();
+  await db.runTransaction(async (tx) => {
+    const fresh = await tx.get(userRef);
+    const freshAccountId = String((fresh.data() ?? {})[ACCOUNT_ID_FIELD] ?? '').trim();
+    // Имя, которое успели выдать параллельно, важнее нашего свежего.
+    accountId = freshAccountId || accountId;
+    if (!freshAccountId) {
+      tx.set(userRef, {
+        [ACCOUNT_ID_FIELD]: accountId,
+        accountIdAssignedAt: nowMs,
+        accountIdAssignedReason: 'stage4_anchor_adopted_2026_09_02',
+        updatedAt: nowMs,
+      }, { merge: true });
+    }
+    for (const { alias, kind } of cleanAliases([
+      { alias: linkedStableId, kind: 'stable' },
+      { alias: authUid, kind: 'auth' },
+    ])) {
+      tx.set(db.collection(ACCOUNT_ID_INDEX).doc(accountIdIndexDocId(alias)), {
+        accountId, alias, kind, stableId: linkedStableId, updatedAt: nowMs,
+      }, { merge: true });
+    }
+  });
+  console.warn(JSON.stringify({
+    event: 'account_claim_anchor_adopted',
+    hadAccountId: Boolean(knownAccountId),
+    indexBefore: indexHit ? (indexHit.stableId === linkedStableId ? 'same_stable' : 'other_stable') : 'none',
+  }));
+  return { accountId, stableId: linkedStableId, created: false };
+}
+
+/**
  * Выдаёт аккаунт для текущего входа, создавая его при первом обращении.
  *
  * Идемпотентна по построению: повторный вызов с тем же uid возвращает ТОТ ЖЕ
@@ -62,6 +140,11 @@ export async function claimAccountForAuth(
   // иначе человек внутри 14 дней тихо получил бы чистый профиль вместо
   // предложения вернуть свой.
   await assertAuthAccountUsable(db, authUid);
+
+  // Уже привязан к живому аккаунту — отдаём его. Карта решает только тем, у
+  // кого привязки нет (см. adoptAnchoredAccount).
+  const anchored = await adoptAnchoredAccount(db, authUid, nowMs);
+  if (anchored) return anchored;
 
   // Запись карты, которую мы уже признали негодной: она НЕ должна выглядеть
   // как гонка внутри транзакции ниже — иначе человек не получит аккаунт вовсе.

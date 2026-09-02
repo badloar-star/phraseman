@@ -106,3 +106,33 @@ describe('проверка найденного аккаунта', () => {
     expect(await verifyAccountHit(fakeDb({}, { throwOn: 'users' }), hit)).toBe(false);
   });
 });
+
+describe('владение найденным аккаунтом (аудит 2026-09-02)', () => {
+  const hit = { accountId: ACC, stableId: STABLE, matchedAlias: 'auth-1', matchedKind: 'auth' };
+
+  it('документ принадлежит uid по firebaseAuthUid → проходит', async () => {
+    expect(await verifyAccountHit(fakeDb({
+      [`users/${STABLE}`]: { accountId: ACC, firebaseAuthUid: 'auth-1' },
+    }), hit, 'auth-1')).toBe(true);
+  });
+
+  it('документ принадлежит другому uid → карта лишь подсказка, решает прежняя лестница', async () => {
+    expect(await verifyAccountHit(fakeDb({
+      [`users/${STABLE}`]: { accountId: ACC, firebaseAuthUid: 'someone-else' },
+    }), hit, 'auth-1')).toBe(false);
+  });
+
+  it('легаси-документ с id = uid без владельца → не проходит по владению', async () => {
+    // Иначе пустой документ старой схемы перебил бы настоящий аккаунт человека.
+    const selfHit = { accountId: ACC, stableId: 'auth-1', matchedAlias: 'auth-1', matchedKind: 'stable' };
+    expect(await verifyAccountHit(fakeDb({
+      'users/auth-1': { accountId: ACC },
+    }), selfHit, 'auth-1')).toBe(false);
+  });
+
+  it('без указания владельца поведение прежнее', async () => {
+    expect(await verifyAccountHit(fakeDb({
+      [`users/${STABLE}`]: { accountId: ACC, firebaseAuthUid: 'someone-else' },
+    }), hit)).toBe(true);
+  });
+});

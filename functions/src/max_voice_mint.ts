@@ -927,8 +927,11 @@ export const maxVoiceMint = onCall({
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
   timeoutSeconds: 30,
   memory: '256MiB',
-  // Голосовой вход не может ждать cold start: один экземпляр всегда тёплый.
-  minInstances: 1,
+  // зачем (владелец 2026-09-02, аудит расходов): тёплый инстанс — единственный
+  // фиксированный расход проекта: 86 400 оплачиваемых секунд в сутки, ~$6.6/мес
+  // при 300 звонках. Холодный старт прикрывает заготовка минта на пре-экране
+  // звонка (warmupPing из клиента), поэтому круглосуточный контейнер не нужен.
+  minInstances: 0,
   maxInstances: 20,
   secrets: [OPENAI_API_KEY],
 }, async (request) => {

@@ -1,0 +1,151 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Даже когда говорят быстро, нельзя терять 'am'. Формула: I am + слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "not всегда стоит сразу после am, не 'I not' и не 'I no'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "done значит 'я закончил', и нельзя случайно приклеить not, если на самом деле закончил.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Выбрал lost, потому что вопрос был про то, не заблудился ли я в коридорах.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "На слух отличил tired от похожих tied и third.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Собрал 'I am tired', лишнюю плитку not не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Со словом I всегда только am, не is и не are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал по слуху 'I am not hungry'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Сопоставил слова с переводом, тут просто повторение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Про кофе — выбрал hungry, а не sure/done, потому что они не по смыслу вопроса.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Собрал 'I am not sure' про время начала завтра.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Различил free на слух от three и fry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Про пятницу выбрал free, не lost/tired — они не про планы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Собрал 'I am ready' по слуху, лишнюю плитку done не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Выбрал lost — вопрос про коридоры, а не про готовность или дела.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал 'I am done', not не нужен, стол пустой.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Ещё раз сопоставил слова с переводом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Сказал вслух две фразы подряд, сравнил с образцом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Собрал 'I am free', лишнюю плитку is не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Ответил на все 4 вопроса подряд без подсказок: ready, not lost, not hungry, done.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Проговорить подряд несколько разных I am / I am not фраз без подсказок, не путаясь под давлением 'быстрых вопросов'",
+    "Различать на слух похожие по звучанию слова (tired/tied/third, free/three/fry)",
+    "Понимать по смыслу вопроса, какое из знакомых слов подходит, а какое — ловушка не по теме"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2",
+      "why": "по сути повторяет то же самое место 'not после am', что уже было в прошлых уроках — просто новая обёртка"
+    },
+    {
+      "where": "Задания 6 и 14",
+      "why": "два одинаковых по формату 'Speed Match' подряд в одной сессии, ничего нового не добавляют, просто перевод уже известных слов"
+    }
+  ],
+  "felt_alive": [
+    "Сцена с кадровичкой и планшетом у выхода — понятно и смешно, реально представляешь этот момент 'ещё пара вопросов и вы свободны'",
+    "Финал (задание 17), где нужно ответить на 4 вопроса подряд без подсказок — почувствовал себя реально сдающим мини-экзамен"
+  ],
+  "felt_dead": [
+    "Интро 2 — объяснение 'not как охранник вплотную за am' звучит как из учебника, не по-человечески"
+  ],
+  "scene_reason": "да — понятно, что я отвечаю кадровичке на пороге в конце первого рабочего дня, и каждый вопрос имеет свой повод (не потерялся, готов, голоден, закончил)",
+  "would_continue": "да — сессия короткая, финал бодрый, чувствуется прогресс от простых фраз к быстрому ответу на 4 вопроса подряд",
+  "verdict": "PASS",
+  "verdict_reason": "все 17 заданий прошёл честно без незнакомых слов в правильных ответах, узнал новое про быструю связную речь и различение похожих слов на слух."
+}

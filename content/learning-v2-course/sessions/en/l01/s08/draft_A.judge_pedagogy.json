@@ -1,0 +1,95 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [
+      {
+        "where": "задание 11, дистрактор",
+        "item": "down — не входит в список известных слов ученика; хотя и не 'цель', звучит и подаётся в паре как равноправный вариант выбора"
+      }
+    ],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "new как честная, но неверная по контексту правда"
+      },
+      {
+        "task": 3,
+        "trap": "лишняя плитка not — обманка на внимательность"
+      },
+      {
+        "task": 7,
+        "trap": "sure/done как правдоподобные, но не отвечающие на вопрос про кофе"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "ready",
+        "tired",
+        "lost",
+        "hungry"
+      ],
+      [
+        "sure",
+        "free",
+        "done",
+        "new"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      3,
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s07",
+      "what": "та же сцена-каркас: начальник/кадровичка у лифта задаёт вопросы вразнобой, пока едет/держат лифт — почти дословное повторение завязки s07 ('Начальник ловит вас у лифта... вопросы подряд, вразнобой... лифт не ждёт' vs 'девушка из отдела кадров... вопросы летят подряд, вразнобой... лифт уже открыт')"
+    },
+    {
+      "neighbor": "l01_s07",
+      "what": "интро 1 сессии s08 почти повторяет ход разбора s07: 'Скрепка am уехала/потерялась в лифте/дороге' — тот же образ 'am потерялся в пути/транспорте' использован третий раз подряд (s06: 'скрепка am потерялась в дороге', s07: 'am уехала без вас', s08: 'am осталась в лифте')"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "context_gap_grammar": 6,
+      "listen_choose": 1,
+      "phrase_builder": 4,
+      "listen_build_dictation": 2,
+      "speed_match": 2,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Интро 3 объявляет ключевым словом done, но текст страницы ведёт к теме отрицания/уверенности, а не к done (не объяснено), плюс сцена и образ 'am потерялся в пути' почти дословно повторяют сессию l01_s07 — оба пункта требуют правки перед PASS."
+}

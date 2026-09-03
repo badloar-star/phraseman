@@ -12,15 +12,35 @@
       "prompt": "Карточка слова — early",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i01:audio"
+      ],
       "accessibilityLabel": "Карточка слова — early",
       "modePayload": {
         "family": "listen_choose",
-        "referenceAudio": null,
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i01:audio",
+          "transcript": "early"
+        },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [],
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i01:r1",
+            "targetText": "early",
+            "meaningByLocale": {
+              "ru": "«рано». Пришли, а свет ещё не включили и чайник холодный."
+            }
+          }
+        ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": []
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "early",
+          "definitionByLocale": {
+            "ru": "«рано». Пришли, а свет ещё не включили и чайник холодный."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -89,10 +109,12 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — early",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "Начало совсем другое: там «ри», а в early первый звук тянется глухо, как зевок."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -105,15 +127,35 @@
       "prompt": "Карточка слова — right",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i03:audio"
+      ],
       "accessibilityLabel": "Карточка слова — right",
       "modePayload": {
         "family": "listen_choose",
-        "referenceAudio": null,
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i03:audio",
+          "transcript": "right"
+        },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [],
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i03:r1",
+            "targetText": "right",
+            "meaningByLocale": {
+              "ru": "«прав, верно». Посчитали, сошлось, можно не пересчитывать."
+            }
+          }
+        ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": []
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "right",
+          "definitionByLocale": {
+            "ru": "«прав, верно». Посчитали, сошлось, можно не пересчитывать."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -174,7 +216,7 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — right",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "Звучит один в один, но это «писать». Пока в круге нам нужно «прав» — right."
             }
           },
           {
@@ -185,7 +227,9 @@
               "ru": "Хвост мягче: там «д», а у right — чёткое «т» на конце."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -198,15 +242,35 @@
       "prompt": "Карточка слова — wrong",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i05:audio"
+      ],
       "accessibilityLabel": "Карточка слова — wrong",
       "modePayload": {
         "family": "listen_choose",
-        "referenceAudio": null,
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i05:audio",
+          "transcript": "wrong"
+        },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [],
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i05:r1",
+            "targetText": "wrong",
+            "meaningByLocale": {
+              "ru": "«не прав, неверно». Буква w в начале молчит: говорят «ронг»."
+            }
+          }
+        ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": []
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wrong",
+          "definitionByLocale": {
+            "ru": "«не прав, неверно». Буква w в начале молчит: говорят «ронг»."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -267,7 +331,7 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — wrong",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "Разница в первом звуке: long начинается с «л», wrong — с «р». Буква w молчит, её не слышно."
             }
           },
           {
@@ -278,7 +342,9 @@
               "ru": "Гласная другая, тонкая «и». В wrong гласная открытая, «о»."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -291,15 +357,35 @@
       "prompt": "Карточка слова — free",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i07:audio"
+      ],
       "accessibilityLabel": "Карточка слова — free",
       "modePayload": {
         "family": "listen_choose",
-        "referenceAudio": null,
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i07:audio",
+          "transcript": "free"
+        },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [],
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i07:r1",
+            "targetText": "free",
+            "meaningByLocale": {
+              "ru": "«свободен, не занят». Стол чист, почта разобрана, можно брать новое."
+            }
+          }
+        ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": []
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "free",
+          "definitionByLocale": {
+            "ru": "«свободен, не занят». Стол чист, почта разобрана, можно брать новое."
+          }
+        }
       },
       "scriptedAlternate": null
     },
@@ -338,7 +424,7 @@
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «нев",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "Это «прав», ровно обратное. Начало у обоих одно — «р», а решает гласная: right — «ай», wrong — «о». Слушайте середину слова."
             }
           }
         ]
@@ -532,7 +618,7 @@
             "correct": false,
             "testedDimension": "Вставьте слово — сосед по кругу признаёт",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "Тогда он сказал бы обратное — что он не ошибся. А он промах признаёт; и скрепка am всё равно нужна, not её не заменяет."
             }
           },
           {
@@ -540,7 +626,7 @@
             "correct": false,
             "testedDimension": "Вставьте слово — сосед по кругу признаёт",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "Is — это про кого-то третьего, про него самого со стороны. Про себя всегда am, а он говорит именно про себя."
             }
           }
         ]
@@ -608,7 +694,7 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — начальник обводи",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "«Я занят» — но стол у вас пустой. Busy сказал бы тот, у кого работа на руках, а у вас её нет."
             }
           },
           {
@@ -616,7 +702,7 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — начальник обводи",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "«Я рад» — правда, задачу вы возьмёте с удовольствием. Но начальник спросил не про настроение, а про время: есть оно у вас или нет."
             }
           },
           {
@@ -624,10 +710,12 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — начальник обводи",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "Начальник услышит паузу там, где ждёт am, и переспросит. Отвечать надо целиком: I am free."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -697,7 +785,7 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы сейчас ус",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "Пропущено not — а смысл перевернулся на противоположный. Слушайте короткое слово между am и sure."
             }
           },
           {
@@ -705,7 +793,7 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы сейчас ус",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "Отрицание вы услышали верно, а последнее слово — нет. Sure — «уверен», free — «свободен»."
             }
           },
           {
@@ -713,10 +801,12 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы сейчас ус",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "Tired — «устал», два слога с «т» в начале. Sure — один слог и начинается с «ш». Хвост фразы решает всё."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -829,7 +919,7 @@
             "correct": false,
             "testedDimension": "Вставьте слово — коллега вбегает, когда ",
             "feedbackByLocale": {
-              "ru": ""
+              "ru": "Ровно наоборот: early — «рано». Рано пришли сегодня вы, а он — позже всех."
             }
           },
           {
@@ -913,5 +1003,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "68af9d00d4908941fdb179abd62bcd6e6c417108afa6297403fcbd0db7c426db"
+  "learnerFingerprint": "7566491955da60776d5c8e5fb586c16468a3abcac130b037fa43dcecac0761a0"
 }

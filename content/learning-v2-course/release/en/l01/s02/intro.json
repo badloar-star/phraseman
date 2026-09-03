@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `I am + слово о себе` (объяснена в сессии 1)"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна формула — на весь день"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже умеете говорить I am here и I am ready. Хорошая новость: новых\nформул не будет — та же самая проработает на вас весь рабочий день.\n\nДело в том, что I am не про «здесь» и не про «готов». Оно про любое ваше\nсостояние. Устали — I am tired. Заняты — I am busy. Формула та же, слово\nдругое.\n\nАнглийский так устроен: одну конструкцию выучили — и подставляете в неё\nвсё новое. Меньше правил, больше слов. Это как один ключ от всех дверей в\nофисе: вы его уже держите в руке, осталось выучить, какие тут двери."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Три часа встреч подряд. Коллега спрашивает, как вы. Скажите честно: «я устал»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-02:intro1:r1",
+              "text": "I am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro1:r2",
+              "text": "I tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro1:r3",
+              "text": "I am tire."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Три часа встреч подряд. Коллега спрашивает, как вы. Скажите честно: «я устал»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одно слово меняет весь смысл"
+      },
+      "bodyByLocale": {
+        "ru": "I am busy — «я занят». I am late — «я опаздываю». I am sorry — «извините,\nмне жаль».\n\nСмотрите, что происходит: I am стоит на месте, а последнее слово\nпереключает ситуацию целиком. Busy — и человек уходит, не мешает. Late — и\nвас ждут. Sorry — и вам прощают.\n\nИменно поэтому английский начинают с I am: это выключатель с тысячей\nположений. Пока у вас их восемь. К концу курса будет несколько сотен —\nи все с тем же началом."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы задержались на десять минут. Заходите — все уже сидят. Что сказать первым делом?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-02:intro2:r1",
+              "text": "I am late."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro2:r2",
+              "text": "I am here."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro2:r3",
+              "text": "I late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы задержались на десять минут. Заходите — все уже сидят. Что сказать первым делом?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Sorry — тоже с am"
+      },
+      "bodyByLocale": {
+        "ru": "I am sorry. Тут спотыкаются даже те, кто уже всё понял про скрепку.\n\nПо-русски «извините» — одно слово, и так и хочется сказать просто *Sorry*.\nАнгличане, кстати, тоже так говорят — на бегу, в автобусе, наступив на\nногу. Но полная фраза, та, что для нового начальника, — I am sorry. Три\nслова, и звучит как взрослый человек, а не как школьник у доски.\n\nПравило вы уже знаете: слово о себе → перед ним am. Sorry — слово о вас. Всё."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы опоздали, и вы об этом жалеете. Скажите это как следует."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-02:intro3:r1",
+              "text": "I am sorry."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro3:r2",
+              "text": "I sorry."
+            },
+            {
+              "responseId": "en:lesson-01:session-02:intro3:r3",
+              "text": "I am sorry am."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы опоздали, и вы об этом жалеете. Скажите это как следует."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "758c6adce2e2640b532f5903cef84abd938a3561f2e3ed1215840d6271b863b7"
+}

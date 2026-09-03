@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-03",
+  "learningOutcomeByLocale": {
+    "ru": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одно слово — и всё наоборот"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже умеете сказать I am tired — «я устал». А если не устали?\n\nВ русском мы вставляем «не»: «я не устал». В английском — то же самое,\nтолько слово другое: **not**. I am not tired. Всё. Никаких новых форм,\nникаких перестановок — одно слово, и фраза перевернулась.\n\nЗаметьте, куда оно встало: не в начало и не в конец, а сразу после am.\nI am — а потом not. Скрепка и «не» ходят парой, как охранник и напарник:\nсначала am, потом not, и только потом слово о вас."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Начальник сочувственно спрашивает: «Tired?» А вы бодры. Скажите «я не устал»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-03:intro1:r1",
+              "text": "I am not tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-03:intro1:r2",
+              "text": "I not tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-03:intro1:r3",
+              "text": "I am tired not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Начальник сочувственно спрашивает: «Tired?» А вы бодры. Скажите «я не устал»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Not вежливее, чем кажется"
+      },
+      "bodyByLocale": {
+        "ru": "Начальник спрашивает: «Hungry?» — «голодный?». Вы не голодны. Можно\nбуркнуть «no». А можно сказать I am not hungry — и это совсем другой тон.\n\nПолная фраза с not звучит спокойно и по-взрослому: «нет, спасибо, всё в\nпорядке». Короткое «no» звучит как дверь, захлопнутая перед носом.\nАнгличане это чувствуют кожей — и в первый день на работе лучше говорить\nполными фразами.\n\nФормула у вас уже есть: I am not + слово. Hungry — «голодный». Cold —\n«замёрз». Подставляйте."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Вам предлагают ещё кофе, а вы уже не хотите. Вежливо: «я не замёрз» (это они беспокоились, что вы мёрзнете)."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-03:intro2:r1",
+              "text": "I am not cold."
+            },
+            {
+              "responseId": "en:lesson-01:session-03:intro2:r2",
+              "text": "I no cold."
+            },
+            {
+              "responseId": "en:lesson-01:session-03:intro2:r3",
+              "text": "I am no cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам предлагают ещё кофе, а вы уже не хотите. Вежливо: «я не замёрз» (это они беспокоились, что вы мёрзнете)."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где not спасает от неловкости"
+      },
+      "bodyByLocale": {
+        "ru": "Есть фраза, которую вы будете говорить чаще всех остальных: I am not\nsure — «я не уверен». Sure — «уверен».\n\nПервый день, вам задают вопрос, вы не знаете ответа. Молчать — неловко.\nВыдумывать — опасно. I am not sure — идеально: честно, спокойно, и вас не\nсчитают ни выскочкой, ни растяпой. В английском офисе эту фразу говорят\nпо десять раз на дню, и никто не краснеет.\n\nА чтобы вам не было одиноко на новом месте — I am not alone, «я не один».\nAlone — «один, сам по себе». Вы теперь умеете не только соглашаться, но и\nотказываться. Это уже разговор."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Спрашивают, во сколько собрание. Вы не знаете. Скажите «я не уверен»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-03:intro3:r1",
+              "text": "I am not sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-03:intro3:r2",
+              "text": "I am sure not."
+            },
+            {
+              "responseId": "en:lesson-01:session-03:intro3:r3",
+              "text": "I not sure."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спрашивают, во сколько собрание. Вы не знаете. Скажите «я не уверен»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7832532ba4e0ffdec36a597c35fae6f9facb28fc9f2c1477ac3069ab493c8be4"
+}

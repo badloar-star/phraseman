@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-01",
+  "learningOutcomeByLocale": {
+    "ru": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два слова, с которых начинается любой разговор о себе"
+      },
+      "bodyByLocale": {
+        "ru": "I am. Всего два слова — и вы уже говорите о себе по-английски.\n\nI — это «я». Am — маленькое слово-скрепка. По-русски мы его пропускаем:\n«я здесь», «я готов» — и никакого «есть». В английском без него фраза\nразваливается, как стул без одной ножки.\n\nI am here — «я здесь». Скажите это вслух прямо сейчас: *I am here.*\nПоздравляю: вы только что произнесли своё первое английское предложение,\nи оно правильное."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы зашли в офис. Все обернулись. Скажите «я здесь»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-01:intro1:r1",
+              "text": "I am here."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro1:r2",
+              "text": "I here."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro1:r3",
+              "text": "Am here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы зашли в офис. Все обернулись. Скажите «я здесь»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "I am + одно слово о себе"
+      },
+      "bodyByLocale": {
+        "ru": "Формула: **I am + слово, которое описывает вас сейчас.**\n\nI am ready — «я готов». I am fine — «у меня всё хорошо». Меняется только\nпоследнее слово. I am стоит на месте, как приклеенное.\n\nЭто самый надёжный конструктор в английском: два первых кубика всегда одни\nи те же. Хотите сказать о себе что угодно — начинайте с I am и подставляйте\nслово."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Начальник спрашивает: «Ready?» Ответьте «я готов»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-01:intro2:r1",
+              "text": "I am ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro2:r2",
+              "text": "I ready am."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro2:r3",
+              "text": "Ready am I."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Начальник спрашивает: «Ready?» Ответьте «я готов»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Am хочется выбросить — не давайте ему уйти"
+      },
+      "bodyByLocale": {
+        "ru": "Главная ошибка первого дня: *I fine*, *I happy*. Так и тянет — по-русски\nведь «я в порядке», «я рад», без всякого «есть».\n\nВ английском am стоит всегда. Без исключений. Проверка простая: если после\nI сразу идёт слово о вас — между ними обязано быть am.\n\nI am fine. I am happy. Два слова вместо одного — и вас понимает весь мир."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Коллега спрашивает, как вы. Всё хорошо. Скажите это."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-01:intro3:r1",
+              "text": "I am fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro3:r2",
+              "text": "I fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro3:r3",
+              "text": "I is fine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега спрашивает, как вы. Всё хорошо. Скажите это."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a81369426ffb462673e6e05fe67468ab650636120610bc1065a0fbea77d86e85"
+}

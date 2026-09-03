@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-03:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i02",
+    "correctText": "hungry",
+    "correctResponseId": "en:lesson-01:session-03:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i04",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i05",
+    "correctText": "sure",
+    "correctResponseId": "en:lesson-01:session-03:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i08",
+    "correctText": "I am not hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i09",
+    "correctText": "not",
+    "correctResponseId": "en:lesson-01:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i10",
+    "correctText": "alone",
+    "correctResponseId": "en:lesson-01:session-03:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i11",
+    "correctText": "I am not sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i12",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-03:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i13",
+    "correctText": "I am late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i14",
+    "correctText": "I am not busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i15",
+    "correctText": "I am not cold. I am fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i16",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-03:i17",
+    "correctText": "I am not tired. I am not hungry. I am not alone. I am ready.",
+    "correctResponseId": null
+  }
+]

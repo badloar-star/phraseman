@@ -45,15 +45,25 @@ function parseHeader(md) {
 /** Три страницы интро: заголовок, тело, вопрос, варианты с разборами. */
 function parseIntro(md) {
   const pages = [];
-  const blocks = md.split(/^## Интро \d+\s*$/m).slice(1);
+  // зачем: ранние эталоны пишут «## Интро 1 · Понятие», поздние — «## Интро 1»
+  const blocks = md.split(/^## Интро \d+[^\n]*$/m).slice(1);
   for (const [i, raw] of blocks.entries()) {
     const body = raw.split(/^---\s*$/m)[0];
     const heading = /^###\s+(.+)$/m.exec(body)?.[1]?.trim() ?? "";
-    // текст до строки-вопроса (жирная строка, оканчивающаяся вопросом/точкой)
-    const qMatch = /^\*\*(.+?)\*\*\s*$/m.exec(body.split(/^-\s+[✅❌]/m)[0]);
-    const question = qMatch?.[1]?.replace(/\s+/g, " ").trim() ?? "";
-    const textPart = body.slice(body.indexOf(heading) + heading.length, qMatch ? body.indexOf(qMatch[0]) : undefined);
-    const text = textPart.split(/\n\n/).map((s) => s.trim()).filter((s) => s && !/^[-*]/.test(s)).join("\n\n");
+    // зачем: вопрос — жирный блок перед списком вариантов, и он часто занимает
+    // две-три строки; однострочный поиск его терял (интро 1–2 уходили без вопроса)
+    // зачем: вопрос — это ПОСЛЕДНИЙ абзац перед вариантами, целиком жирный.
+    // Жирные вставки внутри объяснения («Формула: **I am + слово**») вопросом
+    // не являются — иначе тело обрезается по ним (интро 2 сессии 1 теряло текст).
+    const beforeOptions = body.split(/^-\s+[✅❌]/m)[0];
+    const paras = beforeOptions.trimEnd().split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+    const last = paras[paras.length - 1] ?? "";
+    const isQuestion = /^\*\*[\s\S]+\*\*$/.test(last);
+    const question = isQuestion ? last.replace(/^\*\*|\*\*$/g, "").replace(/\s+/g, " ").trim() : "";
+    if (!isQuestion) WARN(`интро ${i + 1}: последний абзац не похож на вопрос — «${last.slice(0, 50)}»`);
+    const bodyParas = (isQuestion ? paras.slice(0, -1) : paras)
+      .filter((p) => p !== `### ${heading}` && !p.startsWith("###") && !/^[-*]\s/.test(p));
+    const text = bodyParas.join("\n\n");
     const options = parseOptions(body);
     if (!options.length) WARN(`интро ${i + 1}: не найдено вариантов ответа`);
     pages.push({ kind: ["concept", "formula", "trap"][i] ?? "tip", heading, text, question, options });
@@ -90,8 +100,10 @@ function parseOptions(block) {
     }
   }
 
-  // 2) список разборов
-  for (const m of block.matchAll(/^-\s+(✅|❌)?\s*(.+)$/gm)) {
+  // 2) список разборов. Пункт может переноситься на следующие строки —
+  //    склеиваем до следующего «- » или пустой строки, иначе разбор теряется.
+  const glued = block.replace(/\n(?![-*\s]*$)(?!\s*-\s)(?!\s*\*\*\d)[ \t]+(\S)/g, " $1");
+  for (const m of glued.matchAll(/^-\s+(✅|❌)?\s*(.+)$/gm)) {
     const marked = m[1];
     let rest = m[2].trim();
     if (/^\*[^*]/.test(rest) && !/—/.test(rest)) continue; // подсказка курсивом, не вариант
@@ -110,6 +122,32 @@ function parseOptions(block) {
   return out;
 }
 
+/** Механика по названию задания — запасной путь для сессий без строки modes. */
+function familyFromTitle(title) {
+  const t = title.toLowerCase();
+  if (/карточка слова/.test(t)) return "word_card";
+  if (/послушайте и собер|послушайте и напиш/.test(t)) return "listen_build_dictation";
+  if (/послушайте и выбер|что вы сейчас услышали/.test(t)) return "listen_choose";
+  if (/различите звук/.test(t)) return "sound_contrast";
+  if (/собери(те)? фразу|собери(те)? без подсказк|соберите/.test(t)) return "phrase_builder";
+  if (/вставьте (слово|скрепку)|вставьте/.test(t)) return "context_gap_grammar";
+  if (/соедините пары|speed match/.test(t)) return "speed_match";
+  if (/скажите вслух|скажите три|скажите пять|финал сцены|ответьте/.test(t)) return "scripted_repeat_compare";
+  return null;
+}
+
+/** Механика по содержимому — последний запасной путь: заголовок бывает
+ * сюжетным («Вспомните начало дня»), а форма задания видна по разметке. */
+function familyFromBody(body) {
+  if (/___/.test(body)) return "context_gap_grammar";
+  // плитки пишут и как «Плитки: `a` `b`», и как «Соберите: `a` `b`»
+  if (/(Плитки|Соберите):[^\n]*`/.test(body)) return /🔊/.test(body) ? "listen_build_dictation" : "phrase_builder";
+  if (/🎙/.test(body)) return "scripted_repeat_compare";
+  if (/🔊/.test(body)) return "listen_choose";
+  if (/·/.test(body) && /—/.test(body)) return "speed_match";
+  return null;
+}
+
 /** Задания практики: номер, тип из «## Для сборщика», содержимое. */
 function parsePractice(md) {
   const modesLine = /^modes:\s*([\s\S]*?)(?:\n\s*\n|$)/m.exec(md)?.[1] ?? "";
@@ -121,8 +159,11 @@ function parsePractice(md) {
     const head = /^(\d+) · ([^*]+)\*\*/.exec(chunk);
     if (!head) { WARN(`задание без заголовка: ${chunk.slice(0, 60)}`); continue; }
     const ordinal = Number(head[1]);
-    const family = modes.get(ordinal);
-    if (!family) { WARN(`задание ${ordinal}: нет записи в строке modes`); continue; }
+    // зачем: эталоны 1–3 написаны руками до появления раздела «Для сборщика».
+    // Механику выводим из названия задания — оно у нас всегда называет действие.
+    const bodyForFamily = chunk.slice(head[0].length);
+    const family = modes.get(ordinal) ?? familyFromTitle(head[2]) ?? familyFromBody(bodyForFamily);
+    if (!family) { WARN(`задание ${ordinal}: механика не определена ни строкой modes, ни названием «${head[2].trim()}»`); continue; }
     const bodyText = chunk.slice(head[0].length);
     tasks.push({ ordinal, title: head[2].trim(), family, body: bodyText, options: parseOptions(bodyText), ...parseTaskParts(bodyText) });
   }
@@ -135,7 +176,7 @@ function parseTaskParts(body) {
   // цель: последняя жирная фраза после стрелки, либо жирная строка целиком
   const arrow = [...body.matchAll(/→\s*\*\*(.+?)\*\*/g)].map((m) => m[1].trim());
   if (arrow.length) parts.target = arrow[arrow.length - 1];
-  const tiles = /Плитки:\s*(.+)/.exec(body);
+  const tiles = /(?:Плитки|Соберите):\s*(.+)/.exec(body);
   if (tiles) parts.tokens = [...tiles[1].matchAll(/`([^`]+)`/g)].map((m) => m[1]);
   const audio = /🔊\s*\*([^*]+)\*/.exec(body);
   if (audio) parts.audio = audio[1].trim();
@@ -179,6 +220,9 @@ const localized = (byLocale) => Object.fromEntries(LOCALES.map((l) => [l, byLoca
 
 function buildInteraction(task, perLocale, sessionId, index, total) {
   const id = `${sessionId}:i${String(task.ordinal).padStart(2, "0")}`;
+  // зачем: карточка нового слова — не выбор, а показ. В формате плеера своего
+  // семейства для неё нет, поэтому идёт как listen_choose с единственным
+  // «вариантом» — самим словом; макет и приложение узнают её по cardByLocale.
   const family = task.family === "word_card" ? "listen_choose" : task.family;
   const loc = (field) => localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.[field] ?? ""])));
 
@@ -204,13 +248,21 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
       slotFeedback: feedback,
     };
   } else if (family === "listen_choose") {
+    const cardByLocale = task.card
+      ? localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.card?.definition ?? task.card.definition])))
+      : null;
     modePayload = {
       family,
-      referenceAudio: task.audio ? { audioTargetId: `${id}:audio`, transcript: task.audio } : null,
+      referenceAudio: task.audio || task.card ? { audioTargetId: `${id}:audio`, transcript: task.audio ?? task.card.word } : null,
       slowReferenceAudio: null,
-      localizedMeaningChoices: responseOptions.map((r, i) => ({ responseId: r.responseId, targetText: r.text, meaningByLocale: task.card && i === 0 ? loc("card") : null })),
+      localizedMeaningChoices: task.card
+        ? [{ responseId: `${id}:r1`, targetText: task.card.word, meaningByLocale: cardByLocale }]
+        : responseOptions.map((r) => ({ responseId: r.responseId, targetText: r.text, meaningByLocale: null })),
       transcriptRevealPolicy: "after_first_attempt",
       choiceFeedback: feedback,
+      // карточка слова: показ, а не выбор
+      isWordCard: !!task.card,
+      wordCard: task.card ? { word: task.card.word, definitionByLocale: cardByLocale } : null,
     };
   } else if (family === "listen_build_dictation") {
     modePayload = {

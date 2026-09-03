@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "`You are + слово`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "У «вас» своя скрепка"
+      },
+      "bodyByLocale": {
+        "ru": "Про себя вы говорите `I am`. Про человека напротив — `you are`.\n\nСкрепка сменилась. Это как обувь: своя — одна, гостю выносят другую.\n\nКоллега зевает над кофе. Скажите ей то, что видно невооружённым глазом: `You are tired`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Она третий раз трёт глаза. Скажите: «ты устала»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-09:intro1:r1",
+              "text": "You are tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro1:r2",
+              "text": "You am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro1:r3",
+              "text": "You tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Она третий раз трёт глаза. Скажите: «ты устала»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Слово, которым отвечают на «спасибо»"
+      },
+      "bodyByLocale": {
+        "ru": "Вы сказали «спасибо» за кофе. Она отвечает: `You are welcome`.\n\nДословно это «ты желанный» — звучит почти как признание. На деле означает «да не за что».\n\nОдно слово меняет всю фразу: `You are sorry` — уже не благодарность, а упрёк."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы благодарите за кофе. Что она вам ответит?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-09:intro2:r1",
+              "text": "You are welcome."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro2:r2",
+              "text": "You are sorry."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro2:r3",
+              "text": "You welcome."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы благодарите за кофе. Что она вам ответит?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Комплимент, который не звучит как флирт"
+      },
+      "bodyByLocale": {
+        "ru": "`funny` — «смешной». Она пошутила про кофеварку, вы смеётесь: `You are funny`. Это про шутку, а не про странность — хотя англичане иногда пользуются и вторым значением, и лица у них при этом невинные.\n\nСкрепка не исчезает и в комплименте: `are` держит фразу, даже когда хочется сказать в два слова, как по-русски."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Она пошутила, вы засмеялись. Скажите ей: «ты смешная»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-09:intro3:r1",
+              "text": "You are funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro3:r2",
+              "text": "You funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro3:r3",
+              "text": "You is funny."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Она пошутила, вы засмеялись. Скажите ей: «ты смешная»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "31c58ea6b340c90b6865da9c22d2cc9b67733493bf4733475411d29aeb0faf25"
+}

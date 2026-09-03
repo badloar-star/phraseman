@@ -3381,6 +3381,33 @@ async function bisectDenyingField(
      */
     const nestedProbe = await tryKeys(['__harmless_nested__']);
     if (nestedProbe === 'denied') {
+      /**
+       * ТРЕТИЙ КОНТРОЛЬ (03.09): корневое поле проходит, любое `progress.*` —
+       * нет, при этом ни один блок-лист правил пробный ключ не содержит. Значит
+       * подозрение смещается с ИМЕНИ поля на СПОСОБ записи: dot-notation update
+       * и set(merge) формируют разные запросы, и правило может видеть их
+       * по-разному. Пробуем то же самое поле через set(merge) — если пройдёт,
+       * причина в форме записи, а не в данных, и чинить надо помощник
+       * writeUserDocWithNestedProgress.
+       */
+      let mergeProbe = 'не выполнена';
+      try {
+        await docRef.set({ progress: { sync_probe_at_ms: String(Date.now()) } }, { merge: true });
+        try {
+          const db = getFirestore();
+          const waitFn = (db as { waitForPendingWrites?: () => Promise<unknown> } | null)?.waitForPendingWrites;
+          if (typeof waitFn === 'function') await waitFn.call(db);
+          mergeProbe = 'ПРОШЛА';
+        } catch (e) {
+          mergeProbe = 'не подтверждена: ' + (e instanceof Error ? e.message : String(e));
+        }
+      } catch (e) {
+        const code = (e as { code?: string } | null)?.code ?? '';
+        mergeProbe = String(code).includes('permission-denied')
+          ? 'ОТКАЗ (та же ошибка, форма записи ни при чём)'
+          : 'ошибка: ' + (code || (e instanceof Error ? e.message : String(e)));
+      }
+      console.warn('[SYNC-DENY-BISECT] проба set(merge) вложенного поля', { результат: mergeProbe });
       console.warn('[SYNC-DENY-BISECT] ОТКАЗ НА ЛЮБОМ ВЛОЖЕННОМ ПОЛЕ: корневое поле проходит, progress.* — нет', {
         вывод: 'режется запись в progress целиком, а не конкретный ключ; вердикт деления недостоверен',
         'что проверять': 'progressHasNoPremiumWrites · hasNoServerGiftPerkWrites · hasNoLevelRewardSpinWrites — они сравнивают diff карты progress',

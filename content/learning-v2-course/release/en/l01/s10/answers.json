@@ -1,0 +1,102 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-10:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i02",
+    "correctText": "early",
+    "correctResponseId": "en:lesson-01:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i04",
+    "correctText": "fast",
+    "correctResponseId": "en:lesson-01:session-10:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i05",
+    "correctText": "You are early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i06",
+    "correctText": "fast",
+    "correctResponseId": "en:lesson-01:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i08",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i10",
+    "correctText": "You are fast.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i12",
+    "correctText": "late",
+    "correctResponseId": "en:lesson-01:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i13",
+    "correctText": "You are quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i14",
+    "correctText": "sorry",
+    "correctResponseId": "en:lesson-01:session-10:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i15",
+    "correctText": "You are ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i16",
+    "correctText": "busy",
+    "correctResponseId": "en:lesson-01:session-10:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i17",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i18",
+    "correctText": "You are early. I am late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i19",
+    "correctText": "You are quiet. I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-10:i20",
+    "correctText": "You are early. You are fast. You are quiet.",
+    "correctResponseId": null
+  }
+]

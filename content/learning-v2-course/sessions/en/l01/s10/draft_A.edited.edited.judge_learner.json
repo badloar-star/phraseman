@@ -1,0 +1,135 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Она пришла раньше меня, поэтому про неё говорю 'You are early', а про себя было бы 'I am late'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "fast — быстро, одно слово подходит и для речи, и для еды, и для ходьбы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "quiet — тихий/молчаливый, пишется с 'qu'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-4 (карточки early/fast)",
+      "what_i_understood": "Запомнил слова и на слух отличил их от похожих (earn/ear, face/first).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал 'You are early.' из плиток, лишняя была 'am'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Выбрал fast, а не early/sorry, по смыслу ситуации (доела быстро).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-8 (quiet)",
+      "what_i_understood": "quiet — тихий, отличил от quite и queen на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Для 'you' скрепка только 'are', не 'am' и не 'is'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Собрал 'You are fast.' по аудио.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (Speed Match)",
+      "what_i_understood": "Соединил все 4 пары слов с переводом без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Выбрал late, а не early/quiet, по описанию (смотрит на часы, хватает сумку).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал 'You are quiet.', не взял лишнюю 'is'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Тут про себя, значит 'I am busy', а не quiet/early — это слово я уже знал раньше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Собрал 'You are ready.', 'busy' была лишняя плитка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Повторил старые слова tired/sorry/busy/ready — тут ничего нового, просто повтор.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Проговорил 'You are early. I am late.' — сравнение своей и её ситуации.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18",
+      "what_i_understood": "Собрал 'You are quiet. I am tired.', понял что 'not' тут лишняя, потому что не отрицаю.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19 (финал)",
+      "what_i_understood": "Сам, без подсказок, сказал три фразы подряд: 'You are early. You are fast. You are quiet.' — собрал всю сцену.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Три новых слова: early (рано), fast (быстро), quiet (тихий/молчаливый)",
+    "Могу применять 'You are + слово' не только к себе, но и к другому человеку в диалоге",
+    "Понял разницу произношения quiet/quite/queen и early/earn/ear на слух",
+    "Понял, что одно и то же слово (например early) в разных фразах может относиться к разным моментам ситуации (пришла рано / а теперь уже поздно)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Задание 16",
+      "why": "просто повтор уже известных слов tired/sorry/busy/ready без ничего нового — по сути пауза в сессии"
+    }
+  ],
+  "felt_alive": [
+    "Сцена с кофе целиком — понятно, что я реально сижу напротив человека и комментирую то, что вижу прямо сейчас",
+    "Задание 12 (она хватает сумку и смотрит на часы) — заставило реально подумать, а не просто вспомнить слово",
+    "Финал (задание 19) — приятно, что смог сказать всё сам, без подсказок, и это прозвучало как настоящий разговор"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, всё время понятно кому и в какой момент я это говорю — конкретной коллеге за конкретным кофе, по конкретному поводу (она пришла рано, ест быстро, вдруг замолчала). Ни разу не было ощущения 'просто упражнение в пустоту'.",
+  "would_continue": "да — было интересно следить за сценой с коллегой, задания усложнялись постепенно, и в конце я сам, без подсказок, сказал три фразы подряд — приятное чувство прогресса",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно, узнал новое (early, fast, quiet + применение 'You are' к другому человеку), сцена понятная и живая, хочу продолжать."
+}

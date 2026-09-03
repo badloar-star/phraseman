@@ -1,0 +1,94 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "early",
+      "fast",
+      "quiet"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 6,
+        "trap": "early как отвлекающий вариант, близкий по сцене (она пришла рано) — реалистично"
+      },
+      {
+        "task": 9,
+        "trap": "am вместо are — типичная ошибка переноса из I am"
+      },
+      {
+        "task": 12,
+        "trap": "quiet вместо late — путает старую сцену с новой"
+      },
+      {
+        "task": 14,
+        "trap": "quiet/early вместо busy — правдоподобная путаница по контексту"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 19,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "early",
+        "fast",
+        "quiet",
+        "late"
+      ],
+      [
+        "tired",
+        "sorry",
+        "busy",
+        "ready"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13,
+      18
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s09",
+      "what": "заголовок интро 1 «Она пришла первой» и сама механика «скрепка are у you» повторяет приём из l01_s09 («У «вас» своя скрепка»), но это переиспользование ранее объяснённой грамматики, а не новой шутки/сцены — приемлемо в рамках «применения»"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 3,
+      "listen_choose": 3,
+      "phrase_builder": 4,
+      "context_gap_grammar": 4,
+      "listen_build_dictation": 1,
+      "speed_match": 2,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы, механики, ловушки и требования формы соблюдены; серьёзных нарушений не найдено."
+}

@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "применение `You are + слово` (объяснена ранее)"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Она пришла первой"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заходите — она уже за столиком, кофе наполовину выпит. Про себя вы бы сказали `I am late`. Про неё — `You are early`.\n\nОдно и то же опоздание, две разные фразы. Скрепка `are` — и вы уже говорите не о себе, а о человеке напротив."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Она сидит тут явно давно. Скажите ей: «ты рано»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-10:intro1:r1",
+              "text": "You are early."
+            },
+            {
+              "responseId": "en:lesson-01:session-10:intro1:r2",
+              "text": "You early."
+            },
+            {
+              "responseId": "en:lesson-01:session-10:intro1:r3",
+              "text": "You am early."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Она сидит тут явно давно. Скажите ей: «ты рано»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Fast — не только про речь"
+      },
+      "bodyByLocale": {
+        "ru": "Она говорит без пауз, вы едва успеваете. Это `fast` — «быстро».\n\nОдним словом закрывается всё: быстро говорит, быстро ест, быстро идёт, быстро отвечает. В русском для каждого случая свой оттенок, в английском — одно `fast` на всё."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Она тараторит третью минуту подряд. Скажите ей вслух: «ты быстрая»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-10:intro2:r1",
+              "text": "You are fast."
+            },
+            {
+              "responseId": "en:lesson-01:session-10:intro2:r2",
+              "text": "You fast."
+            },
+            {
+              "responseId": "en:lesson-01:session-10:intro2:r3",
+              "text": "You is fast."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Она тараторит третью минуту подряд. Скажите ей вслух: «ты быстрая»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Quiet — тишина, которую замечают"
+      },
+      "bodyByLocale": {
+        "ru": "Она допила кофе и молчит уже минуту. `quiet` — «тихий, молчаливый».\n\nПишется через `qu`, а слышится «квайет»: буква `q` в английском таскает за собой `u`, как чемодан, — одна никуда не ходит."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Она вдруг замолчала. Скажите ей: «ты тихая»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-10:intro3:r1",
+              "text": "You are quiet."
+            },
+            {
+              "responseId": "en:lesson-01:session-10:intro3:r2",
+              "text": "I am quiet."
+            },
+            {
+              "responseId": "en:lesson-01:session-10:intro3:r3",
+              "text": "You quiet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Она вдруг замолчала. Скажите ей: «ты тихая»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "441d7bf7b311c71e12594cd08a5fa557f25a63294fd036ef813668021d0c78b3"
+}

@@ -17,16 +17,32 @@
   "traps": {
     "realistic": [
       {
-        "task": 1,
-        "trap": "I are tired. — чужая скрепка"
-      },
-      {
         "task": 2,
-        "trap": "You are scared. — противоположное по смыслу слово"
+        "trap": "come / car — правдоподобные фонетические соседи calm"
       },
       {
-        "task": 3,
-        "trap": "You are quiet. — похожее, но не то качество"
+        "task": 4,
+        "trap": "brain / grave — правдоподобные соседи brave"
+      },
+      {
+        "task": 5,
+        "trap": "calm / tired — правдоподобная путаница по смыслу сцены"
+      },
+      {
+        "task": 9,
+        "trap": "hot / house — правдоподобные соседи honest"
+      },
+      {
+        "task": 10,
+        "trap": "start / small — правдоподобные соседи smart"
+      },
+      {
+        "task": 12,
+        "trap": "am / is — реалистичная ошибка со скрепкой"
+      },
+      {
+        "task": 14,
+        "trap": "are / am — обманка на внимательность, скрепка при not"
       }
     ],
     "silly": [],
@@ -41,14 +57,20 @@
   "structure": {
     "task_count": 17,
     "below_12": false,
-    "word_first_respected": false,
+    "word_first_respected": true,
     "support_fades": true,
     "speed_match_boards": [
       [
-        "brave",
         "calm",
+        "brave",
         "honest",
         "smart"
+      ],
+      [
+        "tired",
+        "sure",
+        "quiet",
+        "right"
       ]
     ],
     "speed_match_overlap": false,
@@ -66,14 +88,14 @@
     "modes_line_ok": true,
     "modes_used": {
       "word_card": 4,
-      "listen_choose": 2,
-      "phrase_builder": 3,
+      "listen_choose": 4,
       "context_gap_grammar": 3,
-      "speed_match": 1,
+      "phrase_builder": 2,
+      "speed_match": 2,
       "listen_build_dictation": 1,
-      "scripted_repeat_compare": 2
+      "scripted_repeat_compare": 1
     }
   },
   "verdict": "REVISE",
-  "verdict_reason": "Доска Speed Match (задание 10) содержит smart, у которого до этого момента была только карточка (9) без отдельной отработки — нарушение правила «доска пар — проверка памяти, а не место знакомства»; кроме того scared по машинным фактам ни разу не встречается правильным ответом (в задании 11 он лишь неверный вариант, а не цель), это тоже требует правки."
+  "verdict_reason": "Шапка сессии обещает вернуть слово quiet («Возвращаются: tired, sure, quiet, right»), но по факту оно отработано только доской пар без единого задания с правильным ответом — это тот же вид нарушения, что автор сам нашёл и исправил в самопроверке, только исправление не попало в шапку сессии."
 }

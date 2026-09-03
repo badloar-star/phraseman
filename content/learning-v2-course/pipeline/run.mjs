@@ -434,7 +434,27 @@ function validateModes(file) {
 const extractJson = (text) => {
   const m = /```json\s*([\s\S]*?)```/.exec(text) || /(\{[\s\S]*\})/.exec(text);
   if (!m) throw new Error("в ответе судьи нет JSON");
-  return JSON.parse(m[1]);
+  try {
+    return JSON.parse(m[1]);
+  } catch (e) {
+    // зачем: судья бреда написал верный разбор, но поставил живой перенос строки
+    // внутри значения — JSON так нельзя, и весь вердикт превращался в
+    // «судья не вернул JSON». Чиним переносы и табы ВНУТРИ строк и пробуем снова.
+    let inStr = false, esc = false, out = "";
+    for (const ch of m[1]) {
+      if (esc) { out += ch; esc = false; continue; }
+      if (ch === "\\") { out += ch; esc = true; continue; }
+      if (ch === '"') { inStr = !inStr; out += ch; continue; }
+      if (inStr && (ch === String.fromCharCode(10) || ch === String.fromCharCode(13))) { out += " "; continue; }
+      if (inStr && ch === String.fromCharCode(9)) { out += " "; continue; }
+      out += ch;
+    }
+    try {
+      const fixed = JSON.parse(out);
+      WARN(`ответ судьи чинился от переносов внутри строк — разобран со второй попытки`);
+      return fixed;
+    } catch (e2) { throw new Error(`${e.message}; после чистки переносов: ${e2.message}`); }
+  }
 };
 const stripFence = (text) => text.replace(/^```(?:markdown|md)?\s*\n?/, "").replace(/\n?```\s*$/, "").trim();
 
@@ -519,7 +539,18 @@ function stageJudge(S, ctx, plan, row, known, file, only = null) {
     }
     const text = callModel({ system: fill(prompt(name), vars), user: "Вынеси вердикт.", model: MODEL_BY_JUDGE[name] || MODEL_JUDGE, label: `${name} · ${path.basename(file)}` });
     let j;
-    try { j = extractJson(text); } catch (e) { WARN(`${name}: ${e.message}; сырой ответ сохранён`); j = { verdict: "REVISE", verdict_reason: "судья не вернул JSON", raw: text }; }
+    try { j = extractJson(text); } catch (e) {
+      // зачем: судья бреда оборвал JSON на середине, но словами написал внятный
+      // вердикт («вердикт — на доработку, поправить три места»). Раньше вся его
+      // работа превращалась в «судья не вернул JSON» и терялась. Достаём вердикт
+      // из текста, а сырой ответ всё равно сохраняем для чтения человеком.
+      const vm = /"verdict"s*:s*"(PASS|REVISE|BLOCK)"/.exec(text)
+        || (/BLOCK/.test(text) ? [null, "BLOCK"] : null)
+        || (/на доработку|REVISE|доработ/i.test(text) ? [null, "REVISE"] : null);
+      const verdict = vm ? vm[1] : "REVISE";
+      WARN(`${name}: ${e.message}; вердикт взят из текста ответа — ${verdict}`);
+      j = { verdict, verdict_reason: "JSON повреждён, вердикт прочитан из текста ответа", raw: text };
+    }
     out[name] = j;
     write(path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.json`), JSON.stringify(j, null, 2));
     LOG(`   ${name}: ${j.verdict} — ${j.verdict_reason}`);

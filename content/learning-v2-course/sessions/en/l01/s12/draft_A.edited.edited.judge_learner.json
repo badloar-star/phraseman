@@ -1,0 +1,170 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про соседа говорят You are calm, про себя I am calm. С I — am, с you — are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "brave — смелый, не про войну, а про то, что сказал неприятное вслух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "honest — честный (сказал как есть), smart — умный (быстро придумал выход). Разные слова для разных ситуаций.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка calm)",
+      "what_i_understood": "calm произносится долгим «а», буква л не читается.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (аудио calm)",
+      "what_i_understood": "Выбрал calm, отличил от come и car по звучанию.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (brave)",
+      "what_i_understood": "brave отличается от brain и grave.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Выбрал brave, потому что он спорил, а не был спокоен.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Собрал I am calm.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-8 (honest, smart)",
+      "what_i_understood": "honest — первая буква молчит, smart — про сообразительность.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9-10",
+      "what_i_understood": "Отличил honest от hot/house, smart от start/small.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (Speed Match)",
+      "what_i_understood": "Соединил все 4 новых слова с переводом без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "You are honest — с you всегда are, не am и не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал You are smart по слуху.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (quiet)",
+      "what_i_understood": "quiet — тихий, слово мне уже знакомо по прошлой сессии, но подано как новое напоминание, не проблема.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "I am sure — про себя всегда am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "You are quiet — он говорил негромко.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Собрал You are sure.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 (right)",
+      "what_i_understood": "You are right — «ты прав», проговорил вслух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19",
+      "what_i_understood": "Соединил tired/sure/quiet/right — это слова, которые я как бы уже знаю, но раз я тут впервые, для меня они тоже новые, просто без карточки-объяснения. Это чуть странно — их мне не объяснили в этой сессии, а сразу спросили.",
+      "confusion": "Слова tired, sure, quiet, right используются в заданиях (5, 15, 16, 18, 19) без единой карточки-объяснения внутри этой сессии — просто предполагается, что я их знаю.",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 20 (финал)",
+      "what_i_understood": "Сказал вслух: You are brave. You are calm. You are right.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Разница скрепок: I am / You are",
+    "calm — спокойный",
+    "brave — смелый",
+    "honest — честный",
+    "smart — умный"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 5,
+      "why": "Нужно понять слово tired как вариант ответа — это нормально, оно в списке неверных, не в правильном ответе, так что это не обман, но само задание требует опоры на слово calm/tired, которых явно не объяснили в этой сессии (tired я вроде видел раньше, но раз это моя первая сессия — формально не встречал)."
+    },
+    {
+      "task": 15,
+      "why": "Правильный ответ — I am sure, а слово sure нигде в этой сессии не объяснено карточкой. Просто ожидается, что я его уже знаю."
+    },
+    {
+      "task": 16,
+      "why": "Тот же случай: quiet используется в правильном ответе, объяснение есть (задание 14), это ок."
+    },
+    {
+      "task": 18,
+      "why": "Правильный ответ — You are right, слово right нигде не объяснено, просто дано в задании как готовая фраза для повтора."
+    },
+    {
+      "task": 20,
+      "why": "Финал требует сказать You are right, а слово right не было объяснено карточкой нигде в сессии — я его слышу и повторяю впервые в задании 18 без объяснения значения до этого момента."
+    }
+  ],
+  "boring_or_water": [
+    {
+      "where": "Интро 3",
+      "why": "Два новых слова (honest и smart) подряд в одном интро — многовато для одного шага, я не успел закрепить honest, как уже дают smart."
+    }
+  ],
+  "felt_alive": [
+    "Сцена в поезде — понятно, зачем говорю эти фразы: подбадриваю коллегу вслух",
+    "Финал (задание 20), где надо сказать три вещи сразу — приятное ощущение, что сессия собралась в одно целое"
+  ],
+  "felt_dead": [
+    "Задания 9-10 (аудио-выбор honest/smart) — чисто механическое различение похожих слов, без сцены"
+  ],
+  "scene_reason": "Да, понятно: я в поезде рядом с коллегой, который сомневается в себе, и говорю ему вслух комплименты по-английски. К финалу все фразы (brave, calm, right) складываются в законченную мысль, обращённую к конкретному человеку.",
+  "would_continue": "да — сессия короткая, слова разные и не повторяются механически, в конце приятный момент, когда всё соединяется",
+  "verdict": "REVISE",
+  "verdict_reason": "Слово right используется как факт задания 18 и требуется в правильном ответе финала (задание 20), но нигде в сессии не подано карточкой-объяснением — это нужно поправить, добавив ему объяснение (или явную карточку) до первого использования."
+}

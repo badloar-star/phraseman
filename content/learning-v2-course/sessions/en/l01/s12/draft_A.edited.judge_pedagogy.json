@@ -1,0 +1,94 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "brave",
+      "calm",
+      "honest",
+      "smart"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 5,
+        "trap": "calm/tired как отвлекающие варианты вместо brave — правдоподобная путаница по смыслу сцены"
+      },
+      {
+        "task": 12,
+        "trap": "am/is вместо are — типичная ошибка со связкой"
+      },
+      {
+        "task": 15,
+        "trap": "are/am вместо not — реалистичная путаница при отрицании"
+      },
+      {
+        "task": 16,
+        "trap": "brave/smart вместо quiet — путаница по смыслу момента сцены"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 20,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "calm",
+        "brave",
+        "honest",
+        "smart"
+      ],
+      [
+        "tired",
+        "sure",
+        "quiet",
+        "right"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      15
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s11",
+      "what": "почти идентичная сцена: коллега тревожится/недооценивает себя после сложного разговора, вы её успокаиваете/хвалите за кофе — та же драматургическая завязка «после трудного момента» и тот же жанр 'вы утешаете коллегу вслух', в s11 уже был 'sure'/'right' с тем же коллегой в том же контексте кофе"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 4,
+      "context_gap_grammar": 4,
+      "phrase_builder": 2,
+      "speed_match": 2,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Сцена (кофе с коллегой в конце дня, она недооценивает свой успех, вы её хвалите/успокаиваете) слишком близко повторяет драматургию l01_s09/l01_s11 (кофе с той же коллегой, тот же жанр 'вы её поддерживаете словами'), что для соседних сессий подряд читается как повтор, а не новый повод для фразы."
+}

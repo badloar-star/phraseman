@@ -36,7 +36,10 @@ const opt = (name, dflt) => {
   return i >= 0 && args[i + 1] ? args[i + 1] : dflt;
 };
 const BACKEND = opt("backend", process.env.FACTORY_BACKEND || "claude");
-const MODEL_DRAFT = opt("model-draft", process.env.FACTORY_MODEL_DRAFT || "sonnet");
+// зачем: прототип 03.09 (L1 S4): оба Sonnet-черновика получили «worse» —
+// без юмора, слабые ловушки, возврат старых слов не состоялся; Opus — «equal».
+// Авторы по умолчанию Opus; Sonnet остаётся для локализации после проверки.
+const MODEL_DRAFT = opt("model-draft", process.env.FACTORY_MODEL_DRAFT || "opus");
 const MODEL_JUDGE = opt("model-judge", process.env.FACTORY_MODEL_JUDGE || "opus");
 const SESSION = opt("session", null); // en/l01/s04
 const LOCALES = (opt("locales", "uk,es,pt-BR,vi,id,tr,pl")).split(",").map((s) => s.trim()).filter(Boolean);
@@ -212,6 +215,29 @@ function fetchSync(url, headers, body) {
   return r.stdout;
 }
 
+// зачем: владелец 03.09 — «новые режимы пока не добавляем». Любая механика
+// вне этого списка в строке «modes:» — стоп ДО суда, чтобы судьи не тратили
+// вызовы на сессию, которую приложение не сможет показать.
+const ALLOWED_MODES = new Set([
+  "word_card", "listen_choose", "listen_build_dictation", "phrase_builder",
+  "context_gap_grammar", "speed_match", "scripted_repeat_compare", "sound_contrast",
+]);
+function validateModes(file) {
+  const text = read(file);
+  const m = /^modes:\s*([\s\S]*?)(?:\n\s*\n|$)/m.exec(text);
+  if (!m) {
+    WARN(`${path.basename(file)}: нет строки «modes:» в разделе «Для сборщика»`);
+    return { ok: false, unknown: ["(нет строки modes)"] };
+  }
+  const entries = [...m[1].matchAll(/(\d+)\s*=\s*([a-z_]+)/g)].map((x) => [Number(x[1]), x[2]]);
+  const unknown = entries.filter(([, f]) => !ALLOWED_MODES.has(f));
+  const taskCount = (text.match(/^\*\*\d+ · /gm) || []).length;
+  LOG(`${path.basename(file)}: заданий ${taskCount}, режимов в строке ${entries.length}, незнакомых ${unknown.length}${unknown.length ? " → " + unknown.map(([n, f]) => `${n}=${f}`).join(", ") : ""}`);
+  if (entries.length !== taskCount) WARN(`${path.basename(file)}: число заданий (${taskCount}) ≠ записей modes (${entries.length})`);
+  if (taskCount < 12) WARN(`${path.basename(file)}: заданий меньше 12`);
+  return { ok: unknown.length === 0 && entries.length === taskCount && taskCount >= 12, unknown, taskCount };
+}
+
 const extractJson = (text) => {
   const m = /```json\s*([\s\S]*?)```/.exec(text) || /(\{[\s\S]*\})/.exec(text);
   if (!m) throw new Error("в ответе судьи нет JSON");
@@ -254,6 +280,11 @@ function stageDraft(S, ctx, plan, row, known) {
 }
 
 function stageJudge(S, ctx, plan, row, known, file) {
+  const v = validateModes(file);
+  if (!v.ok) {
+    LOG(`ранний выход из суда: ${path.basename(file)} не проходит проверку механик/объёма — сначала правка`);
+    return { judge_learner: { verdict: "BLOCK", verdict_reason: "механики вне списка приложения или объём" }, judge_taste: { verdict: "BLOCK", verdict_reason: "не судился" }, judge_pedagogy: { verdict: "BLOCK", verdict_reason: `modes: ${v.unknown.map(([n, f]) => `${n}=${f}`).join(", ") || "объём"}` } };
+  }
   const session = read(file);
   const base = buildVars(ctx, plan, row, known, S);
   const same = exemplarOfSameType(S.lang, row);

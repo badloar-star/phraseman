@@ -13,7 +13,7 @@
         "ru": "Одна формула — на весь день"
       },
       "bodyByLocale": {
-        "ru": "Вы уже умеете `I am here`. Новых формул не будет — эта проработает на вас\nвесь день.\n\n`I am` не про «здесь». Оно про любое ваше состояние: устали — `I am tired`,\nзаняты — `I am busy`. Один ключ от всех дверей в офисе: он уже у вас в\nруке, осталось выучить, какие тут двери."
+        "ru": "`I am` — два слова, с которых начинается любая фраза о себе. Одна\nформула, и она проработает на вас весь день.\n\n`I am` не про «здесь». Оно про любое ваше состояние: устали — `I am tired`,\nзаняты — `I am busy`. Один ключ от всех дверей в офисе: он уже у вас в\nруке, осталось выучить, какие тут двери."
       },
       "question": {
         "interactionId": "en:lesson-01:session-02:intro1:q",
@@ -121,5 +121,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6d6761eed702e15cbffa7c760d67e3120f378e64b4b62873096f7af6ad3e3bd9"
+  "introFingerprint": "8630d4552351c03c53f9ef576ee0dc71970f5cf1189d2febc55198d9be559eba"
 }

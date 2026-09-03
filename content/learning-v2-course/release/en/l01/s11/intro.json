@@ -13,7 +13,7 @@
         "ru": "Где встаёт «не» в чужой фразе"
       },
       "bodyByLocale": {
-        "ru": "Вы уже говорите `You are tired` — «ты устала». А если надо возразить?\n\nСтавим `not` сразу после `are`: `You are not tired`. Место у него всегда одно — между скрепкой и словом.\n\nТак же и с `lazy` — «ленивая». Правда, коллега с утра не встала из-за стола, так что `You are not lazy` — это ещё мягко сказано."
+        "ru": "Напротив вас за столиком коллега. Про неё: `You are tired` — «ты устала».\n\nВозразить — поставить `not` сразу после `are`: `You are not tired`. Место у него всегда одно.\n\n`lazy` — «ленивая». Она с утра не вставала из-за стола, так что `You are not lazy` — ещё мягко сказано."
       },
       "question": {
         "interactionId": "en:lesson-01:session-11:intro1:q",
@@ -121,5 +121,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "312fe69e98abf8c8593c70daeb84c58b3fb938f8c688da63fcdf5db0145e0ac3"
+  "introFingerprint": "c184ecdcd72b3783bc54fd4003830450e8fc2ce5a2a07c72909f8005be8ef6ca"
 }

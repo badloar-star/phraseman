@@ -174,9 +174,28 @@ function neighborsSummary(lang, lesson, n) {
  * (зачем: педагог считал «на глаз» и один раз ошибся бы; grep не ошибается). */
 function machineFacts(file) {
   const text = read(file);
+  // зачем: владелец — «давай рассматривать каждую сессию как отдельную, юзер
+  // может начать с A2 и не читал предыдущего». Отсылки к прошлому опыту
+  // ловим машинно: это дешевле судьи и не пропускается.
+  const introPart = text.split(/^## Практика/m)[0] ?? "";
+  const BACKREFS = [
+    // «вы уже говорите не о себе» описывает ЭТУ страницу, а не прошлый опыт:
+    // ловим только связку с английской фразой или словом курса
+    [/[Вв]ы уже (?:умеете|знаете)/g, "«вы уже умеете/знаете»"],
+    [/[Вв]ы уже говорите\s+[`«]/g, "«вы уже говорите <фраза>»"],
+    [/уже (?:умеете|выучили|прошли|видели)/g, "«уже выучили/прошли»"],
+    [/[Нн]овых формул не будет/g, "отсылка к ходу курса"],
+    [/[Сс]нова|[Оо]пять/g, "«снова/опять»"],
+    [/[Кк]ак и (?:в прошлый раз|раньше)/g, "«как раньше»"],
+    [/[Тт]а же (?:скрепка|формула|коллега)/g, "«та же …»"],
+  ];
   const ret = /\*\*Возвращаются:\*\*\s*(.+)/.exec(text)?.[1] ?? "";
   const practice = text.split(/^## Практика/m)[1] ?? "";
   const facts = [];
+  for (const [re, name] of BACKREFS) {
+    const hits = introPart.match(re) || [];
+    for (const h of hits) facts.push(`ОТСЫЛКА К ПРОШЛОМУ: ${name} — «${h}» ← сессию могут открыть первой, этого опыта у ученика нет`);
+  }
   for (const w of ret.split(",").map((s) => s.trim()).filter(Boolean)) {
     const re = new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "gi");
     const total = (practice.match(re) || []).length;
@@ -531,7 +550,7 @@ function stageEdit(S, ctx, plan, row, known, file, verdicts) {
   // зачем: 03.09 вторая правка починила интро 3 и СЛОМАЛА интро 1 — редактор
   // не видел последствий своей работы до следующего круга. Сверяем сразу и
   // даём одну попытку доправить, называя, что именно он сломал или не закрыл.
-  const hard = (p) => machineFacts(p).split("\n").filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ/.test(l));
+  const hard = (p) => machineFacts(p).split("\n").filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ/.test(l));
   const left = hard(f);
   if (left.length) {
     LOG(`   после правки осталось незакрытым (${left.length}): ${left.map((l) => l.split("—")[0].trim()).join("; ")}`);
@@ -702,7 +721,7 @@ function main() {
     // настроения судьи: пока он не закрыт, сессия не выпускается.
     const hardFacts = machineFacts(finalRu)
       .split("\n")
-      .filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ/.test(l));
+      .filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ/.test(l));
     if (hardFacts.length) {
       WARN(`СТОП перед локализацией — не закрытые машинные факты:\n  ${hardFacts.join("\n  ")}`);
       write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blockedBy: "machine_facts", facts: hardFacts, at: new Date().toISOString() }, null, 2));

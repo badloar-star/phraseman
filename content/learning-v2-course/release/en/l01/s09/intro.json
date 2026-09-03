@@ -13,7 +13,7 @@
         "ru": "У «вас» своя скрепка"
       },
       "bodyByLocale": {
-        "ru": "Про себя вы говорите `I am`. Про человека напротив — `you are`.\n\nСкрепка сменилась. Это как обувь: своя — одна, гостю выносят другую.\n\nКоллега зевает над кофе. Скажите ей то, что видно невооружённым глазом: `You are tired`."
+        "ru": "Про себя вы говорите `I am`. Про человека напротив — `you are`.\n\nСкрепка сменилась. `I am` — только про себя, и на человека напротив её не натянуть.\n\nКоллега зевает над кофе. Скажите ей то, что видно невооружённым глазом: `You are tired`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-09:intro1:q",
@@ -121,5 +121,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "31c58ea6b340c90b6865da9c22d2cc9b67733493bf4733475411d29aeb0faf25"
+  "introFingerprint": "959c554a2e21736547db1933a10b1e75a84c61acd6d4628fbab701722352e5b1"
 }

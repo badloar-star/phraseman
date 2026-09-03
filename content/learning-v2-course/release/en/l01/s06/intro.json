@@ -49,7 +49,7 @@
         "ru": "Back — «я вернулся», одним словом"
       },
       "bodyByLocale": {
-        "ru": "Ушли и пришли обратно — это `back`. Вернулись с работы, из магазина, из отпуска: `I am back`.\n\nДва слова вместо нашего «я вернулся домой, всё, я на месте». Английский тут экономный, как человек, у которого осталось три процента батареи."
+        "ru": "Ушли и пришли обратно — это `back`. Вернулись с работы, из магазина, из отпуска: `I am back`.\n\nДва слова вместо нашего «я вернулся домой, всё, я на месте». Англичанин говорит `I am back` и считает, что этого достаточно."
       },
       "question": {
         "interactionId": "en:lesson-01:session-06:intro2:q",
@@ -121,5 +121,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c8c6afac03e96f97ad516d25bf7f57bb1ae9e152867ec8d289821e2c55d71494"
+  "introFingerprint": "0bba77b10c358cd0cb438a39ba451d92ca76b858f2ae966eaed3d686c38c13ad"
 }

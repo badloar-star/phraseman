@@ -13,7 +13,7 @@
         "ru": "Glad — «рад», но короче"
       },
       "bodyByLocale": {
-        "ru": "`happy` вы уже умеете. `glad` — его быстрый брат: не «я счастлив», а «рад, что так вышло».\n\nНа вопрос «как первый день?» англичанин скажет `I am glad`. Одно слово вместо абзаца — и все довольны, особенно лифт."
+        "ru": "`happy` вы уже умеете. `glad` — его быстрый брат: не «я счастлив», а «рад, что так вышло».\n\nНа вопрос «как первый день?» англичанин скажет `I am glad`. Три слова вместо честного рассказа о том, как вы полчаса искали переговорку."
       },
       "question": {
         "interactionId": "en:lesson-01:session-07:intro1:q",
@@ -121,5 +121,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e3c6b1fcce39738d74dcecc94f923b4e0617e57773f26d7d440093f7002d5efa"
+  "introFingerprint": "6d37a8b2bd3325981593e5d17799bae71e130e76b7e5f6ee6b2347dc109fbdc2"
 }

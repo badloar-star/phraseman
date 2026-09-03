@@ -335,7 +335,11 @@ describe('ExpoSfxBackend', () => {
     expect(ended).toHaveBeenCalledTimes(1);
 
     const broken = new ExpoSfxBackend(() => { throw new Error('native'); }, 2);
-    expect(broken.play('pm.learn.correct', 1, 0.42, ended)).toBe(false);
+    // зачем 5-й аргумент (2026-09-03): пропущенный `exclusive` не давал файлу
+    // скомпилироваться (TS2554), и ВЕСЬ тест бэкенда звука не запускался —
+    // сторож молча не работал. Тот же класс, что «тест не падал, а не
+    // выполнялся» (память project_jest_blind_in_worktree).
+    expect(broken.play('pm.learn.correct', 1, 0.42, true, ended)).toBe(false);
   });
 
   // зачем: боевой баг «звук нигде не играет». На Android ExoPlayer после

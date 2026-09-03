@@ -1418,16 +1418,40 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // нативного плеера. Греем самые частые события сильно ПОСЛЕ старта
     // (3.5с — холодный старт и первый кадр уже позади), это ~5 лёгких
     // createAudioPlayer в фоне.
+    //
+    // зачем две волны (владелец 2026-09-03, «звуки играют с паузой»): прежде
+    // ВСЁ грелось на 3.5с, а человек успевает нажать первую кнопку куда раньше
+    // — и этот тап платил полную латентность создания плеера. Звуки нажатий
+    // (самое частое, что слышно) греем на 1.2с: холодный старт и первый кадр
+    // уже позади, а это всего три лёгких createAudioPlayer.
+    const tapPrewarmTimer = setTimeout(() => {
+      soundDirector.prewarm([
+        'pm.ui.tap_soft',
+        'pm.ui.tap_primary',
+        'pm.ui.tap_blocked',
+      ]);
+    }, 1200);
+    // Вторая волна — звуки урока и его завершения. Раньше здесь было 5 событий,
+    // причём звуков награды и счётчика опыта среди них не было вовсе, хотя они
+    // звучат в конце КАЖДОГО урока и по коду встречаются чаще прочих
+    // (pm.reward.chest_open — самое частое событие в приложении).
     const prewarmTimer = setTimeout(() => {
       soundDirector.prewarm([
         'pm.learn.correct',
         'pm.learn.needs_work',
-        'pm.ui.tap_soft',
-        'pm.ui.tap_primary',
         'pm.complete.micro',
+        'pm.complete.xp_counter_start',
+        'pm.complete.xp_counter_tick',
+        'pm.complete.xp_counter_complete',
+        'pm.reward.chest_open',
+        'pm.reward.small',
+        'pm.streak.saved',
       ]);
     }, 3500);
-    return () => clearTimeout(prewarmTimer);
+    return () => {
+      clearTimeout(tapPrewarmTimer);
+      clearTimeout(prewarmTimer);
+    };
   }, []);
 
   useEffect(() => {

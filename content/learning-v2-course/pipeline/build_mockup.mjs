@@ -229,10 +229,20 @@ select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
     <button class="pill" id="home" hidden>К списку</button>
   </div>
 </div>
-<div class="shell" id="app"></div>
+<div class="shell" id="app">
+  <noscript><div class="panel"><h2>Не выполняется JavaScript</h2><p class="body">Макет интерактивный: включите JavaScript или откройте файл в обычном браузере (Chrome, Edge).</p></div></noscript>
+  <div class="panel" id="boot"><h2>Загрузка…</h2><p class="body" id="boot-msg">Если этот текст остался — скрипт не выполнился. Откройте файл двойным кликом в Chrome или Edge.</p></div>
+</div>
 
 <script id="data" type="application/json">${JSON.stringify(sessions).replace(/</g, "\\u003c")}</script>
 <script>
+// зачем: макет открывали и видели пустой экран без единой ошибки в консоли.
+// Любой сбой запуска обязан быть виден НА СТРАНИЦЕ, а не только в консоли.
+window.addEventListener("error", (e) => {
+  const box = document.getElementById("boot-msg");
+  if (box) box.textContent = "Ошибка: " + (e.message || e.error?.message || "неизвестная") + " · " + (e.filename || "") + ":" + (e.lineno || "?");
+  console.error("[mockup] ошибка запуска:", e.message, e.error);
+});
 const DATA = JSON.parse(document.getElementById("data").textContent);
 const LOCALES = ${JSON.stringify(locales)};
 const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
@@ -486,7 +496,19 @@ function renderDone() {
   ]));
 }
 
-function render() { S.session ? renderSession() : renderHome(); window.scrollTo({top:0, behavior:"instant"}); }
+function render() {
+  try {
+    S.session ? renderSession() : renderHome();
+    window.scrollTo({top:0, behavior:"instant"});
+  } catch (e) {
+    console.error("[mockup] сбой отрисовки:", e);
+    app.replaceChildren(h("div", {class:"panel"}, [
+      h("h2", {text:"Сбой отрисовки"}),
+      h("div", {class:"body", text:String(e && e.message || e)}),
+      h("div", {class:"actions"}, [h("button", {class:"btn ghost", onClick:() => { S.session = null; render(); }, text:"К списку"})]),
+    ]));
+  }
+}
 render();
 </script>
 </body>
@@ -495,4 +517,19 @@ render();
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, html, "utf8");
 LOG(`записан ${OUT} (${(html.length / 1024).toFixed(0)} КБ)`);
-LOG("открой файл двойным кликом — сервер не нужен");
+
+// зачем: некоторые просмотрщики (встроенная панель предпросмотра) блокируют
+// инлайновые <script> и показывают пустую страницу без единой ошибки. Рядом
+// кладём вариант с внешними файлами — он открывается там, где инлайн запрещён.
+const dir = path.dirname(OUT);
+const script = /<script>\n([\s\S]*?)<\/script>/.exec(html)[1];
+const data = /<script id="data"[^>]*>([\s\S]*?)<\/script>/.exec(html)[1];
+fs.writeFileSync(path.join(dir, "app.js"), script.replace(
+  'JSON.parse(document.getElementById("data").textContent)', "window.__DATA__"), "utf8");
+fs.writeFileSync(path.join(dir, "data.js"), `window.__DATA__ = ${data};`, "utf8");
+const external = html
+  .replace(/<script id="data"[\s\S]*?<\/script>/, '<script src="data.js"></script>')
+  .replace(/<script>\n[\s\S]*?<\/script>/, '<script src="app.js"></script>');
+fs.writeFileSync(path.join(dir, "external.html"), external, "utf8");
+LOG(`записан ${path.join(dir, "external.html")} — вариант с внешними файлами (если инлайн заблокирован)`);
+LOG("открой index.html двойным кликом в Chrome или Edge — сервер не нужен");

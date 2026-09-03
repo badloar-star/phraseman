@@ -1,0 +1,149 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Чтобы сказать «не», слово not встаёт сразу после are: You are not tired, You are not lazy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Новое слово crazy — «сумасшедший». Не путать с no: not — внутри фразы, no — отдельный ответ.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "wrong — это не «плохой», а «неправ/ошибается». kind — «добрый».",
+      "confusion": "Не сразу понял, что wrong не про человека вообще, а именно про то, прав он или нет — но объяснение с примером помогло.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "You are not lazy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Услышал crazy, выбрал верно, отличил от lazy и cozy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "lazy — ленивый.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Разница crazy/lazy в первом звуке.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал: You are not lazy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "wrong — неправ, буква w молчит.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Услышал wrong, отличил от long и ring.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Выбрал wrong, а не busy/tired — по смыслу подходит только оно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "kind — добрый.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Услышал kind, отличил от kid и find.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Выбрал sure — уверена. alone и wrong не подходят по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Собрал все 4 пары слово-перевод без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Выбрал are, а не am/is — потому что перед crazy стоит You.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Собрал You are sure — заметил, что not тут лишний, потому что вы её поддерживаете.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Собрал You are not alone, лишнюю плитку no не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Собрал You are kind, not — лишний, потому что это похвала, а не отрицание.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Собрал You are not busy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18",
+      "what_i_understood": "Ответил всеми четырьмя фразами подряд: You are not wrong. You are not lazy. You are not alone. You are kind.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как ставить not после are, чтобы возразить или успокоить кого-то",
+    "Новые слова: crazy, lazy, wrong, kind",
+    "Что no — это отдельный ответ «нет», а not — частица внутри фразы",
+    "Что wrong — не «плохой человек», а «неправ/ошибается», в отличие от лексики про самочувствие вроде tired/busy",
+    "Что not не всегда нужен — иногда фраза должна быть утвердительной (когда хвалишь или подтверждаешь)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с коллегой на кофе — понятно, зачем говоришь именно эти фразы, ты её реально успокаиваешь",
+    "Задания 14 и 16 с лишней плиткой not — заставили подумать, а не механически собирать фразу",
+    "Финал сцены (18), где нужно ответить сразу четырьмя фразами — по-настоящему похоже на живой разговор"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — с самого начала понятно: коллега расстроена, я её словами успокаиваю по-английски, и каждая фраза в практике привязана к этой же ситуации (она думает, что ошиблась, ленивая, одна и т.д.)",
+  "would_continue": "да — было легко, понятно и не скучно, хочу дальше",
+  "verdict": "PASS",
+  "verdict_reason": "Всё было выполнимо честно, узнал новые слова и правило, сцена понятна от начала до конца, ни одного скучного или мёртвого места."
+}

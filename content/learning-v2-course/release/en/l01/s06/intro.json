@@ -13,7 +13,7 @@
         "ru": "Home — не «дом», а «дома»"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, где вы. Вы не на работе — вы `home`.\n\nПо-русски «дома» и «в доме» — разные слова. Англичанин обходится одним: `I am home`. Никакого «в», никакого «на». Просто `home` — и всем ясно, что вы уже сняли обувь."
+        "ru": "Друг спрашивает, где вы. Вы не на работе — вы `home`.\n\n`I am home` — и всё, вы на месте. Никакого «в», никакого «на»: `home` уже значит «дома», предлог к нему не нужен."
       },
       "question": {
         "interactionId": "en:lesson-01:session-06:intro1:q",
@@ -121,5 +121,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0bba77b10c358cd0cb438a39ba451d92ca76b858f2ae966eaed3d686c38c13ad"
+  "introFingerprint": "13c978f9bbbd1882ea31d371240eb2f1b096a2bc175ad7a24fe228d8b893e07f"
 }

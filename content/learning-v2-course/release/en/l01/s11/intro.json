@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "`You are not + слово о человеке`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где встаёт «не» в чужой фразе"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже говорите `You are tired` — «ты устала». А если надо возразить?\n\nСтавим `not` сразу после `are`: `You are not tired`. Место у него всегда одно — между скрепкой и словом.\n\nТак же и с `lazy` — «ленивая». Правда, коллега с утра не встала из-за стола, так что `You are not lazy` — это ещё мягко сказано."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега говорит, что весь день бездельничала, хотя пахала с утра. Возразите: «ты не ленивая»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-11:intro1:r1",
+              "text": "You are not lazy."
+            },
+            {
+              "responseId": "en:lesson-01:session-11:intro1:r2",
+              "text": "You not lazy."
+            },
+            {
+              "responseId": "en:lesson-01:session-11:intro1:r3",
+              "text": "You are lazy not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега говорит, что весь день бездельничала, хотя пахала с утра. Возразите: «ты не ленивая»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Слово, которым люди себя добивают"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега шепчет: «Я, наверное, `crazy`». Это «сумасшедшая» — но в живой речи чаще просто «у меня крыша едет».\n\nОтвет на такое короткий: `You are not crazy`. По-русски мы бы сказали то же самое, теми же словами и тем же тоном.\n\nСебе тоже можно: `I am not crazy`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Она уверена, что сходит с ума из-за одной ошибки. Скажите ей: «ты не сумасшедшая»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-11:intro2:r1",
+              "text": "You are not crazy."
+            },
+            {
+              "responseId": "en:lesson-01:session-11:intro2:r2",
+              "text": "You no crazy."
+            },
+            {
+              "responseId": "en:lesson-01:session-11:intro2:r3",
+              "text": "You are no crazy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Она уверена, что сходит с ума из-за одной ошибки. Скажите ей: «ты не сумасшедшая»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Wrong — это про «неправ», а не про «плохой»"
+      },
+      "bodyByLocale": {
+        "ru": "`wrong` — «неправ, ошибаешься». Коллега решила, что сказала на встрече глупость. `You are not wrong` — «ты не ошибаешься».\n\nА `kind` — «добрый». Она принесла вам кофе и извинилась за него же — вот это `kind`.\n\nЗаметьте: `wrong` не ругает человека, оно спорит только с тем, что он сказал."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Она думает, что неправильно поняла задачу. На самом деле поняла верно. Скажите: «ты не ошибаешься»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-11:intro3:r1",
+              "text": "You are not wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-11:intro3:r2",
+              "text": "You are not late."
+            },
+            {
+              "responseId": "en:lesson-01:session-11:intro3:r3",
+              "text": "You not wrong."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Она думает, что неправильно поняла задачу. На самом деле поняла верно. Скажите: «ты не ошибаешься»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "312fe69e98abf8c8593c70daeb84c58b3fb938f8c688da63fcdf5db0145e0ac3"
+}

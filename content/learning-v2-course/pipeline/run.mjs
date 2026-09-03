@@ -46,7 +46,7 @@ const MODEL_DRAFT = opt("model-draft", process.env.FACTORY_MODEL_DRAFT || "opus"
 // педагог сверяет с машинными фактами — Sonnet справляется и в ~5 раз дешевле.
 const MODEL_JUDGE = opt("model-judge", process.env.FACTORY_MODEL_JUDGE || "opus");
 const MODEL_CHEAP = opt("model-cheap", process.env.FACTORY_MODEL_CHEAP || "sonnet");
-const MODEL_BY_JUDGE = { judge_taste: MODEL_JUDGE, judge_learner: MODEL_CHEAP, judge_pedagogy: MODEL_CHEAP };
+const MODEL_BY_JUDGE = { judge_taste: MODEL_JUDGE, judge_nonsense: MODEL_JUDGE, judge_learner: MODEL_CHEAP, judge_pedagogy: MODEL_CHEAP };
 const SESSION = opt("session", null); // en/l01/s04
 // зачем: «запустил и ушёл» — при лимите подписки конвейер ждёт сброса,
 // а не падает. --no-wait отключает (для быстрых проверок).
@@ -480,6 +480,10 @@ function stageJudge(S, ctx, plan, row, known, file, only = null) {
     ["judge_learner", { ...base, СЕССИЯ: session }],
     ["judge_taste", { ...base, СЕССИЯ: session, ЭТАЛОН_ТОГО_ЖЕ_ТИПА: same }],
     ["judge_pedagogy", { ...base, СЕССИЯ: session, МАШИННЫЕ_ФАКТЫ: facts }],
+    // зачем: гладкая неправда («в русском свой оттенок, в английском одно fast»)
+    // проходила мимо судьи вкуса — он смотрит на голос и юмор. Отдельный судья
+    // проверяет только правду утверждений, больше ничего.
+    ["judge_nonsense", { ...base, СЕССИЯ: session }],
   ].filter(([name]) => !only || only.includes(name))) {
     const cacheFile = path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.json`);
     // зачем: вердикт по неизменившемуся файлу не пересуживаем — экономия
@@ -515,6 +519,7 @@ function stageEdit(S, ctx, plan, row, known, file, verdicts) {
     ВЕРДИКТ_УЧЕНИКА: JSON.stringify(verdicts.judge_learner ?? { verdict: "—" }, null, 2),
     ВЕРДИКТ_РЕДАКТОРА: JSON.stringify(verdicts.judge_taste ?? { verdict: "—" }, null, 2),
     ВЕРДИКТ_ПЕДАГОГА: JSON.stringify(verdicts.judge_pedagogy ?? { verdict: "—" }, null, 2),
+    ВЕРДИКТ_БРЕДА: JSON.stringify(verdicts.judge_nonsense ?? { verdict: "—" }, null, 2),
     МАШИННЫЕ_ФАКТЫ: machineFacts(file),
   };
   const text = callModel({ system: fill(prompt("editor"), vars), user: "Исправь сессию.", model: MODEL_JUDGE, label: `редактор · ${path.basename(file)}` });
@@ -678,7 +683,7 @@ function main() {
       if (!best || s > best.s) best = { f, s, taste: t };
     }
     LOG(`лучший черновик: ${path.basename(best.f)}`);
-    const fullV = { ...stageJudge(S, ctx, plan, row, known, best.f, ["judge_learner", "judge_pedagogy"]), judge_taste: best.taste };
+    const fullV = { ...stageJudge(S, ctx, plan, row, known, best.f, ["judge_learner", "judge_pedagogy", "judge_nonsense"]), judge_taste: best.taste };
     let cur = { f: best.f, v: fullV, s: score(fullV) };
     for (let round = 1; round <= 2 && cur.s < 6; round++) {
       LOG(`круг правки ${round}: ${path.basename(cur.f)} (${cur.s}/6)`);

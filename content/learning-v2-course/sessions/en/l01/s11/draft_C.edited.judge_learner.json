@@ -1,0 +1,108 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Уже знал You are tired. Чтобы сказать наоборот — ставлю not сразу после are: You are not tired. Так же с lazy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание интро 1 — «ты не ленивая»",
+      "what_i_understood": "Собрал You are not lazy. Понял, почему не подходят два неверных варианта — там пропало are или not уехал в конец.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "crazy — новое слово, «сумасшедший», по смыслу как наше «крыша едет». You are not crazy — говорю то же самое, что сказал бы по-русски.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание интро 2",
+      "what_i_understood": "Собрал You are not crazy, понял разницу между no (отдельный ответ) и not (внутри фразы).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "wrong — «неправ», не про плохого человека, а про то, что человек сказал/сделал. kind — «добрый», без not, это похвала.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание интро 3",
+      "what_i_understood": "Собрал You are not wrong.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (карточки crazy/lazy, звуки)",
+      "what_i_understood": "crazy и lazy звучат немного похоже вначале, но crazy — с «кр», lazy — с «л». cozy — вообще другое слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — сборка фразы",
+      "what_i_understood": "Собрал You are not lazy. из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 6-8 (wrong)",
+      "what_i_understood": "wrong — «ронг», w молчит. long и ring отличаются на слух, не перепутаю. В задании 8 выбрал wrong, потому что busy и tired не про правоту.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9-10 (kind, speed match)",
+      "what_i_understood": "kind — добрый. Собрал пары слов без проблем, все слова уже встречались.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11-13 (are, sure, alone)",
+      "what_i_understood": "are — скрепка для you, не am и не is. sure и alone — старые слова, вспомнил их значения.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14-15 (kind без not)",
+      "what_i_understood": "Тут ловушка: надо было НЕ вставлять not, потому что это похвала, а не возражение. Понял по описанию сцены.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (busy)",
+      "what_i_understood": "Собрал You are not busy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал",
+      "what_i_understood": "Нужно было сказать подряд три фразы: не ошибаешься, не ленивая, не одна. Справился, потому что каждое слово уже отработано отдельно.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово crazy — «сумасшедший» (в смысле «крыша едет»)",
+    "Слово lazy — «ленивый»",
+    "Слово wrong — «неправ», причём относится к тому, что человек сказал, а не к самому человеку",
+    "Слово kind — «добрый»",
+    "Могу собрать You are not + слово с любым из этих слов, и понимаю, что not всегда встаёт сразу после are",
+    "Понял разницу между no и not"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с коллегой на кофе цепляет с самого начала и держится всю сессию — не абстрактные примеры, а один разговор",
+    "Финал (задание 17), где нужно сказать три фразы подряд одному и тому же человеку в одной ситуации — приятно, что все слова из сессии реально понадобились",
+    "Задание 15, где нужно было НЕ ставить not — заставило подумать головой, а не просто повторить шаблон"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно с первой строки: коллега расстроена, я её успокаиваю по-английски. Каждая фраза адресована ей и привязана к моменту (перепутала имя, думает что бездельничала, принесла кофе). Ни одной фразы «в пустоту»",
+  "would_continue": "да — сессия короткая, тема ясная, слова хорошо запомнились через одну сцену, интересно посмотреть следующую",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно без незнакомых слов в ответах, узнал четыре новых слова и потренировал уже знакомую конструкцию, сцена была понятной и человеческой от начала до конца."
+}

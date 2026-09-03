@@ -1,0 +1,129 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Если хочу сказать «ты не...», слово not встаёт сразу после are, между are и словом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание после интро 1 (lazy)",
+      "what_i_understood": "You are not lazy — я выбрал этот вариант, потому что не выучил ещё place правильно, но подсказки-ошибки объяснили, где встаёт not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "crazy — сумасшедший, для отрицания говорим you are not crazy, а no — отдельное слово-ответ, не встраивается во фразу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание после интро 2 (crazy)",
+      "what_i_understood": "You are not crazy — выбрал верно, понял разницу с no.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "wrong — неправ (про то что сказал), kind — добрый (про характер, поступок).",
+      "confusion": "Не сразу понял, зачем тут вставили kind, если по теме сессии он не про 'not' — но потом увидел, что kind просто новое слово, а не всегда с not.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание после интро 3 (wrong)",
+      "what_i_understood": "You are not wrong — верно выбрал, отличил от late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (crazy/lazy карточки и звук)",
+      "what_i_understood": "crazy и lazy звучат по-разному в начале: кр- и л-.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка фразы lazy)",
+      "what_i_understood": "Собрал You are not lazy из плиток без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 6-8 (wrong)",
+      "what_i_understood": "wrong — про правоту, не про занятость и усталость.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9-10 (kind + speed match)",
+      "what_i_understood": "kind — добрый; собрал пары слово-перевод легко, все слова уже знакомы из сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (are/am/is)",
+      "what_i_understood": "are — со словом you, am — только с I, is не сюда.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (alone на слух)",
+      "what_i_understood": "Собрал You are not alone, слово no было лишней плиткой-ловушкой.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (kind без not)",
+      "what_i_understood": "Тут ловушка: not бы всё испортил, а sure не подходит по смыслу (не про доброту). Выбрал kind — верно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (right, без отрицания)",
+      "what_i_understood": "Тут внезапно появилось слово right, которого не было ни в одной карточке до этого. Я его не учил в этой сессии.",
+      "confusion": "Слово right не объяснялось нигде в сессии как новое или возвращённое слово — просто появилось в правильном ответе.",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 15 (busy)",
+      "what_i_understood": "You are not busy — собрал легко, busy было в списке возвращаемых слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (говорю вслух)",
+      "what_i_understood": "Повторил две фразы про crazy и alone, звучит естественно как утешение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, три фразы)",
+      "what_i_understood": "Сказал три фразы подряд: wrong, lazy, alone — все слова уже были в сессии, справился без подсказок.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Куда ставится not в фразе с are: сразу после are, перед словом (you are not tired)",
+    "Слово crazy — сумасшедший, и что no — это не то же самое, что not внутри фразы",
+    "Слово lazy — ленивый",
+    "Слово wrong — неправ (про суждение, а не про время/занятость)",
+    "Слово kind — добрый (без отрицания, просто похвала)"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 14,
+      "why": "Правильный ответ — You are right, но слово right никогда не было представлено как новое или возвращённое слово в этой сессии (в списке 'Новые слова' и 'Возвращаются' его нет). Я не мог его знать честно, только угадать по смыслу сцены."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с коллегой, которая на кофе-брейке накрутила себя и шепчет 'я схожу с ума' — понятно и по-человечески",
+    "Финал (задание 17), где нужно ответить сразу тремя фразами без подсказок — приятное ощущение, что реально что-то умею"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, всё время было ясно, кому и зачем я говорю фразы — я успокаиваю коллегу, которая паникует после встречи, каждая фраза — прямой ответ на конкретную её реплику (я ленивая / я схожу с ума / я одна с этим)",
+  "would_continue": "да, было интересно и по делу, только споткнулся на слове right в задании 14",
+  "verdict": "REVISE",
+  "verdict_reason": "Сессия хорошая и живая, но задание 14 требует слово right в правильном ответе, хотя оно нигде не было объяснено как новое/возвращённое слово — это нечестная ловушка, а не проверка внимания."
+}

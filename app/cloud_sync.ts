@@ -3092,6 +3092,9 @@ type FirebaseDocRefLike = {
   // локальное разрешение промиса записи ничего не доказывает (офлайн-кэш).
   get: (options?: { source?: 'server' | 'cache' | 'default' }) => Promise<{
     data: () => Record<string, unknown> | undefined;
+    // hasPendingWrites — единственный честный признак, что снимок содержит
+    // ещё не принятую сервером запись (Firestore подмешивает её в любое чтение).
+    metadata?: { hasPendingWrites?: boolean };
   }>;
 };
 
@@ -3284,24 +3287,60 @@ async function bisectDenyingField(
       if (String(code).includes('permission-denied')) return 'denied';
       return 'other:' + (code || (e instanceof Error ? e.message : String(e)));
     }
-    // Подтверждение сервером: локальное разрешение промиса ничего не доказывает.
+    /**
+     * ВТОРАЯ ЛОВУШКА (прогон 08:01, тот же день): читать `get({source:'server'})`
+     * НЕДОСТАТОЧНО. Firestore накладывает незакоммиченные локальные мутации на
+     * любой результат чтения (latency compensation), поэтому только что
+     * отклонённая запись всё равно подмешивается в снимок — сверка видит «своё»
+     * значение и снова засчитывает ложный успех. Прогон это и показал: 11
+     * серверных PERMISSION_DENIED, 10 шагов поиска и НИ ОДНОГО `unverified`,
+     * при том что в облаке как было 5 ключей, так и осталось.
+     *
+     * Признак висящей записи — `metadata.hasPendingWrites`. Пока он true, снимок
+     * содержит непринятые данные и доверять ему нельзя. Ждём, пока очередь
+     * опустеет; если не опустела — запись отклонена (её выбросят), считаем
+     * половину виноватой.
+     */
+    // Firestore умеет сам дождаться, пока очередь разгребётся сервером. Это
+    // точнее опроса: промис разрешается ровно тогда, когда все висящие записи
+    // приняты ИЛИ отклонены. Ошибку не глушим — она сама по себе улика.
     try {
-      const snap = await docRef.get({ source: 'server' });
-      const data = (snap?.data?.() ?? {}) as Record<string, unknown>;
-      const progress = (data.progress ?? {}) as Record<string, unknown>;
-      // Берём любой ключ половины и сверяем реально записанное значение.
-      const probeKey = keys[keys.length - 1];
-      const expected = flat[probeKey];
-      const actual = probeKey.startsWith('progress.')
-        ? progress[probeKey.slice('progress.'.length)]
-        : data[probeKey];
-      if (String(actual ?? '') !== String(expected ?? '')) return 'denied';
-      return 'ok';
+      const db = getFirestore();
+      const waitFn = (db as { waitForPendingWrites?: () => Promise<unknown> } | null)?.waitForPendingWrites;
+      if (typeof waitFn === 'function') await waitFn.call(db);
     } catch (e) {
-      // зачем: немой catch здесь означал бы возврат к ложным «ok» первого прогона.
-      const code = (e as { code?: string } | null)?.code ?? '';
-      return 'unverified:' + (code || (e instanceof Error ? e.message : String(e)));
+      // зачем: немой catch здесь вернул бы ложные «ok» прошлых прогонов.
+      console.warn('[SYNC-DENY-BISECT] waitForPendingWrites не сработал', {
+        reason: e instanceof Error ? e.message : String(e),
+      });
     }
+    const deadline = Date.now() + 8000;
+    let lastPending = true;
+    while (Date.now() < deadline) {
+      try {
+        const snap = await docRef.get({ source: 'server' });
+        lastPending = snap?.metadata?.hasPendingWrites === true;
+        if (lastPending) {
+          await new Promise((r) => setTimeout(r, 300));
+          continue;
+        }
+        const data = (snap?.data?.() ?? {}) as Record<string, unknown>;
+        const progress = (data.progress ?? {}) as Record<string, unknown>;
+        // Сверяем ПОСЛЕДНИЙ ключ половины: он записывается позже прочих.
+        const probeKey = keys[keys.length - 1];
+        const expected = flat[probeKey];
+        const actual = probeKey.startsWith('progress.')
+          ? progress[probeKey.slice('progress.'.length)]
+          : data[probeKey];
+        return String(actual ?? '') === String(expected ?? '') ? 'ok' : 'denied';
+      } catch (e) {
+        // зачем: немой catch здесь вернул бы нас к ложным «ok» прошлых прогонов.
+        const code = (e as { code?: string } | null)?.code ?? '';
+        return 'unverified:' + (code || (e instanceof Error ? e.message : String(e)));
+      }
+    }
+    // Очередь так и не опустела за отведённое время — запись сервером не принята.
+    return lastPending ? 'denied' : 'unverified:timeout';
   };
 
   // Контроль: весь патч обязан отказать — иначе отказ был разовым (гонка), и

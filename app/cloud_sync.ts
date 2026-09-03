@@ -3279,7 +3279,11 @@ async function bisectDenyingField(
    */
   const tryKeys = async (keys: readonly string[]): Promise<string> => {
     const payload: Record<string, unknown> = {};
-    for (const k of keys) payload[k] = flat[k];
+    for (const k of keys) {
+      // Служебная контрольная проба: заведомо разрешённое поле, а не часть патча.
+      if (k === '__harmless__') payload['last_active_at'] = Date.now();
+      else payload[k] = flat[k];
+    }
     try {
       await docRef.update(payload);
     } catch (e) {
@@ -3328,6 +3332,11 @@ async function bisectDenyingField(
         const progress = (data.progress ?? {}) as Record<string, unknown>;
         // Сверяем ПОСЛЕДНИЙ ключ половины: он записывается позже прочих.
         const probeKey = keys[keys.length - 1];
+        if (probeKey === '__harmless__') {
+          // Для контрольной пробы достаточно самого факта: запись без отказа и
+          // без висящей очереди означает, что документ клиенту в принципе открыт.
+          return 'ok';
+        }
         const expected = flat[probeKey];
         const actual = probeKey.startsWith('progress.')
           ? progress[probeKey.slice('progress.'.length)]
@@ -3342,6 +3351,33 @@ async function bisectDenyingField(
     // Очередь так и не опустела за отведённое время — запись сервером не принята.
     return lastPending ? 'denied' : 'unverified:timeout';
   };
+
+  /**
+   * КОНТРОЛЬ ОДНОГО БЕЗОБИДНОГО ПОЛЯ (добавлен 03.09 после трёх пустых прогонов).
+   *
+   * зачем: три поиска подряд назвали первый ключ списка, и каждый раз это была
+   * ложь. Причина оказалась не в кэше, а в логике: если запись режет условие,
+   * НЕ ЗАВИСЯЩЕЕ от состава патча, то отказывает ЛЮБАЯ половина — и деление
+   * пополам всегда сходится к первому ключу, кто бы ни был виноват.
+   *
+   * Поэтому сначала пробуем записать одно заведомо безобидное поле
+   * (`last_active_at` — обычная метка времени, её нет ни в одном блок-листе
+   * правил). Отказ на НЁМ доказывает: состав патча ни при чём, режет условие
+   * уровня документа, и делить дальше бессмысленно.
+   */
+  const harmlessProbe = await tryKeys(['__harmless__']);
+  if (harmlessProbe === 'denied') {
+    console.warn('[SYNC-DENY-BISECT] ОТКАЗ НЕ ИЗ-ЗА СОСТАВА ПАТЧА: безобидная метка времени тоже отклонена', {
+      вывод: 'режет условие уровня документа, а не поле; деление пополам бессмысленно',
+      'что проверять': 'accountDeletionNotPending · authLinkMapsToUser · hasNoServerIdentityWrites · hasNoShardWrites (корень)',
+      подсказка: 'смотри [SYNC-DENY-PROBE] выше — он читает те же документы, что и правило',
+    });
+    return;
+  }
+  if (harmlessProbe !== 'ok') {
+    console.warn('[SYNC-DENY-BISECT] контроль безобидного поля не подтверждён', { result: harmlessProbe });
+    return;
+  }
 
   // Контроль: весь патч обязан отказать — иначе отказ был разовым (гонка), и
   // делить нечего. Без этой проверки поиск назвал бы «виновника» на пустом месте.

@@ -3282,6 +3282,9 @@ async function bisectDenyingField(
     for (const k of keys) {
       // Служебная контрольная проба: заведомо разрешённое поле, а не часть патча.
       if (k === '__harmless__') payload['last_active_at'] = Date.now();
+      // Безобидный ключ ВНУТРИ progress: проверяет, проходит ли вложенная запись
+      // как таковая. Имя служебное, ни в одном блок-листе правил его нет.
+      else if (k === '__harmless_nested__') payload['progress.sync_probe_at_ms'] = String(Date.now());
       else payload[k] = flat[k];
     }
     try {
@@ -3332,7 +3335,7 @@ async function bisectDenyingField(
         const progress = (data.progress ?? {}) as Record<string, unknown>;
         // Сверяем ПОСЛЕДНИЙ ключ половины: он записывается позже прочих.
         const probeKey = keys[keys.length - 1];
-        if (probeKey === '__harmless__') {
+        if (probeKey === '__harmless__' || probeKey === '__harmless_nested__') {
           // Для контрольной пробы достаточно самого факта: запись без отказа и
           // без висящей очереди означает, что документ клиенту в принципе открыт.
           return 'ok';
@@ -3366,6 +3369,30 @@ async function bisectDenyingField(
    * уровня документа, и делить дальше бессмысленно.
    */
   const harmlessProbe = await tryKeys(['__harmless__']);
+  if (harmlessProbe === 'ok') {
+    /**
+     * ВТОРОЙ КОНТРОЛЬ (03.09): корневое поле прошло — значит документ клиенту
+     * открыт и условия личности ни при чём. Но патч всё равно режется, и
+     * деление пополам упорно сходится к первому ключу progress. Проверяем
+     * отдельно, проходит ли ВЛОЖЕННОЕ поле как таковое: пишем безобидный ключ
+     * внутрь progress. Отказ на нём означает, что режется сама запись в
+     * progress (dot-notation), а не какое-то конкретное поле — и тогда деление
+     * снова бессмысленно, сколько бы уверенно оно ни называло виновника.
+     */
+    const nestedProbe = await tryKeys(['__harmless_nested__']);
+    if (nestedProbe === 'denied') {
+      console.warn('[SYNC-DENY-BISECT] ОТКАЗ НА ЛЮБОМ ВЛОЖЕННОМ ПОЛЕ: корневое поле проходит, progress.* — нет', {
+        вывод: 'режется запись в progress целиком, а не конкретный ключ; вердикт деления недостоверен',
+        'что проверять': 'progressHasNoPremiumWrites · hasNoServerGiftPerkWrites · hasNoLevelRewardSpinWrites — они сравнивают diff карты progress',
+        'важно': 'на документе без ключа progress diff может вести себя иначе, чем на заполненном',
+      });
+      return;
+    }
+    if (nestedProbe !== 'ok') {
+      console.warn('[SYNC-DENY-BISECT] вложенный контроль не подтверждён', { result: nestedProbe });
+      return;
+    }
+  }
   if (harmlessProbe === 'denied') {
     console.warn('[SYNC-DENY-BISECT] ОТКАЗ НЕ ИЗ-ЗА СОСТАВА ПАТЧА: безобидная метка времени тоже отклонена', {
       вывод: 'режет условие уровня документа, а не поле; деление пополам бессмысленно',

@@ -76,21 +76,26 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i16",
-    "correctText": "I am fine.",
+    "correctText": "",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-04:i17",
-    "correctText": "late",
-    "correctResponseId": "en:lesson-01:session-04:i17:r1"
+    "correctText": "I am fine.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-04:i18",
+    "correctText": "late",
+    "correctResponseId": "en:lesson-01:session-04:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-04:i19",
     "correctText": "I am ready.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-04:i19",
+    "interactionId": "en:lesson-01:session-04:i20",
     "correctText": "I am early. I am not tired. I am fine. I am ready. I am happy.",
     "correctResponseId": null
   }

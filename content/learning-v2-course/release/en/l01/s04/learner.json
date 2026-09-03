@@ -843,6 +843,75 @@
       "interactionId": "en:lesson-01:session-04:i16",
       "ordinal": 19,
       "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-04:i16:p1",
+            "target": "busy",
+            "meaningByLocale": {
+              "ru": "занят"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-04:i16:p2",
+            "target": "alone",
+            "meaningByLocale": {
+              "ru": "один"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-04:i16:p3",
+            "target": "tired",
+            "meaningByLocale": {
+              "ru": "устал"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-04:i16:p4",
+            "target": "sure",
+            "meaningByLocale": {
+              "ru": "уверен"
+            }
+          }
+        ],
+        "leftColumn": [
+          "busy",
+          "alone",
+          "tired",
+          "sure"
+        ],
+        "rightColumn": [
+          "занят",
+          "один",
+          "устал",
+          "уверен"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
       "prompt": "Соберите фразу — вас спрашивают, как вы, и у вас всё хорошо",
@@ -869,23 +938,23 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i17",
-      "ordinal": 20,
+      "interactionId": "en:lesson-01:session-04:i18",
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Вставьте слово — коллега вбегает, когда круг уже идёт",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-04:i17:r1",
+          "responseId": "en:lesson-01:session-04:i18:r1",
           "text": "late"
         },
         {
-          "responseId": "en:lesson-01:session-04:i17:r2",
+          "responseId": "en:lesson-01:session-04:i18:r2",
           "text": "early"
         },
         {
-          "responseId": "en:lesson-01:session-04:i17:r3",
+          "responseId": "en:lesson-01:session-04:i18:r3",
           "text": "alone"
         }
       ],
@@ -900,22 +969,22 @@
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
           {
-            "responseId": "en:lesson-01:session-04:i17:r1",
+            "responseId": "en:lesson-01:session-04:i18:r1",
             "text": "late"
           },
           {
-            "responseId": "en:lesson-01:session-04:i17:r2",
+            "responseId": "en:lesson-01:session-04:i18:r2",
             "text": "early"
           },
           {
-            "responseId": "en:lesson-01:session-04:i17:r3",
+            "responseId": "en:lesson-01:session-04:i18:r3",
             "text": "alone"
           }
         ],
         "testedDimension": "Вставьте слово — коллега вбегает, когда ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i17:r1",
+            "responseId": "en:lesson-01:session-04:i18:r1",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега вбегает, когда ",
             "feedbackByLocale": {
@@ -923,7 +992,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i17:r2",
+            "responseId": "en:lesson-01:session-04:i18:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега вбегает, когда ",
             "feedbackByLocale": {
@@ -935,8 +1004,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i18",
-      "ordinal": 21,
+      "interactionId": "en:lesson-01:session-04:i19",
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -964,8 +1033,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i19",
-      "ordinal": 22,
+      "interactionId": "en:lesson-01:session-04:i20",
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -973,13 +1042,13 @@
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-04:i19:audio"
+        "en:lesson-01:session-04:i20:audio"
       ],
       "accessibilityLabel": "Финал сцены — ваша очередь в круге, пять фраз подряд, без подсказок",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-04:i19:audio",
+          "audioTargetId": "en:lesson-01:session-04:i20:audio",
           "transcript": "I am early. I am not tired. I am fine. I am ready. I am happy."
         },
         "slowReferenceAudio": null,
@@ -997,11 +1066,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 19,
+  "practiceInteractionCount": 20,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7566491955da60776d5c8e5fb586c16468a3abcac130b037fa43dcecac0761a0"
+  "learnerFingerprint": "a955974071719fcf0fbc47f5ddcfe8b543bb7112e79462cb600d9900f41be4fb"
 }

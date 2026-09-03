@@ -169,7 +169,14 @@ function machineFacts(file) {
     const re = new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "gi");
     const total = (practice.match(re) || []).length;
     // правильный ответ в формате эталонов — жирным: «→ **I am fine.**», «**I am early. I am not tired.**»
-    const asAnswer = (practice.match(new RegExp(`\\*\\*[^*\\n]*\\b${w}\\b[^*\\n]*\\*\\*`, "gi")) || []).length;
+    let asAnswer = (practice.match(new RegExp(`\\*\\*[^*\\n]*\\b${w}\\b[^*\\n]*\\*\\*`, "gi")) || []).length;
+    // зачем: в Speed Match слова пишутся БЕЗ жирного («tired — устал · here —
+    // здесь»), и счётчик не видел в них правильного ответа. Педагог получал
+    // ноль и валил сессию за слово, которое ученик реально соединяет сам.
+    // Пара — это тоже правильный ответ, просто не единственная цель задания.
+    for (const line of practice.split("\n")) {
+      if ((line.match(/·/g) || []).length >= 2 && /—/.test(line) && new RegExp(`\\b${w}\\b`, "i").test(line)) asAnswer++;
+    }
     facts.push(`${w}: касаний в практике ${total}, из них правильным ответом ${asAnswer}${total < 2 ? " ← МЕНЬШЕ ДВУХ" : ""}${asAnswer === 0 ? " ← ни разу правильным ответом" : ""}`);
   }
   const v = validateModes(file);

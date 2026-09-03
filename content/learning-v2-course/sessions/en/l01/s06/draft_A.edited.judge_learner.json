@@ -1,0 +1,132 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (home)",
+      "what_i_understood": "«дома» = home, без предлога 'in'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (back)",
+      "what_i_understood": "«вернулся» = I am back",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (done)",
+      "what_i_understood": "«закончил» = I am done, а не 'I am not done' (это противоположное)",
+      "confusion": "секунду путал done/not done, но разобрался",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (home, listen)",
+      "what_i_understood": "карточка понятна, но аудио проверить не могу",
+      "confusion": "нет реального звука, только текстовое описание",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (back, listen)",
+      "what_i_understood": "аналогично",
+      "confusion": "то же самое — нет звука",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка I am home)",
+      "what_i_understood": "легко собрал",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 (done, ok карточки)",
+      "what_i_understood": "простое запоминание",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (speed match)",
+      "what_i_understood": "все 4 слова уже знакомы из карточек выше",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (ok vs home vs back)",
+      "what_i_understood": "понял разницу между вопросом про место и про состояние",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (am/is/are)",
+      "what_i_understood": "I всегда с am",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (dictation I am done)",
+      "what_i_understood": "собрал по логике, но не проверил на слух",
+      "confusion": "аудио опять недоступно",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (сказать вслух I am here)",
+      "what_i_understood": "фраза знакома",
+      "confusion": "не могу реально произнести и сравнить голосом — я текстовый ученик",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 13 (I am not hungry)",
+      "what_i_understood": "собрал верно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (I am free, ловушка not)",
+      "what_i_understood": "распознал лишнюю плитку not и не взял её",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (dictation I am not home)",
+      "what_i_understood": "собрал верно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (speed match старых слов)",
+      "what_i_understood": "повторение уже известного",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, 4 фразы вслух)",
+      "what_i_understood": "собрал все фразы текстово правильно",
+      "confusion": "опять голосовая часть недоступна для честной проверки",
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "home = «дома» (без предлога, в отличие от русского «в доме»)",
+    "back = «вернулся, обратно»",
+    "done = «закончил, всё» (и что 'I am not done' значит обратное — ловушка на внимательность)",
+    "ok = «нормально»",
+    "понял разницу между вопросом о месте (home/back) и вопросом о состоянии (ok)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 1-3",
+      "why": "структура объяснений однотипная (слово → пример → 2 обманки), к третьему интро уже предсказуемо, но не критично — это нормальный формат"
+    }
+  ],
+  "felt_alive": [
+    "Сцена с плохой связью и другом дома — понятно и по-человечески, легко представить ситуацию",
+    "Ловушка с лишней плиткой 'not' в задании 14 — забавный момент, когда чуть не взял её на автомате",
+    "Финальное задание 17, где нужно выдать 4 фразы подряд — приятное ощущение сборки всего урока воедино"
+  ],
+  "felt_dead": [
+    "Задания 2 и 4 (listen_choose) — по сути справочные описания звука ('на конце другая буква'), а не живой звук, ощущается как текст из словаря, а не урок с аудио"
+  ],
+  "scene_reason": "да — понятно: я говорю эти фразы другу по телефону, который спрашивает где я и как я, весь урок держится на этой одной понятной ситуации от начала до конца",
+  "would_continue": "да — потому что было несколько живых моментов (ловушка с not, финальная сборка фраз), а новые слова простые и хорошо запомнились через понятную сцену",
+  "verdict": "PASS",
+  "verdict_reason": "все задания честно проходимы известными словами и грамматикой, узнал 4 новых слова и логику различия 'где ты' vs 'как ты', сцена понятна от начала до конца."
+}

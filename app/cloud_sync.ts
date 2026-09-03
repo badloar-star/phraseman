@@ -3088,6 +3088,11 @@ function isDocumentTooLargeError(error: unknown): boolean {
 type FirebaseDocRefLike = {
   set: (data: unknown, options?: unknown) => Promise<unknown>;
   update: (data: unknown) => Promise<unknown>;
+  // зачем: диагностика отказа обязана перечитывать документ С СЕРВЕРА —
+  // локальное разрешение промиса записи ничего не доказывает (офлайн-кэш).
+  get: (options?: { source?: 'server' | 'cache' | 'default' }) => Promise<{
+    data: () => Record<string, unknown> | undefined;
+  }>;
 };
 
 async function writeUserDocWithNestedProgress(
@@ -3237,7 +3242,7 @@ async function probePermissionDenyReason(stableId: string, authUid: string | nul
 let lastBisectAt = 0;
 const DENY_BISECT_THROTTLE_MS = 30 * 60 * 1000;
 async function bisectDenyingField(
-  docRef: { set: (data: unknown, options?: unknown) => Promise<unknown>; update: (data: unknown) => Promise<unknown> },
+  docRef: FirebaseDocRefLike,
   rootPatch: Readonly<Record<string, unknown>>,
   progressPatch: Readonly<Record<string, string | null>>,
 ): Promise<void> {
@@ -3255,16 +3260,47 @@ async function bisectDenyingField(
     return;
   }
 
+  /**
+   * ЛОВУШКА, стоившая первого прогона (03.09): Firestore на клиенте включает
+   * офлайн-персистентность, и `await docRef.update(...)` разрешается СРАЗУ,
+   * как только запись легла в локальную очередь, — ЗАДОЛГО до ответа сервера.
+   * Отказ по правам прилетает потом, отдельным событием, и в промис НЕ попадает.
+   * Первый прогон поиска поэтому видел «ok» на каждой половине и уверенно
+   * назвал первый ключ списка (`user_frame`) — ложная находка: в облаке после
+   * девяти «успешных» записей не появилось НИ ОДНОГО нового ключа, а логи
+   * Firestore показали 36 серверных PERMISSION_DENIED.
+   *
+   * Поэтому успех подтверждается ЧТЕНИЕМ С СЕРВЕРА: пишем поле-маркер со
+   * временем попытки и перечитываем документ мимо кэша. Совпало — запись
+   * реально прошла; не совпало или отказ — половина виновата.
+   */
   const tryKeys = async (keys: readonly string[]): Promise<string> => {
     const payload: Record<string, unknown> = {};
     for (const k of keys) payload[k] = flat[k];
     try {
       await docRef.update(payload);
-      return 'ok';
     } catch (e) {
       const code = (e as { code?: string } | null)?.code ?? '';
       if (String(code).includes('permission-denied')) return 'denied';
       return 'other:' + (code || (e instanceof Error ? e.message : String(e)));
+    }
+    // Подтверждение сервером: локальное разрешение промиса ничего не доказывает.
+    try {
+      const snap = await docRef.get({ source: 'server' });
+      const data = (snap?.data?.() ?? {}) as Record<string, unknown>;
+      const progress = (data.progress ?? {}) as Record<string, unknown>;
+      // Берём любой ключ половины и сверяем реально записанное значение.
+      const probeKey = keys[keys.length - 1];
+      const expected = flat[probeKey];
+      const actual = probeKey.startsWith('progress.')
+        ? progress[probeKey.slice('progress.'.length)]
+        : data[probeKey];
+      if (String(actual ?? '') !== String(expected ?? '')) return 'denied';
+      return 'ok';
+    } catch (e) {
+      // зачем: немой catch здесь означал бы возврат к ложным «ok» первого прогона.
+      const code = (e as { code?: string } | null)?.code ?? '';
+      return 'unverified:' + (code || (e instanceof Error ? e.message : String(e)));
     }
   };
 
@@ -3291,7 +3327,9 @@ async function bisectDenyingField(
       continue;
     }
     if (leftResult !== 'ok') {
-      console.warn('[SYNC-DENY-BISECT] поиск прерван — половина упала не по правам', {
+      // 'unverified:*' — не смогли перечитать с сервера; продолжать нельзя,
+      // иначе повторится ложная находка первого прогона.
+      console.warn('[SYNC-DENY-BISECT] поиск прерван — половину не удалось подтвердить', {
         result: leftResult,
         step: steps,
         half: left.length,

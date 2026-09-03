@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `I am + слово` и `I am not + слово`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Круг, где говорят по одной фразе"
+      },
+      "bodyByLocale": {
+        "ru": "Планёрка стоя — вещь безжалостная и прекрасная. У каждого одна фраза,\nдлинных речей никто не ждёт, и это отличная новость: длинных вы пока и не\nумеете.\n\nПервое слово сегодня — **early**, «рано». Пришли раньше всех — I am early.\nЗвучит оно не так, как пишется: не «еарли», а «ЁР-ли». Первый звук\nтянется, будто вы не выспались, — что для утренней планёрки, в общем,\nчестно.\n\nИ сразу полезная вещь про живую речь: в круге фразу говорят громче\nобычного и чуть медленнее. Не потому, что вы иностранец, а потому что\nслушают восемь человек. Тихое бормотание переспросят даже у своих."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы пришли за двадцать минут до всех. Очередь ваша. Скажите вслух."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r1",
+              "text": "I am early."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r2",
+              "text": "I early. — *Скрепка am пропала. На бумаге это заметно, а вслух"
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r3",
+              "text": "I am earlys. — *Слово о себе хвостов не отращивает. Early и есть"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы пришли за двадцать минут до всех. Очередь ваша. Скажите вслух."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Right и wrong — два слова, на которых держится любое обсуждение"
+      },
+      "bodyByLocale": {
+        "ru": "Сказать I am wrong — «я не прав» — вслух страшновато. А зря: в английском\nофисе эта фраза стоит дорого, её говорят спокойно и она никого не роняет.\nГораздо хуже выглядит человек, который бубнит и делает вид, что цифру\nназывал не он.\n\nСлушайте хвост слова wrong: там не «нг» через «г», а один слитный носовой\nзвук, будто вы говорите «н» и не закрываете рот. Wro-nnn. Написана буква\nw в начале — но её не произносят вообще, она стоит молча, как человек в\nконце круга, которому нечего добавить."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": ""
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r1",
+              "text": "I am wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r2",
+              "text": "I am right. — *Ровно наоборот: right — «прав», а цифра не сошлась."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r3",
+              "text": "I am late. — *Late — «опаздываю», это про часы. А тут подвело не"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": ""
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Free — слово, за которым приходят к вам"
+      },
+      "bodyByLocale": {
+        "ru": "Круг заканчивается вопросом начальника: у кого есть время. **Free** —\n«свободен, не занят». I am free — и задача ваша. I am not free — и её\nотдадут другому.\n\nОсторожно с одной вещью: free — это ещё и «бесплатный». Одно слово, два\nсмысла, и англичане живут с этим спокойно, потому что ситуация всё\nобъясняет. В круге на планёрке никто не подумает, что вы раздаёте себя\nдаром.\n\nА теперь главное про голос. Фраза I am free — три слова, но вслух они\nслипаются в два: «айм фри». Носители почти никогда не выговаривают I am\nраздельно. Вам говорить раздельно можно и нужно — так понятнее. Но когда\nслышите быстрое «айм» — знайте, это те же самые ваши два слова."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Начальник спрашивает, кто возьмёт задачу. У вас всё сделано."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r1",
+              "text": "I am free."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r2",
+              "text": "I am not free. — *Так вы откажетесь от задачи. А у вас всё сделано"
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r3",
+              "text": "I free. — *По-русски «я свободен» — два слова, и рука сама пишет два."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Начальник спрашивает, кто возьмёт задачу. У вас всё сделано."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2f96637a582664b346d76610629acbf7f1737538fad395eb7d8013e71a1e46f6"
+}

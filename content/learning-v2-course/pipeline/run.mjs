@@ -51,7 +51,11 @@ const SESSION = opt("session", null); // en/l01/s04
 // зачем: «запустил и ушёл» — при лимите подписки конвейер ждёт сброса,
 // а не падает. --no-wait отключает (для быстрых проверок).
 const WAIT_ON_LIMIT = !args.includes("--no-wait");
-const LOCALES = (opt("locales", "uk,es,pt-BR,vi,id,tr,pl")).split(",").map((s) => s.trim()).filter(Boolean);
+// зачем (владелец, 03.09): сейчас пишем только ru-мастер и uk. Локаль — чистая
+// функция от мастера: доливается одним вызовом позже. Написанные заранее
+// локали выбрасываются при любой правке мастера (так и вышло с S5).
+// Полный набор: --locales uk,es,pt-BR,vi,id,tr,pl
+const LOCALES = (opt("locales", "uk")).split(",").map((s) => s.trim()).filter(Boolean);
 
 // ---------- файлы ----------
 const read = (p) => fs.readFileSync(p, "utf8");

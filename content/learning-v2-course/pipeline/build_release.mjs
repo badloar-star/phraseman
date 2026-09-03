@@ -1,0 +1,365 @@
+#!/usr/bin/env node
+// Сборщик релиза: Markdown «как видит ученик» → JSON, который читает плеер.
+//
+// зачем: конвейер пишет человекочитаемый Markdown (владелец его вычитывает
+// глазами), а приложение принимает строгий формат
+// modules/learning-v2/runtime/course_session_client_children_v1.ts.
+// Без этого моста ни одна написанная сессия не откроется на телефоне.
+//
+// Запуск:
+//   node build_release.mjs --session en/l01/s04 [--locales ru,uk] [--out ../release]
+//
+// Логи: префикс [BUILD], каждый ранний выход и каждый catch пишет причину.
+
+import fs from "node:fs";
+import path from "node:path";
+import crypto from "node:crypto";
+import { fileURLToPath } from "node:url";
+
+const HERE = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(HERE, "..");
+const LOG = (...a) => console.log("[BUILD]", ...a);
+const WARN = (...a) => console.warn("[BUILD][WARN]", ...a);
+
+const args = process.argv.slice(2);
+const opt = (n, d) => { const i = args.indexOf(`--${n}`); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
+const SESSION = opt("session", null);
+const LOCALES = opt("locales", "ru,uk").split(",").map((s) => s.trim()).filter(Boolean);
+const OUT = path.resolve(ROOT, opt("out", "release"));
+
+const read = (p) => fs.readFileSync(p, "utf8");
+const exists = (p) => fs.existsSync(p);
+const sha = (v) => crypto.createHash("sha256").update(typeof v === "string" ? v : JSON.stringify(v)).digest("hex");
+
+// ---------- разбор Markdown ----------
+
+/** Заголовок сессии: тема, операция, новые слова, сцена. */
+function parseHeader(md) {
+  const title = /^#\s+(.+)$/m.exec(md)?.[1]?.trim() ?? "";
+  const scene = /\*\*Сцена сессии\.\*\*\s*([\s\S]*?)\n\n/.exec(md)?.[1]?.replace(/\s+/g, " ").trim() ?? "";
+  const operation = /\*\*Операция:\*\*\s*(.+)/.exec(md)?.[1]?.trim() ?? "";
+  const newWords = (/\*\*Новые слова:\*\*\s*(.+)/.exec(md)?.[1] ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+  return { title, scene, operation, newWords };
+}
+
+/** Три страницы интро: заголовок, тело, вопрос, варианты с разборами. */
+function parseIntro(md) {
+  const pages = [];
+  const blocks = md.split(/^## Интро \d+\s*$/m).slice(1);
+  for (const [i, raw] of blocks.entries()) {
+    const body = raw.split(/^---\s*$/m)[0];
+    const heading = /^###\s+(.+)$/m.exec(body)?.[1]?.trim() ?? "";
+    // текст до строки-вопроса (жирная строка, оканчивающаяся вопросом/точкой)
+    const qMatch = /^\*\*(.+?)\*\*\s*$/m.exec(body.split(/^-\s+[✅❌]/m)[0]);
+    const question = qMatch?.[1]?.replace(/\s+/g, " ").trim() ?? "";
+    const textPart = body.slice(body.indexOf(heading) + heading.length, qMatch ? body.indexOf(qMatch[0]) : undefined);
+    const text = textPart.split(/\n\n/).map((s) => s.trim()).filter((s) => s && !/^[-*]/.test(s)).join("\n\n");
+    const options = parseOptions(body);
+    if (!options.length) WARN(`интро ${i + 1}: не найдено вариантов ответа`);
+    pages.push({ kind: ["concept", "formula", "trap"][i] ?? "tip", heading, text, question, options });
+  }
+  return pages;
+}
+
+/** Варианты ответа. Два формата, оба живут в эталонах:
+ *  интро — «- ✅ **текст**» / «- ❌ текст — *разбор*»;
+ *  практика — строка «→ **верный** · ловушка · ловушка», а под ней список
+ *  «- ловушка — *разбор*» без значков. */
+function parseOptions(block) {
+  const out = [];
+  const seen = new Set();
+  const add = (text, correct, feedback) => {
+    const t = text.replace(/^\*\*|\*\*$/g, "").replace(/\s*—\s*$/, "").trim();
+    if (!t || seen.has(t.toLowerCase())) return;
+    seen.add(t.toLowerCase());
+    out.push({ text: t, correct, feedback });
+  };
+
+  // 1) строка выбора: «→ **верный** · ловушка · ловушка»
+  const choiceLine = /→\s*\*\*([^*]+)\*\*((?:\s*·\s*[^\n]+)+)/.exec(block);
+  if (choiceLine) {
+    add(choiceLine[1], true, "");
+    for (const alt of choiceLine[2].split("·").map((s) => s.trim()).filter(Boolean)) add(alt, false, "");
+  }
+  // 1b) sound_contrast: варианты ПЕРЕД стрелкой — «*right · wrong* → **wrong**»
+  const contrastLine = /^\*?([^*\n]+·[^*\n]+?)\*?\s*→\s*\*\*([^*]+)\*\*/m.exec(block);
+  if (contrastLine && !choiceLine) {
+    const correct = contrastLine[2].trim();
+    for (const alt of contrastLine[1].split("·").map((s) => s.replace(/[*_`]/g, "").trim()).filter(Boolean)) {
+      add(alt, alt.toLowerCase() === correct.toLowerCase(), "");
+    }
+  }
+
+  // 2) список разборов
+  for (const m of block.matchAll(/^-\s+(✅|❌)?\s*(.+)$/gm)) {
+    const marked = m[1];
+    let rest = m[2].trim();
+    if (/^\*[^*]/.test(rest) && !/—/.test(rest)) continue; // подсказка курсивом, не вариант
+    const fb = /—\s*\*([\s\S]+?)\*\s*$/.exec(rest);
+    const feedback = fb ? fb[1].replace(/\s+/g, " ").trim() : "";
+    if (fb) rest = rest.slice(0, fb.index).trim();
+    const text = rest.replace(/^\*\*|\*\*$/g, "").trim();
+    if (!text) continue;
+    const key = text.toLowerCase();
+    const existing = out.find((o) => o.text.toLowerCase() === key);
+    if (existing) { if (feedback && !existing.feedback) existing.feedback = feedback; continue; }
+    // без значка и без разбора — это не вариант, а строка сцены
+    if (!marked && !feedback) continue;
+    add(text, marked === "✅", feedback);
+  }
+  return out;
+}
+
+/** Задания практики: номер, тип из «## Для сборщика», содержимое. */
+function parsePractice(md) {
+  const modesLine = /^modes:\s*([\s\S]*?)(?:\n\s*\n|$)/m.exec(md)?.[1] ?? "";
+  const modes = new Map([...modesLine.matchAll(/(\d+)\s*=\s*([a-z_]+)/g)].map((m) => [Number(m[1]), m[2]]));
+  const practicePart = md.split(/^## Практика/m)[1]?.split(/^## Для сборщика/m)[0] ?? "";
+  const chunks = practicePart.split(/^\*\*(?=\d+ · )/m).slice(1);
+  const tasks = [];
+  for (const chunk of chunks) {
+    const head = /^(\d+) · ([^*]+)\*\*/.exec(chunk);
+    if (!head) { WARN(`задание без заголовка: ${chunk.slice(0, 60)}`); continue; }
+    const ordinal = Number(head[1]);
+    const family = modes.get(ordinal);
+    if (!family) { WARN(`задание ${ordinal}: нет записи в строке modes`); continue; }
+    const bodyText = chunk.slice(head[0].length);
+    tasks.push({ ordinal, title: head[2].trim(), family, body: bodyText, options: parseOptions(bodyText), ...parseTaskParts(bodyText) });
+  }
+  return tasks;
+}
+
+/** Части задания: цель, плитки, аудио, пары, определение карточки. */
+function parseTaskParts(body) {
+  const parts = {};
+  // цель: последняя жирная фраза после стрелки, либо жирная строка целиком
+  const arrow = [...body.matchAll(/→\s*\*\*(.+?)\*\*/g)].map((m) => m[1].trim());
+  if (arrow.length) parts.target = arrow[arrow.length - 1];
+  const tiles = /Плитки:\s*(.+)/.exec(body);
+  if (tiles) parts.tokens = [...tiles[1].matchAll(/`([^`]+)`/g)].map((m) => m[1]);
+  const audio = /🔊\s*\*([^*]+)\*/.exec(body);
+  if (audio) parts.audio = audio[1].trim();
+  // голос: жирная фраза после 🎙 может стоять на следующей строке и содержать
+  // несколько предложений подряд (финал сцены) — берём весь жирный блок
+  const speak = /🎙[\s\S]{0,200}?\*\*([\s\S]+?)\*\*/.exec(body);
+  if (speak) parts.speak = speak[1].replace(/\s+/g, " ").trim();
+  const card = /^>\s*\*\*([^*]+)\*\*\s*—\s*([\s\S]+)$/m.exec(body);
+  if (card) parts.card = { word: card[1].trim(), definition: card[2].replace(/^>\s*/gm, "").replace(/\s+/g, " ").trim() };
+  // пары speed_match: «слово — перевод · слово — перевод»
+  if (/·/.test(body) && /—/.test(body)) {
+    const line = body.split("\n").find((l) => (l.match(/·/g) || []).length >= 2 && /—/.test(l));
+    if (line) parts.pairs = line.split("·").map((p) => {
+      const [t, m] = p.split("—").map((s) => s.replace(/[*_`]/g, "").trim());
+      return t && m ? { target: t, meaning: m } : null;
+    }).filter(Boolean);
+  }
+  // сцена/реплика собеседника
+  const cue = /🗣[^*]*\*\*«?([^»*]+)»?\.?\*\*/.exec(body);
+  if (cue) parts.cue = cue[1].trim();
+  return parts;
+}
+
+// ---------- сборка формата приложения ----------
+
+const PURPOSE_BY_INDEX = (i, total) =>
+  i < total * 0.3 ? "supported_practice" : i < total * 0.6 ? "guided_practice" : i < total * 0.8 ? "retrieval_practice" : "independent_check";
+
+const INPUT_MODE = {
+  phrase_builder: "ordered_tokens",
+  listen_build_dictation: "ordered_tokens",
+  listen_choose: "single_choice",
+  context_gap_grammar: "single_choice",
+  sound_contrast: "single_choice",
+  speed_match: "pair_grid",
+  scripted_repeat_compare: "tap_record_compare",
+  word_card: "single_choice",
+};
+
+const localized = (byLocale) => Object.fromEntries(LOCALES.map((l) => [l, byLocale[l] ?? byLocale.ru ?? ""]));
+
+function buildInteraction(task, perLocale, sessionId, index, total) {
+  const id = `${sessionId}:i${String(task.ordinal).padStart(2, "0")}`;
+  const family = task.family === "word_card" ? "listen_choose" : task.family;
+  const loc = (field) => localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.[field] ?? ""])));
+
+  const feedback = task.options.filter((o) => !o.correct).map((o, i) => ({
+    responseId: `${id}:r${i + 1}`,
+    correct: false,
+    testedDimension: task.title.slice(0, 40),
+    feedbackByLocale: localized(Object.fromEntries(LOCALES.map((l) => {
+      const alt = perLocale[l]?.options?.[task.options.indexOf(o)];
+      return [l, alt?.feedback ?? o.feedback];
+    }))),
+  }));
+
+  const responseOptions = task.options.map((o, i) => ({ responseId: `${id}:r${i + 1}`, text: o.text }));
+
+  let modePayload = null;
+  if (family === "phrase_builder") {
+    modePayload = {
+      family, targetPhrase: task.target ?? task.speak ?? "",
+      localizedMeaning: loc("title"),
+      orderedTokens: (task.target ?? "").replace(/[.?!]$/, "").split(/\s+/).filter(Boolean),
+      authoredDistractorTokens: (task.tokens ?? []).filter((t) => !(task.target ?? "").toLowerCase().includes(t.toLowerCase())),
+      slotFeedback: feedback,
+    };
+  } else if (family === "listen_choose") {
+    modePayload = {
+      family,
+      referenceAudio: task.audio ? { audioTargetId: `${id}:audio`, transcript: task.audio } : null,
+      slowReferenceAudio: null,
+      localizedMeaningChoices: responseOptions.map((r, i) => ({ responseId: r.responseId, targetText: r.text, meaningByLocale: task.card && i === 0 ? loc("card") : null })),
+      transcriptRevealPolicy: "after_first_attempt",
+      choiceFeedback: feedback,
+    };
+  } else if (family === "listen_build_dictation") {
+    modePayload = {
+      family,
+      referenceAudio: task.audio ? { audioTargetId: `${id}:audio`, transcript: task.audio } : null,
+      slowReferenceAudio: null,
+      hiddenTargetPhrase: task.target ?? task.audio ?? "",
+      orderedTokens: (task.target ?? "").replace(/[.?!]$/, "").split(/\s+/).filter(Boolean),
+      authoredDistractorTokens: (task.tokens ?? []).filter((t) => !(task.target ?? "").toLowerCase().includes(t.toLowerCase())),
+      slotFeedback: feedback,
+    };
+  } else if (family === "context_gap_grammar") {
+    modePayload = {
+      family, localizedScene: loc("title"),
+      // зачем: строка пропуска в Markdown несёт и варианты («I ___ wrong. →
+      // **am** · not · is») — в payload должна попасть только сама фраза
+      gappedTargetPhrase: (/(\S[^\n]*___[^\n]*)/.exec(task.body)?.[1] ?? "").split("→")[0].replace(/[*`]/g, "").trim(),
+      gapOptions: responseOptions, testedDimension: task.title.slice(0, 40), choiceFeedback: feedback,
+    };
+  } else if (family === "sound_contrast") {
+    // зачем: у sound_contrast два слова стоят в строке «*right · wrong* → **wrong**»,
+    // а не парами «слово — перевод»; берём их из разобранных вариантов
+    const words = task.options.map((o) => o.text);
+    const [a, b] = words.length >= 2 ? words : [task.target ?? "", ""];
+    modePayload = { family, contrastA: a, contrastB: b, ipaA: "", ipaB: "", audioA: null, audioB: null, testedPhoneticContrast: task.title.slice(0, 40), choiceFeedback: feedback };
+  } else if (family === "speed_match") {
+    const pairs = (task.pairs ?? []).map((p, i) => ({ pairId: `${id}:p${i + 1}`, target: p.target, meaningByLocale: localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.pairs?.[i]?.meaning ?? p.meaning]))) }));
+    modePayload = {
+      family, pairGrid: pairs,
+      leftColumn: pairs.map((p) => p.target),
+      rightColumn: pairs.map((p) => p.meaningByLocale.ru ?? p.target),
+      pairingKey: "pair_id",
+      timerPolicy: { enabledByDefault: true, learnerCanDisable: true, pausesOnInterruption: true },
+      finishStats: ["speed", "accuracy", "personal_best"],
+    };
+  } else if (family === "scripted_repeat_compare") {
+    modePayload = {
+      family, referenceAudio: task.speak ? { audioTargetId: `${id}:audio`, transcript: task.speak } : null,
+      slowReferenceAudio: null, targetPhrase: task.speak ?? task.target ?? "",
+      recordControlPolicy: "hold_press_release_with_accessible_toggle",
+      modelPlayback: "reference_and_slow", learnerPlayback: "available_after_capture",
+      honestOutcomeStates: ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"],
+    };
+  }
+
+  return {
+    interactionId: id, ordinal: task.ordinal + 3, purpose: PURPOSE_BY_INDEX(index, total),
+    family, inputMode: INPUT_MODE[task.family] ?? "single_choice",
+    prompt: task.title, responseOptions,
+    mediaIds: [], audioTargetIds: modePayload?.referenceAudio ? [`${id}:audio`] : [],
+    accessibilityLabel: task.title, modePayload, scriptedAlternate: null,
+  };
+}
+
+// ---------- main ----------
+
+function main() {
+  if (!SESSION) { LOG("ранний выход: нужен --session en/l01/s04"); process.exit(2); }
+  const m = /^([a-z]{2})\/l(\d{2})\/s(\d{2})$/.exec(SESSION);
+  if (!m) { LOG(`ранний выход: --session ожидает en/l01/s04, получено: ${SESSION}`); process.exit(2); }
+  const [, lang, lesson, session] = m;
+  const dir = path.join(ROOT, "sessions", SESSION);
+  const sessionId = `${lang}:lesson-${lesson}:session-${session}`;
+
+  const perLocale = {};
+  for (const loc of LOCALES) {
+    const f = path.join(dir, loc === "ru" ? "final.ru.md" : `final.${loc}.md`);
+    if (!exists(f)) { WARN(`нет файла локали ${loc}: ${path.basename(f)} — локаль пропущена`); continue; }
+    const md = read(f);
+    perLocale[loc] = { md, header: parseHeader(md), intro: parseIntro(md), tasks: parsePractice(md) };
+    LOG(`${loc}: интро ${perLocale[loc].intro.length}, заданий ${perLocale[loc].tasks.length}`);
+  }
+  if (!perLocale.ru) { LOG("ранний выход: нет мастера final.ru.md"); process.exit(2); }
+
+  const master = perLocale.ru;
+  // сверка структуры локалей с мастером
+  for (const [loc, v] of Object.entries(perLocale)) {
+    if (loc === "ru") continue;
+    if (v.tasks.length !== master.tasks.length) WARN(`${loc}: заданий ${v.tasks.length} против ${master.tasks.length} в мастере`);
+    if (v.intro.length !== master.intro.length) WARN(`${loc}: страниц интро ${v.intro.length} против ${master.intro.length}`);
+  }
+
+  const byOrdinal = (loc, ord) => perLocale[loc]?.tasks.find((t) => t.ordinal === ord);
+
+  const introChild = {
+    schemaVersion: "learning_v2_course_session_intro_child_v1",
+    courseSessionId: sessionId,
+    learningOutcomeByLocale: localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.header.operation ?? ""]))),
+    pages: master.intro.map((p, i) => ({
+      pageOrdinal: i + 1, pageId: `${sessionId}:intro${i + 1}`, kind: p.kind,
+      titleByLocale: localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.intro[i]?.heading ?? p.heading]))),
+      bodyByLocale: localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.intro[i]?.text ?? p.text]))),
+      question: {
+        interactionId: `${sessionId}:intro${i + 1}:q`,
+        promptByLocale: localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.intro[i]?.question ?? p.question]))),
+        choicesByLocale: localized(Object.fromEntries(LOCALES.map((l) => [l, (perLocale[l]?.intro[i]?.options ?? p.options).map((o, j) => ({ responseId: `${sessionId}:intro${i + 1}:r${j + 1}`, text: o.text })) ]))),
+        accessibilityLabelByLocale: localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.intro[i]?.question ?? p.question]))),
+      },
+    })),
+    pageCount: 3, embeddedQuestionCount: 3, practiceStartOrdinal: 4,
+    questionPolicy: "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+    answerDataPolicy: "none_server_evaluator_child_only",
+    runtimeAuthority: "none_active_release_join_required", releaseAuthority: false,
+    introFingerprint: "",
+  };
+  introChild.introFingerprint = sha(introChild.pages);
+
+  const interactions = master.tasks.map((t, i) =>
+    buildInteraction(t, Object.fromEntries(LOCALES.map((l) => [l, byOrdinal(l, t.ordinal)])), sessionId, i, master.tasks.length));
+
+  const learnerChild = {
+    schemaVersion: "learning_v2_course_session_learner_child_v1",
+    courseSessionId: sessionId, targetLanguage: lang,
+    interactions, practiceInteractionCount: interactions.length, firstPracticeOrdinal: 4,
+    evaluatorPayload: "absent_by_exact_schema", acceptedAnswerPayload: "absent_by_exact_schema",
+    runtimeAuthority: "none_active_release_join_required", releaseAuthority: false,
+    learnerFingerprint: "",
+  };
+  learnerChild.learnerFingerprint = sha(interactions);
+
+  // ответы — отдельно: плеер их не получает, они нужны серверу-оценщику
+  const answers = master.tasks.map((t) => ({
+    interactionId: `${sessionId}:i${String(t.ordinal).padStart(2, "0")}`,
+    correctText: t.target ?? t.speak ?? t.options.find((o) => o.correct)?.text ?? "",
+    correctResponseId: t.options.findIndex((o) => o.correct) >= 0 ? `${sessionId}:i${String(t.ordinal).padStart(2, "0")}:r${t.options.findIndex((o) => o.correct) + 1}` : null,
+  }));
+
+  const outDir = path.join(OUT, lang, `l${lesson}`, `s${session}`);
+  fs.mkdirSync(outDir, { recursive: true });
+  const files = { "intro.json": introChild, "learner.json": learnerChild, "answers.json": answers };
+  for (const [name, data] of Object.entries(files)) {
+    const p = path.join(outDir, name);
+    fs.writeFileSync(p, JSON.stringify(data, null, 2), "utf8");
+    LOG(`записан ${path.relative(ROOT, p)} (${fs.statSync(p).size} байт)`);
+  }
+
+  // сводка проблем, которые плеер не переживёт
+  const problems = [];
+  for (const it of interactions) {
+    if (!it.modePayload) problems.push(`${it.interactionId}: нет modePayload (family ${it.family})`);
+    else if (it.family === "phrase_builder" && !it.modePayload.orderedTokens.length) problems.push(`${it.interactionId}: пустые orderedTokens`);
+    else if (it.family === "speed_match" && it.modePayload.pairGrid.length !== 4) problems.push(`${it.interactionId}: пар ${it.modePayload.pairGrid.length}, нужно 4`);
+    // карточка слова вариантов не имеет по определению — это не дефект
+    const isCard = master.tasks.find((t) => `${sessionId}:i${String(t.ordinal).padStart(2, "0")}` === it.interactionId)?.family === "word_card";
+    if (!isCard && it.inputMode === "single_choice" && it.responseOptions.length < 2) problems.push(`${it.interactionId}: вариантов ${it.responseOptions.length}`);
+  }
+  if (problems.length) { WARN(`проблем сборки: ${problems.length}`); for (const p of problems) WARN(`  ${p}`); }
+  else LOG("проблем сборки нет");
+  LOG(`готово: ${interactions.length} заданий, ${LOCALES.join("+")}`);
+}
+
+main();

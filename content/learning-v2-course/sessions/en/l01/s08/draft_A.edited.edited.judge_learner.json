@@ -1,0 +1,148 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Я — новый сотрудник, кадровичка спрашивает быстро, я всё равно должен говорить полностью: I am + слово. Ответ на 'Готовы?' — I am ready.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "not всегда стоит сразу после am, никогда одно без другого и никогда в конце фразы. I am not sure = я не уверен.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "not нельзя лепить куда попало 'для вежливости' — надо говорить правду. Раз я закончил, говорю I am done, а не I am not done.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Не заблудился → I am not lost.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "На слух выбрал tired, не спутал с tried/tide.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Собрал I am tired., лишнюю плитку not не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Для I всегда am, не is/are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "I am not hungry — собрал по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Свёл пары ready/tired/lost/hungry с переводами — все слова уже знакомы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "На предложение кофе логичный ответ — I am not hungry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "I am not sure — не помню время встречи.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "На слух выбрал free, не three/fry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Пятница пустая → I am free.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "I am ready — лишнюю плитку done не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Уже освоился → I am not new.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Стол пустой → I am done, лишнюю плитку free не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Свёл sure/free/done/new с переводами без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Проговорил вслух I am tired. I am not hungry. — повтор уже знакомых фраз.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "I am free — не взял лишнюю плитку is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Собрал подряд все 4 фразы без подсказок: I am ready. I am not lost. I am not hungry. I am done.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Понял на конкретных примерах (интро 3), что not нельзя ставить 'на автомате из вежливости' — надо реально думать, правда это или нет",
+    "Потренировал подряд 4 фразы без подсказок (финал), а не по одной — это новое ощущение, будто реально отвечаю поживому",
+    "Закрепил все 8 слов (ready, tired, lost, sure, hungry, free, done, new) в связке с am/am not в разных, а не однотипных вопросах"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2",
+      "why": "По сути повторяет то же самое, что и интро 1 (not стоит после am) — просто другой пример. Не узнал ничего технически нового, только ещё раз то же правило."
+    }
+  ],
+  "felt_alive": [
+    "Сцена с кадровичкой и планшетом у выхода — понятно, зачем говоришь фразы, чувствуется живой диалог, а не абстрактные примеры",
+    "Задание 3 про 'длинный день?' с лишней плиткой not — забавно, что специально проверяют, не соврёшь ли себе для драмы",
+    "Финал (17) — реально почувствовал, что отвечаю на несколько вопросов подряд как в жизни, а не по одному в вакууме"
+  ],
+  "felt_dead": [
+    "Интро 2 — суховато и повторяет мысль интро 1, без новой сцены-детали"
+  ],
+  "scene_reason": "да — всё время понятно, кому и когда говоришь фразы: кадровичке у выхода, отвечаешь на её вопросы про первый день, каждое предложение привязано к конкретной ситуации (кофе остыл, стол пустой, пятница свободна)",
+  "would_continue": "да — задания разнообразные (слух, сборка, пары, вслух), сложность растёт плавно, финал даёт ощущение, что я реально что-то умею сказать подряд без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно на уже известных словах и грамматике, узнал новое (различать правду от вежливости в отрицании, говорить связку фраз подряд), сцена понятна — единственное слабое место это чуть водянистое интро 2."
+}

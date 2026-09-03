@@ -213,7 +213,13 @@ function machineFacts(file) {
   const introBlocks = text.split(/^## Интро \d+[^\n]*$/m).slice(1);
   for (const [i, block] of introBlocks.entries()) {
     const page = block.split(/^---\s*$/m)[0];
-    const body = page.split(/^-\s+[✅❌]/m)[0];
+    // зачем: сам вопрос — не объяснение. Пока в вопросе стояло английское
+    // «Ready to go?», проверка засчитывала `ready` как объяснённое, хотя текст
+    // страницы вёл к другому слову. Ищем только в абзацах ДО вопроса.
+    const beforeQuestion = page.split(/^-\s+[✅❌]/m)[0];
+    const paras = beforeQuestion.trimEnd().split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+    const lastPara = paras[paras.length - 1] ?? "";
+    const body = /^\*\*[\s\S]+\*\*$/.test(lastPara) ? paras.slice(0, -1).join("\n\n") : beforeQuestion;
     const correct = /^-\s+✅\s+\*\*([^*]+)\*\*/m.exec(page)?.[1]?.trim() ?? "";
     if (!correct) { facts.push(`интро ${i + 1}: НЕ НАЙДЕН правильный ответ`); continue; }
     // ключевое слово ответа — последнее содержательное (fine, sure, new…)
@@ -645,6 +651,17 @@ function main() {
     // зачем: 03.09 конвейер ушёл локализовать сессию, которой судья-ученик
     // поставил BLOCK («задания 16 и 17 невыполнимы») — 14 вызовов впустую.
     // BLOCK у любого судьи означает стоп, а не предупреждение.
+    // зачем: 03.09 сессия 8 вышла с разрывом «интро ↔ вопрос» — педагог дал
+    // REVISE, а REVISE не останавливает. Посчитанный факт не зависит от
+    // настроения судьи: пока он не закрыт, сессия не выпускается.
+    const hardFacts = machineFacts(finalRu)
+      .split("\n")
+      .filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ/.test(l));
+    if (hardFacts.length) {
+      WARN(`СТОП перед локализацией — не закрытые машинные факты:\n  ${hardFacts.join("\n  ")}`);
+      write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blockedBy: "machine_facts", facts: hardFacts, at: new Date().toISOString() }, null, 2));
+      return;
+    }
     const blocked = Object.entries(cur.v).filter(([, j]) => j.verdict === "BLOCK");
     if (blocked.length) {
       WARN(`СТОП перед локализацией: ${blocked.map(([n, j]) => `${n} — ${j.verdict_reason}`).join(" | ")}`);

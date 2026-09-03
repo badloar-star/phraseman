@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-08:i01",
+    "correctText": "lost",
+    "correctResponseId": "en:lesson-01:session-08:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i02",
+    "correctText": "tired",
+    "correctResponseId": "en:lesson-01:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i03",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i04",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-08:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i05",
+    "correctText": "I am not hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i07",
+    "correctText": "hungry",
+    "correctResponseId": "en:lesson-01:session-08:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i08",
+    "correctText": "I am not sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i09",
+    "correctText": "free",
+    "correctResponseId": "en:lesson-01:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i10",
+    "correctText": "free",
+    "correctResponseId": "en:lesson-01:session-08:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i11",
+    "correctText": "I am ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i12",
+    "correctText": "new",
+    "correctResponseId": "en:lesson-01:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i13",
+    "correctText": "I am done.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i15",
+    "correctText": "I am tired. I am not hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i16",
+    "correctText": "I am free.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-08:i17",
+    "correctText": "",
+    "correctResponseId": null
+  }
+]

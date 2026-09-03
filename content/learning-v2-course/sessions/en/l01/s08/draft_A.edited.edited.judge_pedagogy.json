@@ -1,0 +1,84 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "new — правдоподобная альтернатива по теме (первый день), но не по смыслу вопроса"
+      },
+      {
+        "task": 2,
+        "trap": "tried/tide — реалистичная фонетическая путаница с tired"
+      },
+      {
+        "task": 9,
+        "trap": "three/fry — реалистичные фонетические ловушки для free"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "ready",
+        "tired",
+        "lost",
+        "hungry"
+      ],
+      [
+        "sure",
+        "free",
+        "done",
+        "new"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      3
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s07",
+      "what": "Сцена почти идентична l01_s07: там тоже «конец первого рабочего дня», начальник у лифта задаёт вопросы подряд, пока едет кабина (\"вразнобой... как вы, не голодны ли, не потерялись ли\"); здесь — кадровичка у выхода задаёт вопросы подряд вразнобой (\"готовы ли вы... не заблудились ли... голодны ли\"). Сюжетный приём 'вопросы залпом от начальства перед уходом' повторяется почти дословно по структуре и по набору тем (голоден/потерялся/готов)."
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "context_gap_grammar": 6,
+      "listen_choose": 2,
+      "phrase_builder": 4,
+      "listen_build_dictation": 2,
+      "speed_match": 2,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Интро 1 не упоминает ключевое слово ready в тексте страницы (текст полностью про скорость речи и потерю am, а не про смысл 'готов'), и сцена почти калькирует l01_s07 (начальство перед уходом с лифта/выхода задаёт вопросы вразнобой про голод/потерянность/готовность) — оба дефекта из категории REVISE (первый формально попадает под unknown_in_targets? нет — это не граница, это slippage интро от слова; второй explicit REVISE-категория cross_session_repeats)."
+}

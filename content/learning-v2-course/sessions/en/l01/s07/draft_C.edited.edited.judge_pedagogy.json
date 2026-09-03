@@ -1,0 +1,85 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "scared",
+      "glad",
+      "bored",
+      "full"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "glass/gold — фонетически близкие английские слова, реалистичная ошибка на слух"
+      },
+      {
+        "task": 4,
+        "trap": "лишняя плитка not — обманка на внимательность"
+      },
+      {
+        "task": 6,
+        "trap": "scarf/score — фонетически близкие"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 18,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "glad",
+        "full",
+        "scared",
+        "bored"
+      ],
+      [
+        "hungry",
+        "tired",
+        "done",
+        "fine"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      4
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 2,
+      "phrase_builder": 2,
+      "context_gap_grammar": 4,
+      "listen_build_dictation": 2,
+      "speed_match": 2,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Слово fine касается практики только 1 раз (задание 17), это меньше минимума в 2 касания для возвращаемого слова из машинных фактов."
+}

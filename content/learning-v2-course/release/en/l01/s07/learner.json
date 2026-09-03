@@ -1,0 +1,951 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-07:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — glad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — glad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i01:audio",
+          "transcript": "glad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-07:i01:r1",
+            "targetText": "glad",
+            "meaningByLocale": {
+              "ru": "«рад». Не праздник со свечами, а тихое «хорошо, что так получилось»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glad",
+          "definitionByLocale": {
+            "ru": "«рад». Не праздник со свечами, а тихое «хорошо, что так получилось»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — glad",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-07:i02:r1",
+          "text": "glad"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i02:r2",
+          "text": "glass"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i02:r3",
+          "text": "gold"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — glad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i02:audio",
+          "transcript": "glad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-07:i02:r1",
+            "targetText": "glad",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i02:r2",
+            "targetText": "glass",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i02:r3",
+            "targetText": "gold",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-07:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — glad",
+            "feedbackByLocale": {
+              "ru": "Это «стакан». Конец другой: `glad` кончается на «д»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — glad",
+            "feedbackByLocale": {
+              "ru": "«Золото». Гласная не та: в `glad` она короткая и открытая, «глэд»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — full",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — full",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i03:audio",
+          "transcript": "full"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-07:i03:r1",
+            "targetText": "full",
+            "meaningByLocale": {
+              "ru": "«сыт, наелся». Дословно «полный»: место в желудке закончилось."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "full",
+          "definitionByLocale": {
+            "ru": "«сыт, наелся». Дословно «полный»: место в желудке закончилось."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вас спрашивают, будете ли добавку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вас спрашивают, будете ли добавку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am full.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вас спрашивают, будете ли добавку"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "full"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — scared",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — scared",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i05:audio",
+          "transcript": "scared"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-07:i05:r1",
+            "targetText": "scared",
+            "meaningByLocale": {
+              "ru": "«мне страшно». Не ужас из кино, а обычное «ой, боязно» — перед первым звонком клиенту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scared",
+          "definitionByLocale": {
+            "ru": "«мне страшно». Не ужас из кино, а обычное «ой, боязно» — перед первым звонком клиенту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — scared",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-07:i06:r1",
+          "text": "scared"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i06:r2",
+          "text": "scarf"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i06:r3",
+          "text": "score"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — scared",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i06:audio",
+          "transcript": "scared"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-07:i06:r1",
+            "targetText": "scared",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i06:r2",
+            "targetText": "scarf",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i06:r3",
+            "targetText": "score",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-07:i06:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — scared",
+            "feedbackByLocale": {
+              "ru": "«Шарф». Слышно «ф» на конце — а нужно «д»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — scared",
+            "feedbackByLocale": {
+              "ru": "«Счёт». Один слог и без «эа»: `scared` тянется как «скэрд»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bored",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bored",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i07:audio",
+          "transcript": "bored"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-07:i07:r1",
+            "targetText": "bored",
+            "meaningByLocale": {
+              "ru": "«скучно». Дело идёт, а вам нечем занять голову."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bored",
+          "definitionByLocale": {
+            "ru": "«скучно». Дело идёт, а вам нечем занять голову."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — третий час презентации про принтеры",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-07:i08:r1",
+          "text": "bored"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i08:r2",
+          "text": "scared"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i08:r3",
+          "text": "full"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — третий час презентации про принтеры",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — третий час презентации про принтеры"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-07:i08:r1",
+            "text": "bored"
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i08:r2",
+            "text": "scared"
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i08:r3",
+            "text": "full"
+          }
+        ],
+        "testedDimension": "Вставьте слово — третий час презентации ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-07:i08:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — третий час презентации ",
+            "feedbackByLocale": {
+              "ru": "Страшно на презентации не бывает. Пусто в голове — это `bored`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — третий час презентации ",
+            "feedbackByLocale": {
+              "ru": "Вы наелись не едой, а слайдами. Для скуки есть своё слово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «я не скучаю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «я не скучаю»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i09:audio",
+          "transcript": "I am not bored."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am not bored.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "bored"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы полдня искали кабинет 4B и наконец стоите у нужной двери",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-07:i10:r1",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i10:r2",
+          "text": "tired"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i10:r3",
+          "text": "done"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы полдня искали кабинет 4B и наконец стоите у нужной двери",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы полдня искали кабинет 4B и наконец стоите у нужной двери"
+        },
+        "gappedTargetPhrase": "I am not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-07:i10:r1",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i10:r2",
+            "text": "tired"
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i10:r3",
+            "text": "done"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы полдня искали кабине",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-07:i10:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы полдня искали кабине",
+            "feedbackByLocale": {
+              "ru": "Устали вы как раз очень — так что это была бы неправда."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы полдня искали кабине",
+            "feedbackByLocale": {
+              "ru": "«Закончил» — но день ещё идёт. Здесь про то, что вы больше не блуждаете."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «мне не страшно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «мне не страшно»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i11:audio",
+          "transcript": "I am not scared."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am not scared.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "scared"
+        ],
+        "authoredDistractorTokens": [
+          "bored"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-07:i12:p1",
+            "target": "glad",
+            "meaningByLocale": {
+              "ru": "рад"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-07:i12:p2",
+            "target": "full",
+            "meaningByLocale": {
+              "ru": "сыт"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-07:i12:p3",
+            "target": "scared",
+            "meaningByLocale": {
+              "ru": "страшно"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-07:i12:p4",
+            "target": "bored",
+            "meaningByLocale": {
+              "ru": "скучно"
+            }
+          }
+        ],
+        "leftColumn": [
+          "glad",
+          "full",
+          "scared",
+          "bored"
+        ],
+        "rightColumn": [
+          "рад",
+          "сыт",
+          "страшно",
+          "скучно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — вы отказываетесь от добавки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-07:i13:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i13:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i13:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — вы отказываетесь от добавки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — вы отказываетесь от добавки"
+        },
+        "gappedTargetPhrase": "I ___ full.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-07:i13:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i13:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i13:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — вы отказываетесь от д",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-07:i13:r1",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — вы отказываетесь от д",
+            "feedbackByLocale": {
+              "ru": "Чужая скрепка. `is` — про кого-то другого, про себя только `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — вы отказываетесь от д",
+            "feedbackByLocale": {
+              "ru": "Тоже не ваша. `I am` — эти два слова вместе не разлучаются."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — начальник спрашивает, найдёте ли вы выход из здания",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-07:i14:r1",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i14:r2",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i14:r3",
+          "text": "bored"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — начальник спрашивает, найдёте ли вы выход из здания",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — начальник спрашивает, найдёте ли вы выход из здания"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-07:i14:r1",
+            "text": "sure"
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i14:r2",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i14:r3",
+            "text": "bored"
+          }
+        ],
+        "testedDimension": "Вставьте слово — начальник спрашивает, н",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-07:i14:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — начальник спрашивает, н",
+            "feedbackByLocale": {
+              "ru": "Ровно наоборот: вы бы тогда не дошли и до лифта."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — начальник спрашивает, н",
+            "feedbackByLocale": {
+              "ru": "Про скуку вас не спрашивали. Речь про уверенность."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — он переспрашивает: точно доберётесь до дома?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — он переспрашивает: точно доберётесь до дома?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am sure.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — он переспрашивает: точно доберётесь до дома?"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "sure"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в лифте пахнет чужим обедом, и живот отвечает первым",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-07:i16:r1",
+          "text": "hungry"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i16:r2",
+          "text": "full"
+        },
+        {
+          "responseId": "en:lesson-01:session-07:i16:r3",
+          "text": "sure"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в лифте пахнет чужим обедом, и живот отвечает первым",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в лифте пахнет чужим обедом, и живот отвечает первым"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-07:i16:r1",
+            "text": "hungry"
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i16:r2",
+            "text": "full"
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i16:r3",
+            "text": "sure"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в лифте пахнет чужим об",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-07:i16:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в лифте пахнет чужим об",
+            "feedbackByLocale": {
+              "ru": "Были бы сыты — живот бы молчал. Тут ровно наоборот."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-07:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в лифте пахнет чужим об",
+            "feedbackByLocale": {
+              "ru": "Уверенность желудок не кормит. Голод — это `hungry`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-07:i17:p1",
+            "target": "hungry",
+            "meaningByLocale": {
+              "ru": "голоден"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-07:i17:p2",
+            "target": "tired",
+            "meaningByLocale": {
+              "ru": "устал"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-07:i17:p3",
+            "target": "done",
+            "meaningByLocale": {
+              "ru": "закончил"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-07:i17:p4",
+            "target": "fine",
+            "meaningByLocale": {
+              "ru": "хорошо"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hungry",
+          "tired",
+          "done",
+          "fine"
+        ],
+        "rightColumn": [
+          "голоден",
+          "устал",
+          "закончил",
+          "хорошо"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-07:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — четыре фразы, а лифт уже приехал",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i18:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — четыре фразы, а лифт уже приехал",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i18:audio",
+          "transcript": "I am tired. I am not lost. I am fine. I am glad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am tired. I am not lost. I am fine. I am glad.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "70f5a5200894cbd650f74c0ca9175e06a52fb0c2c8cecfeec76f9981fd742366"
+}

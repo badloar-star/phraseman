@@ -1,0 +1,101 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (glad)",
+      "what_i_understood": "glad — короткое «рад», говорю I am glad, not не ставится в конец",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (full)",
+      "what_i_understood": "full — «наелся», не «полный» в смысле толстый; отвечаю I am full без not",
+      "confusion": "странно, что full переводится как «наелся», а не «полный» — но объяснили нормально",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (scared)",
+      "what_i_understood": "not всегда после am, не после I — I am not scared",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (glad карточка+аудио)",
+      "what_i_understood": "запомнил звук glad, отличил от glass/gold",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (full)",
+      "what_i_understood": "собрал I am full, лишняя плитка not — понял что не нужна",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5-6 (scared)",
+      "what_i_understood": "отличил scared от scarf/score на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-9 (bored)",
+      "what_i_understood": "bored — скучно, новое слово, ввели прямо перед заданием на выбор",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10-11",
+      "what_i_understood": "повторение lost/scared, всё по уже пройденным словам",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (speed match)",
+      "what_i_understood": "свёл 4 новых слова с переводом",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13-15",
+      "what_i_understood": "am — единственная скрепка для I, sure — уверен",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (speed match старых слов)",
+      "what_i_understood": "просто повтор старого",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17-18 (финал сцены)",
+      "what_i_understood": "проговорил 4 фразы подряд про лифт и звонок домой",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "слово glad (рад) и что оно короче happy",
+    "слово full в значении «наелся», а не «толстый»",
+    "слово scared (страшно) и что not всегда после am",
+    "слово bored (скучно)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Задание 16",
+      "why": "просто повтор уже known слов hungry/tired/done/fine без всякой новизны, никак не привязано к сцене с лифтом"
+    }
+  ],
+  "felt_alive": [
+    "шутка про full — «это комплимент повару, а не диагноз»",
+    "сцена с застрявшим лифтом для scared — реально представил ситуацию",
+    "финал с четырьмя фразами подряд по дороге домой — ощущалось как настоящий разговор"
+  ],
+  "felt_dead": [
+    "задание 16 — голая таблица перевода без контекста и привязки к лифту"
+  ],
+  "scene_reason": "да — почти везде ясно кому и когда говорю (начальнику у лифта, при отказе от пиццы, при звонке домой), кроме задания 16, которое просто вставлено как повторение без сцены",
+  "would_continue": "да — сессия короткая, слова простые и запоминающиеся, финальная сцена с лифтом дала ощущение реального разговора",
+  "verdict": "PASS",
+  "verdict_reason": "все 18 заданий прошёл честно без незнакомых слов в правильных ответах, узнал 4 новых слова и понял контекст почти везде, кроме одного скучного повторения."
+}

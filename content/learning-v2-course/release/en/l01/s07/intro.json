@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `I am` и `I am not` на всех словах главы"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Glad — «рад», но короче"
+      },
+      "bodyByLocale": {
+        "ru": "`happy` вы уже умеете. `glad` — его быстрый брат: не «я счастлив», а «рад, что так вышло».\n\nНа вопрос «как первый день?» англичанин скажет `I am glad`. Одно слово вместо абзаца — и все довольны, особенно лифт."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Начальник: «Ну как, доволен, что пришёл к нам?» Ответьте коротко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-07:intro1:r1",
+              "text": "I am glad."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro1:r2",
+              "text": "I glad."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro1:r3",
+              "text": "Me glad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Начальник: «Ну как, доволен, что пришёл к нам?» Ответьте коротко."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Full — не «полный», а «наелся»"
+      },
+      "bodyByLocale": {
+        "ru": "В переговорке с обеда осталась пицца, и начальник кивает на коробку. `hungry` — голоден; противоположность не «не голоден», а `full`.\n\nСмешное: по-английски вы говорите буквально «я полный». И это комплимент повару, а не диагноз."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Вам предлагают ещё кусок. Вы уже съели три. Скажите правду."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-07:intro2:r1",
+              "text": "I am full."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro2:r2",
+              "text": "I am not full."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro2:r3",
+              "text": "I full."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам предлагают ещё кусок. Вы уже съели три. Скажите правду."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Scared — одно слово решает всё"
+      },
+      "bodyByLocale": {
+        "ru": "`scared` — «мне страшно». Само слово вы, скорее всего, будете говорить с `not`: храбрым быть приятнее.\n\nИ тут `not` слышно за версту. Проглотите его — и вместо «я держусь» получится признание, что вам жутко. Одно короткое слово переворачивает фразу целиком."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Лифт застрял между этажами. Вы держитесь молодцом. Скажите, что вам не страшно."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-07:intro3:r1",
+              "text": "I am not scared."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro3:r2",
+              "text": "I not scared."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro3:r3",
+              "text": "I am scared."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Лифт застрял между этажами. Вы держитесь молодцом. Скажите, что вам не страшно."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e3c6b1fcce39738d74dcecc94f923b4e0617e57773f26d7d440093f7002d5efa"
+}

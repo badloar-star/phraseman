@@ -13,7 +13,12 @@ describe('EnergyContext remote free gate contract', () => {
     const readUnlimited = source.slice(readUnlimitedStart, readUnlimitedEnd);
 
     expect(source).toContain("import { isFeatureFreeForEveryone } from '../app/feature_gates';");
-    expect(readUnlimited).toContain("if (isFeatureFreeForEveryone('energy')) return true;");
+    // зачем (2026-09-03): ветка развёрнута из однострочника в блок, чтобы называть
+    // ПРИЧИНУ безлимита в логе — «энергия не отнимается» неотличимо от поломки
+    // списания, пока причина молчит. Сторожим сам факт снятия лимита по флагу
+    // пульта, а не форму записи: иначе тест ломается на каждом добавленном логе.
+    expect(readUnlimited).toContain("isFeatureFreeForEveryone('energy')");
+    expect(readUnlimited).toContain('return true;');
   });
 
   it('re-evaluates unlimited energy after a live Remote Config update', () => {

@@ -193,6 +193,21 @@ export function useEnergyCountdown(options: { visible?: boolean } = {}): { timeU
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
+/**
+ * ПОЧЕМУ энергия не тратится — источник безлимита одной строкой.
+ *
+ * зачем (владелец 2026-09-03, «энергия не отнимается вообще при любом занятии»):
+ * безлимит включают ПЯТЬ независимых причин, и все они молча возвращали true.
+ * В `spendOne` стоит ранний выход `if (isUnlimitedRef.current) return true` —
+ * трата успешно «проходила», ничего не списывая и не оставляя следа в логе.
+ * Разбор приходилось вести перебором пяти мест вместо одного grep.
+ * Причина пишется ВСЕГДА, по закону «каждый ранний выход называет себя».
+ */
+let _lastUnlimitedReason = 'unknown';
+export function getEnergyUnlimitedReason(): string {
+  return _lastUnlimitedReason;
+}
+
 async function readUnlimited(): Promise<boolean> {
   const [tester, noLimits, isPremium] = await Promise.all([
     AsyncStorage.getItem('tester_energy_disabled'),
@@ -202,12 +217,18 @@ async function readUnlimited(): Promise<boolean> {
   // Пульт управления может снять энергетический лимит для всех. EnergyContext —
   // основной runtime-путь траты, поэтому этот gate обязан проверяться здесь, а
   // не только во вторичном energy_system.spendEnergy().
-  if (isFeatureFreeForEveryone('energy')) return true;
+  if (isFeatureFreeForEveryone('energy')) {
+    _lastUnlimitedReason = 'remote_gate_energy_free_for_everyone';
+    return true;
+  }
 
   // Weekly Boon «окно без энергии»: в активный вечерний час энергия не тратится у всех.
   // EnergyContext.spendOne — основной путь траты (не energy_system.spendEnergy),
   // поэтому окно ОБЯЗАНО проверяться здесь, иначе бонус не работает.
-  if (isEnergyFreeWindowActive()) return true;
+  if (isEnergyFreeWindowActive()) {
+    _lastUnlimitedReason = `weekly_boon_energy_free_window(hour=${new Date().getHours()})`;
+    return true;
+  }
 
   // зачем (владелец 2026-08-24): DEV-центр → «Снять Plus» переключает только
   // PremiumContext (dev_local_plus_override_v1), а EnergyContext спрашивал
@@ -220,10 +241,31 @@ async function readUnlimited(): Promise<boolean> {
   const devOverride = devStableId
     ? await readDevLocalPlusOverride(devStableId).catch(() => 'inherit' as const)
     : 'inherit';
-  if (devOverride === 'removed') return false;
-  if (devOverride === 'granted') return true;
+  if (devOverride === 'removed') {
+    _lastUnlimitedReason = 'none:dev_override_removed';
+    return false;
+  }
+  if (devOverride === 'granted') {
+    _lastUnlimitedReason = 'dev_local_plus_override_granted';
+    return true;
+  }
 
-  return isPremium || tester === 'true' || noLimits;
+  // Каждая оставшаяся причина называет СЕБЯ, а не общее «true»: перебор пяти
+  // источников вручную и был главной потерей времени при разборе.
+  if (isPremium) {
+    _lastUnlimitedReason = 'premium_active';
+    return true;
+  }
+  if (tester === 'true') {
+    _lastUnlimitedReason = 'tester_energy_disabled(AsyncStorage)';
+    return true;
+  }
+  if (noLimits) {
+    _lastUnlimitedReason = 'tester_no_limits(dev build)';
+    return true;
+  }
+  _lastUnlimitedReason = 'none:limited';
+  return false;
 }
 
 async function readRecoveryIntervalMs(): Promise<number> {
@@ -723,7 +765,17 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     return withAccountTransitionLock(async (accountTransitionLockLease) => {
       markEnergySpendStage(traceKey, 'account lock acquired');
       if (!isCurrentAccountGeneration(accountToken)) return false;
-      if (isUnlimitedRef.current) return true;
+      if (isUnlimitedRef.current) {
+        // зачем (владелец 2026-09-03): раньше эта ветка молча возвращала true —
+        // «энергия не отнимается вообще» выглядело как поломка списания, хотя
+        // причина в безлимите. Лог вне __DEV__: именно в сторовой сборке такой
+        // отказ и остаётся невидимым.
+        console.warn(
+          `[ENERGY-SPEND] списание пропущено: активен безлимит · причина=${getEnergyUnlimitedReason()}`
+          + ` · kind=${intent.grant?.kind ?? 'unknown'} subject=${intent.grant?.subjectId ?? '-'}`,
+        );
+        return true;
+      }
       const result = await commitEnergySessionStart(
         intent,
         1,
@@ -796,7 +848,15 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     const accountToken = captureAccountGeneration();
     return withAccountTransitionLock(async (accountTransitionLockLease) => {
       if (!isCurrentAccountGeneration(accountToken)) return false;
-      if (isUnlimitedRef.current) return true;
+      if (isUnlimitedRef.current) {
+        // Тот же немой выход, что и в spendOne (владелец 2026-09-03): списание
+        // пропускается по безлимиту, и без причины это неотличимо от поломки.
+        console.warn(
+          `[ENERGY-SPEND] списание ${n} пропущено: активен безлимит`
+          + ` · причина=${getEnergyUnlimitedReason()} · kind=${intent.grant?.kind ?? 'unknown'}`,
+        );
+        return true;
+      }
       const result = await commitEnergySessionStart(
         intent,
         Math.floor(n),

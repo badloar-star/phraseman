@@ -19,6 +19,12 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { useEnergy } from '../components/EnergyContext';
 import { creditVideoWatchSegment } from '../app/energy_video_watch_credit';
+import {
+  addPendingWatchMinutes,
+  claimPendingWatchRunes,
+  VIDEO_WATCH_RUNES_PER_MINUTE,
+} from '../app/video_watch_runes_client';
+import { captureAccountGeneration } from '../app/account_generation';
 import { DebugLogger } from '../app/debug-logger';
 
 /**
@@ -29,8 +35,17 @@ import { DebugLogger } from '../app/debug-logger';
 const VIDEO_WATCH_RECHECK_MS = 30 * 1000;
 
 export type VideoWatchEnergyBoost = {
-  /** Показывать ли значок ускорения над плеером (видео идёт И лимит есть). */
+  /** Показывать ли значок ускорения энергии (видео идёт И лимит энергии есть). */
   boostVisible: boolean;
+  /**
+   * Показывать ли значок рун (видео идёт И энергия безлимитная, то есть Plus/Pro).
+   * зачем: у платных ускорять энергию нечего, поэтому им капают руны — 1 в минуту.
+   */
+  runesVisible: boolean;
+  /** Сколько рун накапало за текущий сеанс просмотра (локальный счёт). */
+  runesEarned: number;
+  /** Секунд до следующей руны (0..59) — для отсчёта в значке. */
+  secondsToNextRune: number;
   /** Вызывать из плеера при каждом изменении состояния проигрывания. */
   setPlaying: (playing: boolean) => void;
 };
@@ -116,6 +131,56 @@ export function useVideoWatchEnergyBoost(): VideoWatchEnergyBoost {
     };
   }, [playing, eligible, applyBoostNow]);
 
+  // ── Руны за просмотр: ветка Plus/Pro ───────────────────────────────────────
+  // зачем (владелец 2026-09-03): у платных энергия безлимитная, ускорять нечего.
+  // Вместо этого им капает 1 руна в минуту. Счёт локальный и мгновенный, а на
+  // сервер уходит ОДИН вызов в конце просмотра — руны server-owned, поле `stars`
+  // закрыто правилами, и поминутные вызовы стоили бы 60 обращений в час.
+  const runesEligible = energyReady && isUnlimited;
+  const [runesEarned, setRunesEarned] = useState(0);
+  const [secondsToNextRune, setSecondsToNextRune] = useState(60);
+  const runesTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const unclaimedMinutesRef = useRef(0);
+
+  useEffect(() => {
+    if (!(playing && runesEligible)) return undefined;
+    setSecondsToNextRune(60);
+    runesTimerRef.current = setInterval(() => {
+      setSecondsToNextRune((left) => {
+        if (left > 1) return left - 1;
+        // Полная минута просмотра — руна начислена локально и ждёт сдачи.
+        unclaimedMinutesRef.current += 1;
+        setRunesEarned((n) => n + VIDEO_WATCH_RUNES_PER_MINUTE);
+        return 60;
+      });
+    }, 1000);
+    return () => {
+      if (runesTimerRef.current) {
+        clearInterval(runesTimerRef.current);
+        runesTimerRef.current = null;
+      }
+      // Пауза/уход — сдаём накопленное. Незавершённая минута НЕ засчитывается:
+      // руна выдаётся за полную минуту, иначе счёт разошёлся бы с сервером.
+      const minutes = unclaimedMinutesRef.current;
+      if (minutes <= 0) return;
+      unclaimedMinutesRef.current = 0;
+      const token = captureAccountGeneration();
+      const stableId = token.stableId?.trim();
+      if (!stableId) {
+        // Ранний выход обязан назвать причину: без личности сдавать некому.
+        if (__DEV__) console.log('[VIDEO-RUNES] сдача пропущена: нет stableId');
+        return;
+      }
+      void (async () => {
+        await addPendingWatchMinutes(stableId, minutes);
+        const result = await claimPendingWatchRunes(token, stableId);
+        if (!result.ok && __DEV__) {
+          console.log(`[VIDEO-RUNES] сдача не прошла: ${result.reason} (минуты сохранены)`);
+        }
+      })();
+    };
+  }, [playing, runesEligible]);
+
   // Уход в фон = видео больше не смотрят. YouTube в WebView всё равно встаёт на
   // паузу, но onStateChange из свёрнутого приложения может и не доехать —
   // гасим отсчёт сами, иначе фоновое время продолжало бы подтягивать таймер.
@@ -126,5 +191,11 @@ export function useVideoWatchEnergyBoost(): VideoWatchEnergyBoost {
     return () => subscription.remove();
   }, []);
 
-  return { boostVisible: playing && eligible, setPlaying };
+  return {
+    boostVisible: playing && eligible,
+    runesVisible: playing && runesEligible,
+    runesEarned,
+    secondsToNextRune,
+    setPlaying,
+  };
 }

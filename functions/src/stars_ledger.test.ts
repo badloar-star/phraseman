@@ -298,6 +298,10 @@ describe('единый журнал звёзд', () => {
       expect(STAR_OP_SOURCE.coin_exchange).toBe('exchange');
       // Стартовый подарок обязан попадать в приток — это и был баг владельца.
       expect(STAR_OP_SOURCE.welcome_gift).toBe('other');
+      // Просмотр видео НЕ попадает в «учёбу», хотя ролики обучающие: строка
+      // «учёба» означает занятия внутри приложения, и смешение завысило бы её,
+      // скрыв, что руны пришли за фоновое видео (владелец 2026-09-03).
+      expect(STAR_OP_SOURCE.video_watch).toBe('other');
       // Каждая причина имеет источник: новая причина без строки здесь уронит
       // сборку, а не проедет молча с нулём на экране.
       for (const reason of Object.keys(STAR_OP_CLASS)) {
@@ -311,7 +315,43 @@ describe('единый журнал звёзд', () => {
     expect(STAR_OP_CLASS.coin_exchange).toBe('grant');
     expect((STAR_OP_CLASS as Record<string, string>).level_spin_grant).toBe('grant');
     expect(STAR_OP_CLASS.spend_shop).toBe('spend');
+    // Просмотр видео — grant, а НЕ earn (владелец 2026-09-03). Класс здесь не
+    // косметика: earn двигает очки лиги и соревновательный earnedTotal, и тогда
+    // таблицу выигрывал бы тот, кто дольше держит плеер открытым, а не тот, кто
+    // учится. Смена класса на earn обязана ронять этот тест.
+    expect(STAR_OP_CLASS.video_watch).toBe('grant');
     expect(starsSpendable(undefined)).toBe(0);
     expect(starsSpendable({ ...EMPTY_STARS_STATE, balance: 12 })).toBe(12);
+  });
+
+  /**
+   * Поведенческая проверка того же правила: одной таблицы мало — она могла бы
+   * разойтись с реальным начислением. Здесь смотрим НА РЕЗУЛЬТАТ операции.
+   */
+  it('руны за просмотр видео не двигают соревновательный счёт', async () => {
+    const { result, world } = await run(undefined, [
+      op({
+        // Ровно одно двоеточие — формат OP_ID_RE. Двойное двоеточие отвергается
+        // как invalid_op_id: на этом и попалась первая версия функции.
+        opId: 'video_watch:req1',
+        delta: 7,
+        reason: 'video_watch',
+        sourceKind: 'video_watch',
+        sourceId: 'u1',
+      }),
+    ]);
+    // Баланс вырос — руны реально выданы.
+    expect(result.balance).toBe(7);
+    // Но заработок игрой не тронут: просмотр не оплачен учёбой.
+    expect(result.earnedTotal).toBe(0);
+    // Недельные и сезонные очки — то, из чего складывается таблица лиги.
+    // Просмотр их не двигает: иначе лигу выигрывал бы включивший ролик на ночь.
+    expect(result.weekEarned).toBe(0);
+    expect(result.seasonEarned).toBe(0);
+    // В разрезе притока это «другое», а не «учёба».
+    const stars = world.writes.sets[0].data.stars as StarsState;
+    expect(stars.grantedTotal).toBe(7);
+    expect(stars.bySource.other).toBe(7);
+    expect(stars.bySource.learning).toBeUndefined();
   });
 });

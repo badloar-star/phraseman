@@ -1102,6 +1102,9 @@ export { adminActivateTelegramPremiumOrder, adminInspectTelegramPromoCode } from
 export { introFullAccessClaim } from "./gift_access";
 // Стартовый подарок новичку: +300 рун одной выдачей на аккаунт (welcome-модалка).
 export { welcomeGiftClaim } from "./welcome_gift";
+// Руны за просмотр видео для Plus/Pro (владелец 2026-09-03): 1 руна в минуту,
+// одним вызовом в конце просмотра, потолок 600 в сутки.
+export { videoWatchRunesClaim } from "./video_watch_runes";
 export { globalBroadcastClaim } from "./global_broadcast_claim";
 export { globalBroadcastListActive } from "./global_broadcast_public";
 export {

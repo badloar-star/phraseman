@@ -16,6 +16,7 @@ import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity';
 import VideoEnergyBoostBadge from './VideoEnergyBoostBadge';
+import VideoRunesBadge from './VideoRunesBadge';
 
 const LINGMAN_WEBVIEW_ORIGIN_WHITELIST = [
   'https://www.youtube.com',
@@ -77,7 +78,13 @@ export default function YoutubeInlinePlayer({
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
   // Ускорение восстановления энергии, пока видео реально играет (владелец
   // 2026-09-02). Хук сам решает, положено ли оно этому человеку.
-  const { boostVisible, setPlaying } = useVideoWatchEnergyBoost();
+  const {
+    boostVisible,
+    runesVisible,
+    runesEarned,
+    secondsToNextRune,
+    setPlaying,
+  } = useVideoWatchEnergyBoost();
 
   // Родитель снимает active (ушли с экрана, свернули приложение, закрыли
   // карточку) — WebView размонтируется и сообщения от него больше не придут.
@@ -189,6 +196,15 @@ export default function YoutubeInlinePlayer({
           работает и в карточке, и в превью — во всех трёх местах, где плеер
           монтируется (раздел «Видео», плейлист, карточка на Главной). */}
       <VideoEnergyBoostBadge visible={boostVisible} testID="video-energy-boost-badge" />
+      {/* Plus/Pro вместо ускорения энергии получают руны — 1 в минуту. Два значка
+          взаимоисключающи по построению: boostVisible требует лимит энергии,
+          runesVisible — безлимит, поэтому одновременно они не покажутся. */}
+      <VideoRunesBadge
+        visible={runesVisible}
+        earned={runesEarned}
+        secondsToNext={secondsToNextRune}
+        testID="video-runes-badge"
+      />
       {presentation === 'preview' ? (
         <View pointerEvents="box-none" style={styles.previewActions}>
           {onClose ? (

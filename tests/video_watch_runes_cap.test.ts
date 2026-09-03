@@ -1,0 +1,79 @@
+// Руны за просмотр видео (владелец 2026-09-03): 1 руна за минуту для Plus/Pro,
+// потолок 600 рун в сутки. Проверяем арифметику выдачи — именно здесь ошибка
+// стоила бы реальной валюты, а серверный отказ пришёл бы уже после начисления.
+import {
+  grantableVideoWatchRunes,
+  utcDayKey,
+  VIDEO_WATCH_RUNES_DAILY_CAP,
+  VIDEO_WATCH_RUNES_PER_MINUTE,
+} from '../functions/src/video_watch_runes';
+
+describe('константы совпадают с решением владельца', () => {
+  it('одна руна за минуту, потолок 600 в сутки', () => {
+    expect(VIDEO_WATCH_RUNES_PER_MINUTE).toBe(1);
+    expect(VIDEO_WATCH_RUNES_DAILY_CAP).toBe(600);
+  });
+});
+
+describe('сколько рун можно выдать', () => {
+  it('обычный случай: 7 минут просмотра = 7 рун', () => {
+    expect(grantableVideoWatchRunes(7, 0)).toBe(7);
+  });
+
+  it('неполные минуты не засчитываются', () => {
+    expect(grantableVideoWatchRunes(7.9, 0)).toBe(7);
+  });
+
+  it('потолок дня режет остаток, а не всю выдачу', () => {
+    // Уже 595 из 600 — можно выдать только 5, хотя просмотрено 30 минут.
+    expect(grantableVideoWatchRunes(30, 595)).toBe(5);
+  });
+
+  it('потолок выбран — не выдаём ничего', () => {
+    expect(grantableVideoWatchRunes(30, VIDEO_WATCH_RUNES_DAILY_CAP)).toBe(0);
+  });
+
+  it('переполнение счётчика не даёт отрицательную выдачу', () => {
+    expect(grantableVideoWatchRunes(30, VIDEO_WATCH_RUNES_DAILY_CAP + 100)).toBe(0);
+  });
+
+  it('один отрезок ограничен 180 минутами — защита от испорченных часов', () => {
+    // Клиент прислал сутки просмотра: засчитываем максимум 180 минут за раз.
+    expect(grantableVideoWatchRunes(1440, 0)).toBe(180);
+  });
+
+  it('мусорные значения не начисляют ничего', () => {
+    expect(grantableVideoWatchRunes(0, 0)).toBe(0);
+    expect(grantableVideoWatchRunes(-5, 0)).toBe(0);
+    expect(grantableVideoWatchRunes(Number.NaN, 0)).toBe(0);
+    expect(grantableVideoWatchRunes(Number.POSITIVE_INFINITY, 0)).toBe(0);
+  });
+});
+
+describe('формат идентификатора операции', () => {
+  /**
+   * зачем: первая версия функции строила opId как `video_watch:{uid}:{requestId}`
+   * — с ДВУМЯ двоеточиями. Формат журнала рун (OP_ID_RE в stars_ledger.ts)
+   * допускает ровно одно, поэтому операция отвергалась как invalid_op_id и руны
+   * не начислялись БЫ ВООБЩЕ, молча. Поймано тестом до выката — сторожим.
+   */
+  const OP_ID_RE = /^[a-z0-9_]{1,32}:[A-Za-z0-9_.-]{1,96}$/;
+
+  it('opId просмотра проходит проверку журнала рун', () => {
+    const requestId = 'vwm1a2b3c4d5e6';
+    expect(OP_ID_RE.test(`video_watch:${requestId}`)).toBe(true);
+  });
+
+  it('второе двоеточие ломает формат — так и было в первой версии', () => {
+    expect(OP_ID_RE.test('video_watch:uid-123:req-456')).toBe(false);
+  });
+});
+
+describe('ключ дня', () => {
+  it('это UTC-дата, одинаковая для всех часовых поясов', () => {
+    // 23:30 UTC и 00:30 UTC следующего дня — РАЗНЫЕ ключи, иначе потолок
+    // «переезжал» бы вместе с часовым поясом устройства.
+    expect(utcDayKey(Date.UTC(2026, 8, 3, 23, 30))).toBe('2026-09-03');
+    expect(utcDayKey(Date.UTC(2026, 8, 4, 0, 30))).toBe('2026-09-04');
+  });
+});

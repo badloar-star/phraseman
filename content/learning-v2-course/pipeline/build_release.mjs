@@ -63,6 +63,9 @@ function parseIntro(md) {
     if (!isQuestion) WARN(`интро ${i + 1}: последний абзац не похож на вопрос — «${last.slice(0, 50)}»`);
     const bodyParas = (isQuestion ? paras.slice(0, -1) : paras)
       .filter((p) => p !== `### ${heading}` && !p.startsWith("###") && !/^[-*]\s/.test(p));
+    // зачем (владелец, 03.09): «тексты на другом языке должны сразу писаться
+    // другого цвета». В Markdown целевой язык размечен обратными кавычками —
+    // сохраняем разметку как есть, макет и приложение красят её акцентом.
     const text = bodyParas.join("\n\n");
     const options = parseOptions(body);
     if (!options.length) WARN(`интро ${i + 1}: не найдено вариантов ответа`);

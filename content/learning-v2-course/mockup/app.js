@@ -32,6 +32,35 @@ const h = (tag, attrs, kids) => {
   return e;
 };
 const loc = (byLocale) => !byLocale ? "" : (byLocale[S.locale] ?? byLocale.ru ?? Object.values(byLocale)[0] ?? "");
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+// зачем: целевой язык размечен в тексте обратными кавычками — красим его
+// акцентом, чтобы английское сразу отличалось от объяснения на своём языке
+const MARK = String.fromCharCode(1); // служебный символ-заглушка, в текстах не встречается
+const tl = (s) => {
+  let out = esc(s);
+  // 1) явная разметка автора
+  const BT = String.fromCharCode(96); // обратная кавычка: в шаблоне генератора её нельзя писать буквально
+  // зачем: размеченные куски прячем в плейсхолдеры, чтобы второй проход
+  // (латиница без разметки) не покрасил их повторно и не дал вложенные теги
+  const kept = [];
+  out = out.replace(new RegExp(BT + "([^" + BT + "]+)" + BT, "g"), (m, inner) => {
+    kept.push(inner);
+    return MARK + (kept.length - 1) + MARK;
+  });
+  // 2) латиница без разметки внутри кириллического текста (разборы ошибок
+  //    пишут «Am выпало», «Not не заменяет») — красим, если рядом кириллица
+  //    и фрагмент ещё не покрашен
+  if (/[А-Яа-яЁё]/.test(out)) {
+    const Q = String.fromCharCode(34), AP = String.fromCharCode(39);
+    // дефис только последним символом класса — иначе «—–-"» читается как диапазон
+    const BOUND = "\\s(«„>—–" + Q + AP + "-";
+    const AFTER = "\\s.,!?:;)»<—–" + Q + AP + "-";
+    const W = "[A-Za-z][A-Za-z" + AP + "]*";
+    const LAT = new RegExp("(^|[" + BOUND + "])(" + W + "(?:\\s+" + W + "){0,4})(?=[" + AFTER + "]|$)", "g");
+    out = out.replace(LAT, (m, pre, word) => /^(span|class|tl|amp|lt|gt)$/i.test(word) ? m : pre + '<span class="tl">' + word + '</span>');
+  }
+  return out.replace(new RegExp(MARK + "(\\d+)" + MARK, "g"), (m, i) => '<span class="tl">' + kept[+i] + '</span>');
+};
 const speak = (text) => {
   try {
     if (!window.speechSynthesis) return;
@@ -99,8 +128,8 @@ function renderIntro(page) {
   const panel = h("div", {class:"panel"}, [
     h("div", {class:"kind", text:KIND[page.kind] || page.kind}),
     h("h2", {text:loc(page.titleByLocale)}),
-    h("div", {class:"body"}, body.map(p => h("p", {text:p}))),
-    h("div", {class:"question", text:loc(page.question.promptByLocale)}),
+    h("div", {class:"body"}, body.map(p => h("p", {html:tl(p)}))),
+    h("div", {class:"question", html:tl(loc(page.question.promptByLocale))}),
     h("div", {class:"opts"}, choices.map((c, i) => h("button", {
       class:"opt" + (S.answered ? (i === 0 ? " right" : (S.picked === i ? " wrong" : " dim")) : ""),
       disabled: S.answered,
@@ -123,7 +152,7 @@ function renderTask(it) {
   const p = it.modePayload || {};
   const panel = h("div", {class:"panel"}, [
     h("div", {class:"kind", text:familyName(it.family, p)}),
-    h("div", {class:"task-prompt", text:it.prompt}),
+    h("div", {class:"task-prompt", html:tl(it.prompt)}),
   ]);
   if (p.isWordCard) { renderCard(panel, it, p); return panel; }
   const R = {
@@ -142,7 +171,7 @@ function renderCard(panel, it, p) {
   const w = p.wordCard || {};
   panel.append(h("div", {class:"card-word", text:w.word || ""}));
   panel.append(h("button", {class:"play", onClick:() => speak(w.word || "")}, [document.createTextNode("▶  Послушать")]));
-  panel.append(h("div", {class:"card-def", style:"margin-top:16px", text:loc(w.definitionByLocale)}));
+  panel.append(h("div", {class:"card-def", style:"margin-top:16px", html:tl(loc(w.definitionByLocale))}));
   S.answered = true;
   panel.append(nextRow(true, "Понятно"));
 }
@@ -151,7 +180,7 @@ function renderChoice(panel, it, p) {
   const audio = p.referenceAudio?.transcript;
   if (audio) panel.append(h("button", {class:"play", onClick:() => speak(audio)}, [document.createTextNode("▶  Прослушать")]));
   if (p.gappedTargetPhrase) panel.append(h("div", {class:"target-phrase", text:p.gappedTargetPhrase}));
-  if (p.localizedScene && loc(p.localizedScene)) panel.append(h("div", {class:"scene-line", text:loc(p.localizedScene)}));
+  if (p.localizedScene && loc(p.localizedScene)) panel.append(h("div", {class:"scene-line", html:tl(loc(p.localizedScene))}));
   const opts = it.responseOptions;
   if (!opts.length) return WARNBOX(panel, "У задания нет вариантов ответа — сборщик не нашёл их в тексте.");
   const correctId = correctIdOf(it);
@@ -162,7 +191,7 @@ function renderChoice(panel, it, p) {
   }, [document.createTextNode(o.text)]))));
   if (S.answered) {
     const fb = (p.choiceFeedback || []).find(f => f.responseId === S.picked);
-    panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : (loc(fb?.feedbackByLocale) || "Неверно.")}));
+    panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), html: S.ok ? "Верно." : tl(loc(fb?.feedbackByLocale) || "Неверно.")}));
   }
   panel.append(nextRow());
 }

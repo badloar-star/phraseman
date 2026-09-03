@@ -25,6 +25,7 @@ import { fileURLToPath } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
+const WORK_DIR = process.env.FACTORY_WORK_DIR || path.join(process.env.TEMP || process.env.TMP || "C:/Temp", "learning-v2-factory");
 const LOG = (...a) => console.log("[FACTORY]", ...a);
 const WARN = (...a) => console.warn("[FACTORY][WARN]", ...a);
 
@@ -97,7 +98,9 @@ function loadPlan(lang, lesson) {
     const h = /^### Глава \d+ · (.+?) · сцена: (.+)$/.exec(line);
     if (h) scene = `${h[2].trim()} (грамматика главы: ${h[1].trim()})`;
     const r = /^\| (\d+) \| (.+?) \| (.+?) \| (.+?) \| (.+?) \|$/.exec(line);
-    if (r && !rows.has(Number(r[1]))) {
+    // зачем: таблица 32 уроков тоже начинается с «| N |» — строки сессий
+    // берём только внутри разделов «### Глава … · сцена: …»
+    if (r && scene && !rows.has(Number(r[1]))) {
       rows.set(Number(r[1]), {
         n: Number(r[1]), type: r[2].trim(), grammar: r[3].trim(), words: r[4].trim(), moment: r[5].trim(), scene,
       });
@@ -143,14 +146,37 @@ function neighborsSummary(lang, lesson, n) {
   return out.join("\n") || "(соседей нет)";
 }
 
+/** Машинные факты о сессии для педагога/редактора: касания возвращаемых слов
+ * (зачем: педагог считал «на глаз» и один раз ошибся бы; grep не ошибается). */
+function machineFacts(file) {
+  const text = read(file);
+  const ret = /\*\*Возвращаются:\*\*\s*(.+)/.exec(text)?.[1] ?? "";
+  const practice = text.split(/^## Практика/m)[1] ?? "";
+  const facts = [];
+  for (const w of ret.split(",").map((s) => s.trim()).filter(Boolean)) {
+    const re = new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "gi");
+    const total = (practice.match(re) || []).length;
+    // правильный ответ в формате эталонов — жирным: «→ **I am fine.**», «**I am early. I am not tired.**»
+    const asAnswer = (practice.match(new RegExp(`\\*\\*[^*\\n]*\\b${w}\\b[^*\\n]*\\*\\*`, "gi")) || []).length;
+    facts.push(`${w}: касаний в практике ${total}, из них правильным ответом ${asAnswer}${total < 2 ? " ← МЕНЬШЕ ДВУХ" : ""}${asAnswer === 0 ? " ← ни разу правильным ответом" : ""}`);
+  }
+  const v = validateModes(file);
+  facts.push(`заданий: ${v.taskCount ?? "?"}; механики вне списка: ${v.unknown?.length ? v.unknown.map(([n, f]) => `${n}=${f}`).join(", ") : "нет"}`);
+  const timeRefs = [...(text.split(/^## Практика/m)[0] + practice).matchAll(/(вчера|позавчера|на прошлой сессии|в прошлый раз вы|вы уже учили|вы выучили)/gi)].map((m) => m[0]);
+  facts.push(`ссылки на время обучения: ${timeRefs.length ? timeRefs.join(", ") : "не найдены (проверь «сегодня/утром» вручную — могут быть сценой)"}`);
+  return facts.join("\n");
+}
+
 function courseContext(lang) {
   const constitution = read(path.join(ROOT, "КОНСТИТУЦИЯ.md"));
+  // зачем: судьям — выжимка (контекст ×3 дешевле), авторам — полная
+  const constitutionShort = exists(path.join(HERE, "КОНСТИТУЦИЯ_ДЛЯ_СУДЕЙ.md")) ? read(path.join(HERE, "КОНСТИТУЦИЯ_ДЛЯ_СУДЕЙ.md")) : constitution;
   const exemplars = listDir(path.join(ROOT, "exemplars", lang), (f) => f.endsWith(".ru.md"))
     .map((f) => `\n\n<!-- эталон ${path.basename(f)} -->\n${read(f)}`).join("");
   const verdicts = listDir(path.join(ROOT, "judgements", "owner"), (f) => f.endsWith(".md"))
     .map((f) => read(f)).join("\n\n---\n\n");
-  LOG(`контекст: конституция ${constitution.length} зн., эталонов ${(exemplars.match(/<!-- эталон/g) || []).length}, вердиктов владельца ${verdicts ? verdicts.split("\n\n---\n\n").length : 0}`);
-  return { constitution, exemplars, verdicts };
+  LOG(`контекст: конституция ${constitution.length} зн. (судьям ${constitutionShort.length}), эталонов ${(exemplars.match(/<!-- эталон/g) || []).length}, вердиктов владельца ${verdicts ? verdicts.split("\n\n---\n\n").length : 0}`);
+  return { constitution, constitutionShort, exemplars, verdicts };
 }
 
 function exemplarOfSameType(lang, row) {
@@ -173,14 +199,23 @@ function callModel({ system, user, model, maxTokens = 8000, label }) {
     if (BACKEND === "mock") {
       text = `{"verdict":"PASS","verdict_reason":"mock"}\n\n# MOCK ${label}`;
     } else if (BACKEND === "claude") {
-      const r = spawnSync("claude", ["-p", user, "--system-prompt", system, "--tools", "", "--output-format", "json", "--model", model], {
-        encoding: "utf8", maxBuffer: 64 * 1024 * 1024, shell: process.platform === "win32",
+      // зачем: на Windows командная строка ≤ 32 тыс. знаков, а системный промпт
+      // с эталонами — 60+ тыс.: промпт уходит файлом, реплика — через stdin.
+      // cwd — ВНЕ репозитория, чтобы вызов не тащил CLAUDE.md и хуки проекта
+      // (это лишние ~20 тыс. токенов и светофор на каждый вызов).
+      fs.mkdirSync(WORK_DIR, { recursive: true });
+      const sysFile = path.join(WORK_DIR, `system_${process.pid}_${Date.now()}.md`);
+      fs.writeFileSync(sysFile, system, "utf8");
+      const r = spawnSync("claude", ["-p", "--system-prompt-file", sysFile, "--tools", "", "--output-format", "json", "--model", model], {
+        encoding: "utf8", input: user, maxBuffer: 64 * 1024 * 1024, shell: process.platform === "win32", cwd: WORK_DIR,
       });
+      try { fs.unlinkSync(sysFile); } catch (e) { WARN(`не удалось удалить ${sysFile}: ${e.message}`); }
       if (r.error) throw r.error;
+      if (r.status !== 0 && !r.stdout) throw new Error(`claude -p завершился с кодом ${r.status}: ${(r.stderr || "").slice(0, 400)}`);
       const j = JSON.parse(r.stdout || "{}");
       if (j.is_error) throw new Error(`claude -p: ${j.result || "ошибка без текста"}`);
       text = j.result || "";
-      LOG(`   стоимость: $${j.total_cost_usd ?? "?"}, ходов ${j.num_turns ?? "?"}`);
+      LOG(`   стоимость: $${j.total_cost_usd ?? "?"}, ходов ${j.num_turns ?? "?"}, токены in ${j.usage?.input_tokens ?? "?"} (+кэш ${j.usage?.cache_read_input_tokens ?? "?"}) out ${j.usage?.output_tokens ?? "?"}`);
     } else if (BACKEND === "api") {
       const key = process.env.ANTHROPIC_API_KEY;
       if (!key) throw new Error("ANTHROPIC_API_KEY не задан в окружении");
@@ -279,21 +314,25 @@ function stageDraft(S, ctx, plan, row, known) {
   return files;
 }
 
-function stageJudge(S, ctx, plan, row, known, file) {
+function stageJudge(S, ctx, plan, row, known, file, only = null) {
   const v = validateModes(file);
   if (!v.ok) {
     LOG(`ранний выход из суда: ${path.basename(file)} не проходит проверку механик/объёма — сначала правка`);
     return { judge_learner: { verdict: "BLOCK", verdict_reason: "механики вне списка приложения или объём" }, judge_taste: { verdict: "BLOCK", verdict_reason: "не судился" }, judge_pedagogy: { verdict: "BLOCK", verdict_reason: `modes: ${v.unknown.map(([n, f]) => `${n}=${f}`).join(", ") || "объём"}` } };
   }
   const session = read(file);
-  const base = buildVars(ctx, plan, row, known, S);
+  // зачем: судьям — сжатая Конституция и ОДИН эталон того же типа (не три):
+  // контекст судьи ~в 3 раза дешевле, а вкус задаётся парным сравнением
+  const base = { ...buildVars(ctx, plan, row, known, S), КОНСТИТУЦИЯ: ctx.constitutionShort, ЭТАЛОНЫ: "" };
   const same = exemplarOfSameType(S.lang, row);
+  const facts = machineFacts(file);
+  LOG(`машинные факты:\n${facts}`);
   const out = {};
   for (const [name, vars] of [
     ["judge_learner", { ...base, СЕССИЯ: session }],
     ["judge_taste", { ...base, СЕССИЯ: session, ЭТАЛОН_ТОГО_ЖЕ_ТИПА: same }],
-    ["judge_pedagogy", { ...base, СЕССИЯ: session }],
-  ]) {
+    ["judge_pedagogy", { ...base, СЕССИЯ: session, МАШИННЫЕ_ФАКТЫ: facts }],
+  ].filter(([name]) => !only || only.includes(name))) {
     const text = callModel({ system: fill(prompt(name), vars), user: "Вынеси вердикт.", model: MODEL_JUDGE, label: `${name} · ${path.basename(file)}` });
     let j;
     try { j = extractJson(text); } catch (e) { WARN(`${name}: ${e.message}; сырой ответ сохранён`); j = { verdict: "REVISE", verdict_reason: "судья не вернул JSON", raw: text }; }
@@ -312,9 +351,10 @@ function stageEdit(S, ctx, plan, row, known, file, verdicts) {
     ...buildVars(ctx, plan, row, known, S),
     СЕССИЯ: read(file),
     ЭТАЛОН_ТОГО_ЖЕ_ТИПА: exemplarOfSameType(S.lang, row),
-    ВЕРДИКТ_УЧЕНИКА: JSON.stringify(verdicts.judge_learner, null, 2),
-    ВЕРДИКТ_РЕДАКТОРА: JSON.stringify(verdicts.judge_taste, null, 2),
-    ВЕРДИКТ_ПЕДАГОГА: JSON.stringify(verdicts.judge_pedagogy, null, 2),
+    ВЕРДИКТ_УЧЕНИКА: JSON.stringify(verdicts.judge_learner ?? { verdict: "—" }, null, 2),
+    ВЕРДИКТ_РЕДАКТОРА: JSON.stringify(verdicts.judge_taste ?? { verdict: "—" }, null, 2),
+    ВЕРДИКТ_ПЕДАГОГА: JSON.stringify(verdicts.judge_pedagogy ?? { verdict: "—" }, null, 2),
+    МАШИННЫЕ_ФАКТЫ: machineFacts(file),
   };
   const text = callModel({ system: fill(prompt("editor"), vars), user: "Исправь сессию.", model: MODEL_JUDGE, label: `редактор · ${path.basename(file)}` });
   const body = stripFence(text).split(/\n## Изменения/)[0].trim();
@@ -369,16 +409,21 @@ function main() {
   }
   if (cmd === "localize") return stageLocalize(S, path.join(S.dir, opt("file", "final.ru.md")));
   if (cmd === "full") {
-    // зачем: best-of-3 + критика + правка + повторный суд — до схождения (≤ 2 круга)
+    // зачем: best-of-3 по ДЕШЁВОМУ предотбору (только судья вкуса, парно с
+    // эталоном), полный суд — лишь лучшему. 3 вызова вместо 9 на этом шаге.
     const drafts = stageDraft(S, ctx, plan, row, known);
+    const PAIR = { better: 3, equal: 2, worse: 1 };
     let best = null;
     for (const f of drafts) {
-      const v = stageJudge(S, ctx, plan, row, known, f);
-      const s = score(v);
-      LOG(`   итог ${path.basename(f)}: ${s}/6`);
-      if (!best || s > best.s) best = { f, v, s };
+      const v = stageJudge(S, ctx, plan, row, known, f, ["judge_taste"]);
+      const t = v.judge_taste || {};
+      const s = (PAIR[t.pairwise] ?? 0) * 10 + (RANK[t.verdict] ?? 0);
+      LOG(`   предотбор ${path.basename(f)}: pairwise=${t.pairwise} verdict=${t.verdict} → ${s}`);
+      if (!best || s > best.s) best = { f, s, taste: t };
     }
-    let cur = best;
+    LOG(`лучший черновик: ${path.basename(best.f)}`);
+    const fullV = { ...stageJudge(S, ctx, plan, row, known, best.f, ["judge_learner", "judge_pedagogy"]), judge_taste: best.taste };
+    let cur = { f: best.f, v: fullV, s: score(fullV) };
     for (let round = 1; round <= 2 && cur.s < 6; round++) {
       LOG(`круг правки ${round}: ${path.basename(cur.f)} (${cur.s}/6)`);
       const ef = stageEdit(S, ctx, plan, row, known, cur.f, cur.v);

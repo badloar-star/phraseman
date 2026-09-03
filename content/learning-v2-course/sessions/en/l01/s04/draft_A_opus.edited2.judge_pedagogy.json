@@ -1,0 +1,80 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": ["early", "right", "wrong", "free"],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {"task": 2, "trap": "earn / really как звуковые соседи early"},
+      {"task": 4, "trap": "write — омофон right, ровно та ошибка, которую делает живой человек: «Звучит один в один, но это «писать»»"},
+      {"task": 6, "trap": "long / ring — соседи wrong по одному звуку"},
+      {"task": 12, "trap": "is как чужая скрепка: «Is — это про кого-то третьего, про него самого со стороны»"},
+      {"task": 13, "trap": "I free. — перенос из родного языка, пропуск am: «Начальник услышит паузу там, где ждёт am, и переспросит»"},
+      {"task": 14, "trap": "I am sure. против I am not sure. — потеря not на слух: «Пропущено not — а смысл перевернулся на противоположный»"},
+      {"task": 17, "trap": "early как ровно обратное late: «Ровно наоборот: early — «рано»»"}
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 19,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [["early", "right", "wrong", "free"]],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [11, 15, 16, 18]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 5,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 2,
+      "listen_build_dictation": 1,
+      "context_gap_grammar": 2,
+      "phrase_builder": 3
+    }
+  },
+  "returning_words_coverage": {
+    "rule": "владелец, 03.09: возврат изученных слов — не меньше двух касаний каждого",
+    "below_two_touches": [
+      {
+        "word": "tired",
+        "touches": 1,
+        "where": "только задание 19, в составе финальной цепочки: «I am early. I am not tired. I am fine. I am ready. I am happy.»",
+        "note": "слово объявлено в шапке — «**Возвращаются:** ready, busy, sure, late, fine, tired, alone, happy» — но во всей практике встречается ровно один раз"
+      }
+    ],
+    "distractor_only": [
+      {
+        "word": "alone",
+        "touches": 2,
+        "where": "задание 17 — только как неверный вариант и его разбор: «- alone — *«Один» — но в комнате восемь человек. Про часы говорит late.*»",
+        "note": "два касания формально есть, но ни одного в роли верного ответа"
+      }
+    ]
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Границы, план, ловушки, разборы и режимы чисты — блокирующих нарушений нет; но заявленное в шапке возвращаемое слово tired получает лишь одно касание (задание 19), что нарушает правило владельца о минимум двух касаниях, а alone живёт только как дистрактор."
+}

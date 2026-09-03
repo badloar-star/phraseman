@@ -607,4 +607,28 @@ function main() {
     for (let round = 1; round <= 2 && cur.s < 6; round++) {
       LOG(`круг правки ${round}: ${path.basename(cur.f)} (${cur.s}/6)`);
       const ef = stageEdit(S, ctx, plan, row, known, cur.f, cur.v);
-      const v = stageJu
+      const v = stageJudge(S, ctx, plan, row, known, ef);
+      cur = { f: ef, v, s: score(v) };
+    }
+    const finalRu = path.join(S.dir, "final.ru.md");
+    fs.copyFileSync(cur.f, finalRu);
+    LOG(`final.ru.md ← ${path.basename(cur.f)} (${cur.s}/6)`);
+    // зачем: 03.09 конвейер ушёл локализовать сессию, которой судья-ученик
+    // поставил BLOCK («задания 16 и 17 невыполнимы») — 14 вызовов впустую.
+    // BLOCK у любого судьи означает стоп, а не предупреждение.
+    const blocked = Object.entries(cur.v).filter(([, j]) => j.verdict === "BLOCK");
+    if (blocked.length) {
+      WARN(`СТОП перед локализацией: ${blocked.map(([n, j]) => `${n} — ${j.verdict_reason}`).join(" | ")}`);
+      write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blocked: blocked.map(([n]) => n), locales: null, at: new Date().toISOString() }, null, 2));
+      return;
+    }
+    if (cur.s < 6) WARN("сессия не сошлась к PASS×3 за 2 круга — локализую, но нужна ручная проверка");
+    const loc = stageLocalize(S, finalRu);
+    write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, locales: loc, at: new Date().toISOString() }, null, 2));
+    return;
+  }
+  LOG("ранний выход: неизвестная команда", cmd);
+  process.exit(2);
+}
+
+main();

@@ -45,8 +45,10 @@ function parseHeader(md) {
 /** Три страницы интро: заголовок, тело, вопрос, варианты с разборами. */
 function parseIntro(md) {
   const pages = [];
-  // зачем: ранние эталоны пишут «## Интро 1 · Понятие», поздние — «## Интро 1»
-  const blocks = md.split(/^## Интро \d+[^\n]*$/m).slice(1);
+  // зачем: ранние эталоны пишут «## Интро 1 · Понятие», поздние — «## Интро 1».
+  // Локали пишут заголовок на своём языке («## Інтро 1» на украинском) — это
+  // естественно для носителя, поэтому ловим любое написание слова «интро».
+  const blocks = md.split(/^##\s*[ИІ]нтро\s*\d+[^\n]*$/mi).slice(1);
   for (const [i, raw] of blocks.entries()) {
     const body = raw.split(/^---\s*$/m)[0];
     const heading = /^###\s+(.+)$/m.exec(body)?.[1]?.trim() ?? "";
@@ -155,7 +157,11 @@ function familyFromBody(body) {
 function parsePractice(md) {
   const modesLine = /^modes:\s*([\s\S]*?)(?:\n\s*\n|$)/m.exec(md)?.[1] ?? "";
   const modes = new Map([...modesLine.matchAll(/(\d+)\s*=\s*([a-z_]+)/g)].map((m) => [Number(m[1]), m[2]]));
-  const practicePart = md.split(/^## Практика/m)[1]?.split(/^## Для сборщика/m)[0] ?? "";
+  // зачем: заголовок практики локаль пишет на своём языке. Раздел «Для
+  // сборщика» служебный и по контракту остаётся неизменным, поэтому границы
+  // берём по нему: всё между третьим интро и служебным блоком — практика.
+  const afterIntro = md.split(/^##\s*[ИІ]нтро\s*3[^\n]*$/mi)[1] ?? md;
+  const practicePart = (afterIntro.split(/^##\s+(?!Для сборщика)/m)[1] ?? afterIntro).split(/^## Для сборщика/m)[0] ?? "";
   const chunks = practicePart.split(/^\*\*(?=\d+ · )/m).slice(1);
   const tasks = [];
   for (const chunk of chunks) {

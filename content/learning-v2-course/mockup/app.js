@@ -123,7 +123,11 @@ function renderSession() {
 
 function renderIntro(page) {
   const KIND = {concept:"Понятие", formula:"Формула", trap:"Ловушка", tip:"Подсказка", example:"Пример"};
-  const choices = loc(page.question.choicesByLocale) || [];
+  // зачем (владелец, 03.09): правильный ответ шёл первым на каждой странице —
+  // можно было угадывать, не читая. Тасуем устойчиво (порядок один и тот же
+  // при перерисовке), верный ответ помним по исходному индексу 0.
+  const raw = loc(page.question.choicesByLocale) || [];
+  const choices = shuffle(raw.map((c, i) => ({...c, correct: i === 0})), page.pageId + S.locale);
   const body = loc(page.bodyByLocale).split(/\n\n+/).filter(Boolean);
   const panel = h("div", {class:"panel"}, [
     h("div", {class:"kind", text:KIND[page.kind] || page.kind}),
@@ -131,12 +135,12 @@ function renderIntro(page) {
     h("div", {class:"body"}, body.map(p => h("p", {html:tl(p)}))),
     h("div", {class:"question", html:tl(loc(page.question.promptByLocale))}),
     h("div", {class:"opts"}, choices.map((c, i) => h("button", {
-      class:"opt" + (S.answered ? (i === 0 ? " right" : (S.picked === i ? " wrong" : " dim")) : ""),
+      class:"opt" + (S.answered ? (c.correct ? " right" : (S.picked === i ? " wrong" : " dim")) : ""),
       disabled: S.answered,
-      onClick: () => { S.answered = true; S.picked = i; S.ok = i === 0; render(); },
+      onClick: () => { S.answered = true; S.picked = i; S.ok = c.correct; render(); },
     }, [document.createTextNode(c.text)]))),
   ]);
-  if (S.answered) panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : "Верный ответ: " + (choices[0]?.text ?? "")}));
+  if (S.answered) panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : "Верный ответ: " + (choices.find(c => c.correct)?.text ?? "")}));
   panel.append(nextRow());
   return panel;
 }

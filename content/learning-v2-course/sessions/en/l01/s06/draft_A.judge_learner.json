@@ -1,0 +1,119 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (home)",
+      "what_i_understood": "Дома = home, без предлога 'в'. I am home.",
+      "confusion": "Сначала хотел сказать 'in home' по привычке из русского",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (back)",
+      "what_i_understood": "Вернулся = back. I am back — два слова вместо длинной русской фразы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (ok/done)",
+      "what_i_understood": "done — закончил дело (работу), ok — просто 'нормально, не парься'. Это разные ответы на разные вопросы.",
+      "confusion": "Чуть не перепутал: на вопрос про работу чуть не ответил 'I am ok' — но это неправильно, ok не отвечает на 'ты ещё работаешь?'",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (карточки+слух home/back)",
+      "what_i_understood": "home/hope/hole и back/bag/bad — учусь различать на слух похожие слова",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка 'I am home')",
+      "what_i_understood": "Собрал из плиток, лишняя плитка была 'is'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 6-8 (done/ok карточки + speed match)",
+      "what_i_understood": "Закрепил 4 слова парами с переводом",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (ok vs home vs back)",
+      "what_i_understood": "Вопрос был 'как ты после недели' — про состояние, значит ok, а не про место",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (скрепка am)",
+      "what_i_understood": "Для 'I' всегда только am, не is/are",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (диктовка 'I am done')",
+      "what_i_understood": "На слух собрал фразу",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (tired vs free vs ok)",
+      "what_i_understood": "Нет сил — значит tired, не free (это было бы согласие поговорить) и не ok (не объясняет отказ)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (not hungry)",
+      "what_i_understood": "I am not hungry — отрицание на старом слове",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (free, лишняя not)",
+      "what_i_understood": "Тут ловушка: если бы взял not, получилось бы 'я не свободен' — неправильно по сцене, надо согласиться. Собрал 'I am free.'",
+      "confusion": "Пришлось перечитать сцену дважды, чтобы понять, что not — лишняя, не обязательная плитка",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (диктовка not home)",
+      "what_i_understood": "I am not home — отрицание с новым словом",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (speed match старых слов)",
+      "what_i_understood": "Повторил tired/free/here/hungry",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, 4 фразы вслух)",
+      "what_i_understood": "Сказал подряд: I am home. I am back. I am done. I am ok. — почувствовал, что это реально законченный мини-разговор",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "home употребляется без предлога 'в' — просто 'I am home'",
+    "back в значении 'я вернулся' — раньше знал только другие значения этого слова",
+    "разница между done (закончил дело) и ok (в порядке в целом) — раньше эти два смысла путал бы",
+    "done читается как 'дан', а не как пишется — узнал произношение"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 3",
+      "why": "Часть про done почти дублирует то, что уже объяснили в паре предложений выше — 'закончил дело' сказано два раза разными словами"
+    }
+  ],
+  "felt_alive": [
+    "Сравнение 'человек с тремя процентами батареи' про back — смешно и запоминается",
+    "Финал (задание 17), где все 4 фразы складываются в целый мини-разговор с другом — приятное ощущение, что урок собрался в одну сцену",
+    "Ловушка в задании 14 с лишней not — заставила реально подумать, а не тыкать машинально"
+  ],
+  "felt_dead": [
+    "Карточки 6 и 7 (done, ok) — просто голое определение без примера-сценки, суше, чем остальной текст"
+  ],
+  "scene_reason": "да — понятно: я дома вечером, звонит друг, связь плохая, и каждая фраза — короткий ответ на его конкретный вопрос (где ты / вернулся ли / закончил ли работу / как ты). Не абстрактные фразы в вакууме.",
+  "would_continue": "да — потому что слова простые, объяснения с юмором, и в конце всё сложилось в цельный разговор, было приятно закончить сессию на этом",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно без незнакомых слов в правильных ответах, узнал новое, понял сцену — есть только мелкая шероховатость с повтором в интро 3, не блокирующая."
+}

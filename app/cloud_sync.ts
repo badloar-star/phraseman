@@ -3084,6 +3084,12 @@ function isDocumentTooLargeError(error: unknown): boolean {
  * Возвращает true, если запись прошла. Бросает исходную ошибку наружу —
  * разбор и логирование причины остаются на вызывающем.
  */
+/** Минимальная форма ссылки на документ, которой достаточно записи и диагностике. */
+type FirebaseDocRefLike = {
+  set: (data: unknown, options?: unknown) => Promise<unknown>;
+  update: (data: unknown) => Promise<unknown>;
+};
+
 async function writeUserDocWithNestedProgress(
   docRef: { set: (data: unknown, options?: unknown) => Promise<unknown>; update: (data: unknown) => Promise<unknown> },
   rootPatch: Readonly<Record<string, unknown>>,
@@ -3132,6 +3138,179 @@ async function writeUserDocWithNestedProgress(
   return true;
 }
 
+/**
+ * Разобрать отказ users/{uid} по КАЖДОМУ условию правила update.
+ *
+ * зачем (владелец 2026-09-03): прошлые два круга чинили СОСТАВ патча, а лог
+ * печатал только его. Но `blockedKeys: []` при каждом отказе значит, что
+ * состав чист, и режет одно из ПЯТИ остальных условий:
+ *   userDocOwnerMatchesAuth · authLinkMapsToUser · accountDeletionNotPending
+ *   · hasNoServerIdentityWrites · hasNoShardWrites
+ * Ни одно из них по составу progress не видно, поэтому дальше без этих фактов
+ * диагноз был бы гаданием — а гадать здесь уже дважды стоило круга работы.
+ *
+ * Читает ровно те документы, которые читает правило (4 чтения, только в момент
+ * отказа и не чаще раза в 5 минут — стоимость Firestore пренебрежима).
+ * Личных данных не печатает: только наличие/совпадение.
+ */
+let lastDenyProbeAt = 0;
+const DENY_PROBE_THROTTLE_MS = 5 * 60 * 1000;
+async function probePermissionDenyReason(stableId: string, authUid: string | null): Promise<void> {
+  const now = Date.now();
+  if (now - lastDenyProbeAt < DENY_PROBE_THROTTLE_MS) return;
+  lastDenyProbeAt = now;
+  const db = getFirestore();
+  if (!db) {
+    console.warn('[SYNC-DENY-PROBE] firestore недоступен — проба пропущена', { stableId, authUid });
+    return;
+  }
+  if (!authUid) {
+    console.warn('[SYNC-DENY-PROBE] authUid пуст — правило отклонит по request.auth == null', { stableId });
+    return;
+  }
+  const probe: Record<string, unknown> = { stableId, authUid };
+  // 1. auth_links/{authUid}.stable_id == userId  → authLinkMapsToUser
+  try {
+    const link = await db.collection('auth_links').doc(authUid).get();
+    probe.authLinkExists = link.exists;
+    const linked = String(link.data()?.stable_id ?? '');
+    probe.authLinkStableId = linked;
+    probe.authLinkMapsToUser = link.exists && linked === stableId;
+  } catch (e) {
+    // зачем: немой catch уже прятал эту аварию месяцами — причина пишется всегда.
+    // Отказ ЗДЕСЬ — сам по себе улика: правило auth_links пускает владельца только
+    // при ОТСУТСТВИИ маркера удаления, поэтому permission-denied на чтении своей
+    // же ссылки почти наверняка означает висящий account_deletion_auth_marker.
+    probe.authLinkReadError = e instanceof Error ? e.message : String(e);
+    probe.authLinkReadDeniedHint = String(e).includes('permission-denied')
+      ? 'отказ на своей auth_links → вероятен маркер удаления по authUid'
+      : '';
+  }
+  // 2. маркер удаления по authUid → accountDeletionNotPending / authLinkMapsToUser
+  try {
+    const marker = await db.collection('account_deletion_auth_markers').doc(authUid).get();
+    probe.deletionAuthMarkerExists = marker.exists;
+    if (marker.exists) probe.deletionAuthMarkerStatus = String(marker.data()?.status ?? '');
+  } catch (e) {
+    probe.deletionAuthMarkerReadError = e instanceof Error ? e.message : String(e);
+  }
+  // 3. надгробие по stableId → accountDeletionNotPending.
+  // ВНИМАНИЕ ПРИ ЧТЕНИИ ЛОГА: account_deletion_tombstones закрыт правилом
+  // `allow read: if false` — эта проба ВСЕГДА вернёт permission-denied, и это
+  // НЕ улика. Существование надгробия отсюда не проверить в принципе, только
+  // через серверный вызов. Строка оставлена, чтобы следующий читатель лога не
+  // потратил круг на «а вдруг надгробие» — здесь ответ недоступен по дизайну.
+  probe.deletionTombstoneCheck = 'недоступно клиенту (rules: read=false), смотреть на сервере';
+  // 4. сам документ: firebaseAuthUid (server-owned) и наличие shard-полей
+  try {
+    const doc = await db.collection('users').doc(stableId).get();
+    probe.userDocExists = doc.exists;
+    const d = (doc.data() ?? {}) as Record<string, unknown>;
+    probe.docFirebaseAuthUid = String(d.firebaseAuthUid ?? '');
+    probe.docOwnerMatchesAuth = String(d.firebaseAuthUid ?? '') === authUid;
+    probe.docHasShardFields = ['shards', 'stars', 'v2_access_stars', 'practice_runes_daily']
+      .filter((k) => Object.prototype.hasOwnProperty.call(d, k));
+    probe.docProgressServerAuthoritative = d.progressServerAuthoritative === true;
+  } catch (e) {
+    probe.userDocReadError = e instanceof Error ? e.message : String(e);
+  }
+  console.warn('[SYNC-DENY-PROBE] какое условие правила упало', probe);
+}
+
+/**
+ * Найти ПОЛЕ-виновника отказа делением пополам.
+ *
+ * зачем (владелец 2026-09-03): проба выше отвечает «личность в порядке», и на
+ * этом два прошлых круга упирались в тупик — какое из полей патча роняет запись,
+ * из отказа не видно вообще: правило рубит ВЕСЬ update разом, без имени поля.
+ * Здесь патч режется пополам и половинки пробуются отдельно; за log2(N) попыток
+ * (для 800 ключей — 10) остаётся ровно то поле, на котором правило падает.
+ *
+ * Пробы пишут РЕАЛЬНЫЕ значения того же патча, который клиент и так пытался
+ * записать, — ничего лишнего в облако не попадает: успешная половина это ровно
+ * та запись, которая и должна была пройти.
+ *
+ * Стоимость: не чаще раза в 30 минут и только ПОСЛЕ отказа; максимум ~20 записей
+ * вместо одной. Дороже обычной синхронизации, но дешевле ещё одного круга
+ * диагностики вслепую, и включается только когда прогресс УЖЕ не сохраняется.
+ */
+let lastBisectAt = 0;
+const DENY_BISECT_THROTTLE_MS = 30 * 60 * 1000;
+async function bisectDenyingField(
+  docRef: { set: (data: unknown, options?: unknown) => Promise<unknown>; update: (data: unknown) => Promise<unknown> },
+  rootPatch: Readonly<Record<string, unknown>>,
+  progressPatch: Readonly<Record<string, string | null>>,
+): Promise<void> {
+  const now = Date.now();
+  if (now - lastBisectAt < DENY_BISECT_THROTTLE_MS) return;
+  lastBisectAt = now;
+
+  // Единый плоский патч в той же форме, в какой его видит правило.
+  const flat: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(progressPatch)) flat['progress.' + k] = v;
+  for (const [k, v] of Object.entries(rootPatch)) flat[k] = v;
+  const allKeys = Object.keys(flat);
+  if (allKeys.length === 0) {
+    console.warn('[SYNC-DENY-BISECT] патч пуст — отказ НЕ из-за состава полей; смотри условия личности выше');
+    return;
+  }
+
+  const tryKeys = async (keys: readonly string[]): Promise<string> => {
+    const payload: Record<string, unknown> = {};
+    for (const k of keys) payload[k] = flat[k];
+    try {
+      await docRef.update(payload);
+      return 'ok';
+    } catch (e) {
+      const code = (e as { code?: string } | null)?.code ?? '';
+      if (String(code).includes('permission-denied')) return 'denied';
+      return 'other:' + (code || (e instanceof Error ? e.message : String(e)));
+    }
+  };
+
+  // Контроль: весь патч обязан отказать — иначе отказ был разовым (гонка), и
+  // делить нечего. Без этой проверки поиск назвал бы «виновника» на пустом месте.
+  const whole = await tryKeys(allKeys);
+  if (whole !== 'denied') {
+    console.warn('[SYNC-DENY-BISECT] повтор ВСЕГО патча не отказал — отказ разовый, состав полей ни при чём', {
+      result: whole,
+      keyCount: allKeys.length,
+    });
+    return;
+  }
+
+  let candidates = allKeys.slice();
+  let steps = 0;
+  while (candidates.length > 1 && steps < 20) {
+    steps += 1;
+    const mid = Math.floor(candidates.length / 2);
+    const left = candidates.slice(0, mid);
+    const leftResult = await tryKeys(left);
+    if (leftResult === 'denied') {
+      candidates = left;
+      continue;
+    }
+    if (leftResult !== 'ok') {
+      console.warn('[SYNC-DENY-BISECT] поиск прерван — половина упала не по правам', {
+        result: leftResult,
+        step: steps,
+        half: left.length,
+      });
+      return;
+    }
+    // Левая половина прошла → виновник справа. Она УЖЕ записана — это легальные
+    // данные того же патча, повторять её не нужно.
+    candidates = candidates.slice(mid);
+  }
+
+  console.warn('[SYNC-DENY-BISECT] ПОЛЕ-ВИНОВНИК НАЙДЕНО', {
+    field: candidates[0],
+    steps,
+    valueType: typeof flat[candidates[0]],
+    // значение НЕ печатаем: в нём личные данные. Имени поля и типа достаточно.
+  });
+}
+
 async function doSyncToCloud(): Promise<void> {
   if (!pendingSync) return;
   pendingSync = false;
@@ -3148,6 +3327,11 @@ async function doSyncToCloud(): Promise<void> {
   // состав. Именно списка ключей и не хватало, чтобы понять, какое поле роняет
   // весь set (правило update проверяет шесть условий сразу).
   const progressPatch: Record<string, string | null> = {};
+  // зачем: по той же причине, что и progressPatch выше, — обработчик отказа ищет
+  // поле-виновника делением пополам и обязан видеть ссылку на документ и корневую
+  // часть патча. Объявленные внутри try, они ему недоступны.
+  let docRef: FirebaseDocRefLike | null = null;
+  const rootPatch: Record<string, unknown> = {};
   try {
     // зачем: облачные мутации выполняем только под подтверждённой каноничной
     // идентичностью — иначе очередь может дописать чужому аккаунту.
@@ -3268,7 +3452,7 @@ async function doSyncToCloud(): Promise<void> {
     const needActivityStamp = now - lastActivityStampAt >= ACTIVITY_STAMP_INTERVAL_MS;
     const hasProgressPatch = Object.keys(progressPatch).length > 0;
     if (!needHeartbeat && !needActivityStamp && !hasProgressPatch) return;
-    const docRef = db.collection('users').doc(uid);
+    docRef = db.collection('users').doc(uid);
     const createdAtSynced = await AsyncStorage.getItem(CREATED_AT_SYNC_KEY);
     if (!isSyncGenerationCurrent()) return;
     const shouldSendCreatedAt = !createdAtSynced;
@@ -3307,12 +3491,21 @@ async function doSyncToCloud(): Promise<void> {
      * (`language_profile_v1::en`), и парсинг строкового пути на них ненадёжен;
      * FieldPath принимает сегмент как есть, без экранирования.
      */
-    const rootPatch: Record<string, unknown> = {
+    Object.assign(rootPatch, {
       ...(data['user_avatar'] ? { user_avatar: data['user_avatar'] } : {}),
       ...(data['user_avatar_frame'] ? { user_avatar_frame: data['user_avatar_frame'] } : {}),
       ...(needActivityStamp || needHeartbeat || shouldSendCreatedAt ? { updatedAt: now, last_active_at: now } : {}),
       ...(shouldSendCreatedAt ? { created_at: now } : {}),
-    };
+    });
+    // зачем: docRef объявлен выше try (диагностике отказа нужна ссылка), поэтому
+    // тип допускает null. Сюда мы попадаем только после его присваивания — но
+    // молча проглотить теоретический null нельзя, иначе синхронизация умрёт без
+    // следа, как уже бывало с немыми catch. Проверка стоит ДО проверки поколения,
+    // чтобы не разорвать её соседство с записью (сторож гонки следит именно за ним).
+    if (!docRef) {
+      console.warn('[SYNC-DENY] docRef не создан — запись пропущена', { uid });
+      return;
+    }
     // зачем: проверка поколения обязана стоять ВПЛОТНУЮ к записи — иначе между
     // ней и сетевым вызовом открывается окно, в котором успевает смениться
     // аккаунт, и патч уедет чужому. Сторож гонки (cloud_sync_account_race_contract)
@@ -3394,6 +3587,22 @@ async function doSyncToCloud(): Promise<void> {
         e instanceof Error ? e : new Error(String(e)),
         'critical',
       );
+      // зачем: состав патча уже доказано чист (blockedKeys пуст в каждом отказе),
+      // значит режет одно из условий правила, которого в патче не видно. Проба
+      // читает ровно те документы, которые читает правило, и называет виновника —
+      // без неё третий круг снова свёлся бы к гаданию.
+      void (async () => {
+        await probePermissionDenyReason(uid, getAuthUserId());
+        // зачем: проба выше отвечает «личность цела», и на этом два прошлых
+        // круга вставали. Поиск делением называет САМО поле, на котором правило
+        // падает, — без него третий круг снова свёлся бы к перебору гипотез.
+        if (docRef) await bisectDenyingField(docRef, rootPatch, progressPatch);
+        else console.warn('[SYNC-DENY-BISECT] отказ случился ДО обращения к документу — состав полей ни при чём');
+      })().catch((probeError) => {
+        console.warn('[SYNC-DENY-PROBE] диагностика не выполнилась', {
+          reason: probeError instanceof Error ? probeError.message : String(probeError),
+        });
+      });
     } else if (String(code).includes('not-found')) {
       /**
        * зачем (владелец 2026-09-02): переход с `set(merge)` на точечный `update`

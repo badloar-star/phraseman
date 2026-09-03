@@ -96,6 +96,38 @@ function makeRequestId(): string {
 }
 
 /**
+ * Ключ идентификатора запроса — живёт РЯДОМ с черновиком минут.
+ *
+ * зачем (аудит 2026-09-03): идемпотентность на сервере привязана к requestId,
+ * но первая версия генерила его заново на КАЖДУЮ попытку. Сценарий двойного
+ * начисления: транзакция закоммитилась, а ответ потерялся в сети — черновик
+ * минут сознательно сохраняется, и следующая попытка уходила уже с НОВЫМ
+ * requestId, то есть новой операцией. Те же минуты начислялись дважды.
+ * Теперь идентификатор создаётся один раз вместе с черновиком и живёт до
+ * подтверждённой сдачи — ретрай несёт тот же opId, и леджер его отвергает.
+ */
+function requestKeyFor(stableId: string): string {
+  return `video_watch_runes_request_v1:${stableId}`;
+}
+
+/** Возвращает идентификатор текущего черновика, создавая его при первой минуте. */
+async function getOrCreateRequestId(stableId: string): Promise<string> {
+  try {
+    const existing = await AsyncStorage.getItem(requestKeyFor(stableId));
+    if (existing && /^[A-Za-z0-9_-]{12,96}$/.test(existing)) return existing;
+  } catch (e) {
+    DebugLogger.error(
+      'video_watch_runes_client:readRequestId',
+      e instanceof Error ? e : new Error(String(e)),
+      'warning',
+    );
+  }
+  const fresh = makeRequestId();
+  await AsyncStorage.setItem(requestKeyFor(stableId), fresh).catch(() => {});
+  return fresh;
+}
+
+/**
  * Сдаёт накопленные минуты на сервер и мерджит авторитетный баланс.
  * Черновик очищается ТОЛЬКО после успешного ответа — потерянная сеть означает
  * повтор в следующий раз, а не потерянные руны.
@@ -113,7 +145,9 @@ export async function claimPendingWatchRunes(
 
   try {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
-    const requestId = makeRequestId();
+    // Тот же идентификатор при повторе — иначе потерянный ответ начислил бы
+    // те же минуты второй раз (см. комментарий у getOrCreateRequestId).
+    const requestId = await getOrCreateRequestId(stableId);
     const fn = httpsCallable<{ stableId: string; requestId: string; minutes: number }, ClaimWire>(
       getFunctions(getApp(), REGION),
       'videoWatchRunesClaim',
@@ -134,7 +168,8 @@ export async function claimPendingWatchRunes(
     });
     // Сервер принял отрезок (в том числе с ответом «потолок дня выбран») —
     // черновик отработал и обязан исчезнуть, иначе те же минуты поедут снова.
-    await AsyncStorage.removeItem(pendingKeyFor(stableId)).catch(() => {});
+    await AsyncStorage.multiRemove([pendingKeyFor(stableId), requestKeyFor(stableId)])
+      .catch(() => {});
 
     const granted = Math.max(0, Math.trunc(Number(data?.granted) || 0));
     const grantedToday = Math.max(0, Math.trunc(Number(data?.grantedToday) || 0));
@@ -150,7 +185,8 @@ export async function claimPendingWatchRunes(
     // Премиум кончился прямо во время просмотра — черновик больше не нужен,
     // иначе он будет вечно биться о серверный отказ при каждом запуске.
     if (code.includes('permission-denied')) {
-      await AsyncStorage.removeItem(pendingKeyFor(stableId)).catch(() => {});
+      await AsyncStorage.multiRemove([pendingKeyFor(stableId), requestKeyFor(stableId)])
+      .catch(() => {});
       DebugLogger.error(
         'video_watch_runes_client:permission_denied',
         error instanceof Error ? error : new Error(String(error)),

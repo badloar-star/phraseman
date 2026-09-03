@@ -28,7 +28,7 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
-import { isPremiumActive } from './admin_push_jobs';
+import { resolvePremiumAccess } from './premium_status';
 import {
   commitStarOperations,
   normalizeStars,
@@ -131,7 +131,20 @@ export const videoWatchRunesClaim = onCall(CALLABLE_BASE, async (request) => {
     // Руны за просмотр — привилегия платной подписки: бесплатному вместо них
     // ускоряется энергия. Проверяем на СЕРВЕРЕ: клиентскому признаку доверять
     // нельзя, иначе награду получит кто угодно.
-    if (!isPremiumActive(data ?? {}, now)) {
+    //
+    // зачем ИМЕННО resolvePremiumAccess (аудит 2026-09-03, блокер): первая
+    // версия звала isPremiumActive из admin_push_jobs. Та читает ТОП-УРОВНЕВОЕ
+    // поле `premium`, которое правилами не закрыто — бесплатный аккаунт мог
+    // записать себе `premium: "monthly"` и получать руны вечно. Плюс она режет
+    // админ-гранты (legacyAdminPremium → false), то есть владелец с ручной
+    // выдачей руны бы НЕ получил. resolvePremiumAccess — канонический серверный
+    // источник (им же гейтится MAX): читает закрытые правилами progress.*,
+    // учитывает RC-grace, lifetime, VIP и админ-выдачу.
+    //
+    // Вызываем ДО любых записей: в транзакции Firestore все чтения обязаны идти
+    // раньше записей, а внутри есть запрос к auth_links и users.
+    const premiumOk = await resolvePremiumAccess(db, stableUid, now, request.auth!.uid, tx);
+    if (!premiumOk) {
       throw new HttpsError('permission-denied', 'premium_required');
     }
 
@@ -181,18 +194,27 @@ export const videoWatchRunesClaim = onCall(CALLABLE_BASE, async (request) => {
       weekKeyNow: isoWeekKey(now),
       authUid: request.auth!.uid,
     });
-    const committed = commitStarOperations(tx, prepared);
+    // зачем (аудит 2026-09-03): счётчик обязан расти на ФАКТИЧЕСКИ выданное, а
+    // не на желаемое. Повторный requestId леджер отвергает как already_applied
+    // с appliedDelta=0 — прежняя версия всё равно «съедала» потолок дня и
+    // рапортовала клиенту несуществующее начисление.
+    const applied = Math.max(0, prepared.outcomes[0]?.appliedDelta ?? 0);
 
-    // Счётчик дня пишем той же транзакцией: разъехаться с начислением он не может.
-    tx.set(userRef, {
-      [DAILY_FIELD]: { dayKey, granted: grantedToday + grant, updatedAt: now },
-    }, { merge: true });
+    // Счётчик дня уходит ОДНОЙ записью вместе с балансом — через extraUserFields
+    // леджера (тот же приём, что в friends_together.ts). Отдельный tx.set в тот
+    // же документ был бы второй записью в одной транзакции: лишняя стоимость и
+    // риск разъехаться с балансом при будущих правках леджера.
+    const committed = commitStarOperations(tx, prepared, {
+      [DAILY_FIELD]: { dayKey, granted: grantedToday + applied, updatedAt: now },
+    });
 
     return {
       ok: true,
-      granted: grant,
-      reason: 'granted',
-      grantedToday: grantedToday + grant,
+      // Клиенту тоже отдаём фактическое: иначе экран показал бы начисление,
+      // которого не было (повтор того же requestId).
+      granted: applied,
+      reason: applied > 0 ? 'granted' : 'already_applied',
+      grantedToday: grantedToday + applied,
       dailyCap: VIDEO_WATCH_RUNES_DAILY_CAP,
       stars: committed.balance,
       starsEarnedTotal: committed.earnedTotal,

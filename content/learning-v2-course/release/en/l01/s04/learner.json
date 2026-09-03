@@ -351,7 +351,7 @@
     {
       "interactionId": "en:lesson-01:session-04:i07",
       "ordinal": 10,
-      "purpose": "guided_practice",
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Карточка слова — free",
@@ -435,6 +435,80 @@
       "interactionId": "en:lesson-01:session-04:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — free",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-04:i09:r1",
+          "text": "free"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i09:r2",
+          "text": "three"
+        },
+        {
+          "responseId": "en:lesson-01:session-04:i09:r3",
+          "text": "fry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — free",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i09:audio",
+          "transcript": "free"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-04:i09:r1",
+            "targetText": "free",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i09:r2",
+            "targetText": "three",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i09:r3",
+            "targetText": "fry",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i09:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — free",
+            "feedbackByLocale": {
+              "ru": "Это «три». Начало другое: `free` — с «ф», `three` — с языком между зубами."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — free",
+            "feedbackByLocale": {
+              "ru": "«Жарить». Гласная на конце «ай», а у `free` — длинное «и»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
       "prompt": "Соедините пары (Speed Match, 4 пары)",
@@ -446,28 +520,28 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-01:session-04:i09:p1",
+            "pairId": "en:lesson-01:session-04:i10:p1",
             "target": "early",
             "meaningByLocale": {
               "ru": "рано"
             }
           },
           {
-            "pairId": "en:lesson-01:session-04:i09:p2",
+            "pairId": "en:lesson-01:session-04:i10:p2",
             "target": "right",
             "meaningByLocale": {
               "ru": "прав"
             }
           },
           {
-            "pairId": "en:lesson-01:session-04:i09:p3",
+            "pairId": "en:lesson-01:session-04:i10:p3",
             "target": "wrong",
             "meaningByLocale": {
               "ru": "не прав"
             }
           },
           {
-            "pairId": "en:lesson-01:session-04:i09:p4",
+            "pairId": "en:lesson-01:session-04:i10:p4",
             "target": "free",
             "meaningByLocale": {
               "ru": "свободен"
@@ -501,8 +575,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i10",
-      "ordinal": 13,
+      "interactionId": "en:lesson-01:session-04:i11",
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -510,13 +584,13 @@
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-04:i10:audio"
+        "en:lesson-01:session-04:i11:audio"
       ],
       "accessibilityLabel": "Скажите вслух — вы в круге первый",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-04:i10:audio",
+          "audioTargetId": "en:lesson-01:session-04:i11:audio",
           "transcript": "I am early."
         },
         "slowReferenceAudio": null,
@@ -534,8 +608,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i11",
-      "ordinal": 14,
+      "interactionId": "en:lesson-01:session-04:i12",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
@@ -543,13 +617,13 @@
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-04:i11:audio"
+        "en:lesson-01:session-04:i12:audio"
       ],
       "accessibilityLabel": "Послушайте и соберите — вы отстаиваете свою цифру",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-04:i11:audio",
+          "audioTargetId": "en:lesson-01:session-04:i12:audio",
           "transcript": "I am not wrong."
         },
         "slowReferenceAudio": null,
@@ -568,23 +642,23 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i12",
-      "ordinal": 15,
+      "interactionId": "en:lesson-01:session-04:i13",
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Вставьте слово — сосед по кругу признаёт промах",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-04:i12:r1",
+          "responseId": "en:lesson-01:session-04:i13:r1",
           "text": "am"
         },
         {
-          "responseId": "en:lesson-01:session-04:i12:r2",
+          "responseId": "en:lesson-01:session-04:i13:r2",
           "text": "not"
         },
         {
-          "responseId": "en:lesson-01:session-04:i12:r3",
+          "responseId": "en:lesson-01:session-04:i13:r3",
           "text": "is"
         }
       ],
@@ -599,22 +673,22 @@
         "gappedTargetPhrase": "I ___ wrong.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-01:session-04:i12:r1",
+            "responseId": "en:lesson-01:session-04:i13:r1",
             "text": "am"
           },
           {
-            "responseId": "en:lesson-01:session-04:i12:r2",
+            "responseId": "en:lesson-01:session-04:i13:r2",
             "text": "not"
           },
           {
-            "responseId": "en:lesson-01:session-04:i12:r3",
+            "responseId": "en:lesson-01:session-04:i13:r3",
             "text": "is"
           }
         ],
         "testedDimension": "Вставьте слово — сосед по кругу признаёт",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i12:r1",
+            "responseId": "en:lesson-01:session-04:i13:r1",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед по кругу признаёт",
             "feedbackByLocale": {
@@ -622,7 +696,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i12:r2",
+            "responseId": "en:lesson-01:session-04:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед по кругу признаёт",
             "feedbackByLocale": {
@@ -634,27 +708,27 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-01:session-04:i14",
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите — начальник обводит круг взглядом",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-04:i13:r1",
+          "responseId": "en:lesson-01:session-04:i14:r1",
           "text": "I am free."
         },
         {
-          "responseId": "en:lesson-01:session-04:i13:r2",
+          "responseId": "en:lesson-01:session-04:i14:r2",
           "text": "I am busy."
         },
         {
-          "responseId": "en:lesson-01:session-04:i13:r3",
+          "responseId": "en:lesson-01:session-04:i14:r3",
           "text": "I am happy."
         },
         {
-          "responseId": "en:lesson-01:session-04:i13:r4",
+          "responseId": "en:lesson-01:session-04:i14:r4",
           "text": "I free."
         }
       ],
@@ -667,22 +741,22 @@
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-01:session-04:i13:r1",
+            "responseId": "en:lesson-01:session-04:i14:r1",
             "targetText": "I am free.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-01:session-04:i13:r2",
+            "responseId": "en:lesson-01:session-04:i14:r2",
             "targetText": "I am busy.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-01:session-04:i13:r3",
+            "responseId": "en:lesson-01:session-04:i14:r3",
             "targetText": "I am happy.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-01:session-04:i13:r4",
+            "responseId": "en:lesson-01:session-04:i14:r4",
             "targetText": "I free.",
             "meaningByLocale": null
           }
@@ -690,7 +764,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i13:r1",
+            "responseId": "en:lesson-01:session-04:i14:r1",
             "correct": false,
             "testedDimension": "Послушайте и выберите — начальник обводи",
             "feedbackByLocale": {
@@ -698,7 +772,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i13:r2",
+            "responseId": "en:lesson-01:session-04:i14:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — начальник обводи",
             "feedbackByLocale": {
@@ -706,7 +780,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i13:r3",
+            "responseId": "en:lesson-01:session-04:i14:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — начальник обводи",
             "feedbackByLocale": {
@@ -720,60 +794,60 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i14",
-      "ordinal": 17,
+      "interactionId": "en:lesson-01:session-04:i15",
+      "ordinal": 18,
       "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите — что вы сейчас услышали",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-04:i14:r1",
+          "responseId": "en:lesson-01:session-04:i15:r1",
           "text": "I am not sure."
         },
         {
-          "responseId": "en:lesson-01:session-04:i14:r2",
+          "responseId": "en:lesson-01:session-04:i15:r2",
           "text": "I am sure."
         },
         {
-          "responseId": "en:lesson-01:session-04:i14:r3",
+          "responseId": "en:lesson-01:session-04:i15:r3",
           "text": "I am not free."
         },
         {
-          "responseId": "en:lesson-01:session-04:i14:r4",
+          "responseId": "en:lesson-01:session-04:i15:r4",
           "text": "I am not tired."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-04:i14:audio"
+        "en:lesson-01:session-04:i15:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите — что вы сейчас услышали",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-04:i14:audio",
+          "audioTargetId": "en:lesson-01:session-04:i15:audio",
           "transcript": "I am not sure."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-01:session-04:i14:r1",
+            "responseId": "en:lesson-01:session-04:i15:r1",
             "targetText": "I am not sure.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-01:session-04:i14:r2",
+            "responseId": "en:lesson-01:session-04:i15:r2",
             "targetText": "I am sure.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-01:session-04:i14:r3",
+            "responseId": "en:lesson-01:session-04:i15:r3",
             "targetText": "I am not free.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-01:session-04:i14:r4",
+            "responseId": "en:lesson-01:session-04:i15:r4",
             "targetText": "I am not tired.",
             "meaningByLocale": null
           }
@@ -781,7 +855,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i14:r1",
+            "responseId": "en:lesson-01:session-04:i15:r1",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы сейчас ус",
             "feedbackByLocale": {
@@ -789,7 +863,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i14:r2",
+            "responseId": "en:lesson-01:session-04:i15:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы сейчас ус",
             "feedbackByLocale": {
@@ -797,7 +871,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i14:r3",
+            "responseId": "en:lesson-01:session-04:i15:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы сейчас ус",
             "feedbackByLocale": {
@@ -811,8 +885,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i15",
-      "ordinal": 18,
+      "interactionId": "en:lesson-01:session-04:i16",
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -840,8 +914,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i16",
-      "ordinal": 19,
+      "interactionId": "en:lesson-01:session-04:i17",
+      "ordinal": 20,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
@@ -854,28 +928,28 @@
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-01:session-04:i16:p1",
+            "pairId": "en:lesson-01:session-04:i17:p1",
             "target": "busy",
             "meaningByLocale": {
               "ru": "занят"
             }
           },
           {
-            "pairId": "en:lesson-01:session-04:i16:p2",
+            "pairId": "en:lesson-01:session-04:i17:p2",
             "target": "alone",
             "meaningByLocale": {
               "ru": "один"
             }
           },
           {
-            "pairId": "en:lesson-01:session-04:i16:p3",
+            "pairId": "en:lesson-01:session-04:i17:p3",
             "target": "tired",
             "meaningByLocale": {
               "ru": "устал"
             }
           },
           {
-            "pairId": "en:lesson-01:session-04:i16:p4",
+            "pairId": "en:lesson-01:session-04:i17:p4",
             "target": "sure",
             "meaningByLocale": {
               "ru": "уверен"
@@ -909,8 +983,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i17",
-      "ordinal": 20,
+      "interactionId": "en:lesson-01:session-04:i18",
+      "ordinal": 21,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -938,23 +1012,23 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i18",
-      "ordinal": 21,
+      "interactionId": "en:lesson-01:session-04:i19",
+      "ordinal": 22,
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
       "prompt": "Вставьте слово — коллега вбегает, когда круг уже идёт",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-04:i18:r1",
+          "responseId": "en:lesson-01:session-04:i19:r1",
           "text": "late"
         },
         {
-          "responseId": "en:lesson-01:session-04:i18:r2",
+          "responseId": "en:lesson-01:session-04:i19:r2",
           "text": "early"
         },
         {
-          "responseId": "en:lesson-01:session-04:i18:r3",
+          "responseId": "en:lesson-01:session-04:i19:r3",
           "text": "alone"
         }
       ],
@@ -969,22 +1043,22 @@
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
           {
-            "responseId": "en:lesson-01:session-04:i18:r1",
+            "responseId": "en:lesson-01:session-04:i19:r1",
             "text": "late"
           },
           {
-            "responseId": "en:lesson-01:session-04:i18:r2",
+            "responseId": "en:lesson-01:session-04:i19:r2",
             "text": "early"
           },
           {
-            "responseId": "en:lesson-01:session-04:i18:r3",
+            "responseId": "en:lesson-01:session-04:i19:r3",
             "text": "alone"
           }
         ],
         "testedDimension": "Вставьте слово — коллега вбегает, когда ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i18:r1",
+            "responseId": "en:lesson-01:session-04:i19:r1",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега вбегает, когда ",
             "feedbackByLocale": {
@@ -992,7 +1066,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i18:r2",
+            "responseId": "en:lesson-01:session-04:i19:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега вбегает, когда ",
             "feedbackByLocale": {
@@ -1004,8 +1078,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i19",
-      "ordinal": 22,
+      "interactionId": "en:lesson-01:session-04:i20",
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
@@ -1033,8 +1107,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i20",
-      "ordinal": 23,
+      "interactionId": "en:lesson-01:session-04:i21",
+      "ordinal": 24,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
@@ -1042,13 +1116,13 @@
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-04:i20:audio"
+        "en:lesson-01:session-04:i21:audio"
       ],
       "accessibilityLabel": "Финал сцены — ваша очередь в круге, пять фраз подряд, без подсказок",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-04:i20:audio",
+          "audioTargetId": "en:lesson-01:session-04:i21:audio",
           "transcript": "I am early. I am not tired. I am fine. I am ready. I am happy."
         },
         "slowReferenceAudio": null,
@@ -1066,11 +1140,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 20,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a955974071719fcf0fbc47f5ddcfe8b543bb7112e79462cb600d9900f41be4fb"
+  "learnerFingerprint": "f053b70c032f1f1cd94fbdfc644ee40d43c1078ab44e5cb61cc43b9e824ad156"
 }

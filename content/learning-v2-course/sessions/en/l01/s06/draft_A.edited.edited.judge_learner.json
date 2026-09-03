@@ -1,0 +1,133 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (home)",
+      "what_i_understood": "Дома = home, без предлога 'в'. I am home.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (back)",
+      "what_i_understood": "Вернулся = back. I am back, без лишнего 'home' после.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (done)",
+      "what_i_understood": "Закончил работу = I am done. Не путать с 'I am not done' — там смысл обратный.",
+      "confusion": "Почему пишется 'done', а звучит как 'дан' — странно, но запомнил",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (карточка+аудио home)",
+      "what_i_understood": "home звучит 'хоум', отличил от hope/hole по последней согласной",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (карточка+аудио back)",
+      "what_i_understood": "back — 'бэк', отличил от bag/bad",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка 'I am home')",
+      "what_i_understood": "Собрал фразу, лишняя плитка была 'is' — не взял",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 (карточки done, ok)",
+      "what_i_understood": "done='закончил', ok='нормально'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (Speed Match 4 пары)",
+      "what_i_understood": "Соединил все 4 новых слова с переводом",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (вставка слова — вопрос про состояние)",
+      "what_i_understood": "Друг спросил как я, значит нужно состояние, а не место — выбрал ok",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (скрепка am/is/are)",
+      "what_i_understood": "Для 'I' всегда 'am', не 'is'/'are'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (аудио-сборка 'I am done')",
+      "what_i_understood": "Собрал по звуку, не взял лишнюю плитку 'home'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (говорю вслух 'I am here')",
+      "what_i_understood": "Повторил старое слово here — тут не проверка, а тренировка произношения",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (сборка 'I am not hungry')",
+      "what_i_understood": "Собрал отрицание с 'not' перед hungry",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (сборка 'I am free', ловушка с not)",
+      "what_i_understood": "Не взял лишнюю плитку 'not', так как хочу подтвердить, что свободен, а не отказаться",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (вставка — зевок)",
+      "what_i_understood": "Зевок = tired, а не done/ok, потому что вопрос был 'почему вялый'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (Speed Match старые слова)",
+      "what_i_understood": "Повторил tired/free/here/hungry",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал — 4 фразы вслух)",
+      "what_i_understood": "Сказал все фразы подряд как в реальном звонке: I am home. I am back. I am tired. I am ok.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "home = 'дома' без предлога (не 'in home')",
+    "back = 'вернулся', отдельное слово, не нужно добавлять 'home' после",
+    "done = 'закончил' (произносится 'дан')",
+    "ok = 'нормально'",
+    "понял разницу I am done / I am not done — not переворачивает смысл",
+    "потренировался не хватать лишние плитки-ловушки (not, home, is)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Задание 12",
+      "why": "просто повторить старое слово 'here' вслух — не проверяет ничего нового, чисто разминка, могли бы вставить туда что-то из новых слов"
+    }
+  ],
+  "felt_alive": [
+    "Интро 2 про 'три процента батареи' — смешное и понятное сравнение",
+    "Сценарий с плохой связью по телефону — реально похоже на звонок другу, а не на учебник",
+    "Задание 17 — приятно, что в конце собрал все фразы в один живой ответ, как будто правда говорю с другом"
+  ],
+  "felt_dead": [
+    "Карточки слов (1,3,6,7) — сухие определения, справочный тон, но это ожидаемо для карточки"
+  ],
+  "scene_reason": "да — понятно, что я говорю эти фразы другу по телефону, который волнуется, где я и как я. Каждая фраза привязана к конкретному вопросу друга (где ты / как ты / устал ли), это ощущается как настоящий разговор, а не абстрактные упражнения.",
+  "would_continue": "да — сессия короткая, ничего непонятного, в финале приятное ощущение, что я реально могу ответить другу по телефону четырьмя фразами. Хочу дальше.",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно, ничего не требовало незнакомых слов, выучил 4 новых слова и закрепил старые, сцена звонка понятна и живая."
+}

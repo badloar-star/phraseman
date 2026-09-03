@@ -1,0 +1,85 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "home",
+      "back",
+      "done",
+      "ok"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": "Интро1",
+        "trap": "I am in home — калька русского «в дома»"
+      },
+      {
+        "task": "Интро2",
+        "trap": "I am back home — лишнее слово поверх готовой фразы"
+      },
+      {
+        "task": 14,
+        "trap": "I am not free — обманка на внимательность (лишняя плитка not)"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "home",
+        "back",
+        "done",
+        "ok"
+      ],
+      [
+        "tired",
+        "free",
+        "here",
+        "hungry"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 2,
+      "phrase_builder": 3,
+      "speed_match": 2,
+      "context_gap_grammar": 3,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 9 использует done и back как отвлекающие варианты ответа на вопрос о состоянии («как вы там вообще»), но фактические касания по машинным фактам показывают home:2(1 верным), а формулировка вопроса в задании и разбор варианта home корректны — однако задания 3 и 6 (word_card для back и done) сразу за заданием 4 без промежуточного listen_choose для back и done нарушают заявленный паттерн «карточка → узнавание на слух → во фразе» (для back и done нет отдельного listen_choose перед их использованием во фразах)."
+}

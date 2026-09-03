@@ -41,61 +41,66 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i09",
-    "correctText": "",
-    "correctResponseId": null
+    "correctText": "free",
+    "correctResponseId": "en:lesson-01:session-04:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-04:i10",
-    "correctText": "I am early.",
+    "correctText": "",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-04:i11",
-    "correctText": "I am not wrong.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-04:i12",
-    "correctText": "am",
-    "correctResponseId": "en:lesson-01:session-04:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-04:i13",
-    "correctText": "I am free.",
-    "correctResponseId": "en:lesson-01:session-04:i13:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-04:i14",
-    "correctText": "I am not sure.",
-    "correctResponseId": "en:lesson-01:session-04:i14:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-04:i15",
     "correctText": "I am early.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-04:i12",
+    "correctText": "I am not wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-04:i13",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-04:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-04:i14",
+    "correctText": "I am free.",
+    "correctResponseId": "en:lesson-01:session-04:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-04:i15",
+    "correctText": "I am not sure.",
+    "correctResponseId": "en:lesson-01:session-04:i15:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-04:i16",
-    "correctText": "",
+    "correctText": "I am early.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-04:i17",
-    "correctText": "I am fine.",
+    "correctText": "",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-04:i18",
-    "correctText": "late",
-    "correctResponseId": "en:lesson-01:session-04:i18:r1"
+    "correctText": "I am fine.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-04:i19",
+    "correctText": "late",
+    "correctResponseId": "en:lesson-01:session-04:i19:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-04:i20",
     "correctText": "I am ready.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-04:i20",
+    "interactionId": "en:lesson-01:session-04:i21",
     "correctText": "I am early. I am not tired. I am fine. I am ready. I am happy.",
     "correctResponseId": null
   }

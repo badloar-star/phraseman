@@ -184,6 +184,28 @@ function machineFacts(file) {
   const timeRefs = [...(text.split(/^## Практика/m)[0] + practice).matchAll(/(вчера|позавчера|на прошлой сессии|в прошлый раз вы|вы уже учили|вы выучили)/gi)].map((m) => m[0]);
   facts.push(`ссылки на время обучения: ${timeRefs.length ? timeRefs.join(", ") : "не найдены (проверь «сегодня/утром» вручную — могут быть сценой)"}`);
 
+  // зачем (владелец, 03.09): в Speed Match попали слова, которых ученик до
+  // этого задания толком не видел — соединять можно только угадыванием.
+  // Доска пар — это ПРОВЕРКА памяти, а не первое знакомство: каждое её слово
+  // обязано иметь до неё карточку И хотя бы одну отработку (слух/фраза/выбор),
+  // либо прийти из прошлых сессий.
+  const taskChunks = practice.split(/^\*\*(?=\d+ · )/m).slice(1);
+  const newWords = (/\*\*Новые слова:\*\*\s*(.+)/.exec(text)?.[1] ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+  taskChunks.forEach((chunk, idx) => {
+    if (!/Соедините пары|Speed Match/i.test(chunk)) return;
+    const line = chunk.split("\n").find((l) => (l.match(/·/g) || []).length >= 2 && /—/.test(l)) ?? "";
+    const words = line.split("·").map((p) => p.split("—")[0].replace(/[*`]/g, "").trim()).filter(Boolean);
+    const before = taskChunks.slice(0, idx);
+    const weak = [];
+    for (const w of words) {
+      if (!newWords.some((nw) => nw.toLowerCase() === w.toLowerCase())) continue; // из прошлых сессий — нормально
+      const hits = before.filter((t) => new RegExp(`\\b${w}\\b`, "i").test(t));
+      const drilled = hits.filter((t) => !/Карточка слова/i.test(t)).length;
+      if (drilled === 0) weak.push(`${w} (карточек ${hits.length}, отработок 0)`);
+    }
+    facts.push(`пары в задании ${idx + 1}: ${weak.length ? "СЛОВА БЕЗ ОТРАБОТКИ — " + weak.join(", ") + " ← ученик может только угадывать" : "все слова отработаны до доски"}`);
+  });
+
   // зачем (владелец, 03.09): интро объясняло `I tired`, а вопрос под ним
   // спрашивал про `I am fine` — ученик читает про одно, отвечает про другое.
   // Проверяем машинно: слово из правильного ответа должно встречаться в тексте

@@ -1,0 +1,107 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "hot",
+      "sick",
+      "lost",
+      "new"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": "интро 1",
+        "trap": "I hot — выброшенное am, перенос из русского"
+      },
+      {
+        "task": "интро 1",
+        "trap": "Am hot — потеряно I"
+      },
+      {
+        "task": "интро 2",
+        "trap": "I not sick — not на месте русского «не», am снаружи"
+      },
+      {
+        "task": "интро 2",
+        "trap": "I am no sick — no вместо not, ровно из плана «I no sure»"
+      },
+      {
+        "task": "интро 3",
+        "trap": "I am not lost — смысловая ловушка: лишний not переворачивает сцену"
+      },
+      {
+        "task": "интро 3",
+        "trap": "I lost — выброшенное am"
+      },
+      {
+        "task": 11,
+        "trap": "is / are с I — чужая скрепка"
+      },
+      {
+        "task": 12,
+        "trap": "лишняя плитка no рядом с not"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "hot",
+        "sick",
+        "lost",
+        "new"
+      ],
+      [
+        "fine",
+        "tired",
+        "here",
+        "sorry"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      5,
+      15
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 3,
+      "phrase_builder": 3,
+      "speed_match": 2,
+      "context_gap_grammar": 3,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1,
+      "sound_contrast": 0
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Правило «возвращаемые слова: ≥2 касания, хотя бы одно правильным ответом» нарушено сразу для нескольких слов из строки «Возвращаются»: fine, tired, sorry имеют по одному касанию (только доска Speed Match №16) и ни разу не выступают правильным ответом, а here (3 касания) и cold (3 касания) ни разу не стоят правильным ответом — это не вкусовая придирка, а измеримый факт из машинного отчёта."
+}

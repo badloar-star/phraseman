@@ -1,0 +1,61 @@
+{
+  "structure_identical": true,
+  "english_targets_identical": true,
+  "structure_diffs": [],
+  "language_purity": {
+    "foreign_fragments": [],
+    "machine_translation_smell": [
+      {
+        "where": "Intro 1, judul",
+        "quote": "Kata yang menahan seluruh kalimat",
+        "natural": "Kata kecil yang menahan seluruh kalimat"
+      },
+      {
+        "where": "Intro 1, badan teks",
+        "quote": "\"saya\" dan \"baik\" tergeletak bersebelahan dan diam saja",
+        "natural": "\"saya\" dan \"baik\" cuma berdiri bersebelahan tanpa saling bicara"
+      },
+      {
+        "where": "Intro 2, badan teks",
+        "quote": "Sementara am ditinggal berdiri di halte, menatap bus yang pergi.",
+        "natural": "Sementara am-nya ketinggalan di halte, cuma bisa melihat busnya pergi."
+      },
+      {
+        "where": "Intro 3, badan teks",
+        "quote": "separuh pertanyaan tentang Anda langsung gugur",
+        "natural": "separuh pertanyaan tentang Anda langsung selesai / tidak perlu ditanyakan lagi"
+      },
+      {
+        "where": "Latihan 12, judul",
+        "quote": "Isi penjepitnya",
+        "natural": "Lengkapi penghubungnya"
+      }
+    ]
+  },
+  "native_anchor": {
+    "uses_own_language_contrast": true,
+    "wrong_russian_anchor_leaked": []
+  },
+  "traps_localized": {
+    "ok": true,
+    "untypical_for_my_speakers": []
+  },
+  "humor": {
+    "present_on_every_intro": true,
+    "on_topic": true,
+    "misfires": []
+  },
+  "tone": {
+    "warm_polite": true,
+    "bureaucratic_or_termy": [
+      "«penjepit» sebagai istilah tetap untuk am — metafora ini datang dari master ru («скрепка») dan terasa dipaksakan dalam bahasa Indonesia; pembaca lokal lebih menangkap «kata penghubung» atau «kata sambung»"
+    ]
+  },
+  "definitions_alive": true,
+  "verdict": "PASS",
+  "verdict_reason": "Структура, номера заданий, английские цели и блок modes совпадают с мастером байт-в-байт, опора построена на индонезийском (отсутствие связки, «tidak/bukan» против no/not), юмор и живые определения на месте; остаются лишь мелкие кальки вроде «penjepit» и пары оборотов, которые не мешают восприятию носителем.",
+  "notes_optional": [
+    "Клише «penjepit» повторяется в интро 1, 3 и в задании 12 — если менять, менять во всех трёх местах разом, иначе разъедется терминология.",
+    "«new» передано как «nyu» — для индонезийского чтения корректнее «nyuu» или «niu», но при наличии аудио это неважно."
+  ]
+}

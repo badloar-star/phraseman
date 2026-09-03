@@ -41,8 +41,16 @@ const BACKEND = opt("backend", process.env.FACTORY_BACKEND || "claude");
 // без юмора, слабые ловушки, возврат старых слов не состоялся; Opus — «equal».
 // Авторы по умолчанию Opus; Sonnet остаётся для локализации после проверки.
 const MODEL_DRAFT = opt("model-draft", process.env.FACTORY_MODEL_DRAFT || "opus");
+// зачем: вкус владельца держит только Opus (он единственный судья, чья
+// планка проверена на эталонах). Ученик просто честно проходит урок, а
+// педагог сверяет с машинными фактами — Sonnet справляется и в ~5 раз дешевле.
 const MODEL_JUDGE = opt("model-judge", process.env.FACTORY_MODEL_JUDGE || "opus");
+const MODEL_CHEAP = opt("model-cheap", process.env.FACTORY_MODEL_CHEAP || "sonnet");
+const MODEL_BY_JUDGE = { judge_taste: MODEL_JUDGE, judge_learner: MODEL_CHEAP, judge_pedagogy: MODEL_CHEAP };
 const SESSION = opt("session", null); // en/l01/s04
+// зачем: «запустил и ушёл» — при лимите подписки конвейер ждёт сброса,
+// а не падает. --no-wait отключает (для быстрых проверок).
+const WAIT_ON_LIMIT = !args.includes("--no-wait");
 const LOCALES = (opt("locales", "uk,es,pt-BR,vi,id,tr,pl")).split(",").map((s) => s.trim()).filter(Boolean);
 
 // ---------- файлы ----------
@@ -206,14 +214,31 @@ function callModel({ system, user, model, maxTokens = 8000, label }) {
       fs.mkdirSync(WORK_DIR, { recursive: true });
       const sysFile = path.join(WORK_DIR, `system_${process.pid}_${Date.now()}.md`);
       fs.writeFileSync(sysFile, system, "utf8");
-      const r = spawnSync("claude", ["-p", "--system-prompt-file", sysFile, "--tools", "", "--output-format", "json", "--model", model], {
-        encoding: "utf8", input: user, maxBuffer: 64 * 1024 * 1024, shell: process.platform === "win32", cwd: WORK_DIR,
+      // зачем: через shell:true пустой аргумент `--tools ""` на Windows исчезает,
+      // флаги съезжают и claude печатает текст вместо JSON — поэтому командная
+      // строка собирается вручную с явными кавычками.
+      const cmdLine = `claude -p --system-prompt-file "${sysFile}" --tools "" --output-format json --model ${model}`;
+      const r = spawnSync(cmdLine, {
+        encoding: "utf8", input: user, maxBuffer: 64 * 1024 * 1024, shell: true, cwd: WORK_DIR,
       });
       try { fs.unlinkSync(sysFile); } catch (e) { WARN(`не удалось удалить ${sysFile}: ${e.message}`); }
       if (r.error) throw r.error;
       if (r.status !== 0 && !r.stdout) throw new Error(`claude -p завершился с кодом ${r.status}: ${(r.stderr || "").slice(0, 400)}`);
-      const j = JSON.parse(r.stdout || "{}");
-      if (j.is_error) throw new Error(`claude -p: ${j.result || "ошибка без текста"}`);
+      let j;
+      try { j = JSON.parse(r.stdout || "{}"); } catch (e) {
+        // зачем: если вывод не JSON — сохранить его целиком для разбора, а не терять
+        const dump = path.join(WORK_DIR, `bad_output_${Date.now()}.txt`);
+        fs.writeFileSync(dump, `STDOUT:\n${r.stdout}\n\nSTDERR:\n${r.stderr}`, "utf8");
+        throw new Error(`claude -p вернул не JSON (${e.message}); вывод сохранён в ${dump}`);
+      }
+      if (j.is_error) {
+        // зачем: лимит подписки — не ошибка скрипта, а пауза. Отдельный тип,
+        // чтобы конвейер встал на паузу и продолжил с того же шага, а не упал.
+        const msg = String(j.result || "ошибка без текста");
+        const e = new Error(`claude -p: ${msg}`);
+        if (/session limit|usage limit|rate limit/i.test(msg)) e.isLimit = true;
+        throw e;
+      }
       text = j.result || "";
       LOG(`   стоимость: $${j.total_cost_usd ?? "?"}, ходов ${j.num_turns ?? "?"}, токены in ${j.usage?.input_tokens ?? "?"} (+кэш ${j.usage?.cache_read_input_tokens ?? "?"}) out ${j.usage?.output_tokens ?? "?"}`);
     } else if (BACKEND === "api") {
@@ -232,10 +257,48 @@ function callModel({ system, user, model, maxTokens = 8000, label }) {
     }
   } catch (e) {
     LOG(`✗ ${label} упал через ${Date.now() - t0} мс: ${e.message}`);
+    // зачем: при лимите подписки ждём до сброса и повторяем тот же вызов —
+    // владелец хочет «запустил и ушёл», а лимит приходит каждые ~5 часов.
+    if (e.isLimit && WAIT_ON_LIMIT) {
+      const resetAt = parseResetTime(e.message);
+      const waitMs = Math.max(60_000, resetAt - Date.now() + 60_000);
+      LOG(`⏸ лимит подписки. Жду до сброса: ${new Date(resetAt).toLocaleTimeString()} (${Math.round(waitMs / 60000)} мин), затем повтор ${label}`);
+      sleepSync(waitMs);
+      LOG(`▶ продолжаю после лимита: ${label}`);
+      return callModel({ system, user, model, maxTokens, label });
+    }
     throw e;
   }
   LOG(`← ${label}: ${text.length} зн. за ${Date.now() - t0} мс`);
   return text;
+}
+
+/** «resets 11:50am (Europe/Dublin)» → метка времени ближайшего такого момента. */
+function parseResetTime(msg) {
+  const m = /resets\s+(\d{1,2})(?::(\d{2}))?\s*(am|pm)?/i.exec(msg);
+  if (!m) {
+    LOG("   время сброса в сообщении не найдено — жду час");
+    return Date.now() + 3600_000;
+  }
+  let h = Number(m[1]);
+  const min = Number(m[2] || 0);
+  const ap = (m[3] || "").toLowerCase();
+  if (ap === "pm" && h < 12) h += 12;
+  if (ap === "am" && h === 12) h = 0;
+  const d = new Date();
+  d.setHours(h, min, 0, 0);
+  // зачем: окно лимита ≤ 5 часов. Если названное время уже прошло больше
+  // часа назад — это следующие сутки; если только что — сброс вот-вот
+  // (сообщение могло опоздать), ждать сутки нельзя.
+  const diff = d.getTime() - Date.now();
+  if (diff < -3600_000) d.setDate(d.getDate() + 1);
+  else if (diff <= 0) return Date.now() + 120_000;
+  return d.getTime();
+}
+
+/** Синхронная пауза без busy-wait: дочерний node спит и выходит. */
+function sleepSync(ms) {
+  spawnSync(process.execPath, ["-e", `setTimeout(()=>{}, ${Math.round(ms)})`], { stdio: "ignore", timeout: ms + 30_000 });
 }
 
 // синхронный fetch через дочерний node: скрипт намеренно последовательный
@@ -304,10 +367,19 @@ function buildVars(ctx, plan, row, known, S) {
 function stageDraft(S, ctx, plan, row, known) {
   const files = [];
   for (const [tag, persona] of PERSONAS) {
-    const vars = { ...buildVars(ctx, plan, row, known, S), ЛИЧНОСТЬ_АВТОРА: persona };
+    const f = path.join(S.dir, `draft_${tag}.ru.md`);
+    // зачем: перезапуск после лимита/обрыва не должен переписывать готовое
+    if (exists(f) && read(f).length > 1000) {
+      LOG(`пропуск автора ${tag}: ${path.basename(f)} уже есть (${read(f).length} зн.)`);
+      files.push(f);
+      continue;
+    }
+    // зачем: автор читал ВСЕ три эталона (38 тыс. знаков в каждом из трёх
+    // вызовов). Голос задаёт один эталон того же типа + вердикты владельца;
+    // остальные два — те же правила другими словами.
+    const vars = { ...buildVars(ctx, plan, row, known, S), ЛИЧНОСТЬ_АВТОРА: persona, ЭТАЛОНЫ: exemplarOfSameType(S.lang, row) };
     const system = fill(prompt("author"), vars);
     const text = callModel({ system, user: "Напиши сессию.", model: MODEL_DRAFT, label: `автор ${tag}` });
-    const f = path.join(S.dir, `draft_${tag}.ru.md`);
     write(f, stripFence(text));
     files.push(f);
   }
@@ -333,7 +405,20 @@ function stageJudge(S, ctx, plan, row, known, file, only = null) {
     ["judge_taste", { ...base, СЕССИЯ: session, ЭТАЛОН_ТОГО_ЖЕ_ТИПА: same }],
     ["judge_pedagogy", { ...base, СЕССИЯ: session, МАШИННЫЕ_ФАКТЫ: facts }],
   ].filter(([name]) => !only || only.includes(name))) {
-    const text = callModel({ system: fill(prompt(name), vars), user: "Вынеси вердикт.", model: MODEL_JUDGE, label: `${name} · ${path.basename(file)}` });
+    const cacheFile = path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.json`);
+    // зачем: вердикт по неизменившемуся файлу не пересуживаем — экономия
+    // после обрыва по лимиту (один вызов судьи ≈ $0.31)
+    if (exists(cacheFile)) {
+      try {
+        const cached = JSON.parse(read(cacheFile));
+        if (cached.verdict) {
+          LOG(`   ${name}: из кэша — ${cached.verdict}`);
+          out[name] = cached;
+          continue;
+        }
+      } catch (e) { WARN(`кэш вердикта ${path.basename(cacheFile)} нечитаем (${e.message}) — сужу заново`); }
+    }
+    const text = callModel({ system: fill(prompt(name), vars), user: "Вынеси вердикт.", model: MODEL_BY_JUDGE[name] || MODEL_JUDGE, label: `${name} · ${path.basename(file)}` });
     let j;
     try { j = extractJson(text); } catch (e) { WARN(`${name}: ${e.message}; сырой ответ сохранён`); j = { verdict: "REVISE", verdict_reason: "судья не вернул JSON", raw: text }; }
     out[name] = j;
@@ -364,21 +449,81 @@ function stageEdit(S, ctx, plan, row, known, file, verdicts) {
   return f;
 }
 
+/** Что видит судья локали: все три интро + первые три задания. Голос живёт
+ * в интро; проверять весь список заданий ×7 — платить за одно и то же. */
+function excerptForLocaleJudge(text) {
+  const intro = text.split(/^## Практика/m)[0] ?? text;
+  const practice = text.split(/^## Практика/m)[1] ?? "";
+  const firstTasks = practice.split(/^\*\*(?=\d+ · )/m).slice(0, 4).join("**");
+  return `${intro}\n## Практика (первые задания)\n${firstTasks}`;
+}
+
+/** Структурная сверка локали с мастером — бесплатно, без модели. */
+function compareStructure(ru, loc) {
+  const issues = [];
+  const count = (t) => (t.match(/^\*\*\d+ · /gm) || []).length;
+  if (count(ru) !== count(loc)) issues.push(`заданий ${count(loc)} против ${count(ru)}`);
+  const modes = (t) => (/^modes:\s*([\s\S]*?)(?:\n\s*\n|$)/m.exec(t)?.[1] ?? "").replace(/\s+/g, " ").trim();
+  if (modes(ru) !== modes(loc)) issues.push("строка modes расходится");
+  // английские цели: жирные латинские фразы должны совпадать по множеству
+  const targets = (t) => new Set([...t.matchAll(/\*\*([A-Za-z][A-Za-z' .,?!-]{2,40})\*\*/g)].map((m) => m[1].trim().toLowerCase()));
+  const a = targets(ru), b = targets(loc);
+  const lost = [...a].filter((x) => !b.has(x));
+  if (lost.length) issues.push(`потеряны английские цели: ${lost.slice(0, 5).join(", ")}`);
+  return issues;
+}
+
+/** Разбор пакетного ответа «===LOCALE: xx===» на файлы по локалям. */
+function splitLocaleBatch(text) {
+  const out = {};
+  const parts = text.split(/^===LOCALE:\s*([a-zA-Z-]+)\s*===\s*$/m);
+  for (let i = 1; i < parts.length; i += 2) out[parts[i].trim()] = parts[i + 1].trim();
+  return out;
+}
+
 function stageLocalize(S, ruFile) {
+  // зачем: 03.09 локализация стоила 14 вызовов из 28 ($4+ на сессию) — по
+  // вызову на каждую из 7 локалей и по вызову на каждого судью локали.
+  // Один вызов пишет все семь, один судит все семь: 14 → 2.
   const ru = read(ruFile);
   const results = {};
-  for (const loc of LOCALES) {
-    const vars = { ЛОКАЛЬ: loc, ЯЗЫК_ЛОКАЛИ: LOCALE_NAMES[loc] || loc, СЕССИЯ_RU: ru };
-    const text = callModel({ system: fill(prompt("localize"), vars), user: "Сделай версию для своей локали.", model: MODEL_DRAFT, label: `локаль ${loc}` });
-    const f = path.join(S.dir, `final.${loc}.md`);
-    write(f, stripFence(text));
-    const jt = callModel({ system: fill(prompt("judge_locale"), { ...vars, СЕССИЯ_ЛОКАЛЬ: read(f) }), user: "Вынеси вердикт.", model: MODEL_JUDGE, label: `судья локали ${loc}` });
-    let j;
-    try { j = extractJson(jt); } catch (e) { WARN(`судья ${loc}: ${e.message}`); j = { verdict: "REVISE", verdict_reason: "нет JSON", raw: jt }; }
-    write(path.join(S.dir, `final.${loc}.judge.json`), JSON.stringify(j, null, 2));
-    results[loc] = j.verdict;
-    LOG(`   локаль ${loc}: ${j.verdict} — ${j.verdict_reason}`);
+  const batchFile = path.join(S.dir, "locales_batch.md");
+  let batch;
+  if (exists(batchFile) && read(batchFile).length > 5000) {
+    LOG(`пропуск локализации: locales_batch.md уже есть (${read(batchFile).length} зн.)`);
+    batch = splitLocaleBatch(read(batchFile));
+  } else {
+    const text = callModel({ system: fill(prompt("localize_batch"), { СЕССИЯ_RU: ru }), user: "Сделай семь локалей.", model: MODEL_DRAFT, maxTokens: 32000, label: "локали ×7 (пакет)" });
+    write(batchFile, stripFence(text));
+    batch = splitLocaleBatch(stripFence(text));
   }
+  const missing = LOCALES.filter((l) => !batch[l] || batch[l].length < 500);
+  if (missing.length) WARN(`в пакете нет или пусты локали: ${missing.join(", ")}`);
+  const parts = [];
+  const structural = {};
+  for (const loc of LOCALES) {
+    if (!batch[loc]) continue;
+    const f = path.join(S.dir, `final.${loc}.md`);
+    write(f, batch[loc]);
+    // зачем: структуру (номера заданий, английские цели, строку modes)
+    // проверяет скрипт бесплатно — судье остаётся только язык и вкус.
+    structural[loc] = compareStructure(ru, batch[loc]);
+    // судье отдаём интро целиком (там весь голос) + первые три задания,
+    // а не всю сессию ×7: 45 тыс. знаков → ~14 тыс.
+    parts.push(`===LOCALE: ${loc}===\n${excerptForLocaleJudge(batch[loc])}`);
+  }
+  const structIssues = Object.entries(structural).filter(([, v]) => v.length);
+  if (structIssues.length) WARN(`структурные расхождения: ${structIssues.map(([l, v]) => `${l}: ${v.join("; ")}`).join(" | ")}`);
+  const jt = callModel({ system: fill(prompt("judge_locale_batch"), { СЕССИЯ_RU: excerptForLocaleJudge(ru), СЕССИИ_ЛОКАЛЕЙ: parts.join("\n\n") }), user: "Вынеси вердикт по семи локалям.", model: MODEL_JUDGE, maxTokens: 8000, label: "судья локалей ×7" });
+  let j;
+  try { j = extractJson(jt); } catch (e) { WARN(`судья локалей: ${e.message}`); j = { verdict: "REVISE", verdict_reason: "нет JSON", raw: jt }; }
+  write(path.join(S.dir, "locales.judge.json"), JSON.stringify(j, null, 2));
+  for (const loc of LOCALES) {
+    const v = j.locales?.[loc]?.verdict ?? (missing.includes(loc) ? "BLOCK" : "?");
+    results[loc] = v;
+    LOG(`   локаль ${loc}: ${v}`);
+  }
+  LOG(`   итог локалей: ${j.verdict} — ${j.verdict_reason}`);
   return results;
 }
 
@@ -411,7 +556,19 @@ function main() {
   if (cmd === "full") {
     // зачем: best-of-3 по ДЕШЁВОМУ предотбору (только судья вкуса, парно с
     // эталоном), полный суд — лишь лучшему. 3 вызова вместо 9 на этом шаге.
-    const drafts = stageDraft(S, ctx, plan, row, known);
+    const allDrafts = stageDraft(S, ctx, plan, row, known);
+    // зачем: 03.09 судья вкуса дал PASS всем трём черновикам — два суда из
+    // трёх были выброшенными деньгами. Машинные факты (касания возвращаемых
+    // слов, объём, механики) отсеивают слабейшего бесплатно.
+    const scored = allDrafts.map((f) => {
+      const facts = machineFacts(f);
+      const penalty = (facts.match(/МЕНЬШЕ ДВУХ/g) || []).length * 2 + (facts.match(/ни разу правильным ответом/g) || []).length;
+      LOG(`машинный отбор ${path.basename(f)}: штраф ${penalty}`);
+      return { f, penalty };
+    }).sort((a, b) => a.penalty - b.penalty);
+    const drafts = scored.length > 2 && scored[2].penalty > scored[0].penalty
+      ? (LOG(`отсеян без суда: ${path.basename(scored[2].f)} (штраф ${scored[2].penalty} против ${scored[0].penalty})`), scored.slice(0, 2).map((d) => d.f))
+      : allDrafts;
     const PAIR = { better: 3, equal: 2, worse: 1 };
     let best = null;
     for (const f of drafts) {
@@ -433,7 +590,16 @@ function main() {
     const finalRu = path.join(S.dir, "final.ru.md");
     fs.copyFileSync(cur.f, finalRu);
     LOG(`final.ru.md ← ${path.basename(cur.f)} (${cur.s}/6)`);
-    if (cur.s < 6) WARN("сессия не сошлась к PASS×3 за 2 круга — нужна ручная проверка перед локализацией");
+    // зачем: 03.09 конвейер ушёл локализовать сессию, которой судья-ученик
+    // поставил BLOCK («задания 16 и 17 невыполнимы») — 14 вызовов впустую.
+    // BLOCK у любого судьи означает стоп, а не предупреждение.
+    const blocked = Object.entries(cur.v).filter(([, j]) => j.verdict === "BLOCK");
+    if (blocked.length) {
+      WARN(`СТОП перед локализацией: ${blocked.map(([n, j]) => `${n} — ${j.verdict_reason}`).join(" | ")}`);
+      write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blocked: blocked.map(([n]) => n), locales: null, at: new Date().toISOString() }, null, 2));
+      return;
+    }
+    if (cur.s < 6) WARN("сессия не сошлась к PASS×3 за 2 круга — локализую, но нужна ручная проверка");
     const loc = stageLocalize(S, finalRu);
     write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, locales: loc, at: new Date().toISOString() }, null, 2));
     return;

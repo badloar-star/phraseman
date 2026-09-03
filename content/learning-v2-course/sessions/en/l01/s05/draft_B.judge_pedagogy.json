@@ -1,0 +1,93 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "hot",
+      "sick",
+      "lost",
+      "new"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "I hot — пропуск am"
+      },
+      {
+        "task": 6,
+        "trap": "is/are вместо am"
+      },
+      {
+        "task": 10,
+        "trap": "no вместо not; am дублирование"
+      },
+      {
+        "task": 12,
+        "trap": "lost/sure вместо new — смысловая путаница"
+      },
+      {
+        "task": 13,
+        "trap": "лишняя плитка no как обманка на внимательность"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "hot",
+        "sick",
+        "lost",
+        "new"
+      ],
+      [
+        "cold",
+        "sure",
+        "fine",
+        "tired"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 2,
+      "phrase_builder": 3,
+      "context_gap_grammar": 3,
+      "speed_match": 2,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 17 склеивает две фразы в одну реплику через запятую («I am tired, I am fine»), что нарушает правило одной фразы на цель/озвучку — формально не BLOCK, но требует правки перед сдачей."
+}

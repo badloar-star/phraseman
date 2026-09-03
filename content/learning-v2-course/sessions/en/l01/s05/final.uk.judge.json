@@ -1,0 +1,40 @@
+{
+  "structure_identical": true,
+  "english_targets_identical": true,
+  "structure_diffs": [],
+  "language_purity": {
+    "foreign_fragments": [],
+    "machine_translation_smell": [
+      {
+        "where": "Інтро 2, перше речення",
+        "quote": "рука сама ліпить not туди ж",
+        "natural": "рука сама тулить not туди ж"
+      },
+      {
+        "where": "Практика 2, розбір hut",
+        "quote": "Голосна глуха, упівголоса",
+        "natural": "Голосна глуха, наче впівголоса"
+      }
+    ]
+  },
+  "native_anchor": {
+    "uses_own_language_contrast": true,
+    "wrong_russian_anchor_leaked": []
+  },
+  "traps_localized": {
+    "ok": true,
+    "untypical_for_my_speakers": []
+  },
+  "humor": {
+    "present_on_every_intro": true,
+    "on_topic": true,
+    "misfires": []
+  },
+  "tone": {
+    "warm_polite": true,
+    "bureaucratic_or_termy": []
+  },
+  "definitions_alive": true,
+  "verdict": "PASS",
+  "verdict_reason": "Українська версія читається як самостійний оригінал: структура, англійські цілі й пастки збігаються з мастером, опора переписана під українську мову без російських слідів, а два дрібні стилістичні місця не тягнуть на переробку."
+}

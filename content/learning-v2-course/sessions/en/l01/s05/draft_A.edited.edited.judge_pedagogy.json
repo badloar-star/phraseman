@@ -1,0 +1,110 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "hot",
+      "sick",
+      "lost",
+      "new"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 0,
+        "trap": "Интро 1: «I hot» — выброшен am, классическая калька с русского"
+      },
+      {
+        "task": 0,
+        "trap": "Интро 1: «Am hot» — потеряно I"
+      },
+      {
+        "task": 0,
+        "trap": "Интро 2: «I not sure» — not вместо am, прямой перенос русского «я не»"
+      },
+      {
+        "task": 0,
+        "trap": "Интро 2: «I am no sick» — no вместо not, ровно из строки плана «I no sure»"
+      },
+      {
+        "task": 0,
+        "trap": "Интро 3: «I am not lost» — смысловая ловушка, перевёрнутое значение"
+      },
+      {
+        "task": 13,
+        "trap": "лишняя плитка `no` при сборке «I am not sick»"
+      },
+      {
+        "task": 16,
+        "trap": "лишняя плитка `thank`"
+      },
+      {
+        "task": 17,
+        "trap": "лишняя плитка `is`"
+      },
+      {
+        "task": 5,
+        "trap": "лишняя плитка `not` — обманка на внимательность"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 18,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      5,
+      13,
+      16,
+      17
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 4,
+      "phrase_builder": 4,
+      "context_gap_grammar": 4,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Заголовок практики обещает «17 заданий», а фактически их 18, и все четыре новых слова получают только по одному касанию новым словом во фразе — при этом sick/hot/lost проведены через фразу, а из возвращаемых слов here ни разу не оказывается правильным ответом (задание 14: «here — правда, но прохожий и так вас видит»), что нарушает правило «хотя бы одно касание правильным ответом» для возвращаемых слов.",
+  "issues_detail": [
+    {
+      "type": "count_mismatch",
+      "quote": "## Практика (17 заданий, поддержка убывает)",
+      "fact": "фактически 18 заданий (machine count: заданий 18); строка modes перечисляет 18 позиций"
+    },
+    {
+      "type": "returning_word_never_correct",
+      "quote": "14 · Вставьте слово … here — «Я здесь» — правда, но прохожий и так вас видит.",
+      "fact": "machine: here — касаний 2, правильным ответом 0; правило требует ≥1 касания правильным ответом для возвращаемых слов"
+    }
+  ]
+}

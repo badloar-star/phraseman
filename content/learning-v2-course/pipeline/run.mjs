@@ -501,6 +501,26 @@ function stageEdit(S, ctx, plan, row, known, file, verdicts) {
   const f = path.join(S.dir, `${path.basename(file, ".ru.md")}.edited.ru.md`);
   write(f, body);
   write(path.join(S.dir, `${path.basename(file, ".ru.md")}.edit_notes.md`), text.split(/\n## Изменения/)[1] ? `## Изменения${text.split(/\n## Изменения/)[1]}` : "(редактор не оставил списка изменений)");
+
+  // зачем: 03.09 вторая правка починила интро 3 и СЛОМАЛА интро 1 — редактор
+  // не видел последствий своей работы до следующего круга. Сверяем сразу и
+  // даём одну попытку доправить, называя, что именно он сломал или не закрыл.
+  const hard = (p) => machineFacts(p).split("\n").filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ/.test(l));
+  const left = hard(f);
+  if (left.length) {
+    LOG(`   после правки осталось незакрытым (${left.length}): ${left.map((l) => l.split("—")[0].trim()).join("; ")}`);
+    const retry = callModel({
+      system: fill(prompt("editor"), { ...vars, СЕССИЯ: body, МАШИННЫЕ_ФАКТЫ: left.join("\n") }),
+      user: `Ты уже правил эту сессию, но эти посчитанные факты остались незакрытыми:\n${left.join("\n")}\nЗакрой КАЖДЫЙ, не ломая остальное. Верни полную сессию.`,
+      model: MODEL_JUDGE, label: `редактор (добор) · ${path.basename(file)}`,
+    });
+    const retryBody = stripFence(retry).split(/\n## Изменения/)[0].trim();
+    const tmp = path.join(S.dir, `${path.basename(file, ".ru.md")}.edited.retry.ru.md`);
+    write(tmp, retryBody);
+    const after = hard(tmp);
+    if (after.length < left.length) { write(f, retryBody); LOG(`   добор помог: было ${left.length}, стало ${after.length}`); }
+    else LOG(`   добор не помог (${after.length}) — оставляю первую правку, решать судьям`);
+  }
   return f;
 }
 

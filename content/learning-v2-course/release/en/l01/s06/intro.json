@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `I am` / `I am not` в новом месте — не на работе, а дома"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Home — не «дом», а «дома»"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, где вы. Вы не на работе — вы `home`.\n\nПо-русски «дома» и «в доме» — разные слова. Англичанин обходится одним: `I am home`. Никакого «в», никакого «на». Просто `home` — и всем ясно, что вы уже сняли обувь."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Связь плохая, друг кричит: «Where are you?» Ответьте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-06:intro1:r1",
+              "text": "I am home."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro1:r2",
+              "text": "I am in home."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro1:r3",
+              "text": "I home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Связь плохая, друг кричит: «Where are you?» Ответьте."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Back — «я вернулся», одним словом"
+      },
+      "bodyByLocale": {
+        "ru": "Ушли и пришли обратно — это `back`. Вернулись с работы, из магазина, из отпуска: `I am back`.\n\nДва слова вместо нашего «я вернулся домой, всё, я на месте». Английский тут экономный, как человек, у которого осталось три процента батареи."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг не понял, дома вы уже или ещё в дороге. Скажите, что вы вернулись."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-06:intro2:r1",
+              "text": "I am back."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro2:r2",
+              "text": "I am back home."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro2:r3",
+              "text": "I back."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг не понял, дома вы уже или ещё в дороге. Скажите, что вы вернулись."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Done — слово, которым закрывают тему"
+      },
+      "bodyByLocale": {
+        "ru": "Работа кончилась — `I am done`. Не «я сделал работу», а просто «всё, я закрыт». И вечер официально начался.\n\nХитрость в том, что пишется `done`, а говорится «дан». Буква «о» тут только для красоты."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг: «Ты ещё работаешь?» Скажите, что нет."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-06:intro3:r1",
+              "text": "I am done."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro3:r2",
+              "text": "I am here."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro3:r3",
+              "text": "I am not done."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг: «Ты ещё работаешь?» Скажите, что нет."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c8c6afac03e96f97ad516d25bf7f57bb1ae9e152867ec8d289821e2c55d71494"
+}

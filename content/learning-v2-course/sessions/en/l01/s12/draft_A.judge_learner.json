@@ -1,0 +1,120 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя говорю I am, про неё — you are. Нельзя путать эти две скрепки.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (brave)",
+      "what_i_understood": "brave — смелая, потому что она сама призналась в ошибке, хотя могла промолчать. Про неё — you are brave.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (calm)",
+      "what_i_understood": "calm — спокойная снаружи, даже если внутри страшно. Это не то же самое, что тихая (quiet).",
+      "confusion": "Не сразу понял разницу calm/quiet, но пример с 'тряслась внутри, но не показала' помог.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (brave, произношение)",
+      "what_i_understood": "brave звучит не как brain и не как grave, начало другое.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (calm, произношение)",
+      "what_i_understood": "l в calm не произносится, звучит 'кам'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка фразы)",
+      "what_i_understood": "You are calm. — собрал без проблем, лишняя плитка am не нужна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 (honest)",
+      "what_i_understood": "honest — честный, h не произносится, звучит 'онест'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (вставьте слово, честно призналась)",
+      "what_i_understood": "Выбрал honest, а не tired/quiet — они не подходят по смыслу ситуации.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9-10 (smart + доска пар)",
+      "what_i_understood": "smart — умный. В доске пар сопоставил все 4 новых слова с переводом.",
+      "confusion": "Слово smart получило карточку прямо перед доской пар — это нормально, я его уже видел один раз, запомнил быстро.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (скрепка I am)",
+      "what_i_understood": "Про себя всегда am, не are и не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (сборка на слух, smart)",
+      "what_i_understood": "You are smart. Собрал по звуку правильно, лишняя плитка am осталась в стороне.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (quiet, молчала на встрече)",
+      "what_i_understood": "quiet — тихая/молчаливая, не brave и не honest, потому что тут не про смелость или честность, а про то, что она не говорила.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (kind, лишний not)",
+      "what_i_understood": "You are kind. — not оказался лишний, потому что я соглашаюсь, а не спорю. Понял ловушку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (говорение, brave+smart)",
+      "what_i_understood": "Проговорил вслух две фразы подряд, сравнил со звуком — не спутал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (I am calm, чужая скрепка среди плиток)",
+      "what_i_understood": "Собрал I am calm, не взял чужую are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, 4 фразы)",
+      "what_i_understood": "You are brave. You are honest. You are smart. I am tired. Сказал все четыре подряд без подсказок, понял зачем — это подведение итога разговора за кофе.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово brave (смелый) — и что это про честное признание, а не про геройство",
+    "Слово calm (спокойный) — и что оно про поведение снаружи, а не про то, что творится внутри",
+    "Слово honest (честный) — и что первая буква h не произносится",
+    "Слово smart (умный)",
+    "Что 'you are' и 'i am' нельзя путать местами даже когда в предложении появляется новое слово",
+    "Что not в фразе-согласии — лишний, и это может быть ловушкой в задании"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Интро 2 — она сама призналась начальнику, хотя могла смолчать, и я говорю ей 'ты смелая'. Понятно, зачем это говорить, по-настоящему трогает.",
+    "Задание 14 — ловушка с лишним not, где я чуть не добавил его, а потом понял, что тут не спор, а согласие",
+    "Финал (17) — сказать сразу три комплимента и одну фразу о себе, это как будто настоящий разговор закончился, приятно"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — всё время понятно, что я говорю коллеге за кофе конкретные вещи про неё в ответ на то, что она рассказала (призналась в ошибке — смелая, держалась спокойно — calm, ничего не сказала — quiet), а про себя говорю то, что чувствую сам (устал). Ни одной фразы 'в пустоту'.",
+  "would_continue": "да — было интересно, слова хорошо запомнились через конкретные ситуации, а не через зубрёжку, и в конце было приятное чувство завершённости разговора",
+  "verdict": "PASS",
+  "verdict_reason": "Прошёл всю сессию честно, ни одно задание не потребовало незнакомых слов в правильном ответе, узнал 4 новых слова с понятным смыслом и хочу продолжать."
+}

@@ -19,13 +19,15 @@
  *   • три плитки в ряд, ровно как в каталоге — знакомая геометрия;
  *   • уже добавленные НЕ прячем: показываем с галочкой «в моих наборах»;
  *   • тап по плитке открывает набор в режиме просмотра (как в каталоге);
- *   • НЕТ данных — НЕТ блока: ни скелетона, ни заглушки, ни пустой полосы.
+ *   • медленная сеть не должна выглядеть как исчезнувший блок: место витрины
+ *     резервируется, а после пустого ответа доступна явная повторная загрузка.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
+  Pressable,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -34,6 +36,8 @@ import {
 } from 'react-native';
 import type { Theme } from '../../constants/theme';
 import { triLang, type Lang } from '../../constants/i18n';
+import { useTheme } from '../../components/ThemeContext';
+import { AdaptiveLabel } from '../../components/text-integrity/AdaptiveLabel';
 import { hapticTap } from '../../hooks/use-haptics';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
 import {
@@ -44,6 +48,7 @@ import {
 import { bundledPackTilePng, packTileImageForPack } from './packMarketplaceIcons';
 import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
+import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
 import { addCommunityPackToLibrary } from '../community_packs/communityPackActions';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 
@@ -86,7 +91,7 @@ export function pickTopCommunityPacks(
   limit = COLS,
 ): FlashcardMarketPack[] {
   return catalog
-    .filter((p) => !!p?.isCommunityUgc && p.listingStatus !== 'local_only')
+    .filter((p) => !!p?.isCommunityUgc && !isLocalAuthorPackId(p.id))
     .sort((a, b) => {
       const likes = (b.likesCount ?? 0) - (a.likesCount ?? 0);
       if (likes !== 0) return likes;
@@ -125,6 +130,8 @@ function TopPackTileBase({
    * догоняет счётчик — поэтому откат тут нужен только на настоящий отказ.
    */
   const [addedLocally, setAddedLocally] = useState(false);
+  const [labelReflowed, setLabelReflowed] = useState(false);
+  const onLabelReflow = useCallback(() => setLabelReflowed(true), []);
   /** Защита от двойного тапа: пока идёт запись, повторное нажатие игнорируем. */
   const addBusyRef = useRef(false);
   const isOwned = owned || addedLocally;
@@ -223,7 +230,9 @@ function TopPackTileBase({
               backgroundColor: t.bgCard,
             }}
           >
-            <Text style={{ fontSize: 9, fontWeight: '800', color: t.textSecond }}>{pack.cardCount}</Text>
+            <Text style={{ fontSize: Math.max(10, Math.round(labelSize * 0.82)), fontWeight: '900', color: t.textSecond }}>
+              {pack.cardCount}
+            </Text>
           </View>
         ) : null}
 
@@ -241,24 +250,34 @@ function TopPackTileBase({
         ) : null}
       </TouchableOpacity>
 
-      <Text
+      <AdaptiveLabel
+        testID={`saved-top-pack-title-${pack.id}`}
+        provenance="user"
+        availableWidth={width}
+        compactLineLimit={2}
+        onReflowNeeded={onLabelReflow}
         style={{
-          marginTop: 7, fontSize: labelSize + 1, fontWeight: '700',
-          color: t.textPrimary, textAlign: 'center', lineHeight: labelSize + 4,
+          marginTop: 8,
+          fontSize: labelReflowed ? Math.max(11, Math.round((labelSize + 1) * 0.82)) : labelSize + 1,
+          fontWeight: '800', color: t.textPrimary, textAlign: 'center',
+          lineHeight: labelReflowed ? Math.max(15, Math.round((labelSize + 4) * 0.86)) : labelSize + 4,
         }}
-        numberOfLines={2}
       >
         {title}
-      </Text>
-      <Text
+      </AdaptiveLabel>
+      <AdaptiveLabel
+        testID={`saved-top-pack-author-${pack.id}`}
+        provenance="user"
+        availableWidth={width}
+        compactLineLimit={1}
+        onReflowNeeded={onLabelReflow}
         style={{
-          marginTop: 2, fontSize: Math.max(8, labelSize - 1), fontWeight: '600',
-          color: t.textMuted, textAlign: 'center',
+          marginTop: 2, fontSize: Math.max(10, labelSize - 1), fontWeight: '700',
+          color: t.textSecond, textAlign: 'center', lineHeight: labelSize + 3,
         }}
-        numberOfLines={1}
       >
         {authorName}
-      </Text>
+      </AdaptiveLabel>
 
       {/* Лайки и добавления — тем же компонентом, что в каталоге (0 чтений на плитке). */}
       <View style={{ marginTop: 5 }}>
@@ -278,10 +297,10 @@ function TopPackTileBase({
         activeOpacity={0.85}
         disabled={isOwned}
         onPress={onAddPress}
-        hitSlop={{ top: 6, bottom: 8, left: 8, right: 8 }}
+        hitSlop={4}
         style={{
           marginTop: 6,
-          minHeight: 28,
+          minHeight: 48,
           width: '100%',
           borderRadius: 999,
           paddingHorizontal: 8,
@@ -290,16 +309,20 @@ function TopPackTileBase({
           backgroundColor: isOwned ? `${t.accent}1F` : t.accent,
         }}
       >
-        <Text
-          numberOfLines={1}
+        <AdaptiveLabel
+          testID={`saved-top-pack-add-label-${pack.id}`}
+          provenance="authored"
+          availableWidth={Math.max(1, width - 16)}
+          compactLineLimit={1}
+          onReflowNeeded={onLabelReflow}
           style={{
-            fontSize: Math.max(9, labelSize),
-            fontWeight: '800',
+            fontSize: Math.max(11, labelSize),
+            fontWeight: '900',
             color: isOwned ? t.accent : t.bgPrimary,
           }}
         >
           {isOwned ? ownedLabel : addLabel}
-        </Text>
+        </AdaptiveLabel>
       </TouchableOpacity>
     </View>
   );
@@ -339,13 +362,12 @@ export type SavedTopCommunityPacksProps = {
   onAdded: (packId: string) => void;
   /** id набора, который сейчас открывается (крутилка на плитке). */
   openingPackId?: string | null;
+  /** Каталог ещё загружается; витрина резервирует место, чтобы экран не прыгал. */
+  loading?: boolean;
+  /** Повторить загрузку после пустого/недоступного ответа. */
+  onRetry?: () => void;
 };
 
-/**
- * НЕТ ДАННЫХ — НЕТ БЛОКА. Никакого скелетона и никакой пустой полосы: пока
- * каталог не пришёл, шапка списка просто отсутствует, и первый кадр сохранённых
- * карточек не сдвигается вниз впустую.
- */
 export default function SavedTopCommunityPacks({
   catalog,
   ownedCommunityPackIds,
@@ -356,7 +378,12 @@ export default function SavedTopCommunityPacks({
   onOpenPreview,
   onAdded,
   openingPackId = null,
+  loading = false,
+  onRetry,
 }: SavedTopCommunityPacksProps) {
+  const { f } = useTheme();
+  const [headingReflowed, setHeadingReflowed] = useState(false);
+  const onHeadingReflow = useCallback(() => setHeadingReflowed(true), []);
   const top = useMemo(() => pickTopCommunityPacks(catalog), [catalog]);
   const ownedSet = useMemo(() => new Set(ownedCommunityPackIds), [ownedCommunityPackIds]);
 
@@ -364,38 +391,61 @@ export default function SavedTopCommunityPacks({
     () => Math.max(72, Math.floor((contentWidth - GAP * (COLS - 1)) / COLS)),
     [contentWidth],
   );
-  const labelSize = Math.max(9, Math.min(11, Math.floor(tileW * 0.11)));
+  const labelSize = Math.max(11, Math.min(f.caption, Math.floor(tileW * 0.13)));
 
-  if (top.length === 0) return null;
+  const heading = triLang(lang, {
+    ru: 'Лучшее у сообщества',
+    uk: 'Найкраще у спільноти',
+    en: 'Top from the community',
+    es: 'Lo mejor de la comunidad',
+    'pt-BR': 'O melhor da comunidade',
+    vi: 'Hay nhất từ cộng đồng',
+    id: 'Terbaik dari komunitas',
+    tr: "Topluluğun en iyileri",
+    pl: 'Najlepsze od społeczności',
+  });
+  const loadingLabel = triLang(lang, {
+    ru: 'Загружаем лучшие наборы', uk: 'Завантажуємо найкращі набори', en: 'Loading top packs',
+    es: 'Cargando los mejores packs', 'pt-BR': 'Carregando os melhores pacotes',
+    vi: 'Đang tải các bộ thẻ hay nhất', id: 'Memuat paket terbaik', tr: 'En iyi paketler yükleniyor',
+    pl: 'Ładowanie najlepszych zestawów',
+  });
+  const unavailableLabel = triLang(lang, {
+    ru: 'Наборы сообщества пока недоступны', uk: 'Набори спільноти поки недоступні',
+    en: 'Community packs are unavailable right now', es: 'Los packs de la comunidad no están disponibles ahora',
+    'pt-BR': 'Os pacotes da comunidade estão indisponíveis agora', vi: 'Các bộ thẻ cộng đồng hiện chưa khả dụng',
+    id: 'Paket komunitas sedang tidak tersedia', tr: 'Topluluk paketleri şu anda kullanılamıyor',
+    pl: 'Zestawy społeczności są teraz niedostępne',
+  });
+  const retryLabel = triLang(lang, {
+    ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente',
+    vi: 'Thử lại', id: 'Coba lagi', tr: 'Yeniden dene', pl: 'Spróbuj ponownie',
+  });
 
   return (
     /* зачем: витрина не должна липнуть к полю поиска — воздух сверху обязателен. */
     <View style={{ width: contentWidth, alignSelf: 'center', marginTop: 10, marginBottom: 18 }}>
-      <Text
+      <AdaptiveLabel
+        testID="saved-top-community-heading"
+        provenance="authored"
+        availableWidth={contentWidth}
+        compactLineLimit={1}
+        onReflowNeeded={onHeadingReflow}
         style={{
-          fontSize: 13,
-          fontWeight: '800',
-          color: t.textSecond,
-          marginBottom: 10,
-          letterSpacing: 0.2,
+          fontSize: headingReflowed ? Math.max(f.bodyLg, Math.round(f.h2 * 0.86)) : f.h2,
+          lineHeight: Math.round((headingReflowed ? Math.max(f.bodyLg, f.h2 * 0.86) : f.h2) * 1.25),
+          fontWeight: '900',
+          color: t.textPrimary,
+          marginBottom: 12,
+          letterSpacing: 0.1,
         }}
-        numberOfLines={1}
       >
-        {triLang(lang, {
-          ru: 'Лучшее у сообщества',
-          uk: 'Найкраще у спільноти',
-          en: 'Top from the community',
-          es: 'Lo mejor de la comunidad',
-          'pt-BR': 'O melhor da comunidade',
-          vi: 'Hay nhất từ cộng đồng',
-          id: 'Terbaik dari komunitas',
-          tr: "Topluluğun en iyileri",
-          pl: 'Najlepsze od społeczności',
-        })}
-      </Text>
+        {heading}
+      </AdaptiveLabel>
 
-      <View style={{ flexDirection: 'row', gap: GAP }}>
-        {top.map((pack) => (
+      {top.length > 0 ? (
+        <View style={{ flexDirection: 'row', gap: GAP }}>
+          {top.map((pack) => (
           <TopPackTile
             key={`saved_top_${pack.id}`}
             pack={pack}
@@ -410,8 +460,57 @@ export default function SavedTopCommunityPacks({
             onOpen={onOpenPreview}
             onAdded={onAdded}
           />
-        ))}
-      </View>
+          ))}
+        </View>
+      ) : loading ? (
+        <View
+          accessible
+          accessibilityRole="progressbar"
+          accessibilityLabel={loadingLabel}
+          style={{ flexDirection: 'row', gap: GAP }}
+        >
+          {Array.from({ length: COLS }, (_, index) => (
+            <View
+              key={`saved-top-pack-loading-${index}`}
+              style={{
+                width: tileW,
+                minHeight: tileW + Math.max(108, Math.round(f.sub * 7)),
+                borderRadius: TILE_RADIUS,
+                backgroundColor: t.bgSurface,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {index === 1 ? <ActivityIndicator color={t.accent} /> : null}
+            </View>
+          ))}
+        </View>
+      ) : (
+        <View style={{ minHeight: 112, borderRadius: 18, padding: 16, backgroundColor: t.bgSurface, alignItems: 'center', justifyContent: 'center', gap: 12 }}>
+          <Text style={{ color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), fontWeight: '700', textAlign: 'center' }}>
+            {unavailableLabel}
+          </Text>
+          {onRetry ? (
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={retryLabel}
+              onPress={onRetry}
+              style={({ pressed }) => ({
+                minHeight: 48,
+                minWidth: 120,
+                borderRadius: 14,
+                paddingHorizontal: 18,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: t.accent,
+                opacity: pressed ? 0.82 : 1,
+              })}
+            >
+              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>{retryLabel}</Text>
+            </Pressable>
+          ) : null}
+        </View>
+      )}
     </View>
   );
 }

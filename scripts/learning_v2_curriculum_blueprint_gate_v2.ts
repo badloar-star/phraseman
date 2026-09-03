@@ -50,6 +50,13 @@ const lexicalDensityFindings = blueprint.sessionPackets.flatMap((packet) => {
 
   return [];
 });
+const checkpointRetrievalFindings = blueprint.sessionPackets
+  .filter(
+    (packet) =>
+      packet.sessionWithinChapter === 8 &&
+      packet.retrievalLexicalSenseIds.length === 0,
+  )
+  .map((packet) => `checkpoint_retrieval_missing:${packet.sessionId}`);
 const courseStartOperation = blueprint.grammarOperations[0];
 const courseStartPacket = blueprint.sessionPackets[0];
 const courseStartFindings = [
@@ -82,6 +89,7 @@ const pass =
   semanticFindings.length === 0 &&
   lexicalScopeFindings.length === 0 &&
   lexicalDensityFindings.length === 0 &&
+  checkpointRetrievalFindings.length === 0 &&
   courseStartFindings.length === 0;
 
 if (!pass) {
@@ -90,7 +98,7 @@ if (!pass) {
     `counts_pass=${countsPass} fingerprint_pass=${fingerprintPass} approval_pass=${approvalPass}\n`,
   );
   process.stderr.write(
-    `scope_findings=${scopeFindings.length} dag_findings=${dagFindings.length} semantic_findings=${semanticFindings.length} lexical_scope_findings=${lexicalScopeFindings.length} lexical_density_findings=${lexicalDensityFindings.length} course_start_findings=${courseStartFindings.length}\n`,
+    `scope_findings=${scopeFindings.length} dag_findings=${dagFindings.length} semantic_findings=${semanticFindings.length} lexical_scope_findings=${lexicalScopeFindings.length} lexical_density_findings=${lexicalDensityFindings.length} checkpoint_retrieval_findings=${checkpointRetrievalFindings.length} course_start_findings=${courseStartFindings.length}\n`,
   );
   process.exitCode = 1;
 } else {
@@ -102,7 +110,7 @@ if (!pass) {
     `intro_plan_items=${manifest.introPlanItemCount} activity_plan_items=${manifest.activityPlanItemCount}\n`,
   );
   process.stdout.write(
-    `scope_findings=${scopeFindings.length} dag_findings=${dagFindings.length} semantic_findings=${semanticFindings.length} lexical_scope_findings=${lexicalScopeFindings.length} lexical_density_findings=${lexicalDensityFindings.length} course_start_findings=${courseStartFindings.length}\n`,
+    `scope_findings=${scopeFindings.length} dag_findings=${dagFindings.length} semantic_findings=${semanticFindings.length} lexical_scope_findings=${lexicalScopeFindings.length} lexical_density_findings=${lexicalDensityFindings.length} checkpoint_retrieval_findings=${checkpointRetrievalFindings.length} course_start_findings=${courseStartFindings.length}\n`,
   );
   process.stdout.write(
     `owner_approval=${manifest.ownerApproval} fingerprint=${manifest.fingerprint}\n`,

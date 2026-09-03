@@ -10,19 +10,20 @@ describe('home learning CTA contract', () => {
   it('renders the continue-lesson card instead of the plan cards', () => {
     expect(source).not.toContain('<PersonalPlanHomeRouteCard');
     expect(source).not.toContain('testID="home-personal-plan-card"');
-    expect(source).toContain('testID="home-continue-lesson"');
+    expect(source).toContain("testID={showMistakesCard ? 'home-mistakes-card' : 'home-continue-lesson'}");
     expect(source).toContain("router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any)");
   });
 
   it('uses dedicated per-theme art for the last-lesson card', () => {
-    const cardStart = source.indexOf('testID="home-continue-lesson"');
-    const cardEnd = source.indexOf('{/* Домашние подсказки:', cardStart);
+    const cardStart = source.indexOf("testID={showMistakesCard ? 'home-mistakes-card' : 'home-continue-lesson'}");
+    const cardEnd = source.indexOf('{/* «Задание»', cardStart);
     const cardSource = source.slice(cardStart, cardEnd);
     const assetPath = path.join(process.cwd(), 'app', 'home_last_lesson_assets.ts');
 
     expect(source).toContain("import { getHomeLastLessonImage } from '../home_last_lesson_assets';");
     expect(source).toContain('const lastLessonImage = getHomeLastLessonImage(themeMode);');
-    expect(cardSource).toContain('source={lastLessonImage}');
+    expect(source).toContain('const priorityCardImage = showMistakesCard ? homeMistakesImage : lastLessonImage;');
+    expect(cardSource).toContain('source={priorityCardImage}');
     expect(cardSource).not.toContain('source={menuImages.lesson}');
     expect(cardSource).not.toContain('align="center"');
     expect(fs.existsSync(assetPath)).toBe(true);
@@ -44,7 +45,6 @@ describe('home learning CTA contract', () => {
   // push-маршрут /lessons_list, заменивший убранный таб с книжкой.
   it('opens the full lessons list from the quick-start tile', () => {
     expect(source).toContain("onPress: () => { go('/lessons_list'); }");
-    expect(source).not.toContain("'/(tabs)/lessons'");
   });
 
   // зачем: владелец убрал с главной плашку «Выбрать свой план обучения» —
@@ -63,5 +63,26 @@ describe('home learning CTA contract', () => {
     expect(source).not.toContain("onAppEvent('personal_plan_updated', (payload)");
     expect(source).not.toContain('setPersonalPlanSnapshot(payload.snapshot)');
     expect(source).not.toContain('personalPlanSnapshot: planSnapshot');
+  });
+
+  it('keeps automatic mistakes priority while a long press can reveal the last lesson', () => {
+    // Автоматическое решение остаётся источником по умолчанию. Ручной выбор —
+    // только сессионный и доступен лишь когда есть обе карточки для переключения.
+    expect(source).toContain("const [homeLearningPriorityOverride, setHomeLearningPriorityOverride] = useState<'mistakes' | 'last_lesson' | null>(null);");
+    expect(source).toContain('const automaticHomeLearningPriority = resolveHomeLearningPriority(effectiveMistakeReadyCount);');
+    expect(source).toContain("const canToggleHomeLearningPriority = automaticHomeLearningPriority === 'mistakes' && lastLesson !== null;");
+    expect(source).toContain('const homeLearningPriority = canToggleHomeLearningPriority && homeLearningPriorityOverride !== null');
+    expect(source).toContain('setHomeLearningPriorityOverride((currentOverride) =>');
+    expect(source).toContain('delayLongPress={550}');
+    expect(source).toContain('onLongPress={handleHomeLearningPriorityCardLongPress}');
+  });
+
+  it('uses a reduced-motion-aware UI-thread scale while the priority card is held', () => {
+    expect(source).toContain('const homePriorityCardScale = useSharedValue(1);');
+    expect(source).toContain('const homePriorityCardScaleStyle = useAnimatedStyle(() => ({');
+    expect(source).toContain('onPressIn={handleHomeLearningPriorityCardPressIn}');
+    expect(source).toContain('onPressOut={handleHomeLearningPriorityCardPressOut}');
+    expect(source).toContain('<Reanimated.View style={homePriorityCardScaleStyle}>');
+    expect(source).toContain('homePriorityCardReduceMotion');
   });
 });

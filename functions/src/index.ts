@@ -949,6 +949,7 @@ export {
   paypalOrderCapture,
   webOrderStatus,
   webPrices,
+  adminCancelStripeSubscriptionRenewal,
   adminCreateGiftCertificateBatch,
   adminGetGiftCertificateBatchOperation,
   adminCancelGiftCertificateBatchOperation,

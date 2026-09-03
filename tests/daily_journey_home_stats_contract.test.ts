@@ -684,14 +684,35 @@ describe('Home source wiring for Daily Journey', () => {
   test('keeps Spin centered and removes the empty action row after unread clears', () => {
     expect(home.indexOf('testID="home-spin-fab"')).toBeLessThan(home.indexOf('testID="home-gift-entry"'));
     expect(home).toMatch(/testID="home-spin-fab"[\s\S]{0,260}alignSelf: 'center'/);
-    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,220}position: 'absolute'[\s\S]{0,100}right: 0/);
+    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,500}style=\{homeActionRowBothVisible \? \{[\s\S]{0,300}\} : \{[\s\S]{0,260}position: 'absolute'[\s\S]{0,100}right: 0/);
     expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,1200}nav\.push\('\/level_gifts_inventory'\)/);
-    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,350}ref=\{homeGiftEntryTargetRef as React\.Ref<View>\}[\s\S]{0,350}collapsable=\{false\}[\s\S]{0,350}\{dailyJourneyUnreadCount > 0 \? \(/);
+    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,350}ref=\{homeGiftEntryTargetRef as React\.Ref<View>\}[\s\S]{0,350}collapsable=\{false\}[\s\S]{0,1200}\{dailyJourneyUnreadCount > 0 \? \(/);
     expect(home).toMatch(/\{\(homeSpinBalance > 0 \|\| dailyJourneyUnreadCount > 0\) \? \(\s*<View testID="home-stats-bottom-row"[\s\S]{0,180}height: 44/);
     expect(home).toMatch(/testID="home-gift-entry-target"[\s\S]{0,220}ref=\{homeGiftEntryTargetRef as React\.Ref<View>\}[\s\S]{0,220}pointerEvents="none"[\s\S]{0,300}position: 'absolute'/);
     expect(home).toContain('dailyJourneyProjectionController.markInventoryOpened();');
     expect(home.indexOf('dailyJourneyProjectionController.markInventoryOpened();')).toBeLessThan(home.indexOf("nav.push('/level_gifts_inventory')"));
     expect(home).not.toContain('Сам ряд всегда зарезервирован');
+  });
+
+  test('places simultaneous Spin and Gift entries in separate flex slots', () => {
+    // Когда обе награды доступны, абсолютный правый слот пересекался с
+    // центрированным «Спином». В этом состоянии обе кнопки обязаны быть
+    // участниками одного flex-ряда; абсолютное позиционирование остаётся
+    // только для одиночного подарка.
+    expect(home).toMatch(/testID="home-stats-bottom-row"[\s\S]{0,500}flexDirection: homeActionRowBothVisible \? 'row' : 'column'[\s\S]{0,260}justifyContent: homeActionRowBothVisible \? 'space-between' : 'center'/);
+    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,500}style=\{homeActionRowBothVisible \? \{[\s\S]{0,300}maxWidth: homeActionMaxW[\s\S]{0,300}\} : \{[\s\S]{0,260}position: 'absolute'/);
+  });
+
+  test('renders the Spin and Gift controls without a bottom shadow border', () => {
+    const spinStart = home.indexOf('testID="home-spin-fab-button"');
+    const giftStart = home.indexOf('testID="home-gift-entry-button"');
+    const spinButton = home.slice(spinStart, home.indexOf('</TapScale>', spinStart));
+    const giftButton = home.slice(giftStart, home.indexOf('</TapScale>', giftStart));
+
+    expect(spinButton).not.toContain('borderBottomWidth');
+    expect(spinButton).not.toContain('borderBottomColor');
+    expect(giftButton).not.toContain('borderBottomWidth');
+    expect(giftButton).not.toContain('borderBottomColor');
   });
 
   test('mirrors the elongated Spin control and uses a generated Gift asset', () => {

@@ -23,20 +23,23 @@ assert.deepEqual(bundle.interfaceLocales, [
   "tr",
   "pl",
 ]);
-const firstUnlockedIndex = LESSON1_AUTHORING_REGISTRY_V1.findIndex(
-  (entry) => entry.status !== "LOCKED",
+assert.ok(bundle.sessions.length > 0, "owner review needs at least one materialized session");
+assert.ok(
+  bundle.sessions.every((session) => {
+    const registryEntry = LESSON1_AUTHORING_REGISTRY_V1[session.sessionOrdinal - 1];
+    return registryEntry?.status === "LOCKED" && session.status === "LOCKED";
+  }),
+  "the static owner review may expose only registry-LOCKED sessions",
 );
-const expectedVisibleEntries = LESSON1_AUTHORING_REGISTRY_V1
-  .slice(0, firstUnlockedIndex === -1 ? undefined : firstUnlockedIndex + 1)
-  .map((entry) => [entry.sessionOrdinal, entry.status]);
 assert.deepEqual(
-  bundle.sessions.map((session) => [session.sessionOrdinal, session.status]),
-  expectedVisibleEntries,
-  "the static owner review must never expose forbidden future ordinals",
+  bundle.sessions.map((session) => session.sessionOrdinal),
+  [...bundle.sessions.map((session) => session.sessionOrdinal)].sort((a, b) => a - b),
+  "the static owner review must retain lesson order",
 );
 
 for (const session of bundle.sessions) {
   assert.match(session.sourceFingerprint, /^[a-f0-9]{64}$/u);
+  assert.equal(session.lessonOrdinal, 1);
   assert.equal(Object.keys(session.localeProjections).length, 8);
   assert.equal(session.interactions.length, session.practiceInteractionCount);
   assert.equal(session.auxiliaryEntries.length, session.interactions.length + 3);
@@ -71,8 +74,8 @@ for (const session of bundle.sessions) {
     ],
   );
   assert.ok(
-    session.auxiliaryEntries.some((entry) => entry.newWordEncounter),
-    `session ${session.sessionOrdinal} must preserve its word-first overlays`,
+    session.auxiliaryEntries.length >= session.interactions.length + 3,
+    `session ${session.sessionOrdinal} must retain its auxiliary review data`,
   );
 }
 

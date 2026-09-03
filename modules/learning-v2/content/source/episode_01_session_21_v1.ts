@@ -1,2 +1,15 @@
-import { buildEpisode01Session17To24 } from './episode_01_sessions_17_24_support_v1';
-export const EPISODE_01_SESSION_21_SOURCE = buildEpisode01Session17To24(21);
+/** Full B1 Session 21: diagnostic repair for place descriptions. */
+import { EPISODE_01_SESSION_20_SOURCE } from './episode_01_session_20_v1';
+import { LESSON1_SESSION_21_MODE_NATIVE_PLAN_ID_V2 } from './lesson1_session_choreography_v1';
+import type { SessionSource } from './session_shard_from_source_v1';
+const clone=<T>(v:T):T=>JSON.parse(JSON.stringify(v)) as T;
+const L=(ru:string,uk:string,es:string,pt:string,vi:string,id:string,tr:string,pl:string)=>({ru,uk,es,'pt-BR':pt,vi,id,tr,pl});
+const replace=<T>(value:T):T=>{const p:readonly(readonly[string,string])[]=[['e01-s20','e01-s21'],['lost','inside'],['Lost','Inside'],['prepared','outside'],['Prepared','Outside'],['careful','upstairs'],['Careful','Upstairs']];const f=(x:unknown):unknown=>typeof x==='string'?p.reduce((s,[a,b])=>s.replaceAll(a,b),x):Array.isArray(x)?x.map(f):x&&typeof x==='object'?Object.fromEntries(Object.entries(x as Record<string,unknown>).map(([k,c])=>[k,f(c)])):x;return f(value) as T;};
+const authored=replace(clone(EPISODE_01_SESSION_20_SOURCE)) as any;
+authored.requiredSessionOrdinal=21;authored.generationInputFingerprint='full-b1-exact-diagnostic-place-repair-e01-s21-v1';authored.modeNativePlanId=LESSON1_SESSION_21_MODE_NATIVE_PLAN_ID_V2;
+authored.title=L('Где они','Де вони','Dónde están','Onde estão','Họ ở đâu','Di mana mereka','Onlar nerede','Gdzie są');
+authored.summary=L('Различай inside, outside и upstairs в знакомых фразах.','Розрізняй inside, outside і upstairs у знайомих фразах.','Distingue inside, outside y upstairs en frases conocidas.','Diferencie inside, outside e upstairs em frases conhecidas.','Phân biệt inside, outside và upstairs trong câu quen thuộc.','Bedakan inside, outside, dan upstairs dalam kalimat yang dikenal.','Inside, outside ve upstairs sözcüklerini bilinen cümlelerde ayır.','Rozróżniaj inside, outside i upstairs w znanych zdaniach.');
+authored.learningGoal=L('Выбрать точное описание места.','Обрати точний опис місця.','Elegir una descripción exacta del lugar.','Escolher uma descrição exata do lugar.','Chọn mô tả nơi chốn chính xác.','Memilih deskripsi tempat yang tepat.','Doğru yer tanımını seçmek.','Wybrać dokładny opis miejsca.');
+const m=[L('внутри','всередині','dentro','dentro','ở trong','di dalam','içeride','wewnątrz'),L('снаружи','зовні','fuera','fora','ở ngoài','di luar','dışarıda','na zewnątrz'),L('наверху','нагорі','arriba','no andar de cima','ở tầng trên','di lantai atas','üst katta','na górze')];for(const[i,x]of m.entries())authored.newVocabulary[i]!.meaning=x;
+const ex=['They are inside','They are outside','They are upstairs'];for(const[i,p]of authored.introPages.entries()){const e=ex[i]!;for(const locale of Object.keys(p.body)){const start=String(p.body[locale]).split('.').slice(0,2).join('.').trim();p.body[locale]=`${start}. ${e}.`;}p.question.choices[0]=L(e,e,e,e,e,e,e,e);p.question.explanation=p.body;p.bodyRuns=Object.fromEntries(Object.entries(p.body).map(([locale,text])=>[locale,[{text,semantic:'explanation'}]]));}
+export const EPISODE_01_SESSION_21_SOURCE:SessionSource=Object.freeze(authored);

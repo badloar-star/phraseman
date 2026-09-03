@@ -2,6 +2,10 @@ import {
   LEARNING_V2_INTERFACE_LOCALES,
   type LearningV2InterfaceLocale,
 } from "../generator_course_contract";
+import { EPISODE_02_SESSION_01_WORD_CARD_EDITORIAL_V2 } from "./episode_02_session_01_editorial_v2";
+import { EPISODE_02_SESSION_02_WORD_CARD_EDITORIAL_V2 } from "./episode_02_session_02_editorial_v2";
+import { EPISODE_02_SESSION_03_WORD_CARD_EDITORIAL_V2 } from "./episode_02_session_03_editorial_v2";
+import { EPISODE_02_SESSION_04_WORD_CARD_EDITORIAL_V2 } from "./episode_02_session_04_editorial_v2";
 
 export type LearningV2NewWordCardEditorialV1 = Readonly<{
   targetLanguage: string;
@@ -471,6 +475,14 @@ const EDITORIAL_BY_KEY = new Map(
     entry,
   ]),
 );
+for (const entry of [
+  ...EPISODE_02_SESSION_01_WORD_CARD_EDITORIAL_V2,
+  ...EPISODE_02_SESSION_02_WORD_CARD_EDITORIAL_V2,
+  ...EPISODE_02_SESSION_03_WORD_CARD_EDITORIAL_V2,
+  ...EPISODE_02_SESSION_04_WORD_CARD_EDITORIAL_V2,
+]) {
+  EDITORIAL_BY_KEY.set(`${entry.targetLanguage}\u0000${entry.lexicalItemId}`, entry);
+}
 
 const SESSION_02_EXACT_DEFINITION_BY_SOURCE_ID = Object.freeze({
   "e01-s02-word-happy": copy({
@@ -526,6 +538,65 @@ for (const [session2Id, targetText] of [
       ]),
     ) as Record<LearningV2InterfaceLocale, string>),
   }));
+}
+
+const session1FineSource = ENGLISH_EDITORIAL.find(
+  (entry) => entry.lexicalItemId === "e01-s03-word-fine",
+);
+if (!session1FineSource) throw new Error("learning_v2_new_word_card_source_missing:fine:session1");
+EDITORIAL_BY_KEY.set("en\u0000e01-s01-word-fine", Object.freeze({
+  ...session1FineSource,
+  lexicalItemId: "e01-s01-word-fine",
+  playfulMeaningByLocale: copy(Object.fromEntries(
+    LEARNING_V2_INTERFACE_LOCALES.map((locale) => [
+      locale,
+      `${SESSION_02_EXACT_DEFINITION_BY_SOURCE_ID["e01-s02-word-fine"][locale]} ${session1FineSource.playfulMeaningByLocale[locale]}`,
+    ]),
+  ) as Record<LearningV2InterfaceLocale, string>),
+}));
+
+const SESSION_03_FULL_B1_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] = Object.freeze([
+  { targetLanguage: "en", lexicalItemId: "e01-s03-word-busy", targetText: "busy", transcription: "/ˈbɪzi/", playfulMeaningByLocale: copy({ ru: "Календарь закрыл дверь: даже свободной минуте нужна запись.", uk: "Календар зачинив двері: навіть вільній хвилині потрібен запис.", es: "El calendario cerró la puerta: hasta un minuto libre necesita cita.", en: "The calendar closed the door: even a free minute needs an appointment.", "pt-BR": "A agenda fechou a porta: até um minuto livre precisa de horário.", vi: "Lịch đã khóa cửa: một phút rảnh cũng cần đặt hẹn.", id: "Kalender menutup pintu: semenit luang pun perlu janji.", tr: "Takvim kapıyı kapattı: boş bir dakika bile randevu ister.", pl: "Kalendarz zamknął drzwi: nawet wolna minuta potrzebuje wizyty." }) },
+  { targetLanguage: "en", lexicalItemId: "e01-s03-word-free", targetText: "free", transcription: "/friː/", playfulMeaningByLocale: copy({ ru: "В расписании появилось чистое окошко — можно дышать спокойно.", uk: "У розкладі з'явилося чисте віконце — можна спокійно дихати.", es: "Apareció un hueco limpio en el horario: ya se puede respirar.", en: "A clear gap appeared in the schedule: breathing room at last.", "pt-BR": "Surgiu um espaço limpo na agenda: dá para respirar.", vi: "Lịch có một khoảng trống sạch sẽ: cuối cùng cũng thở được.", id: "Ada ruang kosong di jadwal: akhirnya bisa bernapas lega.", tr: "Programda boş bir aralık çıktı: sonunda rahat nefes var.", pl: "W grafiku pojawiło się wolne okienko: można odetchnąć." }) },
+  { targetLanguage: "en", lexicalItemId: "e01-s03-word-late", targetText: "late", transcription: "/leɪt/", playfulMeaningByLocale: copy({ ru: "Часы уже убежали вперёд, а вы ещё догоняете их у двери.", uk: "Годинник уже втік уперед, а ви ще наздоганяєте його біля дверей.", es: "El reloj ya salió corriendo y tú aún lo persigues en la puerta.", en: "The clock already ran ahead, and you are still chasing it at the door.", "pt-BR": "O relógio já disparou, e você ainda o persegue na porta.", vi: "Đồng hồ đã chạy trước, còn bạn vẫn đuổi theo ở cửa.", id: "Jam sudah berlari duluan, dan kamu masih mengejarnya di pintu.", tr: "Saat çoktan öne kaçtı; sen hâlâ kapıda onu kovalıyorsun.", pl: "Zegar już pobiegł naprzód, a ty gonisz go jeszcze przy drzwiach." }) },
+]);
+for (const entry of SESSION_03_FULL_B1_EDITORIAL) {
+  EDITORIAL_BY_KEY.set(`en\u0000${entry.lexicalItemId}`, entry);
+}
+
+const SESSION_04_FULL_B1_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] = Object.freeze([
+  { targetLanguage: 'en', lexicalItemId: 'e01-s04-word-hungry', targetText: 'hungry', transcription: '/ˈhʌŋɡri/', playfulMeaningByLocale: copy({ ru: 'Внутри включился маленький будильник для еды.', uk: 'Усередині увімкнувся маленький будильник для їжі.', es: 'Dentro sonó un pequeño despertador para comer.', en: 'A small food alarm went off inside.', 'pt-BR': 'Um pequeno despertador de comida tocou por dentro.', vi: 'Một chiếc chuông báo ăn nhỏ reo bên trong.', id: 'Alarm kecil untuk makan berbunyi di dalam.', tr: 'İçeride küçük bir yemek alarmı çaldı.', pl: 'W środku zadzwonił mały budzik na jedzenie.' }) },
+  { targetLanguage: 'en', lexicalItemId: 'e01-s04-word-thirsty', targetText: 'thirsty', transcription: '/ˈθɜːrsti/', playfulMeaningByLocale: copy({ ru: 'Стакан воды вдруг стал самым интересным предметом в комнате.', uk: 'Склянка води раптом стала найцікавішим предметом у кімнаті.', es: 'Un vaso de agua se volvió de pronto lo más interesante de la habitación.', en: 'A glass of water suddenly became the room’s most interesting object.', 'pt-BR': 'Um copo de água virou de repente o objeto mais interessante da sala.', vi: 'Một cốc nước bỗng thành vật thú vị nhất trong phòng.', id: 'Segelas air tiba-tiba menjadi benda paling menarik di ruangan.', tr: 'Bir bardak su birden odadaki en ilginç şey oldu.', pl: 'Szklanka wody nagle stała się najciekawszą rzeczą w pokoju.' }) },
+  { targetLanguage: 'en', lexicalItemId: 'e01-s04-word-sick', targetText: 'sick', transcription: '/sɪk/', playfulMeaningByLocale: copy({ ru: 'Организм просит плед, тишину и немного заботы.', uk: 'Організм просить плед, тишу й трохи турботи.', es: 'El cuerpo pide una manta, silencio y un poco de cuidado.', en: 'The body asks for a blanket, quiet, and a little care.', 'pt-BR': 'O corpo pede uma manta, silêncio e um pouco de cuidado.', vi: 'Cơ thể xin một chiếc chăn, sự yên tĩnh và chút chăm sóc.', id: 'Tubuh meminta selimut, suasana tenang, dan sedikit perhatian.', tr: 'Beden battaniye, sessizlik ve biraz ilgi istiyor.', pl: 'Ciało prosi o koc, ciszę i odrobinę troski.' }) },
+]);
+for (const entry of SESSION_04_FULL_B1_EDITORIAL) {
+  EDITORIAL_BY_KEY.set(`en\u0000${entry.lexicalItemId}`, entry);
+}
+
+const SESSION_05_FULL_B1_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] = Object.freeze([
+  { targetLanguage: 'en', lexicalItemId: 'e01-s05-word-cold', targetText: 'cold', transcription: '/koʊld/', playfulMeaningByLocale: copy({ ru: 'Воздух щиплет нос, и ладони ищут карманы.', uk: 'Повітря щипає ніс, а долоні шукають кишені.', es: 'El aire pellizca la nariz y las manos buscan bolsillos.', en: 'The air pinches your nose and your hands look for pockets.', 'pt-BR': 'O ar belisca o nariz e as mãos procuram bolsos.', vi: 'Không khí làm mũi tê buốt và bàn tay tìm túi áo.', id: 'Udara mencubit hidung dan tangan mencari saku.', tr: 'Hava burnu ısırır, eller cepleri arar.', pl: 'Powietrze szczypie w nos, a dłonie szukają kieszeni.' }) },
+  { targetLanguage: 'en', lexicalItemId: 'e01-s05-word-hot', targetText: 'hot', transcription: '/hɑːt/', playfulMeaningByLocale: copy({ ru: 'Солнце будто подвинуло лампу слишком близко.', uk: 'Сонце ніби присунуло лампу надто близько.', es: 'El sol parece haber acercado demasiado la lámpara.', en: 'The sun seems to have moved its lamp much too close.', 'pt-BR': 'O sol parece ter aproximado demais sua lâmpada.', vi: 'Mặt trời như kéo chiếc đèn của nó lại quá gần.', id: 'Matahari seperti memindahkan lampunya terlalu dekat.', tr: 'Güneş lambasını fazla yakına getirmiş gibi.', pl: 'Słońce jakby przysunęło swoją lampę zbyt blisko.' }) },
+  { targetLanguage: 'en', lexicalItemId: 'e01-s05-word-warm', targetText: 'warm', transcription: '/wɔːrm/', playfulMeaningByLocale: copy({ ru: 'Температура ровно посередине: плед можно оставить на диване.', uk: 'Температура саме посередині: плед можна лишити на дивані.', es: 'La temperatura queda justo en medio: la manta puede esperar en el sofá.', en: 'The temperature is just in the middle: the blanket can stay on the sofa.', 'pt-BR': 'A temperatura está no meio: a manta pode ficar no sofá.', vi: 'Nhiệt độ vừa phải: chiếc chăn có thể ở lại trên ghế sofa.', id: 'Suhunya pas di tengah: selimut boleh tetap di sofa.', tr: 'Sıcaklık tam ortada: battaniye koltukta kalabilir.', pl: 'Temperatura jest pośrodku: koc może zostać na sofie.' }) },
+]);
+for (const entry of SESSION_05_FULL_B1_EDITORIAL) {
+  EDITORIAL_BY_KEY.set(`en\u0000${entry.lexicalItemId}`, entry);
+}
+
+const SESSION_06_FULL_B1_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] = Object.freeze([
+  { targetLanguage: 'en', lexicalItemId: 'e01-s06-word-calm', targetText: 'calm', transcription: '/kɑːm/', playfulMeaningByLocale: copy({ ru: 'Внутри тихо, как в комнате после выключенного вентилятора.', uk: 'Усередині тихо, як у кімнаті після вимкненого вентилятора.', es: 'Por dentro hay silencio, como en una habitación tras apagar el ventilador.', en: 'It is quiet inside, like a room after the fan is turned off.', 'pt-BR': 'Por dentro está silencioso, como um quarto após desligar o ventilador.', vi: 'Bên trong yên tĩnh như căn phòng sau khi tắt quạt.', id: 'Di dalam terasa tenang seperti ruangan setelah kipas dimatikan.', tr: 'İçerisi, vantilatör kapandıktan sonraki oda gibi sessiz.', pl: 'W środku jest cicho jak w pokoju po wyłączeniu wentylatora.' }) },
+  { targetLanguage: 'en', lexicalItemId: 'e01-s06-word-nervous', targetText: 'nervous', transcription: '/ˈnɜːrvəs/', playfulMeaningByLocale: copy({ ru: 'Мысли бегут вперёд, хотя ноги ещё стоят на месте.', uk: 'Думки біжать уперед, хоча ноги ще стоять на місці.', es: 'Los pensamientos corren delante aunque los pies aún no se mueven.', en: 'Thoughts run ahead even while your feet are still.', 'pt-BR': 'Os pensamentos correm à frente mesmo com os pés parados.', vi: 'Suy nghĩ chạy về phía trước dù chân vẫn đứng yên.', id: 'Pikiran berlari ke depan meski kaki masih diam.', tr: 'Ayaklar dururken düşünceler öne doğru koşar.', pl: 'Myśli biegną naprzód, choć stopy nadal stoją w miejscu.' }) },
+  { targetLanguage: 'en', lexicalItemId: 'e01-s06-word-excited', targetText: 'excited', transcription: '/ɪkˈsaɪtɪd/', playfulMeaningByLocale: copy({ ru: 'Будто внутри уже зажглись огни перед началом праздника.', uk: 'Ніби всередині вже засвітилися вогні перед початком свята.', es: 'Es como si las luces ya se encendieran antes de la fiesta.', en: 'It feels as if the lights are already on before a celebration.', 'pt-BR': 'Parece que as luzes já acenderam antes da celebração.', vi: 'Như thể đèn đã bật trước khi buổi lễ bắt đầu.', id: 'Seperti lampu sudah menyala sebelum perayaan dimulai.', tr: 'Kutlama başlamadan ışıklar yanmış gibi hissettirir.', pl: 'Jakby światła zapaliły się już przed rozpoczęciem święta.' }) },
+]);
+for (const entry of SESSION_06_FULL_B1_EDITORIAL) {
+  EDITORIAL_BY_KEY.set(`en\u0000${entry.lexicalItemId}`, entry);
+}
+
+const SESSION_07_FULL_B1_EDITORIAL: readonly LearningV2NewWordCardEditorialV1[] = Object.freeze([
+  { targetLanguage: 'en', lexicalItemId: 'e01-s07-word-angry', targetText: 'angry', transcription: '/ˈæŋɡri/', playfulMeaningByLocale: copy({ ru: 'Будто внутри закипел маленький чайник: хочется сказать, что это не нравится.', uk: 'Наче всередині закипів маленький чайник: хочеться сказати, що це не подобається.', es: 'Es como una tetera pequeña hirviendo dentro: quieres decir que no te gusta.', en: 'It feels like a small kettle is boiling inside: you want to say you do not like it.', 'pt-BR': 'É como uma chaleira pequena fervendo por dentro: você quer dizer que não gostou.', vi: 'Như có ấm nước nhỏ đang sôi bên trong: bạn muốn nói mình không thích điều đó.', id: 'Seperti ketel kecil mendidih di dalam: kamu ingin bilang bahwa kamu tidak suka itu.', tr: 'İçinde küçük bir çaydanlık kaynıyor gibidir: bundan hoşlanmadığını söylemek istersin.', pl: 'To jak mały czajnik gotujący się w środku: chcesz powiedzieć, że ci się to nie podoba.' }) },
+  { targetLanguage: 'en', lexicalItemId: 'e01-s07-word-scared', targetText: 'scared', transcription: '/skerd/', playfulMeaningByLocale: copy({ ru: 'Сердце стучит быстрее, и хочется стать на шаг дальше от пугающего.', uk: 'Серце б’ється швидше, і хочеться відійти на крок від того, що лякає.', es: 'El corazón late más rápido y quieres alejarte un paso de lo que asusta.', en: 'Your heart beats faster and you want one more step away from what scares you.', 'pt-BR': 'O coração bate mais rápido e você quer dar um passo para longe do que assusta.', vi: 'Tim đập nhanh hơn và bạn muốn lùi một bước khỏi điều đáng sợ.', id: 'Jantung berdebar lebih cepat dan kamu ingin menjauh selangkah dari yang menakutkan.', tr: 'Kalbin daha hızlı atar ve korkutan şeyden bir adım uzaklaşmak istersin.', pl: 'Serce bije szybciej i chcesz odsunąć się o krok od tego, co straszy.' }) },
+]);
+for (const entry of SESSION_07_FULL_B1_EDITORIAL) {
+  EDITORIAL_BY_KEY.set(`en\u0000${entry.lexicalItemId}`, entry);
 }
 
 export function learningV2NewWordCardEditorialV1(

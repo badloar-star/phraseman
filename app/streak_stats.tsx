@@ -2128,7 +2128,10 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
                 alignItems: 'center',
                 justifyContent: 'center',
             }, streakIconGlowStyle]}>
-          <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={totalStreak} inactive={streakIconInactive} size={streakIconSize}/>
+          {/* зачем: по ТЗ пера дышит только крупная ЛИЧНАЯ иконка цепочки —
+              здесь и на Главной. Гейты (20+ дней, фокус, Reduce Motion) живут
+              внутри StreakChainIcon, снаружи достаточно разрешения. */}
+          <StreakChainIcon themeMode={themeMode} breathing frozen={freezeActive} streakDays={totalStreak} inactive={streakIconInactive} size={streakIconSize}/>
         </View>
         <View style={{ flex: 1 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.numLg + 4, fontWeight: '700' }} numberOfLines={1}>{totalStreak}</Text>

@@ -66,7 +66,11 @@ function getAchievementGridMetrics(screenW: number) {
   const gridWidth = Math.max(120, Math.min(safeW, 640) - sidePadding);
   const rawOuter = Math.floor((gridWidth - (cols - 1) * GRID_GAP) / cols);
   const shieldOuter = Math.max(62, rawOuter);
-  const shieldW = Math.max(54, Math.min(safeW < 360 ? 90 : 112, shieldOuter - 4));
+  // зачем: владелец назвал награды «милипиздрическими» — щиты упирались в
+  // потолок 90/112 px и на обычном телефоне занимали половину своей ячейки.
+  // Потолок поднят, а вычет уменьшен: значок заполняет колонку почти целиком,
+  // подпись под ним не съезжает (ширина ячейки shieldOuter не менялась).
+  const shieldW = Math.max(64, Math.min(safeW < 360 ? 112 : 148, shieldOuter - 2));
   return { cols, gap: GRID_GAP, shieldOuter, shieldW };
 }
 
@@ -985,31 +989,75 @@ export default function AchievementsScreen() {
     soundDirector.request('pm.achievements.open', { scope: 'achievements' });
   }, []);
 
+  // зачем: при открытии экрана иконки на долю секунды показывали старое
+  // (пустое) состояние — все награды рисовались «не полученными» и лишь потом
+  // перекрашивались. Причина была в порядке: до чтения состояний стояли три
+  // тяжёлых await (история лиги + два checkAchievements), хотя сами состояния
+  // лежат в AsyncStorage и читаются мгновенно. Теперь сначала показываем
+  // сохранённое состояние, а пересчёт догоняет фоном и лишь дописывает то,
+  // что реально изменилось.
   useEffect(() => {
     let cancelled = false;
-    void (async () => {
-      const leagueHistory = await loadConfirmedLeagueAchievementEvidence().catch(() => []);
-      if (leagueHistory.length > 0) {
-        await checkAchievements({ type: 'league_history', results: leagueHistory });
+
+    const applyStates = (nextStates: AchievementState[], origin: string) => {
+      if (cancelled) {
+        console.log('[ACH-BOOT] apply skipped: unmounted', { origin });
+        return;
       }
-      await checkAchievements({ type: 'backfill', studyTarget });
-      return loadAchievementStates();
-    })()
-      .then((nextStates) => {
-        if (!cancelled) {
-          setStates(nextStates);
-          setAchievementsLoaded(true);
-        }
-      })
-      .catch(async () => {
-        const fallbackStates = await loadAchievementStates().catch(() => []);
-        if (!cancelled) {
-          setStates(fallbackStates);
-          setAchievementsLoaded(true);
-        }
+      setStates(nextStates);
+      setAchievementsLoaded(true);
+      console.log('[ACH-BOOT] states applied', {
+        origin,
+        total: nextStates.length,
+        unlocked: nextStates.filter((state) => !!state.unlockedAt).length,
       });
+    };
+
+    void (async () => {
+      // Шаг 1 — мгновенный кадр из локального хранилища, без пересчётов.
+      const cachedStates = await loadAchievementStates().catch((e) => {
+        console.warn('[ACH-BOOT] cached load failed', e instanceof Error ? e.message : String(e));
+        return [] as AchievementState[];
+      });
+      applyStates(cachedStates, 'cache');
+
+      // Шаг 2 — тяжёлый пересчёт после первого кадра. Экран уже честный.
+      if (cancelled) return;
+      try {
+        const leagueHistory = await loadConfirmedLeagueAchievementEvidence().catch((e) => {
+          console.warn('[ACH-BOOT] league evidence failed', e instanceof Error ? e.message : String(e));
+          return [];
+        });
+        console.log('[ACH-BOOT] recheck start', { leagueHistory: leagueHistory.length });
+        if (leagueHistory.length > 0) {
+          await checkAchievements({ type: 'league_history', results: leagueHistory });
+        }
+        await checkAchievements({ type: 'backfill', studyTarget });
+      } catch (e) {
+        console.warn('[ACH-BOOT] recheck failed', e instanceof Error ? e.message : String(e));
+      }
+
+      if (cancelled) return;
+      const freshStates = await loadAchievementStates().catch((e) => {
+        console.warn('[ACH-BOOT] fresh load failed', e instanceof Error ? e.message : String(e));
+        return null;
+      });
+      // Перерисовываем только если пересчёт реально что-то открыл — иначе
+      // лишний setState дал бы ровно то мерцание, от которого уходим.
+      if (!freshStates) return;
+      const cachedUnlocked = cachedStates.filter((state) => !!state.unlockedAt).length;
+      const freshUnlocked = freshStates.filter((state) => !!state.unlockedAt).length;
+      if (freshUnlocked === cachedUnlocked && freshStates.length === cachedStates.length) {
+        console.log('[ACH-BOOT] recheck changed nothing, keeping first frame', { unlocked: freshUnlocked });
+        return;
+      }
+      applyStates(freshStates, 'recheck');
+    })();
+
     const interaction = InteractionManager.runAfterInteractions(() => {
-      loadAchievementStats().then(setStats);
+      loadAchievementStats().then(setStats).catch((e) => {
+        console.warn('[ACH-BOOT] stats failed', e instanceof Error ? e.message : String(e));
+      });
     });
     return () => {
       cancelled = true;
@@ -1293,11 +1341,17 @@ export default function AchievementsScreen() {
         >
           {!achievementsLoaded ? (
             // зачем (аудит 2026-08-22): пока states не загружены, полка молчит
-            // скелетоном той же геометрии карусели — не «Пока нет наград» ложью.
-            <View style={{ flexDirection: 'row', gap: 12, paddingVertical: 12 }}>
-              <SkeletonBlock width={96} height={116} borderRadius={16} />
-              <SkeletonBlock width={96} height={116} borderRadius={16} />
-              <SkeletonBlock width={96} height={116} borderRadius={16} />
+            // скелетоном — не «Пока нет наград» ложью.
+            // зачем (2026-09-02): скелетон 96x116 был меньше витрины (306) — при появлении
+            // полки экран прыгал, и это читалось как «моргнуло старое состояние».
+            // Держим ту же геометрию, что и карусель: подмена происходит без сдвига.
+            <View style={{ gap: 12 }}>
+              <SkeletonBlock
+                width={Math.max(280, Math.min(screenW - 32, 608))}
+                height={306}
+                borderRadius={24}
+              />
+              <View style={{ minHeight: 16 }} />
             </View>
           ) : shelfAchievements.length > 0 ? (
             <AchievementShelfCarousel

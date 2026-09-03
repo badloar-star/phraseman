@@ -181,8 +181,15 @@ expectCode(
   "learning_v2_v2_intro_count_invalid",
 );
 expectCode(
-  { ...VALID_PACKET, practiceInteractions: VALID_PACKET.practiceInteractions.slice(0, 16) },
+  { ...VALID_PACKET, practiceInteractions: VALID_PACKET.practiceInteractions.slice(0, 5) },
   "learning_v2_v2_practice_count_invalid",
+);
+assert.doesNotThrow(
+  () => assertLearningV2CurriculumSessionPacketV2({
+    ...VALID_PACKET,
+    practiceInteractions: VALID_PACKET.practiceInteractions.slice(0, 6),
+  }),
+  "six unique mode-native practices are valid when a longer sequence would repeat a target",
 );
 expectCode(
   { ...VALID_PACKET, grammarOperationIds: Object.freeze([]), reviewOperationIds: Object.freeze([]) },

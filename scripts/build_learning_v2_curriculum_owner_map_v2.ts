@@ -17,6 +17,8 @@ const outputPath = join(outputDir, "index.html");
 const ownerModel = Object.freeze({
   fingerprint: manifest.fingerprint,
   ownerApproval: manifest.ownerApproval,
+  plannedLexicalSenseCount,
+  lexicalRetrievalEdgeCount,
   lessons: blueprint.scope.lessons.map((lesson) => Object.freeze({
     lessonOrdinal: lesson.lessonOrdinal,
     majorSystemId: lesson.majorSystemId,
@@ -90,7 +92,7 @@ const html = `<!doctype html>
       <div><div class="eyebrow">Learning V2 · English curriculum</div><h1>${ownerHeading}</h1><p class="lede">Кликабельная карта фиксирует весь порядок грамматики заранее: 32 грамматических урока, 224 главы и 1 792 точных планировочных пакета. Learner-facing тексты пишутся только последовательно после отдельного одобрения fingerprint.</p></div>
       <aside class="status" aria-label="Статус утверждения"><strong>OWNER ${manifest.ownerApproval}</strong><div class="hash">${manifest.fingerprint}</div></aside>
     </header>
-    <div class="notice">COURSE START AMENDMENT — OWNER REVIEW REQUIRED. Ранее утверждённый fingerprint superseded после Session 1 preflight: первая сессия теперь учит только I + am и явно вводит here + ready; is, are, полный выбор формы и contractions перенесены в отдельные prerequisite-safe главы. Learner-facing authoring заблокирован до approval текущего fingerprint; восемь локализаций создаются вручную только последовательно.</div>
+    <div class="notice">COURSE START AMENDMENT — OWNER APPROVED. Ранее утверждённый fingerprint superseded после Session 1 preflight: первая сессия теперь учит только I + am и явно вводит here + ready; is, are, полный выбор формы и contractions перенесены в отдельные prerequisite-safe главы. Exact approved fingerprint разрешает последовательный learner-facing authoring; восемь локализаций создаются вручную только последовательно.</div>
     <section class="stats" aria-label="Сводка"><div class="stat"><b>32</b><span>урока грамматики</span></div><div class="stat"><b>224</b><span>главы</span></div><div class="stat"><b>1 792</b><span>session packets</span></div><div class="stat"><b>${plannedLexicalSenseCount}</b><span>planned senses · ${lexicalRetrievalEdgeCount} возвратов</span></div></section>
     <div class="toolbar"><div><h2 id="viewTitle">Все уроки</h2><div class="crumb" id="crumb">Present be affirmative → Probability and deduction</div></div><button class="back hidden" id="backButton" type="button">Назад</button></div>
     <section class="grid" id="cards" aria-live="polite"></section>

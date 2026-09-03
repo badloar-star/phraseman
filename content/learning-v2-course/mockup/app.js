@@ -6,7 +6,7 @@ window.addEventListener("error", (e) => {
   console.error("[mockup] ошибка запуска:", e.message, e.error);
 });
 const DATA = window.__DATA__;
-const LOCALES = ["ru"];
+const LOCALES = ["ru","uk"];
 const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
 
 const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], pairSel: null, pairsDone: [], right: 0, wrong: 0 };

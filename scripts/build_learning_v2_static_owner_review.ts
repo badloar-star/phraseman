@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { buildLearningV2StaticOwnerReviewBundleV1 } from "../modules/learning-v2/preview/static_owner_review_bundle_v1";
+import { buildLearningV2StaticOwnerReviewAllLessonsBundleV1 } from "../modules/learning-v2/preview/static_owner_review_all_lessons_bundle_v1";
 import { renderLearningV2StaticOwnerReviewHtmlV1 } from "./learning-v2-static-owner-review/template_v1";
 
 async function main(): Promise<void> {
@@ -10,7 +10,7 @@ async function main(): Promise<void> {
     "learning-v2-owner-review",
   );
   const outputPath = resolve(outputDirectory, "index.html");
-  const bundle = buildLearningV2StaticOwnerReviewBundleV1();
+  const bundle = buildLearningV2StaticOwnerReviewAllLessonsBundleV1();
 
   await mkdir(outputDirectory, { recursive: true });
   await writeFile(
@@ -21,7 +21,7 @@ async function main(): Promise<void> {
 
   process.stdout.write(
     `LEARNING V2 OWNER REVIEW HTML: BUILT sessions=${bundle.sessions
-      .map((session) => session.sessionOrdinal)
+      .map((session) => `L${session.lessonOrdinal ?? bundle.lessonOrdinal}:S${session.sessionOrdinal}`)
       .join(",")} path=${outputPath}\n`,
   );
 }

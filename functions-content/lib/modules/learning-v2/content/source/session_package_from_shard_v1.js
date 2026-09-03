@@ -79,6 +79,85 @@ const FAMILY_INPUT_MODE = Object.freeze({
     speed_match: 'single_choice',
     scripted_repeat_compare: 'scripted_speech',
 });
+const REQUIRED_PRACTICE_FAMILIES = Object.freeze([
+    'phrase_builder',
+    'listen_choose',
+    'listen_build_dictation',
+    'context_gap_grammar',
+    'speed_match',
+    'scripted_repeat_compare',
+]);
+const normalizePrimaryTaskTargetV1 = (value) => value
+    .normalize('NFKC')
+    .split('’').join("'")
+    .toLocaleLowerCase('en')
+    .replace(/[^a-z0-9']+/gu, ' ')
+    .trim();
+const primaryTaskTargetV1 = (card) => {
+    const payload = card.modePayload;
+    if (!payload)
+        return card.contentItem.target.text;
+    if (payload.family === 'phrase_builder')
+        return payload.targetPhrase;
+    if (payload.family === 'listen_choose') {
+        // зачем guard (2026-08-31): referenceAudio опционален в типе payload —
+        // без проверки сборка functions падает TS18047 и блокирует ЛЮБОЙ деплой.
+        if (!payload.referenceAudio)
+            throw new Error(`learning_v2_listen_choose_audio_missing:${card.cardId}`);
+        return payload.referenceAudio.transcript;
+    }
+    if (payload.family === 'listen_build_dictation')
+        return payload.hiddenTargetPhrase;
+    if (payload.family === 'scripted_repeat_compare')
+        return payload.targetPhrase;
+    if (payload.family === 'speed_match') {
+        return `board:${payload.pairGrid
+            .map((entry) => normalizePrimaryTaskTargetV1(entry.target))
+            .sort()
+            .join('|')}`;
+    }
+    // зачем каст (2026-08-31): в этой точке остаётся только context_gap-семейство,
+    // но union по family здесь уже не сужается — доносим форму явно.
+    const gap = payload;
+    const correctId = gap.choiceFeedback.find((entry) => entry.correct)?.responseId;
+    const correctText = gap.gapOptions.find((entry) => entry.responseId === correctId)?.text;
+    if (!correctText)
+        throw new Error(`learning_v2_context_gap_correct_target_missing:${card.cardId}`);
+    return gap.gappedTargetPhrase.replace('___', correctText);
+};
+const selectNonRepeatingPracticeCardsV1 = (cards, reservedTargets = []) => {
+    const signatures = cards.map((card) => normalizePrimaryTaskTargetV1(primaryTaskTargetV1(card)));
+    let requiredSelection = null;
+    const visit = (familyIndex, selected, usedTargets) => {
+        if (familyIndex === REQUIRED_PRACTICE_FAMILIES.length) {
+            if (!selected.some((index) => cards[index].purpose === 'independent_check'))
+                return false;
+            requiredSelection = selected;
+            return true;
+        }
+        const family = REQUIRED_PRACTICE_FAMILIES[familyIndex];
+        const candidateIndices = cards
+            .map((_, index) => index)
+            .filter((index) => cards[index].family === family)
+            .sort((left, right) => family === 'scripted_repeat_compare'
+            ? Number(cards[right].purpose === 'independent_check')
+                - Number(cards[left].purpose === 'independent_check')
+            : left - right);
+        for (const index of candidateIndices) {
+            const signature = signatures[index];
+            if (usedTargets.has(signature))
+                continue;
+            if (visit(familyIndex + 1, [...selected, index], new Set([...usedTargets, signature])))
+                return true;
+        }
+        return false;
+    };
+    visit(0, [], new Set(reservedTargets.map((target) => normalizePrimaryTaskTargetV1(target))));
+    if (!requiredSelection)
+        return cards;
+    const selected = new Set(requiredSelection);
+    return cards.filter((_, index) => selected.has(index));
+};
 /**
  * Назначение карточки в шарде и в рантайме называется по-разному.
  *
@@ -652,20 +731,24 @@ function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionI
         })),
     });
     // Практика начинается со слота 4: слоты 1–3 заняты вопросами интро.
-    const practiceCards = shard.cards.filter((card) => card.taskSlot >= 4);
+    const authoredPracticeCards = shard.cards.filter((card) => card.taskSlot >= 4);
+    const introPrimaryTargets = shard.intro.pages.map((page) => String(page.question.choicesByLocale.ru?.[page.question.correctChoiceIndex] ?? ''));
+    const practiceCards = shard.episodeOrdinal === 2
+        ? selectNonRepeatingPracticeCardsV1(authoredPracticeCards, introPrimaryTargets)
+        : authoredPracticeCards;
     const choiceCards = shard.requiredSessionOrdinal === 15
         ? shard.cards
         : practiceCards;
     const cardTargets = shard.cards.map((card) => card.contentItem.target.text);
-    const isFourWordModeNative = shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1 ||
-        shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1;
-    const vocabularyCount = isFourWordModeNative
-        ? 4
-        : (0, lesson1_session_choreography_v1_1.inferLesson1WordFirstVocabularyCountV1)(cardTargets);
-    const phraseCount = shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
-        ? 2
+    const vocabularyCount = shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
+        ? 3
         : shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1
-            ? 4
+            ? 3
+            : (0, lesson1_session_choreography_v1_1.inferLesson1WordFirstVocabularyCountV1)(cardTargets);
+    const phraseCount = shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
+        ? 3
+        : shard.modeNativePlanId === lesson1_session_choreography_v1_1.LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1
+            ? 3
             : (0, lesson1_session_choreography_v1_1.inferLesson1WordFirstPhraseCountV1)(cardTargets, vocabularyCount);
     const choreography = (0, lesson1_session_choreography_v1_1.lesson1SessionChoreographyV1)(shard.requiredSessionOrdinal, undefined, vocabularyCount, phraseCount, shard.modeNativePlanId ?? undefined);
     const learner = (0, course_session_client_children_v1_1.materializeLearningV2CourseSessionLearnerChildV1)({
@@ -806,9 +889,14 @@ function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionI
     // and silently skipped later ones.
     const newWordOrderByCardId = new Map();
     const introducedLexicalItemIds = new Set();
-    for (const card of practiceCards) {
+    for (const card of authoredPracticeCards) {
         if (introducedLexicalItemIds.size >= vocabularyCount)
             break;
+        // A four-pair Speed Match board is a retrieval interaction, not a word
+        // encounter. Its synthetic grid intent must never request an editorial
+        // new-word card.
+        if (card.family === 'speed_match')
+            continue;
         const lexicalItemId = card.contentItem.intentId.replace(/:contact-\d+$/u, '');
         if (lexicalItemId === card.contentItem.intentId) {
             throw new Error(`learning_v2_new_word_card_lexical_id_invalid:${card.contentItem.intentId}`);
@@ -816,7 +904,18 @@ function buildSessionChildBodiesFromShard(shard, interfaceLocale, courseSessionI
         if (introducedLexicalItemIds.has(lexicalItemId))
             continue;
         introducedLexicalItemIds.add(lexicalItemId);
-        newWordOrderByCardId.set(card.cardId, introducedLexicalItemIds.size);
+    }
+    const pendingNewWordIds = new Set(introducedLexicalItemIds);
+    for (const card of practiceCards) {
+        const lexicalItemId = card.contentItem.intentId.replace(/:contact-\d+$/u, '');
+        if (!pendingNewWordIds.has(lexicalItemId))
+            continue;
+        const orderWithinSession = [...introducedLexicalItemIds].indexOf(lexicalItemId) + 1;
+        newWordOrderByCardId.set(card.cardId, orderWithinSession);
+        pendingNewWordIds.delete(lexicalItemId);
+    }
+    if (pendingNewWordIds.size > 0) {
+        throw new Error(`learning_v2_unique_primary_task_new_word_missing:${[...pendingNewWordIds].join(',')}`);
     }
     // зачем interactionId переопределён для интро-карточек (инцидент
     // 2026-08-17): card.cardId (card-episode-01-s01-01) и

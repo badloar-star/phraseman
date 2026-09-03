@@ -17,24 +17,24 @@
   "traps": {
     "realistic": [
       {
-        "task": 4,
-        "trap": "лишняя плитка not при фразе-признании — реалистичная обманка на внимательность"
+        "task": "Интро1",
+        "trap": "I fine — пропущен am"
+      },
+      {
+        "task": "Интро2",
+        "trap": "I no sure — калька с русского «нет»"
       },
       {
         "task": 9,
-        "trap": "is/are вместо am — типичный перенос согласования с he/she/they"
+        "trap": "I is lost — чужая скрепка is вместо am"
       },
       {
         "task": 10,
-        "trap": "no вместо not — заявленная в плане ошибка I no sure"
+        "trap": "I am no sick — no вместо not внутри фразы"
       },
       {
-        "task": 12,
-        "trap": "lost/new вместо hungry — путаница по смыслу сцены, не по грамматике"
-      },
-      {
-        "task": 14,
-        "trap": "cold вместо hot — противоположность по смыслу"
+        "task": 13,
+        "trap": "I am lost / I am sick вместо fine — смысловая, не грамматическая ловушка"
       }
     ],
     "silly": [],
@@ -61,21 +61,24 @@
       [
         "fine",
         "sure",
-        "tired",
-        "hungry"
+        "ready",
+        "sorry"
       ]
     ],
     "speed_match_overlap": false,
     "repeated_targets": [],
     "generic_instructions": [],
     "attention_traps": [
-      4,
-      12,
       14
     ]
   },
   "time_references": [],
-  "cross_session_repeats": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s03",
+      "what": "заголовок интро2 «Not вежливее, чем кажется» и заголовок s5-интро2 «Not не работает в одиночку» — та же тема (not после am), но формулировки и примеры разные, это честное повторение операции, не дословный повтор"
+    }
+  ],
   "textbook_formulas": [],
   "builder_notes": {
     "new_words_line_ok": true,
@@ -83,13 +86,13 @@
     "modes_used": {
       "word_card": 4,
       "listen_choose": 2,
-      "phrase_builder": 2,
+      "phrase_builder": 3,
       "speed_match": 2,
-      "context_gap_grammar": 4,
+      "context_gap_grammar": 3,
       "listen_build_dictation": 1,
       "scripted_repeat_compare": 2
     }
   },
-  "verdict": "PASS",
-  "verdict_reason": "Границы соблюдены, ловушки честные, обратная связь у каждого неверного варианта своя, повторов между заданиями и с соседними сессиями не найдено."
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 13 проверяет узнавание значения слова (fine vs lost/sick), а не грамматику am/not, хотя помечено как context_gap_grammar — маркировка вводит в заблуждение сборщик, это тот самый пункт, который уже отмечен в тексте сессии как 🟡, и его нужно поправить перед PASS."
 }

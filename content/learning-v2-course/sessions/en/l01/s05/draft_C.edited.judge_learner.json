@@ -1,0 +1,143 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Нельзя говорить 'I tired', нужно вставлять 'am' между I и словом о себе — I am fine.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "'no' — это отдельный ответ, а внутри фразы отрицание — 'not', и оно стоит после am: I am not sure.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "I am lost / I am new — тоже с am, три слова.",
+      "confusion": "Тут вопрос дурацкий — 'объясните почему не знаете имя', а правильный ответ просто 'I am new', то есть я не объясняю, а просто говорю факт о себе. Логика вопроса странная, но фраза понятна.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (hot)",
+      "what_i_understood": "hot = жарко, отличил на слух от hat и hurt.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (sick)",
+      "what_i_understood": "sick = болею.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал I am hot из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5-6 (lost)",
+      "what_i_understood": "lost = заблудился, отличил от last и list.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (new)",
+      "what_i_understood": "new = новенький.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Просто свёл пары слов, которые уже знал по карточкам.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "I am lost — вставил am, не is/not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "I am not sick — not после am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Собрал I am not sure на слух, лишняя плитка no не понадобилась.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "I am not hot — тоже самое правило.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "I am fine — не is/are, я про себя всегда am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Ловушка: нужно было НЕ ставить not, хотя плитка была. Собрал I am tired.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Просто повтор слов из первых сессий.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "I am sorry. I am late. — сказал вслух, повторил.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Четыре ответа подряд: I am hot. I am not sick. I am ready. I am not new. Собрал все сам без подсказок.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Новые слова: hot, sick, lost, new",
+    "Закрепил, что am нельзя выбрасывать (I tired → I am tired)",
+    "Закрепил, что not всегда после am, а no — отдельный ответ",
+    "Научился отличать на слух похожие слова (hot/hat/hurt, lost/last/list)",
+    "Прошёл ловушку с лишней плиткой not, где нужно было сказать правду без отрицания"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 3",
+      "why": "Повторяет ту же мысль про am, что и Интро 1, просто на новом слове — по сути третье объяснение одного и того же правила подряд."
+    },
+    {
+      "where": "Задание 8 и 15 (Speed Match)",
+      "why": "Просто сведение уже известных пар, ничего нового не тренирует, кроме памяти."
+    }
+  ],
+  "felt_alive": [
+    "Задание 14 — обманка с лишней плиткой not, было реально нужно подумать, а не машинально собирать",
+    "Задание 17 — финал с четырьмя вопросами подряд без подсказок, почувствовал что реально umею говорить сам",
+    "Сцена с кухней и чайником — понятно, зачем говорю фразы, а не просто абстрактный тренажёр"
+  ],
+  "felt_dead": [
+    "Задание 8 и 15 — голое сведение пар без контекста, как из словаря",
+    "Карточки слов (1,3,5,7) — просто определение, без сцены"
+  ],
+  "scene_reason": "да — сцена кухни в офисе понятна: утро, разговор ни о чём, тебя спрашивают как дела/заблудился ли/новенький ли, и ты отвечаешь целыми фразами. Ясно кому и когда говоришь эти реплики.",
+  "would_continue": "да — задания усложняются логично, появилась настоящая ловушка (задание 14), которая заставила думать, а не жать не глядя, и финал ощущается как маленькая победа.",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно теми словами, что дала сессия, узнал новое (hot/sick/lost/new + закрепление am/not), и понятно было, зачем говорю эти фразы."
+}

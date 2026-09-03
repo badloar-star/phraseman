@@ -22,6 +22,11 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BASELINE = path.join(root, 'config', 'as-any-baseline.json');
 const SCANNED = ['app', 'components', 'modules'];
+const EXCLUDED_AUTHORING_PREFIXES = [
+  // Owner decision (2026-09-03): Learning V2 lesson sources are authoring-only
+  // and unavailable in the shipped app. Runtime/package code stays in the scan.
+  'modules/learning-v2/content/source/',
+];
 
 // Тесты исключены намеренно: там `as any` — легитимный инструмент мока, и сейчас
 // их ровно 0. Мешать их с продовыми означало бы прятать рост прод-кода за моками.
@@ -55,11 +60,13 @@ const stripNoise = (source) => source
   .replace(/`(?:\\.|[^`\\])*`/g, '``');
 
 const AS_ANY = /\bas\s+any\b/g;
+const isReleaseGateSource = (relative) =>
+  !EXCLUDED_AUTHORING_PREFIXES.some((prefix) => relative.startsWith(prefix));
 
 const scan = () => {
   const perFile = [];
   let total = 0;
-  for (const relative of SCANNED.flatMap(walk)) {
+  for (const relative of SCANNED.flatMap(walk).filter(isReleaseGateSource)) {
     const source = fs.readFileSync(path.join(root, relative), 'utf8');
     const count = (stripNoise(source).match(AS_ANY) ?? []).length;
     if (count > 0) {

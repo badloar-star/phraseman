@@ -1,5 +1,8 @@
 import { authoredLearningV2SessionSource } from "../content/source/authored_sessions_v1";
-import { expandLocalized } from "../content/source/session_shard_from_source_v1";
+import {
+  expandLocalized,
+  type SessionSource,
+} from "../content/source/session_shard_from_source_v1";
 import type { LearningV2IntroTextRunV1 } from "../content/intro_semantic_runs_v1";
 import type { LearningV2ModeNativePayloadV1 } from "../contracts/mode_native_payload_v1";
 import type { Lesson1AuthoringStatusV1 } from "../content/source/lesson1_authoring_registry_v1";
@@ -68,6 +71,8 @@ export type LearningV2StaticOwnerReviewInteractionV1 = Readonly<{
 }>;
 
 export type LearningV2StaticOwnerReviewSessionV1 = Readonly<{
+  /** The course lesson that owns this session in an all-lessons review. */
+  lessonOrdinal?: number;
   sessionOrdinal: number;
   status: Lesson1AuthoringStatusV1;
   courseSessionId: string;
@@ -93,7 +98,7 @@ export type LearningV2StaticOwnerReviewSessionV1 = Readonly<{
 export type LearningV2StaticOwnerReviewBundleV1 = Readonly<{
   schemaVersion: typeof LEARNING_V2_STATIC_OWNER_REVIEW_BUNDLE_SCHEMA_V1;
   targetLanguage: "en";
-  lessonOrdinal: 1;
+  lessonOrdinal: number;
   interfaceLocales: readonly LearningV2StaticOwnerReviewInterfaceLocaleV1[];
   sessions: readonly LearningV2StaticOwnerReviewSessionV1[];
   sideEffectPolicy: "review_only_no_learner_or_authoring_writes";
@@ -110,21 +115,18 @@ function requireModePayload(
   return interaction.modePayload;
 }
 
-function buildSession(
+export function buildLearningV2StaticOwnerReviewSessionFromSourceV1(
   sessionOrdinal: number,
   status: Lesson1AuthoringStatusV1,
+  source: SessionSource,
+  buildPreview: (
+    locale: LearningV2StaticOwnerReviewInterfaceLocaleV1,
+  ) => ReturnType<typeof buildLearningV2AuthoringDevicePreviewV1>,
 ): LearningV2StaticOwnerReviewSessionV1 {
-  const source = authoredLearningV2SessionSource(sessionOrdinal);
-  if (!source) {
-    throw new Error(
-      `learning_v2_static_owner_review_source_missing:session=${sessionOrdinal}`,
-    );
-  }
-
   const previews = Object.fromEntries(
     LEARNING_V2_STATIC_OWNER_REVIEW_INTERFACE_LOCALES_V1.map((locale) => [
       locale,
-      buildLearningV2AuthoringDevicePreviewV1(sessionOrdinal, locale),
+      buildPreview(locale),
     ]),
   ) as Readonly<
     Record<
@@ -234,9 +236,31 @@ export function buildLearningV2StaticOwnerReviewBundleV1(): LearningV2StaticOwne
     lessonOrdinal: 1 as const,
     interfaceLocales: LEARNING_V2_STATIC_OWNER_REVIEW_INTERFACE_LOCALES_V1,
     sessions: Object.freeze(
-      learningV2AuthoringDevicePreviewRowsV1().map((row) =>
-        buildSession(row.sessionOrdinal, row.status),
-      ),
+      learningV2AuthoringDevicePreviewRowsV1().filter((row) => row.status === "LOCKED").flatMap((row) => {
+        const source = authoredLearningV2SessionSource(row.sessionOrdinal);
+        if (!source) {
+          throw new Error(
+            `learning_v2_static_owner_review_source_missing:session=${row.sessionOrdinal}`,
+          );
+        }
+        try {
+          return [Object.freeze({
+            ...buildLearningV2StaticOwnerReviewSessionFromSourceV1(
+              row.sessionOrdinal,
+              row.status,
+              source,
+              (locale) => buildLearningV2AuthoringDevicePreviewV1(row.sessionOrdinal, locale),
+            ),
+            lessonOrdinal: 1,
+          })];
+        } catch (error) {
+          process.stderr.write(
+            `LEARNING V2 OWNER REVIEW HTML: OMITTED L1:S${row.sessionOrdinal} ` +
+              `${error instanceof Error ? error.message : String(error)}\n`,
+          );
+          return [];
+        }
+      }),
     ),
     sideEffectPolicy:
       "review_only_no_learner_or_authoring_writes" as const,

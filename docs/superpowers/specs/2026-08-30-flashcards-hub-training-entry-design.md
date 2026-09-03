@@ -1,8 +1,8 @@
 # Flashcards hub and training entry redesign
 
 Date: 2026-08-30  
-Status: owner-approved visual design; awaiting written-spec review  
-Selected visual direction: B, “training as the primary hero”
+Status: owner-approved visual design
+Selected visual direction: C, “compact horizontal library list”
 
 ## Context
 
@@ -17,9 +17,9 @@ This design supersedes only the root-entry and mode-entry portions of `2026-08-2
 1. Make `/flashcards` a dedicated Cards hub instead of the Saved collection.
 2. Keep the three best community packs visible at the top of the hub.
 3. Give Saved, My Packs, and User Packs three equal, explicit library destinations.
-4. Put one prominent training hero on the hub.
-5. Open an animated bottom sheet with exactly the three requested primary modes: Blitz, Oral, and True / False.
-6. Open a full screen—not another sheet—for choosing one or more whole packs before any of the three modes starts.
+4. Put one clear full-width training action below the library list.
+5. Open an animated bottom sheet with four primary modes: Blitz, Oral, True / False, and Listening.
+6. Open a full screen—not another sheet—for choosing one or more whole packs before any mode starts.
 7. Preserve existing Cards features, routes, pack ownership checks, creation flows, direct links, and data-loading safeguards.
 
 ## Non-goals
@@ -27,7 +27,7 @@ This design supersedes only the root-entry and mode-entry portions of `2026-08-2
 - Do not redesign individual flashcards, pack-detail screens, session gameplay, or result screens.
 - Do not change community pack ranking, ownership, likes, additions, moderation, or Firestore schemas.
 - Do not add a card-count or session-size picker to the new setup screen.
-- Do not delete Listening or Errors. Listening remains available from existing per-pack actions and its route; Errors remains available through its existing practice entry and route.
+- Do not delete Errors. It remains available through its existing practice entry and route.
 - Do not change the speech remote kill switch or bypass it.
 - Do not prefetch every community pack’s cards.
 
@@ -35,7 +35,7 @@ This design supersedes only the root-entry and mode-entry portions of `2026-08-2
 
 ### Header
 
-The hub keeps the Cards title and existing pearl balance treatment. The page uses the current theme and typography tokens; it must work across all existing themes rather than hard-code the purple prototype palette.
+The hub keeps the Cards title and removes the old Cards tab bar. The only action in the hub header is a `+` button. It pushes `/community_pack_create` and therefore reuses the existing create-pack access gate and draft handling. The hub does not show a balance chip. The page uses current theme and typography tokens across all themes.
 
 ### Best community packs
 
@@ -48,26 +48,19 @@ The first content section is `Лучшие наборы` and contains the existi
 - when no eligible data exists, the section is absent—no skeleton, empty strip, or invented packs;
 - the hub reuses already-loaded catalog data and must not introduce duplicate Firestore reads.
 
-### Training hero
-
-Below the best packs is one large theme-aware hero:
-
-- eyebrow: `Тренировки`;
-- title: `Тренировка карточек`;
-- compact description: `Блиц, устно или правда / ложь`;
-- primary CTA: `Выбрать режим`.
-
-The CTA uses a high-contrast foreground. On lime, salad, or neon-green theme surfaces, the text and icon must be dark according to the repository contrast rule.
-
 ### Library destinations
 
-Below the hero is the section heading `Моя библиотека` and one equal-width row of three containers, visually matching the quick-start tiles on Home:
+Below the best packs is the section heading `Ваши карточки` and a vertical list of three compact full-width horizontal rows. Each row has an icon on the left, two lines of text, and a chevron on the right:
 
 1. `Сохранённые` — opens the Saved collection.
 2. `Мои наборы` — opens owned, added, and authored packs.
 3. `От пользователей` — opens the community catalog.
 
-Each tile has one consistent line icon, a label, and a quiet count or destination hint. The full tile is tappable. Labels must wrap rather than truncate in supported locales.
+The full row is tappable and at least 44 points high. Labels wrap rather than truncate in supported locales.
+
+### Training action
+
+Below the three library rows is one full-width button labelled `Тренироваться с карточками`. It opens the animated mode sheet. The button uses a dark foreground on lime, salad, or neon-green fills according to the repository contrast rule.
 
 ## Destination screens
 
@@ -81,7 +74,7 @@ It preserves:
 - list/deck display behavior;
 - card audio, edit, delete, and undo;
 - the existing limits and paywall behavior;
-- a visible add-card action that opens `/flashcards_card_editor?create=1&cat=custom`;
+- existing card creation remains reachable from its current collection/editor flows;
 - direct links to a saved card or pack.
 
 Back returns to the Cards hub.
@@ -90,7 +83,7 @@ Back returns to the Cards hub.
 
 The existing `/flashcards_my_packs` surface remains the destination. It preserves owned, added, and authored packs, edit and publish state, search, and ready-before-open behavior.
 
-A visible add-pack action opens `/community_pack_create`. Back returns to the Cards hub.
+Back returns to the Cards hub. New pack creation is owned by the single `+` action in the hub header.
 
 ### User Packs
 
@@ -100,35 +93,42 @@ Back returns to the Cards hub.
 
 ## Training mode sheet
 
-Tapping `Выбрать режим` opens a Cards-owned modal bottom sheet above the hub. The hub remains visible under a dimmed backdrop.
+Tapping `Тренироваться с карточками` opens a Cards-owned modal bottom sheet above the hub. The hub remains visible under a dimmed backdrop.
 
-The sheet has a grabber, heading `Как тренируемся?`, a short explanation, and three full-width horizontal rows. Each row has an icon, title, small description, and chevron.
+The sheet has a grabber and four wide horizontal rows. It has no heading or explanatory subtitle. Each row has an icon, title, concise product-benefit description, and chevron. Rows use the sheet's standard outer gutter without a second nested horizontal gutter.
 
 ### 1. Blitz
 
 - Label: `Блиц`
-- Description: `60 секунд: назовите как можно больше карточек и заработайте руны.`
+- Description: `За 60 секунд находи верные переводы и вспоминай быстрее.`
 - Session route after setup: `/flashcards_blitz_session`
 
 ### 2. Oral
 
 - Label: `Устно`
-- Description: `Произносите ответы вслух — приложение поможет проверить произношение.`
+- Description: `Повторяй фразы вслух и говори увереннее без пауз.`
 - Session route after setup: `/flashcards_speaking_session`
 - When the speech kill switch is disabled, this row is absent rather than opening a dead screen.
 
 ### 3. True / False
 
 - Label: `Правда / ложь`
-- Description: `Определяйте, верно ли слово связано с переводом, и закрепляйте весь набор.`
+- Description: `Сверяй фразу с переводом и сразу проверяй память.`
 - Session route after setup: the existing card-training route `/flashcards_swipe`
 - This is a new user-facing name and setup entry for the existing card training flow; it is not a second duplicate trainer.
 
 The sheet consumes Android Back before the route changes. Tapping the backdrop or swiping it down closes it. Selecting a mode closes the sheet and pushes the full-screen pack picker.
 
+### 4. Listening
+
+- Label: `Слушать`
+- Description: `Слушай фразы подряд и понимай их без подсказки.`
+- Session route after setup: `/flashcards_listening_session`
+- It reuses the existing listening session and the shared whole-pack setup; no duplicate listening implementation is introduced.
+
 ## Full-screen pack picker
 
-The three modes share one reusable full-screen setup surface with mode-specific title, description, and start label.
+The four modes share one reusable full-screen setup surface with mode-specific title, description, and start label.
 
 Examples:
 
@@ -173,20 +173,20 @@ Starting passes all selected deck IDs to the existing route builders. The sessio
 2. Hub → Saved, My Packs, or User Packs pushes one child route.
 3. Back from any of those three roots returns to the hub.
 4. Back from the hub returns to Home.
-5. Training hero → mode sheet does not change the route.
+5. Training button → mode sheet does not change the route.
 6. Mode choice → full-screen picker pushes one route.
 7. Back from the picker returns to the hub; it does not reopen the sheet.
 8. A visible sheet or overlay always consumes Back before screen navigation.
 9. Opening a specific pack remains hierarchical and returns to the exact list that opened it.
 10. Repeated Back must not cycle among Cards roots.
 
-The old three-position Cards tab bar may be removed from the four root surfaces only after every function has an explicit replacement:
+The old three-position Cards tab bar is removed from the Cards hub, Saved, My Packs, and User Packs surfaces. Its functions are replaced as follows:
 
 - collection navigation → hub library tiles;
-- create card → Saved header action;
-- create pack → My Packs header action;
+- create pack → the single `+` button in the hub header;
+- existing card creation → existing collection/editor entry points;
 - community navigation → User Packs tile;
-- the requested modes → training hero and mode sheet.
+- the requested modes → training button and mode sheet.
 
 No underlying route or capability is deleted as part of removing the redundant navigation chrome.
 
@@ -216,8 +216,8 @@ All animation must run on the UI thread where supported and must not animate wid
 
 Prefer small, bounded units:
 
-- `FlashcardsHubScreen` owns hub composition and navigation only.
-- `FlashcardsTrainingModeSheet` owns the three-mode presentation and selection event.
+- `FlashcardsHubScreen` owns the option-C horizontal library list, the single create-pack action, top packs, and navigation only.
+- `FlashcardsTrainingModeSheet` owns the four-mode presentation and selection event.
 - `FlashcardsDeckPickerScreen` owns source loading, multi-selection, summary, validation, and start routing.
 - Existing collection, My Packs, community catalog, deck-source, route-builder, ready-snapshot, and session components remain the authorities for their respective behavior.
 
@@ -231,7 +231,7 @@ Do not move pack fetching, ownership validation, or session construction into th
 2. Best packs use the existing deterministic top-three selector and create no duplicate catalog load.
 3. Each library tile opens its exact destination.
 4. Back from each destination returns to the hub; Back from the hub returns Home.
-5. The mode sheet exposes Blitz, Oral, and True / False with localized descriptions.
+5. The mode sheet exposes Blitz, Oral, True / False, and Listening with localized product descriptions and no heading/subtitle.
 6. Oral respects the speech kill switch.
 7. Each mode opens the full-screen picker rather than a deck-selection modal.
 8. The picker includes Saved plus all eligible authored/owned packs.
@@ -253,9 +253,10 @@ Do not move pack fetching, ownership validation, or session construction into th
 
 - Opening Cards shows the hub, not Saved.
 - The three best community packs remain at the top when data exists.
-- The training hero is the strongest action on the page.
-- Saved, My Packs, and User Packs are three equal, direct entries.
-- The training sheet contains the requested three primary modes and descriptions.
+- The full-width training button is clear but does not displace the library rows.
+- Saved, My Packs, and User Packs are three direct horizontal entries.
+- No Cards tab bar is rendered; the only hub-header action is `+`, which opens pack creation.
+- The training sheet contains the four requested primary modes and product descriptions.
 - Selecting any mode opens a full-screen pack picker.
 - The picker selects whole packs, supports multiple packs, includes Saved, and has no count selector.
 - Start uses the complete deduplicated union of selected packs.

@@ -388,7 +388,12 @@ function buildSessionShardFromSource(source) {
     // зачем 15 (владелец, 2026-08-17): контракт пакета требует 14–18 заданий в
     // профиле standard. 12 фраз давали ровно 12 заданий (3 вопроса интро + 9
     // карточек) — публикация падала. 15 фраз дают 15 заданий, середина диапазона.
-    const hasExplicitVocabulary = (source.newVocabulary?.length ?? 0) > 0;
+    const hasExplicitVocabulary = (source.newVocabulary?.length ?? 0) > 0 ||
+        (source.retrievalVocabulary?.length ?? 0) > 0;
+    const practiceVocabulary = [
+        ...(source.newVocabulary ?? []),
+        ...(source.retrievalVocabulary ?? []),
+    ];
     if (!hasExplicitVocabulary && source.phrases.length !== exports.SESSION_PHRASE_COUNT_V1)
         throw new Error(`session_source_requires_exactly_${exports.SESSION_PHRASE_COUNT_V1}_phrases`);
     if (hasExplicitVocabulary &&
@@ -484,7 +489,7 @@ function buildSessionShardFromSource(source) {
             ? step.learningStage
             : null;
         const vocabulary = step.targetKind === 'vocabulary'
-            ? source.newVocabulary?.[step.sourceVocabularyIndex ?? -1]
+            ? practiceVocabulary[step.sourceVocabularyIndex ?? -1]
             : undefined;
         const authoredKnownGrid = authoredModeStep?.target.kind === 'vocabulary_grid'
             ? authoredModeStep.target.knownItems
@@ -492,7 +497,7 @@ function buildSessionShardFromSource(source) {
         const gridVocabulary = step.targetKind === 'vocabulary_grid'
             ? (authoredKnownGrid?.length
                 ? authoredKnownGrid
-                : step.sourceVocabularyIndices?.map((sourceIndex) => source.newVocabulary?.[sourceIndex]))
+                : step.sourceVocabularyIndices?.map((sourceIndex) => practiceVocabulary[sourceIndex]))
             : undefined;
         if ((step.targetKind === 'vocabulary' && (!vocabulary || !vocabularyStage)) ||
             (step.targetKind === 'vocabulary_grid' && !gridVocabulary?.every(Boolean)))

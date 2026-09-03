@@ -43,12 +43,12 @@ const OPERATION_SEEDS: readonly OperationSeed[] = Object.freeze([
 
   operation(3, "nouns_core_determiners", "indefinite_article", "Назвать один новый исчисляемый предмет.", "Выбирай an перед гласным звуком, иначе a.", "a|an + singular count noun", "It is a key.", "It is an apple."),
   operation(3, "nouns_core_determiners", "definite_article", "Указать на уже понятный конкретный предмет.", "Используй the, когда собеседнику ясно, о каком предмете речь.", "the + identifiable noun", "The door is open.", "The key is here."),
+  operation(3, "nouns_core_determiners", "plural_nouns", "Назвать больше одного предмета.", "Для регулярного множественного числа добавляй -s или -es.", "singular noun -> plural noun", "Books are here.", "Boxes are open."),
   operation(3, "nouns_core_determiners", "zero_article", "Говорить о вещах в общем без артикля.", "Не ставь артикль перед множественным существительным в общем значении.", "plural noun with no article", "Books are useful.", "Dogs are friendly."),
-  operation(3, "nouns_core_determiners", "plural_nouns", "Назвать больше одного предмета.", "Для регулярного множественного числа добавляй -s или -es.", "singular noun -> plural noun", "These are books.", "Those are boxes."),
   operation(3, "nouns_core_determiners", "demonstratives", "Показать близкий или дальний предмет.", "This/that относятся к одному, these/those — к нескольким.", "this|that + singular; these|those + plural", "This is my bag.", "Those are our seats."),
 
-  operation(4, "existence_place", "there_is_are", "Сообщить, что что-то существует в месте.", "Выбирай there is для одного и there are для нескольких.", "there is + singular; there are + plural", "There is a bank here.", "There are two chairs."),
-  operation(4, "existence_place", "existential_questions", "Спросить о наличии.", "Перенеси is или are перед there.", "is|are + there + noun?", "Is there a pharmacy?", "Are there any seats?"),
+  operation(4, "existence_place", "there_is_are", "Сообщить, что что-то существует в месте.", "Выбирай there is для одного и there are для нескольких.", "there is + singular; there are + plural", "There is a bank here.", "There are chairs."),
+  operation(4, "existence_place", "existential_questions", "Спросить о наличии.", "Перенеси is или are перед there.", "is|are + there + noun?", "Is there a pharmacy?", "Are there seats?"),
   operation(4, "existence_place", "existential_some_any", "Указать неопределённое количество при наличии или вопросе.", "Обычно используй some в утверждении и any в вопросе или отрицании.", "some in affirmative; any in question or negative", "There are some shops.", "There isn't any water."),
   operation(4, "existence_place", "basic_place_prepositions", "Точно расположить предмет.", "Ставь in, on, under, next to или between перед местом.", "be + place preposition + noun", "The key is under the table.", "The bank is next to the hotel."),
 

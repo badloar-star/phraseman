@@ -1,0 +1,10 @@
+import type { LocalizedSource } from './session_shard_from_source_v1';
+
+export const EPISODE_01_SESSION_06_EXACT_WORDS_V2 = Object.freeze([
+  { id: 'e01-s06-word-calm', target: 'calm', meaning: { ru: 'спокоен', uk: 'спокійний', es: 'tranquilo', 'pt-BR': 'calmo', vi: 'bình tĩnh', id: 'tenang', tr: 'sakin', pl: 'spokojny' } satisfies LocalizedSource },
+  { id: 'e01-s06-word-nervous', target: 'nervous', meaning: { ru: 'нервничаю', uk: 'нервуюся', es: 'nervioso', 'pt-BR': 'nervoso', vi: 'lo lắng', id: 'gugup', tr: 'gergin', pl: 'zdenerwowany' } satisfies LocalizedSource },
+  { id: 'e01-s06-word-excited', target: 'excited', meaning: { ru: 'взволнован', uk: 'схвильований', es: 'emocionado', 'pt-BR': 'animado', vi: 'hào hứng', id: 'bersemangat', tr: 'heyecanlı', pl: 'podekscytowany' } satisfies LocalizedSource },
+] as const);
+export const EPISODE_01_SESSION_06_EXACT_TITLE_V2 = { ru: 'Я спокоен', uk: 'Я спокійний', es: 'Estoy tranquilo', 'pt-BR': 'Estou calmo', vi: 'Tôi bình tĩnh', id: 'Saya tenang', tr: 'Sakinim', pl: 'Jestem spokojny' } satisfies LocalizedSource;
+export const EPISODE_01_SESSION_06_EXACT_SUMMARY_V2 = { ru: 'Три состояния чувств присоединяются к I am.', uk: 'Три стани почуттів приєднуються до I am.', es: 'Tres estados emocionales se unen a I am.', 'pt-BR': 'Três estados emocionais entram com I am.', vi: 'Ba trạng thái cảm xúc ghép với I am.', id: 'Tiga keadaan perasaan bergabung dengan I am.', tr: 'Üç duygu durumu I am ile birleşir.', pl: 'Trzy stany emocji łączą się z I am.' } satisfies LocalizedSource;
+export const EPISODE_01_SESSION_06_EXACT_GOAL_V2 = { ru: 'Узнать calm, nervous и excited и сказать I am …', uk: 'Упізнати calm, nervous та excited і сказати I am …', es: 'Reconocer calm, nervous y excited y decir I am …', 'pt-BR': 'Reconhecer calm, nervous e excited e dizer I am …', vi: 'Nhận ra calm, nervous và excited rồi nói I am …', id: 'Mengenali calm, nervous, dan excited lalu mengatakan I am …', tr: 'Calm, nervous ve excited sözcüklerini tanıyıp I am … demek.', pl: 'Rozpoznać calm, nervous i excited, a potem powiedzieć I am …' } satisfies LocalizedSource;

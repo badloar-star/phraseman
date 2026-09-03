@@ -6,8 +6,8 @@ import {
   EPISODE_01_SESSION_02_WORD_FIRST_SUMMARY,
   EPISODE_01_SESSION_02_WORD_FIRST_TITLE,
 } from './episode_01_session_02_intro_word_first_v1';
-import { EPISODE_01_SESSION_02_VOCABULARY_V1 } from './episode_01_session_02_vocabulary_v1';
-import { EPISODE_01_SESSION_02_MODE_NATIVE_PHRASES } from './episode_01_session_02_affirmative_phrases_v1';
+import { EPISODE_01_SESSION_02_EXACT_VOCABULARY_V1 } from './episode_01_session_02_vocabulary_v1';
+import { EPISODE_01_SESSION_02_EXACT_MODE_NATIVE_PHRASES } from './episode_01_session_02_affirmative_phrases_v1';
 import { EPISODE_01_SESSION_02_MODE_NATIVE_PRACTICE_V1 } from './episode_01_session_02_mode_native_v1';
 import { LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1 } from './lesson1_session_choreography_v1';
 import type { SessionSource } from './session_shard_from_source_v1';
@@ -23,8 +23,9 @@ export const EPISODE_01_SESSION_02_SOURCE: SessionSource = Object.freeze({
   summary: EPISODE_01_SESSION_02_WORD_FIRST_SUMMARY,
   learningGoal: EPISODE_01_SESSION_02_WORD_FIRST_GOAL,
   introPages: EPISODE_01_SESSION_02_WORD_FIRST_INTRO,
-  newVocabulary: EPISODE_01_SESSION_02_VOCABULARY_V1,
-  phrases: EPISODE_01_SESSION_02_MODE_NATIVE_PHRASES,
+  newVocabulary: EPISODE_01_SESSION_02_EXACT_VOCABULARY_V1,
+  phrases: EPISODE_01_SESSION_02_EXACT_MODE_NATIVE_PHRASES,
   modeNativePlanId: LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1,
+  reviewConstructIds: Object.freeze(['affirmative_self_statement']),
   modeNativePractice: EPISODE_01_SESSION_02_MODE_NATIVE_PRACTICE_V1,
 });

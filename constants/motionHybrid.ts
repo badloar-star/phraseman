@@ -133,6 +133,31 @@ export const SESSION_ATTEMPTS_MOTION = {
   exhaustedModalDelayMs: 340,
 } as const;
 
+/**
+ * Автоматический подарок после третьей ошибки: одна конечная rescue-сцена.
+ * зачем: восстановлено из работы владельца 2026-08-30/31 — сцену «Второй шанс»
+ * унесло вместе с остальной несохранённой работой при подготовке релиза 1.6.15.
+ */
+export const SECOND_CHANCE_RESCUE_MOTION = {
+  lifetimeMs: 2050,
+  semanticCompleteMs: 1350,
+  reducedMotionLifetimeMs: 1050,
+  scrimInMs: 150,
+  scrimOutMs: 260,
+  potionStartScale: 0.72,
+  potionStartY: 20,
+  potionSpring: Object.freeze({ damping: 13, stiffness: 210, mass: 0.72 }),
+  shieldStartScale: 0.78,
+  shieldDelayMs: 220,
+  shieldInMs: 220,
+  heartStaggerMs: [0, 110, 220] as const,
+  heartFlightDelayMs: 520,
+  heartFlightMs: 620,
+  copyStartY: 8,
+  copyDelayMs: 360,
+  copyInMs: 210,
+} as const;
+
 /** Угловой знак цены старта: один короткий вход и конечный световой импульс. */
 export const ENERGY_COST_BADGE_HYBRID = {
   entryShiftPx: -6,

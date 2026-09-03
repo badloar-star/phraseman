@@ -1,9 +1,9 @@
 # English Learning V2 — Full B1 Blueprint V2 receipt
 
 **Дата:** 2026-08-30  
-**Статус:** `OWNER REVIEW REQUIRED`
+**Статус:** `OWNER APPROVED`
 **Canonical fingerprint:**
-`3a4ca1422a6125bb317121c312c0166fdb595ee90111f297c480c8a82b7716e4`
+`bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`
 
 ## Что уже материализовано
 

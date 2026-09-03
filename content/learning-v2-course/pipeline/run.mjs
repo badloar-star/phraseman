@@ -176,6 +176,22 @@ function machineFacts(file) {
   facts.push(`заданий: ${v.taskCount ?? "?"}; механики вне списка: ${v.unknown?.length ? v.unknown.map(([n, f]) => `${n}=${f}`).join(", ") : "нет"}`);
   const timeRefs = [...(text.split(/^## Практика/m)[0] + practice).matchAll(/(вчера|позавчера|на прошлой сессии|в прошлый раз вы|вы уже учили|вы выучили)/gi)].map((m) => m[0]);
   facts.push(`ссылки на время обучения: ${timeRefs.length ? timeRefs.join(", ") : "не найдены (проверь «сегодня/утром» вручную — могут быть сценой)"}`);
+
+  // зачем (владелец, 03.09): интро объясняло `I tired`, а вопрос под ним
+  // спрашивал про `I am fine` — ученик читает про одно, отвечает про другое.
+  // Проверяем машинно: слово из правильного ответа должно встречаться в тексте
+  // страницы. Судьи этого не ловили — они смотрят каждую часть отдельно.
+  const introBlocks = text.split(/^## Интро \d+[^\n]*$/m).slice(1);
+  for (const [i, block] of introBlocks.entries()) {
+    const page = block.split(/^---\s*$/m)[0];
+    const body = page.split(/^-\s+[✅❌]/m)[0];
+    const correct = /^-\s+✅\s+\*\*([^*]+)\*\*/m.exec(page)?.[1]?.trim() ?? "";
+    if (!correct) { facts.push(`интро ${i + 1}: НЕ НАЙДЕН правильный ответ`); continue; }
+    // ключевое слово ответа — последнее содержательное (fine, sure, new…)
+    const key = correct.replace(/[.?!]$/, "").split(/\s+/).filter((w) => !/^(i|am|not|a|the)$/i.test(w)).pop() ?? "";
+    const inBody = key && new RegExp(`\\b${key}\\b`, "i").test(body);
+    facts.push(`интро ${i + 1}: ответ «${correct}» ключ «${key}» — ${inBody ? "объяснён на странице" : "НЕ УПОМЯНУТ в тексте страницы ← текст ведёт к другому слову"}`);
+  }
   return facts.join("\n");
 }
 
@@ -497,7 +513,7 @@ function stageLocalize(S, ruFile) {
     LOG(`пропуск локализации: locales_batch.md уже есть (${read(batchFile).length} зн.)`);
     batch = splitLocaleBatch(read(batchFile));
   } else {
-    const text = callModel({ system: fill(prompt("localize_batch"), { СЕССИЯ_RU: ru }), user: "Сделай семь локалей.", model: MODEL_DRAFT, maxTokens: 32000, label: "локали ×7 (пакет)" });
+    const text = callModel({ system: fill(prompt("localize_batch"), { СЕССИЯ_RU: ru, ЛОКАЛИ: LOCALES.join(", ") }), user: `Сделай версии для локалей: ${LOCALES.join(", ")}. Только эти, по порядку.`, model: MODEL_DRAFT, maxTokens: 32000, label: `локали ×${LOCALES.length} (пакет)` });
     write(batchFile, stripFence(text));
     batch = splitLocaleBatch(stripFence(text));
   }
@@ -518,7 +534,10 @@ function stageLocalize(S, ruFile) {
   }
   const structIssues = Object.entries(structural).filter(([, v]) => v.length);
   if (structIssues.length) WARN(`структурные расхождения: ${structIssues.map(([l, v]) => `${l}: ${v.join("; ")}`).join(" | ")}`);
-  const jt = callModel({ system: fill(prompt("judge_locale_batch"), { СЕССИЯ_RU: excerptForLocaleJudge(ru), СЕССИИ_ЛОКАЛЕЙ: parts.join("\n\n") }), user: "Вынеси вердикт по семи локалям.", model: MODEL_JUDGE, maxTokens: 8000, label: "судья локалей ×7" });
+  // зачем: список локалей задаётся флагом (сейчас ru+uk). Раньше и промпт, и
+  // реплика говорили «семь» — судья выдавал BLOCK за отсутствие локалей,
+  // которых мы сознательно не заказывали.
+  const jt = callModel({ system: fill(prompt("judge_locale_batch"), { СЕССИЯ_RU: excerptForLocaleJudge(ru), СЕССИИ_ЛОКАЛЕЙ: parts.join("\n\n") }), user: `Вынеси вердикт по присланным локалям: ${LOCALES.join(", ")}.`, model: MODEL_JUDGE, maxTokens: 8000, label: `судья локалей ×${LOCALES.length}` });
   let j;
   try { j = extractJson(jt); } catch (e) { WARN(`судья локалей: ${e.message}`); j = { verdict: "REVISE", verdict_reason: "нет JSON", raw: jt }; }
   write(path.join(S.dir, "locales.judge.json"), JSON.stringify(j, null, 2));
@@ -588,28 +607,4 @@ function main() {
     for (let round = 1; round <= 2 && cur.s < 6; round++) {
       LOG(`круг правки ${round}: ${path.basename(cur.f)} (${cur.s}/6)`);
       const ef = stageEdit(S, ctx, plan, row, known, cur.f, cur.v);
-      const v = stageJudge(S, ctx, plan, row, known, ef);
-      cur = { f: ef, v, s: score(v) };
-    }
-    const finalRu = path.join(S.dir, "final.ru.md");
-    fs.copyFileSync(cur.f, finalRu);
-    LOG(`final.ru.md ← ${path.basename(cur.f)} (${cur.s}/6)`);
-    // зачем: 03.09 конвейер ушёл локализовать сессию, которой судья-ученик
-    // поставил BLOCK («задания 16 и 17 невыполнимы») — 14 вызовов впустую.
-    // BLOCK у любого судьи означает стоп, а не предупреждение.
-    const blocked = Object.entries(cur.v).filter(([, j]) => j.verdict === "BLOCK");
-    if (blocked.length) {
-      WARN(`СТОП перед локализацией: ${blocked.map(([n, j]) => `${n} — ${j.verdict_reason}`).join(" | ")}`);
-      write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blocked: blocked.map(([n]) => n), locales: null, at: new Date().toISOString() }, null, 2));
-      return;
-    }
-    if (cur.s < 6) WARN("сессия не сошлась к PASS×3 за 2 круга — локализую, но нужна ручная проверка");
-    const loc = stageLocalize(S, finalRu);
-    write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, locales: loc, at: new Date().toISOString() }, null, 2));
-    return;
-  }
-  LOG("ранний выход: неизвестная команда", cmd);
-  process.exit(2);
-}
-
-main();
+      const v = stageJu

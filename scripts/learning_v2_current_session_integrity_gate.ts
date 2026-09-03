@@ -22,6 +22,13 @@ export function assertLearningV2NewVocabularyProgressionV1(
   const previouslyIntroduced = new Set<string>();
   for (const source of sources) {
     const targets = source.newVocabulary ?? [];
+    const isCheckpoint = EPISODE_01_SESSION_MAP_V1[source.requiredSessionOrdinal - 1]?.kind === 'checkpoint';
+    if (isCheckpoint) {
+      if (targets.length !== 0) {
+        throw new Error(`checkpoint_session_new_vocabulary_forbidden:${source.requiredSessionOrdinal}`);
+      }
+      continue;
+    }
     if (targets.length < 1) {
       throw new Error(`session_new_vocabulary_missing:${source.requiredSessionOrdinal}`);
     }
@@ -38,6 +45,19 @@ export function assertLearningV2NewVocabularyProgressionV1(
 }
 
 const GRAMMAR_FEATURE = /(?:copula|person|singular|plural|contraction|negation|question|interrogative|agreement|article|possessive|demonstrative|tense|aspect|modal|preposition|comparative|superlative|infinitive|gerund|pronoun|determiner|word_order|imperative)/iu;
+
+/**
+ * `I + am` is one Full B1 micro-operation. The source retains both feature
+ * tags for searchability, but the subject-person tag is not a second grammar
+ * lesson when the copula is introduced in the same exact packet.
+ */
+function atomicGrammarOperationFeatures(features: readonly string[]): readonly string[] {
+  const unique = [...new Set(features)];
+  if (unique.includes("copula_be") && unique.includes("first_person_singular")) {
+    return unique.filter((feature) => feature !== "first_person_singular");
+  }
+  return unique;
+}
 
 const SURFACE_GRAMMAR_RULES = Object.freeze([
   { id: "to_construction", pattern: /\bto\b/iu },
@@ -71,7 +91,9 @@ export function assertLearningV2CurrentGrammarGetsFullSessionV1(
     ),
   );
   const currentGrammar = new Set(
-    current.phrases.flatMap((phrase) => phrase.features.filter((feature) => GRAMMAR_FEATURE.test(feature))),
+    atomicGrammarOperationFeatures(
+      current.phrases.flatMap((phrase) => phrase.features.filter((feature) => GRAMMAR_FEATURE.test(feature))),
+    ),
   );
   const previousSurfaceGrammar = new Set(
     sources.slice(0, -1).flatMap((source) => surfaceGrammarIds(source)),
@@ -81,9 +103,11 @@ export function assertLearningV2CurrentGrammarGetsFullSessionV1(
     ...[...currentGrammar].filter((feature) => !previousFeatures.has(feature)),
     ...currentSurfaceGrammar.filter((feature) => !previousSurfaceGrammar.has(feature)),
   ].filter((feature, index, all) => all.indexOf(feature) === index);
-  if (newGrammar.length === 0) {
+  const reviewGrammar = [...new Set(current.reviewConstructIds ?? [])];
+  if (newGrammar.length === 0 && reviewGrammar.length === 0) {
     throw new Error(`session_new_grammar_missing:${current.requiredSessionOrdinal}`);
   }
+  const declaredGrammar = newGrammar.length > 0 ? newGrammar : reviewGrammar;
   const mapEntry = EPISODE_01_SESSION_MAP_V1[current.requiredSessionOrdinal - 1];
   if (!mapEntry) throw new Error(`grammar_session_map_missing:${current.requiredSessionOrdinal}`);
   const undeclared = newGrammar.filter((feature) => !mapEntry.teaches.includes(feature));
@@ -92,20 +116,24 @@ export function assertLearningV2CurrentGrammarGetsFullSessionV1(
       `new_grammar_hidden_inside_session:${current.requiredSessionOrdinal}:${undeclared.join(",")}`,
     );
   }
-  if (current.introPages.length !== 3 || (current.modeNativePractice?.length ?? 0) !== 17) {
+  const practiceCount = current.modeNativePractice?.length ?? 0;
+  // A learner-facing target may appear in only one task.  A compact exact
+  // packet can therefore end once it has covered the six required native
+  // families, rather than padding back to the obsolete 17-contact template.
+  if (current.introPages.length !== 3 || practiceCount < 6 || practiceCount > 17) {
     throw new Error(
       `new_grammar_requires_full_session:${current.requiredSessionOrdinal}:${newGrammar.join(",")}`,
     );
   }
   const introGrammar = current.introPages.map((page) => page.question.grammarFeatureId?.trim() ?? "");
   const introDimensions = current.introPages.map((page) => page.question.testedDimension?.trim() ?? "");
-  if (introGrammar.some((value) => value.length === 0) || introGrammar.some((value) => !newGrammar.includes(value))) {
+  if (introGrammar.some((value) => value.length === 0) || introGrammar.some((value) => !declaredGrammar.includes(value))) {
     throw new Error(`intro_grammar_focus_missing_or_stale:${current.requiredSessionOrdinal}:${introGrammar.join(",")}`);
   }
   if (new Set(introDimensions).size !== 3 || introDimensions.some((value) => value.length === 0)) {
     throw new Error(`intro_grammar_dimensions_not_distinct:${current.requiredSessionOrdinal}`);
   }
-  const unexplained = newGrammar.filter((feature) => !introGrammar.includes(feature));
+  const unexplained = declaredGrammar.filter((feature) => !introGrammar.includes(feature));
   if (unexplained.length > 0) {
     throw new Error(`grammar_used_before_intro_explanation:${current.requiredSessionOrdinal}:${unexplained.join(",")}`);
   }

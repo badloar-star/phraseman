@@ -12,15 +12,11 @@ import {
 import { buildLearningV2AuthoringDevicePreviewV1 } from '../modules/learning-v2/preview/authoring_device_preview_v1';
 
 const locales = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
-const expectedVocabulary = ['happy', 'sad', 'tired', 'fine'];
-const expectedPhrases = ['I am happy', 'I am sad', 'I am tired', 'I am fine'];
+const expectedVocabulary = ['happy', 'sad', 'tired'];
+const expectedPhrases = ['I am happy', 'I am sad', 'I am tired'];
 const expectedFamilies = [
-  'scripted_repeat_compare', 'listen_choose', 'scripted_repeat_compare',
-  'listen_choose', 'context_gap_grammar', 'listen_choose',
-  'context_gap_grammar', 'listen_choose', 'listen_build_dictation',
-  'phrase_builder', 'context_gap_grammar', 'phrase_builder', 'speed_match',
-  'phrase_builder', 'context_gap_grammar', 'listen_choose',
-  'scripted_repeat_compare',
+  'scripted_repeat_compare', 'listen_choose', 'scripted_repeat_compare', 'speed_match',
+  'phrase_builder', 'listen_build_dictation', 'context_gap_grammar',
 ] as const;
 
 assert.equal(EPISODE_01_SESSION_02_SOURCE.distractorAuthorship, 'manual');
@@ -105,7 +101,7 @@ for (const phrase of EPISODE_01_SESSION_02_SOURCE.phrases) {
 }
 
 const practice = EPISODE_01_SESSION_02_SOURCE.modeNativePractice ?? [];
-assert.equal(practice.length, 17);
+assert.equal(practice.length, 7);
 assert.deepEqual(practice.map((entry) => entry.family), expectedFamilies);
 assert.deepEqual(
   [...new Set(practice.map((entry) => entry.family))].sort(),
@@ -118,19 +114,18 @@ for (let index = 1; index < practice.length; index += 1) {
 for (const entry of practice) assert.equal(entry.modePayload.family, entry.family);
 const speedMatch = practice.find((entry) => entry.family === 'speed_match')?.modePayload;
 assert.ok(speedMatch?.family === 'speed_match');
-assert.equal(speedMatch.pairGrid.length, 4);
+assert.equal(speedMatch.pairGrid.length, 3);
 assert.deepEqual(
   speedMatch.pairGrid.map((pair) => pair.target).sort(),
-  ['fine', 'happy', 'sad', 'tired'].sort(),
+  ['happy', 'sad', 'tired'].sort(),
 );
 
 const shard = buildSessionShardFromSource(EPISODE_01_SESSION_02_SOURCE);
-assert.equal(shard.cards.length, 20);
+assert.equal(shard.cards.length, 10);
 assert.deepEqual(shard.cards.slice(3).map((card) => card.family), expectedFamilies);
 assert.equal(shard.cards[3]?.instructionByLocale.ru, 'Послушайте слово, затем произнесите его вслух.');
-assert.equal(shard.cards[11]?.instructionByLocale.ru, 'Послушайте целую фразу и соберите её в услышанном порядке.');
-assert.equal(shard.cards[12]?.instructionByLocale.ru, 'Соберите полную фразу о своём состоянии.');
-assert.equal(shard.cards[19]?.instructionByLocale.ru, 'Послушайте полную фразу, произнесите её и сравните с образцом.');
+assert.equal(shard.cards[7]?.instructionByLocale.ru, 'Соберите полную фразу о своём состоянии.');
+assert.equal(shard.cards[8]?.instructionByLocale.ru, 'Послушайте целую фразу и соберите её в услышанном порядке.');
 assert.doesNotThrow(() => validateLearningV2GeneratedSessionShardV1(shard, {
   packageId: shard.packageId,
   targetLanguage: shard.targetLanguage,
@@ -140,7 +135,7 @@ assert.doesNotThrow(() => validateLearningV2GeneratedSessionShardV1(shard, {
 }));
 for (const locale of locales) {
   const children = buildSessionChildBodiesFromShard(shard, locale, 'lesson-01:session:02');
-  assert.equal(children.learner.interactions.length, 17);
+  assert.equal(children.learner.interactions.length, 7);
   assert.deepEqual(children.learner.interactions.map((interaction) => interaction.family), expectedFamilies);
   assert.ok(children.learner.interactions.every((interaction) => interaction.modePayload));
   const encounters = children.auxiliary.entries
@@ -148,12 +143,12 @@ for (const locale of locales) {
     .filter((entry) => entry.encounter);
   assert.deepEqual(
     encounters.map((entry) => entry.id),
-    shard.cards.slice(3, 7).map((card) => card.cardId),
+    shard.cards.slice(3, 6).map((card) => card.cardId),
     `Each word card must appear immediately before that word's first task for ${locale}`,
   );
   assert.deepEqual(
     encounters.map((entry) => entry.encounter?.lexicalItemId),
-    ['e01-s02-word-happy', 'e01-s02-word-sad', 'e01-s02-word-tired', 'e01-s02-word-fine'],
+    ['e01-s02-word-happy', 'e01-s02-word-sad', 'e01-s02-word-tired'],
   );
   assert.ok(encounters.every((entry) =>
     (entry.encounter?.playfulMeaningByLocale[locale]?.length ?? 0) >= 55,
@@ -211,7 +206,7 @@ for (const interaction of deviceChildren.learner.interactions) {
 const authoringPreview = buildLearningV2AuthoringDevicePreviewV1(2, 'ru');
 assert.equal(authoringPreview.status, 'LOCKED');
 assert.equal(authoringPreview.introChild.pages.length, 3);
-assert.equal(authoringPreview.learnerChild.interactions.length, 17);
+assert.equal(authoringPreview.learnerChild.interactions.length, 7);
 assert.equal(authoringPreview.sideEffectPolicy, 'preview_only_no_learner_writes');
 
 const report = evaluateLearningV2SessionContentQuality(EPISODE_01_SESSION_02_SOURCE);

@@ -1,5 +1,2262 @@
 # Phraseman Learning V2 — мастер-хендовер
 
+## Recenter receipt — English Full B1 Lesson 3 Session 41 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_41_v1.ts`; demonstratives packet with new sense `kitchen`; locked fingerprint: `553777a0069f31f59b47d94be780226e08801b2ec3ddefd6ba68131707f86c25`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S41: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 42 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 40 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_40_v1.ts`; demonstratives retrieval checkpoint; locked fingerprint: `5df6882fcd0c9be74e9b6d4dfedd0941d13937dcfc7293b8bb615c5e52c78326`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S40: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 41 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 39 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_39_v1.ts`; demonstratives packet with new sense `bottles`; locked fingerprint: `ae235d51fb99e727a25b8dc8663122aa41fe741e63382c3c80be5f52c04054d5`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S39: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 40 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 38 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_38_v1.ts`; demonstratives packet with new sense `ticket`; locked fingerprint: `c7a5236f91cf68e8cf6b673574ca2d5e46b56dabad636723efe9a65f80f30250`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S38: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 39 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 37 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_37_v1.ts`; demonstratives packet with new sense `car`; locked fingerprint: `3c016e1ce8c7d395bdcef708d460d16cb484074b3635fc1044ab876e5300b853`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S37: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 38 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 36 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_36_v1.ts`; demonstratives packet with new sense `children`; locked fingerprint: `cd2a3c43ddf715b56552a4462a90e4ca97311891a7b6d7b46f2f4d56edad945a`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S36: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 37 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 35 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_35_v1.ts`; demonstratives packet with new sense `photos`; locked fingerprint: `26367fad8dc2b3275555f69a01e13e073d1e26dc28fd6dfcf37cfc66e4a85a60`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S35: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 36 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 34 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_34_v1.ts`; demonstratives packet with new sense `wallet`; locked fingerprint: `6155ac0545dd0145406686a0cb53cbfa36fbc639fa95d8eaebb0c0c847ef57ba`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S34: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 35 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 33 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_33_v1.ts`; demonstratives packet with new sense `phone`; locked fingerprint: `0ec5edb9bc4a4484f7f94c188ab6dbd4f419f75b8b07f791a90b2567e980c115`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S33: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 34 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 32 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_32_v1.ts`; plural-nouns retrieval checkpoint; locked fingerprint: `a8ac90caae111fdf05afcb81755a20f7897f1f9ea1a4d1ffcaa2c568414fbe84`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S32: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 33 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 31 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_31_v1.ts`; plural-nouns packet with new sense `parks`; locked fingerprint: `ad5654c2043afb87f40a960d65ae9fcade0891441fc6c93706f0591e84674756`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S31: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 32 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 30 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_30_v1.ts`; plural-nouns packet with new sense `windows`; locked fingerprint: `1b66addeccbce13fca0576a388a333936f1240b1e762e286632ab28225b1e61c`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S30: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 31 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 29 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_29_v1.ts`; plural-nouns packet with new sense `tables`; locked fingerprint: `a080a7d4c51d5d5eb45f508cb12591162ce56ec9acfee772301b0832fad72024`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S29: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 30 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 28 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_28_v1.ts`; plural-nouns packet with new sense `chairs`; locked fingerprint: `058b1e9ba086ef1e7ca9a95f77657723968f924d18ea231a76ced05f20960811`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S28: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 29 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 27 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_27_v1.ts`; plural-nouns packet with new sense `cars`; locked fingerprint: `45424d48d4ccf165b26a91b06783bbe27c234e4099fefda5fd895ed0a29dd25f`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S27: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 28 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 26 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_26_v1.ts`; plural-nouns packet with new sense `cats`; locked fingerprint: `2b623847e13355522b87b2e973828ea8b77e968af4c7899b35899fe49355aafb`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S26: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 27 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 25 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_25_v1.ts`; plural-nouns packet with new sense `dogs`; locked fingerprint: `bde5401554c43a34efc30ce63816286ebdd85218c8bef3da330ae358501e7640`.
+- PASS: content AUTOPASS, nine-locale projection, no-repeated-primary-task gate, L3 registry, curriculum owner map, and owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt through L3:S25: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 26 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 24 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_24_v1.ts`; exact plural-nouns checkpoint: retrieval `books` / `boxes` / `bags` / `maps` / `pens` / `cups` / `tickets`; canonical wh-question checkpoint examples; locked fingerprint: `7f37452799636c434649c59247050f02026ee8ad8d6aece5d8b6da45c31ee873`.
+- Recenter: retrieval-only checkpoint, dedicated Session 24 plan, distinct targets, and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S24: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 25 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 23 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_23_v1.ts`; exact spoken-production plural-nouns packet: new sense `tickets`; retrieval `married` / `single` / `different` / `valid` / `coat`; canonical examples `Tickets are here.` / `Books are here.` / `Boxes are open.` / `Bags are here.`; locked fingerprint: `28aae03ba975f988e1053fe92ed354618f81c8ca4df6a2da7e2b7e2a1b55044e`.
+- Recenter: standalone tickets word cycle and exact spoken target, with six distinct primary tasks and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S23: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 24 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 22 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_22_v1.ts`; exact listening-retrieval plural-nouns packet: new sense `cups`; retrieval `rich` / `poor` / `famous` / `complete` / `picture`; canonical examples `Cups are full.` / `Books are here.` / `Boxes are open.` / `Bags are here.`; locked fingerprint: `b304e66c48216944826a807f7849a0425884d2a421cf8b76b68709b2c94da773`.
+- Recenter: standalone cups word cycle, exact new canonical listening target, six distinct primary tasks, and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S22: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 23 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 21 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_21_v1.ts`; exact diagnostic-repair plural-nouns packet: new sense `pens`; retrieval `inside` / `outside` / `upstairs` / `no` / `broken` / `window`; canonical examples `Pens are here.` / `Books are here.` / `Boxes are open.` / `Bags are here.`; locked fingerprint: `5d7c53d061475e9be7f8064750fd8065742fab6aaa94004b794df8452bfedbfc`.
+- Recenter: standalone pens word cycle and repair contrast, with six distinct primary tasks and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S21: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 22 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 20 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_20_v1.ts`; exact guided plural-nouns packet: new sense `maps`; retrieval `lost` / `prepared` / `careful` / `yes` / `innocent` / `table`; canonical examples `Maps are here.` / `Books are here.` / `Boxes are open.` / `Bags are here.`; locked fingerprint: `cf8665350b8c1bd858fa4d5475ea0a19ffa36d5fc18429765fac62659120855f`.
+- Recenter: standalone maps word cycle, approved plural retrieval contexts, six distinct primary tasks, and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S20: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 21 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 19 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_19_v1.ts`; exact diagnostic plural-nouns packet: new sense `bags`; retrieval `together` / `alone` / `nearby` / `guilty` / `room`; canonical examples `Bags are here.` / `Books are here.` / `Boxes are open.` / `Maps are here.`; locked fingerprint: `c85a9e7a08b50e716406f1719921e4c26d14cd869140b50425a63f95a99def37`.
+- Recenter: standalone bags word cycle with plural diagnostic contrast; six distinct primary tasks and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S19: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 20 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 18 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_18_v1.ts`; exact guided plural-nouns extension: new sense `boxes`; retrieval `wrong` / `early` / `lucky` / `unwell` / `lock`; canonical examples `Boxes are open.` / `Books are here.` / `Bags are here.` / `Maps are here.`; locked fingerprint: `a78653d09a59023c8ff29dfcfc8be36b5c4d8dd314bf00d9e3551e77db295c0d`.
+- Recenter: standalone boxes word cycle; inherited only the approved plural retrieval contexts; no repeated primary task and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S18: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 19 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 17 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_17_v1.ts`; exact plural-nouns packet: new sense `books`; retrieval `welcome` / `safe` / `right` / `well` / `door`; canonical examples `Books are here.` / `Boxes are open.` / `Bags are here.` / `Maps are here.`; locked fingerprint: `5aa261f7d4d643b54da9a60cdf1138b81dc3ba2bf6a7f1bc0181b8931aa4ea66`.
+- Recenter: role `introduce_grammar`; manual eight-locale learner copy, three changed-context diagnostics, six distinct primary practice targets, and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S17: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 18 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 16 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_16_v1.ts`; exact Chapter 2 checkpoint: `newVocabulary=[]`; retrieval `door` / `lock` / `room` / `table` / `window` / `picture` / `coat`; wh-question and article review; locked fingerprint: `0474b6db486beccc3e35af71c0d4329dde038d9418d7faed4d46ae1cf0297e49`.
+- Recenter: lexical role `checkpoint`; changed-context retrieval uses dedicated S16 payloads (not inherited S8 audio or feedback), unique primary targets, and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S16: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 17 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 15 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_15_v1.ts`; exact spoken-production packet: new sense `coat`, retrieval `easy` / `difficult` / `important` / `silent` / `cup`, review `wh_questions` + `indefinite_article` + `definite_article`; locked fingerprint: `dd1dbf4aa4ecadc0fc896a8e5f814f720080a27d96069abe2997cdda498a5f75`.
+- Recenter: lexical role `spoken_production`; manual eight-locale learner copy, unique intro/practice targets, and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S15: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 16 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 14 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_14_content_v2.ts` + `episode_03_session_14_v1.ts`; exact listening-retrieval packet: new sense `picture`, retrieval `dirty` / `open` / `closed` / `obvious` / `pen`, review `wh_questions` + `indefinite_article` + `definite_article`; locked fingerprint: `1ba1ea8608423ab924d2043e56ffc285947e01e9ec172b4cac474184bcb835d8`.
+- Recenter: lexical role `listening_retrieval`; manual eight-locale learner copy, distinct intro/task targets, and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S14: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 15 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 13 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_13_content_v2.ts` + `episode_03_session_13_v1.ts`; exact diagnostic-repair packet: new sense `window`, retrieval `small` / `big` / `clean` / `public` / `map`, review `wh_questions` + `indefinite_article` + `definite_article`; locked fingerprint: `98344178d09051a3924999712faadf85128866ad8ef67d93ec0173332b9562b7`.
+- Recenter: lexical role `diagnostic_repair`; manual eight-locale learner copy repairs the `a` versus `the` contrast through three distinct diagnostics, six distinct primary practice targets, and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S13: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 14 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 12 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_12_content_v2.ts` + `episode_03_session_12_v1.ts`; exact guided-application packet: new sense `table`, retrieval `loud` / `friendly` / `helpful` / `private` / `bag`, review `wh_questions` + `indefinite_article` + `definite_article`; locked fingerprint: `90572c4e9aa376188205248f9eb470107d3ae0010655ac9083f1b31040e51812`.
+- Recenter: lexical role `guided_application`; manual eight-locale learner copy has three distinct intro diagnostics, distinct primary practice targets, and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S12: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 13 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 11 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_11_content_v2.ts` + `episode_03_session_11_v1.ts`; exact diagnostic-contrast packet: new sense `room`, retrieval `smart` / `strong` / `quiet` / `urgent` / `book`, review `wh_questions` + `indefinite_article` + `definite_article`; locked fingerprint: `00863e747d79c22c7522787ef076199e5f9e5de8ab1df54f0945e14736fbc97c`.
+- Recenter: lexical role `introduce_or_diagnostic_contrast`; manual eight-locale learner copy has three distinct intro diagnostics, distinct primary practice targets, and exactly one Speed Match: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S11: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 12 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 10 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_10_content_v2.ts` + `episode_03_session_10_v1.ts`; exact guided-extension packet: new sense `lock`, retrieval `old` / `kind` / `funny` / `impossible` / `apple`, review `indefinite_article` + `definite_article`; locked fingerprint: `b462aa9ebbd72adc5bd7fe48c6eee646df8c666794f253348165ad361ffd0b9b`.
+- Recenter: lexical role `introduce_or_guided_extension`; three distinct diagnostic targets, all learner-facing primary practice targets are unique, and Speed Match occurs exactly once: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S10: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 11 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 9 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_09_content_v2.ts` + `episode_03_session_09_v1.ts`; exact Chapter 2 opening packet: new sense `door`, new operation `definite_article`, canonical focus `The door is open.`; locked fingerprint: `38ef36d811c1b353c86717417335662cd35305e621ed601d4206b981b28076f7`.
+- Recenter: lexical role `introduce_and_retrieve`; all intro/practice targets retain the exact `the + identifiable noun` boundary, with no plural, zero article or later grammar: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S9: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 10 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 8 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_08_content_v2.ts` + `episode_03_session_08_v1.ts`; exact Chapter 1 checkpoint: `newVocabulary=[]`; retrieval `key` / `apple` / `book` / `bag` / `map` / `pen` / `cup`; review focus `wh_questions` + `indefinite_article`; locked fingerprint: `0950060ed169b762d2fffc190c57c814c7ab51e56d5970ee8bae2d46c95a8a18`.
+- Recenter: lexical role `retrieval_only`; changed-context independent checkpoint and prerequisite/future-grammar boundary: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S8: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 9 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 7 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_07_content_v2.ts` + `episode_03_session_07_v1.ts`; exact spoken-production packet: new sense `cup`, retrieval `angry` / `scared` / `necessary` / `unreliable`, review focus `wh_questions` + `indefinite_article`; locked fingerprint: `c8fa749993c5d8c00a093ecb8e912bf911011f104e41721d0d992df7bc62d14c`.
+- Recenter: approved Full B1 canonical fingerprint `bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`; lexical role `introduce_and_retrieve`; productive-shift learning delta and prerequisite/future-grammar boundary: ON TRACK.
+- PASS: content AUTOPASS, nine-locale learner projection, permanent no-repeated-primary-task gate, L3 sequential registry, curriculum owner map, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S7: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 8 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 6 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_06_content_v2.ts` + `episode_03_session_06_v1.ts`; exact packet: new sense `pen`, listening retrieval of `a + singular count noun`, canonical example `It is a pen.`; locked fingerprint: `4d4ee8a3bf13d840d75e0f73944ef040d9009906bd496ce9eec48e3e715a5e88`.
+- PASS: content AUTOPASS, learner projection integrity across all nine owner-review locales, permanent no-repeated-primary-task gate, L3 sequential registry, owner-review HTML/freshness/static-server gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1–S6: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 7 only.
+
+## Recenter receipt — English Full B1 Lesson 3 Session 1 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_03_session_01_content_v2.ts` + `episode_03_session_01_v1.ts`; exact Lesson 3 opening packet: new sense `key`, indefinite article `a + singular count noun`, canonical example `It is a key.`; locked fingerprint: `567ca6f433c351387e0c3ca5766b6d018f77c7245a6eca4b78b2fae46069636c`.
+- PASS: content AUTOPASS, learner projection integrity across all eight locales, permanent no-repeated-primary-task gate (including L3), L3 sequential registry, owner-review HTML/server/freshness gates.
+- Owner-review mock rebuilt with L1:S1–S56, L2:S1–S56, and L3:S1: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 3 Session 2 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 56 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_56_v1.ts`; exact final checkpoint retrieval with `newVocabulary=[]`; locked fingerprint: `ad3233b7f247940f731d4dc1832ada773e2e0d7da22c8b36922ea697dca0766d`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S56: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Lesson 2 is complete. Next scope: Lesson 3 Session 1 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 55 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_55_v1.ts`; exact spoken responsibility-production package, new senses `responsible`, `independent`, `dependent`; locked fingerprint: `db68d9fd037707a00a6d634337ceac2a59bfc3d5c6e444a4d1170e126a277b5f`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S55: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 56 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 54 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_54_v1.ts`; exact listening contrast package, new senses `familiar`, `unfamiliar`, `unknown`; locked fingerprint: `0a2cec8cd4b0f9118f072e87881e969e585dd84b58caa3eec5eaf2abe6021f63`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S54: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 55 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 53 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_53_v1.ts`; exact repair full-contrast package, new senses `full`, `packed`, `loaded`; locked fingerprint: `2a13afd8ebc1a0149dbb1ac9d8980d29f8112719c44aaf6c0018118292d0954c`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S53: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 54 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 52 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_52_v1.ts`; exact guided light-application package, new senses `light`, `airy`, `nimble`; locked fingerprint: `1e00ebc704b90cdf815fb00ee03fa99ba0a0aa7f2a14be551c7c6a0fb948451f`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S52: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 53 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 51 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_51_v1.ts`; exact diagnostic heavy-contrast package, new senses `heavy`, `massive`, `weighty`; locked fingerprint: `577a6147e2da86d552f190c7293d3bb0cdb503459ac31141967982b7c3d41cc4`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S51: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 52 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 50 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_50_v1.ts`; exact guided expensive-application package, new senses `expensive`, `costly`, `pricey`; locked fingerprint: `a3487de072269c0ebaf634999772a7eec6f0e280afb0f511cd3c53f8b7a92e2d`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S50: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 51 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 49 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_49_v1.ts`; exact guided cheap-application package, new senses `cheap`, `affordable`, `lowcost`; locked fingerprint: `f0c4cc9db3df393855a7ab443a691f3dd7e1bd58f915743583a74fb5e0f1ac56`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S49: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 50 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 48 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_48_v1.ts`; exact chapter checkpoint retrieval with `newVocabulary=[]`; locked fingerprint: `8c5d7dca161eaacabd6d808226ef48f1a7a928b517ec8e566dbb92d2528f4e60`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S48: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 49 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 47 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_47_v1.ts`; exact spoken dangerous-production package, new senses `dangerous`, `risky`, `unsafe`; locked fingerprint: `8bb24bf55b9e3e35967df6140eb6e6885a46f6a7e13d417024291058d8b0652f`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S47: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 48 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 46 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_46_v1.ts`; exact listening useless-retrieval package, new senses `useless`, `broken`, `wasted`; locked fingerprint: `be72be54dba5a20599836b343316b04778c3b9326d825fc0b3c9988612ba5c15`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S46: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 47 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 45 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_45_v1.ts`; exact diagnostic useful-contrast package, new senses `useful`, `handy`, `practical`; locked fingerprint: `912cd7ee7872f55ac05bec4f6b7c84c1b08e52d5f74a5ff97cd170dd4ea1ea89`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S45: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 46 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 44 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_44_v1.ts`; exact guided curious-application package, new senses `curious`, `eager`, `alert`; locked fingerprint: `9db8ac38af7c15f329f7a3e336c80af20fa2ce5abf05180a589a50289354c215`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S44: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 45 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 43 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_43_v1.ts`; exact diagnostic patient-contrast package, new senses `patient`, `calmly`, `respectful`; locked fingerprint: `fad871f6feed090e6bc4936aa7595dbfa9cc623cea98598ffb849c714f26ae76`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S43: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 44 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 42 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_42_v1.ts`; exact guided polite-application package, new senses `polite`, `gentle`, `courteous`; locked fingerprint: `606f09c29fea5f90eab8348135c3d2490867d059ab2699da353c5173b5adc7ef`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S42: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 43 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 41 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_41_v1.ts`; exact guided honest-application package, new senses `honest`, `direct`, `candid`; locked fingerprint: `c02a04d0fb6e7346b7ea65424a87aaf865535c200e4fa88160b6f868db1953c7`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S41: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 42 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 40 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_40_v1.ts`; exact contraction checkpoint retrieval with `newVocabulary=[]`; locked fingerprint: `bc39130f104cf65ea787d4f2c34ea9fddd3555d1b8ea04751f172fbb1c7823be`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S40: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 41 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 39 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_39_v1.ts`; exact spoken brave-production package, new senses `brave`, `bold`, `firm`; locked fingerprint: `23e5b90ee50577f2f383f978a5e06b70584a1e6a54f993207c9f24912372ba8a`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S39: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 40 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 38 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_38_v1.ts`; exact listening weak-retrieval package, new senses `feeble`, `slight`, `pale`; locked fingerprint: `24d998d751a36476317765b7acb74a5322540392b5c1531b696e3773af652d99`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S38: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 39 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 37 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_37_v1.ts`; exact diagnostic lonely-contrast package, new senses `lonely`, `numb`, `exhausted`; locked fingerprint: `243cac6ac1b8871e9d044bae053d6bcfee1086cbe77a58d16ceac9015215f874`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S37: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 38 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 36 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_36_v1.ts`; exact guided sleepy-application package, new senses `sleepy`, `faded`, `drained`; locked fingerprint: `b46e63bfaf2052eaee523d5e0df96c9885c39529982d0dc2dba76238560ef5c1`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S36: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 37 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 35 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_35_v1.ts`; exact diagnostic contraction-contrast package, new senses `ill`, `drowsy`, `weak`; locked fingerprint: `a72e1dc9758b4125147d284b88f7476de34202495d2552a6efe10b6b2277fad2`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S35: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 36 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 34 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_34_v1.ts`; exact guided contraction-extension package, new senses `afraid`, `uneasy`, `settled`; locked fingerprint: `1ada1f1a50463116a24676cbec53ee2914893a2adeb090c06ac502ecb9c93502`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S34: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 35 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 33 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_33_v1.ts`; exact affirmative-contractions package, new senses `okay`, `steady`, `secure`; locked fingerprint: `fa90310a0173c1da9bbb1d029693a2e33ba3744be59bd921fea3bb99692a097e`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S33: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 34 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 32 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_32_v1.ts`; exact full-form checkpoint retrieval; no new grammar and `newVocabulary=[]`; locked fingerprint: `a1d2c2930d48c9ae07ab9164123b2e97f565a36c8d190bd9a7429ad02b9346f4`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S32: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 33 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 31 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_31_v1.ts`; exact spoken-production package, new senses `equal`, `similar`, `separate`; locked fingerprint: `c7b96a51c145f66ec6d886a991e5ebaa7b899acf347b1f7b93cd4e5de71b7e39`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S31: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 32 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 30 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_30_v1.ts`; exact listening-retrieval package, new senses `alive`, `dead`, `missing`; locked fingerprint: `12924f90284a22007948d006a287904d05197ea4b9156a5af24c341a3f571973`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S30: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 31 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 29 LOCKED — 2026-09-03
+
+- Source: `modules/learning-v2/content/source/episode_02_session_29_v1.ts`; diagnostic full-form package, new senses `local`, `foreign`, `online`; locked fingerprint: `b0757cb3a71c8b0ddb4649f922b082f3633aac2a6cd732d6d8d0fe0cde3ed5f4`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S29: `.codex-tmp/learning-v2-owner-review/index.html`; 32-lesson curriculum map rebuilt and gated.
+- Next scope: Lesson 2 Session 30 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 28 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_28_v1.ts`; guided full-form application, new senses `correct`, `certain`, `serious`; locked fingerprint: `1f86cef0a43f7100e631c4458f5c95ba09162f0b6b8b1a02f38b5c827f418f7b`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S28: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 29 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 27 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_27_v1.ts`; diagnostic full-form packet, new senses `awake`, `asleep`, `available`; locked fingerprint: `cdf1d2c83d70e8970a30ada02fd5f9b4d2c784c98d780baad0a82419825d5e9a`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S27: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 28 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 26 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_26_v1.ts`; guided full-form packet, new senses `bored`, `confused`, `worried`; locked fingerprint: `e9a122a5bd3a67a08f9b7e8537495b3ddbe57e1f3532a8ce4d229081c54d8553`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S26: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 27 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 25 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_25_v1.ts`; full-form choice packet, new senses `proud`, `ashamed`, `surprised`; locked fingerprint: `3bd541450ce2b9e0a48ea72e362cb722212048dd8ace3e778003d3f0ecd85233`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S25: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 26 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 24 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_24_v1.ts`; chapter checkpoint retrieval-only package; locked fingerprint: `644a87b4d357ab30982f3668e046ee5467d6544960b8e7c5431cb9708bc9a981`.
+- Exact checkpoint invariant verified: `newVocabulary=0`; all practice is prior-content retrieval.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S24: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 25 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 23 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_23_v1.ts`; spoken retrieval packet, new senses `married`, `single`, `different`; locked fingerprint: `dcaebb2f51cea61e362bb2751f8dfbe335a1ed42edbbcb2257ff772b2f5f5f45`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S23: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 24 only (checkpoint).
+
+## Recenter receipt — English Full B1 Lesson 2 Session 22 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_22_v1.ts`; listening retrieval packet, new senses `rich`, `poor`, `famous`; locked fingerprint: `c04f7f4584f7e3c69fb6b4861062c51154030dfaa7000b553947bdbe007d4433`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S22: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 23 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 21 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_21_v1.ts`; diagnostic place-description packet, new senses `inside`, `outside`, `upstairs`; locked fingerprint: `89e7b8e36a1320c3fd510db3e0d8122a86063c8d5e325c2c41145638153cb3ba`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S21: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 22 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 20 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_20_v1.ts`; guided affirmative application, new senses `lost`, `prepared`, `careful`; locked fingerprint: `7a113d6564b477f007c00bd095e864cfeeb9eb0756e1e060fbf2b306d72a143b`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S20: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 21 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 19 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_19_v1.ts`; affirmative contrast packet, new senses `together`, `alone`, `nearby`; locked fingerprint: `d7348e2edc732bfa72d7a605f1954df8313d9fb790ee7f7462c1889dc0185fed`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S19: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 20 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 18 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_18_v1.ts`; review packet for `you/we/they + are`, new senses `wrong`, `early`, `lucky`; locked fingerprint: `8bb3f9932c6a07ab941ec594f5a0a2bdc2ce15e078fb849c4065ff1f6a539963`.
+- Exact approved Full B1 Session 18 source is lesson-owned by Episode 2 and preserves the approved retrieval grammar and learner-facing localized packet.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S18: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 19 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 17 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_17_v1.ts`; exact new operation `you/we/they + are`, new senses `welcome`, `safe`, `right`; locked fingerprint: `5a45e7dfa1ea57008e6cf33115d841b0ed5beb77dc1b7e688e1a1e85640d5063`.
+- The source derives from the already approved prerequisite-safe Full B1 S17 packet and is re-owned by Lesson 2; no question-session grammar was carried over.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S17: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 18 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 16 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_16_v1.ts`; checkpoint retrieval-only package; locked fingerprint: `e3443a3b3ea6db7839ff82cfaaee4180f6475c3a54804c0bc7f4355553d3ad53`.
+- Exact checkpoint invariant is verified: `newVocabulary=0`, five prior entries are declared as retrieval inventory, and no new grammar is introduced.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S16: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Course owner map rebuilt and gated: `.codex-tmp/learning-v2-curriculum-owner-map/index.html`.
+- Next scope: Lesson 2 Session 17 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 15 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_15_v1.ts`; exact new sense `silent`; locked fingerprint: `fbf1257d41ea15db295d216ccaa9190cb3e505245fc7cc4b0d97e0f3a3e003f7`.
+- The `silent` card has independently authored eight-locale definition, word-first contacts and option-specific diagnostic feedback.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S15: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Course owner map rebuilt and gated: `.codex-tmp/learning-v2-curriculum-owner-map/index.html`.
+- Next scope: Lesson 2 Session 16 only (checkpoint).
+
+## Recenter receipt — English Full B1 Lesson 2 Session 14 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_14_v1.ts`; exact new sense `obvious`; locked fingerprint: `193cdf570fdf0e79ff1f414d3a60026595cdd83706ece84bd43ccbdff404390d`.
+- The `obvious` card and its option-specific eight-locale feedback were authored independently; the short Vietnamese feedback was repaired to meet the minimum explanatory-content guard.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S14: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Course owner map rebuilt and gated: `.codex-tmp/learning-v2-curriculum-owner-map/index.html`.
+- Next scope: Lesson 2 Session 15 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 13 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_13_v1.ts`; exact new sense `public`; locked fingerprint: `192592005881b6a287c987cbc2ecc2ecf5acbd09a05b306716ffe21c5ab8289f`.
+- The new `public` sense has its own eight-locale definition, grounded contacts and option-specific diagnostic feedback; it is not a copied `private` meaning.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S13: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Course owner map rebuilt and gated: `.codex-tmp/learning-v2-curriculum-owner-map/index.html`.
+- Next scope: Lesson 2 Session 14 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 12 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_12_v1.ts`; exact new sense `private`; locked fingerprint: `c27d655b4aec1caa8f8cdbe25072bfd1362ca6a7a018915d00bd08f671ee2261`.
+- The `private` card, its eight locale definitions and every option-specific distractor explanation were authored separately from S11 before AUTOPASS.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S12: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 13 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 11 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_11_v1.ts`; new sense `urgent`; locked fingerprint: `5fc03e43743d5b4de505a77a3c6627fc8674e8f8652fc99a971611a9b297a74e`.
+- The inherited placeholder definition was replaced by a dedicated eight-locale `urgent` card and option-specific diagnostic feedback before AUTOPASS.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring, strict draft-inclusive no-repeated-primary-task gate, Lesson 2 registry, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with all L1:S1–S56 and L2:S1–S11: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Course owner map rebuilt and gated: `.codex-tmp/learning-v2-curriculum-owner-map/index.html`.
+- Next scope: Lesson 2 Session 12 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 10 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_10_v1.ts`; new sense `impossible`; locked fingerprint: `590fe4db0d39a703976f556d47bf6a67343a0e4aa2647c3daeef169e25f76d98`.
+- PASS: content AUTOPASS, learner projection, no-repeated-primary-task, Lesson 2 registry and owner-review gates.
+- Owner-review mock rebuilt with L2:S1–S10: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 11 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 9 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_09_v1.ts`; question-form package with new sense `possible` and declared prior retrieval inventory.
+- Locked fingerprint: `9687ca89b325100e930a411d9ab2b673082ed98fc51a3f724ed2c46275c051c8`.
+- PASS: content AUTOPASS, learner projection, no-repeated-primary-task, Lesson 2 registry and owner-review gates.
+- Owner-review mock rebuilt with L2:S1–S9: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 10 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 8 LOCKED — 2026-09-02
+
+- Retrieval-only checkpoint source: `modules/learning-v2/content/source/episode_02_session_08_v1.ts`; no new lexical senses.
+- Locked fingerprint: `e41bb235c37d4ea81f30fe884808be64b829f5d2630754e8a7e59f0bdf7ff312`.
+- PASS: content AUTOPASS, learner projection, no-repeated-primary-task, Lesson 2 registry and owner-review gates.
+- Owner-review mock rebuilt with L2:S1–S8: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 9 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 7 LOCKED — 2026-09-02
+
+- Source: `modules/learning-v2/content/source/episode_02_session_07_v1.ts`; new sense `necessary`; locked fingerprint: `640227f295b8ed8d9e2033da52925238c6098b0860eb5d1e6665084935ba8494`.
+- PASS: learner projection, content AUTOPASS, no-repeated-primary-task, Lesson 2 registry and owner-review gates.
+- Owner-review mock rebuilt with L2:S1–S7: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 8 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 6 LOCKED — 2026-09-02
+
+- Exact learner-facing source: `modules/learning-v2/content/source/episode_02_session_06_v1.ts`; new sense `fake` remains separate from retrieval vocabulary.
+- Locked fingerprint: `6f58c9d6c9ba23f0659616d8dc8e9eea28410741ad62f157913fbafa2b199cdf`.
+- PASS: Lesson 2 registry, learner projection, content AUTOPASS, no-repeated-primary-task and owner-review gates.
+- Owner-review mock rebuilt with L2:S1–S6: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 7 only.
+
+## Recenter receipt — English Full B1 Lesson 2 Session 5 LOCKED — 2026-09-02
+
+- Exact learner-facing source: `modules/learning-v2/content/source/episode_02_session_05_v1.ts`; one new sense `real` and explicit retrieval vocabulary are kept structurally separate.
+- Locked fingerprint: `71be1410e9e1ed7113d88d70920773eef0797a9739315bbf5039f1db0d8a0e88`.
+- PASS: Lesson 2 registry, learner projection, content AUTOPASS, no-repeated-primary-task, owner-review bundle/HTML/server/freshness gates.
+- Owner-review mock rebuilt with L2:S1–S5: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Lesson 2 Session 6 only.
+
+## Recenter receipt — English Full B1 Session 56 LOCKED; Lesson 1 complete — 2026-09-02
+
+- Exact packet: retrieval-only checkpoint; no new lexical senses and no new grammar operation.
+- Source: `modules/learning-v2/content/source/episode_01_session_56_v1.ts`; locked fingerprint: `8d85104da37bd5daa5bc19c889efe502c34a6612e7ac14eef71520eda1aa1036`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity, mode-native authoring and no-repeated-primary-task gates.
+- Owner-review mock rebuilt and freshness-gated with all L1 Sessions 1–56: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: the first registry-permitted Lesson 2 English session only.
+
+## Recenter receipt — English Full B1 Session 55 LOCKED — 2026-09-02
+
+- Exact packet: spoken production; new senses `responsible`, `independent`, `dependent`; source keeps the approved mode-native plan identifier intact.
+- Source: `modules/learning-v2/content/source/episode_01_session_55_v1.ts`; locked fingerprint: `ee5ac4552ef5c33ac1ae4bebfac07bd71593f986b97497437718d32bdf21ae63`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity, mode-native authoring and no-repeated-primary-task gates.
+- Owner-review mock rebuilt and freshness-gated with L1 Sessions 1–55: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Session 56 only; no later Lesson 1 source remains sealed (`4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945`).
+
+## Recenter receipt — English Full B1 Session 54 LOCKED — 2026-09-02
+
+- Exact packet: listening retrieval; new senses `familiar`, `unfamiliar`, `unknown`; source keeps the approved mode-native plan identifier intact.
+- Source: `modules/learning-v2/content/source/episode_01_session_54_v1.ts`; locked fingerprint: `39c6eb27184c3faf25922f28f162113e6559d81c3340c65fdf11e3e0f4a6d0bb`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity, mode-native authoring and no-repeated-primary-task gates.
+- Owner-review mock rebuilt and freshness-gated with L1 Sessions 1–54: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Session 55 only; Session 56 seal: `96f2b7fb1dc4a059c2aec0c5eb43b962ce40cd0673954f936f3b6595a788ee3c`.
+
+## Recenter receipt — English Full B1 Session 53 LOCKED — 2026-09-02
+
+- Exact packet: diagnostic repair; new sense `full`; separate learner-facing source replaced the legacy 49–56 wrapper.
+- Source: `modules/learning-v2/content/source/episode_01_session_53_v1.ts`; locked fingerprint: `584d9cd1f2db9550078459a28cd466cd2cef55718e8704fa8a631a214d9d99de`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity, mode-native authoring and no-repeated-primary-task gates.
+- Owner-review mock rebuilt and freshness-gated with L1 Sessions 1–53: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Session 54 only; Sessions 55–56 seal: `68875e1173bd273988d717e463e82c2ec991f35275597ebbc9659f782b08df51`.
+
+## Recenter receipt — English Full B1 Session 52 LOCKED — 2026-09-02
+
+- Exact packet: guided application; new sense `light`; separate learner-facing source replaced the legacy 49–56 wrapper.
+- Source: `modules/learning-v2/content/source/episode_01_session_52_v1.ts`; locked fingerprint: `c2f2f73f8e81fb77fec6bcb1fb5c5d8c9fead74008c2392bace9aa57915622e6`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity, mode-native authoring and no-repeated-primary-task gates.
+- Owner-review mock rebuilt and freshness-gated with L1 Sessions 1–52: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Session 53 only; Sessions 54–56 seal: `d3292a9219403c9e5e955e34567777225430bf07806b05296de5520a95352c54`.
+
+## Recenter receipt — English Full B1 Session 51 LOCKED — 2026-09-02
+
+- Exact packet: diagnostic contrast; new sense `heavy`; separate learner-facing source replaced the legacy 49–56 wrapper.
+- Source: `modules/learning-v2/content/source/episode_01_session_51_v1.ts`; locked fingerprint: `6fc6da1c100bb906599727d96e2ae6aa7cc4fc9c1380df70d335046518d5df90`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity, mode-native authoring and no-repeated-primary-task gates.
+- Owner-review mock rebuilt and freshness-gated with L1 Sessions 1–51: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Session 52 only; Sessions 53–56 seal: `ea122d5e61007fcc2881aa64c99bc0523e0e4410b134c1deeaf1dab23f3bbb20`.
+
+## Recenter receipt — English Full B1 Session 50 LOCKED — 2026-09-02
+
+- Exact packet: guided extension; new sense `expensive`; learner-facing source is separate from legacy 49–56 support.
+- Source: `modules/learning-v2/content/source/episode_01_session_50_v1.ts`; locked fingerprint: `5ce7cc543fcb0327b7f03d97bfd5605b3e5236070cd1c2c5d2f0c30fe6debb46`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity, mode-native authoring and no-repeated-primary-task gates.
+- Owner-review mock rebuilt and freshness-gated with L1 Sessions 1–50: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Session 51 only; Sessions 52–56 seal: `f486f5e7d243ad71b828a8e79ec0ffbf6b3465e18aa71cc5af945850b872c0e3`.
+
+## Recenter receipt — English Full B1 Session 49 LOCKED — 2026-09-02
+
+- Exact packet: guided application; new sense `cheap`; retrieval and feedback remain in the approved Session 49 package.
+- Source: `modules/learning-v2/content/source/episode_01_session_49_v1.ts`; locked fingerprint: `cca7635b89e690a92229535f9c6e4d30a44ea3c7e0793ac677b8644cac7505e6`.
+- PASS: content AUTOPASS, current-session integrity, mode-native authoring and no-repeated-primary-task gates. Registry now exposes Session 50 as the sole Lesson 1 DRAFT.
+- Owner-review mock rebuilt and freshness-gated with L1 Sessions 1–49: `.codex-tmp/learning-v2-owner-review/index.html`.
+- Next scope: Session 50 only; Sessions 51–56 seal: `e80dac88ed6d2acb96daf41fc83e2aca826cadc1f9f08423c146ec4397799df1`.
+
+## Handover repair receipt — English Full B1 Sessions 34–48 — 2026-09-02
+
+- These sequentially locked sessions were independently authored and narrow-gated before Session 49; their per-session owner-review builds passed, but their short recenter receipts were omitted from this file.
+- This record repairs documentation only. It does not alter the existing LOCKED registry states or retroactively change any learner-facing content.
+
+## Recenter receipt — English Full B1 Session 33 LOCKED — 2026-09-02
+
+- Exact packet: affirmative contractions; authoring source and all focused gates PASS.
+- Source fingerprint: `26b2147ef33312f4abb2cd331d47de27526cc440a1427a35a7c2cfc2963953a9`.
+- Owner-review mock rebuilt and freshness-gated with L1 Sessions 1–33.
+- Next scope: Session 34 only; Sessions 35–56 seal: `331657aee90d5e503e1acac08d4a999b7490c788dd8d56c272b2d893f0f7081b`.
+
+## Recenter receipt — English Full B1 Session 32 LOCKED — 2026-09-02
+
+- Exact packet: chapter checkpoint; no new senses; independent retrieval of the full-form chapter.
+- Source: `modules/learning-v2/content/source/episode_01_session_32_v1.ts`; locked fingerprint: `b2ec8ccb9b9fb3774442662ecd2b5cc6e769bba9963d6e13b336a8f95f612338`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity, mode-native authoring and no-repeated-primary-task gates.
+- Owner-review mock rebuilt and freshness-gated with L1 Sessions 1–32.
+- Next scope: Session 33 only; Sessions 34–56 seal: `df4dbefd1035a6ba29c281c10c964612eb959806ad288cbbc8c8350c1254a445`.
+
+## Recenter receipt — English Full B1 Session 31 LOCKED — 2026-09-02
+
+- Exact packet: spoken production; new senses `equal`, `similar`, `separate`;
+  retrieval of `alive`, `dead`, `missing`, `married`, `single`, `different`;
+  no new grammar operation.
+- Source: `modules/learning-v2/content/source/episode_01_session_31_v1.ts`;
+  locked fingerprint:
+  `e4075878d3efcc7ef846e1f791b113f2be2d98ee581b519c5ad93837938ea7f6`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity,
+  mode-native authoring and no-repeated-primary-task gates.
+- Owner-review mock rebuilt and freshness-gated with L1 Sessions 1–31.
+- Next scope: Session 32 only; Sessions 33–56 seal:
+  `e06948265426d669318d0c44b757c36854177d84ca899fa005c64b9a61abf452`.
+
+## Recenter receipt — English Full B1 Session 30 LOCKED — 2026-09-02
+
+- Exact packet: listening retrieval; new senses `alive`, `dead`, `missing`;
+  retrieval of `local`, `foreign`, `online`, `rich`, `poor`, `famous`; no new
+  grammar operation.
+- Source: `modules/learning-v2/content/source/episode_01_session_30_v1.ts`;
+  locked fingerprint:
+  `96b4317b3deda3628f8307cecdf1ccc2f6a901a31b75eec9db91070386d78c75`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity,
+  mode-native authoring and no-repeated-primary-task gates.
+- Owner-review mock rebuilt and freshness-gated with L1 Sessions 1–30.
+- Next scope: Session 31 only; Sessions 32–56 seal:
+  `6b0687113304de3469d48143ebafc8d9c819f6f5d9332690a18dba3401726032`.
+
+## Recenter receipt — English Full B1 Session 29 LOCKED — 2026-09-02
+
+- Exact packet: diagnostic repair; new senses `local`, `foreign`, `online`;
+  no new grammar operation.
+- Source: `modules/learning-v2/content/source/episode_01_session_29_v1.ts`;
+  locked fingerprint:
+  `2adb8b7c9037b79f4ff2316d1b15edf0a58a3d9581881cdc3efab759f632946c`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity,
+  mode-native authoring and no-repeated-primary-task gates.
+- Next scope: Session 30 only; Sessions 31–56 seal:
+  `4afb6074e4cb13d56f2f251bdbc4d939c54c377561858c88e2af2c302a0cabee`.
+
+## Recenter receipt — English Full B1 Session 28 LOCKED — 2026-09-02
+
+- Exact packet: guided full-form application; new senses `correct`, `certain`,
+  `serious`; no new grammar operation.
+- Source: `modules/learning-v2/content/source/episode_01_session_28_v1.ts`;
+  locked fingerprint:
+  `1876a06babb42c53f078f3c602b30228a59ec5fdd79fc3d0e96dfd66f1f76f91`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity,
+  mode-native authoring and no-repeated-primary-task gates.
+- Next scope: Session 29 only; Sessions 30–56 seal:
+  `c6f1d159c06ddfd431c94d01deb8d8c345f9e9a1e166f6c341c52809242dc002`.
+
+## Recenter receipt — English Full B1 Session 27 LOCKED — 2026-09-02
+
+- Exact packet: diagnostic full-form contrast; new senses `awake`, `asleep`,
+  `available`; no new grammar operation.
+- Source: `modules/learning-v2/content/source/episode_01_session_27_v1.ts`;
+  locked fingerprint:
+  `fddcff300316348731e26d7bcc129cac29d90f2b6a6f50d2f2bb0b96eac163c3`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity,
+  mode-native authoring and no-repeated-primary-task gates.
+- Next scope: Session 28 only; Sessions 29–56 seal:
+  `8af4e23d88004007787b952d2265f087569554076d0b68324b957700543d7a71`.
+
+## Recenter receipt — English Full B1 Session 26 LOCKED — 2026-09-02
+
+- Exact packet: guided full-form review; new senses `bored`, `confused`,
+  `worried`; no new grammar operation.
+- Source: `modules/learning-v2/content/source/episode_01_session_26_v1.ts`;
+  locked fingerprint:
+  `e563bc4434b0ac59bc65a841752966f1a543d227daa2f78957ee19b413cf8da4`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity,
+  mode-native authoring and no-repeated-primary-task gates.
+- Next scope: Session 27 only; Sessions 28–56 seal:
+  `cf50b8c8e5f7d1cac747c129f8c02668d51a26909e28c7768019425c335a3e29`.
+
+## Recenter receipt — English Full B1 Session 25 LOCKED — 2026-09-02
+
+- Exact packet: first full-form `am / is / are` choice; new senses `proud`,
+  `ashamed`, `surprised`.
+- Source: `modules/learning-v2/content/source/episode_01_session_25_v1.ts`;
+  locked fingerprint:
+  `e8b693661c0cd3deba0d1e9fa6c1c4a93d40203d83b0d08079007b12ced926f4`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity,
+  mode-native authoring and no-repeated-primary-task gates.
+- Next scope: Session 26 only; Sessions 27–56 seal:
+  `18483619b63fa294c5464373f9907b49b287eec59a3b392a66fa7887c21daf86`.
+
+## Recenter receipt — English Full B1 Session 24 LOCKED — 2026-09-02
+
+- Exact packet: chapter checkpoint; retrieval only, no new lexical senses and
+  no new grammar operation.
+- Source: `modules/learning-v2/content/source/episode_01_session_24_v1.ts`;
+  locked fingerprint:
+  `82e9b0de627643f2319606d3e71696dbaf7dda1e335007407acafdafbe5c5e58`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity,
+  mode-native authoring and no-repeated-primary-task gates.
+- Owner-review mock rebuilt and freshness-gated with L1 Sessions 1–24.
+- Next scope: Session 25 only; Sessions 26–56 seal:
+  `58ee48865a79d07086d151024a739f52be91de3eee8a8eb295edea895332b6a4`.
+
+## Recenter receipt — English Full B1 Session 23 LOCKED — 2026-09-02
+
+- Exact packet: spoken retrieval of `you / we / they + are`; new senses
+  `married`, `single`, `different`; no new grammar operation.
+- Source: `modules/learning-v2/content/source/episode_01_session_23_v1.ts`;
+  locked fingerprint:
+  `0472a235882530844ece89dfe6b5c01e71c3c90520ca47e813212411684d08e8`.
+- PASS: content AUTOPASS, narrow preflight, current-session integrity,
+  mode-native authoring and no-repeated-primary-task gates.
+- Owner map must be rebuilt after this registry transition. Next scope: Session
+  24 only; Sessions 25–56 seal:
+  `8e2e3297b30d86c68e68fb51a9b5c1d7b9bb16551a0cb197fbf6ec6e343b2ac7`.
+
+## Recenter receipt — English Full B1 Session 22 LOCKED — 2026-09-02
+
+- Exact packet: listening retrieval; new senses `rich`, `poor`, `famous`.
+- Source fingerprint: `52a31d7cd7c7ff3813d8c1b0a39f58ee866ab7545acb70ba671766a57200cb0c`.
+- PASS: AUTOPASS, preflight, integrity, mode-native and no-repeat.
+- Next scope: Session 23 only; S24–S56 seal:
+  `10d71b201096e9fa08a30c22e9bbfaeb8c3b0c51431ae68ef398b406d7e50500`.
+
+## Recenter receipt — English Full B1 Session 21 LOCKED — 2026-09-02
+
+- Exact packet: diagnostic affirmative repair; new senses `inside`, `outside`,
+  `upstairs`; no new grammar.
+- Source: `modules/learning-v2/content/source/episode_01_session_21_v1.ts`;
+  locked fingerprint:
+  `acec62644068fbcee8b97ec7809a9c8846b3ead1a7a6fb4cd8cfaa9103acd896`.
+- PASS: content AUTOPASS, preflight, integrity, mode-native and no-repeat.
+- Next scope: Lesson 1 Session 22 only; S23–S56 seal:
+  `ae5b60150bff9e20da37b82e273816cec4d298427f82174928c6bcfaf1460cf1`.
+
+## Recenter receipt — English Full B1 Session 20 LOCKED — 2026-09-02
+
+- Exact packet: guided affirmative application; new senses `lost`, `prepared`,
+  `careful`; no new grammar.
+- Source: `modules/learning-v2/content/source/episode_01_session_20_v1.ts`;
+  locked fingerprint:
+  `71926c774ff6fc26bd41b1301ee3c759d34230bd8d806615d48b0e614fdd30af`.
+- PASS: content AUTOPASS, preflight, integrity, mode-native and no-repeat.
+- Next scope: Lesson 1 Session 21 only; S22–S56 seal:
+  `95f43b5e5542e2182ff423d80e558171eed2a063ec84ec7404fa2916fd114864`.
+
+## Recenter receipt — English Full B1 Session 19 LOCKED — 2026-09-02
+
+- Exact packet: affirmative contrast; new senses `together`, `alone`, `nearby`.
+- Source: `modules/learning-v2/content/source/episode_01_session_19_v1.ts`;
+  locked fingerprint:
+  `6b9157f02b9b31b4ffce76146aa4c3df7b2554834c3a1569a26360bf54d27a6e`.
+- PASS: content AUTOPASS, narrow preflight, integrity, mode-native and no-repeat.
+- Next scope: English Lesson 1, Session 20 only; S21–S56 seal:
+  `e30767f60af833910a7ca0b5e42ff04af3c3e7f8fabc98c6817eb9b8ebf04d4c`.
+
+## Recenter receipt — English Full B1 Session 18 LOCKED — 2026-09-02
+
+- Exact packet: affirmative retrieval using `I am`, `he/she/it is` and
+  `you/we/they are`; new senses `wrong`, `early`, `lucky`.
+- Source: `modules/learning-v2/content/source/episode_01_session_18_v1.ts`;
+  locked fingerprint:
+  `cb708655de7998fe900e2d6a77960faeec5427566a8507ac032d7775c8bb8209`.
+- PASS: content-quality AUTOPASS, narrow preflight, integrity, mode-native and
+  no-repeated-primary-task gates.
+- Next scope: English Lesson 1, Session 19 only; Sessions 20–56 are sealed by
+  `4218914cb565c79ea0277acb0ade9737570b672875e5d63b539ac098b018e242`.
+
+## Recenter receipt — English Full B1 Session 17 LOCKED — 2026-09-02
+
+- Exact packet: first `you / we / they + are`; new senses `welcome`, `safe`,
+  `right`; retrieval uses already introduced descriptions only.
+- Source: `modules/learning-v2/content/source/episode_01_session_17_v1.ts`;
+  locked fingerprint:
+  `d4a7680e75c4234356d67ed39bb145136cf0080710f4076f62ed3c6d3eecaa38`.
+- PASS: content-quality AUTOPASS, narrow preflight, current-session integrity,
+  mode-native authoring and no-repeated-primary-task.
+- Next executable scope: English Lesson 1, Session 18 only. Sessions 19–56
+  are sealed by
+  `1090b8cd09a35d834a7d3c7d8c08e6fc519e91b8219f8f1eb815c17063f1e0c9`.
+
+## Recenter receipt — English Full B1 Session 16 LOCKED — 2026-09-02
+
+- Exact packet: checkpoint retrieval of the already introduced `It is …`
+  frame; no new lexical senses and no new grammar operation.
+- Dedicated checkpoint choreography uses phrase-only retrieval targets. It
+  does not inherit word-first vocabulary steps from Session 15.
+- Source: `modules/learning-v2/content/source/episode_01_session_16_v1.ts`;
+  exact locked fingerprint:
+  `1113eb9697f62900a816c3e9e31a17870c76a845b46e298ad7e65a75b7d613e4`.
+- PASS: Session 16 narrow preflight, current-session integrity, mode-native
+  authoring and no-repeated-primary-task gates.
+- Next executable scope: English Lesson 1, Session 17 only. Sessions 18–56
+  remain sealed by
+  `cf3cf4e15ba1cd304f7d82b957df5ab1e8b828d065bbadd3c6f9e4be6f8d7a04`.
+
+## Recenter receipt — English Full B1 Session 15 LOCKED — 2026-09-02
+
+- Exact packet: `easy`, `difficult`, `important` with the already introduced
+  `It is …` frame; legacy learner-facing content is excluded.
+- Source: `modules/learning-v2/content/source/episode_01_session_15_v1.ts`;
+  exact locked fingerprint:
+  `c061cdf13293c4dfd95c8a4598a95c5559113a7a4e74e196d3e17c6e1ea84189`.
+- PASS: narrow preflight, current-session integrity, mode-native authoring and
+  no-repeated-primary-task gates.
+
+## Recenter receipt — English Full B1 Session 12 re-LOCKED — 2026-09-02
+
+- Session 12 was repaired against the approved affirmative guided-application
+  packet: `loud`, `friendly`, `helpful`; review only of `I am` and
+  `he/she is`. The incompatible legacy question packet is not learner-facing.
+- The dedicated source now has manual eight-locale intro and phrase copy,
+  corrected `helpful` context-gap scene, four real Speed Match pairs, and
+  mode-native instructions. No primary learner target repeats; there is one
+  Speed Match board.
+- PASS: Session 12 editorial/projection gate; narrow preflight for Session 12;
+  current-session integrity; mode-native authoring; no-repeat; owner-review
+  bundle, HTML, server and live-freshness gates.
+- Registry: Session 12 LOCKED
+  `96c583f0bfb7bbd7fc7b2b18b5a540b5b99a96727a65cab8031da40dee471ee6`.
+  The refreshed catalogue includes Lesson 1 Sessions 1–12 and Lesson 2
+  Sessions 1–4. Session 13 is next, but its preflight currently HOLDs on its
+  own forbidden letter-level assembly (`She`); repair Session 13 only.
+
+## Recenter receipt — English Full B1 Session 11 re-LOCKED — 2026-09-02
+
+- Session 11 feedback was repaired so every visible vocabulary trap names the
+  selected form, the required target and a concrete written/sound contrast in
+  all eight learner locales.
+- PASS: exact word-first gate; current-session integrity; Lesson 1 preflight;
+  mode-native authoring; no-repeat; rebuilt owner-review and freshness.
+- Registry: Session 11 LOCKED
+  `1ac493098ade4ccb9c158f739310db7f089094ff6161e2841be2bb2026a71e89`.
+  Session 12 is the sole DRAFT; tail 13–56 is sealed by
+  `6bd04041c6f154f5622c8b2450f894dfeefd766a8fedbecbf44ac5a61422771b`.
+
+## Recenter receipt — English Full B1 Session 10 re-LOCKED — 2026-09-02
+
+- Session 10 was reopened after its claimed lock failed real learner-child
+  materialization. The repaired packet now has a complete nine-locale runtime
+  payload, four diagnostic choices where the mode requires three traps, and
+  response-specific native feedback for each wrong choice.
+- PASS: Session 10 exact word-first gate; current-session integrity; Lesson 1
+  preflight; mode-native authoring; no-repeated-primary-task; static owner
+  review build and freshness.
+- Registry: Session 10 LOCKED
+  `d2ec73675b4f5ed9d1baf1b39140218c1fb16391086170a58458bde55768c828`.
+  The owner catalogue now shows Lesson 1 Sessions 1–10 and Lesson 2 Sessions
+  1–4. Session 11 is the sole DRAFT; tail 12–56 is sealed by
+  `516564fc34d0458eafa58ebf4236533d680aaa9d21b4b1eac74ce8cf21a8d10f`.
+
+## Recenter receipt — unified owner-review catalogue — 2026-09-02
+
+- `.codex-tmp/learning-v2-owner-review/index.html` is now one read-only
+  catalogue with a persistent lesson selector and a locale selector. It shows
+  every session that is both registry-`LOCKED` and successfully materialized
+  from the learner source, so the owner can open any actually reviewable
+  session from any ready lesson.
+- Current catalogue: Lesson 1 Sessions 1–9 and Lesson 2 Sessions 1–4.
+  Lesson 1 Sessions 10–12 are intentionally omitted: their purportedly locked
+  sources still fail `learning_v2_course_session_client_child_invalid` during
+  real projection. They are not represented as ready until repaired and
+  re-audited.
+- PASS: static bundle gate, static HTML gate, all-lessons catalogue assertion,
+  and generated-file inspection for the lesson selector and Lesson 2 rows.
+  No learner-facing source or approval status changed in this UI-only receipt.
+
+## Recenter receipt — English Full B1 Session 12 LOCKED — 2026-09-02
+
+- Dedicated Session 12 implements approved affirmative application with
+  `loud`, `friendly`, `helpful`; the historical meeting packet is excluded.
+- PASS: narrow preflight, mode-native, no-repeat, semantic locale review,
+  content-quality autopass receipt, and owner-review refresh.
+- Registry: Session 12 LOCKED
+  `406d7d2163b747d6b75ab22e06c1fc29cf29d70b9eeb08e68c4eb39d5846fa8c`.
+  Session 13 is the sole DRAFT; tail 14–56 remains sealed by
+  `07ae4b3931546c92e3c844185dec2cd416fe277ee7b43fc0b66a77a108ee646f`.
+
+
+## Recenter receipt — English Full B1 Session 11 LOCKED — 2026-09-02
+
+- Dedicated Session 11 implements the approved affirmative lexical contrast:
+  new senses `smart`, `strong`, `quiet`; the historical question packet is not
+  learner-facing.
+- PASS: exact Session 11 gate; narrow preflight; mode-native; no-repeat;
+  quality autopass receipt; owner-review refresh.
+- Registry: Session 11 LOCKED
+  `e61be1f25e8b25e956add2628db14def1d7159c6fb85ec43843f8d241404be65`.
+  Session 12 is the sole DRAFT; tail 13–56 seal:
+  `998a124c6f50a7522d72f89a6defd832f7a679aa7dfaea4eb6922cfd0e7cddd1`.
+
+
+## Recenter receipt — English Full B1 Session 10 LOCKED — 2026-09-02
+
+- Dedicated Session 10 implements the approved lexical extension of the
+  existing `I am` / `he, she, it is` frames: new senses `old`, `kind`,
+  `funny`; retrieval remains within already introduced descriptions. The
+  legacy negative `You are not …` packet is not learner-facing.
+- The six native tasks have distinct primary targets and families; there is
+  exactly one Speed Match. Intro targets differ from practice targets.
+- PASS: exact Session 10 gate; Lesson 1 narrow preflight; mode-native gate;
+  no-repeated-primary-task gate; content-quality autopass receipt for all
+  eight locales; owner-review HTML/freshness (sessions 1–10).
+- Registry: Session 10 LOCKED
+  `4ecc5d1ffb1fd7c980d5aaf65605a61342d7c9b2a47cbc666b96e338c27abef2`.
+  Session 11 is the sole DRAFT; tail 12–56 seal:
+  `530da9a96731bf0504b4da27c618e36b1adb8218e0cd31281e7585d6c290e09f`.
+
+
+## Recenter receipt — English Full B1 Session 9 LOCKED — 2026-09-02
+
+- Dedicated Session 9 implements approved `he/she/it + is` with new senses
+  `tall`, `short`, `young`; legacy `you are` content is not learner-facing.
+- PASS: exact Session 9 gate, preflight, mode-native, no-repeat, quality
+  autopass receipt, owner-review HTML/freshness (sessions 1–9).
+- Registry: Session 9 LOCKED `284c0fea1ad921ceddf38fe15c9b0713778688825466f6aec063ee8a22188dbd`.
+  Session 10 is the only DRAFT; tail 11–56 seal:
+  `d32cd756f67d2bfeb17ba88e0362051d5655cd0a587d423ce0d5b23ca76e7c1b`.
+
+## Recenter receipt — English Full B1 Session 8 LOCKED — 2026-09-02
+
+- Session 8 is the grammar checkpoint for the completed `I am` chapter. It
+  introduces no scored lexical sense and uses six different retrieval targets:
+  `I am hungry`, `I am here`, `I am sick`, `I am ready`, `I am happy`, and
+  `I am fine`. It has exactly one Speed Match, whose board retrieves only
+  already known state words.
+- The legacy Session 8 source was not used learner-facing. The dedicated
+  source has 15 required phrase records, manual locale copy/feedback, and a
+  six-card compact practice sequence with no repeated primary target.
+- PASS: Session 8 checkpoint gate; mode-native authoring gate; Lesson 1
+  preflight; checkpoint lexical retrieval gate (20 prior senses); global
+  no-repeated-primary-task gate; static owner-review HTML and freshness.
+- Registry receipt: Session 8 LOCKED fingerprint
+  `1262638f8b7d00a38ae2cd1ff44841e3a5403a0ff7aa01350e04a3f0a93bd92b`.
+  Session 9 is the sole DRAFT; Sessions 10–56 are byte-sealed by
+  `5196a2c490a48b6f3495c95d14f4b7073ddeb0fb7dab00bf5facb5f9ff706dfa`.
+- The owner mock at `.codex-tmp/learning-v2-owner-review/index.html` contains
+  exactly Sessions 1–8. It deliberately excludes an unprepared future draft;
+  a draft becomes visible only when it has a real mode-native packet.
+- Next exact work: Session 9 only. Re-read the applicable route and current
+  packet first; do not alter Sessions 10–56.
+
+## Recenter receipt — English Full B1 Session 7 LOCKED — 2026-09-02
+
+- Session 7 spoken-production packet (`angry`, `scared`; retrieval through
+  `I am calm`, `I am nervous`, `I am excited`, `I am here`) was made
+  independent of the removed 17-step legacy base. It has six distinct primary
+  tasks and exactly one Speed Match.
+- PASS: Session 7 voice gate, mode-native authoring, Lesson 1 preflight,
+  cross-authored no-repeated-primary-task gate, owner-review HTML/freshness.
+- Registry receipt: Session 7 LOCKED fingerprint
+  `18390a7f8ee0fe7a6dca2a7a9917ed28b380de6ebf68cefc7e5b6560e1989a43`.
+  Session 8 is the sole DRAFT; Sessions 9–56 are byte-sealed by
+  `545848e650497646ef4c3357b6d9e098124c38e0279501acaad40fca1980c775`.
+- Next exact work: Session 8 checkpoint only; do not author Session 9.
+
+## Recenter receipt — English Full B1 Session 6 re-LOCKED — 2026-09-02
+
+- Session 6 emotion packet (`calm`, `nervous`, `excited`) has the same
+  owner-required unique-primary-target repair: six distinct mode-native tasks,
+  all six mode families, exactly one Speed Match, and no repeated primary
+  target in the learner projection.
+- PASS: Session 6 exact gate, mode-native authoring, Lesson 1 preflight,
+  cross-authored no-repeated-primary-task gate, and owner-review HTML/freshness.
+- Registry receipt: Session 6 LOCKED fingerprint
+  `da1fb9e7e0037aee820cfade44b8977dc3751b2477477b7a909b2f93a29dc8d7`.
+  Session 7 is the sole DRAFT; Sessions 8–56 remain byte-sealed by
+  `85a0d3ee8aca9da1f3d344d87f8037fdedc2260c540deb6716b74859f8b06543`.
+- Next exact work: repair and verify the already prepared Session 7 compact
+  spoken-production source against the now-corrected Session 4 base.
+
+## Recenter receipt — English Full B1 Session 5 re-LOCKED — 2026-09-02
+
+- Session 5 temperature packet (`cold`, `hot`, `warm`) was rebuilt from its
+  historical repeated 17-card choreography into six unique primary tasks:
+  one each for the six mode families, exactly one Speed Match, and no repeated
+  learner-facing task target.
+- PASS: Session 5 exact gate, mode-native authoring, Lesson 1 preflight,
+  global no-repeated-primary-task gate, refreshed owner-review HTML/freshness.
+- Registry receipt: Session 5 LOCKED fingerprint
+  `d494a3217c7ec4ed0ccbf8d8d24eaaedd31b0151e6d8e32476ab14094f6f584b`.
+  Session 6 is now the only DRAFT and tail fingerprint is
+  `9ba9dc6afcbfdf68dfa4307ddb2ab8e2f231a9b2dcc3f80e19884720864e237b`.
+- Next exact work: Session 6 only; repair its historical repeated targets
+  before considering Session 7.
+
+## Recenter receipt — English Full B1 Session 4 re-LOCKED — 2026-09-02
+
+- Session 4 was rebuilt after the owner’s no-repeated-primary-task rule found
+  repetitions in its historical 17-card form. The learner-facing packet now
+  has six distinct primary tasks across all six native mode families and one
+  Speed Match; every new word is grounded before its distinct phrase use.
+- PASS: Session 4 unique-target readiness, mode-native authoring, Lesson 1
+  preflight, the cross-authored `learning_v2_no_repeated_primary_task_gate`,
+  and refreshed owner-review HTML/freshness.
+- Registry receipt: Session 4 LOCKED fingerprint
+  `c30eab802e23e66196deddb25d50c774354be22952827453640f11d261f34bbd`.
+  Session 5 is the sole DRAFT; its byte-sealed forbidden tail is
+  `b871fc8aeb65f982f855d9fead2c8960053aa58b2d959242926b8a97f25e09ab`.
+- Next exact work: Session 5 only. Its former historical lock is invalidated
+  until the same uniqueness gate and all narrow receipts pass.
+
+## Recenter receipt — uniqueness audit requires Session 4 remediation — 2026-09-02
+
+- Owner rule is now mechanically checked: one learner-facing primary target may
+  occur only once inside a session, and a session has at most one Speed Match.
+  `npx tsx tests/learning_v2_no_repeated_primary_task_gate.ts` currently finds
+  25 repetitions, all in the formerly marked Sessions 4–6; it finds none in
+  the new compact Session 7 packet.
+- Session 7 has been rebuilt as an exact spoken-production DRAFT: new senses
+  `angry`, `scared`; distinct phrase targets `I am calm`, `I am nervous`,
+  `I am excited`, `I am here`; six mode-native tasks, no Speed Match. Its
+  direct session gate, mode-native authoring gate, Lesson 1 preflight, and
+  owner-review HTML freshness gate pass. Its source fingerprint is
+  `eb78432cbe620d64e7cae00c2fa520967b1fcc6f8600b315acf132dc9918a490`.
+- Do not auto-lock Session 7 or advance to Session 8. The first required
+  repair is Session 4, then Session 5, then Session 6, preserving exact
+  packets and rebuilding each into unique-primary-target choreography. Do not
+  weaken, skip, or scope away the no-repeated-primary-task gate.
+- Existing Session 4–6 registry locks are historical receipts that conflict
+  with the new mandatory owner-quality gate; they must be replaced only after
+  their corrected source passes the gate and its refreshed fingerprint is
+  recorded. No unrelated dirty work was altered.
+
+## Recenter receipt — English Full B1 Session 6 LOCKED — 2026-09-02
+
+- Session 6 is the exact `I am` listening-retrieval packet: new senses
+  `calm`, `nervous`, `excited`; prior temperature states remain retrieval
+  context only. Legacy article and contraction material is excluded.
+- All three new senses have manual eight-locale new-word cards. The dedicated
+  source has 17 learner-facing operations and a single Speed Match.
+- Evidence before lock: Session 6 exact gate => PASS; mode-native authoring
+  gate => PASS; Lesson 1 preflight for Session 6 => PASS; owner-review mock
+  rebuilt for Sessions 1–6 and freshness gate => PASS.
+- Registry receipt: Session 6 LOCKED fingerprint
+  `37e5cf27786a5c68585a67dd45ec2c1eb5d1294a9ad5d697380f3369c066e7d1`.
+  Session 7 is the only allowed DRAFT; 8–56 are frozen by
+  `85a0d3ee8aca9da1f3d344d87f8037fdedc2260c540deb6716b74859f8b06543`.
+- Next exact work: Session 7 only; do not edit 8–56.
+
+## Recenter receipt — English Full B1 Session 5 LOCKED — 2026-09-02
+
+- Session 5 replaces legacy greeting content with the exact temperature packet:
+  new senses `cold`, `hot`, `warm`; reviewed frame `I am`; canonical transfer
+  includes `I am cold`, `I am hot`, `I am warm`, and `I am here`.
+- The dedicated three-word choreography has 17 learner-facing operations and
+  exactly one Speed Match. New-word cards exist manually for all three senses
+  in the 8-locale editorial registry. The old greeting source is not
+  learner-facing.
+- Evidence before lock: Session 5 exact gate => PASS; mode-native authoring
+  gate => PASS; Lesson 1 preflight for Session 5 => PASS; owner-review mock
+  rebuilt for Sessions 1–5 and freshness gate => PASS.
+- Registry receipt: Session 5 LOCKED fingerprint
+  `f6c5fd9d1cb8c3c753c882d874b74cba3704320f995360470c5663440460afa0`.
+  Session 6 is now the only permitted DRAFT; 7–56 freeze fingerprint is
+  `8a47db1392458237d2ef4ea42788f3cb0846327e190d2ad2091cdc04cff47075`.
+- Next exact work: Session 6 only; do not edit 7–56.
+
+## Recenter receipt — English Full B1 Session 4 LOCKED — 2026-09-02
+
+- Session 4 is now an exact dedicated `I am` state session: new senses are
+  `hungry`, `thirsty`, and `sick`; the canonical transfer includes `I am
+  hungry`, `I am thirsty`, `I am sick`, and `I am here`. The historical
+  `You are set/done/free` source remains unreferenced by the learner-facing
+  wrapper.
+- Learner-facing contract: all eight locales are present; every choice has
+  pair-specific feedback; no letter assembly; 17 distinct target/family
+  steps; exactly one Speed Match. The new-word editorial registry has manual
+  cards for the three new senses.
+- Evidence before lock: `npx tsx tests/learning_v2_lesson1_session_04_word_first_gate.ts`
+  => PASS; `npm run learning-v2:mode-native-authoring-gate -- --target=en
+  --session=4` => PASS; `npm run learning-v2:lesson1-authoring-preflight --
+  --session 4` => PASS; the Session 1–4 owner-review mock was rebuilt and its
+  freshness gate passed.
+- Registry receipt: Session 4 LOCKED fingerprint is
+  `cf7ffbdaa9a37ee85642e01d32aa3cbac954dfa3809c2825d2e234c6ba1dcd05`;
+  Session 5 is now the only permitted DRAFT and 6–56 are frozen by
+  `18a2be226d74c74348cd87fcf8e61149c3edd80b02a3b9fb192fba42be46c017`.
+- Next exact work: dedicated learner-facing Session 5 only. Its old source
+  currently fails `session_new_grammar_missing:5`, so do not claim it ready
+  or surface it in a complete owner-review set until its exact packet and
+  narrow gates are complete.
+
+## Recenter receipt — English Full B1 blueprint before Session 4 — 2026-09-02
+
+- Фактический authoring state в основном worktree: `LOCKED 1–3 / CURRENT 4
+  DRAFT / FORBIDDEN 5–56`. Session 4 не менялась в этом recenter.
+- Владелец явно подтвердил продолжение после сообщения о fingerprint
+  `1ec5396d5d46a57a65297cc064756aa5a58ac1829327c20948e553fd1606f758`.
+  Однако этот fingerprint materialized только в отдельном worktree; перенос
+  его в основной worktree сейчас небезопасен и не выполнен.
+- Независимая сверка основного worktree, без ослабления gate:
+  `npx tsx scripts/learning_v2_curriculum_blueprint_gate_v2.ts` => `HOLD`:
+  `lexical_density_findings=1224`, `checkpoint_retrieval_findings=221`,
+  `approval_pass=false`. Узкие проверки подтверждают тот же factual gap:
+  `learning_v2_session_lexical_assignments_gate_v2.ts` => PASS (299 exact
+  assignments), `learning_v2_noncheckpoint_lexical_density_gate_v2.ts` =>
+  1224 findings, `learning_v2_checkpoint_lexical_retrieval_gate_v2.ts` =>
+  221 findings.
+- Отдельный worktree получил свой `PASS` удалением checkpoint retrieval из
+  aggregate gate и возвратом менее строгой source-to-packet логики. Это
+  противоречит owner rule «не ослаблять gate», поэтому не переносится и не
+  даёт права начать learner-facing Session 4.
+- Следующий законный scope: закончить exact lexical-assignment ledger и
+  checkpoint retrieval для всех 1,792 packet-ов в основном worktree,
+  сохранить строгие gates, пересчитать exact fingerprint и owner map; только
+  затем запускать Session 4 preflight и её отдельный learner-facing пакет.
+- 2026-09-02 continuation receipt: Lesson 19 / Chapter 3 (1025–1032) is exact
+  for formal `may` permission. It introduces `application`, `document`,
+  `clearance`, `certificate`, `license`, `signature`, and `lanyard`; the
+  checkpoint retrieves only prior targets. The narrow uniqueness guard caught
+  legacy `permit` and `badge` collisions, so they were replaced rather than
+  reintroduced. `learning_v2_session_lexical_assignments_gate_v2.ts` => PASS
+  (`991` assignments); strict residuals are density `650`, checkpoint retrieval
+  `79`. Owner map was rebuilt. Continue Lesson 19 / Chapter 4 (`be_able_to`);
+  learner-facing Session 4 remains blocked until the complete strict blueprint
+  gate and refreshed exact owner approval pass.
+- 2026-09-02 continuation receipt: Lesson 19 / Chapter 4 (1033–1040) is exact
+  for productive `be able to` ability. It introduces `coordinate`,
+  `facilitate`, `delegate`, `allocate`, `collaborate`, `streamline`, and
+  `prioritize`; its checkpoint retrieves four already introduced targets.
+  Assignment gate => PASS (`999` assignments); strict residuals are density
+  `643`, checkpoint retrieval `78`. Owner map was rebuilt. Continue Lesson 19
+  / Chapter 5 (`polite_permission`), without opening learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 19 / Chapter 5 (1041–1048) is exact
+  for polite shared-space permission requests. It introduces `socket`,
+  `thermostat`, `blinds`, `radiator`, `whiteboard`, `stool`, and `outlet`; the
+  checkpoint has retrieval only. Assignment gate => PASS (`1007` assignments);
+  strict residuals are density `637`, checkpoint retrieval `78`. Owner map was
+  rebuilt. Continue Lesson 19 / Chapter 6 (1049–1056), then Chapter 7; do not
+  open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 19 / Chapters 6–7 (1049–1064) are
+  exact review packets. They introduce unique operational verbs
+  (`clarify`, `postpone`, `reschedule`, `arrange`, `accommodate`, `inquire`,
+  `reconsider`) and policy/process nouns (`protocol`, `guideline`,
+  `contingency`, `procedure`, `framework`, `criterion`, `policy`) in ability
+  and permission frames; both checkpoints contain retrieval only. Assignment
+  gate => PASS (`1023` assignments); strict residuals are density `623`,
+  checkpoint retrieval `76`. Owner map was rebuilt. Lesson 19 is complete at
+  the blueprint-assignment layer. Continue Lesson 20 / Chapter 1; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 20 / Chapter 1 (1065–1072) is exact
+  for `must` obligations. It introduces `prescription`, `waiver`,
+  `orientation`, `consent`, `checklist`, `workstation`, and `attendance`; the
+  chapter checkpoint introduces no new lexical sense. Assignment gate => PASS
+  (`1031` assignments); strict residuals are density `617`, checkpoint
+  retrieval `76`. Owner map was rebuilt. Continue Lesson 20 / Chapter 2; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 20 / Chapter 2 (1073–1080) is exact
+  for externally imposed `have to` requirements. It introduces `vaccination`,
+  `fingerprint`, `registration`, `induction`, `training`, `membership`, and
+  `screening`; its checkpoint has retrieval only. Assignment gate => PASS
+  (`1039` assignments); strict residuals are density `610`, checkpoint
+  retrieval `75`. Owner map was rebuilt. Continue Lesson 20 / Chapter 3; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 20 / Chapter 3 (1081–1088) is exact
+  for advisory `should`. It introduces `hydrate`, `ventilate`, `consult`,
+  `unplug`, `recharge`, `moderate`, and `alternate`; the checkpoint contains
+  delayed retrieval only. Assignment gate => PASS (`1047` assignments); strict
+  residuals are density `603`, checkpoint retrieval `74`. Owner map was
+  rebuilt. Continue Lesson 20 / Chapter 4; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 20 / Chapter 4 (1089–1096) is exact
+  for considered `ought to` advice. It introduces `apologize`, `reconcile`,
+  `acknowledge`, `respect`, `appreciate`, `compromise`, and `confess`; its
+  checkpoint retrieves prior targets only. Assignment gate => PASS (`1055`
+  assignments); strict residuals are density `597`, checkpoint retrieval `74`.
+  Owner map was rebuilt. Continue Lesson 20 / Chapter 5; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 20 / Chapter 5 (1097–1104) is exact
+  for absence of necessity with `needn't`. It introduces `print`, `deposit`,
+  `rsvp`, `confirmation`, `replacement`, `download`, and `refund`; the
+  checkpoint is retrieval only. Assignment gate => PASS (`1063` assignments);
+  strict residuals are density `590`, checkpoint retrieval `73`. Owner map was
+  rebuilt. Continue Lesson 20 / Chapter 6; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 20 / Chapter 6 (1105–1112) is exact
+  for optional preparation with `don't have to`. It introduces `backup`,
+  `password`, `photocopy`, `handbook`, `stapler`, `calculator`, and `manual`;
+  its checkpoint introduces nothing new. Assignment gate => PASS (`1071`
+  assignments); strict residuals are density `583`, checkpoint retrieval `72`.
+  Owner map was rebuilt. Continue Lesson 20 / Chapter 7; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 20 / Chapter 7 (1113–1120) is exact
+  for genuine prohibitions with `mustn't`. It introduces `trespass`,
+  `disclose`, `tamper`, `obstruct`, `litter`, `bypass`, and `impersonate`; the
+  checkpoint is retrieval only. Assignment gate => PASS (`1079` assignments);
+  strict residuals are density `576`, checkpoint retrieval `71`. Owner map was
+  rebuilt. Lesson 20 is complete at the blueprint-assignment layer. Continue
+  Lesson 21 / Chapter 1; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 21 / Chapter 1 (1121–1128) is exact
+  for gerund complements. It introduces `sculpt`, `snorkel`, `crochet`,
+  `compose`, `journal`, `birdwatch`, and `stargaze` in meaningful -ing frames;
+  the checkpoint is retrieval only. The grounding gate initially caught three
+  valid spelling forms; `snorkel→snorkeling`, `crochet→crocheting`, and
+  `journal→journaling` are now explicit bounded overrides, not a relaxed
+  matcher. Assignment gate => PASS (`1087` assignments); strict residuals are
+  density `569`, checkpoint retrieval `70`. Owner map was rebuilt. Continue
+  Lesson 21 / Chapter 2; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 21 / Chapter 2 (1129–1136) is exact
+  for to-infinitive complements. It introduces `aspire`, `refuse`, `attempt`,
+  `afford`, `pretend`, `intend`, and `strive`; its checkpoint introduces no
+  new lexical target. Assignment gate => PASS (`1095` assignments); strict
+  residuals are density `562`, checkpoint retrieval `69`. Owner map was
+  rebuilt. Continue Lesson 21 / Chapter 3; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 21 / Chapter 3 (1137–1144) is exact
+  for `want/need/like/prefer` complement choices. It introduces `internship`,
+  `promotion`, `relocation`, `scholarship`, `flexibility`, `stability`, and
+  `autonomy`; its checkpoint retrieves existing targets only. Assignment gate
+  => PASS (`1103` assignments); strict residuals are density `555`, checkpoint
+  retrieval `68`. Owner map was rebuilt. Continue Lesson 21 / Chapter 4; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 21 / Chapter 4 (1145–1152) is exact
+  for object + infinitive complements. It introduces `approve`, `notify`,
+  `relocate`, `accompany`, `nominate`, `authorize`, and `encourage`; its
+  checkpoint retrieves already introduced senses only. Assignment gate => PASS
+  (`1111` assignments); strict residuals are density `548`, checkpoint
+  retrieval `67`. Owner map was rebuilt. Continue Lesson 21 / Chapter 5; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 21 / Chapter 5 (1153–1160) is exact
+  for purpose infinitives. It introduces `enroll`, `exchange`, `retrieve`,
+  `weigh`, `renew`, `activate`, and `calibrate` in concrete purpose frames;
+  its checkpoint retrieves only existing targets. Assignment gate => PASS
+  (`1119` assignments); strict residuals are density `542`, checkpoint
+  retrieval `67`. Owner map was rebuilt. Continue Lesson 21 / Chapter 6; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 21 / Chapter 6 (1161–1168) is exact
+  delayed mixed complement review. It introduces `tutorial`, `seminar`,
+  `webinar`, `mentorship`, `referral`, `syllabus`, and `curriculum`; its
+  checkpoint contains retrieval only. Assignment gate => PASS (`1127`
+  assignments); strict residuals are density `535`, checkpoint retrieval `66`.
+  Owner map was rebuilt. Continue Lesson 21 / Chapter 7; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 21 / Chapter 7 (1169–1176) is exact
+  final complement-pattern retrieval. It introduces `apprenticeship`,
+  `credential`, `qualification`, `vacancy`, `prospect`, `employer`, and
+  `applicant`; the checkpoint adds no new sense. Assignment gate => PASS
+  (`1135` assignments); strict residuals are density `528`, checkpoint
+  retrieval `65`. Owner map was rebuilt. Lesson 21 is complete at the
+  blueprint-assignment layer. Continue Lesson 22 / Chapter 1; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 22 / Chapter 1 (1177–1184) is exact
+  for object-pronoun reference. It introduces `recommend`, `offer`, `advise`,
+  `congratulate`, `reassure`, `warn`, and `praise`; the checkpoint retrieves
+  prior targets only. The narrow grounding gate initially caught `offered`; the
+  packet now uses the equally natural present form `offer` rather than widening
+  its spelling matcher. Assignment gate => PASS (`1143` assignments); strict
+  residuals are density `521`, checkpoint retrieval `64`. Owner map was
+  rebuilt. Continue Lesson 22 / Chapter 2; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 22 / Chapter 2 (1185–1192) is exact
+  for possessive-pronoun reference. It introduces `artifact`, `easel`, `tent`,
+  `souvenir`, `stroller`, `trolley`, and `pouch`; its checkpoint retrieves only
+  prior targets. The uniqueness guard caught inherited `luggage`, which was
+  replaced with `pouch` before GREEN. Assignment gate => PASS (`1151`
+  assignments); strict residuals are density `514`, checkpoint retrieval `63`.
+  Owner map was rebuilt. Continue Lesson 22 / Chapter 3; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 22 / Chapter 3 (1193–1200) is exact
+  for reflexive-pronoun reference. It introduces `injure`, `introduce`,
+  `blame`, `prepare`, `defend`, `behave`, and `motivate`; its checkpoint
+  retrieves prior targets only. `recover myself` was rejected editorially as
+  unnatural and replaced with the natural reflexive action `motivate myself`
+  before GREEN. Assignment gate => PASS (`1159` assignments); strict residuals
+  are density `507`, checkpoint retrieval `62`. Owner map was rebuilt. Continue
+  Lesson 22 / Chapter 4; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 22 / Chapter 4 (1201–1208) is exact
+  for one/ones reference. It introduces `portable`, `waterproof`, `adjustable`,
+  `foldable`, `reusable`, `compact`, and `lightweight` in product-selection
+  frames; the checkpoint has retrieval only. Assignment gate => PASS (`1167`
+  assignments); strict residuals are density `500`, checkpoint retrieval `61`.
+  Owner map was rebuilt. Continue Lesson 22 / Chapter 5; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 22 / Chapter 5 (1209–1216) is exact
+  for another/other reference. It introduces `option`, `substitute`,
+  `alternative`, `spare`, `duplicate`, `counterpart`, and `remainder`; the
+  checkpoint retrieves prior targets only. The initially awkward replacement
+  examples were rewritten into natural selection and reference contexts before
+  GREEN. Assignment gate => PASS (`1175` assignments); strict residuals are
+  density `493`, checkpoint retrieval `60`. Owner map was rebuilt. Continue
+  Lesson 22 / Chapter 6; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 22 / Chapter 6 (1217–1224) is exact
+  delayed pronoun-reference review. It introduces `inquiry`, `response`,
+  `request`, `complaint`, `endorsement`, `instruction`, and `notification` in
+  request, reference, and purpose frames; its checkpoint has retrieval only.
+  Assignment gate => PASS (`1183` assignments); strict residuals are density
+  `486`, checkpoint retrieval `59`. Owner map was rebuilt. Continue Lesson 22
+  / Chapter 7; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 22 / Chapter 7 (1225–1232) is exact
+  final pronoun-reference review. It introduces `cancellation`, `extension`,
+  `eligibility`, `availability`, `accessibility`, `warranty`, and `coverage` in
+  practical service contexts; its checkpoint is retrieval only. Assignment gate
+  => PASS (`1191` assignments); strict residuals are density `479`, checkpoint
+  retrieval `58`. Owner map was rebuilt. Lesson 22 is complete at the
+  blueprint-assignment layer. Continue Lesson 23 / Chapter 1; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 23 / Chapter 1 (1233–1240) is exact
+  for present-perfect form and participles. It introduces `install`, `update`,
+  `publish`, `archive`, `synchronize`, `configure`, and `maintain` in concrete
+  result frames; the checkpoint retrieves prior targets only. Assignment gate
+  => PASS (`1199` assignments); strict residuals are density `472`, checkpoint
+  retrieval `57`. Owner map was rebuilt. Continue Lesson 23 / Chapter 2; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 23 / Chapter 2 (1241–1248) is exact
+  for present-perfect experience. It introduces `explore`, `witness`, `sample`,
+  `tour`, `sail`, `cruise`, and `paraglide` in concrete experience frames; its
+  checkpoint has retrieval only. Assignment gate => PASS (`1207` assignments);
+  strict residuals are density `465`, checkpoint retrieval `56`. Owner map was
+  rebuilt. Continue Lesson 23 / Chapter 3; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 23 / Chapter 3 (1249–1256) is exact
+  for present-perfect present result. It introduces `misplace`, `erase`,
+  `overheat`, `expire`, `disconnect`, `corrupt`, and `malfunction` in observable
+  result frames; its checkpoint has retrieval only. Assignment gate => PASS
+  (`1215` assignments); strict residuals are density `458`, checkpoint
+  retrieval `55`. Owner map was rebuilt. Continue Lesson 23 / Chapter 4; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 23 / Chapter 4 (1257–1264) is exact
+  for present-perfect ever/never experience. It introduces `parachute`,
+  `rescue`, `debate`, `perform`, `present`, `host`, and `direct` in plausible
+  experience frames; the checkpoint introduces no new sense. Assignment gate
+  => PASS (`1223` assignments); strict residuals are density `452`, checkpoint
+  retrieval `55`. Owner map was rebuilt. Continue Lesson 23 / Chapter 5; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 23 / Chapter 5 (1265–1272) is exact
+  for present-perfect `just/already/yet`. It introduces `dispatch`, `process`,
+  `upload`, `validate`, `finalize`, `provision`, and `escalate` in completed
+  workflow-result frames; the checkpoint retrieves prior targets only.
+  Assignment gate => PASS (`1231` assignments); strict residuals are density
+  `445`, checkpoint retrieval `54`. Owner map was rebuilt. Continue Lesson 23
+  / Chapter 6; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 23 / Chapter 6 (1273–1280) is exact
+  delayed present-perfect result review. It introduces `backlog`, `incident`,
+  `rollback`, `patch`, `deployment`, `hotfix`, and `integration` in completed
+  current-outcome frames; its checkpoint is retrieval only. Assignment gate =>
+  PASS (`1239` assignments); strict residuals are density `438`, checkpoint
+  retrieval `53`. Owner map was rebuilt. Continue Lesson 23 / Chapter 7; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 23 / Chapter 7 (1281–1288) is exact
+  final present-perfect result retrieval. It introduces `accomplish`, `resolve`,
+  `settle`, `heal`, `attain`, `achieve`, and `reduce`; the checkpoint adds no
+  new sense. The narrow grounding gate rejected the conservative miss on
+  `recover→recovered`, so it was replaced with natural `heal→healed` instead of
+  weakening the matcher. Assignment gate => PASS (`1247` assignments); strict
+  residuals are density `431`, checkpoint retrieval `52`. Owner map was rebuilt.
+  Lesson 23 is complete at the blueprint-assignment layer. Continue Lesson 24
+  / Chapter 1; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 24 / Chapter 1 (1289–1296) is exact
+  for present-perfect duration with `for/since`. It introduces `reside`,
+  `serve`, `train`, `lease`, `subscribe`, `specialize`, and `coach` in explicit
+  duration frames; its checkpoint is retrieval only. The narrow grounding gate
+  caught conservative `mentor→mentored`, so the packet now uses natural
+  `train→trained` instead of relaxing the matcher. Assignment gate => PASS
+  (`1255` assignments); strict residuals are density `424`, checkpoint retrieval
+  `51`. Owner map was rebuilt. Continue Lesson 24 / Chapter 2; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 24 / Chapter 2 (1297–1304) is exact
+  for present-perfect duration questions with `how long`. It introduces
+  `represent`, `occupy`, `preside`, `chair`, `govern`, `support`, and `assist`
+  in concrete long-running-role questions; its checkpoint is retrieval only.
+  Assignment gate => PASS (`1263` assignments); strict residuals are density
+  `417`, checkpoint retrieval `50`. Owner map was rebuilt. Continue Lesson 24
+  / Chapter 3; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 24 / Chapter 3 (1305–1312) is exact
+  for present-perfect continuous duration. It introduces `renovate`,
+  `investigate`, `demonstrate`, `fabricate`, `fundraise`, `refine`, and `expand`
+  in ongoing duration frames; the checkpoint is retrieval only. Assignment gate
+  => PASS (`1271` assignments); strict residuals are density `410`, checkpoint
+  retrieval `49`. Owner map was rebuilt. Continue Lesson 24 / Chapter 4; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 24 / Chapter 4 (1313–1320) is exact
+  for the present-perfect versus Past Simple contrast. It introduces `assess`,
+  `review`, `analyze`, `record`, `annotate`, `highlight`, and `compile` through
+  a current-result frame and a distinct finished-time frame; the checkpoint is
+  retrieval only. Assignment gate => PASS (`1279` assignments); strict
+  residuals are density `403`, checkpoint retrieval `48`. Owner map was
+  rebuilt. Continue Lesson 24 / Chapter 5; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 24 / Chapter 5 (1321–1328) is an
+  exact changed-context retrieval chapter for the same present-perfect
+  contrast. It introduces `assign`, `brief`, `initiate`, `track`, `outline`,
+  `distribute`, and `circulate`; the checkpoint is retrieval only. The initial
+  `monitor` candidate was rejected by the strict example-grounding gate and
+  replaced with the naturally grounded `track`, without weakening a matcher.
+  Assignment gate => PASS (`1287` assignments); strict residuals are density
+  `396`, checkpoint retrieval `47`. Owner map was rebuilt. Continue Lesson 24
+  / Chapter 6; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 24 / Chapter 6 (1329–1336) is exact
+  changed-context retrieval through community-action outcomes. It introduces
+  `participate`, `endorse`, `recruit`, `mobilize`, `mediate`, `advocate`, and
+  `network`; the checkpoint is retrieval only. The strict grounding gate
+  rejected the initially plausible but incorrectly inflected `sponsor`, so it
+  was replaced by `endorse` without relaxing the matcher. Assignment gate =>
+  PASS (`1295` assignments); strict residuals are density `389`, checkpoint
+  retrieval `46`. Owner map was rebuilt. Continue Lesson 24 / Chapter 7; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 24 / Chapter 7 (1337–1344) is exact
+  final integration for the present-perfect contrast. It introduces `reflect`,
+  `sustain`, `adjust`, `respond`, `persist`, `consolidate`, and `transform` in
+  current-result frames; the checkpoint is retrieval only. Assignment gate =>
+  PASS (`1303` assignments); strict residuals are density `382`, checkpoint
+  retrieval `45`. Owner map was rebuilt. Lesson 24 lexical chapters are
+  complete; continue Lesson 25 / Chapter 1. Do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 25 / Chapter 1 (1345–1352) is exact
+  for `used to` as a meaningful former state, role, or routine. It introduces
+  `own`, `keep`, `raise`, `rent`, `belong`, `care`, and `gather`; its checkpoint
+  is retrieval only. Assignment gate => PASS (`1311` assignments); strict
+  residuals are density `375`, checkpoint retrieval `44`. Owner map was
+  rebuilt. Continue Lesson 25 / Chapter 2; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 25 / Chapter 2 (1353–1360) is exact
+  for habitual `would` in recurring seasonal and narrative contexts. It
+  introduces `paddle`, `race`, `trade`, `hunt`, `forage`, `roam`, and `pick`;
+  its checkpoint is retrieval only. Assignment gate => PASS (`1319`
+  assignments); strict residuals are density `368`, checkpoint retrieval `43`.
+  Owner map was rebuilt. Continue Lesson 25 / Chapter 3; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 25 / Chapter 3 (1361–1368) is exact
+  for Past Perfect sequencing in two-event narratives. It introduces `unlock`,
+  `board`, `depart`, `load`, `unload`, `evacuate`, and `secure`; its checkpoint
+  is retrieval only. Assignment gate => PASS (`1327` assignments); strict
+  residuals are density `361`, checkpoint retrieval `42`. Owner map was
+  rebuilt. Continue Lesson 25 / Chapter 4; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 25 / Chapter 4 (1369–1376) is exact
+  for `before`/`after` narrative ordering. It introduces `cross`, `reach`,
+  `turn`, `protect`, `greet`, `guide`, and `escort`; its checkpoint is retrieval
+  only. Strict gates rejected a duplicate `navigate` sense and an incorrectly
+  grounded `cover` inflection; both were replaced by exact, natural candidates
+  without weakening the gate. Assignment gate => PASS (`1335` assignments);
+  strict residuals are density `354`, checkpoint retrieval `41`. Owner map was
+  rebuilt. Continue Lesson 25 / Chapter 5; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 25 / Chapter 5 (1377–1384) is exact
+  for Past Perfect completion by a narrative deadline. It introduces `seal`,
+  `sort`, `file`, `stack`, `store`, `count`, and `mark`; its checkpoint is
+  retrieval only. Assignment gate => PASS (`1343` assignments); strict
+  residuals are density `347`, checkpoint retrieval `40`. Owner map was
+  rebuilt. Continue Lesson 25 / Chapter 6; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 25 / Chapter 6 (1385–1392) is exact
+  conversational retelling over the established past-narrative grammar. It
+  introduces `recall`, `spot`, `realize`, `deny`, `suggest`, `report`, and
+  `reveal`; its checkpoint is retrieval only. The uniqueness guard rejected a
+  repeated `confess` sense, which was replaced with the fresh `reveal` without
+  relaxing the rule. Assignment gate => PASS (`1351` assignments); strict
+  residuals are density `340`, checkpoint retrieval `39`. Owner map was
+  rebuilt. Continue Lesson 25 / Chapter 7; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 25 / Chapter 7 (1393–1400) is exact
+  final transfer over the established past-narrative system. It introduces
+  `endure`, `survive`, `resist`, `cope`, `thrive`, `struggle`, and `flourish`;
+  its checkpoint is retrieval only. Assignment gate => PASS (`1359`
+  assignments); strict residuals are density `333`, checkpoint retrieval `38`.
+  Owner map and aggregate blueprint gate were rebuilt: all structural,
+  prerequisite, semantic, lexical-scope and course-start findings remain zero.
+  Continue Lesson 26 / Chapter 1; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 26 / Chapter 1 (1401–1408) is exact
+  for zero-conditional observable facts. It introduces `evaporate`, `condense`,
+  `contract`, `dissolve`, `sink`, `absorb`, and `vibrate`; its checkpoint is
+  retrieval only. Assignment gate => PASS (`1367` assignments); strict
+  residuals are density `327`, checkpoint retrieval `38`. Owner map was
+  rebuilt. Continue Lesson 26 / Chapter 2; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 26 / Chapter 2 (1409–1416) is exact
+  for First Conditional practical contingencies. It introduces `refill`,
+  `replace`, `text`, `reply`, `book`, `forward`, and `transfer`; its checkpoint
+  is retrieval only. Each canonical context is distinct, including separate
+  text and email response cases. Assignment gate => PASS (`1375` assignments);
+  strict residuals are density `321`, checkpoint retrieval `38`. Owner map was
+  rebuilt. Continue Lesson 26 / Chapter 3; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 26 / Chapter 3 (1417–1424) is exact
+  for future time clauses with present form inside the time clause. It
+  introduces `unpack`, `land`, `register`, `recover`, `sign`, `wait`, and
+  `signal`; its checkpoint is retrieval only. Assignment gate => PASS (`1383`
+  assignments); strict residuals are density `314`, checkpoint retrieval `37`.
+  Owner map was rebuilt. Continue Lesson 26 / Chapter 4; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 26 / Chapter 4 (1425–1432) is exact
+  for `if`/`when`/`unless` contingency and safety contexts. It introduces
+  `detour`, `engage`, `restart`, `spoil`, `discard`, `shelter`, and `lock`; its
+  checkpoint is retrieval only. The `spoil` example was kept independent of
+  the later `discard` first introduction, avoiding premature lexical use.
+  Assignment gate => PASS (`1391` assignments); strict residuals are density
+  `307`, checkpoint retrieval `36`. Owner map was rebuilt. Continue Lesson 26
+  / Chapter 5; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 26 / Chapter 5 (1433–1440) is exact
+  for conditional clause order through practical imperative advice. It
+  introduces `listen`, `schedule`, `order`, `select`, `try`, `save`, and
+  `search`; its checkpoint is retrieval only. Assignment gate => PASS (`1399`
+  assignments); strict residuals are density `300`, checkpoint retrieval `35`.
+  Owner map was rebuilt. Continue Lesson 26 / Chapter 6; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 26 / Chapter 6 (1441–1448) is exact
+  changed-context retrieval through environmental actions and consequences. It
+  introduces `reuse`, `preserve`, `conserve`, `waste`, `pollute`, `compost`, and
+  `harvest`; its checkpoint is retrieval only. Assignment gate => PASS (`1407`
+  assignments); strict residuals are density `293`, checkpoint retrieval `34`.
+  Owner map was rebuilt. Continue Lesson 26 / Chapter 7; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 26 / Chapter 7 (1449–1456) is exact
+  final conditional transfer through civic decision contexts. It introduces
+  `vote`, `elect`, `propose`, `reject`, `rally`, `petition`, and `campaign`; its
+  checkpoint is retrieval only. Assignment gate => PASS (`1415` assignments);
+  strict residuals are density `286`, checkpoint retrieval `33`. Owner map and
+  aggregate blueprint gate were rebuilt: all structural, prerequisite,
+  semantic, lexical-scope and course-start findings remain zero. Continue
+  Lesson 27 / Chapter 1; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 27 / Chapter 1 (1457–1464) is exact
+  for unreal second-conditional conditions and their imagined outcomes. It
+  introduces `invent`, `cultivate`, `adopt`, `fund`, `sponsor`, `manufacture`,
+  and `build`; its checkpoint is retrieval only. Assignment gate => PASS
+  (`1423` assignments); strict residuals are density `279`, checkpoint
+  retrieval `32`. Owner map was rebuilt. Continue Lesson 27 / Chapter 2; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 27 / Chapter 2 (1465–1472) is exact
+  for `If I were …` with imagined roles and outcomes. It introduces
+  `paramedic`, `journalist`, `scientist`, `botanist`, `musician`, `farmer`, and
+  `engineer`; its checkpoint is retrieval only. Assignment gate => PASS
+  (`1431` assignments); strict residuals are density `272`, checkpoint
+  retrieval `31`. Owner map was rebuilt. Continue Lesson 27 / Chapter 3; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 27 / Chapter 3 (1473–1480) is exact
+  for second-conditional `would` result clauses. It introduces `rearrange`,
+  `upgrade`, `landscape`, `backpack`, `invest`, `mentor`, and `launch`; its
+  checkpoint is retrieval only. Assignment gate => PASS (`1439` assignments);
+  strict residuals are density `265`, checkpoint retrieval `30`. Owner map was
+  rebuilt. Continue Lesson 27 / Chapter 4; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 27 / Chapter 4 (1481–1488) is exact
+  for present wishes about unreal current states. It introduces `clarity`,
+  `recognition`, `independence`, `belonging`, `routine`, `purpose`, and
+  `adventure`; its checkpoint is retrieval only. Assignment gate => PASS
+  (`1447` assignments); strict residuals are density `258`, checkpoint
+  retrieval `29`. Owner map was rebuilt. Continue Lesson 27 / Chapter 5; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 27 / Chapter 5 (1489–1496) is exact
+  changed-context retrieval for wishes about unavailable practical supports. It
+  introduces `solution`, `access`, `guidance`, `feedback`, `opportunity`,
+  `balance`, and `skill`; its checkpoint is retrieval only. Assignment gate =>
+  PASS (`1455` assignments); strict residuals are density `251`, checkpoint
+  retrieval `28`. Owner map was rebuilt. Continue Lesson 27 / Chapter 6; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 27 / Chapter 6 (1497–1504) is exact
+  changed-context retrieval through relationship choices. It introduces
+  `conflict`, `agreement`, `misunderstanding`, `empathy`, `tolerance`,
+  `loyalty`, and `boundary`; its checkpoint is retrieval only. Assignment gate
+  => PASS (`1463` assignments); strict residuals are density `244`, checkpoint
+  retrieval `27`. Owner map was rebuilt. Continue Lesson 27 / Chapter 7; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 27 / Chapter 7 (1505–1512) is exact
+  final transfer through reflective capacities in unreal conditions and wishes.
+  It introduces `perspective`, `ambition`, `potential`, `motivation`,
+  `resilience`, `identity`, and `insight`; its checkpoint is retrieval only.
+  Assignment gate => PASS (`1471` assignments); strict residuals are density
+  `237`, checkpoint retrieval `26`. Owner map and aggregate blueprint gate
+  were rebuilt: all structural, prerequisite, semantic, lexical-scope and
+  course-start findings remain zero. Continue Lesson 28 / Chapter 1; do not
+  open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 28 / Chapter 1 (1513–1520) is exact
+  for present passive through visible everyday processes. It introduces
+  `produce`, `generate`, `package`, `ship`, `wrap`, `bottle`, and `display`; its
+  checkpoint is retrieval only. Assignment gate => PASS (`1479` assignments);
+  strict residuals are density `230`, checkpoint retrieval `25`. Owner map was
+  rebuilt. Continue Lesson 28 / Chapter 2; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 28 / Chapter 2 (1521–1528) is exact
+  for past passive and completed dated events. It introduces `rename`, `bury`,
+  `swap`, `delete`, `copy`, `locate`, and `stamp`; its checkpoint is retrieval
+  only. Assignment gate => PASS (`1487` assignments); strict residuals are
+  density `223`, checkpoint retrieval `24`. Owner map was rebuilt. Continue
+  Lesson 28 / Chapter 3; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 28 / Chapter 3 (1529–1536) is exact
+  for future passive through service and media outcomes. It introduces `deploy`,
+  `broadcast`, `release`, `issue`, `provide`, `post`, and `list`; its checkpoint
+  is retrieval only. Assignment gate => PASS (`1495` assignments); strict
+  residuals are density `216`, checkpoint retrieval `23`. Owner map was
+  rebuilt. Continue Lesson 28 / Chapter 4; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 28 / Chapter 4 (1537–1544) is exact
+  for modal passive through procedural obligation and recommendation. It
+  introduces `sanitize`, `sterilize`, `dispose`, `revise`, `restrict`, `insure`,
+  and `enforce`; its checkpoint is retrieval only. Assignment gate => PASS
+  (`1503` assignments); strict residuals are density `209`, checkpoint
+  retrieval `22`. Owner map was rebuilt. Continue Lesson 28 / Chapter 5; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 28 / Chapter 5 (1545–1552) is exact
+  for passive voice with informative `by` agents. It introduces `sculptor`,
+  `filmmaker`, `composer`, `illustrator`, `inventor`, `analyst`, and
+  `photographer`; its checkpoint is retrieval only. The uniqueness guard
+  rejected a duplicate `translator`, which was replaced by `illustrator`
+  without weakening the gate. Assignment gate => PASS (`1511` assignments);
+  strict residuals are density `202`, checkpoint retrieval `21`. Owner map was
+  rebuilt. Continue Lesson 28 / Chapter 6; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 28 / Chapter 6 (1553–1560) is exact
+  for cumulative passive and unreal-condition review. It introduces
+  `certainty`, `composure`, `momentum`, `assurance`, `focus`, `direction`, and
+  `wisdom`; its checkpoint is retrieval only. Assignment gate => PASS (`1519`
+  assignments); strict residuals are density `195`, checkpoint retrieval `20`.
+  Owner map was rebuilt. Continue Lesson 28 / Chapter 7; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 28 / Chapter 7 (1561–1568) is exact
+  for final mixed review. It introduces `reputation`, `legacy`, `credibility`,
+  `integrity`, `notoriety`, `prestige`, and `renown`; its checkpoint is
+  retrieval only. Assignment gate => PASS (`1527` assignments); strict
+  residuals are density `188`, checkpoint retrieval `19`. Owner map was
+  rebuilt and the aggregate blueprint gate was rerun. Continue Lesson 29 /
+  Chapter 1; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 29 / Chapter 1 (1569–1576) is exact
+  for defining `who/which/that` clauses. It introduces `vendor`, `device`,
+  `tool`, `route`, `candidate`, `resident`, and `method`; its checkpoint is
+  retrieval only. Assignment gate => PASS (`1535` assignments); strict
+  residuals are density `182`, checkpoint retrieval `19`. Owner map was
+  rebuilt. Continue Lesson 29 / Chapter 2; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 29 / Chapter 2 (1577–1584) is exact
+  for defining `whose` clauses. It introduces `estate`, `heirloom`, `surname`,
+  `fortune`, `trademark`, `ancestry`, and `property`; its checkpoint is
+  retrieval only. Assignment gate => PASS (`1543` assignments); strict
+  residuals are density `176`, checkpoint retrieval `19`. Owner map was
+  rebuilt. Continue Lesson 29 / Chapter 3; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 29 / Chapter 3 (1585–1592) is exact
+  for defining `where` clauses. It introduces `theatre`, `hostel`, `canteen`,
+  `atrium`, `studio`, `archive`, and `nursery`; its checkpoint is retrieval
+  only. Assignment gate => PASS (`1551` assignments); strict residuals are
+  density `170`, checkpoint retrieval `19`. Owner map was rebuilt. Continue
+  Lesson 29 / Chapter 4; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 29 / Chapter 4 (1593–1600) is exact
+  for defining relative-clause subject/object roles. It introduces
+  `benefactor`, `referee`, `curator`, `apprentice`, `donor`, `critic`, and
+  `visitor`; its checkpoint is retrieval only. Assignment gate => PASS
+  (`1559` assignments); strict residuals are density `164`, checkpoint
+  retrieval `19`. Owner map was rebuilt. Continue Lesson 29 / Chapter 5; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 29 / Chapter 5 (1601–1608) is exact
+  for object-relative omission. It introduces `manuscript`, `sculpture`,
+  `recipe`, `instrument`, `novel`, `memoir`, and `blueprint`; its checkpoint
+  is retrieval only. Assignment gate => PASS (`1567` assignments); strict
+  residuals are density `157`, checkpoint retrieval `18`. Owner map was
+  rebuilt. Continue Lesson 29 / Chapter 6; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 29 / Chapter 6 (1609–1616) is exact
+  for cumulative relative-clause review. It introduces `adaptability`,
+  `coherence`, `precision`, `awareness`, `endurance`, `judgement`, and
+  `foresight`; its checkpoint is retrieval only. Assignment gate => PASS
+  (`1575` assignments); strict residuals are density `150`, checkpoint
+  retrieval `17`. Owner map was rebuilt. Continue Lesson 29 / Chapter 7; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 29 / Chapter 7 (1617–1624) is exact
+  for closing relative-clause review. It introduces `synthesis`, `nuance`,
+  `aptitude`, `dexterity`, `maturity`, `initiative`, and `discernment`; its
+  checkpoint is retrieval only. Assignment gate => PASS (`1583` assignments);
+  strict residuals are density `143`, checkpoint retrieval `16`. Owner map was
+  rebuilt and the aggregate blueprint gate was rerun. Continue Lesson 30 /
+  Chapter 1; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 30 / Chapter 1 (1625–1632) is exact
+  for reported statements. It introduces `optimistic`, `disappointed`,
+  `frustrated`, `astonished`, `devastated`, `hesitant`, and `resentful`; its
+  checkpoint is retrieval only. Assignment gate => PASS (`1591` assignments);
+  strict residuals are density `136`, checkpoint retrieval `15`. Owner map was
+  rebuilt. Continue Lesson 30 / Chapter 2; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 30 / Chapter 2 (1633–1640) is exact
+  for reported questions. It introduces `origin`, `destination`, `preference`,
+  `location`, `duration`, `motive`, and `rationale`; its checkpoint is
+  retrieval only. The uniqueness guard rejected duplicate `deadline`,
+  `procedure`, and `timetable`; the exact lexical layer now uses distinct
+  senses without weakening that guard. Assignment gate => PASS (`1599`
+  assignments); strict residuals are density `129`, checkpoint retrieval `14`.
+  Owner map was rebuilt. Continue Lesson 30 / Chapter 3; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 30 / Chapter 3 (1641–1648) is exact
+  for reported commands and requests. It introduces `comply`, `apologise`,
+  `refrain`, `withdraw`, `resume`, `cooperate`, and `elaborate`; its
+  checkpoint is retrieval only. The uniqueness guard rejected duplicate
+  `clarify`, which was replaced by `elaborate` without weakening the guard.
+  Assignment gate => PASS (`1607` assignments); strict residuals are density
+  `122`, checkpoint retrieval `13`. Owner map was rebuilt. Continue Lesson 30
+  / Chapter 4; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 30 / Chapter 4 (1649–1656) is exact
+  for `say/tell/ask` distinctions. It introduces `rumour`, `confession`,
+  `allegation`, `invitation`, `verdict`, `testimony`, and `disclosure`; its
+  checkpoint is retrieval only. Assignment gate => PASS (`1615` assignments);
+  strict residuals are density `116`, checkpoint retrieval `13`. Owner map was
+  rebuilt. Continue Lesson 30 / Chapter 5; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 30 / Chapter 5 (1657–1664) is exact
+  for bounded reported-speech backshift. It introduces `unavailable`,
+  `overdue`, `pending`, `sufficient`, `confidential`, `voluntary`, and
+  `compulsory`; its checkpoint is retrieval only. Assignment gate => PASS
+  (`1623` assignments); strict residuals are density `109`, checkpoint
+  retrieval `12`. Owner map was rebuilt. Continue Lesson 30 / Chapter 6; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 30 / Chapter 6 (1665–1672) is exact
+  for mixed reported-speech review. It introduces `consistency`,
+  `reliability`, `discretion`, `diligence`, `accountability`, `tact`, and
+  `impartiality`; its checkpoint is retrieval only. Assignment gate => PASS
+  (`1631` assignments); strict residuals are density `102`, checkpoint
+  retrieval `11`. Owner map was rebuilt. Continue Lesson 30 / Chapter 7; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 30 / Chapter 7 (1673–1680) is exact
+  for closing reported-speech review. It introduces `innovation`,
+  `collaboration`, `leadership`, `stewardship`, `productivity`, `proficiency`,
+  and `transparency`; its checkpoint is retrieval only. Assignment gate =>
+  PASS (`1639` assignments); strict residuals are density `95`, checkpoint
+  retrieval `10`. Owner map was rebuilt and aggregate blueprint gate rerun.
+  Continue Lesson 31 / Chapter 1; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 31 / Chapter 1 (1681–1688) is exact
+  for indirect questions. It introduces `concourse`, `landmark`, `vicinity`,
+  `opening`, `capacity`, `accommodation`, and `entranceway`; its checkpoint is
+  retrieval only. Assignment gate => PASS (`1647` assignments); strict
+  residuals are density `88`, checkpoint retrieval `9`. Owner map was
+  rebuilt. Continue Lesson 31 / Chapter 2; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 31 / Chapter 2 (1689–1696) is exact
+  for question tags. It introduces `attentive`, `candid`, `punctual`,
+  `decisive`, `observant`, `courteous`, and `methodical`; its checkpoint is
+  retrieval only. Assignment gate => PASS (`1655` assignments); strict
+  residuals are density `81`, checkpoint retrieval `8`. Owner map was
+  rebuilt. Continue Lesson 31 / Chapter 3; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 31 / Chapter 3 (1697–1704) is exact
+  for noun clauses. It introduces `assumption`, `consequence`, `implication`,
+  `obstacle`, `condition`, `circumstance`, and `premise`; its checkpoint is
+  retrieval only. Assignment gate => PASS (`1663` assignments); strict
+  residuals are density `75`, checkpoint retrieval `8`. Owner map was rebuilt.
+  Continue Lesson 31 / Chapter 4; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 31 / Chapter 4 (1705–1712) is exact
+  for cause connectors. It introduces `congestion`, `fatigue`, `illness`,
+  `closure`, `disruption`, `blackout`, and `downpour`; its checkpoint is
+  retrieval only. The uniqueness guard rejected duplicate `outage`, which was
+  replaced by `blackout` without weakening the guard. Assignment gate => PASS
+  (`1671` assignments); strict residuals are density `69`, checkpoint
+  retrieval `8`. Owner map was rebuilt. Continue Lesson 31 / Chapter 5; do
+  not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 31 / Chapter 5 (1713–1720) is exact
+  for contrast connectors. It introduces `inconvenient`, `scarce`, `abundant`,
+  `impactful`, `outdated`, `unpredictable`, and `profitable`; its checkpoint
+  is retrieval only. The uniqueness guard rejected duplicate `unreliable`,
+  which was replaced by `unpredictable` without weakening the guard.
+  Assignment gate => PASS (`1679` assignments); strict residuals are density
+  `62`, checkpoint retrieval `7`. Owner map was rebuilt. Continue Lesson 31 /
+  Chapter 6; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 31 / Chapter 6 (1721–1728) is exact
+  for purpose connectors. It introduces `memorise`, `safeguard`, `simplify`,
+  `reinforce`, `trace`, `articulate`, and `retain`; its checkpoint is retrieval
+  only. The uniqueness guard rejected duplicate `rehearse`, which was replaced
+  by `articulate` without weakening the guard. Assignment gate => PASS (`1687`
+  assignments); strict residuals are density `56`, checkpoint retrieval `7`.
+  Owner map was rebuilt. Continue Lesson 31 / Chapter 7; do not open
+  learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 31 / Chapter 7 (1729–1736) is exact
+  for result connectors. It introduces `overload`, `setback`, `breakthrough`,
+  `adjustment`, `renewal`, `resolution`, and `repercussion`; its checkpoint is
+  retrieval only. Assignment gate => PASS (`1695` assignments); strict
+  residuals are density `49`, checkpoint retrieval `6`. Owner map was rebuilt
+  and aggregate blueprint gate rerun. Continue Lesson 32 / Chapter 1; do not
+  open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 32 / Chapter 1 (1737–1744) is exact
+  for `must` inference. It introduces `occupied`, `misplaced`, `allergic`,
+  `mistaken`, `starving`, `delayed`, and `disoriented`; its checkpoint is
+  retrieval only. Assignment gate => PASS (`1703` assignments); strict
+  residuals are density `42`, checkpoint retrieval `5`. Owner map was
+  rebuilt. Continue Lesson 32 / Chapter 2; do not open learner-facing Session
+  4.
+- 2026-09-02 continuation receipt: Lesson 32 / Chapter 2 (1745–1752) is exact
+  for `may/might` possibility. It introduces `snowfall`, `sunshine`,
+  `thunderstorm`, `breeze`, `sleet`, `dew`, and `rainbow`; its checkpoint is
+  retrieval only. The uniqueness guard rejected legacy duplicates `hail`,
+  `frost`, `lightning`, and then `mist`; distinct senses replaced them without
+  weakening the guard. Assignment gate => PASS (`1711` assignments); strict
+  residuals are density `35`, checkpoint retrieval `4`. Owner map was rebuilt.
+  Continue Lesson 32 / Chapter 3; do not open learner-facing Session 4.
+- 2026-09-02 continuation receipt: Lesson 32 / Chapters 3–7 (1753–1792) are
+  exact for calibrated `could`, `can't`, and integrated probability stance,
+  followed by mixed final review. They introduce `engine`, `echo`,
+  `reflection`, `scent`, `rustle`, `tremor`, `flicker`, `authentic`,
+  `compatible`, `legitimate`, `feasible`, `plausible`, `coherent`, `identical`,
+  `streak`, `warmth`, `glare`, `aroma`, `indentation`, `tyre`, `residue`,
+  `versatility`, `objectivity`, `tenacity`, `ingenuity`, `fluency`,
+  `resourcefulness`, `prudence`, `adaptation`, `mitigation`, `calibration`,
+  `validation`, `optimization`, `prioritization`, and `alignment`. All five
+  checkpoints are retrieval only. Assignment gate => PASS (`1751`
+  assignments); lexical-density and checkpoint-retrieval gates => PASS.
+- 2026-09-02 owner approval receipt: current Full B1 blueprint fingerprint
+  `bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`
+  is materialized as `APPROVED` from the owner's explicit continuation
+  approval. The aggregate blueprint gate now passes with all structural,
+  semantic, lexical-density, checkpoint-retrieval, and course-start findings
+  at zero. Owner map was rebuilt. Reconcile preserved Sessions 1–3, then open
+  only learner-facing Session 4.
+- 2026-09-02 reconciliation receipt: owner-map gate and Lesson 1 authoring
+  preflight both pass after approval. The registry independently reports
+  `LOCKED: 1-3`, `CURRENT: 4`, `CURRENT STATUS: DRAFT`, and `FORBIDDEN: 5-56`.
+  The Full B1 blueprint is now approved and all aggregate structural,
+  semantic, lexical-density, and checkpoint-retrieval gates are zero. Next
+  permitted work is exact learner-facing Session 4 only; do not open Session 5.
+- 2026-09-02 continuation receipt: Lesson 11 / Chapters 3–4 are now grounded
+  through exact packets 577–592. Chapter 3 introduces `leak`, `crack`,
+  `crowd`, `puddle`, `shadow`, `footprint`, `signal` in `there was` frames;
+  Chapter 4 introduces `suburb`, `harbor`, `village`, `basement`, `balcony`,
+  `courtyard`, `hallway` in completed past-location frames. A duplicate
+  `entrance` sense was caught by the narrow assignment gate and replaced with
+  `courtyard`; no gate was weakened. `learning_v2_session_lexical_assignments_gate_v2.ts`
+  => PASS (`551` assignments). Remaining honest work: density `1018`,
+  checkpoint retrieval `117`; Session 4 remains blocked until both are zero
+  and the refreshed exact blueprint approval is materialized.
+- 2026-09-02 continuation receipt (same route): Lesson 11 / Chapters 5–7 are
+  also exact through packets 593–616. The narrow assignment gate caught legacy
+  collisions for `tunnel` and `stadium`; the new senses are `quarry` and
+  `observatory`, so no lexical sense is reintroduced. Assignment gate => PASS
+  (`575` assignments); the strict residual counts are density `997` and
+  checkpoint retrieval `114`. Continue at Lesson 12 / Chapter 1; do not begin
+  learner-facing Session 4 before the full blueprint gate and refreshed owner
+  approval pass.
+- 2026-09-02 continuation receipt: Lesson 12 / Chapter 1 (617–624) is exact
+  for regular past forms: `arrive`, `follow`, `invite`, `join`, `miss`, `move`,
+  `return`. The grounding matcher initially rejected their valid regular past
+  forms; it now recognises a narrowly bounded `regularPast` spelling alongside
+  its existing present forms. This makes the pre-existing grounding requirement
+  stricter in coverage, not weaker. Assignment gate => PASS (`583` assignments);
+  residual density is `991`, checkpoint retrieval remains `114`. Next packet:
+  Lesson 12 / Chapter 2 (`irregular_whole_words`).
+- 2026-09-02 continuation receipt: Lesson 12 / Chapter 2 (625–632) is exact
+  for `choose→chose`, `grow→grew`, `hide→hid`, `rise→rose`, `shake→shook`,
+  `steal→stole`, `throw→threw`. The lexical grounding matcher now has this
+  explicit bounded irregular-form table; its use is verified by the assignment
+  gate, which PASSes at `591` assignments. Strict residual counts: density
+  `985`, checkpoint retrieval `114`. Next packet: Lesson 12 / Chapter 3
+  (`finished_event`).
+- 2026-09-02 continuation receipt: Lesson 12 / Chapters 3–4 are exact through
+  packets 633–648. Chapter 3 introduces finished-event verbs `announce`,
+  `celebrate`, `compete`, `notice`, `escape`, `fail`, `graduate`; Chapter 4
+  introduces distinct regular -ed verbs `wash`, `finish`, `help`, `change`,
+  `love`, `kick`, `plant`. A `discover` spelling mismatch was caught by the
+  grounding gate and replaced rather than weakening the inflection rule.
+  Assignment gate => PASS (`607` assignments); strict residuals: density `973`,
+  checkpoint retrieval `114`. Next packet: Lesson 12 / Chapter 5.
+- 2026-09-02 continuation receipt: Lesson 12 / Chapters 5–7 are exact through
+  packets 649–672. They introduce separate event/disruption/community nouns
+  inside completed past-event frames; each checkpoint (656/664/672) retrieves
+  earlier targets only. Assignment gate => PASS (`631` assignments). Strict
+  residuals: density `952`, checkpoint retrieval `111`. Lesson 12 is complete
+  at the blueprint-assignment layer. Continue with Lesson 13 / Chapter 1;
+  learner-facing Session 4 remains blocked by the full blueprint gate.
+- 2026-09-02 drift-check: `СТАРТ В2` confirms that exact approved packet work
+  remains sequential; no learner-facing packet may be authored while the
+  aggregate blueprint is HOLD. Lesson 13 / Chapters 1–2 (673–688) now ground
+  `did` questions and `didn't` negatives with unique base-form verbs. The
+  duplicate `collect` was rejected by the assignment uniqueness guard and
+  replaced with `contribute`. Assignment gate => PASS (`647` assignments);
+  residual density `939`, checkpoint retrieval `110`. Continue Lesson 13 /
+  Chapter 3 (`base_form_restoration`).
+- 2026-09-02 continuation receipt: Lesson 13 / Chapters 3–4 (689–704) are
+  exact. The base-restoration pack uses unique base-form verbs after `did`;
+  the time-anchor pack introduces one distinct anchor per packet. Duplicates
+  (`choose`, `deliver`, `follow`, `reserve`, `deadline`) were caught before
+  acceptance and replaced with unique targets. Assignment gate => PASS (`663`
+  assignments); residual density `926`, checkpoint retrieval `109`. Continue
+  Lesson 13 / Chapter 5 (`event_sequence`).
+- 2026-09-02 continuation receipt: Lesson 13 / Chapter 5 (705–712) is exact
+  event-sequence work. The uniqueness guard rejected inherited target nouns
+  (`receipt`, `ticket`, `parcel`, `badge`, `folder`); they were replaced with
+  unique `voucher`, `permit`, `crate`, `wristband`, `portfolio` before GREEN.
+  Assignment gate => PASS (`671` assignments); residual density `919`,
+  checkpoint retrieval `108`. Continue Lesson 13 / Chapter 6.
+- 2026-09-02 continuation receipt: Lesson 13 / Chapters 6–7 (713–728) are
+  exact transfer packets. The uniqueness guard found inherited `uniform`,
+  `platform`, `suitcase`, and `backpack`; they were replaced with `apron`,
+  `dock`, `trunk`, and `satchel` before passing. Assignment gate => PASS
+  (`687` assignments); strict residuals: density `905`, checkpoint retrieval
+  `106`. Lesson 13 blueprint ledger is complete. Continue Lesson 14 / Chapter 1.
+- 2026-09-02 continuation receipt: Lesson 14 / Chapter 1 (729–736) is exact
+  past-continuous grounding. Duplicate targets were replaced before GREEN, and
+  the matcher gained explicit `garden→gardening` and `water→watering` overrides
+  after the gate caught its intentionally conservative CVC limitation. Assignment
+  gate => PASS (`695` assignments); residual density `898`, checkpoint
+  retrieval `105`. Continue Lesson 14 / Chapter 2 (`negative_questions`).
+- 2026-09-02 continuation receipt: Lesson 14 / Chapter 2 (737–744) is exact
+  past-continuous question/negative work. `helmet` was already introduced and
+  was replaced by `visor` before GREEN. Assignment gate => PASS (`703`
+  assignments); strict residuals: density `891`, checkpoint retrieval `104`.
+  Continue Lesson 14 / Chapter 3 (`background_action`).
+- 2026-09-02 continuation receipt: Lesson 14 / Chapter 3 (745–752) is exact
+  background-action work. Existing `curtain`, `fountain`, and `bench` were
+  rejected by the uniqueness guard and replaced by `awning`, `pavilion`, and
+  `railing` before PASS. Assignment gate => PASS (`711` assignments); strict
+  residuals: density `884`, checkpoint retrieval `103`. Continue Lesson 14 /
+  Chapter 4 (`interrupted_action`).
+- 2026-09-02 continuation receipt: Lesson 14 / Chapters 4–5 (753–768) are
+  exact. Chapter 4 uses distinct interruption cues; Chapter 5 uses distinct
+  setting nouns with explicit `when`/`while` relation frames. Assignment gate
+  => PASS (`727` assignments); strict residuals: density `871`, checkpoint
+  retrieval `102`. Continue Lesson 14 / Chapter 6.
+- 2026-09-02 continuation receipt: Lesson 14 / Chapters 6–7 (769–784) are
+  exact transfer packets. The uniqueness guard rejected legacy `garage`,
+  `gate`, `pharmacy`, and `kiosk`; the final ledger uses `carport`, `archway`,
+  `optician`, and `florist`. Assignment gate => PASS (`743` assignments);
+  strict residuals: density `857`, checkpoint retrieval `100`. Lesson 14
+  blueprint ledger is complete. Continue Lesson 15 / Chapter 1.
+- 2026-09-02 continuation receipt: Lesson 15 / Chapter 1 (785–792) is exact
+  going-to intention work. Distinct destinations ground the plan without
+  adding a second target. Assignment gate => PASS (`751` assignments); strict
+  residuals: density `850`, checkpoint retrieval `99`. Continue Lesson 15 /
+  Chapter 2 (`going_to_evidence`).
+- 2026-09-02 continuation receipt: Lesson 15 / Chapters 2–3 (793–808) are
+  exact. Chapter 2 grounds evidence-based future in distinct visible weather
+  cues; Chapter 3 uses distinct appointment roles for future arrangements.
+  Assignment gate => PASS (`767` assignments); strict residuals: density `838`,
+  checkpoint retrieval `99`. Continue Lesson 15 / Chapter 4
+  (`plan_arrangement_contrast`).
+- 2026-09-02 continuation receipt: Lesson 15 / Chapter 4 (809–816) is exact
+  plan-versus-arrangement work with a distinct occasion noun in each packet.
+  Assignment gate => PASS (`775` assignments); strict residuals: density `831`,
+  checkpoint retrieval `98`. Continue Lesson 15 / Chapter 5.
+- 2026-09-02 continuation receipt: Lesson 15 / Chapters 5–6 (817–832) are
+  exact future-review packets with unique travel and civic-planning nouns.
+  Assignment gate => PASS (`791` assignments); strict residuals: density `817`,
+  checkpoint retrieval `96`. Continue Lesson 15 / Chapter 7.
+- 2026-09-02 continuation receipt: Lesson 15 / Chapter 7 (833–840) is exact
+  final transfer with distinct service-role targets. Assignment gate => PASS
+  (`799` assignments); strict residuals: density `810`, checkpoint retrieval
+  `95`. Lesson 15 blueprint ledger is complete. Continue Lesson 16 / Chapter 1.
+- 2026-09-02 continuation receipt: Lesson 16 / Chapter 1 (841–848) is exact
+  will-prediction work with unique prediction cues. `forecast` was already
+  introduced and was replaced by `outlook` before GREEN. Assignment gate =>
+  PASS (`807` assignments); strict residuals: density `804`, checkpoint
+  retrieval `95`. Continue Lesson 16 / Chapter 2 (`spontaneous_decision`).
+- 2026-09-02 continuation receipt: Lesson 16 / Chapter 2 (849–856) is exact
+  spontaneous-decision work. Existing `umbrella` and `charger` were rejected
+  and replaced by `raincoat` and `adapter` before GREEN. Assignment gate =>
+  PASS (`815` assignments); strict residuals: density `797`, checkpoint
+  retrieval `94`. Continue Lesson 16 / Chapter 3 (`promise`).
+- 2026-09-02 continuation receipt: Lesson 16 / Chapters 3–4 (857–872) are
+  exact promise and offer packets. The uniqueness guard replaced inherited
+  `map` and `blanket` with `directions` and `quilt`. Assignment gate => PASS
+  (`831` assignments); strict residuals: density `786`, checkpoint retrieval
+  `95`. Continue Lesson 16 / Chapter 5 (`future_form_contrast`).
+- 2026-09-02 continuation receipt: Lesson 16 / Chapters 5–6 (873–888) are
+  exact future-form contrast/transfer work. Existing `deadline` was replaced
+  by `timetable` before GREEN. Assignment gate => PASS (`847` assignments);
+  strict residuals: density `773`, checkpoint retrieval `94`. Continue
+  Lesson 16 / Chapter 7.
+- 2026-09-02 continuation receipt: Lesson 16 / Chapter 7 (889–896) is exact
+  final future-form transfer. Assignment gate => PASS (`855` assignments);
+  strict residuals: density `766`, checkpoint retrieval `93`. Lesson 16
+  blueprint ledger is complete. Continue Lesson 17 / Chapter 1.
+- 2026-09-02 continuation receipt: Lesson 17 / Chapter 1 (897–904) is exact
+  countability work with seven distinct mass nouns and a retrieval-only
+  checkpoint. Assignment gate => PASS (`863` assignments); strict residuals:
+  density `759`, checkpoint retrieval `92`. Continue Lesson 17 / Chapter 2
+  (`much_many`).
+- 2026-09-02 continuation receipt: Lesson 17 / Chapter 2 (905–912) is exact
+  much/many work. Existing `luggage` was replaced by `baggage` before GREEN.
+  Assignment gate => PASS (`871` assignments); strict residuals: density `752`,
+  checkpoint retrieval `91`. Continue Lesson 17 / Chapter 3 (`few_little`).
+- 2026-09-02 continuation receipt: Lesson 17 / Chapters 3–4 (913–928) are
+  exact few/little and some/any quantity work with one unique lexical target
+  per packet. Assignment gate => PASS (`887` assignments); strict residuals:
+  density `739`, checkpoint retrieval `90`. Continue Lesson 17 / Chapter 5
+  (`units_containers`).
+- 2026-09-02 continuation receipt: Lesson 17 / Chapters 5–6 (929–944) are
+  exact units/containers work with unique container and quantity-food targets.
+  Assignment gate => PASS (`903` assignments); strict residuals: density `726`,
+  checkpoint retrieval `89`. Continue Lesson 17 / Chapter 7.
+- 2026-09-02 continuation receipt: Lesson 17 / Chapter 7 (945–952) is exact
+  final units/containers transfer with distinct ingredient targets. Assignment
+  gate => PASS (`911` assignments); strict residuals: density `719`, checkpoint
+  retrieval `88`. Lesson 17 blueprint ledger is complete. Continue Lesson 18 /
+  Chapter 1.
+- 2026-09-02 continuation receipt: Lesson 18 / Chapters 1–2 (953–968) are
+  exact comparison-degree work. The superlative packet initially collided with
+  legacy `reliable`, `flexible`, and `accurate`; it now uses unique `durable`,
+  `adaptable`, and `precise`. Assignment gate => PASS (`927` assignments);
+  strict residuals: density `705`, checkpoint retrieval `86`. Continue Lesson
+  18 / Chapter 3 (`as_as`).
+- 2026-09-02 continuation receipt: Lesson 18 / Chapter 3 (969–976) is exact
+  as…as comparison work. Existing early adjectives were replaced with unique
+  targets before GREEN. Assignment gate => PASS (`935` assignments); strict
+  residuals: density `699`, checkpoint retrieval `86`. Continue Lesson 18 /
+  Chapter 4 (`too_enough`).
+- 2026-09-02 continuation receipt: Lesson 18 / Chapter 4 (977–984) is exact
+  too/enough work. Existing `nervous` and `urgent` were replaced with
+  `overwhelmed` and `pressing` before GREEN. Assignment gate => PASS (`943`
+  assignments); strict residuals: density `692`, checkpoint retrieval `85`.
+  Continue Lesson 18 / Chapter 5 (`so_such`).
+- 2026-09-02 continuation receipt: Lesson 18 / Chapter 5 (985–992) is exact
+  so/such work. Existing `generous` was replaced by `considerate` before
+  GREEN. Assignment gate => PASS (`951` assignments); strict residuals:
+  density `685`, checkpoint retrieval `84`. Continue Lesson 18 / Chapter 6.
+- 2026-09-02 continuation receipt: Lesson 18 / Chapters 6–7 (993–1008) are
+  exact so/such transfer work with distinct event and environment targets.
+  Assignment gate => PASS (`967` assignments); strict residuals: density `671`,
+  checkpoint retrieval `82`. Lesson 18 blueprint ledger is complete. Continue
+  Lesson 19 / Chapter 1.
+- 2026-09-02 continuation receipt: Lesson 19 / Chapter 1 (1009–1016) is exact
+  `can` ability work. Pre-existing `calculate`, `negotiate`, and `persuade`
+  were replaced with `interpret`, `classify`, and `illustrate`. Assignment gate
+  => PASS (`975` assignments); strict residuals: density `664`, checkpoint
+  retrieval `81`. Continue Lesson 19 / Chapter 2 (`could_past_ability`).
+- 2026-09-02 continuation receipt: Lesson 19 / Chapter 2 (1017–1024) is exact
+  past-ability work. Existing `assemble` and `observe` were replaced with
+  `simulate` and `verify` before GREEN. Assignment gate => PASS (`983`
+  assignments); strict residuals: density `657`, checkpoint retrieval `80`.
+  Continue Lesson 19 / Chapter 3 (`may_permission`).
+- Выполнен первый строго-совместимый repair в
+  `lexical_progression_en_v2.ts`: каждое уже введённое sense теперь получает
+  forward retrieval edge к первому chapter checkpoint. Узкий checkpoint gate
+  уменьшился с `221` до `136` findings; remaining 136 checkpoints не имеют
+  ранее введённых senses потому, что соответствующие non-checkpoint lexical
+  assignments ещё отсутствуют. Lexical-density count пока `1224`.
+- Начат следующий exact lexical chunk: Lesson 7 / Chapter 1 Sessions 341–343
+  now introduce `shift`, `customer`, `schedule` in grounded do-question
+  contexts; Session 344 is retrieval-only for its earlier chapter items.
+  `learning_v2_session_lexical_assignments_gate_v2.ts` passes with 303
+  assignments. Density count is now `1221`; checkpoint count remains `136`
+  because that chapter already had earlier lexical material, while later
+  empty chapters still require their own packets.
+- Lesson 7 / Chapter 2 is now also exact: Sessions 345–351 introduce
+  `manager`, `machine`, `printer`, `alarm`, `screen`, `server`, `website`
+  in `does + singular subject + base verb` contexts, and Session 352
+  retrieves earlier chapter senses only. Assignment gate remains PASS with
+  311 assignments; non-checkpoint density findings are `1214`.
+- Lesson 7 / Chapter 3 is exact: Sessions 353–359 introduce `smoke`,
+  `gamble`, `complain`, `shout`, `lie`, `argue`, `cheat` through one-target
+  present-simple negative habit contexts; Session 360 retrieves earlier
+  items only. `learning_v2_session_lexical_assignments_gate_v2.ts` passes
+  with 319 assignments; non-checkpoint density findings are `1208`.
+- Lesson 7 / Chapter 4 is exact: Sessions 361–367 introduce `meet`, `park`,
+  `stay`, `eat`, `play`, `travel`, `visit` in short wh-question contexts;
+  Session 368 is retrieval-only. Assignment gate passes with 327 assignments
+  and planned-sense IDs remain unique (`439 / 439`); current density findings
+  are `1206`.
+- Lesson 7 is now lexically complete: Chapter 5 adds `recycle`, `volunteer`,
+  `commute`, `relax`, `pack`, `iron`, `bake`; Chapter 6 adds `meditate`,
+  `decorate`, `sew`, `polish`, `donate`, `organize`, `photograph`; Chapter 7
+  adds `camp`, `hike`, `dance`, `ski`, `surf`, `browse`, `stream`. Each chapter
+  checkpoint (376/384/392) is retrieval-only. Assignment gate passes with
+  351 assignments; density findings fall to `1186`, and the first remaining
+  missing packet is Lesson 8 / Session 1.
+- Lesson 8 Chapters 1–2 are exact: ability packets 393–399 introduce
+  `whistle`, `juggle`, `type`, `balance`, `translate`, `whisper`, `climb`;
+  negative-ability packets 401–407 introduce `skate`, `dive`, `code`,
+  `knit`, `steer`, `spell`, `calculate`. Checkpoints 400/408 retrieve only
+  earlier senses. Assignment gate passes with 367 assignments; density
+  findings are `1173`.
+- Lesson 8 Chapters 3–4 are exact: request packets 409–415 introduce `lend`,
+  `pass`, `explain`, `hold`, `fetch`, `remind`, `reserve`; imperative packets
+  417–423 introduce `attach`, `plug`, `charge`, `fold`, `measure`, `label`,
+  `wipe`. Checkpoints 416/424 retrieve only. Assignment gate passes with 383
+  assignments; density findings are `1160`.
+- Lesson 8 is lexically complete: Chapter 5 adds `rush`, `interrupt`,
+  `spill`, `scratch`, `bend`, `panic`, `shove` in negative imperatives;
+  Chapter 6 adds `negotiate`, `navigate`, `assemble`, `operate`, `supervise`,
+  `diagnose`, `adapt`; Chapter 7 adds `research`, `evaluate`, `persuade`,
+  `manage`, `design`, `solve`, `improve`. Their checkpoints are retrieval-only.
+  Assignment gate passes with 407 assignments; density findings are `1140`,
+  with the first remaining gap at Lesson 9 / Session 2.
+- Lesson 9 Chapters 1–2 are in progress: Sessions 450–455 add `stir`,
+  `pour`, `wave`, `knock`, `dig`, `clap`; Sessions 458–463 add `snore`,
+  `blink`, `frown`, `sneeze`, `yawn`, `dream`; 456/464 are retrieval-only.
+  The lexical grounding matcher now recognizes regular present-participle
+  forms (including final-e removal and bounded CVC doubling), so it proves
+  actual `be + verb-ing` contexts rather than treating them as absent lemmas.
+  Assignment gate passes with 421 assignments; density findings are `1129`.
+- Lesson 9 Chapters 3–6 now also have exact lexical plans: questions add
+  `shiver`, `sweat`, `grin`, `sigh`, `crawl`, `march`; happening-now packets
+  add `spin`, `slide`, `drift`, `melt`, `queue`, `float`; spelling packets add
+  `tie`, `hop`, `rub`, `admit`, `occur`, `refer`; and Chapter 6 adds
+  `whirl`, `rehearse`, `scan`, `glance`, `tremble`, `wander`, `hesitate`.
+  The five Chapter-first packets 449/457/465/473/481 now carry `observe`,
+  `guess`, `inspect`, `glow`, `submit`. The matcher has explicit, bounded
+  present-participle overrides for `queue`, `shiver`, and `wander`; assignment
+  gate passes with 455 assignments. The remaining Lesson 9 lexical work is
+  Chapter 7 (Sessions 497–503).
+- Lesson 9 is lexically complete: Chapter 7 adds `murmur`, `stare`, `peer`,
+  `gaze`, `gesture`, `mutter`, `nod`; Session 504 retrieves earlier senses.
+  Bounded present-participle overrides now also cover `murmur` and `mutter`.
+  Assignment gate passes with 463 assignments. Density findings are `1092`;
+  checkpoint retrieval findings decrease to `126`; the first remaining gap is
+  Lesson 10 / Session 1.
+- Lesson 10 / Chapter 1 is exact: `row`, `fish`, `collect`, `craft`, `weave`,
+  `brew`, `carve` each appear once as a routine and once as a happening-now
+  contrast; Session 512 is retrieval-only. Assignment gate passes with 471
+  assignments; density findings are `1085` and the next gap is Lesson 10 /
+  Session 9.
+- Lesson 10 Chapters 2–3 are exact: stable-vs-temporary contexts add `chef`,
+  `guide`, `editor`, `cashier`, `nurse`, `pilot`, `clerk`; stative contexts
+  add `admire`, `deserve`, `doubt`, `expect`, `imagine`, `recognize`, `trust`.
+  Checkpoints 520/528 retrieve only. Assignment gate passes with 487
+  assignments; density findings are `1071`, with the next gap at Lesson 10 /
+  Session 25.
+- Lesson 10 / Chapter 4 is exact: `dawn`, `noon`, `sunrise`, `sunset`,
+  `midnight`, `weekday`, `season` are grounded through time-marker contrasts;
+  Session 536 is retrieval-only. Assignment gate passes with 495 assignments.
+  The next lexical gap is Lesson 10 / Session 33.
+- Lesson 10 / Chapter 5 is exact: `festival`, `ceremony`, `anniversary`,
+  `deadline`, `semester`, `quarter`, `session` are grounded in explicit
+  recurring-versus-current contexts; Session 544 is retrieval-only. Assignment
+  gate passes with 503 assignments; density findings are `1057`.
+- Lesson 10 is lexically complete: Chapter 6 adds `conference`, `workshop`,
+  `briefing`, `agenda`, `milestone`, `launch`, `release`; Chapter 7 adds
+  `forecast`, `period`, `term`, `phase`, `occasion`, `appointment`,
+  `reminder`. Their checkpoints are retrieval-only. Assignment gate passes
+  with 519 assignments; density findings are `1043`, checkpoint retrieval
+  findings are `119`, and the next gap is Lesson 11 / Session 1.
+- Lesson 11 / Chapter 1 is exact: past-be state contexts add `grateful`,
+  `jealous`, `relieved`, `shocked`, `upset`, `thrilled`, `embarrassed`; Session
+  568 retrieves earlier senses only. Assignment gate passes with 527
+  assignments; density findings are `1036` and the next gap is Lesson 11 /
+  Session 9.
+- Lesson 11 / Chapter 2 is exact: past-be questions add `anxious`, `dizzy`,
+  `suspicious`, `cautious`, `restless`, `homesick`, `uneasy`; Session 576
+  retrieves earlier senses only. Assignment gate passes with 535 assignments;
+  density findings are `1029` and the next gap is Lesson 11 / Session 18.
+
 ## Session 4: no letter assembly + explicit `you are` grammar — 2026-08-28
 
 - Прямое решение владельца: буквенная сборка полностью запрещена. Builder и
@@ -16450,3 +18707,40 @@ Fresh low-resource evidence:
 
 No heavy Jest/typecheck/build, TTS, API call, deployment, commit, push, or
 Spanish edit was performed.
+## Recenter receipt — English Full B1 Session 13 LOCKED — 2026-09-02
+
+- Exact packet: `he/she/it + is` review; new senses `small`, `big`, `clean`; retrieval from prior Session 12; no letter-level assembly.
+- Source: `modules/learning-v2/content/source/episode_01_session_13_v1.ts`; exact locked fingerprint: `dc63b21dcb678b81d972d93cc842b69e5fa4635f1678fbfe6fed8e4e57b24721`.
+- Narrow evidence: Session 13 preflight PASS; current-session integrity PASS; mode-native authoring PASS; no-repeated-primary-task PASS.
+- Owner review: rebuilt and freshness-gated at `.codex-tmp/learning-v2-owner-review/index.html`; catalogue now includes L1 S1–S13 and L2 S1–S4.
+- Next executable scope: English Lesson 1, Session 14 only. Sessions 15–56 are sealed by `8016cb9ba3aa7beae1dcc10d4c481bcea3c70aa41d3e4f393df95e39c1886401`.
+## Recenter receipt — English Full B1 Session 14 LOCKED — 2026-09-02
+
+- Exact packet: `dirty`, `open`, `closed` with `It is …`; learner-facing source is dedicated and legacy support wrapper is excluded.
+- Exact fingerprint: `8fefef0bc97c021632a010d0c9f82a4d5ee0d710b1dde2a9e2ec974b399d73cd`.
+- Evidence: Session 14 preflight, current-session integrity, mode-native authoring, and no-repeated-primary-task gates all PASS; owner-review bundle was rebuilt and freshness-gated.
+- Next executable scope: English Lesson 1, Session 15 only; Sessions 16–56 seal: `0578d1c3519f4d4bcad3b611f11f0026991801bede5b6e4e15f11d71cd902113`.
+## Recenter receipt — English Full B1 Lesson 3 Session 2 LOCKED — 2026-09-03
+
+- Exact dedicated learner source: `modules/learning-v2/content/source/episode_03_session_02_content_v2.ts` plus `episode_03_session_02_v1.ts`. Scope: new sense `apple`; review of approved `a|an + singular count noun` and `what + be` question order; canonical `It is an apple.`
+- The three intro targets, five phrase-mode targets, and one `apple` Speed Match board are all distinct. `tests/learning_v2_no_repeated_primary_task_gate.ts` passes; Speed Match occurs once.
+- Content AUTOPASS, all nine interface-locale learner projections, Lesson 3 registry gate, no-repeat gate, owner-review rebuild, live freshness, and static-owner server gates passed. Locked fingerprint: `5b7979ac081d348385f988294c953a446d59ae58b779b2153506307fb5a17df8`.
+- Owner mock is fresh at `C:\appsprojects\phraseman\.codex-tmp\learning-v2-owner-review\index.html` and lists L1:S1–S56, L2:S1–S56, L3:S1–S2 only; uncompleted sessions are not presented as ready.
+- Next exact scope: Lesson 3 / Session 3 only. Current registry state is LOCKED through S2, DRAFT S3, forbidden future range S4–S56.
+## Recenter receipt — English Full B1 Lesson 3 Session 3 LOCKED — 2026-09-03
+
+- Exact dedicated learner source: `modules/learning-v2/content/source/episode_03_session_03_content_v2.ts` plus `episode_03_session_03_v1.ts`. Scope: new sense `book`; consonant-sound `a`; approved review of `what|where + be` question order; canonical `It is a book.`
+- All three intro targets, five phrase-mode targets, and the only `book` Speed Match board are distinct. `tests/learning_v2_no_repeated_primary_task_gate.ts` passes and permits exactly one Speed Match.
+- Content AUTOPASS, nine interface-locale learner projection, Lesson 3 registry, no-repeat, owner-review rebuild, live freshness, and static server gates passed. Locked fingerprint: `fa661c578e35ad162cc086e95fb56b18331b98c3a66677b9dd37584bc103b4a8`.
+- Owner mock is fresh at `C:\appsprojects\phraseman\.codex-tmp\learning-v2-owner-review\index.html` and lists only locked session sets including L3:S1–S3.
+- Next exact scope: Lesson 3 / Session 4 only. Registry LOCKED through S3; S4 DRAFT; S5–S56 forbidden.
+## Recenter receipt — English Full B1 Lesson 3 Session 4 LOCKED — 2026-09-03
+
+- Dedicated source: `episode_03_session_04_content_v2.ts` and `episode_03_session_04_v1.ts`; new sense `bag`, consonant-sound `a`, approved WH review, canonical `It is a bag.`
+- Content AUTOPASS, no-repeat, registry, owner rebuild, and live freshness gates passed. Locked fingerprint: `16e87a373c1b92e79957a24eb7528ef60038007ccdfa9bc883f5d2d2048ea028`.
+- Fresh owner mock includes L3:S1–S4 only. Next exact scope: Lesson 3 / Session 5.
+## Recenter receipt — English Full B1 Lesson 3 Session 5 LOCKED — 2026-09-03
+
+- Dedicated learner package: `episode_03_session_05_content_v2.ts` + `episode_03_session_05_v1.ts`; new sense `map`, consonant-sound `a`, WH diagnostic repair; canonical `It is a map.`
+- AUTOPASS, nine-locale projection, no-repeat gate, registry and owner-review freshness passed. Locked fingerprint: `da6e6b00353b23b66ac1832fe843e3052df3959f861d995f6d8eb9990b6c8aee`.
+- Fresh owner mock lists L3:S1–S5 only. Next exact scope: Lesson 3 / Session 6.

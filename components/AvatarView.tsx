@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { View } from 'react-native';
+import { Animated, View } from 'react-native';
 import { Image } from 'expo-image';
 import LevelBadge from './LevelBadge';
 import { getAvatarByIndex } from '../constants/avatars';
@@ -31,6 +31,12 @@ interface Props {
    */
   animateAura?: boolean;
   ownerActive?: boolean;
+  /**
+   * Внешний прогресс анимации ауры — чтобы несколько аватарок на экране
+   * двигались одним общим циклом, а не каждая своим таймером.
+   * зачем: восстановлено из работы 2026-08-30/31 (клуб, полёт наград).
+   */
+  auraMotionProgress?: Animated.Value;
 }
 
 function AvatarImageWithFallback({
@@ -73,7 +79,7 @@ function AvatarImageWithFallback({
   );
 }
 
-function AvatarView({ avatar, avatarV2, localDNA, totalXP, level, size = 44, style, auraId, auraVisualSize, animateAura = true, ownerActive }: Props) {
+function AvatarView({ avatar, avatarV2, localDNA, totalXP, level, size = 44, style, auraId, auraVisualSize, animateAura = true, ownerActive, auraMotionProgress }: Props) {
   // Уровень известен, только если его передали явно или дали опыт. Часть
   // вызывающих (соперник в арене, строка друга) даёт ТОЛЬКО картинку — там
   // уровня нет, и выдумывать его нельзя.
@@ -126,7 +132,7 @@ function AvatarView({ avatar, avatarV2, localDNA, totalXP, level, size = 44, sty
   }
 
   return (
-    <AvatarAura auraId={auraId} size={size} visualSize={auraVisualSize} style={style} animate={animateAura} ownerActive={ownerActive}>
+    <AvatarAura auraId={auraId} size={size} visualSize={auraVisualSize} style={style} animate={animateAura} ownerActive={ownerActive} motionProgress={auraMotionProgress}>
       {content}
     </AvatarAura>
   );

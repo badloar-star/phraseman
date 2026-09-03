@@ -17,6 +17,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../../components/ThemeContext';
+import { themeUiAsset } from '../theme_ui_assets';
 import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import ContentWrap from '../../components/ContentWrap';
@@ -87,7 +88,7 @@ function SessionResultScreenImpl({
   feedback,
   testID = 'fc-session-result',
 }: SessionResultScreenProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const accent = accentColor ?? t.accent;
   // Правило темы: на залитом t.accent — только t.correctText (не хардкодить белый);
@@ -228,7 +229,7 @@ function SessionResultScreenImpl({
                 }}>
                   {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
                   <Image
-                    source={require('../../assets/images/level-spin-rewards/stars_10.webp')}
+                    source={themeUiAsset(themeMode, 'rune')}
                     style={{ width: 20, height: 20 }}
                     contentFit="contain"
                     accessible={false}

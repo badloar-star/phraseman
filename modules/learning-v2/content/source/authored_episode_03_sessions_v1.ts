@@ -1,0 +1,52 @@
+import type { SessionSource } from "./session_shard_from_source_v1";
+
+const SESSION_LOADERS: readonly (() => SessionSource)[] = Object.freeze([
+  () => (require("./episode_03_session_01_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_01_SOURCE,
+  () => (require("./episode_03_session_02_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_02_SOURCE,
+  () => (require("./episode_03_session_03_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_03_SOURCE,
+  () => (require("./episode_03_session_04_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_04_SOURCE,
+  () => (require("./episode_03_session_05_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_05_SOURCE,
+  () => (require("./episode_03_session_06_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_06_SOURCE,
+  () => (require("./episode_03_session_07_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_07_SOURCE,
+  () => (require("./episode_03_session_08_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_08_SOURCE,
+  () => (require("./episode_03_session_09_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_09_SOURCE,
+  () => (require("./episode_03_session_10_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_10_SOURCE,
+  () => (require("./episode_03_session_11_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_11_SOURCE,
+  () => (require("./episode_03_session_12_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_12_SOURCE,
+  () => (require("./episode_03_session_13_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_13_SOURCE,
+  () => (require("./episode_03_session_14_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_14_SOURCE,
+  () => (require("./episode_03_session_15_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_15_SOURCE,
+  () => (require("./episode_03_session_16_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_16_SOURCE,
+  () => (require("./episode_03_session_17_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_17_SOURCE,
+  () => (require("./episode_03_session_18_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_18_SOURCE,
+  () => (require("./episode_03_session_19_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_19_SOURCE,
+  () => (require("./episode_03_session_20_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_20_SOURCE,
+  () => (require("./episode_03_session_21_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_21_SOURCE,
+  () => (require("./episode_03_session_22_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_22_SOURCE,
+  () => (require("./episode_03_session_23_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_23_SOURCE,
+  () => (require("./episode_03_session_24_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_24_SOURCE,
+  () => (require("./episode_03_session_25_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_25_SOURCE,
+  () => (require("./episode_03_session_26_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_26_SOURCE,
+  () => (require("./episode_03_session_27_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_27_SOURCE,
+  () => (require("./episode_03_session_28_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_28_SOURCE,
+  () => (require("./episode_03_session_29_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_29_SOURCE,
+  () => (require("./episode_03_session_30_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_30_SOURCE,
+  () => (require("./episode_03_session_31_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_31_SOURCE,
+  () => (require("./episode_03_session_32_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_32_SOURCE,
+  () => (require("./episode_03_session_33_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_33_SOURCE,
+  () => (require("./episode_03_session_34_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_34_SOURCE,
+  () => (require("./episode_03_session_35_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_35_SOURCE,
+  () => (require("./episode_03_session_36_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_36_SOURCE,
+  () => (require("./episode_03_session_37_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_37_SOURCE,
+  () => (require("./episode_03_session_38_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_38_SOURCE,
+  () => (require("./episode_03_session_39_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_39_SOURCE,
+  () => (require("./episode_03_session_40_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_40_SOURCE,
+  () => (require("./episode_03_session_41_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_41_SOURCE,
+  () => (require("./episode_03_session_42_v1") as Record<string, SessionSource>).EPISODE_03_SESSION_42_SOURCE,
+]);
+
+export function authoredLearningV2Episode03SessionSource(
+  sessionOrdinal: number,
+): SessionSource | null {
+  return SESSION_LOADERS[sessionOrdinal - 1]?.() ?? null;
+}

@@ -15,7 +15,11 @@ import {
   type SessionVocabularyContactStageV1,
   type SessionVocabularySourceV1,
 } from "./session_shard_from_source_v1";
-import { EPISODE_01_SESSION_01_VOCABULARY_V1 } from "./episode_01_session_01_vocabulary_v1";
+import {
+  EPISODE_01_SESSION_01_VOCABULARY_BASE_V1,
+  EPISODE_01_SESSION_01_KNOWN_GRID_VOCABULARY_V1,
+  EPISODE_01_SESSION_01_VOCABULARY_V1,
+} from "./episode_01_session_01_vocabulary_v1";
 import { EPISODE_01_SESSION_01_WORD_FIRST_PHRASES } from "./episode_01_session_01_phrases_word_first_v1";
 
 const vocabulary = EPISODE_01_SESSION_01_VOCABULARY_V1;
@@ -212,18 +216,12 @@ function authoredAudio(
 // Stable logical targets exist before immutable clips are published. The DEV
 // owner-preview reads their exact transcripts through on-device TTS; release
 // audio later binds to the same ids without changing authored interactions.
-const WORD_AUDIO = Object.freeze([
-  authoredAudio("e01-s01-word-i", "I"),
-  authoredAudio("e01-s01-word-am", "am"),
-  authoredAudio("e01-s01-word-here", "here"),
-  authoredAudio("e01-s01-word-ready", "ready"),
-]);
-const WORD_SLOW_AUDIO = Object.freeze([
-  authoredAudio("e01-s01-word-i-slow", "I"),
-  authoredAudio("e01-s01-word-am-slow", "am"),
-  authoredAudio("e01-s01-word-here-slow", "here"),
-  authoredAudio("e01-s01-word-ready-slow", "ready"),
-]);
+const WORD_AUDIO = Object.freeze(
+  vocabulary.map((item) => authoredAudio(`${item.id}-audio`, item.target)),
+);
+const WORD_SLOW_AUDIO = Object.freeze(
+  vocabulary.map((item) => authoredAudio(`${item.id}-slow-audio`, item.target)),
+);
 const HERE_SLOW_AUDIO = authoredAudio(
   "e01-s01-phrase-i-am-here-slow",
   "I am here",
@@ -233,6 +231,8 @@ const READY_SLOW_AUDIO = authoredAudio(
   "e01-s01-phrase-i-am-ready-slow",
   "I am ready",
 );
+const FINE_AUDIO = authoredAudio("e01-s01-phrase-i-am-fine", "I am fine");
+const FINE_SLOW_AUDIO = authoredAudio("e01-s01-phrase-i-am-fine-slow", "I am fine");
 
 const EXTRA_RECOGNIZE_TRAPS = Object.freeze({
   0: Object.freeze({
@@ -524,12 +524,27 @@ function vocabularyMeaningBuilder(index: number): LearningV2ModeNativePayloadV1 
 
 function listenBuildPhrase(phraseIndex: number): LearningV2ModeNativePayloadV1 {
   const phrase = phrases[phraseIndex]!;
+  const audio = phraseIndex === 0 ? HERE_AUDIO : phraseIndex === 1 ? READY_AUDIO : FINE_AUDIO;
+  const slowAudio = phraseIndex === 0 ? HERE_SLOW_AUDIO : phraseIndex === 1 ? READY_SLOW_AUDIO : FINE_SLOW_AUDIO;
   return Object.freeze({
     family: "listen_build_dictation",
-    referenceAudio: phraseIndex === 0 ? HERE_AUDIO : READY_AUDIO,
-    slowReferenceAudio:
-      phraseIndex === 0 ? HERE_SLOW_AUDIO : READY_SLOW_AUDIO,
+    referenceAudio: audio,
+    slowReferenceAudio: slowAudio,
     hiddenTargetPhrase: phrase.english,
+    orderedTokens: Object.freeze(phrase.english.split(" ")),
+    authoredDistractorTokens: Object.freeze(
+      phrase.words.flatMap((word) => word.distractors.map((entry) => entry.value)),
+    ),
+    slotFeedback: phraseBuilderFeedback(phraseIndex),
+  });
+}
+
+function phraseBuilder(phraseIndex: number): LearningV2ModeNativePayloadV1 {
+  const phrase = phrases[phraseIndex]!;
+  return Object.freeze({
+    family: "phrase_builder",
+    targetPhrase: phrase.english,
+    localizedMeaning: localizedPhraseField(phraseIndex, "meaning"),
     orderedTokens: Object.freeze(phrase.english.split(" ")),
     authoredDistractorTokens: Object.freeze(
       phrase.words.flatMap((word) => word.distractors.map((entry) => entry.value)),
@@ -599,12 +614,11 @@ function listenChooseHerePhrase(): LearningV2ModeNativePayloadV1 {
 
 function contextGap(phraseIndex: number): LearningV2ModeNativePayloadV1 {
   const phrase = phrases[phraseIndex]!;
-  const item = vocabulary[0]!;
-  const subjectFeedback = vocabularyFeedback(item, "retrieve_meaning");
-  const youTrap = item.contacts.retrieve_meaning.distractors.find(
-    (entry) => entry.value === "you",
+  const item = EPISODE_01_SESSION_01_VOCABULARY_BASE_V1.find(
+    (entry) => entry.target === "I",
   );
-  if (!youTrap) throw new Error("session_01_context_gap_you_trap_missing");
+  if (!item) throw new Error("session_01_context_gap_i_source_missing");
+  const subjectFeedback = vocabularyFeedback(item, "retrieve_meaning");
   return Object.freeze({
     family: "context_gap_grammar",
     localizedScene: localizedPhraseField(phraseIndex, "meaning"),
@@ -613,10 +627,28 @@ function contextGap(phraseIndex: number): LearningV2ModeNativePayloadV1 {
       { responseId: `${item.id}:retrieve_meaning:correct`, text: "I" },
       { responseId: `${item.id}:retrieve_meaning:i_meaning_me_object_case`, text: "me" },
       { responseId: `${item.id}:retrieve_meaning:i_meaning_my_possessive`, text: "my" },
-      { responseId: `${item.id}:retrieve_meaning:${youTrap.reasonCode}`, text: "you" },
+      { responseId: `${item.id}:retrieve_meaning:i_visual_lowercase_l`, text: "l" },
     ]),
     testedDimension: "grammar:first_person_subject_before_am",
-    choiceFeedback: Object.freeze(subjectFeedback),
+    choiceFeedback: Object.freeze([
+      ...subjectFeedback,
+      feedback(
+        `${item.id}:retrieve_meaning:i_visual_lowercase_l`,
+        false,
+        "orthographic:lowercase_l_is_not_I",
+        L({
+          en: "l is a lowercase L, not I. The speaker word is the capital I.",
+          ru: "l — строчная буква L, а не I. Слово говорящего — заглавная I.",
+          uk: "l — мала літера L, а не I. Слово мовця — велика I.",
+          es: "l es una ele minúscula, no I. La palabra de quien habla es I mayúscula.",
+          "pt-BR": "l é um ele minúsculo, não I. A palavra de quem fala é I maiúsculo.",
+          vi: "l là chữ l thường, không phải I. Từ chỉ người nói là I viết hoa.",
+          id: "l adalah huruf l kecil, bukan I. Kata untuk penutur adalah I kapital.",
+          tr: "l küçük l harfidir, I değildir. Konuşanın sözcüğü büyük I olur.",
+          pl: "l to mała litera l, a nie I. Słowo osoby mówiącej to wielkie I.",
+        }),
+      ),
+    ]),
   });
 }
 
@@ -640,12 +672,23 @@ function repeatCompare(phraseIndex: number): LearningV2ModeNativePayloadV1 {
   });
 }
 
-const SPEED_MATCH_VOCABULARY = Object.freeze([
-  { id: "i", target: "I", meaning: L({ ru: "я", uk: "я", es: "yo", "pt-BR": "eu", vi: "tôi", id: "saya", tr: "ben", pl: "ja" }) },
-  { id: "am", target: "am", meaning: L({ ru: "есть", uk: "є", es: "soy", "pt-BR": "sou", vi: "là", id: "adalah", tr: "-im", pl: "jestem" }) },
-  { id: "here", target: "here", meaning: L({ ru: "здесь", uk: "тут", es: "aquí", "pt-BR": "aqui", vi: "ở đây", id: "di sini", tr: "burada", pl: "tutaj" }) },
-  { id: "ready", target: "ready", meaning: L({ ru: "готов", uk: "готовий", es: "listo", "pt-BR": "pronto", vi: "sẵn sàng", id: "siap", tr: "hazır", pl: "gotowy" }) },
-] as const);
+const SPEED_MATCH_VOCABULARY = Object.freeze(
+  EPISODE_01_SESSION_01_KNOWN_GRID_VOCABULARY_V1.map((item) => ({
+    id: item.id,
+    target: item.target,
+    // A matching tile is one label, not a translated mini-definition.
+    meaning: item.target === "here" ? L({
+      en: "here", ru: "здесь", uk: "тут", es: "aquí", "pt-BR": "aqui",
+      vi: "ở đây", id: "di sini", tr: "burada", pl: "tutaj",
+    }) : item.target === "ready" ? L({
+      en: "ready", ru: "готов", uk: "готовий", es: "listo", "pt-BR": "pronto",
+      vi: "sẵn sàng", id: "siap", tr: "hazır", pl: "gotowy",
+    }) : L({
+      en: "fine", ru: "хорошо", uk: "добре", es: "bien", "pt-BR": "bem",
+      vi: "ổn", id: "baik", tr: "iyi", pl: "dobrze",
+    }),
+  })),
+);
 
 const speedMatchVocabularyPayload: LearningV2ModeNativePayloadV1 = Object.freeze({
   family: "speed_match",
@@ -657,16 +700,14 @@ const speedMatchVocabularyPayload: LearningV2ModeNativePayloadV1 = Object.freeze
     })),
   ),
   leftColumn: Object.freeze([
-    "e01-s01-pair-here",
-    "e01-s01-pair-i",
-    "e01-s01-pair-am",
-    "e01-s01-pair-ready",
+    "e01-s01-pair-e01-s01-word-ready",
+    "e01-s01-pair-e01-s01-word-here",
+    "e01-s01-pair-e01-s01-word-fine",
   ]),
   rightColumn: Object.freeze([
-    "e01-s01-pair-ready",
-    "e01-s01-pair-i",
-    "e01-s01-pair-here",
-    "e01-s01-pair-am",
+    "e01-s01-pair-e01-s01-word-fine",
+    "e01-s01-pair-e01-s01-word-ready",
+    "e01-s01-pair-e01-s01-word-here",
   ]),
   pairingKey: "pair_id",
   timerPolicy: Object.freeze({
@@ -768,7 +809,7 @@ export const EPISODE_01_SESSION_01_MODE_NATIVE_PRACTICE_V1 = Object.freeze<
     family: "speed_match",
     purpose: "near_transfer",
     learningStage: "apply_in_phrase",
-    target: { kind: "vocabulary_grid", sourceIndices: [0, 1, 2, 3] },
+    target: { kind: "vocabulary_grid", sourceIndices: [0, 1, 2, 3], knownItems: EPISODE_01_SESSION_01_KNOWN_GRID_VOCABULARY_V1 },
     modePayload: speedMatchVocabularyPayload,
   },
   {

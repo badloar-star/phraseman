@@ -14,6 +14,10 @@ export type SessionAttemptsCopy = {
   endSession: string;
   permanentGift: string;
   notEnoughRunes: (missing: number) => string;
+  giftAppliedTitle: string;
+  giftAppliedRunesSaved: string;
+  giftRecoveryFailed: string;
+  retryGiftRecovery: string;
 };
 
 const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
@@ -27,6 +31,10 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     endSession: 'Завершить сессию',
     permanentGift: 'Без срока действия',
     notEnoughRunes: (missing) => `Нужно ещё ${missing} ${missing === 1 ? 'руну' : 'рун'}`,
+    giftAppliedTitle: 'Второй шанс',
+    giftAppliedRunesSaved: 'Руны сохранены',
+    giftRecoveryFailed: 'Не удалось применить подарок',
+    retryGiftRecovery: 'Повторить',
   },
   uk: {
     attemptsStatus: (remaining, total) => `Спроби: ${remaining} із ${total}`,
@@ -38,6 +46,10 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     endSession: 'Завершити сесію',
     permanentGift: 'Без терміну дії',
     notEnoughRunes: (missing) => `Потрібно ще ${missing} рун`,
+    giftAppliedTitle: 'Другий шанс',
+    giftAppliedRunesSaved: 'Руни збережено',
+    giftRecoveryFailed: 'Не вдалося застосувати подарунок',
+    retryGiftRecovery: 'Повторити',
   },
   en: {
     attemptsStatus: (remaining, total) => `Attempts: ${remaining} of ${total}`,
@@ -49,6 +61,10 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     endSession: 'End session',
     permanentGift: 'Never expires',
     notEnoughRunes: (missing) => `You need ${missing} more rune${missing === 1 ? '' : 's'}`,
+    giftAppliedTitle: 'Second chance',
+    giftAppliedRunesSaved: 'Runes saved',
+    giftRecoveryFailed: 'Could not apply the gift',
+    retryGiftRecovery: 'Try again',
   },
   es: {
     attemptsStatus: (remaining, total) => `Intentos: ${remaining} de ${total}`,
@@ -60,6 +76,10 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     endSession: 'Terminar sesión',
     permanentGift: 'No caduca',
     notEnoughRunes: (missing) => `Te faltan ${missing} runas`,
+    giftAppliedTitle: 'Segunda oportunidad',
+    giftAppliedRunesSaved: 'Runas conservadas',
+    giftRecoveryFailed: 'No se pudo usar el regalo',
+    retryGiftRecovery: 'Reintentar',
   },
   'pt-BR': {
     attemptsStatus: (remaining, total) => `Tentativas: ${remaining} de ${total}`,
@@ -71,6 +91,10 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     endSession: 'Encerrar sessão',
     permanentGift: 'Não expira',
     notEnoughRunes: (missing) => `Faltam ${missing} runas`,
+    giftAppliedTitle: 'Segunda chance',
+    giftAppliedRunesSaved: 'Runas preservadas',
+    giftRecoveryFailed: 'Não foi possível usar o presente',
+    retryGiftRecovery: 'Tentar novamente',
   },
   vi: {
     attemptsStatus: (remaining, total) => `Lượt thử: ${remaining}/${total}`,
@@ -82,6 +106,10 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     endSession: 'Kết thúc phiên',
     permanentGift: 'Không hết hạn',
     notEnoughRunes: (missing) => `Bạn cần thêm ${missing} rune`,
+    giftAppliedTitle: 'Cơ hội thứ hai',
+    giftAppliedRunesSaved: 'Đã giữ rune',
+    giftRecoveryFailed: 'Không thể dùng quà',
+    retryGiftRecovery: 'Thử lại',
   },
   id: {
     attemptsStatus: (remaining, total) => `Kesempatan: ${remaining} dari ${total}`,
@@ -93,6 +121,10 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     endSession: 'Akhiri sesi',
     permanentGift: 'Tidak kedaluwarsa',
     notEnoughRunes: (missing) => `Kamu perlu ${missing} rune lagi`,
+    giftAppliedTitle: 'Kesempatan kedua',
+    giftAppliedRunesSaved: 'Rune tersimpan',
+    giftRecoveryFailed: 'Hadiah tidak dapat digunakan',
+    retryGiftRecovery: 'Coba lagi',
   },
   tr: {
     attemptsStatus: (remaining, total) => `Deneme: ${remaining}/${total}`,
@@ -104,6 +136,10 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     endSession: 'Oturumu bitir',
     permanentGift: 'Süresi dolmaz',
     notEnoughRunes: (missing) => `${missing} rüne daha ihtiyacın var`,
+    giftAppliedTitle: 'İkinci şans',
+    giftAppliedRunesSaved: 'Rünler korundu',
+    giftRecoveryFailed: 'Hediye kullanılamadı',
+    retryGiftRecovery: 'Tekrar dene',
   },
   pl: {
     attemptsStatus: (remaining, total) => `Próby: ${remaining} z ${total}`,
@@ -115,6 +151,10 @@ const COPY: Record<SessionAttemptsCopyLocale, SessionAttemptsCopy> = {
     endSession: 'Zakończ sesję',
     permanentGift: 'Bez terminu ważności',
     notEnoughRunes: (missing) => `Potrzebujesz jeszcze ${missing} run`,
+    giftAppliedTitle: 'Druga szansa',
+    giftAppliedRunesSaved: 'Runy zachowane',
+    giftRecoveryFailed: 'Nie udało się użyć prezentu',
+    retryGiftRecovery: 'Spróbuj ponownie',
   },
 };
 

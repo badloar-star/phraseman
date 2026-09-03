@@ -30,6 +30,7 @@ import { RESEND_API_KEY } from './resend_secret';
 import { buildPromoVipPatch } from './promo_codes';
 import { GIFT_CERTIFICATE_PHRASES, resolveGiftPhrase } from './gift_certificate_phrases';
 import { writeAccessProjectionFromPatch } from './access_projection';
+import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
 
 const REGION = 'us-central1';
 const ORDERS_COLLECTION = 'web_premium_orders';
@@ -314,6 +315,187 @@ export function assertGiftCertificateAdminReadAccess(auth: GiftCertificateAdminA
   if (!hasClaimedPermission(auth.token, 'money.read')) {
     throw new HttpsError('permission-denied', 'Role cannot read gift certificates');
   }
+}
+
+type AdminStripeCancellationAuth = {
+  uid?: string;
+  token?: Record<string, unknown>;
+} | undefined;
+
+export interface AdminStripeCancellationInput {
+  readonly orderId: string;
+  readonly reason: string;
+  readonly idempotencyKey: string;
+}
+
+export interface StripeCancellationResponse {
+  readonly ok: true;
+  readonly operationId: string;
+  readonly orderId: string;
+  readonly stripeSubscriptionId: string;
+  readonly cancelAtPeriodEnd: true;
+  readonly accessEndsAtMs: number;
+  readonly auditId: string;
+}
+
+interface StripeCancellationReservationInput {
+  readonly operationId: string;
+  readonly orderId: string;
+  readonly stripeSubscriptionId: string;
+  readonly actorUid: string;
+  readonly actorEmail: string;
+  readonly reason: string;
+  readonly nowMs: number;
+}
+
+type StripeCancellationReservation =
+  | { readonly kind: 'reserve'; readonly document: Readonly<Record<string, unknown>> }
+  | { readonly kind: 'continue' }
+  | { readonly kind: 'replay'; readonly response: StripeCancellationResponse };
+
+export function assertAdminStripeCancellationAccess(auth: AdminStripeCancellationAuth): void {
+  if (!String(auth?.uid ?? '').trim() || auth?.token?.admin !== true) {
+    throw new HttpsError('permission-denied', 'Admin only');
+  }
+  if (!hasClaimedPermission(auth.token, 'money.manual_access.write')) {
+    throw new HttpsError('permission-denied', 'Role cannot manage subscriptions');
+  }
+}
+
+export function normalizeAdminStripeCancellationInput(data: unknown): AdminStripeCancellationInput {
+  const input = data && typeof data === 'object' && !Array.isArray(data)
+    ? data as Record<string, unknown>
+    : {};
+  const orderId = cleanShortText(input.orderId, 128);
+  const reason = cleanShortText(input.reason, 500);
+  const idempotencyKey = cleanShortText(input.idempotencyKey, 64);
+  if (!/^[A-Za-z0-9_-]{8,128}$/.test(orderId)) {
+    throw new HttpsError('invalid-argument', 'invalid_web_order_id');
+  }
+  if (reason.length < 4) {
+    throw new HttpsError('invalid-argument', 'cancellation_reason_required');
+  }
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(idempotencyKey)) {
+    throw new HttpsError('invalid-argument', 'invalid_stripe_cancellation_idempotency_key');
+  }
+  return Object.freeze({ orderId, reason, idempotencyKey });
+}
+
+export function stripeCancellationOperationId(orderId: string, idempotencyKey: string): string {
+  return `stripe_subscription_cancel_${createHash('sha256').update(`${orderId}:${idempotencyKey}`).digest('hex').slice(0, 40)}`;
+}
+
+export function assertCancellableStripeWebOrder(
+  orderId: string,
+  order: Readonly<Record<string, unknown>>,
+): { orderId: string; stripeSubscriptionId: string } {
+  const stripeSubscriptionId = cleanShortText(order.stripeSubscriptionId, 128);
+  if (order.provider !== 'stripe') {
+    throw new HttpsError('failed-precondition', 'web_order_is_not_stripe');
+  }
+  if (order.plan !== 'monthly' && order.plan !== 'yearly') {
+    throw new HttpsError('failed-precondition', 'web_order_is_not_recurring');
+  }
+  if (order.gift === true) {
+    throw new HttpsError('failed-precondition', 'gift_order_is_not_recurring');
+  }
+  if (!/^sub_[A-Za-z0-9]+$/.test(stripeSubscriptionId)) {
+    throw new HttpsError('failed-precondition', 'stripe_subscription_missing');
+  }
+  return Object.freeze({ orderId, stripeSubscriptionId });
+}
+
+export function planStripeSubscriptionCancellationReservation(
+  persisted: Readonly<Record<string, unknown>> | undefined,
+  input: StripeCancellationReservationInput,
+): StripeCancellationReservation {
+  const requestFingerprint = createHash('sha256').update(JSON.stringify({
+    operationId: input.operationId,
+    orderId: input.orderId,
+    stripeSubscriptionId: input.stripeSubscriptionId,
+    actorUid: input.actorUid,
+    actorEmail: input.actorEmail,
+    reason: input.reason,
+  })).digest('hex');
+  if (!persisted) {
+    return {
+      kind: 'reserve',
+      document: Object.freeze({
+        schemaVersion: 'stripe-subscription-cancellation-operation.v1',
+        state: 'pending',
+        operationId: input.operationId,
+        orderId: input.orderId,
+        stripeSubscriptionId: input.stripeSubscriptionId,
+        actorUid: input.actorUid,
+        actorEmail: input.actorEmail,
+        reason: input.reason,
+        requestFingerprint,
+        createdAtMs: input.nowMs,
+        updatedAtMs: input.nowMs,
+      }),
+    };
+  }
+  if (persisted.operationId !== input.operationId
+    || persisted.orderId !== input.orderId
+    || persisted.stripeSubscriptionId !== input.stripeSubscriptionId
+    || persisted.requestFingerprint !== requestFingerprint) {
+    throw new HttpsError('already-exists', 'stripe_cancellation_operation_conflict');
+  }
+  if (persisted.state === 'pending') return { kind: 'continue' };
+  if (persisted.state !== 'completed') {
+    throw new HttpsError('failed-precondition', 'stripe_cancellation_operation_corrupt');
+  }
+  const response = persisted.response as StripeCancellationResponse | undefined;
+  if (!response
+    || response.ok !== true
+    || response.operationId !== input.operationId
+    || response.orderId !== input.orderId
+    || response.stripeSubscriptionId !== input.stripeSubscriptionId
+    || response.cancelAtPeriodEnd !== true
+    || !Number.isSafeInteger(response.accessEndsAtMs)
+    || !cleanShortText(response.auditId, 160)) {
+    throw new HttpsError('failed-precondition', 'stripe_cancellation_operation_corrupt');
+  }
+  return { kind: 'replay', response };
+}
+
+export function assertStripeSubscriptionOrderBinding(
+  subscription: Readonly<Record<string, unknown>>,
+  expectedSubscriptionId: string,
+  expectedOrderId: string,
+): Readonly<Record<string, unknown>> {
+  if (subscription.id !== expectedSubscriptionId) {
+    throw new HttpsError('failed-precondition', 'stripe_cancellation_identity_mismatch');
+  }
+  const metadata = subscription.metadata && typeof subscription.metadata === 'object' && !Array.isArray(subscription.metadata)
+    ? subscription.metadata as Record<string, unknown>
+    : {};
+  if (metadata.orderId !== expectedOrderId) {
+    throw new HttpsError('failed-precondition', 'stripe_subscription_order_mismatch');
+  }
+  return subscription;
+}
+
+export function parseStripeCancellationResult(
+  providerResult: Readonly<Record<string, unknown>>,
+  expectedSubscriptionId: string,
+): { stripeSubscriptionId: string; cancelAtPeriodEnd: true; accessEndsAtMs: number } {
+  if (providerResult.id !== expectedSubscriptionId) {
+    throw new HttpsError('failed-precondition', 'stripe_cancellation_identity_mismatch');
+  }
+  if (providerResult.cancel_at_period_end !== true) {
+    throw new HttpsError('failed-precondition', 'stripe_cancellation_not_confirmed');
+  }
+  const currentPeriodEndSeconds = Number(providerResult.current_period_end);
+  const accessEndsAtMs = currentPeriodEndSeconds * 1000;
+  if (!Number.isSafeInteger(accessEndsAtMs) || accessEndsAtMs <= 0) {
+    throw new HttpsError('failed-precondition', 'stripe_cancellation_period_missing');
+  }
+  return Object.freeze({
+    stripeSubscriptionId: expectedSubscriptionId,
+    cancelAtPeriodEnd: true,
+    accessEndsAtMs,
+  });
 }
 
 export function assertGiftCertificateSendAuthorization(value: unknown): void {
@@ -2587,6 +2769,174 @@ async function stripeCreateSession(params: {
   }
   return { id: data.id, url: data.url };
 }
+
+async function stripeCancelAtPeriodEnd(
+  stripeSubscriptionId: string,
+  orderId: string,
+  operationId: string,
+): Promise<{ stripeSubscriptionId: string; cancelAtPeriodEnd: true; accessEndsAtMs: number }> {
+  const subscriptionUrl = `https://api.stripe.com/v1/subscriptions/${encodeURIComponent(stripeSubscriptionId)}`;
+  const retrieveResponse = await fetch(subscriptionUrl, {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${STRIPE_SECRET_KEY.value()}` },
+    signal: AbortSignal.timeout(15_000),
+  });
+  const liveSubscription = await retrieveResponse.json() as Record<string, unknown>;
+  if (!retrieveResponse.ok) {
+    logger.error('Stripe subscription lookup rejected', {
+      stripeSubscriptionId,
+      status: retrieveResponse.status,
+      operationId,
+    });
+    throw new HttpsError('failed-precondition', 'stripe_subscription_lookup_failed');
+  }
+  assertStripeSubscriptionOrderBinding(liveSubscription, stripeSubscriptionId, orderId);
+  if (liveSubscription.cancel_at_period_end === true) {
+    return parseStripeCancellationResult(liveSubscription, stripeSubscriptionId);
+  }
+  if (liveSubscription.status === 'canceled') {
+    throw new HttpsError('failed-precondition', 'stripe_subscription_already_ended');
+  }
+  const form = new URLSearchParams();
+  form.set('cancel_at_period_end', 'true');
+  const response = await fetch(
+    subscriptionUrl,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${STRIPE_SECRET_KEY.value()}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Idempotency-Key': operationId,
+      },
+      body: form.toString(),
+      signal: AbortSignal.timeout(15_000),
+    },
+  );
+  const result = await response.json() as Record<string, unknown>;
+  if (!response.ok) {
+    logger.error('Stripe period-end cancellation rejected', {
+      stripeSubscriptionId,
+      status: response.status,
+      operationId,
+    });
+    throw new HttpsError('failed-precondition', 'stripe_cancellation_failed');
+  }
+  assertStripeSubscriptionOrderBinding(result, stripeSubscriptionId, orderId);
+  return parseStripeCancellationResult(result, stripeSubscriptionId);
+}
+
+/** Stops future Stripe renewal while preserving access through the already-paid period. */
+export const adminCancelStripeSubscriptionRenewal = onCall(
+  { ...ADMIN_SENSITIVE_WRITE_OPTIONS, secrets: [STRIPE_SECRET_KEY] },
+  async (request) => {
+    requireAdminAppCheck(request);
+    assertAdminStripeCancellationAccess(request.auth as AdminStripeCancellationAuth);
+    const input = normalizeAdminStripeCancellationInput(request.data);
+    const db = getFirestore();
+    const orderRef = db.collection(ORDERS_COLLECTION).doc(input.orderId);
+    const operationId = stripeCancellationOperationId(input.orderId, input.idempotencyKey);
+    const operationRef = db.collection('admin_command_operations').doc(operationId);
+    const actorUid = String(request.auth?.uid ?? '');
+    const actorEmail = cleanShortText(request.auth?.token?.email, 200) || actorUid;
+    const nowMs = Date.now();
+
+    const reservation = await db.runTransaction(async (tx) => {
+      const [orderSnapshot, operationSnapshot] = await Promise.all([
+        tx.get(orderRef),
+        tx.get(operationRef),
+      ]);
+      if (!orderSnapshot.exists) throw new HttpsError('not-found', 'web_order_not_found');
+      const target = assertCancellableStripeWebOrder(input.orderId, orderSnapshot.data() ?? {});
+      const plan = planStripeSubscriptionCancellationReservation(operationSnapshot.data(), {
+        operationId,
+        orderId: input.orderId,
+        stripeSubscriptionId: target.stripeSubscriptionId,
+        actorUid,
+        actorEmail,
+        reason: input.reason,
+        nowMs,
+      });
+      if (plan.kind === 'reserve') tx.create(operationRef, plan.document);
+      return { plan, stripeSubscriptionId: target.stripeSubscriptionId };
+    });
+    if (reservation.plan.kind === 'replay') return reservation.plan.response;
+
+    let stripeResult: ReturnType<typeof parseStripeCancellationResult>;
+    try {
+      stripeResult = await stripeCancelAtPeriodEnd(
+        reservation.stripeSubscriptionId,
+        input.orderId,
+        operationId,
+      );
+    } catch (error) {
+      if (error instanceof HttpsError) throw error;
+      logger.error('Stripe period-end cancellation transport failed', {
+        stripeSubscriptionId: reservation.stripeSubscriptionId,
+        operationId,
+        error,
+      });
+      throw new HttpsError('unavailable', 'stripe_cancellation_unavailable');
+    }
+
+    const auditRef = db.collection('admin_log').doc();
+    const completedAtMs = Date.now();
+    return db.runTransaction(async (tx) => {
+      const operationSnapshot = await tx.get(operationRef);
+      const current = planStripeSubscriptionCancellationReservation(operationSnapshot.data(), {
+        operationId,
+        orderId: input.orderId,
+        stripeSubscriptionId: reservation.stripeSubscriptionId,
+        actorUid,
+        actorEmail,
+        reason: input.reason,
+        nowMs: completedAtMs,
+      });
+      if (current.kind === 'replay') return current.response;
+      if (current.kind !== 'continue') {
+        throw new HttpsError('internal', 'stripe_cancellation_reservation_missing');
+      }
+      const response: StripeCancellationResponse = {
+        ok: true,
+        operationId,
+        orderId: input.orderId,
+        stripeSubscriptionId: stripeResult.stripeSubscriptionId,
+        cancelAtPeriodEnd: true,
+        accessEndsAtMs: stripeResult.accessEndsAtMs,
+        auditId: auditRef.id,
+      };
+      tx.update(orderRef, {
+        stripeCancelAtPeriodEnd: true,
+        stripeAccessEndsAtMs: stripeResult.accessEndsAtMs,
+        stripeCancellationOperationId: operationId,
+        stripeCancellationRequestedAtMs: completedAtMs,
+        updatedAt: FieldValue.serverTimestamp(),
+      });
+      tx.create(auditRef, {
+        action: 'stripe_subscription_cancel_at_period_end',
+        targetUid: input.orderId,
+        details: {
+          orderId: input.orderId,
+          stripeSubscriptionId: stripeResult.stripeSubscriptionId,
+          cancelAtPeriodEnd: true,
+          accessEndsAtMs: stripeResult.accessEndsAtMs,
+          reason: input.reason,
+          operationId,
+        },
+        adminUid: actorUid,
+        adminEmail: actorEmail,
+        ts: new Date(completedAtMs).toISOString(),
+      });
+      tx.update(operationRef, {
+        state: 'completed',
+        response,
+        auditId: auditRef.id,
+        completedAtMs,
+        updatedAtMs: completedAtMs,
+      });
+      return response;
+    });
+  },
+);
 
 export const webCheckoutCreate = onRequest(
   {

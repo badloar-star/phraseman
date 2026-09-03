@@ -1,24 +1,46 @@
-import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { STREAK_ICON_MODEL } from '../constants/streakIconAssets';
 
 const ROOT = path.resolve(__dirname, '..');
 
-function fileHash(relativePath: string): string {
-  return crypto
-    .createHash('sha256')
-    .update(fs.readFileSync(path.join(ROOT, relativePath)))
-    .digest('hex');
+// зачем: прежний сторож фиксировал хэши тематических огоньков (dark/aurora).
+// Правило снято — с 30.08 действует ТЗ «Единое перо цепочки дней»: один общий
+// набор на все темы. Хэши тех картинок разошлись ещё 24.08, когда их
+// перерисовали, а тест остался сторожить отменённое. Здесь сторожим то, что
+// правило требует сейчас: перо одно на все темы и растёт от слабого к сильному.
+
+function assetBytes(relativePath: string): Buffer {
+  return fs.readFileSync(path.join(ROOT, relativePath));
 }
 
-describe('streak-fire theme palettes', () => {
-  it('locks the approved aqua dark fire instead of the previous purple-blue art', () => {
-    expect(fileHash('assets/images/streak_icons/dark/streak-fire-dark-100.webp'))
-      .toBe('dbe7be62eb7001260ed4c21dfd5bb85f4ad45bb800b60d4df9579bc10f077bf3');
+describe('перо цепочки дней', () => {
+  const paths = Object.values(STREAK_ICON_MODEL.featherAssetPaths);
+
+  it('одно и то же перо во всех темах — тематических наборов не осталось', () => {
+    for (const rel of paths) {
+      expect(rel).toMatch(/^assets\/images\/streak_icons\/feather\//);
+    }
+    const themed = fs
+      .readdirSync(path.join(ROOT, 'assets/images/streak_icons'), {
+        withFileTypes: true,
+      })
+      .filter((entry) => entry.isDirectory() && entry.name !== 'feather')
+      .flatMap((entry) =>
+        fs.readdirSync(path.join(ROOT, 'assets/images/streak_icons', entry.name)),
+      )
+      .filter((name) => name.startsWith('streak-fire-'));
+    expect(themed).toEqual([]);
   });
 
-  it('locks the approved mint-to-azure aurora fire without purple or magenta', () => {
-    expect(fileHash('assets/images/streak_icons/aurora/streak-fire-aurora-100.webp'))
-      .toBe('9b27b567e891f08a7aae16c3114d6e073455a0a151e5b9bb2960fe2d9a7348f4');
+  it('десять разных ступеней: ни одна картинка не повторяется', () => {
+    const seen = paths.map((rel) => assetBytes(rel).toString('base64'));
+    expect(new Set(seen).size).toBe(10);
+  });
+
+  it('перо крепнет: старшие ступени тяжелее первой — свечение и искры', () => {
+    const sizes = paths.map((rel) => assetBytes(rel).byteLength);
+    expect(sizes[9]).toBeGreaterThan(sizes[0]);
+    expect(sizes[8]).toBeGreaterThan(sizes[0]);
   });
 });

@@ -1,0 +1,11 @@
+import admin from 'firebase-admin';
+import fs from 'fs';
+admin.initializeApp({ credential: admin.credential.cert(JSON.parse(fs.readFileSync('../service-account.json','utf8'))) });
+const doc = await admin.firestore().collection('users').doc('b5e09aea-0f75-4fb0-a5c3-04f5789789a2').get();
+const d = doc.data() ?? {};
+console.log('есть ключ progress:', 'progress' in d, '| тип:', typeof d.progress);
+console.log('progress ключей:', Object.keys(d.progress ?? {}).length);
+console.log('sync_probe_at_ms записался:', 'sync_probe_at_ms' in (d.progress ?? {}));
+console.log('last_active_at:', d.last_active_at);
+console.log('корневые:', Object.keys(d).join(', '));
+process.exit(0);

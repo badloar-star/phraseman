@@ -332,7 +332,7 @@ function parseLearningV2CourseSessionLearnerChildV1(raw) {
     const value = parseCanonical(raw);
     exactKeys(value, LEARNER_ROOT_KEYS);
     if (!Array.isArray(value.interactions) ||
-        value.interactions.length < 7 ||
+        value.interactions.length < 6 ||
         value.interactions.length > 19 ||
         !LANGUAGE_RE.test(String(value.targetLanguage)) ||
         !["standard", "rapid", "voice_heavy"].includes(String(value.interactionProfile)))
@@ -494,7 +494,7 @@ function parseLearningV2CourseSessionAuxiliaryChildV1(raw) {
     const value = parseCanonical(raw);
     exactKeys(value, AUX_ROOT_KEYS);
     if (!Array.isArray(value.entries) ||
-        value.entries.length < 10 ||
+        value.entries.length < 9 ||
         value.entries.length > 22)
         fail();
     const ids = new Set();

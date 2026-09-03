@@ -9,49 +9,29 @@ import {
 const expectedFamilies = [
   "listen_choose",
   "listen_build_dictation",
-  "listen_choose",
-  "listen_build_dictation",
   "phrase_builder",
-  "listen_choose",
-  "phrase_builder",
-  "listen_choose",
-  "phrase_builder",
-  "listen_build_dictation",
-  "phrase_builder",
-  "listen_build_dictation",
   "speed_match",
-  "listen_build_dictation",
-  "listen_choose",
+  "phrase_builder",
   "context_gap_grammar",
   "scripted_repeat_compare",
 ] as const;
 
 const expectedTargets = [
-  "I",
-  "am",
   "here",
   "ready",
-  "I",
-  "am",
-  "here",
-  "ready",
-  "am",
-  "I",
-  "ready",
-  "here",
-  "I\u0000am\u0000here\u0000ready",
-  "I am ready",
+  "fine",
+  "here\u0000ready\u0000fine",
   "I am here",
+  "I am fine",
   "I am ready",
-  "I am here",
 ] as const;
 
 const findings: string[] = [];
 const shard = buildSessionShardFromSource(EPISODE_01_SESSION_01_SOURCE);
 const practiceCards = shard.cards.filter((card) => card.taskSlot >= 4);
 
-if (practiceCards.length !== 17) {
-  findings.push(`practice_count:expected=17:actual=${practiceCards.length}`);
+if (practiceCards.length !== 7) {
+  findings.push(`practice_count:expected=7:actual=${practiceCards.length}`);
 }
 
 for (let index = 0; index < expectedFamilies.length; index += 1) {
@@ -120,8 +100,8 @@ const interactions = (children.learner as {
   readonly interactions: readonly Record<string, unknown>[];
 }).interactions;
 
-if (interactions.length !== 17) {
-  findings.push(`learner_count:expected=17:actual=${interactions.length}`);
+if (interactions.length !== 7) {
+  findings.push(`learner_count:expected=7:actual=${interactions.length}`);
 }
 
 for (let index = 0; index < interactions.length; index += 1) {

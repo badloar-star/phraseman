@@ -71,6 +71,7 @@ import { getEffectivePlatformOS } from '../platform_ui_preview';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { hapticTap } from '../../hooks/use-haptics';
 import { DebugLogger } from '../debug-logger';
+import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
@@ -168,6 +169,7 @@ function HubTileShell({ testID, a11y, onPress, onLongPress, disabled, reduceMoti
     <ReanimatedPressable
       testID={testID}
       accessibilityLabel={a11y}
+      accessibilityRole="button"
       accessible
       onPress={onPress}
       onLongPress={onLongPress}
@@ -467,11 +469,11 @@ export default function FlashcardsCategoryHub({
 
   /**
    * §2.3: каталог сортируется по лайкам ↓ → добавлениям ↓ → свежести.
-   * Свои наборы «только на устройстве» (`local_only`) в общий каталог не попадают —
+   * Свои наборы с `local_pack_*` в общий каталог не попадают даже во время модерации —
    * они живут в «Мои наборы» до публикации.
    */
   const catalogCommunityPacks = useMemo(
-    () => communityPacks.filter((p) => !hiddenCommunityPackIds.has(p.id) && p.listingStatus !== 'local_only'),
+    () => communityPacks.filter((p) => !hiddenCommunityPackIds.has(p.id) && !isLocalAuthorPackId(p.id)),
     [communityPacks, hiddenCommunityPackIds],
   );
 
@@ -888,7 +890,10 @@ export default function FlashcardsCategoryHub({
           {hasUnfinishedPackDraft ? (
             <TouchableOpacity
               testID="flashcards-packs-continue-draft"
-              onPress={() => router.push('/community_pack_create' as never)}
+              onPress={() => router.push({
+                pathname: '/community_pack_create',
+                params: { origin: 'community' },
+              } as never)}
               style={{
                 width: hubBarW,
                 marginBottom: 12,
@@ -946,22 +951,19 @@ export default function FlashcardsCategoryHub({
                     pl: 'Nic nie znaleziono.',
                   })}
             </Text>
-          ) : (
-            <>
-              <View
-                style={{
-                  width: hubBarW,
-                  flexDirection: 'row',
-                  flexWrap: 'wrap',
-                  gap: GAP,
-                  justifyContent: 'flex-start',
-                }}
-              >
-                {visibleCommunityPacks.map(renderCommunityPackTile)}
-              </View>
-              {renderReportShortcutRow()}
-            </>
-          )}
+          ) : null}
+          <View
+            style={{
+              width: hubBarW,
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              gap: GAP,
+              justifyContent: 'flex-start',
+            }}
+            >
+              {visibleCommunityPacks.map(renderCommunityPackTile)}
+            </View>
+          {renderReportShortcutRow()}
         </Reanimated.View>
       ) : null}
 

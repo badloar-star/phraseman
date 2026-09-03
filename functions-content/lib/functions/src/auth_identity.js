@@ -48,6 +48,9 @@ const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const email_contacts_1 = require("./email_contacts");
+const account_id_lookup_1 = require("./account_id_lookup");
+const account_id_1 = require("./account_id");
+const account_gate_1 = require("./account_gate");
 const account_delete_job_1 = require("./account_delete_job");
 const growth_daily_aggregate_1 = require("./growth_daily_aggregate");
 const USERS = 'users';
@@ -79,26 +82,19 @@ async function readIdentityOrThrow(read) {
     }
 }
 async function assertAccountDeletionNotPending(db, authUid) {
-    const [marker, permanentDenial] = await Promise.all([
-        readIdentityOrThrow(db.collection(account_delete_job_1.ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid).get()),
-        readIdentityOrThrow(db.collection(account_delete_job_1.ACCOUNT_DELETE_PERMANENT_DENIALS)
-            .doc((0, account_delete_job_1.accountDeletePermanentDenialId)(authUid))
-            .get()),
-    ]);
-    if (marker.exists || permanentDenial.exists) {
-        throwIdentityRetired('auth');
-    }
+    // зачем через ЕДИНУЮ ДВЕРЬ (этап 1, владелец 01.09.2026): раньше каждая из
+    // 122 проверок читала метки сама, своей формой — и 01.09 сразу две из них
+    // оказались с дырами. Теперь смысл «пускать ли» живёт в одном месте
+    // (account_gate.ts), а здесь остаётся только обёртка недоступности базы.
+    //
+    // readIdentityOrThrow обязателен: сбой сети НЕ должен выглядеть как «аккаунт
+    // жив» — иначе при отвале Firestore открылся бы доступ к удаляемому аккаунту.
+    const state = await readIdentityOrThrow((0, account_gate_1.readAuthAccountState)(db, authUid));
+    (0, account_gate_1.assertAccountUsable)(state);
 }
 async function assertStableDeletionNotPending(db, stableId) {
-    const [tombstone, permanentDenial] = await Promise.all([
-        readIdentityOrThrow(db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).doc(stableId).get()),
-        readIdentityOrThrow(db.collection(account_delete_job_1.ACCOUNT_DELETE_PERMANENT_DENIALS)
-            .doc((0, account_delete_job_1.accountDeletePermanentDenialId)(stableId))
-            .get()),
-    ]);
-    if (tombstone.exists || permanentDenial.exists) {
-        throwIdentityRetired('stable');
-    }
+    const state = await readIdentityOrThrow((0, account_gate_1.readStableAccountState)(db, stableId));
+    (0, account_gate_1.assertAccountUsable)(state);
 }
 async function assertStableAccountMergeNotPending(db, stableIds) {
     for (const stableId of [...new Set(stableIds.map(normalizeStableId).filter(Boolean))]) {
@@ -505,13 +501,15 @@ async function repairIdentityDocumentsAtomically(db, authUid, stableId, options)
                 transaction.get(authLinkRef),
                 options.writeUser ? transaction.get(existingOwnerQuery) : Promise.resolve(null),
             ]);
-            if (authMarkerSnap.exists || authPermanentDenialSnap.exists) {
-                throwIdentityRetired('auth');
-            }
-            if (tombstoneSnaps.some((snap) => snap.exists)
-                || permanentDenialSnaps.some((snap) => snap.exists)) {
-                throwIdentityRetired('stable');
-            }
+            // Решение принимает ЕДИНАЯ ДВЕРЬ по уже прочитанным снапшотам: логика
+            // «grace или смерть» не должна дублироваться на каждой транзакции —
+            // именно из такого дублирования и рождались дыры.
+            (0, account_gate_1.assertAccountUsable)((0, account_gate_1.accountStateFromSnapshots)({
+                marker: authMarkerSnap, denial: authPermanentDenialSnap, subject: 'auth',
+            }));
+            (0, account_gate_1.assertAccountUsable)((0, account_gate_1.accountStateFromSnapshots)({
+                markers: tombstoneSnaps, denials: permanentDenialSnaps, subject: 'stable',
+            }));
             const currentUserData = userSnap?.data() ?? {};
             const currentUserAuthUid = String(currentUserData.firebaseAuthUid ?? '').trim();
             const currentLinkedAuthUid = normalizeStableId(currentUserData.linkedAuth?.providerUid);
@@ -522,9 +520,9 @@ async function repairIdentityDocumentsAtomically(db, authUid, stableId, options)
                     transaction.get(db.collection(account_delete_job_1.ACCOUNT_DELETE_PERMANENT_DENIALS)
                         .doc((0, account_delete_job_1.accountDeletePermanentDenialId)(currentLinkStableId))),
                 ]);
-                if (currentLinkTombstone.exists || currentLinkPermanentDenial.exists) {
-                    throwIdentityRetired('stable');
-                }
+                (0, account_gate_1.assertAccountUsable)((0, account_gate_1.accountStateFromSnapshots)({
+                    marker: currentLinkTombstone, denial: currentLinkPermanentDenial, subject: 'stable',
+                }));
             }
             const currentOwnerIds = (existingOwnerSnap?.docs ?? []).map((doc) => doc.id).sort();
             const userAlreadyTarget = Boolean(userSnap.exists &&
@@ -630,6 +628,26 @@ async function repairIdentityDocumentsAtomically(db, authUid, stableId, options)
                     if (!authLinkSnap.exists) {
                         (0, growth_daily_aggregate_1.writeFirstAuthLinkGrowthAggregate)(db, transaction, now);
                     }
+                }
+            }
+            // ── САМОПОДДЕРЖАНИЕ КАРТЫ ИМЁН (этап 3) ────────────────────────────
+            // зачем: без этого таблица соответствия устаревает с первого же нового
+            // человека — новые аккаунты и новые привязки в неё не попадут, и
+            // опознание по одному имени тихо перестанет работать для всех, кто
+            // пришёл после миграции. Это ровно класс бага «механизм есть, а данных
+            // не дали», который в проекте повторялся многократно.
+            //
+            // Пишем В ТОЙ ЖЕ транзакции, что и сами документы личности: карта не
+            // имеет права разойтись с реальностью даже на мгновение.
+            const accountIdForIndex = String(currentUserData[account_id_1.ACCOUNT_ID_FIELD] ?? '').trim();
+            if (accountIdForIndex) {
+                for (const { alias, kind } of (0, account_id_1.cleanAliases)([
+                    { alias: stableId, kind: 'stable' },
+                    { alias: authUid, kind: 'auth' },
+                ])) {
+                    transaction.set(db.collection(account_id_1.ACCOUNT_ID_INDEX).doc((0, account_id_1.accountIdIndexDocId)(alias)), {
+                        accountId: accountIdForIndex, alias, kind, stableId, updatedAt: now,
+                    }, { merge: true });
                 }
             }
             return { userAuthUidChanged };
@@ -1050,6 +1068,8 @@ async function resolveRequestedStableIdentity(db, authUid, stableId, options) {
 async function resolveStableUidForAuth(db, authUid, requestedStableId, options) {
     await assertAccountDeletionNotPending(db, authUid);
     const stableId = normalizeStableId(requestedStableId);
+    // Живая привязка auth_links идёт ПЕРВОЙ — это то, чем человек реально входит
+    // сегодня (её пишет сам вход с устройства), и это одно точечное чтение.
     const authLinkAnchor = await findLiveAuthLinkAnchor(db, authUid);
     if (authLinkAnchor?.selection) {
         return finalizeStableIdentitySelection(db, authUid, authLinkAnchor.selection, options, false);
@@ -1061,6 +1081,27 @@ async function resolveStableUidForAuth(db, authUid, requestedStableId, options) 
     // not collapse two candidates into the same globally ranked provider owner.
     if (stableId && options?.repairLinks === false) {
         return resolveRequestedStableIdentity(db, authUid, stableId, options);
+    }
+    // ── ЕДИНОЕ ИМЯ: опознание по карте (этап 3) — ПОСЛЕ живой привязки ──────
+    // зачем именно здесь, а не первой ступенью (аудит 2026-09-02): карта имён —
+    // это снимок, посчитанный офлайн; привязка auth_links — то, чем человек
+    // входит прямо сейчас. Когда они расходятся, правда у привязки. Пока карта
+    // стояла ПЕРВОЙ, у 62 живых аккаунтов (среди них двое с подпиской) она вела
+    // на другой документ, чем auth_links, и assertStableOwner отвечал
+    // stable_id_mismatch — клиент на этот код ротирует локальную личность, то
+    // есть человек получал пустой профиль. Ровно та беда, ради которой всё
+    // затевалось. Расходиться карта будет и дальше: слияние, восстановление и
+    // админская починка перепривязывают auth_links, не трогая карту.
+    //
+    // Здесь карта заменяет findStableUidForProviderAuth — два запроса с
+    // limit(20) — одним точечным чтением. Принимаем только документ, которым
+    // этот uid ВЛАДЕЕТ (firebaseAuthUid совпал): ровно то, что нашёл бы
+    // авторитетный запрос ниже. Не нашли, карта устарела или документ чужой —
+    // молча идём прежним путём, ступень по-прежнему обратима.
+    const aliasHit = await (0, account_id_lookup_1.findAccountByAlias)(db, authUid);
+    if (aliasHit && await (0, account_id_lookup_1.verifyAccountHit)(db, aliasHit, authUid)) {
+        await assertStableDeletionNotPending(db, aliasHit.stableId);
+        return finalizeStableIdentitySelection(db, authUid, { stableUid: aliasHit.stableId, sourceStableIds: [aliasHit.stableId] }, options, true);
     }
     const authoritativeByAuth = await findStableUidForProviderAuth(db, authUid, true);
     if (authoritativeByAuth) {
@@ -1108,12 +1149,12 @@ async function bootstrapMissingStableIdentity(db, authUid, stableId, provider, m
                 transaction.get(stablePermanentDenialRef),
                 transaction.get(existingIdentityQuery),
             ]);
-            if (authMarkerSnap.exists || authPermanentDenialSnap.exists) {
-                throwIdentityRetired('auth');
-            }
-            if (tombstoneSnap.exists || stablePermanentDenialSnap.exists) {
-                throwIdentityRetired('stable');
-            }
+            (0, account_gate_1.assertAccountUsable)((0, account_gate_1.accountStateFromSnapshots)({
+                marker: authMarkerSnap, denial: authPermanentDenialSnap, subject: 'auth',
+            }));
+            (0, account_gate_1.assertAccountUsable)((0, account_gate_1.accountStateFromSnapshots)({
+                marker: tombstoneSnap, denial: stablePermanentDenialSnap, subject: 'stable',
+            }));
             if (authLinkSnap.exists) {
                 const linkedStableId = normalizeStableId(authLinkSnap.data()?.stable_id);
                 if (!linkedStableId) {
@@ -1127,9 +1168,9 @@ async function bootstrapMissingStableIdentity(db, authUid, stableId, provider, m
                         transaction.get(db.collection(account_delete_job_1.ACCOUNT_DELETE_PERMANENT_DENIALS)
                             .doc((0, account_delete_job_1.accountDeletePermanentDenialId)(linkedStableId))),
                     ]);
-                if (linkedTombstoneSnap.exists || linkedPermanentDenialSnap.exists) {
-                    throwIdentityRetired('stable');
-                }
+                (0, account_gate_1.assertAccountUsable)((0, account_gate_1.accountStateFromSnapshots)({
+                    marker: linkedTombstoneSnap, denial: linkedPermanentDenialSnap, subject: 'stable',
+                }));
                 if (!linkedUserSnap.exists) {
                     throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
                 }
@@ -1154,14 +1195,20 @@ async function bootstrapMissingStableIdentity(db, authUid, stableId, provider, m
                         transaction.get(db.collection(account_delete_job_1.ACCOUNT_DELETE_PERMANENT_DENIALS)
                             .doc((0, account_delete_job_1.accountDeletePermanentDenialId)(authoritativeStableId))),
                     ]);
-                if (authoritativeTombstoneSnap.exists || authoritativePermanentDenialSnap.exists) {
-                    throwIdentityRetired('stable');
-                }
+                (0, account_gate_1.assertAccountUsable)((0, account_gate_1.accountStateFromSnapshots)({
+                    marker: authoritativeTombstoneSnap, denial: authoritativePermanentDenialSnap, subject: 'stable',
+                }));
                 return { status: 'authoritative', stableUid: authoritativeStableId, identityReady: false };
             }
             previouslyObservedMissingTarget = true;
+            // зачем имя СРАЗУ при рождении аккаунта (этап 3): иначе новые люди
+            // остаются вне новой схемы, карта имён устаревает с первого же дня, и
+            // опознание по одному имени работает только для тех, кто был до
+            // миграции. Класс «механизм есть, а данных не дали».
+            const freshAccountId = (0, account_id_1.newAccountId)();
             const userData = {
                 firebaseAuthUid: authUid,
+                [account_id_1.ACCOUNT_ID_FIELD]: freshAccountId,
                 updatedAt: now,
             };
             const authLinkData = {
@@ -1195,6 +1242,16 @@ async function bootstrapMissingStableIdentity(db, authUid, stableId, provider, m
             }
             transaction.create(userRef, userData);
             transaction.create(authLinkRef, authLinkData);
+            // Новый аккаунт сразу попадает в карту имён — в ТОЙ ЖЕ транзакции,
+            // чтобы карта не могла разойтись с реальностью даже на мгновение.
+            for (const { alias, kind } of (0, account_id_1.cleanAliases)([
+                { alias: stableId, kind: 'stable' },
+                { alias: authUid, kind: 'auth' },
+            ])) {
+                transaction.set(db.collection(account_id_1.ACCOUNT_ID_INDEX).doc((0, account_id_1.accountIdIndexDocId)(alias)), {
+                    accountId: freshAccountId, alias, kind, stableId, updatedAt: now,
+                }, { merge: true });
+            }
             (0, growth_daily_aggregate_1.writeFirstAuthLinkGrowthAggregate)(db, transaction, now);
             return { status: 'bootstrapped', stableUid: stableId };
         });
@@ -1233,6 +1290,10 @@ async function rotateRetiredProviderStableLink(db, authUid, retiredStableId, fre
                 transaction.get(refs.freshTombstone),
                 transaction.get(refs.freshDenial),
             ]);
+            // зачем БЕЗ grace-ветки (в отличие от всех прочих проверок): сюда входят
+            // только после доказанной смерти старой личности (см. проверку её
+            // надгробия ниже), а grace на ней отсекается ещё вызывающей стороной.
+            // Проверяем здесь auth-метку и СВЕЖИЙ id — на свежем grace невозможен.
             if (authMarkerSnap.exists || authDenialSnap.exists)
                 throwIdentityRetired('auth');
             if (freshTombstoneSnap.exists || freshDenialSnap.exists)
@@ -1322,6 +1383,15 @@ async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInPro
                     .get()),
             ]);
             const linkedStableRetired = linkedTombstone.exists || linkedDenial.exists;
+            // зачем ДО ротации (владелец, 2026-09-01): это главный путь входа через
+            // Google/Apple. Внутри grace аккаунт ЖИВ — ротировать привязку на свежий
+            // пустой профиль здесь нельзя, иначе человек получит чистый экран вместо
+            // предложения вернуть свой прогресс, и вернуть его будет уже некуда.
+            const linkedState = (0, account_gate_1.accountStateFromSnapshots)({
+                marker: linkedTombstone, denial: linkedDenial, subject: 'stable',
+            });
+            if (linkedState.kind === 'grace')
+                (0, account_gate_1.assertAccountUsable)(linkedState);
             if (linkedStableRetired && stableId && linkedStableId !== stableId) {
                 await rotateRetiredProviderStableLink(db, authUid, linkedStableId, stableId, provider, metadata);
                 return { ok: true, stableUid: stableId, authUid, identityReady: true };

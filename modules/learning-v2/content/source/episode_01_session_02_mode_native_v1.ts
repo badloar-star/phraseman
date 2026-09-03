@@ -16,11 +16,11 @@ import {
   type SessionVocabularySourceV1,
 } from './session_shard_from_source_v1';
 import { EPISODE_01_SESSION_01_VOCABULARY_V1 } from './episode_01_session_01_vocabulary_v1';
-import { EPISODE_01_SESSION_02_VOCABULARY_V1 } from './episode_01_session_02_vocabulary_v1';
-import { EPISODE_01_SESSION_02_MODE_NATIVE_PHRASES } from './episode_01_session_02_affirmative_phrases_v1';
+import { EPISODE_01_SESSION_02_EXACT_VOCABULARY_V1 } from './episode_01_session_02_vocabulary_v1';
+import { EPISODE_01_SESSION_02_EXACT_MODE_NATIVE_PHRASES } from './episode_01_session_02_affirmative_phrases_v1';
 
-const vocabulary = EPISODE_01_SESSION_02_VOCABULARY_V1;
-const phrases = EPISODE_01_SESSION_02_MODE_NATIVE_PHRASES;
+const vocabulary = EPISODE_01_SESSION_02_EXACT_VOCABULARY_V1;
+const phrases = EPISODE_01_SESSION_02_EXACT_MODE_NATIVE_PHRASES;
 const L = (source: LocalizedSource): LearningV2Localized<string> => expandLocalized(source);
 
 const INSTRUCTION = Object.freeze({
@@ -424,8 +424,8 @@ const speedMatchPayload: LearningV2ModeNativePayloadV1 = Object.freeze({
   pairGrid: Object.freeze(SPEED_WORDS.map((word, index) => ({
     pairId: SPEED_IDS[index]!, target: word.target, meaningByLocale: atomicLocalized(expandLocalized(word.meaning)),
   }))),
-  leftColumn: Object.freeze([SPEED_IDS[2]!, SPEED_IDS[0]!, SPEED_IDS[3]!, SPEED_IDS[1]!]),
-  rightColumn: Object.freeze([SPEED_IDS[1]!, SPEED_IDS[3]!, SPEED_IDS[0]!, SPEED_IDS[2]!]),
+  leftColumn: Object.freeze([SPEED_IDS[2]!, SPEED_IDS[0]!, SPEED_IDS[1]!]),
+  rightColumn: Object.freeze([SPEED_IDS[1]!, SPEED_IDS[0]!, SPEED_IDS[2]!]),
   pairingKey: 'pair_id',
   timerPolicy: Object.freeze({ enabledByDefault: true, learnerCanDisable: true, pausesOnInterruption: true }),
   finishStats: Object.freeze(['speed', 'accuracy', 'personal_best'] as const),
@@ -495,22 +495,12 @@ export const EPISODE_01_SESSION_02_MODE_NATIVE_PRACTICE_V1 = Object.freeze<reado
   { family: 'scripted_repeat_compare', instruction: INSTRUCTION.repeatWord, purpose: 'supported_practice', learningStage: 'recognize', target: { kind: 'vocabulary', sourceIndex: 0 }, modePayload: repeatWord(0) },
   { family: 'listen_choose', instruction: INSTRUCTION.listenWord, purpose: 'supported_practice', learningStage: 'recognize', target: { kind: 'vocabulary', sourceIndex: 1 }, modePayload: listenChooseWord(1) },
   { family: 'scripted_repeat_compare', instruction: INSTRUCTION.repeatWord, purpose: 'supported_practice', learningStage: 'recognize', target: { kind: 'vocabulary', sourceIndex: 2 }, modePayload: repeatWord(2) },
-  { family: 'listen_choose', instruction: INSTRUCTION.listenWord, purpose: 'supported_practice', learningStage: 'recognize', target: { kind: 'vocabulary', sourceIndex: 3 }, modePayload: listenChooseWord(3) },
-  { family: 'context_gap_grammar', instruction: INSTRUCTION.contextMeaning, purpose: 'retrieval_practice', learningStage: 'retrieve_meaning', target: { kind: 'vocabulary', sourceIndex: 1 }, modePayload: contextMeaning(1) },
-  { family: 'listen_choose', instruction: INSTRUCTION.listenMeaning, purpose: 'retrieval_practice', learningStage: 'retrieve_meaning', target: { kind: 'vocabulary', sourceIndex: 2 }, modePayload: listenChooseMeaning(2) },
-  { family: 'context_gap_grammar', instruction: INSTRUCTION.contextMeaning, purpose: 'retrieval_practice', learningStage: 'retrieve_meaning', target: { kind: 'vocabulary', sourceIndex: 3 }, modePayload: contextMeaning(3) },
-  { family: 'listen_choose', instruction: INSTRUCTION.listenMeaning, purpose: 'retrieval_practice', learningStage: 'retrieve_meaning', target: { kind: 'vocabulary', sourceIndex: 0 }, modePayload: listenChooseMeaning(0) },
-  { family: 'listen_build_dictation', instruction: INSTRUCTION.listenBuildPhrase, purpose: 'guided_practice', learningStage: 'build_form', target: { kind: 'vocabulary', sourceIndex: 0 }, modePayload: listenBuildPhrase(0) },
-  { family: 'phrase_builder', instruction: INSTRUCTION.buildPhrase, purpose: 'guided_practice', learningStage: 'build_form', target: { kind: 'vocabulary', sourceIndex: 1 }, modePayload: fullPhraseBuilder(1) },
-  { family: 'context_gap_grammar', instruction: INSTRUCTION.contextBuild, purpose: 'guided_practice', learningStage: 'build_form', target: { kind: 'vocabulary', sourceIndex: 2 }, modePayload: contextBuildTired() },
-  { family: 'phrase_builder', instruction: INSTRUCTION.buildPhrase, purpose: 'guided_practice', learningStage: 'build_form', target: { kind: 'vocabulary', sourceIndex: 3 }, modePayload: fullPhraseBuilder(3) },
-  { family: 'speed_match', instruction: INSTRUCTION.speedMatch, purpose: 'near_transfer', learningStage: 'apply_in_phrase', target: { kind: 'vocabulary_grid', sourceIndices: [0, 1, 2, 3] }, modePayload: speedMatchPayload },
-  { family: 'phrase_builder', instruction: INSTRUCTION.buildPhrase, purpose: 'near_transfer', learningStage: 'apply_in_phrase', target: { kind: 'phrase', sourceIndex: 0 }, modePayload: fullPhraseBuilder(0) },
-  { family: 'context_gap_grammar', instruction: INSTRUCTION.contextBuild, purpose: 'near_transfer', learningStage: 'apply_in_phrase', target: { kind: 'phrase', sourceIndex: 1 }, modePayload: contextPhrase(1) },
-  { family: 'listen_choose', instruction: INSTRUCTION.listenPhrase, purpose: 'near_transfer', learningStage: 'apply_in_phrase', target: { kind: 'phrase', sourceIndex: 2 }, modePayload: listenChoosePhrase(2) },
-  { family: 'scripted_repeat_compare', instruction: INSTRUCTION.repeatPhrase, purpose: 'independent_check', learningStage: 'speak_with_model', target: { kind: 'phrase', sourceIndex: 3 }, modePayload: repeatPhrase(3) },
+  { family: 'speed_match', instruction: INSTRUCTION.speedMatch, purpose: 'near_transfer', learningStage: 'apply_in_phrase', target: { kind: 'vocabulary_grid', sourceIndices: [0, 1, 2] }, modePayload: speedMatchPayload },
+  { family: 'phrase_builder', instruction: INSTRUCTION.buildPhrase, purpose: 'guided_practice', learningStage: 'build_form', target: { kind: 'phrase', sourceIndex: 2 }, modePayload: fullPhraseBuilder(2) },
+  { family: 'listen_build_dictation', instruction: INSTRUCTION.listenBuildPhrase, purpose: 'near_transfer', learningStage: 'apply_in_phrase', target: { kind: 'phrase', sourceIndex: 0 }, modePayload: listenBuildPhrase(0) },
+  { family: 'context_gap_grammar', instruction: INSTRUCTION.contextBuild, purpose: 'independent_check', learningStage: 'apply_in_phrase', target: { kind: 'phrase', sourceIndex: 1 }, modePayload: contextPhrase(1) },
 ]);
 
-if (EPISODE_01_SESSION_02_MODE_NATIVE_PRACTICE_V1.length !== 17) {
+if (EPISODE_01_SESSION_02_MODE_NATIVE_PRACTICE_V1.length !== 7) {
   throw new Error('session_02_mode_native_practice_count_invalid');
 }

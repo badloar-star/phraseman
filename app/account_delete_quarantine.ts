@@ -828,9 +828,18 @@ function reportBrokenGuard(kind: string, detail: string): void {
 
 export async function readAccountDeletePendingAuthRaw(): Promise<string | null> {
   const secureStore = getSecureStore();
-  // Модуль SecureStore отсутствует целиком (Expo Go / web / кривой линк) — это
-  // не «замок повреждён», это «проверить нечем и следов удаления не видели».
-  if (!secureStore) throw unreadableGuardError('account_delete_guard_secure_store_unavailable');
+  // SecureStore may be unavailable in Expo Go/web, but the AsyncStorage v1
+  // mirror is still evidence of an interrupted deletion.  Inspect it before
+  // tagging the error as "no lock seen"; otherwise startup could revive the
+  // retired identity solely because the native module failed to load.
+  if (!secureStore) {
+    const legacyMirror = await AsyncStorage.getItem(ACCOUNT_DELETE_PENDING_AUTH_KEY);
+    if (legacyMirror === null) {
+      throw unreadableGuardError('account_delete_guard_secure_store_unavailable');
+    }
+    rememberGuardState(legacyMirror);
+    throw new Error('account_delete_guard_secure_store_unavailable_with_mirror');
+  }
 
   const [recordResult, anchorResult] = await Promise.all([
     readSecureRecord(secureStore, ACCOUNT_DELETE_PENDING_AUTH_SECURE_KEY),

@@ -260,6 +260,17 @@ export const EPISODE_01_SESSION_02_MODE_NATIVE_PHRASES: readonly EpisodeSourcePh
   phrase('I am fine', 'fine'),
 ]);
 
+// Session 1 owns this learner-facing phrase.  This retained editorial source
+// prevents the legacy Session 2 list from reintroducing `fine` as new there.
+export const EPISODE_01_SESSION_02_LEGACY_FINE_PHRASE: EpisodeSourcePhrase =
+  phrase('I am fine', 'fine');
+export const EPISODE_01_SESSION_02_EXACT_MODE_NATIVE_PHRASES:
+  readonly EpisodeSourcePhrase[] = Object.freeze(
+  EPISODE_01_SESSION_02_MODE_NATIVE_PHRASES.filter(
+    (phraseSource) => phraseSource.english !== 'I am fine',
+  ),
+);
+
 // Kept outside the approved session-02 source inventory. Later forbidden
 // drafts historically import this phrase through session 03, so exposing it
 // separately preserves module compatibility without changing session 02.

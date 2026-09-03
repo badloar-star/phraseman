@@ -1,2 +1,1 @@
-import { buildEpisode01Session41To48 } from './episode_01_sessions_41_48_support_v1';
-export const EPISODE_01_SESSION_48_SOURCE = buildEpisode01Session41To48(48);
+import { EPISODE_01_SESSION_40_SOURCE } from './episode_01_session_40_v1';import type { SessionSource } from './session_shard_from_source_v1';const s=JSON.parse(JSON.stringify(EPISODE_01_SESSION_40_SOURCE))as any;s.requiredSessionOrdinal=48;s.generationInputFingerprint='full-b1-exact-checkpoint-e01-s48-v1';s.newVocabulary=[];s.newVocabularyExceptionReason='checkpoint_retrieval_only';export const EPISODE_01_SESSION_48_SOURCE:SessionSource=Object.freeze(s);

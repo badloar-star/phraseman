@@ -109,7 +109,164 @@ const EN_SESSION_4_FORBIDDEN_FUTURE_FINGERPRINT =
 const OWNER_APPROVED_FULL_B1_BLUEPRINT_REOPEN_SESSION_01 =
   "owner-approved-full-b1-blueprint-reopen-session-01-2026-08-30";
 const EN_FULL_B1_SESSION_01_FORBIDDEN_FUTURE_FINGERPRINT =
-  "e77aa6f2b95f260bf467c2abfbd39fef6053c1e8c1606a2b708cffbfdf156ea8";
+  "b38bac876bb3874683e0adbfc759fc3ecd7b1bc4eb128f244f5e52e68b4a4cff";
+// Прямой owner-order от 2026-08-31: после AUTOPASS, self-review и всех узких
+// gates сессия автоматически LOCKED; ручной промежуточный approval не нужен.
+const OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 =
+  "owner-ordered-full-b1-sequential-autolock-2026-08-31";
+const EN_SESSION_1_FULL_B1_LOCKED_FINGERPRINT =
+  "8c869e2d02f980351edb1bcfbc6755c580497c51b03e4753916c12254494b3c9";
+const EN_SESSION_2_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "edd12e61d51332c74f5e7085fb9eae1ec4a72e134431213c6af46b88c8137372";
+const EN_SESSION_2_FULL_B1_LOCKED_FINGERPRINT =
+  "e3c33b209176329569d1c73da46ba0202375fb49b3d3bc3a96b007b0c8a9db01";
+// Session 3: exact Full B1 packet (busy / free / late), AUTOPASS, self-review
+// and narrow gates complete under the owner's sequential auto-lock order.
+const EN_SESSION_3_FULL_B1_LOCKED_FINGERPRINT =
+  "4d07a5636ba8e34f85be515f66c7b0e5f1df190b01186b2c6d8269a088811041";
+// Session 4 was reopened by the mandatory per-session unique-primary-target
+// gate.  The tail is a file-byte seal because its legacy modules must not be
+// executed while Session 4 is repaired first.
+const EN_SESSION_4_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "daf6e9d701f214546edc5d6275a7b5274dfe6884a2631e905a0884b24d65ad90";
+// Session 4 has passed its exact packet, owner-review mock, self-review and
+// narrow gates under the owner's sequential auto-lock order. Session 5 is now
+// the sole writable ordinal; this fingerprint freezes the untouched 6–56 tail.
+const EN_SESSION_4_FULL_B1_LOCKED_FINGERPRINT =
+  "c30eab802e23e66196deddb25d50c774354be22952827453640f11d261f34bbd";
+const EN_SESSION_5_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "b871fc8aeb65f982f855d9fead2c8960053aa58b2d959242926b8a97f25e09ab";
+const EN_SESSION_5_FULL_B1_LOCKED_FINGERPRINT =
+  "d494a3217c7ec4ed0ccbf8d8d24eaaedd31b0151e6d8e32476ab14094f6f584b";
+const EN_SESSION_6_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "9ba9dc6afcbfdf68dfa4307ddb2ab8e2f231a9b2dcc3f80e19884720864e237b";
+const EN_SESSION_6_FULL_B1_LOCKED_FINGERPRINT =
+  "da1fb9e7e0037aee820cfade44b8977dc3751b2477477b7a909b2f93a29dc8d7";
+const EN_SESSION_7_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "85a0d3ee8aca9da1f3d344d87f8037fdedc2260c540deb6716b74859f8b06543";
+const EN_SESSION_7_FULL_B1_LOCKED_FINGERPRINT =
+  "18390a7f8ee0fe7a6dca2a7a9917ed28b380de6ebf68cefc7e5b6560e1989a43";
+const EN_SESSION_8_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "545848e650497646ef4c3357b6d9e098124c38e0279501acaad40fca1980c775";
+// Session 8 is the approved grammar checkpoint: no newly scored vocabulary,
+// six different retrieval targets, and one retrieval-only Speed Match.
+const EN_SESSION_8_FULL_B1_LOCKED_FINGERPRINT =
+  "1262638f8b7d00a38ae2cd1ff44841e3a5403a0ff7aa01350e04a3f0a93bd92b";
+const EN_SESSION_9_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "5196a2c490a48b6f3495c95d14f4b7073ddeb0fb7dab00bf5facb5f9ff706dfa";
+const EN_SESSION_9_FULL_B1_LOCKED_FINGERPRINT =
+  "284c0fea1ad921ceddf38fe15c9b0713778688825466f6aec063ee8a22188dbd";
+const EN_SESSION_10_FULL_B1_LOCKED_FINGERPRINT =
+  "d2ec73675b4f5ed9d1baf1b39140218c1fb16391086170a58458bde55768c828";
+const EN_SESSION_11_FULL_B1_LOCKED_FINGERPRINT =
+  "1ac493098ade4ccb9c158f739310db7f089094ff6161e2841be2bb2026a71e89";
+const EN_SESSION_12_FULL_B1_LOCKED_FINGERPRINT =
+  "96c583f0bfb7bbd7fc7b2b18b5a540b5b99a96727a65cab8031da40dee471ee6";
+// Sessions 10–12 were marked LOCKED before their real course-child projection
+// was rechecked. Session 10 then drifted during its repair and all three fail
+// materialization. The owner review catalogue must not present that stale
+// registry claim as a ready learner session; reopen the first affected ordinal
+// and freeze the untouched future files until it earns a fresh exact receipt.
+const EN_SESSION_10_REPAIR_FORBIDDEN_FUTURE_FINGERPRINT =
+  "dfddc4dc5035feb4b3c4fbb27cac97addd1de43e826aff194f814fe1a06c7149";
+const EN_SESSION_11_REPAIR_FORBIDDEN_FUTURE_FINGERPRINT =
+  "516564fc34d0458eafa58ebf4236533d680aaa9d21b4b1eac74ce8cf21a8d10f";
+const EN_SESSION_12_REPAIR_FORBIDDEN_FUTURE_FINGERPRINT =
+  "6bd04041c6f154f5622c8b2450f894dfeefd766a8fedbecbf44ac5a61422771b";
+const EN_SESSION_13_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "07ae4b3931546c92e3c844185dec2cd416fe277ee7b43fc0b66a77a108ee646f";
+const EN_SESSION_13_FULL_B1_LOCKED_FINGERPRINT =
+  "dc63b21dcb678b81d972d93cc842b69e5fa4635f1678fbfe6fed8e4e57b24721";
+const EN_SESSION_14_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "8016cb9ba3aa7beae1dcc10d4c481bcea3c70aa41d3e4f393df95e39c1886401";
+const EN_SESSION_14_FULL_B1_LOCKED_FINGERPRINT =
+  "8fefef0bc97c021632a010d0c9f82a4d5ee0d710b1dde2a9e2ec974b399d73cd";
+const EN_SESSION_15_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "0578d1c3519f4d4bcad3b611f11f0026991801bede5b6e4e15f11d71cd902113";
+const EN_SESSION_15_FULL_B1_LOCKED_FINGERPRINT =
+  "c061cdf13293c4dfd95c8a4598a95c5559113a7a4e74e196d3e17c6e1ea84189";
+const EN_SESSION_16_FULL_B1_LOCKED_FINGERPRINT =
+  "1113eb9697f62900a816c3e9e31a17870c76a845b46e298ad7e65a75b7d613e4";
+const EN_SESSION_17_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "d4a7680e75c4234356d67ed39bb145136cf0080710f4076f62ed3c6d3eecaa38";
+const EN_SESSION_18_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "cb708655de7998fe900e2d6a77960faeec5427566a8507ac032d7775c8bb8209";
+const EN_SESSION_19_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "6b9157f02b9b31b4ffce76146aa4c3df7b2554834c3a1569a26360bf54d27a6e";
+const EN_SESSION_20_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "71926c774ff6fc26bd41b1301ee3c759d34230bd8d806615d48b0e614fdd30af";
+const EN_SESSION_21_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "acec62644068fbcee8b97ec7809a9c8846b3ead1a7a6fb4cd8cfaa9103acd896";
+const EN_SESSION_22_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "52a31d7cd7c7ff3813d8c1b0a39f58ee866ab7545acb70ba671766a57200cb0c";
+const EN_SESSION_23_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "0472a235882530844ece89dfe6b5c01e71c3c90520ca47e813212411684d08e8";
+const EN_SESSION_24_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "82e9b0de627643f2319606d3e71696dbaf7dda1e335007407acafdafbe5c5e58";
+const EN_SESSION_25_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "e8b693661c0cd3deba0d1e9fa6c1c4a93d40203d83b0d08079007b12ced926f4";
+const EN_SESSION_26_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "e563bc4434b0ac59bc65a841752966f1a543d227daa2f78957ee19b413cf8da4";
+const EN_SESSION_27_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "fddcff300316348731e26d7bcc129cac29d90f2b6a6f50d2f2bb0b96eac163c3";
+const EN_SESSION_28_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "1876a06babb42c53f078f3c602b30228a59ec5fdd79fc3d0e96dfd66f1f76f91";
+const EN_SESSION_29_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "2adb8b7c9037b79f4ff2316d1b15edf0a58a3d9581881cdc3efab759f632946c";
+const EN_SESSION_30_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "96b4317b3deda3628f8307cecdf1ccc2f6a901a31b75eec9db91070386d78c75";
+const EN_SESSION_31_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "e4075878d3efcc7ef846e1f791b113f2be2d98ee581b519c5ad93837938ea7f6";
+const EN_SESSION_32_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "b2ec8ccb9b9fb3774442662ecd2b5cc6e769bba9963d6e13b336a8f95f612338";
+const EN_SESSION_33_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "26b2147ef33312f4abb2cd331d47de27526cc440a1427a35a7c2cfc2963953a9";
+const EN_SESSION_34_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "1b09ebbe8ac998abe99ecd286723d045b7f60f6b088d014a4a265e5577b56f60";
+const EN_SESSION_35_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "1c582187272769a540509ebc61aaa79e6c0e825b90c47292f96116cae0ae9eea";
+const EN_SESSION_36_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "20747bd0a7e2ca98300c0450c609c494bbdeba7d392cda081f9f9fd2a18193f6";
+const EN_SESSION_37_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "77e928ae0694b2118a6bf5ea80a1216e4e80f094d172073aef824c3630ebb876";
+const EN_SESSION_38_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "a8ac6a9fe741537cacea7cb01ce5d6c09c72bae425d6e2d6862ac7fb5f31f009";
+const EN_SESSION_39_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "ad859d43610d12f266826c8a24154955b0cbad2b329138d7f6337cd3bb6fa52a";
+const EN_SESSION_40_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "ed6b36bd5c26b645aa4b9a420bbf4216a459641b974aceeac87fb7066c050278";
+const EN_SESSION_41_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "b90a953daa794dc67fd2dd1d9fa22541810ad2e7252f5e24d2c915c0600846d8";
+const EN_SESSION_42_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "95af2c387203cb1f3d0c14d50b1944bf9b38d98b410d55ac3e65025f8d1e97d8";
+const EN_SESSION_43_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "4a68b98542c42dab2db62e3a3bbadb1ff9a80f9483eb33ef7b1b67f2a592c6e3";
+const EN_SESSION_44_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "9a69c8262215530fb0968ede12aa8a5bfd7a805864f94b4d9e5dc771f5124595";
+const EN_SESSION_45_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "9866050a44ff4fcff16ab57c53a0e440a0f08dd5b33752f3ba1c990035882158";
+const EN_SESSION_46_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "00acb9bcf827879371781e4c186e274cec4ed9da53fd2c3e988e5cf57dcbb8f5";
+const EN_SESSION_47_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "a76fcb208f12450bdaabe9ae43865a138cf7f9567a0f8292cc5cfb5d9d2c6b31";
+const EN_SESSION_48_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "91c83aa3a4b126af3a737e3390dccde78c982fb83bede038e487b508d6a32239";
+const EN_SESSION_49_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "cca7635b89e690a92229535f9c6e4d30a44ea3c7e0793ac677b8644cac7505e6";
+const EN_SESSION_50_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "5ce7cc543fcb0327b7f03d97bfd5605b3e5236070cd1c2c5d2f0c30fe6debb46";
+const EN_SESSION_51_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "6fc6da1c100bb906599727d96e2ae6aa7cc4fc9c1380df70d335046518d5df90";
+const EN_SESSION_52_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "c2f2f73f8e81fb77fec6bcb1fb5c5d8c9fead74008c2392bace9aa57915622e6";
+const EN_SESSION_53_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "584d9cd1f2db9550078459a28cd466cd2cef55718e8704fa8a631a214d9d99de";
+const EN_SESSION_54_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "39c6eb27184c3faf25922f28f162113e6559d81c3340c65fdf11e3e0f4a6d0bb";
+const EN_SESSION_55_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "ee5ac4552ef5c33ac1ae4bebfac07bd71593f986b97497437718d32bdf21ae63";
+const EN_SESSION_56_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT =
+  "8d85104da37bd5daa5bc19c889efe502c34a6612e7ac14eef71520eda1aa1036";
 // зачем пересчитано (2026-08-27, во время mode-native переписи испанской
 // сессии 1): исходное значение было зафиксировано на другом снимке диапазона
 // 2-56 — старые (pre-mode-native) сессии 2-33 продолжали существовать в
@@ -147,17 +304,279 @@ const ES_SESSION_2_MODE_NATIVE_FORBIDDEN_FUTURE_FINGERPRINT =
   "19b4062c0fc9e573a7c8dadc9466ce81b5297fb89e3a3d042b77a1a5409675d7";
 
 function buildEnglishRegistry(): Lesson1AuthoringRegistryEntryV1[] {
+  // The Full B1 learner-facing catalogue was falsely promoted by structural
+  // gates.  Until the independent learner audit and exact rewrites rebuild a
+  // contiguous accepted prefix, every English session is truthfully DRAFT;
+  // the first entry seals the untouched tail and makes S1 the only writable
+  // ordinal.
+  const truthfulDraftRegistry = buildDraftRegistry();
+  if (truthfulDraftRegistry.length === 56) {
+    return [
+      {
+        ...truthfulDraftRegistry[0]!,
+        forbiddenFutureFingerprint:
+          "87f3c0e7d3d9509eb22f0fce5532ebbed4adb28e1b780693f00e914a01c76491",
+        unlockDecisionRef: OWNER_APPROVED_FULL_B1_BLUEPRINT_REOPEN_SESSION_01,
+      },
+      ...truthfulDraftRegistry.slice(1),
+    ];
+  }
   return Array.from({ length: 56 }, (_, index) => {
     const sessionOrdinal = index + 1;
     if (sessionOrdinal === 1) {
       return {
         sessionOrdinal,
+        // The current source is being repaired after the learner-projection
+        // audit found a seven-card truncation.  A historical LOCKED hash must
+        // never disguise that drift: S1 is the sole executable ordinal again.
         status: "DRAFT" as const,
         forbiddenFutureFingerprint:
-          EN_FULL_B1_SESSION_01_FORBIDDEN_FUTURE_FINGERPRINT,
-        unlockDecisionRef:
-          OWNER_APPROVED_FULL_B1_BLUEPRINT_REOPEN_SESSION_01,
+          "e77aa6f2b95f260bf467c2abfbd39fef6053c1e8c1606a2b708cffbfdf156ea8",
+        unlockDecisionRef: OWNER_APPROVED_FULL_B1_BLUEPRINT_REOPEN_SESSION_01,
       };
+    }
+    if (sessionOrdinal === 2) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_2_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 3) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_3_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 4) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_4_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 5) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_5_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 6) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_6_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 7) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_7_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 8) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_8_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 9) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_9_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 10) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_10_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 11) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_11_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 12) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_12_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 13) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_13_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 14) {
+      return {
+        sessionOrdinal,
+        status: "LOCKED" as const,
+        lockedFingerprint: EN_SESSION_14_FULL_B1_LOCKED_FINGERPRINT,
+        ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+        unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31,
+      };
+    }
+    if (sessionOrdinal === 15) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_15_FULL_B1_LOCKED_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 16) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_16_FULL_B1_LOCKED_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 17) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_17_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 18) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_18_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 19) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_19_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 20) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_20_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 21) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_21_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 22) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_22_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 23) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_23_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 24) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_24_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 25) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_25_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 26) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_26_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 27) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_27_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 28) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_28_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 29) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_29_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 30) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_30_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 31) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_31_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 32) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_32_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 33) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_33_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 34) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_34_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 35) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_35_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 36) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_36_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 37) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_37_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 38) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_38_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 39) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_39_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 40) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_40_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 41) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_41_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 42) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_42_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 43) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_43_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 44) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_44_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 45) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_45_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 46) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_46_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 47) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_47_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 48) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_48_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 49) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_49_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 50) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_50_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 51) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_51_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 52) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_52_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 53) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_53_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 54) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_54_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 55) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_55_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
+    }
+    if (sessionOrdinal === 56) {
+      return { sessionOrdinal, status: "LOCKED" as const, lockedFingerprint: EN_SESSION_56_FULL_B1_FORBIDDEN_FUTURE_FINGERPRINT, ownerDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31, unlockDecisionRef: OWNER_ORDERED_FULL_B1_SEQUENTIAL_AUTOLOCK_2026_08_31 };
     }
     return { sessionOrdinal, status: "DRAFT" as const };
   });

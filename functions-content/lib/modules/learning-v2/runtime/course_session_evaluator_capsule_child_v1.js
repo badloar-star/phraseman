@@ -70,7 +70,7 @@ function parseBody(value) {
         value.normalizationProfileHash !==
             local_evaluator_capsule_v1_1.V2_LOCAL_EVALUATOR_NORMALIZATION_PROFILE_HASH_V1 ||
         !Array.isArray(value.entries) ||
-        value.entries.length < 10 ||
+        value.entries.length < 9 ||
         value.entries.length > 22 ||
         value.entryCount !== value.entries.length ||
         value.assessmentSecrecy !== "none_device_inspectable" ||

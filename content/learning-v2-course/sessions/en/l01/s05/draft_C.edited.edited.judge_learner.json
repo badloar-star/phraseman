@@ -1,0 +1,150 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя всегда нужно am, нельзя говорить I fine или Am fine, только I am fine.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "no — это отдельный ответ-слово, а внутри фразы отрицание это not, и оно встаёт после am: I am not sure.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Без am смысл меняется или пропадает: I lost — это \"я потерял\" (что?), а I am lost — \"я заблудился\". Это реально зацепило, не ожидал, что am настолько меняет смысл.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 · Карточка hot",
+      "what_i_understood": "hot = жарко/мне жарко",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 · Послушайте hot",
+      "what_i_understood": "Выбрал hot, отличил от hat и hurt по гласной и концу слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 · Карточка sick",
+      "what_i_understood": "sick = болею",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 · Соберите I am hot",
+      "what_i_understood": "Собрал по образцу из интро: I + am + слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 · Карточка lost",
+      "what_i_understood": "lost = заблудился, потерялся (в разговоре тоже)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 · Послушайте lost",
+      "what_i_understood": "Выбрал lost, отличил от last и list по гласной.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 · Карточка new",
+      "what_i_understood": "new = новенький, I am new = я тут недавно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 · Speed Match",
+      "what_i_understood": "Соединил 4 новых слова с переводом без проблем, только что выучил их.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 · I ___ lost",
+      "what_i_understood": "Выбрал am, потому что про себя всегда am; is не про себя, not не подходит по смыслу (я заблудился, а не не заблудился) и грамматически.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 · I am ___ sick",
+      "what_i_understood": "Выбрал not (коллега болен, я нет), no не подходит внутри фразы, am уже стоит.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 · Соберите I am not sure",
+      "what_i_understood": "Собрал по правилу из интро 2, лишнюю плитку no не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 · Соберите I am not hot",
+      "what_i_understood": "Отрицание после am, перед словом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 · I ___ fine",
+      "what_i_understood": "am, потому что is и are не для I.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 · I am tired (лишняя not)",
+      "what_i_understood": "Понял, что сцена просит правду (я устал), значит not брать не надо, хотя плитка есть.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 · Speed Match старые слова",
+      "what_i_understood": "fine/sure/ready/sorry — уже знал с прошлых сессий, просто повторил.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 · I am sorry. I am late.",
+      "what_i_understood": "Опоздал — извинился и сказал что опоздал, две фразы подряд с am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 · Финал: 4 ответа подряд",
+      "what_i_understood": "I am hot. I am not sick. I am ready. I am not new. — собрал все четыре по смыслу вопросов, используя am/am not и слова из сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Новые слова: hot, sick, lost, new — и сразу вставил их во фразу I am ___",
+    "Понял разницу I lost vs I am lost — что без am меняется сам смысл, а не просто пропадает вежливость",
+    "Закрепил, что not всегда стоит после am, а no — отдельное слово-ответ, не лезет внутрь фразы",
+    "Смог на слух отличать hot/hat/hurt и lost/last/list — раньше этого не умел"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 3",
+      "why": "По сути третий раз объясняет одно и то же правило (am нельзя выкидывать), что уже сказано в Интро 1 и Интро 2, просто на новом примере (lost/new). Идея с 'I lost' как ложный смысл — новая и полезная, но сама подводка ощущается как повтор."
+    }
+  ],
+  "felt_alive": [
+    "Момент с I lost vs I am lost — реально удивился, что пропажа одного слова меняет смысл на 'я потерял что-то', а не просто делает фразу неправильной",
+    "Финал (задание 17) — четыре вопроса подряд без подсказок, было похоже на настоящий разговор, а не на упражнение",
+    "Задание 16 про опоздание на кухню — понятная бытовая ситуация, легко представить"
+  ],
+  "felt_dead": [
+    "Карточки слов (1, 3, 5, 7) — просто сухое определение, без сцены, справочный тон",
+    "Задание 8 и 15 (Speed Match) — механическое сопоставление, никакого контекста"
+  ],
+  "scene_reason": "да, понятно — сцена про утро на кухне офиса, и почти каждое задание привязано к конкретному моменту (спросили как дела, спросили про кофе, заблудился между этажами, опоздал на разговор). Только карточки слов (1,3,5,7) и Speed Match (8,15) вне сцены, но это ожидаемо для тренировки самого слова.",
+  "would_continue": "да — потому что появилось ощущение прогресса (могу сказать не только 'я в порядке', но и 'я заблудился', 'я не болею') и финал сессии дал почувствовать, что я реально могу ответить на несколько вопросов подряд, как в жизни.",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно, узнал новые слова и закрепил правило am/not, ни разу не столкнулся с незнакомым словом в правильном ответе, сцена понятна, хочу продолжать."
+}

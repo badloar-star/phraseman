@@ -45,6 +45,7 @@ exports.processAccountDeletionJob = processAccountDeletionJob;
 const admin = __importStar(require("firebase-admin"));
 const crypto_1 = require("crypto");
 const https_1 = require("firebase-functions/v2/https");
+const account_delete_grace_1 = require("./account_delete_grace");
 exports.ACCOUNT_DELETE_JOBS = 'account_deletion_jobs';
 exports.ACCOUNT_DELETE_TOMBSTONES = 'account_deletion_tombstones';
 exports.ACCOUNT_DELETE_AUTH_MARKERS = 'account_deletion_auth_markers';
@@ -274,9 +275,12 @@ async function enqueueAccountDeletionJob(db, authUid, stableUid, nowMs = Date.no
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
         }, { merge: true });
+        // Дедлайн дублируется в tombstone: по нему клиент строит модал
+        // «Восстановить аккаунт?» и текст «удаление через N дней».
         tx.set(tombstoneRef, {
             jobId,
             status: 'pending',
+            graceDeadlineMs: (0, account_delete_grace_1.accountDeleteGraceDeadlineMs)(nowMs),
             authUidHash: sha256(authUid),
             stableUidHash: sha256(stableUid),
             updatedAtMs: nowMs,
@@ -344,6 +348,10 @@ async function enqueueAccountDeletionJob(db, authUid, stableUid, nowMs = Date.no
             }, { merge: true });
             return { jobId, status, created: false };
         }
+        // зачем grace (владелец, 2026-08-31): 14 дней на «передумать» после
+        // случайного удаления. Локальные данные стёрты сразу, но серверные живут
+        // до дедлайна — воркер возьмёт задачу только после nextAttemptAtMs.
+        const graceDeadlineMs = (0, account_delete_grace_1.accountDeleteGraceDeadlineMs)(nowMs);
         tx.create(ref, {
             jobId,
             authUid,
@@ -352,7 +360,9 @@ async function enqueueAccountDeletionJob(db, authUid, stableUid, nowMs = Date.no
             stableUidHash: sha256(stableUid),
             status: 'queued',
             attempts: 0,
-            nextAttemptAtMs: nowMs,
+            nextAttemptAtMs: graceDeadlineMs,
+            graceDeadlineMs,
+            graceMs: account_delete_grace_1.ACCOUNT_DELETE_GRACE_MS,
             createdAtMs: nowMs,
             updatedAtMs: nowMs,
             identityClosure: frozenClosure,
@@ -421,6 +431,24 @@ async function processAccountDeletionJob(db, jobId, execute, nowMs = Date.now())
             updatedAt: admin.firestore.FieldValue.serverTimestamp(),
             lastError: admin.firestore.FieldValue.delete(),
         });
+        // зачем метки тоже переводим в 'running' (самопроверка 2026-09-01):
+        // вход решает про grace по tombstone/маркеру, а не по job. Раньше они
+        // оставались 'pending' ВСЁ время работы воркера (обновлялись только в
+        // конце) — и человек в этот момент видел бы «Восстановить аккаунт?», а
+        // accountDeleteRestoreMine отказал бы: данные уже частично снесены.
+        // Обещание без выполнения — известный класс бага в этом проекте.
+        tx.set(db.collection(exports.ACCOUNT_DELETE_TOMBSTONES).doc(stableUid), {
+            status: 'running',
+            startedAtMs: nowMs,
+            updatedAtMs: nowMs,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
+        tx.set(db.collection(exports.ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid), {
+            status: 'running',
+            startedAtMs: nowMs,
+            updatedAtMs: nowMs,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
         return { authUid, stableUid, attempts, leaseToken, closureCutoffMs, identityClosure };
     });
     if (!claimed)

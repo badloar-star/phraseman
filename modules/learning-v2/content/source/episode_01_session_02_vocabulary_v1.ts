@@ -11,7 +11,7 @@ const contact = (
   distractors: SessionVocabularyContactSourceV1['distractors'],
 ): SessionVocabularyContactSourceV1 => ({ guidance, distractors });
 
-const EPISODE_01_SESSION_02_VOCABULARY_BASE_V1:
+export const EPISODE_01_SESSION_02_VOCABULARY_BASE_V1:
   readonly SessionVocabularySourceV1[] = Object.freeze([
   {
     id: 'e01-s02-word-happy', target: 'happy', features: ['feeling_adjective'],
@@ -263,7 +263,7 @@ const TEXT_BIBLE_GUIDANCE_BY_TARGET_V1: Readonly<Record<string, Readonly<{
   },
 });
 
-export const EPISODE_01_SESSION_02_VOCABULARY_V1:
+const EPISODE_01_SESSION_02_VOCABULARY_WITH_LEGACY_FINE_V1:
   readonly SessionVocabularySourceV1[] = Object.freeze(
   EPISODE_01_SESSION_02_VOCABULARY_BASE_V1.map((entry) => {
     const guidance = TEXT_BIBLE_GUIDANCE_BY_TARGET_V1[entry.target];
@@ -304,4 +304,15 @@ export const EPISODE_01_SESSION_02_VOCABULARY_V1:
       }),
     });
   }),
+);
+
+// Compatibility export for frozen future drafts; current Session 2 must use
+// the exact list below and must not introduce Session 1's `fine` again.
+export const EPISODE_01_SESSION_02_VOCABULARY_V1 =
+  EPISODE_01_SESSION_02_VOCABULARY_WITH_LEGACY_FINE_V1;
+export const EPISODE_01_SESSION_02_EXACT_VOCABULARY_V1:
+  readonly SessionVocabularySourceV1[] = Object.freeze(
+  EPISODE_01_SESSION_02_VOCABULARY_WITH_LEGACY_FINE_V1.filter(
+    (entry) => entry.target !== 'fine',
+  ),
 );

@@ -390,6 +390,12 @@ const MONEY_WRITER_CONTRACTS = [
 
 const ISOLATED_COLLECTION_CONTRACTS = [
   {
+    collection: 'web_premium_orders',
+    writer: 'functions/src/web_checkout.ts',
+    authority: 'server-confirmed Stripe period-end cancellation projection and immutable admin audit; intentionally unread by Jarvis',
+    fields: ['stripeCancelAtPeriodEnd', 'stripeCancellationOperationId', 'stripeAccessEndsAtMs', 'stripeCancellationRequestedAtMs'],
+  },
+  {
     collection: 'account_deletion_jobs',
     writer: 'functions/src/account_delete_job.ts',
     authority: 'server-only deletion work queue; frozen identityClosure/version/hash/cutoff are privacy-control fields and never Jarvis metrics',

@@ -32,8 +32,14 @@ export const LEARNING_V2_ENGLISH_BLUEPRINT_APPROVAL_REGISTRY_V2: Readonly<
     }),
   "3a4ca1422a6125bb317121c312c0166fdb595ee90111f297c480c8a82b7716e4":
     Object.freeze({
-      status: "PENDING" as const,
+      status: "SUPERSEDED" as const,
       reason:
-        "OWNER_REVIEW_REQUIRED_AFTER_COURSE_START_PREREQUISITE_AMENDMENT_2026_08_30" as const,
+        "SUPERSEDED_BY_LEXICAL_DENSITY_RECONCILIATION_2026_09_02" as const,
+    }),
+  "bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c":
+    Object.freeze({
+      status: "APPROVED" as const,
+      reason:
+        "OWNER_APPROVAL_CONTINUE_FULL_B1_COURSE_2026_09_02" as const,
     }),
 });

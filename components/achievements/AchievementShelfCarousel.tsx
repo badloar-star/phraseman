@@ -290,7 +290,7 @@ export default function AchievementShelfCarousel({
                     style={styles.trophyPressable}
                   >
                     <Animated.View style={{ opacity, transform: [{ scale }] }}>
-                      {renderTrophy(item, Math.min(180, Math.round(itemWidth * 0.9)))}
+                      {renderTrophy(item, Math.min(216, Math.round(itemWidth * 1.06)))}
                     </Animated.View>
                   </Pressable>
                 </View>
@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   showcase: {
-    height: 276,
+    height: 306,
     borderRadius: 24,
     borderWidth: StyleSheet.hairlineWidth,
     overflow: 'hidden',
@@ -345,14 +345,14 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   item: {
-    height: 254,
+    height: 284,
     justifyContent: 'flex-end',
     alignItems: 'center',
     paddingBottom: 49,
   },
   trophyPressable: {
-    minWidth: 150,
-    minHeight: 184,
+    minWidth: 168,
+    minHeight: 206,
     alignItems: 'center',
     justifyContent: 'flex-end',
   },

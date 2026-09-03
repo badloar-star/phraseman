@@ -25,14 +25,14 @@ export type FcTabMenu = 'none' | 'train' | 'create' | 'packs';
 export type FcTabMenuKind = Exclude<FcTabMenu, 'none'>;
 
 /**
- * Пункты списка «Тренировка» — порядок сверху вниз при раскрытии. «Ошибки»
- * стоят первыми: это отдельная очередь повторения, которую важно видеть сразу.
+ * Пункты списка «Тренировка» — только карточные режимы, сверху вниз при раскрытии.
+ * Очередь ошибок живёт в приоритетной плашке Home и сюда не дублируется.
  * `speak` — «Говорить» (владелец, 2026-08-17): «в отработке есть блиц и слушать —
  * надо ещё речь, чтобы карточки можно было отрабатывать говоря». Стоит рядом
  * со «Слушать»: это парный к нему навык (вход ↔ выход речи).
  */
-export type FcTrainOption = 'train' | 'listen' | 'speak' | 'blitz' | 'errors';
-export const FC_TRAIN_OPTIONS: readonly FcTrainOption[] = ['errors', 'train', 'listen', 'speak', 'blitz'];
+export type FcTrainOption = 'train' | 'listen' | 'speak' | 'blitz';
+export const FC_TRAIN_OPTIONS: readonly FcTrainOption[] = ['train', 'listen', 'speak', 'blitz'];
 
 /** Пункты группы «+». */
 export type FcCreateOption = 'card' | 'pack';
@@ -220,9 +220,6 @@ export function buildFcTrainRoute(
    */
   opts?: { fromPicker?: boolean },
 ): FcTabRouteTarget {
-  if (option === 'errors') {
-    return { pathname: '/mistake_practice_session', params: {} };
-  }
   const decks = realDecks(preset);
   const deckParam = deckRouteParam(decks);
 
@@ -252,9 +249,6 @@ export function buildFcTrainRoute(
 
 /** Режим `mode_prefs`, из которого читается пресет быстрого старта пункта. */
 export function fcTrainOptionPresetMode(option: FcTrainOption): FcPresetMode {
-  // «Ошибки» не использует карточные пресеты. Значение нужно только как
-  // безопасный fallback для старых универсальных вызывающих мест.
-  if (option === 'errors') return 'trainer';
   if (option === 'listen') return 'listening';
   if (option === 'speak') return 'speaking';
   if (option === 'blitz') return 'blitz';

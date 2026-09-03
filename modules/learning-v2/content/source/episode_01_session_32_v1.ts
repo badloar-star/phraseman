@@ -1,2 +1,30 @@
-import { buildEpisode01Session25To32 } from './episode_01_sessions_25_32_support_v1';
-export const EPISODE_01_SESSION_32_SOURCE = buildEpisode01Session25To32(32);
+/** Full B1 Session 32: checkpoint retrieval of the completed full-form chapter. */
+import { EPISODE_01_SESSION_24_SOURCE } from './episode_01_session_24_v1';
+import { LESSON1_SESSION_08_MODE_NATIVE_PLAN_ID_V2 } from './lesson1_session_choreography_v1';
+import type { SessionSource } from './session_shard_from_source_v1';
+const clone = <T>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
+const L = (ru: string, uk: string, es: string, pt: string, vi: string, id: string, tr: string, pl: string) => ({ ru, uk, es, 'pt-BR': pt, vi, id, tr, pl });
+const authored = clone(EPISODE_01_SESSION_24_SOURCE) as any;
+authored.requiredSessionOrdinal = 32;
+authored.generationInputFingerprint = 'full-b1-exact-full-form-checkpoint-e01-s32-v1';
+authored.sessionKindOverride = 'checkpoint';
+authored.newVocabulary = [];
+authored.newVocabularyExceptionReason = 'checkpoint_retrieval_only';
+authored.reviewConstructIds = ['full_form_choice'];
+authored.modeNativePlanId = LESSON1_SESSION_08_MODE_NATIVE_PLAN_ID_V2;
+authored.title = L('Проверь: am, is, are', 'Перевір: am, is, are', 'Comprueba: am, is, are', 'Confira: am, is, are', 'Kiểm tra: am, is, are', 'Periksa: am, is, are', 'Kontrol et: am, is, are', 'Sprawdź: am, is, are');
+authored.summary = L('Вспомни знакомые утверждения с am, is и are в новом порядке.', 'Згадай знайомі твердження з am, is і are в новому порядку.', 'Recuerda afirmaciones conocidas con am, is y are en otro orden.', 'Lembre afirmações conhecidas com am, is e are em outra ordem.', 'Nhớ lại câu khẳng định quen thuộc với am, is và are theo thứ tự mới.', 'Ingat pernyataan yang dikenal dengan am, is, dan are dalam urutan baru.', 'Am, is ve are ile bilinen olumlu cümleleri yeni sırayla hatırla.', 'Przypomnij sobie znane twierdzenia z am, is i are w nowej kolejności.');
+authored.learningGoal = L('Самостоятельно выбрать точную знакомую утвердительную фразу.', 'Самостійно обрати точну знайому ствердну фразу.', 'Elegir de forma autónoma una frase afirmativa conocida y exacta.', 'Escolher de forma autônoma uma frase afirmativa conhecida e exata.', 'Tự chọn câu khẳng định quen thuộc và chính xác.', 'Memilih kalimat afirmatif yang dikenal dan tepat secara mandiri.', 'Doğru bilinen olumlu cümleyi bağımsız olarak seçmek.', 'Samodzielnie wybrać dokładne znane zdanie twierdzące.');
+const phrases = ['I am proud', 'She is ashamed', 'They are surprised', 'We are bored', 'I am confused', 'You are worried', 'He is awake', 'It is asleep', 'She is available', 'It is correct', 'We are certain', 'They are serious', 'It is local', 'They are foreign', 'We are online'];
+const subjects = ['I', 'He', 'She', 'It', 'You', 'We', 'They'];
+const endings = phrases.map((phrase) => phrase.split(' ')[2]!);
+const distractorsFor = (correct: string, position: number, phraseIndex: number) => { const pool = position === 0 ? subjects.filter((value) => value !== correct) : position === 1 ? ['am', 'is', 'are', 'be'].filter((value) => value !== correct) : endings.filter((value) => value !== correct); return Array.from({ length: 3 }, (_, offset) => { const value = pool[(phraseIndex + offset) % pool.length]!; return { value, reasonCode: `s32:${phraseIndex}:${position}:${correct}:not:${value}:${offset}`, trapType: position === 1 ? 'grammar' : 'semantic_neighbor', why: `${value} is not the exact word in this phrase; ${correct} is required here.`, reason: `${value} is not the exact word in this phrase; ${correct} is required here.` }; }); };
+while (authored.phrases.length < phrases.length) authored.phrases.push(clone(authored.phrases[0]));
+for (const [index, english] of phrases.entries()) { const phrase = authored.phrases[index]!; phrase.id = `e01-s32-${english.toLowerCase().replaceAll(' ', '-')}`; phrase.english = english; phrase.russian = english; phrase.words = english.split(' ').map((correct: string, position: number) => ({ ...clone(authored.phrases[0].words[position]), correct, distractors: distractorsFor(correct, position, index) })); phrase.features = ['copula_be', 'full_form_choice']; phrase.localizedDetails = Object.fromEntries(Object.entries(phrase.localizedDetails ?? {}).map(([locale, detail]: [string, any]) => [locale, { ...detail, meaning: english, explanation: `${english} is a known affirmative phrase to retrieve.`, words: phrase.words, distractors: phrase.words.flatMap((word: any) => word.distractors) }])); }
+const uniqueSubjectDistractors = (correct: string, values: readonly string[]) => values.map((value, optionIndex) => ({ value, reasonCode: `s32:subject:${correct}:not:${value}:${optionIndex}`, trapType: 'semantic_neighbor', why: `${value} is not the subject in this phrase; ${correct} is required here.`, reason: `${value} is not the subject in this phrase; ${correct} is required here.` }));
+authored.phrases[13].words[0].distractors = uniqueSubjectDistractors('They', ['I', 'He', 'We']);
+authored.phrases[14].words[0].distractors = uniqueSubjectDistractors('We', ['She', 'They', 'You']);
+for (const index of [13, 14]) for (const detail of Object.values(authored.phrases[index].localizedDetails ?? {}) as any[]) detail.words = authored.phrases[index].words;
+const examples = ['I am proud', 'She is ashamed', 'They are surprised'];
+for (const [index, page] of authored.introPages.entries()) { const example = examples[index]!; const body = L('Вспомни знакомую форму и выбери всю точную фразу.', 'Згадай знайому форму й обери всю точну фразу.', 'Recuerda la forma conocida y elige la frase exacta completa.', 'Lembre a forma conhecida e escolha a frase exata completa.', 'Nhớ mẫu quen thuộc và chọn cả câu chính xác.', 'Ingat bentuk yang dikenal dan pilih kalimat lengkap yang tepat.', 'Bilinen biçimi hatırla ve doğru cümlenin tamamını seç.', 'Przypomnij sobie znaną formę i wybierz całe dokładne zdanie.'); for (const locale of Object.keys(body)) page.body[locale] = `${body[locale as keyof typeof body]} ${example}.`; page.question.choices[0] = L(example, example, example, example, example, example, example, example); page.question.grammarFeatureId = 'full_form_choice'; page.question.explanation = page.body; page.bodyRuns = Object.fromEntries(Object.entries(page.body).map(([locale, text]) => [locale, [{ text, semantic: 'explanation' }]])); }
+export const EPISODE_01_SESSION_32_SOURCE: SessionSource = Object.freeze(authored);

@@ -990,16 +990,15 @@ export function buildSessionChildBodiesFromShard(
     ? shard.cards
     : practiceCards;
   const cardTargets = shard.cards.map((card) => card.contentItem.target.text);
-  const isFourWordModeNative =
-    shard.modeNativePlanId === LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1 ||
-    shard.modeNativePlanId === LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1;
-  const vocabularyCount = isFourWordModeNative
-    ? 4
+  const vocabularyCount = shard.modeNativePlanId === LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
+    ? 3
+    : shard.modeNativePlanId === LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1
+    ? 3
     : inferLesson1WordFirstVocabularyCountV1(cardTargets);
   const phraseCount = shard.modeNativePlanId === LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
-    ? 2
+    ? 3
     : shard.modeNativePlanId === LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1
-    ? 4
+    ? 3
     : inferLesson1WordFirstPhraseCountV1(cardTargets, vocabularyCount);
   const choreography = lesson1SessionChoreographyV1(
     shard.requiredSessionOrdinal,
@@ -1174,6 +1173,10 @@ export function buildSessionChildBodiesFromShard(
   const introducedLexicalItemIds = new Set<string>();
   for (const card of authoredPracticeCards) {
     if (introducedLexicalItemIds.size >= vocabularyCount) break;
+    // A four-pair Speed Match board is a retrieval interaction, not a word
+    // encounter. Its synthetic grid intent must never request an editorial
+    // new-word card.
+    if (card.family === 'speed_match') continue;
     const lexicalItemId = card.contentItem.intentId.replace(
       /:contact-\d+$/u,
       '',

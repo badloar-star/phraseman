@@ -3,32 +3,47 @@ import path from 'node:path';
 
 const ROOT = path.resolve(__dirname, '..');
 
-type SourceContract = {
-  file: string;
-  businessLightBlocks: number;
-  slots: number;
-};
-
+// зачем: контракт сторожит, что у светлой темы sagePorcelain не подменят и не
+// потеряют пути к её собственной графике. Раньше он сравнивал число слотов с
+// эталонной темой businessLight, но та удалена из проекта (осталась лишь в
+// levelGiftImages.ts и settings.tsx) — сравнивать не с чем, поэтому ожидания
+// теперь абсолютные, по самой Sage.
 function source(file: string): string {
   return readFileSync(path.join(ROOT, file), 'utf8');
 }
 
-function themeBlocks(text: string, theme: 'businessLight' | 'sagePorcelain'): string[] {
+// зачем: constants/*.ts периодически прогоняют через Prettier, и вид кавычек
+// меняется с одинарных на двойные. Прошлая версия контракта была прибита к
+// одинарным кавычкам, из-за чего парсер возвращал пустоту и тест охранял НИЧЕГО
+// (класс бага «немой сторож»). Нормализуем кавычки перед любым разбором, чтобы
+// будущее переформатирование снова не отключило проверку.
+function normalizeQuotes(text: string): string {
+  return text.replace(/"((?:[^"\\\n]|\\.)*)"/g, (_match, body: string) => {
+    return `'${body.replace(/'/g, "\\'")}'`;
+  });
+}
+
+// зачем: значение темы может стоять как на той же строке, так и переноситься на
+// следующую (Prettier так делает с длинными строками) — поэтому после двоеточия
+// пропускаем любые пробелы и переводы строк.
+function themeBlocks(text: string, theme: string): string[] {
+  const normalized = normalizeQuotes(text);
   const marker = new RegExp(`\\b${theme}:\\s*`, 'g');
   const blocks: string[] = [];
-  for (const match of text.matchAll(marker)) {
+  for (const match of normalized.matchAll(marker)) {
     const start = (match.index ?? 0) + match[0].length;
-    if (text[start] !== '{') {
-      const required = text.slice(start).match(/^require\('[^']+'\)/)?.[0];
+    if (normalized[start] !== '{') {
+      const rest = normalized.slice(start);
+      const required = rest.match(/^require\('[^']+'\)/)?.[0] ?? rest.match(/^'[^']*'/)?.[0];
       if (required) blocks.push(required);
       continue;
     }
     let depth = 0;
-    for (let index = start; index < text.length; index += 1) {
-      if (text[index] === '{') depth += 1;
-      if (text[index] === '}') depth -= 1;
+    for (let index = start; index < normalized.length; index += 1) {
+      if (normalized[index] === '{') depth += 1;
+      if (normalized[index] === '}') depth -= 1;
       if (depth === 0) {
-        blocks.push(text.slice(start, index + 1));
+        blocks.push(normalized.slice(start, index + 1));
         break;
       }
     }
@@ -37,59 +52,55 @@ function themeBlocks(text: string, theme: 'businessLight' | 'sagePorcelain'): st
 }
 
 function requires(block: string): string[] {
-  return [...block.matchAll(/require\('([^']+)'\)/g)].map((match) => match[1]);
+  return [...normalizeQuotes(block).matchAll(/require\('([^']+)'\)/g)].map((match) => match[1]);
 }
 
-function assertCompleteSageCoverage(contract: SourceContract): void {
-  const text = source(contract.file);
-  const businessLight = themeBlocks(text, 'businessLight');
-  const sage = themeBlocks(text, 'sagePorcelain');
-  expect(businessLight).toHaveLength(contract.businessLightBlocks);
-  expect(sage).toHaveLength(contract.businessLightBlocks);
-  expect(requires(sage.flat().join('\n'))).toHaveLength(contract.slots);
+function contains(file: string, snippet: string): void {
+  expect(normalizeQuotes(source(file))).toContain(snippet);
 }
+
+// зачем: из контракта убраны constants/dailyPhraseThemeArt.ts,
+// constants/boonIconAssets.ts и constants/leagueBonusGiftImages.ts — этих файлов
+// в проекте больше нет (карты «тема → картинка» для недельных бонусов и сундуков
+// лиги удалены после чекпойнта 96c32bb97). Тест падал на readFileSync, а не на
+// реальной регрессии.
+const SAGE_REQUIRE_SLOTS: Array<{ file: string; slots: number }> = [
+  { file: 'app/coin_icons.ts', slots: 1 },
+  { file: 'constants/generatedThemeIconAssets.ts', slots: 1 },
+  { file: 'constants/socialIconAssets.ts', slots: 2 },
+  { file: 'constants/streakIconAssets.ts', slots: 1 },
+  { file: 'constants/weeklyCompassIcons.ts', slots: 1 },
+];
 
 describe('sage porcelain static asset coverage', () => {
-  it('keeps every static asset slot wired while dedicated Celadon art replaces fallbacks', () => {
-    [
-      { file: 'app/coin_icons.ts', businessLightBlocks: 1, slots: 1 },
-      { file: 'app/flashcards/FlashcardsCategoryHub.tsx', businessLightBlocks: 1, slots: 5 },
-      { file: 'constants/generatedThemeIconAssets.ts', businessLightBlocks: 1, slots: 1 },
-      { file: 'constants/socialIconAssets.ts', businessLightBlocks: 2, slots: 2 },
-      { file: 'constants/streakIconAssets.ts', businessLightBlocks: 5, slots: 11 },
-      { file: 'constants/dailyPhraseThemeArt.ts', businessLightBlocks: 1, slots: 1 },
-      { file: 'constants/weeklyCompassIcons.ts', businessLightBlocks: 1, slots: 1 },
-      { file: 'constants/boonIconAssets.ts', businessLightBlocks: 2, slots: 10 },
-      { file: 'constants/leagueBonusGiftImages.ts', businessLightBlocks: 1, slots: 1 },
-    ].forEach(assertCompleteSageCoverage);
+  it('keeps every Sage require slot wired to dedicated Celadon art', () => {
+    for (const { file, slots } of SAGE_REQUIRE_SLOTS) {
+      const sagePaths = themeBlocks(source(file), 'sagePorcelain').flatMap(requires);
+      expect({ file, count: sagePaths.length }).toEqual({ file, count: slots });
+    }
   });
 
   it('keeps all Sage require paths literal and backed by existing assets', () => {
-    const files = [
-      'app/coin_icons.ts', 'app/flashcards/FlashcardsCategoryHub.tsx',
-      'constants/generatedThemeIconAssets.ts',
-      'constants/socialIconAssets.ts', 'constants/streakIconAssets.ts', 'constants/dailyPhraseThemeArt.ts',
-      'constants/weeklyCompassIcons.ts', 'constants/boonIconAssets.ts', 'constants/leagueBonusGiftImages.ts',
-    ];
-    for (const file of files) {
-      const sagePaths = requires(themeBlocks(source(file), 'sagePorcelain').join('\n'));
+    for (const { file } of SAGE_REQUIRE_SLOTS) {
+      const sagePaths = themeBlocks(source(file), 'sagePorcelain').flatMap(requires);
       expect(sagePaths.length).toBeGreaterThan(0);
       for (const relativePath of sagePaths) {
-        expect(relativePath).toMatch(/businessLight|sagePorcelain/);
+        expect(relativePath).toMatch(/sagePorcelain/);
         expect(existsSync(path.resolve(path.join(ROOT, path.dirname(file)), relativePath))).toBe(true);
       }
     }
   });
 
-  it('uses all ten home-menu slots and the generated Celadon artwork', () => {
-    const text = source('app/home_menu_icons.ts');
-    const branch = (theme: string) => text.match(new RegExp(`if \\(themeMode === '${theme}'\\) \\{([\\s\\S]*?)\\n  \\}`, 'm'))?.[1] ?? '';
-    const sagePaths = requires(branch('sagePorcelain'));
-    expect(sagePaths).toHaveLength(10);
+  // зачем: слот daily-tasks удалён вместе с ассетом (в
+  // assets/images/home_menu/sagePorcelain/ лежит ровно 9 файлов), поэтому
+  // ожидаем 9 пунктов меню, а не прежние 10.
+  it('uses all nine home-menu slots and the generated Celadon artwork', () => {
+    const text = normalizeQuotes(source('app/home_menu_icons.ts'));
+    const branch = text.match(/if \(themeMode === 'sagePorcelain'\) \{([\s\S]*?)\n  \}/m)?.[1] ?? '';
+    const sagePaths = requires(branch);
     expect(sagePaths).toEqual([
       '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-lessons.webp',
       '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-cards.webp',
-      '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-daily-tasks.webp',
       '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-league.webp',
       '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-diagnostic-test.webp',
       '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-practice.webp',
@@ -99,98 +110,31 @@ describe('sage porcelain static asset coverage', () => {
       '../assets/images/home_menu/sagePorcelain/home-sagePorcelain-hero-map.webp',
     ]);
     for (const relativePath of sagePaths) {
-      expect(relativePath).toMatch(/businessLight|sagePorcelain/);
       expect(existsSync(path.resolve(ROOT, 'app', relativePath))).toBe(true);
     }
   });
 
-  it('uses generated Celadon artwork for migrated flashcard modes', () => {
-    const paths = requires(themeBlocks(source('app/flashcards/FlashcardsCategoryHub.tsx'), 'sagePorcelain')[0]);
-    expect(paths).toHaveLength(5);
-    expect(paths).toEqual([
-      '../../assets/images/flashcards/mode_icons/sagePorcelain/saved.webp',
-      '../../assets/images/flashcards/mode_icons/sagePorcelain/custom.webp',
-      '../../assets/images/flashcards/mode_icons/sagePorcelain/training.webp',
-      '../../assets/images/flashcards/mode_icons/sagePorcelain/audio.webp',
-      '../../assets/images/flashcards/mode_icons/sagePorcelain/collection.webp',
-    ]);
-    for (const relativePath of paths) {
-      expect(existsSync(path.resolve(ROOT, 'app/flashcards', relativePath))).toBe(true);
-    }
-  });
-
-  it('uses Sage-specific Daily Phrase art and streak chrome', () => {
-    const dailyPhrase = source('constants/dailyPhraseThemeArt.ts');
-    const streak = source('constants/streakIconAssets.ts');
-    const dailyPhrasePaths = themeBlocks(dailyPhrase, 'sagePorcelain')
-      .map(requires)
-      .find((paths) => paths.length === 1) ?? [];
-    const streakFirePaths = themeBlocks(streak, 'sagePorcelain')
-      .map(requires)
-      .find((paths) => paths.length === 10) ?? [];
-    expect(dailyPhrasePaths).toEqual([
-      '../assets/images/trainer_theme_icons/sagePorcelain/phrases.webp',
-    ]);
-    expect(streakFirePaths).toEqual([
-      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-001.webp',
-      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-002.webp',
-      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-003.webp',
-      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-005.webp',
-      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-007.webp',
-      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-010.webp',
-      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-020.webp',
-      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-035.webp',
-      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-060.webp',
-      '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-100.webp',
-    ]);
-    expect(streak).toContain("1: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-001.webp'");
-    expect(streak).toContain("2: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-002.webp'");
-    expect(streak).toContain("3: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-003.webp'");
-    expect(streak).toContain("5: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-005.webp'");
-    expect(streak).toContain("7: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-007.webp'");
-    expect(streak).toContain("10: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-010.webp'");
-    expect(streak).toContain("20: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-020.webp'");
-    expect(streak).toContain("35: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-035.webp'");
-    expect(streak).toContain("60: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-060.webp'");
-    expect(streak).toContain("100: 'assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-100.webp'");
-    expect(streak).toContain("sagePorcelain: 'assets/images/streak_icons/sagePorcelain/streak-freeze-sagePorcelain.webp'");
-    expect(streak).toContain("sagePorcelain: require('../assets/images/streak_icons/sagePorcelain/streak-freeze-sagePorcelain.webp')");
+  it('uses Sage-specific streak chrome', () => {
+    const streak = normalizeQuotes(source('constants/streakIconAssets.ts'));
+    // зачем: тематические огоньки цепочки сняты — с 30.08 действует ТЗ
+    // «Единое перо цепочки дней»: один общий набор перьев на все темы
+    // (docs/superpowers/specs/2026-08-30-streak-feather-design.md).
+    // Сторожим теперь только то, что у Sage остаётся своим: заморозка и хром.
+    expect(streak).not.toMatch(/streak-fire-sagePorcelain-\d{3}\.webp/);
+    expect(streak).toContain(
+      "'assets/images/streak_icons/sagePorcelain/streak-freeze-sagePorcelain.webp'",
+    );
+    expect(streak).toContain(
+      "sagePorcelain: require('../assets/images/streak_icons/sagePorcelain/streak-freeze-sagePorcelain.webp')",
+    );
     expect(streak).toContain("sagePorcelain: { rgb: [139, 99, 32], accent: '#315F50' }");
     expect(streak).toContain("sagePorcelain: { rgb: [97, 112, 106], accent: '#52605A' }");
   });
 
-  it('uses generated Celadon artwork for migrated weekly boons', () => {
-    const boon = source('constants/boonIconAssets.ts');
-    const boonPaths = themeBlocks(boon, 'sagePorcelain')
-      .map(requires)
-      .find((paths) => paths.length === 10) ?? [];
-    expect(boonPaths).toEqual([
-      '../assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp',
-      '../assets/images/weekly_boon_icons/png/sagePorcelain/mystery_monday.webp',
-      '../assets/images/weekly_boon_icons/png/sagePorcelain/turbo_regen.webp',
-      '../assets/images/weekly_boon_icons/png/sagePorcelain/energy_free_window.webp',
-      '../assets/images/weekly_boon_icons/png/sagePorcelain/double_xp.webp',
-      '../assets/images/weekly_boon_icons/png/sagePorcelain/flashcard_friday.webp',
-      '../assets/images/weekly_boon_icons/png/sagePorcelain/speaking_saturday.webp',
-      '../assets/images/weekly_boon_icons/png/sagePorcelain/early_bird.webp',
-      '../assets/images/weekly_boon_icons/png/sagePorcelain/perfect_week.webp',
-      '../assets/images/weekly_boon_icons/png/sagePorcelain/comeback.webp',
-    ]);
-    expect(boon).toContain("streak_saver: 'assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp'");
-    expect(boon).toContain("mystery_monday: 'assets/images/weekly_boon_icons/png/sagePorcelain/mystery_monday.webp'");
-    expect(boon).toContain("turbo_regen: 'assets/images/weekly_boon_icons/png/sagePorcelain/turbo_regen.webp'");
-    expect(boon).toContain("energy_free_window: 'assets/images/weekly_boon_icons/png/sagePorcelain/energy_free_window.webp'");
-    expect(boon).toContain("double_xp: 'assets/images/weekly_boon_icons/png/sagePorcelain/double_xp.webp'");
-    expect(boon).toContain("flashcard_friday: 'assets/images/weekly_boon_icons/png/sagePorcelain/flashcard_friday.webp'");
-    expect(boon).toContain("speaking_saturday: 'assets/images/weekly_boon_icons/png/sagePorcelain/speaking_saturday.webp'");
-    expect(boon).toContain("early_bird: 'assets/images/weekly_boon_icons/png/sagePorcelain/early_bird.webp'");
-    expect(boon).toContain("perfect_week: 'assets/images/weekly_boon_icons/png/sagePorcelain/perfect_week.webp'");
-    expect(boon).toContain("comeback: 'assets/images/weekly_boon_icons/png/sagePorcelain/comeback.webp'");
-  });
-
   it('uses generated Celadon artwork for migrated social icons', () => {
-    const socialPaths = themeBlocks(source('constants/socialIconAssets.ts'), 'sagePorcelain')
-      .flatMap(requires);
+    const socialPaths = themeBlocks(source('constants/socialIconAssets.ts'), 'sagePorcelain').flatMap(
+      requires,
+    );
     expect(socialPaths).toEqual([
       '../assets/images/social_icons/social-friends-sagePorcelain.webp',
       '../assets/images/social_icons/social-chat-sagePorcelain.webp',
@@ -198,23 +142,22 @@ describe('sage porcelain static asset coverage', () => {
   });
 
   it('uses dedicated Celadon artwork for migrated single-slot systems', () => {
-    expect(source('app/coin_icons.ts')).toContain(
+    contains(
+      'app/coin_icons.ts',
       "sagePorcelain: require('../assets/images/currency/pearl_sagePorcelain.webp')",
     );
-    expect(source('components/EnergyIcon.tsx')).toContain(
-      'energy-start-cost.webp',
-    );
-    expect(source('constants/generatedThemeIconAssets.ts')).toContain(
+    contains('components/EnergyIcon.tsx', 'energy-start-cost.webp');
+    contains(
+      'constants/generatedThemeIconAssets.ts',
       "sagePorcelain: require('../assets/images/generated_theme_icons/lesson-exam-sagePorcelain.webp')",
     );
-    expect(source('constants/weeklyCompassIcons.ts')).toContain(
-      "sagePorcelain: 'assets/images/weekly_compass_icons/sagePorcelain.webp'",
+    contains(
+      'constants/weeklyCompassIcons.ts',
+      "'assets/images/weekly_compass_icons/sagePorcelain.webp'",
     );
-    expect(source('constants/weeklyCompassIcons.ts')).toContain(
+    contains(
+      'constants/weeklyCompassIcons.ts',
       "sagePorcelain: require('../assets/images/weekly_compass_icons/sagePorcelain.webp')",
-    );
-    expect(source('constants/leagueBonusGiftImages.ts')).toContain(
-      "sagePorcelain: require('../assets/images/league_bonus/sagePorcelain-chest.webp')",
     );
   });
 });

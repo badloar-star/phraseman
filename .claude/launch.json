@@ -144,6 +144,32 @@
         "C:/appsprojects/phraseman"
       ],
       "port": 8765
+    },
+    {
+      "name": "pageman-web",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y",
+        "serve",
+        "-s",
+        "C:/appsprojects/reader-platform/apps/mobile/dist",
+        "-l",
+        "4177"
+      ],
+      "port": 4177
+    },
+    {
+      "name": "pageman-mockups",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y",
+        "serve",
+        "-s",
+        "C:/appsprojects/reader-platform/docs/design",
+        "-l",
+        "4188"
+      ],
+      "port": 4188
     }
   ]
 }

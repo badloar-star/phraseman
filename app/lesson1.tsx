@@ -447,6 +447,9 @@ interface LessonContentProps {
   currentEnergy: number;
   currentMaxEnergy: number;
   attemptsRemaining: 0 | 1 | 2 | 3;
+  giftRescueSequence: number;
+  giftRecoveryError: string | null;
+  onRetryGiftRecovery: () => void;
   /** Руны, накопленные в этой сессии урока (владелец, 2026-08-27). */
   practiceRunesEarned: number;
   /** Источник/цель полёта руны (владелец, 2026-08-28): та же механика, что на
@@ -530,6 +533,9 @@ const LessonContent = React.memo(function LessonContent({
   currentEnergy,
   currentMaxEnergy,
   attemptsRemaining,
+  giftRescueSequence,
+  giftRecoveryError,
+  onRetryGiftRecovery,
   practiceRunesEarned,
   runeFlightOriginRef,
   runeFlightCounterRef,
@@ -1044,6 +1050,9 @@ const LessonContent = React.memo(function LessonContent({
             remaining={attemptsRemaining}
             locale={lang}
             testID="lesson1-session-attempts"
+            giftRescueSequence={giftRescueSequence}
+            giftRecoveryError={giftRecoveryError}
+            onRetryGiftRecovery={onRetryGiftRecovery}
           />
 
           <View ref={runeFlightCounterRef} collapsable={false}>
@@ -1970,7 +1979,7 @@ function LessonScreen() {
   const accountToken = useMemo(() => captureAccountGeneration(), []);
   const attempts = useSessionAttempts({
     token: accountToken,
-    sessionId: `lesson:${studyTarget}:${lessonId}:${attemptSessionId}`,
+    sessionId: `lesson:${studyTarget}:${lessonId}`,
     initialQuestionId: `lesson:${lessonId}:loading`,
   });
   const [showAttemptsModal, setShowAttemptsModal] = useState(false);
@@ -3419,8 +3428,11 @@ function LessonScreen() {
     if (settings.hardMode) setTimeout(() => textInputRef.current?.focus(), 50);
   }, [fadeAnim, phrase, settings.hardMode, studyTarget]);
 
-  useSessionAttemptAutoReset({
+  const attemptRecovery = useSessionAttemptAutoReset({
     phase: attempts.state.phase,
+    hydrated: attempts.hydrated,
+    giftCount: attempts.giftCount,
+    recoverWithGift: attempts.recoverWithGift,
     forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
     restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
     onRestored: retryCurrentLessonPhraseAfterSessionRuneForfeit,
@@ -3955,6 +3967,9 @@ function LessonScreen() {
             currentEnergy={currentEnergy}
             currentMaxEnergy={currentMaxEnergy}
             attemptsRemaining={attempts.state.remainingAttempts}
+            giftRescueSequence={attemptRecovery.giftRescueSequence}
+            giftRecoveryError={attemptRecovery.giftRecoveryError}
+            onRetryGiftRecovery={attemptRecovery.retryGiftRecovery}
             practiceRunesEarned={practiceRunes.runes}
             runeFlightOriginRef={runeFlight.originRef}
             runeFlightCounterRef={runeFlight.counterRef}

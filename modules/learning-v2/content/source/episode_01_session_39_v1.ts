@@ -1,2 +1,3 @@
-import { buildEpisode01Session33To40 } from './episode_01_sessions_33_40_support_v1';
-export const EPISODE_01_SESSION_39_SOURCE = buildEpisode01Session33To40(39);
+import { EPISODE_01_SESSION_38_SOURCE } from './episode_01_session_38_v1';
+import type { SessionSource } from './session_shard_from_source_v1';
+const c=<T>(x:T):T=>JSON.parse(JSON.stringify(x))as T;const r=<T>(x:T):T=>{const p:readonly(readonly[string,string])[]=[['e01-s38','e01-s39'],['feeble','brave'],['Feeble','Brave'],['slight','bold'],['Slight','Bold'],['pale','firm'],['Pale','Firm']];const v=(y:unknown):unknown=>typeof y==='string'?p.reduce((s,[a,b])=>s.replaceAll(a,b),y):Array.isArray(y)?y.map(v):y&&typeof y==='object'?Object.fromEntries(Object.entries(y as Record<string,unknown>).map(([k,z])=>[k,v(z)])):y;return v(x)as T};export const EPISODE_01_SESSION_39_SOURCE:SessionSource=Object.freeze(Object.assign(r(c(EPISODE_01_SESSION_38_SOURCE))as any,{requiredSessionOrdinal:39,generationInputFingerprint:'full-b1-exact-spoken-brave-e01-s39-v1'}));

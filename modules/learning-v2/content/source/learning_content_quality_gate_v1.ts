@@ -462,6 +462,12 @@ function sessionCurriculumTargetWords(source: SessionSource): Set<string> {
       for (const distractor of stage?.distractors ?? []) add(distractor.value);
     }
   }
+  for (const item of source.retrievalVocabulary ?? []) {
+    add(item.target);
+    for (const stage of Object.values(item.contacts ?? {})) {
+      for (const distractor of stage?.distractors ?? []) add(distractor.value);
+    }
+  }
   for (const phrase of source.phrases ?? []) {
     // Сама фраза целиком и каждое её слово.
     add(phrase.english);
@@ -678,8 +684,11 @@ function inspectIntro(source: SessionSource, issues: LearningV2ContentQualityIss
 
 function inspectPhrases(source: SessionSource, issues: LearningV2ContentQualityIssue[]): void {
   const hasExplicitVocabulary = (source.newVocabulary?.length ?? 0) > 0;
+  const isCheckpoint = source.sessionKindOverride === 'checkpoint';
   if (
-    hasExplicitVocabulary
+    isCheckpoint
+      ? source.phrases.length < 1 || source.phrases.length > 15
+      : hasExplicitVocabulary
       ? source.phrases.length < 1 || source.phrases.length > 15
       : source.phrases.length !== 15
   )
@@ -687,7 +696,7 @@ function inspectPhrases(source: SessionSource, issues: LearningV2ContentQualityI
       issues,
       'phrase_count_invalid',
       'phrases',
-      hasExplicitVocabulary
+      isCheckpoint || hasExplicitVocabulary
         ? `Word-first source требует 1–15 фраз-применений; получено ${source.phrases.length}.`
         : `Требуется ровно 15 фраз; получено ${source.phrases.length}.`,
     );
@@ -778,7 +787,8 @@ function inspectVocabulary(
   issues: LearningV2ContentQualityIssue[],
 ): void {
   const vocabulary = source.newVocabulary ?? [];
-  if (vocabulary.length < 1 || vocabulary.length > 5)
+  const isCheckpoint = source.sessionKindOverride === 'checkpoint';
+  if ((!isCheckpoint && (vocabulary.length < 1 || vocabulary.length > 5)) || (isCheckpoint && vocabulary.length !== 0))
     add(
       issues,
       'vocabulary_count_invalid',

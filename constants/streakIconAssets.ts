@@ -1,7 +1,13 @@
 import type { ImageSourcePropType } from "react-native";
 import type { ThemeMode } from "./theme";
 
-export const STREAK_ICON_TIERS = [1, 2, 3, 5, 7, 10, 20, 35, 60, 100] as const;
+// зачем: ТЗ «Единое перо цепочки дней» (docs/superpowers/specs/
+// 2026-08-30-streak-feather-design.md) — один образ на все темы, ступень
+// ровно каждые 10 дней, насыщение на 90+. Прежние тематические огоньки с
+// шагом 1/2/3/5/7/10/20/35/60/100 сняты вместе с 90 файлами streak-fire-*.
+export const STREAK_ICON_TIERS = [
+  0, 10, 20, 30, 40, 50, 60, 70, 80, 90,
+] as const;
 
 export type StreakIconTierDays = (typeof STREAK_ICON_TIERS)[number];
 
@@ -20,227 +26,36 @@ type ThemeTierMap<T> = Record<ThemeMode, Record<StreakIconTierDays, T>>;
 
 const DEFAULT_THEME_MODE: ThemeMode = "indigo";
 
-// «Чёрное кино»: fire/freeze icons use DALL-E object-cutout foreground assets.
-const STREAK_FIRE_ICON_ASSET_PATHS: ThemeTierMap<string> = {
-  dark: {
-    1: "assets/images/streak_icons/dark/streak-fire-dark-001.webp",
-    2: "assets/images/streak_icons/dark/streak-fire-dark-002.webp",
-    3: "assets/images/streak_icons/dark/streak-fire-dark-003.webp",
-    5: "assets/images/streak_icons/dark/streak-fire-dark-005.webp",
-    7: "assets/images/streak_icons/dark/streak-fire-dark-007.webp",
-    10: "assets/images/streak_icons/dark/streak-fire-dark-010.webp",
-    20: "assets/images/streak_icons/dark/streak-fire-dark-020.webp",
-    35: "assets/images/streak_icons/dark/streak-fire-dark-035.webp",
-    60: "assets/images/streak_icons/dark/streak-fire-dark-060.webp",
-    100: "assets/images/streak_icons/dark/streak-fire-dark-100.webp",
-  },
-  gold: {
-    1: "assets/images/streak_icons/gold/streak-fire-gold-001.webp",
-    2: "assets/images/streak_icons/gold/streak-fire-gold-002.webp",
-    3: "assets/images/streak_icons/gold/streak-fire-gold-003.webp",
-    5: "assets/images/streak_icons/gold/streak-fire-gold-005.webp",
-    7: "assets/images/streak_icons/gold/streak-fire-gold-007.webp",
-    10: "assets/images/streak_icons/gold/streak-fire-gold-010.webp",
-    20: "assets/images/streak_icons/gold/streak-fire-gold-020.webp",
-    35: "assets/images/streak_icons/gold/streak-fire-gold-035.webp",
-    60: "assets/images/streak_icons/gold/streak-fire-gold-060.webp",
-    100: "assets/images/streak_icons/gold/streak-fire-gold-100.webp",
-  },
-  olive: {
-    1: "assets/images/streak_icons/olive/streak-fire-olive-001.webp",
-    2: "assets/images/streak_icons/olive/streak-fire-olive-002.webp",
-    3: "assets/images/streak_icons/olive/streak-fire-olive-003.webp",
-    5: "assets/images/streak_icons/olive/streak-fire-olive-005.webp",
-    7: "assets/images/streak_icons/olive/streak-fire-olive-007.webp",
-    10: "assets/images/streak_icons/olive/streak-fire-olive-010.webp",
-    20: "assets/images/streak_icons/olive/streak-fire-olive-020.webp",
-    35: "assets/images/streak_icons/olive/streak-fire-olive-035.webp",
-    60: "assets/images/streak_icons/olive/streak-fire-olive-060.webp",
-    100: "assets/images/streak_icons/olive/streak-fire-olive-100.webp",
-  },
-  midnight: {
-    1: "assets/images/streak_icons/midnight/streak-fire-midnight-001.webp",
-    2: "assets/images/streak_icons/midnight/streak-fire-midnight-002.webp",
-    3: "assets/images/streak_icons/midnight/streak-fire-midnight-003.webp",
-    5: "assets/images/streak_icons/midnight/streak-fire-midnight-005.webp",
-    7: "assets/images/streak_icons/midnight/streak-fire-midnight-007.webp",
-    10: "assets/images/streak_icons/midnight/streak-fire-midnight-010.webp",
-    20: "assets/images/streak_icons/midnight/streak-fire-midnight-020.webp",
-    35: "assets/images/streak_icons/midnight/streak-fire-midnight-035.webp",
-    60: "assets/images/streak_icons/midnight/streak-fire-midnight-060.webp",
-    100: "assets/images/streak_icons/midnight/streak-fire-midnight-100.webp",
-  },
-  ember: {
-    1: "assets/images/streak_icons/ember/streak-fire-ember-001.webp",
-    2: "assets/images/streak_icons/ember/streak-fire-ember-002.webp",
-    3: "assets/images/streak_icons/ember/streak-fire-ember-003.webp",
-    5: "assets/images/streak_icons/ember/streak-fire-ember-005.webp",
-    7: "assets/images/streak_icons/ember/streak-fire-ember-007.webp",
-    10: "assets/images/streak_icons/ember/streak-fire-ember-010.webp",
-    20: "assets/images/streak_icons/ember/streak-fire-ember-020.webp",
-    35: "assets/images/streak_icons/ember/streak-fire-ember-035.webp",
-    60: "assets/images/streak_icons/ember/streak-fire-ember-060.webp",
-    100: "assets/images/streak_icons/ember/streak-fire-ember-100.webp",
-  },
-  aurora: {
-    1: "assets/images/streak_icons/aurora/streak-fire-aurora-001.webp",
-    2: "assets/images/streak_icons/aurora/streak-fire-aurora-002.webp",
-    3: "assets/images/streak_icons/aurora/streak-fire-aurora-003.webp",
-    5: "assets/images/streak_icons/aurora/streak-fire-aurora-005.webp",
-    7: "assets/images/streak_icons/aurora/streak-fire-aurora-007.webp",
-    10: "assets/images/streak_icons/aurora/streak-fire-aurora-010.webp",
-    20: "assets/images/streak_icons/aurora/streak-fire-aurora-020.webp",
-    35: "assets/images/streak_icons/aurora/streak-fire-aurora-035.webp",
-    60: "assets/images/streak_icons/aurora/streak-fire-aurora-060.webp",
-    100: "assets/images/streak_icons/aurora/streak-fire-aurora-100.webp",
-  },
-  volt: {
-    1: "assets/images/streak_icons/volt/streak-fire-volt-001.webp",
-    2: "assets/images/streak_icons/volt/streak-fire-volt-002.webp",
-    3: "assets/images/streak_icons/volt/streak-fire-volt-003.webp",
-    5: "assets/images/streak_icons/volt/streak-fire-volt-005.webp",
-    7: "assets/images/streak_icons/volt/streak-fire-volt-007.webp",
-    10: "assets/images/streak_icons/volt/streak-fire-volt-010.webp",
-    20: "assets/images/streak_icons/volt/streak-fire-volt-020.webp",
-    35: "assets/images/streak_icons/volt/streak-fire-volt-035.webp",
-    60: "assets/images/streak_icons/volt/streak-fire-volt-060.webp",
-    100: "assets/images/streak_icons/volt/streak-fire-volt-100.webp",
-  },
-  sagePorcelain: {
-    1: "assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-001.webp",
-    2: "assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-002.webp",
-    3: "assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-003.webp",
-    5: "assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-005.webp",
-    7: "assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-007.webp",
-    10: "assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-010.webp",
-    20: "assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-020.webp",
-    35: "assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-035.webp",
-    60: "assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-060.webp",
-    100: "assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-100.webp",
-  },
-  indigo: {
-    1: "assets/images/streak_icons/indigo/streak-fire-indigo-001.webp",
-    2: "assets/images/streak_icons/indigo/streak-fire-indigo-002.webp",
-    3: "assets/images/streak_icons/indigo/streak-fire-indigo-003.webp",
-    5: "assets/images/streak_icons/indigo/streak-fire-indigo-005.webp",
-    7: "assets/images/streak_icons/indigo/streak-fire-indigo-007.webp",
-    10: "assets/images/streak_icons/indigo/streak-fire-indigo-010.webp",
-    20: "assets/images/streak_icons/indigo/streak-fire-indigo-020.webp",
-    35: "assets/images/streak_icons/indigo/streak-fire-indigo-035.webp",
-    60: "assets/images/streak_icons/indigo/streak-fire-indigo-060.webp",
-    100: "assets/images/streak_icons/indigo/streak-fire-indigo-100.webp",
-  },
+// зачем: единый набор перьев вместо 10 тематических наборов огня.
+// Перо одинаково во всех темах — тему несут окружающие поверхности, а
+// ступень зависит только от длины цепочки. Пути статичны для сборщика.
+const STREAK_FEATHER_ICON_ASSET_PATHS: Record<StreakIconTierDays, string> = {
+  0: "assets/images/streak_icons/feather/streak-feather-01.webp",
+  10: "assets/images/streak_icons/feather/streak-feather-02.webp",
+  20: "assets/images/streak_icons/feather/streak-feather-03.webp",
+  30: "assets/images/streak_icons/feather/streak-feather-04.webp",
+  40: "assets/images/streak_icons/feather/streak-feather-05.webp",
+  50: "assets/images/streak_icons/feather/streak-feather-06.webp",
+  60: "assets/images/streak_icons/feather/streak-feather-07.webp",
+  70: "assets/images/streak_icons/feather/streak-feather-08.webp",
+  80: "assets/images/streak_icons/feather/streak-feather-09.webp",
+  90: "assets/images/streak_icons/feather/streak-feather-10.webp",
 };
 
-const STREAK_FIRE_ICON_SOURCES: ThemeTierMap<ImageSourcePropType> = {
-  dark: {
-    1: require("../assets/images/streak_icons/dark/streak-fire-dark-001.webp"),
-    2: require("../assets/images/streak_icons/dark/streak-fire-dark-002.webp"),
-    3: require("../assets/images/streak_icons/dark/streak-fire-dark-003.webp"),
-    5: require("../assets/images/streak_icons/dark/streak-fire-dark-005.webp"),
-    7: require("../assets/images/streak_icons/dark/streak-fire-dark-007.webp"),
-    10: require("../assets/images/streak_icons/dark/streak-fire-dark-010.webp"),
-    20: require("../assets/images/streak_icons/dark/streak-fire-dark-020.webp"),
-    35: require("../assets/images/streak_icons/dark/streak-fire-dark-035.webp"),
-    60: require("../assets/images/streak_icons/dark/streak-fire-dark-060.webp"),
-    100: require("../assets/images/streak_icons/dark/streak-fire-dark-100.webp"),
-  },
-  gold: {
-    1: require("../assets/images/streak_icons/gold/streak-fire-gold-001.webp"),
-    2: require("../assets/images/streak_icons/gold/streak-fire-gold-002.webp"),
-    3: require("../assets/images/streak_icons/gold/streak-fire-gold-003.webp"),
-    5: require("../assets/images/streak_icons/gold/streak-fire-gold-005.webp"),
-    7: require("../assets/images/streak_icons/gold/streak-fire-gold-007.webp"),
-    10: require("../assets/images/streak_icons/gold/streak-fire-gold-010.webp"),
-    20: require("../assets/images/streak_icons/gold/streak-fire-gold-020.webp"),
-    35: require("../assets/images/streak_icons/gold/streak-fire-gold-035.webp"),
-    60: require("../assets/images/streak_icons/gold/streak-fire-gold-060.webp"),
-    100: require("../assets/images/streak_icons/gold/streak-fire-gold-100.webp"),
-  },
-  olive: {
-    1: require("../assets/images/streak_icons/olive/streak-fire-olive-001.webp"),
-    2: require("../assets/images/streak_icons/olive/streak-fire-olive-002.webp"),
-    3: require("../assets/images/streak_icons/olive/streak-fire-olive-003.webp"),
-    5: require("../assets/images/streak_icons/olive/streak-fire-olive-005.webp"),
-    7: require("../assets/images/streak_icons/olive/streak-fire-olive-007.webp"),
-    10: require("../assets/images/streak_icons/olive/streak-fire-olive-010.webp"),
-    20: require("../assets/images/streak_icons/olive/streak-fire-olive-020.webp"),
-    35: require("../assets/images/streak_icons/olive/streak-fire-olive-035.webp"),
-    60: require("../assets/images/streak_icons/olive/streak-fire-olive-060.webp"),
-    100: require("../assets/images/streak_icons/olive/streak-fire-olive-100.webp"),
-  },
-  midnight: {
-    1: require("../assets/images/streak_icons/midnight/streak-fire-midnight-001.webp"),
-    2: require("../assets/images/streak_icons/midnight/streak-fire-midnight-002.webp"),
-    3: require("../assets/images/streak_icons/midnight/streak-fire-midnight-003.webp"),
-    5: require("../assets/images/streak_icons/midnight/streak-fire-midnight-005.webp"),
-    7: require("../assets/images/streak_icons/midnight/streak-fire-midnight-007.webp"),
-    10: require("../assets/images/streak_icons/midnight/streak-fire-midnight-010.webp"),
-    20: require("../assets/images/streak_icons/midnight/streak-fire-midnight-020.webp"),
-    35: require("../assets/images/streak_icons/midnight/streak-fire-midnight-035.webp"),
-    60: require("../assets/images/streak_icons/midnight/streak-fire-midnight-060.webp"),
-    100: require("../assets/images/streak_icons/midnight/streak-fire-midnight-100.webp"),
-  },
-  ember: {
-    1: require("../assets/images/streak_icons/ember/streak-fire-ember-001.webp"),
-    2: require("../assets/images/streak_icons/ember/streak-fire-ember-002.webp"),
-    3: require("../assets/images/streak_icons/ember/streak-fire-ember-003.webp"),
-    5: require("../assets/images/streak_icons/ember/streak-fire-ember-005.webp"),
-    7: require("../assets/images/streak_icons/ember/streak-fire-ember-007.webp"),
-    10: require("../assets/images/streak_icons/ember/streak-fire-ember-010.webp"),
-    20: require("../assets/images/streak_icons/ember/streak-fire-ember-020.webp"),
-    35: require("../assets/images/streak_icons/ember/streak-fire-ember-035.webp"),
-    60: require("../assets/images/streak_icons/ember/streak-fire-ember-060.webp"),
-    100: require("../assets/images/streak_icons/ember/streak-fire-ember-100.webp"),
-  },
-  aurora: {
-    1: require("../assets/images/streak_icons/aurora/streak-fire-aurora-001.webp"),
-    2: require("../assets/images/streak_icons/aurora/streak-fire-aurora-002.webp"),
-    3: require("../assets/images/streak_icons/aurora/streak-fire-aurora-003.webp"),
-    5: require("../assets/images/streak_icons/aurora/streak-fire-aurora-005.webp"),
-    7: require("../assets/images/streak_icons/aurora/streak-fire-aurora-007.webp"),
-    10: require("../assets/images/streak_icons/aurora/streak-fire-aurora-010.webp"),
-    20: require("../assets/images/streak_icons/aurora/streak-fire-aurora-020.webp"),
-    35: require("../assets/images/streak_icons/aurora/streak-fire-aurora-035.webp"),
-    60: require("../assets/images/streak_icons/aurora/streak-fire-aurora-060.webp"),
-    100: require("../assets/images/streak_icons/aurora/streak-fire-aurora-100.webp"),
-  },
-  volt: {
-    1: require("../assets/images/streak_icons/volt/streak-fire-volt-001.webp"),
-    2: require("../assets/images/streak_icons/volt/streak-fire-volt-002.webp"),
-    3: require("../assets/images/streak_icons/volt/streak-fire-volt-003.webp"),
-    5: require("../assets/images/streak_icons/volt/streak-fire-volt-005.webp"),
-    7: require("../assets/images/streak_icons/volt/streak-fire-volt-007.webp"),
-    10: require("../assets/images/streak_icons/volt/streak-fire-volt-010.webp"),
-    20: require("../assets/images/streak_icons/volt/streak-fire-volt-020.webp"),
-    35: require("../assets/images/streak_icons/volt/streak-fire-volt-035.webp"),
-    60: require("../assets/images/streak_icons/volt/streak-fire-volt-060.webp"),
-    100: require("../assets/images/streak_icons/volt/streak-fire-volt-100.webp"),
-  },
-  sagePorcelain: {
-    1: require("../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-001.webp"),
-    2: require("../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-002.webp"),
-    3: require("../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-003.webp"),
-    5: require("../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-005.webp"),
-    7: require("../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-007.webp"),
-    10: require("../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-010.webp"),
-    20: require("../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-020.webp"),
-    35: require("../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-035.webp"),
-    60: require("../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-060.webp"),
-    100: require("../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-100.webp"),
-  },
-  indigo: {
-    1: require("../assets/images/streak_icons/indigo/streak-fire-indigo-001.webp"),
-    2: require("../assets/images/streak_icons/indigo/streak-fire-indigo-002.webp"),
-    3: require("../assets/images/streak_icons/indigo/streak-fire-indigo-003.webp"),
-    5: require("../assets/images/streak_icons/indigo/streak-fire-indigo-005.webp"),
-    7: require("../assets/images/streak_icons/indigo/streak-fire-indigo-007.webp"),
-    10: require("../assets/images/streak_icons/indigo/streak-fire-indigo-010.webp"),
-    20: require("../assets/images/streak_icons/indigo/streak-fire-indigo-020.webp"),
-    35: require("../assets/images/streak_icons/indigo/streak-fire-indigo-035.webp"),
-    60: require("../assets/images/streak_icons/indigo/streak-fire-indigo-060.webp"),
-    100: require("../assets/images/streak_icons/indigo/streak-fire-indigo-100.webp"),
-  },
+const STREAK_FEATHER_ICON_SOURCES: Record<
+  StreakIconTierDays,
+  ImageSourcePropType
+> = {
+  0: require("../assets/images/streak_icons/feather/streak-feather-01.webp"),
+  10: require("../assets/images/streak_icons/feather/streak-feather-02.webp"),
+  20: require("../assets/images/streak_icons/feather/streak-feather-03.webp"),
+  30: require("../assets/images/streak_icons/feather/streak-feather-04.webp"),
+  40: require("../assets/images/streak_icons/feather/streak-feather-05.webp"),
+  50: require("../assets/images/streak_icons/feather/streak-feather-06.webp"),
+  60: require("../assets/images/streak_icons/feather/streak-feather-07.webp"),
+  70: require("../assets/images/streak_icons/feather/streak-feather-08.webp"),
+  80: require("../assets/images/streak_icons/feather/streak-feather-09.webp"),
+  90: require("../assets/images/streak_icons/feather/streak-feather-10.webp"),
 };
 
 const FIRE_CHROME: Record<
@@ -332,17 +147,21 @@ function rgba(rgb: readonly [number, number, number], alpha: number): string {
 function normalizeThemeMode(
   themeMode: ThemeMode | null | undefined,
 ): ThemeMode {
-  return themeMode && STREAK_FIRE_ICON_SOURCES[themeMode]
+  // зачем: тему больше выбирает только заморозка (у пера один вид на все
+  // темы), поэтому валидность режима сверяем по freeze-набору.
+  return themeMode && STREAK_FREEZE_ICON_SOURCES[themeMode]
     ? themeMode
     : DEFAULT_THEME_MODE;
 }
 
 export function streakIconTierForDays(streakDays: number): StreakIconTierDays {
-  if (!Number.isFinite(streakDays) || streakDays <= 1) return 1;
+  // зачем: обрыв цепочки и мусорные значения дают первое слабое перо (ступень
+  // 0), дальше ступень меняется ровно каждые 10 дней и стоит на 90+.
+  if (!Number.isFinite(streakDays) || streakDays <= 0) return 0;
   const tier =
     [...STREAK_ICON_TIERS]
       .filter((candidate) => candidate <= streakDays)
-      .at(-1) ?? 1;
+      .at(-1) ?? 0;
   return tier as StreakIconTierDays;
 }
 
@@ -350,7 +169,12 @@ export function streakIconIntensity(tierDays: StreakIconTierDays): number {
   return STREAK_ICON_TIERS.indexOf(tierDays) / (STREAK_ICON_TIERS.length - 1);
 }
 
-export function getStreakFireIconVariant(
+/**
+ * Ступень пера личной цепочки. Само перо одинаково во всех темах; от темы
+ * зависит только подложка/свечение вокруг него, чтобы иконка садилась на
+ * поверхность экрана.
+ */
+export function getStreakFeatherIconVariant(
   themeMode: ThemeMode,
   streakDays: number,
 ): StreakIconVariant {
@@ -359,8 +183,8 @@ export function getStreakFireIconVariant(
   const intensity = streakIconIntensity(tierDays);
   const chrome = FIRE_CHROME[safeThemeMode];
   return {
-    source: STREAK_FIRE_ICON_SOURCES[safeThemeMode][tierDays],
-    assetPath: STREAK_FIRE_ICON_ASSET_PATHS[safeThemeMode][tierDays],
+    source: STREAK_FEATHER_ICON_SOURCES[tierDays],
+    assetPath: STREAK_FEATHER_ICON_ASSET_PATHS[tierDays],
     tierDays,
     backgroundColor: rgba(chrome.rgb, 0.12 + intensity * 0.1),
     borderColor: rgba(chrome.rgb, 0.36 + intensity * 0.28),
@@ -370,8 +194,11 @@ export function getStreakFireIconVariant(
   };
 }
 
-/** Compatibility name used by the home hero while the feather asset rollout remains deferred. */
-export const getStreakFeatherIconVariant = getStreakFireIconVariant;
+/**
+ * Историческое имя: цепочку рисовал огонь. Оставлено, чтобы не трогать
+ * StreakChainIcon/LiveStreakFlame/статистику одним коммитом; отдаёт перо.
+ */
+export const getStreakFireIconVariant = getStreakFeatherIconVariant;
 
 export function getStreakFreezeIconVariant(
   themeMode: ThemeMode,
@@ -395,12 +222,13 @@ export function getStreakFreezeIconVariant(
 
 export const STREAK_ICON_MODEL = {
   tiers: STREAK_ICON_TIERS,
-  fireAssetPaths: STREAK_FIRE_ICON_ASSET_PATHS,
+  featherAssetPaths: STREAK_FEATHER_ICON_ASSET_PATHS,
   freezeAssetPaths: STREAK_FREEZE_ICON_ASSET_PATHS,
   freezeAssetPath: STREAK_FREEZE_ICON_ASSET_PATH,
-  modelSheetPath: "assets/images/streak_icons/streak-fire-model-sheet.webp",
   sourcePrompts: {
-    fire: "assets/images/streak_icons/sources/streak-fire-dalle-source.png",
+    // зачем: исходник пера — зелёный model sheet 30.08 вне бандла; финальные
+    // webp вырезаны из него хромакеем (см. ТЗ, раздел «Генерация и файлы»).
+    feather: "not-bundled:.codex-tmp/streak-feather/model-sheet.png",
     freeze: "assets/images/streak_icons/sources/streak-freeze-dalle-source.png",
     freezeThemes: STREAK_FREEZE_ICON_SOURCE_PROMPTS,
   },

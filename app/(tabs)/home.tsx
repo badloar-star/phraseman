@@ -134,7 +134,7 @@ import { HOME_REWARD_DEMO_MODES } from '../reward_flight_particles';
 // зачем отдельное имя: в этом файле `Animated` — из react-native и им пользуются
 // сотни мест. Пульс счётчиков живёт на Reanimated (UI-поток), поэтому его
 // компонент импортируется как Reanimated, а не подменяет существующий.
-import Reanimated from 'react-native-reanimated';
+import Reanimated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { runeAmount } from '../../constants/runes';
 import { ruKnowledgeShardsAfterNumber, ukKnowledgeShardsAfterNumber } from '../../constants/shard_plurals';
 import MaxHomeOrb from '../../components/home/MaxHomeOrb';
@@ -207,6 +207,8 @@ const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 const ENERGY_TOOLTIP_W = 220;
 const CONTENT_W = Math.min(SCREEN_W, 640);
 const DEV_HOME_MISTAKES_READY_COUNT = 10;
+const HOME_PRIORITY_CARD_HOLD_SCALE = 1.035;
+const HOME_PRIORITY_CARD_PRESS_IN_MS = 150;
 // Rollback: set false to return to the previous elite home status card.
 // Android Fabric/Yoga can abort when NativeAnimated mutates Home view props during startup.
 const HOME_ANIMATION_USE_NATIVE_DRIVER = true;
@@ -1026,6 +1028,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         count: number;
     } | null>(null);
     const [mistakeSheetVisible, setMistakeSheetVisible] = useState(false);
+    const [homeLearningPriorityOverride, setHomeLearningPriorityOverride] = useState<'mistakes' | 'last_lesson' | null>(null);
     const [devMistakesCardOverride, setDevMistakesCardOverride] = useState<'mistakes' | 'last_lesson' | null>(null);
     const devMistakesCardEnabled = devMistakesCardOverride === 'mistakes';
     const mistakeReadyCount = mistakeReadySnapshot?.target === String(studyTarget)
@@ -1037,6 +1040,45 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         : ENABLE_DEV_TOOLS && devMistakesCardOverride === 'last_lesson'
             ? 0
             : mistakeReadyCount;
+    const automaticHomeLearningPriority = resolveHomeLearningPriority(effectiveMistakeReadyCount);
+    const canToggleHomeLearningPriority = automaticHomeLearningPriority === 'mistakes' && lastLesson !== null;
+    const homeLearningPriority = canToggleHomeLearningPriority && homeLearningPriorityOverride !== null
+        ? homeLearningPriorityOverride
+        : automaticHomeLearningPriority;
+    const showMistakesCard = homeLearningPriority === 'mistakes';
+    const homePriorityCardReduceMotion = useReduceMotion();
+    const homePriorityCardScale = useSharedValue(1);
+    const homePriorityCardLongPressHandledRef = useRef(false);
+    const homePriorityCardScaleStyle = useAnimatedStyle(() => ({
+        transform: [{ scale: homePriorityCardScale.value }],
+    }));
+    useEffect(() => {
+        if (!canToggleHomeLearningPriority) {
+            setHomeLearningPriorityOverride((currentOverride) => currentOverride === null ? currentOverride : null);
+        }
+    }, [canToggleHomeLearningPriority]);
+    useEffect(() => {
+        if (homePriorityCardReduceMotion) homePriorityCardScale.value = 1;
+    }, [homePriorityCardReduceMotion, homePriorityCardScale]);
+    const handleHomeLearningPriorityCardPressIn = useCallback(() => {
+        homePriorityCardLongPressHandledRef.current = false;
+        if (homePriorityCardReduceMotion) return;
+        homePriorityCardScale.value = withTiming(HOME_PRIORITY_CARD_HOLD_SCALE, { duration: HOME_PRIORITY_CARD_PRESS_IN_MS });
+    }, [homePriorityCardReduceMotion, homePriorityCardScale]);
+    const handleHomeLearningPriorityCardPressOut = useCallback(() => {
+        homePriorityCardScale.value = homePriorityCardReduceMotion
+            ? 1
+            : withSpring(1, { damping: 18, stiffness: 260, mass: 0.7 });
+    }, [homePriorityCardReduceMotion, homePriorityCardScale]);
+    const handleHomeLearningPriorityCardLongPress = useCallback(() => {
+        if (!canToggleHomeLearningPriority) return;
+        homePriorityCardLongPressHandledRef.current = true;
+        hapticTap();
+        setHomeLearningPriorityOverride((currentOverride) => {
+            const currentPriority = currentOverride ?? automaticHomeLearningPriority;
+            return currentPriority === 'mistakes' ? 'last_lesson' : 'mistakes';
+        });
+    }, [automaticHomeLearningPriority, canToggleHomeLearningPriority]);
     const [requestedReportReply, setRequestedReportReply] = useState<UserNotification | null>(null);
     const handleReportReplyBannerOpen = useCallback((notification: UserNotification) => {
         setRequestedReportReply(notification);
@@ -3377,14 +3419,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             tr: 'Hatalarım',
             pl: 'Moje błędy',
         });
-        const homeLearningPriority = resolveHomeLearningPriority(effectiveMistakeReadyCount);
-        const showMistakesCard = homeLearningPriority === 'mistakes';
         const priorityCardVisible = showMistakesCard || lastLesson !== null;
         const priorityCardTitle = showMistakesCard ? homeMistakesTitle : lastLessonName;
         const priorityCardImage = showMistakesCard ? homeMistakesImage : lastLessonImage;
         const priorityCardCounter = showMistakesCard
             ? String(effectiveMistakeReadyCount)
             : `${Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}/50`;
+        const priorityCardAccessibilityHint = canToggleHomeLearningPriority ? triLang(lang, {
+            ru: 'Удерживайте, чтобы переключаться между ошибками и последним уроком',
+            uk: 'Утримуйте, щоб перемикатися між помилками та останнім уроком',
+            en: 'Long press to switch between mistakes and the last lesson',
+            es: 'Mantén pulsado para cambiar entre errores y la última lección',
+            'pt-BR': 'Mantenha pressionado para alternar entre erros e a última lição',
+            vi: 'Nhấn giữ để chuyển giữa lỗi và bài học gần nhất',
+            id: 'Tekan lama untuk beralih antara kesalahan dan pelajaran terakhir',
+            tr: 'Hatalar ve son ders arasında geçiş yapmak için basılı tutun',
+            pl: 'Przytrzymaj, aby przełączać między błędami a ostatnią lekcją',
+        }) : undefined;
         const homeQuickRowPad = 8;
         const homeQuickRowGap = 14;
         const homeQuickTileWidth = maxVoiceVisible
@@ -3466,12 +3517,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // коде как разделы главной, которых пользователь не видит. Реальный ряд —
         // visibleQuickItems (Урок / МАКС / Карточки), см. рендер ниже.
         const eliteStatsCompact = CONTENT_W < 370;
-        // зачем (владелец 2026-09-02): «Спин» и «Подарок» наезжали друг на
-        // друга — спин стоит по центру ряда, подарок абсолютом справа, и на
-        // узкой карточке их половины пересекались (счётчик спина уезжал под
-        // подарок). Раскладку по спеке Daily Journey п.6 не трогаем — ужимаем
-        // сами кнопки, когда видны обе: половина ряда минус зазор 10 — это
-        // предельная ширина каждой, из неё считаем кегль и внутренние отступы.
+        // Когда одновременно доступны «Спин» и «Подарок», обе кнопки занимают
+        // потоковые края одного ряда. Центрированный спин вместе с абсолютным
+        // правым подарком пересекались на Pixel; ограничение ширины само по
+        // себе этого не предотвращало, поскольку реальная ширина пилюль меньше
+        // maxWidth. Для одной кнопки сохраняем привычный центр/правый слот.
         const homeActionRowBothVisible = homeSpinBalance > 0 && dailyJourneyUnreadCount > 0;
         // marginHorizontal: 8 у обёртки (×2) + padding: 18 у градиента (×2) = 52.
         const homeActionRowInnerW = Math.max(0, CONTENT_W - 52);
@@ -3916,7 +3966,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   просмотра последнего подарка карточка возвращается к обычной
                   высоте, а отдельная absolute-цель сохраняет точку полёта. */}
               {(homeSpinBalance > 0 || dailyJourneyUnreadCount > 0) ? (
-              <View testID="home-stats-bottom-row" style={{ marginTop: eliteStatsCompact ? 12 : 14, height: 44, justifyContent: 'center' }}>
+              <View testID="home-stats-bottom-row" style={{
+                marginTop: eliteStatsCompact ? 12 : 14,
+                height: 44,
+                flexDirection: homeActionRowBothVisible ? 'row' : 'column',
+                alignItems: 'center',
+                justifyContent: homeActionRowBothVisible ? 'space-between' : 'center',
+              }}>
               {homeSpinBalance > 0 ? (
                 <Animated.View
                   testID="home-spin-fab"
@@ -3963,8 +4019,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         alignItems: 'center',
                         justifyContent: 'center',
                         gap: homeActionGap,
-                        borderBottomWidth: 4,
-                        borderBottomColor: '#A96F06',
                       }}
                     >
                       {/* зачем (владелец, 2026-08-26): у спина появился свой узнаваемый
@@ -4000,7 +4054,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   testID="home-gift-entry"
                   ref={homeGiftEntryTargetRef as React.Ref<View>}
                   collapsable={false}
-                  style={{ position: 'absolute', right: 0, top: 0, bottom: 0, minWidth: Math.min(104, homeActionMaxW), maxWidth: homeActionMaxW, justifyContent: 'center', alignItems: 'flex-end' }}
+                  style={homeActionRowBothVisible ? {
+                    minWidth: Math.min(104, homeActionMaxW),
+                    maxWidth: homeActionMaxW,
+                    justifyContent: 'center',
+                    alignItems: 'flex-end',
+                  } : {
+                    position: 'absolute',
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    minWidth: Math.min(104, homeActionMaxW),
+                    maxWidth: homeActionMaxW,
+                    justifyContent: 'center',
+                    alignItems: 'flex-end',
+                  }}
                 >
                 {dailyJourneyUnreadCount > 0 ? (
                   <TapScale
@@ -4040,8 +4108,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         justifyContent: 'center',
                         gap: homeActionGap,
                         backgroundColor: t.accent,
-                        borderBottomWidth: 4,
-                        borderBottomColor: 'rgba(0,0,0,0.30)',
                       }}
                     >
                       {/* Метка доступности на кнопке, сгенерированный ассет декоративный. */}
@@ -4474,57 +4540,65 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           {(<Animated.View style={sectionStyle(2)}>
 
           {priorityCardVisible ? (
-            <TouchableOpacity
-              testID={showMistakesCard ? 'home-mistakes-card' : 'home-continue-lesson'}
-              accessible={true}
-              accessibilityRole="button"
-              accessibilityLabel={showMistakesCard
-                ? `${homeMistakesTitle}: ${effectiveMistakeReadyCount}`
-                : `${s.home.continueBtn}: ${lastLessonName}`}
-              activeOpacity={0.82}
-              onPress={() => {
-                hapticTap();
-                if (showMistakesCard) {
-                  trackMistakePracticeEvent('mistake_practice_menu_opened', {
-                    study_target: mistakeStudyTarget ?? studyTarget,
-                    entry_source: 'home',
-                    ready_count: effectiveMistakeReadyCount,
-                    plus_access: hasPremiumAccess,
-                  });
-                  if (!hasPremiumAccess) {
-                    router.push({ pathname: '/premium_modal', params: { context: 'mistake_practice' } } as any);
+            <Reanimated.View style={homePriorityCardScaleStyle}>
+              <TouchableOpacity
+                testID={showMistakesCard ? 'home-mistakes-card' : 'home-continue-lesson'}
+                accessible={true}
+                accessibilityRole="button"
+                accessibilityLabel={showMistakesCard
+                  ? `${homeMistakesTitle}: ${effectiveMistakeReadyCount}`
+                  : `${s.home.continueBtn}: ${lastLessonName}`}
+                accessibilityHint={priorityCardAccessibilityHint}
+                activeOpacity={0.82}
+                delayLongPress={550}
+                onPressIn={handleHomeLearningPriorityCardPressIn}
+                onPressOut={handleHomeLearningPriorityCardPressOut}
+                onLongPress={handleHomeLearningPriorityCardLongPress}
+                onPress={() => {
+                  if (homePriorityCardLongPressHandledRef.current) return;
+                  hapticTap();
+                  if (showMistakesCard) {
+                    trackMistakePracticeEvent('mistake_practice_menu_opened', {
+                      study_target: mistakeStudyTarget ?? studyTarget,
+                      entry_source: 'home',
+                      ready_count: effectiveMistakeReadyCount,
+                      plus_access: hasPremiumAccess,
+                    });
+                    if (!hasPremiumAccess) {
+                      router.push({ pathname: '/premium_modal', params: { context: 'mistake_practice' } } as any);
+                      return;
+                    }
+                    setMistakeSheetVisible(true);
                     return;
                   }
-                  setMistakeSheetVisible(true);
-                  return;
-                }
-                if (!lastLesson) return;
-                logFeatureOpened('lesson_menu');
-                trackFeatureOpened('lesson_menu').catch(() => { });
-                perfNavStart('lesson_menu');
-                router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any);
-              }}
-              style={[{ marginHorizontal: 8, marginBottom: 12, borderRadius: 20, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : isOliveTheme ? oliveShadow(1) : null]}
-            >
-              <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
-                {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 8, minHeight: 72 }}>
-                  <View style={{ width: homeLastLessonArtSlotWidth, height: homeLastLessonArtSlotHeight, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <LightSketchMenuImage source={priorityCardImage} width={priorityCardArtSize} height={priorityCardArtSize} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
+                  if (!lastLesson) return;
+                  logFeatureOpened('lesson_menu');
+                  trackFeatureOpened('lesson_menu').catch(() => { });
+                  perfNavStart('lesson_menu');
+                  router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any);
+                }}
+                style={[{ marginHorizontal: 8, marginBottom: 12, borderRadius: 20, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : isOliveTheme ? oliveShadow(1) : null]}
+              >
+                <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
+                  {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 8, minHeight: 72 }}>
+                    <View style={{ width: homeLastLessonArtSlotWidth, height: homeLastLessonArtSlotHeight, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <LightSketchMenuImage source={priorityCardImage} width={priorityCardArtSize} height={priorityCardArtSize} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
+                    </View>
+                    <View style={{ flex: 1, minWidth: 0 }}>
+                      <FlowText testID={showMistakesCard ? 'home-mistakes-title' : 'home-continue-lesson-title'} provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
+                        {priorityCardTitle}
+                      </FlowText>
+                    </View>
+                    <View style={{ minWidth: 30, alignItems: 'flex-end', flexShrink: 0 }}>
+                      <Text style={{ color: homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] /* guard-ok: правый счётчик прогресса */ }}>
+                        {priorityCardCounter}
+                      </Text>
+                    </View>
                   </View>
-                  <View style={{ flex: 1, minWidth: 0 }}>
-                    <FlowText testID={showMistakesCard ? 'home-mistakes-title' : 'home-continue-lesson-title'} provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
-                      {priorityCardTitle}
-                    </FlowText>
-                  </View>
-                  <View style={{ minWidth: 30, alignItems: 'flex-end', flexShrink: 0 }}>
-                    <Text style={{ color: homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] /* guard-ok: правый счётчик прогресса */ }}>
-                      {priorityCardCounter}
-                    </Text>
-                  </View>
-                </View>
-              </LinearGradient>
-            </TouchableOpacity>
+                </LinearGradient>
+              </TouchableOpacity>
+            </Reanimated.View>
           ) : null}
 
           {/* «Задание» — сразу под карточкой последнего урока (владелец

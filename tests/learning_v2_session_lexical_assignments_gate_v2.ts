@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 
-import { LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2 } from "../modules/learning-v2/curriculum/en/exact_session_packets_en_v2";
+import {
+  LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2,
+  learningV2EnglishLexicalSenseOccursInExamplesV2,
+} from "../modules/learning-v2/curriculum/en/exact_session_packets_en_v2";
+import { LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2 } from "../modules/learning-v2/curriculum/en/grammar_operations_en_v2";
 import { LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2 } from "../modules/learning-v2/curriculum/en/lexical_progression_en_v2";
 import { LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2 } from "../modules/learning-v2/curriculum/en/session_lexical_assignments_en_v2";
 
@@ -60,16 +64,21 @@ if (new Set(allSenseIds).size !== allSenseIds.length) {
 }
 
 for (const assignment of assignments) {
-  if (assignment.canonicalExamples.length < 2 || assignment.canonicalExamples.length > 4) {
+  // The assignment owns one or more exact lexical contexts. The packet builder
+  // fills a single exact context to the packet-level minimum of two using only
+  // examples owned by the same grammar/review focus.
+  if (assignment.canonicalExamples.length < 1 || assignment.canonicalExamples.length > 4) {
     findings.push(
       `canonical_example_count_invalid:${assignment.sessionId}:${assignment.canonicalExamples.length}`,
     );
   }
 
-  const normalizedExamples =
-    ` ${assignment.canonicalExamples.join(" ").toLowerCase().replace(/[^a-z]+/g, " ")} `;
   for (const sense of assignment.newSenses) {
-    if (!normalizedExamples.includes(` ${sense.english.toLowerCase()} `)) {
+    if (!learningV2EnglishLexicalSenseOccursInExamplesV2(
+      sense.english,
+      sense.partOfSpeech,
+      assignment.canonicalExamples,
+    )) {
       findings.push(`new_sense_absent_from_examples:${assignment.sessionId}:${sense.id}`);
     }
   }
@@ -85,11 +94,26 @@ for (const assignment of assignments) {
   if (JSON.stringify(packet.newLexicalSenseIds) !== JSON.stringify(expectedNewSenseIds)) {
     findings.push(`assigned_packet_new_senses_mismatch:${assignment.sessionId}`);
   }
-  if (JSON.stringify(packet.retrievalLexicalSenseIds) !== JSON.stringify(assignment.retrievalSenseIds)) {
-    findings.push(`assigned_packet_retrieval_senses_mismatch:${assignment.sessionId}`);
+  if (!assignment.retrievalSenseIds.every((senseId) =>
+    packet.retrievalLexicalSenseIds.includes(senseId)
+  )) {
+    findings.push(`assigned_packet_explicit_retrieval_missing:${assignment.sessionId}`);
   }
-  if (JSON.stringify(packet.canonicalExamples) !== JSON.stringify(assignment.canonicalExamples)) {
-    findings.push(`assigned_packet_examples_mismatch:${assignment.sessionId}`);
+  if (
+    JSON.stringify(packet.canonicalExamples.slice(0, assignment.canonicalExamples.length)) !==
+      JSON.stringify(assignment.canonicalExamples)
+  ) {
+    findings.push(`assigned_packet_exact_examples_not_first:${assignment.sessionId}`);
+  }
+  const assignmentOperation = LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2.find(
+    (operation) => operation.id === assignment.grammarOperationId,
+  );
+  const assignmentOperationExamples = new Set([
+    ...(assignmentOperation?.positiveExamples ?? []),
+    ...(assignmentOperation?.canonicalLexicalExamples ?? []),
+  ]);
+  if (!packet.canonicalExamples.every((example) => assignmentOperationExamples.has(example))) {
+    findings.push(`assigned_packet_examples_escape_assignment_operation:${assignment.sessionId}`);
   }
   for (const senseId of assignment.retrievalSenseIds) {
     if (!LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2.some((edge) =>

@@ -1,14 +1,104 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LESSON1_SESSION_04_MODE_NATIVE_PLAN_ID_V1 = exports.LESSON1_SESSION_03_MODE_NATIVE_PLAN_ID_V1 = exports.LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1 = exports.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1 = void 0;
+exports.LESSON1_SESSION_31_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_30_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_29_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_28_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_27_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_26_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_25_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_23_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_22_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_21_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_20_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_19_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_18_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_17_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_16_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_15_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_14_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_13_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_12_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_11_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_10_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_09_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_08_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_07_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_05_MODE_NATIVE_PLAN_ID_V2 = exports.LESSON1_SESSION_04_MODE_NATIVE_PLAN_ID_V1 = exports.LESSON1_SESSION_03_MODE_NATIVE_PLAN_ID_V1 = exports.LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1 = exports.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1 = void 0;
 exports.inferLesson1WordFirstVocabularyCountV1 = inferLesson1WordFirstVocabularyCountV1;
 exports.inferLesson1WordFirstPhraseCountV1 = inferLesson1WordFirstPhraseCountV1;
 exports.lesson1SessionChoreographyV1 = lesson1SessionChoreographyV1;
 const episode_01_session_map_v1_1 = require("./episode_01_session_map_v1");
+const lesson2_session_choreography_v1_1 = require("./lesson2_session_choreography_v1");
+const lesson3_session_choreography_v1_1 = require("./lesson3_session_choreography_v1");
 exports.LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1 = 'en-e01-s01-mode-native-v1';
 exports.LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1 = 'en-e01-s02-mode-native-v1';
 exports.LESSON1_SESSION_03_MODE_NATIVE_PLAN_ID_V1 = 'en-e01-s03-mode-native-v1';
 exports.LESSON1_SESSION_04_MODE_NATIVE_PLAN_ID_V1 = 'en-e01-s04-mode-native-v1';
+/** Full B1 Session 5 has three temperature words, not the legacy four greetings. */
+exports.LESSON1_SESSION_05_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s05-mode-native-full-b1-v2';
+/**
+ * Session 7 is a compact spoken-production bridge.  Its six primary targets
+ * are deliberately distinct: two new words, then four different I am forms.
+ * This prevents the legacy voice plan from assigning the same target over and
+ * over merely to fill a historical nine-card quota.
+ */
+exports.LESSON1_SESSION_07_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s07-mode-native-spoken-production-v2';
+exports.LESSON1_SESSION_08_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s08-mode-native-checkpoint-v2';
+exports.LESSON1_SESSION_09_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s09-mode-native-third-person-v2';
+exports.LESSON1_SESSION_10_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s10-mode-native-lexical-extension-v2';
+exports.LESSON1_SESSION_11_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s11-mode-native-lexical-contrast-v2';
+exports.LESSON1_SESSION_12_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s12-mode-native-guided-application-v2';
+exports.LESSON1_SESSION_13_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s13-mode-native-diagnostic-repair-v2';
+exports.LESSON1_SESSION_14_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s14-mode-native-lexical-extension-v2';
+exports.LESSON1_SESSION_15_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s15-mode-native-lexical-extension-v2';
+/** A checkpoint has retrieval-only phrase targets; it must not inherit a
+ * word-first lexical choreography from the preceding ordinary session. */
+exports.LESSON1_SESSION_16_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s16-mode-native-checkpoint-v2';
+exports.LESSON1_SESSION_17_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s17-mode-native-you-we-they-v2';
+exports.LESSON1_SESSION_18_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s18-mode-native-affirmative-retrieval-v2';
+exports.LESSON1_SESSION_19_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s19-mode-native-affirmative-contrast-v2';
+exports.LESSON1_SESSION_20_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s20-mode-native-guided-application-v2';
+exports.LESSON1_SESSION_21_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s21-mode-native-place-repair-v2';
+exports.LESSON1_SESSION_22_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s22-mode-native-listening-retrieval-v2';
+/** S23 reuses the compact six-target retrieval contract; no target repeats. */
+exports.LESSON1_SESSION_23_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s23-mode-native-spoken-retrieval-v2';
+exports.LESSON1_SESSION_25_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s25-mode-native-full-form-choice-v2';
+exports.LESSON1_SESSION_26_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s26-mode-native-guided-full-form-v2';
+exports.LESSON1_SESSION_27_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s27-mode-native-diagnostic-full-form-v2';
+exports.LESSON1_SESSION_28_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s28-mode-native-guided-application-v2';
+exports.LESSON1_SESSION_29_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s29-mode-native-diagnostic-repair-v2';
+exports.LESSON1_SESSION_30_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s30-mode-native-listening-retrieval-v2';
+exports.LESSON1_SESSION_31_MODE_NATIVE_PLAN_ID_V2 = 'en-e01-s31-mode-native-spoken-production-v2';
+function session10ModeNativeStepsV2() {
+    return [
+        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+        { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'recognize' },
+        { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
+        { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+        { family: 'speed_match', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
+        { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+    ];
+}
+/** S13 has its own compact route: each primary target appears once. */
+function session13ModeNativeStepsV2() {
+    return [
+        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+        { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'recognize' },
+        { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
+        { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+        { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0, 1, 2], learningStage: 'retrieve_meaning' },
+        { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'apply_in_phrase' },
+    ];
+}
+function session09ModeNativeStepsV2() {
+    return [
+        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+        { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'recognize' },
+        { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
+        { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+        { family: 'speed_match', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
+        { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'apply_in_phrase' },
+    ];
+}
+function session08ModeNativeStepsV2() {
+    return [
+        { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'delayed_recall' },
+        { family: 'listen_build_dictation', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'delayed_recall' },
+        // The grid retrieves already-known state words. Its primary target is a
+        // distinct known phrase, never a faux newly introduced vocabulary item.
+        { family: 'speed_match', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'independent_assessment' },
+        { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'independent_assessment' },
+        { family: 'listen_choose', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'independent_assessment' },
+        { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 6, learningStage: 'independent_assessment' },
+    ];
+}
+function session07ModeNativeStepsV2() {
+    return [
+        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+        { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'recognize' },
+        { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
+        { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+        { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0, 1], learningStage: 'apply_in_phrase' },
+        { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'speak_independently' },
+    ];
+}
 function session01ModeNativeStepsV1() {
     return [
         { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
@@ -36,64 +126,46 @@ function session02ModeNativeStepsV1() {
         { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
         { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'recognize' },
         { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'recognize' },
-        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 3, learningStage: 'recognize' },
-        { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'retrieve_meaning' },
-        { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'retrieve_meaning' },
-        { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 3, learningStage: 'retrieve_meaning' },
-        { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
-        { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
-        { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'build_form' },
-        { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'build_form' },
-        { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 3, learningStage: 'build_form' },
-        { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0, 1, 2, 3], learningStage: 'apply_in_phrase' },
-        { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
-        { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
-        { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
-        { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'speak_with_model' },
+        { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0, 1, 2], learningStage: 'apply_in_phrase' },
+        { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'build_form' },
+        { family: 'listen_build_dictation', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+        { family: 'context_gap_grammar', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
     ];
 }
-/** Exact contraction-first choreography for the owner-authored English session 3. */
+/** Exact Full B1 state-word choreography: every primary learner target is unique. */
 function session03ModeNativeStepsV1() {
     return [
-        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
-        { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
-        { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
-        { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
-        { family: 'scripted_repeat_compare', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'speak_with_model' },
-        { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
-        { family: 'speed_match', purpose: 'retrieval_practice', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [], learningStage: 'apply_in_phrase' },
-        { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
-        { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
-        { family: 'listen_build_dictation', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'apply_in_phrase' },
-        { family: 'scripted_repeat_compare', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'speak_with_model' },
-        { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
-        { family: 'listen_build_dictation', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
-        { family: 'context_gap_grammar', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
-        { family: 'listen_build_dictation', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
-        { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'speak_with_model' },
-        { family: 'listen_choose', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+        { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
+        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'recognize' },
+        { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'recognize' },
+        { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [], learningStage: 'apply_in_phrase' },
+        { family: 'phrase_builder', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'build_form' },
+        { family: 'listen_build_dictation', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+        { family: 'context_gap_grammar', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'apply_in_phrase' },
     ];
 }
-/** Three fresh state words first, then affirmative transfer with known I am / I’m. */
+/**
+ * Compact exact Session 4: a word is grounded once, then used once in a
+ * different full phrase.  This replaces the legacy 17-card repetition loop.
+ */
 function session04ModeNativeStepsV1() {
     return [
-        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'recognize' },
-        { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'recognize' },
-        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'recognize' },
-        { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'retrieve_meaning' },
-        { family: 'listen_choose', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'retrieve_meaning' },
-        { family: 'context_gap_grammar', purpose: 'retrieval_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'retrieve_meaning' },
-        { family: 'scripted_repeat_compare', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 0, learningStage: 'build_form' },
-        { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'build_form' },
-        { family: 'scripted_repeat_compare', purpose: 'guided_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'build_form' },
-        { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
-        { family: 'scripted_repeat_compare', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 1, learningStage: 'speak_with_model' },
-        { family: 'listen_choose', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 2, learningStage: 'apply_in_phrase' },
-        { family: 'phrase_builder', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
-        { family: 'context_gap_grammar', purpose: 'near_transfer', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
-        { family: 'listen_build_dictation', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 5, learningStage: 'apply_in_phrase' },
-        { family: 'speed_match', purpose: 'independent_check', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0, 1, 2], learningStage: 'apply_in_phrase' },
-        { family: 'scripted_repeat_compare', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'speak_with_model' },
+        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'recognize' },
+        { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'recognize' },
+        { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+        { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+        { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0, 1, 2], learningStage: 'apply_in_phrase' },
+        { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
+    ];
+}
+function session05ModeNativeStepsV2() {
+    return [
+        { family: 'listen_choose', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 1, learningStage: 'recognize' },
+        { family: 'scripted_repeat_compare', purpose: 'supported_practice', targetKind: 'vocabulary', sourceVocabularyIndex: 2, learningStage: 'recognize' },
+        { family: 'context_gap_grammar', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 0, learningStage: 'apply_in_phrase' },
+        { family: 'listen_build_dictation', purpose: 'guided_practice', targetKind: 'phrase', sourcePhraseIndex: 3, learningStage: 'apply_in_phrase' },
+        { family: 'speed_match', purpose: 'near_transfer', targetKind: 'vocabulary_grid', sourceVocabularyIndices: [0, 1, 2], learningStage: 'apply_in_phrase' },
+        { family: 'phrase_builder', purpose: 'independent_check', targetKind: 'phrase', sourcePhraseIndex: 4, learningStage: 'apply_in_phrase' },
     ];
 }
 /**
@@ -406,6 +478,32 @@ function lesson1SessionChoreographyV1(sessionOrdinal, kindOverride, vocabularyCo
     if (!kind)
         throw new Error('lesson1_session_choreography_ordinal_invalid');
     const support = supportFor(sessionOrdinal, kind);
+    if ((0, lesson2_session_choreography_v1_1.isLesson2ModeNativePlanIdV1)(modeNativePlanId)) {
+        return Object.freeze({
+            sessionOrdinal,
+            kind,
+            interactionProfile: profileFor(kind, vocabularyCount),
+            ...support,
+            steps: Object.freeze([
+                ...introSteps(phraseCount),
+                ...(0, lesson2_session_choreography_v1_1.lesson2ModeNativeStepsV1)(),
+            ]),
+        });
+    }
+    if ((0, lesson3_session_choreography_v1_1.isLesson3ModeNativePlanIdV1)(modeNativePlanId)) {
+        return Object.freeze({
+            sessionOrdinal,
+            kind,
+            interactionProfile: profileFor(kind, vocabularyCount),
+            ...support,
+            steps: Object.freeze([
+                ...introSteps(phraseCount),
+                ...(modeNativePlanId === lesson3_session_choreography_v1_1.LESSON3_SESSION_08_MODE_NATIVE_PLAN_ID_V1 || modeNativePlanId === lesson3_session_choreography_v1_1.LESSON3_SESSION_16_MODE_NATIVE_PLAN_ID_V1 || modeNativePlanId === lesson3_session_choreography_v1_1.LESSON3_SESSION_24_MODE_NATIVE_PLAN_ID_V1 || modeNativePlanId === lesson3_session_choreography_v1_1.LESSON3_SESSION_32_MODE_NATIVE_PLAN_ID_V1 || modeNativePlanId === lesson3_session_choreography_v1_1.LESSON3_SESSION_40_MODE_NATIVE_PLAN_ID_V1
+                    ? (0, lesson3_session_choreography_v1_1.lesson3Session08ModeNativeStepsV1)()
+                    : (0, lesson3_session_choreography_v1_1.lesson3Session01ModeNativeStepsV1)()),
+            ]),
+        });
+    }
     return Object.freeze({
         sessionOrdinal,
         kind,
@@ -419,9 +517,59 @@ function lesson1SessionChoreographyV1(sessionOrdinal, kindOverride, vocabularyCo
                     ? [...introSteps(phraseCount), ...session03ModeNativeStepsV1()]
                     : modeNativePlanId === exports.LESSON1_SESSION_04_MODE_NATIVE_PLAN_ID_V1
                         ? [...introSteps(phraseCount), ...session04ModeNativeStepsV1()]
-                        : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
-                            ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
-                            : [...introSteps(), ...practiceSteps(kind)]),
+                        : modeNativePlanId === exports.LESSON1_SESSION_05_MODE_NATIVE_PLAN_ID_V2
+                            ? [...introSteps(phraseCount), ...session05ModeNativeStepsV2()]
+                            : modeNativePlanId === exports.LESSON1_SESSION_07_MODE_NATIVE_PLAN_ID_V2
+                                ? [...introSteps(phraseCount), ...session07ModeNativeStepsV2()]
+                                : modeNativePlanId === exports.LESSON1_SESSION_08_MODE_NATIVE_PLAN_ID_V2
+                                    ? [...introSteps(phraseCount), ...session08ModeNativeStepsV2()]
+                                    : modeNativePlanId === exports.LESSON1_SESSION_09_MODE_NATIVE_PLAN_ID_V2
+                                        ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                        : modeNativePlanId === exports.LESSON1_SESSION_10_MODE_NATIVE_PLAN_ID_V2
+                                            ? [...introSteps(phraseCount), ...session10ModeNativeStepsV2()]
+                                            : modeNativePlanId === exports.LESSON1_SESSION_11_MODE_NATIVE_PLAN_ID_V2
+                                                ? [...introSteps(phraseCount), ...session10ModeNativeStepsV2()]
+                                                : modeNativePlanId === exports.LESSON1_SESSION_12_MODE_NATIVE_PLAN_ID_V2
+                                                    ? [...introSteps(phraseCount), ...session10ModeNativeStepsV2()]
+                                                    : modeNativePlanId === exports.LESSON1_SESSION_13_MODE_NATIVE_PLAN_ID_V2
+                                                        ? [...introSteps(phraseCount), ...session13ModeNativeStepsV2()]
+                                                        : modeNativePlanId === exports.LESSON1_SESSION_14_MODE_NATIVE_PLAN_ID_V2
+                                                            ? [...introSteps(phraseCount), ...session13ModeNativeStepsV2()]
+                                                            : modeNativePlanId === exports.LESSON1_SESSION_15_MODE_NATIVE_PLAN_ID_V2
+                                                                ? [...introSteps(phraseCount), ...session13ModeNativeStepsV2()]
+                                                                : modeNativePlanId === exports.LESSON1_SESSION_16_MODE_NATIVE_PLAN_ID_V2
+                                                                    ? [...introSteps(phraseCount), ...session08ModeNativeStepsV2()]
+                                                                    : modeNativePlanId === exports.LESSON1_SESSION_17_MODE_NATIVE_PLAN_ID_V2
+                                                                        ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                        : modeNativePlanId === exports.LESSON1_SESSION_18_MODE_NATIVE_PLAN_ID_V2
+                                                                            ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                            : modeNativePlanId === exports.LESSON1_SESSION_19_MODE_NATIVE_PLAN_ID_V2
+                                                                                ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                                : modeNativePlanId === exports.LESSON1_SESSION_20_MODE_NATIVE_PLAN_ID_V2
+                                                                                    ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                                    : modeNativePlanId === exports.LESSON1_SESSION_21_MODE_NATIVE_PLAN_ID_V2
+                                                                                        ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                                        : modeNativePlanId === exports.LESSON1_SESSION_22_MODE_NATIVE_PLAN_ID_V2
+                                                                                            ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                                            : modeNativePlanId === exports.LESSON1_SESSION_23_MODE_NATIVE_PLAN_ID_V2
+                                                                                                ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                                                : modeNativePlanId === exports.LESSON1_SESSION_25_MODE_NATIVE_PLAN_ID_V2
+                                                                                                    ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                                                    : modeNativePlanId === exports.LESSON1_SESSION_26_MODE_NATIVE_PLAN_ID_V2
+                                                                                                        ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                                                        : modeNativePlanId === exports.LESSON1_SESSION_27_MODE_NATIVE_PLAN_ID_V2
+                                                                                                            ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                                                            : modeNativePlanId === exports.LESSON1_SESSION_28_MODE_NATIVE_PLAN_ID_V2
+                                                                                                                ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                                                                : modeNativePlanId === exports.LESSON1_SESSION_29_MODE_NATIVE_PLAN_ID_V2
+                                                                                                                    ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                                                                    : modeNativePlanId === exports.LESSON1_SESSION_30_MODE_NATIVE_PLAN_ID_V2
+                                                                                                                        ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                                                                        : modeNativePlanId === exports.LESSON1_SESSION_31_MODE_NATIVE_PLAN_ID_V2
+                                                                                                                            ? [...introSteps(phraseCount), ...session09ModeNativeStepsV2()]
+                                                                                                                            : vocabularyCount > 0 && kindMayIntroduceVocabulary(kind)
+                                                                                                                                ? [...introSteps(phraseCount), ...wordsThenPhrasesSteps(vocabularyCount, phraseCount)]
+                                                                                                                                : [...introSteps(), ...practiceSteps(kind)]),
     });
 }
 //# sourceMappingURL=lesson1_session_choreography_v1.js.map

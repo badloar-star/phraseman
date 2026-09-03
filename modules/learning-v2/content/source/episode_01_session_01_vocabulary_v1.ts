@@ -11,7 +11,7 @@ const contact = (
   distractors: SessionVocabularyContactSourceV1['distractors'],
 ): SessionVocabularyContactSourceV1 => ({ guidance, distractors });
 
-const EPISODE_01_SESSION_01_VOCABULARY_BASE_V1:
+export const EPISODE_01_SESSION_01_VOCABULARY_BASE_V1:
   readonly SessionVocabularySourceV1[] = Object.freeze([
   {
     id: 'e01-s01-word-i',
@@ -683,3 +683,13 @@ export const EPISODE_01_SESSION_01_VOCABULARY_V1:
     });
   }),
 );
+
+/**
+ * The practice grid deliberately contains only untouched lexical targets.
+ * `I` is introduced in the grammar intro and must not become a second
+ * learner task in this session.
+ */
+export const EPISODE_01_SESSION_01_KNOWN_GRID_VOCABULARY_V1:
+  readonly SessionVocabularySourceV1[] = Object.freeze([
+  ...EPISODE_01_SESSION_01_VOCABULARY_V1,
+]);

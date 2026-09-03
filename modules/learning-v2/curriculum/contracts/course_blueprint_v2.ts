@@ -32,6 +32,14 @@ export const LEARNING_V2_ACTIVE_MODE_FAMILIES_V2 = Object.freeze([
   "scripted_repeat_compare",
 ] as const);
 
+/**
+ * A learner-facing session must exercise every active family once, but may not
+ * manufacture repeated targets just to reach the former fixed budget of 17.
+ */
+export const LEARNING_V2_MIN_PRACTICE_INTERACTIONS_V2 =
+  LEARNING_V2_ACTIVE_MODE_FAMILIES_V2.length;
+export const LEARNING_V2_MAX_PRACTICE_INTERACTIONS_V2 = 17;
+
 export type LearningV2ModeFamilyV2 =
   (typeof LEARNING_V2_ACTIVE_MODE_FAMILIES_V2)[number];
 
@@ -442,7 +450,11 @@ export function assertLearningV2CurriculumSessionPacketV2(
     }
   }
 
-  if (!Array.isArray(input.practiceInteractions) || input.practiceInteractions.length !== 17) {
+  if (
+    !Array.isArray(input.practiceInteractions) ||
+    input.practiceInteractions.length < LEARNING_V2_MIN_PRACTICE_INTERACTIONS_V2 ||
+    input.practiceInteractions.length > LEARNING_V2_MAX_PRACTICE_INTERACTIONS_V2
+  ) {
     fail("learning_v2_v2_practice_count_invalid");
   }
   const seenActivityIds = new Set<string>();

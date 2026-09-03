@@ -32,13 +32,11 @@ describe('Cards training mode entry', () => {
     expect(source).toContain('if (!option || deckDataMode !== fcTrainOptionPresetMode(option)) return;');
   });
 
-  test('Errors keeps its dedicated setup sheet contract', () => {
+  test('does not keep the retired Errors branch in Cards', () => {
     const handler = trainOptionHandler();
 
-    expect(handler).toContain("if (option === 'errors')");
-    expect(handler).toContain('setMistakeSheetVisible(true);');
-    expect(handler.indexOf('setMistakeSheetVisible(true);')).toBeLessThan(
-      handler.indexOf('setPickerOption(option);'),
-    );
+    expect(handler).not.toContain("option === 'errors'");
+    expect(handler).not.toContain('setMistakeSheetVisible');
+    expect(handler).toContain('setPickerOption(option);');
   });
 });

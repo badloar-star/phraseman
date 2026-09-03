@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 
-import { LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2 } from "../modules/learning-v2/curriculum/en/exact_session_packets_en_v2";
+import {
+  LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2,
+  learningV2EnglishLexicalSenseOccursInExamplesV2,
+} from "../modules/learning-v2/curriculum/en/exact_session_packets_en_v2";
 import {
   LEARNING_V2_ENGLISH_PLANNED_LEXICAL_RETRIEVAL_EDGES_V2,
   LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2,
@@ -45,8 +48,11 @@ for (const packet of packets) {
       findings.push(`packet_new_sense_missing_from_ledger:${packet.sessionId}:${senseId}`);
       continue;
     }
-    const normalizedExamples = ` ${packet.canonicalExamples.join(" ").toLowerCase().replace(/[^a-z]+/g, " ")} `;
-    if (!normalizedExamples.includes(` ${sense.english.toLowerCase()} `)) {
+    if (!learningV2EnglishLexicalSenseOccursInExamplesV2(
+      sense.english,
+      sense.partOfSpeech,
+      packet.canonicalExamples,
+    )) {
       findings.push(`new_sense_absent_from_canonical_examples:${packet.sessionId}:${senseId}`);
     }
   }

@@ -22,6 +22,11 @@ assert.ok(session3, "english_session_3_source_missing");
 const session4 = authoredLearningV2SessionSource(4);
 assert.ok(session4, "english_session_4_source_missing");
 
+assert.doesNotThrow(
+  () => assertLearningV2CurrentGrammarGetsFullSessionV1([session1]),
+  "the exact Full B1 I + am operation must remain atomic even though source metadata retains both copula and first-person tags",
+);
+
 const wrongRussianLocale = structuredClone(session2);
 (wrongRussianLocale.learningGoal as { ru: string }).ru =
   "Це повністю український текст, який випадково потрапив у російську локаль.";

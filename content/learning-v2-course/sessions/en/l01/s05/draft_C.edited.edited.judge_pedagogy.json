@@ -1,0 +1,93 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "hot",
+      "sick",
+      "lost",
+      "new"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "hat/hurt — реалистичные фонетические ловушки на hot"
+      },
+      {
+        "task": 6,
+        "trap": "last/list — реалистичные фонетические ловушки на lost"
+      },
+      {
+        "task": 1,
+        "trap": "I fine. / Am fine. — типичные обрубки"
+      },
+      {
+        "task": 2,
+        "trap": "I no sure. / I am sure not. — реалистичные ошибки порядка/переноса из родного языка"
+      },
+      {
+        "task": 3,
+        "trap": "I new. / I am not new. — пропуск am и случайное отрицание"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "hot",
+        "sick",
+        "lost",
+        "new"
+      ],
+      [
+        "fine",
+        "sure",
+        "ready",
+        "sorry"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 2,
+      "phrase_builder": 3,
+      "speed_match": 2,
+      "context_gap_grammar": 3,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы соблюдены (только пройденная грамматика и слова в целях/объяснениях), 17 заданий с убывающей поддержкой, ловушки реалистичные, разборы у каждого неверного варианта уникальны, повторов с соседними сессиями и мёртвых формул не найдено."
+}

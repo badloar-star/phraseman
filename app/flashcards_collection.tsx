@@ -15,7 +15,6 @@ import {
   BackHandler,
   InteractionManager,
   Platform,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -49,7 +48,6 @@ import CollectionListView, {
 } from './flashcards/CollectionListView';
 import { resolveFlashcardListItemHeight } from './flashcards/FlashcardListItemChrome';
 // Cards 2.1 §5.2: нижний таббар раздела (Тренировка / + / Наборы)
-import FlashcardsTabBar, { FC_TABBAR_HEIGHT, useFcTabBarScroll } from './flashcards/FlashcardsTabBar';
 // §5.3: два входа в набор — «Мои наборы» и каталог сообщества; «назад» ведёт ровно туда
 import {
   FC_MY_PACKS_ROUTE,
@@ -61,10 +59,6 @@ import ReportPackModal from '../components/ReportPackModal';
 import { packTitleForInterface } from './flashcards/marketplace';
 import { publishLocalAuthorPack } from './community_packs/publishLocalPack';
 import CollectionDeckView from './flashcards/CollectionDeckView';
-// Витрина «Лучшее у сообщества» — три топ-набора над сохранёнными (владелец, 2026-08-29)
-import SavedTopCommunityPacks from './flashcards/SavedTopCommunityPacks';
-import { stageCommunityPackCardsForNavigation } from './community_packs/staging';
-import type { FlashcardMarketPack } from './flashcards/marketplace';
 // E13: «сила слова» — точки из новой проекции ошибок (§2).
 import {
   loadWordStrengthMap,
@@ -77,14 +71,12 @@ import {
   setCollectionViewMode,
   type FcCollectionViewMode,
 } from './flashcards/collection_view_prefs';
-import { isCommunityPacksCloudEnabled } from './community_packs/functionsClient';
 import { flashcardContentLang } from './spanish_content_gate';
 // E11: данные/удаление/трекинг/пак-декор вынесены из монолита в хуки
 import {
   applyPostLoadNavigation,
   useCollectionData,
   useCollectionDeletion,
-  primeFlashcardsCollectionCache,
   useDerivedCollectionCards,
   useFlashcardViewTracking,
   usePackBrowseVisual,
@@ -127,17 +119,7 @@ export function fullCategoryLabelForLang(cat: (typeof CATEGORIES)[number], lang:
   return labels[lang];
 }
 
-export type FlashcardsCollectionScreenProps = {
-  /**
-   * Cards 2.1 §5.1: экран открыт как КОРЕНЬ раздела «Карточки» (`/flashcards`) —
-   * сразу сохранённые карточки с поиском и фильтром. В этом режиме снизу
-   * закреплён таббар раздела (§5.2), а кнопки «Слушать» / «Тренировать»
-   * не дублируются (их роль берёт левая позиция таббара).
-   */
-  sectionRoot?: boolean;
-};
-
-export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsCollectionScreenProps = {}) {
+export default function FlashcardsScreen() {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t, f, themeMode, statusBarLight, uiScale } = useTheme();
@@ -178,7 +160,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   const insets   = useStableSafeAreaInsets();
   /** Ограничение ширины контента на планшетах — как в ContentWrap, но без flex. */
   const { contentMaxW } = useScreen();
-  const { height: screenH, width: winW } = useWindowDimensions();
+  const { height: screenH } = useWindowDimensions();
   const { CARD_H, PEEK } = useMemo(() => {
     /** Компактніша висота картки: раніше max 280px / ~52% екрана було зайвим. × uiScale — узгоджено з темою. */
     const cardH = resolveFlashcardListItemHeight(
@@ -197,12 +179,14 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
    */
   const isDevMarketEnabled = DEV_CONTENT_UNLOCK;
   /**
-   * Откуда открыт набор: `?from=mine` — «Мои наборы», каталог сообщества —
-   * `?from=community` или режим просмотра (`?preview=1` ставит только каталог).
-   */
+   * Откуда открыт экран: `?from=hub` возвращает и сохранённые, и открытый набор
+   * в хаб; `?from=mine` — в «Мои наборы»; `?from=community`/`?preview=1` —
+   * в каталог сообщества.
+  */
   const packBackOrigin = useMemo((): string | null => {
-    if (!packDeeplink) return null;
     const raw = Array.isArray(params.from) ? params.from[0] : params.from;
+    if (raw === 'hub') return '/flashcards';
+    if (!packDeeplink) return null;
     if (raw === 'mine') return FC_MY_PACKS_ROUTE;
     if (raw === 'community' || previewRequested) return FC_PACKS_ROUTE;
     return null;
@@ -242,10 +226,9 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
      *    плитка категории) не несёт `?from=`, поэтому packBackOrigin пуст; без
      *    этой ветки набор выбрасывал на главную мимо выбора (репорт владельца
      *    «кнопка к выбору категорий ведёт на главную»);
-     *  • открыт КОРЕНЬ раздела (сохранённые карточки) — выход наружу, на главную.
-     *    Фолбек '/flashcards' здесь замкнул бы экран сам на себя.
+     *  • открыты сохранённые карточки — кнопка возвращает в единый хаб карточек.
      */
-    const backTarget = packBackOrigin ?? (packDeeplink ? FC_MY_PACKS_ROUTE : '/(tabs)/home');
+    const backTarget = packBackOrigin ?? (packDeeplink ? FC_MY_PACKS_ROUTE : '/flashcards');
     safeRouterBack(router, backTarget as any);
   }, [router, packBackOrigin, packDeeplink]);
 
@@ -253,7 +236,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
    * зачем (владелец, 2026-08-16): из ПУСТОЙ коллекции нужен путь туда, где берут
    * карточки, — в наборы сообщества. Раньше эта кнопка звала leaveCollection и
    * выбрасывала на главную. Это соседняя позиция таббара карточек, поэтому
-   * replace: стек раздела не должен расти (см. FlashcardsTabBar.go).
+   * replace: стек раздела не должен расти.
    */
   const openCommunityPacks = useCallback(() => {
     markNextNavigationAsReplace();
@@ -334,7 +317,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
   // (подтверждённая покупка через RevenueCat), а VIP/admin-override доступ
   // (his premium_plan='annual', vip_active=true, admin_premium_override=true)
   // в него НЕ попадает — только в hasPremiumAccess. Весь остальной проект
-  // (FlashcardsTabBar и другие 13 экранов) уже гейтит по hasPremiumAccess;
+  // (остальные экраны) уже гейтит по hasPremiumAccess;
   // этот файл был единственным исключением.
   const { hasPremiumAccess: isPremium } = usePremium();
   // Карта «силы слова» строится из проекции нового журнала ошибок.
@@ -367,7 +350,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
       isDevMarketEnabled,
       // Корень раздела всегда открывает «Сохранённые»: восстановление старой
       // пустой custom-вкладки и создавало удалённый промежуточный экран.
-      routeCat: sectionRoot ? 'saved' : routeCatRef.current,
+      routeCat: routeCatRef.current,
       packDeeplink: packRouteRef.current,
       pendingRestoreRef,
       setActiveCat,
@@ -375,10 +358,10 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
       setShowDeleteHint,
       previewMode: previewRequestedRef.current,
     });
-  }, [isDevMarketEnabled, router, sectionRoot]);
+  }, [isDevMarketEnabled, router]);
 
   const {
-    savedCards, customCards, marketCards, marketPackCatalog, setMarketPackCatalog,
+    savedCards, customCards, marketCards, marketPackCatalog,
     ownedPackIdList, communityOwnedIdList, accessStableId,
     collectionDataReady, loading, loadError, loadAll,
     updateSavedCards, updateCustomCards,
@@ -388,21 +371,6 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     previewPackId: previewRequested ? packDeeplink : null,
     deeplinkPackId: packDeeplink,
   });
-
-  /**
-   * зачем (владелец, 2026-08-16): «все разделы должны быть уже загружены, когда
-   * открываем карточки». Корень раздела греет общий кэш подразделов — тогда
-   * «Мои наборы» / «Наборы сообщества» открываются готовыми, а не рисуют сначала
-   * пустое состояние. Прогрев идёт мимо первого кадра (после интеракций) и
-   * кэшируется в модуле, поэтому вход в раздел за него не платит.
-   */
-  useEffect(() => {
-    if (!sectionRoot) return;
-    const task = InteractionManager.runAfterInteractions(() => {
-      primeFlashcardsCollectionCache(studyTarget);
-    });
-    return () => task.cancel();
-  }, [sectionRoot, studyTarget]);
 
   useFocusEffect(
     useCallback(() => {
@@ -531,14 +499,6 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     [filterGroups, strLang],
   );
 
-  const onCommunityRatingUpdated = useCallback(
-    (avg: number, count: number) => {
-      if (!packDeeplink) return;
-      setMarketPackCatalog((prev) => prev.map((p) => (p.id === packDeeplink ? { ...p, ratingAvg: avg, ratingCount: count } : p)));
-    },
-    [packDeeplink, setMarketPackCatalog],
-  );
-
   // ── Стабилизированные пропсы view ──────────────────────────────────────────
   const sourceLabels = s.source as Record<string, string>;
   const voiceLabel = useMemo(
@@ -601,17 +561,6 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     return () => sub.remove();
   }, [handleCollectionBack]);
 
-  // «Тренировать этот набор» использует обычный живой режим карточек.
-  /** deckId текущего набора: сохранённые / свои карточки / добавленный набор. */
-  const trainDeckId = useMemo((): string | null => {
-    if (packDeeplink) return `pack:${packDeeplink}`;
-    // Просмотр купленного набора через фильтр (без ?pack=) — тоже тренируем набор
-    if (activeFilter.startsWith('lesson:DEV:')) return `pack:${activeFilter.slice('lesson:DEV:'.length)}`;
-    if (activeCat === 'saved') return 'saved';
-    if (activeCat === 'custom') return 'custom';
-    return null;
-  }, [packDeeplink, activeFilter, activeCat]);
-
   /** Набор уже у пользователя (куплен / добавлен / он его автор). */
   const packOwnedByMe = useMemo(() => {
     if (!packDeeplink) return false;
@@ -624,113 +573,11 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
     );
   }, [packDeeplink, ownedPackIdList, communityOwnedIdList, currentMarketPack, accessStableId]);
 
-  /** Публичный staged-снимок — только render input, не разрешение на тренировку. */
-  const packTrainingAccessReady = !packDeeplink || (collectionDataReady && packOwnedByMe);
-
-  const startDeckSession = useCallback((mode: 'blitz' | 'listening') => {
-    if (!trainDeckId || !packTrainingAccessReady) return;
-    fcHaptic('tap');
-    router.push({
-      pathname: mode === 'blitz' ? '/flashcards_blitz_session' : '/flashcards_listening_session',
-      params: { deck: trainDeckId, ...(mode === 'listening' ? { size: 'preset' } : {}) },
-    } as any);
-  }, [packTrainingAccessReady, trainDeckId, router]);
-  const startDeckTraining = useCallback(() => startDeckSession('blitz'), [startDeckSession]);
-  const startDeckListening = useCallback(() => startDeckSession('listening'), [startDeckSession]);
-
   /** Только просмотр: набор открыт из каталога и ещё не добавлен себе. */
   const previewMode = previewRequested && !packOwnedByMe;
 
-  /* ── Витрина «Лучшее у сообщества» (владелец, 2026-08-29) ──────────────────
-   *
-   * Три самых залайканных набора сообщества стоят НАД списком сохранённых
-   * карточек, и добавить их можно прямо оттуда. Раздел «Наборы сообщества»
-   * не изменён — это дополнительный вход, а не замена.
-   *
-   * Живёт ТОЛЬКО в корне раздела на сохранённых: на экране конкретного набора,
-   * в «Своих карточках» и в режиме просмотра витрине не место.
-   *
-   * Firebase: 0 дополнительных чтений — `marketPackCatalog` этот экран уже грузит.
-   */
-  const [topPackOpeningId, setTopPackOpeningId] = useState<string | null>(null);
-  const topPackOpeningRef = useRef<string | null>(null);
-  const showSavedTopPacks =
-    sectionRoot && !packDeeplink && !previewMode && activeCat === 'saved' && !searchActive;
-
-  /** Тап по плитке — открыть набор в режиме просмотра, как в каталоге. */
-  const openTopCommunityPack = useCallback(
-    (pack: FlashcardMarketPack) => {
-      if (topPackOpeningRef.current) return;
-      topPackOpeningRef.current = pack.id;
-      setTopPackOpeningId(pack.id);
-      void (async () => {
-        const cards = await stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack);
-        /** Поздний ответ не должен трогать чужое состояние (гонка двойного тапа). */
-        if (topPackOpeningRef.current !== pack.id) return;
-        topPackOpeningRef.current = null;
-        setTopPackOpeningId(null);
-        if (cards.length === 0) {
-          emitAppEvent('action_toast', actionToastTri('error', {
-            ru: 'Не удалось загрузить набор. Проверьте интернет и попробуйте ещё раз.',
-            uk: 'Не вдалося завантажити набір. Перевірте інтернет і спробуйте ще раз.',
-            es: 'No se pudo cargar el pack. Comprueba internet e inténtalo de nuevo.',
-            'pt-BR': 'Não foi possível carregar o pacote. Verifique a internet e tente novamente.',
-            vi: 'Không thể tải bộ thẻ. Hãy kiểm tra mạng và thử lại.',
-            id: 'Paket tidak dapat dimuat. Periksa internet lalu coba lagi.',
-            tr: 'Paket yüklenemedi. İnternetini kontrol edip tekrar dene.',
-            pl: 'Nie udało się wczytać zestawu. Sprawdź internet i spróbuj ponownie.',
-          }));
-          return;
-        }
-        router.push({
-          pathname: '/flashcards_collection',
-          params: { pack: pack.id, preview: '1' },
-        } as never);
-      })();
-    },
-    [router, studyTarget],
-  );
-
   /**
-   * Набор добавлен с витрины: галочка на плитке уже стоит (optimistic внутри
-   * плитки), здесь догоняем содержимое экрана — карточки набора должны появиться
-   * в списке сохранённых без перезахода.
-   */
-  const onTopCommunityPackAdded = useCallback(() => {
-    void loadAll();
-  }, [loadAll]);
-
-  const savedTopPacksHeader = useMemo(() => {
-    if (!showSavedTopPacks) return null;
-    return (
-      <SavedTopCommunityPacks
-        catalog={marketPackCatalog}
-        ownedCommunityPackIds={communityOwnedIdList}
-        lang={lang}
-        t={t}
-        contentWidth={Math.min(contentMaxW, winW - 32)}
-        studyTarget={studyTarget}
-        openingPackId={topPackOpeningId}
-        onOpenPreview={openTopCommunityPack}
-        onAdded={onTopCommunityPackAdded}
-      />
-    );
-  }, [
-    showSavedTopPacks, marketPackCatalog, communityOwnedIdList, lang, t,
-    contentMaxW, winW, studyTarget, topPackOpeningId, openTopCommunityPack, onTopCommunityPackAdded,
-  ]);
-
-  /**
-   * «Слушать» / «Тренировать» — компактными иконками ВВЕРХУ экрана (замечание
-   * владельца: раньше это были широкие кнопки с текстом внизу). В корне раздела
-   * их роль берёт таббар, в режиме просмотра тренировка недоступна.
-   */
-  const showModeButtons =
-    !sectionRoot && !previewMode && packTrainingAccessReady && trainDeckId !== null
-    && !loading && filteredCards.length > 0;
-
-  /**
-   * «Сделать публичным»: своя коллекция, которая ещё живёт только на устройстве.
+   * «Отправить в сообщество»: своя коллекция, которая ещё живёт только на устройстве.
    * Уже опубликованный / отправленный набор кнопку не показывает.
    */
   const [publishBusy, setPublishBusy] = useState(false);
@@ -792,18 +639,6 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
       }));
     })();
   }, [packDeeplink, publishBusy, lang, studyTarget, loadAll]);
-  /**
-   * Высота таббара раздела — под неё резервируем «хвост» списка (§5.2).
-   * Нижний инсет здесь уже съеден `SafeAreaView` экрана, поэтому таббару передаём 0.
-   */
-  const tabBarReserve = sectionRoot ? FC_TABBAR_HEIGHT + 8 : 0;
-  /** §5.2: капсула таббара сжимается при скролле списка — как на главной. */
-  const tabScroll = useFcTabBarScroll();
-  /** Стопка карточек не скроллится списком — возвращаем капсулу при смене режима. */
-  useEffect(() => {
-    tabScroll.expandNow();
-  }, [viewMode, tabScroll]);
-
   /**
    * Набор ещё догружается: список пуст не потому, что набор пустой, а потому что
    * карточки в пути. Заглушка «пусто» в этот момент и читалась как промежуточный
@@ -877,9 +712,6 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
           activeFilter={activeFilter}
           filterOpen={filterOpen}
           onToggleFilterOpen={() => setFilterOpen((o) => !o)}
-          showModeButtons={showModeButtons}
-          onListen={startDeckListening}
-          onTrain={startDeckTraining}
           showPublish={showPublishButton}
           publishBusy={publishBusy}
           onPublish={onPublishPack}
@@ -930,42 +762,6 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
         ) : null}
 
         {isEmpty ? (
-          /*
-            Пустая коллекция ТОЖЕ должна скроллиться, если сверху стоит витрина.
-
-            зачем (владелец, 2026-08-29): блок «не должен быть зафиксирован» —
-            он часть страницы и обязан уезжать за экран при скролле. В ветке со
-            списком за это отвечает ListHeaderComponent; здесь списка нет, поэтому
-            даём собственный ScrollView. Без витрины ведём себя как раньше —
-            обычный центрированный ContentWrap, лишнего скролла не появляется.
-          */
-          savedTopPacksHeader ? (
-            <ScrollView
-              style={{ flex: 1 }}
-              contentContainerStyle={{
-                flexGrow: 1,
-                paddingHorizontal: 16,
-                paddingTop: 12,
-                paddingBottom: tabBarReserve + 24,
-              }}
-              showsVerticalScrollIndicator={false}
-              onScroll={sectionRoot ? tabScroll.onScroll : undefined}
-              scrollEventThrottle={16}
-            >
-              {savedTopPacksHeader}
-              <CollectionEmptyState
-                lang={cardContentLang}
-                t={t}
-                f={f}
-                emptyTitle={s.empty}
-                emptySub={s.emptySub}
-                searchActive={searchActive}
-                loadError={loadError}
-                onLeave={openCommunityPacks}
-                onRetry={loadAll}
-              />
-            </ScrollView>
-          ) : (
           <ContentWrap>
             {/* зачем (владелец, 2026-08-16): ОДНО состояние, без вариантов.
                 Раньше подпись переключалась «Ничего не найдено» ↔ «Нет карточек»
@@ -983,7 +779,6 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
               onRetry={loadAll}
             />
           </ContentWrap>
-          )
         ) : viewMode === 'deck' ? (
           <CollectionDeckView
             cards={listCards}
@@ -998,7 +793,7 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
             onFlipTracked={trackCardFlip}
             onExitToList={exitDeckToList}
             strengthForCard={strengthForCard}
-            extraBottomPad={tabBarReserve}
+            extraBottomPad={0}
           />
         ) : (
           <CollectionListView
@@ -1029,22 +824,17 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
             isEditableCustomCard={previewMode ? () => false : isEditableCustomCard}
             onDeleteCardById={deleteCardById}
             onOpenPremiumLimit={openPremiumLimit}
-            onScroll={sectionRoot ? tabScroll.onScroll : undefined}
             onFocusedIndexChanged={onFocusedIndexChanged}
             onCardsViewed={registerFlashcardViewed}
             onFlipTracked={trackCardFlip}
             strengthForCard={strengthForCard}
-            extraBottomPad={tabBarReserve}
-            listHeader={savedTopPacksHeader}
+            extraBottomPad={0}
           />
         )}
 
       {undoEntry && (
         <UndoDeleteSnackbar
-          bottomOffset={
-            Math.max(insets.bottom, 8) + 14
-            + (sectionRoot ? FC_TABBAR_HEIGHT : 0)
-          }
+          bottomOffset={Math.max(insets.bottom, 8) + 14}
           lang={cardContentLang}
           t={t}
           f={f}
@@ -1065,20 +855,6 @@ export default function FlashcardsScreen({ sectionRoot = false }: FlashcardsColl
           setFilterOpen(false);
         }}
       />
-
-      {/* Cards 2.1 §5.2: таббар раздела — только в корне «Карточек» */}
-      {sectionRoot ? (
-        <FlashcardsTabBar
-          lang={lang}
-          t={t}
-          active="cards"
-          bottomInset={0}
-          scroll={tabScroll}
-          // зачем: пункт «Коллекция» ведёт в сохранённые+свои карточки раздела —
-          // без них вести некуда, прячем пункт вместо мёртвого тапа (владелец).
-          hasAnyCards={savedCards.length > 0 || customCards.length > 0}
-        />
-      ) : null}
 
       {/* Жалоба на чужой набор прямо с его страницы. «Не показывать» скрывает
           набор на устройстве — тогда уходим назад, чтобы не остаться на

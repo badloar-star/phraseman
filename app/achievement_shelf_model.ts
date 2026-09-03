@@ -1,5 +1,8 @@
-export const ACHIEVEMENT_SHELF_MIN_ITEM_WIDTH = 148;
-export const ACHIEVEMENT_SHELF_MAX_ITEM_WIDTH = 184;
+// зачем: владелец назвал награды на полке слишком мелкими. Ячейка карусели
+// задаёт размер статуэтки (renderTrophy получает itemWidth), поэтому потолок
+// поднят вместе с ним — иначе крупная статуэтка не поместилась бы в ячейку.
+export const ACHIEVEMENT_SHELF_MIN_ITEM_WIDTH = 168;
+export const ACHIEVEMENT_SHELF_MAX_ITEM_WIDTH = 212;
 
 export function achievementShelfItemWidth(viewportWidth: number): number {
   return Math.max(

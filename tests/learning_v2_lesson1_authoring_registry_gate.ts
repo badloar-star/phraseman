@@ -59,7 +59,7 @@ assert.match(
 );
 assert.equal(
   registryModule.LESSON1_AUTHORING_REGISTRY_V1[0]?.forbiddenFutureFingerprint,
-  "e77aa6f2b95f260bf467c2abfbd39fef6053c1e8c1606a2b708cffbfdf156ea8",
+  "87f3c0e7d3d9509eb22f0fce5532ebbed4adb28e1b780693f00e914a01c76491",
 );
 
 const actualFingerprints = Object.fromEntries(

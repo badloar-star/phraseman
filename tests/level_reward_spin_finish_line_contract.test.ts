@@ -5,6 +5,7 @@ describe('Finish Line level spin screen contract', () => {
   const source = () => readFileSync(join(process.cwd(), 'app', 'level_reward_spin.tsx'), 'utf8');
   const presentation = () => readFileSync(join(process.cwd(), 'components', 'LevelSpinFinishLine.tsx'), 'utf8');
   const motion = () => readFileSync(join(process.cwd(), 'app', 'level_reward_spin_motion.ts'), 'utf8');
+  const catalog = () => readFileSync(join(process.cwd(), 'app', 'level_spin_reward_catalog.ts'), 'utf8');
 
   test('uses one Reanimated offset, scheduleOnRN, reduced motion, and transform/opacity motion', () => {
     const code = presentation();
@@ -52,6 +53,19 @@ describe('Finish Line level spin screen contract', () => {
     expect(code).toContain('LevelSpinRewardArt');
     expect(code).toContain('cosmetic_avatar_common');
     expect(code).not.toContain('choice_3_level');
+  });
+
+  test('shows the permanent second-chance gift in the reel whenever it exists in the actual prize pool', () => {
+    const finishLine = presentation();
+    const rewardStream = finishLine.slice(
+      finishLine.indexOf('const REWARD_STREAM_IDS = ['),
+      finishLine.indexOf('] as const;', finishLine.indexOf('const REWARD_STREAM_IDS = [')),
+    );
+
+    expect(catalog()).toContain("'attempt_restore_all'");
+    expect(rewardStream).toContain("'attempt_restore_all'");
+    expect(finishLine).toContain('const gift = giftForId(giftId);');
+    expect(finishLine).toContain('rewardId={gift.id}');
   });
 
   test('loops on an exact row cycle and retargets receipt deceleration without a snap', () => {
@@ -177,7 +191,7 @@ describe('Finish Line level spin screen contract', () => {
     expect(readFileSync(join(process.cwd(), 'components', 'LevelSpinRewardModal.tsx'), 'utf8')).toContain("soundDirector.request('pm.spin.reward_lock'");
     expect(screen).not.toContain("soundDirector.request('pm.spin.reel_start'");
     const revealed = screen.slice(screen.indexOf('const handleRevealed'), screen.indexOf('const settleRewardPreview'));
-    expect(revealed).not.toContain('acknowledgeLocalLevelSpin');
+    expect(revealed).not.toMatch(/\bawait\s+acknowledgeLocalLevelSpin\(/);
     const settle = screen.slice(screen.indexOf('const settleRewardPreview'), screen.indexOf('const handleRewardPreviewClaim'));
     expect(settle).toContain('await settleRewardDelivery(requestId)');
     expect(settle.indexOf('await settleRewardDelivery(requestId)'))
@@ -379,7 +393,7 @@ describe('Finish Line level spin screen contract', () => {
     // ЕДИНСТВЕННЫЙ путь восстановления недоставленного приза при следующем
     // входе. Вызывать её без подтверждённой доставки — значит терять приз
     // безвозвратно вместо того, чтобы просто закрыть застрявшую модалку.
-    expect(settlePreview).toContain('if (delivered) await acknowledgeLocalLevelSpin(requestId ?? \'\');');
+    expect(settlePreview).toContain('if (delivered) await acknowledgeLocalLevelSpin(requestId);');
     expect(settlePreview).not.toMatch(/^\s*await acknowledgeLocalLevelSpin\(requestId/m);
   });
 });

@@ -791,7 +791,6 @@ describe('owner runtime direction contract', () => {
       'functions/src/community_packs.ts',
       'functions/src/league_groups.ts',
       'functions/src/league_chest.ts',
-      'functions/src/collectibles.ts',
     ]) {
       const source = read(file);
       expect(source).toContain('appendExternalEconomyEvent');
@@ -802,7 +801,6 @@ describe('owner runtime direction contract', () => {
       'app/community_packs/purchaseCommunityPack.ts',
       'app/league_group_boosts.ts',
       'app/services/league_chest_rewards.ts',
-      'app/collectibles/storage.ts',
     ]) {
       const source = read(file);
       expect(source).not.toContain('replaceShardsBalanceLocal(');
@@ -922,7 +920,6 @@ describe('owner runtime direction contract', () => {
 
   it('keeps reward claim callables protected by deterministic claim markers', () => {
     const leagueChest = read('functions/src/league_chest.ts');
-    const collectibles = read('functions/src/collectibles.ts');
     const profileCard = read('functions/src/profile_card_upgrade.ts');
     const promoCodes = read('functions/src/promo_codes.ts');
     const revenueCat = read('functions/src/revenuecat_shards.ts');
@@ -931,10 +928,6 @@ describe('owner runtime direction contract', () => {
     expect(leagueChest).toContain('function buildClaimedRewardResponse');
     expect(leagueChest.indexOf('if (claimSnap.exists) {')).toBeLessThan(leagueChest.indexOf("throw new HttpsError('failed-precondition', 'stale_week')"));
     expect(leagueChest).toContain('return { ok: true, claimed: true, alreadyClaimed: true, crown: replayCrown, ...existing };');
-
-    expect(collectibles).toContain("userRef.collection('collectible_claims').doc(safeId(eventIdRaw))");
-    expect(collectibles).toContain('alreadyClaimed: true');
-    expect(collectibles).toContain('seedBase: `collect:${stableUid}:${eventIdRaw}`');
 
     expect(profileCard).toContain('if (expectedLevel !== null && currentLevel > expectedLevel) {');
     expect(profileCard).toContain('return { ok: true, alreadyApplied: true, level: currentLevel, spent: 0 };');

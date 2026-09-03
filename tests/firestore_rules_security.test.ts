@@ -961,7 +961,17 @@ ${indent}}`,
       /match \/web_premium_orders\/\{orderId\} \{[\s\S]*?\n    \}/,
     );
     expect(orderBlock).not.toBeNull();
-    expect(orderBlock![0]).toContain("allow read, update: if isAdmin();");
+    expect(orderBlock![0]).toContain("allow read: if isAdmin();");
+    expect(orderBlock![0]).toContain("allow update: if isAdmin()");
+    expect(orderBlock![0]).toContain("'stripeCancelAtPeriodEnd'");
+    expect(orderBlock![0]).toContain("'stripeAccessEndsAtMs'");
+    expect(orderBlock![0]).toContain("'stripeCancellationOperationId'");
+    expect(orderBlock![0]).toContain("'stripeCancellationRequestedAtMs'");
+    expect(orderBlock![0]).toContain("'stripeSubscriptionId'");
+    expect(orderBlock![0]).toContain("'stripeSessionId'");
+    expect(orderBlock![0]).toContain("'provider'");
+    expect(orderBlock![0]).toContain("'plan'");
+    expect(orderBlock![0]).toContain("'gift'");
     expect(orderBlock![0]).toContain("allow create, delete: if false;");
     expect(orderBlock![0]).not.toContain("request.auth != null");
   });

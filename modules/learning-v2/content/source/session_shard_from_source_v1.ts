@@ -358,9 +358,17 @@ export interface SessionSource {
   ];
   /** New lexical units authored for this session before phrase application. */
   readonly newVocabulary?: readonly SessionVocabularySourceV1[];
+  /**
+   * Already introduced lexical units used only for retrieval slots. They are
+   * intentionally distinct from newVocabulary so the source cannot inflate a
+   * session's lexical introduction density to satisfy a renderer layout.
+   */
+  readonly retrievalVocabulary?: readonly SessionVocabularySourceV1[];
   /** Explicit owner-approved mode-first order. Generic family assignment is forbidden. */
   readonly modeNativePractice?: readonly SessionModeNativePracticeSourceV1[];
   readonly modeNativePlanId?: string;
+  /** Previously introduced grammar deliberately retrieved in this session. */
+  readonly reviewConstructIds?: readonly string[];
   /** Required when an ordinary teaching session intentionally adds no lexicon. */
   readonly newVocabularyExceptionReason?: string;
   /**
@@ -663,7 +671,13 @@ export function buildSessionShardFromSource(
   // зачем 15 (владелец, 2026-08-17): контракт пакета требует 14–18 заданий в
   // профиле standard. 12 фраз давали ровно 12 заданий (3 вопроса интро + 9
   // карточек) — публикация падала. 15 фраз дают 15 заданий, середина диапазона.
-  const hasExplicitVocabulary = (source.newVocabulary?.length ?? 0) > 0;
+  const hasExplicitVocabulary =
+    (source.newVocabulary?.length ?? 0) > 0 ||
+    (source.retrievalVocabulary?.length ?? 0) > 0;
+  const practiceVocabulary = [
+    ...(source.newVocabulary ?? []),
+    ...(source.retrievalVocabulary ?? []),
+  ];
   if (!hasExplicitVocabulary && source.phrases.length !== SESSION_PHRASE_COUNT_V1)
     throw new Error(
       `session_source_requires_exactly_${SESSION_PHRASE_COUNT_V1}_phrases`,
@@ -784,7 +798,7 @@ export function buildSessionShardFromSource(
       ? step.learningStage
       : null;
     const vocabulary = step.targetKind === 'vocabulary'
-      ? source.newVocabulary?.[step.sourceVocabularyIndex ?? -1]
+      ? practiceVocabulary[step.sourceVocabularyIndex ?? -1]
       : undefined;
     const authoredKnownGrid = authoredModeStep?.target.kind === 'vocabulary_grid'
       ? authoredModeStep.target.knownItems
@@ -792,7 +806,7 @@ export function buildSessionShardFromSource(
     const gridVocabulary = step.targetKind === 'vocabulary_grid'
       ? (authoredKnownGrid?.length
           ? authoredKnownGrid
-          : step.sourceVocabularyIndices?.map((sourceIndex) => source.newVocabulary?.[sourceIndex]))
+          : step.sourceVocabularyIndices?.map((sourceIndex) => practiceVocabulary[sourceIndex]))
       : undefined;
     if (
       (step.targetKind === 'vocabulary' && (!vocabulary || !vocabularyStage)) ||

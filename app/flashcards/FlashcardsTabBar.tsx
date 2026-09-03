@@ -1,7 +1,7 @@
 /**
  * Cards 2.1 §5.2 — нижний таббар раздела «Карточки».
  *
- *   слева   «Тренировка» → вверх выезжает список: Тренировка / Слушать / Блиц
+ *   слева   «Тренировка» → вверх выезжает список: Тренировка / Слушать / Говорить / Блиц
  *   центр   «+» (акцентная позиция) → над кнопкой: Создать карточку / Создать набор
  *   справа  «Наборы» → над кнопкой: Мои наборы / Наборы сообщества
  *
@@ -44,20 +44,16 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import { triLang, type Lang } from '../../constants/i18n';
 import { OLIVE_RICH } from '../../constants/oliveTheme';
-import type { Theme } from '../../constants/theme';
+import { isLightThemeMode, type Theme } from '../../constants/theme';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useScreen } from '../../hooks/use-screen';
 import { useTheme } from '../../components/ThemeContext';
 import { usePremium, useFeatureAccess } from '../../components/PremiumContext';
 import PlusBadge from '../../components/PlusBadge';
 import { shouldGateCreator } from '../creator_access';
-import { useStudyTarget } from '../../components/StudyTargetContext';
-import MistakePracticeSetupSheet from '../../components/mistake-practice/MistakePracticeSetupSheet';
 import { markNextNavigationAsReplace } from '../navigation_back';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
 import { isSpeakingEnabled } from '../remote_flags';
-import { getMistakePracticeReadyCount } from '../mistake_practice_insights';
-import { trackMistakePracticeEvent } from '../mistake_practice_analytics';
 import DeckPickerSheet, { type DeckSheetOption } from './DeckPickerSheet';
 import { loadFcDeckOptions } from './deck_options';
 import { isLowPowerEffective } from './low_power';
@@ -407,7 +403,7 @@ function TabMenuItem({
 export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scroll = null, hasAnyCards = true }: Props) {
   const router = useRouter();
   const { f, ds, themeMode } = useTheme();
-  const { hasPremiumAccess, accessResolved } = usePremium();
+  const { accessResolved } = usePremium();
   /**
    * зачем (владелец 2026-08-25): тот же гейт, что реально держит creator_access.ts
    * (по фиче 'flashcards', не общий premium) — плашка должна появляться ровно там,
@@ -418,7 +414,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
    */
   const flashcardsFeatureAccess = useFeatureAccess('flashcards');
   const createLocked = accessResolved && shouldGateCreator(flashcardsFeatureAccess);
-  const { studyTarget } = useStudyTarget();
   const { tabBarHeight, bottomInset: screenBottomInset } = useScreen();
   const [menu, setMenu] = useState<FcTabMenu>('none');
   /** §6: для какого режима открыт шит выбора наборов (null — закрыт). */
@@ -426,8 +421,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
   const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
   const [deckPreset, setDeckPreset] = useState<FcModePreset | null>(null);
   const [deckDataMode, setDeckDataMode] = useState<ReturnType<typeof fcTrainOptionPresetMode> | null>(null);
-  const [mistakeSheetVisible, setMistakeSheetVisible] = useState(false);
-  const [mistakeReadyCount, setMistakeReadyCount] = useState(0);
   const reduceMotion = useFcReduceMotion();
   /** §8: «уменьшить движение» и слабые устройства — упрощённый вариант без потери функций. */
   const simple = reduceMotion || isLowPowerEffective() || Platform.OS === 'web';
@@ -483,14 +476,10 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
 
   /** Верхний слой всегда закрывается раньше, чем экран получает системный Back. */
   useEffect(() => {
-    if (Platform.OS !== 'android' || (!open && !pickerOption && !mistakeSheetVisible)) return;
+    if (Platform.OS !== 'android' || (!open && !pickerOption)) return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       if (pickerOption) {
         setPickerOption(null);
-        return true;
-      }
-      if (mistakeSheetVisible) {
-        setMistakeSheetVisible(false);
         return true;
       }
       const next = consumeFcTabBackPress(menu);
@@ -499,7 +488,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
       return true;
     });
     return () => sub.remove();
-  }, [mistakeSheetVisible, open, menu, pickerOption]);
+  }, [open, menu, pickerOption]);
 
   /**
    * «Говорить» живёт за тем же remote kill-switch, что и «Устно» в уроках:
@@ -517,26 +506,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     () => visibleFcTrainOptions(null, { speakingEnabled }),
     [speakingEnabled],
   );
-
-  useEffect(() => {
-    if (!trainOpen && !mistakeSheetVisible) return;
-    if (studyTarget !== 'en' && studyTarget !== 'fr') {
-      setMistakeReadyCount(0);
-      return;
-    }
-    let cancelled = false;
-    void (async () => {
-      const readyCount = await getMistakePracticeReadyCount(studyTarget);
-      if (!cancelled) {
-        setMistakeReadyCount(readyCount);
-      }
-    })().catch(() => {
-      if (!cancelled) setMistakeReadyCount(0);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [mistakeSheetVisible, studyTarget, trainOpen]);
 
   /**
    * зачем (владелец): «Коллекция» ведёт в сохранённые+свои карточки раздела —
@@ -573,26 +542,12 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     (option: FcTrainOption) => {
       void hapticTap();
       close();
-      if (option === 'errors') {
-        trackMistakePracticeEvent('mistake_practice_menu_opened', {
-          study_target: studyTarget,
-          entry_source: 'cards',
-          ready_count: mistakeReadyCount,
-          plus_access: hasPremiumAccess,
-        });
-        if (!hasPremiumAccess) {
-          router.push({ pathname: '/premium_modal', params: { context: 'mistake_practice' } } as never);
-          return;
-        }
-        setMistakeSheetVisible(true);
-        return;
-      }
       setDeckOptions([]);
       setDeckPreset(null);
       setDeckDataMode(null);
       setPickerOption(option);
     },
-    [close, hasPremiumAccess, mistakeReadyCount, router, studyTarget],
+    [close],
   );
 
   const onCreateOption = useCallback(
@@ -626,7 +581,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
 
   /** §6: обычный тап, ⚙ и долгий тап ведут в один и тот же выбор наборов. */
   const onTrainOptionSetup = useCallback((option: FcTrainOption) => {
-    if (option === 'errors') return;
     void hapticTap();
     setMenu('none');
     setDeckOptions([]);
@@ -698,10 +652,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
         ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz',
         'pt-BR': 'Blitz', vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
       }),
-      errors: triLang(lang, {
-        ru: 'Ошибки', uk: 'Помилки', en: 'Mistakes', es: 'Errores',
-        'pt-BR': 'Erros', vi: 'Lỗi', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy',
-      }),
       packs: triLang(lang, {
         ru: 'Наборы', uk: 'Набори', en: 'Packs', es: 'Packs',
         'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Paketler', pl: 'Zestawy',
@@ -742,15 +692,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     [lang],
   );
 
-  /**
-   * зачем (владелец, 2026-08-26: «раздел ошибки в карточках уже под пейволом,
-   * но нет плашки — там написано Plus, а должна быть именно золотая плашка,
-   * которую мы используем в других местах»): пункт приклеивал слово «Plus»
-   * текстом прямо в подпись — оно читалось как часть названия режима и терялось
-   * на фоне счётчика. Платный статус теперь несёт та же PlusBadge, что стоит
-   * рядом у «Создать карточку»/«Создать набор» (ниже, plusLocked) и в уроках:
-   * один сигнал платного во всём приложении, а не два разных.
-   */
   const trainMeta: Record<FcTrainOption, {
     icon: keyof typeof Ionicons.glyphMap;
     label: string;
@@ -760,13 +701,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     listen: { icon: 'headset-outline', label: labels.listen },
     speak: { icon: 'mic-outline', label: labels.speak },
     blitz: { icon: 'flash-outline', label: labels.blitz },
-    errors: {
-      icon: 'alert-circle-outline',
-      label: `${labels.errors} · ${mistakeReadyCount}`,
-      // Плашка только когда доступ УЖЕ разрешён и его нет: пока подписка не
-      // проверена (accessResolved=false), плашка не мигает на платящем.
-      plusLocked: accessResolved && !hasPremiumAccess,
-    },
   };
   const createMeta: Record<FcCreateOption, { icon: keyof typeof Ionicons.glyphMap; label: string; testID: string }> = {
     card: { icon: 'add-circle-outline', label: labels.createCard, testID: 'fc-tabbar-create-card' },
@@ -779,7 +713,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
   };
 
   // ── Хром капсулы: те же правила, что и у таббара главного экрана ────────────
-  const isSagePorcelainTabChrome = themeMode === 'sagePorcelain';
+  const isSagePorcelainTabChrome = isLightThemeMode(themeMode);
   const isOliveTheme = themeMode === 'olive';
   const pillBackground = isSagePorcelainTabChrome ? t.accent : isOliveTheme ? OLIVE_RICH.panel : TAB_UNDERLAY_DIM_BG;
   const iconActive = isSagePorcelainTabChrome ? t.correctText : isOliveTheme ? OLIVE_RICH.champagne : t.accent;
@@ -902,7 +836,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
                 open={trainOpen}
                 simple={simple}
                 onPress={() => onTrainOption(option)}
-                onSetup={option === 'errors' ? undefined : () => onTrainOptionSetup(option)}
+                onSetup={() => onTrainOptionSetup(option)}
                 setupTestID={`fc-tabbar-train-option-${option}-setup`}
                 setupLabel={labels.pickDecks}
                 plusLocked={trainMeta[option].plusLocked === true}
@@ -1057,25 +991,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
         f={f}
         reduceMotion={reduceMotion}
         mode={pickerMode}
-      />
-      {/* Exact entry contract: fc-tabbar-train-option-errors */}
-      <MistakePracticeSetupSheet
-        visible={mistakeSheetVisible}
-        readyCount={mistakeReadyCount}
-        onClose={() => setMistakeSheetVisible(false)}
-        onStart={(length) => {
-          trackMistakePracticeEvent('mistake_practice_setup_started', {
-            study_target: studyTarget,
-            entry_source: 'cards',
-            requested_length: length,
-            ready_count: mistakeReadyCount,
-          });
-          setMistakeSheetVisible(false);
-          router.push({
-            pathname: '/mistake_practice_session',
-            params: { length },
-          } as never);
-        }}
       />
     </View>
   );

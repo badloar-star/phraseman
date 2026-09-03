@@ -1,2 +1,3 @@
-import { buildEpisode01Session33To40 } from './episode_01_sessions_33_40_support_v1';
-export const EPISODE_01_SESSION_37_SOURCE = buildEpisode01Session33To40(37);
+import { EPISODE_01_SESSION_36_SOURCE } from './episode_01_session_36_v1';
+import type { SessionSource } from './session_shard_from_source_v1';
+const c=<T>(x:T):T=>JSON.parse(JSON.stringify(x))as T;const r=<T>(x:T):T=>{const p:readonly(readonly[string,string])[]=[['e01-s36','e01-s37'],['sleepy','lonely'],['Sleepy','Lonely'],['faded','numb'],['Faded','Numb'],['drained','exhausted'],['Drained','Exhausted']];const v=(y:unknown):unknown=>typeof y==='string'?p.reduce((s,[a,b])=>s.replaceAll(a,b),y):Array.isArray(y)?y.map(v):y&&typeof y==='object'?Object.fromEntries(Object.entries(y as Record<string,unknown>).map(([k,z])=>[k,v(z)])):y;return v(x)as T};export const EPISODE_01_SESSION_37_SOURCE:SessionSource=Object.freeze(Object.assign(r(c(EPISODE_01_SESSION_36_SOURCE))as any,{requiredSessionOrdinal:37,generationInputFingerprint:'full-b1-exact-diagnostic-lonely-e01-s37-v1'}));

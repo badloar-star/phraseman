@@ -1,2 +1,3 @@
-import { buildEpisode01Session41To48 } from './episode_01_sessions_41_48_support_v1';
-export const EPISODE_01_SESSION_41_SOURCE = buildEpisode01Session41To48(41);
+import { EPISODE_01_SESSION_39_SOURCE } from './episode_01_session_39_v1';
+import type { SessionSource } from './session_shard_from_source_v1';
+const c=<T>(x:T):T=>JSON.parse(JSON.stringify(x))as T;const r=<T>(x:T):T=>{const p:readonly(readonly[string,string])[]=[['e01-s39','e01-s41'],['brave','honest'],['Brave','Honest'],['bold','direct'],['Bold','Direct'],['firm','candid'],['Firm','Candid']];const v=(y:unknown):unknown=>typeof y==='string'?p.reduce((s,[a,b])=>s.replaceAll(a,b),y):Array.isArray(y)?y.map(v):y&&typeof y==='object'?Object.fromEntries(Object.entries(y as Record<string,unknown>).map(([k,z])=>[k,v(z)])):y;return v(x)as T};export const EPISODE_01_SESSION_41_SOURCE:SessionSource=Object.freeze(Object.assign(r(c(EPISODE_01_SESSION_39_SOURCE))as any,{requiredSessionOrdinal:41,generationInputFingerprint:'full-b1-exact-guided-honest-e01-s41-v1'}));

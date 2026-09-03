@@ -1,2 +1,30 @@
-import { buildEpisode01Session25To32 } from './episode_01_sessions_25_32_support_v1';
-export const EPISODE_01_SESSION_28_SOURCE = buildEpisode01Session25To32(28);
+/** Full B1 Session 28: guided application with correct, certain, serious. */
+import { EPISODE_01_SESSION_27_SOURCE } from './episode_01_session_27_v1';
+import { LESSON1_SESSION_28_MODE_NATIVE_PLAN_ID_V2 } from './lesson1_session_choreography_v1';
+import type { SessionSource } from './session_shard_from_source_v1';
+const clone = <T>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
+const L = (ru: string, uk: string, es: string, pt: string, vi: string, id: string, tr: string, pl: string) => ({ ru, uk, es, 'pt-BR': pt, vi, id, tr, pl });
+const replace = <T>(value: T): T => { const pairs: readonly (readonly [string, string])[] = [['e01-s27', 'e01-s28'], ['awake', 'correct'], ['Awake', 'Correct'], ['asleep', 'certain'], ['Asleep', 'Certain'], ['available', 'serious'], ['Available', 'Serious']]; const visit = (item: unknown): unknown => typeof item === 'string' ? pairs.reduce((text, [from, to]) => text.replaceAll(from, to), item) : Array.isArray(item) ? item.map(visit) : item && typeof item === 'object' ? Object.fromEntries(Object.entries(item as Record<string, unknown>).map(([key, child]) => [key, visit(child)])) : item; return visit(value) as T; };
+const authored = replace(clone(EPISODE_01_SESSION_27_SOURCE)) as any;
+authored.requiredSessionOrdinal = 28;
+authored.generationInputFingerprint = 'full-b1-exact-guided-application-e01-s28-v1';
+authored.modeNativePlanId = LESSON1_SESSION_28_MODE_NATIVE_PLAN_ID_V2;
+authored.reviewConstructIds = ['full_form_choice'];
+authored.title = L('Correct, certain, serious', 'Correct, certain, serious', 'Correct, certain, serious', 'Correct, certain, serious', 'Correct, certain, serious', 'Correct, certain, serious', 'Correct, certain, serious', 'Correct, certain, serious');
+authored.summary = L('Построй знакомую полную фразу с correct, certain или serious.', 'Побудуй знайому повну фразу з correct, certain або serious.', 'Construye una frase completa conocida con correct, certain o serious.', 'Construa uma frase completa conhecida com correct, certain ou serious.', 'Tạo câu hoàn chỉnh quen thuộc với correct, certain hoặc serious.', 'Buat kalimat lengkap yang dikenal dengan correct, certain, atau serious.', 'Correct, certain ya da serious ile bilinen tam cümle kur.', 'Zbuduj znane pełne zdanie z correct, certain lub serious.');
+authored.learningGoal = L('Самостоятельно выбрать полную форму be в новом контексте.', 'Самостійно обрати повну форму be у новому контексті.', 'Elegir de forma autónoma la forma completa de be en un contexto nuevo.', 'Escolher de forma autônoma a forma completa de be em um contexto novo.', 'Tự chọn dạng be đầy đủ trong ngữ cảnh mới.', 'Memilih bentuk be lengkap secara mandiri dalam konteks baru.', 'Yeni bağlamda tam be biçimini bağımsız seçmek.', 'Samodzielnie wybrać pełną formę be w nowym kontekście.');
+const meanings = [L('правильно / верно', 'правильно', 'correcto', 'correto', 'đúng', 'benar', 'doğru', 'poprawny'), L('уверен / уверены', 'упевнений / упевнені', 'seguro', 'certo', 'chắc chắn', 'yakin', 'emin', 'pewny'), L('серьёзный / серьёзны', 'серйозний / серйозні', 'serio', 'sério', 'nghiêm túc', 'serius', 'ciddi', 'poważny')];
+for (const [index, meaning] of meanings.entries()) authored.newVocabulary[index]!.meaning = meaning;
+const firstPhrase = authored.phrases[0]!;
+firstPhrase.id = 'e01-s28-it-is-correct';
+firstPhrase.english = 'It is correct';
+firstPhrase.russian = 'It is correct';
+firstPhrase.words[0].correct = 'It';
+firstPhrase.words[1].correct = 'is';
+firstPhrase.words[2].correct = 'correct';
+firstPhrase.words[0].distractors = ['I', 'She', 'They'].map((value, index) => ({ value, reasonCode: `s28:it:${index}`, trapType: 'grammar', why: `${value} needs a different form of be; It is required here.` }));
+firstPhrase.words[1].distractors = ['am', 'are', 'be'].map((value, index) => ({ value, reasonCode: `s28:is:${index}`, trapType: 'grammar', why: `${value} does not match It; is is required here.` }));
+firstPhrase.words[2].distractors = ['certain', 'serious', 'ready'].map((value, index) => ({ value, reasonCode: `s28:correct:${index}`, trapType: 'semantic_neighbor', why: `${value} changes the meaning; correct is required here.` }));
+const examples = ['It is correct', 'I am certain', 'You are serious'];
+for (const [index, page] of authored.introPages.entries()) { const example = examples[index]!; for (const locale of Object.keys(page.body)) page.body[locale] = `${String(page.body[locale]).split('.').slice(0, 2).join('.').trim()}. ${example}.`; page.question.choices[0] = L(example, example, example, example, example, example, example, example); page.question.explanation = page.body; page.bodyRuns = Object.fromEntries(Object.entries(page.body).map(([locale, text]) => [locale, [{ text, semantic: 'explanation' }]])); }
+export const EPISODE_01_SESSION_28_SOURCE: SessionSource = Object.freeze(authored);

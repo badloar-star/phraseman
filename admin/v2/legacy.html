@@ -12921,6 +12921,19 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
 
 <div id="tab-site-admin" class="reports-tab pm-v4-page pm-v9-embedded-page" data-pm-v4-section="site-admin">
   <div class="pm-v4-section-header" data-pm-v4-header="site-admin"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Сайт и веб-оплаты</h2></div></div>
+  <section aria-labelledby="stripe-cancel-title" data-callable="adminCancelStripeSubscriptionRenewal" style="margin:0 0 16px;padding:16px;border:1px solid #3f3f4c;border-radius:8px;background:#14151a">
+    <h3 id="stripe-cancel-title" style="margin:0 0 6px;color:#f3f4f6;font-size:16px">Остановить автопродление Stripe</h3>
+    <p style="margin:0 0 14px;color:#aeb3bf;font-size:13px;line-height:1.5">Найдите веб-заказ по email или ID. Отмена остановит только будущие списания. Доступ останется до конца уже оплаченного периода; возврат денег не выполняется.</p>
+    <form onsubmit="event.preventDefault();searchStripeSubscriptionsForCancellation()" style="display:flex;gap:10px;align-items:end;flex-wrap:wrap">
+      <label for="stripe-cancel-lookup" style="display:grid;gap:6px;flex:1 1 320px;color:#d1d5db;font-size:13px">
+        Email покупателя или ID веб-заказа
+        <input id="stripe-cancel-lookup" type="text" autocomplete="off" spellcheck="false" placeholder="name@example.com или ID заказа" style="min-height:44px;width:100%" />
+      </label>
+      <button id="stripe-cancel-search" type="submit" aria-controls="stripe-cancel-results" title="Найдёт веб-заказы по точному email или ID. Ничего не изменит." style="min-height:44px">Найти подписку</button>
+    </form>
+    <div id="stripe-cancel-status" role="status" aria-live="polite" style="min-height:22px;margin-top:10px;color:#aeb3bf;font-size:13px"></div>
+    <div id="stripe-cancel-results" aria-live="polite" aria-busy="false" style="display:grid;gap:10px"></div>
+  </section>
   <div class="pm-v9-embedded-status" id="pm-v9-site-admin-status" role="status" title="Панель показывает не более 100 веб-заказов и 50 Telegram-заказов; старые записи здесь не ищутся.">Раздел загрузится при открытии.</div>
   <div class="pm-v9-embedded-shell"><iframe id="pm-v9-site-admin-frame" data-src="site.html" title="Сайт и веб-оплаты PhraseMan" loading="lazy"></iframe></div>
 </div>
@@ -16646,6 +16659,172 @@ html[data-pm-theme="light"] body.pm-v9-ready .pm-v4-page [style*="background:#0d
       return callable(...callArgs);
     };
   }
+
+  let _fnAdminCancelStripeSubscriptionRenewal = null;
+  const stripeCancellationRows = new Map();
+
+  function stripeCancellationTimestamp(value) {
+    if (value && typeof value.toMillis === 'function') return value.toMillis();
+    const numeric = Number(value || 0);
+    return Number.isFinite(numeric) ? numeric : 0;
+  }
+
+  function setStripeCancellationStatus(message, tone = 'neutral') {
+    const status = document.getElementById('stripe-cancel-status');
+    if (!status) return;
+    status.textContent = message;
+    status.style.color = tone === 'error' ? '#fca5a5' : tone === 'success' ? '#86efac' : '#aeb3bf';
+  }
+
+  function stripeCancellationDate(value) {
+    const ms = Number(value || 0);
+    return Number.isSafeInteger(ms) && ms > 0
+      ? new Date(ms).toLocaleString('ru-RU')
+      : 'дата конца периода не записана';
+  }
+
+  function stripeCancellationRow(orderId, order) {
+    const article = document.createElement('article');
+    article.style.cssText = 'display:grid;gap:9px;padding:13px;border:1px solid #343541;border-radius:8px;background:#101116';
+    const email = String(order.email || order.customerEmail || 'email не указан');
+    const plan = String(order.plan || 'тариф не указан');
+    const provider = String(order.provider || 'провайдер не указан');
+    const amountCents = Number(order.amountCents || 0);
+    const heading = document.createElement('div');
+    heading.style.cssText = 'font-weight:750;color:#f3f4f6;overflow-wrap:anywhere';
+    heading.textContent = email;
+    const details = document.createElement('div');
+    details.style.cssText = 'color:#aeb3bf;font-size:12px;line-height:1.5;overflow-wrap:anywhere';
+    details.textContent = `Заказ: ${orderId} · ${provider} · ${plan}${amountCents > 0 ? ` · ${(amountCents / 100).toFixed(2)} ${String(order.currency || '').toUpperCase()}` : ''}`;
+    const state = document.createElement('div');
+    state.style.cssText = 'font-size:13px;color:#aeb3bf';
+    const subscriptionId = String(order.stripeSubscriptionId || '');
+    const recurringStripe = provider === 'stripe'
+      && (plan === 'monthly' || plan === 'yearly')
+      && order.gift !== true
+      && /^sub_[A-Za-z0-9]+$/.test(subscriptionId);
+    const alreadyCancelled = order.stripeCancelAtPeriodEnd === true;
+    if (alreadyCancelled) {
+      state.textContent = `Автопродление уже остановлено. Доступ до: ${stripeCancellationDate(order.stripeAccessEndsAtMs)}.`;
+      state.style.color = '#86efac';
+    } else if (!recurringStripe) {
+      state.textContent = 'У этого заказа нет отменяемой Stripe-подписки.';
+    } else {
+      state.textContent = `Stripe-подписка: …${subscriptionId.slice(-8)}. Будущий платёж ещё не остановлен.`;
+    }
+    article.append(heading, details, state);
+    if (recurringStripe) {
+      const actions = document.createElement('div');
+      actions.style.cssText = 'display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-top:2px';
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = alreadyCancelled ? 'Проверить статус Stripe' : 'Остановить автопродление';
+      button.setAttribute('aria-label', `Остановить автопродление Stripe для заказа ${orderId}`);
+      button.title = 'Остановит будущие списания в Stripe. Доступ сохранится до конца оплаченного периода. Возврат денег не выполняется.';
+      button.style.cssText = 'min-height:44px;background:#3a171b;border:1px solid #7f1d1d;color:#fecaca';
+      button.addEventListener('click', () => cancelStripeSubscriptionRenewal(orderId, button, state));
+      actions.append(button);
+      article.append(actions);
+    }
+    return article;
+  }
+
+  async function searchStripeSubscriptionsForCancellation() {
+    const input = document.getElementById('stripe-cancel-lookup');
+    const button = document.getElementById('stripe-cancel-search');
+    const results = document.getElementById('stripe-cancel-results');
+    const lookup = String(input?.value || '').trim();
+    if (!input || !button || !results) return;
+    if (!lookup) {
+      input.focus();
+      setStripeCancellationStatus('Введите точный email покупателя или ID веб-заказа.', 'error');
+      return;
+    }
+    button.disabled = true;
+    button.textContent = 'Ищу…';
+    results.setAttribute('aria-busy', 'true');
+    setStripeCancellationStatus('Ищу подходящие веб-заказы…');
+    try {
+      let rows = [];
+      if (lookup.includes('@')) {
+        const snapshot = await getDocs(query(
+          collection(db, 'web_premium_orders'),
+          where('email', '==', lookup.toLowerCase()),
+          limit(25),
+        ));
+        rows = snapshot.docs.map((snapshotDoc) => ({ id: snapshotDoc.id, data: snapshotDoc.data() || {} }));
+      } else {
+        const snapshot = await getDoc(doc(db, 'web_premium_orders', lookup));
+        if (snapshot.exists()) rows = [{ id: snapshot.id, data: snapshot.data() || {} }];
+      }
+      rows.sort((a, b) => stripeCancellationTimestamp(b.data.createdAt) - stripeCancellationTimestamp(a.data.createdAt));
+      stripeCancellationRows.clear();
+      results.replaceChildren();
+      for (const row of rows) {
+        stripeCancellationRows.set(row.id, row.data);
+        results.append(stripeCancellationRow(row.id, row.data));
+      }
+      if (!rows.length) {
+        const empty = document.createElement('div');
+        empty.className = 'reports-empty';
+        empty.textContent = 'Заказы не найдены. Проверьте точное написание email или ID.';
+        results.append(empty);
+      }
+      setStripeCancellationStatus(rows.length ? `Найдено заказов: ${rows.length}.` : 'Совпадений нет.');
+    } catch (error) {
+      results.replaceChildren();
+      setStripeCancellationStatus(`Не удалось найти заказ: ${String(error?.message || error).slice(0, 180)}`, 'error');
+    } finally {
+      results.setAttribute('aria-busy', 'false');
+      button.disabled = false;
+      button.textContent = 'Найти подписку';
+    }
+  }
+
+  async function cancelStripeSubscriptionRenewal(orderId, button, state) {
+    const order = stripeCancellationRows.get(orderId);
+    if (!order || button.disabled) return;
+    const confirmed = window.confirm(
+      `Остановить будущие списания Stripe для ${String(order.email || orderId)}?\n\nДоступ останется до конца уже оплаченного периода. Возврат денег и немедленное отключение доступа НЕ выполняются.`,
+    );
+    if (!confirmed) return;
+    const originalText = button.textContent;
+    const idempotencyKey = crypto.randomUUID();
+    button.disabled = true;
+    button.setAttribute('aria-busy', 'true');
+    button.textContent = 'Останавливаю…';
+    state.textContent = 'Stripe подтверждает остановку будущего продления…';
+    setStripeCancellationStatus('Отправляю защищённую команду на сервер…');
+    try {
+      if (!_fnAdminCancelStripeSubscriptionRenewal) {
+        _fnAdminCancelStripeSubscriptionRenewal = createAdminAuthCallable('adminCancelStripeSubscriptionRenewal');
+      }
+      const raw = await _fnAdminCancelStripeSubscriptionRenewal({
+        orderId,
+        reason: 'Остановка автопродления из живой админки по запросу владельца карты',
+        idempotencyKey,
+      });
+      const result = raw?.data || {};
+      if (result.ok !== true || result.cancelAtPeriodEnd !== true) throw new Error('Сервер не подтвердил остановку автопродления');
+      order.stripeCancelAtPeriodEnd = true;
+      order.stripeAccessEndsAtMs = Number(result.accessEndsAtMs || 0);
+      state.textContent = `Автопродление остановлено. Доступ сохранён до: ${stripeCancellationDate(result.accessEndsAtMs)}.`;
+      state.style.color = '#86efac';
+      button.disabled = false;
+      button.textContent = 'Проверить статус Stripe';
+      setStripeCancellationStatus('Готово: будущие списания остановлены, текущий оплаченный доступ сохранён.', 'success');
+    } catch (error) {
+      button.disabled = false;
+      button.textContent = originalText;
+      state.textContent = 'Остановка не подтверждена. Повторите попытку: сервер безопасно переиспользует ту же операцию.';
+      state.style.color = '#fca5a5';
+      setStripeCancellationStatus(`Ошибка: ${String(error?.message || error).slice(0, 180)}`, 'error');
+    } finally {
+      button.setAttribute('aria-busy', 'false');
+    }
+  }
+
+  window.searchStripeSubscriptionsForCancellation = searchStripeSubscriptionsForCancellation;
 
   // Reusable Phase-1 primitives. They preserve populated DOM during background
   // revalidation and coalesce identical in-flight work.

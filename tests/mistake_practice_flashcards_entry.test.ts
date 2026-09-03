@@ -9,22 +9,22 @@ const source = fs.readFileSync(
 const read = (relativePath: string): string =>
   fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8');
 
-describe('Cards Errors entry', () => {
-  test('places Errors first in the training menu and never hides it with speaking', () => {
-    expect(FC_TRAIN_OPTIONS[0]).toBe('errors');
-    expect(visibleFcTrainOptions(0, { speakingEnabled: false })).toContain('errors');
+describe('Cards training menu after Errors moved to Home', () => {
+  test('contains only card-native training modes', () => {
+    expect(FC_TRAIN_OPTIONS).toEqual(['train', 'listen', 'speak', 'blitz']);
+    expect(visibleFcTrainOptions(0, { speakingEnabled: false })).toEqual(['train', 'listen', 'blitz']);
   });
 
-  test('shows exact count, Plus gate and setup sheet from the tabbar', () => {
-    expect(source).toContain('MistakePracticeSetupSheet');
-    expect(source).toContain('mistakeReadyCount');
-    expect(source).toContain('hasPremiumAccess');
-    expect(source).toContain("context: 'mistake_practice'");
+  test('does not load or render the mistake-practice entry from Cards', () => {
+    expect(source).not.toContain('MistakePracticeSetupSheet');
+    expect(source).not.toContain('mistakeReadyCount');
+    expect(source).not.toContain("option === 'errors'");
+    expect(source).not.toContain("context: 'mistake_practice'");
     expect(read('app/premium_context.ts')).toContain("| 'mistake_practice'");
     expect(read('app/paywall_copy.ts')).toContain('mistake_practice: {');
-    expect(source).toContain('fc-tabbar-train-option-errors');
+    expect(source).not.toContain('fc-tabbar-train-option-errors');
     expect(source).not.toMatch(/mistakeVoiceReadyCount|voiceReadyCount|voiceOnly|voice_only/);
-    expect(source).toContain('getMistakePracticeReadyCount');
+    expect(source).not.toContain('getMistakePracticeReadyCount');
     expect(source).not.toContain('loadMistakeEventJournal');
     expect(source).not.toContain('projectMistakes');
     expect(source).not.toContain('selectMistakesForSession');

@@ -1,7 +1,7 @@
 /**
  * Cards 2.1 §5.3 — «Мои наборы»: свои и добавленные наборы отдельными разделами.
  *
- * «Наборы» в нижнем таббаре раскрывают ДВА разных раздела (§5.2):
+ * Хаб карточек раскрывает ДВА разных раздела:
  *   • этот экран        — только мои наборы (добавленные + созданные мной);
  *   • /flashcards_packs — каталог наборов сообщества.
  *
@@ -27,8 +27,10 @@ import {
   ActivityIndicator,
   BackHandler,
   Platform,
+  Pressable,
   StatusBar,
   StyleSheet,
+  ScrollView,
   Text,
   TouchableOpacity,
   View,
@@ -43,14 +45,13 @@ import { triLang } from '../constants/i18n';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
+import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
 import { loadCommunityOwnedPackIds } from './community_packs/communityOwnedStorage';
 import { fetchCommunityPackMeta } from './community_packs/communityFirestore';
 import { loadLocalAuthorPacks, mergeLocalAuthorPacks } from './community_packs/localAuthorPacks';
 import { stageCommunityPackCardsForNavigation } from './community_packs/staging';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import Reanimated from 'react-native-reanimated';
-import FlashcardsTabBar, { FC_TABBAR_HEIGHT, useFcTabBarScroll } from './flashcards/FlashcardsTabBar';
 import {
   fallbackBundledMarketPacks,
   loadAccessiblePackIds,
@@ -147,9 +148,6 @@ export default function FlashcardsMyPacksScreen() {
   const { studyTarget } = useStudyTarget();
   const insets = useStableSafeAreaInsets();
   const { width } = useWindowDimensions();
-  /** §5.2: капсула таббара сжимается при скролле — как на главной. */
-  const tabScroll = useFcTabBarScroll();
-
   // Первый кадр — из прогретых кэшей, без ожидания диска и сети (см. peekMyPacksGroups).
   const [groups, setGroups] = useState<MyPacksGroups>(() => peekMyPacksGroups(studyTarget));
   const [openingPackId, setOpeningPackId] = useState<string | null>(null);
@@ -231,11 +229,10 @@ export default function FlashcardsMyPacksScreen() {
     }, [loadMine]),
   );
 
-  // зачем (владелец, 2026-08-16): фолбек '/flashcards' уводил в СОСЕДНЮЮ позицию
-  // того же таббара карточек, а не наружу — раздел замыкался сам на себя и выйти
-  // было невозможно. Порядок владельца: набор → «Мои наборы» → главная.
+  // `/flashcards` теперь единый хаб: из библиотеки возвращаемся в него, а уже
+  // стрелка хаба выводит на главную.
   const leave = useCallback(() => {
-    safeRouterBack(router, '/(tabs)/home' as any);
+    safeRouterBack(router, '/flashcards' as any);
   }, [router]);
 
   React.useEffect(() => {
@@ -332,6 +329,11 @@ export default function FlashcardsMyPacksScreen() {
         ru: 'Открыть наборы сообщества', uk: 'Відкрити набори спільноти', en: 'Open community packs', es: 'Ver packs de la comunidad',
         'pt-BR': 'Ver pacotes da comunidade', vi: 'Xem bộ thẻ cộng đồng', id: 'Lihat paket komunitas',
         tr: 'Topluluk paketlerini aç', pl: 'Zobacz zestawy społeczności',
+      }),
+      create: triLang(lang, {
+        ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un pack',
+        'pt-BR': 'Criar um pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket',
+        tr: 'Paket oluştur', pl: 'Utwórz zestaw',
       }),
       back: triLang(lang, {
         ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás',
@@ -500,17 +502,14 @@ export default function FlashcardsMyPacksScreen() {
           <View style={{ width: 40 }} />
         </View>
 
-        {/* §5.2: скролл кормит капсулу таббара прямо на UI-потоке. */}
-        <Reanimated.ScrollView
+        <ScrollView
           decelerationRate="fast"
           style={styles.scroll}
           contentContainerStyle={[
             styles.scrollContent,
-            { paddingBottom: Math.max(insets.bottom, 16) + 12 + FC_TABBAR_HEIGHT },
+            { paddingBottom: Math.max(insets.bottom, 16) + 84 },
           ]}
           showsVerticalScrollIndicator
-          onScroll={tabScroll.scrollHandler}
-          scrollEventThrottle={16}
         >
           <View style={{ paddingHorizontal: H_PAD }}>
             <Text style={{ color: t.textPrimary, fontSize: 26, fontWeight: '800', letterSpacing: 0.2 }}>
@@ -545,10 +544,32 @@ export default function FlashcardsMyPacksScreen() {
                 </TouchableOpacity>
               </View>
             ) : null}
-          </View>
-        </Reanimated.ScrollView>
 
-        <FlashcardsTabBar lang={lang} t={t} active="mine" bottomInset={insets.bottom} scroll={tabScroll} />
+          </View>
+        </ScrollView>
+        <View pointerEvents="box-none" style={[styles.createFabDock, { bottom: Math.max(insets.bottom, 16) }]}>
+          <Pressable
+            testID="fc-my-packs-create"
+            accessibilityLabel={copy.create}
+            accessibilityRole="button"
+            accessible
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            onPress={() => {
+              void hapticTap();
+              router.push({ pathname: '/community_pack_create', params: {} } as never);
+            }}
+            style={({ pressed }) => [
+              styles.createFab,
+              {
+                backgroundColor: t.accent,
+                opacity: pressed ? 0.82 : 1,
+                transform: [{ scale: pressed ? 0.96 : 1 }],
+              },
+            ]}
+          >
+            <Ionicons name="add" size={32} color={t.correctText} />
+          </Pressable>
+        </View>
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -587,5 +608,24 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: GAP,
     justifyContent: 'flex-start',
+  },
+  createFabDock: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    zIndex: 10,
+  },
+  createFab: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.24,
+    shadowRadius: 8,
   },
 });

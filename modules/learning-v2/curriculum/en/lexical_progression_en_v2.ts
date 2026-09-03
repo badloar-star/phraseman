@@ -30,6 +30,19 @@ const sessionId = (absoluteOrdinal: number): string => {
   return `lesson-${String(lessonOrdinal).padStart(2, "0")}:session:${String(sessionOrdinal).padStart(2, "0")}`;
 };
 
+// A chapter checkpoint is an independent retrieval event, not a lexical
+// introduction. Every introduced sense therefore has a forward edge to the
+// first checkpoint after its introduction in addition to its spaced review
+// edges. Keeping this calculation here makes the exact packet projection and
+// the lexical ledger share one source of truth.
+const firstCheckpointAfter = (absoluteOrdinal: number): number | null => {
+  const chapterStart = Math.floor((absoluteOrdinal - 1) / 8) * 8 + 1;
+  const checkpoint = chapterStart + 7;
+  if (checkpoint > absoluteOrdinal) return checkpoint;
+  const nextCheckpoint = checkpoint + 8;
+  return nextCheckpoint <= 1_792 ? nextCheckpoint : null;
+};
+
 const senseSlug = (value: string): string =>
   value.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
 
@@ -46,6 +59,11 @@ const explicitIntroductionBySenseId = new Map(
 );
 const explicitlyAssignedEnglish = new Set(
   explicitIntroductions.map(({ sense }) => sense.english.toLowerCase()),
+);
+const explicitlyAssignedOperationIds = new Set(
+  LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2.map(
+    (assignment) => assignment.grammarOperationId,
+  ),
 );
 const explicitCandidates = explicitIntroductions.map(({ assignment, sense }) => {
   const operation = LEARNING_V2_ENGLISH_GRAMMAR_OPERATIONS_V2.find(
@@ -71,7 +89,13 @@ const candidates = Object.freeze([
       const grounding = normalizedExamplesByOperation.find(({ text }) =>
         text.includes(` ${sense.english.toLowerCase()} `),
       );
-      return grounding ? [{ sense, operation: grounding.operation }] : [];
+      // Once an operation has its exact manual lexical plan, an old V1
+      // scenario candidate must not silently compete for its introduction
+      // slots or create an orphan sense. Unplanned operations may still use
+      // the bounded candidate pool while their exact plan is being authored.
+      return grounding && !explicitlyAssignedOperationIds.has(grounding.operation.id)
+        ? [{ sense, operation: grounding.operation }]
+        : [];
     }),
 ]);
 
@@ -98,8 +122,12 @@ export const LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2: readonly LearningV2E
         (operationIndexWithinLesson * 8) +
         sessionOffsetWithinChapter +
         1);
-    const retrievalOrdinals = [...new Set([8, 56, 112, 224]
-      .map((distance) => Math.min(1_792, introductionAbsoluteSessionOrdinal + distance)))]
+    const checkpointOrdinal = firstCheckpointAfter(introductionAbsoluteSessionOrdinal);
+    const retrievalOrdinals = [...new Set([
+      checkpointOrdinal,
+      ...[8, 56, 112, 224]
+        .map((distance) => Math.min(1_792, introductionAbsoluteSessionOrdinal + distance)),
+    ].filter((ordinal): ordinal is number => ordinal !== null))]
       .filter((ordinal) => ordinal > introductionAbsoluteSessionOrdinal);
     return Object.freeze({
       id: senseId,

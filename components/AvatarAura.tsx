@@ -18,6 +18,13 @@ type Props = {
   /** Disable the loop for small avatars mounted in scrollable lists. */
   animate?: boolean;
   ownerActive?: boolean;
+  /**
+   * Внешний общий прогресс цикла (0→1). Когда передан, аура не заводит свой
+   * таймер, а живёт чужим: несколько аватарок дышат в такт, а не каждая своим
+   * loop'ом — это и дешевле по кадрам.
+   * зачем: восстановлено из работы владельца 2026-08-30/31.
+   */
+  motionProgress?: Animated.Value;
 };
 
 // зачем: владелец сказал «ауры слишком большие» (2026-08-26) — сбавили с 2.28
@@ -28,13 +35,14 @@ const APPROVED_AURA_RING_SCALE = 2.05;
 const SEASON_AURA_RING_SCALE = 1.40;
 const SEASON_AURA_LAYOUT_GUTTER = 12;
 
-function AvatarAura({ auraId, size, visualSize, children, style, animate = true, ownerActive }: Props) {
+function AvatarAura({ auraId, size, visualSize, children, style, animate = true, ownerActive, motionProgress }: Props) {
   const aura = getAvatarAuraById(auraId);
   const { themeMode } = useTheme();
   const approvedAsset = getApprovedAvatarAuraAsset(aura?.id);
   const seasonAsset = getSeasonAuraAssetForAvatarId(aura?.id, themeMode);
   const layeredAsset = approvedAsset ?? seasonAsset;
-  const auraPhase = useRef(new Animated.Value(0)).current;
+  const ownPhase = useRef(new Animated.Value(0)).current;
+  const auraPhase = motionProgress ?? ownPhase;
   const isFocused = useIsScreenFocused();
   const reduceMotion = useReduceMotion();
   const runtimeActive = isFocused && (ownerActive ?? true);
@@ -67,6 +75,7 @@ function AvatarAura({ auraId, size, visualSize, children, style, animate = true,
   const shouldAnimate = animate && runtimeActive && !reduceMotion && size >= 42 && aura !== undefined && haloVisible;
 
   useEffect(() => {
+    if (motionProgress) return;
     if (!shouldAnimate) {
       auraPhase.setValue(0);
       return;
@@ -98,7 +107,7 @@ function AvatarAura({ auraId, size, visualSize, children, style, animate = true,
       appSub.remove();
       stop();
     };
-  }, [auraPhase, shouldAnimate]);
+  }, [auraPhase, shouldAnimate, motionProgress]);
 
   // Дыхание ореола-подложки: то же движение, что у обычного ореола, но глуше —
   // подложка не должна спорить с кольцом в момент проявления.

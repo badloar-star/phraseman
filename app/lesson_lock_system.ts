@@ -143,6 +143,82 @@ export const isLessonUnlockedByEarnedProgress = async (
   return true;
 };
 
+/**
+ * Ищет ближайший доступный урок ВНИЗ от запомненного — за ОДНО чтение диска.
+ *
+ * зачем (владелец 2026-09-02, замер [PERF-STEPS]): Главная делала это циклом
+ * `while (await isLessonUnlockedByEarnedProgress(...))`, и на первом заходе шаг
+ * lessons+unlockLoop занимал 8 346 мс из 9 247 — 90% всей загрузки экрана.
+ * Каждая итерация читала диск 2+ раза (массив разблокированных + пара ключей
+ * прошлого урока), а при успехе ещё и писала под замком. До 31 итерации — это
+ * ~90 последовательных операций.
+ *
+ * Здесь всё нужное берётся одним multiGet, а решение считается в памяти.
+ * Логика доступа СОВПАДАЕТ с isLessonUnlockedByEarnedProgress: урок 1 всегда
+ * открыт, поурочные исключения «Пульта» перебивают всё, за пределами
+ * FREE_LESSON_LIMIT решает только массив разблокированных, внутри — ещё и
+ * бронзовый порог на предыдущем уроке.
+ *
+ * Отличие намеренное: побочная запись unlockLesson здесь НЕ делается. Это
+ * чтение для кнопки «Урок» на Главной, а не место выдачи доступа — реальный
+ * гейт остаётся на экране урока.
+ */
+export const resolveLastAvailableLessonId = async (
+  requestedLessonId: number,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<number> => {
+  if (!Number.isFinite(requestedLessonId)) return 1;
+  let lessonId = Math.min(32, Math.max(1, Math.floor(requestedLessonId)));
+  if (lessonId === 1) return 1;
+
+  const keys: string[] = [unlockedLessonsKey(studyTarget)];
+  // Пороговые ключи нужны только для уроков внутри бесплатного лимита —
+  // именно там решает счёт предыдущего урока.
+  for (let id = 2; id <= lessonId && id <= FREE_LESSON_LIMIT; id++) {
+    keys.push(lessonBestScoreKey(id - 1, studyTarget), lessonProgressKey(id - 1, studyTarget));
+  }
+
+  let store: Map<string, string | null>;
+  try {
+    store = new Map(await AsyncStorage.multiGet(keys));
+  } catch (e) {
+    // зачем: не смогли прочитать — возвращаем запрошенный урок как есть, экран
+    // урока сам покажет гейт. Причина обязана попасть в лог (немой catch запрещён).
+    DebugLogger.error(
+      'lesson_lock_system:resolveLastAvailable',
+      e instanceof Error ? e : new Error(String(e)),
+      'warning',
+    );
+    return lessonId;
+  }
+
+  const unlocked = new Set(safeNumberList(store.get(unlockedLessonsKey(studyTarget)) ?? null));
+  const isAvailable = (id: number): boolean => {
+    if (id === 1) return true;
+    if (isLessonFreeByRemoteException(id)) return true;
+    if (id > FREE_LESSON_LIMIT) return unlocked.has(id);
+    if (!unlocked.has(id)) {
+      const prevId = id - 1;
+      const { score } = effectiveLessonStarScore(
+        store.get(lessonBestScoreKey(prevId, studyTarget)) ?? null,
+        store.get(lessonProgressKey(prevId, studyTarget)) ?? null,
+      );
+      return score >= BRONZE_UNLOCK_SCORE;
+    }
+    const prevId = id - 1;
+    const { score } = effectiveLessonStarScore(
+      store.get(lessonBestScoreKey(prevId, studyTarget)) ?? null,
+      store.get(lessonProgressKey(prevId, studyTarget)) ?? null,
+    );
+    return score >= BRONZE_UNLOCK_SCORE;
+  };
+
+  while (lessonId > 1 && !isAvailable(lessonId)) {
+    lessonId -= 1;
+  }
+  return lessonId;
+};
+
 function areScoresReady(scores: number[], from: number, to: number, required: number): boolean {
   for (let lessonId = from; lessonId <= to; lessonId++) {
     if ((scores[lessonId - 1] ?? 0) < required) return false;

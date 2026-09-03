@@ -133,8 +133,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/BoonActivatedModal.tsx': owned('Activated boon classic loops follow visibility plus the classic variant and stop on cleanup.', ['if (!visible || !isClassic)', 'floatLoop.current?.stop()', 'shimmerLoop.current?.stop()']),
   'components/BoonChestModal.tsx': owned('Boon chest unmounts when hidden and stops running motion.', ['if (!visible) return null', '.stop()']),
   'components/CleanOnboarding.tsx': guarded('Onboarding breathing loop uses screen focus and AppState.'),
-  'components/CollectibleArtFrame.tsx': guarded('Collectible effects use screen focus and AppState.'),
-  'components/HoloFoilCard.tsx': guarded('Holo idle motion uses screen focus and AppState.'),
   // зачем (2026-08-17, «Вместе»): покачивание готового сундука недели — только пока вкладка
   // Друзья видима и приложение активно (useRuntimeActive(ownerVisible)), иначе гасится.
   'components/friends_together/FriendsChestCard.tsx': runtime('Weekly friends chest idle rock runs only while the Friends tab owns the runtime.', ['useRuntimeActive(ownerVisible)', 'cancelAnimation(rock)']),
@@ -182,7 +180,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
     requiredTokens: ['if (paused || reduceMotion) return', 'clearTimeout(timer); cancelAnimation(alarm);'],
   },
   'components/avatar-aura/AuraRenderer.tsx': runtime('Aura ambient loop runs only on focused foreground runtime granted by its owner and respects reduced motion; inactive auras freeze at their static phase.', ['useRuntimeActive(ownerVisible)', 'if (!ambientActive)', 'cancelAnimation(phase)']),
-  'components/collectibles/CollectiblesEmptyStateMotion.tsx': runtime('Empty-collection drift sleeps off-screen/background and cancels every shared value.', ['if (reduceMotion || !runtimeActive)', 'values.forEach((value) => cancelAnimation(value))']),
   // Волна переписана мержем (AudioWaveformBase): вместо старого if (!active) гард
   // стал строже — пауза/фон/чужой экран/reduce-motion глушат цикл, а active
   // владельца входит в useRuntimeActive(active). Токены обновлены, не ослаблены.
@@ -221,7 +218,11 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/PlayerProfileModal.tsx': owned('Profile shimmer exists only while a player is present.', ['if (!player)', 'return () => loop.stop()']),
   'components/PremiumGoldButton.tsx': runtime('Gold CTA shine requires focused foreground runtime plus explicit owner visibility.', ['active: boolean', 'active && premiumButtonRuntimeActive', '!buttonAnimationActive', 'anim.stop()']),
   'components/ProfileCardMotionFx.tsx': guarded('Profile card loops use screen focus and AppState.'),
-  'components/ReleaseNotesModal.tsx': owned('Release notes loops run only while visible and stop on cleanup.', ['if (!visible)', 'glowLoop.stop()']),
+  'components/ReleaseNotesModal.tsx': owned('Release notes loops run only while visible and stop on cleanup.', ['if (!visible)', 'shineLoop.stop()']),
+  'components/arena/ArenaHubSummary.tsx': owned('Arena hub rank pulse follows the active owner prop and reduce-motion preference.', ['active: boolean', 'if (!active || reduceMotion)', 'cancelAnimation(']),
+  'components/arena/ArenaRankMatchmakingScene.tsx': owned('Arena matchmaking reel follows the active owner prop and reduce-motion preference.', ['active: boolean', 'if (!active || reduceMotion)', 'cancelAnimation(']),
+  'components/icons/LiveStreakFeather.tsx': owned('Live streak feather breathing follows its explicit breathing owner prop and reduce-motion preference.', ['breathing?: boolean', 'if (!breathEnabled || reduceMotion !== false)', 'breathScale.stopAnimation()']),
+  'components/league/LeagueAmbientRelic.tsx': owned('League relic follows its active owner prop and reduce-motion preference.', ['active: boolean', 'if (!active || reduceMotion)', 'cancelAnimation(']),
   // зачем 2026-08-22: пульс-приглашение кнопки «в карточки» (владелец, 2026-08-17).
   // Живёт только до первого сохранения (pulse-проп владельца) и только на видимом
   // сфокусированном экране: экраны в табах не размонтируются, поэтому без

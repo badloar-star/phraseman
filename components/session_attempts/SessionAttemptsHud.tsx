@@ -17,12 +17,22 @@ import { SESSION_ATTEMPTS_MOTION } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { useTheme } from '../ThemeContext';
+import SessionAttemptGiftRescueOverlay from './SessionAttemptGiftRescueOverlay';
 
 type Props = {
   remaining: number;
   locale: string;
   total?: number;
   testID?: string;
+  /**
+   * Сцена «Второй шанс»: счётчик спасений подарком — смена значения играет
+   * анимацию. Не передан — сцены нет, HUD ведёт себя как раньше.
+   * зачем: восстановлено из работы владельца 2026-08-30/31.
+   */
+  giftRescueSequence?: number;
+  /** Причина отказа сервера; null/не передан — подарок применён. */
+  giftRecoveryError?: string | null;
+  onRetryGiftRecovery?: () => void;
 };
 
 type HeartSlotProps = {
@@ -181,7 +191,15 @@ function HeartSlot({ index, filled, activeColor, emptyColor }: HeartSlotProps) {
   );
 }
 
-function SessionAttemptsHud({ remaining, locale, total = SESSION_ATTEMPTS_MAX, testID = 'session-attempts-hud' }: Props) {
+function SessionAttemptsHud({
+  remaining,
+  locale,
+  total = SESSION_ATTEMPTS_MAX,
+  testID = 'session-attempts-hud',
+  giftRescueSequence,
+  giftRecoveryError,
+  onRetryGiftRecovery,
+}: Props) {
   const { theme: t } = useTheme();
   const safeTotal = Math.max(1, Math.floor(total));
   const safeRemaining = Math.min(safeTotal, Math.max(0, Math.floor(remaining)));
@@ -234,6 +252,14 @@ function SessionAttemptsHud({ remaining, locale, total = SESSION_ATTEMPTS_MAX, t
           emptyColor={t.textGhost}
         />
       ))}
+      {giftRescueSequence !== undefined && onRetryGiftRecovery ? (
+        <SessionAttemptGiftRescueOverlay
+          sequence={giftRescueSequence}
+          locale={locale}
+          errorCode={giftRecoveryError ?? null}
+          onRetry={onRetryGiftRecovery}
+        />
+      ) : null}
     </View>
   );
 }

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "повторение — `am` не выбрасывать; `not` встаёт после `am`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Слово, которое проглатывают",
+        "uk": "Слово, которое проглатывают"
+      },
+      "bodyByLocale": {
+        "ru": "По-русски «я устал» — два слова, и всё честно. Рука сама тянется сделать так же по-английски: `I tired`.\n\nНо между `I` и словом о себе всегда стоит `am`. Без него фраза — как чайник без ручки: узнать можно, взять нельзя.",
+        "uk": "По-русски «я устал» — два слова, и всё честно. Рука сама тянется сделать так же по-английски: `I tired`.\n\nНо между `I` и словом о себе всегда стоит `am`. Без него фраза — как чайник без ручки: узнать можно, взять нельзя."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "У кухни спрашивают, как вы. Всё хорошо — скажите целиком.",
+          "uk": "У кухни спрашивают, как вы. Всё хорошо — скажите целиком."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r1",
+              "text": "I am fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r2",
+              "text": "I fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r3",
+              "text": "Am fine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r1",
+              "text": "I am fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r2",
+              "text": "I fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro1:r3",
+              "text": "Am fine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У кухни спрашивают, как вы. Всё хорошо — скажите целиком.",
+          "uk": "У кухни спрашивают, как вы. Всё хорошо — скажите целиком."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Not не работает в одиночку",
+        "uk": "Not не работает в одиночку"
+      },
+      "bodyByLocale": {
+        "ru": "Рука тянется и ко второму сокращению: `I no sure`. Слышится логично — и звучит как объявление на плохо переведённой табличке.\n\n`no` — это ответ на вопрос, целиком. Внутри фразы «не» — это `not`, и живёт он строго после `am`: `I am not sure`.",
+        "uk": "Рука тянется и ко второму сокращению: `I no sure`. Слышится логично — и звучит как объявление на плохо переведённой табличке.\n\n`no` — это ответ на вопрос, целиком. Внутри фразы «не» — это `not`, и живёт он строго после `am`: `I am not sure`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "У вас спрашивают, правда ли кофе в этой банке хороший. Вы его ещё не пробовали.",
+          "uk": "У вас спрашивают, правда ли кофе в этой банке хороший. Вы его ещё не пробовали."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r1",
+              "text": "I am not sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r2",
+              "text": "I no sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r3",
+              "text": "I am sure not."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r1",
+              "text": "I am not sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r2",
+              "text": "I no sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro2:r3",
+              "text": "I am sure not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У вас спрашивают, правда ли кофе в этой банке хороший. Вы его ещё не пробовали.",
+          "uk": "У вас спрашивают, правда ли кофе в этой банке хороший. Вы его ещё не пробовали."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Am — это и есть «я»",
+        "uk": "Am — это и есть «я»"
+      },
+      "bodyByLocale": {
+        "ru": "`I am lost` — «я заблудился». Выбросьте `am`, и останется `I lost` — а это уже «я потерял». Что потерял, кого? Собеседник ждёт продолжения, а его нет.\n\nТак же и с `I am new`: без `am` вы не «новенький», а просто два слова, которые никуда не ведут.",
+        "uk": "`I am lost` — «я заблудился». Выбросьте `am`, и останется `I lost` — а это уже «я потерял». Что потерял, кого? Собеседник ждёт продолжения, а его нет.\n\nТак же и с `I am new`: без `am` вы не «новенький», а просто два слова, которые никуда не ведут."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Вас третий раз спрашивают имя коллеги, которого вы видите впервые. Объясните, почему не знаете.",
+          "uk": "Вас третий раз спрашивают имя коллеги, которого вы видите впервые. Объясните, почему не знаете."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r1",
+              "text": "I am new."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r2",
+              "text": "I new."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r3",
+              "text": "I am not new."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r1",
+              "text": "I am new."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r2",
+              "text": "I new."
+            },
+            {
+              "responseId": "en:lesson-01:session-05:intro3:r3",
+              "text": "I am not new."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вас третий раз спрашивают имя коллеги, которого вы видите впервые. Объясните, почему не знаете.",
+          "uk": "Вас третий раз спрашивают имя коллеги, которого вы видите впервые. Объясните, почему не знаете."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0ffc70080b44290b7263ed5738c01dff43d4284307a5d165cf9790352e1a2998"
+}

@@ -14,6 +14,13 @@ jest.mock('@react-native-async-storage/async-storage');
  * Контракт: блокировать можно ТОЛЬКО когда замок реально виден. Если следов
  * удаления не видели — ошибка чтения помечается как «no lock seen», и старт
  * обязан пустить пользователя в приложение.
+ *
+ * Обновление 2026-09-01 (коммит 97fdf2083 «локальный замок больше НЕ ИСТОЧНИК
+ * ПРАВДЫ»): сломанный локальный след больше НЕ бросает исключение и не запирает
+ * вход даже когда замок виден. Правда об удалении живёт на сервере (tombstone +
+ * permanent denial), а половинчатый или расходящийся след на устройстве просто
+ * СТИРАЕТСЯ, и чтение возвращает null. Тесты ниже сторожат новую модель:
+ * ни в одном из случаев пользователь не остаётся запертым.
  */
 
 const RECORD_KEY = 'account_delete_pending_auth_v2';
@@ -76,28 +83,39 @@ test('Keychain недоступен и следов удаления нет: о�
   expect(quarantine.isAccountDeleteGuardNoLockSeenError(error)).toBe(true);
 });
 
-test('замок реально виден, но повреждён: блокировка остаётся, ошибка НЕ помечена', async () => {
+test('замок виден, но сломан (запись без якоря): след стёрт, вход НЕ заперт', async () => {
   const secure = require('expo-secure-store');
-  // Валидная запись без якоря = подделка/повреждение при видимом замке.
+  // Валидная запись без якоря = половинчатый след. Раньше он означал
+  // «повреждён» и запирал устройство навсегда — снять было нечем.
   secureRows[RECORD_KEY] = JSON.stringify(lock());
   const quarantine = require('../app/account_delete_quarantine');
 
-  const error = await quarantine.readAccountDeletePendingAuthRaw().catch((e: unknown) => e);
+  const result = await quarantine.readAccountDeletePendingAuthRaw().catch((e: unknown) => e);
 
-  expect(error).toBeInstanceOf(Error);
-  expect(quarantine.isAccountDeleteGuardNoLockSeenError(error)).toBe(false);
+  // Броска нет: замка «нет» — значит и запирать нечем.
+  expect(result).not.toBeInstanceOf(Error);
+  expect(result).toBeNull();
+  // Мусор физически снят с устройства, иначе он вернётся на следующем старте.
+  expect(secureRows[RECORD_KEY]).toBeUndefined();
+  expect(secure.deleteItemAsync).toHaveBeenCalledWith(RECORD_KEY);
 });
 
-test('якорь и запись расходятся: блокировка остаётся, ошибка НЕ помечена', async () => {
+test('якорь и запись расходятся: обе половины стёрты, вход НЕ заперт', async () => {
   const secure = require('expo-secure-store');
+  // Инцидент 31.08-01.09 (UID #e5c3): расхождение половин запирало вход, старт
+  // и повторное удаление разом — выхода не было ни одного.
   secureRows[RECORD_KEY] = JSON.stringify(lock());
   secureRows[ANCHOR_KEY] = JSON.stringify(anchor({ providerUid: 'someone-else' }));
   const quarantine = require('../app/account_delete_quarantine');
 
-  const error = await quarantine.readAccountDeletePendingAuthRaw().catch((e: unknown) => e);
+  const result = await quarantine.readAccountDeletePendingAuthRaw().catch((e: unknown) => e);
 
-  expect(error).toBeInstanceOf(Error);
-  expect(quarantine.isAccountDeleteGuardNoLockSeenError(error)).toBe(false);
+  expect(result).not.toBeInstanceOf(Error);
+  expect(result).toBeNull();
+  expect(secureRows[RECORD_KEY]).toBeUndefined();
+  expect(secureRows[ANCHOR_KEY]).toBeUndefined();
+  expect(secure.deleteItemAsync).toHaveBeenCalledWith(RECORD_KEY);
+  expect(secure.deleteItemAsync).toHaveBeenCalledWith(ANCHOR_KEY);
 });
 
 test('обычные ошибки не считаются «замка не видели»', async () => {

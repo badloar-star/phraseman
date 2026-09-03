@@ -155,9 +155,123 @@ for (const chapter of LEARNING_V2_ENGLISH_CHAPTER_BLUEPRINTS_V2) {
   }
 }
 
-function canonicalExamples(operationIds: readonly string[]): readonly string[] {
-  return unique(operationIds.flatMap((operationId) => operationById.get(operationId)?.positiveExamples ?? []))
-    .slice(0, 4);
+const normalizedWords = (value: string): string =>
+  ` ${value.toLowerCase().replace(/[^a-z]+/g, " ").trim()} `;
+
+const thirdPersonSingular = (verb: string): string => {
+  if (verb === "have") return "has";
+  if (/[^aeiou]y$/.test(verb)) return `${verb.slice(0, -1)}ies`;
+  if (/(?:s|x|z|ch|sh|o)$/.test(verb)) return `${verb}es`;
+  return `${verb}s`;
+};
+
+const PRESENT_PARTICIPLE_OVERRIDES = new Map<string, string>([
+  ["queue", "queuing"],
+  ["shiver", "shivering"],
+  ["wander", "wandering"],
+  ["murmur", "murmuring"],
+  ["mutter", "muttering"],
+  ["garden", "gardening"],
+  ["water", "watering"],
+  ["snorkel", "snorkeling"],
+  ["crochet", "crocheting"],
+  ["journal", "journaling"],
+]);
+
+const presentParticiple = (verb: string): string => {
+  const override = PRESENT_PARTICIPLE_OVERRIDES.get(verb);
+  if (override) return override;
+  if (/ie$/.test(verb)) return `${verb.slice(0, -2)}ying`;
+  if (/[^aeiou]e$/.test(verb) && !/(?:ee|ye)$/.test(verb)) {
+    return `${verb.slice(0, -1)}ing`;
+  }
+  // The bounded CVC rule covers the ordinary present-continuous examples in
+  // this course (dig→digging, clap→clapping) without treating every final
+  // consonant as a doubled spelling pattern.
+  if (/[^aeiou][aeiou][^aeiouwxy]$/.test(verb) && verb.length >= 3) {
+    return `${verb}${verb.at(-1)}ing`;
+  }
+  return `${verb}ing`;
+};
+
+const regularPast = (verb: string): string => {
+  if (/e$/.test(verb)) return `${verb}d`;
+  if (/[^aeiou]y$/.test(verb)) return `${verb.slice(0, -1)}ied`;
+  if (/[^aeiou][aeiou][^aeiouwxy]$/.test(verb) && verb.length >= 3) {
+    return `${verb}${verb.at(-1)}ed`;
+  }
+  return `${verb}ed`;
+};
+
+const IRREGULAR_PAST_FORMS = new Map<string, string>([
+  ["choose", "chose"],
+  ["grow", "grew"],
+  ["hide", "hid"],
+  ["rise", "rose"],
+  ["shake", "shook"],
+  ["steal", "stole"],
+  ["throw", "threw"],
+]);
+
+export function learningV2EnglishLexicalSenseOccursInExamplesV2(
+  english: string,
+  partOfSpeech: string,
+  examples: readonly string[],
+): boolean {
+  const normalizedEnglish = english.toLowerCase().replace(/[^a-z]+/g, " ").trim();
+  if (!normalizedEnglish) return false;
+  const corpus = normalizedWords(examples.join(" "));
+  if (corpus.includes(` ${normalizedEnglish} `)) return true;
+
+  // A lexical sense is stored as a lemma. The approved grammar operations may
+  // surface that same verb as a regular third-person form or a present
+  // participle, or a regular past form; each is lexical grounding, not a
+  // second sense.
+  return partOfSpeech === "verb" && !normalizedEnglish.includes(" ")
+    ? [
+      thirdPersonSingular(normalizedEnglish),
+      presentParticiple(normalizedEnglish),
+      regularPast(normalizedEnglish),
+      IRREGULAR_PAST_FORMS.get(normalizedEnglish),
+    ].filter((form): form is string => Boolean(form))
+      .some((form) => corpus.includes(` ${form} `))
+    : false;
+}
+
+function canonicalExamplesForPacket(
+  operationIds: readonly string[],
+  preferredExamples: readonly string[],
+  newLexicalSenseIds: readonly string[],
+): readonly string[] {
+  const operationExamples = unique(operationIds.flatMap((operationId) => {
+    const operation = operationById.get(operationId);
+    return operation
+      ? [...operation.positiveExamples, ...operation.canonicalLexicalExamples]
+      : [];
+  }));
+  const groundingExamples = unique(newLexicalSenseIds.flatMap((senseId) => {
+    const sense = LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2.find(
+      (candidate) => candidate.id === senseId,
+    );
+    if (!sense) return [];
+    const groundingExample = operationExamples.find((example) =>
+      learningV2EnglishLexicalSenseOccursInExamplesV2(
+        sense.english,
+        sense.partOfSpeech,
+        [example],
+      )
+    );
+    return groundingExample ? [groundingExample] : [];
+  }));
+
+  // The exact manual context remains authoritative and first. Grammar-owned
+  // contexts only fill the packet to its required 2–4 examples; for an
+  // auto-ledger sense, a context containing that sense is selected first.
+  return unique([
+    ...preferredExamples,
+    ...groundingExamples,
+    ...operationExamples,
+  ]).slice(0, 4);
 }
 
 function phraseFrames(operationIds: readonly string[]): readonly string[] {
@@ -254,19 +368,32 @@ export const LEARNING_V2_ENGLISH_EXACT_SESSION_PACKETS_V2: readonly LearningV2En
         : reviewOperationIds;
       const exactSessionId = sessionId(chapter.lessonOrdinal, sessionOrdinal);
       const lexicalAssignment = lexicalAssignmentBySessionId.get(exactSessionId);
-      const examples = lexicalAssignment?.canonicalExamples ?? canonicalExamples(focusOperationIds);
       const newLexicalSenseIds = role === "checkpoint"
         ? Object.freeze([])
         : lexicalAssignment
           ? Object.freeze(lexicalAssignment.newSenses.map((sense) => sense.id))
           : lexicalSenseIdsAt(absoluteSessionOrdinal, "new");
-      const retrievalLexicalSenseIds = lexicalAssignment
-        ? lexicalAssignment.retrievalSenseIds
-        : lexicalSenseIdsAt(absoluteSessionOrdinal, "retrieval");
+      const retrievalLexicalSenseIds = unique([
+        ...(lexicalAssignment?.retrievalSenseIds ?? []),
+        ...lexicalSenseIdsAt(absoluteSessionOrdinal, "retrieval"),
+      ]);
       const groundedLexicalSenseIds = unique([
         ...newLexicalSenseIds,
         ...retrievalLexicalSenseIds,
       ]);
+      const lexicalGroundingOperationIds = lexicalAssignment
+        ? [lexicalAssignment.grammarOperationId]
+        : newLexicalSenseIds.flatMap((senseId) => {
+          const sense = LEARNING_V2_ENGLISH_PLANNED_LEXICAL_SENSES_V2.find(
+            (candidate) => candidate.id === senseId,
+          );
+          return sense ? [sense.groundingOperationId] : [];
+        });
+      const examples = canonicalExamplesForPacket(
+        unique([...lexicalGroundingOperationIds, ...focusOperationIds]),
+        lexicalAssignment?.canonicalExamples ?? [],
+        newLexicalSenseIds,
+      );
       const prerequisiteSessionIds = unique(
         focusOperationIds.flatMap((operationId) =>
           (operationById.get(operationId)?.prerequisiteOperationIds ?? [])

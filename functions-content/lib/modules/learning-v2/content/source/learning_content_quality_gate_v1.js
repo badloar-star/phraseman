@@ -315,6 +315,13 @@ function sessionCurriculumTargetWords(source) {
                 add(distractor.value);
         }
     }
+    for (const item of source.retrievalVocabulary ?? []) {
+        add(item.target);
+        for (const stage of Object.values(item.contacts ?? {})) {
+            for (const distractor of stage?.distractors ?? [])
+                add(distractor.value);
+        }
+    }
     for (const phrase of source.phrases ?? []) {
         // Сама фраза целиком и каждое её слово.
         add(phrase.english);
@@ -486,10 +493,13 @@ function inspectIntro(source, issues) {
 }
 function inspectPhrases(source, issues) {
     const hasExplicitVocabulary = (source.newVocabulary?.length ?? 0) > 0;
-    if (hasExplicitVocabulary
+    const isCheckpoint = source.sessionKindOverride === 'checkpoint';
+    if (isCheckpoint
         ? source.phrases.length < 1 || source.phrases.length > 15
-        : source.phrases.length !== 15)
-        add(issues, 'phrase_count_invalid', 'phrases', hasExplicitVocabulary
+        : hasExplicitVocabulary
+            ? source.phrases.length < 1 || source.phrases.length > 15
+            : source.phrases.length !== 15)
+        add(issues, 'phrase_count_invalid', 'phrases', isCheckpoint || hasExplicitVocabulary
             ? `Word-first source требует 1–15 фраз-применений; получено ${source.phrases.length}.`
             : `Требуется ровно 15 фраз; получено ${source.phrases.length}.`);
     const seen = new Set();
@@ -567,7 +577,8 @@ function inspectPhrases(source, issues) {
 }
 function inspectVocabulary(source, issues) {
     const vocabulary = source.newVocabulary ?? [];
-    if (vocabulary.length < 1 || vocabulary.length > 5)
+    const isCheckpoint = source.sessionKindOverride === 'checkpoint';
+    if ((!isCheckpoint && (vocabulary.length < 1 || vocabulary.length > 5)) || (isCheckpoint && vocabulary.length !== 0))
         add(issues, 'vocabulary_count_invalid', 'newVocabulary', 'Каждая сессия обязана приносить 1–5 новых единиц; каждая проходит полный word-first цикл.');
     const seenTargets = new Set();
     const stages = ['recognize', 'retrieve_meaning', 'build_form'];

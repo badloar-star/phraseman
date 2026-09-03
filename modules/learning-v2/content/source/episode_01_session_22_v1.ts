@@ -1,2 +1,15 @@
-import { buildEpisode01Session17To24 } from './episode_01_sessions_17_24_support_v1';
-export const EPISODE_01_SESSION_22_SOURCE = buildEpisode01Session17To24(22);
+/** Full B1 Session 22: listening retrieval with rich, poor, famous. */
+import { EPISODE_01_SESSION_21_SOURCE } from './episode_01_session_21_v1';
+import { LESSON1_SESSION_22_MODE_NATIVE_PLAN_ID_V2 } from './lesson1_session_choreography_v1';
+import type { SessionSource } from './session_shard_from_source_v1';
+const clone=<T>(v:T):T=>JSON.parse(JSON.stringify(v)) as T;
+const L=(ru:string,uk:string,es:string,pt:string,vi:string,id:string,tr:string,pl:string)=>({ru,uk,es,'pt-BR':pt,vi,id,tr,pl});
+const replace=<T>(value:T):T=>{const p:readonly(readonly[string,string])[]=[['e01-s21','e01-s22'],['inside','rich'],['Inside','Rich'],['outside','poor'],['Outside','Poor'],['upstairs','famous'],['Upstairs','Famous']];const f=(x:unknown):unknown=>typeof x==='string'?p.reduce((s,[a,b])=>s.replaceAll(a,b),x):Array.isArray(x)?x.map(f):x&&typeof x==='object'?Object.fromEntries(Object.entries(x as Record<string,unknown>).map(([k,c])=>[k,f(c)])):x;return f(value) as T;};
+const authored=replace(clone(EPISODE_01_SESSION_21_SOURCE)) as any;
+authored.requiredSessionOrdinal=22;authored.generationInputFingerprint='full-b1-exact-listening-retrieval-e01-s22-v1';authored.modeNativePlanId=LESSON1_SESSION_22_MODE_NATIVE_PLAN_ID_V2;
+authored.title=L('Кого мы слышим','Кого ми чуємо','A quién escuchamos','Quem ouvimos','Ta nghe về ai','Siapa yang didengar','Kimi duyuyoruz','O kim słyszymy');
+authored.summary=L('Различай rich, poor и famous в знакомых фразах.','Розрізняй rich, poor і famous у знайомих фразах.','Distingue rich, poor y famous en frases conocidas.','Diferencie rich, poor e famous em frases conhecidas.','Phân biệt rich, poor và famous trong câu quen thuộc.','Bedakan rich, poor, dan famous dalam kalimat yang dikenal.','Rich, poor ve famous sözcüklerini bilinen cümlelerde ayır.','Rozróżniaj rich, poor i famous w znanych zdaniach.');
+authored.learningGoal=L('Услышать и выбрать точное описание.','Почути й обрати точний опис.','Escuchar y elegir la descripción exacta.','Ouvir e escolher a descrição exata.','Nghe và chọn mô tả chính xác.','Mendengar dan memilih deskripsi yang tepat.','Duyup doğru tanımı seçmek.','Usłyszeć i wybrać dokładny opis.');
+const m=[L('богаты','багаті','ricos','ricos','giàu có','kaya','zengin','bogaci'),L('бедны','бідні','pobres','pobres','nghèo','miskin','fakir','biedni'),L('известны','відомі','famosos','famosos','nổi tiếng','terkenal','ünlü','sławni')];for(const[i,x]of m.entries())authored.newVocabulary[i]!.meaning=x;
+const ex=['They are rich','They are poor','They are famous'];for(const[i,p]of authored.introPages.entries()){const e=ex[i]!;for(const locale of Object.keys(p.body)){const start=String(p.body[locale]).split('.').slice(0,2).join('.').trim();p.body[locale]=`${start}. ${e}.`;}p.question.choices[0]=L(e,e,e,e,e,e,e,e);p.question.explanation=p.body;p.bodyRuns=Object.fromEntries(Object.entries(p.body).map(([locale,text])=>[locale,[{text,semantic:'explanation'}]]));}
+export const EPISODE_01_SESSION_22_SOURCE:SessionSource=Object.freeze(authored);

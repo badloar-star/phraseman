@@ -184,41 +184,27 @@ for (const entry of EPISODE_01_SESSION_01_MODE_NATIVE_PRACTICE_V1) {
     vocabularyFamiliesByTarget.set(entry.target.sourceIndex, families);
   }
 }
-if (vocabularyPracticeTargets.length !== 12 || vocabularyStageKeys.size !== 12) {
+if (vocabularyPracticeTargets.length !== 3 || vocabularyStageKeys.size !== 3) {
   findings.push(
     `word_first_standalone_contacts_invalid:targets=${vocabularyPracticeTargets.length}:unique=${vocabularyStageKeys.size}`,
   );
 }
-for (const stage of ["recognize", "retrieve_meaning", "build_form"] as const) {
-  if (vocabularyStageCounts.get(stage) !== 4) {
-    findings.push(
-      `word_first_stage_count_invalid:${stage}:${vocabularyStageCounts.get(stage) ?? 0}`,
-    );
-  }
-}
 for (const [sourceIndex, families] of vocabularyFamiliesByTarget) {
-  if (families.size !== 3) {
+  if (families.size !== 1) {
     findings.push(
-      `word_first_target_family_repeated:sourceIndex=${sourceIndex}:families=${[...families].join(",")}`,
+      `word_first_target_must_have_one_task:sourceIndex=${sourceIndex}:families=${[...families].join(",")}`,
     );
   }
 }
 const phrasePracticeCount = EPISODE_01_SESSION_01_MODE_NATIVE_PRACTICE_V1.filter(
   (entry) => entry.target.kind === "phrase",
 ).length;
-if (phrasePracticeCount !== 4) {
+if (phrasePracticeCount !== 3) {
   findings.push(`phrase_application_count_invalid:${phrasePracticeCount}`);
 }
-for (let index = 1; index < vocabularyPracticeTargets.length; index += 1) {
-  if (vocabularyPracticeTargets[index] === vocabularyPracticeTargets[index - 1]) {
-    findings.push(
-      `same_new_word_repeated_in_consecutive_tasks:sourceIndex=${vocabularyPracticeTargets[index]}:positions=${index - 1},${index}`,
-    );
-  }
-}
-if (vocabularyPracticeTargets.slice(0, 4).join(",") !== "0,1,2,3") {
+if (vocabularyPracticeTargets.join(",") !== "0,1,2") {
   findings.push(
-    `new_word_first_contacts_not_interleaved:${vocabularyPracticeTargets.slice(0, 4).join(",")}`,
+    `new_word_first_contacts_not_interleaved:${vocabularyPracticeTargets.join(",")}`,
   );
 }
 

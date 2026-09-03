@@ -3,6 +3,7 @@ import type {
   EpisodeSourcePhrase,
   EpisodeSourcePhraseLocalizedDetails,
 } from './episode_01_source_v1';
+import { EPISODE_01_SESSION_02_LEGACY_FINE_PHRASE } from './episode_01_session_02_affirmative_phrases_v1';
 
 type TrapType = NonNullable<EpisodeSourceDistractor['trapType']>;
 
@@ -372,7 +373,7 @@ const READY_LOCALIZED: NonNullable<EpisodeSourcePhrase['localizedDetails']> = {
   }),
 };
 
-export const EPISODE_01_SESSION_01_WORD_FIRST_PHRASES: readonly EpisodeSourcePhrase[] = Object.freeze([
+const SESSION_01_BASE_PHRASES: readonly EpisodeSourcePhrase[] = Object.freeze([
   {
     id: 'e01-s01-word-first-i-am-here',
     english: 'I am here',
@@ -391,4 +392,9 @@ export const EPISODE_01_SESSION_01_WORD_FIRST_PHRASES: readonly EpisodeSourcePhr
     localizedDetails: READY_LOCALIZED,
     features: ['copula_be', 'first_person_singular', 'state_adjective'],
   },
+]);
+
+export const EPISODE_01_SESSION_01_WORD_FIRST_PHRASES: readonly EpisodeSourcePhrase[] = Object.freeze([
+  ...SESSION_01_BASE_PHRASES,
+  Object.freeze({ ...EPISODE_01_SESSION_02_LEGACY_FINE_PHRASE, id: 'e01-s01-word-first-i-am-fine' }),
 ]);

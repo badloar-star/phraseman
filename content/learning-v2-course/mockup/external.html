@@ -87,10 +87,15 @@ select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
 .opt.wrong{background:rgba(192,65,63,.11);color:var(--danger)}
 .opt.dim{opacity:.5}
 
-.fb{margin-top:12px;padding:14px 16px;border-radius:var(--r);font-size:14.5px;line-height:1.5;
-  background:var(--surface-2);color:var(--muted);animation:rise .3s var(--ease) both}
-.fb.ok{background:rgba(11,130,100,.10);color:var(--target)}
-.fb.no{background:rgba(192,65,63,.09);color:#8f3230}
+/* разбор ответа — НЕ похож на кнопку варианта: без фона-плашки, с чертой слева
+   по тону и иконкой (владелец 03.09 принял «Верно.» за четвёртый вариант) */
+.fb{margin-top:14px;padding:4px 0 0 14px;font-size:14.5px;line-height:1.5;color:var(--muted);
+  box-shadow:inset 3px 0 0 var(--sunken);animation:rise .3s var(--ease) both}
+.fb::before{content:"→ ";font-weight:700}
+.fb.ok{color:var(--target);box-shadow:inset 3px 0 0 var(--target)}
+.fb.ok::before{content:"✓ "}
+.fb.no{color:#8f3230;box-shadow:inset 3px 0 0 var(--danger)}
+.fb.no::before{content:"✗ "}
 
 /* плитки */
 .slot{min-height:56px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;

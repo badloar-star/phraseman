@@ -75,7 +75,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — tired",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-08:i02:r1",
@@ -439,7 +439,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — free",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-08:i09:r1",
@@ -841,13 +841,18 @@
       "prompt": "Финал сцены — четыре ответа подряд, без подсказок",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:i17:audio"
+      ],
       "accessibilityLabel": "Финал сцены — четыре ответа подряд, без подсказок",
       "modePayload": {
         "family": "scripted_repeat_compare",
-        "referenceAudio": null,
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:i17:audio",
+          "transcript": "I am ready. I am not lost. I am not hungry. I am done."
+        },
         "slowReferenceAudio": null,
-        "targetPhrase": "",
+        "targetPhrase": "I am ready. I am not lost. I am not hungry. I am done.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -867,5 +872,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b35e26ece0c87fe9bedc5421080fad9898ef6fe60243b560f0ec14f0d9d60650"
+  "learnerFingerprint": "f1cf5d42c73e7b883bce6e03e15fdb8d22157da3271d29ab906bb9ef2cb20cb8"
 }

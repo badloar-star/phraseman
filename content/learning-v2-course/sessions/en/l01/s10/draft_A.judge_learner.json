@@ -1,0 +1,126 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя — I am late, про неё — You are early. Скрепка are нужна для you, как am для I.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "fast — быстро, про неё, потому что она тараторит. You are fast.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "quiet — тихий/молчаливый, пишется с qu. You are quiet.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1-4 карточки+аудио early/fast",
+      "what_i_understood": "Запомнил звучание early (ёр-ли) и fast (твёрдое -ст на конце), отличил от похожих слов-ловушек earn/ear, face/first.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 phrase_builder",
+      "what_i_understood": "Собрал You are early. из плиток, лишняя плитка am не подошла.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 gap",
+      "what_i_understood": "Выбрал fast, а не early/sorry — по контексту (доела за минуту).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7-8 карточка+аудио quiet",
+      "what_i_understood": "quiet отличил от quite и queen на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 gap-грамматика are/am/is",
+      "what_i_understood": "Для you всегда are, не am и не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 listen_build",
+      "what_i_understood": "Собрал по слуху You are fast.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 speed_match",
+      "what_i_understood": "Свёл 4 новых слова с переводами.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 gap",
+      "what_i_understood": "late подошло по сцене (часы, хватает сумку), не early/quiet.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 phrase_builder с ловушкой is",
+      "what_i_understood": "Собрал You are quiet., лишняя плитка is не нужна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 speed_match старые слова",
+      "what_i_understood": "Повторил tired/sorry/busy/ready — уже знал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 scripted_repeat",
+      "what_i_understood": "Сказал две фразы: про неё и про себя одновременно — контраст you/I.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 phrase_builder с лишним not",
+      "what_i_understood": "Собрал You are quiet. I am tired. — понял, что not лишний, раз всё правда.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 финал без подсказок",
+      "what_i_understood": "Сказал подряд три фразы про подругу: early, fast, quiet — почувствовал, что реально что-то умею.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Говорить не только про себя, но и про человека напротив: You are + слово",
+    "Три новых слова: early (рано), fast (быстро), quiet (тихий/молчаливый)",
+    "Различать похожие по звучанию слова-ловушки: quiet/quite/queen, fast/face/first, early/earn/ear",
+    "Строить фразу с нужной скрепкой (are для you) и не путать с am/is",
+    "Собирать две фразы подряд с разными скрепками (You are... I am...)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2",
+      "why": "почти дословно повторяет структуру интро 1: 'она делает Х, скажите ей слово Y', без новой информации сверх примера"
+    }
+  ],
+  "felt_alive": [
+    "Сцена с кофе и подругой — реально представил ситуацию, было понятно кому и зачем это говорю",
+    "Задание 17, где нужно сказать три фразы подряд без подсказок — почувствовал, что я правда что-то выучил, а не просто нажимал кнопки",
+    "Задание 16 с лишней плиткой not — заставило подумать, а не машинально собрать"
+  ],
+  "felt_dead": [
+    "Задание 2 и 4 (просто выбор на слух похожих слов) — механическое, без сцены, как в обычном словарном тренажёре"
+  ],
+  "scene_reason": "да — всю сессию понятно, что я сижу с коллегой в кафе и комментирую то, что вижу: она пришла раньше, тараторит, потом замолкает. Каждая фраза привязана к конкретному моменту сцены, а не висит в воздухе.",
+  "would_continue": "да — потому что появилась новая способность (говорить про собеседника, а не только про себя), задания шли по нарастающей сложности, и в финале я реально сам, без подсказок, собрал три фразы подряд про живого человека.",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно с известными словами и грамматикой, узнал новое (you are + слово, три новых слова), сцена понятна и мотивирует продолжать."
+}

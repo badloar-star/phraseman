@@ -50,7 +50,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — welcome",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-09:i02:r1",
@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — kind",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-09:i04:r1",
@@ -373,7 +373,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — right",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-09:i08:r1",
@@ -943,5 +943,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "dee6edc6fbbf5e4d87d19eba18526b1fa919d231957fd9fe11baff7026c78e00"
+  "learnerFingerprint": "bcc726200dafd540d8a12f1c37a887a6f864f9040736119ac04a92377e06b881"
 }

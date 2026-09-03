@@ -50,7 +50,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — here",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-01:i02:r1",
@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — ready",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-01:i04:r1",
@@ -280,7 +280,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — fine",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-01:i06:r1",
@@ -849,5 +849,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d8fbfeb6559dcf1b0aec8446f03c68a8e93e7876b48ed0df8027b84c7744d861"
+  "learnerFingerprint": "55811815e686417cd1e7631c03cbf1663652a412fc49275d9d52af117b1a2658"
 }

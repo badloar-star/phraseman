@@ -191,7 +191,8 @@ function parseTaskParts(body) {
   if (audio) parts.audio = audio[1].trim();
   // голос: жирная фраза после 🎙 может стоять на следующей строке и содержать
   // несколько предложений подряд (финал сцены) — берём весь жирный блок
-  const speak = /🎙[\s\S]{0,200}?\*\*([\s\S]+?)\*\*/.exec(body);
+  // окно 600: описание финала сцены бывает 250+ знаков до жирной фразы
+  const speak = /🎙[\s\S]{0,600}?\*\*([\s\S]+?)\*\*/.exec(body);
   if (speak) parts.speak = speak[1].replace(/\s+/g, " ").trim();
   const card = /^>\s*\*\*([^*]+)\*\*\s*—\s*([\s\S]+)$/m.exec(body);
   if (card) parts.card = { word: card[1].trim(), definition: card[2].replace(/^>\s*/gm, "").replace(/\s+/g, " ").trim() };
@@ -317,10 +318,20 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
     };
   }
 
+  // зачем (владелец, 03.09: «почему задания уже сами дают ответ?»): автор
+  // пишет заголовок «Послушайте и выберите — welcome», а welcome и есть
+  // правильный ответ. В заголовке для ученика хвост « — <ответ>» срезаем.
+  const correctText = (task.options.find((o) => o.correct)?.text ?? task.target ?? task.card?.word ?? "").toLowerCase().replace(/[.?!]$/, "");
+  let learnerPrompt = task.title;
+  const tail = /\s+—\s+(.+)$/.exec(learnerPrompt);
+  if (tail && correctText && tail[1].toLowerCase().replace(/[.?!]$/, "") === correctText && task.family !== "word_card") {
+    learnerPrompt = learnerPrompt.slice(0, tail.index).trim();
+  }
+
   return {
     interactionId: id, ordinal: task.ordinal + 3, purpose: PURPOSE_BY_INDEX(index, total),
     family, inputMode: INPUT_MODE[task.family] ?? "single_choice",
-    prompt: task.title, responseOptions,
+    prompt: learnerPrompt, responseOptions,
     mediaIds: [], audioTargetIds: modePayload?.referenceAudio ? [`${id}:audio`] : [],
     accessibilityLabel: task.title, modePayload, scriptedAlternate: null,
   };

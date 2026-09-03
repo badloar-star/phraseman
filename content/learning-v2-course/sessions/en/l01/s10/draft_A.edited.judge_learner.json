@@ -1,0 +1,125 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя — I am, про неё — You are, скрепка are обязательна даже там где по-русски её нет",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "fast значит быстро/быстрая, произносится коротко в один слог",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "quiet значит тихий/молчаливый, буквы qu всегда вместе, читается 'квайет'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (early, fast карточки+аудио)",
+      "what_i_understood": "Учу произношение и отличаю от похожих слов через объяснение разницы в звуке",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка фразы)",
+      "what_i_understood": "Собрал You are early из плиток, лишняя плитка am меня не обманула",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (выбор слова по сцене)",
+      "what_i_understood": "Выбрал fast, а не busy/sorry, потому что смысл сцены про скорость еды",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 7-9 (quiet + скрепка are)",
+      "what_i_understood": "Закрепил quiet и то, что для you скрепка всегда are, не am и не is",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (диктовка)",
+      "what_i_understood": "Собрал по слуху You are fast",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (Speed Match)",
+      "what_i_understood": "Сопоставил early/fast/quiet/late с переводами",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (выбор по сцене)",
+      "what_i_understood": "Выбрал late, потому что по сюжету время изменилось (она смотрит на часы)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (сборка с лишней плиткой is)",
+      "what_i_understood": "Собрал You are quiet, не взял лишнюю is",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (I am ___)",
+      "what_i_understood": "Выбрал tired, потому что фраза про себя, а не про неё",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (повтор вслух)",
+      "what_i_understood": "Повторил контраст You are early / I am late",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (сборка без подсказки)",
+      "what_i_understood": "Собрал You are busy. I am not busy. — вспомнил конструкцию I am not",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (Speed Match старые слова)",
+      "what_i_understood": "Повторил старые слова tired/sorry/busy/ready",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 (финал сцены)",
+      "what_i_understood": "Сказал все 5 фраз подряд про неё и про себя без подсказок",
+      "confusion": "К концу устал, пять фраз подряд без опоры — нагрузка ощутимая, но всё было пройдено раньше",
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Новое слово early — рано",
+    "Новое слово fast — быстрый/быстро",
+    "Новое слово quiet — тихий/молчаливый, с буквосочетанием qu",
+    "Понял, что одну и ту же ситуацию можно описать про себя (I am late) и про другого человека (You are early) — это разные фразы про один момент",
+    "Закрепил, что you всегда идёт со скрепкой are, никогда с am или is"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2 и Интро 3",
+      "why": "структура интро повторяется буквально: пример из сцены → перевод слова → замечание о звучании — к третьему разу уже предсказуемо, но это не критично, слова разные"
+    }
+  ],
+  "felt_alive": [
+    "Сцена с коллегой в кафе — конкретная, я реально представил её торопливую речь и вдруг наступившую тишину",
+    "Финал сцены (задание 18), где нужно сказать всё подряд — почувствовалось как настоящий момент разговора, а не упражнение"
+  ],
+  "felt_dead": [
+    "Объяснения произношения в заданиях 2, 4, 8 ('на конце слышно нн', 'открытое а') — звучит немного как справочник по фонетике, хотя и коротко"
+  ],
+  "scene_reason": "да — весь урок держится на одной сцене (кофе с коллегой), и каждая фраза привязана к конкретному моменту (она пришла раньше, она тараторит, она замолчала), понятно кому и зачем я это говорю",
+  "would_continue": "да — устал не от скуки, а от объёма в конце (18 заданий это много для 10 минут), но сама тема понятна и хочется закрепить дальше",
+  "verdict": "PASS",
+  "verdict_reason": "все задания честно проходимы знакомыми словами, есть чёткое новое знание (early/fast/quiet + разница I am/You are), и сцена делает понятным зачем говорить эти фразы."
+}

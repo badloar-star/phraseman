@@ -50,7 +50,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — hungry",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-03:i02:r1",
@@ -206,7 +206,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — sure",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-03:i05:r1",
@@ -841,5 +841,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "75ddb291546de485a4138e36ce78a6945b79b3a821648b9484a0756df084372b"
+  "learnerFingerprint": "230a0ade6c5fb0d9e8dc5cde44ba660c22b9613e6bc1cf569e57e9fb564d3e02"
 }

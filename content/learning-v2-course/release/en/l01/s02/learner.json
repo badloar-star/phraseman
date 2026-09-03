@@ -50,7 +50,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — tired",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-02:i02:r1",
@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — busy",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-02:i04:r1",
@@ -848,5 +848,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cdb03c95dc36b5779c973e3b74fde67703719afaee2eb582084afdd8b1e87270"
+  "learnerFingerprint": "d130df66d9d9a136d97c4ee21694d8d8f66db3e4e80b3f49cbab2f8a850a9e59"
 }

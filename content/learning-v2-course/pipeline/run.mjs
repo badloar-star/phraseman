@@ -68,7 +68,19 @@ const write = (p, s) => {
 const listDir = (d, filter = () => true) =>
   exists(d) ? fs.readdirSync(d).filter(filter).sort().map((f) => path.join(d, f)) : [];
 
-const prompt = (name) => read(path.join(HERE, "prompts", `${name}.md`));
+// зачем (владелец, 03.09, дословно): «ХОЧУ ДОБАВИТЬ ЖЁСТКОЕ ТРЕБОВАНИЕ И ЕГО
+// НАДО ВПИСАТЬ 45 РАЗ КАПСОМ, ЧТОБЫ НЕ ПРОЕБАТЬ НИКАК СЛУЧАЙНО». Файл
+// ГЛАВНОЕ_ТРЕБОВАНИЕ.md вклеивается В НАЧАЛО КАЖДОГО системного промпта —
+// автора, всех судей, редактора, локализаторов. Забыть невозможно: это код.
+const MAIN_REQUIREMENT_PATH = path.join(ROOT, "ГЛАВНОЕ_ТРЕБОВАНИЕ.md");
+const mainRequirement = () => {
+  if (!exists(MAIN_REQUIREMENT_PATH)) {
+    LOG("ранний выход: нет ГЛАВНОЕ_ТРЕБОВАНИЕ.md — без него промпты не собираются");
+    process.exit(2);
+  }
+  return read(MAIN_REQUIREMENT_PATH);
+};
+const prompt = (name) => `${mainRequirement()}\n\n---\n\n${read(path.join(HERE, "prompts", `${name}.md`))}`;
 const fill = (tpl, vars) =>
   tpl.replace(/\{\{([A-ZА-Я_0-9]+)\}\}/g, (_, k) => {
     if (!(k in vars)) {
@@ -254,7 +266,7 @@ function exemplarOfSameType(lang, row) {
 }
 
 // ---------- бэкенды ----------
-function callModel({ system, user, model, maxTokens = 8000, label }) {
+function callModel({ system, user, model, maxTokens = 8000, label, attempt = 0 }) {
   const t0 = Date.now();
   LOG(`→ ${label}: backend=${BACKEND} model=${model} system=${system.length} user=${user.length} зн.`);
   let text = "";
@@ -292,6 +304,9 @@ function callModel({ system, user, model, maxTokens = 8000, label }) {
         const msg = String(j.result || "ошибка без текста");
         const e = new Error(`claude -p: ${msg}`);
         if (/session limit|usage limit|rate limit/i.test(msg)) e.isLimit = true;
+        // зачем: 03.09 сервер вернул 500 на одном вызове, и упал ВЕСЬ пакет из
+        // семи сессий. Сбой сервера временный — ждём минуту и повторяем до 3 раз.
+        if (/\b5\d\d\b|Internal server error|overloaded|529/i.test(msg)) e.isTransient = true;
         throw e;
       }
       text = j.result || "";
@@ -314,6 +329,12 @@ function callModel({ system, user, model, maxTokens = 8000, label }) {
     LOG(`✗ ${label} упал через ${Date.now() - t0} мс: ${e.message}`);
     // зачем: при лимите подписки ждём до сброса и повторяем тот же вызов —
     // владелец хочет «запустил и ушёл», а лимит приходит каждые ~5 часов.
+    if (e.isTransient && (attempt ?? 0) < 3) {
+      const n = (attempt ?? 0) + 1;
+      LOG(`⏸ сбой сервера, попытка ${n} из 3 через 60 с: ${label}`);
+      sleepSync(60_000);
+      return callModel({ system, user, model, maxTokens, label, attempt: n });
+    }
     if (e.isLimit && WAIT_ON_LIMIT) {
       const resetAt = parseResetTime(e.message);
       const waitMs = Math.max(60_000, resetAt - Date.now() + 60_000);

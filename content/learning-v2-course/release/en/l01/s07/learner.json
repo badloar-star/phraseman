@@ -50,7 +50,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — glad",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-07:i02:r1",
@@ -235,7 +235,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — scared",
+      "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-07:i06:r1",
@@ -947,5 +947,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "70f5a5200894cbd650f74c0ca9175e06a52fb0c2c8cecfeec76f9981fd742366"
+  "learnerFingerprint": "55e01db0526a03e2b595fad03751d6ef08ecfdaaaa086785988e313ce8314d9e"
 }

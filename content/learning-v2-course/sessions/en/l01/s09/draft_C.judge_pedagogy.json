@@ -1,0 +1,94 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "welcome",
+      "right",
+      "kind",
+      "funny"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": "интро1",
+        "trap": "You am tired — перенос своей скрепки на чужое лицо"
+      },
+      {
+        "task": "интро2",
+        "trap": "You are right — похожая по форме, но неверная по смыслу реплика для того же контекста"
+      },
+      {
+        "task": 6,
+        "trap": "am вместо are — реалистичная путаница скрепок"
+      },
+      {
+        "task": 11,
+        "trap": "sorry/early вместо funny — тематически близкие слова из копилки"
+      }
+    ],
+    "silly": [
+      {
+        "task": "интро3",
+        "trap": "You is funny — 'is' с 'you' не встречалось нигде ранее как реалистичная ошибка переноса, но это стандартная и правдоподобная путаница спряжения, приемлемо"
+      }
+    ],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "welcome",
+        "kind",
+        "right",
+        "funny"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      9,
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s07",
+      "what": "заголовок интро 'Glad — «рад», но короче' и текущий 'You are welcome' — структурно похожий приём 'слово короче дословного перевода', но не дословный повтор фразы; не является нарушением"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 2,
+      "phrase_builder": 3,
+      "context_gap_grammar": 3,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 14 использует sure как обманку-плитку, но по машинным фактам sure ни разу не было правильным ответом (0 из 2 касаний), а значит возвращаемое слово не отработано как надо — это дефект (проверь также tearly: 1 из 3, sorry: 1 из 4 — на грани, но формально правило '≥1 правильным ответом' соблюдено, кроме sure)."
+}

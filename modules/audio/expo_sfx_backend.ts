@@ -52,11 +52,34 @@ const DEFAULT_CACHE_SIZE = 12;
 // that never resolves or rejects on a problematic ExoPlayer instance.
 const SEEK_SETTLE_TIMEOUT_MS = 200;
 
+/**
+ * зачем (владелец 2026-09-03): «звуки играют не сразу, а с паузой». Правило
+ * проекта — сперва логи, потом починка: без цифр непонятно, ЧТО именно тянет
+ * время — создание нативного плеера, перемотка seekTo или повтор play() по
+ * готовности. Трассировка печатает всю цепочку одним префиксом [SFX-LAT].
+ *
+ * Включена всегда (не под __DEV__): ровно из-за `if (__DEV__)` отказы cloud_sync
+ * месяцами были невидимы в сторовой сборке. Стоимость — один console.log на
+ * звук, и только пока идёт разбор.
+ */
+const SFX_LAT_TRACE = true;
+
+function sfxTrace(stage: string, payload: Record<string, unknown>): void {
+  if (!SFX_LAT_TRACE) return;
+  try {
+    console.log(`[SFX-LAT] ${stage}`, payload);
+  } catch {
+    // Диагностика не имеет права ломать воспроизведение.
+  }
+}
+
 export class ExpoSfxBackend {
   private readonly cache = new Set<CacheEntry>();
   private readonly activePlayback = new Map<number, ActivePlayback>();
   private useSequence = 0;
   private playbackSequence = 0;
+  /** Диагностика: события, которые уже звучали в этом запуске приложения. */
+  private readonly seenEvents = new Set<SoundEventId>();
 
   constructor(
     private readonly createPlayer: PlayerFactory = (source) => createAudioPlayer(source) as unknown as SfxPlayerLike,
@@ -70,13 +93,33 @@ export class ExpoSfxBackend {
     exclusive: boolean,
     onEnded: () => void,
   ): boolean {
+    // [SFX-LAT] вход: с какого события начали и что уже знаем о нём.
+    const tRequest = Date.now();
+    const wasCached = this.hasIdleCached(eventId);
+    const firstEverPlay = !this.seenEvents.has(eventId);
+    this.seenEvents.add(eventId);
     try {
+      const tBeforeEnsure = Date.now();
       const entry = this.ensure(eventId, source);
+      const createMs = Date.now() - tBeforeEnsure;
       const player = entry.player;
       const playbackToken = ++this.playbackSequence;
       entry.activeToken = playbackToken;
       player.volume = Math.max(0, Math.min(1, volume));
+      const tBeforeSeek = Date.now();
       const seekResult = player.seekTo(0);
+      sfxTrace('request', {
+        eventId,
+        // Главные подозреваемые: холодное создание плеера и выселение из кэша.
+        cacheHit: wasCached,
+        firstEverPlay,
+        createPlayerMs: createMs,
+        cacheSize: this.cache.size,
+        maxCacheSize: this.maxCacheSize,
+        isLoaded: player.isLoaded,
+        exclusive,
+        seekIsAsync: Boolean(seekResult && typeof (seekResult as Promise<void>).then === 'function'),
+      });
       const seekPromise = seekResult && typeof (seekResult as Promise<void>).then === 'function'
         ? seekResult as Promise<void>
         : null;
@@ -140,6 +183,16 @@ export class ExpoSfxBackend {
         // без этого первый запрос каждого звука всегда немой.
         if (seekSettled && !retriedAfterLoad && status.isLoaded && status.playing === false) {
           retriedAfterLoad = true;
+          // [SFX-LAT] Повтор = первый play() ушёл в тишину (плеер ещё грузился).
+          // Именно это выглядит как «звук с паузой»: слышно только со второй
+          // попытки, а до неё проходит время загрузки файла.
+          sfxTrace('retry_after_load', {
+            eventId,
+            latencyMs: Date.now() - tRequest,
+            sinceFirstPlayMs: Date.now() - playStartedAtMs,
+            firstEverPlay,
+            cacheHit: wasCached,
+          });
           try {
             player.play();
           } catch {
@@ -172,6 +225,17 @@ export class ExpoSfxBackend {
         if (this.activePlayback.get(playbackToken)?.player !== player) return;
         startAttempted = true;
         playStartedAtMs = Date.now();
+        // [SFX-LAT] ГЛАВНОЕ ЧИСЛО: сколько прошло от запроса звука до реального
+        // play(). Отдельно видно, дождались ли seek или сработал таймаут 200мс.
+        sfxTrace('play', {
+          eventId,
+          latencyMs: Date.now() - tRequest,
+          waitedForSeek: seekPromise !== null,
+          seekTimedOut: seekFallbackTimer === null && seekPromise !== null ? 'maybe' : false,
+          isLoaded: player.isLoaded,
+          cacheHit: wasCached,
+          firstEverPlay,
+        });
         try {
           player.play();
         } catch {
@@ -242,6 +306,18 @@ export class ExpoSfxBackend {
 
   getCacheSize(): number {
     return this.cache.size;
+  }
+
+  /**
+   * Есть ли для события ГОТОВЫЙ свободный плеер в кэше.
+   * Только для диагностики [SFX-LAT]: промах означает, что этот звук сейчас
+   * заплатит создание нативного плеера и загрузку файла.
+   */
+  private hasIdleCached(eventId: SoundEventId): boolean {
+    for (const entry of this.cache) {
+      if (entry.eventId === eventId && entry.activeToken === null) return true;
+    }
+    return false;
   }
 
   private ensure(eventId: SoundEventId, source: number): CacheEntry {

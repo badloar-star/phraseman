@@ -214,7 +214,7 @@ export default function FlashcardsPacksScreen() {
 
   const computeMarketFp = (packs: FlashcardMarketPack[]): string =>
     packs
-      .map((p) => `${packTileArtRevision(p)}:${p.likesCount ?? 0}:${p.addedCount ?? 0}:${p.cardCount}:${p.updatedAt}:${p.listingStatus ?? ''}`)
+      .map((p) => `${packTileArtRevision(p)}:${p.likesCount ?? 0}:${p.addedCount ?? 0}:${p.commentsCount ?? 0}:${p.cardCount}:${p.updatedAt}:${p.listingStatus ?? ''}`)
       .join('|');
 
   /**

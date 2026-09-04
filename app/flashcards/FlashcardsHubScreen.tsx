@@ -18,12 +18,14 @@ import ScreenGradient from '../../components/ScreenGradient';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { useTheme } from '../../components/ThemeContext';
+import { useFeatureAccess, usePremium } from '../../components/PremiumContext';
+import PlusBadge from '../../components/PlusBadge';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useScreen } from '../../hooks/use-screen';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { actionToastTri, emitAppEvent } from '../events';
-import { safeRouterBack } from '../navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from '../navigation_back';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
 import { loadPublishedCommunityMarketPacks } from '../community_packs/communityFirestore';
 import { loadLocalAuthorPacks } from '../community_packs/localAuthorPacks';
@@ -58,6 +60,9 @@ function sameCatalog(a: readonly FlashcardMarketPack[], b: readonly FlashcardMar
     if (a[i].id !== b[i].id) return false;
     if ((a[i].likesCount ?? 0) !== (b[i].likesCount ?? 0)) return false;
     if ((a[i].addedCount ?? 0) !== (b[i].addedCount ?? 0)) return false;
+    // зачем: без этой строки список НЕ перерисуется при новом отклике — счётчик
+    // «💬» отставал бы до полного перезахода в раздел (та же жалоба была на лайк).
+    if ((a[i].commentsCount ?? 0) !== (b[i].commentsCount ?? 0)) return false;
   }
   return true;
 }
@@ -124,6 +129,9 @@ export default function FlashcardsHubScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { theme: t, f, statusBarLight } = useTheme();
+  const { accessResolved } = usePremium();
+  const flashcardsAccess = useFeatureAccess('flashcards');
+  const speakingAccess = useFeatureAccess('speaking');
   const { contentMaxW } = useScreen();
   const { width } = useWindowDimensions();
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
@@ -292,10 +300,27 @@ export default function FlashcardsHubScreen() {
     router.push({ pathname: target.pathname, params: target.params } as never);
   }, [router]);
 
+  const trainingLocked = accessResolved && !flashcardsAccess;
+  const speakingLocked = accessResolved && !speakingAccess;
+
+  /** Free-пользователь получает paywall до экрана настройки, а не после лишнего тапа. */
+  const openTrainingPaywall = useCallback((context: 'flashcard_training' | 'speaking', source: string) => {
+    markNextNavigationAsReplace();
+    router.replace({ pathname: '/premium_modal', params: { context, source } } as never);
+  }, [router]);
+
   const chooseMode = useCallback((mode: CardsTrainingMode) => {
+    if (mode === 'speaking' && speakingLocked) {
+      openTrainingPaywall('speaking', 'flashcards_hub_speaking');
+      return;
+    }
+    if (trainingLocked) {
+      openTrainingPaywall('flashcard_training', 'flashcards_hub_training_mode');
+      return;
+    }
     pendingModeRef.current = mode;
     setModeSheetVisible(false);
-  }, []);
+  }, [openTrainingPaywall, speakingLocked, trainingLocked]);
 
   const finishModeSheetDismissal = useCallback(() => {
     const mode = pendingModeRef.current;
@@ -408,22 +433,29 @@ export default function FlashcardsHubScreen() {
               ref={trainButtonRef}
               testID="fc-cards-hub-train"
               accessibilityRole="button"
-              accessibilityLabel={copy.train}
+              accessibilityLabel={trainingLocked ? `${copy.train}. Plus` : copy.train}
               onPress={() => {
                 void hapticTap();
+                if (trainingLocked) {
+                  openTrainingPaywall('flashcard_training', 'flashcards_hub_train');
+                  return;
+                }
                 pendingModeRef.current = null;
                 setModeSheetVisible(true);
               }}
               style={({ pressed }) => [styles.trainButton, { backgroundColor: t.accent, opacity: pressed ? 0.84 : 1 }]}
             >
-              <Text
-                style={[
-                  styles.trainText,
-                  { color: t.correctText, fontSize: f.bodyLg, lineHeight: Math.round(f.bodyLg * 1.25), fontWeight: '900' },
-                ]}
-              >
-                {copy.train}
-              </Text>
+              <View style={styles.trainButtonContent}>
+                <Text
+                  style={[
+                    styles.trainText,
+                    { color: t.correctText, fontSize: f.bodyLg, lineHeight: Math.round(f.bodyLg * 1.25), fontWeight: '900' },
+                  ]}
+                >
+                  {copy.train}
+                </Text>
+                {trainingLocked ? <PlusBadge themeMode="dark" size="sm" showIcon={false} /> : null}
+              </View>
             </Pressable>
           </ScrollView>
         </ContentWrap>
@@ -435,6 +467,7 @@ export default function FlashcardsHubScreen() {
           onClose={() => setModeSheetVisible(false)}
           onDismissed={finishModeSheetDismissal}
           onSelect={chooseMode}
+          lockedModes={{ speaking: speakingLocked }}
         />
       </SafeAreaView>
     </ScreenGradient>
@@ -458,5 +491,6 @@ const styles = StyleSheet.create({
   libraryTitle: {},
   librarySubtitle: { marginTop: 3 },
   trainButton: { minHeight: 54, marginTop: 16, borderRadius: 17, paddingHorizontal: 16, paddingVertical: 12, alignItems: 'center', justifyContent: 'center' },
+  trainButtonContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   trainText: { flexShrink: 1, textAlign: 'center' },
 });

@@ -29,6 +29,10 @@ import {
   type PackSocialSnapshot,
 } from './packSocial';
 import { fetchCommunityPackSocialState } from './packSocialFirestore';
+import {
+  formatCommentsCount,
+  shouldShowCommentsCount,
+} from './packComments';
 import { isCommunityPackLikedLocally } from './packSocialStorage';
 
 export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen';
@@ -45,6 +49,12 @@ type Props = {
   compact?: boolean;
   variant?: CommunityPackSocialVariant;
   onAdded?: (packId: string) => void;
+  /**
+   * Тап по счётчику откликов. Решение владельца 2026-09-04: из плитки и строки
+   * открывает набор и прокручивает к ветке; на экране набора — просто прокрутка.
+   * Не передан — счётчик показывается как обычная цифра, без нажатия.
+   */
+  onOpenComments?: (packId: string) => void;
 };
 
 export default function CommunityPackSocialBar({
@@ -56,6 +66,7 @@ export default function CommunityPackSocialBar({
   compact = false,
   variant,
   onAdded,
+  onOpenComments,
 }: Props) {
   const mode: CommunityPackSocialVariant = variant ?? (compact ? 'tile' : 'row');
   const isTile = mode === 'tile';
@@ -112,6 +123,33 @@ export default function CommunityPackSocialBar({
       cancelled = true;
     };
   }, [pack.id, pack.likesCount, pack.addedCount, owned, isTile]);
+
+  /**
+   * Счётчик откликов.
+   *
+   * зачем отдельным состоянием, а не полем snapshot: он приходит из ТОГО ЖЕ
+   * документа набора (`pack.commentsCount`), но не участвует в слиянии
+   * membership — читать «мои отклики» ради цифры незачем. Стартовое значение
+   * берётся из пропса, дальше его двигает событие: так плитка не отстаёт до
+   * перезахода в раздел (жалоба, которая уже была на лайк).
+   */
+  const [commentsCount, setCommentsCount] = useState<number>(pack.commentsCount ?? 0);
+
+  useEffect(() => {
+    // Свежие данные каталога перебивают локальное значение только вверх по факту
+    // прихода нового пропса: своя оптимистичная +1 живёт до следующего чтения.
+    setCommentsCount(pack.commentsCount ?? 0);
+  }, [pack.commentsCount]);
+
+  useEffect(() => {
+    const sub = onAppEvent('community_pack_comments_changed', (e) => {
+      if (e.packId !== pack.id) return;
+      // Складываем сдвиг, а не присваиваем: у каждого экрана своя цифра, и
+      // навязывание абсолютного значения затирало бы чужой оптимистичный плюс.
+      setCommentsCount((prev) => Math.max(0, prev + e.delta));
+    });
+    return () => sub.remove();
+  }, [pack.id]);
 
   /**
    * Лайк ставится на экране набора, а плитка каталога живёт своим снимком —
@@ -219,10 +257,63 @@ export default function CommunityPackSocialBar({
 
   const likeA11y = isAdded ? 'qa-pack-like' : 'qa-pack-like-locked';
 
+  /**
+   * Счётчик откликов «💬 N» — третьим после лайков и добавлений.
+   *
+   * Решения владельца 2026-09-04:
+   *  • НОЛЬ СКРЫТ. «💬 0» на каждом наборе — поле мёртвых нулей и сигнал «тут
+   *    никто не пишет». Лайк и добавление показывают ноль законно: их значок
+   *    несёт ДЕЙСТВИЕ, а счётчик откликов — только число.
+   *  • Порядок ♥ · 👥 · 💬 неизменен: первые два остаются там, где были, глаз
+   *    не переучивается.
+   *  • Тап ведёт к разговору; без обработчика — просто цифра.
+   * Размеры повторяют соседние счётчики варианта, иначе ряд рассыпается.
+   */
+  const renderCommentsCount = (iconSize: number, fontSize: number, gap: number) => {
+    if (!shouldShowCommentsCount(commentsCount)) return null;
+    const content = (
+      <>
+        <Ionicons
+          name="chatbubble-outline"
+          size={iconSize}
+          color={onOpenComments ? t.accent : t.textMuted}
+        />
+        <Text
+          style={{
+            color: onOpenComments ? t.accent : t.textSecond,
+            fontSize,
+            fontWeight: '700',
+          }}
+        >
+          {formatCommentsCount(commentsCount, lang)}
+        </Text>
+      </>
+    );
+    if (!onOpenComments) {
+      return (
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap }}>{content}</View>
+      );
+    }
+    return (
+      <TouchableOpacity
+        testID={`pack-comments-${pack.id}`}
+        accessibilityRole="button"
+        accessibilityLabel="qa-pack-comments"
+        onPress={() => onOpenComments(pack.id)}
+        hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
+        style={{ flexDirection: 'row', alignItems: 'center', gap }}
+      >
+        {content}
+      </TouchableOpacity>
+    );
+  };
+
   /** Плитка сетки: только компактные счётчики (лайк ставится на экране набора). */
   if (isTile) {
+    // зачем gap 8, а не 10: замер макета показал, что три счётчика на плитке
+    // шириной в треть экрана не помещаются при прежнем промежутке.
     return (
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
           <Ionicons
             name={snapshot.liked ? 'heart' : 'heart-outline'}
@@ -235,6 +326,7 @@ export default function CommunityPackSocialBar({
           <Ionicons name="people-outline" size={12} color={t.textMuted} />
           <Text style={{ color: t.textSecond, fontSize: 10, fontWeight: '700' }}>{snapshot.addedCount}</Text>
         </View>
+        {renderCommentsCount(12, 10, 3)}
       </View>
     );
   }
@@ -291,6 +383,8 @@ export default function CommunityPackSocialBar({
           <Ionicons name="people-outline" size={16} color={t.textMuted} />
           <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700' }}>{snapshot.addedCount}</Text>
         </View>
+
+        {renderCommentsCount(16, 13, 5)}
 
         <View style={{ flex: 1 }} />
 
@@ -358,6 +452,8 @@ export default function CommunityPackSocialBar({
           <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700' }}>{snapshot.addedCount}</Text>
           <Text style={{ color: t.textMuted, fontSize: 12 }}>{addedLabel}</Text>
         </View>
+
+        {renderCommentsCount(18, 13, 5)}
 
         {isTop ? (
           <View

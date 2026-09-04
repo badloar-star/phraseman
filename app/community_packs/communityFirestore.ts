@@ -5,6 +5,7 @@ import { derivePackCodeName } from '../flashcards/marketplace';
 import type { CardItem } from '../flashcards/types';
 import { COMMUNITY_PACKS_COLLECTION } from './schema';
 import { comparePacksBySocial, readPackSocialCounts } from './packSocial';
+import { readPackCommentsCount } from './packComments';
 import { callCommunityFetchPackCardsIfAccessible, isCommunityPacksCloudEnabled } from './functionsClient';
 import { getCanonicalUserId } from '../user_id_policy';
 import { UGC_CARD_THEME_DEFAULT_ID } from './ugcCardThemePresets';
@@ -93,6 +94,9 @@ export function mapCommunityPackDocToMarket(
     priceShards: 0,
     likesCount: social.likesCount,
     addedCount: social.addedCount,
+    // зачем: счётчик откликов едет вместе с лайками из ТОГО ЖЕ документа —
+    // так «💬 7» в списках не стоит ни одного дополнительного чтения.
+    commentsCount: readPackCommentsCount(data),
     salesCount: Math.max(0, num(data.salesCount)),
     /**
      * Ник автора резолвится отдельно (`packAuthorNames.ts`): в документе набора

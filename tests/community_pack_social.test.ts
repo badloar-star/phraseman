@@ -240,8 +240,11 @@ describe('суммарные лайки автора', () => {
 describe('firestore.rules для соц-счётчиков', () => {
   const rules = readFileSync(path.join(process.cwd(), 'firestore.rules'), 'utf8');
 
-  test('клиенту разрешены только likesCount / addedCount на документе набора', () => {
-    expect(rules).toContain("hasOnly(['likesCount', 'addedCount'])");
+  test('клиенту разрешены только соц-счётчики на документе набора', () => {
+    // Владелец 2026-09-04 добавил третий счётчик — отклики. Перечень остаётся
+    // ЗАКРЫТЫМ: название, карточки и статус модерации клиенту по-прежнему
+    // недоступны, меняется только состав разрешённых счётчиков.
+    expect(rules).toContain("hasOnly(['likesCount', 'addedCount', 'commentsCount'])");
     expect(rules).toMatch(/match \/community_packs\/\{packId\} \{[\s\S]*?allow create, delete: if false;/);
   });
 

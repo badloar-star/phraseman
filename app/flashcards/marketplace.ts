@@ -103,6 +103,15 @@ export type FlashcardMarketPack = {
   addedCount?: number;
   /** Лайки активности набора (Cards 2.1 §2.2). */
   likesCount?: number;
+  /**
+   * Сколько откликов под набором (владелец 2026-09-04).
+   *
+   * зачем поле здесь, а не запрос подколлекции: списки и так читают документ
+   * набора ради лайков, поэтому «💬 7» в каталоге стоит НОЛЬ дополнительных
+   * чтений. Пересчёт подколлекции требовал бы запроса на каждый элемент списка.
+   * Ноль и отсутствие значка — одно и то же: см. shouldShowCommentsCount.
+   */
+  commentsCount?: number;
   salesCount: number;
   authorName: string;
   isOfficial: boolean;

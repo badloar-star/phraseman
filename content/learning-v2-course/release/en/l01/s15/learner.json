@@ -224,7 +224,7 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — serious",
             "feedbackByLocale": {
-              "ru": "«Обслуживание». Первый слог звучит как «сёр», у `serious` — как «си»."
+              "ru": "«Обслуживание». Первый слог тянется без «и», у `serious` — чёткое «си»."
             }
           }
         ],
@@ -1018,5 +1018,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3d9310470e3bb746b0e87536efbe9c4727aa266809a39fe0407a68b877bdf815"
+  "learnerFingerprint": "eb995a43300657d1a2cdaf6f075d6ddb0fc69cc4fd5e42211e03d247ea99bb9f"
 }

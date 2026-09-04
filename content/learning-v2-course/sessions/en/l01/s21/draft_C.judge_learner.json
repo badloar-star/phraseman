@@ -1,0 +1,129 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — 'Три скрепки, а не одна'",
+      "what_i_understood": "short значит невысокий. Про себя говорю am, про третьего человека — is. He is short.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — 'Are — только для того, с кем говорите'",
+      "what_i_understood": "thin значит худой. are — когда обращаюсь напрямую к человеку. Про третьего (she/he) — is, не are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — 'Про себя — всегда am'",
+      "what_i_understood": "blond и young — новые слова. am — только про себя, никогда про других.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1-2 карточка+слух short",
+      "what_i_understood": "short произносится не как shirt и не как sort",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3-4 карточка+слух thin",
+      "what_i_understood": "thin — звук через зубы, не как tin и не как then",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 сборка He is short",
+      "what_i_understood": "лишняя плитка am — она не подходит к he",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 She ___ thin",
+      "what_i_understood": "is, не are и не am",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7-8 карточки blond, young",
+      "what_i_understood": "светловолосый, молодой",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 слух young",
+      "what_i_understood": "не yellow и не tongue",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 I ___ young",
+      "what_i_understood": "am",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 Speed Match",
+      "what_i_understood": "short-невысокий, thin-худой, young-молодой, tall-высокий (tall я знаю из прошлого — тут просто написано что оно уже 'возвращается')",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 You are blond",
+      "what_i_understood": "собрал фразу без проблем",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 He is ___ (tall)",
+      "what_i_understood": "выбрал tall, но слово tall нигде в этой сессии не объяснялось карточкой — оно просто появилось",
+      "confusion": "слово tall не было введено в этой сессии, я не совсем уверен что оно значит 'высокий', это не проверялось карточкой здесь",
+      "could_answer_question": true
+    },
+    {
+      "step": "14 диктовка She is young",
+      "what_i_understood": "собрал по слуху",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 I am tired",
+      "what_i_understood": "tired тоже не объяснялось в этой сессии картой, но по контексту 'вы устали' догадался, лишняя плитка is отброшена",
+      "confusion": "tired не было карточки, полагаюсь на память или на догадку по-русски в задании",
+      "could_answer_question": true
+    },
+    {
+      "step": "16 You ___ new",
+      "what_i_understood": "are, потому что обращаюсь к коллеге напрямую",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 I am young. You are new. He is quiet.",
+      "what_i_understood": "quiet тоже не было карточки в этой сессии — я не видел перевода этого слова нигде в тексте передо мной",
+      "confusion": "quiet ни разу не объяснено в этой сессии — ни карточкой, ни переводом. Я не знаю что оно значит, просто повторяю звук",
+      "could_answer_question": false
+    }
+  ],
+  "learned_new": [
+    "am/are/is — какая скрепка к какому лицу (я/ты/он-она)",
+    "short — невысокий",
+    "thin — худой",
+    "blond — светловолосый",
+    "young — молодой"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 17,
+      "why": "нужно сказать и понять 'He is quiet' — слово quiet нигде в этой сессии не переведено и не объяснено (ни карточкой, ни в тексте интро). Я его просто повторяю по звуку, не зная смысла. Это не ловушка среди неверных вариантов — это часть требуемого правильного ответа."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "сравнение 'куртка висит на нём как на вешалке' про thin — понятно и живо",
+    "сцена на крыльце в понедельник утром — ясно кто где стоит и зачем говорю фразы"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, в целом понятно: коллега стоит рядом, показывает на людей у входа, и я должен сказать о них фразу. Но в задании 17 сцена уже пропала — просто три фразы подряд без объяснения, откуда взялось слово quiet.",
+  "would_continue": "да, но с занозой — слово quiet в последнем задании я не понимаю, и сессия заканчивается именно на нём, то есть последнее, что я сделал — повторил вслух то, чего не знаю",
+  "verdict": "BLOCK",
+  "verdict_reason": "В задании 17 требуется произнести и осмыслить 'He is quiet', а слово quiet ни разу не введено (ни как новое, ни карточкой возврата) — сноска «Возвращаются: tall, new, quiet, tired» видна только разработчику в служебной части, а не мне-ученику на экране."
+}

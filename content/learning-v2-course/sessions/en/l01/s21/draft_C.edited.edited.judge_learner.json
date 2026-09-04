@@ -1,0 +1,155 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя говорю am, про собеседника are, про третьего человека is. Тут показали third person — is. short значит невысокий.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Слово после скрепки не меняется, меняется только скрепка. thin — худой.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "am — только про себя, никому его не одолжить. young — молодой, blond — светловолосый.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 карточка short",
+      "what_i_understood": "invisок = short",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 слух short",
+      "what_i_understood": "выбрал short, разница звука с shirt и sort понятна",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 карточка thin",
+      "what_i_understood": "худой, язык между зубами",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 слух thin",
+      "what_i_understood": "выбрал thin",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 сборка He is short",
+      "what_i_understood": "собрал фразу, лишняя плитка am не подошла",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 вставка про девушку",
+      "what_i_understood": "She is thin — выбрал is",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 карточка blond",
+      "what_i_understood": "светловолосый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 карточка young",
+      "what_i_understood": "молодой",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 слух young",
+      "what_i_understood": "выбрал young",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 вставка про себя",
+      "what_i_understood": "I am young",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 доска пар",
+      "what_i_understood": "short-невысокий, thin-худой, young-молодой, tall-высокий — tall помню по подсказке из этой же сессии (в интро не было, но было на доске \"возвращается\")",
+      "confusion": "слово tall не объяснялось нигде в этой сессии до доски пар — я не видел его карточки. Пришлось гадать по русскому переводу рядом",
+      "could_answer_question": true
+    },
+    {
+      "step": "12 сборка You are blond",
+      "what_i_understood": "собрал фразу",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 карточка quiet",
+      "what_i_understood": "тихий, молчаливый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 вставка про новенького",
+      "what_i_understood": "He is quiet",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 диктовка She is young",
+      "what_i_understood": "собрал по слуху",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 сборка I am tired",
+      "what_i_understood": "tired — устал(а), слово не объяснялось в этой сессии, но по-русски перевод дали через контекст \"вы устали\" в самом задании, справился",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 вставка про новенькую",
+      "what_i_understood": "You are new — new тоже не было карточки в этой сессии, но по заданию \"впервые в команде\" догадался, что new = новенькая",
+      "confusion": "new не объяснено в этой сессии",
+      "could_answer_question": true
+    },
+    {
+      "step": "18 голос три фразы",
+      "what_i_understood": "I am tired. You are new. He is quiet. — повторил все три скрепки подряд",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Что скрепка (am/are/is) зависит от того, о ком говорю: я — am, ты — are, он/она — is",
+    "Слово-описание после скрепки не меняется от рода или числа",
+    "Новые слова: short (невысокий), thin (худой), blond (светловолосый), young (молодой)"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 17,
+      "why": "Правильный ответ 'You are new' требует слово new, которого нет ни в списке 'новые слова' этой сессии, ни в её карточках-интро. Оно есть в общем списке слов, который я знаю по легенде судьи, но САМА сессия его не объяснила — я догадался только по смыслу задания ('впервые в команде'), а не по знанию слова."
+    },
+    {
+      "task": 16,
+      "why": "Слово tired используется как правильный ответ (I am tired), но в этой сессии карточки для tired нет — оно просто указано в задании 'вы устали' и по-русски я понял перевод, а не выучил слово из сессии."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена на крыльце с коллегой, которая молча показывает глазами на людей — простая и понятная, видно кто где стоит",
+    "Задание 18, где три фразы подряд на разных скрепках — приятно закрепляет всю тему сразу"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: коллега на крыльце показывает на разных людей, и я по очереди говорю про них с нужной скрепкой. К последнему заданию (18) сцена уже не упоминается явно, но общий смысл 'кто есть кто' удерживается",
+  "would_continue": "да — тема понятная, слова легко запоминаются, задания идут по нарастающей сложности логично",
+  "verdict": "BLOCK",
+  "verdict_reason": "Задания 16 и 17 требуют знания слов tired и new как правильных ответов, но эта сессия их не объясняет карточкой — это слова из 'возвращаются', и опора идёт только на список судьи, а не на текст самой сессии, значит по-честному (с нуля, без внешних знаний) я не мог гарантированно дать эти ответы."
+}

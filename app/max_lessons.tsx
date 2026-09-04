@@ -260,76 +260,17 @@ export default function MaxLessonsScreen() {
     return () => { active = false; };
   }, [lang, previewKey, studyTarget]);
 
-  // ── Прогрев рекомендованного урока ────────────────────────────────────────
-  // Владелец: «уроки должны быть прогреты и готовы ещё до того, как раздел
-  // откроется». Греем РОВНО ОДИН: заготовка держит серверный резерв минут,
-  // греть весь экран значило бы упереться в voice_session_active.
-  const warmedRef = useRef<string>('');
-  useEffect(() => {
-    if (!recommendedId || warmedRef.current === recommendedId) return;
-    if (!isAiVoiceConsentGranted()) {
-      DebugLogger.info('[MAX-LESSONS]', 'прогрев пропущен: нет согласия на обработку голоса');
-      return;
-    }
-    const lesson = MAX_LESSON_CATALOG.find((l) => l.id === recommendedId);
-    if (!lesson) return;
-    warmedRef.current = recommendedId;
-    const callParams = {
-      format: 'tutor' as const,
-      scenarioId: 'coffee',
-      cefr: lesson.level,
-      devMode: false,
-      interfaceLang: lang,
-      studyTarget,
-      goalId: lesson.id,
-    };
-    DebugLogger.info('[MAX-LESSONS]', `прогрев урока ${lesson.id} (${lesson.level})`);
-    void import('./max_call_premint').then(({ beginPremint, premintKey, isMaxCallLineBusy }) =>
-      import('./max_call_mint_request').then(({ initialMintRequest, performMaxVoiceMint, releaseUnusedMint }) => {
-        if (!isAiVoiceConsentGranted()) return;
-        // зачем (владелец 2026-09-02, лог 20:23:07): этот экран остаётся
-        // смонтированным под экраном звонка, и прогрев стрелял НАСТОЯЩИМ
-        // минтом в живую сессию — платный вызов впустую плюс мусорный
-        // voice_session_active. Хуже: успей он создать резерв, следующий
-        // звонок упёрся бы в него ровно как в исходном баге.
-        if (isMaxCallLineBusy()) {
-          // Ранний выход объясняет себя: прогрев вернётся сам, когда линия
-          // освободится (эффект перезапустится по смене рекомендации).
-          warmedRef.current = '';
-          DebugLogger.info('[MAX-LESSONS]', 'прогрев пропущен: идёт звонок, линия занята');
-          return;
-        }
-        beginPremint(
-          premintKey(callParams),
-          () => performMaxVoiceMint(callParams, initialMintRequest(callParams)),
-          Date.now(),
-          releaseUnusedMint,
-        );
-      }),
-    ).catch((e) => {
-      // Прогрев — оптимизация: не вышло, значит связь подготовится при старте.
-      DebugLogger.warn('[MAX-LESSONS]', `прогрев не удался: ${e instanceof Error ? e.message : String(e)}`);
-    });
-
-    // зачем (владелец 2026-09-02, факт из Firestore): этот экран СОЗДАВАЛ
-    // заготовку, но НИКОГДА её не отпускал. Прогрет урок a1_greet, человек жмёт
-    // a1_numbers_age — ключи разные, экран звонка чужую заготовку не заберёт, и
-    // её серверный резерв (620с) остаётся сиротой: клиент про эту сессию не
-    // знает, а settle по сессии звонка уходит в alreadySettled (id не совпал).
-    // В базе это выглядело так: activeSessionId=vs_04ad1bd7 (прогрев),
-    // lastSettledSessionId=vs_a3529b76 (звонок), reservedSec=620 — и следующие
-    // звонки били в этот сиротский резерв с voice_session_active.
-    return () => {
-      void import('./max_call_premint').then(({ abandonPremint, premintKey }) =>
-        import('./max_call_mint_request').then(({ releaseUnusedMint }) => {
-          abandonPremint(premintKey(callParams), releaseUnusedMint);
-        }),
-      ).catch((e) => {
-        // Ранний выход обязан объясняться: непущенная заготовка держит минуты.
-        DebugLogger.warn('[MAX-LESSONS]', `отпускание прогрева не удалось: ${e instanceof Error ? e.message : String(e)}`);
-      });
-    };
-  }, [lang, recommendedId, studyTarget]);
+  // ── Прогрева НЕТ (владелец 2026-09-04) ────────────────────────────────────
+  // зачем: прогрев грел ВСЕГДА рекомендованный урок, а человек тапает любой —
+  // в логах владельца `premint.claim ... claimed=false` во ВСЕХ без исключения
+  // случаях: заготовка не пригодилась ни разу. Зато её резерв приходилось
+  // отпускать, а отпускание ждёт СВОЙ ЖЕ минт (release идёт через .then), и
+  // это стоило 24 секунды тишины после отсчёта (premint.foreign_release_done
+  // waitedMs=24290) плюс лишний платный минт. Оптимизация с отрицательной
+  // пользой удалена целиком: звонок минтит сам, сразу и без ожидания.
+  //
+  // Если прогрев когда-нибудь вернут — греть можно ТОЛЬКО тот урок, который
+  // человек уже выбрал (раскрытая карточка), иначе ключ снова не совпадёт.
 
   // ── Список: заголовки уровней + уроки ─────────────────────────────────────
   const rows = useMemo(() => {
@@ -376,31 +317,6 @@ export default function MaxLessonsScreen() {
     }
     openingRef.current = true;
     setTimeout(() => { openingRef.current = false; }, 1200);
-    // зачем (владелец 2026-09-04, «тысячу первый раз»: конфликта прогрева не
-    // должно быть НИКОГДА): греется всегда РЕКОМЕНДОВАННЫЙ урок, а тапают
-    // обычно другой — ключи не совпадают почти всегда, и экран звонка был
-    // вынужден отпускать чужой резерв и ЖДАТЬ его возврата (в логе владельца
-    // 24 070 мс тишины после отсчёта). Отпускаем чужую заготовку ЗДЕСЬ, в
-    // момент тапа, до навигации: release уходит в фоновую очередь и к моменту
-    // минта на экране звонка уже долетает. Ждать нечего — ждать нечему.
-    if (lesson.id !== warmedRef.current) {
-      warmedRef.current = '';
-      void import('./max_call_premint').then(({ abandonForeignPremint, premintKey }) =>
-        import('./max_call_mint_request').then(({ releaseUnusedMint }) => {
-          const dropped = abandonForeignPremint(
-            premintKey({
-              format: 'tutor' as const, scenarioId: 'coffee', cefr: lesson.level,
-              devMode: false, studyTarget, goalId: lesson.id,
-            }),
-            releaseUnusedMint,
-          );
-          DebugLogger.info('[MAX-LESSONS]', `прогрев чужого урока отпущен на тапе: ${dropped ?? 'нечего отпускать'}`);
-        }),
-      ).catch((e) => {
-        // Немой catch запрещён: непущенная заготовка держит минуты.
-        DebugLogger.warn('[MAX-LESSONS]', `отпускание чужого прогрева на тапе не удалось: ${e instanceof Error ? e.message : String(e)}`);
-      });
-    }
     // Прямо в разговор. Деньги в безопасности: сервер считает секунды от
     // АКТИВАЦИИ (voiceSessionClockStartMs → activatedAtMs), а не от соединения,
     // поэтому отмена во время отсчёта ничего не стоит.

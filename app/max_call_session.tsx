@@ -226,12 +226,23 @@ async function exchangeSdp(offerSdp: string, clientSecret: string): Promise<stri
 // Подсказки при тишине (спека §1 max_call_hint_timer): инструкции — по формату
 // HINTS раздела 7 (сервер обещает модели «system note asking to help»).
 
+// зачем (владелец 2026-09-04, живой звонок): «он говорит сам, когда я молчу,
+// делает вид что я что-то сказал, и хвалит». Причина: подсказка приходила как
+// обычный ход, и модель достраивала несуществующую реплику ученика. Теперь в
+// самой инструкции ЗАПРЕЩЕНО реагировать на несказанное: ученик МОЛЧАЛ, хвалить
+// и подтверждать нечего.
+const HINT_NO_PHANTOM_TURN =
+  'The learner said NOTHING at all — there was only silence. Do NOT thank them, do NOT praise '
+  + 'them, do NOT correct them, and do NOT refer to anything they supposedly said: they said '
+  + 'nothing. Never pretend a reply happened. ';
 const HINT_FIRST_INSTRUCTIONS =
-  'System note: the learner has been silent for a while. Offer a gentle in-character hint that ' +
+  'System note: the learner has been silent for a while. ' + HINT_NO_PHANTOM_TURN +
+  'Offer a gentle in-character hint that ' +
   "models a possible answer (for example: \"You could say: I'd like a large one.\"). One short, " +
   'complete sentence, then hand the turn back.';
 const HINT_SECOND_INSTRUCTIONS =
-  'System note: the learner is still silent. Ask a simple either-or question with two short ' +
+  'System note: the learner is still silent. ' + HINT_NO_PHANTOM_TURN +
+  'Ask a simple either-or question with two short ' +
   'options, warmly and in character. Keep it complete and short.';
 /** Вторая подсказка — через +10с после первой (спека §1). */
 const HINT_SECOND_DELAY_SEC = 10;
@@ -828,7 +839,7 @@ function MaxCallSessionContent() {
     // зачем (владелец 2026-09-04, аудит «говорит на английском на A1»): уровень
     // и родной язык решают ВЕСЬ языковой режим урока. Печатаем то, что реально
     // ушло в минт, — гадать по промпту запрещено.
-    DebugLogger.info('[MAX-TURN]', `сессия: cefr=${cefr} формат=${format} цель=${studyTarget ?? 'null'} урок=${typeof params.goalId === 'string' ? params.goalId : 'null'} подсказки=${hintDelaySec}с×${hintMaxPerSession}`);
+    DebugLogger.info('[MAX-TURN]', `сессия: cefr=${cefr} формат=${format} цель=${studyTarget ?? 'null'} урок=${typeof params.goalId === 'string' ? params.goalId : 'null'} подсказки=${hintDelaySec}с×${hintMaxPerSession} interfaceLang=${lang} (от него зависит РОДНОЙ язык ученика в промпте)`);
     const deadlines = computeCallDeadlines({
       maxSeconds: mint.max_seconds,
       startedAtMs: startedAt,

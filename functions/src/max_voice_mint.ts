@@ -666,12 +666,20 @@ function clientLimits(
   config: MaxVoiceConfig,
   args: { reservedSec: number; maxSeconds: number; cefr: 'A1' | 'A2' | 'B1' | 'B2'; day: number; month: number },
 ) {
+  // зачем (владелец 2026-09-04: «внутри урока показывает 20 минут, а не все
+  // доступные»): пилюля топлива рисует min(dayRemainingSec, dailyVoiceSecMax).
+  // У КУПЛЕННЫХ минут дневного потолка тарифа нет — их пул это сам кошелёк
+  // (dayRemainingSec = paidAvailableSec, см. remainingFor). Прежний жёсткий
+  // dailyVoiceSecMax=1200 резал 300 купленных минут до «20 мин» — человек
+  // видел чужой лимит вместо своих оплаченных минут. Потолок берём как
+  // максимум из дневного лимита и фактического остатка.
+  const dailyMax = Math.max(config.dailyVoiceSecMax, args.day);
   return {
     reservedSec: args.reservedSec,
     dayRemainingSec: args.day,
     monthRemainingSec: args.month,
     sessionCapSec: args.maxSeconds,
-    dailyVoiceSecMax: config.dailyVoiceSecMax,
+    dailyVoiceSecMax: dailyMax,
     wrapUpLeadSec: config.wrapUpLeadSec,
     graceTailSec: config.graceTailSec,
     heartbeatSec: config.heartbeatSec,

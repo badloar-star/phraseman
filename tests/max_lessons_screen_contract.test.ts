@@ -70,16 +70,18 @@ describe('экран раздела «Уроки с МАКСом»', () => {
     expect(startBlock).not.toContain('countdown');
   });
 
-  it('рекомендованный урок греется заранее, и только он один', () => {
-    // Заготовка держит серверный резерв минут: греть весь экран значило бы
-    // занимать несколько резервов и упереться в voice_session_active.
-    expect(screen).toContain('beginPremint');
-    const warm = screen.slice(screen.indexOf('const warmedRef'));
-    const warmBlock = warm.slice(0, warm.indexOf('}, [lang, recommendedId, studyTarget]);'));
-    expect(warmBlock).toContain('recommendedId');
-    expect(warmBlock).toContain('isAiVoiceConsentGranted');
-    // Греем ровно один урок: цикла по каталогу здесь быть не должно.
-    expect(warmBlock).not.toMatch(/MAX_LESSON_CATALOG\.forEach|for \(const lesson of MAX_LESSON_CATALOG/u);
+  it('прогрева НЕТ: он ни разу не пригодился и стоил 24с тишины', () => {
+    // Владелец 2026-09-04. Прогрев грел ВСЕГДА рекомендованный урок, а человек
+    // тапает любой: в логах `premint.claim ... claimed=false` во ВСЕХ случаях —
+    // заготовка не пригодилась ни разу. Зато её резерв приходилось отпускать, а
+    // release ждёт СВОЙ ЖЕ минт (abandonPremint → promise.then): 24 секунды
+    // тишины после отсчёта (premint.foreign_release_done waitedMs=24290) плюс
+    // лишний платный минт. Оптимизация с отрицательной пользой удалена.
+    expect(screen).not.toContain('beginPremint');
+    expect(screen).not.toContain('warmedRef');
+    // Экран уроков больше не создаёт и не отпускает серверных резервов вовсе.
+    expect(screen).not.toContain('abandonForeignPremint');
+    expect(screen).not.toContain('abandonPremint');
   });
 
   it('чипов-фильтров на экране нет', () => {

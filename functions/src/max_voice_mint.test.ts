@@ -809,12 +809,17 @@ describe('mint response contract — both key spellings + limits', () => {
     expect(res.limits).toMatchObject({
       dayRemainingSec: 6_880, // остаток купленного кошелька, не календарный день
       sessionCapSec: 300, // число секунд ЭТОЙ сессии, не карта форматов
-      dailyVoiceSecMax: 1_200,
+      // зачем (владелец 2026-09-04: «внутри урока показывает 20 минут, а не все
+      // доступные»): у КУПЛЕННЫХ минут дневного потолка тарифа нет — их пул это
+      // сам кошелёк. Жёсткие 1200 резали 300 оплаченных минут до «20 мин».
+      // Потолок «топлива» = max(дневной лимит, фактический остаток).
+      dailyVoiceSecMax: 6_880,
       heartbeatSec: 30,
       wrapUpLeadSec: 75,
       graceTailSec: 20,
-      hintDelaySec: 9, // число для B1, не карта уровней
-      hintMaxPerSession: 4,
+      // Пороги подсказок подняты (владелец: «он говорит сам, когда я молчу»).
+      hintDelaySec: 13, // число для B1, не карта уровней
+      hintMaxPerSession: 2,
       reconnectChainMax: { auto: 2, manual: 1 },
     });
   });

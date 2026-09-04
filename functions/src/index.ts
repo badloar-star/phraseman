@@ -490,7 +490,12 @@ export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
  * по индексу: кандидаты берутся из памяти учителя (where nextTopic != ''),
  * а не обходом коллекции users.
  */
-export const maxLessonReminderCron = functions.scheduler.onSchedule(
+// ⛔ ЗАКОНСЕРВИРОВАН вместе с разделом MAX (владелец 2026-09-04). Крон ходил
+// РАЗ В ЧАС (~720 запусков/мес) и слал пуши «вернись к уроку с МАКСом» — про
+// раздел, который теперь закрыт. Не возвращать без прямой команды владельца:
+// см. CLAUDE.md → «РАЗДЕЛ MAX ЗАКОНСЕРВИРОВАН» и сторож
+// tests/max_section_sealed_contract.test.ts.
+/* export const maxLessonReminderCron = functions.scheduler.onSchedule(
   { schedule: "5 * * * *", timeZone: "UTC" },
   withCronHeartbeat('maxLessonReminderCron', async () => {
     const { runLessonReminderPush } = await import("./max_lesson_reminder_push");
@@ -504,7 +509,7 @@ export const maxLessonReminderCron = functions.scheduler.onSchedule(
           `sent ${summary.sent}/${summary.eligible} eligible.`,
       );
     }
-  }));
+  })); */
 
 export const reEngagePushCron = functions.scheduler.onSchedule(
   { schedule: "0 10 * * *", timeZone: "UTC" },

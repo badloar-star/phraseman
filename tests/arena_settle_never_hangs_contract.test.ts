@@ -80,4 +80,27 @@ describe('Арена: сцена сверки не зависает', () => {
       expect(logs.length).toBeGreaterThanOrEqual(earlyReturns.length);
     }
   });
+
+  test('переход на результат не отменяется перехватчиком ухода', () => {
+    // КОРЕНЬ мёртвого экрана: beforeRemove отменяет любую навигацию, пока не
+    // взведён leavingRef. Переходы на результат его не взводили — router.replace
+    // молча отменялся, экран матча висел, кнопка назад тоже не работала.
+    const navigations = match.split("pathname: '/arena_results'").length - 1;
+    expect(navigations).toBeGreaterThanOrEqual(3);
+    for (const chunk of match.split("pathname: '/arena_results'").slice(0, navigations)) {
+      const tail = chunk.slice(-700);
+      expect(tail).toContain('leavingRef.current = true');
+    }
+  });
+
+  test('законченный матч не удерживается вопросом о сдаче', () => {
+    // Сдавать нечего: матч уже сыгран. Удержание = мёртвый экран без выхода.
+    const start = match.indexOf("navigation.addListener('beforeRemove'");
+    expect(start).toBeGreaterThan(-1);
+    const body = match.slice(start, start + 1_600);
+    expect(body).toContain("match?.state.phase === 'finished'");
+    // Проверка обязана стоять ДО preventDefault, иначе она бесполезна.
+    expect(body.indexOf("match?.state.phase === 'finished'"))
+      .toBeLessThan(body.indexOf('event.preventDefault()'));
+  });
 });

@@ -226,6 +226,11 @@ function ArenaMatchGenerationScreen({
   const introViewerRankIndex = arenaViewerRankIndex(viewerStars ?? viewerStarsFallback);
   const playSound = useArenaSound();
   const mountedRef = useRef(true);
+  // зачем: взводится ПЕРЕД самим уходом, чтобы перехватчик beforeRemove
+  // пропустил нашу же навигацию. Объявлен рядом с mountedRef и ВЫШЕ всех
+  // переходов на результат, которые его взводят.
+  const leavingRef = useRef(false);
+
   useEffect(() => () => { mountedRef.current = false; }, []);
   /**
    * Доставка отчёта переживает уход с экрана.
@@ -487,6 +492,10 @@ function ArenaMatchGenerationScreen({
     // нельзя. Снимок и награды выше уже записаны, они не потеряются.
     if (!mountedRef.current) return true;
     resultOpenedRef.current = true;
+    // зачем: перехватчик beforeRemove отменяет любую навигацию, пока этот флаг
+    // не взведён. Без него собственный переход на результат молча отменялся, и
+    // экран матча оставался висеть намертво.
+    leavingRef.current = true;
     router.replace({
       pathname: '/arena_results',
       params: {
@@ -539,6 +548,10 @@ function ArenaMatchGenerationScreen({
     const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}`;
     arenaRememberResultHandoff({ ownerKey, matchId, viewerSeat: plan.viewerSeat, preview });
     resultOpenedRef.current = true;
+    // зачем: перехватчик beforeRemove отменяет любую навигацию, пока этот флаг
+    // не взведён. Без него собственный переход на результат молча отменялся, и
+    // экран матча оставался висеть намертво.
+    leavingRef.current = true;
     router.replace({
       pathname: '/arena_results',
       params: {
@@ -700,6 +713,10 @@ function ArenaMatchGenerationScreen({
     const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}`;
     arenaRememberResultHandoff({ ownerKey, matchId, viewerSeat: plan.viewerSeat, preview });
     resultOpenedRef.current = true;
+    // зачем: перехватчик beforeRemove отменяет любую навигацию, пока этот флаг
+    // не взведён. Без него собственный переход на результат молча отменялся, и
+    // экран матча оставался висеть намертво.
+    leavingRef.current = true;
     DebugLogger.info('[ARENA-SETTLE]', `fallback открывает результат: mode=${plan.mode} мойСчёт=${String(preview.viewerStars)} счётСоперника=${String(preview.opponentStars)} исход=${String(preview.outcome)}`);
     router.replace({
       pathname: '/arena_results',
@@ -800,10 +817,6 @@ function ArenaMatchGenerationScreen({
   });
 
   /* ---- выход ---- */
-  // зачем: взводится ПЕРЕД самим уходом, чтобы перехватчик beforeRemove
-  // пропустил нашу же навигацию и не спросил про сдачу второй раз.
-  const leavingRef = useRef(false);
-
   const forfeitNow = useCallback(() => {
     leavingRef.current = true;
     match?.abandon();
@@ -848,13 +861,33 @@ function ArenaMatchGenerationScreen({
       data?: { action?: { type?: string } };
     }) => {
       if (leavingRef.current) return;
+      /*
+       * КОРЕНЬ МЁРТВОГО ЭКРАНА (владелец 2026-09-04: «последний вопрос ответили
+       * и дальше с экрана пропадает всё, кнопка назад не работает, экран мёртв»).
+       *
+       * Перехватчик отменял ЛЮБУЮ навигацию, пока не взведён leavingRef. Но
+       * переходы на экран результата его не взводили — значит `router.replace`
+       * на /arena_results молча отменялся, экран оставался на матче, и уйти с
+       * него было нельзя ничем: и своя навигация заблокирована, и кнопка назад
+       * упиралась в тот же перехватчик.
+       *
+       * Сдача имеет смысл только в ЖИВОМ матче. Закончившийся матч сдавать
+       * не в чем — держать экран не за что.
+       */
+      if (match?.state.phase === 'finished') {
+        DebugLogger.info('[ARENA-SETTLE]', 'уход с законченного матча разрешён без вопроса о сдаче');
+        return;
+      }
       event.preventDefault();
       DebugLogger.info('arena_match', `back intercepted action=${
         String(event.data?.action?.type ?? 'unknown')} matchId=${matchId ?? 'none'}`);
       confirmForfeit();
     }) as never);
     return unsubscribe;
-  }, [active, confirmForfeit, matchId, navigation]);
+    // match?.state.phase обязателен в зависимостях: без него перехватчик
+    // остаётся с замыканием на старую фазу и продолжает держать экран после
+    // конца матча — ровно тот мёртвый экран, что видел владелец.
+  }, [active, confirmForfeit, match?.state.phase, matchId, navigation]);
 
   /* ---- звуки, привязанные к смене состояния ---- */
   const lastTaskRef = useRef(-1);

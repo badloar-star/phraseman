@@ -62,7 +62,6 @@ import {
   enqueueRelease,
   setMaxCallLineBusy,
   isPremintUsable,
-  mintAfterRelease,
   premintKey,
 } from './max_call_premint';
 import { createHintTimer, type HintTimer } from './max_call_hint_timer';
@@ -101,6 +100,7 @@ import {
   MAX_LEARNER_END_INSTRUCTION,
   isMaxEndIntent,
   maxVoiceFailureActions,
+  maxVoiceFailureTitle,
   maxVoicePhaseLabel,
 } from './max_voice_copy';
 import { DebugLogger } from './debug-logger';
@@ -365,6 +365,10 @@ function MaxCallSessionContent() {
   // Таймер подсказок создаётся в onCallActivated из limits минта (per-CEFR
   // порог, кэп на сессию); до active — null, подсказки невозможны.
   const hintTimerRef = useRef<HintTimer | null>(null);
+  // Пороги подсказок держим в ref'ах: их печатает трассировка [MAX-TURN] в
+  // поллинге, который создаётся отдельным эффектом и state минта не видит.
+  const hintDelaySecRef = useRef(0);
+  const hintMaxRef = useRef(0);
   // Инструменты учителя (сцены/домашка/тема/end_call) — исполняются локально.
   const tutorRunnerRef = useRef<TutorToolRunner | null>(null);
   const tutorEndedByToolRef = useRef(false);
@@ -534,7 +538,14 @@ function MaxCallSessionContent() {
         maxConnectTrace('premint.foreign_release_done', { waitedMs: Date.now() - waitStartedAt });
         return performMaxVoiceMint(callParams, req);
       }
-      return mintAfterRelease(() => performMaxVoiceMint(callParams, req));
+      // После быстрого выхода из предыдущего живого звонка его end уже мог
+      // быть поставлен в release-очередь. Новый mint не имеет права обгонять
+      // серверный settlement: иначе сервер честно видит ещё живой резерв и
+      // возвращает voice_session_active.
+      const waitStartedAt = Date.now();
+      await awaitPendingReleases();
+      maxConnectTrace('premint.pending_releases_done', { waitedMs: Date.now() - waitStartedAt });
+      return performMaxVoiceMint(callParams, req);
     };
 
     // Секунды речи с учётом незакрытого сегмента: end может прилететь прямо
@@ -682,11 +693,14 @@ function MaxCallSessionContent() {
       if (graceTimerRef.current !== null) clearTimeout(graceTimerRef.current);
       for (const id of tutorNoteTimersRef.current) clearTimeout(id);
       tutorNoteTimersRef.current = [];
-      // Линию отпускаем ПЕРЕД end(): teardown асинхронный, а держать флаг до
-      // его конца значило бы глушить прогревы уже после ухода с экрана.
-      setMaxCallLineBusy(false);
       // Уход с экрана = завершение звонка (идемпотентно, сеттлмент — внутри).
+      // Нативный teardown остаётся мгновенным, но новый звонок того же ученика
+      // обязан дождаться серверного end: иначе быстрый «завершить → другой
+      // урок» попадает в ещё живой резерв и получает voice_session_active.
       void client.end(endReasonRef.current);
+      const settlement = client.settlement();
+      enqueueRelease(() => settlement);
+      void settlement.finally(() => setMaxCallLineBusy(false));
     };
     // Обычный экран живёт одним звонком. Единственное намеренное пересоздание —
     // явная кнопка retry после терминальной ошибки до/во время соединения.
@@ -802,11 +816,19 @@ function MaxCallSessionContent() {
     setDailyQuota(quota);
     // Таймер подсказок: пороги из limits минта (hintDelaySec per-CEFR,
     // hintMaxPerSession), вторая подсказка через +10с (спека §1).
+    const hintDelaySec = hintDelayFromLimits(mint.limits, cefr);
+    const hintMaxPerSession = hintMaxFromLimits(mint.limits);
+    hintDelaySecRef.current = hintDelaySec;
+    hintMaxRef.current = hintMaxPerSession;
     hintTimerRef.current = createHintTimer({
-      delaySec: hintDelayFromLimits(mint.limits, cefr),
+      delaySec: hintDelaySec,
       secondHintDelaySec: HINT_SECOND_DELAY_SEC,
-      maxPerSession: hintMaxFromLimits(mint.limits),
+      maxPerSession: hintMaxPerSession,
     });
+    // зачем (владелец 2026-09-04, аудит «говорит на английском на A1»): уровень
+    // и родной язык решают ВЕСЬ языковой режим урока. Печатаем то, что реально
+    // ушло в минт, — гадать по промпту запрещено.
+    DebugLogger.info('[MAX-TURN]', `сессия: cefr=${cefr} формат=${format} цель=${studyTarget ?? 'null'} урок=${typeof params.goalId === 'string' ? params.goalId : 'null'} подсказки=${hintDelaySec}с×${hintMaxPerSession}`);
     const deadlines = computeCallDeadlines({
       maxSeconds: mint.max_seconds,
       startedAtMs: startedAt,
@@ -946,9 +968,16 @@ function MaxCallSessionContent() {
       if (!timer) return;
       const kind = timer.due(Date.now());
       if (kind === 'first') {
-        clientRef.current?.sendHintResponse(HINT_FIRST_INSTRUCTIONS);
+        // зачем (владелец 2026-09-04: «я ничего не отвечаю, а он ведёт себя так,
+        // будто я что-то сказал»): подсказка — единственное место, где реплику
+        // MAX заказывает КЛИЕНТ по таймеру тишины, а не ответ на речь. Логируем
+        // каждую выдачу с порогом и счётчиком, чтобы в логе было видно, что
+        // говорил MAX «сам», а не в ответ на ученика.
+        const accepted = clientRef.current?.sendHintResponse(HINT_FIRST_INSTRUCTIONS);
+        DebugLogger.info('[MAX-TURN]', `подсказка first: тишина ${hintDelaySecRef.current}с, выдано ${timer.firedCount()}/${hintMaxRef.current}, принято=${accepted === true}`);
       } else if (kind === 'second') {
-        clientRef.current?.sendHintResponse(HINT_SECOND_INSTRUCTIONS);
+        const accepted = clientRef.current?.sendHintResponse(HINT_SECOND_INSTRUCTIONS);
+        DebugLogger.info('[MAX-TURN]', `подсказка second: пауза ${HINT_SECOND_DELAY_SEC}с, выдано ${timer.firedCount()}/${hintMaxRef.current}, принято=${accepted === true}`);
       }
     }, 1000);
     return () => clearInterval(id);
@@ -1226,7 +1255,9 @@ function MaxCallSessionContent() {
   }, [countdownFrom, countdownLeft]);
 
   const breathing = phase === 'connecting' || phase === 'thinking';
-  const hint = maxVoicePhaseLabel(phase, uiState.eqOwner, lang);
+  const hint = phase === 'failed'
+    ? maxVoiceFailureTitle(uiState.failureCode, lang)
+    : maxVoicePhaseLabel(phase, uiState.eqOwner, lang);
   const failureActions = maxVoiceFailureActions(lang);
   // зачем (владелец 2026-09-01: «таймер точно как на макете»): отсчёт —
   // отдельный оверлей с тающим кольцом, а не строка в статусе. Строку владелец

@@ -363,9 +363,44 @@ export default function MaxLessonsScreen() {
       DebugLogger.info('[MAX-LESSONS]', 'повторный тап проигнорирован: урок уже стартует');
       return;
     }
+    DebugLogger.info('[MAX-LESSONS]', `старт урока ${lesson.id} (${lesson.level}) звёзд=${maxLessonStars(mastery, lesson.id)}`);
+    // зачем (владелец 2026-09-04): минут нет — открываем МОДАЛ ПОКУПКИ, а не
+    // звонок. Раньше урок стартовал, тратил отсчёт и коннект, и только сервер
+    // отвечал voice_max_required — человек видел красную ошибку вместо
+    // понятного предложения купить минуты. Решаем ДО навигации, по уже
+    // прочитанному кошельку и превью: 0 доступных минут → лист пакетов.
+    if (minutesLeft === 0) {
+      DebugLogger.info('[MAX-LESSONS]', `урок ${lesson.id} не начат: минут нет (источник=${minutesView.source}) — открыт модал покупки`);
+      setMinuteSheetVisible(true);
+      return;
+    }
     openingRef.current = true;
     setTimeout(() => { openingRef.current = false; }, 1200);
-    DebugLogger.info('[MAX-LESSONS]', `старт урока ${lesson.id} (${lesson.level}) звёзд=${maxLessonStars(mastery, lesson.id)}`);
+    // зачем (владелец 2026-09-04, «тысячу первый раз»: конфликта прогрева не
+    // должно быть НИКОГДА): греется всегда РЕКОМЕНДОВАННЫЙ урок, а тапают
+    // обычно другой — ключи не совпадают почти всегда, и экран звонка был
+    // вынужден отпускать чужой резерв и ЖДАТЬ его возврата (в логе владельца
+    // 24 070 мс тишины после отсчёта). Отпускаем чужую заготовку ЗДЕСЬ, в
+    // момент тапа, до навигации: release уходит в фоновую очередь и к моменту
+    // минта на экране звонка уже долетает. Ждать нечего — ждать нечему.
+    if (lesson.id !== warmedRef.current) {
+      warmedRef.current = '';
+      void import('./max_call_premint').then(({ abandonForeignPremint, premintKey }) =>
+        import('./max_call_mint_request').then(({ releaseUnusedMint }) => {
+          const dropped = abandonForeignPremint(
+            premintKey({
+              format: 'tutor' as const, scenarioId: 'coffee', cefr: lesson.level,
+              devMode: false, studyTarget, goalId: lesson.id,
+            }),
+            releaseUnusedMint,
+          );
+          DebugLogger.info('[MAX-LESSONS]', `прогрев чужого урока отпущен на тапе: ${dropped ?? 'нечего отпускать'}`);
+        }),
+      ).catch((e) => {
+        // Немой catch запрещён: непущенная заготовка держит минуты.
+        DebugLogger.warn('[MAX-LESSONS]', `отпускание чужого прогрева на тапе не удалось: ${e instanceof Error ? e.message : String(e)}`);
+      });
+    }
     // Прямо в разговор. Деньги в безопасности: сервер считает секунды от
     // АКТИВАЦИИ (voiceSessionClockStartMs → activatedAtMs), а не от соединения,
     // поэтому отмена во время отсчёта ничего не стоит.
@@ -376,10 +411,12 @@ export default function MaxLessonsScreen() {
         cefr: lesson.level,
         studyTarget,
         goalId: lesson.id,
-        countdown: '5',
+        countdown: '10',
       },
     } as never);
-  }, [mastery, router, studyTarget]);
+    // lang вошёл в зависимости: ключ отпускаемой заготовки строится с ним.
+    // minutesLeft/minutesView вошли в зависимости: по ним решается модал покупки.
+  }, [lang, mastery, minutesLeft, minutesView.source, router, studyTarget]);
 
   const c = useMemo(() => ({
     back: triLang(lang, {

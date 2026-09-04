@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "`he is` / `she is` + слово (закрепление на слух и вслух)"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`married` — женат и замужем одним словом"
+      },
+      "bodyByLocale": {
+        "ru": "`married` — и «женат», и «замужем». Английский не стал придумывать два слова: `He is married`, `She is married`, меняется только `he` или `she`.\n\nРядом живёт `marry` — «жениться»: это действие, один день и много гостей. А `married` — состояние, которое началось после."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "У кулера спрашивают, что за кольцо у парня из соседнего отдела. Скажите: «он женат»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r1",
+              "text": "He is married."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r2",
+              "text": "He married."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro1:r3",
+              "text": "He is marry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У кулера спрашивают, что за кольцо у парня из соседнего отдела. Скажите: «он женат»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`single` — пары нет"
+      },
+      "bodyByLocale": {
+        "ru": "`single` — «не женат», «не замужем»: у человека нет пары.\n\nНи печали, ни диагноза в слове нет, это просто факт: в анкетах `single` стоит соседним квадратиком с `married`.\n\nЗвучит «СИНГЛ», через «нг» — как в слове «сингл» про песню."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Про женщину у окна говорят, что у неё никого нет. Скажите: «она не замужем»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r1",
+              "text": "She is single."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r2",
+              "text": "She single."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro2:r3",
+              "text": "She are single."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Про женщину у окна говорят, что у неё никого нет. Скажите: «она не замужем»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`famous` и `rich` — знаменит и богат"
+      },
+      "bodyByLocale": {
+        "ru": "`famous` — «знаменитый»: человека узнают люди, с которыми он не знаком. `rich` — «богатый».\n\n`famous` звучит «ФЭЙ-мас»: первый слог тянется, второй проглатывается. Не «фамоус», как читается глазами.\n\nСхема прежняя: `He is famous`, `She is rich`. Новое тут только слово в конце."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "У кулера уверяют, что женщина из бухгалтерии когда-то снялась в рекламе и её узнают на улице. Скажите: «она знаменита»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r1",
+              "text": "She is famous."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r2",
+              "text": "She is rich."
+            },
+            {
+              "responseId": "en:lesson-01:session-20:intro3:r3",
+              "text": "She famous."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У кулера уверяют, что женщина из бухгалтерии когда-то снялась в рекламе и её узнают на улице. Скажите: «она знаменита»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "297f6454a065367e20fc66f10287fa87dc03d009373fc5c6b061a75606b79825"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-20:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i02",
+    "correctText": "married",
+    "correctResponseId": "en:lesson-01:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i04",
+    "correctText": "single",
+    "correctResponseId": "en:lesson-01:session-20:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i06",
+    "correctText": "married",
+    "correctResponseId": "en:lesson-01:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i07",
+    "correctText": "She is single.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i09",
+    "correctText": "famous",
+    "correctResponseId": "en:lesson-01:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i11",
+    "correctText": "rich",
+    "correctResponseId": "en:lesson-01:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i12",
+    "correctText": "He is rich.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i13",
+    "correctText": "famous",
+    "correctResponseId": "en:lesson-01:session-20:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i15",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-20:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i16",
+    "correctText": "She is kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-20:i17",
+    "correctText": "He is funny.",
+    "correctResponseId": null
+  }
+]

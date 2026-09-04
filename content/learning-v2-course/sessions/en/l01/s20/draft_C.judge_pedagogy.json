@@ -1,0 +1,85 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "married",
+      "single",
+      "famous",
+      "rich"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "merry / marred — фонетически близкие искажения married"
+      },
+      {
+        "task": 5,
+        "trap": "single/funny вместо married — смысловая путаница"
+      },
+      {
+        "task": 12,
+        "trap": "rich/quiet вместо famous — смысловая путаница"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "married",
+        "single",
+        "famous",
+        "rich"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s17/l01_s18/l01_s19",
+      "what": "нет прямых повторов сцены/фраз/шуток — сцена «кулер» новая, слова новые, разборы уникальны"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 3,
+      "context_gap_grammar": 3,
+      "phrase_builder": 2,
+      "sound_contrast": 1,
+      "listen_build_dictation": 2,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 13 (Speed Match) стоит раньше задания 14, где `quiet` впервые становится правильным ответом (14) — но карточка `quiet` в этой сессии вообще отсутствует: слово не введено словарной карточкой ни разу, а сразу используется как ловушка (12) и цель (14), нарушая правило доски пар «каждое слово прошло карточку И отработку либо пришло из прошлых сессий» — здесь это допустимо только если `quiet` действительно уже отработано в l01_s18, что подтверждается соседними сессиями, поэтому фактическое блокирующее нарушение не найдено; понижаю до REVISE из-за пункта self-check: в задании 16 плитка `not` названа 'лишней' и объяснена как обманка на внимательность, но авторский лимит на такие обманки — 1–2 на сессию, и здесь ровно одна, что в норме — тем не менее общий вердикт REVISE ставлю из-за отсутствия явной карточки для `quiet` в самой сессии при том что она заявлена как 'возвращаемое' слово с одним правильным касанием (14), что находится на грани правила '≥2 касания, хотя бы одно верным' (задание 12 — ловушка, задание 14 — верный ответ, итого 2 касания, что формально проходит, но 12-е задание это context_gap с `quiet` как неверный вариант, а не полноценное 'касание' в форме предъявления — рекомендую редактору перепроверить на глаз)."
+}

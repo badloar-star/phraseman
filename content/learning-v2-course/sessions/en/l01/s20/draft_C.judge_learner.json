@@ -1,0 +1,66 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (married)",
+      "what_i_understood": "married значит и «женат», и «замужем». Про мужчину и про женщину говорят He is married / She is married — слово не меняется.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (single)",
+      "what_i_understood": "single значит «не женат/не замужем», просто факт, без грусти.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (famous/rich)",
+      "what_i_understood": "famous — знаменитый (узнают на улице), rich — богатый (много денег).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-6 (married/single)",
+      "what_i_understood": "Отработал married и single на слух и в сборке фраз.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 7-12 (famous/rich)",
+      "what_i_understood": "Отработал famous и rich, различал их между собой.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (пары)",
+      "what_i_understood": "Свёл все четыре новых слова с переводом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 14-17",
+      "what_i_understood": "Повторил старые слова quiet, kind, young, funny вместе с новыми, в конце сказал три фразы подряд.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "married — женат/замужем (одно слово для обоих)",
+    "single — не женат/не замужем, без негативного оттенка",
+    "famous — знаменитый",
+    "rich — богатый",
+    "закрепил, что he is / she is не меняется в зависимости от пола, меняется только само слово"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена у кулера — понятно, кто говорит и зачем: реальный офисный треп, а не выдуманная ситуация",
+    "Объяснение single как факта, а не грустного состояния — полезное и живое уточнение, а не вода"
+  ],
+  "felt_dead": [
+    "Интро 3 суховато — просто два слова подряд без истории, но это не страшно, они простые"
+  ],
+  "scene_reason": "да, понятно — я стою у кулера, слышу сплетни про коллег и должен эти же факты сказать вслух другому человеку. Ясно, кто говорит и почему.",
+  "would_continue": "да — задания понятные, ничего не обмануло, в конце получилось сказать три фразы подряд самостоятельно",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно, ничего незнакомого в правильных ответах не встретил, узнал четыре новых слова и потренировался их применять."
+}

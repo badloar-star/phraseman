@@ -1,0 +1,80 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "married",
+      "single",
+      "famous",
+      "rich"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "He married. — пропущена связка is"
+      },
+      {
+        "task": 6,
+        "trap": "single/funny вместо married — семантическая путаница"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "married",
+        "single",
+        "famous",
+        "rich"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      17
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s19",
+      "what": "план заявляет возвращаемые quiet, busy, kind, serious из s19, но фактически сессия 20 использует quiet, funny, kind, young — расхождение со строкой плана, не с соседями по сути"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 6,
+      "listen_choose": 3,
+      "context_gap_grammar": 3,
+      "phrase_builder": 2,
+      "sound_contrast": 1,
+      "listen_build_dictation": 2,
+      "speed_match": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Заявленные в плане возвращаемые слова (quiet, busy, kind, serious) не совпадают с фактически использованными (quiet, funny, kind, young), а young нигде не становится правильным ответом — расхождение с планом и внутреннее противоречие в самопроверке сессии."
+}

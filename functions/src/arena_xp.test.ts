@@ -1,6 +1,7 @@
 import {
   ARENA_XP_DAILY_CAP,
   ARENA_XP_MATCH_CAP,
+  ARENA_XP_OUTCOME,
   arenaMatchXp,
   arenaMatchXpReward,
   arenaWeekKeyForMs,
@@ -17,33 +18,37 @@ describe('формула опыта Арены', () => {
   it('платит за правильные ответы и за исход в рейтинге', () => {
     const ranked = (outcome: 'win' | 'draw' | 'loss') =>
       arenaMatchXp({ mode: 'ranked', correctAnswers: 10, taskCount: 10, outcome, dailyXpCredited: 0 });
-    expect(ranked('win')).toBe(110);
-    expect(ranked('draw')).toBe(95);
-    expect(ranked('loss')).toBe(80);
+    expect(ranked('win')).toBe(220);
+    expect(ranked('draw')).toBe(190);
+    expect(ranked('loss')).toBe(160);
   });
 
   it('платит проигравшему за его правильные ответы', () => {
-    expect(arenaMatchXp({ mode: 'ranked', correctAnswers: 3, taskCount: 10, outcome: 'loss', dailyXpCredited: 0 })).toBe(38);
+    expect(arenaMatchXp({ mode: 'ranked', correctAnswers: 3, taskCount: 10, outcome: 'loss', dailyXpCredited: 0 })).toBe(76);
   });
 
-  it('даёт опыт в быстром матче, где звёзд нет, и не платит там за исход', () => {
+  it('даёт опыт в быстром матче и платит за исход меньше, чем в рейтинге', () => {
+    // Владелец 2026-09-04: раньше исход в быстром матче не значил ничего —
+    // выиграл или проиграл, опыт одинаковый. Теперь победа что-то стоит, но
+    // меньше рейтинговой: ставок нет, звёзды ранга не двигаются.
     const quick = (outcome: 'win' | 'loss') =>
       arenaMatchXp({ mode: 'quick', correctAnswers: 5, taskCount: 5, outcome, dailyXpCredited: 0 });
-    expect(quick('win')).toBe(30);
-    expect(quick('loss')).toBe(30);
+    expect(quick('win')).toBe(85);
+    expect(quick('loss')).toBe(60);
+    expect(quick('win') - quick('loss')).toBeLessThan(ARENA_XP_OUTCOME.win);
   });
 
   it('возвращает авторитетную раскладку только когда её сумма равна начислению', () => {
     expect(arenaMatchXpReward({
       mode: 'quick', correctAnswers: 5, taskCount: 5, outcome: 'win', dailyXpCredited: 0,
     })).toEqual({
-      xpEarned: 30,
+      xpEarned: 85,
       breakdown: {
         schemaVersion: 'arena-xp-breakdown.v1',
-        baseXp: 10,
-        correctBonusXp: 20,
-        outcomeBonusXp: 0,
-        totalXp: 30,
+        baseXp: 20,
+        correctBonusXp: 40,
+        outcomeBonusXp: 25,
+        totalXp: 85,
       },
     });
   });
@@ -52,15 +57,19 @@ describe('формула опыта Арены', () => {
     expect(arenaMatchXpReward({
       mode: 'ranked', correctAnswers: 100, taskCount: 100, outcome: 'win', dailyXpCredited: 0,
     })).toEqual({ xpEarned: ARENA_XP_MATCH_CAP });
+    // Остаток суток (10) меньше заработанного за матч (60) — раскладка
+    // скрывается, платим ровно остаток. Порог берём от потолка, а не числом:
+    // иначе тест снова устареет при следующем изменении наград.
     expect(arenaMatchXpReward({
-      mode: 'quick', correctAnswers: 5, taskCount: 5, outcome: 'loss', dailyXpCredited: 590,
+      mode: 'quick', correctAnswers: 5, taskCount: 5, outcome: 'loss', dailyXpCredited: ARENA_XP_DAILY_CAP - 10,
     })).toEqual({ xpEarned: 10 });
   });
 
   it('держит оба потолка', () => {
     expect(arenaMatchXp({ mode: 'ranked', correctAnswers: 100, taskCount: 100, outcome: 'win', dailyXpCredited: 0 }))
       .toBe(ARENA_XP_MATCH_CAP);
-    expect(arenaMatchXp({ mode: 'ranked', correctAnswers: 10, taskCount: 10, outcome: 'win', dailyXpCredited: 560 }))
+    // Остаток суток меньше награды за матч — платим ровно остаток.
+    expect(arenaMatchXp({ mode: 'ranked', correctAnswers: 10, taskCount: 10, outcome: 'win', dailyXpCredited: ARENA_XP_DAILY_CAP - 40 }))
       .toBe(40);
     expect(arenaMatchXp({ mode: 'ranked', correctAnswers: 10, taskCount: 10, outcome: 'win', dailyXpCredited: ARENA_XP_DAILY_CAP }))
       .toBe(0);
@@ -69,8 +78,8 @@ describe('формула опыта Арены', () => {
   });
 
   it('зажимает число правильных ответов числом заданий и терпит мусор', () => {
-    expect(arenaMatchXp({ mode: 'quick', correctAnswers: 99, taskCount: 5, outcome: 'win', dailyXpCredited: 0 })).toBe(30);
-    expect(arenaMatchXp({ mode: 'quick', correctAnswers: Number.NaN, taskCount: 5, outcome: 'win', dailyXpCredited: 0 })).toBe(10);
+    expect(arenaMatchXp({ mode: 'quick', correctAnswers: 99, taskCount: 5, outcome: 'win', dailyXpCredited: 0 })).toBe(85);
+    expect(arenaMatchXp({ mode: 'quick', correctAnswers: Number.NaN, taskCount: 5, outcome: 'win', dailyXpCredited: 0 })).toBe(45);
   });
 
   it('не платит ботам', () => {

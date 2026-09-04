@@ -29,26 +29,61 @@ import { getLevelFromXP } from './xp_levels';
  * Арене они не нужны, а роль защиты от повтора играет расписка журнала звёзд.
  */
 
-export const ARENA_XP_RULE_VERSION = 1;
+/**
+ * Версия правила начисления.
+ *
+ * Поднята до 2 вместе с удвоением наград (2026-09-04): по ней в журнале видно,
+ * по какой формуле посчитан конкретный матч. Без этого старые и новые записи
+ * смешались бы, и разобрать спорное начисление было бы нечем.
+ */
+export const ARENA_XP_RULE_VERSION = 2;
 
 export type ArenaXpMode = 'ranked' | 'quick' | 'friend' | 'series';
 export type ArenaXpOutcome = 'win' | 'loss' | 'draw';
 
+/*
+ * Опыт Арены удвоен (владелец, 2026-09-04: «опыта надо больше давать за арену»).
+ *
+ * Как было: матч из 8 заданий со всеми верными ответами давал 98 опыта за
+ * рейтинговую победу, 68 за поражение, 42 за быстрый матч. Для сравнения — один
+ * бонусный урок даёт 500. Разрыв пятикратный, при том что матч требует и
+ * скорости, и соперничества.
+ *
+ * Стало (тот же матч 8/8): рейтинговая победа ~200, поражение ~140, быстрый ~90.
+ * Арена становится достойной альтернативой уроку, но НЕ выгоднее учёбы — иначе
+ * люди перестанут учиться и будут только играть.
+ */
 export const ARENA_XP_BASE: Readonly<Record<ArenaXpMode, number>> = Object.freeze({
-  ranked: 20, quick: 10, friend: 6, series: 20,
+  ranked: 40, quick: 20, friend: 12, series: 40,
 });
 export const ARENA_XP_PER_CORRECT: Readonly<Record<ArenaXpMode, number>> = Object.freeze({
-  ranked: 6, quick: 4, friend: 3, series: 6,
+  ranked: 12, quick: 8, friend: 6, series: 12,
 });
 /** Бонус за исход — только там, где исход что-то значит. */
 export const ARENA_XP_OUTCOME: Readonly<Record<ArenaXpOutcome, number>> = Object.freeze({
-  win: 30, draw: 15, loss: 0,
+  win: 60, draw: 30, loss: 0,
+});
+/*
+ * Быстрый матч тоже получает бонус за победу (владелец, 2026-09-04).
+ *
+ * Раньше исход в нём не значил НИЧЕГО: выиграл или проиграл — опыт одинаковый,
+ * и играть на победу было незачем. Бонус меньше рейтингового: ставок в быстром
+ * матче нет, звёзды ранга не двигаются.
+ */
+export const ARENA_XP_QUICK_OUTCOME: Readonly<Record<ArenaXpOutcome, number>> = Object.freeze({
+  win: 25, draw: 12, loss: 0,
 });
 
 /** Потолок за один матч. Кусается только при злоупотреблении. */
-export const ARENA_XP_MATCH_CAP = 120;
-/** Потолок за сутки на игрока. */
-export const ARENA_XP_DAILY_CAP = 600;
+export const ARENA_XP_MATCH_CAP = 240;
+/**
+ * Потолок за сутки на игрока.
+ *
+ * Поднят вдвое вместе с наградой, чтобы число матчей до упора осталось
+ * прежним (~6 рейтинговых побед). Иначе удвоение награды вдвое же сократило бы
+ * доступную игру — и щедрость обернулась бы ограничением.
+ */
+export const ARENA_XP_DAILY_CAP = 1_200;
 
 export type ArenaXpBreakdown = Readonly<{
   schemaVersion: 'arena-xp-breakdown.v1';
@@ -80,7 +115,9 @@ export function arenaMatchXpReward(input: ArenaMatchXpInput): Readonly<{
   const perCorrect = ARENA_XP_PER_CORRECT[input.mode] ?? 0;
   const outcomeBonus = input.mode === 'ranked' || input.mode === 'series'
     ? (ARENA_XP_OUTCOME[input.outcome] ?? 0)
-    : 0;
+    // Быстрый матч: меньший бонус, но исход перестал быть безразличным.
+    : input.mode === 'quick' ? (ARENA_XP_QUICK_OUTCOME[input.outcome] ?? 0)
+      : 0;
   const correctBonus = perCorrect * correct;
   const raw = base + correctBonus + outcomeBonus;
   const capped = Math.min(raw, ARENA_XP_MATCH_CAP);

@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `You are` и `You are not`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Про него — всегда `are`"
+      },
+      "bodyByLocale": {
+        "ru": "`kind` — «добрый». Про человека напротив это будет `You are kind`.\n\nПо-русски «ты добрый» прекрасно живёт без связки, и рука тянется сделать так же. Выходит `You kind` — как стол на трёх ножках: стоять вроде стоит, а сесть страшно."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега пожаловался, что помогает всем и никто не ценит. Скажите ему: «ты добрый»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-16:intro1:r1",
+              "text": "You are kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro1:r2",
+              "text": "You kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro1:r3",
+              "text": "You is kind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега пожаловался, что помогает всем и никто не ценит. Скажите ему: «ты добрый»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`not` — сразу после `are`"
+      },
+      "bodyByLocale": {
+        "ru": "`not` — «не». Место у него одно: между `are` и словом. `You are not tired` — «ты не устал».\n\nВперёд его выносить нельзя, хотя по-русски очень хочется. `You not tired` — это фраза, из которой вынули опору.\n\n`wrong` — «неправ». Пригодится, когда человек винит себя зря."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Коллега уверен, что во всём ошибся. Возразите: «ты не ошибаешься»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-16:intro2:r1",
+              "text": "You are not wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro2:r2",
+              "text": "You not wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro2:r3",
+              "text": "You are wrong not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега уверен, что во всём ошибся. Возразите: «ты не ошибаешься»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мягче через `not`"
+      },
+      "bodyByLocale": {
+        "ru": "`brave` — «смелый», `calm` — «спокойный», `honest` — «честный».\n\nАнгличане любят хвалить через отрицание: вместо «ты прав» скажут `You are not wrong`. Похвала как бы боком, зато человек не краснеет.\n\nПорядок железный: `are`, потом `not`, потом слово."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Коллега боялся сказать начальнику про ошибку, но сказал. Похвалите его прямо: «ты смелый»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-16:intro3:r1",
+              "text": "You are brave."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro3:r2",
+              "text": "You brave."
+            },
+            {
+              "responseId": "en:lesson-01:session-16:intro3:r3",
+              "text": "You am brave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега боялся сказать начальнику про ошибку, но сказал. Похвалите его прямо: «ты смелый»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8e1c719ba2d6643528f510756512ac882eb5348185fc40af36ef82d6c0185846"
+}

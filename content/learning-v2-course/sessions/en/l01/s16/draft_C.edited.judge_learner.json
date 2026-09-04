@@ -1,0 +1,149 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про кого-то по имени 'ты' всегда ставим are, слово kind — добрый. Нельзя говорить You kind или You is kind.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "not встаёт после are: You are not tired. wrong значит неправ.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Меняется только последнее слово, схема You are + слово не меняется. brave — смелый.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (kind на слух)",
+      "what_i_understood": "Выбрал kind, отличил от kid и king по звуку в конце.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (kind/tired/wrong)",
+      "what_i_understood": "Понял по сцене (прикрывал других) — выбрал kind.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (honest на слух)",
+      "what_i_understood": "Слово honest никак не объяснялось в интро, но по звуку выбрал верно методом исключения.",
+      "confusion": "Слово honest не встречалось в интро 1-3 вообще, просто появилось в задании 3 без перевода до этого момента",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (сборка honest)",
+      "what_i_understood": "Собрал You are honest, догадался по смыслу задания (признался), что честный — это honest.",
+      "confusion": "Перевод honest = честный нигде прямо не дан, я его вывел сам",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (are/am/is)",
+      "what_i_understood": "С you всегда are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (диктант not tired)",
+      "what_i_understood": "Собрал You are not tired.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (пары)",
+      "what_i_understood": "Соединил kind-добрый, honest-честный, calm-спокойный, tired-устал. Слово calm тоже нигде не объяснялось заранее с переводом текстом, только в задании 5 как вариант ответа без перевода.",
+      "confusion": "calm = спокойный я узнал только из этой доски пар, а использовать его должен был уже в задании 5",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (wrong/brave/lucky)",
+      "what_i_understood": "lucky никогда не переводилось, но по вариантам (смелый, неправ, ???) я исключил и выбрал wrong.",
+      "confusion": "lucky появляется как вариант ответа раньше, чем где-либо даётся его перевод",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (сборка not wrong)",
+      "what_i_understood": "Собрал You are not wrong, лишняя плитка am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (brave на слух)",
+      "what_i_understood": "Выбрал brave.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (sad на слух)",
+      "what_i_understood": "Слово sad нигде не давалось с переводом до этого момента. Выбрал по исключению bread/grave-подобных вариантов (тут sat/said), но перевод sad=грустный я узнал только задним числом из объяснений.",
+      "confusion": "sad не был представлен с переводом нигде раньше",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (brave/calm/sad)",
+      "what_i_understood": "Выбрал brave по сцене.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (диктант lucky)",
+      "what_i_understood": "Собрал You are lucky, но перевод (везучий) узнал только из объяснения к неверным вариантам в задании 8, а не напрямую.",
+      "confusion": "lucky так и не получило прямого перевода в интро или отдельном объясняющем месте",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (wrong/kind/brave)",
+      "what_i_understood": "Выбрал wrong.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (пары)",
+      "what_i_understood": "Соединил brave-смелый, lucky-везучий, wrong-неправ, sad-грустный.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (голос not sad / lucky)",
+      "what_i_understood": "Сказал You are not sad. You are lucky.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, 5 фраз)",
+      "what_i_understood": "Сказал все пять фраз подряд про коллегу: kind, honest, brave, calm, not wrong.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "С 'you' скрепка всегда are, а не am/is",
+    "not встаёт сразу после are, а не в начале и не в конце",
+    "слово kind (добрый) и wrong (неправ) — были прямо объяснены в интро",
+    "слово brave (смелый) — было прямо объяснено в интро",
+    "собирать фразу из плиток, включая лишние/отвлекающие"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 3",
+      "why": "Почти дословно повторяет мысль интро 1 про то, что схема не меняется — просто на новом примере, ощущается как повтор одного и того же объяснения"
+    }
+  ],
+  "felt_alive": [
+    "Сцена с коллегой за кофе, который сам себя ругает, а ему говорят пять хороших вещей в финале — приятная и понятная ситуация",
+    "Задание 17 в конце — было приятно сказать все пять фраз подряд, чувствуешь что чему-то научился"
+  ],
+  "felt_dead": [
+    "Объяснения неверных вариантов в некоторых заданиях (8, 14) звучат немного одинаково: 'это тоже не подходит, это про другое' — шаблонно"
+  ],
+  "scene_reason": "да, понятно — я утешаю и хвалю коллегу за кофе, ясно кому и в какой момент говорю каждую фразу",
+  "would_continue": "да — задания понятные, в конце приятный результат (сказал все пять фраз), не устал",
+  "verdict": "REVISE",
+  "verdict_reason": "Слова honest, calm, lucky, sad используются в заданиях раньше, чем где-либо получают прямой перевод текстом (только в интро есть переводы для kind, wrong, brave) — это не критично для прохождения (я справился методом исключения по неверным ответам), но ощущается нечестно по отношению к ученику, который только начал этот урок и не знает эти слова заранее."
+}

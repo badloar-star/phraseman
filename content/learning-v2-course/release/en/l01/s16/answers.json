@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-16:i01",
+    "correctText": "kind",
+    "correctResponseId": "en:lesson-01:session-16:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i02",
+    "correctText": "kind",
+    "correctResponseId": "en:lesson-01:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i03",
+    "correctText": "honest",
+    "correctResponseId": "en:lesson-01:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i04",
+    "correctText": "You are honest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i05",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i06",
+    "correctText": "You are not tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i08",
+    "correctText": "wrong",
+    "correctResponseId": "en:lesson-01:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i09",
+    "correctText": "You are not wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i10",
+    "correctText": "brave",
+    "correctResponseId": "en:lesson-01:session-16:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i11",
+    "correctText": "sad",
+    "correctResponseId": "en:lesson-01:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i12",
+    "correctText": "brave",
+    "correctResponseId": "en:lesson-01:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i13",
+    "correctText": "You are lucky.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i14",
+    "correctText": "tired",
+    "correctResponseId": "en:lesson-01:session-16:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i15",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i16",
+    "correctText": "You are not sad. You are lucky.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-16:i17",
+    "correctText": "You are kind. You are honest. You are brave. You are calm. You are not wrong.",
+    "correctResponseId": null
+  }
+]

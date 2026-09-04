@@ -1,0 +1,968 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-16:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-16:i01:r1",
+          "text": "kind"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i01:r2",
+          "text": "kid"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i01:r3",
+          "text": "king"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-16:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — kind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-16:i01:audio",
+          "transcript": "kind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-16:i01:r1",
+            "targetText": "kind",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i01:r2",
+            "targetText": "kid",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i01:r3",
+            "targetText": "king",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-16:i01:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — kind",
+            "feedbackByLocale": {
+              "ru": "Короче на звук в конце. `kind` заканчивается на «нд»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — kind",
+            "feedbackByLocale": {
+              "ru": "Похоже, но конец другой: «нг», а не «нд»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — коллега весь день прикрывал других",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-16:i02:r1",
+          "text": "kind"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i02:r2",
+          "text": "tired"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i02:r3",
+          "text": "wrong"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — коллега весь день прикрывал других",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коллега весь день прикрывал других"
+        },
+        "gappedTargetPhrase": "You are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i02:r1",
+            "text": "kind"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i02:r2",
+            "text": "tired"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i02:r3",
+            "text": "wrong"
+          }
+        ],
+        "testedDimension": "Вставьте слово — коллега весь день прикр",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-16:i02:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега весь день прикр",
+            "feedbackByLocale": {
+              "ru": "«Устал» — может, и так, но вы говорите не про силы, а про то, что он помогал."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега весь день прикр",
+            "feedbackByLocale": {
+              "ru": "«Неправ» — это упрёк. Вы его хвалите."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-16:i03:r1",
+          "text": "honest"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i03:r2",
+          "text": "hottest"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i03:r3",
+          "text": "honey"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-16:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — honest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-16:i03:audio",
+          "transcript": "honest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-16:i03:r1",
+            "targetText": "honest",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i03:r2",
+            "targetText": "hottest",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i03:r3",
+            "targetText": "honey",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-16:i03:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — honest",
+            "feedbackByLocale": {
+              "ru": "Другое слово целиком. В `honest` первая буква не читается: «онест»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — honest",
+            "feedbackByLocale": {
+              "ru": "Начало похоже, дальше расходится. `honest` — «онест»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коллега сам признался, что ошибся",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коллега сам признался, что ошибся",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are honest.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коллега сам признался, что ошибся"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "honest"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — «ты спокойный»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-16:i05:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i05:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i05:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — «ты спокойный»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — «ты спокойный»"
+        },
+        "gappedTargetPhrase": "You ___ calm.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i05:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i05:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i05:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — «ты спокойный»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-16:i05:r1",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — «ты спокойный»",
+            "feedbackByLocale": {
+              "ru": "`am` бывает только с `I`. Про собеседника — `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — «ты спокойный»",
+            "feedbackByLocale": {
+              "ru": "Чужая скрепка. С `you` всегда `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «ты не устал»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-16:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «ты не устал»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-16:i06:audio",
+          "transcript": "You are not tired."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You are not tired.",
+        "orderedTokens": [
+          "You",
+          "are",
+          "not",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-16:i07:p1",
+            "target": "kind",
+            "meaningByLocale": {
+              "ru": "добрый"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-16:i07:p2",
+            "target": "honest",
+            "meaningByLocale": {
+              "ru": "честный"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-16:i07:p3",
+            "target": "calm",
+            "meaningByLocale": {
+              "ru": "спокойный"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-16:i07:p4",
+            "target": "tired",
+            "meaningByLocale": {
+              "ru": "устал"
+            }
+          }
+        ],
+        "leftColumn": [
+          "kind",
+          "honest",
+          "calm",
+          "tired"
+        ],
+        "rightColumn": [
+          "добрый",
+          "честный",
+          "спокойный",
+          "устал"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — коллега винит себя, но виноват не он",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-16:i08:r1",
+          "text": "wrong"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i08:r2",
+          "text": "brave"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i08:r3",
+          "text": "lucky"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — коллега винит себя, но виноват не он",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коллега винит себя, но виноват не он"
+        },
+        "gappedTargetPhrase": "You are not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i08:r1",
+            "text": "wrong"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i08:r2",
+            "text": "brave"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i08:r3",
+            "text": "lucky"
+          }
+        ],
+        "testedDimension": "Вставьте слово — коллега винит себя, но ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-16:i08:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега винит себя, но ",
+            "feedbackByLocale": {
+              "ru": "«Ты не смелый» — обидно и не по делу. Речь о вине, а не о смелости."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега винит себя, но ",
+            "feedbackByLocale": {
+              "ru": "«Ты не везучий» — тоже не утешение. Он говорит про ошибку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «ты не неправ», среди плиток лишняя",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «ты не неправ», среди плиток лишняя",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are not wrong.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «ты не неправ», среди плиток лишняя"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "not",
+          "wrong"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-16:i10:r1",
+          "text": "brave"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i10:r2",
+          "text": "bread"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i10:r3",
+          "text": "grave"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-16:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — brave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-16:i10:audio",
+          "transcript": "brave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-16:i10:r1",
+            "targetText": "brave",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i10:r2",
+            "targetText": "bread",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i10:r3",
+            "targetText": "grave",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-16:i10:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — brave",
+            "feedbackByLocale": {
+              "ru": "Начало то же, конец другой: «бред»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — brave",
+            "feedbackByLocale": {
+              "ru": "Отличается первым звуком: «б», не «г»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-16:i11:r1",
+          "text": "sad"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i11:r2",
+          "text": "sat"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i11:r3",
+          "text": "said"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — sad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-16:i11:audio",
+          "transcript": "sad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-16:i11:r1",
+            "targetText": "sad",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i11:r2",
+            "targetText": "sat",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i11:r3",
+            "targetText": "said",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-16:i11:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — sad",
+            "feedbackByLocale": {
+              "ru": "Конец другой: «т», а не «д»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — sad",
+            "feedbackByLocale": {
+              "ru": "Звучит «сед», как в «шесть». `sad` — «сэд», рот шире."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — коллега боялся, но пошёл и сказал",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-16:i12:r1",
+          "text": "brave"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i12:r2",
+          "text": "calm"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i12:r3",
+          "text": "sad"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — коллега боялся, но пошёл и сказал",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коллега боялся, но пошёл и сказал"
+        },
+        "gappedTargetPhrase": "You are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i12:r1",
+            "text": "brave"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i12:r2",
+            "text": "calm"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i12:r3",
+            "text": "sad"
+          }
+        ],
+        "testedDimension": "Вставьте слово — коллега боялся, но пошё",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-16:i12:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега боялся, но пошё",
+            "feedbackByLocale": {
+              "ru": "«Спокойный» — он как раз нервничал. Вы хвалите за то, что пересилил страх."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега боялся, но пошё",
+            "feedbackByLocale": {
+              "ru": "«Грустный» — не похвала и не про этот момент."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «ты везучий»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «ты везучий»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-16:i13:audio",
+          "transcript": "You are lucky."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You are lucky.",
+        "orderedTokens": [
+          "You",
+          "are",
+          "lucky"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — коллега извиняется, что зевает весь вечер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-16:i14:r1",
+          "text": "tired"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i14:r2",
+          "text": "honest"
+        },
+        {
+          "responseId": "en:lesson-01:session-16:i14:r3",
+          "text": "lucky"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — коллега извиняется, что зевает весь вечер",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коллега извиняется, что зевает весь вечер"
+        },
+        "gappedTargetPhrase": "You are not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-16:i14:r1",
+            "text": "tired"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i14:r2",
+            "text": "honest"
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i14:r3",
+            "text": "lucky"
+          }
+        ],
+        "testedDimension": "Вставьте слово — коллега извиняется, что",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-16:i14:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега извиняется, что",
+            "feedbackByLocale": {
+              "ru": "«Ты не честный» — тяжёлый упрёк на ровном месте. Он извиняется за зевоту."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-16:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега извиняется, что",
+            "feedbackByLocale": {
+              "ru": "«Ты не везучий» — про удачу тут речи нет."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-16:i15:p1",
+            "target": "brave",
+            "meaningByLocale": {
+              "ru": "смелый"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-16:i15:p2",
+            "target": "lucky",
+            "meaningByLocale": {
+              "ru": "везучий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-16:i15:p3",
+            "target": "wrong",
+            "meaningByLocale": {
+              "ru": "неправ"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-16:i15:p4",
+            "target": "sad",
+            "meaningByLocale": {
+              "ru": "грустный"
+            }
+          }
+        ],
+        "leftColumn": [
+          "brave",
+          "lucky",
+          "wrong",
+          "sad"
+        ],
+        "rightColumn": [
+          "смелый",
+          "везучий",
+          "неправ",
+          "грустный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — коллега мрачный, вы его подбадриваете",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — коллега мрачный, вы его подбадриваете",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-16:i16:audio",
+          "transcript": "You are not sad. You are lucky."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are not sad. You are lucky.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-16:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — пять фраз подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — пять фраз подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-16:i17:audio",
+          "transcript": "You are kind. You are honest. You are brave. You are calm. You are not wrong."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are kind. You are honest. You are brave. You are calm. You are not wrong.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "bfc2059f265ceea4b24bc7133db5ce506692c76d4f561b23c5adedd688510fc4"
+}

@@ -695,7 +695,7 @@ const THEORY: Record<number, TheoryContent> = {
     <Warn key="w6" t={t} f={f} text={isUK ? 'Не перекладай механічно слово в слово. You are late - це не дивна калька, а природно «ти запізнюєшся».' : 'Не переводи механически слово в слово. You are late - это не странная калька, а естественно «ты опаздываешь».'} />,
 
     <Section key="s14" t={t} f={f} title={isUK ? '14. Найчастіші помилки' : '14. Самые частые ошибки'} />,
-    <Warn key="w7" t={t} f={f} text={isUK ? '❌ I here → ✅ I am here. Без am фраза неповна.' : '❌ I here → ✅ I am here. Без am фраза неполная.'} />,
+    <Warn key="w7" t={t} f={f} text={isUK ? "❌ Let's to start now → ✅ Let's start now. Після Let's дія без to." : "❌ Let's to start now → ✅ Let's start now. После Let's действие без to."} />,
     <Warn key="w8" t={t} f={f} text={isUK ? '❌ I are ready → ✅ I am ready. З I завжди am.' : '❌ I are ready → ✅ I am ready. С I всегда am.'} />,
     <Warn key="w9" t={t} f={f} text={isUK ? '❌ He am busy → ✅ He is busy. З he потрібне is.' : '❌ He am busy → ✅ He is busy. С he нужно is.'} />,
     <Warn key="w10" t={t} f={f} text={isUK ? '❌ She are tired → ✅ She is tired. З she потрібне is.' : '❌ She are tired → ✅ She is tired. С she нужно is.'} />,
@@ -8822,7 +8822,7 @@ const THEORY: Record<number, TheoryContent> = {
         [isUK ? 'пряма команда' : 'прямая команда', 'verb', 'Wait here'],
         [isUK ? 'заборона' : 'запрет', 'Do not + verb', 'Do not wait outside'],
         [isUK ? 'ввічливе питання' : 'вежливый вопрос', 'Can you + verb?', 'Can you help me?'],
-        [isUK ? 'пропозиція разом' : 'предложение вместе', 'Let us + verb', 'Let us start now'],
+        [isUK ? 'пропозиція разом' : 'предложение вместе', "Let's + verb", "Let's start now"],
       ]}
     />,
 
@@ -9009,23 +9009,23 @@ const THEORY: Record<number, TheoryContent> = {
     ]} />,
     <Tip key="tip2" t={t} f={f} text={isUK ? 'У роботі, сервісі або спілкуванні з незнайомими людьми Can you...? часто звучить м\'якше, ніж пряма команда.' : 'На работе, в сервисе или в общении с незнакомыми людьми Can you...? часто звучит мягче, чем прямая команда.'} />,
 
-    <Section key="s7" t={t} f={f} title={isUK ? '7. Let us = давайте' : '7. Let us = давайте'} />,
-    <Body key="b7a" t={t} f={f} text={isUK ? 'Let us означає "давайте". Це пропозиція зробити щось разом: давайте почнемо, давайте перевіримо, давайте замовимо, давайте повернемося.' : 'Let us означает "давайте". Это предложение сделать что-то вместе: давайте начнём, давайте проверим, давайте закажем, давайте вернёмся.'} />,
-    <Tip key="tip7" t={t} f={f} text={isUK ? 'У живій мові Let us часто скорочується до Let\'s. У вправах приймаються обидва варіанти: Let us start і Let\'s start.' : 'В живой речи Let us часто сокращается до Let\'s. В упражнениях принимаются оба варианта: Let us start и Let\'s start.'} />,
+    <Section key="s7" t={t} f={f} title={isUK ? "7. Let's = давайте" : "7. Let's = давайте"} />,
+    <Body key="b7a" t={t} f={f} text={isUK ? `Let's означає «давайте». Це пропозиція зробити щось разом: давайте почнемо, давайте перевіримо, давайте замовимо, давайте повернемося.` : `Let's означает «давайте». Это предложение сделать что-то вместе: давайте начнём, давайте проверим, давайте закажем, давайте вернёмся.`} />,
+    <Tip key="tip7" t={t} f={f} text={isUK ? "Повна форма Let us звучить книжно й у розмові майже не вживається — кажіть Let's." : "Полная форма Let us звучит книжно и в разговоре почти не встречается — говорите Let's."} />,
     <Table key="t7" t={t} f={f} rows={[
-      ['Let us + verb', isUK ? 'Природний переклад' : 'Естественный перевод'],
-      ['Let us start now', isUK ? 'Давайте почнемо зараз' : 'Давайте начнём сейчас'],
-      ['Let us work together', isUK ? 'Давайте працювати разом' : 'Давайте работать вместе'],
-      ['Let us check documents', isUK ? 'Давайте перевіримо документи' : 'Давайте проверим документы'],
-      ['Let us order food', isUK ? 'Давайте замовимо їжу' : 'Давайте закажем еду'],
-      ['Let us call them', isUK ? 'Давайте зателефонуємо їм' : 'Давайте позвоним им'],
-      ['Let us find a better option', isUK ? 'Давайте знайдемо кращий варіант' : 'Давайте найдём лучший вариант'],
-      ['Let us go back', isUK ? 'Давайте повернемося назад' : 'Давайте вернёмся назад'],
-      ['Let us clean up the room', isUK ? 'Давайте приберемо кімнату' : 'Давайте уберём комнату'],
-      ['Let us talk later', isUK ? 'Давайте поговоримо пізніше' : 'Давайте поговорим позже'],
-      ['Let us finish today', isUK ? 'Давайте закінчимо сьогодні' : 'Давайте закончим сегодня'],
+      ["Let's + verb", isUK ? 'Природний переклад' : 'Естественный перевод'],
+      ["Let's start now", isUK ? 'Давайте почнемо зараз' : 'Давайте начнём сейчас'],
+      ["Let's work together", isUK ? 'Давайте працювати разом' : 'Давайте работать вместе'],
+      ["Let's check documents", isUK ? 'Давайте перевіримо документи' : 'Давайте проверим документы'],
+      ["Let's order food", isUK ? 'Давайте замовимо їжу' : 'Давайте закажем еду'],
+      ["Let's call them", isUK ? 'Давайте зателефонуємо їм' : 'Давайте позвоним им'],
+      ["Let's find a better option", isUK ? 'Давайте знайдемо кращий варіант' : 'Давайте найдём лучший вариант'],
+      ["Let's go back", isUK ? 'Давайте повернемося назад' : 'Давайте вернёмся назад'],
+      ["Let's clean up the room", isUK ? 'Давайте приберемо кімнату' : 'Давайте уберём комнату'],
+      ["Let's talk later", isUK ? 'Давайте поговоримо пізніше' : 'Давайте поговорим позже'],
+      ["Let's finish today", isUK ? 'Давайте закінчимо сьогодні' : 'Давайте закончим сегодня'],
     ]} />,
-    <Warn key="w7" t={t} f={f} text={isUK ? '❌ Let us to start now → ✅ Let us start now. Після Let us дія без to.' : '❌ Let us to start now → ✅ Let us start now. После Let us действие без to.'} />,
+    <Warn key="w7" t={t} f={f} text={isUK ? "❌ Let's to start now → ✅ Let's start now. Після Let's дія без to." : "❌ Let's to start now → ✅ Let's start now. После Let's действие без to."} />,
 
     <Section key="s8" t={t} f={f} title={isUK ? '8. Фразові дієслова в командах' : '8. Фразовые глаголы в командах'} />,
     <Body key="b8a" t={t} f={f} text={isUK ? 'У цьому уроці багато команд з фразовими дієсловами: turn on, turn off, give back, go back, clean up. Їх треба впізнавати як готові блоки.' : 'В этом уроке много команд с фразовыми глаголами: turn on, turn off, give back, go back, clean up. Их нужно узнавать как готовые блоки.'} />,
@@ -9034,8 +9034,8 @@ const THEORY: Record<number, TheoryContent> = {
       ['turn on', isUK ? 'увімкнути' : 'включить', 'Please turn on your phone'],
       ['turn off', isUK ? 'вимкнути' : 'выключить', 'Please turn off your phone / Can you turn off the lights?'],
       ['give back', isUK ? 'повернути' : 'вернуть', 'Please give it back / Can you give it back?'],
-      ['go back', isUK ? 'повернутися назад' : 'вернуться назад', 'Let us go back'],
-      ['clean up', isUK ? 'прибрати' : 'убрать', 'Let us clean up the room'],
+      ['go back', isUK ? 'повернутися назад' : 'вернуться назад', "Let's go back"],
+      ['clean up', isUK ? 'прибрати' : 'убрать', "Let's clean up the room"],
     ]} />,
     <Warn key="w8" t={t} f={f} text={isUK ? '❌ Please turn your phone on теж можливе, але в цьому уроці тренується порядок: ✅ Please turn on your phone.' : '❌ Please turn your phone on тоже возможно, но в этом уроке тренируется порядок: ✅ Please turn on your phone.'} />,
 
@@ -9047,7 +9047,7 @@ const THEORY: Record<number, TheoryContent> = {
       ['him', isUK ? 'йому / його' : 'ему / его', 'Do not call him'],
       ['her', isUK ? 'їй / її' : 'ей / её', 'Call her now'],
       ['us', isUK ? 'нам / нас' : 'нам / нас', 'Help us today'],
-      ['them', isUK ? 'їм / їх' : 'им / их', 'Let us call them'],
+      ['them', isUK ? 'їм / їх' : 'им / их', "Let's call them"],
       ['it', isUK ? 'це / його' : 'это / его', 'Please give it back / Do not open it / Do not close it'],
     ]} />,
     <Warn key="w9" t={t} f={f} text={isUK ? '❌ Please help I → ✅ Please help me. Після help потрібна форма me.' : '❌ Please help I → ✅ Please help me. После help нужна форма me.'} />,
@@ -9070,7 +9070,7 @@ const THEORY: Record<number, TheoryContent> = {
       ['the app', 'Please open the app / Please close the app'],
       ['the lights', 'Can you turn off the lights?'],
       ['the door', 'Can you open the door? / Can you close the door?'],
-      ['the room', 'Let us clean up the room'],
+      ['the room', "Let's clean up the room"],
     ]} />,
 
     <Section key="s12" t={t} f={f} title={isUK ? '12. Час і місце в командах' : '12. Время и место в командах'} />,
@@ -9079,10 +9079,10 @@ const THEORY: Record<number, TheoryContent> = {
       [isUK ? 'Слово' : 'Слово', isUK ? 'Значення' : 'Значение', isUK ? 'Приклад' : 'Пример'],
       ['here', isUK ? 'тут / здесь' : 'здесь', 'Please wait here / Wait here / Can you wait here?'],
       ['outside', isUK ? 'надворі / снаружи' : 'снаружи', 'Do not wait outside'],
-      ['now', isUK ? 'зараз' : 'сейчас', 'Start now / Call her now / Let us start now'],
-      ['later', isUK ? 'пізніше' : 'позже', 'Please call me later / Can you call me later? / Let us talk later'],
-      ['today', isUK ? 'сьогодні' : 'сегодня', 'Help us today / Let us finish today'],
-      ['together', isUK ? 'разом' : 'вместе', 'Let us work together'],
+      ['now', isUK ? 'зараз' : 'сейчас', "Start now / Call her now / Let's start now"],
+      ['later', isUK ? 'пізніше' : 'позже', "Please call me later / Can you call me later? / Let's talk later"],
+      ['today', isUK ? 'сьогодні' : 'сегодня', "Help us today / Let's finish today"],
+      ['together', isUK ? 'разом' : 'вместе', "Let's work together"],
     ]} />,
 
     <Section key="s13" t={t} f={f} title={isUK ? '13. Готові блоки з уроку' : '13. Готовые блоки из урока'} />,
@@ -9116,14 +9116,14 @@ const THEORY: Record<number, TheoryContent> = {
     ]} />,
 
     <Section key="s14" t={t} f={f} title={isUK ? '14. Переклад не завжди дослівний' : '14. Перевод не всегда дословный'} />,
-    <Body key="b14a" t={t} f={f} text={isUK ? 'Команди й прохання часто перекладаються природно, а не слово в слово. Особливо це видно з Can you, Let us і фразовими дієсловами.' : 'Команды и просьбы часто переводятся естественно, а не слово в слово. Особенно это видно с Can you, Let us и фразовыми глаголами.'} />,
+    <Body key="b14a" t={t} f={f} text={isUK ? `Команди й прохання часто перекладаються природно, а не слово в слово. Особливо це видно з Can you, Let's і фразовими дієсловами.` : `Команды и просьбы часто переводятся естественно, а не слово в слово. Особенно это видно с Can you, Let's и фразовыми глаголами.`} />,
     <Table key="t15" t={t} f={f} rows={[
       [isUK ? 'Англійська' : 'Английский', isUK ? 'Природний переклад' : 'Естественный перевод'],
       ['Can you help me?', isUK ? 'Ти можеш допомогти мені?' : 'Ты можешь помочь мне?'],
       ['Can you give it back?', isUK ? 'Ти можеш повернути це?' : 'Ты можешь вернуть это?'],
-      ['Let us work together', isUK ? 'Давайте працювати разом' : 'Давайте работать вместе'],
-      ['Let us find a better option', isUK ? 'Давайте знайдемо кращий варіант' : 'Давайте найдём лучший вариант'],
-      ['Let us go back', isUK ? 'Давайте повернемося назад' : 'Давайте вернёмся назад'],
+      ["Let's work together", isUK ? 'Давайте працювати разом' : 'Давайте работать вместе'],
+      ["Let's find a better option", isUK ? 'Давайте знайдемо кращий варіант' : 'Давайте найдём лучший вариант'],
+      ["Let's go back", isUK ? 'Давайте повернемося назад' : 'Давайте вернёмся назад'],
       ['Do not waste time', isUK ? 'Не витрачай час даремно' : 'Не трать время зря'],
     ]} />,
 
@@ -9134,7 +9134,7 @@ const THEORY: Record<number, TheoryContent> = {
     <Warn key="w14" t={t} f={f} text={isUK ? '❌ Do not to open it → ✅ Do not open it. Після Do not дія без to.' : '❌ Do not to open it → ✅ Do not open it. После Do not действие без to.'} />,
     <Warn key="w15" t={t} f={f} text={isUK ? '❌ Can you to send documents? → ✅ Can you send documents? Після can дія без to.' : '❌ Can you to send documents? → ✅ Can you send documents? После can действие без to.'} />,
     <Warn key="w16" t={t} f={f} text={isUK ? '❌ Do you can wait here? → ✅ Can you wait here? Can сам виходить на початок питання.' : '❌ Do you can wait here? → ✅ Can you wait here? Can сам выходит в начало вопроса.'} />,
-    <Warn key="w17" t={t} f={f} text={isUK ? '❌ Let us to check documents → ✅ Let us check documents. Після Let us дія без to.' : '❌ Let us to check documents → ✅ Let us check documents. После Let us действие без to.'} />,
+    <Warn key="w17" t={t} f={f} text={isUK ? "❌ Let's to check documents → ✅ Let's check documents. Після Let's дія без to." : "❌ Let's to check documents → ✅ Let's check documents. После Let's действие без to."} />,
     <Warn key="w18" t={t} f={f} text={isUK ? '❌ Listen me → ✅ Listen to me. Після listen потрібне to.' : '❌ Listen me → ✅ Listen to me. После listen нужно to.'} />,
     <Warn key="w19" t={t} f={f} text={isUK ? '❌ Look me → ✅ Look at me. У цій фразі потрібне at.' : '❌ Look me → ✅ Look at me. В этой фразе нужно at.'} />,
     <Warn key="w20" t={t} f={f} text={isUK ? '❌ Call she now → ✅ Call her now. Після call потрібна форма her.' : '❌ Call she now → ✅ Call her now. После call нужна форма her.'} />,
@@ -9148,8 +9148,8 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       text={isUK
-        ? 'У цьому уроці ти вчишся керувати дією напряму. Please робить прохання ввічливішим. Пряма команда починається з базової дії. Do not забороняє дію. Can you...? робить прохання м\'якшим. Let us означає "давайте".'
-        : 'В этом уроке ты учишься управлять действием напрямую. Please делает просьбу вежливее. Прямая команда начинается с базового действия. Do not запрещает действие. Can you...? делает просьбу мягче. Let us означает "давайте".'
+        ? "У цьому уроці ти вчишся керувати дією напряму. Please робить прохання ввічливішим. Пряма команда починається з базової дії. Do not забороняє дію. Can you...? робить прохання м\'якшим. Let's означає «давайте»."
+        : "В этом уроке ты учишься управлять действием напрямую. Please делает просьбу вежливее. Прямая команда начинается с базового действия. Do not запрещает действие. Can you...? делает просьбу мягче. Let``s означает «давайте»."
       }
     />,
 
@@ -9158,8 +9158,8 @@ const THEORY: Record<number, TheoryContent> = {
       t={t}
       f={f}
       text={isUK
-        ? 'Перед практикою тримай п\'ять моделей: Please wait here. Wait here. Do not wait outside. Can you help me? Let us start now.'
-        : 'Перед практикой держи пять моделей: Please wait here. Wait here. Do not wait outside. Can you help me? Let us start now.'
+        ? "Перед практикою тримай п\'ять моделей: Please wait here. Wait here. Do not wait outside. Can you help me? Let's start now."
+        : "Перед практикой держи пять моделей: Please wait here. Wait here. Do not wait outside. Can you help me? Let``s start now."
       }
     />,
   ],

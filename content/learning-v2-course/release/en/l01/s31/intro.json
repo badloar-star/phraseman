@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "`It is` про погоду (новые слова)",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`wet` и `dry` — мокро и сухо",
+        "uk": "`wet` і `dry` — мокро й сухо"
+      },
+      "bodyByLocale": {
+        "ru": "`wet` — «мокро». `dry` — «сухо». Про дождь, про асфальт, про вашу куртку — одно слово на всё.\n\nПро погоду англичане говорят `it`: `It is wet`. Оно тут ни на что не показывает — просто так устроена фраза о погоде. Выкинуть нельзя: без `it` предложения не будет.",
+        "uk": "`wet` — «мокро». `dry` — «сухо». Про дощ, про асфальт, про вашу куртку — одне слово на все.\n\nПро погоду англійці кажуть `it`: `It is wet`. Воно тут ні на що не показує — просто так побудована фраза про погоду. Викинути не можна: без `it` речення не буде."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Дождь идёт с ночи, всё блестит. Сосед в дверях спрашивает, как там.",
+          "uk": "Дощ іде з ночі, все блищить. Сусід у дверях питає, як там."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-31:intro1:r1",
+              "text": "It is wet."
+            },
+            {
+              "responseId": "en:lesson-01:session-31:intro1:r2",
+              "text": "Is wet."
+            },
+            {
+              "responseId": "en:lesson-01:session-31:intro1:r3",
+              "text": "It wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-31:intro1:r1",
+              "text": "It is wet."
+            },
+            {
+              "responseId": "en:lesson-01:session-31:intro1:r2",
+              "text": "Is wet."
+            },
+            {
+              "responseId": "en:lesson-01:session-31:intro1:r3",
+              "text": "It wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Дождь идёт с ночи, всё блестит. Сосед в дверях спрашивает, как там.",
+          "uk": "Дощ іде з ночі, все блищить. Сусід у дверях питає, як там."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`hot` — жарко, `warm` — тепло",
+        "uk": "`hot` — спекотно, `warm` — тепло"
+      },
+      "bodyByLocale": {
+        "ru": "`hot` — «жарко». `warm` — «тепло».\n\n`hot` — это когда уже многовато: солнце печёт, в комнате душно. `warm` — когда хорошо: не мёрзнешь и не потеешь.\n\nПерепутаете — вас поймут, но `It is hot` в дублинском апреле прозвучит как шутка.\n\nТеми же словами говорят про чай, про воду в кране, про батарею.",
+        "uk": "`hot` — «спекотно, гаряче». `warm` — «тепло».\n\n`hot` — це коли вже забагато: сонце пече, у кімнаті задуха. `warm` — коли добре: не мерзнеш і не пітнієш.\n\nПереплутаєте — вас зрозуміють, але `It is hot` у дублінському квітні прозвучить як жарт.\n\nТими самими словами кажуть про чай, про воду з крана, про батарею."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Сосед вышел без куртки и не пожалел: солнце, ветра нет. Скажите про такую погоду.",
+          "uk": "Сусід вийшов без куртки і не пошкодував: сонце, вітру немає. Скажіть про таку погоду."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-31:intro2:r1",
+              "text": "It is warm."
+            },
+            {
+              "responseId": "en:lesson-01:session-31:intro2:r2",
+              "text": "It is hot."
+            },
+            {
+              "responseId": "en:lesson-01:session-31:intro2:r3",
+              "text": "It is cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-31:intro2:r1",
+              "text": "It is warm."
+            },
+            {
+              "responseId": "en:lesson-01:session-31:intro2:r2",
+              "text": "It is hot."
+            },
+            {
+              "responseId": "en:lesson-01:session-31:intro2:r3",
+              "text": "It is cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сосед вышел без куртки и не пожалел: солнце, ветра нет. Скажите про такую погоду.",
+          "uk": "Сусід вийшов без куртки і не пошкодував: сонце, вітру немає. Скажіть про таку погоду."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`dry` — сухо",
+        "uk": "`dry` — сухо"
+      },
+      "bodyByLocale": {
+        "ru": "`It is dry` говорят не про солнце, а про то, что дождя нет. Это разные вещи: небо может быть серым весь день, но `dry`.\n\nТем же словом говорят о сухой одежде, сухих ботинках и сухом полотенце.",
+        "uk": "`It is dry` кажуть не про сонце, а про те, що дощу немає. Це різні речі: небо може бути сірим цілий день, але `dry`.\n\nТим самим словом кажуть про сухий одяг, сухі черевики й сухий рушник."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Три дня лил дождь, а сегодня асфальт светлый и ботинки чистые. Сосед спрашивает, как на улице.",
+          "uk": "Три дні лив дощ, а сьогодні асфальт світлий і черевики чисті. Сусід питає, як надворі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-31:intro3:r1",
+              "text": "It is dry."
+            },
+            {
+              "responseId": "en:lesson-01:session-31:intro3:r2",
+              "text": "It is wet."
+            },
+            {
+              "responseId": "en:lesson-01:session-31:intro3:r3",
+              "text": "Dry is."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-31:intro3:r1",
+              "text": "It is dry."
+            },
+            {
+              "responseId": "en:lesson-01:session-31:intro3:r2",
+              "text": "It is wet."
+            },
+            {
+              "responseId": "en:lesson-01:session-31:intro3:r3",
+              "text": "Dry is."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Три дня лил дождь, а сегодня асфальт светлый и ботинки чистые. Сосед спрашивает, как на улице.",
+          "uk": "Три дні лив дощ, а сьогодні асфальт світлий і черевики чисті. Сусід питає, як надворі."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e5e74294abe68fc8c1c4e39f694698d8f99e4da420b56e6e9172d583ef2b45d0"
+}

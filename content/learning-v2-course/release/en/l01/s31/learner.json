@@ -1,0 +1,1087 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-31:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i01:audio",
+          "transcript": "wet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:i01:r1",
+            "targetText": "wet",
+            "meaningByLocale": {
+              "ru": "«мокро, мокрый». Про дождь на улице, про скамейку, на которую лучше не садиться, и про вас, если зонта не было.",
+              "uk": "«мокро, мокрий». Про дощ надворі, про лавку, на яку краще не сідати, і про вас, якщо парасольки не було."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wet",
+          "definitionByLocale": {
+            "ru": "«мокро, мокрый». Про дождь на улице, про скамейку, на которую лучше не садиться, и про вас, если зонта не было.",
+            "uk": "«мокро, мокрий». Про дощ надворі, про лавку, на яку краще не сідати, і про вас, якщо парасольки не було."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-31:i02:r1",
+          "text": "wet"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i02:r2",
+          "text": "went"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i02:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — wet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i02:audio",
+          "transcript": "wet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:i02:r1",
+            "targetText": "wet",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i02:r2",
+            "targetText": "went",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i02:r3",
+            "targetText": "what",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — wet",
+            "feedbackByLocale": {
+              "ru": "Внутри слышно «н», которого в `wet` нет.",
+              "uk": "Усередині чути «н», якого у `wet` немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — wet",
+            "feedbackByLocale": {
+              "ru": "Начало то же. Дальше гласный другой: в `what` слышно «о», в `wet` — «э».",
+              "uk": "Початок той самий. Далі голосний інший: у `what` чути «о», у `wet` — «е»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i03:audio",
+          "transcript": "dry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:i03:r1",
+            "targetText": "dry",
+            "meaningByLocale": {
+              "ru": "«сухо, сухой». Дождя нет, асфальт светлый, куртку можно не вешать на батарею.",
+              "uk": "«сухо, сухий». Дощу немає, асфальт світлий, куртку можна не вішати на батарею."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dry",
+          "definitionByLocale": {
+            "ru": "«сухо, сухой». Дождя нет, асфальт светлый, куртку можно не вешать на батарею.",
+            "uk": "«сухо, сухий». Дощу немає, асфальт світлий, куртку можна не вішати на батарею."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-31:i04:r1",
+          "text": "dry"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i04:r2",
+          "text": "try"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i04:r3",
+          "text": "draw"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — dry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i04:audio",
+          "transcript": "dry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:i04:r1",
+            "targetText": "dry",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i04:r2",
+            "targetText": "try",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i04:r3",
+            "targetText": "draw",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — dry",
+            "feedbackByLocale": {
+              "ru": "Отличается только первым звуком. `dry` начинается с «д».",
+              "uk": "Відрізняється тільки першим звуком. `dry` починається з «д»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — dry",
+            "feedbackByLocale": {
+              "ru": "Начало то же, `dr`. Дальше в `dry` слышно «ай», а в `draw` — долгое «о».",
+              "uk": "Початок той самий, `dr`. Далі у `dry` чути «ай», а в `draw` — довге «о»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cold",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cold",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i05:audio",
+          "transcript": "cold"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:i05:r1",
+            "targetText": "cold",
+            "meaningByLocale": {
+              "ru": "«холодно, холодный». Про погоду, из-за которой возвращаешься за шарфом, и про чай, который стоял слишком долго.",
+              "uk": "«холодно, холодний». Про погоду, через яку вертаєшся по шарф, і про чай, що стояв надто довго."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cold",
+          "definitionByLocale": {
+            "ru": "«холодно, холодный». Про погоду, из-за которой возвращаешься за шарфом, и про чай, который стоял слишком долго.",
+            "uk": "«холодно, холодний». Про погоду, через яку вертаєшся по шарф, і про чай, що стояв надто довго."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — дождь идёт третий час",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-31:i06:r1",
+          "text": "wet"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i06:r2",
+          "text": "dry"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i06:r3",
+          "text": "cold"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — дождь идёт третий час",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — дождь идёт третий час",
+          "uk": "Вставте слово — дощ іде третю годину"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-31:i06:r1",
+            "text": "wet"
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i06:r2",
+            "text": "dry"
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i06:r3",
+            "text": "cold"
+          }
+        ],
+        "testedDimension": "Вставьте слово — дождь идёт третий час",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i06:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дождь идёт третий час",
+            "feedbackByLocale": {
+              "ru": "Это «сухо», а на улице дождь. Мокро — `wet`.",
+              "uk": "Це «сухо», а надворі дощ. Мокро — `wet`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дождь идёт третий час",
+            "feedbackByLocale": {
+              "ru": "«Холодно» — про температуру, а вопрос про воду сверху.",
+              "uk": "«Холодно» — про температуру, а питання про воду згори."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «сухо»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «сухо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is dry.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «сухо»",
+          "uk": "Складіть фразу — «сухо»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "dry"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i08:audio",
+          "transcript": "hot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:i08:r1",
+            "targetText": "hot",
+            "meaningByLocale": {
+              "ru": "«жарко, горячо». Про погоду, от которой ищешь тень, и про чай, который пока не выпить.",
+              "uk": "«спекотно, гаряче». Про погоду, від якої шукаєш тінь, і про чай, який поки що не випити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hot",
+          "definitionByLocale": {
+            "ru": "«жарко, горячо». Про погоду, от которой ищешь тень, и про чай, который пока не выпить.",
+            "uk": "«спекотно, гаряче». Про погоду, від якої шукаєш тінь, і про чай, який поки що не випити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — warm",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — warm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i09:audio",
+          "transcript": "warm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:i09:r1",
+            "targetText": "warm",
+            "meaningByLocale": {
+              "ru": "«тепло». Не жарко и не холодно, а ровно так, как хочется.",
+              "uk": "«тепло». Не спекотно й не холодно, а рівно так, як хочеться."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "warm",
+          "definitionByLocale": {
+            "ru": "«тепло». Не жарко и не холодно, а ровно так, как хочется.",
+            "uk": "«тепло». Не спекотно й не холодно, а рівно так, як хочеться."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-31:i10:r1",
+          "text": "warm"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i10:r2",
+          "text": "worm"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i10:r3",
+          "text": "war"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — warm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i10:audio",
+          "transcript": "warm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:i10:r1",
+            "targetText": "warm",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i10:r2",
+            "targetText": "worm",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i10:r3",
+            "targetText": "war",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i10:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — warm",
+            "feedbackByLocale": {
+              "ru": "`worm` — «червяк». На месте гласного там глухой невнятный звук, ни «о», ни «а». В `warm` ясно слышно «о».",
+              "uk": "`worm` — «черв'як». На місці голосного там глухий невиразний звук, ні «о», ні «а». У `warm` ясно чути «о»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — warm",
+            "feedbackByLocale": {
+              "ru": "Обрублен хвост. В `warm` на конце слышно «м».",
+              "uk": "Обрубаний хвіст. У `warm` на кінці чути «м»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — солнце печёт, вы ищете тень",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-31:i11:r1",
+          "text": "hot"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i11:r2",
+          "text": "warm"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i11:r3",
+          "text": "cold"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — солнце печёт, вы ищете тень",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — солнце печёт, вы ищете тень",
+          "uk": "Вставте слово — сонце пече, ви шукаєте тінь"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-31:i11:r1",
+            "text": "hot"
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i11:r2",
+            "text": "warm"
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i11:r3",
+            "text": "cold"
+          }
+        ],
+        "testedDimension": "Вставьте слово — солнце печёт, вы ищете ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i11:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — солнце печёт, вы ищете ",
+            "feedbackByLocale": {
+              "ru": "«Тепло» — это когда приятно. А вы прячетесь от солнца, значит уже слишком.",
+              "uk": "«Тепло» — це коли приємно. А ви ховаєтесь від сонця, отже вже забагато."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — солнце печёт, вы ищете ",
+            "feedbackByLocale": {
+              "ru": "Прямо наоборот. `cold` — про холод.",
+              "uk": "Прямо навпаки. `cold` — про холод."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-31:i12:p1",
+            "target": "wet",
+            "meaningByLocale": {
+              "ru": "мокро",
+              "uk": "мокро"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-31:i12:p2",
+            "target": "dry",
+            "meaningByLocale": {
+              "ru": "сухо",
+              "uk": "сухо"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-31:i12:p3",
+            "target": "hot",
+            "meaningByLocale": {
+              "ru": "жарко",
+              "uk": "спекотно"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-31:i12:p4",
+            "target": "warm",
+            "meaningByLocale": {
+              "ru": "тепло",
+              "uk": "тепло"
+            }
+          }
+        ],
+        "leftColumn": [
+          "wet",
+          "dry",
+          "hot",
+          "warm"
+        ],
+        "rightColumn": [
+          "мокро",
+          "сухо",
+          "жарко",
+          "тепло"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — с утра шарф и вторая кофта",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-31:i13:r1",
+          "text": "cold"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i13:r2",
+          "text": "warm"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i13:r3",
+          "text": "dry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — с утра шарф и вторая кофта",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — с утра шарф и вторая кофта",
+          "uk": "Вставте слово — зранку шарф і друга кофта"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-31:i13:r1",
+            "text": "cold"
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i13:r2",
+            "text": "warm"
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i13:r3",
+            "text": "dry"
+          }
+        ],
+        "testedDimension": "Вставьте слово — с утра шарф и вторая ко",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i13:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — с утра шарф и вторая ко",
+            "feedbackByLocale": {
+              "ru": "«Тепло» — это когда кофта не нужна.",
+              "uk": "«Тепло» — це коли кофта не потрібна."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — с утра шарф и вторая ко",
+            "feedbackByLocale": {
+              "ru": "Про воду, а речь про температуру.",
+              "uk": "Про воду, а мова про температуру."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rainy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rainy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i14:audio",
+          "transcript": "rainy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:i14:r1",
+            "targetText": "rainy",
+            "meaningByLocale": {
+              "ru": "«дождливо». Не одна тучка на час, а день, когда дождь идёт и идёт.",
+              "uk": "«дощово». Не одна хмарка на годину, а день, коли дощ іде і йде."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rainy",
+          "definitionByLocale": {
+            "ru": "«дождливо». Не одна тучка на час, а день, когда дождь идёт и идёт.",
+            "uk": "«дощово». Не одна хмарка на годину, а день, коли дощ іде і йде."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — льёт с утра и не собирается кончаться",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-31:i15:r1",
+          "text": "rainy"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i15:r2",
+          "text": "dry"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i15:r3",
+          "text": "hot"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — льёт с утра и не собирается кончаться",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — льёт с утра и не собирается кончаться",
+          "uk": "Вставте слово — ллє зранку і не збирається вщухати"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-31:i15:r1",
+            "text": "rainy"
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i15:r2",
+            "text": "dry"
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i15:r3",
+            "text": "hot"
+          }
+        ],
+        "testedDimension": "Вставьте слово — льёт с утра и не собира",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i15:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — льёт с утра и не собира",
+            "feedbackByLocale": {
+              "ru": "Это «сухо», а с неба льёт.",
+              "uk": "Це «сухо», а з неба ллє."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — льёт с утра и не собира",
+            "feedbackByLocale": {
+              "ru": "Про жару, а речь о дожде.",
+              "uk": "Про спеку, а мова про дощ."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — windy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i16:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — windy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i16:audio",
+          "transcript": "windy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-31:i16:r1",
+            "targetText": "windy",
+            "meaningByLocale": {
+              "ru": "«ветрено». Ветер вырывает дверь из рук, а зонт выворачивает наизнанку.",
+              "uk": "«вітряно». Вітер вириває двері з рук, а парасольку вивертає навиворіт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "windy",
+          "definitionByLocale": {
+            "ru": "«ветрено». Ветер вырывает дверь из рук, а зонт выворачивает наизнанку.",
+            "uk": "«вітряно». Вітер вириває двері з рук, а парасольку вивертає навиворіт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — шапку сдувает, идти приходится боком",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-31:i17:r1",
+          "text": "windy"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i17:r2",
+          "text": "warm"
+        },
+        {
+          "responseId": "en:lesson-01:session-31:i17:r3",
+          "text": "wet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — шапку сдувает, идти приходится боком",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — шапку сдувает, идти приходится боком",
+          "uk": "Вставте слово — шапку зриває, іти доводиться боком"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-31:i17:r1",
+            "text": "windy"
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i17:r2",
+            "text": "warm"
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i17:r3",
+            "text": "wet"
+          }
+        ],
+        "testedDimension": "Вставьте слово — шапку сдувает, идти при",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i17:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — шапку сдувает, идти при",
+            "feedbackByLocale": {
+              "ru": "Про тепло, а речь о ветре.",
+              "uk": "Про тепло, а мова про вітер."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i17:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — шапку сдувает, идти при",
+            "feedbackByLocale": {
+              "ru": "Про воду, а вас треплет ветром, не дождём.",
+              "uk": "Про воду, а вас тіпає вітром, не дощем."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «дождливо»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «дождливо»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i18:audio",
+          "transcript": "It is rainy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is rainy.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "rainy"
+        ],
+        "authoredDistractorTokens": [
+          "windy"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «ветрено», среди плиток чужая скрепка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «ветрено», среди плиток чужая скрепка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is windy.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «ветрено», среди плиток чужая скрепка",
+          "uk": "Складіть фразу — «вітряно», серед плиток чужа скріпка"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "windy"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-31:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сосед спросил, как на улице",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-31:i20:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сосед спросил, как на улице",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-31:i20:audio",
+          "transcript": "It is dry. It is warm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is dry. It is warm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 20,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7c33d5f76ffccc9a3b4fdf70b1ed3eedaf40bf75f8f52bad133f280fb3048af7"
+}

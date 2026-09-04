@@ -1,0 +1,102 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-31:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i02",
+    "correctText": "wet",
+    "correctResponseId": "en:lesson-01:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i04",
+    "correctText": "dry",
+    "correctResponseId": "en:lesson-01:session-31:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i06",
+    "correctText": "wet",
+    "correctResponseId": "en:lesson-01:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i07",
+    "correctText": "It is dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i10",
+    "correctText": "warm",
+    "correctResponseId": "en:lesson-01:session-31:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i11",
+    "correctText": "hot",
+    "correctResponseId": "en:lesson-01:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i12",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i13",
+    "correctText": "cold",
+    "correctResponseId": "en:lesson-01:session-31:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i15",
+    "correctText": "rainy",
+    "correctResponseId": "en:lesson-01:session-31:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i16",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i17",
+    "correctText": "windy",
+    "correctResponseId": "en:lesson-01:session-31:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i18",
+    "correctText": "It is rainy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i19",
+    "correctText": "It is windy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-31:i20",
+    "correctText": "It is dry. It is warm.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1092 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-27:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cheap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cheap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i01:audio",
+          "transcript": "cheap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i01:r1",
+            "targetText": "cheap",
+            "meaningByLocale": {
+              "ru": "«дёшево». Цена такая, что вы переспрашиваете, всё ли в порядке.",
+              "uk": "«дешево». Ціна така, що ви перепитуєте, чи все гаразд."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cheap",
+          "definitionByLocale": {
+            "ru": "«дёшево». Цена такая, что вы переспрашиваете, всё ли в порядке.",
+            "uk": "«дешево». Ціна така, що ви перепитуєте, чи все гаразд."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-27:i02:r1",
+          "text": "cheap"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i02:r2",
+          "text": "chip"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i02:r3",
+          "text": "sheep"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — cheap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i02:audio",
+          "transcript": "cheap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i02:r1",
+            "targetText": "cheap",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i02:r2",
+            "targetText": "chip",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i02:r3",
+            "targetText": "sheep",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — cheap",
+            "feedbackByLocale": {
+              "ru": "Гласная короткая, обрывается. В `cheap` она тянется.",
+              "uk": "Голосна коротка, обривається. У `cheap` вона тягнеться."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — cheap",
+            "feedbackByLocale": {
+              "ru": "Начинается с «ш», а `cheap` — с «ч». Слушайте самый первый звук.",
+              "uk": "Починається з «ш», а `cheap` — з «ч». Слухайте найперший звук."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — far",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — far",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i03:audio",
+          "transcript": "far"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i03:r1",
+            "targetText": "far",
+            "meaningByLocale": {
+              "ru": "«далеко». Идти долго, а на карте казалось рядом.",
+              "uk": "«далеко». Іти довго, а на карті здавалося поруч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "far",
+          "definitionByLocale": {
+            "ru": "«далеко». Идти долго, а на карте казалось рядом.",
+            "uk": "«далеко». Іти довго, а на карті здавалося поруч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-27:i04:r1",
+          "text": "far"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i04:r2",
+          "text": "four"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i04:r3",
+          "text": "fur"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — far",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i04:audio",
+          "transcript": "far"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i04:r1",
+            "targetText": "far",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i04:r2",
+            "targetText": "four",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i04:r3",
+            "targetText": "fur",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — far",
+            "feedbackByLocale": {
+              "ru": "Это «четыре». Губы округляются в трубочку, а в `far` рот открыт широко.",
+              "uk": "Це «чотири». Губи округлюються в трубочку, а в `far` рот відкритий широко."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — far",
+            "feedbackByLocale": {
+              "ru": "Губы почти не открываются. В `far` рот открыт широко.",
+              "uk": "Губи майже не відкриваються. У `far` рот відкритий широко."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «это не дёшево»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «это не дёшево»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is not cheap.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «это не дёшево»",
+          "uk": "Складіть фразу — «це не дешево»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "cheap"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dark",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dark",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i06:audio",
+          "transcript": "dark"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i06:r1",
+            "targetText": "dark",
+            "meaningByLocale": {
+              "ru": "«темно». Днём включаете свет, потому что окно смотрит в стену.",
+              "uk": "«темно». Удень вмикаєте світло, бо вікно дивиться в стіну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dark",
+          "definitionByLocale": {
+            "ru": "«темно». Днём включаете свет, потому что окно смотрит в стену.",
+            "uk": "«темно». Удень вмикаєте світло, бо вікно дивиться в стіну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — до остановки пять минут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-27:i07:r1",
+          "text": "far"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i07:r2",
+          "text": "cheap"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i07:r3",
+          "text": "dark"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — до остановки пять минут",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — до остановки пять минут",
+          "uk": "Вставте слово — до зупинки п'ять хвилин"
+        },
+        "gappedTargetPhrase": "It is not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-27:i07:r1",
+            "text": "far"
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i07:r2",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i07:r3",
+            "text": "dark"
+          }
+        ],
+        "testedDimension": "Вставьте слово — до остановки пять минут",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i07:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — до остановки пять минут",
+            "feedbackByLocale": {
+              "ru": "Это про цену, а не про расстояние.",
+              "uk": "Це про ціну, а не про відстань."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — до остановки пять минут",
+            "feedbackByLocale": {
+              "ru": "Это про свет. Про дорогу — `far`.",
+              "uk": "Це про світло. Про дорогу — `far`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — easy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — easy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i08:audio",
+          "transcript": "easy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i08:r1",
+            "targetText": "easy",
+            "meaningByLocale": {
+              "ru": "«легко, просто». Получилось с первого раза и без чужой помощи.",
+              "uk": "«легко, просто». Вийшло з першого разу й без чужої допомоги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "easy",
+          "definitionByLocale": {
+            "ru": "«легко, просто». Получилось с первого раза и без чужой помощи.",
+            "uk": "«легко, просто». Вийшло з першого разу й без чужої допомоги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i09:audio",
+          "transcript": "hard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i09:r1",
+            "targetText": "hard",
+            "meaningByLocale": {
+              "ru": "«трудно». Приходится стараться, и всё равно не сразу.",
+              "uk": "«важко». Доводиться старатися, і все одно не одразу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hard",
+          "definitionByLocale": {
+            "ru": "«трудно». Приходится стараться, и всё равно не сразу.",
+            "uk": "«важко». Доводиться старатися, і все одно не одразу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-27:i10:r1",
+          "text": "hard"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i10:r2",
+          "text": "heart"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i10:r3",
+          "text": "hat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — hard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i10:audio",
+          "transcript": "hard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i10:r1",
+            "targetText": "hard",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i10:r2",
+            "targetText": "heart",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i10:r3",
+            "targetText": "hat",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i10:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — hard",
+            "feedbackByLocale": {
+              "ru": "Звучит близко, но это «сердце». Не про трудности.",
+              "uk": "Звучить близько, але це «серце». Не про труднощі."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — hard",
+            "feedbackByLocale": {
+              "ru": "Короткое, обрывается сразу. `hard` длиннее и тянется.",
+              "uk": "Коротке, обривається одразу. `hard` довше і тягнеться."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — warm",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — warm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i11:audio",
+          "transcript": "warm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i11:r1",
+            "targetText": "warm",
+            "meaningByLocale": {
+              "ru": "«тепло». Не жарко, а как раз столько, что не хочется уходить.",
+              "uk": "«тепло». Не спекотно, а якраз стільки, що не хочеться йти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "warm",
+          "definitionByLocale": {
+            "ru": "«тепло». Не жарко, а как раз столько, что не хочется уходить.",
+            "uk": "«тепло». Не спекотно, а якраз стільки, що не хочеться йти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — замок заедает, ключ проворачивается с трудом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-27:i12:r1",
+          "text": "hard"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i12:r2",
+          "text": "easy"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i12:r3",
+          "text": "warm"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — замок заедает, ключ проворачивается с трудом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — замок заедает, ключ проворачивается с трудом",
+          "uk": "Вставте слово — замок заїдає, ключ провертається важко"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-27:i12:r1",
+            "text": "hard"
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i12:r2",
+            "text": "easy"
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i12:r3",
+            "text": "warm"
+          }
+        ],
+        "testedDimension": "Вставьте слово — замок заедает, ключ про",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i12:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — замок заедает, ключ про",
+            "feedbackByLocale": {
+              "ru": "Это ровно наоборот: «легко».",
+              "uk": "Це рівно навпаки: «легко»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — замок заедает, ключ про",
+            "feedbackByLocale": {
+              "ru": "Это про тепло, а не про то, легко ли справиться.",
+              "uk": "Це про тепло, а не про те, чи легко впоратися."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-27:i13:p1",
+            "target": "cheap",
+            "meaningByLocale": {
+              "ru": "дёшево",
+              "uk": "дешево"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i13:p2",
+            "target": "far",
+            "meaningByLocale": {
+              "ru": "далеко",
+              "uk": "далеко"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i13:p3",
+            "target": "easy",
+            "meaningByLocale": {
+              "ru": "легко",
+              "uk": "легко"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i13:p4",
+            "target": "hard",
+            "meaningByLocale": {
+              "ru": "трудно",
+              "uk": "важко"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cheap",
+          "far",
+          "easy",
+          "hard"
+        ],
+        "rightColumn": [
+          "дёшево",
+          "далеко",
+          "легко",
+          "трудно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — small",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — small",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i14:audio",
+          "transcript": "small"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i14:r1",
+            "targetText": "small",
+            "meaningByLocale": {
+              "ru": "«маленький». Вдвоём на кухне уже не разойтись.",
+              "uk": "«маленький». Удвох на кухні вже не розминутися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "small",
+          "definitionByLocale": {
+            "ru": "«маленький». Вдвоём на кухне уже не разойтись.",
+            "uk": "«маленький». Удвох на кухні вже не розминутися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — агент называет комнату тесной, а вам в ней просторно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-27:i15:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i15:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-27:i15:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — агент называет комнату тесной, а вам в ней просторно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — агент называет комнату тесной, а вам в ней просторно",
+          "uk": "Вставте скріпку — агент називає кімнату тісною, а вам у ній просторо"
+        },
+        "gappedTargetPhrase": "It ___ not small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-27:i15:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i15:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i15:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — агент называет комнат",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i15:r1",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — агент называет комнат",
+            "feedbackByLocale": {
+              "ru": "`am` живёт только рядом с `I`. Про вещь — `is`.",
+              "uk": "`am` живе тільки поруч з `I`. Про річ — `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — агент называет комнат",
+            "feedbackByLocale": {
+              "ru": "Чужая скрепка. Про одну вещь — `is`.",
+              "uk": "Чужа скріпка. Про одну річ — `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «это не далеко»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «это не далеко»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i16:audio",
+          "transcript": "It is not far."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is not far.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "far"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — expensive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — expensive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i17:audio",
+          "transcript": "expensive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-27:i17:r1",
+            "targetText": "expensive",
+            "meaningByLocale": {
+              "ru": "«дорого». Цена, после которой вы делаете вид, что просто зашли посмотреть.",
+              "uk": "«дорого». Ціна, після якої ви вдаєте, що просто зайшли подивитися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "expensive",
+          "definitionByLocale": {
+            "ru": "«дорого». Цена, после которой вы делаете вид, что просто зашли посмотреть.",
+            "uk": "«дорого». Ціна, після якої ви вдаєте, що просто зайшли подивитися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «это не дорого»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «это не дорого»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is not expensive.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «это не дорого»",
+          "uk": "Складіть фразу — «це не дорого»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "expensive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Правда или возражение? В комнате действительно темно — согласитесь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Правда или возражение? В комнате действительно темно — согласитесь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is dark.",
+        "localizedMeaning": {
+          "ru": "Правда или возражение? В комнате действительно темно — согласитесь",
+          "uk": "Правда чи заперечення? У кімнаті справді темно — погодьтеся"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "dark"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-27:i20:p1",
+            "target": "small",
+            "meaningByLocale": {
+              "ru": "маленький",
+              "uk": "маленький"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i20:p2",
+            "target": "dark",
+            "meaningByLocale": {
+              "ru": "темно",
+              "uk": "темно"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i20:p3",
+            "target": "expensive",
+            "meaningByLocale": {
+              "ru": "дорого",
+              "uk": "дорого"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-27:i20:p4",
+            "target": "warm",
+            "meaningByLocale": {
+              "ru": "тепло",
+              "uk": "тепло"
+            }
+          }
+        ],
+        "leftColumn": [
+          "small",
+          "dark",
+          "expensive",
+          "warm"
+        ],
+        "rightColumn": [
+          "маленький",
+          "темно",
+          "дорого",
+          "тепло"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-27:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — четыре ответа агенту подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i21:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — четыре ответа агенту подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i21:audio",
+          "transcript": "It is not cheap. It is not far. It is not easy. It is warm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is not cheap. It is not far. It is not easy. It is warm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8f49e96b379bb74e7e48ba786603165ed3d939c51af1d9ca4f6f0f74d8d47ff8"
+}

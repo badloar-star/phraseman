@@ -1,0 +1,144 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Слово cheap значит дёшево. Если хочу возразить, что что-то не дёшево, говорю It is not cheap. not встаёт сразу после is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "far значит далеко. Внутри фразы используется not, а не no. It is not far.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "easy — легко, hard — трудно. Возразить на 'легко' можно через It is not easy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (cheap)",
+      "what_i_understood": "Карточка и звук закрепили слово cheap.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (far)",
+      "what_i_understood": "Карточка и звук закрепили far, отличили от four и fur.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал It is not cheap. из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "dark — темно. Это слово я не проходил в интро этой сессии, но карточка объяснила его.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Нужно вставить far в контекст про остановку. Варианты cheap и dark явно не подходят по смыслу, справился.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8-9",
+      "what_i_understood": "easy и hard закреплены карточками.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "hard отличил на слух от heart и hat.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "warm — тепло, тоже не было в интро, но карточка ввела его понятно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Про заедающий замок нужно hard, а не easy/warm — логично, справился.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал пары cheap-дёшево, far-далеко, easy-легко, hard-трудно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "small — маленький, знакомое слово, тут просто карточка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Нужно вставить скрепку is (не am, не are), потому что речь про предмет (It).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "На слух собрал It is not far., лишняя плитка no не подошла.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17-18",
+      "what_i_understood": "expensive — дорого, собрал It is not expensive.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19",
+      "what_i_understood": "Тут нужно было НЕ спорить, а согласиться: It is dark. — лишняя плитка not не нужна, потому что агент прав. Понял идею.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 20",
+      "what_i_understood": "Пары small-маленький, dark-темно, expensive-дорого, warm-тепло.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 21 (финал)",
+      "what_i_understood": "Ответил на 4 вопроса подряд: It is not cheap. It is not far. It is not easy. It is warm. Понял, зачем — квартира, агент хвалит, я честно оцениваю.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Возражать через It is not + слово (cheap, far, easy)",
+    "not встаёт сразу после is, а не в конец фразы и не вместо is",
+    "no используется отдельно как короткий ответ, а not — внутри фразы",
+    "Новые слова: cheap, far, easy, hard",
+    "Соглашаться, когда возражать не с чем (It is dark. без not)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Финал сцены — агент подряд хвалит квартиру (дёшево, близко, легко, тепло), а я реально по одному отвечаю правду. Понятно, зачем это всё, и в конце приятно, что хоть одно 'тепло' — правда, не всё отрицать.",
+    "Задание 19, где неожиданно не нужно спорить — освежило, не на автомате тыкал not."
+  ],
+  "felt_dead": [
+    "Карточки слов (small, dark, expensive, warm) идут просто списком определений подряд без сцены — суховато, но коротко и не мешает."
+  ],
+  "scene_reason": "да, понятно — я стою в квартире, агент нахваливает (дёшево, близко, легко открывается, тепло), а я вежливо возражаю на каждое. В финале это всё собирается в один диалог, и стало ясно, зачем учили именно эти четыре слова.",
+  "would_continue": "да — прошёл легко, разница not/no объяснена понятно, в финале почувствовал, что реально могу говорить фразами, а не просто вставлять слова в шаблон.",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно, ничего незнакомого в правильных ответах не потребовалось, разница not/no и грамматика It is not усвоены, сцена и финал понятны и интересны."
+}

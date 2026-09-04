@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-27:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i02",
+    "correctText": "cheap",
+    "correctResponseId": "en:lesson-01:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i04",
+    "correctText": "far",
+    "correctResponseId": "en:lesson-01:session-27:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i05",
+    "correctText": "It is not cheap.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i07",
+    "correctText": "far",
+    "correctResponseId": "en:lesson-01:session-27:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i10",
+    "correctText": "hard",
+    "correctResponseId": "en:lesson-01:session-27:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i12",
+    "correctText": "hard",
+    "correctResponseId": "en:lesson-01:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i13",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i15",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-27:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i16",
+    "correctText": "It is not far.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i17",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i18",
+    "correctText": "It is not expensive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i19",
+    "correctText": "It is dark.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i20",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-27:i21",
+    "correctText": "It is not cheap. It is not far. It is not easy. It is warm.",
+    "correctResponseId": null
+  }
+]

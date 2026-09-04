@@ -1,0 +1,85 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "easy",
+      "hard",
+      "far",
+      "cheap"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 6,
+        "trap": "cheap/dark вместо far — реалистичная путаница смысла признака"
+      },
+      {
+        "task": 10,
+        "trap": "easy/warm вместо hard — реалистичная путаница смысла"
+      },
+      {
+        "task": 12,
+        "trap": "am/are вместо is — реалистичная путаница скрепки"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 18,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "cheap",
+        "far",
+        "easy",
+        "hard"
+      ],
+      [
+        "small",
+        "dark",
+        "expensive",
+        "warm"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 5,
+      "listen_choose": 3,
+      "phrase_builder": 3,
+      "context_gap_grammar": 3,
+      "speed_match": 2,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "BLOCK",
+  "verdict_reason": "Интро 2 учит неверной грамматике: заголовок и текст утверждают правило про `not` вместо `no`, но образцовый ✅-ответ и ловушка перевёрнуты — в тексте написано 'нужен именно `not`, а не `no`', однако задание просит возразить и любая опора идёт корректно, а вот в задании 13 доска дистракторов listen_build_dictation содержит лишнюю плитку `no`, что само по себе нормально как обманка на внимательность — но по факту это НЕ ошибка; при этом машинные факты фиксируют превышение длины интро 1 (301 знак против нормы 240–290) и это дефект формы, обязательный к правке."
+}

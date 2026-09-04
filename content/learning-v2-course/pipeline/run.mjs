@@ -195,7 +195,6 @@ function machineFacts(file) {
   // зачем: длину автор на глаз не выдерживает (12 страниц из 21 вне нормы) —
   // считаем машинно и отдаём редактору, иначе подгонка ложится на человека
   const introPages = introPart.split(new RegExp("^## Интро \\d+", "m")).slice(1);
-  LOG(`[ДИАГ] introPart ${introPart.length} зн., страниц найдено ${introPages.length}`);
   introPages.forEach((page, k) => {
     const body = page.split(String.fromCharCode(10) + "**")[0].split(String.fromCharCode(10)).filter((x) => !x.trim().startsWith("###")).join(String.fromCharCode(10)).trim();
     const L = body.length;

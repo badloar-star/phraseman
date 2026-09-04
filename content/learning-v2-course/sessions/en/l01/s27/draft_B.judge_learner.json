@@ -1,0 +1,100 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Слово cheap значит «дёшево». Чтобы возразить, нужно вставить not сразу после is: It is not cheap.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Слово far значит «далеко». Здесь же объяснили ловушку: no — это не то же самое, что not, внутри фразы нужно not.",
+      "confusion": "Секунду тормознул: почему нельзя no, если по-русски я бы сказал «нет, не далеко» — но объяснение тут же и дано, разобрался.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "easy — «легко», hard — «трудно». Понял, что It is not easy и It is hard — это одно и то же по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (карточки cheap, far + звук)",
+      "what_i_understood": "Заучил произношение cheap и far, отличил их от похожих по звучанию слов (chip/sheep, four/fur).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка фразы)",
+      "what_i_understood": "Собрал It is not cheap. из плиток — порядок слов уже понятен после интро.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (вставьте слово, far vs cheap/dark)",
+      "what_i_understood": "Про расстояние нужно far, а не cheap (это про деньги) или dark (это про свет).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 7-10 (easy/hard, звук, вставка)",
+      "what_i_understood": "Разобрался, где easy, а где hard. hard похоже звучит на heart, но это разные слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Закрепил все четыре новых слова разом: cheap, far, easy, hard.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (is/am/are)",
+      "what_i_understood": "Про вещь (it) всегда is, не am и не are. Слово small тут просто стоит в фразе, не пугает.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 13-14 (диктант, сборка expensive)",
+      "what_i_understood": "Собрал It is not far и It is not expensive — слово expensive я не проходил в этой сессии, но оно тут дано с явным переводом рядом в итоговой таблице, а в самом задании — просто дана фраза для сборки, перевод не требуется отдельно объяснять.",
+      "confusion": "Секунду не понял, откуда expensive — но это старое слово, в задании оно просто используется, не требует нового объяснения от меня.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (ловушка с лишней плиткой not)",
+      "what_i_understood": "Понял, что здесь нужно согласиться, а не спорить — лишняя плитка not не нужна. Это заставило подумать, а не автоматом жать привычное.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (пары старых слов)",
+      "what_i_understood": "Вспомнил small, dark, expensive, warm.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Собрал длинный ответ подряд: It is not cheap. It is not far. It is not easy. It is warm. Почувствовал, что реально могу спорить с агентом по-английски.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Говорить «это не дёшево» — It is not cheap",
+    "Говорить «это не далеко» — It is not far",
+    "Говорить «это не легко» (то же что «это трудно») — It is not easy / It is hard",
+    "Понимать разницу между not (внутри фразы) и no (ответ на вопрос)",
+    "Различать на слух cheap/far/easy/hard среди похожих слов"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с агентом по недвижимости, который нахваливает квартиру, а я на всё вежливо возражаю — понятно и смешно, я реально представляю ситуацию",
+    "Задание 15, где нужно НЕ спорить, а согласиться — неожиданно, заставило думать, а не жать на автомате"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — на протяжении всей сессии я представляю себя человеком, который осматривает квартиру с агентом, и в конце (задание 17) прямо отвечаю ему подряд на несколько его реплик про цену, расстояние, окно и тепло — сцена держится от начала до конца",
+  "would_continue": "да — почувствовал прогресс, узнал новые слова, было над чем посмеяться (нахваливающий агент) и был момент, который держал внимание (ловушка с согласием)",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы честно, есть чёткий прогресс в понятной сцене, ловушки логичные, и я реально узнал новые фразы, которые могу использовать."
+}

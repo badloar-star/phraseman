@@ -11,7 +11,8 @@ import {
   peekVoiceMinutePriceStrings,
   primeVoiceMinutePackages,
 } from './packages_cache';
-import { peekVoiceMinutes } from './peek_cache';
+import { peekMaxVoiceAccess, peekVoiceMinutes } from './peek_cache';
+import { resolveVoiceMinutesView, voiceMinutesToDisplay } from './entitlement_view';
 import { VOICE_MINUTE_PRODUCTS } from './catalog';
 import { grantVoiceMinutesInDev, isVoiceMinuteDevGrantAvailable } from './dev_grant';
 import { readVoiceMinuteWalletStatus, type VoiceMinuteWalletStatus } from './wallet';
@@ -250,30 +251,30 @@ export default function VoiceMinutePackPanel({ onCredited, onBusyChange }: Props
         <Text style={[styles.balanceValue, { color: t.textPrimary, fontSize: f.h1 }]}>
           {(() => {
             // Первый кадр — из peek последнего известного остатка; ответ
-            // callable затем его подтверждает (правда всегда за сервером).
-            const seconds = wallet?.availableSeconds ?? peekVoiceMinutes()?.seconds ?? null;
-            return seconds === null ? '—' : minutesFromSeconds(seconds);
+            // callable затем его подтверждает. Пустой кошелёк сам по себе не
+            // означает ноль: подтверждённый пробник всё ещё даёт 3 минуты.
+            // Единый resolver также не выдумывает пробник при unknown/none.
+            const peek = peekVoiceMinutes();
+            const walletSec = wallet
+              ? wallet.availableSeconds + wallet.reservedSeconds
+              : peek?.seconds ?? null;
+            const view = resolveVoiceMinutesView({
+              walletSec,
+              walletAvailableSec: wallet?.availableSeconds ?? peek?.seconds ?? null,
+              access: peekMaxVoiceAccess(),
+            });
+            const minutes = voiceMinutesToDisplay(view);
+            return minutes === null ? '—' : minutesFromSeconds(minutes * 60);
           })()} {triLang(lang, {
             ru: 'мин', en: 'min', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min',
           })}
         </Text>
       </View>
 
-      <Text style={[styles.hint, { color: t.textMuted, fontSize: f.sub }]}>
-        {triLang(lang, {
-          // Единая формула с пейволом MAX («не сгорают и без дневного лимита») —
-          // короче и без «не имеют» (Библия: без канцелярита).
-          ru: 'Минуты не сгорают и без дневного лимита.',
-          en: 'Minutes never expire — no daily cap.',
-          uk: 'Хвилини не згорають і без денного ліміту.',
-          es: 'Los minutos no caducan y sin límite diario.',
-          'pt-BR': 'Os minutos não expiram e sem limite diário.',
-          vi: 'Phút không hết hạn và không có giới hạn ngày.',
-          id: 'Menit tidak kedaluwarsa dan tanpa batas harian.',
-          tr: 'Dakikalar süresiz ve günlük sınırsız.',
-          pl: 'Minuty nie wygasają i bez limitu dziennego.',
-        })}
-      </Text>
+      {/* зачем (владелец 2026-09-04): подпись «Минуты не сгорают и без дневного
+          лимита» убрана — это запрещённая подпись-расшифровка мелкими буквами
+          под заголовком. Названия пакетов и цена говорят сами за себя; текст
+          для незрячих сохранён в accessibilityHint кнопки покупки. */}
 
       {packSlots.map((slot) => {
         const pack = slot.pack;
@@ -349,7 +350,6 @@ const styles = StyleSheet.create({
   balance: { alignItems: 'center', borderRadius: 20, paddingHorizontal: 16, paddingVertical: 12 },
   balanceLabel: { fontWeight: '400' },
   balanceValue: { fontWeight: '700', marginTop: 2 },
-  hint: { lineHeight: 20, textAlign: 'center' },
   pack: { minHeight: 84, borderRadius: 18, borderWidth: 1, paddingHorizontal: 16, paddingVertical: 12, gap: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   packCopy: { flex: 1, gap: 3 },
   packMinutes: { fontWeight: '700' },

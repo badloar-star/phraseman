@@ -10,6 +10,7 @@
 
 import { getApp } from '@react-native-firebase/app';
 import { maxConnectTrace } from './max_call_connect_trace';
+import { warmAiFunction } from './ai_callable_resilience';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
@@ -490,6 +491,26 @@ export async function buildTutorMintExtras(params: MaxCallParams): Promise<Parti
     // Урок, выбранный в каталоге. Пусто — сервер сам берёт следующую цель.
     ...(params.goalId ? { requestedGoalId: params.goalId } : {}),
   };
+}
+
+/**
+ * Прогрев КОНТЕЙНЕРА минта — без резерва, без денег, без сессии.
+ *
+ * зачем (владелец 2026-09-04: «таймера 10 секунд не достаточно, он всё равно
+ * не прогревается вовремя»): maxVoiceMint живёт с minInstances:0, поэтому
+ * первый звонок платит холодный старт Cloud Run — в логах владельца минт шёл
+ * 9–12 секунд, и отсчёта не хватало ни при 5с, ни при 10с. Раньше холодный
+ * старт прикрывала заготовка минта (premint), но она СОЗДАВАЛА резерв на чужой
+ * урок и стоила 24 секунды ожидания — её удалили.
+ *
+ * warmupPing — та же защита без её цены: сервер отвечает `{ok:true}` первой же
+ * строкой, ДО авторизации и любых чтений Firestore (см. maxVoiceMint), поэтому
+ * резерв не создаётся и минуты не трогаются. Греется ровно контейнер.
+ *
+ * Никогда не бросает и ничего не ждёт — вызывать через `void`.
+ */
+export function warmMaxVoiceMint(): void {
+  void warmAiFunction('maxVoiceMint', () => maxVoiceCallable<unknown>('maxVoiceMint')({ warmupPing: true }));
 }
 
 /**

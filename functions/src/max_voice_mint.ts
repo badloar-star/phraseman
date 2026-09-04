@@ -1322,7 +1322,16 @@ export const maxVoiceMint = onCall({
       ? {
           tutor: {
             name: config.tutorName,
-            greetingInstructions: tutorGreetingInstructionsFor(maxSeconds),
+            // зачем (владелец 2026-09-04: «на каком языке он говорит — укажи
+            // для каждого урока»): язык первой реплики решается ЗДЕСЬ, поэтому
+            // уровень и оба языка передаём явно — общее правило в начале
+            // промпта модель на A1 не удерживало (см. tutorLanguageMixFor).
+            greetingInstructions: tutorGreetingInstructionsFor(
+              maxSeconds,
+              cefr,
+              learnerLangNameFor(text(data.interfaceLang, 8)),
+              maxVoiceTargetLanguageName(studyTarget),
+            ),
             lessonsSoFar: tutorMemory?.callCount ?? 0,
             homework: tutorMemory?.homework ?? [],
             nextTopic: tutorMemory?.nextTopic ?? '',

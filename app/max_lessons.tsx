@@ -55,6 +55,7 @@ import {
   prefetchMaxTutorPreview,
 } from './max_call_mint_request';
 import { isAiVoiceConsentGranted } from './max_voice_consent';
+import { warmMaxVoiceMint } from './max_call_mint_request';
 import { loadSpeechHistory, peekSpeechHistory } from './max_speech_history';
 import MaxLessonsStatsSheet from '../components/max/MaxLessonsStatsSheet';
 import VoiceMinutePackSheet from '../modules/voice_minutes/VoiceMinutePackSheet';
@@ -260,17 +261,21 @@ export default function MaxLessonsScreen() {
     return () => { active = false; };
   }, [lang, previewKey, studyTarget]);
 
-  // ── Прогрева НЕТ (владелец 2026-09-04) ────────────────────────────────────
-  // зачем: прогрев грел ВСЕГДА рекомендованный урок, а человек тапает любой —
-  // в логах владельца `premint.claim ... claimed=false` во ВСЕХ без исключения
-  // случаях: заготовка не пригодилась ни разу. Зато её резерв приходилось
-  // отпускать, а отпускание ждёт СВОЙ ЖЕ минт (release идёт через .then), и
-  // это стоило 24 секунды тишины после отсчёта (premint.foreign_release_done
-  // waitedMs=24290) плюс лишний платный минт. Оптимизация с отрицательной
-  // пользой удалена целиком: звонок минтит сам, сразу и без ожидания.
+  // ── Прогрев КОНТЕЙНЕРА, а не резерва (владелец 2026-09-04) ───────────────
+  // зачем: прежний прогрев делал НАСТОЯЩИЙ минт рекомендованного урока. В логах
+  // владельца `premint.claim ... claimed=false` во ВСЕХ случаях — заготовка не
+  // пригодилась ни разу (греется рекомендованный, тапают любой другой). Зато её
+  // резерв приходилось отпускать, а отпускание ждёт СВОЙ ЖЕ минт: отсюда
+  // premint.foreign_release_done waitedMs=24290 — минута тишины после отсчёта
+  // плюс лишний платный минт. Резервный прогрев удалён целиком.
   //
-  // Если прогрев когда-нибудь вернут — греть можно ТОЛЬКО тот урок, который
-  // человек уже выбрал (раскрытая карточка), иначе ключ снова не совпадёт.
+  // Но холодный старт остался: maxVoiceMint живёт с minInstances:0, и минт шёл
+  // 9–12 секунд — отсчёта не хватало ни при 5с, ни при 10с. Поэтому греем ровно
+  // контейнер: warmupPing отвечает ДО авторизации и чтений, резерва не создаёт,
+  // минут не трогает. Один пинг на вход в раздел, дальше TTL внутри warmAiFunction.
+  useEffect(() => {
+    warmMaxVoiceMint();
+  }, []);
 
   // ── Список: заголовки уровней + уроки ─────────────────────────────────────
   const rows = useMemo(() => {
@@ -310,11 +315,21 @@ export default function MaxLessonsScreen() {
     // отвечал voice_max_required — человек видел красную ошибку вместо
     // понятного предложения купить минуты. Решаем ДО навигации, по уже
     // прочитанному кошельку и превью: 0 доступных минут → лист пакетов.
-    if (minutesLeft === 0) {
-      DebugLogger.info('[MAX-LESSONS]', `урок ${lesson.id} не начат: минут нет (источник=${minutesView.source}) — открыт модал покупки`);
+    // зачем (владелец 2026-09-04: «297 минут доступно, а открывается модал
+    // покупки»): minutesLeft на первом кадре живёт ДО того, как прочитан тип
+    // доступа, и секунду показывает 0/trial_used даже при полном кошельке
+    // (лог 12:05:36 wallet=17850s minutes=0 → 12:05:38 minutes=297). Тап в это
+    // окно открывал пейволл человеку с оплаченными минутами. Решает КОШЕЛЁК:
+    // есть секунды — минуты есть, что бы ни говорил ещё не доехавший доступ.
+    // Пейволл показываем, только когда кошелёк ПРОЧИТАН и в нём пусто.
+    const walletHasMinutes = (walletAvailableSec ?? 0) > 0 || (walletSec ?? 0) > 0;
+    const walletRead = walletSec !== null;
+    if (!walletHasMinutes && walletRead && minutesLeft === 0) {
+      DebugLogger.info('[MAX-LESSONS]', `урок ${lesson.id} не начат: минут нет (источник=${minutesView.source}, кошелёк=${walletSec}с) — открыт модал покупки`);
       setMinuteSheetVisible(true);
       return;
     }
+    DebugLogger.info('[MAX-LESSONS]', `урок ${lesson.id} стартует: кошелёк=${walletSec === null ? 'не прочитан' : `${walletSec}с`} показано=${minutesLeft ?? '—'} источник=${minutesView.source}`);
     openingRef.current = true;
     setTimeout(() => { openingRef.current = false; }, 1200);
     // Прямо в разговор. Деньги в безопасности: сервер считает секунды от
@@ -332,7 +347,8 @@ export default function MaxLessonsScreen() {
     } as never);
     // lang вошёл в зависимости: ключ отпускаемой заготовки строится с ним.
     // minutesLeft/minutesView вошли в зависимости: по ним решается модал покупки.
-  }, [lang, mastery, minutesLeft, minutesView.source, router, studyTarget]);
+    // Кошелёк вошёл в зависимости: он теперь решает, показывать ли пейволл.
+  }, [lang, mastery, minutesLeft, minutesView.source, router, studyTarget, walletAvailableSec, walletSec]);
 
   const c = useMemo(() => ({
     back: triLang(lang, {

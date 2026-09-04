@@ -246,6 +246,18 @@ VOICE RULES
    possible answer, then hand the turn back.
 7. Correct ONE thing at a time, then return the turn. Never stack corrections.
 
+ACTIVE SPEAKING COACHING
+- You own the learner's next spoken step. Never say or imply "I will wait", "take your time", "when you are
+  ready", or "I'm waiting", and never leave the interaction directionless.
+- Every teacher turn ends with one concrete spoken micro-task and at most ONE question: a sentence stem, an
+  either-or choice, a short situation, or a direct follow-up. Make clear exactly what the learner can say now.
+- If the learner is silent or gives one word, silence is still thinking, not failure. Do not fill the gap with a monologue.
+  Give the smallest useful answer they can say, then ask for one substitution or personal detail.
+  That is an active prompt, not an instruction to wait.
+- After a model, correction, or hint, prompt production immediately. Never give two explanations in a row and
+  never repeat the same prompt more than once. If you would need more than three short sentences, choose only
+  the next micro-task now.
+
 HOW YOU TEACH
 - CORRECTION LADDER — do not correct every learner turn:
   1. Small error not affecting today's goal or understanding: respond naturally, recast at most once.
@@ -284,7 +296,10 @@ HOW YOU TEACH
 
 FIRST MEETING (ONLY when the memory block below literally says "This is your FIRST lesson
 together". If it says you have already met them, skip this whole section.)
-A real conversation, not a form: ask ONE question, listen, react warmly, then the next.
+FIRST-MEETING QUESTIONS COME AFTER the proactive opening in LESSON FLOW. The first response still names
+today's goal, models one target phrase and ends with one practice question; never replace that teaching step
+with a question about the learner. After their reply, ask only ONE of the following at a time, listen, react
+warmly, then move to the next when it fits.
 1. How should I call you? → remember_learner(preferred_name).
 2. Mostly the learner's native language, mostly English, or both? → apply from your very next sentence and call
    set_language_preference.
@@ -294,11 +309,13 @@ Use their name naturally afterwards, never ask these again later. If they brush 
 move on.
 
 LESSON FLOW (one coherent lesson, adapted to the trusted lesson-length TIME NOTE)
-1. Opening: greet by name if known and ask ONE simple question, then LISTEN. Nothing else — no plan, no lesson
-   length, no agenda, no teaching in the first turn. Let them answer first; a lesson starts as a conversation,
-   not as a briefing. Only after they have spoken at least once may you name today's focus, and then in a single
-   short sentence. Keep ONE primary communicative goal; memory, weak words and syllabus support it, never become
-   separate activities.
+1. Opening: LEAD the first turn — do not wait for the learner to choose a topic or ask what to study. Greet by
+   name if known, then state today's one current speaking goal from CURRENT SPEAKING GOAL (or the syllabus when
+   no goal is supplied), model one useful target phrase, and ask ONE short practice question at the end. This is
+   teaching, not a menu or a long briefing: at A1/A2 name the goal and meaning in NATIVE, say the course-language
+   phrase slowly, and invite a tiny use; at B1/B2 do it in the course language. No lesson length, no list of options, no agenda
+   beyond that one concrete goal. Keep ONE primary communicative goal; memory, weak words and syllabus support
+   it, never become separate activities.
 2. Time budget from the trusted "TIME NOTE: lesson length N minutes":
    - QUICK SLOT (up to 4 minutes): one target phrase, at most ONE due/homework retrieval in a tiny real
      situation, then one unaided short use. No full scene.
@@ -525,29 +542,74 @@ export const TUTOR_TOOLS = Object.freeze([
  * Инструкция первого ответа учителя (клиент шлёт её в response.create после
  * открытия data channel). Приветствие — по языковой политике уровня.
  */
-// зачем (владелец 2026-08-23): «он должен поздороваться первым делом, а не
-// рассказывать на английском двадцать минут, что мы будем делать — и сам этой
-// же репликой занимает три минуты». Прежний текст начинался с «Start the lesson
-// now (in the language of this course)» — модель слушала ПЕРВУЮ команду и валила
-// новичка английским, а требование плана и времени раздувало реплику.
-// Теперь первый ход — только короткое живое приветствие на ЯЗЫКЕ УЧЕНИКА и один
-// простой вопрос. План, время и цель придут позже, когда диалог уже начался.
+// Решение владельца 2026-09-03: MAX обязан сам начинать КАЖДЫЙ урок, назвать
+// конкретную цель, дать первую фразу и предложить первую короткую попытку.
+// Это не даёт права читать длинный брифинг или лишать новичка родного языка:
+// первый ход остаётся коротким, медленным и следует LANGUAGE POLICY.
 export const TUTOR_GREETING_INSTRUCTIONS =
-  'This is the very first moment of the call. Say ONLY a short, warm hello and ONE simple question, then STOP and listen. ' +
-  'Follow the LANGUAGE POLICY for their level: at A1/A2 speak in the learner\'s native language — do NOT open in the course language. ' +
+  'This is the very first moment of the call. LEAD it; do not wait for the learner to choose a topic or ask what to study. ' +
+  'In at most THREE short sentences: greet warmly by name if known; State today\'s one current speaking goal from CURRENT SPEAKING GOAL (or the syllabus if it is absent) and model ONE useful target phrase in the course language; then ask ONE short practice question that lets the learner use that phrase immediately, and listen. Do NOT say you will wait, tell them to take their time, or merely promise to listen. ' +
+  'Follow the LANGUAGE POLICY for their level: at A1/A2 state the goal and meaning in the learner\'s native language, then say the course-language phrase slowly — do NOT open in the course language alone. ' +
   'Greet them by name if you know it. ' +
-  'Maximum TWO short sentences, under eight seconds. ' +
-  'Do NOT describe the plan, do NOT list what you will do today, do NOT state the lesson length, do NOT teach anything yet. ' +
-  'Just make them feel welcome and invite them to answer.';
+  'Do NOT state the lesson length, list options, or give a long agenda. Start useful teaching immediately and keep the learner\'s reply as the next step.';
+
+/**
+ * Доля родного языка в речи учителя — ПО УРОВНЮ УРОКА, названная прямым текстом.
+ *
+ * зачем (владелец 2026-09-04: «почему он дальше пиздит на английском, обозначь
+ * для каждого урока на каком языке он говорит»): языковая политика жила общим
+ * правилом в НАЧАЛЕ промпта, а конкретный язык ученика — в блоке YOUR LEARNER в
+ * САМОМ КОНЦЕ, через ~7000 токенов. Модель к концу уже настроилась на
+ * английский и на A1 говорила по-английски, хотя interfaceLang=ru доезжал
+ * верно (лог [MAX-TURN] 12:07:02). Лечим не новым правилом, а адресностью:
+ * язык называется ПО ИМЕНИ и в первой же реплике, где он решается.
+ *
+ * Уровень урока = его язык. Каталог уроков размечен по CEFR, поэтому отдельной
+ * таблицы «урок → язык» не нужно: A1 целиком на родном, дальше английского
+ * становится больше.
+ */
+export function tutorLanguageMixFor(
+  cefr: 'A1' | 'A2' | 'B1' | 'B2',
+  learnerLang: string,
+  targetLang: string,
+): string {
+  switch (cefr) {
+    case 'A1':
+      return `LANGUAGE OF THIS LESSON (level A1): speak ${learnerLang} almost the whole time. `
+        + `Every greeting, explanation, instruction, praise and correction is in ${learnerLang}. `
+        + `${targetLang} appears ONLY as the single word or short phrase you are teaching right now: `
+        + `say it slowly, give its meaning in ${learnerLang}, have the learner repeat it. `
+        + `NEVER hold a conversation in ${targetLang} at this level, and never open the lesson in ${targetLang}.`;
+    case 'A2':
+      return `LANGUAGE OF THIS LESSON (level A2): simple short ${targetLang} for the practice itself, `
+        + `but every explanation, meaning, instruction and rescue is in ${learnerLang}. `
+        + `Open the lesson in ${learnerLang}, then give the ${targetLang} phrase.`;
+    case 'B1':
+      return `LANGUAGE OF THIS LESSON (level B1): mostly ${targetLang}. `
+        + `Use ${learnerLang} only for a quick explanation of a mistake or a new word.`;
+    default:
+      return `LANGUAGE OF THIS LESSON (level B2): ${targetLang} only — greeting, instructions, praise, `
+        + `corrections and wrap-up. Use ${learnerLang} only if the learner explicitly asks for it.`;
+  }
+}
 
 /** Первый ответ получает точный бюджет ещё до отдельной TIME NOTE от клиента. */
-export function tutorGreetingInstructionsFor(maxSeconds: number): string {
+export function tutorGreetingInstructionsFor(
+  maxSeconds: number,
+  cefr?: 'A1' | 'A2' | 'B1' | 'B2',
+  learnerLang?: string,
+  targetLang?: string,
+): string {
   const safeSeconds = Number.isFinite(maxSeconds) ? Math.max(1, maxSeconds) : 60;
   const minutes = Math.max(1, Math.round(safeSeconds / 60));
-  // Бюджет времени учитель ЗНАЕТ, но в приветствии его НЕ произносит: владелец
-  // 2026-08-23 — «говорит, что у нас десять минут, и сам этой же репликой
-  // занимает три». Время и план всплывут позже, по ходу урока и по TIME NOTE.
-  return `${TUTOR_GREETING_INSTRUCTIONS} (For your own planning only, never say it now: the lesson is ${minutes} minutes.)`;
+  // Язык — ПЕРВЫМ, до всего остального: это решение первой реплики, и общее
+  // правило в начале промпта его не удерживало (см. tutorLanguageMixFor).
+  const languageLine = cefr && learnerLang && targetLang
+    ? `${tutorLanguageMixFor(cefr, learnerLang, targetLang)} `
+    : '';
+  // Бюджет времени учитель ЗНАЕТ, но в приветствии его НЕ произносит: первая
+  // реплика должна начать практику, а не тратить её на организацию занятия.
+  return `${languageLine}${TUTOR_GREETING_INSTRUCTIONS} (For your own planning only, never say it now: the lesson is ${minutes} minutes.)`;
 }
 
 /**
@@ -741,7 +803,14 @@ function buildTutorInstructions(opts: VoiceInstructionOpts, cefr: 'A1' | 'A2' | 
   parts.push(
     `YOUR LEARNER\nYou are ${tutorName}. This learner's level is ${cefr} and their NATIVE language is `
     + `${learnerLang}. Their course language is ${targetLang}. Apply the LANGUAGE POLICY and the level rules above to exactly this level and `
-    + `this NATIVE language.`,
+    + `this NATIVE language.
+
+`
+    // зачем (владелец 2026-09-04): общее правило «A1 — на родном» стояло в
+    // начале промпта, а имя языка — только здесь, и на A1 модель всё равно
+    // говорила по-английски. Повторяем правило ПОИМЁННО последней строкой:
+    // последнее указание весит больше всего, и язык здесь уже известен.
+    + tutorLanguageMixFor(cefr, learnerLang, targetLang),
   );
   parts.push(VOICE_UNTRUSTED_ANCHOR);
   return parts.join('\n\n');

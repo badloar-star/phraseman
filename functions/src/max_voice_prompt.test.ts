@@ -4,6 +4,7 @@ import { SAFETY_SYSTEM_INSTRUCTION } from './ai_safety';
 import {
   TUTOR_GREETING_INSTRUCTIONS,
   tutorGreetingInstructionsFor,
+  tutorLanguageMixFor,
   TUTOR_TOOLS,
   VOICE_COMPANION_BLOCK,
   VOICE_REGULATED_ADVICE_HARD_STOP,
@@ -282,7 +283,27 @@ describe('tutor instructions', () => {
     expect(instr).toContain('Never show a recast when recognition is uncertain');
   });
 
-  it('адаптирует один ясный план к фактическому времени и не перегружает начало', () => {
+  it('язык урока назван ПОИМЁННО и по уровню — иначе A1 уезжает в английский', () => {
+    // Владелец 2026-09-04: «почему он дальше пиздит на английском, обозначь для
+    // каждого урока на каком языке он говорит». interfaceLang=ru доезжал верно
+    // (лог [MAX-TURN] 12:07:02), но общее правило «A1 — на родном» стояло в
+    // начале промпта, а имя языка — в YOUR LEARNER через ~7000 токенов.
+    const a1 = tutorLanguageMixFor('A1', 'Russian', 'English');
+    expect(a1).toContain('Russian');
+    expect(a1).toContain('A1');
+    expect(a1).toMatch(/NEVER hold a conversation in English/u);
+
+    const b2 = tutorLanguageMixFor('B2', 'Russian', 'English');
+    expect(b2).toContain('English only');
+
+    // Приветствие — первая реплика — обязано нести это правило: именно там
+    // решается язык, и общее правило в начале промпта его не удерживало.
+    const greeting = tutorGreetingInstructionsFor(600, 'A1', 'Russian', 'English');
+    expect(greeting).toContain('Russian');
+    expect(greeting).toContain('LANGUAGE OF THIS LESSON');
+  });
+
+  it('ведёт урок по ясному плану и начинает обучение с первого ответа', () => {
     const instr = buildVoiceInstructions({
       cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Ukrainian',
     });
@@ -291,16 +312,36 @@ describe('tutor instructions', () => {
     expect(instr).toContain('EXTENDED PRACTICE (more than 15 minutes)');
     expect(instr).not.toContain('for every phrase in PHRASES DUE');
     expect(instr).toContain('ONE primary communicative goal');
-    // зачем (владелец 2026-08-23): «он должен поздороваться первым делом, а не
-    // рассказывать на английском, что мы будем делать, занимая три минуты».
-    // Первый ход — только приветствие и один вопрос; план и время под запретом.
-    expect(instr).toContain('no plan, no lesson\n   length, no agenda');
-    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('Say ONLY a short, warm hello and ONE simple question');
+    // Первый ход должен не ждать инициативы ученика: MAX кратко называет
+    // практическую цель выбранного урока, моделирует одну фразу и сразу
+    // предлагает короткую попытку. Время по-прежнему не произносится.
+    expect(instr).toContain('state today\'s one current speaking goal');
+    expect(instr).toContain('model one useful target phrase');
+    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('State today\'s one current speaking goal');
+    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('model ONE useful target phrase');
+    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('in the course language');
+    expect(TUTOR_GREETING_INSTRUCTIONS).not.toContain('English phrase');
     expect(TUTOR_GREETING_INSTRUCTIONS).toContain('do NOT open in the course language');
-    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('Do NOT describe the plan');
+    expect(TUTOR_GREETING_INSTRUCTIONS).not.toContain('Do NOT describe the plan');
+    expect(instr).toContain('FIRST-MEETING QUESTIONS COME AFTER the proactive opening');
     // Бюджет времени учитель знает, но вслух в приветствии не произносит.
     expect(tutorGreetingInstructionsFor(180)).toContain('3 minutes');
     expect(tutorGreetingInstructionsFor(180)).toContain('never say it now');
+  });
+
+  it('коротко вытягивает речь ученика, а не заполняет паузы собой', () => {
+    const instr = buildVoiceInstructions({
+      cefr: 'A2', format: 'tutor', personaName: 'Max', personaRole: '', learnerLangName: 'Russian',
+    });
+
+    expect(instr).toContain('ACTIVE SPEAKING COACHING');
+    expect(instr).toContain("You own the learner's next spoken step.");
+    expect(instr).toContain('Never say or imply "I will wait"');
+    expect(instr).toContain('Every teacher turn ends with one concrete spoken micro-task');
+    expect(instr).toContain('If the learner is silent or gives one word');
+    expect(instr).toContain('Do not fill the gap with a monologue.');
+    expect(instr).toContain('prompt production immediately');
+    expect(TUTOR_GREETING_INSTRUCTIONS).toContain('Do NOT say you will wait');
   });
 
   it('использует лестницу исправлений и оставляет ученику один осмысленный выбор', () => {

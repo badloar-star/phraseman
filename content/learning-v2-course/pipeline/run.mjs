@@ -774,7 +774,7 @@ function main() {
     }
     if (cur.s < 6) WARN("сессия не сошлась к PASS×3 за 2 круга — локализую, но нужна ручная проверка");
     const loc = stageLocalize(S, finalRu);
-    write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, locales: loc, at: new Date().toISOString() }, null, 2));
+    write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, converged: cur.s >= 6, needsHumanReview: cur.s < 6, locales: loc, at: new Date().toISOString() }, null, 2));
     return;
   }
   LOG("ранний выход: неизвестная команда", cmd);

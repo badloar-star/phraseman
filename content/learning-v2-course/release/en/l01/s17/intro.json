@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "`He is` / `She is` + слово"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Слово из трёх букв, которое не выкинуть"
+      },
+      "bodyByLocale": {
+        "ru": "`He` — «он», `she` — «она». Между человеком и словом о нём встаёт `is`.\n\nПо-русски «он высокий» обходится двумя словами, по-английски нужно три: `He is tall`.\n\nВыбросить `is` тянет всех. Но `He tall` звучит как фраза, которую оборвали на полуслове."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Начальник кивает на самого высокого парня. Скажите про него."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-17:intro1:r1",
+              "text": "He is tall."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro1:r2",
+              "text": "He tall."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro1:r3",
+              "text": "He am tall."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Начальник кивает на самого высокого парня. Скажите про него."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`nice` и `friendly` — не одно и то же"
+      },
+      "bodyByLocale": {
+        "ru": "`nice` — «хороший». Человек нормальный, день вам не портит.\n\n`friendly` — «дружелюбный»: подходит первым, зовёт на обед.\n\nРазница в том, какой человек сам по себе и как он поворачивается к людям. Молчун в углу вполне может быть `nice` — просто вы узнаете об этом через полгода."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Начальник показывает на женщину, которая уже дважды подошла к вам поболтать. Скажите про неё."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-17:intro2:r1",
+              "text": "She is friendly."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro2:r2",
+              "text": "She is nice."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro2:r3",
+              "text": "He is friendly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Начальник показывает на женщину, которая уже дважды подошла к вам поболтать. Скажите про неё."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`new` — и про куртку, и про человека"
+      },
+      "bodyByLocale": {
+        "ru": "`new` — «новый». Про куртку, про телефон — и про людей тоже.\n\nТолько `She is new` не значит, что её вчера достали из коробки. На работе это «недавно здесь»: вторая неделя, до сих пор ищет туалет.\n\n`kind` — «добрый», и это уже про поступки: помогает, когда его не просили."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Начальник представляет женщину, которая вышла на работу в прошлый понедельник. Скажите про неё."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-17:intro3:r1",
+              "text": "She is new."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro3:r2",
+              "text": "She new."
+            },
+            {
+              "responseId": "en:lesson-01:session-17:intro3:r3",
+              "text": "She is kind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Начальник представляет женщину, которая вышла на работу в прошлый понедельник. Скажите про неё."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6a44941b40f8ae9d659975d35cf69c780bbf12f029d4c65be85b48d1cb6d04fd"
+}

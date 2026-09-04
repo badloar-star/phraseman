@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Он — he, она — she, и между ними и словом всегда нужно вставлять is. tall — это про рост.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "nice — просто хороший человек, а friendly — тот, кто сам подходит и общается. Это разные вещи.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "new про человека значит, что он недавно тут работает, а не что он новая вещь.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 word_card tall",
+      "what_i_understood": "tall = высокий",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 listen_choose tall",
+      "what_i_understood": "выбрал по звучанию, различил от tell и ball",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 word_card nice",
+      "what_i_understood": "nice = приятный",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 listen_choose nice",
+      "what_i_understood": "выбрал nice, отличил от night и mice",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 phrase_builder He is tall",
+      "what_i_understood": "собрал фразу правильно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 gap She ___ nice",
+      "what_i_understood": "поставил is, помню что am только с I",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 word_card friendly",
+      "what_i_understood": "friendly = дружелюбный",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 word_card new",
+      "what_i_understood": "new про человека = недавно тут",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 listen_build She is friendly",
+      "what_i_understood": "собрал по звуку, лишняя плитка He не пригодилась",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 gap He is ___ (new)",
+      "what_i_understood": "выбрал new, а не tall/nice, потому что речь про то что он только пришёл",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 word_card quiet",
+      "what_i_understood": "quiet = тихий, это слово я уже видел раньше, но тут просто напомнили",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 phrase_builder He is quiet (лишняя not)",
+      "what_i_understood": "не добавил not, потому что он и правда молчит весь день",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 speed_match",
+      "what_i_understood": "соединил все 4 слова с переводом без ошибок",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 word_card kind",
+      "what_i_understood": "kind = добрый, помогает без просьбы",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 gap She is ___ (kind)",
+      "what_i_understood": "выбрал kind, потому что она помогла сама, без просьбы",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 word_card tired",
+      "what_i_understood": "tired = усталый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 phrase_builder He is tired",
+      "what_i_understood": "собрал фразу про парня у окна, который зевает",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "he/she + is (раньше знал только I am / You are)",
+    "новое слово tall",
+    "новое слово nice и чем оно отличается от friendly",
+    "новое слово friendly",
+    "новое слово new в значении «недавно здесь», а не только «новая вещь»"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "разница между nice и friendly объяснена по-человечески: какой человек сам по себе против как он ведёт себя с другими — это реально помогло, а не просто два перевода подряд",
+    "сцена с обходом офиса в первый день понятна и не надуманная — легко представить, как показываешь пальцем и называешь коллег"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — начальник водит по офису в первый рабочий день и представляет коллег, я говорю короткую фразу про каждого. Это обычная ситуация, не притянутая за уши.",
+  "would_continue": "да — было легко следить, не было ощущения, что меня обманывают незнакомым словом, и я реально понял разницу he/she + is, а не просто заучил фразу",
+  "verdict": "PASS",
+  "verdict_reason": "все задания выполнимы честно по известным словам и правилам, ничего не отсылает к опыту, которого у меня нет, и я ушёл с новым пониманием he is / she is плюс пятью словами."
+}

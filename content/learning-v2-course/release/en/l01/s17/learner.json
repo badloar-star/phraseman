@@ -1,0 +1,855 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-17:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tall",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tall",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:i01:audio",
+          "transcript": "tall"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:i01:r1",
+            "targetText": "tall",
+            "meaningByLocale": {
+              "ru": "«высокий». Про рост человека: приходится нагибаться в дверях."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tall",
+          "definitionByLocale": {
+            "ru": "«высокий». Про рост человека: приходится нагибаться в дверях."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-17:i02:r1",
+          "text": "tall"
+        },
+        {
+          "responseId": "en:lesson-01:session-17:i02:r2",
+          "text": "tell"
+        },
+        {
+          "responseId": "en:lesson-01:session-17:i02:r3",
+          "text": "ball"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — tall",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:i02:audio",
+          "transcript": "tall"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:i02:r1",
+            "targetText": "tall",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i02:r2",
+            "targetText": "tell",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i02:r3",
+            "targetText": "ball",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-17:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — tall",
+            "feedbackByLocale": {
+              "ru": "Другая гласная: `tall` — «тол», `tell` — «тэл»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — tall",
+            "feedbackByLocale": {
+              "ru": "Начинается с «б». `tall` — с «т»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:i03:audio",
+          "transcript": "nice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:i03:r1",
+            "targetText": "nice",
+            "meaningByLocale": {
+              "ru": "«приятный». Общая оценка человека. Молчаливый человек тоже может быть `nice`."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nice",
+          "definitionByLocale": {
+            "ru": "«приятный». Общая оценка человека. Молчаливый человек тоже может быть `nice`."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-17:i04:r1",
+          "text": "nice"
+        },
+        {
+          "responseId": "en:lesson-01:session-17:i04:r2",
+          "text": "night"
+        },
+        {
+          "responseId": "en:lesson-01:session-17:i04:r3",
+          "text": "mice"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — nice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:i04:audio",
+          "transcript": "nice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:i04:r1",
+            "targetText": "nice",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i04:r2",
+            "targetText": "night",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i04:r3",
+            "targetText": "mice",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-17:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — nice",
+            "feedbackByLocale": {
+              "ru": "В конце «т». `nice` заканчивается на «с»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — nice",
+            "feedbackByLocale": {
+              "ru": "Начинается с «м». Слушайте первый звук: у `nice` он «н»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — начальник показывает на парня под потолок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — начальник показывает на парня под потолок",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is tall.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — начальник показывает на парня под потолок"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "tall"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — про женщину, с которой легко",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-17:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-17:i06:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-17:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — про женщину, с которой легко",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — про женщину, с которой легко"
+        },
+        "gappedTargetPhrase": "She ___ nice.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-17:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставьте слово — про женщину, с которой ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-17:i06:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — про женщину, с которой ",
+            "feedbackByLocale": {
+              "ru": "`am` живёт только рядом с `I`. Про неё — `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — про женщину, с которой ",
+            "feedbackByLocale": {
+              "ru": "`are` — для «вы». Про неё одну — `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — friendly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — friendly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:i07:audio",
+          "transcript": "friendly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:i07:r1",
+            "targetText": "friendly",
+            "meaningByLocale": {
+              "ru": "«дружелюбный». Подходит первым и сам начинает разговор."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "friendly",
+          "definitionByLocale": {
+            "ru": "«дружелюбный». Подходит первым и сам начинает разговор."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — new",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — new",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:i08:audio",
+          "transcript": "new"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:i08:r1",
+            "targetText": "new",
+            "meaningByLocale": {
+              "ru": "«новый». Про человека — «недавно здесь, работает вторую неделю»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "new",
+          "definitionByLocale": {
+            "ru": "«новый». Про человека — «недавно здесь, работает вторую неделю»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «она дружелюбная»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «она дружелюбная»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:i09:audio",
+          "transcript": "She is friendly."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is friendly.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "friendly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — парень с вами не заговаривал, но и не мешал никому",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-17:i10:r1",
+          "text": "nice"
+        },
+        {
+          "responseId": "en:lesson-01:session-17:i10:r2",
+          "text": "friendly"
+        },
+        {
+          "responseId": "en:lesson-01:session-17:i10:r3",
+          "text": "new"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — парень с вами не заговаривал, но и не мешал никому",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — парень с вами не заговаривал, но и не мешал никому"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-17:i10:r1",
+            "text": "nice"
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i10:r2",
+            "text": "friendly"
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i10:r3",
+            "text": "new"
+          }
+        ],
+        "testedDimension": "Вставьте слово — парень с вами не загова",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-17:i10:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — парень с вами не загова",
+            "feedbackByLocale": {
+              "ru": "Это про того, кто подходит первым. А он молчал."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — парень с вами не загова",
+            "feedbackByLocale": {
+              "ru": "«Недавно пришёл» — не про характер."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tired",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:i11:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tired",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:i11:audio",
+          "transcript": "tired"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:i11:r1",
+            "targetText": "tired",
+            "meaningByLocale": {
+              "ru": "«усталый». Уже с утра выглядит так, будто рабочий день кончился."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tired",
+          "definitionByLocale": {
+            "ru": "«усталый». Уже с утра выглядит так, будто рабочий день кончился."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — парень у окна зевает третий раз подряд",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-17:i12:r1",
+          "text": "tired"
+        },
+        {
+          "responseId": "en:lesson-01:session-17:i12:r2",
+          "text": "new"
+        },
+        {
+          "responseId": "en:lesson-01:session-17:i12:r3",
+          "text": "tall"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — парень у окна зевает третий раз подряд",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — парень у окна зевает третий раз подряд"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-17:i12:r1",
+            "text": "tired"
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i12:r2",
+            "text": "new"
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i12:r3",
+            "text": "tall"
+          }
+        ],
+        "testedDimension": "Вставьте слово — парень у окна зевает тр",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-17:i12:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — парень у окна зевает тр",
+            "feedbackByLocale": {
+              "ru": "«Недавно пришёл» — не про зевоту."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — парень у окна зевает тр",
+            "feedbackByLocale": {
+              "ru": "Про рост, а речь о том, что он клюёт носом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-17:i13:p1",
+            "target": "tall",
+            "meaningByLocale": {
+              "ru": "высокий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-17:i13:p2",
+            "target": "nice",
+            "meaningByLocale": {
+              "ru": "приятный"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-17:i13:p3",
+            "target": "new",
+            "meaningByLocale": {
+              "ru": "новый"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-17:i13:p4",
+            "target": "friendly",
+            "meaningByLocale": {
+              "ru": "дружелюбный"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tall",
+          "nice",
+          "new",
+          "friendly"
+        ],
+        "rightColumn": [
+          "высокий",
+          "приятный",
+          "новый",
+          "дружелюбный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — quiet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-17:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — quiet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-17:i14:audio",
+          "transcript": "quiet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-17:i14:r1",
+            "targetText": "quiet",
+            "meaningByLocale": {
+              "ru": "«тихий». Человек, который за весь день не сказал ни слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quiet",
+          "definitionByLocale": {
+            "ru": "«тихий». Человек, который за весь день не сказал ни слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — парень весь день молчит за своим столом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — парень весь день молчит за своим столом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is quiet.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — парень весь день молчит за своим столом"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "quiet"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — она помогла найти кабинет и принесла кофе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-17:i16:r1",
+          "text": "kind"
+        },
+        {
+          "responseId": "en:lesson-01:session-17:i16:r2",
+          "text": "tired"
+        },
+        {
+          "responseId": "en:lesson-01:session-17:i16:r3",
+          "text": "tall"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — она помогла найти кабинет и принесла кофе",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — она помогла найти кабинет и принесла кофе"
+        },
+        "gappedTargetPhrase": "She is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-17:i16:r1",
+            "text": "kind"
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i16:r2",
+            "text": "tired"
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i16:r3",
+            "text": "tall"
+          }
+        ],
+        "testedDimension": "Вставьте слово — она помогла найти кабин",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-17:i16:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — она помогла найти кабин",
+            "feedbackByLocale": {
+              "ru": "Это «устала», а она наоборот на ногах и помогает."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-17:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — она помогла найти кабин",
+            "feedbackByLocale": {
+              "ru": "Про рост. Помогла — это `kind`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-17:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — тот же парень у окна к обеду совсем сник",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — тот же парень у окна к обеду совсем сник",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is tired.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — тот же парень у окна к обеду совсем сник"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fb2aa3efad5d35b677d56fe766e70f824f9477a2378603313efae7868141f5ea"
+}

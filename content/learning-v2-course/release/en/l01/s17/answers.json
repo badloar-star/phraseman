@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-17:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i02",
+    "correctText": "tall",
+    "correctResponseId": "en:lesson-01:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i04",
+    "correctText": "nice",
+    "correctResponseId": "en:lesson-01:session-17:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i05",
+    "correctText": "He is tall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i09",
+    "correctText": "She is friendly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i10",
+    "correctText": "nice",
+    "correctResponseId": "en:lesson-01:session-17:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i12",
+    "correctText": "tired",
+    "correctResponseId": "en:lesson-01:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i13",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i15",
+    "correctText": "He is quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i16",
+    "correctText": "kind",
+    "correctResponseId": "en:lesson-01:session-17:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-17:i17",
+    "correctText": "He is tired.",
+    "correctResponseId": null
+  }
+]

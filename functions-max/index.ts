@@ -1,4 +1,36 @@
 // ═══════════════════════════════════════════════════════════════════════════
+// ⛔ РАЗДЕЛ MAX ЗАКОНСЕРВИРОВАН — НЕ ВОССТАНАВЛИВАТЬ БЕЗ КОМАНДЫ ВЛАДЕЛЬЦА
+//
+// Решение владельца 2026-09-04. Дословно: «Раздел макс надо скрыть и отключить
+// все кроны инстансы и всё что тратит наши деньги… и поставь флаги для всех
+// следующих нейронок, что раздел закрыт и его не восстанавливать без
+// специальной команды».
+//
+// ПОВОД (факты из продовых данных, 162 звонка / 46 пользователей за 3 недели):
+//   • 96 звонков из 162 (59%) закончились НА НУЛЕ СЕКУНД — разговор не начинался;
+//   • средняя длительность 27 секунд, дольше минуты продержались лишь 29;
+//   • 37 из 63 аккаунтов сожгли пожизненный пробник впустую;
+//   • суммарно наговорено 73 минуты на ВСЕХ пользователей за три недели.
+// Раздел не работал, но стоил денег: watchdog крутился каждые 10 минут
+// (~4320 запусков в месяц) плюс оплата OpenAI.
+//
+// ЧТО СДЕЛАНО: все функции MAX сняты с деплоя (экспорты ниже закомментированы).
+// Код НЕ удалён намеренно — он связан с авторизацией, XP и синхронизацией,
+// а весит вместе с ассетами ~560 КБ. Вырезать его = риск сломать приложение
+// ради полумегабайта.
+//
+// ⛔ БУДУЩИМ СЕССИЯМ (Claude, Codex, любой ИИ): НЕ РАСКОММЕНТИРОВЫВАТЬ.
+// Возврат экспортов = возврат трат по расписанию. Раздел включается ТОЛЬКО по
+// прямой и явной команде владельца вида «включи MAX обратно». Ни «починка
+// сломанного импорта», ни «раз уж рядом правлю», ни зелёный тест не являются
+// такой командой. Сторож: tests/max_section_sealed_contract.test.ts.
+//
+// Как вернуть, когда владелец скажет: снять комментарии ниже, вернуть плитку в
+// app/(tabs)/home.tsx (искать MAX_SECTION_SEALED) и задеплоить кодбазу max.
+// ═══════════════════════════════════════════════════════════════════════════
+export const MAX_SECTION_SEALED_BY_OWNER_2026_09_04 = true;
+
+// ═══════════════════════════════════════════════════════════════════════════
 // functions-max/index.ts — отдельная кодбаза голосового учителя MAX.
 //
 // зачем: владелец 2026-08-23. Cloud Functions gen2 при старте ЛЮБОГО
@@ -17,8 +49,8 @@
 // месте и попадает в обе сборки.
 // ═══════════════════════════════════════════════════════════════════════════
 
-export { maxVoicePreflight, maxVoiceMint } from '../functions/src/max_voice_mint';
-export { maxVoiceHeartbeat, maxVoiceSessionEnd } from '../functions/src/max_voice_session_end';
+// export { maxVoicePreflight, maxVoiceMint } from '../functions/src/max_voice_mint';
+// export { maxVoiceHeartbeat, maxVoiceSessionEnd } from '../functions/src/max_voice_session_end';
 // зачем (владелец 2026-09-02, аудит расходов): maxVoiceProviderHealth снят с
 // деплоя. Замер за 30 дней: проба НЕ поймала ни одной деградации OpenAI — все
 // её ошибки в логах это падения деплоя самой пробы («Quota exceeded for CPU»).
@@ -26,13 +58,13 @@ export { maxVoiceHeartbeat, maxVoiceSessionEnd } from '../functions/src/max_voic
 // разбирает зависшие живые звонки, а отказ минта уходит в Telegram-алерт.
 // Проба стоила 720 запусков и 720 минтов ключа OpenAI в месяц ради нуля пользы.
 // Код в max_voice_watchdog.ts оставлен: вернуть = снова экспортировать здесь.
-export { maxVoiceWatchdog } from '../functions/src/max_voice_watchdog';
-export { maxVoiceUsageRecon } from '../functions/src/max_voice_usage_recon';
-export { maxVoiceSafetyReport } from '../functions/src/max_voice_safety';
-export { maxVoiceFinalize } from '../functions/src/max_voice_finalize';
-export {
-  maxVoiceGetMemory,
-  maxVoiceUpdateMemory,
-  maxVoiceDeleteMemoryItem,
-  maxVoiceClearMemory,
-} from '../functions/src/max_voice_memory_controls';
+// export { maxVoiceWatchdog } from '../functions/src/max_voice_watchdog';
+// export { maxVoiceUsageRecon } from '../functions/src/max_voice_usage_recon';
+// export { maxVoiceSafetyReport } from '../functions/src/max_voice_safety';
+// export { maxVoiceFinalize } from '../functions/src/max_voice_finalize';
+// export {
+//   maxVoiceGetMemory,
+//   maxVoiceUpdateMemory,
+//   maxVoiceDeleteMemoryItem,
+//   maxVoiceClearMemory,
+// } from '../functions/src/max_voice_memory_controls';

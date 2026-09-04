@@ -3399,7 +3399,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // подпрыгнула, а не раньше вместе с пересчётом опыта.
         const level = homeLevelUpCelebration.displayLevel ?? accountLevel;
         const menuImages = getHomeMenuImages(themeMode);
-        const maxOrbLayers = getMaxHomeOrbLayers(themeMode);
+        // зачем (владелец 2026-09-04, консервация MAX): орбы — 375 КБ картинок
+        // на все темы. Пока раздел запечатан, они не нужны ни одного кадра:
+        // считаем их ТОЛЬКО когда вход реально виден. Полностью из бандла их
+        // убрать нельзя, пока жив код раздела (Metro тянет статические require),
+        // но со старта Главной они уходят.
+        const maxOrbLayers = maxVoiceVisible ? getMaxHomeOrbLayers(themeMode) : null;
         const lastLessonImage = getHomeLastLessonImage(themeMode);
         const homeMistakesImage = getHomeMistakesImage(themeMode);
         // зачем: имя урока раньше «запекалось» в состояние lastLesson при монтировании

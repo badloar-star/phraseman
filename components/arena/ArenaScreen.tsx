@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useEffect } from 'react';
-import { PixelRatio, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type ViewStyle } from 'react-native';
+import React from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type ViewStyle } from 'react-native';
 import { usePathname, useRouter } from 'expo-router';
 import { type TournamentBackdropVariant } from '../ui/V2Backdrop';
 import ScreenGradient from '../ScreenGradient';
@@ -10,7 +10,6 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { navigationFallbackForPath, safeRouterBack } from '../../app/navigation_back';
 import { useLang } from '../LangContext';
 import { arenaText } from '../../modules/arena/copy';
-import { DebugLogger } from '../../app/debug-logger';
 
 export function ArenaScreen({
   title,
@@ -60,19 +59,6 @@ export function ArenaScreen({
   const router = useRouter();
   const pathname = usePathname();
   const { lang } = useLang();
-  /*
-   * Диагностика боковых полос (владелец 2026-09-03: «по бокам есть какие-то
-   * рамки и всё обрезается»). Печатает фактическую геометрию: ширину окна,
-   * боковые вставки и то, упёрся ли контент в maxWidth. Без этих цифр отличить
-   * «ограничение ширины» от «вставок» и от артефакта записи экрана нельзя.
-   *
-   * ВРЕМЕННО: снять после того, как владелец пришлёт цифры и полосы будут
-   * объяснены. Пишется один раз на смену размеров, а не каждый кадр.
-   */
-  useEffect(() => {
-    const contentWidth = Math.min(window.width - 36, 620);
-    DebugLogger.info('[ARENA-FRAME]', `окно=${window.width}x${window.height} вставки L/R=${insets.left}/${insets.right} T/B=${insets.top}/${insets.bottom} ширина контента=${contentWidth} упёрлось в maxWidth=${String(window.width - 36 > 620)} scale=${PixelRatio.get()}`);
-  }, [insets.bottom, insets.left, insets.right, insets.top, window.height, window.width]);
   const content = (
     <View style={[styles.content, !scroll ? styles.contentFixed : null]}>
       <View style={styles.header}>

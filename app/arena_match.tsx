@@ -581,10 +581,20 @@ function ArenaMatchGenerationScreen({
     | ArenaFinishDeliveryResult<ArenaMatchFinishResponse>
     | ArenaQueuedFinishRetryResult
   ) => {
-    if (delivery.status === 'stale') return;
+    // зачем (2026-09-04): исход доставки решает, откроется ли результат.
+    // Раньше он нигде не печатался, и «сервер молчит» нельзя было отличить от
+    // «ответ пришёл, но мы его выбросили».
+    DebugLogger.info('[ARENA-SETTLE]', `доставка отчёта: статус=${delivery.status} match=${String(matchId)}`);
+    if (delivery.status === 'stale') {
+      DebugLogger.warn('[ARENA-SETTLE]', 'доставка устарела (сменился аккаунт или экран) — результат не откроется');
+      return;
+    }
     const finishAccount = planAccountRef.current;
     if (!matchId || !planScope || !finishAccount
-      || !isCurrentAccountGeneration(finishAccount, planScope.stableUid)) return;
+      || !isCurrentAccountGeneration(finishAccount, planScope.stableUid)) {
+      DebugLogger.warn('[ARENA-SETTLE]', `ответ отброшен: hasMatchId=${String(Boolean(matchId))} hasScope=${String(Boolean(planScope))} hasAccount=${String(Boolean(finishAccount))}`);
+      return;
+    }
 
     // зачем (2026-08-23): экран матча мог уже размонтироваться — с ранним
     // переходом на результат (D-74) это норма, а не ошибка. Показывать что-то
@@ -631,14 +641,26 @@ function ArenaMatchGenerationScreen({
 
   /* ---- отчёт: тоже один запрос ---- */
   useEffect(() => {
-    if (!matchId || !plan || !match?.report || sent) return;
+    // зачем (2026-09-04): в логах зависшего матча НЕ БЫЛО НИ ОДНОЙ строки об
+    // отправке отчёта — значит цепочка обрывалась здесь, и по какому именно
+    // условию, понять было нельзя: все три выхода немые. Теперь каждый назван.
+    if (!matchId || !plan || !match?.report || sent) {
+      if (match?.state.phase === 'finished') {
+        DebugLogger.warn('[ARENA-SETTLE]', `отчёт НЕ отправляется: hasMatchId=${String(Boolean(matchId))} hasPlan=${String(Boolean(plan))} hasReport=${String(Boolean(match?.report))} alreadySent=${String(sent)}`);
+      }
+      return;
+    }
     // Сохраняем суженное значение до async-границы: объект `match` живёт в
     // React-состоянии и TypeScript справедливо не переносит его narrowing
     // внутрь отложенной функции.
     const report = match.report;
     const finishAccount = planAccountRef.current;
     const finishScope = planScope;
-    if (!finishAccount || !finishScope) return;
+    if (!finishAccount || !finishScope) {
+      DebugLogger.error('[ARENA-SETTLE]', `отчёт НЕ отправляется: нет владельца — hasAccount=${String(Boolean(finishAccount))} hasScope=${String(Boolean(finishScope))} match=${String(matchId)}`, 'critical');
+      return;
+    }
+    DebugLogger.info('[ARENA-SETTLE]', `отправляем отчёт: match=${String(matchId)} mode=${plan.mode} мойСчёт=${String(match.state.matchStars)} сдался=${String(match.state.abandoned)}`);
     setSent(true);
     void (async () => {
       const delivery = await arenaDeliverFinishedMatch({

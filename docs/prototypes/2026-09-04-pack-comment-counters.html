@@ -1,0 +1,458 @@
+<meta charset="utf-8">
+<title>Счётчик отклика · индикаторы наборов</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Палитра «Индиго» — единственная бесплатная тема (constants/theme.ts).
+   Размеры значков повторяют боевой CommunityPackSocialBar 1:1:
+   плитка — иконка 12 / текст 10; строка и экран — иконка 15 / текст 13. */
+:root{
+  --bg:#14131F; --card:#1C1B2E; --surface:#222140; --surface2:#2A2952;
+  --text:#F1EFFF; --second:#B7B3D9; --muted:#9A95C2; --ghost:#605C8A;
+  --accent:#C8C3FF; --accentBg:rgba(200,195,255,0.14);
+  --gold:#FFC53D; --goldBg:rgba(255,197,61,0.14);
+  --wrong:#F26D8A; --wrongBg:rgba(242,109,138,0.14);
+  --onAccent:#17162B; --line:rgba(200,195,255,0.10);
+  --faint:#8D88B8; /* мелкий служебный текст: --ghost даёт 2.5:1, норма 4.5:1 */
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"Inter",-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header.hero{padding:56px 0 26px}
+h1{font-size:clamp(30px,5vw,42px);line-height:1.07;margin:0 0 14px;letter-spacing:-.025em;text-wrap:balance;font-weight:700}
+.lead{font-size:19px;max-width:64ch;color:var(--second);text-wrap:pretty}
+h2{font-size:26px;letter-spacing:-.018em;margin:0 0 10px;text-wrap:balance}
+h3{font-size:17px;margin:0 0 6px;font-weight:700}
+p{margin:0 0 12px}
+.muted{color:var(--muted)}
+section{padding:40px 0;border-top:1px solid var(--line)}
+
+.phones{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin:24px 0 6px}
+.phone{width:340px;flex:0 0 340px}
+.phone .screen{background:var(--bg);border-radius:34px;padding:16px 14px 18px;box-shadow:0 20px 60px rgba(0,0,0,.5), inset 0 0 0 1px rgba(200,195,255,.07);min-height:520px;display:flex;flex-direction:column}
+.phone .cap{text-align:center;font-size:14px;color:var(--muted);margin-top:12px}
+.phone .cap b{color:var(--second);font-weight:700}
+.navbar{display:flex;align-items:center;gap:10px;padding:4px 4px 14px}
+.navbar .back{width:30px;height:30px;border-radius:15px;background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--second);font-size:15px}
+.navbar .title{font-size:17px;font-weight:700}
+
+/* ── ПЛИТКА 3-в-ряд ── */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.tile{background:var(--card);border-radius:16px;padding:10px 8px 9px;box-shadow:0 6px 18px rgba(0,0,0,.26);display:flex;flex-direction:column;gap:7px}
+.tile .art{height:56px;border-radius:11px;background:linear-gradient(150deg,var(--surface2),var(--surface))}
+.tile .nm{font-size:11.5px;font-weight:700;line-height:1.25;min-height:29px}
+/* счётчики плитки: иконка 12 / текст 10, как в боевом коде */
+.tcount{display:flex;align-items:center;justify-content:center;gap:9px}
+.tc{display:flex;align-items:center;gap:3px}
+.tc .i{font-size:12px;line-height:1;color:var(--muted)}
+.tc .i.on{color:var(--accent)}
+.tc .v{font-size:10px;font-weight:700;color:var(--second)}
+
+/* ── СТРОКА каталога ── */
+.rows{display:flex;flex-direction:column;gap:9px}
+.row{background:var(--card);border-radius:18px;padding:12px 14px;box-shadow:0 6px 20px rgba(0,0,0,.24);display:flex;gap:12px;align-items:center}
+.row .art{flex:0 0 46px;height:46px;border-radius:13px;background:linear-gradient(150deg,var(--surface2),var(--surface))}
+.row .mid{flex:1;min-width:0}
+.row .nm{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.row .by{font-size:13px;color:var(--muted);margin-top:1px}
+/* счётчики строки: иконка 15 / текст 13 */
+.rcount{display:flex;align-items:center;gap:9px;margin-top:7px}
+.rc{display:flex;align-items:center;gap:4px}
+.rc .i{font-size:14px;line-height:1;color:var(--muted)}
+.rc .i.on{color:var(--accent)}
+.rc .v{font-size:13px;font-weight:700;color:var(--second)}
+.rc.tap .v{color:var(--accent)}
+.rc.tap .i{color:var(--accent)}
+.addbtn{flex:0 0 auto;height:32px;padding:0 13px;border-radius:16px;background:var(--accentBg);color:var(--accent);font-size:13.5px;font-weight:700;display:flex;align-items:center}
+
+/* ── ЭКРАН набора ── */
+.packhead{background:var(--card);border-radius:22px;padding:16px 18px;box-shadow:0 10px 30px rgba(0,0,0,.32)}
+.packhead .name{font-size:19px;font-weight:700;letter-spacing:-.01em}
+.packhead .by{font-size:14px;color:var(--muted);margin-top:3px}
+.packbar{display:flex;align-items:center;gap:7px;margin-top:14px}
+.pill{display:inline-flex;align-items:center;gap:5px;height:34px;padding:0 11px;border-radius:17px;background:var(--surface);color:var(--second);font-size:13.5px;font-weight:700;white-space:nowrap}
+.pill.on{background:var(--accentBg);color:var(--accent)}
+.pill .ic{font-size:15px}
+.grow{flex:1}
+
+/* ── ветка ── */
+.sechead{display:flex;align-items:baseline;gap:8px;margin:20px 4px 10px}
+.sechead .h{font-size:16px;font-weight:700}
+.sechead .c{font-size:15px;color:var(--faint);font-weight:600}
+.cmt{display:flex;gap:11px;padding:12px 14px;border-radius:18px;background:var(--card);margin-bottom:9px;box-shadow:0 6px 20px rgba(0,0,0,.24)}
+.cmt.pinned{background:var(--surface)}
+.ava{flex:0 0 34px;height:34px;border-radius:17px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:16px}
+.cmt .body{flex:1;min-width:0}
+.cmt .top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.cmt .who{font-size:14px;font-weight:700}
+.cmt .when{font-size:13px;color:var(--faint)}
+.badge{display:inline-flex;align-items:center;height:19px;padding:0 7px;border-radius:7px;font-size:11px;font-weight:700}
+.badge.author{background:var(--goldBg);color:var(--gold)}
+.cmt .txt{font-size:15px;margin-top:4px}
+.glow{animation:glow 2.4s cubic-bezier(.2,.9,.25,1) 1}
+@keyframes glow{0%{background:var(--accentBg)}55%{background:var(--accentBg)}100%{background:var(--card)}}
+
+/* ── топ наборов ── */
+.topstrip{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+.topcard{flex:0 0 132px;background:var(--card);border-radius:16px;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,.26)}
+.topcard .art{height:62px;border-radius:12px;background:linear-gradient(150deg,var(--surface2),var(--surface));margin-bottom:8px}
+.topcard .nm{font-size:12.5px;font-weight:700;line-height:1.25;min-height:31px}
+
+/* сравнение до/после */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.cmpbox{background:var(--card);border-radius:20px;padding:18px 20px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.cmpbox.tone{background:var(--surface);box-shadow:none}
+.cmplabel{font-size:12px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:12px}
+
+.card{background:var(--card);border-radius:20px;padding:20px 22px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.card.tone{background:var(--surface);box-shadow:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.tbl{overflow-x:auto;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.3);margin:16px 0 6px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;background:var(--card);border-radius:18px;overflow:hidden}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--surface);border-top:0}
+.tag{display:inline-flex;align-items:center;height:23px;padding:0 9px;border-radius:8px;font-size:12px;font-weight:700;background:var(--surface);color:var(--muted)}
+.tag.acc{background:var(--accentBg);color:var(--accent)}
+.tag.warn{background:var(--wrongBg);color:var(--wrong)}
+.callout{background:var(--accentBg);border-radius:20px;padding:18px 22px;font-size:17px}
+ul.tight{margin:0 0 10px;padding-left:20px}
+ul.tight li{margin:0 0 7px}
+@media (max-width:900px){ .grid2,.cmp{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} }
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <h1>Счётчик отклика</h1>
+  <p class="lead">Третий индикатор встаёт рядом с лайками и добавлениями во всех четырёх местах, где набор уже показывает свои цифры. Ноль скрыт: значок появляется вместе с первым комментарием — и это делает его событием, а не декорацией.</p>
+</header>
+
+<section>
+  <h2>Четыре места</h2>
+  <div class="phones">
+
+    <!-- 1. Плитка -->
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Сообщество</div></div>
+        <div class="tiles">
+          <div class="tile">
+            <div class="art"></div>
+            <div class="nm">Аэропорт и перелёт</div>
+            <div class="tcount">
+              <span class="tc"><span class="i on">♥</span><span class="v">41</span></span>
+              <span class="tc"><span class="i">👥</span><span class="v">210</span></span>
+              <span class="tc"><span class="i">💬</span><span class="v">7</span></span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="art"></div>
+            <div class="nm">Еда и кафе</div>
+            <div class="tcount">
+              <span class="tc"><span class="i">♡</span><span class="v">3</span></span>
+              <span class="tc"><span class="i">👥</span><span class="v">12</span></span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="art"></div>
+            <div class="nm">Отель и заселение</div>
+            <div class="tcount">
+              <span class="tc"><span class="i">♡</span><span class="v">9</span></span>
+              <span class="tc"><span class="i">👥</span><span class="v">54</span></span>
+              <span class="tc"><span class="i">💬</span><span class="v">2</span></span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="art"></div>
+            <div class="nm">Врач и аптека</div>
+            <div class="tcount">
+              <span class="tc"><span class="i">♡</span><span class="v">6</span></span>
+              <span class="tc"><span class="i">👥</span><span class="v">31</span></span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="art"></div>
+            <div class="nm">Такси и метро</div>
+            <div class="tcount">
+              <span class="tc"><span class="i on">♥</span><span class="v">18</span></span>
+              <span class="tc"><span class="i">👥</span><span class="v">88</span></span>
+              <span class="tc"><span class="i">💬</span><span class="v">14</span></span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="art"></div>
+            <div class="nm">Магазин и размеры</div>
+            <div class="tcount">
+              <span class="tc"><span class="i">♡</span><span class="v">2</span></span>
+              <span class="tc"><span class="i">👥</span><span class="v">7</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>Плитка.</b> Где отклика нет — значка нет, ряд не пустует</div>
+    </div>
+
+    <!-- 2. Строка каталога -->
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Каталог</div></div>
+        <div class="rows">
+          <div class="row">
+            <div class="art"></div>
+            <div class="mid">
+              <div class="nm">Аэропорт и перелёт</div>
+              <div class="by">Марина · 24 карточки</div>
+              <div class="rcount">
+                <span class="rc"><span class="i on">♥</span><span class="v">41</span></span>
+                <span class="rc"><span class="i">👥</span><span class="v">210</span></span>
+                <span class="rc tap"><span class="i">💬</span><span class="v">7</span></span>
+              </div>
+            </div>
+            <div class="addbtn">Добавить</div>
+          </div>
+          <div class="row">
+            <div class="art"></div>
+            <div class="mid">
+              <div class="nm">Такси и метро</div>
+              <div class="by">Игорь · 16 карточек</div>
+              <div class="rcount">
+                <span class="rc"><span class="i on">♥</span><span class="v">18</span></span>
+                <span class="rc"><span class="i">👥</span><span class="v">88</span></span>
+                <span class="rc tap"><span class="i">💬</span><span class="v">14</span></span>
+              </div>
+            </div>
+            <div class="addbtn">Добавить</div>
+          </div>
+          <div class="row">
+            <div class="art"></div>
+            <div class="mid">
+              <div class="nm">Еда и кафе</div>
+              <div class="by">Дмитрий · 18 карточек</div>
+              <div class="rcount">
+                <span class="rc"><span class="i">♡</span><span class="v">3</span></span>
+                <span class="rc"><span class="i">👥</span><span class="v">12</span></span>
+              </div>
+            </div>
+            <div class="addbtn">Добавить</div>
+          </div>
+          <div class="row">
+            <div class="art"></div>
+            <div class="mid">
+              <div class="nm">Отель и заселение</div>
+              <div class="by">Anna · 21 карточка</div>
+              <div class="rcount">
+                <span class="rc"><span class="i">♡</span><span class="v">9</span></span>
+                <span class="rc"><span class="i">👥</span><span class="v">54</span></span>
+                <span class="rc tap"><span class="i">💬</span><span class="v">2</span></span>
+              </div>
+            </div>
+            <div class="addbtn">Добавить</div>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>Строка.</b> 💬 лиловым — он кликается, остальные два просто цифры</div>
+    </div>
+
+    <!-- 3. Экран набора -->
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="packhead">
+          <div class="name">Аэропорт и перелёт</div>
+          <div class="by">Марина · 24 карточки</div>
+          <div class="packbar">
+            <span class="pill on"><span class="ic">♥</span> 41</span>
+            <span class="pill"><span class="ic">👥</span> 210</span>
+            <span class="pill on"><span class="ic">💬</span> 7</span>
+          </div>
+        </div>
+        <div class="sechead"><span class="h">Отклик</span><span class="c">7</span></div>
+        <div class="cmt pinned glow">
+          <div class="ava">🦊</div>
+          <div class="body">
+            <div class="top"><span class="who">Марина</span><span class="badge author">автор</span></div>
+            <div class="txt">Добавила посадочный талон и «рейс задерживают» 🙌</div>
+          </div>
+        </div>
+        <div class="cmt">
+          <div class="ava">🐨</div>
+          <div class="body">
+            <div class="top"><span class="who">Илья</span><span class="when">2 ч</span></div>
+            <div class="txt">Прошёл перед поездкой, в аэропорту пригодилось</div>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>Экран набора.</b> Тап по 💬 → прокрутка к ветке, она мигает лиловым</div>
+    </div>
+
+    <!-- 4. Топ на Главной карточек -->
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Карточки</div></div>
+        <div style="font-size:16px;font-weight:700;margin:2px 4px 10px">Лучшее у сообщества</div>
+        <div class="topstrip">
+          <div class="topcard">
+            <div class="art"></div>
+            <div class="nm">Аэропорт и перелёт</div>
+            <div class="tcount" style="justify-content:flex-start;margin-top:7px">
+              <span class="tc"><span class="i on">♥</span><span class="v">41</span></span>
+              <span class="tc"><span class="i">💬</span><span class="v">7</span></span>
+            </div>
+          </div>
+          <div class="topcard">
+            <div class="art"></div>
+            <div class="nm">Такси и метро</div>
+            <div class="tcount" style="justify-content:flex-start;margin-top:7px">
+              <span class="tc"><span class="i on">♥</span><span class="v">18</span></span>
+              <span class="tc"><span class="i">💬</span><span class="v">14</span></span>
+            </div>
+          </div>
+          <div class="topcard">
+            <div class="art"></div>
+            <div class="nm">Отель</div>
+            <div class="tcount" style="justify-content:flex-start;margin-top:7px">
+              <span class="tc"><span class="i">♡</span><span class="v">9</span></span>
+              <span class="tc"><span class="i">💬</span><span class="v">2</span></span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:20px;font-size:16px;font-weight:700;margin-bottom:10px;padding:0 4px">Мои наборы</div>
+        <div class="rows">
+          <div class="row">
+            <div class="art"></div>
+            <div class="mid">
+              <div class="nm">Мой набор про офис</div>
+              <div class="by">28 карточек</div>
+              <div class="rcount">
+                <span class="rc"><span class="i on">♥</span><span class="v">5</span></span>
+                <span class="rc"><span class="i">👥</span><span class="v">23</span></span>
+                <span class="rc tap"><span class="i">💬</span><span class="v">3</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>Топ и свои наборы.</b> В витрине только ♥ и 💬 — места мало</div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Почему ноль скрыт</h2>
+  <div class="cmp">
+    <div class="cmpbox tone">
+      <div class="cmplabel">Если показывать всегда</div>
+      <div class="tiles" style="grid-template-columns:repeat(3,1fr)">
+        <div class="tile"><div class="art"></div><div class="nm">Еда и кафе</div>
+          <div class="tcount">
+            <span class="tc"><span class="i">♡</span><span class="v">3</span></span>
+            <span class="tc"><span class="i">👥</span><span class="v">12</span></span>
+            <span class="tc"><span class="i">💬</span><span class="v" style="color:var(--wrong)">0</span></span>
+          </div></div>
+        <div class="tile"><div class="art"></div><div class="nm">Врач и аптека</div>
+          <div class="tcount">
+            <span class="tc"><span class="i">♡</span><span class="v">6</span></span>
+            <span class="tc"><span class="i">👥</span><span class="v">31</span></span>
+            <span class="tc"><span class="i">💬</span><span class="v" style="color:var(--wrong)">0</span></span>
+          </div></div>
+        <div class="tile"><div class="art"></div><div class="nm">Магазин</div>
+          <div class="tcount">
+            <span class="tc"><span class="i">♡</span><span class="v">2</span></span>
+            <span class="tc"><span class="i">👥</span><span class="v">7</span></span>
+            <span class="tc"><span class="i">💬</span><span class="v" style="color:var(--wrong)">0</span></span>
+          </div></div>
+      </div>
+      <p class="muted" style="margin:14px 0 0;font-size:15px">Поле мёртвых нулей. На старте ноль будет почти везде — и каждый экран сообщает «тут никто не пишет».</p>
+    </div>
+    <div class="cmpbox">
+      <div class="cmplabel">Как делаем</div>
+      <div class="tiles" style="grid-template-columns:repeat(3,1fr)">
+        <div class="tile"><div class="art"></div><div class="nm">Еда и кафе</div>
+          <div class="tcount">
+            <span class="tc"><span class="i">♡</span><span class="v">3</span></span>
+            <span class="tc"><span class="i">👥</span><span class="v">12</span></span>
+          </div></div>
+        <div class="tile"><div class="art"></div><div class="nm">Врач и аптека</div>
+          <div class="tcount">
+            <span class="tc"><span class="i">♡</span><span class="v">6</span></span>
+            <span class="tc"><span class="i">👥</span><span class="v">31</span></span>
+          </div></div>
+        <div class="tile"><div class="art"></div><div class="nm">Такси и метро</div>
+          <div class="tcount">
+            <span class="tc"><span class="i on">♥</span><span class="v">18</span></span>
+            <span class="tc"><span class="i">👥</span><span class="v">88</span></span>
+            <span class="tc"><span class="i">💬</span><span class="v">14</span></span>
+          </div></div>
+      </div>
+      <p class="muted" style="margin:14px 0 0;font-size:15px">Значок = там есть разговор. Появление третьего значка само по себе привлекает взгляд к живому набору.</p>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:18px">Лайк и добавление показывают ноль законно — их значок несёт <b>действие</b>. Счётчик отклика действия не несёт, поэтому ноль в нём — просто шум.</div>
+</section>
+
+<section>
+  <h2>Правила</h2>
+  <div class="grid2">
+    <div>
+      <div class="card">
+        <h3>Порядок неизменен</h3>
+        <p class="muted" style="margin:0">♥ лайки · 👥 добавления · 💬 отклик. Первые два стоят там же, где стояли всегда — глаз не переучивается. Новое встаёт последним.</p>
+      </div>
+      <div class="card tone" style="margin-top:14px">
+        <h3>Тап ведёт к разговору</h3>
+        <p class="muted" style="margin:0">Из плитки и строки — открывает набор и прокручивает прямо к ветке, она коротко подсвечивается. Из экрана набора — просто прокрутка вниз.</p>
+      </div>
+      <div class="card tone" style="margin-top:14px">
+        <h3>Ряд не прыгает</h3>
+        <p class="muted" style="margin:0">Место под три значка зарезервировано с первого кадра. Появление счётчика не сдвигает соседей — плитка не дёргается при загрузке.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <h3>Мгновенно</h3>
+        <p class="muted" style="margin:0">Отправил комментарий — цифра выросла сразу, не дожидаясь сервера. Не отправилось — вернулась назад вместе с текстом.</p>
+      </div>
+      <div class="card tone" style="margin-top:14px">
+        <h3>В витрине только два</h3>
+        <p class="muted" style="margin:0">На узких карточках топа третий значок не помещается: там ♥ и 💬 — лайк как признание, отклик как жизнь. Добавления уходят.</p>
+      </div>
+      <div class="card tone" style="margin-top:14px">
+        <h3>Большие числа</h3>
+        <p class="muted" style="margin:0">От тысячи — «1,2К». Иначе на плитке шириной в треть экрана четырёхзначное число ломает ряд.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom:64px">
+  <h2>Что это стоит</h2>
+  <div class="tbl">
+    <table>
+      <tr><th>Что</th><th>Цена</th><th>Как</th></tr>
+      <tr>
+        <td><b>Счётчик в списках</b></td>
+        <td><b>0 чтений</b></td>
+        <td>Поле <code>commentsCount</code> в том же документе набора, что уже читается для лайков</td>
+      </tr>
+      <tr>
+        <td><b>Рост при отправке</b></td>
+        <td>1 атомарный инкремент</td>
+        <td>Без чтения перед записью — тем же приёмом, что счётчик лайков</td>
+      </tr>
+      <tr>
+        <td>Пересчёт по подколлекции</td>
+        <td><span class="tag warn">нет</span></td>
+        <td>Потребовал бы запроса на каждый набор в списке — десятки чтений на один экран</td>
+      </tr>
+    </table>
+  </div>
+  <p class="muted" style="margin-top:12px">Кэш и правило обновления те же, что у лайков: свежие цифры при входе на экран, без фоновых таймеров.</p>
+  <ul class="tight" style="margin-top:16px">
+    <li><b>Сортировка «по обсуждаемости»</b> — отдельным шагом, когда данные накопятся. Сейчас сортировка остаётся по лайкам.</li>
+    <li><b>Скрытые комментарии</b> не уменьшают счётчик у остальных: у автора своё число, у прочих — общее.</li>
+  </ul>
+</section>
+
+</div>

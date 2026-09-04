@@ -2283,13 +2283,56 @@ service cloud.firestore {
 
     function communityPackSocialCountersOnly() {
       return request.auth != null
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likesCount', 'addedCount'])
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['likesCount', 'addedCount', 'commentsCount'])
         && request.resource.data.get('likesCount', 0) >= 0
         && request.resource.data.get('addedCount', 0) >= 0
+        && request.resource.data.get('commentsCount', 0) >= 0
         && communityPackCounterDelta('likesCount') >= -1
         && communityPackCounterDelta('likesCount') <= 1
         && communityPackCounterDelta('addedCount') >= 0
-        && communityPackCounterDelta('addedCount') <= 1;
+        && communityPackCounterDelta('addedCount') <= 1
+        // Отклик под набором (владелец 2026-09-04). Дельта ±1: опубликовал — плюс,
+        // удалил свой — минус. Больше шага за раз клиенту не нужно, а накрутка
+        // пачкой становится невозможной.
+        && communityPackCounterDelta('commentsCount') >= -1
+        && communityPackCounterDelta('commentsCount') <= 1;
+    }
+
+    /**
+     * Право писать отклик = набор добавлен себе.
+     *
+     * Правило владельца, уже действующее для лайка: сначала возьми набор, потом
+     * высказывайся. Отсекает случайных прохожих и почти всю накрутку. Проверяется
+     * существованием pack_adds/{uid} — того же документа, которым дедуплицируется
+     * счётчик добавлений.
+     */
+    function packAddedByMe(packId) {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/community_packs/$(packId)/pack_adds/$(request.auth.uid));
+    }
+
+    /** Автор НАБОРА (не отклика): только он закрепляет и скрывает чужие отклики. */
+    function isPackAuthor(packId) {
+      return request.auth != null
+        && get(/databases/$(database)/documents/community_packs/$(packId)).data.get('authorStableId', '') == request.auth.uid;
+    }
+
+    /** Поля отклика, которые клиент вправе прислать при создании. */
+    function packCommentCreateShapeOk() {
+      return request.resource.data.keys().hasOnly([
+          'authorId', 'authorName', 'text', 'createdAtMs', 'createdAt',
+          'pinned', 'reactions', 'reactedBy'
+        ])
+        && request.resource.data.authorId == request.auth.uid
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        // 200 знаков — предел из макета, продублирован в packComments.ts
+        // (PACK_COMMENT_MAX_LENGTH). Правится в ДВУХ местах одновременно.
+        && request.resource.data.text.size() <= 200
+        // Закрепить может только автор набора и только отдельным обновлением:
+        // создать сразу закреплённый отклик нельзя, иначе любой писал бы себе «наверх».
+        && request.resource.data.get('pinned', false) == false;
     }
 
     match /community_packs/{packId} {
@@ -2312,6 +2355,45 @@ service cloud.firestore {
         allow read: if request.auth != null;
         allow create: if request.auth != null && addUserId == request.auth.uid;
         allow update, delete: if false;
+      }
+
+      /**
+       * Отклик под набором (владелец 2026-09-04).
+       *
+       * Формат зафиксирован макетом docs/prototypes/2026-09-04-pack-comments-concept.html:
+       * один уровень (без ответов на ответы), 200 знаков, писать может только тот,
+       * кто добавил набор себе, автор набора закрепляет один отклик и скрывает лишнее.
+       * Личных сообщений нет — разговор виден всем и привязан к набору.
+       *
+       * Скрытые автором отклики остаются в базе (жалоба и разбор должны видеть
+       * оригинал), но чтение их отдаёт только автору набора и самому написавшему.
+       */
+      match /pack_comments/{commentId} {
+        allow read: if request.auth != null
+          && (resource.data.get('hiddenByAuthor', false) == false
+              || resource.data.authorId == request.auth.uid
+              || isPackAuthor(packId));
+
+        allow create: if packAddedByMe(packId) && packCommentCreateShapeOk();
+
+        // Свой отклик удаляет автор отклика; чужой не удаляет никто, включая
+        // автора набора — у него есть «скрыть», а не «стереть чужой текст».
+        allow delete: if request.auth != null && resource.data.authorId == request.auth.uid;
+
+        // Обновление строго по назначению:
+        //  • pinned      — только автор НАБОРА (закрепить/снять);
+        //  • hiddenByAuthor — только автор НАБОРА (скрыть у себя в ветке);
+        //  • reactions/reactedBy — любой вошедший (своя реакция);
+        //  • текст не редактируется вовсе: правка задним числом ломает смысл
+        //    жалоб и закреплений.
+        allow update: if request.auth != null
+          && (
+            (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['pinned'])
+             && isPackAuthor(packId))
+            || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['hiddenByAuthor'])
+                && isPackAuthor(packId))
+            || request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reactions', 'reactedBy'])
+          );
       }
     }
 

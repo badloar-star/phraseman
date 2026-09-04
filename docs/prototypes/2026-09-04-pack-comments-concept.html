@@ -1,0 +1,483 @@
+<meta charset="utf-8">
+<title>Отклик · комментарии к наборам Phraseman</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Палитра «Индиго» — единственная бесплатная тема приложения (constants/theme.ts). */
+:root{
+  --bg:#14131F; --card:#1C1B2E; --surface:#222140; --surface2:#2A2952;
+  --text:#F1EFFF; --second:#B7B3D9; --muted:#9A95C2; --ghost:#605C8A;
+  --accent:#C8C3FF; --accentBg:rgba(200,195,255,0.14);
+  --gold:#FFC53D; --goldBg:rgba(255,197,61,0.14); --onGold:#1A1408;
+  --wrong:#F26D8A; --wrongBg:rgba(242,109,138,0.14);
+  --onAccent:#17162B;
+  --line:rgba(200,195,255,0.10);
+  /* Мелкий служебный текст (время, счётчик, плейсхолдер) НЕ берёт --ghost:
+     на карточке он даёт 2.5–2.9:1 при норме 4.5:1 — это самый частый провал
+     читаемости. Отдельный токен доводит его до нормы, оставаясь тише основного. */
+  --faint:#8D88B8;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:"Inter",-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; font-size:16px; line-height:1.5;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+header.hero{padding:60px 0 30px}
+h1{font-size:clamp(32px,5vw,46px);line-height:1.06;margin:0 0 16px;letter-spacing:-.025em;text-wrap:balance;font-weight:700}
+.lead{font-size:19px;max-width:64ch;color:var(--second);text-wrap:pretty}
+h2{font-size:27px;letter-spacing:-.018em;margin:0 0 10px;text-wrap:balance}
+h3{font-size:17px;margin:0 0 6px;font-weight:700}
+p{margin:0 0 12px}
+.muted{color:var(--muted)}
+section{padding:42px 0;border-top:1px solid var(--line)}
+
+/* ── факты ── */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:22px 0 6px}
+.fact{background:var(--card);border-radius:20px;padding:18px 20px;box-shadow:0 10px 30px rgba(0,0,0,.34)}
+.fact .n{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.fact .n.bad{color:var(--wrong)}
+.fact .l{font-size:14px;color:var(--muted);margin-top:4px}
+
+/* ── телефон ── */
+.phones{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;margin:26px 0 8px}
+.phone{width:330px;flex:0 0 330px}
+.phone .screen{
+  background:var(--bg); border-radius:34px; padding:16px 14px 18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5), inset 0 0 0 1px rgba(200,195,255,.07);
+  min-height:560px; display:flex; flex-direction:column;
+}
+.phone .cap{text-align:center;font-size:14px;color:var(--muted);margin-top:12px}
+.phone .cap b{color:var(--second);font-weight:700}
+
+.navbar{display:flex;align-items:center;gap:10px;padding:4px 4px 14px}
+.navbar .back{width:30px;height:30px;border-radius:15px;background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--second);font-size:15px}
+.navbar .title{font-size:17px;font-weight:700}
+
+/* набор-карточка */
+.packhead{background:var(--card);border-radius:22px;padding:16px 18px;box-shadow:0 10px 30px rgba(0,0,0,.32)}
+.packhead .name{font-size:19px;font-weight:700;letter-spacing:-.01em}
+.packhead .by{font-size:14px;color:var(--muted);margin-top:3px}
+.packbar{display:flex;align-items:center;gap:14px;margin-top:14px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:16px;background:var(--surface);color:var(--second);font-size:14px;font-weight:600}
+.pill.on{background:var(--accentBg);color:var(--accent)}
+.pill .ic{font-size:15px}
+.grow{flex:1}
+
+/* заголовок секции комментариев */
+.sechead{display:flex;align-items:baseline;gap:8px;margin:22px 4px 10px}
+.sechead .h{font-size:16px;font-weight:700}
+.sechead .c{font-size:15px;color:var(--faint);font-weight:600}
+
+/* комментарий */
+.cmt{display:flex;gap:11px;padding:12px 14px;border-radius:18px;background:var(--card);margin-bottom:9px;box-shadow:0 6px 20px rgba(0,0,0,.24)}
+.cmt.pinned{background:var(--surface)}
+.ava{flex:0 0 34px;height:34px;border-radius:17px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:16px}
+.cmt .body{flex:1;min-width:0}
+.cmt .top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.cmt .who{font-size:14px;font-weight:700}
+.cmt .when{font-size:13px;color:var(--faint)}
+.badge{display:inline-flex;align-items:center;height:19px;padding:0 7px;border-radius:7px;font-size:11px;font-weight:700;letter-spacing:.02em}
+.badge.author{background:var(--goldBg);color:var(--gold)}
+.badge.pin{background:var(--accentBg);color:var(--accent)}
+.cmt .txt{font-size:15px;margin-top:4px;color:var(--text);word-wrap:break-word}
+.cmt .foot{display:flex;align-items:center;gap:8px;margin-top:9px}
+.react{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 10px;border-radius:14px;background:var(--surface);font-size:14px;font-weight:600;color:var(--second);cursor:pointer;transition:transform .18s cubic-bezier(.2,.9,.25,1),background .18s}
+.react:active{transform:scale(.94)}
+.react.on{background:var(--accentBg);color:var(--accent)}
+.react .em{font-size:14px}
+.more{margin-left:auto;color:var(--faint);font-size:18px;letter-spacing:2px;line-height:1}
+
+/* поле ввода */
+.composer{margin-top:auto;padding-top:14px;display:flex;gap:9px;align-items:flex-end}
+.field{flex:1;background:var(--surface);border-radius:20px;padding:11px 14px;font-size:15px;color:var(--faint);min-height:42px;display:flex;align-items:center}
+.field.typed{color:var(--text)}
+.send{flex:0 0 42px;height:42px;border-radius:21px;background:var(--accent);color:var(--onAccent);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700}
+.send.off{background:var(--surface2);color:var(--faint)}
+.counter{font-size:12px;color:var(--faint);text-align:right;margin:6px 6px 0}
+.counter.warn{color:var(--gold)}
+
+/* пустое состояние */
+.empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:34px 20px;gap:10px}
+.empty .em{font-size:40px;line-height:1}
+.empty .t{font-size:17px;font-weight:700}
+.empty .d{font-size:15px;color:var(--muted);max-width:26ch}
+
+/* скелет */
+.skel{display:flex;gap:11px;padding:12px 14px;border-radius:18px;background:var(--card);margin-bottom:9px}
+.sk{background:var(--surface);border-radius:8px;animation:pulse 1.5s ease-in-out infinite}
+.sk.ava{flex:0 0 34px;height:34px;border-radius:17px}
+.sk.l1{height:12px;width:42%;margin-bottom:8px}
+.sk.l2{height:12px;width:92%;margin-bottom:6px}
+.sk.l3{height:12px;width:64%}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:.85}}
+
+/* оффлайн / ошибка */
+.notice{display:flex;align-items:center;gap:9px;padding:11px 14px;border-radius:16px;font-size:14px;margin-bottom:9px}
+.notice.wait{background:var(--surface);color:var(--second)}
+.notice.err{background:var(--wrongBg);color:var(--wrong)}
+.notice .retry{margin-left:auto;font-weight:700;color:var(--accent)}
+.cmt.sending{opacity:.55}
+.cmt.failed{background:var(--wrongBg)}
+.cmt.failed .txt{color:var(--text)}
+
+/* меню действий */
+.sheet{background:var(--card);border-radius:24px;padding:8px;box-shadow:0 -10px 40px rgba(0,0,0,.5);margin-top:auto}
+.sheetitem{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:18px;font-size:16px}
+.sheetitem .ic{width:22px;text-align:center;font-size:17px;color:var(--muted)}
+.sheetitem.danger{color:var(--wrong)}
+.sheetitem.danger .ic{color:var(--wrong)}
+
+/* таблицы и прочее */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.card{background:var(--card);border-radius:20px;padding:20px 22px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.card.tone{background:var(--surface);box-shadow:none}
+.tbl{overflow-x:auto;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.3);margin:16px 0 6px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;background:var(--card);border-radius:18px;overflow:hidden}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--surface);border-top:0}
+td b{font-weight:700}
+.tag{display:inline-flex;align-items:center;gap:4px;height:23px;padding:0 9px;border-radius:8px;font-size:12px;font-weight:700;background:var(--surface);color:var(--muted);white-space:nowrap}
+.tag.acc{background:var(--accentBg);color:var(--accent)}
+.tag.gold{background:var(--goldBg);color:var(--gold)}
+.tag.warn{background:var(--wrongBg);color:var(--wrong)}
+ul.tight,ol.tight{margin:0 0 10px;padding-left:20px}
+ul.tight li,ol.tight li{margin:0 0 7px}
+.callout{background:var(--accentBg);border-radius:20px;padding:18px 22px;font-size:17px}
+.warnbox{background:var(--wrongBg);border-radius:18px;padding:16px 20px;font-size:15.5px}
+
+@media (max-width:900px){ .grid2{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} }
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <h1>Отклик под набором</h1>
+  <p class="lead">Единственное место в приложении, где общение сработает уже сегодня: есть предмет разговора, есть автор, которому важен ответ, и не нужно, чтобы двое были онлайн одновременно.</p>
+</header>
+
+<section>
+  <h2>Почему не чат и не лента</h2>
+  <p class="muted">Замер боевой базы 04.09.2026, выборка 300 аккаунтов из 5051.</p>
+  <div class="facts">
+    <div class="fact"><div class="n">5 051</div><div class="l">всего аккаунтов</div></div>
+    <div class="fact"><div class="n bad">1</div><div class="l">из 300 имеет друга</div></div>
+    <div class="fact"><div class="n bad">0</div><div class="l">заявок в друзья</div></div>
+    <div class="fact"><div class="n bad">0</div><div class="l">матчей Арены</div></div>
+  </div>
+  <p style="margin-top:18px">Ленту «Активность друзей» уже удаляли 16.08 — она давала 0–2 события за прогон при 9 000 чтений в сутки. Граф с тех пор не вырос. Чат или лента сейчас — пустая комната, а пустая комната хуже её отсутствия: человек видит мёртвое место и делает вывод обо всём приложении.</p>
+  <div class="callout" style="margin-top:14px">Набор карточек — единственный объект, вокруг которого уже есть <b>что сказать</b> и <b>кому ответить</b>.</div>
+</section>
+
+<section>
+  <h2>Как это выглядит</h2>
+  <div class="phones">
+
+    <!-- 1. живая ветка -->
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="packhead">
+          <div class="name">Аэропорт и перелёт</div>
+          <div class="by">Марина · 24 карточки</div>
+          <div class="packbar">
+            <span class="pill on"><span class="ic">♥</span> 41</span>
+            <span class="pill"><span class="ic">↓</span> 210</span>
+            <span class="grow"></span>
+            <span class="pill on" style="font-weight:700">Добавлено</span>
+          </div>
+        </div>
+
+        <div class="sechead"><span class="h">Отклик</span><span class="c">7</span></div>
+
+        <div class="cmt pinned">
+          <div class="ava">🦊</div>
+          <div class="body">
+            <div class="top"><span class="who">Марина</span><span class="badge author">автор</span><span class="badge pin">закреплено</span></div>
+            <div class="txt">Добавила посадочный талон и «рейс задерживают» — просили в прошлый раз 🙌</div>
+            <div class="foot">
+              <span class="react on"><span class="em">👍</span> 12</span>
+              <span class="react"><span class="em">🔥</span> 3</span>
+              <span class="more">···</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cmt">
+          <div class="ava">🐨</div>
+          <div class="body">
+            <div class="top"><span class="who">Илья</span><span class="when">2 ч</span></div>
+            <div class="txt">Прошёл перед поездкой, в аэропорту реально пригодилось. Спасибо!</div>
+            <div class="foot">
+              <span class="react"><span class="em">👍</span> 5</span>
+              <span class="react"><span class="em">🔥</span></span>
+              <span class="more">···</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cmt">
+          <div class="ava">🐧</div>
+          <div class="body">
+            <div class="top"><span class="who">Kate</span><span class="when">вчера</span></div>
+            <div class="txt">А можно ещё про багаж? Потерянный чемодан — отдельный кошмар 😅</div>
+            <div class="foot">
+              <span class="react on"><span class="em">👍</span> 8</span>
+              <span class="react"><span class="em">🔥</span> 1</span>
+              <span class="more">···</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="composer">
+          <div class="field">Написать автору…</div>
+          <div class="send off">↑</div>
+        </div>
+      </div>
+      <div class="cap"><b>Живая ветка.</b> Один уровень, без ответов на ответы</div>
+    </div>
+
+    <!-- 2. пусто -->
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="packhead">
+          <div class="name">Еда и кафе</div>
+          <div class="by">Дмитрий · 18 карточек</div>
+          <div class="packbar">
+            <span class="pill"><span class="ic">♡</span> 3</span>
+            <span class="pill"><span class="ic">↓</span> 12</span>
+            <span class="grow"></span>
+            <span class="pill on" style="font-weight:700">Добавлено</span>
+          </div>
+        </div>
+
+        <div class="sechead"><span class="h">Отклик</span></div>
+
+        <div class="empty">
+          <div class="em">💬</div>
+          <div class="t">Пока тихо</div>
+          <div class="d">Скажи Дмитрию, что было полезно — он увидит первым</div>
+        </div>
+
+        <div class="composer">
+          <div class="field typed">Отличный набор, особенно про счёт|</div>
+          <div class="send">↑</div>
+        </div>
+        <div class="counter">168 осталось</div>
+      </div>
+      <div class="cap"><b>Пусто.</b> Не «нет комментариев», а приглашение к действию</div>
+    </div>
+
+    <!-- 3. отправка и сбой -->
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="packhead">
+          <div class="name">Аэропорт и перелёт</div>
+          <div class="by">Марина · 24 карточки</div>
+        </div>
+
+        <div class="sechead"><span class="h">Отклик</span><span class="c">8</span></div>
+
+        <div class="cmt sending">
+          <div class="ava">🐻</div>
+          <div class="body">
+            <div class="top"><span class="who">Ты</span><span class="when">отправляется…</span></div>
+            <div class="txt">Спасибо, очень выручило в Стамбуле</div>
+          </div>
+        </div>
+
+        <div class="cmt failed">
+          <div class="ava">🐻</div>
+          <div class="body">
+            <div class="top"><span class="who">Ты</span><span class="when" style="color:var(--wrong)">не отправилось</span></div>
+            <div class="txt">А будет продолжение про пересадки?</div>
+            <div class="foot"><span class="react" style="color:var(--accent)">Повторить</span><span class="react">Удалить</span></div>
+          </div>
+        </div>
+
+        <div class="cmt">
+          <div class="ava">🐨</div>
+          <div class="body">
+            <div class="top"><span class="who">Илья</span><span class="when">2 ч</span></div>
+            <div class="txt">Прошёл перед поездкой, в аэропорту реально пригодилось. Спасибо!</div>
+            <div class="foot"><span class="react"><span class="em">👍</span> 5</span><span class="more">···</span></div>
+          </div>
+        </div>
+
+        <div class="composer">
+          <div class="field">Написать автору…</div>
+          <div class="send off">↑</div>
+        </div>
+      </div>
+      <div class="cap"><b>Мгновенно.</b> Текст виден сразу, сеть догоняет фоном</div>
+    </div>
+
+  </div>
+
+  <div class="phones" style="margin-top:34px">
+
+    <!-- 4. загрузка -->
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="packhead">
+          <div class="name">Аэропорт и перелёт</div>
+          <div class="by">Марина · 24 карточки</div>
+        </div>
+        <div class="sechead"><span class="h">Отклик</span></div>
+        <div class="skel"><div class="sk ava"></div><div style="flex:1"><div class="sk l1"></div><div class="sk l2"></div><div class="sk l3"></div></div></div>
+        <div class="skel"><div class="sk ava"></div><div style="flex:1"><div class="sk l1"></div><div class="sk l2"></div><div class="sk l3"></div></div></div>
+        <div class="skel"><div class="sk ava"></div><div style="flex:1"><div class="sk l1"></div><div class="sk l2"></div><div class="sk l3"></div></div></div>
+        <div class="composer">
+          <div class="field">Написать автору…</div>
+          <div class="send off">↑</div>
+        </div>
+      </div>
+      <div class="cap"><b>Загрузка.</b> Скелет держит высоту — экран не прыгает</div>
+    </div>
+
+    <!-- 5. меню -->
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="packhead">
+          <div class="name">Аэропорт и перелёт</div>
+          <div class="by">Марина · 24 карточки</div>
+        </div>
+        <div class="sechead"><span class="h">Отклик</span><span class="c">7</span></div>
+        <div class="cmt" style="opacity:.4">
+          <div class="ava">🐧</div>
+          <div class="body">
+            <div class="top"><span class="who">Kate</span><span class="when">вчера</span></div>
+            <div class="txt">А можно ещё про багаж?</div>
+          </div>
+        </div>
+        <div class="sheet">
+          <div class="sheetitem"><span class="ic">📌</span> Закрепить</div>
+          <div class="sheetitem"><span class="ic">👁</span> Скрыть у себя</div>
+          <div class="sheetitem danger"><span class="ic">⚑</span> Пожаловаться</div>
+        </div>
+      </div>
+      <div class="cap"><b>Модерация.</b> Автор закрепляет и скрывает, любой — жалуется</div>
+    </div>
+
+    <!-- 6. оффлайн -->
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="packhead">
+          <div class="name">Аэропорт и перелёт</div>
+          <div class="by">Марина · 24 карточки</div>
+        </div>
+        <div class="sechead"><span class="h">Отклик</span><span class="c">7</span></div>
+        <div class="notice wait">📡 Нет сети — отправим, когда появится</div>
+        <div class="cmt sending">
+          <div class="ava">🐻</div>
+          <div class="body">
+            <div class="top"><span class="who">Ты</span><span class="when">ждёт сети</span></div>
+            <div class="txt">Спасибо, очень выручило</div>
+          </div>
+        </div>
+        <div class="cmt">
+          <div class="ava">🐨</div>
+          <div class="body">
+            <div class="top"><span class="who">Илья</span><span class="when">2 ч</span></div>
+            <div class="txt">Прошёл перед поездкой, реально пригодилось</div>
+            <div class="foot"><span class="react"><span class="em">👍</span> 5</span><span class="more">···</span></div>
+          </div>
+        </div>
+        <div class="composer">
+          <div class="field">Написать автору…</div>
+          <div class="send off">↑</div>
+        </div>
+      </div>
+      <div class="cap"><b>Без сети.</b> Комментарий не теряется, уходит позже</div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Правила формата</h2>
+  <div class="grid2">
+    <div>
+      <div class="card">
+        <h3>Один уровень</h3>
+        <p class="muted" style="margin:0">Никаких ответов на ответы. Ветки превращают короткий отклик в форум, а форум требует модератора. Хочешь ответить конкретному человеку — упомяни его по имени в тексте.</p>
+      </div>
+      <div class="card tone" style="margin-top:14px">
+        <h3>200 знаков</h3>
+        <p class="muted" style="margin:0">Достаточно для «спасибо, пригодилось» и просьбы добавить тему. Мало для спора. Счётчик появляется на последних 30 знаках, а не висит всегда.</p>
+      </div>
+      <div class="card tone" style="margin-top:14px">
+        <h3>Реакции вместо лайков</h3>
+        <p class="muted" style="margin:0">👍 и 🔥 — два жеста, не десять. Отклик без сочинения текста: главный способ участия для тех, кто писать не будет никогда.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <h3>Писать может тот, кто добавил набор</h3>
+        <p class="muted" style="margin:0">То же правило, что уже действует для лайка: сначала возьми себе, потом высказывайся. Отсекает случайных прохожих и почти всю накрутку.</p>
+      </div>
+      <div class="card tone" style="margin-top:14px">
+        <h3>Автор — хозяин ветки</h3>
+        <p class="muted" style="margin:0">Закрепляет один комментарий наверх и скрывает у себя лишнее. Жалоба доступна всем и уходит в ту же очередь, что жалобы на наборы.</p>
+      </div>
+      <div class="card tone" style="margin-top:14px">
+        <h3>Никаких личных сообщений</h3>
+        <p class="muted" style="margin:0">Разговор виден всем и привязан к набору. Это снимает и класс злоупотреблений «1 на 1», и половину требований по детской безопасности.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Что это стоит</h2>
+  <div class="tbl">
+    <table>
+      <tr><th>Решение</th><th>Чтений Firestore</th><th>Почему так</th></tr>
+      <tr>
+        <td><b>Комментарии внутри документа набора</b> <span class="tag acc">выбрано</span></td>
+        <td><b>0 сверх текущих</b></td>
+        <td>Набор и так читается при открытии. Последние 20 откликов лежат в нём же</td>
+      </tr>
+      <tr>
+        <td>Отдельная подколлекция</td>
+        <td>+1 запрос на каждое открытие</td>
+        <td>Понадобится, когда откликов станет больше 20 на набор — не раньше</td>
+      </tr>
+      <tr>
+        <td>Живая подписка на изменения</td>
+        <td>постоянный поток</td>
+        <td><span class="tag warn">нет</span> Самый дорогой вариант ради ощущения, которое здесь не нужно</td>
+      </tr>
+    </table>
+  </div>
+  <p class="muted" style="margin-top:10px">Счётчики реакций — атомарные инкременты, без чтения перед записью. Обновление ветки — только при входе на экран набора, без фоновых таймеров.</p>
+</section>
+
+<section>
+  <h2>Что нужно решить до кода</h2>
+  <div class="warnbox">
+    <b>Приватность.</b> Пользовательские тексты — новый вид данных: нужен абзац в политике (что собираем, зачем, сколько храним, как удалить) и удаление откликов вместе с аккаунтом. Без этого фиче нельзя уезжать в стор.
+  </div>
+  <ul class="tight" style="margin-top:16px">
+    <li><b>Модерация до публикации или после?</b> Предлагаю после — с жалобой и быстрым скрытием. Премодерация задушит и без того редкий отклик.</li>
+    <li><b>Уведомлять ли автора о новом отклике?</b> Один пуш в день с общим числом, а не по каждому — иначе шум.</li>
+    <li><b>Имя или прозвище?</b> Сейчас в приложении имя и аватарка — их и берём, ничего нового не спрашиваем.</li>
+    <li><b>Стоп-слова.</b> Простой список на клиенте + серверная проверка. Полноценный ИИ-фильтр — позже, если пойдёт объём.</li>
+  </ul>
+</section>
+
+<section style="padding-bottom:70px">
+  <h2>Если пойдёт — что дальше</h2>
+  <p>Отклик под набором проверяет главную гипотезу дёшево: <b>есть ли людям что сказать друг другу</b>. Пойдёт — открывается следующий шаг: обсуждение фразы дня. Одна фраза, одна лента на всех, обнуляется каждые сутки — общая тема без графа друзей, и половина модерации снимается сама собой.</p>
+  <p class="muted">Не пойдёт — потеряли один экран, а не переписку, ленту и модераторскую смену.</p>
+</section>
+
+</div>

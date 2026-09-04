@@ -110,13 +110,18 @@ import { arenaViewerRankIndex, arenaViewerSeasonStarsFallback } from '../modules
  * Строки «Сервер проверяет ответ…» здесь больше нет и быть не может.
  */
 /**
- * Порог, после которого сцена «Сверяем результат…» считается зависшей.
+ * Сколько ждём сервер, прежде чем открыть результат по локальному итогу.
  *
- * зачем: три ретрая доставки отчёта занимают 1.5 + 4.5 + 16 = 22 секунды и
- * заканчиваются молча. Сторож ждёт заметно дольше их суммы, чтобы не перебить
- * поздний успешный ответ, но и не оставить человека на мёртвом кадре навсегда.
+ * зачем 8 секунд (владелец 2026-09-04: «просто ничего не должно зависать»):
+ * ждать все три ретрая доставки (1.5 + 4.5 + 16 = 22 с) человек не станет —
+ * он считает экран зависшим гораздо раньше. Восьми секунд хватает нормальному
+ * ответу сервера, а дальше показывать пустую сцену уже незачем: матч посчитан
+ * на устройстве, экран результата откроется с настоящим счётом.
+ *
+ * Ретраи при этом НЕ прекращаются: отчёт лежит в outbox, награда и ранг
+ * догонят и заменят предпросмотр авторитетными числами.
  */
-const ARENA_SETTLE_STUCK_MS = 30_000;
+const ARENA_SETTLE_STUCK_MS = 8_000;
 
 type ArenaMatchRouteParams = { matchId?: string; prepared?: string; viewerStars?: string };
 type ArenaCoherentResult = Readonly<{
@@ -173,21 +178,8 @@ function ArenaMatchGenerationScreen({
     | { kind: 'leave' }
     | { kind: 'storageFailed' }
     | { kind: 'rejected' }
-    // зачем (2026-09-03, владелец «сверяем очки зависло намертво, только
-    // выход»): сцена сверки не имела НИ таймаута, НИ выхода. Ретраи доставки
-    // кончались молча, и экран висел вечно. Этот вид алерта — предохранитель.
-    | { kind: 'settleStuck' }
     | null
   >(null);
-  /**
-   * Круг ожидания результата: растёт ТОЛЬКО по кнопке «остаться».
-   *
-   * зачем: сторож зависания должен предложить выход один раз, а не всплывать
-   * каждые 30 секунд. Пока номер показанного круга догоняет текущий, новый
-   * таймер не заводится; явное «подожду ещё» открывает следующий круг.
-   */
-  const [settleStuckRound, setSettleStuckRound] = useState(0);
-  const settleStuckShownRef = useRef(0);
   /**
    * Значения доставки ТОЛЬКО для диагностики сторожа.
    *
@@ -534,17 +526,36 @@ function ArenaMatchGenerationScreen({
    */
   const openPreviewResult = useCallback(() => {
     const resultAccount = planAccountRef.current;
-    if (!matchId || !plan || !planScope || !resultAccount || resultOpenedRef.current) return;
-    if (!finalScoreReadyRef.current) return;
-    if (!mountedRef.current || !isCurrentAccountGeneration(resultAccount, planScope.stableUid)) return;
+    // зачем (2026-09-04): здесь стояло ШЕСТЬ немых выходов подряд. Экран
+    // «Сверяем результат…» висел намертво, и по коду нельзя было понять, на
+    // каком именно условии оборвался переход. Каждый выход обязан назвать себя.
+    if (!matchId || !plan || !planScope || !resultAccount || resultOpenedRef.current) {
+      DebugLogger.warn('[ARENA-SETTLE]', `preview early return: hasMatchId=${String(Boolean(matchId))} hasPlan=${String(Boolean(plan))} hasScope=${String(Boolean(planScope))} hasAccount=${String(Boolean(resultAccount))} alreadyOpened=${String(resultOpenedRef.current)}`);
+      return;
+    }
+    if (!finalScoreReadyRef.current) {
+      DebugLogger.warn('[ARENA-SETTLE]', 'preview early return: финальный счёт ещё не досчитан (finalScoreReady=false)');
+      return;
+    }
+    if (!mountedRef.current || !isCurrentAccountGeneration(resultAccount, planScope.stableUid)) {
+      DebugLogger.warn('[ARENA-SETTLE]', `preview early return: mounted=${String(mountedRef.current)} sameAccount=${String(isCurrentAccountGeneration(resultAccount, planScope.stableUid))}`);
+      return;
+    }
     // Быстрый матч намеренно исключён: его кульминация — сцена начисления XP
     // (`ResultsSequence`), и она рисуется только по ответу сервера. Открыть
     // сначала черновой кадр, а потом подменить его целой сценой — заметный
     // скачок, который хуже короткого ожидания.
-    if (plan.mode === 'quick') return;
+    if (plan.mode === 'quick') {
+      DebugLogger.warn('[ARENA-SETTLE]', 'preview early return: режим quick — предпросмотр отключён намеренно, ЖДЁМ ТОЛЬКО СЕРВЕР');
+      return;
+    }
     // Сдача из предпросмотра исключена в самом модуле (`arenaResultPreview`).
     const preview = match ? arenaResultPreview(plan, match.state) : null;
-    if (!preview) return;
+    if (!preview) {
+      DebugLogger.warn('[ARENA-SETTLE]', `preview early return: предпросмотр не построен — hasMatch=${String(Boolean(match))} phase=${String(match?.state.phase)} abandoned=${String(match?.state.abandoned)}`);
+      return;
+    }
+    DebugLogger.info('[ARENA-SETTLE]', `preview открывает результат: mode=${plan.mode} мойСчёт=${String(preview.viewerStars)} счётСоперника=${String(preview.opponentStars)} исход=${String(preview.outcome)}`);
 
     const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}`;
     arenaRememberResultHandoff({ ownerKey, matchId, viewerSeat: plan.viewerSeat, preview });
@@ -662,36 +673,79 @@ function ArenaMatchGenerationScreen({
   }, [finalScoreReady, match?.state.phase, openPreviewResult]);
 
   /**
+   * Последняя линия: открыть НАСТОЯЩИЙ экран результата, когда сервер молчит.
+   *
+   * Отличие от `openPreviewResult` ровно в двух вещах — и обе намеренные:
+   *  1. работает и для `quick`: обычно тот ждёт сервер ради сцены начисления
+   *     XP, но мёртвый кадр хуже, чем результат без этой сцены;
+   *  2. не требует известного счёта соперника: `arenaResultPreview` честно
+   *     оставляет `outcome = null`, и экран результата покажет свой счёт без
+   *     объявления победы, которую сервер может опровергнуть.
+   *
+   * Сдача по-прежнему исключена внутри `arenaResultPreview` (`state.abandoned`):
+   * человек, который сам вышел, не должен получать экран итога.
+   */
+  const openResultFallback = useCallback(() => {
+    const resultAccount = planAccountRef.current;
+    if (!matchId || !plan || !planScope || !resultAccount || resultOpenedRef.current) {
+      DebugLogger.warn('[ARENA-SETTLE]', `fallback early return: hasMatchId=${String(Boolean(matchId))} hasPlan=${String(Boolean(plan))} hasScope=${String(Boolean(planScope))} hasAccount=${String(Boolean(resultAccount))} alreadyOpened=${String(resultOpenedRef.current)}`);
+      return;
+    }
+    if (!mountedRef.current || !isCurrentAccountGeneration(resultAccount, planScope.stableUid)) {
+      DebugLogger.warn('[ARENA-SETTLE]', `fallback early return: mounted=${String(mountedRef.current)} sameAccount=${String(isCurrentAccountGeneration(resultAccount, planScope.stableUid))}`);
+      return;
+    }
+    const preview = match ? arenaResultPreview(plan, match.state) : null;
+    if (!preview) {
+      // Сюда попадает сдача — и это правильно: сдавшийся уже ушёл сам.
+      DebugLogger.warn('[ARENA-SETTLE]', `fallback early return: предпросмотр не построен — phase=${String(match?.state.phase)} abandoned=${String(match?.state.abandoned)}`);
+      return;
+    }
+    const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}`;
+    arenaRememberResultHandoff({ ownerKey, matchId, viewerSeat: plan.viewerSeat, preview });
+    resultOpenedRef.current = true;
+    DebugLogger.info('[ARENA-SETTLE]', `fallback открывает результат: mode=${plan.mode} мойСчёт=${String(preview.viewerStars)} счётСоперника=${String(preview.opponentStars)} исход=${String(preview.outcome)}`);
+    router.replace({
+      pathname: '/arena_results',
+      params: {
+        matchId,
+        mode: plan.mode,
+        viewerSeat: plan.viewerSeat,
+        ownerGeneration: String(resultAccount.generation),
+      },
+    } as never);
+  }, [match, matchId, plan, planScope, router]);
+
+  /**
    * Сторож зависания сцены «Сверяем результат…».
    *
-   * зачем (владелец 2026-09-03: «экран арена, сверяем очки зависло намертво,
-   * только выход»): у этой сцены не было ни одного предохранителя. Быстрый матч
-   * намеренно не открывается по предпросмотру (кульминация — серверная сцена
-   * XP), поэтому он ЦЕЛИКОМ зависит от ответа сервера. Если ответ не пришёл или
-   * не прошёл проверку готовности, три ретрая доставки заканчивались молча и
-   * человек оставался на мёртвом кадре без единой кнопки.
+   * зачем (владелец 2026-09-04: «должен быть правильный экран результата как
+   * был, просто ничего не должно зависать»): экран НЕ показывает окно с выходом
+   * и не бросает человека — он открывает НАСТОЯЩИЙ экран результата по
+   * локальному итогу, ровно тот же, что и всегда.
    *
-   * Сторож ничего не чинит и ничего не начисляет: награда и снимок уже лежат в
-   * outbox и догонят на хабе. Он лишь возвращает управление человеку.
+   * Матч считается на устройстве, поэтому свой счёт, счёт соперника и исход
+   * известны без сервера. Сервер нужен только для наград и ранга — они догонят
+   * и заменят предпросмотр авторитетными числами (`openCoherentResult` кладёт
+   * снимок даже на уже открытый экран). Отчёт при этом лежит в outbox и будет
+   * доставлен, так что награда не теряется.
+   *
+   * Быстрый матч (`quick`) обычным путём ждёт сервер намеренно — его кульминация
+   * серверная сцена XP. Но «намеренно ждёт» не значит «ждёт вечно»: если ответа
+   * нет и после ретраев, показать локальный результат честнее, чем мёртвый кадр.
    */
   useEffect(() => {
     if (!active) return undefined;
     if (match?.state.phase !== 'finished' || !finalScoreReady) return undefined;
-    if (resultOpenedRef.current || matchAlert !== null) return undefined;
-    // зачем (аудит 2026-09-03): сторож заводится ЗАНОВО только после явного
-    // «остаться» (там счётчик растёт). Без этого закрытие окна свайпом сбрасывало
-    // matchAlert в null, эффект перезапускался, и окно возвращалось каждые 30
-    // секунд — человек не мог от него отделаться, пока сеть молчит.
-    if (settleStuckShownRef.current !== settleStuckRound) return undefined;
+    if (resultOpenedRef.current) return undefined;
     const timer = setTimeout(() => {
       if (!mountedRef.current || resultOpenedRef.current) return;
-      settleStuckShownRef.current = settleStuckRound + 1;
       DebugLogger.error(
         '[ARENA-SETTLE]',
-        `сцена сверки висит ${ARENA_SETTLE_STUCK_MS}мс: match=${String(matchId)} mode=${String(plan?.mode)} finishQueued=${String(settleStuckDebugRef.current.finishQueued)} sent=${String(settleStuckDebugRef.current.sent)} круг=${String(settleStuckRound)} — показываем выход`,
+        `сервер молчит ${ARENA_SETTLE_STUCK_MS}мс: match=${String(matchId)} mode=${String(plan?.mode)} finishQueued=${String(settleStuckDebugRef.current.finishQueued)} sent=${String(settleStuckDebugRef.current.sent)} — открываем результат по локальному итогу`,
         'critical',
       );
-      setMatchAlert({ kind: 'settleStuck' });
+      openResultFallback();
     }, ARENA_SETTLE_STUCK_MS);
     return () => clearTimeout(timer);
     // зачем (аудит 2026-09-03): finishQueued и sent НАМЕРЕННО не в зависимостях.
@@ -699,7 +753,7 @@ function ArenaMatchGenerationScreen({
     // доставки щёлкают их true↔false), и каждая смена перезаводила таймер с нуля —
     // предохранитель мог не сработать никогда. Для лога их значения берутся из
     // ref, чтобы диагностика осталась точной, а отсчёт — непрерывным.
-  }, [active, finalScoreReady, match?.state.phase, matchAlert, matchId, plan?.mode, settleStuckRound]);
+  }, [active, finalScoreReady, match?.state.phase, matchId, openResultFallback, plan?.mode]);
 
   useEffect(() => {
     if (!active || !finishQueued || !matchId) return undefined;
@@ -1069,34 +1123,6 @@ function ArenaMatchGenerationScreen({
             style={[styles.alertPrimary, { backgroundColor: t.accent }]}
           >
             <Text style={[styles.alertButtonText, { color: t.correctText }]}>{arenaText(lang, 'home')}</Text>
-          </DuoPressable>
-        </View>
-      ) : matchAlert?.kind === 'settleStuck' ? (
-        <View style={[styles.alertBody, { backgroundColor: t.bgCard }]}>
-          <Text accessibilityRole="header" style={[styles.alertTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
-            {arenaText(lang, 'settleStuck')}
-          </Text>
-          <Text style={[styles.alertText, { color: t.textSecond, fontSize: f.body }]}>
-            {arenaText(lang, 'settleStuckHint')}
-          </Text>
-          <DuoPressable
-            testID="arena-match-settle-stuck-home"
-            onPress={() => { setMatchAlert(null); router.replace('/arena' as never); }}
-            edgeColor={t.accent}
-            style={[styles.alertPrimary, { backgroundColor: t.accent }]}
-          >
-            <Text style={[styles.alertButtonText, { color: t.correctText }]}>{arenaText(lang, 'home')}</Text>
-          </DuoPressable>
-          {/* зачем: закрытие алерта возвращает на сцену сверки и даёт сторожу
-              завести новый круг — поздний ответ ещё может дойти и открыть
-              нормальный экран результата с наградой. */}
-          <DuoPressable
-            testID="arena-match-settle-stuck-wait"
-            onPress={() => { setMatchAlert(null); setSettleStuckRound((round) => round + 1); }}
-            edgeColor={t.bgSurface2}
-            style={[styles.alertSecondary, { backgroundColor: t.bgSurface2 }]}
-          >
-            <Text style={[styles.alertButtonText, { color: t.textPrimary }]}>{arenaText(lang, 'stay')}</Text>
           </DuoPressable>
         </View>
       ) : null}

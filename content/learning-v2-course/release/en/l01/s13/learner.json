@@ -1,0 +1,941 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — young",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-13:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — young",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-13:i01:audio",
+          "transcript": "young"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-13:i01:r1",
+            "targetText": "young",
+            "meaningByLocale": {
+              "ru": "«молодой». Прожил на свете мало."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "young",
+          "definitionByLocale": {
+            "ru": "«молодой». Прожил на свете мало."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-13:i02:r1",
+          "text": "young"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i02:r2",
+          "text": "yellow"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i02:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — young",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-13:i02:audio",
+          "transcript": "young"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-13:i02:r1",
+            "targetText": "young",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i02:r2",
+            "targetText": "yellow",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i02:r3",
+            "targetText": "your",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-13:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — young",
+            "feedbackByLocale": {
+              "ru": "Это «жёлтый». Два слога вместо одного."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — young",
+            "feedbackByLocale": {
+              "ru": "«Твой». В конце нет звука «нг»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — old",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-13:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — old",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-13:i03:audio",
+          "transcript": "old"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-13:i03:r1",
+            "targetText": "old",
+            "meaningByLocale": {
+              "ru": "«старый». Долго живёт на свете — человек или вещь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "old",
+          "definitionByLocale": {
+            "ru": "«старый». Долго живёт на свете — человек или вещь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «ты молодая»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «ты молодая»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are young.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «ты молодая»"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "young"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы говорите про себя",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-13:i05:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i05:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i05:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы говорите про себя",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы говорите про себя"
+        },
+        "gappedTargetPhrase": "I ___ old.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-13:i05:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i05:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i05:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы говорите про себя",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-13:i05:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы говорите про себя",
+            "feedbackByLocale": {
+              "ru": "`are` — скрепка для `you`. Про себя `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы говорите про себя",
+            "feedbackByLocale": {
+              "ru": "Чужая скрепка, к `I` она не приставляется."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — strong",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-13:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — strong",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-13:i06:audio",
+          "transcript": "strong"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-13:i06:r1",
+            "targetText": "strong",
+            "meaningByLocale": {
+              "ru": "«сильный». Донёс две сумки и не запыхался."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "strong",
+          "definitionByLocale": {
+            "ru": "«сильный». Донёс две сумки и не запыхался."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-13:i07:r1",
+          "text": "strong"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i07:r2",
+          "text": "wrong"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i07:r3",
+          "text": "string"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — strong",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-13:i07:audio",
+          "transcript": "strong"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-13:i07:r1",
+            "targetText": "strong",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i07:r2",
+            "targetText": "wrong",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i07:r3",
+            "targetText": "string",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-13:i07:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — strong",
+            "feedbackByLocale": {
+              "ru": "«Неправ». Отличается началом: в `strong` слышно «стр»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — strong",
+            "feedbackByLocale": {
+              "ru": "Похоже, но гласная другая: «стрин», а не «строн»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tall",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tall",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-13:i08:audio",
+          "transcript": "tall"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-13:i08:r1",
+            "targetText": "tall",
+            "meaningByLocale": {
+              "ru": "«высокий». И про человека, и про дерево, и про дом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tall",
+          "definitionByLocale": {
+            "ru": "«высокий». И про человека, и про дерево, и про дом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-13:i09:r1",
+          "text": "tall"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i09:r2",
+          "text": "tell"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i09:r3",
+          "text": "ball"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — tall",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-13:i09:audio",
+          "transcript": "tall"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-13:i09:r1",
+            "targetText": "tall",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i09:r2",
+            "targetText": "tell",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i09:r3",
+            "targetText": "ball",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-13:i09:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — tall",
+            "feedbackByLocale": {
+              "ru": "Другая гласная — «тэл». В `tall` тянется «о»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — tall",
+            "feedbackByLocale": {
+              "ru": "«Мяч». Начинается с «б»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — коллега легко подняла коробку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-13:i10:r1",
+          "text": "strong"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i10:r2",
+          "text": "tired"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i10:r3",
+          "text": "ready"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — коллега легко подняла коробку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коллега легко подняла коробку"
+        },
+        "gappedTargetPhrase": "You are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-13:i10:r1",
+            "text": "strong"
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i10:r2",
+            "text": "tired"
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i10:r3",
+            "text": "ready"
+          }
+        ],
+        "testedDimension": "Вставьте слово — коллега легко подняла к",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-13:i10:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега легко подняла к",
+            "feedbackByLocale": {
+              "ru": "«Устала» — это не про коробку, а про конец дня."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега легко подняла к",
+            "feedbackByLocale": {
+              "ru": "«Готова» — про сборы, а не про силу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-13:i11:p1",
+            "target": "young",
+            "meaningByLocale": {
+              "ru": "молодой"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-13:i11:p2",
+            "target": "old",
+            "meaningByLocale": {
+              "ru": "старый"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-13:i11:p3",
+            "target": "strong",
+            "meaningByLocale": {
+              "ru": "сильный"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-13:i11:p4",
+            "target": "tall",
+            "meaningByLocale": {
+              "ru": "высокий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "young",
+          "old",
+          "strong",
+          "tall"
+        ],
+        "rightColumn": [
+          "молодой",
+          "старый",
+          "сильный",
+          "высокий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «я сильный»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «я сильный»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am strong.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «я сильный»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "strong"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — про собеседника",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-13:i13:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i13:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i13:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — про собеседника",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — про собеседника"
+        },
+        "gappedTargetPhrase": "You ___ tall.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-13:i13:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i13:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i13:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — про собеседника",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-13:i13:r1",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — про собеседника",
+            "feedbackByLocale": {
+              "ru": "`am` живёт только с `I`. Здесь `you` — значит `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — про собеседника",
+            "feedbackByLocale": {
+              "ru": "Чужая скрепка. К `you` приставляется `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — brave",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — brave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-13:i14:audio",
+          "transcript": "brave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-13:i14:r1",
+            "targetText": "brave",
+            "meaningByLocale": {
+              "ru": "«смелый». Страшно, а всё равно делает."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brave",
+          "definitionByLocale": {
+            "ru": "«смелый». Страшно, а всё равно делает."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-13:i15:r1",
+          "text": "brave"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i15:r2",
+          "text": "grave"
+        },
+        {
+          "responseId": "en:lesson-01:session-13:i15:r3",
+          "text": "bread"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — brave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-13:i15:audio",
+          "transcript": "brave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-13:i15:r1",
+            "targetText": "brave",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i15:r2",
+            "targetText": "grave",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i15:r3",
+            "targetText": "bread",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-13:i15:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — brave",
+            "feedbackByLocale": {
+              "ru": "Начинается с «г», а не с «б»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-13:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — brave",
+            "feedbackByLocale": {
+              "ru": "«Хлеб». В конце «д», и звучит короче."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — kind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — kind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-13:i16:audio",
+          "transcript": "kind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-13:i16:r1",
+            "targetText": "kind",
+            "meaningByLocale": {
+              "ru": "«добрый». Заметил, что вам тяжело, и молча помог."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kind",
+          "definitionByLocale": {
+            "ru": "«добрый». Заметил, что вам тяжело, и молча помог."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коллега первой заговорила с начальником, скажите ей про это",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коллега первой заговорила с начальником, скажите ей про это",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are brave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коллега первой заговорила с начальником, скажите ей про это"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "brave"
+        ],
+        "authoredDistractorTokens": [
+          "I"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-13:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы хвалите её, она хвалит вас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-13:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы хвалите её, она хвалит вас",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-13:i18:audio",
+          "transcript": "You are kind. You are brave. I am ready. I am strong."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are kind. You are brave. I am ready. I am strong.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ae93dc234ed32b05d9e5910f709ba36ea00414ac2757440817eee2ed9eb58ed8"
+}

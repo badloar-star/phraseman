@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "контраст `I am` / `You are`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Две скрепки, и они не меняются местами"
+      },
+      "bodyByLocale": {
+        "ru": "`ready` — «готов». Но одного слова мало: перед ним нужна скрепка, и она зависит от того, о ком речь. О себе — `I am ready`. О собеседнике — `You are ready`.\n\n`am` вообще не умеет жить без `I`. Больше ни с кем оно не ходит."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега спрашивает, идёте ли вы. Ответьте: «я готов»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r1",
+              "text": "I am ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r2",
+              "text": "I are ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r3",
+              "text": "I ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега спрашивает, идёте ли вы. Ответьте: «я готов»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Young и old"
+      },
+      "bodyByLocale": {
+        "ru": "`young` — «молодой», `old` — «старый». Возраст строится так же, как всё остальное про человека: `I am young`, `You are old`.\n\nГлавное не перепутать: `you am` не бывает. У `you` своя скрепка — `are`.\n\nИ `old` — не грубость. Англичанин спокойно скажет о себе `I am old`, никто не обидится."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Коллега вздыхает, что она уже немолодая. Возразите: «ты молодая»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r1",
+              "text": "You are young."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r2",
+              "text": "You am young."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r3",
+              "text": "You young."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега вздыхает, что она уже немолодая. Возразите: «ты молодая»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Strong и tall"
+      },
+      "bodyByLocale": {
+        "ru": "`strong` — «сильный», `tall` — «высокий». `tall` годится и для человека, и для дерева, и для дома.\n\nПро свой рост англичанин скажет просто `I am tall`, без всякого «у меня рост высокий».\n\nУдобно: одна скрепка тянет и рост, и возраст, и силу. Учить отдельные обороты не придётся."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы сами дотянулись до верхней полки. Скажите про себя: «я высокий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r1",
+              "text": "I am tall."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r2",
+              "text": "I are tall."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r3",
+              "text": "Am I tall."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы сами дотянулись до верхней полки. Скажите про себя: «я высокий»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d29d2b89caf20d09d5955600df178a3d9ed99a820d79df66a3c98860adb1a71b"
+}

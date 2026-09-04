@@ -456,7 +456,15 @@ const extractJson = (text) => {
     } catch (e2) { throw new Error(`${e.message}; после чистки переносов: ${e2.message}`); }
   }
 };
-const stripFence = (text) => text.replace(/^```(?:markdown|md)?\s*\n?/, "").replace(/\n?```\s*$/, "").trim();
+const stripFence = (text) => {
+  let s = text.replace(/^```(?:markdown|md)?\s*\n?/, "").replace(/\n?```\s*$/, "").trim();
+  // зачем: редактор иногда пишет реплику до заголовка («Два незакрытых факта
+  // чиню так: ...»), и она попадала прямо в урок ученику. Всё до строки
+  // «# Английский» — служебное, отрезаем.
+  const h = s.search(/^# /m);
+  if (h > 0) { WARN(`отрезана служебная преамбула перед заголовком (${h} зн.)`); s = s.slice(h); }
+  return s;
+};
 
 // ---------- этапы ----------
 const PERSONAS = [

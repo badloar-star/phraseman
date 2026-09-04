@@ -1,0 +1,146 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя говорю 'I am ready', про собеседника 'You are ready'. 'am' ходит только с 'I'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "young - молодой, old - старый. К 'you' приставляется 'are', не 'am'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "strong - сильный, tall - высокий. Про рост тоже говорят через 'am/are', как и про настроение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 Карточка young",
+      "what_i_understood": "young = молодой",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 Слух young",
+      "what_i_understood": "Выбрал young, отличил от yellow и your на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 Карточка old",
+      "what_i_understood": "old = старый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 Сборка You are young",
+      "what_i_understood": "Собрал фразу из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 Вставка am/old",
+      "what_i_understood": "I am old - выбрал am, не are/is",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 Карточка strong",
+      "what_i_understood": "strong = сильный",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 Слух strong",
+      "what_i_understood": "Отличил от wrong и string",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 Карточка tall",
+      "what_i_understood": "tall = высокий",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 Слух tall",
+      "what_i_understood": "Отличил от tell и ball",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 Вставка strong",
+      "what_i_understood": "You are strong - подошло по смыслу к 'легко подняла коробку'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 Доска пар",
+      "what_i_understood": "Соединил все 4 слова с переводами",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 Сборка I am strong",
+      "what_i_understood": "Собрал, лишнюю плитку are не взял",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 Вставка are/tall",
+      "what_i_understood": "You are tall - выбрал are, не am",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 Карточка brave",
+      "what_i_understood": "brave = смелый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 Слух brave",
+      "what_i_understood": "Отличил от grave и bread",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 Карточка kind",
+      "what_i_understood": "kind = добрый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 Сборка You are brave",
+      "what_i_understood": "Собрал, лишнюю I не взял",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "18 Голос",
+      "what_i_understood": "Произнёс все четыре фразы про себя и коллегу",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "young, old, strong, tall, brave, kind — новые слова с переводом",
+    "am живёт только с I, are — с you, они не взаимозаменяемы",
+    "про рост и возраст говорят той же конструкцией, что и про настроение (I am tall, как I am tired)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Интро 3 - мелочь про рост ('я высокий' строится так же, как настроение) реально что-то объясняет, а не украшает",
+    "задание 18 - приятно, что в конце проговариваешь всё вместе, как будто правда разговор с коллегой"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: разговор с коллегой за кофе, где обмениваемся комплиментами и путаемся am/are — фразы понятны, кому и когда я их говорю",
+  "would_continue": "да - слова простые, объяснения по делу, ничего не пришлось перечитывать дважды",
+  "verdict": "PASS",
+  "verdict_reason": "Всё прошёл честно, задания решаемы известными словами, узнал новое, понял зачем говорю эти фразы."
+}

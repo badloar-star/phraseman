@@ -1,0 +1,105 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — It is small",
+      "what_i_understood": "It — это «оно», про вещь, не про человека. К нему тоже нужна скрепка is, как у he/she. It is small = «оно маленькое».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос: комната три на четыре, скажи про неё",
+      "what_i_understood": "Выбрал It is small. Понял, почему It small и It am small — неправильно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — It is dark",
+      "what_i_understood": "dark — тёмный/темно, про комнату без света. Строится так же: it + is + слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос: щёлкнули выключателем — лампочки нет",
+      "what_i_understood": "It is dark. Понял, что dark не меняется (не darks) и что is обязателен.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — It is expensive / cold",
+      "what_i_understood": "expensive — дорогой, длинное слово с ударением на середину. cold — холодно. Оба по той же схеме it is + слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос: счёт за квартиру",
+      "what_i_understood": "It is expensive. Понял разницу с He is expensive — про вещь всегда it.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-6 (карточки + аудирование small/dark/expensive)",
+      "what_i_understood": "Запомнил слова через звук и написание, отличил похожие по звучанию варианты (smell/tall, expense/extensive).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — вставь слово про размер комнаты",
+      "what_i_understood": "Выбрал small, а не dark/expensive — они про другое (свет и цену).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8-9 — cold",
+      "what_i_understood": "cold — холодно. Скрепка про вещь всегда is, не am/are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — собери фразу про счёт, лишняя плитка he",
+      "what_i_understood": "Заметил лишнюю плитку he — она не подходит, потому что he про человека, а счёт это вещь.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — доска пар (4 новых слова)",
+      "what_i_understood": "Свёл все 4 новых слова с переводом без запинки.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 12-15 — new, warm, quiet, nice (старые слова)",
+      "what_i_understood": "Эти слова мне не объясняли в этой сессии, но по контексту (новая квартира — new, обогреватель нагрел — warm, ни звука во дворе — quiet, красиво — nice) я смог понять и выбрать правильно, они и так были на слуху.",
+      "confusion": "Слегка не уверен, помню ли я nice и quiet, но по картинке ситуации догадался верно",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — доска пар старых слов",
+      "what_i_understood": "Свёл new/warm/quiet/nice с переводами.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — проговорить 4 фразы подряд",
+      "what_i_understood": "Собрал It is small. It is dark. It is quiet. It is cold. — как обход квартиры вслух.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Что про вещи, комнаты и погоду говорят it, а не he/she",
+    "Что к it тоже нужна скрепка is (It is + слово)",
+    "Новые слова: small, dark, expensive, cold",
+    "Что одно и то же слово (dark) годится и для комнаты, и для вечера на улице — не нужно искать отдельное слово"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с чемоданом на кровати из-за маленькой комнаты — сразу понятно, что происходит",
+    "Задание 17 — обход квартиры вслух, приятно проговорить всё сразу как итог вечера"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно. Я — человек, который только заселился в квартиру в Дублине, хожу по комнате и по очереди подмечаю: маленькая, тёмная, дорогая, холодная. Каждая фраза — то, что я реально сказал бы себе в этот момент.",
+  "would_continue": "Да — сессия короткая, ничего непонятного не было, под конец даже приятно собрать все фразы вместе и как будто закрыть вечер.",
+  "verdict": "PASS",
+  "verdict_reason": "Всё было выполнимо, слова объяснялись до вопросов, старые слова были узнаваемы по контексту, а не выдуманы как «уже знакомые», и я реально усвоил новую конструкцию It is + слово."
+}

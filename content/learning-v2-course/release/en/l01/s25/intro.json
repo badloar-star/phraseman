@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "`It is` + признак (про вещь, комнату, погоду)",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`It` — «оно», про вещь",
+        "uk": "`It` — «воно», про річ"
+      },
+      "bodyByLocale": {
+        "ru": "`It` — это «оно»: про предмет, комнату, погоду. Не про человека.\n\nСкрепка та же, что у `he` и `she`, — `is`. `small` — «маленький», получается `It is small`.\n\nПо-русски «комната маленькая» прекрасно живёт без глагола. По-английски `It small` не соберётся: `is` держит фразу.",
+        "uk": "`It` — це «воно»: про предмет, кімнату, погоду. Не про людину.\n\nСкріпка до нього така сама, як у `he` і `she`, — `is`. Виходить `It is small` — «воно маленьке», `small` — «маленький».\n\nУкраїнською ми кажемо «кімната маленька» і чудово живемо без дієслова. Англійською `It small` не збереться — `is` тримає фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Открыли дверь: комната метра три на четыре. Скажите про неё.",
+          "uk": "Відчинили двері: кімната три на чотири метри. Скажіть про неї."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-25:intro1:r1",
+              "text": "It is small."
+            },
+            {
+              "responseId": "en:lesson-01:session-25:intro1:r2",
+              "text": "It small."
+            },
+            {
+              "responseId": "en:lesson-01:session-25:intro1:r3",
+              "text": "It am small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-25:intro1:r1",
+              "text": "It is small."
+            },
+            {
+              "responseId": "en:lesson-01:session-25:intro1:r2",
+              "text": "It small."
+            },
+            {
+              "responseId": "en:lesson-01:session-25:intro1:r3",
+              "text": "It am small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Открыли дверь: комната метра три на четыре. Скажите про неё.",
+          "uk": "Відчинили двері: кімната три на чотири метри. Скажіть про неї."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`dark` — темно",
+        "uk": "`dark` — темно"
+      },
+      "bodyByLocale": {
+        "ru": "`dark` — «тёмный, темно». Про комнату без света, про улицу вечером.\n\nФраза строится так же: `It is dark`. Сначала `it`, потом `is`, потом само слово.\n\nНе ищите отдельного слова для «темно» и «тёмная» — в английском это одно `dark` и для комнаты, и для вечера за окном.",
+        "uk": "`dark` — «темний, темно». Про кімнату без світла, про вулицю ввечері.\n\nФраза будується так само: `It is dark`. Спершу `it`, потім `is`, потім саме слово.\n\nНе шукайте окремого слова для «темно» і «темна» — в англійській це одне `dark` і для кімнати, і для вечора за вікном."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Щёлкнули выключателем — лампочки нет. Скажите, что темно.",
+          "uk": "Клацнули вимикач — лампочки немає. Скажіть, що темно."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-25:intro2:r1",
+              "text": "It is dark."
+            },
+            {
+              "responseId": "en:lesson-01:session-25:intro2:r2",
+              "text": "It is darks."
+            },
+            {
+              "responseId": "en:lesson-01:session-25:intro2:r3",
+              "text": "It dark."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-25:intro2:r1",
+              "text": "It is dark."
+            },
+            {
+              "responseId": "en:lesson-01:session-25:intro2:r2",
+              "text": "It is darks."
+            },
+            {
+              "responseId": "en:lesson-01:session-25:intro2:r3",
+              "text": "It dark."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Щёлкнули выключателем — лампочки нет. Скажите, что темно.",
+          "uk": "Клацнули вимикач — лампочки немає. Скажіть, що темно."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`expensive` — дорого",
+        "uk": "`expensive` — дорого"
+      },
+      "bodyByLocale": {
+        "ru": "`expensive` — «дорогой». Длинное слово, и ударение в нём на середину: «икс-ПЕН-сив».\n\n`It is expensive` — «это дорого». Фраза, которую в чужом городе вы скажете чаще, чем хотелось бы.\n\nИ ещё одно: `cold` — «холодно». Про батарею, про воду из крана, про весь этот вечер.",
+        "uk": "`expensive` — «дорогий». Довге слово, і наголос у ньому на середину: «ікс-ПЕН-сив».\n\n`It is expensive` — «це дорого». Фраза, яку в чужому місті ви скажете частіше, ніж хотілося б.\n\nІ ще одне: `cold` — «холодно». Про батарею, про воду з крана, про весь цей вечір."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Смотрите на счёт за квартиру и присвистываете. Одна фраза.",
+          "uk": "Дивитеся на рахунок за квартиру і присвистуєте. Одна фраза."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-25:intro3:r1",
+              "text": "It is expensive."
+            },
+            {
+              "responseId": "en:lesson-01:session-25:intro3:r2",
+              "text": "It is expensiv."
+            },
+            {
+              "responseId": "en:lesson-01:session-25:intro3:r3",
+              "text": "He is expensive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-25:intro3:r1",
+              "text": "It is expensive."
+            },
+            {
+              "responseId": "en:lesson-01:session-25:intro3:r2",
+              "text": "It is expensiv."
+            },
+            {
+              "responseId": "en:lesson-01:session-25:intro3:r3",
+              "text": "He is expensive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Смотрите на счёт за квартиру и присвистываете. Одна фраза.",
+          "uk": "Дивитеся на рахунок за квартиру і присвистуєте. Одна фраза."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "00287a67dad87fbd6351f789aef9d344d52bfba0059e76807057d7a2b6c9f055"
+}

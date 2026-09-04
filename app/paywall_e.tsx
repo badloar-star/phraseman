@@ -35,6 +35,7 @@ import {
   usePaywallScreenStackOptions, PaywallStickyBar, useStickyCta,
 } from '../components/paywall/paywallShared';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
+import PaywallPromoBanner from '../components/paywall/PaywallPromoBanner';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
 import { PaywallEntrance, PaywallBadgePop } from '../components/paywall/PaywallMotion';
@@ -195,6 +196,9 @@ export default function PaywallE() {
             </PaywallEntrance>
 
             <PaywallEntrance index={2}>
+              {/* Скидка стора: цена со скидкой + обычная зачёркнутой + что
+                  спишется после промо-периода (владелец 2026-09-04). */}
+              <PaywallPromoBanner lang={lang as Lang} chrome={chrome} promo={p.selectedPromo} />
               {p.offeringsFailed ? (
                 <PaywallPriceRetry lang={lang as Lang} chrome={chrome} onRetry={p.reloadOfferings} />
               ) : (

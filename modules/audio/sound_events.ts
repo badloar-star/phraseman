@@ -262,6 +262,10 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.billing.issue': event(require('../../assets/audio/sfx/v1/commerce/pm_billing_issue_v1.m4a'), 0.32, 74, 800, 900, 'commerce'),
   'pm.paywall.plan_select': event(require('../../assets/audio/sfx/v1/commerce/pm_paywall_plan_select_v1.m4a'), 0.26, 44, 160, 400, 'commerce'),
   'pm.paywall.trial_highlight': event(require('../../assets/audio/sfx/v1/commerce/pm_paywall_trial_highlight_v1.m4a'), 0.30, 52, 800, 700, 'commerce'),
+  // зачем (владелец 2026-09-04): «если включены скидочные цены в сторах — чтобы
+  // открытие пейвола было премиальным и праздничным, с новым звуком». Звучит
+  // РОВНО ОДИН раз за показ и только когда стор реально дал скидку.
+  'pm.paywall.promo_reveal': event(require('../../assets/audio/sfx/v1/commerce/pm_paywall_promo_reveal_v1.m4a'), 0.34, 54, 3000, 1200, 'commerce'),
   'pm.premium.modal_open': event(require('../../assets/audio/sfx/v1/commerce/pm_premium_modal_open_v1.m4a'), 0.28, 50, 800, 1000, 'commerce'),
   'pm.promo.code_applied': event(require('../../assets/audio/sfx/v1/commerce/pm_promo_code_applied_v1.m4a'), 0.44, 82, 3000, 1100, 'commerce'),
   'pm.promo.code_rejected': event(require('../../assets/audio/sfx/v1/commerce/pm_promo_code_rejected_v1.m4a'), 0.28, 70, 800, 600, 'commerce'),

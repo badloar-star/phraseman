@@ -38,6 +38,7 @@ import {
 } from '../components/paywall/paywallShared';
 import PaywallPlanCards from '../components/paywall/PaywallPlanCards';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
+import PaywallPromoBanner from '../components/paywall/PaywallPromoBanner';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
 import { PersonalizationProofCard, CompareCard, FaqCard } from '../components/paywall/PaywallProofCards';
@@ -230,6 +231,11 @@ export default function PaywallC() {
             </PaywallEntrance>
 
             <PaywallEntrance index={2}>
+              {/* Скидка стора: цена со скидкой + обычная зачёркнутой + что
+                  спишется после промо-периода (владелец 2026-09-04). Стоит ВЫШЕ
+                  ветки ошибки: промо приходит из уже загруженных пакетов и не
+                  зависит от сбоя дозагрузки цен. */}
+              <PaywallPromoBanner lang={lang as Lang} chrome={chrome} promo={p.selectedPromo} />
               {p.offeringsFailed ? (
                 <PaywallPriceRetry lang={lang as Lang} chrome={chrome} onRetry={p.reloadOfferings} />
               ) : (

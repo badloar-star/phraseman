@@ -28,6 +28,7 @@ import {
   revenueCatPremiumMetadata,
 } from './premium_revenuecat_state';
 import { computeSavingsPct, computePerDayString } from './paywall_pricing';
+import { getStorePromoPricing } from './premium_store_promo_display';
 import { getTrialInfo, type TrialEligibility, type TrialInfo } from './paywall_trial_info';
 import { readOnboardingNotificationChoice } from './onboarding_notification_choice';
 import { shouldShowExitTrialOffer } from './paywall_trial_offer';
@@ -389,6 +390,56 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     yearlyPriceStr: yearlyPrice || null,
     monthlyPriceStr: monthlyPrice || null,
   }), [packages, yearlyPrice, monthlyPrice]);
+
+  // зачем (владелец 2026-09-04): «чтобы не было ошибок, когда на пейволе
+  // написано OFF, а списывается полная цена через N дней». Скидка на первый
+  // период (iOS Introductory Offer / Android фаза базового плана) приходит из
+  // стора отдельными полями — priceString при этом остаётся ОБЫЧНОЙ ценой.
+  // Раньше модуль детекта существовал (premium_store_promo_display), но его
+  // никто не звал: класс бага «механизм есть, данных не дали». Теперь промо
+  // читается здесь, ОДИН раз на все семь пейволов, и каждый показывает и цену
+  // со скидкой, и обычную, и что будет после промо-периода.
+  //
+  // Ничего не включается флагами: источник истины — стор. Включили скидку в
+  // App Store Connect / Play Console — она появилась; выключили — исчезла.
+  // Рассинхрону между «написано» и «спишется» взяться неоткуда.
+  const storePromo = useMemo(() => ({
+    yearly: getStorePromoPricing(packages.yearly?.product),
+    monthly: getStorePromoPricing(packages.monthly?.product),
+    lifetime: getStorePromoPricing(packages.lifetime?.product),
+  }), [packages]);
+
+  /** Промо выбранного плана — им же решается праздничное оформление пейвола. */
+  const selectedPromo = storePromo[selected] ?? null;
+
+  useEffect(() => {
+    // Постоянная диагностика (правило «сперва логи»): по одной строке видно,
+    // ПОЧЕМУ скидка показана или не показана — и какие именно цены увидел
+    // человек. Без этого «на пейволе OFF, а списалось полное» неразбираемо.
+    if (loading) return;
+    DebugLogger.info(
+      '[PAYWALL-PROMO]',
+      `план=${selected} промо=${selectedPromo ? `${selectedPromo.discountPercent}% ${selectedPromo.promoPriceString}→${selectedPromo.standardPriceString}` : 'нет'} `
+      + `год=${storePromo.yearly ? `${storePromo.yearly.discountPercent}%` : '—'} `
+      + `месяц=${storePromo.monthly ? `${storePromo.monthly.discountPercent}%` : '—'} `
+      + `навсегда=${storePromo.lifetime ? `${storePromo.lifetime.discountPercent}%` : '—'} `
+      + `ценаСтора=${yearlyPrice || '—'}/${monthlyPrice || '—'}`,
+    );
+  }, [loading, selected, selectedPromo, storePromo, yearlyPrice, monthlyPrice]);
+
+  // зачем (владелец 2026-09-04): «чтобы открытие пейвола было премиальным и
+  // праздничным — с анимацией и новым звуком». Звук — РОВНО ОДИН раз за показ
+  // и только когда стор реально дал скидку: ref, а не state, чтобы повторные
+  // рендеры и смена выбранного плана не превращали праздник в трещотку.
+  const promoFanfareDoneRef = useRef(false);
+  useEffect(() => {
+    if (loading || promoFanfareDoneRef.current) return;
+    const anyPromo = storePromo.yearly ?? storePromo.monthly ?? storePromo.lifetime;
+    if (!anyPromo) return;
+    promoFanfareDoneRef.current = true;
+    soundDirector.request('pm.paywall.promo_reveal', { scope: 'paywall' });
+    DebugLogger.info('[PAYWALL-PROMO]', `праздничный показ: ${anyPromo.discountPercent}% (${anyPromo.promoPriceString} вместо ${anyPromo.standardPriceString})`);
+  }, [loading, storePromo]);
 
   const perDayLabel = useMemo(() => computePerDayString(
     yearlyPrice || null,
@@ -1017,6 +1068,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     yearlyPrice, monthlyPrice, yearlyPerMonth, monthlyPerMonth,
     lifetimePrice, lifetimeAvailable,
     savingsPct, perDayLabel,
+    storePromo, selectedPromo,
     trial, trialDays, ctaDisabled, selectedAvailable,
     handlePurchase, handleRestore, handleClose,
     exitOffer,

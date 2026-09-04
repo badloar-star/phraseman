@@ -1,0 +1,102 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-19:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i02",
+    "correctText": "angry",
+    "correctResponseId": "en:lesson-01:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i04",
+    "correctText": "rude",
+    "correctResponseId": "en:lesson-01:session-19:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i05",
+    "correctText": "He is not angry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i08",
+    "correctText": "slow",
+    "correctResponseId": "en:lesson-01:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i10",
+    "correctText": "mean",
+    "correctResponseId": "en:lesson-01:session-19:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i12",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i13",
+    "correctText": "serious",
+    "correctResponseId": "en:lesson-01:session-19:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i15",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-19:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i16",
+    "correctText": "serious",
+    "correctResponseId": "en:lesson-01:session-19:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i17",
+    "correctText": "She is not rude.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i18",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-19:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i19",
+    "correctText": "He is busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-19:i20",
+    "correctText": "He is not angry. She is not rude. He is not slow.",
+    "correctResponseId": null
+  }
+]

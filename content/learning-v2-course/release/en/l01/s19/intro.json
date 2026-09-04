@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "`He is not` / `She is not` + слово"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`angry` — «злой»"
+      },
+      "bodyByLocale": {
+        "ru": "`angry` — «злой, сердитый». Человек хмурится, отвечает коротко и явно не рад.\n\nЧтобы сказать обратное, нужен `not`, и место у него одно: сразу после `is`. Получается `He is not angry`.\n\nВыкинуть `is` тянет всех — по-русски его нет. Но `He not angry` короче не станет, только неправильнее."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега решила, что начальник на неё сердится. Возразите: «он не злой»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-19:intro1:r1",
+              "text": "He is not angry."
+            },
+            {
+              "responseId": "en:lesson-01:session-19:intro1:r2",
+              "text": "He not angry."
+            },
+            {
+              "responseId": "en:lesson-01:session-19:intro1:r3",
+              "text": "He is angry not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега решила, что начальник на неё сердится. Возразите: «он не злой»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`mean` и `rude` — злой не одинаково"
+      },
+      "bodyByLocale": {
+        "ru": "`mean` — «вредный»: обижает нарочно. `rude` — «грубый»: перебивает и не здоровается.\n\nРазница в намерении. Грубый может просто не уметь вести себя, вредный — умеет и делает.\n\nПро женщину всё так же, только `he` меняется на `she`: `She is not rude`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Коллега уверена, что женщина у окна ей нахамила. На самом деле та просто устала. Скажите: «она не грубая»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-19:intro2:r1",
+              "text": "She is not rude."
+            },
+            {
+              "responseId": "en:lesson-01:session-19:intro2:r2",
+              "text": "She not rude."
+            },
+            {
+              "responseId": "en:lesson-01:session-19:intro2:r3",
+              "text": "She is not mean."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега уверена, что женщина у окна ей нахамила. На самом деле та просто устала. Скажите: «она не грубая»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`slow` — одно слово на все случаи"
+      },
+      "bodyByLocale": {
+        "ru": "`slow` — «медленный». И про походку, и про речь, и про то, как человек вникает в новое дело. Второго слова учить не придётся.\n\nВыбор `he` или `she` зависит от человека, а не от слова после него. Само `is not slow` не меняется никогда."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Коллега думает, что новенький парень туго соображает. Заступитесь: «он не медленный»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-19:intro3:r1",
+              "text": "He is not slow."
+            },
+            {
+              "responseId": "en:lesson-01:session-19:intro3:r2",
+              "text": "He not is slow."
+            },
+            {
+              "responseId": "en:lesson-01:session-19:intro3:r3",
+              "text": "She is not slow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега думает, что новенький парень туго соображает. Заступитесь: «он не медленный»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cd6143aecf70f2f3570a712b4422ce96ddb6d56499d397932103ea5046a0817d"
+}

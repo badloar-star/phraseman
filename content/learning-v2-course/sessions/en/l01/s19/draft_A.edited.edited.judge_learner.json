@@ -1,0 +1,91 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (angry)",
+      "what_i_understood": "angry значит злой, сердитый. Чтобы сказать 'он не злой', надо He is not angry — not встаёт после is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (mean/rude)",
+      "what_i_understood": "mean — вредный специально, rude — грубый в манерах. She is not rude — про женщину так же, is меняется на she.",
+      "confusion": "Разница между mean и rude объяснена понятно, но не сразу очевидно, запомню по примерам из заданий 10 и 16.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (slow)",
+      "what_i_understood": "slow — медленный, одно слово на всё. He is not slow / She is not slow, зависит от того о ком говорим.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-5 (angry)",
+      "what_i_understood": "Отработал слово на слух, отличил от hungry и early, собрал фразу He is not angry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 6-8 (mean, slow)",
+      "what_i_understood": "mean — карточка без сразу практики (появится позже в задании 10). slow отработано на слух против low и sorry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 9-11 (quiet, доска пар)",
+      "what_i_understood": "quiet — тихий, не то же самое что 'обиделась'. В задании 10 понял разницу между quiet и mean по смыслу ситуации.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 12-13 (serious)",
+      "what_i_understood": "serious — серьёзный, не значит злой. Отличил на слух от sorry и sure.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 14-16 (kind, is)",
+      "what_i_understood": "kind — добрый. He is kind (без not, раз это правда). Повторил, что is — только вариант для he/she, не am/are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 17-18 (rude диктант, quiet vs angry/rude)",
+      "what_i_understood": "Собрал she is not rude по слуху. Разобрался что молчать — это quiet, а не грубость и не злость.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19 (busy, ловушка)",
+      "what_i_understood": "Тут не должно быть not, потому что он реально занят — He is busy. Понял, что плитка not может быть лишней.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 20 (финал)",
+      "what_i_understood": "Ответил на три утверждения коллеги подряд без подсказок: He is not angry. She is not rude. He is not slow.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как сказать 'он/она не такой' — He is not / She is not + слово, и что not всегда после is, а не до и не в конце",
+    "Новое слово angry — злой",
+    "Новое слово rude — грубый (про манеры)",
+    "Новое слово mean — вредный (про намерение обидеть)",
+    "Новое слово slow — медленный",
+    "Разница между mean и rude — специально обидел или просто невоспитан",
+    "Что is не меняется от слова после него, а зависит только от he/she"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с коллегой на парковке, которая всё придумывает про людей — понятно зачем я говорю именно эти фразы, я её реально поправляю",
+    "Задание 19 с лишней плиткой not — неожиданно, заставило подумать, а не жать привычную кнопку",
+    "Финал с тремя фразами подряд — почувствовал, что реально могу защитить людей словами, а не просто повторить шаблон"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: коллега рядом реально называет людей злыми/грубыми/тормозами, а я знаю, что это не так, и поправляю её — ясно кому и в какой момент говорю каждую фразу",
+  "would_continue": "да — сессия короткая, слова легко различаются на слух, ловушка в задании 19 держит в тонусе, а не даёт жать не думая",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно, узнал четыре новых слова и подтвердил правило is not, ловушек не встретил, сцена понятна от начала до конца."
+}

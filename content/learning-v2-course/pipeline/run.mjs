@@ -544,7 +544,9 @@ function stageJudge(S, ctx, plan, row, known, file, only = null) {
     const cacheFile = path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.json`);
     // зачем: вердикт по неизменившемуся файлу не пересуживаем — экономия
     // после обрыва по лимиту (один вызов судьи ≈ $0.31)
-    if (exists(cacheFile)) {
+    const verdictFresh = exists(cacheFile) && fs.statSync(cacheFile).mtimeMs >= fs.statSync(file).mtimeMs;
+    if (exists(cacheFile) && !verdictFresh) LOG(`   ${name}: кэш вердикта устарел (файл правился позже) — сужу заново`);
+    if (verdictFresh) {
       try {
         const cached = JSON.parse(read(cacheFile));
         if (cached.verdict) {

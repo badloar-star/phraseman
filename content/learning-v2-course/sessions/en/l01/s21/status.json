@@ -1,10 +1,9 @@
 {
   "session": "en/l01/s21",
   "ru": 3,
-  "blocked": [
-    "judge_learner",
-    "judge_nonsense"
-  ],
   "locales": null,
-  "at": "2026-09-04T09:50:30.151Z"
+  "at": "2026-09-04T09:50:30.151Z",
+  "needsHumanReview": false,
+  "humanFixedAt": "2026-09-04T12:31:35.878Z",
+  "humanFixNote": "дефекты, названные судьями, исправлены вручную и проверены"
 }

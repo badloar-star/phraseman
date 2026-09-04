@@ -80,7 +80,16 @@ export default function PaywallPromoBanner({ lang, chrome, promo, delay = 0 }: {
     <PaywallBadgePop
       pulse
       delay={delay}
-      style={[S.wrap, { backgroundColor: `${tc.heroAccent}14` }]}
+      style={[S.wrap, {
+        backgroundColor: `${tc.heroAccent}1F`,
+        // Свечение вместо обводки: блок обязан вести взглядом, а не спорить с
+        // карточками планов. На макете при `14` он читался тише соседей.
+        shadowColor: tc.heroAccent,
+        shadowOpacity: 0.22,
+        shadowRadius: 14,
+        shadowOffset: { width: 0, height: 6 },
+        elevation: 4,
+      }]}
     >
       <View
         testID="paywall-promo-banner"
@@ -136,13 +145,14 @@ export default function PaywallPromoBanner({ lang, chrome, promo, delay = 0 }: {
 const S = StyleSheet.create({
   // Тоном и скруглением, без обводки (правило владельца: контейнеры не
   // обводим — разделяем фоном).
-  wrap: { borderRadius: 18, paddingHorizontal: 12, paddingVertical: 10, marginBottom: 10 },
+  wrap: { borderRadius: 18, paddingHorizontal: 14, paddingVertical: 13, marginBottom: 12 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  badge: { borderRadius: 999, paddingHorizontal: 9, paddingVertical: 4 },
-  badgeText: { fontSize: 13, fontWeight: '900', letterSpacing: 0.2 },
+  badge: { borderRadius: 999, paddingHorizontal: 10, paddingVertical: 5 },
+  badgeText: { fontSize: 14, fontWeight: '900', letterSpacing: 0.2 },
   texts: { flex: 1, minWidth: 0 },
   priceRow: { flexDirection: 'row', alignItems: 'baseline', gap: 7 },
-  promoPrice: { fontSize: 17, fontWeight: '900', letterSpacing: 0.2 },
+  // Цена со скидкой — самое крупное число блока: именно её человек ищет глазами.
+  promoPrice: { fontSize: 21, fontWeight: '900', letterSpacing: 0.2 },
   standardPrice: { fontSize: 13, fontWeight: '700', textDecorationLine: 'line-through' },
   afterPrice: { fontSize: 12, fontWeight: '700', marginTop: 1 },
 });

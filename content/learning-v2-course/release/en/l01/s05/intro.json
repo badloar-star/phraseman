@@ -49,7 +49,7 @@
         "ru": "Not не работает в одиночку"
       },
       "bodyByLocale": {
-        "ru": "Рука тянется и ко второму сокращению: `I no sure`. Слышится логично, а для англичанина это набор слов, из которого он сам догадается.\n\n`no` — это ответ на вопрос, целиком. Внутри фразы «не» — это `not`, и живёт он строго после `am`: `I am not sure`."
+        "ru": "`sure` — «уверен». Сказать «я не уверен» тянет как `I no sure` — и это ошибка, которую делают почти все.\n\n`no` — это ответ на вопрос, целиком. Внутри фразы «не» — это `not`, и живёт он строго после `am`: `I am not sure`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-05:intro2:q",
@@ -121,5 +121,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ed036a17dd46f6b0b0d3596dc357dd9b864fd5c1adf23d2a8a7f2e3a82302009"
+  "introFingerprint": "2d7eebb0ad20bb65bd868f59a75fdcf0bb3ac494bfa30075a9ca2dafa6bbff36"
 }

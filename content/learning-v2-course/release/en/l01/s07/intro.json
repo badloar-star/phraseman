@@ -49,7 +49,7 @@
         "ru": "Full — не «полный», а «наелся»"
       },
       "bodyByLocale": {
-        "ru": "В переговорке с обеда осталась пицца, и начальник кивает на коробку. `hungry` — голоден; противоположность не «не голоден», а `full`.\n\nСмешное: по-английски вы говорите буквально «я полный». И это комплимент повару, а не диагноз."
+        "ru": "`full` — «наелся». Казалось бы, противоположность `hungry` это «не голоден», но у англичан для сытости есть своё слово.\n\nСмешное: по-английски вы говорите буквально «я полный». И это комплимент повару, а не диагноз."
       },
       "question": {
         "interactionId": "en:lesson-01:session-07:intro2:q",
@@ -121,5 +121,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "31eff92c537f126e6ab170c6bb258cae4b6dc1c82f2b2189d989aa931a29d86f"
+  "introFingerprint": "6dc3354e213ca58c2f9aabf2245e23e981c7a89fed16fdd66784300f761612f1"
 }

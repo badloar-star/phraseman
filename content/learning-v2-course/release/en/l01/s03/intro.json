@@ -13,7 +13,7 @@
         "ru": "Одно слово — и всё наоборот"
       },
       "bodyByLocale": {
-        "ru": "Вы умеете `I am tired` — «я устал». А если не устали?\n\nПо-русски вставляем «не». По-английски — `not`: `I am not tired`. Одно\nслово, и фраза перевернулась.\n\nЗаметьте, куда оно встало: сразу после `am`. Скрепка и «не» ходят парой,\nкак охранник и напарник — порознь их не встретишь."
+        "ru": "`not` — «не». По-русски «не» ходит куда хочет, у `not` место одно.\n\n`I am tired` — «я устал». `I am not tired` — «я не устал».\n\nВстало оно сразу после `am`, и это навсегда: скрепка и «не» ходят парой, как охранник с напарником."
       },
       "question": {
         "interactionId": "en:lesson-01:session-03:intro1:q",
@@ -49,7 +49,7 @@
         "ru": "Not вежливее, чем кажется"
       },
       "bodyByLocale": {
-        "ru": "Начальник спрашивает: «`Hungry?`» Вы не голодны. Можно буркнуть `no` — а\nможно `I am not hungry`, и это совсем другой тон.\n\nКороткое `no` звучит как дверь, захлопнутая перед носом. Полная фраза —\nкак «нет, спасибо, всё хорошо». Формула та же: `I am not` + слово."
+        "ru": "`hungry` — «голодный». На вопрос «`Hungry?`» можно буркнуть `no`, а можно ответить целиком: `I am not hungry`.\n\nКороткое `no` звучит как дверь, захлопнутая перед носом. Полная фраза —\nкак «нет, спасибо, всё хорошо». Формула та же: `I am not` + слово."
       },
       "question": {
         "interactionId": "en:lesson-01:session-03:intro2:q",
@@ -121,5 +121,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "50b9b0d910a3246bcc3896a8aa4c95d2810694086a6f63c750c9bdbb34d9ffa6"
+  "introFingerprint": "0000d99a7ebb33325fcc3f3a3c00b79c4edb1ae7f1a9f63cbf51cf9a0414e6a4"
 }

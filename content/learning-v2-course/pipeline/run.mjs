@@ -192,6 +192,16 @@ function machineFacts(file) {
   const ret = /\*\*Возвращаются:\*\*\s*(.+)/.exec(text)?.[1] ?? "";
   const practice = text.split(/^## Практика/m)[1] ?? "";
   const facts = [];
+  // зачем: длину автор на глаз не выдерживает (12 страниц из 21 вне нормы) —
+  // считаем машинно и отдаём редактору, иначе подгонка ложится на человека
+  const introPages = introPart.split(new RegExp("^## Интро \\d+", "m")).slice(1);
+  LOG(`[ДИАГ] introPart ${introPart.length} зн., страниц найдено ${introPages.length}`);
+  introPages.forEach((page, k) => {
+    const body = page.split(String.fromCharCode(10) + "**")[0].split(String.fromCharCode(10)).filter((x) => !x.trim().startsWith("###")).join(String.fromCharCode(10)).trim();
+    const L = body.length;
+    if (L < 240) facts.push(`интро ${k + 1}: ДЛИНА ${L} знаков — короче нормы 240-290, добавь пользы о слове (не воды)`);
+    else if (L > 290) facts.push(`интро ${k + 1}: ДЛИНА ${L} знаков — длиннее нормы 240-290, убери повтор или разгон`);
+  });
   for (const [re, name] of BACKREFS) {
     const hits = introPart.match(re) || [];
     for (const h of hits) facts.push(`ОТСЫЛКА К ПРОШЛОМУ: ${name} — «${h}» ← сессию могут открыть первой, этого опыта у ученика нет`);
@@ -796,15 +806,16 @@ function main() {
       cur = { f: ef, v, s: score(v) };
     }
     const finalRu = path.join(S.dir, "final.ru.md");
-    fs.copyFileSync(cur.f, finalRu);
-    LOG(`final.ru.md ← ${path.basename(cur.f)} (${cur.s}/6)`);
+    // зачем: копируем в final.ru.md только ПОСЛЕ проверок — иначе
+    // заблокированная сессия лежит как готовая и попадает в курс
+    const publishFinal = () => { fs.copyFileSync(cur.f, finalRu); LOG(`final.ru.md ← ${path.basename(cur.f)} (${cur.s}/6)`); };
     // зачем: 03.09 конвейер ушёл локализовать сессию, которой судья-ученик
     // поставил BLOCK («задания 16 и 17 невыполнимы») — 14 вызовов впустую.
     // BLOCK у любого судьи означает стоп, а не предупреждение.
     // зачем: 03.09 сессия 8 вышла с разрывом «интро ↔ вопрос» — педагог дал
     // REVISE, а REVISE не останавливает. Посчитанный факт не зависит от
     // настроения судьи: пока он не закрыт, сессия не выпускается.
-    const hardFacts = machineFacts(finalRu)
+    const hardFacts = machineFacts(cur.f)
       .split("\n")
       .filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ/.test(l));
     if (hardFacts.length) {
@@ -819,6 +830,7 @@ function main() {
       return;
     }
     if (cur.s < 6) WARN("сессия не сошлась к PASS×3 за 2 круга — локализую, но нужна ручная проверка");
+    publishFinal();
     const loc = stageLocalize(S, finalRu);
     write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, converged: cur.s >= 6, needsHumanReview: cur.s < 6, locales: loc, at: new Date().toISOString() }, null, 2));
     return;

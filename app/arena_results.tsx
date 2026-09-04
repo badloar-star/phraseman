@@ -7,6 +7,8 @@ import { shouldPromptFeedback, markFeedbackPrompted } from './feedback_prompt_th
 import { triLang, type Lang } from '../constants/i18n';
 import { ArenaScreen, ArenaStat } from '../components/arena/ArenaScreen';
 import { ArenaPlayers } from '../components/arena/ArenaPlayers';
+import { ArenaResultDuel, type ArenaResultDuelOutcome } from '../components/arena/ArenaResultDuel';
+import { useCountUp } from '../components/league/leagueStatusShared';
 import { ArenaRewards } from '../components/arena/ArenaRewards';
 import { V2Card, V2Cta } from '../components/ui/v2_ui';
 import EnergyCostBadge from '../components/EnergyCostBadge';
@@ -500,6 +502,39 @@ export default function ArenaResultsScreen() {
     [effectiveViewerSeat, players],
   );
   const winner = match?.result?.winnerUid;
+  /**
+   * Данные сцены «Дуэль»: кто с кем, какой счёт, какой исход.
+   *
+   * Собирается из тех же `players`, что рисовала прежняя строка, — новых
+   * источников не заводим. Исход берётся ТОЛЬКО когда он известен точно:
+   * у молчащего живого соперника счёт равен null, и тогда объявлять нечего.
+   */
+  const duel = useMemo(() => {
+    const you = players.find((player) => player.uid === effectiveViewerSeat);
+    const foe = players.find((player) => player.uid !== effectiveViewerSeat);
+    if (!you || !foe) return null;
+    const viewerScore = typeof you.score === 'number' ? you.score : 0;
+    const opponentScore = typeof foe.score === 'number' ? foe.score : null;
+    const outcome: ArenaResultDuelOutcome = match?.state === 'aborted' ? null
+      : winner && effectiveViewerSeat ? (winner === effectiveViewerSeat ? 'win' : 'loss')
+        : opponentScore === null ? null
+          : viewerScore === opponentScore ? 'draw'
+            : viewerScore > opponentScore ? 'win' : 'loss';
+    return {
+      viewerName: you.name,
+      opponentName: foe.name,
+      opponentAvatar: foe.avatar,
+      opponentAura: foe.aura,
+      viewerScore,
+      opponentScore,
+      outcome,
+      outcomeLabel: outcome === null ? null
+        : arenaText(lang, outcome === 'win' ? 'victory' : outcome === 'loss' ? 'defeat' : 'draw'),
+    };
+  }, [effectiveViewerSeat, lang, match?.state, players, winner]);
+  // Оба счёта докручиваются ОДНОВРЕМЕННО — в этом и есть гонка.
+  const duelViewerShown = useCountUp(duel?.viewerScore ?? 0, reduceMotion);
+  const duelOpponentShown = useCountUp(duel?.opponentScore ?? 0, reduceMotion);
   // Пока авторитетного матча нет, заголовок берётся из предпросмотра — и
   // ТОЛЬКО если исход посчитан однозначно. Иначе экран промолчал бы «Ничья»,
   // которую сервер потом опроверг бы: ложный итог хуже отсутствующего.
@@ -653,15 +688,47 @@ export default function ArenaResultsScreen() {
 
   return (
     <ArenaScreen title={arenaText(lang, 'result')} subtitle={title} variant="results" fxRef={fxRef} onBack={() => router.replace('/arena' as never)} overlay={rankScene ?? <ImpactFlash opacity={announceFlash} />}>
-      {players.length ? <ArenaPlayers players={players} active={active} animateScore /> : null}
+      {/*
+        зачем (владелец 2026-09-04, выбран вариант «Дуэль» из трёх макетов
+        `.motion-mockups/phraseman-arena-results.html`): вместо строки игроков
+        и двух отдельных плиток со счётом — одна сцена соперничества. Оба счёта
+        растут одновременно, полоса делит экран пропорционально набранному,
+        исход объявляется ПОСЛЕ гонки. Остальные блоки экрана (награды, ранг,
+        спин, реакции, жалоба) не тронуты.
+      */}
+      {duel ? (
+        <ArenaResultDuel
+          viewerName={duel.viewerName}
+          opponentName={duel.opponentName}
+          {...(duel.opponentAvatar ? { opponentAvatar: duel.opponentAvatar } : {})}
+          {...(duel.opponentAura ? { opponentAura: duel.opponentAura } : {})}
+          viewerShown={duelViewerShown}
+          opponentShown={duel.opponentScore === null ? null : duelOpponentShown}
+          viewerScore={duel.viewerScore}
+          opponentScore={duel.opponentScore}
+          outcome={duel.outcome}
+          outcomeLabel={duel.outcomeLabel}
+          reduceMotion={reduceMotion}
+          active={active}
+        />
+      ) : null}
       {titleCosmetic ? <Text style={[styles.cosmeticTitle, { color: P.gold }]}>{titleCosmetic}</Text> : null}
       <V2Card style={[styles.resultSurface, resultTheme ? { backgroundColor: resultTheme.backgroundColor, borderColor: resultTheme.borderColor, borderWidth: 1 } : null]}>
         {victoryStamp ? <Text style={[styles.stamp, { color: resultTheme?.foreground ?? P.text }]}>{victoryStamp}</Text> : null}
-        <View style={styles.stats}>{players.map((player) => (
-          // Прочерк, а не ноль: ноль здесь был бы утверждением «соперник не
-          // набрал ничего», хотя счёт просто ещё не известен.
-          <ArenaStat key={player.uid} label={player.name} value={player.score ?? '—'} />
-        ))}</View>
+        {/*
+          зачем (2026-09-04): плитки со счётом убраны — ровно те же два числа
+          теперь показывает сцена «Дуэль» выше, крупно и в гонке. Дублировать
+          их значит дважды сказать одно и то же и разбавить главный кадр.
+          Запасной путь остаётся: если сцена не собралась (нет игроков),
+          плитки рисуются как раньше.
+        */}
+        {duel ? null : (
+          <View style={styles.stats}>{players.map((player) => (
+            // Прочерк, а не ноль: ноль здесь был бы утверждением «соперник не
+            // набрал ничего», хотя счёт просто ещё не известен.
+            <ArenaStat key={player.uid} label={player.name} value={player.score ?? '—'} />
+          ))}</View>
+        )}
         {effectiveMode !== 'quick' ? <ArenaRewards reward={reward} starsLabel={arenaText(lang, 'stars')} /> : null}
         {/* зачем: жалоба на игрока жила только в карточке профиля, а из Арены
             она не открывается — пожаловаться на оскорбительный ник было

@@ -53,13 +53,13 @@ describe('фазы матча', () => {
     expect(s.phase).toBe('reading');
     s = step(P10, s, { type: 'tick', monoNowMs: MONO0 + 4_500 });
     expect(s.phase).toBe('answer');
-    // Окно ровно 8 секунд: сетевого запаса на клиенте нет, потому что нет сети.
-    expect(s.phaseBudgetMs).toBe(8_000);
+    // Окно ровно 20 секунд: сетевого запаса на клиенте нет, потому что нет сети.
+    expect(s.phaseBudgetMs).toBe(20_000);
   });
 
   it('закрывает просроченное задание нулём и ведёт к следующему', () => {
     let s = toAnswer(P10);
-    const end = s.phaseStartedAtMonoMs + 8_000;
+    const end = s.phaseStartedAtMonoMs + 20_000;
     s = step(P10, s, { type: 'tick', monoNowMs: end });
     expect(s.matchStars).toBe(0);
     expect(s.outcomes[0].status).toBe('timeout');

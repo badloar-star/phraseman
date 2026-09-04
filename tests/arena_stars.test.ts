@@ -24,9 +24,15 @@ const MODES_10: readonly ArenaTaskMode[] = [
 const MODES_5 = MODES_10.slice(0, 5);
 const MODES_8 = MODES_10.slice(0, 8);
 
-it('даёт длинным immersive-заданиям новые полные окна ответа', () => {
-  expect(ARENA_ANSWER_MS.translate_build).toBe(25_000);
-  expect(ARENA_ANSWER_MS.speed_match).toBe(30_000);
+// Сторожатся ВСЕ пять окон, а не два длинных: расхождение по коротким
+// заданиям (2026-09-04 они выросли с 8 до 20 секунд) прошло бы молча, а
+// именно на них жаловались игроки — «слишком быстро».
+it('держит окна ответа по типам заданий', () => {
+  expect(ARENA_ANSWER_MS.guess_phrase).toBe(20_000);
+  expect(ARENA_ANSWER_MS.fill_gap).toBe(20_000);
+  expect(ARENA_ANSWER_MS.find_oddity).toBe(30_000);
+  expect(ARENA_ANSWER_MS.translate_build).toBe(40_000);
+  expect(ARENA_ANSWER_MS.speed_match).toBe(50_000);
 });
 
 type AwardInput = Parameters<typeof arenaAwardStars>[0];

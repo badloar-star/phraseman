@@ -30,11 +30,11 @@ export function arenaIsTaskMode(value: unknown): value is ArenaTaskMode {
 
 /** Полное окно ответа по типу задания; immersive-режимам нужен запас на 1.5x шрифт. */
 export const ARENA_ANSWER_MS = Object.freeze({
-  guess_phrase: 8_000,
-  fill_gap: 8_000,
-  find_oddity: 10_000,
-  translate_build: 25_000,
-  speed_match: 30_000,
+  guess_phrase: 20_000,
+  fill_gap: 20_000,
+  find_oddity: 30_000,
+  translate_build: 40_000,
+  speed_match: 50_000,
 } as const);
 
 /**

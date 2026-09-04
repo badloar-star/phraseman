@@ -407,13 +407,25 @@ export function arenaRanksCompatible(
   return Math.abs(Math.trunc(leftRankIndex) - Math.trunc(rightRankIndex)) <= arenaRankWindow(mode);
 }
 
-/** Полное окно ответа; чтение и countdown в него не входят. */
+/**
+ * Полное окно ответа; чтение и countdown в него не входят.
+ *
+ * зачем (владелец 2026-09-04, жалобы игроков «слишком быстро»): окна выросли
+ * в 1.6–2.5 раза. Прежние 8 секунд на выбор фразы человек тратил целиком на
+ * чтение перевода и четырёх вариантов, а на решение времени не оставалось —
+ * матч ощущался не соревнованием, а проверкой скорости чтения.
+ *
+ * ТРЕТЬЯ копия этих чисел. Две другие — `ARENA_ANSWER_MS` в
+ * `modules/arena/stars.ts` (клиент) и `functions/src/arena_stars_v3.ts`
+ * (сервер). Правишь здесь — правь все три: расхождение означает, что игрок
+ * видит один таймер, а зачёт идёт по другому.
+ */
 export const ARENA_V2_ANSWER_MS = Object.freeze({
-  guess_phrase: 8_000,
-  fill_gap: 8_000,
-  find_oddity: 10_000,
-  translate_build: 25_000,
-  speed_match: 30_000,
+  guess_phrase: 20_000,
+  fill_gap: 20_000,
+  find_oddity: 30_000,
+  translate_build: 40_000,
+  speed_match: 50_000,
 } as const);
 
 export function arenaTaskDurationMs(mode: OwnerApprovedTournamentMode): number {
@@ -472,7 +484,15 @@ export function buildArenaBotBlueprint(
   const accuracyRange = ARENA_BOT_ACCURACY_BY_STRENGTH[strength];
   const baseAccuracy = Math.max(accuracyRange.min, Math.min(accuracyRange.max,
     accuracyRange.base + division * accuracyRange.perDivision));
-  const medianResponseMs = 7_500 - division * 150;
+  // зачем (владелец 2026-09-04, вместе с удлинением окон ответа): медиана
+  // бота задана ДОЛЕЙ окна, а не абсолютными миллисекундами. Раньше здесь
+  // стояло 7_500 мс на любое задание; после роста окон бот отвечал бы за
+  // треть окна на всём подряд и забирал бы гонку «кто первым» почти всегда —
+  // игрок получил бы больше времени и при этом стал бы чаще проигрывать.
+  // 0.375 — прежние 7.5 с от прежних 20 с полного цикла быстрого задания,
+  // то есть темп соперника остался тем же, каким его знали игроки.
+  const medianShareOfWindow = 0.375;
+  const divisionSpeedUp = division * 0.0075;
   const modifiers: Record<string, number> = {
     guess_phrase: 0.02,
     fill_gap: 0,
@@ -487,6 +507,8 @@ export function buildArenaBotBlueprint(
     const u2 = seededUnit(`${seed}|${taskIndex}|normal-b`);
     const normal = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
     const answerDeadlineMs = ARENA_V2_ANSWER_MS[mode];
+    const medianResponseMs = answerDeadlineMs
+      * Math.max(0.2, medianShareOfWindow - divisionSpeedUp);
     const elapsedMs = timeout ? answerDeadlineMs : Math.round(Math.max(1_500,
       Math.min(answerDeadlineMs - 700, medianResponseMs * Math.exp(0.35 * normal))));
     const accuracy = Math.max(0, Math.min(1, baseAccuracy + (modifiers[mode] ?? 0)));

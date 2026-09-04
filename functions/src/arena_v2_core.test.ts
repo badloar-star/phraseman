@@ -83,8 +83,11 @@ describe('Arena V2 pure product contract', () => {
     expect(ARENA_V2_ACCEPT_MS).toBe(12_000);
     expect(ARENA_V2_COUNTDOWN_MS).toBe(3_200);
     expect(ARENA_V2_REVEAL_MS).toBe(1_200);
-    expect(ARENA_V2_ANSWER_MS.translate_build).toBe(25_000);
-    expect(ARENA_V2_ANSWER_MS.speed_match).toBe(30_000);
+    expect(ARENA_V2_ANSWER_MS.guess_phrase).toBe(20_000);
+    expect(ARENA_V2_ANSWER_MS.fill_gap).toBe(20_000);
+    expect(ARENA_V2_ANSWER_MS.find_oddity).toBe(30_000);
+    expect(ARENA_V2_ANSWER_MS.translate_build).toBe(40_000);
+    expect(ARENA_V2_ANSWER_MS.speed_match).toBe(50_000);
     const selected = selectArenaTasks(pool(), 'match-seed', 19)!;
     expect(selected).toHaveLength(10);
     expect(selected.map((entry) => entry.mode)).toEqual(ARENA_V2_MODE_ORDER);
@@ -97,7 +100,7 @@ describe('Arena V2 pure product contract', () => {
     expect(arenaAcceptanceOpen(1_000, 1_000)).toBe(false);
     expect(arenaAcceptanceOpen(1_001, 1_000)).toBe(false);
     expect(arenaObservedElapsedMs(900, 1_000, 'guess_phrase')).toBe(0);
-    expect(arenaObservedElapsedMs(50_000, 1_000, 'guess_phrase')).toBe(8_000);
+    expect(arenaObservedElapsedMs(50_000, 1_000, 'guess_phrase')).toBe(20_000);
   });
 
   it('projects four deterministic, seed-diverse speed pairs and remaps answer indexes', () => {

@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `I am` / `You are` (+ `not`) на словах о характере"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Polite — «вежливый»"
+      },
+      "bodyByLocale": {
+        "ru": "`polite` — «вежливый». Тот, кто говорит «пожалуйста» и «спасибо», даже когда внутри всё кипит.\n\nСлово длинное, а звучит коротко: «полайт», ударение на второй слог.\n\nПро себя — `I am polite`. Про собеседника — `You are polite`. Меняется только `am` на `are`, само слово одно и то же."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега весь день извинялся перед всеми подряд. Скажите ему про это."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r1",
+              "text": "You are polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r2",
+              "text": "You polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r3",
+              "text": "You am polite."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега весь день извинялся перед всеми подряд. Скажите ему про это."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Serious — «серьёзный»"
+      },
+      "bodyByLocale": {
+        "ru": "`serious` — «серьёзный». Человек не шутит: он правда собирается это сделать.\n\nЧаще всего это слово говорят с отрицанием — когда шутку приняли всерьёз. Тогда нужен `not`, и место у него одно: сразу после `am`.\n\n`I am not serious` — «я не серьёзно». Три слова вместо нашего «да шучу я»."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы пошутили, а коллега принял за чистую монету. Успокойте: «я не серьёзен»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r1",
+              "text": "I am not serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r2",
+              "text": "I not am serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r3",
+              "text": "I am no serious."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы пошутили, а коллега принял за чистую монету. Успокойте: «я не серьёзен»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Lucky и sad"
+      },
+      "bodyByLocale": {
+        "ru": "`lucky` — «везучий». Не заслужил, не рассчитал — просто повезло.\n\n`sad` — «грустный». Два слова про то, что с человеком случилось, а не про то, какой он.\n\nАнглийский тут проще русского: ни «мне грустно», ни «мне повезло» с их безличными оборотами. Просто `I am sad`, `I am lucky`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Коллега вытянул лёгкого клиента, пока остальные разбирали жалобы. Скажите ему: «ты везучий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r1",
+              "text": "You are lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r2",
+              "text": "You is lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r3",
+              "text": "You lucky are."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега вытянул лёгкого клиента, пока остальные разбирали жалобы. Скажите ему: «ты везучий»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0e194512d4607c3d6a44dc082efdefbea9d465d190e4aa6a114553550f446d38"
+}

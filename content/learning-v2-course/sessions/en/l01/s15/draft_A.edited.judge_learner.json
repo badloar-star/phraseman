@@ -1,0 +1,119 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — polite",
+      "what_i_understood": "Новое слово polite = вежливый. Пример: You are polite. Понял, что am меняется на are, когда речь про собеседника (you).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — serious",
+      "what_i_understood": "serious = серьёзный. Отрицание: not ставится сразу после am/are, порядок фиксированный (I am not serious), no не подходит.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — lucky",
+      "what_i_understood": "lucky = везучий. You are lucky. Ещё раз закрепили, что are — единственная скрепка при you (не is, не am).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 — карточка+аудио polite",
+      "what_i_understood": "Узнал слово на слух, отличил от похожих pilot/plate по ударению и длине.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 — карточка+аудио serious",
+      "what_i_understood": "Отличил serious от series/service.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — вставьте слово (вежливость)",
+      "what_i_understood": "Выбрал polite из трёх вариантов по смыслу ситуации.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — соберите фразу 'я не серьёзен'",
+      "what_i_understood": "Собрал I am not serious из плиток, вспомнил порядок not после am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-8 — карточка+аудио lucky",
+      "what_i_understood": "Отличил lucky от luck/lock.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9-10 — карточка+аудио sad (новое слово впервые появилось только тут, без интро)",
+      "what_i_understood": "sad = грустный. Понял по карточке и аудио.",
+      "confusion": "Слово sad не объяснялось в интро, а сразу дано как карточка в практике — но это нормально для карточки, не критично.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — соедините пары",
+      "what_i_understood": "Повторил все 4 новых слова разом: polite/serious/lucky/sad.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — вставьте скрепку",
+      "what_i_understood": "You ___ lucky → are. Закрепил, что am и is тут не подходят.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — аудио+сборка 'ты не грустный'",
+      "what_i_understood": "Собрал You are not sad, услышав фразу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14-15 — calm (повтор)",
+      "what_i_understood": "calm = спокойный, это слово я уже видел раньше (говорится в разделе 'Возвращаются'), тут просто повторение в контексте новой сцены.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16-17 — honest (повтор) + сборка длинной фразы",
+      "what_i_understood": "honest = честный (тоже повтор). Собрал You are honest. I am not sad. — длинная фраза, но по частям понятная.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18-19 — kind (повтор) + сборка без подсказки",
+      "what_i_understood": "kind = добрый (повтор). Собрал You are kind. I am tired. без перевода-подсказки — было чуть сложнее, но справился, потому что все слова уже знакомы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 20 — финальное произношение",
+      "what_i_understood": "Проговорил все три похвалы коллеге: You are polite. You are calm. You are lucky. Хороший итог сессии — использовал и новое, и старое.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово polite (вежливый)",
+    "Слово serious (серьёзный) + как строить отрицание I am not serious",
+    "Слово lucky (везучий)",
+    "Слово sad (грустный)",
+    "Закрепил на новых словах, что you всегда идёт с are, а не am/is"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с коллегой и кофе после рабочего дня — понятная, живая, не притянутая за уши",
+    "Объяснения слов через конкретную ситуацию (кто-то извинялся весь день → polite; вытянул лёгкого клиента → lucky) — сразу видно, зачем слово нужно",
+    "Финальное задание 20, где нужно вживую сказать три фразы подряд — приятный итог, чувствуется, что сессия собралась в одно целое"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно. Весь урок — это разговор с коллегой в конце дня за кофе, и каждая фраза привязана к конкретному эпизоду этого дня (кто-то извинялся, кто-то отшутился, кому-то повезло с клиентом, кого-то накричали по телефону). Ни одна фраза не висит в воздухе.",
+  "would_continue": "Да, хочу продолжить. Слов немного, повторение старых (calm, honest, kind) не даёт забыть пройденное, а сцена цельная от начала до конца.",
+  "verdict": "PASS",
+  "verdict_reason": "Все 20 заданий прошёл честно, узнал 4 новых слова и закрепил правило про am/are/not, ни одной фразы «из справочника» или непонятной метафоры не встретил."
+}

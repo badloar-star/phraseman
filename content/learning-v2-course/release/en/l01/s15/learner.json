@@ -1,0 +1,1022 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — polite",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — polite",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i01:audio",
+          "transcript": "polite"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-15:i01:r1",
+            "targetText": "polite",
+            "meaningByLocale": {
+              "ru": "«вежливый». Тот, кто держит дверь и говорит «спасибо», даже когда торопится."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "polite",
+          "definitionByLocale": {
+            "ru": "«вежливый». Тот, кто держит дверь и говорит «спасибо», даже когда торопится."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-15:i02:r1",
+          "text": "polite"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i02:r2",
+          "text": "pilot"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i02:r3",
+          "text": "plate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — polite",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i02:audio",
+          "transcript": "polite"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-15:i02:r1",
+            "targetText": "polite",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i02:r2",
+            "targetText": "pilot",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i02:r3",
+            "targetText": "plate",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-15:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — polite",
+            "feedbackByLocale": {
+              "ru": "«Пилот». Ударение в начале: PIE-lot. В `polite` — в конце: po-LITE."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — polite",
+            "feedbackByLocale": {
+              "ru": "«Тарелка». Один слог вместо двух."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — serious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — serious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i03:audio",
+          "transcript": "serious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-15:i03:r1",
+            "targetText": "serious",
+            "meaningByLocale": {
+              "ru": "«серьёзный». Не шутит, не отмахивается — говорит как есть."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "serious",
+          "definitionByLocale": {
+            "ru": "«серьёзный». Не шутит, не отмахивается — говорит как есть."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-15:i04:r1",
+          "text": "serious"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i04:r2",
+          "text": "series"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i04:r3",
+          "text": "service"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — serious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i04:audio",
+          "transcript": "serious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-15:i04:r1",
+            "targetText": "serious",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i04:r2",
+            "targetText": "series",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i04:r3",
+            "targetText": "service",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-15:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — serious",
+            "feedbackByLocale": {
+              "ru": "«Серия». Начало то же, а конец другой: SI-riz в два слога против SI-ri-es в три."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — serious",
+            "feedbackByLocale": {
+              "ru": "«Обслуживание». Первый слог звучит как «сёр», у `serious` — как «си»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — коллега всем говорит «спасибо»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-15:i05:r1",
+          "text": "polite"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i05:r2",
+          "text": "serious"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i05:r3",
+          "text": "tired"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — коллега всем говорит «спасибо»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коллега всем говорит «спасибо»"
+        },
+        "gappedTargetPhrase": "You are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-15:i05:r1",
+            "text": "polite"
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i05:r2",
+            "text": "serious"
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i05:r3",
+            "text": "tired"
+          }
+        ],
+        "testedDimension": "Вставьте слово — коллега всем говорит «с",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-15:i05:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега всем говорит «с",
+            "feedbackByLocale": {
+              "ru": "«Серьёзный» — про другое. Тут человек вежливый."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега всем говорит «с",
+            "feedbackByLocale": {
+              "ru": "«Устал» — про силы, а не про манеры. Тут человек благодарит."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «я не серьёзен»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «я не серьёзен»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not serious.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «я не серьёзен»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "serious"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lucky",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lucky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i07:audio",
+          "transcript": "lucky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-15:i07:r1",
+            "targetText": "lucky",
+            "meaningByLocale": {
+              "ru": "«везучий». Не заслужил, не рассчитал — просто повезло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lucky",
+          "definitionByLocale": {
+            "ru": "«везучий». Не заслужил, не рассчитал — просто повезло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-15:i08:r1",
+          "text": "lucky"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i08:r2",
+          "text": "luck"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i08:r3",
+          "text": "lock"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — lucky",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i08:audio",
+          "transcript": "lucky"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-15:i08:r1",
+            "targetText": "lucky",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i08:r2",
+            "targetText": "luck",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i08:r3",
+            "targetText": "lock",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-15:i08:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — lucky",
+            "feedbackByLocale": {
+              "ru": "«Удача». Без хвоста «-и» на конце."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — lucky",
+            "feedbackByLocale": {
+              "ru": "«Замок». Похоже на слух, но гласная другая: в `lock` она ближе к «о», в `lucky` — к «а». И `lock` в один слог."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i09:audio",
+          "transcript": "sad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-15:i09:r1",
+            "targetText": "sad",
+            "meaningByLocale": {
+              "ru": "«грустный». Не в слезах, но радости в человеке сейчас ноль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sad",
+          "definitionByLocale": {
+            "ru": "«грустный». Не в слезах, но радости в человеке сейчас ноль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-15:i10:r1",
+          "text": "sad"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i10:r2",
+          "text": "said"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i10:r3",
+          "text": "sand"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — sad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i10:audio",
+          "transcript": "sad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-15:i10:r1",
+            "targetText": "sad",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i10:r2",
+            "targetText": "said",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i10:r3",
+            "targetText": "sand",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-15:i10:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — sad",
+            "feedbackByLocale": {
+              "ru": "«Сказал». Гласная другая: в `said` — как в «мэр», в `sad` рот открывается шире."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — sad",
+            "feedbackByLocale": {
+              "ru": "«Песок». Лишний звук «н» в середине."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-15:i11:p1",
+            "target": "polite",
+            "meaningByLocale": {
+              "ru": "вежливый"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-15:i11:p2",
+            "target": "serious",
+            "meaningByLocale": {
+              "ru": "серьёзный"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-15:i11:p3",
+            "target": "lucky",
+            "meaningByLocale": {
+              "ru": "везучий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-15:i11:p4",
+            "target": "sad",
+            "meaningByLocale": {
+              "ru": "грустный"
+            }
+          }
+        ],
+        "leftColumn": [
+          "polite",
+          "serious",
+          "lucky",
+          "sad"
+        ],
+        "rightColumn": [
+          "вежливый",
+          "серьёзный",
+          "везучий",
+          "грустный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — вы говорите коллеге, что ему повезло",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-15:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i12:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — вы говорите коллеге, что ему повезло",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — вы говорите коллеге, что ему повезло"
+        },
+        "gappedTargetPhrase": "You ___ lucky.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-15:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — вы говорите коллеге, ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-15:i12:r1",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — вы говорите коллеге, ",
+            "feedbackByLocale": {
+              "ru": "`am` бывает только при `I`. Про собеседника — `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — вы говорите коллеге, ",
+            "feedbackByLocale": {
+              "ru": "Чужая скрепка. При `you` — только `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «ты не грустный»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «ты не грустный»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i13:audio",
+          "transcript": "You are not sad."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You are not sad.",
+        "orderedTokens": [
+          "You",
+          "are",
+          "not",
+          "sad"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — calm",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — calm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i14:audio",
+          "transcript": "calm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-15:i14:r1",
+            "targetText": "calm",
+            "meaningByLocale": {
+              "ru": "«спокойный». Голос ровный, руки не дрожат, хотя причина понервничать была."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "calm",
+          "definitionByLocale": {
+            "ru": "«спокойный». Голос ровный, руки не дрожат, хотя причина понервничать была."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — поезд отменили, все забегали, а он сел и открыл книгу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-15:i15:r1",
+          "text": "calm"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i15:r2",
+          "text": "sad"
+        },
+        {
+          "responseId": "en:lesson-01:session-15:i15:r3",
+          "text": "honest"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — поезд отменили, все забегали, а он сел и открыл книгу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — поезд отменили, все забегали, а он сел и открыл книгу"
+        },
+        "gappedTargetPhrase": "You are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-15:i15:r1",
+            "text": "calm"
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i15:r2",
+            "text": "sad"
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i15:r3",
+            "text": "honest"
+          }
+        ],
+        "testedDimension": "Вставьте слово — поезд отменили, все заб",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-15:i15:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — поезд отменили, все заб",
+            "feedbackByLocale": {
+              "ru": "«Грустный» — про другое: человек не грустил, он держался."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-15:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — поезд отменили, все заб",
+            "feedbackByLocale": {
+              "ru": "«Честный» — про правду, а не про ровный голос."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — honest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — honest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i16:audio",
+          "transcript": "honest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-15:i16:r1",
+            "targetText": "honest",
+            "meaningByLocale": {
+              "ru": "«честный». Говорит как есть, даже когда правда невыгодна ему самому."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "honest",
+          "definitionByLocale": {
+            "ru": "«честный». Говорит как есть, даже когда правда невыгодна ему самому."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «ты честный, я не грустный»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «ты честный, я не грустный»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are honest. I am not sad.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «ты честный, я не грустный»"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "honest.",
+          "I",
+          "am",
+          "not",
+          "sad"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — kind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i18:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — kind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i18:audio",
+          "transcript": "kind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-15:i18:r1",
+            "targetText": "kind",
+            "meaningByLocale": {
+              "ru": "«добрый». Помогает, когда его не просили и ему за это ничего не будет."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kind",
+          "definitionByLocale": {
+            "ru": "«добрый». Помогает, когда его не просили и ему за это ничего не будет."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите без подсказки — «ты добрый, я устал»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите без подсказки — «ты добрый, я устал»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are kind. I am tired.",
+        "localizedMeaning": {
+          "ru": "Соберите без подсказки — «ты добрый, я устал»"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "kind.",
+          "I",
+          "am",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-15:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — финал разговора",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-15:i20:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — финал разговора",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-15:i20:audio",
+          "transcript": "You are polite. You are calm. You are lucky."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are polite. You are calm. You are lucky.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 20,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3d9310470e3bb746b0e87536efbe9c4727aa266809a39fe0407a68b877bdf815"
+}

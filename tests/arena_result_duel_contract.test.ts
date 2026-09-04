@@ -113,6 +113,31 @@ describe('Арена: сцена результата «Дуэль»', () => {
     expect(screen).toContain('outcome === null || opponentScore === null ? null');
   });
 
+  test('живой матч без результата НЕ обнуляет счёт', () => {
+    /*
+     * Инцидент 2026-09-04: экран показал «0 : 0 · Ничья» при реальном счёте
+     * 12:27. `match` приходит из живого канала РАНЬШЕ результата — в нём есть
+     * состав игроков, но счёт нулевой. Экран падал на него вместо локального
+     * предпросмотра, который уже знал правду (лог: «мойСчёт=12 счётСоперника=27
+     * исход=loss» за 80 секунд до ответа сервера).
+     */
+    const start = screen.indexOf('if (match.result?.players?.length)');
+    expect(start).toBeGreaterThan(-1);
+    const body = screen.slice(start, start + 1_800);
+    // Предпросмотр обязан идти ДО падения на match.players.
+    expect(body.indexOf('if (preview) {')).toBeLessThan(body.indexOf('match.players.map'));
+    // А без предпросмотра — прочерк, но не выдуманный ноль.
+    expect(body).toContain('score: null');
+  });
+
+  test('ничья не объявляется до прихода результата', () => {
+    // «Ничья» стояла веткой по умолчанию: нет winner — значит ничья. При живом
+    // матче без результата это давало ложный итог, который потом опровергался.
+    expect(screen).toContain("match?.result ? arenaText(lang, 'draw') : ''");
+    // Заголовок предпросмотра держится до АВТОРИТЕТНОГО итога, а не до `match`.
+    expect(screen).toContain('!match?.result && preview?.outcome');
+  });
+
   test('запреты владельца соблюдены', () => {
     // Обводки контейнеров запрещены: разделяем тоном и скруглением.
     expect(duel).not.toMatch(/borderWidth|borderColor/);

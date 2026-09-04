@@ -491,8 +491,43 @@ export default function ArenaResultsScreen() {
       return preview.viewerSeat === 'a' ? [you, rival] : [rival, you];
     }
     if (match.result?.players?.length) return match.result.players;
+    /*
+     * КОРЕНЬ «0:0 Ничья» (владелец 2026-09-04, скриншот + логи).
+     *
+     * `match` приходит из живого канала и появляется РАНЬШЕ результата: в нём
+     * есть состав игроков, но счёт ещё нулевой — это состав, а не итог. Экран
+     * падал на него и показывал 0:0, а из 0=0 выводилась «Ничья».
+     *
+     * По логам матча BXQ2XUzTwzMRe8pSqEXf: клиент знал счёт 12:27 и поражение
+     * в 15:45:46, ответ сервера пришёл в 15:47:06 — 80 секунд человек смотрел
+     * на неправильный ноль.
+     *
+     * Пока авторитетного результата нет, показываем ЛОКАЛЬНЫЙ счёт: он
+     * посчитан на устройстве и известен точно. Серверный заменит его, как
+     * только приедет.
+     */
+    if (preview) {
+      const you: ArenaDisplayedPlayer = {
+        uid: preview.viewerSeat, name: arenaText(lang, 'you'),
+        rank: 0, rating: 0, score: preview.viewerStars, correct: 0,
+      };
+      const rival: ArenaDisplayedPlayer = {
+        uid: preview.opponentSeat,
+        name: preview.opponentName || arenaText(lang, 'opponent'),
+        ...(preview.opponentAvatar ? { avatar: preview.opponentAvatar } : {}),
+        ...(preview.opponentAura ? { aura: preview.opponentAura } : {}),
+        rank: preview.opponentRank,
+        rating: 0,
+        score: preview.opponentStars,
+        correct: 0,
+      };
+      return preview.viewerSeat === 'a' ? [you, rival] : [rival, you];
+    }
+    // Предпросмотра нет вовсе — показываем состав с ПРОЧЕРКОМ вместо нуля:
+    // ноль здесь был бы утверждением «никто ничего не набрал».
     return match.players.map((player) => ({
       ...player,
+      score: null,
       name: player.uid === effectiveViewerSeat ? arenaText(lang, 'you') : player.name,
     }));
   }, [effectiveViewerSeat, lang, match, preview]);
@@ -540,10 +575,15 @@ export default function ArenaResultsScreen() {
   // Оба счёта докручиваются ОДНОВРЕМЕННО — в этом и есть гонка.
   const duelViewerShown = useCountUp(duel?.viewerScore ?? 0, reduceMotion);
   const duelOpponentShown = useCountUp(duel?.opponentScore ?? 0, reduceMotion);
-  // Пока авторитетного матча нет, заголовок берётся из предпросмотра — и
-  // ТОЛЬКО если исход посчитан однозначно. Иначе экран промолчал бы «Ничья»,
-  // которую сервер потом опроверг бы: ложный итог хуже отсутствующего.
-  const previewTitle = !match && preview?.outcome
+  /*
+   * Заголовок берётся из предпросмотра, пока нет АВТОРИТЕТНОГО ИТОГА —
+   * а не «пока нет match» (владелец 2026-09-04: «показывает ничья, счёт был»).
+   *
+   * `match` приходит из живого канала раньше результата. Условие `!match`
+   * переставало выполняться сразу, предпросмотр отбрасывался, а ветка ниже
+   * падала на `draw` по умолчанию — экран объявлял ничью при счёте 12:27.
+   */
+  const previewTitle = !match?.result && preview?.outcome
     ? arenaText(lang, preview.outcome === 'win' ? 'victory'
       : preview.outcome === 'loss' ? 'defeat' : 'draw')
     : null;
@@ -551,7 +591,9 @@ export default function ArenaResultsScreen() {
     ? arenaText(lang, 'cancelledMatch')
     : winner && effectiveViewerSeat
       ? (winner === effectiveViewerSeat ? arenaText(lang, 'victory') : arenaText(lang, 'defeat'))
-      : arenaText(lang, 'draw'));
+      // Ничья объявляется, только когда результат ДЕЙСТВИТЕЛЬНО пришёл.
+      // Иначе молчим: подпись подождёт, а ложный итог не отзовёшь.
+      : match?.result ? arenaText(lang, 'draw') : '');
   /**
    * Исход звучит ОДИН раз, по появлению итога, а не по перерисовке экрана:
    * экран результата перерисовывается несколько раз, пока догружаются

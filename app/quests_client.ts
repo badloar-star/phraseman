@@ -86,8 +86,24 @@ type CachedQuest = Readonly<{
 let memoryCache: (CachedQuest & { owner: string }) | null = null;
 let inFlight: Promise<QuestSnapshot | null> | null = null;
 
+/**
+ * «Вызовы дня» ВЫКЛЮЧЕНЫ (владелец, 2026-09-04: «раздел заданий вообще выключи»).
+ *
+ * Повод. Раздел не используется в приложении, но клиент всё равно ходил за ним
+ * в облако при каждой активации Главной — и получал отказ:
+ *   [QUESTS] load_failed reason=Error: INTERNAL tookMs=3017
+ * Такие вызовы шли каждые 30–60 секунд, по ~3 секунды каждый, и жгли бюджет
+ * функций впустую: экран квест не показывал, ошибка глоталась в кэш.
+ *
+ * Выключено ОДНИМ флагом здесь, а не удалением кода: гасятся сразу и загрузка
+ * (`loadActiveQuest`), и отправка прогресса (`reportQuestProgress`) — оба уже
+ * спрашивают этот гейт. Сама механика цела и включается возвратом `true`,
+ * когда серверная функция починится и раздел понадобится снова.
+ */
+const QUESTS_ENABLED = false;
+
 function isQuestCloudEnabled(): boolean {
-  return CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
+  return QUESTS_ENABLED && CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
 }
 
 function cacheKey(stableId: string): string {

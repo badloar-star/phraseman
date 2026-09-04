@@ -1,0 +1,144 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Есть слово small — маленький. Чтобы сказать «не маленькая», нельзя ставить not перед small, надо ставить его после is: It is not small.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "expensive — дорого. Про цену тоже говорят через it. Слово длинное, произносится в три части, ударение в середине.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "rainy — дождливо, warm — тепло. Про погоду всегда говорят it, даже хотя по-русски мы говорим просто «дождливо» без всякого «оно».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (small/smell/mall)",
+      "what_i_understood": "Выбрал small, услышав слово на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (подстановка про комнату)",
+      "what_i_understood": "Вставил small, потому что речь про размер комнаты, а не про тепло или звук.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (dark/park/duck)",
+      "what_i_understood": "Выбрал dark.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (сборка «здесь темно»)",
+      "what_i_understood": "Собрал It is dark, лишнюю плитку not не взял, потому что свет не нашли — то есть темно, а не «не темно». Тут была секунда сомнения: разбор объяснял именно противоположный случай (искать свет и не найти = темно), пришлось перечитать подсказку под заданием, а не текст интро.",
+      "confusion": "Логика подсказки («свет вы так и не нашли» → поэтому not не нужен) не сразу очевидна, но разобрался.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (не тёмно, а что?)",
+      "what_i_understood": "It is not dark — вставил dark, отсеял rainy и expensive как не про свет в комнате.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (expensive на слух)",
+      "what_i_understood": "Выбрал expensive.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (доска пар: small/dark/expensive/quiet)",
+      "what_i_understood": "Соединил все четыре пары. quiet я раньше не видел в этой сессии, но он всплыл только на доске.",
+      "confusion": "quiet — тихо нигде не объяснялось до доски, пришлось запоминать в моменте по переводу на доске, это нормально для повторения, но я как ученик впервые вижу это слово именно тут.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (диктовка «это недорого»)",
+      "what_i_understood": "Собрал It is not expensive из плиток на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (rainy на слух)",
+      "what_i_understood": "Выбрал rainy, а не rain (без хвоста) и не train.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (подстановка «льёт»)",
+      "what_i_understood": "It is rainy — отсеял warm и clean.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (не тепло, куртка не спасает)",
+      "what_i_understood": "It is not warm — отсеял small и dark.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (сборка «холодно»)",
+      "what_i_understood": "It is cold — слово cold я до этого в сессии вообще не видел, узнал только по переводу в самом задании.",
+      "confusion": "cold нигде не объяснялось текстом сессии (в интро его нет), встречается впервые в задании 12 без всякого объяснения — пришлось поверить подписи задания.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (не холодно)",
+      "what_i_understood": "It is not cold.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (доска пар: cold/rainy/warm/clean)",
+      "what_i_understood": "Соединил пары. clean тоже нигде до этого не объяснялось в сессии, встретил впервые на доске.",
+      "confusion": "clean — чисто первый раз вижу именно на доске, до этого слова не было.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (пол вымыт, посуда убрана)",
+      "what_i_understood": "It is clean — отсеял quiet и small.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (тихо, без not)",
+      "what_i_understood": "It is quiet — не взял лишний not, потому что соседей не слышно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (рассказ вслух)",
+      "what_i_understood": "Проговорил четыре фразы подряд: It is small. It is not expensive. It is warm. It is rainy. Собрал по кусочкам всё, что выучил.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "not в этой конструкции всегда встаёт после is, а не перед словом-признаком, как по-русски",
+    "про погоду и про цену по-английски всё равно говорят it, даже если по-русски никакого «оно» нет",
+    "слово expensive и как его произносить по частям",
+    "слово rainy как отдельное от rain (rain — сам дождь, rainy — погода)",
+    "закрепил на практике small, dark, expensive, rainy, warm через is / is not"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "сцена с подругой по телефону, которая расспрашивает про квартиру — понятно, зачем вообще говорить эти фразы",
+    "задание 17 в конце, где надо выдать сразу несколько фраз подряд как настоящий рассказ о квартире"
+  ],
+  "felt_dead": [
+    "Интро 2 про expensive — просто разбор произношения без сцены, суховато, но коротко и не страшно"
+  ],
+  "scene_reason": "да, понятно — весь урок держится на одном разговоре с подругой по телефону, каждая фраза отвечает на её конкретный вопрос (комната маленькая? аренда дорогая? дождь?), это чувствуется даже в практике, а не только в интро",
+  "would_continue": "да, потому что задания шли гладко, в конце было приятное ощущение — я сам проговорил целый мини-рассказ про квартиру, а не просто ткнул один вариант",
+  "verdict": "REVISE",
+  "verdict_reason": "Слова cold и clean используются как правильные ответы в заданиях 12, 13, 14, 15, но нигде в тексте интро не объяснены — они просто выпадают на пользователя без единого слова разбора, и хотя это заявлено как \"возвращаемые\" слова из прошлых сессий, я как ученик, начавший именно с этой сессии, вижу их впервые без всякой подсказки, что это и как произносится."
+}

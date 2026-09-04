@@ -1,0 +1,152 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Слово small значит маленький. Чтобы сказать 'не маленькая', ставлю not сразу после is: It is not small.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "expensive значит дорого. Тоже It is not expensive, если недорого. Запомнил, что ударение на втором слоге.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "rainy - дождливо, warm - тепло. Про погоду всегда говорю it, хотя по-русски никакого 'оно' нет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (listen small)",
+      "what_i_understood": "Выбрал small, отличил от smell и mall по звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (gap - комната мала)",
+      "what_i_understood": "Вставил small, warm и quiet не подходят по смыслу",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (listen dark)",
+      "what_i_understood": "dark - темно, отличил от park и duck",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (собрать фразу - темно)",
+      "what_i_understood": "Собрал It is dark, лишнюю плитку not не взял, так как темно и есть",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (gap - светло)",
+      "what_i_understood": "Вставил dark в It is not ___, значит не темно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (listen expensive)",
+      "what_i_understood": "Выбрал expensive, отличил от expense и offensive",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (доска small/dark/expensive/quiet)",
+      "what_i_understood": "Соединил слова с переводами, quiet - тихо, видел это слово впервые как перевод, но само по себе понятно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (диктовка - недорого)",
+      "what_i_understood": "Собрал It is not expensive из плиток по звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (карточка cold)",
+      "what_i_understood": "cold значит холодно, тоже через it",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (listen cold)",
+      "what_i_understood": "Выбрал cold, отличил от called и gold",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (собрать - не холодно)",
+      "what_i_understood": "It is not cold, порядок как учили",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (listen rainy)",
+      "what_i_understood": "rainy отличил от rain (без хвоста) и train",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (gap - льёт)",
+      "what_i_understood": "Вставил rainy, warm и clean не про дождь",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (listen warm)",
+      "what_i_understood": "warm отличил от worm (червяк) и farm",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (gap - жарко дома)",
+      "what_i_understood": "Вставил warm, small и dark не про температуру",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (карточка clean)",
+      "what_i_understood": "clean - чисто",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (listen clean)",
+      "what_i_understood": "clean отличил от clan и green",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 (доска cold/rainy/warm/clean)",
+      "what_i_understood": "Соединил все четыре пары без проблем",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19 (говорю вслух)",
+      "what_i_understood": "Собрал четыре фразы подряд про квартиру: маленькая-нет, дорогая-нет, тёплая-да, дождь-да. Понял ситуацию: подруга спрашивает по телефону про новую квартиру",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Могу сказать, что чего-то НЕТ, вставив not после is: It is not small / not expensive / not cold / not rainy",
+    "Узнал новые слова через it: expensive (дорого), rainy (дождливо), а warm/cold/small/dark/clean/quiet вспомнил (уже видел раньше, тут просто повторение)",
+    "Понял, что про погоду и про помещение по-английски всегда нужно it, даже если по-русски никакого 'оно' в фразе нет"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с подругой по телефону понятная и живая — реально представляю, как отвечаю коротко на вопросы про квартиру",
+    "Финальное задание 19, где нужно выдать сразу четыре фразы подряд — почувствовал, что действительно могу что-то рассказать о комнате"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно - я стою у окна, подруга из другого города спрашивает про новую квартиру и погоду за окном, и я коротко отвечаю ей, что так, а что нет. Каждая фраза - ответ на конкретный вопрос подруги",
+  "would_continue": "да - было легко идти по шагам, ничего непонятного, под конец почувствовал, что реально могу описать помещение",
+  "verdict": "PASS",
+  "verdict_reason": "Все 19 заданий прошёл честно без затыков, узнал новое правило и два новых слова, сцена с подругой понятна от начала до конца."
+}

@@ -1,0 +1,143 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Слово small значит маленький. Если хочу сказать, что что-то НЕ маленькое, ставлю not сразу после is: It is not small. Нельзя убирать is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "expensive значит дорого. Та же схема: It is expensive / It is not expensive. Ударение падает на середину слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "rainy — дождливо, warm — тепло. Про погоду тоже говорят через it, хотя по-русски там нет никакого 'оно'. It всегда должно стоять в начале.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (listen small)",
+      "what_i_understood": "Выбрал small, отличил от smell и mall на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (гэп small)",
+      "what_i_understood": "Комната маленькая — small подходит, warm/quiet не про размер.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (listen dark)",
+      "what_i_understood": "Новое слово dark — тёмно. Понял из звучания.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (сборка dark)",
+      "what_i_understood": "It is dark. — просто утверждение, not здесь лишнее.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (гэп про свет)",
+      "what_i_understood": "Светло — значит не тёмно: It is not dark. rainy и expensive сюда не подходят по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (listen expensive)",
+      "what_i_understood": "Отличил expensive от expense и offensive.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (доска пар)",
+      "what_i_understood": "small-маленький, dark-темно, expensive-дорого, quiet-тихо. quiet я раньше не видел в этой сессии, но тут просто перевод, не вопрос с подвохом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (диктант)",
+      "what_i_understood": "Собрал It is not expensive. из плиток на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (listen rainy)",
+      "what_i_understood": "Отличил rainy от rain и train.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (гэп rainy)",
+      "what_i_understood": "Дождь с утра — It is rainy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (listen warm)",
+      "what_i_understood": "Отличил warm от worm и farm.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (гэп warm)",
+      "what_i_understood": "Дома жарко — It is warm.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (listen cold)",
+      "what_i_understood": "Новое слово в этой сессии по факту (cold), хотя оно не заявлено как новое. Понял на слух.",
+      "confusion": "cold нигде не объяснялось в интро, только в самопроверке указано как 'возвращаемое', но в тексте сессии перевод cold нигде не дан явно — я его знаю только по созвучию и по доске 16, которая идёт ПОСЛЕ этого задания",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (сборка cold)",
+      "what_i_understood": "It is not cold. — собрал по аналогии с not small/not expensive.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (listen clean)",
+      "what_i_understood": "Тоже слово без перевода в интро, но по звучанию и по смыслу дальнейшей доски понял, что это 'чисто'.",
+      "confusion": "clean тоже не объяснено в интро, перевод я узнаю только из доски 16, которая идёт позже заданий 13-15",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (доска пар)",
+      "what_i_understood": "cold-холодно, rainy-дождливо, warm-тепло, clean-чисто. Только тут я впервые вижу перевод cold и clean.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (говорение)",
+      "what_i_understood": "Собрал всё в связный ответ подруге: маленькая, недорогая, тёплая квартира, на улице дождь.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "It is + слово — как описывать вещь/место одним словом (small, dark, expensive)",
+    "It is not + слово — как отрицать это же",
+    "Про погоду по-английски тоже нужно it, хотя по-русски подлежащего нет",
+    "Слова small, dark, expensive, rainy, warm закреплены на слух и в письме"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с подругой по телефону — понятно, зачем говорить именно эти фразы, легко представить разговор",
+    "Разбор про 'дождливо' без русского 'оно' — реально объясняет, а не для красоты"
+  ],
+  "felt_dead": [
+    "Задания 13-15 (cold, clean) идут без всякого объяснения-интро, просто 'послушайте и выберите' и 'вставьте' — будто эти слова уже разбирались раньше, а для меня это первая встреча с ними без единого перевода до самого задания 16"
+  ],
+  "scene_reason": "да, в интро понятно — подруга спрашивает про квартиру и погоду, и я отвечаю ей то так, то не так. Но с cold и clean сцена не подхватывает: задания 13-14 про cold возникают без вопроса от подруги и без перевода, только с самопроверкой я понимаю, что это 'холодно'",
+  "would_continue": "да — основная часть про small/dark/expensive/rainy/warm была понятна и по делу, но споткнулся на cold и clean без интро",
+  "verdict": "REVISE",
+  "verdict_reason": "Слова cold и clean используются в заданиях 13-15 раньше, чем где-либо объясняется их перевод (только доска 16 после заданий даёт перевод), из-за чего я гадаю значение по звучанию вместо того, чтобы понимать смысл."
+}

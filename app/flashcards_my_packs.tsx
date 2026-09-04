@@ -20,6 +20,7 @@
  * каркас (заголовок + сетка-заглушка), а не пустоту, которая потом «прыгает».
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { DebugLogger } from './debug-logger';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
@@ -314,6 +315,19 @@ export default function FlashcardsMyPacksScreen() {
         tr: 'Benim oluşturduklarım',
         pl: 'Utworzone przeze mnie',
       }),
+      // Только для незрячих: на экране это иконка карандаша, подписи под
+      // плиткой нет (запрет владельца на подписи-расшифровки).
+      editPack: triLang(lang, {
+        ru: 'Редактировать набор',
+        uk: 'Редагувати набір',
+        en: 'Edit pack',
+        es: 'Editar pack',
+        'pt-BR': 'Editar pacote',
+        vi: 'Chỉnh sửa bộ thẻ',
+        id: 'Edit paket',
+        tr: 'Paketi düzenle',
+        pl: 'Edytuj zestaw',
+      }),
       empty: triLang(lang, {
         ru: 'Здесь появятся наборы, которые вы добавили себе или создали',
         uk: 'Тут з’являться набори, які ви додали собі або створили',
@@ -382,8 +396,22 @@ export default function FlashcardsMyPacksScreen() {
     [t.accent, t.textPrimary],
   );
 
-  const renderTile = useCallback(
+  // зачем (репорт #7ea8, 2026-09-04: «чи можна зробити картки мною створені і
+  // ще не опубліковані доступними для редагування»): свой набор редактировался
+  // ТОЛЬКО из каталога сообщества, где кнопка требует isCommunityUgc — то есть
+  // уже опубликованный. Черновик, созданный и ещё не прошедший модерацию, этого
+  // флага не имеет, и править его было негде. Раздел «Созданные мной» на этом
+  // экране уже содержит и черновики, и опубликованные — кнопка живёт здесь.
+  const openPackEditor = useCallback(
     (pack: FlashcardMarketPack) => {
+      DebugLogger.info('[MY-PACKS]', `правка набора ${pack.id}: ugc=${pack.isCommunityUgc === true} наПроверке=${pack.isPendingUpdateReview === true}`);
+      router.push({ pathname: '/community_pack_create', params: { packId: pack.id } } as never);
+    },
+    [router],
+  );
+
+  const renderTile = useCallback(
+    (pack: FlashcardMarketPack, editable = false) => {
       const displayTitle = packTitleForInterface(pack, contentLang);
       const label =
         pack.isCommunityUgc && displayTitle.trim().length > 0
@@ -424,6 +452,26 @@ export default function FlashcardsMyPacksScreen() {
                 <ActivityIndicator color={t.accent} />
               </View>
             ) : null}
+            {editable ? (
+              <TouchableOpacity
+                testID={`fc-my-packs-pack-edit-${pack.id}`}
+                accessibilityRole="button"
+                accessibilityLabel={copy.editPack}
+                onPress={() => openPackEditor(pack)}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                style={{
+                  position: 'absolute',
+                  top: 2,
+                  right: 2,
+                  zIndex: 8,
+                  padding: 7,
+                  borderRadius: 12,
+                  backgroundColor: `${t.bgPrimary}CC`,
+                }}
+              >
+                <Ionicons name="create-outline" size={17} color={t.textPrimary} />
+              </TouchableOpacity>
+            ) : null}
             {pack.cardCount > 0 ? (
               <View
                 pointerEvents="none"
@@ -452,7 +500,7 @@ export default function FlashcardsMyPacksScreen() {
         </TouchableOpacity>
       );
     },
-    [contentLang, openPack, openingPackId, packIcon, t.accent, t.bgCard, t.bgSurface, t.border, t.textSecond, tileW],
+    [contentLang, copy.editPack, openPack, openPackEditor, openingPackId, packIcon, t.accent, t.bgCard, t.bgPrimary, t.bgSurface, t.border, t.textPrimary, t.textSecond, tileW],
   );
 
   /** Раздел с заголовком и счётчиком; пустой раздел не рендерится вообще. */
@@ -475,7 +523,9 @@ export default function FlashcardsMyPacksScreen() {
               <Text style={{ color: t.textSecond, fontSize: 11, fontWeight: '800' }}>{packs.length}</Text>
             </View>
           </View>
-          <View style={styles.grid}>{packs.map(renderTile)}</View>
+          {/* Кнопка правки — только в «Созданных мной»: в «Добавленных» лежат
+              чужие наборы, их редактировать нельзя. */}
+          <View style={styles.grid}>{packs.map((pack) => renderTile(pack, key === 'created'))}</View>
         </View>
       );
     },

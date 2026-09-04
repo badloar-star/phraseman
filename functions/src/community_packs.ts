@@ -534,7 +534,17 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
         cardBackKey: pd.cardBackKey ?? null,
         studyTarget: normalizeCommunityPackStudyTarget(pd.studyTarget),
       };
-      if (st === 'published') await syncFlashcardRegistryPackMutation(tx, db, { id: updatePackId, studyTarget: normalizeCommunityPackStudyTarget(pd.studyTarget), cards: Array.isArray(pd.cards) ? pd.cards : [] }, null);
+      // зачем (владелец 2026-09-04: «повторная модерация не нужна, сделай чтобы
+      // не нужна была»): правка СВОЕГО опубликованного набора больше не снимает
+      // старую версию с витрины. Раньше здесь снимали её из семантического
+      // реестра ещё ДО проверки, и автор на всё время модерации терял место в
+      // выдаче за одну опечатку. Теперь работает так: старая, уже одобренная
+      // версия живёт как жила (listingStatus 'update_pending' остаётся видимым в
+      // каталоге, см. communityFirestore), а НОВАЯ выходит после проверки.
+      // Автор ничего не теряет, покупатели не видят неодобренного содержимого.
+      //
+      // Снятие из реестра происходит при одобрении правки (ветка approve ниже),
+      // где старая версия честно заменяется новой одной транзакцией.
       tx.set(subRef, {
         status: 'pending',
         authorStableId,
@@ -666,18 +676,19 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
     };
 
     const editTargetEarly = String(d.editTargetPackId ?? '').trim();
+    // Содержимое старого набора для восстановления реестра больше не читаем:
+    // отправка правки его не снимает. Нужен только факт существования — по нему
+    // возвращаем listingStatus обратно в 'published' при отказе.
     let editPackExistsForRestore = false;
-    let editPackForRestore: Record<string, unknown> | null = null;
     if (editTargetEarly && (action === 'reject' || action === 'request_changes')) {
       const ps = await tx.get(db.collection(COMMUNITY_PACKS).doc(editTargetEarly));
       editPackExistsForRestore = ps.exists;
-      editPackForRestore = ps.exists ? ps.data() as Record<string, unknown> : null;
     }
 
     if (action === 'reject') {
-      if (editTargetEarly && editPackExistsForRestore) {
-        await syncFlashcardRegistryPackMutation(tx, db, null, { id: editTargetEarly, studyTarget: normalizeCommunityPackStudyTarget(editPackForRestore?.studyTarget), cards: Array.isArray(editPackForRestore?.cards) ? editPackForRestore.cards : [] });
-      }
+      // зачем (владелец 2026-09-04): восстанавливать записи реестра больше НЕ
+      // НУЖНО — отправка правки их не снимает, старая версия всё это время
+      // оставалась в индексе. Прежний вызов теперь ДУБЛИРОВАЛ бы её карточки.
       tx.update(subRef, {
         status: 'rejected',
         reviewedAt: now,
@@ -696,9 +707,9 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
     }
 
     if (action === 'request_changes') {
-      if (editTargetEarly && editPackExistsForRestore) {
-        await syncFlashcardRegistryPackMutation(tx, db, null, { id: editTargetEarly, studyTarget: normalizeCommunityPackStudyTarget(editPackForRestore?.studyTarget), cards: Array.isArray(editPackForRestore?.cards) ? editPackForRestore.cards : [] });
-      }
+      // зачем (владелец 2026-09-04): восстанавливать записи реестра больше НЕ
+      // НУЖНО — отправка правки их не снимает, старая версия всё это время
+      // оставалась в индексе. Прежний вызов теперь ДУБЛИРОВАЛ бы её карточки.
       tx.update(subRef, {
         status: 'needs_revision',
         reviewedAt: now,
@@ -736,7 +747,17 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
         throw new HttpsError('failed-precondition', 'Cannot change pack study target');
       }
       const cardsWithRichFallback = preserveExistingRichCardFields(existing.cards, payload.cards);
-      await syncFlashcardRegistryPackMutation(tx, db, null, { id: editTarget, studyTarget: existingStudyTarget, cards: cardsWithRichFallback });
+      // зачем (владелец 2026-09-04): раньше старую версию снимали из реестра ещё
+      // при ОТПРАВКЕ правки, поэтому здесь previous был null. Теперь отправка
+      // ничего не снимает (автор не теряет витрину на время проверки), и замена
+      // старых записей новыми происходит РОВНО ЗДЕСЬ, одной транзакцией: иначе
+      // карточки прежней версии остались бы в индексе дублей навсегда.
+      await syncFlashcardRegistryPackMutation(
+        tx,
+        db,
+        { id: editTarget, studyTarget: existingStudyTarget, cards: Array.isArray(existing.cards) ? existing.cards : [] },
+        { id: editTarget, studyTarget: existingStudyTarget, cards: cardsWithRichFallback },
+      );
       tx.set(packRef, {
         ...existing,
         listingStatus: 'published',

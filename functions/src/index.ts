@@ -941,7 +941,15 @@ export { recordAiVoiceConsent } from "./record_ai_voice_consent";
 export { revenueCatShardsWebhook } from "./revenuecat_shards";
 export { revenueCatPremiumReconcileMine } from "./revenuecat_reconcile";
 export { voiceMinuteWalletMine } from "./voice_minutes_api";
-export { voiceMinuteDevGrant } from "./voice_minutes_dev_grant";
+// ⛔ СНЯТА С ДЕПЛОЯ (владелец 2026-09-04: «выключай»). Дев-выдача начисляла
+// ПЛАТНЫЕ минуты бесплатно ЛЮБОМУ вошедшему пользователю (до 600 мин на
+// аккаунт), пока в config/max_voice стоял voiceMinuteDevGrantEnabled: true.
+// Флаг снят в базу (false), функция удалена с прода — две линии защиты.
+// Раздел MAX законсервирован, тестировать покупку минут больше нечем и незачем:
+// см. CLAUDE.md → «РАЗДЕЛ MAX ЗАКОНСЕРВИРОВАН».
+// Не возвращать без прямой команды владельца — возврат экспорта заново создаёт
+// функцию на проде при следующем деплое.
+// export { voiceMinuteDevGrant } from "./voice_minutes_dev_grant";
 
 export { adminPushJobCreated, adminPushJobsCron } from "./admin_push_jobs";
 export { adminUserBriefs } from "./admin_user_briefs";

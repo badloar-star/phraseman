@@ -1,0 +1,111 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — asleep",
+      "what_i_understood": "asleep значит «спит». Про соседского сына говорят He is asleep — между «он» и «спит» обязательно вставляется is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — awake",
+      "what_i_understood": "awake значит «не спит». Похоже на asleep по звучанию, но значит противоположное — надо быть внимательным.",
+      "confusion": "Само слово awake я не путаю, но легко перепутать с asleep, если торопиться — так и предупредили в тексте.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — away",
+      "what_i_understood": "away значит «его нет тут, уехал». He is away — «он есть далеко», по-русски так не скажешь, но запомнить можно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (asleep, awake карточки+слух)",
+      "what_i_understood": "Закрепил на слух разницу asleep/sleep/sheep и awake/wake/away — там, где начало или гласная другие.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Выбрал asleep, потому что глаза закрыты — awake было бы наоборот.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 6-8 (away, ill)",
+      "what_i_understood": "away — уехал, ill — болен (мягче чем sick, но я sick раньше не встречал в этой сессии — тут просто дали новое слово).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Собрал She is away, лишняя плитка am не подошла — я же помню, am только с I.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "She is ill — потому что температура и лежит второй день, а не «уехала» и не «тихая».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 11-12",
+      "what_i_understood": "Собрал He is awake на слух. В доске пар свёл все четыре новых слова с переводом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "It is quiet here — выбрал quiet, потому что тихо. Но конструкция It is я нигде до этого не видел, только He is/She is/I am/You are.",
+      "confusion": "Откуда взялось It is? Я знаю только I am, You are, He/She is. Про It мне никто не объяснял.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "She is home — среди плиток была лишняя are, но я помню, что про неё (she) нужно is, а не are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "He is not sick — вставил not после is, как учили в грамматике.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "She is tired — лишняя плитка not не нужна, раз она просто устала, а не «не устала».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал",
+      "what_i_understood": "Сказал подряд He is asleep. She is awake. He is away. He is tired. — собрал всю сцену про соседа и его семью.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово asleep — «спит»",
+    "Слово awake — «не спит»",
+    "Слово away — «его нет на месте, уехал»",
+    "Слово ill — «болен» (мягкий вариант sick)",
+    "Что конструкция He is / She is так же переносится на разговоры о родных и соседях, а не только про работу"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 13,
+      "why": "Правильный ответ требует фразы It is quiet here — а слово It и форма It is нигде не были даны ни в грамматике сессии (там только I am / You are / He-she is), ни в предыдущих интро. Я не мог понять, почему тут вдруг It, а не She, если только не угадал по смыслу."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена на лестничной площадке ощущается живой — сосед реально что-то рассказывает, понятно зачем я говорю эти фразы",
+    "Финал сессии, где нужно произнести все четыре факта подряд — приятно почувствовать, что я правда что-то запомнил"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно: я говорю соседу на площадке про его сына, дочь и его самого — каждая фраза привязана к конкретному моменту разговора, а не висит в воздухе.",
+  "would_continue": "Да, хочу продолжить — материал понятный, слова разные и не путаются (кроме awake/asleep, но это специально обыграно), сцена живая.",
+  "verdict": "REVISE",
+  "verdict_reason": "Всё бы прошёл на PASS, но задание 13 требует конструкцию It is, которую я нигде не изучал — это нечестная ловушка, не про лишний вариант, а про правильный ответ."
+}

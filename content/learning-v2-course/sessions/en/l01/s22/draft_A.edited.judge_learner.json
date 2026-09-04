@@ -1,0 +1,125 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (asleep)",
+      "what_i_understood": "Сосед говорит про сына, который спит, и просит его не будить. Мне показали фразу He is asleep и объяснили, что is нельзя выбрасывать, хотя по-русски мы его не говорим.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (awake)",
+      "what_i_understood": "awake — это наоборот, не спит. Предупредили, что asleep и awake начинаются похоже и легко перепутать.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (away)",
+      "what_i_understood": "away — человека нет на месте (уехал), не значит потерялся.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (asleep, карточка+слух)",
+      "what_i_understood": "Запомнил слово и на слух отличил его от sleep и sheep.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (awake, карточка+слух)",
+      "what_i_understood": "То же самое с awake, отличил от wake и away.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (гэп, сын лежит с закрытыми глазами)",
+      "what_i_understood": "Выбрал asleep, а не awake (наоборот) и не home (не по теме).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 (карточки away, ill)",
+      "what_i_understood": "away — его нет тут, ill — болен, то же самое что sick.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (слух ill)",
+      "what_i_understood": "Отличил ill от eel и all по звучанию гласной.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (сборка 'она уехала')",
+      "what_i_understood": "Собрал She is away, не взял лишнее am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (гэп, дочь болеет)",
+      "what_i_understood": "Выбрал ill, а не away/quiet, потому что дело в болезни, а не в отсутствии или тишине.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (диктовка 'он не спит')",
+      "what_i_understood": "Собрал He is awake на слух, не перепутал с asleep.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (пары)",
+      "what_i_understood": "Соединил все 4 новых слова с переводом без проблем — они уже отрабатывались раньше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (гэп, дочь молчит с книгой)",
+      "what_i_understood": "Выбрал quiet — я это слово знал ещё до сессии (было в списке того, что я уже умею), тут просто напомнили ситуацию.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (сборка 'она дома')",
+      "what_i_understood": "Собрал She is home, не взял лишнее are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (сборка 'он не болен')",
+      "what_i_understood": "Собрал He is not sick.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (сборка 'она устала')",
+      "what_i_understood": "Собрал She is tired, отбросил лишнее not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, 4 фразы)",
+      "what_i_understood": "Сказал подряд все четыре фразы про соседа и его семью — почувствовал, что реально сложил всю сцену в голове.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово asleep — спит",
+    "Слово awake — не спит",
+    "Слово away — уехал, его нет на месте",
+    "Слово ill — болен (второе слово вместо sick)",
+    "На слух отличать asleep/awake от похожих слов (sleep, sheep, wake)",
+    "Собирать фразы He is / She is про третьего человека, не про себя"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена на лестничной площадке — понятно, кто говорит и зачем, весь урок держится на одном разговоре с соседом",
+    "Финальное задание 17, где нужно перечислить всех подряд — приятно почувствовать, что все фразы сложились в одну историю"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — сосед на площадке рассказывает про сына, дочь и себя, и каждая фраза — это ответ на конкретный вопрос про конкретного человека в конкретный момент (кто спит, кто уехал, кто болен). Ни разу не было ощущения, что фраза говорится просто в пустоту",
+  "would_continue": "да — сессия короткая, слова понятные, ловушки логичные (не запутался ни разу, но и не было ощущения, что легко до неинтересности), и в конце реально почувствовал, что что-то новое умею сказать",
+  "verdict": "PASS",
+  "verdict_reason": "Прошёл всю сессию без сбоев, узнал четыре новых слова с понятными объяснениями, ни в одном задании не потребовалось незнакомое, сцена цельная и понятная — хочу продолжать."
+}

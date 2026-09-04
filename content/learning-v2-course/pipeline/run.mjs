@@ -642,10 +642,17 @@ function compareStructure(ru, loc) {
 }
 
 /** Разбор пакетного ответа «===LOCALE: xx===» на файлы по локалям. */
-function splitLocaleBatch(text) {
+function splitLocaleBatch(text, expected = LOCALES) {
   const out = {};
   const parts = text.split(/^===LOCALE:\s*([a-zA-Z-]+)\s*===\s*$/m);
   for (let i = 1; i < parts.length; i += 2) out[parts[i].trim()] = parts[i + 1].trim();
+  // зачем: когда локаль запрошена ОДНА, модель не ставит разделитель — ей нечего
+  // разделять — и весь готовый перевод терялся, а сессия получала BLOCK «локаль
+  // не приложена». Текст без разделителей при единственной локали и есть она.
+  if (!Object.keys(out).length && expected.length === 1 && text.trim().length > 500) {
+    WARN(`локаль ${expected[0]}: ответ без разделителя — беру весь текст как эту локаль`);
+    out[expected[0]] = text.trim();
+  }
   return out;
 }
 

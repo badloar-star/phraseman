@@ -270,6 +270,15 @@ function courseContext(lang) {
   const verdicts = listDir(path.join(ROOT, "judgements", "owner"), (f) => f.endsWith(".md"))
     .map((f) => read(f)).join("\n\n---\n\n");
   LOG(`контекст: конституция ${constitution.length} зн. (судьям ${constitutionShort.length}), эталонов ${(exemplars.match(/<!-- эталон/g) || []).length}, вердиктов владельца ${verdicts ? verdicts.split("\n\n---\n\n").length : 0}`);
+  // зачем: длина интро, число заданий и касания слов записаны в трёх файлах
+  // сразу; расхождение между ними ловилось только вручную и постфактум
+  try {
+    const sync = spawnSync(process.execPath, [path.join(HERE, 'check_rules_sync.mjs')], { encoding: 'utf8' });
+    if (sync.status !== 0) {
+      WARN('правила в Конституции, судейской версии и промпте автора РАЗОШЛИСЬ:');
+      String(sync.stdout || "").split(String.fromCharCode(10)).filter((l) => l.includes("РАСХОЖДЕНИЕ")).forEach((l) => WARN("  " + l));
+    }
+  } catch (e) { WARN(`сторож согласованности правил не запустился: ${e.message}`); }
   return { constitution, constitutionShort, exemplars, verdicts };
 }
 

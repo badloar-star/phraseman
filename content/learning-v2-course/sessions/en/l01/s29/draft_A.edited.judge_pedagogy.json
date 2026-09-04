@@ -17,20 +17,20 @@
   "traps": {
     "realistic": [
       {
-        "task": 1,
-        "trap": "He is heavy — русский род вещи (чайник = «он»)"
+        "task": 2,
+        "trap": "happy/hairy созвучны heavy"
       },
       {
-        "task": 3,
-        "trap": "It heavy — пропущена скрепка is"
+        "task": 4,
+        "trap": "heavy/new как правдоподобные альтернативы к light"
       },
       {
-        "task": 11,
-        "trap": "It is tired — it вместо he про человека"
+        "task": 15,
+        "trap": "he вместо it"
       }
     ],
     "silly": [],
-    "native_transfer_used": true,
+    "native_transfer_used": false,
     "feedback_teaches_unknown_form": []
   },
   "feedback": {
@@ -39,7 +39,7 @@
     "too_long_or_bookish": []
   },
   "structure": {
-    "task_count": 17,
+    "task_count": 18,
     "below_12": false,
     "word_first_respected": true,
     "support_fades": true,
@@ -49,14 +49,18 @@
         "light",
         "clean",
         "dirty"
+      ],
+      [
+        "small",
+        "new",
+        "empty",
+        "broken"
       ]
     ],
     "speed_match_overlap": false,
     "repeated_targets": [],
     "generic_instructions": [],
-    "attention_traps": [
-      12
-    ]
+    "attention_traps": []
   },
   "time_references": [],
   "cross_session_repeats": [],
@@ -67,13 +71,13 @@
     "modes_used": {
       "word_card": 4,
       "listen_choose": 3,
-      "phrase_builder": 2,
       "context_gap_grammar": 4,
+      "phrase_builder": 2,
+      "speed_match": 2,
       "listen_build_dictation": 1,
-      "speed_match": 1,
-      "scripted_repeat_compare": 2
+      "scripted_repeat_compare": 1
     }
   },
   "verdict": "REVISE",
-  "verdict_reason": "Слово small используется в задании 6 только как отвлекающий вариант и в задании 16 только в скрипте для проговаривания (не как проверяемый целевой ответ), поэтому оно ни разу не отработано правильным ответом — нарушение правила ≥2 касаний с хотя бы одним верным ответом для возвращаемых слов."
+  "verdict_reason": "Интро 1 длиннее нормы (293 знака при 240–290), а интро 3 короче (218 знаков) — оба выходят за целевой диапазон длины."
 }

@@ -18,19 +18,15 @@
     "realistic": [
       {
         "task": 2,
-        "trap": "happy/hurry как акустически близкие к heavy"
+        "trap": "happy/hairy — похожие по звуку начала"
       },
       {
-        "task": 6,
-        "trap": "heavy вместо light — противоположный признак"
+        "task": 7,
+        "trap": "clear/queen — фонетически близкие слова"
       },
       {
-        "task": 11,
-        "trap": "It/She вместо He — путаница it/he/she"
-      },
-      {
-        "task": 12,
-        "trap": "лишняя плитка It — вещь вместо человека"
+        "task": 9,
+        "trap": "thirty/daddy — похожая структура слога"
       }
     ],
     "silly": [],
@@ -43,7 +39,7 @@
     "too_long_or_bookish": []
   },
   "structure": {
-    "task_count": 17,
+    "task_count": 18,
     "below_12": false,
     "word_first_respected": true,
     "support_fades": true,
@@ -53,14 +49,18 @@
         "light",
         "clean",
         "dirty"
+      ],
+      [
+        "small",
+        "new",
+        "empty",
+        "broken"
       ]
     ],
     "speed_match_overlap": false,
     "repeated_targets": [],
     "generic_instructions": [],
-    "attention_traps": [
-      12
-    ]
+    "attention_traps": []
   },
   "time_references": [],
   "cross_session_repeats": [],
@@ -69,15 +69,15 @@
     "new_words_line_ok": true,
     "modes_line_ok": true,
     "modes_used": {
-      "word_card": 4,
+      "word_card": 5,
       "listen_choose": 3,
+      "context_gap_grammar": 4,
       "phrase_builder": 2,
-      "context_gap_grammar": 5,
+      "speed_match": 2,
       "listen_build_dictation": 1,
-      "speed_match": 1,
       "scripted_repeat_compare": 1
     }
   },
   "verdict": "REVISE",
-  "verdict_reason": "small и broken (задания 6, 10, 14, 15) касаются практики 4 раза, но правильным ответом становятся только 1 раз — граница «≥2 касания, хотя бы одно правильным» формально соблюдена, но с минимальным запасом, а kind (задания 12, 17) правильным ответом становится только в финале-диктовке, а не в отдельном тренировочном задании, что делает возврат этого слова слабым."
+  "verdict_reason": "Интро 1 длиннее нормы (293 против 240–290), а интро 3 короче (218) — обе страницы нужно выровнять по длине без потери шутки/образа."
 }

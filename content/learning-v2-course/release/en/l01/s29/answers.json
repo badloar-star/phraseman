@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-29:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i02",
+    "correctText": "heavy",
+    "correctResponseId": "en:lesson-01:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i04",
+    "correctText": "light",
+    "correctResponseId": "en:lesson-01:session-29:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i05",
+    "correctText": "It is heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i07",
+    "correctText": "clean",
+    "correctResponseId": "en:lesson-01:session-29:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i09",
+    "correctText": "dirty",
+    "correctResponseId": "en:lesson-01:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i11",
+    "correctText": "empty",
+    "correctResponseId": "en:lesson-01:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i13",
+    "correctText": "It is dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i15",
+    "correctText": "It is broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i16",
+    "correctText": "small",
+    "correctResponseId": "en:lesson-01:session-29:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i17",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-29:i18",
+    "correctText": "It is heavy. It is dirty. It is empty. It is new.",
+    "correctResponseId": null
+  }
+]

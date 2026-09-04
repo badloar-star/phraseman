@@ -1,0 +1,1005 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-29:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — heavy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-29:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — heavy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-29:i01:audio",
+          "transcript": "heavy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-29:i01:r1",
+            "targetText": "heavy",
+            "meaningByLocale": {
+              "ru": "«тяжёлый». Поднимаете и сразу ставите обратно.",
+              "uk": "«важкий». Піднімаєте і одразу ставите назад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "heavy",
+          "definitionByLocale": {
+            "ru": "«тяжёлый». Поднимаете и сразу ставите обратно.",
+            "uk": "«важкий». Піднімаєте і одразу ставите назад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-29:i02:r1",
+          "text": "heavy"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i02:r2",
+          "text": "happy"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i02:r3",
+          "text": "hairy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — heavy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-29:i02:audio",
+          "transcript": "heavy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-29:i02:r1",
+            "targetText": "heavy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i02:r2",
+            "targetText": "happy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i02:r3",
+            "targetText": "hairy",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-29:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — heavy",
+            "feedbackByLocale": {
+              "ru": "«Рад». Похоже началом, но в `heavy` середина другая: «хэ-ви».",
+              "uk": "«Радий». Схоже початком, але в `heavy` середина інша: «хе-ві»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — heavy",
+            "feedbackByLocale": {
+              "ru": "Тоже на «х», но это не про вес. `heavy` — «хэ-ви».",
+              "uk": "Теж на «х», але це не про вагу. `heavy` — «хе-ві»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — light",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-29:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — light",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-29:i03:audio",
+          "transcript": "light"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-29:i03:r1",
+            "targetText": "light",
+            "meaningByLocale": {
+              "ru": "«лёгкий». Берёте одной рукой и забываете, что несёте.",
+              "uk": "«легкий». Берете однією рукою і забуваєте, що несете."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "light",
+          "definitionByLocale": {
+            "ru": "«лёгкий». Берёте одной рукой и забываете, что несёте.",
+            "uk": "«легкий». Берете однією рукою і забуваєте, що несете."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — коробка пустая, вы поднимаете её мизинцем",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-29:i04:r1",
+          "text": "light"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i04:r2",
+          "text": "heavy"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i04:r3",
+          "text": "new"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — коробка пустая, вы поднимаете её мизинцем",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коробка пустая, вы поднимаете её мизинцем",
+          "uk": "Вставте слово — коробка порожня, ви піднімаєте її мізинцем"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i04:r1",
+            "text": "light"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i04:r2",
+            "text": "heavy"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i04:r3",
+            "text": "new"
+          }
+        ],
+        "testedDimension": "Вставьте слово — коробка пустая, вы подн",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-29:i04:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коробка пустая, вы подн",
+            "feedbackByLocale": {
+              "ru": "Наоборот. Мизинцем тяжёлое не поднимают.",
+              "uk": "Навпаки. Мізинцем важке не піднімають."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коробка пустая, вы подн",
+            "feedbackByLocale": {
+              "ru": "«Новая» — может быть, но сейчас вы говорите про вес, а не про то, новая она или нет.",
+              "uk": "«Нова» — може бути, але зараз ви говорите про вагу, а не про те, нова вона чи ні."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «оно тяжёлое»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «оно тяжёлое»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is heavy.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «оно тяжёлое»",
+          "uk": "Складіть фразу — «воно важке»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "heavy"
+        ],
+        "authoredDistractorTokens": [
+          "light"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clean",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-29:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clean",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-29:i06:audio",
+          "transcript": "clean"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-29:i06:r1",
+            "targetText": "clean",
+            "meaningByLocale": {
+              "ru": "«чистый». Как будто вещью ещё не пользовались.",
+              "uk": "«чистий». Наче річчю ще не користувалися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clean",
+          "definitionByLocale": {
+            "ru": "«чистый». Как будто вещью ещё не пользовались.",
+            "uk": "«чистий». Наче річчю ще не користувалися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-29:i07:r1",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i07:r2",
+          "text": "clear"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i07:r3",
+          "text": "queen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-29:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — clean",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-29:i07:audio",
+          "transcript": "clean"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-29:i07:r1",
+            "targetText": "clean",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i07:r2",
+            "targetText": "clear",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i07:r3",
+            "targetText": "queen",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-29:i07:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — clean",
+            "feedbackByLocale": {
+              "ru": "Близко по звуку, но конец другой: в `clean` слышно «н» сразу после долгого «и».",
+              "uk": "Близько за звуком, але кінець інший: у `clean` чути «н» одразу після довгого «і»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — clean",
+            "feedbackByLocale": {
+              "ru": "Конец похож, а начало нет. `clean` начинается с «кл».",
+              "uk": "Кінець схожий, а початок ні. `clean` починається з «кл»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dirty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dirty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-29:i08:audio",
+          "transcript": "dirty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-29:i08:r1",
+            "targetText": "dirty",
+            "meaningByLocale": {
+              "ru": "«грязный». Мыть надо прямо сейчас, а не потом.",
+              "uk": "«брудний». Мити треба зараз, а не потім."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dirty",
+          "definitionByLocale": {
+            "ru": "«грязный». Мыть надо прямо сейчас, а не потом.",
+            "uk": "«брудний». Мити треба зараз, а не потім."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-29:i09:r1",
+          "text": "dirty"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i09:r2",
+          "text": "thirty"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i09:r3",
+          "text": "daddy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-29:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — dirty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-29:i09:audio",
+          "transcript": "dirty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-29:i09:r1",
+            "targetText": "dirty",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i09:r2",
+            "targetText": "thirty",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i09:r3",
+            "targetText": "daddy",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-29:i09:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — dirty",
+            "feedbackByLocale": {
+              "ru": "Отличается только началом, но начало решает: `dirty` — с «д».",
+              "uk": "Відрізняється тільки початком, але початок вирішує: `dirty` — з «д»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — dirty",
+            "feedbackByLocale": {
+              "ru": "Тоже с «д», но внутри «дэ-ди», а в `dirty` тянется «дё».",
+              "uk": "Теж із «д», але всередині «де-ді», а в `dirty` тягнеться «де»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-29:i10:p1",
+            "target": "heavy",
+            "meaningByLocale": {
+              "ru": "тяжёлый",
+              "uk": "важкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-29:i10:p2",
+            "target": "light",
+            "meaningByLocale": {
+              "ru": "лёгкий",
+              "uk": "легкий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-29:i10:p3",
+            "target": "clean",
+            "meaningByLocale": {
+              "ru": "чистый",
+              "uk": "чистий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-29:i10:p4",
+            "target": "dirty",
+            "meaningByLocale": {
+              "ru": "грязный",
+              "uk": "брудний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "heavy",
+          "light",
+          "clean",
+          "dirty"
+        ],
+        "rightColumn": [
+          "тяжёлый",
+          "лёгкий",
+          "чистый",
+          "грязный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы вытряхнули сумку, внутри ничего не осталось",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-29:i11:r1",
+          "text": "empty"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i11:r2",
+          "text": "dirty"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i11:r3",
+          "text": "heavy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы вытряхнули сумку, внутри ничего не осталось",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы вытряхнули сумку, внутри ничего не осталось",
+          "uk": "Вставте слово — ви витрусили сумку, всередині нічого не залишилося"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i11:r1",
+            "text": "empty"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i11:r2",
+            "text": "dirty"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i11:r3",
+            "text": "heavy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы вытряхнули сумку, вн",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-29:i11:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы вытряхнули сумку, вн",
+            "feedbackByLocale": {
+              "ru": "Внутри не грязь, внутри вообще ничего.",
+              "uk": "Всередині не бруд, всередині взагалі нічого."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы вытряхнули сумку, вн",
+            "feedbackByLocale": {
+              "ru": "Пустая сумка тяжёлой не бывает. Вы говорите, что в ней пусто.",
+              "uk": "Порожня сумка важкою не буває. Ви кажете, що в ній порожньо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — вы говорите про рубашку, которую только что постирали",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-29:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — вы говорите про рубашку, которую только что постирали",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — вы говорите про рубашку, которую только что постирали",
+          "uk": "Вставте скріпку — ви говорите про сорочку, яку щойно випрали"
+        },
+        "gappedTargetPhrase": "It ___ clean.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — вы говорите про рубаш",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-29:i12:r1",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — вы говорите про рубаш",
+            "feedbackByLocale": {
+              "ru": "Чужая скрепка. С `it` — только `is`.",
+              "uk": "Чужа скріпка. З `it` — тільки `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — вы говорите про рубаш",
+            "feedbackByLocale": {
+              "ru": "`am` бывает только про себя: `I am`. Про вещь — `is`.",
+              "uk": "`am` буває тільки про себе: `I am`. Про річ — `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «оно грязное»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-29:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «оно грязное»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-29:i13:audio",
+          "transcript": "It is dirty."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is dirty.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "dirty"
+        ],
+        "authoredDistractorTokens": [
+          "clean"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — broken",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — broken",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-29:i14:audio",
+          "transcript": "broken"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-29:i14:r1",
+            "targetText": "broken",
+            "meaningByLocale": {
+              "ru": "«сломан». Было целое, стало не целое.",
+              "uk": "«зламаний». Було ціле, стало не ціле."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "broken",
+          "definitionByLocale": {
+            "ru": "«сломан». Было целое, стало не целое.",
+            "uk": "«зламаний». Було ціле, стало не ціле."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — чашка выпала из рук и раскололась",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — чашка выпала из рук и раскололась",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is broken.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чашка выпала из рук и раскололась",
+          "uk": "Складіть фразу — чашка випала з рук і розбилася"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "broken"
+        ],
+        "authoredDistractorTokens": [
+          "he"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — квартира маленькая, две комнаты и всё",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-29:i16:r1",
+          "text": "small"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i16:r2",
+          "text": "light"
+        },
+        {
+          "responseId": "en:lesson-01:session-29:i16:r3",
+          "text": "clean"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — квартира маленькая, две комнаты и всё",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — квартира маленькая, две комнаты и всё",
+          "uk": "Вставте слово — квартира маленька, дві кімнати і все"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-29:i16:r1",
+            "text": "small"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i16:r2",
+            "text": "light"
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i16:r3",
+            "text": "clean"
+          }
+        ],
+        "testedDimension": "Вставьте слово — квартира маленькая, две",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-29:i16:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — квартира маленькая, две",
+            "feedbackByLocale": {
+              "ru": "Про вес, а не про размер. Квартиру на руках не носят.",
+              "uk": "Про вагу, а не про розмір. Квартиру на руках не носять."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-29:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — квартира маленькая, две",
+            "feedbackByLocale": {
+              "ru": "Чистая — возможно, но вы говорите про размер.",
+              "uk": "Чиста — можливо, але ви говорите про розмір."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары — слова про вещи (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары — слова про вещи (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-29:i17:p1",
+            "target": "small",
+            "meaningByLocale": {
+              "ru": "маленький",
+              "uk": "маленький"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-29:i17:p2",
+            "target": "new",
+            "meaningByLocale": {
+              "ru": "новый",
+              "uk": "новий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-29:i17:p3",
+            "target": "empty",
+            "meaningByLocale": {
+              "ru": "пустой",
+              "uk": "порожній"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-29:i17:p4",
+            "target": "broken",
+            "meaningByLocale": {
+              "ru": "сломан",
+              "uk": "зламаний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "small",
+          "new",
+          "empty",
+          "broken"
+        ],
+        "rightColumn": [
+          "маленький",
+          "новый",
+          "пустой",
+          "сломан"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-29:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы прошли по квартире и рассказываете по телефону",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-29:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы прошли по квартире и рассказываете по телефону",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-29:i18:audio",
+          "transcript": "It is heavy. It is dirty. It is empty. It is new."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is heavy. It is dirty. It is empty. It is new.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ca43ee6203ebd0f8d2d1a98f55ff939bc82a26fb43bad68dba633ddb905b57b1"
+}

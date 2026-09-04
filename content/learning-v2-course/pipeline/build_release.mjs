@@ -130,14 +130,14 @@ function parseOptions(block) {
 /** Механика по названию задания — запасной путь для сессий без строки modes. */
 function familyFromTitle(title) {
   const t = title.toLowerCase();
-  if (/карточка слова/.test(t)) return "word_card";
-  if (/послушайте и собер|послушайте и напиш/.test(t)) return "listen_build_dictation";
-  if (/послушайте и выбер|что вы сейчас услышали/.test(t)) return "listen_choose";
-  if (/различите звук/.test(t)) return "sound_contrast";
-  if (/собери(те)? фразу|собери(те)? без подсказк|соберите/.test(t)) return "phrase_builder";
-  if (/вставьте (слово|скрепку)|вставьте/.test(t)) return "context_gap_grammar";
-  if (/соедините пары|speed match/.test(t)) return "speed_match";
-  if (/скажите вслух|скажите три|скажите пять|финал сцены|ответьте/.test(t)) return "scripted_repeat_compare";
+  if (/карточка слова|картка слова/.test(t)) return "word_card";
+  if (/послушайте и собер|послушайте и напиш|послухайте і склад|послухайте та склад/.test(t)) return "listen_build_dictation";
+  if (/послушайте и выбер|что вы сейчас услышали|послухайте і вибер|послухайте та вибер/.test(t)) return "listen_choose";
+  if (/различите звук|розрізніть звук/.test(t)) return "sound_contrast";
+  if (/собери(те)? фразу|собери(те)? без подсказк|соберите|склад(іть|и) фразу|склад(іть|и) без підказ/.test(t)) return "phrase_builder";
+  if (/вставьте (слово|скрепку)|вставьте|встав(те|ити) (слово|скріпку)|вставте/.test(t)) return "context_gap_grammar";
+  if (/соедините пары|speed match|з.єднайте пари/.test(t)) return "speed_match";
+  if (/скажите вслух|скажите три|скажите пять|финал сцены|ответьте|скажіть уголос|скажіть три|скажіть п.ять|фінал сцени|відповідайте/.test(t)) return "scripted_repeat_compare";
   return null;
 }
 
@@ -146,7 +146,7 @@ function familyFromTitle(title) {
 function familyFromBody(body) {
   if (/___/.test(body)) return "context_gap_grammar";
   // плитки пишут и как «Плитки: `a` `b`», и как «Соберите: `a` `b`»
-  if (/(Плитки|Соберите):[^\n]*`/.test(body)) return /🔊/.test(body) ? "listen_build_dictation" : "phrase_builder";
+  if (/(Плитки|Соберите|Складіть|Склади):[^\n]*`/.test(body)) return /🔊/.test(body) ? "listen_build_dictation" : "phrase_builder";
   if (/🎙/.test(body)) return "scripted_repeat_compare";
   if (/🔊/.test(body)) return "listen_choose";
   if (/·/.test(body) && /—/.test(body)) return "speed_match";

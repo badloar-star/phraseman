@@ -1,0 +1,91 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "patient",
+      "proud",
+      "grumpy",
+      "gentle"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "patent/payment — фонетически близкие к patient"
+      },
+      {
+        "task": 4,
+        "trap": "grimy/gripy — гласная после gr"
+      },
+      {
+        "task": 8,
+        "trap": "pride/prod — дифтонг ау vs ай/о"
+      },
+      {
+        "task": 10,
+        "trap": "general/gentleman — похожий корень gentle"
+      },
+      {
+        "task": 6,
+        "trap": "quiet/kind как семантические ловушки к grumpy"
+      },
+      {
+        "task": 12,
+        "trap": "proud/grumpy как семантические ловушки к gentle"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 18,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "patient",
+        "grumpy",
+        "proud",
+        "gentle"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 4,
+      "phrase_builder": 2,
+      "context_gap_grammar": 5,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Операция и новые слова совпадают с планом, границы не нарушены, возвращаемые слова (kind, quiet, angry, calm) все получили правильный ответ хотя бы раз, доска пар полностью отработана заранее, дублей фидбэка и общих инструкций нет."
+}

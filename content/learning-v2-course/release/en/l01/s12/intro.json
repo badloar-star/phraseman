@@ -2,7 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-12",
   "learningOutcomeByLocale": {
-    "ru": "`I am` и `You are` рядом — про себя и про человека напротив"
+    "ru": "`I am` и `You are` рядом — про себя и про человека напротив",
+    "uk": ""
   },
   "pages": [
     {
@@ -10,15 +11,18 @@
       "pageId": "en:lesson-01:session-12:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Am и are — что когда"
+        "ru": "Am и are — что когда",
+        "uk": "Am і are — що коли"
       },
       "bodyByLocale": {
-        "ru": "`calm` — «спокойный»: не повысил голос там, где мог.\n\nСамо слово не меняется, а скрепка перед ним — да. Про себя: `I am calm`. Про собеседника: `You are calm`.\n\n`am` дальше `I` не уходит. Заговорили о другом человеке — берите `are`."
+        "ru": "`calm` — «спокойный»: не повысил голос там, где мог.\n\nСамо слово не меняется, а скрепка перед ним — да. Про себя: `I am calm`. Про собеседника: `You are calm`.\n\n`am` дальше `I` не уходит. Заговорили о другом человеке — берите `are`.",
+        "uk": "`calm` — «спокійний»: не підвищив голосу там, де міг.\n\nСаме слово не змінюється, а скріпка перед ним — так. Про себе: `I am calm`. Про співрозмовника: `You are calm`.\n\n`am` далі за `I` не ходить. Заговорили про іншу людину — беріть `are`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-12:intro1:q",
         "promptByLocale": {
-          "ru": "Коллега весь спор говорил ровным голосом. Скажите ему: «ты спокойный»."
+          "ru": "Коллега весь спор говорил ровным голосом. Скажите ему: «ты спокойный».",
+          "uk": "Колега весь спір говорив рівним голосом. Скажіть йому: «ти спокійний»."
         },
         "choicesByLocale": {
           "ru": [
@@ -34,10 +38,25 @@
               "responseId": "en:lesson-01:session-12:intro1:r3",
               "text": "You calm."
             }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-12:intro1:r1",
+              "text": "You are calm."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro1:r2",
+              "text": "You am calm."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro1:r3",
+              "text": "You calm."
+            }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега весь спор говорил ровным голосом. Скажите ему: «ты спокойный»."
+          "ru": "Коллега весь спор говорил ровным голосом. Скажите ему: «ты спокойный».",
+          "uk": "Колега весь спір говорив рівним голосом. Скажіть йому: «ти спокійний»."
         }
       }
     },
@@ -46,15 +65,18 @@
       "pageId": "en:lesson-01:session-12:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Brave — не только про подвиги"
+        "ru": "Brave — не только про подвиги",
+        "uk": "Brave — не лише про подвиги"
       },
       "bodyByLocale": {
-        "ru": "`brave` — «смелый», и не только про подвиги: сказать неприятное вслух — уже `brave`.\n\nХорошая новость для уставших от окончаний: «смелый» и «смелая» — одно слово.\n\nМеняется только скрепка: `I am brave` про себя, `You are brave` про другого."
+        "ru": "`brave` — «смелый», и не только про подвиги: сказать неприятное вслух — уже `brave`.\n\nХорошая новость для уставших от окончаний: «смелый» и «смелая» — одно слово.\n\nМеняется только скрепка: `I am brave` про себя, `You are brave` про другого.",
+        "uk": "`brave` — «сміливий», і не лише про подвиги: сказати неприємне вголос — уже `brave`.\n\nДобра новина для тих, хто втомився від закінчень: «сміливий» і «смілива» — одне слово.\n\nЗмінюється тільки скріпка: `I am brave` про себе, `You are brave` про іншого."
       },
       "question": {
         "interactionId": "en:lesson-01:session-12:intro2:q",
         "promptByLocale": {
-          "ru": "Коллега один сказал начальнику, что тот неправ. Скажите ему: «ты смелый»."
+          "ru": "Коллега один сказал начальнику, что тот неправ. Скажите ему: «ты смелый».",
+          "uk": "Колега один сказав начальникові, що той неправий. Скажіть йому: «ти сміливий»."
         },
         "choicesByLocale": {
           "ru": [
@@ -70,10 +92,25 @@
               "responseId": "en:lesson-01:session-12:intro2:r3",
               "text": "You are brave not."
             }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-12:intro2:r1",
+              "text": "You are brave."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro2:r2",
+              "text": "I am brave."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro2:r3",
+              "text": "You are brave not."
+            }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега один сказал начальнику, что тот неправ. Скажите ему: «ты смелый»."
+          "ru": "Коллега один сказал начальнику, что тот неправ. Скажите ему: «ты смелый».",
+          "uk": "Колега один сказав начальникові, що той неправий. Скажіть йому: «ти сміливий»."
         }
       }
     },
@@ -82,15 +119,18 @@
       "pageId": "en:lesson-01:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Honest и smart — два разных «хороший»"
+        "ru": "Honest и smart — два разных «хороший»",
+        "uk": "Honest і smart — два різні «хороший»"
       },
       "bodyByLocale": {
-        "ru": "`honest` — «честный». Первая буква немая: говорят «онест».\n\n`smart` — «умный». Оба слова хвалят, но за разное: `honest` — сказал как есть, `smart` — быстро сообразил.\n\nСкрепка та же: `I am` про себя, `You are` про собеседника."
+        "ru": "`honest` — «честный». Первая буква немая: говорят «онест».\n\n`smart` — «умный». Оба слова хвалят, но за разное: `honest` — сказал как есть, `smart` — быстро сообразил.\n\nСкрепка та же: `I am` про себя, `You are` про собеседника.",
+        "uk": "`honest` — «чесний». Перша літера німа: кажуть «онест».\n\n`smart` — «розумний». Обидва слова хвалять, але за різне: `honest` — сказав як є, `smart` — швидко зметикував.\n\nСкріпка та сама: `I am` про себе, `You are` про співрозмовника."
       },
       "question": {
         "interactionId": "en:lesson-01:session-12:intro3:q",
         "promptByLocale": {
-          "ru": "Коллега нашёл решение, пока остальные спорили. Скажите ему: «ты умный»."
+          "ru": "Коллега нашёл решение, пока остальные спорили. Скажите ему: «ты умный».",
+          "uk": "Колега знайшов рішення, поки решта сперечалася. Скажіть йому: «ти розумний»."
         },
         "choicesByLocale": {
           "ru": [
@@ -106,10 +146,25 @@
               "responseId": "en:lesson-01:session-12:intro3:r3",
               "text": "You smart."
             }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-12:intro3:r1",
+              "text": "You are smart."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro3:r2",
+              "text": "You are honest."
+            },
+            {
+              "responseId": "en:lesson-01:session-12:intro3:r3",
+              "text": "You smart."
+            }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега нашёл решение, пока остальные спорили. Скажите ему: «ты умный»."
+          "ru": "Коллега нашёл решение, пока остальные спорили. Скажите ему: «ты умный».",
+          "uk": "Колега знайшов рішення, поки решта сперечалася. Скажіть йому: «ти розумний»."
         }
       }
     }
@@ -121,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fdbcfa183f573e3155e71f927f6c9021cc78c117f5d3334c4677eb20521885b0"
+  "introFingerprint": "0da98c89f2713c23fcaf50a65e13316d5db634f2ea76f7b5878fd66d51f21236"
 }

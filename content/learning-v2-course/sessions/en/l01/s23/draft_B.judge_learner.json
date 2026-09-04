@@ -1,0 +1,119 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — patient",
+      "what_i_understood": "Про парня, который объяснял почту, говорят He is patient — терпеливый. Без is фраза не работает.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — grumpy",
+      "what_i_understood": "Ворчливый мужчина — He is grumpy. Отличили от angry: злой — это вспышка, ворчливый — это постоянно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — not после is",
+      "what_i_understood": "Чтобы сказать «не такая» — not ставится сразу после is: She is not proud.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1-2 patient",
+      "what_i_understood": "Карточка + произношение, выбрал patient",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3-4 grumpy",
+      "what_i_understood": "Карточка + произношение, выбрал grumpy",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 сборка фразы",
+      "what_i_understood": "He is patient — собрал из плиток, лишняя плитка am не подошла",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 вставка grumpy",
+      "what_i_understood": "Выбрал grumpy, а не quiet/kind, потому что человек ворчит",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7-8 proud",
+      "what_i_understood": "Карточка + произношение, выбрал proud",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9-10 gentle",
+      "what_i_understood": "Карточка + произношение, выбрал gentle",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 доска пар 1",
+      "what_i_understood": "Соединил patient/grumpy/proud/gentle с переводами",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 вставка gentle",
+      "what_i_understood": "Про мягкую с детьми — gentle, не proud и не grumpy",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 диктовка",
+      "what_i_understood": "She is not proud — собрал по звуку, лишнее are не подошло",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 сборка calm",
+      "what_i_understood": "He is calm — среди плиток было лишнее not, не стал его брать",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 вставка kind",
+      "what_i_understood": "Про добрую и помогающую — kind, не angry и не proud",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 доска пар 2",
+      "what_i_understood": "kind/quiet/angry/calm — старые слова, соединил без проблем",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 финал вслух",
+      "what_i_understood": "He is patient. She is gentle. He is not grumpy — сказал итог про троих коллег",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "patient — терпеливый",
+    "grumpy — ворчливый (и чем отличается от angry — тот про вспышку, этот про постоянство)",
+    "proud — горд",
+    "gentle — мягкий",
+    "куда ставить not в фразе про другого человека: He/She is not ..."
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "сцена с парковкой и такси — понятно, кто говорит и зачем",
+    "отличие grumpy от angry во втором интро — не просто перевод, а объяснение разницы, которое реально помогает не перепутать",
+    "финал вслух — приятно, что просят подвести итог про реальных людей из сцены, а не абстрактную фразу"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно, что я стою с коллегой на парковке, жду такси, и она комментирует людей, которые выходят из офиса; каждая фраза — мой ответ или моя реплика о конкретном человеке в этот момент",
+  "would_continue": "да — задания не повторяются одинаково, слова цепляются друг за друга (grumpy сравнили с angry, gentle отличили от proud), и в конце дали сказать что-то цельное, а не разрозненное",
+  "verdict": "PASS",
+  "verdict_reason": "все 17 заданий прошёл честно, узнал 4 новых слова и повторил старые, было понятно кто говорит и зачем, ни разу не встретил незнакомое слово в правильном ответе."
+}

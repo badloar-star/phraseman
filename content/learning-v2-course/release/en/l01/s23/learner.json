@@ -1,0 +1,1035 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — patient",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — patient",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:i01:audio",
+          "transcript": "patient"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:i01:r1",
+            "targetText": "patient",
+            "meaningByLocale": {
+              "ru": "«терпеливый». Ждёт, объясняет ещё раз и не закатывает глаза.",
+              "uk": "«терплячий». Чекає, пояснює ще раз і не закочує очі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "patient",
+          "definitionByLocale": {
+            "ru": "«терпеливый». Ждёт, объясняет ещё раз и не закатывает глаза.",
+            "uk": "«терплячий». Чекає, пояснює ще раз і не закочує очі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-23:i02:r1",
+          "text": "patient"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i02:r2",
+          "text": "patent"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i02:r3",
+          "text": "payment"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — patient",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:i02:audio",
+          "transcript": "patient"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:i02:r1",
+            "targetText": "patient",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i02:r2",
+            "targetText": "patent",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i02:r3",
+            "targetText": "payment",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — patient",
+            "feedbackByLocale": {
+              "ru": "В середине `patient` шипящий, как в «шов». В `patent` там чистое «т».",
+              "uk": "У середині `patient` шиплячий, як у «шов». У `patent` там чисте «т»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — patient",
+            "feedbackByLocale": {
+              "ru": "А тут в середине «м». Про человека — слово с шипящим.",
+              "uk": "А тут у середині «м». Про людину — слово з шиплячим."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — grumpy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — grumpy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:i03:audio",
+          "transcript": "grumpy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:i03:r1",
+            "targetText": "grumpy",
+            "meaningByLocale": {
+              "ru": "«ворчливый». Всё ему не так, и он обязательно об этом скажет.",
+              "uk": "«буркотливий». Усе йому не так, і він обов'язково про це скаже."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grumpy",
+          "definitionByLocale": {
+            "ru": "«ворчливый». Всё ему не так, и он обязательно об этом скажет.",
+            "uk": "«буркотливий». Усе йому не так, і він обов'язково про це скаже."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-23:i04:r1",
+          "text": "grumpy"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i04:r2",
+          "text": "grimy"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i04:r3",
+          "text": "gripy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — grumpy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:i04:audio",
+          "transcript": "grumpy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:i04:r1",
+            "targetText": "grumpy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i04:r2",
+            "targetText": "grimy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i04:r3",
+            "targetText": "gripy",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — grumpy",
+            "feedbackByLocale": {
+              "ru": "Слушайте гласную сразу после «гр»: в `grimy` там «ай», в `grumpy` — «а».",
+              "uk": "Слухайте голосну одразу після «ґр»: у `grimy` там «ай», у `grumpy` — «а»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — grumpy",
+            "feedbackByLocale": {
+              "ru": "Та же ловушка: «ай» вместо «а». Нужное слово начинается как «грам».",
+              "uk": "Та сама пастка: «ай» замість «а». Потрібне слово починається як «ґрам»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коллега кивает на парня у входа: он терпеливый",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коллега кивает на парня у входа: он терпеливый",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is patient.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коллега кивает на парня у входа: он терпеливый",
+          "uk": "Складіть фразу — колега киває на хлопця біля входу: він терплячий"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "patient"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — этот мужчина бурчит на всё подряд каждый день",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-23:i06:r1",
+          "text": "grumpy"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i06:r2",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i06:r3",
+          "text": "kind"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — этот мужчина бурчит на всё подряд каждый день",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — этот мужчина бурчит на всё подряд каждый день",
+          "uk": "Вставте слово — цей чоловік бурчить на все підряд щодня"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-23:i06:r1",
+            "text": "grumpy"
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i06:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i06:r3",
+            "text": "kind"
+          }
+        ],
+        "testedDimension": "Вставьте слово — этот мужчина бурчит на ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i06:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — этот мужчина бурчит на ",
+            "feedbackByLocale": {
+              "ru": "«Тихий» — а он как раз громко всем недоволен.",
+              "uk": "«Тихий» — а він якраз голосно всім невдоволений."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — этот мужчина бурчит на ",
+            "feedbackByLocale": {
+              "ru": "«Добрый» — не про того, кто бурчит с утра до вечера.",
+              "uk": "«Добрий» — не про того, хто бурчить зранку до вечора."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — proud",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — proud",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:i07:audio",
+          "transcript": "proud"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:i07:r1",
+            "targetText": "proud",
+            "meaningByLocale": {
+              "ru": "«горд». И хорошее: гордится своей работой. И не очень: держит нос выше остальных.",
+              "uk": "«гордий». І хороше: пишається своєю роботою. І не дуже: тримає носа вище за інших."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "proud",
+          "definitionByLocale": {
+            "ru": "«горд». И хорошее: гордится своей работой. И не очень: держит нос выше остальных.",
+            "uk": "«гордий». І хороше: пишається своєю роботою. І не дуже: тримає носа вище за інших."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-23:i08:r1",
+          "text": "proud"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i08:r2",
+          "text": "pride"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i08:r3",
+          "text": "prod"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — proud",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:i08:audio",
+          "transcript": "proud"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:i08:r1",
+            "targetText": "proud",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i08:r2",
+            "targetText": "pride",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i08:r3",
+            "targetText": "prod",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i08:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — proud",
+            "feedbackByLocale": {
+              "ru": "В `pride` слышно «ай», в `proud` — «ау».",
+              "uk": "У `pride` чути «ай», у `proud` — «ау»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — proud",
+            "feedbackByLocale": {
+              "ru": "В `prod` один короткий звук «о». В `proud` звук едет от «а» к «у».",
+              "uk": "У `prod` один короткий звук «о». У `proud` звук їде від «а» до «у»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gentle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gentle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:i09:audio",
+          "transcript": "gentle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:i09:r1",
+            "targetText": "gentle",
+            "meaningByLocale": {
+              "ru": "«мягкий». Говорит тихо, не давит, не спорит через слово. Про женщину — `She is gentle`, про мужчину — `He is gentle`.",
+              "uk": "«лагідний». Говорить тихо, не тисне, не сперечається через слово. Про жінку — `She is gentle`, про чоловіка — `He is gentle`."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gentle",
+          "definitionByLocale": {
+            "ru": "«мягкий». Говорит тихо, не давит, не спорит через слово. Про женщину — `She is gentle`, про мужчину — `He is gentle`.",
+            "uk": "«лагідний». Говорить тихо, не тисне, не сперечається через слово. Про жінку — `She is gentle`, про чоловіка — `He is gentle`."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-23:i10:r1",
+          "text": "gentle"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i10:r2",
+          "text": "general"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i10:r3",
+          "text": "gentleman"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — gentle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:i10:audio",
+          "transcript": "gentle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-23:i10:r1",
+            "targetText": "gentle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i10:r2",
+            "targetText": "general",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i10:r3",
+            "targetText": "gentleman",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i10:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — gentle",
+            "feedbackByLocale": {
+              "ru": "После «джен» в `gentle` идёт «т». В `general` там гласная: дже-не-рал.",
+              "uk": "Після «джен» у `gentle` іде «т». У `general` там голосна: дже-не-рал."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — gentle",
+            "feedbackByLocale": {
+              "ru": "У `gentleman` есть третий слог, «мен» на конце. `gentle` кончается на «тл».",
+              "uk": "У `gentleman` є третій склад, «мен» у кінці. `gentle` закінчується на «тл»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-23:i11:p1",
+            "target": "patient",
+            "meaningByLocale": {
+              "ru": "терпеливый",
+              "uk": "терплячий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-23:i11:p2",
+            "target": "grumpy",
+            "meaningByLocale": {
+              "ru": "ворчливый",
+              "uk": "буркотливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-23:i11:p3",
+            "target": "proud",
+            "meaningByLocale": {
+              "ru": "горд",
+              "uk": "гордий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-23:i11:p4",
+            "target": "gentle",
+            "meaningByLocale": {
+              "ru": "мягкий",
+              "uk": "лагідний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "patient",
+          "grumpy",
+          "proud",
+          "gentle"
+        ],
+        "rightColumn": [
+          "терпеливый",
+          "ворчливый",
+          "горд",
+          "мягкий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — про женщину говорят, что она с детьми очень мягкая",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-23:i12:r1",
+          "text": "gentle"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i12:r2",
+          "text": "proud"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i12:r3",
+          "text": "grumpy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — про женщину говорят, что она с детьми очень мягкая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — про женщину говорят, что она с детьми очень мягкая",
+          "uk": "Вставте слово — про жінку кажуть, що вона з дітьми дуже лагідна"
+        },
+        "gappedTargetPhrase": "She is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-23:i12:r1",
+            "text": "gentle"
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i12:r2",
+            "text": "proud"
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i12:r3",
+            "text": "grumpy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — про женщину говорят, чт",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i12:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — про женщину говорят, чт",
+            "feedbackByLocale": {
+              "ru": "«Горда» — это про другое, а речь о том, как она себя ведёт с детьми.",
+              "uk": "«Горда» — це про інше, а мова про те, як вона поводиться з дітьми."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — про женщину говорят, чт",
+            "feedbackByLocale": {
+              "ru": "«Ворчливая» — прямо наоборот тому, что вам сказали.",
+              "uk": "«Буркотлива» — прямо навпаки тому, що вам сказали."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «она не гордая»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «она не гордая»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:i13:audio",
+          "transcript": "She is not proud."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is not proud.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "not",
+          "proud"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — про парня у двери, среди плиток лишнее `not`",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — про парня у двери, среди плиток лишнее `not`",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is calm.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — про парня у двери, среди плиток лишнее `not`",
+          "uk": "Складіть фразу — про хлопця біля дверей, серед плиток зайве `not`"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "calm"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — из дверей выходит женщина, которой полдня носили вопросы, и она ни разу не повысила голос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-23:i15:r1",
+          "text": "kind"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i15:r2",
+          "text": "angry"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i15:r3",
+          "text": "proud"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — из дверей выходит женщина, которой полдня носили вопросы, и она ни разу не повысила голос",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — из дверей выходит женщина, которой полдня носили вопросы, и она ни разу не повысила голос",
+          "uk": "Вставте слово — із дверей виходить жінка, якій півдня носили питання, і вона жодного разу не підвищила голос"
+        },
+        "gappedTargetPhrase": "She is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-23:i15:r1",
+            "text": "kind"
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i15:r2",
+            "text": "angry"
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i15:r3",
+            "text": "proud"
+          }
+        ],
+        "testedDimension": "Вставьте слово — из дверей выходит женщи",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i15:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — из дверей выходит женщи",
+            "feedbackByLocale": {
+              "ru": "«Злая» — прямо противоположное тому, что вы про неё знаете.",
+              "uk": "«Зла» — прямо протилежне тому, що ви про неї знаєте."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — из дверей выходит женщи",
+            "feedbackByLocale": {
+              "ru": "«Горда» — здесь речь о том, что она добра к людям.",
+              "uk": "«Горда» — тут мова про те, що вона добра до людей."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мужчина вышел, хлопнул дверью и ни на кого не смотрит",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-23:i16:r1",
+          "text": "angry"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i16:r2",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i16:r3",
+          "text": "grumpy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мужчина вышел, хлопнул дверью и ни на кого не смотрит",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мужчина вышел, хлопнул дверью и ни на кого не смотрит",
+          "uk": "Вставте слово — чоловік вийшов, грюкнув дверима й ні на кого не дивиться"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-23:i16:r1",
+            "text": "angry"
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i16:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i16:r3",
+            "text": "grumpy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мужчина вышел, хлопнул ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i16:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мужчина вышел, хлопнул ",
+            "feedbackByLocale": {
+              "ru": "«Тихий» — он молчит, но дверью тихие не хлопают. Это злость.",
+              "uk": "«Тихий» — він мовчить, але дверима тихі не грюкають. Це злість."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мужчина вышел, хлопнул ",
+            "feedbackByLocale": {
+              "ru": "«Ворчливый» — это бурчание себе под нос, помельче. А тут человек вспылил.",
+              "uk": "«Буркотливий» — це бурчання собі під ніс, дрібніше. А тут людина спалахнула."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — из офиса выходит женщина, которая за весь вечер не сказала ни слова",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-23:i17:r1",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i17:r2",
+          "text": "angry"
+        },
+        {
+          "responseId": "en:lesson-01:session-23:i17:r3",
+          "text": "grumpy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — из офиса выходит женщина, которая за весь вечер не сказала ни слова",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — из офиса выходит женщина, которая за весь вечер не сказала ни слова",
+          "uk": "Вставте слово — з офісу виходить жінка, яка за весь вечір не сказала жодного слова"
+        },
+        "gappedTargetPhrase": "She is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-23:i17:r1",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i17:r2",
+            "text": "angry"
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i17:r3",
+            "text": "grumpy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — из офиса выходит женщин",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i17:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — из офиса выходит женщин",
+            "feedbackByLocale": {
+              "ru": "«Злая» — молчание ещё не злость. Про молчаливую — `quiet`.",
+              "uk": "«Зла» — мовчання ще не злість. Про мовчазну — `quiet`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i17:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — из офиса выходит женщин",
+            "feedbackByLocale": {
+              "ru": "«Ворчливая» — та как раз говорит, и много. А эта молчит.",
+              "uk": "«Буркотлива» — та якраз говорить, і багато. А ця мовчить."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-23:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — такси подъехало, вы коротко подводите итог",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-23:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — такси подъехало, вы коротко подводите итог",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-23:i18:audio",
+          "transcript": "He is patient. She is gentle. He is not grumpy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is patient. She is gentle. He is not grumpy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3be5625d1f5ca59b0dcd95a317fe74fb0306d9269b1123069b1743a7dea2ef8e"
+}

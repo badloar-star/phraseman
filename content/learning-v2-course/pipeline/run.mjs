@@ -664,7 +664,9 @@ function stageLocalize(S, ruFile) {
   const results = {};
   const batchFile = path.join(S.dir, "locales_batch.md");
   let batch;
-  if (exists(batchFile) && read(batchFile).length > 5000) {
+  const batchFresh = exists(batchFile) && fs.statSync(batchFile).mtimeMs >= fs.statSync(ruFile).mtimeMs;
+  if (exists(batchFile) && !batchFresh) LOG(`кэш перевода устарел (русский правился позже) — перевожу заново`);
+  if (batchFresh && read(batchFile).length > 5000) {
     LOG(`пропуск локализации: locales_batch.md уже есть (${read(batchFile).length} зн.)`);
     batch = splitLocaleBatch(read(batchFile));
   } else {
@@ -702,6 +704,32 @@ function stageLocalize(S, ruFile) {
     LOG(`   локаль ${loc}: ${v}`);
   }
   LOG(`   итог локалей: ${j.verdict} — ${j.verdict_reason}`);
+  // зачем: круг правки перевода. Судья находит кальки и непереведённые
+  // строки, но раньше его замечания никуда не шли — перевод так и оставался
+  // битым. Один круг: переводчик получает вердикт и переписывает.
+  const badLocales = LOCALES.filter((l) => results[l] === 'BLOCK' || results[l] === 'REVISE');
+  if (badLocales.length) {
+    LOG(`   круг правки локалей: ${badLocales.join(', ')}`);
+    for (const loc of badLocales) {
+      const issues = JSON.stringify(j.locales?.[loc] ?? j, null, 2);
+      const cur = exists(path.join(S.dir, `final.${loc}.md`)) ? read(path.join(S.dir, `final.${loc}.md`)) : '';
+      if (!cur) { WARN(`локаль ${loc}: нечего править — файла нет`); continue; }
+      const fixed = callModel({
+        system: fill(prompt('localize_batch'), { СЕССИЯ: ru, ЛОКАЛИ: loc }),
+        user: `Ниже твой перевод на ${loc} и замечания судьи-носителя. Перепиши перевод, закрыв КАЖДОЕ замечание. Выдай только готовый текст локали, без преамбулы и без строк ===LOCALE===.
+
+--- ТВОЙ ПЕРЕВОД ---
+${cur}
+
+--- ЗАМЕЧАНИЯ ---
+${issues}`,
+        model: MODEL_JUDGE, maxTokens: 8000, label: `правка локали ${loc}`,
+      });
+      const clean = stripFence(fixed).trim();
+      if (clean.length > 500) { write(path.join(S.dir, `final.${loc}.md`), clean); results[loc] = 'FIXED'; LOG(`   локаль ${loc}: переписана по замечаниям`); }
+      else WARN(`локаль ${loc}: правка вернула ${clean.length} зн. — оставляю прежний перевод`);
+    }
+  }
   return results;
 }
 

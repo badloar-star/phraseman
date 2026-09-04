@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `he is` / `she is` (+ `not`) на словах о характере",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`patient` — терпеливый",
+        "uk": "`patient` — терплячий"
+      },
+      "bodyByLocale": {
+        "ru": "`patient` — «терпеливый». Тот, кто объясняет третий раз и не начинает вздыхать.\n\nПро другого человека нужна скрепка `is`: `He is patient`. По-русски «он терпеливый» держится и без неё, поэтому рука сама пишет `He patient` — а англичанин такую фразу не поймёт.",
+        "uk": "`patient` — «терплячий». Той, хто пояснює втретє і не починає зітхати.\n\nПро іншу людину потрібна скріпка `is`: `He is patient`. Українською «він терплячий» тримається й без неї, тому рука сама пише `He patient` — а англієць такої фрази не зрозуміє."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Из дверей выходит парень, который сегодня полдня объяснял вам почту. Скажите про него.",
+          "uk": "Із дверей виходить хлопець, який сьогодні півдня пояснював вам пошту. Скажіть про нього."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-23:intro1:r1",
+              "text": "He is patient."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro1:r2",
+              "text": "He patient."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro1:r3",
+              "text": "He are patient."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-23:intro1:r1",
+              "text": "He is patient."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro1:r2",
+              "text": "He patient."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro1:r3",
+              "text": "He are patient."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Из дверей выходит парень, который сегодня полдня объяснял вам почту. Скажите про него.",
+          "uk": "Із дверей виходить хлопець, який сьогодні півдня пояснював вам пошту. Скажіть про нього."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`grumpy` — ворчливый",
+        "uk": "`grumpy` — буркотливий"
+      },
+      "bodyByLocale": {
+        "ru": "`grumpy` — «ворчливый». Всё ему не так: кофе слабый, лифт медленный, и он обязательно об этом скажет.\n\nРядом стоит знакомое `angry` — «злой». `angry` — это злость, человек сердится на что-то конкретное. `grumpy` — просто бурчание, тише и мельче.",
+        "uk": "`grumpy` — «буркотливий». Усе йому не так: кава слабка, ліфт повільний, і він обов'язково про це скаже.\n\nПоруч стоїть знайоме `angry` — «злий». `angry` — це злість, людина сердиться на щось конкретне. `grumpy` — просто бурчання, тихіше й дрібніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Мимо проходит мужчина, который всю дорогу до выхода бурчал про лифт. Скажите про него.",
+          "uk": "Повз проходить чоловік, який усю дорогу до виходу бурчав про ліфт. Скажіть про нього."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-23:intro2:r1",
+              "text": "He is grumpy."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro2:r2",
+              "text": "He is angry."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro2:r3",
+              "text": "He grumpy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-23:intro2:r1",
+              "text": "He is grumpy."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro2:r2",
+              "text": "He is angry."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro2:r3",
+              "text": "He grumpy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мимо проходит мужчина, который всю дорогу до выхода бурчал про лифт. Скажите про него.",
+          "uk": "Повз проходить чоловік, який усю дорогу до виходу бурчав про ліфт. Скажіть про нього."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`proud` — и хорошее, и не очень",
+        "uk": "`proud` — і хороше, і не дуже"
+      },
+      "bodyByLocale": {
+        "ru": "`proud` — «горд». Гордится своей работой — хорошо. Держит нос выше остальных — уже не очень. Одно слово на оба случая, разбирайтесь по человеку.\n\nЧтобы сказать «не такая», ставим `not` сразу за `is`: `She is not proud`. Сначала `is`, потом `not`. Наоборот — `She not is` — англичанин просто затормозит.",
+        "uk": "`proud` — «гордий». Пишається своєю роботою — добре. Тримає носа вище за інших — уже не дуже. Одне слово на обидва випадки, розбирайтеся по людині.\n\nЩоб сказати «не така», ставимо `not` одразу за `is`: `She is not proud`. Спершу `is`, потім `not`. Навпаки — `She not is` — англієць просто загальмує."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Коллега кивает на девушку у машины: «Задаётся, говорят». Вы знаете, что это не так.",
+          "uk": "Колега киває на дівчину біля машини: «Задається, кажуть». Ви знаєте, що це не так."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-23:intro3:r1",
+              "text": "She is not proud."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro3:r2",
+              "text": "She not is proud."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro3:r3",
+              "text": "She no proud."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-23:intro3:r1",
+              "text": "She is not proud."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro3:r2",
+              "text": "She not is proud."
+            },
+            {
+              "responseId": "en:lesson-01:session-23:intro3:r3",
+              "text": "She no proud."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега кивает на девушку у машины: «Задаётся, говорят». Вы знаете, что это не так.",
+          "uk": "Колега киває на дівчину біля машини: «Задається, кажуть». Ви знаєте, що це не так."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "aa162c8c534440901a3f12838197e36c17d510b02c4d671abce0be7a5022ddf8"
+}

@@ -1,0 +1,135 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про мужчину говорю he, и между he и словом-описанием всегда ставлю is. He is funny — он смешной.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Чтобы сказать «не», not ставлю после is, а не перед ним. She is not tired.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Про женщину — she, про мужчину — he, скрепка is одинаковая в обоих случаях.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (пары)",
+      "what_i_understood": "Соединил funny/quiet/hungry/late с переводом, всё знакомо.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "He ___ funny — выбрал is, потому что про одного человека всегда is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "На слух узнал quiet, отличил от quit и queen.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "She is ___ про молчащую девушку — quiet.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал He is hungry, отбросив лишнее are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "She is not ___ — tired, раз я не согласен, что она устала.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Собрал She is not late по порядку: she-is-not-late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "На слух узнал kind среди kid и king.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "She is ___ про помощь с почтой — kind.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Заметил, что not тут действительно нужен — он не голоден, только поел.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Отбросил лишний not, собрал She is funny.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "She ___ not late — is, потому что not уже есть в предложении, второй раз не нужен.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал He is quiet, не перепутал he/she.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (пары)",
+      "what_i_understood": "Соединил tired/kind/he/she с переводом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Собрал She is not tired без подсказки, отбросив лишнее are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (финал)",
+      "what_i_understood": "Сказал вслух про троих: He is funny. She is quiet. She is kind. — понятно, кому и зачем я это говорю.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Говорить про третьего человека (не про себя и не про собеседника): he is / she is",
+    "Отличать he от she в зависимости от того, о мужчине или женщине речь",
+    "Ставить not после is, а не перед ним, когда говорю про третьего человека",
+    "На слух различать похожие слова: quiet/quit/queen, kind/kid/king"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с очередью в столовой — понятно, зачем я вообще что-то говорю: коллега реально ждёт реакции про трёх разных людей",
+    "Задание 10, где нужно было заметить, что not действительно нужен, а не механически его убрать — заставило думать, а не гадать"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: я стою в столовой с коллегой, она показывает на людей в очереди, и от меня ждут короткой фразы про каждого. К финалу я произношу три фразы подряд про трёх конкретных людей, которых видел на протяжении сессии — это логично собирается.",
+  "would_continue": "да — задания разные по типу, есть звук, есть ловушки на невнимательность, ничего не пришлось перечитывать по нескольку раз",
+  "verdict": "PASS",
+  "verdict_reason": "Все 16 заданий выполнимы только известными словами и грамматикой, есть новое умение (he is/she is + not), сцена понятна от начала до конца."
+}

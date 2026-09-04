@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `he is` / `she is` и `is not`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`is` — скрепка для третьего человека",
+        "uk": "`is` — скріпка для третьої людини"
+      },
+      "bodyByLocale": {
+        "ru": "`he` — «он», `she` — «она». Между таким словом и словом о человеке всегда стоит `is`: `he is funny`, `she is quiet`.\n\nПо-русски «он смешной» обходится без связки, и рука тянется написать `he funny`. Без `is` это два слова, которые друг о друге не знают.",
+        "uk": "`he` — «він», `she` — «вона». Між таким словом і словом про людину завжди стоїть `is`: `he is funny`, `she is quiet`.\n\nУкраїнською ми кажемо «він смішний» — і між ними немає нічого. Рука сама тягнеться написати `he funny`. Тягнеться в усіх, не лише у вас. Але англійською така фраза просто не тримається."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега кивает на парня у кассы: он весь обед всех смешил. Скажите про него.",
+          "uk": "Колега киває на хлопця біля каси: він цілий обід усіх смішив. Скажіть про нього."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-24:intro1:r1",
+              "text": "He is funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-24:intro1:r2",
+              "text": "He funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-24:intro1:r3",
+              "text": "He are funny."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-24:intro1:r1",
+              "text": "He is funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-24:intro1:r2",
+              "text": "He funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-24:intro1:r3",
+              "text": "He are funny."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега кивает на парня у кассы: он весь обед всех смешил. Скажите про него.",
+          "uk": "Колега киває на хлопця біля каси: він цілий обід усіх смішив. Скажіть про нього."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`not` встаёт после `is`",
+        "uk": "`not` стає після `is`"
+      },
+      "bodyByLocale": {
+        "ru": "Чтобы сказать «не», ставим `not` сразу после `is`: `she is not tired`, `he is not late`.\n\nПорядок ровно такой и никакой другой. Соблазн поставить `not` перед скрепкой — `she not tired` — большой, потому что по-русски «не» стоит перед словом. Здесь оно стоит после.",
+        "uk": "Щоб сказати «не», ставимо `not` одразу після `is`: `she is not tired`, `he is not late`.\n\nПорядок саме такий і ніякий інший. Спокуса поставити `not` перед скріпкою — `she not tired` — велика, бо українською «не» стоїть перед словом. Тут воно стоїть після."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Коллега говорит, что девушка у окна вымоталась. Вы видели её пять минут назад — бодрая. Возразите.",
+          "uk": "Колега каже, що дівчина біля вікна вимоталася. Ви бачили її п'ять хвилин тому — бадьора. Заперечте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-24:intro2:r1",
+              "text": "She is not tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-24:intro2:r2",
+              "text": "She not tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-24:intro2:r3",
+              "text": "She is no tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-24:intro2:r1",
+              "text": "She is not tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-24:intro2:r2",
+              "text": "She not tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-24:intro2:r3",
+              "text": "She is no tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега говорит, что девушка у окна вымоталась. Вы видели её пять минут назад — бодрая. Возразите.",
+          "uk": "Колега каже, що дівчина біля вікна вимоталася. Ви бачили її п'ять хвилин тому — бадьора. Заперечте."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одна фраза — один человек",
+        "uk": "Одна фраза — одна людина"
+      },
+      "bodyByLocale": {
+        "ru": "`he` и `she` не смешиваются: про мужчину — `he`, про женщину — `she`.\n\nА вот скрепке всё равно, кто перед ней: `is` и `is`. В этом смысле английский вежливее русского — он не заставляет менять окончание у каждого слова.\n\nМеняете первое слово, остальное не трогаете: `He is kind` — `She is kind`.",
+        "uk": "`he` і `she` не змішуються: про чоловіка — `he`, про жінку — `she`. Скріпка при цьому та сама, `is`, їй байдуже.\n\nПростіше, ніж здається: міняєте перше слово, решту не чіпаєте. `He is kind` — `She is kind`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Коллега показывает на девушку, которая утром помогла вам разобраться с почтой. Скажите про неё доброе слово.",
+          "uk": "Колега показує на дівчину, яка вранці допомогла вам розібратися з поштою. Скажіть про неї добре слово."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-24:intro3:r1",
+              "text": "She is kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-24:intro3:r2",
+              "text": "He is kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-24:intro3:r3",
+              "text": "She kind."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-24:intro3:r1",
+              "text": "She is kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-24:intro3:r2",
+              "text": "He is kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-24:intro3:r3",
+              "text": "She kind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега показывает на девушку, которая утром помогла вам разобраться с почтой. Скажите про неё доброе слово.",
+          "uk": "Колега показує на дівчину, яка вранці допомогла вам розібратися з поштою. Скажіть про неї добре слово."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "361d07033edbfc4f875c09f3d093276c96e2caf50fe487ccdd0f21ba8f69a763"
+}

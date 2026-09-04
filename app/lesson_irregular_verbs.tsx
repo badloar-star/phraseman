@@ -613,8 +613,13 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     locked.current = false;
   }, []);
 
+  // зачем (2026-09-03): без hydrated автосброс молча не запускался и экран
+  // намертво замирал под блокировщиком ввода после трёх ошибок.
   useSessionAttemptAutoReset({
     phase: attempts.state.phase,
+    hydrated: attempts.hydrated,
+    giftCount: attempts.giftCount,
+    recoverWithGift: attempts.recoverWithGift,
     forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
     restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
     onRestored: retryCurrentVerbFormAfterSessionRuneForfeit,

@@ -22,8 +22,32 @@ for (const relativeFile of screens) {
   assert.ok(source.includes('useSessionAttempts'), `${relativeFile} has no attempts controller`);
   assert.ok(source.includes('useSessionAttemptAutoReset'), `${relativeFile} has no automatic reset`);
   assert.ok(!source.includes('SessionAttemptsRecoveryModal'), `${relativeFile} must not mount recovery modal`);
-  assert.ok(!source.includes('recoverWithGift'), `${relativeFile} must not offer retired recovery gift`);
   assert.ok(!source.includes('Попытка потеряна'), `${relativeFile} contains the forbidden toast`);
+
+  /*
+   * зачем (2026-09-03): гейт запрещал само ИМЯ `recoverWithGift`, а отменено
+   * было не оно, а РУЧНОЕ восстановление модалкой («потратить подарок?»).
+   * Автоспасение подарком живёт внутри useSessionAttemptAutoReset и модалки не
+   * показывает — запрет по имени блокировал корректную связку.
+   *
+   * Проверяем поведение, а не слово: подарок допустим только как проп
+   * автосброса, вручную по кнопке его тратить нельзя.
+   */
+  const manualGiftCall = /onPress[^\n]*recoverWithGift|recoverWithGift\(\)/;
+  assert.ok(!manualGiftCall.test(source), `${relativeFile} must not spend the gift manually`);
+
+  /*
+   * Главное правило этого гейта (владелец 2026-09-03: «три ошибки — экран завис
+   * намертво»): экран с блокировщиком ввода ОБЯЗАН передавать `hydrated`.
+   * Без него автосброс молча выходит на первой строке, попытки не
+   * восстанавливаются и человек остаётся на мёртвом кадре без выхода.
+   */
+  const autoResetCall = source.slice(source.indexOf('useSessionAttemptAutoReset({'));
+  const autoResetArgs = autoResetCall.slice(0, autoResetCall.indexOf('});') + 3);
+  assert.ok(
+    /hydrated:/.test(autoResetArgs),
+    `${relativeFile}: useSessionAttemptAutoReset без hydrated — попытки не восстановятся, экран зависнет`,
+  );
 }
 
 for (const relativeFile of ['app/arena.tsx', 'app/arena/index.tsx']) {

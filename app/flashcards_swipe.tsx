@@ -2596,8 +2596,15 @@ function FlashcardsSwipeScreen() {
     answeredPromptIdRef.current = null;
   }, []);
 
+  // зачем (2026-09-03, владелец «три ошибки — экран завис намертво»): без
+  // hydrated автосброс молча не запускался, а поверх экрана уже лежал
+  // attemptsInputBlocker — выхода не оставалось. Подарок тоже подключён, иначе
+  // купленное спасение не срабатывало бы именно там, где оно нужно.
   useSessionAttemptAutoReset({
     phase: attempts.state.phase,
+    hydrated: attempts.hydrated,
+    giftCount: attempts.giftCount,
+    recoverWithGift: attempts.recoverWithGift,
     forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
     restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
     onRestored: resetSwipeAfterSessionRuneForfeit,

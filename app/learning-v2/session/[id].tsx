@@ -1260,8 +1260,13 @@ function LearningV2LegacySessionScreen() {
     setResult("idle");
   }, []);
 
+  // зачем (2026-09-03): без hydrated автосброс молча не запускался и экран
+  // намертво замирал под блокировщиком ввода после трёх ошибок.
   useSessionAttemptAutoReset({
     phase: sessionAttempts.state.phase,
+    hydrated: sessionAttempts.hydrated,
+    giftCount: sessionAttempts.giftCount,
+    recoverWithGift: sessionAttempts.recoverWithGift,
     forfeitSessionRunes: () => {
       sessionStarsRef.current = 0;
       setDisplayedStars(0);

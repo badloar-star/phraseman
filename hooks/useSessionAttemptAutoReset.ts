@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import { DebugLogger } from '../app/debug-logger';
 import type { SessionAttemptsPhase } from '../app/session_attempts/session_attempts_domain';
 
 type Input = Readonly<{
@@ -77,18 +78,37 @@ export function useSessionAttemptAutoReset({
   }, []);
 
   useEffect(() => {
-    if (phase !== 'awaiting_recovery' || !hydrated || handlingRef.current) return;
+    // зачем (2026-09-03): КАЖДЫЙ ранний выход обязан назвать причину. Именно
+    // немой выход по `hydrated === false` делал экран мёртвым: сердца кончались,
+    // блокировщик ввода ложился поверх, а восстановление молча не запускалось.
+    if (phase !== 'awaiting_recovery') return;
+    if (!hydrated) {
+      DebugLogger.warn('[ATTEMPTS-RESET]', `early return: phase=${phase} hydrated=${String(hydrated)} giftCount=${String(giftCount)} — восстановление НЕ запущено, экран останется заблокированным`);
+      return;
+    }
+    if (handlingRef.current) {
+      DebugLogger.warn('[ATTEMPTS-RESET]', `early return: уже идёт восстановление (handling=true), phase=${phase}`);
+      return;
+    }
+    DebugLogger.info('[ATTEMPTS-RESET]', `вход: phase=${phase} hydrated=${String(hydrated)} giftCount=${String(giftCount)} hasGiftFn=${String(Boolean(recoverWithGift))} retrySeq=${String(retrySequence)}`);
     handlingRef.current = true;
 
     const callbacks = callbacksRef.current;
     const restoreWithoutGift = async (): Promise<void> => {
-      await Promise.resolve(callbacks.forfeitSessionRunes?.()).catch(() => {
+      DebugLogger.info('[ATTEMPTS-RESET]', `путь без подарка: сжигаем руны сессии, hasForfeitFn=${String(Boolean(callbacks.forfeitSessionRunes))}`);
+      await Promise.resolve(callbacks.forfeitSessionRunes?.()).catch((reason) => {
         // The local rune buffer clears before persistence. Restore attempts even
         // if that persistence retry must be completed by the owning rune hook.
+        // зачем: запрет немого catch — даже намеренно проглоченная ошибка пишет причину.
+        DebugLogger.warn('[ATTEMPTS-RESET]', `forfeitSessionRunes отклонён (продолжаем восстановление): ${String(reason)}`);
       });
-      if (!mountedRef.current) return;
+      if (!mountedRef.current) {
+        DebugLogger.warn('[ATTEMPTS-RESET]', 'early return: экран размонтирован до restoreAttempts');
+        return;
+      }
       callbacks.restoreAttempts();
       callbacks.onRestored?.();
+      DebugLogger.info('[ATTEMPTS-RESET]', 'итог: попытки восстановлены без подарка, экран разблокирован');
     };
 
     void (async () => {
@@ -96,11 +116,16 @@ export function useSessionAttemptAutoReset({
         // Спасение подарком возможно, только если экран его подключил:
         // без recoverWithGift идём обычным путём, а не падаем на undefined.
         if (callbacks.giftCount > 0 && callbacks.recoverWithGift) {
+          DebugLogger.info('[ATTEMPTS-RESET]', `путь с подарком: giftCount=${String(callbacks.giftCount)}`);
           await callbacks.recoverWithGift();
-          if (!mountedRef.current) return;
+          if (!mountedRef.current) {
+            DebugLogger.warn('[ATTEMPTS-RESET]', 'early return: экран размонтирован после подарка');
+            return;
+          }
           setGiftRecoveryError(null);
           setGiftRescueSequence((current) => current + 1);
           callbacks.onRestored?.();
+          DebugLogger.info('[ATTEMPTS-RESET]', 'итог: попытки восстановлены подарком, экран разблокирован');
           return;
         }
         await restoreWithoutGift();
@@ -109,9 +134,13 @@ export function useSessionAttemptAutoReset({
           ? error.message
           : 'session_attempt_recovery_failed';
         if (code === 'attempt_restore_gift_unavailable') {
+          DebugLogger.warn('[ATTEMPTS-RESET]', 'подарок недоступен — уходим на путь без подарка');
           await restoreWithoutGift();
         } else if (mountedRef.current) {
+          DebugLogger.error('[ATTEMPTS-RESET]', `восстановление провалено, экран ОСТАЁТСЯ заблокированным до повтора: ${code}`, 'critical');
           setGiftRecoveryError(code);
+        } else {
+          DebugLogger.warn('[ATTEMPTS-RESET]', `ошибка на мёртвом экране: ${code}`);
         }
       } finally {
         handlingRef.current = false;

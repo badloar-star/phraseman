@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { StyleSheet, Text } from 'react-native';
+import { Image } from 'expo-image';
 import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 
 import { arenaText } from '../../modules/arena/copy';
@@ -10,7 +11,15 @@ import {
 import { useCountUp } from '../league/leagueStatusShared';
 import { useLang } from '../LangContext';
 import { useTournamentPalette } from '../ui/v2_theme';
-import { ArenaStarGlyph } from './ArenaStarGlyph';
+
+/**
+ * зачем (D-85, владелец 2026-09-03 «очки заменить на руны и ассет»): здесь
+ * считаются РУНЫ матча, поэтому рядом с числом стоит образ руны из общего
+ * валютного UI — тот же ассет, что в счётчике тренировок (PracticeRuneCounter).
+ * Звезда ранга отсюда убрана: она обозначает совсем другую сущность (деления
+ * тира) и путала две валюты на одном экране.
+ */
+const RUNE_ASSET = require('../../assets/images/level-spin-rewards/stars_10.webp');
 
 export function ArenaFinalScoreCount({
   score,
@@ -60,7 +69,15 @@ export function ArenaFinalScoreCount({
         entering={reduceMotion ? undefined : ZoomIn.springify().damping(16)}
         style={styles.scoreRow}
       >
-        <ArenaStarGlyph lit size={36} />
+        {/* Ассет декоративен: число и статус уже озвучены живой строкой выше. */}
+        <Image
+          source={RUNE_ASSET}
+          style={styles.rune}
+          contentFit="contain"
+          accessible={false} /* guard-ok: декоративный ассет, смысл несёт число и живая строка родителя */
+          accessibilityElementsHidden
+          importantForAccessibility="no"
+        />
         <Text accessibilityElementsHidden style={[styles.score, { color: P.text }]}>
           {shown}
         </Text>
@@ -95,6 +112,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 12,
   },
+  rune: { width: 40, height: 40 },
   score: {
     minWidth: 72,
     fontSize: 68,

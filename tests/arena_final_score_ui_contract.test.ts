@@ -13,10 +13,23 @@ describe('Arena final score wait', () => {
     expect(component).toContain('arenaFinalScoreBeatValues');
     expect(component).toContain('useCountUp');
     expect(component).toContain('reduceMotion');
-    expect(component).toContain('ArenaStarGlyph');
+    // зачем (D-85, владелец 2026-09-03): сцена считает РУНЫ матча, поэтому
+    // рядом с числом стоит ассет руны из общего валютного UI. Звезда ранга
+    // отсюда убрана намеренно — она обозначает деления тира, а не валюту.
+    expect(component).toContain('RUNE_ASSET');
+    expect(component).not.toContain('ArenaStarGlyph');
     expect(component).toContain('entering={reduceMotion ? undefined : FadeIn.duration(220)}');
     expect(component).toContain('entering={reduceMotion ? undefined : ZoomIn.springify().damping(16)}');
-    expect(component).not.toMatch(/wallet|balance|starsEarned|xpEarned|reward/i);
+    /*
+     * Сцена по-прежнему НЕ знает о кошельке и серверных наградах: она рисует
+     * только локально посчитанные руны матча.
+     *
+     * Из проверки исключён путь ассета `level-spin-rewards/...`: слово там —
+     * часть имени папки с картинками, а не обращение к награде. Сам запрет на
+     * `reward` как поле/значение остаётся (см. вторую строку).
+     */
+    const withoutAssetPath = component.replace(/level-spin-rewards/g, '');
+    expect(withoutAssetPath).not.toMatch(/wallet|balance|starsEarned|xpEarned|reward/i);
   });
 
   test('the match screen replaces the finished question with local score counting', () => {

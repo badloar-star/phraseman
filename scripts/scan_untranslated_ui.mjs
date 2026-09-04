@@ -91,6 +91,20 @@ const PAIRED_TRANSLATION = /\b\w+(UK|Uk|_uk|EN|En|_en|ES|Es|_es)\s*:/;
 const INLINE_LOCALE_MAP = /(^|[{,]\s*)['"]?ru['"]?\s*:\s*['"][^'"]*['"]\s*,\s*['"]?(uk|en|es|pl|tr|vi|id|pt-BR)['"]?\s*:/;
 
 /**
+ * Строка — диагностический ЛОГ, а не текст интерфейса.
+ *
+ * зачем (2026-09-03): правило владельца «сперва логи, потом починка» требует
+ * подробной русской трассировки на каждом ветвлении и в каждом catch. Такие
+ * сообщения читает разработчик в metro-console, пользователь их не видит
+ * НИКОГДА — переводить их незачем, а сторож считал их забытым UI-текстом и
+ * отказывал в коммите за выполнение другого обязательного правила.
+ *
+ * Ловится именно вызов логгера в этой же строке, а не слово в тексте: обычная
+ * UI-строка рядом с DebugLogger в одной строке не встречается.
+ */
+const DIAGNOSTIC_LOG_CALL = /\b(DebugLogger|console)\s*\.\s*(log|info|warn|error|debug)\s*\(/;
+
+/**
  * Файл — сам словарь переводов: русский в нём и есть перевод.
  *
  * зачем распознавать по содержимому, а не списком имён: словари появляются
@@ -212,6 +226,7 @@ function scanFile(file) {
   for (const line of stripped.split('\n')) {
     if (PAIRED_TRANSLATION.test(line)) continue;
     if (INLINE_LOCALE_MAP.test(line)) continue;
+    if (DIAGNOSTIC_LOG_CALL.test(line)) continue;
     const found = line.match(CYRILLIC_LITERAL);
     if (found) hits.push(...found);
   }
@@ -303,7 +318,9 @@ function addedUntranslatedLines() {
         // зачем INLINE_LOCALE_MAP здесь тоже: полное сканирование и проверка
         // «добавленных строк» обязаны трактовать код одинаково, иначе сторож
         // молча отказывает на строке, которую сам же считает переведённой.
-        if (!PAIRED_TRANSLATION.test(added) && !INLINE_LOCALE_MAP.test(added)) {
+        if (!PAIRED_TRANSLATION.test(added)
+          && !INLINE_LOCALE_MAP.test(added)
+          && !DIAGNOSTIC_LOG_CALL.test(added)) {
           const found = added.match(CYRILLIC_LITERAL);
           if (found) hits.push(...found);
         }

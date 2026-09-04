@@ -55,6 +55,9 @@ import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { arenaCosmeticDefinition } from '../modules/arena/arena_cosmetics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
+import RuneBalanceChip from '../components/RuneBalanceChip';
+import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { useArenaSound } from '../hooks/use_arena_sound';
 import {
   arenaExpansionHome,
@@ -88,7 +91,7 @@ import {
 import { arenaResultPreview } from '../modules/arena/result_preview';
 import { arenaFinishRetryDelay } from '../modules/arena/finish_retry';
 import { ARENA_FINAL_SCORE_COUNT_MS } from '../modules/arena/final_score_count';
-import { arenaViewerRankIndex } from '../modules/arena/rank_matchmaking_visual';
+import { arenaViewerRankIndex, arenaViewerSeasonStarsFallback } from '../modules/arena/rank_matchmaking_visual';
 
 /**
  * Matchmaking заранее запечатывает входной план. Экран синхронно забирает
@@ -106,6 +109,15 @@ import { arenaViewerRankIndex } from '../modules/arena/rank_matchmaking_visual';
  *
  * Строки «Сервер проверяет ответ…» здесь больше нет и быть не может.
  */
+/**
+ * Порог, после которого сцена «Сверяем результат…» считается зависшей.
+ *
+ * зачем: три ретрая доставки отчёта занимают 1.5 + 4.5 + 16 = 22 секунды и
+ * заканчиваются молча. Сторож ждёт заметно дольше их суммы, чтобы не перебить
+ * поздний успешный ответ, но и не оставить человека на мёртвом кадре навсегда.
+ */
+const ARENA_SETTLE_STUCK_MS = 30_000;
+
 type ArenaMatchRouteParams = { matchId?: string; prepared?: string; viewerStars?: string };
 type ArenaCoherentResult = Readonly<{
   settled?: boolean;
@@ -161,6 +173,10 @@ function ArenaMatchGenerationScreen({
     | { kind: 'leave' }
     | { kind: 'storageFailed' }
     | { kind: 'rejected' }
+    // зачем (2026-09-03, владелец «сверяем очки зависло намертво, только
+    // выход»): сцена сверки не имела НИ таймаута, НИ выхода. Ретраи доставки
+    // кончались молча, и экран висел вечно. Этот вид алерта — предохранитель.
+    | { kind: 'settleStuck' }
     | null
   >(null);
   // Высота строки числом не растёт вместе с системным шрифтом: при крупном
@@ -174,10 +190,36 @@ function ArenaMatchGenerationScreen({
   const preparedRoute = params.prepared === '1' && Boolean(preparedEntry);
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
+  /**
+   * Полёт рун за правильный ответ (владелец 2026-09-03: «добавить анимацию
+   * полёта рун за правильный ответ»).
+   *
+   * ВАЖНО: полёт здесь ЧИСТО декоративный и НИЧЕГО не начисляет. Награду Арены
+   * считает и выдаёт сервер идемпотентным событием (D-84: клиентское начисление
+   * для Арены запрещено), а этот хук лишь рисует глифы от карточки ответа к
+   * счётчику. Поэтому он не связан с usePracticeRunes — та копилка сама
+   * зачитывает руны на сервер и в Арене применяться не должна.
+   */
+  const runeFlight = usePracticeRuneFlight();
   const viewerStars = typeof params.viewerStars === 'string' && /^\d+$/.test(params.viewerStars)
     ? Number(params.viewerStars)
     : null;
-  const introViewerRankIndex = arenaViewerRankIndex(viewerStars);
+  /**
+   * Свой ранг обязан показываться так же надёжно, как ранг соперника.
+   *
+   * зачем (владелец 2026-09-03: «у соперника есть ранг ассет у меня нет —
+   * оба актуальный ранг ассет»): у соперника ранг приходит с сервера внутри
+   * плана матча, а свой брался только из route-параметра. Дуэль с другом и
+   * вход по приглашению его не передают, поэтому на своём месте оставался
+   * пустой прямоугольник. Запасной источник — тёплый снимок хаба из памяти:
+   * ноль чтений Firestore и никакой задержки первого кадра.
+   *
+   * useState с ленивым инициализатором, а не вычисление в теле: снимок читается
+   * ОДИН раз при монтировании, иначе каждый ре-рендер матча (а их за матч
+   * много) дёргал бы кэш заново без всякой пользы.
+   */
+  const [viewerStarsFallback] = useState(() => arenaViewerSeasonStarsFallback(Date.now()));
+  const introViewerRankIndex = arenaViewerRankIndex(viewerStars ?? viewerStarsFallback);
   const playSound = useArenaSound();
   const mountedRef = useRef(true);
   useEffect(() => () => { mountedRef.current = false; }, []);
@@ -403,8 +445,17 @@ function ArenaMatchGenerationScreen({
     // Живость экрана здесь НЕ проверяется намеренно: с ранним переходом (D-74)
     // экран матча к этому моменту уже размонтирован в норме, а спин и снимок
     // с наградами обязаны лечь всё равно. Чужой аккаунт по-прежнему отсекается.
-    if (!isCurrentAccountGeneration(resultAccount, planScope.stableUid)) return false;
-    if (!arenaResultHandoffReady(response, plan.mode)) return false;
+    if (!isCurrentAccountGeneration(resultAccount, planScope.stableUid)) {
+      DebugLogger.warn('[ARENA-SETTLE]', `openCoherentResult early return: чужое поколение аккаунта match=${matchId}`);
+      return false;
+    }
+    // зачем (2026-09-03): «сверяем результат» висело намертво — ответ приходил,
+    // но не проходил проверку готовности, и отказ был НЕМЫМ. Теперь видно, какое
+    // именно поле не дало открыть результат.
+    if (!arenaResultHandoffReady(response, plan.mode)) {
+      DebugLogger.warn('[ARENA-SETTLE]', `openCoherentResult НЕ готов: mode=${plan.mode} settled=${String(response.settled)} matchState=${String(response.match?.state)} hasMatch=${String(Boolean(response.match))} seat=${String(response.viewerSeat)} hasReward=${String(Boolean(response.viewerReward))} — экран остаётся на сверке`);
+      return false;
+    }
 
     const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}`;
     // зачем (2026-08-23): спин за ranked-победу выдаём ЗДЕСЬ, до перехода на
@@ -590,6 +641,35 @@ function ArenaMatchGenerationScreen({
     if (match?.state.phase !== 'finished' || !finalScoreReady) return;
     openPreviewResult();
   }, [finalScoreReady, match?.state.phase, openPreviewResult]);
+
+  /**
+   * Сторож зависания сцены «Сверяем результат…».
+   *
+   * зачем (владелец 2026-09-03: «экран арена, сверяем очки зависло намертво,
+   * только выход»): у этой сцены не было ни одного предохранителя. Быстрый матч
+   * намеренно не открывается по предпросмотру (кульминация — серверная сцена
+   * XP), поэтому он ЦЕЛИКОМ зависит от ответа сервера. Если ответ не пришёл или
+   * не прошёл проверку готовности, три ретрая доставки заканчивались молча и
+   * человек оставался на мёртвом кадре без единой кнопки.
+   *
+   * Сторож ничего не чинит и ничего не начисляет: награда и снимок уже лежат в
+   * outbox и догонят на хабе. Он лишь возвращает управление человеку.
+   */
+  useEffect(() => {
+    if (!active) return undefined;
+    if (match?.state.phase !== 'finished' || !finalScoreReady) return undefined;
+    if (resultOpenedRef.current || matchAlert !== null) return undefined;
+    const timer = setTimeout(() => {
+      if (!mountedRef.current || resultOpenedRef.current) return;
+      DebugLogger.error(
+        '[ARENA-SETTLE]',
+        `сцена сверки висит ${ARENA_SETTLE_STUCK_MS}мс: match=${String(matchId)} mode=${String(plan?.mode)} finishQueued=${String(finishQueued)} sent=${String(sent)} — показываем выход`,
+        'critical',
+      );
+      setMatchAlert({ kind: 'settleStuck' });
+    }, ARENA_SETTLE_STUCK_MS);
+    return () => clearTimeout(timer);
+  }, [active, finalScoreReady, finishQueued, match?.state.phase, matchAlert, matchId, plan?.mode, sent]);
 
   useEffect(() => {
     if (!active || !finishQueued || !matchId) return undefined;
@@ -857,7 +937,19 @@ function ArenaMatchGenerationScreen({
     // Тем же кадром красим выбранный вариант — оптимистично и без сети:
     // вердикт авторитетный, локальный, сервер его потом лишь подтверждает.
     if (typeof taskIndex === 'number') setAnswerVerdict({ taskIndex, correct: correct === true });
-  }, [match, playSound]);
+    /*
+     * Полёт руны за правильный ответ (владелец 2026-09-03).
+     *
+     * ОДИН глиф на ответ, а не «сколько начислено»: сколько рун даст сервер,
+     * на клиенте неизвестно (дневные потолки, номер матча за сутки, множитель
+     * Super Sunday). Полёт подтверждает ФАКТ вклада в награду, а не обещает
+     * число — обещанное и не сошедшееся число было бы враньём.
+     *
+     * Ничего не начисляет: анимация декоративна, кошелёк двигает только
+     * серверный ответ на экране результата (D-84).
+     */
+    if (correct === true) runeFlight.fly(1);
+  }, [match, playSound, runeFlight]);
 
   // Задание сменилось — подсветка снимается: чужой вердикт на новом вопросе
   // хуже, чем его отсутствие.
@@ -947,6 +1039,34 @@ function ArenaMatchGenerationScreen({
             style={[styles.alertPrimary, { backgroundColor: t.accent }]}
           >
             <Text style={[styles.alertButtonText, { color: t.correctText }]}>{arenaText(lang, 'home')}</Text>
+          </DuoPressable>
+        </View>
+      ) : matchAlert?.kind === 'settleStuck' ? (
+        <View style={[styles.alertBody, { backgroundColor: t.bgCard }]}>
+          <Text accessibilityRole="header" style={[styles.alertTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
+            {arenaText(lang, 'settleStuck')}
+          </Text>
+          <Text style={[styles.alertText, { color: t.textSecond, fontSize: f.body }]}>
+            {arenaText(lang, 'settleStuckHint')}
+          </Text>
+          <DuoPressable
+            testID="arena-match-settle-stuck-home"
+            onPress={() => { setMatchAlert(null); router.replace('/arena' as never); }}
+            edgeColor={t.accent}
+            style={[styles.alertPrimary, { backgroundColor: t.accent }]}
+          >
+            <Text style={[styles.alertButtonText, { color: t.correctText }]}>{arenaText(lang, 'home')}</Text>
+          </DuoPressable>
+          {/* зачем: закрытие алерта возвращает на сцену сверки и даёт сторожу
+              завести новый круг — поздний ответ ещё может дойти и открыть
+              нормальный экран результата с наградой. */}
+          <DuoPressable
+            testID="arena-match-settle-stuck-wait"
+            onPress={() => setMatchAlert(null)}
+            edgeColor={t.bgSurface2}
+            style={[styles.alertSecondary, { backgroundColor: t.bgSurface2 }]}
+          >
+            <Text style={[styles.alertButtonText, { color: t.textPrimary }]}>{arenaText(lang, 'stay')}</Text>
           </DuoPressable>
         </View>
       ) : null}
@@ -1072,6 +1192,39 @@ function ArenaMatchGenerationScreen({
       variant="play"
       scroll={false}
       onBack={confirmForfeit}
+      /*
+       * зачем (владелец 2026-09-03: «индикатор рун в правом углу как и везде»):
+       * общий баланс кошелька, тот же чип, что на хабе Арены и в Студии. Именно
+       * БАЛАНС, а не «набрано за матч»: награду Арены считает сервер по дневным
+       * потолкам и множителям, и любое число, придуманное на клиенте, разошлось
+       * бы с экраном результата.
+       *
+       * Стоимости нет: первый кадр рисуется синхронно из снапшота, Firestore не
+       * читается. `interactive={false}` — во время матча уходить в кошелёк
+       * нельзя, это стоило бы человеку матча.
+       */
+      headerRight={(
+        <View ref={runeFlight.counterRef} collapsable={false}>
+          <RuneBalanceChip
+            testID="arena-match-runes"
+            color={P.gold}
+            size={22}
+            active={active}
+            interactive={false}
+          />
+        </View>
+      )}
+      /* Полёт рун живёт НАД экраном: внутри styles.question он обрезался бы
+         границами карточки вопроса и не долетал до счётчика в шапке. */
+      overlay={runeFlight.flight ? (
+        <LearningV2RuneFlight
+          key={runeFlight.flight.key}
+          from={runeFlight.flight.from}
+          to={runeFlight.flight.to}
+          count={runeFlight.flight.count}
+          onDone={runeFlight.clearFlight}
+        />
+      ) : null}
     >
       <ArenaPlayers compact={immersive} players={players} active={active} animateScore answeredUid={rivalAnsweredUid} answeredLabel={arenaText(lang, 'rivalMovedA11y')} />
       <V2Segments
@@ -1138,15 +1291,20 @@ function ArenaMatchGenerationScreen({
           ) : null}
 
           {taskRenderable ? (
-            <ArenaQuestion
-              task={arenaPlanTaskToPublic(visibleTask)}
-              locked={!hud.interactive}
-              verdict={answerVerdict && answerVerdict.taskIndex === hud.task?.taskIndex
-                ? (answerVerdict.correct ? 'correct' : 'wrong') : null}
-              submitLabel={arenaText(lang, 'submit')}
-              onSubmit={onSubmit}
-              onSpeedAttempt={onSpeedAttempt}
-            />
+            // Измеряемый узел-источник полёта рун: глифы стартуют от карточки
+            // ответа и летят в счётчик в шапке. collapsable={false} обязателен —
+            // без него Android схлопывает обёртку и measureInWindow не работает.
+            <View ref={runeFlight.originRef} collapsable={false} style={styles.questionCard}>
+              <ArenaQuestion
+                task={arenaPlanTaskToPublic(visibleTask)}
+                locked={!hud.interactive}
+                verdict={answerVerdict && answerVerdict.taskIndex === hud.task?.taskIndex
+                  ? (answerVerdict.correct ? 'correct' : 'wrong') : null}
+                submitLabel={arenaText(lang, 'submit')}
+                onSubmit={onSubmit}
+                onSpeedAttempt={onSpeedAttempt}
+              />
+            </View>
           ) : (
             <View style={styles.center}>
               <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, titleLine, { color: P.text }]}>
@@ -1198,6 +1356,10 @@ const styles = StyleSheet.create({
   clockNote: { gap: 2, paddingHorizontal: 8 },
   intro: { flex: 1 },
   question: { flex: 1, justifyContent: 'center', gap: 10 },
+  // зачем: обёртка нужна только чтобы измерить карточку для полёта рун. Она
+  // обязана быть прозрачной для раскладки — иначе карточка перестанет
+  // растягиваться внутри styles.question и вопрос «схлопнется» вверх экрана.
+  questionCard: { flex: 1, minHeight: 0 },
   hudRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
   hudSide: { flex: 1, alignItems: 'flex-end', gap: 6 },
   timerHole: { width: 84, height: 84 },

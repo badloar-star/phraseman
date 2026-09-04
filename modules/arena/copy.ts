@@ -175,6 +175,11 @@ const C = {
   rankLocked: ['Ещё не открыт', 'Ще не відкритий', 'Not unlocked yet', 'Aún bloqueado', 'Ainda bloqueado', 'Chưa mở', 'Belum terbuka', 'Henüz kilitli', 'Jeszcze zablokowany'],
   loading: ['Загрузка…', 'Завантаження…', 'Loading…', 'Cargando…', 'Carregando…', 'Đang tải…', 'Memuat…', 'Yükleniyor…', 'Ładowanie…'],
   retry: ['Повторить', 'Повторити', 'Retry', 'Reintentar', 'Tentar novamente', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Spróbuj ponownie'],
+  // зачем (владелец 2026-09-03): сцена сверки могла висеть вечно. Текст обязан
+  // сказать главное — награда не потеряна, она догонит на арене, — иначе выход
+  // читался бы как «мой матч пропал».
+  settleStuck: ['Результат ещё не пришёл', 'Результат ще не прийшов', 'The result hasn\'t arrived yet', 'El resultado aún no llega', 'O resultado ainda não chegou', 'Kết quả vẫn chưa tới', 'Hasil belum sampai', 'Sonuç henüz gelmedi', 'Wynik jeszcze nie dotarł'],
+  settleStuckHint: ['Матч сыгран и сохранён — связь просто задерживается. Награда догонит сама, как только ответ дойдёт. Можно вернуться на арену и не ждать здесь.', 'Матч зіграно і збережено — зв\'язок просто затримується. Нагорода наздожене сама, щойно відповідь дійде. Можна повернутися на арену й не чекати тут.', 'The match is played and saved — the connection is just slow. Your reward will catch up as soon as the answer arrives. You can go back to the Arena instead of waiting here.', 'La partida está jugada y guardada: solo se retrasa la conexión. La recompensa llegará en cuanto responda el servidor. Puedes volver a Arena en vez de esperar aquí.', 'A partida foi jogada e salva — a conexão só está lenta. A recompensa chega assim que a resposta vier. Você pode voltar à Arena em vez de esperar aqui.', 'Trận đã đấu và đã lưu — chỉ là kết nối chậm. Phần thưởng sẽ về ngay khi có phản hồi. Bạn có thể quay lại Đấu trường thay vì chờ ở đây.', 'Laga sudah dimainkan dan tersimpan — koneksinya saja yang lambat. Hadiah akan menyusul begitu jawaban tiba. Kamu bisa kembali ke Arena daripada menunggu di sini.', 'Maç oynandı ve kaydedildi — sadece bağlantı gecikiyor. Yanıt gelir gelmez ödülün ulaşacak. Burada beklemek yerine Arena\'ya dönebilirsin.', 'Mecz jest rozegrany i zapisany — po prostu połączenie się opóźnia. Nagroda dotrze, gdy tylko przyjdzie odpowiedź. Możesz wrócić do Areny zamiast tu czekać.'],
   share: ['Поделиться', 'Поділитися', 'Share', 'Compartir', 'Compartilhar', 'Chia sẻ', 'Bagikan', 'Paylaş', 'Udostępnij'],
   claim: ['Забрать', 'Забрати', 'Claim', 'Reclamar', 'Resgatar', 'Nhận', 'Ambil', 'Al', 'Odbierz'],
   free: ['Бесплатно', 'Безкоштовно', 'Free', 'Gratis', 'Grátis', 'Miễn phí', 'Gratis', 'Ücretsiz', 'Bezpłatne'],
@@ -182,7 +187,11 @@ const C = {
   rewardPearls: ['{amount} жемчужин', '{amount} перлин', '{amount} pearls', '{amount} perlas', '{amount} pérolas', '{amount} ngọc trai', '{amount} mutiara', '{amount} inci', '{amount} pereł'],
   rewardSpin: ['{amount} спин', '{amount} спін', '{amount} spin', '{amount} giro', '{amount} giro', '{amount} lượt quay', '{amount} putaran', '{amount} çevirme', '{amount} spin'],
   score: ['Счёт', 'Рахунок', 'Score', 'Puntos', 'Pontos', 'Điểm', 'Skor', 'Skor', 'Wynik'],
-  matchScoreCounting: ['Очки матча', 'Очки матчу', 'Match score', 'Puntos de la partida', 'Pontos da partida', 'Điểm trận đấu', 'Skor laga', 'Maç puanı', 'Wynik meczu'],
+  // зачем (D-85, владелец 2026-09-03 «очки заменить на руны и ассет»): короткая
+  // сцена между последним заданием и результатом считает именно РУНЫ матча,
+  // а не абстрактные очки. Ассет рядом — тот же образ руны, что в общем
+  // валютном UI, а не звезда ранга: звезда здесь путала две разные сущности.
+  matchScoreCounting: ['Руны матча', 'Руни матчу', 'Match runes', 'Runas de la partida', 'Runas da partida', 'Rune trận đấu', 'Rune laga', 'Maç rünleri', 'Runy meczu'],
   matchResultChecking: ['Сверяем результат…', 'Звіряємо результат…', 'Checking the result…', 'Comprobando el resultado…', 'Conferindo o resultado…', 'Đang kiểm tra kết quả…', 'Memeriksa hasil…', 'Sonuç kontrol ediliyor…', 'Sprawdzamy wynik…'],
   tier: ['Лига', 'Ліга', 'League', 'Liga', 'Liga', 'Giải', 'Liga', 'Lig', 'Liga'],
   tierBronze: ['Бронза', 'Бронза', 'Bronze', 'Bronce', 'Bronze', 'Đồng', 'Perunggu', 'Bronz', 'Brąz'],

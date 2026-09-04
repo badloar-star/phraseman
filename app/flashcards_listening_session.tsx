@@ -693,8 +693,14 @@ export default function FlashcardsListeningSession() {
     setPhase('playing');
   }, []);
 
+  // зачем (2026-09-03): без hydrated автосброс молча не запускался и экран
+  // намертво замирал под блокировщиком ввода после трёх ошибок. Рун сессии
+  // здесь нет, поэтому forfeitSessionRunes не передаётся намеренно.
   useSessionAttemptAutoReset({
     phase: attempts.state.phase,
+    hydrated: attempts.hydrated,
+    giftCount: attempts.giftCount,
+    recoverWithGift: attempts.recoverWithGift,
     restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
     onRestored: resetListeningAfterSessionRuneForfeit,
   });

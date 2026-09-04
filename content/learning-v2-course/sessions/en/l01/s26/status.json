@@ -1,11 +1,18 @@
 {
   "session": "en/l01/s26",
-  "ru": 0,
-  "blocked": [
-    "judge_learner",
-    "judge_taste",
-    "judge_pedagogy"
-  ],
-  "locales": null,
-  "at": "2026-09-04T13:04:09.075Z"
+  "ru": 7,
+  "converged": false,
+  "needsHumanReview": false,
+  "verdicts": {
+    "learner": "PASS",
+    "nonsense": "PASS",
+    "pedagogy": "PASS",
+    "taste": "REVISE"
+  },
+  "humanFixedAt": "2026-09-04T13:11:56.902Z",
+  "humanFixNote": "дубль задания 17 удалён вручную, пересужено — блокировок нет",
+  "locales": {
+    "uk": "ok"
+  },
+  "at": "2026-09-04T13:11:56.902Z"
 }

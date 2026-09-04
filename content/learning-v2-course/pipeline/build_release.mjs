@@ -429,6 +429,16 @@ function main() {
     const isCard = master.tasks.find((t) => `${sessionId}:i${String(t.ordinal).padStart(2, "0")}` === it.interactionId)?.family === "word_card";
     if (!isCard && it.inputMode === "single_choice" && it.responseOptions.length < 2) problems.push(`${it.interactionId}: вариантов ${it.responseOptions.length}`);
   }
+  // зачем: сессия 26 попала в курс заблокированной и без вердиктов —
+  // сборщик собирал что дают, не спрашивая, проверял ли её кто-нибудь
+  try {
+    const stPath = path.join(dir, "status.json");
+    if (fs.existsSync(stPath)) {
+      const st = JSON.parse(fs.readFileSync(stPath, "utf8"));
+      if (st.blocked) WARN(`СЕССИЯ ЗАБЛОКИРОВАНА судьями (${[].concat(st.blocked).join(", ")}) — собирать её в курс нельзя, сначала правка`);
+      else if (st.ru === 0) WARN(`сессия собрана с нулём очков — судьи её не приняли`);
+    } else WARN(`нет status.json — неизвестно, судилась ли сессия вообще`);
+  } catch (e) { WARN(`не смог прочитать статус сессии: ${e.message}`); }
   if (problems.length) { WARN(`проблем сборки: ${problems.length}`); for (const p of problems) WARN(`  ${p}`); }
   else LOG("проблем сборки нет");
   LOG(`готово: ${interactions.length} заданий, ${LOCALES.join("+")}`);

@@ -1,0 +1,82 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — rainy",
+      "what_i_understood": "Про погоду говорят It is + слово. Дождливо = It is rainy. It нельзя убирать, is нельзя убирать.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — windy",
+      "what_i_understood": "Ветрено = It is windy. wind (сам ветер) и windy (какая погода) — разные слова, путать нельзя.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — early/late",
+      "what_i_understood": "Про часы тоже It is + слово: It is early (рано), It is late (поздно). Но I am late — это уже про меня, что я опаздываю, а не про часы. Это отдельно объяснили, я понял разницу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (карточки + слух rainy/windy)",
+      "what_i_understood": "Запомнил как выглядят и звучат rainy и windy, отличил от похожих слов rain, ready, wind, window.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — сборка фразы (ветрено)",
+      "what_i_understood": "Собрал It is windy, лишнюю not не взял, потому что на улице реально ветрено, отрицать нечего.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 6-9 (early/late карточки, слух, сборка)",
+      "what_i_understood": "Отличил early от late, потренировался на слух собрать It is late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — вставка слова (дождь за окном)",
+      "what_i_understood": "Выбрал rainy, а не windy и не early — сориентировался по описанию сцены.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — пары",
+      "what_i_understood": "Свёл все четыре новых слова с переводом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — скрепка is",
+      "what_i_understood": "Про It всегда is, не am и не are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 13-18 — смешанная практика и финал",
+      "what_i_understood": "Повторил cold, warm, dark, quiet вперемешку с новыми словами, в финале сказал вслух четыре фразы подряд: It is quiet. It is dark. It is windy. It is rainy.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Могу сказать про погоду: It is rainy (дождливо), It is windy (ветрено)",
+    "Могу сказать про время: It is early (рано), It is late (поздно)",
+    "Понял разницу между It is late (поздно, про часы) и I am late (я опаздываю, про себя)",
+    "Понял разницу между wind (ветер, вещь) и windy (ветрено, погода)",
+    "Закрепил, что перед словом про погоду/время всегда It is, а не голое слово и не is без It"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Момент с I am late vs It is late — реально полезная ловушка, я бы сам перепутал",
+    "Финал у окна, где нужно сказать четыре фразы подряд про темноту, тишину, ветер и дождь — почувствовал, что собираю всё вместе, как будто правда описываю то, что вижу"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я стою утром у окна с чашкой, смотрю на улицу и на часы, решаю когда выходить — и все фразы про погоду и время естественно ложатся в эту ситуацию, особенно финал, где нужно описать всё сразу",
+  "would_continue": "да — сессия короткая, чёткая, я реально запомнил 4 новых слова и один важный нюанс (I am late vs It is late), не было скучных моментов",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания посильны, оба новых понятия отработаны и закреплены финалом, сцена ясна, ловушка про late/am объясняет реальную путаницу, а не выдумана ради красоты."
+}

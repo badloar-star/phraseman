@@ -1,0 +1,77 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "together"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 3,
+        "trap": "We am ready / We is hungry — путаница am/is/are по числу"
+      },
+      {
+        "task": 13,
+        "trap": "лишняя плитка late при сцене без опоздания — обманка на внимательность"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 16,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "together",
+        "hungry",
+        "ready",
+        "late"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s31/l01_s32",
+      "what": "фраза-паттерн разборов «Скрепка X выпала/пропала» повторяется почти дословно из соседних сессий, но это общий шаблон объяснения, не сюжетный повтор — не считаю нарушением"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 1,
+      "listen_choose": 1,
+      "context_gap_grammar": 6,
+      "phrase_builder": 5,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Одно новое слово честно введено и отработано, границы грамматики и словаря соблюдены, возвратные слова везде выступают правильным ответом хотя бы раз, доска пар полностью подготовлена предыдущими заданиями, фраза «одна и та же формула» в интро 2 не является отсылкой к прошлым сессиям (речь о повторе внутри самой сессии), нарушений не найдено."
+}

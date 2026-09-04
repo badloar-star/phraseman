@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-33:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i02",
+    "correctText": "together",
+    "correctResponseId": "en:lesson-01:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i04",
+    "correctText": "We are hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i05",
+    "correctText": "together",
+    "correctResponseId": "en:lesson-01:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i06",
+    "correctText": "We are together.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i07",
+    "correctText": "late",
+    "correctResponseId": "en:lesson-01:session-33:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i09",
+    "correctText": "We are late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i10",
+    "correctText": "We",
+    "correctResponseId": "en:lesson-01:session-33:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i11",
+    "correctText": "We are ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i12",
+    "correctText": "We are hungry. We are ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i13",
+    "correctText": "We are hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i14",
+    "correctText": "hungry",
+    "correctResponseId": "en:lesson-01:session-33:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i15",
+    "correctText": "We are late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-33:i16",
+    "correctText": "We are hungry. We are together. We are ready.",
+    "correctResponseId": null
+  }
+]

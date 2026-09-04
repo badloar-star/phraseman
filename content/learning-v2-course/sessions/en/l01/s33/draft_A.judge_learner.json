@@ -1,0 +1,135 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя одного говорю I am, а если нас несколько — уже не am, а are. We are ready.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "hungry — голодный. Формула та же: We are + слово. We are hungry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "together — вместе, одной компанией. We are together. Одному человеку так не сказать, некому быть 'вместе'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка together)",
+      "what_i_understood": "Запомнил слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (на слух)",
+      "what_i_understood": "Узнал звучание together среди похожих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (пропуск, are)",
+      "what_i_understood": "Выбрал are, а не am/is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (сборка)",
+      "what_i_understood": "We are hungry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (пропуск, together)",
+      "what_i_understood": "Компания вышла вместе — together, не ready и не hungry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (сборка на слух)",
+      "what_i_understood": "We are together, лишнюю am не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (пропуск, late)",
+      "what_i_understood": "Опоздали — late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (пары)",
+      "what_i_understood": "Соединил все четыре слова с переводом без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (сборка late)",
+      "what_i_understood": "We are late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (пропуск We)",
+      "what_i_understood": "Перед are, когда речь о нескольких — We, не I и не He.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (сборка ready)",
+      "what_i_understood": "We are ready.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (голосом)",
+      "what_i_understood": "Проговорил We are hungry. We are ready.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (сборка с лишней плиткой)",
+      "what_i_understood": "По сцене никто не опаздывает — не взял late, собрал We are hungry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (пропуск hungry)",
+      "what_i_understood": "Спросили про еду — hungry, не related to time or company.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (сборка без подсказок)",
+      "what_i_understood": "We are together, лишнюю am отбросил.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (финал)",
+      "what_i_understood": "Ответил тремя фразами подряд за всю компанию: hungry, together, ready.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Что вместо am/is для 'мы' используется are",
+    "Что формула We are + слово не меняется от самого слова",
+    "Новое слово together (вместе)",
+    "Что слово о нас не добавляет -s на конце (hungrys, togethers — так не бывает)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с обедом понятная и живая: коллеги в куртках у двери, начальник спрашивает, кафе спрашивает про столики — я реально понимаю, зачем говорю эти фразы",
+    "Финал (задание 16), где отвечаю сразу тремя фразами за всю компанию — приятное завершение, чувствуется что сцена собралась"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: на каждом шаге ясно кто спрашивает (коллега в дверях, начальник, официант в кафе) и в какой момент, и фраза — прямой ответ на конкретный вопрос, а не абстрактное упражнение",
+  "would_continue": "да — сессия короткая, ничего лишнего, объяснения по делу, задания логично усложняются и под конец я сам, без подсказок, собрал все три фразы",
+  "verdict": "PASS",
+  "verdict_reason": "я прошёл сессию честно, всё было выполнимо, узнал новое (are для 'мы', слово together), и весь урок держится на понятной бытовой сцене без воды и мусора"
+}

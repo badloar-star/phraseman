@@ -1,0 +1,135 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про одного человека говорят 'I am', а если людей несколько — 'we are'. Пример: We are ready.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "hungry значит голодный. Про группу говорят так же, как про одного, только 'We are hungry' вместо 'I am hungry', и слово hungry не меняется.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "together значит вместе. We are together — мы одной компанией. Слово тоже не меняется.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка together)",
+      "what_i_understood": "Просто показали слово и перевод.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (на слух together)",
+      "what_i_understood": "Выбрал together, отличил от похожих по звучанию слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (are/am/is)",
+      "what_i_understood": "Выбрал are, потому что we — это не один человек.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (собрать We are hungry)",
+      "what_i_understood": "Собрал фразу из кусков.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (пропуск, ситуация про компанию)",
+      "what_i_understood": "Выбрал together, а не hungry или ready, потому что вопрос был про то, что вы вместе.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (на слух собрать We are together)",
+      "what_i_understood": "Собрал фразу по звуку, не взял лишнее am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (late/early/ready)",
+      "what_i_understood": "late — опаздываем, выбрал по ситуации с часами.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (доска пар)",
+      "what_i_understood": "Соединил слова с переводами.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (собрать We are late)",
+      "what_i_understood": "Собрал фразу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (We/I/He)",
+      "what_i_understood": "Выбрал We, потому что в кафе нас четверо.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (собрать We are ready)",
+      "what_i_understood": "Собрал фразу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (сказать вслух)",
+      "what_i_understood": "Повторил две фразы про голод и готовность.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (лишняя плитка late)",
+      "what_i_understood": "Собрал We are hungry, не взял late, потому что по ситуации никто не опаздывает.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (hungry/together/late)",
+      "what_i_understood": "Выбрал hungry, все остальные не подходили по смыслу ситуации.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (собрать We are late, лишнее am)",
+      "what_i_understood": "Собрал фразу, не взял am, потому что это не про одного человека.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (финал, три фразы подряд)",
+      "what_i_understood": "Ответил тремя фразами подряд на три вопроса про компанию у входа в кафе.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Когда говоришь про группу людей (мы), после we всегда ставится are, а не am и не is",
+    "Слово после are (hungry, ready, together, late) не меняется, даже если людей много",
+    "Узнал новое слово together — вместе, одной компанией",
+    "Освежил в памяти hungry, ready, late в новой ситуации (все вместе, а не один)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с обеденным перерывом понятная и живая: коллеги в дверях спрашивают 'ready?', в кафе спрашивают про стол — сразу ясно, зачем говорить эти фразы",
+    "Задание 13 с лишней плиткой late — приятная ловушка, заставляет думать по смыслу ситуации, а не просто хватать слова"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: весь урок — это один обеденный перерыв, где по дороге и в кафе разные люди спрашивают, готовы ли мы, голодные ли мы, вместе ли мы, не опаздываем ли — и я отвечаю за всю компанию этими фразами",
+  "would_continue": "да, потому что задания понятные, ситуации живые и я реально запомнил, что после we всегда are, а не am",
+  "verdict": "PASS",
+  "verdict_reason": "прошёл всю сессию без затыков, узнал новое слово и правило, шутки и примеры не бредовые, а по делу, задания все выполнимы"
+}

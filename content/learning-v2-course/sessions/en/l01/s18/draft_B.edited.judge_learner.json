@@ -1,0 +1,81 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — shy",
+      "what_i_understood": "Про мужчину говорим He is, про женщину She is. Здесь he is shy = он стеснительный.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — loud",
+      "what_i_understood": "loud = громкий (про голос). She is loud, если это женщина.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — clever/bossy",
+      "what_i_understood": "clever = умный/сообразительный, bossy = командует всеми без спросу. She is bossy подходит к ситуации с указаниями.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1-4 shy/loud карточки+слух",
+      "what_i_understood": "Отработал произношение и написание shy и loud",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5-8 quiet, вставки",
+      "what_i_understood": "quiet вернулось из прошлого, но объяснено заново — понял. is ставится и к he и к she",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9-12 clever",
+      "what_i_understood": "clever — сборка фразы He is clever",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 доска пар",
+      "what_i_understood": "shy/loud/clever/quiet — всё было объяснено до доски",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14-18 funny/kind/bossy",
+      "what_i_understood": "funny и kind — новые слова с карточками, дальше собрал фразы",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "19-21 smart",
+      "what_i_understood": "smart объяснено картой, вставил в контекст, доска пар",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "22 итог вслух",
+      "what_i_understood": "Повторил три фразы про троих коллег",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слова: shy, loud, clever, bossy",
+    "Что He is — про мужчину, She is — про женщину, и связка is не пропадает, как в русском можно без неё",
+    "Разница между bossy (командует, не комплимент) и clever (умный) — раньше не различал бы"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена на кухне в обед — понятно, откуда фразы и зачем шептаться про коллег",
+    "bossy объяснено по-человечески: «раздаёт указания, хотя никто не просил» — сразу понял, почему это не комплимент",
+    "Задание 22 — итог вслух про трёх разных людей, приятно завершает"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно: обеденный перерыв, вы с коллегой обсуждаете шёпотом других людей на кухне — офисная сценка знакомая, фразы уместны в этой ситуации",
+  "would_continue": "Да, хочу дальше — задания понятные, есть ловушки, которые заставляют думать, а не гадать, темп хороший",
+  "verdict": "PASS",
+  "verdict_reason": "Все 22 шага прошёл честно, каждое слово объяснено до использования, задания решаемы, узнал новые слова и разницу между ними, текст живой и по делу."
+}

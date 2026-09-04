@@ -1,5 +1,6 @@
 import {
   ARENA_LOCAL_ABANDON_MS,
+  ARENA_LOCAL_READING_MS,
   arenaLocalMatchInit,
   arenaLocalMatchReduce,
   arenaLocalMatchReport,
@@ -41,7 +42,7 @@ const step = (plan: ArenaMatchPlan, state: ArenaLocalMatchState, event: ArenaLoc
 
 /** Доводит машину до фазы ответа на первом задании. */
 const toAnswer = (plan: ArenaMatchPlan) =>
-  step(plan, init(plan), { type: 'tick', monoNowMs: MONO0 + 3_000 + 1_500 });
+  step(plan, init(plan), { type: 'tick', monoNowMs: MONO0 + 3_000 + ARENA_LOCAL_READING_MS });
 
 describe('фазы матча', () => {
   it('идёт отсчёт → чтение → ответ и берёт окно из типа задания', () => {
@@ -51,7 +52,7 @@ describe('фазы матча', () => {
     expect(s.phase).toBe('countdown');
     s = step(P10, s, { type: 'tick', monoNowMs: MONO0 + 3_000 });
     expect(s.phase).toBe('reading');
-    s = step(P10, s, { type: 'tick', monoNowMs: MONO0 + 4_500 });
+    s = step(P10, s, { type: 'tick', monoNowMs: MONO0 + 3_000 + ARENA_LOCAL_READING_MS });
     expect(s.phase).toBe('answer');
     // Окно ровно 20 секунд: сетевого запаса на клиенте нет, потому что нет сети.
     expect(s.phaseBudgetMs).toBe(20_000);
@@ -115,7 +116,7 @@ describe('начисление в матче', () => {
     let s = init(P10);
     let mono = MONO0 + 3_000;
     for (let i = 0; i < 4; i += 1) {
-      s = step(P10, s, { type: 'tick', monoNowMs: mono + 1_500 });
+      s = step(P10, s, { type: 'tick', monoNowMs: mono + ARENA_LOCAL_READING_MS });
       const at = s.phaseStartedAtMonoMs + 500;
       s = step(P10, s, { type: 'answer', monoNowMs: at, wallNowMs: WALL0 + at, correct: true, answer: 1 });
       mono = s.phaseStartedAtMonoMs + 1_200;
@@ -131,12 +132,12 @@ describe('задание на пары', () => {
     let s = init(P10);
     let mono = MONO0 + 3_000;
     for (let i = 0; i < 4; i += 1) {
-      s = step(P10, s, { type: 'tick', monoNowMs: mono + 1_500 });
+      s = step(P10, s, { type: 'tick', monoNowMs: mono + ARENA_LOCAL_READING_MS });
       s = step(P10, s, { type: 'tick', monoNowMs: s.phaseStartedAtMonoMs + s.phaseBudgetMs });
       mono = s.phaseStartedAtMonoMs + 1_200;
       s = step(P10, s, { type: 'tick', monoNowMs: mono });
     }
-    return step(P10, s, { type: 'tick', monoNowMs: s.phaseStartedAtMonoMs + 1_500 });
+    return step(P10, s, { type: 'tick', monoNowMs: s.phaseStartedAtMonoMs + ARENA_LOCAL_READING_MS });
   };
 
   it('платит только за пары, угаданные с первой попытки', () => {
@@ -202,7 +203,7 @@ describe('быстрый матч', () => {
     let s = init(P5);
     let mono = MONO0 + 3_000;
     for (let i = 0; i < 5; i += 1) {
-      s = step(P5, s, { type: 'tick', monoNowMs: mono + 1_500 });
+      s = step(P5, s, { type: 'tick', monoNowMs: mono + ARENA_LOCAL_READING_MS });
       const at = s.phaseStartedAtMonoMs + 400;
       if (P5.tasks[s.taskIndex].mode === 'speed_match') {
         for (let pair = 0; pair < 4; pair += 1) {

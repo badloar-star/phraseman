@@ -4,6 +4,7 @@ import {
   arenaOpponentRevealDelayMs,
 } from '../modules/arena/opponent_timing';
 import {
+  ARENA_LOCAL_READING_MS,
   arenaLocalMatchInit,
   arenaLocalMatchReduce,
   type ArenaLocalMatchState,
@@ -34,14 +35,15 @@ function toFirstAnswer(): ArenaLocalMatchState {
     monoEpochId: 'e1',
     countdownRemainingMs: 0,
   });
-  return arenaLocalMatchReduce(plan, initial, { type: 'tick', monoNowMs: 1_500 });
+  return arenaLocalMatchReduce(plan, initial, { type: 'tick', monoNowMs: ARENA_LOCAL_READING_MS });
 }
 
 describe('Arena opponent presentation timing', () => {
   test('an exact opponent waits for its own response time', () => {
     const state = toFirstAnswer();
     expect(state.phase).toBe('answer');
-    expect(arenaOpponentRevealDelayMs(state, exactTick, 3_000)).toBe(3_500);
+    expect(arenaOpponentRevealDelayMs(state, exactTick, 3_000))
+      .toBe(ARENA_LOCAL_READING_MS + 5_000 - 3_000);
   });
 
   test('an opponent slower than the player lands perceptibly inside reveal', () => {
@@ -69,7 +71,8 @@ describe('Arena opponent presentation timing', () => {
       correct: true,
       answer: 0,
     });
-    const slightlySlower = { ...exactTick, raceElapsedMs: 2_550 };
+    const playerRaceMs = 4_000 - ARENA_LOCAL_READING_MS;
+    const slightlySlower = { ...exactTick, raceElapsedMs: playerRaceMs + 50 };
 
     expect(arenaOpponentRevealDelayMs(state, slightlySlower, 4_000))
       .toBe(ARENA_OPPONENT_POST_ANSWER_MIN_MS);
@@ -83,7 +86,8 @@ describe('Arena opponent presentation timing', () => {
       countdownRemainingMs: 3_000,
     });
 
-    expect(arenaOpponentRevealDelayMs(state, exactTick, 100)).toBe(9_500);
+    expect(arenaOpponentRevealDelayMs(state, exactTick, 100))
+      .toBe(3_000 + ARENA_LOCAL_READING_MS + 5_000);
   });
 
   test('past tasks reveal immediately and future tasks stay hidden', () => {
@@ -130,6 +134,7 @@ describe('Arena opponent presentation timing', () => {
 
     expect(rebased.phase).toBe('reading');
     expect(rebased.phaseStartedAtMonoMs).toBe(-450);
-    expect(arenaOpponentRevealDelayMs(rebased, exactTick, 50)).toBe(6_000);
+    expect(arenaOpponentRevealDelayMs(rebased, exactTick, 50))
+      .toBe(-450 + ARENA_LOCAL_READING_MS + 5_000 - 50);
   });
 });

@@ -50,7 +50,7 @@ export const ARENA_PLAN_SCHEMA_VERSION = 'arena-match-plan.v2' as const;
 export const ARENA_REPORT_SCHEMA_VERSION = 'arena-match-report.v2' as const;
 
 /** Пауза на прочтение задания и показ результата — те же, что на клиенте. */
-export const ARENA_DUEL_READING_MS = 1_500;
+export const ARENA_DUEL_READING_MS = 2_500;
 export const ARENA_DUEL_REVEAL_MS = 1_200;
 export const ARENA_DUEL_COUNTDOWN_MS = 3_200;
 /**

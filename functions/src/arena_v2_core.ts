@@ -102,7 +102,7 @@ export const ARENA_V2_RANKED_BOT_DAILY_LIMIT = 3;
 export const ARENA_V2_ACCEPT_MS = 12_000;
 export const ARENA_V2_COUNTDOWN_MS = 3_200;
 export const ARENA_V2_REVEAL_MS = 1_200;
-export const ARENA_V2_READING_MS = 1_500;
+export const ARENA_V2_READING_MS = 2_500;
 export const ARENA_V2_RECEIVE_GRACE_MS = 1_500;
 export const ARENA_V2_QUEUE_LEASE_MS = 45_000;
 /**

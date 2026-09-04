@@ -699,6 +699,7 @@ export default function FlashcardsListeningSession() {
   useSessionAttemptAutoReset({
     phase: attempts.state.phase,
     hydrated: attempts.hydrated,
+    inventoryTrusted: attempts.inventoryTrusted,
     giftCount: attempts.giftCount,
     recoverWithGift: attempts.recoverWithGift,
     restoreAttempts: attempts.restoreAfterSessionRuneForfeit,

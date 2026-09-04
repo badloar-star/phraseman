@@ -2603,6 +2603,7 @@ function FlashcardsSwipeScreen() {
   useSessionAttemptAutoReset({
     phase: attempts.state.phase,
     hydrated: attempts.hydrated,
+    inventoryTrusted: attempts.inventoryTrusted,
     giftCount: attempts.giftCount,
     recoverWithGift: attempts.recoverWithGift,
     forfeitSessionRunes: practiceRunes.forfeitPendingRunes,

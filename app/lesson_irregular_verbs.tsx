@@ -618,6 +618,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   useSessionAttemptAutoReset({
     phase: attempts.state.phase,
     hydrated: attempts.hydrated,
+    inventoryTrusted: attempts.inventoryTrusted,
     giftCount: attempts.giftCount,
     recoverWithGift: attempts.recoverWithGift,
     forfeitSessionRunes: practiceRunes.forfeitPendingRunes,

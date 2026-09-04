@@ -46,6 +46,16 @@ export function usePracticeRuneFlight() {
     );
   }, [bump, reducedMotion]);
 
+  /*
+   * Монотонный ключ полёта.
+   *
+   * зачем (аудит 2026-09-03): ключом стоял `Date.now()`. Два быстрых верных
+   * ответа в одну миллисекунду давали ОДИНАКОВЫЙ ключ — React не перемонтировал
+   * компонент, и полёт не проигрывался вовсе. На Арене ответы идут быстро, там
+   * это заметно. Счётчик растёт всегда и совпасть не может.
+   */
+  const flightKeyRef = useRef(0);
+
   const fly = useCallback((rawCount: number) => {
     const count = Math.max(1, Math.min(3, Math.round(rawCount))) as 1 | 2 | 3;
     bumpCounter();
@@ -55,8 +65,9 @@ export function usePracticeRuneFlight() {
     if (!origin || !counter) return;
     origin.measureInWindow((fromX, fromY, fromWidth, fromHeight) => {
       counter.measureInWindow((toX, toY, toWidth, toHeight) => {
+        flightKeyRef.current += 1;
         setFlight({
-          key: Date.now(),
+          key: flightKeyRef.current,
           count,
           from: { x: fromX + fromWidth / 2, y: fromY + fromHeight / 2 },
           to: { x: toX + toWidth / 2, y: toY + toHeight / 2 },

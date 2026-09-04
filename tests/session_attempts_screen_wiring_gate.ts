@@ -16,6 +16,30 @@ const screens = [
   'app/learning-v2/session/[id].tsx',
 ] as const;
 
+/**
+ * Аргументы вызова useSessionAttemptAutoReset — по БАЛАНСУ скобок.
+ *
+ * зачем (аудит 2026-09-03): наивный `indexOf('});')` обрывался на первом же
+ * вложенном вызове внутри аргументов (например `() => track({ a: 1 });`) и
+ * гейт ложно ронял корректный экран, не увидев `hydrated` дальше по тексту.
+ * Считаем скобки — тогда срез не зависит от того, как автор оформил колбэки.
+ */
+function autoResetArguments(source: string, relativeFile: string): string {
+  const callStart = source.indexOf('useSessionAttemptAutoReset({');
+  assert.ok(callStart >= 0, `${relativeFile}: вызов useSessionAttemptAutoReset не найден`);
+  const open = source.indexOf('{', callStart);
+  let depth = 0;
+  for (let i = open; i < source.length; i += 1) {
+    const char = source[i];
+    if (char === '{') depth += 1;
+    else if (char === '}') {
+      depth -= 1;
+      if (depth === 0) return source.slice(open, i + 1);
+    }
+  }
+  assert.fail(`${relativeFile}: не удалось разобрать аргументы useSessionAttemptAutoReset`);
+}
+
 for (const relativeFile of screens) {
   const source = fs.readFileSync(path.join(root, relativeFile), 'utf8');
   assert.ok(source.includes('SessionAttemptsHud'), `${relativeFile} has no attempts HUD`);
@@ -33,7 +57,13 @@ for (const relativeFile of screens) {
    * Проверяем поведение, а не слово: подарок допустим только как проп
    * автосброса, вручную по кнопке его тратить нельзя.
    */
-  const manualGiftCall = /onPress[^\n]*recoverWithGift|recoverWithGift\(\)/;
+  //
+  // Ловим ЛЮБОЙ вызов подарка как функции (`recoverWithGift()`, в том числе
+  // через `attempts.recoverWithGift()`), а также передачу его прямо в обработчик
+  // нажатия — включая многострочную стрелку, где `onPress` и вызов на разных
+  // строках. Передача подарка ПРОПОМ автосбросу (`recoverWithGift:`) остаётся
+  // разрешённой: спасение автоматическое, кнопки у него нет.
+  const manualGiftCall = /recoverWithGift\s*\(|onPress[\s\S]{0,120}?recoverWithGift(?!\s*:)/;
   assert.ok(!manualGiftCall.test(source), `${relativeFile} must not spend the gift manually`);
 
   /*
@@ -42,10 +72,8 @@ for (const relativeFile of screens) {
    * Без него автосброс молча выходит на первой строке, попытки не
    * восстанавливаются и человек остаётся на мёртвом кадре без выхода.
    */
-  const autoResetCall = source.slice(source.indexOf('useSessionAttemptAutoReset({'));
-  const autoResetArgs = autoResetCall.slice(0, autoResetCall.indexOf('});') + 3);
   assert.ok(
-    /hydrated:/.test(autoResetArgs),
+    /hydrated:/.test(autoResetArguments(source, relativeFile)),
     `${relativeFile}: useSessionAttemptAutoReset без hydrated — попытки не восстановятся, экран зависнет`,
   );
 }

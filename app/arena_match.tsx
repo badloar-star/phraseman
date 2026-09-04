@@ -179,6 +179,23 @@ function ArenaMatchGenerationScreen({
     | { kind: 'settleStuck' }
     | null
   >(null);
+  /**
+   * Круг ожидания результата: растёт ТОЛЬКО по кнопке «остаться».
+   *
+   * зачем: сторож зависания должен предложить выход один раз, а не всплывать
+   * каждые 30 секунд. Пока номер показанного круга догоняет текущий, новый
+   * таймер не заводится; явное «подожду ещё» открывает следующий круг.
+   */
+  const [settleStuckRound, setSettleStuckRound] = useState(0);
+  const settleStuckShownRef = useRef(0);
+  /**
+   * Значения доставки ТОЛЬКО для диагностики сторожа.
+   *
+   * зачем: держать их в зависимостях эффекта нельзя (перезаводили бы таймер на
+   * каждом ретрае), но в логе они нужны — без них непонятно, ждал ли отчёт
+   * очереди или уже ушёл. Ref обновляется на рендере и всегда актуален.
+   */
+  const settleStuckDebugRef = useRef({ finishQueued: false, sent: false });
   // Высота строки числом не растёт вместе с системным шрифтом: при крупном
   // кегле объяснения наезжали строка на строку. См. use_arena_font_scale.
   const fontScale = useArenaFontScale();
@@ -268,6 +285,8 @@ function ArenaMatchGenerationScreen({
   const finishIntro = useCallback(() => setIntroDone(true), []);
   const [sent, setSent] = useState(false);
   const [finishQueued, setFinishQueued] = useState(false);
+  // Зеркало для лога сторожа: сами значения в его зависимостях стоять не могут.
+  settleStuckDebugRef.current = { finishQueued, sent };
   /**
    * Косметика входа — платная. При переписывании экрана она чуть не пропала:
    * раньше она красила карточку принятия дуэли, а карточки больше нет — дуэль
@@ -659,17 +678,28 @@ function ArenaMatchGenerationScreen({
     if (!active) return undefined;
     if (match?.state.phase !== 'finished' || !finalScoreReady) return undefined;
     if (resultOpenedRef.current || matchAlert !== null) return undefined;
+    // зачем (аудит 2026-09-03): сторож заводится ЗАНОВО только после явного
+    // «остаться» (там счётчик растёт). Без этого закрытие окна свайпом сбрасывало
+    // matchAlert в null, эффект перезапускался, и окно возвращалось каждые 30
+    // секунд — человек не мог от него отделаться, пока сеть молчит.
+    if (settleStuckShownRef.current !== settleStuckRound) return undefined;
     const timer = setTimeout(() => {
       if (!mountedRef.current || resultOpenedRef.current) return;
+      settleStuckShownRef.current = settleStuckRound + 1;
       DebugLogger.error(
         '[ARENA-SETTLE]',
-        `сцена сверки висит ${ARENA_SETTLE_STUCK_MS}мс: match=${String(matchId)} mode=${String(plan?.mode)} finishQueued=${String(finishQueued)} sent=${String(sent)} — показываем выход`,
+        `сцена сверки висит ${ARENA_SETTLE_STUCK_MS}мс: match=${String(matchId)} mode=${String(plan?.mode)} finishQueued=${String(settleStuckDebugRef.current.finishQueued)} sent=${String(settleStuckDebugRef.current.sent)} круг=${String(settleStuckRound)} — показываем выход`,
         'critical',
       );
       setMatchAlert({ kind: 'settleStuck' });
     }, ARENA_SETTLE_STUCK_MS);
     return () => clearTimeout(timer);
-  }, [active, finalScoreReady, finishQueued, match?.state.phase, matchAlert, matchId, plan?.mode, sent]);
+    // зачем (аудит 2026-09-03): finishQueued и sent НАМЕРЕННО не в зависимостях.
+    // Они меняются именно в том сценарии, ради которого написан сторож (ретраи
+    // доставки щёлкают их true↔false), и каждая смена перезаводила таймер с нуля —
+    // предохранитель мог не сработать никогда. Для лога их значения берутся из
+    // ref, чтобы диагностика осталась точной, а отсчёт — непрерывным.
+  }, [active, finalScoreReady, match?.state.phase, matchAlert, matchId, plan?.mode, settleStuckRound]);
 
   useEffect(() => {
     if (!active || !finishQueued || !matchId) return undefined;
@@ -1062,7 +1092,7 @@ function ArenaMatchGenerationScreen({
               нормальный экран результата с наградой. */}
           <DuoPressable
             testID="arena-match-settle-stuck-wait"
-            onPress={() => setMatchAlert(null)}
+            onPress={() => { setMatchAlert(null); setSettleStuckRound((round) => round + 1); }}
             edgeColor={t.bgSurface2}
             style={[styles.alertSecondary, { backgroundColor: t.bgSurface2 }]}
           >
@@ -1204,15 +1234,13 @@ function ArenaMatchGenerationScreen({
        * нельзя, это стоило бы человеку матча.
        */
       headerRight={(
-        <View ref={runeFlight.counterRef} collapsable={false}>
-          <RuneBalanceChip
-            testID="arena-match-runes"
-            color={P.gold}
-            size={22}
-            active={active}
-            interactive={false}
-          />
-        </View>
+        <RuneBalanceChip
+          testID="arena-match-runes"
+          color={P.gold}
+          size={22}
+          active={active}
+          interactive={false}
+        />
       )}
       /* Полёт рун живёт НАД экраном: внутри styles.question он обрезался бы
          границами карточки вопроса и не долетал до счётчика в шапке. */
@@ -1226,7 +1254,20 @@ function ArenaMatchGenerationScreen({
         />
       ) : null}
     >
-      <ArenaPlayers compact={immersive} players={players} active={active} animateScore answeredUid={rivalAnsweredUid} answeredLabel={arenaText(lang, 'rivalMovedA11y')} />
+      {/* зачем (аудит 2026-09-03): руна летит в СЧЁТ МАТЧА — он растёт от
+          каждого верного ответа тут же. Раньше она летела в кошелёк, где число
+          не менялось до экрана результата: восемь обещаний за матч, ни одного
+          выполненного. Общее заработанное сервер показывает в конце. */}
+      <ArenaPlayers
+        compact={immersive}
+        players={players}
+        active={active}
+        animateScore
+        answeredUid={rivalAnsweredUid}
+        answeredLabel={arenaText(lang, 'rivalMovedA11y')}
+        viewerScoreRef={runeFlight.counterRef}
+        viewerUid={plan?.viewerSeat ?? null}
+      />
       <V2Segments
         total={hud.taskCount}
         done={match.state.phase === 'finished' ? hud.taskCount : Math.max(0, hud.taskOrdinal - 1)}
@@ -1356,10 +1397,19 @@ const styles = StyleSheet.create({
   clockNote: { gap: 2, paddingHorizontal: 8 },
   intro: { flex: 1 },
   question: { flex: 1, justifyContent: 'center', gap: 10 },
-  // зачем: обёртка нужна только чтобы измерить карточку для полёта рун. Она
-  // обязана быть прозрачной для раскладки — иначе карточка перестанет
-  // растягиваться внутри styles.question и вопрос «схлопнется» вверх экрана.
-  questionCard: { flex: 1, minHeight: 0 },
+  /*
+   * Обёртка существует ТОЛЬКО чтобы измерить карточку для полёта рун.
+   *
+   * зачем `flexShrink` вместо `flex: 1` (аудит 2026-09-03): родитель
+   * `styles.question` центрирует детей через `justifyContent: 'center'`, а это
+   * работает лишь пока никто не забрал всё свободное место. С `flex: 1` обёртка
+   * растягивалась на всю высоту, центрирование переставало действовать, и режим
+   * вариантов (`ArenaQuestion.styles.body` — без flex) прижимался к ВЕРХУ.
+   * `flexShrink: 1` оставляет раскладку ровно такой, какой она была до обёртки:
+   * растягивающиеся режимы (matching/builder с `immersiveScroll: flex 1`) тянутся
+   * сами изнутри, а нерастягивающиеся остаются по центру.
+   */
+  questionCard: { flexShrink: 1, minHeight: 0 },
   hudRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
   hudSide: { flex: 1, alignItems: 'flex-end', gap: 6 },
   timerHole: { width: 84, height: 84 },

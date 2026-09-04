@@ -10,7 +10,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 
 type ArenaDisplayedPlayer = Omit<ArenaPlayer, 'score'> & Readonly<{ score: number | null }>;
 
-function Player({ player, active, animateScore, compact, answered = false, answeredLabel }: { player?: ArenaDisplayedPlayer; active: boolean; animateScore: boolean; compact: boolean; answered?: boolean; answeredLabel?: string }) {
+function Player({ player, active, animateScore, compact, answered = false, answeredLabel, scoreRef }: { player?: ArenaDisplayedPlayer; active: boolean; animateScore: boolean; compact: boolean; answered?: boolean; answeredLabel?: string; scoreRef?: React.Ref<View> }) {
   const P = useTournamentPalette();
   const reduceMotion = useReduceMotion();
   const knownScore = typeof player?.score === 'number' ? player.score : null;
@@ -60,20 +60,38 @@ function Player({ player, active, animateScore, compact, answered = false, answe
       </View>
       {/* Про игрока, которого ещё нет, счёт неизвестен. Ноль здесь — это
           утверждение, а не отсутствие данных. */}
+      {/* Измеряемая обёртка счёта: в него летят руны за правильный ответ.
+          collapsable={false} обязателен — иначе Android схлопнет узел и
+          measureInWindow вернёт нули. Раскладку обёртка не меняет. */}
       {player && knownScore !== null
-        ? <V2Counter value={shownScore} />
+        ? (
+          <View ref={scoreRef} collapsable={false}>
+            <V2Counter value={shownScore} />
+          </View>
+        )
         : <Text style={[styles.name, { color: P.muted }]}>—</Text>}
     </View>
   );
 }
 
-export function ArenaPlayers({ players, active, animateScore = false, compact = false, answeredUid = null, answeredLabel }: { players: readonly ArenaDisplayedPlayer[]; active: boolean; animateScore?: boolean; compact?: boolean; answeredUid?: string | null; answeredLabel?: string }) {
+export function ArenaPlayers({ players, active, animateScore = false, compact = false, answeredUid = null, answeredLabel, viewerScoreRef, viewerUid = null }: { players: readonly ArenaDisplayedPlayer[]; active: boolean; animateScore?: boolean; compact?: boolean; answeredUid?: string | null; answeredLabel?: string;
+  /** Цель полёта рун: счёт СВОЕГО игрока (он и растёт от верных ответов). */
+  viewerScoreRef?: React.Ref<View>;
+  /**
+   * Место зрителя. Обязательно вместе с `viewerScoreRef`: порядок игроков в
+   * плашке зависит от места (`viewerSeat === 'a' ? [you, rival] : [rival, you]`),
+   * поэтому привязка к индексу 0 на месте «b» посадила бы ref на СОПЕРНИКА.
+   */
+  viewerUid?: string | null }) {
   const P = useTournamentPalette();
+  const refFor = (player?: ArenaDisplayedPlayer) => (
+    viewerScoreRef && viewerUid !== null && player?.uid === viewerUid ? viewerScoreRef : undefined
+  );
   return (
     <View style={[styles.root, compact ? styles.rootCompact : null, { backgroundColor: P.elev }]}>
-      <Player player={players[0]} active={active} animateScore={animateScore} compact={compact} answered={Boolean(answeredUid) && players[0]?.uid === answeredUid} answeredLabel={answeredLabel} />
+      <Player player={players[0]} active={active} animateScore={animateScore} compact={compact} answered={Boolean(answeredUid) && players[0]?.uid === answeredUid} answeredLabel={answeredLabel} scoreRef={refFor(players[0])} />
       <Text accessibilityElementsHidden style={[styles.vs, { color: P.accent }]}>VS</Text>
-      <Player player={players[1]} active={active} animateScore={animateScore} compact={compact} answered={Boolean(answeredUid) && players[1]?.uid === answeredUid} answeredLabel={answeredLabel} />
+      <Player player={players[1]} active={active} animateScore={animateScore} compact={compact} answered={Boolean(answeredUid) && players[1]?.uid === answeredUid} answeredLabel={answeredLabel} scoreRef={refFor(players[1])} />
     </View>
   );
 }

@@ -37,6 +37,15 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
   const [giftCount, setGiftCount] = useState(0);
   const [runeBalance, setRuneBalance] = useState<number | null>(null);
   const [hydrated, setHydrated] = useState(false);
+  /**
+   * Достоверен ли прочитанный инвентарь подарков.
+   *
+   * Отдельно от `hydrated` намеренно: `hydrated` отвечает на вопрос «можно ли
+   * уже действовать» (экран обязан ожить даже после сбоя), а этот флаг — на
+   * вопрос «можно ли верить giftCount». Ноль при недостоверном чтении означает
+   * «не знаем», а не «подарка нет», и сжигать за него руны сессии нельзя.
+   */
+  const [inventoryTrusted, setInventoryTrusted] = useState(false);
   const [recoveryBusy, setRecoveryBusy] = useState(false);
   const recoveryBusyRef = useRef(false);
   const [recoveryError, setRecoveryError] = useState<string | null>(null);
@@ -93,7 +102,21 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
         refreshResources(),
       ]);
       if (stored) adoptState(stored);
+      // Инвентарь прочитан — только теперь giftCount отражает реальность.
+      setInventoryTrusted(true);
     } catch (error) {
+      /*
+       * зачем (аудит 2026-09-03): при сбое чтения giftCount остаётся 0, но это
+       * НЕ значит «подарка нет» — значит «мы не знаем». Раньше автосброс
+       * принимал это за отсутствие подарка и СЖИГАЛ заработанные за сессию
+       * руны. Инвариант из док-комментария useSessionAttemptAutoReset —
+       * технические ошибки fail-closed — был невыполним со стороны поставщика.
+       *
+       * `hydrated` при этом поднимается всё равно (ниже, в `finally`): экран
+       * обязан ожить, иначе вернётся то самое зависание. Разницу несёт
+       * отдельный флаг достоверности.
+       */
+      setInventoryTrusted(false);
       setRecoveryError(error instanceof Error ? error.message : 'session_attempts_hydrate_failed');
     } finally {
       setHydrated(true);
@@ -187,6 +210,7 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
     giftCount,
     runeBalance,
     hydrated,
+    inventoryTrusted,
     recoveryBusy,
     recoveryError,
     registerVerdict,

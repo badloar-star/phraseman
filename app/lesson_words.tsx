@@ -3175,6 +3175,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   useSessionAttemptAutoReset({
     phase: attempts.state.phase,
     hydrated: attempts.hydrated,
+    inventoryTrusted: attempts.inventoryTrusted,
     giftCount: attempts.giftCount,
     recoverWithGift: attempts.recoverWithGift,
     forfeitSessionRunes: practiceRunes.forfeitPendingRunes,

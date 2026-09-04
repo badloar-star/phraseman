@@ -1265,6 +1265,7 @@ function LearningV2LegacySessionScreen() {
   useSessionAttemptAutoReset({
     phase: sessionAttempts.state.phase,
     hydrated: sessionAttempts.hydrated,
+    inventoryTrusted: sessionAttempts.inventoryTrusted,
     giftCount: sessionAttempts.giftCount,
     recoverWithGift: sessionAttempts.recoverWithGift,
     forfeitSessionRunes: () => {

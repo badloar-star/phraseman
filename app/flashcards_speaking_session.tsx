@@ -528,8 +528,14 @@ export default function FlashcardsSpeakingSession() {
     setSession((cur) => (cur.phase === 'scored' ? { ...cur, phase: 'idle', attempt: null } : cur));
   }, [clearAdvanceTimer, stopSpeech]);
 
+  // зачем (2026-09-03): без hydrated автосброс молча не запускался и экран
+  // намертво замирал под блокировщиком ввода после трёх ошибок.
   useSessionAttemptAutoReset({
     phase: attempts.state.phase,
+    hydrated: attempts.hydrated,
+    inventoryTrusted: attempts.inventoryTrusted,
+    giftCount: attempts.giftCount,
+    recoverWithGift: attempts.recoverWithGift,
     forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
     restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
     onRestored: resetSpeakingCardAfterSessionRuneForfeit,

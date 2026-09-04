@@ -130,6 +130,7 @@ import {
   type ArenaXpBreakdown,
   type ArenaXpMode,
 } from './arena_xp';
+import { applySuperSundayRuneMultiplier } from '../../modules/economy/super_sunday_runes';
 
 const ARENA_V2_SECRET_NAMES = [
   'ARENA_V2_PAIR_HMAC_KEY',
@@ -1081,6 +1082,7 @@ async function settleMatch(
     dailyRewardMatchesBefore: number;
     sameDay: boolean;
     dailyStarsBefore: number;
+    baseStarsEarned: number;
     starsEarned: number;
     xpEarned: number;
     xpBreakdown?: ArenaXpBreakdown;
@@ -1090,6 +1092,9 @@ async function settleMatch(
     totalXpAfter: number;
     rankChange: ReturnType<typeof arenaApplyRankOutcome>;
     tierRewards: readonly { tierIndex: number; tierKey: string; itemId: string }[];
+    masteryApplied: ReturnType<typeof arenaApplyMasteryObservations>;
+    masteryWalletAward: number;
+    baseMasteryWalletAward: number;
   }>();
 
   const userSnapByUid = new Map<string, admin.firestore.DocumentSnapshot>();
@@ -1119,12 +1124,13 @@ async function settleMatch(
     const dailyRewardMatchesBefore = sameDay
       ? Math.max(0, Math.trunc(Number(seasonData.dailyRewardMatches
         ?? seasonData.dailyEligibleMatches ?? 0))) : 0;
-    const starsEarned = persistentProgressionEnabled && expansionEligibility.baseStars ? arenaSeasonStars({
+    const baseStarsEarned = persistentProgressionEnabled && expansionEligibility.baseStars ? arenaSeasonStars({
       mode: match.mode,
       rawStars: privateDoc.totals[entry.uid]?.rawSeasonStars ?? 0,
       eligibleMatchIndex,
       dailyStarsBefore,
     }) : 0;
+    const starsEarned = applySuperSundayRuneMultiplier(baseStarsEarned, now);
 
     // Дневной потолок опыта живёт полем в уже читаемом и уже записываемом
     // сезонном документе — ноль дополнительных чтений и записей.
@@ -1143,6 +1149,25 @@ async function settleMatch(
       })
       : { xpEarned: 0 };
     const xpEarned = xpReward.xpEarned;
+
+    const evidenceRows = masteryEvidence.get(entry.uid) ?? [];
+    const additions: Partial<Record<ArenaMasteryMode, ReturnType<typeof arenaMasteryObservation>[]>> = {};
+    evidenceRows.forEach(({ snap, task, taskIndex }) => {
+      const seenUntil = Number(snap.data()?.expiresAtMs ?? snap.data()?.expireAt?.toMillis?.() ?? 0);
+      if (snap.exists && seenUntil > now) return;
+      const mode = task.mode as ArenaMasteryMode;
+      additions[mode] = [...(additions[mode] ?? []), arenaMasteryObservation(
+        task, privateDoc.answers[entry.uid]?.[String(taskIndex)] ?? {}, now - taskIndex,
+      )];
+    });
+    const masteryApplied = arenaApplyMasteryObservations({
+      current: existing.profile.mastery as ArenaMasteryProfileState | undefined,
+      additions: privateDoc.expansionFlags?.mastery === true ? additions : {},
+      lifetimeThresholdStars: Number(existing.profile.masteryThresholdStarsLifetime ?? 0),
+    });
+    const baseMasteryWalletAward = privateDoc.expansionFlags?.mastery === true && expansionEligibility.mastery
+      ? masteryApplied.walletAward : 0;
+    const masteryWalletAward = applySuperSundayRuneMultiplier(baseMasteryWalletAward, now);
 
     /**
      * Ранг считается ЗДЕСЬ, в первой фазе, а не при записи профиля.
@@ -1208,6 +1233,18 @@ async function settleMatch(
         },
       });
     }
+    if (masteryWalletAward > 0) {
+      starOps.push({
+        opId: `arena_mastery:${String(match.matchId)}`,
+        delta: masteryWalletAward,
+        reason: 'arena_mastery',
+        sourceKind: 'arena_mastery',
+        sourceId: String(match.matchId),
+        ruleVersion: ARENA_XP_RULE_VERSION,
+        earnedAtMs: now,
+        meta: { thresholds: masteryApplied.newlyClaimed.join(',') },
+      });
+    }
 
     /**
      * Награда за взятый тир (D-63): КОСМЕТИКА, один раз за всю жизнь.
@@ -1246,6 +1283,7 @@ async function settleMatch(
       dailyRewardMatchesBefore,
       sameDay,
       dailyStarsBefore,
+      baseStarsEarned,
       starsEarned,
       xpEarned,
       ...(xpReward.breakdown ? { xpBreakdown: xpReward.breakdown } : {}),
@@ -1253,6 +1291,9 @@ async function settleMatch(
       prepared,
       userPatch: xpPatch?.patch ?? {},
       totalXpAfter: xpPatch?.totalXpAfter ?? 0,
+      masteryApplied,
+      masteryWalletAward,
+      baseMasteryWalletAward,
     });
   }
 
@@ -1305,23 +1346,9 @@ async function settleMatch(
       rollBps,
       pityBefore: profile.spinPity,
     });
-    const additions: Partial<Record<ArenaMasteryMode, ReturnType<typeof arenaMasteryObservation>[]>> = {};
     const evidenceRows = masteryEvidence.get(entry.uid) ?? [];
-    evidenceRows.forEach(({ ref, snap, task, taskIndex }) => {
-      const seenUntil = Number(snap.data()?.expiresAtMs ?? snap.data()?.expireAt?.toMillis?.() ?? 0);
-      if (snap.exists && seenUntil > now) return;
-      const mode = task.mode as ArenaMasteryMode;
-      additions[mode] = [...(additions[mode] ?? []), arenaMasteryObservation(
-        task, privateDoc.answers[entry.uid]?.[String(taskIndex)] ?? {}, now - taskIndex,
-      )];
-    });
-    const masteryApplied = arenaApplyMasteryObservations({
-      current: existing.profile.mastery as ArenaMasteryProfileState | undefined,
-      additions: privateDoc.expansionFlags?.mastery === true ? additions : {},
-      lifetimeThresholdStars: Number(existing.profile.masteryThresholdStarsLifetime ?? 0),
-    });
-    const masteryWalletAward = privateDoc.expansionFlags?.mastery === true && expansionEligibility.mastery
-      ? masteryApplied.walletAward : 0;
+    const masteryApplied = settle.masteryApplied;
+    const masteryWalletAward = settle.masteryWalletAward;
     const walletBefore = Math.max(0, Math.trunc(Number(existing.profile.starWalletBalance ?? 0)));
     const walletRewardEligible = expansionEligibility.baseStars || expansionEligibility.mastery;
     const walletAward = privateDoc.expansionFlags?.wallet === true && walletRewardEligible
@@ -1347,7 +1374,7 @@ async function settleMatch(
       } : {}),
       ...(privateDoc.expansionFlags?.mastery === true && expansionEligibility.mastery ? {
         masteryThresholdStarsLifetime: Math.max(0, Number(existing.profile.masteryThresholdStarsLifetime ?? 0))
-          + masteryWalletAward,
+          + settle.baseMasteryWalletAward,
         mastery: masteryApplied.mastery,
       } : {}),
       activeMatchId: null,
@@ -1369,7 +1396,8 @@ async function settleMatch(
       dailyDayKey: dayKey,
       dailyEligibleMatches: eligibleMatchIndex + (expansionEligibility.baseStars ? 1 : 0),
       dailyRewardMatches: dailyRewardMatchesBefore + (expansionEligibility.spin ? 1 : 0),
-      dailyStarsCredited: dailyStarsBefore + starsEarned,
+      // Promotional runes never consume the ordinary daily earning cap.
+      dailyStarsCredited: dailyStarsBefore + settle.baseStarsEarned,
       // Потолок опыта за сутки хранится здесь же: документ и так читается и
       // пишется, значит счётчик обходится в ноль дополнительных операций.
       dailyXpCredited: settle.dailyXpBefore + settle.xpEarned,
@@ -2851,7 +2879,43 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
   const viewerLabRef = db.collection('users').doc(who.stableUid)
     .collection(ARENA_EXPANSION_COLLECTIONS.matchLabs).doc(matchId);
 
-  const output = await db.runTransaction(async (tx) => {
+  /*
+   * зачем (владелец 2026-09-04, критическая ошибка в багрепорте):
+   * `arena:arenaV2MatchFinish: INTERNAL` приходил на телефон БЕЗ причины.
+   * INTERNAL — это необработанное исключение: все осмысленные отказы функции
+   * бросают явные коды (`not-found`, `failed-precondition`), а всё остальное
+   * превращалось в немой INTERNAL. По логам матча 8ZNSZUgmJcbgMViaq49C видно
+   * последствие: отчёт ушёл в 15:57:29, отказ пришёл через 6 секунд, и матч
+   * остался незакрытым — отсюда же и долгие ожидания результата.
+   *
+   * Перехват НЕ меняет поведение (HttpsError пробрасывается как есть) — он
+   * лишь заставляет неожиданное падение назвать себя в логах сервера.
+   */
+  const output = await runArenaFinishTransaction();
+
+  async function runArenaFinishTransaction() {
+    try {
+      return await arenaFinishTransactionBody();
+    } catch (error) {
+      if (error instanceof HttpsError) throw error;
+      const reason = error instanceof Error ? error.message : String(error);
+      const stack = error instanceof Error ? error.stack : undefined;
+      console.error(JSON.stringify({
+        event: 'arena_v2_match_finish_failed',
+        matchId,
+        reportId,
+        stableUid: who.stableUid,
+        reason,
+        stack,
+      }));
+      // Причина остаётся в логах сервера; клиенту отдаём осмысленный код
+      // вместо голого INTERNAL, чтобы экран мог отличить сбой от отказа.
+      throw new HttpsError('internal', `arena_finish_failed: ${reason}`);
+    }
+  }
+
+  async function arenaFinishTransactionBody() {
+    return db.runTransaction(async (tx) => {
     const [matchSnap, privateSnap, viewerLabSnap] = await Promise.all([
       tx.get(matchRef), tx.get(privateRef), tx.get(viewerLabRef),
     ]);
@@ -2996,7 +3060,8 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
       match, viewerSeat, report: entry, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid],
       viewerReview: viewerLab.tasks,
     };
-  });
+    });
+  }
 
   const settled = output.match.state === 'settled';
   return {

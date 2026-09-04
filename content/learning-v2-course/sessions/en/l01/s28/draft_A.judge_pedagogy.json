@@ -1,0 +1,95 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "broken",
+      "open",
+      "closed",
+      "empty"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "brown/broke — похожие по звуку слова"
+      },
+      {
+        "task": 8,
+        "trap": "open вместо closed — прямая противоположность"
+      },
+      {
+        "task": 13,
+        "trap": "hot вместо cold — прямая противоположность"
+      },
+      {
+        "task": 16,
+        "trap": "cold вместо hot — прямая противоположность"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": [
+      {
+        "task": 7,
+        "quote": "Слышится близко, но начало другое: `closed` — «клоуз», не «клоуз-с»."
+      }
+    ]
+  },
+  "structure": {
+    "task_count": 19,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "broken",
+        "open",
+        "closed",
+        "empty"
+      ],
+      [
+        "cold",
+        "hot",
+        "small",
+        "new"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": false,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 4,
+      "phrase_builder": 3,
+      "context_gap_grammar": 3,
+      "listen_build_dictation": 1,
+      "speed_match": 2,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Заголовок практики обещает 17 заданий, а фактически их 19 с нумерационным артефактом «13а» — расхождение между заявленным и фактическим числом заданий; кроме того слово small из строки «Возвращаются» ни разу не является правильным ответом (нарушение правила ≥1 касания правильным ответом), а new до доски пар встречается только ловушкой."
+}

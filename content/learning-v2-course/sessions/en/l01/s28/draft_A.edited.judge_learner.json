@@ -1,0 +1,99 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — broken",
+      "what_i_understood": "Про сломанную вещь говорят It is broken. I и is не выбрасываются, как хочется по-русски.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос — свет не горит",
+      "what_i_understood": "Выбрал It is broken, отверг It broken (нет is) и It is break (это не то слово).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — open/closed",
+      "what_i_understood": "open — открыто, closed — закрыто. Меняется только последнее слово. opened говорить не надо.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос — окно поддалось",
+      "what_i_understood": "It is open, а не It is opened и не It open.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — empty",
+      "what_i_understood": "empty — пусто, про то что внутри, не про размер. Ударение на первый слог.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос — холодильник пуст",
+      "what_i_understood": "It is empty, не small (размер тут ни при чём) и не empty без is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-11 (карточки, слух, сборка) — broken/open/closed/empty",
+      "what_i_understood": "Отработал все четыре новых слова на слух и в сборке фраз. Задание 7 и 15 хорошо показали разницу closed/cold — там правда похожие звуки, было полезно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — доска пар (новые слова)",
+      "what_i_understood": "Соединил все 4 новых слова с переводом без проблем, только что тренировал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 13, 16, 17, 18 — cold/hot/small/new",
+      "what_i_understood": "Эти слова я не проходил в этой сессии впервые, но они были в задании 19 на доске пар, я их сам вспомнил или угадал по ситуации (горячая батарея = hot, маленькая кладовка = small).",
+      "confusion": "Я не знаю слова cold/hot/small/new заранее — их не было ни в одном интро этой сессии. Про new и small и hot пришлось гадать по описанию ситуации, а не по выученному правилу.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — окно с лишней плиткой not",
+      "what_i_understood": "Понял, что not лишняя, раз окно правда открыто. Логично.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19 — доска пар cold/hot/small/new",
+      "what_i_understood": "Свёл пары, но это слова, которых мне не объясняли в этой сессии — я их не учил здесь, а тут меня заставляют их знать.",
+      "confusion": "cold, hot, small, new не были представлены интро-карточками в этой сессии. Задание предполагает, что я уже их знаю.",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 20 — повтор вслух",
+      "what_i_understood": "Повторил It is broken. It is empty. It is cold. Первые два — из этой сессии, третье (cold) я не учил здесь.",
+      "confusion": "Опять cold без объяснения в этой сессии.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 21 — финал сцены",
+      "what_i_understood": "Собрал It is closed. It is small. Слово small снова не из этой сессии.",
+      "confusion": "small не объяснялось интро-карточкой здесь.",
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "It is broken — говорить про сломанную вещь",
+    "It is open / It is closed — про открыто/закрыто, без хвоста -d у open",
+    "It is empty — про пустоту внутри, а не про размер",
+    "Разница на слух между closed и cold (там правда есть звук з)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с обходом квартиры после работы — понятная и настоящая: свет не горит, окно отходит, холодильник пуст. Легко представить.",
+    "Задание 15 про разницу closed/cold на слух — реально полезно, я бы их правда путал."
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — я хожу по квартире и проверяю вещи, поэтому говорю It is про каждую. Единственный вопрос: зачем в конце сцены (задания 13, 16-21) вдруг понадобились cold/hot/small/new, если про них тут ничего не рассказали — это уже как будто отдельная тема, вклеенная в мою прогулку.",
+  "would_continue": "да, но с осадком — новые слова понял хорошо и структура понятна, только смущает, что почти половина практики (13,16,17,18,19,20,21) держится на словах cold/hot/small/new, которые в ЭТОЙ сессии никто не объяснил",
+  "verdict": "REVISE",
+  "verdict_reason": "Новые слова (broken/open/closed/empty) поданы отлично и понятны, но задания 13, 16, 17, 18, 19, 20, 21 требуют слов cold/hot/small/new без единой карточки-объяснения внутри этой сессии — я как ученик, который начал именно с неё, вынужден либо угадывать по ситуации, либо просто не знать, откуда взялись эти слова."
+}

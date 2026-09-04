@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-28:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i02",
+    "correctText": "broken",
+    "correctResponseId": "en:lesson-01:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i04",
+    "correctText": "open",
+    "correctResponseId": "en:lesson-01:session-28:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i05",
+    "correctText": "It is broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i07",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-01:session-28:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i08",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-01:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i10",
+    "correctText": "empty",
+    "correctResponseId": "en:lesson-01:session-28:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i11",
+    "correctText": "It is empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i12",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i13",
+    "correctText": "cold",
+    "correctResponseId": "en:lesson-01:session-28:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i14",
+    "correctText": "It is open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i15",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-01:session-28:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i16",
+    "correctText": "hot",
+    "correctResponseId": "en:lesson-01:session-28:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i17",
+    "correctText": "small",
+    "correctResponseId": "en:lesson-01:session-28:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i18",
+    "correctText": "new",
+    "correctResponseId": "en:lesson-01:session-28:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i19",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i20",
+    "correctText": "It is broken. It is empty. It is cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-28:i21",
+    "correctText": "It is closed. It is small.",
+    "correctResponseId": null
+  }
+]

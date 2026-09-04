@@ -1,0 +1,91 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "broken",
+      "open",
+      "closed",
+      "empty"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "brown/broke — похожие по звучанию слова"
+      },
+      {
+        "task": 4,
+        "trap": "oven/often — похожие по звучанию слова"
+      },
+      {
+        "task": 8,
+        "trap": "open противоположность, new не по теме"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 21,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "broken",
+        "open",
+        "closed",
+        "empty"
+      ],
+      [
+        "cold",
+        "hot",
+        "small",
+        "new"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s27",
+      "what": "приём «агент/хозяин хвалит квартиру, вы возражаете» не повторён — но структура фраз-разборов «скрепка is/not пропала» почти дословно совпадает с l01_s25 и l01_s26; это ожидаемый паттерн объяснения одной операции, не считаю нарушением"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 4,
+      "phrase_builder": 3,
+      "context_gap_grammar": 4,
+      "listen_build_dictation": 1,
+      "speed_match": 2,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы, честность заданий, повторы и форма соблюдены: новые слова из плана объяснены на страницах интро, возвращаемые слова отработаны до досок пар и хотя бы раз стоят правильным ответом, ловушки реалистичны, фидбек не дублируется, заданий 21 (≥12), пересечений между досками Speed Match нет, ссылок на время обучения и мёртвых формул нет."
+}

@@ -42,6 +42,18 @@ const C = {
   victory: ['Победа', 'Перемога', 'Victory', 'Victoria', 'Vitória', 'Chiến thắng', 'Menang', 'Zafer', 'Zwycięstwo'],
   defeat: ['В этот раз не вышло', 'Цього разу не вийшло', 'Not this time', 'Esta vez no pudo ser', 'Desta vez não deu', 'Lần này chưa được', 'Belum berhasil kali ini', 'Bu kez olmadı', 'Tym razem się nie udało'],
   draw: ['Ничья', 'Нічия', 'Draw', 'Empate', 'Empate', 'Hòa', 'Seri', 'Berabere', 'Remis'],
+  /*
+   * Подстрочник сцены «Дуэль» (владелец 2026-09-04: «если не учитывает —
+   * значит надо учесть и тоже сделать экраны»).
+   *
+   * Три исхода обязаны ощущаться по-разному, а не различаться цветом метки.
+   * Разрыв в очках отвечает на вопрос «насколько», который сам счёт не
+   * проговаривает: «26 против 18» читается дольше, чем «обошёл на 8».
+   * {amount} подставляется числом.
+   */
+  duelLeadBy: ['Ты обошёл на {amount}', 'Ти випередив на {amount}', 'You led by {amount}', 'Ganaste por {amount}', 'Você venceu por {amount}', 'Bạn dẫn {amount}', 'Kamu unggul {amount}', '{amount} farkla öndeydin', 'Wygrałeś o {amount}'],
+  duelShortBy: ['Не хватило {amount}', 'Не вистачило {amount}', 'Short by {amount}', 'Te faltaron {amount}', 'Faltaram {amount}', 'Thiếu {amount}', 'Kurang {amount}', '{amount} eksik kaldı', 'Zabrakło {amount}'],
+  duelEven: ['Равный счёт — звёзды на месте', 'Рівний рахунок — зірки на місці', 'Even score — your stars stay', 'Empate: tus estrellas se quedan', 'Empate — suas estrelas ficam', 'Tỉ số hòa — sao vẫn giữ nguyên', 'Skor imbang — bintangmu tetap', 'Eşit skor — yıldızların yerinde', 'Remis — gwiazdki zostają'],
   cancelledMatch: ['Матч отменён без результата', 'Матч скасовано без результату', 'Match cancelled with no result', 'Partida cancelada sin resultado', 'Partida cancelada sem resultado', 'Trận đấu đã hủy, không có kết quả', 'Laga dibatalkan tanpa hasil', 'Maç sonuçsuz iptal edildi', 'Mecz anulowany bez wyniku'],
   playAgain: ['Играть ещё', 'Грати ще', 'Play again', 'Jugar otra vez', 'Jogar de novo', 'Chơi lại', 'Main lagi', 'Tekrar oyna', 'Zagraj ponownie'],
   home: ['На арену', 'На арену', 'Back to Arena', 'Volver a Arena', 'Voltar à Arena', 'Về Đấu trường', 'Ke Arena', 'Arena’ya dön', 'Do Areny'],

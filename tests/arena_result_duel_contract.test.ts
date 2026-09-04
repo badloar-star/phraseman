@@ -87,6 +87,32 @@ describe('Арена: сцена результата «Дуэль»', () => {
     expect(duel).toContain('tag.value = 1');
   });
 
+  test('у каждого исхода свой характер движения, а не только цвет', () => {
+    // Владелец 2026-09-04: победа, поражение и ничья не должны ощущаться
+    // одинаково. Язык движения общий со звёздным тактом: бьёт / выдыхает / дышит.
+    expect(duel).toContain("outcome === 'win'");
+    expect(duel).toContain("outcome === 'loss'");
+    expect(duel).toContain("outcome === 'draw'");
+    expect(duel).toContain('avatarDip');
+  });
+
+  test('разрыв в счёте проговаривается словами во всех трёх исходах', () => {
+    const copy = read('modules/arena/copy.ts');
+    for (const key of ['duelLeadBy', 'duelShortBy', 'duelEven']) {
+      const line = copy.split(/\r?\n/).find((row) => row.trim().startsWith(`${key}:`));
+      expect(line).toBeDefined();
+      // Девять локалей — иначе часть игроков увидит русский текст.
+      expect((line ?? '').split("', '").length).toBe(9);
+    }
+    expect(screen).toContain('duelLeadBy');
+    expect(screen).toContain('duelShortBy');
+    expect(screen).toContain('duelEven');
+  });
+
+  test('без счёта соперника разрыв не выдумывается', () => {
+    expect(screen).toContain('outcome === null || opponentScore === null ? null');
+  });
+
   test('запреты владельца соблюдены', () => {
     // Обводки контейнеров запрещены: разделяем тоном и скруглением.
     expect(duel).not.toMatch(/borderWidth|borderColor/);

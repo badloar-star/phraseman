@@ -51,6 +51,13 @@ type Props = Readonly<{
   opponentScore: number | null;
   outcome: ArenaResultDuelOutcome;
   outcomeLabel: string | null;
+  /**
+   * Подстрочник под полосой: «обошёл на 8» / «не хватило 7» / «равный счёт».
+   *
+   * зачем: разрыв отвечает на вопрос «насколько», который сами числа не
+   * проговаривают — «26 против 18» читается дольше, чем «обошёл на 8».
+   */
+  leadLabel: string | null;
   reduceMotion: boolean;
   /** Экран владеет runtime: на премаунте таба анимацию не гоняем. */
   active?: boolean;
@@ -79,6 +86,7 @@ export const ArenaResultDuel = memo(function ArenaResultDuel({
   opponentScore,
   outcome,
   outcomeLabel,
+  leadLabel,
   reduceMotion,
   active = true,
 }: Props) {
@@ -87,25 +95,47 @@ export const ArenaResultDuel = memo(function ArenaResultDuel({
 
   const fill = useSharedValue(reduceMotion ? share : 0);
   const tag = useSharedValue(reduceMotion ? 1 : 0);
+  const sub = useSharedValue(reduceMotion ? 1 : 0);
   const avatarPop = useSharedValue(1);
+  /** Просадка аватара при поражении: выдох вниз, а не сжатие. */
+  const avatarDip = useSharedValue(0);
 
   useEffect(() => {
     if (reduceMotion || !active) {
       // Reduced Motion и премаунт получают финальный кадр без движения.
       fill.value = share;
       tag.value = 1;
+      sub.value = 1;
       return;
     }
     fill.value = withTiming(share, { duration: RACE_MS, easing: Easing.out(Easing.cubic) });
     tag.value = withDelay(TAG_DELAY_MS, withTiming(1, { duration: 420 }));
-    // Аватар победителя коротко «выдыхает» ровно в момент объявления исхода.
+    sub.value = withDelay(TAG_DELAY_MS + 220, withTiming(1, { duration: 400 }));
+    /*
+     * У каждого исхода СВОЙ характер движения — цвета метки мало.
+     *
+     * Победа бьёт вверх (толчок), поражение выдыхает вниз (короткая просадка,
+     * без унижения), ничья мягко дышит. Это тот же язык, что у звёздного такта
+     * (`ArenaResultStarBeat`): «победная звезда прилетает и бьёт, потерянная
+     * выдыхает, ничья дышит» — сцены не должны говорить на разных языках.
+     */
     if (outcome === 'win') {
       avatarPop.value = withDelay(TAG_DELAY_MS, withSequence(
-        withTiming(1.12, { duration: 260, easing: Easing.out(Easing.cubic) }),
-        withTiming(1, { duration: 260, easing: Easing.out(Easing.cubic) }),
+        withTiming(1.14, { duration: 260, easing: Easing.out(Easing.cubic) }),
+        withTiming(1, { duration: 280, easing: Easing.out(Easing.cubic) }),
+      ));
+    } else if (outcome === 'loss') {
+      avatarDip.value = withDelay(TAG_DELAY_MS, withSequence(
+        withTiming(5, { duration: 300, easing: Easing.out(Easing.cubic) }),
+        withTiming(0, { duration: 320, easing: Easing.out(Easing.cubic) }),
+      ));
+    } else if (outcome === 'draw') {
+      avatarPop.value = withDelay(TAG_DELAY_MS, withSequence(
+        withTiming(1.05, { duration: 350, easing: Easing.inOut(Easing.quad) }),
+        withTiming(1, { duration: 350, easing: Easing.inOut(Easing.quad) }),
       ));
     }
-  }, [active, avatarPop, fill, outcome, reduceMotion, share, tag]);
+  }, [active, avatarDip, avatarPop, fill, outcome, reduceMotion, share, sub, tag]);
 
   const fillStyle = useAnimatedStyle(() => ({ flexGrow: fill.value }));
   const foeFillStyle = useAnimatedStyle(() => ({ flexGrow: 1 - fill.value }));
@@ -113,7 +143,13 @@ export const ArenaResultDuel = memo(function ArenaResultDuel({
     opacity: tag.value,
     transform: [{ scale: 0.8 + tag.value * 0.2 }],
   }));
-  const viewerAvatarStyle = useAnimatedStyle(() => ({ transform: [{ scale: avatarPop.value }] }));
+  const viewerAvatarStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: avatarPop.value }, { translateY: avatarDip.value }],
+  }));
+  const subStyle = useAnimatedStyle(() => ({
+    opacity: sub.value,
+    transform: [{ translateY: (1 - sub.value) * 6 }],
+  }));
 
   const outcomeColor = outcome === 'win' ? P.accent : outcome === 'loss' ? P.danger : P.muted;
   const outcomeBg = outcome === 'win' ? P.accentSoft : outcome === 'loss' ? P.dangerSoft : P.elev2;
@@ -155,9 +191,14 @@ export const ArenaResultDuel = memo(function ArenaResultDuel({
       </View>
 
       <View style={[styles.bar, { backgroundColor: P.elev2 }]}>
-        <Animated.View style={[styles.fill, { backgroundColor: P.accent }, fillStyle]} />
+        <Animated.View style={[styles.fill, { backgroundColor: outcomeColor }, fillStyle]} />
         <Animated.View style={[styles.fill, styles.fillFoe, { backgroundColor: P.muted }, foeFillStyle]} />
       </View>
+
+      {/* Разрыв словами: «26 против 18» читается дольше, чем «обошёл на 8». */}
+      {leadLabel ? (
+        <Animated.Text style={[styles.lead, { color: P.muted }, subStyle]}>{leadLabel}</Animated.Text>
+      ) : null}
     </View>
   );
 });
@@ -172,6 +213,7 @@ const styles = StyleSheet.create({
   name: { alignSelf: 'stretch', textAlign: 'center', fontSize: 12, fontWeight: '800' },
   points: { fontSize: 34, fontWeight: '900', fontVariant: ['tabular-nums'], letterSpacing: -1 },
   vs: { minWidth: 40, textAlign: 'center', fontSize: 13, fontWeight: '900', letterSpacing: 1 },
+  lead: { textAlign: 'center', fontSize: 12, fontWeight: '700' },
   bar: { height: 8, borderRadius: 99, overflow: 'hidden', flexDirection: 'row' },
   fill: { height: '100%', flexBasis: 0 },
   fillFoe: { opacity: 0.55 },

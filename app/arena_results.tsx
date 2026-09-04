@@ -530,6 +530,11 @@ export default function ArenaResultsScreen() {
       outcome,
       outcomeLabel: outcome === null ? null
         : arenaText(lang, outcome === 'win' ? 'victory' : outcome === 'loss' ? 'defeat' : 'draw'),
+      // Разрыв словами. Без известного счёта соперника его считать не из чего.
+      leadLabel: outcome === null || opponentScore === null ? null
+        : outcome === 'draw' ? arenaText(lang, 'duelEven')
+          : arenaText(lang, outcome === 'win' ? 'duelLeadBy' : 'duelShortBy')
+            .replace('{amount}', String(Math.abs(viewerScore - opponentScore))),
     };
   }, [effectiveViewerSeat, lang, match?.state, players, winner]);
   // Оба счёта докручиваются ОДНОВРЕМЕННО — в этом и есть гонка.
@@ -708,6 +713,7 @@ export default function ArenaResultsScreen() {
           opponentScore={duel.opponentScore}
           outcome={duel.outcome}
           outcomeLabel={duel.outcomeLabel}
+          leadLabel={duel.leadLabel}
           reduceMotion={reduceMotion}
           active={active}
         />

@@ -27,7 +27,6 @@ import { ArenaTimerRing } from '../components/arena/ArenaTimerRing';
 import { ArenaComboMeter } from '../components/arena/ArenaComboMeter';
 import { ArenaStarFlight } from '../components/arena/ArenaStarFlight';
 import { ArenaVersusIntro } from '../components/arena/ArenaVersusIntro';
-import { ArenaFinalScoreCount } from '../components/arena/ArenaFinalScoreCount';
 import { V2Cta, V2Segments } from '../components/ui/v2_ui';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useTournamentPalette, v2motion } from '../components/ui/v2_theme';
@@ -90,7 +89,6 @@ import {
 } from '../modules/arena/result_handoff';
 import { arenaResultPreview } from '../modules/arena/result_preview';
 import { arenaFinishRetryDelay } from '../modules/arena/finish_retry';
-import { ARENA_FINAL_SCORE_COUNT_MS } from '../modules/arena/final_score_count';
 import { arenaViewerRankIndex, arenaViewerSeasonStarsFallback } from '../modules/arena/rank_matchmaking_visual';
 
 /**
@@ -110,18 +108,15 @@ import { arenaViewerRankIndex, arenaViewerSeasonStarsFallback } from '../modules
  * Строки «Сервер проверяет ответ…» здесь больше нет и быть не может.
  */
 /**
- * Сколько ждём сервер, прежде чем открыть результат по локальному итогу.
+ * Задержка страховочного перехода на результат.
  *
- * зачем 8 секунд (владелец 2026-09-04: «просто ничего не должно зависать»):
- * ждать все три ретрая доставки (1.5 + 4.5 + 16 = 22 с) человек не станет —
- * он считает экран зависшим гораздо раньше. Восьми секунд хватает нормальному
- * ответу сервера, а дальше показывать пустую сцену уже незачем: матч посчитан
- * на устройстве, экран результата откроется с настоящим счётом.
- *
- * Ретраи при этом НЕ прекращаются: отчёт лежит в outbox, награда и ранг
- * догонят и заменят предпросмотр авторитетными числами.
+ * зачем 300 мс, а не секунды (владелец 2026-09-04: «кто кого будет ждать 8
+ * секунд?»): это НЕ ожидание сервера. Ждать нечего — счёт ведётся по ходу
+ * матча, а сцены сверки больше не существует. Пауза нужна ровно на один-два
+ * кадра, чтобы основной переход (`openPreviewResult`) успел отработать и
+ * результат не открылся дважды.
  */
-const ARENA_SETTLE_STUCK_MS = 8_000;
+const ARENA_SETTLE_STUCK_MS = 300;
 
 type ArenaMatchRouteParams = { matchId?: string; prepared?: string; viewerStars?: string };
 type ArenaCoherentResult = Readonly<{
@@ -400,29 +395,21 @@ function ArenaMatchGenerationScreen({
     opponentTicks,
   });
 
-  const [finalScoreReady, setFinalScoreReady] = useState(false);
-  const finalScoreReadyRef = useRef(false);
+  /*
+   * Сцена «Сверяем результат…» УДАЛЕНА (владелец 2026-09-04: «убери этот экран
+   * вообще который зависает, показывай сразу экран результата»).
+   *
+   * Зачем её не стало. Между последним заданием и результатом стояла пауза
+   * `ARENA_FINAL_SCORE_COUNT_MS` с флагом `finalScoreReady`, и за этим флагом
+   * были заперты ВСЕ три пути перехода. Пока он не поднимался, экран не мог
+   * открыть результат ничем — это и был мёртвый кадр.
+   *
+   * Ждать было нечего: счёт ведётся по ходу матча (`state.matchStars` растёт с
+   * каждым ответом и виден в плашке игроков), исход считается локально тем же
+   * движком, что и на сервере. Награда и ранг догоняют уже НА экране результата
+   * и заменяют предпросмотр авторитетными числами.
+   */
   const pendingCoherentResultRef = useRef<ArenaCoherentResult | null>(null);
-  useEffect(() => {
-    if (match?.state.phase !== 'finished') {
-      finalScoreReadyRef.current = false;
-      setFinalScoreReady(false);
-      return undefined;
-    }
-    if (finalScoreReadyRef.current) return undefined;
-
-    if (reduceMotion) {
-      finalScoreReadyRef.current = true;
-      setFinalScoreReady(true);
-      return undefined;
-    }
-
-    const timer = setTimeout(() => {
-      finalScoreReadyRef.current = true;
-      setFinalScoreReady(true);
-    }, ARENA_FINAL_SCORE_COUNT_MS);
-    return () => clearTimeout(timer);
-  }, [match?.state.phase, reduceMotion]);
 
   /* ---- публикация своего хода: одна запись на задание, не больше ---- */
   const publishedRef = useRef<number[]>([]);
@@ -485,12 +472,8 @@ function ArenaMatchGenerationScreen({
       viewerSeat: response.viewerSeat,
       ...(response.viewerReward ? { viewerReward: response.viewerReward } : {}),
     });
-    // Локальный счёт уже известен и должен успеть проявиться до перехода.
-    // Авторитетный снимок и награда при этом сохранены выше без задержки.
-    if (!finalScoreReadyRef.current) {
-      pendingCoherentResultRef.current = response;
-      return true;
-    }
+    // Ответ сервера больше НЕ откладывается: сцены ожидания нет, откладывать
+    // нечего. Снимок с наградой уже записан выше, переходим сразу.
     pendingCoherentResultRef.current = null;
     // зачем (2026-08-23): экран результата мог открыться РАНЬШЕ этого ответа —
     // по локальному итогу, чтобы игрок не ждал сеть. Тогда переходить некуда,
@@ -533,22 +516,18 @@ function ArenaMatchGenerationScreen({
       DebugLogger.warn('[ARENA-SETTLE]', `preview early return: hasMatchId=${String(Boolean(matchId))} hasPlan=${String(Boolean(plan))} hasScope=${String(Boolean(planScope))} hasAccount=${String(Boolean(resultAccount))} alreadyOpened=${String(resultOpenedRef.current)}`);
       return;
     }
-    if (!finalScoreReadyRef.current) {
-      DebugLogger.warn('[ARENA-SETTLE]', 'preview early return: финальный счёт ещё не досчитан (finalScoreReady=false)');
-      return;
-    }
     if (!mountedRef.current || !isCurrentAccountGeneration(resultAccount, planScope.stableUid)) {
       DebugLogger.warn('[ARENA-SETTLE]', `preview early return: mounted=${String(mountedRef.current)} sameAccount=${String(isCurrentAccountGeneration(resultAccount, planScope.stableUid))}`);
       return;
     }
-    // Быстрый матч намеренно исключён: его кульминация — сцена начисления XP
-    // (`ResultsSequence`), и она рисуется только по ответу сервера. Открыть
-    // сначала черновой кадр, а потом подменить его целой сценой — заметный
-    // скачок, который хуже короткого ожидания.
-    if (plan.mode === 'quick') {
-      DebugLogger.warn('[ARENA-SETTLE]', 'preview early return: режим quick — предпросмотр отключён намеренно, ЖДЁМ ТОЛЬКО СЕРВЕР');
-      return;
-    }
+    /*
+     * Быстрый матч больше НЕ исключается (владелец 2026-09-04).
+     *
+     * Раньше он ждал сервер ради сцены начисления XP — и именно он висел
+     * намертво, когда ответа не было. Экран результата умеет показать
+     * предпросмотр и заменить его серверными числами, когда те придут; это
+     * несравнимо лучше пустого кадра без выхода.
+     */
     // Сдача из предпросмотра исключена в самом модуле (`arenaResultPreview`).
     const preview = match ? arenaResultPreview(plan, match.state) : null;
     if (!preview) {
@@ -571,11 +550,6 @@ function ArenaMatchGenerationScreen({
     } as never);
   }, [match, matchId, plan, planScope, router]);
 
-  useEffect(() => {
-    if (!finalScoreReady) return;
-    const pending = pendingCoherentResultRef.current;
-    if (pending) openCoherentResult(pending);
-  }, [finalScoreReady, openCoherentResult]);
 
   const handleFinishDelivery = useCallback((delivery:
     | ArenaFinishDeliveryResult<ArenaMatchFinishResponse>
@@ -690,9 +664,9 @@ function ArenaMatchGenerationScreen({
    * предпросмотр, когда ответ сервера приедет (`openCoherentResult`).
    */
   useEffect(() => {
-    if (match?.state.phase !== 'finished' || !finalScoreReady) return;
+    if (match?.state.phase !== 'finished') return;
     openPreviewResult();
-  }, [finalScoreReady, match?.state.phase, openPreviewResult]);
+  }, [match?.state.phase, openPreviewResult]);
 
   /**
    * Последняя линия: открыть НАСТОЯЩИЙ экран результата, когда сервер молчит.
@@ -741,41 +715,33 @@ function ArenaMatchGenerationScreen({
   /**
    * Сторож зависания сцены «Сверяем результат…».
    *
-   * зачем (владелец 2026-09-04: «должен быть правильный экран результата как
-   * был, просто ничего не должно зависать»): экран НЕ показывает окно с выходом
-   * и не бросает человека — он открывает НАСТОЯЩИЙ экран результата по
-   * локальному итогу, ровно тот же, что и всегда.
+   * зачем (владелец 2026-09-04: «убери зависание, показывай сразу экран
+   * результата»): страховка на случай, когда основной путь не сработал —
+   * например `arenaResultPreview` не построился из-за неожиданного состояния.
    *
-   * Матч считается на устройстве, поэтому свой счёт, счёт соперника и исход
-   * известны без сервера. Сервер нужен только для наград и ранга — они догонят
-   * и заменят предпросмотр авторитетными числами (`openCoherentResult` кладёт
-   * снимок даже на уже открытый экран). Отчёт при этом лежит в outbox и будет
-   * доставлен, так что награда не теряется.
-   *
-   * Быстрый матч (`quick`) обычным путём ждёт сервер намеренно — его кульминация
-   * серверная сцена XP. Но «намеренно ждёт» не значит «ждёт вечно»: если ответа
-   * нет и после ретраев, показать локальный результат честнее, чем мёртвый кадр.
+   * Ожидания здесь БОЛЬШЕ НЕТ: сцены сверки не существует, счёт известен по
+   * ходу матча, ждать нечего. Крошечная задержка нужна лишь чтобы дать
+   * основному пути (`openPreviewResult`) отработать в том же кадре и не
+   * открыть результат дважды.
    */
   useEffect(() => {
     if (!active) return undefined;
-    if (match?.state.phase !== 'finished' || !finalScoreReady) return undefined;
+    if (match?.state.phase !== 'finished') return undefined;
     if (resultOpenedRef.current) return undefined;
     const timer = setTimeout(() => {
       if (!mountedRef.current || resultOpenedRef.current) return;
       DebugLogger.error(
         '[ARENA-SETTLE]',
-        `сервер молчит ${ARENA_SETTLE_STUCK_MS}мс: match=${String(matchId)} mode=${String(plan?.mode)} finishQueued=${String(settleStuckDebugRef.current.finishQueued)} sent=${String(settleStuckDebugRef.current.sent)} — открываем результат по локальному итогу`,
+        `основной переход не сработал: match=${String(matchId)} mode=${String(plan?.mode)} finishQueued=${String(settleStuckDebugRef.current.finishQueued)} sent=${String(settleStuckDebugRef.current.sent)} — открываем результат страховкой`,
         'critical',
       );
       openResultFallback();
     }, ARENA_SETTLE_STUCK_MS);
     return () => clearTimeout(timer);
     // зачем (аудит 2026-09-03): finishQueued и sent НАМЕРЕННО не в зависимостях.
-    // Они меняются именно в том сценарии, ради которого написан сторож (ретраи
-    // доставки щёлкают их true↔false), и каждая смена перезаводила таймер с нуля —
-    // предохранитель мог не сработать никогда. Для лога их значения берутся из
-    // ref, чтобы диагностика осталась точной, а отсчёт — непрерывным.
-  }, [active, finalScoreReady, match?.state.phase, matchId, openResultFallback, plan?.mode]);
+    // Они меняются при ретраях доставки, и каждая смена перезаводила бы таймер.
+    // Для лога их значения берутся из ref — диагностика точная, отсчёт непрерывный.
+  }, [active, match?.state.phase, matchId, openResultFallback, plan?.mode]);
 
   useEffect(() => {
     if (!active || !finishQueued || !matchId) return undefined;
@@ -925,10 +891,6 @@ function ArenaMatchGenerationScreen({
     rivalToldRef.current = match.state.taskIndex;
     playSound('opponentAnswered');
   }, [hud?.opponent.kind, match, playSound]);
-
-  const onFinalScoreBeat = useCallback(() => {
-    playSound('starLand');
-  }, [playSound]);
 
   const finishedTask = match?.state.phase === 'finished' && plan
     ? plan.tasks[Math.min(match.state.taskIndex, plan.tasks.length - 1)] ?? null
@@ -1322,13 +1284,13 @@ function ArenaMatchGenerationScreen({
         style={styles.matchProgress}
       />
 
-      {match.state.phase === 'finished' ? (
-        <ArenaFinalScoreCount
-          score={match.state.matchStars}
-          reduceMotion={reduceMotion}
-          onBeat={onFinalScoreBeat}
-        />
-      ) : visibleTask ? (
+      {/*
+        зачем (владелец 2026-09-04: «убери этот экран вообще который зависает»):
+        сцены «Сверяем результат…» больше НЕТ. Матч закончился — экран результата
+        открывается тем же кадром, показывать промежуточный кадр незачем и
+        именно он зависал. `null` здесь живёт доли секунды до навигации.
+      */}
+      {match.state.phase === 'finished' ? null : visibleTask ? (
         <Animated.View
           key={visibleTask.taskId}
           entering={immersive ? undefined : reduceMotion ? FadeIn.duration(120) : SlideInRight.duration(v2motion.taskSwapMs)}
@@ -1380,20 +1342,26 @@ function ArenaMatchGenerationScreen({
           ) : null}
 
           {taskRenderable ? (
-            // Измеряемый узел-источник полёта рун: глифы стартуют от карточки
-            // ответа и летят в счётчик в шапке. collapsable={false} обязателен —
-            // без него Android схлопывает обёртку и measureInWindow не работает.
-            <View ref={runeFlight.originRef} collapsable={false} style={styles.questionCard}>
-              <ArenaQuestion
-                task={arenaPlanTaskToPublic(visibleTask)}
-                locked={!hud.interactive}
-                verdict={answerVerdict && answerVerdict.taskIndex === hud.task?.taskIndex
-                  ? (answerVerdict.correct ? 'correct' : 'wrong') : null}
-                submitLabel={arenaText(lang, 'submit')}
-                onSubmit={onSubmit}
-                onSpeedAttempt={onSpeedAttempt}
-              />
-            </View>
+            /*
+             * зачем (владелец 2026-09-04: «пустоты пошли, что ты сделал»):
+             * здесь стояла ОБЁРТКА <View> ради измерения точки старта полёта
+             * рун. Любой её стиль ломал раскладку вопроса: с `flex: 1` карточка
+             * прижималась к верху, с `flexShrink` — схлопывалась в пустоту.
+             * Обёртка удалена НАВСЕГДА: вопрос — главное на экране, и ради
+             * декоративной анимации его вёрстку трогать нельзя.
+             *
+             * Полёт рун стартует от центра экрана (см. runeFlight.fly в
+             * onSubmit) — точка старта не требует лишнего узла в дереве.
+             */
+            <ArenaQuestion
+              task={arenaPlanTaskToPublic(visibleTask)}
+              locked={!hud.interactive}
+              verdict={answerVerdict && answerVerdict.taskIndex === hud.task?.taskIndex
+                ? (answerVerdict.correct ? 'correct' : 'wrong') : null}
+              submitLabel={arenaText(lang, 'submit')}
+              onSubmit={onSubmit}
+              onSpeedAttempt={onSpeedAttempt}
+            />
           ) : (
             <View style={styles.center}>
               <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, titleLine, { color: P.text }]}>
@@ -1445,19 +1413,6 @@ const styles = StyleSheet.create({
   clockNote: { gap: 2, paddingHorizontal: 8 },
   intro: { flex: 1 },
   question: { flex: 1, justifyContent: 'center', gap: 10 },
-  /*
-   * Обёртка существует ТОЛЬКО чтобы измерить карточку для полёта рун.
-   *
-   * зачем `flexShrink` вместо `flex: 1` (аудит 2026-09-03): родитель
-   * `styles.question` центрирует детей через `justifyContent: 'center'`, а это
-   * работает лишь пока никто не забрал всё свободное место. С `flex: 1` обёртка
-   * растягивалась на всю высоту, центрирование переставало действовать, и режим
-   * вариантов (`ArenaQuestion.styles.body` — без flex) прижимался к ВЕРХУ.
-   * `flexShrink: 1` оставляет раскладку ровно такой, какой она была до обёртки:
-   * растягивающиеся режимы (matching/builder с `immersiveScroll: flex 1`) тянутся
-   * сами изнутри, а нерастягивающиеся остаются по центру.
-   */
-  questionCard: { flexShrink: 1, minHeight: 0 },
   hudRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
   hudSide: { flex: 1, alignItems: 'flex-end', gap: 6 },
   timerHole: { width: 84, height: 84 },

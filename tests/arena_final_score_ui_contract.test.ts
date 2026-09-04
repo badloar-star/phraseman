@@ -1,3 +1,19 @@
+/**
+ * Сцена «Сверяем результат…» УДАЛЕНА — и не должна вернуться.
+ *
+ * История. Между последним заданием и экраном результата стояла пауза с
+ * count-up счётом и флагом `finalScoreReady`. За этим флагом были заперты ВСЕ
+ * пути перехода: пока он не поднимался, экран не мог открыть результат ничем —
+ * это и был мёртвый кадр, на который владелец жаловался четыре раза подряд
+ * (2026-09-03 → 2026-09-04: «сверка результата не начинается», «убери этот
+ * экран вообще который зависает, показывай сразу экран результата»).
+ *
+ * Ждать было нечего: счёт ведётся ПО ХОДУ матча (`state.matchStars` растёт с
+ * каждым ответом и виден в плашке игроков), исход считается локально тем же
+ * движком, что и на сервере. Награда и ранг догоняют уже на экране результата.
+ *
+ * Этот файл раньше сторожил саму сцену. Теперь он сторожит её отсутствие.
+ */
 import fs from 'fs';
 import path from 'path';
 
@@ -6,62 +22,45 @@ const read = (relativePath: string) => fs.readFileSync(
   'utf8',
 );
 
-describe('Arena final score wait', () => {
-  test('the focused count scene uses local score, bounded beats, and existing motion policy', () => {
-    const component = read('components/arena/ArenaFinalScoreCount.tsx');
+describe('Арена: промежуточной сцены между матчем и результатом нет', () => {
+  const match = read('app/arena_match.tsx');
 
-    expect(component).toContain('arenaFinalScoreBeatValues');
-    expect(component).toContain('useCountUp');
-    expect(component).toContain('reduceMotion');
-    // зачем (D-85, владелец 2026-09-03): сцена считает РУНЫ матча, поэтому
-    // рядом с числом стоит ассет руны из общего валютного UI. Звезда ранга
-    // отсюда убрана намеренно — она обозначает деления тира, а не валюту.
-    expect(component).toContain('RUNE_ASSET');
-    expect(component).not.toContain('ArenaStarGlyph');
-    expect(component).toContain('entering={reduceMotion ? undefined : FadeIn.duration(220)}');
-    expect(component).toContain('entering={reduceMotion ? undefined : ZoomIn.springify().damping(16)}');
-    /*
-     * Сцена по-прежнему НЕ знает о кошельке и серверных наградах: она рисует
-     * только локально посчитанные руны матча.
-     *
-     * Из проверки исключён путь ассета `level-spin-rewards/...`: слово там —
-     * часть имени папки с картинками, а не обращение к награде. Сам запрет на
-     * `reward` как поле/значение остаётся (см. вторую строку).
-     */
-    const withoutAssetPath = component.replace(/level-spin-rewards/g, '');
-    expect(withoutAssetPath).not.toMatch(/wallet|balance|starsEarned|xpEarned|reward/i);
+  test('экран матча не показывает сцену подсчёта и не ждёт её готовности', () => {
+    expect(match).not.toContain('<ArenaFinalScoreCount');
+    // Флаг-задержка был корнем зависания: любая его проверка запирает переход.
+    expect(match).not.toContain('finalScoreReadyRef.current');
+    expect(match).not.toMatch(/\bfinalScoreReady\b\s*(\)|&|\?|,)/);
   });
 
-  test('the match screen replaces the finished question with local score counting', () => {
-    const match = read('app/arena_match.tsx');
-
-    expect(match).toContain('<ArenaFinalScoreCount');
-    expect(match).toContain("match.state.phase === 'finished'");
-    expect(match).toContain("playSound('starLand')");
+  test('матч закончился — переход к результату запускается сразу', () => {
+    const start = match.indexOf("if (match?.state.phase !== 'finished') return;");
+    expect(start).toBeGreaterThan(-1);
+    // Единственное условие перехода — что матч закончился. Никаких таймеров.
+    const effect = match.slice(start, start + 220);
+    expect(effect).toContain('openPreviewResult()');
   });
 
-  test('navigation waits, while result readiness and handoff stay authoritative', () => {
-    const match = read('app/arena_match.tsx');
+  test('быстрый матч больше не исключён из локального открытия результата', () => {
+    // Раньше `if (plan.mode === 'quick') return;` оставлял quick ждать сервер —
+    // и именно он висел намертво, когда ответа не было.
+    expect(match).not.toContain("if (plan.mode === 'quick') return;");
+  });
 
-    expect(match).toContain('pendingCoherentResultRef');
-    expect(match).toContain('finalScoreReadyRef');
-    expect(match.indexOf('arenaRememberResultHandoff'))
-      .toBeLessThan(match.indexOf('if (!finalScoreReadyRef.current)'));
+  test('страховочный переход срабатывает почти мгновенно, а не через секунды', () => {
+    const threshold = match.match(/const ARENA_SETTLE_STUCK_MS = ([\d_]+);/);
+    expect(threshold).not.toBeNull();
+    const ms = Number((threshold?.[1] ?? '').replace(/_/g, ''));
+    // Это не ожидание сервера, а защита от двойного открытия: доли секунды.
+    expect(ms).toBeLessThanOrEqual(1_000);
+  });
+
+  test('снимок для результата по-прежнему кладётся до перехода', () => {
+    // Без снимка экран результата откроется пустым — это отдельный класс бага.
+    expect(match).toContain('arenaRememberResultHandoff');
     expect(match).toContain('arenaResultHandoffReady');
-    expect(match).toContain('openPreviewResult');
   });
 
-  test('changing Reduced Motion cannot erase an already queued quick result', () => {
-    const match = read('app/arena_match.tsx');
-    const readinessStart = match.indexOf('const [finalScoreReady');
-    const readinessEnd = match.indexOf('/* ---- публикация своего хода', readinessStart);
-    const readiness = match.slice(readinessStart, readinessEnd);
-
-    expect(readiness).toContain('pendingCoherentResultRef');
-    expect(readiness).not.toContain('pendingCoherentResultRef.current = null');
-  });
-
-  test('quick mode still owns its existing authoritative ResultsSequence', () => {
+  test('быстрый матч сохраняет свою серверную сцену начисления на результате', () => {
     expect(read('app/arena_results.tsx')).toContain('<ResultsSequence');
   });
 });

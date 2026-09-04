@@ -27,14 +27,14 @@ const read = (relativePath: string) => fs.readFileSync(
 describe('Арена: сцена сверки не зависает', () => {
   const match = read('app/arena_match.tsx');
 
-  test('есть предохранитель по времени, и он ждёт разумно недолго', () => {
+  test('страховка есть и не превращается в ожидание', () => {
     const threshold = match.match(/const ARENA_SETTLE_STUCK_MS = ([\d_]+);/);
     expect(threshold).not.toBeNull();
     const ms = Number((threshold?.[1] ?? '').replace(/_/g, ''));
-    // Верхняя граница — человек считает экран зависшим гораздо раньше, чем
-    // отработают все три ретрая доставки (1.5 + 4.5 + 16 = 22 с).
-    expect(ms).toBeGreaterThanOrEqual(3_000);
-    expect(ms).toBeLessThanOrEqual(15_000);
+    // Это НЕ ожидание сервера (владелец: «кто кого будет ждать 8 секунд?»), а
+    // защита от двойного открытия результата: один-два кадра, не больше.
+    expect(ms).toBeGreaterThan(0);
+    expect(ms).toBeLessThanOrEqual(1_000);
   });
 
   test('предохранитель открывает экран результата, а не окно с выходом', () => {

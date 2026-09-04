@@ -1,0 +1,75 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "safe",
+      "warm",
+      "dry",
+      "ready"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 5,
+        "trap": "am вместо are — типичная путаница I/you"
+      },
+      {
+        "task": 12,
+        "trap": "not вставлен туда, где по сцене его быть не должно"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "safe",
+        "warm",
+        "dry",
+        "ready"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      12
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 3,
+      "phrase_builder": 2,
+      "context_gap_grammar": 4,
+      "listen_build_dictation": 2,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "BLOCK",
+  "verdict_reason": "Слово `lost` из плана заявлено как возвращаемое, но в машинных фактах 0 касаний в практике — оно физически отсутствует в сессии, при этом сессия называется «lost, scared, cold» как возвращаемые слова, а `lost` нигде не встречается."
+}

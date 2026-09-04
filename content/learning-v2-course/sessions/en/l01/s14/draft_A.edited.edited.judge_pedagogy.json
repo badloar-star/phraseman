@@ -1,0 +1,80 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "safe",
+      "warm",
+      "dry",
+      "ready"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 6,
+        "trap": "You are lost — правдоподобная альтернатива по сцене"
+      },
+      {
+        "task": 11,
+        "trap": "am/is вместо are — типичная путаница скреп"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 18,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "safe",
+        "warm",
+        "dry",
+        "ready"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s13",
+      "what": "структура интро «слово → правило про скрепку» повторяется по форме, но это требование Конституции (строение страницы), не дефект контента; сама фраза/шутка не совпадает"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 2,
+      "phrase_builder": 2,
+      "context_gap_grammar": 5,
+      "listen_build_dictation": 2,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы соблюдены (safe/warm/dry/ready новые, lost/scared/cold возвращены с достаточным числом касаний), структура и механики по плану, ловушки реалистичны, повторов с соседними сессиями по содержанию нет."
+}

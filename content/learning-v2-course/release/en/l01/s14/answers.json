@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-14:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i02",
+    "correctText": "safe",
+    "correctResponseId": "en:lesson-01:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i04",
+    "correctText": "warm",
+    "correctResponseId": "en:lesson-01:session-14:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i05",
+    "correctText": "You are safe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i06",
+    "correctText": "lost",
+    "correctResponseId": "en:lesson-01:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i08",
+    "correctText": "dry",
+    "correctResponseId": "en:lesson-01:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i10",
+    "correctText": "dry",
+    "correctResponseId": "en:lesson-01:session-14:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i11",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i12",
+    "correctText": "You are warm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i13",
+    "correctText": "You are ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i15",
+    "correctText": "cold",
+    "correctResponseId": "en:lesson-01:session-14:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i16",
+    "correctText": "scared",
+    "correctResponseId": "en:lesson-01:session-14:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i17",
+    "correctText": "You are cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-14:i18",
+    "correctText": "You are safe. You are dry. You are warm. You are ready.",
+    "correctResponseId": null
+  }
+]

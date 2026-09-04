@@ -97,8 +97,20 @@ export function ArenaPlayers({ players, active, animateScore = false, compact = 
 }
 
 const styles = StyleSheet.create({
-  root: { width: '100%', minHeight: 86, borderRadius: 22, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12, gap: 10 },
-  rootCompact: { minHeight: 72, borderRadius: 18, paddingHorizontal: 10, gap: 6 },
+  /*
+   * зачем `overflow: 'visible'` и увеличенные боковые отступы (владелец
+   * 2026-09-04: «уменьши размер плашки при анимации, потому что обрезание
+   * есть»): счётчик при начислении делает bump `scale: 1.28`, а отметка
+   * «ответил» въезжает через `ZoomIn` и сидит на углу аватара абсолютом
+   * (`right: -2`). На узком экране (357pt контента) увеличенное число и угловая
+   * отметка упирались в край плашки и срезались.
+   *
+   * Плашка сама по себе не сжимается — сжимать её значит терять читаемость
+   * счёта. Вместо этого содержимое получает запас по краям, а сама плашка не
+   * обрезает то, что вылезло за её границы во время анимации.
+   */
+  root: { width: '100%', minHeight: 86, borderRadius: 22, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, gap: 10, overflow: 'visible' },
+  rootCompact: { minHeight: 72, borderRadius: 18, paddingHorizontal: 14, gap: 6 },
   player: { minHeight: 48, flex: 1, flexDirection: 'row', alignItems: 'center', gap: 7, minWidth: 0 },
   playerCompact: { gap: 5 },
   identity: { flex: 1, minWidth: 0, alignItems: 'center', justifyContent: 'center', gap: 3 },

@@ -973,6 +973,25 @@ function ArenaMatchGenerationScreen({
     [visibleTask],
   );
 
+  /*
+   * Диагностика пустого экрана посреди матча (владелец 2026-09-04, скриншот
+   * 4/8 без задания).
+   *
+   * Пустота возникает, когда `visibleTask` пуст при живом матче. Причин
+   * несколько, и по кадру их не различить: HUD ещё не отдал задание, план
+   * короче счётчика заданий, или разбор задания признал его нерисуемым.
+   * Печатаем ВСЕ значения, которые это решают.
+   */
+  useEffect(() => {
+    if (!match || match.state.phase === 'finished') return;
+    if (visibleTask) return;
+    DebugLogger.error(
+      '[ARENA-TASK]',
+      `ПУСТОЙ ЭКРАН: задания нет при живом матче — фаза=${match.state.phase} индекс=${String(match.state.taskIndex)} заданийВплане=${String(plan?.tasks.length)} hudЕсть=${String(Boolean(hud))} hudTask=${String(Boolean(hud?.task))} рисуемо=${String(taskRenderable)} match=${String(matchId)}`,
+      'critical',
+    );
+  }, [hud, match, matchId, plan?.tasks.length, taskRenderable, visibleTask]);
+
   // Сломанное задание закрывается как пропущенное — ровно один раз на задание.
   const brokenReportedRef = useRef<number | null>(null);
   useEffect(() => {
@@ -1399,7 +1418,26 @@ function ArenaMatchGenerationScreen({
 
           {hud.starsToFly > 0 ? <ArenaStarFlight amount={hud.starsToFly} /> : null}
         </Animated.View>
-      ) : null}
+      ) : (
+        /*
+         * ПУСТОЙ ЭКРАН БОЛЬШЕ НЕ ДОПУСКАЕТСЯ (владелец 2026-09-04: «пустоты
+         * пошли», скриншот 4/8 со спиннером и без задания).
+         *
+         * Здесь стояло голое `: null`. Когда задание не пришло — HUD ещё не
+         * отдал его или план короче счётчика — экран рисовал НИЧЕГО: ни вопроса,
+         * ни объяснения, ни выхода. Человек видел пустоту посреди матча и не
+         * понимал, ждать ему или всё сломалось.
+         *
+         * Теперь честное состояние ожидания с той же живой строкой, что и на
+         * других экранах, плюс лог с причиной: без него класс бага «задание не
+         * пришло» оставался невидимым.
+         */
+        <View style={styles.center}>
+          <Text accessibilityLiveRegion="polite" style={[styles.failureHint, hintLine, { color: P.muted }]}>
+            {arenaText(lang, 'preparing')}
+          </Text>
+        </View>
+      )}
     </ArenaScreen>
   );
 }

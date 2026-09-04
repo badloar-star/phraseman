@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-30:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i02",
+    "correctText": "busy",
+    "correctResponseId": "en:lesson-01:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i04",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-30:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i05",
+    "correctText": "busy",
+    "correctResponseId": "en:lesson-01:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i06",
+    "correctText": "It is quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i08",
+    "correctText": "loud",
+    "correctResponseId": "en:lesson-01:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i10",
+    "correctText": "free",
+    "correctResponseId": "en:lesson-01:session-30:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i12",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-30:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i13",
+    "correctText": "It is free.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i14",
+    "correctText": "open",
+    "correctResponseId": "en:lesson-01:session-30:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i15",
+    "correctText": "small",
+    "correctResponseId": "en:lesson-01:session-30:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i16",
+    "correctText": "It is closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-30:i17",
+    "correctText": "It is loud. It is quiet.",
+    "correctResponseId": null
+  }
+]

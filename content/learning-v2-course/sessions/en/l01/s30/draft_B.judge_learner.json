@@ -1,0 +1,124 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — busy",
+      "what_i_understood": "busy — это когда где-то полно народу, не только про занятого человека. Говорим It is busy — про место, куда показывает it. Скрепка is обязательна, нельзя сказать It busy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 1 (полное кафе)",
+      "what_i_understood": "Выбрал It is busy. Понял, почему It busy и It are busy — неправильно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — quiet / loud",
+      "what_i_understood": "quiet — тихо, loud — громко. Оба говорим про то место, где стою, через It is. quiet читается как два слога, не растягиваю u отдельно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 2 (шумный автобус)",
+      "what_i_understood": "Выбрал It is loud. Понял разницу с quiet и почему просто Is loud без It не годится.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — free",
+      "what_i_understood": "free — свободно (место не занято), и тем же словом можно сказать «бесплатно». Фраза та же: It is free.",
+      "confusion": "Не до конца понял, как отличать 'свободно' от 'бесплатно' в реальном разговоре — но для этой сессии, кажется, это и не проверяется, так что не критично.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 3 (пустой столик)",
+      "what_i_understood": "Выбрал It is free.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (busy, quiet карточки и слух)",
+      "what_i_understood": "Смог отличить busy/quiet на слух от похожих слов-ловушек (bus, bee, white, queen).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (вставьте слово — очередь до двери)",
+      "what_i_understood": "Выбрал busy, а не quiet или small — они явно не подходят по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (соберите 'тут тихо')",
+      "what_i_understood": "Собрал It is quiet. Заметил лишнюю плитку are и не взял её.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 7-10 (loud, free карточки и слух)",
+      "what_i_understood": "Разобрался со звучанием loud и free, отличил от three/tree/lot/low.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (доска пар)",
+      "what_i_understood": "Соединил все 4 слова с переводом без ошибок — они уже отработаны раньше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (пустой тихий зал)",
+      "what_i_understood": "Выбрал quiet, а не loud/busy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (соберите 'столик свободен')",
+      "what_i_understood": "Собрал It is free, не взял лишнюю are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (дверь нараспашку)",
+      "what_i_understood": "Выбрал open — вспомнил это слово из предыдущих уроков (тут оно подано просто как вариант, без отсылок).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (тесно и тепло от печи)",
+      "what_i_understood": "Нужно два слова сразу: small и warm. Догадался по смыслу описания.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (диктант 'уже закрыто')",
+      "what_i_understood": "Собрал It is closed по слуху, не перепутал с open.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (говорю вслух про кафе и улицу)",
+      "what_i_understood": "Сказал It is loud. It is quiet. — про переход из шумного кафе на тихую улицу. Понятно, зачем я это говорю: я реально описываю разницу мест.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Говорить It is + слово про место (не только про человека): It is busy, It is quiet, It is loud, It is free",
+    "Слово busy может значить не только 'занят(а)', но и 'людно' про место",
+    "Слово free может значить и 'свободно', и 'бесплатно'",
+    "На слух отличать quiet от похожих слов и не тянуть в нём лишний звук",
+    "Отличать loud/quiet как противоположности в описании места"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Задание 17 — реально произносишь две фразы подряд, повторяя движение из кафе на улицу, ощущается как настоящий разговор, а не абстрактное упражнение",
+    "Интро 3 про 'free' — понравилось, что коротко и по делу объяснили два значения одного слова без лишних выдумок"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно. Я стою в конкретном кафе, потом иду по улице, потом еду в автобусе, и говорю про то место, где нахожусь сейчас. Каждый раз ясно, что именно я описываю и зачем — это не абстрактные фразы в пустоте.",
+  "would_continue": "Да, хочу продолжить — сессия короткая, слова понятные, задания разной сложности и без надуманных красивостей, ничего не пришлось перечитывать дважды.",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно без незнакомых слов в правильных ответах, узнал новое про It is для мест и два новых способа употребить busy и free, сцена понятна на всех этапах."
+}

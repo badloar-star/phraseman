@@ -1,0 +1,161 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (busy)",
+      "what_i_understood": "Есть слово busy — «занято, людно». Про место говорят It is busy, потому что It — это «оно», и скрепку is пропускать нельзя.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 1: в кафе нет свободных столиков, что ответить",
+      "what_i_understood": "Ответил It is busy. — совпало с верным.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (quiet/loud)",
+      "what_i_understood": "quiet — тихо, loud — громко. Порядок всегда It is + слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 2: автобус гудит, спутник кричит «как тут?»",
+      "what_i_understood": "Ответил It is loud. — верно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (free)",
+      "what_i_understood": "free — свободно (про стул) или бесплатно (про счёт), смысл понятен из разговора.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 3: пустой столик у окна",
+      "what_i_understood": "Ответил It is free. — верно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 карточка busy",
+      "what_i_understood": "Занято/людно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 слух busy",
+      "what_i_understood": "Выбрал busy, не спутал с bus/bee.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 карточка quiet",
+      "what_i_understood": "Тихо.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 слух quiet",
+      "what_i_understood": "Выбрал quiet.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 вставьте слово (очередь до двери)",
+      "what_i_understood": "Выбрал busy, а не quiet/small.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 сборка «тут тихо»",
+      "what_i_understood": "Собрал It is quiet., отбросил лишнюю плитку are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 карточка loud",
+      "what_i_understood": "Громко.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 слух loud",
+      "what_i_understood": "Выбрал loud, не lot/low.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 карточка free",
+      "what_i_understood": "Свободно/бесплатно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 слух free",
+      "what_i_understood": "Выбрал free.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 пары",
+      "what_i_understood": "Соединил все 4 пары без проблем — слова уже отработаны.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 вставьте слово (тихая песня, никого нет)",
+      "what_i_understood": "Выбрал quiet, не loud/warm.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 сборка «столик свободен»",
+      "what_i_understood": "Собрал It is free., отбросил are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 вставьте слово (дверь нараспашку)",
+      "what_i_understood": "Выбрал open — это слово я уже знал с прошлых сессий, тут просто повтор.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 вставьте слово (четыре стола вплотную)",
+      "what_i_understood": "Выбрал small — тоже знакомое слово, не спутал с loud/free.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 диктант «уже закрыто»",
+      "what_i_understood": "Собрал It is closed., отбросил open.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 говорю вслух про зал и улицу",
+      "what_i_understood": "Сказал It is loud. про зал позади и It is quiet. про улицу впереди — понятно, зачем две разные фразы про два разных места одновременно.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово busy в значении «людно» (не только «занят делом»)",
+    "Слово quiet — тихо",
+    "Слово loud — громко",
+    "Слово free — свободно / бесплатно, два значения одного слова",
+    "Что It is используется для мест (кафе, улица, автобус), а не только для предметов",
+    "Что в одной фразе можно сравнить два соседних места (It is loud. It is quiet.) в естественной ситуации — стоя в дверях"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Задание 17 — стоять в дверях кафе и сказать про шум позади и тишину впереди сразу; понятно, зачем это говорить и кому (себе, отмечая контраст), реальная ситуация из жизни",
+    "Объяснение free с двойным смыслом (свободно/бесплатно) — коротко и по делу, без лишних слов"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: спутник в кафе/на улице/в автобусе спрашивает «как тут?», и я отвечаю одной фразой про место вокруг. К каждому заданию есть маленькая ситуация (очередь у двери, гудящий автобус, пустой столик), так что ясно, кому и зачем я это говорю.",
+  "would_continue": "да — слова простые, примеры не выдуманы ради красоты, задание 17 в конце было интересным, и я ни разу не застрял на непонятном",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий выполнимы известными мне словами и грамматикой, я узнал 4 новых слова и понял, зачем и кому я говорю фразы, сессия не скучная."
+}

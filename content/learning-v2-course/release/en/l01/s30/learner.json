@@ -1,0 +1,965 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-30:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — busy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — busy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:i01:audio",
+          "transcript": "busy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:i01:r1",
+            "targetText": "busy",
+            "meaningByLocale": {
+              "ru": "«занято, людно». Про место — очередь, гул, ни одного свободного стула.",
+              "uk": "«зайнято, людно». Про місце — черга, гул, жодного вільного стільця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "busy",
+          "definitionByLocale": {
+            "ru": "«занято, людно». Про место — очередь, гул, ни одного свободного стула.",
+            "uk": "«зайнято, людно». Про місце — черга, гул, жодного вільного стільця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-30:i02:r1",
+          "text": "busy"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i02:r2",
+          "text": "bus"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i02:r3",
+          "text": "bee"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — busy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:i02:audio",
+          "transcript": "busy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:i02:r1",
+            "targetText": "busy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i02:r2",
+            "targetText": "bus",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i02:r3",
+            "targetText": "bee",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — busy",
+            "feedbackByLocale": {
+              "ru": "«Автобус». Хвост «-зи» обрублен.",
+              "uk": "«Автобус». Хвіст «-зі» обрубаний."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — busy",
+            "feedbackByLocale": {
+              "ru": "Один слог. `busy` — два: «би-зи».",
+              "uk": "Один склад. `busy` — два: «бі-зі»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — quiet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — quiet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:i03:audio",
+          "transcript": "quiet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:i03:r1",
+            "targetText": "quiet",
+            "meaningByLocale": {
+              "ru": "«тихо». Никто не кричит, слышно, как закрывается дверь.",
+              "uk": "«тихо». Ніхто не кричить, чути, як зачиняються двері."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quiet",
+          "definitionByLocale": {
+            "ru": "«тихо». Никто не кричит, слышно, как закрывается дверь.",
+            "uk": "«тихо». Ніхто не кричить, чути, як зачиняються двері."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-30:i04:r1",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i04:r2",
+          "text": "white"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i04:r3",
+          "text": "queen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — quiet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:i04:audio",
+          "transcript": "quiet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:i04:r1",
+            "targetText": "quiet",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i04:r2",
+            "targetText": "white",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i04:r3",
+            "targetText": "queen",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — quiet",
+            "feedbackByLocale": {
+              "ru": "Похожий хвост, но начало другое. `quiet` начинается на «ку».",
+              "uk": "Схожий хвіст, але початок інший. `quiet` починається на «ку»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — quiet",
+            "feedbackByLocale": {
+              "ru": "Начало то же, дальше расходятся. `quiet` — два слога.",
+              "uk": "Початок той самий, далі розходяться. `quiet` — два склади."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спутник спрашивает про кафе, а там очередь до двери",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-30:i05:r1",
+          "text": "busy"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i05:r2",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i05:r3",
+          "text": "small"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спутник спрашивает про кафе, а там очередь до двери",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спутник спрашивает про кафе, а там очередь до двери",
+          "uk": "Вставте слово — супутник питає про кав'ярню, а там черга до дверей"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i05:r1",
+            "text": "busy"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i05:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i05:r3",
+            "text": "small"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спутник спрашивает про ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i05:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спутник спрашивает про ",
+            "feedbackByLocale": {
+              "ru": "«Тихо» — но там очередь и гул.",
+              "uk": "«Тихо» — але там черга і гул."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спутник спрашивает про ",
+            "feedbackByLocale": {
+              "ru": "«Маленькое» — про размер, а вы говорите про толпу.",
+              "uk": "«Маленька» — про розмір, а ви говорите про натовп."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «тут тихо»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «тут тихо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is quiet.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «тут тихо»",
+          "uk": "Складіть фразу — «тут тихо»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "quiet"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — loud",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — loud",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:i07:audio",
+          "transcript": "loud"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:i07:r1",
+            "targetText": "loud",
+            "meaningByLocale": {
+              "ru": "«громко». Приходится повышать голос, чтобы вас услышали рядом.",
+              "uk": "«гучно». Доводиться підвищувати голос, щоб вас почули поруч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loud",
+          "definitionByLocale": {
+            "ru": "«громко». Приходится повышать голос, чтобы вас услышали рядом.",
+            "uk": "«гучно». Доводиться підвищувати голос, щоб вас почули поруч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-30:i08:r1",
+          "text": "loud"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i08:r2",
+          "text": "lot"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i08:r3",
+          "text": "low"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — loud",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:i08:audio",
+          "transcript": "loud"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:i08:r1",
+            "targetText": "loud",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i08:r2",
+            "targetText": "lot",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i08:r3",
+            "targetText": "low",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i08:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — loud",
+            "feedbackByLocale": {
+              "ru": "Конец другой. В `loud` слышно «-ауд».",
+              "uk": "Кінець інший. У `loud` чути «-ауд»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — loud",
+            "feedbackByLocale": {
+              "ru": "Без «-д» на конце. `loud` заканчивается на «д».",
+              "uk": "Без «-д» на кінці. `loud` закінчується на «д»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — free",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — free",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:i09:audio",
+          "transcript": "free"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:i09:r1",
+            "targetText": "free",
+            "meaningByLocale": {
+              "ru": "«свободно». А ещё «бесплатно» — то же слово, два значения.",
+              "uk": "«вільно». А ще «безкоштовно» — те саме слово, два значення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "free",
+          "definitionByLocale": {
+            "ru": "«свободно». А ещё «бесплатно» — то же слово, два значения.",
+            "uk": "«вільно». А ще «безкоштовно» — те саме слово, два значення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-30:i10:r1",
+          "text": "free"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i10:r2",
+          "text": "three"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i10:r3",
+          "text": "tree"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — free",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:i10:audio",
+          "transcript": "free"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-30:i10:r1",
+            "targetText": "free",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i10:r2",
+            "targetText": "three",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i10:r3",
+            "targetText": "tree",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i10:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — free",
+            "feedbackByLocale": {
+              "ru": "Начинается не так: язык между зубами, а в `free` — губы и «ф».",
+              "uk": "Починається не так: язик між зубами, а в `free` — губи і «ф»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — free",
+            "feedbackByLocale": {
+              "ru": "«Дерево». Первый звук «т», а нужен «ф».",
+              "uk": "«Дерево». Перший звук «т», а потрібен «ф»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-30:i11:p1",
+            "target": "busy",
+            "meaningByLocale": {
+              "ru": "людно",
+              "uk": "людно"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-30:i11:p2",
+            "target": "quiet",
+            "meaningByLocale": {
+              "ru": "тихо",
+              "uk": "тихо"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-30:i11:p3",
+            "target": "loud",
+            "meaningByLocale": {
+              "ru": "громко",
+              "uk": "гучно"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-30:i11:p4",
+            "target": "free",
+            "meaningByLocale": {
+              "ru": "свободно",
+              "uk": "вільно"
+            }
+          }
+        ],
+        "leftColumn": [
+          "busy",
+          "quiet",
+          "loud",
+          "free"
+        ],
+        "rightColumn": [
+          "людно",
+          "тихо",
+          "громко",
+          "свободно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в кафе никого, играет одна тихая песня",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-30:i12:r1",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i12:r2",
+          "text": "loud"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i12:r3",
+          "text": "warm"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в кафе никого, играет одна тихая песня",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в кафе никого, играет одна тихая песня",
+          "uk": "Вставте слово — у кав'ярні нікого, грає одна тиха пісня"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i12:r1",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i12:r2",
+            "text": "loud"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i12:r3",
+            "text": "warm"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в кафе никого, играет о",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i12:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в кафе никого, играет о",
+            "feedbackByLocale": {
+              "ru": "«Громко» — а там одна тихая песня и пустой зал.",
+              "uk": "«Гучно» — а там одна тиха пісня і порожня зала."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в кафе никого, играет о",
+            "feedbackByLocale": {
+              "ru": "«Тепло» — про печку, а вы говорите про тишину.",
+              "uk": "«Тепло» — про грубку, а ви говорите про тишу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «столик свободен», среди плиток чужая скрепка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «столик свободен», среди плиток чужая скрепка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is free.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «столик свободен», среди плиток чужая скрепка",
+          "uk": "Складіть фразу — «столик вільний», серед плиток чужа скріпка"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "free"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спутник спрашивает, работает ли кафе. Дверь нараспашку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-30:i14:r1",
+          "text": "open"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i14:r2",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i14:r3",
+          "text": "free"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спутник спрашивает, работает ли кафе. Дверь нараспашку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спутник спрашивает, работает ли кафе. Дверь нараспашку",
+          "uk": "Вставте слово — супутник питає, чи працює кав'ярня. Двері навстіж"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i14:r1",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i14:r2",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i14:r3",
+            "text": "free"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спутник спрашивает, раб",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i14:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спутник спрашивает, раб",
+            "feedbackByLocale": {
+              "ru": "«Закрыто» — а дверь как раз открыта.",
+              "uk": "«Зачинено» — а двері якраз відчинені."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спутник спрашивает, раб",
+            "feedbackByLocale": {
+              "ru": "«Свободно» — про столик, а вы говорите про само кафе.",
+              "uk": "«Вільно» — про столик, а ви говорите про саму кав'ярню."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в кафе всего четыре стола, и они стоят вплотную",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-30:i15:r1",
+          "text": "small"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i15:r2",
+          "text": "loud"
+        },
+        {
+          "responseId": "en:lesson-01:session-30:i15:r3",
+          "text": "free"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в кафе всего четыре стола, и они стоят вплотную",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в кафе всего четыре стола, и они стоят вплотную",
+          "uk": "Вставте слово — у кав'ярні тісно, чотири столи, і від печі йде тепло"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-30:i15:r1",
+            "text": "small"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i15:r2",
+            "text": "loud"
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i15:r3",
+            "text": "free"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в кафе всего четыре сто",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i15:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в кафе всего четыре сто",
+            "feedbackByLocale": {
+              "ru": "Про шум, а вы говорите про размер.",
+              "uk": ""
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в кафе всего четыре сто",
+            "feedbackByLocale": {
+              "ru": "«Свободно» — про то, есть ли место за столиком. А тут про само кафе.",
+              "uk": "Про шум, а в цій фразі про розмір і тепло."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «уже закрыто»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «уже закрыто»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:i16:audio",
+          "transcript": "It is closed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is closed.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "closed"
+        ],
+        "authoredDistractorTokens": [
+          "open"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-30:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы стоите в дверях кафе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы стоите в дверях кафе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-30:i17:audio",
+          "transcript": "It is loud. It is quiet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is loud. It is quiet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b7737998fc697e6046645f612ab2fed5d7485a14b6ce60314dd3a3f642fb0f2c"
+}

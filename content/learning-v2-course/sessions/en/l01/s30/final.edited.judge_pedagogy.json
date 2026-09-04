@@ -1,0 +1,77 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "busy",
+      "quiet",
+      "loud",
+      "free"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "bus/bee вместо busy — похожие по звучанию слова"
+      },
+      {
+        "task": 6,
+        "trap": "чужая скрепка are в плитках"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "busy",
+        "quiet",
+        "loud",
+        "free"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      6,
+      13,
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 4,
+      "context_gap_grammar": 4,
+      "phrase_builder": 2,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "warm (задание 12) касается практики 3 раза, но ни разу не становится правильным ответом — по самопроверке файла это же отмечено как проблема; кроме того, машинные факты показывают small с одним правильным касанием из четырёх — оба возвращаемых слова недоотработаны как цель, а не только как ловушка."
+}

@@ -1,0 +1,81 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про вещи говорим `it`. Чайник — вещь, значит `it is heavy`, даже если по-русски я бы сказал «он тяжёлый».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про мужчину — `he`, скрепка всё равно `is`, как и у `it`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Слово-признак (clean/dirty) не меняется никогда, меняется только то, что перед ним — `it is` или `he is`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-4 (heavy/light карточки+слух)",
+      "what_i_understood": "Выучил два новых слова и на слух их отличаю от похожих (happy/hurry, late/like).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5-6",
+      "what_i_understood": "Собрал `It is heavy`, потом выбрал `light`, а не `heavy` (обратное) и не `small` (это про размер, а не вес) — понял разницу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-10 (clean/dirty)",
+      "what_i_understood": "Новые слова, различил на слух dirty от thirty и dirt, вставил clean для вымытой тарелки.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11-13",
+      "what_i_understood": "Про человека-мужчину выбрал `He`, а не `It`/`She`. Собрал `She is kind`, лишняя плитка `It` не подошла, потому что речь о человеке. Продиктовал `It is dirty`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14-15",
+      "what_i_understood": "Стул с висящей ножкой — `broken`, а не про грязь и не про вес. Маленькая комната — `small`, а не тяжёлая и не грязная.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (доска пар)",
+      "what_i_understood": "Свёл все 4 новых слова с переводом — heavy/light/clean/dirty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Сказал подряд про чайник, плиту, сестру и себя, используя it/she/he правильно: It is heavy. It is dirty. She is kind. He is tired.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Про любую вещь говорю `it`, даже если по-русски у слова «мужской» или «женский» род (чайник = it, а не he)",
+    "Про мужчину — `he`, про женщину — `she`, но скрепка всегда одна и та же — `is`",
+    "Слово-признак (heavy, light, clean, dirty) никогда не меняет форму, к нему ничего не приклеивается",
+    "Новые слова: heavy (тяжёлый), light (лёгкий), clean (чистый), dirty (грязный)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с переездом в новую квартиру и соседом, который комментирует вещи — понятно, зачем я это говорю: реально показываю на предметы и на человека",
+    "Задание 17 в конце, где подряд идут чайник/плита/сестра/сам сосед — приятно проверить себя без подсказок"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: я на кухне, разбираю вещи с соседом, и он то показывает на предмет (чайник, плита, стул, комната), то на человека (сестра, сам себя). Каждая фраза — реакция на то, что он показывает.",
+  "would_continue": "да — задания понятные, слова разные, ловушки логичные (например 'heavy' vs 'small' — я реально должен подумать про смысл, а не угадать), под конец приятно собрать всё вместе без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "Всё было понятно с нуля, ловушки объяснены по смыслу, я выучил новые слова и правило it/he/she, и было ясно, зачем я говорю каждую фразу."
+}

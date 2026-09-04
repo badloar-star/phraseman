@@ -1,0 +1,145 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про любую вещь (не человека) говорят 'it'. heavy = тяжёлый. Про чайник, который тяжёлый, надо сказать 'It is heavy.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про мужчину — 'he', про женщину — 'she', 'is' одинаковое для he/she/it. tired = устал. Сосед сел на пол уставший — 'He is tired.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Слово-признак (clean/dirty) не меняется, меняется только 'It is' или 'He is' перед ним. dirty = грязный. Про плиту — 'It is dirty.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1-2 heavy",
+      "what_i_understood": "Выучил слово heavy и отличил его на слух от похожих happy/hurry",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3-4 light",
+      "what_i_understood": "light = лёгкий, отличил от late/like на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 сборка",
+      "what_i_understood": "Собрал 'It is heavy.' из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 вставка",
+      "what_i_understood": "Пустая коробка — лёгкая, выбрал light, а не heavy/small",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7-8 clean/dirty",
+      "what_i_understood": "clean = чистый, dirty = грязный",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 слух dirty",
+      "what_i_understood": "Отличил dirty от dirt и duty",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 вставка",
+      "what_i_understood": "Вымытая тарелка — clean, а не dirty/broken",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 вставка He/It/She",
+      "what_i_understood": "Сосед-мужчина устал — 'He is tired.', не It (вещь) и не She (женщина)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 вставка small",
+      "what_i_understood": "Маленькая коробка — small, а не clean/tired (те не про размер)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 диктант",
+      "what_i_understood": "Собрал 'It is dirty.' по звуку, не взял лишнюю плитку He",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 вставка broken",
+      "what_i_understood": "Сломанный стул — broken, а не clean/light",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 вставка kind",
+      "what_i_understood": "Про сестру соседа, которая помогала — она добрая, kind, не clean/small",
+      "confusion": "Не совсем понял, откуда я знаю слово kind — оно не было дано в этой сессии как карточка",
+      "could_answer_question": false
+    },
+    {
+      "step": "16 сборка kind",
+      "what_i_understood": "Собрал 'She is kind.', отбросил лишнюю плитку It",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 пары",
+      "what_i_understood": "Соединил heavy/light/clean/dirty с переводами — это всё было в сессии, легко",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "18 финал",
+      "what_i_understood": "Сказал подряд про чайник, плиту, сестру и соседа: 'It is heavy. It is dirty. She is kind. He is tired.'",
+      "confusion": "Опять слово kind появилось без объяснения в этой сессии",
+      "could_answer_question": false
+    }
+  ],
+  "learned_new": [
+    "it — говорить про вещь (не человека)",
+    "he — про мужчину, she — про женщину",
+    "is одинаковое после he/she/it",
+    "heavy — тяжёлый",
+    "light — лёгкий",
+    "clean — чистый",
+    "dirty — грязный"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 15,
+      "why": "Требуется слово kind в правильном ответе, но его нет ни в новых словах этой сессии, ни в списке 'возвращаются' с объяснением — просто предполагается, что я его уже знаю. В карточках 1,3,7,8 его не было."
+    },
+    {
+      "task": 16,
+      "why": "Тот же kind нужен в правильном ответе, без карточки в этой сессии."
+    },
+    {
+      "task": 18,
+      "why": "В финале снова нужно сказать kind про сестру — слово ни разу не объяснялось здесь как новое или тщательно напомненное с переводом."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с переездом в новую квартиру — понятно, кто где стоит и что происходит",
+    "Финал, где нужно сказать четыре фразы подряд про разные предметы и людей — приятно проверить себя"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно: я на кухне, разбираю вещи, сосед комментирует чайник/плиту/стул, потом появляется его сестра. Каждая фраза привязана к конкретному предмету или человеку в комнате.",
+  "would_continue": "да, задания понятные и короткие, но споткнулся на kind — обидно, что слово вылезло без объяснения",
+  "verdict": "BLOCK",
+  "verdict_reason": "Слово kind требуется как правильный ответ в заданиях 15, 16 и в финале 18, но в этой сессии оно нигде не дано как карточка или явно напомненное слово — я вынужден отвечать вслепую."
+}

@@ -1,0 +1,143 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — it для вещей",
+      "what_i_understood": "Про любую вещь (чайник, стол, окно, чашка) говорят 'it'. Про людей род не важен для вещей.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — he/she только про людей",
+      "what_i_understood": "he — мужчина, she — женщина. Скрепка при них и при it одна и та же — is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — clean/dirty",
+      "what_i_understood": "clean — чистый, dirty — грязный, слово не меняется от того, кто перед ним.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — карточка heavy",
+      "what_i_understood": "heavy — тяжёлый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — слух heavy",
+      "what_i_understood": "выбрал heavy среди похожих слов",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 — карточка light",
+      "what_i_understood": "light — лёгкий",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 — слух light",
+      "what_i_understood": "выбрал light",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — сборка It is heavy",
+      "what_i_understood": "собрал фразу из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — вставка light",
+      "what_i_understood": "коробка пустая — light, не heavy и не small",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — карточка clean",
+      "what_i_understood": "clean — чистый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — карточка dirty",
+      "what_i_understood": "dirty — грязный",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — слух dirty",
+      "what_i_understood": "выбрал dirty",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — вставка clean",
+      "what_i_understood": "вымытая тарелка — clean",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — He is tired",
+      "what_i_understood": "сосед мужчина, значит He, не It и не She",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — She is kind (с лишней плиткой It)",
+      "what_i_understood": "про соседку — She, лишняя плитка It не нужна",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — диктант It is dirty",
+      "what_i_understood": "собрал по слуху, лишние плитки dirty... He не нужны все использованы кроме He",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — broken",
+      "what_i_understood": "качающийся стул с висящей ножкой — broken, не clean и не light",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — доска пар",
+      "what_i_understood": "соединил все 4 слова с переводами",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — вслух It is small. It is clean.",
+      "what_i_understood": "повторил вслух две фразы про кухню",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал, три фразы подряд",
+      "what_i_understood": "сказал It is heavy. It is dirty. He is tired. — про чайник, плиту и уставшего соседа",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "что про любую вещь говорят 'it', а не 'he'/'she', даже если по-русски у слова есть род",
+    "что he/she/it используют одну и ту же скрепку is",
+    "четыре новых слова: heavy, light, clean, dirty",
+    "что слово-признак (heavy, clean и т.д.) не меняется в зависимости от того, кто перед ним"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "задание 17 — сразу три вещи подряд, чувствуешь себя как будто реально обходишь квартиру и комментируешь",
+    "сосед, который охает от тяжести чайника — понятная бытовая сценка"
+  ],
+  "felt_dead": [
+    "задания 6, 10, 14 (context_gap_grammar) идут почти подряд одинаковым форматом — три вставки слова в ряд, немного однообразно, но не критично"
+  ],
+  "scene_reason": "да, понятно: я на кухне, сосед показывает на предметы и на себя, я описываю их вслух — ясно кому и в какой момент говорю каждую фразу",
+  "would_continue": "да — задания понятные, ни разу не застрял, под конец было приятное ощущение что сам всё сказал без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "все 17 заданий прошёл честно с известными словами и грамматикой, узнал новое правило it/he/she и четыре слова, сцена и цель фраз понятны на всём протяжении."
+}

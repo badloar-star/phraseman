@@ -1,0 +1,77 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про вещи говорим 'it', даже если по-русски слово женского или мужского рода. heavy = тяжёлый.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про мужчину — he, про женщину — she, скрепка та же 'is'. tired = устал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "clean = чистый, dirty = грязный, слово не меняется от того, кто перед ним.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-4 (карточки+слух heavy/light)",
+      "what_i_understood": "Запомнил heavy и light, отличил на слух от похожих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5-6 (heavy/light применение)",
+      "what_i_understood": "Собрал 'It is heavy', выбрал light для лёгкой коробки.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-10 (clean/dirty)",
+      "what_i_understood": "Выучил clean и dirty, отличил на слух, выбрал clean для вымытой тарелки.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11-14 (he/it контраст, broken)",
+      "what_i_understood": "Про соседа-мужчину — He, не It. Про сломанный стул — broken (это слово я уже видел раньше, тут просто повторили).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (пары)",
+      "what_i_understood": "Свёл все 4 новых слова с переводом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16-17 (голос, финал)",
+      "what_i_understood": "Проговорил все фразы про кухню: чайник тяжёлый, плита грязная, сестра добрая, он устал.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "it говорится про любую вещь, даже если по-русски у неё 'мужской' или 'женский' род",
+    "he/she — только про людей, but скрепка is у обоих (и у it) одна и та же",
+    "новое слово heavy — тяжёлый",
+    "новое слово light — лёгкий",
+    "новое слово clean — чистый",
+    "новое слово dirty — грязный"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "задание 17 — сразу четыре фразы про разные предметы и людей на одной кухне, было приятно закончить сцену одним махом",
+    "задание 11 — понятная ловушка: не путать 'он устал' с 'оно устало'"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: мы на кухне после переезда, сосед комментирует вещи и устал от переноски коробок, поэтому фразы про чайник/плиту/сестру/усталость логично идут одна за другой",
+  "would_continue": "да — всё было по делу, без хвостов из прошлых занятий, я разобрался в разнице it/he/she и выучил 4 новых слова",
+  "verdict": "PASS",
+  "verdict_reason": "все задания решаемы с тем, что дано в самой сессии, новые слова объяснены до вопросов, сцена понятна с первой страницы."
+}

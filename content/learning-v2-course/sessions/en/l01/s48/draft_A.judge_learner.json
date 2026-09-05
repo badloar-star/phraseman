@@ -1,0 +1,150 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — I'm tired",
+      "what_i_understood": "Полностью говорят 'I am tired', но обычно короче — 'I'm tired'. Апостроф стоит на месте пропавшей буквы a. Просто выбросить am нельзя — надо сказать либо I am tired, либо I'm tired.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — He's gone",
+      "what_i_understood": "he's = he is, сжато. gone значит 'ушёл'. Про женщину так же — she's, про вещь/факт — it's.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — isn't/aren't",
+      "what_i_understood": "isn't = is not (для одного), aren't = are not (для нескольких или для we/they). Нельзя соединять they're и aren't вместе — это два раза одно и то же.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "выбрал tired по звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "вставил tired — про усталость",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "выбрал gone по звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "собрал She's gone",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "вставил is, потому что про 'он'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "различил loud и lord по звуку р",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "вставил loud — про тишину в пабе",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "собрал They aren't loud, не взял лишнюю плитку They're",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "собрал I'm tired по услышанному",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "нужно было сказать, что вечер получился хорошим",
+      "confusion": "Тут написано 'It was great' — это прошедшее время (was), а меня нигде не учили слову was. Я не знаю, что это значит и почему тут не is или it's. Угадал по смыслу, а не по знанию.",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 11 (доска пар)",
+      "what_i_understood": "соединил tired-устал, gone-ушёл, loud-шумный, great-отлично",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "вставил home — 'иду домой'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "собрал We aren't home, не взял лишнее isn't",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "вставил happy — он весь вечер смеялся",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "нужно было произнести 'я устал, вечер был отличный'",
+      "confusion": "Опять 'It was great' — то же незнакомое was, которое нигде не объяснили.",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 16 (финал)",
+      "what_i_understood": "нужно было пересказать вечер четырьмя фразами",
+      "confusion": "Здесь два слова, которых я нигде не видел в объяснении: 'It wasn't loud' и 'It was great' — wasn't и was. Я знаю только isn't/aren't и is/are, а тут внезапно третья форма, которую никто не показал. Я физически не могу составить эту фразу правильно, только угадать по памяти из задания 10.",
+      "could_answer_question": false
+    }
+  ],
+  "learned_new": [
+    "Как сокращать I am → I'm",
+    "Как сокращать he is/she is/it is → he's/she's/it's",
+    "Что isn't — это 'не' для одного, а aren't — для нескольких/we/they",
+    "Что нельзя лепить два сокращения подряд (they're aren't — ошибка)"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 10,
+      "why": "требует 'It was great' — форму прошедшего времени (was), которую нигде не объяснили. В грамматике сессии есть только is/are и isn't/aren't, was там нет."
+    },
+    {
+      "task": 15,
+      "why": "повторяет 'It was great' из задания 10 — та же незнакомая форма was"
+    },
+    {
+      "task": 16,
+      "why": "финал требует 'It wasn't loud' и 'It was great' — это wasn't и was, которых не было ни в одном интро и ни в одном предыдущем задании. Я не мог составить эти фразы из того, что выучил, только угадать по совпадению с заданием 10."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Финальная сцена в пабе — понятно, зачем говоришь именно эти фразы, это живой пересказ вечера другу",
+    "Ловушка с They're aren't loud — заставила реально подумать, а не поставить лишний вариант"
+  ],
+  "felt_dead": [
+    "Ничего откровенно 'справочного' не было — стиль объяснений живой (пятница, паб, друг у стойки)"
+  ],
+  "scene_reason": "да, в основном понятно — паб, пятница, друг спрашивает как дела, кто где, что было. Но именно в финале сцена ломается, потому что просит сказать 'it wasn't loud' и 'it was great', а меня этому не учили — я не понимаю, откуда взялось прошедшее время в сессии, которая заявлена как повторение only 'I'm/he's/isn't/aren't'",
+  "would_continue": "Скорее нет — я дошёл до финала и не смог его честно выполнить, потому что там слова, которых не было в уроке. Это неприятное чувство: вроде всё понимал, а в конце споткнулся об то, чего меня не учили.",
+  "verdict": "BLOCK",
+  "verdict_reason": "Задания 10, 15 и финал 16 требуют форму 'was/wasn't' (прошедшее время), которой нет ни в грамматике сессии, ни в интро — я не мог честно их выполнить."
+}

@@ -1,0 +1,89 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": [
+      "past tense: 'It was great.', 'It wasn't loud.' in tasks 10, 15, 16 — not part of session's operation (present-tense contractions only)"
+    ]
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": [
+      {
+        "task": 10,
+        "item": "was (past tense of 'is')"
+      },
+      {
+        "task": 15,
+        "item": "It was great. (past tense)"
+      },
+      {
+        "task": 16,
+        "item": "It wasn't loud. / It was great. (past tense)"
+      }
+    ]
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "tide/tried — plausible mishearing of tired"
+      },
+      {
+        "task": 3,
+        "trap": "go/gun — plausible mishearing of gone"
+      },
+      {
+        "task": 6,
+        "trap": "lord — plausible mishearing of loud"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 16,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "tired",
+        "gone",
+        "loud",
+        "great"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 2,
+      "context_gap_grammar": 6,
+      "phrase_builder": 3,
+      "listen_build_dictation": 1,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "BLOCK",
+  "verdict_reason": "Задания 10, 15 и 16 требуют формы прошедшего времени (`It was great.`, `It wasn't loud.`), которого нет в списке пройденного и которое не заявлено в строке плана этой сессии (операция — только повторение present-tense сокращений `I'm/he's/it's/we're/they're` + `isn't/aren't`); это внесение незнакомой грамматики в целевые ответы — прямое нарушение границ, что сам автор уже зафиксировал в самопроверке."
+}

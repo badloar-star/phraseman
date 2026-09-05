@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "повторение сокращений `I'm` / `you're` / `he's` / `it's` / `we're` / `they're` + `isn't` / `aren't`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`I'm` — это `I am`, только быстрее",
+        "uk": "`I'm` — це `I am`, тільки швидше"
+      },
+      "bodyByLocale": {
+        "ru": "`tired` — «устал». Полностью фраза звучит `I am tired`, но в разговоре её почти никто так не тянет: говорят `I'm tired`.\n\nЗначок `'` стоит там, где выпала буква `a` из `am`. Он не читается и ничего не значит сам по себе — просто помечает место пропажи.\n\nРука сама тянется выбросить `am` совсем: `I tired`. Тогда сокращать становится нечего — и фразы нет.",
+        "uk": "`tired` — «втомлений». Повністю фраза звучить `I am tired`, але в розмові її майже ніхто так не розтягує: кажуть `I'm tired`.\n\nЗначок `'` стоїть там, де випала буква `a` з `am`. Він не читається і сам собою нічого не означає — просто позначає місце пропажі.\n\nРука сама тягнеться викинути `am` зовсім: `I tired`. Тоді скорочувати нічого — і фрази немає."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг у стойки допивает и спрашивает, как вы после недели. Скажите, что устали.",
+          "uk": "Друг біля шинквасу допиває і питає, як ви після тижня. Скажіть, що втомилися."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-48:intro1:r1",
+              "text": "I'm tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-48:intro1:r2",
+              "text": "I tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-48:intro1:r3",
+              "text": "Im tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-48:intro1:r1",
+              "text": "I'm tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-48:intro1:r2",
+              "text": "I tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-48:intro1:r3",
+              "text": "Im tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг у стойки допивает и спрашивает, как вы после недели. Скажите, что устали.",
+          "uk": "Друг біля шинквасу допиває і питає, як ви після тижня. Скажіть, що втомилися."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`he's`, `she's`, `it's` — одна и та же чёрточка",
+        "uk": "`he's`, `she's`, `it's` — та сама рисочка"
+      },
+      "bodyByLocale": {
+        "ru": "`gone` — «ушёл». Про друга, который уже уехал домой, скажут `he's gone`, про подругу — `she's gone`.\n\nВнутри `he's` спрятано `is`. Буква `i` выпала, на её месте значок, остаётся `s`. Так же работают `she's` и `it's`.\n\nЗначок тут обязателен: `he's` — это два слова, сжатые в одно, а `hes` не значит ничего.",
+        "uk": "`gone` — «пішов». Про друга, який уже поїхав додому, скажуть `he's gone`, про подругу — `she's gone`.\n\nУсередині `he's` заховано `is`. Буква `i` випала, на її місці значок, лишається `s`. Так само працюють `she's` та `it's`.\n\nЗначок тут обов'язковий: `he's` — це два слова, стиснуті в одне, а `hes` не означає нічого."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг оглядывает стол: одного стула не хватает. Скажите про того, кто сидел рядом: «он ушёл».",
+          "uk": "Друг обводить очима стіл: одного стільця бракує. Скажіть про того, хто сидів поруч: «він пішов»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-48:intro2:r1",
+              "text": "He's gone."
+            },
+            {
+              "responseId": "en:lesson-01:session-48:intro2:r2",
+              "text": "He gone."
+            },
+            {
+              "responseId": "en:lesson-01:session-48:intro2:r3",
+              "text": "He's go."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-48:intro2:r1",
+              "text": "He's gone."
+            },
+            {
+              "responseId": "en:lesson-01:session-48:intro2:r2",
+              "text": "He gone."
+            },
+            {
+              "responseId": "en:lesson-01:session-48:intro2:r3",
+              "text": "He's go."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг оглядывает стол: одного стула не хватает. Скажите про того, кто сидел рядом: «он ушёл».",
+          "uk": "Друг обводить очима стіл: одного стільця бракує. Скажіть про того, хто сидів поруч: «він пішов»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`isn't` и `aren't` — когда всё не так",
+        "uk": "`isn't` та `aren't` — коли все не так"
+      },
+      "bodyByLocale": {
+        "ru": "`loud` — «шумный». Если в пабе на удивление тихо, про место говорят `it isn't loud`.\n\n`isn't` — это `is` и `not`, сжатые вместе: значок стоит на месте выпавшей `o`. Про нескольких берут не `is`, а `are` — и сжимают её же: `aren't`.\n\nЖадничать нельзя: либо `it's not loud`, либо `it isn't loud`. Оба верные, но сжимают что-то одно. Формы `it'sn't` не бывает.",
+        "uk": "`loud` — «гучний». Якщо в пабі несподівано тихо, про місце кажуть `it isn't loud`.\n\n`isn't` — це `is` і `not`, стиснуті разом: значок стоїть на місці випалої `o`. Про кількох беруть не `is`, а `are` — і стискають її ж: `aren't`.\n\nЖадібнічати не можна: або `it's not loud`, або `it isn't loud`. Обидва правильні, але стискають щось одне. Форми `it'sn't` не буває."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг зовёт пересесть в дальний зал — там тише. Скажите про эту компанию за соседним столом, что они и так не шумят.",
+          "uk": "Друг кличе пересісти в дальню залу — там тихіше. Скажіть про цю компанію за сусіднім столом, що вони й так не гучні."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-48:intro3:r1",
+              "text": "They aren't loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-48:intro3:r2",
+              "text": "They isn't loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-48:intro3:r3",
+              "text": "They're aren't loud."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-48:intro3:r1",
+              "text": "They aren't loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-48:intro3:r2",
+              "text": "They isn't loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-48:intro3:r3",
+              "text": "They're aren't loud."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг зовёт пересесть в дальний зал — там тише. Скажите про эту компанию за соседним столом, что они и так не шумят.",
+          "uk": "Друг кличе пересісти в дальню залу — там тихіше. Скажіть про цю компанію за сусіднім столом, що вони й так не гучні."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f71796b26d1712fd0b114cdffacb6a34f9e1401b341a8853c7a09d3f5e2d898b"
+}

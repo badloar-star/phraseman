@@ -1,0 +1,140 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — I'm tired",
+      "what_i_understood": "I am tired = я устал. В разговоре говорят короче: I'm tired. Апостроф стоит там, где пропала буква a из am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — He's gone",
+      "what_i_understood": "gone = ушёл. He is gone → He's gone, апостроф вместо пропавшей i. Так же работает she's, it's.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — They aren't loud",
+      "what_i_understood": "loud = шумный. isn't = is+not (про одного), aren't = are+not (про нескольких). Нельзя сжимать дважды: либо they're, либо aren't, не вместе.",
+      "confusion": "Само правило понял, но не понял, зачем это привязано именно к «шумному пабу» — по факту это чисто грамматическая вставка без сцены. Впрочем, справился.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (listen tired/tide/tried)",
+      "what_i_understood": "Выбрал tired, узнал похожие по звучанию слова-ловушки.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (I'm ___ — tired/happy/home)",
+      "what_i_understood": "Понял по контексту (устали после недели), выбрал tired.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (listen gone/go/gun)",
+      "what_i_understood": "Выбрал gone.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (собрать She's gone)",
+      "what_i_understood": "Собрал фразу из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (He ___ gone — is/am/are)",
+      "what_i_understood": "Выбрал is, помню что про he/she/it — is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (loud/load)",
+      "what_i_understood": "Выбрал loud по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (It isn't ___ — loud/gone/great)",
+      "what_i_understood": "Выбрал loud.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (They aren't loud, с лишней плиткой they're)",
+      "what_i_understood": "Собрал верно, не взял лишнюю плитку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (диктовка I'm tired)",
+      "what_i_understood": "Собрал по прослушке.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (It's ___ — great/loud/gone)",
+      "what_i_understood": "Выбрал great, вопрос был про впечатление от вечера.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (Speed Match 4 пары)",
+      "what_i_understood": "Соединил tired-устал, gone-ушёл, loud-шумный, great-отлично.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (I'm going ___ — home/great/loud)",
+      "what_i_understood": "Выбрал home.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (We aren't home, лишняя isn't)",
+      "what_i_understood": "Собрал верно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (He's ___ — happy/gone/home)",
+      "what_i_understood": "Выбрал happy, потому что 'он весь вечер смеялся' — по смыслу подходит только happy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (говорю I'm tired. It isn't late.)",
+      "what_i_understood": "Повторил вслух обе фразы из знакомых слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (финал — 4 фразы про вечер)",
+      "what_i_understood": "Собрал итог: I'm tired. He's gone. It isn't loud. It's great.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Сокращение I'm = I am, и что апостроф — это место пропавшей буквы",
+    "Сокращения he's/she's/it's = he/she/it + is",
+    "Разница isn't (про одного) и aren't (про нескольких/they)",
+    "Что нельзя сжимать дважды: they're + aren't вместе не говорят",
+    "Новое слово gone = ушёл",
+    "Новое слово loud = шумный",
+    "Новое слово great в значении 'отлично' (как оценка вечера)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена паба в пятницу вечером — понятная, обычная жизненная ситуация",
+    "Финал сессии (задание 16), где нужно собрать связный мини-рассказ из четырёх фраз — приятное ощущение, что прошёл весь путь не зря"
+  ],
+  "felt_dead": [
+    "Интро 3 многовато чистой грамматики (isn't/aren't, разбор буквы o) без реальной сценки-повода — читается суше, чем интро 1 и 2"
+  ],
+  "scene_reason": "да — понятно: друг у стойки спрашивает как дела (интро 1), видит пустой стул (интро 2), зовёт пересесть в тихий зал (интро 3), и в финале прощается у выхода, прося итог вечера. Каждая фраза привязана к конкретному моменту и понятно кому и зачем я её говорю",
+  "would_continue": "да — задания понятные, сложность растёт постепенно (сначала подсказки почти везде, потом только на слух и голосом), к финалу чувствуешь, что реально что-то выучил, а не просто прошёл клики",
+  "verdict": "PASS",
+  "verdict_reason": "все 16 заданий решаемы честно на известных мне словах и грамматике, я реально узнал новые слова и правило сокращений, и было понятно, зачем я говорю каждую фразу."
+}

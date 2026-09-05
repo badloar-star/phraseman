@@ -46,7 +46,7 @@ const MODEL_DRAFT = opt("model-draft", process.env.FACTORY_MODEL_DRAFT || "opus"
 // педагог сверяет с машинными фактами — Sonnet справляется и в ~5 раз дешевле.
 const MODEL_JUDGE = opt("model-judge", process.env.FACTORY_MODEL_JUDGE || "opus");
 const MODEL_CHEAP = opt("model-cheap", process.env.FACTORY_MODEL_CHEAP || "sonnet");
-const MODEL_BY_JUDGE = { judge_taste: MODEL_JUDGE, judge_nonsense: MODEL_JUDGE, judge_learner: MODEL_CHEAP, judge_pedagogy: MODEL_CHEAP };
+const MODEL_BY_JUDGE = { judge_taste: MODEL_JUDGE, judge_nonsense: MODEL_JUDGE, judge_reader: MODEL_JUDGE, judge_learner: MODEL_CHEAP, judge_pedagogy: MODEL_CHEAP };
 const SESSION = opt("session", null); // en/l01/s04
 // зачем: «запустил и ушёл» — при лимите подписки конвейер ждёт сброса,
 // а не падает. --no-wait отключает (для быстрых проверок).
@@ -276,8 +276,29 @@ function courseContext(lang) {
   const constitutionShort = exists(path.join(HERE, "КОНСТИТУЦИЯ_ДЛЯ_СУДЕЙ.md")) ? read(path.join(HERE, "КОНСТИТУЦИЯ_ДЛЯ_СУДЕЙ.md")) : constitution;
   const exemplars = listDir(path.join(ROOT, "exemplars", lang), (f) => f.endsWith(".ru.md"))
     .map((f) => `\n\n<!-- эталон ${path.basename(f)} -->\n${read(f)}`).join("");
-  const verdicts = listDir(path.join(ROOT, "judgements", "owner"), (f) => f.endsWith(".md"))
-    .map((f) => read(f)).join("\n\n---\n\n");
+  // зачем: 2026-09-05 аудит показал, что вердикты владельца читались из общей
+  // папки без языка — французскому автору пошли бы вердикты про английские
+  // сессии. Общие правила (длина, юмор, число заданий) остаются общими, а
+  // разборы конкретных сессий берутся только своего языка.
+  const verdictFiles = listDir(path.join(ROOT, "judgements", "owner"), (f) => f.endsWith(".md"))
+    .filter((f) => {
+      const base = path.basename(f);
+      const m = /_([a-z]{2})_l\d{2}_s\d{2}\.md$/.exec(base);
+      if (!m) return true;                 // общий вердикт без языка — всем
+      return m[1] === lang;                // разбор сессии — только своему языку
+    });
+  const skipped = listDir(path.join(ROOT, "judgements", "owner"), (f) => f.endsWith(".md")).length - verdictFiles.length;
+  if (skipped > 0) LOG(`вердикты: ${verdictFiles.length} взято, ${skipped} чужого языка пропущено`);
+  const verdicts = verdictFiles.map((f) => read(f)).join("\n\n---\n\n");
+  // зачем: особенности целевого языка (что нельзя утверждать про звук, мины,
+  // настоящие и ложные различия с русским) — свои у каждого языка. Без этого
+  // французский автор работал бы по английским правилам про `tall` и `fast`.
+  const langFeaturesPath = path.join(ROOT, "curriculum", lang, "ОСОБЕННОСТИ_ЯЗЫКА.md");
+  const langFeatures = exists(langFeaturesPath)
+    ? read(langFeaturesPath)
+    : `(файл ${langFeaturesPath} не заведён — особенностей языка нет; это ослабляет судью бреда)`;
+  if (!exists(langFeaturesPath)) WARN(`нет ОСОБЕННОСТИ_ЯЗЫКА.md для «${lang}» — автор и судьи работают без языковых мин`);
+  const langName = LOCALE_NAMES[lang] || lang;
   LOG(`контекст: конституция ${constitution.length} зн. (судьям ${constitutionShort.length}), эталонов ${(exemplars.match(/<!-- эталон/g) || []).length}, вердиктов владельца ${verdicts ? verdicts.split("\n\n---\n\n").length : 0}`);
   // зачем: длина интро, число заданий и касания слов записаны в трёх файлах
   // сразу; расхождение между ними ловилось только вручную и постфактум
@@ -291,13 +312,25 @@ function courseContext(lang) {
   // зачем: 2026-09-05 владелец заметил, что `early` заявлено новым в четырёх
   // сессиях. Слово в уроке повторять можно, врёт только строка «Новые слова».
   try {
-    const nw = spawnSync(process.execPath, [path.join(HERE, 'check_new_words.mjs')], { encoding: 'utf8' });
+    // зачем: сторож смотрел жёстко в sessions/en/l01 и для французского молча
+    // отвечал «всё хорошо». Язык передаётся аргументом (аудит 2026-09-05).
+    const nw = spawnSync(process.execPath, [path.join(HERE, 'check_new_words.mjs'), '--lang', lang], { encoding: 'utf8' });
     if (nw.status !== 0) {
       WARN('слово заявлено новым повторно — правьте строку «Новые слова», не сторожа:');
       String(nw.stderr || "").split(String.fromCharCode(10)).filter((l) => l.includes("уже заявлено")).forEach((l) => WARN("  " + l.trim()));
     }
   } catch (e) { WARN(`сторож новых слов не запустился: ${e.message}`); }
-  return { constitution, constitutionShort, exemplars, verdicts };
+  // зачем: аудит 2026-09-05 нашёл три тихих переплетения языков (язык зашит в
+  // промпт, общие вердикты, сторож слеп к чужому языку). Ни одно не роняет
+  // конвейер — он просто пишет французскую сессию по английским правилам.
+  try {
+    const iso = spawnSync(process.execPath, [path.join(HERE, 'check_lang_isolation.mjs'), '--lang', lang], { encoding: 'utf8' });
+    if (iso.status !== 0) {
+      WARN('ЯЗЫКИ КУРСОВ ПЕРЕПЛЕЛИСЬ — сессия будет написана по правилам чужого языка:');
+      String(iso.stderr || "").split(String.fromCharCode(10)).filter((l) => l.includes("ПРОБЛЕМА")).forEach((l) => WARN("  " + l.trim()));
+    }
+  } catch (e) { WARN(`сторож изоляции языков не запустился: ${e.message}`); }
+  return { constitution, constitutionShort, exemplars, verdicts, langFeatures, langName };
 }
 
 function exemplarOfSameType(lang, row) {
@@ -512,6 +545,10 @@ function buildVars(ctx, plan, row, known, S) {
     КОНСТИТУЦИЯ: ctx.constitution,
     ЭТАЛОНЫ: ctx.exemplars,
     ВЕРДИКТЫ_ВЛАДЕЛЬЦА: ctx.verdicts,
+    // зачем: до 2026-09-05 язык курса был зашит в текст промпта словом
+    // «английский» — французский автор получал инструкцию про другой язык.
+    ЯЗЫК_КУРСА: ctx.langName,
+    ОСОБЕННОСТИ_ЯЗЫКА: ctx.langFeatures,
     СТРОКА_ПЛАНА: `Урок ${S.lesson}, сессия ${row.n} · тип: ${row.type} · грамматика: ${row.grammar} · новые слова: ${row.words} · момент сцены: ${row.moment}`,
     СЦЕНА_ГЛАВЫ: row.scene,
     АРКА_УРОКА: plan.arc,
@@ -565,6 +602,11 @@ function stageJudge(S, ctx, plan, row, known, file, only = null) {
     // проходила мимо судьи вкуса — он смотрит на голос и юмор. Отдельный судья
     // проверяет только правду утверждений, больше ничего.
     ["judge_nonsense", { ...base, СЕССИЯ: session }],
+    // зачем: 05.09.2026 владелец прочитал страницу, которую пропустили ВСЕ
+    // четыре судьи, и не понял её сути. Все они эксперты: знают правила и
+    // ищут нарушения. Этот читает как человек без языка и проверяет одно —
+    // понятно ли. Не понял он — не поймёт и ученик.
+    ["judge_reader", { ...base, СЕССИЯ: session }],
   ].filter(([name]) => !only || only.includes(name))) {
     const cacheFile = path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.json`);
     // зачем: вердикт по неизменившемуся файлу не пересуживаем — экономия
@@ -812,7 +854,7 @@ function main() {
       if (!best || s > best.s) best = { f, s, taste: t };
     }
     LOG(`лучший черновик: ${path.basename(best.f)}`);
-    const fullV = { ...stageJudge(S, ctx, plan, row, known, best.f, ["judge_learner", "judge_pedagogy", "judge_nonsense"]), judge_taste: best.taste };
+    const fullV = { ...stageJudge(S, ctx, plan, row, known, best.f, ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader"]), judge_taste: best.taste };
     let cur = { f: best.f, v: fullV, s: score(fullV) };
     for (let round = 1; round <= 2 && cur.s < 6; round++) {
       LOG(`круг правки ${round}: ${path.basename(cur.f)} (${cur.s}/6)`);

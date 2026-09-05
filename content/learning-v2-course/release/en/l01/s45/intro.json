@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "контраст `I'm not` / `isn't` / `aren't`; `it's` против `its`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "У `I am` короткий вариант только один",
+        "uk": "У `I am` короткий варіант тільки один"
+      },
+      "bodyByLocale": {
+        "ru": "`ready` — «готов». «Я не готов» — `I'm not ready`.\n\nСжалось только `I am` → `I'm`. Рука тянется сжать и вторую половину — `I amn't`. Заманчиво, но такого слова в английском нет: `not` при `I` всегда стоит отдельно.",
+        "uk": "`ready` — «готовий». «Я не готовий» — `I'm not ready`.\n\nСтиснулося лише `I am` → `I'm`. Рука тягнеться стиснути й другу половину — `I amn't`. Спокусливо, але такого слова в англійській немає: `not` при `I` завжди стоїть окремо."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг у стойки собирается уходить и смотрит на ваше полное стекло. Скажите, что вы не готовы.",
+          "uk": "Друг біля барної стійки збирається йти й дивиться на вашу повну склянку. Скажіть, що ви не готові."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r1",
+              "text": "I'm not ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r2",
+              "text": "I amn't ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r3",
+              "text": "I'm not readys."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r1",
+              "text": "I'm not ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r2",
+              "text": "I amn't ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r3",
+              "text": "I'm not readys."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг у стойки собирается уходить и смотрит на ваше полное стекло. Скажите, что вы не готовы.",
+          "uk": "Друг біля барної стійки збирається йти й дивиться на вашу повну склянку. Скажіть, що ви не готові."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`isn't` — `not` прилипает к глаголу",
+        "uk": "`isn't` — `not` прилипає до дієслова"
+      },
+      "bodyByLocale": {
+        "ru": "`busy` — «занят». `He is busy`. Отрицание: `He isn't busy`. Про нескольких — `They aren't busy`.\n\nУ `is` два пути: прилипнуть к человеку (`he's not`) или к `not` (`isn't`). Оба верны, но одновременно нельзя: в `he's` от `is` осталась одна буква, сокращать больше нечего.",
+        "uk": "`busy` — «зайнятий». `He is busy`. Заперечення: `He isn't busy`. Про кількох — `They aren't busy`.\n\nУ `is` два шляхи: прилипнути до людини (`he's not`) або до `not` (`isn't`). Обидва правильні, але одночасно не можна: у `he's` від `is` лишилася одна літера, скорочувати більше нічого."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Приятель за столом молчит весь вечер, и друг спрашивает, не занят ли он работой. Ответьте, сжав конец.",
+          "uk": "Приятель за столом мовчить цілий вечір, і друг питає, чи не зайнятий він роботою. Відповідайте, стиснувши кінець."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r1",
+              "text": "He isn't busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r2",
+              "text": "He'sn't busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r3",
+              "text": "He aren't busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r1",
+              "text": "He isn't busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r2",
+              "text": "He'sn't busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r3",
+              "text": "He aren't busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Приятель за столом молчит весь вечер, и друг спрашивает, не занят ли он работой. Ответьте, сжав конец.",
+          "uk": "Приятель за столом мовчить цілий вечір, і друг питає, чи не зайнятий він роботою. Відповідайте, стиснувши кінець."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`it's` со значком и `its` без",
+        "uk": "`it's` зі значком і `its` без"
+      },
+      "bodyByLocale": {
+        "ru": "`done` — «закончил, готово». `It's done` — «оно готово», значок стоит на месте выпавшей `i` из `is`.\n\nА `its` без значка — «его, её» про вещь: `its name` — «его название». Звучат одинаково, и путают их даже те, для кого английский родной. Пока правило одно: подставляется `is` — ставьте значок.",
+        "uk": "`done` — «зроблено, готово». `It's done` — «воно готове», значок стоїть на місці випалої `i` з `is`.\n\nА `its` без значка — «його, її» про річ: `its name` — «його назва». Звучать однаково, і плутають їх навіть ті, для кого англійська рідна. Поки правило одне: підставляється `is` — ставте значок."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Бармен уносит вашу пустую тарелку и глазами спрашивает, всё ли. Скажите: «оно готово».",
+          "uk": "Бармен забирає вашу порожню тарілку й очима питає, чи все. Скажіть: «воно готове»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r1",
+              "text": "It's done."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r2",
+              "text": "Its done."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r3",
+              "text": "It's not done."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r1",
+              "text": "It's done."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r2",
+              "text": "Its done."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r3",
+              "text": "It's not done."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Бармен уносит вашу пустую тарелку и глазами спрашивает, всё ли. Скажите: «оно готово».",
+          "uk": "Бармен забирає вашу порожню тарілку й очима питає, чи все. Скажіть: «воно готове»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a27104e2c44eaf4be594deebe0bddb4b6d925accddeaebc748f570638aaf8960"
+}

@@ -1,0 +1,76 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "I amn't — реалистичная сверхобобщённая ошибка"
+      },
+      {
+        "task": 3,
+        "trap": "amn't — та же логика ошибки, перенесена на we/they"
+      },
+      {
+        "task": 9,
+        "trap": "aren't вместо isn't при she — спутаны формы числа"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 16,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "ready",
+        "busy",
+        "done",
+        "full"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      5,
+      10,
+      15
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "context_gap_grammar": 6,
+      "phrase_builder": 5,
+      "listen_choose": 1,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Все три интро-страницы превышают норму длины (329/310/332 знаков при 240–290), это подтверждено машинной проверкой и требует сокращения текста без потери шутки и структуры."
+}

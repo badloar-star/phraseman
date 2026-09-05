@@ -1,0 +1,76 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [
+      "ready, busy, done, full заявлены в строке плана как «новые слова», но по факту это возвращаемые слова (уже известны ученику) — интро подаёт их как знакомые с переводом с ходу, без карточек в интро; это расхождение с планом, а не с текстом"
+    ],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "I amn't ready — реалистичная ошибка переноса из русского/логики сокращений"
+      },
+      {
+        "task": 3,
+        "trap": "aren't/isn't/amn't путаница числа"
+      },
+      {
+        "task": 4,
+        "trap": "Its done vs It's done — реальная орфографическая путаница"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "ready",
+        "busy",
+        "done",
+        "full"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "context_gap_grammar": 6,
+      "phrase_builder": 5,
+      "listen_choose": 2,
+      "word_card": 1,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Строка плана заявляет ready/busy/done/full как «новые слова», но сессия правильно трактует их как уже известные (соответствует машинным фактам и опыту раздела «Что ученик знает» — full единственное реально новое), однако этот план/факт-конфликт нужно сверить с автором плана, а не менять текст."
+}

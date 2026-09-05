@@ -1,0 +1,135 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Я не готов = I'm not ready. Сокращается только 'I am'→'I'm', 'not' отдельно, 'I amn't' не существует.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про другого можно сжать конец: isn't/aren't. He's not и he isn't — оба ок, но нельзя склеить оба сокращения сразу (he'sn't).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "it's (с апострофом) = it is, its (без апострофа) = притяжательное 'его/её'. Проверка: если можно подставить 'is' — ставь апостроф.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "I'm not ready — понятно по интро.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "He isn't busy — собрал из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "They aren't busy — множественное число.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "На слух It's done — апостроф, потому что это 'is'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "I'm not done, лишняя плитка amn't — я уже знаю, что такого слова нет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "full — новое для меня слово в этой сессии (хоть и помечено как 'возвращается', я вижу его тут впервые), дано прямо в вопросе: It's full = оно полное.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Различил full и fall на слух по подсказке в разборе (округлые губы против широкого рта).",
+      "confusion": "Сама подсказка дана только в объяснении ответа, до прослушивания я просто гадал на слух — но это нормально для audio-задания.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Свёл пары ready/busy/done/full с переводами — все уже объяснены выше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "She isn't ready.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "It isn't full, лишняя плитка its.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "It's done — апостроф нужен.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "We aren't ready — сборка на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "I'm not busy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "They aren't done.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "I'm ready — плитка not лишняя, потому что человек готов, а не наоборот.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Сказал вслух три фразы подряд: I'm not ready. I'm not busy. It's done.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "У 'I' нет короткой формы с 'not' — нельзя сказать 'I amn't', только 'I'm not'",
+    "У 'he/she/it' и 'they/we' отрицание можно сжимать с двух концов (he's / isn't), но нельзя сразу с обоих (he'sn't не существует)",
+    "Разница it's (= it is) и its (притяжательное 'его/её') — и как её проверить: подставить 'is'",
+    "Слово full = полный"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Момент с 'I amn't' — забавно, что рука сама тянется это сказать, и тут же объясняют, почему нельзя. Похоже на живую ошибку, которую я бы правда сделал.",
+    "Разбор it's/its через 'можно ли подставить is' — простое и полезное правило, без лишних слов."
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно. В интро 1 — друг у стойки собирается уходить, я говорю что не готов. В интро 2 — друг спрашивает про начальника, я отвечаю про него. В интро 3 — бармен уносит тарелку, я говорю что закончил. В каждом задании ясно, кто спрашивает и зачем я отвечаю именно так.",
+  "would_continue": "да — было понятно, ничего не пришлось перечитывать дважды, и я реально узнал новое правило (про сокращения), а не просто повторил старые слова",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно без незнакомых слов в правильных ответах, узнал новое правило про сокращения и разницу it's/its, сцена везде понятна."
+}

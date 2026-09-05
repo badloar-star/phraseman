@@ -1,0 +1,861 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — как звучит сокращение",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-41:i01:r1",
+          "text": "I'm"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i01:r2",
+          "text": "I am"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i01:r3",
+          "text": "I will"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — как звучит сокращение",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:i01:audio",
+          "transcript": "I'm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-41:i01:r1",
+            "targetText": "I'm",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i01:r2",
+            "targetText": "I am",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i01:r3",
+            "targetText": "I will",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i01:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — как звучит сокра",
+            "feedbackByLocale": {
+              "ru": "Это полная форма, два отдельных слова. В записи они слиты в одно.",
+              "uk": "Це повна форма, два окремі слова. У записі вони злиті в одне."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — как звучит сокра",
+            "feedbackByLocale": {
+              "ru": "Другие слова. В записи звучит короткое `I'm`.",
+              "uk": "Інші слова. У записі звучить коротке `I'm`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы пришли позже всех",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-41:i02:r1",
+          "text": "I'm"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i02:r2",
+          "text": "Im"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i02:r3",
+          "text": "I"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы пришли позже всех",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы пришли позже всех",
+          "uk": "Вставте слово — ви прийшли пізніше за всіх"
+        },
+        "gappedTargetPhrase": "",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-41:i02:r1",
+            "text": "I'm"
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i02:r2",
+            "text": "Im"
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i02:r3",
+            "text": "I"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы пришли позже всех",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i02:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы пришли позже всех",
+            "feedbackByLocale": {
+              "ru": "Значок `'` обязателен: `I'm`.",
+              "uk": "Значок `'` обов'язковий: `I'm`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы пришли позже всех",
+            "feedbackByLocale": {
+              "ru": "Одного `I` мало. Нужна скрепка — она внутри `I'm`.",
+              "uk": "Самого `I` замало. Потрібна скріпка — вона всередині `I'm`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «я в порядке»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «я в порядке»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'm fine.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «я в порядке»",
+          "uk": "Складіть фразу — «зі мною все гаразд»"
+        },
+        "orderedTokens": [
+          "I'm",
+          "fine"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — про собеседника",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-41:i04:r1",
+          "text": "you're"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i04:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i04:r3",
+          "text": "your"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — про собеседника",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:i04:audio",
+          "transcript": "you're"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-41:i04:r1",
+            "targetText": "you're",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i04:r2",
+            "targetText": "you",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i04:r3",
+            "targetText": "your",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — про собеседника",
+            "feedbackByLocale": {
+              "ru": "Только «ты», без скрепки. В записи слышно два слитых слова.",
+              "uk": "Тільки «ти», без скріпки. У записі чути два злиті слова."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — про собеседника",
+            "feedbackByLocale": {
+              "ru": "«Твой». Звучит точно так же, но в предложении о состоянии нужно `you're`.",
+              "uk": "«Твій». Звучить точно так само, але у фразі про стан потрібне `you're`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друг переживает, что опоздал, а всё нормально",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-41:i05:r1",
+          "text": "You're"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i05:r2",
+          "text": "Your"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i05:r3",
+          "text": "You"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друг переживает, что опоздал, а всё нормально",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг переживает, что опоздал, а всё нормально",
+          "uk": "Вставте слово — друг переживає, що спізнився, а все гаразд"
+        },
+        "gappedTargetPhrase": "",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-41:i05:r1",
+            "text": "You're"
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i05:r2",
+            "text": "Your"
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i05:r3",
+            "text": "You"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг переживает, что оп",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i05:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг переживает, что оп",
+            "feedbackByLocale": {
+              "ru": "«Твой». Перед словом о состоянии нужно `you're`.",
+              "uk": "«Твій». Перед словом про стан потрібне `you're`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг переживает, что оп",
+            "feedbackByLocale": {
+              "ru": "Скрепка пропала. `you` + `are` = `you're`.",
+              "uk": "Скріпка зникла. `you` + `are` = `you're`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «ты опоздал»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «ты опоздал»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You're late.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «ты опоздал»",
+          "uk": "Складіть фразу — «ти спізнився»"
+        },
+        "orderedTokens": [
+          "You're",
+          "late"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вас спросили дорогу, и вы точно знаете",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-41:i07:r1",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i07:r2",
+          "text": "sorry"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i07:r3",
+          "text": "late"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вас спросили дорогу, и вы точно знаете",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вас спросили дорогу, и вы точно знаете",
+          "uk": "Вставте слово — у вас спитали дорогу, і ви точно знаєте"
+        },
+        "gappedTargetPhrase": "I'm ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-41:i07:r1",
+            "text": "sure"
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i07:r2",
+            "text": "sorry"
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i07:r3",
+            "text": "late"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вас спросили дорогу, и ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i07:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас спросили дорогу, и ",
+            "feedbackByLocale": {
+              "ru": "Это извинение. Вы не извиняетесь, вы знаете ответ.",
+              "uk": "Це вибачення. Ви не вибачаєтесь, ви знаєте відповідь."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас спросили дорогу, и ",
+            "feedbackByLocale": {
+              "ru": "«Опоздал». Речь про уверенность.",
+              "uk": "«Спізнився». Ідеться про впевненість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «извини»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «извини»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'm sorry.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «извини»",
+          "uk": "Складіть фразу — «вибач»"
+        },
+        "orderedTokens": [
+          "I'm",
+          "sorry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друг сомневается, а вы видите, что он не ошибся",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-41:i09:r1",
+          "text": "You're"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i09:r2",
+          "text": "Your"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i09:r3",
+          "text": "You"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друг сомневается, а вы видите, что он не ошибся",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг сомневается, а вы видите, что он не ошибся",
+          "uk": "Вставте слово — друг сумнівається, а ви бачите, що він не помилився"
+        },
+        "gappedTargetPhrase": "",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-41:i09:r1",
+            "text": "You're"
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i09:r2",
+            "text": "Your"
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i09:r3",
+            "text": "You"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг сомневается, а вы ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i09:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг сомневается, а вы ",
+            "feedbackByLocale": {
+              "ru": "«Твой». Про состояние — `you're`.",
+              "uk": "«Твій». Про стан — `you're`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг сомневается, а вы ",
+            "feedbackByLocale": {
+              "ru": "Без скрепки. `you` + `are` = `you're`.",
+              "uk": "Без скріпки. `you` + `are` = `you're`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — собеседник извинился, хотя не за что",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-41:i10:r1",
+          "text": "fine"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i10:r2",
+          "text": "sorry"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i10:r3",
+          "text": "late"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — собеседник извинился, хотя не за что",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — собеседник извинился, хотя не за что",
+          "uk": "Вставте слово — співрозмовник вибачився, хоча нема за що"
+        },
+        "gappedTargetPhrase": "You're ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-41:i10:r1",
+            "text": "fine"
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i10:r2",
+            "text": "sorry"
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i10:r3",
+            "text": "late"
+          }
+        ],
+        "testedDimension": "Вставьте слово — собеседник извинился, х",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i10:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — собеседник извинился, х",
+            "feedbackByLocale": {
+              "ru": "Извиняется он, а вы отвечаете. Ему говорят, что всё в порядке.",
+              "uk": "Вибачається він, а ви відповідаєте. Йому кажуть, що все гаразд."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — собеседник извинился, х",
+            "feedbackByLocale": {
+              "ru": "«Опоздал». Он не опаздывал, он извинялся.",
+              "uk": "«Спізнився». Він не спізнювався, він вибачався."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-41:i11:p1",
+            "target": "fine",
+            "meaningByLocale": {
+              "ru": "в порядке",
+              "uk": "гаразд"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-41:i11:p2",
+            "target": "late",
+            "meaningByLocale": {
+              "ru": "опоздал",
+              "uk": "спізнився"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-41:i11:p3",
+            "target": "sure",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "упевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-41:i11:p4",
+            "target": "sorry",
+            "meaningByLocale": {
+              "ru": "извини",
+              "uk": "вибач"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fine",
+          "late",
+          "sure",
+          "sorry"
+        ],
+        "rightColumn": [
+          "в порядке",
+          "опоздал",
+          "уверен",
+          "извини"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «я уверен»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «я уверен»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:i12:audio",
+          "transcript": "I'm sure."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I'm sure.",
+        "orderedTokens": [
+          "I'm",
+          "sure"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы всё ещё за столом, и вам хорошо",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-41:i13:r1",
+          "text": "fine"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i13:r2",
+          "text": "late"
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i13:r3",
+          "text": "sure"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы всё ещё за столом, и вам хорошо",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы всё ещё за столом, и вам хорошо",
+          "uk": "Вставте слово — ви все ще за столом, і вам добре"
+        },
+        "gappedTargetPhrase": "I'm ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-41:i13:r1",
+            "text": "fine"
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i13:r2",
+            "text": "late"
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i13:r3",
+            "text": "sure"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы всё ещё за столом, и",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i13:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы всё ещё за столом, и",
+            "feedbackByLocale": {
+              "ru": "Про опоздание уже сказали. Речь о том, как вам сейчас.",
+              "uk": "Про спізнення вже сказали. Ідеться про те, як вам зараз."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы всё ещё за столом, и",
+            "feedbackByLocale": {
+              "ru": "«Уверен» — ответ на вопрос, а не про самочувствие.",
+              "uk": "«Упевнений» — відповідь на запитання, а не про самопочуття."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «ты в порядке»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «ты в порядке»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You're fine.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «ты в порядке»",
+          "uk": "Складіть фразу — «з тобою все гаразд»"
+        },
+        "orderedTokens": [
+          "You're",
+          "fine"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите ответ — у стойки спросили: «Кто опоздал?» Ответьте двумя словами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите ответ — у стойки спросили: «Кто опоздал?» Ответьте двумя словами",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am.",
+        "localizedMeaning": {
+          "ru": "Соберите ответ — у стойки спросили: «Кто опоздал?» Ответьте двумя словами",
+          "uk": "Складіть відповідь — біля стійки спитали: «Хто спізнився?» Відповідайте двома словами"
+        },
+        "orderedTokens": [
+          "I",
+          "am"
+        ],
+        "authoredDistractorTokens": [
+          "I'm"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — два ответа подряд у стойки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — два ответа подряд у стойки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:i16:audio",
+          "transcript": "I'm late. I'm sorry. You're fine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm late. I'm sorry. You're fine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1165acad9e4e219d07340eba902364ac3a4e5dab1c2b1c35629b51075b680a3e"
+}

@@ -2,8 +2,8 @@
 
 **Сцена сессии.** Обед с командой закончился, все расходятся, и кто-то на выходе спрашивает, как прошло утро.
 **Операция:** повторение — `we are` / `they are` (+ `not`)
-**Новые слова:** early, right, fine, sorry
-**Возвращаются:** wrong, late, colleagues, friends
+**Новые слова:** —
+**Возвращаются:** wrong, late, colleagues, friends, early, right, fine, sorry
 
 ---
 

@@ -1,0 +1,77 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "I am / I will — правдоподобные варианты сокращения"
+      },
+      {
+        "task": 4,
+        "trap": "your vs you're — реальная путаница, названная в интро 2"
+      },
+      {
+        "task": 15,
+        "trap": "I'm лишняя плитка после которой ничего не идёт — учит правилу интро 3"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 16,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "fine",
+        "late",
+        "sure",
+        "sorry"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      3,
+      6,
+      12,
+      14,
+      15
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 2,
+      "context_gap_grammar": 5,
+      "phrase_builder": 5,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Три страницы интро превышают норму длины (297/344/320 знаков против 240–290), а слова fine/late/sure/sorry перегружены повторами (13/16/10/13 касаний) на сессии, где заявленных новых слов нет."
+}

@@ -2,7 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-26",
   "learningOutcomeByLocale": {
-    "ru": "применение `It is` + погода и время"
+    "ru": "применение `It is` + погода и время",
+    "uk": ""
   },
   "pages": [
     {
@@ -10,15 +11,18 @@
       "pageId": "en:lesson-01:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`rainy` — дождливо"
+        "ru": "`rainy` — дождливо",
+        "uk": "`rainy` — дощово"
       },
       "bodyByLocale": {
-        "ru": "`rainy` — «дождливо». Про погоду фраза начинается с `it`: `It is rainy`.\n\nПо-русски хватает одного слова: «дождливо». По-английски перед ним нужны ещё два — `It is`.\n\nЭто `it` ни на что не показывает — ни на небо, ни на улицу. Оно стоит там потому, что без него фраза не собирается."
+        "ru": "`rainy` — «дождливо». Про погоду фраза начинается с `it`: `It is rainy`.\n\nПо-русски хватает одного слова: «дождливо». По-английски перед ним нужны ещё два — `It is`.\n\nЭто `it` ни на что не показывает — ни на небо, ни на улицу. Оно стоит там потому, что без него фраза не собирается.",
+        "uk": "`rainy` — «дощово». Про погоду фраза починається з `it`: `It is rainy`.\n\nУкраїнською вистачає одного слова: «дощово». Англійською перед ним потрібні ще два — `It is`.\n\nЦе `it` ні на що не вказує — ні на небо, ні на вулицю. Воно стоїть там тому, що без нього фраза не збирається."
       },
       "question": {
         "interactionId": "en:lesson-01:session-26:intro1:q",
         "promptByLocale": {
-          "ru": "Утро, вы отодвинули штору: по стеклу течёт. Скажите про погоду."
+          "ru": "Утро, вы отодвинули штору: по стеклу течёт. Скажите про погоду.",
+          "uk": "Ранок, ви відсунули штору: по склу тече. Скажіть про погоду."
         },
         "choicesByLocale": {
           "ru": [
@@ -34,10 +38,25 @@
               "responseId": "en:lesson-01:session-26:intro1:r3",
               "text": "It rainy."
             }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-26:intro1:r1",
+              "text": "It is rainy."
+            },
+            {
+              "responseId": "en:lesson-01:session-26:intro1:r2",
+              "text": "Is rainy."
+            },
+            {
+              "responseId": "en:lesson-01:session-26:intro1:r3",
+              "text": "It rainy."
+            }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Утро, вы отодвинули штору: по стеклу течёт. Скажите про погоду."
+          "ru": "Утро, вы отодвинули штору: по стеклу течёт. Скажите про погоду.",
+          "uk": "Ранок, ви відсунули штору: по склу тече. Скажіть про погоду."
         }
       }
     },
@@ -46,15 +65,18 @@
       "pageId": "en:lesson-01:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`windy` — ветрено"
+        "ru": "`windy` — ветрено",
+        "uk": "`windy` — вітряно"
       },
       "bodyByLocale": {
-        "ru": "`windy` — «ветрено». Ветер гнёт деревья, дверь вырывается из рук — это `It is windy`.\n\nХвост «-и» тут делает всю работу: `wind` — сам ветер, само явление; `windy` — какая на улице погода. Скажете `It is wind` — получится «оно есть ветер», и вас переспросят."
+        "ru": "`windy` — «ветрено». Ветер гнёт деревья, дверь вырывается из рук — это `It is windy`.\n\nХвост «-и» тут делает всю работу: `wind` — сам ветер, само явление; `windy` — какая на улице погода. Скажете `It is wind` — получится «оно есть ветер», и вас переспросят.",
+        "uk": "`windy` — «вітряно». Вітер гне дерева, двері вириваються з рук — це `It is windy`.\n\nХвостик «-і» тут робить усю роботу: `wind` — сам вітер, саме явище; `windy` — яка на вулиці погода. Скажете `It is wind` — вийде «воно є вітер», і вас перепитають."
       },
       "question": {
         "interactionId": "en:lesson-01:session-26:intro2:q",
         "promptByLocale": {
-          "ru": "Вы открыли форточку, и штору сдуло на пол. Скажите про погоду."
+          "ru": "Вы открыли форточку, и штору сдуло на пол. Скажите про погоду.",
+          "uk": "Ви відчинили кватирку, і штору здуло на підлогу. Скажіть про погоду."
         },
         "choicesByLocale": {
           "ru": [
@@ -70,10 +92,25 @@
               "responseId": "en:lesson-01:session-26:intro2:r3",
               "text": "Is windy."
             }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-26:intro2:r1",
+              "text": "It is windy."
+            },
+            {
+              "responseId": "en:lesson-01:session-26:intro2:r2",
+              "text": "It is wind."
+            },
+            {
+              "responseId": "en:lesson-01:session-26:intro2:r3",
+              "text": "Is windy."
+            }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы открыли форточку, и штору сдуло на пол. Скажите про погоду."
+          "ru": "Вы открыли форточку, и штору сдуло на пол. Скажите про погоду.",
+          "uk": "Ви відчинили кватирку, і штору здуло на підлогу. Скажіть про погоду."
         }
       }
     },
@@ -82,15 +119,18 @@
       "pageId": "en:lesson-01:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`early` и `late` — часы"
+        "ru": "`early` и `late` — часы",
+        "uk": "`early` і `late` — годинник"
       },
       "bodyByLocale": {
-        "ru": "`early` — «рано». `late` — «поздно». Про часы говорят теми же двумя словами, что и про погоду: `It is early`, `It is late`.\n\nИ вот тут ловушка. `I am late` — «я опаздываю», виноваты вы. `It is late` — «поздно», виноваты часы. Одно слово, два разных виноватых."
+        "ru": "`early` — «рано». `late` — «поздно». Про часы говорят теми же двумя словами, что и про погоду: `It is early`, `It is late`.\n\nИ вот тут ловушка. `I am late` — «я опаздываю», виноваты вы. `It is late` — «поздно», виноваты часы. Одно слово, два разных виноватых.",
+        "uk": "`early` — «рано». `late` — «пізно». Про годинник говорять тими самими двома словами, що й про погоду: `It is early`, `It is late`.\n\nІ ось тут пастка. `I am late` — «я запізнююсь», винні ви. `It is late` — «пізно», винний годинник. Одне слово, двоє різних винних."
       },
       "question": {
         "interactionId": "en:lesson-01:session-26:intro3:q",
         "promptByLocale": {
-          "ru": "Вы глянули на часы: полседьмого, выходить только через час. Скажите про время."
+          "ru": "Вы глянули на часы: полседьмого, выходить только через час. Скажите про время.",
+          "uk": "Ви глянули на годинник: пів на сьому, виходити аж за годину. Скажіть про час."
         },
         "choicesByLocale": {
           "ru": [
@@ -106,10 +146,25 @@
               "responseId": "en:lesson-01:session-26:intro3:r3",
               "text": "It early."
             }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-26:intro3:r1",
+              "text": "It is early."
+            },
+            {
+              "responseId": "en:lesson-01:session-26:intro3:r2",
+              "text": "I am early."
+            },
+            {
+              "responseId": "en:lesson-01:session-26:intro3:r3",
+              "text": "It early."
+            }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вы глянули на часы: полседьмого, выходить только через час. Скажите про время."
+          "ru": "Вы глянули на часы: полседьмого, выходить только через час. Скажите про время.",
+          "uk": "Ви глянули на годинник: пів на сьому, виходити аж за годину. Скажіть про час."
         }
       }
     }
@@ -121,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d3c96c0760aca631e7c269760794a397173db6e8d0bf027d0a01d507640559b6"
+  "introFingerprint": "967f3baf278c8ba40c9d3229b99a5a33e415f10f8b59d5f4b5eae566d6b9fd04"
 }

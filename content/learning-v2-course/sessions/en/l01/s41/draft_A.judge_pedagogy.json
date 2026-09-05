@@ -1,0 +1,74 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "Im late — пропущен апостроф"
+      },
+      {
+        "task": 4,
+        "trap": "your — омофон-ловушка you're/your"
+      },
+      {
+        "task": 15,
+        "trap": "I'm вместо полной формы I am в конце фразы"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 16,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "fine",
+        "late",
+        "sure",
+        "sorry"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      15
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 2,
+      "context_gap_grammar": 4,
+      "phrase_builder": 4,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 15 требует ответа `I am late.` без сокращения, но нигде в тексте сессии явно не объяснено, что делать, когда во фразе появляется отрицание после сокращённой формы (`You're not late` в задании 14 корректно), при этом сама механика 'полная форма в конце фразы' введена только в интро 3 применительно к другому случаю (ответ одним словом), а не к вопросу 'кто опоздал' — это расширение правила за пределы того, что объяснено на страницах, и требует either доработки интро 3, либо перефразировки задания 15."
+}

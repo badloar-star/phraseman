@@ -288,6 +288,15 @@ function courseContext(lang) {
       String(sync.stdout || "").split(String.fromCharCode(10)).filter((l) => l.includes("РАСХОЖДЕНИЕ")).forEach((l) => WARN("  " + l));
     }
   } catch (e) { WARN(`сторож согласованности правил не запустился: ${e.message}`); }
+  // зачем: 2026-09-05 владелец заметил, что `early` заявлено новым в четырёх
+  // сессиях. Слово в уроке повторять можно, врёт только строка «Новые слова».
+  try {
+    const nw = spawnSync(process.execPath, [path.join(HERE, 'check_new_words.mjs')], { encoding: 'utf8' });
+    if (nw.status !== 0) {
+      WARN('слово заявлено новым повторно — правьте строку «Новые слова», не сторожа:');
+      String(nw.stderr || "").split(String.fromCharCode(10)).filter((l) => l.includes("уже заявлено")).forEach((l) => WARN("  " + l.trim()));
+    }
+  } catch (e) { WARN(`сторож новых слов не запустился: ${e.message}`); }
   return { constitution, constitutionShort, exemplars, verdicts };
 }
 

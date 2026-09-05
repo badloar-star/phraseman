@@ -2,7 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-35",
   "learningOutcomeByLocale": {
-    "ru": "`We are not` + слово о нас"
+    "ru": "`We are not` + слово о нас",
+    "uk": ""
   },
   "pages": [
     {
@@ -10,15 +11,18 @@
       "pageId": "en:lesson-01:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`not` встаёт после `are`"
+        "ru": "`not` встаёт после `are`",
+        "uk": "`not` стає після `are`"
       },
       "bodyByLocale": {
-        "ru": "`we` — «мы». Скрепка при нём — `are`: `We are late` — «мы опаздываем».\n\nЧтобы получилось «не», добавляем `not`. Место у него жёсткое: сразу за `are`, перед словом о вас. Не перед `are`, не в конец — `We are not late`."
+        "ru": "`we` — «мы». Скрепка при нём — `are`: `We are late` — «мы опаздываем».\n\nЧтобы получилось «не», добавляем `not`. Место у него жёсткое: сразу за `are`, перед словом о вас. Не перед `are`, не в конец — `We are not late`.",
+        "uk": "`we` — «ми». Скріпка при ньому — `are`: `We are late` — «ми запізнюємось».\n\nЩоб вийшло «не», додаємо `not`. Місце в нього суворе: одразу за `are`, перед словом про вас. Не перед `are`, не в кінець — `We are not late`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-35:intro1:q",
         "promptByLocale": {
-          "ru": "Кто-то на ходу: «Мы же опаздываем?» Времени полно. Скажите, что нет."
+          "ru": "Кто-то на ходу: «Мы же опаздываем?» Времени полно. Скажите, что нет.",
+          "uk": "Хтось на ходу: «Ми ж запізнюємось?» Часу вдосталь. Скажіть, що ні."
         },
         "choicesByLocale": {
           "ru": [
@@ -34,10 +38,25 @@
               "responseId": "en:lesson-01:session-35:intro1:r3",
               "text": "We are late not."
             }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-35:intro1:r1",
+              "text": "We are not late."
+            },
+            {
+              "responseId": "en:lesson-01:session-35:intro1:r2",
+              "text": "We not are late."
+            },
+            {
+              "responseId": "en:lesson-01:session-35:intro1:r3",
+              "text": "We are late not."
+            }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Кто-то на ходу: «Мы же опаздываем?» Времени полно. Скажите, что нет."
+          "ru": "Кто-то на ходу: «Мы же опаздываем?» Времени полно. Скажите, что нет.",
+          "uk": "Хтось на ходу: «Ми ж запізнюємось?» Часу вдосталь. Скажіть, що ні."
         }
       }
     },
@@ -46,15 +65,18 @@
       "pageId": "en:lesson-01:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`sure` — «уверен»"
+        "ru": "`sure` — «уверен»",
+        "uk": "`sure` — «впевнений»"
       },
       "bodyByLocale": {
-        "ru": "`sure` — «уверен, знаю точно». `We are sure` — «мы уверены».\n\nОтрицание к нему пригодится чаще самого слова: `We are not sure` — «мы не уверены». Это вежливое «понятия не имею»: и правду не соврали, и виноватым никто не выглядит."
+        "ru": "`sure` — «уверен, знаю точно». `We are sure` — «мы уверены».\n\nОтрицание к нему пригодится чаще самого слова: `We are not sure` — «мы не уверены». Это вежливое «понятия не имею»: и правду не соврали, и виноватым никто не выглядит.",
+        "uk": "`sure` — «впевнений, знаю напевно». `We are sure` — «ми впевнені».\n\nЗаперечення до нього знадобиться частіше за саме слово: `We are not sure` — «ми не впевнені». Це ввічливе «гадки не маємо»: і правду не збрехали, і ніхто не лишається винним."
       },
       "question": {
         "interactionId": "en:lesson-01:session-35:intro2:q",
         "promptByLocale": {
-          "ru": "Спрашивают, работает ли кафе через дорогу. Никто не знает. Ответьте за всех."
+          "ru": "Спрашивают, работает ли кафе через дорогу. Никто не знает. Ответьте за всех.",
+          "uk": "Питають, чи працює кав'ярня через дорогу. Ніхто не знає. Відповідайте за всіх."
         },
         "choicesByLocale": {
           "ru": [
@@ -70,10 +92,25 @@
               "responseId": "en:lesson-01:session-35:intro2:r3",
               "text": "We are sure not."
             }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-35:intro2:r1",
+              "text": "We are not sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-35:intro2:r2",
+              "text": "We no sure."
+            },
+            {
+              "responseId": "en:lesson-01:session-35:intro2:r3",
+              "text": "We are sure not."
+            }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спрашивают, работает ли кафе через дорогу. Никто не знает. Ответьте за всех."
+          "ru": "Спрашивают, работает ли кафе через дорогу. Никто не знает. Ответьте за всех.",
+          "uk": "Питають, чи працює кав'ярня через дорогу. Ніхто не знає. Відповідайте за всіх."
         }
       }
     },
@@ -82,15 +119,18 @@
       "pageId": "en:lesson-01:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`wrong` — «неправ»"
+        "ru": "`wrong` — «неправ»",
+        "uk": "`wrong` — «неправий»"
       },
       "bodyByLocale": {
-        "ru": "`wrong` — «неправ, ошибся». Сказал уверенно — и мимо.\n\nСлово это про человека, а не про дело: `We are wrong` — «мы ошибаемся», а не «у нас что-то сломалось». И спорить им можно за всю компанию сразу: `We are not wrong`."
+        "ru": "`wrong` — «неправ, ошибся». Сказал уверенно — и мимо.\n\nСлово это про человека, а не про дело: `We are wrong` — «мы ошибаемся», а не «у нас что-то сломалось». И спорить им можно за всю компанию сразу: `We are not wrong`.",
+        "uk": "`wrong` — «неправий, помилився». Сказав упевнено — і мимо.\n\nСлово це про людину, а не про справу: `We are wrong` — «ми помиляємось», а не «у нас щось зламалось». І сперечатися ним можна за всю компанію одразу: `We are not wrong`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-35:intro3:q",
         "promptByLocale": {
-          "ru": "Вам говорят, что вы всё перепутали. Ничего вы не перепутали. Скажите это."
+          "ru": "Вам говорят, что вы всё перепутали. Ничего вы не перепутали. Скажите это.",
+          "uk": "Вам кажуть, що ви все переплутали. Нічого ви не переплутали. Скажіть це."
         },
         "choicesByLocale": {
           "ru": [
@@ -106,10 +146,25 @@
               "responseId": "en:lesson-01:session-35:intro3:r3",
               "text": "We are not late."
             }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-35:intro3:r1",
+              "text": "We are not wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-35:intro3:r2",
+              "text": "We not wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-35:intro3:r3",
+              "text": "We are not late."
+            }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Вам говорят, что вы всё перепутали. Ничего вы не перепутали. Скажите это."
+          "ru": "Вам говорят, что вы всё перепутали. Ничего вы не перепутали. Скажите это.",
+          "uk": "Вам кажуть, що ви все переплутали. Нічого ви не переплутали. Скажіть це."
         }
       }
     }
@@ -121,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a249ab878af10660b2e92b25e0142b6191705e446db1bd716f3ac4c45f23fc3a"
+  "introFingerprint": "c7d0bb4a852734af4209bde7eb5a604fbe8eab69a94b979b0c15cedab7efa26f"
 }

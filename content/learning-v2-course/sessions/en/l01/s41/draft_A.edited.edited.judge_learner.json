@@ -1,0 +1,141 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "I am превращается в I'm, когда говоришь быстро. late — опоздал. Правильный ответ на ситуацию 'я вошёл позже всех' — I'm late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "you are тоже сжимается — в you're. your (твой) звучит так же, но это другое слово. Друг извинился — отвечаю You're fine.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Сокращение не ставят в конце фразы одно — там говорят am целиком. Но если после I'm идёт слово (sorry), сокращение работает как обычно.",
+      "confusion": "Секунду не понял: почему в Интро 3 говорят 'I'm не живёт в одиночку', а в задании 15 правильный ответ — просто 'I am.' без ничего после? Это разные ситуации (там дальше есть слово, тут это весь ответ), но формулировка интро сначала запутала — показалось, что 'I'm' вообще нельзя ставить последним словом фразы, а на самом деле дело в том, что после него должно идти ещё слово-признак, иначе используют полное am.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (аудирование)",
+      "what_i_understood": "Услышал слитное произношение, выбрал I'm.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Im без апострофа — неправильно, нужен I'm.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (сборка фразы)",
+      "what_i_understood": "I'm fine — лишняя плитка am, потому что am уже спрятано в I'm.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "you're отличается от your и you на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "You're fine — про состояние, your (твой) не подходит.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "You're late, лишняя плитка are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Тут проверяют слово sure — это новое слово в практике, но оно уже было объяснено в интро 3 как 'уверен'. Выбрал sure.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "I'm sorry — извинение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "You're sure — про собеседника, а не про его вещи.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "You're fine — отвечаю тому, кто извинился.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Соединил fine/late/sure/sorry с переводами — все слова уже видел выше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "I'm sure — снова лишняя плитка am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "I'm fine — про самочувствие, отличил от late и sure по контексту.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "You're fine, лишняя are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "На вопрос 'Кто опоздал?' отвечаю 'I am.' полностью, без сокращения, потому что после него больше ничего нет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (говорение)",
+      "what_i_understood": "Сказал подряд три фразы: I'm late. I'm sorry. You're fine. — собрал всё из сессии в одну сценку у стойки.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "I am на слух сжимается в I'm, и апостроф — это след пропавшей буквы a",
+    "you are сжимается в you're, и это надо отличать на слух и на письме от your (твой), которое звучит так же",
+    "в конце фразы, когда после am/are больше ничего не идёт, используют полную форму (I am.), а не сокращение"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2",
+      "why": "фраза 'над этим смеются уже лет двадцать' ничего не объясняет и не нужна для понимания правила — просто вставка для оживления текста, я как ученик просто пропустил её глазами"
+    }
+  ],
+  "felt_alive": [
+    "Сценка в пабе в пятницу — понятно, зачем говорить именно эти фразы: опоздал, извинился, успокоил друга",
+    "Задание 16, где нужно сказать всё подряд как живой разговор у стойки"
+  ],
+  "felt_dead": [
+    "Задания 7-10 — те же четыре слова (fine/late/sure/sorry) гоняются туда-сюда почти без новой ситуации, просто меняется, кто кому что говорит"
+  ],
+  "scene_reason": "да, понятно: я в пабе, толкнул кого-то — извиняюсь, вошёл позже всех — признаюсь, друг извинился — успокаиваю. К каждой фразе привязан понятный момент общения, а не абстрактное 'переведите'.",
+  "would_continue": "да — сессия короткая, все задания я реально смог сделать сам, под конец было приятное ощущение, что я теперь могу сказать три живых фразы в баре",
+  "verdict": "PASS",
+  "verdict_reason": "Все 16 заданий прошёл честно без незнакомых слов в правильных ответах, разобрался в разнице I'm/you're/your, понял новое правило про полную форму в конце фразы, и сцена была понятной от начала до конца."
+}

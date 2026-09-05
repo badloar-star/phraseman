@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "сокращения `I'm` / `you're`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`I am` в живой речи звучит как `I'm`",
+        "uk": "`I am` у живій мові звучить як `I'm`"
+      },
+      "bodyByLocale": {
+        "ru": "`I am` — «я есть». Перед следующим словом эти два слипаются в одно: `I'm`.\n\nЗначок `'` — след от буквы `a`, которую проглотили.\n\n`late` — «опоздал». `I am late` и `I'm late` — одно и то же, просто второе быстрее. А вот `I'm am late` — это `am` сказанное дважды, будто с первого раза не расслышали.",
+        "uk": "`I am` — «я є». Перед наступним словом ці двоє злипаються в одне: `I'm`.\n\nЗначок `'` — слід від букви `a`, яку проковтнули.\n\n`late` — «спізнився». `I am late` і `I'm late` — те саме, просто друге швидше. А от `I'm am late` — це `am`, сказане двічі, ніби з першого разу не розчули."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы вошли в паб позже всех. Признайтесь коротко, как говорят вслух.",
+          "uk": "Ви зайшли до пабу пізніше за всіх. Зізнайтеся коротко, як кажуть уголос."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-41:intro1:r1",
+              "text": "I'm late."
+            },
+            {
+              "responseId": "en:lesson-01:session-41:intro1:r2",
+              "text": "Im late."
+            },
+            {
+              "responseId": "en:lesson-01:session-41:intro1:r3",
+              "text": "I'm am late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-41:intro1:r1",
+              "text": "I'm late."
+            },
+            {
+              "responseId": "en:lesson-01:session-41:intro1:r2",
+              "text": "Im late."
+            },
+            {
+              "responseId": "en:lesson-01:session-41:intro1:r3",
+              "text": "I'm am late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы вошли в паб позже всех. Признайтесь коротко, как говорят вслух.",
+          "uk": "Ви зайшли до пабу пізніше за всіх. Зізнайтеся коротко, як кажуть уголос."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`you are` сокращается в `you're`",
+        "uk": "`you are` скорочується в `you're`"
+      },
+      "bodyByLocale": {
+        "ru": "`you are` — «ты есть», «вы есть». Вслух это сжимается так же: `you're fine` вместо `you are fine`.\n\nВот тут ловушка, на которой спотыкаются и сами англичане: `your` — это «твой», и звучит оно точно так же. В переписке они путают эти два слова каждый день, и над этим смеются уже лет двадцать.\n\nЗапомнить просто: со значком — там спрятано `are`.",
+        "uk": "`you are` — «ти є», «ви є». Уголос це стискається так само: `you're fine` замість `you are fine`.\n\nОсь тут пастка, на якій спотикаються навіть самі англійці: `your` — це «твій», і звучить воно точно так само. У листуванні вони плутають ці два слова щодня, і з цього сміються вже років двадцять.\n\nЗапам'ятати просто: зі значком — там сховане `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг извиняется, что толкнул вас у стойки. Успокойте его: «всё нормально».",
+          "uk": "Друг вибачається, що штовхнув вас біля стійки. Заспокойте його: «усе гаразд»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-41:intro2:r1",
+              "text": "You're fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-41:intro2:r2",
+              "text": "Your fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-41:intro2:r3",
+              "text": "You're are fine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-41:intro2:r1",
+              "text": "You're fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-41:intro2:r2",
+              "text": "Your fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-41:intro2:r3",
+              "text": "You're are fine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг извиняется, что толкнул вас у стойки. Успокойте его: «всё нормально».",
+          "uk": "Друг вибачається, що штовхнув вас біля стійки. Заспокойте його: «усе гаразд»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "В конце фразы сокращение не ставят",
+        "uk": "У кінці фрази скорочення не ставлять"
+      },
+      "bodyByLocale": {
+        "ru": "`I'm` не живёт в одиночку — за ним всегда идёт слово: `I'm sorry`, `I'm sure`.\n\nСпросили: «Кто опоздал?» Ответ — `I am`. В конце фразы на `am` падает нажим, его проговаривают целиком. Сжимается только то, что произносят быстро и мимоходом — а последнее слово мимоходом не скажешь.\n\n`sorry` — «извини», `sure` — «уверен».",
+        "uk": "`I'm` не живе саме по собі — за ним завжди йде слово: `I'm sorry`, `I'm sure`.\n\nСпитали: «Хто спізнився?» Відповідь — `I am`. У кінці фрази на `am` падає натиск, його вимовляють повністю. Стискається лише те, що промовляють швидко й побіжно — а останнє слово побіжно не скажеш.\n\n`sorry` — «вибач», `sure` — «упевнений»."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы наступили кому-то на ногу в толчее. Извинитесь коротко, как говорят вслух.",
+          "uk": "Ви наступили комусь на ногу в тісняві. Вибачтеся коротко, як кажуть уголос."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-41:intro3:r1",
+              "text": "I'm sorry."
+            },
+            {
+              "responseId": "en:lesson-01:session-41:intro3:r2",
+              "text": "I sorry."
+            },
+            {
+              "responseId": "en:lesson-01:session-41:intro3:r3",
+              "text": "Im sorry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-41:intro3:r1",
+              "text": "I'm sorry."
+            },
+            {
+              "responseId": "en:lesson-01:session-41:intro3:r2",
+              "text": "I sorry."
+            },
+            {
+              "responseId": "en:lesson-01:session-41:intro3:r3",
+              "text": "Im sorry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы наступили кому-то на ногу в толчее. Извинитесь коротко, как говорят вслух.",
+          "uk": "Ви наступили комусь на ногу в тісняві. Вибачтеся коротко, як кажуть уголос."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "57d6743ee933c0a26f39dc3849099a5d29e436fbdf7d8b7a8d0031a789bcc73f"
+}

@@ -2,143 +2,57 @@
   "walkthrough": [
     {
       "step": "Интро 1",
-      "what_i_understood": "Я не готов = I'm not ready. am и not вместе слипаются в I'm, а not никуда не девается, отдельно стоит.",
-      "confusion": "Мне сказали, что я мог бы захотеть сказать 'amn't' по аналогии с isn't — но я вообще не знал слова isn't до этого момента, оно ещё не объяснялось. Получается, меня предостерегают от ошибки, которую я пока не мог бы даже сделать.",
+      "what_i_understood": "Я — это I. am — маленькое слово рядом. Отрицание — I'm not, а не I amn't и не I not. ready значит «готов».",
+      "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Интро 2",
-      "what_i_understood": "Он не занят = He isn't busy. is может прилипнуть либо к человеку (he's not), либо к not (isn't). Про нескольких — aren't.",
+      "what_i_understood": "Про одного человека (он/она) is превращается в isn't или he's not — оба годятся, но не вместе (he'sn't — нельзя). busy значит «занят».",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Интро 3",
-      "what_i_understood": "it's с апострофом — это сокращение от it is ('оно есть/готово'). its без апострофа — 'его/её' про вещь. Проверка — подставить is.",
+      "what_i_understood": "it's (с чёрточкой) — это «оно есть/оно», its (без чёрточки) — «его». Проверка: если можно вставить is и фраза не превращается в бред — нужна чёрточка. done значит «готово».",
+      "confusion": "Проверка через подстановку is звучит логично, но я не до конца уверен, что всегда сумею её применить с ходу — надо будет попрактиковаться.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-5",
+      "what_i_understood": "Тренирую I'm not / isn't / aren't на разных лицах.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 1",
-      "what_i_understood": "Вставил not.",
+      "step": "Задания 6-9",
+      "what_i_understood": "full — «полный» (про стакан). Карточка, произношение на слух, соединение пар.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 2",
-      "what_i_understood": "Собрал He isn't busy.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 3",
-      "what_i_understood": "Про нескольких — aren't.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 4",
-      "what_i_understood": "На слух узнал It's done, отличил от Its и It done.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 5",
-      "what_i_understood": "Собрал I'm not done, отбросил лишнюю плитку amn't.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 6",
-      "what_i_understood": "full — 'полный', новое слово, дали карточку с объяснением.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 7",
-      "what_i_understood": "Узнал full на слух среди похожих fall/fill.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 8",
-      "what_i_understood": "Стакан налит до края — full, не done и не busy.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 9",
-      "what_i_understood": "Соединил все 4 пары слов с переводом.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 10",
-      "what_i_understood": "she — isn't.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 11",
-      "what_i_understood": "Собрал It isn't full, отбросил лишнюю плитку its.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 12",
-      "what_i_understood": "It's done — с апострофом, т.к. подставляется is.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 13",
-      "what_i_understood": "We aren't ready — послушал и собрал по звуку.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 14",
-      "what_i_understood": "Про себя одного — I'm not, не isn't и не aren't.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 15",
-      "what_i_understood": "They aren't done, отбросил amn't.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 16",
-      "what_i_understood": "I'm ready — отрицание тут не нужно, not лишняя плитка.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 17",
-      "what_i_understood": "Сказал вслух три фразы подряд: I'm not ready. I'm not busy. It's done.",
+      "step": "Задания 10-17",
+      "what_i_understood": "Продолжаю тренировать те же формы на новых словах и лицах, включая финальное устное задание с тремя фразами подряд.",
       "confusion": null,
       "could_answer_question": true
     }
   ],
   "learned_new": [
-    "Как сказать 'я не готов/не занят' — I'm not ready / I'm not busy",
-    "Что isn't — это he/she/it, а aren't — про нескольких (they/we)",
-    "Что is можно прилепить либо к человеку (he's not), либо к not (isn't), и это два равноправных способа",
-    "Что 'amn't' не существует, хотя логика подсказывает его придумать",
-    "Разницу it's (= it is) и its (принадлежность)",
-    "Новое слово full — полный, и его звучание в сравнении с fall/fill"
+    "Отрицание 'я не...' говорится как I'm not, а не I amn't (такого слова нет)",
+    "Отрицание про него/неё можно сказать двумя способами: he isn't ИЛИ he's not — но не вместе",
+    "Отрицание про них/нас — aren't",
+    "it's (с чёрточкой) = 'оно есть/оно', its (без чёрточки) = 'его' — и есть проверка через подстановку is",
+    "новое слово full — 'полный'"
   ],
   "impossible_tasks": [],
   "boring_or_water": [],
   "felt_alive": [
-    "Сцена в пабе с другом у стойки, который смотрит на полный стакан — понятно, зачем говорю 'I'm not ready'",
-    "Момент с бариста/барменом, уносящим тарелку и молча спрашивающим взглядом — естественный повод сказать 'It's done'",
-    "Задание 17 в конце, где три фразы подряд идут как настоящий мини-диалог за столом"
+    "Проверка через подстановку is в Интро 3 — это реально полезный трюк, а не просто правило",
+    "Финальное задание 17 с тремя фразами подряд за столом — ощущается как настоящий разговор"
   ],
   "felt_dead": [],
-  "scene_reason": "да, понятно: паб, пятница, конкретные люди (друг у стойки, приятель в телефоне, бармен с тарелкой) и конкретный повод сказать именно эту фразу в этот момент",
-  "would_continue": "да — задания шли по нарастающей, ловушки (amn't, he'sn't, лишние плитки) заставляли думать, а не гадать, и под конец я уверенно говорил все три фразы подряд не подглядывая",
-  "verdict": "REVISE",
-  "verdict_reason": "Всё выучил и прошёл честно, но в Интро 1 меня предостерегают от ошибки с 'isn't'-подобным 'amn't' раньше, чем слово isn't вообще введено (оно появляется только в следующем интро) — секунду я растерялся, откуда вообще взялось сравнение."
+  "scene_reason": "да — везде понятно, кому и в какой момент я говорю фразу: другу у стойки, бармену с тарелкой, другу про приятеля в телефоне. Ситуации бытовые и понятные, ни одна не требует знания 'предыдущих серий'.",
+  "would_continue": "да — тема понятная, объяснения по делу, ловушки логичные (isn't вместо aren't, its вместо it's), ничего лишнего не было",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно, узнал новое правило (I'm not/isn't/aren't и it's/its), ни одна сцена не требует незнакомого контекста, скуки и мёртвых мест нет."
 }

@@ -1,12 +1,7 @@
 {
   "plan_fidelity": {
     "operation_matches": true,
-    "new_words_match": [
-      "ready",
-      "busy",
-      "done",
-      "full"
-    ],
+    "new_words_match": [],
     "missing": [],
     "extra_grammar_smuggled": []
   },
@@ -18,27 +13,37 @@
     "realistic": [
       {
         "task": 1,
-        "trap": "amn't"
-      },
-      {
-        "task": 2,
-        "trap": "n/a — no trap tiles"
+        "trap": "amn't / isn't — реалистичные ловушки на границу сокращений"
       },
       {
         "task": 3,
-        "trap": "isn't/amn't for plural"
+        "trap": "isn't / amn't вместо aren't"
+      },
+      {
+        "task": 4,
+        "trap": "its вместо it's — реальная орфографическая путаница"
       },
       {
         "task": 10,
-        "trap": "aren't/amn't for she"
+        "trap": "aren't / amn't вместо isn't"
       },
       {
         "task": 12,
-        "trap": "Its/It (no is)"
+        "trap": "its вместо It's"
+      },
+      {
+        "task": 14,
+        "trap": "isn't / aren't вместо I'm not"
       }
     ],
-    "silly": [],
-    "native_transfer_used": true,
+    "silly": [
+      {
+        "task": 2,
+        "trap": "нет отвлекающих плиток вовсе — просто сборка из 3 верных плиток",
+        "better": "добавить лишнюю плитку-ловушку (например isn't как отдельное слово или he's) для единообразия с другими phrase_builder заданиями"
+      }
+    ],
+    "native_transfer_used": false,
     "feedback_teaches_unknown_form": []
   },
   "feedback": {
@@ -60,7 +65,9 @@
       ]
     ],
     "speed_match_overlap": false,
-    "repeated_targets": [],
+    "repeated_targets": [
+      "It's done. — идентичный правильный ответ в заданиях 4 и 12 (то же слово, та же форма, тот же перевод-цель, без вариации сцены/лица)"
+    ],
     "generic_instructions": [],
     "attention_traps": [
       5,
@@ -70,7 +77,12 @@
     ]
   },
   "time_references": [],
-  "cross_session_repeats": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s42/l01_s43/l01_s44",
+      "what": "сцена «паб, пятница, гул/музыка, короткие фразы» повторена четвёртую сессию подряд практически дословно; риск, что сессия перестаёт читаться как самостоятельная, хотя формально каждая называет ситуацию заново"
+    }
+  ],
   "textbook_formulas": [],
   "builder_notes": {
     "new_words_line_ok": true,
@@ -78,13 +90,13 @@
     "modes_used": {
       "context_gap_grammar": 6,
       "phrase_builder": 5,
-      "word_card": 1,
       "listen_choose": 2,
+      "word_card": 1,
       "speed_match": 1,
       "listen_build_dictation": 1,
       "scripted_repeat_compare": 1
     }
   },
-  "verdict": "PASS",
-  "verdict_reason": "Границы, повторы, форма и честность заданий соблюдены — план выполнен без нарушений."
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 12 почти дословно дублирует задание 4 (тот же вопрос про It's done с теми же вариантами) — это повтор одной цели как «нового» задания, плюс задание 2 не содержит ни одной отвлекающей плитки в отличие от всех остальных phrase_builder."
 }

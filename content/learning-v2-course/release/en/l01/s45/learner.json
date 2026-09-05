@@ -175,47 +175,42 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — `it's` или `its`?",
+      "prompt": "Выберите написание — вы пишете другу, что дело закончено",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-45:i04:r1",
-          "text": "It's done."
+          "text": "It's"
         },
         {
           "responseId": "en:lesson-01:session-45:i04:r2",
-          "text": "Its done."
+          "text": "Its"
         },
         {
           "responseId": "en:lesson-01:session-45:i04:r3",
-          "text": "It done."
+          "text": "It"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-45:i04:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите — `it's` или `its`?",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите написание — вы пишете другу, что дело закончено",
       "modePayload": {
         "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-45:i04:audio",
-          "transcript": "It's done."
-        },
+        "referenceAudio": null,
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-01:session-45:i04:r1",
-            "targetText": "It's done.",
+            "targetText": "It's",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-45:i04:r2",
-            "targetText": "Its done.",
+            "targetText": "Its",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-01:session-45:i04:r3",
-            "targetText": "It done.",
+            "targetText": "It",
             "meaningByLocale": null
           }
         ],
@@ -224,19 +219,19 @@
           {
             "responseId": "en:lesson-01:session-45:i04:r1",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — `it's` или `its`",
+            "testedDimension": "Выберите написание — вы пишете другу, чт",
             "feedbackByLocale": {
-              "ru": "Без значка это «его». Здесь подставляется `is`, значит `it's`.",
-              "uk": "Без значка це «його». Тут підставляється `is`, отже `it's`."
+              "ru": "Без чёрточки это «его». Проверьте: подставляется `is` — значит нужна чёрточка.",
+              "uk": "Без риски це «його». Перевірте: підставляється `is` — отже потрібна риска."
             }
           },
           {
             "responseId": "en:lesson-01:session-45:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — `it's` или `its`",
+            "testedDimension": "Выберите написание — вы пишете другу, чт",
             "feedbackByLocale": {
-              "ru": "Потерялось `is`. В `It's` от него осталась `s`, а значок стоит на месте `i`.",
-              "uk": "Загубилося `is`. В `It's` від нього лишилася `s`, а значок стоїть на місці `i`."
+              "ru": "Потерялось `is`. Без него фраза рассыпается.",
+              "uk": "Загубилося `is`. Без нього фраза розсипається."
             }
           }
         ],
@@ -301,7 +296,7 @@
             "targetText": "full",
             "meaningByLocale": {
               "ru": "«полный». Стакан налит до края, добавить некуда.",
-              "uk": "«повний». Склянка налита до вінця, долити нікуди."
+              "uk": "«повний». Склянка налита по вінця, доливати нікуди."
             }
           }
         ],
@@ -312,7 +307,7 @@
           "word": "full",
           "definitionByLocale": {
             "ru": "«полный». Стакан налит до края, добавить некуда.",
-            "uk": "«повний». Склянка налита до вінця, долити нікуди."
+            "uk": "«повний». Склянка налита по вінця, доливати нікуди."
           }
         }
       },
@@ -375,8 +370,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — full",
             "feedbackByLocale": {
-              "ru": "Другое слово. В `fall` гласная длинная, ближе к «о». В `full` — короткая, ближе к «у».",
-              "uk": "Інше слово. У `fall` голосна довга, ближча до «о». У `full` — коротка, ближча до «у»."
+              "ru": "Это «падать». Прозвучало другое слово — `full`, «полный».",
+              "uk": "Це «падати». Прозвучало інше слово — `full`, «повний»."
             }
           },
           {
@@ -384,8 +379,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — full",
             "feedbackByLocale": {
-              "ru": "Тут гласная звучит как «и». В `full` — ближе к «у».",
-              "uk": "Тут голосна звучить як «і». У `full` — ближче до «у»."
+              "ru": "Это «наполнять». Прозвучало `full` — «полный», про уже полный стакан.",
+              "uk": "Це «наповнювати». Прозвучало `full` — «повний», про вже повну склянку."
             }
           }
         ],
@@ -422,7 +417,7 @@
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — стакан налит до края",
-          "uk": "Вставте слово — склянка налита до вінця"
+          "uk": "Вставте слово — склянка налита по вінця"
         },
         "gappedTargetPhrase": "It's ___ .",
         "gapOptions": [
@@ -598,7 +593,7 @@
             "testedDimension": "Вставьте слово — «она не готова»",
             "feedbackByLocale": {
               "ru": "Так не говорят; и с `she` в любом случае `is`.",
-              "uk": "Так не кажуть; та й із `she` у будь-якому разі `is`."
+              "uk": "Так не кажуть; і з `she` у будь-якому разі `is`."
             }
           }
         ]
@@ -641,7 +636,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте значок или нет — «оно готово»",
+      "prompt": "Вставьте чёрточку или нет — «оно готово»",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-45:i12:r1",
@@ -658,12 +653,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте значок или нет — «оно готово»",
+      "accessibilityLabel": "Вставьте чёрточку или нет — «оно готово»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте значок или нет — «оно готово»",
-          "uk": "Поставте значок чи ні — «воно готове»"
+          "ru": "Вставьте чёрточку или нет — «оно готово»",
+          "uk": "Поставте риску чи ні — «воно готове»"
         },
         "gappedTargetPhrase": "",
         "gapOptions": [
@@ -680,21 +675,21 @@
             "text": "It"
           }
         ],
-        "testedDimension": "Вставьте значок или нет — «оно готово»",
+        "testedDimension": "Вставьте чёрточку или нет — «оно готово»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-45:i12:r1",
             "correct": false,
-            "testedDimension": "Вставьте значок или нет — «оно готово»",
+            "testedDimension": "Вставьте чёрточку или нет — «оно готово»",
             "feedbackByLocale": {
-              "ru": "Без значка это «его». Подставляется `is` — значит `it's`.",
-              "uk": "Без значка це «його». Підставляється `is` — отже `it's`."
+              "ru": "Без чёрточки это «его». Подставляется `is` — значит `it's`.",
+              "uk": "Без риски це «його». Підставляється `is` — отже `it's`."
             }
           },
           {
             "responseId": "en:lesson-01:session-45:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте значок или нет — «оно готово»",
+            "testedDimension": "Вставьте чёрточку или нет — «оно готово»",
             "feedbackByLocale": {
               "ru": "Пропало `is`. Нужно `It's`.",
               "uk": "Зникло `is`. Потрібно `It's`."
@@ -765,7 +760,7 @@
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — друг спрашивает, свободны ли вы сейчас",
-          "uk": "Вставте слово — друг питає, чи ви вільні зараз"
+          "uk": "Вставте слово — друг питає, чи ви зараз вільні"
         },
         "gappedTargetPhrase": "",
         "gapOptions": [
@@ -905,5 +900,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "73d22148bb5eddc382bd488335567272f24cad312cbdc79b144c805be51ff76d"
+  "learnerFingerprint": "89627459aa956e9831b9fd4cd6b45d3079ca1a4d1b4b2787939068e6521f25c9"
 }

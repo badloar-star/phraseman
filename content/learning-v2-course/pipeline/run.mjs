@@ -644,6 +644,57 @@ function stageJudge(S, ctx, plan, row, known, file, only = null) {
   return out;
 }
 
+// зачем: замер 05.09.2026 на ОДНОМ тексте — три прогона дали разные вердикты
+// (reader 2/3, 2/3, 1/3; nonsense REVISE, BLOCK, REVISE), и из 12 претензий
+// лишь ОДНА повторилась во всех трёх, девять оказались разовым шумом.
+// Сессия 45 прошла 12 кругов, потому что чинился шум. Решение владельца:
+// судить дважды и чинить только то, что нашлось в обоих прогонах.
+const DOUBLE_JUDGE = ["judge_nonsense", "judge_reader", "judge_taste"];
+
+function problemsOf(name, j) {
+  if (!j) return [];
+  const raw = name === "judge_reader"
+    ? (j.pages || []).flatMap((pg) => pg.problems || [])
+    : (j.problems || []);
+  return raw.map((x) => String(x.quote || "").slice(0, 45).trim()).filter(Boolean);
+}
+
+// Вердикт из двух прогонов: худший из совпавших. Претензия, которой нет во
+// втором прогоне, не может блокировать — она не воспроизводится.
+function mergeTwo(name, a, b) {
+  if (!b) return a;
+  const setB = new Set(problemsOf(name, b));
+  const both = problemsOf(name, a).filter((q) => setB.has(q));
+  const worst = RANK[a.verdict] <= RANK[b.verdict] ? a : b;
+  const best = worst === a ? b : a;
+  // обе стороны согласны на BLOCK/REVISE только если есть общая претензия
+  if (both.length === 0 && worst.verdict !== "PASS") {
+    LOG(`   ${name}: прогоны разошлись полностью (${a.verdict}/${b.verdict}) — беру мягкий ${best.verdict}, претензии не воспроизвелись`);
+    return { ...best, verdict_reason: `два прогона разошлись (${a.verdict}/${b.verdict}), общих претензий нет: ${best.verdict_reason || ""}` };
+  }
+  LOG(`   ${name}: два прогона ${a.verdict}/${b.verdict}, общих претензий ${both.length} — беру ${worst.verdict}`);
+  return { ...worst, confirmed_problems: both };
+}
+
+// Судит дважды тех судей, чьи вердикты нестабильны, и оставляет пересечение.
+function stageJudgeStable(S, ctx, plan, row, known, file, only = null) {
+  const first = stageJudge(S, ctx, plan, row, known, file, only);
+  const needSecond = Object.keys(first).filter((n) => DOUBLE_JUDGE.includes(n) && first[n].verdict !== "PASS");
+  if (!needSecond.length) return first;
+  LOG(`второй прогон для: ${needSecond.join(", ")} — чиним только повторяющееся`);
+  const out = { ...first };
+  for (const name of needSecond) {
+    const cacheFile = path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.json`);
+    const keep = exists(cacheFile) ? read(cacheFile) : null;
+    try { if (exists(cacheFile)) fs.unlinkSync(cacheFile); } catch (e) { WARN(`не удалось убрать кэш ${name}: ${e.message}`); }
+    const second = stageJudge(S, ctx, plan, row, known, file, [name])[name];
+    out[name] = mergeTwo(name, first[name], second);
+    write(cacheFile, JSON.stringify(out[name], null, 2));
+    if (keep) write(path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.run1.json`), keep);
+  }
+  return out;
+}
+
 const RANK = { PASS: 2, REVISE: 1, BLOCK: 0 };
 const score = (v) => Object.values(v).reduce((s, j) => s + (RANK[j.verdict] ?? 0), 0);
 
@@ -821,7 +872,7 @@ function main() {
   fs.mkdirSync(S.dir, { recursive: true });
 
   if (cmd === "draft") return stageDraft(S, ctx, plan, row, known);
-  if (cmd === "judge") return stageJudge(S, ctx, plan, row, known, path.join(S.dir, opt("file", "draft_A.ru.md")));
+  if (cmd === "judge") return stageJudgeStable(S, ctx, plan, row, known, path.join(S.dir, opt("file", "draft_A.ru.md")));
   if (cmd === "edit") {
     const f = path.join(S.dir, opt("file", "draft_A.ru.md"));
     const v = stageJudge(S, ctx, plan, row, known, f);
@@ -854,12 +905,12 @@ function main() {
       if (!best || s > best.s) best = { f, s, taste: t };
     }
     LOG(`лучший черновик: ${path.basename(best.f)}`);
-    const fullV = { ...stageJudge(S, ctx, plan, row, known, best.f, ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader"]), judge_taste: best.taste };
+    const fullV = { ...stageJudgeStable(S, ctx, plan, row, known, best.f, ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader"]), judge_taste: best.taste };
     let cur = { f: best.f, v: fullV, s: score(fullV) };
     for (let round = 1; round <= 2 && cur.s < 6; round++) {
       LOG(`круг правки ${round}: ${path.basename(cur.f)} (${cur.s}/6)`);
       const ef = stageEdit(S, ctx, plan, row, known, cur.f, cur.v);
-      const v = stageJudge(S, ctx, plan, row, known, ef);
+      const v = stageJudgeStable(S, ctx, plan, row, known, ef);
       cur = { f: ef, v, s: score(v) };
     }
     const finalRu = path.join(S.dir, "final.ru.md");

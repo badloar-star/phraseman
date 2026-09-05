@@ -340,7 +340,7 @@ function callModel({ system, user, model, maxTokens = 8000, label, attempt = 0 }
         // чтобы конвейер встал на паузу и продолжил с того же шага, а не упал.
         const msg = String(j.result || "ошибка без текста");
         const e = new Error(`claude -p: ${msg}`);
-        if (/session limit|usage limit|rate limit/i.test(msg)) e.isLimit = true;
+        if (/session limit|usage limit|rate limit|weekly limit|hit your limit/i.test(msg)) e.isLimit = true;
         // зачем: 03.09 сервер вернул 500 на одном вызове, и упал ВЕСЬ пакет из
         // семи сессий. Сбой сервера временный — ждём минуту и повторяем до 3 раз.
         if (/\b5\d\d\b|Internal server error|overloaded|529/i.test(msg)) e.isTransient = true;
@@ -375,6 +375,13 @@ function callModel({ system, user, model, maxTokens = 8000, label, attempt = 0 }
     if (e.isLimit && WAIT_ON_LIMIT) {
       const resetAt = parseResetTime(e.message);
       const waitMs = Math.max(60_000, resetAt - Date.now() + 60_000);
+      // зачем: дневной лимит ждём (5 часов максимум), недельный — 10+ часов,
+      // держать процесс и слот столько нельзя: останавливаемся с понятным словом
+      const MAX_WAIT_MS = 3 * 60 * 60 * 1000;
+      if (waitMs > MAX_WAIT_MS) {
+        LOG(`ранний выход: лимит сбрасывается через ${Math.round(waitMs / 3600000)} ч (${new Date(resetAt).toLocaleTimeString()}) — это дольше трёх часов, не жду. Запусти заново после сброса.`);
+        throw e;
+      }
       LOG(`⏸ лимит подписки. Жду до сброса: ${new Date(resetAt).toLocaleTimeString()} (${Math.round(waitMs / 60000)} мин), затем повтор ${label}`);
       sleepSync(waitMs);
       LOG(`▶ продолжаю после лимита: ${label}`);

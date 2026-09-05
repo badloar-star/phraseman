@@ -1,0 +1,143 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про группу людей (не про одного) говорят они, а слово-скрепка при них — are, не is. Показали на примере: соседи заняты — They are busy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "nice — приятные люди, funny — смешные (в хорошем смысле, с ними смеёшься). Скрепка та же, are, что и в первой странице.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "loud — громкие, шумные. Ещё раз показали, что скрепка не меняется от слова к слову — всегда are при they.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка busy)",
+      "what_i_understood": "Занят/заняты.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух busy)",
+      "what_i_understood": "Выбрал busy, отличил от bus и bed по звучанию.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка nice)",
+      "what_i_understood": "Милый, приятный.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (слух nice)",
+      "what_i_understood": "Выбрал nice, а не ice/night.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (вставь скрепку)",
+      "what_i_understood": "They ___ busy — тут нужно are, потому что they, а не один человек.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (карточка loud)",
+      "what_i_understood": "Громкий, шумный.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (карточка funny)",
+      "what_i_understood": "Смешной.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (слух loud)",
+      "what_i_understood": "Выбрал loud, не load/lot.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (вставь слово, придержали дверь)",
+      "what_i_understood": "Раз были добры — nice, а не loud/busy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (собери из плиток)",
+      "what_i_understood": "They are funny — собрал, лишняя плитка nice не пригодилась.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Соединил все 4 слова с переводом без проблем, они уже все знакомы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (собери, хохочут)",
+      "what_i_understood": "They are loud — собрал, лишняя плитка is не подошла.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (We are ready, надели куртки)",
+      "what_i_understood": "Тут внезапно про мы, а не про них — We are ready. Слово ready я не проходил в этой сессии, но задание само подсказало по смыслу (\"идём\" = готовы), и оно из старого списка допустимых слов.",
+      "confusion": "Секунду не понял, при чём тут это задание к теме сессии (\"они\"), но справился.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (We are together)",
+      "what_i_understood": "Мы вместе, идём все разом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (They are funny, смеются)",
+      "what_i_understood": "Вернулся к теме про них, выбрал funny, а не ready/together — они не в тему вопроса.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (скажи вслух)",
+      "what_i_understood": "Повторил They are nice. They are loud.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, три фразы)",
+      "what_i_understood": "Собрал все три фразы сам: про них (nice, funny) и про нас (together).",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово they (они) и что при нём всегда скрепка are, а не is",
+    "Новое слово busy (заняты)",
+    "Новое слово nice (милые, приятные)",
+    "Новое слово funny (смешные)",
+    "Новое слово loud (громкие, шумные)",
+    "Что скрепка are не меняется от того, какое слово идёт после — she заняты, они шумные, они смешные — всё равно are"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Обед с соседним столом — понятная ситуация, легко представить, зачем я это говорю",
+    "Шутка про то, что рука сама тянется написать They busy — понятно и по делу, объясняет саму ошибку, а не украшает текст"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно. Весь урок — это обед, и я объясняю коллеге, кто сидит за соседним столом (заняты, приятные, шумные, смешные), а в конце говорю то же самое ещё раз плюс про свою команду (мы вместе). Единственное — задание 13 про куртки и \"идём обедать\" немного выбивается из темы про \"они\", но это возврат к старым словам we/ready/together, которые заявлены отдельно, так что не считаю это нарушением.",
+  "would_continue": "Да — было понятно, задания в конце давали меньше подсказок, и я реально выучил новую фразу-конструкцию (they + are + слово), а не просто повторял одно и то же.",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно без незнакомых обязательных слов, выучил новую конструкцию they are + 4 новых слова, сцена (обед, соседний стол) понятна от начала до конца."
+}

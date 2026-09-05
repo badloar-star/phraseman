@@ -8,6 +8,9 @@ window.addEventListener("error", (e) => {
 const DATA = window.__DATA__;
 const LOCALES = ["ru","uk"];
 const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
+const BUILT_AT = "05.09, 18:28";
+// зачем: показать свежесть макета с одного взгляда — владелец час смотрел на старую сборку
+document.getElementById("buildStamp").textContent = DATA.length + " сессий · " + BUILT_AT;
 
 const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], pairSel: null, pairsDone: [], right: 0, wrong: 0 };
 

@@ -6,7 +6,7 @@
 // Читает собранный релиз (release/**/learner.json + intro.json + answers.json) —
 // то есть проверяет заодно и сборщик: что попало в макет, то попадёт в телефон.
 //
-// Запуск: node build_mockup.mjs [--out ../../../.codex-tmp/learning-v2-mockup/index.html]
+// Запуск: node build_mockup.mjs [--out mockup/index.html]
 //
 // Логи: префикс [MOCKUP], каждый ранний выход пишет причину.
 
@@ -21,7 +21,10 @@ const WARN = (...a) => console.warn("[MOCKUP][WARN]", ...a);
 
 const args = process.argv.slice(2);
 const opt = (n, d) => { const i = args.indexOf(`--${n}`); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
-const OUT = path.resolve(opt("out", path.join(ROOT, "..", "..", ".codex-tmp", "learning-v2-mockup", "index.html")));
+// зачем: 05.09.2026 владелец открывал mockup/index.html и видел 40 сессий,
+// пока сборщик клал свежий макет в .codex-tmp/. Место сборки по умолчанию —
+// та папка, которую владелец реально открывает.
+const OUT = path.resolve(opt("out", path.join(ROOT, "mockup", "index.html")));
 const RELEASE = path.join(ROOT, "release");
 
 // ---------- сбор сессий ----------
@@ -100,6 +103,7 @@ button:disabled{cursor:default}
   background:rgba(251,253,247,.82);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(18,35,29,.07)}
 .brand{font-weight:800;letter-spacing:-.02em;font-size:15px}
 .brand span{display:block;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-top:1px}
+.build-stamp{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.02em;white-space:nowrap}
 .topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
 .pill{background:var(--surface-2);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
 select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
@@ -232,6 +236,7 @@ select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
 <div class="topbar">
   <div class="brand">Learning V2<span>Пройти сессию</span></div>
   <div class="topbar-right">
+    <span class="build-stamp" id="buildStamp"></span>
     <select class="pill" id="locale" aria-label="Язык объяснений"></select>
     <button class="pill" id="home" hidden>К списку</button>
   </div>
@@ -253,6 +258,9 @@ window.addEventListener("error", (e) => {
 const DATA = JSON.parse(document.getElementById("data").textContent);
 const LOCALES = ${JSON.stringify(locales)};
 const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
+const BUILT_AT = ${JSON.stringify(new Date().toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}))};
+// зачем: показать свежесть макета с одного взгляда — владелец час смотрел на старую сборку
+document.getElementById("buildStamp").textContent = DATA.length + " сессий · " + BUILT_AT;
 
 const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], pairSel: null, pairsDone: [], right: 0, wrong: 0 };
 

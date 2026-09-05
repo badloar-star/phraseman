@@ -1,0 +1,162 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (lost)",
+      "what_i_understood": "Новое слово lost = «заблудился». Понял, что нельзя сказать просто we lost, нужно we are lost, потому что we lost значит другое (мы проиграли/потеряли).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (safe)",
+      "what_i_understood": "safe = «в безопасности», обычное спокойное состояние, не про спасение из огня. Фраза we are safe.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (home/back)",
+      "what_i_understood": "home = дома/домой, back = обратно. Важно: they are home — без лишнего слова между are и home.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — карточка lost",
+      "what_i_understood": "Повторили слово lost.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — на слух lost/lot/last",
+      "what_i_understood": "Выбрал lost, различил от похожих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 — карточка safe",
+      "what_i_understood": "Повторили safe.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 — собрать We are lost",
+      "what_i_understood": "Собрал фразу из плиток, лишняя плитка is не подошла.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — карточка home",
+      "what_i_understood": "Повторили home.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — карточка back",
+      "what_i_understood": "Повторили back.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — We are safe",
+      "what_i_understood": "Выбрал safe, а не lost/home, потому что вопрос про спокойствие вокруг.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — safe vs save на слух",
+      "what_i_understood": "Выбрал safe, понял что save это другое слово (спасать).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — доска пар",
+      "what_i_understood": "Соединил все 4 слова с переводами без проблем, потому что уже трогал их раньше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — They are home на слух",
+      "what_i_understood": "Собрал фразу по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — We are together",
+      "what_i_understood": "Тут внезапно новое слово together, которое нигде выше не объяснялось.",
+      "confusion": "Слово together появилось как правильный ответ, но я его перевод нигде не видел до этого момента.",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 12 — собрать We are far",
+      "what_i_understood": "far здесь правильный ответ, но тоже нигде не объяснено, что это значит.",
+      "confusion": "far — правильный ответ, а перевода слова я нигде не получал.",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 13 — I am wrong",
+      "what_i_understood": "wrong — правильный ответ («неправ»), но само слово и его смысл нигде не вводились.",
+      "confusion": "wrong как правильный ответ без объяснения перевода.",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 14 — You are right",
+      "what_i_understood": "right — правильный ответ («прав»), тоже без введения.",
+      "confusion": "right как правильный ответ без объяснения перевода.",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 15 — We are back",
+      "what_i_understood": "Собрал фразу, back уже знаю с карточки 6, лишняя плитка not не нужна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — They are safe на слух",
+      "what_i_understood": "Собрал фразу по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал",
+      "what_i_understood": "Сказал все 4 фразы про lost/together/safe/back. Но together я произношу, толком не зная перевода.",
+      "confusion": "Финал требует сказать 'we are together', а перевод этого слова я так и не увидел ни разу за всю сессию.",
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "lost — заблудился",
+    "safe — в безопасности",
+    "home — дома, домой",
+    "back — обратно, назад",
+    "различать lost/lot/last и safe/save на слух",
+    "конструкция they are home без лишнего слова"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 11,
+      "why": "Правильный ответ — together, но перевод и смысл этого слова нигде в сессии не даны (это заявлено как 'возвращаемое' слово, но я прохожу сессию впервые и вижу его первый раз)."
+    },
+    {
+      "task": 12,
+      "why": "Правильный ответ — far, слово нигде не объяснено и не переведено до этого задания."
+    },
+    {
+      "task": 13,
+      "why": "Правильный ответ — wrong, слово нигде не объяснено и не переведено."
+    },
+    {
+      "task": 14,
+      "why": "Правильный ответ — right, слово нигде не объяснено и не переведено."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с прогулкой по Дублину и заблудившейся компанией — понятная, живая ситуация.",
+    "Финал, где нужно сказать все четыре фразы подряд — приятное ощущение завершённости."
+  ],
+  "felt_dead": [
+    "Задания 11-14 — просто абстрактные предложения без сцены и без объяснения слов, будто вставлены из другого урока."
+  ],
+  "scene_reason": "Отчасти да. Про lost/safe/home/back всё понятно — кто говорит, кому и зачем (мы, о себе, друзьям). Но начиная с задания 11 сцена пропадает: непонятно, зачем вдруг появляются together, far, right, wrong — они выдаются как 'уже знакомые', а я их вижу впервые и не понимаю их смысла, только гадаю по вариантам ответа методом исключения.",
+  "would_continue": "Скорее нет. Первая половина сессии отличная, но с задания 11 я застрял: должен был отвечать про слова, которых мне не объяснили, и это неприятное чувство — будто меня обманули или пропустили кусок урока.",
+  "verdict": "BLOCK",
+  "verdict_reason": "В заданиях 11-14 правильные ответы (together, far, right, wrong) требуют слов, перевод и смысл которых мне ни разу не показали за всю сессию — это нечестно решаемые задания для того, кто открыл сессию первой."
+}

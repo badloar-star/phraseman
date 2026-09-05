@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "перенос — `we are` / `they are` вне офиса",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`lost` — «заблудились»",
+        "uk": "`lost` — «заблукали»"
+      },
+      "bodyByLocale": {
+        "ru": "`lost` — «заблудился», «потерялся». Про одного человека и про целую компанию одинаково: `we are lost`.\n\nПеред ним нужно `are`, и это не мелочь. Скажете `we lost` — получится «мы проиграли»: это уже другая фраза, прошедшее время от «терять».",
+        "uk": "`lost` — «заблукав», «загубився». Про одну людину і про цілу компанію однаково: `we are lost`.\n\nПеред ним потрібне `are`, і це не дрібниця. Скажете `we lost` — вийде «ми програли»: це вже інша фраза, минулий час від «втрачати»."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Свернули с улицы, и никто не понимает куда. Скажите вслух за всех.",
+          "uk": "Звернули з вулиці, і ніхто не розуміє куди. Скажіть уголос за всіх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-38:intro1:r1",
+              "text": "We are lost."
+            },
+            {
+              "responseId": "en:lesson-01:session-38:intro1:r2",
+              "text": "We lost."
+            },
+            {
+              "responseId": "en:lesson-01:session-38:intro1:r3",
+              "text": "We is lost."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-38:intro1:r1",
+              "text": "We are lost."
+            },
+            {
+              "responseId": "en:lesson-01:session-38:intro1:r2",
+              "text": "We lost."
+            },
+            {
+              "responseId": "en:lesson-01:session-38:intro1:r3",
+              "text": "We is lost."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Свернули с улицы, и никто не понимает куда. Скажите вслух за всех.",
+          "uk": "Звернули з вулиці, і ніхто не розуміє куди. Скажіть уголос за всіх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`safe` — «в безопасности»",
+        "uk": "`safe` — «у безпеці»"
+      },
+      "bodyByLocale": {
+        "ru": "`safe` — «в безопасности», «ничего не угрожает». Не «спасён из огня», а обычное: район нормальный, никто не пристаёт, идти можно.\n\nСкрепка та же: `we are safe`. Рядом живёт `save` — «спасать», «сохранять». Русское ухо на конце слова звонкую «в» глушит, так что оба слова слышатся одинаково: в `safe` на конце «ф», в `save` «в» надо дотянуть, а не проглотить.",
+        "uk": "`safe` — «у безпеці», «ніщо не загрожує». Не «врятований з пожежі», а звичайне: район нормальний, ніхто не чіпляється, іти можна.\n\nСкріпка та сама: `we are safe`. Поряд живе `save` — «рятувати», «зберігати». Українське вухо в кінці слова дзвінке «в» не оглушує, тож тут вам легше, ніж багатьом: у `safe` на кінці «ф», у `save` — «в», і ці два слова треба чути як різні."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Кто-то нервничает. Вокруг светло, людей полно. Успокойте всех.",
+          "uk": "Хтось нервує. Навколо світло, людей повно. Заспокойте всіх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-38:intro2:r1",
+              "text": "We are safe."
+            },
+            {
+              "responseId": "en:lesson-01:session-38:intro2:r2",
+              "text": "We safe."
+            },
+            {
+              "responseId": "en:lesson-01:session-38:intro2:r3",
+              "text": "We are save."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-38:intro2:r1",
+              "text": "We are safe."
+            },
+            {
+              "responseId": "en:lesson-01:session-38:intro2:r2",
+              "text": "We safe."
+            },
+            {
+              "responseId": "en:lesson-01:session-38:intro2:r3",
+              "text": "We are save."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Кто-то нервничает. Вокруг светло, людей полно. Успокойте всех.",
+          "uk": "Хтось нервує. Навколо світло, людей повно. Заспокойте всіх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`home` — «дома»",
+        "uk": "`home` — «вдома»"
+      },
+      "bodyByLocale": {
+        "ru": "`home` — «дома» или «домой».\n\nПеред ним не ставят предлог. `They are home` — и всё. Рука тянется добавить `in`, как ставят перед любым местом (`in the office`), но с `home` этого не делают. Про место — правило, про дом — исключение.",
+        "uk": "`home` — «вдома» або «додому».\n\nПеред ним не ставлять прийменник. `They are home` — і все. Рука тягнеться додати `in`, як ставлять перед будь-яким місцем (`in the office`), але з `home` так не роблять. Про місце — правило, про дім — виняток."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Двое из компании ушли раньше, вы им написали — уже дошли. Скажите про них.",
+          "uk": "Двоє з компанії пішли раніше, ви їм написали — уже дійшли. Скажіть про них."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-38:intro3:r1",
+              "text": "They are home."
+            },
+            {
+              "responseId": "en:lesson-01:session-38:intro3:r2",
+              "text": "They are in home."
+            },
+            {
+              "responseId": "en:lesson-01:session-38:intro3:r3",
+              "text": "They is home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-38:intro3:r1",
+              "text": "They are home."
+            },
+            {
+              "responseId": "en:lesson-01:session-38:intro3:r2",
+              "text": "They are in home."
+            },
+            {
+              "responseId": "en:lesson-01:session-38:intro3:r3",
+              "text": "They is home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Двое из компании ушли раньше, вы им написали — уже дошли. Скажите про них.",
+          "uk": "Двоє з компанії пішли раніше, ви їм написали — уже дійшли. Скажіть про них."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ca7a6b7ecd98f967f269382aab4c0860a1cf1b55ad74da40f9f5435ed7420070"
+}

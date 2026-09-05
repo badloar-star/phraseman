@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-38:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i02",
+    "correctText": "lost",
+    "correctResponseId": "en:lesson-01:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i04",
+    "correctText": "We are lost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i07",
+    "correctText": "safe",
+    "correctResponseId": "en:lesson-01:session-38:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i08",
+    "correctText": "safe",
+    "correctResponseId": "en:lesson-01:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i09",
+    "correctText": "They are home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i10",
+    "correctText": "back",
+    "correctResponseId": "en:lesson-01:session-38:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i12",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i13",
+    "correctText": "together",
+    "correctResponseId": "en:lesson-01:session-38:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i15",
+    "correctText": "We are far.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i16",
+    "correctText": "They are safe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-38:i17",
+    "correctText": "We are lost. We are together. We are safe. We are back.",
+    "correctResponseId": null
+  }
+]

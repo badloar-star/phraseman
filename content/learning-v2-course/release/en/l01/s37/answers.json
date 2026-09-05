@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-37:i01",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-37:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i02",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i03",
+    "correctText": "hot",
+    "correctResponseId": "en:lesson-01:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i04",
+    "correctText": "She is cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i05",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i07",
+    "correctText": "They are tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i08",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i09",
+    "correctText": "I am not cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i10",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-37:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i11",
+    "correctText": "hot",
+    "correctResponseId": "en:lesson-01:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i12",
+    "correctText": "We are cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i13",
+    "correctText": "hot",
+    "correctResponseId": "en:lesson-01:session-37:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i14",
+    "correctText": "I am happy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i15",
+    "correctText": "She is cold. I am not cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-37:i16",
+    "correctText": "I am tired. He is tired. It is hot. We are happy.",
+    "correctResponseId": null
+  }
+]

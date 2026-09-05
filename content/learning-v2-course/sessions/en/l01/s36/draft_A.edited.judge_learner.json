@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (colleagues)",
+      "what_i_understood": "Colleagues — это люди с работы, не друзья. Про себя с таким человеком говорю 'we are colleagues'. Запомнил, что на конце 's' и что 'u' не слышно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (friends)",
+      "what_i_understood": "Friends — друзья, те, кому звонишь просто так. Порядок букв ie, не ei. Про двоих — 'they are friends'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (neighbours/guests)",
+      "what_i_understood": "Neighbours — соседи, живут рядом постоянно. Guests — гости, зашли ненадолго. Отличие понятно: guests скоро уйдут.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка colleagues)",
+      "what_i_understood": "Повтор слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух colleagues)",
+      "what_i_understood": "Выбрал colleagues, не college/call.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка friends)",
+      "what_i_understood": "Повтор.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (слух friends)",
+      "what_i_understood": "Выбрал friends, не trends/friend.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка 'we are colleagues')",
+      "what_i_understood": "Собрал фразу, отбросил лишнее 'is'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (карточка neighbours)",
+      "what_i_understood": "Повтор.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (карточка guests)",
+      "what_i_understood": "Повтор.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (слух guests)",
+      "what_i_understood": "Выбрал guests, не guess/gets.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (вставь слово — пришли на час)",
+      "what_i_understood": "Выбрал guests, а не neighbours/colleagues.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (сборка 'we are neighbours')",
+      "what_i_understood": "Собрал, не взял лишнее 'am'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (слух+сборка 'they are friends')",
+      "what_i_understood": "Собрал по звуку, не взял 'is'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (together)",
+      "what_i_understood": "Про 'мы вместе за столом' выбрал together, не alone/quiet — это слово я знал по описанию сцены выше ('Возвращаются: together').",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (quiet)",
+      "what_i_understood": "Про молчащих соседей за столом выбрал quiet.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (Speed Match)",
+      "what_i_understood": "Соединил все 4 пары без проблем — все слова уже видел.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (funny + kind)",
+      "what_i_understood": "Про 'смешил' — funny, про 'угостил кофе' — kind. Оба слова знакомы из прошлых сессий (в задании написано 'Возвращаются'), логично подошли к ситуации.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (вслух)",
+      "what_i_understood": "Повторил 'We are colleagues. They are guests.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Собрал 4 фразы подряд про обед: работа, вместе, друзья, гости — уже без подсказок, справился.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово colleagues и как его произносить (немая u, звук 'гз' в конце)",
+    "Слово friends и порядок букв ie",
+    "Слово neighbours (немое gh) и отличие от guests",
+    "Слово guests и как отличить гостей от соседей по смыслу ситуации",
+    "Как сказать 'мы коллеги' и 'они друзья/гости' — we are / they are + новое слово"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена обеда понятная и живая: реально бывает, что кто-то шепотом объясняет, кто все эти люди за столом",
+    "Финал (задание 17), где нужно было сразу выдать 4 фразы про разных людей за столом — почувствовал, что могу описать реальную ситуацию, а не просто повторить фразу"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я сижу за обедом с новыми людьми, и мне либо объясняют, кто есть кто, либо я сам должен коротко сказать это другому человеку. Каждая фраза привязана к конкретному моменту (кто-то спрашивает, я киваю на людей, финал сцены) — не абстрактные примеры.",
+  "would_continue": "да — сессия короткая, слова понятные и сразу связаны с живой ситуацией, к финалу почувствовал, что реально могу составить фразы сам, а не просто угадать кнопку",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы честно, новые слова введены и отработаны с карточкой и повтором до появления в Speed Match, отсылок к несуществующему прошлому опыту нет, сцена понятна и мотивация говорить фразы ясна."
+}

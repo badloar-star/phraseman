@@ -1,0 +1,151 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — lost",
+      "what_i_understood": "Слово lost значит «заблудились». Перед ним нужно are (мы — несколько человек), а не просто lost само по себе, потому что we lost — это «мы проиграли».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — safe",
+      "what_i_understood": "safe значит «в безопасности», обычное спокойное состояние, не только «спасён из огня». Рядом есть похожее слово save («спасать»), их можно спутать на слух.",
+      "confusion": "Мне сказали, что на конце safe — «ф», а на конце save — «в», которое «нужно дотянуть». Я не знаю, как на практике различить это на слух в задании 8 — там просто два одинаковых с виду слова.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — home",
+      "what_i_understood": "home — «дома/домой», и перед ним не ставится in, в отличие от других мест. They are home — без предлога.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — карточка lost",
+      "what_i_understood": "Повтор того же самого объяснения слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — на слух lost/lot/last",
+      "what_i_understood": "Выбрал lost, отличил по звучанию от lot и last.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 — карточка safe",
+      "what_i_understood": "Повтор объяснения safe.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 — собрать «мы заблудились»",
+      "what_i_understood": "Собрал We are lost из плиток, лишняя плитка is не подошла, потому что мы — не один человек.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — карточка home",
+      "what_i_understood": "Ещё раз home.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — карточка back",
+      "what_i_understood": "back — «обратно, назад», новое слово, до этого в интро не объяснялось отдельной страницей.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — вставить слово (все спокойны)",
+      "what_i_understood": "Выбрал safe, а не lost или home, по смыслу ситуации.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — safe vs save на слух",
+      "what_i_understood": "Должен был выбрать safe.",
+      "confusion": "Честно — я не уверен, что смог бы услышать разницу между safe и save только по звуку, мне это объяснили текстом («ф» и «в»), но реального аудио-ориентира для этого не было — я просто угадывал по подсказке из интро.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — собрать на слух «они дома»",
+      "what_i_understood": "They are home, лишняя плитка safe не подошла.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — вставить слово (идут обратно)",
+      "what_i_understood": "Выбрал back по смыслу «идут той же дорогой обратно».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — пары",
+      "what_i_understood": "Соединил lost/safe/home/back с переводами.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — карточка together",
+      "what_i_understood": "together — «вместе», новое слово впервые вижу в этой сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — вставить слово (идут толпой)",
+      "what_i_understood": "Выбрал together.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — карточка far",
+      "what_i_understood": "far — «далеко», тоже новое для меня слово здесь.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — собрать «мы далеко»",
+      "what_i_understood": "We are far, лишняя плитка is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — собрать на слух «они в безопасности»",
+      "what_i_understood": "They are safe, лишняя плитка home.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал, 4 фразы подряд",
+      "what_i_understood": "Сказал We are lost. We are together. We are safe. We are back. — и понял, что это пересказ всей истории прогулки: сначала заблудились, но были вместе, было спокойно, и вот вернулись.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово lost («заблудились») и что оно вообще про состояние, а не про глагол «терять» (we lost — другое)",
+    "Слово safe («в безопасности») и что оно похоже по звучанию на save («спасать»)",
+    "Что перед home не ставится in, хотя перед другими местами предлог обычно нужен",
+    "Слово back («обратно, назад»)",
+    "Слово together («вместе»)",
+    "Слово far («далеко»)",
+    "Как собрать всю мини-историю одной цепочкой из 4 простых фраз подряд"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Задания 1, 3, 5 (повторные карточки lost/safe/home)",
+      "why": "Это дословный повтор объяснения, уже данного в интро прямо перед этим — читаю то же самое второй раз подряд без новой информации"
+    }
+  ],
+  "felt_alive": [
+    "Сцена с прогулкой по Дублину и заблудившейся компанией — понятно и по-человечески",
+    "Финал (задание 17), где нужно связать все фразы в мини-рассказ о том, что случилось — приятно, что это не просто набор фраз, а история с началом и концом"
+  ],
+  "felt_dead": [
+    "Три подряд карточки-повторения (1, 3, 5) читаются как справочник, а не как часть истории"
+  ],
+  "scene_reason": "да — понятно, что я говорю эти фразы за себя и за компанию, которая заблудилась на прогулке, а потом успокаивает друг друга и возвращается; в финале это особенно чётко собирается в общий рассказ",
+  "would_continue": "да — сессия короткая, слова простые и полезные, а начало и правда моё первое: никаких отсылок к прошлому опыту, которого у меня нет, я не заметил",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы честно, есть явный прогресс в словах и понимание сцены, единственная слабость — три чисто повторяющиеся карточки подряд, но это не критично."
+}

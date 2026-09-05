@@ -428,6 +428,12 @@ function main() {
     // карточка слова вариантов не имеет по определению — это не дефект
     const isCard = master.tasks.find((t) => `${sessionId}:i${String(t.ordinal).padStart(2, "0")}` === it.interactionId)?.family === "word_card";
     if (!isCard && it.inputMode === "single_choice" && it.responseOptions.length < 2) problems.push(`${it.interactionId}: вариантов ${it.responseOptions.length}`);
+    if (!isCard && it.inputMode === "single_choice" && it.responseOptions.length > 4) problems.push(`${it.interactionId}: вариантов ${it.responseOptions.length} — больше четырёх, проверь строку вариантов на лишние тире и звёздочки`);
+    const correctCount = (it.responseOptions || []).filter((o) => o.correct).length;
+    if (!isCard && correctCount > 1) problems.push(`${it.interactionId}: правильных ответов ${correctCount} — приложение поддерживает только один, перепиши задание на один пропуск`);
+    for (const o of it.responseOptions || []) {
+      if (new RegExp("\\*|—\\s*«").test(String(o.text || ""))) problems.push(`${it.interactionId}: в тексте варианта «${String(o.text).slice(0, 40)}» есть разметка — перевод должен быть в разборе, а не в строке вариантов`);
+    }
   }
   // зачем: сессия 26 попала в курс заблокированной и без вердиктов —
   // сборщик собирал что дают, не спрашивая, проверял ли её кто-нибудь

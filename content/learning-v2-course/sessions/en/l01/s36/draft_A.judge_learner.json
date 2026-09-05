@@ -1,0 +1,125 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (colleagues)",
+      "what_i_understood": "colleagues = коллеги, люди с работы, не друзья. Про двоих говорят we are colleagues",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (friends)",
+      "what_i_understood": "friends = друзья, те, кому звонишь просто так. Про них — they are friends",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (neighbours/guests)",
+      "what_i_understood": "neighbours = соседи, живут рядом постоянно. guests = гости, зашли на время. Про гостей — they are guests",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (colleagues карточка+слух)",
+      "what_i_understood": "закрепил слово и звучание",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (friends карточка+слух)",
+      "what_i_understood": "закрепил friends",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка фразы)",
+      "what_i_understood": "собрал We are colleagues, не взял лишнее is",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 (neighbours, guests карточки)",
+      "what_i_understood": "оба слова введены карточками",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (guests слух)",
+      "what_i_understood": "различил guests от похожих слов",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (вставь слово guests)",
+      "what_i_understood": "выбрал guests, а не neighbours/colleagues, по смыслу подсказки",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (доска пар)",
+      "what_i_understood": "смог сопоставить все 4 слова с переводом, хотя neighbours видел только один раз (карточка)",
+      "confusion": "чуть неувереннее по neighbours, но справился",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (слушай и собери)",
+      "what_i_understood": "услышал They are friends и собрал фразу",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (together)",
+      "what_i_understood": "вспомнил старое слово together по контексту 'все за одним столом'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (quiet)",
+      "what_i_understood": "выбрал quiet по описанию 'никто не разговаривает'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (neighbours сборка, с ловушкой am)",
+      "what_i_understood": "собрал We are neighbours, не попался на am — здесь получил вторую практику с neighbours",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (funny и kind вместе)",
+      "what_i_understood": "выбрал два слова по описанию поведения двух разных людей",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (говорю вслух)",
+      "what_i_understood": "повторил две фразы подряд про коллег и гостей",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, 4 фразы)",
+      "what_i_understood": "смог сказать все четыре фразы про разных людей за столом без подсказок",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово colleagues — коллеги, произносится 'ко-лигз', пишется с непроизносимым -gue",
+    "Слово friends — друзья, с непроизносимой i внутри",
+    "Слово neighbours — соседи (живут/сидят рядом постоянно)",
+    "Слово guests — гости (пришли ненадолго)",
+    "Разница между neighbours и guests важна по смыслу, а не просто перевод",
+    "Могу построить фразы We are / They are с новыми словами о людях"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Шутка про то, что если гостей назвать соседями, они решат, что останутся навсегда — реально помогает запомнить разницу",
+    "Финал сессии (задание 17), где нужно вслух описать всех за столом — было похоже на настоящий разговор"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я на обеде с командой и объясняю кто есть кто — коллеги, друзья, соседи, гости. К каждому заданию было ясно, кому и в какой момент я это говорю (кто-то спросил, я показал пальцем и т.д.)",
+  "would_continue": "да — сессия короткая, все слова закрепились, в конце я реально смог сказать 4 фразы подряд без подсказок, было приятное чувство прогресса",
+  "verdict": "REVISE",
+  "verdict_reason": "всё проходимо и приятно, но задание 10 (доска пар) стоит до того, как neighbours получил хоть какую-то отработку кроме карточки — сам автор уже это заметил, надо поменять местами 10 и 14."
+}

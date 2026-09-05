@@ -1,0 +1,141 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя всегда говорю 'am', даже если слово (tired) не меняется. Про кого-то одного со стороны — 'is'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Когда 'мы' или 'они' — ставлю 'are'. 'is' туда не идёт, оно только для одного человека.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Про вещи и погоду (суп, жара) говорю 'it is', не 'he is'. Слово одно и то же что для человека, что для предмета.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Про себя — am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Про 'we' — are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "На слух отличил hot от hat/hut по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал 'She is cold' — про неё одну is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Суп один — is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Свёл слова с переводами, все уже знакомые.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Услышал 'They are tired' и собрал из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Про 'he' — is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Отрицание про себя: 'I am not cold'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Про 'you' — are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Ещё раз различил hot/hat на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Про 'we' (вдвоём) — are, не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Про погоду — hot, не tired/happy (это только про людей).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Про себя одного — am, не are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Повторил вслух две фразы разом: про соседку и про себя.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Сказал подряд четыре фразы с разными скрепками без подсказок — получилось, потому что уже повторил их по отдельности.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Что скрепка (am/is/are) меняется в зависимости от того, о ком речь, а само слово-признак (tired, happy, hot, cold) не меняется никогда",
+    "Что про предметы и погоду (суп, улицу) используется 'it is', а не 'he is' — раньше об этом не думал",
+    "Что 'am' встречается только с 'I' и больше никогда и ни с кем"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2",
+      "why": "почти дословно повторяет структуру интро 1 — те же три абзаца в том же порядке (слово-перевод, правило про скрепку, что не подходит), только слова заменены; читается как шаблон"
+    }
+  ],
+  "felt_alive": [
+    "Сцена с общим обедом ощущается живой — понятно, кто где сидит и почему нужны разные скрепки (кто-то один, кто-то за весь стол)",
+    "Задание 3 и 11 про суп с обожжённым пальцем — понятная бытовая причина сказать 'It is hot'"
+  ],
+  "felt_dead": [
+    "Интро 2 — просто пересказ механики интро 1 другими словами, без новой мысли"
+  ],
+  "scene_reason": "да, понятно: за столом сидят разные люди (я сам, коллега напротив, сосед, весь стол), и от того, о ком говоришь, зависит скрепка — это видно в каждом задании через конкретную ситуацию (кто-то трогает тарелку, кто-то трёт глаза и т.д.)",
+  "would_continue": "да — задания понятные, ничего не путает, под конец получилось сказать четыре фразы подряд самому, было приятно почувствовать, что уже не путаюсь",
+  "verdict": "PASS",
+  "verdict_reason": "все 16 заданий прошёл честно без незнакомых слов, узнал новое про 'it' и про то, что 'am' не двигается с места, а единственное слабое место — вода в интро 2 — не критично."
+}

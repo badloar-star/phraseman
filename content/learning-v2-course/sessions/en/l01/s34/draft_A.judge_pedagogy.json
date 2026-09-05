@@ -1,0 +1,88 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "busy",
+      "nice",
+      "loud",
+      "funny"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 5,
+        "trap": "They is busy / They am busy — реалистичная путаница скрепки по числу/лицу"
+      },
+      {
+        "task": 9,
+        "trap": "loud/busy вместо nice — правдоподобная ошибка по смыслу сцены"
+      },
+      {
+        "task": 12,
+        "trap": "They is loud — типовая ошибка скрепки"
+      },
+      {
+        "task": 13,
+        "trap": "funny/loud вместо ready — по смыслу, не по форме"
+      },
+      {
+        "task": 15,
+        "trap": "ready/together вместо funny — по смыслу"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "busy",
+        "nice",
+        "loud",
+        "funny"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      10,
+      12
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 3,
+      "context_gap_grammar": 4,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "phrase_builder": 2,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Слова we и together, заявленные как возвращаемые, ни разу не являются правильным ответом (только фигурируют как отвлекающие варианты в 13 и 15, а верный ответ 'We are together' в 14 использует оба слова сразу, но это не разграничивает касание каждого по отдельности как цель), и обе интро-страницы (1 и 3) превышают норму длины 240–290 знаков."
+}

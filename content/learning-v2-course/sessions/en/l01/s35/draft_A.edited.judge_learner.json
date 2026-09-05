@@ -1,0 +1,144 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "we — это «мы». are — слово, которое приклеивается к we. Чтобы сказать «не», not ставится сразу после are: We are not late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "sure — «уверен». We are not sure — «мы не уверены», вежливый способ сказать «не знаю».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "wrong — не «плохой», а «неправ, ошибся». We are not wrong — «мы не ошибаемся/не неправы».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 word_card sure",
+      "what_i_understood": "sure = уверен",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 listen_choose sure",
+      "what_i_understood": "выбрал sure, отличил от sugar и shoe по подсказкам",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 word_card wrong",
+      "what_i_understood": "wrong = неправ",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 listen_choose wrong",
+      "what_i_understood": "выбрал wrong, отличил от long и ring",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 phrase_builder",
+      "what_i_understood": "собрал We are not late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 word_card free",
+      "what_i_understood": "free = свободен",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 listen_choose free",
+      "what_i_understood": "выбрал free, отличил от three и fry",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 word_card alone",
+      "what_i_understood": "alone = один, без компании",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 context_gap_grammar sure",
+      "what_i_understood": "не знаем, открыто ли кафе → We are not sure.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 listen_build_dictation alone",
+      "what_i_understood": "собрал We are not alone, лишняя плитка no не понадобилась",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 context_gap_grammar are",
+      "what_i_understood": "we + are, не am и не is, потому что we — это не один человек",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 speed_match",
+      "what_i_understood": "соединил все 4 слова с переводом без труда, все уже видел на карточках",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 context_gap_grammar free",
+      "what_i_understood": "времени нет → We are not free (не alone, не ready)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 phrase_builder ready (ловушка)",
+      "what_i_understood": "все готовы, значит not — лишняя плитка, ответ We are ready.",
+      "confusion": "секунду сомневался, брать ли not, но сцена ясно говорит «можно идти» — сообразил, что not не нужен",
+      "could_answer_question": true
+    },
+    {
+      "step": "15 phrase_builder busy",
+      "what_i_understood": "собрал We are not busy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 phrase_builder wrong",
+      "what_i_understood": "собрал We are not wrong.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 финал",
+      "what_i_understood": "ответил всей серией: We are not late. We are hungry. We are not busy. We are not sure. We are ready. — все слова уже знакомы по сессии",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как сказать «мы» + отрицание: We are not + слово (not всегда сразу после are)",
+    "Слово sure (уверен) и фраза We are not sure как вежливое «не знаю»",
+    "Слово wrong (неправ, ошибся) — и что это не «плохой»",
+    "Слово free (свободен, нет дел)",
+    "Слово alone (один, без компании) — и что это не то же самое, что «одинокий»",
+    "Что скрепка для we — всегда are, а не am/is"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с обедом и коллегами, которые предполагают про тебя неправильное — понятно, зачем говоришь именно эти фразы",
+    "Задание 14 с лишней плиткой not — заставило реально подумать, а не просто нажимать по накатанной",
+    "Финал (17) — приятно, что все пять фраз собираются из того, что только что выучил, без подглядывания"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: идём обедом с командой, кто-то на ходу задаёт неверные предположения (опаздываем? уверены? одни?), и я отвечаю за всех сразу — ясно кому и в какой момент говорю каждую фразу",
+  "would_continue": "да — я не заскучал, задания разной формы (карточка, слух, сборка, пропуск, пары), появилась ловушка в 14, которая держит в тонусе, и в конце реально почувствовал, что говорю связно за себя и команду",
+  "verdict": "PASS",
+  "verdict_reason": "все 17 заданий прошёл честно без незнакомых слов в правильных ответах, узнал новую грамматику и четыре слова, понял сцену и хочу продолжать."
+}

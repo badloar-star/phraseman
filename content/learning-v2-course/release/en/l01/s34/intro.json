@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "`They are` + слово"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`they` — «они», и скрепка у них `are`"
+      },
+      "bodyByLocale": {
+        "ru": "`they` — «они». Про любую компанию людей: соседний отдел, семья, очередь.\n\nСкрепка при `they` — `are`. `is` тут не годится: оно стоит при одном человеке. По-русски «они заняты» обходится без скрепки, и рука тянется написать `They busy`. По-английски так нельзя.\n\n`busy` — «заняты», руки в деле, подходить не стоит."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "За соседним столом никто не поднимает головы от ноутбуков. Коллега спрашивает, чего они такие. Скажите, что они заняты."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-34:intro1:r1",
+              "text": "They are busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-34:intro1:r2",
+              "text": "They busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-34:intro1:r3",
+              "text": "They is busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За соседним столом никто не поднимает головы от ноутбуков. Коллега спрашивает, чего они такие. Скажите, что они заняты."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`funny` — «смешные»"
+      },
+      "bodyByLocale": {
+        "ru": "`funny` — «смешные». Не «странные», а те, с кем смеёшься. Разница важная: назвать `funny` того, кто просто ведёт себя чудно, — и вас поймут наоборот.\n\nСлово стоит там же, где `busy`: сразу после `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Соседний отдел позвал вас к себе за стол и весь обед смешил. Скажите про них самое главное."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-34:intro2:r1",
+              "text": "They are funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-34:intro2:r2",
+              "text": "They are fun."
+            },
+            {
+              "responseId": "en:lesson-01:session-34:intro2:r3",
+              "text": "They funny."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Соседний отдел позвал вас к себе за стол и весь обед смешил. Скажите про них самое главное."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`loud` — «громкие»"
+      },
+      "bodyByLocale": {
+        "ru": "`loud` — «громкий, шумный». Читается «лауд», гласная в середине — как «ау».\n\nСлово годится не только для людей: `loud` бывает музыка, телевизор, улица за окном."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "За соседним столом хохочут так, что вы себя не слышите. Коллега закатывает глаза. Согласитесь: они шумные."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-34:intro3:r1",
+              "text": "They are loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-34:intro3:r2",
+              "text": "They is loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-34:intro3:r3",
+              "text": "They are loudly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За соседним столом хохочут так, что вы себя не слышите. Коллега закатывает глаза. Согласитесь: они шумные."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c1174d9cae7072ffeee8ce8e13630897015fc2e32538e8c817406b57485ca7f8"
+}

@@ -1,0 +1,845 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-35",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-35:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i01:audio",
+          "transcript": "sure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-35:i01:r1",
+            "targetText": "sure",
+            "meaningByLocale": {
+              "ru": "«уверен, знаю точно». Не про готовность, а про знание: знаешь — `sure`."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sure",
+          "definitionByLocale": {
+            "ru": "«уверен, знаю точно». Не про готовность, а про знание: знаешь — `sure`."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-35:i02:r1",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-01:session-35:i02:r2",
+          "text": "sugar"
+        },
+        {
+          "responseId": "en:lesson-01:session-35:i02:r3",
+          "text": "shoe"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — sure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i02:audio",
+          "transcript": "sure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-35:i02:r1",
+            "targetText": "sure",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i02:r2",
+            "targetText": "sugar",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i02:r3",
+            "targetText": "shoe",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — sure",
+            "feedbackByLocale": {
+              "ru": "«Сахар». Начало то же — «шу», но дальше слышно «г»: шу-гэр. В `sure` после «шу» сразу «р»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — sure",
+            "feedbackByLocale": {
+              "ru": "«Ботинок». Начало похоже, но `shoe` на этом и заканчивается, а в `sure` есть «р»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wrong",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wrong",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i03:audio",
+          "transcript": "wrong"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-35:i03:r1",
+            "targetText": "wrong",
+            "meaningByLocale": {
+              "ru": "«неправ, ошибается». Сказал уверенно — и мимо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wrong",
+          "definitionByLocale": {
+            "ru": "«неправ, ошибается». Сказал уверенно — и мимо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-35:i04:r1",
+          "text": "wrong"
+        },
+        {
+          "responseId": "en:lesson-01:session-35:i04:r2",
+          "text": "long"
+        },
+        {
+          "responseId": "en:lesson-01:session-35:i04:r3",
+          "text": "ring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — wrong",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i04:audio",
+          "transcript": "wrong"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-35:i04:r1",
+            "targetText": "wrong",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i04:r2",
+            "targetText": "long",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i04:r3",
+            "targetText": "ring",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — wrong",
+            "feedbackByLocale": {
+              "ru": "«Длинный». Отличается только первым звуком, слушайте начало."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — wrong",
+            "feedbackByLocale": {
+              "ru": "«Кольцо». Гласная другая: в `ring` слышно «и», в `wrong` — «о»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «мы не опаздываем»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «мы не опаздываем»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are not late.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «мы не опаздываем»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "not",
+          "late"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — free",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — free",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i06:audio",
+          "transcript": "free"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-35:i06:r1",
+            "targetText": "free",
+            "meaningByLocale": {
+              "ru": "«свободен». Дел нет, никто ничего не ждёт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "free",
+          "definitionByLocale": {
+            "ru": "«свободен». Дел нет, никто ничего не ждёт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-35:i07:r1",
+          "text": "free"
+        },
+        {
+          "responseId": "en:lesson-01:session-35:i07:r2",
+          "text": "three"
+        },
+        {
+          "responseId": "en:lesson-01:session-35:i07:r3",
+          "text": "fry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — free",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i07:audio",
+          "transcript": "free"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-35:i07:r1",
+            "targetText": "free",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i07:r2",
+            "targetText": "three",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i07:r3",
+            "targetText": "fry",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i07:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — free",
+            "feedbackByLocale": {
+              "ru": "«Три». Отличается первым звуком: `free` начинается с «ф»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — free",
+            "feedbackByLocale": {
+              "ru": "«Жарить». Начало то же, а гласная в конце другая."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — alone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — alone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i08:audio",
+          "transcript": "alone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-35:i08:r1",
+            "targetText": "alone",
+            "meaningByLocale": {
+              "ru": "«один, без компании». Рядом никого — ни хорошо, ни плохо, просто факт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alone",
+          "definitionByLocale": {
+            "ru": "«один, без компании». Рядом никого — ни хорошо, ни плохо, просто факт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы не уверены, открыто ли кафе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-35:i09:r1",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-01:session-35:i09:r2",
+          "text": "wrong"
+        },
+        {
+          "responseId": "en:lesson-01:session-35:i09:r3",
+          "text": "busy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы не уверены, открыто ли кафе",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы не уверены, открыто ли кафе"
+        },
+        "gappedTargetPhrase": "We are not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-35:i09:r1",
+            "text": "sure"
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i09:r2",
+            "text": "wrong"
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i09:r3",
+            "text": "busy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы не уверены, открыто ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i09:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы не уверены, открыто ",
+            "feedbackByLocale": {
+              "ru": "«Неправы» — это про ошибку. Про незнание — `sure`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы не уверены, открыто ",
+            "feedbackByLocale": {
+              "ru": "«Заняты» — про дела. Не знаете — `not sure`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «мы не одни»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «мы не одни»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i10:audio",
+          "transcript": "We are not alone."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are not alone.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "not",
+          "alone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — вы всей командой не голодны",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-35:i11:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-35:i11:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-35:i11:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — вы всей командой не голодны",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — вы всей командой не голодны"
+        },
+        "gappedTargetPhrase": "We ___ not hungry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-35:i11:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i11:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i11:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — вы всей командой не г",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i11:r1",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — вы всей командой не г",
+            "feedbackByLocale": {
+              "ru": "`am` только для `I`, про одного себя. Про «мы» — `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — вы всей командой не г",
+            "feedbackByLocale": {
+              "ru": "`is` — про одного: он, она, оно. Вас несколько, значит `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-35:i12:p1",
+            "target": "sure",
+            "meaningByLocale": {
+              "ru": "уверен"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-35:i12:p2",
+            "target": "wrong",
+            "meaningByLocale": {
+              "ru": "неправ"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-35:i12:p3",
+            "target": "free",
+            "meaningByLocale": {
+              "ru": "свободен"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-35:i12:p4",
+            "target": "alone",
+            "meaningByLocale": {
+              "ru": "один"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sure",
+          "wrong",
+          "free",
+          "alone"
+        ],
+        "rightColumn": [
+          "уверен",
+          "неправ",
+          "свободен",
+          "один"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — после обеда сразу совещание, времени нет",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-35:i13:r1",
+          "text": "free"
+        },
+        {
+          "responseId": "en:lesson-01:session-35:i13:r2",
+          "text": "alone"
+        },
+        {
+          "responseId": "en:lesson-01:session-35:i13:r3",
+          "text": "ready"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — после обеда сразу совещание, времени нет",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — после обеда сразу совещание, времени нет"
+        },
+        "gappedTargetPhrase": "We are not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-35:i13:r1",
+            "text": "free"
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i13:r2",
+            "text": "alone"
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i13:r3",
+            "text": "ready"
+          }
+        ],
+        "testedDimension": "Вставьте слово — после обеда сразу совещ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i13:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — после обеда сразу совещ",
+            "feedbackByLocale": {
+              "ru": "«Не одни» — про компанию, а не про время."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — после обеда сразу совещ",
+            "feedbackByLocale": {
+              "ru": "«Не готовы» — другое. Времени нет — `not free`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Утверждение или отрицание? Все уже с куртками, можно идти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Утверждение или отрицание? Все уже с куртками, можно идти",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are ready.",
+        "localizedMeaning": {
+          "ru": "Утверждение или отрицание? Все уже с куртками, можно идти"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «мы не заняты»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «мы не заняты»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are not busy.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «мы не заняты»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "not",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «мы не ошибаемся»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «мы не ошибаемся»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are not wrong.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «мы не ошибаемся»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "not",
+          "wrong"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-35:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — пять ответов подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i17:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — пять ответов подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i17:audio",
+          "transcript": "We are not late. We are hungry. We are not busy. We are not sure. We are ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are not late. We are hungry. We are not busy. We are not sure. We are ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6c02b227fc49051576f501dfd7be8e76e08dad4b6ce49fe3efc8d3b07f8339bc"
+}

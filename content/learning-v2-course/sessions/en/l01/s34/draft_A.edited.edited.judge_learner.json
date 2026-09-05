@@ -1,0 +1,84 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про группу людей (не одного) говорим 'they are', не 'is'. Новое слово busy — заняты.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "funny — смешные (в хорошем смысле, не странные). Тоже после are.",
+      "confusion": "Пришлось запомнить, что funny ≠ fun, но это объяснили прямо в тексте, так что ок.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "loud — громкие/шумные, тоже про людей или вещи.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-8 (карточки, произношение)",
+      "what_i_understood": "busy, nice, loud, funny — закрепил на слух и по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Нужно было выбрать nice, потому что описана доброта (придержали дверь), а не занятость или шум.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 10-12",
+      "what_i_understood": "Собрал фразы They are funny / They are loud из плиток, ошибка is была понятной ловушкой.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "ready — новое-старое слово (готовы), стояли у двери в куртках.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "together — все вместе, не по одному. Слово раньше не встречалось в этой сессии, но было в списке 'возвращаются' в начале, так что не считаю обманом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "here — здесь, собрал They are here.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 16-17",
+      "what_i_understood": "Проговорил все фразы про соседний отдел: милые, смешные, готовы идти.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Про них (компанию людей) говорю They are, а не They is",
+    "busy — заняты",
+    "nice — милые/приятные",
+    "loud — громкие/шумные",
+    "funny — смешные (в хорошем смысле)",
+    "Освежил ready, together, here в новом контексте"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с соседним отделом за обедом — понятная бытовая ситуация, легко представить",
+    "Ловушка funny vs fun — реально полезное различие, не пустая шутка",
+    "Финал с тремя фразами подряд — приятно почувствовать, что реально что-то умею сказать"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, всё время понятно кому и зачем говорю — рассказываю коллеге про людей за соседним столом (заняты, милые, шумные, смешные, готовы, вместе, здесь)",
+  "would_continue": "да — сессия короткая, слова простые и сразу используются в разных заданиях, не скучно",
+  "verdict": "PASS",
+  "verdict_reason": "все задания честно проходимы, четыре новых слова закреплены с разных сторон (слух, выбор, сборка, устная речь), сцена понятна от начала до конца."
+}

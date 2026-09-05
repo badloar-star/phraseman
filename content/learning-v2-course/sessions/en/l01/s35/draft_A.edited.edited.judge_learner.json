@@ -1,0 +1,126 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Есть слово `we` = «мы», и к нему приставляется `are`. Чтобы сказать «не», `not` ставится сразу после `are`, перед словом-признаком: `We are not late`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Новое слово `sure` = «уверен». `We are not sure` = «мы не уверены» — вежливый способ сказать «не знаем».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Новое слово `wrong` = «неправ». Оно про человека, который ошибся, а не про сломанную вещь. `We are not wrong` = «мы не ошибаемся».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка sure)",
+      "what_i_understood": "Повтор того же слова из интро.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух sure/sugar/shoe)",
+      "what_i_understood": "Выбрал sure, объяснения про sugar и shoe помогли понять разницу в звучании.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (wrong)",
+      "what_i_understood": "Аналогично, разобрался.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка We are not late)",
+      "what_i_understood": "Собрал по правилу из интро 1.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 (free)",
+      "what_i_understood": "Новое слово free = «свободен», разобрался со звучанием.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (alone)",
+      "what_i_understood": "Новое слово alone = «один», понял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (вставьте слово sure/wrong/busy)",
+      "what_i_understood": "Выбрал sure, так как ситуация про незнание, а не ошибку или занятость.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (сборка на слух We are not alone)",
+      "what_i_understood": "Собрал, лишняя плитка `no` не пригодилась — понял почему (no не используется внутри фразы).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (скрепка are/am/is)",
+      "what_i_understood": "Выбрал are, потому что we — это не один человек, а группа.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (пары)",
+      "what_i_understood": "Собрал все 4 пары без проблем — слова уже видел в карточках.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (free/alone/ready)",
+      "what_i_understood": "Выбрал free, так как речь про время, а не про компанию или готовность.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (утверждение, лишняя not)",
+      "what_i_understood": "Понял, что по сцене команда готова, значит not не нужен, собрал We are ready.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15-16 (busy, wrong)",
+      "what_i_understood": "Собрал обе фразы без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, 5 фраз)",
+      "what_i_understood": "Смог ответить на все пять вопросов подряд, используя слова и правило из всей сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как сказать «мы не...» — ставить not сразу после are",
+    "Слово sure (уверен) и его отрицание как вежливое «не знаю»",
+    "Слово wrong (неправ) — именно про ошибку человека, а не про поломку вещи",
+    "Слово free (свободен, нет дел/времени)",
+    "Слово alone (один, без компании)",
+    "That are — это скрепка именно для we/they, а не для одного человека (am/is)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с обедом и коллегами, которые всё время предполагают неправильно — понятно, зачем говорить именно эти фразы",
+    "Объяснение sure как «вежливое понятия не имею» — по-человечески и запоминается",
+    "Разница между wrong (про человека) и busy/late (про дела/время) объяснена четко на примерах-ловушках"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: идём обедать с командой, кто-то по пути ошибочно предполагает про нас (опаздываем/не уверены/одни), и я отвечаю за всех — это ясно с первой строки и держится до конца",
+  "would_continue": "да — задания шли по нарастающей сложности, слова повторялись достаточно, чтобы запомнить, финал (17) дал почувствовать, что я реально усвоил тему",
+  "verdict": "PASS",
+  "verdict_reason": "прошёл всю сессию честно, каждое задание было выполнимо только известными словами и правилом, узнал 4 новых слова и оборот We are not, никаких отсылок к прошлому опыту или воды не встретил"
+}

@@ -2,8 +2,7 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-32",
   "learningOutcomeByLocale": {
-    "ru": "повторение `It is` и `It is not` — про жильё и погоду",
-    "uk": ""
+    "ru": "повторение `It is` и `It is not` — про жильё и погоду"
   },
   "pages": [
     {
@@ -11,18 +10,15 @@
       "pageId": "en:lesson-01:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`not` встаёт после `is`",
-        "uk": "`not` стає після `is`"
+        "ru": "`not` встаёт после `is`"
       },
       "bodyByLocale": {
-        "ru": "`small` — «маленькая». `It is small` — «она маленькая». Неправда? Ставьте `not` сразу после `is`: `It is not small`.\n\nПо-русски мы говорим просто «не маленькая», без всякого лишнего слова. Поэтому руку так и тянет выбросить `is`. Не выбрасывайте: `not` держится именно за него.",
-        "uk": "`small` — «маленька». `It is small` — «вона маленька». Неправда? Ставте `not` одразу після `is`: `It is not small`.\n\nУкраїнською ми кажемо просто «не маленька», без жодного зайвого слова. Тому руку так і тягне викинути `is`. Не викидайте: `not` тримається саме за нього."
+        "ru": "`small` — «маленькая». `It is small` — «она маленькая». Неправда? Ставьте `not` сразу после `is`: `It is not small`.\n\nПо-русски мы говорим просто «не маленькая», без всякого лишнего слова. Поэтому руку так и тянет выбросить `is`. Не выбрасывайте: `not` держится именно за него."
       },
       "question": {
         "interactionId": "en:lesson-01:session-32:intro1:q",
         "promptByLocale": {
-          "ru": "Подруга по телефону: «Ну что, комнатка крошечная?» Комната нормальная. Ответьте.",
-          "uk": "Подруга по телефону: «Ну що, кімнатка крихітна?» Кімната нормальна. Відповідайте."
+          "ru": "Подруга по телефону: «Ну что, комнатка крошечная?» Комната нормальная. Ответьте."
         },
         "choicesByLocale": {
           "ru": [
@@ -38,25 +34,10 @@
               "responseId": "en:lesson-01:session-32:intro1:r3",
               "text": "It is no small."
             }
-          ],
-          "uk": [
-            {
-              "responseId": "en:lesson-01:session-32:intro1:r1",
-              "text": "It is not small."
-            },
-            {
-              "responseId": "en:lesson-01:session-32:intro1:r2",
-              "text": "It not small."
-            },
-            {
-              "responseId": "en:lesson-01:session-32:intro1:r3",
-              "text": "It is no small."
-            }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруга по телефону: «Ну что, комнатка крошечная?» Комната нормальная. Ответьте.",
-          "uk": "Подруга по телефону: «Ну що, кімнатка крихітна?» Кімната нормальна. Відповідайте."
+          "ru": "Подруга по телефону: «Ну что, комнатка крошечная?» Комната нормальная. Ответьте."
         }
       }
     },
@@ -65,18 +46,15 @@
       "pageId": "en:lesson-01:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`expensive` — дорого",
-        "uk": "`expensive` — дорого"
+        "ru": "`expensive` — дорого"
       },
       "bodyByLocale": {
-        "ru": "`expensive` — «дорого». Про цену квартиры, кофе, билета — всё это `it`, поэтому `It is expensive`, а если цена нормальная — `It is not expensive`.\n\nТри слога, ударение на второй: ик-СПЕН-сив. Рука тянется стукнуть по первому, как в русском «экспорт», — не поддавайтесь.",
-        "uk": "`expensive` — «дорого». Про ціну квартири, кави, квитка — усе це `it`, тому `It is expensive`, а якщо ціна нормальна — `It is not expensive`.\n\nТри склади, наголос на другий: ік-СПЕН-сив. Рука тягнеться вдарити по першому, як в українському «експорт», — не піддавайтеся."
+        "ru": "`expensive` — «дорого». Про цену квартиры, кофе, билета — всё это `it`, поэтому `It is expensive`, а если цена нормальная — `It is not expensive`.\n\nТри слога, ударение на второй: ик-СПЕН-сив. Рука тянется стукнуть по первому, как в русском «экспорт», — не поддавайтесь."
       },
       "question": {
         "interactionId": "en:lesson-01:session-32:intro2:q",
         "promptByLocale": {
-          "ru": "Подруга: «Аренда, наверное, конская?» Платите вы немного. Скажите, что нет.",
-          "uk": "Подруга: «Оренда, мабуть, шалена?» Платите ви небагато. Скажіть, що ні."
+          "ru": "Подруга: «Аренда, наверное, конская?» Платите вы немного. Скажите, что нет."
         },
         "choicesByLocale": {
           "ru": [
@@ -92,25 +70,10 @@
               "responseId": "en:lesson-01:session-32:intro2:r3",
               "text": "It not expensive."
             }
-          ],
-          "uk": [
-            {
-              "responseId": "en:lesson-01:session-32:intro2:r1",
-              "text": "It is not expensive."
-            },
-            {
-              "responseId": "en:lesson-01:session-32:intro2:r2",
-              "text": "It is not expensiv."
-            },
-            {
-              "responseId": "en:lesson-01:session-32:intro2:r3",
-              "text": "It not expensive."
-            }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруга: «Аренда, наверное, конская?» Платите вы немного. Скажите, что нет.",
-          "uk": "Подруга: «Оренда, мабуть, шалена?» Платите ви небагато. Скажіть, що ні."
+          "ru": "Подруга: «Аренда, наверное, конская?» Платите вы немного. Скажите, что нет."
         }
       }
     },
@@ -119,18 +82,15 @@
       "pageId": "en:lesson-01:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`rainy` и `warm` — про то, что за окном",
-        "uk": "`rainy` і `warm` — про те, що за вікном"
+        "ru": "`rainy` и `warm` — про то, что за окном"
       },
       "bodyByLocale": {
-        "ru": "`rainy` — «дождливо», `warm` — «тепло». О погоде говорят через `it`, хотя по-русски там вообще нет никакого «оно»: «дождливо» — и всё.\n\nТак что `it` придётся ставить всегда, даже когда его некуда переводить: `It is rainy`, `It is warm`. Считайте это платой за вход.",
-        "uk": "`rainy` — «дощово», `warm` — «тепло». Про погоду говорять через `it`, хоча українською там немає жодного «воно»: «дощово» — і все.\n\nТож `it` доведеться ставити завжди, навіть коли його нема куди перекласти: `It is rainy`, `It is warm`. Вважайте це платою за вхід."
+        "ru": "`rainy` — «дождливо», `warm` — «тепло». О погоде говорят через `it`, хотя по-русски там вообще нет никакого «оно»: «дождливо» — и всё.\n\nТак что `it` придётся ставить всегда, даже когда его некуда переводить: `It is rainy`, `It is warm`. Считайте это платой за вход."
       },
       "question": {
         "interactionId": "en:lesson-01:session-32:intro3:q",
         "promptByLocale": {
-          "ru": "Подруга: «У вас там льёт?» За окном сухо и тепло. Скажите про дождь честно.",
-          "uk": "Подруга: «У вас там ллє?» За вікном сухо й тепло. Скажіть про дощ чесно."
+          "ru": "Подруга: «У вас там льёт?» За окном сухо и тепло. Скажите про дождь честно."
         },
         "choicesByLocale": {
           "ru": [
@@ -146,25 +106,10 @@
               "responseId": "en:lesson-01:session-32:intro3:r3",
               "text": "It is not rain."
             }
-          ],
-          "uk": [
-            {
-              "responseId": "en:lesson-01:session-32:intro3:r1",
-              "text": "It is not rainy."
-            },
-            {
-              "responseId": "en:lesson-01:session-32:intro3:r2",
-              "text": "Is not rainy."
-            },
-            {
-              "responseId": "en:lesson-01:session-32:intro3:r3",
-              "text": "It is not rain."
-            }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Подруга: «У вас там льёт?» За окном сухо и тепло. Скажите про дождь честно.",
-          "uk": "Подруга: «У вас там ллє?» За вікном сухо й тепло. Скажіть про дощ чесно."
+          "ru": "Подруга: «У вас там льёт?» За окном сухо и тепло. Скажите про дождь честно."
         }
       }
     }
@@ -176,5 +121,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "223695fbfef008a3788fedfcbead69b9d5f09d61d0f90f8efa2b0c191fa54ce6"
+  "introFingerprint": "351b88cec624228b26158b8d44cdf7fd08696a06a156a2ad256c4b9fe3090ed1"
 }

@@ -1,0 +1,146 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — colleagues",
+      "what_i_understood": "colleagues значит коллеги, люди с работы, не друзья. Про себя и соседа говорю we are colleagues.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — friends",
+      "what_i_understood": "friends — друзья, не просто знакомые. Про двоих говорю they are friends, с -s на конце.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — neighbours и guests",
+      "what_i_understood": "neighbours — соседи, живут рядом постоянно. guests — гости, зашли ненадолго и уйдут. Про гостей у окна говорю they are guests.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 — карточка colleagues",
+      "what_i_understood": "просто ещё раз показали слово и перевод",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 — на слух colleagues",
+      "what_i_understood": "выбрал colleagues, отличил от college и call на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 — карточка friends",
+      "what_i_understood": "повтор слова friends",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 — на слух friends",
+      "what_i_understood": "выбрал friends, а не trends или friend",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 — собери фразу we are colleagues",
+      "what_i_understood": "собрал из плиток, is не подходит, потому что we — не один человек",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 — карточка neighbours",
+      "what_i_understood": "повтор слова",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 — карточка guests",
+      "what_i_understood": "повтор слова",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 — на слух guests",
+      "what_i_understood": "выбрал guests, отличил от guess и gets",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 — вставь слово, гости пришли на час",
+      "what_i_understood": "выбрал guests, а не neighbours/colleagues",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 — собери фразу we are neighbours",
+      "what_i_understood": "собрал фразу, лишнюю плитку am не взял",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 — на слух собери they are friends",
+      "what_i_understood": "услышал фразу и собрал её из плиток, is не подходит",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 — вставь слово, обед всей командой",
+      "what_i_understood": "выбрал together, а не alone/quiet — по смыслу подходит только together",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 — вставь слово, за столом молчат",
+      "what_i_understood": "выбрал quiet, funny и kind не подходят по смыслу",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 — соедини пары",
+      "what_i_understood": "соединил все 4 новых слова с переводом, все уже знакомы по карточкам",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 — вставь два слова, funny и kind",
+      "what_i_understood": "выбрал funny про того кто смешил и kind про того кто угостил кофе, loud и lost не подходят",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 — скажи вслух",
+      "what_i_understood": "повторил We are colleagues. They are guests.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 — финал сцены",
+      "what_i_understood": "сказал подряд четыре фразы: про себя с коллегами, что мы вместе, про друзей и про гостей",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "слово colleagues и фраза we are colleagues",
+    "слово friends и фраза they are friends",
+    "слово neighbours",
+    "слово guests и фраза they are guests",
+    "что для нескольких человек эти слова идут с -s на конце",
+    "повторил на практике together, funny, quiet, kind в связке с we are / they are"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "сцена с обедом понятная — реально бывает, что кто-то тихо объясняет, кто все эти люди за столом",
+    "задание 15, где один коллега смешил, а другой угостил кофе — приятно, что это не абстрактный вопрос, а мини-ситуация",
+    "финал сцены, где нужно сказать подряд четыре фразы про разных людей — чувствуется как настоящий разговор, а не упражнение"
+  ],
+  "felt_dead": [
+    "карточки слов (1, 3, 6, 7) — это просто показ слова и перевода, без ситуации, но это нормально для карточки, не мешает"
+  ],
+  "scene_reason": "да, понятно: я объясняю коллеге или кому-то за столом, кто есть кто — с кем я работаю, кто друзья, кто соседи, кто гости. К финалу это складывается в связный мини-рассказ, и понятно зачем каждая фраза",
+  "would_continue": "да — сессия короткая, слова разные и хорошо отличаются друг от друга по смыслу, задания не повторяют одно и то же бездумно, и в конце я реально могу выдать целую цепочку фраз сам",
+  "verdict": "PASS",
+  "verdict_reason": "все задания прошёл честно без незнакомых слов в правильных ответах, узнал четыре новых слова и потренировал их в понятной сцене, до финала дошёл с ощущением, что могу сказать фразы сам"
+}

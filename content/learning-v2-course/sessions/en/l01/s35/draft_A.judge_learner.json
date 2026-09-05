@@ -1,0 +1,126 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Мы — команда, идём обедать. Кто-то сказал, что мы опаздываем. Мы отвечаем 'We are not late' — 'мы не опаздываем'. Not встаёт сразу после are, не раньше и не в конце.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "sure значит 'уверен'. We are not sure — мы не уверены (не знаем, открыто ли кафе).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "wrong — неправы, free — свободны, alone — одни. Все три работают по той же схеме: are + not + слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (sure)",
+      "what_i_understood": "Карточка и звук на sure, отличил от sugar и shoe.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (wrong)",
+      "what_i_understood": "Карточка и звук на wrong, отличил от long и ring.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал 'We are not late' из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 (free, alone)",
+      "what_i_understood": "Карточки на free и alone.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Не знаем, открыто ли кафе — значит sure, а не wrong или late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Собрал на слух 'We are not alone', не попался на лишнее no.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Для we скрепка are, не am и не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (доска пар)",
+      "what_i_understood": "Смог сопоставить все четыре слова с переводом, включая free — хотя его до этого только показали карточкой один раз, без проверки на слух или в контексте.",
+      "confusion": "free не тренировали перед доской пар (только карточка №6), но само задание совпадение — угадать несложно, слово простое",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Нет времени до совещания — free, не alone и не ready.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Все готовы, значит просто 'We are ready', плитка not — лишняя, я её не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Собрал 'We are not busy'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Собрал 'We are not wrong', не взял лишнее no.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Сказал вслух 'We are not alone. We are four.' — нас зовут за столик, но мы ждём остальных.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Ответил на четыре вопроса подряд: не опаздываем, голодные, не уверены, готовы. Всё собрал сам, без подсказок.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как сказать 'мы не...' про группу людей: We are not + слово",
+    "Новое слово sure — уверен",
+    "Новое слово wrong — неправ (в значении ошибается, а не 'плохой')",
+    "Новое слово free — свободен (про время/занятость)",
+    "Новое слово alone — один, без компании",
+    "Что not всегда стоит сразу после are, а не перед ним и не в конце фразы"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с обедом через дорогу и коллегами, которые всё время думают про тебя неправильное — понятно и жизненно, я примерно представляю ситуацию",
+    "Задание 13 с лишней плиткой not — заставило реально подумать, а не механически собирать",
+    "Финал (задание 17) — четыре вопроса подряд без подсказок, почувствовал, что реально что-то умею"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я отвечаю за всю команду по дороге в кафе, когда кто-то из своих предполагает про нас неправильное (опаздываем/не уверены/одни) — каждая фраза привязана к конкретному моменту сцены (зовут за столик, спрашивают про время, про голод)",
+  "would_continue": "да — было легко и по делу, под конец почувствовал, что могу сам отвечать за 'мы' без подсказок, хочется закрепить дальше",
+  "verdict": "PASS",
+  "verdict_reason": "все задания прошёл честно, узнал новое, сцена и фразы понятны, единственная небольшая шероховатость с free перед доской пар не мешает пройти задание"
+}

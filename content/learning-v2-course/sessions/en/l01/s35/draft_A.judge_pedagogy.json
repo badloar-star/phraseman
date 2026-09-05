@@ -1,0 +1,98 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "alone",
+      "wrong",
+      "sure",
+      "free"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "sugar/shoe — фонетически близкие к sure"
+      },
+      {
+        "task": 4,
+        "trap": "long/ring — близкие к wrong"
+      },
+      {
+        "task": 8,
+        "trap": "wrong/late вместо sure — правдоподобная путаница смысла"
+      },
+      {
+        "task": 10,
+        "trap": "am/is вместо are — реалистичная ошибка скрепки"
+      },
+      {
+        "task": 12,
+        "trap": "alone/ready вместо free — путаница смысла"
+      }
+    ],
+    "silly": [
+      {
+        "task": 9,
+        "trap": "лишняя плитка `no` в сборке 'We are not alone'",
+        "better": "плитка `no` как обманка на внимательность — приемлемо (правило разрешает 1-2 на сессию), но по факту таких обманок с `no` две: задание 9 и задание 15 — это уже больше нормы"
+      },
+      {
+        "task": 15,
+        "trap": "лишняя плитка `no` в сборке 'We are not wrong'",
+        "better": "убрать одну из двух одинаковых обманок с `no` (9 или 15), чтобы осталась одна на сессию"
+      }
+    ],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "sure",
+        "wrong",
+        "free",
+        "alone"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 2,
+      "phrase_builder": 4,
+      "context_gap_grammar": 3,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Доска Speed Match (задание 11) ставит `free` без единой отработки до неё (карточка в задании 6, тренировка только в задании 12 — после доски), из-за чего пару приходится угадывать, а не вспоминать."
+}

@@ -1,0 +1,75 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "colleagues",
+      "friends",
+      "neighbours",
+      "guests"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "We colleagues (пропуск скрепки)"
+      },
+      {
+        "task": 9,
+        "trap": "neighbours вместо guests — путаница смыслов"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "colleagues",
+        "friends",
+        "neighbours",
+        "guests"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 3,
+      "phrase_builder": 2,
+      "context_gap_grammar": 4,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Доска пар (задание 10) стоит раньше отработки слова neighbours (оно получает касание-отработку только в задании 14, после доски), что нарушает правило «доска — проверка памяти, а не знакомство»."
+}

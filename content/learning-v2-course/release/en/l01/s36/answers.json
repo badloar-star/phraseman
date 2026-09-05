@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-36:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i02",
+    "correctText": "colleagues",
+    "correctResponseId": "en:lesson-01:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i04",
+    "correctText": "friends",
+    "correctResponseId": "en:lesson-01:session-36:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i05",
+    "correctText": "We are colleagues.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i08",
+    "correctText": "guests",
+    "correctResponseId": "en:lesson-01:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i09",
+    "correctText": "guests",
+    "correctResponseId": "en:lesson-01:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i10",
+    "correctText": "We are neighbours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i11",
+    "correctText": "They are friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i12",
+    "correctText": "together",
+    "correctResponseId": "en:lesson-01:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i13",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-36:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i15",
+    "correctText": "funny",
+    "correctResponseId": "en:lesson-01:session-36:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i16",
+    "correctText": "We are colleagues. They are guests.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-36:i17",
+    "correctText": "We are colleagues. We are together. They are friends. They are guests.",
+    "correctResponseId": null
+  }
+]

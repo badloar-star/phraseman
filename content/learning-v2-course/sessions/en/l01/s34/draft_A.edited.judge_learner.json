@@ -1,0 +1,143 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "they — это они, про группу людей. Скрепка (связка) для they — are, не is. is — только для одного человека. busy — заняты.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "nice — милые/приятные люди. funny — смешные (в хорошем смысле, с кем смеёшься, а не над кем). Оба слова тоже идут после are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "loud — громкие/шумные. Тоже с are, не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 · Карточка busy",
+      "what_i_understood": "busy = занят(ы)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 · Слух busy",
+      "what_i_understood": "узнал звучание busy, отличил от bus и bed",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 · Карточка nice",
+      "what_i_understood": "nice = милый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 · Слух nice",
+      "what_i_understood": "отличил nice от ice и night",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 · Вставьте скрепку busy",
+      "what_i_understood": "They are busy — выбрал are, потому что их много",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 · Карточка loud",
+      "what_i_understood": "loud = громкий",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 · Карточка funny",
+      "what_i_understood": "funny = смешной",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 · Слух loud",
+      "what_i_understood": "отличил loud от load и lot",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 · Вставьте слово nice",
+      "what_i_understood": "выбрал nice, раз они помогли и придержали дверь — не про шум и не про занятость",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 · Слух+сборка They are funny",
+      "what_i_understood": "собрал фразу из плиток на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 · Соедините пары",
+      "what_i_understood": "все 4 слова уже видел выше — легко",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 · Соберите фразу loud",
+      "what_i_understood": "They are loud — выбрал are, а не is",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 · We are ready",
+      "what_i_understood": "ready — новое для меня слово в этой сессии, но по контексту (встали, надели куртки) и по исключению вариантов понял, что оно значит 'готовы'",
+      "confusion": "слово ready нигде в этой сессии не объяснено, просто возникло в задании как ответ",
+      "could_answer_question": true
+    },
+    {
+      "step": "14 · We are together",
+      "what_i_understood": "together — тоже нигде не объяснённое слово, но по контексту (идут все вместе, а не поодиночке) понял смысл",
+      "confusion": "together тоже не введено карточкой или интро, встретил впервые прямо в задании",
+      "could_answer_question": true
+    },
+    {
+      "step": "15 · Сборка We are together",
+      "what_i_understood": "собрал фразу",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 · Скажите вслух",
+      "what_i_understood": "проговорил They are nice. They are loud.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 · Финал сцены",
+      "what_i_understood": "проговорил три фразы подряд про соседний отдел и про свою команду",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "they + are (не is) — про группу людей",
+    "busy — заняты",
+    "nice — милый/приятный",
+    "loud — громкий/шумный",
+    "funny — смешной (в хорошем смысле)",
+    "разница funny vs 'странный' — важный нюанс, который я не знал"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Интро 2 про funny — объяснение, что funny это не 'странный', а 'с кем смеёшься', это реально полезная тонкость, я бы сам ошибся",
+    "задание 9 про то, что придержали дверь — приятная бытовая ситуация, понятно зачем говорю"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: сижу на обеде, коллега рассказывает про соседний отдел, я реагирую фразами they are busy/nice/loud/funny. Задания 13-15 про свою команду (we are ready/together) тоже понятны по ситуации — собираемся и идём обедать.",
+  "would_continue": "да — коротко, по делу, слова легко запоминаются через понятные ситуации, шутки не пустые (объясняют именно смысл слова funny)",
+  "verdict": "REVISE",
+  "verdict_reason": "Сама сессия хорошая и живая, но слова ready и together (задания 13-14) используются как ПРАВИЛЬНЫЕ ответы без единого объяснения в этой сессии — их можно узнать только методом исключения по неверным вариантам, а не потому что их кто-то объяснил, это нечестно по отношению к ученику, который открыл сессию первой."
+}

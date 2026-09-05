@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "сокращения `we're` / `they're` и `isn't` / `aren't`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`we are` в баре звучит как `we're`",
+        "uk": "`we are` у барі звучить як `we're`"
+      },
+      "bodyByLocale": {
+        "ru": "`we` — «мы», `are` — скрепка, которая стоит между «мы» и словом о нас: `we are ready`.\n\nВ шуме это долго. Два слова слипаются в одно: `we're ready`. Значок `'` стоит там, где пропал кусок.\n\nЗначок мелкий, и рука его пропускает первым. А зря: без него получается `were` — «были», и вы уже говорите про прошлое.",
+        "uk": "`we` — «ми», `are` — скріпка, яка стоїть між «ми» і словом про нас: `we are ready`.\n\nУ гаморі це задовго. Два слова злипаються в одне: `we're ready`. Значок `'` стоїть там, де зник шматок.\n\nЗначок дрібний, і рука пропускає саме його. І дарма: без нього виходить `were` — «були», і ви вже говорите про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Друзья зовут за столик, вы с приятелем встали. Скажите коротко: «мы готовы».",
+          "uk": "Друзі кличуть за столик, ви з приятелем підвелися. Скажіть коротко: «ми готові»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-43:intro1:r1",
+              "text": "We're ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-43:intro1:r2",
+              "text": "Were ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-43:intro1:r3",
+              "text": "We're are ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-43:intro1:r1",
+              "text": "We're ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-43:intro1:r2",
+              "text": "Were ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-43:intro1:r3",
+              "text": "We're are ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друзья зовут за столик, вы с приятелем встали. Скажите коротко: «мы готовы».",
+          "uk": "Друзі кличуть за столик, ви з приятелем підвелися. Скажіть коротко: «ми готові»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`they're` — про тех, кого несколько",
+        "uk": "`they're` — про тих, кого кілька"
+      },
+      "bodyByLocale": {
+        "ru": "`they` — «они»: их больше одного, и вас среди них нет. `funny` — «смешные». Полностью — `they are funny`, коротко — `they're funny`.\n\nСкрепку тянет выбросить совсем: `they funny` — коротко, бодро и не по-английски. `are` не исчезает, оно прячется в значок.",
+        "uk": "`they` — «вони»: їх більше ніж один, і вас серед них немає. `funny` — «смішні». Повністю — `they are funny`, коротко — `they're funny`.\n\nСкріпку тягне викинути зовсім: `they funny` — коротко, бадьоро й не по-англійськи. `are` нікуди не дівається, воно ховається у значок."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "За соседним столом хохочут весь вечер. Скажите приятелю про них: «они смешные».",
+          "uk": "За сусіднім столом регочуть увесь вечір. Скажіть приятелеві про них: «вони смішні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-43:intro2:r1",
+              "text": "They're funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-43:intro2:r2",
+              "text": "They funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-43:intro2:r3",
+              "text": "They're are funny."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-43:intro2:r1",
+              "text": "They're funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-43:intro2:r2",
+              "text": "They funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-43:intro2:r3",
+              "text": "They're are funny."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За соседним столом хохочут весь вечер. Скажите приятелю про них: «они смешные».",
+          "uk": "За сусіднім столом регочуть увесь вечір. Скажіть приятелеві про них: «вони смішні»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`not` тоже сжимается: `isn't` и `aren't`",
+        "uk": "`not` теж стискається: `isn't` і `aren't`"
+      },
+      "bodyByLocale": {
+        "ru": "`bad` — «плохой». Чтобы сказать «он не плохой», ставят `is not`: `He is not bad`.\n\nВ живой речи `not` теряет свою `o` и приклеивается к скрепке: `is not` → `isn't`, `are not` → `aren't`. Выходит `He isn't bad`.\n\n`isn't` — когда человек один. `aren't` — когда их несколько. Перепутать легко: обе формы одинаково короткие и одинаково хочется сказать первую попавшуюся.",
+        "uk": "`bad` — «поганий». Щоб сказати «він не поганий», ставлять `is not`: `He is not bad`.\n\nУ живій мові `not` втрачає своє `o` і приклеюється до скріпки: `is not` → `isn't`, `are not` → `aren't`. Виходить `He isn't bad`.\n\n`isn't` — коли людина одна. `aren't` — коли їх кілька. Переплутати легко: обидві форми однаково короткі, і однаково хочеться сказати першу-ліпшу."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Приятель ворчит, что новый начальник ужасный. Вы не согласны — скажите про него: «он не плохой».",
+          "uk": "Приятель бурчить, що новий начальник жахливий. Ви не згодні — скажіть про нього: «він не поганий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-43:intro3:r1",
+              "text": "He isn't bad."
+            },
+            {
+              "responseId": "en:lesson-01:session-43:intro3:r2",
+              "text": "He is'nt bad."
+            },
+            {
+              "responseId": "en:lesson-01:session-43:intro3:r3",
+              "text": "He aren't bad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-43:intro3:r1",
+              "text": "He isn't bad."
+            },
+            {
+              "responseId": "en:lesson-01:session-43:intro3:r2",
+              "text": "He is'nt bad."
+            },
+            {
+              "responseId": "en:lesson-01:session-43:intro3:r3",
+              "text": "He aren't bad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Приятель ворчит, что новый начальник ужасный. Вы не согласны — скажите про него: «он не плохой».",
+          "uk": "Приятель бурчить, що новий начальник жахливий. Ви не згодні — скажіть про нього: «він не поганий»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2c76f32912496286528f882b2f4ca8a2e1a6da3cdac9ca94b57df8dea2aa3e7f"
+}

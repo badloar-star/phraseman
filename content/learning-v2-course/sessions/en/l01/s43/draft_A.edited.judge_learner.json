@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Когда говорят «мы + что-то о нас», два слова we и are слипаются в одно — we're. Если забыть значок, получится were, а это уже про прошлое.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "То же самое с they — they are превращается в they're. Просто выкинуть are нельзя, оно прячется в значке.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Отрицание тоже сжимается: is not → isn't, are not → aren't. isn't — про одного, aren't — про нескольких.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка bad)",
+      "what_i_understood": "bad — плохой, не катастрофа, а так себе.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух bad)",
+      "what_i_understood": "Выбрал bad, отличил от bed и bag на слух объяснили.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (сборка We're ready)",
+      "what_i_understood": "Собрал We're ready, лишнюю плитку are не взял — она уже внутри we're.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (карточка real)",
+      "what_i_understood": "real — настоящий, не выдумка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (слух real)",
+      "what_i_understood": "Различил real от rail и reel.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (карточка true)",
+      "what_i_understood": "true — правда, так и есть.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (пропуск true)",
+      "what_i_understood": "It's true — выбрал верно, bad и ready сюда не подходят по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (пропуск are)",
+      "what_i_understood": "They ___ funny — are, потому что they это несколько.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (диктант They aren't late)",
+      "what_i_understood": "Собрал по слуху They aren't late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (пропуск is real)",
+      "what_i_understood": "It is real — про одну вещь is, не are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пропуск is funny)",
+      "what_i_understood": "She is funny — про одного человека.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (сборка We aren't late)",
+      "what_i_understood": "Собрал верно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (сборка I am not wrong)",
+      "what_i_understood": "Собрал I am not wrong, узнал слово wrong — ошибся/неправ.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (пропуск wrong)",
+      "what_i_understood": "You aren't wrong — true и real сюда не подходят по смыслу, объяснили почему.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (слух ok)",
+      "what_i_understood": "Узнал ok на слух, отличил от oak и old.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (доска пар)",
+      "what_i_understood": "Соединил bad-плохой, real-настоящий, true-правда, ok-нормально — все слова уже были знакомы к этому моменту.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (повтор вслух)",
+      "what_i_understood": "Повторил три фразы: We're ready. They aren't late. It isn't bad. — все слова и конструкции уже знакомы.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "we're = we are (сжатая форма)",
+    "they're = they are (сжатая форма)",
+    "isn't = is not (про одного/одну вещь)",
+    "aren't = are not (про нескольких)",
+    "новые слова: bad, real, true"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена паба в пятницу — понятно, зачем нужны именно сокращения: в шуме длинные формы никто не выговаривает целиком, это логично объясняет саму тему сессии.",
+    "Объяснение про rail/reel/oak на слух — реально помогает не путать похожие слова, не просто «это неправильно»."
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: паб, шум, друзья зовут за столик, кто-то спорит кто прав, кто-то боится, что рассказ выдуман — под каждую фразу есть простая бытовая ситуация и понятно, кому и когда я это говорю",
+  "would_continue": "да — задания не повторяются занудно, слова возвращаются к месту (в ловушках и в разборе), к финалу всё собирается в три живые фразы, ощущение прогресса есть",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно без незнакомых слов в правильных ответах, узнал две новые сжатые формы и три слова, сцена паба логично объясняет зачем нужна сама тема урока."
+}

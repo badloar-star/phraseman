@@ -1,11 +1,10 @@
 {
   "session": "en/l01/s48",
-  "ru": 6,
+  "ru": 8,
   "converged": true,
   "needsHumanReview": false,
   "locales": {
     "uk": "FIXED"
   },
-  "at": "2026-09-05T20:28:58.670Z",
-  "note": "статус восстановлен вручную: цикл прерван после локализации, вердикты 3 PASS / 2 REVISE"
+  "at": "2026-09-05T20:29:16.756Z"
 }

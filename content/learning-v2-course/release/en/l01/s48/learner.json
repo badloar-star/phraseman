@@ -70,7 +70,7 @@
             "testedDimension": "Послушайте и выберите — `tired`",
             "feedbackByLocale": {
               "ru": "Те же буквы, другой порядок: `tried` — «попробовал». Нам нужно «устал».",
-              "uk": "Ті самі букви, інший порядок: `tried` — «спробував». Нам потрібно «втомлений»."
+              "uk": "Ті самі літери, інший порядок: `tried` — «спробував». Нам потрібно «втомлений»."
             }
           }
         ],
@@ -880,5 +880,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1182dfeba9a156bd724a4c9d66014c137a6b12ac3ab3fbe070da9c2beb497db4"
+  "learnerFingerprint": "47f8e1b29de2533877e3a46a62827d87a1cb014ae7e665086d17c29c78c22bb8"
 }

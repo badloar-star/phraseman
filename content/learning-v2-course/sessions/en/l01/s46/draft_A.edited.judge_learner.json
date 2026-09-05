@@ -1,0 +1,127 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — fun",
+      "what_i_understood": "Есть слово fun — «весело». Про вечер/игру говорят It's fun, и It's — это сжатое It is (пропущенная i заменена значком).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 1 — про настолку",
+      "what_i_understood": "Выбрал It's fun. Понял, почему Its fun неверно (это «его весело», бессмыслица) и почему It's funny неверно (funny — смешной, про шутки, а не про увлекательность).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — boring",
+      "what_i_understood": "boring — «скучный». Чтобы сказать «не скучно», is склеивается с not в isn't. It's not boring — тоже правильно по смыслу, но тут просят именно слитную форму isn't.",
+      "confusion": "Не до конца понял, почему It's not boring — засчитывается неверным, если по смыслу то же самое. Формально принял правило, но как ученик я бы подумал, что оба варианта верны.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 2 — про сериал",
+      "what_i_understood": "Выбрал It isn't boring. It isn't bored отсеял, потому что bored — это про человека, а не про сериал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — cool и weird",
+      "what_i_understood": "cool — классный, weird — странный. they're = they are (значок вместо a), he's — про одного, I'm — про себя.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 3 — про соседей",
+      "what_i_understood": "Выбрал They're weird, а не He's weird (это про одного) и не They weird (без are).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (fun, boring — карточки и произношение)",
+      "what_i_understood": "Потренировал на слух fun/boring, отличая от похожих по звучанию слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — сборка It's fun",
+      "what_i_understood": "Понял, что лишнюю плитку is добавлять не надо — она уже внутри It's.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — про лекцию",
+      "what_i_understood": "Выбрал boring, отсеяв fun (не подходит по смыслу) и new (лекция может быть новой, но вопрос не про это).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 7-10 (cool, weird — карточки, слух, сборка про соседей)",
+      "what_i_understood": "Закрепил cool и weird, собрал They're weird, отсеяв лишние are и He's.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — I'm tired",
+      "what_i_understood": "Слово tired мне не объясняли в этой сессии впрямую (оно из 'возвращаются'), но по-русски в задании написано 'вы пишете другу, что устали (tired)' — перевод дан прямо в скобках, так что смог ответить честно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — He's cool на слух",
+      "what_i_understood": "Собрал по звуку фразу He's cool, отличив её от They're weird.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — доска пар",
+      "what_i_understood": "Соединил fun/boring/cool/weird с переводами — все уже отработаны заранее.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — про новенького, quiet",
+      "what_i_understood": "quiet тоже дано с переводом прямо в скобках ('тихий'), поэтому смог выбрать He's quiet, а не funny/fun.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — It isn't boring, лишнее not",
+      "what_i_understood": "Понял, что not не нужно отдельной плиткой — оно уже спрятано в isn't.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — про новое кафе",
+      "what_i_understood": "Выбрал new, отсеяв tired (не про кафе) и weird (не то, о чём спросили).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финальная фраза вслух",
+      "what_i_understood": "Сказал I'm tired. It's cool. It's fun. — собрал все формы и слова сессии в одной сцене.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово fun (весело — про занятие/событие, не про смех)",
+    "Слово boring (скучный)",
+    "Слово cool (классный)",
+    "Слово weird (странный)",
+    "Короткая форма It's = It is",
+    "Короткая форма isn't = is + not, и что её нельзя склеивать ещё раз с it's",
+    "Короткая форма They're = they are",
+    "Отличие fun от funny, boring от bored — разные слова для вещи и для человека"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с соседями, которые двигают мебель в три ночи — понятно и смешно, узнаваемая ситуация",
+    "Финальное задание 17 — сразу три фразы подряд как реальное сообщение другу, приятно, что собрал всё вместе"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, было понятно: в интро 1 — отвечаю другу про настолку, в интро 2 — отвечаю другу про сериал, в интро 3 — обсуждаю с друзьями соседей в чате. В каждом случае ясно, кому я это говорю и в какой момент разговора.",
+  "would_continue": "да — тема понятная, слова живые (fun/boring/cool/weird — то, что реально пишут в чатах), объяснения коротких форм ('значок стоит на месте выпавшей буквы') понятны без грамматических терминов",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно, узнал новые слова и формы, сцены понятны и уместны, ловушки логичны, скучных или мёртвых мест не встретил."
+}

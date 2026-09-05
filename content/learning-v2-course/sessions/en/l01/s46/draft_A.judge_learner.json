@@ -1,0 +1,64 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — fun",
+      "what_i_understood": "fun значит 'весело'. It's — это сокращение от It is, значок стоит на месте выпавшей буквы i.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 1 — вопрос про настолку",
+      "what_i_understood": "Нужно сказать 'это весело' — It's fun.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — boring",
+      "what_i_understood": "boring значит 'скучный'. Чтобы сказать 'не скучно', is и not слипаются в isn't, нельзя писать is и not раздельно и одновременно сокращать it is.",
+      "confusion": "Не сразу понял, почему нельзя 'it's not boring' — пришлось перечитать объяснение про 'одно из двух, не оба сразу'.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — вопрос про сериал",
+      "what_i_understood": "Нужно ответить It isn't boring.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — cool и weird",
+      "what_i_understood": "cool — классный, weird — странный. They're — сокращение they are, значок вместо a. He's — про одного человека.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — вопрос про соседей",
+      "what_i_understood": "Нужно сказать They're weird.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-17",
+      "what_i_understood": "Прошёл все карточки, слух, сборку фраз, вставки и пары. Всё было решаемо теми словами и формами, что объяснили выше.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово fun (весело) и что оно чаще идёт с it's, а не it is",
+    "Слово boring (скучный) и форма isn't для отрицания",
+    "Слово cool (классный)",
+    "Слово weird (странный) и что про него говорят they're, а не he's/they",
+    "Что is прячется либо в it's, либо в isn't, но не в обеих формах сразу"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Пример с 'it'sn't' — забавно и реально похоже на ошибку, которую я бы сам сделал",
+    "Задание 17 с тремя сообщениями подряд как настоящая переписка в чате — приятно, что похоже на жизнь"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: это фразы для переписки в чате с друзьями, каждая на конкретный повод (оценить игру, ответить про сериал, обсудить соседей, договориться о вечере)",
+  "would_continue": "да — задания понятные, слова полезные для повседневного чата, ничего не зависло на непонятном",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно с теми словами и формами, что дали в интро, узнал новое и понял, зачем эти фразы нужны."
+}

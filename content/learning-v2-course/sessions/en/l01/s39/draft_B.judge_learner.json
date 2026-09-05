@@ -1,0 +1,126 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — early",
+      "what_i_understood": "Мы пришли раньше времени, надо сказать 'мы рано' — We are early. Про 'мы' или про всю группу ставим are, само слово по-русски скрепка не нужна, а тут нужна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос после Интро 1",
+      "what_i_understood": "Выбрал We are early. Понял, почему не We early (нет are) и не We is early (is только про одного).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — right/wrong",
+      "what_i_understood": "right — прав, wrong — не прав. Можно сказать мягко: they are not right (не правы) вместо they are wrong (ошиблись). not встаёт после are, а не перед they.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос после Интро 2",
+      "what_i_understood": "Выбрал They are not right. Понял разницу с They are wrong — это было бы жёстче, а тут просили мягко.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — fine/sorry",
+      "what_i_understood": "fine — нормально, sorry — извините. Оба можно сказать про всю команду через are: we are fine, we are sorry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос после Интро 3",
+      "what_i_understood": "Выбрал We are fine. Понял, что We fine и We am fine неправильно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-6 (карточки early/right/wrong, слух, пропуски)",
+      "what_i_understood": "Закрепил произношение early и right на слух, ловушки понятны (earl/ear, rice/ride).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — доска пар",
+      "what_i_understood": "early-рано, right-прав, wrong-ошибся, late-поздно. late я раньше не видел в этой сессии как слово с переводом, но карточки на него не было — оно просто всплыло на доске.",
+      "confusion": "late нигде явно не давали как карточку в этой сессии (только 'вы уже знаете' в задании 4), но на доске оно требует перевод 'поздно' без объяснения",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — сборка 'they are wrong'",
+      "what_i_understood": "Собрал They are wrong из плиток, лишняя плитка is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 9-10 — карточки fine/sorry",
+      "what_i_understood": "Просто карточки, всё понятно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — скрепка are/am/is",
+      "what_i_understood": "We ___ sorry, выбрал are, потому что вас двое.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — сборка на слух",
+      "what_i_understood": "We are early, лишняя плитка late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — colleagues/friends",
+      "what_i_understood": "They are colleagues. Слово colleagues мне не объясняли карточкой в этой сессии вообще — просто попросили вставить его как правильный ответ, зная по описанию 'вместе работают'.",
+      "confusion": "colleagues и friends требуются как ответы, но их значения нигде в этой сессии не объяснили карточкой — я угадал по подсказке в задании, а не выучил слово",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — сборка 'they are not right'",
+      "what_i_understood": "Собрал правильно, порядок not после are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — friends",
+      "what_i_understood": "They are friends — опять слово без объяснения в сессии, пришлось полагаться на подсказку в задании.",
+      "confusion": "friends как правильный ответ, но перевод/значение слова в этой сессии нигде не дан",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — 'we are not late'",
+      "what_i_understood": "Собрал We are not late. Слово late тоже нигде явно не объяснялось карточкой в этой сессии, но я запомнил его как 'опоздали' по ловушке в задании 4.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал голосом",
+      "what_i_understood": "Сказал три фразы: We are early. We are fine. We are sorry. Понятно, что это ответ коллеге про то, как прошло утро.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Говорить 'мы рано' — We are early",
+    "Мягко сказать, что кто-то не прав — They are not right (вместо жёсткого They are wrong)",
+    "Сказать за всю команду 'у нас всё нормально' — We are fine",
+    "Извиниться за всех — We are sorry",
+    "Порядок not после are, а не перед подлежащим"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Финал сессии (задание 17) — реальная ситуация, когда тебя спрашивают на выходе, и ты одной фразой за другой отчитываешься",
+    "Разница между 'they are wrong' и 'they are not right' — было интересно, что второе мягче"
+  ],
+  "felt_dead": [
+    "Задание 13 и 15 про colleagues/friends — просто механическая вставка слова по подсказке в самом задании, без обучения самому слову внутри этой сессии"
+  ],
+  "scene_reason": "Да, понятно: сцена — обед закончился, коллега на выходе спрашивает, как прошло утро, и в финале я отвечаю тремя фразами именно на этот вопрос. Все фразы (рано пришли, всё нормально, извинились за спор) логично собираются в один связный ответ живому человеку.",
+  "would_continue": "да — сессия короткая, правило про not после are понятно объяснили и сразу же дали попрактиковать несколько раз, а финал в конце ощущается как настоящий разговор, а не упражнение",
+  "verdict": "REVISE",
+  "verdict_reason": "Слова colleagues и friends требуются как правильные ответы в заданиях 13 и 15, но нигде в самой сессии не даны карточкой с переводом — их пришлось угадывать по контексту задания, а не по объяснению."
+}

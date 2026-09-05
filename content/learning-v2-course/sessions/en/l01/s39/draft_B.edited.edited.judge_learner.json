@@ -1,0 +1,107 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (early)",
+      "what_i_understood": "Пришли раньше, все ещё в дороге. Про двоих/больше всегда `are`. Заучил: `we are early`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (right/wrong)",
+      "what_i_understood": "`right` — прав, `wrong` — не прав. `they are not right` = `they are wrong`. `not` встаёт сразу за `are`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (fine/sorry)",
+      "what_i_understood": "`fine` — нормально, `sorry` — извините/жаль. Про себя `I am`, про нас `we are`, слово в конце то же самое.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1-2 (early: карточка + слух)",
+      "what_i_understood": "Запомнил слово и на слух отличил от 'earl' и 'ear'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3-4 (right + пропуск)",
+      "what_i_understood": "Выбрал early, а не late/fine, потому что вопрос про время.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5-7 (wrong + слух + пропуск)",
+      "what_i_understood": "wrong — ошибся. На слух не спутал с rice/ride.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 (доска пар)",
+      "what_i_understood": "Собрал 4 пары без проблем, всё уже встречалось.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 (сборка 'they are wrong')",
+      "what_i_understood": "Собрал фразу правильно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10-13 (fine, sorry, скрепка, диктовка)",
+      "what_i_understood": "Понял, что we + are всегда вместе, даже с новыми словами.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14-15 (colleagues)",
+      "what_i_understood": "colleagues — коллеги по работе, не друзья.",
+      "confusion": "Слово 'colleagues' длинное и незнакомое на вид, но карточка объяснила его достаточно, справился.",
+      "could_answer_question": true
+    },
+    {
+      "step": "16 (сборка 'they are not right')",
+      "what_i_understood": "Порядок: are потом not. Собрал верно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 (friends)",
+      "what_i_understood": "friends — просто общаются, не по работе.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "18 (сборка 'we are not late')",
+      "what_i_understood": "late уже знакомое слово, собрал без подсказки.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "19 (финал, три фразы)",
+      "what_i_understood": "Сказал подряд: рано, нормально, извините. Понял, что это ответ на вопрос 'как утро прошло'.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "early — рано",
+    "right / wrong — прав / не прав, и что одно можно заменить другим через not",
+    "fine — нормально (не 'прекрасно')",
+    "sorry — извините, и что 'we are sorry' можно сказать даже если виноват один",
+    "friends vs colleagues — разница между 'просто общаются' и 'коллеги по работе'",
+    "не путать на слух right с rice/ride"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Момент про 'we are sorry' — что одним словом можно прикрыть виноватого товарища, это по-человечески и запоминается",
+    "Финал сцены — понятно, кто спрашивает и зачем отвечаю тремя фразами подряд"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: обед закончился, кто-то на выходе спросил, как прошло утро, и я отвечаю за себя и команду (пришли рано, всё нормально, извините за спор). В финале это всё соединяется в одну реплику.",
+  "would_continue": "да — задания понятные, повторение не надоедает, потому что каждый раз добавляется что-то новое (wrong через not, friends/colleagues), и было над чем зацепиться в объяснениях (шутка про 'we are sorry' за двоих).",
+  "verdict": "PASS",
+  "verdict_reason": "Всё выполнимо честно, узнал новое, понятна сцена, ловушки логичные (не путают меня незнакомым словом в правильном ответе), хочу продолжать."
+}

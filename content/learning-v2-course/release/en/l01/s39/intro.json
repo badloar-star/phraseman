@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "повторение — `we are` / `they are` (+ `not`)",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`early` — «рано»",
+        "uk": "`early` — «рано»"
+      },
+      "bodyByLocale": {
+        "ru": "`early` — «рано, раньше времени». Пришли, а в комнате ещё никого.\n\nСлово о вас двоих или о всей команде — значит перед ним `are`: `we are early`. Чтобы сказать «мы рано», между `we` и `early` нужна эта скрепка. По-русски её нет, и рука сама хочет сказать `we early`.\n\nХочет — а вы не давайте.",
+        "uk": "`early` — «рано, раніше часу». Прийшли, а в кімнаті ще нікого.\n\nСлово про вас двох або про всю команду — отже, перед ним `are`: `we are early`. Щоб сказати «ми рано», між `we` та `early` потрібна ця скріпка. Українською її немає, і язик сам хоче сказати `we early`.\n\nХоче — а ви не давайте."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Пришли к столику, а половина команды ещё в дороге. Скажите за себя и соседа.",
+          "uk": "Прийшли до столика, а половина команди ще в дорозі. Скажіть за себе й сусіда."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-39:intro1:r1",
+              "text": "We are early."
+            },
+            {
+              "responseId": "en:lesson-01:session-39:intro1:r2",
+              "text": "We early."
+            },
+            {
+              "responseId": "en:lesson-01:session-39:intro1:r3",
+              "text": "We is early."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-39:intro1:r1",
+              "text": "We are early."
+            },
+            {
+              "responseId": "en:lesson-01:session-39:intro1:r2",
+              "text": "We early."
+            },
+            {
+              "responseId": "en:lesson-01:session-39:intro1:r3",
+              "text": "We is early."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Пришли к столику, а половина команды ещё в дороге. Скажите за себя и соседа.",
+          "uk": "Прийшли до столика, а половина команди ще в дорозі. Скажіть за себе й сусіда."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`right` и `wrong`",
+        "uk": "`right` і `wrong`"
+      },
+      "bodyByLocale": {
+        "ru": "`right` — «прав, правильно». `wrong` — «не прав».\n\nОдно можно сказать через другое: `they are not right` и `they are wrong`. Первое мягче — оно не обвиняет, а возражает.\n\nА вот `not` посреди фразы — самое лёгкое место, где спотыкаются: он идёт сразу за `are`, а не перед ним.",
+        "uk": "`right` — «має рацію, правильно». `wrong` — «помиляється».\n\nОдне можна сказати через інше: `they are not right` і `they are wrong`. Перше м'якше — воно не звинувачує, а заперечує.\n\nА от `not` посеред фрази — найлегше місце, де спотикаються: він іде одразу за `are`, а не перед ним."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "За столом спорили про адрес. Оказалось, эти двое ошиблись. Скажите про них мягко — через `not`.",
+          "uk": "За столом сперечалися про адресу. Виявилося, ці двоє помилилися. Скажіть про них м'яко — через `not`."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-39:intro2:r1",
+              "text": "They are not right."
+            },
+            {
+              "responseId": "en:lesson-01:session-39:intro2:r2",
+              "text": "They not are right."
+            },
+            {
+              "responseId": "en:lesson-01:session-39:intro2:r3",
+              "text": "They are not wrong."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-39:intro2:r1",
+              "text": "They are not right."
+            },
+            {
+              "responseId": "en:lesson-01:session-39:intro2:r2",
+              "text": "They not are right."
+            },
+            {
+              "responseId": "en:lesson-01:session-39:intro2:r3",
+              "text": "They are not wrong."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За столом спорили про адрес. Оказалось, эти двое ошиблись. Скажите про них мягко — через `not`.",
+          "uk": "За столом сперечалися про адресу. Виявилося, ці двоє помилилися. Скажіть про них м'яко — через `not`."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`fine` и `sorry` — на всю команду",
+        "uk": "`fine` і `sorry` — на всю команду"
+      },
+      "bodyByLocale": {
+        "ru": "`fine` — «хорошо, нормально». `sorry` — «извините».\n\nОба слова обычно говорят про себя, но они спокойно работают и на группу: `we are fine`, `we are sorry`. Скрепка та, что для `we` — `are`.\n\nОдно `sorry` в дверях англичане бросают на бегу. Но если извиняется вся команда — целиком: `we are sorry`.",
+        "uk": "`fine` — «добре, нормально». `sorry` — «вибачте».\n\nОбидва слова зазвичай кажуть про себе, але вони спокійно працюють і на групу: `we are fine`, `we are sorry`. Скріпка та сама, що для `we` — `are`.\n\nОдне `sorry` у дверях англійці кидають на бігу. Але якщо вибачається вся команда — цілком: `we are sorry`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Спрашивают, как прошло утро. Всё нормально. Ответьте за команду.",
+          "uk": "Питають, як минув ранок. Усе нормально. Відповідайте за команду."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-39:intro3:r1",
+              "text": "We are fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-39:intro3:r2",
+              "text": "We fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-39:intro3:r3",
+              "text": "We am fine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-39:intro3:r1",
+              "text": "We are fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-39:intro3:r2",
+              "text": "We fine."
+            },
+            {
+              "responseId": "en:lesson-01:session-39:intro3:r3",
+              "text": "We am fine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спрашивают, как прошло утро. Всё нормально. Ответьте за команду.",
+          "uk": "Питають, як минув ранок. Усе нормально. Відповідайте за команду."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2109634d7b27ab35d0689b2fdfd665a01013c4704c7fca05a2934ec4d7f64fe4"
+}

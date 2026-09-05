@@ -1,0 +1,13 @@
+{
+  "session": "en/l01/s39",
+  "ru": 4,
+  "converged": false,
+  "needsHumanReview": false,
+  "verdicts": {
+    "learner": "REVISE",
+    "nonsense": "REVISE",
+    "pedagogy": "REVISE",
+    "taste": "REVISE"
+  },
+  "at": "2026-09-05T13:14:06.190Z"
+}

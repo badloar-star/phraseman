@@ -1,0 +1,111 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — early",
+      "what_i_understood": "early значит «рано». Чтобы сказать «мы рано», нужно слово are между we и early: we are early.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос после Интро 1 (пришли раньше команды)",
+      "what_i_understood": "Выбрал We are early. Понял, почему We early и We is early неправильные — там объяснили прямо в тексте.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — right/wrong",
+      "what_i_understood": "right — прав, wrong — не прав. They are not right = They are wrong. not ставится сразу после are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос после Интро 2 (двое ошиблись)",
+      "what_i_understood": "Выбрал They are not right. Понял ловушки: not не туда, и wrong с not меняет смысл на обратный.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — fine/sorry",
+      "what_i_understood": "fine — нормально, sorry — извините. Про нескольких людей — we are fine, we are sorry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос после Интро 3 (как прошло утро)",
+      "what_i_understood": "Выбрал We are fine.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-3 (карточки early, right, wrong + произношение)",
+      "what_i_understood": "Закрепил три слова и их звучание.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (We are ___ , пришли раньше)",
+      "what_i_understood": "Выбрал early, не late и не fine — вопрос был про время.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (назвали не тот адрес)",
+      "what_i_understood": "Выбрал wrong.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 8-13",
+      "what_i_understood": "Собрал пары, фразу They are wrong, We sorry → We are sorry (are, не am), собрал We are early по слуху.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — They are ___ (двое вместе работают) → colleagues",
+      "what_i_understood": "Тут впервые встретил слово colleagues. В карточках его не было, только в списке 'что я уже знаю' в начале. Догадался по смыслу подсказки под неправильными вариантами (friends — 'они не дружат, они вместе работают'), но само слово colleagues никто не объяснил как новое или напоминание.",
+      "confusion": "colleagues не было ни в одной карточке (word_card) этой сессии — оно просто появилось как правильный ответ. Пришлось гадать по описанию ошибочных вариантов.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (They are not right, порядок слов)",
+      "what_i_understood": "Собрал плитки правильно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (They are ___, общаются вне работы) → friends",
+      "what_i_understood": "Выбрал friends, сравнив с colleagues из прошлого задания.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (We are not late)",
+      "what_i_understood": "Собрал фразу с late — это слово тоже не объяснялось карточкой в этой сессии, но оно проще и понятно по смыслу задания (опоздали/не опоздали), плюс встречалось раньше как ловушка в задании 4.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 — финал (We are early. We are fine. We are sorry.)",
+      "what_i_understood": "Проговорил три фразы подряд про прошедшее утро.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Говорить 'мы рано' — We are early",
+    "Говорить 'они не правы' двумя способами — They are not right / They are wrong",
+    "Говорить 'у нас всё нормально' и 'нам жаль' за нескольких людей — We are fine / We are sorry",
+    "Где ставится not в фразах с are — сразу после are"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с уходом с обеда и вопросом 'как прошло утро' — понятная бытовая ситуация, легко представить",
+    "Финальное задание 18, где нужно сказать три фразы подряд как будто отвечаешь коллеге — приятно, что это похоже на настоящий разговор"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: обед закончился, коллега на выходе спрашивает про утро, и я отвечаю связкой фраз про то, что мы пришли рано, всё нормально и извиняемся за спор — весь урок держится на одной ситуации, и к финалу это складывается в естественный маленький диалог",
+  "would_continue": "да — задания понятные, ловушки объяснены по-человечески, к концу я реально мог связно ответить на вопрос про день",
+  "verdict": "REVISE",
+  "verdict_reason": "Слово colleagues в задании 14 подаётся как правильный ответ без единой карточки-объяснения в этой сессии — оно есть только в общем списке 'что я знаю' наверху промпта, а не в самом уроке, из-за чего пришлось угадывать значение по подсказкам к неверным вариантам."
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "повторение — `we are` / `they are` (+ `not`) рядом с `I am`, `you are`, `he is`, `she is`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`we` — это «мы», и слово после него не меняется",
+        "uk": "`we` — це «ми», і слово після нього не змінюється"
+      },
+      "bodyByLocale": {
+        "ru": "`we` — «мы». `friendly` — «дружелюбные». Между ними стоит `are`: `we are friendly`.\n\nПо-русски слово о нас получает хвост — «дружелюбные», не «дружелюбный». По-английски хвоста нет: `friendly` одинаковое и для одного, и для десяти. Одна форма на всех — тут английский проще русского.",
+        "uk": "`we` — «ми». `friendly` — «привітні». Між ними стоїть `are`: `we are friendly`.\n\nУкраїнською слово про нас має закінчення — «привітні», а не «привітний». В англійській закінчення немає: `friendly` однакове і для одного, і для десятьох. Одна форма на всіх — тут англійська простіша за українську."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "За соседним столиком спрашивают, что у вас за отдел. Скажите: мы дружелюбные.",
+          "uk": "За сусіднім столиком питають, що у вас за відділ. Скажіть: ми привітні."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-40:intro1:r1",
+              "text": "We are friendly."
+            },
+            {
+              "responseId": "en:lesson-01:session-40:intro1:r2",
+              "text": "We friendly."
+            },
+            {
+              "responseId": "en:lesson-01:session-40:intro1:r3",
+              "text": "We is friendly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-40:intro1:r1",
+              "text": "We are friendly."
+            },
+            {
+              "responseId": "en:lesson-01:session-40:intro1:r2",
+              "text": "We friendly."
+            },
+            {
+              "responseId": "en:lesson-01:session-40:intro1:r3",
+              "text": "We is friendly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За соседним столиком спрашивают, что у вас за отдел. Скажите: мы дружелюбные.",
+          "uk": "За сусіднім столиком питають, що у вас за відділ. Скажіть: ми привітні."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`they` — про тех, кого несколько и вас среди них нет",
+        "uk": "`they` — про тих, кого кілька і вас серед них немає"
+      },
+      "bodyByLocale": {
+        "ru": "`they` — «они»: людей несколько, и вы к ним не относитесь. Про свой стол — `we`, про тех, кто у окна, — `they`. `loud` — «шумные».\n\nСкрепка при этом не меняется: и `we are`, и `they are`. Выбор вроде бы есть, а выбирать не из чего — редкий случай, когда язык вас жалеет.",
+        "uk": "`they` — «вони»: людей кілька, і ви до них не належите. Про свій стіл — `we`, про тих, хто біля вікна, — `they`. `loud` — «галасливі».\n\nСкріпка при цьому не змінюється: і `we are`, і `they are`. Вибір ніби є, а вибирати немає з чого — рідкісний випадок, коли мова вас жаліє."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Из другого отдела всё утро слышно смех. Расскажите про них.",
+          "uk": "З іншого відділу цілий ранок чути сміх. Розкажіть про них."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-40:intro2:r1",
+              "text": "They are loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-40:intro2:r2",
+              "text": "They is loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-40:intro2:r3",
+              "text": "They loud."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-40:intro2:r1",
+              "text": "They are loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-40:intro2:r2",
+              "text": "They is loud."
+            },
+            {
+              "responseId": "en:lesson-01:session-40:intro2:r3",
+              "text": "They loud."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Из другого отдела всё утро слышно смех. Расскажите про них.",
+          "uk": "З іншого відділу цілий ранок чути сміх. Розкажіть про них."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`not` держится за `are`",
+        "uk": "`not` тримається за `are`"
+      },
+      "bodyByLocale": {
+        "ru": "`kind` — «добрые». Чтобы сказать, что это не так, нужно `not`: `They are not kind.`\n\nПо-русски «не» прилипает прямо к слову: «они не добрые» — и больше ничего не нужно. По-английски `not` сам по себе не висит — ему нужна опора `are`. Уберёте `are` — и отрицанию не за что держаться.",
+        "uk": "`kind` — «добрі». Щоб сказати, що це не так, потрібне `not`: `They are not kind.`\n\nУкраїнською «не» стає просто перед словом: «вони не добрі» — і більше нічого не треба. Англійською `not` саме по собі не висить — йому потрібна опора `are`. Приберете `are` — і заперечення не буде за що триматися."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "За столиком уверяют, что в соседнем отделе все добрые. Вы с ними работали и знаете, что это не так.",
+          "uk": "За столиком запевняють, що в сусідньому відділі всі добрі. Ви з ними працювали і знаєте, що це не так."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-40:intro3:r1",
+              "text": "They are not kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-40:intro3:r2",
+              "text": "They not are kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-40:intro3:r3",
+              "text": "They no kind."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-40:intro3:r1",
+              "text": "They are not kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-40:intro3:r2",
+              "text": "They not are kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-40:intro3:r3",
+              "text": "They no kind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За столиком уверяют, что в соседнем отделе все добрые. Вы с ними работали и знаете, что это не так.",
+          "uk": "За столиком запевняють, що в сусідньому відділі всі добрі. Ви з ними працювали і знаєте, що це не так."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6871a17463c581dd935cb64d37956ecdfb499ebb1645101174265c155ce0e2f9"
+}

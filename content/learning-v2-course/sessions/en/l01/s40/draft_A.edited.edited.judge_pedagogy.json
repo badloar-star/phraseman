@@ -1,0 +1,81 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "We friendly (пропущена скрепка is/am вместо are)"
+      },
+      {
+        "task": 10,
+        "trap": "We are not mean vs kind/friendly — путаница отрицания с похожим по теме словом"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "friendly",
+        "loud",
+        "kind",
+        "new"
+      ],
+      [
+        "funny",
+        "quiet",
+        "colleagues",
+        "mean"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s37",
+      "what": "та же общая канва (обед с командой, скрепки за столом), но слова, вопросы и герой (человек за соседним столиком) новые — не дословный повтор, отмечаю как потенциальное пересечение сцены"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "speed_match": 2,
+      "context_gap_grammar": 6,
+      "listen_choose": 2,
+      "phrase_builder": 4,
+      "sound_contrast": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы, доска пар, обратная связь и структура задания соблюдены; найденное пересечение сцены с l01_s37 не дословное и не критично."
+}

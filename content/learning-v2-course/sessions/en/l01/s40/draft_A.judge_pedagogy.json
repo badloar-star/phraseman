@@ -1,0 +1,84 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "We is friendly — путает `is`/`are`"
+      },
+      {
+        "task": 3,
+        "trap": "quiet/new вместо loud — противоположное или не то свойство"
+      },
+      {
+        "task": 9,
+        "trap": "kind/friendly после `not` — не туда отрицание по смыслу"
+      },
+      {
+        "task": 11,
+        "trap": "They is funny — `is` вместо `are`"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "friendly",
+        "loud",
+        "kind",
+        "new"
+      ],
+      [
+        "funny",
+        "quiet",
+        "colleagues",
+        "mean"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      15
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "speed_match": 2,
+      "context_gap_grammar": 7,
+      "listen_choose": 1,
+      "listen_build_dictation": 1,
+      "phrase_builder": 4,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Интро 3 показывает формулу отрицания на слове `kind`, а правильный ответ вопроса — `They are not loud`, и `loud` в тексте страницы не разобрано (машинный факт это подтверждает) — разрыв между объяснением и целевой фразой страницы."
+}

@@ -1,0 +1,81 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "We ___ friendly. → is/am вместо are"
+      },
+      {
+        "task": 9,
+        "trap": "We are not ___. → mean вместо kind/friendly"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "friendly",
+        "loud",
+        "kind",
+        "new"
+      ],
+      [
+        "funny",
+        "quiet",
+        "colleagues",
+        "mean"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      15
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s39",
+      "what": "аналогичная структура интро (слово-разбор-not) — допустимо, т.к. это checkpoint-повторение, не новая грамматика"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "speed_match": 2,
+      "context_gap_grammar": 6,
+      "listen_choose": 1,
+      "phrase_builder": 4,
+      "sound_contrast": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Интро 3 содержит артефакт: показан висящий блок '✅ They are not kind. → Стоп: ... Правильный ответ ниже.' перед повторным вопросом — это сломанная структура страницы (два вопроса и ответа подряд на одной странице интро вместо одного), плюс задание 9 использует слово `mean`, которого нет в списке 'Возвращаются' и оно не проходит карточку/отработку до появления как дистрактор и затем как цель на доске 14."
+}

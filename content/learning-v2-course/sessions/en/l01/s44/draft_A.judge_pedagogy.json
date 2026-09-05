@@ -1,0 +1,78 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "I tired. — потеря скрепки в устной речи, реалистичная ошибка на слух"
+      },
+      {
+        "task": 3,
+        "trap": "It's cold. — перепутан субъект по звучанию he's/it's"
+      },
+      {
+        "task": 9,
+        "trap": "лишняя плитка am при уже готовом I'm — обманка на внимательность"
+      },
+      {
+        "task": 12,
+        "trap": "is вместо are — типичная ошибка согласования числа"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 16,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "tired",
+        "cold",
+        "wrong",
+        "free"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      9
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 4,
+      "context_gap_grammar": 4,
+      "phrase_builder": 4,
+      "listen_build_dictation": 1,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Заявленные 16 заданий соответствуют счётчику в самопроверке и плану (миникоррекция: строка «Практика (16 заданий...)» и факт «заданий: 16» совпадают, расхождение с шаблонным полем task_count в JSON — не дефект сессии), границы материала не нарушены, все возвращаемые слова хотя бы раз являются правильным ответом, доска пар полностью отработана заранее, обманка с лишней плиткой am присутствует и уместна, временных ссылок между сессиями и мёртвых формул нет."
+}

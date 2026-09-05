@@ -1,0 +1,155 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Полностью говорят 'I am tired', но вслух это слипается в 'I'm tired'. Апостроф стоит там, где пропала буква a.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 1 (друг спрашивает, почему зеваю)",
+      "what_i_understood": "Нужно сказать 'I'm tired', а не 'Im tired' (без апострофа) и не 'I'm am tired' (лишнее am).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про человека — 'he is cold' → 'he's cold'. Про вещь — 'it is cold' → 'it's cold'. На слух разница только в первом звуке: 'хиз' или 'итс'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 2 (про бокал пива)",
+      "what_i_understood": "Пиво — это 'it', значит 'It's cold', а не 'He's cold' (это про человека) и не 'Its cold' (без апострофа значит 'его').",
+      "confusion": "Слово 'its' без апострофа означает 'его' — это я не знал раньше, но это объяснили прямо в вопросе, так что понял.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Про нескольких людей — 'they are wrong' → 'they're wrong'. Звучит как 'there'/'their', не различить на слух, но по контексту после 'they're' идёт какое они.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 3 (соседи спорят чушь)",
+      "what_i_understood": "Нужно 'They're wrong', а не 'They wrong' (нет скрепки) и не 'They're are wrong' (лишнее are).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (аудирование)",
+      "what_i_understood": "Услышал 'I'm tired' целиком, выбрал полный вариант, а не обрезанные варианты без I или без am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (вставить слово, зеваю)",
+      "what_i_understood": "tired подходит к зевоте, free и wrong — нет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (человек или вещь)",
+      "what_i_understood": "Нужно различить he's/it's по первому звуку записи.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (собрать 'пиво холодное')",
+      "what_i_understood": "It's cold из трёх плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (услышать и собрать 'они не правы')",
+      "what_i_understood": "They're wrong, лишние плитки are и cold не нужны.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (приятель спорит и путает факты)",
+      "what_i_understood": "He's wrong подходит, cold и free — нет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (различить звуки cold/called)",
+      "what_i_understood": "Нужно различить два похожих слова на слух по гласной.",
+      "confusion": "Слово 'called' мне не знакомо вообще, но оно тут как неправильный вариант-ловушка, не как ответ, так что не считаю это проблемой.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (зовут за столик, вы свободны)",
+      "what_i_understood": "free подходит, tired и cold — нет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (собрать 'я свободен', лишняя скрепка)",
+      "what_i_understood": "I'm free, лишнее am не нужно, потому что оно уже внутри I'm.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (аудирование It's cold)",
+      "what_i_understood": "Услышал 'итс', значит про вещь, не про человека, и апостроф на месте.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Соединил tired-устал, cold-холодный, wrong-не прав, free-свободен — все слова уже видел выше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (скрепка про компанию)",
+      "what_i_understood": "They are wrong — are, а не is (не один) и не am (только с I).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (собрать 'он замёрз')",
+      "what_i_understood": "He's cold, внимательно выбрал He's, а не It's, раз речь про мужчину.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (сказать вслух, устал и уходишь)",
+      "what_i_understood": "Повторил 'I'm tired. I'm free tomorrow.' — понятно, что и как сказать.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (собрать без подсказки 'они не правы')",
+      "what_i_understood": "They're wrong, выбрал They're, а не голое They.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (финал, три фразы)",
+      "what_i_understood": "It's cold. I'm tired. They're wrong. — собрал всю сцену из трёх правил сразу.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "I am tired вслух превращается в I'm tired — сокращение, а не новое слово",
+    "he's и it's отличаются только первым звуком, дальше фраза одинаковая",
+    "they're на слух совпадает с there/their, но после него всегда идёт признак (какие они)",
+    "апостроф в сокращении стоит на месте пропавшей буквы (I'm, it's)",
+    "they + are, а не they + is или they + am — потому что речь про нескольких"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена в пабе с музыкой громче разговора — понятно, зачем тут именно короткие сокращения, а не полные фразы",
+    "Задание про 'заметьте бокал и морщится' — понятно, кто говорит и кому",
+    "Финал сцены, где три фразы собираются в одну маленькую историю вечера"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — паб, шум, друг рядом, бокал пива, соседний стол спорит: в каждом задании ясно, кто говорит, кому и в какой момент, а не абстрактные примеры",
+  "would_continue": "да — было понятно с первого раза, задания логично усложнялись (сначала выбор, потом сборка, потом голос), и в конце я реально произнёс три фразы подряд, почувствовал что что-то умею",
+  "verdict": "PASS",
+  "verdict_reason": "Все объяснения понятны без терминов, задания решаемы честно, сцена цельная, и к концу я узнал конкретную новую вещь — как на слух ловить и различать сокращения."
+}

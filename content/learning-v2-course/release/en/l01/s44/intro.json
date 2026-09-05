@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "повторение сокращений `I'm` / `he's` / `it's` / `they're` — на слух",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`I'm` — одно слово вместо двух",
+        "uk": "`I'm` — одне слово замість двох"
+      },
+      "bodyByLocale": {
+        "ru": "`tired` — «устал». Полностью фраза выглядит как `I am tired`, но вслух её почти не произносят: два слова слипаются в одно — `I'm tired`.\n\nУхо новичка ловит только «айм» и решает, что это какое-то незнакомое слово. Никакое оно не незнакомое — это ваш старый добрый `I am`, просто на бегу.",
+        "uk": "`tired` — «втомлений». Повністю фраза виглядає як `I am tired`, але вголос її майже не вимовляють: два слова злипаються в одне — `I'm tired`.\n\nВухо новачка чує тільки «айм» і вирішує, що це якесь незнайоме слово. Ніяке воно не незнайоме — це ваше старе добре `I am`, просто на бігу."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг у стойки спрашивает, почему вы зеваете. Ответьте коротко, как говорят вслух.",
+          "uk": "Друг біля шинкваса питає, чому ви позіхаєте. Дайте коротку відповідь, як кажуть уголос."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-44:intro1:r1",
+              "text": "I'm tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-44:intro1:r2",
+              "text": "Im tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-44:intro1:r3",
+              "text": "I'm am tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-44:intro1:r1",
+              "text": "I'm tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-44:intro1:r2",
+              "text": "Im tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-44:intro1:r3",
+              "text": "I'm am tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг у стойки спрашивает, почему вы зеваете. Ответьте коротко, как говорят вслух.",
+          "uk": "Друг біля шинкваса питає, чому ви позіхаєте. Дайте коротку відповідь, як кажуть уголос."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`he's` и `it's` различаются только началом",
+        "uk": "`he's` та `it's` різняться тільки початком"
+      },
+      "bodyByLocale": {
+        "ru": "`cold` — «холодно, замёрз». Про человека это `he is cold`, про пиво — `it is cold`. В громком месте обе фразы сжимаются: `he's cold`, `it's cold`.\n\nРазница между «про человека» и «про вещь» помещается в первое слово. Дальше идёт то, что вы про них говорите, — его тоже надо услышать.",
+        "uk": "`cold` — «холодно, змерз». Про людину це `he is cold`, про пиво — `it is cold`. У гучному місці обидві фрази стискаються: `he's cold`, `it's cold`.\n\nРізниця між «про людину» і «про річ» уміщається в перше слово. Далі йде те, що ви про них кажете, — його теж треба почути."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, нормальное ли пиво. Скажите про пиво: «оно холодное».",
+          "uk": "Друг питає, чи нормальне пиво. Скажіть про пиво: «воно холодне»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-44:intro2:r1",
+              "text": "It's cold."
+            },
+            {
+              "responseId": "en:lesson-01:session-44:intro2:r2",
+              "text": "He's cold."
+            },
+            {
+              "responseId": "en:lesson-01:session-44:intro2:r3",
+              "text": "Its cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-44:intro2:r1",
+              "text": "It's cold."
+            },
+            {
+              "responseId": "en:lesson-01:session-44:intro2:r2",
+              "text": "He's cold."
+            },
+            {
+              "responseId": "en:lesson-01:session-44:intro2:r3",
+              "text": "Its cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, нормальное ли пиво. Скажите про пиво: «оно холодное».",
+          "uk": "Друг питає, чи нормальне пиво. Скажіть про пиво: «воно холодне»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`they're` — про нескольких сразу",
+        "uk": "`they're` — про кількох одразу"
+      },
+      "bodyByLocale": {
+        "ru": "`wrong` — «не прав, ошибается». Про компанию за соседним столом это `they are wrong`, а вслух — `they're wrong`.\n\n`they're` — это `they are`, сжатое в одно слово. `are` никуда не делось, оно внутри, и второй раз его ставить не надо.",
+        "uk": "`wrong` — «не має рації, помиляється». Про компанію за сусіднім столом це `they are wrong`, а вголос — `they're wrong`.\n\n`they're` — це `they are`, стиснене в одне слово. `are` нікуди не поділося, воно всередині, і вдруге його ставити не треба."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "За соседним столом спорят и явно говорят чушь. Скажите приятелю про них.",
+          "uk": "За сусіднім столом сперечаються і явно кажуть дурниці. Скажіть приятелеві про них."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-44:intro3:r1",
+              "text": "They're wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-44:intro3:r2",
+              "text": "They wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-44:intro3:r3",
+              "text": "They're are wrong."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-44:intro3:r1",
+              "text": "They're wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-44:intro3:r2",
+              "text": "They wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-44:intro3:r3",
+              "text": "They're are wrong."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За соседним столом спорят и явно говорят чушь. Скажите приятелю про них.",
+          "uk": "За сусіднім столом сперечаються і явно кажуть дурниці. Скажіть приятелеві про них."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e22a52a48c6adc3566b0b2155b48cdd890f430b45c8e50f9cd08c6251c5568ba"
+}

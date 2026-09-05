@@ -1,0 +1,83 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "am tired / Am tired — потеря частей сокращения на слух"
+      },
+      {
+        "task": 3,
+        "trap": "he's/it's перепутаны по началу звука"
+      },
+      {
+        "task": 7,
+        "trap": "cold/called — похожие по звучанию слова"
+      },
+      {
+        "task": 12,
+        "trap": "is/am вместо are с they"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 16,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "tired",
+        "cold",
+        "wrong",
+        "free"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      9
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s41/l01_s42/l01_s43",
+      "what": "та же сцена (паб, музыка, гул) и та же операция (сокращения на слух) — здесь заявлено как честное повторение по плану, а не новая механика, что соответствует строке плана"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 3,
+      "context_gap_grammar": 4,
+      "phrase_builder": 4,
+      "listen_build_dictation": 1,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Длина интро 2 (320 знаков) и интро 3 (308 знаков) превышает норму 240–290, требуется сократить без потери шутки/образа."
+}

@@ -1,0 +1,135 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Полностью говорят 'I am tired', но вслух это слипается в 'I'm tired'. Апостроф стоит на месте пропавшей буквы a.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про человека — 'he's cold', про вещь — 'it's cold'. Звучат почти одинаково, разница только в начале слова ('хиз' или 'итс').",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Про нескольких людей — 'they're wrong'. Звучит как 'there'/'their', но по смыслу понятно, что это про людей и про то, какие они.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Выбрал 'I'm tired' — услышал слитно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Вставил 'tired' — про зевоту.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Выбрал 'He's cold' — начало похоже на 'хиз'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал 'It's cold.' из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал 'They're wrong.', лишние плитки 'are' и 'cold' не понадобились.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Вставил 'wrong' — про спор и ошибки.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Выбрал 'cold' против 'called' — разное количество слогов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Вставил 'free' — про свободное время. Слово раньше нигде не переводилось, догадался по смыслу и по разбору неверных вариантов.",
+      "confusion": "Слово free тут встречается впервые как правильный ответ, а не просто как дистрактор.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Собрал 'I'm free.', лишняя плитка 'am'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Выбрал 'It's cold' по началу 'итс'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Соединил пары: tired-устал, cold-холодный, wrong-не прав, free-свободен.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Вставил 'are', потому что речь про нескольких людей ('they').",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал 'He's cold.' — про мужчину.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Проговорил 'I'm tired. I'm free tomorrow.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Собрал 'They're wrong.' без лишней плитки 'are'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Сказал три фразы подряд: 'It's cold. I'm tired. They're wrong.'",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Что 'I am' на слух сжимается в 'I'm' и это не отдельное незнакомое слово",
+    "Что различать 'he's' и 'it's' на слух можно по первому слогу, а не по концу фразы",
+    "Что 'they're' на слух неотличимо от 'there'/'their', и разбираться нужно по смыслу фразы",
+    "Слово free ('свободен') в значении 'нет дел/можно встретиться'"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена в пабе с музыкой — понятно, почему сокращения слипаются, это جعل правдоподобным",
+    "Задание 7 про 'cold' и 'called' — реально полезная тренировка слуха, не вода"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: паб, музыка, короткие фразы летят мимо ушей, поэтому нужно тренироваться распознавать слипшиеся формы. Каждое задание привязано к конкретному моменту (зеваете, трогаете бокал, слушаете спор за соседним столом)",
+  "would_continue": "да — сессия короткая, понятная, в конце я реально стал увереннее отличать 'he's' от 'it's' на слух",
+  "verdict": "REVISE",
+  "verdict_reason": "Всё честно и проходимо, но слово free впервые появляется как правильный ответ в задании 8 без предварительного перевода в интро или более раннем задании — пришлось догадываться по смыслу, а не по объяснению."
+}

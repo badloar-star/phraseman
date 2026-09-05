@@ -1,0 +1,135 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Когда говорят быстро, 'I am tired' сливается в 'I'm tired'. Это то же самое, просто короче на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про человека — 'he's cold', про вещь (пиво) — 'it's cold'. Разница в первом слове.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Про несколько людей сразу — 'they're wrong', это сжатое 'they are wrong'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (на слух)",
+      "what_i_understood": "Выбрал 'I'm tired.' — я это только что видел в интро.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Вставил 'tired', раз зеваю.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (на слух)",
+      "what_i_understood": "Выбрал 'He's cold.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал 'It's cold.' из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (диктант)",
+      "what_i_understood": "Собрал 'They're wrong.', лишняя плитка 'cold' не пригодилась.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Вставил 'wrong' — приятель ошибается, не при чём тут холод или занятость.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (звуки)",
+      "what_i_understood": "Тут просят различить 'cold' и 'called' на слух. Я это слово 'called' вообще не знаю — оно не в списке моих слов. Но раз оно не в правильном ответе, а среди вариантов на различение звука — это ловушка, не обман, справился по факту звучания.",
+      "confusion": "Слово 'called' незнакомое, но справился, потому что оно не требуется как ответ, просто отличить два звука.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Вставил 'free' — свободен, раз сажусь за столик.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Собрал 'I'm free.', лишняя плитка 'am' не нужна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (на слух)",
+      "what_i_understood": "Выбрал 'It's cold.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Соединил все 4 слова с переводами — все уже видел в интро и заданиях выше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Вставил 'are' — несколько человек, не один.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал 'He's cold.' — про мужчину.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (говорю вслух)",
+      "what_i_understood": "Повторил 'I'm tired. It's cold.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Собрал 'They're wrong.' без перевода-подсказки в задании, но перевод уже был в Интро 3.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (финал)",
+      "what_i_understood": "Сказал все три фразы подряд: 'It's cold. I'm tired. They're wrong.'",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "'I am' на слух сливается в 'I'm' — то же самое слово, просто короче",
+    "'he is' → 'he's', 'it is' → 'it's', и по первому слову понятно, про человека речь или про вещь",
+    "'they are' → 'they're' — сжатая форма для нескольких людей сразу",
+    "различил на слух 'cold' и 'called' — звук другой, хотя слово похоже написано"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "сцена в пабе с музыкой — понятно, почему фразы короткие и слипаются, это прямо объясняет, зачем нужны сокращения",
+    "задание 7 про 'cold' и 'called' — неожиданно и интересно, что слова с виду похожи, а звучат по-разному"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: паб, громко, поэтому все говорят сокращённо и быстро — сначала про себя (устал), потом про пиво друга (холодное), потом про соседей по столу (не правы). Каждая фраза привязана к конкретному моменту вечера, ничего не повисло в воздухе.",
+  "would_continue": "да — сессия короткая, всё по делу, под конец я реально мог сказать три фразы подряд не запинаясь",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно, ничего незнакомого в правильных ответах не требовалось, сцена понятна, и я реально что-то новое унёс — как узнавать сокращения на слух."
+}

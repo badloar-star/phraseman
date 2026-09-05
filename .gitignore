@@ -150,6 +150,12 @@ functions/scripts/diag_*
 /void
 /null
 /nul
+# зачем: на Windows перенаправление в /dev/null создаёт файл nul в ТЕКУЩЕЙ папке,
+# а не в корне. Такой файл нельзя проиндексировать (зарезервированное имя), из-за
+# чего git add падает и оставляет осиротевший index.lock — 05.09.2026 это на час
+# заблокировало коммиты во ВСЕХ сессиях. Правила без / ловят на любой глубине.
+nul
+null
 /RANGE_EXPAND_MS
 /maestro-smoke-junit.xml
 /maestro-strict-junit.xml

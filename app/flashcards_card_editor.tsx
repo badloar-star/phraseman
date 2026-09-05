@@ -24,6 +24,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { useFeatureAccess, usePremium } from '../components/PremiumContext';
 import { trackEvent } from './analytics';
 import { creatorPaywallContext, shouldGateCreator } from './creator_access';
@@ -114,6 +115,9 @@ const ASSIST_DEBOUNCE_MS = 250;
 export default function FlashcardsCardEditorScreen() {
   const { theme: t, f, statusBarLight } = useTheme();
   const { lang } = useLang();
+  // зачем: редактор обязан читать и писать библиотеку СВОЕГО языка обучения —
+  // без этого карточка, созданная в режиме French, уходила в английский ключ.
+  const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const params = useLocalSearchParams<{ id?: string; create?: string; cat?: string }>();
@@ -179,8 +183,8 @@ export default function FlashcardsCardEditorScreen() {
   useEffect(() => {
     let cancelled = false;
     void Promise.all([
-      listCustomCards().catch((): CardItem[] => []),
-      loadFlashcards().catch(() => []),
+      listCustomCards(studyTarget).catch((): CardItem[] => []),
+      loadFlashcards(studyTarget).catch(() => []),
     ]).then(([custom, saved]) => {
       if (cancelled) return;
       const map = new Map<string, ExistingRow[]>();
@@ -196,7 +200,7 @@ export default function FlashcardsCardEditorScreen() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [studyTarget]);
 
   useEffect(() => {
     const en = draftEN.trim();
@@ -287,13 +291,13 @@ export default function FlashcardsCardEditorScreen() {
       setDescriptionOpen((card.description ?? '').trim().length > 0);
       setLoadingCard(false);
     };
-    const cachedList = peekCustomCardsSync();
+    const cachedList = peekCustomCardsSync(studyTarget);
     const cached = cachedList?.find((c) => c.id === editId);
     if (cached) {
       applyCard(cached);
       return () => { cancelled = true; };
     }
-    void listCustomCards()
+    void listCustomCards(studyTarget)
       .then((cards) => {
         const card = cards.find((c) => c.id === editId);
         if (cancelled) return;
@@ -315,7 +319,7 @@ export default function FlashcardsCardEditorScreen() {
         if (!cancelled) setLoadingCard(false);
       });
     return () => { cancelled = true; };
-  }, [isEdit, editId, lang, router]);
+  }, [isEdit, editId, lang, router, studyTarget]);
 
   const leaveEditor = useCallback(() => {
     Keyboard.dismiss();
@@ -389,7 +393,7 @@ export default function FlashcardsCardEditorScreen() {
       isSystem: false,
     };
     try {
-      await upsertCustomCard(newCard);
+      await upsertCustomCard(newCard, studyTarget);
       playSfx('correct');
       fcHaptic('correct');
       // зачем: карточка своей коллекции сохранена (create/edit) — отдельное

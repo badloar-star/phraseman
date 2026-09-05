@@ -264,16 +264,16 @@ export default function FlashcardsBlitzSession() {
       // «сохранённые + мои карточки», из-за чего у человека с карточками ТОЛЬКО
       // в наборах пул был пуст и блиц не запускался. Теперь дефолт — ВСЕ
       // доступные источники, включая каждый добавленный набор.
-      const allRefs = await loadAllFcDeckRefs().catch((): DeckRef[] => [
+      const allRefs = await loadAllFcDeckRefs(studyTarget).catch((): DeckRef[] => [
         { kind: 'saved' },
         { kind: 'custom' },
       ]);
       const refs: DeckRef[] = deckRefs.length > 0 ? deckRefs : allRefs;
-      let cards = await loadDeckCardsMulti(refs, contentLang).catch((): DeckCard[] => []);
+      let cards = await loadDeckCardsMulti(refs, contentLang, { studyTarget }).catch((): DeckCard[] => []);
       // Сохранённый пресет мог указывать на набор, который удалили/не скачали —
       // не показываем тупик, а честно добираем пул из всех доступных источников.
       if (!canStartBlitz(cards.length) && deckRefs.length > 0) {
-        const wide = await loadDeckCardsMulti(allRefs, contentLang).catch((): DeckCard[] => []);
+        const wide = await loadDeckCardsMulti(allRefs, contentLang, { studyTarget }).catch((): DeckCard[] => []);
         if (wide.length > cards.length) cards = wide;
       }
       if (cancelled) return;
@@ -626,7 +626,7 @@ export default function FlashcardsBlitzSession() {
     let cancelled = false;
     void (async () => {
       const [decks, preset] = await Promise.all([
-        loadFcDeckOptions('blitz', lang).catch(() => [] as DeckSheetOption[]),
+        loadFcDeckOptions('blitz', lang, studyTarget).catch(() => [] as DeckSheetOption[]),
         getLastPreset('blitz').catch(() => null),
       ]);
       if (cancelled) return;

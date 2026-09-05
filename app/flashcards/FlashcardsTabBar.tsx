@@ -55,6 +55,7 @@ import { markNextNavigationAsReplace } from '../navigation_back';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
 import { isSpeakingEnabled } from '../remote_flags';
 import DeckPickerSheet, { type DeckSheetOption } from './DeckPickerSheet';
+import { useStudyTarget } from '../../components/StudyTargetContext';
 import { loadFcDeckOptions } from './deck_options';
 import { isLowPowerEffective } from './low_power';
 import { getLastPreset, type FcModePreset } from './mode_prefs';
@@ -401,6 +402,8 @@ function TabMenuItem({
 }
 
 export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scroll = null, hasAnyCards = true }: Props) {
+  // зачем: список колод обязан собираться из наборов своего языка обучения.
+  const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const { f, ds, themeMode } = useTheme();
   const { accessResolved } = usePremium();
@@ -601,7 +604,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     setDeckDataMode(null);
     void (async () => {
       const [decks, preset] = await Promise.all([
-        loadFcDeckOptions(mode, lang).catch(() => [] as DeckSheetOption[]),
+        loadFcDeckOptions(mode, lang, studyTarget).catch(() => [] as DeckSheetOption[]),
         getLastPreset(mode).catch(() => null),
       ]);
       if (cancelled) return;
@@ -612,7 +615,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     return () => {
       cancelled = true;
     };
-  }, [pickerOption, lang]);
+  }, [pickerOption, lang, studyTarget]);
 
   const pickerMode = pickerOption ? fcTrainOptionPresetMode(pickerOption) : 'trainer';
   const pickerDataReady = !!pickerOption && deckDataMode === pickerMode;

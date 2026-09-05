@@ -3,6 +3,7 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
 } from "./account_generation";
+import { storageStudyTarget } from "./target_storage_keys";
 import {
   listCustomCards,
   updateCustomCards,
@@ -24,6 +25,14 @@ export type LearningV2NewWordRemoveOutcomeV1 =
   | "stale"
   | "failed";
 
+// зачем: слово из урока пишется в библиотеку языка ЭТОГО курса, а не в общую
+// английскую — иначе французский курс засоряет английские карточки (2026-09-05).
+function encounterStudyTarget(encounter: LearningV2CourseSessionNewWordEncounterV1) {
+  return storageStudyTarget(
+    encounter.save.targetLanguage === 'fr' ? 'fr' : undefined,
+  );
+}
+
 function identity(encounter: LearningV2CourseSessionNewWordEncounterV1) {
   const sourceId = `learning-v2-word:${encounter.save.targetLanguage}:${encounter.lexicalItemId}`;
   return Object.freeze({
@@ -40,7 +49,7 @@ export async function isLearningV2NewWordEncounterSavedV1(
 ): Promise<boolean> {
   const ids = identity(encounter);
   try {
-    const cards = await listCustomCards();
+    const cards = await listCustomCards(encounterStudyTarget(encounter));
     return cards.some(
       (candidate) =>
         candidate.id === ids.id || candidate.sourceId === ids.sourceId,
@@ -100,7 +109,7 @@ export async function saveLearningV2NewWordEncounterToCardsV1(
         return cards;
       added = true;
       return [...cards, card];
-    });
+    }, encounterStudyTarget(input.encounter));
     return added ? ("added" as const) : ("duplicate" as const);
   }).catch(() => "failed" as const);
 }
@@ -124,7 +133,7 @@ export async function removeLearningV2NewWordEncounterFromCardsV1(
         return !matches;
       });
       return removed ? next : cards;
-    });
+    }, encounterStudyTarget(input.encounter));
     return removed ? ("removed" as const) : ("absent" as const);
   }).catch(() => "failed" as const);
 }

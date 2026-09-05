@@ -378,7 +378,7 @@ export default function FlashcardsListeningSession() {
       if (cancelled) return;
       const [pool, rawPrefs] = await Promise.all([
         // cards-2.1 (§6): несколько наборов одной объединённой подборкой (дедуп по id + шаффл)
-        loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true }).catch(
+        loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true, studyTarget }).catch(
           (): Awaited<ReturnType<typeof loadDeckCardsMulti>> => [],
         ),
         AsyncStorage.getItem(LISTENING_PREFS_KEY).catch(() => null),
@@ -592,7 +592,7 @@ export default function FlashcardsListeningSession() {
     let cancelled = false;
     void (async () => {
       const [decks, preset] = await Promise.all([
-        loadFcDeckOptions('listening', lang).catch(() => [] as DeckSheetOption[]),
+        loadFcDeckOptions('listening', lang, studyTarget).catch(() => [] as DeckSheetOption[]),
         getLastPreset('listening').catch(() => null),
       ]);
       if (cancelled) return;

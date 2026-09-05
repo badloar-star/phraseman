@@ -772,8 +772,10 @@ export function useCollectionDeletion(args: {
   currentIndexRef: { current: number };
   /** Сброс фокуса после удаления (indexRef + SharedValue контейнера). */
   onIndexClamped: (idx: number) => void;
+  /** зачем: удаление и undo обязаны бить в хранилище своего языка (2026-09-05). */
+  studyTarget?: RuntimeStudyTarget;
 }) {
-  const { cards, customCards, savedCards, updateCustomCards, updateSavedCards, currentIndexRef, onIndexClamped } = args;
+  const { cards, customCards, savedCards, updateCustomCards, updateSavedCards, currentIndexRef, onIndexClamped, studyTarget } = args;
   const [undoEntry, setUndoEntry] = useState<UndoEntry | null>(null);
   const undoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const undoKeyRef = useRef(0);
@@ -809,7 +811,7 @@ export function useCollectionDeletion(args: {
       const base = typeof fallbackIdx === 'number' ? fallbackIdx : currentIndexRef.current;
       onIndexClamped(Math.max(0, Math.min(base, updated.length - 1)));
       // 2) Персист через очередь записи (снапшот — для восстановления на место)
-      const customSnapshot = kind === 'custom' ? await deleteCustomCard(target.id) : null;
+      const customSnapshot = kind === 'custom' ? await deleteCustomCard(target.id, studyTarget) : null;
       const savedSnapshot = kind === 'saved' ? await removeFlashcardWithSnapshot(target.id) : null;
       // 3) Undo-снекбар 5с (новое удаление заменяет предыдущее)
       const key = ++undoKeyRef.current;
@@ -828,7 +830,7 @@ export function useCollectionDeletion(args: {
         }),
       );
     }
-  }, [cards, customCards, savedCards, clearUndoTimer, updateCustomCards, updateSavedCards, currentIndexRef, onIndexClamped]);
+  }, [cards, customCards, savedCards, clearUndoTimer, updateCustomCards, updateSavedCards, currentIndexRef, onIndexClamped, studyTarget]);
 
   /** «Вернуть»: restore через ту же очередь — карточка встаёт на прежнее место. */
   const undoDelete = useCallback(async () => {
@@ -841,7 +843,7 @@ export function useCollectionDeletion(args: {
       if (entry.kind === 'custom') {
         const card = entry.customSnapshot?.card ?? entry.uiCard;
         const index = entry.customSnapshot?.index ?? entry.uiIndex;
-        await restoreCustomCard(card, index);
+        await restoreCustomCard(card, index, studyTarget);
         updateCustomCards((prev) => {
           if (prev.some((c) => c.id === card.id)) return prev;
           const next = [...prev];
@@ -871,7 +873,7 @@ export function useCollectionDeletion(args: {
         }),
       );
     }
-  }, [undoEntry, clearUndoTimer, updateCustomCards, updateSavedCards]);
+  }, [undoEntry, clearUndoTimer, updateCustomCards, updateSavedCards, studyTarget]);
 
   return { undoEntry, deleteCardById, undoDelete };
 }

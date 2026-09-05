@@ -130,7 +130,7 @@ export function useLearningV2ActivityActionSessionV1(
               return cards;
             added = true;
             return [...cards, nextCard];
-          });
+          }, "en");
           return added ? ("added" as const) : ("duplicate" as const);
         }).catch(() => "failed" as const);
       },

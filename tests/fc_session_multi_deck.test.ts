@@ -45,7 +45,7 @@ const BLITZ = src('app/flashcards_blitz_session.tsx');
 describe('блиц: несколько наборов (§6)', () => {
   it('список наборов + объединённый пул одним загрузчиком', () => {
     expect(BLITZ).toMatch(/parseDeckParams\(/);
-    expect(BLITZ).toMatch(/loadDeckCardsMulti\(refs, contentLang\)/);
+    expect(BLITZ).toMatch(/loadDeckCardsMulti\(refs, contentLang, \{ studyTarget \}\)/);
     expect(BLITZ).not.toMatch(/parseDeckParam\(/);
     expect(BLITZ).not.toMatch(/\bloadDeckCards\(/);
   });
@@ -58,13 +58,13 @@ describe('блиц: несколько наборов (§6)', () => {
    * каждый добавленный набор.
    */
   it('дефолт без ?deck= — ВСЕ доступные источники, включая наборы', () => {
-    expect(BLITZ).toMatch(/loadAllFcDeckRefs\(\)/);
+    expect(BLITZ).toMatch(/loadAllFcDeckRefs\(studyTarget\)/);
     expect(BLITZ).toMatch(/deckRefs\.length > 0 \? deckRefs : allRefs/);
   });
 
   it('пустой/устаревший выбор наборов не показывает тупик, а добирает пул', () => {
     expect(BLITZ).toMatch(/canStartBlitz\(cards\.length\)/);
-    expect(BLITZ).toMatch(/loadDeckCardsMulti\(allRefs, contentLang\)/);
+    expect(BLITZ).toMatch(/loadDeckCardsMulti\(allRefs, contentLang, \{ studyTarget \}\)/);
   });
 
   it('экрана с текстом «нужно N карточек» больше нет', () => {

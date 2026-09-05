@@ -136,7 +136,7 @@ export async function ingestMaxHomeworkIntoTrainer(
       duplicates = built.duplicates;
       if (built.cards.length === 0) return cards;
       return [...cards, ...built.cards];
-    });
+    }, trainerTarget);
     DebugLogger.info(
       '[MAX-HW-INGEST]',
       `session=${args.sessionId} target=${args.studyTarget} items=${args.items.length} created=${created} duplicates=${duplicates}`,

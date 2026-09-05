@@ -8,6 +8,7 @@ import EnergyCostBadge from '../components/EnergyCostBadge';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
+import { useFeatureAccess, usePremium } from '../components/PremiumContext';
 import { triLang } from '../constants/i18n';
 import { canStartBlitz } from './flashcards/blitz_logic';
 import { loadFcDeckOptions, peekFcDeckOptions, sameDeckOptions } from './flashcards/deck_options';
@@ -44,7 +45,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { hapticTap } from '../hooks/use-haptics';
 import { isSpeakingEnabled } from './remote_flags';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 
 type LoadState = 'loading' | 'ready' | 'error';
 type LoadErrorKind = 'invalid' | 'unavailable' | 'load' | null;
@@ -62,6 +63,9 @@ export default function FlashcardsTrainingSetupScreen() {
   const mode = useMemo(() => parseCardsTrainingMode(params.mode), [params.mode]);
   const { lang } = useLang();
   const { theme: t, f, statusBarLight } = useTheme();
+  const { accessResolved } = usePremium();
+  const flashcardsAccess = useFeatureAccess('flashcards');
+  const paywallRedirectedRef = useRef(false);
   /**
    * зачем (владелец: «открывая раздел тренировки, экран отметить наборы моргает»):
    * первый кадр берём из тёплого снимка, если он есть, — тогда список виден сразу
@@ -85,6 +89,16 @@ export default function FlashcardsTrainingSetupScreen() {
   const startInFlightRef = useRef(false);
   const { studyTarget } = useStudyTarget();
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
+
+  useEffect(() => {
+    if (!accessResolved || flashcardsAccess || paywallRedirectedRef.current) return;
+    paywallRedirectedRef.current = true;
+    markNextNavigationAsReplace();
+    router.replace({
+      pathname: '/premium_modal',
+      params: { context: 'flashcard_training', source: 'flashcards_training_setup_direct' },
+    } as never);
+  }, [accessResolved, flashcardsAccess, router]);
   /**
    * зачем (владелец): «когда наборов нет ни одного — показывать три лучших
    * пользовательских с предложением добавить». Витрина живёт ТОЛЬКО в этом
@@ -204,7 +218,7 @@ export default function FlashcardsTrainingSetupScreen() {
     const presetMode = presetModeFor(mode);
     try {
       const [loaded, preset] = await Promise.all([
-        loadFcDeckOptions(presetMode, lang),
+        loadFcDeckOptions(presetMode, lang, studyTarget),
         getLastPreset(presetMode).catch(() => null),
       ]);
       const eligible = loaded.filter((deck) => deck.count > 0);

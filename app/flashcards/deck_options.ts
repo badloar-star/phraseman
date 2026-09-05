@@ -13,6 +13,7 @@
  * Ошибка любого отдельного набора не роняет список.
  */
 import type Ionicons from '@expo/vector-icons/Ionicons';
+import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { triLang, type Lang } from '../../constants/i18n';
 import {
   loadCommunityOwnedPackIds,
@@ -114,14 +115,17 @@ export function sameDeckOptions(a: DeckSheetOption[], b: DeckSheetOption[]): boo
 export async function loadFcDeckOptions(
   mode: FcPresetMode,
   lang: Lang,
+  // зачем: без языка меню выбора колоды показывало английские купленные наборы
+  // в режиме French — язык обязан доходить до КАЖДОГО источника (2026-09-05).
+  studyTarget?: RuntimeStudyTarget,
 ): Promise<DeckSheetOption[]> {
   const cl = contentLang(lang);
   const [savedCards, customCards, ownedIds, communityIds, ownedTitles] = await Promise.all([
-    loadDeckCards({ kind: 'saved' }, cl).catch(() => []),
-    loadDeckCards({ kind: 'custom' }, cl).catch(() => []),
-    loadAccessiblePackIds().catch(() => [] as string[]),
-    loadCommunityOwnedPackIds().catch(() => [] as string[]),
-    loadCommunityOwnedPackTitles().catch(() => ({}) as Record<string, CommunityOwnedPackTitle>),
+    loadDeckCards({ kind: 'saved' }, cl, studyTarget).catch(() => []),
+    loadDeckCards({ kind: 'custom' }, cl, studyTarget).catch(() => []),
+    loadAccessiblePackIds(studyTarget).catch(() => [] as string[]),
+    loadCommunityOwnedPackIds(studyTarget).catch(() => [] as string[]),
+    loadCommunityOwnedPackTitles(studyTarget).catch(() => ({}) as Record<string, CommunityOwnedPackTitle>),
   ]);
 
   const out: DeckSheetOption[] = [];
@@ -158,7 +162,7 @@ export async function loadFcDeckOptions(
   const bundled = bundledPacksForOwned(packIds);
   const packDecks = await Promise.all(
     packIds.map(async (packId) => {
-      const cards = await loadDeckCards({ kind: 'pack', packId }, cl).catch(() => []);
+      const cards = await loadDeckCards({ kind: 'pack', packId }, cl, studyTarget).catch(() => []);
       /** Набор без доступных на устройстве карточек в списке не нужен. */
       if (cards.length === 0) return null;
       return {
@@ -196,10 +200,10 @@ export async function loadFcDeckOptions(
  * мои карточки и каждый доступный на устройстве набор (маркет + сообщество).
  * Ошибка отдельного источника не роняет список.
  */
-export async function loadAllFcDeckRefs(): Promise<DeckRef[]> {
+export async function loadAllFcDeckRefs(studyTarget?: RuntimeStudyTarget): Promise<DeckRef[]> {
   const [ownedIds, communityIds] = await Promise.all([
-    loadAccessiblePackIds().catch(() => [] as string[]),
-    loadCommunityOwnedPackIds().catch(() => [] as string[]),
+    loadAccessiblePackIds(studyTarget).catch(() => [] as string[]),
+    loadCommunityOwnedPackIds(studyTarget).catch(() => [] as string[]),
   ]);
   const refs: DeckRef[] = [{ kind: 'saved' }, { kind: 'custom' }];
   const seen = new Set<string>();
@@ -217,12 +221,15 @@ export async function loadAllFcDeckRefs(): Promise<DeckRef[]> {
  * показывать ли пункт «Блиц» (`canStartBlitz(count)` из `blitz_logic`).
  * Никогда не бросает — при любой ошибке отдаёт 0.
  */
-export async function countAvailableFcCards(lang: Lang): Promise<number> {
+export async function countAvailableFcCards(
+  lang: Lang,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<number> {
   const cl = contentLang(lang);
   try {
-    const refs = await loadAllFcDeckRefs();
+    const refs = await loadAllFcDeckRefs(studyTarget);
     const lists = await Promise.all(
-      refs.map((ref) => loadDeckCards(ref, cl).catch(() => [])),
+      refs.map((ref) => loadDeckCards(ref, cl, studyTarget).catch(() => [])),
     );
     const ids = new Set<string>();
     for (const list of lists) for (const card of list) if (card?.id) ids.add(card.id);

@@ -4,6 +4,7 @@ import {
   withAccountTransitionLock,
 } from "./account_generation";
 import { updateCustomCards } from "./flashcards/custom_cards_store";
+import { storageStudyTarget } from "./target_storage_keys";
 import type { CardItem } from "./flashcards/types";
 import type {
   LearningV2CourseSessionLocalizedTextV1,
@@ -63,6 +64,11 @@ export async function saveLearningV2CourseSessionPhraseToCardsV1(
       sourceId: `learning-v2:${input.save.targetLanguage}:${input.save.savablePhraseRef}`,
     });
     let added = false;
+    // зачем: карточка из урока обязана лечь в хранилище языка ЭТОГО курса —
+    // иначе французский урок пишет в английскую библиотеку (2026-09-05).
+    const cardStudyTarget = storageStudyTarget(
+      input.save.targetLanguage === 'fr' ? 'fr' : undefined,
+    );
     await updateCustomCards((cards) => {
       if (
         cards.some(
@@ -73,7 +79,7 @@ export async function saveLearningV2CourseSessionPhraseToCardsV1(
         return cards;
       added = true;
       return [...cards, card];
-    });
+    }, cardStudyTarget);
     return added ? ("added" as const) : ("duplicate" as const);
   }).catch(() => "failed" as const);
 }

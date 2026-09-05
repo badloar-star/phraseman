@@ -35,6 +35,7 @@ import { actionToastTri, emitAppEvent } from './events';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { CATEGORIES, STR } from './flashcards/constants';
 import { SYSTEM_CARDS } from './flashcards/system-cards';
+import { flashcardsSystemCardsForTarget } from './flashcards_target_gate';
 import { CardItem, CategoryId } from './flashcards/types';
 import { writeFlashcardsProgress } from './flashcards/storage';
 // E8: быстрый старт — размер сессии из последнего пресета (fc_mode_prefs_v1)
@@ -405,10 +406,20 @@ export default function FlashcardsScreen() {
     onDenied: () => leaveCollection(),
   });
 
+  /**
+   * Системные карточки строго по языку обучения.
+   * зачем: гейт `flashcardsSystemCardsForTarget` существовал, но не был подключён —
+   * экран отдавал сырой английский банк даже в режиме French (2026-09-05).
+   */
+  const systemCardsForTarget = useMemo(
+    () => flashcardsSystemCardsForTarget(SYSTEM_CARDS, studyTarget, lang),
+    [studyTarget, lang],
+  );
+
   // ── Derived: категория → фильтр → поиск → free-limit (E11: хук) ────────────
   const { cards, filteredCards, listCards, hiddenByLimitCount } = useDerivedCollectionCards({
     activeCat, packDeeplink, savedCards, customCards, marketCards,
-    systemCards: SYSTEM_CARDS, activeFilter, searchQuery, isPremium,
+    systemCards: systemCardsForTarget, activeFilter, searchQuery, isPremium,
   });
 
   /** Куплені набори (`sourceId` = `DEV:…`) — без CTA «додати свою картку». */
@@ -486,7 +497,7 @@ export default function FlashcardsScreen() {
   }, [focusedIndexSV]);
   const { undoEntry, deleteCardById, undoDelete } = useCollectionDeletion({
     cards, customCards, savedCards, updateCustomCards, updateSavedCards,
-    currentIndexRef: indexRef, onIndexClamped,
+    currentIndexRef: indexRef, onIndexClamped, studyTarget,
   });
 
   // ── Filter options ─────────────────────────────────────────────────────────

@@ -36,6 +36,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '../components/ThemeContext';
+import { useFeatureAccess, usePremium } from '../components/PremiumContext';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { useLang } from '../components/LangContext';
@@ -59,7 +60,7 @@ import { loadFcDeckOptions } from './flashcards/deck_options';
 import SessionResultScreen from './flashcards/SessionResultScreen';
 import SpeakHoldButton, { SPEAK_HOLD_LABEL_HEIGHT } from './flashcards/SpeakHoldButton';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { deckRefKey, loadDeckCardsMulti, parseDeckParams, type DeckCard, type DeckRef } from './flashcards/deck_sources';
 import { isValidSessionSize, FC_DEFAULT_SESSION_SIZE, getLastPreset, presetDeckIds, type FcModePreset } from './flashcards/mode_prefs';
 import { deckRouteParam, decksCountLabel, SOLO_DECK_ID } from './flashcards/deck_selection';
@@ -138,9 +139,22 @@ const TITLE = {
 export default function FlashcardsSpeakingSession() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
+  const { accessResolved } = usePremium();
+  const speakingAccess = useFeatureAccess('speaking');
+  const paywallRedirectedRef = useRef(false);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { speak, stop: stopSpeech } = useAudio();
+
+  useEffect(() => {
+    if (!accessResolved || speakingAccess || paywallRedirectedRef.current) return;
+    paywallRedirectedRef.current = true;
+    markNextNavigationAsReplace();
+    router.replace({
+      pathname: '/premium_modal',
+      params: { context: 'speaking', source: 'flashcards_speaking_direct' },
+    } as never);
+  }, [accessResolved, router, speakingAccess]);
   const params = useLocalSearchParams<{ deck?: string; size?: string; devRunesSeed?: string | string[]; devJumpToFinale?: string | string[] }>();
   const devJumpToFinale = (Array.isArray(params.devJumpToFinale) ? params.devJumpToFinale[0] : params.devJumpToFinale) === '1';
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
@@ -280,7 +294,7 @@ export default function FlashcardsSpeakingSession() {
       }
       if (cancelled) return;
       const [pool, rawPrefs] = await Promise.all([
-        loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true }).catch((): DeckCard[] => []),
+        loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true, studyTarget }).catch((): DeckCard[] => []),
         AsyncStorage.getItem(FC_SPEAKING_PREFS_KEY).catch(() => null),
       ]);
       if (cancelled) return;
@@ -593,7 +607,7 @@ export default function FlashcardsSpeakingSession() {
     let cancelled = false;
     void (async () => {
       const [decks, preset] = await Promise.all([
-        loadFcDeckOptions('speaking', lang).catch(() => [] as DeckSheetOption[]),
+        loadFcDeckOptions('speaking', lang, studyTarget).catch(() => [] as DeckSheetOption[]),
         getLastPreset('speaking').catch(() => null),
       ]);
       if (cancelled) return;

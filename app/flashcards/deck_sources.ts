@@ -21,6 +21,7 @@
 import { loadFlashcards, type Flashcard } from '../../hooks/use-flashcards';
 import { listCustomCards } from './custom_cards_store';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './types';
+import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { splitDeckParam } from './deck_selection';
 export type MistakeSource = 'lesson' | 'quiz' | 'arena' | 'diagnostic' | 'exam' | 'custom' | 'pack';
 
@@ -186,8 +187,12 @@ const LOCAL_AUTHOR_PACK_ID_PREFIX = 'local_pack_';
 
 // ── Загрузчик ────────────────────────────────────────────────────────────────
 
-/** Карточки пака: bundled-паки маркета; фолбэк — кэш built-cards (community/Firestore-паки). */
-async function loadPackDeckCards(packId: string, lang: FlashcardContentLang): Promise<DeckCard[]> {
+/** Карточки пака: bundled-паки маркета; community-паки читаем из Firestore, кэш — офлайн-фолбэк. */
+async function loadPackDeckCards(
+  packId: string,
+  lang: FlashcardContentLang,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<DeckCard[]> {
   /**
    * Свой набор с устройства (сохранён в редакторе) — карточки лежат локально.
    * Проверка по префиксу до импорта: обычные паки не тянут лишний модуль.
@@ -209,7 +214,18 @@ async function loadPackDeckCards(packId: string, lang: FlashcardContentLang): Pr
   if (bundled.length > 0) {
     return deckCardsFromCardItems(buildMarketplaceOwnedCards(bundled), lang);
   }
-  const cache = await loadBuiltMarketplaceCardsCache().catch(() => null);
+
+  /**
+   * Community-наборы не входят в bundled marketplace manifest. Раньше для них
+   * здесь был только built-cards cache, который не заполняется при «Добавить
+   * себе» из каталога: ID появлялся в выборе колод, но сам набор был пустым.
+   * Берём опубликованные карточки напрямую; кэш ниже остаётся офлайн-фолбэком.
+   */
+  const { fetchCommunityPackCards } = await import('../community_packs/communityFirestore');
+  const communityCards = await fetchCommunityPackCards(packId).catch((): CardItem[] => []);
+  if (communityCards.length > 0) return deckCardsFromCardItems(communityCards, lang);
+
+  const cache = await loadBuiltMarketplaceCardsCache(studyTarget, lang).catch(() => null);
   if (cache) {
     const packCards = cache.cards.filter((c) => c.sourceId === `DEV:${packId}`);
     return deckCardsFromCardItems(packCards, lang);
@@ -221,16 +237,22 @@ async function loadPackDeckCards(packId: string, lang: FlashcardContentLang): Pr
  * Карточки выбранной колоды в порядке хранения (перемешивание и лимит размера —
  * на стороне сессии). Пустой результат — колода пуста или недоступна.
  */
-export async function loadDeckCards(deck: DeckRef, lang: FlashcardContentLang): Promise<DeckCard[]> {
+export async function loadDeckCards(
+  deck: DeckRef,
+  lang: FlashcardContentLang,
+  // зачем: без языка все три источника молча падали в английское хранилище —
+  // во французском режиме колоды показывали английские карточки (2026-09-05).
+  studyTarget?: RuntimeStudyTarget,
+): Promise<DeckCard[]> {
   if (deck.kind === 'saved') {
-    const saved = await loadFlashcards().catch((): Flashcard[] => []);
+    const saved = await loadFlashcards(studyTarget).catch((): Flashcard[] => []);
     return deckCardsFromSaved(saved, lang);
   }
   if (deck.kind === 'custom') {
-    const custom = await listCustomCards().catch((): CardItem[] => []);
+    const custom = await listCustomCards(studyTarget).catch((): CardItem[] => []);
     return deckCardsFromCardItems(custom, lang);
   }
-  return loadPackDeckCards(deck.packId, lang).catch((): DeckCard[] => []);
+  return loadPackDeckCards(deck.packId, lang, studyTarget).catch((): DeckCard[] => []);
 }
 
 /**
@@ -243,12 +265,12 @@ export async function loadDeckCards(deck: DeckRef, lang: FlashcardContentLang): 
 export async function loadDeckCardsMulti(
   decks: readonly DeckRef[],
   lang: FlashcardContentLang,
-  opts: { shuffle?: boolean; rnd?: () => number } = {},
+  opts: { shuffle?: boolean; rnd?: () => number; studyTarget?: RuntimeStudyTarget } = {},
 ): Promise<DeckCard[]> {
   if (decks.length === 0) return [];
   const lists = await Promise.all(
     decks.map(async (deck) => {
-      const cards = await loadDeckCards(deck, lang).catch((): DeckCard[] => []);
+      const cards = await loadDeckCards(deck, lang, opts.studyTarget).catch((): DeckCard[] => []);
       const source = mistakeSourceForDeck(deck);
       return cards.map((c) => (c.source === source ? c : { ...c, source }));
     }),

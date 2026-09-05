@@ -527,21 +527,25 @@ describe('Gustav flashcards target isolation', () => {
     // который проверяется строкой ниже, так что изоляция сохранена.
     expect(collectionSource).toContain('useCollectionDeletion({');
     // зачем: запись пользовательских карточек ушла из экрана в
-    // app/flashcards/custom_cards_store.ts. Экран по-прежнему получает списки
-    // по языку сверху (loadFlashcards/readCustomCards выше), поэтому здесь
-    // проверяем передачу языка в обновление, а не исчезнувшую функцию.
-    // ⚠️ ОТДЕЛЬНО ЗАВЕДЕНО: сам custom_cards_store вычисляет ключ БЕЗ языка
-    // (customFlashcardsKey() без аргумента → английское хранилище), из-за чего
-    // французские пользовательские карточки уедут к английским. Чинится не
-    // здесь — этот тест сторожит экран, а не хранилище.
+    // app/flashcards/custom_cards_store.ts. Экран получает списки по языку
+    // сверху, а удаление/undo передают язык в хук (строка ниже).
     expect(collectionSource).toContain('updateCustomCards');
-    // ⚠️ ОТДЕЛЬНО ЗАВЕДЕНО, ждёт починки (найдено 2026-09-05).
-    // flashcardsSystemCardsForTarget объявлена в app/flashcards_target_gate.ts,
-    // но НЕ ВЫЗЫВАЕТСЯ нигде: экран подаёт systemCards: SYSTEM_CARDS без языка.
-    // Гейт задумывался (текст frenchFlashcardsGateCopy переведён на 9 языков),
-    // но подключён не был. Раскомментировать сразу после подключения:
-    // expect(collectionSource).toContain('flashcardsSystemCardsForTarget(SYSTEM_CARDS, studyTarget, lang)');
-    expect(collectionSource).toContain('systemCards: SYSTEM_CARDS');
+    // ПОЧИНЕНО 2026-09-05 (дыра 1): хранилище больше не считает ключ на загрузке
+    // модуля — язык доходит до каждой операции. Хук удаления получает studyTarget.
+    expect(collectionSource).toContain('onIndexClamped, studyTarget,');
+    const storeSource = fs.readFileSync(
+      path.join(ROOT, 'app', 'flashcards', 'custom_cards_store.ts'),
+      'utf8',
+    );
+    // Ключ обязан вычисляться НА ВЫЗОВЕ. Модульная константа = регрессия.
+    expect(storeSource).not.toMatch(/const\s+FLASHCARDS_CUSTOM_KEY\s*=/);
+    expect(storeSource).toContain('customFlashcardsKey(target)');
+    expect(storeSource).toContain('storageStudyTarget(studyTarget)');
+    // ПОЧИНЕНО 2026-09-05 (дыра 2): гейт системных карточек подключён.
+    expect(collectionSource).toContain('flashcardsSystemCardsForTarget(SYSTEM_CARDS, studyTarget, lang)');
+    expect(collectionSource).toContain('systemCards: systemCardsForTarget');
+    // Сырой английский банк в хук больше не подаётся.
+    expect(collectionSource).not.toContain('systemCards: SYSTEM_CARDS,');
     expect(collectionSource).toContain('ensureFrenchRemoteFlashcards(lang)');
     // зачем: гейт официальных наборов переехал из экрана в хук
     // app/flashcards/useCollectionData.ts:246, где он вычисляется ПО ЯЗЫКУ:
@@ -580,6 +584,25 @@ describe('Gustav flashcards target isolation', () => {
     expect(audioSource).toContain('studyTarget,');
     expect(trainingSourcesSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
     expect(trainingSourcesSource).toContain('flashcardsCommunityPacksAvailableForTarget(studyTarget)');
+
+    // ПОЧИНЕНО 2026-09-05 (дыра 3): выбор колод больше не берёт английские наборы.
+    const deckOptionsSource = fs.readFileSync(
+      path.join(ROOT, 'app', 'flashcards', 'deck_options.ts'),
+      'utf8',
+    );
+    expect(deckOptionsSource).toContain('loadAccessiblePackIds(studyTarget)');
+    expect(deckOptionsSource).toContain('loadCommunityOwnedPackIds(studyTarget)');
+    expect(deckOptionsSource).toContain('loadCommunityOwnedPackTitles(studyTarget)');
+    // Ни одного вызова без языка.
+    expect(deckOptionsSource).not.toContain('loadAccessiblePackIds()');
+    expect(deckOptionsSource).not.toContain('loadCommunityOwnedPackIds()');
+    expect(deckOptionsSource).not.toContain('loadCommunityOwnedPackTitles()');
+    const deckSourcesSource = fs.readFileSync(
+      path.join(ROOT, 'app', 'flashcards', 'deck_sources.ts'),
+      'utf8',
+    );
+    expect(deckSourcesSource).toContain('listCustomCards(studyTarget)');
+    expect(deckSourcesSource).toContain('loadFlashcards(studyTarget)');
 
     expect(hubSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(hubSource).toContain('primeFlashcardsCollectionCache(studyTarget)');

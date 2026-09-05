@@ -2,10 +2,10 @@
   "plan_fidelity": {
     "operation_matches": true,
     "new_words_match": [
-      "scared",
-      "glad",
-      "bored",
-      "full"
+      "drunk",
+      "sober",
+      "sleepy",
+      "awake"
     ],
     "missing": [],
     "extra_grammar_smuggled": []
@@ -18,15 +18,19 @@
     "realistic": [
       {
         "task": 4,
-        "trap": "лишняя плитка `not` — правдоподобная невнимательность при сборке фразы"
+        "trap": "'he's' плитка как дистрактор в сборке 'I'm sober'"
       },
       {
         "task": 8,
-        "trap": "full/scared как дистракторы к bored — смежные по сцене состояния"
+        "trap": "sleepy/drunk как правдоподобные путаницы состояний"
+      },
+      {
+        "task": 10,
+        "trap": "drunk/late как смысловые дистракторы"
       }
     ],
     "silly": [],
-    "native_transfer_used": true,
+    "native_transfer_used": false,
     "feedback_teaches_unknown_form": []
   },
   "feedback": {
@@ -35,29 +39,23 @@
     "too_long_or_bookish": []
   },
   "structure": {
-    "task_count": 18,
+    "task_count": 17,
     "below_12": false,
     "word_first_respected": true,
     "support_fades": true,
     "speed_match_boards": [
       [
-        "glad",
-        "full",
-        "scared",
-        "bored"
-      ],
-      [
-        "hungry",
-        "tired",
-        "done",
-        "fine"
+        "drunk",
+        "sober",
+        "sleepy",
+        "awake"
       ]
     ],
     "speed_match_overlap": false,
     "repeated_targets": [],
     "generic_instructions": [],
     "attention_traps": [
-      4
+      15
     ]
   },
   "time_references": [],
@@ -69,13 +67,14 @@
     "modes_used": {
       "word_card": 4,
       "listen_choose": 2,
-      "phrase_builder": 2,
+      "phrase_builder": 3,
       "context_gap_grammar": 4,
-      "listen_build_dictation": 2,
-      "speed_match": 2,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "sound_contrast": 1,
       "scripted_repeat_compare": 1
     }
   },
-  "verdict": "REVISE",
-  "verdict_reason": "Машинные факты показывают недостаточные возвратные касания (hungry 3/2, done 3/1, tired 4/2, sure 5/2, lost 4/2, fine 2/2 на грани) и обе интро-страницы короче нормы 240–290 знаков — формально это не BLOCK-пункты по правилам педагога, но требуют правки перед PASS."
+  "verdict": "BLOCK",
+  "verdict_reason": "Интро 1/2/3 превышают лимит 240–290 знаков (292/325/326), и builder_notes сам сообщает, что 'awake' уже входит в пройденный словарь курса, но объявлен как новое слово — оба факта являются нарушениями границ формы и честности материала."
 }

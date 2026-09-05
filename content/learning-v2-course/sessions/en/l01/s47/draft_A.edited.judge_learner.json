@@ -1,0 +1,147 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Есть слово drunk (пьяный) и sober (трезвый). Полностью 'я трезвый' — I am sober, но вслух am съедается, и вместо a ставят значок — I'm sober.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "sleepy — сонный (глаза слипаются, но человек ещё тут), awake — не спит. Отдельно объяснили, что sleepy это не то же самое, что tired (усталый, но не хочет спать). Про друга говорят he's/she's, про нескольких — they're.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "isn't = is + not (про одного), aren't = are + not (про нескольких). Not уже сидит внутри, второй раз его не ставим.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка drunk)",
+      "what_i_understood": "drunk — пьяный",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух drunk)",
+      "what_i_understood": "Выбрал drunk, отличил от drink и dark по звучанию",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка sober)",
+      "what_i_understood": "sober — трезвый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (сборка фразы)",
+      "what_i_understood": "Собрал I'm sober из плиток, лишние am и he's не тронул",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (карточка sleepy)",
+      "what_i_understood": "sleepy — сонный",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (слух sleepy)",
+      "what_i_understood": "Выбрал sleepy, а не sleep/sleeper",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (карточка awake)",
+      "what_i_understood": "awake — не спит",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (вставка awake)",
+      "what_i_understood": "Про друга с кофе и загоревшимися глазами — awake, а не sleepy/drunk",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (пары)",
+      "what_i_understood": "Соединил все 4 слова с переводом без проблем",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (вставка sober)",
+      "what_i_understood": "За рулём — sober, а не drunk/late",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (карточка tired)",
+      "what_i_understood": "tired — усталый (про силы, не про сон)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (вставка tired)",
+      "what_i_understood": "Таскал ящики весь день, но спать не хочет — tired, не sleepy",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (диктовка isn't)",
+      "what_i_understood": "She isn't sleepy — собрал из плиток, не перепутал с aren't",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (сборка aren't)",
+      "what_i_understood": "They aren't sleepy — про нескольких, не isn't",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (карточка quiet)",
+      "what_i_understood": "quiet — тихий, и про зал, и про человека",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (вставка quiet)",
+      "what_i_understood": "Про тишину в час ночи — quiet, а не awake/drunk (те про человека)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (сборка tired)",
+      "what_i_understood": "I'm tired — из плиток, home и late не нужны",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 (финал)",
+      "what_i_understood": "Сказал подряд: I'm sober. He's sleepy. They aren't sleepy. I'm tired. — все четыре фразы понятны и по смыслу подходят к сцене конца вечера в пабе",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Три новых слова: drunk (пьяный), sober (трезвый), sleepy (сонный)",
+    "Что sleepy — это не то же самое, что tired (одно про сон, другое про силы)",
+    "Что I'm — это сокращение от I am, а значок ' стоит на месте выпавшей буквы a",
+    "Что isn't (про одного) и aren't (про нескольких) — это is/are + not, и not внутри уже есть, второй раз его писать не надо"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена в пабе в час ночи понятна и живая — сразу видно, кто выпил, кто зевает, кому пора домой",
+    "Финал сцены (задание 18), где все четыре фразы складываются в одну реальную ситуацию прощания в пабе"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — весь урок держится на одной сцене (закрывающийся паб), и каждая фраза привязана к конкретному моменту: отказ от пива за рулём, зевающий друг, бодрые друзья у выхода, собственная усталость перед тем как ехать домой",
+  "would_continue": "да — сессия короткая, слова легко запоминаются через ситуацию, ловушки в заданиях (sleepy vs tired, isn't vs aren't) заставляют думать, а не гадать, и в конце я реально могу сказать 4 фразы подряд без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "Все 18 заданий выполнимы честно на знакомых словах и грамматике, три новых слова закреплены многократно, ловушки осмысленные (различают близкие по смыслу слова), а не обман, и сцена вечера в пабе понятна с первой страницы без отсылок к чему-то ранее не виденному."
+}

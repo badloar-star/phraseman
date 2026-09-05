@@ -1,4 +1,148 @@
 {
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя говорю I am, а про человека напротив — You are. Слово после этой скрепки не меняется: tired так и остаётся tired.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "You are welcome — это ответ на «спасибо», вроде нашего «не за что».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "funny — смешной, kind — добрый. Оба про человека напротив, с той же скрепкой are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка welcome)",
+      "what_i_understood": "welcome = пожалуйста/не за что",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слушать welcome)",
+      "what_i_understood": "Узнал звучание welcome среди похожих слов",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка kind)",
+      "what_i_understood": "kind = добрый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (слушать kind)",
+      "what_i_understood": "Отличил kind от kid и find на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (собрать фразу)",
+      "what_i_understood": "You are kind — собрал без проблем",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (вставить are)",
+      "what_i_understood": "You are tired — am и is не подходят к you",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (карточка right)",
+      "what_i_understood": "right = прав",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (слушать right)",
+      "what_i_understood": "Отличил right от red и read",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (собрать фразу welcome)",
+      "what_i_understood": "You are welcome — собрал",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (карточка funny)",
+      "what_i_understood": "funny = смешной",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (вставить funny)",
+      "what_i_understood": "Про смех — funny, не sorry и не early",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (собрать You are right)",
+      "what_i_understood": "Собрал по слуху",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (вставить right)",
+      "what_i_understood": "Про угаданное — right, не kind и не welcome",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (вставить early)",
+      "what_i_understood": "Про раннее утро — early",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (пары)",
+      "what_i_understood": "Свёл welcome/kind/right/funny с переводами",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (обманка, лишняя плитка are)",
+      "what_i_understood": "Я не уверен = I am not sure, плитка are лишняя и в ответ не идёт",
+      "confusion": "Секунду думал, не нужно ли are куда-то воткнуть, но по правилу I am + слово всё сошлось без него",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (вставить sorry)",
+      "what_i_understood": "За пролитый кофе — sorry, не early и не new",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 (финал сцены)",
+      "what_i_understood": "Собрал все четыре реплики: You are right. I am new. I am not tired. You are kind.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как сказать «ты» + состояние/качество: You are + слово (устал, добрый, смешной, прав)",
+    "Слово you are welcome как ответ на спасибо",
+    "Три новых слова: welcome, kind, funny — и их звучание на слух",
+    "Что am намертво привязано к I и не переходит на you (are — своя скрепка для собеседника)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с кофе на кухне — понятно, кто говорит и кому, не абстрактный пример",
+    "Задание 16 с лишней плиткой — приятно, что не подсовывают ответ на блюдечке, заставляет думать",
+    "Финал с четырьмя репликами подряд — почувствовал, что реально что-то умею сказать связно"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — весь урок держится на одной понятной сцене (коллега на кухне поставила кофе), и каждая фраза привязана к конкретному моменту: поблагодарить, отреагировать на шутку, сказать что она права. Ни разу не было ощущения, что фраза висит в воздухе без повода.",
+  "would_continue": "да — задания шли по нарастающей, под конец собрал целый мини-диалог сам, это приятное чувство прогресса",
   "verdict": "PASS",
-  "verdict_reason": "mock"
+  "verdict_reason": "Все 18 заданий прошёл честно, узнал новое (You are, welcome/kind/right/funny), сцена понятна от начала до конца, скучных мест нет."
 }

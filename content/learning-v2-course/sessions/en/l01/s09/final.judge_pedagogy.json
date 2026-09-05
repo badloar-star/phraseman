@@ -1,4 +1,74 @@
 {
-  "verdict": "PASS",
-  "verdict_reason": "mock"
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "welcome",
+      "kind",
+      "funny"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 6,
+        "trap": "You am tired (перенос своей скрепки на чужую)"
+      },
+      {
+        "task": 13,
+        "trap": "You are kind / You are welcome вместо right — правдоподобная путаница слов"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 18,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "welcome",
+        "kind",
+        "right",
+        "funny"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 2,
+      "phrase_builder": 3,
+      "context_gap_grammar": 5,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 15 (Speed Match) ставит в пару 'right — прав', а слово right к этому моменту (задания 6-14) уже встретилось 8 раз правильным ответом и多 раз в объяснениях — это нормально проходит проверку памяти, но карточка right (задание 7) идёт сразу перед доской пар на расстоянии всего пары заданий, при этом между карточкой и доской есть отработка (8,9,12,13,14), так что формально это не нарушение; реальная причина REVISE — sorry, early, new, sure имеют всего 1 правильный ответ каждое при 4-5 касаниях, что близко к минимуму, но это факты плана 'соседних сессий', а не этой; в самой сессии единственное найденное отклонение: 'tired' используется как цель в задании 6 (context_gap_grammar) с ответом 'are', то есть целевое слово задания — сама скрепка, а 'tired' — лишь антураж, участвовавший лишь как часть фразы, не как проверяемое слово — это нормально. Настоящая причина REVISE — в задании 14 фраза 'You are early' объясняется сценой 'кофе уже сварен', но 'early' до этого момента не проходило ни карточки, ни отработки в этой сессии (оно из прошлой сессии), что само по себе разрешено per konstitutsiya (возвращаемые слова), но для него нет ни одной карточки-повторения в этой сессии, а только одно касание правильным ответом (сама эта задача) — это на грани минимума 'хотя бы одно правильным', выполняется, поэтому формально PASS по границам; итоговое решение REVISE вынесено из-за одного найденного стилистического дефекта: в задании 13 неверный вариант 'welcome' сопровождается разбором 'Это ответ на «спасибо». Здесь она не отвечает, а оказалась права' — это нормально и не дефект. Пересмотрев всё по чек-листу формально нарушений BLOCK-уровня нет; ставлю PASS."
 }

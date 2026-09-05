@@ -1,0 +1,998 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-47:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drunk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drunk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i01:audio",
+          "transcript": "drunk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-47:i01:r1",
+            "targetText": "drunk",
+            "meaningByLocale": {
+              "ru": "«пьяный». Не «весёлый после одного бокала», а когда речь плывёт и такси уже вызывают.",
+              "uk": "«п'яний». Не «веселий після одного келиха», а коли мова пливе і таксі вже викликають."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drunk",
+          "definitionByLocale": {
+            "ru": "«пьяный». Не «весёлый после одного бокала», а когда речь плывёт и такси уже вызывают.",
+            "uk": "«п'яний». Не «веселий після одного келиха», а коли мова пливе і таксі вже викликають."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-47:i02:r1",
+          "text": "drunk"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i02:r2",
+          "text": "drink"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i02:r3",
+          "text": "dark"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — drunk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i02:audio",
+          "transcript": "drunk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-47:i02:r1",
+            "targetText": "drunk",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i02:r2",
+            "targetText": "drink",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i02:r3",
+            "targetText": "dark",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — drunk",
+            "feedbackByLocale": {
+              "ru": "`drink` — «пить», само действие. `drunk` — про человека после.",
+              "uk": "`drink` — «пити», сама дія. `drunk` — про людину після."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — drunk",
+            "feedbackByLocale": {
+              "ru": "Это «тёмный». В `drunk` после первой буквы идёт `r`, а потом ещё `n` перед концом.",
+              "uk": "Це «темний». У `drunk` після першої літери йде `r`, а потім ще `n` перед кінцем."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sober",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sober",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i03:audio",
+          "transcript": "sober"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-47:i03:r1",
+            "targetText": "sober",
+            "meaningByLocale": {
+              "ru": "«трезвый». Человек не пил вообще или уже пришёл в себя и спокойно садится за руль.",
+              "uk": "«тверезий». Людина не пила взагалі або вже протверезіла і спокійно сідає за кермо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sober",
+          "definitionByLocale": {
+            "ru": "«трезвый». Человек не пил вообще или уже пришёл в себя и спокойно садится за руль.",
+            "uk": "«тверезий». Людина не пила взагалі або вже протверезіла і спокійно сідає за кермо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы за рулём, друг тянется к вашему стакану",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы за рулём, друг тянется к вашему стакану",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'm sober.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы за рулём, друг тянется к вашему стакану",
+          "uk": "Складіть фразу — ви за кермом, друг тягнеться до вашої склянки"
+        },
+        "orderedTokens": [
+          "I'm",
+          "sober"
+        ],
+        "authoredDistractorTokens": [
+          "am",
+          "he's"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sleepy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sleepy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i05:audio",
+          "transcript": "sleepy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-47:i05:r1",
+            "targetText": "sleepy",
+            "meaningByLocale": {
+              "ru": "«сонный». Глаза закрываются сами, а человек всё ещё честно кивает на ваши истории.",
+              "uk": "«сонний». Очі заплющуються самі, а людина все ще чесно киває на ваші історії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sleepy",
+          "definitionByLocale": {
+            "ru": "«сонный». Глаза закрываются сами, а человек всё ещё честно кивает на ваши истории.",
+            "uk": "«сонний». Очі заплющуються самі, а людина все ще чесно киває на ваші історії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-47:i06:r1",
+          "text": "sleepy"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i06:r2",
+          "text": "sleep"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i06:r3",
+          "text": "sleeper"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — sleepy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i06:audio",
+          "transcript": "sleepy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-47:i06:r1",
+            "targetText": "sleepy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i06:r2",
+            "targetText": "sleep",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i06:r3",
+            "targetText": "sleeper",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i06:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — sleepy",
+            "feedbackByLocale": {
+              "ru": "Обрублен хвост. `sleep` — «спать», `sleepy` — «сонный».",
+              "uk": "Обрубаний хвіст. `sleep` — «спати», `sleepy` — «сонний»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — sleepy",
+            "feedbackByLocale": {
+              "ru": "Другой хвост, и это уже не про состояние: `sleeper` — тот, кто спит.",
+              "uk": "Інший хвіст, і це вже не про стан: `sleeper` — той, хто спить."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — awake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — awake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i07:audio",
+          "transcript": "awake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-47:i07:r1",
+            "targetText": "awake",
+            "meaningByLocale": {
+              "ru": "«не спит». Глаза открыты, голова работает.",
+              "uk": "«не спить». Очі розплющені, голова працює."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "awake",
+          "definitionByLocale": {
+            "ru": "«не спит». Глаза открыты, голова работает.",
+            "uk": "«не спить». Очі розплющені, голова працює."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друг залпом допил кофе и глаза загорелись",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-47:i08:r1",
+          "text": "awake"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i08:r2",
+          "text": "sleepy"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i08:r3",
+          "text": "drunk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друг залпом допил кофе и глаза загорелись",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг залпом допил кофе и глаза загорелись",
+          "uk": "Вставте слово — друг залпом допив каву і очі загорілися"
+        },
+        "gappedTargetPhrase": "He's ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i08:r1",
+            "text": "awake"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i08:r2",
+            "text": "sleepy"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i08:r3",
+            "text": "drunk"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг залпом допил кофе ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i08:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг залпом допил кофе ",
+            "feedbackByLocale": {
+              "ru": "Наоборот: кофе его разбудил, а `sleepy` — «сонный».",
+              "uk": "Навпаки: кава його розбудила, а `sleepy` — «сонний»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг залпом допил кофе ",
+            "feedbackByLocale": {
+              "ru": "`drunk` — «пьяный», а тут человек взбодрился.",
+              "uk": "`drunk` — «п'яний», а тут людина збадьорилася."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-47:i09:p1",
+            "target": "drunk",
+            "meaningByLocale": {
+              "ru": "пьяный",
+              "uk": "п'яний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-47:i09:p2",
+            "target": "sober",
+            "meaningByLocale": {
+              "ru": "трезвый",
+              "uk": "тверезий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-47:i09:p3",
+            "target": "sleepy",
+            "meaningByLocale": {
+              "ru": "сонный",
+              "uk": "сонний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-47:i09:p4",
+            "target": "awake",
+            "meaningByLocale": {
+              "ru": "не спит",
+              "uk": "не спить"
+            }
+          }
+        ],
+        "leftColumn": [
+          "drunk",
+          "sober",
+          "sleepy",
+          "awake"
+        ],
+        "rightColumn": [
+          "пьяный",
+          "трезвый",
+          "сонный",
+          "не спит"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы садитесь за руль, и вас переспрашивают",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-47:i10:r1",
+          "text": "sober"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i10:r2",
+          "text": "drunk"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i10:r3",
+          "text": "late"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы садитесь за руль, и вас переспрашивают",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы садитесь за руль, и вас переспрашивают",
+          "uk": "Вставте слово — ви сідаєте за кермо, і вас перепитують"
+        },
+        "gappedTargetPhrase": "I'm ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i10:r1",
+            "text": "sober"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i10:r2",
+            "text": "drunk"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i10:r3",
+            "text": "late"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы садитесь за руль, и ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i10:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы садитесь за руль, и ",
+            "feedbackByLocale": {
+              "ru": "За руль так не садятся. Вам нужно «трезвый».",
+              "uk": "За кермо так не сідають. Вам потрібно «тверезий»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы садитесь за руль, и ",
+            "feedbackByLocale": {
+              "ru": "`late` — «опоздал». Про время, а не про выпитое.",
+              "uk": "`late` — «спізнився». Про час, а не про випите."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tired",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tired",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i11:audio",
+          "transcript": "tired"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-47:i11:r1",
+            "targetText": "tired",
+            "meaningByLocale": {
+              "ru": "«усталый». Не про сон, а про силы: их за день потратили больше, чем осталось.",
+              "uk": "«втомлений». Не про сон, а про сили: їх за день витратили більше, ніж лишилося."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tired",
+          "definitionByLocale": {
+            "ru": "«усталый». Не про сон, а про силы: их за день потратили больше, чем осталось.",
+            "uk": "«втомлений». Не про сон, а про сили: їх за день витратили більше, ніж лишилося."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друг весь день таскал ящики, но спать не хочет",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-47:i12:r1",
+          "text": "tired"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i12:r2",
+          "text": "sleepy"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i12:r3",
+          "text": "drunk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друг весь день таскал ящики, но спать не хочет",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг весь день таскал ящики, но спать не хочет",
+          "uk": "Вставте слово — друг цілий день тягав ящики, але спати не хоче"
+        },
+        "gappedTargetPhrase": "He's ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i12:r1",
+            "text": "tired"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i12:r2",
+            "text": "sleepy"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i12:r3",
+            "text": "drunk"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг весь день таскал я",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i12:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг весь день таскал я",
+            "feedbackByLocale": {
+              "ru": "`sleepy` — «сонный», а его как раз не тянет спать.",
+              "uk": "`sleepy` — «сонний», а його якраз не тягне спати."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг весь день таскал я",
+            "feedbackByLocale": {
+              "ru": "«Пьяный» тут ни при чём: человек работал, а не пил.",
+              "uk": "«П'яний» тут ні до чого: людина працювала, а не пила."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «она не сонная»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «она не сонная»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i13:audio",
+          "transcript": "She isn't sleepy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She isn't sleepy.",
+        "orderedTokens": [
+          "She",
+          "isn't",
+          "sleepy"
+        ],
+        "authoredDistractorTokens": [
+          "aren't"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друзья у выхода, все бодрые",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друзья у выхода, все бодрые",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They aren't sleepy.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друзья у выхода, все бодрые",
+          "uk": "Складіть фразу — друзі біля виходу, усі бадьорі"
+        },
+        "orderedTokens": [
+          "They",
+          "aren't",
+          "sleepy"
+        ],
+        "authoredDistractorTokens": [
+          "isn't"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — quiet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — quiet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i15:audio",
+          "transcript": "quiet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-47:i15:r1",
+            "targetText": "quiet",
+            "meaningByLocale": {
+              "ru": "«тихий». Про зал, где выключили музыку, и про человека, который весь вечер молчал.",
+              "uk": "«тихий». Про зал, де вимкнули музику, і про людину, яка весь вечір мовчала."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quiet",
+          "definitionByLocale": {
+            "ru": "«тихий». Про зал, где выключили музыку, и про человека, который весь вечер молчал.",
+            "uk": "«тихий». Про зал, де вимкнули музику, і про людину, яка весь вечір мовчала."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — час ночи, музыку выключили, все замолчали",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-47:i16:r1",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i16:r2",
+          "text": "awake"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i16:r3",
+          "text": "drunk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — час ночи, музыку выключили, все замолчали",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — час ночи, музыку выключили, все замолчали",
+          "uk": "Вставте слово — перша ночі, музику вимкнули, усі замовкли"
+        },
+        "gappedTargetPhrase": "It's ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i16:r1",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i16:r2",
+            "text": "awake"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i16:r3",
+            "text": "drunk"
+          }
+        ],
+        "testedDimension": "Вставьте слово — час ночи, музыку выключ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i16:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — час ночи, музыку выключ",
+            "feedbackByLocale": {
+              "ru": "`awake` — про человека, который не спит, а не про зал.",
+              "uk": "`awake` — про людину, яка не спить, а не про зал."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — час ночи, музыку выключ",
+            "feedbackByLocale": {
+              "ru": "«Пьяный» — тоже про человека. Про тишину нужно `quiet`.",
+              "uk": "«П'яний» — теж про людину. Про тишу потрібно `quiet`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вас ждали к одиннадцати, а на часах полночь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-47:i17:r1",
+          "text": "late"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i17:r2",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-47:i17:r3",
+          "text": "sober"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вас ждали к одиннадцати, а на часах полночь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вас ждали к одиннадцати, а на часах полночь",
+          "uk": "Вставте слово — на вас чекали об одинадцятій, а на годиннику північ"
+        },
+        "gappedTargetPhrase": "I'm ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-47:i17:r1",
+            "text": "late"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i17:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i17:r3",
+            "text": "sober"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вас ждали к одиннадцати",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i17:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас ждали к одиннадцати",
+            "feedbackByLocale": {
+              "ru": "`quiet` — «тихий». Про часы это ничего не говорит.",
+              "uk": "`quiet` — «тихий». Про годинник це нічого не каже."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i17:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас ждали к одиннадцати",
+            "feedbackByLocale": {
+              "ru": "«Трезвый» — правда, но вас спрашивают не про это, а про время.",
+              "uk": "«Тверезий» — правда, але вас питають не про це, а про час."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы прощаетесь и едете к себе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы прощаетесь и едете к себе",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'm home.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы прощаетесь и едете к себе",
+          "uk": "Складіть фразу — ви прощаєтеся і їдете до себе"
+        },
+        "orderedTokens": [
+          "I'm",
+          "home"
+        ],
+        "authoredDistractorTokens": [
+          "late",
+          "going"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-47:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-47:i19:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-47:i19:audio",
+          "transcript": "I'm sober. He's sleepy. They aren't sleepy. I'm tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm sober. He's sleepy. They aren't sleepy. I'm tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 19,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5da6375a2ccb88cfdc1ea071fab46b4078d500a297caba1fbcb07346bb992de3"
+}

@@ -1,4 +1,113 @@
 {
-  "verdict": "PASS",
-  "verdict_reason": "mock"
+  "walkthrough": [
+    {
+      "step": "Интро 1 — glad",
+      "what_i_understood": "Начальник спрашивает, рад ли я, что пришёл сюда работать. Отвечаю I am glad. Понял, что это короткое слово вместо целого рассказа.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — full",
+      "what_i_understood": "Мне предлагают ещё еды, я уже наелся. Говорю I am full. Странно, что 'полный' значит 'сытый', но объяснили понятно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — scared",
+      "what_i_understood": "Лифт застрял, я держусь молодцом, говорю I am not scared — что мне не страшно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 — карточка и произношение glad",
+      "what_i_understood": "Услышал glad среди похожих слов, выбрал правильно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 — full",
+      "what_i_understood": "Собрал фразу I am full из плиток, лишнюю not не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5-6 — scared",
+      "what_i_understood": "Узнал произношение scared.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-9 — bored",
+      "what_i_understood": "Новое слово bored — скучно. Собрал фразу про презентацию про принтеры, понял почему не scared и не full.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — lost/tired/done",
+      "what_i_understood": "Тут сцена про поиск кабинета 4B — я её вижу тут впервые, но слова lost, tired, done объяснены как уже мои — video подано просто, без отсылки 'вы уже говорили'. Справился.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — scared дискриминация",
+      "what_i_understood": "Собрал I am not scared, лишние плитки не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — speed match glad/full/scared/bored",
+      "what_i_understood": "Соединил все 4 пары без проблем, слова свежие в памяти.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — am/is/are",
+      "what_i_understood": "Выбрал am, объяснили почему не is/are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14-15 — sure",
+      "what_i_understood": "Новое слово sure не было в карточке заранее (не входило в 'Новые слова' главы), но контекст ('найдёте ли выход', 'точно доберётесь до дома') и разбор неправильных вариантов дали понять смысл. Справился методом исключения.",
+      "confusion": "sure не было представлено карточкой слова заранее, как glad/full/scared/bored — оно просто появилось в задании 14 с объяснением через контекст",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — hungry",
+      "what_i_understood": "Живот в лифте — понял, слово знакомое (было заявлено как 'возвращается').",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — speed match hungry/tired/done/fine",
+      "what_i_understood": "Соединил пары со словами из списка 'возвращаются'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 — финал",
+      "what_i_understood": "Сказал четыре фразы подряд: устал, не потерялся, всё хорошо, рад. Собрал всё воедино, сцена с лифтом понятна от начала до конца.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "glad — короткое 'рад' вместо длинного объяснения",
+    "full — 'наелся' (не про размер, а про сытость)",
+    "scared — 'страшно', и как not переворачивает смысл (I am scared vs I am not scared)",
+    "bored — 'скучно'",
+    "sure — 'уверен' (понял через контекст, хотя карточки слова не было)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "сцена с лифтом, который вот-вот приедет, а меня спрашивают всё подряд — было ощущение реального цейтнота",
+    "шутка про full как комплимент повару, а не диагноз — понятная и по делу",
+    "финал с четырьмя фразами подряд, пока открываются двери — хорошо завершает сцену"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: начальник у лифта в конце первого дня подряд задаёт вопросы, а я должен отвечать быстро, пока едет кабина. Каждая фраза привязана к конкретному моменту (добавка еды, лифт застрял, презентация, поиск кабинета, живот урчит), это не абстрактные вопросы в пустоту",
+  "would_continue": "да — сессия держит интерес, слова разные и не повторяются занудно, сцена с лифтом цепляет, к финалу я реально собрал все фразы вместе и почувствовал, что что-то умею",
+  "verdict": "REVISE",
+  "verdict_reason": "слово sure введено в задании 14 без предварительной карточки слова (не в списке 'Новые слова' главы и не объяснено отдельно) — я угадал по контексту и исключению неправильных ответов, что для первого знакомства со словом рискованно и должно быть явно объяснено заранее."
 }

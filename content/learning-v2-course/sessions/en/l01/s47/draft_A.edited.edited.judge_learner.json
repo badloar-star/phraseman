@@ -1,0 +1,158 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Есть слово drunk (пьяный) и sober (трезвый). Полностью надо говорить 'I am sober', но обычно говорят коротко 'I'm sober', и апостроф ставится там, где выпала буква a.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "sleepy — это когда глаза слипаются, хочется спать. Это не то же самое, что tired (устал, но спать не тянет). Про друга говорим 'He's sleepy' (не 'he sleepy' — нужно is).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "isn't — это is и not вместе, aren't — это are и not вместе. Если было he/she — берём isn't, если they/we — aren't. Второй раз not добавлять не надо, он уже внутри слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1. Карточка drunk",
+      "what_i_understood": "пьяный, не просто весёлый, а прямо сильно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2. Послушайте drunk",
+      "what_i_understood": "выбрал drunk, отличил от drink и dark по объяснению",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3. Карточка sober",
+      "what_i_understood": "трезвый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4. Соберите фразу — I'm sober",
+      "what_i_understood": "собрал из плиток, лишнее am не взял, потому что оно уже в I'm",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5. Карточка sleepy",
+      "what_i_understood": "сонный",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6. Послушайте sleepy",
+      "what_i_understood": "выбрал sleepy, не sleep и не sleeper",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7. Карточка awake",
+      "what_i_understood": "не спит, бодрствует",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8. Вставьте — He's awake",
+      "what_i_understood": "кофе взбодрил — значит awake, а не sleepy и не drunk",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9. Speed Match",
+      "what_i_understood": "сопоставил все 4 слова с переводом без проблем, они уже были на карточках",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10. Вставьте — I'm sober",
+      "what_i_understood": "за рулём — трезвый, не drunk и не late",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11. Карточка tired",
+      "what_i_understood": "усталый — про силы, не про сон. Это уже было в интро 2, но объяснение помогло закрепить",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12. Вставьте — He's tired",
+      "what_i_understood": "таскал ящики весь день, но спать не хочет — значит tired, не sleepy",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13. Послушайте и соберите — She isn't sleepy",
+      "what_i_understood": "she — значит isn't, не aren't",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14. Соберите — They aren't sleepy",
+      "what_i_understood": "they — значит aren't",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15. Карточка quiet",
+      "what_i_understood": "тихий, про место или человека",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16. Вставьте — It's quiet",
+      "what_i_understood": "про зал в час ночи — quiet, не awake (это про человека) и не drunk",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17. Вставьте — I'm late",
+      "what_i_understood": "ждали к 11, а уже полночь — late, не quiet и не sober (то не про время)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "18. Соберите — I'm home",
+      "what_i_understood": "странно: плитки были going, home, late, I'm, а фраза про 'еду домой' и я ожидал что-то вроде 'I'm going home', но правильный ответ просто 'I'm home' — то есть уже дома, а не еду. Пришлось перечитать задание, чтобы понять, что это не 'я еду', а как будто итоговая фраза",
+      "confusion": "неясно, почему не пригодились going и late, если сценарий был 'вы прощаетесь и едете к себе' — по смыслу это движение, а ответ 'I'm home' звучит как 'я уже дома'",
+      "could_answer_question": true
+    },
+    {
+      "step": "19. Финал сцены",
+      "what_i_understood": "повторил все 4 фразы подряд: I'm sober, He's sleepy, They aren't sleepy, I'm tired — справился, всё уже знакомые слова и конструкции",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "drunk и sober — пара противоположностей про алкоголь",
+    "sleepy — не то же самое что tired, разница между 'хочу спать' и 'нет сил'",
+    "isn't и aren't — сжатые формы is not / are not, выбор зависит от того, кто перед этим (he/she → isn't, they/we → aren't)",
+    "апостроф в I'm/he's ставится на месте выпавшей буквы, а не просто «для красоты»"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2 vs задание 11-12",
+      "why": "Про tired объяснение почти дословно повторяется: сначала в Интро 2 (пропуская мимоходом), потом в задании 11 отдельной карточкой с тем же смыслом «усталый, не про сон, а про силы». Не критично, но ощущается как повтор одного и того же дважды"
+    }
+  ],
+  "felt_alive": [
+    "Сценарий с другом, который тянется к стакану, пока я за рулём — понятная жизненная ситуация",
+    "Финальная сцена с четырьмя фразами подряд под конец вечера в пабе — приятно собрать всё вместе, чувствуешь, что реально мог бы так сказать в жизни"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно почти всегда — паб закрывается, кто-то пьяный/трезвый, кто-то сонный, кто-то уже опаздывает домой, и понятно кому и зачем говоришь каждую фразу. Единственное слабое место — задание 18, где сценарий словами говорит 'едете к себе', а правильный ответ 'I'm home' звучит как 'я уже дома', это не совпадает с описанием действия",
+  "would_continue": "да — сессия короткая, слова понятные и легко закрепились, финал с четырьмя фразами дал ощущение прогресса",
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 18 не бьётся по смыслу со сценарием (прощаетесь и едете → ответ звучит как «я уже дома»), и есть небольшое дублирование объяснения tired между интро и заданием 11 — оба места стоит поправить, но в остальном сессия проходится честно и учит новому."
+}

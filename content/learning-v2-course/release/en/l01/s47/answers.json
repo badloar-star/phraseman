@@ -1,0 +1,97 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-47:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i02",
+    "correctText": "drunk",
+    "correctResponseId": "en:lesson-01:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i04",
+    "correctText": "I'm sober.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i06",
+    "correctText": "sleepy",
+    "correctResponseId": "en:lesson-01:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i08",
+    "correctText": "awake",
+    "correctResponseId": "en:lesson-01:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i10",
+    "correctText": "sober",
+    "correctResponseId": "en:lesson-01:session-47:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i12",
+    "correctText": "tired",
+    "correctResponseId": "en:lesson-01:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i13",
+    "correctText": "She isn't sleepy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i14",
+    "correctText": "They aren't sleepy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i15",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i16",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-47:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i17",
+    "correctText": "late",
+    "correctResponseId": "en:lesson-01:session-47:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i18",
+    "correctText": "I'm home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-47:i19",
+    "correctText": "I'm sober. He's sleepy. They aren't sleepy. I'm tired.",
+    "correctResponseId": null
+  }
+]

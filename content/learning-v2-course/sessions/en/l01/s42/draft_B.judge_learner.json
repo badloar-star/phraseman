@@ -1,0 +1,137 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Когда говорят быстро, 'he is great' превращается в 'he's great' — вместо 'i' ставится закорючка. Значит хвалю кого-то одним коротким словом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос после интро 1 (начальник)",
+      "what_i_understood": "Выбрал He's great.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "То же самое с she — she is quiet становится she's quiet. Правило одно и то же, просто другое слово вместо he.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос после интро 2 (молчаливая коллега)",
+      "what_i_understood": "Выбрал She's quiet.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "It's — для вещей и погоды, не для людей. it is awful → it's awful.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос после интро 3 (плохое пиво)",
+      "what_i_understood": "Выбрал It's awful.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (great, awful карточки и звук)",
+      "what_i_understood": "Запомнил произношение и значение обоих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка He's great)",
+      "what_i_understood": "Собрал фразу верно, лишнее is не тронул.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 6-7 (gone карточка и звук)",
+      "what_i_understood": "gone — ушёл, его нет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (He's ___ про начальника в баре)",
+      "what_i_understood": "Выбрал great, остальное не подходит по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (She___ quiet)",
+      "what_i_understood": "Вставил 's — вспомнил из интро 2.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (доска пар)",
+      "what_i_understood": "Соединил все четыре слова с переводом без проблем, всё уже виделось раньше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (It's awful сборка на слух)",
+      "what_i_understood": "Собрал верно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (He's ___ пустой стул)",
+      "what_i_understood": "Выбрал gone.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (She's funny, лишняя плитка quiet)",
+      "what_i_understood": "funny было переведено прямо в задании, собрал верно, не перепутал с quiet.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (He's here на слух)",
+      "what_i_understood": "here встречалось в задании 12 как неверный вариант, тут перевод не давался явно, но по звуку и по остаткам плиток я догадался и собрал правильно.",
+      "confusion": "Слово here нигде прямо не переводили как 'здесь' в этой сессии — я о нём узнал только из объяснения-ловушки в 12, но там перевод был дан ('Здесь. Как раз наоборот...'), так что справился.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (It's ___ про дождь)",
+      "what_i_understood": "Выбрал awful.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (She's late, перевод дан в скобках)",
+      "what_i_understood": "late дали с переводом прямо в задании, собрал верно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, три фразы вслух)",
+      "what_i_understood": "Сказал It's great. He's gone. It's quiet. Все три слова уже отработаны выше, справился.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "he's = he is (значок вместо выпавшей i)",
+    "she's = she is, то же самое правило",
+    "it's = it is, используется для вещей/погоды, не для людей",
+    "слово great — отлично",
+    "слово awful — ужасный",
+    "слово gone — ушёл, его нет"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Задание 12 про пустой стул друга — сразу понятно, зачем говорить He's gone, живая ситуация.",
+    "Финал (задание 17), где нужно тремя фразами подвести итог вечера — приятно, что все три новых слова связались в одну сценку."
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — весь урок держится на одной понятной сцене: пятница, паб, шумно, поэтому все говорят коротко и слитно (he's/she's/it's), и каждое упражнение — это конкретная реплика конкретному человеку рядом за столом или другу",
+  "would_continue": "да — правило понятное, повторяется ровно на трёх похожих примерах (he/she/it), новых слов немного и все встретились по нескольку раз, к финалу я их уже не путал",
+  "verdict": "PASS",
+  "verdict_reason": "Каждое задание было выполнимо с тем, что объяснили на этой же странице, три новых сокращения и три новых слова закрепились через повтор, и было понятно, кому и зачем я это говорю."
+}

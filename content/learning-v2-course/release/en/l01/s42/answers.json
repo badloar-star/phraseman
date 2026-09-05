@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-42:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i02",
+    "correctText": "great",
+    "correctResponseId": "en:lesson-01:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i04",
+    "correctText": "awful",
+    "correctResponseId": "en:lesson-01:session-42:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i05",
+    "correctText": "He's great.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i07",
+    "correctText": "gone",
+    "correctResponseId": "en:lesson-01:session-42:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i08",
+    "correctText": "great",
+    "correctResponseId": "en:lesson-01:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i09",
+    "correctText": "'s",
+    "correctResponseId": "en:lesson-01:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i11",
+    "correctText": "It's awful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i12",
+    "correctText": "gone",
+    "correctResponseId": "en:lesson-01:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i13",
+    "correctText": "She's funny.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i14",
+    "correctText": "He's here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i15",
+    "correctText": "awful",
+    "correctResponseId": "en:lesson-01:session-42:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i16",
+    "correctText": "She's late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-42:i17",
+    "correctText": "It's great. He's gone. It's quiet.",
+    "correctResponseId": null
+  }
+]

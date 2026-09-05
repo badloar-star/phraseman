@@ -35,8 +35,10 @@ describe('Gustav lesson runtime target isolation', () => {
     expect(lesson).toContain("fiftyFiftyUsageKey(new Date().toISOString().slice(0, 10), studyTargetRef.current)");
     expect(lesson).not.toContain('`fifty_fifty_${new Date().toISOString().slice(0, 10)}`');
 
-    // Дневные ключи 50/50 собираются в dailyLessonHelperKeysForToday(todayKey = getTodayKey()).
-    expect(cloudSync).toContain('function dailyLessonHelperKeysForToday(todayKey: string = getTodayKey())');
+    // зачем: helper переименован в fiftyFiftyUsageKey(dayKey, studyTarget) —
+    // тест сторожил старое имя при живой изоляции. Суть та же: дневной ключ
+    // 50/50 берётся СО СВОИМ языком, английский счётчик не разделяется на двоих.
+    expect(cloudSync).toMatch(/fiftyFiftyUsageKey\(\s*todayKey\s*,\s*target\s*\)/);
     expect(cloudSync).toContain("fiftyFiftyUsageKey(todayKey, 'en')");
     expect(cloudSync).toContain("fiftyFiftyUsageKey(todayKey, 'fr')");
   });

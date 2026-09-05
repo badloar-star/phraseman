@@ -71,8 +71,12 @@ describe('Gustav French vocabulary target gate', () => {
     expect(source).toContain('lessonWordsKey(lessonId, studyTarget)');
     expect(source).toContain('lessonWordsShardsGrantedKey(lessonId, studyTarget)');
     expect(source).toContain('shouldBlockLessonAccess(lessonId, studyTarget)');
-    expect(source).toContain("logMistake(current.word.en, lessonId, 'lesson_words', 'wrong_pick', mistakeMeta, studyTarget)");
-    expect(source).toContain('recordWordMistake(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos, current.word.es, studyTarget)');
+    // зачем: запись ошибок переписана — logMistake/recordWordMistake заменены
+    // захватом через mistake_practice_capture. Тест сторожил старые имена и
+    // краснел при живой изоляции. Суть сохранена: ошибка слова записывается
+    // СО СВОИМ языком, иначе французские ошибки уедут в английский тренажёр.
+    expect(source).toContain('captureCurrentAccountObjectiveAttempt');
+    expect(source).toMatch(/captureCurrentAccountObjectiveAttempt\(\{[\s\S]{0,300}?studyTarget/);
     expect(source).not.toContain("storageKey + '_words'");
     expect(runtimeSource).toContain("import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime'");
     expect(runtimeSource).toContain('loadFrenchRemoteLessonRows(lessonId, sourceLocale)');
@@ -89,8 +93,12 @@ describe('Gustav French vocabulary target gate', () => {
     expect(source).toContain('irregularVerbsGlobalKey(studyTarget)');
     expect(source).toContain('lessonIrregularShardsGrantedKey(lessonId ?? 0, studyTarget)');
     expect(source).toContain('shouldBlockLessonAccess(lessonId, studyTarget)');
-    expect(source).toContain("logMistake(vKey, lessonId ?? 0, 'lesson_words', 'wrong_pick', {");
-    expect(source).toContain('}, studyTarget)');
+    // та же переписанная система для неправильных глаголов
+    expect(source).toContain('captureCurrentAccountObjectiveAttempt');
+    // зачем: хвост разбитой надвое проверки старого logMistake — сама проверка
+    // заменена выше на captureCurrentAccountObjectiveAttempt со studyTarget.
+    // Осиротевший фрагмент искал закрывающую скобку удалённого вызова.
+    expect(source).toMatch(/captureCurrentAccountObjectiveAttempt\([\s\S]{0,400}?studyTarget/);
     expect(source).not.toContain("AsyncStorage.getItem('irregular_verbs_global')");
     expect(source).not.toContain("AsyncStorage.setItem('irregular_verbs_global'");
     expect(source).not.toContain('`lesson${lessonId ?? 0}_irregular_shards_granted`');

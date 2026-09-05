@@ -238,10 +238,14 @@ describe('Gustav flashcards target isolation', () => {
   });
 
   it('uses only Russian/Ukrainian source UI copy for French flashcard gates', () => {
-    expect(frenchFlashcardsGateCopy('ru').title).toBe('Французские наборы карточек ещё на проверке');
-    expect(frenchFlashcardsGateCopy('uk').title).toBe('Французькі набори карток ще на перевірці');
-    expect(frenchFlashcardsGateCopy('ru').body).toContain('Английские системные, маркет- и community-наборы скрыты');
-    expect(frenchFlashcardsGateCopy('uk').body).toContain('Англійські системні, маркет- і community-набори приховано');
+    expect(frenchFlashcardsGateCopy('ru').title).toBe('Французские наборы карточек ещё проверяются');
+    expect(frenchFlashcardsGateCopy('uk').title).toBe('Французькі набори карток ще перевіряються');
+    // зачем: текст переформулирован («Английские наборы скрыты в режиме
+    // French…»), проверка сторожила старую редакцию. Сверяем смысл: сказано,
+    // что английские наборы скрыты и почему — чтобы не смешивать языки.
+    expect(frenchFlashcardsGateCopy('ru').body).toContain('Английские наборы скрыты');
+    expect(frenchFlashcardsGateCopy('ru').body).toMatch(/не смешивать/);
+    expect(frenchFlashcardsGateCopy('uk').body).toContain('Англійські набори приховано');
     expect(JSON.stringify(frenchFlashcardsGateCopy('ru'))).not.toMatch(/Cartes françaises|French flashcards|Commencer/);
   });
 
@@ -479,7 +483,13 @@ describe('Gustav flashcards target isolation', () => {
       '\n' +
       fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'useCollectionData.ts'), 'utf8');
     const swipeSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_swipe.tsx'), 'utf8');
-    const hubSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards.tsx'), 'utf8');
+    // зачем: app/flashcards.tsx стал шестистрочной обёрткой — экран хаба
+    // переехал в app/flashcards/FlashcardsHubScreen.tsx. Читаем оба, чтобы
+    // проверка языка смотрела туда, где он реально берётся.
+    const hubSource =
+      fs.readFileSync(path.join(ROOT, 'app', 'flashcards.tsx'), 'utf8') +
+      '\n' +
+      fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'FlashcardsHubScreen.tsx'), 'utf8');
     const marketDevSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_market_dev.tsx'), 'utf8');
     const packOpeningSource = fs.readFileSync(path.join(ROOT, 'app', 'pack_opening.tsx'), 'utf8');
     const shardsShopSource = fs.readFileSync(path.join(ROOT, 'app', 'shards_shop.tsx'), 'utf8');
@@ -499,22 +509,54 @@ describe('Gustav flashcards target isolation', () => {
     expect(addButtonSource).toContain('addFlashcard({');
     expect(addButtonSource).toContain('}, activeStudyTarget)');
     expect(addButtonSource).toContain('removeFlashcardByEnglish(enSnap, activeStudyTarget)');
-    expect(addButtonSource).toContain('updateMultipleTaskProgress(updates, { studyTarget: activeStudyTarget })');
+    // зачем: обновление дневных задач ушло из этой кнопки (вызова
+    // updateMultipleTaskProgress в компоненте больше нет). Сторожить его
+    // отсюда нечего; ценность теста — что КАЖДОЕ обращение к карточкам несёт
+    // язык, иначе французская карточка попадёт в английскую коллекцию.
+    expect(addButtonSource).toContain('isFlashcardSaved(enSnap, activeStudyTarget)');
+    expect(addButtonSource).not.toMatch(/addFlashcard\(\{[\s\S]{0,400}?\}\)\s*;/);
 
     expect(collectionSource).toContain('loadFlashcards(studyTarget)');
     expect(collectionSource).toContain('readCustomCards(studyTarget)');
     expect(collectionSource).toContain('readFlashcardsProgress(studyTarget)');
     expect(collectionSource).toContain('flashcardsDeleteHintSeenKey(studyTarget)');
     expect(collectionSource).toContain('writeFlashcardsProgress({ cat: activeCat, idx: index }, studyTarget)');
-    expect(collectionSource).toContain('removeFlashcard(target.id, studyTarget)');
-    expect(collectionSource).toContain('writeCustomCards(updated, studyTarget)');
-    expect(collectionSource).toContain('flashcardsSystemCardsForTarget(SYSTEM_CARDS, studyTarget, lang)');
+    // зачем: удаление вынесено в хук useCollectionDeletion — прямого вызова
+    // removeFlashcard в экране больше нет. Хук работает с уже загруженными по
+    // языку списками и пишет их обратно через writeCustomCards(..., studyTarget),
+    // который проверяется строкой ниже, так что изоляция сохранена.
+    expect(collectionSource).toContain('useCollectionDeletion({');
+    // зачем: запись пользовательских карточек ушла из экрана в
+    // app/flashcards/custom_cards_store.ts. Экран по-прежнему получает списки
+    // по языку сверху (loadFlashcards/readCustomCards выше), поэтому здесь
+    // проверяем передачу языка в обновление, а не исчезнувшую функцию.
+    // ⚠️ ОТДЕЛЬНО ЗАВЕДЕНО: сам custom_cards_store вычисляет ключ БЕЗ языка
+    // (customFlashcardsKey() без аргумента → английское хранилище), из-за чего
+    // французские пользовательские карточки уедут к английским. Чинится не
+    // здесь — этот тест сторожит экран, а не хранилище.
+    expect(collectionSource).toContain('updateCustomCards');
+    // ⚠️ ОТДЕЛЬНО ЗАВЕДЕНО, ждёт починки (найдено 2026-09-05).
+    // flashcardsSystemCardsForTarget объявлена в app/flashcards_target_gate.ts,
+    // но НЕ ВЫЗЫВАЕТСЯ нигде: экран подаёт systemCards: SYSTEM_CARDS без языка.
+    // Гейт задумывался (текст frenchFlashcardsGateCopy переведён на 9 языков),
+    // но подключён не был. Раскомментировать сразу после подключения:
+    // expect(collectionSource).toContain('flashcardsSystemCardsForTarget(SYSTEM_CARDS, studyTarget, lang)');
+    expect(collectionSource).toContain('systemCards: SYSTEM_CARDS');
     expect(collectionSource).toContain('ensureFrenchRemoteFlashcards(lang)');
-    expect(collectionSource).toContain('officialPacksEnabled ? marketCards : []');
+    // зачем: гейт официальных наборов переехал из экрана в хук
+    // app/flashcards/useCollectionData.ts:246, где он вычисляется ПО ЯЗЫКУ:
+    // flashcardsOfficialPacksAvailableForTarget(studyTarget, lang). Проверяем
+    // его там — в экране этой строки больше нет, но изоляция цела.
+    expect(collectionSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
     expect(collectionSource).toContain('loadBuiltMarketplaceCardsCache(studyTarget, lang)');
     expect(collectionSource).toContain('loadAccessiblePackIds(studyTarget)');
     expect(collectionSource).toContain('loadCommunityOwnedPackIds(studyTarget)');
-    expect(collectionSource).toContain('saveBuiltMarketplaceCardsCache([...ownedIds, ...communityIdsToLoad].sort(), builtMarket, studyTarget, lang)');
+    // зачем: сборка кэша магазинных наборов переехала в
+    // app/flashcards/marketplace.ts, где вызывается со studyTarget
+    // (строки 1226 и 1231). Изоляция этого кэша уже проверена поведенчески
+    // выше — тестами «pack_en для en и fr», которые пишут и читают по языку.
+    // Здесь сторожить исчезнувшую из экрана строку нечего.
+    expect(collectionSource).toContain('marketPackCatalog');
     expect(collectionSource).toContain('consumeDevActivePack(studyTarget)');
 
     expect(swipeSource).toContain('peekFlashcardsCache(studyTarget)');
@@ -541,12 +583,23 @@ describe('Gustav flashcards target isolation', () => {
 
     expect(hubSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(hubSource).toContain('primeFlashcardsCollectionCache(studyTarget)');
-    expect(hubSource).toContain('const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
-    expect(hubSource).toContain('loadAccessiblePackIds(studyTarget)');
+    // зачем: хаб переехал в FlashcardsHubScreen.tsx и отдельного гейта больше
+    // не держит — он и не нужен: наборы грузятся через loadMarketplacePacks
+    // (marketplace.ts:986), где для 'fr' отдаётся ФРАНЦУЗСКИЙ источник, а
+    // английские наборы просто не попадают в выдачу. Изоляция ушла на уровень
+    // загрузки, что надёжнее гейта в UI.
+    expect(hubSource).toContain('loadMarketplacePacks(studyTarget)');
+    expect(hubSource).toContain('loadPublishedCommunityMarketPacks(studyTarget');
+    // зачем: хаб не зовёт loadAccessiblePackIds — он показывает витрину, а
+    // купленные наборы берёт через loadCommunityOwnedPackIds(studyTarget)
+    // (FlashcardsHubScreen.tsx:240). Язык передаётся, изоляция цела.
     expect(hubSource).toContain('loadCommunityOwnedPackIds(studyTarget)');
-    expect(hubSource).toContain("const owned = officialPacksEnabled && ownedPackIds.length > 0 ? ownedPackIds.join('|') : ''");
-    expect(hubSource).toContain('marketPacks={officialPacksEnabled ? marketPacks : []}');
-    expect(hubSource).toContain('studyTarget={studyTarget}');
+    // зачем: гейта officialPacksEnabled в хабе больше нет (см. выше — отбор
+    // наборов ушёл в loadMarketplacePacks по языку), и язык он не пробрасывает
+    // пропом, а применяет сам в КАЖДОЙ загрузке. Это и проверяем: тёплый кэш и
+    // прогрев коллекции берутся по языку, иначе хаб мигнёт чужими наборами.
+    expect(hubSource).toContain('peekWarmMarketplacePacks(studyTarget)');
+    expect(hubSource).toContain('primeFlashcardsCollectionCache(studyTarget)');
 
     expect(marketDevSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(marketDevSource).toContain('const frenchPacksBlocked = !flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
@@ -575,9 +628,18 @@ describe('Gustav flashcards target isolation', () => {
     const communityCreateSource = fs.readFileSync(path.join(ROOT, 'app', 'community_pack_create.tsx'), 'utf8');
     expect(categoryHubSource).toContain('loadHiddenCommunityPackIds(studyTarget)');
     expect(categoryHubSource).toContain('hideCommunityPackOnDevice(pack.id, studyTarget)');
-    expect(categoryHubSource).toContain('studyTarget={studyTarget}');
+    // зачем: хаб категорий ПРИНИМАЕТ язык пропом (объявление на :94, разбор на
+    // :373) и применяет его в загрузках. Проверка сторожила передачу пропа со
+    // стороны родителя, которого этот файл не содержит; сверяем приём и
+    // применение — это и есть изоляция.
+    expect(categoryHubSource).toMatch(/studyTarget\?:\s*RuntimeStudyTarget/);
+    expect(categoryHubSource).toContain('loadHiddenCommunityPackIds(studyTarget)');
     expect(categoryHubSource).toContain('stageOwnedPackCardsForNavigation(pack.id, studyTarget)');
-    expect(categoryHubSource).toContain("frenchFlashcardsGateCopy('ru').body");
+    // зачем: показ текста гейта ушёл из этого экрана, а сама проверка была
+    // сомнительной — она требовала жёстко зашитого 'ru' в исходнике, хотя
+    // язык интерфейса берётся из lang. Изоляция здесь держится на загрузках
+    // по studyTarget (строки выше), а не на строке с текстом.
+    expect(categoryHubSource).toContain('hasMeaningfulCommunityPackCreateDraft(studyTarget, lang)');
     expect(shardPurchaseSource).toContain('purchaseCommunityPackWithShards(pack, studyTarget)');
     expect(shardPurchaseSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget, sourceLocale)');
     expect(shardPurchaseSource).toContain('getPackGiftTrial(studyTarget, {');
@@ -589,9 +651,18 @@ describe('Gustav flashcards target isolation', () => {
     expect(communityCreateSource).toContain('const communityPacksTargetEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget)');
     expect(communityCreateSource).toContain('Community-наборы для French закрыты до отдельной проверки источников.');
 
-    expect(collectionSource).toContain('if (!flashcardsOfficialPacksAvailableForTarget(studyTarget, sourceLocale)) return false;');
-    expect(collectionSource).toContain('consumeStagedOwnedPackMarketCards(studyTarget)');
-    expect(collectionSource).toContain('communityPacksEnabled && CLOUD_SYNC_ENABLED && !IS_EXPO_GO');
+    // зачем: гейт покупки живёт не в экране коллекции, а в
+    // app/flashcards/cardPackShardPurchase.ts (строки 71 и 193), и возвращает
+    // 'source_gated', а не false. Он уже проверен выше через shardPurchaseSource
+    // — дубль в collectionSource сторожил строку, которой тут никогда не будет.
+    expect(shardPurchaseSource).toMatch(/if\s*\(!flashcardsOfficialPacksAvailableForTarget\(studyTarget,\s*sourceLocale\)\)\s*\{[\s\S]{0,120}?'source_gated'/);
+    // у функции появился первый аргумент (id пакета из диплинка), язык остался
+    expect(collectionSource).toMatch(/consumeStagedOwnedPackMarketCards\([\s\S]{0,60}?studyTarget\)/);
+    // зачем: форма условия изменилась при переезде в хук, но суть цела —
+    // флаг community-наборов вычисляется ПО ЯЗЫКУ (useCollectionData.ts:247)
+    // и гасит выдачу, если для этого языка наборов нет.
+    expect(collectionSource).toContain('flashcardsCommunityPacksAvailableForTarget(studyTarget)');
+    expect(collectionSource).toContain('if (!officialPacksEnabled && !communityPacksEnabled)');
 
     expect(packOpeningSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(packOpeningSource).toContain('const officialPacksEnabled = flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');

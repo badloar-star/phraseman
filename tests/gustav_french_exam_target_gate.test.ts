@@ -40,7 +40,12 @@ describe('Gustav French exam target gate', () => {
     expect(finalExamSource).toContain('const questions = isFrenchExam ? frenchQuestions : englishQuestions;');
     expect(finalExamSource).toContain("'exam_questions_unavailable'");
     expect(finalExamSource).toContain('FrenchLingmanExamUnavailable');
-    expect(finalExamSource).toContain("logMistake(phrase, lessonId, 'exam', what, meta, studyTarget)");
+    // зачем: система записи ошибок переписана: logMistake заменён захватом
+    // через mistake_practice_capture. Тест сторожил старое имя и краснел,
+    // хотя изоляция цела. Суть та же: ошибка экзамена записывается СО СВОИМ
+    // языком — иначе французские ошибки уедут в английскую работу над ошибками.
+    expect(finalExamSource).toContain('captureCurrentAccountObjectiveAttempt');
+    expect(finalExamSource).toMatch(/captureCurrentAccountObjectiveAttempt\(\{[\s\S]{0,200}?studyTarget/);
     expect(finalExamSource).toContain('loadLingmanCertificate(studyTarget)');
     expect(finalExamSource).toContain('saveLingmanCertificate(cert, studyTarget)');
     expect(finalExamSource).toContain('updateLingmanCertificateName(name, studyTarget)');
@@ -58,9 +63,10 @@ describe('Gustav French exam target gate', () => {
     expect(levelExamSource).toContain('const questions = isFrenchExam ? frenchQuestions : englishQuestions;');
     expect(levelExamSource).toContain("'exam_questions_unavailable'");
     expect(levelExamSource).toContain('FrenchLevelExamUnavailable');
-    expect(levelExamSource).toContain('recordMistake(');
-    expect(levelExamSource).toMatch(/recordMistake\([\s\S]*tokenMeta,[\s\S]*studyTarget,[\s\S]*\)/);
-    expect(levelExamSource).toMatch(/logMistake\([\s\S]*'wrong_pick',[\s\S]*tokenMeta,[\s\S]*studyTarget,[\s\S]*\)/);
+    // та же переписанная система, что и в финальном экзамене: ошибка уровня
+    // записывается со своим языком, английская работа над ошибками не задета
+    expect(levelExamSource).toContain('captureCurrentAccountObjectiveAttempt');
+    expect(levelExamSource).toMatch(/captureCurrentAccountObjectiveAttempt\(\{[\s\S]{0,200}?studyTarget/);
     expect(levelExamSource.indexOf('if (frenchExamBlocked) {')).toBeLessThan(
       levelExamSource.indexOf("if (accessState !== 'allowed')"),
     );
@@ -77,13 +83,18 @@ describe('Gustav French exam target gate', () => {
   it('gates lesson-tab level exam cards before routing to English level exams for French', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'lessons.tsx'), 'utf8');
 
-    expect(source).toContain("import { examContentAvailableForTarget, frenchExamGateCopy } from '../exam_target_gate'");
-    expect(source).toContain("kind: 'frenchExam';");
-    expect(source).toContain('const examSourceAvailable = examContentAvailableForTarget(studyTarget);');
-    expect(source).toContain('const allDone = examSourceAvailable && !examPremiumRequired');
-    expect(source).toContain("frenchExamGateCopy('level', lang).title");
-    expect(source).toContain("frenchExamGateCopy('level', lang).body");
-    expect(source).toContain("setGateModal({ kind: 'frenchExam', level: lvl });");
+    // зачем: проверки сверяли исходник дословно и краснели от одного лишь
+    // переформатирования (импорт разбит на строки, кавычки стали двойными),
+    // хотя гейт был на месте. Сверяем смысл, а не вёрстку: обе функции
+    // импортированы из exam_target_gate и обе применены (аудит 2026-09-05).
+    expect(source).toMatch(/import\s*\{[^}]*examContentAvailableForTarget[^}]*\}\s*from\s*['"]\.\.\/exam_target_gate['"]/s);
+    expect(source).toMatch(/import\s*\{[^}]*frenchExamGateCopy[^}]*\}\s*from\s*['"]\.\.\/exam_target_gate['"]/s);
+    expect(source).toMatch(/kind:\s*['"]frenchExam['"]/);
+    expect(source).toMatch(/examSourceAvailable\s*=\s*examContentAvailableForTarget\(\s*studyTarget\s*\)/);
+    expect(source).toMatch(/allDone\s*=[\s\S]{0,80}?examSourceAvailable[\s\S]{0,80}?!examPremiumRequired/);
+    expect(source).toMatch(/frenchExamGateCopy\(\s*['"]level['"]\s*,\s*lang\s*\)\s*\.title/);
+    expect(source).toMatch(/frenchExamGateCopy\(\s*['"]level['"]\s*,\s*lang\s*\)\s*\.body/);
+    expect(source).toMatch(/setGateModal\(\{\s*kind:\s*['"]frenchExam['"]\s*,\s*level:\s*lvl\s*\}\)/);
 
     const examPressHandler = source.slice(
       source.indexOf('if (examPremiumRequired) {'),

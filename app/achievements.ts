@@ -983,10 +983,20 @@ const loadAchievementStatesFromKey = async (
   accountToken: AccountGenerationToken,
   persistMigrations = true,
 ): Promise<AchievementState[]> => {
+  // зачем: правило владельца — каждый ранний выход и каждый catch называет
+  // причину. Достижения читаются молча, и тихий отказ здесь выглядит как
+  // «награда не открылась», а не как ошибка.
+  const T = (...a: unknown[]) => { if (__DEV__) console.log('[ACH-ISO] loadFromKey', `key=${key}`, ...a); };
   try {
-    if (!isCurrentAccountGeneration(accountToken)) return [];
+    if (!isCurrentAccountGeneration(accountToken)) {
+      T('ранний выход: поколение аккаунта устарело ДО чтения хранилища');
+      return [];
+    }
     const raw = await AsyncStorage.getItem(key);
-    if (!isCurrentAccountGeneration(accountToken)) return [];
+    if (!isCurrentAccountGeneration(accountToken)) {
+      T('ранний выход: поколение аккаунта устарело ПОСЛЕ чтения');
+      return [];
+    }
     if (raw) {
       const parsed: AchievementState[] = JSON.parse(raw);
       let normalizedDirty = false;
@@ -1028,20 +1038,34 @@ const loadAchievementStatesFromKey = async (
       }
       if (persistMigrations && writes.length > 0) {
         const committed = await commitAchievementStoragePairs(writes, accountToken);
-        if (!committed) return [];
+        if (!committed) {
+          T(`ранний выход: запись отклонена, состояний потеряно ${next.length}`);
+          return [];
+        }
       }
       return next;
     }
     const initial: AchievementState[] = ALL_ACHIEVEMENTS
       .filter(a => ids.has(a.id) && !a.retired)
       .map(a => ({ id: a.id, unlockedAt: null, notified: false, shardClaimed: true }));
-    if (!isCurrentAccountGeneration(accountToken)) return [];
+    if (!isCurrentAccountGeneration(accountToken)) {
+      T('ранний выход: поколение устарело перед записью начального набора');
+      return [];
+    }
     if (persistMigrations) {
       const committed = await commitAchievementStoragePairs([[key, JSON.stringify(initial)]], accountToken);
-      if (!committed) return [];
+      if (!committed) {
+        T(`ранний выход: начальный набор не записан, ключа не появится (${initial.length} состояний)`);
+        return [];
+      }
     }
     return initial;
-  } catch { return []; }
+    // зачем: правило владельца — немого catch не бывает. Молчащий catch здесь
+    // мог месяцами прятать причину, по которой достижения не читаются.
+  } catch (e) {
+    T(`ранний выход: ИСКЛЮЧЕНИЕ ${(e as Error)?.message ?? String(e)}`);
+    return [];
+  }
 };
 
 const targetAchievementIds = (): Set<string> =>

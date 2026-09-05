@@ -43,7 +43,10 @@ describe('Gustav French diagnostic target gate', () => {
     expect(source).toContain('diagnosticOpenFlagKey(studyTarget)');
     expect(source).toContain('lessonProgressKey(i + 1, studyTarget)');
     expect(source).toContain('loadExamReadinessSnapshot(studyTarget)');
-    expect(source).toContain('recordMistakeFromDiagnostic(qq, studyTarget)');
+    // зачем: запись ошибок переписана — recordMistakeFromDiagnostic заменён
+    // захватом через mistake_practice_capture. Суть сохранена: ошибка
+    // диагностики записывается СО СВОИМ языком.
+    expect(source).toMatch(/captureCurrentAccountObjectiveAttempt\(\{[\s\S]{0,300}?studyTarget/);
     expect(source).not.toContain("AsyncStorage.getItem('diagnostic_last')");
     expect(source).not.toContain("AsyncStorage.setItem('diagnostic_last'");
     expect(source).not.toContain("AsyncStorage.removeItem('open_diagnostic')");

@@ -1,4 +1,90 @@
 {
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "hot",
+      "sick",
+      "lost",
+      "new"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "I fine. — пропуск am, самая частая ошибка"
+      },
+      {
+        "task": 10,
+        "trap": "is вместо am — чужая скрепка"
+      },
+      {
+        "task": 12,
+        "trap": "no вместо not внутри фразы"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 19,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "hot",
+        "sick",
+        "lost",
+        "new"
+      ],
+      [
+        "fine",
+        "sure",
+        "ready",
+        "sorry"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s02",
+      "what": "механика вопроса про кухню/коллегу похожа по интонации, но сцена и фразы не дублируются — не нарушение"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 4,
+      "phrase_builder": 3,
+      "context_gap_grammar": 3,
+      "speed_match": 2,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
   "verdict": "PASS",
-  "verdict_reason": "mock"
+  "verdict_reason": "Границы материала соблюдены, новые слова и грамматика точно совпадают с планом, обманки реалистичны, доска пар не пересекается и проверена по памяти, повторов и мёртвых формул нет."
 }

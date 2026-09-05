@@ -1,4 +1,166 @@
 {
-  "verdict": "PASS",
-  "verdict_reason": "mock"
+  "walkthrough": [
+    {
+      "step": "Интро 1 — early",
+      "what_i_understood": "early значит «рано». I am early — «я пришёл рано». Звучит как «ёр-ли», не как пишется.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — right/wrong",
+      "what_i_understood": "right = «прав», wrong = «не прав». Я назвал неверную цифру, надо сказать I am wrong. Буква w в начале молчит.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — free",
+      "what_i_understood": "free = «свободен» (и ещё «бесплатно», но тут не об этом). Начальник спрашивает, кто свободен — я всё сделал, отвечаю I am free.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 — карточка early",
+      "what_i_understood": "Повтор из интро, закрепилось.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 — на слух early",
+      "what_i_understood": "Выбрал early, остальные короче/другое начало.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 — карточка right",
+      "what_i_understood": "right — «прав, верно».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 — на слух right",
+      "what_i_understood": "write звучит так же, но это другое слово (мне сказали, что означает «писать», хотя я это слово не знаю — просто принял к сведению).",
+      "confusion": "Слово write мне незнакомо, но оно среди неверных вариантов, не в ответе — не страшно.",
+      "could_answer_question": true
+    },
+    {
+      "step": "5 — карточка wrong",
+      "what_i_understood": "wrong — «не прав», w молчит, говорят «ронг».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 — на слух wrong",
+      "what_i_understood": "Отличил wrong от long и ring по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 — карточка free",
+      "what_i_understood": "free — «свободен, не занят».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 — различить right/wrong",
+      "what_i_understood": "Выбрал wrong как «неверно», разница в гласной.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 — на слух free",
+      "what_i_understood": "free отличил от three и fry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 — пары",
+      "what_i_understood": "Свёл все 4 новых слова с переводом, ничего сложного.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 — сказать вслух I am early",
+      "what_i_understood": "Повторил фразу вслух, почувствовал контекст — я в кругу, моя очередь.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 — собрать I am not wrong",
+      "what_i_understood": "Собрал фразу отрицания из плиток, лишняя плитка right не понадобилась.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 — вставить am",
+      "what_i_understood": "Понял, что скрепка am всегда нужна с «я», даже когда человек не прав.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 — ответить начальнику",
+      "what_i_understood": "Выбрал I am free, отличил от busy/happy по смыслу ситуации, а не просто по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 — что услышал",
+      "what_i_understood": "Различил sure/tired/free на слух в контексте отрицания, sure — новое для меня слово (не входит в список, но давалось на слух с переводом рядом, разобрался).",
+      "confusion": "Sure не было в списке моих слов, но в задании я слышал именно то, что нужно выбрать (эталон), и оно совпадало с текстом на экране — значит это было опознавание звука, а не перевод с нуля.",
+      "could_answer_question": true
+    },
+    {
+      "step": "16 — собрать I am early",
+      "what_i_understood": "Собрал фразу, отсеял лишнюю is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 — пары старых слов",
+      "what_i_understood": "Слова busy/alone/tired/sure подавались просто как уже мои — я их правда не разу не видел в этой сессии до этого момента (кроме sure в задании 15, где перевод был рядом). Отнёсся как к новой карточке.",
+      "confusion": "Меня как ученика с нуля просят опознать 4 слова (busy, alone, tired, sure) без карточки-объяснения — просто 'слова, которые уже ваши'. Для меня внутри ЭТОЙ сессии они не объяснялись (кроме sure один раз мельком). Это provided context намекает на прошлый опыт, которого у меня как у нового ученика нет.",
+      "could_answer_question": false
+    },
+    {
+      "step": "18 — собрать I am fine",
+      "what_i_understood": "Собрал фразу, лишняя плитка not не нужна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "19 — вставить late",
+      "what_i_understood": "late = опаздываю (по контексту понял, хотя слово не объяснялось карточкой в этой сессии).",
+      "confusion": "late подаётся как то, что я уже знаю ('вбегает и извиняется'), но в этой сессии карточки late не было.",
+      "could_answer_question": true
+    },
+    {
+      "step": "20 — собрать I am ready",
+      "what_i_understood": "Собрал фразу, лишняя not не нужна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "21 — финал, 5 фраз подряд",
+      "what_i_understood": "Сказал все пять фраз, используя early, wrong, fine, ready, happy — всё узнанное ранее по списку моих слов + новые из этой сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "early — рано",
+    "right — прав",
+    "wrong — не прав (и что w в начале молчит)",
+    "free — свободен",
+    "закрепил конструкцию I am + слово / I am not + слово на новом материале"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с кругом на планёрке и то, что очередь реально доходит до меня — ощущается как настоящая ситуация, а не абстрактное упражнение",
+    "Момент, где нужно признать вслух I am wrong — по-человечески неловко, это цепляет"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, было понятно: я стою в кругу коллег, очередь доходит до меня, и каждая фраза — то, что я реально скажу вслух через секунду. Задания подводят прямо к финальному моменту, где я произношу все фразы подряд.",
+  "would_continue": "да — понял новые слова, было по делу и по-человечески, ни разу не заскучал",
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 17 подаёт слова busy, alone, tired, sure как «уже мои», хотя внутри этой самой первой для меня сессии их никто не объяснял карточкой — это отсылка к опыту, которого у нового ученика ещё нет, и сбивает с толку ровно так, как описано в требовании про 'первую открытую сессию'."
 }

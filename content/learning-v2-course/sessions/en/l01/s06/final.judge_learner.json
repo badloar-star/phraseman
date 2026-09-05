@@ -1,4 +1,140 @@
 {
-  "verdict": "PASS",
-  "verdict_reason": "mock"
+  "walkthrough": [
+    {
+      "step": "Интро 1 — home",
+      "what_i_understood": "home значит «дома», и перед ним не надо ставить никакое слово вроде «в» или «на» — просто I am home.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 1 — Where are you?",
+      "what_i_understood": "Ответил I am home. Понял, почему не подходят два других варианта.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — back",
+      "what_i_understood": "back значит «вернулся». I am back — уже полный ответ, добавлять home не нужно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 2",
+      "what_i_understood": "Ответил I am back.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — done",
+      "what_i_understood": "done значит «закончил». Пишется done, а звучит как «дан».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 3 — Ты ещё работаешь?",
+      "what_i_understood": "Ответил I am done. Понял разницу с I am not done — там смысл противоположный.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (карточки и произношение home/back)",
+      "what_i_understood": "Запомнил как звучат home и back, отличил их от похожих слов hope/hole/bag/bad.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — собрать I am home",
+      "what_i_understood": "Собрал фразу без проблем, лишняя плитка is не подошла, я это знал заранее.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 6-9 (карточки и произношение done/ok)",
+      "what_i_understood": "done и ok — новые слова, звучат не так, как пишутся или как ожидаешь. ok — это просто две буквы «оу-кей».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — Speed Match",
+      "what_i_understood": "Соединил все 4 пары без труда, все слова уже разобраны.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — I am ___ (друг спрашивает как вы там)",
+      "what_i_understood": "Выбрал ok, потому что вопрос про состояние, а не про место.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — I ___ back",
+      "what_i_understood": "Выбрал am, потому что для 'я' всегда am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — послушать и собрать I am done",
+      "what_i_understood": "Собрал по звуку, слово done уже знакомо.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — I am here (повтор вслух)",
+      "what_i_understood": "here — слово, которое, по заявлению файла, я уже должен знать. Я действительно его не встречал в этой сессии, но в разделе 'для сборщика' написано, что оно 'возвращается' — то есть было раньше. Раз меня предупредили, что это уже известное слово, я не считаю это нечестной ловушкой, но сам текст сессии нигде не объяснил, что значит here.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — I am not hungry",
+      "what_i_understood": "hungry тоже подан как уже известное слово без объяснения в этой сессии — та же ситуация, что и с here.",
+      "confusion": "hungry и here нигде в самой сессии не объяснены, я должен просто помнить их из ниоткуда",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — I am free",
+      "what_i_understood": "free тоже не объяснено в сессии, но по контексту (выходной, зовут гулять) я догадался, что это 'свободен'. Лишняя плитка not — ловушка на внимательность, это честно.",
+      "confusion": "free не объяснено текстом сессии, полагаюсь на догадку по ситуации",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — I am tired",
+      "what_i_understood": "tired тоже нигде не объяснено в этой сессии, но по подсказке 'зевок, вялый' догадался.",
+      "confusion": "tired не объяснено текстом сессии",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 — Speed Match с tired/free/here/hungry",
+      "what_i_understood": "Тут наконец дали все переводы (устал, свободен, здесь, голоден) — но это ПОСЛЕ того, как эти слова уже использовались в заданиях 14-17. Получилось, что перевод я вижу только теперь, а до этого должен был угадывать.",
+      "confusion": "Порядок странный: слова использовали раньше, чем объяснили",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19 — финал, 4 фразы вслух",
+      "what_i_understood": "Повторил все фразы сессии подряд, справился.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "home = дома (без предлога)",
+    "back = вернулся",
+    "done = закончил (произносится «дан»)",
+    "ok = нормально (произносится «оу-кей»)",
+    "запомнил на слух эти четыре слова и не путаю с похожими"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Задание 18 — Speed Match",
+      "why": "Даёт переводы here/hungry/free/tired только сейчас, хотя эти слова уже требовались в заданиях 14, 15, 16, 17. По-хорошему перевод нужен был до, а не после использования."
+    }
+  ],
+  "felt_alive": [
+    "Сцена с плохой связью по телефону — понятная и живая, сразу ясно, зачем короткие фразы",
+    "Шутка про 'о' в done для вида — по делу, объясняет произношение, не украшательство"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно: вечер, звонок другу с плохой связью, поэтому ответы должны быть короткими и по делу — это объясняет, зачем тут именно такие фразы (где я, вернулся ли, устал ли, всё ли нормально).",
+  "would_continue": "Да — сессия короткая, слова простые и хорошо запоминаются, финал с четырьмя фразами подряд даёт ощущение, что я что-то реально выучил.",
+  "verdict": "REVISE",
+  "verdict_reason": "Задания честные и посильные, но слова here, hungry, free, tired используются в заданиях 14–17 раньше, чем их перевод появляется в Speed Match (задание 18) — порядок подачи материала сбивает с толку."
 }

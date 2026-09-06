@@ -213,7 +213,7 @@ function extractFillTasks(text) {
 function checkSingleAnswer(file, label) {
   const tasks = extractFillTasks(read(file));
   if (!tasks.length) { LOG("[ОДИН-ОТВЕТ] заданий на подстановку нет — пропускаю"); return []; }
-  const listed = tasks.map((t, k) => `${k + 1}. подсказка: ${t.title}
+  const listed = tasks.map((t) => `Задание ${(t.title.split(" ")[0] || "?")}. подсказка: ${t.title}
    фраза: ${t.stem} ___ 
    верный: ${t.right} · остальные: ${t.options.join(", ")}`).join(String.fromCharCode(10) + String.fromCharCode(10));
   let out;

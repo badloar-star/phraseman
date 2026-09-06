@@ -607,7 +607,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вспомните начало дня — вы вошли, все обернулись",
+      "prompt": "Вспомните начало дня — вы вошли вовремя, просто все обернулись",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-02:i12:r1",
@@ -624,11 +624,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вспомните начало дня — вы вошли, все обернулись",
+      "accessibilityLabel": "Вспомните начало дня — вы вошли вовремя, просто все обернулись",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вспомните начало дня — вы вошли, все обернулись",
+          "ru": "Вспомните начало дня — вы вошли вовремя, просто все обернулись",
           "uk": "Згадайте початок дня — ви зайшли, усі обернулися"
         },
         "gappedTargetPhrase": "I am ___ .",
@@ -646,12 +646,12 @@
             "text": "tired"
           }
         ],
-        "testedDimension": "Вспомните начало дня — вы вошли, все обе",
+        "testedDimension": "Вспомните начало дня — вы вошли вовремя,",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-02:i12:r1",
             "correct": false,
-            "testedDimension": "Вспомните начало дня — вы вошли, все обе",
+            "testedDimension": "Вспомните начало дня — вы вошли вовремя,",
             "feedbackByLocale": {
               "ru": "Вы ничего не сделали не так: просто вошли. Здесь нужно «я здесь».",
               "uk": "Ви нічого не зробили не так: просто зайшли. Тут потрібне «я тут»."
@@ -660,7 +660,7 @@
           {
             "responseId": "en:lesson-01:session-02:i12:r2",
             "correct": false,
-            "testedDimension": "Вспомните начало дня — вы вошли, все обе",
+            "testedDimension": "Вспомните начало дня — вы вошли вовремя,",
             "feedbackByLocale": {
               "ru": "В тот момент вы ещё не устали. Слово для «я здесь» — here.",
               "uk": "Тієї миті ви ще не втомилися. Слово для «я тут» — here."
@@ -879,5 +879,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "30b6bef615290da320647a3d323d56955bed62bd694e4ad18112cbb5c387c3bb"
+  "learnerFingerprint": "3c60aade9bf20254f24851759a073fdce8ebd23c39293ad7a29a34c63c43718b"
 }

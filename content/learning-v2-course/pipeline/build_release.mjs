@@ -357,6 +357,23 @@ function main() {
   }
   if (!perLocale.ru) { LOG("ранний выход: нет мастера final.ru.md"); process.exit(2); }
 
+  // зачем: за сутки ТРИЖДЫ правка русского не доходила до того, что видит
+  // человек — перевод оставался старым, и в приложении два языка рассказывали
+  // бы разное. Ловим машинно: если final.<loc>.md старше final.ru.md, значит
+  // перевод не переделан после правки.
+  const ruMtime = fs.statSync(path.join(dir, "final.ru.md")).mtimeMs;
+  const staleLocales = [];
+  for (const loc of Object.keys(perLocale)) {
+    if (loc === "ru") continue;
+    const lf = path.join(dir, `final.${loc}.md`);
+    if (!exists(lf)) continue;   // ранний выход: локали нет — о ней уже предупредили выше
+    if (fs.statSync(lf).mtimeMs < ruMtime) staleLocales.push(loc);
+  }
+  if (staleLocales.length) {
+    WARN(`ПЕРЕВОД ОТСТАЛ от русского: ${staleLocales.join(", ")} — переведи заново, иначе языки разойдутся:`);
+    WARN(`  node pipeline/run.mjs localize --session ${lang}/l${lesson}/s${session} --file final.ru.md`);
+  }
+
   const master = perLocale.ru;
   // сверка структуры локалей с мастером
   for (const [loc, v] of Object.entries(perLocale)) {

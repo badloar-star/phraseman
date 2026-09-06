@@ -104,7 +104,7 @@
             "testedDimension": "Послушайте и выберите — sure",
             "feedbackByLocale": {
               "ru": "«Сахар». Начало то же — «шу», но дальше слышно «г»: шу-гэр. В `sure` после «шу» сразу «р».",
-              "uk": "«Цукор». Початок той самий — «шу», але далі чути «г»: шу-гер. У `sure` після «шу» одразу «р»."
+              "uk": "«Цукор». Початок той самий — «шу», але далі чути «ґ»: шу-ґер. У `sure` після «шу» одразу «р»."
             }
           },
           {
@@ -257,7 +257,7 @@
         "targetPhrase": "We are not late.",
         "localizedMeaning": {
           "ru": "Соберите фразу — «мы не опаздываем»",
-          "uk": "Складіть фразу — «ми не запізнюємось»"
+          "uk": "Складіть фразу — «ми не запізнюємося»"
         },
         "orderedTokens": [
           "We",
@@ -460,7 +460,7 @@
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — вы не уверены, открыто ли кафе",
-          "uk": "Вставте слово — ви не впевнені, чи відчинено кав'ярню"
+          "uk": "Вставте слово — ви не впевнені, чи відчинено кафе"
         },
         "gappedTargetPhrase": "We are not ___ .",
         "gapOptions": [
@@ -586,7 +586,7 @@
             "testedDimension": "Вставьте скрепку — вы всей командой не г",
             "feedbackByLocale": {
               "ru": "`am` только для `I`, про одного себя. Про «мы» — `are`.",
-              "uk": "`am` лише для `I`, про одного себе. Про «ми» — `are`."
+              "uk": "`am` тільки для `I`, про одного себе. Про «ми» — `are`."
             }
           },
           {
@@ -681,7 +681,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — после обеда сразу совещание, времени нет",
+      "prompt": "Вставьте слово — спрашивают, можем ли мы задержаться: после обеда совещание",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-35:i13:r1",
@@ -698,12 +698,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — после обеда сразу совещание, времени нет",
+      "accessibilityLabel": "Вставьте слово — спрашивают, можем ли мы задержаться: после обеда совещание",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — после обеда сразу совещание, времени нет",
-          "uk": "Вставте слово — після обіду одразу нарада, часу немає"
+          "ru": "Вставьте слово — спрашивают, можем ли мы задержаться: после обеда совещание",
+          "uk": "Вставте слово — питають, чи можемо ми затриматися: після обіду нарада"
         },
         "gappedTargetPhrase": "We are not ___ .",
         "gapOptions": [
@@ -720,12 +720,12 @@
             "text": "ready"
           }
         ],
-        "testedDimension": "Вставьте слово — после обеда сразу совещ",
+        "testedDimension": "Вставьте слово — спрашивают, можем ли мы",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-35:i13:r1",
             "correct": false,
-            "testedDimension": "Вставьте слово — после обеда сразу совещ",
+            "testedDimension": "Вставьте слово — спрашивают, можем ли мы",
             "feedbackByLocale": {
               "ru": "«Не одни» — про компанию, а не про время.",
               "uk": "«Не самі» — про компанію, а не про час."
@@ -734,7 +734,7 @@
           {
             "responseId": "en:lesson-01:session-35:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — после обеда сразу совещ",
+            "testedDimension": "Вставьте слово — спрашивают, можем ли мы",
             "feedbackByLocale": {
               "ru": "«Не готовы» — другое. Времени нет — `not free`.",
               "uk": "«Не готові» — інше. Часу немає — `not free`."
@@ -819,7 +819,7 @@
         "targetPhrase": "We are not wrong.",
         "localizedMeaning": {
           "ru": "Соберите фразу — «мы не ошибаемся»",
-          "uk": "Складіть фразу — «ми не помиляємось»"
+          "uk": "Складіть фразу — «ми не помиляємося»"
         },
         "orderedTokens": [
           "We",
@@ -872,5 +872,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "681d700f7ec57920a846565488e81819f4eb262469ddf51976b341bd4589420d"
+  "learnerFingerprint": "30329a5e3a20b96b40eccd5167062c7196bbdacde7a4b3563d7ec3fde9204026"
 }

@@ -1,0 +1,130 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — anxious",
+      "what_i_understood": "Новое слово anxious значит «тревожный, на нервах». Вопрос строится так же, как я уже привык: сначала are you, потом слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — relaxed",
+      "what_i_understood": "relaxed — «расслаблен, спокоен». Важно не потерять окончание -ed.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — ответ да/нет",
+      "what_i_understood": "На such вопрос отвечаю Yes, I am или No, I am not. Про thirsty тут просто напоминание, я его уже видел в примере вопроса.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (карточки anxious/relaxed)",
+      "what_i_understood": "Выучил произношение и написание обоих новых слов, отличил их от похожих слов-ловушек.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — соберите фразу про парня у ворот",
+      "what_i_understood": "Собрал Are you anxious? из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — девушка на скамейке",
+      "what_i_understood": "Выбрал relaxed, а не hungry/cold — они не подходят по смыслу сцены.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — сосед пьёт воду",
+      "what_i_understood": "Выбрал thirsty (уже знакомое слово), не спутал с anxious/relaxed.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — сборка на слух",
+      "what_i_understood": "Собрал Are you relaxed? по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — скрепка am/are/is",
+      "what_i_understood": "Про себя всегда am, не are и не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — ответ на cold",
+      "what_i_understood": "Собрал No, I am not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — пары",
+      "what_i_understood": "Соединил anxious/relaxed/thirsty/cold с переводами — все слова я уже видел выше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — парень на ветру",
+      "what_i_understood": "Выбрал cold, не relaxed/thirsty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — обманка на внимательность",
+      "what_i_understood": "Собрал Yes, I am. без лишнего not — заметил ловушку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — приятель уронил рюкзак",
+      "what_i_understood": "Выбрал ok, не hungry/relaxed — по ситуации логично.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — про голод приятеля",
+      "what_i_understood": "Собрал Are you hungry?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — вслух вопрос+ответ",
+      "what_i_understood": "Проговорил Are you anxious? No, I am not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал без подсказок",
+      "what_i_understood": "Собрал сам три реплики: Are you relaxed? Are you thirsty? Yes, I am ok.",
+      "confusion": "Не до конца понял, зачем в конце ok — до этого ok использовалось отдельно как замена самочувствия, а тут оно вставлено после I am вместе с ответом на два разных вопроса сразу. Немного сбивает, на какой из двух вопросов вообще отвечает эта фраза.",
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово anxious — тревожный, на нервах",
+    "Слово relaxed — расслаблен, спокоен",
+    "Как отличать эти два слова на слух от похожих (angry, ankle, relax, related)",
+    "Что для отрицательного ответа nужно not после am, а не только no"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 3",
+      "why": "Третий абзац почти повторяет то, что уже понятно из первых двух интро: снова объясняется, что нельзя терять am/not. Это уже было ясно из структуры Are you + слово."
+    }
+  ],
+  "felt_alive": [
+    "Сцена с человеком у крана, который выпил четыре стакана воды подряд — понятно и смешно без объяснений",
+    "Ловушка в задании 13 с лишней плиткой not — заставила реально подумать, а не щёлкать на автомате"
+  ],
+  "felt_dead": [
+    "Задание 17: финальная фраза Yes, I am ok обрывает сцену — я спросил два разных вопроса подряд (спокоен? хочешь пить?), а ответил одной обобщённой фразой, которая ни на один из них впрямую не отвечает"
+  ],
+  "scene_reason": "да, в целом понятно: двор хостела, суббота, люди собираются на автобус — и видно, кому и зачем я говорю каждую фразу (парню у ворот, девушке на скамейке, соседу). Одно место (финал 17) слегка портит эту ясность, потому что ответ не соответствует напрямую заданным вопросам.",
+  "would_continue": "да — сессия короткая, слова понятные, задания разнообразные (не только тыкать кнопки, но и говорить вслух), к концу стало ощутимо, что я правда что-то выучил.",
+  "verdict": "REVISE",
+  "verdict_reason": "Всё проходимо и я честно узнал новое, но финальное задание 17 логически рассыпается (ответ не привязан к вопросам), а Интро 3 частично дублирует уже сказанное."
+}

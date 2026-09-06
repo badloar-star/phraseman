@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `Are you + слово?` и ответов `Yes, I am` / `No, I am not`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`anxious` — «тревожно»",
+        "uk": "`anxious` — «тривожно»"
+      },
+      "bodyByLocale": {
+        "ru": "`anxious` — «тревожный, на нервах». Не страх, а то состояние, когда всё вроде нормально, а внутри крутится «а вдруг».\n\nСпрашивают об этом так же, как про всё остальное: `are` первым, `you` следом, слово в конце — `Are you anxious?` Отдельного «тревожишься?» одним словом в английском не выйдет.",
+        "uk": "`anxious` — «тривожний, на нервах». Не страх, а той стан, коли начебто все гаразд, а всередині крутиться «а раптом».\n\nПитають про це так само, як про все інше: `are` першим, `you` слідом, слово в кінці — `Are you anxious?` Окремого «тривожишся?» одним словом в англійській не вийде."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Парень у ворот десятый раз смотрит на часы и на расписание. Спросите, не нервничает ли он.",
+          "uk": "Хлопець біля воріт удесяте дивиться на годинник і на розклад. Запитайте, чи він не нервує."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-07:intro1:r1",
+              "text": "Are you anxious?"
+            },
+            {
+              "responseId": "en:lesson-02:session-07:intro1:r2",
+              "text": "You are anxious?"
+            },
+            {
+              "responseId": "en:lesson-02:session-07:intro1:r3",
+              "text": "Are anxious you?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-07:intro1:r1",
+              "text": "Are you anxious?"
+            },
+            {
+              "responseId": "en:lesson-02:session-07:intro1:r2",
+              "text": "You are anxious?"
+            },
+            {
+              "responseId": "en:lesson-02:session-07:intro1:r3",
+              "text": "Are anxious you?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Парень у ворот десятый раз смотрит на часы и на расписание. Спросите, не нервничает ли он.",
+          "uk": "Хлопець біля воріт удесяте дивиться на годинник і на розклад. Запитайте, чи він не нервує."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`relaxed` — «спокойный»",
+        "uk": "`relaxed` — «спокійний»"
+      },
+      "bodyByLocale": {
+        "ru": "`relaxed` — «расслаблен, спокоен». Человек никуда не спешит, плечи опущены.\n\nХвост «-ed» тут обязателен. Без него получится `relax` — «расслабься», то есть совет вместо вопроса о человеке. И `are` в вопросе всё так же стоит первым: `Are you relaxed?`",
+        "uk": "`relaxed` — «розслаблений, спокійний». Людина нікуди не поспішає, плечі опущені.\n\nХвостик «-ed» тут обов'язковий. Без нього вийде `relax` — «розслабся», тобто порада замість питання про людину. І `are` в питанні так само стоїть першим: `Are you relaxed?`"
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Девушка на скамейке допивает кофе и на автобус даже не смотрит. Спросите, спокойна ли она.",
+          "uk": "Дівчина на лавці допиває каву і на автобус навіть не дивиться. Запитайте, чи вона спокійна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-07:intro2:r1",
+              "text": "Are you relaxed?"
+            },
+            {
+              "responseId": "en:lesson-02:session-07:intro2:r2",
+              "text": "Are you relax?"
+            },
+            {
+              "responseId": "en:lesson-02:session-07:intro2:r3",
+              "text": "You relaxed?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-07:intro2:r1",
+              "text": "Are you relaxed?"
+            },
+            {
+              "responseId": "en:lesson-02:session-07:intro2:r2",
+              "text": "Are you relax?"
+            },
+            {
+              "responseId": "en:lesson-02:session-07:intro2:r3",
+              "text": "You relaxed?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Девушка на скамейке допивает кофе и на автобус даже не смотрит. Спросите, спокойна ли она.",
+          "uk": "Дівчина на лавці допиває каву і на автобус навіть не дивиться. Запитайте, чи вона спокійна."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответ — два слова или три",
+        "uk": "Відповідь — два слова або три"
+      },
+      "bodyByLocale": {
+        "ru": "На вопрос `Are you ok?` короткого «да» мало. Отвечают `Yes, I am` — с `am`, которому в русском ответе просто нет пары.\n\nЕсли нет — `No, I am not`. Порядок жёсткий: сначала `I am`, потом `not`. Зато эти два ответа годятся на любой вопрос с `Are you` — хоть про голод, хоть про холод, и слово из вопроса повторять не надо.",
+        "uk": "На питання `Are you ok?` короткого «так» замало. Відповідають `Yes, I am` — з `am`, якому в українській відповіді просто немає пари.\n\nЯкщо ні — `No, I am not`. Порядок жорсткий: спочатку `I am`, потім `not`. Зате ці дві відповіді годяться на будь-яке питання з `Are you` — хоч про голод, хоч про холод, і слово з питання повторювати не треба."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Сосед по комнате спрашивает: «`Are you thirsty?`» Пить не хочется. Ответьте.",
+          "uk": "Сусід по кімнаті питає: «`Are you thirsty?`» Пити не хочеться. Відповідайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-07:intro3:r1",
+              "text": "No, I am not."
+            },
+            {
+              "responseId": "en:lesson-02:session-07:intro3:r2",
+              "text": "No, I not."
+            },
+            {
+              "responseId": "en:lesson-02:session-07:intro3:r3",
+              "text": "No, I am no."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-07:intro3:r1",
+              "text": "No, I am not."
+            },
+            {
+              "responseId": "en:lesson-02:session-07:intro3:r2",
+              "text": "No, I not."
+            },
+            {
+              "responseId": "en:lesson-02:session-07:intro3:r3",
+              "text": "No, I am no."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сосед по комнате спрашивает: «`Are you thirsty?`» Пить не хочется. Ответьте.",
+          "uk": "Сусід по кімнаті питає: «`Are you thirsty?`» Пити не хочеться. Відповідайте."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "160c5b64b508f3550c7e37f3e209a48f89246fe59333e0ecab6dc9e9fcba45ab"
+}

@@ -276,6 +276,18 @@ function machineFacts(file) {
     if (L < INTRO_LEN_MIN - INTRO_LEN_TOLERANCE) facts.push(`интро ${k + 1}: ДЛИНА ${L} знаков — короче нормы ${INTRO_LEN_MIN}-${INTRO_LEN_MAX} даже с допуском ${INTRO_LEN_TOLERANCE}, добавь пользы о слове (не воды)`);
     else if (L > INTRO_LEN_MAX + INTRO_LEN_TOLERANCE) facts.push(`интро ${k + 1}: ДЛИНА ${L} знаков — длиннее нормы ${INTRO_LEN_MIN}-${INTRO_LEN_MAX} даже с допуском ${INTRO_LEN_TOLERANCE}, убери повтор или разгон`);
   });
+  // ЛЕСТНИЦА: нагрузка обязана соответствовать ступени урока (владелец 06.09).
+  // Уроки 1-2 заморожены — они написаны до правила и переписывать их не велено.
+  const lessonFromPath = Number((String(file).match(/[\\\/]l(\d+)[\\\/]/) || [])[1] || 0);
+  if (lessonFromPath > 2) {
+    const d = difficultyLadder(lessonFromPath);
+    const taskCount = (practice.match(/^\*\*\d+ · /gm) || []).length;
+    if (taskCount && taskCount < d.tasks) facts.push(`НАГРУЗКА НИЖЕ СТУПЕНИ: заданий ${taskCount}, урок ${lessonFromPath} требует ${d.tasks}`);
+    for (const m of practice.matchAll(/Speed Match,\s*(\d+)\s*пар/g)) {
+      const got = Number(m[1]);
+      if (got < d.pairs) facts.push(`НАГРУЗКА НИЖЕ СТУПЕНИ: пар в Speed Match ${got}, урок ${lessonFromPath} требует ${d.pairs}`);
+    }
+  }
   for (const [re, name] of BACKREFS) {
     const hits = introPart.match(re) || [];
     for (const h of hits) facts.push(`ОТСЫЛКА К ПРОШЛОМУ: ${name} — «${h}» ← сессию могут открыть первой, этого опыта у ученика нет`);
@@ -624,6 +636,46 @@ const PERSONAS = [
   ["C", "сценарист сериала: каждая страница — сцена с людьми, репликами и причиной говорить"],
 ];
 
+// ЛЕСТНИЦА СЛОЖНОСТИ. Владелец 06.09: «уроки должны прогрессировать со
+// временем и становиться сложнее, больше слов соедините пары, больше
+// дистракторов, более сложные фразы».
+// Замер до правки: сессия 1 и сессия 56 были ОДИНАКОВЫ (17 заданий,
+// 4 пары, 1.8 слова в ответе) — курс шёл плоско.
+// Решения владельца: шкала по номеру УРОКА (внутри урока ровно, ступень
+// между уроками); уроки 1-2 не трогаем, лестница начинается с урока 3.
+function difficultyLadder(lesson) {
+  const L = Number(lesson) || 1;
+  // ступени подобраны так, чтобы соседние уроки отличались незаметно,
+  // а урок 1 и урок 32 — принципиально
+  const step = (bands) => bands.find(([upTo]) => L <= upTo)[1];
+  return {
+    lesson: L,
+    frozen: L <= 2, // уроки 1-2 уже написаны, правила к ним не применяем
+    pairs: step([[2, 4], [4, 4], [12, 5], [24, 6], [32, 7]]),
+    distractors: step([[2, 2], [8, 2], [18, 3], [32, 4]]),
+    answerWords: step([[2, "1-3"], [6, "2-4"], [16, "3-5"], [32, "4-7"]]),
+    tasks: step([[2, 17], [10, 17], [20, 19], [32, 21]]),
+    mechanicRepeat: step([[2, 1], [8, 1], [18, 2], [32, 3]]),
+    mechanicVariety: step([[2, 8], [12, 8], [24, 9], [32, 10]]),
+  };
+}
+
+// Текст лестницы для автора: он должен видеть ЧИСЛА, а не «пиши сложнее».
+function ladderBrief(lesson) {
+  const d = difficultyLadder(lesson);
+  if (d.frozen) return "Урок 1-2 — начало курса, нагрузка базовая: 17 заданий, 4 пары в Speed Match, 2 неверных варианта, ответы в 1-3 слова.";
+  return [
+    `Урок ${d.lesson} — ступень сложности:`,
+    `- заданий: ${d.tasks}`,
+    `- пар в каждом Speed Match: ${d.pairs}`,
+    `- неверных вариантов в заданиях с выбором: ${d.distractors}`,
+    `- длина правильного ответа: ${d.answerWords} слова`,
+    `- одна механика может повторяться до ${d.mechanicRepeat} раз за сессию, КАЖДЫЙ раз на своём наборе слов (пересечение наборов запрещено)`,
+    `- разных механик за сессию: не меньше ${d.mechanicVariety}`,
+    "Это НЕ потолок качества, а нижняя планка нагрузки: курс обязан становиться труднее, а не топтаться на месте.",
+  ].join(String.fromCharCode(10));
+}
+
 function buildVars(ctx, plan, row, known, S) {
   return {
     КОНСТИТУЦИЯ: ctx.constitution,
@@ -639,6 +691,7 @@ function buildVars(ctx, plan, row, known, S) {
     ПРОЙДЕННЫЕ_ОПЕРАЦИИ: known.ops.join("; ") || "(ничего)",
     ПРОЙДЕННЫЕ_СЛОВА: known.words.join(", ") || "(ничего)",
     СОСЕДНИЕ_СЕССИИ_КРАТКО: neighborsSummary(S.lang, S.lesson, row.n),
+    ЛЕСТНИЦА_СЛОЖНОСТИ: ladderBrief(S.lesson),
   };
 }
 

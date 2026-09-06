@@ -232,6 +232,11 @@ function checkSingleAnswer(file, label) {
   return broken;
 }
 
+// зачем: один список машинных фактов-блокеров на весь конвейер. Раньше эта
+// регулярка жила в двух местах и шесть раз ломалась при правке через heredoc
+// (съедало обратные слэши) — расхождение молча выпускало сессию с дефектом.
+const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА/;
+
 function machineFacts(file) {
   const text = read(file);
   // зачем: владелец — «давай рассматривать каждую сессию как отдельную, юзер
@@ -787,7 +792,7 @@ function stageEdit(S, ctx, plan, row, known, file, verdicts) {
   // зачем: 03.09 вторая правка починила интро 3 и СЛОМАЛА интро 1 — редактор
   // не видел последствий своей работы до следующего круга. Сверяем сразу и
   // даём одну попытку доправить, называя, что именно он сломал или не закрыл.
-  const hard = (p) => machineFacts(p).split("\n").filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА/.test(l));
+  const hard = (p) => machineFacts(p).split("\n").filter((l) => HARD_FACT_RE.test(l));
   const left = hard(f);
   if (left.length) {
     LOG(`   после правки осталось незакрытым (${left.length}): ${left.map((l) => l.split("—")[0].trim()).join("; ")}`);
@@ -942,6 +947,18 @@ function main() {
 
   if (cmd === "draft") return stageDraft(S, ctx, plan, row, known);
   if (cmd === "single") { checkSingleAnswer(path.join(S.dir, opt("file", "final.ru.md")), SESSION); return; }
+  // зачем: 06.09 status.json врал «blockedBy: machine_facts» о живой сессии —
+  // гейт пишет статус и выходит, ручная правка его не переписывает. Команда
+  // даёт сборщику релиза перепроверить факты по ФИНАЛУ, не дублируя логику.
+  // Печатает только не закрытые факты; пустой вывод = фактов нет. Код 0 всегда,
+  // чтобы вызывающий отличал «фактов нет» от «скрипт упал».
+  if (cmd === "facts") {
+    const f = path.join(S.dir, opt("file", "final.ru.md"));
+    if (!fs.existsSync(f)) { console.error("НЕТ ФАЙЛА " + f); process.exit(2); }
+    const hard = machineFacts(f).split("\n").filter((l) => HARD_FACT_RE.test(l));
+    for (const l of hard) console.log(l);
+    return;
+  }
   if (cmd === "judge") return stageJudgeStable(S, ctx, plan, row, known, path.join(S.dir, opt("file", "draft_A.ru.md")));
   if (cmd === "edit") {
     const f = path.join(S.dir, opt("file", "draft_A.ru.md"));
@@ -995,7 +1012,7 @@ function main() {
     // настроения судьи: пока он не закрыт, сессия не выпускается.
     const hardFacts = machineFacts(cur.f)
       .split("\n")
-      .filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА/.test(l));
+      .filter((l) => HARD_FACT_RE.test(l));
     if (hardFacts.length) {
       WARN(`СТОП перед локализацией — не закрытые машинные факты:\n  ${hardFacts.join("\n  ")}`);
       write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blockedBy: "machine_facts", facts: hardFacts, at: new Date().toISOString() }, null, 2));

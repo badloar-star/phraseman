@@ -15,6 +15,7 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { spawnSync } from "node:child_process";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -339,6 +340,20 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
 
 // ---------- main ----------
 
+// зачем: снять протухший блок machine_facts можно только перепроверив факты,
+// а не поверив статусу. Логика фактов живёт в run.mjs — зовём её оттуда, чтобы
+// не заводить второй экземпляр правил, который разъедется с первым.
+function recheckHardFacts(dir) {
+  const session = dir.split(/[\\/]/).slice(-3).join("/");
+  const r = spawnSync(process.execPath, [path.join(HERE, "run.mjs"), "facts", "--session", session], { encoding: "utf8" });
+  if (r.status !== 0) {
+    WARN(`перепроверка фактов не удалась (код ${r.status}) — блок снимать нельзя: ${(r.stderr || "").trim().slice(0, 200)}`);
+    return ["перепроверка не выполнена"];
+  }
+  return String(r.stdout || "").split("\n").map((l) => l.trim())
+    .filter((l) => l && !l.startsWith("[FACTORY]") && !l.startsWith("[BUILD]"));
+}
+
 function main() {
   if (!SESSION) { LOG("ранний выход: нужен --session en/l01/s04"); process.exit(2); }
   const m = /^([a-z]{2})\/l(\d{2})\/s(\d{2})$/.exec(SESSION);
@@ -459,6 +474,23 @@ function main() {
     if (fs.existsSync(stPath)) {
       const st = JSON.parse(fs.readFileSync(stPath, "utf8"));
       if (st.blocked) WARN(`СЕССИЯ ЗАБЛОКИРОВАНА судьями (${[].concat(st.blocked).join(", ")}) — собирать её в курс нельзя, сначала правка`);
+      // зачем: 06.09 сессия 3 урока 2 лежала в релизе живой, а status.json
+      // говорил blockedBy=machine_facts — гейт пишет статус и делает return,
+      // поэтому ручная правка + пересборка релиза его не переписывали. Статус
+      // врал, а run_batch читает именно его. Сборщик пересчитывает факты сам:
+      // закрыты — снимает протухший блок, не закрыты — кричит.
+      else if (st.blockedBy === "machine_facts") {
+        const stillOpen = recheckHardFacts(dir);
+        if (stillOpen.length) {
+          WARN(`СЕССИЯ ЗАБЛОКИРОВАНА машинными фактами — собирать нельзя:`);
+          for (const f of stillOpen) WARN(`  ${f}`);
+        } else {
+          LOG("протухший блок machine_facts снят: факты закрыты, статус переписан");
+          const fixed = { ...st, blockedBy: undefined, facts: undefined, staleBlockClearedAt: new Date().toISOString() };
+          delete fixed.blockedBy; delete fixed.facts;
+          fs.writeFileSync(stPath, JSON.stringify(fixed, null, 2));
+        }
+      }
       else if (st.ru === 0) WARN(`сессия собрана с нулём очков — судьи её не приняли`);
     } else WARN(`нет status.json — неизвестно, судилась ли сессия вообще`);
   } catch (e) { WARN(`не смог прочитать статус сессии: ${e.message}`); }

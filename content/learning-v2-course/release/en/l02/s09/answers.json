@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-09:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i02",
+    "correctText": "handsome",
+    "correctResponseId": "en:lesson-02:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i04",
+    "correctText": "pretty",
+    "correctResponseId": "en:lesson-02:session-09:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i05",
+    "correctText": "Is he handsome?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i06",
+    "correctText": "Is she pretty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i09",
+    "correctText": "cheerful",
+    "correctResponseId": "en:lesson-02:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i10",
+    "correctText": "curious",
+    "correctResponseId": "en:lesson-02:session-09:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i12",
+    "correctText": "upset",
+    "correctResponseId": "en:lesson-02:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i13",
+    "correctText": "Is she cold?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i14",
+    "correctText": "cheerful",
+    "correctResponseId": "en:lesson-02:session-09:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i15",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i16",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-09:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-09:i17",
+    "correctText": "Is he handsome? Is she curious? Is he cold?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Чтобы спросить про мужчину («он»), вопрос начинается с is, а he идёт сразу после. Is he cold? — ему холодно?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "handsome — красивый, про мужчину. Порядок тот же: Is he handsome?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "pretty — красивая, про женщину или вещь. she — она. Is she pretty?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Карточка handsome — красивый.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Услышал handsome, выбрал из трёх похожих по звучанию слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Карточка pretty — красивая.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Услышал pretty среди похожих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал Is he handsome? из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Собрал Is she pretty? из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Карточка cheerful — весёлый.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Карточка curious — любопытный.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Парень смеётся и напевает — значит cheerful, не cold и не upset.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Женщина поглядывает на соседей — curious, не cheerful и не pretty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Карточка upset — расстроен.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Мужчина молча смотрит в стол — upset, не handsome и не curious.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал по слуху Is she cold? из плиток, включая лишнее he.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Различил cheerful и careful на слух — выбрал cheerful.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Соединил пары: handsome-красивый, pretty-красивая, cheerful-весёлый, curious-любопытный.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Про неё (she) нужно Is, а не Are или Am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Сказал вслух три вопроса про разных людей в кафе.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Спрашивать про мужчину или женщину третьего лица: Is he... / Is she...?",
+    "Порядок слов: is всегда впереди, he/she сразу за ним, слово-описание в конце",
+    "Новое слово handsome (красивый, про мужчину)",
+    "Новое слово pretty (красивая, про женщину или вещь)",
+    "Что для she тоже используется is, а не are"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена в кафе, где спутник вполголоса спрашивает про посетителей — понятно, зачем задавать вопросы",
+    "Задание 17 с тремя вопросами подряд про конкретных людей за столиками — приятный финал, чувствуется что применяю всё сразу"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно, что я в кафе со спутником и мы обсуждаем шёпотом разных людей вокруг: мужчину в куртке, парня у стойки, женщину за столиком. Каждый вопрос привязан к конкретному человеку и ситуации, не абстрактный.",
+  "would_continue": "да — задания шли по нарастающей сложности, я не запутался, и в конце я реально проговорил три вопроса сам, почувствовал что чему-то научился",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий решаемы с моим текущим словарным запасом, новые слова введены и отработаны достаточно, сцена понятна с первой секунды."
+}

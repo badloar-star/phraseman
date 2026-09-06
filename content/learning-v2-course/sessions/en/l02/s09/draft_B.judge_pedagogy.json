@@ -1,0 +1,86 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "handsome",
+      "pretty"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "handy/house — фонетически близкий и случайно похожий дистрактор"
+      },
+      {
+        "task": 4,
+        "trap": "party/plenty — созвучные с pretty слова"
+      },
+      {
+        "task": 8,
+        "trap": "cold/upset против cheerful — противоположные по смыслу состояния"
+      },
+      {
+        "task": 12,
+        "trap": "careful/cheerful — минимальная пара по звучанию"
+      },
+      {
+        "task": 14,
+        "trap": "Are/Am вместо Is — грамматическая путаница по лицу"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "handsome-красивый",
+        "pretty-красивая",
+        "cheerful-весёлый",
+        "curious-любопытный"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      15
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 2,
+      "phrase_builder": 4,
+      "context_gap_grammar": 4,
+      "listen_build_dictation": 1,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы материала, честность ловушек, повторы и форма соблюдены — грубых нарушений методики не найдено."
+}

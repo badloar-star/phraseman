@@ -1,0 +1,171 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Если слово стоит после he/she is — это утверждение. Если is стоит первым, перед he/she — это вопрос. Пример: He is tired (утверждение) vs Is he tired? (вопрос)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "То же самое правило, но с she и другим словом (hungry). Просто повтор идеи из Интро 1 на новом примере.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Чтобы ответить на вопрос Is he lost?, нужно поменять he и is местами: Yes, he is. И на этом всё — слово lost в конце не повторяем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка thirsty)",
+      "what_i_understood": "thirsty = хочет пить",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (произношение thirsty)",
+      "what_i_understood": "Отличил thirsty от похожих по звучанию dirty и thirty",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Is he tired? — выбрал Is, потому что дальше идёт he, а не are",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал Is she hungry? из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "В ответе Yes, he is. — сначала he, потом is",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "He is lost. — собрал сообщение",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (диктант)",
+      "what_i_understood": "Услышал и собрал Is she tired?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Is he thirsty? — по описанию (просит воду третий раз) выбрал нужное слово",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Is he lost? — собрал",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Отличил hungry от angry на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Повторил tired/hungry/lost/thirsty с переводами",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (карточка cheerful)",
+      "what_i_understood": "cheerful = весёлый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (карточка upset)",
+      "what_i_understood": "upset = расстроен",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "She is cheerful. — по описанию (смеётся, машет знакомым)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (карточка comfortable)",
+      "what_i_understood": "comfortable = удобно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Отличил comfortable от cheerful и cold на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "She is thirsty. — собрал, лишнюю плитку Is не взял, потому что это сообщение, а не вопрос",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 (диктант)",
+      "what_i_understood": "No, he is not upset. — услышал и собрал по порядку слов",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19 (пары)",
+      "what_i_understood": "Повторил upset/cheerful/comfortable/thirsty с переводами",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 20",
+      "what_i_understood": "Is she comfortable? — собрал вопрос",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 21 (говорю вслух)",
+      "what_i_understood": "Сказал подряд вопрос и ответ: Is he lost? Yes, he is. — без подсказок, сработало, потому что я уже это тренировал в интро 3 и заданиях 6, 9",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Разница между вопросом (Is he/she + слово?) и сообщением (He/She is + слово) — порядок первых двух слов меняется местами",
+    "Короткий ответ Yes/No, he/she is (not) — обратный порядок слов и без повтора самого слова-состояния в конце",
+    "Новые слова: thirsty (хочет пить), cheerful (весёлый), comfortable (удобно) — плюс закрепил upset (расстроен), который тоже видел в этой сессии впервые как карточку"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2",
+      "why": "Полностью повторяет мысль Интро 1 (тот же механизм с другим местоимением и словом), нового ничего не добавляет, кроме примера — читается как повтор ради повтора"
+    }
+  ],
+  "felt_alive": [
+    "Сцена в кафе понятная и последовательная: один и тот же вечер, разные люди — у окна зевающий мужчина, женщина у стойки с меню, парень с телефоном. Легко представить, зачем я это говорю",
+    "Задание 8 и 14 — где нужно понять состояние человека по описанию (просит воду третий раз → thirsty; смеётся и машет → cheerful) — по-настоящему заставляет думать, а не просто вставлять слово"
+  ],
+  "felt_dead": [
+    "Интро 2 — калька интро 1, никакого нового ощущения или мысли"
+  ],
+  "scene_reason": "Да, понятно. Все фразы — про конкретных людей в кафе (мужчина у окна, женщина у стойки, парень с телефоном), и понятно зачем спрашивать или отвечать про их состояние — это выглядит как реальный разговор со спутником о том, что происходит вокруг",
+  "would_continue": "да — задания разнообразные (карточки, произношение, сборка фраз, диктант, пары, финальный спич), сложность растёт постепенно, и в конце я сам без подсказок сказал вопрос-ответ, что приятно",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы честно, я узнал новые слова и закрепил структуру вопрос/ответ с he/she is, сцена понятна, единственный минус — Интро 2 избыточно, но это не блокирует прохождение."
+}

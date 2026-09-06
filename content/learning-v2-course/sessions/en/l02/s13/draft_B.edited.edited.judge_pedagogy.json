@@ -1,0 +1,82 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 3,
+        "trap": "He is tired? вместо Is he tired? — путает порядок слов"
+      },
+      {
+        "task": 5,
+        "trap": "is / him вместо he — путает начало короткого ответа"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 21,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "tired",
+        "hungry",
+        "lost",
+        "thirsty"
+      ],
+      [
+        "upset",
+        "cheerful",
+        "comfortable",
+        "thirsty"
+      ]
+    ],
+    "speed_match_overlap": true,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      17
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s12",
+      "what": "почти дословный сценарий интро 1 и 3: \"мужчина зевает / устал\" и \"парень с телефоном озирается / заблудился\" повторяют сцены l02_s12 (\"мужчина третий раз зевает\", \"Is he lost?\") и l02_s11 (\"Is he cold?\", короткий ответ про he)"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 2,
+      "context_gap_grammar": 4,
+      "phrase_builder": 5,
+      "listen_build_dictation": 2,
+      "sound_contrast": 1,
+      "speed_match": 2,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Доска пар в задании 19 и доска в задании 11 пересекаются словом thirsty (список слов совпадает по одной позиции, но это разрешено по правилу «второй только без общих слов» — здесь общее слово thirsty есть в обеих досках, что нарушает требование, поэтому REVISE), и сцены интро 1/3 почти дословно повторяют сюжеты соседних сессий l02_s11/l02_s12 (зевающий уставший мужчина, парень с телефоном который заблудился)."
+}

@@ -1,0 +1,93 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "He is tired. — путает порядок вопрос/сообщение"
+      },
+      {
+        "task": 4,
+        "trap": "it вместо he — путает разряд слов (вещь/человек)"
+      },
+      {
+        "task": 6,
+        "trap": "Is he lost? — путает вопрос/сообщение в обратную сторону"
+      },
+      {
+        "task": 13,
+        "trap": "No вместо Yes — согласие/несогласие"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "tired",
+        "hungry",
+        "cold",
+        "lost"
+      ],
+      [
+        "upset",
+        "curious",
+        "pretty",
+        "lost"
+      ]
+    ],
+    "speed_match_overlap": true,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s09",
+      "what": "почти дословный разбор-ловушка «He is lost/Is he lost» и приём «мужчина у окна кутается в шарф, хотя внутри тепло» повторён как «мужчина в шарфе и куртке внутри тёплого зала» — тот же образ, что уже был в интро-3 текущей сессии и в l02_s09/l02_s10"
+    },
+    {
+      "neighbor": "l02_s11",
+      "what": "интро-3 текущей сессии почти дословно повторяет сценарий и фразы интро l02_s11: «Спутник кивает на мужчина в куртке и шарфе внутри тёплого кафе: Is he cold?» → в s12 то же «мужчина в шарфе и куртке внутри тёплого зала: Is he cold?», включая совпадающие неверные варианты и их разборы (Yes, is he / Yes, he is cold vs Is he cold / She is cold)"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 5,
+      "sound_contrast": 1,
+      "context_gap_grammar": 3,
+      "listen_build_dictation": 2,
+      "speed_match": 2,
+      "phrase_builder": 3,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Пары задания 15 (upset, curious, pretty, lost) пересекаются со словом lost из доски задания 7 — нарушение правила «второй Speed Match без общих слов» — и сцена/фразы интро 3 почти дословно повторяют интро сессии l02_s11 (мужчина в куртке и шарфе внутри тёплого кафе, тот же вопрос Is he cold, те же неверные варианты)."
+}

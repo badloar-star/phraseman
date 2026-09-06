@@ -1,0 +1,140 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Вопрос про мужчину начинается с is, потом he: Is he tired? — устал ли он. h почти не слышно, is и he звучат слитно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про женщину — Is she hungry? Разница на слух: у he свист (s), у she — шипение, которое тянется дольше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Короткий ответ — Yes, he is / No, he is not. Слово (tired/cold и т.п.) в ответе не повторяем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Выбрал по звуку начало is he",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Выбрал is she по шипению",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Различил на слух is he / is she",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Вставил he, раз речь о мужчине у окна",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал Is she hungry? из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Тут появилось слово lost — 'заблудился'. В подсказке над заданием сразу написали перевод, так что справился, но это слово раньше в сессии не объясняли, только предупредили прямо в задании.",
+      "confusion": "lost не вводили в интро, перевод дали прямо в скобках при задании — из-за этого чуть притормозил, но не критично, подсказка была тут же.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Соединил пары слов с переводом: tired, hungry, cold, lost",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Выбрал lost по описанию (крутит телефон, озирается)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Новое слово curious — 'любопытный', перевод дали прямо в скобках при задании.",
+      "confusion": "Как и с lost — слово не было в интро, встретил его впервые прямо в задании с переводом рядом.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Собрал Is he curious?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Ещё одно новое слово upset — 'расстроен', тоже с переводом в скобках.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Собрал Is she upset? из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Выбрал Yes для согласия с вопросом",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Собрал No, he is not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Соединил пары: upset, curious, и тут появилось pretty — 'милая' — это слово вообще нигде не вводили заранее, только тут в паре с переводом.",
+      "confusion": "pretty возникло без всякого введения — ни в интро, ни в предыдущих заданиях слова pretty не было вообще, только в этой паре сразу с переводом.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Собрал Is she pretty?, лишняя плитка not не нужна.",
+      "confusion": "Слово pretty использую в задании сразу после того как впервые увидел его перевод в задании 15 — успел, но по сути это слово вводится 'на ходу', не в интро.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Финал: спросил и сам ответил — Is he tired? Yes, he is.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Различать на слух is he и is she по звуку на стыке (свист против шипения)",
+    "Строить короткие ответы Yes, he is / No, he is not без повторения слова",
+    "Узнал слова lost, curious, upset, pretty (правда, введены не в интро, а прямо в заданиях)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена в шумном кафе — понятно, зачем прислушиваться к is he / is she",
+    "Задание 16 с лишней плиткой not — забавная ловушка, заставляет думать, а не тыкать наугад"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — сижу в кафе со спутником, он кивает на разных людей, я должен спросить или понять на слух, что происходит с этим человеком. По каждому заданию ясно, кому и зачем адресована фраза.",
+  "would_continue": "да — было интересно различать is he/is she на слух, чувствую что реально научился слышать разницу, а не просто зубрить",
+  "verdict": "REVISE",
+  "verdict_reason": "Три новых слова (lost, curious, upset — и особенно pretty) введены не через интро с объяснением, а сразу в теле заданий с переводом в скобках — это работает, но с непривычки сбивает с ритма и не даёт времени слово запомнить, прежде чем его же спрашивают в следующем задании."
+}

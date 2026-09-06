@@ -1,0 +1,90 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "He is tired. — верный порядок слов, но не вопрос"
+      },
+      {
+        "task": 4,
+        "trap": "it — правдоподобная путаница he/she/it"
+      },
+      {
+        "task": 8,
+        "trap": "pretty/hungry — семантически неподходящие к сцене слова"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 19,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "tired",
+        "hungry",
+        "cold",
+        "lost"
+      ],
+      [
+        "upset",
+        "curious",
+        "pretty",
+        "here"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      18
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s09",
+      "what": "интро 3 почти дословно повторяет фразу из l02_s09/l02_s11 разбора: «Эти двое идут парой: сначала `is he`, потом само слово» — использовано в задании 1 практики этой сессии тоже с тем же текстом разбора («Эти двое идут парой: сначала `is he`, потом само слово»), что дублирует формулировку из l02_s09 почти дословно"
+    },
+    {
+      "neighbor": "l02_s11",
+      "what": "структура интро 3 (короткий ответ Yes, he is / No, he is not) — прямое повторение операции сессии l02_s11 без пометки «повторение», хотя по конституции это допустимо как честное повторение; сцена и заход поданы корректно как новая, нарушения нет"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 4,
+      "sound_contrast": 1,
+      "context_gap_grammar": 3,
+      "listen_build_dictation": 2,
+      "speed_match": 2,
+      "word_card": 3,
+      "phrase_builder": 3,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Разбор ошибки в задании 1 практики дословно копирует формулировку разбора из интро/соседней сессии l02_s09 («Эти двое идут парой: сначала `is he`, потом само слово»), что является повтором фразы как «новой» между сессиями."
+}

@@ -1,0 +1,148 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — вопрос начинается с is",
+      "what_i_understood": "Если хочешь спросить «он устал?», сначала ставишь is, потом he: Is he tired? Если сначала he, потом is — это уже не вопрос, а сообщение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 1 — задание про зевающего мужчину",
+      "what_i_understood": "Спросил Is he tired? — выбрал правильно, порядок совпал с примером.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — is she шипит",
+      "what_i_understood": "Is she звучит слитно, с долгим «ш» на стыке. Is he так не звучит.",
+      "confusion": "Пока не уверен, что реально услышу это «ш» в живой речи, а не только когда мне про него сказали заранее.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — задание про женщину с меню",
+      "what_i_understood": "Is she hungry? — выбрал верно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — короткий ответ",
+      "what_i_understood": "На Is he cold? отвечаю Yes, he is., без повтора cold. В отрицании not после is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — задание про замёрзшего у двери",
+      "what_i_understood": "Ответил Yes, he is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "На слух надо решить, вопрос это или сообщение, по тому, что стоит первым.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2-3",
+      "what_i_understood": "Тренирую слышать разницу he/she на слух через шипение на стыке.",
+      "confusion": "Реально на слух отличить is he от is she мне пока трудно — верю подсказке в объяснении, а не своему уху.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "По сцене (мужчина у окна) выбираю he, не she и не it.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5-6",
+      "what_i_understood": "Собрал фразу из плиток, отличил сообщение He is lost. от вопроса.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — пары",
+      "what_i_understood": "tired, hungry, cold, lost — это слова, которые я уже видел раньше (кроме отметки, что это возврат).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "lost — «заблудился», подходит к сцене с телефоном и озиранием.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — карточка curious",
+      "what_i_understood": "curious — любопытный, интересно, что происходит.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10-11",
+      "what_i_understood": "Is he curious? — про парня, который оглядывается на дверь.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12-13 — upset",
+      "what_i_understood": "upset — расстроен, собрал Is she upset?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "На согласие с вопросом отвечаю Yes, а не No и не Is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Собрал отрицательный короткий ответ No, he is not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16-17 — pretty",
+      "what_i_understood": "pretty — милая, про внешность женщины/девочки.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18",
+      "what_i_understood": "Is she pretty? — плитка not лишняя, я её не беру.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19 — финал",
+      "what_i_understood": "Сам спросил и сам ответил: Is he tired? Yes, he is.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слышать разницу между вопросом (is впереди) и сообщением (he/she впереди) по порядку слов",
+    "Замечать слитное «ш»-звучание на стыке is she как подсказку, что речь о женщине",
+    "Отвечать коротко: Yes, he is. / No, he is not. — без повтора слова-состояния",
+    "Новые слова: curious, upset, pretty"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 3",
+      "why": "почти дословно повторяет то, что я и так знаю из базовых правил (Yes, I am / No, I am not) — просто заменили he на I, ничего принципиально нового по сравнению с уже известной мне грамматикой"
+    }
+  ],
+  "felt_alive": [
+    "Сцена в шумном кафе, где приходится реально вслушиваться — понятно, зачем тренировать слух именно на is he/is she",
+    "Задание 18 с лишней плиткой not — заставило реально подумать, а не тыкать наугад"
+  ],
+  "felt_dead": [
+    "Карточки слов (9, 12, 16) — просто перевод без примера использования в мини-диалоге, суховато"
+  ],
+  "scene_reason": "да — весь урок держится на одной понятной ситуации: в кафе шумно, и нужно на слух понять, спрашивают меня что-то или сообщают, и про кого (он или она). К каждому заданию есть картинка-подсказка (кто что делает за столиком), так что ясно, зачем именно эта фраза и в какой момент её говорить.",
+  "would_continue": "да — задания разнообразные (на слух, сборка фразы, карточки, пары), сложность растёт постепенно, а не всё сразу, и в конце я сам собрал вопрос и ответ без подсказок, что приятно",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно, узнал новое (слышать is he/is she, короткие ответы, три новых слова), и всегда было понятно, кому и зачем я говорю фразы."
+}

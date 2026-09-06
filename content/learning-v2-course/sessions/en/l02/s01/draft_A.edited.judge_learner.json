@@ -1,0 +1,115 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Чтобы спросить человека «ты проснулся?», надо не говорить слова в обычном порядке, а поставить `are` в начало, потом `you`, потом слово. Пример: Are you awake?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "hungry — голодный, thirsty — хочу пить. Спрашиваем так же: Are you hungry? / Are you thirsty?",
+      "confusion": "Слова похожи по звучанию (hungry/thirsty), но текст объяснил разницу понятно — путаницы нет.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "dizzy — кружится голова, lost — заблудился. Оба про растерянность, но про разное: самочувствие или дорогу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка awake)",
+      "what_i_understood": "Просто слово и перевод.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух awake/away/wake)",
+      "what_i_understood": "Отличил на слух, объяснения к неверным вариантам понятны.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (thirsty)",
+      "what_i_understood": "Отличил от чисел thirty/sixty — было даже полезно понять, что это разные слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка Are you awake?)",
+      "what_i_understood": "Собрал фразу из плиток, лишняя плитка `am` не подошла — я и так знаю, что `am` тут не при делах.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-9 (hungry, dizzy, вставка слова)",
+      "what_i_understood": "Понял по ситуации (бутерброд → hungry), какое слово вставить.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10-11 (lost)",
+      "what_i_understood": "По картинке с картой на углу понял, что это lost, а не thirsty/hungry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (Are/Am/Is)",
+      "what_i_understood": "Из интро уже усвоил, что к you идёт are, а не am/is. Ответил уверенно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (диктовка Are you thirsty?)",
+      "what_i_understood": "Собрал по слуху, лишняя плитка hungry не подошла.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (пары)",
+      "what_i_understood": "Все 4 слова уже знакомы по предыдущим заданиям, соединил без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (dizzy, лишнее are)",
+      "what_i_understood": "Понял, что в вопросе только один are, лишний — ловушка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (lost, лишнее not)",
+      "what_i_understood": "Понял, что not тут не нужен — сосед просто спрашивает, без отрицания.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, голосом)",
+      "what_i_understood": "Сказал вслух три вопроса подряд — почувствовал, что реально могу их произнести в похожей ситуации.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Чтобы задать вопрос собеседнику про его состояние, нужно ставить are в начало: Are you + слово",
+    "Слово awake — проснулся",
+    "Слово hungry — голодный",
+    "Слово thirsty — хочу пить",
+    "Слово dizzy — кружится голова",
+    "Слово lost — заблудился",
+    "К you всегда идёт are, а не am или is"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Ситуация с соседом в хостеле понятная и живая — сразу ясно, кто спрашивает и зачем",
+    "Задание 11 с картой на углу — сразу понятно, почему это именно lost, без подсказки в лоб",
+    "Финал с тремя вопросами подряд — приятно закончить сцену, будто я правда что-то сказал живому человеку"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — на каждой странице понятно, кто говорит (сосед по комнате) и в какой момент (утро, будит, протягивает еду, вы шатаетесь, кто-то смотрит на карту). Ни разу не было вопроса «а зачем я это говорю»",
+  "would_continue": "да — задания шли по нарастающей сложности, ничего не показалось нечестным, а под конец я реально почувствовал, что говорю фразы, а не просто тыкаю в кнопки",
+  "verdict": "PASS",
+  "verdict_reason": "Всё было выполнимо честно, никаких отсылок к незнакомому опыту, новые слова закрепились через практику, и сцена ощущалась живой и понятной от начала до конца."
+}

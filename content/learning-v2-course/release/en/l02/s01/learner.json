@@ -1,0 +1,891 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — awake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — awake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:i01:audio",
+          "transcript": "awake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-01:i01:r1",
+            "targetText": "awake",
+            "meaningByLocale": {
+              "ru": "«проснулся, не спит». Глаза открыты, соображаете вы или нет — другой вопрос.",
+              "uk": "«прокинувся, не спить». Очі розплющені, а чи міркуєте ви — то вже інше питання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "awake",
+          "definitionByLocale": {
+            "ru": "«проснулся, не спит». Глаза открыты, соображаете вы или нет — другой вопрос.",
+            "uk": "«прокинувся, не спить». Очі розплющені, а чи міркуєте ви — то вже інше питання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-01:i02:r1",
+          "text": "awake"
+        },
+        {
+          "responseId": "en:lesson-02:session-01:i02:r2",
+          "text": "away"
+        },
+        {
+          "responseId": "en:lesson-02:session-01:i02:r3",
+          "text": "wake"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — awake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:i02:audio",
+          "transcript": "awake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-01:i02:r1",
+            "targetText": "awake",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i02:r2",
+            "targetText": "away",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i02:r3",
+            "targetText": "wake",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-01:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — awake",
+            "feedbackByLocale": {
+              "ru": "Это «прочь, в отъезде». Про сон в нём ничего нет.",
+              "uk": "Це «геть, у від'їзді». Про сон у ньому нічого немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — awake",
+            "feedbackByLocale": {
+              "ru": "То же слово без начального слога. В `awake` перед ним есть ещё один короткий слог.",
+              "uk": "Те саме слово без початкового складу. В `awake` перед ним є ще один короткий склад."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — thirsty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — thirsty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:i03:audio",
+          "transcript": "thirsty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-01:i03:r1",
+            "targetText": "thirsty",
+            "meaningByLocale": {
+              "ru": "«хочу пить». Горло сухое, и в голове только бутылка воды.",
+              "uk": "«хочу пити». У горлі сухо, і в голові тільки пляшка води."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thirsty",
+          "definitionByLocale": {
+            "ru": "«хочу пить». Горло сухое, и в голове только бутылка воды.",
+            "uk": "«хочу пити». У горлі сухо, і в голові тільки пляшка води."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-01:i04:r1",
+          "text": "thirsty"
+        },
+        {
+          "responseId": "en:lesson-02:session-01:i04:r2",
+          "text": "thirty"
+        },
+        {
+          "responseId": "en:lesson-02:session-01:i04:r3",
+          "text": "sixty"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — thirsty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:i04:audio",
+          "transcript": "thirsty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-01:i04:r1",
+            "targetText": "thirsty",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i04:r2",
+            "targetText": "thirty",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i04:r3",
+            "targetText": "sixty",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-01:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — thirsty",
+            "feedbackByLocale": {
+              "ru": "Это «тридцать», число. Речь была не про счёт, а про воду.",
+              "uk": "Це «тридцять», число. Мова була не про лічбу, а про воду."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — thirsty",
+            "feedbackByLocale": {
+              "ru": "Это «шестьдесят». Тоже число, к жажде отношения не имеет.",
+              "uk": "Це «шістдесят». Теж число, до спраги стосунку не має."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите, проснулся ли сосед",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите, проснулся ли сосед",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are you awake?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите, проснулся ли сосед",
+          "uk": "Складіть фразу — запитайте, чи прокинувся сусід"
+        },
+        "orderedTokens": [
+          "Are",
+          "you",
+          "awake"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hungry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hungry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:i06:audio",
+          "transcript": "hungry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-01:i06:r1",
+            "targetText": "hungry",
+            "meaningByLocale": {
+              "ru": "«голодный». Желудок уже подаёт голос, а завтрака нет.",
+              "uk": "«голодний». Шлунок уже подає голос, а сніданку немає."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hungry",
+          "definitionByLocale": {
+            "ru": "«голодный». Желудок уже подаёт голос, а завтрака нет.",
+            "uk": "«голодний». Шлунок уже подає голос, а сніданку немає."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dizzy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dizzy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:i07:audio",
+          "transcript": "dizzy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-01:i07:r1",
+            "targetText": "dizzy",
+            "meaningByLocale": {
+              "ru": "«голова кружится». Комната качнулась, хотя вы стоите на месте.",
+              "uk": "«голова паморочиться». Кімната хитнулася, хоча ви стоїте на місці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dizzy",
+          "definitionByLocale": {
+            "ru": "«голова кружится». Комната качнулась, хотя вы стоите на месте.",
+            "uk": "«голова паморочиться». Кімната хитнулася, хоча ви стоїте на місці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-01:i08:r1",
+          "text": "dizzy"
+        },
+        {
+          "responseId": "en:lesson-02:session-01:i08:r2",
+          "text": "busy"
+        },
+        {
+          "responseId": "en:lesson-02:session-01:i08:r3",
+          "text": "lucky"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — dizzy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:i08:audio",
+          "transcript": "dizzy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-01:i08:r1",
+            "targetText": "dizzy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i08:r2",
+            "targetText": "busy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i08:r3",
+            "targetText": "lucky",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-01:i08:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — dizzy",
+            "feedbackByLocale": {
+              "ru": "Это «занят». Про самочувствие оно ничего не говорит.",
+              "uk": "Це «зайнятий». Про самопочуття воно нічого не каже."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — dizzy",
+            "feedbackByLocale": {
+              "ru": "Это «везучий». К кружению головы отношения не имеет.",
+              "uk": "Це «щасливчик, везучий». До паморочення в голові стосунку не має."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сосед протягивает бутерброд и спрашивает про еду",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-01:i09:r1",
+          "text": "hungry"
+        },
+        {
+          "responseId": "en:lesson-02:session-01:i09:r2",
+          "text": "dizzy"
+        },
+        {
+          "responseId": "en:lesson-02:session-01:i09:r3",
+          "text": "awake"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сосед протягивает бутерброд и спрашивает про еду",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сосед протягивает бутерброд и спрашивает про еду",
+          "uk": "Вставте слово — сусід простягає бутерброд і питає про їжу"
+        },
+        "gappedTargetPhrase": "Are you ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-01:i09:r1",
+            "text": "hungry"
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i09:r2",
+            "text": "dizzy"
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i09:r3",
+            "text": "awake"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сосед протягивает бутер",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-01:i09:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сосед протягивает бутер",
+            "feedbackByLocale": {
+              "ru": "Это про кружение головы. Бутерброд тут не поможет.",
+              "uk": "Це про паморочення в голові. Бутерброд тут не допоможе."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сосед протягивает бутер",
+            "feedbackByLocale": {
+              "ru": "Это «проснулся». Спрашивают не об этом, а про голод.",
+              "uk": "Це «прокинувся». Питають не про це, а про голод."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lost",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lost",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:i10:audio",
+          "transcript": "lost"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-01:i10:r1",
+            "targetText": "lost",
+            "meaningByLocale": {
+              "ru": "«заблудился». Улицы вокруг незнакомые, и куда идти — непонятно.",
+              "uk": "«заблукав». Вулиці навколо незнайомі, і куди йти — незрозуміло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lost",
+          "definitionByLocale": {
+            "ru": "«заблудился». Улицы вокруг незнакомые, и куда идти — непонятно.",
+            "uk": "«заблукав». Вулиці навколо незнайомі, і куди йти — незрозуміло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-01:i11:r1",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-02:session-01:i11:r2",
+          "text": "thirsty"
+        },
+        {
+          "responseId": "en:lesson-02:session-01:i11:r3",
+          "text": "hungry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь",
+          "uk": "Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся"
+        },
+        "gappedTargetPhrase": "Сосед спрашивает: Are you ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-01:i11:r1",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i11:r2",
+            "text": "thirsty"
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i11:r3",
+            "text": "hungry"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы стоите с картой на у",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-01:i11:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы стоите с картой на у",
+            "feedbackByLocale": {
+              "ru": "Это «хотите пить?». Карта в руках говорит о другом.",
+              "uk": "Це «хочете пити?». Карта в руках говорить про інше."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы стоите с картой на у",
+            "feedbackByLocale": {
+              "ru": "Это про голод. С картой на углу человек ищет дорогу.",
+              "uk": "Це про голод. З картою на розі людина шукає дорогу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — начало вопроса",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-01:i12:r1",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-02:session-01:i12:r2",
+          "text": "Am"
+        },
+        {
+          "responseId": "en:lesson-02:session-01:i12:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — начало вопроса",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — начало вопроса",
+          "uk": "Вставте слово — початок запитання"
+        },
+        "gappedTargetPhrase": "",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-01:i12:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i12:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i12:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Вставьте слово — начало вопроса",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-01:i12:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — начало вопроса",
+            "feedbackByLocale": {
+              "ru": "Эта форма про себя: `I am`. К собеседнику она не идёт.",
+              "uk": "Ця форма про себе: `I am`. До співрозмовника вона не йде."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — начало вопроса",
+            "feedbackByLocale": {
+              "ru": "Эта форма про кого-то третьего. К `you` идёт `are`.",
+              "uk": "Ця форма про когось третього. До `you` іде `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «вы хотите пить?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «вы хотите пить?»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:i13:audio",
+          "transcript": "Are you thirsty?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are you thirsty?",
+        "orderedTokens": [
+          "Are",
+          "you",
+          "thirsty"
+        ],
+        "authoredDistractorTokens": [
+          "hungry"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-01:i14:p1",
+            "target": "awake",
+            "meaningByLocale": {
+              "ru": "проснулся",
+              "uk": "прокинувся"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-01:i14:p2",
+            "target": "thirsty",
+            "meaningByLocale": {
+              "ru": "хочу пить",
+              "uk": "хочу пити"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-01:i14:p3",
+            "target": "hungry",
+            "meaningByLocale": {
+              "ru": "голодный",
+              "uk": "голодний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-01:i14:p4",
+            "target": "dizzy",
+            "meaningByLocale": {
+              "ru": "голова кружится",
+              "uk": "голова паморочиться"
+            }
+          }
+        ],
+        "leftColumn": [
+          "awake",
+          "thirsty",
+          "hungry",
+          "dizzy"
+        ],
+        "rightColumn": [
+          "проснулся",
+          "хочу пить",
+          "голодный",
+          "голова кружится"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы резко встали и схватились за стену; сосед спрашивает про голову",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы резко встали и схватились за стену; сосед спрашивает про голову",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are you dizzy?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы резко встали и схватились за стену; сосед спрашивает про голову",
+          "uk": "Складіть фразу — ви різко встали і схопилися за стіну; сусід питає про голову"
+        },
+        "orderedTokens": [
+          "Are",
+          "you",
+          "dizzy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу без подсказки — сосед вернулся с улицы и разглядывает вывеску за окном; спросите, не заблудился ли он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу без подсказки — сосед вернулся с улицы и разглядывает вывеску за окном; спросите, не заблудился ли он",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are you lost?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу без подсказки — сосед вернулся с улицы и разглядывает вывеску за окном; спросите, не заблудился ли он",
+          "uk": "Складіть фразу без підказки — сусід повернувся з вулиці і роздивляється вивіску за вікном; запитайте, чи він не заблукав"
+        },
+        "orderedTokens": [
+          "Are",
+          "you",
+          "lost"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-01:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — финал сцены",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — финал сцены",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-01:i17:audio",
+          "transcript": "Are you awake? Are you hungry? Are you thirsty?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you awake? Are you hungry? Are you thirsty?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a8b6b61776e8349fbb1963e42208138c4980574853c9a7282c4c87ab8d69f6ce"
+}

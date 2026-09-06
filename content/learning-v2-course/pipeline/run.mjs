@@ -778,7 +778,7 @@ function stageEdit(S, ctx, plan, row, known, file, verdicts) {
   // зачем: 03.09 вторая правка починила интро 3 и СЛОМАЛА интро 1 — редактор
   // не видел последствий своей работы до следующего круга. Сверяем сразу и
   // даём одну попытку доправить, называя, что именно он сломал или не закрыл.
-  const hard = (p) => machineFacts(p).split("\n").filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ/.test(l));
+  const hard = (p) => machineFacts(p).split("\n").filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА/.test(l));
   const left = hard(f);
   if (left.length) {
     LOG(`   после правки осталось незакрытым (${left.length}): ${left.map((l) => l.split("—")[0].trim()).join("; ")}`);
@@ -986,7 +986,7 @@ function main() {
     // настроения судьи: пока он не закрыт, сессия не выпускается.
     const hardFacts = machineFacts(cur.f)
       .split("\n")
-      .filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ/.test(l));
+      .filter((l) => /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА/.test(l));
     if (hardFacts.length) {
       WARN(`СТОП перед локализацией — не закрытые машинные факты:\n  ${hardFacts.join("\n  ")}`);
       write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blockedBy: "machine_facts", facts: hardFacts, at: new Date().toISOString() }, null, 2));
@@ -1011,6 +1011,19 @@ function main() {
     if (finalBlocked.length) WARN(`финал несёт блок: ${finalBlocked.join(", ")} — нужен разбор`);
     const loc = stageLocalize(S, finalRu);
     write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: finalScore, converged: finalScore >= 6 && !finalBlocked.length, needsHumanReview: finalScore < 6 || finalBlocked.length > 0 || brokenTasks.length > 0, brokenTasks: brokenTasks.length ? brokenTasks : undefined, blocked: finalBlocked.length ? finalBlocked : undefined, draftScore: cur.s, locales: loc, at: new Date().toISOString() }, null, 2));
+    // зачем: владелец спросил «почему макет не позволяет выбирать сессии
+    // урока 2» — макет ничего не запрещал, он был собран ДО того, как эти
+    // сессии появились. Пересобираем сами: релиз этой сессии и общий макет,
+    // чтобы владелец всегда открывал свежее, а не спрашивал о свежести.
+    try {
+      const rel = spawnSync(process.execPath, [path.join(HERE, "build_release.mjs"), "--session", SESSION], { encoding: "utf8" });
+      if (rel.status !== 0) WARN(`сборка релиза не прошла (код ${rel.status}) — макет не обновлён`);
+      else {
+        const mock = spawnSync(process.execPath, [path.join(HERE, "build_mockup.mjs")], { encoding: "utf8" });
+        if (mock.status !== 0) WARN(`макет не пересобрался (код ${mock.status})`);
+        else LOG(String(mock.stdout || "").split(String.fromCharCode(10)).find((l) => l.includes("сессий в макете")) || "макет пересобран");
+      }
+    } catch (e) { WARN(`автосборка макета не запустилась: ${e.message}`); }
     return;
   }
   LOG("ранний выход: неизвестная команда", cmd);

@@ -1,0 +1,101 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "thirsty",
+      "dizzy"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "away/wake похожи по звучанию на awake"
+      },
+      {
+        "task": 4,
+        "trap": "thirty/dirty похожи по звучанию на thirsty"
+      },
+      {
+        "task": 8,
+        "trap": "busy/easy похожи по звучанию на dizzy"
+      },
+      {
+        "task": 9,
+        "trap": "dizzy/awake — правдоподобные конкурирующие состояния"
+      },
+      {
+        "task": 11,
+        "trap": "thirsty/hungry — правдоподобные конкурирующие состояния"
+      },
+      {
+        "task": 12,
+        "trap": "Am/Is — реалистичная путаница форм be"
+      }
+    ],
+    "silly": [
+      {
+        "task": 15,
+        "trap": "лишнее `are` в плитках (Are you dizzy are)",
+        "better": "приемлемо как обманка на внимательность (п.15 разрешает 1-2 на сессию)"
+      },
+      {
+        "task": 16,
+        "trap": "лишнее `not` в плитках",
+        "better": "приемлемо как вторая обманка на внимательность — но это уже вторая подряд, ровно на пределе допустимого (1-2 на сессию)"
+      }
+    ],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "awake",
+        "thirsty",
+        "hungry",
+        "dizzy"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      15,
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 5,
+      "listen_choose": 3,
+      "phrase_builder": 3,
+      "context_gap_grammar": 3,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Обе интро-страницы длиннее нормы 240–290 знаков (347 знаков каждая, по машинным фактам) — нужно сократить за счёт разгона, а не образа."
+}

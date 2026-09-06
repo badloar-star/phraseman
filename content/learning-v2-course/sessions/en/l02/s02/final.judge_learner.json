@@ -1,0 +1,144 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Чтобы спросить человека о нём, вперёд ставится 'Are you', потом слово. Показано на cold/ok.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "comfortable - удобно, про тело/стул/кровать. Вопрос собирается так же: Are you comfortable?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "upset - расстроен, не злой, а именно расстроен из-за чего-то. Are you upset?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка comfortable)",
+      "what_i_understood": "Повторили значение слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух comfortable)",
+      "what_i_understood": "Выбрал полное слово, не обрубки comfort/company.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка upset)",
+      "what_i_understood": "Повторили значение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (слух upset)",
+      "what_i_understood": "Выбрал целое слово, не половинки up/set.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка фразы про стул)",
+      "what_i_understood": "Собрал Are you comfortable? из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (куртка+кружка)",
+      "what_i_understood": "Выбрал cold, потому что человек мёрзнет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (начало вопроса)",
+      "what_i_understood": "Are идёт с you, is и am тут не подходят.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (пары)",
+      "what_i_understood": "Соединил все 4 пары слово-перевод без проблем, все слова уже были даны раньше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (диктовка comfortable)",
+      "what_i_understood": "Собрал фразу по слуху, лишнее слово upset не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (сообщение в телефоне)",
+      "what_i_understood": "Выбрал upset - человек расстроился из-за сообщения.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (различие звуков)",
+      "what_i_understood": "Выбрал upset, а не обрубок up.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (сборка ok)",
+      "what_i_understood": "Собрал Are you ok?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (шаткий стул)",
+      "what_i_understood": "Выбрал comfortable, а не ok/cold.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (лишняя плитка is)",
+      "what_i_understood": "Собрал Are you cold?, не взял лишнее is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (диктовка upset)",
+      "what_i_understood": "Собрал Are you upset?, не взял лишнее cold.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (вслух, два вопроса)",
+      "what_i_understood": "Проговорил Are you cold? Are you ok? - понятно зачем, обхожу стол.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, 4 вопроса)",
+      "what_i_understood": "Проговорил все четыре вопроса подряд без подсказок, справился, потому что все слова уже отработаны.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как строить вопрос о собеседнике: Are you + слово (а не голосовая интонация, как по-русски)",
+    "Слово comfortable - удобно (про тело/место)",
+    "Слово upset - расстроен",
+    "Что are, а не is или am, идёт с you"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с курткой и кружкой в задании 6 - понятно, что человеку холодно, и я сам это вижу по описанию, а не по подсказке в лоб",
+    "Задание 10 с сообщением в телефоне - естественная ситуация, легко понять, что не про холод и не про стул",
+    "Финал (17) - реально почувствовал, что обхожу кухню и спрашиваю разных людей, а не просто щёлкаю кнопки"
+  ],
+  "felt_dead": [
+    "Карточки слов (1, 3) - справочные, но это нормально, они и должны быть суховатыми перед практикой"
+  ],
+  "scene_reason": "Да, понятно: я в хостеле утром, обхожу общую кухню и спрашиваю разных людей, как они - замёрзли, удобно ли им, расстроены ли, всё ли нормально. Каждый вопрос привязан к конкретной детали (куртка+кружка, шаткий стул, сообщение в телефоне), так что я понимаю, кому и почему говорю фразу.",
+  "would_continue": "да - слов немного, каждое разжёвано с примером до того, как спросят, задания идут от лёгкого к сложному, а сцена простая и понятная с первой секунды",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно без незнакомых слов в правильных ответах, оба новых слова введены до практики и повторены много раз, сцена понятна с первого интро."
+}

@@ -1,0 +1,143 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Чтобы спросить кого-то «ты проснулся?», надо поставить `are` в начало: `Are you awake?`. Обычное утверждение — `You are awake`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Два новых слова: hungry (голодный) и thirsty (хочу пить). Вопрос строится так же: `Are you hungry?`",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "dizzy (кружится голова) и lost (заблудился) — оба про растерянность, но разные ситуации.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка awake)",
+      "what_i_understood": "awake = проснулся",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (на слух awake)",
+      "what_i_understood": "Выбрал awake, отличил от away и wake по объяснению.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка thirsty)",
+      "what_i_understood": "thirsty = хочу пить",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (на слух thirsty)",
+      "what_i_understood": "Отличил от thirty и dirty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка Are you awake?)",
+      "what_i_understood": "Собрал из плиток, лишнее am не тронул.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (карточка hungry)",
+      "what_i_understood": "hungry = голодный",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (карточка dizzy)",
+      "what_i_understood": "dizzy = голова кружится",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (на слух dizzy)",
+      "what_i_understood": "Отличил от busy и easy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (вставка — бутерброд)",
+      "what_i_understood": "Про еду спрашивают — hungry, а не dizzy или awake.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (карточка lost)",
+      "what_i_understood": "lost = заблудился",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (вставка — карта на углу)",
+      "what_i_understood": "Ситуация с картой = lost, не про еду и не про питьё.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (Are/Am/Is)",
+      "what_i_understood": "К you идёt are, не am и не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (диктовка Are you thirsty?)",
+      "what_i_understood": "Собрал по звуку, не взял лишнее hungry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (пары)",
+      "what_i_understood": "Соединил все 4 слова с переводом без проблем — уже видел их в карточках.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (сборка dizzy, ловушка are)",
+      "what_i_understood": "Понял, что лишнее are не нужно — в вопросе одна связка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (сборка lost, ловушка not)",
+      "what_i_understood": "not не нужен, вопрос без отрицания.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (сказать вслух 3 вопроса)",
+      "what_i_understood": "Проговорил все три вопроса подряд, чувствовал что это финал сцены.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Чтобы спросить человека «ты какой-то?», ставлю are первым словом: Are you + слово",
+    "Новое слово hungry — голодный",
+    "Новое слово thirsty — хочу пить",
+    "Новое слово dizzy — голова кружится",
+    "Новое слово lost — заблудился",
+    "В вопросе с are нет никакого 'not' и нет второго 'are' — я это увидел на ловушках"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с соседом по хостелу, который будит вопросами утром — понятно, зачем я это говорю и кому",
+    "Задание 17 в конце, где всё складывается в маленький разговор — приятно, что дошёл до этого"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: я в хостеле, сосед пристаёт с вопросами с утра, и я либо спрашиваю его в ответ, либо отвечаю сам себе, что происходит. Каждая фраза привязана к конкретному моменту (трясёт за плечо, протягивает печенье, я качнулся вставая, стою с картой).",
+  "would_continue": "да — задания шли по нарастающей сложности, ловушки заставляли думать, а не машинально тыкать, и к концу я реально мог сам произнести три вопроса подряд без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "Я прошёл всё честно, ни одно задание не требовало незнакомого, узнал новую конструкцию и четыре слова, и было понятно, зачем я это говорю."
+}

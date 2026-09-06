@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-02:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i02",
+    "correctText": "comfortable",
+    "correctResponseId": "en:lesson-02:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i04",
+    "correctText": "upset",
+    "correctResponseId": "en:lesson-02:session-02:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i05",
+    "correctText": "Are you comfortable?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i06",
+    "correctText": "cold",
+    "correctResponseId": "en:lesson-02:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i07",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-02:session-02:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i09",
+    "correctText": "Are you comfortable?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i10",
+    "correctText": "upset",
+    "correctResponseId": "en:lesson-02:session-02:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i11",
+    "correctText": "upset",
+    "correctResponseId": "en:lesson-02:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i12",
+    "correctText": "Are you ok?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i13",
+    "correctText": "comfortable",
+    "correctResponseId": "en:lesson-02:session-02:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i14",
+    "correctText": "Are you cold?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i15",
+    "correctText": "Are you upset?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i16",
+    "correctText": "Are you cold? Are you ok?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-02:i17",
+    "correctText": "Are you cold? Are you comfortable? Are you upset? Are you ok?",
+    "correctResponseId": null
+  }
+]

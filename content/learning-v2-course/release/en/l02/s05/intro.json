@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "контраст `You are + слово` ↔ `Are you + слово?`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два слова, два порядка",
+        "uk": "Два слова, два порядки"
+      },
+      "bodyByLocale": {
+        "ru": "`You are ready` — «ты готов»: это сообщение. Поменяйте два первых слова местами — выйдет вопрос: `Are you ready?` Само слово не меняется.\n\nРука будет тянуться спросить `You are ready?` — по-русски мы только поднимаем голос. По-английски так можно, но звучит как удивление: «ты что, готов?!»",
+        "uk": "`You are ready` — «ти готовий»: це повідомлення. Поміняйте два перші слова місцями — вийде питання: `Are you ready?` Саме слово не змінюється.\n\nРука тягтиметься спитати `You are ready?` — українською ми лише піднімаємо голос. Англійською так теж можна, але звучить як подив: «ти що, готовий?!»"
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Сосед стоит у двери с рюкзаком. Вы хотите узнать, готов ли он идти.",
+          "uk": "Сусід стоїть біля дверей із рюкзаком. Ви хочете дізнатися, чи готовий він іти."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-05:intro1:r1",
+              "text": "Are you ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-05:intro1:r2",
+              "text": "You are ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-05:intro1:r3",
+              "text": "Are ready you?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-05:intro1:r1",
+              "text": "Are you ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-05:intro1:r2",
+              "text": "You are ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-05:intro1:r3",
+              "text": "Are ready you?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сосед стоит у двери с рюкзаком. Вы хотите узнать, готов ли он идти.",
+          "uk": "Сусід стоїть біля дверей із рюкзаком. Ви хочете дізнатися, чи готовий він іти."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда вы говорите, а не спрашиваете",
+        "uk": "Коли ви кажете, а не питаєте"
+      },
+      "bodyByLocale": {
+        "ru": "`lost` — «заблудился». Человек вертит карту так и сяк — тут всё ясно. Порядок обычный: `You are lost`, `are` вторым, и звучит как факт.\n\nЛовушка наоборот: после `Are you ready?` рука привыкает выносить `are` вперёд и норовит делать так везде. Но `Are you lost?` — уже вопрос.",
+        "uk": "`lost` — «заблукав». Людина крутить мапу так і сяк — тут усе зрозуміло. Порядок звичайний: `You are lost`, `are` другим, і звучить як факт.\n\nПастка навпаки: після `Are you ready?` рука звикає виносити `are` наперед і намагається робити так усюди. Але `Are you lost?` — це вже питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Парень у входа третий раз перевернул карту и ушёл не туда, куда собирался. Скажите ему, что он заблудился.",
+          "uk": "Хлопець біля входу втретє перевернув мапу й пішов не туди, куди збирався. Скажіть йому, що він заблукав."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-05:intro2:r1",
+              "text": "You are lost."
+            },
+            {
+              "responseId": "en:lesson-02:session-05:intro2:r2",
+              "text": "Are you lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-05:intro2:r3",
+              "text": "You lost."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-05:intro2:r1",
+              "text": "You are lost."
+            },
+            {
+              "responseId": "en:lesson-02:session-05:intro2:r2",
+              "text": "Are you lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-05:intro2:r3",
+              "text": "You lost."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Парень у входа третий раз перевернул карту и ушёл не туда, куда собирался. Скажите ему, что он заблудился.",
+          "uk": "Хлопець біля входу втретє перевернув мапу й пішов не туди, куди збирався. Скажіть йому, що він заблукав."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одно и то же слово, разный порядок",
+        "uk": "Одне й те саме слово, різний порядок"
+      },
+      "bodyByLocale": {
+        "ru": "`thirsty` — «хочется пить». Слово одно, а сказать с ним можно две разные вещи.\n\n`You are thirsty` — «тебе хочется пить»: вы утверждаете. `Are you thirsty?` — «пить хочешь?»: спрашиваете. Разница — какое слово первое.\n\nПереставили два слова — и вместо вопроса сообщили: у него сухо в горле.",
+        "uk": "`thirsty` — «хочеться пити». Слово одне, а сказати з ним можна дві різні речі.\n\n`You are thirsty` — «тобі хочеться пити»: ви стверджуєте. `Are you thirsty?` — «пити хочеш?»: питаєте. Різниця — яке слово перше.\n\nПереставили два слова — і замість питання повідомили: у нього пересохло в горлі."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы наливаете себе воду и хотите предложить соседу. Спросите, хочет ли он пить.",
+          "uk": "Ви наливаєте собі води й хочете запропонувати сусідові. Спитайте, чи хоче він пити."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-05:intro3:r1",
+              "text": "Are you thirsty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-05:intro3:r2",
+              "text": "You are thirsty."
+            },
+            {
+              "responseId": "en:lesson-02:session-05:intro3:r3",
+              "text": "Are thirsty you?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-05:intro3:r1",
+              "text": "Are you thirsty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-05:intro3:r2",
+              "text": "You are thirsty."
+            },
+            {
+              "responseId": "en:lesson-02:session-05:intro3:r3",
+              "text": "Are thirsty you?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы наливаете себе воду и хотите предложить соседу. Спросите, хочет ли он пить.",
+          "uk": "Ви наливаєте собі води й хочете запропонувати сусідові. Спитайте, чи хоче він пити."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3b19b9a69547f3c38845b87977979e6fbb6b258f19c9f53ad28a4ec3fa075742"
+}

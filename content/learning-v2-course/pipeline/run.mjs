@@ -235,6 +235,12 @@ function checkSingleAnswer(file, label) {
 // зачем: один список машинных фактов-блокеров на весь конвейер. Раньше эта
 // регулярка жила в двух местах и шесть раз ломалась при правке через heredoc
 // (съедало обратные слэши) — расхождение молча выпускало сессию с дефектом.
+// Целевая длина интро (её видит автор в правилах) и допуск, за которым
+// выпуск блокируется. Цель и блокировка — РАЗНЫЕ числа намеренно.
+const INTRO_LEN_MIN = 240;
+const INTRO_LEN_MAX = 290;
+const INTRO_LEN_TOLERANCE = 30;
+
 const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА/;
 
 function machineFacts(file) {
@@ -263,8 +269,12 @@ function machineFacts(file) {
   introPages.forEach((page, k) => {
     const body = page.split(String.fromCharCode(10) + "**")[0].split(String.fromCharCode(10)).filter((x) => !x.trim().startsWith("###")).join(String.fromCharCode(10)).trim();
     const L = body.length;
-    if (L < 240) facts.push(`интро ${k + 1}: ДЛИНА ${L} знаков — короче нормы 240-290, добавь пользы о слове (не воды)`);
-    else if (L > 290) facts.push(`интро ${k + 1}: ДЛИНА ${L} знаков — длиннее нормы 240-290, убери повтор или разгон`);
+    // зачем: владелец 06.09 — «перебор на 4 знака это вообще не проблема,
+    // дай окно +-30, ничего страшного». Цель 240-290 автор видит в правилах,
+    // но блокирует выпуск только выход за допуск: сессия 5 прошла четыре
+    // круга подрезки ради 3-5 знаков — это дороже пользы.
+    if (L < INTRO_LEN_MIN - INTRO_LEN_TOLERANCE) facts.push(`интро ${k + 1}: ДЛИНА ${L} знаков — короче нормы ${INTRO_LEN_MIN}-${INTRO_LEN_MAX} даже с допуском ${INTRO_LEN_TOLERANCE}, добавь пользы о слове (не воды)`);
+    else if (L > INTRO_LEN_MAX + INTRO_LEN_TOLERANCE) facts.push(`интро ${k + 1}: ДЛИНА ${L} знаков — длиннее нормы ${INTRO_LEN_MIN}-${INTRO_LEN_MAX} даже с допуском ${INTRO_LEN_TOLERANCE}, убери повтор или разгон`);
   });
   for (const [re, name] of BACKREFS) {
     const hits = introPart.match(re) || [];

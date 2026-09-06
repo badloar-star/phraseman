@@ -1,0 +1,904 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-05",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите соседа, готов ли он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите соседа, готов ли он",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are you ready?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите соседа, готов ли он",
+          "uk": "Складіть фразу — спитайте сусіда, чи він готовий"
+        },
+        "orderedTokens": [
+          "Are",
+          "you",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите человеку с картой, что он заблудился",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите человеку с картой, что он заблудился",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are lost.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите человеку с картой, что он заблудился",
+          "uk": "Складіть фразу — скажіть людині з мапою, що вона заблукала"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "lost"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вопрос про воду",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-05:i03:r1",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i03:r2",
+          "text": "You"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i03:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вопрос про воду",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вопрос про воду",
+          "uk": "Вставте слово — питання про воду"
+        },
+        "gappedTargetPhrase": "",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-05:i03:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i03:r2",
+            "text": "You"
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i03:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вопрос про воду",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-05:i03:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вопрос про воду",
+            "feedbackByLocale": {
+              "ru": "Тогда получится сообщение, а не вопрос. В вопросе первым стоит `are`.",
+              "uk": "Тоді вийде повідомлення, а не питання. У питанні першим стоїть `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вопрос про воду",
+            "feedbackByLocale": {
+              "ru": "Чужая пара. С `you` идёт `are`, и в вопросе оно выходит вперёд.",
+              "uk": "Чужа пара. З `you` ходить `are`, і в питанні воно виходить наперед."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сообщение, а не вопрос",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-05:i04:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i04:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i04:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сообщение, а не вопрос",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сообщение, а не вопрос",
+          "uk": "Вставте слово — повідомлення, а не питання"
+        },
+        "gappedTargetPhrase": "You ___ hungry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-05:i04:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i04:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i04:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сообщение, а не вопрос",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-05:i04:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сообщение, а не вопрос",
+            "feedbackByLocale": {
+              "ru": "Не для `you`. `is` идёт с ним и с ней, а тут `you are`.",
+              "uk": "Не для `you`. `is` ходить із «він» і «вона», а тут `you are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сообщение, а не вопрос",
+            "feedbackByLocale": {
+              "ru": "`am` только про себя: `I am`. Про собеседника — `are`.",
+              "uk": "`am` тільки про себе: `I am`. Про співрозмовника — `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — что вы услышали?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-05:i05:r1",
+          "text": "Are you awake?"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i05:r2",
+          "text": "You are awake."
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i05:r3",
+          "text": "Are awake you?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-05:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — что вы услышали?",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-05:i05:audio",
+          "transcript": "Are you awake?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-05:i05:r1",
+            "targetText": "Are you awake?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i05:r2",
+            "targetText": "You are awake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i05:r3",
+            "targetText": "Are awake you?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-05:i05:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что вы услышали?",
+            "feedbackByLocale": {
+              "ru": "Слова те же, но первым прозвучало `are` — значит это вопрос.",
+              "uk": "Слова ті самі, але першим прозвучало `are` — отже це питання."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что вы услышали?",
+            "feedbackByLocale": {
+              "ru": "`you` шло сразу за `are`, а не в конце.",
+              "uk": "`you` йшло одразу за `are`, а не в кінці."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — что вы услышали?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-05:i06:r1",
+          "text": "You are cold."
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i06:r2",
+          "text": "Are you cold?"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i06:r3",
+          "text": "You cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-05:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — что вы услышали?",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-05:i06:audio",
+          "transcript": "You are cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-05:i06:r1",
+            "targetText": "You are cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i06:r2",
+            "targetText": "Are you cold?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i06:r3",
+            "targetText": "You cold.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-05:i06:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что вы услышали?",
+            "feedbackByLocale": {
+              "ru": "Тогда первым прозвучало бы `are`. А здесь первым было `you`.",
+              "uk": "Тоді першим прозвучало б `are`. А тут першим було `you`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что вы услышали?",
+            "feedbackByLocale": {
+              "ru": "`are` в записи есть, между `you` и `cold`.",
+              "uk": "`are` у записі є, між `you` і `cold`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-05:i07:p1",
+            "target": "ready",
+            "meaningByLocale": {
+              "ru": "готов",
+              "uk": "готовий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-05:i07:p2",
+            "target": "lost",
+            "meaningByLocale": {
+              "ru": "заблудился",
+              "uk": "заблукав"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-05:i07:p3",
+            "target": "thirsty",
+            "meaningByLocale": {
+              "ru": "хочется пить",
+              "uk": "хочеться пити"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-05:i07:p4",
+            "target": "hungry",
+            "meaningByLocale": {
+              "ru": "голодный",
+              "uk": "голодний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ready",
+          "lost",
+          "thirsty",
+          "hungry"
+        ],
+        "rightColumn": [
+          "готов",
+          "заблудился",
+          "хочется пить",
+          "голодный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сосед лежит с закрытыми глазами, но что-то бормочет. Вы проверяете, проснулся ли он",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-05:i08:r1",
+          "text": "awake"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i08:r2",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i08:r3",
+          "text": "thirsty"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сосед лежит с закрытыми глазами, но что-то бормочет. Вы проверяете, проснулся ли он",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сосед лежит с закрытыми глазами, но что-то бормочет. Вы проверяете, проснулся ли он",
+          "uk": "Вставте слово — сусід лежить із заплющеними очима, але щось бурмоче. Ви перевіряєте, чи він прокинувся"
+        },
+        "gappedTargetPhrase": "Are you ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-05:i08:r1",
+            "text": "awake"
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i08:r2",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i08:r3",
+            "text": "thirsty"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сосед лежит с закрытыми",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-05:i08:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сосед лежит с закрытыми",
+            "feedbackByLocale": {
+              "ru": "«Заблудился» — про дорогу. Человек в кровати никуда не шёл.",
+              "uk": "«Заблукав» — про дорогу. Людина в ліжку нікуди не йшла."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сосед лежит с закрытыми",
+            "feedbackByLocale": {
+              "ru": "Это про воду. А вы выясняете, спит он или нет.",
+              "uk": "Це про воду. А ви з'ясовуєте, спить він чи ні."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — за столом кто-то тянется к чужому бутерброду. Спросите, голоден ли он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — за столом кто-то тянется к чужому бутерброду. Спросите, голоден ли он",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are you hungry?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — за столом кто-то тянется к чужому бутерброду. Спросите, голоден ли он",
+          "uk": "Складіть фразу — за столом хтось тягнеться до чужого бутерброда. Спитайте, чи він голодний"
+        },
+        "orderedTokens": [
+          "Are",
+          "you",
+          "hungry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «ты заблудился»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-05:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «ты заблудился»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-05:i10:audio",
+          "transcript": "You are lost."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You are lost.",
+        "orderedTokens": [
+          "You",
+          "are",
+          "lost"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сосед сидит в куртке и держит кружку двумя руками. Спросите про холод",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-05:i11:r1",
+          "text": "cold"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i11:r2",
+          "text": "ready"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i11:r3",
+          "text": "hungry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сосед сидит в куртке и держит кружку двумя руками. Спросите про холод",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сосед сидит в куртке и держит кружку двумя руками. Спросите про холод",
+          "uk": "Вставте слово — сусід сидить у куртці й тримає горня двома руками. Спитайте про холод"
+        },
+        "gappedTargetPhrase": "Are you ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-05:i11:r1",
+            "text": "cold"
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i11:r2",
+            "text": "ready"
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i11:r3",
+            "text": "hungry"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сосед сидит в куртке и ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-05:i11:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сосед сидит в куртке и ",
+            "feedbackByLocale": {
+              "ru": "«Готов» — про сборы. А куртка в помещении и кружка в двух руках — про другое.",
+              "uk": "«Готовий» — про збори. А куртка в приміщенні й горня в двох руках — про інше."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сосед сидит в куртке и ",
+            "feedbackByLocale": {
+              "ru": "Кружку греют не от голода.",
+              "uk": "Горня гріють не від голоду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — человек залпом выпил стакан и смотрит на графин. Скажите ему, что он хочет пить",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — человек залпом выпил стакан и смотрит на графин. Скажите ему, что он хочет пить",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are thirsty.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — человек залпом выпил стакан и смотрит на графин. Скажите ему, что он хочет пить",
+          "uk": "Складіть фразу — людина залпом випила склянку й дивиться на глек. Скажіть їй, що вона хоче пити"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "thirsty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Различите звуки — какое из двух про «готов»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-05:i13:r1",
+          "text": "ready"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i13:r2",
+          "text": "already"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Различите звуки — какое из двух про «готов»?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "ready",
+        "contrastB": "already",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": null,
+        "audioB": null,
+        "testedPhoneticContrast": "Различите звуки — какое из двух про «гот",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-05:i13:r1",
+            "correct": false,
+            "testedDimension": "Различите звуки — какое из двух про «гот",
+            "feedbackByLocale": {
+              "ru": "Это «уже», и в нём на слог больше: спереди добавляется «ол».",
+              "uk": "Це «вже», і в ньому на склад більше: спереду додається «ол»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — все уже во дворе, а вы у двери. Спросите, проснулся ли последний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — все уже во дворе, а вы у двери. Спросите, проснулся ли последний",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are you awake?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — все уже во дворе, а вы у двери. Спросите, проснулся ли последний",
+          "uk": "Складіть фразу — усі вже у дворі, а ви біля дверей. Спитайте, чи прокинувся останній"
+        },
+        "orderedTokens": [
+          "Are",
+          "you",
+          "awake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы стоите с ключами и ждёте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-05:i15:r1",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i15:r2",
+          "text": "You"
+        },
+        {
+          "responseId": "en:lesson-02:session-05:i15:r3",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы стоите с ключами и ждёте",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы стоите с ключами и ждёте",
+          "uk": "Вставте слово — ви стоїте з ключами й чекаєте"
+        },
+        "gappedTargetPhrase": "",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-05:i15:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i15:r2",
+            "text": "You"
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i15:r3",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы стоите с ключами и ж",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-05:i15:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы стоите с ключами и ж",
+            "feedbackByLocale": {
+              "ru": "Так выйдет сообщение «ты готов». А вы ждёте ответа.",
+              "uk": "Так вийде повідомлення «ти готовий». А ви чекаєте відповіді."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы стоите с ключами и ж",
+            "feedbackByLocale": {
+              "ru": "`am` — про себя. Спрашиваете вы про собеседника: `Are you`.",
+              "uk": "`am` — про себе. Питаєте ви про співрозмовника: `Are you`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-05:i16:p1",
+            "target": "awake",
+            "meaningByLocale": {
+              "ru": "проснулся",
+              "uk": "прокинувся"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-05:i16:p2",
+            "target": "cold",
+            "meaningByLocale": {
+              "ru": "замёрз",
+              "uk": "змерз"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-05:i16:p3",
+            "target": "are",
+            "meaningByLocale": {
+              "ru": "для «ты»",
+              "uk": "для «ти»"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-05:i16:p4",
+            "target": "am",
+            "meaningByLocale": {
+              "ru": "для «я»",
+              "uk": "для «я»"
+            }
+          }
+        ],
+        "leftColumn": [
+          "awake",
+          "cold",
+          "are",
+          "am"
+        ],
+        "rightColumn": [
+          "проснулся",
+          "замёрз",
+          "для «ты»",
+          "для «я»"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-05:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у двери, три реплики подряд",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-05:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у двери, три реплики подряд",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-05:i17:audio",
+          "transcript": "Are you ready? Are you thirsty? You are lost."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you ready? Are you thirsty? You are lost.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d016bc25e46b61d73c506787d8250e5df9cd6fb689d822a845c940e9430c27b4"
+}

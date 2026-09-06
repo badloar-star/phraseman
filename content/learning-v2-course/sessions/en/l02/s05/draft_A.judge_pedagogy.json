@@ -1,0 +1,88 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 3,
+        "trap": "You вместо Are — сообщение вместо вопроса"
+      },
+      {
+        "task": 8,
+        "trap": "lost/thirsty как отвлекающие по смыслу сцены"
+      },
+      {
+        "task": 11,
+        "trap": "ready/hungry не подходят по сцене с курткой и кружкой"
+      },
+      {
+        "task": 12,
+        "trap": "лишняя плитка Are при сборке утверждения"
+      },
+      {
+        "task": 15,
+        "trap": "You/Am вместо Are"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "ready",
+        "lost",
+        "thirsty",
+        "hungry"
+      ],
+      [
+        "awake",
+        "cold",
+        "are",
+        "am"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      12
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "phrase_builder": 6,
+      "context_gap_grammar": 5,
+      "listen_choose": 2,
+      "speed_match": 2,
+      "listen_build_dictation": 1,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Три интро-страницы превышают норму длины (425/419/395 знаков против 240–290), нужно сократить за счёт разгона, не трогая образ и шутку."
+}

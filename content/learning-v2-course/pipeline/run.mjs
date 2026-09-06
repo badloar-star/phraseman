@@ -112,7 +112,23 @@ function loadPlan(lang, lesson) {
     LOG("ранний выход: нет плана", p);
     process.exit(2);
   }
-  const lines = read(p).split(/\r?\n/);
+  // зачем: СЕКЦИЯ УРОКА. Параметр lesson принимался, но не использовался —
+  // читались все главы подряд и бралось первое совпадение по номеру. Урок 2
+  // получил строку урока 1 («I am + слово»). Режем файл по «## Урок N».
+  const all = read(p).split(/\r?\n/);
+  const lessonNum = Number(String(lesson).replace(/[^0-9]/g, "")) || 1;
+  const head = "## Урок " + lessonNum;
+  const startIdx = all.findIndex((l) => l.startsWith(head) && !/^[0-9]/.test(l.slice(head.length)));
+  let lines;
+  if (startIdx < 0) {
+    if (lessonNum === 1) lines = all;
+    else { LOG("ранний выход: в плане нет раздела «## Урок " + lessonNum + "»"); process.exit(2); }
+  } else {
+    let endIdx = all.findIndex((l, k) => k > startIdx && /^## Урок \d+/.test(l));
+    if (endIdx < 0) endIdx = all.length;
+    lines = all.slice(startIdx, endIdx);
+    LOG("план: читаю раздел «" + all[startIdx].trim() + "» (строк " + lines.length + ")");
+  }
   const rows = new Map();
   let scene = "";
   let arc = "";

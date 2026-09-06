@@ -2,140 +2,140 @@
   "walkthrough": [
     {
       "step": "Интро 1",
-      "what_i_understood": "Про неделю говорят через слово It, а к нему прибавляют is. Получается It is hard — «неделя тяжёлая». Если бы речь была о нескольких неделях, взяли бы are, но тут неделя одна.",
+      "what_i_understood": "Про неделю (одну вещь) говорят It is, не It are. Пример: It is hard.",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Интро 2",
-      "what_i_understood": "Everyone значит «все», но глагол при нём всё равно is, а не are, хотя людей много. Everyone is kind — «все добрые».",
-      "confusion": "Слегка странно, что при слове про многих людей берут is, а не are — но объяснение (что тут считается «каждый по одному») понятно, просто это надо запомнить как исключение.",
+      "what_i_understood": "Everyone значит 'все', но внутри спрятано 'каждый', поэтому скрепка is, а не are. Everyone is kind.",
+      "confusion": "Пришлось перечитать объяснение про 'каждого' дважды, но в итоге понял",
       "could_answer_question": true
     },
     {
       "step": "Интро 3",
-      "what_i_understood": "Alone — «один». Про себя — I am alone. Чтобы сказать «я не один», not ставится после am: I am not alone.",
+      "what_i_understood": "Чтобы сказать 'не', not ставится после скрепки: I am not alone.",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 1",
-      "what_i_understood": "Выбрал tired — про усталость после недели.",
+      "what_i_understood": "Выбрал tired, остальное не подходит по смыслу вопроса",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 2",
-      "what_i_understood": "На слух узнал week среди похожих по звучанию слов.",
+      "what_i_understood": "Услышал week, выбрал похожее по написанию",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 3",
-      "what_i_understood": "Everyone is kind — про хороших коллег.",
+      "what_i_understood": "Everyone is kind - про коллег",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 4",
-      "what_i_understood": "Собрал It is hard из плиток.",
+      "what_i_understood": "Собрал It is hard из плиток",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 5",
-      "what_i_understood": "Выбрал is, а не are/am, для Everyone.",
+      "what_i_understood": "Вставил is, не are",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 6",
-      "what_i_understood": "Собрал на слух I am tired.",
+      "what_i_understood": "Собрал I am tired по слуху",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 7",
-      "what_i_understood": "The flat is warm — про тёплую квартиру.",
+      "what_i_understood": "The flat is warm - про квартиру",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 8",
-      "what_i_understood": "Свёл пары слов и переводов: week, tired, kind, warm.",
+      "what_i_understood": "Собрал пары слов и переводов",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 9",
-      "what_i_understood": "Собрал I am not alone, не взял лишнее no.",
+      "what_i_understood": "I am not alone, не взял ловушку no",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 10",
-      "what_i_understood": "I am not alone — снова про то же самое.",
+      "what_i_understood": "I am not alone - про одиночество в квартире",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 11",
-      "what_i_understood": "На слух отличил warm от похожего по написанию worm.",
+      "what_i_understood": "warm и worm звучат похоже, но это разные слова, выбрал warm",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 12",
-      "what_i_understood": "Собрал на слух The flat is warm.",
+      "what_i_understood": "The flat is warm по слуху",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 13",
-      "what_i_understood": "Собрал It is not hard — неделя не тяжёлая.",
+      "what_i_understood": "It is not hard, не взял no",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 14",
-      "what_i_understood": "Выбрал is для It, не are/am.",
+      "what_i_understood": "The flat is not warm",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 15",
-      "what_i_understood": "Собрал I am not tired.",
+      "what_i_understood": "I am not tired, не взял no",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 16",
-      "what_i_understood": "Проговорил вслух I am not alone. Everyone is kind — понятно, зачем: успокоить брата по телефону.",
+      "what_i_understood": "Проговорил I am not alone. Everyone is kind.",
       "confusion": null,
       "could_answer_question": true
     },
     {
       "step": "Задание 17",
-      "what_i_understood": "Собрал итог сцены из четырёх фраз без подсказок: It is hard. I am tired. I am not alone. Everyone is kind. Все слова уже были отработаны раньше в сессии, справился сам.",
+      "what_i_understood": "Собрал все четыре фразы подряд, все слова уже знакомы из интро и заданий выше",
       "confusion": null,
       "could_answer_question": true
     }
   ],
   "learned_new": [
-    "Про неделю (week) говорю через it is, а не it are, даже если казалось, что недель было «как будто много»",
-    "Everyone — это «все», но глагол при нём is, а не are (запомнил как исключение)",
-    "Alone — «один», и я не один — I am not alone, с обязательным am",
-    "Различил на слух похожие слова: week/wick/walk и warm/worm"
+    "Про одну вещь (неделю, день, квартиру) говорю It is, а не It are",
+    "Everyone требует is, хотя речь идёт про многих людей — потому что внутри смысл 'каждый'",
+    "Not всегда встаёт сразу после скрепки (am/is/are), а не заменяет её и не идёт перед ней",
+    "Различил на слух похожие по звучанию warm и worm"
   ],
   "impossible_tasks": [],
   "boring_or_water": [],
   "felt_alive": [
-    "Сцена с братом на громкой связи, пока моешь посуду — понятная, бытовая, я сразу представил ситуацию",
-    "Задание 17 в конце, где нужно связать все четыре фразы в один ответ без подсказок — приятно, что получилось само"
+    "Сцена с звонком маме понятная и человеческая — я как будто реально отчитываюсь за неделю",
+    "Финал сессии (задание 17), где нужно сказать все четыре фразы подряд как итог разговора, ощущался как настоящая маленькая победа"
   ],
   "felt_dead": [],
-  "scene_reason": "да, понятно — весь урок это ответ на звонок брата, который спрашивает про неделю, коллег, квартиру и одиночество. Каждая фраза — прямой ответ на конкретный его вопрос, видно кому и зачем я это говорю",
-  "would_continue": "да — задания шли по делу, без хаотичных вставок, к финалу я сам сложил четыре фразы, значит что-то реально осело",
+  "scene_reason": "да, понятно: я отвечаю маме по телефону на её вопросы про неделю, коллег, квартиру и не хочу, чтобы она волновалась — каждая фраза привязана к конкретному вопросу мамы",
+  "would_continue": "да, потому что задания шли по нарастающей сложности, ловушки были логичные (no вместо not, is/are), а финал дал ощущение, что я реально могу поддержать разговор",
   "verdict": "PASS",
-  "verdict_reason": "все 17 заданий прошёл сам, ничего незнакомого в правильных ответах не требовалось, узнал новое (everyone+is, it про неделю) и понимал, зачем каждую фразу говорю"
+  "verdict_reason": "все задания выполнимы знакомыми словами и правилами, есть понятная бытовая сцена, узнал два новых нюанса (is для единственного предмета/everyone, not после скрепки) и хочу продолжать"
 }

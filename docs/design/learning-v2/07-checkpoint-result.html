@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="forest">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Результат проверки</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/phone.css">
+<link rel="stylesheet" href="shared/showcase.css">
+<style>
+/* ============================================================
+   Результат проверки главы: печать ставится с ударом (единственное место
+   с весом), список «что вы теперь умеете» без слова «провалено», руны
+   каскадом, следующая глава показывает свой свет ещё до карты.
+   ============================================================ */
+.res { position: absolute; inset: 54px 0 0; display: flex; flex-direction: column; }
+.res .rise { position: absolute; left: 50%; top: -10%; width: 170%; height: 70%; transform: translate(-50%, -20%); border-radius: 50%; background: radial-gradient(closest-side, rgba(255,212,59,.35), transparent 70%); opacity: 0; pointer-events: none; }
+.phone.is-on .res .rise { animation: riseTop calc(900ms * var(--tf)) var(--ease-out) both; }
+@keyframes riseTop { to { transform: translate(-50%, 0); opacity: .8; } }
+.res .top { display: flex; align-items: center; justify-content: space-between; padding: 4px 18px 0; position: relative; z-index: 2; }
+.res .top .h-label { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.res .top .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ch); box-shadow: 0 0 10px var(--ch-glow); }
+.res .center { position: relative; z-index: 2; text-align: center; padding: 22px 22px 0; }
+.stamp { position: relative; width: 132px; height: 132px; margin: 0 auto; }
+.stamp .ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+.stamp .ring .track { fill: none; stroke: rgba(255,255,255,.09); stroke-width: 6; }
+.stamp .ring .seg { fill: none; stroke: var(--gold); stroke-width: 6; stroke-linecap: round; opacity: 1; filter: drop-shadow(0 0 4px rgba(255,212,59,.5)); }
+.stamp .face { position: absolute; inset: 20px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(160deg, #D19E1D 0%, #FFD86E 52%, #E3A812 100%); box-shadow: 0 18px 36px -10px rgba(255,212,59,.5), inset 0 -10px 16px rgba(0,0,0,.18), inset 0 2px 0 rgba(255,255,255,.55); opacity: 0; transform: scale(1.6); }
+.stamp .face .rune { font-family: var(--font-rune); font-size: 46px; font-weight: 700; color: #241A05; }
+.stamp .flash { position: absolute; inset: -40px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.9), rgba(255,212,59,.4) 45%, transparent 72%); opacity: 0; pointer-events: none; }
+.stamp .rings i { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(closest-side, transparent 60%, rgba(255,232,150,.55) 64%, transparent 72%); opacity: 0; }
+.phone.is-on .stamp .face { animation: stampDown calc(560ms * var(--tf)) var(--ease-spring) both; animation-delay: calc(420ms * var(--tf)); }
+@keyframes stampDown { 0% { opacity: 0; transform: scale(1.6); } 55% { opacity: 1; transform: scale(.94); } 100% { opacity: 1; transform: scale(1); } }
+.phone.is-on .stamp .flash { animation: flash calc(560ms * var(--tf)) var(--ease-out) both; animation-delay: calc(700ms * var(--tf)); }
+@keyframes flash { 0% { opacity: 0; transform: scale(.4); } 20% { opacity: 1; } 100% { opacity: 0; transform: scale(1.5); } }
+.phone.is-on .stamp .rings i { animation: impactRing calc(720ms * var(--tf)) var(--ease-out) both; animation-delay: calc(720ms * var(--tf) + var(--i) * 110ms * var(--tf)); }
+@keyframes impactRing { 0% { opacity: 0; transform: scale(.8); } 20% { opacity: 1; } 100% { opacity: 0; transform: scale(2.2); } }
+.phone.is-on .stamp { animation: shake calc(220ms * var(--tf)) var(--ease-out) both; animation-delay: calc(700ms * var(--tf)); }
+@keyframes shake { 0% { transform: translateY(0); } 40% { transform: translateY(3px); } 100% { transform: translateY(0); } }
+.res .title { margin-top: 18px; font-size: 32px; font-weight: 900; letter-spacing: -.8px; line-height: 1.06; color: var(--text); }
+.res .sub { margin-top: 8px; font-size: 16px; font-weight: 700; color: var(--text-2); }
+.phone.is-on .r-in { animation: rIn var(--t-slow) var(--ease-out) both; animation-delay: calc(var(--d) * 1ms * var(--tf)); }
+@keyframes rIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.skills { position: relative; z-index: 2; margin: 20px 18px 0; display: flex; flex-direction: column; gap: 8px; }
+.skills .h { font-size: 13px; font-weight: 800; letter-spacing: .5px; color: var(--muted); padding: 0 4px; }
+.skill { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; background: linear-gradient(160deg, var(--elev2), var(--card)); box-shadow: 0 12px 26px -14px rgba(0,0,0,.7), inset 0 1px 0 var(--inner-light); font-size: 16px; font-weight: 700; color: var(--text); text-align: left; opacity: 0; transform: translateY(8px); }
+.skill .ic { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; flex: 0 0 auto; background: var(--accent-soft); color: var(--accent); }
+.skill .ic svg { width: 18px; height: 18px; }
+.skill.review .ic { background: var(--energy-soft); color: var(--energy); }
+.skill .tag { margin-left: auto; font-size: 13px; font-weight: 800; color: var(--muted); white-space: nowrap; }
+.skill.review .tag { color: var(--energy); }
+.phone.is-on .skill { animation: rIn var(--t-slow) var(--ease-out) both; animation-delay: calc(1250ms * var(--tf) + var(--i) * 130ms * var(--tf)); }
+.next-ch { position: relative; z-index: 2; margin: 16px 18px 0; padding: 14px 16px; border-radius: 20px; display: flex; align-items: center; gap: 14px; overflow: hidden; background: linear-gradient(160deg, var(--ch-ground), var(--card)); box-shadow: 0 18px 40px -16px rgba(0,0,0,.7), inset 0 1px 0 var(--inner-light); }
+.next-ch::before { content: ""; position: absolute; left: -40px; top: -60px; width: 220px; height: 180px; border-radius: 50%; background: radial-gradient(closest-side, var(--ch-soft), transparent); pointer-events: none; }
+.next-ch .gem { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-size: 18px; font-weight: 900; color: var(--ch-ink); background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 58%, white) 0%, var(--ch) 40%, var(--ch-2) 100%); box-shadow: 0 12px 22px -8px var(--ch-glow), inset 0 2px 0 rgba(255,255,255,.4); flex: 0 0 auto; position: relative; }
+.next-ch .k { font-size: 13px; font-weight: 800; letter-spacing: .5px; color: var(--ch); }
+.next-ch .t { font-size: 18px; font-weight: 900; color: var(--text); margin-top: 2px; letter-spacing: -.3px; }
+.next-ch .s { font-size: 14px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+.rune-row { position: relative; z-index: 2; margin: 12px 18px 0; display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-radius: 18px; background: linear-gradient(160deg, var(--elev2), var(--card)); box-shadow: inset 0 1px 0 var(--inner-light); font-size: 16px; font-weight: 800; color: var(--text); }
+.rune-row .v { font-size: 22px; font-weight: 900; color: var(--gold); font-variant-numeric: tabular-nums; }
+.rune-row .v .g { font-family: var(--font-rune); font-size: 18px; margin-right: 4px; }
+.res .foot { margin-top: auto; padding: 14px 22px 44px; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 6px; }
+.flyer { position: absolute; z-index: var(--z-toast); font-family: var(--font-rune); font-size: 22px; font-weight: 700; color: var(--gold); text-shadow: 0 0 12px rgba(255,212,59,.7); pointer-events: none; will-change: transform, opacity; }
+.chip.is-bump { animation: bump var(--t-slow) var(--ease-spring) 1; }
+@keyframes bump { 0% { transform: scale(1); } 45% { transform: scale(1.16); } 100% { transform: scale(1); } }
+/* Урок пройден: семь печатей встают в ряд */
+.seven { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+.seven span { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-rune); font-size: 15px; color: #241A05; background: linear-gradient(160deg, #D19E1D, #FFD86E 55%, #E3A812); box-shadow: 0 8px 16px -6px rgba(255,212,59,.5); opacity: 0; transform: scale(.5); }
+.phone.is-on .seven span { animation: sevenIn calc(280ms * var(--tf)) var(--ease-spring) both; animation-delay: calc(1100ms * var(--tf) + var(--i) * 90ms * var(--tf)); }
+@keyframes sevenIn { to { opacity: 1; transform: scale(1); } }
+.stamp.gate { width: 172px; height: 136px; }
+.stamp.gate .arch { position: absolute; inset: 0; border-radius: 86px 86px 22px 22px; overflow: hidden; background: linear-gradient(180deg, var(--elev3) 0%, var(--card) 100%); box-shadow: 0 24px 48px -14px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.1); }
+.stamp.gate .inner { position: absolute; left: 22px; right: 22px; top: 22px; bottom: 0; border-radius: 64px 64px 8px 8px; background: linear-gradient(160deg, #D19E1D 0%, #FFD86E 52%, #E3A812 100%); display: grid; place-items: center; opacity: 0; transform: scale(1.4); }
+.stamp.gate .inner .rune { font-family: var(--font-rune); font-size: 52px; font-weight: 700; color: #241A05; }
+.phone.is-on .stamp.gate .inner { animation: stampDown calc(560ms * var(--tf)) var(--ease-spring) both; animation-delay: calc(420ms * var(--tf)); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="phone" data-ch="3" data-state="all">
+    <div id="sb"></div>
+    <div class="res">
+      <div class="rise"></div>
+      <div class="top">
+        <div class="h-label"><span class="dot"></span><span id="r-label">Глава 2 · Проверка</span></div>
+        <div class="chip" id="chip-runes"><span class="glyph">ᚠ</span><span id="rune-count">135</span></div>
+      </div>
+      <div class="center">
+        <div class="stamp" id="stamp"></div>
+        <h1 class="title r-in" style="--d:900" id="r-title">Глава закрыта</h1>
+        <div class="sub r-in" style="--d:980" id="r-sub">Глава 2 · Кофе с коллегой</div>
+        <div class="seven" id="seven" style="display:none"></div>
+      </div>
+      <div class="skills" id="skills"></div>
+      <div class="rune-row r-in" style="--d:1800" id="rune-row"><span>Руны за главу</span><span class="v"><span class="g">ᚠ</span>+40</span></div>
+      <div class="next-ch r-in" style="--d:2000" id="next" data-ch="3">
+        <div class="gem" id="next-gem">1</div>
+        <div><div class="k" id="next-k">Открылась глава 3</div><div class="t" id="next-t">He is, she is</div><div class="s" id="next-s">Знакомство с командой</div></div>
+      </div>
+      <div class="foot r-in" style="--d:2200">
+        <button class="btn-key ch sweep" id="cta"><svg><use href="#i-arrow-right"/></svg><span id="cta-label">К главе 3</span></button>
+        <button class="btn-text" id="secondary">Разбор ошибок</button>
+      </div>
+    </div>
+    <div class="home-indicator"></div>
+  </div>
+  <aside class="panel"></aside>
+</div>
+<script src="shared/icons.js"></script>
+<script src="shared/course.js"></script>
+<script src="shared/routes.js"></script>
+<script src="shared/map.js"></script>
+<script src="shared/showcase.js"></script>
+<script>
+(function () {
+  document.getElementById("sb").outerHTML = window.statusbarHTML();
+  const { CHAPTERS, LESSONS } = window.COURSE;
+  const phone = document.querySelector(".phone");
+  const tf = () => Number(getComputedStyle(document.documentElement).getPropertyValue("--tf")) || 1;
+  const reduced = () => document.documentElement.getAttribute("data-reduced") === "1";
+  const timers = [];
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms * tf()));
+  const stamp = document.getElementById("stamp");
+
+  function sealHTML() {
+    return `${window.MapKit.ringSVG()}<div class="flash"></div><div class="rings"><i style="--i:0"></i><i style="--i:1"></i></div><div class="face"><span class="rune">ᛝ</span></div>`;
+  }
+  function gateHTML() { return `<div class="flash"></div><div class="rings"><i style="--i:0"></i><i style="--i:1"></i></div><div class="arch"><div class="inner"><span class="rune">ᛞ</span></div></div>`; }
+
+  function flyRunes(count, delta) {
+    const chip = document.getElementById("chip-runes"); const counter = document.getElementById("rune-count");
+    const src = document.getElementById("rune-row");
+    const pr = phone.getBoundingClientRect(); const a = src.getBoundingClientRect(); const b = chip.getBoundingClientRect();
+    const sx = a.right - 40 - pr.left, sy = a.top + a.height / 2 - pr.top;
+    const ex = b.left + b.width / 2 - pr.left, ey = b.top + b.height / 2 - pr.top;
+    const glyphs = ["ᚠ", "ᚢ", "ᚦ", "ᚨ", "ᚱ", "ᚲ", "ᚷ", "ᚹ", "ᛃ"];
+    const start = Number(counter.textContent);
+    for (let i = 0; i < count; i += 1) {
+      const f = document.createElement("span"); f.className = "flyer"; f.textContent = glyphs[(i * 4 + Math.floor(Math.random() * 9)) % 9];
+      phone.appendChild(f);
+      const mx = sx + (ex - sx) * .5 + (i - count / 2) * 20, my = sy + (ey - sy) * .4 - 80;
+      f.animate([
+        { transform: `translate(${sx - 11}px, ${sy - 11}px) scale(.6) rotate(0deg)`, opacity: 0 },
+        { transform: `translate(${mx - 11}px, ${my - 11}px) scale(1.2) rotate(${120 + i * 40}deg)`, opacity: 1, offset: .45 },
+        { transform: `translate(${ex - 11}px, ${ey - 11}px) scale(.5) rotate(${300 + i * 40}deg)`, opacity: .9 },
+      ], { duration: reduced() ? 1 : 620 * tf(), delay: reduced() ? 0 : i * 90 * tf(), easing: "cubic-bezier(.33,.52,.25,.99)", fill: "forwards" }).onfinish = () => {
+        f.remove(); chip.classList.remove("is-bump"); void chip.offsetWidth; chip.classList.add("is-bump");
+        counter.textContent = String(start + Math.round(((i + 1) / count) * delta));
+      };
+    }
+  }
+
+  function skillsHTML(items) {
+    return `<div class="h r-in" style="--d:1150">Что вы теперь умеете</div>` + items.map((it, i) => `<div class="skill ${it.ok ? "" : "review"}" style="--i:${i}"><div class="ic"><svg><use href="${it.ok ? "#i-check" : "#i-refresh"}"/></svg></div><span>${it.t}</span><span class="tag">${it.ok ? "Закрепилось" : "Стоит повторить"}</span></div>`).join("");
+  }
+
+  function setup(o) {
+    timers.splice(0).forEach(clearTimeout);
+    phone.querySelectorAll(".flyer").forEach((f) => f.remove());
+    const chNum = o.ch; const ch = CHAPTERS[chNum - 1];
+    phone.setAttribute("data-ch", String(Math.min(7, chNum + 1)));
+    document.getElementById("rune-count").textContent = "135";
+    stamp.className = "stamp" + (o.gate ? " gate" : "");
+    stamp.innerHTML = o.gate ? gateHTML() : sealHTML();
+    document.getElementById("r-label").textContent = o.gate ? "Урок 1 · Экзамен" : `Глава ${chNum} · Проверка`;
+    document.getElementById("r-title").textContent = o.gate ? "Урок пройден" : "Глава закрыта";
+    document.getElementById("r-sub").textContent = o.gate ? "Первая неделя в Дублине" : `Глава ${chNum} · ${ch.scene}`;
+    document.getElementById("skills").innerHTML = skillsHTML(o.skills);
+    const seven = document.getElementById("seven");
+    seven.style.display = o.gate ? "" : "none";
+    seven.innerHTML = o.gate ? ["ᚠ", "ᚢ", "ᚦ", "ᚨ", "ᚱ", "ᚲ", "ᛝ"].map((g, i) => `<span style="--i:${i}">${g}</span>`).join("") : "";
+    document.querySelector("#rune-row span:first-child").textContent = o.gate ? "Руны за урок" : "Руны за главу";
+    document.querySelector("#rune-row .v").innerHTML = `<span class="g">ᚠ</span>+${o.runes}`;
+    const next = document.getElementById("next");
+    if (o.gate) {
+      next.setAttribute("data-ch", "1");
+      document.getElementById("next-gem").textContent = "2";
+      document.getElementById("next-k").textContent = "Открылся урок 2";
+      document.getElementById("next-t").textContent = LESSONS[1].arc;
+      document.getElementById("next-s").textContent = LESSONS[1].system;
+      document.getElementById("cta-label").textContent = "К атласу";
+    } else {
+      const nx = CHAPTERS[chNum];
+      next.setAttribute("data-ch", String(chNum + 1));
+      document.getElementById("next-gem").textContent = "1";
+      document.getElementById("next-k").textContent = `Открылась глава ${chNum + 1}`;
+      document.getElementById("next-t").textContent = nx.title;
+      document.getElementById("next-s").textContent = nx.scene;
+      document.getElementById("cta-label").textContent = `К главе ${chNum + 1}`;
+    }
+    document.getElementById("secondary").textContent = o.skills.some((s) => !s.ok) ? "Разбор ошибок" : "На карту";
+    phone.classList.remove("is-on"); void phone.offsetWidth; phone.classList.add("is-on");
+    const key = document.getElementById("cta"); key.classList.remove("sweep"); void key.offsetWidth; key.classList.add("sweep");
+    later(() => flyRunes(o.gate ? 9 : 7, o.runes), 1850);
+  }
+
+  const ALL = [
+    { ok: true, t: "Сказать, какой человек рядом" },
+    { ok: true, t: "Успокоить: you are not alone" },
+    { ok: true, t: "Различать am и are на слух" },
+    { ok: true, t: "Комплимент коллеге вслух" },
+  ];
+  const MIXED = [
+    { ok: true, t: "Сказать, какой человек рядом" },
+    { ok: true, t: "Успокоить: you are not alone" },
+    { ok: false, t: "Различать am и are на слух" },
+    { ok: false, t: "Комплимент коллеге вслух" },
+  ];
+  const EXAM = [
+    { ok: true, t: "Рассказать о себе и о неделе" },
+    { ok: true, t: "Описать людей, погоду и квартиру" },
+    { ok: true, t: "Говорить быстро: I'm, you're, isn't" },
+    { ok: false, t: "Отрицание с we и they" },
+  ];
+
+  const states = [
+    { id: "all", group: "Итог главы", label: "Всё закрепилось", note: "<b>Печать ставится с ударом (единственное место с весом):</b> золотое лицо падает 1.6 → .94 → 1 (560 мс), вспышка, два кольца удара расходятся, печать осаживается на 3 px. Затем «Что вы теперь умеете» входит по строке (130 мс), 7 рун летят в кошелёк, и карточка следующей главы показывает её свет (роза) ещё до карты.", apply() { setup({ ch: 2, runes: 40, skills: ALL }); } },
+    { id: "mixed", group: "Итог главы", label: "Есть что повторить", note: "<b>Слабый результат не блокирует.</b> Глава всё равно закрыта (правило владельца: следующий урок открывается прохождением, а не оценкой). Слабые умения помечены «Стоит повторить» тёплым цветом, не красным; вторичная кнопка ведёт в разбор.", apply() { setup({ ch: 2, runes: 25, skills: MIXED }); } },
+    { id: "ch6", group: "Итог главы", label: "Глава 6 → 7", note: "<b>Другая температура.</b> Тот же экран для главы 6 (паб, фиолет): открылась глава 7 в золоте заката. Показывает, что свет следующей главы — часть сцены результата.", apply() { setup({ ch: 6, runes: 40, skills: ALL }); } },
+    { id: "exam", group: "Итог урока", label: "Экзамен сдан", note: "<b>Урок пройден.</b> Врата золотятся с тем же ударом, семь печатей урока встают в ряд (90 мс), «Руны за урок» +120 девятью символами, и открывается следующая карта атласа: «Знакомство с городом». Клавиша «К атласу» уводит к колоде, где вторая карта распечатывается (макет 02).", apply() { setup({ ch: 7, runes: 120, skills: EXAM, gate: true }); } },
+  ];
+
+  window.Showcase.init({
+    kicker: "Learning V2 · Атлас · макет 07",
+    title: "Результат проверки и печать главы",
+    lead: "Печать ставится с весом, умения вместо оценки, руны каскадом, следующая глава показывает свой свет заранее. Слабое место — приглашение повторить, не приговор.",
+    nav: [{ href: "index.html", label: "← Индекс" }, { href: "06-session-complete.html", label: "06 Финал" }, { href: "08-states.html", label: "08 Состояния →" }],
+    states,
+    notes: `<b>Тексты</b> — боевые строки <code>learning_v2_checkpoint_copy</code>: «Что вы теперь умеете», «Закрепилось», «Стоит повторить», «Глава закрыта». <b>Награда</b> начислена локально и сверена с фактом перед показом (фундамент «поздравляем фактом»); показ не durable: пропущенная анимация ничего не стоит.`,
+  });
+})();
+</script>
+</body>
+</html>

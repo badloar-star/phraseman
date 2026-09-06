@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="forest">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Атлас Learning V2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/phone.css">
+<link rel="stylesheet" href="shared/map.css">
+<style>
+/* Индекс: концепция, восемь макетов со всеми состояниями, дизайн-система,
+   движение, производительность. Один экран правды для реализации в RN. */
+body { padding: 56px 24px 120px; display: flex; justify-content: center; background: radial-gradient(120% 40% at 50% -6%, rgba(88,204,137,.06), transparent 62%), linear-gradient(180deg, #071009, #010101); }
+.wrap { width: 100%; max-width: 1040px; }
+h1 { font-size: clamp(36px, 5vw, 54px); font-weight: 900; letter-spacing: -1.4px; line-height: 1.04; color: #F4F7F5; max-width: 22ch; }
+.lead { margin-top: 18px; font-size: 18px; line-height: 1.55; color: #A8B7B0; font-weight: 500; max-width: 68ch; }
+.lead b { color: #F0F7F2; font-weight: 800; }
+section { margin-top: 64px; }
+h2 { font-size: 26px; font-weight: 900; letter-spacing: -.6px; color: #F4F7F5; margin-bottom: 18px; }
+h3 { font-size: 17px; font-weight: 800; color: #DCE6E0; margin: 22px 0 10px; }
+p { font-size: 15.5px; line-height: 1.6; color: #A8B7B0; max-width: 72ch; }
+p b { color: #F0F7F2; font-weight: 800; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+a.scr { display: block; text-decoration: none; color: inherit; border-radius: 22px; padding: 20px 20px 18px; background: linear-gradient(160deg, #151D17, #0D120E); box-shadow: 0 14px 30px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.05); transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out); position: relative; overflow: hidden; }
+a.scr::before { content: ""; position: absolute; left: -40px; top: -80px; width: 240px; height: 200px; border-radius: 50%; background: radial-gradient(closest-side, var(--ch-soft), transparent); pointer-events: none; }
+a.scr:hover { transform: translateY(-3px); box-shadow: 0 22px 44px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.08); }
+a.scr .n { font-size: 13px; font-weight: 800; letter-spacing: .6px; color: var(--ch); }
+a.scr .t { margin-top: 6px; font-size: 21px; font-weight: 900; letter-spacing: -.4px; color: #F4F7F5; line-height: 1.1; }
+a.scr .d { margin-top: 8px; font-size: 14.5px; line-height: 1.5; color: #A8B7B0; font-weight: 500; }
+a.scr .st { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+a.scr .st span { font-size: 12.5px; font-weight: 700; color: #C9D6CF; background: rgba(255,255,255,.06); padding: 4px 8px; border-radius: 8px; }
+a.scr .cnt { position: absolute; right: 18px; top: 18px; font-size: 13px; font-weight: 800; color: #7E948A; }
+.pal { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 10px; }
+.sw { border-radius: 18px; padding: 14px 14px 12px; background: linear-gradient(160deg, var(--ch-ground), #0A0D0B); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+.sw .lamp { width: 44px; height: 44px; border-radius: 50%; background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 58%, white) 0%, var(--ch) 40%, var(--ch-2) 100%); box-shadow: 0 14px 26px -10px var(--ch-glow), inset 0 -8px 14px rgba(0,0,0,.28), inset 0 2px 0 rgba(255,255,255,.42); }
+.sw .k { margin-top: 12px; font-size: 13px; font-weight: 800; color: var(--ch); }
+.sw .t { font-size: 15px; font-weight: 800; color: #F0F7F2; margin-top: 2px; }
+.sw .s { font-size: 13px; font-weight: 600; color: #8FA39A; margin-top: 2px; }
+.sw .hex { font-family: Consolas, monospace; font-size: 12px; color: #7E948A; margin-top: 8px; }
+.legend { position: relative; height: 150px; border-radius: 22px; background: linear-gradient(160deg, #0B1A17, #070A08); overflow: hidden; }
+.legend .lbl { position: absolute; bottom: 12px; font-size: 12.5px; font-weight: 800; color: #8FA39A; transform: translateX(-50%); white-space: nowrap; }
+table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+td, th { padding: 10px 8px; text-align: left; vertical-align: top; border-bottom: 1px solid #16201A; color: #A8B7B0; line-height: 1.45; }
+th { color: #DCE6E0; font-weight: 800; font-size: 13px; letter-spacing: .4px; }
+td:first-child { color: #DCE6E0; font-weight: 800; white-space: nowrap; }
+code { font-family: Consolas, "JetBrains Mono", monospace; font-size: 13px; color: #BFE5CC; background: #16201A; padding: 1px 6px; border-radius: 6px; }
+ul.laws { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px 24px; }
+ul.laws li { font-size: 15px; line-height: 1.5; color: #A8B7B0; padding-left: 26px; position: relative; }
+ul.laws li::before { content: ""; position: absolute; left: 0; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: radial-gradient(circle at 34% 26%, #B6F0DE, #6EDCC4 40%, #2F9F88); box-shadow: 0 0 10px rgba(110,220,196,.5); }
+ul.laws li b { color: #F0F7F2; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+.kbd { display: inline-block; padding: 2px 8px; border-radius: 6px; background: #16201A; color: #DCE6E0; font-weight: 800; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Атлас: дизайн раздела Learning V2</h1>
+  <p class="lead"><b>Идея одной фразой:</b> английский по картам. Уроки лежат колодой, каждая карта раскрывается в город, который ты зажигаешь: семь районов со своим светом и своей формой пути, фонари вместо кнопок, печать в конце главы и врата экзамена. Занятие открывается билетом и ирисом из клавиши, проверка — печатью, которая раскалывается как сейф. Всё живёт, всё за доли секунды, ноль растровых ассетов.</p>
+
+  <section>
+    <h2>Восемь макетов, все состояния</h2>
+    <div class="grid">
+      <a class="scr" href="01-premiere.html" data-ch="1"><span class="cnt">4 состояния</span><div class="n">01</div><div class="t">Премьера раздела</div><div class="d">Первый вход после релиза: город зажигается, поднимается «Атлас», колода сдаётся веером. Один раз, 4.4 с, пропуск тапом.</div><div class="st"><span>Премьера</span><span>Пропуск</span><span>Вернувшийся</span><span>Reduced motion</span></div></a>
+      <a class="scr" href="02-atlas.html" data-ch="2"><span class="cnt">7 состояний</span><div class="n">02</div><div class="t">Атлас: колода уроков</div><div class="d">32 карты: золотые пройденные, раскрытая текущая, запечатанные воском будущие, часы у ненаписанных. Карта вырастает в карту урока (FLIP).</div><div class="st"><span>Новый ученик</span><span>В процессе</span><span>Три урока позади</span><span>Открыть карту</span><span>Распечатывание</span><span>Отказ</span><span>Скелетон</span></div></a>
+      <a class="scr" href="03-map.html" data-ch="3"><span class="cnt">11 состояний</span><div class="n">03</div><div class="t">Карта урока</div><div class="d">Семь районов, семь путей: лестница, кольцо, ряды, дождь, стол, зигзаг, спираль. Свет улицы до текущего фонаря, печати, врата, туман, хореографии возврата.</div><div class="st"><span>Первый вход</span><span>Середина</span><span>Печать готова</span><span>Урок пройден</span><span>Занятие пройдено</span><span>Глава открылась</span><span>Тап: пройденный</span><span>Тап: закрытый</span><span>Тап: печать</span><span>Скелетон</span><span>Нет сети</span></div></a>
+      <a class="scr" href="04-session-start.html" data-ch="4"><span class="cnt">7 состояний</span><div class="n">04</div><div class="t">Билет занятия</div><div class="d">Модал старта: фонарь взлетает в билет, слова главы, момент сцены, время, энергия, награда. Клавиша наливается светом, ирис раскрывает интро.</div><div class="st"><span>Доступно</span><span>Повтор</span><span>Перенос</span><span>Открытие</span><span>Нет энергии</span><span>Нет сети</span><span>Не выпущено</span></div></a>
+      <a class="scr" href="05-checkpoint-start.html" data-ch="5"><span class="cnt">6 состояний</span><div class="n">05</div><div class="t">Печать главы и врата</div><div class="d">Проверка открывается иначе: сцена по центру, кольцо семи занятий защёлкивается, печать раскалывается как сейф. Экзамен — врата.</div><div class="st"><span>Доступна</span><span>До срока</span><span>Поставлена</span><span>Открытие</span><span>Экзамен</span><span>Врата открываются</span></div></a>
+      <a class="scr" href="06-session-complete.html" data-ch="6"><span class="cnt">6 состояний</span><div class="n">06</div><div class="t">Финал занятия</div><div class="d">Звёзды по одной, удар на последней, руны в кошелёк, слова в карточки, кольцо главы. 2.2 секунды, ничего не ждёт сети.</div><div class="st"><span>3 звезды</span><span>2 звезды</span><span>1 звезда</span><span>Улучшен</span><span>Первое</span><span>Глава 7/7</span></div></a>
+      <a class="scr" href="07-checkpoint-result.html" data-ch="7"><span class="cnt">4 состояния</span><div class="n">07</div><div class="t">Результат проверки</div><div class="d">Печать ставится с весом, умения вместо оценки, следующая глава показывает свой свет заранее. Экзамен сдан: семь печатей в ряд, открылся урок 2.</div><div class="st"><span>Всё закрепилось</span><span>Есть что повторить</span><span>Глава 6 → 7</span><span>Экзамен сдан</span></div></a>
+      <a class="scr" href="08-states.html" data-ch="1"><span class="cnt">7 состояний</span><div class="n">08</div><div class="t">Системные состояния</div><div class="d">Долгая подготовка, ошибка загрузки, прерванное занятие, выход, первая подсказка, возврат энергии, разбор ошибок. Без спиннеров на весь экран.</div><div class="st"><span>Подготовка</span><span>Не загрузилось</span><span>Продолжить</span><span>Выйти</span><span>Подсказка</span><span>Энергия</span><span>Разбор</span></div></a>
+    </div>
+    <p style="margin-top:16px">В каждом макете справа панель: состояния, «Повторить», «Замедлить 4×», «Reduced motion», три темы хрома приложения (Лес, Золото, Коралл). Состояние можно открыть ссылкой: <code>03-map.html#return-complete</code>.</p>
+  </section>
+
+  <section>
+    <h2>Свет глав: цвета карты продуманы по сцене</h2>
+    <p>Хром приложения (шапка, кошелёк, шторки) слушает тему пользователя. Свет карты — содержательный: температура сцены главы из плана курса. Урок 1 «Первая неделя в Дублине»:</p>
+    <div class="pal" style="margin-top:16px">
+      <div class="sw" data-ch="1"><div class="lamp"></div><div class="k">Глава 1</div><div class="t">I am</div><div class="s">Утро в офисе: холодный рассвет</div><div class="hex">#6EDCC4</div></div>
+      <div class="sw" data-ch="2"><div class="lamp"></div><div class="k">Глава 2</div><div class="t">You are</div><div class="s">Кофе с коллегой: карамель</div><div class="hex">#EDB667</div></div>
+      <div class="sw" data-ch="3"><div class="lamp"></div><div class="k">Глава 3</div><div class="t">He is, she is</div><div class="s">Знакомство с командой: роза</div><div class="hex">#F28A9C</div></div>
+      <div class="sw" data-ch="4"><div class="lamp"></div><div class="k">Глава 4</div><div class="t">It is</div><div class="s">Квартира и погода: дождь</div><div class="hex">#8AAAF2</div></div>
+      <div class="sw" data-ch="5"><div class="lamp"></div><div class="k">Глава 5</div><div class="t">We are, they are</div><div class="s">Обед с командой: зелень</div><div class="hex">#A9DB6C</div></div>
+      <div class="sw" data-ch="6"><div class="lamp"></div><div class="k">Глава 6</div><div class="t">I'm, you're, isn't</div><div class="s">Пятница, паб: неон</div><div class="hex">#C99EF2</div></div>
+      <div class="sw" data-ch="7"><div class="lamp"></div><div class="k">Глава 7</div><div class="t">Вся система be</div><div class="s">Звонок домой: закат</div><div class="hex">#F2CB6E</div></div>
+    </div>
+    <p style="margin-top:14px">У каждого света пять ролей: <code>--ch</code> сам свет (читается на тёмном как текст), <code>--ch-2</code> глубже (низ фонаря), <code>--ch-3</code> полка клавиши, <code>--ch-ink</code> краска на свету, <code>--ch-glow</code> и <code>--ch-ground</code> свечение и земля района. Для других уроков палитра назначается по сцене главы из плана курса тем же методом: пять ролей на температуру.</p>
+  </section>
+
+  <section>
+    <h2>Фонари: состояния узла</h2>
+    <div class="legend" data-ch="2">
+      <button class="node done" style="--x:70px;--y:64px"><span class="ground"></span><span class="halo"></span><span class="gem"><svg><use href="#i-check"/></svg></span><span class="stars" id="lg-stars"></span></button><span class="lbl" style="left:70px">пройдено, 0–3 звезды</span>
+      <button class="node current" style="--x:200px;--y:64px"><span class="ground"></span><span class="halo"></span><span class="gem">4</span><span class="pill" style="opacity:1">Продолжить</span></button><span class="lbl" style="left:200px">текущий: дышит, блик</span>
+      <button class="node next" style="--x:320px;--y:64px"><span class="ground"></span><span class="halo"></span><span class="gem">5</span></button><span class="lbl" style="left:320px">следующий: греется</span>
+      <button class="node locked" style="--x:430px;--y:64px"><span class="ground"></span><span class="halo"></span><span class="gem"><svg><use href="#i-lock"/></svg></span></button><span class="lbl" style="left:430px">закрыт: спит</span>
+      <button class="seal available" style="--x:560px;--y:64px"><span class="ground"></span><span class="flash"></span><span id="lg-ring"></span><span class="face"><span class="rune">ᛝ</span></span></button><span class="lbl" style="left:560px">печать главы</span>
+      <button class="seal passed" style="--x:690px;--y:64px"><span class="ground"></span><span class="flash"></span><span id="lg-ring2"></span><span class="face"><span class="rune">ᛝ</span></span></button><span class="lbl" style="left:690px">глава закрыта</span>
+      <button class="gate available" style="--x:860px;--y:64px"><div class="light"></div><div class="arch"><div class="inner"><span class="rune">ᛞ</span></div></div></button><span class="lbl" style="left:860px">врата экзамена</span>
+    </div>
+    <table style="margin-top:16px">
+      <tr><th>Состояние</th><th>Вид</th><th>Движение</th><th>Тап</th></tr>
+      <tr><td>Пройдено</td><td>Зажжённый фонарь 60, галочка, свет на земле, 0–3 звезды под ним</td><td>Ничего вечного; садится 1.08 → 1 при возврате</td><td>Шторка: результат, «Улучшить результат»</td></tr>
+      <tr><td>Текущий</td><td>Фонарь 76, номер, гало, подпись «Продолжить»</td><td>Дыхание 2400 мс (гейт видимости), блик каждые 5.2 с, подпись покачивается</td><td>Билет занятия (04)</td></tr>
+      <tr><td>Следующий</td><td>Тёмный фонарь 64 с тёплым центром, номер цветом главы</td><td>Медленный прогрев тени 3600 мс</td><td>Спокойный отказ: «Сначала занятие N»</td></tr>
+      <tr><td>Закрыт</td><td>Матовый фонарь 60, замок</td><td>Нет</td><td>Прожим .96, 240 мс, тост с точной причиной</td></tr>
+      <tr><td>Печать главы</td><td>96, кольцо из 7 сегментов по числу пройденных, руна</td><td>Доступна: кольцо вращается 24 с, блик; ставится с ударом</td><td>Сцена печати (05); до срока — та же сцена со счётом</td></tr>
+      <tr><td>Врата экзамена</td><td>128×100 арка, свет изнутри</td><td>Доступны: дыхание света</td><td>Сцена врат (05)</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Как что открывается: четыре разные двери</h2>
+    <table>
+      <tr><th>Что</th><th>Дверь</th><th>Длительность</th><th>Почему так</th></tr>
+      <tr><td>Карта урока (Атлас)</td><td>Карта приподнимается и вырастает до экрана (FLIP), под ней проявляется карта</td><td>160 + 420 мс</td><td>Карта в руках становится картой местности: одна сущность, один жест</td></tr>
+      <tr><td>Занятие</td><td>Фонарь взлетает в билет, шторка снизу; клавиша наливается светом; ирис из центра клавиши</td><td>360 + 320 мс; 760 + 640 мс</td><td>Билет показывает, за чем идёшь; ирис из точки нажатия связывает действие и результат</td></tr>
+      <tr><td>Проверка главы</td><td>Карта гаснет, печать вырастает по центру, кольцо защёлкивается; кольцо проворачивается, лицо раскалывается, ирис из печати</td><td>420 + 7×70 мс; 520 + 360 + 640 мс</td><td>Рубеж должен ощущаться иначе, чем занятие: сцена и вес вместо шторки</td></tr>
+      <tr><td>Экзамен</td><td>Врата по центру со светом изнутри; ирис из центра врат</td><td>420 мс; 300 + 640 мс</td><td>Другой объект и масштаб для финала урока</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Движение: одна система</h2>
+    <div class="two">
+      <div>
+        <h3>Токены</h3>
+        <table>
+          <tr><td>press</td><td>120 мс, ease-out (.23,1,.32,1)</td></tr>
+          <tr><td>fast / normal / slow</td><td>180 / 240 / 320 мс</td></tr>
+          <tr><td>celebrate</td><td>420 мс, spring (.38,.70,.125,1), без отскока</td></tr>
+          <tr><td>scene</td><td>640 мс, ease-in-out (.77,0,.175,1): ирисы, свет улицы</td></tr>
+          <tr><td>drawer</td><td>(.32,.72,0,1): шторки, FLIP, полёт фонаря</td></tr>
+          <tr><td>breath</td><td>2400 мс, ease-in-out, единственный вечный цикл экрана</td></tr>
+          <tr><td>каскады</td><td>34–50 мс между элементами, никогда дольше 80</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>Законы</h3>
+        <ul class="laws">
+          <li><b>Световод + акценты Чекана.</b> База: свет и глубина без отскоков. Удар и вес только на печати главы и вратах.</li>
+          <li><b>Из точки действия.</b> Ирис начинается там, где нажали; фонарь летит в билет; карта растёт из своего места.</li>
+          <li><b>Спокойный отказ.</b> Никакой тряски: прожим 4 % и точная причина в тосте.</li>
+          <li><b>Reduced motion всегда.</b> Вечные циклы стоят на живом кадре, ирисы мгновенны, каскады 1 мс.</li>
+          <li><b>Празднование не durable.</b> Награда считается локально и сверяется с фактом; пропущенная анимация ничего не должна.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Быстродействие: контракт для React Native</h2>
+    <ul class="laws">
+      <li><b>Только transform и opacity</b> в рантайме; свечения — статичные радиальные градиенты, blur не анимируется.</li>
+      <li><b>Один вечный цикл на экран</b> (дыхание текущего фонаря) с гейтом видимости и AppState; следующий фонарь греется тем же драйвером.</li>
+      <li><b>Улица = один Path на главу</b>, свет через <code>strokeDashoffset</code> в <code>animatedProps</code> на UI-треде; искра по <code>getPointAtLength</code> предвычисленной таблицей.</li>
+      <li><b>Районы — секции виртуализированного списка</b> с фиксированной высотой доски (ROUTES.h): первый кадр = финальная геометрия, скелетон без прыжков.</li>
+      <li><b>Ноль растровых ассетов:</b> фонари, печати, врата, сигилы и руны — вектор и системный шрифт (старший футарк).</li>
+      <li><b>Тап отвечает до сети:</b> билет, шторки, счётчики и награды — из локального состояния; сервер подтверждает фоном, отказ откатывает с тостом.</li>
+      <li><b>Переходы без чёрного кадра:</b> ирис и FLIP рисуются поверх уже смонтированного экрана; тяжёлая подготовка (аудио) идёт под полосой света, не под спиннером.</li>
+      <li><b>Логи на ранних выходах</b> с префиксом <code>[ATLAS-*]</code>; экран показывает человеческую причину, reason уходит в лог.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Тексты и источники</h2>
+    <p>Тексты проверки — боевые строки <code>app/learning_v2_checkpoint_copy.ts</code> («Глава N — проверка», «Подсказок не будет — разбор в конце», «Что вы теперь умеете», «Закрепилось», «Стоит повторить», «Глава закрыта»). Энергия — <code>components/NoEnergyModal.tsx</code>. Подготовка занятия — <code>app/learning_v2_session_copy.ts</code>. Содержание глав, сцены и слова — <code>content/learning-v2-course/curriculum/en/ПЛАН_КУРСА.md</code>, интро — эталон L1 S1 из фабрики курса. Топология 32 × 7 × 8 — <code>modules/learning-v2/content/course_topology_v1.ts</code>.</p>
+    <p style="margin-top:10px">Файлы: <code>docs/design/learning-v2/</code>, общие модули в <code>shared/</code> (токены, рама, карта, колода, данные, маршруты, витрина). Локально: <span class="kbd">python -m http.server 8848 --directory docs/design/learning-v2</span> или конфиг превью <code>learning-v2-mockups</code>. Автономные копии для пересылки: <code>node docs/design/learning-v2/build.mjs</code> → <code>dist/</code>.</p>
+  </section>
+</div>
+<script src="shared/icons.js"></script>
+<script src="shared/course.js"></script>
+<script src="shared/routes.js"></script>
+<script src="shared/map.js"></script>
+<script>
+(function () {
+  document.getElementById("lg-stars").innerHTML = window.starsHTML(3);
+  document.getElementById("lg-ring").outerHTML = window.MapKit.ringSVG();
+  document.getElementById("lg-ring2").outerHTML = window.MapKit.ringSVG();
+  document.querySelectorAll(".legend .seal .seg").forEach((s) => s.classList.add("on"));
+})();
+</script>
+</body>
+</html>

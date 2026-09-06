@@ -1,0 +1,308 @@
+/* ============================================================
+   Карта урока: «ночной город, который ты зажигаешь».
+   Районы (главы), улица (путь), фонари (узлы), печати глав, врата экзамена,
+   туман закрытых глав, хореографии возврата. Общий файл для макетов 03–07.
+   ============================================================ */
+.map-hdr {
+  padding: 2px 16px 14px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  background: linear-gradient(180deg, var(--bg-a) 0%, var(--bg-a) 72%, transparent 100%);
+}
+.map-hdr .row1 { display: flex; align-items: center; gap: 12px; }
+.map-hdr .row1 .h-label { flex: 1; min-width: 0; }
+.map-hdr .h-title { font-size: 26px; padding: 0 2px; }
+.map-hdr .h-label { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.map-hdr .h-label .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ch); box-shadow: 0 0 10px var(--ch-glow); transition: background var(--t-slow), box-shadow var(--t-slow); }
+.map-hdr .wallet { display: flex; gap: 8px; }
+.progress-row { width: 100%; display: flex; align-items: center; gap: 12px; padding: 0 2px; }
+.progress-row .count { font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--text-2); white-space: nowrap; }
+.spectrum { flex: 1; display: flex; gap: 3px; height: 6px; }
+.spectrum span { flex: 1; border-radius: 3px; background: rgba(255,255,255,.07); position: relative; overflow: hidden; }
+.spectrum span::after { content: ""; position: absolute; inset: 0; background: var(--ch); transform-origin: left; transform: scaleX(var(--p, 0)); transition: transform var(--t-scene) var(--ease-out); box-shadow: 0 0 8px var(--ch-glow); }
+
+.map-scroll { position: relative; flex: 1; overflow-y: auto; overflow-x: hidden; z-index: var(--z-map); scrollbar-width: none; }
+.map-scroll::-webkit-scrollbar { display: none; }
+.map-canvas { position: relative; padding-bottom: 120px; }
+
+/* ---------- Глава = район ---------- */
+.ch { position: relative; }
+.ch-ground {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(90% 40% at 20% 8%, var(--ch-soft), transparent 70%),
+    linear-gradient(180deg, var(--ch-ground) 0%, transparent 60%);
+  opacity: .9;
+  transition: opacity var(--t-scene);
+}
+.ch.locked .ch-ground { opacity: .28; }
+.ch-glow {
+  position: absolute; width: 260px; height: 260px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, var(--ch-glow), transparent);
+  opacity: .35;
+  animation: drift calc(14000ms * var(--tf)) ease-in-out infinite alternate;
+  will-change: transform;
+}
+.ch.locked .ch-glow { display: none; }
+@keyframes drift { from { transform: translate(0, 0); } to { transform: translate(24px, -18px); } }
+
+.ch-head { position: relative; padding: 26px 22px 6px; display: flex; align-items: flex-start; gap: 12px; }
+.ch-head .t { flex: 1; min-width: 0; }
+.ch-num { font-size: 13px; font-weight: 800; letter-spacing: .6px; color: var(--ch); margin-bottom: 4px; transition: color var(--t-slow); }
+.ch-title { font-size: 30px; font-weight: 900; letter-spacing: -.8px; line-height: 1.06; color: var(--text); }
+.ch-scene { margin-top: 4px; font-size: 15.5px; font-weight: 600; color: var(--muted); }
+.ch.locked .ch-num { color: var(--ghost); }
+.ch.locked .ch-title { color: var(--text-2); opacity: .55; }
+.ch.locked .ch-scene { opacity: .55; }
+.ch-status {
+  flex: 0 0 auto; width: 46px; height: 46px; border-radius: 15px; display: grid; place-items: center;
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  box-shadow: 0 6px 14px var(--shadow), inset 0 1px 0 var(--inner-light);
+  font-size: 14px; font-weight: 800; color: var(--text-2); font-variant-numeric: tabular-nums;
+}
+.ch-status svg { width: 20px; height: 20px; color: var(--ghost); }
+.ch.done .ch-status { background: linear-gradient(160deg, #D19E1D, #FFD86E 55%, #E3A812); color: #241A05; box-shadow: 0 8px 18px rgba(255,212,59,.28), inset 0 1px 0 rgba(255,255,255,.5); }
+.ch.done .ch-status svg { color: #241A05; }
+
+/* ---------- Доска и улица ---------- */
+.board { position: relative; width: 390px; margin-top: 26px; }
+.route { position: absolute; left: 0; top: 0; overflow: visible; }
+.route .street { fill: none; stroke: rgba(255,255,255,.07); stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; }
+.route .glow { fill: none; stroke: var(--ch); stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; opacity: .16; }
+.route .lit { fill: none; stroke: var(--ch); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.route .glow, .route .lit { transition: stroke-dashoffset var(--t-scene) var(--ease-out); }
+.ch.locked .route .street { stroke: rgba(255,255,255,.045); }
+.spark {
+  position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--ch) 45%, transparent 72%);
+  box-shadow: 0 0 18px 4px var(--ch-glow); opacity: 0; pointer-events: none;
+  offset-rotate: 0deg;
+}
+
+/* ---------- Узел-фонарь ---------- */
+.node {
+  position: absolute; --s: 60px;
+  left: calc(var(--x) - var(--s) / 2); top: calc(var(--y) - var(--s) / 2);
+  width: var(--s); height: var(--s);
+  border: none; background: transparent; cursor: pointer; padding: 0;
+  color: var(--text);
+  transition: transform var(--t-normal) var(--ease-spring);
+}
+.node.current { --s: 76px; }
+.node.next { --s: 64px; }
+.node .ground {
+  position: absolute; left: 50%; top: 62%; width: calc(var(--s) * 2.3); height: calc(var(--s) * 1.35);
+  transform: translate(-50%, -32%); border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, var(--ch-glow), transparent);
+  opacity: 0; transition: opacity var(--t-scene);
+}
+.node.done .ground { opacity: .5; }
+.node.current .ground { opacity: .85; }
+.node .halo {
+  position: absolute; inset: -16px; border-radius: 50%; pointer-events: none; opacity: 0;
+  background: radial-gradient(closest-side, transparent 58%, var(--ch-glow) 64%, transparent 100%);
+}
+.node.current .halo { opacity: 1; animation: breath var(--t-breath) ease-in-out infinite; will-change: transform, opacity; }
+:root[data-reduced="1"] .node.current .halo { animation: none; opacity: .7; }
+@keyframes breath { 0%, 100% { transform: scale(1); opacity: .55; } 50% { transform: scale(1.14); opacity: 1; } }
+.node .gem {
+  position: absolute; inset: 0; border-radius: 50%; display: grid; place-items: center; overflow: hidden;
+  font-size: 22px; font-weight: 900; letter-spacing: -.5px; font-variant-numeric: tabular-nums;
+  transition: transform var(--t-press) var(--ease-out), box-shadow var(--t-slow), background var(--t-slow);
+}
+.node.current .gem { font-size: 28px; }
+.node .gem svg { width: 26px; height: 26px; }
+.node.done .gem, .node.current .gem {
+  color: var(--ch-ink);
+  background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 58%, white) 0%, var(--ch) 40%, var(--ch-2) 100%);
+  box-shadow: 0 14px 26px -10px var(--ch-glow), inset 0 -10px 16px rgba(0,0,0,.28), inset 0 2px 0 rgba(255,255,255,.42);
+}
+.node.next .gem {
+  color: var(--ch);
+  background: radial-gradient(circle at 50% 42%, var(--ch-soft) 0%, var(--elev2) 60%, var(--card) 100%);
+  box-shadow: 0 10px 20px -10px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.1);
+  animation: warm calc(3600ms * var(--tf)) ease-in-out infinite;
+}
+@keyframes warm { 0%, 100% { box-shadow: 0 10px 20px -10px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.1); } 50% { box-shadow: 0 10px 22px -8px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.14); } }
+:root[data-reduced="1"] .node.next .gem { animation: none; }
+.node.locked .gem {
+  color: var(--ghost);
+  background: radial-gradient(circle at 34% 26%, var(--elev3) 0%, var(--card) 72%);
+  box-shadow: 0 8px 16px -8px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.node.locked .gem svg { width: 20px; height: 20px; opacity: .7; }
+.node.current .gem::after, .seal.available .face::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.55) 50%, transparent 62%);
+  transform: translateX(-130%);
+  animation: glint calc(5200ms * var(--tf)) linear infinite;
+}
+:root[data-reduced="1"] .node.current .gem::after, :root[data-reduced="1"] .seal.available .face::after { animation: none; opacity: 0; }
+@keyframes glint { 0%, 78% { transform: translateX(-130%); } 100% { transform: translateX(130%); } }
+.node:active .gem { transform: scale(.94); }
+.node.locked:active .gem { transform: scale(.96); }
+.node .stars { position: absolute; top: 100%; left: 50%; transform: translate(-50%, 5px); }
+.node .stars svg { width: 12px; height: 12px; }
+.node .stars svg.pop { animation: starPop var(--t-celebrate) var(--ease-spring) both; }
+@keyframes starPop { 0% { transform: scale(.3); opacity: 0; } 60% { transform: scale(1.25); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+.node .pill {
+  position: absolute; bottom: calc(100% + 14px); left: 50%; transform: translateX(-50%);
+  padding: 8px 14px; border-radius: var(--r-pill); white-space: nowrap;
+  font-size: 14px; font-weight: 800; color: var(--ch-ink);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--ch) 75%, white), var(--ch));
+  box-shadow: 0 10px 20px -6px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.4);
+  opacity: 0; pointer-events: none;
+}
+.node .pill::after { content: ""; position: absolute; left: 50%; top: 100%; width: 10px; height: 10px; background: var(--ch); transform: translate(-50%, -6px) rotate(45deg); border-radius: 2px; }
+.node.current .pill { opacity: 1; animation: floatPill calc(2400ms * var(--tf)) ease-in-out infinite; }
+:root[data-reduced="1"] .node.current .pill { animation: none; }
+@keyframes floatPill { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -4px); } }
+.node.is-denied .gem { animation: deny var(--t-normal) var(--ease-out) 1; }
+@keyframes deny { 0% { transform: scale(1); } 50% { transform: scale(.96); } 100% { transform: scale(1); } }
+.node.is-pop { animation: nodePop var(--t-celebrate) var(--ease-spring) both; }
+@keyframes nodePop { 0% { transform: scale(.7); } 55% { transform: scale(1.1); } 100% { transform: scale(1); } }
+.node.is-land .gem { animation: land var(--t-slow) var(--ease-spring) both; }
+@keyframes land { 0% { transform: scale(1.08); } 100% { transform: scale(1); } }
+
+/* ---------- Печать главы ---------- */
+.seal {
+  position: absolute; --s: 96px;
+  left: calc(var(--x) - var(--s) / 2); top: calc(var(--y) - var(--s) / 2);
+  width: var(--s); height: var(--s); border: none; background: transparent; cursor: pointer; padding: 0;
+}
+.seal .ground { position: absolute; left: 50%; top: 60%; width: 220px; height: 130px; transform: translate(-50%, -32%); border-radius: 50%; background: radial-gradient(closest-side, var(--ch-glow), transparent); opacity: 0; pointer-events: none; transition: opacity var(--t-scene); }
+.seal.available .ground, .seal.passed .ground { opacity: .7; }
+.seal .ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+.seal .ring .track { fill: none; stroke: rgba(255,255,255,.09); stroke-width: 6; }
+.seal .ring .seg { fill: none; stroke: var(--ch); stroke-width: 6; stroke-linecap: round; opacity: .28; transition: opacity var(--t-slow); }
+.seal .ring .seg.on { opacity: 1; filter: drop-shadow(0 0 4px var(--ch-glow)); }
+.seal.available .ring { animation: spin calc(24000ms * var(--tf)) linear infinite; }
+:root[data-reduced="1"] .seal.available .ring { animation: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.seal .face {
+  position: absolute; inset: 15px; border-radius: 50%; display: grid; place-items: center; overflow: hidden;
+  background: radial-gradient(circle at 34% 26%, var(--elev3) 0%, var(--card) 76%);
+  box-shadow: 0 12px 24px -10px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.08);
+  transition: transform var(--t-press) var(--ease-out), background var(--t-slow), box-shadow var(--t-slow);
+}
+.seal .rune { font-family: var(--font-rune); font-size: 30px; font-weight: 700; color: var(--ghost); transition: color var(--t-slow); }
+.seal.available .face { background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 30%, var(--elev3)) 0%, var(--card) 76%); box-shadow: 0 12px 26px -8px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.14); }
+.seal.available .rune { color: var(--ch); text-shadow: 0 0 14px var(--ch-glow); }
+.seal.passed .face { background: linear-gradient(160deg, #D19E1D 0%, #FFD86E 52%, #E3A812 100%); box-shadow: 0 14px 28px -8px rgba(255,212,59,.45), inset 0 -8px 14px rgba(0,0,0,.18), inset 0 2px 0 rgba(255,255,255,.55); }
+.seal.passed .rune { color: #241A05; text-shadow: none; }
+.seal.passed .ring .seg { stroke: var(--gold); }
+.seal:active .face { transform: scale(.94); }
+.seal .label { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 13px; font-weight: 800; letter-spacing: .3px; color: var(--muted); }
+.seal.available .label { color: var(--ch); }
+.seal.is-stamp .face { animation: stamp calc(520ms * var(--tf)) var(--ease-spring) both; }
+@keyframes stamp { 0% { transform: scale(1.32); } 55% { transform: scale(.94); } 100% { transform: scale(1); } }
+.seal .flash { position: absolute; inset: -30px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,232,150,.9), rgba(255,212,59,.35) 45%, transparent 72%); opacity: 0; pointer-events: none; }
+.seal.is-stamp .flash { animation: flash calc(640ms * var(--tf)) var(--ease-out) both; }
+@keyframes flash { 0% { opacity: 0; transform: scale(.4); } 20% { opacity: 1; } 100% { opacity: 0; transform: scale(1.5); } }
+.seal.is-denied .face { animation: deny var(--t-normal) var(--ease-out) 1; }
+
+/* ---------- Врата экзамена ---------- */
+.gate {
+  position: absolute; width: 128px; height: 104px; left: calc(var(--x) - 64px); top: calc(var(--y) - 52px);
+  border: none; background: transparent; cursor: pointer; padding: 0;
+}
+.gate .arch {
+  position: absolute; inset: 0; border-radius: 64px 64px 20px 20px; overflow: hidden;
+  background: linear-gradient(180deg, var(--elev3) 0%, var(--card) 100%);
+  box-shadow: 0 16px 30px -10px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.08);
+  transition: transform var(--t-press) var(--ease-out);
+}
+.gate .inner {
+  position: absolute; left: 18px; right: 18px; top: 18px; bottom: 0; border-radius: 46px 46px 6px 6px;
+  background: radial-gradient(80% 90% at 50% 100%, var(--ch-3) 0%, var(--bg) 80%);
+  display: grid; place-items: center;
+}
+.gate .rune { font-family: var(--font-rune); font-size: 34px; font-weight: 700; color: var(--ghost); }
+.gate .light { position: absolute; left: 50%; bottom: -10px; width: 200px; height: 120px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, var(--ch-glow), transparent); opacity: 0; transition: opacity var(--t-scene); pointer-events: none; }
+.gate.available .inner { background: radial-gradient(80% 90% at 50% 100%, var(--ch) 0%, var(--ch-2) 40%, var(--ch-3) 100%); }
+.gate.available .rune { color: var(--ch-ink); }
+.gate.available .light { opacity: .8; animation: breath var(--t-breath) ease-in-out infinite; }
+.gate.passed .inner { background: linear-gradient(160deg, #D19E1D 0%, #FFD86E 52%, #E3A812 100%); }
+.gate.passed .rune { color: #241A05; }
+.gate .label { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 13px; font-weight: 800; letter-spacing: .3px; color: var(--muted); }
+.gate.available .label { color: var(--ch); }
+.gate:active .arch { transform: scale(.96); }
+.gate.is-denied .arch { animation: deny var(--t-normal) var(--ease-out) 1; }
+
+/* ---------- Туман закрытой главы ---------- */
+.fog { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(3,5,4,.2) 0%, rgba(3,5,4,.62) 40%, rgba(3,5,4,.62) 100%); opacity: 0; transition: opacity var(--t-scene) var(--ease-out); }
+.ch.locked .fog { opacity: 1; }
+.fog .sweep { position: absolute; left: 0; right: 0; top: -40%; height: 40%; background: linear-gradient(180deg, transparent, var(--ch-soft) 60%, transparent); opacity: 0; }
+.ch.is-unlocking .fog { opacity: 0; }
+.ch.is-unlocking .fog .sweep { animation: sweepDown calc(900ms * var(--tf)) var(--ease-slide) both; }
+@keyframes sweepDown { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(400%); opacity: 0; } }
+
+/* ---------- Вход строк (каскад i × 40 мс) ---------- */
+.phone.is-entering .node, .phone.is-entering .seal, .phone.is-entering .gate, .phone.is-entering .ch-head {
+  animation: nodeIn var(--t-slow) var(--ease-spring) both;
+  animation-delay: calc(var(--i, 0) * 40ms * var(--tf));
+}
+@keyframes nodeIn { 0% { opacity: 0; transform: translateY(18px) scale(.85); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+
+/* ---------- «Продолжить» внизу (только когда текущий узел вне экрана) ---------- */
+.jump {
+  position: absolute; left: 50%; bottom: 44px; z-index: var(--z-float);
+  transform: translate(-50%, 24px); opacity: 0; pointer-events: none;
+  height: 52px; padding: 0 20px 0 16px; border: none; border-radius: var(--r-pill); cursor: pointer;
+  display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 800; color: var(--ch-ink); white-space: nowrap;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--ch) 75%, white), var(--ch) 60%, var(--ch-2));
+  box-shadow: 0 5px 0 var(--ch-3), 0 18px 34px -8px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.4);
+  transition: transform var(--t-normal) var(--ease-out), opacity var(--t-normal) var(--ease-out), background var(--t-slow);
+}
+.jump.is-on { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+.jump:active { transform: translate(-50%, 5px); box-shadow: 0 0 0 var(--ch-3), 0 8px 16px -6px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.3); }
+.jump svg { width: 22px; height: 22px; }
+
+/* ---------- Шторка пройденного узла ---------- */
+.node-sheet .s-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.node-sheet .s-gem { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-size: 20px; font-weight: 900; color: var(--ch-ink); background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 58%, white) 0%, var(--ch) 40%, var(--ch-2) 100%); box-shadow: 0 10px 20px -8px var(--ch-glow), inset 0 2px 0 rgba(255,255,255,.4); flex: 0 0 auto; }
+.node-sheet .s-title { font-size: 22px; font-weight: 900; letter-spacing: -.4px; line-height: 1.1; }
+.node-sheet .s-kind { font-size: 14px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+.node-sheet .s-result { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-radius: 18px; background: linear-gradient(160deg, var(--elev2), var(--elev)); box-shadow: inset 0 1px 0 var(--inner-light); margin-bottom: 14px; }
+.node-sheet .s-result .k { font-size: 15px; font-weight: 700; color: var(--text-2); }
+.node-sheet .s-result .stars svg { width: 22px; height: 22px; }
+.node-sheet .actions { display: flex; flex-direction: column; gap: 8px; }
+
+/* ---------- Оффлайн-пилюля, летящие руны, скелетон, финал ---------- */
+.offline {
+  position: absolute; left: 50%; top: 186px; z-index: var(--z-float); transform: translate(-50%, -8px); opacity: 0;
+  display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px 0 10px; border-radius: var(--r-pill);
+  background: linear-gradient(160deg, var(--elev3), var(--elev)); box-shadow: 0 10px 22px rgba(0,0,0,.45), inset 0 1px 0 var(--inner-light);
+  font-size: 14px; font-weight: 800; color: var(--text-2); pointer-events: none; transition: transform var(--t-normal) var(--ease-out), opacity var(--t-normal);
+}
+.offline svg { width: 18px; height: 18px; color: var(--muted); }
+.phone[data-state="offline"] .offline { transform: translate(-50%, 0); opacity: 1; }
+
+.flyer { position: absolute; z-index: var(--z-toast); font-family: var(--font-rune); font-size: 22px; font-weight: 700; color: var(--gold); text-shadow: 0 0 12px rgba(255,212,59,.7); pointer-events: none; will-change: transform, opacity; }
+.chip.is-bump { animation: bump var(--t-slow) var(--ease-spring) 1; }
+@keyframes bump { 0% { transform: scale(1); } 45% { transform: scale(1.16); } 100% { transform: scale(1); } }
+
+.phone[data-state="skeleton"] .node .gem, .phone[data-state="skeleton"] .seal .face, .phone[data-state="skeleton"] .gate .arch { background: var(--elev); box-shadow: none; color: transparent; }
+.phone[data-state="skeleton"] .node .ground, .phone[data-state="skeleton"] .node .halo, .phone[data-state="skeleton"] .node .pill, .phone[data-state="skeleton"] .node .stars, .phone[data-state="skeleton"] .seal .ground, .phone[data-state="skeleton"] .gate .light { opacity: 0 !important; animation: none !important; }
+.phone[data-state="skeleton"] .route .lit, .phone[data-state="skeleton"] .route .glow { opacity: 0; }
+.phone[data-state="skeleton"] .ch-glow { display: none; }
+.phone[data-state="skeleton"] .ch-title, .phone[data-state="skeleton"] .ch-scene, .phone[data-state="skeleton"] .ch-num { color: transparent; background: var(--elev); border-radius: 8px; }
+.phone[data-state="skeleton"] .chip { color: transparent; }
+.phone[data-state="skeleton"] .chip .glyph, .phone[data-state="skeleton"] .chip svg { opacity: 0; }
+.phone[data-state="skeleton"] .spectrum span::after { transform: scaleX(0); }
+.phone[data-state="skeleton"] .node .gem::after { display: none; }
+.phone[data-state="skeleton"] .seal .seg { opacity: 0; }
+
+.phone[data-state="lesson-complete"] .map-hdr .h-label .dot { background: var(--gold); box-shadow: 0 0 12px rgba(255,212,59,.6); }
+.done-banner {
+  position: absolute; left: 16px; right: 16px; top: 186px; z-index: var(--z-float);
+  padding: 16px 18px; border-radius: 22px; display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(160deg, #2A2208, #14110A); box-shadow: 0 18px 40px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,232,150,.18);
+  transform: translateY(-12px); opacity: 0; pointer-events: none; transition: transform var(--t-slow) var(--ease-out), opacity var(--t-slow);
+}
+.done-banner .medal { width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center; background: linear-gradient(160deg, #D19E1D, #FFD86E 52%, #E3A812); color: #241A05; box-shadow: 0 10px 20px rgba(255,212,59,.35); flex: 0 0 auto; }
+.done-banner .medal svg { width: 26px; height: 26px; }
+.done-banner .dt { font-size: 18px; font-weight: 900; color: #FFF3CC; }
+.done-banner .dd { font-size: 14px; font-weight: 700; color: #C9B77A; margin-top: 2px; }
+.phone[data-state="lesson-complete"] .done-banner { transform: translateY(0); opacity: 1; pointer-events: auto; }

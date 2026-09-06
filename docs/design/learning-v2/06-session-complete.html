@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="forest">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Финал занятия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/phone.css">
+<link rel="stylesheet" href="shared/showcase.css">
+<style>
+/* ============================================================
+   Финал занятия: свет главы поднимается снизу, звёзды зажигаются по одной
+   (170 мс), последняя ударяет; затем награды входят каскадом, руны летят
+   в кошелёк, кольцо главы наливается. Всё за ~2.2 с, ничего не ждёт сервера:
+   награда уже посчитана локально, сервер догоняет фоном.
+   ============================================================ */
+.fin { position: absolute; inset: 54px 0 0; display: flex; flex-direction: column; }
+.fin .rise { position: absolute; left: 50%; bottom: -30%; width: 160%; height: 90%; transform: translate(-50%, 30%); border-radius: 50%; background: radial-gradient(closest-side, var(--ch-glow), transparent 70%); opacity: 0; pointer-events: none; }
+.phone.is-on .fin .rise { animation: rise calc(900ms * var(--tf)) var(--ease-out) both; }
+@keyframes rise { from { transform: translate(-50%, 40%); opacity: 0; } to { transform: translate(-50%, 0); opacity: .75; } }
+.fin .top { display: flex; align-items: center; justify-content: space-between; padding: 4px 18px 0; position: relative; z-index: 2; }
+.fin .top .h-label { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.fin .top .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ch); box-shadow: 0 0 10px var(--ch-glow); }
+.fin .center { position: relative; z-index: 2; text-align: center; padding: 34px 22px 0; }
+.big-stars { display: flex; justify-content: center; gap: 12px; height: 72px; align-items: center; }
+.big-stars .st { width: 60px; height: 60px; position: relative; opacity: 0; transform: scale(.4); }
+.big-stars .st svg { width: 100%; height: 100%; color: var(--gold); filter: drop-shadow(0 6px 16px rgba(255,212,59,.45)); }
+.big-stars .st.off svg { color: rgba(255,255,255,.12); filter: none; }
+.big-stars .st.off { opacity: 1; transform: scale(.82); }
+.big-stars .st .ring { position: absolute; inset: -14px; border-radius: 50%; background: radial-gradient(closest-side, transparent 55%, rgba(255,232,150,.7) 62%, transparent 72%); opacity: 0; }
+.phone.is-on .big-stars .st.lit { animation: starIgnite calc(170ms * var(--tf)) var(--ease-spring) both; animation-delay: calc(var(--i) * 170ms * var(--tf) + 260ms * var(--tf)); }
+@keyframes starIgnite { 0% { opacity: 0; transform: scale(.4); } 60% { opacity: 1; transform: scale(1.18); } 100% { opacity: 1; transform: scale(1); } }
+.phone.is-on .big-stars .st.lit.last .ring { animation: ringOut calc(520ms * var(--tf)) var(--ease-out) both; animation-delay: calc(var(--i) * 170ms * var(--tf) + 300ms * var(--tf)); }
+@keyframes ringOut { 0% { opacity: 0; transform: scale(.6); } 25% { opacity: 1; } 100% { opacity: 0; transform: scale(1.9); } }
+.big-stars .st.prev { position: absolute; }
+.fin .title { margin-top: 18px; font-size: 32px; font-weight: 900; letter-spacing: -.8px; line-height: 1.06; color: var(--text); }
+.fin .sub { margin-top: 8px; font-size: 16px; font-weight: 700; color: var(--text-2); }
+.fin .sub .better { color: var(--ch); }
+.phone.is-on .f-in { animation: fIn var(--t-slow) var(--ease-out) both; animation-delay: calc(var(--d) * 1ms * var(--tf)); }
+@keyframes fIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.rewards { position: relative; z-index: 2; margin: 22px 18px 0; border-radius: 22px; padding: 6px 16px; background: linear-gradient(170deg, var(--elev2), var(--card)); box-shadow: 0 18px 40px -16px rgba(0,0,0,.7), inset 0 1px 0 var(--inner-light); }
+.rw { display: flex; align-items: center; gap: 14px; padding: 12px 0; }
+.rw + .rw { border-top: 1px solid rgba(255,255,255,.05); }
+.rw .ic { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; flex: 0 0 auto; background: var(--elev); color: var(--gold); font-family: var(--font-rune); font-size: 20px; font-weight: 700; box-shadow: inset 0 1px 0 var(--inner-light); }
+.rw .ic.xp { color: var(--ch); font-family: var(--font); font-size: 14px; font-weight: 900; letter-spacing: .3px; }
+.rw .ic.words { color: var(--text-2); }
+.rw .ic svg { width: 22px; height: 22px; }
+.rw .t { flex: 1; min-width: 0; }
+.rw .k { font-size: 16px; font-weight: 800; color: var(--text); }
+.rw .v { font-size: 22px; font-weight: 900; color: var(--text); font-variant-numeric: tabular-nums; letter-spacing: -.4px; }
+.rw .v.gold { color: var(--gold); }
+.rw .bar { margin-top: 6px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; width: 100%; }
+.rw .bar i { display: block; height: 100%; border-radius: 3px; background: var(--ch); transform-origin: left; transform: scaleX(var(--from, .3)); }
+.phone.is-on .rw .bar i { animation: barGrow calc(700ms * var(--tf)) var(--ease-out) both; animation-delay: calc(1250ms * var(--tf)); }
+@keyframes barGrow { to { transform: scaleX(var(--to, .5)); } }
+.rw .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.rw .chips span { padding: 6px 10px; border-radius: 10px; font-size: 14px; font-weight: 800; color: var(--ch); background: var(--elev); box-shadow: inset 0 1px 0 var(--inner-light); opacity: 0; transform: translateY(6px) scale(.9); }
+.phone.is-on .rw .chips span { animation: chipIn var(--t-slow) var(--ease-spring) both; animation-delay: calc(var(--i) * 60ms * var(--tf) + 1300ms * var(--tf)); }
+@keyframes chipIn { to { opacity: 1; transform: none; } }
+.rw .saved { font-size: 13px; font-weight: 700; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+.rw .saved svg { width: 16px; height: 16px; color: var(--accent); }
+.chapter-row { position: relative; z-index: 2; margin: 14px 18px 0; display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 20px; background: linear-gradient(170deg, var(--elev2), var(--card)); box-shadow: 0 18px 40px -16px rgba(0,0,0,.7), inset 0 1px 0 var(--inner-light); }
+.mini-ring { width: 46px; height: 46px; position: relative; flex: 0 0 auto; }
+.mini-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.mini-ring .tr { fill: none; stroke: rgba(255,255,255,.1); stroke-width: 5; }
+.mini-ring .pr { fill: none; stroke: var(--ch); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 113; stroke-dashoffset: calc(113 * (1 - var(--from, .43))); }
+.phone.is-on .mini-ring .pr { animation: ringGrow calc(600ms * var(--tf)) var(--ease-out) both; animation-delay: calc(1500ms * var(--tf)); }
+@keyframes ringGrow { to { stroke-dashoffset: calc(113 * (1 - var(--to, .57))); } }
+.mini-ring .n { position: absolute; inset: 0; display: grid; place-items: center; font-size: 13px; font-weight: 900; color: var(--text); font-variant-numeric: tabular-nums; }
+.chapter-row .k { font-size: 16px; font-weight: 800; color: var(--text); }
+.chapter-row .d { font-size: 14px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+.chapter-row.ready .d { color: var(--ch); }
+.chapter-row .seal-mini { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-rune); font-size: 20px; color: var(--ch); background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 30%, var(--elev3)), var(--card) 76%); box-shadow: 0 10px 20px -8px var(--ch-glow); margin-left: auto; opacity: 0; transform: scale(.6); }
+.phone.is-on .chapter-row.ready .seal-mini { animation: sealMini var(--t-celebrate) var(--ease-spring) both; animation-delay: calc(2100ms * var(--tf)); }
+@keyframes sealMini { to { opacity: 1; transform: scale(1); } }
+.fin .foot { margin-top: auto; padding: 14px 22px 44px; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 6px; }
+.wallet-chip { position: relative; }
+.flyer { position: absolute; z-index: var(--z-toast); font-family: var(--font-rune); font-size: 22px; font-weight: 700; color: var(--gold); text-shadow: 0 0 12px rgba(255,212,59,.7); pointer-events: none; will-change: transform, opacity; }
+.chip.is-bump { animation: bump var(--t-slow) var(--ease-spring) 1; }
+@keyframes bump { 0% { transform: scale(1); } 45% { transform: scale(1.16); } 100% { transform: scale(1); } }
+.mistakes { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 8px 12px; border-radius: var(--r-pill); background: var(--elev); font-size: 14px; font-weight: 800; color: var(--text-2); cursor: pointer; }
+.mistakes svg { width: 16px; height: 16px; color: var(--energy); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="phone" data-ch="1" data-state="three">
+    <div id="sb"></div>
+    <div class="fin">
+      <div class="rise"></div>
+      <div class="top">
+        <div class="h-label"><span class="dot"></span><span id="f-label">Глава 1 · Занятие 3 из 8</span></div>
+        <div class="chip wallet-chip" id="chip-runes"><span class="glyph">ᚠ</span><span id="rune-count">120</span></div>
+      </div>
+      <div class="center">
+        <div class="big-stars" id="stars"></div>
+        <h1 class="title f-in" style="--d:820" id="f-title">Занятие пройдено</h1>
+        <div class="sub f-in" style="--d:900" id="f-sub">3 из 3 звёзд</div>
+        <div id="f-mist"></div>
+      </div>
+      <div class="rewards f-in" style="--d:1000">
+        <div class="rw"><div class="ic">ᚠ</div><div class="t"><div class="k">Руны</div></div><div class="v gold" id="rw-runes">+15</div></div>
+        <div class="rw"><div class="ic xp">XP</div><div class="t"><div class="k">Опыт</div><div class="bar"><i id="xp-bar" style="--from:.32;--to:.58"></i></div></div><div class="v" id="rw-xp">+40</div></div>
+        <div class="rw"><div class="ic words"><svg><use href="#i-book"/></svg></div><div class="t"><div class="k" id="rw-words-k">Новые слова</div><div class="chips" id="rw-words"></div></div><div class="saved" id="rw-saved"><svg><use href="#i-check"/></svg>в карточках</div></div>
+      </div>
+      <div class="chapter-row f-in" style="--d:1150" id="chrow">
+        <div class="mini-ring"><svg viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="18"/><circle class="pr" id="mini-pr" cx="23" cy="23" r="18" style="--from:.43;--to:.57"/></svg><div class="n" id="mini-n">4/7</div></div>
+        <div><div class="k" id="ch-k">Глава 1 · Утро в офисе</div><div class="d" id="ch-d">Ещё 3 занятия до печати</div></div>
+        <div class="seal-mini" id="seal-mini">ᛝ</div>
+      </div>
+      <div class="foot f-in" style="--d:1700">
+        <button class="btn-key ch sweep" id="cta"><svg><use href="#i-arrow-right"/></svg><span id="cta-label">Дальше</span></button>
+        <button class="btn-text" id="secondary">Повторить занятие</button>
+      </div>
+    </div>
+    <div class="home-indicator"></div>
+  </div>
+  <aside class="panel"></aside>
+</div>
+<script src="shared/icons.js"></script>
+<script src="shared/course.js"></script>
+<script src="shared/showcase.js"></script>
+<script>
+(function () {
+  document.getElementById("sb").outerHTML = window.statusbarHTML();
+  const { CHAPTERS, SESSIONS } = window.COURSE;
+  const phone = document.querySelector(".phone");
+  const starsBox = document.getElementById("stars");
+  const tf = () => Number(getComputedStyle(document.documentElement).getPropertyValue("--tf")) || 1;
+  const reduced = () => document.documentElement.getAttribute("data-reduced") === "1";
+  const timers = [];
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms * tf()));
+
+  function renderStars(n, prev) {
+    starsBox.innerHTML = "";
+    for (let i = 0; i < 3; i += 1) {
+      const st = document.createElement("div");
+      st.className = "st " + (i < n ? "lit" : "off") + (i === n - 1 ? " last" : "");
+      st.style.setProperty("--i", String(i));
+      st.innerHTML = `<div class="ring"></div><svg><use href="#i-star"/></svg>`;
+      starsBox.appendChild(st);
+    }
+  }
+
+  function flyRunes(count) {
+    const chip = document.getElementById("chip-runes"); const counter = document.getElementById("rune-count");
+    const src = document.querySelector(".rw .ic");
+    const pr = phone.getBoundingClientRect(); const a = src.getBoundingClientRect(); const b = chip.getBoundingClientRect();
+    const sx = a.left + a.width / 2 - pr.left, sy = a.top + a.height / 2 - pr.top;
+    const ex = b.left + b.width / 2 - pr.left, ey = b.top + b.height / 2 - pr.top;
+    const glyphs = ["ᚠ", "ᚢ", "ᚦ", "ᚨ", "ᚱ", "ᚲ", "ᚷ"];
+    const start = Number(counter.textContent);
+    for (let i = 0; i < count; i += 1) {
+      const f = document.createElement("span"); f.className = "flyer"; f.textContent = glyphs[(i * 3 + Math.floor(Math.random() * 7)) % 7];
+      phone.appendChild(f);
+      const mx = sx + (ex - sx) * .55 + (i - count / 2) * 22, my = sy + (ey - sy) * .35 - 70;
+      f.animate([
+        { transform: `translate(${sx - 11}px, ${sy - 11}px) scale(.6) rotate(0deg)`, opacity: 0 },
+        { transform: `translate(${mx - 11}px, ${my - 11}px) scale(1.15) rotate(${120 + i * 40}deg)`, opacity: 1, offset: .45 },
+        { transform: `translate(${ex - 11}px, ${ey - 11}px) scale(.5) rotate(${300 + i * 40}deg)`, opacity: .9 },
+      ], { duration: reduced() ? 1 : 620 * tf(), delay: reduced() ? 0 : i * 90 * tf(), easing: "cubic-bezier(.33,.52,.25,.99)", fill: "forwards" }).onfinish = () => {
+        f.remove(); chip.classList.remove("is-bump"); void chip.offsetWidth; chip.classList.add("is-bump");
+        counter.textContent = String(start + Math.round(((i + 1) / count) * 15));
+      };
+    }
+  }
+
+  function setup(o) {
+    timers.splice(0).forEach(clearTimeout);
+    phone.querySelectorAll(".flyer").forEach((f) => f.remove());
+    const s = SESSIONS[o.n - 1]; const ch = CHAPTERS[s.ch - 1];
+    phone.setAttribute("data-ch", String(s.ch));
+    document.getElementById("f-label").textContent = `Глава ${s.ch} · Занятие ${s.pos} из 8`;
+    document.getElementById("rune-count").textContent = "120";
+    renderStars(o.stars);
+    document.getElementById("f-title").textContent = o.title || "Занятие пройдено";
+    document.getElementById("f-sub").innerHTML = o.sub || `${o.stars} из 3 звёзд`;
+    document.getElementById("f-mist").innerHTML = o.mistakes ? `<div class="mistakes"><svg><use href="#i-refresh"/></svg>${o.mistakes} ${o.mistakes === 1 ? "ошибка" : "ошибки"} · разбор</div>` : "";
+    document.getElementById("rw-runes").textContent = `+${o.runes}`;
+    document.getElementById("rw-xp").textContent = `+${o.xp}`;
+    const words = document.getElementById("rw-words");
+    words.innerHTML = s.words.map((w, i) => `<span style="--i:${i}">${w}</span>`).join("");
+    document.getElementById("rw-words-k").textContent = s.words.length ? "Новые слова" : "Слова главы повторены";
+    document.getElementById("rw-saved").style.display = s.words.length ? "" : "none";
+    const done = o.chapterDone; const ring = document.getElementById("mini-pr");
+    ring.style.setProperty("--from", String((done - 1) / 7)); ring.style.setProperty("--to", String(done / 7));
+    document.getElementById("mini-n").textContent = `${done}/7`;
+    document.getElementById("ch-k").textContent = `Глава ${s.ch} · ${ch.scene}`;
+    const row = document.getElementById("chrow");
+    row.classList.toggle("ready", done === 7);
+    document.getElementById("ch-d").textContent = done === 7 ? "Печать главы готова" : `Ещё ${7 - done} ${7 - done === 1 ? "занятие" : 7 - done < 5 ? "занятия" : "занятий"} до печати`;
+    document.getElementById("cta-label").textContent = done === 7 ? "К печати главы" : "Дальше";
+    document.getElementById("secondary").textContent = o.stars < 3 ? "Повторить занятие" : "На карту";
+    phone.classList.remove("is-on"); void phone.offsetWidth; phone.classList.add("is-on");
+    const key = document.getElementById("cta"); key.classList.remove("sweep"); void key.offsetWidth; key.classList.add("sweep");
+    later(() => flyRunes(5), 1050);
+  }
+
+  const states = [
+    { id: "three", group: "Результат", label: "3 звезды", note: "<b>Идеальный проход.</b> Свет главы поднимается снизу (900 мс), три звезды зажигаются по одной (170 мс), последняя бьёт кольцом света. Награды входят каскадом через 1 с: руны летят в кошелёк (620 мс), полоса опыта растёт, слова главы встают чипами и отмечены «в карточках». Кольцо главы наливается 3/7 → 4/7. Клавиша «Дальше» ведёт на карту, где играет хореография возврата (макет 03).", apply() { setup({ n: 3, stars: 3, runes: 15, xp: 40, chapterDone: 4 }); } },
+    { id: "two", group: "Результат", label: "2 звезды", note: "<b>Хороший проход с ошибками.</b> Третья звезда стоит потухшей без удара, под заголовком счётчик ошибок с переходом в разбор. Награда честно меньше. Вторичная кнопка — «Повторить занятие».", apply() { setup({ n: 3, stars: 2, runes: 10, xp: 30, chapterDone: 4, mistakes: 2 }); } },
+    { id: "one", group: "Результат", label: "1 звезда", note: "<b>Пройдено с трудом.</b> Одна звезда, спокойный тон, никакого «провалено»: занятие засчитано, руны начислены, слова сохранены. Разбор ошибок — на виду.", apply() { setup({ n: 3, stars: 1, runes: 5, xp: 20, chapterDone: 4, mistakes: 5 }); } },
+    { id: "improved", group: "Результат", label: "Результат улучшен", note: "<b>Повтор пройденного.</b> Подзаголовок фиксирует рост: было 1, стало 3. Руны за повтор меньше (+5), опыт идёт, слова не дублируются («Слова главы повторены»).", apply() { setup({ n: 3, stars: 3, runes: 5, xp: 25, chapterDone: 4, sub: `Было 1 · <span class="better">стало 3</span>` }); } },
+    { id: "first", group: "Результат", label: "Первое занятие", note: "<b>Самое первое занятие курса.</b> Заголовок «Первое занятие пройдено», кольцо главы 0/7 → 1/7, четыре первых слова уходят в карточки. Именно здесь человек впервые видит, что руны летят в кошелёк.", apply() { setup({ n: 1, stars: 3, runes: 15, xp: 40, chapterDone: 1, title: "Первое занятие пройдено" }); } },
+    { id: "chapter", group: "Результат", label: "Глава собрана 7/7", note: "<b>Седьмое занятие главы.</b> Кольцо главы наливается до конца, справа выстреливает печать (420 мс), строка «Печать главы готова», клавиша меняется на «К печати главы». Проверка не начинается сама: человек решает, когда.", apply() { setup({ n: 7, stars: 3, runes: 15, xp: 40, chapterDone: 7 }); } },
+  ];
+
+  window.Showcase.init({
+    kicker: "Learning V2 · Атлас · макет 06",
+    title: "Финал занятия",
+    lead: "Звёзды по одной, удар на последней, руны в кошелёк, слова в карточки, кольцо главы. Вся сцена 2.2 секунды, ничего не ждёт сети.",
+    nav: [{ href: "index.html", label: "← Индекс" }, { href: "05-checkpoint-start.html", label: "05 Печать" }, { href: "07-checkpoint-result.html", label: "07 Результат →" }],
+    states,
+    notes: `<b>Фундамент владельца:</b> празднование не durable, награда считается локально и сверяется с фактом, показывается на своём экране. <b>Optimistic UI:</b> руны, опыт и слова начислены локально до ответа сервера; отказ сервера откатит с тостом на карте. <b>Reduced motion:</b> звёзды и награды стоят готовым кадром, полёт рун заменён мгновенным изменением цифры.`,
+  });
+})();
+</script>
+</body>
+</html>

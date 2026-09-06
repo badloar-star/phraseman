@@ -1,0 +1,2022 @@
+<title>Карта урока</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Learning V2 · «Атлас» · токены макетов
+   Источник цветов хрома — components/ui/v2_theme.ts (Deep Forest V2) и
+   docs/v2/mockups/02-phrase-builder.html (эталон, одобрен владельцем).
+   Свет глав (--ch-*) — содержательный: температура сцены главы из
+   content/learning-v2-course/curriculum/en/ПЛАН_КУРСА.md, а не тема UI.
+   Законы владельца: без обводок контейнеров, без подписей-расшифровок
+   мелким шрифтом, без эмодзи и растра (только SVG/градиент/глифы), всё крупно.
+   Движение: только transform/opacity/clip-path; ease-out; reduced motion всегда.
+   ============================================================ */
+:root {
+  /* ---- время и кривые (constants/motion + v2motion) ---- */
+  --tf: 1;
+  --t-press: calc(120ms * var(--tf));
+  --t-fast: calc(180ms * var(--tf));
+  --t-normal: calc(240ms * var(--tf));
+  --t-slow: calc(320ms * var(--tf));
+  --t-celebrate: calc(420ms * var(--tf));
+  --t-scene: calc(640ms * var(--tf));
+  --t-breath: calc(2400ms * var(--tf));
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.38, 0.70, 0.125, 1);
+  --ease-slide: cubic-bezier(0.33, 0.52, 0.25, 0.99);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-inout: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* ---- форма ---- */
+  --r-lg: 26px;
+  --r-md: 18px;
+  --r-sm: 12px;
+  --r-pill: 999px;
+
+  /* ---- типографика (v2_theme.type, крупно, без микро-текста) ---- */
+  --font: "Inter", -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  --font-rune: "Segoe UI Historic", "Noto Sans Runic", "Apple Symbols", var(--font);
+  --fs-hero: 44px;
+  --fs-title: 28px;
+  --fs-section: 22px;
+  --fs-card: 17px;
+  --fs-body: 15px;
+  --fs-label: 13px;
+  --fs-num: 34px;
+
+  /* ---- слои ---- */
+  --z-map: 1;
+  --z-float: 10;
+  --z-header: 20;
+  --z-backdrop: 30;
+  --z-sheet: 40;
+  --z-toast: 50;
+  --z-iris: 60;
+}
+
+/* ---------- Тема хрома: Лес (по умолчанию, Deep Forest V2) ---------- */
+:root,
+:root[data-theme="forest"] {
+  --bg: #070C08;
+  --bg-a: #0B150E;
+  --bg-b: #020402;
+  --card: #101710;
+  --elev: #17241A;
+  --elev2: #1D2E22;
+  --elev3: #25392C;
+  --text: #F0F7F2;
+  --text-2: #C9DDD0;
+  --muted: #8AB49A;
+  --ghost: #5B7A67;
+  --accent: #47C870;
+  --accent-soft: rgba(71, 200, 112, 0.14);
+  --accent-ink: #042010;
+  --accent-deep: #1E6B3A;
+  --gold: #FFD43B;
+  --gold-2: #E3A812;
+  --gold-soft: rgba(255, 212, 59, 0.14);
+  --gold-ink: #2A1D00;
+  --danger: #FF5B6C;
+  --danger-soft: rgba(255, 91, 108, 0.14);
+  --energy: #FFB547;
+  --energy-soft: rgba(255, 181, 71, 0.16);
+  --inner-light: rgba(255, 255, 255, 0.05);
+  --shadow: rgba(0, 0, 0, 0.55);
+  --sheen: rgba(88, 204, 137, 0.06);
+  --k-a: #5EDC94;
+  --k-b: #3FC172;
+  --k-c: #289654;
+  --k-shelf: #1E6B3A;
+  --k-ink: #042010;
+  --hero-a: #FFFFFF;
+  --hero-b: #BFE5CC;
+}
+
+/* ---------- Тема хрома: Золото ---------- */
+:root[data-theme="gold"] {
+  --bg: #050403;
+  --bg-a: #0E0B05;
+  --bg-b: #010101;
+  --card: #0C0B08;
+  --elev: #14120C;
+  --elev2: #1B1810;
+  --elev3: #241F14;
+  --text: #F7F1E4;
+  --text-2: #DACFB5;
+  --muted: #B8AD92;
+  --ghost: #6D6554;
+  --accent: #D6B35A;
+  --accent-soft: rgba(214, 179, 90, 0.14);
+  --accent-ink: #0A0702;
+  --accent-deep: #6E5219;
+  --gold: #E9CE7A;
+  --gold-2: #C8A44C;
+  --gold-soft: rgba(233, 206, 122, 0.14);
+  --gold-ink: #0A0702;
+  --danger: #C66A5A;
+  --danger-soft: rgba(198, 106, 90, 0.14);
+  --energy: #F0B45A;
+  --energy-soft: rgba(240, 180, 90, 0.16);
+  --inner-light: rgba(246, 227, 161, 0.07);
+  --shadow: rgba(0, 0, 0, 0.7);
+  --sheen: rgba(214, 179, 90, 0.06);
+  --k-a: #F6E3A1;
+  --k-b: #D6B35A;
+  --k-c: #A87F30;
+  --k-shelf: #4E3A10;
+  --k-ink: #0A0702;
+  --hero-a: #FFF9E8;
+  --hero-b: #E9CE7A;
+}
+
+/* ---------- Тема хрома: Коралл ---------- */
+:root[data-theme="coral"] {
+  --bg: #0A0506;
+  --bg-a: #160809;
+  --bg-b: #020101;
+
+  --card: #181013;
+  --elev: #23171B;
+  --elev2: #302128;
+  --elev3: #3B2A31;
+  --text: #FFFFFF;
+  --text-2: #E8D8DD;
+  --muted: #B9A6AE;
+  --ghost: #75656C;
+  --accent: #FF7F50;
+  --accent-soft: rgba(255, 127, 80, 0.14);
+  --accent-ink: #2A0E05;
+  --accent-deep: #8A3A1C;
+  --gold: #FFD060;
+  --gold-2: #E0A62E;
+  --gold-soft: rgba(255, 208, 96, 0.14);
+  --gold-ink: #1A1208;
+  --danger: #FF6464;
+  --danger-soft: rgba(255, 100, 100, 0.14);
+  --energy: #FFB547;
+  --energy-soft: rgba(255, 181, 71, 0.16);
+  --inner-light: rgba(255, 255, 255, 0.06);
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(255, 127, 80, 0.06);
+  --k-a: #FF9E76;
+  --k-b: #FF7F50;
+  --k-c: #E45E31;
+  --k-shelf: #7A2E14;
+  --k-ink: #2A0E05;
+  --hero-a: #FFFFFF;
+  --hero-b: #F3C9B8;
+}
+
+/* ============================================================
+   Свет глав. Одна глава = одна сцена = одна температура света.
+   Урок 1 «Первая неделя в Дублине» (ПЛАН_КУРСА.md):
+   1 утро в офисе · 2 кофе с коллегой · 3 знакомство с командой ·
+   4 квартира и погода · 5 обед с командой · 6 пятница, паб ·
+   7 воскресный звонок домой.
+   --ch     основной свет (светлый, читается на тёмном как текст)
+   --ch-2   тот же свет, глубже (низ «фонаря», полка кнопки)
+   --ch-ink тёмная краска на свету (текст на заливке)
+   --ch-glow / --ch-soft   свечение и тональная подложка
+   --ch-ground              оттенок «земли» района карты
+   ============================================================ */
+[data-ch="1"] {
+  --ch: #6EDCC4;
+  --ch-2: #2F9F88;
+  --ch-3: #145E4F;
+  --ch-ink: #03251D;
+  --ch-glow: rgba(110, 220, 196, 0.42);
+  --ch-soft: rgba(110, 220, 196, 0.13);
+  --ch-ground: #0B1A17;
+}
+[data-ch="2"] {
+  --ch: #EDB667;
+  --ch-2: #B97E2E;
+  --ch-3: #6E4A16;
+  --ch-ink: #2A1704;
+  --ch-glow: rgba(237, 182, 103, 0.42);
+  --ch-soft: rgba(237, 182, 103, 0.13);
+  --ch-ground: #1A130A;
+}
+[data-ch="3"] {
+  --ch: #F28A9C;
+  --ch-2: #BE5468;
+  --ch-3: #72303E;
+  --ch-ink: #2B0A12;
+  --ch-glow: rgba(242, 138, 156, 0.42);
+  --ch-soft: rgba(242, 138, 156, 0.13);
+  --ch-ground: #1B0F13;
+}
+[data-ch="4"] {
+  --ch: #8AAAF2;
+  --ch-2: #5170C9;
+  --ch-3: #2C4078;
+  --ch-ink: #06132E;
+  --ch-glow: rgba(138, 170, 242, 0.42);
+  --ch-soft: rgba(138, 170, 242, 0.13);
+  --ch-ground: #0D1220;
+}
+[data-ch="5"] {
+  --ch: #A9DB6C;
+  --ch-2: #6FA636;
+  --ch-3: #3F6320;
+  --ch-ink: #122500;
+  --ch-glow: rgba(169, 219, 108, 0.42);
+  --ch-soft: rgba(169, 219, 108, 0.13);
+  --ch-ground: #111A0A;
+}
+[data-ch="6"] {
+  --ch: #C99EF2;
+  --ch-2: #8F5FCB;
+  --ch-3: #54367A;
+  --ch-ink: #22093A;
+  --ch-glow: rgba(201, 158, 242, 0.42);
+  --ch-soft: rgba(201, 158, 242, 0.13);
+  --ch-ground: #170F20;
+}
+[data-ch="7"] {
+  --ch: #F2CB6E;
+  --ch-2: #C4952B;
+  --ch-3: #755814;
+  --ch-ink: #2A1B00;
+  --ch-glow: rgba(242, 203, 110, 0.42);
+  --ch-soft: rgba(242, 203, 110, 0.13);
+  --ch-ground: #1B1508;
+}
+
+/* Reduced motion: всё мгновенно, вечные циклы стоят на «живом» кадре. */
+:root[data-reduced="1"] {
+  --tf: 0.001;
+}
+
+</style>
+<style>
+/* ============================================================
+   Рама телефона и общие компоненты хрома («Атлас», Learning V2).
+   Всё, что повторяется между экранами: статус-бар, кнопки, чипы кошелька,
+   3D-клавиша CTA, шторка, вуаль, тост «спокойного отказа», скелетон, ирис.
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { background: #06090A; }
+body {
+  font-family: var(--font);
+  color: #E8EDEA;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+svg { display: block; }
+button { font-family: inherit; }
+
+.stage {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 36px 24px 80px;
+}
+
+/* ---------- Телефон ---------- */
+.phone {
+  width: 390px;
+  height: 844px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 48px;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  color: var(--text);
+  background:
+    radial-gradient(120% 60% at 50% -8%, var(--sheen), transparent 60%),
+    linear-gradient(175deg, var(--bg-a), var(--bg-b));
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  isolation: isolate;
+}
+.phone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(135% 92% at 50% 46%, transparent 64%, rgba(0, 0, 0, 0.34) 100%);
+}
+.statusbar {
+  height: 54px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  color: var(--text);
+  position: relative;
+  z-index: var(--z-header);
+}
+.statusbar .sb-right { display: flex; align-items: center; gap: 6px; }
+.statusbar svg { width: 18px; height: 12px; }
+.home-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 9px;
+  width: 134px;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateX(-50%);
+  z-index: var(--z-toast);
+  pointer-events: none;
+}
+
+/* ---------- Кнопки-иконки, чипы ---------- */
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  color: var(--text-2);
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  box-shadow: 0 6px 14px var(--shadow), inset 0 1px 0 var(--inner-light);
+  transition: transform var(--t-press) var(--ease-out);
+}
+.icon-btn:active { transform: scale(0.94); }
+.icon-btn svg { width: 22px; height: 22px; }
+
+.chip {
+  height: 36px;
+  padding: 0 12px 0 10px;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  box-shadow: 0 6px 14px var(--shadow), inset 0 1px 0 var(--inner-light);
+  white-space: nowrap;
+}
+.chip .glyph {
+  font-family: var(--font-rune);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold);
+}
+.chip.energy .glyph { color: var(--energy); font-family: var(--font); }
+.chip svg { width: 18px; height: 18px; }
+
+/* ---------- 3D-клавиша (DuoPressable / PressableHybrid) ----------
+   Цельная площадка + полка того же цвета темнее; нажатие вдавливает
+   площадку в полку целиком. Цвет клавиши задают --k-a/--k-b/--k-c/--k-shelf/--k-ink;
+   в сцене главы их переопределяет свет главы (см. .btn-key.ch). */
+.btn-key {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.1px;
+  color: var(--k-ink);
+  background: linear-gradient(180deg, var(--k-a) 0%, var(--k-b) 48%, var(--k-c) 100%);
+  box-shadow:
+    0 6px 0 var(--k-shelf),
+    0 16px 30px -6px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  transform: translateY(0);
+  transition: transform var(--t-press) var(--ease-out), box-shadow var(--t-press) var(--ease-out);
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-key:active,
+.btn-key.is-pressed {
+  transform: translateY(6px);
+  box-shadow:
+    0 0 0 var(--k-shelf),
+    0 6px 14px -4px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+.btn-key svg { width: 22px; height: 22px; flex: 0 0 auto; }
+/* Одноразовый проход света по клавише при появлении (внимание к действию). */
+.btn-key::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  width: 46%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.45) 50%, transparent 100%);
+  transform: translateX(-160%) skewX(-18deg);
+  opacity: 0;
+  pointer-events: none;
+}
+.btn-key.sweep::after {
+  animation: keySweep calc(900ms * var(--tf)) var(--ease-slide) calc(380ms * var(--tf)) 1 both;
+}
+@keyframes keySweep {
+  0% { transform: translateX(-160%) skewX(-18deg); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translateX(360%) skewX(-18deg); opacity: 0; }
+}
+.btn-key.ch {
+  --k-a: color-mix(in oklab, var(--ch) 78%, white);
+  --k-b: var(--ch);
+  --k-c: var(--ch-2);
+  --k-shelf: var(--ch-3);
+  --k-ink: var(--ch-ink);
+}
+.btn-key.quiet {
+  --k-a: var(--elev3);
+  --k-b: var(--elev2);
+  --k-c: var(--elev);
+  --k-shelf: #000000;
+  --k-ink: var(--text);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.55), 0 12px 24px -8px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--inner-light);
+}
+.btn-key.quiet:active { box-shadow: 0 0 0 rgba(0, 0, 0, 0.55), 0 4px 10px -4px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--inner-light); }
+.btn-key.gold {
+  --k-a: #F6E3A1;
+  --k-b: #E9C86A;
+  --k-c: #C99B33;
+  --k-shelf: #7A5C14;
+  --k-ink: #231A04;
+}
+.btn-text {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  height: 48px;
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--muted);
+  border-radius: 14px;
+  transition: transform var(--t-press) var(--ease-out), color var(--t-fast);
+}
+.btn-text:active { transform: scale(0.97); color: var(--text); }
+
+/* ---------- Вуаль и шторка ---------- */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-backdrop);
+  background:
+    radial-gradient(120% 90% at 50% 100%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.66) 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-normal) var(--ease-out);
+}
+.backdrop.is-on { opacity: 1; pointer-events: auto; }
+
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-sheet);
+  border-radius: 30px 30px 0 0;
+  padding: 10px 22px 40px;
+  background: linear-gradient(180deg, var(--elev) 0%, var(--card) 100%);
+  box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--inner-light);
+  transform: translateY(104%);
+  transition: transform var(--t-slow) var(--ease-drawer);
+  will-change: transform;
+}
+.sheet.is-on { transform: translateY(0); }
+.sheet .grabber {
+  width: 36px;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.18);
+  margin: 0 auto 16px;
+}
+
+/* ---------- Тост «спокойный отказ» ---------- */
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: 118px;
+  z-index: var(--z-toast);
+  transform: translate(-50%, 14px);
+  opacity: 0;
+  padding: 12px 18px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(160deg, var(--elev3), var(--elev));
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--inner-light);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  transition: transform var(--t-normal) var(--ease-out), opacity var(--t-normal) var(--ease-out);
+}
+.toast.is-on { transform: translate(-50%, 0); opacity: 1; }
+.toast svg { width: 18px; height: 18px; color: var(--muted); }
+
+/* ---------- Скелетон: геометрия зарезервирована, свет проходит ---------- */
+.skel {
+  position: relative;
+  overflow: hidden;
+  background: var(--elev);
+  border-radius: 14px;
+}
+.skel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.06) 50%, transparent 100%);
+  animation: skelSweep calc(1400ms * var(--tf)) linear infinite;
+}
+@keyframes skelSweep { to { transform: translateX(100%); } }
+
+/* ---------- Ирис: переход в занятие из точки действия ---------- */
+.iris {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-iris);
+  pointer-events: none;
+  clip-path: circle(0px at var(--ix, 50%) var(--iy, 80%));
+  background: var(--bg);
+  opacity: 1;
+}
+.iris.is-open {
+  transition: clip-path var(--t-scene) var(--ease-inout);
+  clip-path: circle(140% at var(--ix, 50%) var(--iy, 80%));
+  pointer-events: auto;
+}
+
+/* ---------- Шапка экрана ---------- */
+.hdr {
+  position: relative;
+  z-index: var(--z-header);
+  padding: 4px 18px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hdr .grow { flex: 1; min-width: 0; }
+.h-title {
+  font-size: var(--fs-title);
+  font-weight: 900;
+  letter-spacing: -0.6px;
+  line-height: 1.12;
+  color: var(--text);
+  text-wrap: balance;
+}
+.h-label {
+  font-size: var(--fs-label);
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+}
+
+/* ---------- Звёзды оценки (SVG) ---------- */
+.stars { display: inline-flex; gap: 3px; }
+.stars svg { width: 12px; height: 12px; color: var(--gold); }
+.stars svg.off { color: rgba(255, 255, 255, 0.16); }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --tf: 0.001; }
+}
+
+</style>
+<style>
+/* ============================================================
+   Карта урока: «ночной город, который ты зажигаешь».
+   Районы (главы), улица (путь), фонари (узлы), печати глав, врата экзамена,
+   туман закрытых глав, хореографии возврата. Общий файл для макетов 03–07.
+   ============================================================ */
+.map-hdr {
+  padding: 2px 16px 14px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  background: linear-gradient(180deg, var(--bg-a) 0%, var(--bg-a) 72%, transparent 100%);
+}
+.map-hdr .row1 { display: flex; align-items: center; gap: 12px; }
+.map-hdr .row1 .h-label { flex: 1; min-width: 0; }
+.map-hdr .h-title { font-size: 26px; padding: 0 2px; }
+.map-hdr .h-label { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.map-hdr .h-label .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ch); box-shadow: 0 0 10px var(--ch-glow); transition: background var(--t-slow), box-shadow var(--t-slow); }
+.map-hdr .wallet { display: flex; gap: 8px; }
+.progress-row { width: 100%; display: flex; align-items: center; gap: 12px; padding: 0 2px; }
+.progress-row .count { font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--text-2); white-space: nowrap; }
+.spectrum { flex: 1; display: flex; gap: 3px; height: 6px; }
+.spectrum span { flex: 1; border-radius: 3px; background: rgba(255,255,255,.07); position: relative; overflow: hidden; }
+.spectrum span::after { content: ""; position: absolute; inset: 0; background: var(--ch); transform-origin: left; transform: scaleX(var(--p, 0)); transition: transform var(--t-scene) var(--ease-out); box-shadow: 0 0 8px var(--ch-glow); }
+
+.map-scroll { position: relative; flex: 1; overflow-y: auto; overflow-x: hidden; z-index: var(--z-map); scrollbar-width: none; }
+.map-scroll::-webkit-scrollbar { display: none; }
+.map-canvas { position: relative; padding-bottom: 120px; }
+
+/* ---------- Глава = район ---------- */
+.ch { position: relative; }
+.ch-ground {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(90% 40% at 20% 8%, var(--ch-soft), transparent 70%),
+    linear-gradient(180deg, var(--ch-ground) 0%, transparent 60%);
+  opacity: .9;
+  transition: opacity var(--t-scene);
+}
+.ch.locked .ch-ground { opacity: .28; }
+.ch-glow {
+  position: absolute; width: 260px; height: 260px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, var(--ch-glow), transparent);
+  opacity: .35;
+  animation: drift calc(14000ms * var(--tf)) ease-in-out infinite alternate;
+  will-change: transform;
+}
+.ch.locked .ch-glow { display: none; }
+@keyframes drift { from { transform: translate(0, 0); } to { transform: translate(24px, -18px); } }
+
+.ch-head { position: relative; padding: 26px 22px 6px; display: flex; align-items: flex-start; gap: 12px; }
+.ch-head .t { flex: 1; min-width: 0; }
+.ch-num { font-size: 13px; font-weight: 800; letter-spacing: .6px; color: var(--ch); margin-bottom: 4px; transition: color var(--t-slow); }
+.ch-title { font-size: 30px; font-weight: 900; letter-spacing: -.8px; line-height: 1.06; color: var(--text); }
+.ch-scene { margin-top: 4px; font-size: 15.5px; font-weight: 600; color: var(--muted); }
+.ch.locked .ch-num { color: var(--ghost); }
+.ch.locked .ch-title { color: var(--text-2); opacity: .55; }
+.ch.locked .ch-scene { opacity: .55; }
+.ch-status {
+  flex: 0 0 auto; width: 46px; height: 46px; border-radius: 15px; display: grid; place-items: center;
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  box-shadow: 0 6px 14px var(--shadow), inset 0 1px 0 var(--inner-light);
+  font-size: 14px; font-weight: 800; color: var(--text-2); font-variant-numeric: tabular-nums;
+}
+.ch-status svg { width: 20px; height: 20px; color: var(--ghost); }
+.ch.done .ch-status { background: linear-gradient(160deg, #D19E1D, #FFD86E 55%, #E3A812); color: #241A05; box-shadow: 0 8px 18px rgba(255,212,59,.28), inset 0 1px 0 rgba(255,255,255,.5); }
+.ch.done .ch-status svg { color: #241A05; }
+
+/* ---------- Доска и улица ---------- */
+.board { position: relative; width: 390px; margin-top: 26px; }
+.route { position: absolute; left: 0; top: 0; overflow: visible; }
+.route .street { fill: none; stroke: rgba(255,255,255,.07); stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; }
+.route .glow { fill: none; stroke: var(--ch); stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; opacity: .16; }
+.route .lit { fill: none; stroke: var(--ch); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.route .glow, .route .lit { transition: stroke-dashoffset var(--t-scene) var(--ease-out); }
+.ch.locked .route .street { stroke: rgba(255,255,255,.045); }
+.spark {
+  position: absolute; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--ch) 45%, transparent 72%);
+  box-shadow: 0 0 18px 4px var(--ch-glow); opacity: 0; pointer-events: none;
+  offset-rotate: 0deg;
+}
+
+/* ---------- Узел-фонарь ---------- */
+.node {
+  position: absolute; --s: 60px;
+  left: calc(var(--x) - var(--s) / 2); top: calc(var(--y) - var(--s) / 2);
+  width: var(--s); height: var(--s);
+  border: none; background: transparent; cursor: pointer; padding: 0;
+  color: var(--text);
+  transition: transform var(--t-normal) var(--ease-spring);
+}
+.node.current { --s: 76px; }
+.node.next { --s: 64px; }
+.node .ground {
+  position: absolute; left: 50%; top: 62%; width: calc(var(--s) * 2.3); height: calc(var(--s) * 1.35);
+  transform: translate(-50%, -32%); border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, var(--ch-glow), transparent);
+  opacity: 0; transition: opacity var(--t-scene);
+}
+.node.done .ground { opacity: .5; }
+.node.current .ground { opacity: .85; }
+.node .halo {
+  position: absolute; inset: -16px; border-radius: 50%; pointer-events: none; opacity: 0;
+  background: radial-gradient(closest-side, transparent 58%, var(--ch-glow) 64%, transparent 100%);
+}
+.node.current .halo { opacity: 1; animation: breath var(--t-breath) ease-in-out infinite; will-change: transform, opacity; }
+:root[data-reduced="1"] .node.current .halo { animation: none; opacity: .7; }
+@keyframes breath { 0%, 100% { transform: scale(1); opacity: .55; } 50% { transform: scale(1.14); opacity: 1; } }
+.node .gem {
+  position: absolute; inset: 0; border-radius: 50%; display: grid; place-items: center; overflow: hidden;
+  font-size: 22px; font-weight: 900; letter-spacing: -.5px; font-variant-numeric: tabular-nums;
+  transition: transform var(--t-press) var(--ease-out), box-shadow var(--t-slow), background var(--t-slow);
+}
+.node.current .gem { font-size: 28px; }
+.node .gem svg { width: 26px; height: 26px; }
+.node.done .gem, .node.current .gem {
+  color: var(--ch-ink);
+  background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 58%, white) 0%, var(--ch) 40%, var(--ch-2) 100%);
+  box-shadow: 0 14px 26px -10px var(--ch-glow), inset 0 -10px 16px rgba(0,0,0,.28), inset 0 2px 0 rgba(255,255,255,.42);
+}
+.node.next .gem {
+  color: var(--ch);
+  background: radial-gradient(circle at 50% 42%, var(--ch-soft) 0%, var(--elev2) 60%, var(--card) 100%);
+  box-shadow: 0 10px 20px -10px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.1);
+  animation: warm calc(3600ms * var(--tf)) ease-in-out infinite;
+}
+@keyframes warm { 0%, 100% { box-shadow: 0 10px 20px -10px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.1); } 50% { box-shadow: 0 10px 22px -8px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.14); } }
+:root[data-reduced="1"] .node.next .gem { animation: none; }
+.node.locked .gem {
+  color: var(--ghost);
+  background: radial-gradient(circle at 34% 26%, var(--elev3) 0%, var(--card) 72%);
+  box-shadow: 0 8px 16px -8px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.node.locked .gem svg { width: 20px; height: 20px; opacity: .7; }
+.node.current .gem::after, .seal.available .face::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.55) 50%, transparent 62%);
+  transform: translateX(-130%);
+  animation: glint calc(5200ms * var(--tf)) linear infinite;
+}
+:root[data-reduced="1"] .node.current .gem::after, :root[data-reduced="1"] .seal.available .face::after { animation: none; opacity: 0; }
+@keyframes glint { 0%, 78% { transform: translateX(-130%); } 100% { transform: translateX(130%); } }
+.node:active .gem { transform: scale(.94); }
+.node.locked:active .gem { transform: scale(.96); }
+.node .stars { position: absolute; top: 100%; left: 50%; transform: translate(-50%, 5px); }
+.node .stars svg { width: 12px; height: 12px; }
+.node .stars svg.pop { animation: starPop var(--t-celebrate) var(--ease-spring) both; }
+@keyframes starPop { 0% { transform: scale(.3); opacity: 0; } 60% { transform: scale(1.25); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+.node .pill {
+  position: absolute; bottom: calc(100% + 14px); left: 50%; transform: translateX(-50%);
+  padding: 8px 14px; border-radius: var(--r-pill); white-space: nowrap;
+  font-size: 14px; font-weight: 800; color: var(--ch-ink);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--ch) 75%, white), var(--ch));
+  box-shadow: 0 10px 20px -6px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.4);
+  opacity: 0; pointer-events: none;
+}
+.node .pill::after { content: ""; position: absolute; left: 50%; top: 100%; width: 10px; height: 10px; background: var(--ch); transform: translate(-50%, -6px) rotate(45deg); border-radius: 2px; }
+.node.current .pill { opacity: 1; animation: floatPill calc(2400ms * var(--tf)) ease-in-out infinite; }
+:root[data-reduced="1"] .node.current .pill { animation: none; }
+@keyframes floatPill { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -4px); } }
+.node.is-denied .gem { animation: deny var(--t-normal) var(--ease-out) 1; }
+@keyframes deny { 0% { transform: scale(1); } 50% { transform: scale(.96); } 100% { transform: scale(1); } }
+.node.is-pop { animation: nodePop var(--t-celebrate) var(--ease-spring) both; }
+@keyframes nodePop { 0% { transform: scale(.7); } 55% { transform: scale(1.1); } 100% { transform: scale(1); } }
+.node.is-land .gem { animation: land var(--t-slow) var(--ease-spring) both; }
+@keyframes land { 0% { transform: scale(1.08); } 100% { transform: scale(1); } }
+
+/* ---------- Печать главы ---------- */
+.seal {
+  position: absolute; --s: 96px;
+  left: calc(var(--x) - var(--s) / 2); top: calc(var(--y) - var(--s) / 2);
+  width: var(--s); height: var(--s); border: none; background: transparent; cursor: pointer; padding: 0;
+}
+.seal .ground { position: absolute; left: 50%; top: 60%; width: 220px; height: 130px; transform: translate(-50%, -32%); border-radius: 50%; background: radial-gradient(closest-side, var(--ch-glow), transparent); opacity: 0; pointer-events: none; transition: opacity var(--t-scene); }
+.seal.available .ground, .seal.passed .ground { opacity: .7; }
+.seal .ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+.seal .ring .track { fill: none; stroke: rgba(255,255,255,.09); stroke-width: 6; }
+.seal .ring .seg { fill: none; stroke: var(--ch); stroke-width: 6; stroke-linecap: round; opacity: .28; transition: opacity var(--t-slow); }
+.seal .ring .seg.on { opacity: 1; filter: drop-shadow(0 0 4px var(--ch-glow)); }
+.seal.available .ring { animation: spin calc(24000ms * var(--tf)) linear infinite; }
+:root[data-reduced="1"] .seal.available .ring { animation: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.seal .face {
+  position: absolute; inset: 15px; border-radius: 50%; display: grid; place-items: center; overflow: hidden;
+  background: radial-gradient(circle at 34% 26%, var(--elev3) 0%, var(--card) 76%);
+  box-shadow: 0 12px 24px -10px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.08);
+  transition: transform var(--t-press) var(--ease-out), background var(--t-slow), box-shadow var(--t-slow);
+}
+.seal .rune { font-family: var(--font-rune); font-size: 30px; font-weight: 700; color: var(--ghost); transition: color var(--t-slow); }
+.seal.available .face { background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 30%, var(--elev3)) 0%, var(--card) 76%); box-shadow: 0 12px 26px -8px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.14); }
+.seal.available .rune { color: var(--ch); text-shadow: 0 0 14px var(--ch-glow); }
+.seal.passed .face { background: linear-gradient(160deg, #D19E1D 0%, #FFD86E 52%, #E3A812 100%); box-shadow: 0 14px 28px -8px rgba(255,212,59,.45), inset 0 -8px 14px rgba(0,0,0,.18), inset 0 2px 0 rgba(255,255,255,.55); }
+.seal.passed .rune { color: #241A05; text-shadow: none; }
+.seal.passed .ring .seg { stroke: var(--gold); }
+.seal:active .face { transform: scale(.94); }
+.seal .label { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 13px; font-weight: 800; letter-spacing: .3px; color: var(--muted); }
+.seal.available .label { color: var(--ch); }
+.seal.is-stamp .face { animation: stamp calc(520ms * var(--tf)) var(--ease-spring) both; }
+@keyframes stamp { 0% { transform: scale(1.32); } 55% { transform: scale(.94); } 100% { transform: scale(1); } }
+.seal .flash { position: absolute; inset: -30px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,232,150,.9), rgba(255,212,59,.35) 45%, transparent 72%); opacity: 0; pointer-events: none; }
+.seal.is-stamp .flash { animation: flash calc(640ms * var(--tf)) var(--ease-out) both; }
+@keyframes flash { 0% { opacity: 0; transform: scale(.4); } 20% { opacity: 1; } 100% { opacity: 0; transform: scale(1.5); } }
+.seal.is-denied .face { animation: deny var(--t-normal) var(--ease-out) 1; }
+
+/* ---------- Врата экзамена ---------- */
+.gate {
+  position: absolute; width: 128px; height: 104px; left: calc(var(--x) - 64px); top: calc(var(--y) - 52px);
+  border: none; background: transparent; cursor: pointer; padding: 0;
+}
+.gate .arch {
+  position: absolute; inset: 0; border-radius: 64px 64px 20px 20px; overflow: hidden;
+  background: linear-gradient(180deg, var(--elev3) 0%, var(--card) 100%);
+  box-shadow: 0 16px 30px -10px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.08);
+  transition: transform var(--t-press) var(--ease-out);
+}
+.gate .inner {
+  position: absolute; left: 18px; right: 18px; top: 18px; bottom: 0; border-radius: 46px 46px 6px 6px;
+  background: radial-gradient(80% 90% at 50% 100%, var(--ch-3) 0%, var(--bg) 80%);
+  display: grid; place-items: center;
+}
+.gate .rune { font-family: var(--font-rune); font-size: 34px; font-weight: 700; color: var(--ghost); }
+.gate .light { position: absolute; left: 50%; bottom: -10px; width: 200px; height: 120px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, var(--ch-glow), transparent); opacity: 0; transition: opacity var(--t-scene); pointer-events: none; }
+.gate.available .inner { background: radial-gradient(80% 90% at 50% 100%, var(--ch) 0%, var(--ch-2) 40%, var(--ch-3) 100%); }
+.gate.available .rune { color: var(--ch-ink); }
+.gate.available .light { opacity: .8; animation: breath var(--t-breath) ease-in-out infinite; }
+.gate.passed .inner { background: linear-gradient(160deg, #D19E1D 0%, #FFD86E 52%, #E3A812 100%); }
+.gate.passed .rune { color: #241A05; }
+.gate .label { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 13px; font-weight: 800; letter-spacing: .3px; color: var(--muted); }
+.gate.available .label { color: var(--ch); }
+.gate:active .arch { transform: scale(.96); }
+.gate.is-denied .arch { animation: deny var(--t-normal) var(--ease-out) 1; }
+
+/* ---------- Туман закрытой главы ---------- */
+.fog { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(3,5,4,.2) 0%, rgba(3,5,4,.62) 40%, rgba(3,5,4,.62) 100%); opacity: 0; transition: opacity var(--t-scene) var(--ease-out); }
+.ch.locked .fog { opacity: 1; }
+.fog .sweep { position: absolute; left: 0; right: 0; top: -40%; height: 40%; background: linear-gradient(180deg, transparent, var(--ch-soft) 60%, transparent); opacity: 0; }
+.ch.is-unlocking .fog { opacity: 0; }
+.ch.is-unlocking .fog .sweep { animation: sweepDown calc(900ms * var(--tf)) var(--ease-slide) both; }
+@keyframes sweepDown { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(400%); opacity: 0; } }
+
+/* ---------- Вход строк (каскад i × 40 мс) ---------- */
+.phone.is-entering .node, .phone.is-entering .seal, .phone.is-entering .gate, .phone.is-entering .ch-head {
+  animation: nodeIn var(--t-slow) var(--ease-spring) both;
+  animation-delay: calc(var(--i, 0) * 40ms * var(--tf));
+}
+@keyframes nodeIn { 0% { opacity: 0; transform: translateY(18px) scale(.85); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+
+/* ---------- «Продолжить» внизу (только когда текущий узел вне экрана) ---------- */
+.jump {
+  position: absolute; left: 50%; bottom: 44px; z-index: var(--z-float);
+  transform: translate(-50%, 24px); opacity: 0; pointer-events: none;
+  height: 52px; padding: 0 20px 0 16px; border: none; border-radius: var(--r-pill); cursor: pointer;
+  display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 800; color: var(--ch-ink); white-space: nowrap;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--ch) 75%, white), var(--ch) 60%, var(--ch-2));
+  box-shadow: 0 5px 0 var(--ch-3), 0 18px 34px -8px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.4);
+  transition: transform var(--t-normal) var(--ease-out), opacity var(--t-normal) var(--ease-out), background var(--t-slow);
+}
+.jump.is-on { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+.jump:active { transform: translate(-50%, 5px); box-shadow: 0 0 0 var(--ch-3), 0 8px 16px -6px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.3); }
+.jump svg { width: 22px; height: 22px; }
+
+/* ---------- Шторка пройденного узла ---------- */
+.node-sheet .s-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.node-sheet .s-gem { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-size: 20px; font-weight: 900; color: var(--ch-ink); background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 58%, white) 0%, var(--ch) 40%, var(--ch-2) 100%); box-shadow: 0 10px 20px -8px var(--ch-glow), inset 0 2px 0 rgba(255,255,255,.4); flex: 0 0 auto; }
+.node-sheet .s-title { font-size: 22px; font-weight: 900; letter-spacing: -.4px; line-height: 1.1; }
+.node-sheet .s-kind { font-size: 14px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+.node-sheet .s-result { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-radius: 18px; background: linear-gradient(160deg, var(--elev2), var(--elev)); box-shadow: inset 0 1px 0 var(--inner-light); margin-bottom: 14px; }
+.node-sheet .s-result .k { font-size: 15px; font-weight: 700; color: var(--text-2); }
+.node-sheet .s-result .stars svg { width: 22px; height: 22px; }
+.node-sheet .actions { display: flex; flex-direction: column; gap: 8px; }
+
+/* ---------- Оффлайн-пилюля, летящие руны, скелетон, финал ---------- */
+.offline {
+  position: absolute; left: 50%; top: 186px; z-index: var(--z-float); transform: translate(-50%, -8px); opacity: 0;
+  display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px 0 10px; border-radius: var(--r-pill);
+  background: linear-gradient(160deg, var(--elev3), var(--elev)); box-shadow: 0 10px 22px rgba(0,0,0,.45), inset 0 1px 0 var(--inner-light);
+  font-size: 14px; font-weight: 800; color: var(--text-2); pointer-events: none; transition: transform var(--t-normal) var(--ease-out), opacity var(--t-normal);
+}
+.offline svg { width: 18px; height: 18px; color: var(--muted); }
+.phone[data-state="offline"] .offline { transform: translate(-50%, 0); opacity: 1; }
+
+.flyer { position: absolute; z-index: var(--z-toast); font-family: var(--font-rune); font-size: 22px; font-weight: 700; color: var(--gold); text-shadow: 0 0 12px rgba(255,212,59,.7); pointer-events: none; will-change: transform, opacity; }
+.chip.is-bump { animation: bump var(--t-slow) var(--ease-spring) 1; }
+@keyframes bump { 0% { transform: scale(1); } 45% { transform: scale(1.16); } 100% { transform: scale(1); } }
+
+.phone[data-state="skeleton"] .node .gem, .phone[data-state="skeleton"] .seal .face, .phone[data-state="skeleton"] .gate .arch { background: var(--elev); box-shadow: none; color: transparent; }
+.phone[data-state="skeleton"] .node .ground, .phone[data-state="skeleton"] .node .halo, .phone[data-state="skeleton"] .node .pill, .phone[data-state="skeleton"] .node .stars, .phone[data-state="skeleton"] .seal .ground, .phone[data-state="skeleton"] .gate .light { opacity: 0 !important; animation: none !important; }
+.phone[data-state="skeleton"] .route .lit, .phone[data-state="skeleton"] .route .glow { opacity: 0; }
+.phone[data-state="skeleton"] .ch-glow { display: none; }
+.phone[data-state="skeleton"] .ch-title, .phone[data-state="skeleton"] .ch-scene, .phone[data-state="skeleton"] .ch-num { color: transparent; background: var(--elev); border-radius: 8px; }
+.phone[data-state="skeleton"] .chip { color: transparent; }
+.phone[data-state="skeleton"] .chip .glyph, .phone[data-state="skeleton"] .chip svg { opacity: 0; }
+.phone[data-state="skeleton"] .spectrum span::after { transform: scaleX(0); }
+.phone[data-state="skeleton"] .node .gem::after { display: none; }
+.phone[data-state="skeleton"] .seal .seg { opacity: 0; }
+
+.phone[data-state="lesson-complete"] .map-hdr .h-label .dot { background: var(--gold); box-shadow: 0 0 12px rgba(255,212,59,.6); }
+.done-banner {
+  position: absolute; left: 16px; right: 16px; top: 186px; z-index: var(--z-float);
+  padding: 16px 18px; border-radius: 22px; display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(160deg, #2A2208, #14110A); box-shadow: 0 18px 40px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,232,150,.18);
+  transform: translateY(-12px); opacity: 0; pointer-events: none; transition: transform var(--t-slow) var(--ease-out), opacity var(--t-slow);
+}
+.done-banner .medal { width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center; background: linear-gradient(160deg, #D19E1D, #FFD86E 52%, #E3A812); color: #241A05; box-shadow: 0 10px 20px rgba(255,212,59,.35); flex: 0 0 auto; }
+.done-banner .medal svg { width: 26px; height: 26px; }
+.done-banner .dt { font-size: 18px; font-weight: 900; color: #FFF3CC; }
+.done-banner .dd { font-size: 14px; font-weight: 700; color: #C9B77A; margin-top: 2px; }
+.phone[data-state="lesson-complete"] .done-banner { transform: translateY(0); opacity: 1; pointer-events: auto; }
+
+</style>
+<style>
+/* ============================================================
+   Панель витрины: состояния экрана, тема хрома, замедление, reduced motion.
+   Живёт рядом с телефоном; на узком экране встаёт под него.
+   ============================================================ */
+.panel {
+  width: 360px;
+  max-width: 100%;
+  color: #E8EDEA;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: var(--font);
+}
+.panel h1 {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.4px;
+  line-height: 1.12;
+  color: #F4F7F5;
+}
+.panel h1 small {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #7E948A;
+  margin-bottom: 8px;
+}
+.panel p.lead {
+  font-size: 15px;
+  line-height: 1.55;
+  color: #A8B7B0;
+  font-weight: 500;
+}
+.panel h2 {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #7E948A;
+  margin-bottom: 10px;
+}
+.panel .group { display: flex; flex-wrap: wrap; gap: 8px; }
+.panel .nav { display: flex; gap: 8px; flex-wrap: wrap; }
+.panel .nav a {
+  color: #A8B7B0;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: #101614;
+}
+.panel .nav a:hover { color: #F4F7F5; background: #17201C; }
+.pbtn {
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: #C9D6CF;
+  background: linear-gradient(160deg, #182119, #0E1410);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform 120ms var(--ease-out), color 120ms, box-shadow 120ms;
+}
+.pbtn:hover { color: #FFFFFF; }
+.pbtn:active { transform: scale(0.97); }
+.pbtn[aria-pressed="true"] {
+  color: #06170C;
+  background: linear-gradient(180deg, #7DE6A8, #47C870);
+  box-shadow: 0 6px 14px rgba(71, 200, 112, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.pbtn.replay { color: #F4F7F5; }
+.pbtn .sw {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  margin-right: 7px;
+  vertical-align: -1px;
+}
+.note {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #8FA39A;
+  background: #0E1411;
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+.note b { color: #DCE6E0; font-weight: 800; }
+.note ul { padding-left: 18px; margin-top: 6px; }
+.note li { margin: 4px 0; }
+.note code {
+  font-family: "JetBrains Mono", Consolas, monospace;
+  font-size: 12.5px;
+  color: #BFE5CC;
+  background: #16201A;
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+.spec-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.spec-table td { padding: 6px 4px; vertical-align: top; border-bottom: 1px solid #16201A; color: #A8B7B0; }
+.spec-table td:first-child { color: #DCE6E0; font-weight: 700; width: 46%; }
+@media (max-width: 820px) {
+  .stage { padding: 16px 12px 60px; gap: 24px; }
+  .panel { width: 390px; }
+}
+
+</style>
+
+<div class="stage">
+  <div class="phone" data-ch="1" data-state="normal">
+    <div id="sb"></div>
+    <header class="hdr map-hdr" data-ch="1">
+      <div class="row1">
+        <button class="icon-btn" aria-label="Назад"><svg><use href="#i-chevron-left"/></svg></button>
+        <div class="h-label"><span class="dot"></span><span>Урок 1</span></div>
+        <div class="wallet">
+          <div class="chip" id="chip-runes"><span class="glyph">ᚠ</span><span id="rune-count">120</span></div>
+          <div class="chip energy"><svg style="color:var(--energy)"><use href="#i-bolt"/></svg><span>4</span></div>
+        </div>
+      </div>
+      <div class="h-title">Первая неделя в Дублине</div>
+      <div class="progress-row">
+        <div class="spectrum" id="spectrum"></div>
+        <div class="count" id="count">12 из 56</div>
+      </div>
+    </header>
+    <div class="offline"><svg><use href="#i-cloud-off"/></svg>Нет сети, карта из памяти</div>
+    <div class="done-banner"><div class="medal"><svg><use href="#i-check"/></svg></div><div><div class="dt">Урок пройден</div><div class="dd">56 занятий, 7 печатей, экзамен сдан</div></div></div>
+    <div class="map-scroll" id="scroll"><div class="map-canvas" id="canvas"></div></div>
+    <button class="jump" id="jump"><svg><use href="#i-play"/></svg><span data-jump-label>Продолжить</span></button>
+    <div class="backdrop" id="backdrop"></div>
+    <div class="sheet node-sheet" id="node-sheet" data-ch="1">
+      <div class="grabber"></div>
+      <div class="s-head"><div class="s-gem" data-ns-gem>4</div><div><div class="s-title" data-ns-title>I am / I am not</div><div class="s-kind" data-ns-kind>Голос и слух · Утренняя планёрка вслух</div></div></div>
+      <div class="s-result"><span class="k">Твой результат</span><span data-ns-stars></span></div>
+      <div class="actions">
+        <button class="btn-key ch sweep"><svg><use href="#i-refresh"/></svg>Улучшить результат</button>
+        <button class="btn-text" data-ns-close>Закрыть</button>
+      </div>
+    </div>
+    <div class="toast" id="toast"><svg><use href="#i-lock"/></svg><span data-toast-text>Сначала занятие 12</span></div>
+    <div class="home-indicator"></div>
+  </div>
+  <aside class="panel"></aside>
+</div>
+<script>
+/* Единый набор SVG-глифов макетов (24×24, stroke 2, round). Без эмодзи и растра.
+   Использование: <svg class="i"><use href="#i-lock"/></svg> */
+(function () {
+  const sprite = `
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="3" fill="currentColor"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4L2.8 9.5l6.4-.8z" fill="currentColor"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13.5 2L4 14h7l-1.5 8L20 10h-7z" fill="currentColor"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cloud-off" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .7-7.9A6 6 0 0 0 6.5 9.5 4.3 4.3 0 0 0 7 18z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M4 4l16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-tasks" viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L13 19V5L7.5 9.5z" fill="currentColor"/><path d="M16.5 9.5l4 5M20.5 9.5l-4 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L13 19V5L7.5 9.5z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="currentColor"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="currentColor"/><rect x="5" y="5.5" width="3" height="6.5" rx="1" fill="currentColor"/><rect x="10" y="3" width="3" height="9" rx="1" fill="currentColor"/><rect x="15" y="0" width="3" height="12" rx="1" fill="currentColor"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 18 12"><path d="M1.5 4.5a11 11 0 0 1 15 0M4.2 7.2a7 7 0 0 1 9.6 0M6.9 9.9a3 3 0 0 1 4.2 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 28 12"><rect x="0.8" y="0.8" width="23" height="10.4" rx="3" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".5"/><rect x="2.5" y="2.5" width="18" height="7" rx="1.8" fill="currentColor"/><path d="M25.5 4v4a2 2 0 0 0 0-4z" fill="currentColor" opacity=".5"/></symbol>
+</svg>`;
+  const mount = () => {
+    const wrap = document.createElement("div");
+    wrap.innerHTML = sprite;
+    document.body.insertBefore(wrap.firstElementChild, document.body.firstChild);
+  };
+  if (document.body) mount();
+  else document.addEventListener("DOMContentLoaded", mount);
+
+  window.statusbarHTML = function (time) {
+    return `<div class="statusbar"><span>${time || "9:41"}</span><span class="sb-right"><svg viewBox="0 0 18 12"><use href="#i-signal"/></svg><svg viewBox="0 0 18 12"><use href="#i-wifi"/></svg><svg viewBox="0 0 28 12" style="width:28px"><use href="#i-battery"/></svg></span></div>`;
+  };
+  window.starsHTML = function (n, size) {
+    const s = size || 12;
+    let h = '<span class="stars" aria-label="' + n + ' из 3">';
+    for (let i = 0; i < 3; i += 1) h += `<svg class="${i < n ? "" : "off"}" style="width:${s}px;height:${s}px"><use href="#i-star"/></svg>`;
+    return h + "</span>";
+  };
+})();
+
+</script>
+<script>
+/* ============================================================
+   Данные курса для макетов — из content/learning-v2-course/curriculum/en/ПЛАН_КУРСА.md
+   (утверждён владельцем 2026-09-03). 32 урока × 7 глав × 8 сессий.
+   Роли сессий — modules/learning-v2/content/course_topology_v1.ts:
+   8/16/24/32/40/48 — проверка главы, 49–55 — перенос, 56 — итоговый экзамен.
+   ============================================================ */
+(function () {
+  const LESSONS = [
+    ["Present be: I am, you are, he is", "Первая неделя в Дублине"],
+    ["Present be: вопросы и короткие ответы", "Знакомство с городом"],
+    ["a / an / the, this / that", "Обустраиваем квартиру"],
+    ["There is / there are, some / any", "Ищем всё в новом районе"],
+    ["Have / has, чьё это", "Семья, вещи, коллеги"],
+    ["Present Simple: утверждение", "Будни: как живут люди вокруг"],
+    ["Present Simple: do / does, don't", "Расспрашиваем соседей и друзей"],
+    ["Can / can't, просьбы", "Просим, объясняем, учим готовить"],
+    ["Present Continuous", "Что происходит прямо сейчас"],
+    ["Simple vs Continuous", "Обычно и сейчас: отпуск, ремонт, дедлайн"],
+    ["Was / were, there was", "Вчерашний день, детство"],
+    ["Past Simple: неправильные глаголы", "Как прошли выходные"],
+    ["Past Simple: did, didn't", "Разбираем, что случилось"],
+    ["Past Continuous, when / while", "Что вы делали, когда…"],
+    ["Going to, планы", "Планируем поездку и переезд"],
+    ["Will: решения и обещания", "Обещания, прогнозы, споры"],
+    ["Much / many, few / little", "Рецепт, вечеринка, покупки"],
+    ["Сравнение, too / enough", "Выбираем квартиру, телефон, ресторан"],
+    ["Could, may, be able to", "Что можно, что нельзя"],
+    ["Must, have to, should", "Советы и обязанности"],
+    ["Глагол + gerund / infinitive", "Что вы любите, хотите, боитесь"],
+    ["Предлоги и фразовые глаголы", "Ориентируемся в городе и расписании"],
+    ["Present Perfect: опыт", "Что вы уже пробовали"],
+    ["Present Perfect: for / since", "Сколько вы уже…"],
+    ["Used to, past perfect", "Как всё было раньше"],
+    ["Zero и First Conditional", "Если…, то…"],
+    ["Second Conditional, wishes", "Если бы… мечты"],
+    ["Passive", "Новости и инструкции"],
+    ["Определительные придаточные", "Тот человек, который…"],
+    ["Косвенная речь", "Передаём чужие слова"],
+    ["Непрямые вопросы, tags", "Вежливо и связно"],
+    ["Must / might / can't для вывода", "Детектив: что здесь произошло?"],
+  ].map((row, i) => ({ n: i + 1, system: row[0], arc: row[1] }));
+
+  /* Урок 1: главы = шаги системы be + сцены арки. */
+  const CHAPTERS = [
+    { n: 1, title: "I am", scene: "Утро в офисе", moment: "Первый рабочий день", shape: "stairs" },
+    { n: 2, title: "You are", scene: "Кофе с коллегой", moment: "Коллега приносит кофе", shape: "ring" },
+    { n: 3, title: "He is, she is", scene: "Знакомство с командой", moment: "Начальник представляет людей", shape: "rows" },
+    { n: 4, title: "It is", scene: "Квартира и погода", moment: "Первый вечер в квартире", shape: "rain" },
+    { n: 5, title: "We are, they are", scene: "Обед с командой", moment: "Идём обедать всей командой", shape: "track" },
+    { n: 6, title: "I'm, you're, isn't", scene: "Пятница, паб", moment: "Так говорят на самом деле", shape: "zigzag" },
+    { n: 7, title: "Вся система be", scene: "Воскресный звонок домой", moment: "Рассказываем о неделе", shape: "spiral" },
+  ];
+
+  /* 56 сессий урока 1: [тип, грамматика, слова, момент сцены] */
+  const S = [
+    ["новая", "I am + слово", "here, ready, fine, happy", "Вошли в офис, все смотрят"],
+    ["применение", "I am + состояние", "tired, busy, late, sorry", "День продолжается"],
+    ["новая", "I am not", "hungry, cold, sure, alone", "Заботливый начальник"],
+    ["голос", "I am / I am not", "early, right, wrong, free", "Утренняя планёрка вслух"],
+    ["контраст", "am не выбрасывать", "hot, sick, lost, new", "Типичные ошибки: I fine, I no sure"],
+    ["перенос", "I am (not) вне офиса", "home, back, done, ok", "Вечером в квартире, звонок другу"],
+    ["слова", "Все 24 слова главы", "scared, glad, bored, full", "Конец дня, всё вперемешку"],
+    ["проверка", "Итог первого дня", "", "Ответить на 10 вопросов о себе"],
+    ["новая", "You are + слово", "welcome, right, kind, funny", "Коллега приносит кофе"],
+    ["применение", "You are + оценка", "early, late, fast, quiet", "Говорим о собеседнике"],
+    ["новая", "You are not", "crazy, alone, wrong, lazy", "Успокаиваем коллегу"],
+    ["голос", "I am / you are", "brave, calm, honest, smart", "Комплименты вслух"],
+    ["контраст", "am vs are", "young, old, strong, tall", "Ловушки: you am, I are"],
+    ["перенос", "you в другой сцене", "safe, warm, dry, ready", "Помогаем туристу под дождём"],
+    ["слова", "24 слова + возврат главы 1", "polite, serious, lucky, sad", "Вечер, разбор дня"],
+    ["проверка", "Кофе с коллегой", "", "Скажи коллеге пять вещей о нём"],
+    ["новая", "He is / she is", "nice, new, tall, friendly", "Начальник представляет людей"],
+    ["применение", "He / she is + характер", "shy, loud, clever, bossy", "Обсуждаем коллег шёпотом"],
+    ["новая", "He / she is not", "angry, mean, slow, rude", "Разубеждаем: он не злой"],
+    ["голос", "is после he / she", "married, single, famous, rich", "Сплетни у кулера"],
+    ["контраст", "am / are / is", "short, thin, blond, young", "Ловушки: she are, he am"],
+    ["перенос", "he / she вне офиса", "asleep, awake, away, ill", "Сосед, друг, ребёнок"],
+    ["слова", "24 + возврат глав 1–2", "patient, proud, grumpy, gentle", "Вечер, характеристики"],
+    ["проверка", "Знакомство с командой", "", "Опиши трёх коллег"],
+    ["новая", "It is + признак", "cold, small, dark, expensive", "Первый вечер в квартире"],
+    ["применение", "It is + погода и время", "rainy, windy, late, early", "Утро, окно, часы"],
+    ["новая", "It is not", "easy, hard, far, cheap", "Спорим с агентом по аренде"],
+    ["голос", "it's про предметы", "broken, open, closed, empty", "Что-то сломалось"],
+    ["контраст", "it в начале фразы", "heavy, light, clean, dirty", "Ловушки: пропуск it"],
+    ["перенос", "it вне дома", "busy, quiet, loud, free", "Кафе, улица, транспорт"],
+    ["слова", "24 + возврат", "wet, dry, hot, warm", "Погода за неделю"],
+    ["проверка", "Квартира и погода", "", "Опиши квартиру и погоду"],
+    ["новая", "We are + слово", "together, hungry, ready, late", "Идём обедать всей командой"],
+    ["применение", "They are + слово", "busy, nice, loud, funny", "О другом отделе"],
+    ["новая", "We / they are not", "alone, wrong, sure, free", "Мы не опаздываем"],
+    ["голос", "we / they вслух", "colleagues, friends, neighbours, guests", "Кто эти люди"],
+    ["контраст", "Все пять скрепок", "tired, happy, cold, hot", "Ловушки: we is, they am"],
+    ["перенос", "we / they вне офиса", "lost, safe, home, back", "Прогулка, заблудились"],
+    ["слова", "24 + возврат", "early, right, fine, sorry", "Отчёт о дне"],
+    ["проверка", "Обед с командой", "", "Расскажи о своей команде"],
+    ["новая", "I'm / you're", "fine, late, sure, sorry", "Так говорят на самом деле"],
+    ["применение", "he's / she's / it's", "great, awful, gone, here", "Быстрые реплики"],
+    ["новая", "we're / they're, isn't / aren't", "bad, ok, real, true", "Отрицание на скорости"],
+    ["голос", "Слышать сокращения", "tired, cold, wrong, free", "Шум паба"],
+    ["контраст", "I'm not vs isn't", "ready, busy, done, full", "Ловушки: I amn't, he'sn't"],
+    ["перенос", "Сокращения в переписке", "fun, boring, cool, weird", "Чат с друзьями"],
+    ["слова", "24 + возврат", "drunk, sober, sleepy, awake", "Конец вечера"],
+    ["проверка", "Пятница, паб", "", "Пересказать вечер быстро"],
+    ["применение", "am / is / are по подлежащему", "everyone, nobody, people, family", "Рассказываем о неделе"],
+    ["применение", "Полные и короткие формы", "job, boss, flat, city", "Описываем всё сразу"],
+    ["тонкость", "be с местом", "there, upstairs, outside, inside", "Где кто"],
+    ["голос", "Длинный монолог о неделе", "week, day, night, morning", "Звонок маме"],
+    ["контраст", "Все ловушки урока", "", "Ремонт ошибок недели"],
+    ["перенос", "Собеседование по телефону", "confident, nervous, fluent, honest", "О себе кратко"],
+    ["слова", "Возврат всех 7 глав", "", "Большой Speed-марафон"],
+    ["экзамен", "Финал арки", "", "Неделя прошла"],
+  ];
+  const SESSIONS = S.map((row, i) => {
+    const n = i + 1;
+    const ch = Math.ceil(n / 8);
+    const pos = ((n - 1) % 8) + 1;
+    const role = n === 56 ? "final_exam" : pos === 8 ? "chapter_checkpoint" : n >= 49 ? "transfer_practice" : "guided_learning";
+    return { n, ch, pos, role, type: row[0], grammar: row[1], words: row[2] ? row[2].split(", ") : [], moment: row[3] };
+  });
+
+  const TYPE_LABEL = {
+    "новая": "Новое правило",
+    "применение": "Применение",
+    "голос": "Голос и слух",
+    "контраст": "Контраст и ремонт",
+    "перенос": "Перенос в другую сцену",
+    "слова": "Закрепление словами",
+    "тонкость": "Тонкость",
+    "проверка": "Проверка главы",
+    "экзамен": "Итоговый экзамен",
+  };
+
+  window.COURSE = { LESSONS, CHAPTERS, SESSIONS, TYPE_LABEL };
+})();
+
+</script>
+<script>
+/* ============================================================
+   Геометрия маршрутов карты. Не змейка: у каждой главы своя форма пути,
+   продиктованная сценой. Доска главы = 390 px шириной, высота своя.
+   Порядок сессий всегда однозначен: одна непрерывная линия света через
+   8 точек (7 занятий + печать главы / врата экзамена в конце).
+   Точки — центры узлов. Узлы: 60–76 px, печать 96 px, врата 128×100 px.
+   ============================================================ */
+(function () {
+  const W = 390;
+  const CX = W / 2;
+
+  function polar(cx, cy, r, deg) {
+    const a = (deg * Math.PI) / 180;
+    return { x: Math.round(cx + r * Math.cos(a)), y: Math.round(cy + r * Math.sin(a)) };
+  }
+
+  /* Глава 1 «Утро в офисе»: лестница — шаг вправо, шаг вниз, вход в здание.
+     Печать — площадка внизу по центру. */
+  function stairs() {
+    const pts = [
+      { x: 72, y: 84 }, { x: 160, y: 84 }, { x: 160, y: 176 }, { x: 250, y: 176 },
+      { x: 250, y: 268 }, { x: 330, y: 268 }, { x: 330, y: 362 }, { x: CX, y: 486 },
+    ];
+    return { pts, h: 580, style: "steps" };
+  }
+
+  /* Глава 2 «Кофе с коллегой»: кольцо чашки — 7 занятий по кромке, печать в центре. */
+  function ring() {
+    const cy = 268, r = 132;
+    const pts = [];
+    for (let i = 0; i < 7; i += 1) pts.push(polar(CX, cy, r, -90 + i * (360 / 7)));
+    pts.push({ x: CX, y: cy });
+    return { pts, h: 460, style: "ring", ring: { cx: CX, cy, r } };
+  }
+
+  /* Глава 3 «Знакомство с командой»: два ряда, как на командном фото. */
+  function rows() {
+    const pts = [
+      { x: 62, y: 96 }, { x: 150, y: 96 }, { x: 240, y: 96 }, { x: 328, y: 96 },
+      { x: 284, y: 196 }, { x: CX, y: 196 }, { x: 106, y: 196 }, { x: CX, y: 332 },
+    ];
+    return { pts, h: 420, style: "curve" };
+  }
+
+  /* Глава 4 «Квартира и погода»: косой дождь — одна струя сверху справа вниз влево. */
+  function rain() {
+    const pts = [];
+    for (let i = 0; i < 7; i += 1) pts.push({ x: 330 - i * 45, y: 84 + i * 68 });
+    pts.push({ x: CX, y: 604 });
+    return { pts, h: 690, style: "line" };
+  }
+
+  /* Глава 5 «Обед с командой»: стол — вытянутая петля, печать во главе стола. */
+  function track() {
+    const pts = [
+      { x: 78, y: 104 }, { x: 166, y: 82 }, { x: 256, y: 82 }, { x: 336, y: 112 },
+      { x: 336, y: 238 }, { x: 256, y: 268 }, { x: 166, y: 268 }, { x: 78, y: 236 },
+    ];
+    return { pts, h: 340, style: "curve" };
+  }
+
+  /* Глава 6 «Пятница, паб»: быстрая речь — тугой зигзаг, единственный на карте, намеренно. */
+  function zigzag() {
+    const pts = [];
+    for (let i = 0; i < 7; i += 1) pts.push({ x: i % 2 === 0 ? 132 : 258, y: 72 + i * 52 });
+    pts.push({ x: CX, y: 470 });
+    return { pts, h: 560, style: "line" };
+  }
+
+  /* Глава 7 «Звонок домой»: спираль наружу — неделя собирается в одно, врата внизу. */
+  function spiral() {
+    const cy = 272;
+    const pts = [];
+    for (let i = 0; i < 7; i += 1) {
+      const r = 76 + i * 14;
+      const deg = 90 - (6 - i) * 51.4;
+      pts.push(polar(CX, cy, r, deg));
+    }
+    pts.push({ x: CX, y: 560 });
+    return { pts, h: 660, style: "curve", gate: true };
+  }
+
+  const SHAPES = { stairs, ring, rows, rain, track, zigzag, spiral };
+
+  /* Гладкая кривая Катмулла–Рома через точки → кубические Безье. */
+  function curvePath(pts) {
+    let d = `M${pts[0].x} ${pts[0].y}`;
+    for (let i = 0; i < pts.length - 1; i += 1) {
+      const p0 = pts[i - 1] || pts[i];
+      const p1 = pts[i];
+      const p2 = pts[i + 1];
+      const p3 = pts[i + 2] || p2;
+      const c1x = p1.x + (p2.x - p0.x) / 6;
+      const c1y = p1.y + (p2.y - p0.y) / 6;
+      const c2x = p2.x - (p3.x - p1.x) / 6;
+      const c2y = p2.y - (p3.y - p1.y) / 6;
+      d += ` C${c1x.toFixed(1)} ${c1y.toFixed(1)} ${c2x.toFixed(1)} ${c2y.toFixed(1)} ${p2.x} ${p2.y}`;
+    }
+    return d;
+  }
+
+  /* Ломаная со скруглёнными углами (лестница). */
+  function stepsPath(pts, radius) {
+    const r = radius || 26;
+    let d = `M${pts[0].x} ${pts[0].y}`;
+    for (let i = 1; i < pts.length - 1; i += 1) {
+      const a = pts[i - 1], b = pts[i], c = pts[i + 1];
+      const v1 = { x: a.x - b.x, y: a.y - b.y };
+      const v2 = { x: c.x - b.x, y: c.y - b.y };
+      const l1 = Math.hypot(v1.x, v1.y), l2 = Math.hypot(v2.x, v2.y);
+      const rr = Math.min(r, l1 / 2, l2 / 2);
+      const p1 = { x: b.x + (v1.x / l1) * rr, y: b.y + (v1.y / l1) * rr };
+      const p2 = { x: b.x + (v2.x / l2) * rr, y: b.y + (v2.y / l2) * rr };
+      d += ` L${p1.x.toFixed(1)} ${p1.y.toFixed(1)} Q${b.x} ${b.y} ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
+    }
+    const last = pts[pts.length - 1];
+    d += ` L${last.x} ${last.y}`;
+    return d;
+  }
+
+  function linePath(pts) {
+    return pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x} ${p.y}`).join(" ");
+  }
+
+  /* Кольцо: дуги по окружности между 7 точками, затем мягкий заход в центр. */
+  function ringPath(pts, ring) {
+    let d = `M${pts[0].x} ${pts[0].y}`;
+    for (let i = 1; i < 7; i += 1) d += ` A${ring.r} ${ring.r} 0 0 1 ${pts[i].x} ${pts[i].y}`;
+    const last = pts[6], c = pts[7];
+    d += ` Q${(last.x + c.x) / 2 - 30} ${(last.y + c.y) / 2 - 40} ${c.x} ${c.y}`;
+    return d;
+  }
+
+  function routeFor(shapeName) {
+    const r = SHAPES[shapeName]();
+    let d;
+    if (r.style === "steps") d = stepsPath(r.pts);
+    else if (r.style === "line") d = linePath(r.pts);
+    else if (r.style === "ring") d = ringPath(r.pts, r.ring);
+    else d = curvePath(r.pts);
+    return Object.assign(r, { d, w: W });
+  }
+
+  /* Длина пути до каждой точки (для света прогресса) — по готовому <path>. */
+  function lengthsAtPoints(pathEl, pts) {
+    const total = pathEl.getTotalLength();
+    const step = 3;
+    const samples = [];
+    for (let l = 0; l <= total; l += step) {
+      const p = pathEl.getPointAtLength(l);
+      samples.push({ l, x: p.x, y: p.y });
+    }
+    return pts.map((pt) => {
+      let best = samples[0], bd = Infinity;
+      for (const s of samples) {
+        const dd = (s.x - pt.x) ** 2 + (s.y - pt.y) ** 2;
+        if (dd < bd) { bd = dd; best = s; }
+      }
+      return best.l;
+    });
+  }
+
+  window.ROUTES = { routeFor, lengthsAtPoints, W };
+})();
+
+</script>
+<script>
+/* ============================================================
+   MapKit — сборка и жизнь карты урока (общее для макетов 03–07).
+   const kit = MapKit.mount({ phone, canvas, scroll, hdr, jump, toast,
+                              backdrop, nodeSheet, runeChip, runeCount,
+                              countEl, spectrumEl, onTap })
+   kit.build() · kit.apply(model, {instant}) · kit.makeModel(doneUpTo)
+   kit.base(model, {noEnter, top}) · kit.returnComplete(token) ·
+   kit.chapterUnlock(token) · kit.flyRunes(el, n) · kit.deny(el, text) ·
+   kit.openNodeSheet(n) · kit.closeSheet() · kit.scrollToCurrent()
+   Любые таймеры хореографий регистрируются через kit.later(fn, ms) и
+   отменяются при смене состояния (kit.base) — иначе поздняя шторка
+   всплывала поверх следующего состояния.
+   ============================================================ */
+(function () {
+  const { CHAPTERS, SESSIONS, TYPE_LABEL } = window.COURSE;
+  const { routeFor, lengthsAtPoints } = window.ROUTES;
+
+  const tf = () => Number(getComputedStyle(document.documentElement).getPropertyValue("--tf")) || 1;
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms * tf()));
+  const reduced = () => document.documentElement.getAttribute("data-reduced") === "1";
+
+  function plural(n, a, b, c) {
+    const m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return a;
+    if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return b;
+    return c;
+  }
+
+  function ringSVG() {
+    const r = 44, c = 48, segs = 7, gap = 10;
+    const circ = 2 * Math.PI * r;
+    const segLen = circ / segs - gap;
+    let paths = "";
+    for (let i = 0; i < segs; i += 1) {
+      const off = -(i * circ) / segs - gap / 2;
+      paths += `<circle class="seg" data-i="${i}" cx="${c}" cy="${c}" r="${r}" stroke-dasharray="${segLen} ${circ - segLen}" stroke-dashoffset="${off}" transform="rotate(-90 ${c} ${c})"/>`;
+    }
+    return `<svg class="ring" viewBox="0 0 96 96"><circle class="track" cx="${c}" cy="${c}" r="${r}"/>${paths}</svg>`;
+  }
+
+  function makeModel(doneUpTo, extra) {
+    const done = new Set();
+    const stars = new Map();
+    for (let n = 1; n <= doneUpTo; n += 1) { done.add(n); stars.set(n, [3, 2, 3, 3, 1, 3, 2][n % 7]); }
+    const m = { done, stars, current: doneUpTo >= 56 ? null : doneUpTo + 1 };
+    return Object.assign(m, extra || {});
+  }
+
+  function mount(cfg) {
+    const phone = cfg.phone;
+    const canvas = cfg.canvas;
+    const scroll = cfg.scroll;
+    const refs = { chapters: [], nodes: new Map(), seals: new Map(), gate: null, spectrum: [] };
+    let model = null;
+    let runToken = 0;
+    const timers = [];
+    let toastTimer = null;
+
+    function later(fn, ms) { const t = setTimeout(fn, ms * tf()); timers.push(t); return t; }
+    function cancelAll() { timers.splice(0).forEach(clearTimeout); }
+
+    function build() {
+      canvas.innerHTML = "";
+      refs.chapters = []; refs.nodes.clear(); refs.seals.clear();
+      let gi = 0;
+      CHAPTERS.forEach((chapter) => {
+        const route = routeFor(chapter.shape);
+        const sec = document.createElement("section");
+        sec.className = "ch";
+        sec.setAttribute("data-ch", String(chapter.n));
+        sec.innerHTML = `
+          <div class="ch-ground"></div>
+          <div class="ch-glow" style="left:${route.pts[0].x - 130}px;top:${route.pts[0].y + 40}px"></div>
+          <header class="ch-head" style="--i:${gi}">
+            <div class="t"><div class="ch-num">Глава ${chapter.n}</div><h2 class="ch-title">${chapter.title}</h2><div class="ch-scene">${chapter.scene}</div></div>
+            <div class="ch-status"></div>
+          </header>
+          <div class="board" style="height:${route.h}px">
+            <svg class="route" width="390" height="${route.h}" viewBox="0 0 390 ${route.h}" aria-hidden="true">
+              <path class="street" d="${route.d}"/>
+              <path class="glow" d="${route.d}"/>
+              <path class="lit" d="${route.d}"/>
+            </svg>
+            <div class="spark" style="offset-path: path('${route.d}')"></div>
+            <div class="fog"><div class="sweep"></div></div>
+          </div>`;
+        gi += 1;
+        const board = sec.querySelector(".board");
+        const sessions = SESSIONS.filter((s) => s.ch === chapter.n);
+        sessions.forEach((s, i) => {
+          const p = route.pts[i];
+          const elm = document.createElement("button");
+          if (s.role === "final_exam") {
+            elm.className = "gate";
+            elm.innerHTML = `<div class="light"></div><div class="arch"><div class="inner"><span class="rune">ᛞ</span></div></div><span class="label">Экзамен</span>`;
+            refs.gate = elm;
+          } else if (s.role === "chapter_checkpoint") {
+            elm.className = "seal";
+            elm.innerHTML = `<span class="ground"></span><span class="flash"></span>${ringSVG()}<span class="face"><span class="rune">ᛝ</span></span><span class="label">Проверка</span>`;
+            refs.seals.set(s.n, elm);
+          } else {
+            elm.className = "node";
+            elm.innerHTML = `<span class="ground"></span><span class="halo"></span><span class="gem"></span><span class="stars"></span><span class="pill">Продолжить</span>`;
+            refs.nodes.set(s.n, elm);
+          }
+          elm.style.setProperty("--x", p.x + "px");
+          elm.style.setProperty("--y", p.y + "px");
+          elm.style.setProperty("--i", String(gi));
+          elm.setAttribute("data-n", String(s.n));
+          elm.setAttribute("aria-label", `Занятие ${s.n}. ${s.grammar}`);
+          elm.addEventListener("click", () => (cfg.onTap ? cfg.onTap(s.n, kit) : defaultTap(s.n)));
+          board.appendChild(elm);
+          gi += 1;
+        });
+        canvas.appendChild(sec);
+        const pathEl = sec.querySelector(".lit");
+        const total = pathEl.getTotalLength();
+        const lens = lengthsAtPoints(pathEl, route.pts);
+        sec.querySelectorAll(".glow, .lit").forEach((p) => { p.style.strokeDasharray = String(total); p.style.strokeDashoffset = String(total); });
+        refs.chapters.push({ sec, route, total, lens, chapter, pathEl, sessions });
+      });
+      if (cfg.spectrumEl) {
+        cfg.spectrumEl.innerHTML = "";
+        refs.spectrum = CHAPTERS.map((c) => { const s = document.createElement("span"); s.setAttribute("data-ch", String(c.n)); cfg.spectrumEl.appendChild(s); return s; });
+      }
+    }
+
+    function nodeState(n) {
+      if (model.done.has(n)) return "done";
+      if (model.current === n) return "current";
+      if (model.current !== null && n === model.current + 1) return "next";
+      return "locked";
+    }
+
+    function apply(m, opts) {
+      model = m;
+      const o = opts || {};
+      refs.chapters.forEach((c) => {
+        const sealN = c.sessions[7].n;
+        const sealPassed = m.done.has(sealN);
+        const chOpen = c.sessions.some((s) => m.done.has(s.n) || m.current === s.n);
+        c.sec.classList.toggle("locked", !chOpen);
+        c.sec.classList.toggle("done", sealPassed);
+        const status = c.sec.querySelector(".ch-status");
+        const doneCount = c.sessions.slice(0, 7).filter((s) => m.done.has(s.n)).length;
+        status.innerHTML = sealPassed ? `<svg><use href="#i-check"/></svg>` : chOpen ? `${doneCount}/7` : `<svg><use href="#i-lock"/></svg>`;
+        let litIdx = -1;
+        c.sessions.forEach((s, i) => { if (m.done.has(s.n) || m.current === s.n) litIdx = i; });
+        const lit = litIdx < 0 ? 0 : c.lens[litIdx];
+        c.sec.querySelectorAll(".glow, .lit").forEach((p) => {
+          if (o.instant) p.style.transition = "none";
+          p.style.strokeDashoffset = String(c.total - lit);
+          if (o.instant) { void p.getBoundingClientRect(); p.style.transition = ""; }
+        });
+        if (refs.spectrum.length) {
+          const chCount = c.sessions.filter((s) => m.done.has(s.n)).length;
+          refs.spectrum[c.chapter.n - 1].style.setProperty("--p", String(chCount / 8));
+        }
+        c.sessions.forEach((s) => {
+          if (s.role === "final_exam") {
+            const g = refs.gate;
+            g.classList.remove("locked", "available", "passed");
+            g.classList.add(m.done.has(s.n) ? "passed" : m.current === s.n ? "available" : "locked");
+            g.querySelector(".label").textContent = m.done.has(s.n) ? "Сдан" : "Экзамен";
+          } else if (s.role === "chapter_checkpoint") {
+            const el = refs.seals.get(s.n);
+            el.classList.remove("locked", "available", "passed");
+            el.classList.add(m.done.has(s.n) ? "passed" : m.current === s.n ? "available" : "locked");
+            el.querySelectorAll(".seg").forEach((sg, i) => sg.classList.toggle("on", i < doneCount));
+            el.querySelector(".label").textContent = m.done.has(s.n) ? "Глава закрыта" : "Проверка";
+          } else {
+            const el = refs.nodes.get(s.n);
+            const st = nodeState(s.n);
+            el.classList.remove("done", "current", "next", "locked");
+            el.classList.add(st);
+            const gem = el.querySelector(".gem");
+            gem.innerHTML = st === "locked" ? `<svg><use href="#i-lock"/></svg>` : st === "done" ? `<svg><use href="#i-check"/></svg>` : String(s.pos);
+            el.querySelector(".stars").innerHTML = st === "done" ? window.starsHTML(m.stars.get(s.n) ?? 3) : "";
+            el.querySelector(".pill").textContent = m.done.size === 0 ? "Начать" : "Продолжить";
+          }
+        });
+      });
+      if (cfg.countEl) cfg.countEl.textContent = `${m.done.size} из 56`;
+      const curCh = m.current ? Math.ceil(m.current / 8) : 7;
+      if (cfg.hdr) cfg.hdr.setAttribute("data-ch", String(curCh));
+      if (cfg.jump) {
+        cfg.jump.setAttribute("data-ch", String(curCh));
+        const lbl = cfg.jump.querySelector("[data-jump-label]");
+        if (lbl) lbl.textContent = !m.current ? "Урок пройден" : m.done.size === 0 ? "Начать" : "Продолжить";
+      }
+    }
+
+    function currentEl() { if (!model || !model.current) return null; return refs.nodes.get(model.current) || refs.seals.get(model.current) || refs.gate; }
+    function elTop(el) { return el.offsetTop + el.parentElement.offsetTop + el.parentElement.parentElement.offsetTop; }
+    function scrollToCurrent(behavior) {
+      const el = currentEl(); if (!el) return;
+      scroll.scrollTo({ top: Math.max(0, elTop(el) - 300), behavior: behavior || "smooth" });
+    }
+    function scrollToNode(n, offset, behavior) {
+      const el = refs.nodes.get(n) || refs.seals.get(n) || refs.gate;
+      scroll.scrollTo({ top: Math.max(0, elTop(el) - (offset == null ? 300 : offset)), behavior: behavior || "auto" });
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.target === currentEl() && cfg.jump) cfg.jump.classList.toggle("is-on", !e.isIntersecting && phone.getAttribute("data-state") !== "skeleton");
+      });
+    }, { root: scroll, threshold: 0.3 });
+    function watchCurrent() { io.disconnect(); const el = currentEl(); if (el) io.observe(el); else if (cfg.jump) cfg.jump.classList.remove("is-on"); }
+    if (cfg.jump) cfg.jump.addEventListener("click", () => scrollToCurrent("smooth"));
+
+    const chIO = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting && e.intersectionRatio > 0.35 && cfg.hdr) cfg.hdr.querySelector(".h-label").setAttribute("data-ch", e.target.getAttribute("data-ch")); });
+    }, { root: scroll, threshold: [0.35, 0.6] });
+
+    function showToast(text, icon) {
+      if (!cfg.toast) return;
+      cfg.toast.querySelector("[data-toast-text]").textContent = text;
+      const use = cfg.toast.querySelector("use"); if (use) use.setAttribute("href", icon || "#i-lock");
+      cfg.toast.classList.add("is-on");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => cfg.toast.classList.remove("is-on"), 1800 * tf());
+    }
+    function deny(el, text) { el.classList.remove("is-denied"); void el.offsetWidth; el.classList.add("is-denied"); showToast(text); }
+
+    function defaultTap(n) {
+      const s = SESSIONS[n - 1];
+      const el = refs.nodes.get(n) || refs.seals.get(n) || refs.gate;
+      if (model.done.has(n)) { openNodeSheet(n); return; }
+      if (model.current === n) { showToast(s.role === "chapter_checkpoint" ? "Открывается печать главы (макет 05)" : s.role === "final_exam" ? "Открываются врата экзамена (макет 05)" : "Открывается билет занятия (макет 04)", "#i-play"); return; }
+      if (s.role === "chapter_checkpoint") {
+        const left = 7 - SESSIONS.filter((x) => x.ch === s.ch && x.pos < 8 && model.done.has(x.n)).length;
+        deny(el, `Осталось ${left} ${plural(left, "занятие", "занятия", "занятий")}`);
+        return;
+      }
+      if (s.role === "final_exam") { deny(el, "Сначала печать главы 7"); return; }
+      const chOpen = SESSIONS.some((x) => x.ch === s.ch && (model.done.has(x.n) || model.current === x.n));
+      deny(el, chOpen ? `Сначала занятие ${model.current}` : `Сначала проверка главы ${s.ch - 1}`);
+    }
+
+    function openNodeSheet(n) {
+      if (!cfg.nodeSheet) return;
+      const s = SESSIONS[n - 1];
+      const sh = cfg.nodeSheet;
+      sh.setAttribute("data-ch", String(s.ch));
+      sh.querySelector("[data-ns-gem]").textContent = s.pos;
+      sh.querySelector("[data-ns-title]").textContent = s.grammar;
+      sh.querySelector("[data-ns-kind]").textContent = `${TYPE_LABEL[s.type]} · ${s.moment}`;
+      sh.querySelector("[data-ns-stars]").innerHTML = window.starsHTML(model.stars.get(n) ?? 3, 22);
+      if (cfg.backdrop) cfg.backdrop.classList.add("is-on");
+      sh.classList.add("is-on");
+      const key = sh.querySelector(".btn-key"); if (key) { key.classList.remove("sweep"); void key.offsetWidth; key.classList.add("sweep"); }
+    }
+    function closeSheet() { if (cfg.backdrop) cfg.backdrop.classList.remove("is-on"); if (cfg.nodeSheet) cfg.nodeSheet.classList.remove("is-on"); }
+    if (cfg.backdrop) cfg.backdrop.addEventListener("click", closeSheet);
+    if (cfg.nodeSheet) { const c = cfg.nodeSheet.querySelector("[data-ns-close]"); if (c) c.addEventListener("click", closeSheet); }
+
+    function enter() {
+      phone.classList.remove("is-entering"); void phone.offsetWidth; phone.classList.add("is-entering");
+      later(() => phone.classList.remove("is-entering"), 2600);
+    }
+
+    async function flyRunes(fromEl, count) {
+      const chip = cfg.runeChip; const counter = cfg.runeCount;
+      if (!chip) { await wait(200); return; }
+      const pr = phone.getBoundingClientRect();
+      const a = fromEl.getBoundingClientRect();
+      const b = chip.getBoundingClientRect();
+      const sx = a.left + a.width / 2 - pr.left, sy = a.top + a.height / 2 - pr.top;
+      const ex = b.left + b.width / 2 - pr.left, ey = b.top + b.height / 2 - pr.top;
+      const glyphs = ["ᚠ", "ᚢ", "ᚦ", "ᚨ", "ᚱ", "ᚲ", "ᚷ"];
+      const start = counter ? Number(counter.textContent) : 0;
+      for (let i = 0; i < count; i += 1) {
+        const f = document.createElement("span");
+        f.className = "flyer"; f.textContent = glyphs[(i + Math.floor(Math.random() * 7)) % 7];
+        phone.appendChild(f);
+        const mx = sx + (ex - sx) * 0.5 + (i - count / 2) * 26, my = sy + (ey - sy) * 0.42 - 60;
+        const anim = f.animate([
+          { transform: `translate(${sx - 11}px, ${sy - 11}px) scale(.6) rotate(0deg)`, opacity: 0 },
+          { transform: `translate(${mx - 11}px, ${my - 11}px) scale(1.15) rotate(${120 + i * 40}deg)`, opacity: 1, offset: .45 },
+          { transform: `translate(${ex - 11}px, ${ey - 11}px) scale(.5) rotate(${300 + i * 40}deg)`, opacity: .9 },
+        ], { duration: reduced() ? 1 : 620 * tf(), delay: reduced() ? 0 : i * 90 * tf(), easing: "cubic-bezier(.33,.52,.25,.99)", fill: "forwards" });
+        anim.onfinish = () => { f.remove(); chip.classList.remove("is-bump"); void chip.offsetWidth; chip.classList.add("is-bump"); if (counter) counter.textContent = String(start + Math.round(((i + 1) / count) * 15)); };
+      }
+      await wait(620 + count * 90);
+    }
+
+    async function returnComplete(token) {
+      const n = model.current;
+      const el = refs.nodes.get(n);
+      const next = n + 1;
+      await wait(260); if (token !== runToken) return;
+      const m2 = makeModel(n); m2.stars.set(n, 3);
+      apply(m2, {});
+      el.classList.add("is-land");
+      el.querySelectorAll(".stars svg").forEach((s, i) => { s.classList.add("pop"); s.style.animationDelay = `${i * 120 * tf()}ms`; });
+      await wait(160); if (token !== runToken) return;
+      await flyRunes(el, 5); if (token !== runToken) return;
+      const c = refs.chapters[Math.ceil(n / 8) - 1];
+      const idx = c.sessions.findIndex((s) => s.n === n);
+      const spark = c.sec.querySelector(".spark");
+      const from = c.lens[idx], to = c.lens[idx + 1];
+      spark.animate([{ offsetDistance: `${from}px`, opacity: 0 }, { offsetDistance: `${from + (to - from) * .1}px`, opacity: 1, offset: .12 }, { offsetDistance: `${to}px`, opacity: 1, offset: .9 }, { offsetDistance: `${to}px`, opacity: 0 }], { duration: 640 * tf(), easing: "cubic-bezier(.33,.52,.25,.99)", fill: "forwards" });
+      await wait(560); if (token !== runToken) return;
+      const nextEl = refs.nodes.get(next) || refs.seals.get(next) || refs.gate;
+      nextEl.classList.add("is-pop");
+      later(() => { nextEl.classList.remove("is-pop"); el.classList.remove("is-land"); }, 700);
+      watchCurrent();
+    }
+
+    async function chapterUnlock(token) {
+      const seal = refs.seals.get(16);
+      await wait(300); if (token !== runToken) return;
+      seal.classList.remove("is-stamp"); void seal.offsetWidth; seal.classList.add("is-stamp");
+      apply(makeModel(16), {});
+      await wait(200); if (token !== runToken) return;
+      await flyRunes(seal, 7); if (token !== runToken) return;
+      const c3 = refs.chapters[2];
+      scroll.scrollTo({ top: c3.sec.offsetTop - 40, behavior: "smooth" });
+      await wait(420); if (token !== runToken) return;
+      c3.sec.classList.add("is-unlocking");
+      c3.sec.classList.remove("locked");
+      c3.sec.querySelectorAll(".node, .seal, .ch-head").forEach((n, i) => { n.style.setProperty("--i", String(i)); });
+      phone.classList.add("is-entering");
+      await wait(900); if (token !== runToken) return;
+      phone.classList.remove("is-entering"); c3.sec.classList.remove("is-unlocking");
+      refs.nodes.get(17).classList.add("is-pop");
+      later(() => refs.nodes.get(17).classList.remove("is-pop"), 700);
+      seal.classList.remove("is-stamp");
+      watchCurrent();
+    }
+
+    function base(m, o) {
+      runToken += 1;
+      cancelAll();
+      closeSheet();
+      if (cfg.toast) cfg.toast.classList.remove("is-on");
+      phone.querySelectorAll(".flyer").forEach((f) => f.remove());
+      apply(m, { instant: true });
+      refs.chapters.forEach((c) => { c.sec.classList.remove("is-unlocking", "is-entering"); chIO.observe(c.sec); });
+      if (cfg.jump) cfg.jump.classList.remove("is-on");
+      watchCurrent();
+      if (!(o && o.noEnter)) enter();
+      scroll.scrollTo({ top: o && o.top != null ? o.top : 0, behavior: "auto" });
+      return runToken;
+    }
+
+    const kit = {
+      refs, build, apply, makeModel, base, enter, flyRunes, returnComplete, chapterUnlock,
+      deny, showToast, openNodeSheet, closeSheet, scrollToCurrent, scrollToNode, watchCurrent, later, cancelAll, wait, tf,
+      get model() { return model; },
+      get token() { return runToken; },
+      nodeEl: (n) => refs.nodes.get(n) || refs.seals.get(n) || refs.gate,
+      plural,
+    };
+    return kit;
+  }
+
+  window.MapKit = { mount, makeModel, ringSVG };
+})();
+
+</script>
+<script>
+/* ============================================================
+   Showcase — панель витрины для макетов «Атласа».
+   Showcase.init({ title, kicker, lead, states:[{id,label,group,apply}],
+                   notes: html, nav: [{href,label}], onTheme })
+   - переключает состояния экрана (data-state на телефоне + apply()),
+   - тему хрома (data-theme на <html>), замедление 4× (--tf), reduced motion,
+   - «Повторить» перезапускает текущее состояние (все анимации с нуля).
+   Никаких зависимостей. Всё, что оно делает с DOM телефона, — через apply().
+   ============================================================ */
+(function () {
+  const root = document.documentElement;
+  // Перехват ошибок макета: смотреть window.__mockupErrors в консоли.
+  window.__mockupErrors = [];
+  window.addEventListener("error", (e) => window.__mockupErrors.push(`${e.message} @${(e.filename || "").split("/").pop()}:${e.lineno}`));
+  window.addEventListener("unhandledrejection", (e) => window.__mockupErrors.push(String(e.reason && (e.reason.stack || e.reason))));
+  const THEMES = [
+    { id: "forest", label: "Лес", sw: "#47C870" },
+    { id: "gold", label: "Золото", sw: "#D6B35A" },
+    { id: "coral", label: "Коралл", sw: "#FF7F50" },
+  ];
+  const state = { current: null, slow: false, reduced: false, theme: "forest", cfg: null };
+
+  function el(tag, attrs, children) {
+    const n = document.createElement(tag);
+    if (attrs) {
+      for (const k of Object.keys(attrs)) {
+        if (k === "class") n.className = attrs[k];
+        else if (k === "html") n.innerHTML = attrs[k];
+        else if (k.startsWith("on")) n.addEventListener(k.slice(2), attrs[k]);
+        else n.setAttribute(k, attrs[k]);
+      }
+    }
+    (children || []).forEach((c) => n.appendChild(typeof c === "string" ? document.createTextNode(c) : c));
+    return n;
+  }
+
+  function applyMotionFlags() {
+    root.style.setProperty("--tf", state.reduced ? 0.001 : state.slow ? 4 : 1);
+    if (state.reduced) root.setAttribute("data-reduced", "1");
+    else root.removeAttribute("data-reduced");
+  }
+
+  /* Перезапуск CSS-анимаций внутри контейнера: снять и вернуть класс через reflow. */
+  function replayAnimations(container) {
+    container.querySelectorAll("[class]").forEach((n) => {
+      const cls = n.getAttribute("class");
+      if (!cls) return;
+      n.style.animation = "none";
+      void n.offsetWidth;
+      n.style.animation = "";
+    });
+  }
+
+  function setState(id, opts) {
+    const cfg = state.cfg;
+    const s = cfg.states.find((x) => x.id === id);
+    if (!s) return;
+    state.current = id;
+    const phone = document.querySelector(".phone");
+    if (phone) phone.setAttribute("data-state", id);
+    document.querySelectorAll(".pbtn[data-state-id]").forEach((b) => {
+      b.setAttribute("aria-pressed", b.getAttribute("data-state-id") === id ? "true" : "false");
+    });
+    if (typeof s.apply === "function") s.apply(Object.assign({ replay: false }, opts || {}));
+    const noteBox = document.getElementById("state-note");
+    if (noteBox) noteBox.innerHTML = s.note || "";
+    try { if (location.hash !== "#" + id) history.replaceState(null, "", "#" + id); } catch (e) { /* песочница артефакта запрещает историю: состояние живёт только в панели */ }
+  }
+
+  /* На узком экране (телефон) рама 390 px масштабируется под ширину окна:
+     страница никогда не прокручивается вбок, макет смотрится на реальном айфоне. */
+  function fitPhone() {
+    const phone = document.querySelector(".phone");
+    if (!phone) return;
+    const z = Math.min(1, (window.innerWidth - 8) / 390);
+    phone.style.zoom = z < 1 ? String(z) : "";
+  }
+  window.addEventListener("resize", fitPhone);
+
+  function init(cfg) {
+    state.cfg = cfg;
+    fitPhone();
+    const panel = document.querySelector(".panel");
+    if (!panel) return;
+    panel.innerHTML = "";
+
+    const h1 = el("h1", null, [el("small", null, [cfg.kicker || "Learning V2 · Атлас"]), cfg.title]);
+    panel.appendChild(h1);
+    if (cfg.lead) panel.appendChild(el("p", { class: "lead", html: cfg.lead }));
+
+    if (cfg.nav && cfg.nav.length) {
+      const nav = el("div", { class: "nav" });
+      cfg.nav.forEach((n) => nav.appendChild(el("a", { href: n.href }, [n.label])));
+      panel.appendChild(nav);
+    }
+
+    // Состояния (группами)
+    const groups = [];
+    cfg.states.forEach((s) => {
+      const g = s.group || "Состояния";
+      if (!groups.includes(g)) groups.push(g);
+    });
+    groups.forEach((g) => {
+      const box = el("div");
+      box.appendChild(el("h2", null, [g]));
+      const grp = el("div", { class: "group" });
+      cfg.states
+        .filter((s) => (s.group || "Состояния") === g)
+        .forEach((s) => {
+          grp.appendChild(
+            el("button", {
+              class: "pbtn",
+              "data-state-id": s.id,
+              "aria-pressed": "false",
+              onclick: () => setState(s.id, { replay: true }),
+            }, [s.label]),
+          );
+        });
+      box.appendChild(grp);
+      panel.appendChild(box);
+    });
+
+    // Управление движением
+    const motionBox = el("div");
+    motionBox.appendChild(el("h2", null, ["Движение"]));
+    const mg = el("div", { class: "group" });
+    const replayBtn = el("button", { class: "pbtn replay", onclick: () => setState(state.current, { replay: true }) }, ["Повторить"]);
+    const slowBtn = el("button", {
+      class: "pbtn", "aria-pressed": "false",
+      onclick: (e) => {
+        state.slow = !state.slow;
+        e.currentTarget.setAttribute("aria-pressed", String(state.slow));
+        applyMotionFlags();
+        setState(state.current, { replay: true });
+      },
+    }, ["Замедлить 4×"]);
+    const rmBtn = el("button", {
+      class: "pbtn", "aria-pressed": "false",
+      onclick: (e) => {
+        state.reduced = !state.reduced;
+        e.currentTarget.setAttribute("aria-pressed", String(state.reduced));
+        applyMotionFlags();
+        setState(state.current, { replay: true });
+      },
+    }, ["Reduced motion"]);
+    mg.appendChild(replayBtn);
+    mg.appendChild(slowBtn);
+    mg.appendChild(rmBtn);
+    motionBox.appendChild(mg);
+    panel.appendChild(motionBox);
+
+    // Тема хрома
+    if (cfg.themes !== false) {
+      const tb = el("div");
+      tb.appendChild(el("h2", null, ["Тема хрома приложения"]));
+      const tg = el("div", { class: "group" });
+      THEMES.forEach((t) => {
+        const b = el("button", {
+          class: "pbtn", "data-theme-id": t.id, "aria-pressed": String(t.id === state.theme),
+          onclick: () => {
+            state.theme = t.id;
+            root.setAttribute("data-theme", t.id);
+            document.querySelectorAll(".pbtn[data-theme-id]").forEach((x) => x.setAttribute("aria-pressed", String(x.getAttribute("data-theme-id") === t.id)));
+            if (cfg.onTheme) cfg.onTheme(t.id);
+          },
+        });
+        const sw = el("span", { class: "sw" });
+        sw.style.background = t.sw;
+        b.appendChild(sw);
+        b.appendChild(document.createTextNode(t.label));
+        tg.appendChild(b);
+      });
+      tb.appendChild(tg);
+      panel.appendChild(tb);
+    }
+
+    // Заметка состояния + общие заметки
+    panel.appendChild(el("div", { class: "note", id: "state-note" }));
+    if (cfg.notes) panel.appendChild(el("div", { class: "note", html: cfg.notes }));
+
+    const fromHash = location.hash.replace("#", "");
+    const first = cfg.states.find((s) => s.id === fromHash) ? fromHash : cfg.states[0].id;
+    root.setAttribute("data-theme", state.theme);
+    setState(first, { replay: true });
+  }
+
+  window.Showcase = { init, setState, replayAnimations, get state() { return state; } };
+})();
+
+</script>
+<script>
+(function () {
+  document.getElementById("sb").outerHTML = window.statusbarHTML();
+  const phone = document.querySelector(".phone");
+  const kit = window.MapKit.mount({
+    phone,
+    canvas: document.getElementById("canvas"),
+    scroll: document.getElementById("scroll"),
+    hdr: document.querySelector(".map-hdr"),
+    jump: document.getElementById("jump"),
+    toast: document.getElementById("toast"),
+    backdrop: document.getElementById("backdrop"),
+    nodeSheet: document.getElementById("node-sheet"),
+    runeChip: document.getElementById("chip-runes"),
+    runeCount: document.getElementById("rune-count"),
+    countEl: document.getElementById("count"),
+    spectrumEl: document.getElementById("spectrum"),
+  });
+  kit.build();
+  const M = kit.makeModel;
+
+  const states = [
+    { id: "first-entry", group: "Прогресс", label: "Первый вход", note: "<b>Ничего не пройдено.</b> Свет только на занятии 1: кольцо дыхания 2400 мс, подпись «Начать». Остальные районы в тумане, узлы потухшие. Тап по закрытому узлу: узел мягко прожимается (scale .96, 240 мс), тост объясняет, что раньше.", apply() { kit.base(M(0)); } },
+    { id: "normal", group: "Прогресс", label: "Середина пути", note: "<b>Пройдено 12 из 56.</b> Глава 1 закрыта золотой печатью, глава 2 горит своим светом (кофе, карамель). Свет улицы доходит ровно до текущего узла. Кнопка «Продолжить» внизу появляется только когда текущий узел уехал с экрана.", apply() { kit.base(M(12)); } },
+    { id: "checkpoint-ready", group: "Прогресс", label: "Печать готова", note: "<b>Все 7 занятий главы 2 пройдены.</b> Печать главы стала доступной: кольцо из 7 сегментов горит целиком и медленно вращается (24 с, линейно), по лицу печати проходит блик. Тап откроет вход в проверку (макет 05).", apply() { kit.base(M(15), { top: 560 }); } },
+    { id: "lesson-complete", group: "Прогресс", label: "Урок пройден", note: "<b>56 из 56.</b> Семь печатей золотые, врата экзамена сданы. Плашка «Урок пройден» и точка урока в золоте. Узлы остаются интерактивными: любое занятие можно пройти снова ради лучшего результата.", apply() { kit.base(M(56)); } },
+    { id: "return-complete", group: "Возврат с занятия", label: "Занятие пройдено", note: "<b>Хореография возврата (1.5 с):</b> узел садится (scale 1.08 → 1), звёзды выстреливают по одной (120 мс), 5 разных рун летят в счётчик (620 мс, каскад 90 мс), чип пружинит; искра идёт по улице к следующему узлу (640 мс), новый текущий выстреливает (.7 → 1.1 → 1, 420 мс) и начинает дышать.", apply() { const t = kit.base(M(11), { noEnter: true, top: 640 }); kit.returnComplete(t); } },
+    { id: "chapter-unlock", group: "Возврат с занятия", label: "Глава открылась", note: "<b>Печать главы 2 поставлена.</b> Удар печати (scale 1.32 → .94 → 1, вспышка), 7 рун в счётчик, карта сама едет к главе 3: туман уходит вниз полосой света (900 мс), заголовок и узлы района входят каскадом, первое занятие главы выстреливает как текущее.", apply() { const t = kit.base(M(15), { noEnter: true, top: 560 }); kit.chapterUnlock(t); } },
+    { id: "done-tap", group: "Тапы", label: "Тап по пройденному", note: "<b>Шторка пройденного занятия</b> выезжает снизу (320 мс, кривая drawer): что это было, результат в звёздах, «Улучшить результат». По клавише проходит свет один раз через 380 мс после появления.", apply() { kit.base(M(12)); kit.later(() => kit.openNodeSheet(4), 500); } },
+    { id: "locked-tap", group: "Тапы", label: "Тап по закрытому", note: "<b>Спокойный отказ.</b> Никакой тряски: узел прожимается на 4 % и возвращается, тост называет точное условие («Сначала занятие 13»). Тост уходит сам через 1.8 с.", apply() { kit.base(M(12), { top: 640 }); kit.later(() => kit.nodeEl(14).click(), 600); } },
+    { id: "seal-locked-tap", group: "Тапы", label: "Тап по закрытой печати", note: "<b>Печать до срока.</b> Кольцо показывает 4 из 7 сегментов, лицо прожимается, тост: «Осталось 3 занятия». Печать никогда не ругается: она только считает.", apply() { kit.base(M(12), { top: 640 }); kit.later(() => kit.nodeEl(16).click(), 600); } },
+    { id: "skeleton", group: "Системные", label: "Первый кадр", note: "<b>Скелетон = финальная геометрия.</b> Пока прогресс не гидрирован из памяти, узлы стоят на своих местах без света и цифр, чипы кошелька зарезервированы по ширине. Никакого спиннера и никакого прыжка при появлении данных: меняется только свет.", apply() { kit.base(M(12), { noEnter: true }); } },
+    { id: "offline", group: "Системные", label: "Нет сети", note: "<b>Карта из памяти.</b> Прогресс и структура урока живут локально, поэтому карта не меняется. Пилюля под шапкой честно говорит про сеть; занятие, чей контент уже скачан, откроется как обычно (случай без кэша показан в макете 04).", apply() { kit.base(M(12)); } },
+  ];
+
+  window.Showcase.init({
+    kicker: "Learning V2 · Атлас · макет 03",
+    title: "Карта урока: семь районов, семь путей",
+    lead: "Ночной город, который ты зажигаешь. Каждая глава — район со своим светом и своей формой пути (лестница, кольцо, ряды, дождь, стол, зигзаг, спираль). Свет улицы доходит ровно до текущего занятия.",
+    nav: [{ href: "https://claude.ai/code/artifact/8a2168ce-3053-4293-97df-4956d0482718", label: "← Индекс" }, { href: "https://claude.ai/code/artifact/eabf33b6-6224-41e1-a326-f9ea9471130d", label: "02 Атлас" }, { href: "https://claude.ai/code/artifact/4afc3d6e-0146-487e-a8be-5d8b8c7fdd47", label: "04 Билет →" }],
+    states,
+    notes: `<b>Производительность (для RN):</b><ul>
+      <li>Только <code>transform</code>/<code>opacity</code>; свечения — статичные радиальные градиенты, без blur в рантайме.</li>
+      <li>Один вечный цикл на экран: дыхание текущего узла (гейт видимости, reduce motion → статичный кадр .7).</li>
+      <li>Улица — один <code>Path</code> на главу, свет через <code>strokeDashoffset</code> на UI-треде (Reanimated animatedProps).</li>
+      <li>Районы — секции виртуализированного списка с фиксированной высотой доски: первый кадр = финальная геометрия.</li>
+      <li>Ноль растровых ассетов: узлы, печати, врата и руны — вектор и шрифт.</li></ul>`,
+  });
+})();
+</script>

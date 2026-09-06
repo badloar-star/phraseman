@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="forest">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Билет занятия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/phone.css">
+<link rel="stylesheet" href="shared/map.css">
+<link rel="stylesheet" href="shared/showcase.css">
+<style>
+/* ============================================================
+   Билет занятия: шторка, которая поднимается из узла.
+   Фонарь узла «взлетает» в шапку билета (shared element), билет освещён
+   светом главы, клавиша «Начать» — той же температуры. Нажатие клавиши →
+   свет готовности → ирис из центра клавиши раскрывает первую страницу интро.
+   ============================================================ */
+.ticket { padding: 10px 22px 34px; overflow: hidden; }
+.ticket .tk-light { position: absolute; left: -40px; top: -80px; width: 260px; height: 200px; border-radius: 50%; background: radial-gradient(closest-side, var(--ch-soft), transparent); pointer-events: none; }
+.tk-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; position: relative; }
+.tk-gem {
+  width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; flex: 0 0 auto;
+  font-size: 24px; font-weight: 900; color: var(--ch-ink);
+  background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 58%, white) 0%, var(--ch) 40%, var(--ch-2) 100%);
+  box-shadow: 0 14px 26px -10px var(--ch-glow), inset 0 -8px 14px rgba(0,0,0,.26), inset 0 2px 0 rgba(255,255,255,.42);
+}
+.tk-gem svg { width: 28px; height: 28px; }
+.tk-ch { font-size: 13px; font-weight: 800; letter-spacing: .5px; color: var(--ch); }
+.tk-pos { font-size: 14px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+.tk-title { font-size: 26px; font-weight: 900; letter-spacing: -.6px; line-height: 1.08; color: var(--text); text-wrap: balance; }
+.tk-moment { margin-top: 6px; font-size: 16px; font-weight: 600; color: var(--text-2); line-height: 1.35; }
+.tk-words { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.tk-words span {
+  padding: 8px 12px; border-radius: 12px; font-size: 15px; font-weight: 800; color: var(--ch);
+  background: linear-gradient(160deg, var(--elev3), var(--elev)); box-shadow: inset 0 1px 0 var(--inner-light);
+}
+.tk-meta { display: flex; align-items: center; gap: 16px; margin-top: 16px; font-size: 15px; font-weight: 700; color: var(--text-2); font-variant-numeric: tabular-nums; }
+.tk-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.tk-meta svg { width: 18px; height: 18px; color: var(--muted); }
+.tk-meta .bolt svg { color: var(--energy); }
+.tk-reward { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding: 12px 14px; border-radius: 16px; background: linear-gradient(160deg, var(--elev2), var(--elev)); box-shadow: inset 0 1px 0 var(--inner-light); font-size: 15px; font-weight: 700; color: var(--text-2); }
+.tk-reward .r { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; color: var(--text); }
+.tk-reward .stars svg { width: 16px; height: 16px; }
+.tk-reward .rune { font-family: var(--font-rune); color: var(--gold); font-size: 17px; }
+.tk-actions { display: flex; flex-direction: column; gap: 6px; margin-top: 18px; }
+/* каскад входа содержимого билета */
+.ticket.is-on .tk-in { animation: tkIn var(--t-slow) var(--ease-out) both; animation-delay: calc(var(--i) * 40ms * var(--tf) + 120ms * var(--tf)); }
+@keyframes tkIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* клавиша готовности: свет наполняет клавишу слева направо */
+.btn-key .ready { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.12)); transform: scaleX(0); transform-origin: left; opacity: 0; }
+.btn-key.is-preparing { pointer-events: none; }
+.btn-key.is-preparing .ready { opacity: 1; animation: readyFill calc(760ms * var(--tf)) var(--ease-slide) both; }
+@keyframes readyFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.btn-key .lbl { position: relative; display: inline-flex; align-items: center; gap: 10px; transition: opacity var(--t-fast); }
+.btn-key .lbl2 { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity var(--t-fast); }
+.btn-key.is-preparing .lbl { opacity: 0; }
+.btn-key.is-preparing .lbl2 { opacity: 1; }
+
+/* блоки состояний билета */
+.tk-block { margin-top: 14px; padding: 14px 16px; border-radius: 18px; background: linear-gradient(160deg, var(--elev2), var(--elev)); box-shadow: inset 0 1px 0 var(--inner-light); display: flex; gap: 12px; align-items: flex-start; }
+.tk-block .ic { width: 40px; height: 40px; border-radius: 13px; display: grid; place-items: center; flex: 0 0 auto; background: var(--card); color: var(--muted); }
+.tk-block .ic svg { width: 22px; height: 22px; }
+.tk-block.energy .ic { color: var(--energy); background: var(--energy-soft); }
+.tk-block .bt { font-size: 17px; font-weight: 800; color: var(--text); }
+.tk-block .bd { font-size: 15px; font-weight: 600; color: var(--text-2); margin-top: 3px; line-height: 1.4; }
+.tk-result { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding: 12px 14px; border-radius: 16px; background: linear-gradient(160deg, var(--elev2), var(--elev)); box-shadow: inset 0 1px 0 var(--inner-light); font-size: 15px; font-weight: 700; color: var(--text-2); }
+.tk-result .stars svg { width: 22px; height: 22px; }
+.chip.energy.is-empty { color: var(--danger); }
+.chip.energy.is-empty svg { color: var(--danger) !important; }
+
+/* ---------- Первая страница занятия под ирисом ---------- */
+.session { position: absolute; inset: 0; display: flex; flex-direction: column; background: radial-gradient(120% 60% at 50% -8%, var(--ch-soft), transparent 60%), linear-gradient(175deg, var(--bg-a), var(--bg-b)); }
+.session .s-hdr { display: flex; align-items: center; gap: 12px; padding: 4px 16px 6px; }
+.session .s-hdr .dots { flex: 1; display: flex; gap: 6px; justify-content: center; }
+.session .s-hdr .dots span { width: 34px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.1); }
+.session .s-hdr .dots span.on { background: var(--ch); box-shadow: 0 0 10px var(--ch-glow); }
+.session .s-body { flex: 1; padding: 14px 22px 0; overflow: hidden; }
+.session .s-kicker { font-size: 13px; font-weight: 800; letter-spacing: .5px; color: var(--ch); margin-bottom: 8px; }
+.session .s-title { font-size: 24px; font-weight: 900; letter-spacing: -.5px; line-height: 1.12; color: var(--text); text-wrap: balance; }
+.session .s-text { margin-top: 12px; font-size: 16px; line-height: 1.5; font-weight: 500; color: var(--text-2); }
+.session .s-text b { color: var(--text); font-weight: 800; }
+.session .s-text em { font-style: normal; color: var(--ch); font-weight: 800; }
+.session .s-q { margin-top: 18px; font-size: 17px; font-weight: 800; color: var(--text); line-height: 1.35; }
+.session .choices { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.session .choice { height: 54px; border-radius: 16px; border: none; cursor: pointer; display: flex; align-items: center; padding: 0 18px; font-size: 17px; font-weight: 700; color: var(--text); background: linear-gradient(160deg, var(--elev2), var(--card)); box-shadow: 0 8px 18px -8px rgba(0,0,0,.6), inset 0 1px 0 var(--inner-light); transition: transform var(--t-press) var(--ease-out); }
+.session .choice:active { transform: scale(.98); }
+.session .s-foot { padding: 12px 22px 40px; }
+.session.is-on .s-in { animation: tkIn var(--t-slow) var(--ease-out) both; animation-delay: calc(var(--i) * 45ms * var(--tf) + 260ms * var(--tf)); }
+
+/* Летящий фонарь (shared element: узел → шапка билета) */
+.fly-gem { position: absolute; z-index: var(--z-toast); width: 64px; height: 64px; border-radius: 50%; pointer-events: none; display: grid; place-items: center; font-size: 24px; font-weight: 900; color: var(--ch-ink); background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 58%, white) 0%, var(--ch) 40%, var(--ch-2) 100%); box-shadow: 0 14px 26px -10px var(--ch-glow), inset 0 2px 0 rgba(255,255,255,.42); will-change: transform; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="phone" data-ch="1" data-state="available">
+    <div id="sb"></div>
+    <header class="hdr map-hdr" data-ch="1">
+      <div class="row1">
+        <button class="icon-btn" aria-label="Назад"><svg><use href="#i-chevron-left"/></svg></button>
+        <div class="h-label"><span class="dot"></span><span>Урок 1</span></div>
+        <div class="wallet">
+          <div class="chip" id="chip-runes"><span class="glyph">ᚠ</span><span id="rune-count">120</span></div>
+          <div class="chip energy" id="chip-energy"><svg style="color:var(--energy)"><use href="#i-bolt"/></svg><span id="energy-count">4</span></div>
+        </div>
+      </div>
+      <div class="h-title">Первая неделя в Дублине</div>
+      <div class="progress-row"><div class="spectrum" id="spectrum"></div><div class="count" id="count">0 из 56</div></div>
+    </header>
+    <div class="map-scroll" id="scroll"><div class="map-canvas" id="canvas"></div></div>
+    <div class="backdrop" id="backdrop"></div>
+
+    <div class="sheet ticket" id="ticket" data-ch="1">
+      <div class="tk-light"></div>
+      <div class="grabber"></div>
+      <div class="tk-head tk-in" style="--i:0"><div class="tk-gem" id="tk-gem">1</div><div><div class="tk-ch" id="tk-ch">Глава 1 · Утро в офисе</div><div class="tk-pos" id="tk-pos">Занятие 1 из 8</div></div></div>
+      <h2 class="tk-title tk-in" style="--i:1" id="tk-title">I am + слово</h2>
+      <p class="tk-moment tk-in" style="--i:2" id="tk-moment">Вошли в офис, все смотрят</p>
+      <div class="tk-words tk-in" style="--i:3" id="tk-words"></div>
+      <div id="tk-extra"></div>
+      <div class="tk-meta tk-in" style="--i:4" id="tk-meta"><span><svg><use href="#i-clock"/></svg>7 мин</span><span><svg><use href="#i-tasks"/></svg>16 заданий</span><span class="bolt"><svg><use href="#i-bolt"/></svg>1</span></div>
+      <div class="tk-reward tk-in" style="--i:5" id="tk-reward"><span>Награда</span><span class="r"><span class="stars" id="tk-stars"></span><span>·</span><span class="rune">ᚠ</span>+15</span></div>
+      <div class="tk-actions tk-in" style="--i:6" id="tk-actions"></div>
+    </div>
+
+    <div class="iris" id="iris" style="--ix:50%;--iy:88%">
+      <div class="session" id="session" data-ch="1">
+        <div id="sb2"></div>
+        <div class="s-hdr"><button class="icon-btn" aria-label="Закрыть"><svg><use href="#i-close"/></svg></button><div class="dots"><span class="on"></span><span></span><span></span></div><button class="icon-btn" aria-label="Звук"><svg><use href="#i-sound"/></svg></button></div>
+        <div class="s-body">
+          <div class="s-kicker s-in" style="--i:0">Интро · 1 из 3</div>
+          <h2 class="s-title s-in" style="--i:1">Два слова, с которых начинается разговор о себе</h2>
+          <p class="s-text s-in" style="--i:2"><em>I</em> — это «я». <em>am</em> — маленькая скрепка. По-русски мы её пропускаем: «я здесь», «я готов». По-английски без неё фраза разваливается, как стул без одной ножки.<br><br><b>I am here</b> — «я здесь». Скажите вслух. Всё, вы только что произнесли первое английское предложение, и оно правильное.</p>
+          <div class="s-q s-in" style="--i:3">Вы зашли в офис. Все обернулись. Скажите «я здесь».</div>
+          <div class="choices"><button class="choice s-in" style="--i:4">I am here.</button><button class="choice s-in" style="--i:5">I here.</button><button class="choice s-in" style="--i:6">Am here.</button></div>
+        </div>
+        <div class="s-foot s-in" style="--i:7"><button class="btn-key ch">Проверить</button></div>
+      </div>
+    </div>
+    <div class="toast" id="toast"><svg><use href="#i-lock"/></svg><span data-toast-text></span></div>
+    <div class="home-indicator"></div>
+  </div>
+  <aside class="panel"></aside>
+</div>
+<script src="shared/icons.js"></script>
+<script src="shared/course.js"></script>
+<script src="shared/routes.js"></script>
+<script src="shared/map.js"></script>
+<script src="shared/showcase.js"></script>
+<script>
+(function () {
+  document.getElementById("sb").outerHTML = window.statusbarHTML();
+  document.getElementById("sb2").outerHTML = window.statusbarHTML();
+  const { CHAPTERS, SESSIONS, TYPE_LABEL } = window.COURSE;
+  const phone = document.querySelector(".phone");
+  const ticket = document.getElementById("ticket");
+  const backdrop = document.getElementById("backdrop");
+  const iris = document.getElementById("iris");
+  const session = document.getElementById("session");
+  const energyChip = document.getElementById("chip-energy");
+  let kit;
+
+  kit = window.MapKit.mount({
+    phone,
+    canvas: document.getElementById("canvas"),
+    scroll: document.getElementById("scroll"),
+    hdr: document.querySelector(".map-hdr"),
+    toast: document.getElementById("toast"),
+    runeChip: document.getElementById("chip-runes"),
+    runeCount: document.getElementById("rune-count"),
+    countEl: document.getElementById("count"),
+    spectrumEl: document.getElementById("spectrum"),
+    onTap(n, k) { if (k.model.current === n || k.model.done.has(n)) openTicket(n, k.model.done.has(n) ? "repeat" : "available", true); else k.showToast(`Сначала занятие ${k.model.current}`); },
+  });
+  kit.build();
+  const M = kit.makeModel;
+  const tf = kit.tf;
+
+  function starsFor(n) { return kit.model.stars.get(n) ?? 3; }
+
+  /* Содержимое билета по состоянию */
+  function fillTicket(n, variant) {
+    const s = SESSIONS[n - 1];
+    const ch = CHAPTERS[s.ch - 1];
+    ticket.setAttribute("data-ch", String(s.ch));
+    session.setAttribute("data-ch", String(s.ch));
+    document.getElementById("tk-gem").innerHTML = variant === "repeat" ? `<svg><use href="#i-check"/></svg>` : String(s.pos);
+    document.getElementById("tk-ch").textContent = `Глава ${s.ch} · ${ch.scene}`;
+    document.getElementById("tk-pos").textContent = s.role === "transfer_practice" ? `Занятие ${s.pos} из 8 · ${TYPE_LABEL[s.type]}` : `Занятие ${s.pos} из 8 · ${TYPE_LABEL[s.type]}`;
+    document.getElementById("tk-title").textContent = s.grammar;
+    document.getElementById("tk-moment").textContent = s.moment;
+    const words = document.getElementById("tk-words");
+    words.innerHTML = s.words.length ? s.words.map((w) => `<span>${w}</span>`).join("") : `<span>Без новых слов · возврат всех глав</span>`;
+    document.getElementById("tk-stars").innerHTML = window.starsHTML(3, 16);
+    const extra = document.getElementById("tk-extra");
+    const actions = document.getElementById("tk-actions");
+    const meta = document.getElementById("tk-meta");
+    const reward = document.getElementById("tk-reward");
+    meta.style.display = ""; reward.style.display = ""; words.style.display = "";
+    extra.innerHTML = "";
+    if (variant === "available" || variant === "preparing" || variant === "opening") {
+      actions.innerHTML = `<button class="btn-key ch sweep" id="cta"><span class="ready"></span><span class="lbl"><svg><use href="#i-play"/></svg>Начать</span><span class="lbl2">Готовим занятие</span></button><button class="btn-text" id="later">Позже</button>`;
+    } else if (variant === "repeat") {
+      extra.innerHTML = `<div class="tk-result tk-in" style="--i:3"><span>Твой результат</span>${window.starsHTML(starsFor(n), 22)}</div>`;
+      reward.querySelector(".r").innerHTML = `${window.starsHTML(3, 16)}<span>·</span><span class="rune">ᚠ</span>+5`;
+      actions.innerHTML = `<button class="btn-key ch sweep" id="cta"><span class="ready"></span><span class="lbl"><svg><use href="#i-refresh"/></svg>Улучшить результат</span><span class="lbl2">Готовим занятие</span></button><button class="btn-text" id="later">Закрыть</button>`;
+    } else if (variant === "no-energy") {
+      extra.innerHTML = `<div class="tk-block energy tk-in" style="--i:3"><div class="ic"><svg><use href="#i-bolt"/></svg></div><div><div class="bt">Энергия закончилась</div><div class="bd">+1 ⚡ вернётся через 12 мин. Хочешь учить без остановок — это Plus.</div></div></div>`;
+      actions.innerHTML = `<button class="btn-key gold sweep" id="cta"><svg><use href="#i-sparkle"/></svg>Получить Плюс</button><button class="btn-text" id="later">Позже</button>`;
+    } else if (variant === "offline") {
+      extra.innerHTML = `<div class="tk-block tk-in" style="--i:3"><div class="ic"><svg><use href="#i-cloud-off"/></svg></div><div><div class="bt">Занятие ещё не скачано</div><div class="bd">Нужна сеть, чтобы загрузить его один раз. Дальше оно работает без сети.</div></div></div>`;
+      reward.style.display = "none";
+      actions.innerHTML = `<button class="btn-key quiet" id="cta"><svg><use href="#i-refresh"/></svg>Повторить</button><button class="btn-text" id="later">Позже</button>`;
+    } else if (variant === "unavailable") {
+      extra.innerHTML = `<div class="tk-block tk-in" style="--i:3"><div class="ic"><svg><use href="#i-clock"/></svg></div><div><div class="bt">Занятие ещё не выпущено</div><div class="bd">Мы дописываем эту главу. Пока можно улучшить результат в пройденных занятиях.</div></div></div>`;
+      words.style.display = "none"; meta.style.display = "none"; reward.style.display = "none";
+      actions.innerHTML = `<button class="btn-key quiet" id="cta">Понятно</button>`;
+    }
+    const cta = document.getElementById("cta");
+    if (cta && (variant === "available" || variant === "repeat")) cta.addEventListener("click", () => startOpening(n));
+    const later = document.getElementById("later");
+    if (later) later.addEventListener("click", closeTicket);
+  }
+
+  function openTicket(n, variant, withFlight) {
+    fillTicket(n, variant);
+    if (withFlight) flyGemFromNode(n);
+    backdrop.classList.add("is-on");
+    ticket.classList.remove("is-on"); void ticket.offsetWidth; ticket.classList.add("is-on");
+  }
+  function closeTicket() { backdrop.classList.remove("is-on"); ticket.classList.remove("is-on"); }
+  backdrop.addEventListener("click", closeTicket);
+
+  /* Фонарь узла взлетает в шапку билета */
+  function flyGemFromNode(n) {
+    const node = kit.nodeEl(n); if (!node) return;
+    const pr = phone.getBoundingClientRect();
+    const a = node.querySelector(".gem").getBoundingClientRect();
+    const f = document.createElement("div");
+    f.className = "fly-gem"; f.textContent = SESSIONS[n - 1].pos;
+    f.setAttribute("data-ch", String(SESSIONS[n - 1].ch));
+    phone.appendChild(f);
+    const sx = a.left - pr.left + a.width / 2 - 32, sy = a.top - pr.top + a.height / 2 - 32;
+    // конечная точка: шапка билета (22px от левого края, ~ низ экрана минус высота билета)
+    kit.later(() => {
+      const g = document.getElementById("tk-gem").getBoundingClientRect();
+      const ex = g.left - pr.left, ey = g.top - pr.top;
+      f.animate([
+        { transform: `translate(${sx}px, ${sy}px) scale(${a.width / 64})` },
+        { transform: `translate(${ex}px, ${ey}px) scale(1)` },
+      ], { duration: 360 * tf(), easing: "cubic-bezier(.32,.72,0,1)", fill: "forwards" }).onfinish = () => f.remove();
+    }, 30);
+  }
+
+  /* Нажатие «Начать»: свет готовности → ирис из клавиши → интро */
+  async function startOpening(n) {
+    const cta = document.getElementById("cta");
+    cta.classList.add("is-preparing");
+    const pr = phone.getBoundingClientRect(); const b = cta.getBoundingClientRect();
+    iris.style.setProperty("--ix", `${b.left - pr.left + b.width / 2}px`);
+    iris.style.setProperty("--iy", `${b.top - pr.top + b.height / 2}px`);
+    await kit.wait(760);
+    session.classList.remove("is-on"); void session.offsetWidth;
+    iris.classList.add("is-open");
+    session.classList.add("is-on");
+    await kit.wait(700);
+    ticket.classList.remove("is-on"); backdrop.classList.remove("is-on");
+  }
+
+  function reset(m, top) {
+    kit.base(m, { noEnter: true, top: top || 0 });
+    iris.classList.remove("is-open"); session.classList.remove("is-on");
+    closeTicket();
+    energyChip.classList.remove("is-empty"); document.getElementById("energy-count").textContent = "4";
+  }
+
+  const states = [
+    { id: "available", group: "Билет", label: "Доступно", note: "<b>Билет занятия.</b> Тап по горящему узлу: фонарь взлетает в шапку билета (360 мс, кривая drawer), шторка поднимается снизу, содержимое входит каскадом 40 мс. Свет главы освещает левый верх билета, клавиша той же температуры. Слова главы — сразу, до старта: человек знает, за чем идёт.", apply() { reset(M(0)); kit.later(() => openTicket(1, "available", true), 420); } },
+    { id: "repeat", group: "Билет", label: "Повтор пройденного", note: "<b>Пройденное занятие.</b> Тот же билет, но со строкой «Твой результат» и клавишей «Улучшить результат». Награда за повтор честно меньше (+5 рун), звёзды можно поднять до трёх.", apply() { reset(M(12)); kit.later(() => openTicket(4, "repeat", true), 420); } },
+    { id: "transfer", group: "Билет", label: "Перенос (49–55)", note: "<b>Занятия переноса</b> после семи глав: без новых слов, чип честно говорит «возврат всех глав». Всё остальное как у обычного билета.", apply() { reset(M(48), 4200); kit.later(() => openTicket(49, "available", true), 420); } },
+    { id: "opening", group: "Переход", label: "Нажали «Начать»", note: "<b>Открытие занятия (1.4 с):</b> клавиша наполняется светом слева направо (760 мс, это реальная подготовка аудио из кэша), затем из центра клавиши раскрывается ирис (640 мс, ease-in-out), и первая страница интро входит каскадом 45 мс. Никакого спиннера и чёрного экрана между картой и занятием.", apply() { reset(M(0)); kit.later(() => openTicket(1, "available", true), 300); kit.later(() => startOpening(1), 1500); } },
+    { id: "no-energy", group: "Преграды", label: "Нет энергии", note: "<b>Энергия на нуле.</b> Билет остаётся билетом (человек видит, что его ждёт), но вместо «Начать» — блок энергии с точным временем возврата и золотая клавиша «Получить Плюс». Текст блока — из боевой NoEnergyModal.", apply() { reset(M(12)); energyChip.classList.add("is-empty"); document.getElementById("energy-count").textContent = "0"; kit.later(() => openTicket(13, "no-energy", true), 420); } },
+    { id: "offline", group: "Преграды", label: "Нет сети, нет кэша", note: "<b>Контент не скачан.</b> Честная причина и одно действие «Повторить». Скачанные занятия открываются без сети, поэтому этот экран встречается только на новом контенте.", apply() { reset(M(12)); kit.later(() => openTicket(13, "offline", true), 420); } },
+    { id: "unavailable", group: "Преграды", label: "Ещё не выпущено", note: "<b>Занятие не опубликовано.</b> Вместо старого «Сессия недоступна» — человеческое объяснение и подсказка, чем заняться. Слова, длительность и награда скрыты, чтобы не обещать лишнего.", apply() { reset(M(12)); kit.later(() => openTicket(13, "unavailable", true), 420); } },
+  ];
+
+  window.Showcase.init({
+    kicker: "Learning V2 · Атлас · макет 04",
+    title: "Билет занятия и вход в него",
+    lead: "Модал старта, который показывает, за чем ты идёшь: слова главы, момент сцены, время, энергия, награда. Фонарь узла взлетает в билет, клавиша наливается светом, ирис раскрывает занятие.",
+    nav: [{ href: "index.html", label: "← Индекс" }, { href: "03-map.html", label: "03 Карта" }, { href: "05-checkpoint-start.html", label: "05 Печать →" }],
+    states,
+    notes: `<b>Optimistic UI:</b> билет открывается мгновенно из локальных данных (структура урока и прогресс живут на устройстве); «Готовим занятие» — реальная подготовка аудио, обычно из кэша за доли секунды; списание энергии подтверждается сервером фоном, при отказе занятие откатывается с тостом. <b>Тексты:</b> строки энергии из <code>NoEnergyModal</code>; контент интро — эталон L1 S1 из фабрики курса.`,
+  });
+})();
+</script>
+</body>
+</html>

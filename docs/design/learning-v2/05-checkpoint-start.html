@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="forest">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Печать главы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/phone.css">
+<link rel="stylesheet" href="shared/map.css">
+<link rel="stylesheet" href="shared/showcase.css">
+<style>
+/* ============================================================
+   Печать главы: рубеж, а не рядовое занятие. Открывается иначе, чем билет:
+   не шторка, а сцена по центру. Карта гаснет, печать вырастает из узла,
+   кольцо из 7 сегментов зажигается по одному и «защёлкивается». Нажатие
+   «Начать проверку» — кольцо проворачивается, лицо печати раскалывается,
+   ирис из центра печати уводит в проверку (вес: это единственное место
+   на карте, где движение имеет удар).
+   ============================================================ */
+.veil { position: absolute; inset: 0; z-index: var(--z-backdrop); background: radial-gradient(120% 90% at 50% 40%, rgba(2,4,3,.55), rgba(2,4,3,.86) 70%); opacity: 0; pointer-events: none; transition: opacity var(--t-normal) var(--ease-out); }
+.veil.is-on { opacity: 1; pointer-events: auto; }
+.stage-cp { position: absolute; inset: 0; z-index: var(--z-sheet); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 26px 56px; pointer-events: none; opacity: 0; }
+.stage-cp.is-on { opacity: 1; pointer-events: auto; }
+.big-seal { position: relative; width: 168px; height: 168px; margin-bottom: 26px; transform: scale(.55); opacity: 0; }
+.stage-cp.is-on .big-seal { animation: sealUp var(--t-celebrate) var(--ease-spring) both; }
+@keyframes sealUp { from { transform: scale(.55); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.big-seal .glow { position: absolute; inset: -60px; border-radius: 50%; background: radial-gradient(closest-side, var(--ch-glow), transparent 70%); opacity: .55; pointer-events: none; }
+.big-seal .ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+.big-seal .ring .track { fill: none; stroke: rgba(255,255,255,.09); stroke-width: 5; }
+.big-seal .ring .seg { fill: none; stroke: var(--ch); stroke-width: 5; stroke-linecap: round; opacity: .18; transform-origin: 48px 48px; }
+.big-seal .ring .seg.on { opacity: 1; filter: drop-shadow(0 0 5px var(--ch-glow)); animation: segOn calc(220ms * var(--tf)) var(--ease-out) both; }
+@keyframes segOn { from { opacity: .18; } to { opacity: 1; } }
+.big-seal .ring.is-lock { animation: ringLock calc(260ms * var(--tf)) var(--ease-out) both; }
+@keyframes ringLock { from { transform: rotate(-8deg); } to { transform: rotate(0); } }
+.big-seal .ring.is-spin { animation: ringSpin calc(520ms * var(--tf)) var(--ease-inout) both; }
+@keyframes ringSpin { to { transform: rotate(180deg); } }
+.big-seal .face { position: absolute; inset: 24px; border-radius: 50%; overflow: hidden; }
+.big-seal .half { position: absolute; inset: 0; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 32%, var(--elev3)) 0%, var(--card) 76%); box-shadow: inset 0 1px 0 rgba(255,255,255,.14); transition: transform var(--t-slow) var(--ease-inout); }
+.big-seal .half.l { clip-path: inset(0 50% 0 0); }
+.big-seal .half.r { clip-path: inset(0 0 0 50%); }
+.big-seal .rune { font-family: var(--font-rune); font-size: 56px; font-weight: 700; color: var(--ch); text-shadow: 0 0 18px var(--ch-glow); }
+.big-seal .core { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, #fff 0%, var(--ch) 30%, transparent 70%); opacity: 0; transform: scale(.2); }
+.big-seal.is-open .half.l { transform: translateX(-62%); }
+.big-seal.is-open .half.r { transform: translateX(62%); }
+.big-seal.is-open .core { animation: coreOut calc(520ms * var(--tf)) var(--ease-out) both; }
+@keyframes coreOut { 0% { opacity: 0; transform: scale(.2); } 40% { opacity: 1; } 100% { opacity: 1; transform: scale(1.6); } }
+.big-seal.gold .half { background: linear-gradient(160deg, #D19E1D 0%, #FFD86E 52%, #E3A812 100%); box-shadow: inset 0 -10px 16px rgba(0,0,0,.18), inset 0 2px 0 rgba(255,255,255,.55); }
+.big-seal.gold .rune { color: #241A05; text-shadow: none; }
+.big-seal.gold .ring .seg { stroke: var(--gold); }
+.big-seal.gold .glow { background: radial-gradient(closest-side, rgba(255,212,59,.42), transparent 70%); }
+.big-seal .flash { position: absolute; inset: -40px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.85), var(--ch-glow) 40%, transparent 70%); opacity: 0; pointer-events: none; }
+.big-seal.is-flash .flash { animation: flash calc(560ms * var(--tf)) var(--ease-out) both; }
+
+/* Врата экзамена (вариант) */
+.big-gate { position: relative; width: 200px; height: 156px; margin-bottom: 26px; }
+.stage-cp.is-on .big-gate { animation: sealUp var(--t-celebrate) var(--ease-spring) both; }
+.big-gate .glow { position: absolute; left: 50%; bottom: -40px; width: 320px; height: 200px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, var(--ch-glow), transparent 70%); opacity: .7; pointer-events: none; }
+.big-gate .arch { position: absolute; inset: 0; border-radius: 100px 100px 24px 24px; overflow: hidden; background: linear-gradient(180deg, var(--elev3) 0%, var(--card) 100%); box-shadow: 0 24px 48px -14px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.1); }
+.big-gate .inner { position: absolute; left: 26px; right: 26px; top: 26px; bottom: 0; border-radius: 74px 74px 8px 8px; background: radial-gradient(80% 90% at 50% 100%, var(--ch) 0%, var(--ch-2) 40%, var(--ch-3) 100%); display: grid; place-items: center; }
+.big-gate .rune { font-family: var(--font-rune); font-size: 60px; font-weight: 700; color: var(--ch-ink); }
+
+.cp-text { text-align: center; }
+.cp-num { font-size: 13px; font-weight: 800; letter-spacing: .6px; color: var(--ch); }
+.cp-title { margin-top: 6px; font-size: 30px; font-weight: 900; letter-spacing: -.8px; line-height: 1.06; color: var(--text); text-wrap: balance; }
+.cp-body { margin-top: 10px; font-size: 16px; line-height: 1.45; font-weight: 600; color: var(--text-2); max-width: 30ch; margin-left: auto; margin-right: auto; }
+.cp-meta { display: flex; justify-content: center; gap: 16px; margin-top: 16px; font-size: 15px; font-weight: 700; color: var(--text-2); font-variant-numeric: tabular-nums; }
+.cp-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.cp-meta svg { width: 18px; height: 18px; color: var(--muted); }
+.cp-meta .bolt svg { color: var(--energy); }
+.cp-reward { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; padding: 10px 16px; border-radius: var(--r-pill); background: linear-gradient(160deg, var(--elev2), var(--elev)); box-shadow: inset 0 1px 0 var(--inner-light); font-size: 15px; font-weight: 800; color: var(--text); }
+.cp-reward .rune { font-family: var(--font-rune); color: var(--gold); font-size: 17px; }
+.cp-reward .mini { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(160deg, #D19E1D, #FFD86E 55%, #E3A812); display: grid; place-items: center; font-family: var(--font-rune); font-size: 13px; color: #241A05; }
+.cp-skills { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; width: 100%; }
+.cp-skills div { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 14px; background: linear-gradient(160deg, var(--elev2), var(--elev)); box-shadow: inset 0 1px 0 var(--inner-light); font-size: 15px; font-weight: 700; color: var(--text); text-align: left; }
+.cp-skills svg { width: 20px; height: 20px; color: var(--accent); flex: 0 0 auto; }
+.cp-skills .review svg { color: var(--energy); }
+.cp-actions { width: 100%; display: flex; flex-direction: column; gap: 6px; margin-top: 22px; }
+.stage-cp.is-on .cp-in { animation: cpIn var(--t-slow) var(--ease-out) both; animation-delay: calc(var(--i) * 50ms * var(--tf) + 520ms * var(--tf)); }
+@keyframes cpIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ---------- Первое задание проверки под ирисом ---------- */
+.session { position: absolute; inset: 0; display: flex; flex-direction: column; background: radial-gradient(120% 60% at 50% -8%, var(--ch-soft), transparent 60%), linear-gradient(175deg, var(--bg-a), var(--bg-b)); }
+.session .s-hdr { display: flex; align-items: center; gap: 12px; padding: 4px 16px 6px; }
+.session .s-hdr .segs { flex: 1; display: flex; gap: 4px; }
+.session .s-hdr .segs span { flex: 1; height: 6px; border-radius: 3px; background: rgba(255,255,255,.1); }
+.session .s-hdr .segs span.on { background: var(--ch); box-shadow: 0 0 10px var(--ch-glow); }
+.session .s-body { flex: 1; padding: 14px 22px 0; }
+.session .nohint { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: var(--r-pill); background: linear-gradient(160deg, var(--elev2), var(--elev)); box-shadow: inset 0 1px 0 var(--inner-light); font-size: 14px; font-weight: 800; color: var(--muted); }
+.session .nohint svg { width: 18px; height: 18px; }
+.session .s-kicker { margin-top: 18px; font-size: 13px; font-weight: 800; letter-spacing: .5px; color: var(--ch); }
+.session .s-title { margin-top: 8px; font-size: 24px; font-weight: 900; letter-spacing: -.5px; line-height: 1.12; color: var(--text); text-wrap: balance; }
+.session .choices { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+.session .choice { height: 54px; border-radius: 16px; border: none; cursor: pointer; display: flex; align-items: center; padding: 0 18px; font-size: 17px; font-weight: 700; color: var(--text); background: linear-gradient(160deg, var(--elev2), var(--card)); box-shadow: 0 8px 18px -8px rgba(0,0,0,.6), inset 0 1px 0 var(--inner-light); transition: transform var(--t-press) var(--ease-out); }
+.session .choice:active { transform: scale(.98); }
+.session .s-foot { padding: 12px 22px 40px; }
+.session.is-on .s-in { animation: cpIn var(--t-slow) var(--ease-out) both; animation-delay: calc(var(--i) * 45ms * var(--tf) + 260ms * var(--tf)); }
+.btn-key .ready { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.12)); transform: scaleX(0); transform-origin: left; opacity: 0; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="phone" data-ch="2" data-state="available">
+    <div id="sb"></div>
+    <header class="hdr map-hdr" data-ch="2">
+      <div class="row1">
+        <button class="icon-btn" aria-label="Назад"><svg><use href="#i-chevron-left"/></svg></button>
+        <div class="h-label"><span class="dot"></span><span>Урок 1</span></div>
+        <div class="wallet">
+          <div class="chip" id="chip-runes"><span class="glyph">ᚠ</span><span id="rune-count">120</span></div>
+          <div class="chip energy"><svg style="color:var(--energy)"><use href="#i-bolt"/></svg><span>4</span></div>
+        </div>
+      </div>
+      <div class="h-title">Первая неделя в Дублине</div>
+      <div class="progress-row"><div class="spectrum" id="spectrum"></div><div class="count" id="count">15 из 56</div></div>
+    </header>
+    <div class="map-scroll" id="scroll"><div class="map-canvas" id="canvas"></div></div>
+    <div class="veil" id="veil"></div>
+
+    <div class="stage-cp" id="stage-cp" data-ch="2">
+      <div class="big-seal" id="big-seal">
+        <div class="glow"></div><div class="flash"></div>
+        <div id="ring-slot"></div>
+        <div class="face"><div class="half l"><span class="rune">ᛝ</span></div><div class="half r"><span class="rune">ᛝ</span></div><div class="core"></div></div>
+      </div>
+      <div class="big-gate" id="big-gate" style="display:none"><div class="glow"></div><div class="arch"><div class="inner"><span class="rune">ᛞ</span></div></div></div>
+      <div class="cp-text">
+        <div class="cp-num cp-in" style="--i:0" id="cp-num">Глава 2 · Кофе с коллегой</div>
+        <h2 class="cp-title cp-in" style="--i:1" id="cp-title">Глава 2 — проверка</h2>
+        <p class="cp-body cp-in" style="--i:2" id="cp-body">Проверим, что закрепилось. Подсказок не будет — разбор в конце.</p>
+        <div class="cp-meta cp-in" style="--i:3" id="cp-meta"><span><svg><use href="#i-tasks"/></svg>10 заданий</span><span><svg><use href="#i-clock"/></svg>6 мин</span><span class="bolt"><svg><use href="#i-bolt"/></svg>1</span></div>
+        <div id="cp-extra" class="cp-in" style="--i:4"></div>
+      </div>
+      <div class="cp-actions cp-in" style="--i:5" id="cp-actions"></div>
+    </div>
+
+    <div class="iris" id="iris" style="--ix:50%;--iy:42%">
+      <div class="session" id="session" data-ch="2">
+        <div id="sb2"></div>
+        <div class="s-hdr"><button class="icon-btn" aria-label="Закрыть"><svg><use href="#i-close"/></svg></button><div class="segs" id="segs"></div></div>
+        <div class="s-body">
+          <div class="nohint s-in" style="--i:0"><svg><use href="#i-mute"/></svg>Подсказки выключены</div>
+          <div class="s-kicker s-in" style="--i:1" id="s-kicker">Задание 1 из 10</div>
+          <h2 class="s-title s-in" style="--i:2" id="s-title">Коллега волнуется перед встречей. Скажите ему, что он не один.</h2>
+          <div class="choices"><button class="choice s-in" style="--i:3">You are not alone.</button><button class="choice s-in" style="--i:4">You not alone.</button><button class="choice s-in" style="--i:5">You are no alone.</button></div>
+        </div>
+        <div class="s-foot s-in" style="--i:6"><button class="btn-key ch">Ответить</button></div>
+      </div>
+    </div>
+    <div class="toast" id="toast"><svg><use href="#i-lock"/></svg><span data-toast-text></span></div>
+    <div class="home-indicator"></div>
+  </div>
+  <aside class="panel"></aside>
+</div>
+<script src="shared/icons.js"></script>
+<script src="shared/course.js"></script>
+<script src="shared/routes.js"></script>
+<script src="shared/map.js"></script>
+<script src="shared/showcase.js"></script>
+<script>
+(function () {
+  document.getElementById("sb").outerHTML = window.statusbarHTML();
+  document.getElementById("sb2").outerHTML = window.statusbarHTML();
+  const { CHAPTERS, SESSIONS } = window.COURSE;
+  const phone = document.querySelector(".phone");
+  const veil = document.getElementById("veil");
+  const stage = document.getElementById("stage-cp");
+  const bigSeal = document.getElementById("big-seal");
+  const bigGate = document.getElementById("big-gate");
+  const iris = document.getElementById("iris");
+  const session = document.getElementById("session");
+  document.getElementById("ring-slot").outerHTML = window.MapKit.ringSVG();
+  const ring = bigSeal.querySelector(".ring");
+  const segs = document.getElementById("segs");
+  for (let i = 0; i < 10; i += 1) { const s = document.createElement("span"); if (i === 0) s.className = "on"; segs.appendChild(s); }
+
+  const kit = window.MapKit.mount({
+    phone,
+    canvas: document.getElementById("canvas"),
+    scroll: document.getElementById("scroll"),
+    hdr: document.querySelector(".map-hdr"),
+    toast: document.getElementById("toast"),
+    runeChip: document.getElementById("chip-runes"),
+    runeCount: document.getElementById("rune-count"),
+    countEl: document.getElementById("count"),
+    spectrumEl: document.getElementById("spectrum"),
+    onTap(n, k) {
+      const s = SESSIONS[n - 1];
+      if (s.role === "chapter_checkpoint") { const st = k.model.done.has(n) ? "passed" : k.model.current === n ? "available" : "locked"; openSeal(n, st); return; }
+      if (s.role === "final_exam") { openGate(n); return; }
+      k.showToast("Это макет печати: тапни по печати главы", "#i-play");
+    },
+  });
+  kit.build();
+  const M = kit.makeModel;
+
+  function chapterOf(n) { return CHAPTERS[SESSIONS[n - 1].ch - 1]; }
+
+  async function openSeal(n, variant) {
+    const s = SESSIONS[n - 1]; const ch = chapterOf(n);
+    const doneCount = SESSIONS.filter((x) => x.ch === s.ch && x.pos < 8 && kit.model.done.has(x.n)).length;
+    stage.setAttribute("data-ch", String(s.ch)); session.setAttribute("data-ch", String(s.ch));
+    bigGate.style.display = "none"; bigSeal.style.display = "";
+    bigSeal.classList.remove("is-open", "gold", "is-flash");
+    ring.classList.remove("is-lock", "is-spin");
+    ring.querySelectorAll(".seg").forEach((sg) => sg.classList.remove("on"));
+    document.getElementById("cp-num").textContent = `Глава ${s.ch} · ${ch.scene}`;
+    document.getElementById("cp-title").textContent = `Глава ${s.ch} — проверка`;
+    const body = document.getElementById("cp-body"); const meta = document.getElementById("cp-meta");
+    const extra = document.getElementById("cp-extra"); const actions = document.getElementById("cp-actions");
+    meta.style.display = "";
+    if (variant === "locked") {
+      const left = 7 - doneCount;
+      body.textContent = `Печать откроется, когда пройдены все занятия главы. Осталось ${left} ${kit.plural(left, "занятие", "занятия", "занятий")}.`;
+      meta.style.display = "none";
+      extra.innerHTML = "";
+      actions.innerHTML = `<button class="btn-key ch sweep" id="cta"><svg><use href="#i-play"/></svg>К занятию ${kit.model.current}</button><button class="btn-text" id="later">Закрыть</button>`;
+    } else if (variant === "available") {
+      body.textContent = "Проверим, что закрепилось. Подсказок не будет — разбор в конце.";
+      extra.innerHTML = `<div class="cp-reward"><span class="mini">ᛝ</span>Печать главы<span>·</span><span class="rune">ᚠ</span>+40</div>`;
+      actions.innerHTML = `<button class="btn-key ch sweep" id="cta"><span class="ready"></span>Начать проверку</button><button class="btn-text" id="later">Позже</button>`;
+    } else if (variant === "passed") {
+      bigSeal.classList.add("gold");
+      body.textContent = "Глава закрыта. Что вы теперь умеете:";
+      meta.style.display = "none";
+      extra.innerHTML = `<div class="cp-skills"><div><svg><use href="#i-check"/></svg>Сказать, какой человек рядом</div><div><svg><use href="#i-check"/></svg>Успокоить: you are not alone</div><div class="review"><svg><use href="#i-refresh"/></svg>Стоит повторить: am и are</div></div>`;
+      actions.innerHTML = `<button class="btn-key quiet" id="cta"><svg><use href="#i-refresh"/></svg>Повторить проверку</button><button class="btn-text" id="later">Закрыть</button>`;
+    }
+    veil.classList.add("is-on");
+    stage.classList.remove("is-on"); void stage.offsetWidth; stage.classList.add("is-on");
+    const later = document.getElementById("later"); if (later) later.addEventListener("click", closeStage);
+    const cta = document.getElementById("cta");
+    if (variant === "available") cta.addEventListener("click", () => vaultOpen(n));
+    if (variant === "locked") cta.addEventListener("click", closeStage);
+    // кольцо зажигается по одному сегменту, затем защёлкивается
+    await kit.wait(380);
+    const lit = variant === "passed" ? 7 : doneCount;
+    const segEls = ring.querySelectorAll(".seg");
+    for (let i = 0; i < lit; i += 1) { segEls[i].classList.add("on"); await kit.wait(70); }
+    if (lit === 7) { ring.classList.add("is-lock"); bigSeal.classList.add("is-flash"); }
+  }
+
+  function openGate(n) {
+    const s = SESSIONS[n - 1];
+    stage.setAttribute("data-ch", "7"); session.setAttribute("data-ch", "7");
+    bigSeal.style.display = "none"; bigGate.style.display = "";
+    document.getElementById("cp-num").textContent = "Глава 7 · Воскресный звонок домой";
+    document.getElementById("cp-title").textContent = "Итоговый экзамен";
+    document.getElementById("cp-body").textContent = "Весь материал урока. Спокойно, времени сколько нужно.";
+    const meta = document.getElementById("cp-meta"); meta.style.display = "";
+    meta.innerHTML = `<span><svg><use href="#i-tasks"/></svg>20 заданий</span><span><svg><use href="#i-clock"/></svg>без таймера</span><span class="bolt"><svg><use href="#i-bolt"/></svg>1</span>`;
+    document.getElementById("cp-extra").innerHTML = `<div class="cp-reward"><span class="mini">ᛞ</span>Урок пройден<span>·</span><span class="rune">ᚠ</span>+120</div>`;
+    document.getElementById("cp-actions").innerHTML = `<button class="btn-key ch sweep" id="cta"><span class="ready"></span>Начать экзамен</button><button class="btn-text" id="later">Позже</button>`;
+    veil.classList.add("is-on");
+    stage.classList.remove("is-on"); void stage.offsetWidth; stage.classList.add("is-on");
+    document.getElementById("later").addEventListener("click", closeStage);
+    document.getElementById("cta").addEventListener("click", () => vaultOpen(n, true));
+  }
+
+  function closeStage() { veil.classList.remove("is-on"); stage.classList.remove("is-on"); }
+  veil.addEventListener("click", closeStage);
+
+  /* Открытие как сейф: кольцо проворачивается, лицо раскалывается, ирис из центра печати */
+  async function vaultOpen(n, gate) {
+    const cta = document.getElementById("cta");
+    cta.classList.add("is-pressed");
+    const pr = phone.getBoundingClientRect();
+    const src = gate ? bigGate : bigSeal;
+    const b = src.getBoundingClientRect();
+    iris.style.setProperty("--ix", `${b.left - pr.left + b.width / 2}px`);
+    iris.style.setProperty("--iy", `${b.top - pr.top + b.height / 2}px`);
+    document.getElementById("s-kicker").textContent = gate ? "Задание 1 из 20" : "Задание 1 из 10";
+    document.getElementById("s-title").textContent = gate ? "Мама спрашивает, как прошла неделя. Скажите, что вы устали, но довольны." : "Коллега волнуется перед встречей. Скажите ему, что он не один.";
+    if (!gate) {
+      ring.classList.remove("is-lock"); void ring.offsetWidth; ring.classList.add("is-spin");
+      await kit.wait(420);
+      bigSeal.classList.add("is-open");
+      await kit.wait(360);
+    } else { await kit.wait(300); }
+    session.classList.remove("is-on"); void session.offsetWidth;
+    iris.classList.add("is-open");
+    session.classList.add("is-on");
+    await kit.wait(700);
+    closeStage();
+  }
+
+  function reset(m, top) {
+    kit.base(m, { noEnter: true, top: top || 0 });
+    iris.classList.remove("is-open"); session.classList.remove("is-on");
+    closeStage();
+  }
+
+  const states = [
+    { id: "available", group: "Печать", label: "Печать доступна", note: "<b>Вход в проверку.</b> Карта гаснет, печать вырастает по центру (scale .55 → 1, 420 мс), кольцо зажигает 7 сегментов по одному (70 мс) и защёлкивается (поворот −8° → 0, вспышка). Текст — боевые строки <code>learning_v2_checkpoint_copy</code>: «Глава 2 — проверка», «Подсказок не будет — разбор в конце», «Начать проверку». Награда видна заранее: печать и +40 рун.", apply() { reset(M(15), 700); kit.later(() => openSeal(16, "available"), 500); } },
+    { id: "locked", group: "Печать", label: "Печать до срока", note: "<b>Тап по закрытой печати</b> открывает ту же сцену, но честную: 4 из 7 сегментов, точное число оставшихся занятий и клавиша «К занятию 13», которая ведёт к текущему узлу. Печать не ругается, она считает.", apply() { reset(M(12), 700); kit.later(() => openSeal(16, "locked"), 500); } },
+    { id: "passed", group: "Печать", label: "Печать поставлена", note: "<b>Закрытая глава.</b> Золотая печать и список «что вы теперь умеете» из результата проверки: закрепилось и что стоит повторить (без слова «провалено»). Повторить проверку можно ради чистого листа.", apply() { reset(M(16), 700); kit.later(() => openSeal(16, "passed"), 500); } },
+    { id: "opening", group: "Переход", label: "Нажали «Начать проверку»", note: "<b>Открытие как сейф (1.5 с):</b> кольцо проворачивается на 180° (520 мс, ease-in-out), лицо печати раскалывается пополам, изнутри бьёт свет, и ирис из центра печати раскрывает первое задание. Занятие открывается ирисом из клавиши; проверка — из самой печати: две разные двери.", apply() { reset(M(15), 700); kit.later(() => openSeal(16, "available"), 400); kit.later(() => vaultOpen(16), 2200); } },
+    { id: "final", group: "Экзамен", label: "Итоговый экзамен", note: "<b>Врата урока.</b> Другой объект и другой масштаб: арка со светом изнутри, «Итоговый экзамен», «Весь материал урока. Спокойно, времени сколько нужно» (боевая копия), 20 заданий без таймера, награда «Урок пройден» и +120 рун. Открывается тем же ирисом из центра врат.", apply() { reset(M(55), 4400); kit.later(() => openGate(56), 500); } },
+    { id: "final-opening", group: "Экзамен", label: "Врата открываются", note: "<b>Экзамен начался.</b> Клавиша вдавливается, ирис из центра арки, первое из 20 заданий входит каскадом. В шапке сегментная полоса на 20 делений вместо обычного прогресса: видно весь путь.", apply() { reset(M(55), 4400); kit.later(() => openGate(56), 400); kit.later(() => vaultOpen(56, true), 1900); } },
+  ];
+
+  window.Showcase.init({
+    kicker: "Learning V2 · Атлас · макет 05",
+    title: "Печать главы и врата экзамена",
+    lead: "Проверка открывается иначе, чем занятие: не шторка, а сцена. Кольцо из семи занятий защёлкивается, печать раскалывается как сейф, и только здесь движение имеет вес.",
+    nav: [{ href: "index.html", label: "← Индекс" }, { href: "04-session-start.html", label: "04 Билет" }, { href: "06-session-complete.html", label: "06 Финал →" }],
+    states,
+    notes: `<b>Правило владельца (SB-14, макет 26):</b> у проверки свой голос, без «провалено», слабое место — приглашение повторить. <b>Движение:</b> вес и удар допустимы только здесь и в награде за главу (гибрид «Световод + акценты Чекана»). <b>Reduced motion:</b> кольцо показывается сразу целиком, раскол заменён мгновенным ирисом.`,
+  });
+})();
+</script>
+</body>
+</html>

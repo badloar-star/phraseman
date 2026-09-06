@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="forest">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Колода уроков</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/phone.css">
+<link rel="stylesheet" href="shared/map.css">
+<link rel="stylesheet" href="shared/atlas.css">
+<link rel="stylesheet" href="shared/showcase.css">
+</head>
+<body>
+<div class="stage">
+  <div class="phone" data-ch="1" data-state="progress">
+    <div id="sb"></div>
+    <header class="hdr atlas-hdr">
+      <div><div class="h-hero">Атлас</div><div class="h-sub" id="h-sub">32 урока · 1 792 занятия</div></div>
+      <div class="wallet">
+        <div class="chip"><span class="glyph">ᚠ</span><span>120</span></div>
+        <div class="chip energy"><svg style="color:var(--energy)"><use href="#i-bolt"/></svg><span>4</span></div>
+      </div>
+    </header>
+    <div class="deck-scroll" id="deck-scroll"><div class="deck" id="deck"></div></div>
+
+    <div class="map-layer" id="map-layer">
+      <div id="sb2"></div>
+      <header class="hdr map-hdr" data-ch="1">
+        <div class="row1">
+          <button class="icon-btn" id="map-back" aria-label="Назад"><svg><use href="#i-chevron-left"/></svg></button>
+          <div class="h-label"><span class="dot"></span><span id="map-lesson">Урок 1</span></div>
+          <div class="wallet">
+            <div class="chip" id="chip-runes"><span class="glyph">ᚠ</span><span id="rune-count">120</span></div>
+            <div class="chip energy"><svg style="color:var(--energy)"><use href="#i-bolt"/></svg><span>4</span></div>
+          </div>
+        </div>
+        <div class="h-title" id="map-title">Первая неделя в Дублине</div>
+        <div class="progress-row"><div class="spectrum" id="spectrum"></div><div class="count" id="count">12 из 56</div></div>
+      </header>
+      <div class="map-scroll" id="scroll"><div class="map-canvas" id="canvas"></div></div>
+      <button class="jump" id="jump"><svg><use href="#i-play"/></svg><span data-jump-label>Продолжить</span></button>
+    </div>
+    <div class="toast" id="toast"><svg><use href="#i-lock"/></svg><span data-toast-text></span></div>
+    <div class="home-indicator"></div>
+  </div>
+  <aside class="panel"></aside>
+</div>
+<script src="shared/icons.js"></script>
+<script src="shared/course.js"></script>
+<script src="shared/routes.js"></script>
+<script src="shared/map.js"></script>
+<script src="shared/atlas.js"></script>
+<script src="shared/showcase.js"></script>
+<script>
+(function () {
+  document.getElementById("sb").outerHTML = window.statusbarHTML();
+  document.getElementById("sb2").outerHTML = window.statusbarHTML();
+  const { LESSONS } = window.COURSE;
+  const phone = document.querySelector(".phone");
+  const deck = document.getElementById("deck");
+  const deckScroll = document.getElementById("deck-scroll");
+  const mapLayer = document.getElementById("map-layer");
+  const tf = () => Number(getComputedStyle(document.documentElement).getPropertyValue("--tf")) || 1;
+  const timers = [];
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms * tf()));
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms * tf()));
+
+  const kit = window.MapKit.mount({
+    phone,
+    canvas: document.getElementById("canvas"),
+    scroll: document.getElementById("scroll"),
+    hdr: document.querySelector(".map-hdr"),
+    jump: document.getElementById("jump"),
+    toast: document.getElementById("toast"),
+    runeChip: document.getElementById("chip-runes"),
+    runeCount: document.getElementById("rune-count"),
+    countEl: document.getElementById("count"),
+    spectrumEl: document.getElementById("spectrum"),
+    onTap(n, k) { k.showToast("Здесь открывается билет (макет 04)", "#i-play"); },
+  });
+  kit.build();
+
+  let model = null;
+  function buildDeck(m) {
+    model = m;
+    window.AtlasKit.buildDeck(deck, m, { onCard });
+    document.getElementById("h-sub").textContent = m.doneLessons > 0 ? `${m.doneLessons} из 32 уроков пройдено` : "32 урока · 1 792 занятия";
+  }
+
+  function onCard(card, n) {
+    if (card.classList.contains("current") || card.classList.contains("done")) { openCard(card, n); return; }
+    card.animate([{ transform: "scale(1)" }, { transform: "scale(.985)" }, { transform: "scale(1)" }], { duration: 240 * tf(), easing: "cubic-bezier(.23,1,.32,1)" });
+    kit.showToast(card.classList.contains("soon") ? "Урок ещё пишется" : `Сначала урок ${model.currentLesson}`, card.classList.contains("soon") ? "#i-clock" : "#i-lock");
+  }
+
+  /* FLIP: карта вырастает до экрана и становится картой урока */
+  async function openCard(card, n) {
+    const pr = phone.getBoundingClientRect(); const a = card.getBoundingClientRect();
+    const ghost = document.createElement("div");
+    ghost.className = "flip-card"; ghost.setAttribute("data-ch", card.getAttribute("data-ch"));
+    ghost.innerHTML = `<div class="light"></div>`;
+    ghost.style.left = `${a.left - pr.left}px`; ghost.style.top = `${a.top - pr.top}px`; ghost.style.width = `${a.width}px`; ghost.style.height = `${a.height}px`;
+    phone.appendChild(ghost);
+    card.classList.add("is-lift");
+    await sleep(160);
+    const sx = 390 / a.width, sy = 844 / a.height;
+    const dx = -(a.left - pr.left), dy = -(a.top - pr.top);
+    ghost.animate([
+      { transform: "translate(0,0) scale(1,1)", borderRadius: "26px" },
+      { transform: `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`, borderRadius: "48px" },
+    ], { duration: 420 * tf(), easing: "cubic-bezier(.32,.72,0,1)", fill: "forwards" });
+    document.getElementById("map-lesson").textContent = `Урок ${n}`;
+    document.getElementById("map-title").textContent = LESSONS[n - 1].arc;
+    await sleep(300);
+    const m = model.currentLesson === n ? kit.makeModel(model.doneInCurrent) : kit.makeModel(56);
+    kit.base(m, { noEnter: false, top: 0 });
+    mapLayer.classList.add("is-on");
+    await sleep(260);
+    ghost.remove();
+    card.classList.remove("is-lift");
+  }
+  async function closeMap() {
+    const card = deck.querySelector(".card.current") || deck.querySelector(".card");
+    const pr = phone.getBoundingClientRect(); const a = card.getBoundingClientRect();
+    const ghost = document.createElement("div");
+    ghost.className = "flip-card"; ghost.setAttribute("data-ch", card.getAttribute("data-ch"));
+    ghost.innerHTML = `<div class="light"></div>`;
+    ghost.style.left = "0px"; ghost.style.top = "0px"; ghost.style.width = "390px"; ghost.style.height = "844px"; ghost.style.borderRadius = "48px";
+    phone.appendChild(ghost);
+    mapLayer.classList.remove("is-on");
+    ghost.animate([
+      { transform: "translate(0,0) scale(1,1)", borderRadius: "48px" },
+      { transform: `translate(${a.left - pr.left}px, ${a.top - pr.top}px) scale(${a.width / 390}, ${a.height / 844})`, borderRadius: "26px" },
+    ], { duration: 360 * tf(), easing: "cubic-bezier(.32,.72,0,1)", fill: "forwards" }).onfinish = () => ghost.remove();
+  }
+  document.getElementById("map-back").addEventListener("click", closeMap);
+
+  function enter() { phone.classList.remove("is-entering"); void phone.offsetWidth; phone.classList.add("is-entering"); later(() => phone.classList.remove("is-entering"), 2000); }
+  function reset(m, o) {
+    timers.splice(0).forEach(clearTimeout);
+    phone.querySelectorAll(".flip-card").forEach((g) => g.remove());
+    mapLayer.classList.remove("is-on");
+    buildDeck(m);
+    deckScroll.scrollTo({ top: (o && o.top) || 0, behavior: "auto" });
+    if (!(o && o.noEnter)) enter();
+  }
+
+  /* Распечатывание следующей карты после экзамена */
+  async function unsealNext() {
+    reset({ currentLesson: 1, doneInCurrent: 56, doneLessons: 0, released: 3 }, { noEnter: true });
+    const first = deck.children[0]; const second = deck.children[1];
+    first.classList.remove("current"); first.classList.add("done");
+    first.querySelector(".dots").remove();
+    first.querySelector(".top").insertAdjacentHTML("beforeend", `<div class="wax gold"><svg><use href="#i-check"/></svg></div>`);
+    first.querySelector(".bottom").innerHTML = `<span class="cnt"><span class="stars-total"><svg><use href="#i-star"/></svg>151 из 168</span></span>`;
+    await sleep(500);
+    second.classList.add("is-unsealing");
+    await sleep(1000);
+    reset({ currentLesson: 2, doneInCurrent: 0, doneLessons: 1, released: 3 }, { noEnter: true });
+    const cur = deck.querySelector(".card.current");
+    cur.animate([{ transform: "translateY(10px) scale(.98)", opacity: .6 }, { transform: "translateY(0) scale(1)", opacity: 1 }], { duration: 420 * tf(), easing: "cubic-bezier(.38,.7,.125,1)" });
+  }
+
+  const states = [
+    { id: "fresh", group: "Колода", label: "Новый ученик", note: "<b>Первый вход в Атлас.</b> Карта урока 1 поднята и раскрыта: сюжет («Первая неделя в Дублине»), система, семь точек глав в их цветах, спектр прогресса и клавиша «Открыть карту». Остальные карты запечатаны и лежат стопкой: видно номер и сюжет. Колода сдаётся каскадом 34 мс.", apply() { reset({ currentLesson: 1, doneInCurrent: 0, doneLessons: 0, released: 2 }); } },
+    { id: "progress", group: "Колода", label: "В процессе", note: "<b>12 из 56.</b> Точки глав: первая горит (закрыта), вторая дышит (текущая), спектр показывает, где в уроке ты. Свет карты — свет текущей главы (карамель кофе).", apply() { reset({ currentLesson: 1, doneInCurrent: 12, doneLessons: 0, released: 2 }); } },
+    { id: "veteran", group: "Колода", label: "Три урока позади", note: "<b>Пройденные уроки</b> лежат сверху золотыми картами с суммой звёзд, текущий (урок 4) поднят, будущие запечатаны, а всё, что ещё не написано, помечено часами: «Урок ещё пишется».", apply() { reset({ currentLesson: 4, doneInCurrent: 20, doneLessons: 3, released: 6 }); } },
+    { id: "opening", group: "Открытие", label: "Открыть карту", note: "<b>Карта становится картой (FLIP, 420 мс):</b> тап приподнимает карту (160 мс), затем она вырастает до экрана по кривой drawer и под ней проявляется карта урока с каскадом узлов. «Назад» сжимает экран обратно в карту колоды. Ни одного чёрного кадра.", apply() { reset({ currentLesson: 1, doneInCurrent: 12, doneLessons: 0, released: 2 }, { noEnter: true }); later(() => openCard(deck.querySelector(".card.current"), 1), 500); } },
+    { id: "unseal", group: "Открытие", label: "Новая карта распечатана", note: "<b>После экзамена урока 1.</b> Карта урока 1 становится золотой, на печати урока 2 проступает свет, воск трескается и рассыпается (560 мс), карта поднимается в колоде и раскрывается как текущая.", apply() { unsealNext(); } },
+    { id: "denied", group: "Открытие", label: "Тап по запечатанной", note: "<b>Спокойный отказ.</b> Карта прожимается на 1.5 % и тост называет причину: «Сначала урок 1» или «Урок ещё пишется».", apply() { reset({ currentLesson: 1, doneInCurrent: 12, doneLessons: 0, released: 2 }, { noEnter: true }); later(() => deck.children[2].click(), 600); } },
+    { id: "skeleton", group: "Системные", label: "Первый кадр", note: "<b>Скелетон колоды.</b> Все карты на своих местах и своей высоты до гидрации прогресса: ни строки не прыгает, когда данные приходят из памяти.", apply() { reset({ currentLesson: 1, doneInCurrent: 12, doneLessons: 0, released: 2 }, { noEnter: true }); } },
+  ];
+
+  window.Showcase.init({
+    kicker: "Learning V2 · Атлас · макет 02",
+    title: "Атлас: колода уроков",
+    lead: "Разделы до карты — не список. Это 32 карты: пройденные золотые, текущая раскрыта, будущие запечатаны воском. Карта открывается в карту урока одним движением.",
+    nav: [{ href: "index.html", label: "← Индекс" }, { href: "01-premiere.html", label: "01 Премьера" }, { href: "03-map.html", label: "03 Карта →" }],
+    states,
+    notes: `<b>Производительность:</b> колода — один список с фиксированной высотой карт (216 px, перекрытие 144 px), сигилы рисуются вектором по номеру урока (ноль ассетов), FLIP-переход двигает один слой transform/scale. <b>Optimistic UI:</b> прогресс и структура курса локальные, Атлас не ждёт сети; «Урок ещё пишется» — из локального каталога выпущенных уроков.`,
+  });
+})();
+</script>
+</body>
+</html>

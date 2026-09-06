@@ -1,0 +1,92 @@
+/* ============================================================
+   Атлас: колода из 32 карт уроков (общее для макетов 01 и 02).
+   Текущая карта поднята и раскрыта; пройденные золотые; будущие запечатаны
+   воском; ненаписанные помечены часами. Полоска карты в стопке = 72 px:
+   номер + сюжет читаются целиком.
+   ============================================================ */
+.atlas-hdr { padding: 2px 18px 8px; align-items: flex-end; }
+.atlas-hdr .h-hero { font-size: 34px; font-weight: 900; letter-spacing: -1px; line-height: 1; color: var(--text); }
+.atlas-hdr .h-sub { margin-top: 6px; font-size: 14px; font-weight: 700; color: var(--muted); }
+.atlas-hdr .wallet { display: flex; gap: 8px; margin-left: auto; }
+.deck-scroll { position: relative; flex: 1; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; z-index: var(--z-map); }
+.deck-scroll::-webkit-scrollbar { display: none; }
+.deck { position: relative; padding: 10px 24px 140px; }
+
+.card {
+  position: relative; width: 342px; height: 216px; border-radius: 26px; overflow: hidden; cursor: pointer;
+  margin-top: -144px;
+  background: linear-gradient(160deg, var(--elev2) 0%, var(--card) 55%, #070A08 100%);
+  box-shadow: 0 -8px 30px rgba(0,0,0,.45), 0 24px 44px -20px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.07);
+  transition: transform var(--t-normal) var(--ease-out), box-shadow var(--t-normal) var(--ease-out);
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+.card:first-child { margin-top: 0; }
+.card:active { transform: translateY(2px); }
+.card .light { position: absolute; left: -60px; top: -90px; width: 300px; height: 240px; border-radius: 50%; background: radial-gradient(closest-side, var(--ch-soft), transparent); opacity: 0; transition: opacity var(--t-scene); pointer-events: none; }
+.card .top { position: absolute; left: 20px; right: 20px; top: 16px; display: flex; align-items: center; gap: 12px; min-height: 44px; }
+.card .num { font-size: 30px; font-weight: 900; letter-spacing: -1.5px; color: var(--ch); line-height: 1; font-variant-numeric: tabular-nums; flex: 0 0 auto; width: 44px; }
+.card .top .t { flex: 1; min-width: 0; }
+.card .arc { font-size: 18px; font-weight: 900; letter-spacing: -.3px; color: var(--text); line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card .sys { position: absolute; left: 76px; right: 110px; top: 70px; font-size: 14px; font-weight: 700; color: var(--muted); line-height: 1.3; }
+.card .dots { display: flex; gap: 5px; flex: 0 0 auto; }
+.card .dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.1); }
+.card .dots span.on { background: var(--d); box-shadow: 0 0 8px var(--d); }
+.card .dots span.now { background: var(--d); box-shadow: 0 0 10px var(--d); animation: dotBreath var(--t-breath) ease-in-out infinite; }
+@keyframes dotBreath { 0%, 100% { transform: scale(1); opacity: .7; } 50% { transform: scale(1.25); opacity: 1; } }
+.card .sigil { position: absolute; right: -14px; top: 44px; width: 150px; height: 150px; opacity: .22; pointer-events: none; }
+.card .sigil svg { width: 100%; height: 100%; }
+.card .bottom { position: absolute; left: 20px; right: 20px; bottom: 18px; display: flex; align-items: center; gap: 12px; }
+.card .spectrum { height: 6px; }
+.card .cnt { font-size: 14px; font-weight: 800; color: var(--text-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.card .open { margin-left: auto; height: 42px; padding: 0 16px 0 14px; border-radius: var(--r-pill); border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 800; color: var(--ch-ink); background: linear-gradient(180deg, color-mix(in oklab, var(--ch) 75%, white), var(--ch) 60%, var(--ch-2)); box-shadow: 0 4px 0 var(--ch-3), 0 14px 26px -8px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.4); white-space: nowrap; }
+.card .open svg { width: 18px; height: 18px; }
+
+.card.current { margin-bottom: 150px; box-shadow: 0 -10px 40px rgba(0,0,0,.5), 0 30px 60px -18px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.1); }
+.card.current .light { opacity: 1; }
+.card.current .top { align-items: flex-start; right: 24px; }
+.card.current .arc { white-space: normal; font-size: 21px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card.current .num { padding-top: 1px; }
+.card.current .sys { top: 72px; right: 24px; }
+.card.current .dots { position: absolute; left: 76px; top: 116px; }
+.card.sealed { background: linear-gradient(160deg, #121A15 0%, #0B100D 60%, #060907 100%); }
+.card.sealed .arc { color: var(--text-2); opacity: .55; }
+.card.sealed .sys { opacity: .45; }
+.card.sealed .num { color: var(--ghost); }
+.card.sealed .sigil, .card.sealed .bottom { display: none; }
+.card.done { background: linear-gradient(160deg, #1C1A10 0%, #100F0A 60%, #070604 100%); }
+.card.done .num { color: #E9CE7A; }
+.card.done .sigil { display: none; }
+.card.done .bottom .open { display: none; }
+.card.done .bottom .cnt { color: #C9B77A; }
+.card.soon { background: linear-gradient(160deg, #0F1411 0%, #090C0A 60%, #050706 100%); }
+.card.soon .arc { opacity: .35; }
+.card.soon .sys { opacity: .3; }
+.card.soon .num { color: var(--ghost); opacity: .6; }
+.card.soon .sigil, .card.soon .bottom { display: none; }
+
+.wax { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; flex: 0 0 auto; color: var(--ghost); background: radial-gradient(circle at 34% 26%, var(--elev3), var(--card) 76%); box-shadow: 0 8px 16px -8px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.06); position: relative; }
+.wax svg { width: 20px; height: 20px; }
+.wax.gold { color: #241A05; background: linear-gradient(160deg, #D19E1D, #FFD86E 55%, #E3A812); box-shadow: 0 10px 20px -8px rgba(255,212,59,.45), inset 0 1px 0 rgba(255,255,255,.5); }
+.wax .crack { position: absolute; inset: -14px; border-radius: 50%; background: radial-gradient(closest-side, var(--ch-glow), transparent 70%); opacity: 0; }
+.card.is-unsealing .wax { animation: waxBreak calc(560ms * var(--tf)) var(--ease-out) both; animation-delay: calc(400ms * var(--tf)); }
+.card.is-unsealing .wax .crack { animation: crack calc(700ms * var(--tf)) var(--ease-out) both; }
+@keyframes crack { 0% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; } 100% { opacity: 0; transform: scale(1.8); } }
+@keyframes waxBreak { 0% { transform: scale(1); opacity: 1; } 40% { transform: scale(1.15); opacity: 1; } 100% { transform: scale(.4); opacity: 0; } }
+.card .stars-total { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 800; color: #E9CE7A; }
+.card .stars-total svg { width: 14px; height: 14px; color: #E9CE7A; }
+
+.phone.is-entering .card { animation: cardDeal var(--t-slow) var(--ease-spring) both; animation-delay: calc(var(--i) * 34ms * var(--tf)); }
+@keyframes cardDeal { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+.card.is-lift { transform: translateY(-6px) scale(1.02); box-shadow: 0 -14px 40px rgba(0,0,0,.5), 0 40px 70px -20px var(--ch-glow), inset 0 1px 0 rgba(255,255,255,.12); }
+
+.map-layer { position: absolute; inset: 0; z-index: var(--z-sheet); display: flex; flex-direction: column; opacity: 0; pointer-events: none; transition: opacity var(--t-normal) var(--ease-out); background: radial-gradient(120% 60% at 50% -8%, var(--sheen), transparent 60%), linear-gradient(175deg, var(--bg-a), var(--bg-b)); }
+.map-layer.is-on { opacity: 1; pointer-events: auto; }
+.flip-card { position: absolute; z-index: var(--z-backdrop); border-radius: 26px; transform-origin: 0 0; background: linear-gradient(160deg, var(--elev2) 0%, var(--card) 55%, #070A08 100%); box-shadow: 0 30px 60px -18px var(--ch-glow); pointer-events: none; will-change: transform; overflow: hidden; }
+.flip-card .light { position: absolute; left: -60px; top: -90px; width: 300px; height: 240px; border-radius: 50%; background: radial-gradient(closest-side, var(--ch-soft), transparent); }
+
+.phone[data-state="skeleton"] .card { background: var(--elev); box-shadow: none; }
+.phone[data-state="skeleton"] .card > * { opacity: 0; }
+.phone[data-state="skeleton"] .chip { color: transparent; }
+.phone[data-state="skeleton"] .chip .glyph, .phone[data-state="skeleton"] .chip svg { opacity: 0; }
+.phone[data-state="skeleton"] .h-sub { color: transparent; background: var(--elev); border-radius: 6px; }

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="forest">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Системные состояния</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/phone.css">
+<link rel="stylesheet" href="shared/map.css">
+<link rel="stylesheet" href="shared/showcase.css">
+<style>
+/* ============================================================
+   Состояния, которые встречаются редко, но встречаются: подготовка занятия
+   (долгая), ошибка загрузки, продолжение прерванного занятия, выход из
+   занятия, первая подсказка на карте, возврат энергии, разбор ошибок.
+   Ни одного спиннера на весь экран: геометрия зарезервирована, свет ждёт.
+   ============================================================ */
+.layer { position: absolute; inset: 0; display: none; flex-direction: column; }
+.layer.is-on { display: flex; }
+/* --- оболочка занятия --- */
+.session { background: radial-gradient(120% 60% at 50% -8%, var(--ch-soft), transparent 60%), linear-gradient(175deg, var(--bg-a), var(--bg-b)); }
+.session .s-hdr { display: flex; align-items: center; gap: 12px; padding: 4px 16px 6px; }
+.session .s-hdr .dots { flex: 1; display: flex; gap: 6px; justify-content: center; }
+.session .s-hdr .dots span { width: 34px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.1); }
+.session .s-hdr .dots span.on { background: var(--ch); box-shadow: 0 0 10px var(--ch-glow); }
+.session .s-body { flex: 1; padding: 14px 22px 0; }
+.prep-line { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; color: var(--text-2); margin-bottom: 16px; }
+.prep-line .bar { flex: 1; height: 6px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; position: relative; }
+.prep-line .bar i { position: absolute; inset: 0; width: 45%; border-radius: 3px; background: linear-gradient(90deg, transparent, var(--ch), transparent); animation: prepSweep calc(1200ms * var(--tf)) var(--ease-inout) infinite; }
+@keyframes prepSweep { 0% { transform: translateX(-100%); } 100% { transform: translateX(320%); } }
+:root[data-reduced="1"] .prep-line .bar i { animation: none; left: 0; width: 60%; }
+.skel-block { margin-top: 10px; }
+.skel-block .skel { margin-top: 8px; }
+.slow-hint { margin-top: 18px; font-size: 14px; font-weight: 700; color: var(--muted); opacity: 0; transition: opacity var(--t-slow); }
+.slow-hint.is-on { opacity: 1; }
+.err-block { margin-top: 26px; padding: 18px; border-radius: 22px; background: linear-gradient(160deg, var(--elev2), var(--card)); box-shadow: 0 18px 40px -16px rgba(0,0,0,.7), inset 0 1px 0 var(--inner-light); display: flex; gap: 14px; align-items: flex-start; }
+.err-block .ic { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--danger-soft); color: var(--danger); flex: 0 0 auto; }
+.err-block .ic svg { width: 22px; height: 22px; }
+.err-block .t { font-size: 18px; font-weight: 900; color: var(--text); letter-spacing: -.3px; }
+.err-block .d { margin-top: 4px; font-size: 15px; font-weight: 600; color: var(--text-2); line-height: 1.4; }
+.s-foot { margin-top: auto; padding: 12px 22px 44px; display: flex; flex-direction: column; gap: 6px; }
+.task { margin-top: 6px; }
+.task .q { font-size: 22px; font-weight: 900; letter-spacing: -.4px; line-height: 1.15; color: var(--text); }
+.task .choices { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.task .choice { height: 54px; border-radius: 16px; display: flex; align-items: center; padding: 0 18px; font-size: 17px; font-weight: 700; color: var(--text); background: linear-gradient(160deg, var(--elev2), var(--card)); box-shadow: 0 8px 18px -8px rgba(0,0,0,.6), inset 0 1px 0 var(--inner-light); }
+/* --- шторки --- */
+.sheet .sh-title { font-size: 24px; font-weight: 900; letter-spacing: -.5px; line-height: 1.1; color: var(--text); }
+.sheet .sh-body { margin-top: 8px; font-size: 16px; font-weight: 600; color: var(--text-2); line-height: 1.45; }
+.sheet .sh-progress { display: flex; align-items: center; gap: 12px; margin-top: 14px; padding: 12px 14px; border-radius: 16px; background: linear-gradient(160deg, var(--elev2), var(--elev)); box-shadow: inset 0 1px 0 var(--inner-light); font-size: 15px; font-weight: 800; color: var(--text); }
+.sheet .sh-progress .bar { flex: 1; height: 6px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; }
+.sheet .sh-progress .bar i { display: block; height: 100%; width: 44%; border-radius: 3px; background: var(--ch); box-shadow: 0 0 8px var(--ch-glow); }
+.sheet .actions { display: flex; flex-direction: column; gap: 6px; margin-top: 18px; }
+/* --- подсказка первого раза --- */
+.coach { position: absolute; z-index: var(--z-float); left: 50%; transform: translate(-50%, 8px); opacity: 0; padding: 12px 16px; border-radius: 18px; background: linear-gradient(160deg, var(--elev3), var(--elev)); box-shadow: 0 18px 34px rgba(0,0,0,.55), inset 0 1px 0 var(--inner-light); font-size: 15px; font-weight: 800; color: var(--text); white-space: nowrap; display: flex; align-items: center; gap: 10px; transition: transform var(--t-slow) var(--ease-out), opacity var(--t-slow); }
+.coach.is-on { transform: translate(-50%, 0); opacity: 1; }
+.coach::after { content: ""; position: absolute; left: 50%; top: 100%; width: 12px; height: 12px; background: var(--elev); transform: translate(-50%, -6px) rotate(45deg); border-radius: 2px; }
+.coach svg { width: 20px; height: 20px; color: var(--ch); animation: coachBob calc(1200ms * var(--tf)) ease-in-out infinite; }
+@keyframes coachBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+/* --- энергия вернулась --- */
+.energy-toast { position: absolute; left: 50%; top: 186px; z-index: var(--z-toast); transform: translate(-50%, -10px); opacity: 0; display: flex; align-items: center; gap: 10px; padding: 10px 16px 10px 12px; border-radius: var(--r-pill); background: linear-gradient(160deg, #2A2210, #171307); box-shadow: 0 16px 34px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,232,150,.18); font-size: 15px; font-weight: 800; color: #FFE7A8; transition: transform var(--t-slow) var(--ease-out), opacity var(--t-slow); }
+.energy-toast svg { width: 20px; height: 20px; color: var(--energy); }
+.energy-toast.is-on { transform: translate(-50%, 0); opacity: 1; }
+/* --- разбор ошибок --- */
+.review { background: radial-gradient(120% 60% at 50% -8%, var(--ch-soft), transparent 60%), linear-gradient(175deg, var(--bg-a), var(--bg-b)); }
+.review .r-hdr { display: flex; align-items: center; gap: 12px; padding: 4px 16px 10px; }
+.review .r-hdr .h-title { font-size: 24px; }
+.review .list { flex: 1; overflow: auto; padding: 4px 18px 20px; display: flex; flex-direction: column; gap: 10px; scrollbar-width: none; }
+.mist { padding: 16px; border-radius: 20px; background: linear-gradient(160deg, var(--elev2), var(--card)); box-shadow: 0 14px 30px -14px rgba(0,0,0,.7), inset 0 1px 0 var(--inner-light); }
+.mist .task-q { font-size: 14px; font-weight: 700; color: var(--muted); }
+.mist .wrong { margin-top: 8px; font-size: 18px; font-weight: 800; color: var(--text-2); text-decoration: line-through; text-decoration-color: var(--danger); text-decoration-thickness: 2px; }
+.mist .right { margin-top: 4px; font-size: 20px; font-weight: 900; color: var(--text); display: flex; align-items: center; gap: 8px; }
+.mist .right svg { width: 20px; height: 20px; color: var(--accent); }
+.mist .why { margin-top: 10px; font-size: 15px; font-weight: 600; color: var(--text-2); line-height: 1.45; }
+.mist .why b { color: var(--ch); font-weight: 800; }
+.mist .listen { margin-top: 12px; display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border-radius: var(--r-pill); border: none; cursor: pointer; font-size: 14px; font-weight: 800; color: var(--text); background: var(--elev); box-shadow: inset 0 1px 0 var(--inner-light); }
+.mist .listen svg { width: 18px; height: 18px; color: var(--ch); }
+.phone.is-on .mist { animation: mistIn var(--t-slow) var(--ease-out) both; animation-delay: calc(var(--i) * 90ms * var(--tf)); }
+@keyframes mistIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="phone" data-ch="1" data-state="preparing">
+    <div id="sb"></div>
+
+    <!-- Слой карты -->
+    <div class="layer" id="layer-map">
+      <header class="hdr map-hdr" data-ch="1">
+        <div class="row1">
+          <button class="icon-btn" aria-label="Назад"><svg><use href="#i-chevron-left"/></svg></button>
+          <div class="h-label"><span class="dot"></span><span>Урок 1</span></div>
+          <div class="wallet">
+            <div class="chip" id="chip-runes"><span class="glyph">ᚠ</span><span id="rune-count">120</span></div>
+            <div class="chip energy" id="chip-energy"><svg style="color:var(--energy)"><use href="#i-bolt"/></svg><span id="energy-count">4</span></div>
+          </div>
+        </div>
+        <div class="h-title">Первая неделя в Дублине</div>
+        <div class="progress-row"><div class="spectrum" id="spectrum"></div><div class="count" id="count">0 из 56</div></div>
+      </header>
+      <div class="map-scroll" id="scroll"><div class="map-canvas" id="canvas"></div></div>
+      <div class="coach" id="coach"><svg><use href="#i-arrow-up"/></svg>Тапни по горящему фонарю</div>
+      <div class="energy-toast" id="energy-toast"><svg><use href="#i-bolt"/></svg>+1 энергия вернулась</div>
+    </div>
+
+    <!-- Слой занятия -->
+    <div class="layer session" id="layer-session" data-ch="1">
+      <div class="s-hdr"><button class="icon-btn" id="s-close" aria-label="Закрыть"><svg><use href="#i-close"/></svg></button><div class="dots"><span class="on"></span><span></span><span></span></div><button class="icon-btn" aria-label="Звук"><svg><use href="#i-sound"/></svg></button></div>
+      <div class="s-body" id="s-body"></div>
+      <div class="s-foot" id="s-foot"></div>
+    </div>
+
+    <!-- Слой разбора -->
+    <div class="layer review" id="layer-review" data-ch="1">
+      <div class="r-hdr"><button class="icon-btn" aria-label="Назад"><svg><use href="#i-chevron-left"/></svg></button><div class="h-title">Разбор ошибок</div></div>
+      <div class="list" id="mist-list"></div>
+      <div class="s-foot"><button class="btn-key ch sweep"><svg><use href="#i-refresh"/></svg>Повторить эти задания</button><button class="btn-text">На карту</button></div>
+    </div>
+
+    <div class="backdrop" id="backdrop"></div>
+    <div class="sheet" id="sheet" data-ch="1"><div class="grabber"></div><div id="sheet-body"></div></div>
+    <div class="toast" id="toast"><svg><use href="#i-lock"/></svg><span data-toast-text></span></div>
+    <div class="home-indicator"></div>
+  </div>
+  <aside class="panel"></aside>
+</div>
+<script src="shared/icons.js"></script>
+<script src="shared/course.js"></script>
+<script src="shared/routes.js"></script>
+<script src="shared/map.js"></script>
+<script src="shared/showcase.js"></script>
+<script>
+(function () {
+  document.getElementById("sb").outerHTML = window.statusbarHTML();
+  const phone = document.querySelector(".phone");
+  const layers = { map: document.getElementById("layer-map"), session: document.getElementById("layer-session"), review: document.getElementById("layer-review") };
+  const sheet = document.getElementById("sheet"); const backdrop = document.getElementById("backdrop");
+  const sBody = document.getElementById("s-body"); const sFoot = document.getElementById("s-foot");
+  const timers = [];
+  const tf = () => Number(getComputedStyle(document.documentElement).getPropertyValue("--tf")) || 1;
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms * tf()));
+
+  const kit = window.MapKit.mount({
+    phone, canvas: document.getElementById("canvas"), scroll: document.getElementById("scroll"), hdr: document.querySelector(".map-hdr"),
+    toast: document.getElementById("toast"), runeChip: document.getElementById("chip-runes"), runeCount: document.getElementById("rune-count"),
+    countEl: document.getElementById("count"), spectrumEl: document.getElementById("spectrum"),
+  });
+  kit.build();
+
+  function show(name) { Object.keys(layers).forEach((k) => layers[k].classList.toggle("is-on", k === name)); }
+  function openSheet(html) { document.getElementById("sheet-body").innerHTML = html; backdrop.classList.add("is-on"); sheet.classList.add("is-on"); const key = sheet.querySelector(".btn-key"); if (key) { key.classList.remove("sweep"); void key.offsetWidth; key.classList.add("sweep"); } }
+  function closeSheet() { backdrop.classList.remove("is-on"); sheet.classList.remove("is-on"); }
+  backdrop.addEventListener("click", closeSheet);
+
+  function reset() {
+    timers.splice(0).forEach(clearTimeout);
+    closeSheet();
+    document.getElementById("coach").classList.remove("is-on");
+    document.getElementById("energy-toast").classList.remove("is-on");
+    phone.classList.remove("is-on"); void phone.offsetWidth; phone.classList.add("is-on");
+  }
+
+  const skeletonIntro = `
+    <div class="prep-line"><span>Готовим занятие и локальное аудио</span><div class="bar"><i></i></div></div>
+    <div class="skel-block"><div class="skel" style="height:14px;width:36%"></div><div class="skel" style="height:30px;width:92%"></div><div class="skel" style="height:30px;width:70%"></div><div class="skel" style="height:16px;width:96%;margin-top:16px"></div><div class="skel" style="height:16px;width:88%"></div><div class="skel" style="height:16px;width:60%"></div><div class="skel" style="height:54px;width:100%;margin-top:22px;border-radius:16px"></div><div class="skel" style="height:54px;width:100%;border-radius:16px"></div><div class="skel" style="height:54px;width:100%;border-radius:16px"></div></div>
+    <div class="slow-hint" id="slow-hint">Дольше обычного. Сеть слабая, но занятие откроется.</div>`;
+
+  const taskHTML = `<div class="task"><div class="s-kicker" style="font-size:13px;font-weight:800;letter-spacing:.5px;color:var(--ch);margin-bottom:8px">Задание 7 из 16</div><div class="q">Начальник спрашивает, всё ли в порядке. Скажите, что вам не холодно.</div><div class="choices"><div class="choice">I am not cold.</div><div class="choice">I not cold.</div><div class="choice">I am no cold.</div></div></div>`;
+
+  const states = [
+    { id: "preparing", group: "Занятие", label: "Долгая подготовка", note: "<b>Подготовка занятия из сети.</b> Обычно занятие открывается из кэша за доли секунды и этот экран не виден. Если сеть слабая: строка «Готовим занятие и локальное аудио» (боевая копия) со светом, бегущим по полосе, и скелетон первой страницы в её финальной геометрии. Через 1.5 с добавляется честная строка про сеть. Никакого спиннера на весь экран.", apply() { reset(); show("session"); sBody.innerHTML = skeletonIntro; sFoot.innerHTML = `<div class="skel" style="height:56px;border-radius:20px"></div>`; later(() => document.getElementById("slow-hint").classList.add("is-on"), 1500); } },
+    { id: "error-load", group: "Занятие", label: "Не загрузилось", note: "<b>Ошибка загрузки.</b> Скелетон не пропадает в никуда: на его месте блок с причиной человеческим языком и двумя действиями. Техническая причина уходит в лог (<code>[ATLAS-LOAD]</code>), не на экран.", apply() { reset(); show("session"); sBody.innerHTML = `<div class="prep-line" style="opacity:.4"><span>Готовим занятие и локальное аудио</span><div class="bar"></div></div><div class="err-block"><div class="ic"><svg><use href="#i-cloud-off"/></svg></div><div><div class="t">Не получилось загрузить занятие</div><div class="d">Сеть оборвалась на середине. Прогресс на карте не пострадал, энергия не списана.</div></div></div>`; sFoot.innerHTML = `<button class="btn-key ch sweep"><svg><use href="#i-refresh"/></svg>Повторить</button><button class="btn-text">На карту</button>`; } },
+    { id: "resume", group: "Занятие", label: "Продолжить прерванное", note: "<b>Возврат в приложение с недоделанным занятием.</b> Шторка над картой: где остановился (задание 7 из 16, полоса), «Продолжить» и спокойное «Начать заново». Прогресс внутри занятия хранится локально до завершения.", apply() { reset(); show("map"); kit.base(kit.makeModel(2), { noEnter: true }); later(() => openSheet(`<div class="sh-title">Продолжить занятие 3?</div><div class="sh-body">Ты остановился на середине. Всё, что ответил, на месте.</div><div class="sh-progress"><span>Задание 7 из 16</span><div class="bar"><i></i></div></div><div class="actions"><button class="btn-key ch"><svg><use href="#i-play"/></svg>Продолжить</button><button class="btn-text">Начать заново</button></div>`), 400); } },
+    { id: "exit-confirm", group: "Занятие", label: "Выйти из занятия", note: "<b>Крестик в занятии.</b> Шторка объясняет последствия честно: прогресс до текущего задания сохранится, энергия не сгорит. Основная клавиша — «Остаться»: остаться проще, чем уйти, но уйти можно.", apply() { reset(); show("session"); sBody.innerHTML = taskHTML; sFoot.innerHTML = `<button class="btn-key ch">Ответить</button>`; later(() => openSheet(`<div class="sh-title">Выйти из занятия?</div><div class="sh-body">Ответы до задания 7 сохранятся, вернуться можно в любой момент. Энергия не сгорит.</div><div class="actions"><button class="btn-key ch">Остаться</button><button class="btn-text">Выйти</button></div>`), 400); } },
+    { id: "first-hint", group: "Карта", label: "Первая подсказка", note: "<b>Самый первый вход на карту.</b> Единственная подсказка раздела: пилюля над горящим фонарём «Тапни по горящему фонарю» со стрелкой, которая мягко покачивается. Исчезает при первом тапе и больше не возвращается. Никаких обучающих туров.", apply() { reset(); show("map"); kit.base(kit.makeModel(0), { noEnter: false }); later(() => { const n = kit.nodeEl(1); const c = document.getElementById("coach"); const pr = phone.getBoundingClientRect(); const a = n.getBoundingClientRect(); c.style.left = `${a.left - pr.left + a.width / 2}px`; c.style.top = `${a.top - pr.top - 96}px`; c.classList.add("is-on"); }, 1200); } },
+    { id: "energy-back", group: "Карта", label: "Энергия вернулась", note: "<b>Хорошая новость на карте.</b> Когда таймер энергии дошёл, чип пружинит и под шапкой всплывает тёплая пилюля «+1 энергия вернулась». Уходит сама через 2 с. Это единственный тост на карте, который не про отказ.", apply() { reset(); show("map"); kit.base(kit.makeModel(12), { noEnter: true }); document.getElementById("energy-count").textContent = "0"; later(() => { document.getElementById("energy-count").textContent = "1"; const ch = document.getElementById("chip-energy"); ch.classList.remove("is-bump"); void ch.offsetWidth; ch.classList.add("is-bump"); document.getElementById("energy-toast").classList.add("is-on"); }, 700); later(() => document.getElementById("energy-toast").classList.remove("is-on"), 2700); } },
+    { id: "review", group: "После занятия", label: "Разбор ошибок", note: "<b>Разбор после финала или проверки.</b> Каждая ошибка: что спросили, что ответил (зачёркнуто без красного фона), правильный ответ крупно и одна фраза «почему» словами главы, без грамматических терминов (Библия текстов). Кнопка «Повторить эти задания» собирает мини-занятие только из ошибок.", apply() { reset(); show("review"); document.getElementById("mist-list").innerHTML = [
+      { q: "Скажите, что вам не холодно", w: "I not cold.", r: "I am not cold.", why: "После <b>I</b> всегда идёт <b>am</b>, а <b>not</b> встаёт после него. Без am фраза разваливается." },
+      { q: "Успокойте коллегу: он не один", w: "You are no alone.", r: "You are not alone.", why: "<b>no</b> ставят перед предметом (no coffee), а с <b>are</b> работает только <b>not</b>." },
+      { q: "Скажите, что вы уверены", w: "I sure.", r: "I am sure.", why: "Русское «я уверен» обходится без скрепки, английское нет: <b>I am</b> sure." },
+    ].map((m, i) => `<div class="mist" style="--i:${i}"><div class="task-q">${m.q}</div><div class="wrong">${m.w}</div><div class="right"><svg><use href="#i-check"/></svg>${m.r}</div><div class="why">${m.why}</div><button class="listen"><svg><use href="#i-sound"/></svg>Послушать</button></div>`).join(""); } },
+  ];
+
+  window.Showcase.init({
+    kicker: "Learning V2 · Атлас · макет 08",
+    title: "Системные состояния",
+    lead: "Редкие, но настоящие: долгая подготовка, ошибка загрузки, прерванное занятие, выход, первая подсказка, возврат энергии, разбор ошибок. Ни одного спиннера на весь экран.",
+    nav: [{ href: "index.html", label: "← Индекс" }, { href: "07-checkpoint-result.html", label: "07 Результат" }],
+    states,
+    notes: `<b>Логи:</b> каждый ранний выход и каждый catch пишет причину с префиксом <code>[ATLAS-LOAD]</code>; экран показывает человеческую формулировку, а не reason. <b>Первый кадр:</b> скелетоны повторяют финальную геометрию страницы интро, поэтому появление контента меняет только свет, не раскладку.`,
+  });
+})();
+</script>
+</body>
+</html>

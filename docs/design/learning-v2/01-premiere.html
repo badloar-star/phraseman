@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="forest">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Премьера раздела</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/phone.css">
+<link rel="stylesheet" href="shared/map.css">
+<link rel="stylesheet" href="shared/atlas.css">
+<link rel="stylesheet" href="shared/showcase.css">
+<style>
+/* ============================================================
+   Премьера: первый вход в раздел после релиза. Один раз на аккаунт,
+   пропускается тапом, длится 4.4 с. Темнота → первый фонарь → улица урока
+   рисуется светом → семь фонарей зажигаются → «Атлас» → колода сдаётся →
+   первая карта поднимается и зовёт. Вернувшийся ученик премьеры не видит:
+   Атлас открывается сразу.
+   ============================================================ */
+.prem { position: absolute; inset: 0; z-index: var(--z-sheet); display: flex; flex-direction: column; align-items: center; justify-content: center; background: #030504; overflow: hidden; }
+.prem .vig { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 55%, transparent 40%, rgba(0,0,0,.55) 100%); pointer-events: none; }
+.prem .dawn { position: absolute; left: 50%; top: 50%; width: 520px; height: 520px; border-radius: 50%; transform: translate(-50%, -50%) scale(.2); background: radial-gradient(closest-side, var(--ch-glow), transparent 70%); opacity: 0; }
+.prem.p1 .dawn { animation: dawn calc(1400ms * var(--tf)) var(--ease-out) both; }
+@keyframes dawn { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.2); } 30% { opacity: .9; } 100% { opacity: .55; transform: translate(-50%, -50%) scale(1); } }
+.prem .spot { position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; border-radius: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, #fff 0%, var(--ch) 40%, transparent 72%); box-shadow: 0 0 30px 8px var(--ch-glow); opacity: 0; }
+.prem.p1 .spot { animation: spot calc(900ms * var(--tf)) var(--ease-out) both; }
+@keyframes spot { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.2); } 60% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+.prem .street { position: absolute; left: 50%; top: 50%; width: 300px; height: 380px; transform: translate(-50%, -54%); opacity: 0; }
+.prem.p2 .street { opacity: 1; }
+.prem .street path { fill: none; stroke: var(--ch); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.prem .street path.g { stroke-width: 14; opacity: .18; }
+.prem .street circle { fill: var(--ch); opacity: 0; }
+.prem.p2 .street circle { animation: lampOn calc(360ms * var(--tf)) var(--ease-spring) both; animation-delay: calc(var(--i) * 130ms * var(--tf) + 400ms * var(--tf)); }
+@keyframes lampOn { 0% { opacity: 0; transform: scale(.3); } 70% { opacity: 1; transform: scale(1.4); } 100% { opacity: 1; transform: scale(1); } }
+.prem .street circle { transform-box: fill-box; transform-origin: center; }
+.prem .title { position: relative; z-index: 2; text-align: center; opacity: 0; transform: translateY(14px); }
+.prem.p3 .title { animation: titleIn calc(700ms * var(--tf)) var(--ease-out) both; }
+@keyframes titleIn { to { opacity: 1; transform: translateY(0); } }
+.prem .title h1 { font-size: 56px; font-weight: 900; letter-spacing: -2px; line-height: 1; color: var(--text); }
+.prem .title p { margin-top: 12px; font-size: 17px; font-weight: 700; color: var(--text-2); }
+.prem.p3 .street { animation: streetAway calc(700ms * var(--tf)) var(--ease-inout) both; }
+@keyframes streetAway { to { transform: translate(-50%, -54%) scale(1.5); opacity: 0; } }
+.prem.p3 .dawn { animation: dawnUp calc(900ms * var(--tf)) var(--ease-inout) both; }
+@keyframes dawnUp { to { transform: translate(-50%, -110%) scale(1.3); opacity: .35; } }
+.prem .skip { position: absolute; right: 18px; top: 60px; z-index: 3; height: 36px; padding: 0 14px; border: none; border-radius: var(--r-pill); cursor: pointer; font-size: 14px; font-weight: 800; color: var(--muted); background: rgba(255,255,255,.06); opacity: 0; transition: opacity var(--t-normal); }
+.prem.p1 .skip { opacity: 1; }
+.prem.is-out { animation: premOut calc(520ms * var(--tf)) var(--ease-inout) both; pointer-events: none; }
+@keyframes premOut { to { opacity: 0; } }
+
+/* Колода под премьерой: сдаётся веером из центра */
+.deal .card { opacity: 0; }
+.deal.is-dealing .card { animation: dealFan var(--t-celebrate) var(--ease-spring) both; animation-delay: calc(var(--i) * 46ms * var(--tf)); }
+@keyframes dealFan { 0% { opacity: 0; transform: translate(0, 220px) rotate(-6deg) scale(.7); } 100% { opacity: 1; transform: none; } }
+.deal .card.current { transition: none; }
+.deal.is-dealt .card { opacity: 1; }
+.deal.is-dealt .card.current { animation: firstLift calc(620ms * var(--tf)) var(--ease-spring) both; }
+@keyframes firstLift { 0% { opacity: 1; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-14px) scale(1.03); } 100% { opacity: 1; transform: translateY(-6px) scale(1.02); } }
+.hero-cta { position: absolute; left: 22px; right: 22px; bottom: 44px; z-index: var(--z-float); opacity: 0; transform: translateY(16px); }
+.hero-cta.is-on { animation: ctaIn var(--t-slow) var(--ease-out) both; }
+@keyframes ctaIn { to { opacity: 1; transform: none; } }
+.phone[data-state="returning"] .hero-cta, .phone[data-state="reduced"] .hero-cta { display: none; }
+.hero-cta .hint { text-align: center; margin-top: 10px; font-size: 14px; font-weight: 700; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="phone" data-ch="1" data-state="premiere">
+    <div id="sb"></div>
+    <header class="hdr atlas-hdr">
+      <div><div class="h-hero">Атлас</div><div class="h-sub">32 урока · 1 792 занятия</div></div>
+      <div class="wallet">
+        <div class="chip"><span class="glyph">ᚠ</span><span>0</span></div>
+        <div class="chip energy"><svg style="color:var(--energy)"><use href="#i-bolt"/></svg><span>5</span></div>
+      </div>
+    </header>
+    <div class="deck-scroll"><div class="deck deal" id="deck"></div></div>
+    <div class="hero-cta" id="hero-cta"><button class="btn-key ch sweep" id="cta"><svg><use href="#i-play"/></svg>Открыть первую карту</button><div class="hint">Первая неделя в Дублине ждёт</div></div>
+
+    <div class="prem" id="prem" data-ch="1">
+      <div class="vig"></div>
+      <div class="dawn"></div>
+      <div class="spot"></div>
+      <svg class="street" viewBox="0 0 300 380" id="street"></svg>
+      <div class="title"><h1>Атлас</h1><p>Английский по картам. 32 урока.</p></div>
+      <button class="skip" id="skip">Пропустить</button>
+    </div>
+    <div class="home-indicator"></div>
+  </div>
+  <aside class="panel"></aside>
+</div>
+<script src="shared/icons.js"></script>
+<script src="shared/course.js"></script>
+<script src="shared/routes.js"></script>
+<script src="shared/atlas.js"></script>
+<script src="shared/showcase.js"></script>
+<script>
+(function () {
+  document.getElementById("sb").outerHTML = window.statusbarHTML();
+  const phone = document.querySelector(".phone");
+  const prem = document.getElementById("prem");
+  const deck = document.getElementById("deck");
+  const cta = document.getElementById("hero-cta");
+  const street = document.getElementById("street");
+  const tf = () => Number(getComputedStyle(document.documentElement).getPropertyValue("--tf")) || 1;
+  const reduced = () => document.documentElement.getAttribute("data-reduced") === "1";
+  const timers = [];
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms * tf()));
+  let token = 0;
+
+  /* Улица урока 1 в миниатюре: та же лестница, что на карте (routes.js). */
+  const route = window.ROUTES.routeFor("stairs");
+  street.setAttribute("viewBox", "0 0 390 560");
+  street.innerHTML = `<path class="g" d="${route.d}"/><path class="l" id="lit" d="${route.d}"/>` + route.pts.slice(0, 7).map((p, i) => `<circle cx="${p.x}" cy="${p.y}" r="${i === 0 ? 11 : 8}" style="--i:${i}"/>`).join("");
+
+  const MODEL = { currentLesson: 1, doneInCurrent: 0, doneLessons: 0, released: 2 };
+
+  function resetAll() {
+    token += 1; timers.splice(0).forEach(clearTimeout);
+    prem.className = "prem"; prem.style.display = "";
+    deck.classList.remove("is-dealing", "is-dealt");
+    cta.classList.remove("is-on");
+    window.AtlasKit.buildDeck(deck, MODEL, { onCard() {} });
+    const lit = document.getElementById("lit");
+    const total = lit.getTotalLength();
+    lit.style.strokeDasharray = String(total); lit.style.strokeDashoffset = String(total); lit.style.transition = "none";
+  }
+
+  async function play() {
+    resetAll();
+    const my = token;
+    const step = (ms) => new Promise((r) => later(r, ms));
+    // 1. темнота → первый фонарь
+    await step(120); if (my !== token) return;
+    prem.classList.add("p1");
+    await step(900); if (my !== token) return;
+    // 2. улица рисуется светом, фонари зажигаются
+    prem.classList.add("p2");
+    const lit = document.getElementById("lit");
+    lit.style.transition = `stroke-dashoffset ${1100 * tf()}ms cubic-bezier(.33,.52,.25,.99)`;
+    void lit.getBoundingClientRect();
+    lit.style.strokeDashoffset = "0";
+    await step(1500); if (my !== token) return;
+    // 3. заголовок, улица уходит вглубь
+    prem.classList.add("p3");
+    await step(1300); if (my !== token) return;
+    // 4. премьера растворяется, колода сдаётся веером
+    prem.classList.add("is-out");
+    deck.classList.add("is-dealing");
+    await step(520); if (my !== token) return;
+    prem.style.display = "none";
+    await step(32 * 46 + 100); if (my !== token) return;
+    deck.classList.add("is-dealt");
+    await step(500); if (my !== token) return;
+    cta.classList.add("is-on");
+  }
+
+  function skipToEnd() {
+    token += 1; timers.splice(0).forEach(clearTimeout);
+    prem.classList.add("is-out");
+    deck.classList.add("is-dealing");
+    later(() => { prem.style.display = "none"; deck.classList.add("is-dealt"); cta.classList.add("is-on"); }, 520);
+  }
+  document.getElementById("skip").addEventListener("click", skipToEnd);
+  prem.addEventListener("click", (e) => { if (e.target.id !== "skip") skipToEnd(); });
+  document.getElementById("cta").addEventListener("click", () => { location.href = "02-atlas.html#opening"; });
+
+  function returning() {
+    resetAll();
+    prem.style.display = "none";
+    deck.classList.add("is-dealing", "is-dealt");
+  }
+
+  const states = [
+    { id: "premiere", group: "Первый вход", label: "Премьера (4.4 с)", note: "<b>Один раз на аккаунт.</b> Темнота, первый фонарь (900 мс), улица урока 1 рисуется светом (1100 мс) и семь фонарей зажигаются по одному, улица уходит вглубь, поднимается «Атлас», премьера растворяется, и 32 карты сдаются веером снизу (46 мс каждая). Первая карта приподнимается, клавиша «Открыть первую карту» проходит светом. Тап в любой момент — пропуск без наказания.", apply() { play(); } },
+    { id: "skip", group: "Первый вход", label: "Пропустить на середине", note: "<b>Пропуск.</b> Премьера гаснет за 520 мс, колода сдаётся сразу, клавиша на месте. Ничего не ломается, ничего не повторяется.", apply() { play(); later(skipToEnd, 1800); } },
+    { id: "returning", group: "Повторные входы", label: "Вернувшийся ученик", note: "<b>Без премьеры.</b> Со второго входа раздел открывается мгновенно: колода уже на экране первым кадром (данные локальные), никаких вступлений. Премьера — событие релиза, не ритуал.", apply() { returning(); } },
+    { id: "reduced", group: "Повторные входы", label: "Reduced motion", note: "<b>Reduced motion.</b> Вместо рисования улицы и веера — один кадр: «Атлас», колода и клавиша. Крест-фейд 200 мс.", apply() { document.documentElement.setAttribute("data-reduced", "1"); document.documentElement.style.setProperty("--tf", 0.001); returning(); } },
+  ];
+
+  window.Showcase.init({
+    kicker: "Learning V2 · Атлас · макет 01",
+    title: "Премьера раздела",
+    lead: "Первый вход после релиза должен запомниться: город зажигается, поднимается «Атлас», колода сдаётся веером. Один раз, 4.4 секунды, пропускается тапом.",
+    nav: [{ href: "index.html", label: "← Индекс" }, { href: "02-atlas.html", label: "02 Атлас →" }],
+    states,
+    notes: `<b>Реализация в RN:</b> вся сцена — один Skia/SVG-путь со <code>strokeDashoffset</code>, семь точек и два текстовых слоя; колода — тот же список карт с каскадом transform. Флаг «премьера показана» пишется локально сразу после первого кадра (не durable-очередь показа: пропущенная премьера ничего не должна). <b>Вес:</b> ни одного ассета, ни одного запроса в сеть.`,
+  });
+})();
+</script>
+</body>
+</html>

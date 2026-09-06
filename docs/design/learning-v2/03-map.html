@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="forest">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Карта урока</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/phone.css">
+<link rel="stylesheet" href="shared/map.css">
+<link rel="stylesheet" href="shared/showcase.css">
+</head>
+<body>
+<div class="stage">
+  <div class="phone" data-ch="1" data-state="normal">
+    <div id="sb"></div>
+    <header class="hdr map-hdr" data-ch="1">
+      <div class="row1">
+        <button class="icon-btn" aria-label="Назад"><svg><use href="#i-chevron-left"/></svg></button>
+        <div class="h-label"><span class="dot"></span><span>Урок 1</span></div>
+        <div class="wallet">
+          <div class="chip" id="chip-runes"><span class="glyph">ᚠ</span><span id="rune-count">120</span></div>
+          <div class="chip energy"><svg style="color:var(--energy)"><use href="#i-bolt"/></svg><span>4</span></div>
+        </div>
+      </div>
+      <div class="h-title">Первая неделя в Дублине</div>
+      <div class="progress-row">
+        <div class="spectrum" id="spectrum"></div>
+        <div class="count" id="count">12 из 56</div>
+      </div>
+    </header>
+    <div class="offline"><svg><use href="#i-cloud-off"/></svg>Нет сети, карта из памяти</div>
+    <div class="done-banner"><div class="medal"><svg><use href="#i-check"/></svg></div><div><div class="dt">Урок пройден</div><div class="dd">56 занятий, 7 печатей, экзамен сдан</div></div></div>
+    <div class="map-scroll" id="scroll"><div class="map-canvas" id="canvas"></div></div>
+    <button class="jump" id="jump"><svg><use href="#i-play"/></svg><span data-jump-label>Продолжить</span></button>
+    <div class="backdrop" id="backdrop"></div>
+    <div class="sheet node-sheet" id="node-sheet" data-ch="1">
+      <div class="grabber"></div>
+      <div class="s-head"><div class="s-gem" data-ns-gem>4</div><div><div class="s-title" data-ns-title>I am / I am not</div><div class="s-kind" data-ns-kind>Голос и слух · Утренняя планёрка вслух</div></div></div>
+      <div class="s-result"><span class="k">Твой результат</span><span data-ns-stars></span></div>
+      <div class="actions">
+        <button class="btn-key ch sweep"><svg><use href="#i-refresh"/></svg>Улучшить результат</button>
+        <button class="btn-text" data-ns-close>Закрыть</button>
+      </div>
+    </div>
+    <div class="toast" id="toast"><svg><use href="#i-lock"/></svg><span data-toast-text>Сначала занятие 12</span></div>
+    <div class="home-indicator"></div>
+  </div>
+  <aside class="panel"></aside>
+</div>
+<script src="shared/icons.js"></script>
+<script src="shared/course.js"></script>
+<script src="shared/routes.js"></script>
+<script src="shared/map.js"></script>
+<script src="shared/showcase.js"></script>
+<script>
+(function () {
+  document.getElementById("sb").outerHTML = window.statusbarHTML();
+  const phone = document.querySelector(".phone");
+  const kit = window.MapKit.mount({
+    phone,
+    canvas: document.getElementById("canvas"),
+    scroll: document.getElementById("scroll"),
+    hdr: document.querySelector(".map-hdr"),
+    jump: document.getElementById("jump"),
+    toast: document.getElementById("toast"),
+    backdrop: document.getElementById("backdrop"),
+    nodeSheet: document.getElementById("node-sheet"),
+    runeChip: document.getElementById("chip-runes"),
+    runeCount: document.getElementById("rune-count"),
+    countEl: document.getElementById("count"),
+    spectrumEl: document.getElementById("spectrum"),
+  });
+  kit.build();
+  const M = kit.makeModel;
+
+  const states = [
+    { id: "first-entry", group: "Прогресс", label: "Первый вход", note: "<b>Ничего не пройдено.</b> Свет только на занятии 1: кольцо дыхания 2400 мс, подпись «Начать». Остальные районы в тумане, узлы потухшие. Тап по закрытому узлу: узел мягко прожимается (scale .96, 240 мс), тост объясняет, что раньше.", apply() { kit.base(M(0)); } },
+    { id: "normal", group: "Прогресс", label: "Середина пути", note: "<b>Пройдено 12 из 56.</b> Глава 1 закрыта золотой печатью, глава 2 горит своим светом (кофе, карамель). Свет улицы доходит ровно до текущего узла. Кнопка «Продолжить» внизу появляется только когда текущий узел уехал с экрана.", apply() { kit.base(M(12)); } },
+    { id: "checkpoint-ready", group: "Прогресс", label: "Печать готова", note: "<b>Все 7 занятий главы 2 пройдены.</b> Печать главы стала доступной: кольцо из 7 сегментов горит целиком и медленно вращается (24 с, линейно), по лицу печати проходит блик. Тап откроет вход в проверку (макет 05).", apply() { kit.base(M(15), { top: 560 }); } },
+    { id: "lesson-complete", group: "Прогресс", label: "Урок пройден", note: "<b>56 из 56.</b> Семь печатей золотые, врата экзамена сданы. Плашка «Урок пройден» и точка урока в золоте. Узлы остаются интерактивными: любое занятие можно пройти снова ради лучшего результата.", apply() { kit.base(M(56)); } },
+    { id: "return-complete", group: "Возврат с занятия", label: "Занятие пройдено", note: "<b>Хореография возврата (1.5 с):</b> узел садится (scale 1.08 → 1), звёзды выстреливают по одной (120 мс), 5 разных рун летят в счётчик (620 мс, каскад 90 мс), чип пружинит; искра идёт по улице к следующему узлу (640 мс), новый текущий выстреливает (.7 → 1.1 → 1, 420 мс) и начинает дышать.", apply() { const t = kit.base(M(11), { noEnter: true, top: 640 }); kit.returnComplete(t); } },
+    { id: "chapter-unlock", group: "Возврат с занятия", label: "Глава открылась", note: "<b>Печать главы 2 поставлена.</b> Удар печати (scale 1.32 → .94 → 1, вспышка), 7 рун в счётчик, карта сама едет к главе 3: туман уходит вниз полосой света (900 мс), заголовок и узлы района входят каскадом, первое занятие главы выстреливает как текущее.", apply() { const t = kit.base(M(15), { noEnter: true, top: 560 }); kit.chapterUnlock(t); } },
+    { id: "done-tap", group: "Тапы", label: "Тап по пройденному", note: "<b>Шторка пройденного занятия</b> выезжает снизу (320 мс, кривая drawer): что это было, результат в звёздах, «Улучшить результат». По клавише проходит свет один раз через 380 мс после появления.", apply() { kit.base(M(12)); kit.later(() => kit.openNodeSheet(4), 500); } },
+    { id: "locked-tap", group: "Тапы", label: "Тап по закрытому", note: "<b>Спокойный отказ.</b> Никакой тряски: узел прожимается на 4 % и возвращается, тост называет точное условие («Сначала занятие 13»). Тост уходит сам через 1.8 с.", apply() { kit.base(M(12), { top: 640 }); kit.later(() => kit.nodeEl(14).click(), 600); } },
+    { id: "seal-locked-tap", group: "Тапы", label: "Тап по закрытой печати", note: "<b>Печать до срока.</b> Кольцо показывает 4 из 7 сегментов, лицо прожимается, тост: «Осталось 3 занятия». Печать никогда не ругается: она только считает.", apply() { kit.base(M(12), { top: 640 }); kit.later(() => kit.nodeEl(16).click(), 600); } },
+    { id: "skeleton", group: "Системные", label: "Первый кадр", note: "<b>Скелетон = финальная геометрия.</b> Пока прогресс не гидрирован из памяти, узлы стоят на своих местах без света и цифр, чипы кошелька зарезервированы по ширине. Никакого спиннера и никакого прыжка при появлении данных: меняется только свет.", apply() { kit.base(M(12), { noEnter: true }); } },
+    { id: "offline", group: "Системные", label: "Нет сети", note: "<b>Карта из памяти.</b> Прогресс и структура урока живут локально, поэтому карта не меняется. Пилюля под шапкой честно говорит про сеть; занятие, чей контент уже скачан, откроется как обычно (случай без кэша показан в макете 04).", apply() { kit.base(M(12)); } },
+  ];
+
+  window.Showcase.init({
+    kicker: "Learning V2 · Атлас · макет 03",
+    title: "Карта урока: семь районов, семь путей",
+    lead: "Ночной город, который ты зажигаешь. Каждая глава — район со своим светом и своей формой пути (лестница, кольцо, ряды, дождь, стол, зигзаг, спираль). Свет улицы доходит ровно до текущего занятия.",
+    nav: [{ href: "index.html", label: "← Индекс" }, { href: "02-atlas.html", label: "02 Атлас" }, { href: "04-session-start.html", label: "04 Билет →" }],
+    states,
+    notes: `<b>Производительность (для RN):</b><ul>
+      <li>Только <code>transform</code>/<code>opacity</code>; свечения — статичные радиальные градиенты, без blur в рантайме.</li>
+      <li>Один вечный цикл на экран: дыхание текущего узла (гейт видимости, reduce motion → статичный кадр .7).</li>
+      <li>Улица — один <code>Path</code> на главу, свет через <code>strokeDashoffset</code> на UI-треде (Reanimated animatedProps).</li>
+      <li>Районы — секции виртуализированного списка с фиксированной высотой доски: первый кадр = финальная геометрия.</li>
+      <li>Ноль растровых ассетов: узлы, печати, врата и руны — вектор и шрифт.</li></ul>`,
+  });
+})();
+</script>
+</body>
+</html>

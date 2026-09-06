@@ -1,0 +1,11 @@
+{
+  "index.html": "https://claude.ai/code/artifact/8a2168ce-3053-4293-97df-4956d0482718",
+  "01-premiere.html": "https://claude.ai/code/artifact/36557824-ee63-4fee-8ff5-bfe4081e86df",
+  "02-atlas.html": "https://claude.ai/code/artifact/eabf33b6-6224-41e1-a326-f9ea9471130d",
+  "03-map.html": "https://claude.ai/code/artifact/6c4a4d2d-5b38-4fb2-a530-fdfdc2443faa",
+  "04-session-start.html": "https://claude.ai/code/artifact/4afc3d6e-0146-487e-a8be-5d8b8c7fdd47",
+  "05-checkpoint-start.html": "https://claude.ai/code/artifact/bc3c4aea-0809-4eca-af0b-a7b4ccd54d52",
+  "06-session-complete.html": "https://claude.ai/code/artifact/abf78e96-713d-4274-b3de-8d2bd2aaf05b",
+  "07-checkpoint-result.html": "https://claude.ai/code/artifact/6728bdbc-4bcf-4c07-93af-f7216b953fd1",
+  "08-states.html": "https://claude.ai/code/artifact/ecf68378-bc39-4bea-8e63-4e105f775f7c"
+}

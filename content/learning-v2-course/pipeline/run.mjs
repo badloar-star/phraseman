@@ -1004,8 +1004,11 @@ function main() {
     LOG(`лучший черновик: ${path.basename(best.f)}`);
     const fullV = { ...stageJudgeStable(S, ctx, plan, row, known, best.f, ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader"]), judge_taste: best.taste };
     let cur = { f: best.f, v: fullV, s: score(fullV) };
-    for (let round = 1; round <= 2 && cur.s < 6; round++) {
-      LOG(`круг правки ${round}: ${path.basename(cur.f)} (${cur.s}/6)`);
+    const openFacts = (f) => machineFacts(f).split(String.fromCharCode(10)).filter((l) => HARD_FACT_RE.test(l));
+    for (let round = 1; round <= 2 && (cur.s < 6 || openFacts(cur.f).length); round++) {
+      const facts = openFacts(cur.f);
+      LOG(`круг правки ${round}: ${path.basename(cur.f)} (${cur.s}/6, открытых фактов ${facts.length})`);
+      if (facts.length) for (const ff of facts) LOG(`   факт: ${ff}`);
       const ef = stageEdit(S, ctx, plan, row, known, cur.f, cur.v);
       const v = stageJudgeStable(S, ctx, plan, row, known, ef);
       cur = { f: ef, v, s: score(v) };

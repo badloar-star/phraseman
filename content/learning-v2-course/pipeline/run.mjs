@@ -188,6 +188,50 @@ function neighborsSummary(lang, lesson, n) {
 
 /** Машинные факты о сессии для педагога/редактора: касания возвращаемых слов
  * (зачем: педагог считал «на глаз» и один раз ошибся бы; grep не ошибается). */
+// зачем: владелец нашёл задание «как вы после недели» с вариантами tired /
+// alone / warm — подходил ЛЮБОЙ, задание не проверяло ничего. Судьи такое
+// пропускают: формально всё верно (слова знакомы, ответ помечен, разборы
+// написаны). Формальных признаков у поломки нет — длина подсказки у плохого
+// задания такая же, как у хороших. Поэтому проверку делает дешёвая модель,
+// но узкая: один вызов на сессию, один вопрос — единственный ли ответ.
+function extractFillTasks(text) {
+  const lines = text.split(/\r?\n/);
+  const tasks = [];
+  for (let i = 0; i < lines.length; i++) {
+    const m = lines[i].match(/^(.*)___\s*\.?\s*→\s*\*\*(.+?)\*\*\s*·\s*(.+)$/);
+    if (!m) continue;
+    const stem = m[1].trim();
+    if (!stem) continue;
+    const title = (lines[i - 1] || "").replace(new RegExp("\\*\\*","g"), "").trim();
+    if (!title) continue;   // ранний выход: без подсказки проверять нечего
+    tasks.push({ title, stem, right: m[2].trim(), options: m[3].split("·").map((x) => x.trim()).filter(Boolean) });
+  }
+  return tasks;
+}
+
+// Возвращает список сломанных заданий (пустой — всё в порядке).
+function checkSingleAnswer(file, label) {
+  const tasks = extractFillTasks(read(file));
+  if (!tasks.length) { LOG("[ОДИН-ОТВЕТ] заданий на подстановку нет — пропускаю"); return []; }
+  const listed = tasks.map((t, k) => `${k + 1}. подсказка: ${t.title}
+   фраза: ${t.stem} ___ 
+   верный: ${t.right} · остальные: ${t.options.join(", ")}`).join(String.fromCharCode(10) + String.fromCharCode(10));
+  let out;
+  try {
+    const text = callModel({ system: fill(prompt("check_single_answer"), { ЗАДАНИЯ: listed }), user: "Проверь.", model: MODEL_CHEAP, maxTokens: 2000, label: `один-ответ · ${label}` });
+    out = extractJson(text);
+  } catch (e) {
+    // зачем: проверка не критична — падать из-за неё нельзя, но и молчать
+    // нельзя: молчащая проверка хуже отсутствующей
+    WARN(`[ОДИН-ОТВЕТ] проверка не отработала (${e.message}) — заданий ${tasks.length}, вердикта нет`);
+    return [];
+  }
+  const broken = Array.isArray(out && out.broken) ? out.broken : [];
+  LOG(`[ОДИН-ОТВЕТ] заданий ${tasks.length}, сломанных ${broken.length}`);
+  for (const b of broken) WARN(`[ОДИН-ОТВЕТ] задание ${b.task}: подходят также ${(b.also_fit || []).join(", ")} — ${b.why || ""}`);
+  return broken;
+}
+
 function machineFacts(file) {
   const text = read(file);
   // зачем: владелец — «давай рассматривать каждую сессию как отдельную, юзер
@@ -888,6 +932,7 @@ function main() {
   fs.mkdirSync(S.dir, { recursive: true });
 
   if (cmd === "draft") return stageDraft(S, ctx, plan, row, known);
+  if (cmd === "single") { checkSingleAnswer(path.join(S.dir, opt("file", "final.ru.md")), SESSION); return; }
   if (cmd === "judge") return stageJudgeStable(S, ctx, plan, row, known, path.join(S.dir, opt("file", "draft_A.ru.md")));
   if (cmd === "edit") {
     const f = path.join(S.dir, opt("file", "draft_A.ru.md"));
@@ -959,12 +1004,13 @@ function main() {
     // по ЧЕРНОВИКУ, хотя редактор его уже исправил: s49 при пересуде дала PASS,
     // блок висел зря. Статус обязан отражать то, что реально уйдёт ученику.
     const finalV = stageJudgeStable(S, ctx, plan, row, known, finalRu);
+    const brokenTasks = checkSingleAnswer(finalRu, SESSION);
     const finalScore = score(finalV);
     const finalBlocked = Object.entries(finalV).filter(([, j]) => j.verdict === "BLOCK").map(([n]) => n);
     if (finalScore !== cur.s) LOG(`финал судился заново: было ${cur.s}/6 по черновику, стало ${finalScore}/6`);
     if (finalBlocked.length) WARN(`финал несёт блок: ${finalBlocked.join(", ")} — нужен разбор`);
     const loc = stageLocalize(S, finalRu);
-    write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: finalScore, converged: finalScore >= 6 && !finalBlocked.length, needsHumanReview: finalScore < 6 || finalBlocked.length > 0, blocked: finalBlocked.length ? finalBlocked : undefined, draftScore: cur.s, locales: loc, at: new Date().toISOString() }, null, 2));
+    write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: finalScore, converged: finalScore >= 6 && !finalBlocked.length, needsHumanReview: finalScore < 6 || finalBlocked.length > 0 || brokenTasks.length > 0, brokenTasks: brokenTasks.length ? brokenTasks : undefined, blocked: finalBlocked.length ? finalBlocked : undefined, draftScore: cur.s, locales: loc, at: new Date().toISOString() }, null, 2));
     return;
   }
   LOG("ранний выход: неизвестная команда", cmd);

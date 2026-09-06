@@ -1,0 +1,161 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — elegant",
+      "what_i_understood": "Новое слово elegant — значит опрятный, дорого выглядящий, всё подобрано. Спросили про мужчину в костюме, я выбрал бы 'Is he elegant?'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — plain",
+      "what_i_understood": "Новое слово plain — простой, без украшений. Про вещи говорят it. Я выбрал бы 'Is it plain?' про чашку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — короткий ответ Yes, she is",
+      "what_i_understood": "На вопрос с she отвечаем 'Yes, she is.' — слова берутся из самого вопроса. Понятно, я это уже видел раньше (is/am), тут просто she добавилась.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка elegant)",
+      "what_i_understood": "Просто карточка слова, ничего не отвечал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (на слух elegant)",
+      "what_i_understood": "Выбрал elegant, отличил от element и eleven по звучанию.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка plain)",
+      "what_i_understood": "Карточка слова plain.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (на слух plain)",
+      "what_i_understood": "Выбрал plain, отличил от pain и rain.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (карточка handsome)",
+      "what_i_understood": "handsome — красивый, про мужчину. Я это слово уже видел в прошлых сессиях (тут оно 'возврат'), но раз мне просто дают карточку — нормально.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (карточка crowded)",
+      "what_i_understood": "crowded — много людей, все столики заняты.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (мужчина в костюме, вставить слово)",
+      "what_i_understood": "Выбрал elegant — про костюм. hungry и thirsty не подходят по смыслу картинки.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (собрать 'оно простое?')",
+      "what_i_understood": "Собрал Is it plain? из плиток it/plain/is (she — лишняя).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (зал полон людей)",
+      "what_i_understood": "Выбрал crowded, plain и elegant не про количество людей.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (звуки plain/pain)",
+      "what_i_understood": "Выбрал plain на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (мужчина, на которого оборачиваются)",
+      "what_i_understood": "Выбрал handsome.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (на слух собрать 'она красивая?')",
+      "what_i_understood": "Собрал Is she pretty? — pretty я знаю из интро 3.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (доска пар)",
+      "what_i_understood": "Соединил elegant-элегантный, plain-простой, handsome-красивый, crowded-полно людей.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (карточка noisy)",
+      "what_i_understood": "noisy — шумно, музыка и разговоры громкие.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (музыка громкая, вставить слово)",
+      "what_i_understood": "Выбрал noisy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (собрать вопрос про голод)",
+      "what_i_understood": "Собрал Is he hungry? из is/he/hungry, not отбросил как лишнее.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (тянется к воде)",
+      "what_i_understood": "Выбрал thirsty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 (собрать ответ на 'Is she pretty?')",
+      "what_i_understood": "Собрал Yes, she is. из she/Yes,/is (he — лишнее).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19 (собрать 'оно простое?' без подсказки)",
+      "what_i_understood": "Собрал Is it plain? из plain/is/it (are — лишнее).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 20 (сказать вслух)",
+      "what_i_understood": "Повторил три фразы про элегантность, простоту чашки и шум в кафе.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "elegant — элегантный, опрятный, дорого выглядящий",
+    "plain — простой, без украшений (про вещь/еду/одежду)",
+    "как спросить про вещь: Is it + слово?",
+    "короткий ответ строится из слов самого вопроса: Yes, she is / Yes, he is / Yes, it is"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена в кафе с разными людьми за соседними столиками — понятно, зачем я спрашиваю про каждого: описываю, кто вокруг",
+    "Момент с чашкой без рисунка — конкретная понятная картинка, легко привязать it"
+  ],
+  "felt_dead": [
+    "Карточки слов (1, 3, 5, 6, 14) — просто определения без картинки-ситуации, это нормально для формата, но само по себе скучновато"
+  ],
+  "scene_reason": "Да, понятно. Сцена задана с самого начала (кафе, обед, спутник спрашивает про людей вокруг), и почти каждое задание привязано к конкретному человеку или предмету за столиком — мужчина в костюме, чашка без рисунка, шумная музыка, женщина у стойки. Я понимал, кому и зачем говорю эти фразы.",
+  "would_continue": "да — слова новые, понятные, примеры конкретные, ловушки логичные (например, thirsty/handsome не подходят к описанию костюма), ничего не пришлось учить заранее тайком",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания решаются с тем, что дано в интро и карточках, оба новых слова объясняются до использования, сцена понятна с первой страницы, скучных мест нет."
+}

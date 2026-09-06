@@ -1,0 +1,83 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "elegant",
+      "plain"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "н/д — карточка слова, без ловушки"
+      },
+      {
+        "task": 9,
+        "trap": "noisy/crowded как отвлекающие от handsome — из другой категории признаков, реалистично"
+      },
+      {
+        "task": 13,
+        "trap": "лишняя плитка `not` вместо `he`/`hungry` — обманка на внимательность"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "elegant",
+        "plain",
+        "handsome",
+        "crowded"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s12/l02_s13",
+      "what": "структурный паттерн интро близок к соседним (заголовок про слово → правило → сцена), но сама сцена (кафе к обеду, соседние столики) и формулировки не повторяют l02_s12/l02_s13 (там вечер, гул, зевающий мужчина); допустимо как общий приём главы, не дословный повтор"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 2,
+      "listen_choose": 2,
+      "context_gap_grammar": 5,
+      "phrase_builder": 4,
+      "sound_contrast": 1,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы материала соблюдены, новые слова совпадают с планом, доска пар и возвращаемые слова прошли самопроверку, задание 13 — уместная обманка на внимательность, а не силли-ловушка, дефектов формы не найдено."
+}

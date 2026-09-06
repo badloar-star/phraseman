@@ -1,0 +1,159 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — elegant",
+      "what_i_understood": "elegant значит опрятный, дорогой на вид человек или вещь, ударение на первый слог. Вопрос про мужчину в костюме строится как Is he elegant?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — plain",
+      "what_i_understood": "plain значит простой, без украшений — про чашку без рисунка спрашиваем Is it plain?, потому что чашка это вещь, а не человек",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — полный ответ",
+      "what_i_understood": "На вопрос Is she pretty? отвечаю Yes, she is. — is и she берутся прямо из вопроса",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 карточка elegant",
+      "what_i_understood": "элегантный — аккуратный, ничего лишнего",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 слух elegant",
+      "what_i_understood": "отличил elegant от element и eleven по звучанию середины слова",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 карточка plain",
+      "what_i_understood": "простой, без украшений",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 слух plain",
+      "what_i_understood": "plain отличается от pain и play — на слух не сразу уловил разницу, но по подсказке понял",
+      "confusion": "звук л в plain на слух не очевиден",
+      "could_answer_question": true
+    },
+    {
+      "step": "5 карточка handsome",
+      "what_i_understood": "красивый про мужчину",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 карточка crowded",
+      "what_i_understood": "полно людей",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 вставьте — мужчина в идеальном костюме",
+      "what_i_understood": "Is he elegant? — про костюм, а не про голод/жажду",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 соберите — чашка без рисунка",
+      "what_i_understood": "Is it plain? — собрал из плиток it, plain, is",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 вставьте — зал полон",
+      "what_i_understood": "The cafe is crowded",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 звуки plain/pain",
+      "what_i_understood": "выбрал plain — там есть звук л после п",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 вставьте — мужчина, на которого оборачиваются",
+      "what_i_understood": "Is he handsome?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 послушайте и соберите — она красивая?",
+      "what_i_understood": "Is she pretty?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 доска пар",
+      "what_i_understood": "соединил elegant-элегантный, plain-простой, handsome-красивый, crowded-полно людей",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 карточка noisy",
+      "what_i_understood": "шумный",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 вставьте — музыка громко играет",
+      "what_i_understood": "The cafe is noisy",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 соберите — голоден ли он",
+      "what_i_understood": "Is he hungry? — слово not оказалось лишним, я сначала хотел его вставить, но сообразил, что это вопрос, а не отрицание",
+      "confusion": "не сразу понял, зачем дали лишнюю плитку not",
+      "could_answer_question": true
+    },
+    {
+      "step": "17 вставьте — тянется к воде",
+      "what_i_understood": "Is he thirsty?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "18 соберите ответ — согласны, что она красивая",
+      "what_i_understood": "Yes, she is. — плитка he тут лишняя",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "19 соберите без подсказки — чашка простая",
+      "what_i_understood": "Is it plain? — плитка are лишняя, справился",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "20 скажите вслух",
+      "what_i_understood": "повторил три фразы про элегантного мужчину, простую вещь и шумное кафе",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "новое слово elegant — элегантный, опрятный",
+    "новое слово plain — простой, без украшений, и что оно применяется и к вещам, и к людям, и к еде",
+    "закрепил, что про вещь говорят it, а не he/she",
+    "закрепил полный ответ Yes/No, she/he/it is — что слова берутся прямо из вопроса"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "сцена в кафе с разными людьми за столиками — понятно, зачем я спрашиваю про каждого",
+    "деталь про чашку без рисунка — конкретный, живой пример plain"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — я сижу в кафе со спутником и мы по очереди обсуждаем людей и предметы вокруг: мужчину в костюме, чашку, шумную музыку, зал с людьми. Каждая фраза привязана к конкретному человеку или вещи за столиком.",
+  "would_continue": "да — задания шли по нарастающей сложности, ничего не сбивало с толку, и я реально повторил слова из прошлых сессий, не просто прочитал их заново",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы честно, я узнал два новых слова и закрепил старые, сцена понятна от начала до конца."
+}

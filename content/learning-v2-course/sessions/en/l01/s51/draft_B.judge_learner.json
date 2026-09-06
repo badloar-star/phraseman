@@ -1,0 +1,101 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — here/there",
+      "what_i_understood": "Слово `here` значит «здесь». Перед ним ставится `am` (когда говорю про себя), и никакого предлога перед `here` добавлять не нужно — само слово уже значит «здесь».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — outside/inside",
+      "what_i_understood": "`outside` — снаружи, `inside` — внутри. Тоже без предлога впереди: `I am outside`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — upstairs/home",
+      "what_i_understood": "`upstairs` — наверху (этажом выше). Про третьего человека (не про себя) скрепка не `am`, а `is`: `He is upstairs`. `home` — тоже без предлога: `I am home`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (there)",
+      "what_i_understood": "Карточка объяснила `there` — «там». На слух смог отличить от похожих `their`/`they`, потому что объяснение прямо сказало, почему они не подходят.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 3-6 (outside/inside)",
+      "what_i_understood": "Собрал фразу `I am outside` из плиток — сложно не было, слова уже видел в интро.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 7-10 (upstairs)",
+      "what_i_understood": "Понял разницу между `upstairs` (поднялся к себе), `outside` (вышел на улицу) и `here` (рядом со мной) — задания на выбор слова по ситуации это подтвердили.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (доска пар)",
+      "what_i_understood": "Свёл слова there/outside/inside/upstairs с переводами — всё совпало с тем, что уже объяснили.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (скрепка am)",
+      "what_i_understood": "Про себя (`I`) скрепка всегда `am`, не `is` и не `are`. Пример дали в самом начале ещё в интро 1, так что не растерялся.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (He is there)",
+      "what_i_understood": "Собрал на слух `He is there`, лишнюю плитку `in` не взял — уже знал, что перед `there` предлог не ставится.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (alone)",
+      "what_i_understood": "Слово `alone` дали без карточки-объяснения в этой сессии, но в самом задании в скобках сразу подписали перевод («один, сам по себе»), так что справился.",
+      "confusion": "Слово `alone` не объяснялось отдельной карточкой, только подсказкой в скобках под заданием — то есть я не 'изучил' его через обычный формат, а просто прочитал перевод в подсказке.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (cold)",
+      "what_i_understood": "Собрал `I am cold`, не взял лишние `outside`/`in`, потому что вопрос был про то, что чувствую я, а не про место.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (доска: here/home/tired/cold)",
+      "what_i_understood": "Свёл старые слова с переводами. `tired` тут появляется первый раз с переводом в этой сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал вслух)",
+      "what_i_understood": "Ответил на 4 вопроса мамы четырьмя фразами: I am home. He is upstairs. It is cold there. I am tired.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово there — «там»",
+    "Слово outside — «на улице, снаружи»",
+    "Слово inside — «внутри»",
+    "Слово upstairs — «наверху, этажом выше»",
+    "Перед этими словами места не нужен предлог (нельзя говорить 'in outside' или 'in here')",
+    "Что скрепка после 'I' — всегда 'am', а после 'he/she' — 'is'"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Финальное задание 17 — реально почувствовал, что отвечаю маме на несколько вопросов подряд, как в настоящем звонке",
+    "Разбор ошибок в интро (например, про 'in outside' — 'масло масляное') объясняет понятно, без лишних слов"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — вся сессия построена вокруг одного звонка маме, и каждая новая фраза — это ответ на её конкретный вопрос (где ты, где сосед, как погода, устал ли), финал в задании 17 логично собирает всё вместе",
+  "would_continue": "да — задания шли по возрастающей сложности, ловушки были понятные и объяснённые, к финалу я реально мог сам сказать 4 фразы подряд не подглядывая",
+  "verdict": "PASS",
+  "verdict_reason": "Каждое задание было по силам, все новые слова объяснены до того как их спрашивают, а сцена звонка маме делает понятным зачем нужны эти фразы."
+}

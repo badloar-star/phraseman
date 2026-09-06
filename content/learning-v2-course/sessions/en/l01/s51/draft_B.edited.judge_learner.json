@@ -1,0 +1,131 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "here — «здесь», there — «там». Говорю I am here, без предлога перед here.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "outside — «на улице/снаружи», inside — «внутри». Тоже без предлога: I am outside.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "upstairs — «наверху». Про себя am, про него/неё is: He is upstairs.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — карточка there",
+      "what_i_understood": "there — «там», не тут.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — слух there",
+      "what_i_understood": "Выбрал there, отличил от three и them.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 — карточки outside/inside",
+      "what_i_understood": "outside — снаружи, inside — внутри.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — слух inside",
+      "what_i_understood": "Выбрал inside, не спутал с outside/aside.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — собрать «я на улице»",
+      "what_i_understood": "I am outside.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-8 — upstairs, карточка и слух",
+      "what_i_understood": "upstairs — наверху, отличил от stairs и upset.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — сосед поднялся к себе",
+      "what_i_understood": "He is upstairs. Отверг outside (он не выходил) и here (он не рядом).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — сосед рядом со мной",
+      "what_i_understood": "He is here.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — пары",
+      "what_i_understood": "there-там, outside-снаружи, inside-внутри, upstairs-наверху. Всё совпало с карточками.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — скрепка про себя",
+      "what_i_understood": "I am home, не is/are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — собрать «он там»",
+      "what_i_understood": "He is there, лишняя плитка in не нужна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — «я не один»",
+      "what_i_understood": "I am not alone. Слово alone было объяснено прямо в задании.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — холодно на улице",
+      "what_i_understood": "I am cold — правильный ответ без outside/in, потому что вопрос был про моё состояние, а не про место.",
+      "confusion": "Само задание сформулировано чуть хитро (в сцене «на улице холодно»), но подсказка внизу прямо объяснила логику, так что не запутался.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — пары повторение",
+      "what_i_understood": "here-здесь, home-дома, tired-устал, cold-замёрз. Это слова из прошлых уроков, но здесь поданы как обычное повторение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал, 4 ответа подряд",
+      "what_i_understood": "I am home. He is upstairs. I am not alone. I am tired. Собрал все фразы из того, что выучил в этой же сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "there — «там»",
+    "outside — «на улице/снаружи»",
+    "inside — «внутри»",
+    "upstairs — «наверху»",
+    "слова места (here, there, outside, inside, upstairs) идут после am/is без предлога",
+    "про себя am, про него/неё is — с тем же словом места"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена звонка маме понятная и живая — легко представить, что реально отвечаешь на её вопросы.",
+    "Финальное задание 17, где собираешь все выученные фразы в один живой диалог — приятное ощущение, что прошёл весь путь."
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — всё время понятно, что я говорю маме по телефону в ответ на конкретный вопрос (где я, где сосед, один ли я, устал ли), и это объясняет, зачем нужна каждая фраза",
+  "would_continue": "да — задания шли по нарастающей сложности, ничего не запуталось, и стало интересно, что дальше",
+  "verdict": "PASS",
+  "verdict_reason": "прошёл всю сессию без препятствий, узнал новые слова и грамматику, понял контекст каждой фразы и не встретил ни одного бредового или мёртвого места."
+}

@@ -1,10 +1,10 @@
 {
   "session": "en/l01/s56",
-  "ru": 7,
-  "converged": true,
-  "needsHumanReview": false,
-  "locales": {
-    "uk": "FIXED"
-  },
-  "at": "2026-09-06T04:48:06.524Z"
+  "ru": 4,
+  "blocked": [
+    "judge_nonsense",
+    "judge_reader"
+  ],
+  "locales": null,
+  "at": "2026-09-06T05:07:52.052Z"
 }

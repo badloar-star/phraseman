@@ -16,18 +16,18 @@
   },
   {
     "interactionId": "en:lesson-01:session-51:i04",
-    "correctText": "He is upstairs.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-51:i05",
     "correctText": "",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-01:session-51:i05",
+    "correctText": "inside",
+    "correctResponseId": "en:lesson-01:session-51:i05:r1"
+  },
+  {
     "interactionId": "en:lesson-01:session-51:i06",
-    "correctText": "outside",
-    "correctResponseId": "en:lesson-01:session-51:i06:r1"
+    "correctText": "I am outside.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i07",
@@ -36,52 +36,52 @@
   },
   {
     "interactionId": "en:lesson-01:session-51:i08",
-    "correctText": "inside",
+    "correctText": "upstairs",
     "correctResponseId": "en:lesson-01:session-51:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-51:i09",
-    "correctText": "",
-    "correctResponseId": null
+    "correctText": "upstairs",
+    "correctResponseId": "en:lesson-01:session-51:i09:r1"
   },
   {
     "interactionId": "en:lesson-01:session-51:i10",
-    "correctText": "am",
+    "correctText": "here",
     "correctResponseId": "en:lesson-01:session-51:i10:r1"
   },
   {
     "interactionId": "en:lesson-01:session-51:i11",
-    "correctText": "She is at home.",
+    "correctText": "",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i12",
-    "correctText": "home",
+    "correctText": "am",
     "correctResponseId": "en:lesson-01:session-51:i12:r1"
   },
   {
     "interactionId": "en:lesson-01:session-51:i13",
-    "correctText": "They are outside.",
+    "correctText": "He is there.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i14",
-    "correctText": "upstairs",
-    "correctResponseId": "en:lesson-01:session-51:i14:r1"
+    "correctText": "I am not alone.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i15",
-    "correctText": "She is busy.",
+    "correctText": "I am cold.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i16",
-    "correctText": "ready",
-    "correctResponseId": "en:lesson-01:session-51:i16:r1"
+    "correctText": "",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-51:i17",
-    "correctText": "I am here. She is at home. They are outside. I am ready.",
+    "correctText": "I am home. He is upstairs. I am not alone. I am tired.",
     "correctResponseId": null
   }
 ]

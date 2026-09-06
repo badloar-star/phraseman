@@ -2,7 +2,7 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-51",
   "learningOutcomeByLocale": {
-    "ru": "`be` + место: `here`, `there`, `at home`",
+    "ru": "место без предлога — `here`, `there`, `home`, `outside`, `inside`, `upstairs`",
     "uk": ""
   },
   "pages": [
@@ -11,18 +11,18 @@
       "pageId": "en:lesson-01:session-51:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`here` — «здесь», `there` — «там»",
-        "uk": "`here` — «тут», `there` — «там»"
+        "ru": "`here` и `there` — тут и там",
+        "uk": "`here` і `there` — тут і там"
       },
       "bodyByLocale": {
-        "ru": "`here` — «здесь», рядом со мной. `there` — «там», в другом месте.\n\nСтавятся они после скрепки, ровно туда же, куда шло бы слово вроде `busy`: `I am here`, `He is there`.\n\nПо-русски «я здесь» обходится без «есть». Рука тянется написать `I here` — и фраза рассыпается. Скрепку не выбрасывайте, даже если очень хочется.",
-        "uk": "`here` — «тут», поряд зі мною. `there` — «там», в іншому місці.\n\nСтавлять їх після скріпки, рівно туди ж, куди йшло б слово на кшталт `busy`: `I am here`, `He is there`.\n\nУкраїнською «я тут» чудово живе без «є». Рука сама пише `I here` — і фраза розсипається. Скріпку не викидайте, навіть якщо дуже хочеться."
+        "ru": "`here` — «здесь». `there` — «там». Между ними и телефонный звонок, и полторы тысячи километров.\n\nГоворят просто: `I am here`. Ни «в», ни «на», ни «у» перед `here` ставить не нужно — слово идёт голым.",
+        "uk": "`here` — «тут». `there` — «там». Між ними буває і телефонна розмова, і півтори тисячі кілометрів.\n\nКажуть просто: `I am here`. Ані «в», ані «на», ані «у» перед `here` ставити не треба — слово йде голе."
       },
       "question": {
         "interactionId": "en:lesson-01:session-51:intro1:q",
         "promptByLocale": {
-          "ru": "Мама спрашивает, дома ли вы вообще. Вы дома. Скажите «я здесь».",
-          "uk": "Мама питає, чи ви взагалі вдома. Ви вдома. Скажіть «я тут»."
+          "ru": "Мама спрашивает, дома ли вы уже. Вы у себя. Скажите: «я здесь».",
+          "uk": "Мама питає, чи ви вже вдома. Ви в себе. Скажіть: «я тут»."
         },
         "choicesByLocale": {
           "ru": [
@@ -36,7 +36,7 @@
             },
             {
               "responseId": "en:lesson-01:session-51:intro1:r3",
-              "text": "I am there."
+              "text": "I am in here."
             }
           ],
           "uk": [
@@ -50,13 +50,13 @@
             },
             {
               "responseId": "en:lesson-01:session-51:intro1:r3",
-              "text": "I am there."
+              "text": "I am in here."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама спрашивает, дома ли вы вообще. Вы дома. Скажите «я здесь».",
-          "uk": "Мама питає, чи ви взагалі вдома. Ви вдома. Скажіть «я тут»."
+          "ru": "Мама спрашивает, дома ли вы уже. Вы у себя. Скажите: «я здесь».",
+          "uk": "Мама питає, чи ви вже вдома. Ви в себе. Скажіть: «я тут»."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-01:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`at home` — «дома»",
-        "uk": "`at home` — «вдома»"
+        "ru": "`outside` и `inside` — снаружи и внутри",
+        "uk": "`outside` і `inside` — надворі й усередині"
       },
       "bodyByLocale": {
-        "ru": "`home` — «дом». Чтобы сказать «дома», перед ним ставят `at`: `I am at home`, `She is at home`.\n\nМаленькое `at` легко потерять — на слух его почти не слышно, и рука пишет `I am home`. Так тоже говорят. В этом уроке мы держимся `at home`: эта форма подходит и к себе, и к любому другому человеку.\n\nСкрепка тут та же: `am` про себя, `is` про него или неё.",
-        "uk": "`home` — «дім». Щоб сказати «вдома», перед ним ставлять `at`: `I am at home`, `She is at home`.\n\nМаленьке `at` легко загубити — на слух його майже не чути, і рука пише `I am home`. Так теж кажуть. У цьому уроці тримаємося `at home`: ця форма підходить і до себе, і до будь-кого іншого.\n\nСкріпка тут та сама: `am` про себе, `is` про нього чи неї."
+        "ru": "`outside` — «на улице, снаружи». `inside` — «внутри, в помещении». Одно про то, что за дверью, второе про то, что за ней же, только с другой стороны.\n\nОба идут после `am` голыми: `I am outside`, `I am inside`. Предлог перед ними не ставят.",
+        "uk": "`outside` — «надворі, зовні». `inside` — «усередині, в приміщенні». Одне про те, що за дверима, друге — про ті самі двері, тільки з іншого боку.\n\nОбидва йдуть після `am` голими: `I am outside`, `I am inside`. Прийменник перед ними не ставлять."
       },
       "question": {
         "interactionId": "en:lesson-01:session-51:intro2:q",
         "promptByLocale": {
-          "ru": "Мама спрашивает, где сестра. Она дома. Скажите про неё.",
-          "uk": "Мама питає, де сестра. Вона вдома. Скажіть про неї."
+          "ru": "Мама слышит ветер в трубке и спрашивает, где вы. Вы стоите у подъезда. Скажите: «я на улице».",
+          "uk": "Мама чує вітер у слухавці й питає, де ви. Ви стоїте біля під'їзду. Скажіть: «я надворі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-51:intro2:r1",
-              "text": "She is at home."
+              "text": "I am outside."
             },
             {
               "responseId": "en:lesson-01:session-51:intro2:r2",
-              "text": "She at home."
+              "text": "I am in outside."
             },
             {
               "responseId": "en:lesson-01:session-51:intro2:r3",
-              "text": "She am at home."
+              "text": "I am inside."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-51:intro2:r1",
-              "text": "She is at home."
+              "text": "I am outside."
             },
             {
               "responseId": "en:lesson-01:session-51:intro2:r2",
-              "text": "She at home."
+              "text": "I am in outside."
             },
             {
               "responseId": "en:lesson-01:session-51:intro2:r3",
-              "text": "She am at home."
+              "text": "I am inside."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама спрашивает, где сестра. Она дома. Скажите про неё.",
-          "uk": "Мама питає, де сестра. Вона вдома. Скажіть про неї."
+          "ru": "Мама слышит ветер в трубке и спрашивает, где вы. Вы стоите у подъезда. Скажите: «я на улице».",
+          "uk": "Мама чує вітер у слухавці й питає, де ви. Ви стоїте біля під'їзду. Скажіть: «я надворі»."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-01:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "`upstairs`, `outside`, `inside` — три ответа на «а где он?»",
-        "uk": "`upstairs`, `outside`, `inside` — три відповіді на «а де він?»"
+        "ru": "Про себя `am`, про него `is`",
+        "uk": "Про себе `am`, про нього `is`"
       },
       "bodyByLocale": {
-        "ru": "`upstairs` — «наверху», этажом выше. `outside` — «снаружи, на улице». `inside` — «внутри, в помещении».\n\nК этим трём ничего добавлять не надо: `He is upstairs`, `They are outside`. А `at home` — готовый оборот, `at` там держится намертво.\n\nТак что запоминать надо ровно одно место — `at home`. Остальные три просто встают после скрепки и работают сами.",
-        "uk": "`upstairs` — «нагорі», поверхом вище. `outside` — «надворі, на вулиці». `inside` — «всередині, у приміщенні».\n\nДо цих трьох нічого додавати не треба: `He is upstairs`, `They are outside`. А `at home` — готовий зворот, `at` там тримається намертво.\n\nТож запам'ятати треба рівно одне місце — `at home`. Решта три просто стають після скріпки і працюють самі."
+        "ru": "`upstairs` — «наверху». Идёт после связки и без предлога: `I am upstairs`.\n\nА если наверху не вы, а кто-то другой, связка меняется. Про себя — `am`, про него — `is`: `He is upstairs`. Слово о месте при этом остаётся тем же.",
+        "uk": "`upstairs` — «нагорі». Іде після зв'язки й без прийменника: `I am upstairs`.\n\nА якщо нагорі не ви, а хтось інший, зв'язка міняється. Про себе — `am`, про нього — `is`: `He is upstairs`. А слово про місце те саме."
       },
       "question": {
         "interactionId": "en:lesson-01:session-51:intro3:q",
         "promptByLocale": {
-          "ru": "Мама спрашивает про соседей, которые вечно курят на крыльце. Скажите, что они на улице.",
-          "uk": "Мама питає про сусідів, які вічно курять на ґанку. Скажіть, що вони на вулиці."
+          "ru": "Мама спрашивает про соседа, который зашёл к вам и поднялся к себе. Скажите: «он наверху».",
+          "uk": "Мама питає про сусіда, який зайшов до вас і піднявся до себе. Скажіть: «він нагорі»."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-01:session-51:intro3:r1",
-              "text": "They are outside."
+              "text": "He is upstairs."
             },
             {
               "responseId": "en:lesson-01:session-51:intro3:r2",
-              "text": "They are at outside."
+              "text": "He am upstairs."
             },
             {
               "responseId": "en:lesson-01:session-51:intro3:r3",
-              "text": "They is outside."
+              "text": "He is on upstairs."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-01:session-51:intro3:r1",
-              "text": "They are outside."
+              "text": "He is upstairs."
             },
             {
               "responseId": "en:lesson-01:session-51:intro3:r2",
-              "text": "They are at outside."
+              "text": "He am upstairs."
             },
             {
               "responseId": "en:lesson-01:session-51:intro3:r3",
-              "text": "They is outside."
+              "text": "He is on upstairs."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Мама спрашивает про соседей, которые вечно курят на крыльце. Скажите, что они на улице.",
-          "uk": "Мама питає про сусідів, які вічно курять на ґанку. Скажіть, що вони на вулиці."
+          "ru": "Мама спрашивает про соседа, который зашёл к вам и поднялся к себе. Скажите: «он наверху».",
+          "uk": "Мама питає про сусіда, який зайшов до вас і піднявся до себе. Скажіть: «він нагорі»."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9e00071f97c6c0960896538a409395bb9d9dae5ced9e51a500bbe958c271263c"
+  "introFingerprint": "843bededa1feb4daea0cd82b339ffb0accd2e2296ec73b52653e61011c33f641"
 }

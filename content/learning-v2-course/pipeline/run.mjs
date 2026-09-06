@@ -288,6 +288,15 @@ function machineFacts(file) {
       if (got < d.pairs) facts.push(`НАГРУЗКА НИЖЕ СТУПЕНИ: пар в Speed Match ${got}, урок ${lessonFromPath} требует ${d.pairs}`);
     }
   }
+  // ЗВУК ПО ОТСУТСТВИЮ: разбор на слух не должен строиться на «нет такого звука».
+  const soundAbsence = [...practice.matchAll(new RegExp("(нет|без|не слышно|отсутствует)\s{0,3}[«\"']?[а-яёА-ЯЁ]{1,3}[»\"']?", "g"))];
+  if (soundAbsence.length) {
+    const near = soundAbsence.filter((m) => {
+      const around = practice.slice(Math.max(0, m.index - 220), m.index + 80);
+      return /🔊|на слух|Различите звуки|Послушайте/.test(around);
+    });
+    for (const m of near) facts.push(`ЗВУК ПО ОТСУТСТВИЮ: «${m[0]}» — признак «звука нет» ненадёжен (зависит от произношения), различай по началу слова или по гласной`);
+  }
   for (const [re, name] of BACKREFS) {
     const hits = introPart.match(re) || [];
     for (const h of hits) facts.push(`ОТСЫЛКА К ПРОШЛОМУ: ${name} — «${h}» ← сессию могут открыть первой, этого опыта у ученика нет`);

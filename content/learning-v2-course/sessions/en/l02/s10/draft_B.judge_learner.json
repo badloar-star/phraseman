@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — it, Is it cold?",
+      "what_i_understood": "Про вещи/места/погоду говорят 'it', а не имя человека. Чтобы спросить, ставим Is перед it: Is it cold?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — crowded",
+      "what_i_understood": "crowded значит 'людно, битком'. Спросить про зал: Is it crowded?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — noisy",
+      "what_i_understood": "noisy значит 'шумно'. Не путать с comfortable ('удобно') — это про разное: уши и спину.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка crowded)",
+      "what_i_understood": "Запомнил слово и перевод.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух crowded)",
+      "what_i_understood": "Выбрал crowded, различил по звуку cr- в начале.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка noisy)",
+      "what_i_understood": "Запомнил noisy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (слух noisy)",
+      "what_i_understood": "Выбрал noisy, отличил от nose/nice.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (вставьте слово — не пройти между столиками)",
+      "what_i_understood": "Ответ crowded, а не cold/comfortable.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (соберите фразу — шумно ли тут)",
+      "what_i_understood": "Собрал Is it noisy?, не взял лишнее are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (кресло мягкое)",
+      "what_i_understood": "Ответ comfortable, а не noisy/crowded.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (пары)",
+      "what_i_understood": "Соединил crowded/noisy/cold/comfortable с переводами.",
+      "confusion": "cold я не отрабатывал заново в этой сессии до этого задания, но я его помню с прошлого",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (скрепка Is)",
+      "what_i_understood": "Понял, что с it идёт только is, не are/am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (диктант crowded)",
+      "what_i_understood": "Собрал по слуху Is it crowded?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (звуки crowded/cloudy)",
+      "what_i_understood": "Различил на слух crowded и cloudy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (поёжился от холода)",
+      "what_i_understood": "Ответ cold.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (собрать удобно ли, чужая скрепка am)",
+      "what_i_understood": "Собрал Is it comfortable?, не взял am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (всё устраивает)",
+      "what_i_understood": "Ответ ok.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (сказать вслух два вопроса)",
+      "what_i_understood": "Повторил Is it crowded? Is it noisy?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (собрать холодно ли без подсказки)",
+      "what_i_understood": "Собрал Is it cold?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал сцены)",
+      "what_i_understood": "Сказал три фразы подряд: It is crowded. It is noisy. It is ok.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Что про вещи, места и погоду говорят 'it', а не имя человека",
+    "Как спросить вопрос про место/погоду: Is it + слово (порядок жёсткий)",
+    "Новое слово crowded — людно",
+    "Новое слово noisy — шумно",
+    "Что comfortable и noisy — про разное (удобство и громкость), их легко перепутать"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с кафе, где приходится переспрашивать собеседника — понятно, зачем спрашивать noisy",
+    "Финал, где нужно сказать три фразы подряд про одно и то же место — почувствовал, что это реальный мини-разговор"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — весь урок держится в одной сцене (вечернее кафе), и понятно, кому и когда я говорю эти фразы: спутнику, оценивая место вокруг",
+  "would_continue": "да — задания разнообразные, слов немного и они хорошо закреплены, к финалу чувствую, что могу сам спросить/сказать про место",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы с тем, что дано в этой сессии, узнал два новых слова и структуру Is it, и было понятно, зачем и кому я это говорю."
+}

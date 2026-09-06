@@ -1,0 +1,85 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "crowded",
+      "noisy"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 5,
+        "trap": "cold/comfortable как отвлекающие для crowded — правдоподобная путаница по теме кафе"
+      },
+      {
+        "task": 7,
+        "trap": "noisy/crowded как отвлекающие для comfortable"
+      },
+      {
+        "task": 13,
+        "trap": "noisy/crowded для cold"
+      },
+      {
+        "task": 15,
+        "trap": "crowded/noisy для ok"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "crowded",
+        "noisy",
+        "cold",
+        "comfortable"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      10,
+      14
+    ]
+  },
+  "time_references": [
+    "не найдены"
+  ],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 2,
+      "listen_choose": 3,
+      "context_gap_grammar": 5,
+      "phrase_builder": 2,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы, новые слова, доска пар и обратная связь соответствуют плану без нарушений."
+}

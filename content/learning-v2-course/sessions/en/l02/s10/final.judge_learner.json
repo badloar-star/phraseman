@@ -1,0 +1,129 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (it, Is it cold?)",
+      "what_i_understood": "it — это про вещи/места/погоду, не про людей. Вопрос: Is it cold?, ответ: It is cold.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (crowded)",
+      "what_i_understood": "crowded — людно, битком. Is it crowded? — спрашиваю, всегда ли тут так людно.",
+      "confusion": "Слегка непонятно, зачем упомянули слово crowd (толпа), которое я вообще не изучал — но объяснили, что оно тут не подходит, так что не мешает",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (noisy)",
+      "what_i_understood": "noisy — шумно. Is it noisy? Стоит там же, где cold и crowded.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (crowded карточка+слух)",
+      "what_i_understood": "Услышал crowded, выбрал верно, отличил от cloudy и called",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (noisy карточка+слух)",
+      "what_i_understood": "То же самое для noisy",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (гэп: людно в зале)",
+      "what_i_understood": "Выбрал crowded, а не cold/comfortable — по описанию сцены понял",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (сборка фразы noisy)",
+      "what_i_understood": "Собрал Is it noisy? из плиток, лишнее are не тронул",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (гэп: мягкое кресло)",
+      "what_i_understood": "Выбрал comfortable, вспомнил слово из прошлого",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (слух cold)",
+      "what_i_understood": "Отличил cold от gold и nice",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (Speed Match)",
+      "what_i_understood": "Соединил все 4 пары слово-перевод",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (Is/Are/Am перед it)",
+      "what_i_understood": "Вставил Is, понял что Are с you/they, Am с I",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (слушай и собери crowded)",
+      "what_i_understood": "Собрал Is it crowded? по слуху",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (различение звуков crowded/cloudy)",
+      "what_i_understood": "Выбрал crowded",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (гэп: холодно с улицы)",
+      "what_i_understood": "Выбрал cold, поёжился от температуры — логично",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (сборка comfortable, лишнее am)",
+      "what_i_understood": "Собрал Is it comfortable?, не тронул am",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (гэп: всё устраивает)",
+      "what_i_understood": "Выбрал ok",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (вслух 2 вопроса)",
+      "what_i_understood": "Проговорил Is it crowded? Is it noisy?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, 3 фразы)",
+      "what_i_understood": "Сказал It is crowded. It is noisy. It is ok. — собрал всё вместе без подсказок",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Что вопрос про место/вещь/погоду строится через it, а не через you/he/she",
+    "Порядок слов: Is it + слово, а в ответе it is + слово",
+    "Два новых слова: crowded (людно) и noisy (шумно)",
+    "Что crowded и noisy встают в ту же позицию, что и старые cold/comfortable/ok"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена в кафе с шумом и переспрашиванием — понятно, зачем спрашивать про noisy именно в этот момент",
+    "Финал сессии, где нужно сказать три фразы подряд про одно и то же место — почувствовал, что действительно могу описать реальную ситуацию"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я турист/гость в кафе, разговариваю со спутником, и естественно спрашиваю про холод/людность/шум места, в котором нахожусь",
+  "would_continue": "да — задания шли по нарастающей сложности, к финалу я сам, без подсказок, собрал три фразы, и почувствовал, что реально что-то умею сказать про место",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно без незнакомых слов в правильных ответах, узнал новую грамматическую конструкцию и два новых слова, понял сцену и хочу продолжать."
+}

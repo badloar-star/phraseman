@@ -1,0 +1,100 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — it",
+      "what_i_understood": "Есть слово `it` — «оно», для вещей/мест/погоды, не для людей. Вопрос делают так: `is` ставим первым, `it` сразу за ним — `Is it cold?`. Если переставить — `It is cold.` — это уже ответ, не вопрос.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание Интро 1 — 'холодно ли там?'",
+      "what_i_understood": "Выбрал Is it cold? — по правилу is+it. Остальные два варианта явно неправильно расставлены, это видно сразу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — crowded",
+      "what_i_understood": "crowded — «людно». Внутри слова прячется crowd — «толпа», а -ed превращает это в описание места. Is it crowded? — целиком дали.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — noisy",
+      "what_i_understood": "noisy — «шумно». Предупредили, что noisy и comfortable про разное (шум и удобство), чтобы не путать.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (карточки и слух)",
+      "what_i_understood": "Отработал произношение и написание crowded и noisy, отличил их от похожих по звуку слов (cloudy, called, nose, nice).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — вставить слово (людно в зале)",
+      "what_i_understood": "Выбрал crowded, а не cold/comfortable — по смыслу описания (много людей).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — собрать фразу",
+      "what_i_understood": "Собрал Is it noisy? из плиток, лишнюю плитку are не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — comfortable (кресло)",
+      "what_i_understood": "comfortable я помню из прошлых сессий (в списке слов сказано, что оно 'возвращается'), тут просто применил его к новой ситуации с креслом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 8-9 — cold, доска пар",
+      "what_i_understood": "cold тоже возвращаемое слово, я его как бы уже видел раньше по описанию сессии. Доска пар собрала все 4 слова сразу — здесь я их уже узнавал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — скрепка is",
+      "what_i_understood": "Выбрал Is (не Are, не Am), потому что с it идёт только is — это было прямо сказано в Интро 1.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 11-14 — сборка, различение звуков, гэп",
+      "what_i_understood": "Собрал по слуху Is it crowded?, отличил crowded от cloudy на слух, выбрал cold для холода с улицы, собрал Is it comfortable? не взяв лишнее am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — ok",
+      "what_i_understood": "Выбрал ok, потому что crowded и noisy — не про личную оценку 'нормально', а про описание места.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 16-17 — финал",
+      "what_i_understood": "Сказал вслух Is it crowded? Is it noisy?, а в финале — It is crowded. It is ok. про эту ситуацию.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово it используется для мест/вещей/погоды, не для людей",
+    "Порядок Is it + слово? для вопроса, It is + слово. для ответа/утверждения",
+    "Новое слово crowded — людно",
+    "Новое слово noisy — шумно",
+    "Разница между noisy (шум) и comfortable (удобство) — легко спутать, но это про разное"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена в кафе понятная и последовательная: сначала смотрю в окно (холодно), потом в зал (людно), потом собеседник переспрашивает из-за шума (noisy) — каждое слово привязано к конкретному моменту, видно зачем его говоришь",
+    "Финал, где нужно сказать три фразы подряд про одну ситуацию — приятно, что все слова из сессии собрались в одну связную мысль"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я в кафе с собеседником, за окном холодно, внутри людно и шумно — и каждый вопрос/фраза — это то, что я бы реально сказал в такой ситуации, спрашивая или комментируя вслух",
+  "would_continue": "да — было ясно, задания шли от простого к сложному, ничего не потребовало незнакомых слов, и в конце я реально могу сказать три фразы про место без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "все задания прошёл честно с имеющимися знаниями, узнал два новых слова и структуру Is it + слово, сцена понятна от начала до конца."
+}

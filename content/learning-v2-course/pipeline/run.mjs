@@ -289,10 +289,12 @@ function machineFacts(file) {
     }
   }
   // ЗВУК ПО ОТСУТСТВИЮ: разбор на слух не должен строиться на «нет такого звука».
-  const soundAbsence = [...practice.matchAll(new RegExp("(нет|без|не слышно|отсутствует)\s{0,3}[«\"']?[а-яёА-ЯЁ]{1,3}[»\"']?", "g"))];
+  const soundAbsence = [...practice.matchAll(new RegExp("(нет|без|не слышно|отсутствует)\s{0,3}(его |их |этого |такого )?[«»']?[а-яёА-ЯЁ]{1,4}[«»']?|«[а-яёА-ЯЁ]{1,3}»[^.]{0,30}(его нет|их нет|не слышно)", "g"))];
   if (soundAbsence.length) {
     const near = soundAbsence.filter((m) => {
       const around = practice.slice(Math.max(0, m.index - 220), m.index + 80);
+      const line = practice.slice(practice.lastIndexOf(String.fromCharCode(10), m.index) + 1, m.index + 80);
+      if (!line.trimStart().startsWith("- ")) return false;
       return /🔊|на слух|Различите звуки|Послушайте/.test(around);
     });
     for (const m of near) facts.push(`ЗВУК ПО ОТСУТСТВИЮ: «${m[0]}» — признак «звука нет» ненадёжен (зависит от произношения), различай по началу слова или по гласной`);

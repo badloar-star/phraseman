@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "`Is it + слово` — вопрос про вещь, место или погоду",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`it` — про всё, что не человек",
+        "uk": "`it` — про все, що не людина"
+      },
+      "bodyByLocale": {
+        "ru": "`it` — «оно». Так говорят про место, вещь, погоду: не про человека напротив, а про кафе, про стул, про дождь за окном.\n\nЧтобы спросить, ставим `is` первым, `it` сразу за ним: `Is it cold?`. Поменяйте эти два слова местами — `It is cold.` — и вы уже не спрашиваете, а отвечаете.",
+        "uk": "`it` — «воно». Так кажуть про місце, річ, погоду: не про людину навпроти, а про кафе, про стілець, про дощ за вікном.\n\nЩоб запитати, ставимо `is` першим, `it` одразу за ним: `Is it cold?`. Поміняйте ці два слова місцями — `It is cold.` — і ви вже не питаєте, а відповідаєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "За окном люди в куртках и шарфах, хотя ещё сентябрь. Спросите, холодно ли там.",
+          "uk": "За вікном люди в куртках і шарфах, хоч іще вересень. Запитайте, чи там холодно."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-10:intro1:r1",
+              "text": "Is it cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-10:intro1:r2",
+              "text": "It is cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-10:intro1:r3",
+              "text": "Is cold it?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-10:intro1:r1",
+              "text": "Is it cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-10:intro1:r2",
+              "text": "It is cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-10:intro1:r3",
+              "text": "Is cold it?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За окном люди в куртках и шарфах, хотя ещё сентябрь. Спросите, холодно ли там.",
+          "uk": "За вікном люди в куртках і шарфах, хоч іще вересень. Запитайте, чи там холодно."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`crowded` — «людно»",
+        "uk": "`crowded` — «людно»"
+      },
+      "bodyByLocale": {
+        "ru": "`crowded` — «людно, битком». Не «большое», не «шумное»: просто людей столько, что между столиками не пройти.\n\nРядом есть похожее `crowd` — «толпа», то есть сами люди. А `crowded` — про место, где этих людей много. Спрашивая про кафе, берём `crowded`.",
+        "uk": "`crowded` — «людно, повно людей». Не «велике», не «гучне»: просто людей стільки, що між столиками не пройти.\n\nПоруч є схоже `crowd` — «натовп», тобто самі люди. А `crowded` — про місце, де цих людей багато. Питаючи про кафе, беремо `crowded`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы заглянули в зал: все столики заняты, у бара стоят. Спросите спутника, всегда ли тут так.",
+          "uk": "Ви зазирнули в залу: усі столики зайняті, біля бару стоять. Запитайте супутника, чи завжди тут так."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-10:intro2:r1",
+              "text": "Is it crowded?"
+            },
+            {
+              "responseId": "en:lesson-02:session-10:intro2:r2",
+              "text": "Is it crowd?"
+            },
+            {
+              "responseId": "en:lesson-02:session-10:intro2:r3",
+              "text": "It crowded?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-10:intro2:r1",
+              "text": "Is it crowded?"
+            },
+            {
+              "responseId": "en:lesson-02:session-10:intro2:r2",
+              "text": "Is it crowd?"
+            },
+            {
+              "responseId": "en:lesson-02:session-10:intro2:r3",
+              "text": "It crowded?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы заглянули в зал: все столики заняты, у бара стоят. Спросите спутника, всегда ли тут так.",
+          "uk": "Ви зазирнули в залу: усі столики зайняті, біля бару стоять. Запитайте супутника, чи завжди тут так."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`noisy` — «шумно»",
+        "uk": "`noisy` — «шумно»"
+      },
+      "bodyByLocale": {
+        "ru": "`noisy` — «шумно». Место, где вас переспрашивают, а вы переспрашиваете в ответ.\n\nСлово годится и для зала, и для улицы, и для соседнего столика — всюду, где речь про громкость, а не про людей и не про погоду. Стоит оно там же, где `cold` и `crowded`: сразу после `is it`.",
+        "uk": "`noisy` — «шумно». Місце, де вас перепитують, а ви перепитуєте у відповідь.\n\nСлово годиться і для зали, і для вулиці, і для сусіднього столика — усюди, де мова про гучність, а не про людей і не про погоду. Стоїть воно там само, де `cold` і `crowded`: одразу після `is it`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Спутник наклоняется к вам через стол и переспрашивает уже второй раз. Спросите, всегда ли тут так шумно.",
+          "uk": "Супутник нахиляється до вас через стіл і перепитує вже вдруге. Запитайте, чи завжди тут так шумно."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-10:intro3:r1",
+              "text": "Is it noisy?"
+            },
+            {
+              "responseId": "en:lesson-02:session-10:intro3:r2",
+              "text": "Is it comfortable?"
+            },
+            {
+              "responseId": "en:lesson-02:session-10:intro3:r3",
+              "text": "Is noisy?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-10:intro3:r1",
+              "text": "Is it noisy?"
+            },
+            {
+              "responseId": "en:lesson-02:session-10:intro3:r2",
+              "text": "Is it comfortable?"
+            },
+            {
+              "responseId": "en:lesson-02:session-10:intro3:r3",
+              "text": "Is noisy?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник наклоняется к вам через стол и переспрашивает уже второй раз. Спросите, всегда ли тут так шумно.",
+          "uk": "Супутник нахиляється до вас через стіл і перепитує вже вдруге. Запитайте, чи завжди тут так шумно."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "37e4ab41b6d597b666cf548b2bc75d3ce426ce980db063bce492efb4de18567f"
+}

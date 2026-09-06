@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-10:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i02",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i04",
+    "correctText": "noisy",
+    "correctResponseId": "en:lesson-02:session-10:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i05",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i06",
+    "correctText": "Is it noisy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i07",
+    "correctText": "comfortable",
+    "correctResponseId": "en:lesson-02:session-10:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i08",
+    "correctText": "cold",
+    "correctResponseId": "en:lesson-02:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i10",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-10:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i11",
+    "correctText": "Is it crowded?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i12",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i13",
+    "correctText": "cold",
+    "correctResponseId": "en:lesson-02:session-10:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i14",
+    "correctText": "Is it comfortable?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i15",
+    "correctText": "ok",
+    "correctResponseId": "en:lesson-02:session-10:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i16",
+    "correctText": "Is it crowded? Is it noisy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-10:i17",
+    "correctText": "It is crowded. It is noisy. It is ok.",
+    "correctResponseId": null
+  }
+]

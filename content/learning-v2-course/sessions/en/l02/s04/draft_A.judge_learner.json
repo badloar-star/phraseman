@@ -1,0 +1,128 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Вопрос начинается с 'are', потом 'you', потом слово. awake = проснулся. Даже если не расслышал всё, если поймал 'are you' — жди одно слово дальше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "curious = любопытно, интересно. Вопрос: Are you curious?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "cheerful = весёлый, в хорошем настроении. Предупредили, что можно перепутать с cold (холодно) на слух — начала похожи.",
+      "confusion": "Совет 'легко спутать с cold' помог, но сама проверка (задание 5) потом сравнивает cheerful с careful, а не с cold — то есть предупреждали про одну пару, а тренируют другую. Слегка сбивает.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (curious)",
+      "what_i_understood": "Карточка и звук совпали, выбрал curious правильно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (cheerful)",
+      "what_i_understood": "Карточка и звук, выбрал cheerful.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (различение звуков)",
+      "what_i_understood": "Между cheerful и careful выбрал cheerful, потому что careful мне не знаком, но по звучанию 'чир-' vs 'кэр-' смог отличить.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (сборка фразы)",
+      "what_i_understood": "Собрал 'Are you cheerful?' из плиток, лишним было 'am'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (сборка на слух)",
+      "what_i_understood": "Услышал 'Are you curious?' и собрал, лишним было 'cold'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (выбор на слух)",
+      "what_i_understood": "Услышал 'awake', выбрал 'Are you awake?', не 'Are you cold?' и не утверждение без вопроса.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (вставка слова)",
+      "what_i_understood": "По сцене (сосед пьёт чай, я без глотка) выбрал thirsty, не curious и не awake.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (вставка are/is/am)",
+      "what_i_understood": "К 'you' подходит только are, выбрал верно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (сборка на слух)",
+      "what_i_understood": "Собрал 'Are you cold?', лишним было cheerful.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (доска пар)",
+      "what_i_understood": "Соединил все 4 слова с переводами без проблем — все уже отработаны раньше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (вставка по сцене)",
+      "what_i_understood": "Сосед у окна, обнял себя руками — cold, а не cheerful или thirsty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (сборка, лишняя плитка)",
+      "what_i_understood": "Собрал 'Are you awake?', лишним было 'not'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (выбор на слух)",
+      "what_i_understood": "Услышал thirsty, выбрал верно среди curious и cheerful.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (повтор вслух)",
+      "what_i_understood": "Повторил 'Are you awake? Are you thirsty?' — оба слова уже знакомы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал без подсказок)",
+      "what_i_understood": "Спросил все три вопроса подряд: awake, cold, cheerful — все слова уже были в сессии, справился.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово curious (любопытно/интересно) и как спросить Are you curious?",
+    "Слово cheerful (весёлый) и как спросить Are you cheerful?",
+    "Что если в шуме расслышал только 'are you', дальше идёт ровно одно слово — не нужно ловить всю фразу целиком"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с банкой из рюкзака в Интро 2 — понятно, зачем спрашивают именно 'любопытно ли мне', живая картинка",
+    "Задание 13 с соседом у открытого окна, обнявшим себя руками — сразу ясно, что ответ cold, без подсказки текстом"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — кухня хостела, шумно, вопросы долетают обрывками, и почти каждое задание привязано к конкретной картинке (банка, окно, чай), из которой ясно, о чём спрашивают и зачем",
+  "would_continue": "да — задания разнообразные, сложность растёт постепенно, ничего не потребовало незнакомых слов",
+  "verdict": "PASS",
+  "verdict_reason": "прошёл всю сессию без блокирующих мест, узнал два новых слова и потренировал их вместе со старыми в живых сценах, ни разу не наткнулся на текст ради красоты вместо смысла"
+}

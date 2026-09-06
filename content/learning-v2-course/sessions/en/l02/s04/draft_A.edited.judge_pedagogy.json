@@ -1,0 +1,83 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "curious",
+      "cheerful"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "You are awake? / Are awake you? — порядок слов, реалистичная ошибка"
+      },
+      {
+        "task": 9,
+        "trap": "curious/awake как отвлекающие по смыслу к сцене"
+      },
+      {
+        "task": 13,
+        "trap": "cheerful/thirsty не подходят по сцене с человеком у окна"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "curious",
+        "cheerful",
+        "awake",
+        "cold"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s01/l02_s02/l02_s03",
+      "what": "сцена «общая кухня хостела, утро субботы» и слова awake/cold/thirsty те же самые — это заявленное повторение по плану (возврат), не дефект; но фраза-инструкция интро 1 «Поймали are you — дальше ждите ровно одно слово» пересекается по смыслу с приёмом из l02_s01 без признаков цитирования как «нового»"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 2,
+      "listen_choose": 4,
+      "sound_contrast": 1,
+      "phrase_builder": 2,
+      "listen_build_dictation": 2,
+      "context_gap_grammar": 3,
+      "speed_match": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Интро 1 длиннее нормы (294 знака при лимите 240-290) — машинный факт прямо указывает на нарушение длины, остальное чисто."
+}

@@ -1,0 +1,141 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Чтобы спросить человека «ты заблудился?», беру `are you` и добавляю слово `lost`. Получается `Are you lost?`. Про женщину с телефоном на перекрёстке — это подходящая картинка, я её вижу впервые и всё понятно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "`ok` значит «в порядке». Спрашиваю тем же способом: `Are you ok?`. Объяснили, что короткое «Ok?» тоже бывает, но учим полную фразу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Рамка `are you` не меняется, меняется только последнее слово: thirsty/hungry/cold. Мальчик мёрзнет — значит `Are you cold?`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Услышал lost, выбрал lost, не перепутал с lot/last.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Женщина с картой — Are you lost.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "thirsty vs dirty vs thirty — выбрал thirsty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал Are you thirsty? из плиток, лишнее слово is не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Женщина упала — Are you ok, а не про холод и жажду.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Собрал Are you hungry по фразе на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "cold и called различил на слух по концовке.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Мальчик без куртки — cold, не lost и не ok, потому что причина видна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Соединил пары слово-перевод, все слова уже знакомые по интро и заданиям.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Собрал Are you lost?, лишнее слово not не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Человек у фонтанчика облизывает губы — thirsty, а не awake/lost.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Собрал Are you ok? по фразе на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Сосед с закрытыми глазами — Are you awake, слово из прошлой сессии, но подано понятно и тут проверяется впервые в этой сцене.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Собрал Are you cold?, лишнее am не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Проговорил Are you lost? Are you ok? вслух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Собрал Are you hungry? — плитки чуть избыточны (you дважды), но справился.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Финал — сказал все четыре вопроса подряд про прохожего на перекрёстке.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Спрашивать незнакомца о самочувствии/состоянии одной и той же рамкой Are you + слово, без отдельного вежливого «вы»",
+    "Слово ok в вопросе про самое важное — цел ли человек",
+    "На слух отличаю cold/called и thirsty/dirty/thirty",
+    "Могу подряд задать несколько вопросов одному человеку в реальной уличной ситуации"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с картой на перекрёстке — понятно, зачем спрашиваю именно это и именно так",
+    "Задание 17, где нужно подряд спросить прохожего обо всём — прямо ощущается как настоящий разговор"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — всё время ясно, кому и в какой момент я говорю фразу: женщине с картой, упавшей женщине, замёрзшему мальчику, человеку у фонтанчика, сонному соседу. Каждая картинка объясняет, зачем нужен именно этот вопрос.",
+  "would_continue": "да — задания шли по нарастающей, ничего не зависло на непонятном слове, а в конце получилось произнести целую мини-сцену уверенно",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно без незнакомых слов в правильных ответах, узнал новое использование Are you и понял сцену от начала до конца."
+}

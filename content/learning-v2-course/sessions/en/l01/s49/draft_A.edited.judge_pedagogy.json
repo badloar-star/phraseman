@@ -1,0 +1,98 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "everyone",
+      "nobody",
+      "people",
+      "family"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": "интро1-❌2",
+        "trap": "I is tired — путает am/is по подлежащему"
+      },
+      {
+        "task": "интро2-❌1",
+        "trap": "Everyone are kind — тянет are из-за смысла множества"
+      },
+      {
+        "task": "интро3-❌1",
+        "trap": "People is loud — не знает, что people уже множественное"
+      },
+      {
+        "task": 5,
+        "trap": "are вместо is после everyone"
+      },
+      {
+        "task": 9,
+        "trap": "is вместо are после people"
+      },
+      {
+        "task": 11,
+        "trap": "Everyone/People вместо Nobody — смысловая путаница"
+      }
+    ],
+    "silly": [
+      {
+        "task": "интро3-❌2",
+        "trap": "People are loudy",
+        "better": "loudy — не английское слово в принципе, это не грамматическая ловушка на скрепку, а выдуманное слово; лучше дать реалистичный дистрактор на скрепку или порядок слов"
+      }
+    ],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "everyone",
+        "nobody",
+        "people",
+        "family"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      10,
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 3,
+      "context_gap_grammar": 4,
+      "phrase_builder": 2,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Интро 1 и интро 2 превышают норму длины (338 и 325 знаков против 240–290), и дистрактор `loudy` в интро 3 — надуманное несуществующее слово вместо реалистичной ловушки на скрепку."
+}

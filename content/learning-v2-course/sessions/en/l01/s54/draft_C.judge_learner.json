@@ -1,0 +1,143 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — nervous",
+      "what_i_understood": "Когда говорю про своё состояние, ставлю am: I am nervous. Слово nervous значит «волнуюсь».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — confident",
+      "what_i_understood": "Confident — «уверен в себе». Фраза строится так же: I am confident.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — fluent",
+      "what_i_understood": "Fluent — «говорю свободно», про язык, не про характер. I am fluent.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — карточка nervous",
+      "what_i_understood": "Повторил значение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — на слух nervous",
+      "what_i_understood": "Отличил от never и nurse.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 — карточка confident",
+      "what_i_understood": "Повторил значение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 — на слух confident",
+      "what_i_understood": "Отличил от content и comfort.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — вставить слово (справитесь ли вы)",
+      "what_i_understood": "Выбрал confident, а не nervous/ready — вопрос был про уверенность в силах.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — карточка fluent",
+      "what_i_understood": "Повторил значение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — на слух fluent",
+      "what_i_understood": "Отличил от fluid и flat.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — собрать «я волнуюсь»",
+      "what_i_understood": "I am nervous, лишнее is не беру.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — доска пар",
+      "what_i_understood": "Соединил все 4 слова с переводом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — вопрос про язык",
+      "what_i_understood": "Выбрал fluent, не nervous/honest — вопрос был про речь.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — вставить am",
+      "what_i_understood": "Про себя всегда am, не are/is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — собрать на слух",
+      "what_i_understood": "I am fluent, не взял лишнее nervous.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — вопрос про правду",
+      "what_i_understood": "Выбрал honest, не calm/fluent.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — собрать «я спокоен»",
+      "what_i_understood": "I am calm, лишнее not не беру, потому что отвечаю утвердительно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — сказать вслух",
+      "what_i_understood": "Повторил две фразы подряд.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — собрать «я готов»",
+      "what_i_understood": "I am ready, не are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал",
+      "what_i_understood": "Собрал четыре фразы подряд про себя.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово nervous — «волнуюсь»",
+    "Слово confident — «уверен в себе»",
+    "Слово fluent — «говорю свободно» (именно про речь, а не про характер)",
+    "Различать на слух похожие слова: nervous/never/nurse, confident/content/comfort, fluent/fluid/flat"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Три интро-страницы держат одну ситуацию (собеседование по телефону) и не повторяют друг друга дословно",
+    "Задание 15 и 17 — сказать вслух несколько фраз подряд, чувствуется как настоящий момент разговора, а не отдельное упражнение"
+  ],
+  "felt_dead": [
+    "Задание 1, 3, 6 — просто карточка слова без сцены, но это ожидаемо для формата карточки, не считаю это дефектом"
+  ],
+  "scene_reason": "да — понятно, что я на телефонном собеседовании и отвечаю голосу в трубке на конкретные вопросы (готов ли начать, справлюсь ли с работой, говорю ли свободно, честен ли, паникую ли). Каждая фраза привязана к конкретному моменту разговора, не абстрактный набор.",
+  "would_continue": "да — понял три новых слова, ситуация человеческая (собеседование, где реально нервничаешь), задания разной сложности и в конце есть момент, где всё складывается в цельный ответ о себе.",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания решаемы честно, три новых слова заучены и есть задание, где каждое — правильный ответ, сцена понятна от начала до конца."
+}

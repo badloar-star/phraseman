@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя говорю 'am': I am tired. Три вида скрепки: am/is/are смотря о ком речь.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "everyone (все) считается как один, поэтому берёт is, а не are. Странно, но объяснили понятно: 'все' — как одна компания целиком.",
+      "confusion": "Секунду не понял почему не are, но объяснение с 'вся компания' помогло.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "people (люди) — много, берёт are. family (семья) — одно слово, берёт is, хоть внутри и много людей. Сравнение с коробкой понятно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка everyone)",
+      "what_i_understood": "everyone = все свои.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух everyone)",
+      "what_i_understood": "Узнал слово на слух, отличил от every и everything.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка nobody)",
+      "what_i_understood": "nobody = никто.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (слух nobody)",
+      "what_i_understood": "Отличил от body и nobly.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (вставка скрепки, everyone)",
+      "what_i_understood": "Everyone is kind — закрепил правило is после everyone.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (карточка people)",
+      "what_i_understood": "people = люди.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (карточка family)",
+      "what_i_understood": "family = семья.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (слух family)",
+      "what_i_understood": "Отличил от funny и fairly.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (вставка скрепки, people)",
+      "what_i_understood": "People are loud — закрепил are после people.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (сборка фразы)",
+      "what_i_understood": "My family is fine — собрал, лишняя плитка are не нужна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Соединил все 4 новых слова с переводом без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (вставка слова)",
+      "what_i_understood": "Nobody is here — комната пустая, значит nobody, а не everyone/people.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (слух + сборка)",
+      "what_i_understood": "Everyone is busy — собрал по звуку, busy было уже знакомо.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (сборка, я устал)",
+      "what_i_understood": "I am tired — не попался на чужую скрепку is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (вставка скрепки, про себя)",
+      "what_i_understood": "I am fine — про себя всегда am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (вслух)",
+      "what_i_understood": "Everyone is kind. Nobody is loud. — произнёс обе новые фразы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, 4 фразы)",
+      "what_i_understood": "People are loud. Everyone is kind. My family is fine. I am tired. Собрал всё вместе без подсказок — получилось, потому что каждый кусок уже отработан раньше.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Выбирать am/is/are по тому, о ком речь (я / один / несколько)",
+    "everyone и family — по смыслу это много людей, но грамматически считаются как одна штука и берут is",
+    "people — грамматически множественное, берёт are",
+    "nobody — никто, полное отсутствие людей",
+    "Четыре новых слова: everyone, nobody, people, family"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сравнение семьи с коробкой — внутри много, а коробка одна: сразу понятно, запомнил",
+    "Финальная сцена — звонок маме, где надо выдать сразу четыре фразы подряд, было приятно, что получилось без подглядывания"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно, что я отчитываюсь маме по телефону после первой недели в новом городе: про работу (коллеги добрые), про соседей (шумные), про семью (всё хорошо) и про себя (устал). Каждая фраза привязана к конкретному вопросу мамы.",
+  "would_continue": "да — понял новое правило, оно не совпадало с моей интуицией (many people = one word 'everyone' = is), но объяснили так, что я это не просто заучил, а понял почему. Хочу дальше.",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий я мог пройти честно, каждое новое слово отработано перед доской пар, финальная сцена логично завершает урок и я реально усвоил новое неочевидное правило про everyone/family."
+}

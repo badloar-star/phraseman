@@ -1,4 +1,81 @@
 {
-  "verdict": "PASS",
-  "verdict_reason": "mock"
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "small",
+      "dark",
+      "expensive",
+      "cold"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "smell/tall как акустически похожие варианты на small"
+      },
+      {
+        "task": 9,
+        "trap": "am/are вместо is после it"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "small",
+        "dark",
+        "expensive",
+        "cold"
+      ],
+      [
+        "new",
+        "warm",
+        "quiet",
+        "nice"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      10
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 2,
+      "phrase_builder": 3,
+      "context_gap_grammar": 3,
+      "speed_match": 2,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "BLOCK",
+  "verdict_reason": "cold заявлено как возвращаемое слово, объясняется в интро-3 и стоит в задании 9 как цель, но по машинным фактам оно ни разу не встречается правильным ответом (0 из 0 касаний), что нарушает правило ≥2 касаний с хотя бы одним правильным ответом для возвращаемых слов."
 }

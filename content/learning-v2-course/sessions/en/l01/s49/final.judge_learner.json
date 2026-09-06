@@ -1,0 +1,94 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя всегда говорю 'am'. I am tired = я устал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Everyone (все) — это как один, поэтому берёт is, а не are. Странно, но объяснили понятно.",
+      "confusion": "Всё равно рука тянется к 'are', но текст честно предупредил про эту ловушку, так что не запутался.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "People (люди) — это уже много, поэтому are. Family (семья) — одно целое, поэтому is, хотя внутри тоже много людей.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (everyone)",
+      "what_i_understood": "Слово 'everyone' и как его не перепутать с 'every' и 'everything'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (nobody)",
+      "what_i_understood": "Nobody = никто.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Закрепил: everyone + is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-9 (people/family)",
+      "what_i_understood": "People + are, family + is. Отработал оба слова отдельно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Собрал 'My family is fine' из плиток, узнал слово 'my'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Nobody is here — когда в офисе никого нет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Свёл все 4 новых слова в пары, всё уже знакомо по прошлым заданиям.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13-15",
+      "what_i_understood": "Собрал 'Everyone is busy' на слух, собрал 'I am tired', вставил 'am' в 'I am fine'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16-17",
+      "what_i_understood": "Проговорил все фразы сразу как отчёт маме: люди шумные, все добрые, в семье хорошо, я устал.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Что 'everyone' (все) грамматически считается как один и требует 'is', а не 'are' — это неочевидно и было хорошо объяснено",
+    "Что 'people' (люди), в отличие от 'everyone', требует 'are'",
+    "Что 'family' (семья) как единое целое требует 'is', хотя внутри много людей",
+    "Новые слова: everyone, nobody, people, family",
+    "Составил связный мини-рассказ из 4 фраз подряд в финале"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена звонка маме в воскресенье — понятно и по-человечески, узнаваемая ситуация",
+    "Финал (задание 17), где нужно выдать все четыре фразы подряд как настоящий рассказ — приятное ощущение, что я правда что-то умею сказать"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — всё время понятно, что я отвечаю маме на конкретные вопросы про работу, коллег, соседей и семью, это не абстрактные фразы в вакууме",
+  "would_continue": "да — тема (everyone/people/family с is/are) объяснена с примерами-ловушками, ничего не пересказывается зря, к финалу чувствуется, что я правда усвоил тему",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий выполнимы честно, разбор ловушек на 'everyone' помогает а не путает, новые слова введены и закреплены, сцена цельная и понятная, хочу продолжать."
+}

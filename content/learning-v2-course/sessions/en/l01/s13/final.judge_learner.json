@@ -1,0 +1,81 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Есть два слова-скрепки: am — только для 'я', are — для 'ты'. Про себя — I am ready.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "young — молодой, old — старый. Про себя I am young, про собеседника You are old. am и you вместе не бывают.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "strong — сильный, tall — высокий. Скрепка та же самая, что и раньше, для любых слов про человека.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (young)",
+      "what_i_understood": "Выучил слово young и узнал его на слух среди похожих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-5 (old)",
+      "what_i_understood": "old — старый, собрал фразу, вставил am в 'I am old'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-10 (strong, tall)",
+      "what_i_understood": "Выучил strong и tall, отличил на слух от похожих слов, выбрал правильное слово по смыслу ситуации (подняла коробку — strong, а не tired/ready).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Свёл все 4 новых слова с переводом — всё совпало с тем, что учил выше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12-13",
+      "what_i_understood": "Собрал 'I am strong', отличил лишнюю плитку are. Вставил are в 'You are tall'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14-17 (brave, kind)",
+      "what_i_understood": "brave — смелый, kind — добрый. Собрал 'You are brave' про коллегу, отличил лишнюю плитку I.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 (голос)",
+      "what_i_understood": "Проговорил все четыре фразы: две про неё (are), две про себя (am) — почувствовал контраст на практике.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "am живёт только с I, are — с you, и их нельзя перепутать местами",
+    "новые слова: young, old, strong, tall, brave, kind",
+    "одна и та же скрепка (am/are) обслуживает любые слова о человеке — возраст, силу, рост, характер"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Интро 2 — то, что 'old' не грубость и человек сам спокойно скажет о себе так — живая, полезная деталь, а не вода",
+    "Задание 10 — ловушка с tired/ready на фоне поднятой коробки заставила реально подумать по смыслу, а не просто по грамматике",
+    "Задание 18 — момент, где обе фразы (её хвалю, себя хвалю) произносятся подряд, реально показывает разницу am/are на языке, а не на бумаге"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: разговор с коллегой за кофе, где по очереди хвалят друг друга — отсюда естественно берутся фразы 'ты добрая/смелая' и 'я готов/силён', и понятно, кому что говоришь",
+  "would_continue": "да — задания шли с нарастающей сложностью, ловушки заставляли думать, а не гадать, и в конце было приятное упражнение вслух, где всё соединилось",
+  "verdict": "PASS",
+  "verdict_reason": "все 18 заданий решаемы с известными словами, есть понятная сцена и объяснена новая лексика с контрастом am/are, ловушки честные."
+}

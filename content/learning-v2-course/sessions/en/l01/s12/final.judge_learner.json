@@ -1,0 +1,123 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (am/are)",
+      "what_i_understood": "Про себя говорю I am, про собеседника — You are. Слово calm — спокойный.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (brave)",
+      "what_i_understood": "brave — смелый, и это не только про подвиги, а про то, что сказал неприятное вслух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (honest/smart)",
+      "what_i_understood": "honest — честный (сказал правду), smart — умный (быстро сообразил). Разница понятна на примере.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-4 (карточки+произношение calm, brave)",
+      "what_i_understood": "Услышал разницу calm/come/car и brave/brain/grave.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Выбрал brave, а не calm/tired, потому что человек спорил, а не молчал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Собрал I am calm.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-10 (honest/smart карточки+произношение)",
+      "what_i_understood": "Различил honest/hot/house и smart/start/small.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (Speed Match)",
+      "what_i_understood": "Сопоставил все 4 новых слова с переводом без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "You + are, не am и не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (диктовка)",
+      "what_i_understood": "Собрал You are smart. по слуху.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (quiet)",
+      "what_i_understood": "quiet — тихий, вспомнил из прошлого урока, подано просто как повторение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "I + am, не are и не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Выбрал quiet, а не brave/smart — тут про громкость голоса, а не про поступок или ум.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Собрал You are sure.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 (right)",
+      "what_i_understood": "right — прав, повторил вслух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19 (Speed Match повторение)",
+      "what_i_understood": "Сопоставил старые слова без труда.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 20 (финал)",
+      "what_i_understood": "Сказал все три фразы без подсказок: You are brave. You are calm. You are right.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Различаю am (про себя) и are (про собеседника) в новом наборе слов",
+    "Узнал 4 новых слова: brave, calm, honest, smart — и на слух отличаю их от похожих слов",
+    "Понял разницу между honest и smart — это два разных вида 'молодец'",
+    "Смог без подсказок сказать три фразы подряд в конце"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена в поезде, где коллега весь день себя гнобит, а я ему говорю обратное вслух — понятно и по-человечески",
+    "Финал сцены, где нужно сказать три фразы подряд без подсказок — приятное чувство, что реально что-то умею"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — с самого начала ясно: я еду в поезде с коллегой после совместного проекта, он считает, что сделал мало, и я вслух говорю ему обратное. Каждая фраза в практике привязана к конкретному моменту (спорил с клиентом, нашёл решение, говорит тихо и т.д.), а не висит в воздухе.",
+  "would_continue": "да — было понятно, что к чему, ничего не подано как будто я уже что-то знаю, задания шли от лёгкого к сложному, и в конце я реально сам сказал три фразы подряд",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно без незнакомых требований, узнал новые слова и правило, сцена и все примеры понятны с нуля, финал ощущается как реальный результат."
+}

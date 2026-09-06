@@ -1,0 +1,111 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — week",
+      "what_i_understood": "week = неделя. К слову о неделе (типа busy) нужно вставить is, потому что неделя одна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — day/night",
+      "what_i_understood": "day = день, night = ночь. Если ночей несколько (nights), нужно are, а не is. Одна ночь — is, много ночей — are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — morning",
+      "what_i_understood": "morning = утро, отдельное слово, не только часть 'good morning'. Про себя всегда I am, даже если фраза длинная (I am tired in the morning).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-6 (карточки и произношение week/day/night/morning)",
+      "what_i_understood": "Выучил произношение и написание новых слов, отличил их от похожих ловушек (wake/we, they/dear, nice/new, moving/money).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — скрепка для week",
+      "what_i_understood": "The week is busy — выбрал is, потому что неделя одна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — соедините пары",
+      "what_i_understood": "Просто сопоставил слова с переводом, никаких сложностей.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — nights are ___",
+      "what_i_understood": "Выбрал quiet, потому что busy и tired не подходят по смыслу к ночи.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — соберите 'дни спокойные'",
+      "what_i_understood": "The days are quiet — days много, значит are, а не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — I am ___ (fine)",
+      "what_i_understood": "Выбрал fine, потому что night и week — это не про самочувствие.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — Everyone ___ kind",
+      "what_i_understood": "Everyone — это 'все', но берёт is, как будто один человек. Это новое для меня и немного странно, но объяснение в подсказке помогло.",
+      "confusion": "Почему 'everyone' (все) требует is, а не are — в самом задании этого не объяснили заранее, только в подсказке к неправильному ответу.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — collect 'утро раннее'",
+      "what_i_understood": "The morning is early — собрал по подсказанному звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — 'утром я уставший', лишняя скрепка",
+      "what_i_understood": "I am tired in the morning — не попался на лишнее is в плитках.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — 'я в порядке'",
+      "what_i_understood": "I am fine — собрал без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 — финал, четыре фразы подряд",
+      "what_i_understood": "Собрал: The week is busy. The days are busy. The nights are quiet. I am tired in the morning. Использовал всё, что было в уроке.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слова week, day, night, morning",
+    "Что 'неделя' и 'утро' — одна вещь, поэтому с ними is",
+    "Что 'ночи' (nights) и 'дни' (days) во множественном числе берут are",
+    "Что после 'I' всегда am, даже если фраза длинная (I am tired in the morning)",
+    "Что everyone (все) в английском считается как один — и берёт is, а не are"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Задание 14 — Everyone is kind",
+      "why": "Новое и не самое очевидное правило (everyone = one) introduced мимоходом в отдельном задании без интро-объяснения, я понял его только из подсказки к неправильному ответу, а не заранее"
+    }
+  ],
+  "felt_alive": [
+    "Сцена с мамой по телефону — понятно, зачем говорить каждую фразу: рассказываю про неделю в новом городе",
+    "Финал сессии, где нужно выдать все четыре фразы подряд — приятное ощущение, что я правда что-то теперь могу сказать"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: мама звонит и спрашивает про неделю, и я по очереди отвечаю — как неделя, как ночи, как утро. Каждая фраза — ответ на конкретный вопрос мамы, это ощущается как настоящий разговор, а не просто набор примеров",
+  "would_continue": "да, потому что за сессию я реально начал понимать, когда is, а когда are, и в конце сам собрал длинный ответ из четырёх фраз без подсказок — это чувствуется как прогресс",
+  "verdict": "REVISE",
+  "verdict_reason": "Всё проходимо и я реально всему научился, но правило про everyone+is появляется внезапно в задании 14 без отдельного объяснения в интро, из-за чего я сначала растерялся и понял его только благодаря подсказке у неправильного ответа."
+}

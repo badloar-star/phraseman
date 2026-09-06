@@ -1,0 +1,162 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — Safe",
+      "what_i_understood": "safe значит «в безопасности». Про другого человека говорю You are safe, и are нельзя выкидывать.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — Warm и dry",
+      "what_i_understood": "warm — тепло, dry — сухой, это разные вещи (можно быть сухим и всё равно мёрзнуть). Меняю только последнее слово, You are остаётся.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — Ready",
+      "what_i_understood": "ready — готов прямо сейчас, а не «умею». Про себя — I am ready.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1. Карточка safe",
+      "what_i_understood": "safe = в безопасности",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2. Послушайте safe",
+      "what_i_understood": "Отличил safe от save и sad по звуку окончания и длине гласной",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3. Карточка warm",
+      "what_i_understood": "warm = тепло",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4. Послушайте warm",
+      "what_i_understood": "Отличил warm от worm и war",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5. Соберите фразу",
+      "what_i_understood": "You are safe. — собрал без проблем, лишняя плитка am не понадобилась",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6. Вставьте слово — турист не понимает куда идти",
+      "what_i_understood": "Тут нужно слово lost, но я его нигде не учил в этой сессии",
+      "confusion": "lost требуется как ПРАВИЛЬНЫЙ ответ, а не как отвлекающий вариант — этого слова не было ни в одной карточке или интро",
+      "could_answer_question": false
+    },
+    {
+      "step": "7. Карточка dry",
+      "what_i_understood": "dry = сухой",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8. Послушайте dry",
+      "what_i_understood": "Отличил dry от try и day",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9. Карточка ready",
+      "what_i_understood": "ready = готов",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10. Вставьте слово — зонт, больше не мокнет",
+      "what_i_understood": "Правильный ответ dry — это слово было в карточке 7, справился",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11. Вставьте скрепку",
+      "what_i_understood": "You are safe — с you всегда are",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12. Послушайте и соберите — тепло",
+      "what_i_understood": "You are warm — собрал по звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13. Соберите фразу — ready",
+      "what_i_understood": "You are ready, not не нужен",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14. Speed Match",
+      "what_i_understood": "Соединил все 4 пары из этой сессии",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15. Вставьте слово — трясётся, губы синие",
+      "what_i_understood": "Нужно слово cold, но его тоже нигде не давали как новое или изученное",
+      "confusion": "cold требуется как ПРАВИЛЬНЫЙ ответ, но в этой сессии оно нигде не объяснялось карточкой — только всплыло в разборе неверных вариантов задания 10",
+      "could_answer_question": false
+    },
+    {
+      "step": "16. Вставьте слово — машина, вздрогнул",
+      "what_i_understood": "Нужно scared — тоже никогда не объяснялось как слово, только мелькало в разборе задания 15",
+      "confusion": "scared требуется в правильном ответе, но это слово никогда не подавалось мне как карточка или интро — я не мог знать его значение заранее",
+      "could_answer_question": false
+    },
+    {
+      "step": "17. Послушайте и соберите — cold",
+      "what_i_understood": "You are cold — собрал по звуку, значение cold всё ещё не объяснено нигде явно",
+      "confusion": "Опять cold в правильном ответе без введения",
+      "could_answer_question": true
+    },
+    {
+      "step": "18. Скажите вслух — 4 фразы",
+      "what_i_understood": "Sказал: You are safe. You are dry. You are warm. You are ready. — все слова из этой сессии, справился",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово safe (в безопасности) и фраза You are safe",
+    "Слово warm (тепло)",
+    "Слово dry (сухой)",
+    "Слово ready (готов) и разница с 'умею'",
+    "Что are нельзя выбрасывать в You are ___, даже если по-русски глагол не нужен",
+    "Различение safe/save/sad, warm/worm/war, dry/try/day на слух"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 6,
+      "why": "правильный ответ — lost, но это слово никогда не было дано мне как карточка слова ни в этой сессии, ни в списке слов, которые я знаю (there's no word_card for lost). Я должен был угадать смысл слова, которое вижу впервые, чтобы выбрать его как ПРАВИЛЬНЫЙ ответ"
+    },
+    {
+      "task": 15,
+      "why": "правильный ответ — cold, оно тоже никогда не вводилось карточкой в этой сессии. Я видел его один раз мельком в разборе неправильного варианта задания 10 ('cold — холодно'), но это не объяснение, а сноска для другого случая — недостаточно, чтобы требовать это слово как ответ здесь"
+    },
+    {
+      "task": 16,
+      "why": "правильный ответ — scared, тоже нигде не введено карточкой. Впервые встретилось в разборе неверного варианта задания 15, и то без нормального объяснения — там оно само стояло неверным вариантом"
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с зонтом под дождём — понятно, зачем говорю каждую фразу и кому",
+    "Разбор неверных вариантов почти everywhere объясняет ПОЧЕМУ не так, а не просто 'неверно'"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, было понятно: я держу зонт над мокрым испуганным туристом и говорю ему по очереди, что он в безопасности, сухой, ему тепло и он готов идти. Каждая фраза привязана к конкретному моменту (перестал оглядываться, зонт спас от дождя, застегнул куртку). Но задания 6, 15, 16 ломают эту логику — там сцена вдруг требует слов, которых мне не давали (lost, cold, scared), хотя заявлено, что new_words сессии — это только safe/warm/dry/ready.",
+  "would_continue": "Скорее нет. Первые 14 заданий шли отлично и я чувствовал прогресс, но три задания подряд (6, 15, 16) потребовали слов, которые я не изучал в этой сессии как первой — это как будто меня экзаменуют по теме, которую не преподавали. Это выбивает из колеи и заставляет гадать, а не вспоминать.",
+  "verdict": "BLOCK",
+  "verdict_reason": "В заданиях 6, 15 и 16 правильный ответ требует слова (lost, cold, scared), которые эта сессия — открытая мной первой, без единого предыдущего урока — никогда не вводила ни карточкой, ни интро, а лишь мельком упоминала как сноску к чужому неверному варианту."
+}

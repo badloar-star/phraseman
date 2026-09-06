@@ -1,0 +1,162 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (early)",
+      "what_i_understood": "Про себя говорю I am early, про собеседника You are early. Слово early — рано.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (fast)",
+      "what_i_understood": "fast — быстрый/быстро, подходит и для речи, и для еды, и для шага. Та же схема You are fast.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (quiet)",
+      "what_i_understood": "quiet — тихий/молчаливый, произносится «квайет», через qu.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-4 (карточки+аудио early/fast)",
+      "what_i_understood": "Закрепил произношение, отличил от похожих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка фразы)",
+      "what_i_understood": "Собрал You are early. из плиток, лишняя am отсеялась.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (гэп fast/early/sorry)",
+      "what_i_understood": "Выбрал fast, так как ест быстро — понял из описания сцены.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-8 (quiet карточка+аудио)",
+      "what_i_understood": "Норм.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (are/am/is)",
+      "what_i_understood": "Выбрал are, так как это про you.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (диктовка You are fast)",
+      "what_i_understood": "Собрал по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (Speed Match)",
+      "what_i_understood": "Тут появилось слово late — я его не проходил в этой сессии как отдельную карточку, но оно упомянуто в разделе 'Возвращаются' наверху. Раз оно тут просто в списке пар для повторения — ок, но я это слово реально не изучал по карточке.",
+      "confusion": "late не было отдельной карточки/интро в этой сессии, а тут просят его знать в паре",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (гэп late/early/quiet)",
+      "what_i_understood": "Тут в правильном ответе стоит late — а я не видел карточки этого слова нигде в сессии.",
+      "confusion": "late требуется как ПРАВИЛЬНЫЙ ответ, а слова я не учил в этой сессии",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 13 (сборка quiet)",
+      "what_i_understood": "Собрал You are quiet, отсеял лишнее is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (гэп sorry/quiet/early)",
+      "what_i_understood": "Выбрал sorry — но это слово тоже не было в карточках этой сессии, только в списке 'Возвращаются' вверху, о котором я как ученик знать не могу.",
+      "confusion": "sorry — правильный ответ, но не объяснён в сессии нигде",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 15 (сборка ready)",
+      "what_i_understood": "Собрал You are ready — но слово ready тоже нигде не объяснено в этой сессии.",
+      "confusion": "ready — правильный ответ без объяснения в этой сессии",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 16 (гэп busy/tired/quiet)",
+      "what_i_understood": "Выбрал busy — тоже не объяснённое слово.",
+      "confusion": "busy — правильный ответ без карточки",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 17 (Speed Match tired/sorry/busy/ready)",
+      "what_i_understood": "Все четыре слова здесь ни разу не были даны с переводом в этой сессии.",
+      "confusion": "все 4 слова не объяснены в этой сессии",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 18 (говорю You are early. I am late.)",
+      "what_i_understood": "late снова используется, хотя не объяснялось.",
+      "confusion": "late без объяснения",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 19 (сборка quiet+tired+not)",
+      "what_i_understood": "tired используется как данность.",
+      "confusion": "tired без объяснения в этой сессии",
+      "could_answer_question": true
+    },
+    {
+      "step": "Финал (early, fast, quiet)",
+      "what_i_understood": "Три новых слова сессии собрал без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "early — рано",
+    "fast — быстрый/быстро (и для речи, и для еды, и для шага)",
+    "quiet — тихий/молчаливый, произносится «квайет»",
+    "закрепил, что для You всегда are, а не am и не is"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 12,
+      "why": "правильный ответ — слово late. Я его нигде не видел с переводом ни в этой сессии, ни раньше (это моя первая сессия вообще). В шапке сессии есть пометка 'Возвращаются: late, tired, sorry, busy, ready' — но это служебная информация для составителя урока, а не для меня как ученика. Внутри самого текста сессии карточки или интро для late нет."
+    },
+    {
+      "task": 14,
+      "why": "правильный ответ — sorry, слово нигде не объяснено в тексте, который я прохожу впервые."
+    },
+    {
+      "task": 15,
+      "why": "правильный ответ — ready, слово нигде не объяснено в тексте сессии."
+    },
+    {
+      "task": 16,
+      "why": "правильный ответ — busy, слово нигде не объяснено в тексте сессии."
+    },
+    {
+      "task": 17,
+      "why": "Speed Match требует знать перевод сразу четырёх слов (tired, sorry, busy, ready), ни одно из которых не было дано с карточкой или переводом в этой сессии."
+    },
+    {
+      "task": 18,
+      "why": "требуется произнести и понять late в фразе I am late — слово не объяснялось."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с коллегой за кофе — понятная и живая: она рано пришла, быстро ест, потом молчит. Легко представить.",
+    "Финал, где я говорю все три фразы подряд про реальный момент — приятно, чувствуется что это применение, а не зубрёжка."
+  ],
+  "felt_dead": [
+    "Блок заданий 11-17 ощущается как выдернутый из другого урока — там резко появляются слова, которых я не учил, без единого объяснения, будто мне их 'напоминают', а мне нечего вспоминать."
+  ],
+  "scene_reason": "да, в интро и в первых 10 заданиях понятно зачем — я реально описываю коллегу за кофе в конкретный момент. Но начиная с задания 12 сцена расплывается: почему я вдруг должен знать про 'busy', 'ready', 'sorry', 'tired' без объяснения — неясно, это выбивает из сцены.",
+  "would_continue": "да, но с раздражением — сама тройка новых слов (early, fast, quiet) подана хорошо и по делу, но середина практики требует слов, которых мне не давали, и я угадывал по смыслу предложения, а не потому что знаю слово",
+  "verdict": "BLOCK",
+  "verdict_reason": "Задания 12, 14, 15, 16, 17 требуют слов (late, sorry, ready, busy, tired) в правильном ответе, которые в тексте этой сессии ни разу не объяснены и не даны переводом — для ученика, впервые открывшего эту сессию, это нечестные задания."
+}

@@ -1,0 +1,83 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя говорю 'am'. 'I am tired' — я устал. Показано, что нельзя сказать 'I is' или просто 'I tired' без связки.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "'everyone' — это 'все', но почему-то к нему цепляется 'is', как будто это один человек, а не много. Странно, но правило запомнил: everyone + is.",
+      "confusion": "Не объяснили, почему 'все' считается за одного — просто сказали 'запомните'. Пришлось поверить на слово.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "'people' — люди, много, поэтому 'are'. 'family' — семья, но это одно слово, поэтому 'is'. Значит смысл 'много людей' не всегда значит 'are' — зависит от слова.",
+      "confusion": "Только что 'everyone' тоже про много людей, но взял 'is', а тут 'people' про много людей взял 'are'. Разница объяснена вскользь одной фразой, я не сразу сообразил, что это два разных слова с разными правилами, а не одно и то же правило.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (everyone)",
+      "what_i_understood": "Карточка и произношение слова everyone.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (nobody)",
+      "what_i_understood": "nobody — никто. Отдельное слово, не встречал раньше в этой сессии в примере-фразе (только в задании 11 дальше).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Everyone is kind — подтвердил правило.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-9 (people, family)",
+      "what_i_understood": "Закрепил people are / family is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Собрал My family is fine, лишняя плитка are — понял почему лишняя.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Тут первый раз реально нужно было слово nobody в значении в контексте фразы 'Nobody is here' — правильный ответ.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12-17",
+      "what_i_understood": "Повторение всех четырёх слов и скрепок, финал собрал 4 фразы подряд без подсказок — получилось, потому что всё уже отработано по отдельности.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Про себя говорю 'I am'",
+    "everyone (все) берёт 'is', а не 'are' — хотя интуитивно кажется, что должно быть 'are'",
+    "people (люди) берёт 'are'",
+    "family (семья) берёт 'is', хотя внутри много людей",
+    "nobody — никто",
+    "слова kind, busy, tired, loud, fine в новых сочетаниях"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с звонком маме понятная и живая — реально представил, что отчитываюсь после первой недели в чужой стране",
+    "Финал (задание 17), где нужно сказать всё сразу без подсказок — было приятно, что получилось"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно, что говорю с мамой по телефону про первую неделю в Дублине: про работу (everyone is kind), про соседей (people are loud), про семью (family is fine) и про себя (I am tired). Каждая фраза привязана к конкретному вопросу мамы, не абстрактная.",
+  "would_continue": "да — правило про 'everyone' было неожиданным и зацепило, а сцена с мамой человеческая, хочется продолжить и посмотреть, какие ещё слова так же путают",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания проходимы честно, выучил конкретное новое правило (everyone+is vs people+are vs family+is), сцена понятная и по-человечески написанная, хочу продолжать."
+}

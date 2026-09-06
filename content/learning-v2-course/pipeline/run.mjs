@@ -939,8 +939,16 @@ function main() {
     }
     if (cur.s < 6) WARN("сессия не сошлась к PASS×3 за 2 круга — локализую, но нужна ручная проверка");
     publishFinal();
+    // зачем: СУД ПО ФИНАЛУ. Ночью 06.09 четыре сессии несли блок, поставленный
+    // по ЧЕРНОВИКУ, хотя редактор его уже исправил: s49 при пересуде дала PASS,
+    // блок висел зря. Статус обязан отражать то, что реально уйдёт ученику.
+    const finalV = stageJudgeStable(S, ctx, plan, row, known, finalRu);
+    const finalScore = score(finalV);
+    const finalBlocked = Object.entries(finalV).filter(([, j]) => j.verdict === "BLOCK").map(([n]) => n);
+    if (finalScore !== cur.s) LOG(`финал судился заново: было ${cur.s}/6 по черновику, стало ${finalScore}/6`);
+    if (finalBlocked.length) WARN(`финал несёт блок: ${finalBlocked.join(", ")} — нужен разбор`);
     const loc = stageLocalize(S, finalRu);
-    write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, converged: cur.s >= 6, needsHumanReview: cur.s < 6, locales: loc, at: new Date().toISOString() }, null, 2));
+    write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: finalScore, converged: finalScore >= 6 && !finalBlocked.length, needsHumanReview: finalScore < 6 || finalBlocked.length > 0, blocked: finalBlocked.length ? finalBlocked : undefined, draftScore: cur.s, locales: loc, at: new Date().toISOString() }, null, 2));
     return;
   }
   LOG("ранний выход: неизвестная команда", cmd);

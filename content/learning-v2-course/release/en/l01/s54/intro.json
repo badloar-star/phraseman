@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "перенос — `I am` + слово о себе в новых словах",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`nervous` — «волнуюсь»",
+        "uk": "`nervous` — «хвилююся»"
+      },
+      "bodyByLocale": {
+        "ru": "`nervous` — «волнуюсь, нервничаю». Слово про сейчас, а не про характер: сегодня перед звонком волнуюсь, завтра уже нет.\n\nПо-русски хватает двух слов: «я волнуюсь». По-английски между `I` и `nervous` обязательно стоит `am` — `I am nervous`. Без него фраза не держится.",
+        "uk": "`nervous` — «хвилююся, нервую». Слово про зараз, а не про вдачу: сьогодні перед дзвінком хвилююся, завтра вже ні.\n\nВ українському «хвилююся» одне слово несе і того, хто хвилюється, і саму дію — окремого «я» можна навіть не казати. Англійська так не вміє: того, хто діє, і сам стан вона розводить, а між ними ставить `am`. Виходить `I am nervous`, і жодну з трьох частин не викинути."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Голос в трубке: «Готовы начинать?» Вы честно говорите, что волнуетесь.",
+          "uk": "Голос у слухавці: «Готові починати?» Ви чесно кажете, що хвилюєтеся."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-54:intro1:r1",
+              "text": "I am nervous."
+            },
+            {
+              "responseId": "en:lesson-01:session-54:intro1:r2",
+              "text": "I nervous."
+            },
+            {
+              "responseId": "en:lesson-01:session-54:intro1:r3",
+              "text": "I is nervous."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-54:intro1:r1",
+              "text": "I am nervous."
+            },
+            {
+              "responseId": "en:lesson-01:session-54:intro1:r2",
+              "text": "I nervous."
+            },
+            {
+              "responseId": "en:lesson-01:session-54:intro1:r3",
+              "text": "I is nervous."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Голос в трубке: «Готовы начинать?» Вы честно говорите, что волнуетесь.",
+          "uk": "Голос у слухавці: «Готові починати?» Ви чесно кажете, що хвилюєтеся."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`confident` — «уверен в себе»",
+        "uk": "`confident` — «упевнений у собі»"
+      },
+      "bodyByLocale": {
+        "ru": "`confident` — «уверен в себе». Не «я знаю ответ», а «я спокойно говорю о том, что умею».\n\nРядом стоит похожее `ready` — «готов». Но `ready` про этот момент: можно начинать. А `confident` — про вас вообще, независимо от минуты. Поэтому `I am ready` вы скажете в дверях, а `I am confident` — про всю свою работу.",
+        "uk": "`confident` — «упевнений у собі». Не «я знаю відповідь», а «я спокійно кажу про те, що вмію».\n\nПоруч стоїть схоже `ready` — «готовий». Але `ready` про цю мить: можна починати. А `confident` — про вас узагалі, незалежно від хвилини. Тому `I am ready` ви скажете у дверях, а `I am confident` — про всю свою роботу."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Вас спрашивают, справитесь ли вы с новой работой. Скажите, что уверены в себе.",
+          "uk": "Вас запитують, чи впораєтеся ви з новою роботою. Скажіть, що ви впевнені в собі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-54:intro2:r1",
+              "text": "I am confident."
+            },
+            {
+              "responseId": "en:lesson-01:session-54:intro2:r2",
+              "text": "I am calm."
+            },
+            {
+              "responseId": "en:lesson-01:session-54:intro2:r3",
+              "text": "I confident."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-54:intro2:r1",
+              "text": "I am confident."
+            },
+            {
+              "responseId": "en:lesson-01:session-54:intro2:r2",
+              "text": "I am calm."
+            },
+            {
+              "responseId": "en:lesson-01:session-54:intro2:r3",
+              "text": "I confident."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вас спрашивают, справитесь ли вы с новой работой. Скажите, что уверены в себе.",
+          "uk": "Вас запитують, чи впораєтеся ви з новою роботою. Скажіть, що ви впевнені в собі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`fluent` — «говорю свободно»",
+        "uk": "`fluent` — «говорю вільно»"
+      },
+      "bodyByLocale": {
+        "ru": "`fluent` — «говорю свободно». Слово только про речь: не запинаюсь, не подбираю слова по полчаса.\n\nРядом стоит `confident` — но оно про вас целиком, а `fluent` — про один ваш язык. Можно быть `confident` и при этом не `fluent`, и наоборот.",
+        "uk": "`fluent` — «говорю вільно». Слово тільки про мовлення: не затинаюся, не добираю слова по пів години.\n\nПоруч стоїть `confident` — але воно про вас цілком, а `fluent` — про одну вашу мову. Можна бути `confident` і при цьому не `fluent`, і навпаки."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Спрашивают про ваш английский. Вы говорите свободно — скажите это.",
+          "uk": "Запитують про вашу англійську. Ви говорите вільно — скажіть це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-54:intro3:r1",
+              "text": "I am fluent."
+            },
+            {
+              "responseId": "en:lesson-01:session-54:intro3:r2",
+              "text": "I am honest."
+            },
+            {
+              "responseId": "en:lesson-01:session-54:intro3:r3",
+              "text": "I fluent."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-54:intro3:r1",
+              "text": "I am fluent."
+            },
+            {
+              "responseId": "en:lesson-01:session-54:intro3:r2",
+              "text": "I am honest."
+            },
+            {
+              "responseId": "en:lesson-01:session-54:intro3:r3",
+              "text": "I fluent."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спрашивают про ваш английский. Вы говорите свободно — скажите это.",
+          "uk": "Запитують про вашу англійську. Ви говорите вільно — скажіть це."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6ea5a4db471ea1f001a0b206882618aa973168aaf688f1169b22e174eb93bf07"
+}

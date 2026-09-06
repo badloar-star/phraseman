@@ -1,0 +1,120 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — not встаёт после are",
+      "what_i_understood": "we — это мы, are — приклеивается к нему. late — опаздываем. Чтобы сказать «не», not ставим сразу после are: We are not late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — sure",
+      "what_i_understood": "sure — уверен. We are not sure — мы не уверены, вежливое «не знаем».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — wrong",
+      "what_i_understood": "wrong — неправ, ошибся. We are not wrong — мы не ошибаемся.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 — sure",
+      "what_i_understood": "Карточка + произношение, отличил sure от sugar и shoe.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 — wrong",
+      "what_i_understood": "Карточка + произношение, отличил wrong от long и ring.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — сборка We are not late",
+      "what_i_understood": "Собрал фразу из плиток, порядок понятен.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 — free",
+      "what_i_understood": "free — свободен, отличил от three и fry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — alone",
+      "what_i_understood": "alone — один, без компании.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — вставить слово (sure/wrong/busy)",
+      "what_i_understood": "Про незнание — sure, выбрал правильно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — сборка на слух We are not alone",
+      "what_i_understood": "Собрал, лишнюю плитку no не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — скрепка are/am/is",
+      "what_i_understood": "Про 'we' всегда are, не am и не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — пары",
+      "what_i_understood": "Соединил все 4 слова с переводом без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — вставить слово (free/alone/ready)",
+      "what_i_understood": "Времени нет — not free.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — утверждение, лишняя not",
+      "what_i_understood": "По сцене все готовы, not не нужен, собрал We are ready.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15-16 — сборка busy/wrong",
+      "what_i_understood": "Собрал обе фразы без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал, 5 фраз подряд",
+      "what_i_understood": "Ответил на все пять пунктов вопроса своими словами, использовав ready, hungry, busy, sure, late.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Отрицание с we: not встаёт сразу после are, а не перед ним и не в конец фразы",
+    "Слово sure (уверен) и его отрицание как вежливое 'не знаю'",
+    "Слово wrong (неправ) — про ошибку человека, а не про поломку вещи",
+    "Слово free (свободен, нет дел)",
+    "Слово alone (один, без компании)",
+    "Что для 'we' скрепка всегда are, а не am/is"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Объяснение sure как вежливого 'понятия не имею' — понятно и по-человечески, без лишних метафор",
+    "Разбор wrong: 'сказал уверенно — и мимо' — коротко и по делу",
+    "Сцена с обедом и коллегами, которые предполагают про тебя всякое по дороге — понятная ситуация, ради которой хочется отвечать"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно, что я иду с командой на обед и отвечаю за всех сразу на вопросы коллег (опаздываем? уверены? одни?). Каждая фраза привязана к конкретному моменту по дороге в кафе.",
+  "would_continue": "да — сессия короткая, слова простые и полезные, отрицание объяснили чётко, задания разной сложности, в финале дали проверить себя сразу на пяти фразах",
+  "verdict": "PASS",
+  "verdict_reason": "Каждое задание я мог выполнить честно, узнал новые слова и правило, понял сцену и хочу продолжить."
+}

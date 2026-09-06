@@ -1,0 +1,126 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про мужчину говорят He is + слово, а не просто He + слово. Пример: He is tall.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "nice — просто хороший человек, friendly — тот, кто сам подходит и заговаривает. Про женщину — She is, не He is.",
+      "confusion": "Разница между nice и friendly понятна на примере, но если бы меня спросили про молчаливого хорошего человека без подсказки в тексте — я бы не сразу понял, что это nice, а не friendly. Тут текст сам объяснил, так что ок.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "new — про человека значит 'недавно здесь работает', а не 'только что из коробки'. kind — добрый, помогает.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (word card tall)",
+      "what_i_understood": "tall — высокий, про рост.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (listen tall/tell/ball)",
+      "what_i_understood": "Смог бы отличить на слух, объяснение по звукам понятное.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (nice)",
+      "what_i_understood": "nice — приятный, отличается от night и mice по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (собрать He is tall)",
+      "what_i_understood": "Собрал фразу из плиток без проблем — это же из интро 1.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (She ___ nice)",
+      "what_i_understood": "Вставил is, а не am/are — про неё одну всегда is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-8 (friendly, new word cards)",
+      "what_i_understood": "friendly — дружелюбный, подходит первым. new — недавно здесь.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (dictation She is friendly)",
+      "what_i_understood": "Собрал по звуку, лишних плиток не было (He там просто отвлекающая плитка).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (He is ___, парень не заговаривал но не мешал)",
+      "what_i_understood": "Выбрал nice, потому что friendly — это когда сам подходит, а он молчал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11-12 (tired word card + gap)",
+      "what_i_understood": "tired — усталый. Парень зевает — значит tired, а не new/tall.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (Speed Match 4 пары)",
+      "what_i_understood": "Соединил все слова с переводами без проблем — все слова уже видел выше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (quiet word card)",
+      "what_i_understood": "quiet — тихий, не сказал ни слова за день.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (He is quiet, лишняя плитка not)",
+      "what_i_understood": "Собрал He is quiet, plitka not не нужна, потому что он и правда молчит весь день.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (She is ___, помогла и принесла кофе)",
+      "what_i_understood": "Выбрал kind — она помогает, это доброта, а не усталость и не рост.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (He is tired, финал)",
+      "what_i_understood": "Тот же парень к обеду совсем сник — снова tired. Собрал фразу.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Про него/неё нужно говорить He is / She is, а не просто He/She + слово (без глагола фраза не работает)",
+    "am — только для 'я', про него/неё — всегда is",
+    "nice — просто хороший человек в целом, а friendly — тот, кто сам подходит и заговаривает первым (это разные вещи)",
+    "new про человека означает 'недавно здесь работает', а не 'только что появился на свет/из коробки'",
+    "kind — добрый через поступки (помог, принёс кофе), а не через характер вообще",
+    "tired — усталый, quiet — тихий, tall — высокий, новые слова которые раньше не знал"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с начальником, который водит по офису и показывает на людей — понятно, зачем говорить каждую фразу, представил себя новым сотрудником",
+    "Разница nice/friendly объяснена не занудно, а через конкретную ситуацию (человек уже дважды подошёл поболтать)",
+    "Задание 10, где нужно было отличить nice от friendly по сценарию — не сказали прямо, дали подумать"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — я новый человек в офисе, начальник показывает на разных людей и я называю их вслух одной фразой; каждое задание привязано к конкретному человеку и ситуации (тот у окна зевает, эта женщина принесла кофе), а не просто abstractные примеры",
+  "would_continue": "да — было легко идти по нарастающей: сначала с подсказками, потом без них, ни разу не встретил слово, которого не объяснили заранее, и в конце я реально мог составлять фразы про людей сам",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно, ничего незнакомого в правильных ответах не встретил, понял разницу nice/friendly и грамматику He is/She is, сцена понятна с первой страницы — это моя первая сессия и текст ни разу не сослался на прошлый опыт, которого у меня нет."
+}

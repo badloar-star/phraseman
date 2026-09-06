@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — angry",
+      "what_i_understood": "angry значит злой, сердитый. Чтобы сказать 'он не злой', надо He is not angry — not встаёт после is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — mean и rude",
+      "what_i_understood": "mean — вредный (обижает специально), rude — грубый (просто плохие манеры). She is not rude — про женщину.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — slow",
+      "what_i_understood": "slow — медленный, подходит и для походки, и для того, как человек соображает. He is not slow.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 — angry карточка+слух",
+      "what_i_understood": "Запомнил звучание angry, отличил от hungry и early.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 — rude карточка+слух",
+      "what_i_understood": "rude звучит как 'руд', не путаю с ready/red.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — сборка фразы",
+      "what_i_understood": "Собрал He is not angry из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 — mean, slow карточки",
+      "what_i_understood": "mean — вредный специально, slow — медленный.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — слух slow",
+      "what_i_understood": "Отличил slow от low и sorry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — quiet карточка",
+      "what_i_understood": "quiet — тихий, просто такой человек, не значит обиженный.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — вставить слово про тихую женщину",
+      "what_i_understood": "Выбрал mean, потому что вопрос был про обиду специально, а не про то, тихая она или нет.",
+      "confusion": "Тут вопрос сформулирован не очень чётко — 'She is not ___' а ситуация про то, что коллега обижена, но женщина просто молчит. Я не сразу понял, надо ли отрицать mean или подтвердить quiet, но по смыслу задания (утверждение, не отрицание not) выбрал mean, раз в предложении нет not — то есть 'она не вредная'.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — доска пар",
+      "what_i_understood": "Соединил все 4 новых слова с переводом без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12-13 — serious",
+      "what_i_understood": "serious — серьёзный, не значит злой.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — kind карточка",
+      "what_i_understood": "kind — добрый, помогает без просьбы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — скрепка is/am/are",
+      "what_i_understood": "Про него — is, не am (то для я) и не are (то для ты).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — serious vs angry vs rude",
+      "what_i_understood": "Начальник не улыбается, но это не злость и не грубость — это serious.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — диктант She is not rude",
+      "what_i_understood": "Собрал фразу на слух, лишние плитки it/are не тронул.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 — quiet про молчаливую женщину",
+      "what_i_understood": "Она не злится, просто тихая — выбрал quiet.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19 — busy, лишняя плитка not",
+      "what_i_understood": "Он занят на самом деле, поэтому не нужно not — просто He is busy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 20 — финал, три фразы подряд",
+      "what_i_understood": "Сказал все три отрицания сам, без подсказок: He is not angry. She is not rude. He is not slow.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как сказать 'он/она не + слово' с He is not / She is not",
+    "Новые слова: angry (злой), rude (грубый), mean (вредный специально), slow (медленный)",
+    "Разница между mean и rude — специально обидел или просто плохие манеры",
+    "Что is относится к he/she, а не к I или you"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2 и Интро 3",
+      "why": "Структура повторяется один в один: слово, определение, пример с is not, вопрос. К третьему интро уже предсказываю формат, немного скучно, но не критично."
+    }
+  ],
+  "felt_alive": [
+    "Задание 19, где нужно было ЗАМЕТИТЬ, что not на самом деле не нужен — там я реально думал, а не автоматом ставил not",
+    "Финальная сцена (задание 20), где сразу три реплики подряд без подсказок — почувствовал, что правда умею отвечать, а не просто нажимать на подсказанную кнопку"
+  ],
+  "felt_dead": [
+    "Карточки слов (1, 3, 6, 7, 9, 12, 14) — просто показ слова и перевода, без контекста, как в обычном словаре"
+  ],
+  "scene_reason": "Да, понятно. Есть чёткая сцена: вечер, парковка, ждём такси, коллега вслух ошибается насчёт людей в команде, а я её поправляю. Каждая фраза 'He is not angry' и т.д. — это реплика в конкретный момент разговора, а не абстрактное упражнение.",
+  "would_continue": "Да — сессия короткая, тема понятная, в конце я реально смог сам, без подсказок, ответить на три вопроса подряд. Чувствую прогресс.",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы известными мне словами и грамматикой, тема раскрыта постепенно, сцена понятна, к концу я узнал новое и смог применить это самостоятельно."
+}

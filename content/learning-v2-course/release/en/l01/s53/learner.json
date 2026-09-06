@@ -1,0 +1,796 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мама спросила, как вы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i01:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i01:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i01:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мама спросила, как вы",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мама спросила, как вы",
+          "uk": "Вставте слово — мама спитала, як ви"
+        },
+        "gappedTargetPhrase": "I ___ tired.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i01:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i01:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i01:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мама спросила, как вы",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i01:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спросила, как вы",
+            "feedbackByLocale": {
+              "ru": "Чужая скрепка. Про себя — только `am`.",
+              "uk": "Чужа скріпка. Про себе — тільки `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спросила, как вы",
+            "feedbackByLocale": {
+              "ru": "`are` идёт с `we`, `you`, `they`. С `I` — `am`.",
+              "uk": "`are` іде з `we`, `you`, `they`. З `I` — `am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь про брата, он занят",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i02:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i02:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i02:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь про брата, он занят",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь про брата, он занят",
+          "uk": "Вставте слово — мова про брата, він зайнятий"
+        },
+        "gappedTargetPhrase": "He ___ busy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i02:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i02:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i02:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь про брата, он заня",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i02:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь про брата, он заня",
+            "feedbackByLocale": {
+              "ru": "`am` бывает только рядом с `I`. Про другого человека — `is`.",
+              "uk": "`am` буває тільки поруч із `I`. Про іншу людину — `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь про брата, он заня",
+            "feedbackByLocale": {
+              "ru": "`are` — когда людей несколько. Брат один.",
+              "uk": "`are` — коли людей кілька. Брат один."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i03:r1",
+          "text": "busy"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i03:r2",
+          "text": "easy"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i03:r3",
+          "text": "body"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — busy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:i03:audio",
+          "transcript": "busy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-53:i03:r1",
+            "targetText": "busy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i03:r2",
+            "targetText": "easy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i03:r3",
+            "targetText": "body",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i03:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — busy",
+            "feedbackByLocale": {
+              "ru": "Это «легко». Мама спрашивала, занят ли брат, а не легко ли ему.",
+              "uk": "Це «легко». Мама питала, чи брат зайнятий, а не чи легко йому."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — busy",
+            "feedbackByLocale": {
+              "ru": "Это «тело». Про человека занятого говорят `busy`.",
+              "uk": "Це «тіло». Про зайняту людину кажуть `busy`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «мы дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «мы дома»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are home.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «мы дома»",
+          "uk": "Складіть фразу — «ми вдома»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — про вас и брата вместе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i05:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i05:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i05:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — про вас и брата вместе",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — про вас и брата вместе",
+          "uk": "Вставте слово — про вас із братом разом"
+        },
+        "gappedTargetPhrase": "We ___ home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i05:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i05:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i05:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — про вас и брата вместе",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i05:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — про вас и брата вместе",
+            "feedbackByLocale": {
+              "ru": "`we` — это «мы», уже не один человек. Нужно `are`.",
+              "uk": "`we` — це «ми», уже не одна людина. Потрібне `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — про вас и брата вместе",
+            "feedbackByLocale": {
+              "ru": "`am` идёт только с `I`. Про «мы» — `are`.",
+              "uk": "`am` іде тільки з `I`. Про «ми» — `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «она не болеет»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «она не болеет»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is not sick.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «она не болеет»",
+          "uk": "Складіть фразу — «вона не хворіє»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "not",
+          "sick"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сестра здорова",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i07:r1",
+          "text": "not"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i07:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i07:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сестра здорова",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сестра здорова",
+          "uk": "Вставте слово — сестра здорова"
+        },
+        "gappedTargetPhrase": "She is ___ sick.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i07:r1",
+            "text": "not"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i07:r2",
+            "text": "no"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i07:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сестра здорова",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i07:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сестра здорова",
+            "feedbackByLocale": {
+              "ru": "`no` — это ответ «нет» на вопрос. Внутри фразы «не» — `not`.",
+              "uk": "`no` — це відповідь «ні» на запитання. Усередині фрази «не» — `not`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сестра здорова",
+            "feedbackByLocale": {
+              "ru": "`am` тут ни при чём: скрепка `is` уже стоит, нужно `not`.",
+              "uk": "`am` тут ні до чого: скріпка `is` уже стоїть, потрібне `not`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «я не занят»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «я не занят»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:i08:audio",
+          "transcript": "I am not busy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am not busy.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "busy"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Различите звуки — какое из двух про «болеет»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i09:r1",
+          "text": "sick"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i09:r2",
+          "text": "six"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Различите звуки — какое из двух про «болеет»?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "sick",
+        "contrastB": "six",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": null,
+        "audioB": null,
+        "testedPhoneticContrast": "Различите звуки — какое из двух про «бол",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i09:r1",
+            "correct": false,
+            "testedDimension": "Различите звуки — какое из двух про «бол",
+            "feedbackByLocale": {
+              "ru": "Это «шесть». На конце `six` слышится «кс», у `sick` — просто «к».",
+              "uk": "Це «шість». У кінці `six` чути «кс», у `sick` — просто «к»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — соседи не вместе, каждый у себя",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-53:i10:r1",
+          "text": "together"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i10:r2",
+          "text": "home"
+        },
+        {
+          "responseId": "en:lesson-01:session-53:i10:r3",
+          "text": "tired"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — соседи не вместе, каждый у себя",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — соседи не вместе, каждый у себя",
+          "uk": "Вставте слово — сусіди не разом, кожен у себе"
+        },
+        "gappedTargetPhrase": "They are not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i10:r1",
+            "text": "together"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i10:r2",
+            "text": "home"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i10:r3",
+            "text": "tired"
+          }
+        ],
+        "testedDimension": "Вставьте слово — соседи не вместе, кажды",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-53:i10:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — соседи не вместе, кажды",
+            "feedbackByLocale": {
+              "ru": "«Они не дома» — а мама спрашивала, вместе ли они.",
+              "uk": "«Вони не вдома» — а мама питала, чи вони разом."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — соседи не вместе, кажды",
+            "feedbackByLocale": {
+              "ru": "«Они не устали» — это про силы, а не про компанию.",
+              "uk": "«Вони не втомилися» — це про сили, а не про компанію."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «он не дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «он не дома»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is not home.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «он не дома»",
+          "uk": "Складіть фразу — «він не вдома»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "not",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-53:i12:p1",
+            "target": "tired",
+            "meaningByLocale": {
+              "ru": "устал",
+              "uk": "втомився"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-53:i12:p2",
+            "target": "busy",
+            "meaningByLocale": {
+              "ru": "занят",
+              "uk": "зайнятий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-53:i12:p3",
+            "target": "sick",
+            "meaningByLocale": {
+              "ru": "болеет",
+              "uk": "хворіє"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-53:i12:p4",
+            "target": "home",
+            "meaningByLocale": {
+              "ru": "дома",
+              "uk": "вдома"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tired",
+          "busy",
+          "sick",
+          "home"
+        ],
+        "rightColumn": [
+          "устал",
+          "занят",
+          "болеет",
+          "дома"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Правда или отрицание? Брат правда занят — скажите как есть",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Правда или отрицание? Брат правда занят — скажите как есть",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is busy.",
+        "localizedMeaning": {
+          "ru": "Правда или отрицание? Брат правда занят — скажите как есть",
+          "uk": "Правда чи заперечення? Брат справді зайнятий — скажіть як є"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "busy"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «мы не устали»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «мы не устали»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are not tired.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «мы не устали»",
+          "uk": "Складіть фразу — «ми не втомилися»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "not",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — успокаиваете маму",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — успокаиваете маму",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:i15:audio",
+          "transcript": "We are together. We are not tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are together. We are not tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-53:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — четыре ответа маме подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — четыре ответа маме подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-53:i16:audio",
+          "transcript": "I am tired. He is busy. She is not sick. We are together."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am tired. He is busy. She is not sick. We are together.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8ce7a4b942eb0e22acf599adf7bd2462cc8d5a4ae77bd754d73a4f402aca4a04"
+}

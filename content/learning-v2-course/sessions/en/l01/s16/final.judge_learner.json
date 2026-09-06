@@ -1,0 +1,148 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про собеседника всегда говорим 'are', даже если по-русски связка не нужна. You are kind = ты добрый.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Чтобы сказать 'не', слово not встаёт между are и словом: You are not wrong = ты не неправ (то есть ты прав).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Похвалить можно и через отрицание (you are not wrong), а can прямая похвала — you are brave. Порядок всегда: are, потом not, потом слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (kind на слух)",
+      "what_i_understood": "Выбрал kind, отличил от kid и king по звуку на конце.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (вставка kind)",
+      "what_i_understood": "Похвала за помощь другим — kind, а не tired или wrong.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (honest на слух)",
+      "what_i_understood": "honest начинается с немой h, звучит 'онест'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (сборка honest)",
+      "what_i_understood": "Собрал You are honest, лишнее слово is не подошло.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (are перед calm)",
+      "what_i_understood": "С you всегда are, не am и не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (диктант you are not tired)",
+      "what_i_understood": "Порядок not сразу после are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (пары 1)",
+      "what_i_understood": "Свёл переводы kind/honest/calm/tired, все уже были объяснены.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (not wrong)",
+      "what_i_understood": "Утешение про вину — wrong, а не brave/lucky (они не в тему).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (сборка you are not wrong)",
+      "what_i_understood": "Лишнее am отбросил, снова порядок are-not-слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (brave на слух)",
+      "what_i_understood": "brave отличил от bread и grave по первому звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (sad на слух)",
+      "what_i_understood": "sad отличил от sat (конец) и said (звук гласной).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (brave за поступок)",
+      "what_i_understood": "Похвала за храбрый поступок — brave, не calm/sad.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (диктант you are lucky)",
+      "what_i_understood": "Собрал фразу про везение, лишнее not не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (not tired)",
+      "what_i_understood": "Про зевоту — not tired, не про честность/удачу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (пары 2)",
+      "what_i_understood": "Свёл brave/lucky/wrong/sad — все уже знакомы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (голос: not sad, lucky)",
+      "what_i_understood": "Сказал вслух две фразы подряд про подбадривание.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, 5 фраз)",
+      "what_i_understood": "Собрал все пять фраз про коллегу подряд: kind, honest, brave, calm, not wrong.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Про собеседника (you) всегда are, никогда am или is",
+    "not встаёт строго между are и словом, не в начале и не в конце фразы",
+    "можно похвалить человека через отрицание (you are not wrong вместо ты прав)",
+    "слова kind, honest, brave, calm, tired, lucky, wrong, sad и их произношение/отличие от похожих по звучанию слов"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 3",
+      "why": "После интро 1 и 2 уже понятно, что порядок are-not-слово железный. Третье интро повторяет то же самое правило третий раз подряд, просто на новом слове (brave)."
+    }
+  ],
+  "felt_alive": [
+    "Идея хвалить человека через отрицание (you are not wrong) — неожиданный и полезный поворот, запомнилось",
+    "Финал с пятью фразами подряд про одного и того же коллегу — приятно, что всё складывается в цельную сцену"
+  ],
+  "felt_dead": [
+    "Интро 3 ощущается как повтор интро 2 по структуре — просто новое слово вставили в то же объяснение про not"
+  ],
+  "scene_reason": "да — понятно: пятница, курилка, коллега ноет на себя весь урок, а я его подбадриваю разными фразами. К финалу видно, зачем нужны все пять фраз — это цельный монолог поддержки одному и тому же человеку.",
+  "would_continue": "да — сессия короткая, порядок слов понятен, слова знакомые повторяются с новых сторон (произношение, контекст), в конце приятное ощущение, что я реально сказал что-то живое человеку",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно без незнакомых слов в правильных ответах, узнал новое правило (похвала через отрицание) и понял сцену от начала до конца."
+}

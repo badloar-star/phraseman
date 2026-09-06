@@ -1,0 +1,133 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — patient",
+      "what_i_understood": "Новое слово patient = терпеливый. Про другого человека надо ставить is: He is patient, без is фраза не работает.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — grumpy",
+      "what_i_understood": "grumpy = ворчливый, это слабее чем angry (злой). Тоже нужен is: He is grumpy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — proud",
+      "what_i_understood": "proud = горд, бывает и хорошо и плохо. Чтобы сказать «не», not ставится сразу после is: She is not proud.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — карточка patient",
+      "what_i_understood": "Повторение слова patient.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — на слух patient",
+      "what_i_understood": "Выбрал patient, ловушки patent/payment звучат по-другому в середине.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 — grumpy",
+      "what_i_understood": "Опознал grumpy на слух, отличил от grimy/gripy по гласной.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — сборка фразы He is patient",
+      "what_i_understood": "Собрал фразу, не взял лишнее am (это для I, не для He).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — вставь слово grumpy",
+      "what_i_understood": "Мужчина бурчит каждый день — это grumpy, не quiet и не kind.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-8 — proud",
+      "what_i_understood": "proud на слух, отличил от pride/prod по звуку гласной.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9-10 — gentle",
+      "what_i_understood": "Новое слово gentle = мягкий, отличил на слух от general/gentleman.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — пары",
+      "what_i_understood": "Свёл все 4 новых слова с переводами без ошибок.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — вставь gentle",
+      "what_i_understood": "Мягкая с детьми — gentle, не proud и не grumpy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — диктовка She is not proud",
+      "what_i_understood": "Собрал по порядку she-is-not-proud, лишнее are не тронул.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — He is calm, лишнее not",
+      "what_i_understood": "Он спокойный — не нужно not, просто He is calm.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — kind",
+      "what_i_understood": "Добрая с людьми — kind, не angry и не proud.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — angry",
+      "what_i_understood": "Хлопнул дверью — это angry, не quiet (тихий не хлопает дверью) и не grumpy (это помельче).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — quiet",
+      "what_i_understood": "Не сказала ни слова — quiet, не angry (молчание не то же самое что злость) и не grumpy (та ворчит вслух).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 — говорю вслух про троих",
+      "what_i_understood": "Собрал итог: He is patient. She is gentle. He is not grumpy. — все слова уже знакомы из этой же сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "patient — терпеливый",
+    "grumpy — ворчливый (слабее чем angry)",
+    "proud — горд (и в хорошем, и в плохом смысле)",
+    "gentle — мягкий (про людей, особенно как ведут себя с другими)",
+    "порядок отрицания: is всегда перед not (She is not proud, а не She not is)",
+    "разница между angry (вспылил, хлопнул дверью) и grumpy (тихое бурчание) — раньше не различал бы",
+    "разница между quiet (просто молчит) и angry/grumpy — молчание само по себе не злость"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с парковкой и коллегой, которая комментирует людей — понятно, зачем каждая фраза",
+    "Задание 16 про хлопнувшую дверь — сразу чувствуешь разницу между angry и grumpy, не абстрактно, а по действию",
+    "Задание 18 в конце — приятно, что просят сказать про троих сразу, как будто правда подводишь итог вечера"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — я в роли человека, который ждёт такси с коллегой и по очереди говорит про людей, которые выходят из дверей. Каждая фраза привязана к конкретному человеку и ситуации, а не висит в воздухе.",
+  "would_continue": "да — слова простые, объяснены на конкретных примерах (кто именно и что сделал), задания не повторяют одно и то же дословно, а под конец даже просят сказать что-то своими словами.",
+  "verdict": "PASS",
+  "verdict_reason": "Все 18 заданий выполнимы известными словами и грамматикой, ловушки честные, и я реально усвоил новую разницу между angry/grumpy/quiet, чего не знал до сессии."
+}

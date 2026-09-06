@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "применение — полные и короткие формы вперемешку",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`It is` можно сжать в `It's`",
+        "uk": "`It is` можна стиснути до `It's`"
+      },
+      "bodyByLocale": {
+        "ru": "`job` — «работа»: место, куда вы ходите, и должность, которая там написана. Работа — вещь, поэтому про неё `it`.\n\n`It is new` — «она новая». В быстрой речи два слова слипаются: `It's new`. Обе формы верные.\n\nА вот `its` без значка — совсем другое слово, «его». Значок заменяет букву `i` из `is`.",
+        "uk": "`job` — «робота»: місце, куди ви ходите, і посада, яка там записана. Робота — річ, тому про неї `it`.\n\n`It is new` — «вона нова». У швидкій мові два слова злипаються: `It's new`. Обидві форми правильні.\n\nА от `its` без значка — зовсім інше слово, «його». Значок замінює букву `i` з `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Мама не знает, давно ли вы там. Скажите, что работа новая.",
+          "uk": "Мама не знає, чи давно ви там. Скажіть, що робота нова."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-50:intro1:r1",
+              "text": "It's new."
+            },
+            {
+              "responseId": "en:lesson-01:session-50:intro1:r2",
+              "text": "It new."
+            },
+            {
+              "responseId": "en:lesson-01:session-50:intro1:r3",
+              "text": "Its new."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-50:intro1:r1",
+              "text": "It's new."
+            },
+            {
+              "responseId": "en:lesson-01:session-50:intro1:r2",
+              "text": "It new."
+            },
+            {
+              "responseId": "en:lesson-01:session-50:intro1:r3",
+              "text": "Its new."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама не знает, давно ли вы там. Скажите, что работа новая.",
+          "uk": "Мама не знає, чи давно ви там. Скажіть, що робота нова."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Про человека — `he` или `she`",
+        "uk": "Про людину — `he` або `she`"
+      },
+      "bodyByLocale": {
+        "ru": "`boss` — «начальник». Это человек, значит `he` или `she`, а не `it`.\n\n`kind` — «добрый». `He is kind`, или коротко — `He's kind`. Сокращается `is` и приклеивается к тому, кто впереди.\n\nНачальник не добрый? Тогда `He isn't kind`: тут `is` слиплось с `not`.",
+        "uk": "`boss` — «начальник». Це людина, отже `he` або `she`, а не `it`.\n\n`kind` — «добрий». `He is kind`, або коротко — `He's kind`. Скорочується `is` і приклеюється до того, хто попереду.\n\nНачальник не добрий? Тоді `He isn't kind`: тут `is` злиплося з `not`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Мама спрашивает, какой он. Он вам нравится — скажите, что добрый.",
+          "uk": "Мама питає, який він. Він вам подобається — скажіть, що добрий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-50:intro2:r1",
+              "text": "He's kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-50:intro2:r2",
+              "text": "He kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-50:intro2:r3",
+              "text": "He's isn't kind."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-50:intro2:r1",
+              "text": "He's kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-50:intro2:r2",
+              "text": "He kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-50:intro2:r3",
+              "text": "He's isn't kind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама спрашивает, какой он. Он вам нравится — скажите, что добрый.",
+          "uk": "Мама питає, який він. Він вам подобається — скажіть, що добрий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сказать «не» можно двумя путями",
+        "uk": "Сказати «не» можна двома шляхами"
+      },
+      "bodyByLocale": {
+        "ru": "`flat` — «квартира», `city` — «город». Вещи, значит про них `it`.\n\nКвартира маленькая — `It's small`. Дорогая — `It's expensive`.\n\nА «не дорогая» собирается двумя способами: `It isn't expensive` или `It's not expensive`. Значение одинаковое, берите любой.",
+        "uk": "`flat` — «квартира», `city` — «місто». Речі, отже про них `it`.\n\nКвартира маленька — `It's small`. Дорога — `It's expensive`.\n\nА «не дорога» збирається двома способами: `It isn't expensive` або `It's not expensive`. Значення однакове, беріть будь-який."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Мама спрашивает про квартиру. Она маленькая — скажите так.",
+          "uk": "Мама питає про квартиру. Вона маленька — скажіть так."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-50:intro3:r1",
+              "text": "It's small."
+            },
+            {
+              "responseId": "en:lesson-01:session-50:intro3:r2",
+              "text": "It small."
+            },
+            {
+              "responseId": "en:lesson-01:session-50:intro3:r3",
+              "text": "It's isn't small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-50:intro3:r1",
+              "text": "It's small."
+            },
+            {
+              "responseId": "en:lesson-01:session-50:intro3:r2",
+              "text": "It small."
+            },
+            {
+              "responseId": "en:lesson-01:session-50:intro3:r3",
+              "text": "It's isn't small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама спрашивает про квартиру. Она маленькая — скажите так.",
+          "uk": "Мама питає про квартиру. Вона маленька — скажіть так."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "076558c3115d481fdaf9cd3680243e5d24fe29b9e46df0a6af6c880d21a24b71"
+}

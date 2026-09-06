@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-52:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i02",
+    "correctText": "week",
+    "correctResponseId": "en:lesson-01:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i04",
+    "correctText": "day",
+    "correctResponseId": "en:lesson-01:session-52:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i06",
+    "correctText": "night",
+    "correctResponseId": "en:lesson-01:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i07",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-52:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i09",
+    "correctText": "morning",
+    "correctResponseId": "en:lesson-01:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i11",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i12",
+    "correctText": "The days are quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i13",
+    "correctText": "fine",
+    "correctResponseId": "en:lesson-01:session-52:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-52:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i15",
+    "correctText": "The morning is early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i16",
+    "correctText": "I am tired in the morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i17",
+    "correctText": "I am fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-52:i18",
+    "correctText": "The week is busy. The days are busy. The nights are quiet. I am tired in the morning.",
+    "correctResponseId": null
+  }
+]

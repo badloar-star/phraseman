@@ -1,0 +1,84 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "polite",
+      "serious",
+      "lucky",
+      "sad"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 5,
+        "trap": "serious/tired как отвлекающие слова из уже пройденного набора"
+      },
+      {
+        "task": 12,
+        "trap": "am/is вместо are при you — типичная путаница скрепок"
+      },
+      {
+        "task": 15,
+        "trap": "sad/honest как смысловые дистракторы"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 20,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "polite",
+        "serious",
+        "lucky",
+        "sad"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s12/l01_s13/l01_s14",
+      "what": "конструкция разбора «Скрепка выпала. По-русски … по-английски без `are`/`am` фраза не стоит/разваливается» почти дословно повторяется из предыдущих сессий (не новая для этой сессии, но это устойчивый шаблон объяснения, а не сюжетный повтор — пограничный случай, не блокирую как сцену/шутку)"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 7,
+      "listen_choose": 4,
+      "context_gap_grammar": 3,
+      "phrase_builder": 3,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы, честность заданий и форма соблюдены: новые слова и грамматика соответствуют плану, ловушки реалистичны, доска Speed Match отработана заранее, повторов фраз и мёртвых формул нет."
+}

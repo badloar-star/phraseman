@@ -1,0 +1,909 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — there",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — there",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i01:audio",
+          "transcript": "there"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-51:i01:r1",
+            "targetText": "there",
+            "meaningByLocale": {
+              "ru": "«там». Не здесь, а в другом месте — на которое можно махнуть рукой.",
+              "uk": "«там». Не тут, а в іншому місці — на яке можна махнути рукою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "there",
+          "definitionByLocale": {
+            "ru": "«там». Не здесь, а в другом месте — на которое можно махнуть рукой.",
+            "uk": "«там». Не тут, а в іншому місці — на яке можна махнути рукою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i02:r1",
+          "text": "there"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i02:r2",
+          "text": "three"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i02:r3",
+          "text": "where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — there",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i02:audio",
+          "transcript": "there"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-51:i02:r1",
+            "targetText": "there",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i02:r2",
+            "targetText": "three",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i02:r3",
+            "targetText": "where",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — there",
+            "feedbackByLocale": {
+              "ru": "Это «три», число. Здесь нужно слово о месте.",
+              "uk": "Це «три», число. Тут потрібне слово про місце."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — there",
+            "feedbackByLocale": {
+              "ru": "Это «где», вопрос. А в ответе про место — `there`.",
+              "uk": "Це «де», питання. А у відповіді про місце — `there`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — upstairs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — upstairs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i03:audio",
+          "transcript": "upstairs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-51:i03:r1",
+            "targetText": "upstairs",
+            "meaningByLocale": {
+              "ru": "«наверху». На этаж выше: там, куда надо подняться по лестнице.",
+              "uk": "«нагорі». На поверх вище: там, куди треба піднятися сходами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "upstairs",
+          "definitionByLocale": {
+            "ru": "«наверху». На этаж выше: там, куда надо подняться по лестнице.",
+            "uk": "«нагорі». На поверх вище: там, куди треба піднятися сходами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «он наверху»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «он наверху»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is upstairs.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «он наверху»",
+          "uk": "Складіть фразу — «він нагорі»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "upstairs"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — outside",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — outside",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i05:audio",
+          "transcript": "outside"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-51:i05:r1",
+            "targetText": "outside",
+            "meaningByLocale": {
+              "ru": "«снаружи, на улице». Вышел за дверь — и он уже `outside`.",
+              "uk": "«надворі, на вулиці». Вийшов за двері — і він уже `outside`."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "outside",
+          "definitionByLocale": {
+            "ru": "«снаружи, на улице». Вышел за дверь — и он уже `outside`.",
+            "uk": "«надворі, на вулиці». Вийшов за двері — і він уже `outside`."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i06:r1",
+          "text": "outside"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i06:r2",
+          "text": "inside"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i06:r3",
+          "text": "beside"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — outside",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i06:audio",
+          "transcript": "outside"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-51:i06:r1",
+            "targetText": "outside",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i06:r2",
+            "targetText": "inside",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i06:r3",
+            "targetText": "beside",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i06:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — outside",
+            "feedbackByLocale": {
+              "ru": "`inside` — «внутри», ровно наоборот. Здесь речь о том, кто вышел за дверь.",
+              "uk": "`inside` — «всередині», рівно навпаки. Тут ідеться про того, хто вийшов за двері."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — outside",
+            "feedbackByLocale": {
+              "ru": "`beside` — «рядом, около». Тоже про место, но не про улицу.",
+              "uk": "`beside` — «поряд, біля». Теж про місце, але не про вулицю."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — inside",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — inside",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i07:audio",
+          "transcript": "inside"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-51:i07:r1",
+            "targetText": "inside",
+            "meaningByLocale": {
+              "ru": "«внутри». В доме, в машине, в кафе — под крышей.",
+              "uk": "«всередині». У домі, в машині, у кав'ярні — під дахом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inside",
+          "definitionByLocale": {
+            "ru": "«внутри». В доме, в машине, в кафе — под крышей.",
+            "uk": "«всередині». У домі, в машині, у кав'ярні — під дахом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — дождь, а он не выходит из машины",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i08:r1",
+          "text": "inside"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i08:r2",
+          "text": "outside"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i08:r3",
+          "text": "upstairs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — дождь, а он не выходит из машины",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — дождь, а он не выходит из машины",
+          "uk": "Вставте слово — дощ, а він не виходить з машини"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-51:i08:r1",
+            "text": "inside"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i08:r2",
+            "text": "outside"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i08:r3",
+            "text": "upstairs"
+          }
+        ],
+        "testedDimension": "Вставьте слово — дождь, а он не выходит ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i08:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дождь, а он не выходит ",
+            "feedbackByLocale": {
+              "ru": "Это «на улице», а он как раз не выходит.",
+              "uk": "Це «на вулиці», а він якраз не виходить."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дождь, а он не выходит ",
+            "feedbackByLocale": {
+              "ru": "«Наверху» — про этаж. В машине этажей нет.",
+              "uk": "«Нагорі» — про поверх. У машині поверхів немає."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-51:i09:p1",
+            "target": "there",
+            "meaningByLocale": {
+              "ru": "там",
+              "uk": "там"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-51:i09:p2",
+            "target": "upstairs",
+            "meaningByLocale": {
+              "ru": "наверху",
+              "uk": "нагорі"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-51:i09:p3",
+            "target": "outside",
+            "meaningByLocale": {
+              "ru": "снаружи",
+              "uk": "надворі"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-51:i09:p4",
+            "target": "inside",
+            "meaningByLocale": {
+              "ru": "внутри",
+              "uk": "всередині"
+            }
+          }
+        ],
+        "leftColumn": [
+          "there",
+          "upstairs",
+          "outside",
+          "inside"
+        ],
+        "rightColumn": [
+          "там",
+          "наверху",
+          "снаружи",
+          "внутри"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — мама спрашивает, где вы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i10:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i10:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i10:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — мама спрашивает, где вы",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — мама спрашивает, где вы",
+          "uk": "Вставте скріпку — мама питає, де ви"
+        },
+        "gappedTargetPhrase": "I ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-51:i10:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i10:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i10:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — мама спрашивает, где ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i10:r1",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — мама спрашивает, где ",
+            "feedbackByLocale": {
+              "ru": "Чужая скрепка. Про себя — `am`.",
+              "uk": "Чужа скріпка. Про себе — `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — мама спрашивает, где ",
+            "feedbackByLocale": {
+              "ru": "`are` — про «ты», «мы», «они». Про себя — `am`.",
+              "uk": "`are` — про «ти», «ми», «вони». Про себе — `am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «она дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «она дома»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is at home.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «она дома»",
+          "uk": "Складіть фразу — «вона вдома»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — брат сидит дома, никуда не пошёл",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i12:r1",
+          "text": "home"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i12:r2",
+          "text": "here"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i12:r3",
+          "text": "outside"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — брат сидит дома, никуда не пошёл",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — брат сидит дома, никуда не пошёл",
+          "uk": "Вставте слово — брат сидить удома, нікуди не пішов"
+        },
+        "gappedTargetPhrase": "He is at ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-51:i12:r1",
+            "text": "home"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i12:r2",
+            "text": "here"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i12:r3",
+            "text": "outside"
+          }
+        ],
+        "testedDimension": "Вставьте слово — брат сидит дома, никуда",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i12:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — брат сидит дома, никуда",
+            "feedbackByLocale": {
+              "ru": "`here` — «здесь», и `at` ему не нужно: `He is here`.",
+              "uk": "`here` — «тут», і `at` йому не потрібне: `He is here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — брат сидит дома, никуда",
+            "feedbackByLocale": {
+              "ru": "Это «на улице», а он никуда не пошёл.",
+              "uk": "Це «на вулиці», а він нікуди не пішов."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «они снаружи»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «они снаружи»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i13:audio",
+          "transcript": "They are outside."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are outside.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "outside"
+        ],
+        "authoredDistractorTokens": [
+          "at"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мама зовёт к телефону, а вы наверху",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i14:r1",
+          "text": "upstairs"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i14:r2",
+          "text": "outside"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i14:r3",
+          "text": "inside"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мама зовёт к телефону, а вы наверху",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мама зовёт к телефону, а вы наверху",
+          "uk": "Вставте слово — мама кличе до телефону, а ви нагорі"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-51:i14:r1",
+            "text": "upstairs"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i14:r2",
+            "text": "outside"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i14:r3",
+            "text": "inside"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мама зовёт к телефону, ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i14:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама зовёт к телефону, ",
+            "feedbackByLocale": {
+              "ru": "Это «на улице», а вы в доме.",
+              "uk": "Це «на вулиці», а ви в домі."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама зовёт к телефону, ",
+            "feedbackByLocale": {
+              "ru": "«Внутри» — верно, но мама спрашивает про этаж. Выше — `upstairs`.",
+              "uk": "«Всередині» — правильно, але мама питає про поверх. Вище — `upstairs`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сестра занята, к телефону не подойдёт",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сестра занята, к телефону не подойдёт",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is busy.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сестра занята, к телефону не подойдёт",
+          "uk": "Складіть фразу — сестра зайнята, до телефону не підійде"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "busy"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мама спрашивает, собрались ли вы выходить. Да",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-51:i16:r1",
+          "text": "ready"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i16:r2",
+          "text": "busy"
+        },
+        {
+          "responseId": "en:lesson-01:session-51:i16:r3",
+          "text": "inside"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мама спрашивает, собрались ли вы выходить. Да",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мама спрашивает, собрались ли вы выходить. Да",
+          "uk": "Вставте слово — мама питає, чи ви зібралися виходити. Так"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-51:i16:r1",
+            "text": "ready"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i16:r2",
+            "text": "busy"
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i16:r3",
+            "text": "inside"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мама спрашивает, собрал",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-51:i16:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спрашивает, собрал",
+            "feedbackByLocale": {
+              "ru": "Это «занят», а вы как раз освободились и собрались.",
+              "uk": "Це «зайнятий», а ви якраз звільнилися і зібралися."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-51:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спрашивает, собрал",
+            "feedbackByLocale": {
+              "ru": "Это про место, а мама спрашивает не «где», а «готовы ли».",
+              "uk": "Це про місце, а мама питає не «де», а «чи готові»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-51:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — мама выясняет всех разом, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — мама выясняет всех разом, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-51:i17:audio",
+          "transcript": "I am here. She is at home. They are outside. I am ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am here. She is at home. They are outside. I am ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "bf6ec9744f1ed715ce729711293acd5c055f14c694d8f43a66b64ec9e436e669"
+}

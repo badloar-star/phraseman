@@ -1,0 +1,124 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — married",
+      "what_i_understood": "married значит и «женат», и «замужем» — одно слово на всё. He is married, She is married. Между he/she и словом всегда стоит is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — single",
+      "what_i_understood": "single значит «нет пары», без оттенка грусти. Тоже с is: She is single.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — famous / rich",
+      "what_i_understood": "famous — знаменитый (узнают на улице), rich — богатый. Схема та же: She is famous, He is rich.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка married)",
+      "what_i_understood": "Повтор определения.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух married)",
+      "what_i_understood": "Выбрал married, отличил от merry и marred на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (single)",
+      "what_i_understood": "Карточка + слух, отличил single от simple и sing.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (карточка funny)",
+      "what_i_understood": "funny — смешной, это слово я уже видел раньше в списке, тут просто карточка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (про кольцо)",
+      "what_i_understood": "Выбрал married, funny и single — ловушки по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (сборка single)",
+      "what_i_understood": "Собрал She is single. из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8-9 (famous)",
+      "what_i_understood": "Карточка + слух, отличил famous от family и farmer.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10-11 (rich)",
+      "what_i_understood": "Карточка + слух, отличил rich от reach и ridge.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (диктант He is rich)",
+      "what_i_understood": "Собрал по слуху верно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (про женщину, узнают на улице)",
+      "what_i_understood": "Выбрал famous, отсеял rich и quiet — quiet тут просто знакомое слово-ловушка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (доска пар)",
+      "what_i_understood": "Соединил все 4 новых слова с переводом без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (парень молчит)",
+      "what_i_understood": "Выбрал quiet — тихий/молчаливый, funny и rich не подходят по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (диктант She is kind)",
+      "what_i_understood": "kind — добрая, слово уже знакомое, собрал верно, young — лишняя плитка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (He is funny, лишнее слово)",
+      "what_i_understood": "Собрал верно, young отбросил как ненужное.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "married — женат/замужем одним словом на оба случая",
+    "single — нет пары, без грустного оттенка",
+    "famous — знаменитый, узнают чужие люди",
+    "rich — богатый",
+    "закрепил конструкцию he is / she is + слово на новых примерах"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "сцена с кулером и человеком, который набирает воду медленно — простая и понятная причина, почему вообще идёт болтовня о коллегах",
+    "объяснение married/marry (действие vs состояние) — по-человечески, без вычурности"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: стоишь у кулера, кто-то долго набирает воду и попутно сплетничает про коллег — женат ли, знаменит ли, богат ли. Каждая фраза — это то, что ты говоришь или слышишь в этой болтовне.",
+  "would_continue": "да — было легко идти по шагам, новые слова закреплялись сразу и на слух, и в предложении, ловушки понятные, никакой мути",
+  "verdict": "PASS",
+  "verdict_reason": "Прошёл всю сессию без затыков, выучил 4 новых слова с примерами, ловушки были по делу, а не обманом, и сцена у кулера понятна с первой страницы."
+}

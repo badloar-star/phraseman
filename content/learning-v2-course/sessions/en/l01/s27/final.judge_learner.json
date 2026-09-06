@@ -1,0 +1,111 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (cheap)",
+      "what_i_understood": "Агент хвастается ценой, я не согласен. Говорю: It is not cheap. not встаёт сразу после is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (far)",
+      "what_i_understood": "no — отдельное слово-ответ, а not — часть фразы после is. Про расстояние: It is not far.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (easy/hard)",
+      "what_i_understood": "easy — легко, hard — трудно. Выбираю мягкий вариант: It is not easy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (cheap, far)",
+      "what_i_understood": "Карточки и слух отработали новые слова нормально, звуки понятны по объяснению.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка)",
+      "what_i_understood": "Собрал It is not cheap из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 (dark, ловушка)",
+      "what_i_understood": "dark — темно, но тут вопрос про расстояние до остановки, значит нужен far, а не dark. Понял почему.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 8-10 (easy, hard)",
+      "what_i_understood": "Закрепил easy и hard, услышал разницу с heart и hat.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11-12 (warm, ловушка)",
+      "what_i_understood": "warm — тепло, но замок трудно открыть — это hard, не про тепло.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (пары)",
+      "what_i_understood": "cheap-дёшево, far-далеко, easy-легко, hard-трудно — всё сходится с тем что учил.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14-15 (small)",
+      "what_i_understood": "small — маленький, я это уже видел раньше в приложении (тут прямо написано как новое напоминание, не отсылка к чему-то непонятному). Вставил is, не am/are, потому что про вещь.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (диктовка)",
+      "what_i_understood": "Собрал It is not far, лишняя плитка no не подошла — как раз то что объясняли в Интро 2.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17-18 (expensive)",
+      "what_i_understood": "expensive — дорого, собрал It is not expensive.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 19",
+      "what_i_understood": "Тут агент прав (правда темно), поэтому not — лишняя плитка. Собрал просто It is dark, без not. Понял логику.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 20 (пары)",
+      "what_i_understood": "small-маленький, dark-темно, expensive-дорого, warm-тепло — тоже всё уже встречалось на этой же сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 21 (финал)",
+      "what_i_understood": "Собрал четыре фразы подряд: три возражения и одно согласие (тепло — правда). Понятно зачем: агент расхваливает квартиру, я честно оцениваю.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Говорить It is not + признак, ставя not сразу после is (не в конец фразы и не вместо is)",
+    "Различать no (отдельный ответ) и not (часть фразы после is)",
+    "Новые слова: cheap, far, easy, hard",
+    "Понимать, когда not нужно убрать, если утверждение агента верное (задание 19)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с агентом по недвижимости, который нахваливает квартиру, а я вежливо всё оспариваю — понятно кто говорит и зачем я отвечаю",
+    "Финал сессии, где нужно ответить на четыре вопроса подряд без подсказок — приятно почувствовать, что реально что-то запомнил"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я — покупатель/арендатор, агент расхваливает квартиру (цена, расстояние, окно, температура), а я на каждое его слово отвечаю правдой. В финале это подтверждается — там прямо цитируется речь агента и мои ответы на неё.",
+  "would_continue": "да — сессия короткая, слова понятны, объяснения не перегружены метафорами, ловушки (small, dark, expensive, warm) логично встроены как повторение, а не как отсылка к тому что я 'уже знаю' откуда-то. Хочу дальше.",
+  "verdict": "PASS",
+  "verdict_reason": "Все 21 задание прошёл честно, ни одно не требовало незнакомых слов или форм, сцена понятна с первой страницы, узнал новые слова и правило постановки not после is."
+}

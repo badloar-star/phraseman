@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-50:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i02",
+    "correctText": "job",
+    "correctResponseId": "en:lesson-01:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i04",
+    "correctText": "boss",
+    "correctResponseId": "en:lesson-01:session-50:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i05",
+    "correctText": "new",
+    "correctResponseId": "en:lesson-01:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i06",
+    "correctText": "He's kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i08",
+    "correctText": "flat",
+    "correctResponseId": "en:lesson-01:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i10",
+    "correctText": "city",
+    "correctResponseId": "en:lesson-01:session-50:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i12",
+    "correctText": "expensive",
+    "correctResponseId": "en:lesson-01:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i13",
+    "correctText": "It isn't small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i14",
+    "correctText": "He isn't kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i15",
+    "correctText": "tired",
+    "correctResponseId": "en:lesson-01:session-50:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i16",
+    "correctText": "It's small. It's expensive. It's new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-50:i17",
+    "correctText": "It's new. He's kind. It's small. I'm tired.",
+    "correctResponseId": null
+  }
+]

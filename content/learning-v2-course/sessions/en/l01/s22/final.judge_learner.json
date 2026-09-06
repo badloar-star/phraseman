@@ -1,0 +1,150 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — asleep",
+      "what_i_understood": "Сосед говорит про сына: он спит. Между 'he' и словом всегда нужно 'is', иначе фраза не работает. Я это записал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос после Интро 1 (сын, не будить)",
+      "what_i_understood": "Выбрал 'He is asleep.' — подошло по смыслу картинки (лежит, не будить) и по правилу is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — awake",
+      "what_i_understood": "awake — не спит. Предупредили, что awake и asleep звучат похоже началом, но значат разное. Запомнил ловушку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос после Интро 2 (дочь возится, не спит)",
+      "what_i_understood": "Выбрал 'She is awake.' — правильный вариант из предложенных, не перепутал с asleep.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — away",
+      "what_i_understood": "away — его нет на месте (уехал куда-то). Дали произношение 'эУЭЙ'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос после Интро 3 (старший сын уехал на неделю)",
+      "what_i_understood": "Выбрал 'He is away.' — подходит по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — карточка asleep",
+      "what_i_understood": "Повтор того же слова, закрепил.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — слух asleep/sleep/sheep",
+      "what_i_understood": "Выбрал asleep, отличил от sleep (без начала) и sheep (овца, другой первый звук).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 — awake, слух",
+      "what_i_understood": "Аналогично, справился, отличил awake от wake и away.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — вставьте слово (сын лежит с закрытыми глазами)",
+      "what_i_understood": "Выбрал asleep, а не awake (наоборот) и не home (не по смыслу ситуации).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 — карточки away, ill",
+      "what_i_understood": "ill — болен, то же самое что sick, только другое слово. Понял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — слух ill/eel/all",
+      "what_i_understood": "Выбрал ill, отличил от eel (угорь, тянущийся звук) и all (другая гласная).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — соберите 'она уехала'",
+      "what_i_understood": "Собрал 'She is away.', не взял лишнюю плитку am (это только для I).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — дочь с температурой второй день",
+      "what_i_understood": "Выбрал ill, а не away (она дома) и не quiet (дело не в тишине, а в болезни).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — собрать 'он не спит'",
+      "what_i_understood": "Собрал 'He is awake.', не взял asleep (противоположное).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — пары",
+      "what_i_understood": "Соединил все 4 пары без проблем, слова уже знакомы из предыдущих заданий.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — дочь молчит с книгой",
+      "what_i_understood": "Выбрал quiet, а не away (она тут, просто тихая) и не ill (сейчас всё нормально).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — 'она дома', лишняя плитка are",
+      "what_i_understood": "Собрал 'She is home.', не взял are (это не про she).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — 'он не болен'",
+      "what_i_understood": "Собрал 'He is not sick.' — знакомая конструкция с not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — 'она устала', лишняя плитка not",
+      "what_i_understood": "Собрал 'She is tired.', not не нужен, потому что тут не отрицание.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал, 4 фразы подряд",
+      "what_i_understood": "Сказал: He is asleep. She is awake. He is away. He is tired. Собрал всё из того, что учил в этой же сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Говорить про третьего человека (не про себя), что он спит — He is asleep",
+    "Говорить, что кто-то НЕ спит, а бодрствует — He/She is awake",
+    "Говорить, что кого-то нет на месте (уехал) — He/She is away",
+    "Второе слово для 'болен' — ill (кроме уже знакомого sick)",
+    "Различать на слух похожие пары: asleep/sleep/sheep, awake/wake/away, ill/eel/all",
+    "Не путать awake и asleep, которые начинаются одинаково, но значат противоположное"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с соседом на лестничной площадке — понятно, зачем говоришь эти фразы: он реально рассказывает про своих домашних, и ты как бы отвечаешь/подтверждаешь за него",
+    "Ловушка awake/asleep — похожи по звучанию, разные по смыслу — реально заставляет быть внимательным, не просто механическое упражнение",
+    "Финал с четырьмя фразами подряд — приятно, что все слова урока пригодились сразу"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: сосед стоит у двери и вполголоса рассказывает, кто спит, кто нет, кто уехал, кто болеет — и ты либо повторяешь за него, либо отвечаешь на его слова. К каждому кусочку (сын спит — не будить, дочь возится — не спит, старший уехал, дочь болеет второй день, дочь тихо читает) привязана понятная бытовая причина, почему нужно именно это слово, а не другое.",
+  "would_continue": "да — сессия короткая, слова не пересекаются друг с другом путано, к концу я уже свободно отличаю все четыре новых слова и могу связать их в одну сценку про соседа",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы с указанным словарным запасом, ловушки честные (незнакомых слов в правильных ответах нет), новые слова закрепились и сцена понятна от начала до конца."
+}

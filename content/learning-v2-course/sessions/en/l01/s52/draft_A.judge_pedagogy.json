@@ -1,0 +1,80 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "week",
+      "day",
+      "night",
+      "morning"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [
+      {
+        "where": "Интро 1",
+        "item": "упоминание формы `was` («Между «неделей» и словом о ней нужна скрепка `was`? Нет — вы это ещё не проходили»)"
+      }
+    ],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 6,
+        "trap": "The week are busy — путает единственное/множественное число скрепки"
+      },
+      {
+        "task": 12,
+        "trap": "Everyone are kind — реалистичная ошибка согласования с собирательным словом"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "week",
+        "day",
+        "night",
+        "morning"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 3,
+      "context_gap_grammar": 4,
+      "phrase_builder": 2,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "BLOCK",
+  "verdict_reason": "Задание 9 (доска пар) ставит слово day в проверку памяти без единой отработки перед доской (только карточка в задании 3) — прямое нарушение границы «доска — проверка, а не знакомство»."
+}

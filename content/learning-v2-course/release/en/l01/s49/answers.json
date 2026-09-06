@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-49:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i02",
+    "correctText": "everyone",
+    "correctResponseId": "en:lesson-01:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i04",
+    "correctText": "nobody",
+    "correctResponseId": "en:lesson-01:session-49:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i05",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i08",
+    "correctText": "family",
+    "correctResponseId": "en:lesson-01:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i10",
+    "correctText": "My family is fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i11",
+    "correctText": "Nobody",
+    "correctResponseId": "en:lesson-01:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i12",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i13",
+    "correctText": "Everyone is busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i14",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i15",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-49:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i16",
+    "correctText": "Everyone is kind. Nobody is loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-49:i17",
+    "correctText": "People are loud. Everyone is kind. My family is fine. I am tired.",
+    "correctResponseId": null
+  }
+]

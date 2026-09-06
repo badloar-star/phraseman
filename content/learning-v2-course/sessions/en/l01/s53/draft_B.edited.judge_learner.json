@@ -1,0 +1,143 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — am про себя",
+      "what_i_understood": "Когда говорю про себя (I), между I и словом-состоянием ставлю am. I am tired = я устал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — are для нескольких",
+      "what_i_understood": "Когда людей больше одного (we, they), скрепка are, а не is. We are busy = мы заняты.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — not после скрепки",
+      "what_i_understood": "Чтобы сказать «не», not ставится сразу после скрепки (is/am/are), а не перед ней и не в конец. She is not sick.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — I ___ tired",
+      "what_i_understood": "Выбрал am, потому что про себя.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — He ___ busy",
+      "what_i_understood": "Выбрал is, он один человек.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 — звук busy",
+      "what_i_understood": "Узнал звучание слова busy среди похожих easy/body.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 — собрать We are home",
+      "what_i_understood": "Собрал плитки в фразу про дом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — We ___ home",
+      "what_i_understood": "are, потому что we — не один.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — собрать She is not sick",
+      "what_i_understood": "Понял порядок: she, is, not, sick.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — She is ___ sick",
+      "what_i_understood": "not, а не no — no для отдельного ответа, not внутри фразы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — диктант I am not busy",
+      "what_i_understood": "Собрал фразу по слуху, порядок совпал с тем, что уже понял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — sick vs six",
+      "what_i_understood": "На слух отличил sick (болеет) от six (шесть).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — They are not ___",
+      "what_i_understood": "Выбрал together, потому что вопрос был про то, вместе ли они, а не про усталость или дом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — собрать He is not home",
+      "what_i_understood": "Собрал без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — пары слов",
+      "what_i_understood": "Соединил tired/busy/sick/home с переводами, все уже знакомы по заданиям выше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — He is busy (лишняя плитка not)",
+      "what_i_understood": "Понял, что not не нужен, раз брат правда занят — надо было не хватать лишнюю плитку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — собрать We are not tired",
+      "what_i_understood": "Собрал: we, are, not, tired.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — повтор вслух",
+      "what_i_understood": "Проговорил We are together. We are not tired — фразы уже знакомые из предыдущих шагов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — финал, 4 ответа подряд",
+      "what_i_understood": "Собрал все четыре фразы сам: I am tired. He is busy. She is not sick. We are together. Ничего нового не потребовалось.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "am идёт только с I",
+    "are идёт с we/they (когда людей больше одного), а не is",
+    "is — для одного человека (he/she)",
+    "not встаёт сразу после скрепки (is/am/are), а не перед ней и не в конце фразы",
+    "на слух отличаю busy от easy/body и sick от six"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Задание 13",
+      "why": "по сути повтор задания 2 (he is busy), только с лишней плиткой — не дало ничего нового, кроме внимательности"
+    }
+  ],
+  "felt_alive": [
+    "Сцена с звонком маме понятна и человеческая — было ясно, кому и зачем я говорю эти фразы",
+    "Задание 16 в конце — приятно, что собрал всё сам без подсказок, почувствовал, что реально что-то умею"
+  ],
+  "felt_dead": [
+    "Интро 3 суховатое — просто правило про not, без живой детали, но хотя бы короткое и понятное"
+  ],
+  "scene_reason": "да — с самого начала понятно: воскресный звонок маме, она спрашивает по очереди про меня, брата, сестру, всех вместе, и в финале я отвечаю на все её вопросы сразу. Каждая фраза — прямой ответ на конкретный вопрос мамы.",
+  "would_continue": "да — задания шли по нарастающей, ничего непонятного не встретил, к финалу почувствовал, что реально усвоил разницу am/is/are и место not",
+  "verdict": "PASS",
+  "verdict_reason": "Прошёл сессию с первой попытки, узнал новое (am/is/are и место not), задания решаемы без незнакомых слов, сцена звонка маме понятна от начала до конца."
+}

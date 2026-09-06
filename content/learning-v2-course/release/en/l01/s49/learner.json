@@ -1,0 +1,923 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-49:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — everyone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — everyone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i01:audio",
+          "transcript": "everyone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-49:i01:r1",
+            "targetText": "everyone",
+            "meaningByLocale": {
+              "ru": "«все». Не толпа на площади, а все свои: все в комнате, все на работе.",
+              "uk": "«всі». Не натовп на площі, а всі свої: усі в кімнаті, усі на роботі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "everyone",
+          "definitionByLocale": {
+            "ru": "«все». Не толпа на площади, а все свои: все в комнате, все на работе.",
+            "uk": "«всі». Не натовп на площі, а всі свої: усі в кімнаті, усі на роботі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-49:i02:r1",
+          "text": "everyone"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i02:r2",
+          "text": "every"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i02:r3",
+          "text": "everything"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — everyone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i02:audio",
+          "transcript": "everyone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-49:i02:r1",
+            "targetText": "everyone",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i02:r2",
+            "targetText": "every",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i02:r3",
+            "targetText": "everything",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — everyone",
+            "feedbackByLocale": {
+              "ru": "«Каждый» — про одного за раз. `everyone` — про всех сразу.",
+              "uk": "«Кожен» — про одного за раз. `everyone` — про всіх одразу."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — everyone",
+            "feedbackByLocale": {
+              "ru": "Это «всё» про вещи, а не про людей.",
+              "uk": "Це «все» про речі, а не про людей."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nobody",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nobody",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i03:audio",
+          "transcript": "nobody"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-49:i03:r1",
+            "targetText": "nobody",
+            "meaningByLocale": {
+              "ru": "«никто». Ни одного человека: комната пустая, звонить некому.",
+              "uk": "«ніхто». Жодної людини: кімната порожня, дзвонити нікому."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nobody",
+          "definitionByLocale": {
+            "ru": "«никто». Ни одного человека: комната пустая, звонить некому.",
+            "uk": "«ніхто». Жодної людини: кімната порожня, дзвонити нікому."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-49:i04:r1",
+          "text": "nobody"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i04:r2",
+          "text": "body"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i04:r3",
+          "text": "nobly"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — nobody",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i04:audio",
+          "transcript": "nobody"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-49:i04:r1",
+            "targetText": "nobody",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i04:r2",
+            "targetText": "body",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i04:r3",
+            "targetText": "nobly",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — nobody",
+            "feedbackByLocale": {
+              "ru": "«Тело». Слово про человека, но про одного и живого, а вы говорите, что нет никого.",
+              "uk": "«Тіло». Слово про людину, але про одну й живу, а ви кажете, що немає нікого."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — nobody",
+            "feedbackByLocale": {
+              "ru": "«Благородно» — оценка поступка, а `nobody` — про людей, которых нет.",
+              "uk": "«Шляхетно» — оцінка вчинку, а `nobody` — про людей, яких немає."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — все на работе добрые",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-49:i05:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i05:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i05:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — все на работе добрые",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — все на работе добрые",
+          "uk": "Вставте скріпку — усі на роботі добрі"
+        },
+        "gappedTargetPhrase": "Everyone ___ kind.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-49:i05:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i05:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i05:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — все на работе добрые",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i05:r1",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — все на работе добрые",
+            "feedbackByLocale": {
+              "ru": "Тянет слово «все». Но `everyone` идёт с `is`.",
+              "uk": "Тягне слово «всі». Але `everyone` іде з `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — все на работе добрые",
+            "feedbackByLocale": {
+              "ru": "`am` бывает только про себя.",
+              "uk": "`am` буває тільки про себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — people",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — people",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i06:audio",
+          "transcript": "people"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-49:i06:r1",
+            "targetText": "people",
+            "meaningByLocale": {
+              "ru": "«люди». Просто много человек: в автобусе, в очереди, за стенкой.",
+              "uk": "«люди». Просто багато людей: в автобусі, у черзі, за стіною."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "people",
+          "definitionByLocale": {
+            "ru": "«люди». Просто много человек: в автобусе, в очереди, за стенкой.",
+            "uk": "«люди». Просто багато людей: в автобусі, у черзі, за стіною."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — family",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — family",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i07:audio",
+          "transcript": "family"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-49:i07:r1",
+            "targetText": "family",
+            "meaningByLocale": {
+              "ru": "«семья». Мама, папа, братья-сёстры — все разом, одним словом.",
+              "uk": "«сім'я». Мама, тато, брати-сестри — усі разом, одним словом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "family",
+          "definitionByLocale": {
+            "ru": "«семья». Мама, папа, братья-сёстры — все разом, одним словом.",
+            "uk": "«сім'я». Мама, тато, брати-сестри — усі разом, одним словом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-49:i08:r1",
+          "text": "family"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i08:r2",
+          "text": "funny"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i08:r3",
+          "text": "fairly"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — family",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i08:audio",
+          "transcript": "family"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-49:i08:r1",
+            "targetText": "family",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i08:r2",
+            "targetText": "funny",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i08:r3",
+            "targetText": "fairly",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i08:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — family",
+            "feedbackByLocale": {
+              "ru": "«Смешной». Про шутку, а не про родню.",
+              "uk": "«Смішний». Про жарт, а не про рідню."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — family",
+            "feedbackByLocale": {
+              "ru": "«Довольно» — слово-оценка, не про людей.",
+              "uk": "«Доволі» — слово-оцінка, не про людей."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — люди за стенкой шумят",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-49:i09:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — люди за стенкой шумят",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — люди за стенкой шумят",
+          "uk": "Вставте скріпку — люди за стіною шумлять"
+        },
+        "gappedTargetPhrase": "People ___ loud.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-49:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — люди за стенкой шумят",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i09:r1",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — люди за стенкой шумят",
+            "feedbackByLocale": {
+              "ru": "`people` — это уже много, к ним `are`.",
+              "uk": "`people` — це вже багато, до них `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — люди за стенкой шумят",
+            "feedbackByLocale": {
+              "ru": "`am` — только про себя, а вы про соседей.",
+              "uk": "`am` — тільки про себе, а ви про сусідів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «в семье всё хорошо»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «в семье всё хорошо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My family is fine.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «в семье всё хорошо»",
+          "uk": "Складіть фразу — «у сім'ї все добре»"
+        },
+        "orderedTokens": [
+          "My",
+          "family",
+          "is",
+          "fine"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в офисе в шесть вечера пусто",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-49:i11:r1",
+          "text": "Nobody"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i11:r2",
+          "text": "Everyone"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i11:r3",
+          "text": "People"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в офисе в шесть вечера пусто",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в офисе в шесть вечера пусто",
+          "uk": "Вставте слово — в офісі о шостій вечора порожньо"
+        },
+        "gappedTargetPhrase": "",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-49:i11:r1",
+            "text": "Nobody"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i11:r2",
+            "text": "Everyone"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i11:r3",
+            "text": "People"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в офисе в шесть вечера ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i11:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в офисе в шесть вечера ",
+            "feedbackByLocale": {
+              "ru": "Это «все», а в офисе не осталось никого.",
+              "uk": "Це «всі», а в офісі не лишилося нікого."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в офисе в шесть вечера ",
+            "feedbackByLocale": {
+              "ru": "«Люди» — тоже про тех, кто есть, а вы говорите, что их нет.",
+              "uk": "«Люди» — теж про тих, хто є, а ви кажете, що їх немає."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-49:i12:p1",
+            "target": "everyone",
+            "meaningByLocale": {
+              "ru": "все",
+              "uk": "всі"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-49:i12:p2",
+            "target": "nobody",
+            "meaningByLocale": {
+              "ru": "никто",
+              "uk": "ніхто"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-49:i12:p3",
+            "target": "people",
+            "meaningByLocale": {
+              "ru": "люди",
+              "uk": "люди"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-49:i12:p4",
+            "target": "family",
+            "meaningByLocale": {
+              "ru": "семья",
+              "uk": "сім'я"
+            }
+          }
+        ],
+        "leftColumn": [
+          "everyone",
+          "nobody",
+          "people",
+          "family"
+        ],
+        "rightColumn": [
+          "все",
+          "никто",
+          "люди",
+          "семья"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «все заняты»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «все заняты»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i13:audio",
+          "transcript": "Everyone is busy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Everyone is busy.",
+        "orderedTokens": [
+          "Everyone",
+          "is",
+          "busy"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «я устал», среди плиток чужая скрепка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «я устал», среди плиток чужая скрепка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am tired.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «я устал», среди плиток чужая скрепка",
+          "uk": "Складіть фразу — «я втомився», серед плиток чужа скріпка"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "tired"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — про себя после недели",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-49:i15:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i15:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-49:i15:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — про себя после недели",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — про себя после недели",
+          "uk": "Вставте скріпку — про себе після тижня"
+        },
+        "gappedTargetPhrase": "I ___ fine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-49:i15:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i15:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i15:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — про себя после недели",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-49:i15:r1",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — про себя после недели",
+            "feedbackByLocale": {
+              "ru": "`is` уходит к кому-то третьему.",
+              "uk": "`is` іде до когось третього."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-49:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — про себя после недели",
+            "feedbackByLocale": {
+              "ru": "`are` — про нескольких. Про себя `am`.",
+              "uk": "`are` — про кількох. Про себе `am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — отчёт маме про работу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — отчёт маме про работу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i16:audio",
+          "transcript": "Everyone is kind. Nobody is loud."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Everyone is kind. Nobody is loud.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-49:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-49:i17:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-49:i17:audio",
+          "transcript": "People are loud. Everyone is kind. My family is fine. I am tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "People are loud. Everyone is kind. My family is fine. I am tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "37729903055edad37f0f4afa4a7ccbbb647806d118ae51a4258c459ff7323f4c"
+}

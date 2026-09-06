@@ -1,0 +1,90 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — polite",
+      "what_i_understood": "polite = вежливый. Про себя I am polite, про собеседника You are polite, меняется только am/are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — serious (+ not)",
+      "what_i_understood": "serious = серьёзный. Если хочу сказать что не серьёзен — not ставится сразу после am: I am not serious.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — lucky и sad",
+      "what_i_understood": "lucky = везучий, sad = грустный. По-английски просто I am sad / I am lucky, без наших оборотов типа «мне грустно».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-4 (карточки polite/serious + аудио)",
+      "what_i_understood": "Запомнил на слух, что polite звучит 'по-ЛАЙТ' (ударение в конце), а serious отличается от series и service.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5-6",
+      "what_i_understood": "Выбрал polite по смыслу (вежливый = говорит спасибо). Собрал 'I am not serious.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-10 (lucky, sad)",
+      "what_i_understood": "Отличил lucky от luck/lock на слух, sad от said/sand.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — Speed Match",
+      "what_i_understood": "Соединил все 4 новых слова с переводом без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12-13",
+      "what_i_understood": "You ___ lucky → are (не am, не is). Собрал по слуху 'You are not sad.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14-17 — calm, honest",
+      "what_i_understood": "Тут внезапно появились calm и honest — слова, которых не было в 'Новые слова' и не объяснялись в интро сессии, только карточка-определение прямо перед заданием.",
+      "confusion": "В карточке дают перевод и объяснение, так что теоретически я узнал слово прямо там же, но это странно — ни в одном интро выше их не было, они просто выскочили в практике",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18-19 — kind",
+      "what_i_understood": "Аналогично: kind тоже не было в интро этой сессии, но карточка дала перевод и я справился.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 20 — финал",
+      "what_i_understood": "Сказал вслух все три фразы про коллегу: вежливый, спокойный, повезло.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "polite — вежливый",
+    "serious — серьёзный, и как сказать 'я не серьёзен' (I am not serious)",
+    "lucky — везучий",
+    "sad — грустный",
+    "повторил на слух отличия похожих по звучанию слов (polite/pilot/plate, serious/series/service, lucky/luck/lock, sad/said/sand)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с кофе и разбором дня коллеги — понятная бытовая ситуация, легко представить",
+    "Объяснение lucky/sad через сравнение с русским (без лишних оборотов вроде 'мне грустно') — по делу, без воды"
+  ],
+  "felt_dead": [
+    "Карточки calm/honest/kind в блоке 'Для сборщика' помечены как review_cards, то есть предполагается что я их уже видел раньше — но раз я захожу в приложение впервые и начинаю именно с этой сессии, для меня это тоже новые слова, просто без интро-объяснения с примером фразы, как у polite/serious/lucky/sad. Прямого текста 'вы уже знаете' в самой сессии нет, но ощущается разрыв: у одних слов есть живое интро с историей, у других — только сухая карточка-определение"
+  ],
+  "scene_reason": "да — понятно, что это конец рабочего дня, кофе с коллегой, и я вслух подвожу итог, кто как себя вёл. Каждая фраза привязана к конкретному микро-эпизоду (коллега извинялся, коллега пошутил и не понял, коллеге повезло с клиентом, коллега сохранял спокойствие при отмене поезда) — понятно кому и зачем я это говорю",
+  "would_continue": "да — задания посильные, есть на чём споткнуться (похожие по звучанию слова), финал даёт ощущение, что я реально могу сказать что-то живое про человека",
+  "verdict": "PASS",
+  "verdict_reason": "Все 20 заданий выполнимы честно, я узнал 4 новых слова с понятным объяснением и сценой, а появление calm/honest/kind без интро — не критично, потому что каждое сопровождается своей карточкой-переводом прямо перед использованием."
+}

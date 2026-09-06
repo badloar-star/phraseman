@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Когда говорю про мужчину («он»), между «он» и словом-описанием всегда нужно слово is: he is funny.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Чтобы сказать «не», not ставится после is, а не перед ним: she is not tired.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Про мужчину — he, про женщину — she, но слово is одинаковое в обоих случаях.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (Speed Match)",
+      "what_i_understood": "Повторил старые слова funny/quiet/hungry/late.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "He ___ funny — выбрал is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (аудио quiet)",
+      "what_i_understood": "Узнал звучание quiet, отличил от quit и queen.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "She is quiet — про девушку, которая молчит.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал He is hungry, не взял лишнее are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "She is not tired.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (диктант)",
+      "what_i_understood": "She is not late — собрал по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (аудио kind)",
+      "what_i_understood": "Отличил kind от kid и king.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "She is kind.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "He is not hungry — заметил, что not тут нужен, не ловушка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "She is funny — лишний not не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "She ___ not late — is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (диктант)",
+      "what_i_understood": "He is quiet.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (Speed Match)",
+      "what_i_understood": "Повторил tired/kind/he/she.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "She is not tired — без подсказки собрал сам.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (финал голосом)",
+      "what_i_understood": "Сказал подряд про троих: He is funny. She is quiet. She is kind.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как сказать про мужчину или женщину одну фразу-характеристику: he is / she is + слово",
+    "Как сказать «не» про третьего человека: is not, именно в таком порядке (не not is)",
+    "Что связка is одна и та же для he и для she, меняется только первое слово"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 3",
+      "why": "Почти повторяет Интро 1 (уже показали he is / she is), новой информации мало — только уточнение, что is не меняется. Можно было бы короче."
+    }
+  ],
+  "felt_alive": [
+    "Сцена с очередью в столовой — понятно, зачем говорю фразы: реально описываю трёх людей коллеге",
+    "Задание 10 с ловушкой (not есть, но он там нужен) — заставило подумать, не машинально хватать привычный ответ",
+    "Финал 16 — приятно, что все три фразы про сцену, которую я уже представляю"
+  ],
+  "felt_dead": [
+    "Объяснение в Интро 2 про соблазн поставить not перед is — звучит как учебник, но не мешало пройти дальше"
+  ],
+  "scene_reason": "да — понятно: сижу с коллегой в столовой, она показывает на людей в очереди, и я говорю про каждого по одной фразе. К финалу (задание 16) это подтверждается — там ровно та же сцена и те же три человека.",
+  "would_continue": "да — задания шли легко, но не совсем механически (были две ловушки на внимательность), и стало интересно, что дальше будет с этими фразами",
+  "verdict": "PASS",
+  "verdict_reason": "Все 16 заданий прошёл честно, узнал новое (he is/she is + not для третьего человека), сцена понятна от начала до финала, ловушек-обманов с незнакомыми словами нет."
+}

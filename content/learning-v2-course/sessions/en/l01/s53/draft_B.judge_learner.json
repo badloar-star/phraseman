@@ -1,0 +1,135 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про себя говорю 'I am' + слово. Нельзя говорить 'I tired' или 'I is tired' — нужна связка am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про одного человека — 'is' (he is), про нескольких — 'are' (they are). 'we' тоже требует 'are', хотя звучит коротко как 'he'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Чтобы сказать 'не' — not ставится сразу после связки (am/is/are), а не перед ней и не в конце.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "I am tired — выбрал am, остальное объяснили как ошибки.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "He is busy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Услышал 'busy', выбрал правильно, отличил от 'easy' и 'body'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал 'We are home.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "We are home — про 'we' нужно are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "She is not sick.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "She is not sick — not, а не no.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Собрал по слуху 'I am not busy.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Различил на слух sick и six.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "They are not together — по смыслу вопроса (вместе ли они), а не про дом или усталость.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "He is not home.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Свёл пары слов и переводов, все уже знакомые.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Брат правда занят, значит not брать не нужно — собрал 'He is busy.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "We are not tired.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Проговорил 'We are together. We are not tired.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Ответил на все четыре вопроса подряд без подсказок: I am tired. He is busy. She is not sick. We are together.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Понял, что 'am' идёт только с 'I', а не с другими словами",
+    "Понял разницу между 'is' (один человек) и 'are' (несколько людей, включая 'we')",
+    "Запомнил, что 'not' всегда встаёт сразу после am/is/are, а не в начале и не в конце фразы",
+    "Научился на слух отличать sick от six и busy от похожих слов"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с воскресным звонком маме понятна и живая — я реально представляю, что отвечаю ей по телефону",
+    "Финальное задание 16, где нужно ответить на четыре вопроса подряд без подсказок — было приятно почувствовать, что всё запомнил"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно, что мама звонит и спрашивает, как у меня дела, как брат, как сестра, вместе ли мы. Каждая фраза — это мой ответ на конкретный вопрос в этом звонке",
+  "would_continue": "да — сессия короткая, понятная, к концу я реально мог ответить на все вопросы сам без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "Все 16 заданий прошёл честно, ловушка с лишней плиткой в задании 13 понятна и не является обманом, новое не требовалось — это осмысленное повторение трёх связок и места not, и в конце я реально почувствовал, что закрепил материал."
+}

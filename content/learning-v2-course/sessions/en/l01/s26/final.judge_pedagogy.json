@@ -3,9 +3,7 @@
     "operation_matches": true,
     "new_words_match": [
       "rainy",
-      "windy",
-      "early",
-      "late"
+      "windy"
     ],
     "missing": [],
     "extra_grammar_smuggled": []
@@ -18,15 +16,15 @@
     "realistic": [
       {
         "task": 5,
-        "trap": "лишняя плитка `not` при явно дождливой/ветреной сцене"
+        "trap": "Лишняя плитка `not` при явно ветреной сцене"
       },
       {
-        "task": 12,
-        "trap": "чужая скрепка `am`/`are` вместо `is` при `It`"
+        "task": 10,
+        "trap": "windy/early подставлены вместо rainy при дождливой сцене"
       },
       {
         "task": 13,
-        "trap": "перепутать `early`/`late`"
+        "trap": "late/dark подставлены вместо early"
       }
     ],
     "silly": [],
@@ -64,7 +62,7 @@
   "cross_session_repeats": [],
   "textbook_formulas": [],
   "builder_notes": {
-    "new_words_line_ok": true,
+    "new_words_line_ok": false,
     "modes_line_ok": true,
     "modes_used": {
       "word_card": 4,
@@ -76,6 +74,6 @@
       "scripted_repeat_compare": 1
     }
   },
-  "verdict": "PASS",
-  "verdict_reason": "Границы материала соблюдены, все новые слова из плана отработаны и вынесены на доску пар только после карточки и практики, ловушки реалистичны, повторов и посторонней грамматики не найдено."
+  "verdict": "BLOCK",
+  "verdict_reason": "Задание 9 требует собрать фразу «It is late.» правильным ответом, но по машинным фактам и по new_words в блоке «Для сборщика» late числится только как возвращаемое слово с нулём касаний правильным ответом — при этом фактически в тексте сессии late объяснено в Интро 3 и собрано в задании 9 как новое слово, а строка 'Новые слова: rainy, windy' в шапке сессии и в 'Для сборщика' не совпадает с интро, где явно вводится и late (наравне с rainy/windy) — это расхождение плана и текста (new_words_line_ok=false) и является нарушением фиксации данных, обязательным к блокировке."
 }

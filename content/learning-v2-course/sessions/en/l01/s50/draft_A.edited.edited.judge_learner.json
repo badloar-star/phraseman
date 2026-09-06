@@ -1,0 +1,131 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "It is можно сократить до It's. Показали на примере It's new — «оно новое».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 1 (job — новая)",
+      "what_i_understood": "Надо сказать It's new. Я выбрал это.",
+      "confusion": "Слово job появилось только в самом вопросе, до этого в тексте интро его не было — но оно достаточно понятно из контекста ('работа новая')",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про человека говорят he/she, не it. boss — начальник. kind — добрый. He's kind — короткая форма He is kind.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 2 (начальник добрый)",
+      "what_i_understood": "He's kind.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Отрицание можно сделать двумя способами: It isn't expensive или It's not expensive. flat — квартира.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Вопрос интро 3 (квартира не дорогая)",
+      "what_i_understood": "It isn't expensive.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (job, boss карточки+слух)",
+      "what_i_understood": "Запомнил job и boss, отличил их на слух от похожих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (It's ___ про работу)",
+      "what_i_understood": "Выбрал new, потому что про работу и мама спросила давно ли она у меня.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (собрать He's kind, лишнее not)",
+      "what_i_understood": "Собрал He's kind, отложив лишнюю плитку not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 7-10 (flat, city карточки+слух)",
+      "what_i_understood": "Запомнил flat и city, отличил на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Соединил все четыре слова с переводом без труда, они уже отрабатывались.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (It's ___ про квартиру дороже)",
+      "what_i_understood": "Выбрал expensive.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (собрать It isn't small по слуху)",
+      "what_i_understood": "Собрал по услышанной фразе.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (собрать He isn't kind)",
+      "what_i_understood": "Собрал без проблем, отрицание уже видел в интро 3.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (I'm ___ про себя после недели)",
+      "what_i_understood": "Выбрал tired.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (повтор фраз про квартиру и город)",
+      "what_i_understood": "Повторил три фразы вслух.",
+      "confusion": "Тут вдруг появляется 'The city is new' — а слово city ни разу не отрабатывалось в форме полной фразы с is, только в паре 'город' = city. Не страшно, но фраза целиком встречается впервые именно тут, без отдельного разбора.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал: 4 фразы подряд)",
+      "what_i_understood": "Собрал все фразы сам: It's new. He's kind. It's small. I'm tired.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Что It is сокращается в It's",
+    "Что про человека нужно говорить he/she, а не it (boss — he/she, не it)",
+    "Что отрицание можно строить двумя способами: isn't или 's not — оба верны",
+    "Новые слова: job, boss, flat, city",
+    "Повторил и закрепил new, small, expensive, kind, tired в связке с грамматикой it's/he's/isn't"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 1",
+      "why": "Фраза 'Заметьте, кто тут экономит: не вы, а сам язык. Ему лень выговаривать is целиком' — не мешает, но это украшение ради красоты, а не объяснение. Слегка вода, но не критично."
+    }
+  ],
+  "felt_alive": [
+    "Сцена звонка маме — понятная, я весь урок как будто реально отвечаю ей по телефону",
+    "Финал (задание 17), где нужно рассказать сразу всё — приятное ощущение, что урок собрался в одно целое"
+  ],
+  "felt_dead": [
+    "Ничего прям 'мёртвого' не заметил — тон ровный и по-человечески простой"
+  ],
+  "scene_reason": "да — всю сессию понятно, что я отвечаю маме по телефону на её вопросы про работу, начальника, квартиру и город; каждая фраза привязана к конкретному вопросу мамы",
+  "would_continue": "да — задания понятные, сложность растёт постепенно, к финалу я реально мог собрать все фразы сам без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "Всё было проходимо от начала до конца, я узнал новые слова и правило про he/she вместо it и про два способа отрицания, финал собрал сам — урок работает."
+}

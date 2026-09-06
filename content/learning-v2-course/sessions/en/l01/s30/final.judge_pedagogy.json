@@ -1,12 +1,7 @@
 {
   "plan_fidelity": {
     "operation_matches": true,
-    "new_words_match": [
-      "busy",
-      "quiet",
-      "loud",
-      "free"
-    ],
+    "new_words_match": [],
     "missing": [],
     "extra_grammar_smuggled": []
   },
@@ -18,15 +13,27 @@
     "realistic": [
       {
         "task": 2,
-        "trap": "bus/bee вместо busy — реалистичная слуховая путаница"
+        "trap": "bus/bee как фонетически близкие обманки к busy"
       },
       {
-        "task": 6,
-        "trap": "are вместо is — знакомая ошибка согласования"
+        "task": 5,
+        "trap": "quiet/small как семантические обманки не по сцене"
+      },
+      {
+        "task": 12,
+        "trap": "loud/warm как обманки"
+      },
+      {
+        "task": 14,
+        "trap": "closed/free"
+      },
+      {
+        "task": 15,
+        "trap": "loud/free"
       }
     ],
     "silly": [],
-    "native_transfer_used": true,
+    "native_transfer_used": false,
     "feedback_teaches_unknown_form": []
   },
   "feedback": {
@@ -70,6 +77,6 @@
       "scripted_repeat_compare": 1
     }
   },
-  "verdict": "PASS",
-  "verdict_reason": "Границы, повторы, доска пар и разборы соответствуют плану и правилам без нарушений."
+  "verdict": "REVISE",
+  "verdict_reason": "warm ни разу не встречается правильным ответом (только ловушка в задании 12), а интро 2 и 3 короче нормы 240–290 знаков (232 и 221 по машинному подсчёту), что нарушает правило длины и обработки повторяемых слов."
 }

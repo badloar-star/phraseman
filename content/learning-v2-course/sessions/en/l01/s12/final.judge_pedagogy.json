@@ -1,0 +1,83 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "brave",
+      "calm",
+      "honest",
+      "smart"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "come/car — фонетически близкие к calm"
+      },
+      {
+        "task": 5,
+        "trap": "calm/tired — правдоподобная путаница по смыслу сцены"
+      },
+      {
+        "task": 12,
+        "trap": "am/is вместо are — реалистичная ошибка со скрепкой"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 20,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "calm",
+        "brave",
+        "honest",
+        "smart"
+      ],
+      [
+        "tired",
+        "sure",
+        "quiet",
+        "right"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": []
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 5,
+      "listen_choose": 4,
+      "context_gap_grammar": 4,
+      "phrase_builder": 2,
+      "speed_match": 2,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 14 вводит quiet карточкой слова в сцене про поезд, не связанной с прошлой сессией — это подаётся корректно как повтор, но интро 1 и интро 3 короче нормы 240–290 знаков (машинные факты: 232 и 226), и слово sure получает только 2 из 5 касаний правильным ответом при том что это возвращаемое слово (граница по педагогике формально не нарушена, но это ближе к предупреждению) — однако главное основание REVISE: интро 1 и интро 3 не докручены по длине/пользе согласно машинным фактам, что требует правки текста, а не структуры."
+}

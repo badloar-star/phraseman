@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "`be` + место: `here`, `there`, `at home`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`here` — «здесь», `there` — «там»",
+        "uk": "`here` — «тут», `there` — «там»"
+      },
+      "bodyByLocale": {
+        "ru": "`here` — «здесь», рядом со мной. `there` — «там», в другом месте.\n\nСтавятся они после скрепки, ровно туда же, куда шло бы слово вроде `busy`: `I am here`, `He is there`.\n\nПо-русски «я здесь» обходится без «есть». Рука тянется написать `I here` — и фраза рассыпается. Скрепку не выбрасывайте, даже если очень хочется.",
+        "uk": "`here` — «тут», поряд зі мною. `there` — «там», в іншому місці.\n\nСтавлять їх після скріпки, рівно туди ж, куди йшло б слово на кшталт `busy`: `I am here`, `He is there`.\n\nУкраїнською «я тут» чудово живе без «є». Рука сама пише `I here` — і фраза розсипається. Скріпку не викидайте, навіть якщо дуже хочеться."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Мама спрашивает, дома ли вы вообще. Вы дома. Скажите «я здесь».",
+          "uk": "Мама питає, чи ви взагалі вдома. Ви вдома. Скажіть «я тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-51:intro1:r1",
+              "text": "I am here."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro1:r2",
+              "text": "I here."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro1:r3",
+              "text": "I am there."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-51:intro1:r1",
+              "text": "I am here."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro1:r2",
+              "text": "I here."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro1:r3",
+              "text": "I am there."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама спрашивает, дома ли вы вообще. Вы дома. Скажите «я здесь».",
+          "uk": "Мама питає, чи ви взагалі вдома. Ви вдома. Скажіть «я тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`at home` — «дома»",
+        "uk": "`at home` — «вдома»"
+      },
+      "bodyByLocale": {
+        "ru": "`home` — «дом». Чтобы сказать «дома», перед ним ставят `at`: `I am at home`, `She is at home`.\n\nМаленькое `at` легко потерять — на слух его почти не слышно, и рука пишет `I am home`. Так тоже говорят. В этом уроке мы держимся `at home`: эта форма подходит и к себе, и к любому другому человеку.\n\nСкрепка тут та же: `am` про себя, `is` про него или неё.",
+        "uk": "`home` — «дім». Щоб сказати «вдома», перед ним ставлять `at`: `I am at home`, `She is at home`.\n\nМаленьке `at` легко загубити — на слух його майже не чути, і рука пише `I am home`. Так теж кажуть. У цьому уроці тримаємося `at home`: ця форма підходить і до себе, і до будь-кого іншого.\n\nСкріпка тут та сама: `am` про себе, `is` про нього чи неї."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Мама спрашивает, где сестра. Она дома. Скажите про неё.",
+          "uk": "Мама питає, де сестра. Вона вдома. Скажіть про неї."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-51:intro2:r1",
+              "text": "She is at home."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro2:r2",
+              "text": "She at home."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro2:r3",
+              "text": "She am at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-51:intro2:r1",
+              "text": "She is at home."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro2:r2",
+              "text": "She at home."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro2:r3",
+              "text": "She am at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама спрашивает, где сестра. Она дома. Скажите про неё.",
+          "uk": "Мама питає, де сестра. Вона вдома. Скажіть про неї."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`upstairs`, `outside`, `inside` — три ответа на «а где он?»",
+        "uk": "`upstairs`, `outside`, `inside` — три відповіді на «а де він?»"
+      },
+      "bodyByLocale": {
+        "ru": "`upstairs` — «наверху», этажом выше. `outside` — «снаружи, на улице». `inside` — «внутри, в помещении».\n\nК этим трём ничего добавлять не надо: `He is upstairs`, `They are outside`. А `at home` — готовый оборот, `at` там держится намертво.\n\nТак что запоминать надо ровно одно место — `at home`. Остальные три просто встают после скрепки и работают сами.",
+        "uk": "`upstairs` — «нагорі», поверхом вище. `outside` — «надворі, на вулиці». `inside` — «всередині, у приміщенні».\n\nДо цих трьох нічого додавати не треба: `He is upstairs`, `They are outside`. А `at home` — готовий зворот, `at` там тримається намертво.\n\nТож запам'ятати треба рівно одне місце — `at home`. Решта три просто стають після скріпки і працюють самі."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Мама спрашивает про соседей, которые вечно курят на крыльце. Скажите, что они на улице.",
+          "uk": "Мама питає про сусідів, які вічно курять на ґанку. Скажіть, що вони на вулиці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-51:intro3:r1",
+              "text": "They are outside."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro3:r2",
+              "text": "They are at outside."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro3:r3",
+              "text": "They is outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-51:intro3:r1",
+              "text": "They are outside."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro3:r2",
+              "text": "They are at outside."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro3:r3",
+              "text": "They is outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама спрашивает про соседей, которые вечно курят на крыльце. Скажите, что они на улице.",
+          "uk": "Мама питає про сусідів, які вічно курять на ґанку. Скажіть, що вони на вулиці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9e00071f97c6c0960896538a409395bb9d9dae5ced9e51a500bbe958c271263c"
+}

@@ -1,0 +1,70 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (job/it's new)",
+      "what_i_understood": "Про вещи говорят it. It is new = It's new — можно длинно или коротко, но не обрезать наполовину (its — ошибка).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (boss/kind)",
+      "what_i_understood": "Про человека he/she. He is kind = He's kind. Отрицание — he isn't kind. Нельзя смешивать сокращения (he's isn't).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (flat/city, small/expensive)",
+      "what_i_understood": "Опять it, потому что квартира и город — вещи. Отрицание можно сделать двумя способами: it isn't expensive или it's not expensive.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (job, boss + произношение)",
+      "what_i_understood": "Запомнил новые слова и на слух отличил их от похожих (jog/joke, bus/box).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5-6",
+      "what_i_understood": "Выбрал new для работы (kind и tired не подходят к работе — это про людей). Собрал He's kind без лишнего not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 7-11 (flat, city + пары)",
+      "what_i_understood": "flat и city — новые слова, на слух отличил от fat/flag и sit/seat. Собрал все 4 пары в конце.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 12-15",
+      "what_i_understood": "expensive для цены квартиры, isn't small на слух, He isn't kind вместо he's isn't, tired про себя после недели.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 16-17 (финал)",
+      "what_i_understood": "Проговорил подряд четыре фразы про работу, начальника, квартиру и себя, используя и полные, и короткие формы вместе.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Новые слова: job, boss, flat, city",
+    "Про вещи (работа, квартира, город) говорю it, про человека (начальник) — he/she",
+    "Полную и короткую форму (it is / it's) можно использовать как угодно, но нельзя обрезать наполовину (its вместо it's)",
+    "Отрицание можно делать двумя способами: it isn't expensive или it's not expensive — оба верные",
+    "Нельзя лепить сокращение и not вместе (he's isn't) — это не работает, только одно из двух"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с воскресным звонком маме — понятно, зачем я это говорю, знакомая ситуация",
+    "Ловушка 'Its new' в Интро 1 — реально та ошибка, которую я бы сам сделал"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — всё время понятно, что я отвечаю маме по телефону на её вопросы про работу, начальника, квартиру и город. Финал (задание 17) логично собирает все ответы в один связный рассказ маме.",
+  "would_continue": "да — материал новый, объяснения понятные, задания постепенно усложняются, к концу я сам всё собрал без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "Все новые слова объяснены до использования, грамматика (it/he, is/'s, isn't) разжёвана примерами до практики, ловушки честные, ни одно задание не требует незнакомого, сцена понятна от начала до конца."
+}

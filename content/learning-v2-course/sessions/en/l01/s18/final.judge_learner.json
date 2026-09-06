@@ -1,0 +1,178 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — shy",
+      "what_i_understood": "He is shy = он стеснительный, не решается заговорить первым. Про мужчину говорим He is, скрепка is не пропадает.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — loud",
+      "what_i_understood": "She is loud = она громкая, её слышно издалека. Про женщину — She is, не He is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — clever / bossy",
+      "what_i_understood": "clever = умный, соображает быстро. bossy = командует всеми, хотя не просили — это не комплимент.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 — карточка shy",
+      "what_i_understood": "закрепил shy",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 — на слух shy",
+      "what_i_understood": "выбрал shy, не she/sky",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 — карточка loud",
+      "what_i_understood": "закрепил loud",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 — на слух loud",
+      "what_i_understood": "выбрал loud, не load/lost",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 — карточка quiet",
+      "what_i_understood": "quiet = тихий, но не обязательно стеснительный",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 — вставить слово, парень молчал спокойно",
+      "what_i_understood": "ответ quiet, а не loud/bossy",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 — вставить слово, парень стесняется 3 дня",
+      "what_i_understood": "тут понял разницу quiet и shy — quiet это просто тихий, а shy это именно стесняется. Ответ shy.",
+      "confusion": "с ходу сам бы не понял разницу quiet/shy, но подсказка в разборе объяснила",
+      "could_answer_question": true
+    },
+    {
+      "step": "8 — скрепка про женщину",
+      "what_i_understood": "She is loud, is а не am/are",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 — карточка clever",
+      "what_i_understood": "закрепил clever",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 — на слух clever",
+      "what_i_understood": "выбрал clever, не cleaner/clear",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 — карточка bossy",
+      "what_i_understood": "закрепил bossy",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 — собрать He is clever",
+      "what_i_understood": "собрал фразу из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 — пары shy/loud/clever/quiet",
+      "what_i_understood": "все 4 слова уже видел и знаю перевод",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 — карточка funny",
+      "what_i_understood": "funny = смешной",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 — вставить слово, смеялись над анекдотом",
+      "what_i_understood": "ответ funny",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 — карточка kind",
+      "what_i_understood": "kind = добрый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 — собрать фразу про кофе",
+      "what_i_understood": "He is kind, лишняя плитка am не нужна",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "18 — собрать фразу, командует",
+      "what_i_understood": "She is bossy, лишняя плитка are не нужна",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "19 — карточка smart",
+      "what_i_understood": "smart = умный, соображает быстро",
+      "confusion": "clever и smart оба переведены как «умный»/«сообразительный» — разницы между ними мне не объяснили",
+      "could_answer_question": true
+    },
+    {
+      "step": "20 — вставить слово, починил кофемашину",
+      "what_i_understood": "ответ smart",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "21 — пары bossy/funny/kind/smart",
+      "what_i_understood": "все слова уже видел",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "22 — сказать вслух про троих",
+      "what_i_understood": "She is loud. He is quiet. She is kind. — повторил все три фразы, они про разных людей из предыдущих заданий",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Говорить He is / She is + слово о характере, в зависимости от того, мужчина это или женщина",
+    "4 новых слова: shy, loud, clever, bossy",
+    "Освежил в памяти: quiet, funny, kind, smart",
+    "Понял, что is не пропадает и не путается с am/are, если речь о третьем человеке"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Задание 19 (карточка smart) и вся линия clever/smart",
+      "why": "clever объяснили как «сообразительный, быстро придумывает», а smart — тоже «умный, соображает быстро». Разницу между ними никак не объяснили, оба слова используются почти взаимозаменяемо, ощущение что это одно и то же слово дважды"
+    }
+  ],
+  "felt_alive": [
+    "Разбор в задании 7, где объяснили разницу между quiet (просто тихий) и shy (стесняется) — это реально полезное уточнение, а не вода",
+    "Сцена с обеденным перерывом и шёпотом на кухне про коллег — понятно, зачем это говорится и кому"
+  ],
+  "felt_dead": [
+    "Карточки слов (1,3,5,9,11,14,16,19) все по одному шаблону — не мёртво, но однообразно, нормально для тренировки"
+  ],
+  "scene_reason": "да, понятно — я на кухне с коллегой обсуждаю шёпотом других людей в офисе: кто стеснительный, кто громкий, кто командует. Каждая фраза привязана к конкретному человеку и ситуации (парень молчит и краснеет, женщина громко говорит по телефону, коллега рассказала анекдот и т.д.), это не абстрактные примеры",
+  "would_continue": "да — сессия короткая, слова разные и не путаются между собой (кроме clever/smart), объяснения по делу без лишних красивостей, к концу я реально могу сказать что-то новое про трёх разных людей",
+  "verdict": "REVISE",
+  "verdict_reason": "Всё проходимо и я усвоил новое, но clever и smart поданы почти как синонимы без объяснения разницы, из-за чего в задании 19-20 я угадывал по контексту (кофемашина = техника → smart), а не по пониманию слова."
+}

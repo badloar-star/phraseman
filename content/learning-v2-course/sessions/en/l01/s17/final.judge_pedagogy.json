@@ -1,0 +1,78 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "nice",
+      "new",
+      "tall",
+      "friendly"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 6,
+        "trap": "He am/are tall — путаница I am / You are с he/she"
+      },
+      {
+        "task": 12,
+        "trap": "friendly/new вместо tired — похожие по контексту описания человека"
+      },
+      {
+        "task": 16,
+        "trap": "tired/tall вместо kind — оценка по неверному признаку"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "tall",
+        "nice",
+        "new",
+        "friendly"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      15
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 6,
+      "listen_choose": 2,
+      "phrase_builder": 3,
+      "context_gap_grammar": 4,
+      "listen_build_dictation": 1,
+      "speed_match": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Слово `kind` используется как цель правильного ответа в задании 16 (\"She is kind.\"), но по машинным фактам kind получает лишь 1 касание в практике и то не отработку, а прямую цель без предварительного знакомства в этой сессии — по плану `kind` не входит в new_words ни в returning список сессии (возвращаются: kind, quiet, tired, new, tall), однако в интро kind появляется только мимоходом в интро 3 без карточки и отработки на слух, что нарушает правило «≥2 касания каждого возвращаемого слова, хотя бы одно — правильным ответом» лишь частично (есть 2 касания: интро 3 и задание 16), но проверка границ практики показывает, что задание 16 требует слово `kind`, которое не встречалось в практике вообще как отдельная карточка — это делает верную цель практики опирающейся на слово, отработанное только в тексте интро, а не в упражнении, что является пограничным нарушением поддержки/убывания подсказки."
+}

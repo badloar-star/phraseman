@@ -1,0 +1,105 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — Week",
+      "what_i_understood": "week = неделя. Про неё говорим is (не are, не am), потому что неделя одна.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — Day/Night",
+      "what_i_understood": "day = день, night = ночь. Одна ночь — is, несколько ночей — are, и добавляется -s на конце слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — Morning",
+      "what_i_understood": "morning = утро само по себе. Про себя всегда I am, даже если фраза длинная и утро оказывается в конце.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-6 (карточки и аудио для week/day/night/morning)",
+      "what_i_understood": "Просто запомнить как слова звучат и не перепутать с похожими (wake/we, they/dear, nice/new, moving/money).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — скрепка для недели",
+      "what_i_understood": "The week is busy — выбрал is, потому что неделя одна и это не я.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 8-10 (morning карточка/аудио, соедините пары)",
+      "what_i_understood": "Просто повторение четырёх новых слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — ночи в новом городе",
+      "what_i_understood": "The nights are quiet — quiet подходит к ночам, busy/tired не про ночь.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — соберите фразу дни спокойные",
+      "what_i_understood": "The days are quiet — дней несколько, значит are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — я в порядке",
+      "what_i_understood": "I am fine — fine это про самочувствие, а night/week не подходят.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — everyone kind",
+      "what_i_understood": "Everyone is kind — 'everyone' считается за одного, хотя означает 'все'.",
+      "confusion": "Слегка неожиданно, что 'все' = одно слово-скрепка is, но объяснение в сноске понятное, разобрался.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — утро раннее (диктовка по плиткам)",
+      "what_i_understood": "The morning is early — собрал из услышанного.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — утром я уставший (с лишней плиткой)",
+      "what_i_understood": "I am tired in the morning — отсеял лишнюю плитку is, использовал am для себя.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — я в порядке (плитки)",
+      "what_i_understood": "I am fine — собрал легко, уже делал похожее в 13.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 — финал, четыре фразы подряд",
+      "what_i_understood": "The week is busy. The days are busy. The nights are quiet. I am tired in the morning. Собрал всё сам, используя is/are по числу и am для себя.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слова week, day, night, morning",
+    "К одной неделе/ночи/утру идёт is, к нескольким дням/ночам — are (с добавлением -s к слову)",
+    "Про себя всегда am, даже если после него длинный хвост фразы (I am tired in the morning)",
+    "'Everyone' — это одно слово, и к нему идёт is, а не are"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с мамой по телефону — понятно, зачем говорить эти фразы: рассказываешь про свою неделю, а не просто повторяешь грамматику в пустоту",
+    "Финальное задание 18, где нужно выдать все четыре фразы подряд самому — приятное ощущение, что дошёл до результата"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно: я — человек, который переехал в новый город, мама звонит и спрашивает, как дела, я отвечаю про неделю, дни, ночи и утро. Каждая фраза — прямой ответ на конкретный вопрос мамы, не абстрактное упражнение.",
+  "would_continue": "да — задания шли по нарастающей сложности, ничего не было непосильным, а в конце я реально сам собрал четыре фразы без подсказок, это чувствуется как прогресс",
+  "verdict": "PASS",
+  "verdict_reason": "Все 18 заданий прошёл честно, узнал новые слова и правило is/are по числу, сцена с мамой понятна и мотивирует, скучных или пустых мест не нашёл."
+}

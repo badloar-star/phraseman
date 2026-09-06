@@ -1,4 +1,123 @@
 {
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про третьего человека (он/она) говорят is, а не am. am — только про себя. short = невысокий.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Слово о человеке не меняется (thin — и про неё, и про него одинаково), меняется только скрепка перед ним.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "am — только моё личное, никому его не одолжить, даже если говорю другу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (short)",
+      "what_i_understood": "Новое слово short + услышал его в звуке, отличил от shirt и sort.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (thin)",
+      "what_i_understood": "thin — худой, звук с языком между зубами, отличил от tin и then.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал He is short, не взял лишнюю плитку am — понял почему она лишняя.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "She is thin — про неё is, не are (are было бы для тебя).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-8 (blond, young)",
+      "what_i_understood": "blond — про волосы, young — про возраст. Оба новые слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "young отличил на слух от yellow и tongue.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "I am young — про себя всегда am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (доска пар)",
+      "what_i_understood": "Собрал пары слово-перевод: short, thin, young, а tall вообще не разбирали в этой сессии, просто узнал его на доске.",
+      "confusion": "tall тут просто всплыло само собой, без объяснения — но это было в прошлых сессиях, так что ладно",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "You are blond — собрал фразу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13-14 (quiet)",
+      "what_i_understood": "quiet — тихий, молчаливый. Узнал слово и вставил в фразу He is quiet.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Собрал по слуху She is young.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "I am tired — про себя am, is лишняя плитка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "You are new — обращаюсь к человеку напрямую, значит are, а не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18",
+      "what_i_understood": "Проговорил три фразы подряд с разными скрепками: am/are/is — почувствовал разницу вживую.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Понял, что скрепка (am/are/is) выбирается не по смыслу фразы, а по тому, о ком говорю: я — am, ты — are, он/она — is",
+    "Узнал новые слова: short, thin, blond, young",
+    "Понял, что само слово-описание (short, thin и т.д.) не меняется от рода или числа — меняется только скрепка",
+    "Потренировался различать похожие по звучанию слова: short/shirt/sort, thin/tin/then, young/yellow/tongue"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена на крыльце в понедельник, где коллега молча кивает на разных людей — понятно, зачем говорю каждую фразу, это как будто реальная ситуация",
+    "Задание 18, где нужно сказать три фразы подряд с разными людьми — почувствовал контраст am/are/is на слух"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: коллега на крыльце показывает то на парня у двери, то на девушку у машины, то спрашивает про меня самого — из-за этого сразу ясно, к кому обращаться и какую скрепку брать",
+  "would_continue": "да, потому что было понятно, ничего не запутало и я реально почувствовал разницу между am/are/is, а не просто механически заполнил пропуски",
   "verdict": "PASS",
-  "verdict_reason": "mock"
+  "verdict_reason": "Все задания прошёл честно, ничего невозможного не встретил, выучил новые слова и разницу между тремя скрепками, сцена была понятной."
 }

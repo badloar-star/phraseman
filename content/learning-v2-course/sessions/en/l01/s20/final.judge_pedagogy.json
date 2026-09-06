@@ -1,0 +1,83 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "married",
+      "single",
+      "famous",
+      "rich"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 6,
+        "trap": "single/funny как ловушка на смысл фразы про кольцо — реалистичная путаница значений"
+      },
+      {
+        "task": 7,
+        "trap": "are вместо is при одном человеке — частая ошибка"
+      },
+      {
+        "task": 13,
+        "trap": "rich/quiet как смысловые ловушки к famous"
+      },
+      {
+        "task": 15,
+        "trap": "funny/rich как смысловые ловушки к quiet"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "married",
+        "single",
+        "famous",
+        "rich"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      17
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 6,
+      "listen_choose": 3,
+      "context_gap_grammar": 3,
+      "phrase_builder": 2,
+      "listen_build_dictation": 2,
+      "speed_match": 1,
+      "sound_contrast": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 16 нарушает границы сессии: цель дублирует ранее пройденную конструкцию 'She is kind' без привязки к теме сессии и не входит в возвращаемые слова заявленной шапки (young), а в самопроверке young явно не в списке возвращаемых, но фигурирует как отвлекающая плитка дважды подряд (16 и 17) без объяснения в шапке сессии, что рискует восприниматься как непрозрачное для проверки; также интро 2 короче нормы (231 знак) без компенсирующей пользы, что уже отмечено машинной проверкой."
+}

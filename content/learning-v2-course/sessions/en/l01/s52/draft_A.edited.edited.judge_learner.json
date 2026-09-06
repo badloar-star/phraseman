@@ -1,0 +1,107 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (week)",
+      "what_i_understood": "Неделя — это week. Когда говорю какая она (загруженная, спокойная), между 'The week' и словом-описанием нужно вставить is: The week is busy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (day/night)",
+      "what_i_understood": "day — день, night — ночь. Если говорю про одну ночь — is, если про много ночей (nights, с -s) — are. is и are не смешиваются с числом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (morning)",
+      "what_i_understood": "morning — утро, это про время суток, а не про меня. Если говорю про себя (я уставший утром), всё равно нужно I am, даже если в конце фразы добавляется 'in the morning'.",
+      "confusion": "Слегка не сразу понял, зачем вообще показывать неправильный вариант 'I am morning' — но потом дошло: это чтобы не перепутать 'утро' с описанием себя.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-6 (карточки и произношение week/day/night/morning)",
+      "what_i_understood": "Просто выучил, как эти четыре слова звучат и на что похожи ошибочные варианты.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (is/are для week)",
+      "what_i_understood": "Неделя одна — значит is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9-10",
+      "what_i_understood": "morning произношение, и сопоставил все 4 слова с переводом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (nights are ___)",
+      "what_i_understood": "Тут пришлось выбрать quiet, а не busy/tired — по смыслу (мама спрашивает про ночь, значит про тишину, а не про загруженность или усталость).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (сборка 'The days are busy')",
+      "what_i_understood": "days — много дней, значит are, не is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (I am ___, мама спрашивает всё ли хорошо)",
+      "what_i_understood": "Тут выбор fine vs night vs week — сообразил, что night и week это не про самочувствие, а fine — то что нужно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (Everyone ___ busy)",
+      "what_i_understood": "Neожиданно — everyone (все) считается как одно, значит is, а не are. Это новое для меня правило, раньше не встречал.",
+      "confusion": "Это единственное место, где я реально не был уверен заранее — про everyone это не объясняли в интро, только в подсказке к неправильному ответу. Но сама подсказка объяснила прямо в задании, так что смог понять и ответить.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (диктовка 'The morning is early')",
+      "what_i_understood": "Собрал фразу по прослушке, лишних плиток не тронул (there was 'are' as extra distractor already learned to avoid).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (I am tired in the morning, лишняя скрепка is)",
+      "what_i_understood": "Собрал фразу, не взял лишнее 'is', потому что про себя — только am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (I am fine, лишнее слово everyone)",
+      "what_i_understood": "Собрал короткую фразу про себя.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 (финал, 4 фразы подряд)",
+      "what_i_understood": "Смог сказать всё сам: The week is busy. The days are busy. The nights are quiet. I am tired in the morning.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Четыре новых слова: week, day, night, morning",
+    "Как менять is/are в зависимости от того, одна вещь или их несколько (week/days, night/nights)",
+    "Что про себя всегда I am, даже если в конце фразы добавляется указание на время (in the morning)",
+    "Что everyone, хотя и означает 'все', требует is, а не are — это я запомнил как отдельное исключение"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с звонком маме и вопросом 'как неделя' — понятно, зачем говорить именно эти фразы, представил себя реально отвечающим",
+    "Финальное задание, где нужно рассказать всё сразу — приятно, что получилось без подсказок"
+  ],
+  "felt_dead": [
+    "Карточки слов (1,3,5,8) и произношение (2,4,6,9) — сухие, но это нормально для запоминания слов"
+  ],
+  "scene_reason": "да — понятно: мама звонит, спрашивает про неделю, я отвечаю по кускам (сама неделя, дни, ночи, утро), и это ровно те фразы, которые я сказал бы в такой ситуации",
+  "would_continue": "да — было понятно, ничего не запуталось, узнал новое слово и новое правило (everyone + is), и в конце сам собрал длинный ответ без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "все задания прошёл честно на известных словах и формах, узнал новое, шутки и примеры не пустые, сцена понятна с первой секунды."
+}

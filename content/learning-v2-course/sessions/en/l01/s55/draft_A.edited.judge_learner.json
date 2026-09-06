@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Между 'кто' и 'какой' по-английски вставляется маленькое слово: am/is/are. Про себя (I) — всегда am. tired = устал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про одного человека — is (he/she/it), про многих — are (we/they). Слово quiet не меняется, меняется только скрепка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Отрицание not всегда встаёт сразу после скрепки: am not, is not. Нельзя ставить not перед словом, как по-русски.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "I am tired — выбрал am, потому что am идёт с I.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "На слух отличил kind от похожих по звучанию kid и kite.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Спросили про доброту начальника — выбрал kind, а не quiet или ready, по смыслу вопроса.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "He is ready — про брата (один человек, не я) нужна is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "They are quiet — про нескольких жильцов нужна are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (доска пар)",
+      "what_i_understood": "Собрал пары: tired-устал, quiet-тихий, kind-добрый, ready-готов. Все слова уже видел раньше в сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Собрал We are busy из плиток, лишней плитки не было.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "She is not busy — not после is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Различил на слух warm и worm (червяк) — специально сказано, что нужное слово про тепло.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "It is warm — про комнату/квартиру тепло.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "You are safe — собрал по подсказке и на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "It is quiet here — 'оно' одно, значит is, не am и не are. Ловушка на невнимательность сработала как надо, я не ошибся.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "I am not cold — not после am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (доска пар)",
+      "what_i_understood": "busy-занят, safe-в безопасности, warm-тёплый, cold-холодный. Тоже всё уже встречалось.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "They are not ready — среди плиток была лишняя is, я её не взял, потому что they требует are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Проговорил три фразы про себя подряд: I am fine, it is warm here, I am not cold.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Собрал 4 фразы про разных людей без подсказок: про себя (am), про жильцов (are), про брата (is not). Немного напрягся, но справился, потому что каждый кусок уже отработан раньше в этой же сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Что скрепка am/is/are меняется в зависимости от того, о ком речь (я / один человек / несколько человек), а не является одним фиксированным словом",
+    "Что отрицание not всегда встаёт сразу после скрепки (am not, is not, are not), а не перед прилагательным, как по-русски",
+    "Восстановил в памяти слова tired, quiet, kind, ready, safe, warm, busy, cold и потренировался вставлять их в разные скрепки"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с соседом, который зашёл за отвёрткой и застрял на пороге, расспрашивая обо всём — понятная бытовая ситуация, легко представить",
+    "Задание 12 — обманка 'it is quiet here' заставила реально подумать, а не машинально жать одно и то же"
+  ],
+  "felt_dead": [
+    "Ничего откровенно 'справочного' не заметил — объяснения короткие и по делу"
+  ],
+  "scene_reason": "да — понятно: сосед у двери спрашивает про меня, про жильцов сверху, про квартиру и про брата, и я каждый раз отвечаю ему одной и той же соседской репликой, просто меняя скрепку и слово. Финал (задание 17) логично собирает все ветки разговора в одну реплику.",
+  "would_continue": "да — сессия короткая, задания не повторяют друг друга бездумно, ловушки (обманка на скрепку, лишняя плитка) держат в тонусе, и к финалу я реально мог сам, без подсказок, собрать 4 фразы подряд",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий выполнимы только известными словами и грамматикой, отрицание и три скрепки объяснены понятно на примерах, ловушки не требуют незнакомого, а финал показывает, что я реально усвоил тему за сессию."
+}

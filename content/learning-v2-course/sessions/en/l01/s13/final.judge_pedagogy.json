@@ -1,0 +1,88 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "young",
+      "old",
+      "strong",
+      "tall"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 5,
+        "trap": "I are old / I is old — правдоподобная путаница скрепки для I"
+      },
+      {
+        "task": 12,
+        "trap": "лишняя плитка are в сборке про I am strong"
+      },
+      {
+        "task": 13,
+        "trap": "am/is вместо are для you"
+      },
+      {
+        "task": 17,
+        "trap": "лишняя плитка I в сборке про you are brave"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 18,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "young",
+        "old",
+        "strong",
+        "tall"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      12,
+      17
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l01_s12",
+      "what": "интро 1 сессии s12 уже строит тот же контраст am/are через отношения с коллегой в поезде — здесь на кофе; сама операция дублируется по духу, но заголовок и слова новые, это не блокирующий повтор"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 6,
+      "listen_choose": 4,
+      "phrase_builder": 3,
+      "context_gap_grammar": 3,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "tired используется в задании 10 как ловушка-дистрактор, но ни разу не встречается как правильный ответ во всей сессии (0 из 3 касаний) — нарушение правила ≥2 касаний с хотя бы одним верным ответом для возвращаемых слов."
+}

@@ -1,0 +1,85 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "are/am вместо is при третьем лице"
+      },
+      {
+        "task": 6,
+        "trap": "kind/quiet вместо tired — смысловая подмена"
+      },
+      {
+        "task": 10,
+        "trap": "лишний not в плитках, хотя предложение утвердительное по смыслу проверки внимательности"
+      },
+      {
+        "task": 12,
+        "trap": "are вместо is; лишний not"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 16,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "funny",
+        "quiet",
+        "hungry",
+        "late"
+      ],
+      [
+        "tired",
+        "kind",
+        "he",
+        "she"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      10,
+      11,
+      12
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "speed_match": 2,
+      "context_gap_grammar": 5,
+      "listen_choose": 2,
+      "phrase_builder": 4,
+      "listen_build_dictation": 2,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы материала соблюдены, новых конструкций и слов вне плана нет, все возвращаемые слова касаются практики дважды и хотя бы раз являются правильным ответом, доски Speed Match не пересекаются словами и полностью отработаны заранее, задание-счётчик 16 совпадает с фактическим числом заданий."
+}

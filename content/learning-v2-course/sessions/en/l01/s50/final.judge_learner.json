@@ -1,0 +1,141 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "job — это работа, про неё говорят it. It is new можно сжать в It's new. Its (без апострофа) значит другое — «его».",
+      "confusion": "Само предупреждение про its/it's полезное, но чуть отвлекает — я и не думал путать эти слова, пока мне не подсказали, что можно",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "boss — начальник, человек, значит he или she, не it. He is kind → He's kind. Отрицание — He isn't kind.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "flat и city — вещи, тоже it. Отрицание можно сделать двумя способами: It isn't expensive или It's not expensive.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка job)",
+      "what_i_understood": "job = работа/место работы",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух job)",
+      "what_i_understood": "выбрал job, отличил от jog и joke",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка boss)",
+      "what_i_understood": "boss = начальник",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (слух boss)",
+      "what_i_understood": "выбрал boss, отличил от bus и box",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (вставьте слово, работа новая)",
+      "what_i_understood": "new подходит, kind и tired — про людей, не подходят к работе",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (соберите фразу He's kind)",
+      "what_i_understood": "лишняя плитка not не нужна, собрал He's kind",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (карточка flat)",
+      "what_i_understood": "flat = квартира (британский вариант)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (слух flat)",
+      "what_i_understood": "выбрал flat, отличил от fat и flag",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (карточка city)",
+      "what_i_understood": "city = город",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (слух city)",
+      "what_i_understood": "выбрал city, отличил от sit и seat",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "соединил все 4 новых слова с переводами",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (квартира дорогая)",
+      "what_i_understood": "выбрал expensive, а не small/new — про цену",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (диктовка It isn't small)",
+      "what_i_understood": "собрал отрицание про город из услышанного",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (He isn't kind)",
+      "what_i_understood": "собрал отрицание про начальника",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (я устал)",
+      "what_i_understood": "выбрал tired про себя, а не expensive/small",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (проговорить 3 фразы)",
+      "what_i_understood": "It's small. It's expensive. It's new. — повторил вслух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, 4 фразы)",
+      "what_i_understood": "собрал все фразы сам: It's new. He's kind. It's small. I'm tired.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "новые слова: job, boss, flat, city",
+    "про вещи (job, flat, city) говорю it, а про начальника — he/she",
+    "It is можно сжать в It's, но its без апострофа — совсем другое слово",
+    "отрицание можно строить двумя способами: isn't или is not — обе формы верные"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "сцена звонка маме воскресным вечером понятная и живая — легко представить, что реально так спрашивают",
+    "предупреждение про its/it's — полезная деталь, а не вода, потому что реально мог бы ошибиться"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я отвечаю маме по телефону на её вопросы про работу, начальника, квартиру и город — каждая фраза привязана к конкретному вопросу мамы, ясно кому и зачем я это говорю",
+  "would_continue": "да — сессия короткая, слова простые и полезные (работа, начальник, квартира, город — реально нужные темы для разговора), задания разнообразные и не скучные, в финале я сам собрал все 4 фразы без подсказок и это было приятно",
+  "verdict": "PASS",
+  "verdict_reason": "все 17 заданий прошёл честно без незнакомых слов в правильных ответах, узнал новую лексику и оба способа сокращений, сцена понятная от начала до конца."
+}

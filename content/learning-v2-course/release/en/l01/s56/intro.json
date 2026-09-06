@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "повторение — `am` / `is` / `are` и `not` после скрепки",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Неделя — это `it`",
+        "uk": "Тиждень — це `it`"
+      },
+      "bodyByLocale": {
+        "ru": "`week` — «неделя». Про неё говорят `it`, а рядом ставят `is`: `The week is hard` — то же самое, что `It is hard`. `hard` — «тяжело, трудно».\n\n`are` тут не подойдёт: его берут, когда речь о нескольких. Неделя одна, даже если по ощущениям их было три.",
+        "uk": "`week` — «тиждень». Про нього кажуть `it`, а поруч ставлять `is`: `The week is hard` — те саме, що `It is hard`. `hard` — «важко, тяжко».\n\n`are` тут не підійде: його беруть, коли йдеться про кількох. Тиждень один, навіть якщо за відчуттями їх було три."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Брат спрашивает, как прошла неделя. Она была тяжёлая — скажите про неделю.",
+          "uk": "Брат питає, як минув тиждень. Він був важкий — скажіть про тиждень."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-56:intro1:r1",
+              "text": "It is hard."
+            },
+            {
+              "responseId": "en:lesson-01:session-56:intro1:r2",
+              "text": "It are hard."
+            },
+            {
+              "responseId": "en:lesson-01:session-56:intro1:r3",
+              "text": "It hard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-56:intro1:r1",
+              "text": "It is hard."
+            },
+            {
+              "responseId": "en:lesson-01:session-56:intro1:r2",
+              "text": "It are hard."
+            },
+            {
+              "responseId": "en:lesson-01:session-56:intro1:r3",
+              "text": "It hard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Брат спрашивает, как прошла неделя. Она была тяжёлая — скажите про неделю.",
+          "uk": "Брат питає, як минув тиждень. Він був важкий — скажіть про тиждень."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`everyone` — «все», а глагол при нём один",
+        "uk": "`everyone` — «усі», а дієслово при ньому одне"
+      },
+      "bodyByLocale": {
+        "ru": "`everyone` — «все, каждый». Людей много, и рука сама тянется к `are`. Но английский считает здесь по одному — «каждый», — и ставит `is`: `Everyone is kind`. `kind` — «добрый».\n\nОшибка живучая: `everyone are` хочется сказать даже тем, кто правило знает наизусть.",
+        "uk": "`everyone` — «усі, кожен». Людей багато, і рука сама тягнеться до `are`. Але англійська рахує тут по одному — «кожен», — і ставить `is`: `Everyone is kind`. `kind` — «добрий».\n\nПомилка живуча: `everyone are` хочеться сказати навіть тим, хто вивчив правило напам'ять."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Брат спрашивает про новых коллег. Они хорошие — скажите про всех.",
+          "uk": "Брат питає про нових колег. Вони хороші — скажіть про всіх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-56:intro2:r1",
+              "text": "Everyone is kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-56:intro2:r2",
+              "text": "Everyone are kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-56:intro2:r3",
+              "text": "Everyone kind."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-56:intro2:r1",
+              "text": "Everyone is kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-56:intro2:r2",
+              "text": "Everyone are kind."
+            },
+            {
+              "responseId": "en:lesson-01:session-56:intro2:r3",
+              "text": "Everyone kind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Брат спрашивает про новых коллег. Они хорошие — скажите про всех.",
+          "uk": "Брат питає про нових колег. Вони хороші — скажіть про всіх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`alone` — «один»",
+        "uk": "`alone` — «сам»"
+      },
+      "bodyByLocale": {
+        "ru": "`alone` — «один, в одиночестве». Про себя это `I am alone`: скрепку `am` берут только с `I`, с другими словами она не идёт.\n\nЧтобы сказать обратное, `not` ставят после `am`: `I am not alone`. По-русски «я не один» обходится двумя словами, и третье кажется лишним — но выбросишь `am`, и фраза рассыпется.",
+        "uk": "`alone` — «сам, на самоті». Про себе це `I am alone`: скріпку `am` беруть тільки з `I`, з іншими словами вона не йде.\n\nЩоб сказати навпаки, `not` ставлять після `am`: `I am not alone`. Українською «я не сам» обходиться трьома словами без жодної скріпки, і в англійській її легко забути — а без `am` фраза розсиплеться."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Брат волнуется, что вы там совсем один. Успокойте его.",
+          "uk": "Брат хвилюється, що ви там зовсім сам. Заспокойте його."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-56:intro3:r1",
+              "text": "I am not alone."
+            },
+            {
+              "responseId": "en:lesson-01:session-56:intro3:r2",
+              "text": "I not alone."
+            },
+            {
+              "responseId": "en:lesson-01:session-56:intro3:r3",
+              "text": "I am no alone."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-56:intro3:r1",
+              "text": "I am not alone."
+            },
+            {
+              "responseId": "en:lesson-01:session-56:intro3:r2",
+              "text": "I not alone."
+            },
+            {
+              "responseId": "en:lesson-01:session-56:intro3:r3",
+              "text": "I am no alone."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Брат волнуется, что вы там совсем один. Успокойте его.",
+          "uk": "Брат хвилюється, що ви там зовсім сам. Заспокойте його."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7a024eae4d475b62c12b4a2093c68dcfbb6b8f057a9f73759b1554e734c0b46a"
+}

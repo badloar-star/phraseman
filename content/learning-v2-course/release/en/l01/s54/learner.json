@@ -1,0 +1,909 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nervous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nervous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i01:audio",
+          "transcript": "nervous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:i01:r1",
+            "targetText": "nervous",
+            "meaningByLocale": {
+              "ru": "«волнуюсь». Руки холодные, голос чуть выше обычного, а разговор ещё даже не начался.",
+              "uk": "«хвилююся». Руки холодні, голос трохи вищий за звичайний, а розмова ще навіть не почалася."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nervous",
+          "definitionByLocale": {
+            "ru": "«волнуюсь». Руки холодные, голос чуть выше обычного, а разговор ещё даже не начался.",
+            "uk": "«хвилююся». Руки холодні, голос трохи вищий за звичайний, а розмова ще навіть не почалася."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-54:i02:r1",
+          "text": "nervous"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i02:r2",
+          "text": "nurse"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i02:r3",
+          "text": "number"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — nervous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i02:audio",
+          "transcript": "nervous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:i02:r1",
+            "targetText": "nervous",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i02:r2",
+            "targetText": "nurse",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i02:r3",
+            "targetText": "number",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — nervous",
+            "feedbackByLocale": {
+              "ru": "«Медсестра» — профессия, а не состояние человека.",
+              "uk": "«Медсестра» — професія, а не стан людини."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — nervous",
+            "feedbackByLocale": {
+              "ru": "«Число». Начинается с другого звука: `number` с «н-а», `nervous` — с «нёр».",
+              "uk": "`number` починається з короткого «на», а `nervous` — з «нЕр»: голосна довша й під наголосом."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — confident",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — confident",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i03:audio",
+          "transcript": "confident"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:i03:r1",
+            "targetText": "confident",
+            "meaningByLocale": {
+              "ru": "«уверен в себе». Человек говорит о своих умениях ровно, без хвастовства и без оправданий.",
+              "uk": "«упевнений у собі». Людина говорить про свої вміння рівно, без хвальби і без виправдань."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "confident",
+          "definitionByLocale": {
+            "ru": "«уверен в себе». Человек говорит о своих умениях ровно, без хвастовства и без оправданий.",
+            "uk": "«упевнений у собі». Людина говорить про свої вміння рівно, без хвальби і без виправдань."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-54:i04:r1",
+          "text": "confident"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i04:r2",
+          "text": "comfort"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i04:r3",
+          "text": "content"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — confident",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i04:audio",
+          "transcript": "confident"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:i04:r1",
+            "targetText": "confident",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i04:r2",
+            "targetText": "comfort",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i04:r3",
+            "targetText": "content",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — confident",
+            "feedbackByLocale": {
+              "ru": "«Удобство» — про кресло и обстановку, а не про человека.",
+              "uk": "«Зручність» — про крісло й обстановку, а не про людину."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — confident",
+            "feedbackByLocale": {
+              "ru": "«Доволен» — близкая тема, но это про удовлетворённость, а не про уверенность в своих силах.",
+              "uk": "«Задоволений» — близька тема, але це про вдоволення, а не про впевненість у своїх силах."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вас спросили, справитесь ли вы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-54:i05:r1",
+          "text": "confident"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i05:r2",
+          "text": "nervous"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i05:r3",
+          "text": "ready"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вас спросили, справитесь ли вы",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вас спросили, справитесь ли вы",
+          "uk": "Вставте слово — вас запитали, чи впораєтеся ви"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-54:i05:r1",
+            "text": "confident"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i05:r2",
+            "text": "nervous"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i05:r3",
+            "text": "ready"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вас спросили, справитес",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i05:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас спросили, справитес",
+            "feedbackByLocale": {
+              "ru": "«Я волнуюсь» — не то, что хотят услышать в ответ на вопрос о ваших силах.",
+              "uk": "«Я хвилююся» — не те, що хочуть почути у відповідь на питання про ваші сили."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас спросили, справитес",
+            "feedbackByLocale": {
+              "ru": "«Я готов» — про момент, а не про то, уверены ли вы в себе.",
+              "uk": "«Я готовий» — про мить, а не про те, чи впевнені ви в собі."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fluent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fluent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i06:audio",
+          "transcript": "fluent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:i06:r1",
+            "targetText": "fluent",
+            "meaningByLocale": {
+              "ru": "«говорю свободно». Речь идёт сама, без пауз на поиск слова.",
+              "uk": "«говорю вільно». Мовлення йде саме, без пауз на пошук слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fluent",
+          "definitionByLocale": {
+            "ru": "«говорю свободно». Речь идёт сама, без пауз на поиск слова.",
+            "uk": "«говорю вільно». Мовлення йде саме, без пауз на пошук слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-54:i07:r1",
+          "text": "fluent"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i07:r2",
+          "text": "flat"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i07:r3",
+          "text": "floor"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — fluent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i07:audio",
+          "transcript": "fluent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-54:i07:r1",
+            "targetText": "fluent",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i07:r2",
+            "targetText": "flat",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i07:r3",
+            "targetText": "floor",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i07:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — fluent",
+            "feedbackByLocale": {
+              "ru": "«Квартира» — про жильё, а не про речь.",
+              "uk": "«Квартира» — про житло, а не про мовлення."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — fluent",
+            "feedbackByLocale": {
+              "ru": "«Пол». Обрывается сразу, а в `fluent` после первой части есть ещё одна.",
+              "uk": "«Підлога». Обривається одразу, а в `fluent` після першої частини є ще одна."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «я волнуюсь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «я волнуюсь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am nervous.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «я волнуюсь»",
+          "uk": "Складіть фразу — «я хвилююся»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "nervous"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спрашивают про ваш английский",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-54:i09:r1",
+          "text": "fluent"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i09:r2",
+          "text": "nervous"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i09:r3",
+          "text": "honest"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спрашивают про ваш английский",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спрашивают про ваш английский",
+          "uk": "Вставте слово — запитують про вашу англійську"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-54:i09:r1",
+            "text": "fluent"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i09:r2",
+            "text": "nervous"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i09:r3",
+            "text": "honest"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спрашивают про ваш англ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i09:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спрашивают про ваш англ",
+            "feedbackByLocale": {
+              "ru": "«Волнуюсь» — про состояние, а вопрос был про язык.",
+              "uk": "«Хвилююся» — про стан, а питання було про мовлення."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спрашивают про ваш англ",
+            "feedbackByLocale": {
+              "ru": "«Честен» — про характер. Про речь говорят `fluent`.",
+              "uk": "«Чесний» — про вдачу. Про мовлення кажуть `fluent`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — «я уверен в себе»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-54:i10:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i10:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i10:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — «я уверен в себе»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — «я уверен в себе»",
+          "uk": "Вставте скріпку — «я впевнений у собі»"
+        },
+        "gappedTargetPhrase": "I ___ confident.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-54:i10:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i10:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i10:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — «я уверен в себе»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i10:r1",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — «я уверен в себе»",
+            "feedbackByLocale": {
+              "ru": "Не для `I`. Про себя — `am`.",
+              "uk": "Не для `I`. Про себе — `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — «я уверен в себе»",
+            "feedbackByLocale": {
+              "ru": "Чужая скрепка. `I am confident` — первые два слова не меняются.",
+              "uk": "Чужа скріпка. `I am confident` — перші два слова не змінюються."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «я говорю свободно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «я говорю свободно»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i11:audio",
+          "transcript": "I am fluent."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am fluent.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "fluent"
+        ],
+        "authoredDistractorTokens": [
+          "nervous"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вас спросили, всегда ли вы говорите правду",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-54:i12:r1",
+          "text": "honest"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i12:r2",
+          "text": "calm"
+        },
+        {
+          "responseId": "en:lesson-01:session-54:i12:r3",
+          "text": "fluent"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вас спросили, всегда ли вы говорите правду",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вас спросили, всегда ли вы говорите правду",
+          "uk": "Вставте слово — вас запитали, чи завжди ви кажете правду"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-54:i12:r1",
+            "text": "honest"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i12:r2",
+            "text": "calm"
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i12:r3",
+            "text": "fluent"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вас спросили, всегда ли",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i12:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас спросили, всегда ли",
+            "feedbackByLocale": {
+              "ru": "`calm` — «спокоен». Про нервы, а не про правду.",
+              "uk": "`calm` — «спокійний». Про нерви, а не про правду."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас спросили, всегда ли",
+            "feedbackByLocale": {
+              "ru": "«Говорю свободно» — про то, как звучит речь, а не про честность.",
+              "uk": "«Говорю вільно» — про те, як звучить мовлення, а не про чесність."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вас спросили, не паникуете ли вы в трудный день",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вас спросили, не паникуете ли вы в трудный день",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am calm.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вас спросили, не паникуете ли вы в трудный день",
+          "uk": "Складіть фразу — вас запитали, чи не панікуєте ви у важкий день"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "calm"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы честно начинаете разговор",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы честно начинаете разговор",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i14:audio",
+          "transcript": "I am nervous. I am honest."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am nervous. I am honest.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите без подсказки — «я готов»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите без подсказки — «я готов»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am ready.",
+        "localizedMeaning": {
+          "ru": "Соберите без подсказки — «я готов»",
+          "uk": "Складіть без підказки — «я готовий»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-54:i16:p1",
+            "target": "nervous",
+            "meaningByLocale": {
+              "ru": "волнуюсь",
+              "uk": "хвилююся"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-54:i16:p2",
+            "target": "confident",
+            "meaningByLocale": {
+              "ru": "уверен в себе",
+              "uk": "упевнений у собі"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-54:i16:p3",
+            "target": "fluent",
+            "meaningByLocale": {
+              "ru": "говорю свободно",
+              "uk": "говорю вільно"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-54:i16:p4",
+            "target": "honest",
+            "meaningByLocale": {
+              "ru": "честен",
+              "uk": "чесний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "nervous",
+          "confident",
+          "fluent",
+          "honest"
+        ],
+        "rightColumn": [
+          "волнуюсь",
+          "уверен в себе",
+          "говорю свободно",
+          "честен"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-54:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — четыре фразы подряд",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-54:i17:audio",
+          "transcript": "I am confident. I am fluent. I am calm. I am ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am confident. I am fluent. I am calm. I am ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "18d8d2e4b1081d065a9544c0a4f03b3a5e2643c10afb47c835d28100f6e1c78f"
+}

@@ -1,0 +1,86 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "sold"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 3,
+        "trap": "crowded/pretty как отвлекающие от sold — правдоподобная путаница по смыслу"
+      },
+      {
+        "task": 7,
+        "trap": "sold/crowded против comfortable — реалистичная категориальная ошибка"
+      },
+      {
+        "task": 12,
+        "trap": "sold/comfortable против crowded — реалистично"
+      },
+      {
+        "task": "интро1",
+        "trap": "It is cheap? (порядок сообщения вместо вопроса)"
+      },
+      {
+        "task": "интро2",
+        "trap": "Is sold it? (it уехало в конец)"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "sold",
+        "cheap",
+        "comfortable",
+        "crowded"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      11,
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 2,
+      "listen_choose": 1,
+      "context_gap_grammar": 4,
+      "phrase_builder": 4,
+      "listen_build_dictation": 2,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Интро 1 (360 знаков) и Интро 3 (332 знака) выходят за верхнюю границу допуска 320 знаков — требуется сократить за счёт разгона, не за счёт образов/шуток."
+}

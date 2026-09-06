@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "перенос — вопрос про вещь: `Is it …?`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`it` — для вещи",
+        "uk": "`it` — для речі"
+      },
+      "bodyByLocale": {
+        "ru": "`it` — это «оно»: про вещь, а не про человека. Пальто, ботинок, витрина, весь магазин целиком — для английского это всё одно слово `it`.\n\nЧтобы спросить, ставят три слова подряд: сначала `is`, потом `it`, потом само слово. `Is it cheap?` — «оно дешёвое?». Порядок не меняется, что бы вы ни спрашивали.",
+        "uk": "`it` — це «воно»: про річ, а не про людину. Пальто, черевик, вітрина, уся крамниця разом — для англійської це все одне слово `it`.\n\nЩоб запитати, ставлять три слова поспіль: спочатку `is`, потім `it`, потім саме слово. `Is it cheap?` — «воно дешеве?». Порядок не змінюється, хоч би що ви питали."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "На витрине пальто без ценника. `cheap` — «дешёвый». Спросите, дешёвое ли оно.",
+          "uk": "На вітрині пальто без цінника. `cheap` — «дешевий». Запитайте, чи воно дешеве."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-14:intro1:r1",
+              "text": "Is it cheap?"
+            },
+            {
+              "responseId": "en:lesson-02:session-14:intro1:r2",
+              "text": "It is cheap?"
+            },
+            {
+              "responseId": "en:lesson-02:session-14:intro1:r3",
+              "text": "Is cheap?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-14:intro1:r1",
+              "text": "Is it cheap?"
+            },
+            {
+              "responseId": "en:lesson-02:session-14:intro1:r2",
+              "text": "It is cheap?"
+            },
+            {
+              "responseId": "en:lesson-02:session-14:intro1:r3",
+              "text": "Is cheap?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На витрине пальто без ценника. `cheap` — «дешёвый». Спросите, дешёвое ли оно.",
+          "uk": "На вітрині пальто без цінника. `cheap` — «дешевий». Запитайте, чи воно дешеве."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`sold` — уже купили",
+        "uk": "`sold` — уже купили"
+      },
+      "bodyByLocale": {
+        "ru": "`sold` — «продано». Вещь ещё лежит на полке, но она уже чужая.\n\nПро вещь можно и просто сообщить: `It is sold.` — значит, нести к кассе нечего. А спросить — тот же порядок, что и всегда: `Is it sold?` Эту табличку вы увидите и на витрине: `SOLD` пишут прямо на ценнике.",
+        "uk": "`sold` — «продано». Річ ще лежить на полиці, але вона вже чужа.\n\nПро річ можна й просто повідомити: `It is sold.` — отже, нести до каси нічого. А запитати — той самий порядок, що й завжди: `Is it sold?` Цю табличку ви побачите й на вітрині: `SOLD` пишуть просто на ціннику."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "На полке последняя пара ботинок, рядом бумажка с чужим именем. Спросите про ботинки.",
+          "uk": "На полиці остання пара черевиків, поряд папірець із чужим іменем. Запитайте про черевики."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-14:intro2:r1",
+              "text": "Is it sold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-14:intro2:r2",
+              "text": "Is sold it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-14:intro2:r3",
+              "text": "It sold?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-14:intro2:r1",
+              "text": "Is it sold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-14:intro2:r2",
+              "text": "Is sold it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-14:intro2:r3",
+              "text": "It sold?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На полке последняя пара ботинок, рядом бумажка с чужим именем. Спросите про ботинки.",
+          "uk": "На полиці остання пара черевиків, поряд папірець із чужим іменем. Запитайте про черевики."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Короткий ответ",
+        "uk": "Коротка відповідь"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец спрашивает: `Is it cheap?` Отвечать целиком не нужно — слово `cheap` он только что произнёс сам.\n\nОстаётся `it is`, и это весь ответ: `Yes, it is.` А если нет — между ними встаёт `not`: `No, it is not.`",
+        "uk": "Продавець питає: `Is it cheap?` Відповідати повністю не треба — слово `cheap` він щойно сказав сам.\n\nЛишається `it is`, і це вся відповідь: `Yes, it is.` А якщо ні — між ними стає `not`: `No, it is not.`"
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Продавец про пальто: «Is it comfortable?» — `comfortable` значит «удобный». Оно неудобное. Ответьте коротко.",
+          "uk": "Продавець про пальто: «Is it comfortable?» — `comfortable` означає «зручний». Воно незручне. Відповідайте коротко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-14:intro3:r1",
+              "text": "No, it is not."
+            },
+            {
+              "responseId": "en:lesson-02:session-14:intro3:r2",
+              "text": "No, it not is."
+            },
+            {
+              "responseId": "en:lesson-02:session-14:intro3:r3",
+              "text": "No, is it not."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-14:intro3:r1",
+              "text": "No, it is not."
+            },
+            {
+              "responseId": "en:lesson-02:session-14:intro3:r2",
+              "text": "No, it not is."
+            },
+            {
+              "responseId": "en:lesson-02:session-14:intro3:r3",
+              "text": "No, is it not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Продавец про пальто: «Is it comfortable?» — `comfortable` значит «удобный». Оно неудобное. Ответьте коротко.",
+          "uk": "Продавець про пальто: «Is it comfortable?» — `comfortable` означає «зручний». Воно незручне. Відповідайте коротко."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "20eaad2e07544c4b1d80701978a912571e6e0f7b45299254877e9f66a9c40f56"
+}

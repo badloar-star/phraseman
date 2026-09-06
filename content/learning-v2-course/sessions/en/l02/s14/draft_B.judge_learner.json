@@ -1,0 +1,140 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Про вещь спрашивают не так, как про человека: сначала is, потом it, потом слово. Is it cheap? = оно дешёвое?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "sold значит продано. Спрашиваю так же: Is it sold?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Отвечать коротко: Yes, it is. / No, it is not. Само слово повторять не надо.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 карточка sold",
+      "what_i_understood": "sold = продано",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 слух sold/old/cold",
+      "what_i_understood": "выбрал по звуку начала слова",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 вставка sold",
+      "what_i_understood": "продавец держит коробку — значит вещь уже чужая, sold подходит по смыслу",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 сборка Is it cheap?",
+      "what_i_understood": "собрал по порядку из интро 1",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 карточка cheap",
+      "what_i_understood": "cheap = дешёвый",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 сборка Is it sold? с лишней плиткой cheap",
+      "what_i_understood": "не взял лишнюю плитку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 вставка comfortable",
+      "what_i_understood": "нога не жмёт — значит удобно; но слово comfortable мне не объяснили заранее, кроме как в интро 3 списком с переводом",
+      "confusion": "comfortable нигде не было объяснено отдельно, только упомянуто мельком в интро 3 в скобках с переводом — я угадал по смыслу, а не по знанию",
+      "could_answer_question": true
+    },
+    {
+      "step": "8 звуки sold/gold",
+      "what_i_understood": "различил по первому звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 доска пар",
+      "what_i_understood": "sold-продано, cheap-дешёвый, comfortable-удобный, crowded-многолюдный",
+      "confusion": "crowded я тоже толком не учил отдельно, видел перевод один раз в разборе неправильного варианта в задании 3",
+      "could_answer_question": true
+    },
+    {
+      "step": "10 вставка Is",
+      "what_i_understood": "is для одной вещи (it), are и am — чужие",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 сборка Yes, it is (с лишней плиткой cheap)",
+      "what_i_understood": "короткий ответ без повтора слова",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 вставка crowded",
+      "what_i_understood": "суббота, не протолкнуться — значит многолюдно",
+      "confusion": "опять то же самое слово crowded, которое было объяснено только как перевод в разборе неправильного ответа задания 3, а не отдельной карточкой",
+      "could_answer_question": true
+    },
+    {
+      "step": "13 сборка Is it pretty?",
+      "what_i_understood": "pretty = красивый, тоже не было отдельной карточки, но переводом мелькало",
+      "confusion": "pretty нигде явно не разбирали с переводом до этого задания, кроме списка в самом начале сессии (Возвращаются: cheap, comfortable, pretty, crowded) — доверился списку",
+      "could_answer_question": true
+    },
+    {
+      "step": "14 сборка No, it is not (лишняя плитка pretty)",
+      "what_i_understood": "не взял лишнюю плитку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 голос Is it cheap? Is it sold?",
+      "what_i_understood": "повторил вслух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 сборка Is it comfortable?",
+      "what_i_understood": "собрал",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 финал",
+      "what_i_understood": "сказал три фразы подряд про пальто у кассы",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "как спрашивать про вещь (не про человека): Is it + слово",
+    "слово sold — продано",
+    "короткий ответ про вещь: Yes, it is / No, it is not, без повтора самого слова"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "магазин, пальто без ценника, ботинки с чужим именем на бумажке — понятно зачем спрашивать",
+    "сравнение с чайником и шуткой убрано, тут нормально — просто по делу"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я в магазине, хочу купить пальто/ботинки, и мне нужно узнать цену и не занята ли вещь — реальная ситуация, где действительно спросил бы это",
+  "would_continue": "да, было легко и понятно, паттерн простой, хочу дальше",
+  "verdict": "PASS",
+  "verdict_reason": "все задания прошёл честно, новое понял, слова из прошлых уроков (cheap, comfortable, crowded, pretty) даны как повтор с переводом рядом, где нужно — угадывать в упор не пришлось."
+}

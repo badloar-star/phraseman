@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-14:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i02",
+    "correctText": "sold",
+    "correctResponseId": "en:lesson-02:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i04",
+    "correctText": "sold",
+    "correctResponseId": "en:lesson-02:session-14:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i05",
+    "correctText": "Is it cheap?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i07",
+    "correctText": "Is it sold?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i08",
+    "correctText": "comfortable",
+    "correctResponseId": "en:lesson-02:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i11",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i12",
+    "correctText": "Yes, it is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i13",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-14:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i14",
+    "correctText": "Is it pretty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i15",
+    "correctText": "No, it is not.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i16",
+    "correctText": "Is it cheap? Is it sold?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-14:i17",
+    "correctText": "Is it cheap? Is it sold? It is pretty.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,134 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (Yes, I am)",
+      "what_i_understood": "Если спрашивают 'Are you hungry?' и это правда, отвечаю не просто 'Yes', а 'Yes, I am'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (No, I am not)",
+      "what_i_understood": "Для 'нет' говорю 'No, I am not'. Слово 'not' стоит после 'am', не перед ним и не в конце.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (короткий/длинный ответ)",
+      "what_i_understood": "Можно ответить и коротко 'Yes, I am', и длинно 'Yes, I am thirsty' — оба правильно, короткий просто быстрее.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "На слух узнал hungry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Собрал 'Yes, I am.' из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Вставил not в 'No, I am ___'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "На слух узнал lost.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Вставил I в 'Yes, ___ am'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Собрал 'No, I am not.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Собрал по звуку 'Yes, I am.', лишнее not не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Собрал пары слов: hungry, lost, cold, thirsty с переводами.",
+      "confusion": "thirsty тут первый раз встречается в отдельном задании (до этого было только в тексте интро), но перевод дали, справился",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Вставил am в 'No, I ___ not.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Тут ловушка: плитки предлагают 'not' и 'No', но по смыслу (я реально заблудился) нужно 'Yes, I am.'",
+      "confusion": "Пришлось перечитать дважды, потому что первая реакция — просто собрать что-то из всех плиток, забыв про смысл",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "На слух узнал thirsty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Собрал длинный вариант 'Yes, I am cold.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Вставил thirsty по смыслу (пересохло во рту).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Собрал пары: yes, no, ok, awake с переводами.",
+      "confusion": "ok до этого нигде в практике не встречалось, только в интро других сессий (по сноске) — тут просто дали перевод в паре, справился, но не было предварительной тренировки",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Запутался: инструкция говорит сразу про два вопроса — 'Are you ok?' и 'Are you cold?' — непонятно, на какой из них отвечать.",
+      "confusion": "Пришлось перечитывать три раза. В итоге понял, что нужно ответить на 'Are you cold?', но по тексту это неочевидно с первого раза",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Проговорил три коротких ответа подряд под три вопроса.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Короткий ответ 'да' на английский вопрос — это не просто Yes, а Yes + I am",
+    "Короткое 'нет' — No, I am not, и not встаёт именно после am",
+    "На один и тот же вопрос можно ответить и коротко, и длинно — оба варианта правильные"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Задание 10 — ловушка на внимательность, когда плитки подсовывают неправильный ответ, а надо думать о реальной ситуации, а не механически собирать слова",
+    "Задание 16 — идёт подряд три вопроса и три ответа, похоже на настоящий разговор"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я стою у двери хостела с рюкзаком, вокруг спрашивают короткими фразами, и мне нужно отвечать быстро — это объясняет, почему учим именно короткие Yes, I am / No, I am not, а не длинные фразы",
+  "would_continue": "да — задания понятные, есть один живой момент с ловушкой, узнал полезную вещь (короткие ответы), не было ничего невозможного",
+  "verdict": "REVISE",
+  "verdict_reason": "Всё проходимо и я реально чему-то научился, но задание 15 сформулировано так, что путает — два вопроса в одной инструкции без ясного указания, на который отвечать."
+}

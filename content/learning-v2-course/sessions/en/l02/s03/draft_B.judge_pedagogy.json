@@ -12,12 +12,16 @@
   "traps": {
     "realistic": [
       {
-        "task": 3,
-        "trap": "No, I am no — «no» вместо «not» внутри фразы"
+        "task": 5,
+        "trap": "is/are вместо am — реалистичная ошибка выбора связки"
       },
       {
-        "task": 9,
-        "trap": "am/are/is — путаница какая форма быть про себя"
+        "task": 6,
+        "trap": "no вместо not внутри фразы — реалистичная путаница короткого/полного отрицания"
+      },
+      {
+        "task": 13,
+        "trap": "лишняя плитка not при подтверждающем ответе — обманка на внимательность"
       }
     ],
     "silly": [],
@@ -36,24 +40,23 @@
     "support_fades": true,
     "speed_match_boards": [
       [
-        "hungry",
-        "lost",
+        "awake",
+        "thirsty",
         "cold",
-        "thirsty"
+        "hungry"
       ],
       [
-        "yes",
-        "no",
+        "lost",
         "ok",
-        "awake"
+        "Yes, I am",
+        "No, I am not"
       ]
     ],
     "speed_match_overlap": false,
     "repeated_targets": [],
     "generic_instructions": [],
     "attention_traps": [
-      10,
-      15
+      13
     ]
   },
   "time_references": [],
@@ -66,11 +69,11 @@
       "listen_choose": 3,
       "phrase_builder": 4,
       "context_gap_grammar": 4,
-      "listen_build_dictation": 1,
       "speed_match": 2,
-      "scripted_repeat_compare": 1
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
     }
   },
   "verdict": "REVISE",
-  "verdict_reason": "Длина всех трёх интро (335/293/396 знаков) превышает норму 240–290, а задание 15 путает ученика двумя разными репликами в одной инструкции — это надо править, но границы, честность ловушек и разбор ошибок в порядке."
+  "verdict_reason": "Все три интро-страницы превышают целевую длину 240–290 знаков (312, 303, 390 знаков)."
 }

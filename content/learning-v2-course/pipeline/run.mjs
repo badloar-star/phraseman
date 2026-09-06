@@ -323,8 +323,17 @@ function machineFacts(file) {
     const correct = /^-\s+✅\s+\*\*([^*]+)\*\*/m.exec(page)?.[1]?.trim() ?? "";
     if (!correct) { facts.push(`интро ${i + 1}: НЕ НАЙДЕН правильный ответ`); continue; }
     // ключевое слово ответа — последнее содержательное (fine, sure, new…)
-    const key = correct.replace(/[.?!]$/, "").split(/\s+/).filter((w) => !/^(i|am|not|a|the)$/i.test(w)).pop() ?? "";
-    const inBody = key && new RegExp(`\\b${key}\\b`, "i").test(body);
+    // зачем: короткий ответ («Yes, I am» / «No, I am not») не имеет
+    // содержательного слова — ключом остаётся «No,» с запятой и не находится.
+    // Такой ответ проверяем целиком по самой фразе.
+    const bare = correct.replace(/[.?!]$/, "").trim();
+    const isShortAnswer = /^(yes|no)/i.test(bare);
+    const key = isShortAnswer
+      ? bare
+      : (bare.split(/\s+/).map((w) => w.replace(/^[^\p{L}]+|[^\p{L}]+$/gu, "")).filter((w) => w && !/^(i|am|not|a|the)$/i.test(w)).pop() ?? "");
+    const inBody = key && (isShortAnswer
+      ? body.toLowerCase().includes(key.toLowerCase())
+      : new RegExp(`\\b${key}\\b`, "i").test(body));
     facts.push(`интро ${i + 1}: ответ «${correct}» ключ «${key}» — ${inBody ? "объяснён на странице" : "НЕ УПОМЯНУТ в тексте страницы ← текст ведёт к другому слову"}`);
   }
   return facts.join("\n");

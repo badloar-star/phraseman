@@ -1,0 +1,135 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Если спросили Are you awake? и это правда, можно ответить коротко: Yes, I am. Целиком повторять awake не надо.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Для отрицания добавляется not после I am: No, I am not. Просто No — слишком сухо.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Можно ответить и длинно, повторив слово: Yes, I am lost. Оба варианта правильные, просто разной длины.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Узнаю awake на слух среди похожих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Собрал Yes, I am из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Узнаю thirsty на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал No, I am not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Вписал am — это про себя, а не is/are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Вписал not — потому что am уже стоит, второй раз его не нужно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Собрал пары слово-перевод: awake, thirsty, cold, hungry.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Собрал No, I am not по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Узнал lost на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Вписал lost, а не awake или ok — потому что вопрос был про дорогу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Собрал Yes, I am thirsty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Вписал not — иначе получилось бы обратное значение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал Yes, I am cold, лишнюю плитку not не использовал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Собрал ещё пары: lost, ok, Yes I am, No I am not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Произнёс вслух оба коротких ответа.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Ответил на четыре вопроса подряд без подсказок, используя короткие и один длинный ответ.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как коротко ответить «да» на вопрос Are you...? — Yes, I am, без повторения самого слова",
+    "Как коротко ответить «нет» — No, I am not, и что not встаёт сразу после am",
+    "Что вместо короткого ответа можно дать полный (Yes, I am lost) — оба варианта верны, разница только в длине",
+    "Что нельзя говорить No, I am no — no используется только само по себе, а not — только внутри фразы"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с очередью в душ и вопросами за завтраком — понятно, кто спрашивает и почему нужен именно короткий ответ, а не долгий",
+    "Задание 13 с лишней плиткой not — заставило реально подумать, а не механически собрать всё, что дали"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — утро в хостеле, тебя по очереди спрашивают, проснулся ли ты, голоден ли, хочешь пить и не заблудился ли, и нужно отвечать быстро, а не полными фразами каждый раз",
+  "would_continue": "да — задания шли по нарастающей сложности, ничего не показалось лишним, к финалу я реально смог ответить на четыре вопроса подряд сам",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно на знакомых словах, понял новое правило про короткие ответы и не споткнулся ни разу."
+}

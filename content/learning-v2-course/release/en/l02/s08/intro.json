@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `Are you + слово?` и ответов `Yes, I am` / `No, I am not`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вопрос начинается с `are`",
+        "uk": "Питання починається з `are`"
+      },
+      "bodyByLocale": {
+        "ru": "`awake` — «проснулся, не спит». Не «бодрый» — просто глаза открыты.\n\nНачать хочется с `you` — мы же про него и спрашиваем. Но в вопросе первым идёт `are`, а `you` сразу за ним: `Are you awake?` Переставите их — и вопрос перестанет быть вопросом.",
+        "uk": "`awake` — «прокинувся, не спить». Не «бадьорий» — просто очі розплющені.\n\nПочати хочеться з `you` — ми ж про нього й питаємо. Але в питанні першим іде `are`, а `you` одразу за ним: `Are you awake?` Переставите їх — і питання перестане бути питанням."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Сосед за столом не открывает глаз уже минуту. Спросите, проснулся ли он.",
+          "uk": "Сусід за столом не розплющує очей уже хвилину. Спитайте, чи він прокинувся."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-08:intro1:r1",
+              "text": "Are you awake?"
+            },
+            {
+              "responseId": "en:lesson-02:session-08:intro1:r2",
+              "text": "You are awake?"
+            },
+            {
+              "responseId": "en:lesson-02:session-08:intro1:r3",
+              "text": "Are awake you?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-08:intro1:r1",
+              "text": "Are you awake?"
+            },
+            {
+              "responseId": "en:lesson-02:session-08:intro1:r2",
+              "text": "You are awake?"
+            },
+            {
+              "responseId": "en:lesson-02:session-08:intro1:r3",
+              "text": "Are awake you?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сосед за столом не открывает глаз уже минуту. Спросите, проснулся ли он.",
+          "uk": "Сусід за столом не розплющує очей уже хвилину. Спитайте, чи він прокинувся."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Короткий ответ вместо полного",
+        "uk": "Коротка відповідь замість повної"
+      },
+      "bodyByLocale": {
+        "ru": "На `Are you hungry?` («голодный?») можно ответить полностью: `Yes, I am hungry.` Но слово из вопроса обычно не повторяют — оно прозвучало секунду назад.\n\nОстаётся `Yes, I am.` В вопросе про вас было `are`, а про себя вы говорите `am`: к `you` идёт `are`, к `I` — `am`.",
+        "uk": "На `Are you hungry?` («голодний?») можна відповісти повністю: `Yes, I am hungry.` Але слово з питання зазвичай не повторюють — воно прозвучало секунду тому.\n\nЛишається `Yes, I am.` У питанні про вас було `are`, а про себе ви кажете `am`: до `you` іде `are`, до `I` — `am`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Сосед пододвигает тарелку и спрашивает: «Are you hungry?» Вы голодны. Ответьте коротко.",
+          "uk": "Сусід підсуває тарілку й питає: «Are you hungry?» Ви голодні. Відповідайте коротко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-08:intro2:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-08:intro2:r2",
+              "text": "Yes, I hungry."
+            },
+            {
+              "responseId": "en:lesson-02:session-08:intro2:r3",
+              "text": "Yes, I am hungry am."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-08:intro2:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-08:intro2:r2",
+              "text": "Yes, I hungry."
+            },
+            {
+              "responseId": "en:lesson-02:session-08:intro2:r3",
+              "text": "Yes, I am hungry am."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сосед пододвигает тарелку и спрашивает: «Are you hungry?» Вы голодны. Ответьте коротко.",
+          "uk": "Сусід підсуває тарілку й питає: «Are you hungry?» Ви голодні. Відповідайте коротко."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отказ добавляет `not`",
+        "uk": "Відмова додає `not`"
+      },
+      "bodyByLocale": {
+        "ru": "Отказ строится так же, как согласие, только с добавленным `not`: `No, I am not.`\n\n`not` идёт после `am`, не перед ним. Всё остальное как в `Yes, I am`, поэтому и учить заново нечего. Зато забудете `not` — и вместо отказа согласитесь.",
+        "uk": "Відмова будується так само, як згода, тільки з доданим `not`: `No, I am not.`\n\n`not` іде після `am`, не перед ним. Решта — як у `Yes, I am`, тому й вчити наново нічого. Зате забудете `not` — і замість відмови погодитеся."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Сосед берёт второй стакан и спрашивает: «Are you thirsty?» («хочешь пить?») Пить вы не хотите. Откажитесь.",
+          "uk": "Сусід бере другу склянку й питає: «Are you thirsty?» («хочеш пити?») Пити ви не хочете. Відмовтеся."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-08:intro3:r1",
+              "text": "No, I am not."
+            },
+            {
+              "responseId": "en:lesson-02:session-08:intro3:r2",
+              "text": "No, I not am."
+            },
+            {
+              "responseId": "en:lesson-02:session-08:intro3:r3",
+              "text": "No, I am."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-08:intro3:r1",
+              "text": "No, I am not."
+            },
+            {
+              "responseId": "en:lesson-02:session-08:intro3:r2",
+              "text": "No, I not am."
+            },
+            {
+              "responseId": "en:lesson-02:session-08:intro3:r3",
+              "text": "No, I am."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сосед берёт второй стакан и спрашивает: «Are you thirsty?» («хочешь пить?») Пить вы не хотите. Откажитесь.",
+          "uk": "Сусід бере другу склянку й питає: «Are you thirsty?» («хочеш пити?») Пити ви не хочете. Відмовтеся."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2db83e7dfddad7807cbd9c22ec010ba35fa36ba4de983815788ba0a5662040c4"
+}

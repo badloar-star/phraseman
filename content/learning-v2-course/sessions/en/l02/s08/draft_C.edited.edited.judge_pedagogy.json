@@ -1,0 +1,86 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 5,
+        "trap": "thirsty при перепутывании с lost/awake — реалистичная замена состояния"
+      },
+      {
+        "task": 11,
+        "trap": "lost при перепутывании с hungry/cold"
+      },
+      {
+        "task": 13,
+        "trap": "ok при перепутывании с awake/thirsty"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "awake",
+        "hungry",
+        "thirsty",
+        "cold"
+      ],
+      [
+        "lost",
+        "ok",
+        "hungry",
+        "awake"
+      ]
+    ],
+    "speed_match_overlap": true,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      8,
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s07",
+      "what": "объяснение вопроса через `are` первым и разбор ошибки «Так вы сообщаете ему новость» повторяются почти дословно (l02_s05, l02_s06, l02_s07 уже используют эту же формулировку) — для checkpoint-сессии это ожидаемо, но заголовок «Вопрос начинается с `are`» и структура интро 1 практически идентичны l02_s06 «`are you` — начало любого вопроса»"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "speed_match": 2,
+      "context_gap_grammar": 5,
+      "listen_choose": 2,
+      "phrase_builder": 3,
+      "listen_build_dictation": 2,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Доска пар в задании 15 повторяет два слова (hungry, awake) из доски задания 1 внутри одной сессии — это speed_match_overlap, запрещённый правилом «второй только без общих слов»."
+}

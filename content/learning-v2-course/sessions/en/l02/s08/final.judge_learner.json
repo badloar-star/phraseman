@@ -1,0 +1,141 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Вопрос строится так: сначала `are`, потом `you`, потом слово-состояние. `Are you awake?` — «ты проснулся?». Порядок слов важен, менять местами нельзя.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "На вопрос с `are you` короткий ответ — `Yes, I am.` Само слово из вопроса повторять не нужно. К `I` идёт `am`, а не `are`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Отказ — это то же самое, что согласие, плюс `not` после `am`: `No, I am not.` Порядок такой же, просто добавляется слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (пары)",
+      "what_i_understood": "Соединил слова с переводом, тут повторение старого.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Выбрал `Are`, потому что вопрос должен начинаться с него.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "На слух отличил `awake` от похожих `away` и `alone`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал `Are you hungry?` из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Понял по ситуации (тянется к графину), что нужно `thirsty`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Собрал короткий ответ на слух: `Yes, I am.`",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Вставил `not` в отказ.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Собрал `Are you cold?`, лишнюю плитку `not` не взял — вопрос, а не отрицание.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "На слух отличил `cold` от `gold` по первому звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "На слух отличил `thirsty` от `thirty` и `dirty`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "По ситуации (не понимает, где находится) выбрал `lost`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Собрал `No, I am not.` на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "По ситуации (куртка, руки в рукавах) выбрал `cold`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Собрал `Yes, I am.`, не взял лишнюю плитку `lost` — слово из вопроса в ответе не повторяем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Пары слов: lost/not/yes/no с переводом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Проговорил вопрос-ответ вслух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Нужно сказать 4 фразы: спросить про холод и жажду, потом ответить за себя про голод (да) и про то, что заблудился (нет). Собрал: `Are you cold? Are you thirsty? Yes, I am. No, I am not.`",
+      "confusion": "Немного напрягся — в задании порядок ответов (голоден-да, потерялся-нет) не совпадает с порядком вопросов (холод, жажда), пришлось удержать в голове две отдельные пары тем. Но справился.",
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Порядок слов в вопросе `Are you + слово?`",
+    "Короткий ответ `Yes, I am.` без повтора слова из вопроса",
+    "Отрицательный короткий ответ `No, I am not.` с `not` после `am`",
+    "Различение на слух похожих слов: awake/away/alone, cold/gold, thirsty/thirty/dirty"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Ситуации с угадыванием по контексту (графин с водой, куртка и руки в рукавах, потерялся у хостела) — не просто перевод, а надо было подумать, что происходит",
+    "Финальное задание, где нужно было держать в голове несколько фраз подряд и не перепутать да/нет"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — было понятно: сосед за завтраком задаёт вопросы про состояние (голод, жажда, холод, потерялся), и я либо спрашиваю его, либо отвечаю за себя. Каждая фраза привязана к конкретному моменту завтрака.",
+  "would_continue": "да — задания короткие, есть варианты не просто на слово, а на ситуацию, финал заставил собраться, не было скучно",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы с моим текущим запасом слов, я узнал новое (порядок вопроса и коротких ответов) и понимаю, зачем говорю эти фразы."
+}

@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — awake",
+      "what_i_understood": "awake значит 'проснулся, не спит'. Чтобы спросить, сначала ставим are, потом you: Are you awake?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — ответ короче вопроса",
+      "what_i_understood": "На вопрос Are you hungry? отвечаю не одним словом, а Yes, I am. Второй раз слово hungry не повторяю.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — отказ",
+      "what_i_understood": "Отказ это No, I am not. Порядок такой: сначала am, потом not, а не наоборот.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — пары",
+      "what_i_understood": "Собрал 4 знакомые пары слов и переводов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — Are/You/Am",
+      "what_i_understood": "Вопрос начинается с Are, не с You и не с Am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 — на слух awake",
+      "what_i_understood": "Отличил awake от похожих away и wake.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 — собрать фразу",
+      "what_i_understood": "Собрал Are you hungry? из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — thirsty",
+      "what_i_understood": "Понял, что тянуться к воде — это про thirsty, а не lost/awake.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — диктовка Yes, I am",
+      "what_i_understood": "Собрал фразу без лишнего not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — No, I am ___",
+      "what_i_understood": "Вставил not, а не no или am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — cold, лишняя плитка not",
+      "what_i_understood": "Собрал вопрос Are you cold?, лишнюю not не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — cold vs gold",
+      "what_i_understood": "Расслышал разницу между cold и gold.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — thirsty на слух",
+      "what_i_understood": "Отличил thirsty от thirty и dirty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — lost",
+      "what_i_understood": "Понял, что растерянный человек, не понявший куда попал — это lost.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — диктовка No, I am not",
+      "what_i_understood": "Собрал полный отказ из четырёх плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — ok",
+      "what_i_understood": "Общее состояние 'всё нормально?' — это ok, не awake и не thirsty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — лишняя плитка lost",
+      "what_i_understood": "В ответе слово из вопроса второй раз не повторяется.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — пары",
+      "what_i_understood": "Собрал пары lost/ok/yes/not с переводами.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — вслух",
+      "what_i_understood": "Проговорил Are you awake? Yes, I am.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал",
+      "what_i_understood": "Собрал подряд четыре фразы: два вопроса и два ответа за себя.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Спрашивать 'ты в порядке?' — Are you ok?",
+    "Коротко соглашаться на любой такой вопрос: Yes, I am (без повтора самого слова)",
+    "Коротко отказывать: No, I am not, и что not стоит после am, а не перед",
+    "На слух различать cold/gold и thirsty/thirty/dirty",
+    "Что в ответе слово из вопроса (hungry, lost и т.д.) второй раз не произносится"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с соседом, который сидит с закрытыми глазами и держится за стол — понятная бытовая ситуация, легко представить",
+    "Задание 17 в конце, где нужно собрать четыре фразы подряд без подсказок — почувствовал, что реально закрепил материал"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я расспрашиваю соседа за завтраком после его позднего возвращения — голоден ли он, замёрз ли, хочет ли пить, в порядке ли он. Каждая фраза привязана к конкретному моменту (он тянется к стакану, сидит с закрытыми глазами, бледный)",
+  "would_continue": "да — задания шли по нарастанию сложности, к финалу я уже отвечал без подсказок и это было приятное ощущение прогресса",
+  "verdict": "PASS",
+  "verdict_reason": "все 17 заданий прошёл честно без незнакомых слов в правильных ответах, узнал новую фразу Are you ok? и закрепил структуру ответов, сцена понятна от начала до конца."
+}

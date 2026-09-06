@@ -1,0 +1,140 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Мне задают вопрос про мужчину: 'Is he cold?' Я согласен, значит отвечаю, взяв два слова из вопроса и поменяв местами: 'he is' вместо 'is he'. Получается 'Yes, he is.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Если не согласен — добавляю 'not' сразу после 'is'. 'No, he is not.' Место 'not' одно — после 'is', не в конце фразы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "То же самое работает про 'she' (она) и 'it' (вещь/место). Меняется только одно слово из трёх: he/she/it. Про зал с полными столиками говорю 'it', не 'he'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Про одного мужчину — 'is', не 'are' и не 'am'. Ответил is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Собрал 'Yes, she is.' из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "На слух выбрал 'cold' среди похожих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Слово upset дали с переводом прямо в задании. Вставил 'not' после 'is'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал 'No, it is not.' про переполненный зал (перевод crowded дан в задании).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Услышал и собрал 'Yes, he is.' — лишняя плитка 'she' не понадобилась.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Различил hungry и angry на слух. angry раньше не встречалось, но оно было неправильным вариантом — не мешало ответить.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Про женщину, которая зевает — 'she', не 'he' и не 'it'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Собрал пары слово-перевод: cold, hungry, tired, upset — все уже встречались раньше в заданиях.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Собрал 'No, she is not.' про пообедавшую женщину.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Вставил 'not', а не 'no' и не повтор 'it'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Выбрал upset на слух среди похожих обрывков.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал 'Yes, he is.' — лишняя плитка not не понадобилась, раз мужчина явно замёрз.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "На слух собрал 'No, she is not.' — лишняя плитка 'he' не пригодилась.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Собрал короткое 'Yes, he is.' — плитка upset лишняя, слово из вопроса повторять не нужно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Проговорил вслух две фразы подряд, сверил с образцом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Финал: ответил на четыре вопроса подряд без подсказок, используя всё, что отработал в сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как коротко ответить 'да, он такой' про третье лицо, переставив слова из вопроса местами (is he → he is)",
+    "Куда именно ставится 'not' в отказе (сразу после is, а не в конец фразы)",
+    "Что тот же приём работает и для 'she', и для 'it' — меняется только одно слово"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена в кафе понятная: спутник кивает на конкретных людей, и сразу ясно, зачем я это говорю",
+    "Ловушки с лишними плитками (задания 6, 13, 14, 15) заставили реально думать, а не просто нажимать всё подряд"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — по каждому заданию понятно, кому и в какой момент я отвечаю: спутник кивает на конкретного человека или ситуацию (замёрзший мужчина, голодный парень, полный зал), и я реагирую на то, что вижу",
+  "would_continue": "да — всё было по делу, ловушки держали в тонусе, а к концу я реально почувствовал, что могу ответить без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "все задания честно решаемы через то, что объяснили на трёх страницах интро, новых незнакомых слов в правильных ответах нет, и я реально начал схватывать приём с перестановкой слов."
+}

@@ -470,7 +470,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-08:i09:audioA",
+        "en:lesson-02:session-08:i09:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «замёрз»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -478,8 +481,14 @@
         "contrastB": "gold",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-08:i09:audioA",
+          "transcript": "cold"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-08:i09:audioB",
+          "transcript": "gold"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «зам",
         "choiceFeedback": [
           {
@@ -917,5 +926,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6a3c32ac936c91836c58518761af5c5800c9347152e763f1c7df51d160080223"
+  "learnerFingerprint": "cabdd9acce4f7cb167b91790fe82765d8ce8c64a1a6f9f1aca5656102cbcc041"
 }

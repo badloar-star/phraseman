@@ -464,7 +464,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-53:i09:audioA",
+        "en:lesson-01:session-53:i09:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «болеет»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -472,8 +475,14 @@
         "contrastB": "six",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-53:i09:audioA",
+          "transcript": "sick"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-53:i09:audioB",
+          "transcript": "six"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «бол",
         "choiceFeedback": [
           {
@@ -792,5 +801,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8ce7a4b942eb0e22acf599adf7bd2462cc8d5a4ae77bd754d73a4f402aca4a04"
+  "learnerFingerprint": "a71afb08887f0526417959a3bf05a2225b9417cc1755dbde3f0c562050b91ff7"
 }

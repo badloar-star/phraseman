@@ -374,7 +374,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-06:i07:audioA",
+        "en:lesson-02:session-06:i07:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «холодно»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -382,8 +385,14 @@
         "contrastB": "gold",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-06:i07:audioA",
+          "transcript": "cold"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-06:i07:audioB",
+          "transcript": "gold"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «хол",
         "choiceFeedback": [
           {
@@ -873,5 +882,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9aa189c776f8410e7b48b4d5b14e2d17b63a46d8e67a0e14b17ad8f5e7b9c026"
+  "learnerFingerprint": "68df5d7cc16947c350d208e88b53174c4540941390e25f55bf7ffaa54e9d6ce3"
 }

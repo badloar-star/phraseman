@@ -183,7 +183,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-11:i04:audioA",
+        "en:lesson-01:session-11:i04:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «ленивая»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -191,8 +194,14 @@
         "contrastB": "lazy",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-11:i04:audioA",
+          "transcript": "crazy"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-11:i04:audioB",
+          "transcript": "lazy"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «лен",
         "choiceFeedback": [
           {
@@ -916,5 +925,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a9a0c72d0d87935fbd682de711ecb00ea667cdfeef8419f5fa1fae317630e0fc"
+  "learnerFingerprint": "42f100432258f213a6f3d307ceae1b6951eaef818a90e44eca80c14d6bd1b24c"
 }

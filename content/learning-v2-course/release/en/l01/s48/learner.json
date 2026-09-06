@@ -341,7 +341,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-48:i06:audioA",
+        "en:lesson-01:session-48:i06:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «шумный»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -349,8 +352,14 @@
         "contrastB": "load",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-48:i06:audioA",
+          "transcript": "loud"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-48:i06:audioB",
+          "transcript": "load"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «шум",
         "choiceFeedback": [
           {
@@ -880,5 +889,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "47f8e1b29de2533877e3a46a62827d87a1cb014ae7e665086d17c29c78c22bb8"
+  "learnerFingerprint": "c3422394d2bdcdd4093f016eaf720eb174ffc2b86d651270fb22c71b38e4e07b"
 }

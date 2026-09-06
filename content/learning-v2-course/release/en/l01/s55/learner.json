@@ -505,7 +505,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-55:i09:audioA",
+        "en:lesson-01:session-55:i09:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «тепло»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -513,8 +516,14 @@
         "contrastB": "worm",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-55:i09:audioA",
+          "transcript": "warm"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-55:i09:audioB",
+          "transcript": "worm"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «теп",
         "choiceFeedback": [
           {
@@ -907,5 +916,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "64108a01bde71510b0831e241b6fbe168e5ab80a7425e72b4b386fc7e4e5426d"
+  "learnerFingerprint": "f8ba534782460d60d9b13fa96b32f0a24c8ef84c7eec84f9ac9a500cd6cbf7bb"
 }

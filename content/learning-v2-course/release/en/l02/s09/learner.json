@@ -682,7 +682,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-09:i14:audioA",
+        "en:lesson-02:session-09:i14:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «весёлый»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -690,8 +693,14 @@
         "contrastB": "careful",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-09:i14:audioA",
+          "transcript": "cheerful"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-09:i14:audioB",
+          "transcript": "careful"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «вес",
         "choiceFeedback": [
           {
@@ -889,5 +898,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "397105726fc03a9b40248f57dd4a4d50f46bad068842389c0e3a44b4d9d3f699"
+  "learnerFingerprint": "5a84d2a29fc0741b28e61c1f5f346abfa8f419f94fc4c15702a9684bdf811aaa"
 }

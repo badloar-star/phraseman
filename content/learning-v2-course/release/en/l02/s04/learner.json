@@ -259,7 +259,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-04:i05:audioA",
+        "en:lesson-02:session-04:i05:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про настроение?",
       "modePayload": {
         "family": "sound_contrast",
@@ -267,8 +270,14 @@
         "contrastB": "careful",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-04:i05:audioA",
+          "transcript": "cheerful"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-04:i05:audioB",
+          "transcript": "careful"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про наст",
         "choiceFeedback": [
           {
@@ -915,5 +924,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8d7e17c172a2c4e0de776264d414f229c9e5515d51ebc7ea75ac5680ee1a9120"
+  "learnerFingerprint": "79c9406b360fc49d31ad0714f783a64472dbe930ea137f939e317d94b66fc8ab"
 }

@@ -368,7 +368,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i08:audioA",
+        "en:lesson-01:session-38:i08:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «в безопасности»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -376,8 +379,14 @@
         "contrastB": "save",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-38:i08:audioA",
+          "transcript": "safe"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-38:i08:audioB",
+          "transcript": "save"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «в б",
         "choiceFeedback": [
           {
@@ -826,5 +835,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c152aaaf4ec248606c4efd283065575e8d096edbcb44e23eca00fa6f3304464e"
+  "learnerFingerprint": "4820d62f21b61d42da5aba8056e9ea354961039605b94cbc6cfe2a405aa0da29"
 }

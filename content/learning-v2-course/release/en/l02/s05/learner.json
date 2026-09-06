@@ -665,7 +665,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-05:i13:audioA",
+        "en:lesson-02:session-05:i13:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «готов»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -673,8 +676,14 @@
         "contrastB": "already",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-05:i13:audioA",
+          "transcript": "ready"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-05:i13:audioB",
+          "transcript": "already"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «гот",
         "choiceFeedback": [
           {
@@ -900,5 +909,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f3477d13f8a1c6ed2de117fe34231182f99e2ad845c2f0762ea46d198b6d611e"
+  "learnerFingerprint": "326bf177728c95426ca4868f3a1d7649825ed2a0477c5399abc5896ee5c1380b"
 }

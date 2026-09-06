@@ -627,7 +627,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — мама спрашивает, как ночи в новом городе",
+      "prompt": "Вставьте слово — мама спрашивает про ночи, а за окном ни машин, ни голосов",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-52:i11:r1",
@@ -644,11 +644,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — мама спрашивает, как ночи в новом городе",
+      "accessibilityLabel": "Вставьте слово — мама спрашивает про ночи, а за окном ни машин, ни голосов",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — мама спрашивает, как ночи в новом городе",
+          "ru": "Вставьте слово — мама спрашивает про ночи, а за окном ни машин, ни голосов",
           "uk": "Вставте слово — мама питає, як ночі в новому місті"
         },
         "gappedTargetPhrase": "The nights are ___ .",
@@ -666,21 +666,21 @@
             "text": "tired"
           }
         ],
-        "testedDimension": "Вставьте слово — мама спрашивает, как но",
+        "testedDimension": "Вставьте слово — мама спрашивает про ноч",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-52:i11:r1",
             "correct": false,
-            "testedDimension": "Вставьте слово — мама спрашивает, как но",
+            "testedDimension": "Вставьте слово — мама спрашивает про ноч",
             "feedbackByLocale": {
-              "ru": "«Загруженный» — это про день на работе, а не про ночь дома.",
+              "ru": "«Оживлённый». Так говорят, когда за окном шумно, а тут ни звука.",
               "uk": "«Завантажений» — це про день на роботі, а не про ніч удома."
             }
           },
           {
             "responseId": "en:lesson-01:session-52:i11:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — мама спрашивает, как но",
+            "testedDimension": "Вставьте слово — мама спрашивает про ноч",
             "feedbackByLocale": {
               "ru": "«Уставший» — про человека. Ночь не устаёт.",
               "uk": "«Втомлений» — про людину. Ніч не втомлюється."
@@ -996,5 +996,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5cc4b5bcbcced4a5afe5f2d263a0bb599a052fd3b231700251ad176f90bbeb82"
+  "learnerFingerprint": "9cf56f173f67e724906688d45043d1d136b418d941087ae0efd26d816b103978"
 }

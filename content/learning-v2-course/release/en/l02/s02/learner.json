@@ -600,7 +600,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-02:i11:audioA",
+        "en:lesson-02:session-02:i11:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «расстроен»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -608,8 +611,14 @@
         "contrastB": "up",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-02:i11:audioA",
+          "transcript": "upset"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-02:i11:audioB",
+          "transcript": "up"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «рас",
         "choiceFeedback": [
           {
@@ -858,5 +867,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "44c04fa61463177c3080a6076880cc4680e382192d9a127e3745e5354681c99b"
+  "learnerFingerprint": "4b46c89dea31e8610a241a373ab466aab577df22b5a01b8465694089da05d424"
 }

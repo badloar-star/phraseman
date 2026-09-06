@@ -437,7 +437,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i08:audioA",
+        "en:lesson-01:session-40:i08:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «добрый»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -445,8 +448,14 @@
         "contrastB": "kid",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-40:i08:audioA",
+          "transcript": "kind"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-40:i08:audioB",
+          "transcript": "kid"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «доб",
         "choiceFeedback": [
           {
@@ -948,5 +957,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c43c095f648ec330b0281fd3efb85cc08a8b54704560e809a048372c9d30a5c1"
+  "learnerFingerprint": "b87603ff0b6410597eb4aa9f4e98631522a460be8553faa8bcd1619a187525d3"
 }

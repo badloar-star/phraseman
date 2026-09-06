@@ -605,7 +605,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-37:i11:audioA",
+        "en:lesson-01:session-37:i11:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «жарко»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -613,8 +616,14 @@
         "contrastB": "hat",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-37:i11:audioA",
+          "transcript": "hot"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-37:i11:audioB",
+          "transcript": "hat"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «жар",
         "choiceFeedback": [
           {
@@ -832,5 +841,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f7190a0263ce183c4ab48bbd566115dbd7ec635a300857e66f3aba966a85d5b1"
+  "learnerFingerprint": "ca89d91985a06df39a94725d5581cedd9b4880672c5e9ef3d6400f5d41fba735"
 }

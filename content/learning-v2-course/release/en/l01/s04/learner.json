@@ -421,7 +421,10 @@
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i08:audioA",
+        "en:lesson-01:session-04:i08:audioB"
+      ],
       "accessibilityLabel": "Различите звуки — какое из двух про «неверно»?",
       "modePayload": {
         "family": "sound_contrast",
@@ -429,8 +432,14 @@
         "contrastB": "wrong",
         "ipaA": "",
         "ipaB": "",
-        "audioA": null,
-        "audioB": null,
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-04:i08:audioA",
+          "transcript": "right"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-04:i08:audioB",
+          "transcript": "wrong"
+        },
         "testedPhoneticContrast": "Различите звуки — какое из двух про «нев",
         "choiceFeedback": [
           {
@@ -1186,5 +1195,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "42ca9e212b07ecbca42f77ea167faf6339a8c674e95446e4d2d36e058e2507c1"
+  "learnerFingerprint": "86be7e952552f932032f141a8bab2ea9983365bea25fff6bb8aaccc7d923d051"
 }

@@ -113,7 +113,7 @@
             "testedDimension": "Послушайте и выберите — nervous",
             "feedbackByLocale": {
               "ru": "«Число». Начинается с другого звука: `number` с «н-а», `nervous` — с «нёр».",
-              "uk": "«Число». Починається з іншого звуку: `number` з «н-а», `nervous` — з «нер»."
+              "uk": "«Число». Починається інакше: `number` — як «на-», а `nervous` — як «ньо-»."
             }
           }
         ],
@@ -905,5 +905,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c9a965b6896d52cdc6c81e0c7c85ccbeed451f24cb3024cae9d7f549c1997d19"
+  "learnerFingerprint": "d102aa06934a3d3b71f93d250ae823a9400965eaae8c3ee725e61514a0aac065"
 }

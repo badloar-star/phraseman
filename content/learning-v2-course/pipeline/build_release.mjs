@@ -298,7 +298,10 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
     // а не парами «слово — перевод»; берём их из разобранных вариантов
     const words = task.options.map((o) => o.text);
     const [a, b] = words.length >= 2 ? words : [task.target ?? "", ""];
-    modePayload = { family, contrastA: a, contrastB: b, ipaA: "", ipaB: "", audioA: null, audioB: null, testedPhoneticContrast: task.title.slice(0, 40), choiceFeedback: feedback };
+    modePayload = { family, contrastA: a, contrastB: b, ipaA: "", ipaB: "",
+      audioA: a ? { audioTargetId: `${id}:audioA`, transcript: a } : null,
+      audioB: b ? { audioTargetId: `${id}:audioB`, transcript: b } : null,
+      testedPhoneticContrast: task.title.slice(0, 40), choiceFeedback: feedback };
   } else if (family === "speed_match") {
     const pairs = (task.pairs ?? []).map((p, i) => ({ pairId: `${id}:p${i + 1}`, target: p.target, meaningByLocale: localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.pairs?.[i]?.meaning ?? p.meaning]))) }));
     modePayload = {
@@ -333,7 +336,9 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
     interactionId: id, ordinal: task.ordinal + 3, purpose: PURPOSE_BY_INDEX(index, total),
     family, inputMode: INPUT_MODE[task.family] ?? "single_choice",
     prompt: learnerPrompt, responseOptions,
-    mediaIds: [], audioTargetIds: modePayload?.referenceAudio ? [`${id}:audio`] : [],
+    mediaIds: [],
+    audioTargetIds: modePayload?.referenceAudio ? [`${id}:audio`]
+      : [modePayload?.audioA?.audioTargetId, modePayload?.audioB?.audioTargetId].filter(Boolean),
     accessibilityLabel: task.title, modePayload, scriptedAlternate: null,
   };
 }

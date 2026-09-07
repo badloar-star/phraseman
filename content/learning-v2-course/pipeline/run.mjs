@@ -248,7 +248,10 @@ const PHRASE_BUILD_MIN = 4;
 // решил старые сессии не трогать. Урок 2 писался в момент решения, поэтому
 // граница внутри него: сессии 1-30 заморожены, с 31 норма обязательна.
 const PHRASE_BUILD_FROM_SESSION = 31;
-const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|МАЛО СБОРКИ ФРАЗЫ/;
+// зачем: сколько сборок могут делить один скелет. Больше — ученик собирает одно
+// и то же и правила не чувствует (владелец 07.09).
+const PHRASE_SAME_SKELETON_MAX = 2;
+const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|МАЛО СБОРКИ ФРАЗЫ|ОДНООБРАЗНЫЕ СБОРКИ/;
 
 function machineFacts(file) {
   const text = read(file);
@@ -341,11 +344,35 @@ function machineFacts(file) {
     // норма только для новых»). 17 выпущенных сессий имеют по 3 сборки —
     // они проверены судьями и работают, переделка их только сломала бы.
     // Граница проходит внутри урока 2: всё с сессии 31 и дальше.
-    const sessFromPath = Number((String(file).match(/[\/]s(d+)[\/]/) || [])[1] || 0);
+    const sessFromPath = Number((String(file).match(/[\\\/]s(\d+)[\\\/]/) || [])[1] || 0);
     const underNewRule = lessonFromPath > 2 || (lessonFromPath === 2 && sessFromPath >= PHRASE_BUILD_FROM_SESSION);
     const built = (v.entries || []).filter(([, f]) => f === "phrase_builder" || f === "listen_build_dictation").length;
     if (underNewRule && v.entries && v.entries.length && built < PHRASE_BUILD_MIN) {
       facts.push(`МАЛО СБОРКИ ФРАЗЫ: заданий на сборку ${built}, нужно минимум ${PHRASE_BUILD_MIN} — замени часть «вставь слово» на сборку из плиток`);
+    }
+  }
+  // зачем: владелец 07.09 — «чтобы они не были одинаковыми можно фразы чуть
+  // видоизменять». Разной механики мало: черновик сессии 31 дал 5 сборок, из них
+  // 4 — одна конструкция What is the ___ с заменой последнего слова. Считаем
+  // «скелет» (фраза без последнего слова): больше двух одинаковых — однообразие.
+  // Порог проверен на живых сессиях: ловит s30/s31, пропускает эталоны s19/s29/s51.
+  {
+    const sessNo = Number((String(file).match(/[\\\/]s(\d+)[\\\/]/) || [])[1] || 0);
+    const newRule = lessonFromPath > 2 || (lessonFromPath === 2 && sessNo >= PHRASE_BUILD_FROM_SESSION);
+    if (newRule) {
+      const answers = [];
+      for (const line of practice.split("\n")) {
+        if (!/Плитки:/.test(line)) continue;
+        const m = /→\s*\*\*([^*]+)\*\*/.exec(line);
+        if (m) answers.push(m[1].trim());
+      }
+      const skeleton = (p) => p.replace(/[?.!,]/g, "").trim().toLowerCase().split(/\s+/).slice(0, -1).join(" ");
+      const seen = {};
+      for (const a of answers) { const k = skeleton(a); if (k) seen[k] = (seen[k] || 0) + 1; }
+      const worst = Object.entries(seen).sort((a, b) => b[1] - a[1])[0];
+      if (worst && worst[1] > PHRASE_SAME_SKELETON_MAX) {
+        facts.push(`ОДНООБРАЗНЫЕ СБОРКИ: ${worst[1]} сборок из ${answers.length} — одна конструкция «${worst[0]} ___», меняется только последнее слово. Видоизменяй фразу: длиннее, вопрос вместо утверждения, отрицание, другое лицо`);
+      }
     }
   }
   const timeRefs = [...(text.split(/^## Практика/m)[0] + practice).matchAll(/(вчера|позавчера|на прошлой сессии|в прошлый раз вы|вы уже учили|вы выучили)/gi)].map((m) => m[0]);

@@ -1,0 +1,116 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Вопрос 'что это?' строится так: сначала what, потом is, потом this. Нельзя ставить is в конец.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Есть вопрос про время: What is the time? Между is и словом стоит the. Такие вопросы надо запоминать целиком, вместе с the.",
+      "confusion": "Почему в 'What is this?' the не было, а тут вдруг появилось — просто не объяснили, я это принял как факт и запомнил список.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Начало вопроса одинаковое (What is the...), а последнее слово меняет смысл: name — про название, price — про цену.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-3 (слух на what/price/nice)",
+      "what_i_understood": "Это просто различение похожих по звучанию слов на слух, не сложно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (сборка What is this?)",
+      "what_i_understood": "Собрал фразу из плиток, лишних плиток не было (только the, но она тоже используется в теме, просто не в этой фразе).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 5-6",
+      "what_i_understood": "Узнаю на слух, что спросили — price или time.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Карточка 7 (weather)",
+      "what_i_understood": "weather — погода, то что снаружи.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Различил weather на слух от похожих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Карточка 9 (street)",
+      "what_i_understood": "street — улица, у неё есть название, по нему находят кафе.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (доска пар)",
+      "what_i_understood": "Свёл все 4 слова с переводами разом — хорошо закрепило.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 11-12 (вставка по контексту)",
+      "what_i_understood": "Выбираю нужное слово по ситуации: не знаю название блюда → name, не знаю какая улица → street.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 13-14 (сборка фраз)",
+      "what_i_understood": "Собираю целые вопросы про time и price, отсеивая лишнюю плитку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Дождь за окном → нужно спросить про weather.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Собрал вопрос про name, отсеяв лишнее price.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, голосом)",
+      "what_i_understood": "Сказал подряд три вопроса: What is this? What is the price? What is the time? — собрал всё вместе, что учил в сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Спрашивать 'что это?' — What is this?",
+    "Спрашивать про время — What is the time?",
+    "Спрашивать про цену — What is the price?",
+    "Спрашивать название чего-либо — What is the name?",
+    "Спрашивать про погоду — What is the weather?",
+    "Спрашивать про улицу/адрес — What is the street?",
+    "Различать на слух похожие английские слова (price/nice, time/team/dime, weather/water/winter)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена в кафе в час пик — понятно, зачем спрашивать быстро и на слух, ощущается как реальная ситуация",
+    "Финал с тремя вопросами подряд голосом — приятно почувствовать, что всё из урока пригодилось сразу"
+  ],
+  "felt_dead": [
+    "Карточки слов (7 и 9) суховаты, но это ожидаемо для введения нового слова — не страшно"
+  ],
+  "scene_reason": "да, понятно: я турист/гость в кафе, официант говорит быстро, и мне надо на слух ловить что он спрашивает, а также самому спросить про название блюда, цену и время — весь урок собран вокруг одной понятной ситуации в кафе",
+  "would_continue": "да — задания шли с нарастанием сложности, всё было по делу, в конце получилось сказать три вопроса подряд, что было приятно",
+  "verdict": "PASS",
+  "verdict_reason": "Каждое задание понятно и выполнимо, новые слова введены и закреплены до практики, сцена цельная, к финалу я реально мог сказать все три вопроса сам."
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `What is + вещь` — на слух, в быстрой речи",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "После `what` всегда `is`",
+        "uk": "Після `what` завжди `is`"
+      },
+      "bodyByLocale": {
+        "ru": "`What is this?` — «что это?». `this` — «это», то самое, на что показывают пальцем. Порядок жёсткий: сначала `what`, сразу за ним `is`, и только потом сама вещь.\n\nСамая частая ошибка — отправить `is` в конец: `What this is?` Так не говорят: `is` стоит вторым.",
+        "uk": "`What is this?` — «що це?». `this` — «це», саме те, на що показують пальцем. Порядок жорсткий: спершу `what`, одразу за ним `is`, і аж потім сама річ.\n\nНайчастіша помилка — відправити `is` у кінець: `What this is?` Так не кажуть: `is` стоїть другим."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Официант тычет в строчку меню и что-то спрашивает про неё. Какой вопрос он задал?",
+          "uk": "Офіціант тицяє в рядок меню і щось про нього питає. Яке питання він поставив?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-28:intro1:r1",
+              "text": "What is this?"
+            },
+            {
+              "responseId": "en:lesson-02:session-28:intro1:r2",
+              "text": "What this is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-28:intro1:r3",
+              "text": "This what is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-28:intro1:r1",
+              "text": "What is this?"
+            },
+            {
+              "responseId": "en:lesson-02:session-28:intro1:r2",
+              "text": "What this is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-28:intro1:r3",
+              "text": "This what is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Официант тычет в строчку меню и что-то спрашивает про неё. Какой вопрос он задал?",
+          "uk": "Офіціант тицяє в рядок меню і щось про нього питає. Яке питання він поставив?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Маленькое `the` в вопросе",
+        "uk": "Маленьке `the` у питанні"
+      },
+      "bodyByLocale": {
+        "ru": "`time` — «время». Вопрос про часы собирается так: `What is the time?` Между `is` и словом стоит маленькое `the`.\n\nВ вопросах про цену, название и время оно стоит: `the price`, `the name`, `the time`. Запоминайте их целиком — вместе с `the`.",
+        "uk": "`time` — «час». Питання про годинник збирається так: `What is the time?` Між `is` і словом стоїть маленьке `the`.\n\nУ питаннях про ціну, назву і час воно стоїть: `the price`, `the name`, `the time`. Запам'ятовуйте їх цілком — разом із `the`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Телефон сел, часов в зале нет. Спросите официанта, сколько времени.",
+          "uk": "Телефон сів, годинника в залі немає. Запитайте офіціанта, котра година."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-28:intro2:r1",
+              "text": "What is the time?"
+            },
+            {
+              "responseId": "en:lesson-02:session-28:intro2:r2",
+              "text": "What is time?"
+            },
+            {
+              "responseId": "en:lesson-02:session-28:intro2:r3",
+              "text": "What is the weather?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-28:intro2:r1",
+              "text": "What is the time?"
+            },
+            {
+              "responseId": "en:lesson-02:session-28:intro2:r2",
+              "text": "What is time?"
+            },
+            {
+              "responseId": "en:lesson-02:session-28:intro2:r3",
+              "text": "What is the weather?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Телефон сел, часов в зале нет. Спросите официанта, сколько времени.",
+          "uk": "Телефон сів, годинника в залі немає. Запитайте офіціанта, котра година."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Слово в конце решает всё",
+        "uk": "Слово в кінці вирішує все"
+      },
+      "bodyByLocale": {
+        "ru": "`price` — «цена», `name` — «название». Начало вопроса не меняется, а последнее слово решает всё: спросите про `name` — вам зачитают название блюда, спросите про `price` — назовут цифру.\n\nОдин и тот же вопрос, разный ответ — и разница ровно в одном слове.",
+        "uk": "`price` — «ціна», `name` — «назва». Початок питання не змінюється, а останнє слово вирішує все: запитайте про `name` — вам зачитають назву страви, запитайте про `price` — назвуть цифру.\n\nОдне й те саме питання, різна відповідь — і різниця рівно в одному слові."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Официант назвал блюдо, но вы не расслышали цифру. Спросите про цену.",
+          "uk": "Офіціант назвав страву, але ви не розчули цифру. Запитайте про ціну."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-28:intro3:r1",
+              "text": "What is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-28:intro3:r2",
+              "text": "What is the name?"
+            },
+            {
+              "responseId": "en:lesson-02:session-28:intro3:r3",
+              "text": "What is the weather?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-28:intro3:r1",
+              "text": "What is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-28:intro3:r2",
+              "text": "What is the name?"
+            },
+            {
+              "responseId": "en:lesson-02:session-28:intro3:r3",
+              "text": "What is the weather?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Официант назвал блюдо, но вы не расслышали цифру. Спросите про цену.",
+          "uk": "Офіціант назвав страву, але ви не розчули цифру. Запитайте про ціну."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d004a71a03d2306340ec6bfea5378698aab5ad0d5890e52e1542db4ee3a3f7f9"
+}

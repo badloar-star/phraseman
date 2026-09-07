@@ -1,0 +1,145 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Вопрос 'что это?' строится как What is this?, is стоит вторым словом сразу после what, даже если на слух они слипаются",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "price - цена, name - название, последнее слово вопроса меняет смысл, поэтому в шуме слушать надо конец фразы",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "перед словом time есть the: What is the time? - сколько времени, the глотается в речи но не выбрасывается",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (слух what/water/walk)",
+      "what_i_understood": "выбрал what, различил по длине и звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух price/pray/rice)",
+      "what_i_understood": "выбрал price",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (price vs nice)",
+      "what_i_understood": "выбрал price, слово nice раньше нигде не объяснялось, но оно неправильный вариант, не обязан был его знать",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (сборка What is this?)",
+      "what_i_understood": "собрал из плиток is/this/What/the — лишняя плитка the, справился",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (про что спросили: цена/название/время)",
+      "what_i_understood": "выбрал цена, потому что услышал price",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (слух time/team/dime)",
+      "what_i_understood": "выбрал time",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (карточка weather)",
+      "what_i_understood": "weather - погода, новое слово из списка на сегодня",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (слух weather/water/winter)",
+      "what_i_understood": "выбрал weather",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (карточка street)",
+      "what_i_understood": "street - улица",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (доска пар)",
+      "what_i_understood": "соединил price-цена, name-название, time-время, weather-погода — все слова уже видел выше",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (вставка name)",
+      "what_i_understood": "не поняли название блюда → What is the name?, выбрал верно по смыслу ситуации",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (вставка street)",
+      "what_i_understood": "не знаю название улицы → What is the street?, справился",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (сборка What is the time?)",
+      "what_i_understood": "собрал фразу, лишняя плитка price",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (сборка What is the price?, лишняя name)",
+      "what_i_understood": "справился",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (вставка weather)",
+      "what_i_understood": "ливень за окном → What is the weather?, справился",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (доска пар street/cheap/this/what)",
+      "what_i_understood": "cheap - дешёвый — это слово вообще нигде до этого не объяснялось и не звучало в сессии, я его увидел только в паре с переводом на этой доске",
+      "confusion": "cheap ни разу не встретилось раньше — я не 'вспомнил' его, а увидел перевод впервые прямо на доске, и должен был просто механически сопоставить пару без реального узнавания слова",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, голосом)",
+      "what_i_understood": "произнёс три вопроса подряд: What is this? What is the price? What is the time? — понятно зачем, официант подошёл и нужно спросить всё сразу",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Строить вопрос 'что это?' — What is this?",
+    "Спрашивать цену — What is the price?",
+    "Спрашивать время — What is the time? (с обязательным the)",
+    "Спрашивать про погоду — What is the weather?",
+    "Слышать в быстрой речи, что is всегда идёт сразу после what, даже когда слова слипаются",
+    "Различать на слух похожие по звучанию слова (price/rice, time/team, weather/water)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Финальное задание 17 — сцена с официантом собралась в одно целое, было понятно зачем всё это учил",
+    "Различение на слух price/nice в задании 3 — реально пришлось напрячься, чтобы не перепутать"
+  ],
+  "felt_dead": [
+    "Карточки слов 7 и 9 сухие, просто перевод без примера фразы — но это терпимо для карточки"
+  ],
+  "scene_reason": "да, понятно: кафе в час пик, официант говорит быстро, мне нужно и спросить (What is...), и понять его вопрос на слух. К финалу (задание 17) это всё соединяется в реальный разговор с официантом",
+  "would_continue": "да — сессия короткая, понятная, в конце было приятное чувство, что я реально спросил бы это в кафе",
+  "verdict": "REVISE",
+  "verdict_reason": "слово cheap в задании 16 подано как будто уже знакомое ('возвращается' по шапке сессии), но фактически ни разу не встретилось в самой сессии до доски пар — его пришлось просто механически запомнить с нуля прямо там, без единого предварительного касания"
+}

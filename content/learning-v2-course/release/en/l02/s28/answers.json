@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-28:i01",
+    "correctText": "what",
+    "correctResponseId": "en:lesson-02:session-28:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i02",
+    "correctText": "price",
+    "correctResponseId": "en:lesson-02:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i03",
+    "correctText": "price",
+    "correctResponseId": "en:lesson-02:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i04",
+    "correctText": "What is this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i05",
+    "correctText": "цена",
+    "correctResponseId": "en:lesson-02:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i06",
+    "correctText": "time",
+    "correctResponseId": "en:lesson-02:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i08",
+    "correctText": "weather",
+    "correctResponseId": "en:lesson-02:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i11",
+    "correctText": "name",
+    "correctResponseId": "en:lesson-02:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i12",
+    "correctText": "street",
+    "correctResponseId": "en:lesson-02:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i13",
+    "correctText": "What is the time?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i14",
+    "correctText": "What is the price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i15",
+    "correctText": "weather",
+    "correctResponseId": "en:lesson-02:session-28:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i16",
+    "correctText": "What is the name?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-28:i17",
+    "correctText": "What is this? What is the price? What is the time?",
+    "correctResponseId": null
+  }
+]

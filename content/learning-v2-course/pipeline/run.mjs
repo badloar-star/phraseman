@@ -251,7 +251,7 @@ const PHRASE_BUILD_FROM_SESSION = 31;
 // зачем: сколько сборок могут делить один скелет. Больше — ученик собирает одно
 // и то же и правила не чувствует (владелец 07.09).
 const PHRASE_SAME_SKELETON_MAX = 2;
-const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|МАЛО СБОРКИ ФРАЗЫ|ОДНООБРАЗНЫЕ СБОРКИ/;
+const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|МАЛО СБОРКИ ФРАЗЫ|ОДНООБРАЗНЫЕ СБОРКИ|ПОВТОР СБОРКИ ДОСЛОВНО/;
 
 function machineFacts(file) {
   const text = read(file);
@@ -361,10 +361,11 @@ function machineFacts(file) {
     const newRule = lessonFromPath > 2 || (lessonFromPath === 2 && sessNo >= PHRASE_BUILD_FROM_SESSION);
     if (newRule) {
       const answers = [];
+      const tileSets = [];
       for (const line of practice.split("\n")) {
         if (!/Плитки:/.test(line)) continue;
         const m = /→\s*\*\*([^*]+)\*\*/.exec(line);
-        if (m) answers.push(m[1].trim());
+        if (m) { const tiles = (line.match(/`[^`]+`/g) || []).map((x) => x.replace(/`/g, "").toLowerCase()).sort().join(" "); answers.push(m[1].trim()); tileSets.push(tiles); }
       }
       const skeleton = (p) => p.replace(/[?.!,]/g, "").trim().toLowerCase().split(/\s+/).slice(0, -1).join(" ");
       const seen = {};
@@ -372,6 +373,20 @@ function machineFacts(file) {
       const worst = Object.entries(seen).sort((a, b) => b[1] - a[1])[0];
       if (worst && worst[1] > PHRASE_SAME_SKELETON_MAX) {
         facts.push(`ОДНООБРАЗНЫЕ СБОРКИ: ${worst[1]} сборок из ${answers.length} — одна конструкция «${worst[0]} ___», меняется только последнее слово. Видоизменяй фразу: длиннее, вопрос вместо утверждения, отрицание, другое лицо`);
+      }
+      // зачем: черновик сессии 31 дважды дословно повторил «What is the bill?» —
+      // это грубее однообразия: ученик собирает буквально ту же строку.
+      // зачем: повтор ФРАЗЫ сам по себе законен — «Yes, I am» в сессии 3 собирается
+      // трижды, но каждый раз из другого набора плиток, и работа растёт. Дефект
+      // только когда совпадают И фраза, И плитки: это буквально то же задание.
+      const exact = {};
+      for (let n = 0; n < answers.length; n++) {
+        const key = answers[n].toLowerCase().replace(/[?.!,]/g, "").trim() + " ⟨" + (tileSets[n] || "") + "⟩";
+        if (key) exact[key] = (exact[key] || 0) + 1;
+      }
+      const dup = Object.entries(exact).filter(([, n]) => n > 1);
+      if (dup.length) {
+        facts.push(`ПОВТОР СБОРКИ ДОСЛОВНО: ${dup.map(([k2, n]) => `«${k2.split(" ⟨")[0]}» ${n}× с тем же набором плиток`).join(", ")} — это одно и то же задание дважды, поменяй фразу или набор плиток`);
       }
     }
   }

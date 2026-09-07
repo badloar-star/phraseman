@@ -1,0 +1,146 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Слово where означает «где» и спрашивает именно про место. Если спросить What is the station вместо Where is the station, получится вопрос «что такое вокзал», а не «где он».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Порядок слов жёсткий: where, потом is, потом само место (the street). Переставлять нельзя, и артикль the тоже нужен, раз речь про конкретную улицу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Если предмет один — is (Where is the station), если их несколько — are (Where are the toilets). Само where не меняется.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Нужно where, а не what или is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Тут наоборот нужно what — просят объяснить непонятное слово, а не место.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Различил where и were на слух — по крайней мере смог выбрать по написанию/памяти, реально на слух это сложно, но задание про выбор.",
+      "confusion": "Задание на звук, а у меня только текст — оценить честно не могу, полагался на смысл подсказки.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал Where is the station?, лишнюю плитку what не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "shops — это много магазинов, значит are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "street и sweet различил по написанию.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Улица одна — is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Собрал Where are the toilets?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Соединил station-вокзал, street-улица, shops-магазины, toilets-туалеты — это я уже знал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Дом загораживает вокзал — значит behind, а не near.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Идти близко — near.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Собрал Where are the shops? по прослушанному.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал What is this?, не взял лишнее where.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Магазинов много — Where are the shops?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Соединил where-где, what-что, near-рядом, behind-за/позади.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Повторил фразу Where is the station? It is near.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Сказал подряд три вопроса про вокзал, туалеты, магазины — получилось, потому что каждый кусок уже отработан отдельно.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Разница между where (спрашивает про место) и what (спрашивает про суть/что это такое) — раньше я это не различал",
+    "Порядок слов в вопросе с where: where + is/are + the + место, переставлять нельзя",
+    "Как выбрать is или are в вопросе where в зависимости от того, один предмет или несколько (station/street — is, shops/toilets — are)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2",
+      "why": "После интро 1 уже понятно, что where+is+место — жёсткий порядок. Интро 2 просто повторяет ту же мысль на другом слове (street), не добавляя ничего нового, кроме артикля the, про который можно было сказать одной строкой в задании."
+    }
+  ],
+  "felt_alive": [
+    "Сцена с поиском вокзала и туалетов на вокзале в Дублине — понятная бытовая ситуация, легко представить, что реально так спросил бы"
+  ],
+  "felt_dead": [
+    "Интро 2 ощущается как повтор интро 1 почти теми же словами про порядок слов"
+  ],
+  "scene_reason": "да — понятно, что я турист на вокзале, ищу платформу, туалет и магазины, и вопросы Where is/are... это то, что реально нужно спросить в этой ситуации",
+  "would_continue": "да — задания понятные, ошибки объясняются по делу (почему not near, а behind, почему are, а не is), не пришлось лезть за подсказками",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий выполнимы с указанным набором знаний, есть понятная сцена и реально новое понимание (where vs what, is vs are после where), лёгкая вода в интро 2 не портит сессию."
+}

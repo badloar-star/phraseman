@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Чтобы спросить про место, используется where. Пример: Where is the station? — где вокзал?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "what спрашивает не про место, а про суть вещи. Если знаешь вещь и нужна дорога — нужно where, а не what.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Если предмет один — is (Where is the station), если их несколько — are (Where are the toilets). where всегда первое.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Where is the station? — верно, потому что нужна дорога, а не объяснение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "What is this? — спрашиваем про незнакомое слово на табло.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "На слух отличил where от were и wear.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал Where is the station?, лишнюю плитку what не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "shops — несколько, значит are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "street и sweet различил на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "street — один предмет, значит is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Собрал Where are the toilets?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Свёл слова station/street/shops/toilets с переводами — это было просто повторение старых слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Дом загораживает вокзал — значит behind, а не near.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Идти близко — near.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "На слух собрал Where are the shops?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал What is this?, лишнюю плитку where не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "shops несколько, значит Where are the shops?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Свёл where/what/near/behind с переводами.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Повторил вслух готовую фразу-диалог про вокзал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Сказал подряд три вопроса про вокзал, туалеты и магазины без подсказок — получилось, потому что до этого всё это уже отрабатывалось по кускам.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "where спрашивает про место, а what — про саму вещь, и их нельзя путать",
+    "после where сразу идёт is/are, а не в конце фразы",
+    "is для одного предмета (station, street), are для нескольких (shops, toilets)",
+    "могу спросить Where is the station? / Where are the toilets? / Where are the shops?",
+    "near и behind — рядом и позади/за — годятся как ответ на where-вопрос"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с вокзалом понятная и живая: реально представил себя туристом, который ищет дорогу и туалет — обычная бытовая ситуация, никакого пафоса",
+    "Задание 17 в конце — приятно, что три вопроса пришлось сказать самому, без подсказок, и стало ясно, что я правда что-то выучил"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я турист на вокзале в Дублине, ищу платформу и кассу, и мне реально нужно спросить дорогу и найти туалет/магазины — весь урок держится на этой одной ситуации, никаких левых персонажей и отсылок не было",
+  "would_continue": "да — задания шли по нарастающей сложности, к финалу я сам собрал три вопроса без подсказок, и это ощущалось как реальный прогресс, а не пересказ одного и того же",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно с знаниями из шапки, узнал новое (where vs what, is/are после where), сцена понятна с первой страницы, скучных или мёртвых мест не нашёл."
+}

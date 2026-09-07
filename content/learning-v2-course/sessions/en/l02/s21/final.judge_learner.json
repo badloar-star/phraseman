@@ -1,0 +1,150 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Слово where спрашивает про место. Если спросить What is the station вместо Where is the station, это будет другой вопрос — про то, что такое вокзал вообще, а не про дорогу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Порядок слов: where, потом is, потом место. Перед street надо ставить the — просто запомнить, не разбираясь почему.",
+      "confusion": "Не объяснили, почему тут is, а не are, хотя street — это тоже одно слово, но раз в интро 3 объясняют разницу is/are, наверное это специально оставили на потом. Не мешает.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understoutput": null,
+      "what_i_understood": "Если мест несколько — are, если одно — is. Само where не меняется.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Where is the station? — про дорогу к вокзалу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "What is this? — когда не понимаешь слово на табло и просишь объяснить, а не спрашиваешь про место.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Различил where и there на слух — они правда разные, легко.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал Where is the station?, лишнюю плитку what не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Where are the shops? — магазинов несколько, значит are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "street и sweet различил на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Where is the street? — улица одна, значит is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Собрал Where are the toilets?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Пары station/street/shops/toilets — это старые слова, я их не знал, но их можно было выучить прямо по ходу заданий 1-8, где они уже встречались с переводом по смыслу сцены.",
+      "confusion": "Я как ученик without предыдущих сессий реально не знал этих слов заранее — сборщик утверждает, что это 'возврат', но для меня это было первое знакомство. Слова в заданиях давались с явным переводом (station — вокзал и т.п.), так что задание проходимо, просто не 'повторение' для меня.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "It is behind the house — вокзал спрятан за домом. near было бы 'рядом', а тут дом загораживает — значит behind.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "It is near — вокзал совсем рядом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Собрал по слуху Where are the shops?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "What is this? — снова, не взял лишнее where.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Where are the shops? — опять же на несколько магазинов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Пары where/what/near/behind — все слова уже встречались раньше в этой же сессии с переводом, доска просто закрепляет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Проговорил Where is the station? It is near. — вопрос и ответ вместе, как реальный диалог на вокзале.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Спросил три вопроса подряд: про вокзал (is, одно место), про туалеты и магазины (are, их много). Смог сам решить, где is, где are.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Спрашивать 'где что-то находится' через Where is / Where are",
+    "Различать, когда ставить is (один предмет/место), а когда are (несколько, например toilets, shops)",
+    "Понимать разницу между Where (про место) и What (про суть предмета) — раньше не знал этого контраста",
+    "Отвечать на вопрос 'где' через it is + near/behind",
+    "Слова station, street, shops, toilets, near, behind — не помнил их до этой сессии, выучил прямо здесь"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2",
+      "why": "Фраза 'разбираться, когда оно нужно, будем позже — пока просто запоминайте вопрос вместе с ним' звучит как отговорка, но это не страшно, это честно сказано, что объяснение будет потом"
+    }
+  ],
+  "felt_alive": [
+    "Сцена с вокзалом в Дублине задаёт понятную причину — ищешь дорогу, а не абстрактно тренируешься",
+    "Задание 16, где спрашиваешь и сразу слышишь ответ It is near — похоже на настоящий разговор"
+  ],
+  "felt_dead": [
+    "Задания 9 и 15 (доски пар) — сухие, просто сопоставление слово-перевод без сцены, но это нормально для тренировки словаря"
+  ],
+  "scene_reason": "да, понятно: я на вокзале, ищу платформу, туалеты и магазины, и учусь спрашивать дорогу правильно (where) вместо того чтобы случайно спросить 'что это такое' (what). Каждая фраза привязана к конкретной ситуации на вокзале.",
+  "would_continue": "да — сессия короткая, понятная, я реально вижу разницу между where/what и is/are на конкретных примерах, хочется пройти дальше",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий выполнимы честно с указанными словами и грамматикой, новое усвоено (контраст where/what, is/are с местами), сцена вокзала понятна и обоснована на каждом шаге."
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `Where is` + место (контраст со `What is`)",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`where` спрашивает про место",
+        "uk": "`where` питає про місце"
+      },
+      "bodyByLocale": {
+        "ru": "`where` — «где». Спрашивает только об одном: в каком месте что-то находится.\n\n`station` — «вокзал». `Where is the station?` — «где вокзал?» Сразу за `where` идёт `is`, и только потом само место.\n\nНачнёте с `what` — выйдет другой вопрос: `What is the station?` спрашивает не про дорогу, а про то, что такое вокзал.",
+        "uk": "`where` — «де». Питає лише про одне: у якому місці щось є.\n\n`station` — «вокзал». `Where is the station?` — «де вокзал?»\n\nУкраїнською слово `є` гуляє по фразі як хоче: «де є вокзал», «де вокзал є», а найчастіше ми його просто викидаємо — «де вокзал?». Англійською в `is` місце одне-єдине: одразу після `where`. Не раніше, не пізніше.\n\nПочнете з `what` — вийде інше питання: `What is the station?` питає не про дорогу, а про те, що таке вокзал."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы у выхода из метро и не знаете, в какую сторону вокзал. Спросите прохожего.",
+          "uk": "Ви біля виходу з метро і не знаєте, у який бік вокзал. Спитайте перехожого."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-21:intro1:r1",
+              "text": "Where is the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-21:intro1:r2",
+              "text": "What is the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-21:intro1:r3",
+              "text": "Where the station is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-21:intro1:r1",
+              "text": "Where is the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-21:intro1:r2",
+              "text": "What is the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-21:intro1:r3",
+              "text": "Where the station is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы у выхода из метро и не знаете, в какую сторону вокзал. Спросите прохожего.",
+          "uk": "Ви біля виходу з метро і не знаєте, у який бік вокзал. Спитайте перехожого."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Порядок слов и `the` перед местом",
+        "uk": "Порядок слів і `the` перед місцем"
+      },
+      "bodyByLocale": {
+        "ru": "Порядок в английском вопросе такой: сначала `where`, сразу за ним `is`, и только потом само место.\n\n`street` — «улица». Спрашивая дорогу, перед местом ставят маленькое `the`: `Where is the street?` Разбираться, когда оно нужно, будем позже — пока просто запоминайте вопрос вместе с ним, так принято.",
+        "uk": "Спершу `where`, одразу за ним `is`, і аж потім саме місце. Порядок жорсткий: пересунете `is` — фраза зламається.\n\n`street` — «вулиця». А тепер найдивніше: коли питають дорогу, перед місцем стоїть ще одне слівце — `the`. `Where is the street?`\n\nУкраїнська такого слова не має взагалі, тому воно й здається зайвим. Не шукайте, чим його перекласти, — нічим. Поки що беріть питання цілим шматком, разом із `the`, а розберемо його пізніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Вам назвали улицу, но вы не понимаете, в какой она стороне. Спросите прохожего.",
+          "uk": "Вам назвали вулицю, але ви не розумієте, у якому вона боці. Спитайте перехожого."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-21:intro2:r1",
+              "text": "Where is the street?"
+            },
+            {
+              "responseId": "en:lesson-02:session-21:intro2:r2",
+              "text": "Where the street is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-21:intro2:r3",
+              "text": "Where is street?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-21:intro2:r1",
+              "text": "Where is the street?"
+            },
+            {
+              "responseId": "en:lesson-02:session-21:intro2:r2",
+              "text": "Where the street is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-21:intro2:r3",
+              "text": "Where is street?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам назвали улицу, но вы не понимаете, в какой она стороне. Спросите прохожего.",
+          "uk": "Вам назвали вулицю, але ви не розумієте, у якому вона боці. Спитайте перехожого."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одно место или несколько",
+        "uk": "Одне місце чи кілька"
+      },
+      "bodyByLocale": {
+        "ru": "`toilets` — «туалеты». На вокзале их несколько, и от этого меняется начало вопроса.\n\nОдно место — `is`: `Where is the station?` Несколько — `are`: `Where are the toilets?` Само `where` не меняется, оно всегда первое.",
+        "uk": "`toilets` — «туалети». На вокзалі їх кілька, і від цього змінюється початок питання.\n\nОдне місце — `is`: `Where is the station?` Кілька — `are`: `Where are the toilets?` Саме `where` не змінюється, воно завжди перше."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы на вокзале, ищете туалеты. Спросите как следует.",
+          "uk": "Ви на вокзалі, шукаєте туалети. Спитайте як слід."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-21:intro3:r1",
+              "text": "Where are the toilets?"
+            },
+            {
+              "responseId": "en:lesson-02:session-21:intro3:r2",
+              "text": "Where is the toilets?"
+            },
+            {
+              "responseId": "en:lesson-02:session-21:intro3:r3",
+              "text": "What are the toilets?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-21:intro3:r1",
+              "text": "Where are the toilets?"
+            },
+            {
+              "responseId": "en:lesson-02:session-21:intro3:r2",
+              "text": "Where is the toilets?"
+            },
+            {
+              "responseId": "en:lesson-02:session-21:intro3:r3",
+              "text": "What are the toilets?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы на вокзале, ищете туалеты. Спросите как следует.",
+          "uk": "Ви на вокзалі, шукаєте туалети. Спитайте як слід."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4ed62348cf7859646f2e14e59aa84fed28b24eaafd0370cb9336c011b7b79fe1"
+}

@@ -1,0 +1,93 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "What вместо Where — реалистичная путаница вопросительных слов"
+      },
+      {
+        "task": 5,
+        "trap": "is вместо are при множественном числе"
+      },
+      {
+        "task": 7,
+        "trap": "are вместо is при единственном числе"
+      },
+      {
+        "task": 10,
+        "trap": "near вместо behind — похожие по смыслу предлоги места"
+      },
+      {
+        "task": 11,
+        "trap": "behind без объекта"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "station",
+        "street",
+        "shops",
+        "toilets"
+      ],
+      [
+        "where",
+        "what",
+        "near",
+        "behind"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      4,
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s19/l02_s20",
+      "what": "сцена вокзала и вопрос про station повторяется третий раз подряд (s19, s20, s21), но заголовок интро 1 «where спрашивает про место» и структура «Where is the station?» почти дословно совпадают с уже пройденным в s20 («Where is the station?» тот же самый пример-ответ) — стоит проверить, не дублирует ли интро 1 урок s20 буквально тем же вопросом"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "context_gap_grammar": 7,
+      "sound_contrast": 2,
+      "phrase_builder": 4,
+      "speed_match": 2,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Интро 1 повторяет буквально тот же пример-вопрос «Where is the station?» с той же сценой (вокзал, спросить дорогу у прохожего), что уже был центральным примером в l02_s20 — сессия должна читаться как отдельная, а не пересказывать соседнюю тем же вопросом."
+}

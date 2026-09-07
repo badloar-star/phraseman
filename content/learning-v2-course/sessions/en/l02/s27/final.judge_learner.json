@@ -1,0 +1,147 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Одна вещь — this + is, несколько — these + are. Спрашиваю продавца, что за куча вещей на прилавке: What are these?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "prices = цены, одна price, несколько prices с -s. Спрашиваю про цифры на ценниках: What are these prices?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "rules = правила, одно rule, несколько rules. Похоже звучит на tools и schools, но начало другое. Спрашиваю про доску у входа: What are these rules?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 · Карточка prices",
+      "what_i_understood": "Запомнил слово и картинку — цифры на ценниках",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 · Слушать prices",
+      "what_i_understood": "Выбрал prices, отличил от places и pieces по звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 · Карточка rules",
+      "what_i_understood": "Список у входа: что можно, чего нельзя",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 · Слушать rules",
+      "what_i_understood": "Отличил rules от tools и schools",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 · Собрать фразу",
+      "what_i_understood": "Собрал What are these? из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 · Вставить are/is/am",
+      "what_i_understood": "Выбрал are, потому что these — про несколько",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 · Вставить prices/price/rules",
+      "what_i_understood": "Выбрал prices, потому что ценников много",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 · Различить rules/tools",
+      "what_i_understood": "Выбрал rules на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 · Собрать фразу про rules",
+      "what_i_understood": "Собрал What are these rules?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 · Вставить is/are/these про одну вещь",
+      "what_i_understood": "Выбрал is, потому что this — одна вещь",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 · Слушать и собрать длинную фразу",
+      "what_i_understood": "Собрал What are these prices? по звуку, лишнюю плитку is не взял",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 · The shops are ___",
+      "what_i_understood": "Нужно слово про то, какие магазины — выбрал cheap (дешёвый). Это слово я раньше не видел в этой сессии как отдельную карточку, но оно было в задании 13 в паре и в задании 15 уже во фразе.",
+      "confusion": "cheap нигде не объяснили карточкой или интро в этой сессии — просто ожидается, что я его знаю. По самопроверке it's 'возвращаемое' слово из прошлых уроков, но я как ученик без памяти о прошлых сессиях вижу его тут впервые и должен угадать по контексту (дешёвые лавки на рынке), что не всегда возможно честно.",
+      "could_answer_question": false
+    },
+    {
+      "step": "13 · Соедините пары",
+      "what_i_understood": "prices-цены, rules-правила, cheap-дешёвый, shops-магазины — тут наконец дали перевод cheap и shops",
+      "confusion": "Перевод cheap и shops дают только тут, а спросили его уже в задании 12, до того как я узнал, что это значит",
+      "could_answer_question": true
+    },
+    {
+      "step": "14 · Собрать фразу с лишней плиткой",
+      "what_i_understood": "Собрал What are these prices?, не взял лишнюю is",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 · These ___ are cheap",
+      "what_i_understood": "Нужно слово про место, где продают недорого — выбрал shops",
+      "confusion": "Слово street/streets в самой фразе не встречалось раньше в этой сессии вообще, а как неверный вариант оно тут в самый раз (ловушка, это нормально). shops в правильном ответе — оно давалось переводом только в задании 13 прямо перед этим, так что тут уже можно было ответить",
+      "could_answer_question": true
+    },
+    {
+      "step": "16 · Скажите вслух",
+      "what_i_understood": "Повторил What are these? What are these prices?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 · Финал сцены",
+      "what_i_understood": "Сказал все три вопроса подряд про сам товар, цены и правила",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "This/is для одной вещи, these/are для нескольких",
+    "Вопрос 'What are these?' — что это (про кучу вещей)",
+    "prices — цены, rules — правила",
+    "Хвост -s у существительного во множественном числе не пропадает даже рядом с these",
+    "Различение на слух rules/tools/schools и prices/places/pieces"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 12,
+      "why": "Правильный ответ — слово cheap (дешёвый), но нигде до этого задания в сессии не было ни карточки, ни перевода этого слова — оно просто появляется как правильный ответ, и перевод дают только в следующем задании (13). Честно ответить тут можно только угадав по смыслу картинки рынка, а не зная слово."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с рынком в Дублине и горкой непонятных вещей на прилавке — понятно, зачем спрашивать",
+    "Задание 17, где нужно произнести все три вопроса подряд как в реальной ситуации у прилавка"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — с самого начала понятно, что я турист на рынке в Дублине, стою у прилавка, и мне надо спросить продавца, что это за вещи, сколько это стоит и что за правила на доске. Каждая фраза привязана к конкретному моменту разговора",
+  "would_continue": "да — сессия короткая, понятная, я реально запомнил новые слова и структуру, единственная заминка была с cheap в задании 12",
+  "verdict": "REVISE",
+  "verdict_reason": "Всё в целом честно и по делу, но задание 12 требует слово cheap как правильный ответ раньше, чем его вообще где-либо переводят или объясняют — это нарушает правило про незнакомое слово в правильном ответе, надо поменять порядок (сначала пара/карточка cheap, потом задание на него)."
+}

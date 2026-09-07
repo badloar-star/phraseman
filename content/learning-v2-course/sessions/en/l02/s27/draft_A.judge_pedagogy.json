@@ -1,0 +1,78 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "prices",
+      "rules"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 6,
+        "trap": "is вместо are при these — реалистичная путаница"
+      },
+      {
+        "task": 7,
+        "trap": "price без -s при нескольких предметах"
+      },
+      {
+        "task": 10,
+        "trap": "are вместо is при this — обратная путаница"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "prices",
+        "rules",
+        "cheap",
+        "shops"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 2,
+      "listen_choose": 2,
+      "phrase_builder": 3,
+      "context_gap_grammar": 5,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Интро 2 превышает даже расширенный допуск длины (329 знаков при потолке 320), и разбор дистрактора prices в задании 15 держится на «звучит криво», а не на смысле — сама сессия уже честно отметила оба пункта."
+}

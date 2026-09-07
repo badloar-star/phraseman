@@ -1,0 +1,132 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Когда вещей несколько, говорят 'these' вместо 'this', и вместо 'is' используют 'are'. Пример: What are these?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "prices — цены, во множественном числе. Вопрос: What are these prices?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "rules — правила. Вопрос: What are these rules?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (карточка + слух prices)",
+      "what_i_understood": "Закрепил звучание и написание prices",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (карточка + слух rules)",
+      "what_i_understood": "Закрепил rules",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал 'What are these?' из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Про 'these' идёт 'are', не 'is' и не 'this'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "После 'these' нужно слово с -s (prices), не единственное число",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "На слух отличил rules от tools",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Собрал 'What are these rules?'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Про 'this' идёт 'is', не 'are'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Собрал по слуху 'What are these prices?', лишнюю плитку 'is' не взял",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "cheap — дёшево, это слово я вроде видел раньше (в списке 'возврат'), тут просто вставил его в фразу про магазины",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Свёл пары: prices-цены, rules-правила, cheap-дёшево, shops-магазины",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Опять собрал 'What are these prices?', не взял лишнее 'is'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "shops — магазины, вставил в 'These shops are cheap'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Повторил вслух две фразы",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Сказал подряд три вопроса про сцену на рынке",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Когда вещей несколько — говорю 'these', а не 'this'",
+    "К 'these' идёт 'are', к 'this' идёт 'is' — я их теперь не путаю",
+    "Могу спросить продавца 'What are these?' про непонятную вещь",
+    "Знаю слово prices (цены) и могу спросить 'What are these prices?'",
+    "Знаю слово rules (правила) и могу спросить 'What are these rules?'"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с рынком в Дублине и горкой непонятных вещей на прилавке — понятно, зачем я вообще открываю рот",
+    "Финал (задание 17), где три вопроса идут подряд как в реальном разговоре с продавцом"
+  ],
+  "felt_dead": [
+    "Определения слов в карточках (задания 1 и 3) суховаты, но это просто карточка слова, не текст — тут это нормально"
+  ],
+  "scene_reason": "да, понятно: я стою у прилавка на рынке в Дублине, вижу незнакомые вещи, потом ценники, потом доску с правилами у входа — и в каждом случае логично спросить продавца 'What are these...?'",
+  "would_continue": "да — я реально запомнил новую конструкцию (this/is vs these/are) и два новых слова, задания шли по возрастающей сложности без резких скачков, ничего не бесило",
+  "verdict": "PASS",
+  "verdict_reason": "Каждое задание я мог честно выполнить, конструкция this/is vs these/are объяснена понятно и повторяется до автоматизма, ловушки-отвлекатели (is/this/tools/schools/streets) логичные, а не обманные."
+}

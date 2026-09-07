@@ -1,0 +1,75 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Когда вещей несколько, вместо this говорим these, и вместо is говорим are. Вопрос строится: What are these?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "prices — цены. К слову добавляется -s, когда их много, и это работает вместе с are и these одновременно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "rules — правила. Тоже с -s во множественном числе. Показали, что для одной вещи было бы this rule + is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (карточки и слух)",
+      "what_i_understood": "Отработали произношение prices и rules, отличил их от похожих слов на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 5-11 (сборка, вставка, слух)",
+      "what_i_understood": "Собрал фразы What are these? / What are these prices? / What are these rules?, потренировал is vs are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "The shops are cheap. — здесь просят слово не про вопрос 'что это', а про описание магазинов (дёшево). Это слово я знал раньше (cheap), тут просто повтор.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (пары)",
+      "what_i_understood": "Свёл слова с переводами: prices, rules, cheap, shops.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "These shops are cheap. — снова shops, тоже старое слово, тут я просто вставил его в новом месте фразы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 16-17 (финал)",
+      "what_i_understood": "Проговорил все три вопроса подряд как будто реально стою у прилавка на рынке.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Понял, что this/is идут парой, а these/are — другой парой, и путать их нельзя",
+    "Узнал новые слова prices и rules и научился произносить их, не путая с похожими (places/pieces, tools/schools)",
+    "Научился строить вопрос про несколько вещей сразу: What are these + существительное с -s?",
+    "Увидел на практике, что множественное число подтверждается сразу тремя вещами в фразе (are, these, -s), а не одной"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с рынком в Дублине понятная: горка непонятных вещей, ценники без объяснений, доска с правилами у входа — реально похоже на ситуацию, в которую сам мог бы попасть",
+    "Финальное задание, где нужно произнести все три вопроса подряд, ощущается как настоящий разговор с продавцом, а не как отдельные упражнения"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — я турист на рынке, вижу непонятные вещи/цены/правила и спрашиваю продавца, что это. Каждая новая фраза привязана к конкретному предмету на прилавке или доске, а не висит в воздухе",
+  "would_continue": "да — было легко следить, ничего не запутало, а новые слова и правило is/are против these/are объяснили понятно и без лишних слов",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы честно, узнал конкретные новые вещи (prices, rules, правило this-is/these-are), сцена понятная от начала до конца."
+}

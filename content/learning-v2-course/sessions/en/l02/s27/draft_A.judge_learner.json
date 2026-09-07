@@ -1,0 +1,141 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Когда вещей несколько (эти = these), вместо is надо ставить are. Про одну вещь: this + is. Про несколько: these + are. Вопрос: What are these?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "prices = цены. Спрашивая про цены (их много), тоже используем are: What are these prices?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "rules = правила. Тоже с are: What are these rules?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 карточка prices",
+      "what_i_understood": "prices = цены",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 слух prices",
+      "what_i_understood": "выбрал prices на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 карточка rules",
+      "what_i_understood": "rules = правила",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 слух rules",
+      "what_i_understood": "выбрал rules на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 сборка What are these?",
+      "what_i_understood": "собрал фразу из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 пропуск are/is/this",
+      "what_i_understood": "выбрал are, т.к. these = несколько",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 пропуск prices/price/rules",
+      "what_i_understood": "выбрал prices, т.к. ценников много",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 звуки rules/tools",
+      "what_i_understood": "выбрал rules по первому звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 сборка про rules",
+      "what_i_understood": "собрал What are these rules?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 пропуск is/are/these про this",
+      "what_i_understood": "выбрал is, т.к. this = одна вещь",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 диктовка prices-фразы",
+      "what_i_understood": "собрал What are these prices? по звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 пропуск cheap/these/rules",
+      "what_i_understood": "The shops ___ cheap — выбрал cheap, вспомнил слово из прошлых уроков (тут оно подано как повтор, без отсылки к 'вы уже знаете')",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 доска пар",
+      "what_i_understood": "соединил prices-цены, rules-правила, cheap-дёшево, shops-магазины",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 сборка с лишней плиткой is",
+      "what_i_understood": "собрал What are these prices?, лишнюю is не взял",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 пропуск shops/rules/prices",
+      "what_i_understood": "These ___ are cheap — выбрал shops",
+      "confusion": "Я не до конца понял фразу 'These shops are cheap' — разве не сами вещи в магазинах дешёвые, а не магазины? Но раз это единственный вариант, который грамматически подходит (shops — существительное во множественном числе, как rules/prices), выбрал его по логике задания, а не по стопроцентной уверенности в смысле.",
+      "could_answer_question": true
+    },
+    {
+      "step": "16 скажи вслух",
+      "what_i_understood": "повторил What are these? What are these prices?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 финал сцены",
+      "what_i_understood": "произнёс все три вопроса подряд про прилавок, цены и доску правил",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Спрашивать 'что это?' про несколько вещей: What are these?",
+    "Разница is/are зависит от того, одна вещь (this) или несколько (these)",
+    "Новое слово prices — цены",
+    "Новое слово rules — правила"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с рынком в Дублине и горкой непонятных товаров — понятно, зачем я вообще это спрашиваю",
+    "Задание 17, где все три вопроса собираются в одну живую сцену у прилавка"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — я турист на рынке, вижу гору незнакомых вещей, ценники и доску правил у входа, и в каждом случае ясно, кому и зачем я задаю вопрос (продавцу или спутнику)",
+  "would_continue": "да — задания шли по нарастающей сложности, ничего не сбило с толку, и в конце я реально смог сам произнести все три вопроса без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "Прошёл сессию честно, ни одно задание не потребовало незнакомых слов или форм, оба новых слова выучил и использовал, а сцена рынка была понятной от начала до конца."
+}

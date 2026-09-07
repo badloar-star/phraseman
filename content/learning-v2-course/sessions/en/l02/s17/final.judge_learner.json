@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — Where is the station",
+      "what_i_understood": "Чтобы спросить 'где находится', говорю where is, потом место. Убрать is нельзя.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — the street",
+      "what_i_understood": "Перед конкретным местом ставлю the. Where is the street? — спрашиваю про ту самую улицу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — I am lost",
+      "what_i_understood": "Про себя говорю I am lost, если не понимаю где нахожусь. am всегда с I.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 — карточка station",
+      "what_i_understood": "station = вокзал",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 — слух station",
+      "what_i_understood": "Выбрал station, отличил от stand и nation",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 — карточка street",
+      "what_i_understood": "street = улица",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 — слух street",
+      "what_i_understood": "Выбрал street, не спутал с treat/sweet",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 — сборка Where is the station?",
+      "what_i_understood": "Собрал фразу из плиток верно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 — вставка is/are/am",
+      "what_i_understood": "Про street (одна улица) — is, не are и не am",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 — слух cold",
+      "what_i_understood": "Вспомнил cold из прошлого, отличил от gold/call",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 — сборка Where is the street?",
+      "what_i_understood": "Собрал верно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 — вставка lost/cold/noisy",
+      "what_i_understood": "lost — про то, что я не понимаю где нахожусь; cold и noisy сюда не подходят",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 — пары",
+      "what_i_understood": "station-вокзал, street-улица, lost-заблудился, cold-замёрз",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 — диктовка Where is the station?",
+      "what_i_understood": "Собрал по звуку, лишнюю плитку are не взял",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 — The station is crowded",
+      "what_i_understood": "crowded — про вокзал, где много людей",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 — I am lost (лишняя is)",
+      "what_i_understood": "Про себя только am, is лишняя",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 — The street is noisy",
+      "what_i_understood": "noisy — шумно из-за машин на улице",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 — говорю вслух I am lost. Where is the station?",
+      "what_i_understood": "Понятно, зачем это говорю — я заблудился и спрашиваю дорогу",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 — сборка Where is the street? (лишняя am)",
+      "what_i_understood": "am не подходит, потому что нет I",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 — финал: I am lost. Where is the station? Where is the street? The station is crowded.",
+      "what_i_understood": "Собрал всю сцену: сказал о себе, спросил про два места, добавил что на вокзале людно",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как спросить 'где находится что-то' — Where is + место",
+    "Что перед конкретным местом ставится the",
+    "Как сказать о себе 'я заблудился' — I am lost",
+    "Два новых слова: station (вокзал) и street (улица)",
+    "Повторил и закрепил старые слова: lost, crowded, noisy, cold"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена понятная и реальная: вышел из метро, не понимаю куда идти, спрашиваю прохожего — я сам так делал в жизни",
+    "Финал сессии (задание 17), где всё складывается в одну живую реплику к прохожему"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я — человек, который вышел из метро в незнакомом городе и спрашивает у прохожего дорогу. Каждая фраза (I am lost, Where is the station, Where is the street, The station is crowded) — то, что реально сказал бы в этой ситуации",
+  "would_continue": "да, потому что задания понятные, ловушки логичные (объясняют, почему неверный вариант не подходит), и в конце я реально могу произнести всю сцену целиком",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно, узнал новые слова и конструкцию Where is, ни разу не встретил незнакомое слово в правильном ответе, сцена понятна от начала до конца."
+}

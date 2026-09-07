@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "`Where is` + место",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`Where is` — «где находится»",
+        "uk": "`Where is` — «де знаходиться»"
+      },
+      "bodyByLocale": {
+        "ru": "`where` — «где». С него начинается любой вопрос про место, и сразу за ним встаёт `is`: `Where is the station?`\n\nВыбросить `is` не выйдет: `Where the station?` — это уже не вопрос, а набор слов. Прохожий поймёт, но переспросит.\n\n`station` — «вокзал, станция».",
+        "uk": "`where` — «де». З нього починається будь-яке питання про місце, і одразу за ним стає `is`: `Where is the station?`\n\nВикинути `is` не вийде: `Where the station?` — це вже не питання, а набір слів. Перехожий зрозуміє, але перепитає.\n\n`station` — «вокзал, станція»."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы вышли из метро и не понимаете, куда идти. Спросите прохожего, где вокзал.",
+          "uk": "Ви вийшли з метро і не розумієте, куди йти. Спитайте перехожого, де вокзал."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-17:intro1:r1",
+              "text": "Where is the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-17:intro1:r2",
+              "text": "Where the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-17:intro1:r3",
+              "text": "Where station is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-17:intro1:r1",
+              "text": "Where is the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-17:intro1:r2",
+              "text": "Where the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-17:intro1:r3",
+              "text": "Where station is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы вышли из метро и не понимаете, куда идти. Спросите прохожего, где вокзал.",
+          "uk": "Ви вийшли з метро і не розумієте, куди йти. Спитайте перехожого, де вокзал."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`the` перед местом",
+        "uk": "`the` перед місцем"
+      },
+      "bodyByLocale": {
+        "ru": "`street` — «улица».\n\nПеред местом ставят маленькое `the`: `Where is the street?` Вы спрашиваете не про улицы вообще, а про ту одну, которую ищете, — `the` это и показывает. Прохожий сразу понимает, что перечислять весь район не нужно.",
+        "uk": "`street` — «вулиця».\n\nПеред місцем ставлять маленьке `the`: `Where is the street?` Ви питаєте не про вулиці взагалі, а про ту одну, яку шукаєте, — `the` це й показує. Перехожий одразу розуміє, що перелічувати весь район не треба."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Вам назвали адрес, но улицу вы не нашли. Спросите, где она.",
+          "uk": "Вам назвали адресу, але вулицю ви не знайшли. Спитайте, де вона."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-17:intro2:r1",
+              "text": "Where is the street?"
+            },
+            {
+              "responseId": "en:lesson-02:session-17:intro2:r2",
+              "text": "Where is street?"
+            },
+            {
+              "responseId": "en:lesson-02:session-17:intro2:r3",
+              "text": "Where the street?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-17:intro2:r1",
+              "text": "Where is the street?"
+            },
+            {
+              "responseId": "en:lesson-02:session-17:intro2:r2",
+              "text": "Where is street?"
+            },
+            {
+              "responseId": "en:lesson-02:session-17:intro2:r3",
+              "text": "Where the street?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам назвали адрес, но улицу вы не нашли. Спросите, где она.",
+          "uk": "Вам назвали адресу, але вулицю ви не знайшли. Спитайте, де вона."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`lost` — заблудился",
+        "uk": "`lost` — заблукав"
+      },
+      "bodyByLocale": {
+        "ru": "`lost` — «заблудился, потерялся». Про человека, который не понимает, где он стоит.\n\nГоворят это про себя так же, как и всё остальное о себе: `I am lost`. Слово `am` на месте, и без него фраза не собирается.\n\nПро улицу или вокзал так обычно не скажешь: они стоят там, где стояли. `lost` — про того, кто их ищет.",
+        "uk": "`lost` — «заблукав, загубився». Про людину, яка не розуміє, де вона стоїть.\n\nКажуть це про себе так само, як і все інше про себе: `I am lost`. Слово `am` на місці, і без нього фраза не збирається.\n\nПро вулицю чи вокзал так зазвичай не скажеш: вони стоять там, де стояли. `lost` — про того, хто їх шукає."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы стоите на перекрёстке и совсем не понимаете, куда идти. Скажите это о себе.",
+          "uk": "Ви стоїте на перехресті й геть не розумієте, куди йти. Скажіть це про себе."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-17:intro3:r1",
+              "text": "I am lost."
+            },
+            {
+              "responseId": "en:lesson-02:session-17:intro3:r2",
+              "text": "I lost."
+            },
+            {
+              "responseId": "en:lesson-02:session-17:intro3:r3",
+              "text": "I am lost?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-17:intro3:r1",
+              "text": "I am lost."
+            },
+            {
+              "responseId": "en:lesson-02:session-17:intro3:r2",
+              "text": "I lost."
+            },
+            {
+              "responseId": "en:lesson-02:session-17:intro3:r3",
+              "text": "I am lost?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы стоите на перекрёстке и совсем не понимаете, куда идти. Скажите это о себе.",
+          "uk": "Ви стоїте на перехресті й геть не розумієте, куди йти. Скажіть це про себе."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "74f1eb546d26b4923538774bcd30ec9a98bcb9e5d904b65041bda6deaee9cf9d"
+}

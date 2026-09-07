@@ -1,0 +1,79 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "station",
+      "street"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "stand/nation — похожие по звучанию слова"
+      },
+      {
+        "task": 9,
+        "trap": "cold/noisy — грамматически верные, но не по смыслу сцены"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "station",
+        "street",
+        "lost",
+        "cold"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13,
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s16",
+      "what": "структура разбора «Так вы сообщаете… Вопрос начинают с is» повторяется почти дословно из l02_s15/l02_s16, но грамматика там другая (Is he/she), здесь Where is — не является нарушением, просто похожий шаблон формулировки"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 2,
+      "listen_choose": 3,
+      "phrase_builder": 3,
+      "context_gap_grammar": 3,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы соблюдены, ловушки реалистичны, доска пар отработана заранее, счёт заданий и механик верный, тайм-референсов и учебниковых формул нет."
+}

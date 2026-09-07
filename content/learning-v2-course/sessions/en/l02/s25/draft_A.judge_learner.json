@@ -1,0 +1,137 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — What is this?",
+      "what_i_understood": "Чтобы спросить «что это», говорю сначала what, потом is, потом this. Порядок жёсткий.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — price",
+      "what_i_understood": "price — это цена. Чтобы спросить цену, говорю What is the price? Перед price ставлю the, потому что это конкретная вещь. cheap — это дёшево.",
+      "confusion": "не до конца понял, почему именно 'the', а не просто 'price', но правило запомнил механически: раз вещь конкретная — the",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — name",
+      "what_i_understood": "name — имя или название, подходит и для блюда, и для человека, и для улицы. What is the name? — как называется.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — карточка price",
+      "what_i_understood": "Просто запомнил слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — слух price/rice/prize",
+      "what_i_understood": "В price есть звук п в начале, в rice его нет, в prize на конце звонкое з.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 — карточка и слух name",
+      "what_i_understood": "name звучит с гласной эй, near и nine — другие гласные.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — собрать What is this?",
+      "what_i_understood": "Собрал из плиток, порядок совпал с тем что учил.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — What is the ___?",
+      "what_i_understood": "Выбрал price, потому что вопрос про цифру.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — What ___ this?",
+      "what_i_understood": "is, потому что про одну вещь.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — звуки price/rice",
+      "what_i_understood": "Выбрал price по началу слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — карточка cheap",
+      "what_i_understood": "cheap — дёшево.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — собрать What is the price?",
+      "what_i_understood": "Собрал по звуку и по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — What is the ___? (заблудились)",
+      "what_i_understood": "street, потому что спрашиваю про улицу, а не про цену.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — собрать What is the name?",
+      "what_i_understood": "Собрал верно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — пары",
+      "what_i_understood": "price-цена, name-название, cheap-дёшево, street-улица. Всё это уже видел выше, справился.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — It is ___.",
+      "what_i_understood": "cheap, потому что говорю про низкую цену как оценку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — собрать с лишней плиткой the",
+      "what_i_understood": "Понял, что the тут лишнее — this не берёт the перед собой. Собрал What is this?",
+      "confusion": "чуть притормозил — не сразу вспомнил, что 'the' не ставится перед 'this', пришлось подумать логически (this уже само по себе указывает на вещь)",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — сказать вслух два вопроса",
+      "what_i_understood": "Повторил What is this? What is the price?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал сцены",
+      "what_i_understood": "Сказал What is the name? What is the price? It is cheap. Почувствовал, что это законченная сценка в кафе.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Спрашивать 'что это' — What is this?",
+    "Спрашивать цену — What is the price?",
+    "Спрашивать название чего угодно (блюда, улицы) — What is the name?",
+    "Слово price (цена) и name (имя/название)",
+    "Когда перед словом нужен the (когда речь о конкретной вещи прямо сейчас), а когда нет (перед this его не ставят)",
+    "cheap и street вспомнил из прошлого"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сценка в кафе в Дублине — понятно, зачем спрашивать эти фразы: ткнул в меню, не понял цену, не понял название блюда",
+    "Задание 17 в финале — приятно, что все три фразы сложились в естественный маленький разговор с официантом"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — я турист в кафе, тычу в непонятную строчку меню и с ценой, и с названием блюда, и в конце использую всё вместе у кассы. Каждая фраза привязана к конкретному моменту сцены, а не висит в воздухе",
+  "would_continue": "да — сессия короткая, тренирует ровно то, что объяснили, задание 15 с лишней плиткой заставило чуть подумать головой, а не тыкать наугад, это приятно",
+  "verdict": "PASS",
+  "verdict_reason": "все объяснения понятны, все задания я смог выполнить честно, узнал три новые конкретные фразы и два новых слова, сцена в кафе понятна от начала до конца"
+}

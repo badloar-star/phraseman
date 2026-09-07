@@ -1,0 +1,83 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — What is this?",
+      "what_i_understood": "Спрашивая 'что это', надо говорить What is this? — сначала What, потом is, потом this. Нельзя говорить What this? или What this is?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — price",
+      "what_i_understood": "price значит цена. Спросить про цену: What is the price? — перед price ставится the. Пока просто запомнил фразу целиком.",
+      "confusion": "Не совсем понял, почему the, но текст сам сказал 'разберём позже, пока запоминайте целиком' — так что это не баг, меня честно предупредили",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — name",
+      "what_i_understood": "name значит имя или название. What is the name? — тоже с the. Ответ будет It is soda bread.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (карточки и звуки price/name)",
+      "what_i_understood": "Потренировался узнавать price и name на слух, не путать с похожими словами (press, prize, near, nine)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 5-8 (сборка фразы, вставка слов, звуки)",
+      "what_i_understood": "Собрал What is this?, вставил price в What is the price?, понял что после what нужно is, а не are или this ещё раз",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — cheap (напоминание)",
+      "what_i_understood": "cheap — дёшево. Слово мне как будто новое, объяснили нормально, никакой отсылки к прошлому опыту не было",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 10-12 (диктовка, street, сборка name)",
+      "what_i_understood": "Собрал по слуху What is the price?, понял что street — улица и оно тоже с the, собрал What is the name?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — пары",
+      "what_i_understood": "Свёл слово с переводом: price-цена, name-название, cheap-дёшево, street-улица",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 14-15 (cheap в ответе, обманка с лишней the)",
+      "what_i_understood": "It is cheap — говорю про цену без вопроса. В обманке понял, что the не нужно перед this",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 16-17 (финал, вслух)",
+      "what_i_understood": "Смог сам сложить всю сценку: спросить название, спросить цену, сказать что дёшево — без подсказок",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Спрашивать 'что это' по-английски: What is this?",
+    "Спрашивать цену: What is the price?",
+    "Спрашивать название: What is the name?",
+    "Отвечать на такой вопрос: It is soda bread / It is cheap",
+    "Новые слова: price (цена), name (имя/название)",
+    "Освежил в памяти cheap (дёшево) и street (улица)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена в кафе в Дублине понятная и живая — я реально представляю, как тыкаю в меню и спрашиваю у официанта",
+    "Задание 17 — приятно, что дали собрать всю сценку самому, без подсказок, чувствуется что чему-то научился"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — я турист в кафе, вижу непонятную строчку в меню и цифру рядом, и мне нужно спросить у официанта, что это и сколько стоит. Каждая фраза привязана к конкретному моменту (ткнул пальцем, увидел цену, попробовал блюдо)",
+  "would_continue": "да — задания понятные, сложность растёт постепенно, к финалу я реально мог сам сказать три фразы подряд без подглядывания",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы честно, есть чёткое новое умение (спросить что это/цена/название в кафе), сцена понятна с первой секунды, ни одной ИИ-шаблонной шутки или отсылки к несуществующему прошлому опыту."
+}

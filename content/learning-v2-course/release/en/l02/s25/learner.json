@@ -1,0 +1,883 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — price",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — price",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i01:audio",
+          "transcript": "price"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-25:i01:r1",
+            "targetText": "price",
+            "meaningByLocale": {
+              "ru": "«цена». Цифра справа от строчки в меню.",
+              "uk": "«ціна». Цифра праворуч від рядка в меню."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "price",
+          "definitionByLocale": {
+            "ru": "«цена». Цифра справа от строчки в меню.",
+            "uk": "«ціна». Цифра праворуч від рядка в меню."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-25:i02:r1",
+          "text": "price"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i02:r2",
+          "text": "press"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i02:r3",
+          "text": "prize"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — price",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i02:audio",
+          "transcript": "price"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-25:i02:r1",
+            "targetText": "price",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i02:r2",
+            "targetText": "press",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i02:r3",
+            "targetText": "prize",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — price",
+            "feedbackByLocale": {
+              "ru": "Это «нажать». Гласная другая: в `price` слышно «ай», в `press` — «э».",
+              "uk": "Це «натиснути». Голосний інший: у `price` чути «ай», у `press` — «е»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — price",
+            "feedbackByLocale": {
+              "ru": "Это «приз». Конец другой: `price` заканчивается глухо, `prize` — звонко.",
+              "uk": "Це «приз». Кінець інший: `price` закінчується глухо, `prize` — дзвінко."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — name",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — name",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i03:audio",
+          "transcript": "name"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-25:i03:r1",
+            "targetText": "name",
+            "meaningByLocale": {
+              "ru": "«имя, название». Годится и для человека, и для блюда, и для улицы.",
+              "uk": "«ім'я, назва». Годиться і для людини, і для страви, і для вулиці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "name",
+          "definitionByLocale": {
+            "ru": "«имя, название». Годится и для человека, и для блюда, и для улицы.",
+            "uk": "«ім'я, назва». Годиться і для людини, і для страви, і для вулиці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-25:i04:r1",
+          "text": "name"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i04:r2",
+          "text": "near"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i04:r3",
+          "text": "nine"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — name",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i04:audio",
+          "transcript": "name"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-25:i04:r1",
+            "targetText": "name",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i04:r2",
+            "targetText": "near",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i04:r3",
+            "targetText": "nine",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — name",
+            "feedbackByLocale": {
+              "ru": "«Рядом», про расстояние. Спрашивая название, вы говорите `name`.",
+              "uk": "«Поруч», про відстань. Питаючи назву, ви кажете `name`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — name",
+            "feedbackByLocale": {
+              "ru": "Это «девять». Счёт, а не название.",
+              "uk": "Це «дев'ять». Лічба, а не назва."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы показали на строчку в меню",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы показали на строчку в меню",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "What is this?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы показали на строчку в меню",
+          "uk": "Складіть фразу — ви показали на рядок у меню"
+        },
+        "orderedTokens": [
+          "What",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спрашиваете про цифру рядом со строчкой",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-25:i06:r1",
+          "text": "price"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i06:r2",
+          "text": "name"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i06:r3",
+          "text": "street"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спрашиваете про цифру рядом со строчкой",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спрашиваете про цифру рядом со строчкой",
+          "uk": "Вставте слово — питаєте про цифру поруч із рядком"
+        },
+        "gappedTargetPhrase": "What is the ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-25:i06:r1",
+            "text": "price"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i06:r2",
+            "text": "name"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i06:r3",
+            "text": "street"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спрашиваете про цифру р",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i06:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спрашиваете про цифру р",
+            "feedbackByLocale": {
+              "ru": "Так вы спросите название блюда, а не сколько оно стоит.",
+              "uk": "Так ви спитаєте назву страви, а не скільки вона коштує."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спрашиваете про цифру р",
+            "feedbackByLocale": {
+              "ru": "Улица тут ни при чём: вы смотрите в меню.",
+              "uk": "Вулиця тут ні до чого: ви дивитесь у меню."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вопрос про то, что стоит на столе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-25:i07:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i07:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i07:r3",
+          "text": "this"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вопрос про то, что стоит на столе",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вопрос про то, что стоит на столе",
+          "uk": "Вставте слово — питання про те, що стоїть на столі"
+        },
+        "gappedTargetPhrase": "What ___ this?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-25:i07:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i07:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i07:r3",
+            "text": "this"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вопрос про то, что стои",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i07:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вопрос про то, что стои",
+            "feedbackByLocale": {
+              "ru": "Не для одной вещи. Про одну — `is`.",
+              "uk": "Не для однієї речі. Про одну — `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вопрос про то, что стои",
+            "feedbackByLocale": {
+              "ru": "`this` уже стоит в конце. Второе не нужно, нужно `is`.",
+              "uk": "`this` уже стоїть у кінці. Другого не треба, треба `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Различите звуки — какое из двух про цену?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-25:i08:r1",
+          "text": "price"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i08:r2",
+          "text": "press"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i08:audioA",
+        "en:lesson-02:session-25:i08:audioB"
+      ],
+      "accessibilityLabel": "Различите звуки — какое из двух про цену?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "price",
+        "contrastB": "press",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-25:i08:audioA",
+          "transcript": "price"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-25:i08:audioB",
+          "transcript": "press"
+        },
+        "testedPhoneticContrast": "Различите звуки — какое из двух про цену",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i08:r1",
+            "correct": false,
+            "testedDimension": "Различите звуки — какое из двух про цену",
+            "feedbackByLocale": {
+              "ru": "Это «нажать». Гласная другая: в `price` слышно «ай», в `press` — «э».",
+              "uk": "Це «натиснути». Голосний інший: у `price` чути «ай», у `press` — «е»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cheap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cheap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i09:audio",
+          "transcript": "cheap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-25:i09:r1",
+            "targetText": "cheap",
+            "meaningByLocale": {
+              "ru": "«дёшево, недорого». Цена, из-за которой не жалко.",
+              "uk": "«дешево, недорого». Ціна, через яку не шкода."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cheap",
+          "definitionByLocale": {
+            "ru": "«дёшево, недорого». Цена, из-за которой не жалко.",
+            "uk": "«дешево, недорого». Ціна, через яку не шкода."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «какая цена?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «какая цена?»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i10:audio",
+          "transcript": "What is the price?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "What is the price?",
+        "orderedTokens": [
+          "What",
+          "is",
+          "the",
+          "price"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы заблудились и хотите узнать, где стоите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-25:i11:r1",
+          "text": "street"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i11:r2",
+          "text": "price"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i11:r3",
+          "text": "this"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы заблудились и хотите узнать, где стоите",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы заблудились и хотите узнать, где стоите",
+          "uk": "Вставте слово — ви заблукали і хочете дізнатися, де стоїте"
+        },
+        "gappedTargetPhrase": "What is the ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-25:i11:r1",
+            "text": "street"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i11:r2",
+            "text": "price"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i11:r3",
+            "text": "this"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы заблудились и хотите",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i11:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы заблудились и хотите",
+            "feedbackByLocale": {
+              "ru": "У улицы цены нет. Вы спрашиваете, как она называется.",
+              "uk": "У вулиці ціни немає. Ви питаєте, як вона зветься."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы заблудились и хотите",
+            "feedbackByLocale": {
+              "ru": "`this` — «это», оно не встаёт после `the`.",
+              "uk": "`this` — «це», воно не стає після `the`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите название блюда",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите название блюда",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "What is the name?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите название блюда",
+          "uk": "Складіть фразу — спитайте назву страви"
+        },
+        "orderedTokens": [
+          "What",
+          "is",
+          "the",
+          "name"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-25:i13:p1",
+            "target": "price",
+            "meaningByLocale": {
+              "ru": "цена",
+              "uk": "ціна"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i13:p2",
+            "target": "name",
+            "meaningByLocale": {
+              "ru": "название",
+              "uk": "назва"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i13:p3",
+            "target": "cheap",
+            "meaningByLocale": {
+              "ru": "дёшево",
+              "uk": "дешево"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-25:i13:p4",
+            "target": "street",
+            "meaningByLocale": {
+              "ru": "улица",
+              "uk": "вулиця"
+            }
+          }
+        ],
+        "leftColumn": [
+          "price",
+          "name",
+          "cheap",
+          "street"
+        ],
+        "rightColumn": [
+          "цена",
+          "название",
+          "дёшево",
+          "улица"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — цена оказалась маленькой, вы довольны",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-25:i14:r1",
+          "text": "cheap"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i14:r2",
+          "text": "price"
+        },
+        {
+          "responseId": "en:lesson-02:session-25:i14:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — цена оказалась маленькой, вы довольны",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — цена оказалась маленькой, вы довольны",
+          "uk": "Вставте слово — ціна виявилася маленькою, ви задоволені"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-25:i14:r1",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i14:r2",
+            "text": "price"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i14:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Вставьте слово — цена оказалась маленько",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-25:i14:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — цена оказалась маленько",
+            "feedbackByLocale": {
+              "ru": "`price` — сама цена, а не оценка «дёшево».",
+              "uk": "`price` — сама ціна, а не оцінка «дешево»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — цена оказалась маленько",
+            "feedbackByLocale": {
+              "ru": "`what` начинает вопрос, а вы говорите утверждение.",
+              "uk": "`what` починає питання, а ви кажете твердження."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — обманка: вам показали блюдо, вы спрашиваете, что это",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — обманка: вам показали блюдо, вы спрашиваете, что это",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "What is this?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — обманка: вам показали блюдо, вы спрашиваете, что это",
+          "uk": "Складіть фразу — пастка: вам показали страву, ви питаєте, що це"
+        },
+        "orderedTokens": [
+          "What",
+          "is",
+          "this"
+        ],
+        "authoredDistractorTokens": [
+          "the"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — два вопроса подряд официанту",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — два вопроса подряд официанту",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i16:audio",
+          "transcript": "What is this? What is the price?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What is this? What is the price?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-25:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — вы у кассы, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — вы у кассы, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-25:i17:audio",
+          "transcript": "What is the name? What is the price? It is cheap."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What is the name? What is the price? It is cheap.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "401cb45f8f435f3c3842028e8de8b7cb17a0e57d7918ec2a93ec2732e508bbef"
+}

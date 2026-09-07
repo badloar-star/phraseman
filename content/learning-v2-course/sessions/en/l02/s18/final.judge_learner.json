@@ -1,0 +1,119 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (shops)",
+      "what_i_understood": "Один магазин — shop, много — shops. Раз магазинов много, вопрос строится не с is, а с are: Where are the shops?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (toilets)",
+      "what_i_understood": "Туалетов в торговом центре обычно несколько, поэтому тоже are: Where are the toilets? Перед словом стоит the.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (street vs shops)",
+      "what_i_understood": "Если ищу одно место (улицу) — is. Если несколько мест (магазины) — are. И слово меняется: shop → shops.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1-4: карточки и звук shops/toilets",
+      "what_i_understood": "Запомнил произношение, отличил от похожих слов (tops, chops, tickets, tablets)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5-6: is/are по контексту",
+      "what_i_understood": "Магазины (много) → are, вокзал (один) → is. Логично, оба раза объяснено до задания.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7: сборка Where are the toilets?",
+      "what_i_understood": "Собрал по образцу из интро 2",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8-9: crowded",
+      "what_i_understood": "crowded — людно, толпа. В задании 9 выбрал crowded для 'в субботу не протолкнуться' — понятно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10: сборка Where are the shops?",
+      "what_i_understood": "Повтор уже пройденной фразы",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11: доска пар",
+      "what_i_understood": "shops/toilets/crowded/station — все слова уже встречались раньше в этой же сессии или в прошлой (station)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12: street vs treat",
+      "what_i_understood": "street я знаю с прошлой сессии (в интро 3 оно тоже было), treat — новое слово, но оно неверный вариант, не обязан его знать заранее",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13: lost",
+      "what_i_understood": "lost — заблудился, я это слово знаю (оно было в списке 'возврат'). Подошло по смыслу к ситуации 'третий раз к одному входу'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14: сборка Where is the station?",
+      "what_i_understood": "station одно место — is, повтор из интро 3 логики",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15: shops vs station vs street",
+      "what_i_understood": "Ищу этаж с витринами внутри центра — значит shops, не station (снаружи, одна) и не street (тоже одна и снаружи)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16: скажите вслух Where are the toilets?",
+      "what_i_understood": "Просто повторение уже выученной фразы",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17: финал — I am lost. Where are the shops? Where are the toilets?",
+      "what_i_understood": "Собрал три фразы, которые уже говорил по отдельности в сессии",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово shops (магазины) и как его произносить",
+    "Слово toilets (туалеты) и как его произносить",
+    "Что are ставится вместо is, когда мест/предметов несколько (Where are the shops? vs Where is the street?)",
+    "Могу спросить про несколько мест сразу: Where are the shops? Where are the toilets?"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 3",
+      "why": "По сути повторяет то же самое, что уже сказано в интро 1 и 2 — просто ещё раз объясняет разницу is/are, ничего нового про новые слова сессии не добавляет"
+    }
+  ],
+  "felt_alive": [
+    "Сцена 'вы стоите у входа в торговый центр и не понимаете куда идти' — понятная, бытовая, легко представить",
+    "Задание 9 про субботу и толпу — конкретная ситуация, а не абстрактное правило",
+    "Задание 13 про третий раз к одному и тому же входу — забавно и жизненно, сразу понятно почему 'I am lost'"
+  ],
+  "felt_dead": [
+    "Интро 3 суховата — просто повтор правила без новой сцены или эмоции"
+  ],
+  "scene_reason": "да — понятно: я в торговом центре, потерялся, и мне нужно спросить у разных людей (охранника, женщину у стойки, прохожего) дорогу к разным местам. К финалу все фразы соединяются в одну связную реплику, это логично и приятно.",
+  "would_continue": "да — сессия короткая, ничего не было непонятно, и в конце я реально мог сказать целую фразу из трёх предложений сам, без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий решаемы с моим текущим запасом слов и грамматики, новые слова (shops, toilets) введены и отработаны честно, сцена понятна от начала до конца, ловушки (treat, tickets, tablets) не требуются в правильных ответах."
+}

@@ -1,0 +1,149 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Магазин один — is, магазинов много — are. Спрашиваю Where are the shops? когда их несколько.",
+      "confusion": "Почему по-русски 'нечего выбирать' — не совсем понял объяснение, но саму фразу запомнил",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Туалетов тоже обычно несколько, поэтому тоже are. Порядок: where, потом are, потом the, потом слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Улица одна — значит опять is, как с вокзалом раньше. Само место в конце не двигается, меняется только is/are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка shops)",
+      "what_i_understood": "shops = магазины",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (слух shops)",
+      "what_i_understood": "Отличил shops от tops и chops по первому звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка toilets)",
+      "what_i_understood": "toilets = туалеты",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (слух toilets)",
+      "what_i_understood": "Отличил toilets от tickets и tablets",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (вставка are/is/am)",
+      "what_i_understood": "Where are the shops — выбрал are, потому что магазинов много",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (вставка is/are/am, station)",
+      "what_i_understood": "Where is the station — станция одна",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (сборка фразы toilets)",
+      "what_i_understood": "Собрал Where are the toilets?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (карточка crowded)",
+      "what_i_understood": "crowded = людно, толпа",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (вставка crowded/lost/cold)",
+      "what_i_understood": "The shops are crowded — про людное место",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (сборка по слуху)",
+      "what_i_understood": "Собрал Where are the shops? на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Соединил shops-магазины, toilets-туалеты, crowded-людно, station-вокзал",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (звуки street/treat)",
+      "what_i_understood": "street начинается с 'с' перед 'тр', а treat — сразу с 'тр'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (вставка lost/crowded/cold)",
+      "what_i_understood": "I am lost — про человека, который не понимает куда идти",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (сборка Where is the station)",
+      "what_i_understood": "Собрал фразу правильно, станция одна — is",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (вставка shops/station/street)",
+      "what_i_understood": "Where are the shops — раз вопрос уже с are, значит нужно слово во множественном числе, а не station/street",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (повтор вслух)",
+      "what_i_understood": "Повторил Where are the toilets?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал сцены)",
+      "what_i_understood": "Смог сказать I am lost. Where are the shops? Where are the toilets? — собрал всё из выученного за сессию",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Когда предмет один, перед ним is; когда предметов несколько — are (Where is the street? / Where are the shops?)",
+    "Слово shops — магазины",
+    "Слово toilets — туалеты",
+    "Порядок вопроса: where + are/is + the + место, и это место всегда в конце, не двигается",
+    "Слово crowded — людно"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2, последний абзац",
+      "why": "Фраза про 'на бегу англичане говорят короче — Where's the toilet?' — это лишняя информация, которую не спрашивают и не используют ни в одном задании. Просто повисла в воздухе."
+    }
+  ],
+  "felt_alive": [
+    "Сцена в торговом центре в выходной с пакетом — понятная, я реально представил, как ищу туалет и магазины",
+    "Задание 17 — приятно, что смог сам собрать три фразы подряд без подсказок, почувствовал что что-то реально выучил"
+  ],
+  "felt_dead": [
+    "Карточки слов (1, 3, 8) — просто слово и перевод, без интонации, как в словаре"
+  ],
+  "scene_reason": "да, понятно — я стою у входа в торговый центр, не знаю дороги, и по очереди спрашиваю у охранника и женщины на стойке, где магазины и где туалеты. К финалу это всё соединилось в одну реальную ситуацию, которую я могу представить у себя в жизни",
+  "would_continue": "да — задания было интересно проходить, и в конце я реально смог сказать три фразы сам без подглядывания, приятное чувство прогресса",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно, ничего не потребовало незнакомых слов, выучил новое (shops, toilets, crowded, различие is/are), сцена понятная и цельная, хочу продолжать."
+}

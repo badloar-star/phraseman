@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-18:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i02",
+    "correctText": "shops",
+    "correctResponseId": "en:lesson-02:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i04",
+    "correctText": "toilets",
+    "correctResponseId": "en:lesson-02:session-18:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i05",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i07",
+    "correctText": "Where are the toilets?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i09",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i10",
+    "correctText": "Where are the shops?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i12",
+    "correctText": "street",
+    "correctResponseId": "en:lesson-02:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i13",
+    "correctText": "lost",
+    "correctResponseId": "en:lesson-02:session-18:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i14",
+    "correctText": "Where is the station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i15",
+    "correctText": "shops",
+    "correctResponseId": "en:lesson-02:session-18:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i16",
+    "correctText": "Where are the toilets?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-18:i17",
+    "correctText": "I am lost. Where are the shops? Where are the toilets?",
+    "correctResponseId": null
+  }
+]

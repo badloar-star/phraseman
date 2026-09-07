@@ -1,0 +1,927 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shops",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shops",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-18:i01:audio",
+          "transcript": "shops"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-18:i01:r1",
+            "targetText": "shops",
+            "meaningByLocale": {
+              "ru": "«магазины». Один — `shop`, добавили `-s` — стало несколько.",
+              "uk": "«магазини». Один — `shop`, додали `-s` — стало кілька."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shops",
+          "definitionByLocale": {
+            "ru": "«магазины». Один — `shop`, добавили `-s` — стало несколько.",
+            "uk": "«магазини». Один — `shop`, додали `-s` — стало кілька."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-18:i02:r1",
+          "text": "shops"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i02:r2",
+          "text": "tops"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i02:r3",
+          "text": "chops"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — shops",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-18:i02:audio",
+          "transcript": "shops"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-18:i02:r1",
+            "targetText": "shops",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i02:r2",
+            "targetText": "tops",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i02:r3",
+            "targetText": "chops",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-18:i02:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — shops",
+            "feedbackByLocale": {
+              "ru": "Начинается с «т», а `shops` — с «ш», как в русском «шорты».",
+              "uk": "Починається з «т», а `shops` — з «ш», як у слові «шапка»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — shops",
+            "feedbackByLocale": {
+              "ru": "Начинается с «ч». В `shops` первый звук — «ш».",
+              "uk": "Починається з «ч». У `shops` перший звук — «ш»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — toilets",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — toilets",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-18:i03:audio",
+          "transcript": "toilets"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-18:i03:r1",
+            "targetText": "toilets",
+            "meaningByLocale": {
+              "ru": "«туалеты». В торговом центре их несколько, поэтому и слово стоит на несколько.",
+              "uk": "«туалети». У торговому центрі їх кілька, тому й слово стоїть на кілька."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toilets",
+          "definitionByLocale": {
+            "ru": "«туалеты». В торговом центре их несколько, поэтому и слово стоит на несколько.",
+            "uk": "«туалети». У торговому центрі їх кілька, тому й слово стоїть на кілька."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-18:i04:r1",
+          "text": "toilets"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i04:r2",
+          "text": "tickets"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i04:r3",
+          "text": "tablets"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — toilets",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-18:i04:audio",
+          "transcript": "toilets"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-18:i04:r1",
+            "targetText": "toilets",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i04:r2",
+            "targetText": "tickets",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i04:r3",
+            "targetText": "tablets",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-18:i04:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — toilets",
+            "feedbackByLocale": {
+              "ru": "«Билеты». Гласная в начале другая: у `toilets` она тянется, у `tickets` короткая.",
+              "uk": "«Квитки». Голосний на початку інший: у `toilets` він тягнеться, у `tickets` короткий."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — toilets",
+            "feedbackByLocale": {
+              "ru": "«Таблетки». Гласная в начале другая: у `toilets` она тянется, у `tablets` открытая.",
+              "uk": "«Пігулки». Голосний на початку інший: у `toilets` він тягнеться, у `tablets` відкритий."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы спрашиваете про магазины",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-18:i05:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i05:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i05:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы спрашиваете про магазины",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы спрашиваете про магазины",
+          "uk": "Вставте слово — ви питаєте про магазини"
+        },
+        "gappedTargetPhrase": "Where ___ the shops?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-18:i05:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i05:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i05:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы спрашиваете про мага",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-18:i05:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы спрашиваете про мага",
+            "feedbackByLocale": {
+              "ru": "`is` работает с одним предметом. Магазинов несколько.",
+              "uk": "`is` працює з одним предметом. Магазинів кілька."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы спрашиваете про мага",
+            "feedbackByLocale": {
+              "ru": "Это слово только про себя: `I am`. В вопросе о месте ему делать нечего.",
+              "uk": "Це слово тільки про себе: `I am`. У питанні про місце йому нема чого робити."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вокзал в городе один",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-18:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вокзал в городе один",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вокзал в городе один",
+          "uk": "Вставте слово — вокзал у місті один"
+        },
+        "gappedTargetPhrase": "Where ___ the station?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-18:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вокзал в городе один",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-18:i06:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вокзал в городе один",
+            "feedbackByLocale": {
+              "ru": "`are` нужно, когда мест несколько. Вокзал один.",
+              "uk": "`are` потрібне, коли місць кілька. Вокзал один."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вокзал в городе один",
+            "feedbackByLocale": {
+              "ru": "`am` идёт рядом с `I`, а не с местом.",
+              "uk": "`am` іде поряд з `I`, а не з місцем."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «где туалеты?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «где туалеты?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where are the toilets?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «где туалеты?»",
+          "uk": "Складіть фразу — «де туалети?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "are",
+          "the",
+          "toilets"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crowded",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crowded",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-18:i08:audio",
+          "transcript": "crowded"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-18:i08:r1",
+            "targetText": "crowded",
+            "meaningByLocale": {
+              "ru": "«людно». Людей столько, что идёшь боком и всё время кого-то обходишь.",
+              "uk": "«людно». Людей стільки, що йдеш боком і весь час когось обходиш."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crowded",
+          "definitionByLocale": {
+            "ru": "«людно». Людей столько, что идёшь боком и всё время кого-то обходишь.",
+            "uk": "«людно». Людей стільки, що йдеш боком і весь час когось обходиш."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в субботу тут не протолкнуться",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-18:i09:r1",
+          "text": "crowded"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i09:r2",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i09:r3",
+          "text": "cold"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в субботу тут не протолкнуться",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в субботу тут не протолкнуться",
+          "uk": "Вставте слово — у суботу тут не проштовхнутися"
+        },
+        "gappedTargetPhrase": "The shops are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-18:i09:r1",
+            "text": "crowded"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i09:r2",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i09:r3",
+            "text": "cold"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в субботу тут не протол",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-18:i09:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в субботу тут не протол",
+            "feedbackByLocale": {
+              "ru": "«Заблудился» — это про человека, который не знает дороги, а не про магазины.",
+              "uk": "«Заблукав» — це про людину, яка не знає дороги, а не про магазини."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в субботу тут не протол",
+            "feedbackByLocale": {
+              "ru": "«Холодно» — про погоду или про вещь. Речь о толпе, а не о температуре.",
+              "uk": "«Холодно» — про погоду або про річ. Ідеться про натовп, а не про температуру."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «где магазины?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «где магазины?»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-18:i10:audio",
+          "transcript": "Where are the shops?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where are the shops?",
+        "orderedTokens": [
+          "Where",
+          "are",
+          "the",
+          "shops"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-18:i11:p1",
+            "target": "shops",
+            "meaningByLocale": {
+              "ru": "магазины",
+              "uk": "магазини"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-18:i11:p2",
+            "target": "toilets",
+            "meaningByLocale": {
+              "ru": "туалеты",
+              "uk": "туалети"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-18:i11:p3",
+            "target": "crowded",
+            "meaningByLocale": {
+              "ru": "людно",
+              "uk": "людно"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-18:i11:p4",
+            "target": "station",
+            "meaningByLocale": {
+              "ru": "вокзал",
+              "uk": "вокзал"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shops",
+          "toilets",
+          "crowded",
+          "station"
+        ],
+        "rightColumn": [
+          "магазины",
+          "туалеты",
+          "людно",
+          "вокзал"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Различите слова — какое из двух про «улицу»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-18:i12:r1",
+          "text": "street"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i12:r2",
+          "text": "treat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:i12:audioA",
+        "en:lesson-02:session-18:i12:audioB"
+      ],
+      "accessibilityLabel": "Различите слова — какое из двух про «улицу»?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "street",
+        "contrastB": "treat",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-18:i12:audioA",
+          "transcript": "street"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-18:i12:audioB",
+          "transcript": "treat"
+        },
+        "testedPhoneticContrast": "Различите слова — какое из двух про «ули",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-18:i12:r1",
+            "correct": false,
+            "testedDimension": "Различите слова — какое из двух про «ули",
+            "feedbackByLocale": {
+              "ru": "«Угощение». Первый звук другой: `street` начинается со «с», `treat` — с «т».",
+              "uk": "«Частування». Перший звук інший: `street` починається зі «с», `treat` — з «т»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы третий раз выходите к одному и тому же входу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-18:i13:r1",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i13:r2",
+          "text": "crowded"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i13:r3",
+          "text": "cold"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы третий раз выходите к одному и тому же входу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы третий раз выходите к одному и тому же входу",
+          "uk": "Вставте слово — ви втретє виходите до того самого входу"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-18:i13:r1",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i13:r2",
+            "text": "crowded"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i13:r3",
+            "text": "cold"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы третий раз выходите ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-18:i13:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы третий раз выходите ",
+            "feedbackByLocale": {
+              "ru": "«Людно» — про место, где много народу, а не про человека.",
+              "uk": "«Людно» — про місце, де багато народу, а не про людину."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы третий раз выходите ",
+            "feedbackByLocale": {
+              "ru": "«Холодно» — про температуру. Вы не мёрзнете, вы не понимаете, куда идти.",
+              "uk": "«Холодно» — про температуру. Ви не мерзнете, ви не розумієте, куди йти."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «где вокзал?», вокзал один",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «где вокзал?», вокзал один",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the station?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «где вокзал?», вокзал один",
+          "uk": "Складіть фразу — «де вокзал?», вокзал один"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы у входа и ищете этаж с витринами",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-18:i15:r1",
+          "text": "shops"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i15:r2",
+          "text": "station"
+        },
+        {
+          "responseId": "en:lesson-02:session-18:i15:r3",
+          "text": "street"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы у входа и ищете этаж с витринами",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы у входа и ищете этаж с витринами",
+          "uk": "Вставте слово — ви біля входу і шукаєте поверх з вітринами"
+        },
+        "gappedTargetPhrase": "Where are the ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-18:i15:r1",
+            "text": "shops"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i15:r2",
+            "text": "station"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i15:r3",
+            "text": "street"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы у входа и ищете этаж",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-18:i15:r1",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы у входа и ищете этаж",
+            "feedbackByLocale": {
+              "ru": "«Вокзал» — он не в торговом центре, и он один: тогда было бы `Where is`.",
+              "uk": "«Вокзал» — його немає в торговому центрі, і він один: тоді було б `Where is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы у входа и ищете этаж",
+            "feedbackByLocale": {
+              "ru": "«Улица» — она снаружи, а вы ищете внутри. И улица одна.",
+              "uk": "«Вулиця» — вона надворі, а ви шукаєте всередині. І вулиця одна."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы спрашиваете охранника про туалеты",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы спрашиваете охранника про туалеты",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-18:i16:audio",
+          "transcript": "Where are the toilets?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where are the toilets?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-18:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-18:i17:audio",
+          "transcript": "I am lost. Where are the shops? Where are the toilets?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am lost. Where are the shops? Where are the toilets?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1556e2f5f116f715fed5333148099039b6c559df3739e226841c064f498f6828"
+}

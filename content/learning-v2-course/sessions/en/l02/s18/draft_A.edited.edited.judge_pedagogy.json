@@ -1,0 +1,84 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "shops",
+      "toilets"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 5,
+        "trap": "Where ___ the shops? → is (единственное число вместо множественного)"
+      },
+      {
+        "task": 6,
+        "trap": "Where ___ the station? → are (множественное вместо единственного)"
+      },
+      {
+        "task": 9,
+        "trap": "The shops are ___. → lost/cold (семантически неподходящие слова)"
+      },
+      {
+        "task": 13,
+        "trap": "I am ___. → crowded/cold (слова не про человека)"
+      },
+      {
+        "task": 15,
+        "trap": "Where are the ___? → station/street (единственное число вместо shops)"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "shops",
+        "toilets",
+        "crowded",
+        "station"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": []
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 3,
+      "listen_choose": 2,
+      "context_gap_grammar": 5,
+      "phrase_builder": 2,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 12 нарушает границы: sound_contrast сравнивает `street` и `treat` — это не пара, отличающаяся одним звуком (омофон/минимальная пара по правилам сессии), а разные слова с разным написанием и смыслом, что дублирует функцию listen_choose и не даёт настоящего фонетического контраста; кроме того, задание 15 использует `station` и `street` как отвлекающие варианты для вопроса про `shops`, но оба уже единственного числа, из-за чего правильный ответ можно вычислить не по смыслу, а просто зная, что оба неверных слова использовались с `is` в предыдущих заданиях — это не блокер, но ослабляет задание; главная причина REVISE — задание 9 использует `lost` как неверный вариант для описания магазинов («The shops are lost»), что грамматически бессмысленно (lost относится к людям, не к месту) и это верно обыграно в фидбеке, но при этом обучающая ценность ловушки сомнительна, так как она слишком легко отсекается на уровне здравого смысла, а не грамматики — рекомендую заменить на более осмысленный дистрактор того же грамматического класса (например ok)."
+}

@@ -1,0 +1,15 @@
+{
+  "session": "en/l02/s32",
+  "ru": 6,
+  "verdicts": {
+    "judge_learner": "PASS",
+    "judge_taste": "REVISE",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "BLOCK"
+  },
+  "passedKey": 3,
+  "note": "пайплайн упал, сессия досужена вручную",
+  "at": "2026-09-07T19:11:39.702Z",
+  "staleBlockClearedAt": "2026-09-07T19:59:48.038Z"
+}

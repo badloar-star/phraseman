@@ -1,0 +1,150 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Есть блюдо без цены в меню, и я спрашиваю официанта про цену тремя словами подряд: What is the price?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Чтобы спросить, дешёвое ли что-то, меняю местами is и it: Is it cheap?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Спросить, где находится туалет: Where is the toilet? Понял, что What — про вещь, Where — про место.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (menu)",
+      "what_i_understood": "Узнал звучание menu, отличил от money и many.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Вставил menu в вопрос про название книжечки с едой.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Собрал What is the price?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (cheap)",
+      "what_i_understood": "Отличил cheap от sheep и shop на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Вставил cheap про блюдо за два евро.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Собрал Is it cheap?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Отличил cheap от jeep по первому звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (карточка corner)",
+      "what_i_understood": "corner — угол, где сходятся стены или улицы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Отличил corner от coffee и cover на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Вставил price в вопрос про стоимость, а не cheap/near.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Свёл все четыре слова с переводом без проблем — всё уже видел выше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (карточка bill)",
+      "what_i_understood": "bill — счёт, бумажка с суммой в конце ужина.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Вставил bill в вопрос про счёт после еды.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Собрал Where is the toilet?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Вставил near, когда официант показал, что туалет рядом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Собрал It is near. по звуку, лишнюю плитку Where не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Собрал What is the bill?, понял почему Where лишняя — счёт не ищут, про него спрашивают сумму.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 (говорю вслух)",
+      "what_i_understood": "В конце ужина сказал подряд: What is the bill? Where is the toilet? — понятно, зачем обе фразы и в каком порядке.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Спросить цену вещи: What is the price?",
+    "Спросить, дешёвое ли что-то: Is it cheap? (is и it меняются местами по сравнению с утверждением It is cheap)",
+    "Спросить, где находится место: Where is the toilet?",
+    "Разница между What (про вещь/название) и Where (про место)",
+    "Новые слова из этой сессии: menu, price, cheap, corner, bill, toilet, near — и в каких фразах они нужны"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с ужином в дублинском кафе понятная и естественная — я реально представляю, как зову официанта",
+    "Задание 17 с лишней плиткой Where заставило подумать, почему именно она не нужна — это не просто угадайка"
+  ],
+  "felt_dead": [
+    "Карточки слов (8, 12) — просто перевод без контекста, но это ожидаемо для формата карточки"
+  ],
+  "scene_reason": "да, понятно: я сижу в кафе, английского почти не знаю, и мне нужно по очереди узнать цену блюда, дешёвое ли оно, где туалет, а в конце — попросить счёт. Каждая фраза привязана к конкретному моменту ужина, всё логично идёт одно за другим к финалу.",
+  "would_continue": "да — сессия короткая, все шаги понятны, к финалу я реально могу произнести обе фразы подряд как настоящий диалог в кафе, это ощущается как прогресс",
+  "verdict": "PASS",
+  "verdict_reason": "Все 18 заданий выполнимы только известными словами и грамматикой, отсылок к незнакомому опыту нет, а сцена ужина логично объясняет, зачем нужна каждая фраза."
+}

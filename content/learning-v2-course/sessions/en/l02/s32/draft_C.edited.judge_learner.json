@@ -1,0 +1,121 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — menu",
+      "what_i_understood": "menu — это книжечка с едой в кафе. Чтобы спросить название вещи: What впереди, is сразу за ним, вещь в конец — What is the menu?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — cheap",
+      "what_i_understood": "cheap — дешёвый, про цену. В вопросе is и it меняются местами: Is it cheap? Ещё узнал price — это сама цифра цены, а cheap — какая эта цифра.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — Where is",
+      "what_i_understood": "toilet — туалет, говорят прямо. Чтобы спросить где: Where впереди, is сразу за ним, место в конец — Where is the toilet?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (слух: menu)",
+      "what_i_understood": "Выбрал menu, отличил от money и many по звучанию.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (вставка: menu)",
+      "what_i_understood": "What is the menu? — вставил menu, bill и corner не подходят по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (сборка фразы)",
+      "what_i_understood": "Собрал What is the menu? из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (слух: cheap)",
+      "what_i_understood": "Выбрал cheap среди sheep и shop.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (вставка: cheap)",
+      "what_i_understood": "It is cheap. — про цену блюда.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (сборка: Is it cheap?)",
+      "what_i_understood": "Собрал вопрос с перестановкой is/it.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (различение звуков cheap/jeep)",
+      "what_i_understood": "Выбрал cheap.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (карточка corner)",
+      "what_i_understood": "corner — угол, где сходятся стены или улицы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (слух: corner)",
+      "what_i_understood": "Выбрал corner среди coffee и cover.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (вставка: price)",
+      "what_i_understood": "What is the price? — спросил про цифру стоимости, а не про cheap или near.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Соединил menu-меню, cheap-дешёвый, price-цена, corner-угол.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (слух: bill)",
+      "what_i_understood": "Выбрал bill среди ball и bell — новое слово, но объяснено ли оно раньше? Нет, оно просто появилось в задании без карточки и без интро.",
+      "confusion": "Слово bill не было объяснено нигде до этого задания — ни в интро, ни в карточке слова. Я должен был угадать по звуку, что это «счёт», хотя в самой сессии смысл слова bill мне никто не сказал прямо (только в шапке сессии написано 'Возвращаются: bill', но это для меня, ученика, не видно — я вижу только задания).",
+      "could_answer_question": false
+    }
+  ],
+  "learned_new": [
+    "What is the menu? — спросить название вещи",
+    "Is it cheap? — спросить про цену с перестановкой is/it",
+    "Where is the toilet? — спросить, где находится место",
+    "price — цена (цифра), в отличие от cheap (описание)",
+    "corner — угол"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 12,
+      "why": "Слово bill нигде не объяснено ДО этого задания — нет ни карточки слова, ни фразы в интро, где было бы сказано 'bill — счёт'. Оно просто предлагается на слух, и я должен угадать, что оно значит, чтобы потом в заданиях 13, 15, 17, 18 уже употреблять его как известное. Это слово из другой, прошлой сессии (в шапке написано 'Возвращаются: bill'), но я эту прошлую сессию не проходил — для меня это первое появление слова без объяснения."
+    },
+    {
+      "task": 13,
+      "why": "Требует знания, что bill значит 'счёт' — а этого мне никто не объяснил, я только слышал звучание в задании 12, не значение."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Интро 2 с price/cheap — понятно объяснена разница между 'цена' и 'дешёвый', не просто одно слово",
+    "Задание 18 — говорить вслух две фразы подряд, как будто реально зовёшь официанта в конце ужина, это по-настоящему похоже на жизнь"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно — я сижу в кафе в Дублине, заказываю ужин, и вопросы идут по порядку: сначала прошу меню, потом спрашиваю цену, потом ищу туалет, в конце прошу счёт и снова туалет. Всё логично идёт как настоящий ужин от начала до конца.",
+  "would_continue": "да — сессия короткая, понятная, задания разнообразные (слух, сборка фраз, пары, голос), но я споткнулся на слове bill, которое взялось из ниоткуда",
+  "verdict": "BLOCK",
+  "verdict_reason": "Слово bill требуется как правильный ответ в заданиях 12, 13, 17, 18, но в самой сессии для меня (первого пользователя, начавшего именно с этой сессии) нигде не объяснено, что оно значит — ни карточки, ни фразы в интро, только пометка 'возврат' в служебной части, которую я как ученик не вижу."
+}

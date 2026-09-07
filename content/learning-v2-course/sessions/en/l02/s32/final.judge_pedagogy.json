@@ -1,0 +1,80 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "bill/corner как отвлекающие от menu — правдоподобная путаница слов на одну тему"
+      },
+      {
+        "task": 5,
+        "trap": "near/lost вместо cheap — near особенно правдоподобно, обе про качества места/вещи"
+      },
+      {
+        "task": 10,
+        "trap": "cheap/near вместо price — учит различать цену и описание"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 18,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "menu",
+        "cheap",
+        "price",
+        "corner"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      17
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s31",
+      "what": "почти идентичная сцена и разбор: интро l02_s31 уже вводило menu/bill в контексте «официант кладёт книжечку с едой» и «поели — просите счёт»; сессия 32 повторяет ту же сцену (позвать официанта, попросить счёт, спросить где туалет) и тот же разбор price/cheap/toilet без новой ситуации — это ожидаемо для checkpoint-сессии (чистое повторение), но стоит отметить как пограничный случай"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 3,
+      "context_gap_grammar": 4,
+      "phrase_builder": 4,
+      "sound_contrast": 1,
+      "word_card": 2,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы соблюдены, повторяемые слова получают достаточно касаний с правильными ответами, доска пар отработана заранее, ловушки реалистичны, фидбек не задублирован — как checkpoint-сессия чистого повторения соответствует плану."
+}

@@ -1,0 +1,141 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — menu",
+      "what_i_understood": "menu — это книжечка с едой. Чтобы спросить название чего-то, начинаю с What is, а саму вещь ставлю в конец: What is the menu?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — cheap",
+      "what_i_understood": "cheap — дешёвый, про цену. Чтобы спросить, дешёвое ли это, меняю местами первые два слова: не It is, а Is it cheap? Ещё узнал, что price — это сама цифра, а cheap — какая она.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — Where is",
+      "what_i_understood": "Where is — вопрос про место. Ответ строится наоборот: It is near. corner — угол, toilets — туалет (с -s, хотя дверь одна — забавно, что запомнил именно это).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (слух menu)",
+      "what_i_understood": "Выбрал menu, отличил от money и many по звуку в середине.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (гэп menu)",
+      "what_i_understood": "Подставил menu, а не bill/corner — сообразил по смыслу (книжка с едой).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (сборка What is the menu?)",
+      "what_i_understood": "Собрал фразу из кусочков, порядок уже помню.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (слух cheap)",
+      "what_i_understood": "Отличил cheap от sheep и shop по началу и гласной.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (гэп cheap)",
+      "what_i_understood": "Выбрал cheap, near и lost явно не подходят по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (сборка Is it cheap?)",
+      "what_i_understood": "Собрал вопрос с переставленными словами.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (звуки cheap/jeep)",
+      "what_i_understood": "Услышал разницу в первом звуке.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (гэп price)",
+      "what_i_understood": "Выбрал price, а не cheap — вопрос про цифру на ценнике, а не про описание.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (пары)",
+      "what_i_understood": "Соединил menu-меню, cheap-дешёвый, price-цена, corner-угол. corner я видел раньше только как неправильный вариант в задании 2, но там же по контексту было понятно, что это не еда, поэтому не запутался.",
+      "confusion": "corner как правильный ответ появляется только здесь, до этого момента я его лишь видел как отвлекающий вариант — не совсем 'выучил' его до пары",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (слух bill)",
+      "what_i_understood": "bill — счёт. Отличил от ball и bell по гласной.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (гэп bill)",
+      "what_i_understood": "После еды спрашивают счёт, а не меню и не туалет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (сборка Where is the toilets?)",
+      "what_i_understood": "Собрал вопрос про место.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (гэп near)",
+      "what_i_understood": "Официант показывает рукой — это про расстояние, near подходит, cheap и bill нет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (диктовка It is near.)",
+      "what_i_understood": "Собрал по слуху, лишнее слово Where не подошло.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (сборка Where is the corner?)",
+      "what_i_understood": "Собрал с лишней плиткой it, справился.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (сборка What is the bill?)",
+      "what_i_understood": "Без подсказки типа собрал вопрос про счёт, лишнее Is отбросил.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (говорю вслух)",
+      "what_i_understood": "Сказал подряд две фразы: прошу счёт и спрашиваю про туалет — понятная жизненная ситуация в конце ужина.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Спрашивать название вещи через What is + вещь (What is the menu?)",
+    "Спрашивать про цену/качество через перестановку: Is it cheap?",
+    "Спрашивать про место через Where is, и отвечать наоборот — It is near",
+    "Слова menu, cheap, price, toilets, corner, bill, near в контексте кафе"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена ужина в кафе понятная и жизненная — реально представляю, как сижу за столиком и не знаю языка",
+    "Финальное задание 17, где нужно сказать две фразы подряд, как будто я правда зову официанта в конце ужина"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — я сижу в кафе, читаю меню, не понимаю цену и ищу туалет, все фразы логично привязаны к моменту вечера",
+  "would_continue": "да — задания разные по формату, ничего не повторяется скучно, в конце реальный разговорный момент, хочу дальше",
+  "verdict": "PASS",
+  "verdict_reason": "прошёл всю сессию честно, понял три новых способа задавать вопросы, ни одно задание не потребовало незнакомого материала, и сцена в кафе была понятной от начала до конца"
+}

@@ -1,0 +1,143 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — what",
+      "what_i_understood": "Когда вещь одна и выбирать не из чего, спрашиваю What is the price? — сколько стоит.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — which",
+      "what_i_understood": "Когда предметов несколько и они прямо передо мной (например, две улицы на развилке), спрашиваю Which street? — которая из них.",
+      "confusion": "Не совсем понял, почему 'по-русски мы ленимся сказать который' — по-русски я бы и так сказал 'какая улица', это звучит нормально и по-русски. Но саму разницу what/which я понял и без этого объяснения.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — Which one?",
+      "what_i_understood": "one — это 'штука'. Когда показываю пальцем на два предмета, говорю не What one?, а Which one? — эти два слова срослись, учу их вместе.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (звук which/watch/wish)",
+      "what_i_understood": "Смог выбрать which на слух, разница с wish в звуке на конце.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (___ is the price?)",
+      "what_i_understood": "Выбрал what, потому что цена одна, выбирать не из чего.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 — карточка one",
+      "what_i_understood": "one = одна штука, когда предмет не называют, а показывают пальцем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (Which ___?)",
+      "what_i_understood": "Выбрал one, потому что which уже стоит, а после него нужна 'штука', а не ещё одно вопросительное слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка Which street?)",
+      "what_i_understood": "Собрал фразу из двух плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (звук which/wish)",
+      "what_i_understood": "Различил на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (___ price? — три ценника)",
+      "what_i_understood": "Выбрал which, потому что ценники видны глазами, их несколько.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (сборка What is the price?)",
+      "what_i_understood": "Собрал фразу правильно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (диктовка Which one?)",
+      "what_i_understood": "Услышал и собрал без лишнего is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — карточка elegant",
+      "what_i_understood": "elegant = изящный, простая вещь, которая выглядит дороже.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (What is the ___? — не понял слово продавца)",
+      "what_i_understood": "Выбрал name, потому что непонятно само слово, а не цена или улица.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — доска пар",
+      "what_i_understood": "Собрал пары what-что, which-который из, one-штука, price-цена.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (сумка стоит 3 евро — дёшево)",
+      "what_i_understood": "Выбрал cheap.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (простая, но выглядит дорого)",
+      "what_i_understood": "Выбрал elegant.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (Which one is cheap?)",
+      "what_i_understood": "Собрал фразу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (Which one is elegant? — лишнее What)",
+      "what_i_understood": "Собрал, не взяв лишнюю плитку What.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал сцены",
+      "what_i_understood": "Спросил подряд: Which one? What is the price? What is the street? — по смыслу сцены (выбор из двух сумок, потом цена, потом название улицы, которая одна).",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Разница между what (вещь одна, выбирать не из чего) и which (предметов несколько, они видны, нужно выбрать одну из них)",
+    "Устойчивое сочетание 'Which one?' — которая из них, без лишних слов",
+    "Что 'the' обязательно приклеивается к price: What is the price?",
+    "Слова elegant (изящный) и cheap (дёшево) как парные противоположности по смыслу описания вещи"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с двумя одинаковыми сумками на витрине — понятно, зачем спрашивать which one, представил себя в магазине",
+    "Задание 17 в финале, где нужно было сложить три вопроса в правильном порядке под сцену — было приятно, что это не рандомные фразы, а реальный диалог с продавцом"
+  ],
+  "felt_dead": [
+    "Фраза в интро 2 про 'по-русски мы часто ленимся сказать который из них' показалась немного притянутой — по-русски я и так сказал бы 'какая улица' без всякой лени, но это не помешало понять правило"
+  ],
+  "scene_reason": "да — понятно, что я стою у витрины/прилавка в Дублине, вижу две одинаковые сумки и должен спросить, какая из них, сколько стоит и как называется улица. Каждая фраза привязана к конкретному моменту разговора с продавцом.",
+  "would_continue": "да — задания шли по нарастающей сложности, в финале собрал всё вместе и почувствовал, что реально могу что-то сказать в магазине, а не просто зазубрил формулу",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно, узнал новое правило what/which и слово one, сцена понятна от начала до конца, критичных ловушек с незнакомыми словами в правильных ответах не встретил."
+}

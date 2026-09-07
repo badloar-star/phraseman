@@ -1,0 +1,149 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Когда вещь одна и выбирать не из чего, спрашиваю 'what' — What is the price? (сколько стоит)",
+      "confusion": "Почему перед price стоит 'the', а не просто 'price' — объяснили, что по-русски этого нет, но не объяснили правило, когда 'the' ставить вообще. Просто сказали 'запомни'. Ну ладно, запомню как есть.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Когда вариантов два-три и они уже видны (например, две улицы), спрашиваю 'which' — Which street?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Which one? — короткий способ спросить 'который из них', не называя вещь second раз. Просто выучить как пару слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Услышал which, выбрал which, а не watch/price",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "На бирке нет цифры — значит вещь одна, спрашиваю what",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "one — заменяет уже названную вещь",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Which one? — сумки уже названы, второй раз имя не нужно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал Which street? из двух плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "which и watch звучат по-разному, выбрал which",
+      "confusion": "Я вообще не уверен, как на слух отличить эти два слова, я их не слышал живьём, просто угадал по написанию рядом с подсказкой",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Три ценника видно — значит выбор известен, значит which",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Собрал What is the price?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Which one? — is лишнее слово, оно не нужно, если после него больше ничего не говорится",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "elegant — изящный, простая вещь, но выглядит дороже",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Спрашиваю имя вещи (незнакомое слово) — What is the name?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Собрал пары: what-что, which-который из, one-штука, price-цена",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Дёшево — cheap, про цену",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "elegant — про внешний вид, не про цену",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Собрал Which one is cheap?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Собрал Which one is elegant?, лишнее What не взял",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "В сцене с двумя сумками спросил: Which one? What is the price? What is the name?",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Разница what/which: what — когда вещь одна и выбирать не из чего; which — когда вариантов немного и они уже видны/названы",
+    "Which one? — короткая фраза, чтобы не повторять название вещи второй раз",
+    "What is the price? / What is the name? — как спросить цену и название вещи",
+    "Which street? — как выбрать из пары известных вариантов",
+    "elegant — новое слово, простая вещь, которая выглядит дорого"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 1",
+      "why": "Фраза 'Продавец назовёт цену, а не выложит три штуки на прилавок' — просто пересказывает своими словами то же самое, что уже сказано в определении what. Ничего нового не добавляет."
+    }
+  ],
+  "felt_alive": [
+    "Сцена с двумя одинаковыми сумками на прилавке — понятно и живо, легко представить, зачем я это говорю",
+    "Финал сессии, где нужно спросить подряд три разных вещи про одну сумку — почувствовал, что реально закрепил тему"
+  ],
+  "felt_dead": [
+    "Объяснение 'the' перед price в интро 1 — просто сказали 'слово легко потерять', но не объяснили ничего практического, кроме как запомнить"
+  ],
+  "scene_reason": "да, понятно — я стою у витрины в Дублине, передо мной сумки без ценников, и мне нужно узнать цену, название и выбрать конкретную сумку у продавца. Каждая фраза привязана к этому моменту.",
+  "would_continue": "да — тема понятная, примеры логичные, к концу я реально мог сам сконструировать три разных вопроса подряд без подсказки",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы честно, новое усвоено чётко (what vs which, Which one?), сцена ясна от начала до конца, единственная придирка — лишнее объяснение про 'the' и одна пустая фраза-пересказ, но это не блокирует прохождение."
+}

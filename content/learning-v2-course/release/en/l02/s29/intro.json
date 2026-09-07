@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "`what` ↔ `which` — когда вариантов сколько угодно, а когда их два-три и они известны",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`what` — когда ждёшь, что назовут",
+        "uk": "`what` — коли чекаєш, що назвуть"
+      },
+      "bodyByLocale": {
+        "ru": "`what` — «что». Его берут, когда в ответ ждут слово или цифру: `What is the price?` — «сколько стоит?» Вам назовут число.\n\nТак же про название: `What is the name?` В обоих вопросах начало `What is the` одно и то же — меняется только последнее слово.",
+        "uk": "`what` — «що». Його беруть, коли у відповідь чекають слово або цифру: `What is the price?` — «скільки це коштує?» Вам назвуть число.\n\nТак само про назву: `What is the name?` В обох питаннях початок `What is the` однаковий — змінюється тільки останнє слово."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "На бирке цифры нет. Спросите продавца, сколько это стоит.",
+          "uk": "На бирці цифри немає. Спитайте продавця, скільки це коштує."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-29:intro1:r1",
+              "text": "What is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:intro1:r2",
+              "text": "What the price is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:intro1:r3",
+              "text": "Price what is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-29:intro1:r1",
+              "text": "What is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:intro1:r2",
+              "text": "What the price is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:intro1:r3",
+              "text": "Price what is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На бирке цифры нет. Спросите продавца, сколько это стоит.",
+          "uk": "На бирці цифри немає. Спитайте продавця, скільки це коштує."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`which` — когда надо ткнуть в одну",
+        "uk": "`which` — коли треба вказати на одну"
+      },
+      "bodyByLocale": {
+        "ru": "`which` — «который из этих». Его берут, когда выбирают из нескольких уже названных или видимых вещей: `Which bag?` — «которая сумка?» (`bag` — «сумка».)\n\n`What bag?` тоже соберётся, но это вопрос обо всех сумках на свете. А вам нужна одна из двух названных.",
+        "uk": "`which` — «котра з цих». Його беруть, коли обирають із кількох уже названих або видимих речей: `Which bag?` — «котра сумка?» (`bag` — «сумка».)\n\n`What bag?` теж складеться, але це питання про всі сумки на світі. А вам потрібна одна з двох названих."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Продавец выложил две сумки. Спросите, которая из них.",
+          "uk": "Продавець виклав дві сумки. Спитайте, котра з них."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-29:intro2:r1",
+              "text": "Which bag?"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:intro2:r2",
+              "text": "What bag?"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:intro2:r3",
+              "text": "Which the bag?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-29:intro2:r1",
+              "text": "Which bag?"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:intro2:r2",
+              "text": "What bag?"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:intro2:r3",
+              "text": "Which the bag?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Продавец выложил две сумки. Спросите, которая из них.",
+          "uk": "Продавець виклав дві сумки. Спитайте, котра з них."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`Which one?` — учите целиком",
+        "uk": "`Which one?` — вчіть цілком"
+      },
+      "bodyByLocale": {
+        "ru": "`one` — заменяет вещь, которую уже назвали. Вместо `Which bag?` («которая сумка?») — `Which one?`\n\nТак спрашивают, когда сумки уже на прилавке и называть их второй раз незачем. Продавец сам поймёт, о чём речь: вещи-то перед ним. Учите эту пару целиком.",
+        "uk": "`one` — заміняє річ, яку вже назвали. Замість `Which bag?` («котра сумка?») — `Which one?`\n\nТак питають, коли сумки вже на прилавку і називати їх удруге ні до чого. Продавець і сам зрозуміє, про що мова: речі ж перед ним. Вчіть цю пару цілком."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Продавец держит две сумки и ждёт. Спросите, которая из них.",
+          "uk": "Продавець тримає дві сумки і чекає. Спитайте, котра з них."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-29:intro3:r1",
+              "text": "Which one?"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:intro3:r2",
+              "text": "Which bag one?"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:intro3:r3",
+              "text": "What one?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-29:intro3:r1",
+              "text": "Which one?"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:intro3:r2",
+              "text": "Which bag one?"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:intro3:r3",
+              "text": "What one?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Продавец держит две сумки и ждёт. Спросите, которая из них.",
+          "uk": "Продавець тримає дві сумки і чекає. Спитайте, котра з них."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ed814326952f5fd9260e62295bef1ac61f66564356ea0025c7be10a1b9f28e33"
+}

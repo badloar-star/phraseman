@@ -1,0 +1,80 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "which вместо what — путают выбор с открытым множеством"
+      },
+      {
+        "task": 3,
+        "trap": "what one? — частая ошибка русскоязычных"
+      },
+      {
+        "task": 15,
+        "trap": "лишняя плитка What при выборе из двух"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "what",
+        "which",
+        "one",
+        "price"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      8,
+      15
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s28",
+      "what": "конструкция `What is the price?` и слово price/street уже отрабатывались как цель в s26-28; здесь снова используются как возвращаемые — это по правилам допустимо, не дефект, но интро сессии подаёт `What is the price?` как будто впервые вводимую фразу без единой отсылки к тому, что ученик её уже видел 1-3 сессии назад"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 1,
+      "context_gap_grammar": 7,
+      "phrase_builder": 4,
+      "sound_contrast": 1,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Интро 1 и интро 2 превышают длину даже с допуском ±30 (355 и 368 знаков против верхней границы 320) — нужно сократить."
+}

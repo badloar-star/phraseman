@@ -1,0 +1,91 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "one"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "which вместо what при единственной цене"
+      },
+      {
+        "task": 4,
+        "trap": "what/price вместо one при указании пальцем"
+      },
+      {
+        "task": 7,
+        "trap": "what вместо which при видимом выборе из трёх"
+      },
+      {
+        "task": 9,
+        "trap": "лишняя плитка is между which и one"
+      },
+      {
+        "task": 16,
+        "trap": "лишняя плитка What при видимом выборе из двух"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "what",
+        "which",
+        "one",
+        "price"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      9,
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s27",
+      "what": "интро 2 почти дословно повторяет структуру s27 интро 1: сцена «горка вещей на прилавке / прилавок с непонятными штуками» и разбор «это НЕ значит X, потому что вещей несколько» — приём и посыл те же (what vs множественность), хотя тема формально other (what vs which)"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 1,
+      "context_gap_grammar": 6,
+      "word_card": 2,
+      "phrase_builder": 5,
+      "sound_contrast": 1,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Машинная проверка помечает интро 2 длиной 343 знака — за пределами допуска даже с ±30 (максимум 320), текст нужно сократить."
+}

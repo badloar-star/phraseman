@@ -288,6 +288,12 @@ function machineFacts(file) {
       if (got < d.pairs) facts.push(`НАГРУЗКА НИЖЕ СТУПЕНИ: пар в Speed Match ${got}, урок ${lessonFromPath} требует ${d.pairs}`);
     }
   }
+  // СВЯЗКА КАК ОДИН ЗВУК: «price начинается с п» — там «пр», а не «п».
+  const clusterWords = { price: "пр", street: "стр", plain: "пл", train: "тр", bread: "бр", bridge: "бр", crowded: "кр", pretty: "пр", school: "ск" };
+  for (const [w, cl] of Object.entries(clusterWords)) {
+    const re = new RegExp("`" + w + "`[^.]{0,40}(начинается|с) [«'\"]?" + cl[0] + "[»'\"]", "g");
+    for (const m of practice.matchAll(re)) facts.push(`СВЯЗКА КАК ОДИН ЗВУК: «${m[0].slice(0, 60)}» — у ${w} в начале «${cl}», а не один звук`);
+  }
   // ЗВУК ПО ОТСУТСТВИЮ: разбор на слух не должен строиться на «нет такого звука».
   const soundAbsence = [...practice.matchAll(new RegExp("(нет|без|не слышно|отсутствует)\s{0,3}(его |их |этого |такого )?[«»']?[а-яёА-ЯЁ]{1,4}[«»']?|[`«][^`»]{1,12}[`»]\s{0,3}[—,-]?\s{0,3}(нет|его нет|их нет|не слышно)", "g"))];
   if (soundAbsence.length) {

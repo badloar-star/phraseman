@@ -1,0 +1,87 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — corner",
+      "what_i_understood": "Новое слово corner значит «угол» — место, где сходятся две улицы. Вопрос: Where is the corner?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — bridge",
+      "what_i_understood": "Новое слово bridge — «мост». Вопрос строится так же: Where is the bridge?",
+      "confusion": "Тут же объяснили, что перед словом о месте нужен the — я это принял и использовал правильно.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — It is near",
+      "what_i_understood": "Ответ про место начинается с It is, потом само место или предлог: It is near.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (карточки corner/bridge, слух)",
+      "what_i_understood": "Легко, просто запоминание звучания новых слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Where is the corner? — среди вариантов station и shops, которые явно не про угол.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 6-7",
+      "what_i_understood": "Собрал Where is the bridge? и It is near. из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "The station is behind the shops. Тут слово behind — оно было в прошлых сессиях, для меня как бы новое, но переведено прямо в задании (за). Понял через контекст.",
+      "confusion": "behind ни разу не объяснялось в этой сессии текстом — просто появилось в задании. Пришлось догадываться по логике задачи, что «сразу за рядом магазинов» = behind. Слегка рискованно, но справился.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "bridge vs fridge на слух — угадал по первому звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — доска пар",
+      "what_i_understood": "corner-угол, bridge-мост, near-рядом, behind-за. Тут наконец увидел перевод behind прямо на доске.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 11-16",
+      "what_i_understood": "Дальше behind, near, station, street уже встречались с переводом раньше (в задании 10 и по ходу), справился по накопленному контексту.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — говорю вслух",
+      "what_i_understood": "Спросил про мост и ответил, что он рядом и за магазинами — собрал всё из сессии вместе.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово corner (угол) и вопрос про него: Where is the corner?",
+    "Слово bridge (мост) и вопрос: Where is the bridge?",
+    "Полный ответ про место начинается с It is, а не голым словом: It is near.",
+    "Освежил в памяти behind, near, station, street, shops — увидел их в новых сочетаниях"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена «идёте к реке и собираете город по ответам прохожих» — понятно, зачем спрашивать именно про угол и мост, а не абстрактно",
+    "Задание 17 в конце, где сам спрашиваю и сам отвечаю — почувствовал, что реально могу спросить дорогу"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — иду по Дублину к реке, мне важно найти мост и угол, чтобы понять, куда идти; каждая фраза — реальный вопрос прохожему или его ответ",
+  "would_continue": "да — было легко, интересно, в конце дали проговорить всё вместе, чувствую что чему-то научился",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания прошёл честно, узнал два новых слова и структуру полного ответа, сцена понятна с первой до последней страницы."
+}

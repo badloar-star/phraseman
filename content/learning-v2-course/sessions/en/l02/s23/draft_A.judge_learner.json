@@ -1,0 +1,118 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — corner",
+      "what_i_understood": "corner значит угол — там, где встречаются две улицы. Вопрос про место строится так: Where is + место (сначала where, потом is, потом само место).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — bridge",
+      "what_i_understood": "bridge — мост. Перед словом-местом надо ставить the. Ответ про место: it is + где (near — рядом, behind — за, shops — магазины).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — короткий ответ",
+      "what_i_understood": "Нельзя отвечать одним словом near, надо говорить полностью It is near — три слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (карточки+слух: corner, bridge)",
+      "what_i_understood": "Выучил звучание corner и bridge, отличил от похожих слов corn/cover/fridge/bread.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (вставьте слово: перекрёсток)",
+      "what_i_understood": "Понял по описанию (стою на перекрёстке двух улиц) что нужно corner, а не station/shops.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 6-7 (сборка фраз)",
+      "what_i_understood": "Собрал Where is the bridge? и It is near. по знакомому порядку слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (вокзал за магазинами)",
+      "what_i_understood": "behind — за, выбрал по смыслу описания.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (звуки bridge/fridge)",
+      "what_i_understood": "Различил на слух bridge и fridge.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (пары)",
+      "what_i_understood": "Соединил corner-угол, bridge-мост, near-рядом, behind-за — всё уже видел выше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (магазины за мостом)",
+      "what_i_understood": "Выбрал behind, потому что подсказка говорит про другой берег реки — значит магазины именно ЗА мостом, не просто near.",
+      "confusion": "На секунду задумался — near тоже как будто подходит, если магазины просто недалеко. Пришлось перечитать подсказку про 'другой берег', чтобы понять, что там именно 'за'.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (где улица, лишняя плитка it)",
+      "what_i_understood": "Собрал Where is the street?, лишнюю плитку it не использовал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (вокзал/поезда)",
+      "what_i_understood": "station — вокзал, туда идут поезда, не corner и не bridge.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (диктант: магазины за углом)",
+      "what_i_understood": "Собрал The shops are behind the corner. по услышанному.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (сборка без подсказки, лишнее are)",
+      "what_i_understood": "It is near. — is, не are, потому что it — одно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (улица за вокзалом)",
+      "what_i_understood": "The street is behind the station.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (говорю вслух)",
+      "what_i_understood": "Смог сам произнести Where is the bridge? It is near. It is behind the shops. — все слова уже были отработаны выше.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово corner (угол улицы, где встречаются две улицы)",
+    "Слово bridge (мост)",
+    "Как спросить про новое место тем же вопросом Where is the ...?",
+    "Как ответить про новое место коротко, но полным ответом It is near / It is behind the shops"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Интро 1 — 'встретимся на углу' звучит как что-то реальное, что я мог бы сказать",
+    "Интро 2 — 'в Дублине их так много, что «идите к мосту» почти не подсказка' — понятная бытовая деталь без лишней метафоры",
+    "Задание 17 — приятно, что в конце сам проговорил всё вслух без подсказок, почувствовал что реально что-то умею сказать"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я иду вечером в Дублине к реке, спрашиваю дорогу у прохожих про угол и мост, и в конце сам воспроизвожу весь диалог целиком — понятно кому и зачем говорю эти фразы",
+  "would_continue": "да — тема понятная, задания шли по нарастающей сложности, ничего не сбило с толку, и под конец я реально смог сам, без опоры, произнести весь диалог",
+  "verdict": "PASS",
+  "verdict_reason": "все 17 заданий прошёл честно без незнакомых слов в правильных ответах, оба новых слова выучил и использовал в живом диалоге, слабое место (задание 11) не сломало прохождение — подсказка спасла."
+}

@@ -1,0 +1,143 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "thirsty значит 'хочет пить'. Чтобы спросить, а не сказать, ставим is в начало: Is he thirsty? А если просто сказать — He is thirsty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про кафе, улицу, чашку — не он и не она, а it. Про кафе людно — Is it crowded?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "На вопрос отвечаем не просто Yes, а Yes, she is (слова из вопроса переставили местами). Нет — No, she is not.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (thirsty/thirty/dirty)",
+      "what_i_understood": "Выбрал thirsty на слух, объяснение почему не thirty и не dirty понятное.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (мужчина просит воду)",
+      "what_i_understood": "Is he thirsty? — по сцене логично.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (нет столиков)",
+      "what_i_understood": "Is it crowded? — про место, не про человека.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (сборка про шум)",
+      "what_i_understood": "Is it noisy? — собрал без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (crowded/cloudy)",
+      "what_i_understood": "cloudy я вообще не проходил раньше, но это неверный вариант-ловушка, не то, что нужно выбрать.",
+      "confusion": "слово cloudy новое для меня, но это разрешённая ловушка, не входит в правильный ответ",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (пары)",
+      "what_i_understood": "Все четыре слова уже знакомые по интро/заданиям выше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (handsome/handle/hands)",
+      "what_i_understood": "handsome — новое слово в этой сессии по факту, хотя оно 'возврат' по документу. Для меня, начавшего именно с этой сессии, это первое знакомство. Понял по объяснениям.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (мужчина, все оглядываются)",
+      "what_i_understood": "Is he handsome? — логично по сцене.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (диктовка про curious)",
+      "what_i_understood": "Is she curious? — собрал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (мягкое кресло)",
+      "what_i_understood": "Is he comfortable? — новое слово для меня (не было в интро явно с переводом, но по логике 'удобно' в кресле понял из вариантов и объяснений неверных).",
+      "confusion": "comfortable нигде прямо не объяснили с переводом до этого задания, узнал перевод только из объяснений неправильных вариантов ('удобно')",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (Yes, she is)",
+      "what_i_understood": "Собрал короткий ответ без лишней плитки curious.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (женщина качнулась)",
+      "what_i_understood": "Is she dizzy? — по описанию 'схватилась за стол, качнуло' догадался, перевод подтвердился в объяснении неверных ответов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (человек у входа)",
+      "what_i_understood": "Is he lost? — по сцене и объяснениям понял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (диктовка про шум)",
+      "what_i_understood": "Is it noisy? — собрал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (пары)",
+      "what_i_understood": "handsome, dizzy, lost, comfortable — все уже виделись выше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (cheerful)",
+      "what_i_understood": "cheerful нигде до этого не объяснялось с переводом вообще — ни в интро, ни в заданиях. В самом задании перевод дан прямо в скобках ('весёлая'), поэтому смог собрать фразу.",
+      "confusion": "cheerful впервые встречается именно в задании 16, без предварительного знакомства, но перевод дан тут же в подсказке, так что задание выполнимо",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, вслух)",
+      "what_i_understood": "Проговорил три вопроса-ответа. awake объяснили в скобке тут же.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Вопрос строится через перестановку: is выходит вперёд (He is thirsty → Is he thirsty?)",
+    "Про предметы и места (кафе, улицу) говорят it, а не he/she",
+    "Короткий ответ повторяет подлежащее и is в исходном порядке: Yes, she is / No, she is not — а не просто Yes/No",
+    "Узнал слова handsome (красивый), dizzy (кружится голова), lost (заблудился), comfortable (удобно), cheerful (весёлый), crowded (людно), noisy (шумно), curious (любопытный), thirsty (хочет пить), awake (не спит)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Задание 12 — 'схватилась за стол, её качнуло' — сразу понятно, что за слово нужно, даже без перевода до этого",
+    "Финальное задание 17 с тремя разными людьми подряд — приятно проговорить вслух всё, что выучил"
+  ],
+  "felt_dead": [
+    "Задания 6 и 15 (просто соединить пары) — механическое повторение того, что уже отработано в заданиях выше, ощущается как проверка, а не обучение"
+  ],
+  "scene_reason": "да — сцена с кафе и десятью людьми понятна: смотрю на человека или на место и спрашиваю про него. Каждое задание привязано к конкретной картинке (мужчина у стойки, женщина в кресле, шум за столом), поэтому ясно, зачем говорить именно эту фразу",
+  "would_continue": "да — задания разнообразные (слух, сборка, диктовка, пары, финальный диалог), к концу я реально могу спросить и ответить про десять разных ситуаций, это ощущается как прогресс",
+  "verdict": "REVISE",
+  "verdict_reason": "Слова comfortable и cheerful вводятся в практике без предварительного объяснения в интро (только через подсказки внутри самих заданий), что для новичка, начавшего именно с этой сессии, создаёт лёгкую путаницу — заданию можно ответить правильно, но не потому что слово уже знакомо, а потому что перевод дан тут же в скобке."
+}

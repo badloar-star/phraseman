@@ -1,0 +1,148 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Чтобы спросить, а не сообщить, нужное слово (is) ставится в начало фразы: 'He is thirsty' — сообщение, 'Is he thirsty?' — вопрос.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Про вещи и места (кафе, стол, чашка) говорят 'it', а не 'he'/'she', даже если по-русски у слова есть род.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Короткий ответ на вопрос строится в обратном порядке слов: не 'Is she', а 'she is'. Для отрицания добавляется 'not' после 'is': 'No, she is not'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "Выбрал thirsty на слух, отличил от thirty и dirty по подсказкам.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "По ситуации (просит стакан воды) выбрал thirsty.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Выбрал crowded по ситуации (нет свободных столиков).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Собрал 'Is it noisy?' из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Различил crowded и cloudy на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Соединил пары слово-перевод для thirsty/crowded/noisy/curious.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Выбрал handsome на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Выбрал handsome по ситуации (все оглядываются).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Собрал 'Is she curious?' по прослушанному.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Выбрал comfortable по ситуации (сидит в кресле и не хочет уходить).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Собрал короткий ответ 'Yes, she is.', не тронув лишнюю плитку curious.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Выбрал dizzy по ситуации (схватилась за стол, качнуло).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Выбрал lost по ситуации (вертит телефон, смотрит по сторонам).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Собрал 'Is it noisy?' по прослушанному, не взяв лишнюю плитку crowded.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Соединил ещё четыре пары слово-перевод.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Собрал 'Is she cheerful?' без подсказки перевода в самом задании, но перевод дан в скобках рядом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Проговорил три вопроса-ответа подряд про троих разных людей/место, используя thirsty, awake, crowded.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Вопрос строится через перестановку: is выходит в начало (Is he thirsty? вместо He is thirsty)",
+    "Про вещи/места всегда it, а не he/she, даже если по-русски у слова есть род",
+    "Короткий ответ строится в обратном порядке: сначала he/she/it, потом is (Yes, she is / No, she is not)",
+    "Отрицание not встаёт сразу после is, а не в конец фразы"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Задание 17 (финал)",
+      "why": "Три реплики подряд почти дословно повторяют структуру из интро и предыдущих заданий — ничего нового для мысли, чисто механическое повторение уже отработанного."
+    }
+  ],
+  "felt_alive": [
+    "Сцена с десятью людьми в кафе — понятно, зачем спрашивать про каждого по очереди, есть ощущение живого разговора",
+    "Финальное задание 17 с тремя разными репликами подряд ощущается как настоящий момент общения, а не как упражнение"
+  ],
+  "felt_dead": [
+    "Интро 2 и 3 читаются суховато — просто правило и пример, без сцены вокруг, но это терпимо для повторения"
+  ],
+  "scene_reason": "да, понятно: я в кафе разглядываю разных людей (мужчина у стойки хочет пить, женщина у окна любопытная, кто-то в кресле удобно устроился) и спрашиваю/отвечаю про каждого — ясно кому и зачем задаётся каждый вопрос",
+  "would_continue": "да — сессия короткая, задания идут по нарастанию сложности, в конце приятный момент проговорить всё вслух самому",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно без незнакомых слов в правильных ответах, узнал новое правило про порядок слов в вопросе и обратном ответе, сцена понятна и хочется продолжать."
+}

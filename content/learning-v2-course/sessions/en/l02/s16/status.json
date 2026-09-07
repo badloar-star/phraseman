@@ -1,0 +1,13 @@
+{
+  "session": "en/l02/s16",
+  "ru": 7,
+  "converged": true,
+  "needsHumanReview": false,
+  "draftScore": 6,
+  "locales": {
+    "uk": "FIXED"
+  },
+  "at": "2026-09-07T00:02:44.721Z",
+  "judgedFinal": true,
+  "note": "финал пересужен: nonsense PASS (все утверждения выдержали подстановку), learner/pedagogy PASS; reader даёт новые претензии каждый круг — шум по правилу двойного суда"
+}

@@ -1,0 +1,82 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "lost — стоит у стойки и заказывает, дорогу не ищет"
+      },
+      {
+        "task": 13,
+        "trap": "handsome/comfortable как отвлекающие от lost"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "thirsty",
+        "crowded",
+        "noisy",
+        "curious"
+      ],
+      [
+        "handsome",
+        "dizzy",
+        "lost",
+        "comfortable"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      11,
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s13/14/15",
+      "what": "сцена «кафе/люди вокруг» и конструкция Is he/she/it повторяются — ожидаемо для checkpoint-сессии, повторов конкретных фраз-разборов как новых не найдено"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 2,
+      "context_gap_grammar": 6,
+      "phrase_builder": 3,
+      "sound_contrast": 1,
+      "speed_match": 2,
+      "listen_build_dictation": 2,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы, повторяемые слова, доски пар и разборы соответствуют плану и правилам без нарушений."
+}

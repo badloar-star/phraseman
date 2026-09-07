@@ -1,0 +1,81 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "menu",
+      "bill"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 3,
+        "trap": "n/a — task 3 is word_card, not a trap task"
+      },
+      {
+        "task": 7,
+        "trap": "name/bill confused with price — plausible near-meaning mix-up"
+      },
+      {
+        "task": 11,
+        "trap": "prices/rules as plausible plural-noun confusions for toilets"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "menu",
+        "bill",
+        "price",
+        "name"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": []
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s28",
+      "what": "конструкция 'What is the price?' и её разбор ('is уехало в конец') почти дословно повторяют интро/разбор s28 ('is уехало в конец. Его место второе, сразу за what') — это законное повторение операции, но формулировка разбора идентична, а не переформулирована"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 2,
+      "listen_choose": 2,
+      "context_gap_grammar": 5,
+      "phrase_builder": 4,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы, повтор слов, доска пар и структура заданий соответствуют плану без нарушений; малое текстуальное совпадение разбора с соседней сессией s28 не тянет на BLOCK, так как это повтор уже пройденной операции, а не контрабанда новой грамматики."
+}

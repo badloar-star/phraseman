@@ -1,0 +1,144 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "menu — это книжка с едой и ценами, которую приносят в начале ужина",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "bill — это листок с суммой, который дают в конце, и фраза целиком: 'The bill, please'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "чтобы спросить про цену, говорю 'What is the price?' — начало не трогаю, меняю только последнее слово",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "карточка menu, просто повторение",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "выбрал menu на слух, отличил от many и money по звучанию",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "карточка bill",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "выбрал bill, отличил от ball и bell",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "сел за стол — прошу menu, не bill и не corner",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "собрал 'What is this?' из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "спросил цену — 'What is the price?'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "на слух отличил bill от ball",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "собрал 'What is the name?'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "сопоставил menu-меню, bill-счёт, price-цена, name-название",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "спросил, где туалеты — toilets, а не prices и не rules",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "ответ про место — 'it is in the corner'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "собрал вопрос 'Is it near?'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "ответил 'It is near'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "написал на слух 'Where are the toilets?'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "собрал 'What is the price?' и не взял лишнюю плитку name",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "сказал подряд три фразы про конец ужина: туалеты, близко ли, счёт",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "новое слово menu — книжка с едой и ценами",
+    "новое слово bill — счёт, и фраза целиком 'The bill, please'",
+    "спросить про цену: 'What is the price?'",
+    "спросить про название: 'What is the name?'",
+    "повторил вопрос про место 'Where are the toilets?' и ответ 'It is in the corner' / 'It is near'"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "сцена понятная и живая: ужин кончается, реально представляешь, что просишь счёт и спрашиваешь дорогу до туалета",
+    "финал (задание 17), где три фразы подряд без подсказок — приятно, что получилось само, без подглядывания"
+  ],
+  "felt_dead": [
+    "объяснение ударения в menu ('менЮ' против 'мЕню') — сухо, но коротко и не мешает"
+  ],
+  "scene_reason": "да, понятно: ужин в кафе заканчивается, я реально прошу счёт, спрашиваю про цену блюда и ищу туалет — каждая фраза привязана к конкретному моменту, а не висит в воздухе",
+  "would_continue": "да — сессия короткая, ничего не показалось непонятным, а в конце я сам, без подсказок, собрал три фразы подряд, и это было приятно",
+  "verdict": "PASS",
+  "verdict_reason": "все задания прошёл честно, узнал два новых слова и повторил старые конструкции, сцена понятна от начала до конца, ни одной ловушки с незнакомым словом в правильном ответе"
+}

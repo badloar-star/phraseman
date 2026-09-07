@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — near",
+      "what_i_understood": "It is near = «это рядом». It заменяет место (вокзал), после него всегда is, потом near.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — behind",
+      "what_i_understood": "behind = «за, позади». It is behind the station = «это за вокзалом». После behind называют место, и перед station/shops ставим the.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — начало не трогают",
+      "what_i_understood": "It is остаётся всегда одинаковым, меняется только near/behind и место после the. shops = магазины.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 · карточка near",
+      "what_i_understood": "near — рядом, близко",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 · listen near/nine/name",
+      "what_i_understood": "услышал near, выбрал near, остальные два — другие слова с другим звуком",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 · карточка behind",
+      "what_i_understood": "behind — за, позади",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 · listen behind/find/bell",
+      "what_i_understood": "выбрал behind по звучанию",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 · собрать It is near.",
+      "what_i_understood": "собрал из трёх плиток правильный порядок",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 · вставить near",
+      "what_i_understood": "«идти пару минут» = near, а не behind/crowded",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 · собрать It is behind the station.",
+      "what_i_understood": "собрал фразу про вокзал",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 · вставить behind",
+      "what_i_understood": "«с другой стороны вокзала» = behind, near и street сюда не подходят",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 · near vs far",
+      "what_i_understood": "far нам не объясняли, но задание про звук — выбрал near, потому что far даже не похоже по звучанию (начинается на «ф»), это не мешает",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 · вставить shops",
+      "what_i_understood": "после the нужно место — shops (магазины)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 · listen+собрать It is near the street.",
+      "what_i_understood": "услышал и собрал фразу про улицу, лишняя плитка at не нужна",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 · пары near/behind/station/street",
+      "what_i_understood": "все слова уже знакомы по прошлым заданиям",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 · The street is crowded.",
+      "what_i_understood": "crowded = людно — слово мне знакомо (в задании написано «возвращается»), выбрал его для «не протолкнуться»",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 · собрать Is it near?",
+      "what_i_understood": "вопрос начинается с Is, лишняя плитка the не нужна",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 · собрать It is behind the shops.",
+      "what_i_understood": "лишняя плитка are не подходит, потому что it — одно место",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 · повтор вслух",
+      "what_i_understood": "повторил обе фразы за диктором",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 · финал, три ответа подряд",
+      "what_i_understood": "ответил на три вопроса про дорогу без подсказок",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Могу сказать, что что-то рядом: It is near.",
+    "Могу сказать, что что-то позади/за чем-то: It is behind the station / It is behind the shops.",
+    "Понял, что перед station и shops нужно ставить the.",
+    "Могу задать вопрос: Is it near?",
+    "Знаю уже два новых слова про направление вместо одного only near."
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена понятная и живая: спросил дорогу — тебе рукой показали, это реально бывает в жизни",
+    "Финальное задание 17, где отвечаешь сразу на три вопроса подряд — приятно почувствовать, что действительно чему-то научился за сессию"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я турист или просто спрашиваю дорогу у прохожего, он показывает рукой и отвечает коротко — near / behind the station / near the shops. Понятно, кому и когда я это говорю.",
+  "would_continue": "да — сессия короткая, слова простые, задания логично усложняются, и в конце я реально смог сам ответить на три вопроса без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "все задания решаемы с моими знаниями, ловушки честные (незнакомое слово far — не в правильном ответе), сцена понятна, к концу я реально научился новому и хочу продолжать."
+}

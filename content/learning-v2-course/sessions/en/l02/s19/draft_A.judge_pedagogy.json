@@ -1,0 +1,85 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "near",
+      "behind"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": [
+      "Задание 15 использует `The shops are behind the station` — форма `are` вместо `it is`, которой нет в плане сессии (план: ответ `it is` + предлог места)"
+    ]
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": [
+      {
+        "task": 15,
+        "item": "are (форма множественного числа глагола-связки, не входит в операцию этой сессии `it is + предлог места`)"
+      },
+      {
+        "task": 17,
+        "item": "The shops are near the street. — тот же `are`, использован как часть финального целевого ответа"
+      }
+    ]
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 6,
+        "trap": "behind/crowded вместо near — реалистичная путаница слов о месте"
+      },
+      {
+        "task": 8,
+        "trap": "near/street вместо behind — правдоподобная замена"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "near-рядом",
+        "behind-позади",
+        "station-вокзал",
+        "street-улица"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 2,
+      "listen_choose": 2,
+      "phrase_builder": 4,
+      "context_gap_grammar": 4,
+      "sound_contrast": 1,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "BLOCK",
+  "verdict_reason": "Задания 15 и 17 требуют форму `The shops are behind/near ...`, которая использует не пройденную в плане этой сессии конструкцию (`are` вместо целевого `it is`), причём в задании 17 это часть финального проверочного ответа — нарушение границы «только уже пройденное + операция сессии»."
+}

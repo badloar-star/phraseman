@@ -1,0 +1,151 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Слово near значит «рядом». Когда отвечают на вопрос «где это?», говорят It is near — три слова, все нужны.",
+      "confusion": "Не сразу понял, почему нельзя просто сказать near, как по-русски просто «рядом» — но текст объяснил, что it и is нужны всегда, принял это как правило.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "behind значит «за, позади». После него называют место через the: It is behind the station.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Схема не меняется: it is + near/behind + the + место. Меняется только последнее слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1. Карточка near",
+      "what_i_understood": "near = рядом, близко",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2. Послушайте near",
+      "what_i_understood": "Выбрал near, отличил от here и nine",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3. Карточка behind",
+      "what_i_understood": "behind = за, позади",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4. Послушайте behind",
+      "what_i_understood": "Выбрал behind среди find и bell",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5. Соберите It is near",
+      "what_i_understood": "Собрал верно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6. Вставьте near",
+      "what_i_understood": "Выбрал near, не behind и не crowded",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7. Соберите It is behind the station",
+      "what_i_understood": "Собрал верно, вспомнил station из прошлого",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8. Вставьте behind",
+      "what_i_understood": "Выбрал behind",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9. near vs here",
+      "what_i_understood": "Услышал разницу в первом звуке",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10. Вставьте shops",
+      "what_i_understood": "Выбрал shops как место",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11. Диктовка It is near the street",
+      "what_i_understood": "Собрал, лишнюю плитку at не взял",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12. Speed match",
+      "what_i_understood": "Соединил все 4 пары, все слова уже встречались",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13. crowded",
+      "what_i_understood": "Выбрал crowded про толпу на улице",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14. Is it near?",
+      "what_i_understood": "Понял, что вопрос строится наоборот: Is it, не It is. Лишнюю плитку the не взял",
+      "confusion": "Немного пришлось подумать, почему тут порядок другой, но справился",
+      "could_answer_question": true
+    },
+    {
+      "step": "15. The shops are behind the station",
+      "what_i_understood": "Собрал фразу, но тут внезапно are вместо is",
+      "confusion": "Во всех трёх интро и во всех прошлых заданиях этой сессии было только It is. Про are тут вообще ничего не объяснили. Я не знаю, почему вдруг are — просто угадал по смыслу, что shops это много магазинов, но правило мне никто не давал.",
+      "could_answer_question": true
+    },
+    {
+      "step": "16. Повторите вслух",
+      "what_i_understood": "Повторил It is near. It is behind the shops.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17. Финал: три ответа",
+      "what_i_understood": "Ответил на первые два вопроса легко (It is near. It is behind the station.), а третий ответ дан в самом задании как The shops are near the street — опять are, которое нигде не объяснялось",
+      "confusion": "То же самое, что в 15: are появляется без единого слова объяснения во всей сессии.",
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Отвечать на вопрос «где?» фразой It is + near/behind",
+    "Ставить the перед названием места после behind/near",
+    "Слово near — рядом, слово behind — позади",
+    "Как звучат near и behind и как их отличить от похожих слов на слух",
+    "Что вопрос строится в обратном порядке: Is it near?"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 15,
+      "why": "Требует форму are вместо is (The shops are behind the station), а вся сессия — все три интро и все задания до этого — учат только конструкции It is. Слово are не введено, не объяснено, не встречалось нигде выше. Я не мог знать, что с shops (много предметов) нужно менять is на are — пришлось гадать."
+    },
+    {
+      "task": 17,
+      "why": "Финальный правильный ответ содержит The shops are near the street — снова are без единого объяснения в этой сессии. Это часть эталонного ответа, не ловушка, значит я обязан был это знать, а взять было неоткуда."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с рукой, которая машет в сторону — понятная бытовая ситуация, легко представить",
+    "Задание 14 с вопросом от первого лица было приятным поворотом — почувствовал, что я сам спрашиваю дорогу"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно, что я на улице спрашиваю дорогу, и мне отвечают, где что находится. Каждая фраза привязана к конкретному вопросу (где вокзал, где туалеты, где кафе).",
+  "would_continue": "не совсем — я справился почти со всем и мне понравилось, но два последних задания (15 и 17) требуют from meня формы are, которую никто не объяснил, и это застряло как заноза: я как будто провалил финал сессии не по своей вине.",
+  "verdict": "BLOCK",
+  "verdict_reason": "Задания 15 и 17 требуют слово/форму (are вместо is), которая ни разу не введена и не объяснена во всей сессии — это ровно тот случай, когда незнакомое стоит в правильном ответе, а не в ловушке."
+}

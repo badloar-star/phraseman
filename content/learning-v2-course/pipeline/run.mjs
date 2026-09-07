@@ -241,7 +241,14 @@ const INTRO_LEN_MIN = 240;
 const INTRO_LEN_MAX = 290;
 const INTRO_LEN_TOLERANCE = 30;
 
-const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА/;
+// зачем: минимум сборок фразы за сессию (владелец 07.09). Считаются phrase_builder
+// и listen_build_dictation — в обоих ученик строит фразу из плиток сам.
+const PHRASE_BUILD_MIN = 4;
+// зачем: норма сборок введена 07.09 и не применяется задним числом — владелец
+// решил старые сессии не трогать. Урок 2 писался в момент решения, поэтому
+// граница внутри него: сессии 1-30 заморожены, с 31 норма обязательна.
+const PHRASE_BUILD_FROM_SESSION = 31;
+const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|МАЛО СБОРКИ ФРАЗЫ/;
 
 function machineFacts(file) {
   const text = read(file);
@@ -325,6 +332,22 @@ function machineFacts(file) {
   }
   const v = validateModes(file);
   facts.push(`заданий: ${v.taskCount ?? "?"}; механики вне списка: ${v.unknown?.length ? v.unknown.map(([n, f]) => `${n}=${f}`).join(", ") : "нет"}`);
+  // зачем: владелец 07.09 — «задания собрать фразу из кусочков должны встречаться
+  // чаще, это хорошее задание». Замер по 83 сессиям дал 3,1 в среднем и 0–2 в
+  // 24 сессиях. Правило в промпте автор игнорировал так же, как длину интро,
+  // поэтому счёт машинный. Сборка на слух считается — там ученик тоже строит фразу.
+  {
+    // Норма действует только на НОВЫЕ сессии (владелец 07.09: «не трогать,
+    // норма только для новых»). 17 выпущенных сессий имеют по 3 сборки —
+    // они проверены судьями и работают, переделка их только сломала бы.
+    // Граница проходит внутри урока 2: всё с сессии 31 и дальше.
+    const sessFromPath = Number((String(file).match(/[\/]s(d+)[\/]/) || [])[1] || 0);
+    const underNewRule = lessonFromPath > 2 || (lessonFromPath === 2 && sessFromPath >= PHRASE_BUILD_FROM_SESSION);
+    const built = (v.entries || []).filter(([, f]) => f === "phrase_builder" || f === "listen_build_dictation").length;
+    if (underNewRule && v.entries && v.entries.length && built < PHRASE_BUILD_MIN) {
+      facts.push(`МАЛО СБОРКИ ФРАЗЫ: заданий на сборку ${built}, нужно минимум ${PHRASE_BUILD_MIN} — замени часть «вставь слово» на сборку из плиток`);
+    }
+  }
   const timeRefs = [...(text.split(/^## Практика/m)[0] + practice).matchAll(/(вчера|позавчера|на прошлой сессии|в прошлый раз вы|вы уже учили|вы выучили)/gi)].map((m) => m[0]);
   facts.push(`ссылки на время обучения: ${timeRefs.length ? timeRefs.join(", ") : "не найдены (проверь «сегодня/утром» вручную — могут быть сценой)"}`);
 
@@ -608,7 +631,7 @@ function validateModes(file) {
   LOG(`${path.basename(file)}: заданий ${taskCount}, режимов в строке ${entries.length}, незнакомых ${unknown.length}${unknown.length ? " → " + unknown.map(([n, f]) => `${n}=${f}`).join(", ") : ""}`);
   if (entries.length !== taskCount) WARN(`${path.basename(file)}: число заданий (${taskCount}) ≠ записей modes (${entries.length})`);
   if (taskCount < 12) WARN(`${path.basename(file)}: заданий меньше 12`);
-  return { ok: unknown.length === 0 && entries.length === taskCount && taskCount >= 12, unknown, taskCount };
+  return { ok: unknown.length === 0 && entries.length === taskCount && taskCount >= 12, unknown, taskCount, entries };
 }
 
 const extractJson = (text) => {

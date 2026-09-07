@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-24:i01",
+    "correctText": "station",
+    "correctResponseId": "en:lesson-02:session-24:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i02",
+    "correctText": "station",
+    "correctResponseId": "en:lesson-02:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i03",
+    "correctText": "Where is the bridge?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i04",
+    "correctText": "corner",
+    "correctResponseId": "en:lesson-02:session-24:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i05",
+    "correctText": "corner",
+    "correctResponseId": "en:lesson-02:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i07",
+    "correctText": "near",
+    "correctResponseId": "en:lesson-02:session-24:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i08",
+    "correctText": "near",
+    "correctResponseId": "en:lesson-02:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i09",
+    "correctText": "It is behind the bridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i10",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-24:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i11",
+    "correctText": "tired",
+    "correctResponseId": "en:lesson-02:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i12",
+    "correctText": "thirsty",
+    "correctResponseId": "en:lesson-02:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i13",
+    "correctText": "Are you tired?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i15",
+    "correctText": "It is near.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i16",
+    "correctText": "Where is the station? Are you tired?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-24:i17",
+    "correctText": "Are you lost? Where is the station? It is behind the shops. Are you thirsty?",
+    "correctResponseId": null
+  }
+]

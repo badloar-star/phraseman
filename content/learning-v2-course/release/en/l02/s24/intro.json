@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "повторение — `Where is + место`, `Are you + слово`, ответ `it is + предлог места`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`lost` — «заблудился»",
+        "uk": "`lost` — «заблукав»"
+      },
+      "bodyByLocale": {
+        "ru": "`lost` — «заблудился», «не понимаю, где я». Слово про человека, а не про место: город на своём месте, потерялись вы.\n\nЧтобы спросить об этом, `are` выходит вперёд, а `you` встаёт сразу за ним: `Are you lost?` Порядок и есть весь вопрос — больше ничего добавлять не нужно.",
+        "uk": "`lost` — «заблукав», «не розумію, де я». Слово про людину, а не про місце: місто стоїть там, де стояло, загубилися ви.\n\nЩоб про це запитати, `are` виходить наперед, а `you` стає одразу за ним: `Are you lost?` Порядок — і є все запитання, більше нічого додавати не треба."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Спутник третий раз оглядывается по сторонам и молчит. Спросите прямо.",
+          "uk": "Супутник утретє озирається на всі боки й мовчить. Запитайте прямо."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-24:intro1:r1",
+              "text": "Are you lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-24:intro1:r2",
+              "text": "You are lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-24:intro1:r3",
+              "text": "Are you lose?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-24:intro1:r1",
+              "text": "Are you lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-24:intro1:r2",
+              "text": "You are lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-24:intro1:r3",
+              "text": "Are you lose?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник третий раз оглядывается по сторонам и молчит. Спросите прямо.",
+          "uk": "Супутник утретє озирається на всі боки й мовчить. Запитайте прямо."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`where` спрашивает про место",
+        "uk": "`where` запитує про місце"
+      },
+      "bodyByLocale": {
+        "ru": "`where` — «где». За ним сразу `is`, потом само место: `Where is the station?` — «где вокзал?». `station` — «вокзал», `bridge` — «мост», `corner` — «угол».\n\n`is` держится второго места крепко. Отправите его в конец — фразу поймут, но звучать будет ломано.",
+        "uk": "`where` — «де». За ним одразу `is`, потім саме місце: `Where is the station?` — «де вокзал?». `station` — «вокзал», `bridge` — «міст», `corner` — «ріг» (там, де сходяться дві вулиці).\n\n`is` тримається другого місця міцно. Відправите його в кінець — фразу зрозуміють, але звучатиме поламано."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Вам сказали идти к мосту, но какому — непонятно. Спросите прохожего.",
+          "uk": "Вам сказали йти до мосту, але до якого — незрозуміло. Запитайте перехожого."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-24:intro2:r1",
+              "text": "Where is the bridge?"
+            },
+            {
+              "responseId": "en:lesson-02:session-24:intro2:r2",
+              "text": "Where the bridge is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-24:intro2:r3",
+              "text": "What is the bridge?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-24:intro2:r1",
+              "text": "Where is the bridge?"
+            },
+            {
+              "responseId": "en:lesson-02:session-24:intro2:r2",
+              "text": "Where the bridge is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-24:intro2:r3",
+              "text": "What is the bridge?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам сказали идти к мосту, но какому — непонятно. Спросите прохожего.",
+          "uk": "Вам сказали йти до мосту, але до якого — незрозуміло. Запитайте перехожого."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`near` и `behind` — ответ про место",
+        "uk": "`near` і `behind` — відповідь про місце"
+      },
+      "bodyByLocale": {
+        "ru": "Вам ответят коротко. `near` — «рядом», `behind` — «позади», `shops` — «магазины». Перед ними стоит `it is`: `It is near`, `It is behind the shops`.\n\nПосле `behind` называют, за чем именно: `It is behind the shops` — «за магазинами». После `near` можно и не уточнять.",
+        "uk": "Вам відповідять коротко. `near` — «поряд», `behind` — «позаду», `shops` — «крамниці». Перед ними стоїть `it is`: `It is near`, `It is behind the shops`.\n\nПісля `behind` називають, за чим саме: `It is behind the shops` — «за крамницями». Після `near` можна й не уточнювати."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Прохожий кивает: вокзал прямо за магазинами. Скажите это его словами.",
+          "uk": "Перехожий киває: вокзал прямо за крамницями. Скажіть це його словами."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-24:intro3:r1",
+              "text": "It is behind the shops."
+            },
+            {
+              "responseId": "en:lesson-02:session-24:intro3:r2",
+              "text": "It behind the shops."
+            },
+            {
+              "responseId": "en:lesson-02:session-24:intro3:r3",
+              "text": "It is near the shops."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-24:intro3:r1",
+              "text": "It is behind the shops."
+            },
+            {
+              "responseId": "en:lesson-02:session-24:intro3:r2",
+              "text": "It behind the shops."
+            },
+            {
+              "responseId": "en:lesson-02:session-24:intro3:r3",
+              "text": "It is near the shops."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Прохожий кивает: вокзал прямо за магазинами. Скажите это его словами.",
+          "uk": "Перехожий киває: вокзал прямо за крамницями. Скажіть це його словами."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d710aed6efce726fa25ce934d630c35b553699e4ff0cce4c261d042a3cf4c9a4"
+}

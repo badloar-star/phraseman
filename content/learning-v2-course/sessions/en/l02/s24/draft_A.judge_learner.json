@@ -1,0 +1,141 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — Are you lost?",
+      "what_i_understood": "Если хочешь спросить человека, потерялся ли он, слово 'are' ставится перед 'you': Are you lost?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — Where is the bridge?",
+      "what_i_understood": "Чтобы спросить 'где что-то', говорю where, потом is, потом само место. Where is the bridge? = где мост?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — It is behind the shops.",
+      "what_i_understood": "Отвечают так: It is near (рядом) или It is behind the shops (позади магазинов). Между it и словом места нужно is.",
+      "confusion": "near и behind я запомнил не с первого раза, пришлось перечитать один раз, но понял",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — station",
+      "what_i_understood": "Выбрал station по звучанию, отличил от stand и stay",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — Where is the station?",
+      "what_i_understood": "station - здание с поездами, вставил его",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 — собрать Where is the bridge?",
+      "what_i_understood": "Собрал плитки в правильном порядке",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 — corner vs corridor",
+      "what_i_understood": "Выбрал corner, хотя слово corridor я вообще не знаю (оно не в списке слов урока) — но раз это неправильный вариант, а не то, что нужно сказать, я просто угадал по длине звучания",
+      "confusion": "corridor — незнакомое слово, но оно среди неверных вариантов, не в ответе",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — corner",
+      "what_i_understood": "Поворот улицы = corner",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — пары",
+      "what_i_understood": "station-вокзал, bridge-мост, corner-угол, lost-заблудился — все соединил",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — near",
+      "what_i_understood": "Услышал near, отличил от name и nine",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — near",
+      "what_i_understood": "Вокзал почти виден = near",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — It is behind the bridge.",
+      "what_i_understood": "Собрал фразу по прослушанному, near было лишней плиткой",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — is",
+      "what_i_understood": "Where is the corner? — is, а не are или am, потому что про одно место",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — tired vs third",
+      "what_i_understood": "Выбрал tired, third не знаю, но это неверный вариант",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — thirsty",
+      "what_i_understood": "Просит воды = thirsty, не tired и не lost",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — Are you tired?",
+      "what_i_understood": "Собрал вопрос, лишнее is отбросил",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — пары",
+      "what_i_understood": "near-рядом, behind-позади, tired-устал, thirsty-хочет пить",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — It is near.",
+      "what_i_understood": "Это ответ, не вопрос — собрал It is near, is лишнее не было",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — Where is the station? Are you tired?",
+      "what_i_understood": "Проговорил вслух две фразы из уже пройденного материала",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал, 4 фразы",
+      "what_i_understood": "Are you lost? Where is the station? It is behind the shops. Are you thirsty? — собрал сам, без подсказок, и смог, потому что каждая фраза была объяснена выше",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Спрашивать 'ты заблудился?' — Are you lost?",
+    "Спрашивать 'где место?' — Where is + место",
+    "Отвечать про расположение — It is near / It is behind + место",
+    "В вопросе про место is стоит сразу после where, а не в конце"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с уставшим спутником и поездом через полчаса — понятно, зачем спрашивать дорогу, я как будто сам иду по вечернему городу",
+    "Деталь про ирландское 'near', которое может быть двадцать минут ходьбы — забавно и запоминается, без лишней воды"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — я веду уставшего спутника до вокзала вечером в чужом городе, каждая фраза (заблудился ли он, где вокзал, что ответил прохожий, хочет ли он пить) идёт по делу сцены",
+  "would_continue": "да, потому что всё было понятно с первого раза, задания шли от лёгкого к сложному, и в конце я сам, без подсказок, собрал четыре фразы подряд — почувствовал, что действительно чему-то научился за эту сессию",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно, ничего не требовало незнакомых слов в ответе, сцена понятна, и к финалу я реально мог сказать четыре фразы сам."
+}

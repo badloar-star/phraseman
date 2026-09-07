@@ -1,0 +1,150 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — weather",
+      "what_i_understood": "Новое слово weather = погода. Вопрос про погоду строится так: What is the weather? Порядок слов жёсткий — is сразу после what.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — time",
+      "what_i_understood": "time = время. Вопрос строится по тому же шаблону: What is the time? Просто меняется последнее слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — cold",
+      "what_i_understood": "cold = холодно. Отвечаем на вопрос о погоде без слова weather: It is cold. Легко перепутать порядок (написать Is it cold вместо It is cold), но объяснение понятное.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — карточка weather",
+      "what_i_understood": "Просто запомнил слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — на слух weather",
+      "what_i_understood": "Отличил weather от water и walk по звучанию, объяснения ловушек понятны.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 — карточка time",
+      "what_i_understood": "Запомнил слово time.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 — на слух time",
+      "what_i_understood": "Отличил time от team и toy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — собрать 'What is the weather?'",
+      "what_i_understood": "Собрал фразу из плиток по шаблону из Интро 1.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — вставить time",
+      "what_i_understood": "Выбрал time, а не weather/street, так как речь о часах.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — собрать на слух 'What is the time?'",
+      "what_i_understood": "Услышал фразу и собрал её из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — карточка cold",
+      "what_i_understood": "Запомнил cold.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — вставить cold в 'It is ___'",
+      "what_i_understood": "Выбрал cold по сцене (рука мёрзнет).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — cold vs gold на слух",
+      "what_i_understood": "gold — новое слово, но оно не входит в мой список для изучения и не является правильным ответом, просто ловушка на слух, и объяснение (первый звук к/г) понятно даже без знания слова gold.",
+      "confusion": "gold мне не знакомо, но это не мешает — я слышу разницу в первом звуке",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — карточка near",
+      "what_i_understood": "near = близко, это возвращаемое слово, подано как новая карточка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — вставить near",
+      "what_i_understood": "Выбрал near по сцене (вокзал в двух шагах).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — карточка station",
+      "what_i_understood": "station = вокзал, новое для сессии слово (хотя в моём базовом списке оно уже числится).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — соединить пары",
+      "what_i_understood": "Соединил weather-погода, time-время, cold-холодно, near-близко — все слова уже отработаны раньше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — вставить station",
+      "what_i_understood": "Выбрал station по сцене (куда собрались).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — собрать 'It is cold'",
+      "what_i_understood": "Собрал ответ, отбросив лишнее what, объяснение понятно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал: три фразы",
+      "what_i_understood": "Сказал What is the time? It is cold. The station is near. — использовал всё пройденное в сессии.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Спрашивать про погоду: What is the weather?",
+    "Спрашивать про время: What is the time?",
+    "Отвечать про погоду без повтора слова weather: It is cold.",
+    "Слышать разницу weather/water/walk и time/team/toy на слух",
+    "Собирать фразы из плиток по шаблону What is the ___?"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2",
+      "why": "почти дословно повторяет структуру Интро 1 («Рамка та же, поменялось одно слово в конце» — да, я это уже понял по факту одинаковой конструкции, отдельно объяснять не требовалось)"
+    }
+  ],
+  "felt_alive": [
+    "Сцена в Интро 1 — серо за окном, не понимаешь погоду, это реальная ситуация",
+    "Интро 3 — рука высунута в окно, мёрзнет за пять секунд, ощутимая деталь",
+    "Финал (задание 17) — спутник сел на кровати и спрашивает, это живой момент, три фразы подряд без подсказок хорошо завершают сцену"
+  ],
+  "felt_dead": [
+    "Интро 2 — суховатое объяснение 'Рамка та же, поменялось одно слово' звучит как техническая инструкция, а не разговор"
+  ],
+  "scene_reason": "да, понятно — это утро в гостинице в Дублине, я хочу узнать погоду и время у спутника, который ещё не встал. Каждая фраза привязана к конкретному моменту (окно, отсутствие часов, рука на морозе, вопрос спутника в конце), а не висит в воздухе.",
+  "would_continue": "да — сессия короткая, слова закрепляются повторами, финал даёт почувствовать что я реально что-то умею сказать подряд без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "все 17 заданий выполнимы с моим текущим словарём, я узнал новые фразы и слова, сцена понятна от начала до конца, и я хочу продолжить."
+}

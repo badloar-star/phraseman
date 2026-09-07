@@ -1,0 +1,39 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — weather",
+      "what_i_understood": "Есть слово weather — погода. Чтобы спросить про погоду, говорю What is the weather? Слова идут в порядке: what, потом is, потом the weather.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — time",
+      "what_i_understood": "Та же рамка What is the ...?, только слово другое — time (время). Спросить сколько времени: What is the time?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — cold",
+      "what_i_understood": "Отвечать про погоду можно коротко: It is cold, без слова weather. И это ответ, а не вопрос, поэтому it стоит первым, а не is.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово weather (погода)",
+    "Слово time (время)",
+    "Как спросить про погоду: What is the weather?",
+    "Как спросить сколько времени: What is the time?",
+    "Как коротко ответить про погоду без повтора слова weather: It is cold."
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Задание 17 в финале — приятно, что все три фразы сразу собираются вместе как маленький настоящий разговор у окна"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — я стою у окна гостиницы, спутник ещё не встал, я хочу узнать погоду и время, и в конце говорю ему всё сразу. Ясно кому и зачем я это говорю.",
+  "would_continue": "да — сессия короткая, всё по делу, ничего не пришлось перечитывать дважды",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания решаемы с тем, что я знаю, новые слова введены чётко и сразу отработаны, сцена понятна без отсылок к чему-то незнакомому."
+}

@@ -1,0 +1,111 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Чтобы спросить про погоду, говорю What is the weather? — сначала what, потом is, потом слово.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Та же рамка What is the ... работает и для времени: What is the time?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Отвечаю без повтора слова weather: It is cold.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (weather)",
+      "what_i_understood": "Карточка и звук слова weather, отличил от water и walk.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (time)",
+      "what_i_understood": "Карточка и звук слова time, отличил от team и toy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал What is the weather? из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Вставил time в What is the ___?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Собрал по слуху What is the time?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8-10 (cold)",
+      "what_i_understood": "Карточка cold, вставил его в It is ___, отличил cold от gold на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11-12 (near)",
+      "what_i_understood": "Карточка near, вставил его в ответ про близкий вокзал.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13-14 (station)",
+      "what_i_understood": "Карточка station, отличил на слух от stay и sun.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Соединил пары weather/time/cold/near с переводами.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Вставил station в It is near the ___.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Собрал It is cold., лишнее what не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 18 (финал)",
+      "what_i_understood": "Сказал подряд три фразы: What is the time? It is cold. It is near the station.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "спрашивать What is the weather? и What is the time? по одной и той же рамке What is the ...",
+    "отвечать It is cold. без повтора слова weather",
+    "говорить It is near the station., используя near и station вместе",
+    "различать на слух weather/water/walk, time/team/toy, cold/gold, station/stay/sun"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "сцена с рукой в открытом окне, которая мёрзнет за пять секунд — понятно, откуда берётся cold",
+    "финал, где спутник сам сел на кровати и спрашивает — сразу ясно, зачем говорить все три фразы подряд"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — с самого начала понятно, что я в гостинице в Дублине, спутник ещё спит/только проснулся, и я смотрю в окно или на телефон без часов; каждая фраза привязана к конкретному моменту (не вижу погоду, разрядился телефон, рука мёрзнет, спутник спрашивает)",
+  "would_continue": "да — сессия короткая, все шаги понятны, к финалу я реально мог сказать три фразы подряд без подглядывания",
+  "verdict": "PASS",
+  "verdict_reason": "все задания выполнимы с тем, что дано в сессии, новые слова введены до использования, сцена понятна и мотивирует каждую фразу."
+}

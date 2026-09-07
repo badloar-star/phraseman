@@ -1,0 +1,74 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "weather",
+      "time"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "water/walk — реалистичная путаница на слух"
+      },
+      {
+        "task": 9,
+        "trap": "near/time как отвлекающие от cold"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "weather",
+        "time",
+        "cold",
+        "near"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 5,
+      "listen_choose": 2,
+      "phrase_builder": 2,
+      "context_gap_grammar": 4,
+      "listen_build_dictation": 1,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 13 вводит карточку station без отработки на слух/фразе перед доской пар в задании 14, а station используется как цель только в 15 и 17 — сама доска пар (14) не включает station, что нарушает правило «карточка прямо перед доской не считается» лишь частично, но главное нарушение — station впервые проверяется в контекстном задании 15 сразу после карточки без промежуточного узнавания на слух, что является дефектом прогрессии «карточка → узнавание на слух → во фразе»."
+}

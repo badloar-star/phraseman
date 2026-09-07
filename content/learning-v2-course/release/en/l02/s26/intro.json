@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "`What is + вещь` (время и погода)",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Как спросить, что там за окном",
+        "uk": "Як запитати, що там за вікном"
+      },
+      "bodyByLocale": {
+        "ru": "`weather` — «погода». Дождь, солнце, ветер, туман.\n\nСпрашивают про неё так: `What is the weather?` Сначала `what`, потом `is`, потом само слово. Перед словом стоит маленькое `the` — пока просто запоминайте вопрос вместе с ним, когда оно нужно, разберём позже.",
+        "uk": "`weather` — «погода». Дощ, сонце, вітер, туман.\n\nПитають про неї так: `What is the weather?` Спершу `what`, потім `is`, потім саме слово. Перед словом стоїть маленьке `the` — поки просто запам'ятовуйте питання разом із ним, а коли воно потрібне, розберемо згодом."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "За окном серо, и вы не понимаете, что там. Спросите спутника.",
+          "uk": "За вікном сіро, і ви не розумієте, що там. Запитайте попутника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-26:intro1:r1",
+              "text": "What is the weather?"
+            },
+            {
+              "responseId": "en:lesson-02:session-26:intro1:r2",
+              "text": "What the weather is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-26:intro1:r3",
+              "text": "What the weather?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-26:intro1:r1",
+              "text": "What is the weather?"
+            },
+            {
+              "responseId": "en:lesson-02:session-26:intro1:r2",
+              "text": "What the weather is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-26:intro1:r3",
+              "text": "What the weather?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За окном серо, и вы не понимаете, что там. Спросите спутника.",
+          "uk": "За вікном сіро, і ви не розумієте, що там. Запитайте попутника."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "То же начало, другое слово",
+        "uk": "Той самий початок, інше слово"
+      },
+      "bodyByLocale": {
+        "ru": "`time` — «время». Про часы на стене, про минуты, про «сколько сейчас».\n\nВопрос собирается из тех же деталей: `What is the time?` Начало то же, что и в вопросе про погоду, — меняется только последнее слово. Так же спрашивают про цену: `What is the price?` — «сколько стоит?»",
+        "uk": "`time` — «час». Про годинник на стіні, про хвилини, про «котра зараз».\n\nПитання складається з тих самих деталей: `What is the time?` Початок такий самий, як у питанні про погоду, — змінюється тільки останнє слово. Так само питають про ціну: `What is the price?` — «скільки коштує?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Телефон разрядился, часов на стене нет. Спросите спутника, сколько сейчас.",
+          "uk": "Телефон розрядився, годинника на стіні немає. Запитайте попутника, котра година."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-26:intro2:r1",
+              "text": "What is the time?"
+            },
+            {
+              "responseId": "en:lesson-02:session-26:intro2:r2",
+              "text": "What is time?"
+            },
+            {
+              "responseId": "en:lesson-02:session-26:intro2:r3",
+              "text": "Is what the time?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-26:intro2:r1",
+              "text": "What is the time?"
+            },
+            {
+              "responseId": "en:lesson-02:session-26:intro2:r2",
+              "text": "What is time?"
+            },
+            {
+              "responseId": "en:lesson-02:session-26:intro2:r3",
+              "text": "Is what the time?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Телефон разрядился, часов на стене нет. Спросите спутника, сколько сейчас.",
+          "uk": "Телефон розрядився, годинника на стіні немає. Запитайте попутника, котра година."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отвечаем про погоду",
+        "uk": "Відповідаємо про погоду"
+      },
+      "bodyByLocale": {
+        "ru": "`cold` — «холодно». Про погоду за окном, про воду в кране, про руки без перчаток.\n\nСпросили `What is the weather?` — отвечают коротко: `It is cold.` По-русски хватило бы одного «холодно», а по-английски перед словом ставят `It is`.",
+        "uk": "`cold` — «холодно». Про погоду за вікном, про воду в крані, про руки без рукавичок.\n\nЗапитали `What is the weather?` — відповідають коротко: `It is cold.` Українською вистачило б одного «холодно», а англійською перед словом ставлять `It is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы высунули руку в окно. Пальцы мёрзнут за пять секунд. Скажите спутнику, как там.",
+          "uk": "Ви висунули руку у вікно. Пальці мерзнуть за п'ять секунд. Скажіть попутникові, як там."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-26:intro3:r1",
+              "text": "It is cold."
+            },
+            {
+              "responseId": "en:lesson-02:session-26:intro3:r2",
+              "text": "It cold."
+            },
+            {
+              "responseId": "en:lesson-02:session-26:intro3:r3",
+              "text": "Is it cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-26:intro3:r1",
+              "text": "It is cold."
+            },
+            {
+              "responseId": "en:lesson-02:session-26:intro3:r2",
+              "text": "It cold."
+            },
+            {
+              "responseId": "en:lesson-02:session-26:intro3:r3",
+              "text": "Is it cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы высунули руку в окно. Пальцы мёрзнут за пять секунд. Скажите спутнику, как там.",
+          "uk": "Ви висунули руку у вікно. Пальці мерзнуть за п'ять секунд. Скажіть попутникові, як там."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7fbf477d6473cdce3385ef6bb20d6ff9755bd67d205dcec959f1774f10a89edf"
+}

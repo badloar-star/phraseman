@@ -1180,6 +1180,7 @@ function main() {
       .filter((l) => HARD_FACT_RE.test(l));
     if (hardFacts.length) {
       WARN(`СТОП перед локализацией — не закрытые машинные факты:\n  ${hardFacts.join("\n  ")}`);
+
       write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blockedBy: "machine_facts", facts: hardFacts, at: new Date().toISOString() }, null, 2));
       return;
     }
@@ -1197,6 +1198,24 @@ function main() {
     const finalV = stageJudgeStable(S, ctx, plan, row, known, finalRu);
     const brokenTasks = checkSingleAnswer(finalRu, SESSION);
     const finalScore = score(finalV);
+    // зачем: 07.09 сессии 29 и 31 набрали порог §10 (четыре PASS) и были
+    // прокручены ещё через 6 и 13 кругов правки. Правило было записано, но
+    // держалось на дисциплине сессии. Теперь пайплайн говорит это вслух.
+    {
+      const KEY = ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader"];
+      const passed = KEY.filter((k) => finalV && finalV[k] && finalV[k].verdict === "PASS");
+      if (passed.length === KEY.length) {
+        LOG("=".repeat(60));
+        LOG("ПОРОГ ВЫПУСКА ДОСТИГНУТ: четыре ключевых судьи дали PASS.");
+        LOG("Дальнейшие круги правки ЗАПРЕЩЕНЫ (Конституция §10).");
+        const taste = finalV.judge_taste && finalV.judge_taste.verdict;
+        if (taste && taste !== "PASS") LOG(`Вердикт judge_taste (${taste}) идёт в отчёт владельцу, а не в правку.`);
+        LOG("Следующий шаг: localize → build_release → build_mockup → коммит.");
+        LOG("=".repeat(60));
+      } else {
+        LOG(`до порога выпуска: PASS у ${passed.length}/4 ключевых судей (${passed.join(", ") || "нет"})`);
+      }
+    }
     const finalBlocked = Object.entries(finalV).filter(([, j]) => j.verdict === "BLOCK").map(([n]) => n);
     if (finalScore !== cur.s) LOG(`финал судился заново: было ${cur.s}/6 по черновику, стало ${finalScore}/6`);
     if (finalBlocked.length) WARN(`финал несёт блок: ${finalBlocked.join(", ")} — нужен разбор`);

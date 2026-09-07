@@ -251,7 +251,7 @@ const PHRASE_BUILD_FROM_SESSION = 31;
 // зачем: сколько сборок могут делить один скелет. Больше — ученик собирает одно
 // и то же и правила не чувствует (владелец 07.09).
 const PHRASE_SAME_SKELETON_MAX = 2;
-const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|МАЛО СБОРКИ ФРАЗЫ|ОДНООБРАЗНЫЕ СБОРКИ|ПОВТОР СБОРКИ ДОСЛОВНО/;
+const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|МАЛО СБОРКИ ФРАЗЫ|ОДНООБРАЗНЫЕ СБОРКИ|ПОВТОР СБОРКИ ДОСЛОВНО|IS С МНОЖЕСТВЕННЫМ/;
 
 function machineFacts(file) {
   const text = read(file);
@@ -390,6 +390,23 @@ function machineFacts(file) {
       }
     }
   }
+  // зачем: правило «бери разные конструкции» (07.09) дало побочный эффект —
+  // автор берёт чужую конструкцию и путается в её грамматике. Черновик сессии 31
+  // выдал «Where is the toilets?», хотя сессия 21 специально учила: несколько
+  // предметов → are. В выпущенном курсе таких ошибок 0, значит дефект новый.
+  {
+
+    const reIs = /\b(is)\s+(?:the\s+)?(toilets|shops|prices|people|guests|twins|strangers)\b/gi;
+    for (const m of text.matchAll(reIs)) {
+      const from = text.lastIndexOf(String.fromCharCode(10), m.index) + 1;
+      const to = text.indexOf(String.fromCharCode(10), m.index);
+      const line = text.slice(from, to < 0 ? undefined : to);
+      // строки, где это НАЗВАНО ошибкой, законны — там разбирают неверный вариант
+      if (/❌|неверн|ошибк|не говорят/i.test(line)) continue;
+      facts.push(`IS С МНОЖЕСТВЕННЫМ: «${m[0]}» — у нескольких предметов ставится are (это разбиралось в сессии 21): ${line.trim().slice(0, 70)}`);
+    }
+  }
+
   const timeRefs = [...(text.split(/^## Практика/m)[0] + practice).matchAll(/(вчера|позавчера|на прошлой сессии|в прошлый раз вы|вы уже учили|вы выучили)/gi)].map((m) => m[0]);
   facts.push(`ссылки на время обучения: ${timeRefs.length ? timeRefs.join(", ") : "не найдены (проверь «сегодня/утром» вручную — могут быть сценой)"}`);
 

@@ -289,7 +289,7 @@ function machineFacts(file) {
     }
   }
   // ЗВУК ПО ОТСУТСТВИЮ: разбор на слух не должен строиться на «нет такого звука».
-  const soundAbsence = [...practice.matchAll(new RegExp("(нет|без|не слышно|отсутствует)\s{0,3}(его |их |этого |такого )?[«»']?[а-яёА-ЯЁ]{1,4}[«»']?|«[а-яёА-ЯЁ]{1,3}»[^.]{0,30}(его нет|их нет|не слышно)", "g"))];
+  const soundAbsence = [...practice.matchAll(new RegExp("(нет|без|не слышно|отсутствует)\s{0,3}(его |их |этого |такого )?[«»']?[а-яёА-ЯЁ]{1,4}[«»']?|[`«][^`»]{1,12}[`»]\s{0,3}[—,-]?\s{0,3}(нет|его нет|их нет|не слышно)", "g"))];
   if (soundAbsence.length) {
     const near = soundAbsence.filter((m) => {
       const around = practice.slice(Math.max(0, m.index - 220), m.index + 80);

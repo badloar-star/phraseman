@@ -16,11 +16,19 @@
     "realistic": [
       {
         "task": 5,
-        "trap": "bill/corner как отвлекающие вместо menu — логичная бытовая путаница"
+        "trap": "bill вместо menu — правдоподобная путаница момента ужина"
       },
       {
         "task": 7,
-        "trap": "name/bill вместо price — правдоподобная подмена понятий"
+        "trap": "name/bill вместо price — реалистичная путаница похожих вопросов"
+      },
+      {
+        "task": 11,
+        "trap": "prices/rules вместо toilets — тематически близкие слова урока"
+      },
+      {
+        "task": 12,
+        "trap": "menu/price вместо corner — путаница предмет/место"
       }
     ],
     "silly": [],
@@ -48,17 +56,10 @@
     "speed_match_overlap": false,
     "repeated_targets": [],
     "generic_instructions": [],
-    "attention_traps": [
-      16
-    ]
+    "attention_traps": []
   },
   "time_references": [],
-  "cross_session_repeats": [
-    {
-      "neighbor": "l02_s28/l02_s29",
-      "what": "тот же скелет «What is the ___?» с price/name повторяется третью сессию подряд как обучающий приём, но здесь это законное возвращение слова, не новая подача — не является дефектом"
-    }
-  ],
+  "cross_session_repeats": [],
   "textbook_formulas": [],
   "builder_notes": {
     "new_words_line_ok": true,
@@ -75,5 +76,5 @@
     }
   },
   "verdict": "PASS",
-  "verdict_reason": "План выполнен точно, границы материала не нарушены, доска пар и фидбек по вариантам корректны, ловушки реалистичны, счётчик заданий и механик в норме."
+  "verdict_reason": "Границы, повторы, доска пар и фидбэк проверены — нарушений не найдено, план выполнен точно."
 }

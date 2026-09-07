@@ -1,144 +1,130 @@
 {
   "walkthrough": [
     {
-      "step": "Интро 1",
-      "what_i_understood": "menu — это книжка с едой и ценами, которую приносят в начале ужина",
+      "step": "Интро 1 (menu)",
+      "what_i_understood": "Официант приносит книжку с едой и ценами перед заказом — это называется menu.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Интро 2",
-      "what_i_understood": "bill — это листок с суммой, который дают в конце, и фраза целиком: 'The bill, please'",
+      "step": "Интро 2 (bill)",
+      "what_i_understood": "Когда поел, просишь листок с суммой — это bill, фраза 'The bill, please'.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Интро 3",
-      "what_i_understood": "чтобы спросить про цену, говорю 'What is the price?' — начало не трогаю, меняю только последнее слово",
+      "step": "Интро 3 (name vs price)",
+      "what_i_understood": "What is the name? — спрашиваю как называется. What is the price? — спрашиваю сколько стоит. Разница в последнем слове.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 1",
-      "what_i_understood": "карточка menu, просто повторение",
+      "step": "Задание 1-2 (menu карточка+слух)",
+      "what_i_understood": "Запомнил звучание menu, отличил от many/money.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 2",
-      "what_i_understood": "выбрал menu на слух, отличил от many и money по звучанию",
+      "step": "Задание 3-4 (bill карточка+слух)",
+      "what_i_understood": "Запомнил bill, отличил от ball/bell по гласной.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 3",
-      "what_i_understood": "карточка bill",
+      "step": "Задание 5 (вставка menu)",
+      "what_i_understood": "В начале ужина просишь menu, а не bill/corner.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 4",
-      "what_i_understood": "выбрал bill, отличил от ball и bell",
+      "step": "Задание 6 (What is this?)",
+      "what_i_understood": "Собрал фразу из плиток без проблем.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 5",
-      "what_i_understood": "сел за стол — прошу menu, не bill и не corner",
+      "step": "Задание 7 (price)",
+      "what_i_understood": "Спрашиваю цену — What is the price?",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 6",
-      "what_i_understood": "собрал 'What is this?' из плиток",
+      "step": "Задание 8 (bill/ball на слух)",
+      "what_i_understood": "Различил на слух.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 7",
-      "what_i_understood": "спросил цену — 'What is the price?'",
+      "step": "Задание 9 (What is the name?)",
+      "what_i_understood": "Собрал фразу.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 8",
-      "what_i_understood": "на слух отличил bill от ball",
+      "step": "Задание 10 (Speed Match)",
+      "what_i_understood": "Свёл menu-меню, bill-счёт, price-цена, name-название.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 9",
-      "what_i_understood": "собрал 'What is the name?'",
+      "step": "Задание 11 (toilets)",
+      "what_i_understood": "Where are the toilets? — спрашиваю где помыть руки.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 10",
-      "what_i_understood": "сопоставил menu-меню, bill-счёт, price-цена, name-название",
+      "step": "Задание 12 (corner)",
+      "what_i_understood": "It is in the corner — ответ про место.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 11",
-      "what_i_understood": "спросил, где туалеты — toilets, а не prices и не rules",
+      "step": "Задание 13 (Is it near?)",
+      "what_i_understood": "Собрал вопрос про близость.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 12",
-      "what_i_understood": "ответ про место — 'it is in the corner'",
+      "step": "Задание 14 (near)",
+      "what_i_understood": "It is near — ответ на такой же вопрос.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 13",
-      "what_i_understood": "собрал вопрос 'Is it near?'",
+      "step": "Задание 15 (диктовка toilets)",
+      "what_i_understood": "Собрал по слуху Where are the toilets?",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 14",
-      "what_i_understood": "ответил 'It is near'",
+      "step": "Задание 16 (лишняя плитка)",
+      "what_i_understood": "Собрал What is the price?, отбросив лишнее name.",
       "confusion": null,
       "could_answer_question": true
     },
     {
-      "step": "Задание 15",
-      "what_i_understood": "написал на слух 'Where are the toilets?'",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 16",
-      "what_i_understood": "собрал 'What is the price?' и не взял лишнюю плитку name",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 17",
-      "what_i_understood": "сказал подряд три фразы про конец ужина: туалеты, близко ли, счёт",
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Сказал подряд три фразы: про туалеты, про близость, про счёт — без подсказок, и это получилось, потому что каждая часть уже была отработана раньше.",
       "confusion": null,
       "could_answer_question": true
     }
   ],
   "learned_new": [
-    "новое слово menu — книжка с едой и ценами",
-    "новое слово bill — счёт, и фраза целиком 'The bill, please'",
-    "спросить про цену: 'What is the price?'",
-    "спросить про название: 'What is the name?'",
-    "повторил вопрос про место 'Where are the toilets?' и ответ 'It is in the corner' / 'It is near'"
+    "Слово menu и что это значит",
+    "Слово bill и фраза 'The bill, please'",
+    "Разница между What is the name? и What is the price? — меняется только последнее слово"
   ],
   "impossible_tasks": [],
   "boring_or_water": [],
   "felt_alive": [
-    "сцена понятная и живая: ужин кончается, реально представляешь, что просишь счёт и спрашиваешь дорогу до туалета",
-    "финал (задание 17), где три фразы подряд без подсказок — приятно, что получилось само, без подглядывания"
+    "Сцена простая и понятная: ужин заканчивается, это реально ощущается как логичный момент для этих фраз",
+    "Финальное задание 17, где три фразы подряд — приятно, что всё само сложилось из того, что уже отработал"
   ],
   "felt_dead": [
-    "объяснение ударения в menu ('менЮ' против 'мЕню') — сухо, но коротко и не мешает"
+    "Объяснение про menu и bill суховатое, но по делу — не мешает, просто не цепляет"
   ],
-  "scene_reason": "да, понятно: ужин в кафе заканчивается, я реально прошу счёт, спрашиваю про цену блюда и ищу туалет — каждая фраза привязана к конкретному моменту, а не висит в воздухе",
-  "would_continue": "да — сессия короткая, ничего не показалось непонятным, а в конце я сам, без подсказок, собрал три фразы подряд, и это было приятно",
+  "scene_reason": "да, понятно: ужин в кафе закончился, тарелки унесли, нужно узнать цену, найти туалет и попросить счёт — каждая фраза привязана к конкретному моменту застолья",
+  "would_continue": "да — было легко идти по шагам, ничего не запутало, в конце почувствовал что могу сам сказать нужные фразы подряд",
   "verdict": "PASS",
-  "verdict_reason": "все задания прошёл честно, узнал два новых слова и повторил старые конструкции, сцена понятна от начала до конца, ни одной ловушки с незнакомым словом в правильном ответе"
+  "verdict_reason": "Все задания выполнимы известными словами, новое усвоено чётко, сцена понятна с первой страницы, финал даёт ощущение прогресса."
 }

@@ -1,0 +1,143 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — noise",
+      "what_i_understood": "noise = шум, неприятный звук (дрель, сирена, гул). Вопрос строится как What is + вещь: What is the noise?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — queue",
+      "what_i_understood": "queue = очередь, люди друг за другом. Слово читается как «кью», хотя букв пять — это просто нужно запомнить.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — What is the...",
+      "what_i_understood": "Начало What is the не меняется, меняется только последнее слово: noise, name, street.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 — карточка noise",
+      "what_i_understood": "Закрепил значение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 — на слух noise/nose/news",
+      "what_i_understood": "Похожие слова, выбрал по звучанию из подсказки в интро.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 — карточка queue",
+      "what_i_understood": "Закрепил.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 — на слух queue/cool/key",
+      "what_i_understood": "Справился.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 — The ___ is bad (дрель за стеной)",
+      "what_i_understood": "noise — подходит по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 — собрать What is the noise?",
+      "what_i_understood": "Собрал из плиток, порядок совпал с интро.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 — The ___ is long (люди у входа)",
+      "what_i_understood": "queue.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 — queue vs door",
+      "what_i_understood": "door новое слово, но оно среди неверных вариантов — не мешает ответить.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 — What ___ the noise?",
+      "what_i_understood": "is, скрепка после What.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 — собрать под диктовку, лишняя плитка street",
+      "what_i_understood": "Собрал верно, лишнее не тронул.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 — доска пар",
+      "what_i_understood": "Все 4 слова уже отработаны раньше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 — What is the ___? (заблудились)",
+      "what_i_understood": "street, по сцене (спрашиваю название улицы).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 — собрать What is the name?",
+      "what_i_understood": "Собрал по образцу интро 3.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 — The street is ___ (сто человек говорят разом)",
+      "what_i_understood": "noisy — про место. noise было бы про сам звук, а не про улицу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 — The street is ___ (не протолкнуться)",
+      "what_i_understood": "crowded — людно, тесно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 — собрать What is the street?, лишняя are",
+      "what_i_understood": "Не взял are, взял is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 — финал вслух",
+      "what_i_understood": "Сказал все три фразы: про шум, про улицу, про очередь.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово noise (шум как звук, а не как характеристика места)",
+    "Слово queue (очередь) и что оно читается как «кью»",
+    "Вопрос What is the noise? / What is the street? / What is the name? — с неизменным началом What is the",
+    "Разница noise (вещь-звук) и noisy (какое место) на практике в заданиях 14 и 5"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с гулом из-за угла в интро 1 — понятно, зачем спрашивать",
+    "Финальное задание 17, где нужно сразу сказать три фразы про реальную прогулку — приятно, что всё собралось вместе"
+  ],
+  "felt_dead": [
+    "Задание 11 (доска пар) — чисто механическое сопоставление без сцены, но это нормально для повторения"
+  ],
+  "scene_reason": "да — вся сессия держится на одной понятной прогулке по Дублину: гул из-за угла, очередь у двери, вопрос про название улицы. В каждом задании ясно, кто спрашивает и зачем.",
+  "would_continue": "да — сессия короткая, слова простые и сразу использованы в живых мини-ситуациях, под конец я реально мог сказать три фразы подряд без запинки",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно, узнал два новых слова и одну грамматическую конструкцию, ловушки (door, are, noisy vs noise) были понятны по контексту, а не обманом."
+}

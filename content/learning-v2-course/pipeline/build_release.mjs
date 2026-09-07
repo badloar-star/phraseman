@@ -478,7 +478,29 @@ function main() {
     const stPath = path.join(dir, "status.json");
     if (fs.existsSync(stPath)) {
       const st = JSON.parse(fs.readFileSync(stPath, "utf8"));
-      if (st.blocked) WARN(`СЕССИЯ ЗАБЛОКИРОВАНА судьями (${[].concat(st.blocked).join(", ")}) — собирать её в курс нельзя, сначала правка`);
+      // зачем: 07.09 сессия 30 лежала с blocked=[judge_nonsense] от прогона,
+      // который был ДО правок, а свежий вердикт того же судьи давал PASS.
+      // Та же болезнь, что с machine_facts: статус пишется один раз и не
+      // пересматривается. Сверяем список с реальными файлами вердиктов.
+      if (st.blocked) {
+        const stale = [];
+        const still = [];
+        for (const j of [].concat(st.blocked)) {
+          const vp = path.join(dir, `final.${j}.json`);
+          if (!fs.existsSync(vp)) { still.push(`${j} (нет вердикта)`); continue; }
+          let v = null;
+          try { v = JSON.parse(fs.readFileSync(vp, "utf8")); }
+          catch (e) { still.push(`${j} (вердикт нечитаем: ${e.message})`); continue; }
+          if (v && v.verdict === "PASS") stale.push(j); else still.push(`${j} (${v && v.verdict})`);
+        }
+        if (still.length) WARN(`СЕССИЯ ЗАБЛОКИРОВАНА судьями (${still.join(", ")}) — собирать её в курс нельзя, сначала правка`);
+        else {
+          LOG(`протухший блок судей снят: ${stale.join(", ")} дают PASS по свежему вердикту`);
+          const fixed = { ...st, blocked: undefined, staleBlockClearedAt: new Date().toISOString() };
+          delete fixed.blocked;
+          fs.writeFileSync(stPath, JSON.stringify(fixed, null, 2));
+        }
+      }
       // зачем: 06.09 сессия 3 урока 2 лежала в релизе живой, а status.json
       // говорил blockedBy=machine_facts — гейт пишет статус и делает return,
       // поэтому ручная правка + пересборка релиза его не переписывали. Статус

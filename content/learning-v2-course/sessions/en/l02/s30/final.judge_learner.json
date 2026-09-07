@@ -1,0 +1,147 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Есть слово noise — шум, который мешает. Чтобы спросить, что это за звук, говорят: сначала What, потом is, потом the, потом noise. То есть 'What is the noise?'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Показали, что вопрос всегда начинается одинаково: What is the..., а меняется только последнее слово (noise / name / street). Удобно, я это уже понял по интро 1, но тут подтвердили на примерах.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Новое слово queue — очередь, люди стоят друг за другом. Произносится 'кью', не как пишется. В вопрос встаёт так же, в конец: What is the queue?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка noise)",
+      "what_i_understood": "Закрепил: noise = шум",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (аудио про noise)",
+      "what_i_understood": "Услышал 'What is the noise?' и выбрал 'про звук'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка queue)",
+      "what_i_understood": "Закрепил: queue = очередь, звучит 'кью'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (аудио queue)",
+      "what_i_understood": "Выбрал queue из вариантов",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Гудит непонятно что за стеной — подставил noise",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Собрал 'What is the noise?' из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Люди у входа друг за другом — подставил queue, не noise и не name",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (карточка crowded)",
+      "what_i_understood": "Новое для меня: crowded = людно, тесно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "В вопросе не хватает just 'is' между What и the noise — вставил is",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Собрал по аудио 'What is the noise?', лишнее слово street не тронул",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Сопоставил noise-шум, queue-очередь, street-улица, name-название",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Заблудился на перекрёстке — нужно название улицы, подставил street",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал 'What is the name?'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Под окнами долбит молоток — тут нужно слово 'шумно' про улицу, это noisy, а не noise (noise — сам шум-вещь, а noisy — описание улицы). Разница тонкая, но объяснение в сноске помогло",
+      "confusion": "Пришлось сначала подумать, почему не noise, но сноска объяснила",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Тихая улица, но народу много — тут нужно crowded, а не noisy (то про звук) и не queue (то про людей в ряд, а не про тесноту вообще). Понял разницу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Собрал 'What is the street?' без лишнего noise",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Сказал вслух все три вопроса подряд про звук, очередь и улицу",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Новое слово queue (очередь, читается 'кью', не как пишется)",
+    "Новое слово noise (шум, который мешает)",
+    "Что вопрос 'What is the ...?' — универсальная рамка, куда можно подставлять разные слова про место/звук/название",
+    "Разница между noise (шум-вещь) и noisy (шумный — описание места) — это было не совсем очевидно сразу, но объяснили на примере",
+    "Разница между queue (очередь именно как ряд людей) и crowded (просто тесно, многолюдно) — тоже не сразу интуитивно, но разобрался по подсказкам"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2",
+      "why": "По сути повторяет то же самое, что уже было ясно из интро 1 (что 'What is the' — начало, а меняется только конец). Новой информации почти нет, кроме напоминания про name и street, но это не критично, скорее лёгкое дублирование"
+    }
+  ],
+  "felt_alive": [
+    "Сцена прогулки по Дублину с гулом из-за угла и очередью у двери — понятная, живая ситуация, легко представить, зачем я это спрашиваю",
+    "Финал (задание 17), где всё собирается в одну живую сценку на улице — приятно, что практика не разрозненная, а из одной прогулки"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — я иду по улице, слышу шум, вижу очередь у двери и не знаю названия улицы, и в каждом случае объяснено, к кому или к чему я обращаюсь с вопросом (к прохожему, сам к себе). Ситуация конкретная и последовательная от интро до финала.",
+  "would_continue": "да, хочу продолжить — за сессию я реально выучил два новых слова, потренировал их в разных заданиях с постепенным снижением подсказок, ничего не показалось непроходимым, и в конце было приятное ощущение, что всё уложилось в одну понятную сцену",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы с тем, что дано в сессии, я узнал два новых слова и потренировал их достаточно разнообразно, сцена понятна от начала до конца, лёгкое дублирование в интро 2 не мешает пройти дальше."
+}

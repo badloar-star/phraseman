@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-30:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i02",
+    "correctText": "про звук",
+    "correctResponseId": "en:lesson-02:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i04",
+    "correctText": "queue",
+    "correctResponseId": "en:lesson-02:session-30:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i05",
+    "correctText": "noise",
+    "correctResponseId": "en:lesson-02:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i06",
+    "correctText": "What is the noise?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i07",
+    "correctText": "queue",
+    "correctResponseId": "en:lesson-02:session-30:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i10",
+    "correctText": "What is the noise?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i12",
+    "correctText": "street",
+    "correctResponseId": "en:lesson-02:session-30:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i13",
+    "correctText": "What is the name?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i14",
+    "correctText": "noisy",
+    "correctResponseId": "en:lesson-02:session-30:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i15",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-30:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i16",
+    "correctText": "What is the street?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-30:i17",
+    "correctText": "What is the noise? What is the queue? What is the street?",
+    "correctResponseId": null
+  }
+]

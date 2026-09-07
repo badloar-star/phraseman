@@ -1,0 +1,131 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 (noise)",
+      "what_i_understood": "Есть слово noise — шум, который мешает (дрель, сирена). Есть похожее слово noisy — шумное место. Вопрос про звук: What is the noise? — What сразу за ним is, потом the noise.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 (queue)",
+      "what_i_understood": "queue — очередь, люди друг за другом. Читается как «кью», хотя букв пять.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 (What is the...)",
+      "what_i_understood": "Один и тот же кусок What is the можно приставлять к разным словам: noise, name, street. Меняется только последнее слово.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (карточка + аудио noise)",
+      "what_i_understood": "Закрепил произношение noise, отличил от nose и news на слух.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (карточка + аудио queue)",
+      "what_i_understood": "queue звучит как «кью», отличается от cool и key.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (гэп: дрель за стеной)",
+      "what_i_understood": "Выбрал noise, потому что там про звук, не про очередь и не про улицу.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (собери фразу)",
+      "what_i_understood": "Собрал What is the noise? из плиток.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (гэп: очередь у входа)",
+      "what_i_understood": "Выбрал queue вместо noise и name.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (звук queue/car)",
+      "what_i_understood": "Отличил queue от car на слух.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (скрепка is/are/am)",
+      "what_i_understood": "Между What и the ставится is, потому что вещь одна.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (диктовка)",
+      "what_i_understood": "Собрал What is the noise? на слух, среди плиток была лишняя street.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (пары)",
+      "what_i_understood": "Соединил noise-шум, queue-очередь, street-улица, name-название. Street и name я помню из прошлых сессий, тут они просто повторяются.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (гэп: заблудился)",
+      "what_i_understood": "Выбрал street — я стою на месте и хочу знать название улицы.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (собери фразу name)",
+      "what_i_understood": "Собрал What is the name?",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (гэп: шумный зал)",
+      "what_i_understood": "Выбрал noisy, а не noise, потому что тут про место, а не про сам звук.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (гэп: толпа на площади)",
+      "what_i_understood": "Выбрал crowded — тесно от людей, а не noisy и не long.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (собери без подсказки)",
+      "what_i_understood": "Собрал What is the street?, лишняя плитка are осталась не у дел.",
+      "confusion": "null",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (говорение)",
+      "what_i_understood": "Проговорил все три фразы про шум, улицу и очередь — понятно, зачем каждая нужна по сценарию прогулки.",
+      "confusion": "null",
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Новое слово noise (шум) и как отличить его на слух от nose и news",
+    "Новое слово queue (очередь) и его непривычное произношение «кью»",
+    "Разница между noise (сам звук) и noisy (шумное место) — раньше noisy уже знал, а noise теперь узнал как отдельное слово",
+    "Могу задать вопрос What is the ...? с разными хвостами (noise, name, street), не только с тем словом, что учил раньше"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с гудением из-за угла и очередью у двери — понятно, где я стою и почему спрашиваю",
+    "Финальное задание 17, где я говорю все фразы подряд как будто реально иду по улице"
+  ],
+  "felt_dead": [
+    "Интро 3 суховатое, просто список примеров с одним и тем же вопросом — но это ожидаемо, там объясняется механика, а не сценка"
+  ],
+  "scene_reason": "да — понятно: я иду по улице в Дублине, слышу непонятный шум и вижу очередь у двери, поэтому спрашиваю What is the noise? и What is the street?, а про очередь просто констатирую The queue is long. Каждая фраза привязана к конкретному моменту прогулки.",
+  "would_continue": "да — задания понятные, новых слов немного и они хорошо закрепились, под конец было приятное живое задание с говорением",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания я смог сделать честно, узнал два новых слова и новый способ строить вопросы, было понятно зачем говорю каждую фразу."
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `Where is` + место — на слух",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`Where is` слипается в один кусок",
+        "uk": "`Where is` злипається в один шматок"
+      },
+      "bodyByLocale": {
+        "ru": "`where` — «где». Сразу за ним встаёт `is`, и в быстрой речи между ними нет паузы: `Where is` звучит как одно слово. На слух `is` там почти пропадает — но говорится оно всегда.\n\nПоэтому `is` часто не слышат и не говорят: выходит `Where the station?` Поймут, но звучит ломано.",
+        "uk": "`where` — «де». Одразу за ним стає `is`, і в швидкій мові паузи між ними немає: `Where is` звучить як одне слово. На слух `is` там майже зникає — але вимовляють його завжди.\n\nТому `is` часто не чують і не кажуть: виходить `Where the station?` Зрозуміють, але звучить поламано."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "У метро шумно. Спросите прохожего, где вокзал.",
+          "uk": "Біля метро шумно. Спитайте перехожого, де вокзал."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-20:intro1:r1",
+              "text": "Where is the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-20:intro1:r2",
+              "text": "Where the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-20:intro1:r3",
+              "text": "Where station is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-20:intro1:r1",
+              "text": "Where is the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-20:intro1:r2",
+              "text": "Where the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-20:intro1:r3",
+              "text": "Where station is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У метро шумно. Спросите прохожего, где вокзал.",
+          "uk": "Біля метро шумно. Спитайте перехожого, де вокзал."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Всё решает третий звук",
+        "uk": "Усе вирішує третій звук"
+      },
+      "bodyByLocale": {
+        "ru": "`street` — «улица», `station` — «вокзал, станция». Начинаются они одинаково — «ст», и эти два звука вам ничего не скажут.\n\nСлушайте третий звук. У `street` там «р» — получается сплошное «стр». У `station` вместо него тянется «эй»: «стэй». Один звук — и слово опознано.",
+        "uk": "`street` — «вулиця», `station` — «вокзал, станція». Починаються вони однаково — «ст», і ці два звуки вам нічого не скажуть.\n\nСлухайте третій звук. У `street` там «р» — виходить суцільне «стр». У `station` замість нього тягнеться «ей»: «стей». Один звук — і слово впізнане."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Прохожий говорит быстро, вы разобрали только начало: «стр». Про что он сказал?",
+          "uk": "Перехожий говорить швидко, ви розібрали тільки початок: «стр». Про що він сказав?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-20:intro2:r1",
+              "text": "street"
+            },
+            {
+              "responseId": "en:lesson-02:session-20:intro2:r2",
+              "text": "station"
+            },
+            {
+              "responseId": "en:lesson-02:session-20:intro2:r3",
+              "text": "standing"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-20:intro2:r1",
+              "text": "street"
+            },
+            {
+              "responseId": "en:lesson-02:session-20:intro2:r2",
+              "text": "station"
+            },
+            {
+              "responseId": "en:lesson-02:session-20:intro2:r3",
+              "text": "standing"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Прохожий говорит быстро, вы разобрали только начало: «стр». Про что он сказал?",
+          "uk": "Перехожий говорить швидко, ви розібрали тільки початок: «стр». Про що він сказав?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Слышите коротко — отвечайте целиком",
+        "uk": "Чуєте коротко — відповідайте повністю"
+      },
+      "bodyByLocale": {
+        "ru": "Вы спросили — и ответ будет коротким, без длинных объяснений. `near` — «рядом». `behind` — «за», «позади».\n\nПолностью это `It is near` или `It is behind the station`. В шуме до вас часто долетает только `near` или `behind` — понять этого достаточно, но сами отвечайте целиком.",
+        "uk": "Ви спитали — і відповідь буде короткою, без довгих пояснень. `near` — «поряд». `behind` — «за», «позаду».\n\nПовністю це `It is near` або `It is behind the station`. У шумі до вас часто долітає тільки `near` чи `behind` — зрозуміти цього досить, але самі відповідайте повністю."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Прохожий машет рукой: идти пару минут. Что он сказал?",
+          "uk": "Перехожий махає рукою: іти пару хвилин. Що він сказав?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-20:intro3:r1",
+              "text": "It is near."
+            },
+            {
+              "responseId": "en:lesson-02:session-20:intro3:r2",
+              "text": "It near."
+            },
+            {
+              "responseId": "en:lesson-02:session-20:intro3:r3",
+              "text": "Is it near?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-20:intro3:r1",
+              "text": "It is near."
+            },
+            {
+              "responseId": "en:lesson-02:session-20:intro3:r2",
+              "text": "It near."
+            },
+            {
+              "responseId": "en:lesson-02:session-20:intro3:r3",
+              "text": "Is it near?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Прохожий машет рукой: идти пару минут. Что он сказал?",
+          "uk": "Перехожий махає рукою: іти пару хвилин. Що він сказав?"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "248a16d60451cc52ae793d57225822efd66a8434292b7810c22a05c4075e8a6d"
+}

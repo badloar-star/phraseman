@@ -1,0 +1,75 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 7,
+        "trap": "behind/crowded против near — правильная категория, но правдоподобная ошибка"
+      },
+      {
+        "task": 9,
+        "trap": "station/near против street — знакомые слова не по месту"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "station",
+        "street",
+        "near",
+        "behind"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      15
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s19",
+      "what": "финальная сцена задания 17 почти дословно повторяет сюжетную развязку сессии 19 (\"туалеты с другой стороны вокзала\" в задании 12) — но это разные задания одной сессии, не межсессийный повтор; фактического дублирования с s17/s18/s19 по тексту интро не найдено"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 4,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "listen_build_dictation": 3,
+      "context_gap_grammar": 3,
+      "phrase_builder": 2,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы соблюдены (только уже известные слова/конструкция, новых нет), машинные факты по интро совпадают с текстом (station упомянут как «вокзал» в сцене интро 1, хоть и не отдельным заголовком, что не является нарушением), доска пар — все 4 слова отработаны заранее, ловушки реалистичны, обратных ссылок на время и учебных формул нет."
+}

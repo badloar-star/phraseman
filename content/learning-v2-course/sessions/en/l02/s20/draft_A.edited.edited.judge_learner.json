@@ -1,0 +1,100 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Where is звучит слитно, is легко потерять на слух, но говорить его надо всегда, второе слово после where",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "street и station начинаются одинаково (ст), но дальше разные звуки: р у street, эй у station",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "На вопрос где что-то, отвечают коротко: It is near / It is behind",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-4 (звуки)",
+      "what_i_understood": "Различаю station/street/standing, near/name/nine, behind/bell/behave на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (карточка crowded)",
+      "what_i_understood": "crowded — людно, тесно от народа",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Узнаю crowded на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (пары)",
+      "what_i_understood": "Свёл все 4 слова с переводом без проблем",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Собрал Where is the station? из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Понял, что near подходит по смыслу (жест — недалеко)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10-11",
+      "what_i_understood": "Собрал и вставил street в вопрос про улицу",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12-13",
+      "what_i_understood": "Понял станцию на слух как вопрос; вставил crowded про толпу",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14-16",
+      "what_i_understood": "Собрал It is behind, It is near, Where is the street? включая с лишней плиткой",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Произнёс три фразы подряд про станцию, улицу и толпу",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Что is в Where is легко теряется на слух, но всегда произносится и стоит сразу после where",
+    "Как на слух отличить station от street по звуку после 'ст'",
+    "Слово crowded — людно/тесно от народа",
+    "Что на вопрос Where is... отвечают коротко: It is near / It is behind",
+    "Порядок слов: It is + место (near/behind), а не It near или Is it near в ответе"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с шумной улицей у метро, где приходится переспрашивать — понятно, зачем учить короткие ответы",
+    "Задание 17 — финал, где всё складывается в одну реальную ситуацию (спросить дорогу дважды и пожаловаться на толпу)"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно: я стою у метро, шумно, я спрашиваю дорогу к вокзалу или улице, а мне отвечают коротко жестом и парой слов. Понятно кому и когда говорить эти фразы.",
+  "would_continue": "Да — сессия короткая, звуки различать было интересно, и в конце я реально смог сказать три связанные фразы сам, без подсказок.",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания решаемы известными мне словами и грамматикой, я узнал новое и понял, в какой ситуации это использовать."
+}

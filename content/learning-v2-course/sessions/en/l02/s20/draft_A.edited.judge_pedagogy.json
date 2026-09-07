@@ -1,0 +1,75 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "street/standing как акустически близкие отвлекающие к station"
+      },
+      {
+        "task": 7,
+        "trap": "behind/crowded — правдоподобные семантические соседи near"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "station",
+        "street",
+        "near",
+        "behind"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      15
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s19",
+      "what": "разбор `It near` → «между it и словом о месте стоит is» почти дословно повторяет формулировку разбора из l02_s19 («Пропало is. Между it и словом о месте оно нужно»), но это ожидаемо для сессии-повторения того же материала на слух, не новая шутка/сцена"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 4,
+      "sound_contrast": 1,
+      "speed_match": 1,
+      "listen_build_dictation": 3,
+      "context_gap_grammar": 4,
+      "phrase_builder": 2,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы, честность повторения и форма соблюдены: новых слов нет, все конструкции и слова уже пройдены, ловушки реалистичны, доска пар отработана заранее, обманка на внимательность есть, заданий 17."
+}

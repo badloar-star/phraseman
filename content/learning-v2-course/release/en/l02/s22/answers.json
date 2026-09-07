@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-22:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i02",
+    "correctText": "downstairs",
+    "correctResponseId": "en:lesson-02:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i03",
+    "correctText": "downstairs",
+    "correctResponseId": "en:lesson-02:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i04",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i05",
+    "correctText": "upstairs",
+    "correctResponseId": "en:lesson-02:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i06",
+    "correctText": "upstairs",
+    "correctResponseId": "en:lesson-02:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i08",
+    "correctText": "Where are the toilets?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i09",
+    "correctText": "It is downstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i11",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i12",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i13",
+    "correctText": "downstairs",
+    "correctResponseId": "en:lesson-02:session-22:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i14",
+    "correctText": "The shops are upstairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i15",
+    "correctText": "near",
+    "correctResponseId": "en:lesson-02:session-22:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i16",
+    "correctText": "Where are the shops?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-22:i17",
+    "correctText": "Where are the toilets? They are downstairs.",
+    "correctResponseId": null
+  }
+]

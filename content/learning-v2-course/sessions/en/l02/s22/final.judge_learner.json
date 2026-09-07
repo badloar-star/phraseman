@@ -1,0 +1,148 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — downstairs",
+      "what_i_understood": "downstairs значит «внизу, этажом ниже». Спросил про туалеты — мне показали лестницу вниз, говорю It is downstairs. Слово не требует никаких добавок вроде at.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — upstairs",
+      "what_i_understood": "upstairs — «наверху». Похоже по форме на downstairs, только вместо down стоит up. Для одной вещи is, для нескольких (shops) — are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — Where is/are",
+      "what_i_understood": "Чтобы спросить про место: Where + is/are + место. Where is — про одну вещь, Where are — про несколько (shops).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка downstairs)",
+      "what_i_understood": "Закрепил разбор слова по частям: down+stairs.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (аудио downstairs/dinner/doctor)",
+      "what_i_understood": "Смог отличить downstairs от других слов на слух, они совсем не похожи.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (It is ___ про лестницу вниз)",
+      "what_i_understood": "Выбрал downstairs, near и behind явно не про спуск по лестнице.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (карточка upstairs)",
+      "what_i_understood": "Ок, наверху.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (различение upstairs/downstairs на слух)",
+      "what_i_understood": "Первый слог решает — up или down.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (shops are ___, лифт поднял вас)",
+      "what_i_understood": "Выбрал upstairs, потому что поднялись и магазины тут же.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (карточка toilets)",
+      "what_i_understood": "toilets — множественное, поэтому с are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (собрать Where are the toilets?)",
+      "what_i_understood": "Собрал по правилу из интро 3.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (дослушать и собрать It is downstairs)",
+      "what_i_understood": "Услышал и собрал, лишнее слово upstairs не подошло.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (пары)",
+      "what_i_understood": "downstairs-внизу, upstairs-наверху, toilets-туалеты, near-рядом — всё уже знакомо из интро и практики.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (Where ___ the station?)",
+      "what_i_understood": "Станция одна — is. Про am было понятно, что оно вообще для другого случая (я).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (карточка shops)",
+      "what_i_understood": "shops — множественное, с are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (shops are ___, вы наверху, магазины ниже)",
+      "what_i_understood": "Выбрал downstairs — раз я наверху, а магазины не тут, значит они внизу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (собрать The shops are upstairs, лишняя плитка is)",
+      "what_i_understood": "Собрал, лишнюю is не тронул, потому что shops требует are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (shops are ___, выход рядом)",
+      "what_i_understood": "near подходит, это про расстояние, а не этаж — здесь речь не про верх/низ.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (собрать Where are the shops? без подсказки)",
+      "what_i_understood": "Собрал сам, уже несколько раз это повторял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (сказать вслух Where are the toilets? They are downstairs.)",
+      "what_i_understood": "Соединил вопрос и ответ вместе — понятно, что это законченный диалог у лестницы.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слово downstairs целиком значит «внизу, этажом ниже» и не требует предлога перед собой",
+    "Слово upstairs значит «наверху», отличается от downstairs только первой частью",
+    "Как строить вопрос про место: Where + is/are + место, и это же is/are зависит от того, одна вещь или несколько",
+    "Что near — это «рядом», а не про этаж, и его нельзя путать с downstairs/upstairs"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Интро 2",
+      "why": "Почти дословно повторяет структуру интро 1: то же самое объяснение состава слова + тот же пример с магазинами, что уже был почти дан в интро 1 логикой. Не мешало пройти, но ощущается как копия по шаблону."
+    }
+  ],
+  "felt_alive": [
+    "Сцена «второй день в Дублине, ищем этаж и переспрашиваем у людей на лестнице» — понятно, зачем вообще нужны эти фразы",
+    "Задание 17, где нужно и спросить, и ответить самому — по-настоящему похоже на живой разговор"
+  ],
+  "felt_dead": [
+    "Карточки слов (1, 4, 7, 12) сухие и справочные, но это нормально для карточки — не мешает"
+  ],
+  "scene_reason": "да — с самого начала ясно: я турист в большом здании в Дублине на второй день, ищу этаж, спрашиваю у людей на лестнице про туалеты и магазины. Каждая фраза встроена в этот же самый сценарий, ничего не притянуто из ниоткуда",
+  "would_continue": "да — было легко идти по нарастающей: сначала с подсказками (карточки, выбор), потом без них (собрать самому, сказать вслух), а фразы понятные и явно пригодятся в жизни (спросить, где туалет/магазины/наверху или внизу)",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий выполнимы честно на основе того, что дано в интро и в самой сессии, узнал реальные новые вещи (downstairs, upstairs, порядок Where is/are), и было понятно, зачем и кому я говорю эти фразы."
+}

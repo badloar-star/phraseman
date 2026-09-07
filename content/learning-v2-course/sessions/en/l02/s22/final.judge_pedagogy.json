@@ -1,0 +1,86 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "downstairs"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 3,
+        "trap": "near/behind как отвлекающие места, но не про этаж"
+      },
+      {
+        "task": 11,
+        "trap": "are/am вместо is при единственном месте"
+      },
+      {
+        "task": 13,
+        "trap": "upstairs/behind вместо downstairs, проверка направления"
+      },
+      {
+        "task": 15,
+        "trap": "upstairs/downstairs вместо near — про этаж вместо расстояния"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "downstairs",
+        "upstairs",
+        "toilets",
+        "near"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l02_s19/s20/s21",
+      "what": "структура интро («слово — перевод, затем правило, затем сцена-вопрос») повторяется, но это ожидаемый общий шаблон формы, не сюжетный повтор — нарушения не вижу"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 1,
+      "context_gap_grammar": 5,
+      "phrase_builder": 3,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы, повторяемые слова, доска пар и фидбэк-разборы соответствуют плану и самопроверке без нарушений."
+}

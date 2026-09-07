@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "`Where is` + место, ответ `It is upstairs / downstairs`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`downstairs` — «внизу», «на нижнем этаже»",
+        "uk": "`downstairs` — «внизу», «на нижньому поверсі»"
+      },
+      "bodyByLocale": {
+        "ru": "`downstairs` — «внизу», этажом ниже. Спустился по лестнице — и ты `downstairs`.\n\nСлово длинное, но склеено из двух простых: `down` — «вниз», `stairs` — «лестница». Вниз по лестнице.\n\nНичего перед ним ставить не нужно: `It is downstairs`, и всё. Это одно слово уже значит «внизу».",
+        "uk": "`downstairs` — це «внизу», поверхом нижче. Спустилися сходами — і ви `downstairs`.\n\nСлово довге, але склеєне з двох простих: `down` — «вниз», `stairs` — «сходи». Униз сходами.\n\nНічого перед ним ставити не треба: `It is downstairs`, і все. Це одне слово вже означає «внизу»."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы спрашиваете про туалеты, вам показывают на лестницу вниз.",
+          "uk": "Ви питаєте про туалети, вам показують на сходи вниз."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-22:intro1:r1",
+              "text": "It is downstairs."
+            },
+            {
+              "responseId": "en:lesson-02:session-22:intro1:r2",
+              "text": "It is at downstairs."
+            },
+            {
+              "responseId": "en:lesson-02:session-22:intro1:r3",
+              "text": "It downstairs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-22:intro1:r1",
+              "text": "It is downstairs."
+            },
+            {
+              "responseId": "en:lesson-02:session-22:intro1:r2",
+              "text": "It is at downstairs."
+            },
+            {
+              "responseId": "en:lesson-02:session-22:intro1:r3",
+              "text": "It downstairs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы спрашиваете про туалеты, вам показывают на лестницу вниз.",
+          "uk": "Ви питаєте про туалети, вам показують на сходи вниз."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`upstairs` — «наверху»",
+        "uk": "`upstairs` — «нагорі»"
+      },
+      "bodyByLocale": {
+        "ru": "`upstairs` — «наверху», этажом выше. Конец у обоих слов одинаковый, `stairs` — «лестница», меняются начала: `up` — вверх, `down` — вниз.\n\nСтоит `upstairs` в конце фразы, после `is` или `are`: `It is upstairs`, `The shops are upstairs`. Про одно место — `is`, про несколько — `are`, а само слово не меняется.",
+        "uk": "`upstairs` — «нагорі», поверхом вище. Кінець в обох слів однаковий, `stairs` — «сходи», змінюється початок: `up` — угору, `down` — униз.\n\nСтоїть `upstairs` у кінці фрази, після `is` або `are`: `It is upstairs`, `The shops are upstairs`. Про одне місце — `is`, про кілька — `are`, а саме слово не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Магазины на втором этаже. Скажите это.",
+          "uk": "Крамниці на другому поверсі. Скажіть це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-22:intro2:r1",
+              "text": "The shops are upstairs."
+            },
+            {
+              "responseId": "en:lesson-02:session-22:intro2:r2",
+              "text": "The shops is upstairs."
+            },
+            {
+              "responseId": "en:lesson-02:session-22:intro2:r3",
+              "text": "The shops upstairs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-22:intro2:r1",
+              "text": "The shops are upstairs."
+            },
+            {
+              "responseId": "en:lesson-02:session-22:intro2:r2",
+              "text": "The shops is upstairs."
+            },
+            {
+              "responseId": "en:lesson-02:session-22:intro2:r3",
+              "text": "The shops upstairs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Магазины на втором этаже. Скажите это.",
+          "uk": "Крамниці на другому поверсі. Скажіть це."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить, где это",
+        "uk": "Спитати, де це"
+      },
+      "bodyByLocale": {
+        "ru": "Чтобы спросить про место, впереди встаёт `where`, сразу за ним `is`, и только потом само место: `Where is the toilet?` Порядок в вопросе такой и есть.\n\nЕсли вещь одна — `is`, если их несколько — `are`: `Where are the shops?`",
+        "uk": "Щоб спитати про місце, попереду стає `where`, одразу за ним `is`, і тільки потім саме місце: `Where is the toilet?` Такий у питанні порядок.\n\nЯкщо річ одна — `is`, якщо їх кілька — `are`: `Where are the shops?`"
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы у лестницы и не знаете, куда вам. Спросите, где магазины.",
+          "uk": "Ви біля сходів і не знаєте, куди вам. Спитайте, де крамниці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-22:intro3:r1",
+              "text": "Where are the shops?"
+            },
+            {
+              "responseId": "en:lesson-02:session-22:intro3:r2",
+              "text": "Where the shops are?"
+            },
+            {
+              "responseId": "en:lesson-02:session-22:intro3:r3",
+              "text": "Where is the shops?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-22:intro3:r1",
+              "text": "Where are the shops?"
+            },
+            {
+              "responseId": "en:lesson-02:session-22:intro3:r2",
+              "text": "Where the shops are?"
+            },
+            {
+              "responseId": "en:lesson-02:session-22:intro3:r3",
+              "text": "Where is the shops?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы у лестницы и не знаете, куда вам. Спросите, где магазины.",
+          "uk": "Ви біля сходів і не знаєте, куди вам. Спитайте, де крамниці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "deec37204cb5acb32aec8df763231f80455cfce6e5d83d28587d090475344af1"
+}

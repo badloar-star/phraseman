@@ -70,7 +70,7 @@
             "testedDimension": "Послушайте и выберите — hungry",
             "feedbackByLocale": {
               "ru": "«Спешить». В нём нет `n` в середине, а в `hungry` есть.",
-              "uk": "«Поспішати». У ньому немає `n` усередині, а в `hungry` є."
+              "uk": "«Поспішати». У ньому немає `n` посередині, а в `hungry` є."
             }
           }
         ],
@@ -509,7 +509,7 @@
             "testedDimension": "Вставьте слово — где стоит not",
             "feedbackByLocale": {
               "ru": "`Are` идёт с `you`. Про себя — `am`.",
-              "uk": "`Are` іде з `you`. Про себе — `am`."
+              "uk": "`Are` іде разом із `you`. Про себе — `am`."
             }
           },
           {
@@ -541,7 +541,7 @@
         "targetPhrase": "Yes, I am.",
         "localizedMeaning": {
           "ru": "Обманка на внимательность — правда важнее плиток",
-          "uk": "Обманка на уважність — правда важливіша за плитки"
+          "uk": "Пастка на уважність — правда важливіша за плитки"
         },
         "orderedTokens": [
           "Yes,",
@@ -714,7 +714,7 @@
             "testedDimension": "Вставьте слово — что подходит по смыслу",
             "feedbackByLocale": {
               "ru": "«Проснулся» — про сон, а речь о пересохшем рте.",
-              "uk": "«Прокинувся» — про сон, а йдеться про пересохлий рот."
+              "uk": "«Прокинувся» — про сон, а мова про пересохлий рот."
             }
           },
           {
@@ -874,5 +874,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "10954e0450cce5e50f937cd158941d1b75eccab12698a234c35fefd93bf0cb1f"
+  "learnerFingerprint": "627422cc33b3771ff050de25cf393809850a65e63ed0af9343e9f517aaa4f328"
 }

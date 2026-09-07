@@ -1120,6 +1120,18 @@ function main() {
     // чтобы владелец всегда открывал свежее, а не спрашивал о свежести.
     try {
       const rel = spawnSync(process.execPath, [path.join(HERE, "build_release.mjs"), "--session", SESSION], { encoding: "utf8" });
+      const buildProblems = (String(rel.stdout || "") + String(rel.stderr || "")).split(String.fromCharCode(10)).filter((l) => /[BUILD][WARN]/.test(l) && !/ЗАБЛОКИРОВАНА|нет status/.test(l));
+      if (buildProblems.length) {
+        WARN(`СБОРКА НАШЛА ПРОБЛЕМЫ (${buildProblems.length}) — судьи такое не видят:`);
+        for (const bp of buildProblems) WARN(`  ${bp.replace(/^.*[BUILD][WARN]s*/, "")}`);
+        try {
+          const stp = path.join(S.dir, "status.json");
+          const st = exists(stp) ? JSON.parse(read(stp)) : {};
+          st.buildProblems = buildProblems.map((l) => l.replace(/^.*[BUILD][WARN]s*/, ""));
+          st.needsHumanReview = true;
+          write(stp, JSON.stringify(st, null, 2));
+        } catch (e) { WARN(`не смог записать buildProblems в статус: ${e.message}`); }
+      }
       if (rel.status !== 0) WARN(`сборка релиза не прошла (код ${rel.status}) — макет не обновлён`);
       else {
         const mock = spawnSync(process.execPath, [path.join(HERE, "build_mockup.mjs")], { encoding: "utf8" });

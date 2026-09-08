@@ -1,0 +1,14 @@
+{
+  "session": "en/l02/s34",
+  "converged": true,
+  "needsHumanReview": false,
+  "sourceSha256": "c72bc0dd157edc56107749d19d44b4e301bc47da029be4ad472c7b88f3ce4576",
+  "localeSha256": {
+    "uk": "ee43f36a6f69acc73771d6ef390eb69ce66e13d2fd654303768fd4e58e2b6c61"
+  },
+  "completionScope": "RU+UK text reviewed; other six locales and audio not produced; automated visual review unavailable due browser URL policy",
+  "locales": {
+    "uk": "PASS"
+  },
+  "reviewedAt": "2026-09-08T08:52:51.882963+00:00"
+}

@@ -1,0 +1,85 @@
+{
+  "introAnswers": [
+    "Who are these people?",
+    "They are strangers.",
+    "We are not twins."
+  ],
+  "taskAnswers": [
+    {
+      "task": 1,
+      "answer": "Acknowledged: strangers = люди, с которыми вы лично не знакомы."
+    },
+    {
+      "task": 2,
+      "answer": "strangers"
+    },
+    {
+      "task": 3,
+      "answer": "Acknowledged: twins = близнецы."
+    },
+    {
+      "task": 4,
+      "answer": "twins"
+    },
+    {
+      "task": 5,
+      "answer": "They are strangers."
+    },
+    {
+      "task": 6,
+      "answer": "these"
+    },
+    {
+      "task": 7,
+      "answer": "people"
+    },
+    {
+      "task": 8,
+      "answer": "twins"
+    },
+    {
+      "task": 9,
+      "answer": "We are not twins."
+    },
+    {
+      "task": 10,
+      "answer": "I am sure."
+    },
+    {
+      "task": 11,
+      "answer": "these — эти; people — люди; guests — гости; sure — уверен"
+    },
+    {
+      "task": 12,
+      "answer": "The guests are strangers."
+    },
+    {
+      "task": 13,
+      "answer": "people"
+    },
+    {
+      "task": 14,
+      "answer": "I am not sure."
+    },
+    {
+      "task": 15,
+      "answer": "Are you twins?"
+    },
+    {
+      "task": 16,
+      "answer": "You are twins."
+    },
+    {
+      "task": 17,
+      "answer": "Who are these people?"
+    }
+  ],
+  "ambiguousTasks": [],
+  "learnedSummary": "Для множественного подлежащего нужны are: Who are these people? They are strangers. They are twins. Отрицание ставится после are/am: We are not twins; I am not sure. strangers — люди, с которыми вы лично не знакомы.",
+  "verdict": "PASS",
+  "verdict_reason": "После проверки фактически доступных ответов неоднозначностей нет: в задании 10 единственный подходящий вариант — sure, а в задании 14 единственная допустимая сборка из плиток — I am not sure. Все остальные ответы прежние и согласованы с пакетом.",
+  "sourceSha256": "c72bc0dd157edc56107749d19d44b4e301bc47da029be4ad472c7b88f3ce4576",
+  "reviewedAt": "2026-09-08T08:45:06.847530+00:00",
+  "reviewMethod": "builtin_codex_independent_role",
+  "reviewedScope": "full_session"
+}

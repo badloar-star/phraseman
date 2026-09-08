@@ -1,0 +1,94 @@
+{
+  "verdict": "PASS",
+  "answers": [
+    {
+      "item": "Интро 1",
+      "answer": "Who is the host?"
+    },
+    {
+      "item": "Интро 2",
+      "answer": "Who is the guest?"
+    },
+    {
+      "item": "Интро 3",
+      "answer": "Who is he?"
+    },
+    {
+      "item": 1,
+      "answer": "host"
+    },
+    {
+      "item": 2,
+      "answer": "host"
+    },
+    {
+      "item": 3,
+      "answer": "guest"
+    },
+    {
+      "item": 4,
+      "answer": "guest"
+    },
+    {
+      "item": 5,
+      "answer": "Who is the host?"
+    },
+    {
+      "item": 6,
+      "answer": "guest"
+    },
+    {
+      "item": 7,
+      "answer": "Who"
+    },
+    {
+      "item": 8,
+      "answer": "guests"
+    },
+    {
+      "item": 9,
+      "answer": "near"
+    },
+    {
+      "item": 10,
+      "answer": "guests — гости; name — имя; cheerful — весёлый; corner — угол"
+    },
+    {
+      "item": 11,
+      "answer": "name"
+    },
+    {
+      "item": 12,
+      "answer": "He is not cheerful."
+    },
+    {
+      "item": 13,
+      "answer": "Where is the guest?"
+    },
+    {
+      "item": 14,
+      "answer": "corner"
+    },
+    {
+      "item": 15,
+      "answer": "The host is near."
+    },
+    {
+      "item": 16,
+      "answer": "Who is the guest?"
+    },
+    {
+      "item": 17,
+      "answer": "They are guests."
+    },
+    {
+      "item": 18,
+      "answer": "Who is he?"
+    }
+  ],
+  "problems": [],
+  "learned": "Who is the host? — кто хозяин вечера; Who is the guest? — кто гость; Who is he? — кто он. Host принимает гостей, guest приходит в гости. Также: The host is near; He is not cheerful; Where is the guest?; They are guests.",
+  "sourceSha256": "56789703f95f9dc122b83532472d171bca221901fbd6704f4b19edb6c311ff55",
+  "reviewedAt": "2026-09-08T08:24:35.208Z",
+  "reviewMethod": "fresh_builtin_codex_agent"
+}

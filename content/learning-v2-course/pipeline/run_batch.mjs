@@ -13,6 +13,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { sessionReadiness } from "./session_readiness.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -29,6 +30,11 @@ const m = /^([a-z]{2})\/l(\d{2})\/s(\d{2})$/.exec(FROM);
 if (!m) { LOG(`ранний выход: --from ожидает en/l01/s05, получено ${FROM}`); process.exit(2); }
 const [, lang, lesson] = m;
 const first = Number(m[3]);
+const startOrdinal = (Number(lesson) - 1) * 56 + first - 1;
+if (Number(lesson) < 1 || Number(lesson) > 32 || first < 1 || first > 56 || !Number.isSafeInteger(COUNT) || COUNT < 1 || startOrdinal + COUNT > 32 * 56) {
+  LOG("ранний выход: диапазон должен лежать внутри 32 уроков по 56 сессий");
+  process.exit(2);
+}
 
 const node = (script, extra) => {
   const r = spawnSync(process.execPath, [path.join(HERE, script), ...extra], {
@@ -42,13 +48,21 @@ const node = (script, extra) => {
 const done = [];
 const failed = [];
 for (let i = 0; i < COUNT; i++) {
-  const n = String(first + i).padStart(2, "0");
-  const id = `${lang}/l${lesson}/s${n}`;
+  const ordinal = startOrdinal + i;
+  const n = String(ordinal % 56 + 1).padStart(2, "0");
+  const currentLesson = String(Math.floor(ordinal / 56) + 1).padStart(2, "0");
+  const id = `${lang}/l${currentLesson}/s${n}`;
   const dir = path.join(ROOT, "sessions", id);
   const finalRu = path.join(dir, "final.ru.md");
 
-  if (fs.existsSync(finalRu) && !fs.existsSync(path.join(dir, "ЗАБРАКОВАНА.txt"))) {
-    LOG(`${id}: final.ru.md уже есть — пропуск`);
+  if (fs.existsSync(finalRu)) {
+    const state = sessionReadiness(dir);
+    if (!state.ready) {
+      LOG(`${id}: сначала завершите текущую сессию: ${state.issues.join("; ")}`);
+      failed.push(id);
+      break;
+    }
+    LOG(`${id}: актуальные проверки и локали приняты — пропуск`);
     done.push(id);
     continue;
   }
@@ -61,22 +75,21 @@ for (let i = 0; i < COUNT; i++) {
   }
   LOG(`${id}: написана за ${Math.round((Date.now() - t0) / 60000)} мин`);
 
-  // статус: если судья дал BLOCK, конвейер не локализует и пишет это в status.json
-  const st = path.join(dir, "status.json");
-  if (fs.existsSync(st)) {
-    try {
-      const s = JSON.parse(fs.readFileSync(st, "utf8"));
-      if (s.blocked?.length) { LOG(`${id}: BLOCK от ${s.blocked.join(", ")} — в релиз не пойдёт`); failed.push(id); continue; }
-    } catch (e) { LOG(`${id}: status.json нечитаем (${e.message})`); }
+  const state = sessionReadiness(dir);
+  if (!state.ready) {
+    LOG(`${id}: выпуск остановлен: ${state.issues.join("; ")}`);
+    failed.push(id);
+    break;
   }
   if (node("build_release.mjs", ["--session", id, "--locales", "ru,uk"])) {
-    done.push(id);
     // зачем (владелец, 03.09): «после добавления новой сессии всегда обновляй
     // макет, чтобы я имел возможность сразу проверять». Пересборка макета —
     // чистый скрипт без вызовов модели, ~1 секунда, поэтому после КАЖДОЙ
     // сессии, а не раз в десять.
     LOG(`${id}: обновляю макет — можно проверять`);
-    node("build_mockup.mjs", ["--out", path.join(ROOT, "mockup", "index.html")]);
-  } else failed.push(id);
+    if (!node("build_mockup.mjs", ["--out", path.join(ROOT, "mockup", "index.html")])) { failed.push(id); break; }
+    done.push(id);
+  } else { failed.push(id); break; }
 }
 LOG(`ГОТОВО. Написано: ${done.length ? done.join(", ") : "—"}${failed.length ? " | не прошли: " + failed.join(", ") : ""}`);
+if (failed.length) process.exitCode = 1;

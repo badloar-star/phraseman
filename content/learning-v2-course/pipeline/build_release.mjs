@@ -38,7 +38,7 @@ const sha = (v) => crypto.createHash("sha256").update(typeof v === "string" ? v 
 function parseHeader(md) {
   const title = /^#\s+(.+)$/m.exec(md)?.[1]?.trim() ?? "";
   const scene = /\*\*Сцена сессии\.\*\*\s*([\s\S]*?)\n\n/.exec(md)?.[1]?.replace(/\s+/g, " ").trim() ?? "";
-  const operation = /\*\*Операция:\*\*\s*(.+)/.exec(md)?.[1]?.trim() ?? "";
+  const operation = /\*\*Операц[иі]я:\*\*\s*(.+)/.exec(md)?.[1]?.trim() ?? "";
   const newWords = (/\*\*Новые слова:\*\*\s*(.+)/.exec(md)?.[1] ?? "").split(",").map((s) => s.trim()).filter(Boolean);
   return { title, scene, operation, newWords };
 }
@@ -237,15 +237,16 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
   const family = task.family === "word_card" ? "listen_choose" : task.family;
   const loc = (field) => localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.[field] ?? ""])));
 
-  const feedback = task.options.filter((o) => !o.correct).map((o, i) => ({
+  // IDs use positions in the full option list, including the correct answer.
+  const feedback = task.options.flatMap((o, i) => o.correct ? [] : [{
     responseId: `${id}:r${i + 1}`,
     correct: false,
     testedDimension: task.title.slice(0, 40),
     feedbackByLocale: localized(Object.fromEntries(LOCALES.map((l) => {
-      const alt = perLocale[l]?.options?.[task.options.indexOf(o)];
+      const alt = perLocale[l]?.options?.[i];
       return [l, alt?.feedback ?? o.feedback];
     }))),
-  }));
+  }]);
 
   const responseOptions = task.options.map((o, i) => ({ responseId: `${id}:r${i + 1}`, text: o.text }));
 

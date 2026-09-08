@@ -22,6 +22,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { REQUIRED_JUDGES, judgeIssues } from "./session_readiness.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -150,15 +151,18 @@ function loadPlan(lang, lesson) {
   return { rows, arc };
 }
 
-function knownBefore(plan, n) {
+function knownBefore(plan, n, previousPlans = []) {
   const ops = new Set();
   const words = new Set();
-  for (const [k, r] of plan.rows) {
-    if (k >= n) continue;
-    if (/^новая/.test(r.type) || /^тонкость/.test(r.type)) ops.add(r.grammar);
-    for (const w of r.words.split(",")) {
-      const t = w.replace(/[—–(].*$/, "").trim();
-      if (t && t !== "—" && t !== "-") words.add(t);
+  const scopes = [...previousPlans.map((p) => ({ plan: p, before: Infinity })), { plan, before: n }];
+  for (const scope of scopes) {
+    for (const [k, r] of scope.plan.rows) {
+      if (k >= scope.before) continue;
+      if (/^новая/.test(r.type) || /^тонкость/.test(r.type)) ops.add(r.grammar);
+      for (const w of r.words.split(",")) {
+        const t = w.replace(/[—–(].*$/, "").trim();
+        if (t && t !== "—" && t !== "-") words.add(t);
+      }
     }
   }
   return { ops: [...ops], words: [...words] };
@@ -1102,7 +1106,8 @@ function main() {
     LOG(`ранний выход: в плане урока ${S.lesson} нет сессии ${S.session}`);
     process.exit(2);
   }
-  const known = knownBefore(plan, S.session);
+  const previousPlans = Array.from({ length: S.lesson - 1 }, (_, index) => loadPlan(S.lang, index + 1));
+  const known = knownBefore(plan, S.session, previousPlans);
   LOG(`сессия ${SESSION}: тип «${row.type}», грамматика «${row.grammar}», слова «${row.words}»; известно операций ${known.ops.length}, слов ${known.words.length}`);
   const ctx = courseContext(S.lang);
   fs.mkdirSync(S.dir, { recursive: true });
@@ -1157,7 +1162,7 @@ function main() {
     const fullV = { ...stageJudgeStable(S, ctx, plan, row, known, best.f, ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader"]), judge_taste: best.taste };
     let cur = { f: best.f, v: fullV, s: score(fullV) };
     const openFacts = (f) => machineFacts(f).split(String.fromCharCode(10)).filter((l) => HARD_FACT_RE.test(l));
-    for (let round = 1; round <= 2 && (cur.s < 6 || openFacts(cur.f).length); round++) {
+    for (let round = 1; round <= 2 && (judgeIssues(cur.v).length || openFacts(cur.f).length); round++) {
       const facts = openFacts(cur.f);
       LOG(`круг правки ${round}: ${path.basename(cur.f)} (${cur.s}/6, открытых фактов ${facts.length})`);
       if (facts.length) for (const ff of facts) LOG(`   факт: ${ff}`);
@@ -1184,13 +1189,13 @@ function main() {
       write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blockedBy: "machine_facts", facts: hardFacts, at: new Date().toISOString() }, null, 2));
       return;
     }
-    const blocked = Object.entries(cur.v).filter(([, j]) => j.verdict === "BLOCK");
+    const blocked = Object.entries(cur.v).filter(([role, j]) => REQUIRED_JUDGES.includes(role) && j?.verdict === "BLOCK");
     if (blocked.length) {
       WARN(`СТОП перед локализацией: ${blocked.map(([n, j]) => `${n} — ${j.verdict_reason}`).join(" | ")}`);
       write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blocked: blocked.map(([n]) => n), locales: null, at: new Date().toISOString() }, null, 2));
       return;
     }
-    if (cur.s < 6) WARN("сессия не сошлась к PASS×3 за 2 круга — локализую, но нужна ручная проверка");
+    if (judgeIssues(cur.v).length) WARN("черновик не получил четыре PASS — проверю финал перед локализацией");
     publishFinal();
     // зачем: СУД ПО ФИНАЛУ. Ночью 06.09 четыре сессии несли блок, поставленный
     // по ЧЕРНОВИКУ, хотя редактор его уже исправил: s49 при пересуде дала PASS,
@@ -1216,11 +1221,21 @@ function main() {
         LOG(`до порога выпуска: PASS у ${passed.length}/4 ключевых судей (${passed.join(", ") || "нет"})`);
       }
     }
-    const finalBlocked = Object.entries(finalV).filter(([, j]) => j.verdict === "BLOCK").map(([n]) => n);
+    const finalBlocked = judgeIssues(finalV);
     if (finalScore !== cur.s) LOG(`финал судился заново: было ${cur.s}/6 по черновику, стало ${finalScore}/6`);
-    if (finalBlocked.length) WARN(`финал несёт блок: ${finalBlocked.join(", ")} — нужен разбор`);
+    if (finalBlocked.length || brokenTasks.length) {
+      WARN(`СТОП перед локализацией: нет четырёх PASS или есть неоднозначные задания (${finalBlocked.join(", ")})`);
+      write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: finalScore, converged: false, needsHumanReview: true, blocked: finalBlocked, brokenTasks, locales: null, at: new Date().toISOString() }, null, 2));
+      return;
+    }
     const loc = stageLocalize(S, finalRu);
-    write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: finalScore, converged: finalScore >= 6 && !finalBlocked.length, needsHumanReview: finalScore < 6 || finalBlocked.length > 0 || brokenTasks.length > 0, brokenTasks: brokenTasks.length ? brokenTasks : undefined, blocked: finalBlocked.length ? finalBlocked : undefined, draftScore: cur.s, locales: loc, at: new Date().toISOString() }, null, 2));
+    const incompleteLocales = LOCALES.filter((locale) => loc[locale] !== "PASS");
+    if (incompleteLocales.length) {
+      WARN(`СТОП перед сборкой: локали без PASS: ${incompleteLocales.join(", ")}`);
+      write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: finalScore, converged: false, needsHumanReview: true, blockedBy: "locales", locales: loc, at: new Date().toISOString() }, null, 2));
+      return;
+    }
+    write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: finalScore, converged: true, needsHumanReview: false, draftScore: cur.s, locales: loc, at: new Date().toISOString() }, null, 2));
     // зачем: владелец спросил «почему макет не позволяет выбирать сессии
     // урока 2» — макет ничего не запрещал, он был собран ДО того, как эти
     // сессии появились. Пересобираем сами: релиз этой сессии и общий макет,

@@ -1,0 +1,88 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "phone",
+      "charger",
+      "cable"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [
+    {
+      "task": 18,
+      "prompt_quote": "Сосед взял со стола вашу зарядку",
+      "keyed_answer": "This is a charger. Is this a box?",
+      "mismatch": "неестественная реплика — предмет держит сосед, а фраза 'This is a charger' звучит как заявление от лица говорящего о предмете в своей руке, ситуация не даёт понять, кто говорит и про чей предмет"
+    }
+  ],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 8,
+        "trap": "This are a charger — путаница is/are"
+      },
+      {
+        "task": 10,
+        "trap": "Is is a cable — подмена This на Is"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 19,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "phone",
+        "charger",
+        "cable",
+        "key"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [
+    {
+      "neighbor": "l03_s22..24",
+      "what": "похожая канва (собеседник спрашивает про распакованные предметы на столе), но сцена, предметы и фразы разборов не совпадают — не считаю дефектом"
+    }
+  ],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 3,
+      "phrase_builder": 3,
+      "context_gap_grammar": 4,
+      "sound_contrast": 1,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "В задании 18 реплика 'This is a charger' не согласована с описанной ситуацией (сосед держит предмет, но говорящий заявляет о нём в первом лице), нужно поправить инструкцию или фразу."
+}

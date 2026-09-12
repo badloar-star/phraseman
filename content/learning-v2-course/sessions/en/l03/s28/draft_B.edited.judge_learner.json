@@ -1,0 +1,141 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Есть слово this — «этот», для вещи, которую я держу или уже поставил рядом. Между вещью и признаком нужно is: This suitcase is heavy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Есть слово that — «тот», для вещи, до которой не дотянуться (например под потолком). Схема та же: That backpack is small.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "В вопросе is выходит вперёд: Is this wallet open? В обычной фразе is стоит после this/that.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1 · карточка suitcase",
+      "what_i_understood": "чемодан, на колёсах",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "2 · слух suitcase",
+      "what_i_understood": "узнал слово на слух, отличил от похожих staircase/bookcase",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3 · карточка backpack",
+      "what_i_understood": "рюкзак",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "4 · слух backpack",
+      "what_i_understood": "отличил от packback (переставлены слоги) и backpack's",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 · пропуск This suitcase",
+      "what_i_understood": "чемодан рядом — значит this, а не is (is бы задвоился)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6 · сборка That backpack is small",
+      "what_i_understood": "собрал фразу про дальний рюкзак",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "7 · карточка wallet",
+      "what_i_understood": "кошелёк",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 · слух wallet",
+      "what_i_understood": "отличил от valley/violet по первому звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 · различение звуков wallet/valley",
+      "what_i_understood": "услышал разницу w и v",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 · пропуск That backpack is open",
+      "what_i_understood": "нужно is, не are (предмет один) и не this (это не указатель, а связка нужна)",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 · диктант This suitcase is small",
+      "what_i_understood": "собрал по слуху",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 · сборка Is this wallet open?",
+      "what_i_understood": "вопрос про то, что в руке — this, is впереди",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13 · доска пар",
+      "what_i_understood": "закрепил переводы всех новых слов",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 · пропуск That bag is open",
+      "what_i_understood": "витрина за стеклом — далеко, значит that",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 · вслух",
+      "what_i_understood": "проговорил обе фразы",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 · сборка That bag is not heavy",
+      "what_i_understood": "собрал отрицание, лишние плитки this/open не понадобились",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 · финал Is that backpack heavy?",
+      "what_i_understood": "вопрос про дальний предмет — that, is впереди",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "различать this (рядом, можно потрогать) и that (далеко, надо идти)",
+    "три новых слова: suitcase, backpack, wallet",
+    "в вопросе is выходит вперёд this/that: Is this wallet open?",
+    "как строить отрицание с that: That bag is not heavy"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "сцена у кассы понятная: друг показывает то на одно, то на другое, и правда нужно каждый раз выбирать this или that — не выдумано ради заполнения",
+    "объяснение backpack и wallet через обычные бытовые признаки (лямки на спину, складывается пополам) — без лишних красивостей, сразу понятно"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я у кассы, друг показывает на вещи, и мне нужно либо сказать про вещь (this/that + is), либо спросить про неё. Каждое задание завязано именно на это — где вещь: рядом или далеко.",
+  "would_continue": "да — задания шли по нарастающей сложности, вопрос и отрицание в конце потребовали настоящего выбора, а не механического повтора",
+  "verdict": "PASS",
+  "verdict_reason": "всё выполнимо, никаких обманов со словами, каждое интро объясняет то, что тут же спрашивается, и я реально закончил сессию, поняв разницу this/that."
+}

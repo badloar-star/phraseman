@@ -1,0 +1,123 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — Is this a remote?",
+      "what_i_understood": "Чтобы задать вопрос, слово `is` переставляется вперёд: `This is a remote` → `Is this a remote?`. `A` перед вещью не пропадает.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — Is that a button?",
+      "what_i_understood": "`This` — то, что рядом/в руке, `that` — то, что подальше. `Is` всё равно первое, `a` всё равно перед словом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — Is that a switch?",
+      "what_i_understood": "`switch` — выключатель, который остаётся в положении (щёлкнул и он там и остался), в отличие от `button`, который просто нажимают и отпускают.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (remote)",
+      "what_i_understood": "Карточка слова, потом на слух отличить remote от похожих слов (promote, remove) по началу/концу звучания.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (button)",
+      "what_i_understood": "То же самое для button.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка Is this a remote?)",
+      "what_i_understood": "Собрал из плиток без проблем, порядок понятен.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 (switch)",
+      "what_i_understood": "Аналогично remote/button.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (Is ___ a switch? — this/that/it)",
+      "what_i_understood": "Стена далеко → that. Выбрал верно, объяснение про `it` тоже понятно (it заменяет уже названную вещь).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (___ this a remote? — Is/Are/This)",
+      "what_i_understood": "Is — потому что вопрос начинается с is. Понятно.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 (сборка на слух Is that a button?)",
+      "what_i_understood": "Собрал, лишних плиток не было в этом задании.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (This is a key — с лишней плиткой Is)",
+      "what_i_understood": "Тут key просто напоминают как знакомое слово, задача — не вопрос, а утверждение, лишнюю Is не беру.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (Is that a ___? — lamp/key/remote)",
+      "what_i_understood": "lamp — потому что светит и на стене. Понятно, ключ и пульт не подходят по смыслу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (доска пар)",
+      "what_i_understood": "Все 4 слова уже отработаны до этого — remote, button, switch, lamp. Собрал пары без труда.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (door vs four)",
+      "what_i_understood": "door — новое слово в этой сессии, но оно даётся прямо как перевод в скобках, поэтому не запутался.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (повторить Is that a switch?)",
+      "what_i_understood": "Просто произношение, ничего нового.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (Is that a door? с лишней плиткой button)",
+      "what_i_understood": "door уже видел в 14 задании с переводом, поэтому собрал фразу нормально.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал — две фразы подряд)",
+      "what_i_understood": "Is this a remote? Is that a switch? — оба слова уже отработаны много раз, собрал без подсказки.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как превратить утверждение в вопрос: is выходит на первое место (This is a remote → Is this a remote?)",
+    "Разница this/that: рядом — this, подальше — that",
+    "Новые слова: remote (пульт), button (кнопка), switch (выключатель)",
+    "Разница между button и switch по смыслу: кнопку нажимают и отпускают, выключатель остаётся в положении"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Объяснение разницы button/switch через 'нажал-отпустил' против 'щёлкнул и осталось' — понятно и запоминается",
+    "Финальное задание, где нужно спросить про две разные вещи подряд — по-настоящему похоже на живую ситуацию с соседом"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: я разбираюсь с техникой в новой квартире вместе с соседом, показываю на вещи и спрашиваю, что это. Каждая фраза привязана к конкретному предмету в руках или на стене",
+  "would_continue": "да — задания шли по нарастающей сложности, ничего не сбивало с толку, к финалу я сам собрал фразу без подсказки и это было приятно",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно, новое усвоил (вопрос через перестановку is, this/that, три новых слова), ни одного невозможного задания или мусора не встретил."
+}

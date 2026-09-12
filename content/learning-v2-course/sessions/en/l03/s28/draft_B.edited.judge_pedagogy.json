@@ -1,0 +1,92 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "suitcase",
+      "backpack",
+      "wallet"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": "интро1-этап0",
+        "trap": "This suitcase heavy. — пропуск is"
+      },
+      {
+        "task": "интро2-этап0",
+        "trap": "That backpack small. — пропуск is"
+      },
+      {
+        "task": "интро3-этап0",
+        "trap": "This wallet is open? — is не вынесен вперёд в вопросе"
+      },
+      {
+        "task": 5,
+        "trap": "That / Is вместо This — путаница указателя и связки"
+      },
+      {
+        "task": 10,
+        "trap": "are вместо is; this вместо is"
+      },
+      {
+        "task": 14,
+        "trap": "This вместо That; Are вместо связки"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "suitcase",
+        "backpack",
+        "wallet",
+        "heavy"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 3,
+      "listen_choose": 3,
+      "sound_contrast": 1,
+      "context_gap_grammar": 3,
+      "phrase_builder": 4,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы, семантика ответов, доска пар и повторные слова проверены и соответствуют плану, серьёзных дефектов не найдено."
+}

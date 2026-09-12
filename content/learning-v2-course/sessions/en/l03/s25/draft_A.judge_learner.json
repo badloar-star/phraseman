@@ -1,0 +1,128 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Если беру вещь в руку, говорю This is a phone — сначала this, потом is, потом a + вещь",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Та же формула This is a ___ работает для любой вещи, тут charger",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Чтобы спросить, is выходит вперёд: Is this a cable?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 phone",
+      "what_i_understood": "phone — телефон, на слух отличил от fine и found",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 charger",
+      "what_i_understood": "charger — зарядка, отличил от larger и garden по первому звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал This is a phone из плиток",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 cable",
+      "what_i_understood": "cable — провод, отличил от table и candle",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Вставил is, а не are/am, потому что предмет один",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Собрал вопрос Is this a cable?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "This, а не Is, потому что это утверждение",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Различил cable и table на слух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "key дали с переводом в скобках прямо в задании — понял, что это ключ, справился",
+      "confusion": "слово key раньше не встречалось мне, но перевод был тут же, так что не проблема",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (доска пар)",
+      "what_i_understood": "Собрал phone/charger/cable/key с переводами",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Собрал Is this a key?, лишнюю плитку is не взял",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "box дали как правильный ответ без карточки и перевода — просто выбрал по методу исключения (key и phone явно не подходят к пустой коробке по смыслу сцены), но само слово box я не знаю, перевод нигде не дан",
+      "confusion": "box нигде не переведён и не объяснён в этой сессии, а является верным ответом — я не могу быть уверен, что оно значит 'коробка', просто угадал по логике",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Повторил This is a charger. This is a new cable — new дали с переводом в скобках",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Собрал Is this a key? без подсказок",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как назвать предмет в руке: This is a + вещь",
+    "Как спросить про предмет: Is this a + вещь?",
+    "Новые слова: phone, charger, cable"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 15,
+      "why": "правильный ответ — box, но нигде в сессии это слово не переведено и не объяснено (в отличие от key и new, которым в скобках дали перевод при первом появлении). Я выбрал его методом исключения по смыслу сцены, а не потому что знаю слово."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с разбором стола понятная и живая — реально представляю, как достаю зарядку из кучи проводов",
+    "Шутка про провод ('честнее людей: сразу видно, куда повёрнут') — по делу, не приклеена зря",
+    "Шутка про зарядку и вечер без телефона — тоже по делу"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно — сосед помогает разбирать стол и спрашивает про каждую вещь, поэтому я называю и спрашиваю про предметы по одному из этой сцены",
+  "would_continue": "да, но с одной занозой: я не уверен насчёт box, потому что мне его не объяснили, а спросили в правильном ответе",
+  "verdict": "BLOCK",
+  "verdict_reason": "Задание 15 требует знания слова box как верный ответ, а слово нигде в сессии не введено и не переведено — я не мог ответить честно, только угадать."
+}

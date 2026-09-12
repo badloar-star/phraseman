@@ -1,0 +1,141 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Держу в руке чёрную коробочку с кнопками. Чтобы назвать её — 'This is a remote'. Чтобы спросить — 'is' встаёт первым: 'Is this a remote?'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Кнопка называется button. Если она рядом (в руке) — this, если далеко (на стене) — that. Спрашиваю про дальнюю: 'Is that a button?'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Switch — это выключатель на стене (пластинка, ходит вверх-вниз), в отличие от button (круглая кнопка, которую нажимают). Он далеко, значит 'Is that a switch?'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 (карточка remote)",
+      "what_i_understood": "Пульт — плоская коробочка с кнопками, теряется в подушках.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 (на слух remote)",
+      "what_i_understood": "Выбрал remote, отличил от promote и remove по звучанию.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 (карточка button)",
+      "what_i_understood": "Кнопка — круглая, нажимают пальцем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 (на слух button)",
+      "what_i_understood": "Выбрал button, отличил от butter и bottom.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 (сборка Is this a remote?)",
+      "what_i_understood": "Собрал фразу из плиток без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 (карточка switch)",
+      "what_i_understood": "Выключатель — щёлкающая пластинка на стене.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 (на слух switch)",
+      "what_i_understood": "Выбрал switch, отличил от watch и stitch.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 (вставьте that/this/it)",
+      "what_i_understood": "Стена далеко — значит that. Понял, почему не this и не it.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 (доска пар)",
+      "what_i_understood": "Собрал remote-пульт, button-кнопка, switch-выключатель без проблем. Но lamp-лампа — это слово мне нигде до этого не переводили в этой сессии, пришлось гадать по ассоциации 'лампа похоже на lamp'.",
+      "confusion": "lamp появляется как пара до того, как где-либо в сессии сказано, что это значит",
+      "could_answer_question": false
+    },
+    {
+      "step": "Задание 10 (вставьте Is/Are/This)",
+      "what_i_understood": "Одна вещь — значит Is, не Are. This не подходит, потому что это было бы утверждением.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 (диктовка Is that a button?)",
+      "what_i_understood": "Собрал фразу на слух, лишняя плитка this не понадобилась.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (сборка Is this a key?)",
+      "what_i_understood": "key — новое слово, но оно тут же переведено в скобках 'key — ключ', так что я справился.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 (вставьте lamp/key/remote)",
+      "what_i_understood": "Тут наконец объяснили: lamp — это лампа на стене. Но я уже видел это слово раньше в задании 9 и должен был угадать его значение вслепую.",
+      "confusion": "перевод lamp дают только сейчас, а спрашивали про него уже в задании 9",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (различить door/four)",
+      "what_i_understööd": "door — дверь, оно нигде явно не переведено, но по разбору понял, что door = дверь (по контексту 'про дверь').",
+      "confusion": "слово door используется в разборе ('какое из двух про дверь') раньше, чем где-либо дан перевод 'door — дверь'",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (повторить вслух)",
+      "what_i_understood": "Проговорил Is that a switch?, сравнил с образцом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (сборка Is that a door?)",
+      "what_i_understood": "Дверь = door — опять взял это из подсказки в скобках, а не из объяснения раньше по тексту.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Собрал 'Is this a remote?' — коробочка в руках, значит this, не that.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как спросить 'это пульт?' — Is this a remote?",
+    "Как спросить про дальнюю вещь — Is that a button? / Is that a switch?",
+    "Разница между button (круглая кнопка) и switch (пластинка-выключатель)",
+    "Что this — про то, что рядом/в руках, а that — про то, что далеко"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Интро 3 — сравнение button (нажимают) и switch (щёлкают) — понятно и по-honest, без лишних красивостей",
+    "Сцена с новой квартирой и соседом, который вместе разбирается в технике — понятно, зачем спрашивать"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я въехал в новую квартиру, не знаю технику, спрашиваю соседа — естественная причина задавать именно такие вопросы (это пульт? это кнопка? это выключатель?)",
+  "would_continue": "да — задания разные по форме (карточки, слух, сборка, пары, вслух), фразы не повторяются одинаково, стало ясно, как строится вопрос с this/that",
+  "verdict": "REVISE",
+  "verdict_reason": "Слово lamp используется в задании 9 (доска пар, где нужно связать слово с переводом) раньше, чем где-либо в сессии даётся его перевод — это задание 13; само же составление сессии честно признаёт эту проблему в разделе самопроверки, но не исправляет её."
+}

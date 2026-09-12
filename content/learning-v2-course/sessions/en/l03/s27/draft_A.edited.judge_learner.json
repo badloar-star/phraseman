@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — Is this a remote?",
+      "what_i_understood": "Чтобы спросить про вещь у себя в руках, слово `is` ставится в начало: `Is this a remote?` Слово `a` никуда не девается.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — Is that a button?",
+      "what_i_understood": "Если вещь далеко, вместо `this` говорю `that`. Остальное так же: `Is` вперёд, `a` перед словом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — Is that a switch?",
+      "what_i_understood": "`button` — кнопка, которую жмут пальцем, `switch` — плоская штука на стене, которую двигают вверх-вниз. Это разные слова, путать нельзя.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1 — карточка remote",
+      "what_i_understood": "пульт",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2 — на слух remote",
+      "what_i_understood": "выбрал remote, разница с promote/remove объяснена по звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3 — карточка button",
+      "what_i_understood": "кнопка",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4 — на слух button",
+      "what_i_understood": "выбрал button, а не butter/bottle",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5 — собрать Is this a remote?",
+      "what_i_understood": "собрал из плиток без проблем",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6 — карточка switch",
+      "what_i_understood": "выключатель",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7 — на слух switch",
+      "what_i_understood": "выбрал switch, не watch/stitch",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8 — that a switch",
+      "what_i_understood": "стена далеко → that, не this и не it",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9 — Is this a remote?",
+      "what_i_understood": "вопрос начинается с Is, не This",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — собрать на слух Is that a button?",
+      "what_i_understood": "услышал фразу, собрал её, лишняя плитка this осталась",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — This is not a remote.",
+      "what_i_understood": "это уже не вопрос, а поправка — отрицание, `Is` тут лишняя плитка",
+      "confusion": "Секунду думал, почему тут нет вопроса, ведь весь урок был про вопросы — но по смыслу сцены (поправляю соседа) стало понятно",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — Is that a lamp?",
+      "what_i_understood": "по описанию (круглое, стеклянное, светит) выбрал lamp, а не key/remote",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — доска пар",
+      "what_i_understood": "соединил remote/button/switch/lamp с переводами",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — door vs four",
+      "what_i_understood": "выбрал door по звуку",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — сказать Is that a switch?",
+      "what_i_understood": "повторил вслух",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — Is that a door?",
+      "what_i_understood": "лишняя плитка button, собрал правильно",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал, две фразы подряд",
+      "what_i_understood": "Is this a remote? Is that a switch? — собрал без подсказки, было чуть сложнее, но справился",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как задать вопрос «это...?» про вещь в руках: Is this a remote?",
+    "Как задать вопрос про вещь подальше: Is that a button?",
+    "Три новых слова: remote (пульт), button (кнопка), switch (выключатель) — и чем кнопка отличается от выключателя",
+    "Как поправить человека отрицанием: This is not a remote."
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с соседом, который тычет в разные штуки в квартире — понятно, зачем спрашивать, реальная ситуация",
+    "Задание 11, где не просто вопрос, а поправляешь соседа — живее, чем очередной 'Is this a...?'",
+    "Разница button vs switch объяснена через движение (нажимают/щёлкают вверх-вниз), а не просто 'два разных слова'"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: я в новой квартире, вожусь с техникой на стенах и тумбе, сосед рядом, и мы вместе угадываем пульт/кнопку/выключатель. Каждая фраза — реальный вопрос в этой ситуации, не абстракция",
+  "would_continue": "да — понял новое, ничего не запуталo, финал (задание 17) дал почувствовать, что я реально это умею сам, без подсказок",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно, ничего не потребовало незнакомых слов или форм, узнал новую грамматику и три слова, сцена понятна от начала до конца."
+}

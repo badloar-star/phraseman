@@ -1,0 +1,12 @@
+{
+  "session": "en/l03/s27",
+  "ru": 8,
+  "converged": false,
+  "needsHumanReview": true,
+  "blocked": [
+    "judge_learner"
+  ],
+  "brokenTasks": [],
+  "locales": null,
+  "at": "2026-09-12T20:52:57.467Z"
+}

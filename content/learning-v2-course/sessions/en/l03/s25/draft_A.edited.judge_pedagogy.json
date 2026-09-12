@@ -1,0 +1,105 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "phone",
+      "charger",
+      "cable"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": "интро1",
+        "trap": "This a phone. — пропущено is"
+      },
+      {
+        "task": "интро1",
+        "trap": "This is phone. — пропущено a"
+      },
+      {
+        "task": "интро2",
+        "trap": "This is charger. — пропущено a"
+      },
+      {
+        "task": "интро2",
+        "trap": "This are a charger. — is вместо are"
+      },
+      {
+        "task": "интро3",
+        "trap": "This is a cable? — утверждение вместо вопроса"
+      },
+      {
+        "task": "интро3",
+        "trap": "Is this cable? — пропущено a"
+      },
+      {
+        "task": 8,
+        "trap": "This are/am a charger — смешение форм be"
+      },
+      {
+        "task": 10,
+        "trap": "Is/A this a cable — подмена this"
+      },
+      {
+        "task": 17,
+        "trap": "key/phone вместо box — по смыслу сцены"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 19,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "phone",
+        "charger",
+        "cable",
+        "key"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13,
+      19
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 3,
+      "phrase_builder": 4,
+      "context_gap_grammar": 3,
+      "sound_contrast": 1,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы, семантика ответов, ловушки и структура (19 заданий, доска пар полностью отработана, скелеты не повторяются больше двух раз) в норме."
+}

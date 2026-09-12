@@ -1,0 +1,92 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "remote",
+      "button",
+      "switch"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [
+    {
+      "task": "интро 3 / практика 12",
+      "prompt_quote": "Сосед показывает на дальнюю стену: круглое, стеклянное, светит",
+      "keyed_answer": "lamp",
+      "mismatch": "нет расхождения — предмет, число и признак совпадают; ловушки key/remote корректно отсекаются подстановкой (ключ не светит, пульт не висит на стене)"
+    }
+  ],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 8,
+        "trap": "this вместо that при дальней стене — реалистичная ошибка выбора указательного слова"
+      },
+      {
+        "task": 9,
+        "trap": "This вместо Is — реалистичная путаница утверждения и вопроса"
+      },
+      {
+        "task": 11,
+        "trap": "лишняя плитка Is при отрицании This is not a remote — правдоподобная ошибка сборки"
+      },
+      {
+        "task": 16,
+        "trap": "лишняя плитка button при сборке про door — проверяет внимательность к предмету, а не к грамматике"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "remote",
+        "button",
+        "switch",
+        "lamp"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      11,
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 3,
+      "listen_choose": 3,
+      "phrase_builder": 4,
+      "context_gap_grammar": 3,
+      "listen_build_dictation": 1,
+      "speed_match": 1,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Слово `key` числится в самопроверке как возвращаемое, но по факту (машинные данные: 0 касаний правильным ответом) встречается только как отвлекающий вариант в задании 12 — оно не отработано и не заземлено в этой сессии, что противоречит собственной таблице автора и правилу ≥2 касаний с хотя бы одним верным."
+}

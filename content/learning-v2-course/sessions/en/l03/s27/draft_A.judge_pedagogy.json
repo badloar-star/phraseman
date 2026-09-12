@@ -1,0 +1,98 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "remote",
+      "button",
+      "switch"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [
+    {
+      "task": "интро 3",
+      "prompt_quote": "Сосед трогает что-то у двери: плоская пластинка, ходит вверх-вниз. Спросите, выключатель ли это.",
+      "keyed_answer": "Is that a switch?",
+      "mismatch": "предмет у двери, до которого сосед дотрагивается («трогает»), по правилу интро 2 (this — под рукой, that — дальше) должен спрашиваться через `this`, а не `that`; сама сцена не подтверждает, что предмет далеко от говорящего"
+    },
+    {
+      "task": "13",
+      "prompt_quote": "сосед показывает на дальнюю стену, где висит лампа",
+      "keyed_answer": "lamp",
+      "mismatch": "нет"
+    }
+  ],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "This is a remote? — верный порядок слов, но без инверсии is"
+      },
+      {
+        "task": 8,
+        "trap": "this вместо that при указании на дальнюю стену"
+      }
+    ],
+    "silly": [
+      {
+        "task": 3,
+        "trap": "Is this remote? (без a)",
+        "better": "оставить, это реалистичный пропуск артикля, не нелепица — переклассифицировать в realistic"
+      },
+      {
+        "task": 12,
+        "trap": "Is that switch a? — порядок слов внутри нелеп, носитель так не ошибается даже случайно",
+        "better": "заменить на реалистичную ошибку типа `Is this switch?` (без a) вместо перестановки a в конец"
+      }
+    ],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "remote",
+        "button",
+        "switch",
+        "lamp"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": []
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 3,
+      "listen_choose": 3,
+      "phrase_builder": 4,
+      "context_gap_grammar": 3,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Интро 3 просит спросить `that` про предмет, до которого сосед дотрагивается рукой («трогает»), что противоречит правилу this/that, введённому на интро 2 этой же сессии — нужно либо изменить сцену (предмет дальше, не трогает), либо сменить ключ на `this`; также ловушка №12 (Is that switch a?) — нелепая перестановка, а не реалистичная ошибка, лучше заменить на пропуск артикля."
+}

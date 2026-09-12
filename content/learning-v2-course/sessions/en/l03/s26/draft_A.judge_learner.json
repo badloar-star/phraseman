@@ -1,0 +1,102 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Есть слово that — оно про предмет, до которого не дотянуться (верхняя полка, через комнату). Это отличается от этого-рядом-со-мной, которое было раньше (this). Друг спрашивает про картину на верхней полке, ответ: That is a picture.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "screen — экран. Порядок фразы: that is + a + предмет, и порядок нельзя менять. Предмет один — значит is, а не are.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "speaker — колонка. Чтобы спросить, is выходит вперёд: Is that a speaker? А короткий ответ — не that, а it: Yes, it is.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (picture)",
+      "what_i_understood": "Услышал слово picture, отличил от похожего pitcher (кувшин) и от pictures (с добавленным звуком на конце).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (screen)",
+      "what_i_understood": "screen отличил от green (зелёный, другая первая буква) и от scream (крик, другой конец).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал That is a picture. из плиток.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-11 (speaker)",
+      "what_i_understood": "speaker — колонка. Отличил от sneaker (кроссовок) и speakers (несколько). Собрал вопрос Is that a speaker?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (доска пар)",
+      "what_i_understood": "Тут появилось слово clock (часы), которое мне никто ещё не объяснил и не переводил. Я его просто угадал по методу исключения (picture, screen, speaker я уже знаю — осталось clock и часы).",
+      "confusion": "Слово clock всплыло в игре на сопоставление раньше, чем я где-либо увидел его перевод. Пришлось соединять пару вслепую.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "На вопрос друга про картину ответил Yes, it is (не that).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 (lamp)",
+      "what_i_understood": "Услышал фразу про лампу и собрал её: That is a lamp. Слово lamp мне перевели прямо в задании в скобках, это спасло.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 (box)",
+      "what_i_understood": "Собрал That is a box., слово box тоже перевели в скобках.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 (clock, вслух)",
+      "what_i_understood": "Только ТУТ я наконец увидел перевод clock — часы. То есть я его использовал в задании 12 раньше, чем узнал, что это значит.",
+      "confusion": "Порядок появления слова clock нарушен: сначала пара (12), потом перевод (16).",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал, без перевода)",
+      "what_i_understood": "Собрал Is that a picture? без подсказок, с лишней плиткой is.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Что that используют для предмета, до которого не дотянуться (в отличие от this — рядом)",
+    "Порядок фразы That is a + предмет",
+    "Как задать вопрос: Is that a + предмет?",
+    "Что в коротком ответе на вопрос про that отвечают it, а не that (Yes, it is)",
+    "Три новых слова: picture, screen, speaker",
+    "Отличать on слух похожие слова: picture/pitcher, screen/green/scream, speaker/sneaker"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Момент с 'Yes, it is' вместо 'Yes, that is' — неочевидная деталь, было интересно, что предмет второй раз не называют"
+  ],
+  "felt_dead": [
+    "Задание 12 (доска пар) — слово clock просто возникло без объяснения, пришлось гадать методом исключения, не по-настоящему 'вспомнить'"
+  ],
+  "scene_reason": "да — понятно: мы с другом стоим у дальней полки и разбираем, что там стоит (картина, экран, колонка), поэтому and используем that, а не this",
+  "would_continue": "да, было понятно и по делу, единственная заминка — слово clock в доске пар без перевода",
+  "verdict": "REVISE",
+  "verdict_reason": "Слово clock появляется в игре на сопоставление (задание 12) раньше, чем где-либо переводится (перевод только в задании 16) — это заставляет угадывать вслепую, а не проверять память."
+}

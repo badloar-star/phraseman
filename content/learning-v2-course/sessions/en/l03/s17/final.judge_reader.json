@@ -1,0 +1,99 @@
+{
+  "sourceSha256": "7ec753f0fca6f9045423183c07c2054b591ea8f1ff12ea2e3683424b4132816d",
+  "reasoningEffort": "medium",
+  "reviewer": "/root/s17_reader_delta",
+  "model": "gpt-5.6-terra",
+  "pages": [
+    {
+      "page": 1,
+      "retelling": "For more than one ticket, add s: tickets. Say: They are tickets.",
+      "what_i_do_now": "Choose or say the plural phrase about several tickets.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 2,
+      "retelling": "For several coins, add s: coins. To ask about them, begin with Are they: Are they coins?",
+      "what_i_do_now": "Ask whether several objects are coins.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 3,
+      "retelling": "For several access cards, say cards. Put not after They are: They are not cards.",
+      "what_i_do_now": "Say that several objects are not cards.",
+      "understood": true,
+      "problems": []
+    }
+  ],
+  "pages_understood": 3,
+  "verdict": "PASS",
+  "verdict_reason": "Each page gives one usable plural pattern with a direct sentence model; wording and examples align.",
+  "previousReview": {
+    "sourceSha256": "f0409b500c3924f239f23cf11d3c3b218f1bccf4d901bceda8a9d31cda5a8f72",
+    "reasoningEffort": "medium",
+    "reviewer": "/root/s17_reader_delta",
+    "model": "gpt-5.6-terra",
+    "pages": [
+      {
+        "page": 1,
+        "retelling": "For more than one ticket, add s: tickets. Say: They are tickets.",
+        "what_i_do_now": "Choose or say the plural phrase about several tickets.",
+        "understood": true,
+        "problems": []
+      },
+      {
+        "page": 2,
+        "retelling": "For several coins, add s: coins. To ask about them, begin with Are they: Are they coins?",
+        "what_i_do_now": "Ask whether several objects are coins.",
+        "understood": true,
+        "problems": []
+      },
+      {
+        "page": 3,
+        "retelling": "For several access cards, say cards. Put not after They are: They are not cards.",
+        "what_i_do_now": "Say that several objects are not cards.",
+        "understood": true,
+        "problems": []
+      }
+    ],
+    "pages_understood": 3,
+    "verdict": "PASS",
+    "verdict_reason": "Each page gives one usable plural pattern with a direct sentence model; wording and examples align.",
+    "previousReview": {
+      "sourceSha256": "27fccff64a607584487fa69ee95f13813855272174afbfe038d8cddde6f09fe3",
+      "reasoningEffort": "medium",
+      "reviewer": "/root/s10_reader",
+      "model": "gpt-5.6-terra",
+      "pages": [
+        {
+          "page": 1,
+          "retelling": "Когда билетов несколько, к ticket добавляют s и получают tickets; they в фразе означает эти билеты.",
+          "what_i_do_now": "Про несколько билетов скажу They are tickets.",
+          "understood": true,
+          "problems": []
+        },
+        {
+          "page": 2,
+          "retelling": "Несколько монет — coins с буквой s, и вопрос о них начинается с Are they.",
+          "what_i_do_now": "Спрошу Are they coins?",
+          "understood": true,
+          "problems": []
+        },
+        {
+          "page": 3,
+          "retelling": "Несколько карточек — cards с s; чтобы сказать, что это не карточки, после They are добавляют not.",
+          "what_i_do_now": "Скажу They are not cards.",
+          "understood": true,
+          "problems": []
+        }
+      ],
+      "pages_understood": 3,
+      "verdict": "PASS",
+      "verdict_reason": "Все три страницы за одно чтение показывают, как сделать несколько предметов с помощью s и как сказать про них утверждение, вопрос или фразу с «не»."
+    },
+    "scope": "Fresh independent reader and blind learner projection walkthrough; no answer keys or source"
+  },
+  "scope": "Initial full review plus actual independent semantic and final two-phrase copy deltas",
+  "finalDeltaEvidence": "Reviewer compared final against draft_02 and confirmed only the two stated Russian wording repairs; task meanings, options, answers and prior findings retained."
+}

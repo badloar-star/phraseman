@@ -1,0 +1,1008 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-21:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — towel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-21:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — towel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-21:i01:audio",
+          "transcript": "towel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-21:i01:r1",
+            "targetText": "towel",
+            "meaningByLocale": {
+              "ru": "«полотенце». Кусок ткани или бумаги, которым вытирают мокрое тело или вещи.",
+              "uk": "«рушник». Шматок тканини або паперу, яким витирають мокре тіло чи речі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "towel",
+          "definitionByLocale": {
+            "ru": "«полотенце». Кусок ткани или бумаги, которым вытирают мокрое тело или вещи.",
+            "uk": "«рушник». Шматок тканини або паперу, яким витирають мокре тіло чи речі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово сказав кур’єр",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-21:i02:r1",
+          "text": "towel"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i02:r2",
+          "text": "vowel"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i02:r3",
+          "text": "trowel"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово сказав кур’єр",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-21:i02:audio",
+          "transcript": "towel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-21:i02:r1",
+            "targetText": "towel",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i02:r2",
+            "targetText": "vowel",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i02:r3",
+            "targetText": "trowel",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`vowel` — «гласный звук». В начале звучит «в»: нижняя губа касается верхних зубов. У `towel` начало «т»: работает кончик языка.",
+              "uk": "`vowel` — «голосний звук». На початку чути «в»: нижня губа торкається верхніх зубів. У `towel` початок «т»: працює кінчик язика."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`trowel` — «мастерок». Начало — сочетание `t` и английского `r`; у `towel` после начального `t` сразу звучит гласный.",
+              "uk": "`trowel` — «кельма». Після початкового «т» у ньому чути англійський звук без дотику язика до горбиків за верхніми зубами. У `towel` після «т» одразу починається голосний."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — curtain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-21:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — curtain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-21:i03:audio",
+          "transcript": "curtain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-21:i03:r1",
+            "targetText": "curtain",
+            "meaningByLocale": {
+              "ru": "«штора». Полотно, которым закрывают окно или проём, чтобы задержать свет или скрыть помещение от чужих глаз.",
+              "uk": "«штора». Полотно, яким закривають вікно або проріз, щоб зменшити світло чи сховати приміщення від чужих очей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "curtain",
+          "definitionByLocale": {
+            "ru": "«штора». Полотно, которым закрывают окно или проём, чтобы задержать свет или скрыть помещение от чужих глаз.",
+            "uk": "«штора». Полотно, яким закривають вікно або проріз, щоб зменшити світло чи сховати приміщення від чужих очей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово вимовив кур’єр",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-21:i04:r1",
+          "text": "curtain"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i04:r2",
+          "text": "certain"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i04:r3",
+          "text": "carton"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-21:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово вимовив кур’єр",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-21:i04:audio",
+          "transcript": "curtain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-21:i04:r1",
+            "targetText": "curtain",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i04:r2",
+            "targetText": "certain",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i04:r3",
+            "targetText": "carton",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-21:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`certain` — «уверенный». Первым слышно «с», воздух идёт у передних зубов. В `curtain` — «к», звук образуется глубже во рту.",
+              "uk": "`certain` — «упевнений». Спочатку чути «с», повітря йде біля передніх зубів. У `curtain` — «к», звук утворюється глибше в роті."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`carton` — «картонная коробка». В ударной части рот открыт шире, звучит «а». У `curtain` рот прикрыт, язык ближе к середине рта.",
+              "uk": "`carton` — «картонна коробка». У наголошеній частині рот відкритий ширше, чути «а». У `curtain` рот прикритіший, а язик ближче до середини рота."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — кур’єр записує вміст маленького пакета; ви дістали один рушник, скажіть «Це рушник»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-21:i05:r1",
+          "text": "towels"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — кур’єр записує вміст маленького пакета; ви дістали один рушник, скажіть «Це рушник»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a towel.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — курьер записывает содержимое маленького пакета; вы вынули одно полотенце, скажите «Это полотенце»",
+          "uk": "Зберіть фразу — кур’єр записує вміст маленького пакета; ви дістали один рушник, скажіть «Це рушник»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "towel"
+        ],
+        "authoredDistractorTokens": [
+          "towels"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-21:i05:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — курьер записывает содер",
+            "feedbackByLocale": {
+              "ru": "В пакете одно полотенце. В этой фразе после `a` нужно `towel`.",
+              "uk": "У пакеті один рушник. У цій фразі після `a` потрібне `towel`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте назву — кур’єр звіряє рядок накладної; назвіть дві штори «Це штори»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-21:i06:r1",
+          "text": "curtains"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i06:r2",
+          "text": "a curtain"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i06:r3",
+          "text": "a curtains"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте назву — кур’єр звіряє рядок накладної; назвіть дві штори «Це штори»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — курьер сверяет строку накладной; назовите две шторы «Это шторы»",
+          "uk": "Вставте назву — кур’єр звіряє рядок накладної; назвіть дві штори «Це штори»"
+        },
+        "gappedTargetPhrase": "They are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i06:r1",
+            "text": "curtains"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i06:r2",
+            "text": "a curtain"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i06:r3",
+            "text": "a curtains"
+          }
+        ],
+        "testedDimension": "Вставьте название — курьер сверяет строк",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-21:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер сверяет строк",
+            "feedbackByLocale": {
+              "ru": "`a curtain` — одна штора. Вы называете две: `They are curtains`.",
+              "uk": "`a curtain` — одна штора. Ви називаєте дві: `They are curtains`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер сверяет строк",
+            "feedbackByLocale": {
+              "ru": "В названии нескольких уже стоит `curtains`. Перед ним в этой фразе `a` лишнее.",
+              "uk": "Назва кількох уже `curtains`. Перед нею у цій фразі `a` зайве."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pillow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-21:i07:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pillow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-21:i07:audio",
+          "transcript": "pillow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-21:i07:r1",
+            "targetText": "pillow",
+            "meaningByLocale": {
+              "ru": "«подушка». Чехол с мягким наполнителем, на который кладут голову в постели.",
+              "uk": "«подушка». Чохол із м’яким наповненням, на який кладуть голову в ліжку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pillow",
+          "definitionByLocale": {
+            "ru": "«подушка». Чехол с мягким наполнителем, на который кладут голову в постели.",
+            "uk": "«подушка». Чохол із м’яким наповненням, на який кладуть голову в ліжку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово сказав кур’єр",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-21:i08:r1",
+          "text": "pillow"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i08:r2",
+          "text": "willow"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i08:r3",
+          "text": "yellow"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-21:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово сказав кур’єр",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-21:i08:audio",
+          "transcript": "pillow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-21:i08:r1",
+            "targetText": "pillow",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i08:r2",
+            "targetText": "willow",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i08:r3",
+            "targetText": "yellow",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`willow` — «ива». В начале губы округляются и переходят к гласному. У `pillow` губы сначала смыкаются, затем раскрываются для «п».",
+              "uk": "`willow` — «верба». На початку губи округлюються й переходять до голосного. У `pillow` губи спершу змикаються, а потім розкриваються для «п»."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`yellow` — «жёлтый». Начало похоже на «йэ». У `pillow` сначала слышно «п», затем короткий гласный с более прикрытым ртом.",
+              "uk": "`yellow` — «жовтий». Початок схожий на «йе». У `pillow` спочатку чути «п», а потім короткий голосний із прикритішим ротом."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — кур’єр уточнює, що ви дістали з великого пакета; назвіть кілька подушок «Це подушки»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-21:i09:r1",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — кур’єр уточнює, що ви дістали з великого пакета; назвіть кілька подушок «Це подушки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are pillows.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — курьер уточняет, что вы вынули из большого пакета; назовите несколько подушек «Это подушки»",
+          "uk": "Зберіть фразу — кур’єр уточнює, що ви дістали з великого пакета; назвіть кілька подушок «Це подушки»"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "pillows"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-21:i09:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — курьер уточняет, что вы",
+            "feedbackByLocale": {
+              "ru": "Вы называете несколько подушек. В этой фразе перед `pillows` слово `a` не нужно.",
+              "uk": "Ви називаєте кілька подушок. У цій фразі перед `pillows` слово `a` не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте назву — кур’єр питає про єдиний предмет у маленькій коробці; це склянка для води (`glass` — «склянка», `glasses` — «склянки`)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-21:i10:r1",
+          "text": "a glass"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i10:r2",
+          "text": "glass"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i10:r3",
+          "text": "a glasses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте назву — кур’єр питає про єдиний предмет у маленькій коробці; це склянка для води (`glass` — «склянка», `glasses` — «склянки`)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — курьер спрашивает о единственном предмете в маленькой коробке; это стакан для воды (`glass` — «стакан», `glasses` — «стаканы»)",
+          "uk": "Вставте назву — кур’єр питає про єдиний предмет у маленькій коробці; це склянка для води (`glass` — «склянка», `glasses` — «склянки`)"
+        },
+        "gappedTargetPhrase": "It is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i10:r1",
+            "text": "a glass"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i10:r2",
+            "text": "glass"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i10:r3",
+            "text": "a glasses"
+          }
+        ],
+        "testedDimension": "Вставьте название — курьер спрашивает о ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-21:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер спрашивает о ",
+            "feedbackByLocale": {
+              "ru": "В коробке один стакан. Называя его в этой фразе, ставим `a` перед `glass`.",
+              "uk": "У коробці одна склянка. Називаючи її в цій фразі, ставимо `a` перед `glass`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер спрашивает о ",
+            "feedbackByLocale": {
+              "ru": "`glasses` — несколько стаканов. Здесь один, поэтому нужно `a glass`.",
+              "uk": "`glasses` — кілька склянок. Тут одна, тому потрібне `a glass`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте назву — в окремому пакованні одна штора; кур’єр уточнює, що це, відповідайте «Це штора»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-21:i11:r1",
+          "text": "a curtain"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i11:r2",
+          "text": "curtain"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i11:r3",
+          "text": "a curtains"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте назву — в окремому пакованні одна штора; кур’єр уточнює, що це, відповідайте «Це штора»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — в отдельной упаковке одна штора; курьер уточняет, что это, ответьте «Это штора»",
+          "uk": "Вставте назву — в окремому пакованні одна штора; кур’єр уточнює, що це, відповідайте «Це штора»"
+        },
+        "gappedTargetPhrase": "It is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i11:r1",
+            "text": "a curtain"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i11:r2",
+            "text": "curtain"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i11:r3",
+            "text": "a curtains"
+          }
+        ],
+        "testedDimension": "Вставьте название — в отдельной упаковке",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — в отдельной упаковке",
+            "feedbackByLocale": {
+              "ru": "Называя одну штору в этой фразе, ставим перед `curtain` слово `a`.",
+              "uk": "Називаючи одну штору в цій фразі, ставимо перед `curtain` слово `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — в отдельной упаковке",
+            "feedbackByLocale": {
+              "ru": "`curtains` называет несколько штор. В упаковке одна: `a curtain`.",
+              "uk": "`curtains` називає кілька штор. У пакованні одна: `a curtain`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть — що сказав кур’єр",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-21:i12:r1",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-21:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть — що сказав кур’єр",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-21:i12:audio",
+          "transcript": "They are not towels."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are not towels.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "not",
+          "towels"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-21:i12:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — что сказал курье",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `They are not towels`. Название нескольких полотенец здесь стоит без `a`.",
+              "uk": "У записі звучить `They are not towels`. Назва кількох рушників тут стоїть без `a`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте назву — кур’єр звіряє список і питає, що лежить у пакеті; назвіть дві подушки «Це подушки»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-21:i13:r1",
+          "text": "pillows"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i13:r2",
+          "text": "a pillows"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i13:r3",
+          "text": "a pillow"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте назву — кур’єр звіряє список і питає, що лежить у пакеті; назвіть дві подушки «Це подушки»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — курьер сверяет список и спрашивает, что лежит в пакете; назовите две подушки «Это подушки»",
+          "uk": "Вставте назву — кур’єр звіряє список і питає, що лежить у пакеті; назвіть дві подушки «Це подушки»"
+        },
+        "gappedTargetPhrase": "They are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i13:r1",
+            "text": "pillows"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i13:r2",
+            "text": "a pillows"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i13:r3",
+            "text": "a pillow"
+          }
+        ],
+        "testedDimension": "Вставьте название — курьер сверяет списо",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-21:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер сверяет списо",
+            "feedbackByLocale": {
+              "ru": "Для нескольких здесь нужно `pillows`. Слово `a` перед ним лишнее.",
+              "uk": "Для кількох тут потрібне `pillows`. Слово `a` перед ним зайве."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер сверяет списо",
+            "feedbackByLocale": {
+              "ru": "`a pillow` называет одну подушку. Вы называете две: `They are pillows`.",
+              "uk": "`a pillow` називає одну подушку. Ви називаєте дві: `They are pillows`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте назви з українськими значеннями — слова для накладної",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте назви з українськими значеннями — слова для накладної",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-21:i14:p1",
+            "target": "towels",
+            "meaningByLocale": {
+              "ru": "полотенца",
+              "uk": "рушники"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-21:i14:p2",
+            "target": "curtains",
+            "meaningByLocale": {
+              "ru": "шторы",
+              "uk": "штори"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-21:i14:p3",
+            "target": "pillows",
+            "meaningByLocale": {
+              "ru": "подушки",
+              "uk": "подушки"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-21:i14:p4",
+            "target": "glasses",
+            "meaningByLocale": {
+              "ru": "стаканы",
+              "uk": "склянки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "towels",
+          "curtains",
+          "pillows",
+          "glasses"
+        ],
+        "rightColumn": [
+          "полотенца",
+          "шторы",
+          "подушки",
+          "стаканы"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте назву — кур’єр уточнює, що лежить у коробці з посудом; назвіть кілька склянок для води «Це склянки»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-21:i15:r1",
+          "text": "glasses"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i15:r2",
+          "text": "a glasses"
+        },
+        {
+          "responseId": "en:lesson-03:session-21:i15:r3",
+          "text": "a glass"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте назву — кур’єр уточнює, що лежить у коробці з посудом; назвіть кілька склянок для води «Це склянки»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — курьер уточняет, что лежит в коробке с посудой; назовите несколько стаканов для воды «Это стаканы»",
+          "uk": "Вставте назву — кур’єр уточнює, що лежить у коробці з посудом; назвіть кілька склянок для води «Це склянки»"
+        },
+        "gappedTargetPhrase": "They are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-21:i15:r1",
+            "text": "glasses"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i15:r2",
+            "text": "a glasses"
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i15:r3",
+            "text": "a glass"
+          }
+        ],
+        "testedDimension": "Вставьте название — курьер уточняет, что",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-21:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер уточняет, что",
+            "feedbackByLocale": {
+              "ru": "Вы называете несколько стаканов. Здесь нужно `glasses`, без `a`.",
+              "uk": "Ви називаєте кілька склянок. Тут потрібне `glasses`, без `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-21:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер уточняет, что",
+            "feedbackByLocale": {
+              "ru": "`a glass` называет один стакан. В коробке несколько: `They are glasses`.",
+              "uk": "`a glass` називає одну склянку. У коробці кілька: `They are glasses`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — кур’єр питає, що лежить у відкритому пакованні; ви дістали одну штору для вікна, скажіть «Це штора»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-21:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — кур’єр питає, що лежить у відкритому пакованні; ви дістали одну штору для вікна, скажіть «Це штора»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-21:i16:audio",
+          "transcript": "It is a curtain."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a curtain.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-21:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу самостійно — кур’єр дописує останній рядок і питає, що лишилося в коробці; ви дістали одну подушку для сну",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-21:i17:r1",
+          "text": "pillows"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу самостійно — кур’єр дописує останній рядок і питає, що лишилося в коробці; ви дістали одну подушку для сну",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a pillow.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — курьер дописывает последнюю строку и спрашивает, что осталось в коробке; вы достали одну подушку для сна",
+          "uk": "Зберіть фразу самостійно — кур’єр дописує останній рядок і питає, що лишилося в коробці; ви дістали одну подушку для сну"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "pillow"
+        ],
+        "authoredDistractorTokens": [
+          "pillows"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-21:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — курьер д",
+            "feedbackByLocale": {
+              "ru": "В коробке одна подушка. Называем её `a pillow`, без окончания `s`.",
+              "uk": "У коробці одна подушка. Називаємо її `a pillow`, без закінчення `s`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2c5c98b410c8a5cd6e0c0c38a00142d012ca89606df00a1e1e861e413ba08444"
+}

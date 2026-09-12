@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-29:i02:r1",
+            "responseId": "en:lesson-01:session-29:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — heavy",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-29:i02:r2",
+            "responseId": "en:lesson-01:session-29:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — heavy",
             "feedbackByLocale": {
@@ -213,7 +213,7 @@
         "testedDimension": "Вставьте слово — коробка пустая, вы подн",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-29:i04:r1",
+            "responseId": "en:lesson-01:session-29:i04:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коробка пустая, вы подн",
             "feedbackByLocale": {
@@ -222,7 +222,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-29:i04:r2",
+            "responseId": "en:lesson-01:session-29:i04:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коробка пустая, вы подн",
             "feedbackByLocale": {
@@ -360,7 +360,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-29:i07:r1",
+            "responseId": "en:lesson-01:session-29:i07:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — clean",
             "feedbackByLocale": {
@@ -369,7 +369,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-29:i07:r2",
+            "responseId": "en:lesson-01:session-29:i07:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — clean",
             "feedbackByLocale": {
@@ -479,7 +479,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-29:i09:r1",
+            "responseId": "en:lesson-01:session-29:i09:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — dirty",
             "feedbackByLocale": {
@@ -488,7 +488,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-29:i09:r2",
+            "responseId": "en:lesson-01:session-29:i09:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — dirty",
             "feedbackByLocale": {
@@ -623,7 +623,7 @@
         "testedDimension": "Вставьте слово — вы вытряхнули сумку, вн",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-29:i11:r1",
+            "responseId": "en:lesson-01:session-29:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы вытряхнули сумку, вн",
             "feedbackByLocale": {
@@ -632,7 +632,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-29:i11:r2",
+            "responseId": "en:lesson-01:session-29:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы вытряхнули сумку, вн",
             "feedbackByLocale": {
@@ -692,7 +692,7 @@
         "testedDimension": "Вставьте скрепку — вы говорите про рубаш",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-29:i12:r1",
+            "responseId": "en:lesson-01:session-29:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вы говорите про рубаш",
             "feedbackByLocale": {
@@ -701,7 +701,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-29:i12:r2",
+            "responseId": "en:lesson-01:session-29:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вы говорите про рубаш",
             "feedbackByLocale": {
@@ -867,7 +867,7 @@
         "testedDimension": "Вставьте слово — квартира маленькая, две",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-29:i16:r1",
+            "responseId": "en:lesson-01:session-29:i16:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — квартира маленькая, две",
             "feedbackByLocale": {
@@ -876,7 +876,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-29:i16:r2",
+            "responseId": "en:lesson-01:session-29:i16:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — квартира маленькая, две",
             "feedbackByLocale": {

@@ -1,0 +1,16 @@
+{
+  "sourceSha256": "926a212bf053f780b2c583192cabf2f1684da103f083d534e869c1e02a0e42f2",
+  "localeSha256": {"uk": "797c0f32800c00c7a26039def037751ebfd1bc494446f6dc4b47907fc86ee67e"},
+  "locales": {
+    "uk": {
+      "reviewer": "/root/s07_uk_native_resume",
+      "reviewScope": "Fresh independent full native review plus actual delta review closing the two findings and adjacent phonetic formatting.",
+      "priorFullReview": "content/learning-v2-course/judgements/2026-09-12_l03_s07_uk_review.json",
+      "verdict": "PASS",
+      "ru_sha256": "926a212bf053f780b2c583192cabf2f1684da103f083d534e869c1e02a0e42f2",
+      "uk_sha256": "797c0f32800c00c7a26039def037751ebfd1bc494446f6dc4b47907fc86ee67e",
+      "resolved_findings": 2, "intro_source_chars": [305,250,250], "intro_210_320": "PASS",
+      "english_contracts": "PASS", "native_language_and_meaning": "PASS", "humor": "PASS", "feedback": "PASS", "actual_audio": "NOT_REVIEWED", "open_findings": []
+    }
+  }
+}

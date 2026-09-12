@@ -1,0 +1,29 @@
+{
+  "sourceSha256": "b359c831e0a98a3195b604202d96d2c349735b668f5fff96a6c6215e50473802",
+  "localeSha256": {
+    "uk": "d282cd46e5f9a4494e54119a345009b5f129a00d519183bdf4eabd9e6fb65f8e"
+  },
+  "locales": {
+    "uk": {
+      "sourceSha256": "b359c831e0a98a3195b604202d96d2c349735b668f5fff96a6c6215e50473802",
+      "localeSha256": "d282cd46e5f9a4494e54119a345009b5f129a00d519183bdf4eabd9e6fb65f8e",
+      "verdict": "PASS",
+      "issues": [],
+      "checks": {
+        "naturalUkrainian": "PASS",
+        "meaningAndGrammarFeedback": "PASS",
+        "writtenAudioFeedback": "PASS",
+        "englishTargetsOptionsTilesOrder": "PASS",
+        "sceneAndIntros": "PASS",
+        "humor": "PASS — природний хід «Заощадили одну літеру — отримали цілу помилку»; гумор не нав’язаний кожній сторінці",
+        "introBodyCountsIncludingMarkdown": [
+          264,
+          236,
+          231
+        ],
+        "privateIntroAndLearnerProjection": "PASS",
+        "audioVisual": "NOT_ASSESSED"
+      }
+    }
+  }
+}

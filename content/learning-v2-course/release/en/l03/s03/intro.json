@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "тонкость `a + noun` в назывании: `It is a…` сообщает об одном предмете, на который мы указываем",
+    "uk": "тонкість `a + noun` у називанні: `It is a…` повідомляє про один предмет, на який ми вказуємо"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назвать предмет перед собой",
+        "uk": "Назвати предмет перед собою"
+      },
+      "bodyByLocale": {
+        "ru": "`stool` — «табурет». В `It is a stool` — «Это табурет» — вы называете один предмет. Фраза сообщает, что перед вами, а не рассказывает о табуретах вообще. Для такого названия берите `a stool` целиком: маленькое `a` перед словом и есть часть нужной конструкции.",
+        "uk": "`stool` — «табурет». У `It is a stool` — «Це табурет» — ви називаєте один предмет. Фраза каже, що перед вами, а не розповідає про табурети взагалі. Для такої назви беріть `a stool` цілком: маленьке `a` перед словом — частина потрібної фрази."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Брат предлагает поставить у двери предмет без спинки. Назовите его полной фразой: «Это табурет».",
+          "uk": "Брат пропонує поставити біля дверей предмет без спинки. Назвіть його повною фразою: «Це табурет»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-03:intro1:r1",
+              "text": "It is a stool."
+            },
+            {
+              "responseId": "en:lesson-03:session-03:intro1:r2",
+              "text": "It is stool."
+            },
+            {
+              "responseId": "en:lesson-03:session-03:intro1:r3",
+              "text": "It a stool."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-03:intro1:r1",
+              "text": "It is a stool."
+            },
+            {
+              "responseId": "en:lesson-03:session-03:intro1:r2",
+              "text": "It is stool."
+            },
+            {
+              "responseId": "en:lesson-03:session-03:intro1:r3",
+              "text": "It a stool."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Брат предлагает поставить у двери предмет без спинки. Назовите его полной фразой: «Это табурет».",
+          "uk": "Брат пропонує поставити біля дверей предмет без спинки. Назвіть його повною фразою: «Це табурет»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одно зеркало — не единственное",
+        "uk": "Одне дзеркало — не єдине"
+      },
+      "bodyByLocale": {
+        "ru": "`mirror` — «зеркало». Фраза `It is a mirror` — «Это зеркало» — называет один предмет, но не обещает, что других зеркал в квартире нет. Перепись всех зеркал для этой фразы не нужна. Даже если рядом лежит ещё одно, про выбранный предмет можно сказать `a mirror`.",
+        "uk": "`mirror` — «дзеркало». Фраза `It is a mirror` — «Це дзеркало» — називає один предмет, але не означає, що інших дзеркал у квартирі немає. Проводити перепис усіх дзеркал для цієї фрази не треба. Навіть якщо поруч стоїть іще одне, про вибране можна сказати `a mirror`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "У стены стоят два зеркала; брат показывает на одно из них. Назовите этот предмет полной фразой: «Это зеркало».",
+          "uk": "Біля стіни стоять два дзеркала; брат показує на одне з них. Назвіть цей предмет повною фразою: «Це дзеркало»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-03:intro2:r1",
+              "text": "It is a mirror."
+            },
+            {
+              "responseId": "en:lesson-03:session-03:intro2:r2",
+              "text": "It are a mirror."
+            },
+            {
+              "responseId": "en:lesson-03:session-03:intro2:r3",
+              "text": "It is mirror."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-03:intro2:r1",
+              "text": "It is a mirror."
+            },
+            {
+              "responseId": "en:lesson-03:session-03:intro2:r2",
+              "text": "It are a mirror."
+            },
+            {
+              "responseId": "en:lesson-03:session-03:intro2:r3",
+              "text": "It is mirror."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У стены стоят два зеркала; брат показывает на одно из них. Назовите этот предмет полной фразой: «Это зеркало».",
+          "uk": "Біля стіни стоять два дзеркала; брат показує на одне з них. Назвіть цей предмет повною фразою: «Це дзеркало»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не каждое слово переводится отдельно",
+        "uk": "Не кожне слово перекладається окремо"
+      },
+      "bodyByLocale": {
+        "ru": "`rug` — «коврик». В `It is a rug` маленькое `a` относится к одному коврику. Но переводить его отдельным словом «один» здесь не требуется: по-русски естественно «Это коврик». В английской фразе `a` остаётся перед названием, хотя в русском переводе отдельного слова для него нет.",
+        "uk": "`rug` — «килимок». У `It is a rug` маленьке `a` стосується одного килимка. Та перекладати його окремим словом «один» тут не потрібно: українською природно сказати «Це килимок». В англійській фразі `a` лишається перед назвою, хоч в українському перекладі окремого слова для нього немає."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Брат спрашивает, что вы собираетесь положить у двери. Скажите полной фразой: «Это коврик».",
+          "uk": "Брат запитує, що ви збираєтеся покласти біля дверей. Скажіть повною фразою: «Це килимок»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-03:intro3:r1",
+              "text": "It is a rug."
+            },
+            {
+              "responseId": "en:lesson-03:session-03:intro3:r2",
+              "text": "It is rug."
+            },
+            {
+              "responseId": "en:lesson-03:session-03:intro3:r3",
+              "text": "It am a rug."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-03:intro3:r1",
+              "text": "It is a rug."
+            },
+            {
+              "responseId": "en:lesson-03:session-03:intro3:r2",
+              "text": "It is rug."
+            },
+            {
+              "responseId": "en:lesson-03:session-03:intro3:r3",
+              "text": "It am a rug."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Брат спрашивает, что вы собираетесь положить у двери. Скажите полной фразой: «Это коврик».",
+          "uk": "Брат запитує, що ви збираєтеся покласти біля дверей. Скажіть повною фразою: «Це килимок»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4a1870ef6bcf46251db1294cf598ebd4ac17c0510ff4f9adf5b8ac8c090455ef"
+}

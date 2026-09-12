@@ -3,7 +3,7 @@
   "courseSessionId": "en:lesson-02:session-15",
   "learningOutcomeByLocale": {
     "ru": "повторение — `Is he …?` / `Is she …?` / `Is it …?` и короткие ответы",
-    "uk": ""
+    "uk": "повторення — `Is he …?` / `Is she …?` / `Is it …?` і короткі відповіді"
   },
   "pages": [
     {
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-02:session-15:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Один `Yes` — мало",
-        "uk": "Одного `Yes` замало"
+        "ru": "Короткий ответ с `she is`",
+        "uk": "Коротка відповідь із `she is`"
       },
       "bodyByLocale": {
-        "ru": "На `Is she pretty?` одного `Yes` хватит, чтобы вас поняли. Но в живой речи к нему почти всегда прицепляют два слова из самого вопроса — так отвечают чаще.\n\nПридумывать нечего: `is` и `she` берутся прямо из вопроса — `Yes, she is.` Про мужчину — `Yes, he is.`, про вещь — `Yes, it is.`",
-        "uk": "На `Is she pretty?` одного `Yes` вистачить, щоб вас зрозуміли. Але в живій мові до нього майже завжди чіпляють два слова з самого запитання — так відповідають частіше.\n\nВигадувати нічого: `is` і `she` беруться просто із запитання — `Yes, she is.` Про чоловіка — `Yes, he is.`, про річ — `Yes, it is.`"
+        "ru": "На `Is she pretty?` можно ответить одним `Yes`. Можно добавить два слова из вопроса, только поставить их в обратном порядке.\n\nПридумывать нечего: `is` и `she` берутся прямо из вопроса — `Yes, she is.` Про мужчину — `Yes, he is.`, про вещь — `Yes, it is.`",
+        "uk": "На `Is she pretty?` можна відповісти одним `Yes`. Можна додати два слова із запитання, лише поставити їх у зворотному порядку.\n\nВигадувати нічого: `is` і `she` беруться просто із запитання — `Yes, she is.` Про чоловіка — `Yes, he is.`, про річ — `Yes, it is.`"
       },
       "question": {
         "interactionId": "en:lesson-02:session-15:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f9440dcc7156777d5c6af903205cf0dfad5ab976ed0c616b009b9128e1ae1d2d"
+  "introFingerprint": "13ba3b9561fe4e0e734959c7bfe11ddd8693199ba3d3ff229096b147296fd252"
 }

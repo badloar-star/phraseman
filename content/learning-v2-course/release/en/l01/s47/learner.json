@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-47:i02:r1",
+            "responseId": "en:lesson-01:session-47:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — drunk",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-47:i02:r2",
+            "responseId": "en:lesson-01:session-47:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — drunk",
             "feedbackByLocale": {
@@ -291,7 +291,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-47:i06:r1",
+            "responseId": "en:lesson-01:session-47:i06:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — sleepy",
             "feedbackByLocale": {
@@ -300,7 +300,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-47:i06:r2",
+            "responseId": "en:lesson-01:session-47:i06:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — sleepy",
             "feedbackByLocale": {
@@ -405,7 +405,7 @@
         "testedDimension": "Вставьте слово — друг залпом допил кофе ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-47:i08:r1",
+            "responseId": "en:lesson-01:session-47:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — друг залпом допил кофе ",
             "feedbackByLocale": {
@@ -414,7 +414,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-47:i08:r2",
+            "responseId": "en:lesson-01:session-47:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — друг залпом допил кофе ",
             "feedbackByLocale": {
@@ -547,7 +547,7 @@
         "testedDimension": "Вставьте слово — вы садитесь за руль, и ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-47:i10:r1",
+            "responseId": "en:lesson-01:session-47:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы садитесь за руль, и ",
             "feedbackByLocale": {
@@ -556,7 +556,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-47:i10:r2",
+            "responseId": "en:lesson-01:session-47:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы садитесь за руль, и ",
             "feedbackByLocale": {
@@ -659,7 +659,7 @@
         "testedDimension": "Вставьте слово — друг весь день таскал я",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-47:i12:r1",
+            "responseId": "en:lesson-01:session-47:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — друг весь день таскал я",
             "feedbackByLocale": {
@@ -668,7 +668,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-47:i12:r2",
+            "responseId": "en:lesson-01:session-47:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — друг весь день таскал я",
             "feedbackByLocale": {
@@ -834,7 +834,7 @@
         "testedDimension": "Вставьте слово — час ночи, музыку выключ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-47:i16:r1",
+            "responseId": "en:lesson-01:session-47:i16:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — час ночи, музыку выключ",
             "feedbackByLocale": {
@@ -843,7 +843,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-47:i16:r2",
+            "responseId": "en:lesson-01:session-47:i16:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — час ночи, музыку выключ",
             "feedbackByLocale": {
@@ -903,7 +903,7 @@
         "testedDimension": "Вставьте слово — вас ждали к одиннадцати",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-47:i17:r1",
+            "responseId": "en:lesson-01:session-47:i17:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вас ждали к одиннадцати",
             "feedbackByLocale": {
@@ -912,7 +912,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-47:i17:r2",
+            "responseId": "en:lesson-01:session-47:i17:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вас ждали к одиннадцати",
             "feedbackByLocale": {

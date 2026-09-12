@@ -1,0 +1,150 @@
+{
+  "sourceSha256": "e3a501430d3205b4a5bea468fdc9d6964e3cb5078aef274945eadb8197316ce7",
+  "reviewer": "/root/s22_uk_author",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "role": "independent RU pedagogy; not RU author",
+  "verdict": "PASS",
+  "verdict_reason": "S24 is an independent Chapter 3 checkpoint: it introduces no words or grammar, accurately retrieves admitted singular/plural and `a` choices, grounds all four returns before the four-pair board, keeps listening neutral, and ends with an independent builder.",
+  "answer_semantics": [],
+  "substitution_evidence": [
+    {
+      "where": "intro 1",
+      "key": "It is a ticket.",
+      "evidence": "One concert ticket is in the envelope; bare `It is ticket.` omits `a`, while `It is a tickets.` mismatches one item."
+    },
+    {
+      "where": "intro 2",
+      "key": "They are glasses.",
+      "evidence": "The set contains several drinking glasses; `They are glass.` is singular and `They are a glasses.` improperly retains `a`."
+    },
+    {
+      "where": "intro 3",
+      "key": "They are stories.",
+      "evidence": "The book contents are several narratives; `They are storys.` has the wrong -y plural spelling and `They are a stories.` improperly retains `a`."
+    },
+    {
+      "where": "T1",
+      "key": "a ticket",
+      "evidence": "One ticket is separate in the envelope; bare `ticket` omits `a`, `tickets` changes count."
+    },
+    {
+      "where": "T4",
+      "key": "is",
+      "evidence": "One story is named through `It is`; `are` and `am` mismatch that established frame."
+    },
+    {
+      "where": "T6",
+      "key": "dishes",
+      "evidence": "Two serving dishes were unpacked; `dish` and `a dish` are singular."
+    },
+    {
+      "where": "T8",
+      "key": "stories",
+      "evidence": "Several narratives in the book require `stories`; `storys` has the wrong plural spelling and `a stories` retains `a`."
+    },
+    {
+      "where": "T11",
+      "key": "glass",
+      "evidence": "The prompt already supplies `It is a`; with one drinking glass, bare `glass` alone completes the phrase. `glasses` changes count; `a glass` duplicates the visible `a`."
+    },
+    {
+      "where": "T13",
+      "key": "are",
+      "evidence": "Several tickets are named with `They`; `is` and `am` mismatch the established subject."
+    },
+    {
+      "where": "T16",
+      "key": "glasses",
+      "evidence": "The final set contains several drinking glasses; `glass` is singular and `a glasses` improperly retains `a`."
+    }
+  ],
+  "proof": {
+    "planFidelity": {
+      "checkpoint": true,
+      "newWords": "—",
+      "newGrammar": false,
+      "returns": [
+        "ticket",
+        "dish (serving tableware)",
+        "story (narrative)",
+        "glass (drinking vessel)"
+      ]
+    },
+    "taskCount": 17,
+    "wordCards": 0,
+    "soundContrast": false,
+    "returnContacts": {
+      "ticket": [
+        1,
+        2,
+        9,
+        13,
+        14
+      ],
+      "dish": [
+        3,
+        6,
+        12,
+        14
+      ],
+      "story": [
+        4,
+        8,
+        10,
+        14,
+        15,
+        17
+      ],
+      "glass": [
+        5,
+        7,
+        11,
+        14,
+        16
+      ]
+    },
+    "board": {
+      "task": 14,
+      "pairs": 4,
+      "groundedBeforeBoard": {
+        "tickets": "visible intro 1 translation plus correct heard phrase 2 and speech 9",
+        "dishes": "visible bilingual instruction 3 plus gap 6 and dictation 12",
+        "stories": "visible intro 3 translation plus gap 8 and heard negative phrase 10",
+        "glasses": "visible intro 2 translation plus builder 7"
+      }
+    },
+    "builders": {
+      "tasks": [
+        3,
+        7,
+        12,
+        17
+      ],
+      "variety": [
+        "singular affirmative",
+        "plural question",
+        "negative dictation",
+        "independent plural affirmative"
+      ]
+    },
+    "listening": {
+      "tasks": [
+        2,
+        5,
+        10,
+        12
+      ],
+      "neutral": true,
+      "evidence": "Each asks only what the courier said; no prompt, scene detail, or accessible non-target cue discloses the recorded number, polarity, or question."
+    },
+    "finalIndependent": {
+      "task": 17,
+      "target": "They are stories.",
+      "notImmediatelyPrimedBy": "speech 15 (`It is a story.`) or dictation 12 (`They are not dishes.`)"
+    },
+    "actualAudio": "NOT_REVIEWED"
+  },
+  "issues": []
+}
+

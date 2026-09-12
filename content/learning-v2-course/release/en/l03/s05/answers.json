@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-05:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i02",
+    "correctText": "wall",
+    "correctResponseId": "en:lesson-03:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i04",
+    "correctText": "floor",
+    "correctResponseId": "en:lesson-03:session-05:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i05",
+    "correctText": "It is a wall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i07",
+    "correctText": "ceiling",
+    "correctResponseId": "en:lesson-03:session-05:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i08",
+    "correctText": "A ceiling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i09",
+    "correctText": "It is a door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i10",
+    "correctText": "Is it a floor?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i13",
+    "correctText": "It is not a wall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i14",
+    "correctText": "is a",
+    "correctResponseId": "en:lesson-03:session-05:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i15",
+    "correctText": "Is it clean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i16",
+    "correctText": "It is a floor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-05:i17",
+    "correctText": "Is it a ceiling?",
+    "correctResponseId": null
+  }
+]

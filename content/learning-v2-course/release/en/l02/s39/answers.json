@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-39:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i02",
+    "correctText": "couple",
+    "correctResponseId": "en:lesson-02:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i04",
+    "correctText": "crowd",
+    "correctResponseId": "en:lesson-02:session-39:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i05",
+    "correctText": "Who is the host?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i06",
+    "correctText": "host",
+    "correctResponseId": "en:lesson-02:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i07",
+    "correctText": "The crowd is outside.",
+    "correctResponseId": "en:lesson-02:session-39:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i08",
+    "correctText": "The couple is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i09",
+    "correctText": "strangers",
+    "correctResponseId": "en:lesson-02:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i11",
+    "correctText": "Where is the crowd?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i12",
+    "correctText": "guests",
+    "correctResponseId": "en:lesson-02:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i13",
+    "correctText": "Are they guests?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i14",
+    "correctText": "We are not strangers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i15",
+    "correctText": "They are not strangers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i16",
+    "correctText": "Where is the couple?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-39:i17",
+    "correctText": "Who are these people?",
+    "correctResponseId": null
+  }
+]

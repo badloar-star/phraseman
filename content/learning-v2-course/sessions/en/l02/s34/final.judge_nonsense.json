@@ -1,9 +1,56 @@
 {
-  "problems": [],
+  "session": "en/l02/s34",
+  "sourceSha256": "0ad5d420ef8250d7f12601148b18ffdd9c534ee91a7d8123b8c58eaf4c714ff4",
+  "localeSha256": "7ff9ec18731575288163ae1c8830584011a21dc9e032d69133eb929b45238432",
   "verdict": "PASS",
-  "verdict_reason": "Исправленное определение strangers точно описывает личную незнакомость; остальные английские и русские утверждения правдивы, а подстановка вариантов оставляет в каждом задании один обоснованный правильный ответ.",
-  "sourceSha256": "c72bc0dd157edc56107749d19d44b4e301bc47da029be4ad472c7b88f3ce4576",
-  "reviewedAt": "2026-09-08T08:45:06.845588+00:00",
-  "reviewMethod": "builtin_codex_independent_role",
-  "reviewedScope": "full_session"
+  "issues": [],
+  "checks": {
+    "onlyListedPromptsChanged": true,
+    "introByteTextUnchanged": true,
+    "englishTokenSequenceUnchanged": true,
+    "targetTilesAnswerFeedbackUnchanged": true,
+    "ruPromptNeutral": true,
+    "ukPromptNativeAndNeutral": true,
+    "contextCoherent": true
+  },
+  "verdict_reason": "T12 теперь сообщает только тему нескольких гостей; strangers и положительная полярность до прослушивания не раскрываются.",
+  "priorFullReviewRetained": true,
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "session": "S34",
+    "sourceSha256": "b2a6cfcd304fa01287fd80bff798a20f16d51838512e479219eff47079c64fa5",
+    "verdict": "PASS",
+    "issues": [],
+    "verified": {
+      "deltaLimitedToThreeIntroBodies": true,
+      "thesePeopleMeaningAndPluralAreRuleAccurate": true,
+      "strangersMeaningAndTheyWeFramesAccurate": true,
+      "twinsAndWeAreNotTwinsRuleAccurate": true,
+      "humourDoesNotDistortMeaningOrGrammar": true,
+      "introLengths": [
+        269,
+        272,
+        270
+      ]
+    }
+  },
+  "deltaReview": {
+    "session": "S34",
+    "sourceSha256": "0ad5d420ef8250d7f12601148b18ffdd9c534ee91a7d8123b8c58eaf4c714ff4",
+    "localeSha256": "7ff9ec18731575288163ae1c8830584011a21dc9e032d69133eb929b45238432",
+    "verdict": "PASS",
+    "issues": [],
+    "checks": {
+      "onlyListedPromptsChanged": true,
+      "introByteTextUnchanged": true,
+      "englishTokenSequenceUnchanged": true,
+      "targetTilesAnswerFeedbackUnchanged": true,
+      "ruPromptNeutral": true,
+      "ukPromptNativeAndNeutral": true,
+      "contextCoherent": true
+    },
+    "verdict_reason": "T12 теперь сообщает только тему нескольких гостей; strangers и положительная полярность до прослушивания не раскрываются.",
+    "priorFullReviewRetained": true
+  },
+  "retainedSourceSha256": "b2a6cfcd304fa01287fd80bff798a20f16d51838512e479219eff47079c64fa5"
 }

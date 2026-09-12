@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-04:i02:r1",
+            "responseId": "en:lesson-02:session-04:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — curious",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-04:i02:r2",
+            "responseId": "en:lesson-02:session-04:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — curious",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-04:i04:r1",
+            "responseId": "en:lesson-02:session-04:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — cheerful",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-04:i04:r2",
+            "responseId": "en:lesson-02:session-04:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — cheerful",
             "feedbackByLocale": {
@@ -281,7 +281,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про наст",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-04:i05:r1",
+            "responseId": "en:lesson-02:session-04:i05:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про наст",
             "feedbackByLocale": {
@@ -409,7 +409,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-04:i08:r1",
+            "responseId": "en:lesson-02:session-04:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что спросил сосе",
             "feedbackByLocale": {
@@ -418,7 +418,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-04:i08:r2",
+            "responseId": "en:lesson-02:session-04:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что спросил сосе",
             "feedbackByLocale": {
@@ -480,7 +480,7 @@
         "testedDimension": "Вставьте слово — сосед второй час пьёт ч",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-04:i09:r1",
+            "responseId": "en:lesson-02:session-04:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед второй час пьёт ч",
             "feedbackByLocale": {
@@ -489,7 +489,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-04:i09:r2",
+            "responseId": "en:lesson-02:session-04:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед второй час пьёт ч",
             "feedbackByLocale": {
@@ -531,7 +531,7 @@
           "ru": "Вставьте слово — начало вопроса",
           "uk": "Вставте слово — початок питання"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ you cheerful?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-04:i10:r1",
@@ -549,7 +549,7 @@
         "testedDimension": "Вставьте слово — начало вопроса",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-04:i10:r1",
+            "responseId": "en:lesson-02:session-04:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — начало вопроса",
             "feedbackByLocale": {
@@ -558,7 +558,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-04:i10:r2",
+            "responseId": "en:lesson-02:session-04:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — начало вопроса",
             "feedbackByLocale": {
@@ -724,7 +724,7 @@
         "testedDimension": "Вставьте слово — сосед в футболке стоит ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-04:i13:r1",
+            "responseId": "en:lesson-02:session-04:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед в футболке стоит ",
             "feedbackByLocale": {
@@ -733,7 +733,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-04:i13:r2",
+            "responseId": "en:lesson-02:session-04:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед в футболке стоит ",
             "feedbackByLocale": {
@@ -828,7 +828,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-04:i15:r1",
+            "responseId": "en:lesson-02:session-04:i15:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — про воду или про",
             "feedbackByLocale": {
@@ -837,7 +837,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-04:i15:r2",
+            "responseId": "en:lesson-02:session-04:i15:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — про воду или про",
             "feedbackByLocale": {
@@ -924,5 +924,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "79c9406b360fc49d31ad0714f783a64472dbe930ea137f939e317d94b66fc8ab"
+  "learnerFingerprint": "f2b1f4101995bdb88e5092c5b73cc1586904960fe28bcf41749d75c64801abca"
 }

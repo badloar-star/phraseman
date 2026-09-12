@@ -1,0 +1,83 @@
+{
+  "sourceSha256": "0b8ee756248840a8741a87265eab930e0dd0634c49063b178a52092f5d84a5c8",
+  "reviewer": "/root/s17_reader_delta",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "pages": [
+    {
+      "page": 1,
+      "retelling": "Glasses has a short extra part compared with glass, and that tells me there is more than one.",
+      "what_i_do_now": "When I hear glasses, I will listen to the whole word instead of stopping after the familiar beginning.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 2,
+      "retelling": "Brush is one brush and brushes is several; I can hear the difference because the second word has two syllables, even when I cannot see the brushes.",
+      "what_i_do_now": "I will compare the whole sound of brush and brushes, and can ask “Are they brushes?” about several brushes.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 3,
+      "retelling": "Bench is one bench, and benches has an extra short ending that tells me there are several benches.",
+      "what_i_do_now": "I will listen to how many syllables I hear in the word rather than guessing from the situation.",
+      "understood": true,
+      "problems": []
+    }
+  ],
+  "pages_understood": 3,
+  "verdict": "PASS",
+  "reason": "Actual full e31c reader PASS and current projection recheck: all three pages unchanged from that review, clear in one read; no reader-scope issues.",
+  "reviewHistory": [
+    {
+      "sourceSha256": "ed5e6b4ee17b2d9ceddb68c7be885b12f38349de9487fa915448a263a63176bb",
+      "reviewer": "/root/s17_reader_delta",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "pages": [
+        {
+          "page": 1,
+          "retelling": "I can hear that glasses has a short extra part compared with glass, and that means there is more than one.",
+          "what_i_do_now": "When I hear glasses, I will listen to the whole word instead of stopping after the familiar beginning.",
+          "understood": true,
+          "problems": []
+        },
+        {
+          "page": 2,
+          "retelling": "Brush means one brush, while brushes has an extra short ending and means several brushes, including in a question.",
+          "what_i_do_now": "I will listen for the ending and can ask ‘Are they brushes?’ about several brushes.",
+          "understood": true,
+          "problems": []
+        },
+        {
+          "page": 3,
+          "retelling": "Bench is one bench, and benches has an extra short ending that tells me there are several benches.",
+          "what_i_do_now": "I will listen to how many syllables I hear in the word rather than guessing from the situation.",
+          "understood": true,
+          "problems": []
+        }
+      ],
+      "pages_understood": 3,
+      "verdict": "PASS",
+      "reason": "All three pages are understandable in one read: each shows the word and translation first, then gives me a concrete listening action for noticing whether it refers to one item or several."
+    }
+  ],
+  "actualDelta": {
+    "sourceSha256": "0b8ee756248840a8741a87265eab930e0dd0634c49063b178a52092f5d84a5c8",
+    "priorSha256": "ed5e6b4ee17b2d9ceddb68c7be885b12f38349de9487fa915448a263a63176bb",
+    "editedSha256": "e31c18d928576f5a9d5bb4f624742d57c4f41665c66b2631e814412b28125a10",
+    "changedLines": [
+      29,
+      31,
+      76,
+      99,
+      122
+    ],
+    "finalChangedLines": [
+      122
+    ],
+    "verdict": "PASS",
+    "fullPriorScopeRetained": true
+  }
+}

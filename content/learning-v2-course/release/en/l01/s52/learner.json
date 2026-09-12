@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-52:i02:r1",
+            "responseId": "en:lesson-01:session-52:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — week",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-52:i02:r2",
+            "responseId": "en:lesson-01:session-52:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — week",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-52:i04:r1",
+            "responseId": "en:lesson-01:session-52:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — day",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-52:i04:r2",
+            "responseId": "en:lesson-01:session-52:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — day",
             "feedbackByLocale": {
@@ -337,7 +337,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-52:i06:r1",
+            "responseId": "en:lesson-01:session-52:i06:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — night",
             "feedbackByLocale": {
@@ -346,7 +346,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-52:i06:r2",
+            "responseId": "en:lesson-01:session-52:i06:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — night",
             "feedbackByLocale": {
@@ -408,7 +408,7 @@
         "testedDimension": "Вставьте скрепку — неделя одна",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-52:i07:r1",
+            "responseId": "en:lesson-01:session-52:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — неделя одна",
             "feedbackByLocale": {
@@ -417,7 +417,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-52:i07:r2",
+            "responseId": "en:lesson-01:session-52:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — неделя одна",
             "feedbackByLocale": {
@@ -525,7 +525,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-52:i09:r1",
+            "responseId": "en:lesson-01:session-52:i09:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — morning",
             "feedbackByLocale": {
@@ -534,7 +534,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-52:i09:r2",
+            "responseId": "en:lesson-01:session-52:i09:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — morning",
             "feedbackByLocale": {
@@ -669,7 +669,7 @@
         "testedDimension": "Вставьте слово — мама спрашивает про ноч",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-52:i11:r1",
+            "responseId": "en:lesson-01:session-52:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — мама спрашивает про ноч",
             "feedbackByLocale": {
@@ -678,7 +678,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-52:i11:r2",
+            "responseId": "en:lesson-01:session-52:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — мама спрашивает про ноч",
             "feedbackByLocale": {
@@ -769,7 +769,7 @@
         "testedDimension": "Вставьте слово — мама спрашивает, всё ли",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-52:i13:r1",
+            "responseId": "en:lesson-01:session-52:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — мама спрашивает, всё ли",
             "feedbackByLocale": {
@@ -778,7 +778,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-52:i13:r2",
+            "responseId": "en:lesson-01:session-52:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — мама спрашивает, всё ли",
             "feedbackByLocale": {
@@ -838,7 +838,7 @@
         "testedDimension": "Вставьте слово — мама спрашивает про кол",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-52:i14:r1",
+            "responseId": "en:lesson-01:session-52:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — мама спрашивает про кол",
             "feedbackByLocale": {
@@ -847,7 +847,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-52:i14:r2",
+            "responseId": "en:lesson-01:session-52:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — мама спрашивает про кол",
             "feedbackByLocale": {

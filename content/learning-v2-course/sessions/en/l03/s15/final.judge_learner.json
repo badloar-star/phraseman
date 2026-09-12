@@ -1,0 +1,108 @@
+{
+  "sourceSha256": "7b600965938751fb67aa28fbec100362036023dc365b07ae7c38883ab7fd0bdc",
+  "reviewer": "/root/s10_blind",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "It is a candle."
+    },
+    {
+      "step": 2,
+      "answer": "It is a cushion."
+    },
+    {
+      "step": 3,
+      "answer": "Is it a plant?"
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "candle"
+    },
+    {
+      "step": 2,
+      "answer": "candle"
+    },
+    {
+      "step": 3,
+      "answer": "A candle."
+    },
+    {
+      "step": 4,
+      "answer": "cushion"
+    },
+    {
+      "step": 5,
+      "answer": "cushion"
+    },
+    {
+      "step": 6,
+      "answer": "an"
+    },
+    {
+      "step": 7,
+      "answer": "plant"
+    },
+    {
+      "step": 8,
+      "answer": "plant"
+    },
+    {
+      "step": 9,
+      "answer": "an"
+    },
+    {
+      "step": 10,
+      "answer": "It is an oven."
+    },
+    {
+      "step": 11,
+      "answer": {
+        "cushion": "подушка",
+        "plant": "растение",
+        "armchair": "кресло",
+        "candle": "свеча"
+      }
+    },
+    {
+      "step": 12,
+      "answer": "Is it a cushion?"
+    },
+    {
+      "step": 13,
+      "answer": "It is not a plant."
+    },
+    {
+      "step": 14,
+      "answer": "It is not a candle."
+    },
+    {
+      "step": 15,
+      "answer": "It is an armchair."
+    },
+    {
+      "step": 16,
+      "answer": "Is it a plant?"
+    },
+    {
+      "step": 17,
+      "answer": "It is a cushion."
+    }
+  ],
+  "learned_new": [
+    "candle — свеча",
+    "cushion — подушка",
+    "plant — растение",
+    "могу назвать покупки для дома, уточнить их название и отрицать неверное предположение"
+  ],
+  "impossible_tasks": [],
+  "ambiguous_tasks": [],
+  "pacing_issues": [],
+  "humour_issues": [],
+  "actualAudioReviewed": false,
+  "verdict": "PASS",
+  "reason": "Три слова вводятся до каждой требующей их проверки, возвращаемые armchair и oven снабжены переводом, а ситуация покупок для дома делает фразы понятными."
+}

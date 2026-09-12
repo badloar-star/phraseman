@@ -1,0 +1,16 @@
+{
+  "session": "en/l02/s35",
+  "converged": true,
+  "needsHumanReview": false,
+  "sourceSha256": "c99987db83f110957ac93e2194084f296727e4d9f67d264d4cca00529fee1fcf",
+  "localeSha256": {
+    "uk": "bd5d00c41d19b750a3020035755fa224476fc3d9fb270d368658d1aeb8954488"
+  },
+  "locales": {
+    "uk": "PASS"
+  },
+  "note": "Text RU+UK passed; fix emitted/displayed practice instructions before building mockup.",
+  "completionScope": "RU+UK text and local mockup built and verified; six other locales and audio pending; browser refresh/visual review unavailable due URL policy",
+  "mockupVerifiedAt": "2026-09-08T10:53:49.292Z",
+  "listeningRepairReviewedAt": "2026-09-08T10:50:21.813431+00:00"
+}

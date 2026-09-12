@@ -124,7 +124,7 @@
         "testedDimension": "Вставьте скрепку — парень у кассы всех с",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-24:i02:r1",
+            "responseId": "en:lesson-01:session-24:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — парень у кассы всех с",
             "feedbackByLocale": {
@@ -133,7 +133,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-24:i02:r2",
+            "responseId": "en:lesson-01:session-24:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — парень у кассы всех с",
             "feedbackByLocale": {
@@ -198,7 +198,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-24:i03:r1",
+            "responseId": "en:lesson-01:session-24:i03:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — quiet",
             "feedbackByLocale": {
@@ -207,7 +207,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-24:i03:r2",
+            "responseId": "en:lesson-01:session-24:i03:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — quiet",
             "feedbackByLocale": {
@@ -269,7 +269,7 @@
         "testedDimension": "Вставьте слово — девушка за соседним сто",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-24:i04:r1",
+            "responseId": "en:lesson-01:session-24:i04:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — девушка за соседним сто",
             "feedbackByLocale": {
@@ -278,7 +278,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-24:i04:r2",
+            "responseId": "en:lesson-01:session-24:i04:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — девушка за соседним сто",
             "feedbackByLocale": {
@@ -368,7 +368,7 @@
         "testedDimension": "Вставьте слово — коллега сказала, что де",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-24:i06:r1",
+            "responseId": "en:lesson-01:session-24:i06:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега сказала, что де",
             "feedbackByLocale": {
@@ -377,7 +377,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-24:i06:r2",
+            "responseId": "en:lesson-01:session-24:i06:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега сказала, что де",
             "feedbackByLocale": {
@@ -474,7 +474,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-24:i08:r1",
+            "responseId": "en:lesson-01:session-24:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — kind",
             "feedbackByLocale": {
@@ -483,7 +483,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-24:i08:r2",
+            "responseId": "en:lesson-01:session-24:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — kind",
             "feedbackByLocale": {
@@ -545,7 +545,7 @@
         "testedDimension": "Вставьте слово — она утром помогла вам с",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-24:i09:r1",
+            "responseId": "en:lesson-01:session-24:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — она утром помогла вам с",
             "feedbackByLocale": {
@@ -554,7 +554,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-24:i09:r2",
+            "responseId": "en:lesson-01:session-24:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — она утром помогла вам с",
             "feedbackByLocale": {
@@ -673,7 +673,7 @@
         "testedDimension": "Вставьте скрепку — про девушку у окна",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-24:i12:r1",
+            "responseId": "en:lesson-01:session-24:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про девушку у окна",
             "feedbackByLocale": {
@@ -682,7 +682,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-24:i12:r2",
+            "responseId": "en:lesson-01:session-24:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про девушку у окна",
             "feedbackByLocale": {

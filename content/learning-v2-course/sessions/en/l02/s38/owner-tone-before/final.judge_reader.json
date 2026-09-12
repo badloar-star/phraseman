@@ -1,0 +1,104 @@
+{
+  "verdict": "PASS",
+  "verdict_reason": "Все три интро понятны с первого чтения: фраза и перевод даны сразу, объяснения приводят к конкретному действию, а сцены используются только в вопросах. Все 17 заданий практики сформулированы ясно и естественно; цель каждого действия и единственный ожидаемый ответ понятны из контекста.",
+  "pages": [
+    {
+      "page": 1,
+      "retelling": "Чтобы узнать, кто перед вами, нужно спросить: «Who is he?»",
+      "what_i_do_now": "О незнакомом мужчине я спрошу «Who is he?», а не «Where is he?» и не «Who he is?»",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 2,
+      "retelling": "«Who is she?» выясняет, кто женщина, а «Is she new?» только проверяет, новенькая ли она.",
+      "what_i_do_now": "Если хочу узнать, кто женщина, скажу «Who is she?»",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 3,
+      "retelling": "О нескольких незнакомых людях спрашивают «Who are these people?» и используют «are».",
+      "what_i_do_now": "О группе людей я спрошу «Who are these people?»",
+      "understood": true,
+      "problems": []
+    }
+  ],
+  "pages_understood": 3,
+  "practice_review": {
+    "items_reviewed": 17,
+    "clarity": "PASS",
+    "naturalness": "PASS",
+    "issues": []
+  },
+  "rule_checks": {
+    "intro_word_and_translation_first": "PASS",
+    "scenes_only_in_questions": "PASS",
+    "humor_optional": "PASS",
+    "intro_length_210_320": "PASS",
+    "reported_intro_lengths": [
+      254,
+      253,
+      254
+    ]
+  },
+  "sourceSha256": "88a4fa1de82fe42833767db94a7f2c0f39640b8831267ed171668edd778558ff",
+  "scope": {
+    "locale": "ru",
+    "session": "en/l02/s38",
+    "source": "content/learning-v2-course/sessions/en/l02/s38/final.ru.md",
+    "reviewed": [
+      "all 3 intro pages",
+      "all intro questions and answer explanations",
+      "all 17 practice items"
+    ],
+    "mode": "read-only independent reader review"
+  },
+  "deltaReview": {
+    "verdict": "PASS",
+    "sourceSha256": "ce5a96b8dbd36fb9bf7ad8ce84261b9463f66d3f584ad30e74725fd273a5104a",
+    "delta": {
+      "task4_guest_option_and_feedback": "PASS — «guest» однозначно объяснено как «гость»; отличие от intern понятно с первого чтения.",
+      "selfcheck_clarification": "PASS — ясно различает задание 7 на слух, финальную самостоятельную сборку и другую голосовую фразу в задании 16."
+    },
+    "intros": {
+      "unchanged": true,
+      "introSha256": "ad23a5d0d5bec857c188be8462c360b6b113a31ce7a619db35f6eb62f6680aa1"
+    },
+    "issues": [],
+    "scope": "Read-only bounded readability review of the two changed blocks; all three intro blocks checked unchanged."
+  },
+  "reviewedOriginalSha256": "de7b4fde081c3b5ac4a8aed67e8252965cd3fe063ae546488a8f23e3c661d700",
+  "listeningRepairReview": {
+    "verdict": "PASS",
+    "scope": [
+      "practice_2",
+      "practice_4"
+    ],
+    "sourceSha256": "88a4fa1de82fe42833767db94a7f2c0f39640b8831267ed171668edd778558ff",
+    "requestedSha256": "2e0665e88cec28cb9860da945fbbb4108855e02e436d5fa764a5829cceb2ddd5",
+    "hashMatch": false,
+    "stableAcrossTwoReads": true,
+    "checks": {
+      "neutralInstruction": "PASS",
+      "noAnswerLeakInPrompt": "PASS",
+      "distractorsAreSoundBased": "PASS",
+      "feedbackReadable": "PASS"
+    },
+    "details": [
+      {
+        "block": 2,
+        "result": "PASS",
+        "reason": "«Какое слово прозвучало» не называет и не описывает правильный ответ. Messenger конкурирует по начальному слогу, passenger — по общему звучанию и отличается уже первым звуком. Оба разбора короткие и понятные."
+      },
+      {
+        "block": 4,
+        "result": "PASS",
+        "reason": "Инструкция нейтральна. Winter добавляет слышимый начальный согласный перед гласным, return отличается первым слогом. Feedback прямо просит переслушать различающий участок и не требует терминов."
+      }
+    ],
+    "concreteIssues": [],
+    "receiptCaveat": "Проверен стабильный текущий файл с SHA-256 88a4fa1d…58ff. Переданный SHA-256 2e0665e8…ddd5 этому файлу не соответствует, поэтому этот verdict нельзя привязывать к переданному хешу."
+  },
+  "previousSourceSha256": "ce5a96b8dbd36fb9bf7ad8ce84261b9463f66d3f584ad30e74725fd273a5104a"
+}

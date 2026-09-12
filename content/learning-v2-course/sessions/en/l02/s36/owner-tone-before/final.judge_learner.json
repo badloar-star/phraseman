@@ -1,0 +1,120 @@
+{
+  "walkthrough": [
+    {
+      "step": "intro_1",
+      "chosenanswer": "Who is he?"
+    },
+    {
+      "step": "intro_2",
+      "chosenanswer": "Who is she?"
+    },
+    {
+      "step": "intro_3",
+      "chosenanswer": "Who is the host?"
+    },
+    {
+      "step": 1,
+      "chosenanswer": "Who is he?"
+    },
+    {
+      "step": 2,
+      "chosenanswer": "Who is she?"
+    },
+    {
+      "step": 3,
+      "chosenanswer": "host"
+    },
+    {
+      "step": 4,
+      "chosenanswer": "The host is noisy."
+    },
+    {
+      "step": 5,
+      "chosenanswer": "noisy"
+    },
+    {
+      "step": 6,
+      "chosenanswer": "Is he the host?"
+    },
+    {
+      "step": 7,
+      "chosenanswer": "The guest is here."
+    },
+    {
+      "step": 8,
+      "chosenanswer": "Who is the guest?"
+    },
+    {
+      "step": 9,
+      "chosenanswer": "The host is here."
+    },
+    {
+      "step": 10,
+      "chosenanswer": "sure"
+    },
+    {
+      "step": 11,
+      "chosenanswer": "I am not sure."
+    },
+    {
+      "step": 12,
+      "chosenanswer": "Is she here?"
+    },
+    {
+      "step": 13,
+      "chosenanswer": "It is noisy."
+    },
+    {
+      "step": 14,
+      "chosenanswer": "Where is the host?"
+    },
+    {
+      "step": 15,
+      "chosenanswer": "Is he here?"
+    },
+    {
+      "step": 16,
+      "chosenanswer": "Is she the guest?"
+    },
+    {
+      "step": 17,
+      "chosenanswer": "Who is the host?"
+    }
+  ],
+  "learned_new": [],
+  "fluencydelta": [
+    "Повторение различия Who is…? и Where is…?",
+    "Закрепление вопросов о человеке и роли host",
+    "Повторение коротких утверждений с is, here, noisy, sure и not"
+  ],
+  "permitted": true,
+  "invoice": {
+    "intro_steps": 3,
+    "practice_steps": 17,
+    "answerable_steps": 20
+  },
+  "reviewsession": "S36",
+  "impossible_tasks": [],
+  "ambiguous_tasks": [],
+  "verdict": "PASS",
+  "reason": "Все 20 шагов имеют единственный ответ среди видимых вариантов или плиток. Аудиопункты оценены только как явно показанные текстовые транскрипты; фактическое аудио не проверялось.",
+  "sourceSha256": "fd9959cab2656a2d1916967122b4fdab45c8165526a30a3ed329b3b02a5dde25",
+  "reviewedAt": "2026-09-08T09:36:01.694495+00:00",
+  "reviewMethod": "builtin_codex_independent_role",
+  "previousSourceSha256": "c0661fc54d0ed040357319f1b6eb60d2fdecab2f4b2784351cee1f4aae3ff269",
+  "listeningRepairReview": {
+    "verdict": "PASS",
+    "items": [
+      {
+        "session": 36,
+        "task": 3,
+        "answer": "host",
+        "prompt_leaks_answer": false,
+        "text_solvable": true,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      }
+    ],
+    "scope": "Text-only review of prompt, supplied transcript, and options. No audio-quality or playback assessment; no future-word knowledge assumed."
+  }
+}

@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-30:i02:r1",
+            "responseId": "en:lesson-02:session-30:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — про что спросили",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-30:i02:r2",
+            "responseId": "en:lesson-02:session-30:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — про что спросили",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-30:i04:r1",
+            "responseId": "en:lesson-02:session-30:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — queue",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-30:i04:r2",
+            "responseId": "en:lesson-02:session-30:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — queue",
             "feedbackByLocale": {
@@ -289,7 +289,7 @@
         "testedDimension": "Вставьте слово — из подвала тянется ровн",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-30:i05:r1",
+            "responseId": "en:lesson-02:session-30:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — из подвала тянется ровн",
             "feedbackByLocale": {
@@ -298,7 +298,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-30:i05:r2",
+            "responseId": "en:lesson-02:session-30:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — из подвала тянется ровн",
             "feedbackByLocale": {
@@ -387,7 +387,7 @@
         "testedDimension": "Вставьте слово — у входа люди стоят друг",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-30:i07:r1",
+            "responseId": "en:lesson-02:session-30:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — у входа люди стоят друг",
             "feedbackByLocale": {
@@ -396,7 +396,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-30:i07:r2",
+            "responseId": "en:lesson-02:session-30:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — у входа люди стоят друг",
             "feedbackByLocale": {
@@ -499,7 +499,7 @@
         "testedDimension": "Вставьте слово — вопрос собран, но в нём",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-30:i09:r1",
+            "responseId": "en:lesson-02:session-30:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вопрос собран, но в нём",
             "feedbackByLocale": {
@@ -508,7 +508,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-30:i09:r2",
+            "responseId": "en:lesson-02:session-30:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вопрос собран, но в нём",
             "feedbackByLocale": {
@@ -675,7 +675,7 @@
         "testedDimension": "Вставьте слово — вы заблудились, спросит",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-30:i12:r1",
+            "responseId": "en:lesson-02:session-30:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы заблудились, спросит",
             "feedbackByLocale": {
@@ -684,7 +684,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-30:i12:r2",
+            "responseId": "en:lesson-02:session-30:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы заблудились, спросит",
             "feedbackByLocale": {
@@ -773,7 +773,7 @@
         "testedDimension": "Вставьте слово — под окнами долбит отбой",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-30:i14:r1",
+            "responseId": "en:lesson-02:session-30:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — под окнами долбит отбой",
             "feedbackByLocale": {
@@ -782,7 +782,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-30:i14:r2",
+            "responseId": "en:lesson-02:session-30:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — под окнами долбит отбой",
             "feedbackByLocale": {
@@ -842,7 +842,7 @@
         "testedDimension": "Вставьте слово — тихая улица, но людей с",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-30:i15:r1",
+            "responseId": "en:lesson-02:session-30:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — тихая улица, но людей с",
             "feedbackByLocale": {
@@ -851,7 +851,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-30:i15:r2",
+            "responseId": "en:lesson-02:session-30:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — тихая улица, но людей с",
             "feedbackByLocale": {

@@ -1,0 +1,126 @@
+{
+  "sourceSha256": "88a4fa1de82fe42833767db94a7f2c0f39640b8831267ed171668edd778558ff",
+  "issues": [],
+  "delta_verified": {
+    "only_declared_blocks_changed": true,
+    "task_4_bank": [
+      "intern",
+      "manager",
+      "guest"
+    ],
+    "task_4_feedback_specific": true,
+    "task_2_and_4_same_bank": false,
+    "task_16_gives_task_17_answer": false,
+    "task_7_to_17_reuse": "legitimate support fade: earlier listening recognition, later independent phrase assembly"
+  },
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "manager",
+      "intern"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 4,
+        "trap": "guest"
+      },
+      {
+        "task": 17,
+        "trap": "Where"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "manager",
+        "intern",
+        "new",
+        "sure"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "repeated_answer_banks": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      17
+    ],
+    "builder_count": 6,
+    "builder_variation_ok": true,
+    "final_answer_leaked_by_task_16": false
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 2,
+      "listen_choose": 3,
+      "phrase_builder": 5,
+      "context_gap_grammar": 3,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "План, границы, 17 заданий, word-first, индивидуальный feedback, шесть разнообразных сборок, убывание поддержки и независимость финала соблюдены; дублированный банк заданий 2 и 4 устранён.",
+  "listeningRepairReview": {
+    "sourceSha256": "88a4fa1de82fe42833767db94a7f2c0f39640b8831267ed171668edd778558ff",
+    "delta_verified": {
+      "changed_blocks_only": [
+        2,
+        4
+      ],
+      "all_other_content_unchanged": true,
+      "neutral_prompts": true,
+      "answer_hint_removed": true,
+      "word_first_sequence": [
+        "1: manager card",
+        "2: manager listening",
+        "3: intern card",
+        "4: intern listening"
+      ],
+      "word_first_respected": true,
+      "return_structure_unchanged": true,
+      "task_count": 17,
+      "mode_count": 17,
+      "unknown_count": 0
+    },
+    "phonetic_review": {
+      "manager_messenger": "distinct first syllables",
+      "manager_passenger": "distinct initial consonants",
+      "intern_winter": "winter has initial /w/; intern begins with a vowel",
+      "intern_return": "distinct first syllables",
+      "homophone_claims": [],
+      "feedback_specific_and_plain": true
+    },
+    "issues": [],
+    "verdict": "PASS",
+    "verdict_reason": "Задания 2 и 4 теперь проверяют услышанное слово без смысловой подсказки, используют различимые фонетические ловушки и конкретный простой feedback; word-first и остальная структура S38 сохранены."
+  },
+  "previousSourceSha256": "ce5a96b8dbd36fb9bf7ad8ce84261b9463f66d3f584ad30e74725fd273a5104a"
+}

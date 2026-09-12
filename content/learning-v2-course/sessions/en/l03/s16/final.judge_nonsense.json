@@ -1,0 +1,43 @@
+{
+  "sourceSha256": "582bbcc840ad479d350e9e91cfb8e12b0ef2fafad48217d5d964d3df30a4b7d2",
+  "reviewer": "/root/s10_truth",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "scope": "Initial whole-source review plus actual independent Intro3 heading/body delta review",
+  "problems": [],
+  "verdict": "PASS",
+  "verdict_reason": "All six article choices are correct and locally scoped: a candle/cushion/plant; an umbrella/hour; a uniform with consonant /j/. Meanings and preserved noun phrase after not accurate, keys and feedback agree. Full-phrase audio instructions neutral. No false universal or frequency claim.",
+  "primarySources": [
+    "https://dictionary.cambridge.org/pronunciation/english/hour",
+    "https://dictionary.cambridge.org/dictionary/english/hour",
+    "https://dictionary.cambridge.org/pronunciation/english/uniform",
+    "https://dictionary.cambridge.org/dictionary/english/uniform",
+    "https://dictionary.cambridge.org/pronunciation/english/umbrella"
+  ],
+  "actualAudioReviewed": false,
+  "previousReview": {
+    "sourceSha256": "cf7e68283b9633939e5b539b82ec1cc06a13882ea4521dfef18e3f20910c2270",
+    "reviewer": "/root/s10_truth",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "medium",
+    "scope": "Full independent language-fact review of intros, six known meanings, articles, questions/negatives, keys, feedback, universals and audio instruction leakage.",
+    "problems": [],
+    "verdict": "PASS",
+    "verdict_reason": "All six article choices are correct and locally scoped: a candle/cushion/plant; an umbrella/hour; a uniform with consonant /j/. Meanings and preserved noun phrase after not accurate, keys and feedback agree. Full-phrase audio instructions neutral. No false universal or frequency claim.",
+    "primarySources": [
+      "https://dictionary.cambridge.org/pronunciation/english/hour",
+      "https://dictionary.cambridge.org/dictionary/english/hour",
+      "https://dictionary.cambridge.org/pronunciation/english/uniform",
+      "https://dictionary.cambridge.org/dictionary/english/uniform",
+      "https://dictionary.cambridge.org/pronunciation/english/umbrella"
+    ],
+    "actualAudioReviewed": false
+  },
+  "deltaReview": {
+    "sourceSha256": "582bbcc840ad479d350e9e91cfb8e12b0ef2fafad48217d5d964d3df30a4b7d2",
+    "comparisonBaseSha256": "cf7e68283b9633939e5b539b82ec1cc06a13882ea4521dfef18e3f20910c2270",
+    "verdict": "PASS",
+    "evidence": "Actual delta PASS: not means не in the locally scoped phrase, a retained before singular count noun.",
+    "findings": []
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "sourceSha256": "c69b1dac553c887789b26a5a1ca1f364c577bb7d94b02c47adf5cbfd3ed7e269",
+  "reviewer": "/root/audit100_catchup",
+  "reader": "PASS",
+  "pedagogy": "PASS",
+  "truth": "PASS",
+  "baselineSha256": "14fe16441327a3c8eea459e25cd009e9c71b857ba9f993959b2c8cdd14373b10",
+  "baselineEvidence": "Same reviewer explicitly passed intro2 and kettle card at14fe; prior8876 full reviews preserved.",
+  "evidence": [
+    "Two Russian words vs four English words is exact for cited full phrase.",
+    "kettle /k/ and vacuum /v/ take a; not follows is.",
+    "Three bodies clear, already-known grammar applied; no new grammar introduced."
+  ],
+  "learner": {
+    "reviewer": "/root/s10_blind",
+    "verdict": "PASS",
+    "reason": "Темп решён: каждое интро быстро связывает новое слово со знакомой фразой и даёт действие без многократного пересказа."
+  }
+}

@@ -8,11 +8,12 @@ window.addEventListener("error", (e) => {
 const DATA = window.__DATA__;
 const LOCALES = ["ru","uk"];
 const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
-const BUILT_AT = "08.09, 09:52";
+const BUILT_AT = "12.09, 17:04";
 // зачем: показать свежесть макета с одного взгляда — владелец час смотрел на старую сборку
 document.getElementById("buildStamp").textContent = DATA.length + " сессий · " + BUILT_AT;
 
 const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], pairSel: null, pairsDone: [], right: 0, wrong: 0 };
+const learnerForSession = (s, locale = S.locale) => s.learnerByLocale?.[locale] ?? s.learner;
 
 const app = document.getElementById("app");
 const sel = document.getElementById("locale");
@@ -98,13 +99,14 @@ function groupByLesson() {
   const byLesson = {};
   for (const s of DATA) (byLesson[s.lesson] ??= []).push(s);
   for (const [lesson, list] of Object.entries(byLesson)) {
-    out.push(h("div", {class:"lesson-title", text:"Урок " + lesson.replace(/^l0?/, "")}));
+    const lessonTitle = list[0].lessonTitle;
+    out.push(h("div", {class:"lesson-title", text:"Урок " + lesson.replace(/^l0?/, "") + (lessonTitle ? " · " + lessonTitle : "")}));
     out.push(h("div", {class:"cards"}, list.map(s => h("button", {class:"card", onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
       h("h3", {text:s.title}),
       h("p", {class:"scene", text:s.scene}),
       h("div", {class:"meta"}, [
         h("span", {class:"chip k", text:"Сессия " + s.session.replace(/^s0?/, "")}),
-        h("span", {class:"chip", text:s.learner.interactions.length + " заданий"}),
+        h("span", {class:"chip", text:learnerForSession(s).interactions.length + " заданий"}),
       ]),
     ]))));
   }
@@ -114,13 +116,14 @@ function groupByLesson() {
 function renderSession() {
   homeBtn.hidden = false;
   const s = S.session;
-  const total = 3 + s.learner.interactions.length;
+  const learner = learnerForSession(s);
+  const total = 3 + learner.interactions.length;
   if (S.step >= total) return renderDone();
 
   const bar = h("div", {class:"progress"}, Array.from({length:total}, (_, i) =>
     h("i", {class: i < S.step ? "done" : i === S.step ? "now" : ""})));
 
-  const panel = S.step < 3 ? renderIntro(s.intro.pages[S.step]) : renderTask(s.learner.interactions[S.step - 3]);
+  const panel = S.step < 3 ? renderIntro(s.intro.pages[S.step]) : renderTask(learner.interactions[S.step - 3]);
   app.replaceChildren(bar, panel);
 }
 
@@ -279,6 +282,7 @@ function renderSpeak(panel, it, p) {
 function renderDone() {
   homeBtn.hidden = false;
   const s = S.session;
+  const learner = learnerForSession(s);
   app.replaceChildren(h("div", {class:"panel"}, [
     h("div", {class:"done-wrap"}, [
       h("div", {class:"done-mark", text:"✓"}),
@@ -287,7 +291,7 @@ function renderDone() {
       h("div", {class:"stats"}, [
         h("div", {class:"stat"}, [h("b", {text:String(S.right)}), h("span", {text:"верно"})]),
         h("div", {class:"stat"}, [h("b", {text:String(S.wrong)}), h("span", {text:"ошибок"})]),
-        h("div", {class:"stat"}, [h("b", {text:String(s.learner.interactions.length)}), h("span", {text:"заданий"})]),
+        h("div", {class:"stat"}, [h("b", {text:String(learner.interactions.length)}), h("span", {text:"заданий"})]),
       ]),
       h("button", {class:"btn primary", onClick:() => { S.session = null; render(); }, text:"К списку сессий"}),
     ]),

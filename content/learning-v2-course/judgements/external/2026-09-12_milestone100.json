@@ -1,0 +1,68 @@
+{
+  "reviewer": "/root/audit100_catchup",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "high",
+  "scope": "Actual repeated sample and final historical truth finding reconciliation; current RU/UK clarity and pedagogical delta. No audio/device validation.",
+  "verdict": "PASS",
+  "blockCount": 0,
+  "reviseCount": 0,
+  "sessions": [
+    {
+      "session": "en/l02/s20",
+      "sourceSha256": "6d438fd0a4a346bd426b201e98bdf0e8aa3febeac0951be2c2d694cb37b34cad",
+      "localeSha256": "e192db81d9b96285d7b11accc3f6b4a6b14c23be507f65ef0b7912f08a66117e",
+      "verdict": "PASS",
+      "readerDelta": "PASS",
+      "pedagogyDelta": "PASS",
+      "truth": "PASS",
+      "localeClarityDelta": "PASS"
+    },
+    {
+      "session": "en/l02/s22",
+      "sourceSha256": "83f4685d83b8834836096b0aa0bb65eb4a3facb375adac38130f9924ebb272fc",
+      "localeSha256": "0dacdac23785857d24a8c09a582106d8130d31911cc95b2520f3bbb8286a8be5",
+      "verdict": "PASS",
+      "readerDelta": "PASS",
+      "pedagogyDelta": "PASS",
+      "truth": "PASS",
+      "localeClarityDelta": "PASS"
+    },
+    {
+      "session": "en/l02/s27",
+      "sourceSha256": "c1d050a9a8a645984fbe3862f1857716ea10c03d785c2286f7aad9a947451e9b",
+      "localeSha256": "b47fdfa2733b8a7416fef672df83fc4ce440fbb12bde260cce041bde152e25cb",
+      "verdict": "PASS",
+      "readerDelta": "PASS",
+      "pedagogyDelta": "PASS",
+      "truth": "PASS",
+      "localeClarityDelta": "PASS"
+    },
+    {
+      "session": "en/l02/s29",
+      "sourceSha256": "b4498f8ef974e979773f986c1d953bc3f234d5584196bb658d20be493cd2cc3c",
+      "localeSha256": "f61254ed74dcc482081f091f5f78682c41ac065aadd35a6a5500ddc011f6c259",
+      "verdict": "PASS",
+      "readerDelta": "PASS",
+      "pedagogyDelta": "PASS",
+      "truth": "PASS",
+      "localeClarityDelta": "PASS"
+    },
+    {
+      "session": "en/l02/s39",
+      "sourceSha256": "840bbf0070d5ddcb47feb24259f84bf129923d59b99379ab6efdee794c911684",
+      "localeSha256": "f9a6834fef4e3a2e4b0075383202c495a8c29344388e420b7176e24d7638d9d1",
+      "verdict": "PASS",
+      "readerDelta": "PASS",
+      "pedagogyDelta": "PASS",
+      "truth": "PASS",
+      "localeClarityDelta": "PASS"
+    }
+  ],
+  "historicalFindings": [
+    "S20 old short/station contrast already corrected consistently; first-two-sounds observation immediately leads to action, no factual error.",
+    "S22 latest where-answer specifically excludes at downstairs without banning from downstairs; other scoped prompt and feedback repairs pass.",
+    "S27 am is form for I, no word-order exclusivity. Old missing-these claim already removed. Prior cheap learner complaint invalid: cheap grounded L2S14 and revisited S25, independently confirmed by /root/s10_reader.",
+    "S29 one explicitly part of planned grammar chunk, withdrawn finding; what-bag false universal removed."
+  ],
+  "oldReceiptPolicy": "Preserve old receipts as historical evidence; only compose a current bounded repair acceptance from actual new reviews."
+}

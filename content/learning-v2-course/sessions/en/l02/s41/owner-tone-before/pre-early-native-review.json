@@ -1,0 +1,20 @@
+{
+  "session": "S41",
+  "sourceSha256": "f141ff0ea7fce925928bebff2410d8bd928e49700df880c21c039630df6f0db9",
+  "localeSha256": "5895c5d3a37ffd8b769c14a873a3da6eada31195a45eebd3a81bb7ee8b350c86",
+  "verdict": "PASS",
+  "issues": [],
+  "verified": {
+    "naturalUkrainian": true,
+    "amIQuestionOrderAccurateAndLocallyScoped": true,
+    "wrongQuestionVsStatementMeaningPreserved": true,
+    "welcomeAndYouAreWelcomeSensesCorrectlyScoped": true,
+    "humourWarmAndNonMisleading": true,
+    "noAddedGrammarRule": true,
+    "introLengths": [
+      271,
+      277,
+      279
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "session": "en/l02/s45",
+  "sourceSha256": "96ee682a665225bf9d2f42799a5d691314cd082096b07d8f9e8b18a5acbf58db",
+  "verdict": "PASS",
+  "issues": [],
+  "answers": [
+    {
+      "task": 13,
+      "answer": "We are here."
+    }
+  ],
+  "verdict_reason": "Transcript and tiles yield one clear statement.",
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "sourceSha256": "dc8d8512e7f9846201cbba9dbf715013dff6088e583ffe45dbbe72440aad38d2",
+    "deltaOnly": true,
+    "introAnswers": {
+      "intro1": "Am I late?",
+      "intro2": "I am late.",
+      "intro3": "I am not late."
+    },
+    "confusion": [],
+    "verdict": "PASS",
+    "baselineReview": "owner-tone-before/final.judge_learner.json",
+    "unchangedPracticeVerified": true
+  },
+  "deltaReview": {
+    "session": "en/l02/s45",
+    "sourceSha256": "96ee682a665225bf9d2f42799a5d691314cd082096b07d8f9e8b18a5acbf58db",
+    "verdict": "PASS",
+    "issues": [],
+    "answers": [
+      {
+        "task": 13,
+        "answer": "We are here."
+      }
+    ],
+    "verdict_reason": "Transcript and tiles yield one clear statement."
+  },
+  "retainedSourceSha256": "dc8d8512e7f9846201cbba9dbf715013dff6088e583ffe45dbbe72440aad38d2",
+  "answerComparison": {
+    "changedTasksMatch": true,
+    "comparedTasks": [
+      13
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "sourceSha256":"db00161c4ed9a596a8aaea24990dd38e9279dff3c1fa1d2f77f4c3f8254e1591",
+  "reviewer":"/root/s08_pedagogy",
+  "reviewScope":"Actual full review on original master plus independent three-intro delta. Condensed actual receipts.",
+  "priorFullReview":{"sourceSha256":"8165e1af4a4d1d271de2929aaf036f452773c1bc2031324338620d02e6066c17","verdict":"PASS","unknown_targets":[],"extra_grammar":[],"single_answer_substitution":true,"returns":{"lamp":[1,8,11],"mirror":[2,8,16],"chair":[3,8,9],"key":[6,7,8],"basket":[4,5,15],"stool":[13,15],"door":[14,15,17],"tag":[10,12,15]},"task_count":17,"phrase_builders":[4,9,13,17],"dictations":[2,11],"speed_match_overlap":false,"support_fades":true,"listening_leaks":[],"feedback_false_or_duplicated":[]},
+  "deltaReview":{"scope":"DELTA_ONLY","verdict":"PASS","changed_intro_body_lines":[1,2,3],"other_changes":0,"improvement":"Each page now introduces the noun/meaning, explains the operation, then presents the complete target formula. This removes the answer-first sequencing that caused the reader BLOCK.","new_boundary_or_truth_issues":[],"intro_questions_and_options_exactly_unchanged":true,"intro_contract_sha256":"e2db85156685bfc755327c0a2c7a1ff8377daecce44eba1a0cc85ea5903936e7","practice_exactly_unchanged":true,"practice_sha256":"cf99210c0d3de10433ba4e8492d79102caae4f8d6243049cbf1a23996c9ee3e3"},
+  "verdict":"PASS","actualAudioReviewed":false
+}

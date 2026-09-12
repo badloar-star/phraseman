@@ -1,0 +1,41 @@
+{
+  "session": "en/l02/s48",
+  "sourceSha256": "eae6088e916eda8d8d8662e417abd6dc8d63aad8690fbc3b62971d79b1944180",
+  "scope": "Text-only simulation. Audio transcripts substitute for sound; hearing and audio quality were not assessed.",
+  "introAnswers": {
+    "1": "Are we early?",
+    "2": "Am I audible?",
+    "3": "Are we rude?"
+  },
+  "practiceAnswers": {
+    "1": "Am I late?",
+    "2": "early",
+    "3": "Am I ready?",
+    "4": "I am not sure.",
+    "5": "wrong",
+    "6": "sure",
+    "7": {
+      "wrong": "неправ",
+      "early": "рано",
+      "sure": "уверен",
+      "late": "опоздал"
+    },
+    "8": "Am I audible?",
+    "9": "Am I clear?",
+    "10": {
+      "ready": "готов",
+      "polite": "вежливый",
+      "audible": "слышимый",
+      "clear": "разборчивый"
+    },
+    "11": "polite",
+    "12": "He is not rude.",
+    "13": "You are clear.",
+    "14": "Are we rude?",
+    "15": "I am ready.",
+    "16": "You are polite.",
+    "17": "Are we ready?"
+  },
+  "issues": [],
+  "verdict": "PASS"
+}

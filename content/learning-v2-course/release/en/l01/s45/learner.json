@@ -51,7 +51,7 @@
         "testedDimension": "Вставьте слово — «я не готов»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-45:i01:r1",
+            "responseId": "en:lesson-01:session-45:i01:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — «я не готов»",
             "feedbackByLocale": {
@@ -60,7 +60,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-45:i01:r2",
+            "responseId": "en:lesson-01:session-45:i01:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — «я не готов»",
             "feedbackByLocale": {
@@ -148,7 +148,7 @@
         "testedDimension": "Вставьте слово — «они не заняты»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-45:i03:r1",
+            "responseId": "en:lesson-01:session-45:i03:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — «они не заняты»",
             "feedbackByLocale": {
@@ -157,7 +157,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-45:i03:r2",
+            "responseId": "en:lesson-01:session-45:i03:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — «они не заняты»",
             "feedbackByLocale": {
@@ -217,7 +217,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-45:i04:r1",
+            "responseId": "en:lesson-01:session-45:i04:r2",
             "correct": false,
             "testedDimension": "Выберите написание — вы пишете другу, чт",
             "feedbackByLocale": {
@@ -226,7 +226,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-45:i04:r2",
+            "responseId": "en:lesson-01:session-45:i04:r3",
             "correct": false,
             "testedDimension": "Выберите написание — вы пишете другу, чт",
             "feedbackByLocale": {
@@ -366,7 +366,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-45:i07:r1",
+            "responseId": "en:lesson-01:session-45:i07:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — full",
             "feedbackByLocale": {
@@ -375,7 +375,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-45:i07:r2",
+            "responseId": "en:lesson-01:session-45:i07:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — full",
             "feedbackByLocale": {
@@ -437,7 +437,7 @@
         "testedDimension": "Вставьте слово — стакан налит до края",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-45:i08:r1",
+            "responseId": "en:lesson-01:session-45:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — стакан налит до края",
             "feedbackByLocale": {
@@ -446,7 +446,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-45:i08:r2",
+            "responseId": "en:lesson-01:session-45:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — стакан налит до края",
             "feedbackByLocale": {
@@ -579,7 +579,7 @@
         "testedDimension": "Вставьте слово — «она не готова»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-45:i10:r1",
+            "responseId": "en:lesson-01:session-45:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — «она не готова»",
             "feedbackByLocale": {
@@ -588,7 +588,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-45:i10:r2",
+            "responseId": "en:lesson-01:session-45:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — «она не готова»",
             "feedbackByLocale": {
@@ -660,7 +660,7 @@
           "ru": "Вставьте чёрточку или нет — «оно готово»",
           "uk": "Поставте риску чи ні — «воно готове»"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ done.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-45:i12:r1",
@@ -678,7 +678,7 @@
         "testedDimension": "Вставьте чёрточку или нет — «оно готово»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-45:i12:r1",
+            "responseId": "en:lesson-01:session-45:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте чёрточку или нет — «оно готово»",
             "feedbackByLocale": {
@@ -687,7 +687,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-45:i12:r2",
+            "responseId": "en:lesson-01:session-45:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте чёрточку или нет — «оно готово»",
             "feedbackByLocale": {
@@ -762,7 +762,7 @@
           "ru": "Вставьте слово — друг спрашивает, свободны ли вы сейчас",
           "uk": "Вставте слово — друг питає, чи ви зараз вільні"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ busy.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-45:i14:r1",
@@ -780,7 +780,7 @@
         "testedDimension": "Вставьте слово — друг спрашивает, свобод",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-45:i14:r1",
+            "responseId": "en:lesson-01:session-45:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — друг спрашивает, свобод",
             "feedbackByLocale": {
@@ -789,7 +789,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-45:i14:r2",
+            "responseId": "en:lesson-01:session-45:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — друг спрашивает, свобод",
             "feedbackByLocale": {
@@ -900,5 +900,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "89627459aa956e9831b9fd4cd6b45d3079ca1a4d1b4b2787939068e6521f25c9"
+  "learnerFingerprint": "859e2ba7bfcb13b518614a1fddcfe5eb905f0391cd058e92478b28a9347aed16"
 }

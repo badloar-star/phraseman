@@ -1,0 +1,74 @@
+{
+  "sourceSha256": "7b600965938751fb67aa28fbec100362036023dc365b07ae7c38883ab7fd0bdc",
+  "reviewer": "/root/s10_pedagogy",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "machineFactsHard": [],
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "candle",
+      "cushion",
+      "plant"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "silly": [],
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "sound_cues_usable": true
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "candle",
+        "cushion",
+        "plant",
+        "armchair"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "combinedBuilders": [
+      3,
+      10,
+      12,
+      14,
+      16,
+      17
+    ]
+  },
+  "returns": {
+    "armchair": [
+      6,
+      11,
+      15
+    ],
+    "oven": [
+      9,
+      10
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "verdict": "PASS",
+  "verdict_reason": "All choices have one scene-supported answer, word-first sequencing and return contacts are intact, and the audio prompts do not disclose targets.",
+  "actualAudioReviewed": false,
+  "substitutionEvidence": "Intro candle/cushion/plant and practice6 armchair9oven12cushion14notcandle17cushion each uniquely grounded. Alternatives fail article/order/declared referent."
+}

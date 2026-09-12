@@ -1,0 +1,113 @@
+{
+  "sourceSha256": "03396c947f1e57c7a45fd90056b34e49ec6a0c6ab6f3f487008202a2448f2088",
+  "delta": {
+    "task_12_checks": "whether both are ahead of the planned departure time",
+    "task_12_confirms_friend_ready": false,
+    "task_17_checks": "whether both are ready to leave",
+    "task_17_uncertainty_preserved": true,
+    "targets_semantically_distinct": true,
+    "english_targets_and_keys_unchanged": true
+  },
+  "issues": [],
+  "verdict": "PASS",
+  "verdict_reason": "Задание 12 теперь касается только часов и намеченного времени выхода, поэтому не сообщает о готовности друга и не снимает вопрос, который самостоятельно проверяется в задании 17.",
+  "priorReviews": [
+    {
+      "sourceSha256": "794c2aec9269f4d3f47273bf260cc144479c3b5393f0edfa98fb79b5e40b3f19",
+      "counts": {
+        "tasks": 17,
+        "modes": 17,
+        "builders": 5,
+        "intro_lengths": [
+          261,
+          253,
+          248
+        ],
+        "unknown_items": 0,
+        "return_table_mismatches": 0
+      },
+      "checks": {
+        "operation_matches_listening_and_speaking_am_i_are_we": true,
+        "prerequisites_respected": true,
+        "answers_unique": true,
+        "listening_prompts_neutral": true,
+        "listening_option_sets_diagnostic": true,
+        "scene_coherent": true,
+        "all_returns_have_multiple_contacts_correct_use_and_gloss": true,
+        "support_fades": true,
+        "final_target": "Are we ready?",
+        "task_16_target": "I am ready.",
+        "final_answer_leaked": false
+      },
+      "issues": [],
+      "verdict": "PASS",
+      "verdict_reason": "S44 честно отрабатывает различение и произнесение `Am I…?` и `Are we…?`, сохраняет однозначные задания и связную сцену, а финал проверяет общую готовность после отдельного сообщения ученика только о себе."
+    },
+    {
+      "sourceSha256": "d5e0726c0bf1e7a25a3e4bf8c2414bf41c75636243dcc7c1fc188911a4bdc699",
+      "delta": {
+        "changed_occurrences": 3,
+        "old_phrase_remaining": 0,
+        "new_phrase": "только о себе",
+        "meaning_preserved": true,
+        "am_i_vs_are_we_contrast_preserved": true,
+        "intro_lengths_unchanged": true
+      },
+      "issues": [],
+      "verdict": "PASS",
+      "verdict_reason": "Все три замены звучат естественно по-русски и точнее передают, что `Am I…?` относится только к говорящему; педагогические контракты S44 не изменены."
+    },
+    {
+      "sourceSha256": "03b0abaf63498fdd897a2fb4e53921714012cc21f77b3037264936e403eda97a",
+      "delta": {
+        "task_8_context_is_time_comparison": true,
+        "task_12_context_is_time_comparison": true,
+        "task_15_context_is_time_comparison": true,
+        "friend_readiness_remains_unconfirmed": true,
+        "final_independence_preserved": true
+      },
+      "issues": [
+        {
+          "where": "task 8, feedback for `sure`",
+          "problem": "Фраза «Сейчас вы спрашиваете, не рано ли» снова допускает смысл «не слишком ли рано / стоит ли уже выходить», хотя исправленный контракт требует только сравнения с намеченным временем.",
+          "exactFix": "Заменить на: `- sure — *Получится «Мы уверены?» Сейчас вы спрашиваете, раньше ли вы намеченного времени: `Are we early?`*`"
+        }
+      ],
+      "verdict": "REVISE",
+      "verdict_reason": "Контексты заданий 8, 12 и 15 исправлены точно, но один feedback в задании 8 сохраняет прежний оттенок целесообразности и требует одной локальной замены."
+    },
+    {
+      "sourceSha256": "c127e1ca67e68876236a65c4fca177a1824cd76a34494e336c6dd4af17ab7c41",
+      "delta": {
+        "changed_field": "task 8 feedback for `sure`",
+        "time_comparison_explicit": true,
+        "too_early_or_advisability_implication_removed": true,
+        "english_target_and_answer_key_unchanged": true,
+        "remaining_s44_contracts_unchanged": true
+      },
+      "issues": [],
+      "verdict": "PASS",
+      "verdict_reason": "Feedback теперь однозначно сравнивает текущий момент с намеченным временем выхода и больше не допускает смысл «слишком ли рано»."
+    },
+    {
+      "sourceSha256": "3f37785b770cbcf56cc1ca2e86cb46b581a46937322c13c74b115d1ccc8e779c",
+      "delta": {
+        "task_8_feedback": {
+          "meaning": "ahead of the planned departure time",
+          "clear": true,
+          "advisability_implication": false
+        },
+        "task_12_prompt": {
+          "meaning": "ready earlier than planned",
+          "speaker_group_clear": true,
+          "uniquely_supports": "Are we early?"
+        },
+        "task_15_alignment_preserved": true,
+        "english_targets_and_keys_unchanged": true
+      },
+      "issues": [],
+      "verdict": "PASS",
+      "verdict_reason": "Обе формулировки ясно передают опережение намеченного времени, не добавляют оттенок «слишком рано» и сохраняют единый смысл `Are we early?` в заданиях 8, 12 и 15."
+    }
+  ]
+}

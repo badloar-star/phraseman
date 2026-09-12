@@ -1,0 +1,55 @@
+{
+  "sourceSha256": "840bbf0070d5ddcb47feb24259f84bf129923d59b99379ab6efdee794c911684",
+  "localeSha256": {
+    "uk": "f9a6834fef4e3a2e4b0075383202c495a8c29344388e420b7176e24d7638d9d1"
+  },
+  "locales": {
+    "uk": {
+      "session": "S39",
+      "sourceSha256": "840bbf0070d5ddcb47feb24259f84bf129923d59b99379ab6efdee794c911684",
+      "localeSha256": "f9a6834fef4e3a2e4b0075383202c495a8c29344388e420b7176e24d7638d9d1",
+      "verdict": "PASS",
+      "issues": [],
+      "checks": {
+        "onlyListedPromptsChanged": true,
+        "introByteTextUnchanged": true,
+        "englishTokenSequenceUnchanged": true,
+        "targetTilesAnswerFeedbackUnchanged": true,
+        "ruPromptNeutral": true,
+        "ukPromptNativeAndNeutral": true,
+        "contextCoherent": true
+      },
+      "verdict_reason": "T13 теперь обозначает только людей у двери; значение guests и конструкция Are they guests? заранее не раскрываются.",
+      "priorFullReviewRetained": true,
+      "reviewScope": "Independent RU/UK native delta review; prior full locale review retained",
+      "priorFullReview": {
+        "sourceSha256": "80419dfc0274b02ebd0ba73c6eedeb6aa2b400cd6e6a217fc403cd281c189e60",
+        "localeSha256": {
+          "uk": "568d10755dc3bc85517bfad5deced1ccb59f4e7ea3c2a9a4046b60939140c33b"
+        },
+        "locales": {
+          "uk": {
+            "session": "S39",
+            "sourceSha256": "80419dfc0274b02ebd0ba73c6eedeb6aa2b400cd6e6a217fc403cd281c189e60",
+            "localeSha256": "568d10755dc3bc85517bfad5deced1ccb59f4e7ea3c2a9a4046b60939140c33b",
+            "verdict": "PASS",
+            "issues": [],
+            "verified": {
+              "naturalUkrainian": true,
+              "coupleRelationshipMeaningPreserved": true,
+              "crowdCollectiveMeaningAndTargetFramesAccurate": true,
+              "whoVsWhereAnchorsPreserved": true,
+              "humourNaturalAndNonMisleading": true,
+              "noAddedGrammarRule": true,
+              "introLengths": [
+                269,
+                269,
+                283
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

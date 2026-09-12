@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -11,9 +12,19 @@ const judges = ["learner", "pedagogy", "nonsense", "reader"];
 
 function accepted(dir) {
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, "final.ru.md"), "master");
+  const source = "master source";
+  fs.writeFileSync(path.join(dir, "final.ru.md"), source);
   fs.writeFileSync(path.join(dir, "final.uk.md"), "localization");
   for (const role of judges) fs.writeFileSync(path.join(dir, `final.judge_${role}.json`), JSON.stringify({ verdict: "PASS" }));
+  fs.writeFileSync(path.join(dir, "final.judge_taste.json"), JSON.stringify({
+    sourceSha256: crypto.createHash("sha256").update(source).digest("hex"),
+    pairwise: "equal",
+    pairwise_reason: "The source was compared with the reference for clarity, voice, and teaching value.",
+    voice: { score: 4, evidence: ["The wording has a distinct and readable teaching voice."] },
+    humor: { present: true, on_topic: true, examples: ["«master source» is the cited source phrase used by this fixture."], misfires: [] },
+    ai_text_or_nonsense: [], must_fix: [], verdict: "PASS",
+    verdict_reason: "The fixture records a complete independent taste decision.",
+  }));
   fs.writeFileSync(path.join(dir, "locales.judge.json"), JSON.stringify({ locales: { uk: { verdict: "PASS" } } }));
   fs.writeFileSync(path.join(dir, "status.json"), JSON.stringify({ converged: true, needsHumanReview: false }));
 }
@@ -23,10 +34,10 @@ function withFactory(fn) {
   const root = fs.mkdtempSync(path.join(parent, "learning-v2-batch-"));
   try {
     fs.mkdirSync(path.join(root, "pipeline"));
-    for (const name of ["run_batch.mjs", "session_readiness.mjs"]) {
+    for (const name of ["run_batch.mjs", "session_readiness.mjs", "owner_quality.mjs"]) {
       if (fs.existsSync(path.join(here, name))) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
     }
-    const common = `import fs from 'node:fs'; import path from 'node:path'; const root=${JSON.stringify(root)}; const args=process.argv.slice(2); const id=args[args.indexOf('--session')+1];`;
+    const common = `import fs from 'node:fs'; import path from 'node:path'; import crypto from 'node:crypto'; const root=${JSON.stringify(root)}; const args=process.argv.slice(2); const id=args[args.indexOf('--session')+1];`;
     fs.writeFileSync(path.join(root, "pipeline/run.mjs"), common + `fs.appendFileSync(path.join(root,'events'), 'run '+id+${JSON.stringify(String.fromCharCode(10))}); (${accepted.toString().replace("for (const role of judges)", `for (const role of ${JSON.stringify(judges)})`)})(path.join(root,'sessions',id));`);
     for (const script of ["build_release.mjs", "build_mockup.mjs"]) fs.writeFileSync(path.join(root, "pipeline", script), common + `fs.appendFileSync(path.join(root,'events'), '${script} '+id+${JSON.stringify(String.fromCharCode(10))});`);
     const run = (from, count = 1) => spawnSync(process.execPath, [path.join(root, "pipeline/run_batch.mjs"), "--from", from, "--count", String(count), "--backend", "mock"], { encoding: "utf8" });

@@ -1,0 +1,56 @@
+{
+  "session": "en/l02/s39",
+  "sourceSha256": "840bbf0070d5ddcb47feb24259f84bf129923d59b99379ab6efdee794c911684",
+  "localeSha256": "f9a6834fef4e3a2e4b0075383202c495a8c29344388e420b7176e24d7638d9d1",
+  "verdict": "PASS",
+  "issues": [],
+  "checks": {
+    "onlyListedPromptsChanged": true,
+    "introByteTextUnchanged": true,
+    "englishTokenSequenceUnchanged": true,
+    "targetTilesAnswerFeedbackUnchanged": true,
+    "ruPromptNeutral": true,
+    "ukPromptNativeAndNeutral": true,
+    "contextCoherent": true
+  },
+  "verdict_reason": "T13 теперь обозначает только людей у двери; значение guests и конструкция Are they guests? заранее не раскрываются.",
+  "priorFullReviewRetained": true,
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "session": "S39",
+    "sourceSha256": "80419dfc0274b02ebd0ba73c6eedeb6aa2b400cd6e6a217fc403cd281c189e60",
+    "verdict": "PASS",
+    "issues": [],
+    "verified": {
+      "coupleRelationshipMeaningExplicitlyScoped": true,
+      "theCoupleIsAgreementScopedToTheTargetSentence": true,
+      "crowdCollectiveMeaningAndTargetFramesAccurate": true,
+      "whoVsWhereDistinctionAccurate": true,
+      "humourDoesNotCreateAUniversalAgreementClaim": true,
+      "introLengths": [
+        259,
+        259,
+        273
+      ]
+    }
+  },
+  "deltaReview": {
+    "session": "S39",
+    "sourceSha256": "840bbf0070d5ddcb47feb24259f84bf129923d59b99379ab6efdee794c911684",
+    "localeSha256": "f9a6834fef4e3a2e4b0075383202c495a8c29344388e420b7176e24d7638d9d1",
+    "verdict": "PASS",
+    "issues": [],
+    "checks": {
+      "onlyListedPromptsChanged": true,
+      "introByteTextUnchanged": true,
+      "englishTokenSequenceUnchanged": true,
+      "targetTilesAnswerFeedbackUnchanged": true,
+      "ruPromptNeutral": true,
+      "ukPromptNativeAndNeutral": true,
+      "contextCoherent": true
+    },
+    "verdict_reason": "T13 теперь обозначает только людей у двери; значение guests и конструкция Are they guests? заранее не раскрываются.",
+    "priorFullReviewRetained": true
+  },
+  "retainedSourceSha256": "80419dfc0274b02ebd0ba73c6eedeb6aa2b400cd6e6a217fc403cd281c189e60"
+}

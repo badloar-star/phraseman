@@ -56,7 +56,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-24:i01:r1",
+            "responseId": "en:lesson-02:session-24:i01:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — station",
             "feedbackByLocale": {
@@ -65,7 +65,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-24:i01:r2",
+            "responseId": "en:lesson-02:session-24:i01:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — station",
             "feedbackByLocale": {
@@ -127,7 +127,7 @@
         "testedDimension": "Вставьте слово — вы ищете здание с поезд",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-24:i02:r1",
+            "responseId": "en:lesson-02:session-24:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы ищете здание с поезд",
             "feedbackByLocale": {
@@ -136,7 +136,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-24:i02:r2",
+            "responseId": "en:lesson-02:session-24:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы ищете здание с поезд",
             "feedbackByLocale": {
@@ -217,7 +217,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про угол",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-24:i04:r1",
+            "responseId": "en:lesson-02:session-24:i04:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про угол",
             "feedbackByLocale": {
@@ -277,7 +277,7 @@
         "testedDimension": "Вставьте слово — прохожий показывает на ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-24:i05:r1",
+            "responseId": "en:lesson-02:session-24:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — прохожий показывает на ",
             "feedbackByLocale": {
@@ -286,7 +286,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-24:i05:r2",
+            "responseId": "en:lesson-02:session-24:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — прохожий показывает на ",
             "feedbackByLocale": {
@@ -424,7 +424,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-24:i07:r1",
+            "responseId": "en:lesson-02:session-24:i07:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — near",
             "feedbackByLocale": {
@@ -433,7 +433,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-24:i07:r2",
+            "responseId": "en:lesson-02:session-24:i07:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — near",
             "feedbackByLocale": {
@@ -495,7 +495,7 @@
         "testedDimension": "Вставьте слово — вокзал прямо перед вами",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-24:i08:r1",
+            "responseId": "en:lesson-02:session-24:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вокзал прямо перед вами",
             "feedbackByLocale": {
@@ -504,7 +504,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-24:i08:r2",
+            "responseId": "en:lesson-02:session-24:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вокзал прямо перед вами",
             "feedbackByLocale": {
@@ -599,7 +599,7 @@
         "testedDimension": "Вставьте скрепку — маленькое `is` между ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-24:i10:r1",
+            "responseId": "en:lesson-02:session-24:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — маленькое `is` между ",
             "feedbackByLocale": {
@@ -608,7 +608,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-24:i10:r2",
+            "responseId": "en:lesson-02:session-24:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — маленькое `is` между ",
             "feedbackByLocale": {
@@ -660,7 +660,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про уста",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-24:i11:r1",
+            "responseId": "en:lesson-02:session-24:i11:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про уста",
             "feedbackByLocale": {
@@ -720,7 +720,7 @@
         "testedDimension": "Вставьте слово — спутник просит воды, тр",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-24:i12:r1",
+            "responseId": "en:lesson-02:session-24:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник просит воды, тр",
             "feedbackByLocale": {
@@ -729,7 +729,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-24:i12:r2",
+            "responseId": "en:lesson-02:session-24:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник просит воды, тр",
             "feedbackByLocale": {

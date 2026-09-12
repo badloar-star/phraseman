@@ -1,91 +1,49 @@
 {
-  "plan_fidelity": {
-    "operation_matches": true,
-    "new_words_match": [
-      "strangers",
-      "twins"
-    ],
-    "missing": [],
-    "extra_grammar_smuggled": []
-  },
-  "boundary": {
-    "unknown_in_explanations": [],
-    "unknown_in_targets": []
-  },
-  "traps": {
-    "realistic": [
-      {
-        "task": 2,
-        "trap": "`people` и `guests` — допустимые семантические соседи для точного узнавания `strangers` после карточки."
-      },
-      {
-        "task": 6,
-        "trap": "`this` проверяет число, а `they` — смешение значений «эти» и «они»."
-      },
-      {
-        "task": 8,
-        "trap": "`strangers` и `sure` образуют грамматичные фразы, но только `twins` отвечает на точную подсказку «назовите их родство»."
-      },
-      {
-        "task": 12,
-        "trap": "Лишняя плитка `not` проверяет внимание к утвердительному аудио."
-      },
-      {
-        "task": 17,
-        "trap": "Лишняя плитка `is` диагностирует выбор `are` при нескольких людях."
-      }
-    ],
-    "silly": [],
-    "native_transfer_used": true,
-    "feedback_teaches_unknown_form": []
-  },
-  "feedback": {
-    "missing_per_option": [],
-    "duplicated": [],
-    "too_long_or_bookish": []
-  },
-  "structure": {
-    "task_count": 17,
-    "below_12": false,
-    "word_first_respected": true,
-    "support_fades": true,
-    "speed_match_boards": [
-      [
-        "these",
-        "people",
-        "guests",
-        "sure"
-      ]
-    ],
-    "speed_match_overlap": false,
-    "repeated_targets": [],
-    "generic_instructions": [],
-    "attention_traps": [
-      12,
-      17
-    ]
-  },
-  "time_references": [],
-  "cross_session_repeats": [],
-  "textbook_formulas": [],
-  "builder_notes": {
-    "new_words_line_ok": true,
-    "modes_line_ok": true,
-    "modes_used": {
-      "word_card": 2,
-      "listen_choose": 3,
-      "listen_build_dictation": 2,
-      "phrase_builder": 4,
-      "context_gap_grammar": 4,
-      "speed_match": 1,
-      "scripted_repeat_compare": 1,
-      "sound_contrast": 0
-    }
-  },
+  "session": "en/l02/s34",
+  "sourceSha256": "0ad5d420ef8250d7f12601148b18ffdd9c534ee91a7d8123b8c58eaf4c714ff4",
+  "localeSha256": "7ff9ec18731575288163ae1c8830584011a21dc9e032d69133eb929b45238432",
   "verdict": "PASS",
-  "verdict_reason": "Сессия соблюдает план и границы: фиксированный `the` разрешён после прежнего введения без преждевременного объяснения системы артиклей, новые слова проходят карточку → точное аудио → фразу, а задания 6, 13 и 17 проверяют соответственно `these`, `people` и самостоятельную сборку целой фразы.",
-  "sourceSha256": "c72bc0dd157edc56107749d19d44b4e301bc47da029be4ad472c7b88f3ce4576",
-  "reviewedAt": "2026-09-08T08:45:06.846348+00:00",
-  "reviewMethod": "builtin_codex_independent_role",
-  "reviewedScope": "full_session"
+  "issues": [],
+  "checks": {
+    "tasksReviewed": [
+      12
+    ],
+    "hashesMatchPacket": true,
+    "onlyListedPromptsChanged": true,
+    "promptsNeutral": true,
+    "audioMeaningAndPolarityNotLeaked": true,
+    "sceneAndReferentsPreserved": true,
+    "englishTasksIntrosModesFeedbackUnchanged": true,
+    "boundariesAndWordContactsPreserved": true
+  },
+  "verdict_reason": "The revised prompt identifies only several guests; the learner must still hear whether they are strangers and whether the extra `not` belongs.",
+  "priorFullReviewRetained": true,
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "verdict": "PASS",
+    "sourceSha256": "b2a6cfcd304fa01287fd80bff798a20f16d51838512e479219eff47079c64fa5",
+    "issues": []
+  },
+  "deltaReview": {
+    "session": "S34",
+    "sourceSha256": "0ad5d420ef8250d7f12601148b18ffdd9c534ee91a7d8123b8c58eaf4c714ff4",
+    "localeSha256": "7ff9ec18731575288163ae1c8830584011a21dc9e032d69133eb929b45238432",
+    "verdict": "PASS",
+    "issues": [],
+    "checks": {
+      "tasksReviewed": [
+        12
+      ],
+      "hashesMatchPacket": true,
+      "onlyListedPromptsChanged": true,
+      "promptsNeutral": true,
+      "audioMeaningAndPolarityNotLeaked": true,
+      "sceneAndReferentsPreserved": true,
+      "englishTasksIntrosModesFeedbackUnchanged": true,
+      "boundariesAndWordContactsPreserved": true
+    },
+    "verdict_reason": "The revised prompt identifies only several guests; the learner must still hear whether they are strangers and whether the extra `not` belongs.",
+    "priorFullReviewRetained": true
+  },
+  "retainedSourceSha256": "b2a6cfcd304fa01287fd80bff798a20f16d51838512e479219eff47079c64fa5"
 }

@@ -1,0 +1,47 @@
+{
+  "session": "en/l02/s39",
+  "sourceSha256": "840bbf0070d5ddcb47feb24259f84bf129923d59b99379ab6efdee794c911684",
+  "verdict": "PASS",
+  "issues": [],
+  "answers": [
+    {
+      "task": 13,
+      "answer": "Are they guests?"
+    }
+  ],
+  "verdict_reason": "Question order and tile set are clear.",
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "sourceSha256": "80419dfc0274b02ebd0ba73c6eedeb6aa2b400cd6e6a217fc403cd281c189e60",
+    "deltaOnly": true,
+    "introAnswers": {
+      "intro1": "The couple is here.",
+      "intro2": "Where is the crowd?",
+      "intro3": "Who is the host?"
+    },
+    "confusion": [],
+    "verdict": "PASS",
+    "baselineReview": "owner-tone-before/final.judge_learner.json",
+    "unchangedPracticeVerified": true
+  },
+  "deltaReview": {
+    "session": "en/l02/s39",
+    "sourceSha256": "840bbf0070d5ddcb47feb24259f84bf129923d59b99379ab6efdee794c911684",
+    "verdict": "PASS",
+    "issues": [],
+    "answers": [
+      {
+        "task": 13,
+        "answer": "Are they guests?"
+      }
+    ],
+    "verdict_reason": "Question order and tile set are clear."
+  },
+  "retainedSourceSha256": "80419dfc0274b02ebd0ba73c6eedeb6aa2b400cd6e6a217fc403cd281c189e60",
+  "answerComparison": {
+    "changedTasksMatch": true,
+    "comparedTasks": [
+      13
+    ]
+  }
+}

@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-23:i02:r1",
+            "responseId": "en:lesson-01:session-23:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — patient",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-23:i02:r2",
+            "responseId": "en:lesson-01:session-23:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — patient",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-23:i04:r1",
+            "responseId": "en:lesson-01:session-23:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — grumpy",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-23:i04:r2",
+            "responseId": "en:lesson-01:session-23:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — grumpy",
             "feedbackByLocale": {
@@ -319,7 +319,7 @@
         "testedDimension": "Вставьте слово — этот мужчина бурчит на ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-23:i06:r1",
+            "responseId": "en:lesson-01:session-23:i06:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — этот мужчина бурчит на ",
             "feedbackByLocale": {
@@ -328,7 +328,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-23:i06:r2",
+            "responseId": "en:lesson-01:session-23:i06:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — этот мужчина бурчит на ",
             "feedbackByLocale": {
@@ -436,7 +436,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-23:i08:r1",
+            "responseId": "en:lesson-01:session-23:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — proud",
             "feedbackByLocale": {
@@ -445,7 +445,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-23:i08:r2",
+            "responseId": "en:lesson-01:session-23:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — proud",
             "feedbackByLocale": {
@@ -555,7 +555,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-23:i10:r1",
+            "responseId": "en:lesson-01:session-23:i10:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — gentle",
             "feedbackByLocale": {
@@ -564,7 +564,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-23:i10:r2",
+            "responseId": "en:lesson-01:session-23:i10:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — gentle",
             "feedbackByLocale": {
@@ -699,7 +699,7 @@
         "testedDimension": "Вставьте слово — про женщину говорят, чт",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-23:i12:r1",
+            "responseId": "en:lesson-01:session-23:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — про женщину говорят, чт",
             "feedbackByLocale": {
@@ -708,7 +708,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-23:i12:r2",
+            "responseId": "en:lesson-01:session-23:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — про женщину говорят, чт",
             "feedbackByLocale": {
@@ -832,7 +832,7 @@
         "testedDimension": "Вставьте слово — из дверей выходит женщи",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-23:i15:r1",
+            "responseId": "en:lesson-01:session-23:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — из дверей выходит женщи",
             "feedbackByLocale": {
@@ -841,7 +841,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-23:i15:r2",
+            "responseId": "en:lesson-01:session-23:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — из дверей выходит женщи",
             "feedbackByLocale": {
@@ -901,7 +901,7 @@
         "testedDimension": "Вставьте слово — мужчина вышел, хлопнул ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-23:i16:r1",
+            "responseId": "en:lesson-01:session-23:i16:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — мужчина вышел, хлопнул ",
             "feedbackByLocale": {
@@ -910,7 +910,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-23:i16:r2",
+            "responseId": "en:lesson-01:session-23:i16:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — мужчина вышел, хлопнул ",
             "feedbackByLocale": {
@@ -970,7 +970,7 @@
         "testedDimension": "Вставьте слово — из офиса выходит женщин",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-23:i17:r1",
+            "responseId": "en:lesson-01:session-23:i17:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — из офиса выходит женщин",
             "feedbackByLocale": {
@@ -979,7 +979,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-23:i17:r2",
+            "responseId": "en:lesson-01:session-23:i17:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — из офиса выходит женщин",
             "feedbackByLocale": {

@@ -1,0 +1,40 @@
+{
+  "sourceSha256": "93f729ebe76728216e06b366d896c6400f00f184a3555419313c288bde5bca79",
+  "introAnswers": {
+    "intro1": "Are we ready?",
+    "intro2": "Who is she?",
+    "intro3": "Excuse me. Is it open?"
+  },
+  "practiceAnswers": {
+    "1": "Are you ready?",
+    "2": "No, I am not.",
+    "3": "Who is he?",
+    "4": "He is the manager.",
+    "5": "is",
+    "6": "He is inside.",
+    "7": "open",
+    "8": "Excuse me. What is the price?",
+    "9": "Are we here?",
+    "10": "are",
+    "11": {
+      "here": "здесь",
+      "manager": "руководитель",
+      "open": "открыто",
+      "ready": "готов"
+    },
+    "12": "Is she new?",
+    "13": "Is he ready?",
+    "14": "The manager is here.",
+    "15": "Am I wrong?",
+    "16": "Excuse me.",
+    "17": "Where are the toilets?"
+  },
+  "issues": [],
+  "verdict": "PASS",
+  "answerComparison": {
+    "intro": 3,
+    "practice": 17,
+    "matched": true,
+    "scope": "text only"
+  }
+}

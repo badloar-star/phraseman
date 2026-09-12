@@ -1,0 +1,1007 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spoon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spoon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-23:i01:audio",
+          "transcript": "spoon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-23:i01:r1",
+            "targetText": "spoon",
+            "meaningByLocale": {
+              "ru": "«ложка». Прибор с ручкой и округлым углублением на конце, которым едят, подают или перемешивают еду.",
+              "uk": "«ложка». Предмет із ручкою та округлим заглибленням на кінці, яким їдять, подають або перемішують їжу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spoon",
+          "definitionByLocale": {
+            "ru": "«ложка». Прибор с ручкой и округлым углублением на конце, которым едят, подают или перемешивают еду.",
+            "uk": "«ложка». Предмет із ручкою та округлим заглибленням на кінці, яким їдять, подають або перемішують їжу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово сказал друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-23:i02:r1",
+          "text": "spoon"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i02:r2",
+          "text": "soon"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i02:r3",
+          "text": "swoon"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово сказал друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-23:i02:audio",
+          "transcript": "spoon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-23:i02:r1",
+            "targetText": "spoon",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i02:r2",
+            "targetText": "soon",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i02:r3",
+            "targetText": "swoon",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`soon` — «скоро». Это когда принесут ложку, а не как её назвать. В `soon` свистящий звук сразу переходит в гласный; в `spoon` между ними губы полностью смыкаются и раскрываются.",
+              "uk": "`soon` — «незабаром». Це коли принесуть ложку, а не як її назвати. У `soon` після англійського `s` одразу починається голосний; у `spoon` між ними губи повністю змикаються на `p` і розкриваються."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`swoon` — «падать в обморок». После начального свистящего звука губы округляются и плавно переходят к гласному. В `spoon` на этом месте губы полностью смыкаются и раскрываются.",
+              "uk": "`swoon` — «непритомніти». Після початкового англійського `s` губи округлюються й плавно переходять до голосного. У `spoon` на цьому місці губи повністю змикаються на `p` і розкриваються."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fork",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-23:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fork",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-23:i03:audio",
+          "transcript": "fork"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-23:i03:r1",
+            "targetText": "fork",
+            "meaningByLocale": {
+              "ru": "«вилка». Столовый прибор с ручкой и обычно тремя или четырьмя острыми зубцами, которым подхватывают еду.",
+              "uk": "«виделка». Предмет столового приладдя з ручкою та зазвичай трьома або чотирма гострими зубцями, яким підхоплюють їжу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fork",
+          "definitionByLocale": {
+            "ru": "«вилка». Столовый прибор с ручкой и обычно тремя или четырьмя острыми зубцами, которым подхватывают еду.",
+            "uk": "«виделка». Предмет столового приладдя з ручкою та зазвичай трьома або чотирма гострими зубцями, яким підхоплюють їжу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-23:i04:r1",
+          "text": "fork"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i04:r2",
+          "text": "pork"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i04:r3",
+          "text": "cork"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-23:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-23:i04:audio",
+          "transcript": "fork"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-23:i04:r1",
+            "targetText": "fork",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i04:r2",
+            "targetText": "pork",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i04:r3",
+            "targetText": "cork",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-23:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`pork` — «свинина». В начале губы полностью смыкаются и раскрываются. У `fork` воздух в начале идёт непрерывно между нижней губой и верхними зубами.",
+              "uk": "`pork` — «свинина». На початку губи повністю змикаються на `p` і розкриваються. У `fork` повітря відразу йде між нижньою губою та верхніми зубами на `f`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`cork` — «пробка», которой закрывают бутылку. Начало произносится смыканием и размыканием задней части языка. В начале `fork` воздух проходит между нижней губой и верхними зубами.",
+              "uk": "`cork` — «корок», яким закривають пляшку. Початок утворюється змиканням і розмиканням задньої частини язика на `k`. На початку `fork` повітря проходить між нижньою губою та верхніми зубами на `f`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг спрашивает, что вы оставили возле ящика; там одна ложка, скажите «Это ложка»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-23:i05:r1",
+          "text": "spoons"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг спрашивает, что вы оставили возле ящика; там одна ложка, скажите «Это ложка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a spoon.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг спрашивает, что вы оставили возле ящика; там одна ложка, скажите «Это ложка»",
+          "uk": "Зберіть фразу — друг питає, що ви залишили біля шухляди; там одна ложка, скажіть «Це ложка»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "spoon"
+        ],
+        "authoredDistractorTokens": [
+          "spoons"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-23:i05:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — друг спрашивает, что вы",
+            "feedbackByLocale": {
+              "ru": "Возле ящика одна ложка. В этой фразе нужно `a spoon`, а `spoons` называет несколько.",
+              "uk": "Біля шухляди одна ложка. У цій фразі потрібно `a spoon`, а `spoons` називає кілька."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте название — друг спрашивает о приборах в вашей руке; вы держите три ложки, скажите «Это ложки»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-23:i06:r1",
+          "text": "spoons"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i06:r2",
+          "text": "spoon"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i06:r3",
+          "text": "a spoon"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте название — друг спрашивает о приборах в вашей руке; вы держите три ложки, скажите «Это ложки»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — друг спрашивает о приборах в вашей руке; вы держите три ложки, скажите «Это ложки»",
+          "uk": "Вставте назву — друг питає, що у вас у руці; ви тримаєте три ложки, скажіть «Це ложки»"
+        },
+        "gappedTargetPhrase": "They are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i06:r1",
+            "text": "spoons"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i06:r2",
+            "text": "spoon"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i06:r3",
+            "text": "a spoon"
+          }
+        ],
+        "testedDimension": "Вставьте название — друг спрашивает о пр",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-23:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — друг спрашивает о пр",
+            "feedbackByLocale": {
+              "ru": "Вы держите три ложки. Их название — `spoons`, с окончанием `s`.",
+              "uk": "Ви тримаєте три ложки. Їхня назва — `spoons`, із `s` наприкінці."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — друг спрашивает о пр",
+            "feedbackByLocale": {
+              "ru": "`a spoon` называет одну ложку. Здесь их три, поэтому нужно `spoons`.",
+              "uk": "`a spoon` називає одну ложку. Тут їх три, тому потрібно `spoons`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-23:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-23:i07:audio",
+          "transcript": "cup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-23:i07:r1",
+            "targetText": "cup",
+            "meaningByLocale": {
+              "ru": "«чашка». Небольшая округлая ёмкость для питья, часто с ручкой, особенно для чая или кофе.",
+              "uk": "«чашка». Невелика округла ємність для пиття, часто з ручкою, особливо для чаю чи кави."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cup",
+          "definitionByLocale": {
+            "ru": "«чашка». Небольшая округлая ёмкость для питья, часто с ручкой, особенно для чая или кофе.",
+            "uk": "«чашка». Невелика округла ємність для пиття, часто з ручкою, особливо для чаю чи кави."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово сказал друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-23:i08:r1",
+          "text": "cup"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i08:r2",
+          "text": "cap"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i08:r3",
+          "text": "cop"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово сказал друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-23:i08:audio",
+          "transcript": "cup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-23:i08:r1",
+            "targetText": "cup",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i08:r2",
+            "targetText": "cap",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i08:r3",
+            "targetText": "cop",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`cap` — «кепка». Гласный произносится с языком низко и спереди. В `cup` язык ближе к середине рта, губы не округлены. Начало и конец слов звучат одинаково.",
+              "uk": "`cap` — «кепка». Голосний вимовляється з язиком низько спереду. У `cup` язик ближче до середини рота, губи не округлені. Початок і кінець слів однакові."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`cop` — разговорное «полицейский». Гласный произносится с языком ближе к задней части рта. У `cup` гласный центральный, губы не округлены; сравните середину слов.",
+              "uk": "`cop` — розмовне «поліцейський». Голосний утворюється язиком ближче до задньої частини рота. У `cup` голосний у середині рота, губи не округлені; порівняйте середину слів."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите вопрос — друг разворачивает ещё один набор приборов, вы стоите у ящика и уточняете «Это вилки?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-23:i09:r1",
+          "text": "fork"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите вопрос — друг разворачивает ещё один набор приборов, вы стоите у ящика и уточняете «Это вилки?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are they forks?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — друг разворачивает ещё один набор приборов, вы стоите у ящика и уточняете «Это вилки?»",
+          "uk": "Зберіть питання — друг розгортає ще один набір столового приладдя, ви стоїте біля шухляди й уточнюєте «Це виделки?»"
+        },
+        "orderedTokens": [
+          "Are",
+          "they",
+          "forks"
+        ],
+        "authoredDistractorTokens": [
+          "fork"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-23:i09:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос — друг разворачивает ещё",
+            "feedbackByLocale": {
+              "ru": "Вопрос о нескольких приборах из набора. Для нескольких вилок нужно `forks`.",
+              "uk": "Питання про кілька предметів із набору. Для кількох виделок потрібно `forks`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте название — друг освобождает нижнюю полку и спрашивает, что вы туда поставите; назовите две миски на столе (`bowl` — «миска», `bowls` — «миски»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-23:i10:r1",
+          "text": "bowls"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i10:r2",
+          "text": "bowl"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i10:r3",
+          "text": "a bowl"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте название — друг освобождает нижнюю полку и спрашивает, что вы туда поставите; назовите две миски на столе (`bowl` — «миска», `bowls` — «миски»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — друг освобождает нижнюю полку и спрашивает, что вы туда поставите; назовите две миски на столе (`bowl` — «миска», `bowls` — «миски»)",
+          "uk": "Вставте назву — друг звільняє нижню полицю й питає, що ви туди поставите; назвіть дві миски на столі (`bowl` — «миска», `bowls` — «миски»)"
+        },
+        "gappedTargetPhrase": "They are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i10:r1",
+            "text": "bowls"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i10:r2",
+            "text": "bowl"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i10:r3",
+            "text": "a bowl"
+          }
+        ],
+        "testedDimension": "Вставьте название — друг освобождает ниж",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-23:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — друг освобождает ниж",
+            "feedbackByLocale": {
+              "ru": "На столе две миски. Нужна форма `bowls`, название нескольких.",
+              "uk": "На столі дві миски. Потрібна форма `bowls`, назва кількох."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — друг освобождает ниж",
+            "feedbackByLocale": {
+              "ru": "`a bowl` означает одну миску. Вы называете две: `They are bowls`.",
+              "uk": "`a bowl` означає одну миску. Ви називаєте дві: `They are bowls`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — что сказал друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-23:i11:r1",
+          "text": "cup"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — что сказал друг",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-23:i11:audio",
+          "transcript": "They are not cups."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are not cups.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "not",
+          "cups"
+        ],
+        "authoredDistractorTokens": [
+          "cup"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-23:i11:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — что сказал друг",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `cups`, название нескольких чашек. Отрицание `not` эту форму не меняет.",
+              "uk": "У записі звучить `cups`, назва кількох чашок. Заперечення `not` цієї форми не змінює."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте название — друг спрашивает, что вы оставили у раковины; там одна чашка, скажите «Это чашка»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-23:i12:r1",
+          "text": "a cup"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i12:r2",
+          "text": "cup"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i12:r3",
+          "text": "cups"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте название — друг спрашивает, что вы оставили у раковины; там одна чашка, скажите «Это чашка»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — друг спрашивает, что вы оставили у раковины; там одна чашка, скажите «Это чашка»",
+          "uk": "Вставте назву — друг питає, що ви залишили біля раковини; там одна чашка, скажіть «Це чашка»"
+        },
+        "gappedTargetPhrase": "It is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i12:r1",
+            "text": "a cup"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i12:r2",
+            "text": "cup"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i12:r3",
+            "text": "cups"
+          }
+        ],
+        "testedDimension": "Вставьте название — друг спрашивает, что",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-23:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — друг спрашивает, что",
+            "feedbackByLocale": {
+              "ru": "В этой фразе для называния одной чашки нужно `a cup`. Перед `cup` пропущено `a`.",
+              "uk": "У цій фразі одну чашку називаємо `a cup`. Перед `cup` пропущено `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — друг спрашивает, что",
+            "feedbackByLocale": {
+              "ru": "`cups` означает несколько чашек. У раковины одна: `a cup`.",
+              "uk": "`cups` означає кілька чашок. Біля раковини одна: `a cup`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте название — друг открывает отделение ящика и спрашивает, что вы туда кладёте; назовите несколько вилок «Это вилки»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-23:i13:r1",
+          "text": "forks"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i13:r2",
+          "text": "fork"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i13:r3",
+          "text": "a forks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте название — друг открывает отделение ящика и спрашивает, что вы туда кладёте; назовите несколько вилок «Это вилки»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — друг открывает отделение ящика и спрашивает, что вы туда кладёте; назовите несколько вилок «Это вилки»",
+          "uk": "Вставте назву — друг відчиняє відділення шухляди й питає, що ви туди кладете; назвіть кілька виделок «Це виделки»"
+        },
+        "gappedTargetPhrase": "They are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i13:r1",
+            "text": "forks"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i13:r2",
+            "text": "fork"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i13:r3",
+            "text": "a forks"
+          }
+        ],
+        "testedDimension": "Вставьте название — друг открывает отдел",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-23:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — друг открывает отдел",
+            "feedbackByLocale": {
+              "ru": "Вы кладёте несколько вилок. Нужно название нескольких — `forks`.",
+              "uk": "Ви кладете кілька виделок. Потрібна назва кількох — `forks`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — друг открывает отдел",
+            "feedbackByLocale": {
+              "ru": "В этой фразе перед названием нескольких вилок `a` не ставим: `They are forks`.",
+              "uk": "У цій фразі перед назвою кількох виделок `a` не ставимо: `They are forks`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините названия с русскими значениями — вещи для кухни",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините названия с русскими значениями — вещи для кухни",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-23:i14:p1",
+            "target": "spoons",
+            "meaningByLocale": {
+              "ru": "ложки",
+              "uk": "ложки"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-23:i14:p2",
+            "target": "forks",
+            "meaningByLocale": {
+              "ru": "вилки",
+              "uk": "виделки"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-23:i14:p3",
+            "target": "cups",
+            "meaningByLocale": {
+              "ru": "чашки",
+              "uk": "чашки"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-23:i14:p4",
+            "target": "bowls",
+            "meaningByLocale": {
+              "ru": "миски",
+              "uk": "миски"
+            }
+          }
+        ],
+        "leftColumn": [
+          "spoons",
+          "forks",
+          "cups",
+          "bowls"
+        ],
+        "rightColumn": [
+          "ложки",
+          "вилки",
+          "чашки",
+          "миски"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — друг спрашивает, что вы несёте к нижней полке; у вас две миски, назовите их «Это миски»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — друг спрашивает, что вы несёте к нижней полке; у вас две миски, назовите их «Это миски»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-23:i15:audio",
+          "transcript": "They are bowls."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are bowls.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте название — друг спрашивает, что осталось под бумагой; вы нашли одну вилку, скажите «Это вилка»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-23:i16:r1",
+          "text": "a fork"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i16:r2",
+          "text": "forks"
+        },
+        {
+          "responseId": "en:lesson-03:session-23:i16:r3",
+          "text": "fork"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте название — друг спрашивает, что осталось под бумагой; вы нашли одну вилку, скажите «Это вилка»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — друг спрашивает, что осталось под бумагой; вы нашли одну вилку, скажите «Это вилка»",
+          "uk": "Вставте назву — друг питає, що залишилося під папером; ви знайшли одну виделку, скажіть «Це виделка»"
+        },
+        "gappedTargetPhrase": "It is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-23:i16:r1",
+            "text": "a fork"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i16:r2",
+            "text": "forks"
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i16:r3",
+            "text": "fork"
+          }
+        ],
+        "testedDimension": "Вставьте название — друг спрашивает, что",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-23:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — друг спрашивает, что",
+            "feedbackByLocale": {
+              "ru": "`forks` — несколько вилок. Под бумагой одна: `a fork`.",
+              "uk": "`forks` — кілька виделок. Під папером одна: `a fork`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-23:i16:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — друг спрашивает, что",
+            "feedbackByLocale": {
+              "ru": "Для называния одной вилки в этой фразе нужно `a fork`. Слово `a` пропускать не стоит.",
+              "uk": "У цій фразі одну виделку називаємо `a fork`. Слово `a` пропускати не варто."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-23:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу самостоятельно — друг освободил верхнюю полку и спрашивает, что вы туда несёте; у вас две чашки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-23:i17:r1",
+          "text": "cup"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу самостоятельно — друг освободил верхнюю полку и спрашивает, что вы туда несёте; у вас две чашки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are cups.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — друг освободил верхнюю полку и спрашивает, что вы туда несёте; у вас две чашки",
+          "uk": "Зберіть фразу самостійно — друг звільнив верхню полицю й питає, що ви туди несете; у вас дві чашки"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "cups"
+        ],
+        "authoredDistractorTokens": [
+          "cup"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-23:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — друг осв",
+            "feedbackByLocale": {
+              "ru": "Вы называете две чашки. Нужна форма `cups`.",
+              "uk": "Ви називаєте дві чашки. Потрібна форма `cups`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "57e94d973063473adc9ec2de8e8fb54060a34f900d0608c49a93aa90ebe5037f"
+}

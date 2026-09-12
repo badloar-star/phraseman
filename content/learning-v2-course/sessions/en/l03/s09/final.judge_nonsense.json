@@ -1,0 +1,7 @@
+{
+  "sourceSha256":"250a740b26d61078fb90a12a83591f4a6118cd7377fb7ddf37e7157d34280eb7",
+  "reviewer":"/root/s09_truth","verdict":"PASS","problems":[],
+  "reviewScope":"Full first-version BLOCK plus two actual delta reviews. Historical evidence in 2026-09-12_l03_s09_truth_initial.json and second_reviews.json.",
+  "verdict_reason":"Точный diff содержит только заявленные изменения. Заголовок фактов не добавляет. Intro3 корректно ограничивает утверждение текущей отрицательной конструкцией: not меняет полярность ответа, а an umbrella сохраняется; перевод полной фразы точен. Сокращённое определение oven остаётся истинным и достаточным. Предыдущие исправления armchair, a/an и archer сохранены.",
+  "actualAudioReviewed":false
+}

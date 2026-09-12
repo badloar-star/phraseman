@@ -56,7 +56,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-41:i01:r1",
+            "responseId": "en:lesson-01:session-41:i01:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — как звучит сокра",
             "feedbackByLocale": {
@@ -65,7 +65,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-41:i01:r2",
+            "responseId": "en:lesson-01:session-41:i01:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — как звучит сокра",
             "feedbackByLocale": {
@@ -109,7 +109,7 @@
           "ru": "Вставьте слово — вы пришли позже всех",
           "uk": "Вставте слово — ви прийшли пізніше за всіх"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ late.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-41:i02:r1",
@@ -127,7 +127,7 @@
         "testedDimension": "Вставьте слово — вы пришли позже всех",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-41:i02:r1",
+            "responseId": "en:lesson-01:session-41:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы пришли позже всех",
             "feedbackByLocale": {
@@ -136,7 +136,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-41:i02:r2",
+            "responseId": "en:lesson-01:session-41:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы пришли позже всех",
             "feedbackByLocale": {
@@ -230,7 +230,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-41:i04:r1",
+            "responseId": "en:lesson-01:session-41:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — про собеседника",
             "feedbackByLocale": {
@@ -239,7 +239,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-41:i04:r2",
+            "responseId": "en:lesson-01:session-41:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — про собеседника",
             "feedbackByLocale": {
@@ -283,7 +283,7 @@
           "ru": "Вставьте слово — друг переживает, что опоздал, а всё нормально",
           "uk": "Вставте слово — друг переживає, що спізнився, а все гаразд"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ fine.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-41:i05:r1",
@@ -301,7 +301,7 @@
         "testedDimension": "Вставьте слово — друг переживает, что оп",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-41:i05:r1",
+            "responseId": "en:lesson-01:session-41:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — друг переживает, что оп",
             "feedbackByLocale": {
@@ -310,7 +310,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-41:i05:r2",
+            "responseId": "en:lesson-01:session-41:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — друг переживает, что оп",
             "feedbackByLocale": {
@@ -399,7 +399,7 @@
         "testedDimension": "Вставьте слово — вас спросили дорогу, и ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-41:i07:r1",
+            "responseId": "en:lesson-01:session-41:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вас спросили дорогу, и ",
             "feedbackByLocale": {
@@ -408,7 +408,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-41:i07:r2",
+            "responseId": "en:lesson-01:session-41:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вас спросили дорогу, и ",
             "feedbackByLocale": {
@@ -477,7 +477,7 @@
           "ru": "Вставьте слово — друг сомневается, а вы видите, что он не ошибся",
           "uk": "Вставте слово — друг сумнівається, а ви бачите, що він не помилився"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ sure.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-41:i09:r1",
@@ -495,7 +495,7 @@
         "testedDimension": "Вставьте слово — друг сомневается, а вы ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-41:i09:r1",
+            "responseId": "en:lesson-01:session-41:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — друг сомневается, а вы ",
             "feedbackByLocale": {
@@ -504,7 +504,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-41:i09:r2",
+            "responseId": "en:lesson-01:session-41:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — друг сомневается, а вы ",
             "feedbackByLocale": {
@@ -564,7 +564,7 @@
         "testedDimension": "Вставьте слово — собеседник извинился, х",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-41:i10:r1",
+            "responseId": "en:lesson-01:session-41:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — собеседник извинился, х",
             "feedbackByLocale": {
@@ -573,7 +573,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-41:i10:r2",
+            "responseId": "en:lesson-01:session-41:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — собеседник извинился, х",
             "feedbackByLocale": {
@@ -738,7 +738,7 @@
         "testedDimension": "Вставьте слово — вы всё ещё за столом, и",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-41:i13:r1",
+            "responseId": "en:lesson-01:session-41:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы всё ещё за столом, и",
             "feedbackByLocale": {
@@ -747,7 +747,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-41:i13:r2",
+            "responseId": "en:lesson-01:session-41:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы всё ещё за столом, и",
             "feedbackByLocale": {
@@ -857,5 +857,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1165acad9e4e219d07340eba902364ac3a4e5dab1c2b1c35629b51075b680a3e"
+  "learnerFingerprint": "081a789f770615aa42a0874c02f9da4452f5428437dea575d5a558ec28f31a32"
 }

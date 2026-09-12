@@ -1,0 +1,23 @@
+{
+  "session": "S53",
+  "sourceSha256": "d4b4f7fe5f5af718c643e8a955d814c8be40fce8ba7d5f8f35d5f972d738b0b0",
+  "verdict": "REVISE",
+  "issues": [
+    {
+      "location": "Практика, задание 7: вариант `What` и feedback",
+      "problem": "`What is she?` — допустимый вопрос о профессии или роли. В этой сцене следующая реплика `She is the manager.` естественно отвечает и на него, поэтому вариант остаётся ситуативно правдоподобным. Feedback «Это слово означает “что”» чрезмерно упрощает значение конструкции.",
+      "minimalFix": {
+        "options": "___ is she? → **Who** · Where · How",
+        "feedback": "How — *Это вопрос о состоянии или самочувствии: «Как она?» Здесь нужно узнать, кто эта женщина: `Who is she?`.*"
+      }
+    }
+  ],
+  "checks": {
+    "introFactsAccurate": true,
+    "sceneAndReferentsConsistent": true,
+    "otherSixteenTasksUniqueBySubstitution": true,
+    "otherFeedbackAccurate": true,
+    "shortAnswerDistractorsStructural": true,
+    "actualAudioAssessed": false
+  }
+}

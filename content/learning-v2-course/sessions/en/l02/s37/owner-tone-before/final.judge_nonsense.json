@@ -1,0 +1,15 @@
+{
+  "problems": [],
+  "verdict": "PASS",
+  "verdict_reason": "Новое задание 16 точно соотносит ситуацию поиска хозяина с вопросом `Where is the host?`, а самопроверка верно учитывает `host` как правильный ответ в задании 16.",
+  "sourceSHA": "b401b25161766921b8072362f4b463739ba0514c7b6d6ac0e9ef8ddc5c796145",
+  "sourceSha256": "ad0183db5fd0a3fe68020a2dcd9312139bf303bb59b21c68385a0632083b86d5",
+  "reviewedAt": "2026-09-08T09:54:00.828600+00:00",
+  "reviewMethod": "builtin_codex_independent_role_with_targeted_delta_review",
+  "previousSourceSha256": "b401b25161766921b8072362f4b463739ba0514c7b6d6ac0e9ef8ddc5c796145",
+  "listeningRepairReview": {
+    "verdict": "PASS",
+    "issues": [],
+    "sourceSha256": "ad0183db5fd0a3fe68020a2dcd9312139bf303bb59b21c68385a0632083b86d5"
+  }
+}

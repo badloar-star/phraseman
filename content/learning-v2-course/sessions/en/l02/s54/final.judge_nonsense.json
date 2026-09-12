@@ -1,0 +1,35 @@
+{
+  "session": "S54",
+  "sourceSha256": "6fcf2709637ea1ef51aebc8acf5a94ac13110eb22785c28f66513ef295861644",
+  "verdict": "PASS",
+  "issues": [],
+  "checks": {
+    "landlordMeaningAccurateAndHousingScoped": true,
+    "rentMeaningAccurateAndNounScoped": true,
+    "landlordLandmarkLandslideAreRealNonHomophones": true,
+    "secondSyllableOnsets": {
+      "landlord": "/l/",
+      "landmark": "/m/",
+      "landslide": "/sl/"
+    },
+    "rentLentSentAreRealNonHomophones": true,
+    "initialSounds": {
+      "rent": "/r/",
+      "lent": "/l/",
+      "sent": "/s/"
+    },
+    "quietQuiteMeaningsAndFeedbackAccurate": true,
+    "grammarClaimsAccurate": true,
+    "allIntroAndPracticeAnswersUniqueBySubstitution": true,
+    "sceneAndReferentsConsistent": true,
+    "actualAudioAssessed": false,
+    "phoneticEvidence": [
+      "[Cambridge: landlord](https://dictionary.cambridge.org/us/pronunciation/english/landlord)",
+      "[Cambridge: landmark](https://dictionary.cambridge.org/pronunciation/english/landmark)",
+      "[Cambridge: landslide](https://dictionary.cambridge.org/pronunciation/english/landslide)",
+      "[Cambridge: rent](https://dictionary.cambridge.org/pronunciation/english/rent)",
+      "[Cambridge: lent](https://dictionary.cambridge.org/pronunciation/english/lent)",
+      "[Cambridge: sent](https://dictionary.cambridge.org/dictionary/english/sent)"
+    ]
+  }
+}

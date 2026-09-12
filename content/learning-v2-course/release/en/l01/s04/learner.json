@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i02:r1",
+            "responseId": "en:lesson-01:session-04:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — early",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i02:r2",
+            "responseId": "en:lesson-01:session-04:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — early",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i04:r1",
+            "responseId": "en:lesson-01:session-04:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — right",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i04:r2",
+            "responseId": "en:lesson-01:session-04:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — right",
             "feedbackByLocale": {
@@ -337,7 +337,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i06:r1",
+            "responseId": "en:lesson-01:session-04:i06:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — wrong",
             "feedbackByLocale": {
@@ -346,7 +346,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i06:r2",
+            "responseId": "en:lesson-01:session-04:i06:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — wrong",
             "feedbackByLocale": {
@@ -508,7 +508,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i09:r1",
+            "responseId": "en:lesson-01:session-04:i09:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — free",
             "feedbackByLocale": {
@@ -517,7 +517,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i09:r2",
+            "responseId": "en:lesson-01:session-04:i09:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — free",
             "feedbackByLocale": {
@@ -719,7 +719,7 @@
         "testedDimension": "Вставьте слово — сосед по кругу признаёт",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i13:r1",
+            "responseId": "en:lesson-01:session-04:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед по кругу признаёт",
             "feedbackByLocale": {
@@ -728,7 +728,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i13:r2",
+            "responseId": "en:lesson-01:session-04:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед по кругу признаёт",
             "feedbackByLocale": {
@@ -797,7 +797,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i14:r1",
+            "responseId": "en:lesson-01:session-04:i14:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — начальник обводи",
             "feedbackByLocale": {
@@ -806,7 +806,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i14:r2",
+            "responseId": "en:lesson-01:session-04:i14:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — начальник обводи",
             "feedbackByLocale": {
@@ -815,7 +815,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i14:r3",
+            "responseId": "en:lesson-01:session-04:i14:r4",
             "correct": false,
             "testedDimension": "Послушайте и выберите — начальник обводи",
             "feedbackByLocale": {
@@ -891,7 +891,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i15:r1",
+            "responseId": "en:lesson-01:session-04:i15:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы сейчас ус",
             "feedbackByLocale": {
@@ -900,7 +900,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i15:r2",
+            "responseId": "en:lesson-01:session-04:i15:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы сейчас ус",
             "feedbackByLocale": {
@@ -909,7 +909,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i15:r3",
+            "responseId": "en:lesson-01:session-04:i15:r4",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы сейчас ус",
             "feedbackByLocale": {
@@ -1104,7 +1104,7 @@
         "testedDimension": "Вставьте слово — коллега вбегает, когда ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i19:r1",
+            "responseId": "en:lesson-01:session-04:i19:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега вбегает, когда ",
             "feedbackByLocale": {
@@ -1113,7 +1113,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i19:r2",
+            "responseId": "en:lesson-01:session-04:i19:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега вбегает, когда ",
             "feedbackByLocale": {

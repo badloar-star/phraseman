@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-26:i02:r1",
+            "responseId": "en:lesson-02:session-26:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — weather",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-26:i02:r2",
+            "responseId": "en:lesson-02:session-26:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — weather",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-26:i04:r1",
+            "responseId": "en:lesson-02:session-26:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — time",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-26:i04:r2",
+            "responseId": "en:lesson-02:session-26:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — time",
             "feedbackByLocale": {
@@ -318,7 +318,7 @@
         "testedDimension": "Вставьте слово — часов нет, спросите спу",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-26:i06:r1",
+            "responseId": "en:lesson-02:session-26:i06:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — часов нет, спросите спу",
             "feedbackByLocale": {
@@ -327,7 +327,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-26:i06:r2",
+            "responseId": "en:lesson-02:session-26:i06:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — часов нет, спросите спу",
             "feedbackByLocale": {
@@ -462,7 +462,7 @@
         "testedDimension": "Вставьте слово — рука в окне мёрзнет за ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-26:i09:r1",
+            "responseId": "en:lesson-02:session-26:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — рука в окне мёрзнет за ",
             "feedbackByLocale": {
@@ -471,7 +471,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-26:i09:r2",
+            "responseId": "en:lesson-02:session-26:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — рука в окне мёрзнет за ",
             "feedbackByLocale": {
@@ -523,7 +523,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «хол",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-26:i10:r1",
+            "responseId": "en:lesson-02:session-26:i10:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «хол",
             "feedbackByLocale": {
@@ -626,7 +626,7 @@
         "testedDimension": "Вставьте слово — спутник спрашивает, дал",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-26:i12:r1",
+            "responseId": "en:lesson-02:session-26:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник спрашивает, дал",
             "feedbackByLocale": {
@@ -635,7 +635,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-26:i12:r2",
+            "responseId": "en:lesson-02:session-26:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник спрашивает, дал",
             "feedbackByLocale": {
@@ -743,7 +743,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-26:i14:r1",
+            "responseId": "en:lesson-02:session-26:i14:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — station",
             "feedbackByLocale": {
@@ -752,7 +752,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-26:i14:r2",
+            "responseId": "en:lesson-02:session-26:i14:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — station",
             "feedbackByLocale": {
@@ -887,7 +887,7 @@
         "testedDimension": "Вставьте слово — спутник спрашивает, где",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-26:i16:r1",
+            "responseId": "en:lesson-02:session-26:i16:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник спрашивает, где",
             "feedbackByLocale": {
@@ -896,7 +896,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-26:i16:r2",
+            "responseId": "en:lesson-02:session-26:i16:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник спрашивает, где",
             "feedbackByLocale": {

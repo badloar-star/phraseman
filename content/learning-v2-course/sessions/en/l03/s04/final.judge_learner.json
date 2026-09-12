@@ -1,0 +1,102 @@
+{
+  "sourceSha256": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
+  "scope": "Blind text walkthrough. Known prior vocabulary. Transcripts substitute sound; actual audio not assessed. No answer key or feedback. Practice numbered 1 through 17.",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "It is a key."
+    },
+    {
+      "step": 2,
+      "answer": "Is it a door?"
+    },
+    {
+      "step": 3,
+      "answer": "It is not a window."
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "Acknowledged: key — ключ."
+    },
+    {
+      "step": 2,
+      "answer": "key"
+    },
+    {
+      "step": 3,
+      "answer": "Acknowledged: door — дверь."
+    },
+    {
+      "step": 4,
+      "answer": "door"
+    },
+    {
+      "step": 5,
+      "answer": "A key."
+    },
+    {
+      "step": 6,
+      "answer": "Acknowledged: window — окно."
+    },
+    {
+      "step": 7,
+      "answer": "window"
+    },
+    {
+      "step": 8,
+      "answer": "It is a window."
+    },
+    {
+      "step": 9,
+      "answer": "It is a mirror."
+    },
+    {
+      "step": 10,
+      "answer": "Is it a door?"
+    },
+    {
+      "step": 11,
+      "answer": {
+        "door": "дверь",
+        "key": "ключ",
+        "mirror": "зеркало",
+        "window": "окно"
+      }
+    },
+    {
+      "step": 12,
+      "answer": "It is not a key."
+    },
+    {
+      "step": 13,
+      "answer": "It is a door."
+    },
+    {
+      "step": 14,
+      "answer": "Is it a mirror?"
+    },
+    {
+      "step": 15,
+      "answer": "Is it a key?"
+    },
+    {
+      "step": 16,
+      "answer": "It is not a door."
+    },
+    {
+      "step": 17,
+      "answer": "It is a key."
+    }
+  ],
+  "ambiguities": [],
+  "leaks": [],
+  "verdict": "PASS",
+  "answerComparison": {
+    "intro": 3,
+    "practice": 17,
+    "matched": true,
+    "scope": "text only; current absolute-path private projection"
+  }
+}

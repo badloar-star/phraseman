@@ -1,0 +1,111 @@
+{
+  "sourceSha256": "e3a501430d3205b4a5bea468fdc9d6964e3cb5078aef274945eadb8197316ce7",
+  "reviewer": "/root/s23_blind",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "It is a ticket."
+    },
+    {
+      "step": 2,
+      "answer": "They are glasses."
+    },
+    {
+      "step": 3,
+      "answer": "They are stories."
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "a ticket"
+    },
+    {
+      "step": 2,
+      "answer": "They are tickets."
+    },
+    {
+      "step": 3,
+      "answer": "It is a dish."
+    },
+    {
+      "step": 4,
+      "answer": "is"
+    },
+    {
+      "step": 5,
+      "answer": "It is a glass."
+    },
+    {
+      "step": 6,
+      "answer": "dishes"
+    },
+    {
+      "step": 7,
+      "answer": "Are they glasses?"
+    },
+    {
+      "step": 8,
+      "answer": "stories"
+    },
+    {
+      "step": 9,
+      "answer": "They are tickets."
+    },
+    {
+      "step": 10,
+      "answer": "They are not stories."
+    },
+    {
+      "step": 11,
+      "answer": "glass"
+    },
+    {
+      "step": 12,
+      "answer": "They are not dishes."
+    },
+    {
+      "step": 13,
+      "answer": "are"
+    },
+    {
+      "step": 14,
+      "answer": {
+        "glasses": "стаканы",
+        "stories": "истории",
+        "tickets": "билеты",
+        "dishes": "блюда для подачи еды"
+      }
+    },
+    {
+      "step": 15,
+      "answer": "It is a story."
+    },
+    {
+      "step": 16,
+      "answer": "glasses"
+    },
+    {
+      "step": 17,
+      "answer": "They are stories."
+    }
+  ],
+  "learned_new": [
+    "Могу уверенно выбирать glasses, а не glass, когда речь о нескольких стаканах.",
+    "Могу уверенно выбирать stories, а не storys, когда историй несколько.",
+    "Могу переносить уже знакомые формы в утверждение, вопрос и отрицание без подсказки о нужной конструкции."
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "scene_reason": "да: вся сессия держится на одной понятной проверке доставки с курьером — я достаю вещи, называю их и уточняю содержимое коробок, конвертов и книги.",
+  "would_continue": "да: это короткая проверка, где знакомые слова приходится узнавать, собирать и произносить в разных фразах, поэтому она не ощущается как перечитывание списка.",
+  "verdict_reason": "Это проходимый и полезный смешанный чекпоинт: ни один правильный ответ не требует скрытого нового слова или формы, а доставка даёт связный повод для всех реплик.",
+  "verdict": "PASS",
+  "audio": {
+    "substitute": "heardText transcripts",
+    "actual_audio": "NOT_REVIEWED"
+  }
+}
+

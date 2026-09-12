@@ -1,0 +1,59 @@
+{
+  "sourceSha256": "582bbcc840ad479d350e9e91cfb8e12b0ef2fafad48217d5d964d3df30a4b7d2",
+  "localeSha256": {
+    "uk": "25990d6f77d0055672d1d76b1fbbc1d0d7d9f7167f743aadcb9a70ebdc88e16e"
+  },
+  "reviewer": "/root/s10_uk_native",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "scope": {
+    "intros": 3,
+    "intro_body_chars": [
+      290,
+      261,
+      248
+    ],
+    "tasks": 17,
+    "word_cards": 0,
+    "new_words": 0,
+    "actual_audio_reviewed": false
+  },
+  "structure_identical": true,
+  "english_targets_identical": true,
+  "structure_diffs": [],
+  "locales": {
+    "uk": {
+      "verdict": "REVISE",
+      "problems": [
+        {
+          "where": "metadata",
+          "quote": "checkpoint",
+          "fix": "підсумкова перевірка"
+        },
+        {
+          "where": "intro1",
+          "quote": "На швидкості легко вгадати",
+          "fix": "На швидкості так і кортить вгадувати",
+          "why": "Original implies easy correct guess, contradicting correction joke."
+        },
+        {
+          "where": "intro3",
+          "quote": "У короткій фразі",
+          "fix": "У цій фразі"
+        },
+        {
+          "where": "task4 feedback",
+          "quote": "не утворює потрібної назви",
+          "fix": "Is hour не є короткою відповіддю про час очікування."
+        },
+        {
+          "where": "task10",
+          "quote": "чи на працівникові робоча форма",
+          "fix": "друг указує на одяг працівника й уточнює, чи це робоча форма"
+        }
+      ]
+    }
+  },
+  "verdict": "REVISE",
+  "verdict_reason": "Five native wording groups; English structure and language facts otherwise intact. Humour requirement met after listed fix."
+}

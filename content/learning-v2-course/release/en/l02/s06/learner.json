@@ -56,7 +56,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-06:i01:r1",
+            "responseId": "en:lesson-02:session-06:i01:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — lost",
             "feedbackByLocale": {
@@ -65,7 +65,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-06:i01:r2",
+            "responseId": "en:lesson-02:session-06:i01:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — lost",
             "feedbackByLocale": {
@@ -127,7 +127,7 @@
         "testedDimension": "Вставьте слово — женщина с телефоном-кар",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-06:i02:r1",
+            "responseId": "en:lesson-02:session-06:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — женщина с телефоном-кар",
             "feedbackByLocale": {
@@ -136,7 +136,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-06:i02:r2",
+            "responseId": "en:lesson-02:session-06:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — женщина с телефоном-кар",
             "feedbackByLocale": {
@@ -201,7 +201,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-06:i03:r1",
+            "responseId": "en:lesson-02:session-06:i03:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — thirsty",
             "feedbackByLocale": {
@@ -210,7 +210,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-06:i03:r2",
+            "responseId": "en:lesson-02:session-06:i03:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — thirsty",
             "feedbackByLocale": {
@@ -302,7 +302,7 @@
         "testedDimension": "Вставьте слово — женщина уронила сумку и",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-06:i05:r1",
+            "responseId": "en:lesson-02:session-06:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — женщина уронила сумку и",
             "feedbackByLocale": {
@@ -311,7 +311,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-06:i05:r2",
+            "responseId": "en:lesson-02:session-06:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — женщина уронила сумку и",
             "feedbackByLocale": {
@@ -396,7 +396,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «хол",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-06:i07:r1",
+            "responseId": "en:lesson-02:session-06:i07:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «хол",
             "feedbackByLocale": {
@@ -456,7 +456,7 @@
         "testedDimension": "Вставьте слово — мальчик без куртки, пле",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-06:i08:r1",
+            "responseId": "en:lesson-02:session-06:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — мальчик без куртки, пле",
             "feedbackByLocale": {
@@ -465,7 +465,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-06:i08:r2",
+            "responseId": "en:lesson-02:session-06:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — мальчик без куртки, пле",
             "feedbackByLocale": {
@@ -628,7 +628,7 @@
         "testedDimension": "Вставьте слово — человек стоит у фонтанч",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-06:i11:r1",
+            "responseId": "en:lesson-02:session-06:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — человек стоит у фонтанч",
             "feedbackByLocale": {
@@ -637,7 +637,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-06:i11:r2",
+            "responseId": "en:lesson-02:session-06:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — человек стоит у фонтанч",
             "feedbackByLocale": {
@@ -730,7 +730,7 @@
         "testedDimension": "Вставьте слово — сосед по комнате сидит ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-06:i13:r1",
+            "responseId": "en:lesson-02:session-06:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед по комнате сидит ",
             "feedbackByLocale": {
@@ -739,7 +739,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-06:i13:r2",
+            "responseId": "en:lesson-02:session-06:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед по комнате сидит ",
             "feedbackByLocale": {

@@ -1,0 +1,9 @@
+{
+ "reviewer":"/root/s10_uk_native","model":"gpt-5.6-sol","reasoningEffort":"medium",
+ "sourceSha256":"a122e2d7c229a00960b3246ac3c8872eb38b045f37d51599b680dd9a4265c604",
+ "localeSha256":"972f3f5e5611456f21de58f61f397d2d25a1657cf680a6f0eedf8dce29433bb0",
+ "verdict":"REVISE",
+ "problems":["Слухайте далі за схожий початок → Не зупиняйтеся на схожому початку — дослухайте слово далі.","Одна літера u без звучання збиває з вибору → Сама літера u збиває з пантелику, якщо дивитися лише на написання.","Replace stiff строк cluster with natural час; task5 доповніть коротку відповідь про час.","task6 explicitly English two-word answer with meaning форма, not a two-word quote форма."],
+ "otherEvidence":"Whole17tasks3intros Englishskeleton exact; grammaticalfacts andphoneticcontrasts accurate, definitions matchnew_words, humour natural.",
+ "actualAudioReviewed":false
+}

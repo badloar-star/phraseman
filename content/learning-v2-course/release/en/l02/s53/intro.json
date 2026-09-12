@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "различение знакомых вопросов и сообщений; выбор `is / are`; построение короткого ответа",
+    "uk": "розрізнення знайомих запитань і повідомлень; вибір `is / are`; побудова короткої відповіді"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сначала уточнить",
+        "uk": "Спочатку уточнити"
+      },
+      "bodyByLocale": {
+        "ru": "`Is it free?` — «Она свободна?» Так можно спросить о машине, которую хотите занять; `free` здесь значит «свободна». В сообщении `It is free` сначала стоит `It`. Чтобы задать обычный вопрос, поставьте `Is` перед `it`. Сначала уточните, а уже потом решайте, можно ли ею пользоваться.",
+        "uk": "`Is it free?` — «Вона вільна?» Так можна запитати про машину, якою хочете скористатися; `free` тут означає «вільна». У повідомленні `It is free` спочатку стоїть `It`. Щоб поставити звичайне запитання, поставте `Is` перед `it`. Спершу уточніть, а вже потім вирішуйте, чи можна нею користуватися."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы показываете сотруднице сушильную машину. Спросите, свободна ли она.",
+          "uk": "Ви показуєте працівниці сушильну машину. Запитайте, чи вільна вона."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-53:intro1:r1",
+              "text": "Is it free?"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:intro1:r2",
+              "text": "It free?"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:intro1:r3",
+              "text": "Is free?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-53:intro1:r1",
+              "text": "Is it free?"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:intro1:r2",
+              "text": "It free?"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:intro1:r3",
+              "text": "Is free?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы показываете сотруднице сушильную машину. Спросите, свободна ли она.",
+          "uk": "Ви показуєте працівниці сушильну машину. Запитайте, чи вільна вона."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вопрос о нескольких вещах",
+        "uk": "Запитання про кілька речей"
+      },
+      "bodyByLocale": {
+        "ru": "`Are they dry?` — «Они сухие?» Здесь `they` — «они», а `dry` — «сухие». Вопрос о нескольких вещах начинаем с `Are they`. Для сообщения поменяйте первые слова местами: `They are dry`. От того, что спрашиваете вы один, вещей меньше не становится: с `they` здесь нужно `are`.",
+        "uk": "`Are they dry?` — «Вони сухі?» Тут `they` — «вони», а `dry` — «сухі». Запитання про кілька речей починаємо з `Are they`. Для повідомлення міняємо перші слова місцями: `They are dry`. Від того, що запитуєте ви один, речей менше не стає: з `they` тут потрібне `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг достал из машины несколько полотенец. Спросите его, сухие ли они.",
+          "uk": "Друг дістав із машини кілька рушників. Запитайте його, чи сухі вони."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-53:intro2:r1",
+              "text": "Are they dry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:intro2:r2",
+              "text": "Is they dry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:intro2:r3",
+              "text": "They dry?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-53:intro2:r1",
+              "text": "Are they dry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:intro2:r2",
+              "text": "Is they dry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-53:intro2:r3",
+              "text": "They dry?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг достал из машины несколько полотенец. Спросите его, сухие ли они.",
+          "uk": "Друг дістав із машини кілька рушників. Запитайте його, чи сухі вони."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Коротко и целиком",
+        "uk": "Коротко й повністю"
+      },
+      "bodyByLocale": {
+        "ru": "`Yes, I am` — это «Да» в ответ на вопрос `Are you sure?` — «Вы уверены?» Слово `sure` значит «уверен». Повторять его не нужно: оно есть в вопросе. Но соревнование за самый короткий ответ здесь ни к чему: в этой форме оставляем `I am`, а с `I` выбираем `am`, не `is`.",
+        "uk": "`Yes, I am` — це «Так» у відповідь на `Are you sure?` — «Ви впевнені?» `sure` означає «впевнений». Повторювати його не треба: воно вже є в запитанні. Але змагання за найкоротшу відповідь тут ні до чого: у цій формі зберігаємо `I am`, а з `I` обираємо `am`, не `is`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, уверены ли вы, что выбрали нужный режим. Вы уверены. Ответьте коротко «Да».",
+          "uk": "Друг запитує, чи впевнені ви, що обрали потрібний режим. Ви впевнені. Коротко дайте відповідь «Так»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-53:intro3:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-53:intro3:r2",
+              "text": "Yes, I is."
+            },
+            {
+              "responseId": "en:lesson-02:session-53:intro3:r3",
+              "text": "Yes, am."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-53:intro3:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-53:intro3:r2",
+              "text": "Yes, I is."
+            },
+            {
+              "responseId": "en:lesson-02:session-53:intro3:r3",
+              "text": "Yes, am."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, уверены ли вы, что выбрали нужный режим. Вы уверены. Ответьте коротко «Да».",
+          "uk": "Друг запитує, чи впевнені ви, що обрали потрібний режим. Ви впевнені. Коротко дайте відповідь «Так»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1c8ceccec7097c50444aaa3e90ef0b66379324088f73b08edd4dac73442b0ee3"
+}

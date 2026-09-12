@@ -1,0 +1,100 @@
+{
+  "session": "en/l02/s47",
+  "sourceSha256": "11325ab8fe197ac3529a22a8ace5e604a6d0eefa4393e11c19e5b72dcf9c6bc6",
+  "scope": "Text-only simulation. Supplied transcripts replace audio; audio quality and playback were not assessed.",
+  "walkthrough": [
+    {
+      "step": "intro1",
+      "answer": "Am I polite?"
+    },
+    {
+      "step": "intro2",
+      "answer": "Am I rude?"
+    },
+    {
+      "step": "intro3",
+      "answer": "Are we rude?"
+    },
+    {
+      "step": 1,
+      "answer": "Am I polite?"
+    },
+    {
+      "step": 2,
+      "answer": "polite"
+    },
+    {
+      "step": 3,
+      "answer": "Am I polite?"
+    },
+    {
+      "step": 4,
+      "answer": "Are we rude?"
+    },
+    {
+      "step": 5,
+      "answer": "rude"
+    },
+    {
+      "step": 6,
+      "answer": "I am not sure."
+    },
+    {
+      "step": 7,
+      "answer": "ready"
+    },
+    {
+      "step": 8,
+      "answer": "You are polite."
+    },
+    {
+      "step": 9,
+      "answer": {
+        "rude": "грубый",
+        "sure": "уверен",
+        "polite": "вежливый",
+        "ready": "готов"
+      }
+    },
+    {
+      "step": 10,
+      "answer": "You are not rude."
+    },
+    {
+      "step": 11,
+      "answer": "Am"
+    },
+    {
+      "step": 12,
+      "answer": "Am I ready?"
+    },
+    {
+      "step": 13,
+      "answer": "We are ready."
+    },
+    {
+      "step": 14,
+      "answer": "Are you sure?"
+    },
+    {
+      "step": 15,
+      "answer": "Are we rude?"
+    },
+    {
+      "step": 16,
+      "answer": "I am sorry."
+    },
+    {
+      "step": 17,
+      "answer": "Am I rude?"
+    }
+  ],
+  "issues": [
+    {
+      "step": 16,
+      "type": "missing_lexical_grounding",
+      "detail": "sorry впервые появляется только в целевой фразе. Русское «извинитесь» позволяет повторить реплику по транскрипту, но слово не было введено или объяснено как доступное знание начинающего."
+    }
+  ],
+  "verdict": "REVISE"
+}

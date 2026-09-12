@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-19:i02:r1",
+            "responseId": "en:lesson-01:session-19:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — angry",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-19:i02:r2",
+            "responseId": "en:lesson-01:session-19:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — angry",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-19:i04:r1",
+            "responseId": "en:lesson-01:session-19:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — rude",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-19:i04:r2",
+            "responseId": "en:lesson-01:session-19:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — rude",
             "feedbackByLocale": {
@@ -409,7 +409,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-19:i08:r1",
+            "responseId": "en:lesson-01:session-19:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — slow",
             "feedbackByLocale": {
@@ -418,7 +418,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-19:i08:r2",
+            "responseId": "en:lesson-01:session-19:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — slow",
             "feedbackByLocale": {
@@ -523,7 +523,7 @@
         "testedDimension": "Вставьте слово — коллега обижена на женщ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-19:i10:r1",
+            "responseId": "en:lesson-01:session-19:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега обижена на женщ",
             "feedbackByLocale": {
@@ -532,7 +532,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-19:i10:r2",
+            "responseId": "en:lesson-01:session-19:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега обижена на женщ",
             "feedbackByLocale": {
@@ -713,7 +713,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-19:i13:r1",
+            "responseId": "en:lesson-01:session-19:i13:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — serious",
             "feedbackByLocale": {
@@ -722,7 +722,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-19:i13:r2",
+            "responseId": "en:lesson-01:session-19:i13:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — serious",
             "feedbackByLocale": {
@@ -827,7 +827,7 @@
         "testedDimension": "Вставьте скрепку — про парня, который вс",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-19:i15:r1",
+            "responseId": "en:lesson-01:session-19:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про парня, который вс",
             "feedbackByLocale": {
@@ -836,7 +836,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-19:i15:r2",
+            "responseId": "en:lesson-01:session-19:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про парня, который вс",
             "feedbackByLocale": {
@@ -896,7 +896,7 @@
         "testedDimension": "Вставьте слово — начальник не улыбается,",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-19:i16:r1",
+            "responseId": "en:lesson-01:session-19:i16:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — начальник не улыбается,",
             "feedbackByLocale": {
@@ -905,7 +905,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-19:i16:r2",
+            "responseId": "en:lesson-01:session-19:i16:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — начальник не улыбается,",
             "feedbackByLocale": {
@@ -999,7 +999,7 @@
         "testedDimension": "Вставьте слово — женщина у кофемашины мо",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-19:i18:r1",
+            "responseId": "en:lesson-01:session-19:i18:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — женщина у кофемашины мо",
             "feedbackByLocale": {
@@ -1008,7 +1008,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-19:i18:r2",
+            "responseId": "en:lesson-01:session-19:i18:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — женщина у кофемашины мо",
             "feedbackByLocale": {

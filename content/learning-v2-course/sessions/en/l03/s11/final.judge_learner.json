@@ -1,0 +1,111 @@
+{
+  "sourceSha256": "a122e2d7c229a00960b3246ac3c8872eb38b045f37d51599b680dd9a4265c604",
+  "reviewer": "/root/s10_blind",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "an"
+    },
+    {
+      "step": 2,
+      "answer": "It is a uniform."
+    },
+    {
+      "step": 3,
+      "answer": "Is it a uniform?"
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "hour"
+    },
+    {
+      "step": 2,
+      "answer": "hour"
+    },
+    {
+      "step": 3,
+      "answer": "uniform"
+    },
+    {
+      "step": 4,
+      "answer": "uniform"
+    },
+    {
+      "step": 5,
+      "answer": "An"
+    },
+    {
+      "step": 6,
+      "answer": "A uniform."
+    },
+    {
+      "step": 7,
+      "answer": "a"
+    },
+    {
+      "step": 8,
+      "answer": "An hour."
+    },
+    {
+      "step": 9,
+      "answer": "a"
+    },
+    {
+      "step": 10,
+      "answer": {
+        "hour": "час",
+        "vacuum": "пылесос",
+        "uniform": "форма",
+        "kettle": "чайник"
+      }
+    },
+    {
+      "step": 11,
+      "answer": "It is not a uniform."
+    },
+    {
+      "step": 12,
+      "answer": "Is it an hour?"
+    },
+    {
+      "step": 13,
+      "answer": "a"
+    },
+    {
+      "step": 14,
+      "answer": "It is not a uniform."
+    },
+    {
+      "step": 15,
+      "answer": "It is an hour."
+    },
+    {
+      "step": 16,
+      "answer": "It is a kettle."
+    },
+    {
+      "step": 17,
+      "answer": "It is a uniform."
+    }
+  ],
+  "learned_new": [
+    "hour takes an because h is silent",
+    "uniform takes a because first sound is consonant й",
+    "Choose article by first sound, not letter"
+  ],
+  "impossible_tasks": [],
+  "pacing_issues": [],
+  "humour_issues": [],
+  "felt_alive": [
+    "Старательно прочитать все буквы здесь значит старательно ошибиться.",
+    "Servicecounter gives reasons to name things and clarify duration."
+  ],
+  "would_continue": "да",
+  "verdict": "PASS",
+  "reason": "New words and contrasts clear, all tasks solvable.",
+  "actualAudioReviewed": false
+}

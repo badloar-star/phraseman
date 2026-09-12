@@ -1,0 +1,229 @@
+{
+  "sourceSha256": "c58b73d557cdb882a6639224444155277d8f97bf770ad1bba51574f39021db98",
+  "reviewer": "/root/s10_pedagogy",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "machineFactsHard": [],
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "story",
+      "country",
+      "battery"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [],
+  "scope_evidence": [
+    "All keyed plural forms correctly replace final y with ies after the preceding consonant letter: stories, countries, batteries. The lesson does not generalize to vowel-plus-y cases.",
+    "Intro 2 and T8 ground countries in France and Germany as locations on the map-puzzle package; T16 grounds the negative answer in two cities, which are not countries.",
+    "Intro 3, T9, T15, and T17 ground batteries as several device batteries; T10/T12/T14 give returned boxes three correct contacts after its S18 card and practice.",
+    "Each new word has a word card and independent sound recognition before its first phrase target. Board12 follows prior grounding of stories, countries, batteries, boxes.",
+    "Five builders varied; T16 voice differs from independent final T17."
+  ],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "story/store/stormy"
+      },
+      {
+        "task": 4,
+        "trap": "country/county/entry"
+      },
+      {
+        "task": 7,
+        "trap": "battery/flattery/buttery"
+      },
+      {
+        "task": 8,
+        "trap": "countrys and singular country"
+      },
+      {
+        "task": 10,
+        "trap": "boxs and singular box"
+      },
+      {
+        "task": 15,
+        "trap": "batterys and singular battery"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "audio_prompt_leaks": [],
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "stories",
+        "countries",
+        "batteries",
+        "boxes"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 3,
+      "listen_choose": 4,
+      "phrase_builder": 4,
+      "listen_build_dictation": 1,
+      "context_gap_grammar": 3,
+      "speed_match": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "The two edits remove the prior T13 listening-answer leak and preserve the uniquely grounded independent final answer.",
+  "reviewHistory": [
+    {
+      "sourceSha256": "08064c8eca0a86379274bd93d5623bc66b7a3816a2ec04bc10fe102d3e76bb12",
+      "reviewer": "/root/s10_pedagogy",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "machineFactsHard": [],
+      "plan_fidelity": {
+        "operation_matches": true,
+        "new_words_match": [
+          "story",
+          "country",
+          "battery"
+        ],
+        "missing": [],
+        "extra_grammar_smuggled": []
+      },
+      "answer_semantics": [],
+      "scope_evidence": [
+        "All keyed plural forms correctly replace final y with ies after the preceding consonant letter: stories, countries, batteries. The lesson does not generalize to vowel-plus-y cases.",
+        "Intro 2 and T8 ground countries in France and Germany as locations on the map-puzzle package; T16 grounds the negative answer in two cities, which are not countries.",
+        "Intro 3, T9, T15, and T17 ground batteries as several device batteries; T10/T12/T14 give returned boxes three correct contacts after its S18 card and practice.",
+        "Each new word has a word card and independent sound recognition before its first phrase target. Board12 follows prior grounding of stories, countries, batteries, boxes.",
+        "Five builders varied; T16 voice differs from independent final T17."
+      ],
+      "boundary": {
+        "unknown_in_explanations": [],
+        "unknown_in_targets": []
+      },
+      "traps": {
+        "realistic": [
+          {
+            "task": 2,
+            "trap": "story/store/stormy"
+          },
+          {
+            "task": 4,
+            "trap": "country/county/entry"
+          },
+          {
+            "task": 7,
+            "trap": "battery/flattery/buttery"
+          },
+          {
+            "task": 8,
+            "trap": "countrys and singular country"
+          },
+          {
+            "task": 10,
+            "trap": "boxs and singular box"
+          },
+          {
+            "task": 15,
+            "trap": "batterys and singular battery"
+          }
+        ],
+        "silly": [],
+        "native_transfer_used": true,
+        "feedback_teaches_unknown_form": []
+      },
+      "feedback": {
+        "missing_per_option": [],
+        "duplicated": [],
+        "too_long_or_bookish": []
+      },
+      "audio_prompt_leaks": [
+        {
+          "task": 13,
+          "prompt_quote": "что сестра спросила у коробки с пазлом",
+          "evidence": "Wording establishes a question, eliminating They are countries. Established France/Germany map-puzzle context identifies countries instead of stories, allowing selection without audio."
+        }
+      ],
+      "structure": {
+        "task_count": 17,
+        "below_12": false,
+        "word_first_respected": true,
+        "support_fades": true,
+        "speed_match_boards": [
+          [
+            "stories",
+            "countries",
+            "batteries",
+            "boxes"
+          ]
+        ],
+        "speed_match_overlap": false,
+        "repeated_targets": [],
+        "generic_instructions": [],
+        "attention_traps": [
+          13
+        ]
+      },
+      "time_references": [],
+      "cross_session_repeats": [],
+      "textbook_formulas": [],
+      "builder_notes": {
+        "new_words_line_ok": true,
+        "modes_line_ok": true,
+        "modes_used": {
+          "word_card": 3,
+          "listen_choose": 4,
+          "phrase_builder": 4,
+          "listen_build_dictation": 1,
+          "context_gap_grammar": 3,
+          "speed_match": 1,
+          "scripted_repeat_compare": 1
+        }
+      },
+      "verdict": "REVISE",
+      "verdict_reason": "Written -ies teaching, scenes, substitutions, return contacts, and builder structure pass, but T13 prompt and established context reveal its listening answer."
+    }
+  ],
+  "deltaReview": {
+    "sourceSha256": "c58b73d557cdb882a6639224444155277d8f97bf770ad1bba51574f39021db98",
+    "scope": "Exact diff against draft_01 contains only T13 and T17 instruction lines.",
+    "delta_answer_semantics": [],
+    "audio_prompt_leaks": [],
+    "evidence": [
+      "T13 supplies neither speech act nor puzzle/map context; learner must hear question order and countries rather than stories.",
+      "T17 open package containing four batteries uniquely grounds They are batteries; singular tile fails."
+    ],
+    "prior_full_scope_retained": true,
+    "verdict": "PASS",
+    "verdict_reason": "The two edits remove the prior T13 listening-answer leak and preserve the uniquely grounded independent final answer."
+  }
+}

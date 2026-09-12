@@ -1,0 +1,8 @@
+{
+ "verdict":"PASS","reviewer":"/root/s10_uk_native","model":"gpt-5.6-sol","reasoningEffort":"medium",
+ "sourceSha256":"a122e2d7c229a00960b3246ac3c8872eb38b045f37d51599b680dd9a4265c604",
+ "localeSha256":{"uk":"fd4ca7fa78db94a75a99f5a16b636ce33e4b77562ca1580ea68ff22ba6986d6d"},
+ "locales":{"uk":{"verdict":"PASS","problems":[],"evidence":["Whole initial review plus actual final delta, all four native fixes natural.","час складання idiomatic, hour still 60-minute duration; no строк remnants.","English targets/options/order unchanged, phonetic boundaries and wrong meanings accurate.","Humour retained; definitions matchnew_words."]}},
+ "initialReview":"judgements/2026-09-12_l03_s11_uk_initial.json",
+ "actualAudioReviewed":false,"visualReviewed":false
+}

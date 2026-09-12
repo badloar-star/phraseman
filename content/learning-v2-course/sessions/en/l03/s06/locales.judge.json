@@ -1,0 +1,42 @@
+{
+  "sourceSha256": "d9a2c0a16087722cf3ce73e2adb8bac0f1494df7d5191579a3b61afb333a3c4a",
+  "localeSha256": {
+    "uk": "835cca98055ad674451386092cd313060283f938d2c7b7ab92b087da5a800d45"
+  },
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "sourceSha256": "d9a2c0a16087722cf3ce73e2adb8bac0f1494df7d5191579a3b61afb333a3c4a",
+      "localeSha256": "835cca98055ad674451386092cd313060283f938d2c7b7ab92b087da5a800d45",
+      "actualReceipt": "content/learning-v2-course/judgements/2026-09-09_l03_s06_native_delta.json",
+      "review": {
+        "reviewer": "/root/factory_projection_ts_review",
+        "verdict": "PASS",
+        "scope": {
+          "uk": "full native readability, RU meaning and English invariance, phonetic truth",
+          "ru": "bounded live delta at intro2, three phonetic feedback lines, self-check",
+          "excluded": [
+            "audio quality",
+            "full authoring/pipeline rerun",
+            "visual review"
+          ]
+        },
+        "baseSourceSha256": "7e30e935e7843dae64896033b8169e8fb1c85cc8b10db370806ef13e1365a502",
+        "sourceSha256": "d9a2c0a16087722cf3ce73e2adb8bac0f1494df7d5191579a3b61afb333a3c4a",
+        "baseLocaleSha256": "62e10108be367361e0b4e3aa038960d163906fd05e2e3c579b6918c6f788957a",
+        "localeSha256": "835cca98055ad674451386092cd313060283f938d2c7b7ab92b087da5a800d45",
+        "evidence": [
+          "Actual base-to-current diffs inspected: RU lexical repair, three r-related feedback repairs, intro-2 counts and independent-review status; UK agreed readability repairs, three phonetic repairs and accurate self-check prose.",
+          "Feedback distinguishes b, f, t and English r articulatorily, without equating English r and Cyrillic р. Suitable for standard British pronunciations of brolly, trolley, folly, rag, tag.",
+          "Full UK text idiomatic and coherent; no remaining truth, readability or pedagogy finding. Humor remains natural.",
+          "RU delta readable and factual. Intro lengths with markup 264/260/270; plain 258/252/264. UK with markup 265/256/263; plain 259/248/257.",
+          "Base/current RU, base/current UK and current RU/UK English contracts agree: 9 intro choices and 33 practice-contract items; current RU/UK 128 ordered backtick spans agree."
+        ],
+        "findings": [],
+        "actualAudioReviewed": false,
+        "visualReviewPerformed": false,
+        "qualification": "Text/phoneme review only; retained prior independent full judgements are not represented as fresh full reruns."
+      }
+    }
+  }
+}

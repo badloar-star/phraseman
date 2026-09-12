@@ -1,0 +1,77 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "d074aea3bdfe211b72b58384fab0afdae2d4de4e0b2d79e9b775f224c1ab1bc7",
+  "hashMatch": true,
+  "scope": [
+    "practice_2",
+    "practice_13",
+    "selfcheck_6"
+  ],
+  "deltaChecks": [
+    {
+      "location": "Практика 2",
+      "result": "PASS",
+      "reason": "Инструкция нейтральна и не раскрывает punctual. Factual и actual имеют понятные значения, а feedback различает варианты по одному устойчивому признаку: начальному звуку «ф», гласному или «п»."
+    },
+    {
+      "location": "Практика 13",
+      "result": "PASS",
+      "reason": "Теперь ясно, что друг сверяет собственное утверждение со своим приглашением, поэтому I в записи относится к нему. Заголовок не сообщает фразу I am not wrong и не даёт её готового перевода."
+    },
+    {
+      "location": "Самопроверка 6",
+      "result": "PASS",
+      "reason": "Описание точно соответствует новому набору и честно ограничивает доказательство словарным произношением, не заявляя проверку реального аудиофайла."
+    }
+  ],
+  "previousFullReaderPassStillApplies": true,
+  "issues": [],
+  "priorReviews": [
+    {
+      "verdict": "PASS",
+      "sourceSha256": "1f655a60f163b5e878d5beefb64cfc439cf4cbf1bbe796614e1a4396850f32ec",
+      "hashMatch": true,
+      "pagesUnderstood": 3,
+      "introLengths": [
+        {
+          "page": 1,
+          "length": 261,
+          "understood": true,
+          "retelling": "Чтобы превратить I am late в обычный вопрос о себе, нужно поставить Am перед I.",
+          "whatIDoNow": "Спрошу Am I late?, если хочу узнать, опоздал ли я."
+        },
+        {
+          "page": 2,
+          "length": 263,
+          "understood": true,
+          "retelling": "Am I wrong? позволяет проверить, не ошибаюсь ли я в своём предположении.",
+          "whatIDoNow": "Начну вопрос с Am I и поставлю wrong в конце."
+        },
+        {
+          "page": 3,
+          "length": 272,
+          "understood": true,
+          "retelling": "Welcome может означать, что человеку рады, поэтому Am I welcome here? спрашивает, рады ли моему приходу.",
+          "whatIDoNow": "Спрошу Am I welcome here?, если сомневаюсь, ждут ли меня здесь."
+        }
+      ],
+      "checks": {
+        "allThreeIntrosClearOnOneRead": "PASS",
+        "oneMainThoughtPerIntro": "PASS",
+        "all17TasksAndFeedbackClear": "PASS",
+        "singleCoherentBreakfastScene": "PASS",
+        "selfContainedFirstEntry": "PASS",
+        "noUnexplainedPriorSessionReferences": "PASS",
+        "informalHumanText": "PASS",
+        "listeningPromptsDoNotRevealAnswers": "PASS",
+        "task11AddressesFriendRatherThanLearner": "PASS",
+        "task11DoesNotResolveLearnersFinalDoubt": "PASS",
+        "phoneticFeedbackTextReadable": "PASS",
+        "actualAudioQualityClaimed": false,
+        "finalTaskNotPromptedByTask16": "PASS"
+      },
+      "issues": [],
+      "verdictReason": "Все три интро понятны после одного чтения и ведут к конкретному действию. Семнадцать заданий держатся в одной сцене воскресного завтрака, инструкции естественны, а feedback объясняет именно выбранную ошибку. Задание 11 теперь обращено к другу, поэтому не противоречит сомнению ученика в финале. Инструкции к аудированию не раскрывают готовый ответ."
+    }
+  ]
+}

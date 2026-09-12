@@ -1,0 +1,75 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "735155496eb7456e3f4ce8b25bee0abdc4e712f647d27fd57d72bd4155d236ee",
+  "hashMatch": true,
+  "deltaChecks": [
+    {
+      "location": "Практика 4, feedback для She is the intern.",
+      "result": "PASS",
+      "reason": "«Это “Она стажёр”» теперь ясно обозначает перевод выбранного неверного ответа и больше не противоречит сцене."
+    },
+    {
+      "location": "Практика 9, feedback для am",
+      "result": "PASS",
+      "reason": "Фраза «речь о нескольких людях» грамматически естественна, понятна с первого чтения и прямо подводит к Who are."
+    }
+  ],
+  "previousFullReviewStillApplies": true,
+  "issues": [],
+  "initialFullReview": {
+    "verdict": "REVISE",
+    "sourceSha256": "727e4fabc5d192ef19d58e48b76c89a2c92bf96e6b4f3febbc2a392059ab6277",
+    "hashMatch": true,
+    "pagesUnderstood": 3,
+    "introLengths": [
+      {
+        "page": 1,
+        "length": 247,
+        "understood": true
+      },
+      {
+        "page": 2,
+        "length": 240,
+        "understood": true
+      },
+      {
+        "page": 3,
+        "length": 243,
+        "understood": true
+      }
+    ],
+    "checks": {
+      "allThreeIntrosClearOnOneRead": "PASS",
+      "all17TasksAndFeedbackReviewed": true,
+      "listeningPromptsDoNotRevealReadyAnswers": "PASS",
+      "fivePersonSceneIsSelfContainedOnFirstEntry": "PASS",
+      "noReferencesToPriorSessionsOrLearnerHistory": "PASS",
+      "informalHumanReadableText": "PASS_WITH_ONE_FEEDBACK_FIX",
+      "checkpointIntroducesNoNewWordsOrGrammar": "PASS",
+      "learningDeltaRequiresChoosingWhoWhereWhose": "PASS",
+      "returnedWordsGrounded": {
+        "host": "PASS",
+        "manager": "PASS",
+        "intern": "PASS",
+        "twins": "PASS",
+        "here": "PASS"
+      },
+      "machineFactsAccepted": {
+        "tasks": 17,
+        "modes": 17,
+        "unknownModes": 0,
+        "hardFindings": 0
+      }
+    },
+    "issues": [
+      {
+        "location": "Практика 4, feedback для She is the intern.",
+        "quote": "Здесь женщина — стажёр. На записи последнее слово `manager`: она руководитель.",
+        "kind": "feedback противоречит сцене",
+        "why": "Первая фраза утверждает, что женщина в этой сцене — стажёр, а следующая сразу говорит, что она руководитель. Читатель вынужден догадаться, что первая фраза должна была лишь переводить выбранный неверный вариант.",
+        "minimalReplacement": "Это «Она стажёр». На записи последнее слово `manager`: она руководитель."
+      }
+    ],
+    "verdictReason": "Три интро и все задания понятны, сцена работает без предыстории, а инструкции к заданиям на слух не раскрывают ответ. Нужна одна точечная правка feedback в задании 4: сейчас он буквально называет женщину стажёром и тут же руководителем."
+  }
+}

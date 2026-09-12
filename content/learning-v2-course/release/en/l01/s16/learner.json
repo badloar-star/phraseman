@@ -56,7 +56,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-16:i01:r1",
+            "responseId": "en:lesson-01:session-16:i01:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — kind",
             "feedbackByLocale": {
@@ -65,7 +65,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-16:i01:r2",
+            "responseId": "en:lesson-01:session-16:i01:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — kind",
             "feedbackByLocale": {
@@ -127,7 +127,7 @@
         "testedDimension": "Вставьте слово — коллега взял чужую смен",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-16:i02:r1",
+            "responseId": "en:lesson-01:session-16:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега взял чужую смен",
             "feedbackByLocale": {
@@ -136,7 +136,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-16:i02:r2",
+            "responseId": "en:lesson-01:session-16:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега взял чужую смен",
             "feedbackByLocale": {
@@ -201,7 +201,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-16:i03:r1",
+            "responseId": "en:lesson-01:session-16:i03:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — honest",
             "feedbackByLocale": {
@@ -210,7 +210,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-16:i03:r2",
+            "responseId": "en:lesson-01:session-16:i03:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — honest",
             "feedbackByLocale": {
@@ -302,7 +302,7 @@
         "testedDimension": "Вставьте скрепку — «ты спокойный»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-16:i05:r1",
+            "responseId": "en:lesson-01:session-16:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — «ты спокойный»",
             "feedbackByLocale": {
@@ -311,7 +311,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-16:i05:r2",
+            "responseId": "en:lesson-01:session-16:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — «ты спокойный»",
             "feedbackByLocale": {
@@ -476,7 +476,7 @@
         "testedDimension": "Вставьте слово — коллега винит себя, но ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-16:i08:r1",
+            "responseId": "en:lesson-01:session-16:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега винит себя, но ",
             "feedbackByLocale": {
@@ -485,7 +485,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-16:i08:r2",
+            "responseId": "en:lesson-01:session-16:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега винит себя, но ",
             "feedbackByLocale": {
@@ -581,7 +581,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-16:i10:r1",
+            "responseId": "en:lesson-01:session-16:i10:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — brave",
             "feedbackByLocale": {
@@ -590,7 +590,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-16:i10:r2",
+            "responseId": "en:lesson-01:session-16:i10:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — brave",
             "feedbackByLocale": {
@@ -657,7 +657,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-16:i11:r1",
+            "responseId": "en:lesson-01:session-16:i11:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — sad",
             "feedbackByLocale": {
@@ -666,7 +666,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-16:i11:r2",
+            "responseId": "en:lesson-01:session-16:i11:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — sad",
             "feedbackByLocale": {
@@ -728,7 +728,7 @@
         "testedDimension": "Вставьте слово — коллега боялся, но пошё",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-16:i12:r1",
+            "responseId": "en:lesson-01:session-16:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега боялся, но пошё",
             "feedbackByLocale": {
@@ -737,7 +737,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-16:i12:r2",
+            "responseId": "en:lesson-01:session-16:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега боялся, но пошё",
             "feedbackByLocale": {
@@ -830,7 +830,7 @@
         "testedDimension": "Вставьте слово — коллега извиняется, что",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-16:i14:r1",
+            "responseId": "en:lesson-01:session-16:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега извиняется, что",
             "feedbackByLocale": {
@@ -839,7 +839,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-16:i14:r2",
+            "responseId": "en:lesson-01:session-16:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега извиняется, что",
             "feedbackByLocale": {

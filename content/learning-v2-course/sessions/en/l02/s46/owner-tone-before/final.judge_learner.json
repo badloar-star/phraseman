@@ -1,0 +1,94 @@
+{
+  "session": "en/l02/s46",
+  "sourceSha256": "153bd8b1d7a45631d4e1e668fcf19f75b2dcb2335c7203900cf7f68cda2ef046",
+  "scope": "Text-only simulation. Transcripts replace audio content; audio quality and playback were not assessed.",
+  "walkthrough": [
+    {
+      "step": "intro1",
+      "answer": "Am I audible?"
+    },
+    {
+      "step": "intro2",
+      "answer": "Am I clear?"
+    },
+    {
+      "step": "intro3",
+      "answer": "I am not sure."
+    },
+    {
+      "step": 1,
+      "answer": "прочитал: audible"
+    },
+    {
+      "step": 2,
+      "answer": "audible"
+    },
+    {
+      "step": 3,
+      "answer": "прочитал: clear"
+    },
+    {
+      "step": 4,
+      "answer": "clear"
+    },
+    {
+      "step": 5,
+      "answer": "Am I audible?"
+    },
+    {
+      "step": 6,
+      "answer": "clear"
+    },
+    {
+      "step": 7,
+      "answer": "Am I clear?"
+    },
+    {
+      "step": 8,
+      "answer": "I am not sure."
+    },
+    {
+      "step": 9,
+      "answer": "ready"
+    },
+    {
+      "step": 10,
+      "answer": {
+        "sure": "уверен",
+        "clear": "разборчивый",
+        "audible": "слышимый",
+        "ready": "готов"
+      }
+    },
+    {
+      "step": 11,
+      "answer": "You are clear."
+    },
+    {
+      "step": 12,
+      "answer": "Am"
+    },
+    {
+      "step": 13,
+      "answer": "We are not ready."
+    },
+    {
+      "step": 14,
+      "answer": "ready"
+    },
+    {
+      "step": 15,
+      "answer": "You are clear."
+    },
+    {
+      "step": 16,
+      "answer": "I am ready."
+    },
+    {
+      "step": 17,
+      "answer": "Am I clear?"
+    }
+  ],
+  "issues": [],
+  "verdict": "PASS"
+}

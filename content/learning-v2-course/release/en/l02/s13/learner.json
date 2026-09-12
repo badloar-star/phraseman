@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-13:i02:r1",
+            "responseId": "en:lesson-02:session-13:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — thirsty",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-13:i02:r2",
+            "responseId": "en:lesson-02:session-13:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — thirsty",
             "feedbackByLocale": {
@@ -152,7 +152,7 @@
           "ru": "Вставьте слово — вопрос или сообщение?",
           "uk": "Вставте слово — запитання чи повідомлення?"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ he tired?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-13:i03:r1",
@@ -170,7 +170,7 @@
         "testedDimension": "Вставьте слово — вопрос или сообщение?",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-13:i03:r1",
+            "responseId": "en:lesson-02:session-13:i03:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вопрос или сообщение?",
             "feedbackByLocale": {
@@ -179,7 +179,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-13:i03:r2",
+            "responseId": "en:lesson-02:session-13:i03:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вопрос или сообщение?",
             "feedbackByLocale": {
@@ -267,7 +267,7 @@
         "testedDimension": "Вставьте слово — вы отвечаете спутнику, ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-13:i05:r1",
+            "responseId": "en:lesson-02:session-13:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы отвечаете спутнику, ",
             "feedbackByLocale": {
@@ -276,7 +276,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-13:i05:r2",
+            "responseId": "en:lesson-02:session-13:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы отвечаете спутнику, ",
             "feedbackByLocale": {
@@ -395,7 +395,7 @@
         "testedDimension": "Вставьте слово — парень у стойки третий ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-13:i08:r1",
+            "responseId": "en:lesson-02:session-13:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — парень у стойки третий ",
             "feedbackByLocale": {
@@ -404,7 +404,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-13:i08:r2",
+            "responseId": "en:lesson-02:session-13:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — парень у стойки третий ",
             "feedbackByLocale": {
@@ -484,7 +484,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «гол",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-13:i10:r1",
+            "responseId": "en:lesson-02:session-13:i10:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «гол",
             "feedbackByLocale": {
@@ -703,7 +703,7 @@
         "testedDimension": "Вставьте слово — женщина смеётся и машет",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-13:i14:r1",
+            "responseId": "en:lesson-02:session-13:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — женщина смеётся и машет",
             "feedbackByLocale": {
@@ -712,7 +712,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-13:i14:r2",
+            "responseId": "en:lesson-02:session-13:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — женщина смеётся и машет",
             "feedbackByLocale": {
@@ -820,7 +820,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-13:i16:r1",
+            "responseId": "en:lesson-02:session-13:i16:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — comfortable",
             "feedbackByLocale": {
@@ -829,7 +829,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-13:i16:r2",
+            "responseId": "en:lesson-02:session-13:i16:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — comfortable",
             "feedbackByLocale": {
@@ -1045,5 +1045,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5138ab07fdc8c1dfb1f897537e61dc7c69258806d2296711c20a79c80ba07307"
+  "learnerFingerprint": "40d73183f18366e9c2eae2ac4eb8e9a74b81d54c1c5dc1fba29e1c378fc22dff"
 }

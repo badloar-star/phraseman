@@ -1,0 +1,32 @@
+{
+  "sourceSha256": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
+  "localeSha256": {
+    "uk": "e25db5cf0288ee024a6ef0cd0a58c53eef470108a5bd6f2cc55a559c43aa22f1"
+  },
+  "locales": {
+    "uk": {
+      "sourceSha256": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
+      "localeSha256": "e25db5cf0288ee024a6ef0cd0a58c53eef470108a5bd6f2cc55a559c43aa22f1",
+      "scope": "native Ukrainian and current local preview only",
+      "verdict": "PASS",
+      "checks": {
+        "exactDeltaPresent": true,
+        "onlyIntendedDeltaAgainstReviewRound1": true,
+        "currentText": "**Операція:** знайома конструкція `a + noun` на слух і вголос; зберігаємо `a` у назві всередині твердження, запитання й заперечення",
+        "assessment": "The agreement is explicit, grammatical, and natural."
+      },
+      "remainingIssues": [
+        {
+          "scope": "future app export",
+          "status": "retained_unresolved",
+          "issue": "The previously recorded Speed Match pairId incompatibility remains outside this local review."
+        }
+      ],
+      "evidenceLimits": {
+        "actualAudioReviewed": false,
+        "visualReviewPerformed": false,
+        "appCompatibilityClaimed": false
+      }
+    }
+  }
+}

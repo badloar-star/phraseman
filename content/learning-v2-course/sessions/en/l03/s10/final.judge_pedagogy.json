@@ -1,0 +1,37 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "c69b1dac553c887789b26a5a1ca1f364c577bb7d94b02c47adf5cbfd3ed7e269",
+  "scope": "Actual final delta combined with retained full prior review",
+  "previousReview": {
+    "sourceSha256": "8876f932d3f797faa1733088c18bb616e2ec825daa8ac5eb466d646dabbe859b",
+    "reviewer": "/root/s10_pedagogy",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": "medium",
+    "verdict": "PASS",
+    "findings": [],
+    "introBodyCounts": {
+      "raw": [
+        257,
+        284,
+        275
+      ],
+      "withoutBackticks": [
+        245,
+        270,
+        261
+      ]
+    },
+    "evidence": [
+      "Exact L3S10 a-before-consonant operation; kettle/toaster/vacuum new, an with oven/armchair retained, no the/plurals/hour/uniform.",
+      "All3intro choices and gap/build substitutions have one correct answer and diagnostic feedback.",
+      "17tasks,5builders,4pairs,2wrongoptions perchoice; each extra tile has feedback.",
+      "Card and sound recognition before new-word phrase use; oven8/10 and armchair12/16 each have2returncontacts.",
+      "Final17 vacuum answer is different from immediately preceding voice16 armchair question.",
+      "No target meaning/polarity leakage in listening instructions; unfamiliar wrong words allowed."
+    ],
+    "reviewCorrection": "Reviewer initially imported archived2–4sentencecap and counted headings as bodies. Both errors withdrawn after current-authority clarification and actual body-only recount; no source change.",
+    "actualAudioReviewed": false
+  },
+  "deltaEvidence": "judgements/2026-09-12_l03_s10_final_delta.json",
+  "actualAudioReviewed": false
+}

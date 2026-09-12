@@ -1,0 +1,10 @@
+{
+  "sourceSha256":"db00161c4ed9a596a8aaea24990dd38e9279dff3c1fa1d2f77f4c3f8254e1591",
+  "localeSha256":{"uk":"2dddaa83094635de6cddcb32d3d9b76449a001bda96669e10bf1b644c63cc830"},
+  "locales":{"uk":{
+    "reviewer":"/root/s08_uk_native","verdict":"PASS","actualAudioReviewed":false,
+    "reviewScope":"Actual independent full native review plus actual final delta reread, both condensed below.",
+    "priorFullReview":{"sourceSha256":"fd597ea19a3e81b2376b79ee4afd4ce005ea0db47dd3419d60d053774f521a7f","verdict":"REVISE","minimalFixes":[{"current":"назву `a mirror` не розлучайте","replacement":"`a mirror` залиште разом","reason":"Natural Ukrainian phrasing."},{"current":"бирка","replacement":"бірка","occurrences":4,"reason":"Both forms are attested, but L3S6 established бірка; preserve learner-facing consistency."}],"passes":{"meaning":true,"englishContractExact":true,"introLengths":[239,254,271],"humor":true,"allFeedback":true,"boards":true,"checkpointNoNewWords":true,"doorPluralNatural":true,"actualAudioNotClaimed":true}},
+    "deltaReview":{"review":"uk_native_l03_s08_delta","hashes":{"ru":"db00161c4ed9a596a8aaea24990dd38e9279dff3c1fa1d2f77f4c3f8254e1591","uk":"2dddaa83094635de6cddcb32d3d9b76449a001bda96669e10bf1b644c63cc830"},"verdict":"PASS","findings":[],"verified":{"deltaOnlyIntendedNativeFixes":true,"mirrorPhraseNatural":true,"tagLabelConsistentWithL3S6":true,"oldБиркаStemRemaining":0,"newБіркаStemCount":4,"englishContractExact":true,"asciiRuns":"255/255 equal","codeSpans":"145/145 equal","introBodiesRemainWithin210_320":true,"noNewIssues":true}}
+  }}
+}

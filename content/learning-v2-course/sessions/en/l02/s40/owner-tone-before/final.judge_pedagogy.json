@@ -1,0 +1,173 @@
+{
+  "sourceSha256": "735155496eb7456e3f4ce8b25bee0abdc4e712f647d27fd57d72bd4155d236ee",
+  "plan_fidelity": {
+    "checkpoint_without_new_words": true,
+    "checkpoint_without_new_grammar": true,
+    "chapter_goal_matches": true,
+    "five_people_accounted_for": [
+      "host",
+      "manager",
+      "intern",
+      "twin 1",
+      "twin 2"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": [],
+    "prerequisites_respected": true
+  },
+  "intro": {
+    "pages": 3,
+    "lengths": [
+      247,
+      240,
+      243
+    ],
+    "grounded_before_questions": true,
+    "answers_unique": true
+  },
+  "single_answer_review": {
+    "substitution_checked": [
+      "intro_1",
+      "intro_2",
+      "intro_3",
+      "task_1",
+      "task_2",
+      "task_4",
+      "task_6",
+      "task_7",
+      "task_9",
+      "task_12"
+    ],
+    "ambiguous_tasks": [],
+    "all_have_one_contextually_correct_answer": true
+  },
+  "listening_rule": {
+    "tasks": [
+      1,
+      4,
+      7
+    ],
+    "whole_phrase_listening": true,
+    "prompt_reveals_answer": [],
+    "option_sets_distinguishable_from_transcript": true,
+    "per_option_feedback_specific": true,
+    "audio_quality_claimed": false
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "resolved_before_final_review": [
+      {
+        "task": 4,
+        "fix": "Feedback now says the selected option means «Она стажёр» and contrasts it with recorded `manager`, without falsely asserting that the woman is an intern."
+      },
+      {
+        "task": 9,
+        "fix": "The `am` feedback now anchors the correction to plural `these people` and the required opening `Who are`."
+      }
+    ]
+  },
+  "structure": {
+    "task_count": 17,
+    "mode_count": 17,
+    "builder_count": 7,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "host",
+        "manager",
+        "intern",
+        "twins"
+      ]
+    ],
+    "return_contact_table_matches_tasks": true,
+    "return_words": {
+      "host": {
+        "contacts": [
+          2,
+          3,
+          6,
+          10
+        ],
+        "correct_uses": [
+          2,
+          3,
+          10
+        ],
+        "gloss_present": true
+      },
+      "manager": {
+        "contacts": [
+          4,
+          6,
+          7,
+          10,
+          12
+        ],
+        "correct_uses": [
+          4,
+          6,
+          10,
+          12
+        ],
+        "gloss_present": true
+      },
+      "intern": {
+        "contacts": [
+          2,
+          4,
+          7,
+          8,
+          10,
+          15
+        ],
+        "correct_uses": [
+          7,
+          8,
+          10,
+          15
+        ],
+        "gloss_present": true
+      },
+      "twins": {
+        "contacts": [
+          10,
+          11,
+          17
+        ],
+        "correct_uses": [
+          10,
+          11,
+          17
+        ],
+        "gloss_present": true
+      },
+      "here": {
+        "contacts": [
+          8,
+          13,
+          16
+        ],
+        "correct_uses": [
+          8,
+          13,
+          16
+        ],
+        "gloss_present": true
+      }
+    },
+    "final_independence": {
+      "task_16": "She is not here.",
+      "task_17": "Where are the twins?",
+      "answer_leaked": false
+    }
+  },
+  "issues": [],
+  "exactFix": null,
+  "verdict": "PASS",
+  "verdict_reason": "S40 выполняет checkpoint-план без новой грамматики и лексики, даёт однозначные задания, честные нейтральные аудирования, точные возвраты пяти слов и самостоятельную финальную сборку."
+}

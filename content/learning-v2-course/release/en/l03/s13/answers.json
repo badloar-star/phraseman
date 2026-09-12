@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-13:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i02",
+    "correctText": "earring",
+    "correctResponseId": "en:lesson-03:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i04",
+    "correctText": "necklace",
+    "correctResponseId": "en:lesson-03:session-13:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i05",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i07",
+    "correctText": "bracelet",
+    "correctResponseId": "en:lesson-03:session-13:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i08",
+    "correctText": "An earring.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i09",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i11",
+    "correctText": "It is an earring.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i12",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i13",
+    "correctText": "Is it a bracelet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i14",
+    "correctText": "It is not an earring.",
+    "correctResponseId": "en:lesson-03:session-13:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i15",
+    "correctText": "It is not a necklace.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i16",
+    "correctText": "It is a radio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-13:i17",
+    "correctText": "It is a bracelet.",
+    "correctResponseId": null
+  }
+]

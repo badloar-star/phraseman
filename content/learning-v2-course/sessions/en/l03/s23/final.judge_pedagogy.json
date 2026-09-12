@@ -1,0 +1,205 @@
+{
+  "sourceSha256": "6d15551c83a2a8c04931eae5084b2e05a634d502c484786ac353c6f51e3b96c8",
+  "reviewer": "/root/s22_uk_author",
+  "role": "independent RU pedagogy (not this session author)",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "verdict": "PASS",
+  "verdict_reason": "Current Intro 1 and Intro 3 explicitly teach the relevant singular/plural and `a` choice without size framing. All earlier full-PASS evidence remains valid after the intro-only delta.",
+  "answer_semantics": [],
+  "substitution_evidence": [
+    [
+      "intro1",
+      "It is a spoon.",
+      "One spoon; omitted `a` in `It is spoon.` and plural `It is a spoons.` fail."
+    ],
+    [
+      "intro2",
+      "Are they forks?",
+      "Several utensils; singular `Are they fork?` and agreement error `Is they forks?` fail."
+    ],
+    [
+      "intro3",
+      "They are cups.",
+      "Several cups; singular `They are cup.` and plural with `a`, `They are a cups.`, fail."
+    ],
+    [
+      "T6",
+      "spoons",
+      "Three spoons; `spoon` and `a spoon` fail."
+    ],
+    [
+      "T10",
+      "bowls",
+      "Two bowls; `bowl` and `a bowl` fail."
+    ],
+    [
+      "T12",
+      "a cup",
+      "One cup by the sink; bare `cup` and plural `cups` fail."
+    ],
+    [
+      "T13",
+      "forks",
+      "Several forks; singular `fork` and `a forks` fail."
+    ],
+    [
+      "T16",
+      "a fork",
+      "One fork under the paper; plural `forks` and bare `fork` fail."
+    ]
+  ],
+  "proof": {
+    "wordFirst": {
+      "spoon": [
+        1,
+        2,
+        5
+      ],
+      "fork": [
+        3,
+        4,
+        9
+      ],
+      "cup": [
+        7,
+        8,
+        11
+      ]
+    },
+    "bowlContacts": [
+      10,
+      14,
+      15
+    ],
+    "boardGrounded": true,
+    "builders": [
+      5,
+      9,
+      11,
+      17
+    ],
+    "fourDistinctSkeletons": true,
+    "finalIndependent": true,
+    "listeningPromptsNeutral": [
+      2,
+      4,
+      8,
+      11
+    ],
+    "actualAudio": "NOT_REVIEWED"
+  },
+  "issues": [],
+  "receiptNormalization": "Reviewer supplied successful substitutions in answer_semantics; stored as substitution_evidence because normative answer_semantics contains only mismatches.",
+  "delta": {
+    "changedLines": [
+      15,
+      17,
+      21,
+      43,
+      45
+    ],
+    "practiceUnchanged": true,
+    "noNewGrammar": true,
+    "uniqueChoices": true,
+    "retainedFullPriorScope": true
+  },
+  "reviewHistory": [
+    {
+      "sourceSha256": "2040d5dfb703f1e540e220c1823a54a6a1bc3dc9d22bea82da778f9aeb65f48a",
+      "reviewer": "/root/s22_uk_author",
+      "role": "independent RU pedagogy (not this session author)",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "verdict": "PASS",
+      "verdict_reason": "L3S23 implements the exact Chapter 3 S23 packet: retrieval of singular and plural forms for spoon, fork and cup, with no new grammar. Every introductory and context-gap option remains semantically and grammatically unique after literal substitution; the kitchen-storage scene supplies the required count without false assertions. The return bowl has three visible positive contacts. The four required builders are varied and the final remains independent.",
+      "answer_semantics": [],
+      "substitution_evidence": [
+        [
+          "intro1",
+          "It is a spoon.",
+          "One spoon; omitted a and plural a spoons fail."
+        ],
+        [
+          "intro2",
+          "Are they forks?",
+          "Several utensils, singularfork and Is they fail."
+        ],
+        [
+          "intro3",
+          "They are cups.",
+          "Several smallcups; cup and a cups fail."
+        ],
+        [
+          "T6",
+          "spoons",
+          "Three spoons."
+        ],
+        [
+          "T10",
+          "bowls",
+          "Two bowls."
+        ],
+        [
+          "T12",
+          "a cup",
+          "One cup by sink."
+        ],
+        [
+          "T13",
+          "forks",
+          "Several forks."
+        ],
+        [
+          "T16",
+          "a fork",
+          "One fork underpaper."
+        ]
+      ],
+      "proof": {
+        "wordFirst": {
+          "spoon": [
+            1,
+            2,
+            5
+          ],
+          "fork": [
+            3,
+            4,
+            9
+          ],
+          "cup": [
+            7,
+            8,
+            11
+          ]
+        },
+        "bowlContacts": [
+          10,
+          14,
+          15
+        ],
+        "boardGrounded": true,
+        "builders": [
+          5,
+          9,
+          11,
+          17
+        ],
+        "fourDistinctSkeletons": true,
+        "finalIndependent": true,
+        "listeningPromptsNeutral": [
+          2,
+          4,
+          8,
+          11
+        ],
+        "sizeDoesNotDetermineCount": true,
+        "actualAudio": "NOT_REVIEWED"
+      },
+      "issues": [],
+      "receiptNormalization": "Reviewer supplied successful substitutions in answer_semantics; stored as substitution_evidence because normative answer_semantics contains only mismatches."
+    }
+  ],
+  "receipt_correction": "Actual independent pedagogy recheck after receipt audit: replaced stale size framing in current evidence; prior 2040… receipt unchanged in reviewHistory."
+}

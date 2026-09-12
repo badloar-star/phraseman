@@ -1,0 +1,13 @@
+{
+  "session": "S41",
+  "sourceSha256": "f141ff0ea7fce925928bebff2410d8bd928e49700df880c21c039630df6f0db9",
+  "verdict": "PASS",
+  "issues": [],
+  "verified": {
+    "amIQuestionOrderAccurateAndLocallyScoped": true,
+    "questionVsStatementDistinctionAccurate": true,
+    "welcomeMeaningFitsTheArrivalContext": true,
+    "youAreWelcomeThankYouSenseExplicitlyScoped": true,
+    "humourDoesNotAddAFalseClaim": true
+  }
+}

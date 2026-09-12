@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-51:i02:r1",
+            "responseId": "en:lesson-01:session-51:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — there",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-51:i02:r2",
+            "responseId": "en:lesson-01:session-51:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — there",
             "feedbackByLocale": {
@@ -261,7 +261,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-51:i05:r1",
+            "responseId": "en:lesson-01:session-51:i05:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — inside",
             "feedbackByLocale": {
@@ -270,7 +270,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-51:i05:r2",
+            "responseId": "en:lesson-01:session-51:i05:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — inside",
             "feedbackByLocale": {
@@ -408,7 +408,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-51:i08:r1",
+            "responseId": "en:lesson-01:session-51:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — upstairs",
             "feedbackByLocale": {
@@ -417,7 +417,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-51:i08:r2",
+            "responseId": "en:lesson-01:session-51:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — upstairs",
             "feedbackByLocale": {
@@ -479,7 +479,7 @@
         "testedDimension": "Вставьте слово — мама спрашивает, где со",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-51:i09:r1",
+            "responseId": "en:lesson-01:session-51:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — мама спрашивает, где со",
             "feedbackByLocale": {
@@ -488,7 +488,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-51:i09:r2",
+            "responseId": "en:lesson-01:session-51:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — мама спрашивает, где со",
             "feedbackByLocale": {
@@ -548,7 +548,7 @@
         "testedDimension": "Вставьте слово — мама зовёт соседа к тел",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-51:i10:r1",
+            "responseId": "en:lesson-01:session-51:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — мама зовёт соседа к тел",
             "feedbackByLocale": {
@@ -557,7 +557,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-51:i10:r2",
+            "responseId": "en:lesson-01:session-51:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — мама зовёт соседа к тел",
             "feedbackByLocale": {
@@ -690,7 +690,7 @@
         "testedDimension": "Вставьте скрепку — мама уточняет, дома л",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-51:i12:r1",
+            "responseId": "en:lesson-01:session-51:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — мама уточняет, дома л",
             "feedbackByLocale": {
@@ -699,7 +699,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-51:i12:r2",
+            "responseId": "en:lesson-01:session-51:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — мама уточняет, дома л",
             "feedbackByLocale": {

@@ -1,0 +1,121 @@
+{
+  "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "wall",
+      "floor",
+      "ceiling"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "prerequisite_check": {
+    "result": "PASS",
+    "evidence": "`It is not …`, `Is it …?` и `It is clean` используют уже введённые рамки; новая работа остаётся в контрасте названия предмета и состояния."
+  },
+  "word_first_and_contacts": {
+    "result": "PASS",
+    "evidence": [
+      "`wall`: карточка 1 → слух 2 → сборка 5.",
+      "`floor`: карточка 3 → слух 4 → диктант 10.",
+      "`ceiling`: карточка 6 → слух 7 → короткое название 8.",
+      "До Speed Match 11 все четыре слова уже имеют карточку с отработкой либо являются возвратом."
+    ],
+    "returns": {
+      "door": [
+        9,
+        11
+      ],
+      "clean": [
+        12,
+        15
+      ]
+    }
+  },
+  "structure": {
+    "task_count": 17,
+    "phrase_builder": 4,
+    "listen_build_dictation": 1,
+    "speed_match_pairs": 4,
+    "support_fades": true,
+    "generic_instructions": [],
+    "unchanged_adjacent_repeats": [],
+    "builders": [
+      "`It is a wall`",
+      "`A ceiling`",
+      "`Is it a floor?`",
+      "`It is not a wall`",
+      "`Is it a ceiling?`"
+    ],
+    "builder_variation": "Короткое называние, утверждение, вопрос и отрицание дают разную работу; совпадающий скелет появляется максимум дважды."
+  },
+  "contrast": {
+    "result": "PASS",
+    "evidence": "Интро 2 и задания 12/15 различают `It is a floor` как называние и `It is clean` как состояние. Утверждения о `a` ограничены конкретной рамкой и не вводят правила про `an` или `the`."
+  },
+  "answers_and_traps": {
+    "single_correct_answer": true,
+    "construction_choice_wrongs": [
+      {
+        "task": 12,
+        "correct": "`is`",
+        "wrongs": [
+          "`is a`",
+          "`a`"
+        ],
+        "result": "Каждый неверный вариант даёт неполную либо ошибочно расширенную конструкцию."
+      },
+      {
+        "task": 14,
+        "correct": "`is a`",
+        "wrongs": [
+          "`is`",
+          "`a`"
+        ],
+        "result": "Каждый неверный вариант пропускает обязательную часть полной фразы."
+      }
+    ],
+    "realistic_distractors": true,
+    "silly_distractors": [],
+    "feedback_missing_or_duplicated": []
+  },
+  "listening": {
+    "audio_leaks": [],
+    "written_pair_evidence": [
+      "`wall` / `tall` / `ball`: общий финал, различаются начальными согласными.",
+      "`floor` / `claw` / `slaw`: различаются начальными согласными и их сочетаниями.",
+      "`ceiling` / `feeling` / `kneeling`: различаются начальным согласным."
+    ],
+    "real_audio_claim": false
+  },
+  "intro_lengths_directly_verified": {
+    "plain": [
+      246,
+      270,
+      259
+    ],
+    "with_markdown_backticks": [
+      256,
+      282,
+      271
+    ],
+    "result": "PASS"
+  },
+  "issues": [],
+  "must_fix": [],
+  "evidence": [
+    {
+      "check": "Честность диктанта",
+      "quote": "«подруга обращается к вам, рассматривая фотографию»",
+      "result": "Не называет `floor` и не раскрывает вопросительную форму `Is it a floor?`."
+    },
+    {
+      "check": "Независимость финала",
+      "quote": "Задание 16: `It is a floor`; задание 17: `Is it a ceiling?`.",
+      "result": "Непосредственно перед финалом нет дословной голосовой подсказки его ответа."
+    }
+  ],
+  "verdict": "PASS",
+  "verdict_reason": "Сессия сохраняет точные границы контраста, word-first, контакты возвратов, разные виды фразовой работы и честные диагностические варианты."
+}

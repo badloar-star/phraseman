@@ -1,0 +1,103 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "`Where is he?` проверяет различение `Who` и `Where`, а `Who is she?` — последнее местоимение в шумной речи."
+      },
+      {
+        "task": 5,
+        "trap": "`sure` и `guest` проверяют выбор описания шумной обстановки."
+      },
+      {
+        "task": 6,
+        "trap": "`Who is the host?` и `Where is the host?` — естественные соседние вопросы, но аудио начинается с `Is he`."
+      },
+      {
+        "task": 10,
+        "trap": "`here` и `noisy` образуют знакомые фразы с `I am`, но не передают уверенность."
+      },
+      {
+        "task": 13,
+        "trap": "Лишняя плитка `not` проверяет, услышал ли ученик утвердительную фразу."
+      },
+      {
+        "task": 17,
+        "trap": "Лишняя плитка `Where` проверяет различение вопроса о человеке и вопроса о месте."
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13,
+      17
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 0,
+      "listen_choose": 5,
+      "listen_build_dictation": 2,
+      "phrase_builder": 5,
+      "context_gap_grammar": 2,
+      "speed_match": 0,
+      "scripted_repeat_compare": 3,
+      "sound_contrast": 0
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Сессия точно выполняет голосовой и слуховой обзор `Who is…?` в шумной комнате: новых слов и теории не заявляет, использует только знакомые конструкции, даёт каждому возвращаемому слову минимум два контакта и движется от распознавания к сборке и произнесению.",
+  "sourceSha256": "fd9959cab2656a2d1916967122b4fdab45c8165526a30a3ed329b3b02a5dde25",
+  "reviewMethod": "fresh_builtin_codex_readonly_pedagogy_judge",
+  "reviewedScope": "full_session",
+  "reviewedAt": "2026-09-08T09:42:35.549205+00:00",
+  "previousSourceSha256": "c0661fc54d0ed040357319f1b6eb60d2fdecab2f4b2784351cee1f4aae3ff269",
+  "listeningRepairReview": {
+    "session": 36,
+    "sourceSha256": "fd9959cab2656a2d1916967122b4fdab45c8165526a30a3ed329b3b02a5dde25",
+    "verdict": "PASS",
+    "changed_tasks": [
+      3
+    ],
+    "neutral_prompts": true,
+    "answer_leak": false,
+    "phonetic_options_distinguishable": true,
+    "new_words": [],
+    "word_first_preserved": true,
+    "return_table_matches_tasks": true,
+    "minimum_return_contacts": 3,
+    "every_return_has_correct_use": true,
+    "note": "`here` в задании 5 входит в правильную полную фразу `Is it noisy here?`, поэтому запись этого задания в колонке правильных употреблений точна."
+  }
+}

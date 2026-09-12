@@ -1,0 +1,12 @@
+{
+  "reviewer": "/root/s07_uk_native_resume",
+  "verdict": "REVISE",
+  "ru_sha256": "926a212bf053f780b2c583192cabf2f1684da103f083d534e869c1e02a0e42f2",
+  "uk_sha256": "87d274116cb70d2f229ca2896c88d63684f908aaf21da4f0b10eee1e57418448",
+  "findings": [
+    {"location": "intro_1", "problem": "«Це не назва всіх меблів» змінює зміст: йдеться про всі меблі, а не про цілий предмет меблів.", "exact_replacement": "Це назва не всього предмета меблів, а лише його висувної частини."},
+    {"location": "task_7.feedback.warble", "problem": "Позначення /r/ не оформлене, порівняння з українським «р» синтаксично двозначне; рядок має 161 символ при межі 160.", "exact_replacement": "У `warble` далі чути `b`, а в `wardrobe` — `d` та англійське `/r/`: язик не торкається піднебіння, на відміну від українського «р». Тут — `wardrobe`."}
+  ],
+  "intro_source_chars": [264,250,250], "intro_chars_after_replacements": [305,250,250],
+  "intro_210_320": "PASS", "english_contracts": "PASS", "native_language_and_meaning": "REVISE_ONLY_AS_LISTED", "humor": "PASS", "feedback": "REVISE_ONLY_AS_LISTED", "actual_audio": "NOT_REVIEWED", "other_findings": []
+}

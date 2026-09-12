@@ -1,0 +1,46 @@
+{
+  "pages": [
+    {
+      "page": 1,
+      "retelling": "Чтобы спросить о нескольких людях «Кто эти люди?», нужно сказать `Who are these people?` и поставить `are` после `Who`.",
+      "what_i_do_now": "Теперь я скажу `Who are these people?`, а не `Who is these people?` и не пропущу `are`.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 2,
+      "retelling": "`Strangers` означает незнакомых людей, поэтому про них можно сказать `They are strangers`.",
+      "what_i_do_now": "Теперь я скажу `They are strangers`, а не `They strangers` или `They is strangers`.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 3,
+      "retelling": "`Twins` — близнецы, а чтобы сказать, что мы не близнецы, нужно поставить `not` после `are`: `We are not twins`.",
+      "what_i_do_now": "Теперь я скажу `We are not twins`, сохранив и `are`, и `not`.",
+      "understood": true,
+      "problems": []
+    }
+  ],
+  "pages_understood": 3,
+  "verdict": "PASS",
+  "verdict_reason": "Все три страницы понятны после одного чтения: каждая объясняет нужные слова и сразу показывает конкретную фразу, которую я теперь могу сказать. Непонятных ссылок, необъяснённых запретов или терминов, мешающих понять действие, нет.",
+  "sourceSha256": "841e0e1992f8c9a767b4417b2a79161f36a91b525e2c3b375e8043a364ed4b61",
+  "reviewedAt": "2026-09-08T08:45:06.848154+00:00",
+  "reviewMethod": "builtin_codex_independent_role",
+  "reviewedScope": "intro_pages",
+  "previousSourceSha256": "c72bc0dd157edc56107749d19d44b4e301bc47da029be4ad472c7b88f3ce4576",
+  "listeningRepairReview": {
+    "session": 34,
+    "verdict": "PASS",
+    "sourceSha256": "841e0e1992f8c9a767b4417b2a79161f36a91b525e2c3b375e8043a364ed4b61",
+    "hashMatch": true,
+    "blocksReviewed": [
+      2,
+      4,
+      7
+    ],
+    "reason": "Инструкции не раскрывают ответ. Rangers/dangers, tins/wins и pupil/purple дают слышимое различие в начале или первом слоге; feedback направляет к конкретному месту. «Рейнджеры» — понятное русское название людей этой категории, реальной проблемы чтения здесь нет.",
+    "issues": []
+  }
+}

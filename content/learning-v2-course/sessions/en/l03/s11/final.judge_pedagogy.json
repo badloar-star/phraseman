@@ -1,0 +1,16 @@
+{
+  "sourceSha256": "a122e2d7c229a00960b3246ac3c8872eb38b045f37d51599b680dd9a4265c604",
+  "reviewer": "/root/s10_pedagogy",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "verdict": "PASS",
+  "answer_semantics": [],
+  "evidence": [
+    "All intro/gap/builder substitutions match referent, number and meaning.",
+    "Exact sound-not-letter operation; no the/plurals/How long/new question construction.",
+    "17 tasks,5builders6/8/12/14/17,4pairs,2wrongchoices perchoice.",
+    "Newcards+sound beforephrases; kettle7/10/16, vacuum9/10; finaluniform followsvoicekettle.",
+    "Same sentence in listen11 andbuilder14 serves distinctrecognition→construction, not repeated asnew."
+  ],
+  "actualAudioReviewed": false
+}

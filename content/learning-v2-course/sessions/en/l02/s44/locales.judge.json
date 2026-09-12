@@ -1,0 +1,16 @@
+{
+  "sourceSha256": "fefd5431e280f4cdd6c9f0ae83d34d9d6d4a11b8aa983858670e68020046ef49",
+  "localeSha256": {
+    "uk": "4a3e50954909a1330a0906275ab91f429c9de785354ab96d55f4387326534fe3"
+  },
+  "locales": {
+    "uk": {
+      "session": "S44",
+      "sourceSha256": "fefd5431e280f4cdd6c9f0ae83d34d9d6d4a11b8aa983858670e68020046ef49",
+      "localeSha256": "4a3e50954909a1330a0906275ab91f429c9de785354ab96d55f4387326534fe3",
+      "verdict": "PASS",
+      "issues": [],
+      "verifiedDelta": "Intro 1 now has the complete Ukrainian alternative-question structure `чи …, чи …`; the sentence is natural and preserves the original meaning."
+    }
+  }
+}

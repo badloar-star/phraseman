@@ -1,0 +1,16 @@
+{
+  "sourceSha256":"250a740b26d61078fb90a12a83591f4a6118cd7377fb7ddf37e7157d34280eb7",
+  "localeSha256":"91796f893a25b7a24adbaa78e3791aca1cc7c860411308c93d6d19ab7e1985c0",
+  "reviewer":"/root/s09_uk_native","verdict":"REVISE",
+  "evidence":{"structureIdentical":true,"tasks":17,"latinTokensIdentical":363,"introLengths":[277,270,263],"feedbackReviewed":25,"feedbackWithin160":true,"phoneticTextReviewed":true,"actualAudioReviewed":false,"nativeLanguageAnchor":true,"englishTargetsIdentical":true},
+  "findings":[
+    {"quote":"Складний купол","replacement":"Складаний купол","locations":["word card5","new_words"]},
+    {"quote":"Проходите відділи","replacement":"Йдете через відділи"},
+    {"quote":"Крісло одне, а маленьке слово перед ним уже просить окремого вибору","replacement":"Крісло одне, а маленьке слово перед ним теж доведеться обрати"},
+    {"quote":"дайте відповідь із двох слів «крісло»","replacement":"дайте двослівну відповідь: «крісло»"},
+    {"quote":"зачиняють дверцята й нагрівають","replacement":"зачиняють дверцята й вмикають нагрів"},
+    {"quote":"Слово дошки / П’ять складань / Текстові ознаки вимови","replacement":"Слово на дошці / П’ять вправ на складання / Текстові підказки щодо вимови"}
+  ],
+  "unsupportedCriterion":{"finding":"Intro2 six sentences versus2–4 cap","rootAssessment":"Archived bible cap is superseded by current factory Constitution. Current210–320 requirement passes. Clarification returned to same reviewer for actual reassessment."},
+  "rootPreReviewRepair":{"authorUkSha":"68190e08bf402de354f735000e670a571df40b102e88da30331a7e72deb769b6","finding":"Translator reintroduced mandatory soft upholstery into armchair definition.","repair":"Removed in card and metadata; localizer prompt now explicitly requires preserving factual definition boundaries."}
+}

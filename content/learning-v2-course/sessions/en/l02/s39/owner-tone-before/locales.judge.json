@@ -1,0 +1,32 @@
+{
+  "verdict": "PASS",
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "problems": [],
+      "introActualCounts": [
+        259,
+        235,
+        264
+      ]
+    }
+  },
+  "sourceSha256": "d3ef03d8192d9565746be1dbd312403c4ba075faa09f56823549594f75436baa",
+  "localeSha256": {
+    "uk": "66a6d32a7cc8dc172899fbe5a986fca13f61a802d288425b91a47d8358a3ae9d"
+  },
+  "reviewedAt": "2026-09-08T10:48:01.727321+00:00",
+  "nativeReview": {
+    "ru": {
+      "verdict": "PASS",
+      "issues": [],
+      "sourceSha256": "d3ef03d8192d9565746be1dbd312403c4ba075faa09f56823549594f75436baa"
+    },
+    "uk": {
+      "verdict": "PASS",
+      "issues": [],
+      "sourceSha256": "66a6d32a7cc8dc172899fbe5a986fca13f61a802d288425b91a47d8358a3ae9d"
+    }
+  },
+  "reviewMethod": "builtin independent full UK review plus corrected selfcheck delta"
+}

@@ -1,0 +1,99 @@
+{
+  "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+  "localeSha256": {
+    "uk": "7bdfa4d0950e6389974b3c632d006b94dfb4a47d4a7bb2a8747a2b81ac4980be"
+  },
+  "locales": {
+    "uk": {
+      "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+      "localeSha256": "7bdfa4d0950e6389974b3c632d006b94dfb4a47d4a7bb2a8747a2b81ac4980be",
+      "scope": "native Ukrainian and current local preview only; no app, audio, or visual compatibility claim",
+      "verdict": "PASS",
+      "issues": [],
+      "checks": {
+        "hashesMatchTaskPacket": true,
+        "structureIdentical": true,
+        "englishTargetsOptionsTilesAndOrderUnchanged": true,
+        "orderedEnglishCodeSpanCount": 130,
+        "introBodyLengthsIncludingMarkup": [
+          248,
+          300,
+          263
+        ],
+        "languagePurity": {
+          "foreignFragmentsFound": false,
+          "machineTranslationSmellFound": false
+        },
+        "nativeAnchors": {
+          "floorGender": {
+            "verdict": "PASS",
+            "evidence": [
+              "`floor` — «підлога»",
+              "«Вона чиста»",
+              "«Вона чиста?»"
+            ],
+            "assessment": "Feminine agreement is consistent in the intro, instructions, and returned-word practice."
+          },
+          "doorPlural": {
+            "verdict": "PASS",
+            "evidence": [
+              "`door` — «двері»",
+              "«назвіть двері»",
+              "local pair: door — двері"
+            ],
+            "assessment": "Ukrainian pluralia tantum is handled naturally. The English singular target remains explicit and no Ukrainian instruction implies several doors."
+          }
+        },
+        "definitionsAliveAndNatural": {
+          "verdict": "PASS",
+          "items": [
+            "wall — concrete room boundary",
+            "floor — lower room surface people walk on",
+            "ceiling — upper room surface above the head"
+          ]
+        },
+        "soundExplanations": {
+          "verdict": "PASS",
+          "usesUkrainianOwnAnchors": true,
+          "inheritedRussianPhoneticsFound": false,
+          "details": [
+            "`wall` versus `tall`/`ball`: initial consonant and lip-action contrast is clear.",
+            "`floor` versus `claw`/`slaw`: initial consonant clusters are described accurately.",
+            "`ceiling` versus `feeling`/`kneeling`: initial consonants are distinguished without invented syllable boundaries."
+          ],
+          "actualAudioReviewed": false
+        },
+        "instructionsAndErrorExplanations": {
+          "verdict": "PASS",
+          "unambiguous": true,
+          "feedbackMatchesEachPresentedTrap": true
+        },
+        "humor": {
+          "verdict": "PASS",
+          "natural": true,
+          "examples": [
+            "«На стіні може нічого не висіти, але місце перед `wall` порожнім не лишаємо»",
+            "«чи вже час брати швабру»"
+          ],
+          "assessment": "The humor grows from the wall/floor distinction and does not create a false rule."
+        },
+        "localPreviewPairGridLabels": [
+          "wall — стіна",
+          "floor — підлога",
+          "ceiling — стеля",
+          "door — двері"
+        ],
+        "visualReviewPerformed": false,
+        "appCompatibilityClaimed": false
+      },
+      "remainingIssues": [
+        {
+          "scope": "future app export",
+          "status": "retained_unresolved",
+          "issue": "The previously recorded Speed Match pairId incompatibility remains outside this native/local review.",
+          "affectsCurrentVerdict": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "session": "en/l03/s02",
+  "sourceSha256": "3502df9d49a80804fa5b9fb33643f6e82cc65c2212c9a743fc8b762e46e15d80",
+  "converged": true,
+  "needsHumanReview": false,
+  "actualReceipt": "content/learning-v2-course/judgements/2026-09-09_l03_s02_s03_phonetic_delta.json",
+  "locales": [
+    "ru",
+    "uk"
+  ],
+  "audioReviewed": false,
+  "visualReviewed": false
+}

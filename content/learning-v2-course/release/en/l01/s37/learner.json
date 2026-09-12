@@ -51,7 +51,7 @@
         "testedDimension": "Вставьте слово — про себя после дороги",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-37:i01:r1",
+            "responseId": "en:lesson-01:session-37:i01:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — про себя после дороги",
             "feedbackByLocale": {
@@ -60,7 +60,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-37:i01:r2",
+            "responseId": "en:lesson-01:session-37:i01:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — про себя после дороги",
             "feedbackByLocale": {
@@ -120,7 +120,7 @@
         "testedDimension": "Вставьте слово — про всех за столом",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-37:i02:r1",
+            "responseId": "en:lesson-01:session-37:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — про всех за столом",
             "feedbackByLocale": {
@@ -129,7 +129,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-37:i02:r2",
+            "responseId": "en:lesson-01:session-37:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — про всех за столом",
             "feedbackByLocale": {
@@ -194,7 +194,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-37:i03:r1",
+            "responseId": "en:lesson-01:session-37:i03:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — hot",
             "feedbackByLocale": {
@@ -203,7 +203,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-37:i03:r2",
+            "responseId": "en:lesson-01:session-37:i03:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — hot",
             "feedbackByLocale": {
@@ -293,7 +293,7 @@
         "testedDimension": "Вставьте слово — про суп в тарелке",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-37:i05:r1",
+            "responseId": "en:lesson-01:session-37:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — про суп в тарелке",
             "feedbackByLocale": {
@@ -302,7 +302,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-37:i05:r2",
+            "responseId": "en:lesson-01:session-37:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — про суп в тарелке",
             "feedbackByLocale": {
@@ -468,7 +468,7 @@
         "testedDimension": "Вставьте слово — коллега напротив весь о",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-37:i08:r1",
+            "responseId": "en:lesson-01:session-37:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега напротив весь о",
             "feedbackByLocale": {
@@ -477,7 +477,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-37:i08:r2",
+            "responseId": "en:lesson-01:session-37:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега напротив весь о",
             "feedbackByLocale": {
@@ -566,7 +566,7 @@
         "testedDimension": "Вставьте слово — вы обращаетесь к соседу",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-37:i10:r1",
+            "responseId": "en:lesson-01:session-37:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы обращаетесь к соседу",
             "feedbackByLocale": {
@@ -575,7 +575,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-37:i10:r2",
+            "responseId": "en:lesson-01:session-37:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы обращаетесь к соседу",
             "feedbackByLocale": {
@@ -627,7 +627,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «жар",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-37:i11:r1",
+            "responseId": "en:lesson-01:session-37:i11:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «жар",
             "feedbackByLocale": {
@@ -717,7 +717,7 @@
         "testedDimension": "Вставьте слово — за окном пекло",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-37:i13:r1",
+            "responseId": "en:lesson-01:session-37:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — за окном пекло",
             "feedbackByLocale": {
@@ -726,7 +726,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-37:i13:r2",
+            "responseId": "en:lesson-01:session-37:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — за окном пекло",
             "feedbackByLocale": {

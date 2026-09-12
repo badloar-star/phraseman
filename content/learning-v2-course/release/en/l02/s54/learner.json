@@ -1,0 +1,894 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — landlord",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-54:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — landlord",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-54:i01:audio",
+          "transcript": "landlord"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-54:i01:r1",
+            "targetText": "landlord",
+            "meaningByLocale": {
+              "ru": "«арендодатель», владелец, который сдаёт жильё. В разговоре о съёме квартиры это слово помогает назвать того, у кого вы её снимаете. Здесь речь о человеке.",
+              "uk": "«орендодавець», власник, який здає житло. У розмові про оренду квартири це слово називає людину, в якої ви її винаймаєте. Тут ідеться про людину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "landlord",
+          "definitionByLocale": {
+            "ru": "«арендодатель», владелец, который сдаёт жильё. В разговоре о съёме квартиры это слово помогает назвать того, у кого вы её снимаете. Здесь речь о человеке.",
+            "uk": "«орендодавець», власник, який здає житло. У розмові про оренду квартири це слово називає людину, в якої ви її винаймаєте. Тут ідеться про людину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-54:i02:r1",
+          "text": "landlord"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i02:r2",
+          "text": "landmark"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i02:r3",
+          "text": "landslide"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-54:i02:audio",
+          "transcript": "landlord"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-54:i02:r1",
+            "targetText": "landlord",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i02:r2",
+            "targetText": "landmark",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i02:r3",
+            "targetText": "landslide",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "Это «ориентир». Второй слог начинается с «м» при сомкнутых губах. В `landlord` он начинается с «л».",
+              "uk": "Це «орієнтир». Друга частина починається зі звука «м», для якого губи змикаються. У `landlord` після `land` одразу звучить «л»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "Это «оползень». Второй слог начинается с «с», затем слышен «л». В записи второй слог начинается сразу с «л»: `landlord`.",
+              "uk": "Це «зсув». Друга частина починається зі сполуки «сл». У записі після `land` одразу звучить «л»: `landlord`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг указывает на мужчину, который отвечает на вопросы; уточните, арендодатель ли он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг указывает на мужчину, который отвечает на вопросы; уточните, арендодатель ли он",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is he the landlord?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг указывает на мужчину, который отвечает на вопросы; уточните, арендодатель ли он",
+          "uk": "Складіть фразу — друг указує на чоловіка, який відповідає на запитання; уточніть, чи він орендодавець"
+        },
+        "orderedTokens": [
+          "Is",
+          "he",
+          "the",
+          "landlord"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-54:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-54:i04:audio",
+          "transcript": "rent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-54:i04:r1",
+            "targetText": "rent",
+            "meaningByLocale": {
+              "ru": "«арендная плата», сумма, которую регулярно платят за пользование чужим жильём. Здесь это название платы. Начальный звук такой же, как в `ready` — «готов».",
+              "uk": "«орендна плата», сума, яку регулярно сплачують за користування чужим житлом. Тут це назва плати. Початковий звук такий самий, як у `ready` — «готовий»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rent",
+          "definitionByLocale": {
+            "ru": "«арендная плата», сумма, которую регулярно платят за пользование чужим жильём. Здесь это название платы. Начальный звук такой же, как в `ready` — «готов».",
+            "uk": "«орендна плата», сума, яку регулярно сплачують за користування чужим житлом. Тут це назва плати. Початковий звук такий самий, як у `ready` — «готовий»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-54:i05:r1",
+          "text": "rent"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i05:r2",
+          "text": "lent"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i05:r3",
+          "text": "sent"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-54:i05:audio",
+          "transcript": "rent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-54:i05:r1",
+            "targetText": "rent",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i05:r2",
+            "targetText": "lent",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i05:r3",
+            "targetText": "sent",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "Это «одолжил». Первый звук такой же, как в `landlord`. В записи начало как в `ready`: `rent`.",
+              "uk": "Це «позичив». Перший звук такий самий, як у `landlord`. У записі початок звучить як у `ready`: `rent`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "Это «отправил», с «с» в начале. В записи первый звук такой же, как в `ready`: `rent`.",
+              "uk": "Це «надіслав», зі звуком «с» на початку. У записі перший звук такий самий, як у `ready`: `rent`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — хозяин показывает сумму в объявлении; уточните, это ли арендная плата",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — хозяин показывает сумму в объявлении; уточните, это ли арендная плата",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it the rent?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — хозяин показывает сумму в объявлении; уточните, это ли арендная плата",
+          "uk": "Складіть фразу — господар показує суму в оголошенні; уточніть, чи це орендна плата"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "the",
+          "rent"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы осмотрели небольшую квартиру; скажите другу «Квартира маленькая»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-54:i07:r1",
+          "text": "flat"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i07:r2",
+          "text": "landlord"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i07:r3",
+          "text": "rules"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы осмотрели небольшую квартиру; скажите другу «Квартира маленькая»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы осмотрели небольшую квартиру; скажите другу «Квартира маленькая»",
+          "uk": "Вставте слово — ви оглянули невелику квартиру; скажіть другові «Квартира маленька»"
+        },
+        "gappedTargetPhrase": "The ___ is small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i07:r1",
+            "text": "flat"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i07:r2",
+            "text": "landlord"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i07:r3",
+            "text": "rules"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы осмотрели небольшую ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-54:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы осмотрели небольшую ",
+            "feedbackByLocale": {
+              "ru": "Это «арендодатель». Вы описываете размер квартиры, поэтому нужно `flat`.",
+              "uk": "Це «орендодавець». Ви описуєте розмір квартири, тому потрібне `flat`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы осмотрели небольшую ",
+            "feedbackByLocale": {
+              "ru": "Это «правила». Чтобы сказать о квартире, выберите `flat`: `The flat is small`.",
+              "uk": "Це «правила». Щоб сказати про квартиру, оберіть `flat`: `The flat is small`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какая реплика друга прозвучала после осмотра",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-54:i08:r1",
+          "text": "The flat is quiet."
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i08:r2",
+          "text": "Is the flat quiet?"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i08:r3",
+          "text": "The flat is quite small."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какая реплика друга прозвучала после осмотра",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-54:i08:audio",
+          "transcript": "The flat is quiet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-54:i08:r1",
+            "targetText": "The flat is quiet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i08:r2",
+            "targetText": "Is the flat quiet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i08:r3",
+            "targetText": "The flat is quite small.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "feedbackByLocale": {
+              "ru": "Это вопрос. В записи друг сообщает: сначала `The flat is`.",
+              "uk": "Це запитання. У записі друг повідомляє: спочатку `The flat is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "feedbackByLocale": {
+              "ru": "Это «Квартира довольно маленькая». В записи после `is` звучит `quiet` — «тихая».",
+              "uk": "Це «Квартира доволі маленька». У записі після `is` звучить `quiet` — «тиха»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — хозяин объяснил правила; уточните у друга, понятны ли они ему",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — хозяин объяснил правила; уточните у друга, понятны ли они ему",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are the rules clear?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — хозяин объяснил правила; уточните у друга, понятны ли они ему",
+          "uk": "Складіть фразу — господар пояснив правила; уточніть у друга, чи зрозумілі вони йому"
+        },
+        "orderedTokens": [
+          "Are",
+          "the",
+          "rules",
+          "clear"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары — слова для разговора об аренде",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары — слова для разговора об аренде",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-54:i10:p1",
+            "target": "flat",
+            "meaningByLocale": {
+              "ru": "квартира",
+              "uk": "квартира"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-54:i10:p2",
+            "target": "price",
+            "meaningByLocale": {
+              "ru": "цена",
+              "uk": "ціна"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-54:i10:p3",
+            "target": "rules",
+            "meaningByLocale": {
+              "ru": "правила",
+              "uk": "правила"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-54:i10:p4",
+            "target": "rent",
+            "meaningByLocale": {
+              "ru": "арендная плата",
+              "uk": "орендна плата"
+            }
+          }
+        ],
+        "leftColumn": [
+          "flat",
+          "price",
+          "rules",
+          "rent"
+        ],
+        "rightColumn": [
+          "квартира",
+          "цена",
+          "правила",
+          "арендная плата"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друг спросил, тот ли мужчина арендодатель; мужчина подтвердил, что сдаёт эту квартиру, ответьте коротко «Да»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-54:i11:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i11:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i11:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друг спросил, тот ли мужчина арендодатель; мужчина подтвердил, что сдаёт эту квартиру, ответьте коротко «Да»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг спросил, тот ли мужчина арендодатель; мужчина подтвердил, что сдаёт эту квартиру, ответьте коротко «Да»",
+          "uk": "Вставте слово — друг запитав, чи той чоловік є орендодавцем; чоловік підтвердив, що здає цю квартиру, коротко дайте відповідь «Так»"
+        },
+        "gappedTargetPhrase": "Yes, he ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i11:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i11:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i11:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг спросил, тот ли му",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг спросил, тот ли му",
+            "feedbackByLocale": {
+              "ru": "После `he` в этом коротком ответе нужно `is`: `Yes, he is`.",
+              "uk": "Після `he` у цій короткій відповіді потрібне `is`: `Yes, he is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг спросил, тот ли му",
+            "feedbackByLocale": {
+              "ru": "Форма `am` сочетается с `I`. Здесь вы отвечаете о мужчине: `he is`.",
+              "uk": "Форма `am` поєднується з `I`. Тут ви відповідаєте про чоловіка: `he is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в объявлении и на листе хозяина разные суммы; уточните, верно ли указана цена в объявлении",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-54:i12:r1",
+          "text": "price"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i12:r2",
+          "text": "landlord"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i12:r3",
+          "text": "rules"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в объявлении и на листе хозяина разные суммы; уточните, верно ли указана цена в объявлении",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в объявлении и на листе хозяина разные суммы; уточните, верно ли указана цена в объявлении",
+          "uk": "Вставте слово — в оголошенні та на аркуші господаря вказано різні суми; уточніть, чи правильно зазначено ціну в оголошенні"
+        },
+        "gappedTargetPhrase": "Is the ___ right?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i12:r1",
+            "text": "price"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i12:r2",
+            "text": "landlord"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i12:r3",
+            "text": "rules"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в объявлении и на листе",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-54:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в объявлении и на листе",
+            "feedbackByLocale": {
+              "ru": "Это «арендодатель». Вы проверяете указанную цену, поэтому нужно `price`.",
+              "uk": "Це «орендодавець». Ви перевіряєте вказану ціну, тому потрібне `price`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в объявлении и на листе",
+            "feedbackByLocale": {
+              "ru": "Это «правила». Сейчас речь о сумме в объявлении: `Is the price right?`",
+              "uk": "Це «правила». Зараз ідеться про суму в оголошенні: `Is the price right?`"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — хозяин отошёл, а вы задержались у входа; друг сообщает, где он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-54:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — хозяин отошёл, а вы задержались у входа; друг сообщает, где он",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-54:i13:audio",
+          "transcript": "The landlord is inside."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The landlord is inside.",
+        "orderedTokens": [
+          "The",
+          "landlord",
+          "is",
+          "inside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы обсудили правила с другом и оба их поняли; сообщите, что правила понятны",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-54:i14:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i14:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-54:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы обсудили правила с другом и оба их поняли; сообщите, что правила понятны",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы обсудили правила с другом и оба их поняли; сообщите, что правила понятны",
+          "uk": "Вставте слово — ви обговорили правила з другом і обоє їх зрозуміли; повідомте, що правила зрозумілі"
+        },
+        "gappedTargetPhrase": "The rules ___ clear.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-54:i14:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i14:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы обсудили правила с д",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-54:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы обсудили правила с д",
+            "feedbackByLocale": {
+              "ru": "В этом сообщении с `the rules` нужна форма `are`: `The rules are clear`.",
+              "uk": "У цьому повідомленні з `the rules` потрібна форма `are`: `The rules are clear`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-54:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы обсудили правила с д",
+            "feedbackByLocale": {
+              "ru": "Форма `am` сочетается с `I`. Здесь вы говорите о правилах, поэтому нужно `are`.",
+              "uk": "Форма `am` поєднується з `I`. Тут ви говорите про правила, тому потрібне `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — друг спрашивает, уверены ли вы в своём выборе квартиры; вы ещё сомневаетесь, скажите «Я не уверен» (`sure` — «уверен»)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — друг спрашивает, уверены ли вы в своём выборе квартиры; вы ещё сомневаетесь, скажите «Я не уверен» (`sure` — «уверен»)",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-54:i15:audio",
+          "transcript": "I am not sure."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am not sure.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы хотите уточнить у друга, тепло ли в квартире; спросите «В квартире тепло?» (`warm` — «тёплая»)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-54:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы хотите уточнить у друга, тепло ли в квартире; спросите «В квартире тепло?» (`warm` — «тёплая»)",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-54:i16:audio",
+          "transcript": "Is the flat warm?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is the flat warm?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-54:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы хотите задать хозяину ещё один вопрос; обратитесь к женщине, проводившей просмотр, и уточните, занят ли сейчас арендодатель",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы хотите задать хозяину ещё один вопрос; обратитесь к женщине, проводившей просмотр, и уточните, занят ли сейчас арендодатель",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Excuse me. Is the landlord busy?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы хотите задать хозяину ещё один вопрос; обратитесь к женщине, проводившей просмотр, и уточните, занят ли сейчас арендодатель",
+          "uk": "Складіть фразу — ви хочете поставити господареві ще одне запитання; зверніться до жінки, яка показувала квартиру, й уточніть, чи зайнятий зараз орендодавець"
+        },
+        "orderedTokens": [
+          "Excuse me.",
+          "Is",
+          "the",
+          "landlord",
+          "busy"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cad41c9e6ca1e543a07d64a3e224fbfc2b2fb93b39d55613e8ad27270d3074cf"
+}

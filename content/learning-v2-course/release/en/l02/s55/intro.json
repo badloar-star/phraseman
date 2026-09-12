@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "отложенный возврат слов из семи глав в знакомых вопросах и сообщениях",
+    "uk": "відкладене повернення слів із семи розділів у знайомих запитаннях і повідомленнях"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сначала спросить",
+        "uk": "Спочатку запитати"
+      },
+      "bodyByLocale": {
+        "ru": "`Are you hungry?` — «Вы голодны?» Слово `hungry` значит «голодный». Если сами очень голодны, легко решить, что голодны все. Но за себя вы скажете `I am hungry` — «Я голоден», а у другого человека лучше спросить. Для этого начните с `Are you`, затем добавьте `hungry`.",
+        "uk": "`Are you hungry?` — «Ви голодні?» `hungry` означає «голодний». Коли самі дуже голодні, легко вирішити, що голодні всі. Але про себе ви скажете `I am hungry` — «Я голодний», а іншу людину краще запитати. Для цього почніть із `Are you`, а потім додайте `hungry`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "По дороге вы предлагаете перекусить. Спросите друга, голоден ли он.",
+          "uk": "Дорогою ви пропонуєте перекусити. Запитайте друга, чи голодний він."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-55:intro1:r1",
+              "text": "Are you hungry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:intro1:r2",
+              "text": "I am hungry."
+            },
+            {
+              "responseId": "en:lesson-02:session-55:intro1:r3",
+              "text": "Are we hungry?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-55:intro1:r1",
+              "text": "Are you hungry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:intro1:r2",
+              "text": "I am hungry."
+            },
+            {
+              "responseId": "en:lesson-02:session-55:intro1:r3",
+              "text": "Are we hungry?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "По дороге вы предлагаете перекусить. Спросите друга, голоден ли он.",
+          "uk": "Дорогою ви пропонуєте перекусити. Запитайте друга, чи голодний він."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Много ли там людей",
+        "uk": "Чи багато там людей"
+      },
+      "bodyByLocale": {
+        "ru": "`crowded` — «многолюдный, переполненный». `Is it crowded?` — «Там много людей?» Так можно спросить о месте, которое вы обсуждаете. Сначала убедитесь, что понятно, куда относится `it`. Вы знаете, какой магазин имеете в виду, но собеседнику это тоже нужно понимать.",
+        "uk": "`crowded` — «людний, переповнений». `Is it crowded?` — «Там багато людей?» Так можна запитати про місце, яке ви обговорюєте. Спершу переконайтеся, що зрозуміло, чого стосується `it`. Ви знаєте, який магазин маєте на увазі, але співрозмовникові це теж треба знати."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг предложил зайти в магазин за углом. Уточните, много ли там людей.",
+          "uk": "Друг запропонував зайти до магазину за рогом. Уточніть, чи багато там людей."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-55:intro2:r1",
+              "text": "Is it crowded?"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:intro2:r2",
+              "text": "Is it noisy?"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:intro2:r3",
+              "text": "Is it closed?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-55:intro2:r1",
+              "text": "Is it crowded?"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:intro2:r2",
+              "text": "Is it noisy?"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:intro2:r3",
+              "text": "Is it closed?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг предложил зайти в магазин за углом. Уточните, много ли там людей.",
+          "uk": "Друг запропонував зайти до магазину за рогом. Уточніть, чи багато там людей."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обратиться и узнать цену",
+        "uk": "Звернутися й дізнатися ціну"
+      },
+      "bodyByLocale": {
+        "ru": "`Excuse me` — «Извините», обращение для привлечения внимания. Дальше можно спросить `What is the price?` — «Какая цена?» Слово `price` значит «цена». Вся реплика: `Excuse me. What is the price?` Вы сначала обращаетесь к человеку, а затем объясняете, что хотите узнать.",
+        "uk": "`Excuse me` — «Перепрошую», звертання для привернення уваги. Далі можна запитати `What is the price?` — «Яка ціна?» `price` означає «ціна». Уся репліка: `Excuse me. What is the price?` Спочатку ви звертаєтеся до людини, а потім пояснюєте, що хочете дізнатися."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы выбрали еду, но не видите ценника. Привлеките внимание продавца и спросите цену.",
+          "uk": "Ви обрали їжу, але не бачите цінника. Приверніть увагу продавця й запитайте ціну."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-55:intro3:r1",
+              "text": "Excuse me. What is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:intro3:r2",
+              "text": "Excuse me. Where is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:intro3:r3",
+              "text": "Excuse me. What are the price?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-55:intro3:r1",
+              "text": "Excuse me. What is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:intro3:r2",
+              "text": "Excuse me. Where is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-55:intro3:r3",
+              "text": "Excuse me. What are the price?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы выбрали еду, но не видите ценника. Привлеките внимание продавца и спросите цену.",
+          "uk": "Ви обрали їжу, але не бачите цінника. Приверніть увагу продавця й запитайте ціну."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f01735c5b45461c88b9386acb4e407465b22f60412bf9d874cc1e80e8aef68da"
+}

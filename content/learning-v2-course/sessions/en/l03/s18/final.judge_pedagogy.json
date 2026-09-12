@@ -1,0 +1,281 @@
+{
+  "sourceSha256": "8efde328d6ddc3ac3b6ea3d540cf821564e964e6db297dbb3460d4b715d2cfc8",
+  "reasoningEffort": "medium",
+  "actualAudioReviewed": false,
+  "reviewer": "/root/s10_pedagogy",
+  "model": "gpt-5.6-terra",
+  "machineFactsHard": [],
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "bus",
+      "dish",
+      "watch",
+      "box"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [],
+  "substitution_evidence": [
+    "Интро1/T9 дваавтобуса→They are buses; singularbus fails pluralreferent.",
+    "Интро2/T10 severalservingdishes→Are they dishes; singulardish fails.",
+    "Интро3 two separate wristwatches, watches unambiguous despiteRUчасы.",
+    "T11/T16 several concerttickets→tickets/They are tickets both groundedreturns.",
+    "T12 dictated They are not watches; T13/T17 threeboxes→boxes/They are boxes.",
+    "T15 heard declarativeThey are dishes differsquestion/objectoptions."
+  ],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "buses",
+        "dishes",
+        "watches",
+        "boxes"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": []
+  },
+  "pedagogy_checks": {
+    "four_cards_and_listening_before_phrase_use": true,
+    "board_all_grounded_before_task14": true,
+    "return_ticket_correct_contacts": [
+      11,
+      16
+    ],
+    "builders": [
+      9,
+      10,
+      12,
+      17
+    ],
+    "builder_variety": [
+      "affirmative",
+      "question",
+      "dictated negative",
+      "independent final affirmative"
+    ],
+    "final_independent": true,
+    "final_not_prompted_by_preceding_voice": true,
+    "audio_prompts_neutral": {
+      "12": true,
+      "15": true
+    },
+    "actual_audio_verified": false,
+    "no_s19_s20_s21_drift": true
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "verdict": "PASS",
+  "verdict_reason": "The session precisely teaches supplied written-es forms, grounds every plural answer in its scene, prepares all four board forms and preserves grammar boundary.",
+  "previousReview": {
+    "sourceSha256": "40443efc388ffe7426404721341ff61d38a72556af8a395b72d20f5a7ed4506d",
+    "reasoningEffort": "medium",
+    "actualAudioReviewed": false,
+    "reviewer": "/root/s10_pedagogy",
+    "model": "gpt-5.6-terra",
+    "machineFactsHard": [],
+    "plan_fidelity": {
+      "operation_matches": true,
+      "new_words_match": [
+        "bus",
+        "dish",
+        "watch",
+        "box"
+      ],
+      "missing": [],
+      "extra_grammar_smuggled": []
+    },
+    "answer_semantics": [],
+    "substitution_evidence": [
+      "Интро1/T9 дваавтобуса→They are buses; singularbus fails pluralreferent.",
+      "Интро2/T10 severalservingdishes→Are they dishes; singulardish fails.",
+      "Интро3 two separate wristwatches, watches unambiguous despiteRUчасы.",
+      "T11/T16 several concerttickets→tickets/They are tickets both groundedreturns.",
+      "T12 dictated They are not watches; T13/T17 threeboxes→boxes/They are boxes.",
+      "T15 heard declarativeThey are dishes differsquestion/objectoptions."
+    ],
+    "boundary": {
+      "unknown_in_explanations": [],
+      "unknown_in_targets": []
+    },
+    "traps": {
+      "silly": [],
+      "native_transfer_used": true,
+      "feedback_teaches_unknown_form": []
+    },
+    "feedback": {
+      "missing_per_option": [],
+      "duplicated": [],
+      "too_long_or_bookish": []
+    },
+    "structure": {
+      "task_count": 17,
+      "below_12": false,
+      "word_first_respected": true,
+      "support_fades": true,
+      "speed_match_boards": [
+        [
+          "buses",
+          "dishes",
+          "watches",
+          "boxes"
+        ]
+      ],
+      "speed_match_overlap": false,
+      "repeated_targets": [],
+      "generic_instructions": []
+    },
+    "pedagogy_checks": {
+      "four_cards_and_listening_before_phrase_use": true,
+      "board_all_grounded_before_task14": true,
+      "return_ticket_correct_contacts": [
+        11,
+        16
+      ],
+      "builders": [
+        9,
+        10,
+        12,
+        17
+      ],
+      "builder_variety": [
+        "affirmative",
+        "question",
+        "dictated negative",
+        "independent final affirmative"
+      ],
+      "final_independent": true,
+      "final_not_prompted_by_preceding_voice": true,
+      "audio_prompts_neutral": {
+        "12": true,
+        "15": true
+      },
+      "actual_audio_verified": false,
+      "no_s19_s20_s21_drift": true
+    },
+    "time_references": [],
+    "cross_session_repeats": [],
+    "textbook_formulas": [],
+    "verdict": "PASS",
+    "verdict_reason": "The session precisely teaches supplied written-es forms, grounds every plural answer in its scene, prepares all four board forms and preserves grammar boundary.",
+    "previousReview": {
+      "sourceSha256": "f219a2634321c2a810f18a19924178bc8edec4aca8f036c54495af6e99073691",
+      "reasoningEffort": "medium",
+      "actualAudioReviewed": false,
+      "reviewer": "/root/s10_pedagogy",
+      "model": "gpt-5.6-terra",
+      "machineFactsHard": [],
+      "plan_fidelity": {
+        "operation_matches": true,
+        "new_words_match": [
+          "bus",
+          "dish",
+          "watch",
+          "box"
+        ],
+        "missing": [],
+        "extra_grammar_smuggled": []
+      },
+      "answer_semantics": [],
+      "substitution_evidence": [
+        "Интро1/T9 дваавтобуса→They are buses; singularbus fails pluralreferent.",
+        "Интро2/T10 severalservingdishes→Are they dishes; singulardish fails.",
+        "Интро3 two separate wristwatches, watches unambiguous despiteRUчасы.",
+        "T11/T16 several concerttickets→tickets/They are tickets both groundedreturns.",
+        "T12 dictated They are not watches; T13/T17 threeboxes→boxes/They are boxes.",
+        "T15 heard declarativeThey are dishes differsquestion/objectoptions."
+      ],
+      "boundary": {
+        "unknown_in_explanations": [],
+        "unknown_in_targets": []
+      },
+      "traps": {
+        "silly": [],
+        "native_transfer_used": true,
+        "feedback_teaches_unknown_form": []
+      },
+      "feedback": {
+        "missing_per_option": [],
+        "duplicated": [],
+        "too_long_or_bookish": []
+      },
+      "structure": {
+        "task_count": 17,
+        "below_12": false,
+        "word_first_respected": true,
+        "support_fades": true,
+        "speed_match_boards": [
+          [
+            "buses",
+            "dishes",
+            "watches",
+            "boxes"
+          ]
+        ],
+        "speed_match_overlap": false,
+        "repeated_targets": [],
+        "generic_instructions": []
+      },
+      "pedagogy_checks": {
+        "four_cards_and_listening_before_phrase_use": true,
+        "board_all_grounded_before_task14": true,
+        "return_ticket_correct_contacts": [
+          11,
+          16
+        ],
+        "builders": [
+          9,
+          10,
+          12,
+          17
+        ],
+        "builder_variety": [
+          "affirmative",
+          "question",
+          "dictated negative",
+          "independent final affirmative"
+        ],
+        "final_independent": true,
+        "final_not_prompted_by_preceding_voice": true,
+        "audio_prompts_neutral": {
+          "12": true,
+          "15": true
+        },
+        "actual_audio_verified": false,
+        "no_s19_s20_s21_drift": true
+      },
+      "time_references": [],
+      "cross_session_repeats": [],
+      "textbook_formulas": [],
+      "verdict": "PASS",
+      "verdict_reason": "The session precisely teaches supplied written-es forms, grounds every plural answer in its scene, prepares all four board forms and preserves grammar boundary."
+    },
+    "scope": "Initial independent full review plus actual three-region delta review",
+    "deltaEvidence": "Actual reviewer verified exactly intro2body/question and T9 prompt changed. Dish stays serving tableware, dishes/es and question correct. Multiple kitchen items and two buses uniquely ground unchanged answers. No future grammar or phonetic/audio changes. Prior full scope retained."
+  },
+  "scope": "Initial independent full review plus actual three-region delta review",
+  "deltaEvidence": "Actual reviewer verified exactly intro2body/question and T9 prompt changed. Dish stays serving tableware, dishes/es and question correct. Multiple kitchen items and two buses uniquely ground unchanged answers. No future grammar or phonetic/audio changes. Prior full scope retained.",
+  "finalDeltaEvidence": "Actual same independent reviewer confirmed current one-character punctuation correction leaves prior findings/answers and full scope unchanged."
+}

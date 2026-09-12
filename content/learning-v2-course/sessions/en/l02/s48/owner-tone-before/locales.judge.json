@@ -1,0 +1,52 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "eae6088e916eda8d8d8662e417abd6dc8d63aad8690fbc3b62971d79b1944180",
+  "localeSha256": {
+    "uk": "0d8028ef01dcfdfe00185819fb5c39eeb32b0440366ebcb6bc499ae01113b77d"
+  },
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "sourceSha256": {
+        "ru": "eae6088e916eda8d8d8662e417abd6dc8d63aad8690fbc3b62971d79b1944180",
+        "uk": "0d8028ef01dcfdfe00185819fb5c39eeb32b0440366ebcb6bc499ae01113b77d"
+      },
+      "issues": [],
+      "verifiedDelta": "Сравнение с `draft.uk.md` показывает ровно одну содержательную замену — последнее предложение объяснения интро 3. Новая формулировка естественна, сохраняет смысл неизвестной оценки собеседника и оставляет длину интро 3 равной 287."
+    }
+  },
+  "priorReviews": [
+    {
+      "verdict": "REVISE",
+      "sourceSha256": {
+        "ru": "eae6088e916eda8d8d8662e417abd6dc8d63aad8690fbc3b62971d79b1944180",
+        "uk": "3ca164a815985b5e5abe49aeeb65ffcfb487f00a947b662f2e5dc7039cde2de5"
+      },
+      "issues": [
+        {
+          "location": "Интро 3, последнее предложение",
+          "quote": "«запитання допомагає її дізнатися, а не говорить замість нього»",
+          "problem": "`не говорить замість нього` звучит как калька и неясно выражает мысль о том, что вопрос не приписывает собеседнику заранее известную оценку.",
+          "exactFix": "Заменить всё предложение на: `Ви ще не знаєте оцінки співрозмовника: запитання дає змогу її дізнатися, але не стверджує, що співрозмовник уже так думає.`",
+          "expectedIntro3Length": 308
+        }
+      ],
+      "passed": {
+        "naturalUkrainianOtherwise": true,
+        "taskAndReferentEquivalence": true,
+        "earlyMeaning": "neutral",
+        "audibleClearDistinction": "contextual and non-absolute",
+        "voiceGlossesVisible": true,
+        "introLengthsBeforeFix": [
+          272,
+          257,
+          287
+        ],
+        "audioAndBrowser": "not assessed"
+      }
+    }
+  ],
+  "authorModel": "gpt-5.6-sol high",
+  "revisionCount": 1,
+  "scope": "Independent native text review; actual audio and browser not assessed"
+}

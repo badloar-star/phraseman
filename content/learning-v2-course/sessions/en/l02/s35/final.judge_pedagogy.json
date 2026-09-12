@@ -1,0 +1,49 @@
+{
+  "session": "en/l02/s35",
+  "sourceSha256": "d7b438ff40d66aa750958cfd2b5d575d96fc991ef645c5b56b696d83a3ed61b4",
+  "localeSha256": "c7f7659b7697a097256d410de943801279fb962ca74f24ecbd5c3a75870fbf0f",
+  "verdict": "PASS",
+  "issues": [],
+  "checks": {
+    "tasksReviewed": [
+      14
+    ],
+    "hashesMatchPacket": true,
+    "onlyListedPromptsChanged": true,
+    "promptsNeutral": true,
+    "audioMeaningAndPolarityNotLeaked": true,
+    "sceneAndReferentsPreserved": true,
+    "englishTasksIntrosModesFeedbackUnchanged": true,
+    "boundariesAndWordContactsPreserved": true
+  },
+  "verdict_reason": "The prompt preserves the host referent without revealing `is here` or positive polarity.",
+  "priorFullReviewRetained": true,
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "verdict": "PASS",
+    "sourceSha256": "d630f942bba5f49f0c525d8f6e5a75418be0196b6dc2212297bd242e0ac8c907",
+    "issues": []
+  },
+  "deltaReview": {
+    "session": "S35",
+    "sourceSha256": "d7b438ff40d66aa750958cfd2b5d575d96fc991ef645c5b56b696d83a3ed61b4",
+    "localeSha256": "c7f7659b7697a097256d410de943801279fb962ca74f24ecbd5c3a75870fbf0f",
+    "verdict": "PASS",
+    "issues": [],
+    "checks": {
+      "tasksReviewed": [
+        14
+      ],
+      "hashesMatchPacket": true,
+      "onlyListedPromptsChanged": true,
+      "promptsNeutral": true,
+      "audioMeaningAndPolarityNotLeaked": true,
+      "sceneAndReferentsPreserved": true,
+      "englishTasksIntrosModesFeedbackUnchanged": true,
+      "boundariesAndWordContactsPreserved": true
+    },
+    "verdict_reason": "The prompt preserves the host referent without revealing `is here` or positive polarity.",
+    "priorFullReviewRetained": true
+  },
+  "retainedSourceSha256": "d630f942bba5f49f0c525d8f6e5a75418be0196b6dc2212297bd242e0ac8c907"
+}

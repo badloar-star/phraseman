@@ -1,0 +1,343 @@
+{
+  "sourceSha256": "6d15551c83a2a8c04931eae5084b2e05a634d502c484786ac353c6f51e3b96c8",
+  "reviewer": "/root/s23_blind",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "It is a spoon."
+    },
+    {
+      "step": 2,
+      "answer": "Are they forks?"
+    },
+    {
+      "step": 3,
+      "answer": "They are cups."
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "spoon"
+    },
+    {
+      "step": 2,
+      "answer": "spoon"
+    },
+    {
+      "step": 3,
+      "answer": "fork"
+    },
+    {
+      "step": 4,
+      "answer": "fork"
+    },
+    {
+      "step": 5,
+      "answer": "It is a spoon."
+    },
+    {
+      "step": 6,
+      "answer": "spoons"
+    },
+    {
+      "step": 7,
+      "answer": "cup"
+    },
+    {
+      "step": 8,
+      "answer": "cup"
+    },
+    {
+      "step": 9,
+      "answer": "Are they forks?"
+    },
+    {
+      "step": 10,
+      "answer": "bowls"
+    },
+    {
+      "step": 11,
+      "answer": "They are not cups."
+    },
+    {
+      "step": 12,
+      "answer": "a cup"
+    },
+    {
+      "step": 13,
+      "answer": "forks"
+    },
+    {
+      "step": 14,
+      "answer": {
+        "cups": "чашки",
+        "spoons": "ложки",
+        "forks": "вилки",
+        "bowls": "миски"
+      }
+    },
+    {
+      "step": 15,
+      "answer": "They are bowls."
+    },
+    {
+      "step": 16,
+      "answer": "a fork"
+    },
+    {
+      "step": 17,
+      "answer": "They are cups."
+    }
+  ],
+  "confusion": [],
+  "impossible_tasks": [],
+  "learned_new": [
+    "Могу сказать, что один предмет: It is a spoon/cup/fork.",
+    "Могу сказать, что несколько предметов: They are spoons/cups/forks.",
+    "Могу спросить о нескольких предметах: Are they forks?",
+    "Могу сказать They are not cups.",
+    "Понимаю разницу между одной вещью с a и несколькими вещами с -s."
+  ],
+  "felt_alive": [
+    "Разбор кухонных вещей в ящике и на полках даёт понятную причину называть предметы и уточнять, что внутри."
+  ],
+  "would_continue": "да: за короткое время я получил несколько понятных фраз и применил их разными способами.",
+  "verdict": "PASS",
+  "verdict_reason": "Сессия полностью проходима по показанному тексту, новые формы сразу применяются в понятной общей ситуации, и ни один правильный ответ не требует скрытого знания.",
+  "actualAudio": "NOT_REVIEWED",
+  "receiptNormalization": "all3introAnswers/all17practiceAnswers mapped to canonical names; task14 uses separately returned boardobjectEnglishToRU.",
+  "confirmed_concrete_issues": [],
+  "reassessment": "Bowl prerequisite missing from root packet clarified: admitted S22 return, with current task gloss. No reproduced specific practice defect.",
+  "reviewHistory": [
+    {
+      "sourceSha256": "2040d5dfb703f1e540e220c1823a54a6a1bc3dc9d22bea82da778f9aeb65f48a",
+      "reviewer": "/root/s23_blind",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "introAnswers": [
+        {
+          "step": 1,
+          "answer": "It is a spoon."
+        },
+        {
+          "step": 2,
+          "answer": "Are they forks?"
+        },
+        {
+          "step": 3,
+          "answer": "They are cups."
+        }
+      ],
+      "practiceAnswers": [
+        {
+          "step": 1,
+          "answer": "spoon"
+        },
+        {
+          "step": 2,
+          "answer": "spoon"
+        },
+        {
+          "step": 3,
+          "answer": "fork"
+        },
+        {
+          "step": 4,
+          "answer": "fork"
+        },
+        {
+          "step": 5,
+          "answer": "It is a spoon."
+        },
+        {
+          "step": 6,
+          "answer": "spoons"
+        },
+        {
+          "step": 7,
+          "answer": "cup"
+        },
+        {
+          "step": 8,
+          "answer": "cup"
+        },
+        {
+          "step": 9,
+          "answer": "Are they forks?"
+        },
+        {
+          "step": 10,
+          "answer": "bowls"
+        },
+        {
+          "step": 11,
+          "answer": "They are not cups."
+        },
+        {
+          "step": 12,
+          "answer": "a cup"
+        },
+        {
+          "step": 13,
+          "answer": "forks"
+        },
+        {
+          "step": 14,
+          "answer": {
+            "cups": "чашки",
+            "spoons": "ложки",
+            "forks": "вилки",
+            "bowls": "миски"
+          }
+        },
+        {
+          "step": 15,
+          "answer": "They are bowls."
+        },
+        {
+          "step": 16,
+          "answer": "a fork"
+        },
+        {
+          "step": 17,
+          "answer": "They are cups."
+        }
+      ],
+      "confusion": [
+        {
+          "step": 10,
+          "issue": "bowl/bowls first appears in task; gloss allows answer but feels unexpected rather than learned."
+        }
+      ],
+      "impossible_tasks": [],
+      "learned_new": [
+        "Name singular/plural spoons,cups,forks; ask Are they forks?; negate They are not cups."
+      ],
+      "felt_alive": [
+        "Kitchen sorting scene gives reason to name/ask."
+      ],
+      "would_continue": "нет: я понял материал, но середина сессии слишком однообразно повторяет ящик, полку и одни и те же конструкции.",
+      "verdict": "REVISE",
+      "verdict_reason": "Все задания решаемы по материалу страницы, но новое bowl/bowls встроено в упражнение без нормального введения, а повторяющиеся бытовые декорации быстро утомляют.",
+      "actualAudio": "NOT_REVIEWED",
+      "receiptNormalization": "all3introAnswers/all17practiceAnswers mapped to canonical names; task14 uses separately returned boardobjectEnglishToRU."
+    },
+    {
+      "sourceSha256": "2040d5dfb703f1e540e220c1823a54a6a1bc3dc9d22bea82da778f9aeb65f48a",
+      "reviewer": "/root/s23_blind",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "introAnswers": [
+        {
+          "step": 1,
+          "answer": "It is a spoon."
+        },
+        {
+          "step": 2,
+          "answer": "Are they forks?"
+        },
+        {
+          "step": 3,
+          "answer": "They are cups."
+        }
+      ],
+      "practiceAnswers": [
+        {
+          "step": 1,
+          "answer": "spoon"
+        },
+        {
+          "step": 2,
+          "answer": "spoon"
+        },
+        {
+          "step": 3,
+          "answer": "fork"
+        },
+        {
+          "step": 4,
+          "answer": "fork"
+        },
+        {
+          "step": 5,
+          "answer": "It is a spoon."
+        },
+        {
+          "step": 6,
+          "answer": "spoons"
+        },
+        {
+          "step": 7,
+          "answer": "cup"
+        },
+        {
+          "step": 8,
+          "answer": "cup"
+        },
+        {
+          "step": 9,
+          "answer": "Are they forks?"
+        },
+        {
+          "step": 10,
+          "answer": "bowls"
+        },
+        {
+          "step": 11,
+          "answer": "They are not cups."
+        },
+        {
+          "step": 12,
+          "answer": "a cup"
+        },
+        {
+          "step": 13,
+          "answer": "forks"
+        },
+        {
+          "step": 14,
+          "answer": {
+            "cups": "чашки",
+            "spoons": "ложки",
+            "forks": "вилки",
+            "bowls": "миски"
+          }
+        },
+        {
+          "step": 15,
+          "answer": "They are bowls."
+        },
+        {
+          "step": 16,
+          "answer": "a fork"
+        },
+        {
+          "step": 17,
+          "answer": "They are cups."
+        }
+      ],
+      "confusion": [],
+      "impossible_tasks": [],
+      "learned_new": [
+        "Могу назвать один предмет через It is a ...",
+        "Могу назвать несколько предметов через They are ...",
+        "Могу задать вопрос о нескольких предметах через Are they ...?",
+        "Могу построить отрицание They are not ...",
+        "Понимаю, что несколько обычных предметов называются словом с -s."
+      ],
+      "felt_alive": [
+        "Один общий разбор кухонных вещей у ящика и полок даёт понятную ситуацию: мы распаковываем, называем и уточняем вещи."
+      ],
+      "would_continue": "да: короткая сессия даёт мне рабочие фразы, а задания меняют способ ответа — услышать, собрать, вставить и сказать.",
+      "verdict": "PASS",
+      "verdict_reason": "Все ответы выводятся из показанного материала или явной подсказки в текущем задании, а единая сцена понятна и даёт причину говорить.",
+      "actualAudio": "NOT_REVIEWED",
+      "receiptNormalization": "all3introAnswers/all17practiceAnswers mapped to canonical names; task14 uses separately returned boardobjectEnglishToRU.",
+      "confirmed_concrete_issues": [],
+      "reassessment": "Bowl prerequisite missing from root packet clarified: admitted S22 return, with current task gloss. No reproduced specific practice defect."
+    }
+  ]
+}

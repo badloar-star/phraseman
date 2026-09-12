@@ -1,0 +1,129 @@
+{
+  "sourceSha256": "3502df9d49a80804fa5b9fb33643f6e82cc65c2212c9a743fc8b762e46e15d80",
+  "verdict": "PASS",
+  "reviewScope": "L3S2/L3S3 phonetic feedback delta only; prior full reviews retained, not rerun",
+  "actualReceipt": "content/learning-v2-course/judgements/2026-09-09_l03_s02_s03_phonetic_delta.json",
+  "priorFullReview": {
+    "sourceSha256": "6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b",
+    "introAnswers": [
+      {
+        "step": 1,
+        "answer": "It is a sofa."
+      },
+      {
+        "step": 2,
+        "answer": "It is a bed."
+      },
+      {
+        "step": 3,
+        "answer": "It is a desk."
+      }
+    ],
+    "practiceAnswers": [
+      {
+        "step": 1,
+        "answer": "Acknowledged: sofa — диван."
+      },
+      {
+        "step": 2,
+        "answer": "sofa"
+      },
+      {
+        "step": 3,
+        "answer": "Acknowledged: bed — кровать."
+      },
+      {
+        "step": 4,
+        "answer": "bed"
+      },
+      {
+        "step": 5,
+        "answer": "It is a sofa."
+      },
+      {
+        "step": 6,
+        "answer": "Acknowledged: desk — письменный стол."
+      },
+      {
+        "step": 7,
+        "answer": "desk"
+      },
+      {
+        "step": 8,
+        "answer": "Is it a desk?"
+      },
+      {
+        "step": 9,
+        "answer": "It is a table."
+      },
+      {
+        "step": 10,
+        "answer": "It is not a bed."
+      },
+      {
+        "step": 11,
+        "answer": {
+          "sofa": "диван",
+          "desk": "письменный стол",
+          "bed": "кровать",
+          "table": "стол"
+        }
+      },
+      {
+        "step": 12,
+        "answer": "is a"
+      },
+      {
+        "step": 13,
+        "answer": "It is a desk."
+      },
+      {
+        "step": 14,
+        "answer": "is"
+      },
+      {
+        "step": 15,
+        "answer": "Is it heavy?"
+      },
+      {
+        "step": 16,
+        "answer": "It is a bed."
+      },
+      {
+        "step": 17,
+        "answer": "Is it a sofa?"
+      }
+    ],
+    "confusions": [],
+    "verdict": "PASS",
+    "answerComparison": {
+      "intro": 3,
+      "practice": 17,
+      "matched": true,
+      "scope": "text only; current absolute-path private projection"
+    }
+  },
+  "deltaReview": {
+    "session": "s02",
+    "baseHashes": {
+      "ru": "6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b",
+      "uk": "3f23911b2e4fce6a9450812fbb1bd3d5a2b7fb414adbe9b0187b463f2495562c"
+    },
+    "currentHashes": {
+      "ru": "3502df9d49a80804fa5b9fb33643f6e82cc65c2212c9a743fc8b762e46e15d80",
+      "uk": "dc39d7f1513d4cb1dd6429ab22032d0574c57ecd5647a45597227cc08412b894"
+    },
+    "diffReviewed": "One red/bed feedback line in each locale",
+    "rolesCovered": {
+      "reader": "PASS",
+      "pedagogy": "PASS",
+      "nonsense": "PASS",
+      "taste": "PASS",
+      "native": "PASS"
+    },
+    "englishAnswersInvariant": true,
+    "contractEvidence": "9 intro choices, 32 practice-contract items unchanged; RU/UK 122 backtick spans identical in order",
+    "tasteEvidence": "Intro and humor unchanged; all prior humor.examples and best_lines remain exact source substrings",
+    "retainPriorFullTaste": true
+  }
+}

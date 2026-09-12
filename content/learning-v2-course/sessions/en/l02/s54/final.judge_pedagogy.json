@@ -1,0 +1,55 @@
+{
+  "sourceSha256": "6fcf2709637ea1ef51aebc8acf5a94ac13110eb22785c28f66513ef295861644",
+  "verdict": "PASS",
+  "issues": [],
+  "checks": {
+    "tasks": 17,
+    "introLengths": [
+      272,
+      260,
+      266
+    ],
+    "newWordChains": {
+      "landlord": [
+        1,
+        2,
+        3
+      ],
+      "rent": [
+        4,
+        5,
+        6
+      ]
+    },
+    "returnContacts": {
+      "flat": [
+        7,
+        8,
+        10,
+        16
+      ],
+      "price": [
+        10,
+        12
+      ],
+      "rules": [
+        9,
+        10,
+        14
+      ]
+    },
+    "builders": [
+      3,
+      6,
+      9,
+      13,
+      17
+    ],
+    "singleAnswerAndFeedback": true,
+    "neutralListeningPrompts": true,
+    "supportFades": true,
+    "finalIndependent": true,
+    "unknownTargets": []
+  },
+  "note": "Текстовая педагогическая проверка пройдена; фактическое качество аудио не оценивалось."
+}

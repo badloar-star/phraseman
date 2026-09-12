@@ -1,0 +1,15 @@
+{
+  "session": "en/l03/s05",
+  "converged": true,
+  "needsHumanReview": false,
+  "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+  "localeSha256": {
+    "uk": "7bdfa4d0950e6389974b3c632d006b94dfb4a47d4a7bb2a8747a2b81ac4980be"
+  },
+  "locales": {
+    "uk": "PASS"
+  },
+  "reviewedAt": "2026-09-08T19:24:09.082845+00:00",
+  "appExportCompatibility": "INCOMPATIBLE_UNRESOLVED",
+  "completionScope": "RU+UK independently reviewed for local preview only; app pairId export unresolved; other six locales/audio/browser review pending"
+}

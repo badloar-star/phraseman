@@ -33,7 +33,7 @@
           "ru": "Вставьте слово — вам нужна дорога до вокзала",
           "uk": "Вставте слово — вам потрібна дорога до вокзалу"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ is the station?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-21:i01:r1",
@@ -51,7 +51,7 @@
         "testedDimension": "Вставьте слово — вам нужна дорога до вок",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-21:i01:r1",
+            "responseId": "en:lesson-02:session-21:i01:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вам нужна дорога до вок",
             "feedbackByLocale": {
@@ -60,7 +60,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-21:i01:r2",
+            "responseId": "en:lesson-02:session-21:i01:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вам нужна дорога до вок",
             "feedbackByLocale": {
@@ -102,7 +102,7 @@
           "ru": "Вставьте слово — на табло слово, которого вы не знаете, и вы просите объяснить",
           "uk": "Вставте слово — на табло слово, якого ви не знаєте, і ви просите пояснити"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ is this?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-21:i02:r1",
@@ -120,7 +120,7 @@
         "testedDimension": "Вставьте слово — на табло слово, которог",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-21:i02:r1",
+            "responseId": "en:lesson-02:session-21:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — на табло слово, которог",
             "feedbackByLocale": {
@@ -129,7 +129,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-21:i02:r2",
+            "responseId": "en:lesson-02:session-21:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — на табло слово, которог",
             "feedbackByLocale": {
@@ -181,7 +181,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «где",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-21:i03:r1",
+            "responseId": "en:lesson-02:session-21:i03:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «где",
             "feedbackByLocale": {
@@ -272,7 +272,7 @@
         "testedDimension": "Вставьте слово — магазины где-то дальше ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-21:i05:r1",
+            "responseId": "en:lesson-02:session-21:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — магазины где-то дальше ",
             "feedbackByLocale": {
@@ -281,7 +281,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-21:i05:r2",
+            "responseId": "en:lesson-02:session-21:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — магазины где-то дальше ",
             "feedbackByLocale": {
@@ -333,7 +333,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «ули",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-21:i06:r1",
+            "responseId": "en:lesson-02:session-21:i06:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «ули",
             "feedbackByLocale": {
@@ -393,7 +393,7 @@
         "testedDimension": "Вставьте слово — улица одна, и вам нужно",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-21:i07:r1",
+            "responseId": "en:lesson-02:session-21:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — улица одна, и вам нужно",
             "feedbackByLocale": {
@@ -402,7 +402,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-21:i07:r2",
+            "responseId": "en:lesson-02:session-21:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — улица одна, и вам нужно",
             "feedbackByLocale": {
@@ -564,7 +564,7 @@
         "testedDimension": "Вставьте слово — вокзал прячется за тем ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-21:i10:r1",
+            "responseId": "en:lesson-02:session-21:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вокзал прячется за тем ",
             "feedbackByLocale": {
@@ -573,7 +573,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-21:i10:r2",
+            "responseId": "en:lesson-02:session-21:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вокзал прячется за тем ",
             "feedbackByLocale": {
@@ -633,7 +633,7 @@
         "testedDimension": "Вставьте слово — идти две минуты, вокзал",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-21:i11:r1",
+            "responseId": "en:lesson-02:session-21:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — идти две минуты, вокзал",
             "feedbackByLocale": {
@@ -642,7 +642,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-21:i11:r2",
+            "responseId": "en:lesson-02:session-21:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — идти две минуты, вокзал",
             "feedbackByLocale": {
@@ -748,7 +748,7 @@
           "ru": "Вставьте слово — вы у входа, магазины дальше в конце коридора",
           "uk": "Вставте слово — ви біля входу, крамниці далі в кінці коридору"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ are the shops?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-21:i14:r1",
@@ -766,7 +766,7 @@
         "testedDimension": "Вставьте слово — вы у входа, магазины да",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-21:i14:r1",
+            "responseId": "en:lesson-02:session-21:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы у входа, магазины да",
             "feedbackByLocale": {
@@ -775,7 +775,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-21:i14:r2",
+            "responseId": "en:lesson-02:session-21:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы у входа, магазины да",
             "feedbackByLocale": {
@@ -933,5 +933,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c527259da4297b442288590f45750ae9830f292a56f9f0606fdef7780f5cf707"
+  "learnerFingerprint": "4112668ac2b2f56ed9a7ec1365169df0231946fcdb26c418bf8a434414fda1cd"
 }

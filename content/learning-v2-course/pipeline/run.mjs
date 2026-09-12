@@ -22,7 +22,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { REQUIRED_JUDGES, judgeIssues } from "./session_readiness.mjs";
+import { bindTasteReceiptToSource, isWellFormedBeShortAnswer, sessionIdFromDirectory, shortAnswerConstructionFacts, sourceSha256 } from "./owner_quality.mjs";
+import { judgeIssues, requiredJudgesForSession } from "./session_readiness.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -255,9 +256,36 @@ const PHRASE_BUILD_FROM_SESSION = 31;
 // зачем: сколько сборок могут делить один скелет. Больше — ученик собирает одно
 // и то же и правила не чувствует (владелец 07.09).
 const PHRASE_SAME_SKELETON_MAX = 2;
-const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|МАЛО СБОРКИ ФРАЗЫ|ОДНООБРАЗНЫЕ СБОРКИ|ПОВТОР СБОРКИ ДОСЛОВНО|IS С МНОЖЕСТВЕННЫМ/;
+export const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|МАЛО СБОРКИ ФРАЗЫ|ОДНООБРАЗНЫЕ СБОРКИ|ПОВТОР СБОРКИ ДОСЛОВНО|ФИНАЛ ПОДСКАЗАН|IS С МНОЖЕСТВЕННЫМ|КОРОТКИЙ ОТВЕТ БЕЗ ОШИБКИ КОНСТРУКЦИИ|ПАРЫ НИЖЕ СТУПЕНИ|ДИСТРАКТОРЫ НИЖЕ СТУПЕНИ|ПОВТОР СЛОВ МЕЖДУ ДОСКАМИ|ДУБЛИ В ДОСКЕ|МАЛО ЗАДАНИЙ|НЕРАЗРЕШЁННАЯ МЕХАНИКА|КАРТОЧКА БЕЗ НОВОГО СЛОВА/;
 
-function machineFacts(file) {
+function finalBuilderPromptedByPreviousVoice(text, file) {
+  const scope = String(file).match(/[\\\/]sessions[\\\/]en[\\\/]l(\d+)[\\\/]s(\d+)[\\\/]/i);
+  if (!scope) return null;
+  const lesson = Number(scope[1]);
+  const session = Number(scope[2]);
+  if (lesson < 2 || (lesson === 2 && session < 37)) return null;
+
+  const practice = (text.split(/^## Практика[^\n]*$/m)[1] ?? "").split(/^## Для сборщика/m)[0];
+  const tasks = practice.split(/^\*\*(?=\d+ · )/m).slice(1).map((chunk) => ({
+    number: Number(/^(\d+) · /.exec(chunk)?.[1]),
+    chunk,
+  })).filter((task) => Number.isInteger(task.number));
+  if (tasks.length < 2) return null;
+
+  const modesBlock = /^modes:\s*([\s\S]*?)(?:\n\s*\n|$)/m.exec(text)?.[1] ?? "";
+  const modes = new Map([...modesBlock.matchAll(/(\d+)\s*=\s*([a-z_]+)/g)].map((m) => [Number(m[1]), m[2]]));
+  const previous = tasks[tasks.length - 2];
+  const final = tasks[tasks.length - 1];
+  if (modes.get(previous.number) !== "scripted_repeat_compare" || modes.get(final.number) !== "phrase_builder") return null;
+
+  const spoken = /🎙\s*\*\*([^*\r\n]+)\*\*/.exec(previous.chunk)?.[1]?.trim();
+  const built = /→\s*\*\*([^*\r\n]+)\*\*/.exec(final.chunk)?.[1]?.trim();
+  if (!spoken || !built) return null;
+  const normalize = (value) => value.normalize("NFKC").toLocaleLowerCase("en").replace(/[‘’]/g, "'").replace(/[^\p{L}\p{N}']+/gu, " ").trim();
+  return normalize(spoken) === normalize(built) ? { previous: previous.number, final: final.number, target: built } : null;
+}
+
+export function machineFacts(file) {
   const text = read(file);
   // зачем: владелец — «давай рассматривать каждую сессию как отдельную, юзер
   // может начать с A2 и не читал предыдущего». Отсылки к прошлому опыту
@@ -277,6 +305,8 @@ function machineFacts(file) {
   const ret = /\*\*Возвращаются:\*\*\s*(.+)/.exec(text)?.[1] ?? "";
   const practice = text.split(/^## Практика/m)[1] ?? "";
   const facts = [];
+  const ownerScope = sessionIdFromDirectory(path.dirname(file));
+  facts.push(...shortAnswerConstructionFacts(text, ownerScope));
   // зачем: длину автор на глаз не выдерживает (12 страниц из 21 вне нормы) —
   // считаем машинно и отдаём редактору, иначе подгонка ложится на человека
   const introPages = introPart.split(new RegExp("^## Интро \\d+", "m")).slice(1);
@@ -294,13 +324,7 @@ function machineFacts(file) {
   // Уроки 1-2 заморожены — они написаны до правила и переписывать их не велено.
   const lessonFromPath = Number((String(file).match(/[\\\/]l(\d+)[\\\/]/) || [])[1] || 0);
   if (lessonFromPath > 2) {
-    const d = difficultyLadder(lessonFromPath);
-    const taskCount = (practice.match(/^\*\*\d+ · /gm) || []).length;
-    if (taskCount && taskCount < d.tasks) facts.push(`НАГРУЗКА НИЖЕ СТУПЕНИ: заданий ${taskCount}, урок ${lessonFromPath} требует ${d.tasks}`);
-    for (const m of practice.matchAll(/Speed Match,\s*(\d+)\s*пар/g)) {
-      const got = Number(m[1]);
-      if (got < d.pairs) facts.push(`НАГРУЗКА НИЖЕ СТУПЕНИ: пар в Speed Match ${got}, урок ${lessonFromPath} требует ${d.pairs}`);
-    }
+    facts.push(...difficultyFacts(text, lessonFromPath));
   }
   // СВЯЗКА КАК ОДИН ЗВУК: «price начинается с п» — там «пр», а не «п».
   const clusterWords = { price: "пр", street: "стр", plain: "пл", train: "тр", bread: "бр", bridge: "бр", crowded: "кр", pretty: "пр", school: "ск" };
@@ -339,6 +363,14 @@ function machineFacts(file) {
   }
   const v = validateModes(file);
   facts.push(`заданий: ${v.taskCount ?? "?"}; механики вне списка: ${v.unknown?.length ? v.unknown.map(([n, f]) => `${n}=${f}`).join(", ") : "нет"}`);
+  // зачем: забракованный вариант S37 закончил независимой сборкой Whose is it?,
+  // но задание прямо перед ней уже велело повторить Whose is it? вслух. Ученик
+  // не извлекал фразу — переносил готовый ответ с соседнего экрана. Блокируем
+  // только этот точный voice → final builder copy; раннее извлечение законно.
+  const promptedFinal = finalBuilderPromptedByPreviousVoice(text, file);
+  if (promptedFinal) {
+    facts.push(`ФИНАЛ ПОДСКАЗАН: задание ${promptedFinal.previous} уже показывает «${promptedFinal.target}» в scripted_repeat_compare прямо перед финальной сборкой ${promptedFinal.final} — финал должен требовать самостоятельного извлечения`);
+  }
   // зачем: владелец 07.09 — «задания собрать фразу из кусочков должны встречаться
   // чаще, это хорошее задание». Замер по 83 сессиям дал 3,1 в среднем и 0–2 в
   // 24 сессиях. Правило в промпте автор игнорировал так же, как длину интро,
@@ -746,7 +778,7 @@ const PERSONAS = [
 // 4 пары, 1.8 слова в ответе) — курс шёл плоско.
 // Решения владельца: шкала по номеру УРОКА (внутри урока ровно, ступень
 // между уроками); уроки 1-2 не трогаем, лестница начинается с урока 3.
-function difficultyLadder(lesson) {
+export function difficultyLadder(lesson) {
   const L = Number(lesson) || 1;
   // ступени подобраны так, чтобы соседние уроки отличались незаметно,
   // а урок 1 и урок 32 — принципиально
@@ -758,9 +790,72 @@ function difficultyLadder(lesson) {
     distractors: step([[2, 2], [8, 2], [18, 3], [32, 4]]),
     answerWords: step([[2, "1-3"], [6, "2-4"], [16, "3-5"], [32, "4-7"]]),
     tasks: step([[2, 17], [10, 17], [20, 19], [32, 21]]),
-    mechanicRepeat: step([[2, 1], [8, 1], [18, 2], [32, 3]]),
-    mechanicVariety: step([[2, 8], [12, 8], [24, 9], [32, 10]]),
+    boardTarget: step([[2, 1], [8, 1], [18, 2], [32, 3]]),
+    allowedSourceTypes: 8,
   };
+}
+
+// Count authored payloads rather than numbers claimed in task headings.
+// Numeric phrase/task/board targets guide the editor; they must not create filler.
+export function difficultyFacts(text, lesson) {
+  const d = difficultyLadder(lesson);
+  if (d.frozen) return [];
+  const practice = (text.split(/^## Практика[^\n]*$/m)[1] ?? "").split(/^## Для сборщика/m)[0];
+  const modesBlock = /^modes:\s*([\s\S]*?)(?:\n\s*\n|$)/m.exec(text)?.[1] ?? "";
+  const modes = new Map([...modesBlock.matchAll(/(\d+)\s*=\s*([a-z_]+)/g)].map(m => [Number(m[1]), m[2]]));
+  const allowed = new Set(["word_card", "listen_choose", "context_gap_grammar", "phrase_builder", "speed_match", "sound_contrast", "scripted_repeat_compare", "listen_build_dictation"]);
+  const normalize = value => value.normalize("NFKC").toLowerCase().replace(/[‘’]/g, "'").replace(/[^\p{L}\p{N}']+/gu, " ").trim().replace(/\s+/g, " ");
+  const tasks = practice.split(/^\*\*(?=\d+ · )/m).slice(1);
+  const facts = [];
+  if (tasks.length < 12) facts.push(`МАЛО ЗАДАНИЙ: ${tasks.length}, минимум 12`);
+  if (tasks.length !== d.tasks) facts.push(`ОРИЕНТИР ЗАДАНИЙ: ${tasks.length}, целевой объём ${d.tasks}; оценить learning delta без filler`);
+  const newWords = /\*\*(?:Новые слова|Нові слова):\*\*\s*([^\r\n]+)/.exec(text)?.[1]?.trim() ?? "";
+  const hasNewWords = !/^(?:[—–-]|нет|немає|none|0)?\s*[.]?$/i.test(newWords);
+  const boardTargets = new Set();
+  const phraseTargets = new Set();
+  let boards = 0;
+  for (const task of tasks) {
+    const ordinal = Number(/^(\d+)/.exec(task)?.[1]);
+    const family = modes.get(ordinal);
+    if (!allowed.has(family)) {
+      facts.push(`НЕРАЗРЕШЁННАЯ МЕХАНИКА: задание ${ordinal}, ${family ?? "не указана"}`);
+      continue;
+    }
+    if (family === "word_card" && !hasNewWords) facts.push(`КАРТОЧКА БЕЗ НОВОГО СЛОВА: задание ${ordinal}`);
+    const body = task.slice(task.indexOf("**") + 2);
+    if (family === "speed_match") {
+      boards++;
+      const line = body.split("\n").find(x => /·/.test(x) && /—/.test(x)) ?? "";
+      const pairs = line.split("·").map(x => x.split("—").map(y => y.replace(/[*_`]/g, "").trim())).filter(x => x[0] && x[1]);
+      const current = new Set(pairs.map(x => normalize(x[0])));
+      const meanings = new Set(pairs.map(x => normalize(x[1])));
+      if (current.size < d.pairs) facts.push(`ПАРЫ НИЖЕ СТУПЕНИ: задание ${ordinal}, ${current.size}, минимум ${d.pairs}`);
+      if (current.size !== pairs.length || meanings.size !== pairs.length) facts.push(`ДУБЛИ В ДОСКЕ: задание ${ordinal}, одинаковые видимые слова или переводы`);
+      for (const target of current) {
+        if (boardTargets.has(target)) facts.push(`ПОВТОР СЛОВ МЕЖДУ ДОСКАМИ: задание ${ordinal}, ${target}`);
+      }
+      for (const target of current) boardTargets.add(target);
+    }
+    if (["listen_choose", "context_gap_grammar"].includes(family)) {
+      const inline = /→\s*\*\*([^*\r\n]+)\*\*((?:\s*·[^\r\n]+)+)/.exec(body);
+      const wrong = inline
+        ? new Set(inline[2].split("·").map(x => normalize(x)).filter(x => x && x !== normalize(inline[1]))).size
+        : new Set([...body.matchAll(/^\s*-\s*❌\s*(.+)$/gm)].map(m => normalize(m[1].split(/\s+—\s+\*/)[0]))).size;
+      if (wrong < d.distractors) facts.push(`ДИСТРАКТОРЫ НИЖЕ СТУПЕНИ: задание ${ordinal}, ${wrong}, минимум ${d.distractors}`);
+    }
+    if (["phrase_builder", "listen_build_dictation"].includes(family)) {
+      const target = [...body.matchAll(/→\s*\*\*([^*\r\n]+)\*\*/g)].at(-1)?.[1];
+      if (target && !isWellFormedBeShortAnswer(target)) phraseTargets.add(normalize(target));
+    }
+  }
+  if (boards !== d.boardTarget) facts.push(`ОРИЕНТИР ДОСОК: ${boards}, целевая частота ${d.boardTarget}; верхнего лимита нет`);
+  const counts = [...phraseTargets].filter(Boolean).map(x => x.split(" ").length).sort((a, b) => a - b);
+  if (counts.length) {
+    const median = (counts[Math.floor((counts.length - 1) / 2)] + counts[Math.floor(counts.length / 2)]) / 2;
+    const [min, max] = d.answerWords.split("-").map(Number);
+    if (median < min || median > max) facts.push(`ОРИЕНТИР ПОЛНОЙ ФРАЗЫ: медиана ${median}, диапазон ${d.answerWords}; не удлинять короткие ответы и не добавлять filler`);
+  }
+  return facts;
 }
 
 // Текст лестницы для автора: он должен видеть ЧИСЛА, а не «пиши сложнее».
@@ -769,13 +864,13 @@ function ladderBrief(lesson) {
   if (d.frozen) return "Урок 1-2 — начало курса, нагрузка базовая: 17 заданий, 4 пары в Speed Match, 2 неверных варианта, ответы в 1-3 слова.";
   return [
     `Урок ${d.lesson} — ступень сложности:`,
-    `- заданий: ${d.tasks}`,
+    `- ориентир заданий: ${d.tasks}; минимум 12, повтор ради счётчика запрещён`,
     `- пар в каждом Speed Match: ${d.pairs}`,
     `- неверных вариантов в заданиях с выбором: ${d.distractors}`,
-    `- длина правильного ответа: ${d.answerWords} слова`,
-    `- одна механика может повторяться до ${d.mechanicRepeat} раз за сессию, КАЖДЫЙ раз на своём наборе слов (пересечение наборов запрещено)`,
-    `- разных механик за сессию: не меньше ${d.mechanicVariety}`,
-    "Это НЕ потолок качества, а нижняя планка нагрузки: курс обязан становиться труднее, а не топтаться на месте.",
+    `- ориентир медианы уникальных полных фраз в сборках: ${d.answerWords} слова; короткие ответы исключены`,
+    `- ориентир досок Speed Match: ${d.boardTarget}; это не верхний лимит; слова разных досок не пересекаются`,
+    `- только ${d.allowedSourceTypes} существующих source-типов; word_card применима только с новым словом, обязательной квоты разнообразия нет`,
+    "Числа пар и неверных вариантов — обязательный минимум. Остальные ориентиры оцениваются педагогом без filler и без новых режимов.",
   ].join(String.fromCharCode(10));
 }
 
@@ -851,12 +946,16 @@ function stageJudge(S, ctx, plan, row, known, file, only = null) {
     const cacheFile = path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.json`);
     // зачем: вердикт по неизменившемуся файлу не пересуживаем — экономия
     // после обрыва по лимиту (один вызов судьи ≈ $0.31)
-    const verdictFresh = exists(cacheFile) && fs.statSync(cacheFile).mtimeMs >= fs.statSync(file).mtimeMs;
+    let verdictFresh = exists(cacheFile) && fs.statSync(cacheFile).mtimeMs >= fs.statSync(file).mtimeMs;
     if (exists(cacheFile) && !verdictFresh) LOG(`   ${name}: кэш вердикта устарел (файл правился позже) — сужу заново`);
     if (verdictFresh) {
       try {
         const cached = JSON.parse(read(cacheFile));
-        if (cached.verdict) {
+        if (name === "judge_taste" && cached.sourceSha256 !== sourceSha256(file)) {
+          verdictFresh = false;
+          LOG(`   ${name}: кэш не связан с актуальным SHA-256 текста — сужу заново`);
+        }
+        if (verdictFresh && cached.verdict) {
           LOG(`   ${name}: из кэша — ${cached.verdict}`);
           out[name] = cached;
           continue;
@@ -877,6 +976,7 @@ function stageJudge(S, ctx, plan, row, known, file, only = null) {
       WARN(`${name}: ${e.message}; вердикт взят из текста ответа — ${verdict}`);
       j = { verdict, verdict_reason: "JSON повреждён, вердикт прочитан из текста ответа", raw: text };
     }
+    if (name === "judge_taste") j = bindTasteReceiptToSource(j, file);
     out[name] = j;
     write(path.join(S.dir, `${path.basename(file, ".ru.md")}.${name}.json`), JSON.stringify(j, null, 2));
     LOG(`   ${name}: ${j.verdict} — ${j.verdict_reason}`);
@@ -1162,7 +1262,7 @@ function main() {
     const fullV = { ...stageJudgeStable(S, ctx, plan, row, known, best.f, ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader"]), judge_taste: best.taste };
     let cur = { f: best.f, v: fullV, s: score(fullV) };
     const openFacts = (f) => machineFacts(f).split(String.fromCharCode(10)).filter((l) => HARD_FACT_RE.test(l));
-    for (let round = 1; round <= 2 && (judgeIssues(cur.v).length || openFacts(cur.f).length); round++) {
+    for (let round = 1; round <= 2 && (judgeIssues(cur.v, SESSION).length || openFacts(cur.f).length); round++) {
       const facts = openFacts(cur.f);
       LOG(`круг правки ${round}: ${path.basename(cur.f)} (${cur.s}/6, открытых фактов ${facts.length})`);
       if (facts.length) for (const ff of facts) LOG(`   факт: ${ff}`);
@@ -1189,13 +1289,14 @@ function main() {
       write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blockedBy: "machine_facts", facts: hardFacts, at: new Date().toISOString() }, null, 2));
       return;
     }
-    const blocked = Object.entries(cur.v).filter(([role, j]) => REQUIRED_JUDGES.includes(role) && j?.verdict === "BLOCK");
+    const requiredJudges = requiredJudgesForSession(SESSION);
+    const blocked = Object.entries(cur.v).filter(([role, j]) => requiredJudges.includes(role) && j?.verdict === "BLOCK");
     if (blocked.length) {
       WARN(`СТОП перед локализацией: ${blocked.map(([n, j]) => `${n} — ${j.verdict_reason}`).join(" | ")}`);
       write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: cur.s, blocked: blocked.map(([n]) => n), locales: null, at: new Date().toISOString() }, null, 2));
       return;
     }
-    if (judgeIssues(cur.v).length) WARN("черновик не получил четыре PASS — проверю финал перед локализацией");
+    if (judgeIssues(cur.v, SESSION).length) WARN(`черновик не получил PASS всех обязательных судей (${requiredJudges.join(", ")}) — проверю финал перед локализацией`);
     publishFinal();
     // зачем: СУД ПО ФИНАЛУ. Ночью 06.09 четыре сессии несли блок, поставленный
     // по ЧЕРНОВИКУ, хотя редактор его уже исправил: s49 при пересуде дала PASS,
@@ -1207,24 +1308,24 @@ function main() {
     // прокручены ещё через 6 и 13 кругов правки. Правило было записано, но
     // держалось на дисциплине сессии. Теперь пайплайн говорит это вслух.
     {
-      const KEY = ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader"];
+      const KEY = requiredJudgesForSession(SESSION);
       const passed = KEY.filter((k) => finalV && finalV[k] && finalV[k].verdict === "PASS");
       if (passed.length === KEY.length) {
         LOG("=".repeat(60));
-        LOG("ПОРОГ ВЫПУСКА ДОСТИГНУТ: четыре ключевых судьи дали PASS.");
+        LOG(`ПОРОГ ВЫПУСКА ДОСТИГНУТ: ${KEY.length} обязательных судей дали PASS.`);
         LOG("Дальнейшие круги правки ЗАПРЕЩЕНЫ (Конституция §10).");
         const taste = finalV.judge_taste && finalV.judge_taste.verdict;
         if (taste && taste !== "PASS") LOG(`Вердикт judge_taste (${taste}) идёт в отчёт владельцу, а не в правку.`);
         LOG("Следующий шаг: localize → build_release → build_mockup → коммит.");
         LOG("=".repeat(60));
       } else {
-        LOG(`до порога выпуска: PASS у ${passed.length}/4 ключевых судей (${passed.join(", ") || "нет"})`);
+        LOG(`до порога выпуска: PASS у ${passed.length}/${KEY.length} обязательных судей (${passed.join(", ") || "нет"})`);
       }
     }
-    const finalBlocked = judgeIssues(finalV);
+    const finalBlocked = judgeIssues(finalV, SESSION);
     if (finalScore !== cur.s) LOG(`финал судился заново: было ${cur.s}/6 по черновику, стало ${finalScore}/6`);
     if (finalBlocked.length || brokenTasks.length) {
-      WARN(`СТОП перед локализацией: нет четырёх PASS или есть неоднозначные задания (${finalBlocked.join(", ")})`);
+      WARN(`СТОП перед локализацией: нет PASS всех обязательных судей или есть неоднозначные задания (${finalBlocked.join(", ")})`);
       write(path.join(S.dir, "status.json"), JSON.stringify({ session: SESSION, ru: finalScore, converged: false, needsHumanReview: true, blocked: finalBlocked, brokenTasks, locales: null, at: new Date().toISOString() }, null, 2));
       return;
     }
@@ -1267,4 +1368,4 @@ function main() {
   process.exit(2);
 }
 
-main();
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();

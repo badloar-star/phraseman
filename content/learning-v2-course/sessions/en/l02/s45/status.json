@@ -1,0 +1,15 @@
+{
+  "session": "en/l02/s45",
+  "converged": true,
+  "needsHumanReview": false,
+  "sourceSha256": "96ee682a665225bf9d2f42799a5d691314cd082096b07d8f9e8b18a5acbf58db",
+  "localeSha256": {
+    "uk": "561064aacb54af3e38811d122ea3294d545c2e84ad061dfe801896ef5274f8cc"
+  },
+  "locales": {
+    "uk": "PASS"
+  },
+  "reviewedAt": "2026-09-08T17:22:24.407740+00:00",
+  "completionScope": "RU+UK listening prompt delta independently reviewed; unchanged material retains full reviews; exact local mockup projections and fingerprints verified; six other locales, audio and browser visual review pending",
+  "mockupVerifiedAt": "2026-09-08T17:24:03.974681+00:00"
+}

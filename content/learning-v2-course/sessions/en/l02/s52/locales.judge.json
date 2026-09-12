@@ -1,0 +1,35 @@
+{
+  "sourceSha256": "93f729ebe76728216e06b366d896c6400f00f184a3555419313c288bde5bca79",
+  "localeSha256": {
+    "uk": "97ee940ab795365151e8c6ebdcf3d9ddc72970bb8f0051db8fd8e80ecf07560d"
+  },
+  "locales": {
+    "uk": {
+      "session": "S52",
+      "sourceSha256": "93f729ebe76728216e06b366d896c6400f00f184a3555419313c288bde5bca79",
+      "localeSha256": "97ee940ab795365151e8c6ebdcf3d9ddc72970bb8f0051db8fd8e80ecf07560d",
+      "verdict": "PASS",
+      "issues": [],
+      "introLengths": [
+        284,
+        274,
+        270
+      ],
+      "checks": {
+        "nativeUkrainian": true,
+        "meaningAndEnglishFactsAccurate": true,
+        "targetsOptionsAndFeedbackPreserved": true,
+        "englishTokenSequenceMatchesRussian": true,
+        "englishTokenCount": {
+          "ru": 341,
+          "uk": 341
+        },
+        "introCount": 3,
+        "practiceTaskCount": 17,
+        "humourDoesNotDistortRules": true,
+        "foreignTextFound": false,
+        "actualAudioAssessed": false
+      }
+    }
+  }
+}

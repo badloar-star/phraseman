@@ -1,0 +1,15 @@
+{
+  "sourceSha256": "926a212bf053f780b2c583192cabf2f1684da103f083d534e869c1e02a0e42f2",
+  "reviewer": "/root/l03_s07_pedagogy",
+  "reviewScope": "Fresh full pedagogical review plus targeted delta review of the three reproduced repairs. Condensed record of actual reviewer response.",
+  "plan_fidelity": {"operation_matches": true, "new_words_match": ["drawer", "cupboard", "wardrobe"], "missing": [], "extra_grammar_smuggled": []},
+  "prerequisites": {"result": "PASS", "evidence": "Targets use previously established a + noun, It is/is not and Is it…? patterns. No an, the, plural system, or other new grammar appears."},
+  "structure": {"task_count": 17, "phrase_builder_count": 4, "listen_build_dictation_count": 1, "speed_match_pairs": 4, "support_fades": true, "final_independent": true, "repeated_practice_targets": []},
+  "word_first": ["drawer: card 1 → listening 2 → builder 5", "cupboard: card 3 → listening 4 → dictation 8", "wardrobe: card 6 → listening 7 → Speed Match 10"],
+  "returns": {"lamp": [9,10], "open": [11,15], "closed": [12,13]},
+  "answers": {"single_correct_answer": true, "substitution_checks": ["It is drawer. / It a drawer.", "It are a cupboard. / It is cupboard.", "It is wardrobe. / It am a wardrobe.", "It are closed. / It am closed.", "Is is open. / Am is open.", "Are it a drawer?"], "missing_feedback": [], "duplicated_feedback": []},
+  "listening": {"instruction_leaks": [], "dictation_leaks": [], "phoneticVerification": "Separate Cambridge-based verification supplied by root reviewer", "actual_audio_reviewed": false},
+  "deltaReview": {"baseSourceSha256": "2347da9b6573df89f1c0d86164334171773dca1a60103e96214764f989a60a2a", "repairs": ["Task 10 instruction accurately describes matching meanings.", "Task 13 Is it closed? independently produces a question.", "Task 17 Is it a drawer? changes act and context and is not supplied by task 16.", "Task 7 warble/warlock have separately verified consonantal contrasts."], "newIssuesIntroduced": []},
+  "remainingIssues": [], "verdict": "PASS",
+  "verdict_reason": "The session stays within prerequisites, grounds every new word before use, preserves two contacts for each return, supplies one-answer tasks, avoids listening leaks, and now ends with varied retrieval rather than copied answers."
+}

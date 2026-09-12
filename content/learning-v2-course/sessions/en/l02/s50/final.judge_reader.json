@@ -1,0 +1,10 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "60f7b0180539de7d705dfbe0c3c343c33ab23ea1d0f510c8a8876f7eba39dd58",
+  "issues": [],
+  "verifiedDelta": {
+    "learnerFacingReplacements": 4,
+    "metadataUpdates": 1,
+    "allRequestedIssuesClosed": true
+  }
+}

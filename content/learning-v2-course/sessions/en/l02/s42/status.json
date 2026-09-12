@@ -1,0 +1,15 @@
+{
+  "session": "en/l02/s42",
+  "converged": true,
+  "needsHumanReview": false,
+  "sourceSha256": "976d4a4a7b28c67f395e67c42914e288d79bdf3d1b2a648e1526f2db366e0393",
+  "localeSha256": {
+    "uk": "a81c7ffa55b2e461cb11e17bc14fc42968dc8fe0c2c300796f5b9608bfbf9b6c"
+  },
+  "locales": {
+    "uk": "PASS"
+  },
+  "reviewedAt": "2026-09-08T14:57:26.085139+00:00",
+  "completionScope": "RU+UK tone repair independently reviewed; local mockup exact projections and fingerprints verified; other six locales/audio/browser visual review pending",
+  "mockupVerifiedAt": "2026-09-08T14:57:53.112Z"
+}

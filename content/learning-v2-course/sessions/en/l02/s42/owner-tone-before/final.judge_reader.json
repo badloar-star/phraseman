@@ -1,0 +1,56 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "3806946a79664a389c254f1484016ab24d2f933ab657d4adb25ba70e4f9cf5e3",
+  "hashMatch": true,
+  "deltaCheck": {
+    "location": "Практика 13",
+    "result": "PASS",
+    "reason": "Теперь ясно, что друг ищет организатора, а ученик обращается к другому участнику. Двусмысленного «он» и противоречия с уже известным местоположением больше нет."
+  },
+  "previousFullReviewStillApplies": true,
+  "issues": [],
+  "priorReviews": [
+    {
+      "verdict": "REVISE",
+      "sourceSha256": "0c4f7d65c344694e3a0d1e773b17c55a8b315e94eb450146eadb99f010808232",
+      "hashMatch": true,
+      "pagesUnderstood": 3,
+      "introLengths": [
+        {
+          "page": 1,
+          "length": 255,
+          "understood": true
+        },
+        {
+          "page": 2,
+          "length": 253,
+          "understood": true
+        },
+        {
+          "page": 3,
+          "length": 246,
+          "understood": true
+        }
+      ],
+      "checks": {
+        "allThreeIntrosClearOnOneRead": "PASS",
+        "oneThoughtPerIntro": "PASS",
+        "allPromptsAndFeedbackReviewed": true,
+        "singleWalkingGroupScene": "PASS",
+        "listeningPromptsDoNotRevealAnswers": "PASS",
+        "finalWelcomeQuestionRemainsIndependent": "PASS",
+        "humanNaturalText": "PASS_WITH_ONE_CLARITY_FIX"
+      },
+      "issues": [
+        {
+          "location": "Практика 13",
+          "quote": "организатор отошёл, а друг хочет задать ему вопрос; уточните, здесь ли он",
+          "kind": "неясный адресат и местоимение",
+          "why": "Не сказано, у кого нужно уточнить. «Он» приходится связывать с организатором через догадку, хотя ближайший явно названный человек — друг. Кроме того, начало уже сообщает, что организатор отошёл.",
+          "exactReplacement": "Друг хочет задать организатору вопрос, но не видит его; спросите другого участника, здесь ли организатор."
+        }
+      ],
+      "verdictReason": "Интро и почти вся практика понятны с первого чтения, а роли говорящих в аудиозаданиях обозначены ясно. Нужна одна точечная правка задания 13: текущая инструкция не называет собеседника и оставляет двусмысленное «он»."
+    }
+  ]
+}

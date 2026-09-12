@@ -1,0 +1,102 @@
+{
+  "sourceSha256": "0a9e215c0c8f1dd34a7f6757b222918944d592aa4074bc2f0938f1eb39049dfe",
+  "scope": "Blind text walkthrough. Known prior vocabulary. Transcripts substitute sound; actual audio not assessed. No answer key or feedback. Practice numbered 1 through 17.",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "It is a basket."
+    },
+    {
+      "step": 2,
+      "answer": "It is a trolley."
+    },
+    {
+      "step": 3,
+      "answer": "It is a tag."
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "Acknowledged: basket"
+    },
+    {
+      "step": 2,
+      "answer": "basket"
+    },
+    {
+      "step": 3,
+      "answer": "Acknowledged: trolley"
+    },
+    {
+      "step": 4,
+      "answer": "trolley"
+    },
+    {
+      "step": 5,
+      "answer": "A basket."
+    },
+    {
+      "step": 6,
+      "answer": "Acknowledged: tag"
+    },
+    {
+      "step": 7,
+      "answer": "tag"
+    },
+    {
+      "step": 8,
+      "answer": "It is a tag."
+    },
+    {
+      "step": 9,
+      "answer": "It is a lamp."
+    },
+    {
+      "step": 10,
+      "answer": {
+        "lamp": "лампа",
+        "trolley": "тележка",
+        "tag": "ярлык",
+        "basket": "корзина"
+      }
+    },
+    {
+      "step": 11,
+      "answer": "is"
+    },
+    {
+      "step": 12,
+      "answer": "Is it a trolley?"
+    },
+    {
+      "step": 13,
+      "answer": "not a"
+    },
+    {
+      "step": 14,
+      "answer": "Is it empty?"
+    },
+    {
+      "step": 15,
+      "answer": "It is a basket."
+    },
+    {
+      "step": 16,
+      "answer": "It is a trolley."
+    },
+    {
+      "step": 17,
+      "answer": "It is not a tag."
+    }
+  ],
+  "ambiguities": [],
+  "leaks": [],
+  "verdict": "PASS",
+  "answerComparison": {
+    "intro": 3,
+    "practice": 17,
+    "matched": true,
+    "scope": "text only; current absolute-path private projection"
+  }
+}

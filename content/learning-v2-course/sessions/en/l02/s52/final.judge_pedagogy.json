@@ -1,0 +1,6 @@
+{
+  "sourceSha256": "93f729ebe76728216e06b366d896c6400f00f184a3555419313c288bde5bca79",
+  "verdict": "PASS",
+  "issues": [],
+  "verifiedDelta": "The metadata now reports `281, 278, 267`, matching the three current intro explanation lengths exactly. No learner-facing conclusion from the preceding full PASS changes."
+}

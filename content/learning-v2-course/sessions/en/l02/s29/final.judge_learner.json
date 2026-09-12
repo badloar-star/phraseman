@@ -1,142 +1,150 @@
 {
-  "walkthrough": [
-    {
-      "step": "Интро 1 — what",
-      "what_i_understood": "What is the price? — спрашиваю цену, когда жду цифру в ответ. Начало 'What is the' не разваливается.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Интро 2 — which",
-      "what_i_understood": "Which bag? — спрашиваю про одну из уже видимых/названных вещей, а не про сумки вообще.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Интро 3 — Which one?",
-      "what_i_understood": "one заменяет уже названную вещь, когда она перед глазами и второй раз называть незачем.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 1",
-      "what_i_understood": "Услышал which, выбрал which, не спутал с cheap/price.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 2",
-      "what_i_understood": "На бирке нет цифры → жду число → what, не which и не one.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 3 — карточка one",
-      "what_i_understood": "Закрепил перевод one.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 4",
-      "what_i_understood": "После Which сразу one, а не price или what.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 5 — сборка Which street?",
-      "what_i_understood": "Собрал из двух плиток, street уже знакомое слово.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 6",
-      "what_i_understood": "Услышал cheap, не спутал со street/name.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 7",
-      "what_i_understood": "Две сумки перед глазами → which one, а не what.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 8 — сборка What is the price?",
-      "what_i_understood": "Собрал вопрос про цену из 4 плиток.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 9 — диктант Which one?",
-      "what_i_understood": "Понял, зачем лишняя плитка is: без неё фраза короче и это нормально.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 10 — карточка elegant",
-      "what_i_understood": "elegant — про внешний вид вещи, не про цену.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 11",
-      "what_i_understood": "Жду, что назовут слово (название) → What, не which/one.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 12 — пары",
-      "what_i_understood": "Свёл все 4 слова с переводами без проблем.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 13",
-      "what_i_understood": "3 евро — это дёшево, значит cheap, не elegant/street.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 14",
-      "what_i_understood": "Про внешний вид без изъянов — elegant, не cheap/name.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 15 — сборка Which one is cheap?",
-      "what_i_understood": "Собрал полный вопрос из 4 плиток.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 16 — сборка Which one is elegant?",
-      "what_i_understood": "Понял, почему What лишнее: сумки уже видны, выбор из двух.",
-      "confusion": null,
-      "could_answer_question": true
-    },
-    {
-      "step": "Задание 17 — финал",
-      "what_i_understood": "Свободно произнёс три вопроса подряд про одну и ту же сцену: выбор, цена, название.",
-      "confusion": null,
-      "could_answer_question": true
-    }
-  ],
-  "learned_new": [
-    "Различаю what (жду слово/цифру в ответ) и which (выбираю из уже видимых/названных вещей)",
-    "Знаю связку Which one? как замену Which + вещь, когда вещь уже названа",
-    "Могу собрать и понять вопросы What is the price? / What is the name? / Which one is cheap/elegant?",
-    "Слово elegant — про внешний вид, не про цену"
-  ],
-  "impossible_tasks": [],
-  "boring_or_water": [],
-  "felt_alive": [
-    "Сцена с витриной и двумя одинаковыми сумками — понятная, бытовая, легко представить",
-    "Задание 9 с лишней плиткой is — не просто механика, а реально объясняет разницу между 'Which one?' и 'Which one is cheap?'",
-    "Финал (задание 17) — логичная цепочка из трёх вопросов в одной ситуации, приятно закончить сессию"
-  ],
-  "felt_dead": [],
-  "scene_reason": "да — понятно, что я стою у витрины с двумя похожими сумками и спрашиваю у продавца сначала какая из них, потом сколько стоит, потом как называется. Каждая фраза привязана к конкретному моменту разговора.",
-  "would_continue": "да — тема понятная, объяснения без хвостов и лишних слов, задания разной сложности и в финале я реально смог сказать три фразы подряд не задумываясь",
   "verdict": "PASS",
-  "verdict_reason": "Все задания выполнимы честно, есть чёткое новое знание (what vs which vs Which one?), сцена понятна с первого раза, текст не требует опыта прошлых сессий и не содержит лишних украшательств."
+  "sourceSha256": "b4498f8ef974e979773f986c1d953bc3f234d5584196bb658d20be493cd2cc3c",
+  "scope": "Historical review plus actual bounded repair review; not a new full-session retake",
+  "previousReview": {
+    "walkthrough": [
+      {
+        "step": "Интро 1 — what",
+        "what_i_understood": "What is the price? — спрашиваю цену, когда жду цифру в ответ. Начало 'What is the' не разваливается.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Интро 2 — which",
+        "what_i_understood": "Which bag? — спрашиваю про одну из уже видимых/названных вещей, а не про сумки вообще.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Интро 3 — Which one?",
+        "what_i_understood": "one заменяет уже названную вещь, когда она перед глазами и второй раз называть незачем.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 1",
+        "what_i_understood": "Услышал which, выбрал which, не спутал с cheap/price.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 2",
+        "what_i_understood": "На бирке нет цифры → жду число → what, не which и не one.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 3 — карточка one",
+        "what_i_understood": "Закрепил перевод one.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 4",
+        "what_i_understood": "После Which сразу one, а не price или what.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 5 — сборка Which street?",
+        "what_i_understood": "Собрал из двух плиток, street уже знакомое слово.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 6",
+        "what_i_understood": "Услышал cheap, не спутал со street/name.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 7",
+        "what_i_understood": "Две сумки перед глазами → which one, а не what.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 8 — сборка What is the price?",
+        "what_i_understood": "Собрал вопрос про цену из 4 плиток.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 9 — диктант Which one?",
+        "what_i_understood": "Понял, зачем лишняя плитка is: без неё фраза короче и это нормально.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 10 — карточка elegant",
+        "what_i_understood": "elegant — про внешний вид вещи, не про цену.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 11",
+        "what_i_understood": "Жду, что назовут слово (название) → What, не which/one.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 12 — пары",
+        "what_i_understood": "Свёл все 4 слова с переводами без проблем.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 13",
+        "what_i_understood": "3 евро — это дёшево, значит cheap, не elegant/street.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 14",
+        "what_i_understood": "Про внешний вид без изъянов — elegant, не cheap/name.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 15 — сборка Which one is cheap?",
+        "what_i_understood": "Собрал полный вопрос из 4 плиток.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 16 — сборка Which one is elegant?",
+        "what_i_understood": "Понял, почему What лишнее: сумки уже видны, выбор из двух.",
+        "confusion": null,
+        "could_answer_question": true
+      },
+      {
+        "step": "Задание 17 — финал",
+        "what_i_understood": "Свободно произнёс три вопроса подряд про одну и ту же сцену: выбор, цена, название.",
+        "confusion": null,
+        "could_answer_question": true
+      }
+    ],
+    "learned_new": [
+      "Различаю what (жду слово/цифру в ответ) и which (выбираю из уже видимых/названных вещей)",
+      "Знаю связку Which one? как замену Which + вещь, когда вещь уже названа",
+      "Могу собрать и понять вопросы What is the price? / What is the name? / Which one is cheap/elegant?",
+      "Слово elegant — про внешний вид, не про цену"
+    ],
+    "impossible_tasks": [],
+    "boring_or_water": [],
+    "felt_alive": [
+      "Сцена с витриной и двумя одинаковыми сумками — понятная, бытовая, легко представить",
+      "Задание 9 с лишней плиткой is — не просто механика, а реально объясняет разницу между 'Which one?' и 'Which one is cheap?'",
+      "Финал (задание 17) — логичная цепочка из трёх вопросов в одной ситуации, приятно закончить сессию"
+    ],
+    "felt_dead": [],
+    "scene_reason": "да — понятно, что я стою у витрины с двумя похожими сумками и спрашиваю у продавца сначала какая из них, потом сколько стоит, потом как называется. Каждая фраза привязана к конкретному моменту разговора.",
+    "would_continue": "да — тема понятная, объяснения без хвостов и лишних слов, задания разной сложности и в финале я реально смог сказать три фразы подряд не задумываясь",
+    "verdict": "PASS",
+    "verdict_reason": "Все задания выполнимы честно, есть чёткое новое знание (what vs which vs Which one?), сцена понятна с первого раза, текст не требует опыта прошлых сессий и не содержит лишних украшательств."
+  },
+  "repairEvidence": "judgements/2026-09-12_audit100_final.json",
+  "readerLearnerEvidence": "judgements/2026-09-12_audit100_reader_learner_delta.json",
+  "actualAudioReviewed": false
 }

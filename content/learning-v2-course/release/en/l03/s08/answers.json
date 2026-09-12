@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-08:i01",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-08:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i02",
+    "correctText": "It is a mirror.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i03",
+    "correctText": "Is it a chair?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i04",
+    "correctText": "A basket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i05",
+    "correctText": "It is a basket.",
+    "correctResponseId": "en:lesson-03:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i07",
+    "correctText": "It is a key.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i09",
+    "correctText": "Is it a chair?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i10",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-08:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i11",
+    "correctText": "It is not a lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i12",
+    "correctText": "It is a tag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i13",
+    "correctText": "It is not a stool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i14",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-08:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i15",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i16",
+    "correctText": "Is it a mirror?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-08:i17",
+    "correctText": "It is a door.",
+    "correctResponseId": null
+  }
+]

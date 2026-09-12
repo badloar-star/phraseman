@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-43:i02:r1",
+            "responseId": "en:lesson-01:session-43:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — bad",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-43:i02:r2",
+            "responseId": "en:lesson-01:session-43:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — bad",
             "feedbackByLocale": {
@@ -247,7 +247,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-43:i05:r1",
+            "responseId": "en:lesson-01:session-43:i05:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — real",
             "feedbackByLocale": {
@@ -256,7 +256,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-43:i05:r2",
+            "responseId": "en:lesson-01:session-43:i05:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — real",
             "feedbackByLocale": {
@@ -361,7 +361,7 @@
         "testedDimension": "Вставьте слово — приятель клянётся, что ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-43:i07:r1",
+            "responseId": "en:lesson-01:session-43:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — приятель клянётся, что ",
             "feedbackByLocale": {
@@ -370,7 +370,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-43:i07:r2",
+            "responseId": "en:lesson-01:session-43:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — приятель клянётся, что ",
             "feedbackByLocale": {
@@ -430,7 +430,7 @@
         "testedDimension": "Вставьте слово — про несколько человек з",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-43:i08:r1",
+            "responseId": "en:lesson-01:session-43:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — про несколько человек з",
             "feedbackByLocale": {
@@ -439,7 +439,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-43:i08:r2",
+            "responseId": "en:lesson-01:session-43:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — про несколько человек з",
             "feedbackByLocale": {
@@ -532,7 +532,7 @@
         "testedDimension": "Вставьте слово — приятель боится, что ис",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-43:i10:r1",
+            "responseId": "en:lesson-01:session-43:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — приятель боится, что ис",
             "feedbackByLocale": {
@@ -541,7 +541,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-43:i10:r2",
+            "responseId": "en:lesson-01:session-43:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — приятель боится, что ис",
             "feedbackByLocale": {
@@ -601,7 +601,7 @@
         "testedDimension": "Вставьте слово — про одну коллегу, котор",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-43:i11:r1",
+            "responseId": "en:lesson-01:session-43:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — про одну коллегу, котор",
             "feedbackByLocale": {
@@ -610,7 +610,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-43:i11:r2",
+            "responseId": "en:lesson-01:session-43:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — про одну коллегу, котор",
             "feedbackByLocale": {
@@ -727,7 +727,7 @@
         "testedDimension": "Вставьте слово — приятель называет ваш о",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-43:i14:r1",
+            "responseId": "en:lesson-01:session-43:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — приятель называет ваш о",
             "feedbackByLocale": {
@@ -736,7 +736,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-43:i14:r2",
+            "responseId": "en:lesson-01:session-43:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — приятель называет ваш о",
             "feedbackByLocale": {
@@ -801,7 +801,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-43:i15:r1",
+            "responseId": "en:lesson-01:session-43:i15:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — ok",
             "feedbackByLocale": {
@@ -810,7 +810,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-43:i15:r2",
+            "responseId": "en:lesson-01:session-43:i15:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — ok",
             "feedbackByLocale": {

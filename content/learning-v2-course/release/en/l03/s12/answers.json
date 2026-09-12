@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-12:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i02",
+    "correctText": "vase",
+    "correctResponseId": "en:lesson-03:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i04",
+    "correctText": "clock",
+    "correctResponseId": "en:lesson-03:session-12:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i05",
+    "correctText": "A vase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i07",
+    "correctText": "radio",
+    "correctResponseId": "en:lesson-03:session-12:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i08",
+    "correctText": "An hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i09",
+    "correctText": "It is a uniform.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i11",
+    "correctText": "It is a clock.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i12",
+    "correctText": "An",
+    "correctResponseId": "en:lesson-03:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i13",
+    "correctText": "Is it a radio?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i14",
+    "correctText": "Is it an hour?",
+    "correctResponseId": "en:lesson-03:session-12:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i15",
+    "correctText": "It is not a vase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i16",
+    "correctText": "It is a clock.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-12:i17",
+    "correctText": "It is a radio.",
+    "correctResponseId": null
+  }
+]

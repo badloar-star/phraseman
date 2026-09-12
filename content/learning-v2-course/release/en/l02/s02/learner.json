@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-02:i02:r1",
+            "responseId": "en:lesson-02:session-02:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — comfortable",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-02:i02:r2",
+            "responseId": "en:lesson-02:session-02:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — comfortable",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-02:i04:r1",
+            "responseId": "en:lesson-02:session-02:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — upset",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-02:i04:r2",
+            "responseId": "en:lesson-02:session-02:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — upset",
             "feedbackByLocale": {
@@ -317,7 +317,7 @@
         "testedDimension": "Вставьте слово — сосед в куртке греет ру",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-02:i06:r1",
+            "responseId": "en:lesson-02:session-02:i06:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед в куртке греет ру",
             "feedbackByLocale": {
@@ -326,7 +326,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-02:i06:r2",
+            "responseId": "en:lesson-02:session-02:i06:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед в куртке греет ру",
             "feedbackByLocale": {
@@ -368,7 +368,7 @@
           "ru": "Вставьте слово — начало вопроса",
           "uk": "Вставте слово — початок питання"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ you upset?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-02:i07:r1",
@@ -386,7 +386,7 @@
         "testedDimension": "Вставьте слово — начало вопроса",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-02:i07:r1",
+            "responseId": "en:lesson-02:session-02:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — начало вопроса",
             "feedbackByLocale": {
@@ -395,7 +395,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-02:i07:r2",
+            "responseId": "en:lesson-02:session-02:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — начало вопроса",
             "feedbackByLocale": {
@@ -561,7 +561,7 @@
         "testedDimension": "Вставьте слово — сосед прочитал сообщени",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-02:i10:r1",
+            "responseId": "en:lesson-02:session-02:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед прочитал сообщени",
             "feedbackByLocale": {
@@ -570,7 +570,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-02:i10:r2",
+            "responseId": "en:lesson-02:session-02:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед прочитал сообщени",
             "feedbackByLocale": {
@@ -622,7 +622,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «рас",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-02:i11:r1",
+            "responseId": "en:lesson-02:session-02:i11:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «рас",
             "feedbackByLocale": {
@@ -710,7 +710,7 @@
         "testedDimension": "Вставьте слово — гость ёрзает на шатком ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-02:i13:r1",
+            "responseId": "en:lesson-02:session-02:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — гость ёрзает на шатком ",
             "feedbackByLocale": {
@@ -719,7 +719,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-02:i13:r2",
+            "responseId": "en:lesson-02:session-02:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — гость ёрзает на шатком ",
             "feedbackByLocale": {
@@ -867,5 +867,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4b46c89dea31e8610a241a373ab466aab577df22b5a01b8465694089da05d424"
+  "learnerFingerprint": "4575272a4151a5672e683a079629f3a0d58c361430d9f84bed43cd53d2ada6dc"
 }

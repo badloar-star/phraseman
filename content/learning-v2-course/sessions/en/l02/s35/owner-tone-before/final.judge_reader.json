@@ -1,0 +1,45 @@
+{
+  "pages": [
+    {
+      "page": 1,
+      "retelling": "Чтобы спросить, кому принадлежит вещь, нужно сказать «Whose is it?».",
+      "what_i_do_now": "Если увижу чужую вещь и захочу узнать хозяина, спрошу: «Whose is it?».",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 2,
+      "retelling": "В вопросе «Whose is it?» нужны все три слова именно в таком порядке.",
+      "what_i_do_now": "Скажу «Whose is it?», не пропущу «is» и не переставлю его после «it».",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 3,
+      "retelling": "Если собеседнику видно, о какой вещи идёт речь, её английское название можно заменить словом «it».",
+      "what_i_do_now": "Покажу на куртку или шарф и в обоих случаях спрошу «Whose is it?», не выбирая «he» или «she» по русскому роду.",
+      "understood": true,
+      "problems": []
+    }
+  ],
+  "pages_understood": 3,
+  "verdict": "PASS",
+  "verdict_reason": "Все три страницы понятны после одного чтения: сначала объясняют смысл вопроса, затем порядок слов, потом использование «it» для вещи. После каждой страницы ясно, что именно говорить и какой ошибки избегать; ссылок в пустоту, непонятных терминов и противоречий я не встретил.",
+  "sourceSha256": "c99987db83f110957ac93e2194084f296727e4d9f67d264d4cca00529fee1fcf",
+  "reviewedAt": "2026-09-08T09:01:01.165824+00:00",
+  "reviewMethod": "builtin_codex_independent_role",
+  "reviewedScope": "intro_pages",
+  "previousSourceSha256": "7a6c5c1b602ec19aaf1f85c9c83bc9cb5e6143555bddb8477aebbdaf13648d0b",
+  "listeningRepairReview": {
+    "session": 35,
+    "verdict": "PASS",
+    "sourceSha256": "c99987db83f110957ac93e2194084f296727e4d9f67d264d4cca00529fee1fcf",
+    "hashMatch": true,
+    "blocksReviewed": [
+      4,
+      7
+    ],
+    "reason": "Нейтральные инструкции. Wait/white различаются с wet гласной частью слова, ghost/most — первым звуком с host. Формулировки «переслушайте середину» и «первый звук» понятны без фонетических терминов.",
+    "issues": []
+  }
+}

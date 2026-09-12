@@ -1,0 +1,90 @@
+{
+  "role": "blind_adult_russian_learner",
+  "session": 39,
+  "scope": "Text-only learner solvability. Audio quality and playback were not assessed; audio transcripts were used as provided.",
+  "answers": {
+    "intro_1": "The couple is here.",
+    "intro_2": "Where is the crowd?",
+    "intro_3": "Who is the host?",
+    "practice_1": "couple — пара",
+    "practice_2": "couple",
+    "practice_3": "crowd — толпа",
+    "practice_4": "crowd",
+    "practice_5": "Who is the host?",
+    "practice_6": "host",
+    "practice_7": "The crowd is outside.",
+    "practice_8": "The couple is here.",
+    "practice_9": "strangers",
+    "practice_10": {
+      "host": "хозяин вечера",
+      "guests": "гости",
+      "crowd": "толпа",
+      "couple": "пара"
+    },
+    "practice_11": "Where is the crowd?",
+    "practice_12": "guests",
+    "practice_13": "Are they guests?",
+    "practice_14": "We are not strangers.",
+    "practice_15": "They are not strangers.",
+    "practice_16": "Where is the couple?",
+    "practice_17": "Who are these people?"
+  },
+  "learned_new": [
+    "couple — пара",
+    "crowd — толпа"
+  ],
+  "real_text_solvability_blocker": null,
+  "verdict": "PASS",
+  "initialVerdict": "PASS",
+  "deltaReview": {
+    "role": "blind_adult_russian_learner",
+    "scope": "Only revised practice 15 heading; text solvability only.",
+    "practice_15_answer": "They are not strangers.",
+    "understandability": "PASS",
+    "reason": "Ситуация однозначно задаёт смысл: люди знакомы, поэтому нужно отрицание со знакомым словом strangers.",
+    "previous_20_step_pass_stands": true,
+    "verdict": "PASS"
+  },
+  "reviewedOriginalSha256": "aa9f347ea0a24d41132004b24240e7b12ca572bb13bfd18e66c867f790ea27c1",
+  "sourceSha256": "d3ef03d8192d9565746be1dbd312403c4ba075faa09f56823549594f75436baa",
+  "previousSourceSha256": "f844630734a0d961f878d0f7c523fc9e6aa13276b6f0abc8e00d981b0fc62057",
+  "listeningRepairReview": {
+    "role": "blind_adult_russian_learner",
+    "scope": "Visible instructions, supplied transcripts, and options only. Audio quality was not assessed.",
+    "items": [
+      {
+        "session": 38,
+        "task": 2,
+        "answer": "manager",
+        "instruction_reveals_answer_without_audio_or_transcript": false,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      },
+      {
+        "session": 38,
+        "task": 4,
+        "answer": "intern",
+        "instruction_reveals_answer_without_audio_or_transcript": false,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      },
+      {
+        "session": 39,
+        "task": 2,
+        "answer": "couple",
+        "instruction_reveals_answer_without_audio_or_transcript": false,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      },
+      {
+        "session": 39,
+        "task": 4,
+        "answer": "crowd",
+        "instruction_reveals_answer_without_audio_or_transcript": false,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      }
+    ],
+    "overall_verdict": "PASS"
+  }
+}

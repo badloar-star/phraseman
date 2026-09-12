@@ -1,0 +1,27 @@
+{
+  "sourceSha256": "6a75a6763c5dc1d0279bbc7ec28bbae1723ed96c0017863e73b10650ca47cf7e",
+  "localeSha256": {
+    "uk": "9f28f0fdbb894b564aa5f56c7028cfe0a791becce51a1df501b957b19c05e80b"
+  },
+  "locales": {
+    "uk": {
+      "session": "S47",
+      "sourceSha256": "6a75a6763c5dc1d0279bbc7ec28bbae1723ed96c0017863e73b10650ca47cf7e",
+      "localeSha256": "9f28f0fdbb894b564aa5f56c7028cfe0a791becce51a1df501b957b19c05e80b",
+      "verdict": "PASS",
+      "issues": [],
+      "verified": {
+        "naturalUkrainian": true,
+        "politeAndRudeMeaningsPrecise": true,
+        "questionVsSelfAssessmentDistinctionAccurate": true,
+        "iVsWeScopePreserved": true,
+        "selfPraiseHumourNaturalAndNonMisleading": true,
+        "introLengths": [
+          292,
+          278,
+          284
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "c69b1dac553c887789b26a5a1ca1f364c577bb7d94b02c47adf5cbfd3ed7e269",
+  "scope": "Actual final delta combined with retained full prior review",
+  "previousReview": {
+    "sourceSha256": "8876f932d3f797faa1733088c18bb616e2ec825daa8ac5eb466d646dabbe859b",
+    "reviewer": "/root/s10_truth",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "medium",
+    "verdict": "PASS",
+    "problems": [],
+    "evidence": [
+      "Article rule scoped to singular count nouns; all a/an choices match their first sounds.",
+      "Cambridge lists countable vacuum meaning vacuum cleaner; kettle, toaster and vacuum definitions are accurate.",
+      "All six pronunciation contrasts agree with Cambridge IPA evidence.",
+      "Unknown wrong words occur only in wrong options with immediate Russian meanings.",
+      "Full-phrase targets are grammatical; A kettle is explicitly a short naming response."
+    ],
+    "primarySources": [
+      "https://dictionary.cambridge.org/grammar/british-grammar/a-and-the",
+      "https://dictionary.cambridge.org/dictionary/english/vacuum",
+      "https://dictionary.cambridge.org/dictionary/english/kettle",
+      "https://dictionary.cambridge.org/dictionary/english/toaster"
+    ],
+    "actualAudioReviewed": false
+  },
+  "deltaEvidence": "judgements/2026-09-12_l03_s10_final_delta.json",
+  "actualAudioReviewed": false
+}

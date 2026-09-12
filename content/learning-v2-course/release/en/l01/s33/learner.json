@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-33:i02:r1",
+            "responseId": "en:lesson-01:session-33:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — together",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-33:i02:r2",
+            "responseId": "en:lesson-01:session-33:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — together",
             "feedbackByLocale": {
@@ -170,7 +170,7 @@
         "testedDimension": "Вставьте слово — команда собралась у две",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-33:i03:r1",
+            "responseId": "en:lesson-01:session-33:i03:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — команда собралась у две",
             "feedbackByLocale": {
@@ -179,7 +179,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-33:i03:r2",
+            "responseId": "en:lesson-01:session-33:i03:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — команда собралась у две",
             "feedbackByLocale": {
@@ -267,7 +267,7 @@
         "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-33:i05:r1",
+            "responseId": "en:lesson-01:session-33:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
             "feedbackByLocale": {
@@ -276,7 +276,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-33:i05:r2",
+            "responseId": "en:lesson-01:session-33:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
             "feedbackByLocale": {
@@ -369,7 +369,7 @@
         "testedDimension": "Вставьте слово — коллега смотрит на часы",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-33:i07:r1",
+            "responseId": "en:lesson-01:session-33:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега смотрит на часы",
             "feedbackByLocale": {
@@ -378,7 +378,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-33:i07:r2",
+            "responseId": "en:lesson-01:session-33:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега смотрит на часы",
             "feedbackByLocale": {
@@ -521,7 +521,7 @@
           "ru": "Вставьте слово — в кафе смотрят на вас четверых: один столик или разные?",
           "uk": "Вставте слово — у кав'ярні дивляться на вас чотирьох: один столик чи різні?"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ are together.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-33:i10:r1",
@@ -539,7 +539,7 @@
         "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-33:i10:r1",
+            "responseId": "en:lesson-01:session-33:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
             "feedbackByLocale": {
@@ -548,7 +548,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-33:i10:r2",
+            "responseId": "en:lesson-01:session-33:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
             "feedbackByLocale": {
@@ -699,7 +699,7 @@
         "testedDimension": "Вставьте слово — коллега зовёт есть, все",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-33:i14:r1",
+            "responseId": "en:lesson-01:session-33:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега зовёт есть, все",
             "feedbackByLocale": {
@@ -708,7 +708,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-33:i14:r2",
+            "responseId": "en:lesson-01:session-33:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега зовёт есть, все",
             "feedbackByLocale": {
@@ -790,5 +790,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "697d7389d0a2c6c8af41da874dd8d4596082c1ea90b7de459933f3e4ebff1d33"
+  "learnerFingerprint": "45cb80387af1fb85a7bc7d22b4c3bc0cdbbbc14de33da1f12162333b2d4be869"
 }

@@ -1,0 +1,13 @@
+{
+  "sourceSha256": "60cf23486938224426ec52a28cddf281d9c26384af5e9ff92d26ebc9b77a4cbe",
+  "deltaOnly": true,
+  "introAnswers": {
+    "intro1": "Am I audible?",
+    "intro2": "Am I clear?",
+    "intro3": "I am not sure."
+  },
+  "confusion": [],
+  "verdict": "PASS",
+  "baselineReview": "owner-tone-before/final.judge_learner.json",
+  "unchangedPracticeVerified": true
+}

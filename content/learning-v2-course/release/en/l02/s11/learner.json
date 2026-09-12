@@ -51,7 +51,7 @@
         "testedDimension": "Вставьте слово — «Is he tired?» Да",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-11:i01:r1",
+            "responseId": "en:lesson-02:session-11:i01:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — «Is he tired?» Да",
             "feedbackByLocale": {
@@ -60,7 +60,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-11:i01:r2",
+            "responseId": "en:lesson-02:session-11:i01:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — «Is he tired?» Да",
             "feedbackByLocale": {
@@ -153,7 +153,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-11:i03:r1",
+            "responseId": "en:lesson-02:session-11:i03:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — какое слово про ",
             "feedbackByLocale": {
@@ -162,7 +162,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-11:i03:r2",
+            "responseId": "en:lesson-02:session-11:i03:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — какое слово про ",
             "feedbackByLocale": {
@@ -224,7 +224,7 @@
         "testedDimension": "Вставьте слово — «Is he upset?» Нет, всё",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-11:i04:r1",
+            "responseId": "en:lesson-02:session-11:i04:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — «Is he upset?» Нет, всё",
             "feedbackByLocale": {
@@ -233,7 +233,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-11:i04:r2",
+            "responseId": "en:lesson-02:session-11:i04:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — «Is he upset?» Нет, всё",
             "feedbackByLocale": {
@@ -347,7 +347,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «гол",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-11:i07:r1",
+            "responseId": "en:lesson-02:session-11:i07:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «гол",
             "feedbackByLocale": {
@@ -407,7 +407,7 @@
         "testedDimension": "Вставьте слово — спутник кивает на женщи",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-11:i08:r1",
+            "responseId": "en:lesson-02:session-11:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник кивает на женщи",
             "feedbackByLocale": {
@@ -416,7 +416,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-11:i08:r2",
+            "responseId": "en:lesson-02:session-11:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник кивает на женщи",
             "feedbackByLocale": {
@@ -578,7 +578,7 @@
         "testedDimension": "Вставьте слово — «Is it cold?» На улице ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-11:i11:r1",
+            "responseId": "en:lesson-02:session-11:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — «Is it cold?» На улице ",
             "feedbackByLocale": {
@@ -587,7 +587,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-11:i11:r2",
+            "responseId": "en:lesson-02:session-11:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — «Is it cold?» На улице ",
             "feedbackByLocale": {
@@ -652,7 +652,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-11:i12:r1",
+            "responseId": "en:lesson-02:session-11:i12:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — какое слово про ",
             "feedbackByLocale": {
@@ -661,7 +661,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-11:i12:r2",
+            "responseId": "en:lesson-02:session-11:i12:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — какое слово про ",
             "feedbackByLocale": {

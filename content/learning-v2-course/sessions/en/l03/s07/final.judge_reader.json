@@ -1,0 +1,11 @@
+{
+  "sourceSha256": "926a212bf053f780b2c583192cabf2f1684da103f083d534e869c1e02a0e42f2",
+  "reviewer": "/root/l03_s07_reader",
+  "pages": [
+    {"page": 1, "retelling": "Страница объясняет, что drawer — это выдвижной ящик, а не весь стол или шкаф.", "what_i_do_now": "Теперь отдельный выдвижной ящик я назову a drawer или скажу It is a drawer.", "understood": true, "problems": []},
+    {"page": 2, "retelling": "Страница объясняет, что cupboard — это шкаф с дверцами и полками, например кухонный шкаф для посуды.", "what_i_do_now": "Теперь весь такой шкаф я назову a cupboard или скажу It is a cupboard, а его выдвижной ящик назову drawer.", "understood": true, "problems": []},
+    {"page": 3, "retelling": "Страница объясняет, что wardrobe — это шкаф, в котором хранят одежду.", "what_i_do_now": "Теперь шкаф для одежды я назову a wardrobe или скажу It is a wardrobe, а стул с одеждой всё равно назову chair.", "understood": true, "problems": []}
+  ],
+  "pages_understood": 3, "verdict": "PASS",
+  "verdict_reason": "Все три страницы понятны после одного чтения: я различаю выдвижной ящик, шкаф с полками и шкаф для одежды и знаю, как назвать каждый предмет по-английски."
+}

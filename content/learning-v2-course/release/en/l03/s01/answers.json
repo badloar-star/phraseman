@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-01:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i02",
+    "correctText": "chair",
+    "correctResponseId": "en:lesson-03:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i04",
+    "correctText": "table",
+    "correctResponseId": "en:lesson-03:session-01:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i05",
+    "correctText": "A chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i07",
+    "correctText": "lamp",
+    "correctResponseId": "en:lesson-03:session-01:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i08",
+    "correctText": "It is a table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i09",
+    "correctText": "It is a flat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i10",
+    "correctText": "It is a lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i12",
+    "correctText": "is a",
+    "correctResponseId": "en:lesson-03:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i13",
+    "correctText": "Is it a lamp?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-01:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i15",
+    "correctText": "Is it ready?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i16",
+    "correctText": "It is a table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-01:i17",
+    "correctText": "It is not a lamp.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,120 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "3806946a79664a389c254f1484016ab24d2f933ab657d4adb25ba70e4f9cf5e3",
+  "fullReview": {
+    "role": "blind_adult_russian_learner",
+    "session": "en/l02/s42",
+    "scope": "Text-only simulation. AudioTranscript supplied the listening content; actual audio quality and playback were not assessed.",
+    "walkthrough": [
+      {
+        "step": "intro1",
+        "answer": "Am I early?"
+      },
+      {
+        "step": "intro2",
+        "answer": "Am I welcome here?"
+      },
+      {
+        "step": "intro3",
+        "answer": "I am not late."
+      },
+      {
+        "step": 1,
+        "answer": "Am I early?"
+      },
+      {
+        "step": 2,
+        "answer": "late",
+        "completed_phrase": "Am I late?"
+      },
+      {
+        "step": 3,
+        "answer": "Am I late?"
+      },
+      {
+        "step": 4,
+        "answer": "here",
+        "completed_phrase": "I am here."
+      },
+      {
+        "step": 5,
+        "answer": "Am I welcome here?"
+      },
+      {
+        "step": 6,
+        "answer": "They are here."
+      },
+      {
+        "step": 7,
+        "answer": "Am",
+        "completed_phrase": "Am I welcome here?"
+      },
+      {
+        "step": 8,
+        "answer": "Are you early?"
+      },
+      {
+        "step": 9,
+        "answer": {
+          "welcome": "желанный",
+          "early": "рано",
+          "late": "опоздал",
+          "here": "здесь"
+        }
+      },
+      {
+        "step": 10,
+        "answer": "early",
+        "completed_phrase": "Am I early?"
+      },
+      {
+        "step": 11,
+        "answer": "I am not late."
+      },
+      {
+        "step": 12,
+        "answer": "You are welcome here."
+      },
+      {
+        "step": 13,
+        "answer": "Is he here?"
+      },
+      {
+        "step": 14,
+        "answer": "I",
+        "completed_phrase": "Am I early?"
+      },
+      {
+        "step": 15,
+        "answer": "Am I early?"
+      },
+      {
+        "step": 16,
+        "answer": "I am here."
+      },
+      {
+        "step": 17,
+        "answer": "Am I welcome here?"
+      }
+    ],
+    "learned_or_reinforced": [
+      "Выбор между early и late по смыслу ситуации.",
+      "Различие вопроса Am I late? и сообщения I am not late.",
+      "Значение welcome как «желанный» в вопросе о приёме в компании."
+    ],
+    "ambiguity_count": 0,
+    "ambiguities": [],
+    "issues": [],
+    "verdict": "PASS"
+  },
+  "deltaReview": {
+    "session": "en/l02/s42",
+    "scope": "Delta review of task 13 only.",
+    "answer": "Is he here?",
+    "ambiguity": null,
+    "verdict": "PASS"
+  },
+  "checkedIntro": 3,
+  "checkedTasks": 17,
+  "audio": "text simulation only"
+}

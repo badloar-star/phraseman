@@ -1,0 +1,18 @@
+{
+  "session": "S43",
+  "sourceSha256": "557c8f510499df2230f6685de82d0b80c14e9045797d5791e33c2080fd96c445",
+  "verdict": "PASS",
+  "issues": [],
+  "verified": {
+    "weIncludesSpeakerAndCompanion": true,
+    "statementToQuestionOrderingAccurateAndScoped": true,
+    "sureMeaningAndSharedDecisionContextAccurate": true,
+    "humourDoesNotCreateAFalseClaim": true,
+    "areWeHereMapUseIsProperlyGrounded": true,
+    "introLengths": [
+      259,
+      283,
+      271
+    ]
+  }
+}

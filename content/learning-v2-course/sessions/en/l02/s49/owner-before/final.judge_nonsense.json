@@ -1,0 +1,34 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "e7bdea3f362ef3d4b08c2a2188073593ac7258ac728c7dfd6e3675f1a3a75aa2",
+  "issues": [],
+  "verifiedDelta": "Сравнение с `draft.ru.md` показывает ровно одну замену в задании 8: руководитель теперь работает много лет в компании. Это устраняет противоречие с первой рабочей неделей ученика и сохраняет обоснование ответа `No, he is not.`",
+  "priorReviews": [
+    {
+      "verdict": "REVISE",
+      "sourceSha256": "00c09f85e73e0f5f6464d9ee99da3619785aeb248c3cbeca5769809f9f04bac4",
+      "issues": [
+        {
+          "location": "Task 8 prompt",
+          "quote": "«руководитель работает с вами много лет»",
+          "problem": "Это противоречит общей арке: ученик завершает только первую неделю на новой работе в Дублине. Сам руководитель может быть опытным, но не мог работать с учеником много лет.",
+          "exactFix": "`руководитель работает с вами много лет` → `руководитель работает в компании много лет`"
+        }
+      ],
+      "passed": {
+        "ordinaryComprehensibility": true,
+        "actorsAndPhotoReferents": true,
+        "englishFactsAndTranslations": true,
+        "readinessAndDistanceThreads": "coherent",
+        "audioPrompts": "neutral",
+        "checkpointNewWords": 0,
+        "introLengths": [
+          246,
+          242,
+          265
+        ],
+        "audioAndBrowser": "not assessed"
+      }
+    }
+  ]
+}

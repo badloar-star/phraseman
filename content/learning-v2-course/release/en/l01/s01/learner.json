@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-01:i02:r1",
+            "responseId": "en:lesson-01:session-01:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — here",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-01:i02:r2",
+            "responseId": "en:lesson-01:session-01:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — here",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-01:i04:r1",
+            "responseId": "en:lesson-01:session-01:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — ready",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-01:i04:r2",
+            "responseId": "en:lesson-01:session-01:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — ready",
             "feedbackByLocale": {
@@ -337,7 +337,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-01:i06:r1",
+            "responseId": "en:lesson-01:session-01:i06:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — fine",
             "feedbackByLocale": {
@@ -346,7 +346,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-01:i06:r2",
+            "responseId": "en:lesson-01:session-01:i06:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — fine",
             "feedbackByLocale": {
@@ -554,7 +554,7 @@
         "testedDimension": "Вставьте слово — вас спросили, как дела,",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-01:i10:r1",
+            "responseId": "en:lesson-01:session-01:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вас спросили, как дела,",
             "feedbackByLocale": {
@@ -563,7 +563,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-01:i10:r2",
+            "responseId": "en:lesson-01:session-01:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вас спросили, как дела,",
             "feedbackByLocale": {
@@ -623,7 +623,7 @@
         "testedDimension": "Вставьте скрепку — начальник ждёт ответа",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-01:i11:r1",
+            "responseId": "en:lesson-01:session-01:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — начальник ждёт ответа",
             "feedbackByLocale": {
@@ -632,7 +632,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-01:i11:r2",
+            "responseId": "en:lesson-01:session-01:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — начальник ждёт ответа",
             "feedbackByLocale": {
@@ -707,7 +707,7 @@
           "ru": "Вставьте слово — вы заходите в комнату",
           "uk": "Вставте слово — ви заходите в кімнату"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ am here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-01:i13:r1",
@@ -725,7 +725,7 @@
         "testedDimension": "Вставьте слово — вы заходите в комнату",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-01:i13:r1",
+            "responseId": "en:lesson-01:session-01:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы заходите в комнату",
             "feedbackByLocale": {
@@ -734,7 +734,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-01:i13:r2",
+            "responseId": "en:lesson-01:session-01:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы заходите в комнату",
             "feedbackByLocale": {
@@ -879,5 +879,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "91f8171418ba9ac0e3cc1d37dafbc1a53983dfee341016a3c59530bcb332d17c"
+  "learnerFingerprint": "1f93b6631dfa743cc18ee2a3caff24c070911421a74fc0822eafd89191e55efc"
 }

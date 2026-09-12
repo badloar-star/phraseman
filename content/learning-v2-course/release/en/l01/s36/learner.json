@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-36:i02:r1",
+            "responseId": "en:lesson-01:session-36:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — colleagues",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-36:i02:r2",
+            "responseId": "en:lesson-01:session-36:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — colleagues",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-36:i04:r1",
+            "responseId": "en:lesson-01:session-36:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — friends",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-36:i04:r2",
+            "responseId": "en:lesson-01:session-36:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — friends",
             "feedbackByLocale": {
@@ -410,7 +410,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-36:i08:r1",
+            "responseId": "en:lesson-01:session-36:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — guests",
             "feedbackByLocale": {
@@ -419,7 +419,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-36:i08:r2",
+            "responseId": "en:lesson-01:session-36:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — guests",
             "feedbackByLocale": {
@@ -481,7 +481,7 @@
         "testedDimension": "Вставьте слово — эти люди пришли на час ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-36:i09:r1",
+            "responseId": "en:lesson-01:session-36:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — эти люди пришли на час ",
             "feedbackByLocale": {
@@ -490,7 +490,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-36:i09:r2",
+            "responseId": "en:lesson-01:session-36:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — эти люди пришли на час ",
             "feedbackByLocale": {
@@ -613,7 +613,7 @@
         "testedDimension": "Вставьте слово — вы обедаете всей команд",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-36:i12:r1",
+            "responseId": "en:lesson-01:session-36:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы обедаете всей команд",
             "feedbackByLocale": {
@@ -622,7 +622,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-36:i12:r2",
+            "responseId": "en:lesson-01:session-36:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы обедаете всей команд",
             "feedbackByLocale": {
@@ -682,7 +682,7 @@
         "testedDimension": "Вставьте слово — за соседним столом никт",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-36:i13:r1",
+            "responseId": "en:lesson-01:session-36:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — за соседним столом никт",
             "feedbackByLocale": {
@@ -691,7 +691,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-36:i13:r2",
+            "responseId": "en:lesson-01:session-36:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — за соседним столом никт",
             "feedbackByLocale": {
@@ -808,7 +808,7 @@
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех",
-          "uk": "Вставте слово — колега весь обід усіх смішив, а другий просто пригостив вас кавою"
+          "uk": "Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх"
         },
         "gappedTargetPhrase": "They are ___ .",
         "gapOptions": [
@@ -832,16 +832,16 @@
         "testedDimension": "Вставьте слово — коллега весь обед всех ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-36:i15:r1",
+            "responseId": "en:lesson-01:session-36:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега весь обед всех ",
             "feedbackByLocale": {
               "ru": "«Добрые». Про доброту речи не было, речь про смех.",
-              "uk": ""
+              "uk": "«Добрі». Про доброту не йшлося, йшлося про сміх."
             }
           },
           {
-            "responseId": "en:lesson-01:session-36:i15:r2",
+            "responseId": "en:lesson-01:session-36:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега весь обед всех ",
             "feedbackByLocale": {
@@ -850,7 +850,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-36:i15:r3",
+            "responseId": "en:lesson-01:session-36:i15:r4",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега весь обед всех ",
             "feedbackByLocale": {

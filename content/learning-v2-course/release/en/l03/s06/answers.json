@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-06:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i02",
+    "correctText": "basket",
+    "correctResponseId": "en:lesson-03:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i04",
+    "correctText": "trolley",
+    "correctResponseId": "en:lesson-03:session-06:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i05",
+    "correctText": "A basket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i07",
+    "correctText": "tag",
+    "correctResponseId": "en:lesson-03:session-06:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i08",
+    "correctText": "It is a tag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i09",
+    "correctText": "It is a lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i11",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i12",
+    "correctText": "Is it a trolley?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i13",
+    "correctText": "not a",
+    "correctResponseId": "en:lesson-03:session-06:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i14",
+    "correctText": "Is it empty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i15",
+    "correctText": "It is a basket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i16",
+    "correctText": "It is a trolley.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-06:i17",
+    "correctText": "It is not a tag.",
+    "correctResponseId": null
+  }
+]

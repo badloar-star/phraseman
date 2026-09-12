@@ -1,0 +1,18 @@
+{
+  "sourceSha256":"c58b73d557cdb882a6639224444155277d8f97bf770ad1bba51574f39021db98",
+  "localeSha256":{"uk":"6c47cbd492c418981ba8f4fac71762539a0fb9246b50399234d8ac85f620991f"},
+  "reviewer":"/root/s17_uk_native","model":"gpt-5.6-sol","reasoningEffort":"medium",
+  "initialReview":"judgements/2026-09-12_l03_s19_uk_initial.json",
+  "locales":{"uk":{
+    "verdict":"PASS","verdict_reason":"Both exact repairs pass independent native review; no remaining issue from the retained full scope.",
+    "structure_identical":true,"english_targets_identical":true,"task_count":17,"intro_lengths":[247,249,253],
+    "language_purity":{"foreign_fragments":[],"machine_translation_smell":[]},
+    "native_anchor":{"uses_own_language_contrast":true,"wrong_russian_anchor_leaked":[]},
+    "traps_localized":{"ok":true,"problems":[]},
+    "definitions":{"story":"Accurate narrative, not building level.","country":"Accurate territory, no full sovereignty imposed.","battery":"Accurate electricity source, no cell-count property imposed."},
+    "referents_and_counts":{"consistent":true,"task14":"Causal через стіл accepted; referent clear.","audio_prompt13_leak":false},
+    "humor":{"present":true,"on_topic":true,"examples":["Рука тягнеться просто додати `s` і перейти до розв’язки"],"misfires":[]},
+    "delta":{"priorUK":"9c08d8d1c1fe7909f01cc5495aaf046b2c06b64be7321f73103f4aa46655f06b","reverseExactReplacementsReconstructPriorHash":true,"roundTripEqualsCurrent":true,"newOccurrences":[1,1],"oldOccurrences":[0,0],"ruUnchanged":true,"noOtherEdit":true,"scope":"Positive stormy/story cue and one internal selfcheck sentence only.","phoneticVerdict":"m closes lips in stormy; English r before final vowel in story does not. True across relevant accents; no Cyrillic-r identity.","wordingVerdict":"New selfcheck sentence is natural Ukrainian.","prior_full_review_retained":true},
+    "audioReviewed":false,"audio_verdict":"NOT_REVIEWED"
+  }}
+}

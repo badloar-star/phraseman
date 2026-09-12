@@ -1,0 +1,13 @@
+{
+  "session": "en/l03/s06",
+  "sourceSha256": "d9a2c0a16087722cf3ce73e2adb8bac0f1494df7d5191579a3b61afb333a3c4a",
+  "converged": true,
+  "needsHumanReview": false,
+  "actualReceipt": "content/learning-v2-course/judgements/2026-09-09_l03_s06_native_delta.json",
+  "locales": [
+    "ru",
+    "uk"
+  ],
+  "audioReviewed": false,
+  "visualReviewed": false
+}

@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-20:i02:r1",
+            "responseId": "en:lesson-01:session-20:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — married",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-20:i02:r2",
+            "responseId": "en:lesson-01:session-20:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — married",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-20:i04:r1",
+            "responseId": "en:lesson-01:session-20:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — single",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-20:i04:r2",
+            "responseId": "en:lesson-01:session-20:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — single",
             "feedbackByLocale": {
@@ -332,7 +332,7 @@
         "testedDimension": "Вставьте слово — про парня с кольцом",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-20:i06:r1",
+            "responseId": "en:lesson-01:session-20:i06:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — про парня с кольцом",
             "feedbackByLocale": {
@@ -341,7 +341,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-20:i06:r2",
+            "responseId": "en:lesson-01:session-20:i06:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — про парня с кольцом",
             "feedbackByLocale": {
@@ -479,7 +479,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-20:i09:r1",
+            "responseId": "en:lesson-01:session-20:i09:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — famous",
             "feedbackByLocale": {
@@ -488,7 +488,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-20:i09:r2",
+            "responseId": "en:lesson-01:session-20:i09:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — famous",
             "feedbackByLocale": {
@@ -589,7 +589,7 @@
         "testedPhoneticContrast": "Послушайте и выберите — rich",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-20:i11:r1",
+            "responseId": "en:lesson-01:session-20:i11:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — rich",
             "feedbackByLocale": {
@@ -598,7 +598,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-20:i11:r2",
+            "responseId": "en:lesson-01:session-20:i11:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — rich",
             "feedbackByLocale": {
@@ -691,7 +691,7 @@
         "testedDimension": "Вставьте слово — про женщину, которую уз",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-20:i13:r1",
+            "responseId": "en:lesson-01:session-20:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — про женщину, которую уз",
             "feedbackByLocale": {
@@ -700,7 +700,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-20:i13:r2",
+            "responseId": "en:lesson-01:session-20:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — про женщину, которую уз",
             "feedbackByLocale": {
@@ -833,7 +833,7 @@
         "testedDimension": "Вставьте слово — парень за соседним стол",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-20:i15:r1",
+            "responseId": "en:lesson-01:session-20:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — парень за соседним стол",
             "feedbackByLocale": {
@@ -842,7 +842,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-20:i15:r2",
+            "responseId": "en:lesson-01:session-20:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — парень за соседним стол",
             "feedbackByLocale": {

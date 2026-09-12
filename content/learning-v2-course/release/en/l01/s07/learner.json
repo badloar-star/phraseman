@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-07:i02:r1",
+            "responseId": "en:lesson-01:session-07:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — glad",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-07:i02:r2",
+            "responseId": "en:lesson-01:session-07:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — glad",
             "feedbackByLocale": {
@@ -291,7 +291,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-07:i06:r1",
+            "responseId": "en:lesson-01:session-07:i06:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — scared",
             "feedbackByLocale": {
@@ -300,7 +300,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-07:i06:r2",
+            "responseId": "en:lesson-01:session-07:i06:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — scared",
             "feedbackByLocale": {
@@ -405,7 +405,7 @@
         "testedDimension": "Вставьте слово — третий час презентации ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-07:i08:r1",
+            "responseId": "en:lesson-01:session-07:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — третий час презентации ",
             "feedbackByLocale": {
@@ -414,7 +414,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-07:i08:r2",
+            "responseId": "en:lesson-01:session-07:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — третий час презентации ",
             "feedbackByLocale": {
@@ -506,7 +506,7 @@
         "testedDimension": "Вставьте слово — вы полдня искали кабине",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-07:i10:r1",
+            "responseId": "en:lesson-01:session-07:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы полдня искали кабине",
             "feedbackByLocale": {
@@ -515,7 +515,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-07:i10:r2",
+            "responseId": "en:lesson-01:session-07:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы полдня искали кабине",
             "feedbackByLocale": {
@@ -682,7 +682,7 @@
         "testedDimension": "Вставьте скрепку — вы отказываетесь от д",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-07:i13:r1",
+            "responseId": "en:lesson-01:session-07:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вы отказываетесь от д",
             "feedbackByLocale": {
@@ -691,7 +691,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-07:i13:r2",
+            "responseId": "en:lesson-01:session-07:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вы отказываетесь от д",
             "feedbackByLocale": {
@@ -751,7 +751,7 @@
         "testedDimension": "Вставьте слово — начальник спрашивает, н",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-07:i14:r1",
+            "responseId": "en:lesson-01:session-07:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — начальник спрашивает, н",
             "feedbackByLocale": {
@@ -760,7 +760,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-07:i14:r2",
+            "responseId": "en:lesson-01:session-07:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — начальник спрашивает, н",
             "feedbackByLocale": {
@@ -850,7 +850,7 @@
         "testedDimension": "Вставьте слово — в лифте пахнет чужим об",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-07:i16:r1",
+            "responseId": "en:lesson-01:session-07:i16:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — в лифте пахнет чужим об",
             "feedbackByLocale": {
@@ -859,7 +859,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-07:i16:r2",
+            "responseId": "en:lesson-01:session-07:i16:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — в лифте пахнет чужим об",
             "feedbackByLocale": {

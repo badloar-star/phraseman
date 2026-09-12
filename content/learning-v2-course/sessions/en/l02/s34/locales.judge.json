@@ -1,16 +1,53 @@
 {
+  "sourceSha256": "0ad5d420ef8250d7f12601148b18ffdd9c534ee91a7d8123b8c58eaf4c714ff4",
+  "localeSha256": {
+    "uk": "7ff9ec18731575288163ae1c8830584011a21dc9e032d69133eb929b45238432"
+  },
   "locales": {
     "uk": {
+      "session": "S34",
+      "sourceSha256": "0ad5d420ef8250d7f12601148b18ffdd9c534ee91a7d8123b8c58eaf4c714ff4",
+      "localeSha256": "7ff9ec18731575288163ae1c8830584011a21dc9e032d69133eb929b45238432",
       "verdict": "PASS",
-      "problems": []
+      "issues": [],
+      "checks": {
+        "onlyListedPromptsChanged": true,
+        "introByteTextUnchanged": true,
+        "englishTokenSequenceUnchanged": true,
+        "targetTilesAnswerFeedbackUnchanged": true,
+        "ruPromptNeutral": true,
+        "ukPromptNativeAndNeutral": true,
+        "contextCoherent": true
+      },
+      "verdict_reason": "T12 теперь сообщает только тему нескольких гостей; strangers и положительная полярность до прослушивания не раскрываются.",
+      "priorFullReviewRetained": true,
+      "reviewScope": "Independent RU/UK native delta review; prior full locale review retained",
+      "priorFullReview": {
+        "sourceSha256": "b2a6cfcd304fa01287fd80bff798a20f16d51838512e479219eff47079c64fa5",
+        "localeSha256": {
+          "uk": "5c4b3c35fd38d493baa4eda6374d1c3255c0bf4fae9c5263c15dd7cdd7526e40"
+        },
+        "locales": {
+          "uk": {
+            "session": "S34",
+            "sourceSha256": "b2a6cfcd304fa01287fd80bff798a20f16d51838512e479219eff47079c64fa5",
+            "localeSha256": "5c4b3c35fd38d493baa4eda6374d1c3255c0bf4fae9c5263c15dd7cdd7526e40",
+            "verdict": "PASS",
+            "issues": [],
+            "verified": {
+              "deltaLimitedToThreeIntroBodies": true,
+              "naturalUkrainian": true,
+              "meaningsAndGrammarFaithful": true,
+              "humourPreservesMeaning": true,
+              "actualIntroLengths": [
+                279,
+                283,
+                284
+              ]
+            }
+          }
+        }
+      }
     }
-  },
-  "verdict": "PASS",
-  "verdict_reason": "Усі три виправлення природні, граматично правильні й точні в контексті. Нових проблем у межах повторної перевірки немає. Перевірено актуальний final.uk.md, SHA-256 EE43F36A6F69ACC73771D6EF390EB69CE66E13D2FD654303768FD4E58E2B6C61.",
-  "sourceSha256": "c72bc0dd157edc56107749d19d44b4e301bc47da029be4ad472c7b88f3ce4576",
-  "localeSha256": {
-    "uk": "ee43f36a6f69acc73771d6ef390eb69ce66e13d2fd654303768fd4e58e2b6c61"
-  },
-  "reviewedAt": "2026-09-08T08:52:51.882963+00:00",
-  "reviewMethod": "builtin_codex_independent_localization_review"
+  }
 }

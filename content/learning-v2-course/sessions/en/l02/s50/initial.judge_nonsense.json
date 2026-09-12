@@ -1,0 +1,23 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "89c4314904b5a7e30341dbac525811b35dd4861dc23fb10d3e8c7e9ffe2d9a79",
+  "issues": [],
+  "checks": {
+    "humanComprehensibility": "clear",
+    "actorsAndReferents": "explicit",
+    "englishAndMeanings": "accurate",
+    "questionAnswerPairs": 7,
+    "readinessSequence": "coherent: ready to choose a bicycle, not yet ready to ride without a suitable helmet, then ready after fastening it",
+    "certaintySequence": "coherent: initial route doubt is resolved by the employee's explanation and a map check",
+    "listeningPrompts": "neutral without uniquely revealing the answer",
+    "newWords": 0,
+    "tasks": 17,
+    "builders": 6,
+    "introLengths": [
+      257,
+      258,
+      256
+    ],
+    "audioAndBrowser": "not assessed"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "sourceSha256": "8efde328d6ddc3ac3b6ea3d540cf821564e964e6db297dbb3460d4b715d2cfc8",
+  "localeSha256": {
+    "uk": "521eba247cd6d4971c92536b3d48ee49706dbdd5fd163743d637c67f9f7a5842"
+  },
+  "reviewer": "/root/s17_uk_native",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "scope": "Full independent native Ukrainian review",
+  "verdict": "REVISE",
+  "problems": [
+    {
+      "quote": "наручний годинник і конверт із квитками",
+      "replacement": "два наручні годинники й конверт із квитками",
+      "reason": "Scene singular contradicts two later watches."
+    },
+    {
+      "quote": "Місткість, у якій зберігають або перевозять речі.",
+      "replacement": "Предмет, у якому зберігають або перевозять речі.",
+      "occurrences": 2,
+      "reason": "Physical container not capacity."
+    },
+    {
+      "quote": "заземлено й відпрацьовано",
+      "replacement": "пояснено й відпрацьовано",
+      "reason": "Native wording of prior explanation."
+    }
+  ],
+  "actualAudioReviewed": false
+}

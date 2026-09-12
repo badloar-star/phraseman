@@ -1,0 +1,256 @@
+{
+  "sourceSha256": "0b8ee756248840a8741a87265eab930e0dd0634c49063b178a52092f5d84a5c8",
+  "reviewer": "/root/s18_blind",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "glasses"
+    },
+    {
+      "step": 2,
+      "answer": "Are they brushes?"
+    },
+    {
+      "step": 3,
+      "answer": "benches"
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "glass"
+    },
+    {
+      "step": 2,
+      "answer": "glass"
+    },
+    {
+      "step": 3,
+      "answer": "brush"
+    },
+    {
+      "step": 4,
+      "answer": "brush"
+    },
+    {
+      "step": 5,
+      "answer": "glasses"
+    },
+    {
+      "step": 6,
+      "answer": "They are glasses."
+    },
+    {
+      "step": 7,
+      "answer": "bench"
+    },
+    {
+      "step": 8,
+      "answer": "bench"
+    },
+    {
+      "step": 9,
+      "answer": "brushes"
+    },
+    {
+      "step": 10,
+      "answer": "boxes"
+    },
+    {
+      "step": 11,
+      "answer": "Are they brushes?"
+    },
+    {
+      "step": 12,
+      "answer": "They are not benches."
+    },
+    {
+      "step": 13,
+      "answer": "benches"
+    },
+    {
+      "step": 14,
+      "answer": {
+        "glasses": "стаканы",
+        "boxes": "коробки",
+        "benches": "скамейки",
+        "brushes": "щётки"
+      }
+    },
+    {
+      "step": 15,
+      "answer": "box"
+    },
+    {
+      "step": 16,
+      "answer": "They are not brushes."
+    },
+    {
+      "step": 17,
+      "answer": "They are benches."
+    }
+  ],
+  "learning_delta": [
+    "Слова glasses, brushes и benches называют несколько предметов; короткое окончание нужно дослушивать.",
+    "Вопрос сохраняет форму множественного числа: Are they brushes?",
+    "Отрицание строится как They are not + plural noun."
+  ],
+  "confusion": [
+    "Слоговое различение между единственной и множественной формой заявлено явно, но text-only projection не показывает, насколько оно действительно различимо в настоящем аудио."
+  ],
+  "gaps": [],
+  "answerambiguity": [],
+  "audioLimitations": [
+    "Actual audio and pronunciation were not reviewed; heardText was used solely as the supplied text substitute.",
+    "The voice task at step 16 has a grounded sentence but its spoken delivery and comparison cannot be assessed from this projection."
+  ],
+  "scene_reason": "Курьер и сверка заказа связывают все предметы в одну понятную бытовую ситуацию: распаковка, поиск нужного пакета и проверка содержимого.",
+  "felt_alive": "yes",
+  "felt_dead": "Некоторые переходы всё ещё упражнительные, особенно серия карточек и одиночных аудиовыборов, но новые ситуации с коробкой посуды, закрытой коробкой щёток и сверкой заказа дают им конкретную цель.",
+  "would_continue": "yes",
+  "boring_or_water": "Нет существенной воды. Повторное распознавание слов краткое и подготавливает более содержательные задания на различение форм, вопрос, отрицание и самостоятельную сборку.",
+  "flow": "Три интро вводят пары единственное/множественное число; затем ученик узнаёт базовые слова, слышит plural forms, собирает утверждение и вопрос, получает диктант с отрицанием и завершает самостоятельной фразой.",
+  "qualitativeverdict": "PASS_WITH_AUDIO_LIMITATION",
+  "verdict": "PASS",
+  "reason": "Actual full current blind walkthrough: all 3 intro and 17 practice answers independently reproduced, no ambiguity. Changed steps 6,11,16 are contextually clearer; actual audio unreviewed.",
+  "reviewHistory": [
+    {
+      "sourceSha256": "ed5e6b4ee17b2d9ceddb68c7be885b12f38349de9487fa915448a263a63176bb",
+      "reviewer": "/root/s18_blind",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "introAnswers": [
+        {
+          "step": 1,
+          "answer": "glasses"
+        },
+        {
+          "step": 2,
+          "answer": "Are they brushes?"
+        },
+        {
+          "step": 3,
+          "answer": "benches"
+        }
+      ],
+      "practiceAnswers": [
+        {
+          "step": 1,
+          "answer": "glass"
+        },
+        {
+          "step": 2,
+          "answer": "glass"
+        },
+        {
+          "step": 3,
+          "answer": "brush"
+        },
+        {
+          "step": 4,
+          "answer": "brush"
+        },
+        {
+          "step": 5,
+          "answer": "glasses"
+        },
+        {
+          "step": 6,
+          "answer": "They are glasses."
+        },
+        {
+          "step": 7,
+          "answer": "bench"
+        },
+        {
+          "step": 8,
+          "answer": "bench"
+        },
+        {
+          "step": 9,
+          "answer": "brushes"
+        },
+        {
+          "step": 10,
+          "answer": "boxes"
+        },
+        {
+          "step": 11,
+          "answer": "Are they brushes?"
+        },
+        {
+          "step": 12,
+          "answer": "They are not benches."
+        },
+        {
+          "step": 13,
+          "answer": "benches"
+        },
+        {
+          "step": 14,
+          "answer": {
+            "glasses": "стаканы",
+            "boxes": "коробки",
+            "benches": "скамейки",
+            "brushes": "щётки"
+          }
+        },
+        {
+          "step": 15,
+          "answer": "box"
+        },
+        {
+          "step": 16,
+          "answer": "They are not brushes."
+        },
+        {
+          "step": 17,
+          "answer": "They are benches."
+        }
+      ],
+      "learning_delta": [
+        "Формы glasses, brushes и benches обозначают несколько предметов; их нужно дослушивать до короткого окончания.",
+        "Количество слышно и в вопросе Are they brushes?, и в отрицании They are not benches.",
+        "Форма boxes дана прямо как отдельная пара box/boxes."
+      ],
+      "confusion": [
+        "Объяснение связывает различение форм с числом слогов, но text-only projection не позволяет проверить, слышит ли новичок это различие в настоящем аудио.",
+        "Слово glasses без контекста также может значить очки, хотя здесь карточка и сцена достаточно ясно задают стаканы."
+      ],
+      "gaps": [],
+      "answerambiguity": [],
+      "audioLimitations": [
+        "Actual audio and pronunciation were not reviewed; heardText was used solely as the supplied text substitute.",
+        "The voice task at step 16 has a grounded sentence but its spoken delivery and comparison cannot be assessed from this projection."
+      ],
+      "scene_reason": "Один курьер и тема распаковки связывают стаканы, щётки, скамейки и коробки в узнаваемую бытовую доставку.",
+      "felt_alive": "partly",
+      "felt_dead": "Курьерская рамка держит занятия вместе, но большинство реплик функциональны и почти не меняют ситуацию, поэтому середина ощущается как последовательность упражнений.",
+      "would_continue": "yes",
+      "boring_or_water": "Нет явной воды. Три пары «карточка + выбор на слух» повторяют один ритм, но затем идут различение единственного/множественного числа, сборка фраз и сопоставление, что поддерживает темп.",
+      "flow": "Сначала вводятся три пары единственное/множественное число, затем ученик распознаёт базовые слова, различает формы на -es, строит утверждение, вопрос и отрицание, а в конце сам собирает фразу.",
+      "qualitativeverdict": "PASS_WITH_AUDIO_LIMITATION",
+      "verdict": "PASS",
+      "reason": "Все 3 интро и 17 практических заданий имеют один ответ, выводимый из видимого текста, вариантов, плиток и transcript stubs. Нельзя сделать вывод о качестве реального аудио или голоса."
+    }
+  ],
+  "actualDelta": {
+    "sourceSha256": "0b8ee756248840a8741a87265eab930e0dd0634c49063b178a52092f5d84a5c8",
+    "priorSha256": "ed5e6b4ee17b2d9ceddb68c7be885b12f38349de9487fa915448a263a63176bb",
+    "editedSha256": "e31c18d928576f5a9d5bb4f624742d57c4f41665c66b2631e814412b28125a10",
+    "changedLines": [
+      29,
+      31,
+      76,
+      99,
+      122
+    ],
+    "finalChangedLines": [
+      122
+    ],
+    "verdict": "PASS",
+    "fullPriorScopeRetained": true
+  }
+}

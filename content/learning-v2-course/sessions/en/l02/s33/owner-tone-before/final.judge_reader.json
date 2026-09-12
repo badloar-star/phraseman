@@ -1,0 +1,43 @@
+{
+  "verdict": "PASS",
+  "pages": [
+    {
+      "page": "Интро 1",
+      "retelling": "Host — человек, который принимает гостей. Чтобы спросить «Кто хозяин вечера?», нужно сказать Who is the host?, сохранив порядок Who + is + the host.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": "Интро 2",
+      "retelling": "Guest — один гость, guests — несколько гостей. Чтобы выяснить, кто из людей является гостем, спрашивают Who is the guest?; host и guest обозначают разные роли.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": "Интро 3",
+      "retelling": "Who is he? означает «Кто он?» и используется, когда мужчина виден, но неизвестно, кто он. Where is he? спрашивает о его местонахождении, поэтому здесь не подходит.",
+      "understood": true,
+      "problems": []
+    }
+  ],
+  "problems": [],
+  "verdict_reason": "Все три интро понятны взрослому новичку с первого чтения. Значения новых слов объяснены через конкретные роли, целевые вопросы приведены до задания, порядок слов разобран явно, а различия host/guest и who/where показаны на понятных ситуациях. Реальных смысловых или языковых препятствий нет.",
+  "sourceSha256": "a9f72aaf541339a3a18d0aea76dd756d1a115a18fbc684f987447ce3f2a5222f",
+  "reviewedAt": "2026-09-08T08:24:35.209Z",
+  "reviewMethod": "fresh_builtin_codex_agent",
+  "previousSourceSha256": "56789703f95f9dc122b83532472d171bca221901fbd6704f4b19edb6c311ff55",
+  "listeningRepairReview": {
+    "session": 33,
+    "verdict": "PASS",
+    "sourceSha256": "a9f72aaf541339a3a18d0aea76dd756d1a115a18fbc684f987447ce3f2a5222f",
+    "hashMatch": true,
+    "blocksReviewed": [
+      2,
+      4,
+      8,
+      11
+    ],
+    "reason": "Инструкции нейтральны. Coast/toast, best/west, tests/vests и game/fame различаются с целями в прямо названном первом звуке. Feedback короткий, понятный и появляется как разбор ответа, а не подсказка в инструкции.",
+    "issues": []
+  }
+}

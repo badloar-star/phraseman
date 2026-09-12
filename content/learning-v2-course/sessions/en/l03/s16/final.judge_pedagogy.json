@@ -1,0 +1,194 @@
+{
+  "sourceSha256": "582bbcc840ad479d350e9e91cfb8e12b0ef2fafad48217d5d964d3df30a4b7d2",
+  "reviewer": "/root/s10_pedagogy",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "machineFactsHard": [],
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "silly": [],
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "new_word_cards": 0,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "candle",
+        "umbrella",
+        "cushion",
+        "plant"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "combinedBuilders": [
+      3,
+      7,
+      8,
+      12,
+      14,
+      15,
+      17
+    ]
+  },
+  "returns": {
+    "candle": [
+      1,
+      9,
+      15
+    ],
+    "umbrella": [
+      2,
+      7,
+      9,
+      14
+    ],
+    "cushion": [
+      3,
+      9,
+      11,
+      17
+    ],
+    "plant": [
+      6,
+      9,
+      12,
+      16
+    ],
+    "hour": [
+      4,
+      8
+    ],
+    "uniform": [
+      5,
+      10,
+      13
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "verdict": "PASS",
+  "verdict_reason": "Genuine no-new-word/no-new-grammar a/an checkpoint; each selected return has at least two correct contacts and every answer is unique and scene-supported.",
+  "actualAudioReviewed": false,
+  "previousReview": {
+    "sourceSha256": "cf7e68283b9633939e5b539b82ec1cc06a13882ea4521dfef18e3f20910c2270",
+    "reviewer": "/root/s10_pedagogy",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": "medium",
+    "machineFactsHard": [],
+    "plan_fidelity": {
+      "operation_matches": true,
+      "new_words_match": [],
+      "missing": [],
+      "extra_grammar_smuggled": []
+    },
+    "answer_semantics": [],
+    "boundary": {
+      "unknown_in_explanations": [],
+      "unknown_in_targets": []
+    },
+    "traps": {
+      "silly": [],
+      "feedback_teaches_unknown_form": []
+    },
+    "feedback": {
+      "missing_per_option": [],
+      "duplicated": []
+    },
+    "structure": {
+      "task_count": 17,
+      "below_12": false,
+      "new_word_cards": 0,
+      "word_first_respected": true,
+      "support_fades": true,
+      "speed_match_boards": [
+        [
+          "candle",
+          "umbrella",
+          "cushion",
+          "plant"
+        ]
+      ],
+      "speed_match_overlap": false,
+      "repeated_targets": [],
+      "generic_instructions": [],
+      "combinedBuilders": [
+        3,
+        7,
+        8,
+        12,
+        14,
+        15,
+        17
+      ]
+    },
+    "returns": {
+      "candle": [
+        1,
+        9,
+        15
+      ],
+      "umbrella": [
+        2,
+        7,
+        9,
+        14
+      ],
+      "cushion": [
+        3,
+        9,
+        11,
+        17
+      ],
+      "plant": [
+        6,
+        9,
+        12,
+        16
+      ],
+      "hour": [
+        4,
+        8
+      ],
+      "uniform": [
+        5,
+        10,
+        13
+      ]
+    },
+    "time_references": [],
+    "cross_session_repeats": [],
+    "textbook_formulas": [],
+    "verdict": "PASS",
+    "verdict_reason": "Genuine no-new-word/no-new-grammar a/an checkpoint; each selected return has at least two correct contacts and every answer is unique and scene-supported.",
+    "actualAudioReviewed": false
+  },
+  "scope": "Initial whole-source review plus actual independent Intro3 heading/body delta review",
+  "deltaReview": {
+    "sourceSha256": "582bbcc840ad479d350e9e91cfb8e12b0ef2fafad48217d5d964d3df30a4b7d2",
+    "comparisonBaseSha256": "cf7e68283b9633939e5b539b82ec1cc06a13882ea4521dfef18e3f20910c2270",
+    "verdict": "PASS",
+    "evidence": "Actual delta PASS: updated body grounds unchanged unique It is not a cushion answer, no new construct.",
+    "findings": []
+  }
+}

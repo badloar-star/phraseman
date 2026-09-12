@@ -1,0 +1,848 @@
+[
+  {
+    "agent": "/root/l03_s02_learner",
+    "report": {
+      "sourceSha256": "6743b86a9956c82ee6ec03d4441a00ddc5b26394e8d1e7a43c61db8fd8cc9918",
+      "introAnswers": [
+        {
+          "step": 1,
+          "answer": "It is a wall."
+        },
+        {
+          "step": 2,
+          "answer": "It is a floor."
+        },
+        {
+          "step": 3,
+          "answer": "It is a ceiling."
+        }
+      ],
+      "practiceAnswers": [
+        {
+          "step": 1,
+          "answer": "Acknowledged: wall — стена."
+        },
+        {
+          "step": 2,
+          "answer": "wall"
+        },
+        {
+          "step": 3,
+          "answer": "Acknowledged: floor — пол."
+        },
+        {
+          "step": 4,
+          "answer": "floor"
+        },
+        {
+          "step": 5,
+          "answer": "It is a wall."
+        },
+        {
+          "step": 6,
+          "answer": "Acknowledged: ceiling — потолок."
+        },
+        {
+          "step": 7,
+          "answer": "ceiling"
+        },
+        {
+          "step": 8,
+          "answer": "A ceiling."
+        },
+        {
+          "step": 9,
+          "answer": "It is a door."
+        },
+        {
+          "step": 10,
+          "answer": "Is it a floor?"
+        },
+        {
+          "step": 11,
+          "answer": {
+            "ceiling": "потолок",
+            "wall": "стена",
+            "door": "дверь",
+            "floor": "пол"
+          }
+        },
+        {
+          "step": 12,
+          "answer": "is"
+        },
+        {
+          "step": 13,
+          "answer": "It is not a wall."
+        },
+        {
+          "step": 14,
+          "answer": "is a"
+        },
+        {
+          "step": 15,
+          "answer": "Is it clean?"
+        },
+        {
+          "step": 16,
+          "answer": "It is a floor."
+        },
+        {
+          "step": 17,
+          "answer": "Is it a ceiling?"
+        }
+      ],
+      "ambiguities": [],
+      "leaks": [],
+      "verdict": "PASS"
+    }
+  },
+  {
+    "agent": "/root/l03_s05_taste",
+    "report": {
+      "sourceSha256": "6743b86a9956c82ee6ec03d4441a00ddc5b26394e8d1e7a43c61db8fd8cc9918",
+      "pairwise": "worse",
+      "pairwise_reason": "Сессия яснее и сдержаннее старых эталонов в метафорах, но заметно уступает им в живом голосе: три интро идут почти одним редакторским ритмом «слово — формула — пояснение». Сцена фотографий квартиры понятна и держится до финала, однако заявленный ремонт дальше не участвует в разговоре, а единственный лёгкий юмористический ход не спасает общий справочный тон.",
+      "voice": {
+        "score": 3,
+        "evidence": [
+          "`floor` — «пол». Сравните `It is a floor` — «Это пол» и `It is clean` — «Он чистый» (`clean` — «чистый»). — различие объяснено сразу и без терминологической тяжести.",
+          "На стене можно ничего не вешать, но перед `wall` пустое место не оставляем: в этой фразе маленькое `a` входит в название. — здесь автор впервые разговаривает с учеником живо, а образ прямо помогает правилу.",
+          "`ceiling` — «потолок». `A ceiling` — короткое название, а `It is a ceiling` — полная фраза «Это потолок». — к третьему интро повторяется тот же объяснительный шаблон, поэтому голос становится предсказуемым и учебниковым."
+        ]
+      },
+      "humor": {
+        "present": true,
+        "on_topic": true,
+        "examples": [
+          "На стене можно ничего не вешать, но перед `wall` пустое место не оставляем: в этой фразе маленькое `a` входит в название."
+        ],
+        "misfires": []
+      },
+      "scene": {
+        "present": true,
+        "gives_reason_to_speak": true,
+        "note": "Крупные планы квартиры дают понятный повод называть и уточнять поверхности; подруга и фотографии последовательно остаются в вопросах и практике. Мотив небольшого ремонта заявлен только в описании сцены и затем не влияет ни на одну реплику."
+      },
+      "ai_text_or_nonsense": [],
+      "water": [
+        {
+          "where": "Сцена сессии",
+          "quote": "решаете, где нужен небольшой ремонт",
+          "why": "Эта цель больше нигде не развивается: ученик только распознаёт поверхности на фотографиях."
+        }
+      ],
+      "dead_language": [],
+      "best_lines": [
+        "На стене можно ничего не вешать, но перед `wall` пустое место не оставляем: в этой фразе маленькое `a` входит в название.",
+        "`floor` — «пол». Сравните `It is a floor` — «Это пол» и `It is clean` — «Он чистый» (`clean` — «чистый»).",
+        "Подруга поворачивает фотографию, пытаясь разобраться, где верх."
+      ],
+      "must_fix": [
+        "Переписать целиком одно из интро 2–3, чтобы три страницы не повторяли один ритм «перевод — две формулы — итог»; живой ход должен вырасти из различия между названием предмета и его описанием, без приклеенной шутки.",
+        "Либо дать ремонту реальную роль хотя бы в одном вопросе или задании, либо убрать его из описания сцены и оставить честную цель — разобраться, что попало на крупные планы."
+      ],
+      "verdict": "REVISE",
+      "verdict_reason": "Текст понятен, сцена цельная и один естественный юмористический ход есть, но по сравнению с эталонами голос слишком ровный и справочный; явного ИИ-текста, натужной шутки или бреда не найдено."
+    }
+  },
+  {
+    "agent": "/root/l03_s05_taste",
+    "report": {
+      "sourceSha256": "190f9014ae7ed75e786814a2efd9d7f4fe9cbc2c09c85b8d06b5383cd9233fde",
+      "verdict": "PASS",
+      "pairwise": "equal",
+      "pairwise_reason": "Исправленная сессия достигает планки эталонов: объяснение остаётся предельно ясным, но теперь в нём два естественных хода, выросших прямо из значения слов и правила. Третье интро спокойнее первых двух, однако выполняет отдельную задачу и не делает всю сессию сухой.",
+      "voice": {
+        "score": 5,
+        "evidence": [
+          "На стене можно ничего не вешать, но перед `wall` пустое место не оставляем: в этой фразе маленькое `a` входит в название.",
+          "`floor` — «пол». По этому слову не узнать, пора ли брать швабру: оно называет предмет, а не оценивает чистоту.",
+          "Подруга поворачивает фотографию, пытаясь разобраться, где верх. Скажите полной фразой: «Это потолок»."
+        ]
+      },
+      "humor": {
+        "present": true,
+        "on_topic": true,
+        "examples": [
+          "На стене можно ничего не вешать, но перед `wall` пустое место не оставляем: в этой фразе маленькое `a` входит в название.",
+          "По этому слову не узнать, пора ли брать швабру: оно называет предмет, а не оценивает чистоту."
+        ],
+        "misfires": []
+      },
+      "remainingIssues": []
+    }
+  },
+  {
+    "agent": "/root/l03_s02_learner",
+    "report": {
+      "sourceSha256": "190f9014ae7ed75e786814a2efd9d7f4fe9cbc2c09c85b8d06b5383cd9233fde",
+      "scope": "Blind text walkthrough. Transcripts substitute sound; real audio was not assessed.",
+      "introAnswers": [
+        {
+          "step": 1,
+          "answer": "It is a wall."
+        },
+        {
+          "step": 2,
+          "answer": "It is a floor."
+        },
+        {
+          "step": 3,
+          "answer": "It is a ceiling."
+        }
+      ],
+      "practiceAnswers": [
+        {
+          "step": 1,
+          "answer": "Acknowledged: wall"
+        },
+        {
+          "step": 2,
+          "answer": "wall"
+        },
+        {
+          "step": 3,
+          "answer": "Acknowledged: floor"
+        },
+        {
+          "step": 4,
+          "answer": "floor"
+        },
+        {
+          "step": 5,
+          "answer": "It is a wall."
+        },
+        {
+          "step": 6,
+          "answer": "Acknowledged: ceiling"
+        },
+        {
+          "step": 7,
+          "answer": "ceiling"
+        },
+        {
+          "step": 8,
+          "answer": "A ceiling."
+        },
+        {
+          "step": 9,
+          "answer": "It is a door."
+        },
+        {
+          "step": 10,
+          "answer": "Is it a floor?"
+        },
+        {
+          "step": 11,
+          "answer": {
+            "ceiling": "потолок",
+            "wall": "стена",
+            "door": "дверь",
+            "floor": "пол"
+          }
+        },
+        {
+          "step": 12,
+          "answer": "is"
+        },
+        {
+          "step": 13,
+          "answer": "It is not a wall."
+        },
+        {
+          "step": 14,
+          "answer": "is a"
+        },
+        {
+          "step": 15,
+          "answer": "Is it clean?"
+        },
+        {
+          "step": 16,
+          "answer": "It is a floor."
+        },
+        {
+          "step": 17,
+          "answer": "Is it a ceiling?"
+        }
+      ],
+      "ambiguities": [],
+      "leaks": [],
+      "verdict": "PASS"
+    }
+  },
+  {
+    "agent": "/root/l03_s02_truth",
+    "report": {
+      "sourceSha256": "190f9014ae7ed75e786814a2efd9d7f4fe9cbc2c09c85b8d06b5383cd9233fde",
+      "verdict": "PASS",
+      "issues": [],
+      "evidence": [
+        "Значения wall — «стена», floor — «пол», ceiling — «потолок», door — «дверь» и clean — «чистый» соответствуют использованным контекстам; бытовые определения не содержат ложных языковых противопоставлений.",
+        "Различие между называнием исчисляемого предмета (`It is a wall/floor/ceiling`) и описанием состояния (`It is clean`) передано верно: в показанных именных конструкциях нужен `a`, перед прилагательным `clean` артикль не ставится. Текст не превращает это в универсальное правило для всех употреблений существительных.",
+        "wall /wɔːl/, tall /tɔːl/ и ball /bɔːl/ корректно различены начальными /w/, /t/, /b/: для /w/ губы округляются без полного смыкания, для /b/ смыкаются; омофонов нет.",
+        "floor /flɔː(r)/, claw /klɔː/ и slaw /slɔː/ корректно различены начальными сочетаниями /fl/, /kl/, /sl/. Финальный /r/ в floor зависит от варианта английского, но feedback не делает ложного утверждения о его наличии или отсутствии.",
+        "ceiling /ˈsiːlɪŋ/, feeling /ˈfiːlɪŋ/ и kneeling /ˈniːlɪŋ/ корректно различены первыми звуками /s/, /f/, /n/; начальная k в kneeling немая, и разбор верно называет слышимым первым звуком /n/.",
+        "Короткий ответ `A ceiling` допустим как запрошенное двухсловное название, а полные утверждения, вопросы и отрицания грамматически верны и соответствуют явному намерению каждой инструкции.",
+        "Проверены нормативные звуковые отношения и текстовые подсказки. Качество и содержание фактических аудиофайлов недоступны и не получили отдельного PASS."
+      ]
+    }
+  },
+  {
+    "agent": "/root/l03_s02_pedagogy_final",
+    "report": {
+      "sourceSha256": "190f9014ae7ed75e786814a2efd9d7f4fe9cbc2c09c85b8d06b5383cd9233fde",
+      "plan_fidelity": {
+        "operation_matches": true,
+        "new_words_match": [
+          "wall",
+          "floor",
+          "ceiling"
+        ],
+        "missing": [],
+        "extra_grammar_smuggled": []
+      },
+      "prerequisite_check": {
+        "result": "PASS",
+        "evidence": "`It is not …`, `Is it …?` и `It is clean` используют уже введённые рамки; новая работа остаётся в контрасте названия предмета и состояния."
+      },
+      "word_first_and_contacts": {
+        "result": "PASS",
+        "evidence": [
+          "`wall`: карточка 1 → слух 2 → сборка 5.",
+          "`floor`: карточка 3 → слух 4 → диктант 10.",
+          "`ceiling`: карточка 6 → слух 7 → короткое название 8.",
+          "До Speed Match 11 все четыре слова уже имеют карточку с отработкой либо являются возвратом."
+        ],
+        "returns": {
+          "door": [
+            9,
+            11
+          ],
+          "clean": [
+            12,
+            15
+          ]
+        }
+      },
+      "structure": {
+        "task_count": 17,
+        "phrase_builder": 4,
+        "listen_build_dictation": 1,
+        "speed_match_pairs": 4,
+        "support_fades": true,
+        "generic_instructions": [],
+        "unchanged_adjacent_repeats": [],
+        "builders": [
+          "`It is a wall`",
+          "`A ceiling`",
+          "`Is it a floor?`",
+          "`It is not a wall`",
+          "`Is it a ceiling?`"
+        ],
+        "builder_variation": "Короткое называние, утверждение, вопрос и отрицание дают разную работу; совпадающий скелет появляется максимум дважды."
+      },
+      "contrast": {
+        "result": "PASS",
+        "evidence": "Интро 2 и задания 12/15 различают `It is a floor` как называние и `It is clean` как состояние. Утверждения о `a` ограничены конкретной рамкой и не вводят правила про `an` или `the`."
+      },
+      "answers_and_traps": {
+        "single_correct_answer": true,
+        "construction_choice_wrongs": [
+          {
+            "task": 12,
+            "correct": "`is`",
+            "wrongs": [
+              "`is a`",
+              "`a`"
+            ],
+            "result": "Каждый неверный вариант даёт неполную либо ошибочно расширенную конструкцию."
+          },
+          {
+            "task": 14,
+            "correct": "`is a`",
+            "wrongs": [
+              "`is`",
+              "`a`"
+            ],
+            "result": "Каждый неверный вариант пропускает обязательную часть полной фразы."
+          }
+        ],
+        "realistic_distractors": true,
+        "silly_distractors": [],
+        "feedback_missing_or_duplicated": []
+      },
+      "listening": {
+        "audio_leaks": [],
+        "written_pair_evidence": [
+          "`wall` / `tall` / `ball`: общий финал, различаются начальные согласные.",
+          "`floor` / `claw` / `slaw`: различаются начальными согласными и их сочетаниями.",
+          "`ceiling` / `feeling` / `kneeling`: различаются начальным согласным."
+        ],
+        "real_audio_claim": false
+      },
+      "intro_lengths": {
+        "actual": [
+          256,
+          261,
+          271
+        ],
+        "result": "PASS"
+      },
+      "issues": [],
+      "must_fix": [],
+      "evidence": [
+        {
+          "check": "Честность диктанта",
+          "quote": "«подруга обращается к вам, рассматривая фотографию»",
+          "result": "Не называет `floor` и не раскрывает вопросительную форму `Is it a floor?`."
+        },
+        {
+          "check": "Независимость финала",
+          "quote": "Задание 16: `It is a floor`; задание 17: `Is it a ceiling?`.",
+          "result": "Непосредственно перед финалом нет дословной голосовой подсказки его ответа."
+        }
+      ],
+      "verdict": "PASS",
+      "verdict_reason": "Сессия сохраняет точные границы контраста, word-first, контакты возвратов, разные виды фразовой работы и честные диагностические варианты."
+    }
+  },
+  {
+    "agent": "/root/l03_s02_pedagogy_final",
+    "report": {
+      "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+      "plan_fidelity": {
+        "operation_matches": true,
+        "new_words_match": [
+          "wall",
+          "floor",
+          "ceiling"
+        ],
+        "missing": [],
+        "extra_grammar_smuggled": []
+      },
+      "prerequisite_check": {
+        "result": "PASS",
+        "evidence": "`It is not …`, `Is it …?` и `It is clean` используют уже введённые рамки; новая работа остаётся в контрасте названия предмета и состояния."
+      },
+      "word_first_and_contacts": {
+        "result": "PASS",
+        "evidence": [
+          "`wall`: карточка 1 → слух 2 → сборка 5.",
+          "`floor`: карточка 3 → слух 4 → диктант 10.",
+          "`ceiling`: карточка 6 → слух 7 → короткое название 8.",
+          "До Speed Match 11 все четыре слова уже имеют карточку с отработкой либо являются возвратом."
+        ],
+        "returns": {
+          "door": [
+            9,
+            11
+          ],
+          "clean": [
+            12,
+            15
+          ]
+        }
+      },
+      "structure": {
+        "task_count": 17,
+        "phrase_builder": 4,
+        "listen_build_dictation": 1,
+        "speed_match_pairs": 4,
+        "support_fades": true,
+        "generic_instructions": [],
+        "unchanged_adjacent_repeats": [],
+        "builders": [
+          "`It is a wall`",
+          "`A ceiling`",
+          "`Is it a floor?`",
+          "`It is not a wall`",
+          "`Is it a ceiling?`"
+        ],
+        "builder_variation": "Короткое называние, утверждение, вопрос и отрицание дают разную работу; совпадающий скелет появляется максимум дважды."
+      },
+      "contrast": {
+        "result": "PASS",
+        "evidence": "Интро 2 и задания 12/15 различают `It is a floor` как называние и `It is clean` как состояние. Утверждения о `a` ограничены конкретной рамкой и не вводят правила про `an` или `the`."
+      },
+      "answers_and_traps": {
+        "single_correct_answer": true,
+        "construction_choice_wrongs": [
+          {
+            "task": 12,
+            "correct": "`is`",
+            "wrongs": [
+              "`is a`",
+              "`a`"
+            ],
+            "result": "Каждый неверный вариант даёт неполную либо ошибочно расширенную конструкцию."
+          },
+          {
+            "task": 14,
+            "correct": "`is a`",
+            "wrongs": [
+              "`is`",
+              "`a`"
+            ],
+            "result": "Каждый неверный вариант пропускает обязательную часть полной фразы."
+          }
+        ],
+        "realistic_distractors": true,
+        "silly_distractors": [],
+        "feedback_missing_or_duplicated": []
+      },
+      "listening": {
+        "audio_leaks": [],
+        "written_pair_evidence": [
+          "`wall` / `tall` / `ball`: общий финал, различаются начальными согласными.",
+          "`floor` / `claw` / `slaw`: различаются начальными согласными и их сочетаниями.",
+          "`ceiling` / `feeling` / `kneeling`: различаются начальным согласным."
+        ],
+        "real_audio_claim": false
+      },
+      "intro_lengths_directly_verified": {
+        "plain": [
+          246,
+          270,
+          259
+        ],
+        "with_markdown_backticks": [
+          256,
+          282,
+          271
+        ],
+        "result": "PASS"
+      },
+      "issues": [],
+      "must_fix": [],
+      "evidence": [
+        {
+          "check": "Честность диктанта",
+          "quote": "«подруга обращается к вам, рассматривая фотографию»",
+          "result": "Не называет `floor` и не раскрывает вопросительную форму `Is it a floor?`."
+        },
+        {
+          "check": "Независимость финала",
+          "quote": "Задание 16: `It is a floor`; задание 17: `Is it a ceiling?`.",
+          "result": "Непосредственно перед финалом нет дословной голосовой подсказки его ответа."
+        }
+      ],
+      "verdict": "PASS",
+      "verdict_reason": "Сессия сохраняет точные границы контраста, word-first, контакты возвратов, разные виды фразовой работы и честные диагностические варианты."
+    }
+  },
+  {
+    "agent": "/root/l03_s02_reader_final",
+    "report": {
+      "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+      "pages": [
+        {
+          "page": 1,
+          "retelling": "Когда я называю стену фразой «Это стена», мне нужно сказать «It is a wall» и не пропустить «a».",
+          "what_i_do_now": "На крупном плане стены скажу «It is a wall».",
+          "understood": true,
+          "problems": []
+        },
+        {
+          "page": 2,
+          "retelling": "Слово «floor» называет пол, а «clean» говорит о его чистоте, поэтому «a» нужно только в названии предмета.",
+          "what_i_do_now": "Назову пол «It is a floor», а о чистом поле скажу «It is clean».",
+          "understood": true,
+          "problems": []
+        },
+        {
+          "page": 3,
+          "retelling": "«A ceiling» можно сказать как короткое название, а в полной фразе перед ним добавляются «It is», не убирая «a».",
+          "what_i_do_now": "Если отвечаю полной фразой про потолок, скажу «It is a ceiling».",
+          "understood": true,
+          "problems": []
+        }
+      ],
+      "pages_understood": 3,
+      "verdict": "PASS",
+      "issues": [],
+      "evidence": [
+        "Интро последовательно различают название предмета, сообщение о состоянии и короткое название с полной фразой. В каждом случае новый предмет и нужное действие названы до вопроса.",
+        "Сцена с крупными фотографиями не распадается: штукатурка, плитка, снимок потолка и ручка двери дают понятные поводы уточнять, какая поверхность или вещь попала в кадр.",
+        "Карточечные определения звучат естественно и конкретно. Инструкции практики называют предмет и действие; варианты и плитки оставляют один бесспорный ответ."
+      ]
+    }
+  },
+  {
+    "agent": "/root/l03_s05_taste",
+    "report": {
+      "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+      "verdict": "PASS",
+      "pairwise": "equal",
+      "pairwise_reason": "Подтверждён только метадатный delta в самопроверке: для интро 2 значения исправлены с 247 на 270 без Markdown и с 261 на 282 с разметкой. Ученический текст не изменился, поэтому прежняя оценка сохраняется: ясность и два естественных языковых хода достигают планки эталонов.",
+      "voice": {
+        "score": 5,
+        "evidence": [
+          "На стене можно ничего не вешать, но перед `wall` пустое место не оставляем: в этой фразе маленькое `a` входит в название.",
+          "`floor` — «пол». По этому слову не узнать, пора ли брать швабру: оно называет предмет, а не оценивает чистоту.",
+          "Подруга поворачивает фотографию, пытаясь разобраться, где верх. Скажите полной фразой: «Это потолок»."
+        ]
+      },
+      "humor": {
+        "present": true,
+        "on_topic": true,
+        "examples": [
+          "На стене можно ничего не вешать, но перед `wall` пустое место не оставляем: в этой фразе маленькое `a` входит в название.",
+          "По этому слову не узнать, пора ли брать швабру: оно называет предмет, а не оценивает чистоту."
+        ],
+        "misfires": []
+      },
+      "remainingIssues": []
+    }
+  },
+  {
+    "agent": "/root/l03_s02_truth",
+    "report": {
+      "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+      "verdict": "PASS",
+      "issues": [],
+      "evidence": [
+        "SHA-256 текущего final.ru.md совпадает с заявленным.",
+        "После предыдущего PASS learner-visible текст сохранился; изменена только строка самопроверки с подсчётами Интро 2: plain 247 → 270 и raw 261 → 282.",
+        "Актуальная строка метаданных теперь содержит plain 246, 270, 259 и raw 256, 282, 271.",
+        "Предыдущие выводы сохраняются: значения, различие называния предмета и описания состояния, артикль в показанных конструкциях и фонетические контрасты wall/tall/ball, floor/claw/slaw, ceiling/feeling/kneeling корректны.",
+        "Качество и содержание фактических аудиофайлов остаются недоступными и отдельного PASS не получили."
+      ]
+    }
+  },
+  {
+    "agent": "/root/l03_s02_learner",
+    "report": {
+      "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+      "scope": "Blind text walkthrough. Known prior vocabulary. Transcripts substitute sound; actual audio not assessed. No answer key or feedback. Practice numbered 1 through 17.",
+      "introAnswers": [
+        {
+          "step": 1,
+          "answer": "It is a wall."
+        },
+        {
+          "step": 2,
+          "answer": "It is a floor."
+        },
+        {
+          "step": 3,
+          "answer": "It is a ceiling."
+        }
+      ],
+      "practiceAnswers": [
+        {
+          "step": 1,
+          "answer": "Acknowledged: wall"
+        },
+        {
+          "step": 2,
+          "answer": "wall"
+        },
+        {
+          "step": 3,
+          "answer": "Acknowledged: floor"
+        },
+        {
+          "step": 4,
+          "answer": "floor"
+        },
+        {
+          "step": 5,
+          "answer": "It is a wall."
+        },
+        {
+          "step": 6,
+          "answer": "Acknowledged: ceiling"
+        },
+        {
+          "step": 7,
+          "answer": "ceiling"
+        },
+        {
+          "step": 8,
+          "answer": "A ceiling."
+        },
+        {
+          "step": 9,
+          "answer": "It is a door."
+        },
+        {
+          "step": 10,
+          "answer": "Is it a floor?"
+        },
+        {
+          "step": 11,
+          "answer": {
+            "ceiling": "потолок",
+            "wall": "стена",
+            "door": "дверь",
+            "floor": "пол"
+          }
+        },
+        {
+          "step": 12,
+          "answer": "is"
+        },
+        {
+          "step": 13,
+          "answer": "It is not a wall."
+        },
+        {
+          "step": 14,
+          "answer": "is a"
+        },
+        {
+          "step": 15,
+          "answer": "Is it clean?"
+        },
+        {
+          "step": 16,
+          "answer": "It is a floor."
+        },
+        {
+          "step": 17,
+          "answer": "Is it a ceiling?"
+        }
+      ],
+      "ambiguities": [],
+      "leaks": [],
+      "verdict": "PASS"
+    }
+  },
+  {
+    "agent": "/root/l03_s05_taste",
+    "report": {
+      "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+      "pairwise": "equal",
+      "pairwise_reason": "Сессия достигает планки эталонов: правило объяснено ясно, а два живых образа прямо помогают различить название предмета и его состояние. Третье интро спокойнее первых двух, но раскрывает отдельный контраст и не превращает сессию в сухую справку.",
+      "voice": {
+        "score": 5,
+        "evidence": [
+          "«На стене можно ничего не вешать, но перед `wall` пустое место не оставляем: в этой фразе маленькое `a` входит в название.» — живой разговорный образ сразу закрепляет место `a`.",
+          "«`floor` — «пол». По этому слову не узнать, пора ли брать швабру: оно называет предмет, а не оценивает чистоту.» — понятный бытовой контраст без канцелярита и лишней метафоры.",
+          "«Подруга поворачивает фотографию, пытаясь разобраться, где верх. Скажите полной фразой: «Это потолок».» — короткая естественная ситуация даёт ясный повод произнести ответ."
+        ]
+      },
+      "humor": {
+        "present": true,
+        "on_topic": true,
+        "examples": [
+          "На стене можно ничего не вешать, но перед `wall` пустое место не оставляем: в этой фразе маленькое `a` входит в название.",
+          "По этому слову не узнать, пора ли брать швабру: оно называет предмет, а не оценивает чистоту."
+        ],
+        "misfires": []
+      },
+      "scene": {
+        "present": true,
+        "gives_reason_to_speak": true,
+        "note": "Фотографии квартиры и неясные крупные планы последовательно дают повод называть поверхности и уточнять детали; подруга остаётся понятным собеседником во всех ключевых репликах."
+      },
+      "ai_text_or_nonsense": [],
+      "water": [],
+      "dead_language": [],
+      "best_lines": [
+        "На стене можно ничего не вешать, но перед `wall` пустое место не оставляем: в этой фразе маленькое `a` входит в название.",
+        "`floor` — «пол». По этому слову не узнать, пора ли брать швабру: оно называет предмет, а не оценивает чистоту.",
+        "Подруга поворачивает фотографию, пытаясь разобраться, где верх. Скажите полной фразой: «Это потолок»."
+      ],
+      "must_fix": [],
+      "verdict": "PASS",
+      "verdict_reason": "Текст ясен, жив, не натужен и не уступает эталонам; признаки ИИ-текста, бреда, воды и мёртвого языка специально проверены и не найдены."
+    }
+  },
+  {
+    "agent": "/root/l03_s02_uk_review",
+    "report": {
+      "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+      "localeSha256": "7bdfa4d0950e6389974b3c632d006b94dfb4a47d4a7bb2a8747a2b81ac4980be",
+      "scope": "native Ukrainian and current local preview only; no app, audio, or visual compatibility claim",
+      "verdict": "PASS",
+      "issues": [],
+      "checks": {
+        "hashesMatchTaskPacket": true,
+        "structureIdentical": true,
+        "englishTargetsOptionsTilesAndOrderUnchanged": true,
+        "orderedEnglishCodeSpanCount": 130,
+        "introBodyLengthsIncludingMarkup": [
+          248,
+          300,
+          263
+        ],
+        "languagePurity": {
+          "foreignFragmentsFound": false,
+          "machineTranslationSmellFound": false
+        },
+        "nativeAnchors": {
+          "floorGender": {
+            "verdict": "PASS",
+            "evidence": [
+              "`floor` — «підлога»",
+              "«Вона чиста»",
+              "«Вона чиста?»"
+            ],
+            "assessment": "Feminine agreement is consistent in the intro, instructions, and returned-word practice."
+          },
+          "doorPlural": {
+            "verdict": "PASS",
+            "evidence": [
+              "`door` — «двері»",
+              "«назвіть двері»",
+              "local pair: door — двері"
+            ],
+            "assessment": "Ukrainian pluralia tantum is handled naturally. The English singular target remains explicit and no Ukrainian instruction implies several doors."
+          }
+        },
+        "definitionsAliveAndNatural": {
+          "verdict": "PASS",
+          "items": [
+            "wall — concrete room boundary",
+            "floor — lower room surface people walk on",
+            "ceiling — upper room surface above the head"
+          ]
+        },
+        "soundExplanations": {
+          "verdict": "PASS",
+          "usesUkrainianOwnAnchors": true,
+          "inheritedRussianPhoneticsFound": false,
+          "details": [
+            "`wall` versus `tall`/`ball`: initial consonant and lip-action contrast is clear.",
+            "`floor` versus `claw`/`slaw`: initial consonant clusters are described accurately.",
+            "`ceiling` versus `feeling`/`kneeling`: initial consonants are distinguished without invented syllable boundaries."
+          ],
+          "actualAudioReviewed": false
+        },
+        "instructionsAndErrorExplanations": {
+          "verdict": "PASS",
+          "unambiguous": true,
+          "feedbackMatchesEachPresentedTrap": true
+        },
+        "humor": {
+          "verdict": "PASS",
+          "natural": true,
+          "examples": [
+            "«На стіні може нічого не висіти, але місце перед `wall` порожнім не лишаємо»",
+            "«чи вже час брати швабру»"
+          ],
+          "assessment": "The humor grows from the wall/floor distinction and does not create a false rule."
+        },
+        "localPreviewPairGridLabels": [
+          "wall — стіна",
+          "floor — підлога",
+          "ceiling — стеля",
+          "door — двері"
+        ],
+        "visualReviewPerformed": false,
+        "appCompatibilityClaimed": false
+      },
+      "remainingIssues": [
+        {
+          "scope": "future app export",
+          "status": "retained_unresolved",
+          "issue": "The previously recorded Speed Match pairId incompatibility remains outside this native/local review.",
+          "affectsCurrentVerdict": false
+        }
+      ]
+    }
+  }
+]

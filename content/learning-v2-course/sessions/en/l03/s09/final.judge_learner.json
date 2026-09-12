@@ -1,0 +1,19 @@
+{
+  "sourceSha256":"250a740b26d61078fb90a12a83591f4a6118cd7377fb7ddf37e7157d34280eb7",
+  "reviewer":"/root/s09_blind",
+  "reviewScope":"Blind text walkthrough from randomized learner artifact with audio transcripts as review-only substitutes; no answer key inspected.",
+  "introAnswers":[{"step":1,"answer":"It is an armchair."},{"step":2,"answer":"Is it an oven?"},{"step":3,"answer":"It is not an umbrella."}],
+  "practiceAnswers":[
+    {"step":1,"answer":"armchair"},{"step":2,"answer":"armchair"},{"step":3,"answer":"oven"},{"step":4,"answer":"oven"},{"step":5,"answer":"umbrella"},{"step":6,"answer":"umbrella"},{"step":7,"answer":"It is a chair."},{"step":8,"answer":"An armchair"},{"step":9,"answer":"It is a lamp."},
+    {"step":10,"answer":{"oven":"духовка","armchair":"кресло","umbrella":"зонт","chair":"стул"}},
+    {"step":11,"answer":"It is an oven."},{"step":12,"answer":"It is not an umbrella."},{"step":13,"answer":"Is it an armchair?"},{"step":14,"answer":"Is it an oven?"},{"step":15,"answer":"It is not an oven."},{"step":16,"answer":"It is a lamp."},{"step":17,"answer":"It is an umbrella."}
+  ],
+  "learned_new":["Понял, что перед одним предметом нужен an, если название начинается с гласного звука: an armchair, an oven, an umbrella.","Научился назвать предмет полной фразой It is an ... и спросить о нём через Is it an ...?","Научился отрицать такую фразу, не меняя артикль: It is not an ...","Выучил armchair — кресло, oven — духовка, umbrella — зонт."],
+  "impossible_tasks":[],"boring_or_water":[],"felt_dead":[],
+  "felt_alive":["После каждой карточки приходится на слух выцепить новое слово среди похожих вариантов; это настоящее маленькое испытание.","Ситуация, где друг принял трость за зонт: сразу понятно, зачем нужно отрицание.","Поправить друга, который назвал маленький холодильник духовкой, — живой повод сказать фразу."],
+  "scene_reason":"Да: почти везде я с другом в магазине называю товар, уточняю, что это, или поправляю ошибку; адресат и момент понятны.",
+  "would_continue":"Да: три коротких цикла «узнал слово — распознал его на слух» дают быстрые победы, а затем слова используются в разных фразах и ситуациях.",
+  "verdict":"PASS","verdict_reason":"Сессия проходима, учит трём словам и выбору an, а цикл карточка → отдельное распознавание на слух достаточно короткий и имеет понятную учебную цель.",
+  "priorFinding":{"verdict":"REVISE","reason":"Reviewer treated heardText as learner-visible transcript and called three card/recognition pairs mechanical.","resolution":"Actual same-reviewer reassessment after clarifying that transcript is review-only and learner independently listens without visible target; finding withdrawn. No source change or answer-key disclosure."},
+  "actualAudioReviewed":false
+}

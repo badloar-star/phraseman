@@ -1,0 +1,9 @@
+{
+  "sourceSha256":"c58b73d557cdb882a6639224444155277d8f97bf770ad1bba51574f39021db98",
+  "localeSha256":"9c08d8d1c1fe7909f01cc5495aaf046b2c06b64be7321f73103f4aa46655f06b",
+  "reviewer":"/root/s17_uk_native","model":"gpt-5.6-sol","reasoningEffort":"medium",
+  "verdict":"REVISE",
+  "issues":[{"where":"Task2 stormy feedback","problem":"Target gets only absence of m, losing its positive English r feature; sole practice English-run mismatch.","fix":"Перед останньою голосною губи змикаються на «м». У `story` там чути англійський звук `r`, і губи не змикаються. Дослухайте середину слова."},{"where":"Selfcheck","quote":"Після двох циклів картка/слух іде складання.","fix":"Після двох циклів із карткою та слуханням починається завдання на складання."}],
+  "not_findings":["T14 causal через стіл is natural, referent clear.","Battery definition is accurate, no extra cell-count property; technical but understandable, not mandatory defect.","Country/story definitions accurate."],
+  "scope":{"introCounts":[247,249,253],"tasks":17,"humor":"Natural/on-topic Рука тягнеться… перейти до розв’язки, no S17 repeat.","otherPhoneticCues":"True, no г=/g/ or р=/r/ identity.","prompt13":"No leak","referentsAndCounts":"Consistent","audioReviewed":false}
+}

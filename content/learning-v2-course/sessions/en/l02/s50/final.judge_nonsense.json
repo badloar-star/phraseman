@@ -1,0 +1,18 @@
+{
+  "session": "S50",
+  "sourceSha256": "60f7b0180539de7d705dfbe0c3c343c33ab23ea1d0f510c8a8876f7eba39dd58",
+  "verdict": "PASS",
+  "issues": [],
+  "verified": {
+    "introLengths": [
+      266,
+      280,
+      289
+    ],
+    "structuralDistractors": true,
+    "task14": "Yes, he ___ . → is · are · am",
+    "notFeedbackAccurate": true,
+    "introHumourNaturalAndAccurate": true,
+    "audioPrompts3And7Neutral": true
+  }
+}

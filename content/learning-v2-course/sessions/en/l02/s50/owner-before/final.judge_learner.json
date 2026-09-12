@@ -1,0 +1,11 @@
+{
+  "session": "en/l02/s50",
+  "sourceSha256": "29cd9abe9f91b498cdbc320e62e44390b1a6833a4865af1a81519bce0c2e5eef",
+  "deltaAnswers": {
+    "3": "Is she free?",
+    "7": "Are you sure?"
+  },
+  "original_20_answers_still_hold": true,
+  "issues": [],
+  "verdict": "PASS"
+}

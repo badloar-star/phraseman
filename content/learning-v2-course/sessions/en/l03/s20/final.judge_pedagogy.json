@@ -1,0 +1,295 @@
+{
+  "sourceSha256": "0b8ee756248840a8741a87265eab930e0dd0634c49063b178a52092f5d84a5c8",
+  "reviewer": "/root/s10_pedagogy",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "machineFactsHard": [],
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "glass",
+      "brush",
+      "bench"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [],
+  "scope_evidence": [
+    "The audible-number operation is practiced directly in T5 (glasses/glass), T9 (brushes/brush), T13 (benches/bench), and T15 (box/boxes), each with a phonetically close third option. It is not merely a written-spelling exercise.",
+    "glass is consistently a drinking vessel, never material or spectacles; brush is a cleaning tool; bench is a long outdoor seat. All singular/plural scene referents agree with their keyed answers.",
+    "The extra syllable is stated only for the supplied three target pairs, leaving S19 -ies and all broader spelling claims outside scope.",
+    "No English article contrast, quantity grammar, demonstratives, or other S21 construction appears."
+  ],
+  "audio_prompt_leaks": [],
+  "audio_quality": "NOT_REVIEWED",
+  "substitution_evidence": [
+    "Intro 1/T6: a set of water glasses and several removed drinking vessels → glasses / They are glasses.",
+    "Intro 2/T11: several handled cleaning items → Are they brushes?; singular brush fails the stated plurality.",
+    "Intro 3/T17: two terrace benches → benches / They are benches.",
+    "T10: two empty boxes → boxes; T12’s generic dictation instruction leaves not and benches to the recording.",
+    "T16 now points to two glasses inside the open bag. They are not brushes has an explicit plural referent and a purpose in the courier search."
+  ],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "glass/class/grass"
+      },
+      {
+        "task": 4,
+        "trap": "brush/blush/crush"
+      },
+      {
+        "task": 5,
+        "trap": "glasses/glass/grass"
+      },
+      {
+        "task": 8,
+        "trap": "bench/bunch/drench"
+      },
+      {
+        "task": 9,
+        "trap": "brushes/brush/blush"
+      },
+      {
+        "task": 13,
+        "trap": "benches/bench/bunch"
+      },
+      {
+        "task": 15,
+        "trap": "box/boxes/fox"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "flow": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "new_word_cards_and_recognition": {
+      "glass": [
+        1,
+        2
+      ],
+      "brush": [
+        3,
+        4
+      ],
+      "bench": [
+        7,
+        8
+      ]
+    },
+    "number_listening_tasks": [
+      5,
+      9,
+      13,
+      15
+    ],
+    "return_box_correct_contacts": [
+      10,
+      14,
+      15
+    ],
+    "speed_match_boards": [
+      [
+        "glasses",
+        "brushes",
+        "benches",
+        "boxes"
+      ]
+    ],
+    "board_grounding_before_14": true,
+    "builders": [
+      6,
+      11,
+      12,
+      17
+    ],
+    "builder_variety": [
+      "affirmative",
+      "question",
+      "dictated negative",
+      "independent final affirmative"
+    ],
+    "same_skeleton_max": 2,
+    "final_independent": true,
+    "final_not_prompted_by_voice_16": true
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "verdict": "PASS",
+  "verdict_reason": "Actual final pedagogy delta PASS: two glasses explicitly ground They; denial has a clear purpose, no new English or article contrast; prior full scope retained.",
+  "reviewHistory": [
+    {
+      "sourceSha256": "ed5e6b4ee17b2d9ceddb68c7be885b12f38349de9487fa915448a263a63176bb",
+      "reviewer": "/root/s10_pedagogy",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "machineFactsHard": [],
+      "plan_fidelity": {
+        "operation_matches": true,
+        "new_words_match": [
+          "glass",
+          "brush",
+          "bench"
+        ],
+        "missing": [],
+        "extra_grammar_smuggled": []
+      },
+      "answer_semantics": [],
+      "scope_evidence": [
+        "The audible-number operation is practiced directly in T5 (glasses/glass), T9 (brushes/brush), T13 (benches/bench), and T15 (box/boxes), each with a phonetically close third option. It is not merely a written-spelling exercise.",
+        "glass is consistently a drinking vessel, never material or spectacles; brush is a cleaning tool; bench is a long outdoor seat. All singular/plural scene referents agree with their keyed answers.",
+        "The extra syllable is stated only for the supplied three target pairs, leaving S19 -ies and all broader spelling claims outside scope.",
+        "No English article contrast, quantity grammar, demonstratives, or other S21 construction appears."
+      ],
+      "audio_prompt_leaks": [],
+      "audio_quality": "NOT_REVIEWED",
+      "substitution_evidence": [
+        "Intro 1/T6: a set of water glasses and several removed drinking vessels → glasses / They are glasses.",
+        "Intro 2/T11: several handled cleaning items → Are they brushes?; singular brush fails the stated plurality.",
+        "Intro 3/T17: two terrace benches → benches / They are benches.",
+        "T10: two empty boxes → boxes; T12’s generic dictation instruction leaves not and benches to the recording.",
+        "T16: several sealed parcels/items containing crockery are correctly described as not brushes; the negative plural frame is established and differs from final T17."
+      ],
+      "boundary": {
+        "unknown_in_explanations": [],
+        "unknown_in_targets": []
+      },
+      "traps": {
+        "realistic": [
+          {
+            "task": 2,
+            "trap": "glass/class/grass"
+          },
+          {
+            "task": 4,
+            "trap": "brush/blush/crush"
+          },
+          {
+            "task": 5,
+            "trap": "glasses/glass/grass"
+          },
+          {
+            "task": 8,
+            "trap": "bench/bunch/drench"
+          },
+          {
+            "task": 9,
+            "trap": "brushes/brush/blush"
+          },
+          {
+            "task": 13,
+            "trap": "benches/bench/bunch"
+          },
+          {
+            "task": 15,
+            "trap": "box/boxes/fox"
+          }
+        ],
+        "silly": [],
+        "native_transfer_used": true,
+        "feedback_teaches_unknown_form": []
+      },
+      "feedback": {
+        "missing_per_option": [],
+        "duplicated": [],
+        "too_long_or_bookish": []
+      },
+      "flow": {
+        "task_count": 17,
+        "below_12": false,
+        "word_first_respected": true,
+        "support_fades": true,
+        "new_word_cards_and_recognition": {
+          "glass": [
+            1,
+            2
+          ],
+          "brush": [
+            3,
+            4
+          ],
+          "bench": [
+            7,
+            8
+          ]
+        },
+        "number_listening_tasks": [
+          5,
+          9,
+          13,
+          15
+        ],
+        "return_box_correct_contacts": [
+          10,
+          14,
+          15
+        ],
+        "speed_match_boards": [
+          [
+            "glasses",
+            "brushes",
+            "benches",
+            "boxes"
+          ]
+        ],
+        "board_grounding_before_14": true,
+        "builders": [
+          6,
+          11,
+          12,
+          17
+        ],
+        "builder_variety": [
+          "affirmative",
+          "question",
+          "dictated negative",
+          "independent final affirmative"
+        ],
+        "same_skeleton_max": 2,
+        "final_independent": true,
+        "final_not_prompted_by_voice_16": true
+      },
+      "time_references": [],
+      "cross_session_repeats": [],
+      "textbook_formulas": [],
+      "verdict": "PASS",
+      "verdict_reason": "S20 faithfully teaches listening for singular versus plural endings through grounded, neutral audio choices, while preserving all lexical, grammar, return-contact, and independent-final boundaries."
+    }
+  ],
+  "actualDelta": {
+    "sourceSha256": "0b8ee756248840a8741a87265eab930e0dd0634c49063b178a52092f5d84a5c8",
+    "priorSha256": "ed5e6b4ee17b2d9ceddb68c7be885b12f38349de9487fa915448a263a63176bb",
+    "editedSha256": "e31c18d928576f5a9d5bb4f624742d57c4f41665c66b2631e814412b28125a10",
+    "changedLines": [
+      29,
+      31,
+      76,
+      99,
+      122
+    ],
+    "finalChangedLines": [
+      122
+    ],
+    "verdict": "PASS",
+    "fullPriorScopeRetained": true,
+    "intermediateVerdict": "REVISE: e31c T16 pointed to one bag with collective crockery; final one-line repair verified against draft_02.",
+    "remainingIssues": []
+  }
+}

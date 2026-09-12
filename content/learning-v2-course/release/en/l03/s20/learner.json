@@ -1,0 +1,1034 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-20:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — glass",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — glass",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:i01:audio",
+          "transcript": "glass"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:i01:r1",
+            "targetText": "glass",
+            "meaningByLocale": {
+              "ru": "«стакан». Здесь сосуд для питья из стекла, например стакан для воды.",
+              "uk": "«склянка». Тут це посудина для пиття, наприклад склянка для води."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glass",
+          "definitionByLocale": {
+            "ru": "«стакан». Здесь сосуд для питья из стекла, например стакан для воды.",
+            "uk": "«склянка». Тут це посудина для пиття, наприклад склянка для води."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс курьер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-20:i02:r1",
+          "text": "glass"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i02:r2",
+          "text": "class"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i02:r3",
+          "text": "grass"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс курьер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:i02:audio",
+          "transcript": "glass"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:i02:r1",
+            "targetText": "glass",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i02:r2",
+            "targetText": "class",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i02:r3",
+            "targetText": "grass",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`class` — «класс». В начале слышно «к», а в `glass` — звонкое «г». Дальше слова звучат одинаково.",
+              "uk": "`class` — «клас». На початку чути «кл», а в `glass` — звук, близький до українського «ґ», перед «л». Далі слова звучать однаково."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`grass` — «трава». После первого звука идёт английский `r`; в `glass` на этом месте «л», кончик языка касается бугорков за верхними зубами.",
+              "uk": "`grass` — «трава». Після першого звука в ньому чути англійський звук без дотику язика до горбиків за верхніми зубами. У `glass` там «л», і язик торкається цих горбиків."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — brush",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — brush",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:i03:audio",
+          "transcript": "brush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:i03:r1",
+            "targetText": "brush",
+            "meaningByLocale": {
+              "ru": "«щётка». Инструмент с жёсткими волосками или щетиной; здесь щётка для уборки.",
+              "uk": "«щітка». Інструмент із жорсткими волосками або щетиною; тут щітка для прибирання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brush",
+          "definitionByLocale": {
+            "ru": "«щётка». Инструмент с жёсткими волосками или щетиной; здесь щётка для уборки.",
+            "uk": "«щітка». Інструмент із жорсткими волосками або щетиною; тут щітка для прибирання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово сказал курьер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-20:i04:r1",
+          "text": "brush"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i04:r2",
+          "text": "blush"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i04:r3",
+          "text": "crush"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово сказал курьер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:i04:audio",
+          "transcript": "brush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:i04:r1",
+            "targetText": "brush",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i04:r2",
+            "targetText": "blush",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i04:r3",
+            "targetText": "crush",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-20:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`blush` — «краснеть». После «б» звучит «л», язык касается бугорков за верхними зубами. В `brush` там английский `r`, язык их не касается.",
+              "uk": "`blush` — «червоніти». Після «б» чути «л», і язик торкається горбиків за верхніми зубами. У `brush` там англійський звук без такого дотику."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`crush` — «раздавить». Первым слышно «к», а в `brush` — «б». После этого слова звучат одинаково.",
+              "uk": "`crush` — «розчавити». Спочатку чути «к», а в `brush` — «б». Далі слова звучать однаково."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-20:i05:r1",
+          "text": "glasses"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i05:r2",
+          "text": "glass"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i05:r3",
+          "text": "grass"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:i05:audio",
+          "transcript": "glasses"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:i05:r1",
+            "targetText": "glasses",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i05:r2",
+            "targetText": "glass",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i05:r3",
+            "targetText": "grass",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "`glass` — «стакан», один слог. В записи `glasses` — «стаканы»: слышно два слога, включая короткое окончание.",
+              "uk": "`glass` — «склянка», один склад. У записі `glasses` — «склянки»: чути два склади, зокрема коротке закінчення."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "`grass` — «трава», один слог с английским `r` в начале. У `glasses` после первого звука «л», а слогов два.",
+              "uk": "`grass` — «трава», один склад; після першого звука чути англійський `r`, і язик не торкається горбиків за верхніми зубами. У `glasses` там «л» із таким дотиком, а складів два."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — курьер спрашивает, что было в коробке с посудой; ответьте «Это стаканы»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-20:i06:r1",
+          "text": "glass"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — курьер спрашивает, что было в коробке с посудой; ответьте «Это стаканы»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are glasses.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — курьер спрашивает, что было в коробке с посудой; ответьте «Это стаканы»",
+          "uk": "Зберіть фразу — кур’єр питає, що було в коробці з посудом; відповідайте «Це склянки»"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "glasses"
+        ],
+        "authoredDistractorTokens": [
+          "glass"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-20:i06:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — курьер спрашивает, что ",
+            "feedbackByLocale": {
+              "ru": "Вы вынули несколько стаканов. Нужна форма `glasses`, с коротким дополнительным слогом.",
+              "uk": "Ви дістали кілька склянок. Потрібна форма `glasses`, із коротким додатковим складом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bench",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bench",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:i07:audio",
+          "transcript": "bench"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:i07:r1",
+            "targetText": "bench",
+            "meaningByLocale": {
+              "ru": "«скамейка». Длинное сиденье, обычно твёрдое, на котором могут сидеть несколько человек.",
+              "uk": "«лавка». Довге, зазвичай тверде сидіння, на якому можуть сидіти кілька людей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bench",
+          "definitionByLocale": {
+            "ru": "«скамейка». Длинное сиденье, обычно твёрдое, на котором могут сидеть несколько человек.",
+            "uk": "«лавка». Довге, зазвичай тверде сидіння, на якому можуть сидіти кілька людей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс курьер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-20:i08:r1",
+          "text": "bench"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i08:r2",
+          "text": "bunch"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i08:r3",
+          "text": "drench"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс курьер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:i08:audio",
+          "transcript": "bench"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:i08:r1",
+            "targetText": "bench",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i08:r2",
+            "targetText": "bunch",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i08:r3",
+            "targetText": "drench",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`bunch` — «пучок». Гласный звучит как в `brush`; у `bench` он другой, язык ближе к передней части рта. Сравните середину.",
+              "uk": "`bunch` — «пучок». Голосний звучить як у `brush`; у `bench` він інший, язик ближче до передньої частини рота. Порівняйте середину."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`drench` — «промочить насквозь». Начало — «д» и английский `r`; у `bench` первым звучит «б». Остальная часть совпадает.",
+              "uk": "`drench` — «промочити наскрізь». На початку чути «д» і англійський звук без дотику язика до горбиків за верхніми зубами; у `bench` спершу звучить «б». Далі слова збігаються."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-20:i09:r1",
+          "text": "brushes"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i09:r2",
+          "text": "brush"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i09:r3",
+          "text": "blush"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:i09:audio",
+          "transcript": "brushes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:i09:r1",
+            "targetText": "brushes",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i09:r2",
+            "targetText": "brush",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i09:r3",
+            "targetText": "blush",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "`brush` — «щётка», один слог. В записи `brushes` — «щётки»: после первого слога звучит ещё один короткий.",
+              "uk": "`brush` — «щітка», один склад. У записі `brushes` — «щітки»: після першого складу чути ще один короткий."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "`blush` — «краснеть»: после «б» слышно «л», слово односложное. В `brushes` после «б» английский `r`, и слогов два.",
+              "uk": "`blush` — «червоніти»: після «б» чути «л», і язик торкається горбиків за верхніми зубами; слово односкладове. У `brushes` після «б» чути англійський `r` без такого дотику, а складів два."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте название — курьер спрашивает, что осталось у двери; назовите две пустые коробки (`box` — «коробка», `boxes` — «коробки»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-20:i10:r1",
+          "text": "boxes"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i10:r2",
+          "text": "box"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i10:r3",
+          "text": "boxs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте название — курьер спрашивает, что осталось у двери; назовите две пустые коробки (`box` — «коробка», `boxes` — «коробки»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — курьер спрашивает, что осталось у двери; назовите две пустые коробки (`box` — «коробка», `boxes` — «коробки»)",
+          "uk": "Вставте назву — кур’єр питає, що лишилося біля дверей; назвіть дві порожні коробки (`box` — «коробка», `boxes` — «коробки`)"
+        },
+        "gappedTargetPhrase": "They are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-20:i10:r1",
+            "text": "boxes"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i10:r2",
+            "text": "box"
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i10:r3",
+            "text": "boxs"
+          }
+        ],
+        "testedDimension": "Вставьте название — курьер спрашивает, ч",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-20:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер спрашивает, ч",
+            "feedbackByLocale": {
+              "ru": "У двери две коробки. В этой фразе нужно название нескольких: `boxes`.",
+              "uk": "Біля дверей дві коробки. У цій фразі потрібна назва кількох: `boxes`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер спрашивает, ч",
+            "feedbackByLocale": {
+              "ru": "К `box` для нескольких добавляем `es`: `boxes`. Такое название звучит в два слога.",
+              "uk": "До `box` для кількох додаємо `es`: `boxes`. Така назва звучить у два склади."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите вопрос — в закрытой коробке должны быть две щётки; сверьте заказ с курьером: «Это щётки?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-20:i11:r1",
+          "text": "brush"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите вопрос — в закрытой коробке должны быть две щётки; сверьте заказ с курьером: «Это щётки?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are they brushes?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — в закрытой коробке должны быть две щётки; сверьте заказ с курьером: «Это щётки?»",
+          "uk": "Зберіть питання — у закритій коробці мають бути дві щітки; звірте замовлення з кур’єром: «Це щітки?»"
+        },
+        "orderedTokens": [
+          "Are",
+          "they",
+          "brushes"
+        ],
+        "authoredDistractorTokens": [
+          "brush"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-20:i11:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос — в закрытой коробке дол",
+            "feedbackByLocale": {
+              "ru": "Спрашиваем о нескольких предметах. Название щёток — `brushes`, два слога.",
+              "uk": "Питаємо про кілька предметів. Назва щіток — `brushes`, два склади."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — что сказал курьер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-20:i12:r1",
+          "text": "bench"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — что сказал курьер",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:i12:audio",
+          "transcript": "They are not benches."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are not benches.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "not",
+          "benches"
+        ],
+        "authoredDistractorTokens": [
+          "bench"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-20:i12:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — что сказал курье",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `benches`, в два слога. Отрицание `not` не убирает окончание из названия нескольких скамеек.",
+              "uk": "У записі звучить `benches`, у два склади. Заперечення `not` не забирає закінчення з назви кількох лавок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-20:i13:r1",
+          "text": "benches"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i13:r2",
+          "text": "bench"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i13:r3",
+          "text": "bunch"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:i13:audio",
+          "transcript": "benches"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:i13:r1",
+            "targetText": "benches",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i13:r2",
+            "targetText": "bench",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i13:r3",
+            "targetText": "bunch",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-20:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "`bench` — «скамейка», один слог. В записи `benches` — «скамейки», два слога. Дослушайте короткое окончание.",
+              "uk": "`bench` — «лавка», один склад. У записі `benches` — «лавки», два склади. Дослухайте коротке закінчення."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "`bunch` — «пучок», один слог с гласным как в `brush`. В `benches` первый гласный как в `bench`, затем звучит второй слог.",
+              "uk": "`bunch` — «пучок», один склад із голосним як у `brush`. У `benches` перший голосний як у `bench`, а потім чути другий склад."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините названия с русскими значениями — слова из доставки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините названия с русскими значениями — слова из доставки",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-20:i14:p1",
+            "target": "glasses",
+            "meaningByLocale": {
+              "ru": "стаканы",
+              "uk": "склянки"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-20:i14:p2",
+            "target": "brushes",
+            "meaningByLocale": {
+              "ru": "щётки",
+              "uk": "щітки"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-20:i14:p3",
+            "target": "benches",
+            "meaningByLocale": {
+              "ru": "скамейки",
+              "uk": "лавки"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-20:i14:p4",
+            "target": "boxes",
+            "meaningByLocale": {
+              "ru": "коробки",
+              "uk": "коробки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "glasses",
+          "brushes",
+          "benches",
+          "boxes"
+        ],
+        "rightColumn": [
+          "стаканы",
+          "щётки",
+          "скамейки",
+          "коробки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс курьер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-20:i15:r1",
+          "text": "box"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i15:r2",
+          "text": "boxes"
+        },
+        {
+          "responseId": "en:lesson-03:session-20:i15:r3",
+          "text": "fox"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс курьер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:i15:audio",
+          "transcript": "box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-20:i15:r1",
+            "targetText": "box",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i15:r2",
+            "targetText": "boxes",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i15:r3",
+            "targetText": "fox",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-20:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`boxes` — «коробки», два слога. В записи `box` — «коробка»: один слог с конечным сочетанием «кс».",
+              "uk": "`boxes` — «коробки», два склади. У записі `box` — «коробка»: один склад із кінцевим поєднанням «кс»."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-20:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`fox` — «лиса». В начале слышно «ф», а у `box` — «б». Дальше звучание совпадает.",
+              "uk": "`fox` — «лисиця». На початку чути «ф», а в `box` — «б». Далі звучання збігається."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — курьер ищет пакет со щётками; вы показываете на два стакана в открытом пакете: «Это не щётки»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — курьер ищет пакет со щётками; вы показываете на два стакана в открытом пакете: «Это не щётки»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-20:i16:audio",
+          "transcript": "They are not brushes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are not brushes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-20:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу самостоятельно — курьер спрашивает, какую мебель вы оставляете на террасе; вы показываете на две скамейки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-20:i17:r1",
+          "text": "bench"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу самостоятельно — курьер спрашивает, какую мебель вы оставляете на террасе; вы показываете на две скамейки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are benches.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — курьер спрашивает, какую мебель вы оставляете на террасе; вы показываете на две скамейки",
+          "uk": "Зберіть фразу самостійно — кур’єр питає, які меблі ви лишаєте на терасі; ви показуєте на дві лавки"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "benches"
+        ],
+        "authoredDistractorTokens": [
+          "bench"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-20:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — курьер с",
+            "feedbackByLocale": {
+              "ru": "Вы называете две скамейки. Нужна форма `benches`, в два слога.",
+              "uk": "Ви називаєте дві лавки. Потрібна форма `benches`, у два склади."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3130ffde4e6ad730aa8cfefd00d28f3e8ef59b60e047db273b0c658e281eb6ff"
+}

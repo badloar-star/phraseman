@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-10:i02:r1",
+            "responseId": "en:lesson-02:session-10:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — crowded",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-10:i02:r2",
+            "responseId": "en:lesson-02:session-10:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — crowded",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-10:i04:r1",
+            "responseId": "en:lesson-02:session-10:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — noisy",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-10:i04:r2",
+            "responseId": "en:lesson-02:session-10:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — noisy",
             "feedbackByLocale": {
@@ -289,7 +289,7 @@
         "testedDimension": "Вставьте слово — в зале не пройти между ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-10:i05:r1",
+            "responseId": "en:lesson-02:session-10:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — в зале не пройти между ",
             "feedbackByLocale": {
@@ -298,7 +298,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-10:i05:r2",
+            "responseId": "en:lesson-02:session-10:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — в зале не пройти между ",
             "feedbackByLocale": {
@@ -388,7 +388,7 @@
         "testedDimension": "Вставьте слово — вы сели, спина утонула ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-10:i07:r1",
+            "responseId": "en:lesson-02:session-10:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы сели, спина утонула ",
             "feedbackByLocale": {
@@ -397,7 +397,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-10:i07:r2",
+            "responseId": "en:lesson-02:session-10:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы сели, спина утонула ",
             "feedbackByLocale": {
@@ -462,7 +462,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-10:i08:r1",
+            "responseId": "en:lesson-02:session-10:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — cold",
             "feedbackByLocale": {
@@ -471,7 +471,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-10:i08:r2",
+            "responseId": "en:lesson-02:session-10:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — cold",
             "feedbackByLocale": {
@@ -588,7 +588,7 @@
           "ru": "Вставьте скрепку — маленькое слово, которое начинает вопрос",
           "uk": "Вставте скріпку — маленьке слово, що починає запитання"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ it noisy?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-10:i10:r1",
@@ -606,7 +606,7 @@
         "testedDimension": "Вставьте скрепку — маленькое слово, кото",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-10:i10:r1",
+            "responseId": "en:lesson-02:session-10:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — маленькое слово, кото",
             "feedbackByLocale": {
@@ -615,7 +615,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-10:i10:r2",
+            "responseId": "en:lesson-02:session-10:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — маленькое слово, кото",
             "feedbackByLocale": {
@@ -700,7 +700,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «люд",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-10:i12:r1",
+            "responseId": "en:lesson-02:session-10:i12:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «люд",
             "feedbackByLocale": {
@@ -760,7 +760,7 @@
         "testedDimension": "Вставьте слово — вы вошли с улицы без ку",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-10:i13:r1",
+            "responseId": "en:lesson-02:session-10:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы вошли с улицы без ку",
             "feedbackByLocale": {
@@ -769,7 +769,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-10:i13:r2",
+            "responseId": "en:lesson-02:session-10:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы вошли с улицы без ку",
             "feedbackByLocale": {
@@ -859,7 +859,7 @@
         "testedDimension": "Вставьте слово — спутник спрашивает, как",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-10:i15:r1",
+            "responseId": "en:lesson-02:session-10:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник спрашивает, как",
             "feedbackByLocale": {
@@ -868,7 +868,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-10:i15:r2",
+            "responseId": "en:lesson-02:session-10:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник спрашивает, как",
             "feedbackByLocale": {
@@ -953,5 +953,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c15693e5bd34b860a3fe6da206be53baeb9e0e2ba4a49b0314d667a92edbb790"
+  "learnerFingerprint": "4ecf263bd6f6f7b39378762c6c14591ce72d30fc30944e02a168b4668d4d25a3"
 }

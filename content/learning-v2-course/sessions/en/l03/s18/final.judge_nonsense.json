@@ -1,0 +1,42 @@
+{
+  "sourceSha256": "8efde328d6ddc3ac3b6ea3d540cf821564e964e6db297dbb3460d4b715d2cfc8",
+  "reasoningEffort": "medium",
+  "actualAudioReviewed": false,
+  "reviewer": "/root/s10_truth",
+  "model": "gpt-5.6-sol",
+  "scope": "Initial independent full review plus actual three-region delta review",
+  "problems": [],
+  "verdict": "PASS",
+  "verdict_reason": "All four definitions and sense scopes, locally bounded -es claims, wristwatch number contrast, keyed answers, distractor facts, accent-labeled cues, and neutral instructions are accurate.",
+  "evidencePath": "judgements/2026-09-12_l03_s18_pronunciation_evidence.md",
+  "scopeEvidence": "No buses-only spelling claim. Strap heading is a local cue, not mandatory strap property. British watch lip-rounding cue explicitly accent-scoped.",
+  "previousReview": {
+    "sourceSha256": "40443efc388ffe7426404721341ff61d38a72556af8a395b72d20f5a7ed4506d",
+    "reasoningEffort": "medium",
+    "actualAudioReviewed": false,
+    "reviewer": "/root/s10_truth",
+    "model": "gpt-5.6-sol",
+    "scope": "Initial independent full review plus actual three-region delta review",
+    "problems": [],
+    "verdict": "PASS",
+    "verdict_reason": "All four definitions and sense scopes, locally bounded -es claims, wristwatch number contrast, keyed answers, distractor facts, accent-labeled cues, and neutral instructions are accurate.",
+    "evidencePath": "judgements/2026-09-12_l03_s18_pronunciation_evidence.md",
+    "scopeEvidence": "No buses-only spelling claim. Strap heading is a local cue, not mandatory strap property. British watch lip-rounding cue explicitly accent-scoped.",
+    "previousReview": {
+      "sourceSha256": "f219a2634321c2a810f18a19924178bc8edec4aca8f036c54495af6e99073691",
+      "reasoningEffort": "medium",
+      "actualAudioReviewed": false,
+      "reviewer": "/root/s10_truth",
+      "model": "gpt-5.6-sol",
+      "scope": "Full independent language-fact review; actual audio excluded.",
+      "problems": [],
+      "verdict": "PASS",
+      "verdict_reason": "All four definitions and sense scopes, locally bounded -es claims, wristwatch number contrast, keyed answers, distractor facts, accent-labeled cues, and neutral instructions are accurate.",
+      "evidencePath": "judgements/2026-09-12_l03_s18_pronunciation_evidence.md",
+      "scopeEvidence": "No buses-only spelling claim. Strap heading is a local cue, not mandatory strap property. British watch lip-rounding cue explicitly accent-scoped."
+    },
+    "deltaEvidence": "Actual reviewer verified exactly intro2body/question and T9 prompt changed. Dish stays serving tableware, dishes/es and question correct. Multiple kitchen items and two buses uniquely ground unchanged answers. No future grammar or phonetic/audio changes. Prior full scope retained."
+  },
+  "deltaEvidence": "Actual reviewer verified exactly intro2body/question and T9 prompt changed. Dish stays serving tableware, dishes/es and question correct. Multiple kitchen items and two buses uniquely ground unchanged answers. No future grammar or phonetic/audio changes. Prior full scope retained.",
+  "finalDeltaEvidence": "Actual same independent reviewer confirmed current one-character punctuation correction leaves prior findings/answers and full scope unchanged."
+}

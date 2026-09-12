@@ -1,0 +1,20 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "eae6088e916eda8d8d8662e417abd6dc8d63aad8690fbc3b62971d79b1944180",
+  "issues": [],
+  "checks": {
+    "distinctTargetQuestions": 10,
+    "newWords": 0,
+    "builders": 5,
+    "maxRepeatedBuilderSkeleton": 2,
+    "introLengths": [
+      251,
+      263,
+      268
+    ],
+    "returnBanks": "PASS",
+    "boardGrounding": "PASS",
+    "audioPromptNeutrality": "PASS",
+    "independentFinal": "PASS"
+  }
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-22:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i02",
+    "correctText": "bottle",
+    "correctResponseId": "en:lesson-03:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i04",
+    "correctText": "bowl",
+    "correctResponseId": "en:lesson-03:session-22:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i05",
+    "correctText": "They are bottles.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i06",
+    "correctText": "bowls",
+    "correctResponseId": "en:lesson-03:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i08",
+    "correctText": "plate",
+    "correctResponseId": "en:lesson-03:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i09",
+    "correctText": "Are they plates?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i10",
+    "correctText": "dishes",
+    "correctResponseId": "en:lesson-03:session-22:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i11",
+    "correctText": "They are not bowls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i12",
+    "correctText": "a bottle",
+    "correctResponseId": "en:lesson-03:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i13",
+    "correctText": "plates",
+    "correctResponseId": "en:lesson-03:session-22:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i15",
+    "correctText": "They are dishes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i16",
+    "correctText": "a bowl",
+    "correctResponseId": "en:lesson-03:session-22:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-22:i17",
+    "correctText": "They are bowls.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "reviewScope": "L3S2/L3S3 phonetic feedback delta only; prior full reviews retained, not rerun",
+  "reviewers": {
+    "language": "/root/factory_projection_ts_review",
+    "taste": "/root/l23_plan_review"
+  },
+  "verdict": "PASS",
+  "sessions": [
+    {
+      "session": "s02",
+      "baseHashes": {
+        "ru": "6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b",
+        "uk": "3f23911b2e4fce6a9450812fbb1bd3d5a2b7fb414adbe9b0187b463f2495562c"
+      },
+      "currentHashes": {
+        "ru": "3502df9d49a80804fa5b9fb33643f6e82cc65c2212c9a743fc8b762e46e15d80",
+        "uk": "dc39d7f1513d4cb1dd6429ab22032d0574c57ecd5647a45597227cc08412b894"
+      },
+      "diffReviewed": "One red/bed feedback line in each locale",
+      "rolesCovered": {
+        "reader": "PASS",
+        "pedagogy": "PASS",
+        "nonsense": "PASS",
+        "taste": "PASS",
+        "native": "PASS"
+      },
+      "englishAnswersInvariant": true,
+      "contractEvidence": "9 intro choices, 32 practice-contract items unchanged; RU/UK 122 backtick spans identical in order",
+      "tasteEvidence": "Intro and humor unchanged; all prior humor.examples and best_lines remain exact source substrings",
+      "retainPriorFullTaste": true
+    },
+    {
+      "session": "s03",
+      "baseHashes": {
+        "ru": "45a29f88af55d12f0eca4f40f28a2b01cf5e3b5a3fcee62af225f1c379ef1f15",
+        "uk": "2469b72e5c687621a41f501bb4684fafe2b8935447b2880ecd0823fea5004340"
+      },
+      "currentHashes": {
+        "ru": "3f0c5b6ecc21cd4d5505bea97549bbee0e4bda8ef1c1ed3a13623599977aa9a6",
+        "uk": "80cdd3d2a2e304b25866bc1ce66a4873ee5a611653bd8f9095fbfc266935ede7"
+      },
+      "diffReviewed": "Two bug/rug and mug/rug feedback lines in each locale",
+      "rolesCovered": {
+        "reader": "PASS",
+        "pedagogy": "PASS",
+        "nonsense": "PASS",
+        "taste": "PASS",
+        "native": "PASS"
+      },
+      "englishAnswersInvariant": true,
+      "contractEvidence": "9 intro choices, 32 practice-contract items unchanged; RU/UK 121 backtick spans identical in order",
+      "tasteEvidence": "Intro and humor unchanged; all prior humor.examples and best_lines remain exact source substrings",
+      "retainPriorFullTaste": true
+    }
+  ],
+  "preventativeNotes": {
+    "verdict": "PASS",
+    "files": [
+      "pipeline/prompts/author.md",
+      "pipeline/prompts/localize.md"
+    ],
+    "reason": "Forbid false English-r/Cyrillic-р identity, require concrete checkable contrast and independent review; retain valid close-sound comparisons."
+  },
+  "actualAudioReviewed": false,
+  "visualReviewPerformed": false,
+  "findings": [],
+  "references": [
+    "https://dictionary.cambridge.org/pronunciation/english/red",
+    "https://dictionary.cambridge.org/pronunciation/english/rug",
+    "https://dictionary.cambridge.org/pronunciation/english/bug",
+    "https://dictionary.cambridge.org/pronunciation/english/mug",
+    "https://pressbooks.pub/essentialsoflinguistics/chapter/2-7-classifying-consonants/"
+  ]
+}

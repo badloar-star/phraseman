@@ -1,32 +1,35 @@
 {
-  "pages": [
-    {
-      "page": 1,
-      "retelling": "Чтобы спросить о нескольких людях «Кто эти люди?», нужно сказать `Who are these people?` и поставить `are` после `Who`.",
-      "what_i_do_now": "Теперь я скажу `Who are these people?`, а не `Who is these people?` и не пропущу `are`.",
-      "understood": true,
-      "problems": []
-    },
-    {
-      "page": 2,
-      "retelling": "`Strangers` означает незнакомых людей, поэтому про них можно сказать `They are strangers`.",
-      "what_i_do_now": "Теперь я скажу `They are strangers`, а не `They strangers` или `They is strangers`.",
-      "understood": true,
-      "problems": []
-    },
-    {
-      "page": 3,
-      "retelling": "`Twins` — близнецы, а чтобы сказать, что мы не близнецы, нужно поставить `not` после `are`: `We are not twins`.",
-      "what_i_do_now": "Теперь я скажу `We are not twins`, сохранив и `are`, и `not`.",
-      "understood": true,
-      "problems": []
-    }
-  ],
-  "pages_understood": 3,
+  "session": "en/l02/s34",
+  "sourceSha256": "0ad5d420ef8250d7f12601148b18ffdd9c534ee91a7d8123b8c58eaf4c714ff4",
+  "localeSha256": "7ff9ec18731575288163ae1c8830584011a21dc9e032d69133eb929b45238432",
   "verdict": "PASS",
-  "verdict_reason": "Все три страницы понятны после одного чтения: каждая объясняет нужные слова и сразу показывает конкретную фразу, которую я теперь могу сказать. Непонятных ссылок, необъяснённых запретов или терминов, мешающих понять действие, нет.",
-  "sourceSha256": "c72bc0dd157edc56107749d19d44b4e301bc47da029be4ad472c7b88f3ce4576",
-  "reviewedAt": "2026-09-08T08:45:06.848154+00:00",
-  "reviewMethod": "builtin_codex_independent_role",
-  "reviewedScope": "intro_pages"
+  "issues": [],
+  "checks": {
+    "actualDiff": "Ровно task 12 в RU и UK; замены совпадают с packet.",
+    "clarity": "Формулировки естественно задают участника и общую тему.",
+    "answerLeak": "Не раскрыты `strangers` и полярность; ответ остаётся зависимым от записи."
+  },
+  "verdict_reason": "Нейтральное упоминание нескольких гостей сохраняет понятный контекст, не пересказывая реплику.",
+  "priorFullReviewRetained": true,
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "sourceSha256": "b2a6cfcd304fa01287fd80bff798a20f16d51838512e479219eff47079c64fa5",
+    "verdict": "PASS",
+    "issues": []
+  },
+  "deltaReview": {
+    "session": "en/l02/s34",
+    "sourceSha256": "0ad5d420ef8250d7f12601148b18ffdd9c534ee91a7d8123b8c58eaf4c714ff4",
+    "localeSha256": "7ff9ec18731575288163ae1c8830584011a21dc9e032d69133eb929b45238432",
+    "verdict": "PASS",
+    "issues": [],
+    "checks": {
+      "actualDiff": "Ровно task 12 в RU и UK; замены совпадают с packet.",
+      "clarity": "Формулировки естественно задают участника и общую тему.",
+      "answerLeak": "Не раскрыты `strangers` и полярность; ответ остаётся зависимым от записи."
+    },
+    "verdict_reason": "Нейтральное упоминание нескольких гостей сохраняет понятный контекст, не пересказывая реплику.",
+    "priorFullReviewRetained": true
+  },
+  "retainedSourceSha256": "b2a6cfcd304fa01287fd80bff798a20f16d51838512e479219eff47079c64fa5"
 }

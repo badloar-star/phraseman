@@ -1,0 +1,20 @@
+{
+  "problems": [],
+  "verdict": "PASS",
+  "verdict_reason": "Проверены все утверждения, определения и правильные/неправильные варианты: значения `couple`, `crowd`, `host`, `guests` и `strangers` точны, ответы однозначны в заданных ситуациях, а допустимое британское согласование коллективных `couple` и `crowd` не опровергает выбранные формы с `is`, поскольку текст не объявляет их единственно возможными вообще.",
+  "sourceSha256": "d3ef03d8192d9565746be1dbd312403c4ba075faa09f56823549594f75436baa",
+  "initialVerdict": "PASS",
+  "deltaReview": {
+    "problems": [],
+    "verdict": "PASS",
+    "verdict_reason": "Новый контекст однозначно подтверждает `They are not strangers.`: если вы оба знакомы с этими людьми, они не являются для вас незнакомцами, а реплика естественно исправляет ошибку друга.",
+    "sourceSha256": "f844630734a0d961f878d0f7c523fc9e6aa13276b6f0abc8e00d981b0fc62057"
+  },
+  "reviewedOriginalSha256": "aa9f347ea0a24d41132004b24240e7b12ca572bb13bfd18e66c867f790ea27c1",
+  "previousSourceSha256": "f844630734a0d961f878d0f7c523fc9e6aa13276b6f0abc8e00d981b0fc62057",
+  "listeningRepairReview": {
+    "verdict": "PASS",
+    "issues": [],
+    "sourceSha256": "d3ef03d8192d9565746be1dbd312403c4ba075faa09f56823549594f75436baa"
+  }
+}

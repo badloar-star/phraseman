@@ -1,0 +1,112 @@
+{
+  "role": "blind_adult_russian_learner",
+  "session": "en/l02/s40",
+  "scope": "Text-only sequential simulation of the supplied blind packet. Audio was treated only as the supplied transcript; actual hearing, audio quality, and UI behavior were not assessed.",
+  "walkthrough": [
+    {
+      "step": "intro1",
+      "answer": "She is the manager."
+    },
+    {
+      "step": "intro2",
+      "answer": "Who are these people?"
+    },
+    {
+      "step": "intro3",
+      "answer": "Whose is it?"
+    },
+    {
+      "step": 1,
+      "answer": "Who is he?"
+    },
+    {
+      "step": 2,
+      "answer": "host",
+      "completed_phrase": "He is the host."
+    },
+    {
+      "step": 3,
+      "answer": "He is the host."
+    },
+    {
+      "step": 4,
+      "answer": "She is the manager."
+    },
+    {
+      "step": 5,
+      "answer": "Who is she?"
+    },
+    {
+      "step": 6,
+      "answer": "manager",
+      "completed_phrase": "She is the manager."
+    },
+    {
+      "step": 7,
+      "answer": "Where is the intern?"
+    },
+    {
+      "step": 8,
+      "answer": "The intern is here."
+    },
+    {
+      "step": 9,
+      "answer": "are",
+      "completed_phrase": "Who are these people?"
+    },
+    {
+      "step": 10,
+      "answer": {
+        "intern": "стажёр",
+        "manager": "руководитель",
+        "host": "хозяин вечера",
+        "twins": "близнецы"
+      }
+    },
+    {
+      "step": 11,
+      "answer": "They are twins."
+    },
+    {
+      "step": 12,
+      "answer": "Where",
+      "completed_phrase": "Where is the manager?"
+    },
+    {
+      "step": 13,
+      "answer": "Are they here?"
+    },
+    {
+      "step": 14,
+      "answer": "Whose is it?"
+    },
+    {
+      "step": 15,
+      "answer": "Who is the intern?"
+    },
+    {
+      "step": 16,
+      "answer": "She is not here."
+    },
+    {
+      "step": 17,
+      "answer": "Where are the twins?"
+    }
+  ],
+  "ambiguity_count": 0,
+  "confusion": [],
+  "learning_delta": {
+    "checkpoint_retrieval_of_who_where_whose": "PASS",
+    "evidence": [
+      "Who: identifies a person in steps 1, 5, 9, and 15.",
+      "Where: asks for a location in steps 7, 12, and 17.",
+      "Whose: asks for an item's owner in step 14.",
+      "The prompts present new party situations and Russian communicative intents, without displaying the required English answer."
+    ],
+    "new_grammar_required": false
+  },
+  "issues": [],
+  "verdict": "PASS",
+  "sourceSha256": "735155496eb7456e3f4ce8b25bee0abdc4e712f647d27fd57d72bd4155d236ee",
+  "blindPacketSha256": "7a6366bc51d812badff0eca981874e5ef5924b4238b31dff8634874aa7a86272"
+}

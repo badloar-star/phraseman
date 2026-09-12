@@ -1,0 +1,318 @@
+{
+  "sourceSha256": "7ec753f0fca6f9045423183c07c2054b591ea8f1ff12ea2e3683424b4132816d",
+  "reasoningEffort": "medium",
+  "reviewer": "/root/s17_reader_delta",
+  "model": "gpt-5.6-terra",
+  "introAnswers": [
+    {
+      "page": 1,
+      "answer": "They are tickets."
+    },
+    {
+      "page": 2,
+      "answer": "Are they coins?"
+    },
+    {
+      "page": 3,
+      "answer": "They are not cards."
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "ticket"
+    },
+    {
+      "step": 2,
+      "answer": "ticket"
+    },
+    {
+      "step": 3,
+      "answer": "coin"
+    },
+    {
+      "step": 4,
+      "answer": "coin"
+    },
+    {
+      "step": 5,
+      "answer": "They are tickets."
+    },
+    {
+      "step": 6,
+      "answer": "card"
+    },
+    {
+      "step": 7,
+      "answer": "card"
+    },
+    {
+      "step": 8,
+      "answer": "plants"
+    },
+    {
+      "step": 9,
+      "answer": "Are they coins?"
+    },
+    {
+      "step": 10,
+      "answer": "cushions"
+    },
+    {
+      "step": 11,
+      "answer": "They are not cards."
+    },
+    {
+      "step": 12,
+      "answer": {
+        "coins": "монеты",
+        "plants": "растения",
+        "cards": "карточки",
+        "tickets": "билеты"
+      }
+    },
+    {
+      "step": 13,
+      "answer": "Are they tickets?"
+    },
+    {
+      "step": 14,
+      "answer": "Are they cushions?"
+    },
+    {
+      "step": 15,
+      "answer": "They are not coins."
+    },
+    {
+      "step": 16,
+      "answer": "coins"
+    },
+    {
+      "step": 17,
+      "answer": "They are cards."
+    }
+  ],
+  "learning_delta": "The learner moves from plural labels to affirmative, question, and negative plural sentences, then transfers the pattern to plants and cushions.",
+  "impossible_tasks": [],
+  "ambiguous_tasks": [],
+  "pacing_issues": [],
+  "humour_issues": [],
+  "actualAudioReviewed": false,
+  "scope": "Initial full review plus actual independent semantic and final two-phrase copy deltas",
+  "verdict": "PASS",
+  "verdict_reason": "All text-visible tasks have a single clear answer. Listening derived from supplied transcript stubs only.",
+  "previousReview": {
+    "sourceSha256": "f0409b500c3924f239f23cf11d3c3b218f1bccf4d901bceda8a9d31cda5a8f72",
+    "reasoningEffort": "medium",
+    "reviewer": "/root/s17_reader_delta",
+    "model": "gpt-5.6-terra",
+    "introAnswers": [
+      {
+        "page": 1,
+        "answer": "They are tickets."
+      },
+      {
+        "page": 2,
+        "answer": "Are they coins?"
+      },
+      {
+        "page": 3,
+        "answer": "They are not cards."
+      }
+    ],
+    "practiceAnswers": [
+      {
+        "step": 1,
+        "answer": "ticket"
+      },
+      {
+        "step": 2,
+        "answer": "ticket"
+      },
+      {
+        "step": 3,
+        "answer": "coin"
+      },
+      {
+        "step": 4,
+        "answer": "coin"
+      },
+      {
+        "step": 5,
+        "answer": "They are tickets."
+      },
+      {
+        "step": 6,
+        "answer": "card"
+      },
+      {
+        "step": 7,
+        "answer": "card"
+      },
+      {
+        "step": 8,
+        "answer": "plants"
+      },
+      {
+        "step": 9,
+        "answer": "Are they coins?"
+      },
+      {
+        "step": 10,
+        "answer": "cushions"
+      },
+      {
+        "step": 11,
+        "answer": "They are not cards."
+      },
+      {
+        "step": 12,
+        "answer": {
+          "coins": "монеты",
+          "plants": "растения",
+          "cards": "карточки",
+          "tickets": "билеты"
+        }
+      },
+      {
+        "step": 13,
+        "answer": "Are they tickets?"
+      },
+      {
+        "step": 14,
+        "answer": "Are they cushions?"
+      },
+      {
+        "step": 15,
+        "answer": "They are not coins."
+      },
+      {
+        "step": 16,
+        "answer": "coins"
+      },
+      {
+        "step": 17,
+        "answer": "They are cards."
+      }
+    ],
+    "learning_delta": "The learner moves from plural labels to affirmative, question, and negative plural sentences, then transfers the pattern to plants and cushions.",
+    "impossible_tasks": [],
+    "ambiguous_tasks": [],
+    "pacing_issues": [],
+    "humour_issues": [],
+    "actualAudioReviewed": false,
+    "scope": "Fresh independent reader and blind learner projection walkthrough; no answer keys or source",
+    "verdict": "PASS",
+    "verdict_reason": "All text-visible tasks have a single clear answer. Listening derived from supplied transcript stubs only.",
+    "previousReview": {
+      "sourceSha256": "27fccff64a607584487fa69ee95f13813855272174afbfe038d8cddde6f09fe3",
+      "reasoningEffort": "medium",
+      "reviewer": "/root/s10_blind",
+      "model": "gpt-5.6-terra",
+      "introAnswers": [
+        {
+          "page": 1,
+          "answer": "They are tickets."
+        },
+        {
+          "page": 2,
+          "answer": "Are they coins?"
+        },
+        {
+          "page": 3,
+          "answer": "They are not cards."
+        }
+      ],
+      "practiceAnswers": [
+        {
+          "step": 1,
+          "answer": "ticket"
+        },
+        {
+          "step": 2,
+          "answer": "ticket"
+        },
+        {
+          "step": 3,
+          "answer": "coin"
+        },
+        {
+          "step": 4,
+          "answer": "coin"
+        },
+        {
+          "step": 5,
+          "answer": "They are tickets."
+        },
+        {
+          "step": 6,
+          "answer": "card"
+        },
+        {
+          "step": 7,
+          "answer": "card"
+        },
+        {
+          "step": 8,
+          "answer": "plants"
+        },
+        {
+          "step": 9,
+          "answer": "Are they coins?"
+        },
+        {
+          "step": 10,
+          "answer": "cushions"
+        },
+        {
+          "step": 11,
+          "answer": "They are not cards."
+        },
+        {
+          "step": 12,
+          "answer": {
+            "coins": "монеты",
+            "plants": "растения",
+            "cards": "карточки",
+            "tickets": "билеты"
+          }
+        },
+        {
+          "step": 13,
+          "answer": "Are they tickets?"
+        },
+        {
+          "step": 14,
+          "answer": "Are they cushions?"
+        },
+        {
+          "step": 15,
+          "answer": "They are not coins."
+        },
+        {
+          "step": 16,
+          "answer": "coins"
+        },
+        {
+          "step": 17,
+          "answer": "They are cards."
+        }
+      ],
+      "learning_delta": [
+        "ticket, coin, card получают s, когда предметов несколько.",
+        "Называю через They are, спрашиваю через Are they, говорю «не» через They are not."
+      ],
+      "impossible_tasks": [],
+      "ambiguous_tasks": [],
+      "pacing_issues": [],
+      "humour_issues": [],
+      "actualAudioReviewed": false,
+      "scope": "Blind visible learner projection; audio transcript stubs only.",
+      "verdict": "PASS",
+      "verdict_reason": "Сессия ясно вводит множественное число и три связанные фразы, а затем переносит их на знакомые слова без скрытого материала."
+    },
+    "deltaEvidence": "Fresh independent walkthrough returned exactly the same 3 intro and 17 practice answers retained above; no impossible, ambiguous, pacing or humour issues."
+  },
+  "deltaEvidence": "Fresh independent walkthrough returned exactly the same 3 intro and 17 practice answers retained above; no impossible, ambiguous, pacing or humour issues.",
+  "finalDeltaEvidence": "Reviewer compared final against draft_02 and confirmed only the two stated Russian wording repairs; task meanings, options, answers and prior findings retained."
+}

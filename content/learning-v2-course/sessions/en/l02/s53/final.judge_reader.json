@@ -1,0 +1,11 @@
+{
+  "sourceSha256": "7d13e066a023b73822914bf7dbad8e3e03579a15c006fffdc1fd8649e12b1d15",
+  "verdict": "PASS",
+  "issues": [],
+  "verifiedDelta": {
+    "intro3RepairApplied": true,
+    "task1PromptNeutral": true,
+    "task1FeedbackMatchesVisibleErrors": true,
+    "task2BusyFeedbackUsesKnownPersonalMeaning": true
+  }
+}

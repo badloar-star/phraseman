@@ -1,0 +1,12 @@
+{
+  "sourceSha256": "27fccff64a607584487fa69ee95f13813855272174afbfe038d8cddde6f09fe3",
+  "reasoningEffort": "medium",
+  "reviewer": "/root/s10_truth",
+  "model": "gpt-5.6-sol",
+  "scope": "Full independent language-fact review; actual audio excluded.",
+  "problems": [],
+  "verdict": "PASS",
+  "verdict_reason": "ticket accurately defined by travel/entry rights without requiring payment; coin as metal money and access-card sense correct. Written -s plurals and they/are/not frames correct and locally scoped. Sound contrasts match saved UK/US IPA within each accent. No English /r/ identity asserted. Wrong-option glosses legitimate; listening instructions neutral.",
+  "evidencePath": "judgements/2026-09-12_l03_s17_pronunciation_evidence.md",
+  "actualAudioReviewed": false
+}

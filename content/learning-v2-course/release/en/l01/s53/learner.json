@@ -51,7 +51,7 @@
         "testedDimension": "Вставьте слово — мама спросила, как вы",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-53:i01:r1",
+            "responseId": "en:lesson-01:session-53:i01:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — мама спросила, как вы",
             "feedbackByLocale": {
@@ -60,7 +60,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-53:i01:r2",
+            "responseId": "en:lesson-01:session-53:i01:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — мама спросила, как вы",
             "feedbackByLocale": {
@@ -120,7 +120,7 @@
         "testedDimension": "Вставьте слово — речь про брата, он заня",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-53:i02:r1",
+            "responseId": "en:lesson-01:session-53:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — речь про брата, он заня",
             "feedbackByLocale": {
@@ -129,7 +129,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-53:i02:r2",
+            "responseId": "en:lesson-01:session-53:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — речь про брата, он заня",
             "feedbackByLocale": {
@@ -194,7 +194,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-53:i03:r1",
+            "responseId": "en:lesson-01:session-53:i03:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — busy",
             "feedbackByLocale": {
@@ -203,7 +203,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-53:i03:r2",
+            "responseId": "en:lesson-01:session-53:i03:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — busy",
             "feedbackByLocale": {
@@ -293,7 +293,7 @@
         "testedDimension": "Вставьте слово — про вас и брата вместе",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-53:i05:r1",
+            "responseId": "en:lesson-01:session-53:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — про вас и брата вместе",
             "feedbackByLocale": {
@@ -302,7 +302,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-53:i05:r2",
+            "responseId": "en:lesson-01:session-53:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — про вас и брата вместе",
             "feedbackByLocale": {
@@ -391,7 +391,7 @@
         "testedDimension": "Вставьте слово — сестра здорова",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-53:i07:r1",
+            "responseId": "en:lesson-01:session-53:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сестра здорова",
             "feedbackByLocale": {
@@ -400,7 +400,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-53:i07:r2",
+            "responseId": "en:lesson-01:session-53:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сестра здорова",
             "feedbackByLocale": {
@@ -486,7 +486,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «бол",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-53:i09:r1",
+            "responseId": "en:lesson-01:session-53:i09:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «бол",
             "feedbackByLocale": {
@@ -546,7 +546,7 @@
         "testedDimension": "Вставьте слово — соседи не вместе, кажды",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-53:i10:r1",
+            "responseId": "en:lesson-01:session-53:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — соседи не вместе, кажды",
             "feedbackByLocale": {
@@ -555,7 +555,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-53:i10:r2",
+            "responseId": "en:lesson-01:session-53:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — соседи не вместе, кажды",
             "feedbackByLocale": {

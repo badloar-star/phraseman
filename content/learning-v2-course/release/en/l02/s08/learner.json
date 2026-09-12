@@ -106,7 +106,7 @@
           "ru": "Вставьте слово — сосед спит лицом в стол, вы будите",
           "uk": "Вставте слово — сусід спить обличчям у стіл, ви його будите"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ you awake?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-08:i02:r1",
@@ -124,7 +124,7 @@
         "testedDimension": "Вставьте слово — сосед спит лицом в стол",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-08:i02:r1",
+            "responseId": "en:lesson-02:session-08:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед спит лицом в стол",
             "feedbackByLocale": {
@@ -133,7 +133,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-08:i02:r2",
+            "responseId": "en:lesson-02:session-08:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед спит лицом в стол",
             "feedbackByLocale": {
@@ -198,7 +198,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-08:i03:r1",
+            "responseId": "en:lesson-02:session-08:i03:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — awake",
             "feedbackByLocale": {
@@ -207,7 +207,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-08:i03:r2",
+            "responseId": "en:lesson-02:session-08:i03:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — awake",
             "feedbackByLocale": {
@@ -299,7 +299,7 @@
         "testedDimension": "Вставьте слово — сосед третий раз тянетс",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-08:i05:r1",
+            "responseId": "en:lesson-02:session-08:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед третий раз тянетс",
             "feedbackByLocale": {
@@ -308,7 +308,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-08:i05:r2",
+            "responseId": "en:lesson-02:session-08:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед третий раз тянетс",
             "feedbackByLocale": {
@@ -401,7 +401,7 @@
         "testedDimension": "Вставьте слово — вы отказываетесь от доб",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-08:i07:r1",
+            "responseId": "en:lesson-02:session-08:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы отказываетесь от доб",
             "feedbackByLocale": {
@@ -410,7 +410,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-08:i07:r2",
+            "responseId": "en:lesson-02:session-08:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы отказываетесь от доб",
             "feedbackByLocale": {
@@ -492,7 +492,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «зам",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-08:i09:r1",
+            "responseId": "en:lesson-02:session-08:i09:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «зам",
             "feedbackByLocale": {
@@ -557,7 +557,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-08:i10:r1",
+            "responseId": "en:lesson-02:session-08:i10:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — thirsty",
             "feedbackByLocale": {
@@ -566,7 +566,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-08:i10:r2",
+            "responseId": "en:lesson-02:session-08:i10:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — thirsty",
             "feedbackByLocale": {
@@ -628,7 +628,7 @@
         "testedDimension": "Вставьте слово — сосед вернулся к хостел",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-08:i11:r1",
+            "responseId": "en:lesson-02:session-08:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед вернулся к хостел",
             "feedbackByLocale": {
@@ -637,7 +637,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-08:i11:r2",
+            "responseId": "en:lesson-02:session-08:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед вернулся к хостел",
             "feedbackByLocale": {
@@ -729,7 +729,7 @@
         "testedDimension": "Вставьте слово — сосед сидит в куртке и ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-08:i13:r1",
+            "responseId": "en:lesson-02:session-08:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед сидит в куртке и ",
             "feedbackByLocale": {
@@ -738,7 +738,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-08:i13:r2",
+            "responseId": "en:lesson-02:session-08:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед сидит в куртке и ",
             "feedbackByLocale": {
@@ -926,5 +926,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cabdd9acce4f7cb167b91790fe82765d8ce8c64a1a6f9f1aca5656102cbcc041"
+  "learnerFingerprint": "d95ebffe1fc88ada715d04822dc07ba8ef59826945fd5504ab4414b26eec6371"
 }

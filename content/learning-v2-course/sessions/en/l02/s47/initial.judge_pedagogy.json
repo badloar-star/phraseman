@@ -1,0 +1,18 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "76336691cb70cd4f83b307ed62ddc3a8be5d16a7d69347a0a6b2eed5f39d5799",
+  "issues": [],
+  "checks": {
+    "tasks": 17,
+    "builders": 6,
+    "introLengths": [
+      265,
+      268,
+      262
+    ],
+    "uniqueAnswersAndFeedback": "PASS",
+    "amIvsAreWeScope": "PASS",
+    "communicationMannerMeaning": "PASS",
+    "independentFinal": "PASS"
+  }
+}

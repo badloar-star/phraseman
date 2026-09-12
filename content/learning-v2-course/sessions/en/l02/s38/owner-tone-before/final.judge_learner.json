@@ -1,0 +1,190 @@
+{
+  "walkthrough": [
+    {
+      "step": "intro-1",
+      "answer": "Who is he?",
+      "confusion": null
+    },
+    {
+      "step": "intro-2",
+      "answer": "Who is she?",
+      "confusion": null
+    },
+    {
+      "step": "intro-3",
+      "answer": "Who are these people?",
+      "confusion": null
+    },
+    {
+      "step": "1",
+      "answer": "manager = руководитель",
+      "confusion": null
+    },
+    {
+      "step": "2",
+      "answer": "manager",
+      "confusion": null
+    },
+    {
+      "step": "3",
+      "answer": "intern = стажёр",
+      "confusion": null
+    },
+    {
+      "step": "4",
+      "answer": "intern",
+      "confusion": null
+    },
+    {
+      "step": "5",
+      "answer": "Who is the manager?",
+      "confusion": null
+    },
+    {
+      "step": "6",
+      "answer": "new",
+      "confusion": null
+    },
+    {
+      "step": "7",
+      "answer": "Who is the intern?",
+      "confusion": null
+    },
+    {
+      "step": "8",
+      "answer": "He is the manager.",
+      "confusion": null
+    },
+    {
+      "step": "9",
+      "answer": "sure",
+      "confusion": null
+    },
+    {
+      "step": "10",
+      "answer": "manager—руководитель; intern—стажёр; sure—уверен; new—новенький",
+      "confusion": null
+    },
+    {
+      "step": "11",
+      "answer": "The intern is here.",
+      "confusion": null
+    },
+    {
+      "step": "12",
+      "answer": "Who",
+      "confusion": null
+    },
+    {
+      "step": "13",
+      "answer": "Is she here?",
+      "confusion": null
+    },
+    {
+      "step": "14",
+      "answer": "I am not sure.",
+      "confusion": null
+    },
+    {
+      "step": "15",
+      "answer": "Who is she?",
+      "confusion": "Реплику можно произнести, но по транскрипту нельзя проверить аудио, распознавание или сравнение произношения."
+    },
+    {
+      "step": "16",
+      "answer": "Where is the manager?",
+      "confusion": "Реплику можно произнести, но по транскрипту нельзя проверить аудио, распознавание или сравнение произношения."
+    },
+    {
+      "step": "17",
+      "answer": "Who is the intern?",
+      "confusion": null
+    }
+  ],
+  "learned_new": [
+    {
+      "word": "manager",
+      "meaning": "руководитель"
+    },
+    {
+      "word": "intern",
+      "meaning": "стажёр"
+    },
+    {
+      "pattern": "Who is he/she?",
+      "meaning": "узнать, кто этот человек"
+    },
+    {
+      "pattern": "Who are these people?",
+      "meaning": "узнать, кто эти люди"
+    }
+  ],
+  "impossible_tasks": [
+    {
+      "steps": [
+        "15",
+        "16"
+      ],
+      "reason": "Аудио представлено только транскриптами; фактическое прослушивание, повторение и автоматическое сравнение произношения недоступны."
+    }
+  ],
+  "ambiguity": [],
+  "verdict": "PASS",
+  "deltaReview": {
+    "delta": {
+      "scope": "Только задание 4: вариант colleague заменён на guest.",
+      "answer": "intern",
+      "verdict": "PASS",
+      "entire_text_walkthrough_pass_stands": true,
+      "note": "Транскрипт содержит intern; замена отвлекающего варианта не создаёт неоднозначности. Аудио не заявлялось проверенным."
+    }
+  },
+  "reviewedOriginalSha256": "de7b4fde081c3b5ac4a8aed67e8252965cd3fe063ae546488a8f23e3c661d700",
+  "sourceSha256": "88a4fa1de82fe42833767db94a7f2c0f39640b8831267ed171668edd778558ff",
+  "rootAnswerComparison": {
+    "correct": 20,
+    "total": 20,
+    "audioVerified": false,
+    "scope": "Text answers only; independent blind packet plus task4 delta"
+  },
+  "listeningRepairReview": {
+    "role": "blind_adult_russian_learner",
+    "scope": "Visible instructions, supplied transcripts, and options only. Audio quality was not assessed.",
+    "items": [
+      {
+        "session": 38,
+        "task": 2,
+        "answer": "manager",
+        "instruction_reveals_answer_without_audio_or_transcript": false,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      },
+      {
+        "session": 38,
+        "task": 4,
+        "answer": "intern",
+        "instruction_reveals_answer_without_audio_or_transcript": false,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      },
+      {
+        "session": 39,
+        "task": 2,
+        "answer": "couple",
+        "instruction_reveals_answer_without_audio_or_transcript": false,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      },
+      {
+        "session": 39,
+        "task": 4,
+        "answer": "crowd",
+        "instruction_reveals_answer_without_audio_or_transcript": false,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      }
+    ],
+    "overall_verdict": "PASS"
+  },
+  "previousSourceSha256": "ce5a96b8dbd36fb9bf7ad8ce84261b9463f66d3f584ad30e74725fd273a5104a"
+}

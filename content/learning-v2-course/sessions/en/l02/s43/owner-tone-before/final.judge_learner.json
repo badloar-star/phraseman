@@ -1,0 +1,140 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "55fb0c333377269b928f1a46a5c852792748aa5ac0dca731ad4e948330f7ec69",
+  "fullReview": {
+    "session": "en/l02/s43",
+    "scope": "Text-only blind simulation. Transcripts substitute for audio content; audio playback and quality were not assessed.",
+    "walkthrough": [
+      {
+        "step": "intro1",
+        "answer": "Are we lost?"
+      },
+      {
+        "step": "intro2",
+        "answer": "Are we sure?"
+      },
+      {
+        "step": "intro3",
+        "answer": "Are we here?"
+      },
+      {
+        "step": 1,
+        "answer": "Are we lost?"
+      },
+      {
+        "step": 2,
+        "answer": "we",
+        "completed_phrase": "Are we lost?"
+      },
+      {
+        "step": 3,
+        "answer": "Are we lost?"
+      },
+      {
+        "step": 4,
+        "answer": "sure",
+        "completed_phrase": "We are sure."
+      },
+      {
+        "step": 5,
+        "answer": "Are we here?"
+      },
+      {
+        "step": 6,
+        "answer": "I am not sure."
+      },
+      {
+        "step": 7,
+        "answer": "Are",
+        "completed_phrase": "Are we near?"
+      },
+      {
+        "step": 8,
+        "answer": "Where is the station?"
+      },
+      {
+        "step": 9,
+        "answer": {
+          "here": "здесь",
+          "sure": "уверен",
+          "near": "близко",
+          "lost": "заблудились"
+        }
+      },
+      {
+        "step": 10,
+        "answer": "here",
+        "completed_phrase": "We are here."
+      },
+      {
+        "step": 11,
+        "answer": "We are not lost."
+      },
+      {
+        "step": 12,
+        "answer": "sure",
+        "completed_phrase": "Are we sure?"
+      },
+      {
+        "step": 13,
+        "answer": "We are here."
+      },
+      {
+        "step": 14,
+        "answer": "we",
+        "completed_phrase": "Are we here?"
+      },
+      {
+        "step": 15,
+        "answer": "Are we sure?"
+      },
+      {
+        "step": 16,
+        "answer": "Where is it?"
+      },
+      {
+        "step": 17,
+        "answer": "Are we near?"
+      }
+    ],
+    "learned_or_reinforced": [
+      "Вопросы с we: Are we lost?, Are we sure?, Are we here?",
+      "Перестановка We are → Are we в вопросе.",
+      "Отрицательное сообщение We are not lost.",
+      "Слова lost, sure, here и их связь с ситуацией дороги."
+    ],
+    "ambiguity_count": 0,
+    "ambiguities": [],
+    "issues": [
+      {
+        "severity": "non_blocking",
+        "detail": "В шагах 7 и 17 фраза Are we near? опирается на ранее названный ориентир в сцене, хотя сам ориентир в английской фразе не повторён. В контексте станции/музея смысл понятен."
+      }
+    ],
+    "verdict": "PASS"
+  },
+  "deltaReview": {
+    "session": "en/l02/s43",
+    "scope": "Delta review of tasks 7, 16, and 17 only; text simulation.",
+    "answers": [
+      {
+        "step": 7,
+        "answer": "Are",
+        "completed_phrase": "Are we near?"
+      },
+      {
+        "step": 16,
+        "answer": "Where is it?"
+      },
+      {
+        "step": 17,
+        "answer": "Are we near?"
+      }
+    ],
+    "ambiguities": [],
+    "verdict": "PASS"
+  },
+  "checkedIntro": 3,
+  "checkedTasks": 17,
+  "audio": "text simulation only"
+}

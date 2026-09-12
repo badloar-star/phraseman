@@ -1,0 +1,301 @@
+{
+  "sourceSha256": "c58b73d557cdb882a6639224444155277d8f97bf770ad1bba51574f39021db98",
+  "reviewer": "/root/s18_blind",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "stories"
+    },
+    {
+      "step": 2,
+      "answer": "They are countries."
+    },
+    {
+      "step": 3,
+      "answer": "Are they batteries?"
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "story"
+    },
+    {
+      "step": 2,
+      "answer": "story"
+    },
+    {
+      "step": 3,
+      "answer": "country"
+    },
+    {
+      "step": 4,
+      "answer": "country"
+    },
+    {
+      "step": 5,
+      "answer": "They are stories."
+    },
+    {
+      "step": 6,
+      "answer": "battery"
+    },
+    {
+      "step": 7,
+      "answer": "battery"
+    },
+    {
+      "step": 8,
+      "answer": "countries"
+    },
+    {
+      "step": 9,
+      "answer": "Are they batteries?"
+    },
+    {
+      "step": 10,
+      "answer": "boxes"
+    },
+    {
+      "step": 11,
+      "answer": "They are not stories."
+    },
+    {
+      "step": 12,
+      "answer": {
+        "stories": "истории",
+        "boxes": "коробки",
+        "countries": "страны",
+        "batteries": "батарейки"
+      }
+    },
+    {
+      "step": 13,
+      "answer": "Are they countries?"
+    },
+    {
+      "step": 14,
+      "answer": "Are they boxes?"
+    },
+    {
+      "step": 15,
+      "answer": "batteries"
+    },
+    {
+      "step": 16,
+      "answer": "They are not countries."
+    },
+    {
+      "step": 17,
+      "answer": "They are batteries."
+    }
+  ],
+  "learning_delta": [
+    "Если перед конечной y стоит согласная, y меняется на ies: story/stories, country/countries, battery/batteries.",
+    "Для множественных предметов используются They are, Are they и They are not.",
+    "Форма boxes в шаге 10 дана напрямую как отдельная известная пара box/boxes; она не образуется по правилу y → ies."
+  ],
+  "reportCorrection": "Actual reviewer clarified misleading original learning_delta wording: box adds es, not y->ies. No learner-source misconception or answer change.",
+  "unsupportedsteps": [],
+  "ambiguous_tasks": [],
+  "audioLimitations": [
+    {
+      "step": 13,
+      "issue": "Transcript substitutes audible playback; cannot assess real audio discrimination."
+    },
+    {
+      "step": 16,
+      "issue": "Text cannot verify spoken delivery or voice-model comparison."
+    }
+  ],
+  "verdict": "PASS",
+  "reason": "Both revised steps remain independently solvable, all earlier answers still hold, and step13 no longer supplies a contextual answer cue beyond the allowed transcript stub.",
+  "changedStepAnswers": [
+    {
+      "step": 13,
+      "answer": "Are they countries?"
+    },
+    {
+      "step": 17,
+      "answer": "They are batteries."
+    }
+  ],
+  "allPrevious3IntroAnd17PracticeAnswersStillHold": true,
+  "deltaFindings": [
+    {
+      "step": 13,
+      "finding": "Prompt is neutral and supplies no semantic cue favoring an option. Answer comes solely from the permitted transcript stub."
+    },
+    {
+      "step": 17,
+      "finding": "Revised open-package scene establishes four batteries and retains required tiles; intended phrase unchanged."
+    }
+  ],
+  "impossible_tasks": [],
+  "scene_reason": "A sister-led unpacking and sorting thread connects the story collection, puzzle box, battery pack, and storage boxes. It gives the grammar examples an everyday reason to appear.",
+  "felt_alive": "partly",
+  "felt_dead": "The scenes are plausible but lightly sketched. Recognition work repeats three card-and-listen pairs, although the phrase-building task after the first two breaks that pattern before the battery pair.",
+  "would_continue": "yes",
+  "boring_or_water": "No major filler. The three short word-card/listening pairs establish recognition before production; the phrase task inserted after the first two keeps the sequence from becoming a single uninterrupted drill.",
+  "qualitativeVerdictChanged": false,
+  "reviewHistory": [
+    {
+      "sourceSha256": "08064c8eca0a86379274bd93d5623bc66b7a3816a2ec04bc10fe102d3e76bb12",
+      "reviewer": "/root/s18_blind",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "introAnswers": [
+        {
+          "step": 1,
+          "answer": "stories"
+        },
+        {
+          "step": 2,
+          "answer": "They are countries."
+        },
+        {
+          "step": 3,
+          "answer": "Are they batteries?"
+        }
+      ],
+      "practiceAnswers": [
+        {
+          "step": 1,
+          "answer": "story"
+        },
+        {
+          "step": 2,
+          "answer": "story"
+        },
+        {
+          "step": 3,
+          "answer": "country"
+        },
+        {
+          "step": 4,
+          "answer": "country"
+        },
+        {
+          "step": 5,
+          "answer": "They are stories."
+        },
+        {
+          "step": 6,
+          "answer": "battery"
+        },
+        {
+          "step": 7,
+          "answer": "battery"
+        },
+        {
+          "step": 8,
+          "answer": "countries"
+        },
+        {
+          "step": 9,
+          "answer": "Are they batteries?"
+        },
+        {
+          "step": 10,
+          "answer": "boxes"
+        },
+        {
+          "step": 11,
+          "answer": "They are not stories."
+        },
+        {
+          "step": 12,
+          "answer": {
+            "stories": "истории",
+            "boxes": "коробки",
+            "countries": "страны",
+            "batteries": "батарейки"
+          }
+        },
+        {
+          "step": 13,
+          "answer": "Are they countries?"
+        },
+        {
+          "step": 14,
+          "answer": "Are they boxes?"
+        },
+        {
+          "step": 15,
+          "answer": "batteries"
+        },
+        {
+          "step": 16,
+          "answer": "They are not countries."
+        },
+        {
+          "step": 17,
+          "answer": "They are batteries."
+        }
+      ],
+      "learning_delta": [
+        "Если перед конечной y стоит согласная, y меняется на ies: story/stories, country/countries, battery/batteries.",
+        "Для множественных предметов используются They are, Are they и They are not.",
+        "Форма boxes в шаге 10 дана напрямую как отдельная известная пара box/boxes; она не образуется по правилу y → ies."
+      ],
+      "reportCorrection": "Actual reviewer clarified misleading original learning_delta wording: box adds es, not y->ies. No learner-source misconception or answer change.",
+      "unsupportedsteps": [],
+      "ambiguous_tasks": [],
+      "audioLimitations": [
+        {
+          "step": 16,
+          "issue": "Текстовый walkthrough не может проверить произнесение или автоматическое сравнение голоса. Полная требуемая фраза при этом выводится из видимого текста и предыдущего диктанта."
+        }
+      ],
+      "verdict": "PASS",
+      "reason": "Все три интро и 17 практических заданий имеют единственный ответ, который выводится из learner-visible объяснений, вариантов, плиток и transcript stubs."
+    }
+  ],
+  "deltaReview": {
+    "sourceSha256": "c58b73d557cdb882a6639224444155277d8f97bf770ad1bba51574f39021db98",
+    "changedStepAnswers": [
+      {
+        "step": 13,
+        "answer": "Are they countries?"
+      },
+      {
+        "step": 17,
+        "answer": "They are batteries."
+      }
+    ],
+    "allPrevious3IntroAnd17PracticeAnswersStillHold": true,
+    "deltaFindings": [
+      {
+        "step": 13,
+        "finding": "Prompt is neutral and supplies no semantic cue favoring an option. Answer comes solely from the permitted transcript stub."
+      },
+      {
+        "step": 17,
+        "finding": "Revised open-package scene establishes four batteries and retains required tiles; intended phrase unchanged."
+      }
+    ],
+    "ambiguous_tasks": [],
+    "impossible_tasks": [],
+    "audioLimitations": [
+      {
+        "step": 13,
+        "issue": "Transcript substitutes audible playback; cannot assess real audio discrimination."
+      },
+      {
+        "step": 16,
+        "issue": "Text cannot verify spoken delivery or voice-model comparison."
+      }
+    ],
+    "scene_reason": "A sister-led unpacking and sorting thread connects the story collection, puzzle box, battery pack, and storage boxes. It gives the grammar examples an everyday reason to appear.",
+    "felt_alive": "partly",
+    "felt_dead": "The scenes are plausible but lightly sketched. Recognition work repeats three card-and-listen pairs, although the phrase-building task after the first two breaks that pattern before the battery pair.",
+    "would_continue": "yes",
+    "boring_or_water": "No major filler. The three short word-card/listening pairs establish recognition before production; the phrase task inserted after the first two keeps the sequence from becoming a single uninterrupted drill.",
+    "qualitativeVerdictChanged": false,
+    "verdict": "PASS",
+    "reason": "Both revised steps remain independently solvable, all earlier answers still hold, and step13 no longer supplies a contextual answer cue beyond the allowed transcript stub."
+  },
+  "qualitativeCountCorrection": "Actual reviewer corrected four pairs to three after checking displayed projection; verdict unchanged."
+}

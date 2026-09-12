@@ -1,0 +1,13 @@
+{
+  "reviewer":"/root/s17_uk_native","model":"gpt-5.6-sol","reasoningEffort":"medium",
+  "sourceSha256":"0b8ee756248840a8741a87265eab930e0dd0634c49063b178a52092f5d84a5c8",
+  "localeSha256":"24b07153eb23bee8580a4ad3eb3bf6f4dcd69670d5315f816434b3297d961d09",
+  "verdict":"REVISE",
+  "findings":[
+    {"where":"T5 grass feedback","why":"Unnamed English sound after the beginning is not a usable positive cue.","fix":"Name English r and its no-tongue-contact articulation; retain glass l with tongue contact and one/two syllables."},
+    {"where":"T9 blush feedback","why":"Another English sound lacks an actionable target cue.","fix":"Name English r in brushes without that tongue contact; retain l contact in blush and one/two syllables."},
+    {"where":"Internal selfcheck","before":"Повернене слово має три правильні контакти.","after":"Слово для повторення має три правильні контакти."}
+  ],
+  "fullScope":{"introLengths":[253,242,241],"tasks":17,"englishSkeleton":"PASS","definitions":"Accurate and identical in each card and new_words repetition.","countsAndReferents":"T16 explicitly дві склянки; They is plural contents, not bag.","otherPhonetics":"True; g is close to Ukrainian ґ, not г. No r=Cyrillic р. T2 grass, T4 blush, T8 drench retain concrete articulatory contrast and are accepted.","humour":"Natural and on topic in intro1; no calque.","listeningPrompts":"Neutral, no number or negation leak."},
+  "audioReviewed":false,"audioVerdict":"NOT_REVIEWED"
+}

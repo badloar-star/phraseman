@@ -1,0 +1,49 @@
+{
+  "session": "en/l02/s37",
+  "sourceSha256": "bdd8454c7d36d27fbb2361dcbbcdb7ad17f441e95748798a2eec415546d50214",
+  "localeSha256": "72479daba9826cd6a82d7f3c6a88d013eb57fcd89d42f05fa3029b614c1bd81f",
+  "verdict": "PASS",
+  "issues": [],
+  "checks": {
+    "tasksReviewed": [
+      13
+    ],
+    "hashesMatchPacket": true,
+    "onlyListedPromptsChanged": true,
+    "promptsNeutral": true,
+    "questionFormAndAnswerMeaningNotLeaked": true,
+    "sceneAndReferentsPreserved": true,
+    "englishTasksIntrosModesFeedbackUnchanged": true,
+    "boundariesAndWordContactsPreserved": true
+  },
+  "verdict_reason": "The revised prompt grounds the male referent and scarf scene while leaving both the question form and host identification to the recording.",
+  "priorFullReviewRetained": true,
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "verdict": "PASS",
+    "sourceSha256": "1673e10a866661dd4595d9ae009a6d7715bddf07a59695fb5f9c065f1dbbb0e6",
+    "issues": []
+  },
+  "deltaReview": {
+    "session": "S37",
+    "sourceSha256": "bdd8454c7d36d27fbb2361dcbbcdb7ad17f441e95748798a2eec415546d50214",
+    "localeSha256": "72479daba9826cd6a82d7f3c6a88d013eb57fcd89d42f05fa3029b614c1bd81f",
+    "verdict": "PASS",
+    "issues": [],
+    "checks": {
+      "tasksReviewed": [
+        13
+      ],
+      "hashesMatchPacket": true,
+      "onlyListedPromptsChanged": true,
+      "promptsNeutral": true,
+      "questionFormAndAnswerMeaningNotLeaked": true,
+      "sceneAndReferentsPreserved": true,
+      "englishTasksIntrosModesFeedbackUnchanged": true,
+      "boundariesAndWordContactsPreserved": true
+    },
+    "verdict_reason": "The revised prompt grounds the male referent and scarf scene while leaving both the question form and host identification to the recording.",
+    "priorFullReviewRetained": true
+  },
+  "retainedSourceSha256": "1673e10a866661dd4595d9ae009a6d7715bddf07a59695fb5f9c065f1dbbb0e6"
+}

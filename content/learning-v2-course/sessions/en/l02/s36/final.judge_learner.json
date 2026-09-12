@@ -1,0 +1,56 @@
+{
+  "session": "en/l02/s36",
+  "sourceSha256": "98febd314eee61f962b706e4b2559191a7a153751fbc2d9224face379acb9189",
+  "verdict": "PASS",
+  "issues": [],
+  "answers": [
+    {
+      "task": 9,
+      "answer": "The host is here."
+    },
+    {
+      "task": 13,
+      "answer": "It is noisy."
+    }
+  ],
+  "verdict_reason": "Both transcripts reconstruct uniquely from their tiles.",
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "sourceSha256": "8bac7da2f55be716274cbc12d26087b2975f1eb564115b58b4bf0aa78f92a94a",
+    "introAnswers": {
+      "intro1": "Who is he?",
+      "intro2": "Who is she?",
+      "intro3": "Who is the host?"
+    },
+    "clarity": "Each question has one clear construction and meaning answer.",
+    "confusion": [],
+    "verdict": "PASS",
+    "baselineReview": "owner-tone-before/final.judge_learner.json",
+    "unchangedPracticeVerified": true
+  },
+  "deltaReview": {
+    "session": "en/l02/s36",
+    "sourceSha256": "98febd314eee61f962b706e4b2559191a7a153751fbc2d9224face379acb9189",
+    "verdict": "PASS",
+    "issues": [],
+    "answers": [
+      {
+        "task": 9,
+        "answer": "The host is here."
+      },
+      {
+        "task": 13,
+        "answer": "It is noisy."
+      }
+    ],
+    "verdict_reason": "Both transcripts reconstruct uniquely from their tiles."
+  },
+  "retainedSourceSha256": "8bac7da2f55be716274cbc12d26087b2975f1eb564115b58b4bf0aa78f92a94a",
+  "answerComparison": {
+    "changedTasksMatch": true,
+    "comparedTasks": [
+      9,
+      13
+    ]
+  }
+}

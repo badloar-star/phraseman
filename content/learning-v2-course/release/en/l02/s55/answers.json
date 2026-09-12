@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-55:i01",
+    "correctText": "hungry",
+    "correctResponseId": "en:lesson-02:session-55:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i02",
+    "correctText": "Are we hungry?",
+    "correctResponseId": "en:lesson-02:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i03",
+    "correctText": "The shops are crowded.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i04",
+    "correctText": "Is the station near?",
+    "correctResponseId": "en:lesson-02:session-55:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i05",
+    "correctText": "Where is the station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i06",
+    "correctText": "host",
+    "correctResponseId": "en:lesson-02:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i07",
+    "correctText": "price",
+    "correctResponseId": "en:lesson-02:session-55:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i08",
+    "correctText": "Am I wrong?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i10",
+    "correctText": "Excuse me. Are you busy?",
+    "correctResponseId": "en:lesson-02:session-55:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i11",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i12",
+    "correctText": "The price is right.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i13",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-55:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i14",
+    "correctText": "Who are these people?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i15",
+    "correctText": "I am wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i16",
+    "correctText": "Excuse me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-55:i17",
+    "correctText": "Where is the host?",
+    "correctResponseId": null
+  }
+]

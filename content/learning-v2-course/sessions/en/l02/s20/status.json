@@ -1,10 +1,9 @@
 {
   "session": "en/l02/s20",
-  "ru": 6,
-  "locales": null,
-  "at": "2026-09-07T03:10:48.578Z",
+  "sourceSha256": "6d438fd0a4a346bd426b201e98bdf0e8aa3febeac0951be2c2d694cb37b34cad",
   "converged": true,
   "needsHumanReview": false,
-  "judgedFinal": true,
-  "note": "финал пересужен: reader PASS («заголовки обещают ровно то, что внутри»), nonsense во 2-м прогоне подтвердил отсутствие фактических ошибок; интро 2 приведено к ОДНОЙ опоре после пяти рассогласованных правок"
+  "repairEvidence": "judgements/2026-09-12_audit100_final.json",
+  "audioReviewed": false,
+  "visualReviewed": false
 }

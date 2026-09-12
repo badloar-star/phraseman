@@ -1,0 +1,14 @@
+{
+  "verdict": "PASS",
+  "problems": [],
+  "verdict_reason": "Проверены значения host, guest, guests, name, cheerful, near и corner, формы Who is/Where is, согласование is/are, русско-английское сопоставление нулевой связки именно в вопросе «Кто хозяин?», смысл всех сцен и объяснения каждого дистрактора; фактических ошибок, ложных противопоставлений, противоречий и пустых языковых объяснений не найдено.",
+  "sourceSha256": "a9f72aaf541339a3a18d0aea76dd756d1a115a18fbc684f987447ce3f2a5222f",
+  "reviewedAt": "2026-09-08T08:24:35.207Z",
+  "reviewMethod": "fresh_builtin_codex_agent",
+  "previousSourceSha256": "56789703f95f9dc122b83532472d171bca221901fbd6704f4b19edb6c311ff55",
+  "listeningRepairReview": {
+    "verdict": "PASS",
+    "issues": [],
+    "sourceSha256": "a9f72aaf541339a3a18d0aea76dd756d1a115a18fbc684f987447ce3f2a5222f"
+  }
+}

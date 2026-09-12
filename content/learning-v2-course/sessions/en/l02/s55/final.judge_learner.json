@@ -1,0 +1,41 @@
+{
+  "sourceSha256": "76d0f8d2c262d0812271ee934a2ab1675b6fccaa5673f93676462268c813cf78",
+  "scope": "Text-only learner walkthrough. Transcripts substitute for sound; actual audio was not assessed.",
+  "introAnswers": {
+    "intro1": "Are you hungry?",
+    "intro2": "Is it crowded?",
+    "intro3": "Excuse me. What is the price?"
+  },
+  "practiceAnswers": {
+    "1": "hungry",
+    "2": "Are we hungry?",
+    "3": "The shops are crowded.",
+    "4": "Is the station near?",
+    "5": "Where is the station?",
+    "6": "host",
+    "7": "price",
+    "8": "Am I wrong?",
+    "9": {
+      "station": "станция",
+      "price": "цена",
+      "hungry": "голодный",
+      "crowded": "многолюдный"
+    },
+    "10": "Excuse me. Are you busy?",
+    "11": "is",
+    "12": "The price is right.",
+    "13": "crowded",
+    "14": "Who are these people?",
+    "15": "I am wrong.",
+    "16": "Excuse me.",
+    "17": "Where is the host?"
+  },
+  "issues": [],
+  "verdict": "PASS",
+  "answerComparison": {
+    "intro": 3,
+    "practice": 17,
+    "matched": true,
+    "scope": "text only"
+  }
+}

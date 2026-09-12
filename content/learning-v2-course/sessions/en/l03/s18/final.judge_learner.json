@@ -1,0 +1,235 @@
+{
+  "sourceSha256": "8efde328d6ddc3ac3b6ea3d540cf821564e964e6db297dbb3460d4b715d2cfc8",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "actualAudioReviewed": false,
+  "reviewer": "/root/s18_blind",
+  "introAnswers": [
+    {
+      "page": 1,
+      "answer": "They are buses."
+    },
+    {
+      "page": 2,
+      "answer": "Are they dishes?"
+    },
+    {
+      "page": 3,
+      "answer": "watches"
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "bus"
+    },
+    {
+      "step": 2,
+      "answer": "bus"
+    },
+    {
+      "step": 3,
+      "answer": "dish"
+    },
+    {
+      "step": 4,
+      "answer": "dish"
+    },
+    {
+      "step": 5,
+      "answer": "watch"
+    },
+    {
+      "step": 6,
+      "answer": "watch"
+    },
+    {
+      "step": 7,
+      "answer": "box"
+    },
+    {
+      "step": 8,
+      "answer": "box"
+    },
+    {
+      "step": 9,
+      "answer": "They are buses."
+    },
+    {
+      "step": 10,
+      "answer": "Are they dishes?"
+    },
+    {
+      "step": 11,
+      "answer": "tickets"
+    },
+    {
+      "step": 12,
+      "answer": "They are not watches."
+    },
+    {
+      "step": 13,
+      "answer": "boxes"
+    },
+    {
+      "step": 14,
+      "answer": {
+        "boxes": "коробки",
+        "buses": "автобусы",
+        "dishes": "блюда для подачи еды",
+        "watches": "несколько наручных часов"
+      }
+    },
+    {
+      "step": 15,
+      "answer": "They are dishes."
+    },
+    {
+      "step": 16,
+      "answer": "They are tickets."
+    },
+    {
+      "step": 17,
+      "answer": "They are boxes."
+    }
+  ],
+  "learning_delta": [
+    "После s, sh, ch и x множественное число этих существительных образуется с es: buses, dishes, watches, boxes.",
+    "Для нескольких предметов используется They are; вопрос строится Are they ...?",
+    "Один предмет: watch; несколько отдельных наручных часов: watches."
+  ],
+  "impossible_tasks": [],
+  "ambiguous_tasks": [],
+  "audioLimitations": [
+    {
+      "step": 16,
+      "issue": "Текстовая слепая проверка не подтверждает фактическое произнесение или сравнение с моделью. Это ограничение аудиопроверки, не неоднозначность: They are tickets выводится из prompt и ticket/tickets."
+    }
+  ],
+  "pacing_issues": [],
+  "humour_issues": [],
+  "verdict": "PASS",
+  "verdict_reason": "Все три интро и 17 практических шагов решаются по learner-visible тексту. T16 имеет один обоснованный ответ; невозможно только проверить фактическое аудиопроизнесение.",
+  "previousReview": {
+    "sourceSha256": "f219a2634321c2a810f18a19924178bc8edec4aca8f036c54495af6e99073691",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": "medium",
+    "actualAudioReviewed": false,
+    "reviewer": "/root/s18_blind",
+    "introAnswers": [
+      {
+        "page": 1,
+        "answer": "They are buses."
+      },
+      {
+        "page": 2,
+        "answer": "Are they dishes?"
+      },
+      {
+        "page": 3,
+        "answer": "watches"
+      }
+    ],
+    "practiceAnswers": [
+      {
+        "step": 1,
+        "answer": "bus"
+      },
+      {
+        "step": 2,
+        "answer": "bus"
+      },
+      {
+        "step": 3,
+        "answer": "dish"
+      },
+      {
+        "step": 4,
+        "answer": "dish"
+      },
+      {
+        "step": 5,
+        "answer": "watch"
+      },
+      {
+        "step": 6,
+        "answer": "watch"
+      },
+      {
+        "step": 7,
+        "answer": "box"
+      },
+      {
+        "step": 8,
+        "answer": "box"
+      },
+      {
+        "step": 9,
+        "answer": "They are buses."
+      },
+      {
+        "step": 10,
+        "answer": "Are they dishes?"
+      },
+      {
+        "step": 11,
+        "answer": "tickets"
+      },
+      {
+        "step": 12,
+        "answer": "They are not watches."
+      },
+      {
+        "step": 13,
+        "answer": "boxes"
+      },
+      {
+        "step": 14,
+        "answer": {
+          "boxes": "коробки",
+          "buses": "автобусы",
+          "dishes": "блюда для подачи еды",
+          "watches": "несколько наручных часов"
+        }
+      },
+      {
+        "step": 15,
+        "answer": "They are dishes."
+      },
+      {
+        "step": 16,
+        "answer": "They are tickets."
+      },
+      {
+        "step": 17,
+        "answer": "They are boxes."
+      }
+    ],
+    "learning_delta": [
+      "После s, sh, ch и x множественное число этих существительных образуется с es: buses, dishes, watches, boxes.",
+      "Для нескольких предметов используется They are; вопрос строится Are they ...?",
+      "Один предмет: watch; несколько отдельных наручных часов: watches."
+    ],
+    "impossible_tasks": [],
+    "ambiguous_tasks": [],
+    "audioLimitations": [
+      {
+        "step": 16,
+        "issue": "Текстовая слепая проверка не подтверждает фактическое произнесение или сравнение с моделью. Это ограничение аудиопроверки, не неоднозначность: They are tickets выводится из prompt и ticket/tickets."
+      }
+    ],
+    "pacing_issues": [],
+    "humour_issues": [],
+    "verdict": "PASS",
+    "verdict_reason": "Все три интро и 17 практических шагов решаются по learner-visible тексту. T16 имеет один обоснованный ответ; невозможно только проверить фактическое аудиопроизнесение."
+  },
+  "finalDeltaEvidence": "Actual same independent reviewer confirmed current one-character punctuation correction leaves prior findings/answers and full scope unchanged.",
+  "semanticDelta": {
+    "sourceSha256": "40443efc388ffe7426404721341ff61d38a72556af8a395b72d20f5a7ed4506d",
+    "verdict": "PASS",
+    "all20AnswersSame": true,
+    "answersGrounded": true,
+    "ambiguous_tasks": [],
+    "evidence": "Independently read visible projection; intro2 and T9 clearer and all20answers unchanged. Final visible projection also rechecked; shuffled option ordering changed but correctresponses remain."
+  }
+}

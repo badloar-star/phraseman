@@ -1,0 +1,63 @@
+{
+  "sourceSha256": "c390f5b9da85a52bc56906498f12c67a37471cd2b6ee17fe097030f71f432835",
+  "localeSha256": {
+    "uk": "4651f403c9ab124e1363d5c505d9ffaf817889100d19116c4d656511868eed38"
+  },
+  "reviewer": "/root/s17_uk_native",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "native_quality": "PASS",
+      "headings_metadata_prompts_definitions_feedback_selfcheck": "PASS",
+      "number_and_referents": "PASS",
+      "english_skeleton_17_tasks": "PASS (retained from full review)",
+      "phonetic_feedback": "PASS as text; T2 trowel is a concrete truthful articulatory contrast, not English r=Cyrillic р.",
+      "listening_prompts_neutral": "PASS",
+      "humor": {
+        "present": true,
+        "on_topic": true,
+        "examples": [
+          "Додали закінчення, а `a` прихопили про всяк випадок? Вийде помилка."
+        ],
+        "misfires": []
+      },
+      "remaining_issues": [],
+      "verdict_reason": "Actual full native review and exact two-change delta PASS; no other edits, all prior scope retained."
+    }
+  },
+  "delta": {
+    "expected_groups": 2,
+    "confirmed": true,
+    "old_occurrences": [
+      0,
+      0
+    ],
+    "new_occurrences": [
+      1,
+      1
+    ],
+    "reverse_reconstructed_uk_sha256": "30070a0807131edf4707e4488e9c0390adca36f85d485fb69fad20b3a9dbd8f8",
+    "no_other_edit": true
+  },
+  "reviewHistory": [
+    {
+      "receipt": "judgements/2026-09-12_l03_s21_uk_initial.json",
+      "verdict": "REVISE",
+      "findings": 2
+    }
+  ],
+  "measurement": {
+    "introBodyChars": [
+      255,
+      239,
+      238
+    ],
+    "method": "Root .NET exact source explanatory line lengths; current intro2 changed from 240 to239."
+  },
+  "limitations": {
+    "actual_audio": "NOT_REVIEWED",
+    "actual_browser": "NOT_REVIEWED"
+  }
+}

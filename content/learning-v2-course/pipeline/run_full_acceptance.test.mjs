@@ -5,22 +5,22 @@ import path from "node:path";
 import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
-import { REQUIRED_JUDGES, judgeIssues } from "./session_readiness.mjs";
+import { REQUIRED_JUDGES, judgeIssues, requiredJudgesForSession } from "./session_readiness.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const source = fs.readFileSync(path.join(here, "run.mjs"), "utf8");
 // Exercise the real orchestration body; replace external stages, never invoke a model.
-const mainSource = source.slice(source.indexOf("function main() {"), source.lastIndexOf("\nmain();")) + "\nmain();";
+const mainSource = source.slice(source.indexOf("function main() {"), source.lastIndexOf("\nif (process.argv[1]")) + "\nmain();";
 const pass = () => Object.fromEntries([...REQUIRED_JUDGES, "judge_taste"].map((role) => [role, { verdict: "PASS" }]));
 
-function exercise(finalVerdicts, brokenTasks = [], initial = pass(), localeResults = { uk: "PASS" }) {
+function exercise(finalVerdicts, brokenTasks = [], initial = pass(), localeResults = { uk: "PASS" }, session = "en/l02/s33") {
   const parent = fs.realpathSync(os.tmpdir());
   const dir = fs.mkdtempSync(path.join(parent, "learning-v2-full-"));
   try {
     const draft = path.join(dir, "draft.ru.md"); fs.writeFileSync(draft, "draft");
     let judging = 0; let localized = 0; let built = 0;
     const context = {
-      cmd: "full", SESSION: "en/l02/s33", HERE: here, ROOT: path.dirname(here),
+      cmd: "full", SESSION: session, HERE: here, ROOT: path.dirname(here),
       LOCALES: ["uk"],
       fs, path, process: { execPath: process.execPath },
       LOG: () => {}, WARN: () => {}, opt: (_name, fallback) => fallback,
@@ -36,7 +36,7 @@ function exercise(finalVerdicts, brokenTasks = [], initial = pass(), localeResul
       stageLocalize: () => { localized++; return localeResults; },
       spawnSync: () => { built++; return { status: 0, stdout: "", stderr: "" }; },
       exists: fs.existsSync, read: (file) => fs.readFileSync(file, "utf8"),
-      write: (file, text) => fs.writeFileSync(file, text), judgeIssues, REQUIRED_JUDGES,
+      write: (file, text) => fs.writeFileSync(file, text), judgeIssues, requiredJudgesForSession, REQUIRED_JUDGES,
     };
     vm.runInNewContext(mainSource, context, { timeout: 1000 });
     return { localized, built, status: JSON.parse(fs.readFileSync(path.join(dir, "status.json"), "utf8")) };
@@ -66,9 +66,16 @@ test("ambiguous final exercise stops before localization", () => {
   assert.equal(result.localized, 0); assert.equal(result.built, 0);
 });
 
-test("four PASS suffice even when advisory taste says BLOCK", () => {
+test("owner-scoped final taste BLOCK stops before localization", () => {
   const final = pass(); final.judge_taste = { verdict: "BLOCK" };
-  const result = exercise(final, [], final);
+  const result = exercise(final, [], pass());
+  assert.equal(result.localized, 0); assert.equal(result.built, 0);
+  assert.equal(result.status.needsHumanReview, true);
+});
+
+test("frozen historical session retains the four ordinary PASS threshold", () => {
+  const final = pass(); final.judge_taste = { verdict: "BLOCK" };
+  const result = exercise(final, [], final, { uk: "PASS" }, "en/l02/s32");
   assert.equal(result.localized, 1); assert.equal(result.built, 2);
   assert.equal(result.status.needsHumanReview, false);
 });

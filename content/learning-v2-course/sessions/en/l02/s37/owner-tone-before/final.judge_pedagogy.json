@@ -1,0 +1,102 @@
+{
+  "sha256": "b401b25161766921b8072362f4b463739ba0514c7b6d6ac0e9ef8ddc5c796145",
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "Whose"
+      },
+      {
+        "task": 6,
+        "trap": "Who"
+      },
+      {
+        "task": 14,
+        "trap": "are"
+      },
+      {
+        "task": 17,
+        "trap": "Who"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "strangers",
+        "twins",
+        "sure",
+        "host"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      17
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 0,
+      "listen_choose": 4,
+      "listen_build_dictation": 1,
+      "phrase_builder": 5,
+      "context_gap_grammar": 4,
+      "speed_match": 1,
+      "scripted_repeat_compare": 2,
+      "sound_contrast": 0
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Задание 16 больше не подсказывает финальный ответ: после `Who is she?` и `Where is the host?` ученик самостоятельно выбирает `Whose` по ситуации с оставленной перчаткой, поэтому поддержка к заданию 17 убывает честно.",
+  "sourceSha256": "ad0183db5fd0a3fe68020a2dcd9312139bf303bb59b21c68385a0632083b86d5",
+  "reviewedAt": "2026-09-08T09:54:00.828290+00:00",
+  "reviewMethod": "builtin_codex_independent_role_with_targeted_delta_review",
+  "previousSourceSha256": "b401b25161766921b8072362f4b463739ba0514c7b6d6ac0e9ef8ddc5c796145",
+  "listeningRepairReview": {
+    "session": 37,
+    "sourceSha256": "ad0183db5fd0a3fe68020a2dcd9312139bf303bb59b21c68385a0632083b86d5",
+    "verdict": "PASS",
+    "changed_tasks": [
+      4,
+      7
+    ],
+    "neutral_prompts": true,
+    "answer_leak": false,
+    "phonetic_options_distinguishable": true,
+    "new_words": [],
+    "word_first_preserved": true,
+    "return_table_matches_tasks": true,
+    "minimum_return_contacts": 2,
+    "every_return_has_correct_use": true,
+    "spaced_repeat_note": "Повтор банка `strangers / rangers / dangers` после S34 допустим как отсроченное извлечение без карточки, а не повторное знакомство."
+  }
+}

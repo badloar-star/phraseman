@@ -1,0 +1,8 @@
+{
+  "sourceSha256":"8165e1af4a4d1d271de2929aaf036f452773c1bc2031324338620d02e6066c17","reviewer":"/root/s08_blind",
+  "introAnswers":[{"step":1,"answer":"It is a lamp."},{"step":2,"answer":"Is it a mirror?"},{"step":3,"answer":"It is not a stool."}],
+  "practiceAnswers":[{"step":1,"answer":"a"},{"step":2,"answer":"It is a mirror."},{"step":3,"answer":"Is it a chair?"},{"step":4,"answer":"A basket."},{"step":5,"answer":"It is a basket."},{"step":6,"answer":"is"},{"step":7,"answer":"It is a key."},{"step":8,"answer":{"lamp":"лампа","mirror":"зеркало","chair":"стул","key":"ключ"}},{"step":9,"answer":"Is it a chair?"},{"step":10,"answer":"is"},{"step":11,"answer":"It is not a lamp."},{"step":12,"answer":"It is a tag."},{"step":13,"answer":"It is not a stool."},{"step":14,"answer":"a"},{"step":15,"answer":{"stool":"табурет","door":"дверь","tag":"бирка","basket":"корзина"}},{"step":16,"answer":"Is it a mirror?"},{"step":17,"answer":"It is a door."}],
+  "confusion":["No material confusion. The repeated contrast is clear: declarative uses It is, question uses Is it, and negation adds not after is.","Step 4 asks for a two-word noun phrase, so A basket. is appropriate rather than a full sentence."],
+  "retrievalSkillsPracticed":["a + singular count noun","It is a + noun","Is it a + noun?","It is not a + noun","known object-word meaning recall","word-order construction","Russian-to-English phrase retrieval","English-to-Russian matching"],
+  "feltAlive":true,"wouldContinue":true,"verdict":"PASS","originalVerdict":"PASS — all three intro checks and all 17 practice steps are independently answerable from the text transcript; no new vocabulary is required.","actualAudioReviewed":false
+}

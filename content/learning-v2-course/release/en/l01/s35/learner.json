@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-35:i02:r1",
+            "responseId": "en:lesson-01:session-35:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — sure",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-35:i02:r2",
+            "responseId": "en:lesson-01:session-35:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — sure",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-35:i04:r1",
+            "responseId": "en:lesson-01:session-35:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — wrong",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-35:i04:r2",
+            "responseId": "en:lesson-01:session-35:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — wrong",
             "feedbackByLocale": {
@@ -366,7 +366,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-35:i07:r1",
+            "responseId": "en:lesson-01:session-35:i07:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — free",
             "feedbackByLocale": {
@@ -375,7 +375,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-35:i07:r2",
+            "responseId": "en:lesson-01:session-35:i07:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — free",
             "feedbackByLocale": {
@@ -480,7 +480,7 @@
         "testedDimension": "Вставьте слово — вы не уверены, открыто ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-35:i09:r1",
+            "responseId": "en:lesson-01:session-35:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы не уверены, открыто ",
             "feedbackByLocale": {
@@ -489,7 +489,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-35:i09:r2",
+            "responseId": "en:lesson-01:session-35:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы не уверены, открыто ",
             "feedbackByLocale": {
@@ -581,7 +581,7 @@
         "testedDimension": "Вставьте скрепку — вы всей командой не г",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-35:i11:r1",
+            "responseId": "en:lesson-01:session-35:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вы всей командой не г",
             "feedbackByLocale": {
@@ -590,7 +590,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-35:i11:r2",
+            "responseId": "en:lesson-01:session-35:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вы всей командой не г",
             "feedbackByLocale": {
@@ -723,7 +723,7 @@
         "testedDimension": "Вставьте слово — спрашивают, можем ли мы",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-35:i13:r1",
+            "responseId": "en:lesson-01:session-35:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — спрашивают, можем ли мы",
             "feedbackByLocale": {
@@ -732,7 +732,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-35:i13:r2",
+            "responseId": "en:lesson-01:session-35:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — спрашивают, можем ли мы",
             "feedbackByLocale": {

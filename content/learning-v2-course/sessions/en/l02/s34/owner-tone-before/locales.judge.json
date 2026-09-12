@@ -1,0 +1,31 @@
+{
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "problems": []
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Усі три виправлення природні, граматично правильні й точні в контексті. Нових проблем у межах повторної перевірки немає. Перевірено актуальний final.uk.md, SHA-256 EE43F36A6F69ACC73771D6EF390EB69CE66E13D2FD654303768FD4E58E2B6C61.",
+  "sourceSha256": "841e0e1992f8c9a767b4417b2a79161f36a91b525e2c3b375e8043a364ed4b61",
+  "localeSha256": {
+    "uk": "cdaff42f8a5640dbfa1cdd44500e9570a52faaf74f565829c9339a34d33f55e7"
+  },
+  "reviewedAt": "2026-09-08T10:50:21.813431+00:00",
+  "reviewMethod": "builtin_codex_independent_localization_review",
+  "listeningRepairReview": {
+    "phoneticEvidence": [
+      "Все 12 банков состоят из реальных слов; омофонов внутри банков нет.",
+      "Различия feedback точны: начальный звук, начало, первый слог или средняя гласная/согласная действительно различают варианты.",
+      "RU/UK инструкции нейтральны; feedback не использует IPA и корректно передаёт значения.",
+      "`vests` = `жилеты/жилети` — допустимое американское значение; универсальность или британское значение не заявлены."
+    ],
+    "ukDelta": {
+      "session": 34,
+      "locale": "uk",
+      "verdict": "PASS",
+      "issues": [],
+      "sourceSha256": "cdaff42f8a5640dbfa1cdd44500e9570a52faaf74f565829c9339a34d33f55e7"
+    }
+  }
+}

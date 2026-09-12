@@ -1,0 +1,55 @@
+{
+  "sourceSha256": "ef28da4cde35359def90e62637a2bbdbfaa2873b1a67630a2298d017445db936",
+  "localeSha256": {
+    "uk": "1f49760389401ddd7d8d2177182651dffbe1f6c3b045a6c385e75b7098f41553"
+  },
+  "locales": {
+    "uk": {
+      "session": "S48",
+      "sourceSha256": "ef28da4cde35359def90e62637a2bbdbfaa2873b1a67630a2298d017445db936",
+      "localeSha256": "1f49760389401ddd7d8d2177182651dffbe1f6c3b045a6c385e75b7098f41553",
+      "verdict": "PASS",
+      "issues": [],
+      "checks": {
+        "onlyListedPromptsChanged": true,
+        "introByteTextUnchanged": true,
+        "englishTokenSequenceUnchanged": true,
+        "targetTilesAnswerFeedbackUnchanged": true,
+        "ruPromptNeutral": true,
+        "ukPromptNativeAndNeutral": true,
+        "contextCoherent": true
+      },
+      "verdict_reason": "T12 теперь сообщает только тему организатора; rude и отрицательная полярность не раскрываются до прослушивания.",
+      "priorFullReviewRetained": true,
+      "reviewScope": "Independent RU/UK native delta review; prior full locale review retained",
+      "priorFullReview": {
+        "sourceSha256": "af601ec4cc8bd7a538011c460dfb58b0e41bd7a0bb38d88efd69d1676e4eae53",
+        "localeSha256": {
+          "uk": "2e2a2f13b64ebe723f86ac03928cab96194c9b9555537bc1d4d32dfd2eba35fc"
+        },
+        "locales": {
+          "uk": {
+            "session": "S48",
+            "sourceSha256": "af601ec4cc8bd7a538011c460dfb58b0e41bd7a0bb38d88efd69d1676e4eae53",
+            "localeSha256": "2e2a2f13b64ebe723f86ac03928cab96194c9b9555537bc1d4d32dfd2eba35fc",
+            "verdict": "PASS",
+            "issues": [],
+            "verified": {
+              "naturalUkrainian": true,
+              "iVsWeAndEarlyVsLateMeaningsPreserved": true,
+              "audibleVsClearDistinctionAccurate": true,
+              "politeVsRudeAndGroupScopeAccurate": true,
+              "humourNaturalAndNonMisleading": true,
+              "noGrammarDrift": true,
+              "introLengths": [
+                309,
+                266,
+                302
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

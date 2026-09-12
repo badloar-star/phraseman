@@ -1,0 +1,13 @@
+{
+  "sourceSha256": "a3030d8cc5cd01186a757b13b551c1c0121b7d2a96c99ca81a6a746eeaf704d2",
+  "deltaOnly": true,
+  "introAnswers": {
+    "intro1": "She is the manager.",
+    "intro2": "Who are these people?",
+    "intro3": "Whose is it?"
+  },
+  "confusion": [],
+  "verdict": "PASS",
+  "baselineReview": "owner-tone-before/final.judge_learner.json",
+  "unchangedPracticeVerified": true
+}

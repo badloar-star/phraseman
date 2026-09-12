@@ -56,7 +56,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-03:i01:r1",
+            "responseId": "en:lesson-02:session-03:i01:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — hungry",
             "feedbackByLocale": {
@@ -65,7 +65,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-03:i01:r2",
+            "responseId": "en:lesson-02:session-03:i01:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — hungry",
             "feedbackByLocale": {
@@ -155,7 +155,7 @@
         "testedDimension": "Вставьте слово — короткое «нет»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-03:i03:r1",
+            "responseId": "en:lesson-02:session-03:i03:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — короткое «нет»",
             "feedbackByLocale": {
@@ -164,7 +164,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-03:i03:r2",
+            "responseId": "en:lesson-02:session-03:i03:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — короткое «нет»",
             "feedbackByLocale": {
@@ -229,7 +229,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-03:i04:r1",
+            "responseId": "en:lesson-02:session-03:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — lost",
             "feedbackByLocale": {
@@ -238,7 +238,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-03:i04:r2",
+            "responseId": "en:lesson-02:session-03:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — lost",
             "feedbackByLocale": {
@@ -300,7 +300,7 @@
         "testedDimension": "Вставьте слово — кто отвечает",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-03:i05:r1",
+            "responseId": "en:lesson-02:session-03:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — кто отвечает",
             "feedbackByLocale": {
@@ -309,7 +309,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-03:i05:r2",
+            "responseId": "en:lesson-02:session-03:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — кто отвечает",
             "feedbackByLocale": {
@@ -504,7 +504,7 @@
         "testedDimension": "Вставьте слово — где стоит not",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-03:i09:r1",
+            "responseId": "en:lesson-02:session-03:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — где стоит not",
             "feedbackByLocale": {
@@ -513,7 +513,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-03:i09:r2",
+            "responseId": "en:lesson-02:session-03:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — где стоит not",
             "feedbackByLocale": {
@@ -609,7 +609,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-03:i11:r1",
+            "responseId": "en:lesson-02:session-03:i11:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — thirsty",
             "feedbackByLocale": {
@@ -618,7 +618,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-03:i11:r2",
+            "responseId": "en:lesson-02:session-03:i11:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — thirsty",
             "feedbackByLocale": {
@@ -709,7 +709,7 @@
         "testedDimension": "Вставьте слово — что подходит по смыслу",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-03:i13:r1",
+            "responseId": "en:lesson-02:session-03:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — что подходит по смыслу",
             "feedbackByLocale": {
@@ -718,7 +718,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-03:i13:r2",
+            "responseId": "en:lesson-02:session-03:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — что подходит по смыслу",
             "feedbackByLocale": {

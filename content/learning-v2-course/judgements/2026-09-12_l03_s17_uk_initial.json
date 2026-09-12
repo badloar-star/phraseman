@@ -1,0 +1,36 @@
+{
+  "sourceSha256": "7ec753f0fca6f9045423183c07c2054b591ea8f1ff12ea2e3683424b4132816d",
+  "localeSha256": {
+    "uk": "4cc22c55f3bacbbcdb9b35848c65800fa559fc188ab76a03560cfcd694a73ec6"
+  },
+  "reviewer": "/root/s17_uk_native",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "scope": "Full independent native Ukrainian review",
+  "verdict": "REVISE",
+  "problems": [
+    {
+      "where": "self-check table header",
+      "quote": "Повернене слово",
+      "replacement": "Слово для повторення"
+    },
+    {
+      "where": "self-check board header",
+      "quote": "Відпрацювання до дошки 12",
+      "replacement": "Відпрацювання до завдання 12"
+    }
+  ],
+  "learnerFacingProblems": [],
+  "englishTargetsIdentical": true,
+  "structureIdentical": true,
+  "intro_body_chars": [
+    232,
+    261,
+    235
+  ],
+  "humor": {
+    "present": true,
+    "on_topic": true
+  },
+  "actualAudioReviewed": false
+}

@@ -1,0 +1,200 @@
+{
+  "sourceSha256": "55fb0c333377269b928f1a46a5c852792748aa5ac0dca731ad4e948330f7ec69",
+  "delta_review": {
+    "task_7": {
+      "verdict": "PASS",
+      "referent_for_near": "station",
+      "referent_established_before_question": true,
+      "target_natural_in_context": "Are we near?"
+    },
+    "task_10_feedback": {
+      "verdict": "PASS",
+      "welcome_meaning_accurate": true,
+      "contrast_with_here_clear": true,
+      "quote": "С `welcome` получится «Нам рады». Для «Мы здесь» нужно `We are here`."
+    },
+    "task_16": {
+      "verdict": "PASS",
+      "referent_for_it": "museum entrance",
+      "pronoun_reference_clear": true,
+      "target": "Where is it?"
+    },
+    "task_17": {
+      "verdict": "PASS",
+      "referent_for_near": "museum",
+      "referent_established_before_question": true,
+      "station_and_museum_tasks_remain_distinct": true,
+      "final_independence_preserved": true,
+      "target": "Are we near?"
+    }
+  },
+  "unchanged_contracts": {
+    "targets": true,
+    "answer_keys": true,
+    "return_contacts": true,
+    "task_count": 17,
+    "mode_count": 17,
+    "builder_count": 5
+  },
+  "issues": [],
+  "verdict": "PASS",
+  "verdict_reason": "Все четыре правки устраняют неясные референты и неточный перевод, сохраняя естественные вопросы, различие станции и музея и самостоятельность финального задания.",
+  "priorReviews": [
+    {
+      "sourceSha256": "0e4179f0ce503447abe5a455f12449ed2577df82195742268e1df6dd57e9d74b",
+      "counts": {
+        "tasks": 17,
+        "modes": 17,
+        "builders": 5,
+        "intro_lengths": [
+          260,
+          245,
+          262
+        ],
+        "new_words": 0,
+        "unknown_items": 0,
+        "return_table_mismatches": 0
+      },
+      "plan_fidelity": {
+        "operation_matches": true,
+        "new_operation": "Are we…?",
+        "planned_return_present": "lost",
+        "additional_known_returns": [
+          "sure",
+          "here",
+          "near"
+        ],
+        "extra_grammar_smuggled": [],
+        "prerequisites_respected": true,
+        "we_are_statements_ground_the_question_order": true
+      },
+      "intro": {
+        "pages": 3,
+        "are_we_order_explained_before_practice": true,
+        "we_meaning_grounded": true,
+        "targets_grounded": [
+          "Are we lost?",
+          "Are we sure?",
+          "Are we here?"
+        ],
+        "answers_unique_by_substitution": true
+      },
+      "diagnosticity": {
+        "ambiguous_tasks": [],
+        "silly_traps": [],
+        "feedback_missing_per_option": [],
+        "feedback_duplicated": [],
+        "forms_accurate": true,
+        "near_is_contextually_complete": true
+      },
+      "listening": {
+        "tasks": [
+          1,
+          5,
+          11
+        ],
+        "whole_phrase_tasks": true,
+        "prompts_neutral": true,
+        "answer_revealed_before_listening": [],
+        "option_sets_diagnostic": true,
+        "audio_quality_claimed": false
+      },
+      "return_words": {
+        "lost": {
+          "contacts": [
+            1,
+            2,
+            3,
+            4,
+            9,
+            11,
+            12
+          ],
+          "correct_uses": [
+            1,
+            2,
+            3,
+            9,
+            11
+          ],
+          "gloss_present": true
+        },
+        "sure": {
+          "contacts": [
+            4,
+            6,
+            9,
+            12,
+            15
+          ],
+          "correct_uses": [
+            4,
+            6,
+            9,
+            12,
+            15
+          ],
+          "gloss_present": true
+        },
+        "here": {
+          "contacts": [
+            5,
+            9,
+            10,
+            13,
+            14
+          ],
+          "correct_uses": [
+            5,
+            9,
+            10,
+            13,
+            14
+          ],
+          "gloss_present": true
+        },
+        "near": {
+          "contacts": [
+            7,
+            9,
+            12,
+            17
+          ],
+          "correct_uses": [
+            7,
+            9,
+            17
+          ],
+          "gloss_present": true
+        }
+      },
+      "scene_coherence": {
+        "continuous": true,
+        "contradictions": [],
+        "station_question_does_not_resolve_museum_final": true,
+        "progression": "lost streets → station as landmark → route chosen → museum approached"
+      },
+      "retrieval": {
+        "support_fades": true,
+        "new_form_progression": [
+          1,
+          2,
+          3,
+          7,
+          12,
+          14,
+          15,
+          17
+        ],
+        "final_target": "Are we near?",
+        "task_16_target": "Where is it?",
+        "final_answer_leaked": false,
+        "final_has_extra_attention_tile": true
+      },
+      "issues": [],
+      "exactFix": null,
+      "verdict": "PASS",
+      "verdict_reason": "S43 вводит только `Are we…?`, точно заземляет форму до практики, сохраняет однозначные диагностические задания и связную дорогу от метро к музею, а финал самостоятельно извлекает новую форму в новой точке маршрута."
+    }
+  ]
+}

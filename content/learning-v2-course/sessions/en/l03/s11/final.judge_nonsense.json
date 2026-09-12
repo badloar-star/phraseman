@@ -1,0 +1,8 @@
+{
+  "sourceSha256":"a122e2d7c229a00960b3246ac3c8872eb38b045f37d51599b680dd9a4265c604",
+  "reviewer":"/root/s10_truth","model":"gpt-5.6-sol","reasoningEffort":"medium",
+  "verdict":"PASS","problems":[],
+  "evidence":["hour is a60-minute period beginning with vowel sound, so an hour.","uniform count-clothing noun begins /j/, so a uniform; claims are word-specific not allh/allu.","Count-clothing context uniquely requires article despite separate adjective uniform.","All phonetic contrasts agree with Cambridge IPA; definitions, answers and response feedback accurate.","Fragments and complete sentences distinguished by explicitdurationcontext.","No English r/Cyrillic р identity; no actualaudio accessed."],
+  "primarySources":["https://dictionary.cambridge.org/us/dictionary/english/hour","https://dictionary.cambridge.org/us/pronunciation/english/hour","https://dictionary.cambridge.org/us/dictionary/english/uniform","https://dictionary.cambridge.org/us/pronunciation/english/uniform","https://dictionary.cambridge.org/us/pronunciation/english/power","https://dictionary.cambridge.org/us/pronunciation/english/tower","https://dictionary.cambridge.org/us/pronunciation/english/unicorn","https://dictionary.cambridge.org/us/pronunciation/english/universe"],
+  "actualAudioReviewed":false
+}

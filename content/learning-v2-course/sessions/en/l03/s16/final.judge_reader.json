@@ -1,0 +1,70 @@
+{
+  "sourceSha256": "582bbcc840ad479d350e9e91cfb8e12b0ef2fafad48217d5d964d3df30a4b7d2",
+  "reviewer": "/root/s10_reader",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "previousReview": {
+    "sourceSha256": "cf7e68283b9633939e5b539b82ec1cc06a13882ea4521dfef18e3f20910c2270",
+    "reviewer": "/root/s10_reader",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": "medium",
+    "pages": [
+      {
+        "page": 1,
+        "retelling": "Перед candle ставится a, а перед umbrella — an, потому что начало у этих слов звучит по-разному.",
+        "what_i_do_now": "Скажу It is an umbrella.",
+        "understood": true,
+        "problems": []
+      },
+      {
+        "page": 2,
+        "retelling": "У hour не слышно h, поэтому нужно an hour, а uniform начинается со слышимого «й», поэтому a uniform.",
+        "what_i_do_now": "Буду выбирать a или an по первому звуку: an hour, но a uniform.",
+        "understood": true,
+        "problems": []
+      },
+      {
+        "page": 3,
+        "retelling": "Перед cushion и plant остаётся a; в фразе «это не подушка» после It is добавляется not.",
+        "what_i_do_now": "Скажу It is not a cushion.",
+        "understood": false,
+        "problems": [
+          {
+            "quote": "Отрицание сохраняет выбор",
+            "kind": "термин",
+            "why": "Я не знаю, что такое «отрицание». Дальше пример помогает догадаться, что речь о not, но заголовок и фраза «при отрицании» требуют этой догадки."
+          }
+        ]
+      }
+    ],
+    "pages_understood": 2,
+    "verdict": "REVISE",
+    "verdict_reason": "Первые две страницы понятны сразу. На третьей слово «отрицание» требует догадки."
+  },
+  "pages": [
+    {
+      "page": 1,
+      "retelling": "Перед candle ставится a, а перед umbrella — an, потому что их названия начинаются с разных звуков.",
+      "what_i_do_now": "Скажу It is an umbrella.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 2,
+      "retelling": "У hour не слышно h, поэтому нужно an hour, а uniform начинается со слышимого «й», поэтому a uniform.",
+      "what_i_do_now": "Буду выбирать по первому звуку: an hour, но a uniform.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 3,
+      "retelling": "Чтобы сказать «не подушка», после It is нужно добавить not, а a перед cushion оставить.",
+      "what_i_do_now": "Скажу It is not a cushion.",
+      "understood": true,
+      "problems": []
+    }
+  ],
+  "pages_understood": 3,
+  "verdict": "PASS",
+  "verdict_reason": "Все три страницы понятны с первого чтения: выбор a/an по звуку и место not для «не»."
+}

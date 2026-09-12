@@ -1,0 +1,57 @@
+{
+  "sourceSha256": "db00161c4ed9a596a8aaea24990dd38e9279dff3c1fa1d2f77f4c3f8254e1591",
+  "verdict": "PASS",
+  "reviewScope": "Prior independent full review plus actual independent delta of all changed text.",
+  "priorFullReview": {
+    "sourceSha256": "8165e1af4a4d1d271de2929aaf036f452773c1bc2031324338620d02e6066c17",
+    "reviewer": "/root/s08_truth",
+    "verdict": "PASS",
+    "findings": [],
+    "verdictReason": "Все английские утверждения и адресные объяснения правдивы и согласованы: употребление a ограничено конкретными конструкциями, вопрос с singular it правильно строится как Is it, not стоит после It is, а задания имеют единственный текстово допустимый ответ.",
+    "checks": {
+      "checkpointNoNewWordsOrGrammar": "PASS",
+      "articleClaimsAvoidFalseAlwaysRule": "PASS",
+      "singularQuestionForm": "PASS",
+      "negationPlacement": "PASS",
+      "feedbackSpecificityAndTruth": "PASS",
+      "uniqueAnswers": "PASS",
+      "shortAnswerOwnerRule": "NOT_APPLICABLE",
+      "sentenceAudioContrast": "PASS_TEXT_ONLY",
+      "actualAudioVerified": false
+    },
+    "dictionarySourcesUsed": []
+  },
+  "deltaReview": {
+    "sourceSha256": "db00161c4ed9a596a8aaea24990dd38e9279dff3c1fa1d2f77f4c3f8254e1591",
+    "reviewer": "/root/s08_truth",
+    "reviewScope": "delta_only_three_intro_bodies",
+    "verdict": "PASS",
+    "findings": [],
+    "truthDelta": {
+      "intro1": "PASS — a lamp остаётся корректно ограничено данной именной группой; It is правильно добавляется перед ней для полной фразы.",
+      "intro2": "PASS — вопрос с singular it правильно строится как Is it a mirror?",
+      "intro3": "PASS — отрицание правильно строится как It is + not + a stool; ложного правила об артикле нет."
+    },
+    "unchangedEvidence": {
+      "intro1QuestionAnswers": {
+        "exactByteEquivalent": true,
+        "sha256": "55953b9f29d35e79c8e8d6ee2b0719e334edfadc0d1099a081ae7068c1914bd2"
+      },
+      "intro2QuestionAnswers": {
+        "exactByteEquivalent": true,
+        "sha256": "bd75ae24a3bdbe463e0ce84b4da29d363691501f8bd9743892b5de54431fbca3"
+      },
+      "intro3QuestionAnswers": {
+        "exactByteEquivalent": true,
+        "sha256": "8d6a7b2d636a8b5b038565158f7136b97c7c23d8970519184a770500b02fc1ee"
+      },
+      "practiceThroughEof": {
+        "exactByteEquivalent": true,
+        "sha256": "cf99210c0d3de10433ba4e8492d79102caae4f8d6243049cbf1a23996c9ee3e3"
+      }
+    },
+    "draftFinalExactMatch": true,
+    "actualAudioVerified": false,
+    "reviewClaim": "Fresh delta review only; prior full review remains the full-session evidence."
+  }
+}

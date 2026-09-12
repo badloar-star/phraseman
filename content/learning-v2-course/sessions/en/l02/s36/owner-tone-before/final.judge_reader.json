@@ -1,0 +1,43 @@
+{
+  "pages": [
+    {
+      "page": 1,
+      "retelling": "Чтобы спросить, кто перед вами, нужно начать с Who, а Where используют, когда спрашивают о месте.",
+      "what_i_do_now": "Я буду слушать первое слово и скажу Who is he?, если хочу узнать, кто этот мужчина.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 2,
+      "retelling": "В вопросах Who is he? и Who is she? последнее слово показывает, спрашивают о мужчине или о женщине.",
+      "what_i_do_now": "Я дослушаю вопрос до конца и выберу he для мужчины, а she для женщины.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 3,
+      "retelling": "Чтобы спросить, кто хозяин вечера, по-английски нужно сказать Who is the host? и не пропускать is.",
+      "what_i_do_now": "Я скажу Who is the host? и оставлю is после Who.",
+      "understood": true,
+      "problems": []
+    }
+  ],
+  "pages_understood": 3,
+  "verdict": "PASS",
+  "verdict_reason": "Все три страницы понятны после одного чтения: каждая объясняет одно различие, даёт точную фразу и ясно показывает, что нужно услышать или сказать иначе.",
+  "sourceSha256": "fd9959cab2656a2d1916967122b4fdab45c8165526a30a3ed329b3b02a5dde25",
+  "reviewedAt": "2026-09-08T09:36:01.628647+00:00",
+  "reviewMethod": "builtin_codex_independent_role",
+  "previousSourceSha256": "c0661fc54d0ed040357319f1b6eb60d2fdecab2f4b2784351cee1f4aae3ff269",
+  "listeningRepairReview": {
+    "session": 36,
+    "verdict": "PASS",
+    "sourceSha256": "fd9959cab2656a2d1916967122b4fdab45c8165526a30a3ed329b3b02a5dde25",
+    "hashMatch": true,
+    "blocksReviewed": [
+      3
+    ],
+    "reason": "Post и roast близки к host по остальной части слова и ясно отличаются первым звуком. Инструкция не содержит смысловой или звуковой подсказки.",
+    "issues": []
+  }
+}

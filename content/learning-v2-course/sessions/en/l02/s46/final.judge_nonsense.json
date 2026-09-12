@@ -1,0 +1,19 @@
+{
+  "session": "S46",
+  "sourceSha256": "60cf23486938224426ec52a28cddf281d9c26384af5e9ff92d26ebc9b77a4cbe",
+  "verdict": "PASS",
+  "issues": [],
+  "verified": {
+    "audibleMeaningAccurate": true,
+    "formalRegisterExplicit": true,
+    "audibilityAndClarityDistinguishedWithoutAnAbsoluteClaim": true,
+    "amIClearSoundCheckMeaningContextuallyGrounded": true,
+    "stricterAmIClearReadingCorrectlyScopedToOtherContexts": true,
+    "phoneCheckHumourDoesNotCreateAFalseClaim": true,
+    "introLengths": [
+      285,
+      266,
+      262
+    ]
+  }
+}

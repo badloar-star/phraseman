@@ -1,0 +1,13 @@
+{
+  "sourceSha256": "fefd5431e280f4cdd6c9f0ae83d34d9d6d4a11b8aa983858670e68020046ef49",
+  "deltaOnly": true,
+  "introAnswers": {
+    "intro1": "Am I ready?",
+    "intro2": "Are we late?",
+    "intro3": "Are we ready?"
+  },
+  "confusion": [],
+  "verdict": "PASS",
+  "baselineReview": "owner-tone-before/final.judge_learner.json",
+  "unchangedPracticeVerified": true
+}

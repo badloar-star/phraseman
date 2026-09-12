@@ -1,0 +1,11 @@
+{
+  "session": "S49",
+  "sourceSha256": "cca7122f9ca01d25bd877e1b5616993e407a281af98a899c2c4e0cbfec567cf9",
+  "verdict": "PASS",
+  "issues": [],
+  "verifiedDelta": {
+    "baseline": "owner-before.ru.md",
+    "verified": true,
+    "summary": "Переписаны три интро и структурные ловушки интро 1; новые формулировки понятны, связны, а feedback точно объясняет пропуск или неверную форму."
+  }
+}

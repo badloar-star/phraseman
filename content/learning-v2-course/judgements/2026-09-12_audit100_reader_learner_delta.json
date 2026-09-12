@@ -1,0 +1,10 @@
+{
+  "reviewer":"/root/s10_reader","model":"gpt-5.6-terra","reasoningEffort":"medium",
+  "scope":"Actual delta-only RU reader and learner review. No full historical retake or audio verification.",
+  "sessions":[
+    {"session":"en/l02/s22","sourceSha256":"c4b3dc554941aea8e2000e4e1c925cc38b1c34520d2c5348d206e6f5f0d23817","readerDelta":{"verdict":"PASS","reason":"Explicit are replaces unexplained term; near feedback is clear."},"learnerDelta":{"verdict":"PASS","answers":{"intro1":"It is downstairs.","practice15":"near"},"reason":"Single toilet agrees with it; same floor and two paces exclude upstairs/downstairs."}},
+    {"session":"en/l02/s29","sourceSha256":"b4498f8ef974e979773f986c1d953bc3f234d5584196bb658d20be493cd2cc3c","readerDelta":{"verdict":"PASS","reason":"Which is scoped to choosing among named/visible things, without the false blanket rule."},"learnerDelta":{"verdict":"PASS","answers":{"intro2":"Which bag?"},"reason":"Two visible bags, choose one; supported by explanation."}},
+    {"session":"en/l02/s20","sourceSha256":"6d438fd0a4a346bd426b201e98bdf0e8aa3febeac0951be2c2d694cb37b34cad","readerDelta":{"verdict":"PASS","reason":"Task change creates no new intro clarity defect."},"learnerDelta":{"verdict":"PASS","answers":{"practice14":"It is behind the station."},"reason":"Scene identifies station reference, words are already grounded and available in tiles."}},
+    {"session":"en/l02/s27","sourceSha256":"e21f959ad22a3caa433cdde499af3acdbc64b527c77ae49b37631fdf1fc81c30","readerDelta":{"verdict":"PASS","reason":"Surprise at high prices gives the reaction a natural reason."},"learnerDelta":{"verdict":"PASS","answers":{"intro2":"What are these prices?","practice7":"prices"},"reason":"Multiple high prices require prices; intro covers the reaction."}}
+  ]
+}

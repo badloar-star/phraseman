@@ -1,0 +1,30 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "55fb0c333377269b928f1a46a5c852792748aa5ac0dca731ad4e948330f7ec69",
+  "issues": [],
+  "priorReviews": [
+    {
+      "verdict": "REVISE",
+      "sourceSha256": "0e4179f0ce503447abe5a455f12449ed2577df82195742268e1df6dd57e9d74b",
+      "issues": [
+        {
+          "location": "Задание 10, feedback для `welcome`",
+          "quote": "Это слово о том, рады ли вам.",
+          "problem": "Фраза по-русски звучит неестественно и не даёт ясного значения слова `welcome`.",
+          "minimalReplacement": "`welcome` значит «желанный» или «добро пожаловать». Для «Мы здесь» нужно `We are here`."
+        },
+        {
+          "location": "Задание 16, инструкция",
+          "quote": "прохожий упомянул вход в музей; спросите, где он",
+          "problem": "Местоимение «он» может относиться и к прохожему, и ко входу, поэтому адресат вопроса `Where is it?` неясен.",
+          "minimalReplacement": "прохожий упомянул вход в музей; спросите, где находится этот вход"
+        }
+      ]
+    },
+    {
+      "verdict": "PASS",
+      "sourceSha256": "588c4afcb1261129b0c4c3fac4484e5f8411486615c1e22b956e538ccf49ac7b",
+      "issues": []
+    }
+  ]
+}

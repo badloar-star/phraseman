@@ -1,0 +1,27 @@
+{
+  "sourceSha256": "cca7122f9ca01d25bd877e1b5616993e407a281af98a899c2c4e0cbfec567cf9",
+  "localeSha256": {
+    "uk": "9cdcc514f5c63564e8f372fe6ffffa1b23342e8136c777049bad12cb1e995097"
+  },
+  "locales": {
+    "uk": {
+      "source": "rollout ordinal 10123, FINAL_ANSWER by /root/s41_uk_native",
+      "candidateSha256AfterStripPlusLf": "9cdcc514f5c63564e8f372fe6ffffa1b23342e8136c777049bad12cb1e995097",
+      "shaStatus": "confirmed after save",
+      "verdict": "PASS",
+      "issues": [],
+      "introLengths": [
+        270,
+        267,
+        269
+      ],
+      "evidence": [
+        "All three revised intros are natural Ukrainian and preserve the RU meanings.",
+        "The fatigue and proximity jokes remain clear and factually aligned with the grammar distinction.",
+        "The complete English-token sequence matches current RU exactly: 397/397 across the full Markdown, including targets, distractors and self-check text."
+      ],
+      "sourceSha256": "cca7122f9ca01d25bd877e1b5616993e407a281af98a899c2c4e0cbfec567cf9",
+      "localeSha256": "9cdcc514f5c63564e8f372fe6ffffa1b23342e8136c777049bad12cb1e995097"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "session": "en/l03/s13",
+  "sourceSha256": "846c5331381709d5e2d542dbbfaad19c2600fcce8d7755397be42565409ff502",
+  "converged": true,
+  "needsHumanReview": false,
+  "locales": [
+    "ru",
+    "uk"
+  ],
+  "audioReviewed": false,
+  "visualReviewed": false
+}

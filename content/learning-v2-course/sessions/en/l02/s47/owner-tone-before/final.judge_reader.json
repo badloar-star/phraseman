@@ -1,0 +1,24 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "5de3323ec67604c19569355b98d01f5a79ac7a5d4bfd52d17df059237ae7aeee",
+  "issues": [],
+  "priorReviews": [
+    {
+      "verdict": "REVISE",
+      "sourceSha256": "76336691cb70cd4f83b307ed62ddc3a8be5d16a7d69347a0a6b2eed5f39d5799",
+      "issues": [
+        {
+          "location": "Задание 12, инструкция",
+          "quote": "какой вопрос друг задал, отложив меню",
+          "problem": "Одно лишь отложенное меню не объясняет, почему друг спрашивает собеседника о собственной готовности.",
+          "minimalReplacement": "какой вопрос друг задал вам, попросив проверить, всё ли он выбрал"
+        }
+      ]
+    },
+    {
+      "verdict": "PASS",
+      "sourceSha256": "11325ab8fe197ac3529a22a8ace5e604a6d0eefa4393e11c19e5b72dcf9c6bc6",
+      "issues": []
+    }
+  ]
+}

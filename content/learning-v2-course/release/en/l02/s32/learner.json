@@ -56,7 +56,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-32:i01:r1",
+            "responseId": "en:lesson-02:session-32:i01:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — menu",
             "feedbackByLocale": {
@@ -65,7 +65,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-32:i01:r2",
+            "responseId": "en:lesson-02:session-32:i01:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — menu",
             "feedbackByLocale": {
@@ -127,7 +127,7 @@
         "testedDimension": "Вставьте слово — вы спрашиваете название",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-32:i02:r1",
+            "responseId": "en:lesson-02:session-32:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы спрашиваете название",
             "feedbackByLocale": {
@@ -136,7 +136,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-32:i02:r2",
+            "responseId": "en:lesson-02:session-32:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы спрашиваете название",
             "feedbackByLocale": {
@@ -230,7 +230,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-32:i04:r1",
+            "responseId": "en:lesson-02:session-32:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — cheap",
             "feedbackByLocale": {
@@ -239,7 +239,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-32:i04:r2",
+            "responseId": "en:lesson-02:session-32:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — cheap",
             "feedbackByLocale": {
@@ -301,7 +301,7 @@
         "testedDimension": "Вставьте слово — блюдо стоит два евро",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-32:i05:r1",
+            "responseId": "en:lesson-02:session-32:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — блюдо стоит два евро",
             "feedbackByLocale": {
@@ -310,7 +310,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-32:i05:r2",
+            "responseId": "en:lesson-02:session-32:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — блюдо стоит два евро",
             "feedbackByLocale": {
@@ -390,7 +390,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «деш",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-32:i07:r1",
+            "responseId": "en:lesson-02:session-32:i07:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «деш",
             "feedbackByLocale": {
@@ -498,7 +498,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-32:i09:r1",
+            "responseId": "en:lesson-02:session-32:i09:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — corner",
             "feedbackByLocale": {
@@ -507,7 +507,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-32:i09:r2",
+            "responseId": "en:lesson-02:session-32:i09:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — corner",
             "feedbackByLocale": {
@@ -569,7 +569,7 @@
         "testedDimension": "Вставьте слово — вы хотите узнать, сколь",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-32:i10:r1",
+            "responseId": "en:lesson-02:session-32:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы хотите узнать, сколь",
             "feedbackByLocale": {
@@ -578,7 +578,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-32:i10:r2",
+            "responseId": "en:lesson-02:session-32:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы хотите узнать, сколь",
             "feedbackByLocale": {
@@ -754,7 +754,7 @@
         "testedDimension": "Вставьте слово — вы поели и хотите распл",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-32:i13:r1",
+            "responseId": "en:lesson-02:session-32:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы поели и хотите распл",
             "feedbackByLocale": {
@@ -763,7 +763,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-32:i13:r2",
+            "responseId": "en:lesson-02:session-32:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы поели и хотите распл",
             "feedbackByLocale": {
@@ -852,7 +852,7 @@
         "testedDimension": "Вставьте слово — официант показывает рук",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-32:i15:r1",
+            "responseId": "en:lesson-02:session-32:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — официант показывает рук",
             "feedbackByLocale": {
@@ -861,7 +861,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-32:i15:r2",
+            "responseId": "en:lesson-02:session-32:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — официант показывает рук",
             "feedbackByLocale": {

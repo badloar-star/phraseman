@@ -1,0 +1,35 @@
+{
+  "session": "en/l02/s48",
+  "sourceSha256": "ef28da4cde35359def90e62637a2bbdbfaa2873b1a67630a2298d017445db936",
+  "localeSha256": "1f49760389401ddd7d8d2177182651dffbe1f6c3b045a6c385e75b7098f41553",
+  "verdict": "PASS",
+  "issues": [],
+  "checks": {
+    "actualDiff": "Ровно task 12 в RU и UK; замены совпадают с packet.",
+    "clarity": "Организатор остаётся ясной темой реплики.",
+    "answerLeak": "Инструкция не раскрывает `rude` и отрицательную полярность."
+  },
+  "verdict_reason": "Нейтральная тема не позволяет восстановить `He is not rude` без записи.",
+  "priorFullReviewRetained": true,
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "sourceSha256": "af601ec4cc8bd7a538011c460dfb58b0e41bd7a0bb38d88efd69d1676e4eae53",
+    "verdict": "PASS",
+    "issues": []
+  },
+  "deltaReview": {
+    "session": "en/l02/s48",
+    "sourceSha256": "ef28da4cde35359def90e62637a2bbdbfaa2873b1a67630a2298d017445db936",
+    "localeSha256": "1f49760389401ddd7d8d2177182651dffbe1f6c3b045a6c385e75b7098f41553",
+    "verdict": "PASS",
+    "issues": [],
+    "checks": {
+      "actualDiff": "Ровно task 12 в RU и UK; замены совпадают с packet.",
+      "clarity": "Организатор остаётся ясной темой реплики.",
+      "answerLeak": "Инструкция не раскрывает `rude` и отрицательную полярность."
+    },
+    "verdict_reason": "Нейтральная тема не позволяет восстановить `He is not rude` без записи.",
+    "priorFullReviewRetained": true
+  },
+  "retainedSourceSha256": "af601ec4cc8bd7a538011c460dfb58b0e41bd7a0bb38d88efd69d1676e4eae53"
+}

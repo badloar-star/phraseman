@@ -1,0 +1,152 @@
+{
+  "sourceSha256": "3f0c5b6ecc21cd4d5505bea97549bbee0e4bda8ef1c1ed3a13623599977aa9a6",
+  "verdict": "PASS",
+  "reviewScope": "L3S2/L3S3 phonetic feedback delta only; prior full reviews retained, not rerun",
+  "actualReceipt": "content/learning-v2-course/judgements/2026-09-09_l03_s02_s03_phonetic_delta.json",
+  "priorFullReview": {
+    "sourceSha256": "45a29f88af55d12f0eca4f40f28a2b01cf5e3b5a3fcee62af225f1c379ef1f15",
+    "plan_fidelity": {
+      "operation_matches": true,
+      "new_words_match": [
+        "stool",
+        "mirror",
+        "rug"
+      ],
+      "missing": [],
+      "extra_grammar_smuggled": []
+    },
+    "boundary": {
+      "unknown_in_explanations": [],
+      "unknown_in_targets": [],
+      "prerequisite_check": "Целевые `It is not …`, `It is here` и вопросная рамка `Is it …?` уже входят в пройденные операции/предыдущую работу главы; новая тонкость ограничена значением `a` внутри `It is a + noun`."
+    },
+    "structure": {
+      "task_count": 17,
+      "below_12": false,
+      "word_first_respected": true,
+      "support_fades": true,
+      "speed_match_boards": [
+        [
+          "stool",
+          "mirror",
+          "rug",
+          "lamp"
+        ]
+      ],
+      "speed_match_overlap": false,
+      "repeated_targets": [],
+      "generic_instructions": [],
+      "attention_traps": [
+        14
+      ],
+      "builders": {
+        "count": 5,
+        "phrases": [
+          "`A stool`",
+          "`It is a mirror`",
+          "`Is it a rug?`",
+          "`It is here`",
+          "`It is not a stool`"
+        ],
+        "result": "Четыре phrase_builder и один listen_build_dictation различают короткое называние, утверждение, вопрос, место и отрицание; одинаковой сборки и более двух одинаковых скелетов нет."
+      }
+    },
+    "returns": {
+      "lamp": {
+        "tasks": [
+          9,
+          12
+        ],
+        "minimum_two_met": true
+      },
+      "here": {
+        "tasks": [
+          14,
+          15
+        ],
+        "minimum_two_met": true
+      }
+    },
+    "traps": {
+      "realistic": [
+        {
+          "task": 1,
+          "trap": "`It is stool` / `It a stool` диагностируют пропуск `a` или `is`."
+        },
+        {
+          "task": 13,
+          "trap": "`no a` и `a not` проверяют реалистичный перенос русского отрицания и неверный порядок слов."
+        },
+        {
+          "task": 17,
+          "trap": "`are` после `It` проверяет выбор знакомой, но неверной формы."
+        }
+      ],
+      "silly": [],
+      "native_transfer_used": true,
+      "feedback_teaches_unknown_form": []
+    },
+    "feedback": {
+      "missing_per_option": [],
+      "duplicated": [],
+      "too_long_or_bookish": []
+    },
+    "listening": {
+      "one_word_prompts_neutral": true,
+      "written_sound_pairs": [
+        "`stool` / `school` / `spool`: различаются согласным после начального `s`.",
+        "`mirror` / `minor` / `merry`: различаются первым гласным.",
+        "`rug` / `bug` / `mug`: различаются начальным согласным."
+      ],
+      "dictation_instruction_no_semantic_leak": {
+        "task": 11,
+        "quote": "«брат обращается к вам из соседней комнаты»",
+        "result": "Не называет `rug`, не раскрывает вопросительную форму и не задаёт полярность."
+      },
+      "real_audio_claim": false
+    },
+    "cross_session_repeats": [],
+    "time_references": [],
+    "textbook_formulas": [],
+    "must_fix": [],
+    "evidence": [
+      {
+        "check": "Новое слово перед фразой и доской",
+        "evidence": "`stool`: 1→2→5; `mirror`: 3→4→8; `rug`: 6→7→10/11; все четыре слова доски 12 отработаны до неё."
+      },
+      {
+        "check": "Независимость финала",
+        "evidence": "Перед заданием 17 звучит `It is a rug`, тогда как финальная сборка — `It is not a stool`."
+      },
+      {
+        "check": "Точная граница a",
+        "evidence": "Интро 2: «про выбранный предмет можно сказать `a mirror`»; оно объясняет значение в заданной рамке, не объявляя ложного общего запрета на другие употребления `a`."
+      }
+    ],
+    "verdict": "PASS",
+    "verdict_reason": "Педагогических дефектов, требующих изменения learner-текста, не найдено."
+  },
+  "deltaReview": {
+    "session": "s03",
+    "baseHashes": {
+      "ru": "45a29f88af55d12f0eca4f40f28a2b01cf5e3b5a3fcee62af225f1c379ef1f15",
+      "uk": "2469b72e5c687621a41f501bb4684fafe2b8935447b2880ecd0823fea5004340"
+    },
+    "currentHashes": {
+      "ru": "3f0c5b6ecc21cd4d5505bea97549bbee0e4bda8ef1c1ed3a13623599977aa9a6",
+      "uk": "80cdd3d2a2e304b25866bc1ce66a4873ee5a611653bd8f9095fbfc266935ede7"
+    },
+    "diffReviewed": "Two bug/rug and mug/rug feedback lines in each locale",
+    "rolesCovered": {
+      "reader": "PASS",
+      "pedagogy": "PASS",
+      "nonsense": "PASS",
+      "taste": "PASS",
+      "native": "PASS"
+    },
+    "englishAnswersInvariant": true,
+    "contractEvidence": "9 intro choices, 32 practice-contract items unchanged; RU/UK 121 backtick spans identical in order",
+    "tasteEvidence": "Intro and humor unchanged; all prior humor.examples and best_lines remain exact source substrings",
+    "retainPriorFullTaste": true
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "sourceSha256": "7b600965938751fb67aa28fbec100362036023dc365b07ae7c38883ab7fd0bdc",
+  "reviewer": "/root/s10_truth",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "scope": "Full read-only language-fact review: all intro claims, definitions, article choices, keys, feedback, pronunciation contrasts and audio-instruction leakage.",
+  "problems": [],
+  "verdict": "PASS",
+  "verdict_reason": "candle, cushion, plant are correctly defined singular count nouns with consonant onsets; armchair and oven have vowel onsets. Questions and negatives preserve noun phrases. All three sound-option groups identify real contrasts consistent with primary evidence; meanings valid, instructions neutral. No false universals.",
+  "evidenceSources": [
+    "https://dictionary.cambridge.org/dictionary/english/candle",
+    "https://dictionary.cambridge.org/pronunciation/english/handle",
+    "https://dictionary.cambridge.org/pronunciation/english/sandal",
+    "https://dictionary.cambridge.org/dictionary/english/cushion",
+    "https://dictionary.cambridge.org/pronunciation/english/kitchen",
+    "https://dictionary.cambridge.org/dictionary/english/pushing",
+    "https://dictionary.cambridge.org/dictionary/english/plant",
+    "https://dictionary.cambridge.org/dictionary/english/grant",
+    "https://dictionary.cambridge.org/pronunciation/english/chant"
+  ],
+  "actualAudioReviewed": false
+}

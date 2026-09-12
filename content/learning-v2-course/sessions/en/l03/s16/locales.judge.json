@@ -1,0 +1,25 @@
+{
+  "sourceSha256": "582bbcc840ad479d350e9e91cfb8e12b0ef2fafad48217d5d964d3df30a4b7d2",
+  "localeSha256": {
+    "uk": "7c9adc40179bce1af54ef6ab512edb38075e225d30604e5dc621553157215094"
+  },
+  "reviewer": "/root/s10_uk_native",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "previousReviewPath": "judgements/2026-09-12_l03_s16_uk_initial.json",
+  "scope": "Initial whole-source review plus actual independent five-group delta review",
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "problems": [],
+      "intro_body_chars": [
+        300,
+        261,
+        243
+      ],
+      "deltaEvidence": "All five proposed groups present; stale strings absent. Humour causal logic natural, full phrase correctly scoped, metadata/Is hour feedback/task10 referent clear. Other full-review scope retained."
+    }
+  },
+  "verdict": "PASS",
+  "actualAudioReviewed": false
+}

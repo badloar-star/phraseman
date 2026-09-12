@@ -1,0 +1,20 @@
+{
+  "sourceSha256": "7b600965938751fb67aa28fbec100362036023dc365b07ae7c38883ab7fd0bdc",
+  "localeSha256": {
+    "uk": "7d07820e6c7dd169f7bd6770a35e21ec298e17c7e233128d744962f3aa828cff"
+  },
+  "reviewer": "/root/s10_uk_native",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "previousReviewPath": "judgements/2026-09-12_l03_s15_uk_initial.json",
+  "scope": "Initial whole-source review plus actual independent review of all six repaired groups",
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "problems": [],
+      "deltaEvidence": "All six groups resolved, stale strings absent. Grant first sound accurately described as close to Ukrainian ґ, not г; no English r/Cyrillic р equivalence. First sound distinguishes plant. Other five wording/punctuation groups natural. Prior full review validates English structure, definitions, intro lengths and humour."
+    }
+  },
+  "verdict": "PASS",
+  "actualAudioReviewed": false
+}

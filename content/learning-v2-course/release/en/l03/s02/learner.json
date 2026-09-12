@@ -1,0 +1,898 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-02:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sofa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-02:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sofa",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-02:i01:audio",
+          "transcript": "sofa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-02:i01:r1",
+            "targetText": "sofa",
+            "meaningByLocale": {
+              "ru": "«диван». Мягкая мебель, на которой можно сидеть рядом.",
+              "uk": "«диван». М’які меблі, на яких можна сидіти поруч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sofa",
+          "definitionByLocale": {
+            "ru": "«диван». Мягкая мебель, на которой можно сидеть рядом.",
+            "uk": "«диван». М’які меблі, на яких можна сидіти поруч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнесла сестра",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-02:i02:r1",
+          "text": "sofa"
+        },
+        {
+          "responseId": "en:lesson-03:session-02:i02:r2",
+          "text": "safer"
+        },
+        {
+          "responseId": "en:lesson-03:session-02:i02:r3",
+          "text": "suffer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнесла сестра",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-02:i02:audio",
+          "transcript": "sofa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-02:i02:r1",
+            "targetText": "sofa",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i02:r2",
+            "targetText": "safer",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i02:r3",
+            "targetText": "suffer",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "В первом слоге `safer` слышно «эй», а в `sofa` — «оу». В записи `sofa`.",
+              "uk": "У першому складі `safer` чути «ей», а в `sofa` — «оу». У записі — `sofa`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "В первом слоге `suffer` гласный ближе к «а», а в `sofa` слышно «оу». Здесь звучит `sofa`.",
+              "uk": "У першому складі `suffer` голосний ближчий до «а», а в `sofa` чути «оу». Тут звучить `sofa`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-02:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-02:i03:audio",
+          "transcript": "bed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-02:i03:r1",
+            "targetText": "bed",
+            "meaningByLocale": {
+              "ru": "«кровать». Мебель, на которой спят.",
+              "uk": "«ліжко». Меблі, на яких сплять."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bed",
+          "definitionByLocale": {
+            "ru": "«кровать». Мебель, на которой спят.",
+            "uk": "«ліжко». Меблі, на яких сплять."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало в комнате",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-02:i04:r1",
+          "text": "bed"
+        },
+        {
+          "responseId": "en:lesson-03:session-02:i04:r2",
+          "text": "red"
+        },
+        {
+          "responseId": "en:lesson-03:session-02:i04:r3",
+          "text": "bad"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-02:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало в комнате",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-02:i04:audio",
+          "transcript": "bed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-02:i04:r1",
+            "targetText": "bed",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i04:r2",
+            "targetText": "red",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i04:r3",
+            "targetText": "bad",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-02:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "В `red` начальный `r` звучит плавно, без удара кончиком языка; `bed` начинается со смыкания губ для `b`. В записи `bed`.",
+              "uk": "У `red` початковий `r` звучить плавно, без удару кінчиком язика; `bed` починається зі змикання губ для `b`. У записі — `bed`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "В `bad` гласный произносится с более открытым ртом, чем в `bed`. Здесь звучит `bed`.",
+              "uk": "У `bad` голосний вимовляють із більш відкритим ротом, ніж у `bed`. Тут звучить `bed`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сестра спрашивает, что вы освободили от чехла; скажите «Это диван»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сестра спрашивает, что вы освободили от чехла; скажите «Это диван»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a sofa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сестра спрашивает, что вы освободили от чехла; скажите «Это диван»",
+          "uk": "Складіть фразу — сестра запитує, що було під чохлом; скажіть «Це диван»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "sofa"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — desk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-02:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — desk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-02:i06:audio",
+          "transcript": "desk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-02:i06:r1",
+            "targetText": "desk",
+            "meaningByLocale": {
+              "ru": "«письменный стол». За ним пишут, учатся или работают.",
+              "uk": "«письмовий стіл». За ним пишуть, навчаються або працюють."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "desk",
+          "definitionByLocale": {
+            "ru": "«письменный стол». За ним пишут, учатся или работают.",
+            "uk": "«письмовий стіл». За ним пишуть, навчаються або працюють."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнесла сестра",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-02:i07:r1",
+          "text": "desk"
+        },
+        {
+          "responseId": "en:lesson-03:session-02:i07:r2",
+          "text": "disk"
+        },
+        {
+          "responseId": "en:lesson-03:session-02:i07:r3",
+          "text": "dusk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-02:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнесла сестра",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-02:i07:audio",
+          "transcript": "desk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-02:i07:r1",
+            "targetText": "desk",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i07:r2",
+            "targetText": "disk",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i07:r3",
+            "targetText": "dusk",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-02:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "В середине `disk` гласный ближе к «и», а в `desk` — к «э». В записи `desk`.",
+              "uk": "У середині `disk` голосний ближчий до українського «и», а в `desk` — до «е». У записі — `desk`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "В середине `dusk` гласный ближе к «а», а в `desk` — к «э». Здесь звучит `desk`.",
+              "uk": "У середині `dusk` голосний ближчий до «а», а в `desk` — до «е». Тут звучить `desk`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите вопрос — из-под чехла виден край мебели; спросите, письменный ли это стол",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-02:i08:r1",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите вопрос — из-под чехла виден край мебели; спросите, письменный ли это стол",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it a desk?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — из-под чехла виден край мебели; спросите, письменный ли это стол",
+          "uk": "Складіть запитання — з-під чохла видно край меблів; запитайте, чи це письмовий стіл"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "desk"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-02:i08:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос — из-под чехла виден кра",
+            "feedbackByLocale": {
+              "ru": "Вопрос об этом предмете начинаем с `Is it`: `Is it a desk?`. Начало `Are it` не подходит.",
+              "uk": "Запитання про цей предмет починаємо з `Is it`: `Is it a desk?`. Початок `Are it` не підходить."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сестра показывает на ещё один предмет; назовите его: «Это стол» (`table` — «стол»)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-02:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сестра показывает на ещё один предмет; назовите его: «Это стол» (`table` — «стол»)",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-02:i09:audio",
+          "transcript": "It is a table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — сестра говорит о мебели под чехлом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-02:i10:r1",
+          "text": "sofa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-02:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — сестра говорит о мебели под чехлом",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-02:i10:audio",
+          "transcript": "It is not a bed."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is not a bed.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "a",
+          "bed"
+        ],
+        "authoredDistractorTokens": [
+          "sofa"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-02:i10:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — сестра говорит о",
+            "feedbackByLocale": {
+              "ru": "В записи прозвучало `bed`, а не `sofa`: `It is not a bed`.",
+              "uk": "У записі прозвучало `bed`, а не `sofa`: `It is not a bed`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары — мебель в квартире",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары — мебель в квартире",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-02:i11:p1",
+            "target": "sofa",
+            "meaningByLocale": {
+              "ru": "диван",
+              "uk": "диван"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-02:i11:p2",
+            "target": "bed",
+            "meaningByLocale": {
+              "ru": "кровать",
+              "uk": "ліжко"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-02:i11:p3",
+            "target": "desk",
+            "meaningByLocale": {
+              "ru": "письменный стол",
+              "uk": "письмовий стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-02:i11:p4",
+            "target": "table",
+            "meaningByLocale": {
+              "ru": "стол",
+              "uk": "стіл"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sofa",
+          "bed",
+          "desk",
+          "table"
+        ],
+        "rightColumn": [
+          "диван",
+          "кровать",
+          "письменный стол",
+          "стол"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте часть фразы — сестра освободила кровать от упаковки; назовите её: «Это кровать»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-02:i12:r1",
+          "text": "is a"
+        },
+        {
+          "responseId": "en:lesson-03:session-02:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-02:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте часть фразы — сестра освободила кровать от упаковки; назовите её: «Это кровать»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте часть фразы — сестра освободила кровать от упаковки; назовите её: «Это кровать»",
+          "uk": "Вставте частину фрази — сестра звільнила ліжко від упаковки; назвіть його: «Це ліжко»"
+        },
+        "gappedTargetPhrase": "It ___ bed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-02:i12:r1",
+            "text": "is a"
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вставьте часть фразы — сестра освободила",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте часть фразы — сестра освободила",
+            "feedbackByLocale": {
+              "ru": "Получится `It is bed`: перед названием кровати не хватает `a`.",
+              "uk": "Вийде `It is bed`: перед назвою ліжка бракує `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте часть фразы — сестра освободила",
+            "feedbackByLocale": {
+              "ru": "Получится `It a bed`: после `It` не хватает `is`. Здесь нужны оба слова: `is a`.",
+              "uk": "Вийде `It a bed`: після `It` бракує `is`. Тут потрібні обидва слова: `is a`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сестра спрашивает, что вы поставите у окна; назовите письменный стол",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-02:i13:r1",
+          "text": "not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сестра спрашивает, что вы поставите у окна; назовите письменный стол",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a desk.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сестра спрашивает, что вы поставите у окна; назовите письменный стол",
+          "uk": "Складіть фразу — сестра запитує, що ви поставите біля вікна; назвіть письмовий стіл"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "desk"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-02:i13:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сестра спрашивает, что ",
+            "feedbackByLocale": {
+              "ru": "Нужно назвать предмет. С `not` получилось бы «Это не письменный стол», а вы как раз показываете на него.",
+              "uk": "Треба назвати предмет. З `not` вийшло б «Це не письмовий стіл», а ви саме на нього показуєте."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы с сестрой пробуете поднять письменный стол; скажите «Он тяжёлый» (`heavy` — «тяжёлый»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-02:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-02:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-03:session-02:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы с сестрой пробуете поднять письменный стол; скажите «Он тяжёлый» (`heavy` — «тяжёлый»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы с сестрой пробуете поднять письменный стол; скажите «Он тяжёлый» (`heavy` — «тяжёлый»)",
+          "uk": "Вставте слово — ви із сестрою пробуєте підняти письмовий стіл; скажіть «Він важкий» (`heavy` — «важкий»)"
+        },
+        "gappedTargetPhrase": "It ___ heavy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-02:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы с сестрой пробуете п",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-02:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы с сестрой пробуете п",
+            "feedbackByLocale": {
+              "ru": "Об одном предмете здесь говорим `It is heavy`. Форма `are` с `It` не подходит.",
+              "uk": "Про один предмет тут кажемо `It is heavy`. `are` з `It` не підходить."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-02:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы с сестрой пробуете п",
+            "feedbackByLocale": {
+              "ru": "Форма `am` нужна с `I`, когда говорим о себе. Здесь речь о столе: `It is heavy`.",
+              "uk": "`am` потрібне з `I`, коли говоримо про себе. Тут ідеться про стіл: `It is heavy`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сестра пробует приподнять диван; спросите её: «Он тяжёлый?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сестра пробует приподнять диван; спросите её: «Он тяжёлый?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-02:i15:audio",
+          "transcript": "Is it heavy?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is it heavy?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы сняли последний чехол; сестра из дверей спрашивает, что под ним; назовите кровать",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-02:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы сняли последний чехол; сестра из дверей спрашивает, что под ним; назовите кровать",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-02:i16:audio",
+          "transcript": "It is a bed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a bed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-02:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите вопрос самостоятельно — сестра показывает на крупный предмет у стены; чехол ещё на месте, и вы хотите уточнить, диван ли это",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-02:i17:r1",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите вопрос самостоятельно — сестра показывает на крупный предмет у стены; чехол ещё на месте, и вы хотите уточнить, диван ли это",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it a sofa?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос самостоятельно — сестра показывает на крупный предмет у стены; чехол ещё на месте, и вы хотите уточнить, диван ли это",
+          "uk": "Складіть запитання самостійно — сестра показує на великий предмет біля стіни; чохол ще на місці, і ви хочете уточнити, чи це диван"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "sofa"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-02:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос самостоятельно — сестра ",
+            "feedbackByLocale": {
+              "ru": "Для вопроса об одном предмете здесь нужно `Is it`: `Is it a sofa?`.",
+              "uk": "Для запитання про один предмет тут потрібне `Is it`: `Is it a sofa?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cad4df0b535a3255d34e9522b4f5e6c50401cd4b833d4de4d8dee23f213c41a3"
+}

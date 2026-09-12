@@ -1,0 +1,26 @@
+{
+  "sourceSha256": "60f7b0180539de7d705dfbe0c3c343c33ab23ea1d0f510c8a8876f7eba39dd58",
+  "localeSha256": {
+    "uk": "1f68b5afc375ee603c9690f557da2a468604ed22c07095464ead70eedd598497"
+  },
+  "locales": {
+    "uk": {
+      "session": "S50",
+      "sourceSha256": "60f7b0180539de7d705dfbe0c3c343c33ab23ea1d0f510c8a8876f7eba39dd58",
+      "localeSha256": "1f68b5afc375ee603c9690f557da2a468604ed22c07095464ead70eedd598497",
+      "verdict": "PASS",
+      "issues": [],
+      "verified": {
+        "naturalUkrainian": true,
+        "meaningAndFeedbackAccurate": true,
+        "humourPreservesRules": true,
+        "noAddedOrChangedEnglish": true,
+        "introLengths": [
+          269,
+          271,
+          290
+        ]
+      }
+    }
+  }
+}

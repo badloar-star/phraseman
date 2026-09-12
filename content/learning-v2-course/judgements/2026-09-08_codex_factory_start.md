@@ -47,8 +47,10 @@ GPT-5.5 в A дала все3 интро короче210 знаков и про�
 
 Сырые тесты находятся в .codex-tmp/model-benchmark-20260908 (временные,
 не поставляемые материалы). Полные видимые ответы Sol/Astra составили
-2160/2273 токена по o200k_base. Скрытое рассуждение, кэш и фактический расход
-подписки по агентам инструмент не предоставляет. Это не финансовый счёт и
+2160/2273 токена по o200k_base. Первоначальный агентный инструмент не предоставлял счётчики рассуждения, кэша
+и расхода подписки. Позже input/cache/output/reasoning token counters восстановлены
+из собственных журналов: см. `2026-09-08_observed_agent_token_usage.md`.
+Фактическое списание подписки и цены по-прежнему неизвестны. Это не финансовый счёт и
 не доказательство универсального оптимума. Короткая локализация инструкции
 не доказывает готовность модели к полноценным8 локалям.
 
@@ -166,3 +168,564 @@ author.md сняло этот BLOCK. Ученик Terra решил все зад
   инвентарём браузера, но getTab также блокируется URL policy: автоматический
   визуальный проход и обновление вкладки остаются недоступны. Не обходить
   запрет; пересобирать локальный файл и честно сообщать о ручном обновлении.
+
+## 2026-09-08 — s35 и обязательное обновление макета
+
+- Решение владельца: «ДЕРЖИ МАКЕТЫ ОБНОВЛЕННЫМИ ВСЕГДА». После каждой принятой сессии: build_release → build_mockup → проверить наличие exact session и локалей в собранном index.html; только затем следующая сессия. Держать существующую вкладку открытой. Не объявлять вкладку обновлённой без подтверждения.
+- Исправлена потеря украинских practice instructions: отдельный strict learner.uk.json с scalar prompt/accessibilityLabel и собственным fingerprint; mockup выбирает locale child, старые сессии используют base fallback. Wire schema приложения не менялась.
+- Fresh independent TypeScript review PASS; 4 focused pipeline testfiles 25/25 PASS; node --check и diff --check PASS. Никаких API расходов.
+- s35: 4 RU review PASS и UK review PASS привязаны к текущим SHA. RU 7a6c5c1b602ec19aaf1f85c9c83bc9cb5e6143555bddb8477aebbdaf13648d0b; UK d4adf72ab5ab8534c9cc2f4f26fe15f6d0964922712f0a7b3076f7b6ecdb2731.
+- Пересобраны s33, s34, s35 RU+UK: 18/17/17 заданий, проблем сборки нет. В index.html подтверждены все три session keys, locale siblings, fingerprints, отсутствие служебного Speed Match в prompt; review hashes совпадают.
+- Основной макет содержит 91 сессию: 56 первого урока + 35 второго. Это число файлов, не утверждение о свежем review всех исторических сессий.
+- Browser URL policy блокирует управление текущим file:// макетом. Обходы не выполняются; файл обновлён, пользователь обновляет открытую вкладку Ctrl+R. Визуальная проверка не заявляется.
+- Следующий authoring: s36, затем последовательно 37–40 в согласованном пилоте. Шесть остальных локалей и аудио не произведены. Известная старая ошибка new-words s12 остаётся отдельной нерешённой проблемой.
+
+## 2026-09-08 — исправление задания со скриншота владельца
+
+- L2 s08 i02 показывало Are / You / Am без исходной фразы `___ you awake?`. Причина: regex сборщика требовал отдельный непробельный символ перед `___` и терял пропуск в начале строки.
+- Исправлен только extraction gappedTargetPhrase. RED на реальном source s08 воспроизведён (пустая строка вместо фразы); GREEN gap + feedback regressions: 2/2.
+- В 20 сессиях существующего релиза восстановлены 28 уникальных заданий (30 child instances с RU/UK siblings). Из временной пересборки перенесены только недостающие gappedTargetPhrase и пересчитан learnerFingerprint. Authoring sources/statuses, включая чужую s21 UK, не изменялись.
+- Макет пересобран. Проверено 404 gap instances, пустых фраз 0. L2 s08 i02 содержит `___ you awake?`, варианты Are / You / Am. UI screenshot после обновления недоступен из-за ранее подтверждённой Browser URL policy.
+- Подробности затронутых сессий: .codex-tmp/learning-v2-production-20260908/gap-repair.json. Временная изолированная сборка сохранена для трассировки.
+
+## 2026-09-08 — владелец расширил цель до полного курса
+
+Прямая инструкция: «ПРОДОЛЖАЙ РАБОТАТЬ ТЕБЕ ВСЕ УРОКИ НАПИСАТЬ И ВСЕ СЕССИ». Потолок пилота s40 снят: продолжаем последовательно 32 × 56. Это не разрешение пропускать review, выдавать RU+UK за восемь локалей или менять приложение. После каждой готовой сессии пересборка и проверка макета обязательны.
+
+Следующий рубеж до L3: подробные56строк с отдельными новыми/возвращаемыми словами и first-introduced ledger по реальным мастерам; старые chunks the/these/whose не объявлять впервые увиденными. При планировании применять утверждённые32темы.
+
+Read-only Sol audit подтвердил препятствия лестницы:8 разныхмеханик несовместимы с checkpoint без word_card; mechanicRepeat требует уточнениясемантики; HARD_FACT_RE не включает НАГРУЗКА НИЖЕ СТУПЕНИ. Будущие5пар/L5,9механик/L13,5вариантов/L19,10механик/L25 не поддерживаются текущимдвижком. Не обходить и не занижать молча: до L3 отдельный конкретный контрактный пакет по допустимому усложнению; исходникиприложения сохранять. check_new_words пока проверяетодинурок, вызов run не передаётlesson; до L3 нужен сквознойконтроль. Пока эти будущиепрепятствия не мешают последовательному закрытию L2.
+
+## 2026-09-08 — S36 завершена в текущем RU+UK объёме
+
+- RU master c0661fc54d0ed040357319f1b6eb60d2fdecab2f4b2784351cee1f4aae3ff269: свежие learner/pedagogy/nonsense/reader PASS, 20/20 решаемых шагов, неоднозначных нет; 17 заданий, 7 сборок, 10 слух/голос, 0 незнакомых, 0 hard facts.
+- UK e5912b9766ae1f02e1281dd4dc9ab5d9d110952e16a6bd939452466af98d5ade: две точечные native-правки и независимый delta PASS. Интро 261/274/284; английские строки сохранены.
+- Build release RU+UK и основной mockup PASS. Макет:92 сессии (L1 56 + L2 36), s36 содержит3интро+17заданий, fingerprints RU/UK совпадают с содержимым. Пустых gappedTargetPhrase во всей текущей сборке0.
+- Следующая S37, contrast who/whose. Все32×56 остаются целью. L3 proposal сохранён отдельно в .codex-tmp/learning-v2-production-20260908/l03-plan-proposal.md, не утверждён и не внесён в canonical plan; свежий review идёт.
+
+## 2026-09-08 — S37 проверена и добавлена в макет
+
+- RU b401b25161766921b8072362f4b463739ba0514c7b6d6ac0e9ef8ddc5c796145. Четыре независимых PASS; одна педагогическая правка: голос16 больше не повторяет ответ финальной сборки17. Все20шагов проверены безключей, пары перемешаны независимо. 17заданий,6сборок,0hardfacts.
+- UK 7bcc4c5278d295f9593368a2ad0e86e5938e65dec8a90a84a073b5f187934e32: nativePASS, интро279/290/299. Доreview заменён pluralпример перчаток на singularпальто, чтобы сравнение не противоречило it/is.
+- Макет пересобран и проверен:93сессии, L2 37,3интро+17заданий RU+UK, fingerprints корректны. Открытую вкладку по-прежнему обновляет владелец из-за Browser URL policy.
+- ON TRACK: точный план соблюдён, каждая сессия проверяется/локализуется/собирается перед следующей; полный32×56 объём остаётся незавершённым. Следующая S38 manager/intern, оба слова не найдены среди прошлых first-introduced заголовков.
+- Узкая защита immediatevoicecopy перед финальной сборкой ещё в работе у final_probe_guard; пока готов только RED-test, production/prompt не изменены. Эта кодовая работа не отменяет фактическую готовность локального макета37.
+- L3 proposal остаётся HOLD: freshreview6findings сохранён .codex-tmp/learning-v2-production-20260908/l03-plan-review.md; до L3 правка prerequisites/articlewording/plural exceptions/number и отдельно контракт лестницы.
+
+## Final-probe guard — завершён
+- Guard для английского L2 s37+ блокирует дословный ответ финальной сборки в непосредственно предшествующем голосовом задании. Writer: 30/30 focused tests; свежий независимый TypeScript review PASS, отдельно 6/6 tests, diff check clean. Ранее в отчёте был промежуточный RED, теперь GREEN подтверждён.
+- S38 RU сохранена, машинные факты: 17 заданий, 17 modes, 0 незнакомых, hard findings не выведены. Независимые смысловые проверки идут; выпуск ещё не заявляется.
+- Владельцу задано конкретное решение о будущей лестнице: сохранить 8 существующих видов с усложнением содержания либо отдельно расширять приложение. Ответ ещё не получен; L2 продолжается.
+
+## S38 — RU проверена, UK ожидает review
+- RU ce5a96b8dbd36fb9bf7ad8ce84261b9463f66d3f584ad30e74725fd273a5104a: четыре PASS, blind learner20/20 текстовых шагов. Исправлены дубликат банка listen_choose2/4 и неточная фраза самопроверки. Исходный draft сохранён.
+- UK 25f92399f22d3f5485b8b08172607ab938ae3bd56e45e098e8c549b73a03e673: полная версия сохранена,331ASCIIтокен совпадает с RU, ранее manager/intern не заявлены ни в RU, ни в UK. Независимый native review ещё идёт. Release38 пока не собран.
+- L3 proposal v2 отдельно в scratch:56строк, исправлены6прошлых замечаний; свежий review идёт. Canonical план не изменён. Будущий ответ по лестнице пока не получен. §8г: новый смысл известного слова относится к Возвращаются с явным объяснением значения до оцениваемого употребления.
+
+## S38 — RU+UK приняты и макет обновлён
+- Native UK PASS:267/265/275 знаков,331ASCIIтокен сохранён. RU+UK source hashes и4RUreceipts проверены передсборкой.
+- Buildrelease иbuildmockupуспешны; index.html содержит94сессии (L1 56 +L2 38), S38имеет3интро+17заданий в RU/UK, fingerprints и prompts/accessibilityLabelсовпадают, пустыхgappedTargetPhraseнет. Первая scratchassertion читала несуществующийpayload вместоmodePayload; структура проверена иисправленныйassertPASS. Productionнепотребовалправки.
+- ON TRACK. СледующаяS39couple/crowd; автор получил текущиеправила и конкретныеурокиS37/S38. Все32урока×56сессий остаютсяактивнымобъёмом;6другихлокалей/аудио/визуальныйbrowserPASSнезаявлены.
+
+## План третьего урока — проверен как предложение
+- Версия .codex-tmp/learning-v2-production-20260908/l03-plan-proposal-v3.md содержит 56 строк. Независимый review подтвердил закрытие шести исходных замечаний и трёх уточнений; полный результат сохранён рядом в l03-plan-v3-review.md.
+- Это PASS плана, не готовность третьего урока к написанию: ответ владельца по лестнице ещё ожидается, слова повторно сверяются после завершения L2. Канонический план пока не изменён.
+- Для экономии следующие сессии может писать тот же автор s39_author: его контекст уже содержит актуальные правила. Независимые судьи получают только проверяемую сессию и свой ограниченный пакет; расходы через проектные API не допускаются.
+
+## Решение владельца: созвучные варианты в listen_choose
+- Скриншот S38/2 показал смысловой банк manager/intern/colleague и подсказку «руководителя команды». Это реальный дефект: задание можно было решить по тексту. Дословный отзыв сохранён judgements/owner/2026-09-08_listening_options.md; правило добавлено автору, педагогу и проверке фактов.
+- S38 исправлена и уже пересобрана: manager/messenger/passenger, intern/winter/return; нейтральные инструкции, короткие разборы без IPA. Четыре независимых delta PASS и UK delta PASS. Реальные byte SHA: RU88a4fa1de82fe42833767db94a7f2c0f39640b8831267ed171668edd778558ff, UK4b9cc7771dd803ccd8467ab24ad18164b5a2060bd0604e914ea3efef3fa84190. Предварительные хэши считались от нормализованного LF-текста; отличие от CRLF на диске объяснено, receipts привязаны к байтам.
+- В собранном макете проверены новые варианты и нейтральные prompts RU/UK для обоих заданий S38, fingerprints совпадают, 94 сессии. Открытую вкладку обновляет владелец из-за URL policy.
+- S39 RU/UK аналогично исправлены в исходниках; новая phonetic delta и полный UK review идут, релиза39 пока нет.
+- S33–37: найдены ещё12 однословных заданий того же класса. Read-only предложения готовы; предыдущие источники и receipts65файлов сохранены в before-listening-repair. Попытка извлечь промежуточные MESSAGE не нашла их в ownrollout и остановилась до записей; ждём один FINAL JSON для применения.
+- Cross-lesson new-word guard остановлен по приоритету owner-ошибки: агент cross_lesson_word_guard INTERRUPTED, ноль изменений и тестов; перед возобновлением нужна передача единственного writer-слота. S40 ещё не начата.
+
+## Phonetic repair — итоговая проверка собранного макета
+- S33–39: 16 однословных listen_choose исправлены в RU+UK, 32 проверки вариантов, нейтральных инструкций, transcript и индивидуального feedback PASS. Независимые delta reviews сохранены у источников.
+- Основной index.html пересобран: 95 сессий, L1 56 + L2 39. Проверены 428 gap-проекций без пустого пропуска; answers.json S33–38 побайтово совпадают с сохранёнными до ремонта хэшами. S39 завершена в RU+UK текстовом объёме.
+- Первоначальная scratch-проверка названия варианта в feedback была чувствительна к регистру (Coast/coast); проверено фактическое содержание, сравнение нормализовано, итог PASS. Production не менялся ради этой проверки.
+- Визуальный и аудио PASS не заявляются: обновление открытой file-вкладки заблокировано Browser URL policy, нужен Ctrl+R владельца. Все 32 урока остаются незавершённой целью; следующая сессия S40, не начата. Cross-lesson guard остаётся остановлен без правок.
+
+## Продолжение после исправления listening
+- Владелец повторно потребовал продолжать все уроки без остановки после исправления дефекта. Цель 32 × 56 сохраняется; нет нового потолка пилота. Следующая сессия открывается после RU+UK review и проверки собранного макета предыдущей.
+- S40 RU: четыре PASS, source735155496eb7456e3f4ce8b25bee0abdc4e712f647d27fd57d72bd4155d236ee. Два feedback исправлены до final reviews. Blind learner:20/20 шагов,4пары,0неоднозначностей; ответы независимо сверены с evaluator. 17заданий,7сборок,0незнакомых и hard facts.
+- UK S40 сохранена,367ASCIIтокенов совпали с RU; независимый native review идёт. Макет пока95:40 ещё не опубликована в локальном макете.
+- План L2 уточнён ровно в7строках41/42/43/45/46/51/54 по независимому prerequisites audit; freshdeltaPASS. welcome — возвращаемое слово с новым смыслом и явным grounding; punctual — привычка, не единичное прибытие; исключены скрытые bothering/going/Howmuch/included. Audit иdelta в scratchl02-s41-56*.json.
+
+## S40 — добавлена в основной макет
+- Native UK получил5точечных исправлений иdeltaPASS: source4cf861ea2638708018e71f8f6c304ec1edb08081737c96200d541c21bd54d4ff, интро241/253/246. RU735155496eb7456e3f4ce8b25bee0abdc4e712f647d27fd57d72bd4155d236ee остаётся с4PASS. sessionReadiness ready:true.
+- RU+UKrelease иmainmockup пересобраны без проблем. Свежаяпроверка actualindex data:96сессий, S40содержит3интро+17заданий обеихлокалей, fingerprints совпадают сinteractions, gap/prompt/accessibility/feedbackпроверены.
+- ON TRACK. S41 AmIначата read-onlyAstraавтором поуточнённойстрокеплана; rootединственныйwriter. Дополнительноread-onlySolmedium готовитdraftL4plan56строк, неlearnercontent. L3proposalv3PASSкакплан, доначалаL3остаётсяуточнениелестницыиактуальныйлексическийledger.
+
+## S41 — русский текст проверен, UK на native review
+- RU d074aea3bdfe211b72b58384fab0afdae2d4de4e0b2d79e9b775f224c1ab1bc7:4PASSпослеправок.17заданий5сборок,0hardfacts. punctualновый;welcomeвозвратновогозначения. Длясчётчикаскобочноепояснениеwelcomeперенесеноизспискасловвотдельнуюявнуюстрокуheader,действительноезаземлениесохранено.
+- Исправленыфактическиепроблемы:task2вариативноечислослоговpunctualнеиспользуется;банкpunctual/factual/actual сначальнымиp/f/гласныйпроверенпоCambridge;task11репликаобращенакдругу,неубиваетфинальноесомнениеученика;task13ясносверяетсвоёутверждениедругабезпереводаответавprompt.
+- Blindfull+deltaPASS,всеоцениваемыешагипрактикиипарысверенысключами;реальныйзвукнепроверялся. UKc4fcd08d918fcaf103cfb485169e1974fc4e95bc3c790d1f1989771e2f4f084f сохранена:401ASCIIтокенсовпал,RUintro261/263/272,UK289/264/252. ОтдельныйSolhighs41_uk_nativeпроверяетUK,покаs38_nonsenseзанятL4planreview.
+- L4proposalv1сохранёнвscratch,56строк,ещёбезreviewPASS. Детерминированныйledger175firstnew/returndeclarationsL1+L2до40невыявилложныхновыхсловвL4. Первоначальнаядогадкаrootоповтореcafe/park/pharmacyнеподтвердилась;непереименовыватьихповпечатлению. L3plannedoverlap/prerequisites ещёreview.
+
+## S41 — макет обновлён, начата S42
+- RU d074aea3bdfe211b72b58384fab0afdae2d4de4e0b2d79e9b775f224c1ab1bc7 и UK c4143ed6af7d6a325c18f879fb35d88516fdfad96ac4b4b5477f6ced1b917d9d прошли текущие независимые проверки. Украинские пояснения отредактированы по native review; длины интро 295/278/252. Все 401 английских токенов сохранены.
+- sessionReadiness ready:true. Release RU+UK и основной макет пересобраны. Проверены фактические данные: 97 сессий, S41 содержит 3 интро и 17 заданий обеих локалей; fingerprints, карточка, банк punctual/factual/actual, пропуски, prompts и адресаты реплик совпадают с исправленным материалом. Визуальный browser PASS и качество реального аудио не заявлены.
+- ON TRACK. S42 начата тем же read-only автором Astra: вежливая проверка с Am I, без новой грамматики и без будущего Am I bothering. Root остаётся единственным writer.
+- L4 proposal v2 закрыл шесть первоначальных замечаний; осталась одна неточная пара примеров S41. В отдельном v3 исправлен пример на at the station, ожидается delta review. Канонический L4 ещё не менялся.
+
+
+### S42 — проверка перед выпуском
+
+RU: 4 PASS, проверены ответы 3 интро и 17 заданий. Исправлен адресат в задании 13. RU SHA256: `3806946a79664a389c254f1484016ab24d2f933ab657d4adb25ba70e4f9cf5e3`. UK написана, самостоятельная проверка языка ещё идёт; в общий макет S42 пока не включена. Изолированная сборка RU+UK без ошибок, длины интро RU 255/253/246, UK 256/246/253, 362 английских токена совпадают.
+
+L5: сохранён предварительный план всех 56 сессий; независимая проверка ещё идёт. Проверка точных заявленных новых форм не нашла пересечений, отдельно отмечены office внутри post office и car внутри car park. Это не утверждение плана и не доказательство отсутствия слов в телах всех прежних заданий.
+
+
+### S42 выпущена в локальный макет; следующая S43
+
+4 RU PASS и независимый UK PASS. RU SHA `3806946a79664a389c254f1484016ab24d2f933ab657d4adb25ba70e4f9cf5e3`, UK SHA `625c9e1b5f802f39250475c2145c7e313ccef816c5ac0ec3144113053d9cbf58`. Машинные факты без ошибок; readiness ready. Макет пересобран и проверен: 98 сессий, у S42 по 3 интро и 17 заданий в RU/UK, точные проекции совпадают, пропуск и исправленный адресат на месте. Просмотр через браузер и фактическое аудио не проверены из-за прежнего ограничения доступа к URL. ON TRACK для текущей фабрики. Начато последовательное написание S43: Are we…?, возврат lost.
+
+
+### S43 выпущена; следующая S44
+
+S43: 4 RU PASS, независимый UK PASS, все ответы 3 интро и 17 заданий проверены. RU SHA `55fb0c333377269b928f1a46a5c852792748aa5ac0dca731ad4e948330f7ec69`, UK SHA `3361e00041d779308328d4fbd3f4151ce4de28edd2f208e3ead8c8c147f184d9`. Исправлены адресаты и общий ориентир для Are we near?, значение We are welcome и естественность украинского. Facts без ошибок, readiness ready, сборка RU+UK без проблем. Главный макет содержит 99 сессий; S43 в обеих локалях совпадает с release, fingerprints/пропуски/актуальные инструкции проверены. Браузер и фактическое аудио не проверены. ON TRACK, начат текст S44.
+
+L5: независимый planning PASS для proposal v4 SHA `588e038a8fa61b073a2bfe8a63ee87071eb898432be5d2c9d8cb9a3ddacaeab2`; это предварительный план без owner approval. L6 proposal пишется отдельно.
+
+
+### S44 — RU проверена, UK пишется Sol-high
+
+Текущий RU SHA `03396c947f1e57c7a45fd90056b34e49ec6a0c6ab6f3f487008202a2448f2088`: 4 PASS, ответы 3 интро и 17 заданий проверены. Несколько редакторских уточнений потребовались для early: проверка опережения намеченного времени не должна превращаться в вопрос о целесообразности выхода и не должна подтверждать готовность друга до финала. История правок сохранена в вердиктах.
+
+Для UK S44 пробуем авторство Sol-high после 7 и 9 языковых замечаний независимого native-review к Sol-medium версиям S42/S43. Это ограниченное сравнение количества правок, не доказательство минимальной стоимости. Независимую UK-проверку выполняет другой агент. Макет пока 99 сессий, S44 ещё не выпущена.
+
+L6 proposal v1 сохранён; независимый prerequisite/lexical audit выполняется.
+
+
+### S44 выпущена в макет; продолжается S45
+
+S44: четыре независимых RU PASS и отдельный UK PASS. RU SHA `03396c947f1e57c7a45fd90056b34e49ec6a0c6ab6f3f487008202a2448f2088`, UK SHA `0c5ea27e5880a4c93f2c0c874b964c14ad0224c639485c5d9872884c40672b2c`. Readiness ready; основной макет пересобран и содержит 100 сессий (56 + 44). Проверены точное совпадение проекций с release, fingerprints, 3 интро и 17 заданий обеих локалей. Визуальный браузерный и аудио PASS не заявлены. UK Sol-high прошла независимую проверку без правок; одного случая недостаточно для вывода о стоимости.
+
+После пяти завершённых S40–44 выполнено повторное чтение применимых правил. ON TRACK для текущей фабрики, последовательный RU authoring S45 начат. L6 proposal v2 получил независимый planning PASS, receipt сохранён в scratch. L7 proposal v1 сохранён, независимый review идёт. Предварительные планы не выдаются за утверждённые уроки.
+
+
+### S45 выпущена; начата S46
+
+S45: четыре RU PASS и независимый native UK PASS. RU SHA `fd65a613457ba0361cccb09ffd7b8a2b24e780c5e23bf454e09623ca4aecd59a`, UK SHA `123d708eb2f3b42220e615bebe8bc0dd850ceb91529453b053d83846f8b883ea`. Исправлены предположение об уже установленном опоздании, употребление here по телефону без общего ориентира и пять украинских мест с лишним оттенком too early. Все 3 интро и 17 ответов пройдены слепым учеником; 369 английских токенов совпадают. UK Sol-high потребовал один круг правки одного класса смысла, тогда как S44 прошла без правок; сравнение стоимости ещё не установлено.
+
+Readiness ready, facts без нарушений, RU+UK release и основной макет пересобраны. Проверено 101 сессия (56 + 45), точное совпадение RU/UK проекций, актуальные инструкции и начальный пропуск. Визуальный браузерный и фактический аудио PASS не заявлены. ON TRACK, начат последовательный authoring S46.
+
+L7 proposal v2 и L8 proposal v2 получили независимый planning PASS; receipts в scratch. L9 proposal v1 сохранён, независимый audit идёт. Это предварительные планы без подмены owner approval или готового содержания.
+
+
+### S46 выпущена; начата S47
+
+RU S46 прошла 4 независимых проверки без редакторских изменений; все 3 интро, 15 ответов практики и 2 ознакомительные карточки проверены слепым учеником. RU SHA `153bd8b1d7a45631d4e1e668fcf19f75b2dcb2335c7203900cf7f68cda2ef046`. UK прошла отдельную native проверку после трёх точечных языковых исправлений; SHA `8c7b4bf4a2b09cd25d20ef19425c67e61fb596b940ea0577a8f0b9bd1ffeef2b`. Все 375 английских токенов сохранены. Интро RU 257/266/248, UK 259/277/257.
+
+Readiness ready, release RU+UK и основной макет собраны. В макете 102 сессии (56 + 46). Точные проекции и fingerprints, 17 заданий, 3 интро, карточки, банки audible/edible/laudable и clear/near/fear, начальный пропуск и украинские исправления проверены. Реальное аудио и визуальный браузерный PASS не заявлены. ON TRACK; последовательная S47 начата. Git index.lock остаётся на месте, коммит не выполнялся.
+
+L9 proposal v2 и L10 proposal v2 получили независимые planning PASS; receipts сохранены. L11 proposal пишется. Все будущие планы остаются предварительными.
+
+
+### S47 выпущена; начат checkpoint S48
+
+RU SHA `5de3323ec67604c19569355b98d01f5a79ac7a5d4bfd52d17df059237ae7aeee`, UK SHA `59661c20453c4d47a25065c5fed2289fdd2583a34daf0d9132f007814118155b`: четыре RU PASS и независимый UK PASS, все 3 интро и 17 ответов проверены. RU исправления: «об одном себе» → «только о себе» по уже известному редакторскому замечанию; нейтральная инструкция аудио12; явный sorry gloss в voice16. Отдельная курсивная строка под voice не попала в собранный prompt — перевод перенесён внутрь заголовка инструкции и проверен именно в проекции. Это целевая правка контента, код движка не менялся. В UK уточнены два нейтральных вопроса без общего запрета конструкции чи не.
+
+351 английский токен сохранён. Интро RU265/268/262, UK254/250/265. Readiness ready, facts без ошибок, RU+UK release и главный макет собраны: 103 сессии (56+47). Проверены точные проекции и fingerprints, 3 интро/17 заданий, начальный пропуск, нейтральное аудио12, видимый sorry gloss обеих локалей и UK правки. Визуальный browser и реальное аудио не проверены. ON TRACK; S48 checkpoint главы6 пишется последовательно.
+
+L11 proposal v2 и L12 proposal v2 получили независимые planning PASS; L13 proposal v1 сохранён и проверяется. Повторяющиеся ошибки планирования: vague lexical markers (all forms/full answers) и ошибочный возврат standalone слова из compound (stop из bus stop). Для следующих пакетов нужны явные конкретные declarations; не объявлять грамматичные emphatic/echo формы безусловно ошибочными.
+
+
+### S48 выпущена; проверяется S49
+
+S48 RU SHA `eae6088e916eda8d8d8662e417abd6dc8d63aad8690fbc3b62971d79b1944180`, UK SHA `0d8028ef01dcfdfe00185819fb5c39eeb32b0440366ebcb6bc499ae01113b77d`. Четыре независимых RU PASS без правок; слепой ученик дал верные ответы на 3 интро и 17 заданий. UK Sol-high: одно замечание к неясному концу интро3, одна исправленная формулировка, независимый native delta PASS. 381 английский токен сохранён; интро RU251/263/268, UK272/257/287.
+
+Readiness ready. Release и основной макет собраны: 104 сессии (56+48). Точное совпадение RU/UK проекций и fingerprints, 3 интро/17 заданий, четыре пропуска, три видимых голосовых gloss и исправленный UK intro3 проверены. Реальное аудио и визуальный браузерный PASS не заявлены. ON TRACK; S49 RU написана и проверяется.
+
+L13v2 и L14v2 получили независимые planning PASS, receipts сохранены. L14 исправляет повторную «новую» операцию порядка while-clause и не допускает ложной единственности when/while там, где оба союза грамматичны. L15 proposal пишется. Все будущие планы остаются предварительными.
+
+
+### S49 выпущена; проверяется S50
+
+S49: четыре RU PASS и независимый UK PASS. RU SHA `e7bdea3f362ef3d4b08c2a2188073593ac7258ac728c7dfd6e3675f1a3a75aa2`, UK SHA `9f3ad734fb5d1f8f08ade63083f2282e3f04b5013d5a0ba59f825bd56370fa9a`. Исправлена хронология задания8: руководитель много лет работает в компании, а не с учеником. Слепой ученик первоначально не получил prerequisite context для new/time; реальные карточки L1S05 и L2S26 проверены, контекст восстановлен, независимая переоценка PASS. Все 20 исходных ответов подтверждены проверяющим и сверены с текущим release. UK: learner-facing текст прошёл без изменений, одно уточнение местоимения только в самопроверке.
+
+Readiness ready. 385 английских токенов сохранены, интро RU246/242/265, UK258/243/288. Основной макет 105 сессий (56+49), точные RU/UK проекции и fingerprints, 3 интро/17 заданий, 5 пропусков, включая начальный, голосовые gloss и хронология проверены. Реальное аудио и браузерный визуальный PASS не заявлены; index.lock присутствует, git не менялся.
+
+Пятёрка S45–49 завершена; применимые Конституция, главный запрет, метод, решение о юморе, промпт автора, текущие строки плана и owner audio receipt перечитаны. ON TRACK. S50 RU написана, запускаются независимые проверки. L15v1 имеет пять классов замечаний; исправления плана ещё впереди.
+
+
+### NEW OWNER PRIORITY: короткие ответы и юмор, S33–S50
+
+Владелец явно выбрал проверку конструкции короткого ответа и потребовал исправить класс, вернуть юмор и его судью. Receipt judgements/owner/2026-09-08_short_answer_construction_and_humor.md; приоритетный блок внесён в 6 документов/промптов. Новое производство после S50 отложено до исправления класса, общая цель всех32уроков сохраняется.
+
+Независимый structural audit18сессий: пять дефектов — S49intro1, S50intro1–3 и practice14. S49practice2 уже структурный. Слуховые задачи исключены из этого правила. Taste audit54intro: все18уступают эталонам, ясного юмора нет; scores2–3 являются редакторским суждением. Отчёты в scratch owner-short-answer-audit.json и owner-humor-audit.md.
+
+Подготовлены и сохранены исправленные RU S49 SHA cca7122f9ca01d25bd877e1b5616993e407a281af98a899c2c4e0cbfec567cf9 и S50 SHA52c96b5bde2a21c7fb3c1e1da9785d6681a810e2f10c7074a9be73fb968e091f. Предварительный независимый taste обоих кандидатов PASS/equal/voice4, но окончательные hash receipts, RU delta judges, UK edits и публикация ЕЩЁ НЕ выполнены. Старые masters/reviews сохранены в owner-before/ и owner-before.ru.md. Старые final judges/status НЕ действительны для новых hashes. Макет пока105 сессий на прежних release.
+
+Batch S33–36: новые3intro тела на каждую сессию в scratch owner-intro-repair-s33-s36.json, исправлены два запрещённых «уже знакомо». Ещё не применены и не прошли независимых проверок.
+
+Агент owner_quality_guard был прерван ДО внедрения для сохранения срочных owner fixes; теперь должен продолжить scoped guards/tests, sole writer while active. Его чтение архивных blueprint gates не является полномочием текущей фабрики. Root сохраняет только собственную фабрику, без app/deploy/API.
+
+
+### Owner repair: S49 обновлена, защита проверена
+
+S49 RU `cca7122f9ca01d25bd877e1b5616993e407a281af98a899c2c4e0cbfec567cf9`, UK `9cdcc514f5c63564e8f372fe6ffffa1b23342e8136c777049bad12cb1e995097`: пять независимых RU PASS, включая taste, и UK native PASS. Receipts сохранены. Release и основной макет пересобраны, 105 сессий; exact RU/UK projections и fingerprints проверены, новые структурные варианты intro1 реально присутствуют. Browser visual/actual audio PASS не заявлены.
+
+Scoped owner_quality guard внедрён в machineFacts/HARD_FACT_RE, readiness и default release. Обязательны current-source taste receipt и реальные цитаты юмора; canonical output требует RU+UK. Независимый JS review выявил два обхода (UK source не проверялся и --locales ru обходил обязательную UK), root воспроизвёл RED и исправил. Ещё один RED исправил ложное отклонение точной цитаты с внутренними кавычками. Root focused 45/45 PASS; independent reviewer targeted lint/node syntax/diff PASS, финальный verdict Approved. Точные логи owner-quality-root-verify.log и owner-quality-final-focused.log в scratch. Ограничение: машинный grammar parser покрывает распространённые be short answers; перед будущими do/modal-сессиями расширить соответствующими regression tests, независимое педагогическое правило уже действует.
+
+S50 current RU `60f7b0180539de7d705dfbe0c3c343c33ab23ea1d0f510c8a8876f7eba39dd58`: четыре точных reader исправления применены, intro266/280/289, facts clear. Reader/pedagogy/taste current PASS доставлены, receipts ещё собираются; nonsense/UK/learner в работе. Не выпущена. Private projection s50-owner-review и blind s50-owner-blind.json свежие.
+
+S33–40: candidate intro пакеты в scratch owner-intro-repair-s33-s36.json и owner-intro-repair-s37-s40.json; исправлены33/34/39 по taste. Все8 получили candidate taste PASS; это НЕ final acceptance. Master S33–48 пока не изменены. История candidate taste в owner-tone-candidate-taste-receipts.json.
+
+Writer ownership root, guard writer завершён. Работа продолжается с S50, затем repair S33–48, потом последовательное продолжение всех32уроков.
+
+
+### S50 owner repair выпущена; S33 tone repair в работе
+
+S50 RU60f7b0180539de7d705dfbe0c3c343c33ab23ea1d0f510c8a8876f7eba39dd58, UK1f68b5afc375ee603c9690f557da2a468604ed22c07095464ead70eedd598497. Пять RU current PASS, отдельный UK native PASS сохранены; 380learner English tokens идентичны, UK intro269/271/290. Blind все20ответов подтверждены, в том числе task14is. Release RU+UK и макет106сессий готовы: exact projections/fingerprints,3intro choices,17tasks,task14stem+options проверены. Первый mockup build получил Windows UNKNOWN open index.html до записи; существующий файл прочитан, повторный build успешен, итоговый JSON полностью проверен. Не заявлять browser reload/visual или audio PASS.
+
+S33 master: только3intro bodies из taste-approved кандидата, SHA cf0cc64d6934150f48e0856c2a80d1078becd1bfe69fd0bc29be7768116e5cde; старые файлы/reviews в owner-tone-before/. Status pending. Reader/pedagogy/taste current PASS доставлены, ещё не сохранены. Nonsense,blind-intro delta, UK3intro author в работе. S33 release пока прежний. S34–40 candidate пакеты сохранены с одобренными исправлениями; S41–48 tone drafts ещё не подготовлены. ПродолжатьS33, затемS34 последовательно.
+
+
+### Tone repairs S33–35 завершены; следующий S36
+
+S33 RUcf0cc64d6934150f48e0856c2a80d1078becd1bfe69fd0bc29be7768116e5cde UK155e15ea269fca0cd7e351cde1a0a86eb1a36473a36a1fcbfd980b12a8c0d7c5; introRU262/271/255 UK272/287/257;18tasks.
+S34 RUb2a6cfcd304fa01287fd80bff798a20f16d51838512e479219eff47079c64fa5 UK5c4b3c35fd38d493baa4eda6374d1c3255c0bf4fae9c5263c15dd7cdd7526e40; introRU269/272/270 UK279/283/284;17tasks.
+S35 RUd630f942bba5f49f0c525d8f6e5a75418be0196b6dc2212297bd242e0ac8c907 UKe5be440ff92e284d4c7babc72873465618ff7cfc806cfce31dd727acb83f0a9b; introRU266/274/265 UK273/278/278;17tasks.
+
+У каждой пять current RU receipts и независимый UK native PASS сохранены. Изменены только intro bodies; practice/selfcheck побайтово одинаковы после нормализации LF, прежние learner receipts сохранены в owner-tone-before/; fresh blind intro delta PASS. Root проверил exact English learner tokens RU/UK (295/284/295). После КАЖДОЙ собраны release+mockup и проверены exact JSON projections, fingerprints и новый юмор в обоих языках. Макет106, сессии не удалялись.
+
+У mockup/index.html повторяется transient Windows UNKNOWN при первом write; исходный файл остаётся целым, повторный build успешен. Повторять только после изучения exit/error, затем обязательно parse/compare JSON; не объявлять обновление по первой строке count. Browser refresh и actual audio не проверены.
+
+Пятёрка repair49/50/33/34/35: актуальные Конституция (включая заполнение truncated middle), Метод, author prompt перечитаны; latest owner construction/humor override действует. ON TRACK. Локальные source/review файлы не читает Jarvis (targeted fetcher search0), Firestore/schema/app не менялись.
+
+Кандидаты S36–48 уже написаны в4scratch JSON; S42 исправлена по taste, S45–48 также получили candidate taste PASS. Итоговые candidate receipts последних пакетов ещё нужно дописать в owner-tone-candidate-taste-receipts.json из rollout. Не путать candidate PASS с готовыми source receipts. Следующий authoring repair строгоS36; S36–48 masters пока прежние.
+
+
+## Owner repair progress — S36–37 updated; S38 in review
+
+- S36 RU `95dade58bfe157a73a3847ef22b44473ec9ed51790fdbd5ed771e7bb6bd84df6`; UK `1e98fc5ea91bcdcd757e2d08404892923803ceec4f73f05f5869b8e816c5e943`. Five independent RU delta PASS + UK native PASS saved; 3 intro / 17 tasks. Both release projections, fingerprints and humor present in main mockup verified.
+- S37 RU `1673e10a866661dd4595d9ae009a6d7715bddf07a59695fb5f9c065f1dbbb0e6`; UK `a0ada76b24cb0c7e9af3cafb07a5626da626e51584b3c9d8f763d37fab0400db`. Five independent RU delta PASS + UK native PASS saved; 3 intro / 17 tasks. Both release projections, fingerprints and humor present in main mockup verified. Reader clarification «узнать, кто эти люди» accepted; practice unchanged.
+- Main mockup remains 106 sessions. Current repaired local series: S33–37, S49–50. S38–48 tone release pending; then resume S51–56 and full course.
+- S38 current candidate RU `6f9db16f3e56443e84b336980a5fcc8e942bd6d5a75256b3b9f1d7499b1a9f7c`, backup `owner-tone-before`; reader and pedagogy PASS arrived, taste/UK author underway; other current review receipts pending. Release still old until all checks.
+- Historical `РЕШЕНИЕ_ВЛАДЕЛЬЦА_ЮМОР.md` now begins with explicit link to newer 08.09 owner rule, preventing stale optional-humor instruction from being mistaken for current authority.
+- S36 mockup first open failed with existing Windows UNKNOWN/open error; one later retry succeeded. S37 succeeded first time. No browser refresh or visual PASS claimed.
+
+Drift-check после S38: ON TRACK для текущей RU+UK правки. Перечитаны Конституция, Метод, главное требование, история юмора с новым приоритетом, промпт автора и решение 08.09. Применяются 5 независимых текущих RU вердиктов + отдельный UK native; практика сохраняется, сборка/макет проверяются отдельно. Проверки не подменяют аудио или браузерный просмотр. S38 опубликована в локальный макет: RU6f9db16f3e56443e84b336980a5fcc8e942bd6d5a75256b3b9f1d7499b1a9f7c, UKb4ea9be991e38fcb0a28a88541975733c7de657d84e603132ed6907bc03404d2. S39 в работе; до завершения курса далеко.
+
+S39 и S40: 5 текущих RU PASS + UK native PASS сохранены; релизы и главный макет106 пересобраны; обе проекции, fingerprints и юмор проверены. S39 RU80419dfc0274b02ebd0ba73c6eedeb6aa2b400cd6e6a217fc403cd281c189e60 UK568d10755dc3bc85517bfad5deced1ccb59f4e7ea3c2a9a4046b60939140c33b; S40 RU a3030d8cc5cd01186a757b13b551c1c0121b7d2a96c99ca81a6a746eeaf704d2 UK0e3717f0d9191378eceed97343b8fe3be3bd2cce14cfde7efa43fc1272f8a6a6. S36–39 English intro tokens RU/UK совпали дословно по порядку. S41 current RU f141ff0ea7fce925928bebff2410d8bd928e49700df880c21c039630df6f0db9 после точного reader delta про welcome; reader/pedagogy/taste PASS, factual/learner/UK author в процессе.
+
+## Progress through S43, UK early precision class fixed
+
+S41+S42 UK: independent judge and author confirmed that «зарано» adds too-early meaning not required by `early`. Repaired four S42 intro references, then all eight remaining occurrences in own S41/S42 practice/feedback. Exact diffs, pre-change masters and preceding native reviews are saved under each `owner-tone-before/early-precision-delta.json`, `pre-early-precision.uk.md`, `pre-early-native-review.json`. Fresh independent native delta PASS for both current hashes; English sequence unchanged. RU practice unchanged; UK practice changed ONLY the exact reviewed meaning-neutral translations.
+
+Current published hashes: S41 RU f141ff0ea7fce925928bebff2410d8bd928e49700df880c21c039630df6f0db9 UK8d261c1127917f85af5b381d0b0e3177da119f613082df94c122242941f24907. S42 RU976d4a4a7b28c67f395e67c42914e288d79bdf3d1b2a648e1526f2db366e0393 UKa81c7ffa55b2e461cb11e17bc14fc42968dc8fe0c2c300796f5b9608bfbf9b6c. S43 RU557c8f510499df2230f6685de82d0b80c14e9045797d5791e33c2080fd96c445 UKabf0f16c8ae635b5ec09b241a0b9bec2081ce623eb062833158c37e1903921d0. All current reviews, release projections, fingerprints and humor verified in main106 mockup. No browser visual or audio PASS claimed.
+
+S44 currentRU fefd5431e280f4cdd6c9f0ae83d34d9d6d4a11b8aa983858670e68020046ef49, UK3b304c8d83e1d97db4f63a7a95ae22ec71c26d9d98f150c71eefcf21c2451cf3. Five currentRU PASS saved; UK native in progress. S45–48 candidates already prepared but masters unchanged. Then resume S51–56 and all32lessons.
+
+
+## 2026-09-08 — owner repair closed through L2 S50; S51 authoring resumed
+
+ON TRACK: latest direct owner choice is to test short-answer CONSTRUCTION.
+Own L2 S33–S50 checked as a class: all five original defects repaired in S49/S50.
+All 18 sessions now have current independent RU reader/pedagogy/factual/blind learner/taste PASS and UK native PASS.
+Tone rewritten throughout own series; practice preserved except documented construction corrections
+and exact independently reviewed Ukrainian early/зарано precision deltas in S41/S42.
+
+Fresh independent humor sample (seed 20260908): S35/S36/S38/S40/S46.
+Initial request for plot inside S36 explanation was retracted against current §1a.
+The remaining S36 vague humor/title findings were repaired; first candidate was PASS/worse and WAS NOT released.
+Full three-intro rewrite then received fresh PASS/equal, score 5, exact source quotations.
+S36 current RU 8bac7da2f55be716274cbc12d26087b2975f1eb564115b58b4bf0aa78f92a94a;
+UK 97fdecda098a84b995a0326a5f748a05f55d37f0b2694bc3d71585856059a4cb.
+Other four sample sessions had no mandatory fixes; fresh judge found three drier than old gold.
+Do not claim unanimous superior humor or perfect future prevention.
+
+S48 current RU af601ec4cc8bd7a538011c460dfb58b0e41bd7a0bb38d88efd69d1676e4eae53;
+UK 2e2a2f13b64ebe723f86ac03928cab96194c9b9555537bc1d4d32dfd2eba35fc.
+Both repaired sessions rebuilt in local release and main mockup.
+Current count 106 = L1 56 + L2 50, out of 1792 planned; remaining six locales/audio/visual review not completed.
+
+Deterministic evidence:
+- owner-repair-final-gates.json: 18/18 readiness and hard facts PASS.
+- owner-repair-main-projection-proof.json: all 18 current review SHA, RU/UK projections,
+  learner fingerprints and all four mockup files agree.
+- owner-quality-root-verify.log: prior owner quality protections 45/45 PASS.
+All evidence under .codex-tmp/learning-v2-production-20260908/.
+
+Recurring Windows direct output writes failed with UNKNOWN, first index.html then app.js,
+leaving partially updated sidecars. Added write_mockup_file.mjs: compare bytes, stage unique
+same-directory file, rename with bounded transient retries, index last, preserve errors.
+Real full build succeeded; focused tests 8/8 PASS including cleanup error masking regression.
+Final independent code review pending; no deployment or API spend.
+Do not identify a specific external lock holder without evidence.
+
+Browser file URL was denied by CUA earlier. No alternate UI/proxy bypass, no browser visual
+or refresh claim. Existing user tab remains open; filesystem mockup rebuilt and verified.
+
+Next: finish final writer review, S51 full RU author from /root/s39_author then five independent
+reviews, native UK, local release+mockup. Continue S52–S56 then later lessons.
+L3 difficulty ladder conflict remains an owner decision; not resolved by short-answer reply.
+
+Final mockup writer independent review: APPROVED, 8/8 tests, focused ESLint and diff-check PASS. Real rebuild exit0; intro English span parity RU/UK across all 18 repaired sessions has zero differences. Current count remains106 while S51 draft is being revised before first source save.
+
+
+## 2026-09-08 — S51 RU/UK released to local owner mockup (107 sessions)
+
+ON TRACK. S51 new whole expression Excuse me, Sorry pragmatic contrast, 3 intros +17 tasks.
+RU SHA 8ab3f850df1040ac55ff53cef51a4c8c1cae1c8a7e11d87e3f6866f7f3ac961c.
+UK SHA 5e703f35d25c7d9b7037de6bb03bfef0e37797c96109583e2cee84b8d79e6a3e.
+Five independent current RU PASS and full UK native PASS saved. Blind learner solved3+17
+from actual projection without keys; root checked every answer, including pair mappings.
+Final task asks whether station is open; source factual correction: Are you sorry asks regret,
+not whether someone is currently apologising. UK intro2 contrast made explicit instead of
+claiming the visibly different translations are identical.
+
+Compiler defect discovered by S51: explicit whole chunk tile Excuse me was split apart.
+build_release now respects authored multiword units and exact token membership for distractors.
+RED→GREEN chunk tests also caught substring loss: he inside She, his is inside This is.
+Own S33–S51 source scan found one affected released task: S37 task17 Who had vanished from
+Whose is it? builder. Rebuilt S37 release and owner mockup; reviewed authored trap now appears.
+No source text changed for this restoration.
+Fresh independent TypeScript review APPROVED both writer and chunk changes; focused
+combined node regression suite52/52PASS, focused ESLint and diff checks PASS.
+Main mockup all four files verified; S51 RU/UK learner projections/fingerprints/chunks checked.
+No app deploy, API spend, actual audio or browser visual/refresh claim.
+
+S52 author now running (/root/s39_author), no S52 source yet.
+L15 provisional plan v3 reviewedPASS:
+6d1008a9376daa6700836af9f704d13954f50ffd79c3c37a1a8a9ef85001411e;
+v2 novelty labels fixed: be short answers transfer to going-to, not first introduction.
+L16 provisional planning delegated to /root/lesson16_plan (Terra medium, read-only output).
+L3 app difficulty ladder decision still unresolved; no silent lowering or new app mode.
+
+
+## Продолжение: S52, свежий судья и точные цитаты
+
+ON TRACK: текущая фабрика Desktop Codex, Конституция и решение владельца 08.09 перечитаны; старый docs/v2 blueprint не является авторитетом этой фабрики. Макет пока содержит 107 сессий (L1 56 + L2 51), S52 не опубликована.
+
+S52: отчёт прежнего судьи вкуса отклонён за best_lines из S51; сохранён в scratch s52-stale-review-history.json. Свежий судья дал REVISE первым двум сухим объяснениям; автор переписал оба целиком, третье и практика сохранены. Текущий RU SHA 5c3a6c03476425587c0adc057e37d607679db2b2cb27c88df0c8c2f383226c31; свежие вкус, педагог и слепой ученик PASS. Остальные проверки и UK ещё в работе. Private build: 3 интро, 17 заданий, неизвестных слов 0, проблем сборки 0.
+
+Защита от чужих цитат: owner_quality.mjs проверяет optional best_lines по актуальному master. RED воспроизведён на цитате из S51 и на чужом тексте с одной правильной внутренней цитатой; GREEN 19/19 focused tests. Реальные readiness S33–51 без findings. Промпт и owner receipt дополнены рабочим правилом свежего контекста для судьи каждой новой сессии. Независимый review новой правки ещё в работе.
+
+L16 proposal v1 сохранён отдельно от канонического плана. Исправленный независимый REVISE содержит 7 замечаний, ошибочное архивное требование новой лексики в 49 строках отозвано; см. scratch l16-plan-review-v1.json. Продолжать v2 после завершения текущей сессии.
+
+
+## S52 завершена: 108 сессий в локальном макете
+
+RU 93f729ebe76728216e06b366d896c6400f00f184a3555419313c288bde5bca79; UK 97ee940ab795365151e8c6ebdcf3d9ddc72970bb8f0051db8fd8e80ecf07560d. Все пять независимых RU review + отдельный UK native PASS сохранены; 3 интро +17 практик слепого ученика совпали с ключом. Финальная правка только служебной длины271→281 отдельно подтверждена судьями; больше не писать вручную числовые длины в author selfcheck, измерять их машинно перед review.
+
+Release и все четыре файла макета пересобраны, совпадение встроенных и внешних данных проверено; точные RU/UK проекции и fingerprints S52 PASS. Макет108 = L1 56 + L2 52. Реальный аудиофайл и браузерная визуальная проверка не проводились; ранее browser fileURL был denied, обход не предпринимался. Остальные шесть локалей ещё не написаны.
+
+Новая проверка best_lines независимо APPROVED, actual history: scratch taste-citation-review-history.json. Уточнено, что цитата может быть непрерывным фрагментом предложения с нормализацией регистра/пробелов/Markdown; это не разрешает чужой текст. В judge_taste удалено противоречивое операционное указание07Sep для текущей серии. Focused19/19PASS, актуальная серия S33–51 readiness/hardfacts 19/19PASS; S52 тоже PASS.
+
+ON TRACK. S53 передана автору Astra medium, read-only полный текст. Цель всё ещё32×56, не остановка на108. L16provisionalv3 SHA890a52b49c9ae69d4baee3f49d2ae0b281b6181f3e0e02917a5a4cdd4e9d3406 ждёт подтверждения последней локальной формулировки; канонический план не менялся.
+
+
+## S53: RU завершена, UK пишется
+
+RU7d13e066a023b73822914bf7dbad8e3e03579a15c006fffdc1fd8649e12b1d15, пять actualcurrentPASS сохранены; слепые3+17ответов совпали с ключом. Fresh judge /root/s53_fresh_taste Solmedium: equal,voice4, органичный юмор о количестве вещей и сокращении ответа. Исправлено: What is she заменено How is she в identity-вопросе; в интро3 добавлено сказуемое; Is it busy про машину заменено знакомым Is he busy о человеке, сохранён нейтральный слуховойprompt. Чужой смысл busyпрооживлённоеместо не вводился. Reviewhistory scratch s53-review-history.json, backupsreview-round1/2/3.ru.md. Hardfacts0, private3intro17practiceбезпроблем. /root/s41_uk_native пишет полнуюUK; sourceещёнерелизитьбезnativePASS.
+
+Быстрый поиск той же What/Who-пары по S33–53 и неперсональногоbusy сохранён в scratch who-what-own-series-audit.json и busy-nonperson-own-series-audit.json. Другого прямого What is he/she/they варианта не найдено; S33 явно спрашивает, кто ИЗ ЛЮДЕЙ хозяин, S35/37различают принадлежность предмета. Это ограниченный поиск, не новая полнаяпроверкавсегокурса.
+
+Author.md: противоречивые оперативныеабзацы scene-first и07Sepnohumor заменены текущими§1а/08Sepправилами; отдельный read-onlyreviewAPPROVED сохранён scratchauthor-prompt-alignment-review.txt.
+
+L16v3PASS иL17v2PASS provisional, каноническийпланнеизменён. L17v2SHAbb5cbc618d09683de0d92ef3099719e75e1b366577338541eacd9aa69630366b. /root/lesson16_plan пишетprovisionalL18. Главнаяцель32×56сохраняется, текущиймакет108. СледомS54newlandlord/rent, потом55и56.
+
+
+## S53 выпущена в локальный макет: 109
+
+RU: 7d13e066a023b73822914bf7dbad8e3e03579a15c006fffdc1fd8649e12b1d15.
+UK: 23315db903cf0f7e72be5e51276ae4c40cc6e3a6107d8d893e7463d5620927f6.
+Все пять русских проверок и отдельный украинский native review дали актуальный PASS. Английское содержимое всех 17 заданий совпадает в обеих локалях, hard facts отсутствуют, сборка прошла без проблем. Точные проекции макета, fingerprints и обе юмористические цитаты проверены. L1 56 + L2 53 = 109.
+
+ON TRACK. S54 передана автору: аренда жилья, новые landlord и rent (существительное), возврат flat, price, rules. Проверить реальное созвучие слуховых вариантов и нейтральность подсказок. Не повторять обнаруженные ошибки с busy и Who/What.
+
+L18 provisional v1, SHA 89ce380ea27d78a297394860dab44376bdd8d0bd1c9c50905af15296ee96fd69, находится на независимом review у /root/s39_pedagogy. Root отметил постороннюю строку cup of в ledger и необходимость отличать small enough от big enough. Все 32 урока остаются целью; 109 сессий — промежуточный результат.
+
+
+## S54: русский мастер прошёл проверку, украинская версия пишется
+
+RU SHA-256: 6fcf2709637ea1ef51aebc8acf5a94ac13110eb22785c28f66513ef295861644. Пять независимых актуальных PASS сохранены. Слепой текстовый проход: 3 интро и 17 заданий совпали с ключом; карточки слов показаны как информация, не как вопрос. Короткий ответ в задании 11 проверяет is/are/am при неизменных Yes, he. Созвучные варианты подтверждены Cambridge; свидетельства в scratch s54-phonetic-evidence.md. Фактическое аудио не проверялось.
+
+Свежий судья вкуса сначала потребовал сцену внутри объяснений, что противоречит текущему §1а. После чтения этого правила он самостоятельно отозвал замечание и дал PASS на неизменный текст. Оба отчёта сохранены в scratch s54-taste-review-history.json. В промпт судьи добавлено явное напоминание действующей структуры; отдельная проверка этой правки ещё идёт.
+
+L18 provisional v3: 59be63c8214977b349eec609f7f0e9f8c74c9966bd6a29e77bad1edda4c96204, независимый PASS. Исправлены противоположные направления требований too small/small enough, повторное объявление bad, неподготовленное because и остаток cup of. Канонический план не изменён. Свежий Terra готовит предложение L19.
+
+ON TRACK: сейчас основной макет содержит 109 сессий; следующая пересборка после независимой проверки S54 UK. Затем последовательно S55 и S56. Полный курс остаётся целью.
+
+
+## S54 выпущена: 110 сессий в локальном макете
+
+RU: 6fcf2709637ea1ef51aebc8acf5a94ac13110eb22785c28f66513ef295861644. UK: 039be2afd1efd866c903c6bfbbe2237c9c46bbe685bb0ef3305842cea4fb4595. Пять актуальных RU PASS, отдельный UK native PASS, машинные проверки обеих локалей без блокеров, 3 интро и 17 заданий английской проекции совпали. Основной макет пересобран; точные проекции, fingerprints и юмористическая строка в обеих локалях проверены. Визуальное обновление браузера не подтверждалось; проверен файл.
+
+Уточнение структуры в промпте судьи независимо APPROVED, actual receipt scratch taste-prompt-structure-review.txt. Это документальная правка действующего правила, код не менялся.
+
+ON TRACK. Автор пишет S55: отложенный возврат всех семи глав, без новой лексики или грамматики. Следом S56. L19 provisional v1 получил четыре замечания о prerequisite ledger, естественных коротких ответах и границе явного past anchor; автор готовит v2.
+
+
+## S55: RU прошла пять проверок, UK пишется
+
+RU SHA-256: 76d0f8d2c262d0812271ee934a2ab1675b6fccaa5673f93676462268c813cf78. 3 интро (267, 263, 268 знаков), 17 заданий, шесть разных сборок, возвраты из всех семи глав. Слепой проход совпал с ключом. Служебный modes нормализован в одну строку: первоначальный многострочный формат приводил к ошибочному подсчёту в machineFacts, после форматирования факты корректны. Учебный текст не менялся. Первоначальный исходник сохранён в review-round1.ru.md.
+
+На перечитывании действующей Конституции исправлено моё указание автору «не больше одной доски пар»: §4 допускает две непересекающиеся доски. Автор получил поправку; хорошая S55 осталась с одной доской. Архивное ограничение не переносить дальше.
+
+L19 provisional v2, 38c457015529e1ef85b010f84acaf128825323bbd6dbc28118e7541a7b495997, независимо PASS. Terra готовит L20. Предложения ещё не заменяют канонический план.
+
+Владельцу задан вопрос о лестнице следующих уроков: сохранить восемь существующих типов и увеличивать нагрузку либо проектировать дополнительные типы. Конкретное предложение: scratch difficulty-ladder-resolution-proposal.md. Ответ пока не получен. В текущей фабрике подтверждены противоречия 8 типов против 7 применимых без новых слов, будущих 9/10 типов, неясный mechanicRepeat, ограничения build_release на 4 пары и 4 кнопки. Старый аргумент о максимуме 17 заданий из архивных modules/curriculum отозван: в текущей фабрике такой предел не установлен. Код и правила лестницы не изменялись.
+
+ON TRACK: основной макет 110. Завершить S55 UK и обновить макет, затем S56. Вопрос о лестнице не блокирует оставшуюся работу урока 2 и планирование последующих уроков.
+
+
+## S55 выпущена: 111 сессий
+
+RU: 76d0f8d2c262d0812271ee934a2ab1675b6fccaa5673f93676462268c813cf78. UK: aacdae83329217702c9737e8ccb9b953902b1e19656e28d36c081c89e859fe78. Пять актуальных RU PASS и отдельный UK native PASS; английская последовательность совпадает (326 токенов в каждой локали). Машинные проверки без блокеров. Release и основной макет обновлены, точные проекции, fingerprints и юмор обеих локалей проверены.
+
+ON TRACK. S56 передана автору: итоговая проверка второго урока без нового материала. После неё в уроке 2 будет 56 сессий, а не завершён весь курс. L20 provisional v1 находится на независимом review. Вопрос владельцу о лестнице остаётся без ответа; зависимые изменения не начаты.
+
+
+## S56 RU проверена; аудит подсказок в аудиосборках
+
+RU ba5f00aba9f622237f81d29891e7c62a5fb7b125494d1426adac32cd425a5aeb. Пять текущих независимых PASS сохранены. В задании 6 инструкция сообщала смысл She is here до прослушивания; оба смысловых проверяющих подтвердили дефект. Инструкция нейтрализована, остальные материалы сохранены, все проверяющие дали реальные актуальные вердикты. История: scratch s56-review-history.json. UK пишет отдельный автор; основной макет пока 111.
+
+Начат ограниченный аудит всех 27 listen_build_dictation в собственной серии S33–56: scratch dictation-prompts-own-series-audit.json. Корень заметил возможные подсказки смысла в более ранних инструкциях; независимый аудит ещё идёт, класс не объявлен исправленным.
+
+L20 provisional v2 независимо PASS, SHA 19f8577a4ba36d5896a4a2f85d9acf7b49296f4980c8cc1863d1926e534e3d8f, actual receipt scratch l20-plan-review-v2.txt. L21 планируется отдельно. Вопрос о лестнице всё ещё ожидает ответа. ON TRACK: завершить S56 UK, затем подтверждённые исправления аудиопромптов; цель 32×56 сохраняется.
+
+
+## Урок 2: 56 сессий в локальном макете; исправление аудиопромптов
+
+S56 RU ba5f00aba9f622237f81d29891e7c62a5fb7b125494d1426adac32cd425a5aeb; UK d9a759bda11fe2d0586102419d437bc066ac310246baff13de0fca8e8c4f35c1. Пять RU PASS и отдельный native PASS. UK заголовок и ссылка на I уточнены после двух подтверждений. Макет пересобран: 112 сессий, по 56 в L1 и L2. Все четыре файла макета и точные проекции совпали; проверены актуальные хеши 24 собственных сессий. Это локальный RU/UK milestone, не готовый полный курс, не проверенное аудио или браузер.
+
+Аудит 27 диктантов подтвердил восемь раскрывающих ответ инструкций в S34/12, S35/14, S36/9, S36/13, S37/13, S39/13, S45/13, S48/12. Остальные 19 сценовых подсказок не признаны тем же дефектом. Аудит scratch dictation-audit-independent.json, точная дельта/старые и новые хеши dictation-repair-packet.json, полные исторические sources/reviews в dictation-repair/sNN. Новые инструкции RU/UK внесены, пока ожидают последнего taste delta review; основной макет ещё содержит их прежнюю версию. Четыре действительных delta review плюс native PASS получены. Слепые 8/8 ответов совпали; 14 locale machineFacts без блокеров. Private projection diff подтверждает, что интро/ключи не изменены, меняются только prompt/accessibilityLabel/fingerprint. Все прежние полные проверки сохраняются явно, delta review не выдаётся за новый полный проход.
+
+Уточнение для listen_build_dictation добавлено одинаковым абзацем в Конституцию, author и judge_pedagogy; независимый reader review PASS. Простая сцена разрешена; смысловую утечку нельзя надёжно отличить регуляркой. L21 provisional v1 получил пять factual findings; автор готовит точные замены. ON TRACK. После завершения delta reviews перевыпустить семь сессий и сразу пересобрать основной макет. Вопрос владельцу о лестнице L3+ остаётся без ответа, зависимый код и авторинг L3 не начаты.
+
+
+## Восемь аудиопромптов исправлены в основном макете
+
+Все семь RU/UK сессий перевыпущены после пяти действительных delta reviews и native проверки. Полные прежние отчёты сохранены внутри новых файлов как priorFullReview, область новой проверки явно названа delta; новые полные прохождения не заявляются. Новичок решил 8/8 изменённых задач по перемешанным плиткам без ключа. Fresh Sol-medium taste сохранил оценку юмора, точные цитаты и парное сравнение для каждой сессии. Citation guard остановил S35 из-за точки вместо реального двоеточия в цитате; судья исправил свой отчёт, source и gate не ослаблялись. Повторный выпуск и сборка прошли. Основной макет: 112 сессий, все четыре файла совпадают, 24 собственных RU/UK пакета имеют актуальные хеши и проекции.
+
+Подробности: scratch *-delta-actual.json, dictation-repair-blind-comparison.json, dictation-repair-projection-diff.json, dictation-repair-machine-facts.json, dictation-repair-owner-proof.log. Проверены только указанные 27 диктантов S33–56; новый аудит всех типов заданий 1 792 сессий не заявляется. Следующие авторы и педагоги увидят конкретный пример утечки в актуальных промптах.
+
+ON TRACK. L21 provisional v3, SHA 233784bba55369598f1a40d2323d9f47f2c24cce05380c2fe5467742fe5b7ad8, передан на независимый review. Исправлены полнота местоимений, отличие reflexive object от intensive use и ложное правило person/thing для one/them; восстановлен afraid и уточнены prerequisites. Слово see возвращается из L12 S37 и используется в естественных рефлексивных примерах. Написание learner-facing L3 по-прежнему ожидает решения о лестнице.
+
+
+## L21 план проверен; сравнение моделей для L22
+
+L21 provisional v4: 9572e87391aa1ca27f54a4515e960560431a005d4413f0d160bd26c1b6d59a07, actual независимый PASS в scratch l21-plan-review-v4.json. Убрано повторное объявление drive/driving, уточнены заголовки местоимений и итоговый возврат afraid. Канонический план не заменялся.
+
+Terra medium подготовила L22 v1: 1497a394d4c698858734e70fa2e5b10fc6ccbde505e3ba26f80140ccda1fa499, 14634 знака. После повторяющихся prerequisite-ошибок в планировании запущен отдельный Sol medium с чистым контекстом и тем же ограниченным L22 scope, не видящий кандидат Terra. Будет слепое сравнение содержания двух кандидатов. Протокол scratch l22-calibration/protocol.json. Точная стоимость токенов агентам через текущие инструменты недоступна; нельзя выдавать длину текста или число кругов за измеренную API-стоимость.
+
+
+### Дополнение к L21 после PASS
+
+При чтении пояснения к переносу урока 22 обнаружен пропуск: ПЛАН_КУРСА.md, строки 76–80, прямо относит another к L21 вместе с object/reflexive/one/ones. В сокращённой строке таблицы another не назван; прежний аудит проверил её, но упустил пояснение. Исторический PASS v4 сохранён как реальный отчёт, однако полнота L21 снова требует правки и независимого подтверждения. План не переносить в авторинг до закрытия another; текущий макет и готовые L1/L2 не затронуты. Будущие планировщики читают canonical строку вместе с относящимися к ней пояснениями.
+
+
+## Уточнение текущего маршрута после аудита полномочий
+
+Независимый аудит ladder_authority_audit подтвердил: продолжение с восемью существующими типами уже разрешено владельцем. Предыдущий вопрос о новых типах остаётся без ответа, но не блокирует исправление противоречивой реализации и L3. Нельзя приписывать владельцу выбор новых режимов. Числа 9/10 типов и общий предел повторов каждой механики были внесены реализацией и конфликтуют с прямыми указаниями. Точные реальные receipts сохранены в scratch ladder_authority_audit-actual-receipts.json. Требуется TDD исправление текущей фабрики и подробный canonical L3; до него новые learner-facing сессии не созданы. ON TRACK.
+
+L21 v5 e65b1fe4845ee0f2b9b419caef836e6777aebb66865c270722aada51a4ecbb07 включает another; независимый delta review запущен. Слепое сравнение L22 предпочло A: один пропуск again против ошибок prerequisite и повторных целей у B. Оба REVISE; готовыми не объявляются. Реальный отчёт в scratch l22_blind_comparison-actual-receipts.json.
+
+
+## L3 подключён; лестница проходит независимое code review
+
+Канонический план расширен точными 56 строками принятого L3 v3. Предыдущая часть сохранена (backup scratch course-plan-before-l03.md). Actual loadPlan: 56 строк, 7 сцен, S1 chair/table/lamp. Независимый PASS интеграции и полный lexical check: 184 канонических прежних слова, 179 из заголовков 112 master-файлов, 147 новых L3, пересечений нет. Receipt l03-integration-l22-delta-actual.md. L21 v5 independently PASS; receipt l21-plan-review-v5.json. L22 candidate A исправлен единственной дельтой удаления again, independent exact-delta PASS; v2 4eb2f6f2357e3287f38e665fbb6dd8cd0682c03be0820276721993764edaaf8d. Это полный прежний review плюс узкая актуальная проверка дельты, не выдуманный новый полный review.
+
+Лестница: исходные 4 RED регрессии воспроизвели отсутствие hard pair/distractor/overlap/floor checks. run.mjs считает реальные payloads, соблюдает 8 типов, не требует 9/10 и общего потолка повторов. build_release допускает 4–7 пар и 5 вариантов с L3, а перед записью основного релиза повторно проверяет каждый locale. Последний дефект отдельно RED→GREEN с sentinel protection. Узкий suite 17/17 PASS; дополнительно 1/1 source-level interaction test семи пар. Это не браузер и не viewport test. Независимое typescript-reviewer ревью ещё выполняется; production-ready не заявлено. Конституция, author и краткие правила судей согласованы по лестнице. Jarvis fetchers не читают фабрику, его схема не менялась.
+
+Запуск нового Astra-автора отклонён платформой agent thread limit; доступный существующий Sol-high готовит один read-only черновик L3S1. Это временный fallback, не новая калибровка моделей и не разрешение обойти независимых судей. Макет по-прежнему содержит 112 готовых RU/UK сессий; неподтверждённая S1 туда не добавлялась. ON TRACK: завершить code review, затем проверять текущую L3S1.
+
+
+## Продолжение: L3/S1 v4, уточнение конструкции и судьи
+
+- Подтверждено прямое уточнение владельца: грамматический выбор короткого ответа проверяет форму; правильная смена лица/полярности не служит ошибкой. Решение и защита уже действуют в собственном диапазоне L2/S33+.
+- Лестница сложности: фактическое независимое code review APPROVED; 19/19 узких тестов и ESLint PASS. Отдельный поздний doc-only delta промпта автора проверен педагогом: все три уточнения согласованы. Реальный текст code review сохранён в scratch `ladder-code-review-actual.txt`.
+- Основной макет пересобран: 112 RU/UK сессий; четыре файла макета согласованы, текущие hashes и проекции 24 собственных сессий S33–56 проверены. Это не визуальный или аудио PASS.
+- L3/S1 v4: b359c831e0a98a3195b604202d96d2c349735b668f5fff96a6c6215e50473802. Педагог PASS после перестановки сборки между карточками, замены соседнего повтора ready на вопрос и уточнения семьи по видеосвязи. Читатель PASS. Свежий Sol-high судья вкуса PASS/equal с эталоном, цитата: «Сэкономили одну букву — получили целую ошибку.»
+- Исправлена ошибка пути приватной сборки: --out разрешается относительно корня фабрики. Один промежуточный blind packet имел v4 hash со старыми v3 заданиями, поэтому его PASS не принят. Выполнена сборка с абсолютным --out, повторный blind walkthrough и сравнение фактических ответов: 3/3 интро, 17/17 заданий, точная карта пар. Текущая приватная проекция соответствует v4.
+- Ждём отдельного linguistic truth/nonsense судью; украинская версия ещё не написана. L3/S1 не опубликована в основной макет. Не заявлять готовность всех 1792 сессий.
+
+- Drift-check: ON TRACK. Рабочая authority — фабрика; старые docs/v2 не возвращают authoring HOLD. Судья точности снял замечание о лимите после сверки действующей Конституции; его фактический финальный PASS сохранён. Пять RU-судов на текущий v4 hash согласованы. UK draft d282cd46e5f9a4494e54119a345009b5f129a00d519183bdf4eabd9e6fb65f8e: тела264/236/231, приватная сборка RU/UK без проблем, 3+17 структур английского материала совпадают. Ждём независимого native review. L23v1 — только предварительный план, не принят, отправлен на проверку точных prerequisites и исправление границ лестницы.
+
+## L3/S1 завершена RU+UK; макет 113
+
+Фактический native PASS принят на RU b359c831e0a98a3195b604202d96d2c349735b668f5fff96a6c6215e50473802 и UK d282cd46e5f9a4494e54119a345009b5f129a00d519183bdf4eabd9e6fb65f8e. Каноническая сборка обеих локалей прошла blocking facts до записи; проблем сборки нет. Четыре файла основного макета согласованы: 113 сессий, 25 собственных текущих RU/UK проекций и hashes проверены (`l03-s01-owner-proof.log`). Browser/audio не проверены. Drift: ON TRACK.
+
+Следующая сессия L3/S2: новая лексика sofa/bed/desk, применение It is a + noun. Начат первый реально вызванный Astra-medium автор как дополнительный образец калибровки; до этого попытки запуска Astra упирались в лимит слотов, текст не писался.
+
+L23 v2 — предварительный план, НЕ принят: есть противоречие между минимумом 19 заданий и редакторским ориентиром, неточны ссылки на источники возврата слов. Свежий Sol-high review идёт.
+
+
+### Границы автоматических проверок при продолжении
+
+`machineFacts()` проверяет ряд старых условий только по русским меткам (`Интро`, `Возвращаются`); запуск facts для UK сам по себе не доказывает длину украинских интро или число возвратов. Для S1 это проверено отдельно: реальные тела 264/236/231, структура и английские targets обеих локалей совпадают, независимый native PASS есть. В следующих сессиях сохранять отдельный подсчёт UK и проверку проекции; не выдавать ноль строк facts за полный языковой PASS.
+
+`shortAnswerConstructionFacts()` сейчас распознаёт именно present-be short answers. До введения коротких ответов с do/did/have/modal расширять соответствующее семейство с узкой регрессией; правило владельца о форме уже распространяется на будущие задания и проверяется независимыми судьями. Не утверждать, что текущий be-распознаватель умеет все времена.
+
+
+## L3/S2: русский мастер прошёл пять судов
+
+Astra-medium впервые реально написала полный черновик S2. V1 SHA eb66789386ccc2f6c00c8caf7ec593b780856f54c66be7856bd1ff397213bb31: ноль hard facts, верные самостоятельные подсчёты тел256/250/271. Root заменил непосредственный повтор It is heavy в T15 на вопрос Is it heavy? и обновил самопроверку. Текущий v2 SHA6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b.
+
+Пять фактических RU PASS сохранены; blind learner 3/3 интро+17/17 практики совпал с приватной проекцией. Sol-high taste: equal, voice5; точная шутка про количество диванов и людей. Terra pedagogy сняла ошибочную претензию к intro→practice retrieval после сверки текущей фабричной Конституции §11: старый global primary-target ban из docs/v2 не действует. Свежие truth и reader также PASS. Native UK authoring идёт; основной макет всё ещё113, S2 туда не выпущена.
+
+L23 v3 только предварительная правка по независимому review, SHA02520cc8d7b42d0e1a055981ed7246069a23d8d244e71f0bd1231e7eecf0418e. Проверяются точные изменения; финальные формы отрабатываются с существующими плитками, без выдуманного свободного ввода.
+
+Калибровка Astra на S2 — дополнительный образец, не честное сравнение с автором S1: разная тема и тип сессии. Не делать вывод о точной цене или лучшей модели по одному примеру; фактического счётчика токенов инструменты не дали.
+
+
+### Continuation checkpoint — L3 S2 local RU+UK complete
+- Main mockup rebuilt: 114 sessions. All four generated files agree; exact current source review hashes and RU/UK projections verified for 26 own sessions (L2 S33–56, L3 S1–2).
+- L3 S2 RU SHA256 6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b; UK eea2735196539aec0ad2efa83b91612051009cba5d784a186c7af3fb919814fe. Five independent RU PASS and native Ukrainian/current local preview PASS saved as actual receipts.
+- Actual S2 UK pair renderer tested in a synthetic VM against canonical learner.uk.json: four Ukrainian labels, four successful matches. This is not browser/visual/audio evidence. Open-tab refresh remains unverified; earlier denied browser access must not be bypassed.
+- App-export incompatibility remains OPEN separately: speed_match leftColumn/rightColumn contain strings while native mode expects pair IDs. Local renderer uses pairGrid and works. No app deployment or runtime/export repair performed. See 2026-09-08_factory_app_export_boundary.md. Native review receipt explicitly retains app incompatibility; local readiness does not approve app integration.
+- L23 v4 independently accepted; L24 v1 actual read-only proposal saved, independent review running. L24 advisory count 19 is incorrect: run.mjs difficultyLadder(24).tasks is 21. Reviewer asked to check this and single-choice/multiple-valid-answer boundary. Do not turn advisory volume into a quota.
+- Sequential L3 S3 RU read-only author running (Astra medium); new stool/mirror/rug, specific a+noun naming frame, no false ban on generic indefinite articles. Root remains sole writer.
+- Owner clarified again: grammar short-answer tasks test construction. Existing guard and independent review apply; do not use grammatical polarity/person alternatives as errors. Audio recognition remains separately scoped.
+
+
+### L3 S3 RU review and curriculum continuation
+- L3 S3 current RU SHA45a29f88af55d12f0eca4f40f28a2b01cf5e3b5a3fcee62af225f1c379ef1f15: five actual independent PASS saved. Blind 3+17 matches current private keys; bodies raw259/260/277; no hard facts. UK read-only author running; main stays114 until native review complete.
+- L23 v5 accepted SHA b35a9b99e4921882eef2d0e48c1a6e87c76460642db5a1667f56cbf9d6bff572, correcting only advisory21. L24 v3 accepted SHA9ebaac549b2a226df3f69c63074d5fba2df240cd5f7ac6d43b1931def4196741 after fixing advisory21, exact-one choice behavior, how-long first introduction, prior object-pronoun/negative sources, and strict construction-only short-answer distractors. Actual receipts saved in scratch, no self-approval.
+- L25 read-only provisional plan dispatched to l24_plan agent (Sol medium), while root continues sequential L3 S3 localization. No future learner-facing sessions generated in parallel.
+
+
+### Main 115 verified — L3 S3 done, Ukrainian vowel class repaired
+- Main 115 sessions; all four mockup files agree and 27 current own session reviews/projections match. Browser reload is still unverified, denied access must not be bypassed. Main generated from reviewed source, not private candidates.
+- Current UK hashes: S1 3623c0e975be1492472e670279b020d05ca856a745dda602899f1ddb94afdb72; S2 3f23911b2e4fce6a9450812fbb1bd3d5a2b7fb414adbe9b0187b463f2495562c; S3 2469b72e5c687621a41f501bb4684fafe2b8935447b2880ecd0823fea5004340. RU hashes unchanged. S3 UK bodies241/265/285 and 3+17 English projection parity verified.
+- Independent native reviewer confirmed /ɪ/ comparisons must use Ukrainian и, not copied Russian и converted to Ukrainian і. Fixed disk (S2), mirror (S3), and cheer onset (S1); bounded source search across all own L2 S33–56/L3 S1–3 found no further matching letter-comparison cases. Not a claim of exhaustive all-phonetics audit. Also S3 mirror pronoun ambiguity and rug definition repaired. Actual full/round-delta reports plus primary phonetic sources saved in judgements/2026-09-08_l03_native_vowel_correction.json. S1/S2 old reviews retained as provenance beside current locale receipts.
+- localize.md now removes old per-intro humor quota and explicitly requires native sound anchors, word/variant checks, and distinction between vowel quality and pitch. Independent reviewer approved both prompt changes. No automated spelling substitution applied across arbitrary words.
+- Future app-export pairId incompatibility remains separately OPEN. These local PASS receipts do not approve application compatibility or audio/visual delivery.
+- L3 S4 RU author started only after S3 local readiness: new key/door/window, voice/listening application of existing a+noun, owner introduces apartment details. Prepared packet l03-s04-author-packet.json. Root remains sole writer.
+- L25 v2 actual independent PASS SHA41e756c4962cec40c3131aadf5c27e1c9a8a382e7b7be60a492b950d8b107551: recognized did/didn’t used to spelling excluded from diagnostic wrongs; only main-verb base errors; Past Simple/participle distinction only where surfaces differ; exact L5v4 source. Actual receipt still needs extracting to its review file.
+
+
+### Main116 / S4 complete; S5 and L27 continuation
+- Main mockup116 verified; all four files agree; 28 current own review/projection records match. S4 RU SHA eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1; UK SHA e25db5cf0288ee024a6ef0cd0a58c53eef470108a5bd6f2cc55a559c43aa22f1. Canonical RU/UK 3+17 parity verified; raw UK bodies256/264/267.
+- S4 five RU PASS and native full+delta PASS saved. Actual review history, including willow/window BLOCK and UK operation agreement REVISE, saved in judgements/2026-09-08_l03_s04_actual_reviews.json. S4 author.md records concrete willow/window error and correct comparison. Native reviewer approved prompt delta; key definition відмикають замок and door/двері agreement also accepted.
+- Local readiness does not approve app-export compatibility: pairId defect remains OPEN, as do real audio, browser/visual review and six deferred locales. No browser denial bypass.
+- L26 v2 accepted SHA7140eaf86d965ca039efd7dbb035d460288771ee1b946bffde31384ae5ce0de9; actual receipts saved. Fixed go out new at S6 (absent accepted L22v2), stay source L10S12, will/going-to semantic cues and if+will boundary. money legitimately new S9.
+- L27 v1 proposal returned by /root/lesson19_plan (Terra medium), saved to scratch, NOT reviewed. Visible issues: header wrongly excludes I wish I had… despite current-possession frame; wish lexical introduction S26 follows use S25; broad prerequisite ledger and weak final deltas need exact review. Root has not edited it yet.
+- Sequential L3 S5 RU author running in /root/l03_s02_author (Astra medium), packet l03-s05-author-packet.json: wall/floor/ceiling, current a+noun naming contrast, no an/the before next chapters. No S5 source saved yet. After fifth L3 session reread applicable factory docs/drift check before S6.
+- Model observations in judgements/2026-09-08_author_model_observations.md; exact token/cost measurements unavailable, no proven-cheapest claim. S4 observation should be updated to native complete.
+
+
+### Continuation after recenter — S5 review, L27 accepted
+- Main remains 116; direct four-file/projection proof rerun and passed. No browser access or visual refresh proof.
+- Current L3S5 RU SHA00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371. First taste REVISE led to whole intro2 rewrite by author and removal of unused repair premise. Revised taste PASS at prior SHA190f9014ae7ed75e786814a2efd9d7f4fe9cbc2c09c85b8d06b5383cd9233fde; only selfcheck count metadata then corrected. Reader/pedagogy PASS current, taste/truth bounded metadata deltas pending. Learner passed3+17 at190f; current blind projection rebuilt. Current bodies256/282/271. No UK or main publication yet.
+- L27 v3 provisional plan accepted actual independent PASS SHAb15123777ed8019ce871dbd28726b50f5c5c0b01b761f754a53d01223cda2ad4. V1/V2/V3 actual reviews saved in scratch l27-plan-actual-receipts.json. Fixes include wish introduction before use, exact prerequisite ledger, current wish had+object vs excluded past-regret distinction, genuine construction-error alternatives and final independent work. L28–32 plans remain.
+- Owner short-answer clarification persists: grammatical person/polarity alternatives are forbidden as wrongs when testing construction, even with decisive context. Existing present-be guard is limited; extend before future auxiliary short-answer families.
+
+
+### Main117 — fifth L3 session complete; drift check ON TRACK
+- Canonical L3S5 RU+UK built successfully after complete actual taste receipt; all four main files agree and29 own current review/source/projection records pass. Current RU00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371 / UK7bdfa4d0950e6389974b3c632d006b94dfb4a47d4a7bb2a8747a2b81ac4980be. Canonical3intro+17task parity passed. Native fullPASS. Browser refresh/actualaudio not verified; app pairId issue retained.
+- Assembly first rejected an incomplete taste JSON (missing ai_text_or_nonsense/must_fix/verdict_reason). Same independent judge checked the criteria and returned full actual report. Gate was not weakened. Future task packets must ask the existing judge_taste response schema in full, not a shorter root-invented schema.
+- Recenter: factory handoff/current Constitution/METHOD, current owner08.09 listening and short-answer/humor decisions, author prompt, all three exemplars, current L3 chapter packet reviewed. ON TRACK for sequential L3S6 after S5 local readiness. Archived docs/v2 rules are not authoring authority. No new an/the before their chapter, no phantom new modes/global repeat quota, no borrowed Russian sound anchors for Ukrainian.
+- L28v1 SHA2a29fad474c62f253b18e41d3f932c0b118d9db1d8b45319098109fc24b85f5c saved and dispatched to /root/l23_plan_review for independent review. No future learner-facing authoring in parallel.
+
+
+### Main117 retained / S6 Russian complete, UK pending
+- L3S6 RU SHA7e30e935e7843dae64896033b8169e8fb1c85cc8b10db370806ef13e1365a502 five independent current PASS, actualblind3+17 matched. Bodies264/261/270. Initial voice REVISE triggered whole-intro rewrite; truthBLOCK then caught definition of any paper with price as tag versus receipt. Exact attachment qualifier fixed that, both truth and taste rechecked. Full actual review history saved in judgements/2026-09-08_l03_s06_actual_reviews.json. UK author /root/l03_s01_uk_author running. No S6 canonical release/main yet.
+- L28v2 accepted SHA2ae0e2ae1be72f8a62cb40ded790485b4b1f950d2fc7b2bef6235d165a12fcf8;56row sequence verified, actual receipts saved. L29v1 SHA34a87b09c5da0bd558b034d0945496ed535fc5ea2a5ab5a2bf6dd20aed2b4441 saved and independent review running. Watch proposed speaking/matching_pairs names and extra board words lacking exact prerequisites.
+- Found real numeric usage counters in our own child logs. Recorded31 selectedagents (20benchmarks+11recentroles), summarized15original A/B/C runs in judgements/2026-09-08_observed_agent_token_usage.md. Input/cache/output/reasoning counts available; prices/accountcharge remain unknown. Historical benchmark paragraph updated. Do not double-count cached input or reasoning output; no universal cheapestclaim.
+- Jarvis targeted fetcher search has no learning-v2/local-factory/learner.json references; this local content change adds no server data schema.
+- S7 planning packet ready only; learner authoring waits for S6 local RU+UK completion. Newdrawer/cupboard/wardrobe, knowna+noun, lesssupport, noan/the/pluralsnewgrammar. Root solewriter, no browser-denial bypass/APIkeys/appintegration.

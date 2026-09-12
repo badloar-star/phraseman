@@ -1,0 +1,13 @@
+{
+  "sourceSha256": "f141ff0ea7fce925928bebff2410d8bd928e49700df880c21c039630df6f0db9",
+  "deltaOnly": true,
+  "introAnswers": {
+    "intro1": "Am I late?",
+    "intro2": "Am I wrong?",
+    "intro3": "Am I welcome here?"
+  },
+  "confusion": [],
+  "verdict": "PASS",
+  "baselineReview": "owner-tone-before/final.judge_learner.json",
+  "unchangedPracticeVerified": true
+}

@@ -1,0 +1,54 @@
+{
+  "sourceSha256": "d7b438ff40d66aa750958cfd2b5d575d96fc991ef645c5b56b696d83a3ed61b4",
+  "localeSha256": {
+    "uk": "c7f7659b7697a097256d410de943801279fb962ca74f24ecbd5c3a75870fbf0f"
+  },
+  "locales": {
+    "uk": {
+      "session": "S35",
+      "sourceSha256": "d7b438ff40d66aa750958cfd2b5d575d96fc991ef645c5b56b696d83a3ed61b4",
+      "localeSha256": "c7f7659b7697a097256d410de943801279fb962ca74f24ecbd5c3a75870fbf0f",
+      "verdict": "PASS",
+      "issues": [],
+      "checks": {
+        "onlyListedPromptsChanged": true,
+        "introByteTextUnchanged": true,
+        "englishTokenSequenceUnchanged": true,
+        "targetTilesAnswerFeedbackUnchanged": true,
+        "ruPromptNeutral": true,
+        "ukPromptNativeAndNeutral": true,
+        "contextCoherent": true
+      },
+      "verdict_reason": "T14 теперь задаёт только хозяина как тему; значение here и выбор без not не сообщаются.",
+      "priorFullReviewRetained": true,
+      "reviewScope": "Independent RU/UK native delta review; prior full locale review retained",
+      "priorFullReview": {
+        "sourceSha256": "d630f942bba5f49f0c525d8f6e5a75418be0196b6dc2212297bd242e0ac8c907",
+        "localeSha256": {
+          "uk": "e5be440ff92e284d4c7babc72873465618ff7cfc806cfce31dd727acb83f0a9b"
+        },
+        "locales": {
+          "uk": {
+            "session": "S35",
+            "sourceSha256": "d630f942bba5f49f0c525d8f6e5a75418be0196b6dc2212297bd242e0ac8c907",
+            "localeSha256": "e5be440ff92e284d4c7babc72873465618ff7cfc806cfce31dd727acb83f0a9b",
+            "verdict": "PASS",
+            "issues": [],
+            "verified": {
+              "deltaLimitedToThreeIntroBodies": true,
+              "naturalUkrainian": true,
+              "whoseMeaningAndWordOrderAccurate": true,
+              "itCorrectForCoatAndScarfInContext": true,
+              "genderHumourNaturalAndNonDistorting": true,
+              "introLengths": [
+                273,
+                278,
+                278
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

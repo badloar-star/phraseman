@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "различение нейтрального вопроса `Am I…?` и сообщения `I am…`",
+    "uk": "розрізнення нейтрального запитання `Am I…?` і повідомлення `I am…`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уточнить или сообщить",
+        "uk": "Уточнити чи повідомити"
+      },
+      "bodyByLocale": {
+        "ru": "`Am I late?` — «Я опоздал?» Так обычно спрашивают, когда ответ ещё нужен. Первым идёт `Am`, затем `I`, потом `late` — «опоздал». А `I am late` — «Я опоздал» — сообщает о вас. Слова те же, но первые два стоят иначе. Сначала решите, хотите ли вы уточнить или уже сообщаете.",
+        "uk": "`Am I late?` — «Я запізнився?» Так зазвичай запитують, коли відповідь іще потрібна. Спочатку йде `Am`, потім `I`, далі `late` — «запізнився». А `I am late` — «Я запізнився» — це вже повідомлення про себе. Слова ті самі, але перші два стоять інакше. Спершу вирішіть, чи хочете ви уточнити, чи вже повідомляєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы вошли в студию и не знаете, началось ли занятие. Спросите преподавателя, опоздали ли вы.",
+          "uk": "Ви зайшли до студії й не знаєте, чи почалося заняття. Запитайте викладача, чи ви запізнилися."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-45:intro1:r1",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:intro1:r2",
+              "text": "Is I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:intro1:r3",
+              "text": "Am I early?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-45:intro1:r1",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:intro1:r2",
+              "text": "Is I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:intro1:r3",
+              "text": "Am I early?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы вошли в студию и не знаете, началось ли занятие. Спросите преподавателя, опоздали ли вы.",
+          "uk": "Ви зайшли до студії й не знаєте, чи почалося заняття. Запитайте викладача, чи ви запізнилися."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда ответ известен",
+        "uk": "Коли відповідь уже відома"
+      },
+      "bodyByLocale": {
+        "ru": "`I am late` — «Я опоздал». В сообщении сначала `I`, затем `am`. А `I am late?` может быть удивлённым переспросом: опоздание иногда становится новостью и для опоздавшего. Это реакция на чужие слова. Чтобы впервые спокойно выяснить, опоздали ли вы, спросите `Am I late?`.",
+        "uk": "`I am late` — «Я запізнився». У повідомленні спочатку `I`, потім `am`. А `I am late?` може бути здивованим перепитуванням: запізнення часом стає новиною і для того, хто запізнився. Це реакція на чужі слова. Щоб уперше спокійно з’ясувати, чи ви запізнилися, запитайте `Am I late?`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Представьте, что преподаватель подтвердил: занятие уже началось. Скажите другу, что вы опоздали.",
+          "uk": "Уявіть, що викладач підтвердив: заняття вже почалося. Скажіть другові, що ви запізнилися."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-45:intro2:r1",
+              "text": "I am late."
+            },
+            {
+              "responseId": "en:lesson-02:session-45:intro2:r2",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:intro2:r3",
+              "text": "I am early."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-45:intro2:r1",
+              "text": "I am late."
+            },
+            {
+              "responseId": "en:lesson-02:session-45:intro2:r2",
+              "text": "Am I late?"
+            },
+            {
+              "responseId": "en:lesson-02:session-45:intro2:r3",
+              "text": "I am early."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте, что преподаватель подтвердил: занятие уже началось. Скажите другу, что вы опоздали.",
+          "uk": "Уявіть, що викладач підтвердив: заняття вже почалося. Скажіть другові, що ви запізнилися."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подтвердить, что успели",
+        "uk": "Підтвердити, що встигли"
+      },
+      "bodyByLocale": {
+        "ru": "`I am not late` — «Я не опоздал». Так вы сообщаете, что успели вовремя. После `am` поставьте `not`: без него получится признание в опоздании. А `Am I late?` — вопрос, если ответ ещё нужен. Выберите по ситуации: вы ждёте объяснения или уже сами рассказываете, как обстоят дела.",
+        "uk": "`I am not late` — «Я не запізнився». Так ви повідомляєте, що встигли вчасно. Після `am` поставте `not`: без нього вийде зізнання у запізненні. А `Am I late?` — запитання, якщо відповідь іще потрібна. Обирайте за ситуацією: чи чекаєте ви пояснення, чи вже самі розповідаєте, як усе склалося."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Преподаватель объяснил, что до занятия ещё пять минут. Сообщите другу, что вы не опоздали.",
+          "uk": "Викладач пояснив, що до заняття ще п’ять хвилин. Повідомте другові, що ви не запізнилися."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-45:intro3:r1",
+              "text": "I am not late."
+            },
+            {
+              "responseId": "en:lesson-02:session-45:intro3:r2",
+              "text": "I am late."
+            },
+            {
+              "responseId": "en:lesson-02:session-45:intro3:r3",
+              "text": "Am I late?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-45:intro3:r1",
+              "text": "I am not late."
+            },
+            {
+              "responseId": "en:lesson-02:session-45:intro3:r2",
+              "text": "I am late."
+            },
+            {
+              "responseId": "en:lesson-02:session-45:intro3:r3",
+              "text": "Am I late?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Преподаватель объяснил, что до занятия ещё пять минут. Сообщите другу, что вы не опоздали.",
+          "uk": "Викладач пояснив, що до заняття ще п’ять хвилин. Повідомте другові, що ви не запізнилися."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4ec412ed4973af24347a6258c70704a6bc2b9d40eb34b2b68ca8d7de43abdef8"
+}

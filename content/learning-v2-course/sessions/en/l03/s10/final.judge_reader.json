@@ -1,0 +1,39 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "c69b1dac553c887789b26a5a1ca1f364c577bb7d94b02c47adf5cbfd3ed7e269",
+  "scope": "Actual final delta combined with retained full prior review",
+  "previousReview": {
+    "sourceSha256": "8876f932d3f797faa1733088c18bb616e2ec825daa8ac5eb466d646dabbe859b",
+    "reviewer": "/root/s10_reader",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": "medium",
+    "pages_understood": 3,
+    "verdict": "PASS",
+    "pages": [
+      {
+        "page": 1,
+        "retelling": "Страница объясняет, что перед названием одного чайника по-английски ставится a.",
+        "what_i_do_now": "Теперь я скажу It is a kettle, а не просто It is kettle.",
+        "understood": true,
+        "problems": []
+      },
+      {
+        "page": 2,
+        "retelling": "Страница показывает, как спросить, тостер ли передо мной, сохранив a перед названием.",
+        "what_i_do_now": "Теперь я спрошу Is it a toaster?, а не буду начинать вопрос как обычное утверждение.",
+        "understood": true,
+        "problems": []
+      },
+      {
+        "page": 3,
+        "retelling": "Страница объясняет, как сказать, что предмет не пылесос: добавить not, но не убирать is и a.",
+        "what_i_do_now": "Теперь я скажу It is not a vacuum, а не буду вычёркивать is или a из фразы.",
+        "understood": true,
+        "problems": []
+      }
+    ],
+    "verdict_reason": "Все три страницы за одно чтение дают понятный пример и понятное действие: назвать предмет, спросить о нём или сказать, что это не он."
+  },
+  "deltaEvidence": "judgements/2026-09-12_l03_s10_final_delta.json",
+  "actualAudioReviewed": false
+}

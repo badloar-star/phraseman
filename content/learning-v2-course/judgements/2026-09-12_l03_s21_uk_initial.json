@@ -1,0 +1,47 @@
+{
+  "task": "L3S21 full independent UK-native review",
+  "reviewer": "/root/s17_uk_native",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "ru_sha256": "c390f5b9da85a52bc56906498f12c67a37471cd2b6ee17fe097030f71f432835",
+  "uk_sha256": "30070a0807131edf4707e4488e9c0390adca36f85d485fb69fad20b3a9dbd8f8",
+  "verdict": "REVISE",
+  "locales": {
+    "uk": {
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "severity": "required",
+          "location": "Інтро 2, explanatory paragraph",
+          "issue": "Ungrammatical case/agreement: все решта cannot serve as object after лишити.",
+          "quote": "не можна просто додати закінчення й лишити все решта.",
+          "replacement": "не можна просто додати закінчення й лишити все інше."
+        },
+        {
+          "severity": "required",
+          "location": "Самоперевірка, final prose",
+          "issue": "Повернене glass means a word returned to someone, not review word.",
+          "quote": "Повернене `glass` має три правильні контакти.",
+          "replacement": "`glass` як слово для повторення має три правильні контакти."
+        }
+      ],
+      "native_quality": "PASS except two exact defects",
+      "definitions": "PASS: accurate towel/curtain/pillow/card repeats/carton/drinking glass senses.",
+      "number_and_referents": "PASS all scene prompts/answers/feedback/glass returns.",
+      "phonetic_feedback": "PASS as text: all comparisons have positive cues; T2 trowel concrete non-contact English articulation after t contrasts towel immediate vowel. Valid without r label; no Cyrillic identity.",
+      "humour": "PASS: а `a` прихопили про всяк випадок?",
+      "intro_explanatory_chars": {
+        "1": 255,
+        "2": 240,
+        "3": 238
+      },
+      "intro_length_210_320": "PASS",
+      "english_skeleton_17_tasks": "PASS",
+      "headings_metadata_prompts_feedback_selfcheck": "PASS except findings",
+      "listening_prompts_neutral": "PASS",
+      "actual_audio": "NOT_REVIEWED"
+    }
+  },
+  "exact_fix_groups": 2,
+  "writes": false
+}

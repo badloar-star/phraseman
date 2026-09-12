@@ -1,0 +1,13 @@
+{
+  "sourceSha256": "ba5f00aba9f622237f81d29891e7c62a5fb7b125494d1426adac32cd425a5aeb",
+  "verdict": "PASS",
+  "issues": [],
+  "verifiedDelta": {
+    "changedLines": 1,
+    "task6Prompt": "The prompt now says only that the employee answers the question about the manager. It preserves the transition from task 5 without revealing `She is here` before playback.",
+    "audioTilesTargetUnchanged": true,
+    "previousPedagogyChecksStillValid": true,
+    "tasks": 17,
+    "hardFindings": 0
+  }
+}

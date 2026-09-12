@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-34:i02:r1",
+            "responseId": "en:lesson-01:session-34:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — busy",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-34:i02:r2",
+            "responseId": "en:lesson-01:session-34:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — busy",
             "feedbackByLocale": {
@@ -218,21 +218,21 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-34:i04:r1",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите — nice",
-            "feedbackByLocale": {
-              "ru": "«Лёд». То же самое, но без `n` в начале. Вслушайтесь в первый звук.",
-              "uk": ""
-            }
-          },
-          {
             "responseId": "en:lesson-01:session-34:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — nice",
             "feedbackByLocale": {
+              "ru": "«Лёд». То же самое, но без `n` в начале. Вслушайтесь в первый звук.",
+              "uk": "«Лід». Те саме, але без `n` на початку. Вслухайтесь у перший звук."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-34:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — nice",
+            "feedbackByLocale": {
               "ru": "«Ночь». Начало похожее, конец другой: `nice` заканчивается на «с».",
-              "uk": ""
+              "uk": "«Ніч». Початок схожий, кінець інший: `nice` закінчується на «с»."
             }
           }
         ],
@@ -289,7 +289,7 @@
         "testedDimension": "Вставьте скрепку — соседний отдел не отр",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-34:i05:r1",
+            "responseId": "en:lesson-01:session-34:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — соседний отдел не отр",
             "feedbackByLocale": {
@@ -298,7 +298,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-34:i05:r2",
+            "responseId": "en:lesson-01:session-34:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — соседний отдел не отр",
             "feedbackByLocale": {
@@ -449,7 +449,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-34:i08:r1",
+            "responseId": "en:lesson-01:session-34:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — loud",
             "feedbackByLocale": {
@@ -458,7 +458,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-34:i08:r2",
+            "responseId": "en:lesson-01:session-34:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — loud",
             "feedbackByLocale": {
@@ -520,7 +520,7 @@
         "testedDimension": "Вставьте слово — соседний отдел придержа",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-34:i09:r1",
+            "responseId": "en:lesson-01:session-34:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — соседний отдел придержа",
             "feedbackByLocale": {
@@ -529,7 +529,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-34:i09:r2",
+            "responseId": "en:lesson-01:session-34:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — соседний отдел придержа",
             "feedbackByLocale": {
@@ -725,7 +725,7 @@
         "testedDimension": "Вставьте слово — соседний отдел уже вста",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-34:i13:r1",
+            "responseId": "en:lesson-01:session-34:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — соседний отдел уже вста",
             "feedbackByLocale": {
@@ -734,7 +734,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-34:i13:r2",
+            "responseId": "en:lesson-01:session-34:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — соседний отдел уже вста",
             "feedbackByLocale": {
@@ -794,7 +794,7 @@
         "testedDimension": "Вставьте слово — соседний отдел ходит об",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-34:i14:r1",
+            "responseId": "en:lesson-01:session-34:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — соседний отдел ходит об",
             "feedbackByLocale": {
@@ -803,7 +803,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-34:i14:r2",
+            "responseId": "en:lesson-01:session-34:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — соседний отдел ходит об",
             "feedbackByLocale": {

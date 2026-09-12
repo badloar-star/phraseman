@@ -16,6 +16,8 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
+import { scopedOwnerQualityRequired } from "./owner_quality.mjs";
+import { sessionReadiness } from "./session_readiness.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -26,6 +28,7 @@ const args = process.argv.slice(2);
 const opt = (n, d) => { const i = args.indexOf(`--${n}`); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
 const SESSION = opt("session", null);
 const LOCALES = opt("locales", "ru,uk").split(",").map((s) => s.trim()).filter(Boolean);
+const DEFAULT_OUT = path.resolve(ROOT, "release");
 const OUT = path.resolve(ROOT, opt("out", "release"));
 
 const read = (p) => fs.readFileSync(p, "utf8");
@@ -229,6 +232,41 @@ const INPUT_MODE = {
 
 const localized = (byLocale) => Object.fromEntries(LOCALES.map((l) => [l, byLocale[l] ?? byLocale.ru ?? ""]));
 
+function learnerPromptForTask(task) {
+  const correctText = (task.options.find((o) => o.correct)?.text ?? task.target ?? task.card?.word ?? "").toLowerCase().replace(/[.?!]$/, "");
+  let prompt = task.title;
+  const tail = /\s+—\s+(.+)$/.exec(prompt);
+  if (tail && correctText && tail[1].toLowerCase().replace(/[.?!]$/, "") === correctText && task.family !== "word_card") {
+    prompt = prompt.slice(0, tail.index).trim();
+  }
+  if (task.family === "speed_match") {
+    prompt = prompt.replace(/\s*\(Speed Match,\s*[4-7]\s+(?:пар|пары|пари)\)\s*$/i, "").trim();
+  }
+  return prompt;
+}
+
+function orderedTokensForTask(task) {
+  const words = (task.target ?? "").replace(/[.?!]$/, "").split(/\s+/).filter(Boolean);
+  const normalize = (word) => word.replace(/[.,?!;:]+$/, "").toLowerCase();
+  const chunks = (task.tokens ?? []).map((token) => token.trim().split(/\s+/))
+    .filter((chunk) => chunk.length > 1).sort((a, b) => b.length - a.length);
+  const ordered = [];
+  for (let position = 0; position < words.length;) {
+    const chunk = chunks.find((candidate) => candidate.every((word, offset) =>
+      words[position + offset] !== undefined && normalize(word) === normalize(words[position + offset])));
+    const count = chunk?.length ?? 1;
+    ordered.push(words.slice(position, position + count).join(" "));
+    position += count;
+  }
+  return ordered;
+}
+
+function authoredDistractorsForTask(task, ordered) {
+  const normalize = (token) => token.trim().split(/\s+/).map((word) => word.replace(/[.,?!;:]+$/, "").toLowerCase()).join(" ");
+  const correct = new Set(ordered.map(normalize));
+  return (task.tokens ?? []).filter((token) => !correct.has(normalize(token)));
+}
+
 function buildInteraction(task, perLocale, sessionId, index, total) {
   const id = `${sessionId}:i${String(task.ordinal).padStart(2, "0")}`;
   // зачем: карточка нового слова — не выбор, а показ. В формате плеера своего
@@ -252,11 +290,12 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
 
   let modePayload = null;
   if (family === "phrase_builder") {
+    const ordered = orderedTokensForTask(task);
     modePayload = {
       family, targetPhrase: task.target ?? task.speak ?? "",
       localizedMeaning: loc("title"),
-      orderedTokens: (task.target ?? "").replace(/[.?!]$/, "").split(/\s+/).filter(Boolean),
-      authoredDistractorTokens: (task.tokens ?? []).filter((t) => !(task.target ?? "").toLowerCase().includes(t.toLowerCase())),
+      orderedTokens: ordered,
+      authoredDistractorTokens: authoredDistractorsForTask(task, ordered),
       slotFeedback: feedback,
     };
   } else if (family === "listen_choose") {
@@ -277,13 +316,14 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
       wordCard: task.card ? { word: task.card.word, definitionByLocale: cardByLocale } : null,
     };
   } else if (family === "listen_build_dictation") {
+    const ordered = orderedTokensForTask(task);
     modePayload = {
       family,
       referenceAudio: task.audio ? { audioTargetId: `${id}:audio`, transcript: task.audio } : null,
       slowReferenceAudio: null,
       hiddenTargetPhrase: task.target ?? task.audio ?? "",
-      orderedTokens: (task.target ?? "").replace(/[.?!]$/, "").split(/\s+/).filter(Boolean),
-      authoredDistractorTokens: (task.tokens ?? []).filter((t) => !(task.target ?? "").toLowerCase().includes(t.toLowerCase())),
+      orderedTokens: ordered,
+      authoredDistractorTokens: authoredDistractorsForTask(task, ordered),
       slotFeedback: feedback,
     };
   } else if (family === "context_gap_grammar") {
@@ -291,7 +331,7 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
       family, localizedScene: loc("title"),
       // зачем: строка пропуска в Markdown несёт и варианты («I ___ wrong. →
       // **am** · not · is») — в payload должна попасть только сама фраза
-      gappedTargetPhrase: (/(\S[^\n]*___[^\n]*)/.exec(task.body)?.[1] ?? "").split("→")[0].replace(/[*`]/g, "").trim(),
+      gappedTargetPhrase: (/^[^\r\n]*___[^\r\n]*/m.exec(task.body)?.[0] ?? "").split("→")[0].replace(/[*`]/g, "").trim(),
       gapOptions: responseOptions, testedDimension: task.title.slice(0, 40), choiceFeedback: feedback,
     };
   } else if (family === "sound_contrast") {
@@ -326,12 +366,7 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
   // зачем (владелец, 03.09: «почему задания уже сами дают ответ?»): автор
   // пишет заголовок «Послушайте и выберите — welcome», а welcome и есть
   // правильный ответ. В заголовке для ученика хвост « — <ответ>» срезаем.
-  const correctText = (task.options.find((o) => o.correct)?.text ?? task.target ?? task.card?.word ?? "").toLowerCase().replace(/[.?!]$/, "");
-  let learnerPrompt = task.title;
-  const tail = /\s+—\s+(.+)$/.exec(learnerPrompt);
-  if (tail && correctText && tail[1].toLowerCase().replace(/[.?!]$/, "") === correctText && task.family !== "word_card") {
-    learnerPrompt = learnerPrompt.slice(0, tail.index).trim();
-  }
+  const learnerPrompt = learnerPromptForTask(task);
 
   return {
     interactionId: id, ordinal: task.ordinal + 3, purpose: PURPOSE_BY_INDEX(index, total),
@@ -340,7 +375,7 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
     mediaIds: [],
     audioTargetIds: modePayload?.referenceAudio ? [`${id}:audio`]
       : [modePayload?.audioA?.audioTargetId, modePayload?.audioB?.audioTargetId].filter(Boolean),
-    accessibilityLabel: task.title, modePayload, scriptedAlternate: null,
+    accessibilityLabel: learnerPrompt, modePayload, scriptedAlternate: null,
   };
 }
 
@@ -349,9 +384,9 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
 // зачем: снять протухший блок machine_facts можно только перепроверив факты,
 // а не поверив статусу. Логика фактов живёт в run.mjs — зовём её оттуда, чтобы
 // не заводить второй экземпляр правил, который разъедется с первым.
-function recheckHardFacts(dir) {
+function recheckHardFacts(dir, file = "final.ru.md") {
   const session = dir.split(/[\\/]/).slice(-3).join("/");
-  const r = spawnSync(process.execPath, [path.join(HERE, "run.mjs"), "facts", "--session", session], { encoding: "utf8" });
+  const r = spawnSync(process.execPath, [path.join(HERE, "run.mjs"), "facts", "--session", session, "--file", file], { encoding: "utf8" });
   if (r.status !== 0) {
     WARN(`перепроверка фактов не удалась (код ${r.status}) — блок снимать нельзя: ${(r.stderr || "").trim().slice(0, 200)}`);
     return ["перепроверка не выполнена"];
@@ -367,6 +402,30 @@ function main() {
   const [, lang, lesson, session] = m;
   const dir = path.join(ROOT, "sessions", SESSION);
   const sessionId = `${lang}:lesson-${lesson}:session-${session}`;
+
+  // A private --out is a review artifact. Writing the canonical release is a
+  // publication step and must fail before touching existing files when the
+  // current owner-scoped session has incomplete or stale independent review.
+  const writesDefaultRelease = path.relative(DEFAULT_OUT, OUT) === "";
+  if (writesDefaultRelease && scopedOwnerQualityRequired(SESSION)) {
+    if (!LOCALES.includes("ru") || !LOCALES.includes("uk")) {
+      WARN("ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: основной макет требует обе локали ru,uk");
+      process.exit(1);
+    }
+    const requestedLocales = LOCALES.filter((locale) => locale !== "ru");
+    const readiness = sessionReadiness(dir, requestedLocales);
+    if (!readiness.ready) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${readiness.issues.join("; ")}`);
+      process.exit(1);
+    }
+    if (Number(lesson) > 2) {
+      const facts = LOCALES.flatMap(locale => recheckHardFacts(dir, `final.${locale}.md`).map(fact => `${locale}: ${fact}`));
+      if (facts.length) {
+        WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${facts.join("; ")}`);
+        process.exit(1);
+      }
+    }
+  }
 
   const perLocale = {};
   for (const loc of LOCALES) {
@@ -441,6 +500,21 @@ function main() {
   };
   learnerChild.learnerFingerprint = sha(interactions);
 
+  const localizedLearnerFiles = {};
+  for (const loc of Object.keys(perLocale)) {
+    if (loc === "ru") continue;
+    const localeInteractions = interactions.map((interaction, index) => {
+      const localeTask = byOrdinal(loc, master.tasks[index].ordinal) ?? master.tasks[index];
+      const prompt = learnerPromptForTask(localeTask);
+      return { ...interaction, prompt, accessibilityLabel: prompt };
+    });
+    localizedLearnerFiles[`learner.${loc}.json`] = {
+      ...learnerChild,
+      interactions: localeInteractions,
+      learnerFingerprint: sha(localeInteractions),
+    };
+  }
+
   // ответы — отдельно: плеер их не получает, они нужны серверу-оценщику
   const answers = master.tasks.map((t) => ({
     interactionId: `${sessionId}:i${String(t.ordinal).padStart(2, "0")}`,
@@ -450,7 +524,7 @@ function main() {
 
   const outDir = path.join(OUT, lang, `l${lesson}`, `s${session}`);
   fs.mkdirSync(outDir, { recursive: true });
-  const files = { "intro.json": introChild, "learner.json": learnerChild, "answers.json": answers };
+  const files = { "intro.json": introChild, "learner.json": learnerChild, ...localizedLearnerFiles, "answers.json": answers };
   for (const [name, data] of Object.entries(files)) {
     const p = path.join(outDir, name);
     fs.writeFileSync(p, JSON.stringify(data, null, 2), "utf8");
@@ -462,11 +536,12 @@ function main() {
   for (const it of interactions) {
     if (!it.modePayload) problems.push(`${it.interactionId}: нет modePayload (family ${it.family})`);
     else if (it.family === "phrase_builder" && !it.modePayload.orderedTokens.length) problems.push(`${it.interactionId}: пустые orderedTokens`);
-    else if (it.family === "speed_match" && it.modePayload.pairGrid.length !== 4) problems.push(`${it.interactionId}: пар ${it.modePayload.pairGrid.length}, нужно 4`);
+    else if (it.family === "speed_match" && (it.modePayload.pairGrid.length < 4 || it.modePayload.pairGrid.length > (Number(lesson) <= 2 ? 4 : 7))) problems.push(`${it.interactionId}: пар ${it.modePayload.pairGrid.length}, поддерживается ${Number(lesson) <= 2 ? "4" : "4–7"}`);
     // карточка слова вариантов не имеет по определению — это не дефект
     const isCard = master.tasks.find((t) => `${sessionId}:i${String(t.ordinal).padStart(2, "0")}` === it.interactionId)?.family === "word_card";
     if (!isCard && it.inputMode === "single_choice" && it.responseOptions.length < 2) problems.push(`${it.interactionId}: вариантов ${it.responseOptions.length}`);
-    if (!isCard && it.inputMode === "single_choice" && it.responseOptions.length > 4) problems.push(`${it.interactionId}: вариантов ${it.responseOptions.length} — больше четырёх, проверь строку вариантов на лишние тире и звёздочки`);
+    const optionCapacity = Number(lesson) <= 2 ? 4 : 5;
+    if (!isCard && it.inputMode === "single_choice" && it.responseOptions.length > optionCapacity) problems.push(`${it.interactionId}: вариантов ${it.responseOptions.length} — больше ${optionCapacity}, проверь строку вариантов на лишние тире и звёздочки`);
     const correctCount = (it.responseOptions || []).filter((o) => o.correct).length;
     if (!isCard && correctCount > 1) problems.push(`${it.interactionId}: правильных ответов ${correctCount} — приложение поддерживает только один, перепиши задание на один пропуск`);
     for (const o of it.responseOptions || []) {

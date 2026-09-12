@@ -1,0 +1,13 @@
+{
+  "sourceSha256": "6a75a6763c5dc1d0279bbc7ec28bbae1723ed96c0017863e73b10650ca47cf7e",
+  "deltaOnly": true,
+  "introAnswers": {
+    "intro1": "Am I polite?",
+    "intro2": "Am I rude?",
+    "intro3": "Are we rude?"
+  },
+  "confusion": [],
+  "verdict": "PASS",
+  "baselineReview": "owner-tone-before/final.judge_learner.json",
+  "unchangedPracticeVerified": true
+}

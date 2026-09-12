@@ -1,0 +1,186 @@
+{
+  "sourceSha256": "3806946a79664a389c254f1484016ab24d2f933ab657d4adb25ba70e4f9cf5e3",
+  "delta": {
+    "changed_task": 13,
+    "target": "Is he here?",
+    "pronoun_antecedent_clear": true,
+    "speaker_and_addressee_clear": true,
+    "context_uniquely_supports_target": true,
+    "english_tiles_and_answer_unchanged": true,
+    "return_contacts_unchanged": true,
+    "final_independence_unchanged": true
+  },
+  "issues": [],
+  "verdict": "PASS",
+  "verdict_reason": "Новая формулировка ясно отделяет друга, организатора и другого участника, поэтому `he` однозначно относится к организатору и ответ `Is he here?` естественно следует из ситуации.",
+  "priorReviews": [
+    {
+      "sourceSha256": "0c4f7d65c344694e3a0d1e773b17c55a8b315e94eb450146eadb99f010808232",
+      "counts": {
+        "tasks": 17,
+        "modes": 17,
+        "builders": 6,
+        "intro_lengths": [
+          255,
+          253,
+          246
+        ],
+        "new_words": 0,
+        "unknown_items": 0,
+        "return_table_mismatches": 0
+      },
+      "plan_fidelity": {
+        "operation_matches": true,
+        "application_of_am_i": true,
+        "planned_returns_match": [
+          "welcome",
+          "here",
+          "early",
+          "late"
+        ],
+        "extra_grammar_smuggled": [],
+        "prerequisites_respected": true
+      },
+      "intro": {
+        "pages": 3,
+        "grounded_before_questions": true,
+        "meanings_clear": true,
+        "answers_unique_by_substitution": true
+      },
+      "listening": {
+        "tasks": [
+          1,
+          5,
+          12
+        ],
+        "whole_phrase_tasks": true,
+        "prompts_neutral": true,
+        "answer_revealed_before_listening": [],
+        "option_sets_diagnostic": true,
+        "per_option_feedback_present": true,
+        "duplicate_feedback_keys": [],
+        "audio_quality_claimed": false
+      },
+      "retrieval": {
+        "support_fades": true,
+        "am_i_early_progression": [
+          1,
+          10,
+          14,
+          15
+        ],
+        "am_i_late_progression": [
+          2,
+          3
+        ],
+        "welcome_progression": [
+          5,
+          7,
+          17
+        ],
+        "final_reuses_known_material_with_less_support": true
+      },
+      "return_words": {
+        "welcome": {
+          "contacts": [
+            4,
+            5,
+            7,
+            9,
+            10,
+            12,
+            17
+          ],
+          "correct_uses": [
+            5,
+            7,
+            9,
+            12,
+            17
+          ],
+          "gloss_present": true
+        },
+        "here": {
+          "contacts": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            9,
+            12,
+            13,
+            16,
+            17
+          ],
+          "correct_uses": [
+            4,
+            5,
+            6,
+            7,
+            9,
+            12,
+            13,
+            16,
+            17
+          ],
+          "gloss_present": true
+        },
+        "early": {
+          "contacts": [
+            1,
+            4,
+            5,
+            8,
+            9,
+            10,
+            14,
+            15
+          ],
+          "correct_uses": [
+            1,
+            8,
+            9,
+            10,
+            14,
+            15
+          ],
+          "gloss_present": true
+        },
+        "late": {
+          "contacts": [
+            1,
+            2,
+            3,
+            9,
+            10,
+            11
+          ],
+          "correct_uses": [
+            2,
+            3,
+            9,
+            11
+          ],
+          "gloss_present": true
+        }
+      },
+      "scene_coherence": {
+        "continuous": true,
+        "contradictions": [],
+        "task_12_addresses_friend_not_learner": true,
+        "learner_welcome_uncertainty_preserved_for_final": true
+      },
+      "final_independence": {
+        "task_16": "I am here.",
+        "task_17": "Am I welcome here?",
+        "direct_answer_leak": false,
+        "independent_builder_with_extra_tile": true
+      },
+      "issues": [],
+      "exactFix": null,
+      "verdict": "PASS",
+      "verdict_reason": "S42 точно выполняет применение `Am I…?`, сохраняет границы и однозначность, возвращает все четыре слова с достаточной практикой и завершает сцену самостоятельным вопросом, ответ на который ранее не дан самому ученику."
+    }
+  ]
+}

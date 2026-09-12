@@ -1,0 +1,10 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "29cd9abe9f91b498cdbc320e62e44390b1a6833a4865af1a81519bce0c2e5eef",
+  "issues": [],
+  "verifiedDelta": [
+    "task 3 prompt нейтрален по полу и состоянию",
+    "task 7 prompt нейтрален по адресату и смыслу вопроса",
+    "других отличий final.ru.md от draft.ru.md нет"
+  ]
+}

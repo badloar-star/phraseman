@@ -1,0 +1,18 @@
+{
+  "session": "S47",
+  "sourceSha256": "6a75a6763c5dc1d0279bbc7ec28bbae1723ed96c0017863e73b10650ca47cf7e",
+  "verdict": "PASS",
+  "issues": [],
+  "verified": {
+    "politeAndRudeMeaningsAccurate": true,
+    "questionRequestsAnotherPersonsAssessment": true,
+    "statementVsQuestionDistinctionAccurate": true,
+    "iVsWeScopeAccurate": true,
+    "selfPraiseHumourDoesNotCreateAFalseClaim": true,
+    "introLengths": [
+      282,
+      277,
+      270
+    ]
+  }
+}

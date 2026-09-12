@@ -1,0 +1,14 @@
+{
+ "reviewer":"/root/audit100_catchup","model":"gpt-5.6-sol","reasoningEffort":"high",
+ "scope":"Repeated exact milestone100 sample; actual current RUUK content and pedagogical delta review. No actual audio or device/native release validation.",
+ "seed":"learning-v2-audit-100-2026-09-12","selection":"canonical ordinals51–100 sorted SHA256(seed+':'+key), first5",
+ "verdict":"PASS","blockCount":0,
+ "sessions":[
+ {"session":"en/l02/s20","sourceSha256":"6d438fd0a4a346bd426b201e98bdf0e8aa3febeac0951be2c2d694cb37b34cad","localeSha256":"e192db81d9b96285d7b11accc3f6b4a6b14c23be507f65ef0b7912f08a66117e","verdict":"PASS","evidence":"Task14 names station reference; all5requiredtiles present, where remains sole extra, no new grammar. RUUK prompts agree."},
+ {"session":"en/l02/s22","sourceSha256":"c4b3dc554941aea8e2000e4e1c925cc38b1c34520d2c5348d206e6f5f0d23817","localeSha256":"b932c9a6627f03d928e3f24705da201b20dd9ee41fee2dfa8b09873088a6cd36","verdict":"PASS","evidence":"Singular toilet matches it; task15 shopsnear uniquely agrees with two paces/samefloor; feedback accurately separates distance and floors."},
+ {"session":"en/l02/s27","sourceSha256":"e21f959ad22a3caa433cdde499af3acdbc64b527c77ae49b37631fdf1fc81c30","localeSha256":"fb45c205edf96a8a2e3aed9c1ce209d1ae3eae1c6030d3699311078d2d8f1829","verdict":"PASS","evidence":"Surprise at highprices propagated through tasks7,11,14,16,17; listening prompt neutral, no newforms/words."},
+ {"session":"en/l02/s29","sourceSha256":"b4498f8ef974e979773f986c1d953bc3f234d5584196bb658d20be493cd2cc3c","localeSha256":"f61254ed74dcc482081f091f5f78682c41ac065aadd35a6a5500ddc011f6c259","verdict":"PASS","evidence":"False blanketwhatbagclaim removed. Whichone explicitly planned; newonefinding withdrawn. Intro2 RU279 UK272."},
+ {"session":"en/l02/s39","sourceSha256":"840bbf0070d5ddcb47feb24259f84bf129923d59b99379ab6efdee794c911684","localeSha256":"f9a6834fef4e3a2e4b0075383202c495a8c29344388e420b7176e24d7638d9d1","verdict":"PASS","evidence":"Unchanged hashes match initial review."}
+ ],
+ "historicalNonPassReconciliation":"Separate follow-up requested for old S20/S22/S27 nonsense receipts; no refresh claimed by this artifact."
+}

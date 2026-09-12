@@ -1,0 +1,18 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "76336691cb70cd4f83b307ed62ddc3a8be5d16a7d69347a0a6b2eed5f39d5799",
+  "issues": [],
+  "checks": {
+    "languageFacts": "`polite` and `rude` meanings and all `Am I`/`I am`/`Are we` contrasts are accurate",
+    "sceneAndAddressees": "coherent; evaluations in tasks 8 and 10 concern the friend, while the learner's final self-evaluation remains unanswered",
+    "answersAndFeedback": "unique and contextually justified",
+    "tasks": 17,
+    "builders": 6,
+    "introLengths": [
+      265,
+      268,
+      262
+    ],
+    "audioQuality": "not assessed from transcripts"
+  }
+}

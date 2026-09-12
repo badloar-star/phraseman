@@ -1,0 +1,41 @@
+{
+  "sourceSha256": "ba5f00aba9f622237f81d29891e7c62a5fb7b125494d1426adac32cd425a5aeb",
+  "scope": "Text-only learner walkthrough. Heard text substitutes for audio; actual audio was not assessed.",
+  "introAnswers": {
+    "intro1": "Who is he?",
+    "intro2": "No, I am not.",
+    "intro3": "Am I wrong?"
+  },
+  "practiceAnswers": {
+    "1": "free",
+    "2": "am",
+    "3": "Who is she?",
+    "4": "She is the manager.",
+    "5": "is",
+    "6": "She is here.",
+    "7": "Are we ready?",
+    "8": "wrong",
+    "9": {
+      "manager": "руководитель",
+      "free": "свободен",
+      "here": "здесь",
+      "ready": "готов"
+    },
+    "10": "Excuse me. Are you ready?",
+    "11": "Whose is it?",
+    "12": "is",
+    "13": "What are the rules?",
+    "14": "Are the toilets here?",
+    "15": "I am wrong.",
+    "16": "Excuse me.",
+    "17": "Where are the toilets?"
+  },
+  "issues": [],
+  "verdict": "PASS",
+  "answerComparison": {
+    "intro": 3,
+    "practice": 17,
+    "matched": true,
+    "scope": "text only"
+  }
+}

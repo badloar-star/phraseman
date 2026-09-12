@@ -1,0 +1,128 @@
+{
+  "sourceSha256": "846c5331381709d5e2d542dbbfaad19c2600fcce8d7755397be42565409ff502",
+  "reviewer": "/root/s10_pedagogy",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "machineFactsHard": [],
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "earring",
+      "necklace",
+      "bracelet"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "silly": [],
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "earring",
+        "necklace",
+        "bracelet",
+        "vase"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "combinedBuilders": [
+      8,
+      11,
+      13,
+      15,
+      17
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "verdict": "PASS",
+  "verdict_reason": "The immediate-noun a/an contrast is exact; every keyed answer has a unique, scene-supported referent and no prompt reveals an audio answer.",
+  "actualAudioReviewed": false,
+  "previousReview": {
+    "sourceSha256": "49aff36a6e2fa8bd2e5d0d4b3856f1aecc562407b9aeefa46cad895d568d24f5",
+    "reviewer": "/root/s10_pedagogy",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": "medium",
+    "machineFactsHard": [],
+    "plan_fidelity": {
+      "operation_matches": true,
+      "new_words_match": [
+        "earring",
+        "necklace",
+        "bracelet"
+      ],
+      "missing": [],
+      "extra_grammar_smuggled": []
+    },
+    "answer_semantics": [],
+    "boundary": {
+      "unknown_in_explanations": [],
+      "unknown_in_targets": []
+    },
+    "traps": {
+      "silly": [],
+      "feedback_teaches_unknown_form": []
+    },
+    "feedback": {
+      "missing_per_option": [],
+      "duplicated": []
+    },
+    "structure": {
+      "task_count": 17,
+      "below_12": false,
+      "word_first_respected": true,
+      "support_fades": true,
+      "speed_match_boards": [
+        [
+          "earring",
+          "necklace",
+          "bracelet",
+          "vase"
+        ]
+      ],
+      "speed_match_overlap": false,
+      "repeated_targets": [],
+      "generic_instructions": [],
+      "combinedBuilders": [
+        8,
+        11,
+        13,
+        15,
+        17
+      ]
+    },
+    "time_references": [],
+    "cross_session_repeats": [],
+    "textbook_formulas": [],
+    "verdict": "PASS",
+    "verdict_reason": "The immediate-noun a/an contrast is exact; every keyed answer has a unique, scene-supported referent and no prompt reveals an audio answer.",
+    "actualAudioReviewed": false
+  },
+  "scope": "Initial whole review plus actual independent review of changed intro bodies",
+  "deltaReview": {
+    "sourceSha256": "846c5331381709d5e2d542dbbfaad19c2600fcce8d7755397be42565409ff502",
+    "comparisonBaseSha256": "49aff36a6e2fa8bd2e5d0d4b3856f1aecc562407b9aeefa46cad895d568d24f5",
+    "verdict": "PASS",
+    "evidence": "Actual boundedintro2/3deltaPASS: questions/options/practiceunchanged, eachbodygroundslinkedquestion, nofuture/newconstruct. Immediate noun a/an retained.",
+    "findings": []
+  }
+}

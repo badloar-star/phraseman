@@ -1,0 +1,29 @@
+{
+  "sourceSha256": "7394bfc8283282acfec8f9445347514911541c003a5066c9c2ec576039a3412b",
+  "reviewer": "/root/s22_taste",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "high",
+  "verdict": "REVISE",
+  "pairwise": "worse",
+  "voiceScore": 2,
+  "humor": {
+    "present": false,
+    "on_topic": false,
+    "examples": [],
+    "misfires": [
+      "Переписывать `bottle` для каждой бутылки не понадобится."
+    ]
+  },
+  "ai_text_or_nonsense": [
+    {
+      "where": "Интро 1",
+      "quote": "Переписывать `bottle` для каждой бутылки не понадобится.",
+      "why": "Artificial hypothetical action rather than actual learner temptation."
+    }
+  ],
+  "must_fix": [
+    "Rewrite one complete intro with natural language-based humour; remove artificial bottle-per-item claim.",
+    "Courier register concerns subject to second literal review."
+  ],
+  "verdict_reason": "Сессия ясная, связная и точная в карточках, инструкциях и feedback, но для обязательной серии L2/S33+ в ней нет подтверждаемого естественного юмора, а несколько реплик звучат как сухая фабричная заготовка."
+}

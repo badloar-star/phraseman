@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "проверка знакомых вопросов о людях, месте и принадлежности вещи",
+    "uk": "перевірка знайомих запитань про людей, місце й належність речі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ответом может быть роль",
+        "uk": "Відповіддю може бути роль"
+      },
+      "bodyByLocale": {
+        "ru": "`Who is she?` — «Кто она?» В ответ можно назвать имя, а можно объяснить, кем она работает: `She is the manager` — «Она руководитель». Ведь одно имя ещё не подскажет, кто руководит командой. Если хотите понять роль человека, такой ответ поможет продолжить знакомство.",
+        "uk": "`Who is she?` — «Хто вона?» У відповідь можна назвати ім’я або пояснити, ким вона працює: `She is the manager` — «Вона керівниця». Адже саме ім’я ще не підкаже, хто керує командою. Якщо хочете зрозуміти роль людини, така відповідь допоможе продовжити знайомство."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, кто женщина рядом с хозяином. Вы знаете, что она руководит его командой. Ответьте.",
+          "uk": "Друг запитує, хто жінка поруч із господарем. Ви знаєте, що вона керує його командою. Дайте відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-40:intro1:r1",
+              "text": "She is the manager."
+            },
+            {
+              "responseId": "en:lesson-02:session-40:intro1:r2",
+              "text": "She is the intern."
+            },
+            {
+              "responseId": "en:lesson-02:session-40:intro1:r3",
+              "text": "Where is the manager?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-40:intro1:r1",
+              "text": "She is the manager."
+            },
+            {
+              "responseId": "en:lesson-02:session-40:intro1:r2",
+              "text": "She is the intern."
+            },
+            {
+              "responseId": "en:lesson-02:session-40:intro1:r3",
+              "text": "Where is the manager?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, кто женщина рядом с хозяином. Вы знаете, что она руководит его командой. Ответьте.",
+          "uk": "Друг запитує, хто жінка поруч із господарем. Ви знаєте, що вона керує його командою. Дайте відповідь."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сразу о двоих",
+        "uk": "Одразу про двох"
+      },
+      "bodyByLocale": {
+        "ru": "`Who are these people?` — «Кто эти люди?» Здесь `these people` значит «эти люди». Их несколько, поэтому после `Who` ставим `are`. В ответ можно услышать `They are twins` — «Они близнецы». Вы спрашиваете сразу о двоих и можете узнать не только имена, но и что их связывает.",
+        "uk": "`Who are these people?` — «Хто ці люди?» Тут `these people` означає «ці люди». Їх кілька, тому після `Who` ставимо `are`. У відповідь можна почути `They are twins` — «Вони близнюки». Ви запитуєте одразу про двох і можете дізнатися не лише імена, а й що їх пов’язує."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "К хозяину подошли двое похожих людей. Вы хотите узнать у друга, кто они. Спросите.",
+          "uk": "До господаря підійшли двоє схожих людей. Ви хочете дізнатися в друга, хто вони. Запитайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-40:intro2:r1",
+              "text": "Who are these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:intro2:r2",
+              "text": "Who is these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:intro2:r3",
+              "text": "Where are these people?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-40:intro2:r1",
+              "text": "Who are these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:intro2:r2",
+              "text": "Who is these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:intro2:r3",
+              "text": "Where are these people?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "К хозяину подошли двое похожих людей. Вы хотите узнать у друга, кто они. Спросите.",
+          "uk": "До господаря підійшли двоє схожих людей. Ви хочете дізнатися в друга, хто вони. Запитайте."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кому вернуть вещь",
+        "uk": "Кому повернути річ"
+      },
+      "bodyByLocale": {
+        "ru": "`Whose is it?` — «Чьё это?» Покажите на одну вещь и задайте вопрос целиком. Владельцу нужен его шарф, а не ваш словарный запас: название вещи можно не произносить. Про куртку по-русски спросим «Чья она?», про шарф — «Чей он?». Здесь оставляем все три слова: `Whose is it?`",
+        "uk": "`Whose is it?` — «Чиє це?» Покажіть на одну річ і поставте запитання повністю. Власникові потрібен його шарф, а не ваш словниковий запас: назву речі можна не вимовляти. Українською про куртку запитаємо «Чия вона?», про шарф — «Чий він?». Тут залишаємо всі три слова: `Whose is it?`"
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы поднимаете шарф со стула и показываете новым знакомым. Спросите, чей он.",
+          "uk": "Ви піднімаєте шарф зі стільця й показуєте новим знайомим. Запитайте, чий він."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-40:intro3:r1",
+              "text": "Whose is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:intro3:r2",
+              "text": "Who is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:intro3:r3",
+              "text": "Whose it?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-40:intro3:r1",
+              "text": "Whose is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:intro3:r2",
+              "text": "Who is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-40:intro3:r3",
+              "text": "Whose it?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы поднимаете шарф со стула и показываете новым знакомым. Спросите, чей он.",
+          "uk": "Ви піднімаєте шарф зі стільця й показуєте новим знайомим. Запитайте, чий він."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ee69480e10039a376daac0fa0793f7930dc7ced2b5f0726e9273cae5edb9672f"
+}

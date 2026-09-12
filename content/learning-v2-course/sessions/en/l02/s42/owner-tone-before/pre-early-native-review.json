@@ -1,0 +1,14 @@
+{
+  "session": "S42",
+  "sourceSha256": "976d4a4a7b28c67f395e67c42914e288d79bdf3d1b2a648e1526f2db366e0393",
+  "localeSha256": "3feceff3810722ab15726befcf4af2749210c6f4369d3b0e26ad5e100433ee08",
+  "verdict": "PASS",
+  "issues": [],
+  "verifiedDelta": {
+    "headingUsesNeutralEarlierMeaning": true,
+    "translationDoesNotMeanTooEarly": true,
+    "promptUsesEarlierThanPlanned": true,
+    "lateDistractorFeedbackUsesEarlierThanPlanned": true,
+    "intro1Length": 308
+  }
+}

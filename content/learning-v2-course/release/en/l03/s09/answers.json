@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-09:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i02",
+    "correctText": "armchair",
+    "correctResponseId": "en:lesson-03:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i04",
+    "correctText": "oven",
+    "correctResponseId": "en:lesson-03:session-09:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i06",
+    "correctText": "umbrella",
+    "correctResponseId": "en:lesson-03:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i07",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-09:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i08",
+    "correctText": "An armchair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i11",
+    "correctText": "It is an oven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i12",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-03:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i13",
+    "correctText": "Is it an armchair?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i14",
+    "correctText": "Is it an oven?",
+    "correctResponseId": "en:lesson-03:session-09:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i15",
+    "correctText": "It is not an oven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i16",
+    "correctText": "It is a lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-09:i17",
+    "correctText": "It is an umbrella.",
+    "correctResponseId": null
+  }
+]

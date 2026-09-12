@@ -1,0 +1,13 @@
+{
+  "sourceSha256": "95dade58bfe157a73a3847ef22b44473ec9ed51790fdbd5ed771e7bb6bd84df6",
+  "deltaOnly": true,
+  "introAnswers": {
+    "intro1": "Who is he?",
+    "intro2": "Who is she?",
+    "intro3": "Who is the host?"
+  },
+  "confusion": [],
+  "verdict": "PASS",
+  "baselineReview": "owner-tone-before/final.judge_learner.json",
+  "unchangedPracticeVerified": true
+}

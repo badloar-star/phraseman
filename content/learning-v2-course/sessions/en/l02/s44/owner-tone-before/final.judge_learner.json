@@ -1,0 +1,147 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "03396c947f1e57c7a45fd90056b34e49ec6a0c6ab6f3f487008202a2448f2088",
+  "fullReview": {
+    "session": "en/l02/s44",
+    "scope": "Text-only simulation. Supplied transcripts stand in for audio; playback and audio quality were not assessed.",
+    "walkthrough": [
+      {
+        "step": "intro1",
+        "answer": "Am I ready?"
+      },
+      {
+        "step": "intro2",
+        "answer": "Are we late?"
+      },
+      {
+        "step": "intro3",
+        "answer": "Are we ready?"
+      },
+      {
+        "step": 1,
+        "answer": "Am I ready?"
+      },
+      {
+        "step": 2,
+        "answer": "I",
+        "completed_phrase": "Am I ready?"
+      },
+      {
+        "step": 3,
+        "answer": "Are we late?"
+      },
+      {
+        "step": 4,
+        "answer": "I am not sure."
+      },
+      {
+        "step": 5,
+        "answer": "sure",
+        "completed_phrase": "I am sure."
+      },
+      {
+        "step": 6,
+        "answer": "I am ready."
+      },
+      {
+        "step": 7,
+        "answer": "Are we early?"
+      },
+      {
+        "step": 8,
+        "answer": "early",
+        "completed_phrase": "Are we early?"
+      },
+      {
+        "step": 9,
+        "answer": {
+          "sure": "уверен",
+          "ready": "готов",
+          "late": "опаздываю",
+          "early": "рано"
+        }
+      },
+      {
+        "step": 10,
+        "answer": "You are not late."
+      },
+      {
+        "step": 11,
+        "answer": "Am I ready?"
+      },
+      {
+        "step": 12,
+        "answer": "we",
+        "completed_phrase": "Are we early?"
+      },
+      {
+        "step": 13,
+        "answer": "Are you sure?"
+      },
+      {
+        "step": 14,
+        "answer": "Are we ready?"
+      },
+      {
+        "step": 15,
+        "answer": "Are we early?"
+      },
+      {
+        "step": 16,
+        "answer": "I am ready."
+      },
+      {
+        "step": 17,
+        "answer": "Are we ready?"
+      }
+    ],
+    "learned_or_reinforced": [
+      "Am I ready? как вопрос о собственной готовности.",
+      "Различие I и we: Am I ready? / Are we ready? / Are we late?",
+      "Повторение sure, early, late и ready в одной последовательной сцене выхода."
+    ],
+    "ambiguities": [],
+    "verdict": "PASS"
+  },
+  "deltaReviews": [
+    {
+      "session": "en/l02/s44",
+      "scope": "Delta review of intro2 only.",
+      "answer": "Are we late?",
+      "ambiguity": null,
+      "verdict": "PASS"
+    },
+    {
+      "session": "en/l02/s44",
+      "scope": "Delta review of steps 8, 12, and 15 only.",
+      "answers": [
+        {
+          "step": 8,
+          "answer": "early",
+          "completed_phrase": "Are we early?"
+        },
+        {
+          "step": 12,
+          "answer": "we",
+          "completed_phrase": "Are we early?"
+        },
+        {
+          "step": 15,
+          "answer": "Are we early?"
+        }
+      ],
+      "ambiguities": [],
+      "verdict": "PASS"
+    },
+    {
+      "session": "en/l02/s44",
+      "answer": "we",
+      "completed_phrase": "Are we early?",
+      "ambiguity": null,
+      "verdict": "PASS"
+    }
+  ],
+  "checkedIntro": 3,
+  "checkedTasks": 17,
+  "audio": "text simulation only"
+}

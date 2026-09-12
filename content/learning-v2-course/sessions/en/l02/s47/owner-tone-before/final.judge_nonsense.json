@@ -1,0 +1,32 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "5de3323ec67604c19569355b98d01f5a79ac7a5d4bfd52d17df059237ae7aeee",
+  "issues": [],
+  "verifiedDelta": "Задание 16 теперь явно объясняет `sorry` как «извините»; контекст столкновения, целевая фраза `I am sorry.` и остальные ответы не изменены.",
+  "priorReviews": [
+    {
+      "verdict": "PASS",
+      "sourceSha256": "76336691cb70cd4f83b307ed62ddc3a8be5d16a7d69347a0a6b2eed5f39d5799",
+      "issues": [],
+      "checks": {
+        "languageFacts": "`polite` and `rude` meanings and all `Am I`/`I am`/`Are we` contrasts are accurate",
+        "sceneAndAddressees": "coherent; evaluations in tasks 8 and 10 concern the friend, while the learner's final self-evaluation remains unanswered",
+        "answersAndFeedback": "unique and contextually justified",
+        "tasks": 17,
+        "builders": 6,
+        "introLengths": [
+          265,
+          268,
+          262
+        ],
+        "audioQuality": "not assessed from transcripts"
+      }
+    },
+    {
+      "verdict": "PASS",
+      "sourceSha256": "11325ab8fe197ac3529a22a8ace5e604a6d0eefa4393e11c19e5b72dcf9c6bc6",
+      "issues": [],
+      "verifiedDelta": "Инструкция задания 12 теперь нейтральна: она не раскрывает ни вопросительную форму, ни мотив реплики до прослушивания. Варианты сохраняют однозначное различение `Am I ready?`, `I am ready.` и `Are we ready?`."
+    }
+  ]
+}

@@ -1,0 +1,992 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-10:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — kettle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-10:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — kettle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-10:i01:audio",
+          "transcript": "kettle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-10:i01:r1",
+            "targetText": "kettle",
+            "meaningByLocale": {
+              "ru": "«чайник». В нём кипятят воду; за ручку держат, через носик наливают.",
+              "uk": "«чайник». У ньому кип’ятять воду; тримають за ручку, а наливають через носик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kettle",
+          "definitionByLocale": {
+            "ru": "«чайник». В нём кипятят воду; за ручку держат, через носик наливают.",
+            "uk": "«чайник». У ньому кип’ятять воду; тримають за ручку, а наливають через носик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс продавец",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-10:i02:r1",
+          "text": "kettle"
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i02:r2",
+          "text": "metal"
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i02:r3",
+          "text": "settle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс продавец",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-10:i02:audio",
+          "transcript": "kettle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-10:i02:r1",
+            "targetText": "kettle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i02:r2",
+            "targetText": "metal",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i02:r3",
+            "targetText": "settle",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`metal` — «металл». Начало похоже, но первым звучит «м». В записи слышно «к»: `kettle`.",
+              "uk": "`metal` — «метал». Початок подібний, але першим звучить «м». У записі чути «к»: `kettle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`settle` — «уладить». В начале слышно «с», а в `kettle` — «к». Дальше слова звучат похоже, поэтому слушайте начало.",
+              "uk": "`settle` — «владнати». На початку чути «с», а в `kettle` — «к». Далі слова схожі на слух, тому слухайте початок."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — toaster",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-10:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — toaster",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-10:i03:audio",
+          "transcript": "toaster"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-10:i03:r1",
+            "targetText": "toaster",
+            "meaningByLocale": {
+              "ru": "«тостер». Прибор, который поджаривает ломтики хлеба.",
+              "uk": "«тостер». Прилад, який підсмажує скибочки хліба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toaster",
+          "definitionByLocale": {
+            "ru": "«тостер». Прибор, который поджаривает ломтики хлеба.",
+            "uk": "«тостер». Прилад, який підсмажує скибочки хліба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово сказал друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-10:i04:r1",
+          "text": "toaster"
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i04:r2",
+          "text": "poster"
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i04:r3",
+          "text": "coaster"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-10:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово сказал друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-10:i04:audio",
+          "transcript": "toaster"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-10:i04:r1",
+            "targetText": "toaster",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i04:r2",
+            "targetText": "poster",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i04:r3",
+            "targetText": "coaster",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-10:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`poster` — «плакат». В начале у него «п», а у `toaster` — «т». Остальная часть звучит похоже.",
+              "uk": "`poster` — «плакат». На початку в ньому «п», а в `toaster` — «т». Решта слова звучить подібно."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`coaster` — «подставка под стакан». Сначала слышно «к», а в записи слово начинается с «т»: `toaster`.",
+              "uk": "`coaster` — «підставка під склянку». Спершу чути «к», а в записі слово починається з «т»: `toaster`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите короткое название — продавец спрашивает, что вам показать; ответьте двумя словами «чайник»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-10:i05:r1",
+          "text": "An"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите короткое название — продавец спрашивает, что вам показать; ответьте двумя словами «чайник»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "A kettle.",
+        "localizedMeaning": {
+          "ru": "Соберите короткое название — продавец спрашивает, что вам показать; ответьте двумя словами «чайник»",
+          "uk": "Складіть коротку назву — продавець питає, що вам показати; дайте відповідь двома словами «чайник»"
+        },
+        "orderedTokens": [
+          "A",
+          "kettle"
+        ],
+        "authoredDistractorTokens": [
+          "An"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-10:i05:r1",
+            "correct": false,
+            "testedDimension": "Соберите короткое название — продавец сп",
+            "feedbackByLocale": {
+              "ru": "Для короткого названия тоже выбираем по первому звуку: в `kettle` он согласный, поэтому нужно `A`.",
+              "uk": "Для короткої назви теж обираємо за першим звуком: у `kettle` він приголосний, тому потрібне `A`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — vacuum",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-10:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — vacuum",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-10:i06:audio",
+          "transcript": "vacuum"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-10:i06:r1",
+            "targetText": "vacuum",
+            "meaningByLocale": {
+              "ru": "«пылесос». Прибор, который втягивает воздух вместе с пылью и мелким мусором.",
+              "uk": "«пилосос». Прилад, який втягує повітря разом із пилом і дрібним сміттям."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vacuum",
+          "definitionByLocale": {
+            "ru": "«пылесос». Прибор, который втягивает воздух вместе с пылью и мелким мусором.",
+            "uk": "«пилосос». Прилад, який втягує повітря разом із пилом і дрібним сміттям."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс продавец",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-10:i07:r1",
+          "text": "vacuum"
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i07:r2",
+          "text": "vacuous"
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i07:r3",
+          "text": "volume"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-10:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс продавец",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-10:i07:audio",
+          "transcript": "vacuum"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-10:i07:r1",
+            "targetText": "vacuum",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i07:r2",
+            "targetText": "vacuous",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i07:r3",
+            "targetText": "volume",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-10:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`vacuous` — «бессодержательный». Начало похоже, но в конце у него «с», а у `vacuum` — «м». Дослушайте слово.",
+              "uk": "`vacuous` — «беззмістовний». Початок схожий, але наприкінці в ньому чути «с», а у `vacuum` — «м». Дослухайте слово до кінця."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`volume` — «громкость». В середине у него слышно «л», а у `vacuum` — «к». Общее начало на «в» ещё не даёт ответа.",
+              "uk": "`volume` — «гучність». Усередині чути «л», а у `vacuum` — «к». Спільний початок на «в» ще не дає відповіді."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друг показывает на духовку в соседнем ряду; назовите её полной фразой (`oven` — «духовка»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-10:i08:r1",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i08:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i08:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друг показывает на духовку в соседнем ряду; назовите её полной фразой (`oven` — «духовка»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг показывает на духовку в соседнем ряду; назовите её полной фразой (`oven` — «духовка»)",
+          "uk": "Вставте слово — друг показує на духовку в сусідньому ряду; назвіть її повною фразою (`oven` — «духовка»)"
+        },
+        "gappedTargetPhrase": "It is ___ oven.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i08:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i08:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i08:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг показывает на духо",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг показывает на духо",
+            "feedbackByLocale": {
+              "ru": "В `oven` первый звук гласный, поэтому перед этим названием выбираем `an`.",
+              "uk": "У `oven` перший звук голосний, тому перед цією назвою обираємо `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг показывает на духо",
+            "feedbackByLocale": {
+              "ru": "`is` уже стоит после `It`. Сейчас не хватает маленького слова перед `oven`: здесь это `an`.",
+              "uk": "`is` уже стоїть після `It`. Зараз бракує маленького слова перед `oven`: тут це `an`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друг показывает на пылесос; назовите его полной фразой",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-10:i09:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i09:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друг показывает на пылесос; назовите его полной фразой",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг показывает на пылесос; назовите его полной фразой",
+          "uk": "Вставте слово — друг показує на пилосос; назвіть його повною фразою"
+        },
+        "gappedTargetPhrase": "It is ___ vacuum.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i09:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i09:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг показывает на пыле",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг показывает на пыле",
+            "feedbackByLocale": {
+              "ru": "Первый звук в `vacuum` согласный. Перед этим названием нужно `a`, как в `a kettle`.",
+              "uk": "Перший звук у `vacuum` приголосний. Перед цією назвою потрібне `a`, як у `a kettle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг показывает на пыле",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`. Здесь уже есть начало `It is`, а дальше нужно название `a vacuum`.",
+              "uk": "`am` уживаємо з `I`. Тут уже є початок `It is`, а далі потрібна назва `a vacuum`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините названия с русскими значениями — товары в отделе техники",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините названия с русскими значениями — товары в отделе техники",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-10:i10:p1",
+            "target": "kettle",
+            "meaningByLocale": {
+              "ru": "чайник",
+              "uk": "чайник"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-10:i10:p2",
+            "target": "toaster",
+            "meaningByLocale": {
+              "ru": "тостер",
+              "uk": "тостер"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-10:i10:p3",
+            "target": "vacuum",
+            "meaningByLocale": {
+              "ru": "пылесос",
+              "uk": "пилосос"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-10:i10:p4",
+            "target": "oven",
+            "meaningByLocale": {
+              "ru": "духовка",
+              "uk": "духовка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "kettle",
+          "toaster",
+          "vacuum",
+          "oven"
+        ],
+        "rightColumn": [
+          "чайник",
+          "тостер",
+          "пылесос",
+          "духовка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — продавец говорит о приборе",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-10:i11:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — продавец говорит о приборе",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-10:i11:audio",
+          "transcript": "It is a toaster."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is a toaster.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "toaster"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-10:i11:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — продавец говорит",
+            "feedbackByLocale": {
+              "ru": "Перед `toaster` в записи звучит `a`: название начинается с согласного «т». Плитка `an` лишняя.",
+              "uk": "Перед `toaster` у записі звучить `a`: назва починається з приголосного «т». Плитка `an` зайва."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у отдела стоит кресло для покупателей; назовите его полной фразой (`armchair` — «кресло»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-10:i12:r1",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i12:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у отдела стоит кресло для покупателей; назовите его полной фразой (`armchair` — «кресло»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у отдела стоит кресло для покупателей; назовите его полной фразой (`armchair` — «кресло»)",
+          "uk": "Вставте слово — біля відділу стоїть крісло для покупців; назвіть його повною фразою (`armchair` — «крісло»)"
+        },
+        "gappedTargetPhrase": "It is ___ armchair.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-10:i12:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i12:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у отдела стоит кресло д",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у отдела стоит кресло д",
+            "feedbackByLocale": {
+              "ru": "Первый звук в `armchair` гласный. Перед этим названием нужно `an`, хотя кресло, как и чайник, одно.",
+              "uk": "Перший звук у `armchair` голосний. Перед цією назвою потрібне `an`, хоча крісло, як і чайник, одне."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у отдела стоит кресло д",
+            "feedbackByLocale": {
+              "ru": "`am` не ставим перед названием кресла. После `It is` здесь идёт `an armchair`.",
+              "uk": "`am` не ставимо перед назвою крісла. Після `It is` тут іде `an armchair`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите вопрос — друг заметил другой прибор с носиком; уточните «Это чайник?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-10:i13:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите вопрос — друг заметил другой прибор с носиком; уточните «Это чайник?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it a kettle?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — друг заметил другой прибор с носиком; уточните «Это чайник?»",
+          "uk": "Складіть питання — друг помітив інший прилад з носиком; уточніть «Це чайник?»"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "kettle"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-10:i13:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос — друг заметил другой пр",
+            "feedbackByLocale": {
+              "ru": "Начните вопрос с `Is it`. Перед `kettle` оставьте `a`: первый звук названия согласный.",
+              "uk": "Почніть питання з `Is it`. Перед `kettle` лишіть `a`: перший звук назви приголосний."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — что сказал продавец другу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-10:i14:r1",
+          "text": "It is not a vacuum."
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i14:r2",
+          "text": "It is a vacuum."
+        },
+        {
+          "responseId": "en:lesson-03:session-10:i14:r3",
+          "text": "It is not a toaster."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — что сказал продавец другу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-10:i14:audio",
+          "transcript": "It is not a vacuum."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-10:i14:r1",
+            "targetText": "It is not a vacuum.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i14:r2",
+            "targetText": "It is a vacuum.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i14:r3",
+            "targetText": "It is not a toaster.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-10:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что сказал прода",
+            "feedbackByLocale": {
+              "ru": "В этом варианте после `is` сразу идёт `a`. В записи между ними слышно `not`: продавец отрицает название.",
+              "uk": "У цьому варіанті після `is` одразу стоїть `a`. У записі між ними чути `not`: продавець заперечує назву."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-10:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что сказал прода",
+            "feedbackByLocale": {
+              "ru": "Начало совпадает, но в конце записи звучит `vacuum`, с «в» в начале. У `toaster` первым был бы звук «т».",
+              "uk": "Початок збігається, але наприкінці запису звучить `vacuum`, з «в» на початку. У `toaster` першим був би звук «т»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите отрицание — друг принял маленькую духовку за тостер; поправьте его: «Это не тостер»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-10:i15:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите отрицание — друг принял маленькую духовку за тостер; поправьте его: «Это не тостер»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is not a toaster.",
+        "localizedMeaning": {
+          "ru": "Соберите отрицание — друг принял маленькую духовку за тостер; поправьте его: «Это не тостер»",
+          "uk": "Складіть заперечення — друг прийняв маленьку духовку за тостер; виправте його: «Це не тостер»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "a",
+          "toaster"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-10:i15:r1",
+            "correct": false,
+            "testedDimension": "Соберите отрицание — друг принял маленьк",
+            "feedbackByLocale": {
+              "ru": "После `It is not` нужно `a toaster`: название начинается с согласного звука. Отрицание не требует замены `a` на `an`.",
+              "uk": "Після `It is not` потрібне `a toaster`: назва починається з приголосного звуку. Заперечення не змінює `a` на `an`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — друг заметил сиденье за стойкой продавца; уточните «Это кресло?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — друг заметил сиденье за стойкой продавца; уточните «Это кресло?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-10:i16:audio",
+          "transcript": "Is it an armchair?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is it an armchair?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-10:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу самостоятельно — продавец достал пылесос из коробки; друг спрашивает, что это, назовите предмет полной фразой",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-10:i17:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу самостоятельно — продавец достал пылесос из коробки; друг спрашивает, что это, назовите предмет полной фразой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a vacuum.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — продавец достал пылесос из коробки; друг спрашивает, что это, назовите предмет полной фразой",
+          "uk": "Складіть фразу самостійно — продавець дістав пилосос із коробки; друг питає, що це, назвіть предмет повною фразою"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "vacuum"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-10:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — продавец",
+            "feedbackByLocale": {
+              "ru": "Соберите начало `It is`, затем название `a vacuum`: оно начинается с согласного звука.",
+              "uk": "Складіть початок `It is`, а потім назву `a vacuum`: вона починається з приголосного звуку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "59aac64974138afb8bdc66ade6a21f3a1c556ff3d97840a7a93444f51b99a611"
+}

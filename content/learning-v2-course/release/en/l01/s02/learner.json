@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-02:i02:r1",
+            "responseId": "en:lesson-01:session-02:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — tired",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-02:i02:r2",
+            "responseId": "en:lesson-01:session-02:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — tired",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-02:i04:r1",
+            "responseId": "en:lesson-01:session-02:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — busy",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-02:i04:r2",
+            "responseId": "en:lesson-01:session-02:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — busy",
             "feedbackByLocale": {
@@ -448,7 +448,7 @@
         "testedDimension": "Вставьте слово — вас зовут пить кофе, а ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-02:i08:r1",
+            "responseId": "en:lesson-01:session-02:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вас зовут пить кофе, а ",
             "feedbackByLocale": {
@@ -457,7 +457,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-02:i08:r2",
+            "responseId": "en:lesson-01:session-02:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вас зовут пить кофе, а ",
             "feedbackByLocale": {
@@ -517,7 +517,7 @@
         "testedDimension": "Вставьте скрепку — вы извиняетесь перед ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-02:i09:r1",
+            "responseId": "en:lesson-01:session-02:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вы извиняетесь перед ",
             "feedbackByLocale": {
@@ -526,7 +526,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-02:i09:r2",
+            "responseId": "en:lesson-01:session-02:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вы извиняетесь перед ",
             "feedbackByLocale": {
@@ -649,7 +649,7 @@
         "testedDimension": "Вспомните начало дня — вы вошли вовремя,",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-02:i12:r1",
+            "responseId": "en:lesson-01:session-02:i12:r2",
             "correct": false,
             "testedDimension": "Вспомните начало дня — вы вошли вовремя,",
             "feedbackByLocale": {
@@ -658,7 +658,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-02:i12:r2",
+            "responseId": "en:lesson-01:session-02:i12:r3",
             "correct": false,
             "testedDimension": "Вспомните начало дня — вы вошли вовремя,",
             "feedbackByLocale": {

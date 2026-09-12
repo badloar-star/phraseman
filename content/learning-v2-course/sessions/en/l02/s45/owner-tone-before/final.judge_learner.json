@@ -1,0 +1,114 @@
+{
+  "session": "en/l02/s45",
+  "sourceSha256": "fd65a613457ba0361cccb09ffd7b8a2b24e780c5e23bf454e09623ca4aecd59a",
+  "walkthrough": [
+    {
+      "step": 5,
+      "answer": "Am I late?"
+    },
+    {
+      "step": 10,
+      "answer": "here",
+      "completed_phrase": "I am here."
+    }
+  ],
+  "continuity_with_steps_11_and_17": "PASS",
+  "issues": [],
+  "verdict": "PASS",
+  "priorReviews": [
+    {
+      "session": "en/l02/s45",
+      "sourceSha256": "f0405e8292d134e2161333a0a310697db54802e7258ba3e5ce2e53a406e8609a",
+      "scope": "Text-only learner simulation. Supplied transcripts replace audio content; audio quality and playback were not assessed.",
+      "walkthrough": [
+        {
+          "step": "intro1",
+          "answer": "Am I late?"
+        },
+        {
+          "step": "intro2",
+          "answer": "I am late."
+        },
+        {
+          "step": "intro3",
+          "answer": "I am not late."
+        },
+        {
+          "step": 1,
+          "answer": "Am I late?"
+        },
+        {
+          "step": 2,
+          "answer": "early"
+        },
+        {
+          "step": 3,
+          "answer": "Am I early?"
+        },
+        {
+          "step": 4,
+          "answer": "I am late."
+        },
+        {
+          "step": 5,
+          "answer": "Am I late?"
+        },
+        {
+          "step": 6,
+          "answer": "sure"
+        },
+        {
+          "step": 7,
+          "answer": "Am I wrong?"
+        },
+        {
+          "step": 8,
+          "answer": "I am not sure."
+        },
+        {
+          "step": 9,
+          "answer": {
+            "here": "здесь",
+            "early": "рано",
+            "sure": "уверен",
+            "late": "опоздал"
+          }
+        },
+        {
+          "step": 10,
+          "answer": "here"
+        },
+        {
+          "step": 11,
+          "answer": "Are you ready?"
+        },
+        {
+          "step": 12,
+          "answer": "Am"
+        },
+        {
+          "step": 13,
+          "answer": "We are here."
+        },
+        {
+          "step": 14,
+          "answer": "wrong"
+        },
+        {
+          "step": 15,
+          "answer": "I am not sure."
+        },
+        {
+          "step": 16,
+          "answer": "Am I late?"
+        },
+        {
+          "step": 17,
+          "answer": "I am not late."
+        }
+      ],
+      "issues": [],
+      "verdict": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "sourceSha256": "b359c831e0a98a3195b604202d96d2c349735b668f5fff96a6c6215e50473802",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "It is a chair."
+    },
+    {
+      "step": 2,
+      "answer": "It is a table."
+    },
+    {
+      "step": 3,
+      "answer": "It is a lamp."
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "acknowledgeword: chair"
+    },
+    {
+      "step": 2,
+      "answer": "chair"
+    },
+    {
+      "step": 3,
+      "answer": "acknowledgeword: table"
+    },
+    {
+      "step": 4,
+      "answer": "table"
+    },
+    {
+      "step": 5,
+      "answer": "A chair."
+    },
+    {
+      "step": 6,
+      "answer": "acknowledgeword: lamp"
+    },
+    {
+      "step": 7,
+      "answer": "lamp"
+    },
+    {
+      "step": 8,
+      "answer": "It is a table."
+    },
+    {
+      "step": 9,
+      "answer": "It is a flat."
+    },
+    {
+      "step": 10,
+      "answer": "It is a lamp."
+    },
+    {
+      "step": 11,
+      "answer": "lamp:лампа; table:стол; chair:стул; flat:квартира"
+    },
+    {
+      "step": 12,
+      "answer": "is a"
+    },
+    {
+      "step": 13,
+      "answer": "Is it a lamp?"
+    },
+    {
+      "step": 14,
+      "answer": "is"
+    },
+    {
+      "step": 15,
+      "answer": "Is it ready?"
+    },
+    {
+      "step": 16,
+      "answer": "It is a table."
+    },
+    {
+      "step": 17,
+      "answer": "It is not a lamp."
+    }
+  ],
+  "confusions": [],
+  "verdict": "PASS",
+  "answerComparison": {
+    "intro": 3,
+    "practice": 17,
+    "matched": true,
+    "scope": "text only; current absolute-path private projection"
+  }
+}

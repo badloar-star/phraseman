@@ -1,0 +1,46 @@
+{
+  "sourceSha256": "6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b",
+  "localeSha256": {
+    "uk": "eea2735196539aec0ad2efa83b91612051009cba5d784a186c7af3fb919814fe"
+  },
+  "locales": {
+    "uk": {
+      "sourceSha256": "6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b",
+      "localeSha256": "eea2735196539aec0ad2efa83b91612051009cba5d784a186c7af3fb919814fe",
+      "nativeAndLocalPreviewVerdict": "PASS",
+      "appExportVerdict": "INCOMPATIBLE_UNRESOLVED",
+      "issues": [
+        {
+          "scope": "future app integration",
+          "severity": "BLOCK",
+          "status": "retained",
+          "problem": "Generated speed_match leftColumn/rightColumn contain visible strings rather than pairId values. The native app mode expects pair IDs and would throw when resolving them.",
+          "currentRequestedScopeImpact": "None: the local mockup constructs both columns directly from pairGrid and correctly localizes meaningByLocale.uk."
+        }
+      ],
+      "checks": {
+        "threeNativeFixesPresentExactly": true,
+        "ukrainianNowNatural": true,
+        "genderContrastCorrect": true,
+        "localPairGridLabels": [
+          "sofa — диван",
+          "bed — ліжко",
+          "desk — письмовий стіл",
+          "table — стіл"
+        ],
+        "localPairGridLabelsCorrect": true,
+        "englishTargetsOptionsTilesAndOrderUnchanged": true,
+        "orderedEnglishCodeSpanCount": 120,
+        "introBodyLengthsIncludingMarkup": [
+          253,
+          223,
+          264
+        ],
+        "actualAudioReviewed": false,
+        "visualReviewPerformed": false
+      },
+      "verdict": "PASS",
+      "verdictScope": "Native Ukrainian and current local mockup only; not app export"
+    }
+  }
+}

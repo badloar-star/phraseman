@@ -1,0 +1,50 @@
+{
+  "pages": [
+    {
+      "page": 1,
+      "retelling": "Чтобы узнать, кто перед вами, нужно спросить «Who is he?», а чтобы узнать владельца вещи — «Whose is it?».",
+      "what_i_do_now": "О человеке я спрошу «Who is he?», а о принадлежности вещи — «Whose is it?».",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 2,
+      "retelling": "Вопрос «Whose is it?» подходит для любой показанной вещи, даже если я не знаю её английского названия.",
+      "what_i_do_now": "Я покажу на вещь и спрошу «Whose is it?», не меняя вопрос из-за рода русского слова.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 3,
+      "retelling": "О нескольких людях спрашивают «Who are these people?»: для людей нужно «Who», а из-за множественного числа — «are».",
+      "what_i_do_now": "Увидев группу незнакомых людей, я спрошу «Who are these people?», а не использую «Whose» или «is».",
+      "understood": true,
+      "problems": []
+    }
+  ],
+  "pages_understood": 3,
+  "verdict": "PASS",
+  "verdict_reason": "Все три страницы понятны после одного чтения: каждая объясняет одну разницу, сразу показывает английскую фразу с её смыслом и даёт конкретный способ выбрать нужный вопрос.",
+  "sourceSha256": "ad0183db5fd0a3fe68020a2dcd9312139bf303bb59b21c68385a0632083b86d5",
+  "reviewedAt": "2026-09-08T09:54:00.827382+00:00",
+  "reviewMethod": "builtin_codex_independent_role_with_targeted_delta_review",
+  "deltaReview": {
+    "verdict": "PASS",
+    "sourceSHA": "b401b25161766921b8072362f4b463739ba0514c7b6d6ac0e9ef8ddc5c796145",
+    "intro_pages_identical": true,
+    "prior_review_still_valid": true
+  },
+  "previousSourceSha256": "b401b25161766921b8072362f4b463739ba0514c7b6d6ac0e9ef8ddc5c796145",
+  "listeningRepairReview": {
+    "session": 37,
+    "verdict": "PASS",
+    "sourceSha256": "ad0183db5fd0a3fe68020a2dcd9312139bf303bb59b21c68385a0632083b86d5",
+    "hashMatch": true,
+    "blocksReviewed": [
+      4,
+      7
+    ],
+    "reason": "Strangers/rangers/dangers и twins/pins/sins сравниваются по началу слова; feedback понятен и привязан к конкретному варианту. До прослушивания правильный ответ не описан.",
+    "issues": []
+  }
+}

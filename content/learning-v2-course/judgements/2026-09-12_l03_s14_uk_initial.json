@@ -1,0 +1,38 @@
+{
+  "sourceSha256": "07f2eedf12eea831703f2c51d5e2c07b0b70e95590eeb74d79251afb06a9bc9b",
+  "localeSha256": {
+    "uk": "86ee04aa9b02481a12e52e2e20cfd78b78f28e3b09a7c956bafa509e04433028"
+  },
+  "reviewer": "/root/s10_uk_native",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "verdict": "REVISE",
+  "locales": {
+    "uk": {
+      "verdict": "REVISE",
+      "problems": [
+        {
+          "quote": "Вийшов переклад по одному слову.",
+          "fix": "Вийшов переклад слово за словом."
+        },
+        {
+          "quote": "наприклад із сиром",
+          "fix": "наприклад, із сиром",
+          "locations": [
+            "card",
+            "new_words"
+          ]
+        },
+        {
+          "quote": "голосний перехід до іншого звучання",
+          "fix": "голосний ковзає від одного звучання до іншого"
+        },
+        {
+          "quote": "що трапилося в кафе",
+          "fix": "що ви побачили в кафе"
+        }
+      ]
+    }
+  },
+  "remainingSource": "English skeleton unchanged; intro 249/213/258, definitions/count/article boundaries and humour PASS. Audio not reviewed."
+}

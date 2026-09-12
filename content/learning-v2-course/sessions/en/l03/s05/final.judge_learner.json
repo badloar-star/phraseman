@@ -1,0 +1,102 @@
+{
+  "sourceSha256": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+  "scope": "Blind text walkthrough. Known prior vocabulary. Transcripts substitute sound; actual audio not assessed. No answer key or feedback. Practice numbered 1 through 17.",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "It is a wall."
+    },
+    {
+      "step": 2,
+      "answer": "It is a floor."
+    },
+    {
+      "step": 3,
+      "answer": "It is a ceiling."
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "Acknowledged: wall"
+    },
+    {
+      "step": 2,
+      "answer": "wall"
+    },
+    {
+      "step": 3,
+      "answer": "Acknowledged: floor"
+    },
+    {
+      "step": 4,
+      "answer": "floor"
+    },
+    {
+      "step": 5,
+      "answer": "It is a wall."
+    },
+    {
+      "step": 6,
+      "answer": "Acknowledged: ceiling"
+    },
+    {
+      "step": 7,
+      "answer": "ceiling"
+    },
+    {
+      "step": 8,
+      "answer": "A ceiling."
+    },
+    {
+      "step": 9,
+      "answer": "It is a door."
+    },
+    {
+      "step": 10,
+      "answer": "Is it a floor?"
+    },
+    {
+      "step": 11,
+      "answer": {
+        "ceiling": "потолок",
+        "wall": "стена",
+        "door": "дверь",
+        "floor": "пол"
+      }
+    },
+    {
+      "step": 12,
+      "answer": "is"
+    },
+    {
+      "step": 13,
+      "answer": "It is not a wall."
+    },
+    {
+      "step": 14,
+      "answer": "is a"
+    },
+    {
+      "step": 15,
+      "answer": "Is it clean?"
+    },
+    {
+      "step": 16,
+      "answer": "It is a floor."
+    },
+    {
+      "step": 17,
+      "answer": "Is it a ceiling?"
+    }
+  ],
+  "ambiguities": [],
+  "leaks": [],
+  "verdict": "PASS",
+  "answerComparison": {
+    "intro": 3,
+    "practice": 17,
+    "matched": true,
+    "scope": "text only; current absolute-path private projection"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "session": "en/l02/s48",
+  "sourceSha256": "ef28da4cde35359def90e62637a2bbdbfaa2873b1a67630a2298d017445db936",
+  "verdict": "PASS",
+  "issues": [],
+  "answers": [
+    {
+      "task": 12,
+      "answer": "He is not rude."
+    }
+  ],
+  "verdict_reason": "Transcript and tiles yield one clear statement.",
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "sourceSha256": "af601ec4cc8bd7a538011c460dfb58b0e41bd7a0bb38d88efd69d1676e4eae53",
+    "deltaOnly": true,
+    "introAnswers": {
+      "intro1": "Are we early?",
+      "intro2": "Am I audible?",
+      "intro3": "Are we rude?"
+    },
+    "clarity": "Each instruction yields one clear construction and meaning answer.",
+    "confusion": [],
+    "verdict": "PASS",
+    "baselineReview": "owner-tone-before/final.judge_learner.json",
+    "unchangedPracticeVerified": true
+  },
+  "deltaReview": {
+    "session": "en/l02/s48",
+    "sourceSha256": "ef28da4cde35359def90e62637a2bbdbfaa2873b1a67630a2298d017445db936",
+    "verdict": "PASS",
+    "issues": [],
+    "answers": [
+      {
+        "task": 12,
+        "answer": "He is not rude."
+      }
+    ],
+    "verdict_reason": "Transcript and tiles yield one clear statement."
+  },
+  "retainedSourceSha256": "af601ec4cc8bd7a538011c460dfb58b0e41bd7a0bb38d88efd69d1676e4eae53",
+  "answerComparison": {
+    "changedTasksMatch": true,
+    "comparedTasks": [
+      12
+    ]
+  }
+}

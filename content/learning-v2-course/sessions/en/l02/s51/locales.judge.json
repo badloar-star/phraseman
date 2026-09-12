@@ -1,0 +1,19 @@
+{
+  "sourceSha256": "8ab3f850df1040ac55ff53cef51a4c8c1cae1c8a7e11d87e3f6866f7f3ac961c",
+  "localeSha256": {
+    "uk": "5e703f35d25c7d9b7037de6bb03bfef0e37797c96109583e2cee84b8d79e6a3e"
+  },
+  "locales": {
+    "uk": {
+      "session": "S51",
+      "sourceSha256": "8ab3f850df1040ac55ff53cef51a4c8c1cae1c8a7e11d87e3f6866f7f3ac961c",
+      "localeSha256": "5e703f35d25c7d9b7037de6bb03bfef0e37797c96109583e2cee84b8d79e6a3e",
+      "verdict": "PASS",
+      "issues": [],
+      "verifiedDelta": {
+        "intro2ContrastNowExplicitAndNatural": true,
+        "intro2Length": 313
+      }
+    }
+  }
+}

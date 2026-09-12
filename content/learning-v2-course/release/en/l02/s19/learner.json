@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-19:i02:r1",
+            "responseId": "en:lesson-02:session-19:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — near",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-19:i02:r2",
+            "responseId": "en:lesson-02:session-19:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — near",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-19:i04:r1",
+            "responseId": "en:lesson-02:session-19:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — behind",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-19:i04:r2",
+            "responseId": "en:lesson-02:session-19:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — behind",
             "feedbackByLocale": {
@@ -317,7 +317,7 @@
         "testedDimension": "Вставьте слово — прохожий показывает: ид",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-19:i06:r1",
+            "responseId": "en:lesson-02:session-19:i06:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — прохожий показывает: ид",
             "feedbackByLocale": {
@@ -326,7 +326,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-19:i06:r2",
+            "responseId": "en:lesson-02:session-19:i06:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — прохожий показывает: ид",
             "feedbackByLocale": {
@@ -416,7 +416,7 @@
         "testedDimension": "Вставьте слово — туалеты с другой сторон",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-19:i08:r1",
+            "responseId": "en:lesson-02:session-19:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — туалеты с другой сторон",
             "feedbackByLocale": {
@@ -425,7 +425,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-19:i08:r2",
+            "responseId": "en:lesson-02:session-19:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — туалеты с другой сторон",
             "feedbackByLocale": {
@@ -477,7 +477,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «ряд",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-19:i09:r1",
+            "responseId": "en:lesson-02:session-19:i09:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «ряд",
             "feedbackByLocale": {
@@ -537,7 +537,7 @@
         "testedDimension": "Вставьте слово — где искать кафе? Магази",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-19:i10:r1",
+            "responseId": "en:lesson-02:session-19:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — где искать кафе? Магази",
             "feedbackByLocale": {
@@ -546,7 +546,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-19:i10:r2",
+            "responseId": "en:lesson-02:session-19:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — где искать кафе? Магази",
             "feedbackByLocale": {
@@ -714,7 +714,7 @@
         "testedDimension": "Вставьте слово — на улице не протолкнуть",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-19:i13:r1",
+            "responseId": "en:lesson-02:session-19:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — на улице не протолкнуть",
             "feedbackByLocale": {
@@ -723,7 +723,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-19:i13:r2",
+            "responseId": "en:lesson-02:session-19:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — на улице не протолкнуть",
             "feedbackByLocale": {

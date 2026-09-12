@@ -1,0 +1,19 @@
+{
+  "session": "S55",
+  "sourceSha256": "76d0f8d2c262d0812271ee934a2ab1675b6fccaa5673f93676462268c813cf78",
+  "verdict": "PASS",
+  "issues": [],
+  "checks": {
+    "introFactsAndHumourAccurate": true,
+    "allSeventeenAnswersUniqueBySubstitution": true,
+    "allFeedbackAccurate": true,
+    "sceneTimelineAndReferentsConsistent": true,
+    "sevenDeclaredReturnsUsedWithCorrectMeanings": true,
+    "listeningPromptsNeutral": true,
+    "visibleListeningGlossesSharedByAllOptions": true,
+    "task11ShortAnswerTestsIsAreAmStructurally": true,
+    "sixBuildersHaveValidUniqueSolutions": true,
+    "noUnsupportedLanguageRuleFound": true,
+    "actualAudioAssessed": false
+  }
+}

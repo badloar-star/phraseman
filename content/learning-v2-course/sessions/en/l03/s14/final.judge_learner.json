@@ -1,0 +1,229 @@
+{
+  "sourceSha256": "07f2eedf12eea831703f2c51d5e2c07b0b70e95590eeb74d79251afb06a9bc9b",
+  "reviewer": "/root/s10_blind",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "It is a sandwich."
+    },
+    {
+      "step": 2,
+      "answer": "Is it a salad?"
+    },
+    {
+      "step": 3,
+      "answer": "It is an egg."
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "sandwich"
+    },
+    {
+      "step": 2,
+      "answer": "sandwich"
+    },
+    {
+      "step": 3,
+      "answer": "salad"
+    },
+    {
+      "step": 4,
+      "answer": "salad"
+    },
+    {
+      "step": 5,
+      "answer": "A sandwich."
+    },
+    {
+      "step": 6,
+      "answer": "egg"
+    },
+    {
+      "step": 7,
+      "answer": "egg"
+    },
+    {
+      "step": 8,
+      "answer": "a"
+    },
+    {
+      "step": 9,
+      "answer": "It is an egg."
+    },
+    {
+      "step": 10,
+      "answer": "An"
+    },
+    {
+      "step": 11,
+      "answer": {
+        "salad": "салат",
+        "clock": "часы",
+        "sandwich": "сэндвич",
+        "egg": "яйцо"
+      }
+    },
+    {
+      "step": 12,
+      "answer": "Is it a salad?"
+    },
+    {
+      "step": 13,
+      "answer": "It is not a sandwich."
+    },
+    {
+      "step": 14,
+      "answer": "An hour."
+    },
+    {
+      "step": 15,
+      "answer": "It is not a sandwich."
+    },
+    {
+      "step": 16,
+      "answer": "It is a clock."
+    },
+    {
+      "step": 17,
+      "answer": "It is a salad."
+    }
+  ],
+  "learned_new": [
+    "sandwich — сэндвич",
+    "salad — салат; в ситуации с одной порцией можно сказать a salad",
+    "egg — яйцо; для одного целого яйца говорят an egg",
+    "могу различить a sandwich/a salad и an egg в знакомых утверждениях, вопросах и отрицаниях"
+  ],
+  "impossible_tasks": [],
+  "pacing_issues": [],
+  "humour_issues": [],
+  "verdict": "PASS",
+  "reason": "Слова сначала ясно введены, затем отрабатываются в понятной сцене кафе; контраст a для блюд и an для egg сразу проверяется и не требует неизвестного материала.",
+  "actualAudioReviewed": false,
+  "previousReview": {
+    "sourceSha256": "4f167bdcf5113237ff34b2d6132104484dff1701a03e0fa8b74d0102f3fcbab9",
+    "reviewer": "/root/s10_blind",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": "medium",
+    "introAnswers": [
+      {
+        "step": 1,
+        "answer": "It is a sandwich."
+      },
+      {
+        "step": 2,
+        "answer": "Is it a salad?"
+      },
+      {
+        "step": 3,
+        "answer": "It is an egg."
+      }
+    ],
+    "practiceAnswers": [
+      {
+        "step": 1,
+        "answer": "sandwich"
+      },
+      {
+        "step": 2,
+        "answer": "sandwich"
+      },
+      {
+        "step": 3,
+        "answer": "salad"
+      },
+      {
+        "step": 4,
+        "answer": "salad"
+      },
+      {
+        "step": 5,
+        "answer": "A sandwich."
+      },
+      {
+        "step": 6,
+        "answer": "egg"
+      },
+      {
+        "step": 7,
+        "answer": "egg"
+      },
+      {
+        "step": 8,
+        "answer": "a"
+      },
+      {
+        "step": 9,
+        "answer": "It is an egg."
+      },
+      {
+        "step": 10,
+        "answer": "An"
+      },
+      {
+        "step": 11,
+        "answer": {
+          "salad": "салат",
+          "clock": "часы",
+          "sandwich": "сэндвич",
+          "egg": "яйцо"
+        }
+      },
+      {
+        "step": 12,
+        "answer": "Is it a salad?"
+      },
+      {
+        "step": 13,
+        "answer": "It is not a sandwich."
+      },
+      {
+        "step": 14,
+        "answer": "An hour."
+      },
+      {
+        "step": 15,
+        "answer": "It is not a sandwich."
+      },
+      {
+        "step": 16,
+        "answer": "It is a clock."
+      },
+      {
+        "step": 17,
+        "answer": "It is a salad."
+      }
+    ],
+    "learned_new": [
+      "sandwich — сэндвич",
+      "salad — салат; в ситуации с одной порцией можно сказать a salad",
+      "egg — яйцо; для одного целого яйца говорят an egg",
+      "могу различить a sandwich/a salad и an egg в знакомых утверждениях, вопросах и отрицаниях"
+    ],
+    "impossible_tasks": [],
+    "pacing_issues": [],
+    "humour_issues": [],
+    "verdict": "PASS",
+    "reason": "Слова сначала ясно введены, затем отрабатываются в понятной сцене кафе; контраст a для блюд и an для egg сразу проверяется и не требует неизвестного материала.",
+    "actualAudioReviewed": false
+  },
+  "scope": "Initial whole-source review plus actual independent bounded reviews of every changed passage",
+  "deltaReviews": [
+    {
+      "sourceSha256": "e122c06f8e04dca9ee5d2a162b1188675802447c16fbe708265c59c89df84836",
+      "verdict": "PASS",
+      "scope": "Intro 1 full-phrase wording; questions, options and practice unchanged",
+      "evidence": "Prior answers remain valid; clarity and pacing PASS."
+    },
+    {
+      "sourceSha256": "07f2eedf12eea831703f2c51d5e2c07b0b70e95590eeb74d79251afb06a9bc9b",
+      "verdict": "PASS",
+      "scope": "Intro 3 question and practice 8 instruction",
+      "evidence": "Independent answers: It is an egg.; a. Prior answer set remains valid, contexts clearer."
+    }
+  ]
+}

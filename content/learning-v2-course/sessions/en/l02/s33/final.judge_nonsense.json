@@ -1,8 +1,13 @@
 {
+  "session": "S33",
+  "sourceSha256": "cf0cc64d6934150f48e0856c2a80d1078becd1bfe69fd0bc29be7768116e5cde",
   "verdict": "PASS",
-  "problems": [],
-  "verdict_reason": "Проверены значения host, guest, guests, name, cheerful, near и corner, формы Who is/Where is, согласование is/are, русско-английское сопоставление нулевой связки именно в вопросе «Кто хозяин?», смысл всех сцен и объяснения каждого дистрактора; фактических ошибок, ложных противопоставлений, противоречий и пустых языковых объяснений не найдено.",
-  "sourceSha256": "56789703f95f9dc122b83532472d171bca221901fbd6704f4b19edb6c311ff55",
-  "reviewedAt": "2026-09-08T08:24:35.207Z",
-  "reviewMethod": "fresh_builtin_codex_agent"
+  "issues": [],
+  "verified": {
+    "deltaLimitedToThreeIntroBodies": true,
+    "hostAndGuestMeaningsAccurateInScene": true,
+    "whoVsWhereDistinctionAccurate": true,
+    "questionWordOrderRulesAccurate": true,
+    "humourDoesNotDistortRules": true
+  }
 }

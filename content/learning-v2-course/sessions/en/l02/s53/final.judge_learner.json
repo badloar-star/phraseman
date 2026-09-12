@@ -1,0 +1,47 @@
+{
+  "sourceSha256": "7d13e066a023b73822914bf7dbad8e3e03579a15c006fffdc1fd8649e12b1d15",
+  "scope": "Text-only learner walkthrough. Transcripts substitute for sound; actual audio was not assessed.",
+  "introAnswers": {
+    "intro1": "Is it free?",
+    "intro2": "Are they dry?",
+    "intro3": "Yes, I am."
+  },
+  "practiceAnswers": {
+    "1": "Is he busy?",
+    "2": "free",
+    "3": "What is the price?",
+    "4": "Are they wet?",
+    "5": "are",
+    "6": "I am not sure.",
+    "7": "Who",
+    "8": "She is the manager.",
+    "9": {
+      "price": "цена",
+      "sure": "уверен",
+      "free": "свободен",
+      "dry": "сухой"
+    },
+    "10": "are",
+    "11": "Is she sure?",
+    "12": "The price is wrong.",
+    "13": "is",
+    "14": "She is not here.",
+    "15": "Am I wrong?",
+    "16": "Are we ready?",
+    "17": "Where is the manager?"
+  },
+  "learning": [
+    "Вопрос Is it free? о свободной машине.",
+    "Вопрос Are they dry? и сообщение They are dry о нескольких вещах.",
+    "Короткий ответ Yes, I am на Are you sure?"
+  ],
+  "confusion": [],
+  "issues": [],
+  "verdict": "PASS",
+  "answerComparison": {
+    "intro": 3,
+    "practice": 17,
+    "matched": true,
+    "scope": "text only"
+  }
+}

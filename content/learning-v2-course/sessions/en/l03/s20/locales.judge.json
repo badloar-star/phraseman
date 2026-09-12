@@ -1,0 +1,20 @@
+{
+  "sourceSha256":"0b8ee756248840a8741a87265eab930e0dd0634c49063b178a52092f5d84a5c8",
+  "localeSha256":{"uk":"47f8b022dd2e1340c1913d687f2fff0b739fdf5ef226794c5b5783274c54ed77"},
+  "reviewer":"/root/s17_uk_native","model":"gpt-5.6-sol","reasoningEffort":"medium",
+  "initialReview":"judgements/2026-09-12_l03_s20_uk_initial.json",
+  "locales":{"uk":{
+    "verdict":"PASS","verdict_reason":"Actual independent reverse-hash delta proves only three approved replacements; all initial findings resolved and full native scope retained.",
+    "structure_identical":true,"english_targets_identical":true,"task_count":17,"intro_lengths":[253,242,241],
+    "language_purity":{"foreign_fragments":[],"machine_translation_smell":[]},
+    "native_quality":{"headings_natural":true,"scene_natural":true,"prompts_natural":true,"feedback_natural":true,"internal_copy_natural":true,"warm_polite":true},
+    "humor":{"present":true,"on_topic":true,"native_not_calqued":true,"examples":["Упізнати початок і перестати слухати зручно, аж поки не виявиться, що склянок кілька."],"misfires":[]},
+    "definitions":{"glass":"Accurate drinking vessel; no material-sense substitution.","brush":"Accurate physical cleaning tool, not verb.","bench":"Accurate long usually hard seat for several people; no workbench/court sense.","card_and_new_words_identical":true,"new_properties_imposed":false},
+    "phonetic_feedback":{"verdict":"PASS","all_initial_other_cues_retained":true,"grass_glasses_positive_cues_correct":true,"blush_brushes_positive_cues_correct":true,"tongue_contact_contrasts_true":true,"syllable_count_contrasts_true":true,"english_g_equated_with_ukrainian_h":false,"glass_g_anchor":"close to Ukrainian ґ","english_r_equated_with_cyrillic_r":false,"russian_vowel_anchor_copied":false,"accepted_without_r_label":["T2 grass has concrete articulation versus l contact","T4 blush has concrete tongue contact contrast","T8 drench onset d plus articulated sound contrasts initial b"]},
+    "counts_and_referents":{"consistent":true,"task_16_two_glasses_explicit":true,"task_16_quote":"ви показуєте на дві склянки у відкритому пакеті","task_16_they_is_plural":true,"task_16_they_refers_to_bag":false},
+    "listening_prompts":{"neutral":true,"quantity_leaks":[],"negation_leaks":[],"adjacent_context_determines_recording":false},
+    "scope":{"additional_syllable_limited_to_given_pairs":true,"generalized_to_all_es_or_ies_spellings":false,"future_article_contrast_leaked":false},
+    "delta":{"initialUK":"24b07153eb23bee8580a4ad3eb3bf6f4dcd69670d5315f816434b3297d961d09","reversedExactReplacementsReconstructInitialHash":true,"roundTripEqualsCurrent":true,"new_string_counts":[1,1,1],"old_string_counts":[0,0,0],"unexpected_changes":[],"ru_unchanged":true,"prior_full_scope_retained":true,"scope":"T5 grass positive cue, T9 blush positive cue, internal слово для повторення wording."},
+    "remaining_issues":[],"actual_audio_reviewed":false,"audio_verdict":"NOT_REVIEWED","visual_reviewed":false
+  }}
+}

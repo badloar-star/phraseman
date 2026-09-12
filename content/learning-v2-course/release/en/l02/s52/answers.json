@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-52:i01",
+    "correctText": "Are you ready?",
+    "correctResponseId": "en:lesson-02:session-52:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i02",
+    "correctText": "No, I am not.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i03",
+    "correctText": "Who is he?",
+    "correctResponseId": "en:lesson-02:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i04",
+    "correctText": "He is the manager.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i05",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i06",
+    "correctText": "He is inside.",
+    "correctResponseId": "en:lesson-02:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i07",
+    "correctText": "open",
+    "correctResponseId": "en:lesson-02:session-52:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i08",
+    "correctText": "Excuse me. What is the price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i09",
+    "correctText": "Are we here?",
+    "correctResponseId": "en:lesson-02:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i10",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-52:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i12",
+    "correctText": "Is she new?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i13",
+    "correctText": "Is he ready?",
+    "correctResponseId": "en:lesson-02:session-52:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i14",
+    "correctText": "The manager is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i15",
+    "correctText": "Am I wrong?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i16",
+    "correctText": "Excuse me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-52:i17",
+    "correctText": "Where are the toilets?",
+    "correctResponseId": null
+  }
+]

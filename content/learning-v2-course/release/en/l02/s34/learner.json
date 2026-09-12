@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-34:i02:r1",
@@ -60,18 +60,18 @@
         },
         {
           "responseId": "en:lesson-02:session-34:i02:r2",
-          "text": "people"
+          "text": "rangers"
         },
         {
           "responseId": "en:lesson-02:session-34:i02:r3",
-          "text": "guests"
+          "text": "dangers"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-34:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — strangers",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -87,12 +87,12 @@
           },
           {
             "responseId": "en:lesson-02:session-34:i02:r2",
-            "targetText": "people",
+            "targetText": "rangers",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-34:i02:r3",
-            "targetText": "guests",
+            "targetText": "dangers",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +101,19 @@
           {
             "responseId": "en:lesson-02:session-34:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — strangers",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «люди», без уточнения, знакомы они вам или нет. Прозвучало `strangers` — «незнакомцы».",
-              "uk": "Це «люди», без уточнення, знайомі вони вам чи ні. Прозвучало `strangers` — «незнайомці»."
+              "ru": "`Rangers` — «рейнджеры». Послушайте начало слова: в записи `strangers`.",
+              "uk": "`Rangers` — «рейнджери». Послухайте початок слова: у записі `strangers`."
             }
           },
           {
             "responseId": "en:lesson-02:session-34:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — strangers",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «гости», те, кого пригласили. На записи другое слово — `strangers`.",
-              "uk": "Це «гості», ті, кого запросили. На записі інше слово — `strangers`."
+              "ru": "`Dangers` — «опасности». Послушайте начало слова: в записи `strangers`.",
+              "uk": "`Dangers` — «небезпеки». Послухайте початок слова: у записі `strangers`."
             }
           }
         ],
@@ -171,7 +171,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-34:i04:r1",
@@ -179,18 +179,18 @@
         },
         {
           "responseId": "en:lesson-02:session-34:i04:r2",
-          "text": "strangers"
+          "text": "tins"
         },
         {
           "responseId": "en:lesson-02:session-34:i04:r3",
-          "text": "sure"
+          "text": "wins"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-34:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — twins",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -206,12 +206,12 @@
           },
           {
             "responseId": "en:lesson-02:session-34:i04:r2",
-            "targetText": "strangers",
+            "targetText": "tins",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-34:i04:r3",
-            "targetText": "sure",
+            "targetText": "wins",
             "meaningByLocale": null
           }
         ],
@@ -220,19 +220,19 @@
           {
             "responseId": "en:lesson-02:session-34:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — twins",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «незнакомцы». На записи слово о родстве — `twins`, «близнецы».",
-              "uk": "Це «незнайомці». На записі слово про спорідненість — `twins`, «близнюки»."
+              "ru": "`Tins` — «жестяные банки». Послушайте начало слова: в записи `twins`.",
+              "uk": "`Tins` — «бляшанки». Послухайте початок слова: у записі `twins`."
             }
           },
           {
             "responseId": "en:lesson-02:session-34:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — twins",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «уверен». Прозвучало `twins`, слово про двух людей.",
-              "uk": "Це «упевнений». Прозвучало `twins`, слово про двох людей."
+              "ru": "`Wins` — «побеждает». Послушайте начало слова: в записи `twins`.",
+              "uk": "`Wins` — «перемагає». Послухайте початок слова: у записі `twins`."
             }
           }
         ],
@@ -344,7 +344,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какое слово друг употребил о компании",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-34:i07:r1",
@@ -352,18 +352,18 @@
         },
         {
           "responseId": "en:lesson-02:session-34:i07:r2",
-          "text": "prices"
+          "text": "pupil"
         },
         {
           "responseId": "en:lesson-02:session-34:i07:r3",
-          "text": "rules"
+          "text": "purple"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-34:i07:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какое слово друг употребил о компании",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -379,12 +379,12 @@
           },
           {
             "responseId": "en:lesson-02:session-34:i07:r2",
-            "targetText": "prices",
+            "targetText": "pupil",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-34:i07:r3",
-            "targetText": "rules",
+            "targetText": "purple",
             "meaningByLocale": null
           }
         ],
@@ -393,19 +393,19 @@
           {
             "responseId": "en:lesson-02:session-34:i07:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово друг",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «цены». Друг произнёс `people` — «люди».",
-              "uk": "Це «ціни». Друг вимовив `people` — «люди»."
+              "ru": "`Pupil` — «ученик». Послушайте первый слог: в записи `people`.",
+              "uk": "`Pupil` — «учень». Послухайте перший склад: у записі `people`."
             }
           },
           {
             "responseId": "en:lesson-02:session-34:i07:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово друг",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «правила». На записи слово о людях — `people`.",
-              "uk": "Це «правила». На записі слово про людей — `people`."
+              "ru": "`Purple` — «фиолетовый». Послушайте первый слог: в записи `people`.",
+              "uk": "`Purple` — «фіолетовий». Послухайте перший склад: у записі `people`."
             }
           }
         ],
@@ -587,11 +587,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -660,13 +660,13 @@
       "purpose": "retrieval_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — друг говорит о гостях, с которыми ещё не знаком",
+      "prompt": "Послушайте и соберите — друг говорит о нескольких гостях",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-34:i12:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — друг говорит о гостях, с которыми ещё не знаком",
+      "accessibilityLabel": "Послушайте и соберите — друг говорит о нескольких гостях",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -888,5 +888,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9245fec87611292477ce10dacd0d03fcddfd83d620ae4dd52258b6e78b323ff4"
+  "learnerFingerprint": "a921bf3427ae8f45553c1434378ed9d1ac02d05046a54d3d751d5e551446616f"
 }

@@ -1,0 +1,540 @@
+[
+  {
+    "sender": "/root/l03_s02_learner",
+    "actualReport": {
+      "sourceSha256": "131f787feed79a6ce07222ad86852b75964fbaf6d82bf87b030a005d856373a6",
+      "introAnswers": [
+        {
+          "step": 1,
+          "answer": "It is a key."
+        },
+        {
+          "step": 2,
+          "answer": "Is it a door?"
+        },
+        {
+          "step": 3,
+          "answer": "It is not a window."
+        }
+      ],
+      "practiceAnswers": [
+        {
+          "step": 1,
+          "answer": "Acknowledged: key — ключ."
+        },
+        {
+          "step": 2,
+          "answer": "key"
+        },
+        {
+          "step": 3,
+          "answer": "Acknowledged: door — дверь."
+        },
+        {
+          "step": 4,
+          "answer": "door"
+        },
+        {
+          "step": 5,
+          "answer": "A key."
+        },
+        {
+          "step": 6,
+          "answer": "Acknowledged: window — окно."
+        },
+        {
+          "step": 7,
+          "answer": "window"
+        },
+        {
+          "step": 8,
+          "answer": "It is a window."
+        },
+        {
+          "step": 9,
+          "answer": "It is a mirror."
+        },
+        {
+          "step": 10,
+          "answer": "Is it a door?"
+        },
+        {
+          "step": 11,
+          "answer": {
+            "door": "дверь",
+            "key": "ключ",
+            "mirror": "зеркало",
+            "window": "окно"
+          }
+        },
+        {
+          "step": 12,
+          "answer": "It is not a key."
+        },
+        {
+          "step": 13,
+          "answer": "It is a door."
+        },
+        {
+          "step": 14,
+          "answer": "Is it a mirror?"
+        },
+        {
+          "step": 15,
+          "answer": "Is it a key?"
+        },
+        {
+          "step": 16,
+          "answer": "It is not a door."
+        },
+        {
+          "step": 17,
+          "answer": "It is a key."
+        }
+      ],
+      "ambiguities": [],
+      "leaks": [],
+      "verdict": "PASS"
+    }
+  },
+  {
+    "sender": "/root/l03_s02_truth",
+    "actualReport": {
+      "sourceSha256": "131f787feed79a6ce07222ad86852b75964fbaf6d82bf87b030a005d856373a6",
+      "verdict": "BLOCK",
+      "must_fix": [
+        {
+          "where": "Практика 7, разбор варианта willow",
+          "quote": "Во второй части `willow` слышно «л», а в `window` — «д».",
+          "why": "При нормативном произношении `willow` /ˈwɪl.oʊ/ звук /l/ относится к первой части/первому слогу, тогда как у `window` /ˈwɪn.doʊ/ /d/ начинает второй слог. Формулировка «во второй части» создаёт неверную симметрию и неточно указывает место звука.",
+          "fix": "Сравнить звуки без ложного деления: «В середине `willow` слышно „л“, а в `window` — сочетание „н“ и „д“. В записи `window`.»"
+        }
+      ],
+      "evidence": [
+        "key /kiː/, tea /tiː/ и fee /fiː/ имеют одинаковую долгую гласную и корректно различаются начальными /k/, /t/, /f/; омофонов нет.",
+        "door, four и more корректно различаются начальными /d/, /f/, /m/ при близкой остальной части; омофонов в наборе нет.",
+        "window /ˈwɪn.doʊ/ и winter /ˈwɪn.tə(r)/ корректно различаются /d/ и /t/ в начале второго слога.",
+        "Значения key — «ключ», door — «дверь», window — «окно» и бытовые определения даны верно.",
+        "Утверждения, вопрос и отрицание правильно сохраняют `a` перед единичным исчисляемым существительным в изучаемой конструкции; ложного универсального правила об артикле нет.",
+        "Оценено соответствие заданных слов нормативному произношению; качество фактических аудиозаписей недоступно и не подтверждено."
+      ]
+    }
+  },
+  {
+    "sender": "/root/l03_s02_truth",
+    "actualReport": {
+      "sourceSha256": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
+      "verdict": "PASS",
+      "must_fix": [],
+      "evidence": [
+        "SHA-256 совпадает с заявленным.",
+        "Проверенный delta точный: «В середине `willow` слышно „л“, а в `window` — сочетание „н“ и „д“. В записи `window`.»",
+        "Формулировка соответствует нормативным произношениям `willow` /ˈwɪl.oʊ/ и `window` /ˈwɪn.doʊ/: она больше не приписывает /l/ второму слогу и корректно различает средние согласные /l/ и /nd/.",
+        "Единственная проблема предыдущего раунда устранена; новых фактических утверждений delta не добавляет."
+      ]
+    }
+  },
+  {
+    "sender": "/root/l03_s02_learner",
+    "actualReport": {
+      "sourceSha256": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
+      "scope": "Blind text walkthrough. Known prior vocabulary. Transcripts substitute sound; actual audio not assessed. No answer key or feedback. Practice numbered 1 through 17.",
+      "introAnswers": [
+        {
+          "step": 1,
+          "answer": "It is a key."
+        },
+        {
+          "step": 2,
+          "answer": "Is it a door?"
+        },
+        {
+          "step": 3,
+          "answer": "It is not a window."
+        }
+      ],
+      "practiceAnswers": [
+        {
+          "step": 1,
+          "answer": "Acknowledged: key — ключ."
+        },
+        {
+          "step": 2,
+          "answer": "key"
+        },
+        {
+          "step": 3,
+          "answer": "Acknowledged: door — дверь."
+        },
+        {
+          "step": 4,
+          "answer": "door"
+        },
+        {
+          "step": 5,
+          "answer": "A key."
+        },
+        {
+          "step": 6,
+          "answer": "Acknowledged: window — окно."
+        },
+        {
+          "step": 7,
+          "answer": "window"
+        },
+        {
+          "step": 8,
+          "answer": "It is a window."
+        },
+        {
+          "step": 9,
+          "answer": "It is a mirror."
+        },
+        {
+          "step": 10,
+          "answer": "Is it a door?"
+        },
+        {
+          "step": 11,
+          "answer": {
+            "door": "дверь",
+            "key": "ключ",
+            "mirror": "зеркало",
+            "window": "окно"
+          }
+        },
+        {
+          "step": 12,
+          "answer": "It is not a key."
+        },
+        {
+          "step": 13,
+          "answer": "It is a door."
+        },
+        {
+          "step": 14,
+          "answer": "Is it a mirror?"
+        },
+        {
+          "step": 15,
+          "answer": "Is it a key?"
+        },
+        {
+          "step": 16,
+          "answer": "It is not a door."
+        },
+        {
+          "step": 17,
+          "answer": "It is a key."
+        }
+      ],
+      "ambiguities": [],
+      "leaks": [],
+      "verdict": "PASS"
+    }
+  },
+  {
+    "sender": "/root/l03_s04_taste",
+    "actualReport": {
+      "sourceSha256": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
+      "pairwise": "equal",
+      "pairwise_reason": "Эталоны ярче по количеству запоминающихся реплик, но текущая сессия не уступает им по ясности, связности и человеческому объяснению без натужных образов. Юмористический поворот про потерянный `a` естественно вырастает из правила, а остальные страницы сохраняют спокойный разговорный тон и не превращаются в сухую справку.",
+      "voice": {
+        "score": 4,
+        "evidence": [
+          "«Потерять ключ неприятно. Потерять `a` проще: вещь на месте, а фразу уже надо поправить.» — живой и сразу понятный способ закрепить правило.",
+          "«Когда слушаете, замечайте и начало фразы, и слово перед `door`: они помогают восстановить её целиком.» — ясное обращение к ученику без канцелярита и лишней метафоры.",
+          "«Хозяин решил, что вы показываете на окно, но вы имеете в виду другую вещь.» — чуть более учебная и абстрактная ситуация, чем в лучших строках эталонов, поэтому голос не дотягивает до 5."
+        ]
+      },
+      "humor": {
+        "present": true,
+        "on_topic": true,
+        "examples": [
+          "Потерять ключ неприятно. Потерять `a` проще: вещь на месте, а фразу уже надо поправить."
+        ],
+        "misfires": []
+      },
+      "scene": {
+        "present": true,
+        "gives_reason_to_speak": true,
+        "note": "Показ квартиры связывает всю сессию и даёт понятный повод слушать хозяина, называть предметы и уточнять; по тексту девять из семнадцати заданий действительно используют слух или речь. «Панель в стене» и «другая вещь» немного сконструированы под нужную фразу, но понятны без предыстории и не ломают сцену."
+      },
+      "ai_text_or_nonsense": [],
+      "water": [],
+      "dead_language": [],
+      "best_lines": [
+        "Потерять ключ неприятно. Потерять `a` проще: вещь на месте, а фразу уже надо поправить.",
+        "В вопросе первые два слова меняются местами; название `a door` остаётся целым.",
+        "Отрицание добавляет `not` после `is`, но не убирает `a` перед названием."
+      ],
+      "must_fix": [],
+      "verdict": "PASS",
+      "verdict_reason": "Текущая версия ясная, человечная и парно держит планку эталонов; `ai_text_or_nonsense` пуст, а реальное качество аудиозаписей этим текстовым review не подтверждается."
+    }
+  },
+  {
+    "sender": "/root/l03_s02_pedagogy_final",
+    "actualReport": {
+      "sourceSha256": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
+      "plan_fidelity": {
+        "operation_matches": true,
+        "new_words_match": [
+          "key",
+          "door",
+          "window"
+        ],
+        "missing": [],
+        "extra_grammar_smuggled": []
+      },
+      "boundary": {
+        "unknown_in_explanations": [],
+        "unknown_in_targets": [],
+        "prerequisite_check": "Вопросы, отрицание и рамка `It is a + noun` уже доступны; голос/слух отрабатывают их, не вводя правила о звуке или интонации."
+      },
+      "structure": {
+        "task_count": 17,
+        "below_12": false,
+        "word_first_respected": true,
+        "support_fades": true,
+        "speed_match_boards": [
+          [
+            "key",
+            "door",
+            "window",
+            "mirror"
+          ]
+        ],
+        "speed_match_overlap": false,
+        "repeated_targets": [],
+        "generic_instructions": [],
+        "attention_traps": [],
+        "builders": {
+          "phrase_builder": 4,
+          "listen_build_dictation": 2,
+          "composed_phrases": [
+            "`A key`",
+            "`It is a window`",
+            "`Is it a door?`",
+            "`It is not a key`",
+            "`Is it a mirror?`",
+            "`It is a key`"
+          ],
+          "result": "Работа меняется между коротким называнием, утверждением, вопросом и отрицанием; два утверждения с одним скелетом допустимы, дословных соседних повторов нет."
+        }
+      },
+      "voice_and_listening": {
+        "required_distribution": {
+          "listen_choose": 3,
+          "listen_build_dictation": 2,
+          "scripted_repeat_compare": 4,
+          "result": "9 из 17 заданий прямо требуют слушания или речи."
+        },
+        "one_word_listening_prompts_neutral": true,
+        "written_sound_pairs": [
+          "`key` / `tea` / `fee`: общий долгий финальный гласный, различаются начальные согласные.",
+          "`door` / `four` / `more`: общий звуковой финал, различаются начальные согласные.",
+          "`window` / `willow` / `winter`: общая начальная часть, различаются согласными внутри слова."
+        ],
+        "dictation_leaks": [],
+        "real_audio_claim": false
+      },
+      "returns": {
+        "mirror": {
+          "tasks": [
+            9,
+            11,
+            14
+          ],
+          "minimum_two_met": true,
+          "correct_response_use": [
+            9,
+            14
+          ]
+        }
+      },
+      "traps": {
+        "realistic": [
+          {
+            "task": 12,
+            "trap": "`are` после `It` проверяет знакомую, но неверную форму."
+          },
+          {
+            "task": 14,
+            "trap": "`Are it a mirror?` переносит неверное вопросное начало на `it`."
+          },
+          {
+            "task": 17,
+            "trap": "`am` после `It` проверяет смешение формы для `I` с формой для предмета."
+          }
+        ],
+        "silly": [],
+        "native_transfer_used": true,
+        "feedback_teaches_unknown_form": []
+      },
+      "feedback": {
+        "missing_per_option": [],
+        "duplicated": [],
+        "too_long_or_bookish": []
+      },
+      "time_references": [],
+      "cross_session_repeats": [],
+      "textbook_formulas": [],
+      "must_fix": [],
+      "evidence": [
+        {
+          "check": "Порядок знакомства с новыми словами",
+          "evidence": "`key`: 1→2→5; `door`: 3→4→10; `window`: 6→7→8. Все слова доски 11 уже знакомы и отработаны."
+        },
+        {
+          "check": "Честность диктантов",
+          "evidence": "Задание 5 говорит лишь «хозяин коротко называет предмет», а задание 10 — «хозяин обращается к вам из коридора»: ни одно не называет цель, её перевод либо тип фразы."
+        },
+        {
+          "check": "Независимость финала",
+          "evidence": "Перед заданием 17 голосовая цель — `It is not a door`, а финальная сборка — `It is a key`."
+        }
+      ],
+      "verdict": "PASS",
+      "verdict_reason": "Голосовая и слуховая сессия соблюдает текущий план, порядок word-first, слуховую честность, возврат `mirror`, разнообразие построения фраз и все заявленные количественные требования."
+    }
+  },
+  {
+    "sender": "/root/l03_s02_reader_final",
+    "actualReport": {
+      "sourceSha256": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
+      "pages": [
+        {
+          "page": 1,
+          "retelling": "Ключ называют как «a key», а полную фразу говорят «It is a key», поэтому маленькое «a» нельзя терять.",
+          "what_i_do_now": "Назову предмет на ладони фразой «It is a key», произнеся «a key» вместе.",
+          "understood": true,
+          "problems": []
+        },
+        {
+          "page": 2,
+          "retelling": "Чтобы спросить, дверь ли это, я переставляю первые два слова и оставляю название «a door» целым.",
+          "what_i_do_now": "Увидев непонятную панель в стене, спрошу «Is it a door?».",
+          "understood": true,
+          "problems": []
+        },
+        {
+          "page": 3,
+          "retelling": "В возражении «not» ставится после «is», а «a» остаётся перед названием окна.",
+          "what_i_do_now": "Если это другая вещь, а не окно, скажу «It is not a window».",
+          "understood": true,
+          "problems": []
+        }
+      ],
+      "verdict": "PASS",
+      "must_fix": [],
+      "evidence": [
+        "Три объяснения связны и используют обычный язык: сначала предмет и готовая фраза, затем одна конкретная деталь, потом сценический вопрос.",
+        "Реальные ситуации ясны: ключ лежит на ладони, хозяин показывает панель, затем ошибочно принимает другой предмет за окно. Формулировки не требуют грамматических терминов или догадок.",
+        "Практические инструкции называют действие, предмет и ситуацию достаточно точно; в каждом задании с вариантами или плитками один бесспорный ответ. T13 с хозяином, придерживающим входную дверь, однозначно задаёт предмет."
+      ]
+    }
+  },
+  {
+    "sender": "/root/l03_s02_uk_review",
+    "actualReport": {
+      "sourceSha256": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
+      "localeSha256": "bef821e94232fb10681a8619d38645796b5ca3db634ad7657f6737cdc21a014e",
+      "scope": "native Ukrainian and current local preview only; no app, audio, or visual compatibility claim",
+      "verdict": "REVISE",
+      "issues": [
+        {
+          "severity": "REVISE",
+          "where": "Operation line",
+          "problem": "«знайомі `a + noun`» has an unsupported plural adjective and sounds grammatically unfinished.",
+          "replacement": {
+            "from": "**Операція:** знайомі `a + noun` на слух і вголос; зберігаємо `a` у назві всередині твердження, запитання й заперечення",
+            "to": "**Операція:** знайоме `a + noun` на слух і вголос; зберігаємо `a` у назві всередині твердження, запитання й заперечення"
+          }
+        }
+      ],
+      "checks": {
+        "hashesMatchTaskPacket": true,
+        "englishTargetsOptionsTilesAndOrderUnchanged": true,
+        "orderedEnglishCodeSpanCount": 125,
+        "introBodyLengthsIncludingMarkup": [
+          256,
+          264,
+          267
+        ],
+        "keyDefinition": {
+          "verdict": "PASS",
+          "text": "Ним відмикають замок.",
+          "assessment": "Both corrected occurrences are idiomatic and semantically exact."
+        },
+        "doorSingularToUkrainianPlural": {
+          "verdict": "PASS",
+          "introSupportSufficient": true,
+          "evidence": "Intro 2 directly maps `door` to «двері», `It is a door` to «Це двері», and `Is it a door?` to «Це двері?».",
+          "nameThemAmbiguous": false,
+          "assessment": "In practice 13, «назвіть їх» has the immediate and unambiguous antecedent «вхідні двері». Ukrainian plural agreement is natural and does not suggest multiple English doors. No extra explanation is needed."
+        },
+        "definitionsNatural": true,
+        "ukrainianSoundAnchors": {
+          "verdict": "PASS",
+          "windowWillow": "Correctly contrasts medial «л» with the «н» + «д» sequence without inventing a syllable boundary.",
+          "windowWinter": "Correctly contrasts the medial consonants «д» and «т».",
+          "keyAndDoor": "Initial-consonant comparisons are clear and suitable for Ukrainian learners."
+        },
+        "questionsUnambiguous": true,
+        "localPairGridLabelsCorrect": [
+          "key — ключ",
+          "door — двері",
+          "window — вікно",
+          "mirror — дзеркало"
+        ],
+        "naturalHumor": {
+          "present": true,
+          "example": "«Загубити ключ неприємно. Загубити `a` простіше: річ на місці, а фразу вже треба виправляти.»",
+          "assessment": "Natural, relevant to the target form, and immediately understandable."
+        },
+        "actualAudioReviewed": false,
+        "visualReviewPerformed": false,
+        "appCompatibilityClaimed": false
+      },
+      "authorPromptDelta": {
+        "verdict": "PASS",
+        "assessment": "The new bullet precisely addresses the willow/window failure: it forbids invented syllable or word-part boundaries, supplies the correct medial-consonant comparison, and permits syllable numbering only after pronunciation-based verification. It is consistent with the nearby rule to describe reliable letter-level differences rather than invented sound spellings."
+      },
+      "remainingIssues": [
+        {
+          "scope": "future app export",
+          "status": "retained_unresolved",
+          "issue": "The previously recorded Speed Match pairId incompatibility remains outside this local review."
+        }
+      ]
+    }
+  },
+  {
+    "sender": "/root/l03_s02_uk_review",
+    "actualReport": {
+      "sourceSha256": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
+      "localeSha256": "e25db5cf0288ee024a6ef0cd0a58c53eef470108a5bd6f2cc55a559c43aa22f1",
+      "scope": "native Ukrainian and current local preview only",
+      "verdict": "PASS",
+      "checks": {
+        "exactDeltaPresent": true,
+        "onlyIntendedDeltaAgainstReviewRound1": true,
+        "currentText": "**Операція:** знайома конструкція `a + noun` на слух і вголос; зберігаємо `a` у назві всередині твердження, запитання й заперечення",
+        "assessment": "The agreement is explicit, grammatical, and natural."
+      },
+      "remainingIssues": [
+        {
+          "scope": "future app export",
+          "status": "retained_unresolved",
+          "issue": "The previously recorded Speed Match pairId incompatibility remains outside this local review."
+        }
+      ],
+      "evidenceLimits": {
+        "actualAudioReviewed": false,
+        "visualReviewPerformed": false,
+        "appCompatibilityClaimed": false
+      }
+    }
+  }
+]

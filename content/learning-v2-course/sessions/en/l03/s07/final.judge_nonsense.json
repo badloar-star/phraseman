@@ -1,0 +1,12 @@
+{
+  "sourceSha256": "926a212bf053f780b2c583192cabf2f1684da103f083d534e869c1e02a0e42f2",
+  "reviewer": "/root/l03_s07_truth",
+  "current_hash": "926a212bf053f780b2c583192cabf2f1684da103f083d534e869c1e02a0e42f2",
+  "findings": [], "verdict": "PASS",
+  "verdict_reason": "Definitions, permitted grammar, option-specific feedback, pronunciation contrasts, and unique solutions are accurate and internally consistent.",
+  "gates": {"sha256": "PASS", "forbidden_an_the_plurals": "PASS"},
+  "audio_review": "NOT_REVIEWED",
+  "residual_unverified": ["Actual audio files, pronunciation performance, and playback behavior were outside this text-only review."],
+  "sources": ["https://dictionary.cambridge.org/dictionary/english/drawer", "https://dictionary.cambridge.org/dictionary/english/cupboard", "https://dictionary.cambridge.org/dictionary/english/wardrobe", "https://dictionary.cambridge.org/pronunciation/english/covered", "https://dictionary.cambridge.org/us/pronunciation/english/coward", "https://dictionary.cambridge.org/pronunciation/english/wardrobe"],
+  "additionalPhoneticResearch": {"reviewer": "/root/factory_app_integration_writer", "words": ["warble", "warlock"], "result": "PASS text/IPA only", "sources": ["https://dictionary.cambridge.org/pronunciation/english/warble", "https://dictionary.cambridge.org/pronunciation/english/warlock"]}
+}

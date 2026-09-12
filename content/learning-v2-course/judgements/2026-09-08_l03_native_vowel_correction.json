@@ -1,0 +1,368 @@
+{
+  "actualReports": [
+    {
+      "sourceSha256": "6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b",
+      "localeSha256": "bdfe89fa40bfa4c6c2d924a22f7f81c08c8427d14636d2ede8da9d130ccc0d89",
+      "verdict": "BLOCK",
+      "issues": [
+        {
+          "severity": "BLOCK",
+          "where": "learner.uk.json, Speed Match, interaction i11, modePayload.rightColumn",
+          "problem": "rightColumn contains Russian meanings instead of pairId values. The runtime looks up each entry as a pairId, so none resolve and Speed Match will throw before rendering.",
+          "replace": {
+            "from": [
+              "диван",
+              "кровать",
+              "письменный стол",
+              "стол"
+            ],
+            "to": [
+              "en:lesson-03:session-02:i11:p1",
+              "en:lesson-03:session-02:i11:p2",
+              "en:lesson-03:session-02:i11:p3",
+              "en:lesson-03:session-02:i11:p4"
+            ]
+          }
+        },
+        {
+          "severity": "REVISE",
+          "where": "final.uk.md, intro questions and practice 5",
+          "problem": "Three phrases sound translated rather than naturally Ukrainian.",
+          "replacements": [
+            {
+              "from": "Сестра зняла великий чохол. Назвіть предмет, що відкрився, повною фразою: «Це диван».",
+              "to": "Сестра зняла великий чохол. Назвіть предмет, що був під ним, повною фразою: «Це диван»."
+            },
+            {
+              "from": "Сестра запитує, що під наступним чохлом. Ви відкрили ліжко; назвіть його повною фразою.",
+              "to": "Сестра запитує, що під наступним чохлом. Під ним виявилося ліжко; назвіть його повною фразою."
+            },
+            {
+              "from": "Складіть фразу — сестра запитує, що ви звільнили від чохла; скажіть «Це диван»",
+              "to": "Складіть фразу — сестра запитує, що було під чохлом; скажіть «Це диван»"
+            }
+          ]
+        }
+      ],
+      "checks": {
+        "hashesMatchTaskPacket": true,
+        "ukrainianGenderContrast": {
+          "ok": true,
+          "evidence": "«ліжко — воно, а диван — він»"
+        },
+        "englishTargetsOptionsTilesAndOrder": {
+          "unchanged": true,
+          "evidence": "RU and UK Markdown contain identical ordered sequences of all 120 backtick-delimited English items."
+        },
+        "introBodyLengthsIncludingMarkup": [
+          253,
+          223,
+          264
+        ],
+        "naturalHumor": {
+          "present": true,
+          "where": "Intro 1: counting sofas rather than the three people sitting on one sofa."
+        },
+        "soundExplanations": {
+          "textuallyPlausible": true,
+          "misleadingClaimsFound": false,
+          "actualAudioReviewed": false
+        },
+        "visualReviewPerformed": false,
+        "sourceLocaleAssessment": "Apart from the three localized calques above, the Ukrainian is clear, warm, idiomatic, and free of Russian fragments.",
+        "privateProjectionAssessment": "pairGrid contains correct Ukrainian meaningByLocale values, but rightColumn contains unresolved Russian strings and is not runtime-valid."
+      }
+    },
+    {
+      "sourceSha256": "6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b",
+      "localeSha256": "eea2735196539aec0ad2efa83b91612051009cba5d784a186c7af3fb919814fe",
+      "nativeAndLocalPreviewVerdict": "PASS",
+      "appExportVerdict": "INCOMPATIBLE_UNRESOLVED",
+      "issues": [
+        {
+          "scope": "future app integration",
+          "severity": "BLOCK",
+          "status": "retained",
+          "problem": "Generated speed_match leftColumn/rightColumn contain visible strings rather than pairId values. The native app mode expects pair IDs and would throw when resolving them.",
+          "currentRequestedScopeImpact": "None: the local mockup constructs both columns directly from pairGrid and correctly localizes meaningByLocale.uk."
+        }
+      ],
+      "checks": {
+        "threeNativeFixesPresentExactly": true,
+        "ukrainianNowNatural": true,
+        "genderContrastCorrect": true,
+        "localPairGridLabels": [
+          "sofa — диван",
+          "bed — ліжко",
+          "desk — письмовий стіл",
+          "table — стіл"
+        ],
+        "localPairGridLabelsCorrect": true,
+        "englishTargetsOptionsTilesAndOrderUnchanged": true,
+        "orderedEnglishCodeSpanCount": 120,
+        "introBodyLengthsIncludingMarkup": [
+          253,
+          223,
+          264
+        ],
+        "actualAudioReviewed": false,
+        "visualReviewPerformed": false
+      }
+    },
+    {
+      "sourceSha256": "45a29f88af55d12f0eca4f40f28a2b01cf5e3b5a3fcee62af225f1c379ef1f15",
+      "localeSha256": "a0afd4761358100d9900ff01ccbc27e2be9814a4b3ba5fb0b1318f5903cd47cf",
+      "scope": "current local course source and local preview only; no app-export compatibility claim",
+      "verdict": "REVISE",
+      "issues": [
+        {
+          "severity": "REVISE",
+          "where": "Practice 4, both mirror distractor explanations",
+          "problem": "English mirror begins with /ɪ/, while Ukrainian «и» corresponds to /ɪ/ and «і» to /i/. The current comparison with «і» is phonetically misleading.",
+          "replacements": [
+            {
+              "from": "У першому складі `minor` чути «ай», а в `mirror` голосний ближчий до «і». У записі — `mirror`.",
+              "to": "У першому складі `minor` чути «ай», а в `mirror` голосний ближчий до українського «и». У записі — `mirror`."
+            },
+            {
+              "from": "Перший голосний у `merry` ближчий до «е», а в `mirror` — до «і». Тут звучить `mirror`.",
+              "to": "Перший голосний у `merry` ближчий до «е», а в `mirror` — до українського «и». Тут звучить `mirror`."
+            }
+          ]
+        },
+        {
+          "severity": "REVISE",
+          "where": "Practice 14 prompt",
+          "problem": "In «брат шукає дзеркало; ви стоїте поруч із ним», masculine «ним» refers naturally to the brother, not neuter «дзеркало». This makes the intended referent of «Воно тут» unclear.",
+          "replacement": {
+            "from": "Складіть фразу — брат шукає дзеркало; ви стоїте поруч із ним і відповідаєте «Воно тут» (`here` — «тут»)",
+            "to": "Складіть фразу — брат шукає дзеркало; ви стоїте поруч із дзеркалом і відповідаєте «Воно тут» (`here` — «тут»)"
+          }
+        },
+        {
+          "severity": "REVISE",
+          "where": "rug definition in word card 6 and new_words",
+          "problem": "«покриває окрему ділянку» sounds abstract and translated; a native, concrete definition names the floor.",
+          "replacement": {
+            "from": "Його кладуть на підлогу; він покриває окрему ділянку.",
+            "to": "Його кладуть на підлогу, щоб накрити її частину."
+          },
+          "applyToBothOccurrences": true
+        }
+      ],
+      "checks": {
+        "hashesMatchTaskPacket": true,
+        "englishTargetsOptionsTilesAndOrderUnchanged": true,
+        "orderedEnglishCodeSpanCount": 117,
+        "questionsOtherwiseUnambiguous": true,
+        "languageAnchorsOtherwiseNative": true,
+        "localPairGridLabelsCorrect": [
+          "stool — табурет",
+          "mirror — дзеркало",
+          "rug — килимок",
+          "lamp — лампа"
+        ],
+        "introBodyLengthsIncludingMarkup": [
+          241,
+          265,
+          285
+        ],
+        "naturalHumor": {
+          "present": true,
+          "example": "«Проводити перепис усіх дзеркал для цієї фрази не треба»",
+          "assessment": "Natural, dry, immediately understandable, and derived from the one-versus-only distinction."
+        },
+        "actualAudioReviewed": false,
+        "visualReviewPerformed": false,
+        "appExportCompatibilityReviewed": false
+      },
+      "localizePromptDelta": {
+        "verdict": "PASS",
+        "assessment": "Point 4 accurately implements the 08.09 owner decision: preserve or naturally adapt humor, require at least one relevant humorous move per session as an editorial target, avoid a per-intro quota, and require independent judgment with concrete evidence.",
+        "ownerAlignment": "The owner record explicitly says that one humorous move per session is an applied editorial target rather than the owner's literal numeric rule."
+      },
+      "relatedPhoneticFindings": [
+        {
+          "session": "L3 S2",
+          "quote": "У середині `disk` голосний ближчий до «і», а в `desk` — до «е».",
+          "verdict": "REVISE",
+          "reason": "disk is /dɪsk/; Ukrainian «и», not «і», is the direct /ɪ/ anchor.",
+          "replacement": "У середині `disk` голосний ближчий до українського «и», а в `desk` — до «е»."
+        },
+        {
+          "session": "L3 S1",
+          "quote": "У середині `cheer` звук ближчий до «і», а в `chair` — до «е».",
+          "verdict": "REVISE_WITH_DIALECT_NEUTRAL_WORDING",
+          "reason": "Cambridge gives cheer as UK /tʃɪə(r)/ and US /tʃɪr/, versus chair UK /tʃeə(r)/ and US /tʃer/. A mechanical «і»→«и» is better for the initial vowel but remains too letter-specific across accents.",
+          "replacement": "У `cheer` голосний звучить вище й вужче, а в `chair` — відкритіше, ближче до «е»."
+        }
+      ],
+      "phoneticEvidence": [
+        {
+          "claim": "mirror has /ɪ/",
+          "source": "[Cambridge Dictionary: mirror pronunciation](https://dictionary.cambridge.org/us/pronunciation/english/mirror)"
+        },
+        {
+          "claim": "disk /dɪsk/ contrasts with desk /desk/",
+          "sources": [
+            "[Cambridge Dictionary: disk](https://dictionary.cambridge.org/dictionary/english/disk)",
+            "[Cambridge Dictionary: desk pronunciation](https://dictionary.cambridge.org/pronunciation/english/desk)"
+          ]
+        },
+        {
+          "claim": "cheer /tʃɪə(r), tʃɪr/ contrasts with chair /tʃeə(r), tʃer/",
+          "sources": [
+            "[Cambridge Dictionary: cheer pronunciation](https://dictionary.cambridge.org/us/pronunciation/english/cheer)",
+            "[Cambridge Dictionary: chair pronunciation](https://dictionary.cambridge.org/pronunciation/english/chair)"
+          ]
+        },
+        {
+          "claim": "Ukrainian vowel phonemes include /i ɪ ɛ a ɔ u/, corresponding to і, и, е, а, о, у",
+          "source": "[Journal of the International Phonetic Association: Ukrainian](https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/ukrainian/D20ECF62B57E4162670BD938A4B8EA33)"
+        }
+      ]
+    },
+    {
+      "scope": "current local course source and local preview only; app-export compatibility excluded",
+      "sessions": [
+        {
+          "session": "en/l03/s01",
+          "sourceSha256": "b359c831e0a98a3195b604202d96d2c349735b668f5fff96a6c6215e50473802",
+          "localeSha256": "3623c0e975be1492472e670279b020d05ca856a745dda602899f1ddb94afdb72",
+          "reviewScope": "phonetic delta only, on top of the existing native review",
+          "verdict": "PASS",
+          "checks": {
+            "onlyIntendedDelta": true,
+            "currentText": "У `cheer` голосний починається ближче до українського «и», а в `chair` — до «е». У записі — `chair`.",
+            "assessment": "Natural and precise. «Починається» correctly limits the comparison to the vowel onset, accommodates UK /ɪə/ and US /ɪr/, and cannot be mistaken for pitch."
+          }
+        },
+        {
+          "session": "en/l03/s02",
+          "sourceSha256": "6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b",
+          "localeSha256": "3f23911b2e4fce6a9450812fbb1bd3d5a2b7fb414adbe9b0187b463f2495562c",
+          "reviewScope": "phonetic delta only, on top of the existing native review",
+          "verdict": "PASS",
+          "checks": {
+            "onlyIntendedDelta": true,
+            "currentText": "У середині `disk` голосний ближчий до українського «и», а в `desk` — до «е». У записі — `desk`.",
+            "assessment": "Correct Ukrainian anchor for English /ɪ/ and a clear contrast with desk."
+          }
+        },
+        {
+          "session": "en/l03/s03",
+          "sourceSha256": "45a29f88af55d12f0eca4f40f28a2b01cf5e3b5a3fcee62af225f1c379ef1f15",
+          "localeSha256": "2469b72e5c687621a41f501bb4684fafe2b8935447b2880ecd0823fea5004340",
+          "reviewScope": "full previously reviewed source plus all round-two deltas",
+          "verdict": "PASS",
+          "checks": {
+            "mirrorAnchorsCorrected": true,
+            "mirrorAnchor": "українського «и»",
+            "mirrorReferentNowUnambiguous": true,
+            "currentReferentText": "ви стоїте поруч із дзеркалом",
+            "rugDefinitionNaturalInBothOccurrences": true,
+            "currentRugDefinition": "Його кладуть на підлогу, щоб накрити її частину.",
+            "remainingNativeLanguageDefects": false
+          }
+        }
+      ],
+      "localizePromptSoundComparisonDelta": {
+        "verdict": "PASS",
+        "causeCoverage": {
+          "preventsVisualLetterCopying": true,
+          "givesCorrectUkrainianIpExample": true,
+          "requiresWordAndPronunciationVariantChecks": true,
+          "requiresOnsetQualificationForChangingVowels": true,
+          "forbidsConfusingVowelQualityWithPitch": true,
+          "requiresIndependentLocaleReview": true,
+          "forbidsClaimingActualAudioWasVerifiedFromText": true
+        },
+        "assessment": "The new section directly addresses the discovered failure class without imposing a mechanical global replacement. It is suitable for future locales."
+      },
+      "remainingIssues": [
+        {
+          "scope": "future app export",
+          "status": "retained_unresolved",
+          "issue": "Speed Match leftColumn/rightColumn use visible strings rather than pairId values expected by the native app mode.",
+          "affectsCurrentLocalVerdicts": false
+        }
+      ],
+      "evidenceLimits": {
+        "actualAudioReviewed": false,
+        "visualReviewPerformed": false,
+        "appCompatibilityClaimed": false
+      }
+    }
+  ],
+  "finalActualReport": {
+    "scope": "current local course source and local preview only; app-export compatibility excluded",
+    "sessions": [
+      {
+        "session": "en/l03/s01",
+        "sourceSha256": "b359c831e0a98a3195b604202d96d2c349735b668f5fff96a6c6215e50473802",
+        "localeSha256": "3623c0e975be1492472e670279b020d05ca856a745dda602899f1ddb94afdb72",
+        "reviewScope": "phonetic delta only, on top of the existing native review",
+        "verdict": "PASS",
+        "checks": {
+          "onlyIntendedDelta": true,
+          "currentText": "У `cheer` голосний починається ближче до українського «и», а в `chair` — до «е». У записі — `chair`.",
+          "assessment": "Natural and precise. «Починається» correctly limits the comparison to the vowel onset, accommodates UK /ɪə/ and US /ɪr/, and cannot be mistaken for pitch."
+        }
+      },
+      {
+        "session": "en/l03/s02",
+        "sourceSha256": "6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b",
+        "localeSha256": "3f23911b2e4fce6a9450812fbb1bd3d5a2b7fb414adbe9b0187b463f2495562c",
+        "reviewScope": "phonetic delta only, on top of the existing native review",
+        "verdict": "PASS",
+        "checks": {
+          "onlyIntendedDelta": true,
+          "currentText": "У середині `disk` голосний ближчий до українського «и», а в `desk` — до «е». У записі — `desk`.",
+          "assessment": "Correct Ukrainian anchor for English /ɪ/ and a clear contrast with desk."
+        }
+      },
+      {
+        "session": "en/l03/s03",
+        "sourceSha256": "45a29f88af55d12f0eca4f40f28a2b01cf5e3b5a3fcee62af225f1c379ef1f15",
+        "localeSha256": "2469b72e5c687621a41f501bb4684fafe2b8935447b2880ecd0823fea5004340",
+        "reviewScope": "full previously reviewed source plus all round-two deltas",
+        "verdict": "PASS",
+        "checks": {
+          "mirrorAnchorsCorrected": true,
+          "mirrorAnchor": "українського «и»",
+          "mirrorReferentNowUnambiguous": true,
+          "currentReferentText": "ви стоїте поруч із дзеркалом",
+          "rugDefinitionNaturalInBothOccurrences": true,
+          "currentRugDefinition": "Його кладуть на підлогу, щоб накрити її частину.",
+          "remainingNativeLanguageDefects": false
+        }
+      }
+    ],
+    "localizePromptSoundComparisonDelta": {
+      "verdict": "PASS",
+      "causeCoverage": {
+        "preventsVisualLetterCopying": true,
+        "givesCorrectUkrainianIpExample": true,
+        "requiresWordAndPronunciationVariantChecks": true,
+        "requiresOnsetQualificationForChangingVowels": true,
+        "forbidsConfusingVowelQualityWithPitch": true,
+        "requiresIndependentLocaleReview": true,
+        "forbidsClaimingActualAudioWasVerifiedFromText": true
+      },
+      "assessment": "The new section directly addresses the discovered failure class without imposing a mechanical global replacement. It is suitable for future locales."
+    },
+    "remainingIssues": [
+      {
+        "scope": "future app export",
+        "status": "retained_unresolved",
+        "issue": "Speed Match leftColumn/rightColumn use visible strings rather than pairId values expected by the native app mode.",
+        "affectsCurrentLocalVerdicts": false
+      }
+    ],
+    "evidenceLimits": {
+      "actualAudioReviewed": false,
+      "visualReviewPerformed": false,
+      "appCompatibilityClaimed": false
+    }
+  }
+}

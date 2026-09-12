@@ -1,0 +1,42 @@
+{
+  "sourceSha256": "8ab3f850df1040ac55ff53cef51a4c8c1cae1c8a7e11d87e3f6866f7f3ac961c",
+  "scope": "Text-only learner walkthrough. HeardText substitutes for audio; actual audio was not assessed.",
+  "introAnswers": {
+    "intro1": "Excuse me.",
+    "intro2": "Sorry.",
+    "intro3": "Excuse me. Where is the station?"
+  },
+  "practiceAnswers": {
+    "1": "прочитал: excuse me",
+    "2": "Excuse me.",
+    "3": "Excuse me. Is it far?",
+    "4": "near",
+    "5": "It is near.",
+    "6": "I am not sure.",
+    "7": "sure",
+    "8": "I am sorry.",
+    "9": {
+      "near": "близко",
+      "sure": "уверен",
+      "sorry": "извините",
+      "station": "станция"
+    },
+    "10": "Excuse me",
+    "11": "Where is the station?",
+    "12": "The station is here.",
+    "13": "is",
+    "14": "busy",
+    "15": "I am sure.",
+    "16": "We are ready.",
+    "17": "Excuse me. Is the station open?"
+  },
+  "confusion": [],
+  "issues": [],
+  "verdict": "PASS",
+  "answerComparison": {
+    "intro": 3,
+    "practice": 17,
+    "matched": true,
+    "scope": "text only"
+  }
+}

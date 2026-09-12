@@ -1,0 +1,73 @@
+{
+  "sourceSha256": "20a9aafd2d1cd8d6cf3cc227413faf304314cd13c2b2a5cd85fea157aa9357fc",
+  "localeSha256": {
+    "uk": "67057a5fdead81409ae6a834b1e585a24395c659ad96dddd6644d4b2cd60255d"
+  },
+  "reviewer": "/root/s17_uk_native",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "remaining_issues": [],
+      "full_native_scope_retained": true,
+      "english_skeleton_17_tasks": "PASS",
+      "number_referents": "PASS",
+      "definitions_and_dish_serving_tableware_sense": "PASS",
+      "phonetic_feedback_text": "PASS",
+      "listening_prompts_neutral": "PASS",
+      "humour": {
+        "present": true,
+        "on_topic": true,
+        "examples": [
+          "Назвати весь набір `bottle` означало б, ніби решта пляшок приїхала дарма."
+        ]
+      }
+    }
+  },
+  "delta": {
+    "exact_four_replacements": true,
+    "no_other_edit": true,
+    "reverse_reconstructed_sha256": "494025a43da08209824ffee53d84009cd83f93838e4e81b285e27e2bc24834bc"
+  },
+  "intro_lengths_chars": [
+    227,
+    230,
+    247
+  ],
+  "actual_audio": "NOT_REVIEWED",
+  "reviewHistory": [
+    {
+      "reviewer": "/root/s17_uk_native",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "medium",
+      "ru_sha256": "20a9aafd2d1cd8d6cf3cc227413faf304314cd13c2b2a5cd85fea157aa9357fc",
+      "uk_sha256": "494025a43da08209824ffee53d84009cd83f93838e4e81b285e27e2bc24834bc",
+      "verdict": "REVISE",
+      "findings": [
+        {
+          "quote": "Треба впевнитися, що весь набір на місці, перш ніж прибрати порожню коробку.",
+          "replacement": "Треба впевнитися, що всі набори на місці, перш ніж прибрати порожню коробку."
+        },
+        {
+          "quote": " У списку вони теж рахуються окремо.",
+          "replacement": ""
+        },
+        {
+          "quote": " Кожна рахується окремо.",
+          "replacement": ""
+        },
+        {
+          "quote": "`bowl` — «миска», глибокий відкритий посуд.",
+          "replacement": "`bowl` — «миска», глибока відкрита посудина."
+        }
+      ],
+      "english_skeleton_17_tasks": "PASS",
+      "definitions_and_dish_sense": "PASS after listed repair",
+      "phonetic_feedback": "PASS",
+      "humour_quote": "Назвати весь набір `bottle` означало б, ніби решта пляшок приїхала дарма.",
+      "actual_audio": "NOT_REVIEWED",
+      "lateEditNote": "Author announced 91aaf... complete then added two filler sentences. Native verified deleting only those two reconstructs announced hash. Author stopped; ownership handback rule reiterated."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "session": "S38",
+  "sourceSha256": "6f9db16f3e56443e84b336980a5fcc8e942bd6d5a75256b3b9f1d7499b1a9f7c",
+  "verdict": "PASS",
+  "issues": [],
+  "verified": {
+    "whoIsHeAllowsNameOrRoleIdentification": true,
+    "whoIsSheVsIsSheNewDistinctionAccurate": true,
+    "newMeaningScopedToNewEmployee": true,
+    "peoplePluralAndAreRuleAccurate": true,
+    "russianCopulaComparisonAccurate": true,
+    "humourDoesNotCreateAFalseClaim": true
+  }
+}

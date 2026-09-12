@@ -1,0 +1,12 @@
+{
+  "sourceSha256": "bba9544a421a402824001049edf715822205743020b64bb171f7ddd71890f301",
+  "reviewer": "/root/s09_truth",
+  "verdict": "BLOCK",
+  "problems": [
+    {"where":"armchair definition","quote":"Мягкое сиденье для одного человека, со спинкой и подлокотниками.","why":"Softness is not required; rigid wooden armchairs exist. Armrests define the distinction."},
+    {"where":"operation and intros","quote":"Перед названием одного предмета с гласным звуком в начале вместо a ставим an","why":"The vowel selects a/an only where this naming model needs an indefinite article; a single item alone does not universally require an."},
+    {"where":"practice2 archer feedback","quote":"в archer — один «ч» на этом месте","why":"Both have one /tʃ/. The reliable distinction is /m/ immediately before /tʃ/ in armchair, absent in archer."}
+  ],
+  "otherEvidence":"Cambridge sets contain real words. Other textual contrasts are specific. Unknown candidates are wrong answers only.",
+  "actualAudioVerified":false
+}

@@ -1,0 +1,31 @@
+{
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "problems": [],
+      "verdictReason": "Native review: natural Ukrainian, singular it/is preserved, English targets/options/order unchanged (342 ASCII tokens); intros279/290/299."
+    }
+  },
+  "verdict": "PASS",
+  "sourceSha256": "ad0183db5fd0a3fe68020a2dcd9312139bf303bb59b21c68385a0632083b86d5",
+  "localeSha256": {
+    "uk": "0b05ce67d3c4be212de1625e4e792c57aac0797d54b05f8ecc3fca4d3dba86dc"
+  },
+  "reviewedAt": "2026-09-08T10:50:21.813431+00:00",
+  "reviewMethod": "builtin_codex_independent_native_review",
+  "listeningRepairReview": {
+    "phoneticEvidence": [
+      "Все 12 банков состоят из реальных слов; омофонов внутри банков нет.",
+      "Различия feedback точны: начальный звук, начало, первый слог или средняя гласная/согласная действительно различают варианты.",
+      "RU/UK инструкции нейтральны; feedback не использует IPA и корректно передаёт значения.",
+      "`vests` = `жилеты/жилети` — допустимое американское значение; универсальность или британское значение не заявлены."
+    ],
+    "ukDelta": {
+      "session": 37,
+      "locale": "uk",
+      "verdict": "PASS",
+      "issues": [],
+      "sourceSha256": "0b05ce67d3c4be212de1625e4e792c57aac0797d54b05f8ecc3fca4d3dba86dc"
+    }
+  }
+}

@@ -89,7 +89,7 @@
           "ru": "Вставьте слово — вопрос про воду",
           "uk": "Вставте слово — запитання про воду"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ you thirsty?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-05:i03:r1",
@@ -107,7 +107,7 @@
         "testedDimension": "Вставьте слово — вопрос про воду",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-05:i03:r1",
+            "responseId": "en:lesson-02:session-05:i03:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вопрос про воду",
             "feedbackByLocale": {
@@ -116,7 +116,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-05:i03:r2",
+            "responseId": "en:lesson-02:session-05:i03:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вопрос про воду",
             "feedbackByLocale": {
@@ -176,7 +176,7 @@
         "testedDimension": "Вставьте слово — сообщение, а не вопрос",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-05:i04:r1",
+            "responseId": "en:lesson-02:session-05:i04:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сообщение, а не вопрос",
             "feedbackByLocale": {
@@ -185,7 +185,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-05:i04:r2",
+            "responseId": "en:lesson-02:session-05:i04:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сообщение, а не вопрос",
             "feedbackByLocale": {
@@ -250,7 +250,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-05:i05:r1",
+            "responseId": "en:lesson-02:session-05:i05:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы услышали?",
             "feedbackByLocale": {
@@ -259,7 +259,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-05:i05:r2",
+            "responseId": "en:lesson-02:session-05:i05:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы услышали?",
             "feedbackByLocale": {
@@ -326,7 +326,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-05:i06:r1",
+            "responseId": "en:lesson-02:session-05:i06:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы услышали?",
             "feedbackByLocale": {
@@ -335,7 +335,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-05:i06:r2",
+            "responseId": "en:lesson-02:session-05:i06:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы услышали?",
             "feedbackByLocale": {
@@ -470,7 +470,7 @@
         "testedDimension": "Вставьте слово — сосед лежит с закрытыми",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-05:i08:r1",
+            "responseId": "en:lesson-02:session-05:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед лежит с закрытыми",
             "feedbackByLocale": {
@@ -479,7 +479,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-05:i08:r2",
+            "responseId": "en:lesson-02:session-05:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед лежит с закрытыми",
             "feedbackByLocale": {
@@ -598,7 +598,7 @@
         "testedDimension": "Вставьте слово — сосед сидит в куртке и ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-05:i11:r1",
+            "responseId": "en:lesson-02:session-05:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед сидит в куртке и ",
             "feedbackByLocale": {
@@ -607,7 +607,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-05:i11:r2",
+            "responseId": "en:lesson-02:session-05:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед сидит в куртке и ",
             "feedbackByLocale": {
@@ -687,7 +687,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «гот",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-05:i13:r1",
+            "responseId": "en:lesson-02:session-05:i13:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «гот",
             "feedbackByLocale": {
@@ -757,7 +757,7 @@
           "ru": "Вставьте слово — вы стоите с ключами и ждёте",
           "uk": "Вставте слово — ви стоїте з ключами й чекаєте"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ you ready?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-05:i15:r1",
@@ -775,7 +775,7 @@
         "testedDimension": "Вставьте слово — вы стоите с ключами и ж",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-05:i15:r1",
+            "responseId": "en:lesson-02:session-05:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы стоите с ключами и ж",
             "feedbackByLocale": {
@@ -784,7 +784,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-05:i15:r2",
+            "responseId": "en:lesson-02:session-05:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы стоите с ключами и ж",
             "feedbackByLocale": {
@@ -909,5 +909,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "326bf177728c95426ca4868f3a1d7649825ed2a0477c5399abc5896ee5c1380b"
+  "learnerFingerprint": "abaf2053df260b4534478225d9cb47d8369e5c54494f6a7e28166713a6247186"
 }

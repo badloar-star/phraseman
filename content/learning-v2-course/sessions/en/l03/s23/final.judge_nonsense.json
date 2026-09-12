@@ -1,0 +1,34 @@
+{
+  "sourceSha256": "6d15551c83a2a8c04931eae5084b2e05a634d502c484786ac353c6f51e3b96c8",
+  "reviewer": "/root/s23_truth",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "problems": [],
+  "changedLines": [
+    15,
+    17,
+    21,
+    43,
+    45
+  ],
+  "fullPriorScopeRetained": true,
+  "evidence": [
+    "Full current master read; exacthash verified. Only5allowedlineschanged, practice and phoneticfeedback unchanged.",
+    "It is a spoon→They are spoons changes pronoun,be,article,noun; scopedwholephraseclaimtrue.",
+    "Intro3 scopedThey are cups withouta, no universal claim.",
+    "spoon/soon/swoon, fork/pork/cork, cup/cap/cop realnonhomophones, positivecuesbothsides; copbackvowel accommodatesUKɒ/USɑː.",
+    "Meanings and RU/UK evidence equivalents correct; nofalsemandatoryobjectproperties.",
+    "Audio prompts2/4/8/11neutral; no number/frequencyclaims."
+  ],
+  "verdict": "PASS",
+  "verdict_reason": "Текущий RU-источник после разрешённого delta сохраняет истинные и точно ограниченные грамматические, смысловые и произносительные утверждения; ложных противопоставлений, универсалий, подсказок ответа или противоречий не найдено.",
+  "actualAudio": "NOT_REVIEWED",
+  "reviewHistory": [
+    {
+      "sourceSha256": "2040d5dfb703f1e540e220c1823a54a6a1bc3dc9d22bea82da778f9aeb65f48a",
+      "verdict": "PASS",
+      "scope": "Full original exact-source truth review, before bounded introdelta",
+      "problems": []
+    }
+  ]
+}

@@ -51,7 +51,7 @@
         "testedDimension": "Вставьте слово — она спрашивает, не забл",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-08:i01:r1",
+            "responseId": "en:lesson-01:session-08:i01:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — она спрашивает, не забл",
             "feedbackByLocale": {
@@ -60,7 +60,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-08:i01:r2",
+            "responseId": "en:lesson-01:session-08:i01:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — она спрашивает, не забл",
             "feedbackByLocale": {
@@ -125,7 +125,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-08:i02:r1",
+            "responseId": "en:lesson-01:session-08:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — tired",
             "feedbackByLocale": {
@@ -134,7 +134,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-08:i02:r2",
+            "responseId": "en:lesson-01:session-08:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — tired",
             "feedbackByLocale": {
@@ -226,7 +226,7 @@
         "testedDimension": "Вставьте скрепку — она уточняет, вы ли т",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-08:i04:r1",
+            "responseId": "en:lesson-01:session-08:i04:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — она уточняет, вы ли т",
             "feedbackByLocale": {
@@ -235,7 +235,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-08:i04:r2",
+            "responseId": "en:lesson-01:session-08:i04:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — она уточняет, вы ли т",
             "feedbackByLocale": {
@@ -400,7 +400,7 @@
         "testedDimension": "Вставьте слово — зовут перекусить, а вы ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-08:i07:r1",
+            "responseId": "en:lesson-01:session-08:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — зовут перекусить, а вы ",
             "feedbackByLocale": {
@@ -409,7 +409,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-08:i07:r2",
+            "responseId": "en:lesson-01:session-08:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — зовут перекусить, а вы ",
             "feedbackByLocale": {
@@ -503,7 +503,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-08:i09:r1",
+            "responseId": "en:lesson-01:session-08:i09:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — free",
             "feedbackByLocale": {
@@ -512,7 +512,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-08:i09:r2",
+            "responseId": "en:lesson-01:session-08:i09:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — free",
             "feedbackByLocale": {
@@ -574,7 +574,7 @@
         "testedDimension": "Вставьте слово — вас зовут на общий обед",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-08:i10:r1",
+            "responseId": "en:lesson-01:session-08:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вас зовут на общий обед",
             "feedbackByLocale": {
@@ -583,7 +583,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-08:i10:r2",
+            "responseId": "en:lesson-01:session-08:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вас зовут на общий обед",
             "feedbackByLocale": {
@@ -676,7 +676,7 @@
         "testedDimension": "Вставьте слово — она спрашивает, всё ли ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-08:i12:r1",
+            "responseId": "en:lesson-01:session-08:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — она спрашивает, всё ли ",
             "feedbackByLocale": {
@@ -685,7 +685,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-08:i12:r2",
+            "responseId": "en:lesson-01:session-08:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — она спрашивает, всё ли ",
             "feedbackByLocale": {

@@ -1,0 +1,48 @@
+{
+  "sourceSha256": "e3a501430d3205b4a5bea468fdc9d6964e3cb5078aef274945eadb8197316ce7",
+  "localeSha256": {
+    "uk": "12312a4e3be38d534d4a4560dcaee06e48fd05669ca8904f21e9b59f07c30c03"
+  },
+  "reviewer": "/root/s17_uk_native",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "native_quality": "PASS",
+      "repaired_intro3_context": "PASS: the two meanings are now clear and the story count/referent is unchanged",
+      "intro_raw_chars": [
+        245,
+        227,
+        248
+      ],
+      "intro_length_210_320": "PASS",
+      "structure_and_english_parity": "PASS: prior 3-intro/17-task scope retained",
+      "meanings": "PASS: dish remains serving tableware, glass a drinking vessel, story a narrative",
+      "listening_feedback": "PASS as text",
+      "humour": {
+        "present": true,
+        "on_topic": true,
+        "examples": [
+          "У `glass` уже є дві `s`, але дві склянки за це не видають."
+        ]
+      },
+      "remaining_issues": []
+    }
+  },
+  "delta": {
+    "old_count": 0,
+    "new_count": 1,
+    "reverse_reconstructed_initial_sha256": "c9b8832a9e6d55031bc18f4f401e200510f273656c5e0b2212968ea918dc3d1c",
+    "no_other_edit": true
+  },
+  "actual_audio": "NOT_REVIEWED",
+  "reviewHistory": [
+    {
+      "report": "judgements/2026-09-12_l03_s24_uk_initial.json",
+      "verdict": "REVISE",
+      "confirmedBySecondReading": true
+    }
+  ]
+}
+

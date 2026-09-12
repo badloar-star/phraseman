@@ -1,0 +1,52 @@
+{
+  "session": "en/l02/s49",
+  "sourceSha256": "00c09f85e73e0f5f6464d9ee99da3619785aeb248c3cbeca5769809f9f04bac4",
+  "scope": "Text-only simulation. Transcripts substitute for sound; actual audio was not assessed.",
+  "introAnswers": {
+    "1": "Yes, I am.",
+    "2": "Who is he?",
+    "3": "Where is the station?"
+  },
+  "practiceAnswers": {
+    "1": "Are you tired?",
+    "2": "am",
+    "3": "Who is he?",
+    "4": "manager",
+    "5": "What",
+    "6": "Where is the station?",
+    "7": "Is he new?",
+    "8": "No, he is not.",
+    "9": "near",
+    "10": {
+      "tired": "устал",
+      "near": "близко",
+      "manager": "руководитель",
+      "ready": "готов"
+    },
+    "11": "Is it near?",
+    "12": "I am not sure.",
+    "13": "It is not near.",
+    "14": "we",
+    "15": "Am I wrong?",
+    "16": "I am ready.",
+    "17": "What is the time?"
+  },
+  "issues": [
+    {
+      "steps": [
+        7,
+        8
+      ],
+      "type": "missing_lexical_grounding",
+      "detail": "new не вводится до фраз Is he new? / No, he is not. Русский контекст позволяет вывести смысл «новенький», но отдельного знакомства со словом нет."
+    },
+    {
+      "steps": [
+        17
+      ],
+      "type": "missing_lexical_grounding",
+      "detail": "time впервые появляется в финальной фразе What is the time? без явного введения или перевода. Русская инструкция позволяет собрать фразу, но не даёт самостоятельного знакомства со словом."
+    }
+  ],
+  "verdict": "REVISE"
+}

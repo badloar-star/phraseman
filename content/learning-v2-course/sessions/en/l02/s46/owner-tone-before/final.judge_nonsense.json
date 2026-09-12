@@ -1,0 +1,18 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "153bd8b1d7a45631d4e1e668fcf19f75b2dcb2335c7203900cf7f68cda2ef046",
+  "issues": [],
+  "checks": {
+    "meanings": "`audible` correctly covers basic hearability; `clear` correctly covers speech that is easy to hear and understand",
+    "usage": "`Am I audible?`, `Am I clear?` and contextual `You are clear.` are grammatical and coherent in the stated telephone sound-check setting",
+    "qualification": "The text distinguishes hearability from clarity without falsely claiming that `clear` can never concern audibility",
+    "phoneticBanks": "`audible/edible/laudable` and `clear/near/fear` are real, non-homophonous near-sound sets; the feedback uses stable initial-vowel or initial-consonant cues",
+    "sceneAndAnswers": "coherent and unambiguous across all 17 tasks",
+    "introLengths": [
+      257,
+      266,
+      248
+    ],
+    "audioQuality": "not assessed from text"
+  }
+}

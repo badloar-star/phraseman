@@ -1,0 +1,227 @@
+{
+  "sourceSha256": "c390f5b9da85a52bc56906498f12c67a37471cd2b6ee17fe097030f71f432835",
+  "reviewer": "/root/s10_pedagogy",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "towel",
+      "curtain",
+      "pillow"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "must_fix": [],
+  "answer_semantics": [],
+  "substitution_evidence": [
+    "Intro 1/T5: one towel → “It is a towel.”; omission of `a` and plural `towels` both fail the one-item condition.",
+    "Intro 2/T6: two curtains → “They are curtains.”; `a curtains` is the realistic extraneous-article error, while `a curtain` names one item.",
+    "Intro 3/T9/T13: several pillows → plural bare `pillows`; `a pillows` and `a pillow` respectively test extra `a` and singular transfer.",
+    "T10: one water glass → `a glass`; T15: several water glasses → bare `glasses`. These give the returned word both sides of the contrast.",
+    "T11/T16: one curtain → `a curtain`; T12: dictated plural negative retains bare `towels`; T17: one pillow → “It is a pillow.”"
+  ],
+  "audio_prompt_neutrality": {
+    "task2": true,
+    "task4": true,
+    "task8": true,
+    "task12": true,
+    "leaks": [],
+    "actual_audio": "NOT_REVIEWED"
+  },
+  "grounding": {
+    "word_first": {
+      "towel": [
+        1,
+        2,
+        5
+      ],
+      "curtain": [
+        3,
+        4,
+        6
+      ],
+      "pillow": [
+        7,
+        8,
+        9
+      ]
+    },
+    "return_glass_correct_contacts": [
+      10,
+      14,
+      15
+    ],
+    "speed_match_before_grounding": false,
+    "speed_match_board": [
+      "towels",
+      "curtains",
+      "pillows",
+      "glasses"
+    ]
+  },
+  "boundary": {
+    "article_rule_scope": "The source limits the contrast to its taught naming frames and explicitly avoids claiming that plurals never take articles.",
+    "unknown_in_explanations": [],
+    "unknown_in_targets": [],
+    "future_grammar": []
+  },
+  "builder_checks": {
+    "builders": [
+      5,
+      9,
+      12,
+      17
+    ],
+    "count": 4,
+    "variety": [
+      "singular affirmative",
+      "plural affirmative",
+      "dictated plural negative",
+      "independent singular final"
+    ],
+    "same_skeleton_max": 2,
+    "final_independent": true,
+    "final_not_dosforword_equal_to_voice16": true
+  },
+  "traps": {
+    "article_omission_singular": [
+      1,
+      10,
+      11
+    ],
+    "extraneous_article_plural": [
+      2,
+      3,
+      6,
+      9,
+      13,
+      15
+    ],
+    "diagnostic_quality": "Both omission of `a` for a singular and overgeneralized `a` before plurals are directly tested; the intentionally ungrammatical plural-article distractors are appropriate target errors."
+  },
+  "verdict": "PASS",
+  "reason": "S21 cleanly teaches the specified indefinite singular-versus-bare-plural contrast through grounded, uniquely answerable delivery-note scenes, with adequate retrieval and independent final production.",
+  "reviewHistory": [
+    {
+      "sourceSha256": "749160656f9f0ceb18c296df4e6141efece3cbb489c60a017e3998a5ed3771fe",
+      "reviewer": "/root/s10_pedagogy",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "plan_fidelity": {
+        "operation_matches": true,
+        "new_words_match": [
+          "towel",
+          "curtain",
+          "pillow"
+        ],
+        "missing": [],
+        "extra_grammar_smuggled": []
+      },
+      "must_fix": [],
+      "answer_semantics": [],
+      "substitution_evidence": [
+        "Intro 1/T5: one towel → “It is a towel.”; omission of `a` and plural `towels` both fail the one-item condition.",
+        "Intro 2/T6: two curtains → “They are curtains.”; `a curtains` is the realistic extraneous-article error, while `a curtain` names one item.",
+        "Intro 3/T9/T13: several pillows → plural bare `pillows`; `a pillows` and `a pillow` respectively test extra `a` and singular transfer.",
+        "T10: one water glass → `a glass`; T15: several water glasses → bare `glasses`. These give the returned word both sides of the contrast.",
+        "T11/T16: one curtain → `a curtain`; T12: dictated plural negative retains bare `towels`; T17: one pillow → “It is a pillow.”"
+      ],
+      "audio_prompt_neutrality": {
+        "task2": true,
+        "task4": true,
+        "task8": true,
+        "task12": true,
+        "leaks": [],
+        "actual_audio": "NOT_REVIEWED"
+      },
+      "grounding": {
+        "word_first": {
+          "towel": [
+            1,
+            2,
+            5
+          ],
+          "curtain": [
+            3,
+            4,
+            6
+          ],
+          "pillow": [
+            7,
+            8,
+            9
+          ]
+        },
+        "return_glass_correct_contacts": [
+          10,
+          14,
+          15
+        ],
+        "speed_match_before_grounding": false,
+        "speed_match_board": [
+          "towels",
+          "curtains",
+          "pillows",
+          "glasses"
+        ]
+      },
+      "boundary": {
+        "article_rule_scope": "The source limits the contrast to its taught naming frames and explicitly avoids claiming that plurals never take articles.",
+        "unknown_in_explanations": [],
+        "unknown_in_targets": [],
+        "future_grammar": []
+      },
+      "builder_checks": {
+        "builders": [
+          5,
+          9,
+          12,
+          17
+        ],
+        "count": 4,
+        "variety": [
+          "singular affirmative",
+          "plural affirmative",
+          "dictated plural negative",
+          "independent singular final"
+        ],
+        "same_skeleton_max": 2,
+        "final_independent": true,
+        "final_not_dosforword_equal_to_voice16": true
+      },
+      "traps": {
+        "article_omission_singular": [
+          1,
+          10,
+          11
+        ],
+        "extraneous_article_plural": [
+          2,
+          3,
+          6,
+          9,
+          13,
+          15
+        ],
+        "diagnostic_quality": "Both omission of `a` for a singular and overgeneralized `a` before plurals are directly tested; the intentionally ungrammatical plural-article distractors are appropriate target errors."
+      },
+      "verdict": "PASS",
+      "reason": "S21 cleanly teaches the specified indefinite singular-versus-bare-plural contrast through grounded, uniquely answerable delivery-note scenes, with adequate retrieval and independent final production."
+    }
+  ],
+  "deltaReview": {
+    "sourceSha256": "c390f5b9da85a52bc56906498f12c67a37471cd2b6ee17fe097030f71f432835",
+    "scope": "Exact diff against draft_01 contains four changes only: Intro 1 opening, T13 prompt, T16 prompt, and the towels board self-check row.",
+    "delta_answer_semantics": [],
+    "evidence": [
+      "Intro 1 now gives a concrete towel use while retaining the same singular It is a towel contrast.",
+      "T13 explicitly establishes two pillows in the bag, so bare plural They are pillows remains uniquely correct; a pillows and a pillow retain their intended diagnostic errors.",
+      "T16 explicitly establishes one window curtain in the open package, so It is a curtain is grounded by both referent and number.",
+      "The revised towels self-check accurately relies on card 1 plus known regular plural formation and T12’s prior correct dictated form; it makes no unsupported feedback claim."
+    ],
+    "prior_full_scope_retained": true,
+    "verdict": "PASS"
+  }
+}

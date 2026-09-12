@@ -1,0 +1,52 @@
+{
+  "session": 41,
+  "locale": "ru",
+  "verdict": "PASS",
+  "issues": [],
+  "sourceSha256": "d074aea3bdfe211b72b58384fab0afdae2d4de4e0b2d79e9b775f224c1ab1bc7",
+  "verifiedDelta": {
+    "phoneticBank": "`punctual/factual/actual` — реальные созвучные слова без омофонов; общий конец и начальные /p/, /f/, /æ/ указаны верно.",
+    "feedback": "Значения `factual` и `actual` точны; learner-facing разборы различают первые звуки без IPA, слогов и конечных согласных.",
+    "task13": "`I` однозначно относится к другу, который проверяет названное им время; инструкция не раскрывает содержание аудио.",
+    "selfCheck6": "Соответствует текущему банку и Cambridge-ссылкам."
+  },
+  "priorReviews": [
+    {
+      "session": 41,
+      "locale": "ru",
+      "verdict": "BLOCK",
+      "sourceSha256": "1f655a60f163b5e878d5beefb64cfc439cf4cbf1bbe796614e1a4396850f32ec",
+      "issues": [
+        {
+          "where": "Задание 2, feedback для `puncture`, строка 61",
+          "quote": "в `puncture` два слога, а в `punctual` — три",
+          "kind": "неустойчивый фонетический факт",
+          "why": "Cambridge фиксирует трёхсложное `punctual`, но Merriam-Webster также приводит сокращённый вариант, где отдельный средний слог исчезает. Категорическое различение «два против трёх» может не совпасть с живой записью. Сама пара созвучна и замены не требует.",
+          "exactMinimalFix": "- puncture — *Начало похоже, но в конце `punctual` слышно `л`, а `puncture` заканчивается иначе. Прозвучало `punctual`.*",
+          "sources": [
+            "[Cambridge: punctual](https://dictionary.cambridge.org/us/pronunciation/english/punctual)",
+            "[Cambridge: puncture](https://dictionary.cambridge.org/dictionary/english/puncture)",
+            "[Merriam-Webster: punctual variants](https://www.merriam-webster.com/dictionary/punctual)"
+          ]
+        },
+        {
+          "where": "Задание 13, строка 111",
+          "quote": "друг проверил время в приглашении и отвечает вам",
+          "kind": "неясный субъект реплики",
+          "why": "Следующая реплика `I am not wrong` означает, что не ошибся сам говорящий. Текущая инструкция не сообщает, какое утверждение друга проверялось, и после прежнего вопроса ученика `Am I wrong?` естественно ожидается ответ `You are not wrong`.",
+          "exactMinimalFix": "**13 · Послушайте и соберите — друг проверил время в приглашении и говорит, что сам не ошибся**"
+        }
+      ],
+      "verified": {
+        "punctualMeaningScopedToHabit": true,
+        "welcomeNewSenseGroundedBeforePractice": true,
+        "welcomeRemainsReturnedWord": true,
+        "phoneticBankContainsRealNearWordsWithoutHomophones": true,
+        "task11SceneRepairPreserved": true,
+        "singleCorrectAnswerPerChoiceTask": true,
+        "breakfastSceneOtherwiseCoherent": true,
+        "returnTablesMatchPractice": true
+      }
+    }
+  ]
+}

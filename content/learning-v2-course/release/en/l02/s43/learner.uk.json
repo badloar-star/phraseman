@@ -1,0 +1,942 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке запитання друг поставив на перехресті",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-43:i01:r1",
+          "text": "Are we lost?"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i01:r2",
+          "text": "Am I lost?"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i01:r3",
+          "text": "Are you lost?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-43:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке запитання друг поставив на перехресті",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-43:i01:audio",
+          "transcript": "Are we lost?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-43:i01:r1",
+            "targetText": "Are we lost?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i01:r2",
+            "targetText": "Am I lost?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i01:r3",
+            "targetText": "Are you lost?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-43:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "feedbackByLocale": {
+              "ru": "Это вопрос только о себе. В записи звучит `Are we`: друг спрашивает о вас обоих.",
+              "uk": "Це запитання лише про себе. У записі звучить `Are we`: друг запитує про вас обох."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "feedbackByLocale": {
+              "ru": "Это вопрос к собеседнику. На записи после `Are` стоит `we` — «мы».",
+              "uk": "Це запитання до співрозмовника. У записі після `Are` стоїть `we` — «ми»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви з другом не впізнаєте вулицю; запитайте, чи не заблукали ви обоє",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-43:i02:r1",
+          "text": "we"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i02:r2",
+          "text": "I"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i02:r3",
+          "text": "he"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви з другом не впізнаєте вулицю; запитайте, чи не заблукали ви обоє",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы с другом не узнаёте улицу; спросите, не заблудились ли вы оба",
+          "uk": "Вставте слово — ви з другом не впізнаєте вулицю; запитайте, чи не заблукали ви обоє"
+        },
+        "gappedTargetPhrase": "Are ___ lost?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i02:r1",
+            "text": "we"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i02:r2",
+            "text": "I"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i02:r3",
+            "text": "he"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы с другом не узнаёте ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы с другом не узнаёте ",
+            "feedbackByLocale": {
+              "ru": "Это «я». Здесь вопрос о вас обоих, поэтому нужно `we`.",
+              "uk": "Це «я». Тут запитання про вас обох, тому потрібне `we`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы с другом не узнаёте ",
+            "feedbackByLocale": {
+              "ru": "Это «он». Вы включаете в вопрос и себя, и друга: `Are we lost?`",
+              "uk": "Це «він». Ви запитуєте і про себе, і про друга: `Are we lost?`"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — після повороту ви перестали розуміти, де перебуваєте; запитайте друга, чи не заблукали ви",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — після повороту ви перестали розуміти, де перебуваєте; запитайте друга, чи не заблукали ви",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are we lost?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — после поворота вы перестали понимать, где находитесь; спросите друга, не заблудились ли вы",
+          "uk": "Складіть фразу — після повороту ви перестали розуміти, де перебуваєте; запитайте друга, чи не заблукали ви"
+        },
+        "orderedTokens": [
+          "Are",
+          "we",
+          "lost"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви обоє звірили назву вулиці на будинку з назвою на карті; скажіть другові: «Ми впевнені»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-43:i04:r1",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i04:r2",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i04:r3",
+          "text": "tired"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви обоє звірили назву вулиці на будинку з назвою на карті; скажіть другові: «Ми впевнені»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы оба сверили название улицы на доме и на карте; скажите другу: «Мы уверены»",
+          "uk": "Вставте слово — ви обоє звірили назву вулиці на будинку з назвою на карті; скажіть другові: «Ми впевнені»"
+        },
+        "gappedTargetPhrase": "We are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i04:r1",
+            "text": "sure"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i04:r2",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i04:r3",
+            "text": "tired"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы оба сверили название",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-43:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы оба сверили название",
+            "feedbackByLocale": {
+              "ru": "Получится «Мы заблудились». Сейчас вы говорите, что уверены в прочитанном названии: `sure`.",
+              "uk": "Вийде «Ми заблукали». Зараз ви кажете, що впевнені в прочитаній назві: `sure`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы оба сверили название",
+            "feedbackByLocale": {
+              "ru": "Это «устали». Вы сообщаете об уверенности, а не об усталости.",
+              "uk": "Це «втомилися». Ви повідомляєте про впевненість, а не про втому."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — що друг запитав, показуючи на карту",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-43:i05:r1",
+          "text": "Are we here?"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i05:r2",
+          "text": "Are you here?"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i05:r3",
+          "text": "We are here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — що друг запитав, показуючи на карту",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-43:i05:audio",
+          "transcript": "Are we here?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-43:i05:r1",
+            "targetText": "Are we here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i05:r2",
+            "targetText": "Are you here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i05:r3",
+            "targetText": "We are here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг спросил",
+            "feedbackByLocale": {
+              "ru": "Здесь вопрос о собеседнике. В записи друг говорит `we` — «мы».",
+              "uk": "Тут запитання про співрозмовника. У записі друг каже `we` — «ми»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг спросил",
+            "feedbackByLocale": {
+              "ru": "Это сообщение. На записи сначала `Are we`: друг задаёт вопрос.",
+              "uk": "Це повідомлення. У записі спочатку звучить `Are we`: друг ставить запитання."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — друг запитує, чи правильно ви вибрали поворот; ви сумніваєтеся й визнаєте це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — друг запитує, чи правильно ви вибрали поворот; ви сумніваєтеся й визнаєте це",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not sure.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг спрашивает, верно ли вы выбрали поворот; вы сомневаетесь и признаётесь в этом",
+          "uk": "Складіть фразу — друг запитує, чи правильно ви вибрали поворот; ви сумніваєтеся й визнаєте це"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "sure"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — друг уже сказав перехожому, що ви шукаєте станцію метро; запитайте перехожого, чи близько ви до неї",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-43:i07:r1",
+          "text": "Are"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i07:r2",
+          "text": "Am"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i07:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — друг уже сказав перехожому, що ви шукаєте станцію метро; запитайте перехожого, чи близько ви до неї",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг уже сказал прохожему, что вы ищете станцию метро; спросите, близко ли вы к ней",
+          "uk": "Вставте слово — друг уже сказав перехожому, що ви шукаєте станцію метро; запитайте перехожого, чи близько ви до неї"
+        },
+        "gappedTargetPhrase": "___ we near?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i07:r1",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i07:r2",
+            "text": "Am"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i07:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг уже сказал прохоже",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-43:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг уже сказал прохоже",
+            "feedbackByLocale": {
+              "ru": "Вопрос о вас обоих начинается с `Are we`. Здесь нужно `Are`.",
+              "uk": "Запитання про вас обох починається з `Are we`. Тут потрібне `Are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг уже сказал прохоже",
+            "feedbackByLocale": {
+              "ru": "Сочетание `Is we` не подходит для этого вопроса. Скажите `Are we near?`",
+              "uk": "Сполучення `Is we` не підходить для цього запитання. Скажіть `Are we near?`"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — перехожий зупинився допомогти; запитайте його, де станція",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — перехожий зупинився допомогти; запитайте його, де станція",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the station?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — прохожий остановился помочь; спросите его, где станция",
+          "uk": "Складіть фразу — перехожий зупинився допомогти; запитайте його, де станція"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте пари — слова для розмови про дорогу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте пари — слова для розмови про дорогу",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-43:i09:p1",
+            "target": "lost",
+            "meaningByLocale": {
+              "ru": "заблудились",
+              "uk": "заблукали"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-43:i09:p2",
+            "target": "sure",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "впевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-43:i09:p3",
+            "target": "here",
+            "meaningByLocale": {
+              "ru": "здесь",
+              "uk": "тут"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-43:i09:p4",
+            "target": "near",
+            "meaningByLocale": {
+              "ru": "близко",
+              "uk": "близько"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lost",
+          "sure",
+          "here",
+          "near"
+        ],
+        "rightColumn": [
+          "заблудились",
+          "уверен",
+          "здесь",
+          "близко"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви знайшли вхід до метро; покажіть другові це місце на карті й скажіть: «Ми тут»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-43:i10:r1",
+          "text": "here"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i10:r2",
+          "text": "ready"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i10:r3",
+          "text": "welcome"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви знайшли вхід до метро; покажіть другові це місце на карті й скажіть: «Ми тут»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы нашли вход в метро; покажите другу это место на карте и скажите: «Мы здесь»",
+          "uk": "Вставте слово — ви знайшли вхід до метро; покажіть другові це місце на карті й скажіть: «Ми тут»"
+        },
+        "gappedTargetPhrase": "We are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i10:r1",
+            "text": "here"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i10:r2",
+            "text": "ready"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i10:r3",
+            "text": "welcome"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы нашли вход в метро; ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-43:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы нашли вход в метро; ",
+            "feedbackByLocale": {
+              "ru": "Это «готовы». Сейчас вы указываете ваше место на карте: `here`.",
+              "uk": "Це «готові». Зараз ви показуєте своє місце на карті: `here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы нашли вход в метро; ",
+            "feedbackByLocale": {
+              "ru": "С `welcome` получится «Нам рады». Для «Мы здесь» нужно `We are here`.",
+              "uk": "З `welcome` вийде «Нам раді». Для «Ми тут» потрібне `We are here`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — що друг сказав біля станції",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-43:i11:r1",
+          "text": "We are not lost."
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i11:r2",
+          "text": "We are lost."
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i11:r3",
+          "text": "They are not lost."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — що друг сказав біля станції",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-43:i11:audio",
+          "transcript": "We are not lost."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-43:i11:r1",
+            "targetText": "We are not lost.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i11:r2",
+            "targetText": "We are lost.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i11:r3",
+            "targetText": "They are not lost.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг сказал ",
+            "feedbackByLocale": {
+              "ru": "Без `not` получается «Мы заблудились». На записи друг это отрицает: `We are not lost`.",
+              "uk": "Без `not` виходить «Ми заблукали». У записі друг це заперечує: `We are not lost`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг сказал ",
+            "feedbackByLocale": {
+              "ru": "Это «Они не заблудились». В записи первое слово `We` — «мы».",
+              "uk": "Це «Вони не заблукали». Перше слово в записі — `We`, «ми»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви вибрали за картою дорогу від станції до музею; перед поворотом запитайте: «Ми впевнені?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-43:i12:r1",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i12:r2",
+          "text": "near"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i12:r3",
+          "text": "lost"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви вибрали за картою дорогу від станції до музею; перед поворотом запитайте: «Ми впевнені?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы выбрали по карте дорогу от станции к музею; перед поворотом спросите: «Мы уверены?»",
+          "uk": "Вставте слово — ви вибрали за картою дорогу від станції до музею; перед поворотом запитайте: «Ми впевнені?»"
+        },
+        "gappedTargetPhrase": "Are we ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i12:r1",
+            "text": "sure"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i12:r2",
+            "text": "near"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i12:r3",
+            "text": "lost"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы выбрали по карте дор",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы выбрали по карте дор",
+            "feedbackByLocale": {
+              "ru": "Это вопрос о расстоянии. Сейчас вы проверяете уверенность в выбранной дороге: `sure`.",
+              "uk": "Це запитання про відстань. Зараз ви перевіряєте впевненість у вибраній дорозі: `sure`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы выбрали по карте дор",
+            "feedbackByLocale": {
+              "ru": "Получится «Мы заблудились?» Вы ещё стоите у знакомой станции и проверяете решение о повороте.",
+              "uk": "Вийде «Ми заблукали?» Ви ще стоїте біля знайомої станції й перевіряєте рішення про поворот."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть — друг показує перехожому на карті, де ви обоє перебуваєте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть — друг показує перехожому на карті, де ви обоє перебуваєте",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-43:i13:audio",
+          "transcript": "We are here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are here.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви показуєте перехожому точку на карті й запитуєте, чи ви з другом тут",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-43:i14:r1",
+          "text": "we"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i14:r2",
+          "text": "you"
+        },
+        {
+          "responseId": "en:lesson-02:session-43:i14:r3",
+          "text": "they"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви показуєте перехожому точку на карті й запитуєте, чи ви з другом тут",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы показываете прохожему точку на карте и спрашиваете, здесь ли вы с другом",
+          "uk": "Вставте слово — ви показуєте перехожому точку на карті й запитуєте, чи ви з другом тут"
+        },
+        "gappedTargetPhrase": "Are ___ here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-43:i14:r1",
+            "text": "we"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i14:r2",
+            "text": "you"
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i14:r3",
+            "text": "they"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы показываете прохожем",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-43:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы показываете прохожем",
+            "feedbackByLocale": {
+              "ru": "Так вы спросите, где находится прохожий. Вы уточняете место для себя и друга: `we`.",
+              "uk": "Так ви запитаєте, де перебуває перехожий. Ви уточнюєте місце для себе й друга: `we`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-43:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы показываете прохожем",
+            "feedbackByLocale": {
+              "ru": "Это «они». Чтобы включить себя в вопрос, выберите `we` — «мы».",
+              "uk": "Це «вони». Щоб запитати про себе разом із другом, виберіть `we` — «ми»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви з другом збираєтеся піти вибраною вулицею; перед першим кроком уточніть, чи ви обоє впевнені у виборі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви з другом збираєтеся піти вибраною вулицею; перед першим кроком уточніть, чи ви обоє впевнені у виборі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-43:i15:audio",
+          "transcript": "Are we sure?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are we sure?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — перехожий згадав вхід до музею; запитайте, де розташований цей вхід",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-43:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — перехожий згадав вхід до музею; запитайте, де розташований цей вхід",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-43:i16:audio",
+          "transcript": "Where is it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-43:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ви з другом пройшли від станції кілька вулиць і показали перехожому музей на карті; уточніть у перехожого, чи близько ви до музею",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ви з другом пройшли від станції кілька вулиць і показали перехожому музей на карті; уточніть у перехожого, чи близько ви до музею",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are we near?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы с другом прошли от станции несколько улиц и показали прохожему музей на карте; уточните, близко ли вы к нему",
+          "uk": "Складіть фразу — ви з другом пройшли від станції кілька вулиць і показали перехожому музей на карті; уточніть у перехожого, чи близько ви до музею"
+        },
+        "orderedTokens": [
+          "Are",
+          "we",
+          "near"
+        ],
+        "authoredDistractorTokens": [
+          "you"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "05a0f9de41bf6ff71d0b62e180444e0e1000b110d8ebebaca277aa292a0cbec4"
+}

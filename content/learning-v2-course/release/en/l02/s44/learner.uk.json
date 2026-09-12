@@ -1,0 +1,915 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-44:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке запитання друг поставив із передпокою",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-44:i01:r1",
+          "text": "Am I ready?"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i01:r2",
+          "text": "Are we ready?"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i01:r3",
+          "text": "Are you ready?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке запитання друг поставив із передпокою",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:i01:audio",
+          "transcript": "Am I ready?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-44:i01:r1",
+            "targetText": "Am I ready?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i01:r2",
+            "targetText": "Are we ready?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i01:r3",
+            "targetText": "Are you ready?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-44:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "feedbackByLocale": {
+              "ru": "Здесь спрашивают о всей компании. На записи начало `Am I`: друг спрашивает о себе.",
+              "uk": "Тут запитують про вас обох. У записі звучить початок `Am I`: друг запитує про себе."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "feedbackByLocale": {
+              "ru": "Это вопрос к вам. В записи друг говорит `I` — «я».",
+              "uk": "Це запитання до вас. У записі друг говорить `I` — «я»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — друг перевіряє ваші речі; запитайте його, чи ви самі готові",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-44:i02:r1",
+          "text": "I"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i02:r2",
+          "text": "we"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i02:r3",
+          "text": "you"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — друг перевіряє ваші речі; запитайте його, чи ви самі готові",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг проверяет ваши вещи; спросите его, готовы ли вы сами",
+          "uk": "Вставте слово — друг перевіряє ваші речі; запитайте його, чи ви самі готові"
+        },
+        "gappedTargetPhrase": "Am ___ ready?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-44:i02:r1",
+            "text": "I"
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i02:r2",
+            "text": "we"
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i02:r3",
+            "text": "you"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг проверяет ваши вещ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг проверяет ваши вещ",
+            "feedbackByLocale": {
+              "ru": "Это «мы». Вы спрашиваете о себе, поэтому здесь нужно `I`.",
+              "uk": "Це «ми». Ви запитуєте про себе, тому тут потрібне `I`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг проверяет ваши вещ",
+            "feedbackByLocale": {
+              "ru": "Это «ты» или «вы». Вопрос к другу о вашей готовности начинается с `Am I`.",
+              "uk": "Це «ти» або «ви». Щоб запитати друга про свою готовність, почніть із `Am I`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть — друг ставить запитання біля дверей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть — друг ставить запитання біля дверей",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:i03:audio",
+          "transcript": "Are we late?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are we late?",
+        "orderedTokens": [
+          "Are",
+          "we",
+          "late"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — що друг сказав, поглянувши на час відправлення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-44:i04:r1",
+          "text": "I am not sure."
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i04:r2",
+          "text": "I am sure."
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i04:r3",
+          "text": "We are not sure."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — що друг сказав, поглянувши на час відправлення",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:i04:audio",
+          "transcript": "I am not sure."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-44:i04:r1",
+            "targetText": "I am not sure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i04:r2",
+            "targetText": "I am sure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i04:r3",
+            "targetText": "We are not sure.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-44:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг сказал,",
+            "feedbackByLocale": {
+              "ru": "Без `not` получается «Я уверен». На записи друг говорит, что не уверен.",
+              "uk": "Без `not` вийде «Я впевнений». У записі друг говорить, що не впевнений."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг сказал,",
+            "feedbackByLocale": {
+              "ru": "Это «Мы не уверены». На записи первое слово `I`: друг говорит о себе.",
+              "uk": "Це «Ми не впевнені». Перше слово в записі — `I`: друг говорить про себе."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви перевірили час у квитку; підтвердьте другові: «Я впевнений»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-44:i05:r1",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i05:r2",
+          "text": "late"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i05:r3",
+          "text": "early"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви перевірили час у квитку; підтвердьте другові: «Я впевнений»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы проверили время в билете; подтвердите другу: «Я уверен»",
+          "uk": "Вставте слово — ви перевірили час у квитку; підтвердьте другові: «Я впевнений»"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-44:i05:r1",
+            "text": "sure"
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i05:r2",
+            "text": "late"
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i05:r3",
+            "text": "early"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы проверили время в би",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы проверили время в би",
+            "feedbackByLocale": {
+              "ru": "Это «опоздал» или «опаздываю». Сейчас вы подтверждаете, что уверены во времени: `sure`.",
+              "uk": "Це «запізнився» або «запізнююся». Зараз ви підтверджуєте, що впевнені щодо часу: `sure`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы проверили время в би",
+            "feedbackByLocale": {
+              "ru": "Это «рано». Вы говорите об уверенности в ответе, поэтому нужно `I am sure`.",
+              "uk": "Це «рано». Ви говорите про впевненість у відповіді, тому потрібне `I am sure`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ваші речі зібрані; повідомте другові, що ви готові",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ваші речі зібрані; повідомте другові, що ви готові",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am ready.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ваши вещи собраны; сообщите другу, что вы готовы",
+          "uk": "Складіть фразу — ваші речі зібрані; повідомте другові, що ви готові"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке запитання друг поставив, перевіряючи годинник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-44:i07:r1",
+          "text": "Are we early?"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i07:r2",
+          "text": "Am I early?"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i07:r3",
+          "text": "Are we late?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке запитання друг поставив, перевіряючи годинник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:i07:audio",
+          "transcript": "Are we early?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-44:i07:r1",
+            "targetText": "Are we early?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i07:r2",
+            "targetText": "Am I early?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i07:r3",
+            "targetText": "Are we late?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-44:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "feedbackByLocale": {
+              "ru": "Это вопрос только о себе. В записи начало `Are we` — вопрос о вас обоих.",
+              "uk": "Це запитання лише про себе. У записі звучить початок `Are we` — запитання про вас обох."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "feedbackByLocale": {
+              "ru": "В этом варианте последнее слово `late`. На записи звучит `early` — «рано».",
+              "uk": "У цьому варіанті останнє слово `late`. У записі звучить `early` — «рано»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви зібралися біля дверей і звіряєте годинник із запланованим часом виходу; запитайте друга: «Ми виходимо раніше?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-44:i08:r1",
+          "text": "early"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i08:r2",
+          "text": "ready"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i08:r3",
+          "text": "sure"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви зібралися біля дверей і звіряєте годинник із запланованим часом виходу; запитайте друга: «Ми виходимо раніше?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы собрались у двери и сверяете часы с намеченным временем выхода; спросите друга: «Мы рано?»",
+          "uk": "Вставте слово — ви зібралися біля дверей і звіряєте годинник із запланованим часом виходу; запитайте друга: «Ми виходимо раніше?»"
+        },
+        "gappedTargetPhrase": "Are we ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-44:i08:r1",
+            "text": "early"
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i08:r2",
+            "text": "ready"
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i08:r3",
+            "text": "sure"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы собрались у двери и ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы собрались у двери и ",
+            "feedbackByLocale": {
+              "ru": "Это вопрос о готовности. Вы уточняете время выхода, поэтому нужно `early`.",
+              "uk": "Це запитання про готовність. Ви уточнюєте час виходу, тому потрібне `early`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы собрались у двери и ",
+            "feedbackByLocale": {
+              "ru": "Получится «Мы уверены?» Сейчас вы спрашиваете, опережаете ли намеченное время выхода: `Are we early?`",
+              "uk": "Вийде «Ми впевнені?» Зараз ви запитуєте, чи випереджаєте запланований час виходу: `Are we early?`"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте пари — слова перед виходом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте пари — слова перед виходом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-44:i09:p1",
+            "target": "ready",
+            "meaningByLocale": {
+              "ru": "готов",
+              "uk": "готовий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-44:i09:p2",
+            "target": "late",
+            "meaningByLocale": {
+              "ru": "опаздываю",
+              "uk": "із запізненням"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-44:i09:p3",
+            "target": "early",
+            "meaningByLocale": {
+              "ru": "рано",
+              "uk": "рано"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-44:i09:p4",
+            "target": "sure",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "впевнений"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ready",
+          "late",
+          "early",
+          "sure"
+        ],
+        "rightColumn": [
+          "готов",
+          "опаздываю",
+          "рано",
+          "уверен"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть — ви чуєте репліку з передпокою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть — ви чуєте репліку з передпокою",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:i10:audio",
+          "transcript": "You are not late."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You are not late.",
+        "orderedTokens": [
+          "You",
+          "are",
+          "not",
+          "late"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — друг зазирнув у вашу сумку; уточніть, чи ви самі готові до виходу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — друг зазирнув у вашу сумку; уточніть, чи ви самі готові до виходу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:i11:audio",
+          "transcript": "Am I ready?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Am I ready?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви обоє біля дверей і дивитеся на годинник; запитайте друга, чи випереджаєте ви запланований час виходу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-44:i12:r1",
+          "text": "we"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i12:r2",
+          "text": "I"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i12:r3",
+          "text": "she"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви обоє біля дверей і дивитеся на годинник; запитайте друга, чи випереджаєте ви запланований час виходу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы оба у двери и смотрите на часы; спросите друга, опережаете ли вы намеченное время выхода",
+          "uk": "Вставте слово — ви обоє біля дверей і дивитеся на годинник; запитайте друга, чи випереджаєте ви запланований час виходу"
+        },
+        "gappedTargetPhrase": "Are ___ early?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-44:i12:r1",
+            "text": "we"
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i12:r2",
+            "text": "I"
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i12:r3",
+            "text": "she"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы оба у двери и смотри",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы оба у двери и смотри",
+            "feedbackByLocale": {
+              "ru": "Это «я». Вопрос о вас обоих требует `we`: `Are we early?`",
+              "uk": "Це «я». Для запитання про вас обох потрібне `we`: `Are we early?`"
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы оба у двери и смотри",
+            "feedbackByLocale": {
+              "ru": "Это «она». Вы спрашиваете о себе вместе с другом, поэтому выбирайте `we`.",
+              "uk": "Це «вона». Ви запитуєте і про себе, і про друга, тому виберіть `we`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — друг назвав час відправлення з пам’яті; уточніть, чи він упевнений",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — друг назвав час відправлення з пам’яті; уточніть, чи він упевнений",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are you sure?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг назвал время отправления по памяти; уточните, уверен ли он",
+          "uk": "Складіть фразу — друг назвав час відправлення з пам’яті; уточніть, чи він упевнений"
+        },
+        "orderedTokens": [
+          "Are",
+          "you",
+          "sure"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке запитання прозвучало біля вхідних дверей",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-44:i14:r1",
+          "text": "Are we ready?"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i14:r2",
+          "text": "Am I ready?"
+        },
+        {
+          "responseId": "en:lesson-02:session-44:i14:r3",
+          "text": "We are ready."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке запитання прозвучало біля вхідних дверей",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:i14:audio",
+          "transcript": "Are we ready?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-44:i14:r1",
+            "targetText": "Are we ready?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i14:r2",
+            "targetText": "Am I ready?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i14:r3",
+            "targetText": "We are ready.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-44:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какой вопрос про",
+            "feedbackByLocale": {
+              "ru": "Это вопрос о личной готовности. В записи звучит `Are we`: спрашивают обо всех вместе.",
+              "uk": "Це запитання про особисту готовність. У записі звучить `Are we`: запитують про вас обох."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-44:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какой вопрос про",
+            "feedbackByLocale": {
+              "ru": "Это сообщение. В записи сначала `Are we`: прозвучал вопрос.",
+              "uk": "Це повідомлення. У записі спочатку звучить `Are we`: прозвучало запитання."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви дивитеся на годинник біля дверей; уточніть у друга, чи випереджаєте ви запланований час виходу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви дивитеся на годинник біля дверей; уточніть у друга, чи випереджаєте ви запланований час виходу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:i15:audio",
+          "transcript": "Are we early?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are we early?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви закінчили перевіряти свої речі; повідомте другові про власну готовність",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви закінчили перевіряти свої речі; повідомте другові про власну готовність",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-44:i16:audio",
+          "transcript": "I am ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-44:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — свої речі ви перевірили, але друг іще не сказав, чи він зібрався; запитайте, чи ви обоє готові до виходу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — свої речі ви перевірили, але друг іще не сказав, чи він зібрався; запитайте, чи ви обоє готові до виходу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are we ready?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — свои вещи вы проверили, но друг ещё не сказал, собрался ли он; уточните, готовы ли вы оба к выходу",
+          "uk": "Складіть фразу — свої речі ви перевірили, але друг іще не сказав, чи він зібрався; запитайте, чи ви обоє готові до виходу"
+        },
+        "orderedTokens": [
+          "Are",
+          "we",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "Am"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "da6572b3256bb8ab75e2ef23110df77d5e5effce3bf51c10a4e3ced269a47d77"
+}

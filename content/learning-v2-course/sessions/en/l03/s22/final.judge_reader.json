@@ -1,0 +1,66 @@
+{
+  "sourceSha256": "20a9aafd2d1cd8d6cf3cc227413faf304314cd13c2b2a5cd85fea157aa9357fc",
+  "reviewer": "/root/s22_reader",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "pages": [
+    {
+      "page": 1,
+      "retelling": "Если бутылок несколько, к bottle добавляют s и про весь набор говорят They are bottles.",
+      "what_i_do_now": "Про несколько бутылок скажу They are bottles, а не bottle.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 2,
+      "retelling": "Если мисок несколько, даже когда они вложены друг в друга, их называют bowls и говорят They are bowls.",
+      "what_i_do_now": "Про несколько мисок скажу They are bowls, потому что мисок несколько.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 3,
+      "retelling": "Про несколько тарелок говорят They are plates, а чтобы спросить, первые два слова меняют местами: Are they plates?",
+      "what_i_do_now": "Чтобы спросить про несколько тарелок, скажу Are they plates? вместо They are plates.",
+      "understood": true,
+      "problems": []
+    }
+  ],
+  "pages_understood": 3,
+  "verdict": "PASS",
+  "verdict_reason": "Я с первого чтения понял все три страницы: несколько предметов называют словом с s, и я знаю, как сказать это про бутылки, миски и тарелки, а также как спросить про тарелки.",
+  "reviewHistory": [
+    {
+      "sourceSha256": "7394bfc8283282acfec8f9445347514911541c003a5066c9c2ec576039a3412b",
+      "reviewer": "/root/s22_reader",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "pages": [
+        {
+          "page": 1,
+          "retelling": "Если бутылок несколько, их называют bottles и можно сказать They are bottles.",
+          "what_i_do_now": "Про несколько бутылок скажу They are bottles, а не буду повторять bottle для каждой.",
+          "understood": true,
+          "problems": []
+        },
+        {
+          "page": 2,
+          "retelling": "Если мисок несколько, даже вложенных друг в друга, их называют bowls и говорят They are bowls.",
+          "what_i_do_now": "Про несколько мисок скажу They are bowls, потому что их всё равно несколько.",
+          "understood": true,
+          "problems": []
+        },
+        {
+          "page": 3,
+          "retelling": "Про несколько тарелок говорят They are plates, а вопрос делают перестановкой первых двух слов: Are they plates?",
+          "what_i_do_now": "Чтобы спросить про несколько тарелок, скажу Are they plates? вместо They are plates.",
+          "understood": true,
+          "problems": []
+        }
+      ],
+      "pages_understood": 3,
+      "verdict": "PASS",
+      "verdict_reason": "Я с первого чтения понял каждую страницу: несколько предметов получают слово с s, и узнал, как сказать это про бутылки, миски и тарелки, а также как спросить про тарелки."
+    }
+  ]
+}

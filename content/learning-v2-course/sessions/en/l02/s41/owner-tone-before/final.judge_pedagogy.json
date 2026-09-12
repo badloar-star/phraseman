@@ -1,0 +1,100 @@
+{
+  "sourceSha256": "d074aea3bdfe211b72b58384fab0afdae2d4de4e0b2d79e9b775f224c1ab1bc7",
+  "counts": {
+    "tasks": 17,
+    "modes": 17,
+    "builders": 5,
+    "return_table_mismatches": 0
+  },
+  "delta_review": {
+    "task_2": {
+      "verdict": "PASS",
+      "prompt_neutral": true,
+      "options": [
+        "punctual",
+        "factual",
+        "actual"
+      ],
+      "verified_sound_contrast": [
+        "/p/",
+        "/f/",
+        "/æ/"
+      ],
+      "homophones_or_invented_words": [],
+      "feedback_specific": true,
+      "word_first_preserved": "card 1 → listen 2 → phrase 3"
+    },
+    "task_11": {
+      "verdict": "PASS",
+      "addressee": "the learner's friend",
+      "scene_conflict_with_task_17_resolved": true,
+      "english_audio_and_options_unchanged": true
+    },
+    "task_13": {
+      "verdict": "PASS",
+      "subject_clear": true,
+      "prompt_reveals_answer_before_audio": false,
+      "target": "I am not wrong."
+    }
+  },
+  "full_review_still_valid": {
+    "plan_operation_matches": true,
+    "unknown_items": 0,
+    "intro_grounding_complete": true,
+    "single_answer_substitution_passes": true,
+    "word_first_respected": true,
+    "all_return_words_have_at_least_two_contacts": true,
+    "all_return_words_have_correct_use_and_gloss": true,
+    "return_tables_accurate": true,
+    "final_task_independent": true
+  },
+  "issues": [],
+  "exactFix": null,
+  "verdict": "PASS",
+  "verdict_reason": "Исправленные задания устраняют сценовое противоречие и спорные фонетические утверждения, сохраняют нейтральность аудирования и не меняют подтверждённую структуру, возвраты или границы S41.",
+  "priorReviews": [
+    {
+      "sourceSha256": "9c304fea82f7cf1ea724b9b85ff64fdeec169e7be96d6c4a45309f38c51002f9",
+      "counts": {
+        "tasks": 17,
+        "modes": 17,
+        "builders": 5,
+        "unknown_items": 0,
+        "hard_flags": 0
+      },
+      "issues": [
+        {
+          "severity": "REVISE",
+          "where": "tasks 11 and 17",
+          "problem": "Task 11 has the neighbor tell the learner directly `You are welcome here.` This resolves the session’s uncertainty about whether the neighbors welcome the learner. Task 17 then says the learner is «ещё не уверен, рады ли хозяева его приходу», which conflicts with the earlier reassurance inside the same continuous scene.",
+          "exactFix": [
+            "Change task 11 heading to: `**11 · Послушайте и выберите — что сосед сказал вашему другу у двери**`",
+            "Change the feedback for `Am I welcome here?` to: `- Am I welcome here? — *Это вопрос о себе. На записи начало `You are`: сосед обращается к вашему другу.*`"
+          ],
+          "why_this_fix": "The English audio, options, target, mode, return contacts and final task remain unchanged, while the reassurance applies to the friend and the learner can realistically remain unsure about their own welcome."
+        }
+      ],
+      "checks": {
+        "plan_operation_matches": true,
+        "only_am_i_operation": true,
+        "punctual_word_first": {
+          "card": 1,
+          "listen": 2,
+          "phrase": 3,
+          "respected": true
+        },
+        "welcome_new_sense_grounded_in_intro_3": true,
+        "intro_grounding_complete": true,
+        "single_answer_substitution_passes": true,
+        "listening_task_2_neutral": true,
+        "listening_distractors_phonetically_distinct": true,
+        "return_tables_accurate": true,
+        "all_five_return_words_have_at_least_two_contacts": true,
+        "all_five_return_words_have_correct_use_and_gloss": true,
+        "task_16_directly_leaks_task_17": false
+      },
+      "verdict": "REVISE",
+      "verdict_reason": "Педагогическая структура и все формальные требования соблюдены, но единая сцена противоречит сама себе: задание 11 уже снимает сомнение, на котором построено финальное задание 17."
+    }
+  ]
+}

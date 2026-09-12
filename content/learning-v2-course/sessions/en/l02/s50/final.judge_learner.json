@@ -1,0 +1,36 @@
+{
+  "session": "en/l02/s50",
+  "sourceSha256": "60f7b0180539de7d705dfbe0c3c343c33ab23ea1d0f510c8a8876f7eba39dd58",
+  "scope": "Text-only simulation. Audio transcripts substitute for sound; actual hearing and audio quality were not assessed.",
+  "introAnswers": {
+    "1": "Yes, I am.",
+    "2": "No, she is not.",
+    "3": "No, I am not."
+  },
+  "practiceAnswers": {
+    "1": "Are you ready?",
+    "2": "Yes, I am.",
+    "3": "Is she free?",
+    "4": "No, she is not.",
+    "5": "Is it near?",
+    "6": "Yes, it is.",
+    "7": "Are you sure?",
+    "8": "No, I am not.",
+    "9": {
+      "free": "свободен",
+      "ready": "готов",
+      "near": "близко",
+      "sure": "уверен"
+    },
+    "10": "I am not ready.",
+    "11": "ready",
+    "12": "Yes, I am.",
+    "13": "Is he new?",
+    "14": "is",
+    "15": "I am ready.",
+    "16": "Are you sure?",
+    "17": "Yes, I am."
+  },
+  "issues": [],
+  "verdict": "PASS"
+}

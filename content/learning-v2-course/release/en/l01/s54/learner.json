@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-54:i02:r1",
+            "responseId": "en:lesson-01:session-54:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — nervous",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-54:i02:r2",
+            "responseId": "en:lesson-01:session-54:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — nervous",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-54:i04:r1",
+            "responseId": "en:lesson-01:session-54:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — confident",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-54:i04:r2",
+            "responseId": "en:lesson-01:session-54:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — confident",
             "feedbackByLocale": {
@@ -289,7 +289,7 @@
         "testedDimension": "Вставьте слово — спрашивают, справитесь ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-54:i05:r1",
+            "responseId": "en:lesson-01:session-54:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — спрашивают, справитесь ",
             "feedbackByLocale": {
@@ -298,7 +298,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-54:i05:r2",
+            "responseId": "en:lesson-01:session-54:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — спрашивают, справитесь ",
             "feedbackByLocale": {
@@ -406,7 +406,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-54:i07:r1",
+            "responseId": "en:lesson-01:session-54:i07:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — fluent",
             "feedbackByLocale": {
@@ -415,7 +415,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-54:i07:r2",
+            "responseId": "en:lesson-01:session-54:i07:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — fluent",
             "feedbackByLocale": {
@@ -507,7 +507,7 @@
         "testedDimension": "Вставьте слово — спрашивают про ваш англ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-54:i09:r1",
+            "responseId": "en:lesson-01:session-54:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — спрашивают про ваш англ",
             "feedbackByLocale": {
@@ -516,7 +516,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-54:i09:r2",
+            "responseId": "en:lesson-01:session-54:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — спрашивают про ваш англ",
             "feedbackByLocale": {
@@ -576,7 +576,7 @@
         "testedDimension": "Вставьте скрепку — «я уверен в себе»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-54:i10:r1",
+            "responseId": "en:lesson-01:session-54:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — «я уверен в себе»",
             "feedbackByLocale": {
@@ -585,7 +585,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-54:i10:r2",
+            "responseId": "en:lesson-01:session-54:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — «я уверен в себе»",
             "feedbackByLocale": {
@@ -678,7 +678,7 @@
         "testedDimension": "Вставьте слово — вас спросили, всегда ли",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-54:i12:r1",
+            "responseId": "en:lesson-01:session-54:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вас спросили, всегда ли",
             "feedbackByLocale": {
@@ -687,7 +687,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-54:i12:r2",
+            "responseId": "en:lesson-01:session-54:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вас спросили, всегда ли",
             "feedbackByLocale": {

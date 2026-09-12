@@ -1,0 +1,19 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "153bd8b1d7a45631d4e1e668fcf19f75b2dcb2335c7203900cf7f68cda2ef046",
+  "issues": [],
+  "checks": {
+    "tasks": 17,
+    "builders": 5,
+    "unknownModes": 0,
+    "introLengths": [
+      257,
+      266,
+      248
+    ],
+    "wordFirstChains": "PASS",
+    "uniqueAnswersAndFeedback": "PASS",
+    "returnRetrieval": "PASS",
+    "independentFinal": "PASS"
+  }
+}

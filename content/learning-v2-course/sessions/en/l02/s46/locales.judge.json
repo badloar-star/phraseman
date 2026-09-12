@@ -1,0 +1,16 @@
+{
+  "sourceSha256": "60cf23486938224426ec52a28cddf281d9c26384af5e9ff92d26ebc9b77a4cbe",
+  "localeSha256": {
+    "uk": "b51d84f962512e5fcbc53fca1147176be967b3a45762a72e21727acdc7f8ba90"
+  },
+  "locales": {
+    "uk": {
+      "session": "S46",
+      "sourceSha256": "60cf23486938224426ec52a28cddf281d9c26384af5e9ff92d26ebc9b77a4cbe",
+      "localeSha256": "b51d84f962512e5fcbc53fca1147176be967b3a45762a72e21727acdc7f8ba90",
+      "verdict": "PASS",
+      "issues": [],
+      "verifiedDelta": "The replacement is present exactly and reads naturally in Ukrainian while preserving the audibility-versus-clarity distinction."
+    }
+  }
+}

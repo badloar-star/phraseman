@@ -1,0 +1,51 @@
+{
+  "session": "en/l02/s36",
+  "sourceSha256": "98febd314eee61f962b706e4b2559191a7a153751fbc2d9224face379acb9189",
+  "localeSha256": "49ec627e4c8e79f7b1bf49278691a9da71507263305ab0b60b9aa78bd33aff54",
+  "verdict": "PASS",
+  "issues": [],
+  "checks": {
+    "tasksReviewed": [
+      9,
+      13
+    ],
+    "hashesMatchPacket": true,
+    "onlyListedPromptsChanged": true,
+    "promptsNeutral": true,
+    "audioMeaningAndPolarityNotLeaked": true,
+    "sceneAndReferentsPreserved": true,
+    "englishTasksIntrosModesFeedbackUnchanged": true,
+    "boundariesAndWordContactsPreserved": true
+  },
+  "verdict_reason": "Both prompts now supply only their referents. They no longer disclose that the host is here or that the speaker is noisy, and neither resolves the `not` distractor before listening.",
+  "priorFullReviewRetained": true,
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "sourceSha256": "8bac7da2f55be716274cbc12d26087b2975f1eb564115b58b4bf0aa78f92a94a",
+    "verdict": "PASS",
+    "issues": []
+  },
+  "deltaReview": {
+    "session": "S36",
+    "sourceSha256": "98febd314eee61f962b706e4b2559191a7a153751fbc2d9224face379acb9189",
+    "localeSha256": "49ec627e4c8e79f7b1bf49278691a9da71507263305ab0b60b9aa78bd33aff54",
+    "verdict": "PASS",
+    "issues": [],
+    "checks": {
+      "tasksReviewed": [
+        9,
+        13
+      ],
+      "hashesMatchPacket": true,
+      "onlyListedPromptsChanged": true,
+      "promptsNeutral": true,
+      "audioMeaningAndPolarityNotLeaked": true,
+      "sceneAndReferentsPreserved": true,
+      "englishTasksIntrosModesFeedbackUnchanged": true,
+      "boundariesAndWordContactsPreserved": true
+    },
+    "verdict_reason": "Both prompts now supply only their referents. They no longer disclose that the host is here or that the speaker is noisy, and neither resolves the `not` distractor before listening.",
+    "priorFullReviewRetained": true
+  },
+  "retainedSourceSha256": "8bac7da2f55be716274cbc12d26087b2975f1eb564115b58b4bf0aa78f92a94a"
+}

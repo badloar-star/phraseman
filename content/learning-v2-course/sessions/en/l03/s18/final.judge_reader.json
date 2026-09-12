@@ -1,0 +1,102 @@
+{
+  "sourceSha256": "8efde328d6ddc3ac3b6ea3d540cf821564e964e6db297dbb3460d4b715d2cfc8",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "actualAudioReviewed": false,
+  "reviewer": "/root/s17_reader_delta",
+  "pages": [
+    {
+      "page": 1,
+      "retelling": "One bus is bus; several are buses, adding es. For the group: They are buses.",
+      "what_i_do_now": "See several buses and say They are buses.",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 2,
+      "retelling": "One dish is dish; several are dishes, adding es after sh. Ask about several: Are they dishes?",
+      "what_i_do_now": "Point to several dishes and ask Are they dishes?",
+      "understood": true,
+      "problems": []
+    },
+    {
+      "page": 3,
+      "retelling": "One watch is watch; several separate watches are watches, adding es after ch.",
+      "what_i_do_now": "See two separate watches and call them watches.",
+      "understood": true,
+      "problems": []
+    }
+  ],
+  "pages_understood": 3,
+  "verdict": "PASS",
+  "verdict_reason": "All three pages clear after one read, with concrete singular/plural distinction and applicable action.",
+  "previousReview": {
+    "sourceSha256": "40443efc388ffe7426404721341ff61d38a72556af8a395b72d20f5a7ed4506d",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": "medium",
+    "actualAudioReviewed": false,
+    "reviewer": "/root/s17_reader_delta",
+    "pages": [
+      {
+        "page": 1,
+        "retelling": "One bus is bus; several are buses, adding es. For the group: They are buses.",
+        "what_i_do_now": "See several buses and say They are buses.",
+        "understood": true,
+        "problems": []
+      },
+      {
+        "page": 2,
+        "retelling": "One dish is dish; several are dishes, adding es after sh. Ask about several: Are they dishes?",
+        "what_i_do_now": "Point to several dishes and ask Are they dishes?",
+        "understood": true,
+        "problems": []
+      },
+      {
+        "page": 3,
+        "retelling": "One watch is watch; several separate watches are watches, adding es after ch.",
+        "what_i_do_now": "See two separate watches and call them watches.",
+        "understood": true,
+        "problems": []
+      }
+    ],
+    "pages_understood": 3,
+    "verdict": "PASS",
+    "verdict_reason": "All three pages clear after one read, with concrete singular/plural distinction and applicable action.",
+    "previousReview": {
+      "sourceSha256": "f219a2634321c2a810f18a19924178bc8edec4aca8f036c54495af6e99073691",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "actualAudioReviewed": false,
+      "reviewer": "/root/s17_reader_delta",
+      "pages": [
+        {
+          "page": 1,
+          "retelling": "One bus is bus. Several buses are buses, with es. For a group, say They are buses.",
+          "what_i_do_now": "See several buses and say: They are buses.",
+          "understood": true,
+          "problems": []
+        },
+        {
+          "page": 2,
+          "retelling": "One dish is dish. Several dishes are dishes, with es. To ask about them, say Are they dishes?",
+          "what_i_do_now": "Point to several dishes and ask: Are they dishes?",
+          "understood": true,
+          "problems": []
+        },
+        {
+          "page": 3,
+          "retelling": "One watch is watch. Several separate watches are watches, with es. Two watches means there are two straps and faces.",
+          "what_i_do_now": "Look at two separate watches and call them watches.",
+          "understood": true,
+          "problems": []
+        }
+      ],
+      "pages_understood": 3,
+      "verdict": "PASS",
+      "verdict_reason": "After one reading, each page gives a concrete singular/plural distinction and a usable action or phrase."
+    },
+    "scope": "Fresh independent three-page-only reader recheck"
+  },
+  "scope": "Fresh independent three-page-only reader recheck",
+  "finalDeltaEvidence": "Actual same independent reviewer confirmed current one-character punctuation correction leaves prior findings/answers and full scope unchanged."
+}

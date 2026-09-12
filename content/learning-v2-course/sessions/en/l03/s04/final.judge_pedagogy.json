@@ -1,0 +1,123 @@
+{
+  "sourceSha256": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "key",
+      "door",
+      "window"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": [],
+    "prerequisite_check": "Вопросы, отрицание и рамка `It is a + noun` уже доступны; голос/слух отрабатывают их, не вводя правила о звуке или интонации."
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "key",
+        "door",
+        "window",
+        "mirror"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [],
+    "builders": {
+      "phrase_builder": 4,
+      "listen_build_dictation": 2,
+      "composed_phrases": [
+        "`A key`",
+        "`It is a window`",
+        "`Is it a door?`",
+        "`It is not a key`",
+        "`Is it a mirror?`",
+        "`It is a key`"
+      ],
+      "result": "Работа меняется между коротким называнием, утверждением, вопросом и отрицанием; два утверждения с одним скелетом допустимы, дословных соседних повторов нет."
+    }
+  },
+  "voice_and_listening": {
+    "required_distribution": {
+      "listen_choose": 3,
+      "listen_build_dictation": 2,
+      "scripted_repeat_compare": 4,
+      "result": "9 из 17 заданий прямо требуют слушания или речи."
+    },
+    "one_word_listening_prompts_neutral": true,
+    "written_sound_pairs": [
+      "`key` / `tea` / `fee`: общий долгий финальный гласный, различаются начальные согласные.",
+      "`door` / `four` / `more`: общий звуковой финал, различаются начальные согласные.",
+      "`window` / `willow` / `winter`: общая начальная часть, различаются согласными внутри слова."
+    ],
+    "dictation_leaks": [],
+    "real_audio_claim": false
+  },
+  "returns": {
+    "mirror": {
+      "tasks": [
+        9,
+        11,
+        14
+      ],
+      "minimum_two_met": true,
+      "correct_response_use": [
+        9,
+        14
+      ]
+    }
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 12,
+        "trap": "`are` после `It` проверяет знакомую, но неверную форму."
+      },
+      {
+        "task": 14,
+        "trap": "`Are it a mirror?` переносит неверное вопросное начало на `it`."
+      },
+      {
+        "task": 17,
+        "trap": "`am` после `It` проверяет смешение формы для `I` с формой для предмета."
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "must_fix": [],
+  "evidence": [
+    {
+      "check": "Порядок знакомства с новыми словами",
+      "evidence": "`key`: 1→2→5; `door`: 3→4→10; `window`: 6→7→8. Все слова доски 11 уже знакомы и отработаны."
+    },
+    {
+      "check": "Честность диктантов",
+      "evidence": "Задание 5 говорит лишь «хозяин коротко называет предмет», а задание 10 — «хозяин обращается к вам из коридора»: ни одно не называет цель, её перевод либо тип фразы."
+    },
+    {
+      "check": "Независимость финала",
+      "evidence": "Перед заданием 17 голосовая цель — `It is not a door`, а финальная сборка — `It is a key`."
+    }
+  ],
+  "verdict": "PASS",
+  "verdict_reason": "Голосовая и слуховая сессия соблюдает текущий план, порядок word-first, слуховую честность, возврат `mirror`, разнообразие построения фраз и все заявленные количественные требования."
+}

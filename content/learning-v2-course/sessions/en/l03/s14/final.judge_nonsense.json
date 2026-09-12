@@ -1,0 +1,48 @@
+{
+  "sourceSha256": "07f2eedf12eea831703f2c51d5e2c07b0b70e95590eeb74d79251afb06a9bc9b",
+  "reviewer": "/root/s10_truth",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "previousReview": {
+    "reviewer": "/root/s10_truth",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "medium",
+    "sourceSha256": "4f167bdcf5113237ff34b2d6132104484dff1701a03e0fa8b74d0102f3fcbab9",
+    "verdict": "BLOCK",
+    "problems": [
+      {
+        "where": "Интро1",
+        "quote": "Для «Это сэндвич» нужны четыре слова: `It is a sandwich`.",
+        "why": "It’s a sandwich also valid; four words not obligatory.",
+        "fix": "Полная фраза здесь: It is a sandwich."
+      }
+    ],
+    "remainingSource": "Other definitions/articles/phoneticcontrasts PASS",
+    "primarySources": [
+      "https://dictionary.cambridge.org/grammar/british-grammar/it-s-or-its",
+      "https://dictionary.cambridge.org/grammar/british-grammar/contractions"
+    ],
+    "actualAudioReviewed": false
+  },
+  "reviewChain": [
+    {
+      "sourceSha256": "4f167bdcf5113237ff34b2d6132104484dff1701a03e0fa8b74d0102f3fcbab9",
+      "verdict": "BLOCK",
+      "scope": "Whole source; false mandatory four-word claim, remaining facts passed."
+    },
+    {
+      "sourceSha256": "e122c06f8e04dca9ee5d2a162b1188675802447c16fbe708265c59c89df84836",
+      "verdict": "PASS",
+      "scope": "Changed to exact selected full phrase; no universal word count."
+    },
+    {
+      "sourceSha256": "07f2eedf12eea831703f2c51d5e2c07b0b70e95590eeb74d79251afb06a9bc9b",
+      "verdict": "PASS",
+      "scope": "Intro 3 and task 8 context-only delta; whole egg and single wall clock support keys."
+    }
+  ],
+  "problems": [],
+  "verdict": "PASS",
+  "verdict_reason": "Initial factual defect resolved; all changed passages independently rechecked.",
+  "actualAudioReviewed": false
+}

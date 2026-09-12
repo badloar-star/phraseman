@@ -1,0 +1,59 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "c69b1dac553c887789b26a5a1ca1f364c577bb7d94b02c47adf5cbfd3ed7e269",
+  "scope": "Actual final delta combined with retained full prior review",
+  "previousReview": {
+    "sourceSha256": "8876f932d3f797faa1733088c18bb616e2ec825daa8ac5eb466d646dabbe859b",
+    "reviewer": "/root/s10_blind",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": "medium",
+    "verdict": "REVISE",
+    "reason": "Сессия полностью проходима и даёт три полезных слова, но объяснения заметно повторяют уже известную механику.",
+    "introAnswers": [
+      "It is a kettle.",
+      "Is it a toaster?",
+      "It is not a vacuum."
+    ],
+    "practiceAnswers": [
+      "kettle",
+      "kettle",
+      "toaster",
+      "toaster",
+      "A kettle.",
+      "vacuum",
+      "vacuum",
+      "an",
+      "a",
+      {
+        "toaster": "тостер",
+        "oven": "духовка",
+        "kettle": "чайник",
+        "vacuum": "пылесос"
+      },
+      "It is a toaster.",
+      "an",
+      "Is it a kettle?",
+      "It is not a vacuum.",
+      "It is not a toaster.",
+      "Is it an armchair?",
+      "It is a vacuum."
+    ],
+    "impossible_tasks": [],
+    "felt_alive": [
+      "Магазин техники держит одну понятную ситуацию: продавец, полка, коробка и необходимость уточнить предмет.",
+      "Фраза про то, что вычёркивать половину отрицания — перебор, немного оживляет объяснение."
+    ],
+    "felt_dead": [
+      "Определения на карточках звучат как словарная статья.",
+      "Повторяющиеся формулы про согласный звук и полную фразу делают интро тяжеловесным."
+    ],
+    "would_continue": "да",
+    "correctionHistory": [
+      "Initially answered a in practice8; after targeted re-read independently corrected to an: oven starts with a vowel sound.",
+      "Withdrew factually false three-consecutive-cards criticism: cards1,3,6 are separated by listening/build and required before new-word use. Retained REVISE for intro repetition."
+    ],
+    "actualAudioReviewed": false
+  },
+  "deltaEvidence": "judgements/2026-09-12_l03_s10_final_delta.json",
+  "actualAudioReviewed": false
+}

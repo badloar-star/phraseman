@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "в названиях нескольких предметов конечная `y` после согласной буквы меняется на `ies`: `stories`, `countries`, `batteries`; знакомые рамки `They are`, `Are they`, `They are not`",
+    "uk": "у назвах кількох предметів кінцева `y` після приголосної літери змінюється на `ies`: `stories`, `countries`, `batteries`; знайомі рамки `They are`, `Are they`, `They are not`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "До развязки — одна замена",
+        "uk": "До розв’язки — одна заміна"
+      },
+      "bodyByLocale": {
+        "ru": "`story` — «история», рассказ о событиях. Для нескольких историй меняем конечную `y` на `ies`: `stories`. Хочется просто дописать `s` и перейти к развязке, но перед `y` стоит согласная буква `r` — здесь нужна замена. `stories` — «истории».",
+        "uk": "`story` — «історія», розповідь про події. Для кількох історій кінцеву `y` міняємо на `ies`: `stories`. Рука тягнеться просто додати `s` і перейти до розв’язки, але перед `y` стоїть приголосна літера `r`: тут потрібна заміна. `stories` — «історії»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Сестра читает описание сборника: внутри несколько коротких историй. Выберите английское название для них.",
+          "uk": "Сестра читає опис збірки: усередині кілька коротких історій. Оберіть англійську назву для них."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-19:intro1:r1",
+              "text": "stories"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:intro1:r2",
+              "text": "storys"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:intro1:r3",
+              "text": "story"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-19:intro1:r1",
+              "text": "stories"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:intro1:r2",
+              "text": "storys"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:intro1:r3",
+              "text": "story"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сестра читает описание сборника: внутри несколько коротких историй. Выберите английское название для них.",
+          "uk": "Сестра читає опис збірки: усередині кілька коротких історій. Оберіть англійську назву для них."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Посмотрите перед y",
+        "uk": "Подивіться перед y"
+      },
+      "bodyByLocale": {
+        "ru": "`country` — «страна». Несколько стран — `countries`. Посмотрите на конец слова: перед `y` стоит согласная буква `r`. Убираем `y` и на её месте пишем `ies`; остальное сохраняем. Назвать несколько стран можно фразой `They are countries` — «Это страны».",
+        "uk": "`country` — «країна». Кілька країн — `countries`. Подивіться на кінець слова: перед `y` стоїть приголосна літера `r`. Прибираємо `y` і на її місці пишемо `ies`; решта слова лишається. Кілька країн називаємо фразою `They are countries` — «Це країни»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "На коробке пазла названы Франция и Германия. Сестра спрашивает, что это за места; скажите «Это страны».",
+          "uk": "На коробці пазла названо Францію та Німеччину. Сестра питає, що це за місця; скажіть «Це країни»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-19:intro2:r1",
+              "text": "They are countries."
+            },
+            {
+              "responseId": "en:lesson-03:session-19:intro2:r2",
+              "text": "They are countrys."
+            },
+            {
+              "responseId": "en:lesson-03:session-19:intro2:r3",
+              "text": "They is countries."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-19:intro2:r1",
+              "text": "They are countries."
+            },
+            {
+              "responseId": "en:lesson-03:session-19:intro2:r2",
+              "text": "They are countrys."
+            },
+            {
+              "responseId": "en:lesson-03:session-19:intro2:r3",
+              "text": "They is countries."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На коробке пазла названы Франция и Германия. Сестра спрашивает, что это за места; скажите «Это страны».",
+          "uk": "На коробці пазла названо Францію та Німеччину. Сестра питає, що це за місця; скажіть «Це країни»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить маленькую упаковку",
+        "uk": "Перевірити маленьке паковання"
+      },
+      "bodyByLocale": {
+        "ru": "`battery` — «батарейка». В упаковке их может быть несколько — `batteries`: перед конечной `y` стоит согласная `r`, поэтому меняем `y` на `ies`. Хотите уточнить, батарейки ли внутри? Спросите `Are they batteries?` — «Это батарейки?» Название сохраняет `ies`.",
+        "uk": "`battery` — «батарейка». У пакованні їх може бути кілька — `batteries`: перед кінцевою `y` стоїть приголосна `r`, тому міняємо `y` на `ies`. Хочете уточнити, чи всередині батарейки? Запитайте `Are they batteries?` — «Це батарейки?» Назва зберігає `ies`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Сестра открывает пакет с несколькими маленькими цилиндрами. Уточните: «Это батарейки?»",
+          "uk": "Сестра відкриває пакунок із кількома маленькими циліндрами. Уточніть: «Це батарейки?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-19:intro3:r1",
+              "text": "Are they batteries?"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:intro3:r2",
+              "text": "Are they batterys?"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:intro3:r3",
+              "text": "Are they battery?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-19:intro3:r1",
+              "text": "Are they batteries?"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:intro3:r2",
+              "text": "Are they batterys?"
+            },
+            {
+              "responseId": "en:lesson-03:session-19:intro3:r3",
+              "text": "Are they battery?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сестра открывает пакет с несколькими маленькими цилиндрами. Уточните: «Это батарейки?»",
+          "uk": "Сестра відкриває пакунок із кількома маленькими циліндрами. Уточніть: «Це батарейки?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "50342065ef9587be38a95a9bc2fac2298777b2c78085d09e853999367350879e"
+}

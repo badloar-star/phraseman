@@ -1,0 +1,52 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "e7bdea3f362ef3d4b08c2a2188073593ac7258ac728c7dfd6e3675f1a3a75aa2",
+  "localeSha256": {
+    "uk": "9f3ad734fb5d1f8f08ade63083f2282e3f04b5013d5a0ba59f825bd56370fa9a"
+  },
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "sourceSha256": {
+        "ru": "e7bdea3f362ef3d4b08c2a2188073593ac7258ac728c7dfd6e3675f1a3a75aa2",
+        "uk": "9f3ad734fb5d1f8f08ade63083f2282e3f04b5013d5a0ba59f825bd56370fa9a"
+      },
+      "issues": [],
+      "verifiedDelta": "Сравнение с `draft.uk.md` показывает ровно одну замену в самопроверке 6: `керівника самого учня` однозначно обозначает руководителя ученика. Ученический текст не изменён."
+    }
+  },
+  "priorReviews": [
+    {
+      "verdict": "REVISE",
+      "sourceSha256": {
+        "ru": "e7bdea3f362ef3d4b08c2a2188073593ac7258ac728c7dfd6e3675f1a3a75aa2",
+        "uk": "1eaeed876dcba0fc3826e7cbdd4da27ed9625c4506763f93811ff04fee3a29f3"
+      },
+      "issues": [
+        {
+          "location": "Самопроверка 6, первое предложение",
+          "quote": "«на наступному знімку в завданні 4 показано його власного керівника»",
+          "problem": "Местоимение `його` может относиться как к ученику, так и к незнакомому мужчине из предыдущей части предложения.",
+          "exactFix": "`показано його власного керівника` → `показано керівника самого учня`"
+        }
+      ],
+      "passed": {
+        "naturalUkrainianOtherwise": true,
+        "semanticAlignment": true,
+        "firstWeekTimeline": true,
+        "learnerTaskReferents": "clear",
+        "noAddedFalseInformation": true,
+        "introLengths": [
+          258,
+          243,
+          288
+        ],
+        "audioAndBrowser": "not assessed"
+      }
+    }
+  ],
+  "authorModel": "gpt-5.6-sol high",
+  "revisionCount": 1,
+  "learnerTextRevisionCount": 0,
+  "scope": "Independent native text review; actual audio and browser not assessed"
+}

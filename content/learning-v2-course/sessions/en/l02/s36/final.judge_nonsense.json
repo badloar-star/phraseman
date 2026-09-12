@@ -1,0 +1,55 @@
+{
+  "session": "en/l02/s36",
+  "sourceSha256": "98febd314eee61f962b706e4b2559191a7a153751fbc2d9224face379acb9189",
+  "localeSha256": "49ec627e4c8e79f7b1bf49278691a9da71507263305ab0b60b9aa78bd33aff54",
+  "verdict": "PASS",
+  "issues": [],
+  "checks": {
+    "onlyListedPromptsChanged": true,
+    "changedPromptCountPerLocale": 2,
+    "introByteTextUnchanged": true,
+    "englishTokenSequenceUnchanged": true,
+    "targetTilesAnswerFeedbackUnchanged": true,
+    "ruPromptsNeutral": true,
+    "ukPromptsNativeAndNeutral": true,
+    "contextCoherent": true
+  },
+  "verdict_reason": "T9 больше не раскрывает here; T13 больше не даёт причинную подсказку noisy вместо not noisy. Обе новые формулировки сохраняют сценовые темы.",
+  "priorFullReviewRetained": true,
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "session": "S36",
+    "sourceSha256": "8bac7da2f55be716274cbc12d26087b2975f1eb564115b58b4bf0aa78f92a94a",
+    "verdict": "PASS",
+    "issues": [],
+    "checks": {
+      "newTitleMatchesSessionOperation": true,
+      "whoVsWhereDistinctionAccurate": true,
+      "heVsSheExplanationAccurate": true,
+      "isWordOrderClaimsScopedToThePresentedQuestions": true,
+      "hostMeaningAccurate": true,
+      "humourDoesNotCreateAFalseRule": true,
+      "rewrittenIntrosCompatibleWithQuestionsAndPractice": true
+    }
+  },
+  "deltaReview": {
+    "session": "S36",
+    "sourceSha256": "98febd314eee61f962b706e4b2559191a7a153751fbc2d9224face379acb9189",
+    "localeSha256": "49ec627e4c8e79f7b1bf49278691a9da71507263305ab0b60b9aa78bd33aff54",
+    "verdict": "PASS",
+    "issues": [],
+    "checks": {
+      "onlyListedPromptsChanged": true,
+      "changedPromptCountPerLocale": 2,
+      "introByteTextUnchanged": true,
+      "englishTokenSequenceUnchanged": true,
+      "targetTilesAnswerFeedbackUnchanged": true,
+      "ruPromptsNeutral": true,
+      "ukPromptsNativeAndNeutral": true,
+      "contextCoherent": true
+    },
+    "verdict_reason": "T9 больше не раскрывает here; T13 больше не даёт причинную подсказку noisy вместо not noisy. Обе новые формулировки сохраняют сценовые темы.",
+    "priorFullReviewRetained": true
+  },
+  "retainedSourceSha256": "8bac7da2f55be716274cbc12d26087b2975f1eb564115b58b4bf0aa78f92a94a"
+}

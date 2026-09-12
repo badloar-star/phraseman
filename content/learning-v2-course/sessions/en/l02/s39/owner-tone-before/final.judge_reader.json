@@ -1,0 +1,122 @@
+{
+  "session": "en/l02/s39",
+  "locale": "ru",
+  "sourceSha256": "d3ef03d8192d9565746be1dbd312403c4ba075faa09f56823549594f75436baa",
+  "verdict": "PASS",
+  "introVerdict": "PASS",
+  "pagesUnderstood": 3,
+  "introChecks": [
+    {
+      "page": 1,
+      "understood": true,
+      "retelling": "Слово couple здесь означает пару людей, а во фразе о том, что пара находится рядом, нужно is.",
+      "whatIDoNow": "Скажу The couple is here, не пропуская is.",
+      "length": 250,
+      "problems": []
+    },
+    {
+      "page": 2,
+      "understood": true,
+      "retelling": "Crowd означает толпу, а вопрос о её местоположении начинается с Where is.",
+      "whatIDoNow": "Спрошу Where is the crowd?, когда хочу узнать, где толпа.",
+      "length": 259,
+      "problems": []
+    },
+    {
+      "page": 3,
+      "understood": true,
+      "retelling": "Who is the host? спрашивает, кто хозяин, а Where is the host? — где он.",
+      "whatIDoNow": "Выберу Who, если нужно узнать человека, и Where, если нужно узнать место.",
+      "length": 254,
+      "problems": []
+    }
+  ],
+  "contractChecks": {
+    "wordOrPhraseAndMeaningFirst": "PASS",
+    "sceneConfinedToQuestions": "PASS",
+    "introLength210To320": "PASS",
+    "humorOptional": "PASS",
+    "all17PracticeInstructionsReviewed": true,
+    "allGlossesAndVisibleFeedbackReviewed": true
+  },
+  "initialVerdict": "REVISE",
+  "deltaReview": {
+    "sourceSha256": "f844630734a0d961f878d0f7c523fc9e6aa13276b6f0abc8e00d981b0fc62057",
+    "verdict": "PASS",
+    "introVerdict": "PASS",
+    "replacementCheck": {
+      "location": "Практика 15",
+      "natural": true,
+      "unambiguous": true,
+      "reason": "Ситуация читается с первого раза: друг ошибочно считает людей незнакомцами, говорящий знает обратное и поправляет его фразой «Они не незнакомцы». Неясной принадлежности из прежнего оборота «ваши знакомые лица» больше нет."
+    },
+    "introUnchanged": true,
+    "concreteIssues": []
+  },
+  "reviewedOriginalSha256": "aa9f347ea0a24d41132004b24240e7b12ca572bb13bfd18e66c867f790ea27c1",
+  "resolvedIssues": [
+    {
+      "location": "Практика 15",
+      "severity": "REVISE",
+      "quote": "друг видит ваши знакомые лица у выхода",
+      "kind": "неестественная и двусмысленная формулировка",
+      "why": "«Ваши знакомые лица» можно на мгновение прочитать как несколько принадлежащих вам лиц. По-русски естественно сказать, что друг видит у выхода ваших знакомых.",
+      "suggestedFix": "Друг видит у выхода ваших знакомых; подтвердите: «Они не незнакомцы»."
+    }
+  ],
+  "concreteIssues": [],
+  "initialVerdictReason": "Все три интро понятны после одного чтения, дают конкретное действие и соблюдают заданные рамки. Карточки, инструкции и объяснения вариантов в целом ясны и естественны. Нужна одна точечная правка задания 15 из-за неестественного и двусмысленного оборота «ваши знакомые лица».",
+  "verdictReason": "Единственное замечание к заданию 15 устранено; независимая delta-проверка подтвердила ясность замены и неизменность интро.",
+  "previousSourceSha256": "f844630734a0d961f878d0f7c523fc9e6aa13276b6f0abc8e00d981b0fc62057",
+  "listeningRepairReview": {
+    "verdict": "PASS",
+    "sourceSha256": "d3ef03d8192d9565746be1dbd312403c4ba075faa09f56823549594f75436baa",
+    "hashMatch": true,
+    "metadataDelta": {
+      "host": {
+        "tasks": [
+          5,
+          6,
+          10
+        ],
+        "correctAnswerTasks": [
+          5,
+          6,
+          10
+        ],
+        "result": "PASS"
+      },
+      "guests": {
+        "tasks": [
+          10,
+          12,
+          13
+        ],
+        "correctAnswerTasks": [
+          10,
+          12,
+          13
+        ],
+        "result": "PASS"
+      },
+      "strangers": {
+        "tasks": [
+          9,
+          14,
+          15
+        ],
+        "correctAnswerTasks": [
+          9,
+          14,
+          15
+        ],
+        "result": "PASS"
+      }
+    },
+    "boundedCorrectionAccurate": true,
+    "learnerFacingTextChangedSincePreviousPass": false,
+    "previousReadabilityVerdict": "PASS",
+    "previousReadabilityVerdictStillApplies": true,
+    "issues": []
+  }
+}

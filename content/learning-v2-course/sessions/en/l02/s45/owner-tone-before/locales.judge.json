@@ -1,0 +1,59 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "fd65a613457ba0361cccb09ffd7b8a2b24e780c5e23bf454e09623ca4aecd59a",
+  "localeSha256": {
+    "uk": "123d708eb2f3b42220e615bebe8bc0dd850ceb91529453b053d83846f8b883ea"
+  },
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "sourceSha256": {
+        "ru": "fd65a613457ba0361cccb09ffd7b8a2b24e780c5e23bf454e09623ca4aecd59a",
+        "uk": "123d708eb2f3b42220e615bebe8bc0dd850ceb91529453b053d83846f8b883ea"
+      },
+      "issues": [],
+      "verifiedDelta": "Все пять мест теперь передают нейтральное значение прихода раньше запланированного времени. Оттенки «слишком рано» и «раньше, чем нужно» устранены; новые украинские формулировки естественны и однозначны."
+    }
+  },
+  "priorReviews": [
+    {
+      "verdict": "REVISE",
+      "sourceSha256": {
+        "ru": "fd65a613457ba0361cccb09ffd7b8a2b24e780c5e23bf454e09623ca4aecd59a",
+        "uk": "39ec6c89563a86931352e5397a00e7a17620dbe527df8995f9ce94effeec862e"
+      },
+      "issues": [
+        {
+          "locations": [
+            "Интро 1, feedback `Am I early?`",
+            "Task 1, feedback `Am I early?`",
+            "Task 2, prompt and `late` feedback",
+            "Task 3, prompt"
+          ],
+          "problem": "Украинское `не зарано?` добавляет оттенок «не слишком ли рано», которого нет в нейтральном `Am I early?`. Формула `раніше, ніж потрібно` повторяет тот же нежелательный смысл.",
+          "exactFixes": [
+            "`Це «Я не зарано?»` → `Це «Я прийшов раніше запланованого?»`",
+            "`уточніть, чи не зарано ви прийшли` → `уточніть, чи ви прийшли раніше запланованого часу`",
+            "`чи не прийшли раніше, ніж потрібно` → `чи ви прийшли раніше запланованого часу`",
+            "`запитайте його, чи не зарано ви прийшли` → `запитайте його, чи ви прийшли раніше запланованого часу`"
+          ]
+        }
+      ],
+      "passed": {
+        "nativeUkrainianOtherwise": true,
+        "ruCorrespondenceOtherwise": true,
+        "echoQuestionRule": "accurate",
+        "sceneAndAddressees": "coherent",
+        "answerUniqueness": true,
+        "introLengths": [
+          267,
+          259,
+          265
+        ]
+      }
+    }
+  ],
+  "authorModel": "gpt-5.6-sol high",
+  "revisionCount": 1,
+  "scope": "Independent native UK text review; actual audio and browser not assessed"
+}

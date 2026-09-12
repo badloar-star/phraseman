@@ -1,5 +1,13 @@
 {
-  "problems": [],
   "verdict": "PASS",
-  "verdict_reason": "два прогона разошлись (REVISE/PASS), общих претензий нет: Проверил все утверждения о what/which/one, значения cheap, elegant, one, звуковые задания 1, 6, 9 и разборы всех дистракторов: ложных противопоставлений с русским нет вообще, звук нигде не описывается транскрипцией, безусловных слов нет, интро 2 и 3 не противоречат друг другу, каждый разбор ведёт к действию."
+  "sourceSha256": "b4498f8ef974e979773f986c1d953bc3f234d5584196bb658d20be493cd2cc3c",
+  "scope": "Historical review plus actual bounded repair review; not a new full-session retake",
+  "previousReview": {
+    "problems": [],
+    "verdict": "PASS",
+    "verdict_reason": "два прогона разошлись (REVISE/PASS), общих претензий нет: Проверил все утверждения о what/which/one, значения cheap, elegant, one, звуковые задания 1, 6, 9 и разборы всех дистракторов: ложных противопоставлений с русским нет вообще, звук нигде не описывается транскрипцией, безусловных слов нет, интро 2 и 3 не противоречат друг другу, каждый разбор ведёт к действию."
+  },
+  "repairEvidence": "judgements/2026-09-12_audit100_final.json",
+  "readerLearnerEvidence": "judgements/2026-09-12_audit100_reader_learner_delta.json",
+  "actualAudioReviewed": false
 }

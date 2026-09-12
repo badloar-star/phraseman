@@ -1,0 +1,41 @@
+{
+  "sourceSha256": "6fcf2709637ea1ef51aebc8acf5a94ac13110eb22785c28f66513ef295861644",
+  "scope": "Text-only learner walkthrough. Transcripts substitute for sound; actual audio was not assessed.",
+  "introAnswers": {
+    "intro1": "Who is the landlord?",
+    "intro2": "What is the rent?",
+    "intro3": "What are the rules?"
+  },
+  "practiceAnswers": {
+    "1": "landlord",
+    "2": "landlord",
+    "3": "Is he the landlord?",
+    "4": "rent",
+    "5": "rent",
+    "6": "Is it the rent?",
+    "7": "flat",
+    "8": "The flat is quiet.",
+    "9": "Are the rules clear?",
+    "10": {
+      "rules": "правила",
+      "rent": "арендная плата",
+      "flat": "квартира",
+      "price": "цена"
+    },
+    "11": "is",
+    "12": "price",
+    "13": "The landlord is inside.",
+    "14": "are",
+    "15": "I am not sure.",
+    "16": "Is the flat warm?",
+    "17": "Excuse me. Is the landlord busy?"
+  },
+  "issues": [],
+  "verdict": "PASS",
+  "answerComparison": {
+    "intro": 3,
+    "practice": 17,
+    "matched": true,
+    "scope": "text only"
+  }
+}

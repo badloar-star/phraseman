@@ -51,7 +51,7 @@
         "testedDimension": "Вставьте слово — брат звонит в одиннадца",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-56:i01:r1",
+            "responseId": "en:lesson-01:session-56:i01:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — брат звонит в одиннадца",
             "feedbackByLocale": {
@@ -60,7 +60,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-56:i01:r2",
+            "responseId": "en:lesson-01:session-56:i01:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — брат звонит в одиннадца",
             "feedbackByLocale": {
@@ -125,7 +125,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-56:i02:r1",
+            "responseId": "en:lesson-01:session-56:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — week",
             "feedbackByLocale": {
@@ -134,7 +134,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-56:i02:r2",
+            "responseId": "en:lesson-01:session-56:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — week",
             "feedbackByLocale": {
@@ -196,7 +196,7 @@
         "testedDimension": "Вставьте слово — брат спрашивает про нов",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-56:i03:r1",
+            "responseId": "en:lesson-01:session-56:i03:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — брат спрашивает про нов",
             "feedbackByLocale": {
@@ -205,7 +205,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-56:i03:r2",
+            "responseId": "en:lesson-01:session-56:i03:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — брат спрашивает про нов",
             "feedbackByLocale": {
@@ -295,7 +295,7 @@
         "testedDimension": "Вставьте скрепку — про всех коллег сразу",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-56:i05:r1",
+            "responseId": "en:lesson-01:session-56:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про всех коллег сразу",
             "feedbackByLocale": {
@@ -304,7 +304,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-56:i05:r2",
+            "responseId": "en:lesson-01:session-56:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про всех коллег сразу",
             "feedbackByLocale": {
@@ -397,7 +397,7 @@
         "testedDimension": "Вставьте слово — брат спрашивает про ква",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-56:i07:r1",
+            "responseId": "en:lesson-01:session-56:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — брат спрашивает про ква",
             "feedbackByLocale": {
@@ -406,7 +406,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-56:i07:r2",
+            "responseId": "en:lesson-01:session-56:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — брат спрашивает про ква",
             "feedbackByLocale": {
@@ -568,7 +568,7 @@
         "testedDimension": "Вставьте слово — брат спрашивает, не ску",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-56:i10:r1",
+            "responseId": "en:lesson-01:session-56:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — брат спрашивает, не ску",
             "feedbackByLocale": {
@@ -577,7 +577,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-56:i10:r2",
+            "responseId": "en:lesson-01:session-56:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — брат спрашивает, не ску",
             "feedbackByLocale": {
@@ -629,7 +629,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «теп",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-56:i11:r1",
+            "responseId": "en:lesson-01:session-56:i11:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «теп",
             "feedbackByLocale": {
@@ -752,7 +752,7 @@
         "testedDimension": "Вставьте скрепку — про неделю, которая б",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-56:i14:r1",
+            "responseId": "en:lesson-01:session-56:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про неделю, которая б",
             "feedbackByLocale": {
@@ -761,7 +761,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-56:i14:r2",
+            "responseId": "en:lesson-01:session-56:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про неделю, которая б",
             "feedbackByLocale": {

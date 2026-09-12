@@ -1,0 +1,36 @@
+{
+  "sourceSha256": "76d0f8d2c262d0812271ee934a2ab1675b6fccaa5673f93676462268c813cf78",
+  "localeSha256": {
+    "uk": "aacdae83329217702c9737e8ccb9b953902b1e19656e28d36c081c89e859fe78"
+  },
+  "locales": {
+    "uk": {
+      "session": "S55",
+      "sourceSha256": "76d0f8d2c262d0812271ee934a2ab1675b6fccaa5673f93676462268c813cf78",
+      "localeSha256": "aacdae83329217702c9737e8ccb9b953902b1e19656e28d36c081c89e859fe78",
+      "verdict": "PASS",
+      "issues": [],
+      "checks": {
+        "nativeUkrainian": true,
+        "sourceMeaningAndHumourPreserved": true,
+        "englishTargetsOptionsAndFeedbackPreserved": true,
+        "englishLearnerSequenceMatchesRussian": true,
+        "englishLearnerTokenCounts": {
+          "ru": 326,
+          "uk": 326
+        },
+        "shortAnswerConstructionAccurate": true,
+        "introLengths": [
+          260,
+          263,
+          259
+        ],
+        "introLengthsWithin210To320": true,
+        "introCount": 3,
+        "practiceTaskCount": 17,
+        "builderTaskCount": 6,
+        "actualAudioAssessed": false
+      }
+    }
+  }
+}

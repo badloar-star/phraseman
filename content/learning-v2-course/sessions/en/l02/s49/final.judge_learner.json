@@ -1,0 +1,12 @@
+{
+  "session": "en/l02/s49",
+  "sourceSha256": "cca7122f9ca01d25bd877e1b5616993e407a281af98a899c2c4e0cbfec567cf9",
+  "introAnswers": {
+    "1": "Yes, I am.",
+    "2": "Who is he?",
+    "3": "Where is the station?"
+  },
+  "previous17PracticeAnswersRemainValid": true,
+  "issues": [],
+  "verdict": "PASS"
+}

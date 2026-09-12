@@ -1,0 +1,43 @@
+{
+  "sourceSha256": "20a9aafd2d1cd8d6cf3cc227413faf304314cd13c2b2a5cd85fea157aa9357fc",
+  "reviewer": "/root/s22_truth",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "verdict": "PASS",
+  "problems": [],
+  "evidence": [
+    "Cambridge bottle/battle/beetle vowel contrasts UK/US support positive cues.",
+    "Cambridge bowl/bull/ball diphthong versus steady vowels; no one ball mouth shape across accents.",
+    "plate/slate/late onsets and shared leɪt accurate.",
+    "Definitions support container/shape/sense boundaries; known regular written plurals.",
+    "Intro1 one word scoped to plural list label, artificial repetition line taste only.",
+    "Listening 2/4/8 and dictation11 neutral, dish serving-tableware positive contacts10/14/15."
+  ],
+  "verdict_reason": "Новая строка точно описывает bottle → bottles как письменное добавление s; фраза про остальные бутылки — прозрачный юмор, а не буквальное языковое утверждение. Весь остальной ранее проверенный объём неизменён: нейтральные аудиопромпты, двусторонние фонетические признаки, значения и единый смысл dish/dishes в контактах 10, 14 и 15 сохраняют PASS. Фактическое аудио проверенным не объявляется.",
+  "actualAudio": "NOT_REVIEWED",
+  "baseSha256": "7394bfc8283282acfec8f9445347514911541c003a5066c9c2ec576039a3412b",
+  "changedLines": [
+    15
+  ],
+  "remainingIssues": [],
+  "reviewHistory": [
+    {
+      "sourceSha256": "7394bfc8283282acfec8f9445347514911541c003a5066c9c2ec576039a3412b",
+      "reviewer": "/root/s22_truth",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "medium",
+      "verdict": "PASS",
+      "problems": [],
+      "evidence": [
+        "Cambridge bottle/battle/beetle vowel contrasts UK/US support positive cues.",
+        "Cambridge bowl/bull/ball diphthong versus steady vowels; no one ball mouth shape across accents.",
+        "plate/slate/late onsets and shared leɪt accurate.",
+        "Definitions support container/shape/sense boundaries; known regular written plurals.",
+        "Intro1 one word scoped to plural list label, artificial repetition line taste only.",
+        "Listening 2/4/8 and dictation11 neutral, dish serving-tableware positive contacts10/14/15."
+      ],
+      "verdict_reason": "Все языковые, смысловые и фонетические утверждения исходника подтверждаются первичными источниками; фактическое аудио не проверено.",
+      "actualAudio": "NOT_REVIEWED"
+    }
+  ]
+}

@@ -1,0 +1,852 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-38:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — manager",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-38:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — manager",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:i01:audio",
+          "transcript": "manager"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-38:i01:r1",
+            "targetText": "manager",
+            "meaningByLocale": {
+              "ru": "«руководитель». Здесь — человек, который организует работу команды и отвечает за её результат.",
+              "uk": "«керівник». Тут це людина, яка організовує роботу команди й відповідає за її результат."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "manager",
+          "definitionByLocale": {
+            "ru": "«руководитель». Здесь — человек, который организует работу команды и отвечает за её результат.",
+            "uk": "«керівник». Тут це людина, яка організовує роботу команди й відповідає за її результат."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-38:i02:r1",
+          "text": "manager"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i02:r2",
+          "text": "messenger"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i02:r3",
+          "text": "passenger"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:i02:audio",
+          "transcript": "manager"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-38:i02:r1",
+            "targetText": "manager",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i02:r2",
+            "targetText": "messenger",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i02:r3",
+            "targetText": "passenger",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "Это «посыльный». Переслушайте первый слог: у `messenger` он другой, а в записи звучит `manager`.",
+              "uk": "Це «посланець». Прослухайте ще раз перший склад: у `messenger` він інший, а в записі звучить `manager`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "Это «пассажир». Переслушайте самый первый звук: `passenger` начинается иначе, а в записи звучит `manager`.",
+              "uk": "Це «пасажир». Прослухайте ще раз перший звук: `passenger` починається інакше, а в записі звучить `manager`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — intern",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-38:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — intern",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:i03:audio",
+          "transcript": "intern"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-38:i03:r1",
+            "targetText": "intern",
+            "meaningByLocale": {
+              "ru": "«стажёр». Человек, который проходит стажировку: выполняет рабочие задания и набирается опыта с помощью более опытных сотрудников.",
+              "uk": "«стажер». Людина, яка проходить стажування: виконує робочі завдання й набуває досвіду за підтримки досвідченіших працівників."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "intern",
+          "definitionByLocale": {
+            "ru": "«стажёр». Человек, который проходит стажировку: выполняет рабочие задания и набирается опыта с помощью более опытных сотрудников.",
+            "uk": "«стажер». Людина, яка проходить стажування: виконує робочі завдання й набуває досвіду за підтримки досвідченіших працівників."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-38:i04:r1",
+          "text": "intern"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i04:r2",
+          "text": "winter"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i04:r3",
+          "text": "return"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-38:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:i04:audio",
+          "transcript": "intern"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-38:i04:r1",
+            "targetText": "intern",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i04:r2",
+            "targetText": "winter",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i04:r3",
+            "targetText": "return",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-38:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "Это «зима». Переслушайте самый первый звук: у `winter` перед гласным слышится согласный, а слово в записи начинается сразу с гласного — `intern`.",
+              "uk": "Це «зима». Прослухайте ще раз перший звук: у `winter` перед голосним чути приголосний, а слово в записі починається одразу з голосного — `intern`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "Это «возвращаться». Переслушайте первый слог: у `return` он другой, а в записи звучит `intern`.",
+              "uk": "Це «повертатися». Прослухайте ще раз перший склад: у `return` він інший, а в записі звучить `intern`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — перед вами вся команда; узнайте, кто её руководитель",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — перед вами вся команда; узнайте, кто её руководитель",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Who is the manager?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — перед вами вся команда; узнайте, кто её руководитель",
+          "uk": "Складіть фразу — перед вами вся команда; дізнайтеся, хто її керівник"
+        },
+        "orderedTokens": [
+          "Who",
+          "is",
+          "the",
+          "manager"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — коллега спрашивает о мужчине, который впервые пришёл работать к вам; скажите: «Он новенький»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-38:i06:r1",
+          "text": "new"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i06:r2",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i06:r3",
+          "text": "here"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — коллега спрашивает о мужчине, который впервые пришёл работать к вам; скажите: «Он новенький»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коллега спрашивает о мужчине, который впервые пришёл работать к вам; скажите: «Он новенький»",
+          "uk": "Вставте слово — колега запитує про чоловіка, який уперше прийшов до вас працювати; скажіть: «Він новенький»"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-38:i06:r1",
+            "text": "new"
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i06:r2",
+            "text": "sure"
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i06:r3",
+            "text": "here"
+          }
+        ],
+        "testedDimension": "Вставьте слово — коллега спрашивает о му",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-38:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега спрашивает о му",
+            "feedbackByLocale": {
+              "ru": "Получится «Он уверен». Нужно сказать, что он недавно пришёл работать: `He is new`.",
+              "uk": "Вийде «Він упевнений». Треба сказати, що він недавно прийшов працювати: `He is new`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега спрашивает о му",
+            "feedbackByLocale": {
+              "ru": "Это «здесь». Вы сообщаете, что он новенький, поэтому нужно `new`.",
+              "uk": "Це «тут». Ви повідомляєте, що він новенький, тому потрібне `new`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — что коллега спросил о стажёре",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-38:i07:r1",
+          "text": "Who is the intern?"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i07:r2",
+          "text": "Where is the intern?"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i07:r3",
+          "text": "Who is the manager?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-38:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — что коллега спросил о стажёре",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:i07:audio",
+          "transcript": "Who is the intern?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-38:i07:r1",
+            "targetText": "Who is the intern?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i07:r2",
+            "targetText": "Where is the intern?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i07:r3",
+            "targetText": "Who is the manager?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-38:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что коллега спро",
+            "feedbackByLocale": {
+              "ru": "Это «Где стажёр?». На записи вопрос начинается с `Who`: коллега хочет узнать, кто стажёр.",
+              "uk": "Це «Де стажер?». У записі запитання починається з `Who`: колега хоче дізнатися, хто стажер."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что коллега спро",
+            "feedbackByLocale": {
+              "ru": "Это вопрос о руководителе. На записи последнее слово — `intern`, «стажёр».",
+              "uk": "Це запитання про керівника. Останнє слово в записі — `intern`, «стажер»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коллега спрашивает, кто руководит командой; укажите на мужчину и скажите: «Он руководитель»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коллега спрашивает, кто руководит командой; укажите на мужчину и скажите: «Он руководитель»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is the manager.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коллега спрашивает, кто руководит командой; укажите на мужчину и скажите: «Он руководитель»",
+          "uk": "Складіть фразу — колега запитує, хто керує командою; вкажіть на чоловіка й скажіть: «Він керівник»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "the",
+          "manager"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы точно знаете, кто руководитель; подтвердите коллеге: «Я уверен»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-38:i09:r1",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i09:r2",
+          "text": "new"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i09:r3",
+          "text": "here"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы точно знаете, кто руководитель; подтвердите коллеге: «Я уверен»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы точно знаете, кто руководитель; подтвердите коллеге: «Я уверен»",
+          "uk": "Вставте слово — ви точно знаєте, хто керівник; підтвердьте колезі: «Я впевнений»"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-38:i09:r1",
+            "text": "sure"
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i09:r2",
+            "text": "new"
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i09:r3",
+            "text": "here"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы точно знаете, кто ру",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-38:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы точно знаете, кто ру",
+            "feedbackByLocale": {
+              "ru": "Получится «Я новенький». Нужно подтвердить, что вы точно знаете ответ: `I am sure`.",
+              "uk": "Вийде «Я новенький». Треба підтвердити, що ви точно знаєте відповідь: `I am sure`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы точно знаете, кто ру",
+            "feedbackByLocale": {
+              "ru": "Это «здесь». Для уверенности в ответе нужно слово `sure`.",
+              "uk": "Це «тут». Щоб висловити впевненість у відповіді, потрібне слово `sure`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары — слова из знакомства с командой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары — слова из знакомства с командой",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-38:i10:p1",
+            "target": "manager",
+            "meaningByLocale": {
+              "ru": "руководитель",
+              "uk": "керівник"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-38:i10:p2",
+            "target": "intern",
+            "meaningByLocale": {
+              "ru": "стажёр",
+              "uk": "стажер"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-38:i10:p3",
+            "target": "new",
+            "meaningByLocale": {
+              "ru": "новенький",
+              "uk": "новенький"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-38:i10:p4",
+            "target": "sure",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "впевнений"
+            }
+          }
+        ],
+        "leftColumn": [
+          "manager",
+          "intern",
+          "new",
+          "sure"
+        ],
+        "rightColumn": [
+          "руководитель",
+          "стажёр",
+          "новенький",
+          "уверен"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коллега ищет стажёра; стажёр подошёл к вам, сообщите: «Стажёр здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коллега ищет стажёра; стажёр подошёл к вам, сообщите: «Стажёр здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The intern is here.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коллега ищет стажёра; стажёр подошёл к вам, сообщите: «Стажёр здесь»",
+          "uk": "Складіть фразу — колега шукає стажера; стажер підійшов до вас, повідомте: «Стажер тут»"
+        },
+        "orderedTokens": [
+          "The",
+          "intern",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — женщина разговаривает с руководителем; спросите коллегу, кто она",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-38:i12:r1",
+          "text": "Who"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i12:r2",
+          "text": "Whose"
+        },
+        {
+          "responseId": "en:lesson-02:session-38:i12:r3",
+          "text": "Where"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — женщина разговаривает с руководителем; спросите коллегу, кто она",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — женщина разговаривает с руководителем; спросите коллегу, кто она",
+          "uk": "Вставте слово — жінка розмовляє з керівником; запитайте колегу, хто вона"
+        },
+        "gappedTargetPhrase": "___ is she?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-38:i12:r1",
+            "text": "Who"
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i12:r2",
+            "text": "Whose"
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i12:r3",
+            "text": "Where"
+          }
+        ],
+        "testedDimension": "Вставьте слово — женщина разговаривает с",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-38:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — женщина разговаривает с",
+            "feedbackByLocale": {
+              "ru": "Это слово для вопроса «чей?». Вы узнаёте, кто эта женщина, поэтому нужно `Who`.",
+              "uk": "Це слово для запитання «чий?». Ви хочете дізнатися, хто ця жінка, тому потрібне `Who`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-38:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — женщина разговаривает с",
+            "feedbackByLocale": {
+              "ru": "Получится «Где она?». Женщину вы видите; сейчас хотите узнать, кто она.",
+              "uk": "Вийде «Де вона?». Жінку ви бачите; зараз хочете дізнатися, хто вона."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — коллега ищет женщину, с которой вас только что познакомили",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-38:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — коллега ищет женщину, с которой вас только что познакомили",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:i13:audio",
+          "transcript": "Is she here?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is she here?",
+        "orderedTokens": [
+          "Is",
+          "she",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вас спросили, кто из двоих новеньких стажёр; вы пока не знаете и признаётесь в этом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вас спросили, кто из двоих новеньких стажёр; вы пока не знаете и признаётесь в этом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not sure.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вас спросили, кто из двоих новеньких стажёр; вы пока не знаете и признаётесь в этом",
+          "uk": "Складіть фразу — вас запитали, хто з двох новеньких стажер; ви поки не знаєте й визнаєте це"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "sure"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — незнакомая женщина присоединилась к команде; узнайте у коллеги, кто она",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-38:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — незнакомая женщина присоединилась к команде; узнайте у коллеги, кто она",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:i15:audio",
+          "transcript": "Who is she?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Who is she?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вам нужен руководитель, но вы его не видите; спросите коллегу, где он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-38:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вам нужен руководитель, но вы его не видите; спросите коллегу, где он",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-38:i16:audio",
+          "transcript": "Where is the manager?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the manager?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-38:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — двое новеньких стоят рядом; вам поручили помочь стажёру, узнайте у коллеги, кто из них стажёр",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — двое новеньких стоят рядом; вам поручили помочь стажёру, узнайте у коллеги, кто из них стажёр",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Who is the intern?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — двое новеньких стоят рядом; вам поручили помочь стажёру, узнайте у коллеги, кто из них стажёр",
+          "uk": "Складіть фразу — двоє новеньких стоять поруч; вам доручили допомогти стажеру, дізнайтеся в колеги, хто з них стажер"
+        },
+        "orderedTokens": [
+          "Who",
+          "is",
+          "the",
+          "intern"
+        ],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fc7798ab285194e9b8acb81973cdc2c4daaef1cfd12c8f4dc24fe98c9557aa3a"
+}

@@ -1,0 +1,150 @@
+{
+  "sourceSha256": "3502df9d49a80804fa5b9fb33643f6e82cc65c2212c9a743fc8b762e46e15d80",
+  "verdict": "PASS",
+  "reviewScope": "L3S2/L3S3 phonetic feedback delta only; prior full reviews retained, not rerun",
+  "actualReceipt": "content/learning-v2-course/judgements/2026-09-09_l03_s02_s03_phonetic_delta.json",
+  "priorFullReview": {
+    "sourceSha256": "6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b",
+    "plan_fidelity": {
+      "operation_matches": true,
+      "new_words_match": [
+        "sofa",
+        "bed",
+        "desk"
+      ],
+      "missing": [],
+      "extra_grammar_smuggled": []
+    },
+    "boundary": {
+      "unknown_in_explanations": [],
+      "unknown_in_targets": []
+    },
+    "traps": {
+      "realistic": [
+        {
+          "task": 8,
+          "trap": "`Are it a desk?` переносит известный вопросный старт `Are` на `it`."
+        },
+        {
+          "task": 12,
+          "trap": "Варианты `is` и `a` по отдельности ловят пропуск одного из двух обязательных слов."
+        },
+        {
+          "task": 14,
+          "trap": "`It are heavy` / `It am heavy` — реалистичная путаница формы после `It`."
+        }
+      ],
+      "silly": [],
+      "native_transfer_used": true,
+      "feedback_teaches_unknown_form": []
+    },
+    "feedback": {
+      "missing_per_option": [],
+      "duplicated": [],
+      "too_long_or_bookish": []
+    },
+    "structure": {
+      "task_count": 17,
+      "below_12": false,
+      "word_first_respected": true,
+      "support_fades": true,
+      "speed_match_boards": [
+        [
+          "sofa",
+          "bed",
+          "desk",
+          "table"
+        ]
+      ],
+      "speed_match_overlap": false,
+      "repeated_targets": [],
+      "generic_instructions": [],
+      "attention_traps": [
+        13
+      ]
+    },
+    "checks": {
+      "learning_delta": "Знакомая рамка `It is a + noun` применяется к трём новым названиям мебели и точному различению `desk`/`table`.",
+      "returns_minimum_two": {
+        "table": [
+          9,
+          11
+        ],
+        "heavy": [
+          14,
+          15
+        ]
+      },
+      "cards_and_listening_before_phrase_or_board": true,
+      "builders": {
+        "count": 5,
+        "phrases": [
+          "`It is a sofa`",
+          "`Is it a desk?`",
+          "`It is not a bed`",
+          "`It is a desk`",
+          "`Is it a sofa?`"
+        ],
+        "result": "Каждая сборка выполняет другую работу; два утвердительных и два вопросительных скелета не превышают лимит двух. Точная фраза не повторяется между сборками."
+      },
+      "intro_to_practice_retrieval": "Допустимо: интро даёт single-choice с полной поддержкой, а поздняя практика требует собрать или произнести фразу. §11 фабричной Конституции запрещает повтор одной и той же сборки и непосредственную голосовую подсказку финала, но прямо разрешает более ранний возврат фразы и соседство другой механики.",
+      "difficulty_ladder": {
+        "speed_match_pairs": 4,
+        "wrong_options_per_scored_choice": 2,
+        "tasks": 17,
+        "result": "Соответствует обязательному минимуму L3: 4 пары и 2 неверных варианта; 17 заданий и число режимов — ориентиры, не квоты."
+      },
+      "listen_choose": {
+        "neutral_prompts": true,
+        "written_sound_pairs": [
+          "`sofa` / `safer` / `suffer`: различаются гласным первого слога.",
+          "`bed` / `red` / `bad`: различаются начальным согласным либо гласным.",
+          "`desk` / `disk` / `dusk`: различаются средним гласным."
+        ],
+        "dictation_prompt_does_not_reveal_answer_or_polarity": true,
+        "real_audio_claim": false
+      }
+    },
+    "time_references": [],
+    "cross_session_repeats": [],
+    "textbook_formulas": [],
+    "builder_notes": {
+      "new_words_line_ok": true,
+      "modes_line_ok": true,
+      "modes_used": {
+        "word_card": 3,
+        "listen_choose": 3,
+        "phrase_builder": 4,
+        "listen_build_dictation": 1,
+        "speed_match": 1,
+        "context_gap_grammar": 2,
+        "scripted_repeat_compare": 3
+      }
+    },
+    "verdict": "PASS",
+    "verdict_reason": "По действующей фабричной Конституции сессия держит план, границы, последовательность знакомства со словами, возвраты, разнообразные сборки и нейтральные слуховые промпты; прежняя претензия к интро→практика опиралась на retired правило и снята."
+  },
+  "deltaReview": {
+    "session": "s02",
+    "baseHashes": {
+      "ru": "6923b149e74d3dc11114f0e16f007f4fee2f2904887915cd96d9f0296cd8823b",
+      "uk": "3f23911b2e4fce6a9450812fbb1bd3d5a2b7fb414adbe9b0187b463f2495562c"
+    },
+    "currentHashes": {
+      "ru": "3502df9d49a80804fa5b9fb33643f6e82cc65c2212c9a743fc8b762e46e15d80",
+      "uk": "dc39d7f1513d4cb1dd6429ab22032d0574c57ecd5647a45597227cc08412b894"
+    },
+    "diffReviewed": "One red/bed feedback line in each locale",
+    "rolesCovered": {
+      "reader": "PASS",
+      "pedagogy": "PASS",
+      "nonsense": "PASS",
+      "taste": "PASS",
+      "native": "PASS"
+    },
+    "englishAnswersInvariant": true,
+    "contractEvidence": "9 intro choices, 32 practice-contract items unchanged; RU/UK 122 backtick spans identical in order",
+    "tasteEvidence": "Intro and humor unchanged; all prior humor.examples and best_lines remain exact source substrings",
+    "retainPriorFullTaste": true
+  }
+}

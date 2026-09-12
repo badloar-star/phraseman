@@ -1,0 +1,91 @@
+{
+  "sourceSha256": "20a9aafd2d1cd8d6cf3cc227413faf304314cd13c2b2a5cd85fea157aa9357fc",
+  "reviewer": "/root/s22_taste",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "high",
+  "pairwise": "equal",
+  "pairwise_reason": "Эталон l01_s02 богаче на заметные образы, но S22 достигает той же редакторской планки более сдержанно: правило понятно с первого чтения, сцена последовательно даёт повод говорить, а юмор теперь встроен в различие одного и нескольких предметов. Новый ход не выглядит приклеенной концовкой и не создаёт ложного правила.",
+  "voice": {
+    "score": 4,
+    "evidence": [
+      "«`bottle` — «бутылка», `bottles` — «бутылки».» — предмет объяснения назван сразу и без разгона.",
+      "«Если назвать весь набор словом `bottle`, получится, что остальные бутылки зря ехали.» — лёгкая разговорная шутка объясняет именно потерю множественного числа.",
+      "«Даже если миски вложены одна в другую, предметов несколько.» — конкретный образ снимает возможную путаницу и остаётся внутри значения слова."
+    ]
+  },
+  "humor": {
+    "present": true,
+    "on_topic": true,
+    "examples": [
+      "Если назвать весь набор словом `bottle`, получится, что остальные бутылки зря ехали."
+    ],
+    "misfires": []
+  },
+  "scene": {
+    "present": true,
+    "gives_reason_to_speak": true,
+    "note": "Покупатель и курьер вместе сверяют коробку с перечнем: естественно назвать вынутые предметы, подтвердить несколько экземпляров и уточнить содержимое закрытой упаковки. Сцена понятна без предыстории и не требует искусственной ошибки собеседника."
+  },
+  "ai_text_or_nonsense": [],
+  "water": [],
+  "dead_language": [],
+  "best_lines": [
+    "Если назвать весь набор словом `bottle`, получится, что остальные бутылки зря ехали.",
+    "Даже если миски вложены одна в другую, предметов несколько.",
+    "Чтобы уточнить, переставьте первые два слова: `Are they plates?` — «Это тарелки?»"
+  ],
+  "must_fix": [],
+  "verdict": "PASS",
+  "verdict_reason": "Текущий мастер понятен, человечен и сравним с золотым эталоном: естественный юмор встроен в языковую мысль, сцена даёт реальные причины говорить, а вода, мёртвый язык и признаки ИИ-текста не обнаружены.",
+  "reviewHistory": [
+    {
+      "sourceSha256": "7394bfc8283282acfec8f9445347514911541c003a5066c9c2ec576039a3412b",
+      "reviewer": "/root/s22_taste",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "high",
+      "verdict": "REVISE",
+      "pairwise": "worse",
+      "voiceScore": 2,
+      "humor": {
+        "present": false,
+        "on_topic": false,
+        "examples": [],
+        "misfires": [
+          "Переписывать `bottle` для каждой бутылки не понадобится."
+        ]
+      },
+      "ai_text_or_nonsense": [
+        {
+          "where": "Интро 1",
+          "quote": "Переписывать `bottle` для каждой бутылки не понадобится.",
+          "why": "Artificial hypothetical action rather than actual learner temptation."
+        }
+      ],
+      "must_fix": [
+        "Rewrite one complete intro with natural language-based humour; remove artificial bottle-per-item claim.",
+        "Courier register concerns subject to second literal review."
+      ],
+      "verdict_reason": "Сессия ясная, связная и точная в карточках, инструкциях и feedback, но для обязательной серии L2/S33+ в ней нет подтверждаемого естественного юмора, а несколько реплик звучат как сухая фабричная заготовка."
+    },
+    {
+      "sourceSha256": "7394bfc8283282acfec8f9445347514911541c003a5066c9c2ec576039a3412b",
+      "verdict": "REVISE",
+      "pairwise": "worse",
+      "confirmedProblems": [
+        "No natural humour; rewrite Intro1 body and remove artificial bottle-per-item line."
+      ],
+      "withdrawn": [
+        "Courier list verification is plausible; scene objection retracted."
+      ],
+      "optional": [
+        "Intro2 question and T13 register; not blockers."
+      ],
+      "water": [],
+      "dead_language": [],
+      "scene": {
+        "present": true,
+        "gives_reason_to_speak": true
+      }
+    }
+  ]
+}

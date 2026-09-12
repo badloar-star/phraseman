@@ -13,6 +13,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { spawnSync } from "node:child_process";
+import { writeMockupFile } from "./write_mockup_file.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -27,6 +29,22 @@ const opt = (n, d) => { const i = args.indexOf(`--${n}`); return i >= 0 && args[
 const OUT = path.resolve(opt("out", path.join(ROOT, "mockup", "index.html")));
 const RELEASE = path.join(ROOT, "release");
 
+function curriculumLessonTitles(lang) {
+  const file = path.join(ROOT, "curriculum", lang, "ПЛАН_КУРСА.md");
+  if (!fs.existsSync(file)) return new Map();
+  const titles = new Map();
+  const curriculum = fs.readFileSync(file, "utf8");
+  const overview = /^## 32 урока\s*\r?\n([\s\S]*?)(?=^## |$(?![\s\S]))/m.exec(curriculum)?.[1] ?? "";
+  for (const line of overview.split(/\r?\n/)) {
+    const cells = line.split("|").map(cell => cell.trim());
+    // Course overview: number, subject, scene, vocabulary, status.
+    if (cells.length !== 7 || !/^\d+$/.test(cells[1])) continue;
+    const title = cells[2].replace(/[*`]/g, "").replace(/\s*⚠️/g, "").trim();
+    titles.set(`l${cells[1].padStart(2, "0")}`, title);
+  }
+  return titles;
+}
+
 // ---------- сбор сессий ----------
 function collect() {
   if (!fs.existsSync(RELEASE)) { LOG(`ранний выход: нет папки релиза ${RELEASE} — сначала node build_release.mjs`); process.exit(2); }
@@ -34,6 +52,7 @@ function collect() {
   for (const lang of fs.readdirSync(RELEASE)) {
     const langDir = path.join(RELEASE, lang);
     if (!fs.statSync(langDir).isDirectory()) continue;
+    const lessonTitles = curriculumLessonTitles(lang);
     for (const lesson of fs.readdirSync(langDir).sort()) {
       const lessonDir = path.join(langDir, lesson);
       if (!fs.statSync(lessonDir).isDirectory()) continue;
@@ -43,6 +62,10 @@ function collect() {
         const intro = path.join(d, "intro.json");
         if (!fs.existsSync(learner) || !fs.existsSync(intro)) { WARN(`${lang}/${lesson}/${session}: нет learner.json или intro.json — пропущена`); continue; }
         const answers = fs.existsSync(path.join(d, "answers.json")) ? JSON.parse(fs.readFileSync(path.join(d, "answers.json"), "utf8")) : [];
+        const learnerByLocale = Object.fromEntries(fs.readdirSync(d).flatMap((name) => {
+          const match = /^learner\.([a-z]{2}(?:-[A-Z]{2})?)\.json$/.exec(name);
+          return match ? [[match[1], JSON.parse(fs.readFileSync(path.join(d, name), "utf8"))]] : [];
+        }));
         // заголовок и сцена — из мастера, их нет в релизе
         const srcMd = path.join(ROOT, "sessions", lang, lesson, session, "final.ru.md");
         let title = `${lesson}/${session}`, scene = "";
@@ -53,8 +76,10 @@ function collect() {
         } else WARN(`${lang}/${lesson}/${session}: нет final.ru.md — заголовок и сцена будут пустыми`);
         out.push({
           key: `${lang}/${lesson}/${session}`, lang, lesson, session, title, scene,
+          lessonTitle: lessonTitles.get(lesson) ?? "",
           intro: JSON.parse(fs.readFileSync(intro, "utf8")),
           learner: JSON.parse(fs.readFileSync(learner, "utf8")),
+          learnerByLocale,
           answers,
         });
       }
@@ -263,6 +288,7 @@ const BUILT_AT = ${JSON.stringify(new Date().toLocaleString("ru-RU",{day:"2-digi
 document.getElementById("buildStamp").textContent = DATA.length + " сессий · " + BUILT_AT;
 
 const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], pairSel: null, pairsDone: [], right: 0, wrong: 0 };
+const learnerForSession = (s, locale = S.locale) => s.learnerByLocale?.[locale] ?? s.learner;
 
 const app = document.getElementById("app");
 const sel = document.getElementById("locale");
@@ -348,13 +374,14 @@ function groupByLesson() {
   const byLesson = {};
   for (const s of DATA) (byLesson[s.lesson] ??= []).push(s);
   for (const [lesson, list] of Object.entries(byLesson)) {
-    out.push(h("div", {class:"lesson-title", text:"Урок " + lesson.replace(/^l0?/, "")}));
+    const lessonTitle = list[0].lessonTitle;
+    out.push(h("div", {class:"lesson-title", text:"Урок " + lesson.replace(/^l0?/, "") + (lessonTitle ? " · " + lessonTitle : "")}));
     out.push(h("div", {class:"cards"}, list.map(s => h("button", {class:"card", onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
       h("h3", {text:s.title}),
       h("p", {class:"scene", text:s.scene}),
       h("div", {class:"meta"}, [
         h("span", {class:"chip k", text:"Сессия " + s.session.replace(/^s0?/, "")}),
-        h("span", {class:"chip", text:s.learner.interactions.length + " заданий"}),
+        h("span", {class:"chip", text:learnerForSession(s).interactions.length + " заданий"}),
       ]),
     ]))));
   }
@@ -364,13 +391,14 @@ function groupByLesson() {
 function renderSession() {
   homeBtn.hidden = false;
   const s = S.session;
-  const total = 3 + s.learner.interactions.length;
+  const learner = learnerForSession(s);
+  const total = 3 + learner.interactions.length;
   if (S.step >= total) return renderDone();
 
   const bar = h("div", {class:"progress"}, Array.from({length:total}, (_, i) =>
     h("i", {class: i < S.step ? "done" : i === S.step ? "now" : ""})));
 
-  const panel = S.step < 3 ? renderIntro(s.intro.pages[S.step]) : renderTask(s.learner.interactions[S.step - 3]);
+  const panel = S.step < 3 ? renderIntro(s.intro.pages[S.step]) : renderTask(learner.interactions[S.step - 3]);
   app.replaceChildren(bar, panel);
 }
 
@@ -529,6 +557,7 @@ function renderSpeak(panel, it, p) {
 function renderDone() {
   homeBtn.hidden = false;
   const s = S.session;
+  const learner = learnerForSession(s);
   app.replaceChildren(h("div", {class:"panel"}, [
     h("div", {class:"done-wrap"}, [
       h("div", {class:"done-mark", text:"✓"}),
@@ -537,7 +566,7 @@ function renderDone() {
       h("div", {class:"stats"}, [
         h("div", {class:"stat"}, [h("b", {text:String(S.right)}), h("span", {text:"верно"})]),
         h("div", {class:"stat"}, [h("b", {text:String(S.wrong)}), h("span", {text:"ошибок"})]),
-        h("div", {class:"stat"}, [h("b", {text:String(s.learner.interactions.length)}), h("span", {text:"заданий"})]),
+        h("div", {class:"stat"}, [h("b", {text:String(learner.interactions.length)}), h("span", {text:"заданий"})]),
       ]),
       h("button", {class:"btn primary", onClick:() => { S.session = null; render(); }, text:"К списку сессий"}),
     ]),
@@ -563,8 +592,6 @@ render();
 </html>`;
 
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
-fs.writeFileSync(OUT, html, "utf8");
-LOG(`записан ${OUT} (${(html.length / 1024).toFixed(0)} КБ)`);
 
 // зачем: некоторые просмотрщики (встроенная панель предпросмотра) блокируют
 // инлайновые <script> и показывают пустую страницу без единой ошибки. Рядом
@@ -572,12 +599,25 @@ LOG(`записан ${OUT} (${(html.length / 1024).toFixed(0)} КБ)`);
 const dir = path.dirname(OUT);
 const script = /<script>\n([\s\S]*?)<\/script>/.exec(html)[1];
 const data = /<script id="data"[^>]*>([\s\S]*?)<\/script>/.exec(html)[1];
-fs.writeFileSync(path.join(dir, "app.js"), script.replace(
-  'JSON.parse(document.getElementById("data").textContent)', "window.__DATA__"), "utf8");
-fs.writeFileSync(path.join(dir, "data.js"), `window.__DATA__ = ${data};`, "utf8");
+const externalScript = script.replace(
+  'JSON.parse(document.getElementById("data").textContent)', "window.__DATA__");
 const external = html
   .replace(/<script id="data"[\s\S]*?<\/script>/, '<script src="data.js"></script>')
   .replace(/<script>\n[\s\S]*?<\/script>/, '<script src="app.js"></script>');
-fs.writeFileSync(path.join(dir, "external.html"), external, "utf8");
+await writeMockupFile(path.join(dir, "app.js"), externalScript);
+await writeMockupFile(path.join(dir, "data.js"), `window.__DATA__ = ${data};`);
+await writeMockupFile(path.join(dir, "external.html"), external);
+await writeMockupFile(OUT, html);
+LOG(`записан ${OUT} (${(html.length / 1024).toFixed(0)} КБ)`);
 LOG(`записан ${path.join(dir, "external.html")} — вариант с внешними файлами (если инлайн заблокирован)`);
+const canonicalMockup = path.resolve(ROOT, "mockup", "index.html");
+const nativeManifestBuilder = path.resolve(ROOT, "..", "..", "scripts", "build_learning_v2_factory_native_manifest.mjs");
+if (OUT === canonicalMockup && fs.existsSync(nativeManifestBuilder)) {
+  const native = spawnSync(process.execPath, [nativeManifestBuilder], { encoding: "utf8" });
+  if (native.status !== 0) {
+    WARN(`native manifest не собран: ${(native.stderr || native.stdout || "unknown").trim()}`);
+    process.exit(1);
+  }
+  LOG("native manifest обновлён из того же canonical release");
+}
 LOG("открой index.html двойным кликом в Chrome или Edge — сервер не нужен");

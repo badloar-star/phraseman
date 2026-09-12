@@ -1,0 +1,55 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "03396c947f1e57c7a45fd90056b34e49ec6a0c6ab6f3f487008202a2448f2088",
+  "task12Quote": "вы оба у двери и смотрите на часы; спросите друга, опережаете ли вы намеченное время выхода",
+  "task17Quote": "свои вещи вы проверили, но друг ещё не сказал, собрался ли он; уточните, готовы ли вы оба к выходу",
+  "issues": [],
+  "provenance": "Clean authoritative S44 JSON delivered by /root/s39_reader via collaboration MESSAGE; copied verbatim because intermediate messages are not persisted as agent_message FINAL in root rollout",
+  "priorReview": {
+    "verdict": "PASS",
+    "sourceSha256": "03396c947f1e57c7a45fd90056b34e49ec6a0c6ab6f3f487008202a2448f2088",
+    "issues": [],
+    "priorReviews": [
+      {
+        "verdict": "REVISE",
+        "sourceSha256": "794c2aec9269f4d3f47273bf260cc144479c3b5393f0edfa98fb79b5e40b3f19",
+        "issues": [
+          {
+            "location": "Интро 2",
+            "quote": "`Am I late?` — вопрос об одном себе.",
+            "problem": "Оборот «об одном себе» здесь звучит неестественно и может восприниматься как выражение «думать только о себе».",
+            "minimalReplacement": "`Am I late?` — вопрос только о себе."
+          }
+        ]
+      },
+      {
+        "verdict": "PASS",
+        "sourceSha256": "d5e0726c0bf1e7a25a3e4bf8c2414bf41c75636243dcc7c1fc188911a4bdc699",
+        "issues": []
+      },
+      {
+        "verdict": "REVISE",
+        "sourceSha256": "03b0abaf63498fdd897a2fb4e53921714012cc21f77b3037264936e403eda97a",
+        "issues": [
+          {
+            "location": "Задание 12, инструкция",
+            "quote": "спросите друга, раньше ли вы намеченного времени",
+            "problem": "По-русски оборот звучит неполно: после «раньше ли» не названо действие.",
+            "minimalReplacement": "вы оба уже у двери; спросите друга, раньше ли вы собрались, чем планировали"
+          },
+          {
+            "location": "Задание 8, feedback для `sure`",
+            "quote": "Сейчас вы спрашиваете, не рано ли: `Are we early?`",
+            "problem": "Feedback снова оставляет прежнее расплывчатое «не рано ли», хотя обновлённая сцена проверяет конкретное намеченное время.",
+            "minimalReplacement": "Сейчас вы спрашиваете, опережаете ли намеченное время выхода: `Are we early?`"
+          }
+        ]
+      },
+      {
+        "verdict": "PASS",
+        "sourceSha256": "3f37785b770cbcf56cc1ca2e86cb46b581a46937322c13c74b115d1ccc8e779c",
+        "issues": []
+      }
+    ]
+  }
+}

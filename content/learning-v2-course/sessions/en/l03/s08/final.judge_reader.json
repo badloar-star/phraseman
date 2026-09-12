@@ -1,0 +1,12 @@
+{
+  "sourceSha256": "db00161c4ed9a596a8aaea24990dd38e9279dff3c1fa1d2f77f4c3f8254e1591",
+  "reviewer": "/root/s08_reader",
+  "priorFinding": {"sourceSha256": "8165e1af4a4d1d271de2929aaf036f452773c1bc2031324338620d02e6066c17", "verdict": "BLOCK", "reason": "All three pages showed complete phrases before explaining construction. Reordered before this actual reread."},
+  "pages": [
+    {"page":1,"retelling":"Чтобы назвать один предмет лампой, перед `lamp` нужно оставить `a`, а для полной фразы добавить `It is`.","what_i_do_now":"Теперь я скажу `It is a lamp`, сохранив `a` перед `lamp`.","understood":true,"problems":[]},
+    {"page":2,"retelling":"Если я не уверен, что передо мной зеркало, нужно начать вопрос с `Is it` и сохранить сочетание `a mirror`.","what_i_do_now":"Теперь я спрошу `Is it a mirror?`.","understood":true,"problems":[]},
+    {"page":3,"retelling":"Чтобы сказать, что предмет не является табуретом, нужно поставить `not` после `It is` и затем сказать `a stool`.","what_i_do_now":"Теперь я скажу `It is not a stool`, не убирая `a`.","understood":true,"problems":[]}
+  ],
+  "pages_understood":3,"verdict":"PASS",
+  "verdict_reason":"Все три страницы понятны после одного чтения: сначала показывается нужное слово, затем объясняется порядок слов, и только после этого появляется полная фраза. На каждой странице я понимаю, что именно нужно сказать иначе."
+}

@@ -1,0 +1,30 @@
+{
+  "verdict": "PASS",
+  "problems": [],
+  "verdict_reason": "S33 точно вводит Who is без требования Who are или his. Новые host/guest подготовлены до проверки, возвраты имеют правильные касания, форматы переходят от объяснения и узнавания к сборке, голосу и независимому финальному извлечению. Все правильные ответы опираются на уже известную или текущую грамматику; задания однозначны.",
+  "sourceSha256": "a9f72aaf541339a3a18d0aea76dd756d1a115a18fbc684f987447ce3f2a5222f",
+  "reviewedAt": "2026-09-08T08:24:35.208Z",
+  "reviewMethod": "fresh_builtin_codex_agent",
+  "previousSourceSha256": "56789703f95f9dc122b83532472d171bca221901fbd6704f4b19edb6c311ff55",
+  "listeningRepairReview": {
+    "session": 33,
+    "sourceSha256": "a9f72aaf541339a3a18d0aea76dd756d1a115a18fbc684f987447ce3f2a5222f",
+    "verdict": "PASS",
+    "changed_tasks": [
+      2,
+      4,
+      8,
+      11
+    ],
+    "neutral_prompts": true,
+    "answer_leak": false,
+    "phonetic_options_distinguishable": true,
+    "word_first_preserved": [
+      "host: card 1 → listen 2",
+      "guest: card 3 → listen 4"
+    ],
+    "return_table_matches_tasks": true,
+    "minimum_return_contacts": 2,
+    "every_return_has_correct_use": true
+  }
+}

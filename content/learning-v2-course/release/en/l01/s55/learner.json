@@ -51,7 +51,7 @@
         "testedDimension": "Вставьте скрепку — сосед спрашивает, как",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-55:i01:r1",
+            "responseId": "en:lesson-01:session-55:i01:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — сосед спрашивает, как",
             "feedbackByLocale": {
@@ -60,7 +60,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-55:i01:r2",
+            "responseId": "en:lesson-01:session-55:i01:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — сосед спрашивает, как",
             "feedbackByLocale": {
@@ -125,7 +125,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-55:i02:r1",
+            "responseId": "en:lesson-01:session-55:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — kind",
             "feedbackByLocale": {
@@ -134,7 +134,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-55:i02:r2",
+            "responseId": "en:lesson-01:session-55:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — kind",
             "feedbackByLocale": {
@@ -196,7 +196,7 @@
         "testedDimension": "Вставьте слово — сосед спрашивает, добры",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-55:i03:r1",
+            "responseId": "en:lesson-01:session-55:i03:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед спрашивает, добры",
             "feedbackByLocale": {
@@ -205,7 +205,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-55:i03:r2",
+            "responseId": "en:lesson-01:session-55:i03:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед спрашивает, добры",
             "feedbackByLocale": {
@@ -265,7 +265,7 @@
         "testedDimension": "Вставьте скрепку — про вашего брата, он ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-55:i04:r1",
+            "responseId": "en:lesson-01:session-55:i04:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про вашего брата, он ",
             "feedbackByLocale": {
@@ -274,7 +274,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-55:i04:r2",
+            "responseId": "en:lesson-01:session-55:i04:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про вашего брата, он ",
             "feedbackByLocale": {
@@ -334,7 +334,7 @@
         "testedDimension": "Вставьте скрепку — про жильцов сверху",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-55:i05:r1",
+            "responseId": "en:lesson-01:session-55:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про жильцов сверху",
             "feedbackByLocale": {
@@ -343,7 +343,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-55:i05:r2",
+            "responseId": "en:lesson-01:session-55:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про жильцов сверху",
             "feedbackByLocale": {
@@ -527,7 +527,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «теп",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-55:i09:r1",
+            "responseId": "en:lesson-01:session-55:i09:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «теп",
             "feedbackByLocale": {
@@ -587,7 +587,7 @@
         "testedDimension": "Вставьте слово — сосед волнуется, как у ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-55:i10:r1",
+            "responseId": "en:lesson-01:session-55:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед волнуется, как у ",
             "feedbackByLocale": {
@@ -596,7 +596,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-55:i10:r2",
+            "responseId": "en:lesson-01:session-55:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед волнуется, как у ",
             "feedbackByLocale": {
@@ -689,7 +689,7 @@
         "testedDimension": "Вставьте скрепку — обманка на внимательн",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-55:i12:r1",
+            "responseId": "en:lesson-01:session-55:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — обманка на внимательн",
             "feedbackByLocale": {
@@ -698,7 +698,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-55:i12:r2",
+            "responseId": "en:lesson-01:session-55:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — обманка на внимательн",
             "feedbackByLocale": {

@@ -1,0 +1,15 @@
+{
+  "session": "en/l02/s52",
+  "converged": true,
+  "needsHumanReview": false,
+  "sourceSha256": "93f729ebe76728216e06b366d896c6400f00f184a3555419313c288bde5bca79",
+  "localeSha256": {
+    "uk": "97ee940ab795365151e8c6ebdcf3d9ddc72970bb8f0051db8fd8e80ecf07560d"
+  },
+  "locales": {
+    "uk": "PASS"
+  },
+  "reviewedAt": "2026-09-08T16:13:21.725265+00:00",
+  "completionScope": "RU+UK new session independently reviewed; local mockup exact projections and fingerprints verified; other six locales/audio/browser visual review pending",
+  "mockupVerifiedAt": "2026-09-08T16:13:30.857Z"
+}

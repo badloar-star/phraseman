@@ -1,0 +1,21 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "eae6088e916eda8d8d8662e417abd6dc8d63aad8690fbc3b62971d79b1944180",
+  "issues": [],
+  "checks": {
+    "humanComprehensibility": "clear",
+    "actorsAndReferents": "coherent",
+    "readinessContinuity": "the learner confirms only personal readiness in task 15; the friend's readiness remains unknown until task 17",
+    "englishAndTranslations": "accurate",
+    "audibleClearDistinction": "contextual and non-absolute",
+    "audioPrompts": "neutral",
+    "checkpointNewWords": 0,
+    "tasks": 17,
+    "introLengths": [
+      251,
+      263,
+      268
+    ],
+    "audioAndBrowser": "not assessed"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "problems": []
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Both corrected Ukrainian phrases independently reviewed as natural and semantically accurate; all 191 English ASCII sequences match RU.",
+  "sourceSha256": "fd9959cab2656a2d1916967122b4fdab45c8165526a30a3ed329b3b02a5dde25",
+  "localeSha256": {
+    "uk": "9605d31007ac9428121004fba824992fcfb94fca38cc5ed4e2c2583ebb220dc3"
+  },
+  "reviewedAt": "2026-09-08T10:50:21.813431+00:00",
+  "reviewMethod": "builtin_codex_fresh_native_review_with_delta_recheck",
+  "listeningRepairReview": {
+    "phoneticEvidence": [
+      "Все 12 банков состоят из реальных слов; омофонов внутри банков нет.",
+      "Различия feedback точны: начальный звук, начало, первый слог или средняя гласная/согласная действительно различают варианты.",
+      "RU/UK инструкции нейтральны; feedback не использует IPA и корректно передаёт значения.",
+      "`vests` = `жилеты/жилети` — допустимое американское значение; универсальность или британское значение не заявлены."
+    ],
+    "ukDelta": {
+      "session": 36,
+      "locale": "uk",
+      "verdict": "PASS",
+      "issues": [],
+      "sourceSha256": "9605d31007ac9428121004fba824992fcfb94fca38cc5ed4e2c2583ebb220dc3"
+    }
+  }
+}

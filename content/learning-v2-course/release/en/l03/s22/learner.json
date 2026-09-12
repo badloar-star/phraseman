@@ -1,0 +1,1006 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-22",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-22:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bottle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-22:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bottle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-22:i01:audio",
+          "transcript": "bottle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-22:i01:r1",
+            "targetText": "bottle",
+            "meaningByLocale": {
+              "ru": "«бутылка». Ёмкость для жидкости с узким горлышком, обычно из стекла или пластика.",
+              "uk": "«пляшка». Ємність для рідини з вузьким горлечком, зазвичай зі скла або пластику."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bottle",
+          "definitionByLocale": {
+            "ru": "«бутылка». Ёмкость для жидкости с узким горлышком, обычно из стекла или пластика.",
+            "uk": "«пляшка». Ємність для рідини з вузьким горлечком, зазвичай зі скла або пластику."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово сказал курьер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-22:i02:r1",
+          "text": "bottle"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i02:r2",
+          "text": "battle"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i02:r3",
+          "text": "beetle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово сказал курьер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-22:i02:audio",
+          "transcript": "bottle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-22:i02:r1",
+            "targetText": "bottle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i02:r2",
+            "targetText": "battle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i02:r3",
+            "targetText": "beetle",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`battle` — «битва». Ударный гласный произносится с языком ближе к передней части рта. В `bottle` язык глубже; сравните середину слов.",
+              "uk": "`battle` — «битва». Наголошений голосний вимовляється з язиком ближче до передньої частини рота. У `bottle` язик глибше; порівняйте середину слів."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`beetle` — «жук». На ударном гласном рот почти закрыт, язык поднят спереди. В `bottle` рот открыт шире, язык глубже.",
+              "uk": "`beetle` — «жук». На наголошеному голосному рот майже закритий, язик високо спереду. У `bottle` рот відкритий ширше, а язик глибше."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bowl",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-22:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bowl",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-22:i03:audio",
+          "transcript": "bowl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-22:i03:r1",
+            "targetText": "bowl",
+            "meaningByLocale": {
+              "ru": "«миска». Глубокая округлая ёмкость с открытым верхом для еды или мелких вещей.",
+              "uk": "«миска». Глибока округла ємність із відкритим верхом для їжі чи дрібних речей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bowl",
+          "definitionByLocale": {
+            "ru": "«миска». Глубокая округлая ёмкость с открытым верхом для еды или мелких вещей.",
+            "uk": "«миска». Глибока округла ємність із відкритим верхом для їжі чи дрібних речей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс курьер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-22:i04:r1",
+          "text": "bowl"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i04:r2",
+          "text": "bull"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i04:r3",
+          "text": "ball"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-22:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс курьер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-22:i04:audio",
+          "transcript": "bowl"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-22:i04:r1",
+            "targetText": "bowl",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i04:r2",
+            "targetText": "bull",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i04:r3",
+            "targetText": "ball",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-22:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`bull` — «бык». Гласный ровный, губы округлены. В `bowl` звучание гласного меняется: к концу губы округляются сильнее.",
+              "uk": "`bull` — «бик». Голосний рівний, губи округлені. У `bowl` звучання голосного змінюється: наприкінці губи округлюються сильніше."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`ball` — «мяч». Гласный звучит ровно. В `bowl` он меняется по ходу звучания, рот к концу прикрывается, губы сильнее округляются.",
+              "uk": "`ball` — «м’яч». Голосний звучить рівно. У `bowl` він змінюється під час звучання: рот наприкінці прикривається, губи округлюються сильніше."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — курьер отмечает содержимое первого отделения коробки; назовите несколько бутылок для воды «Это бутылки»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-22:i05:r1",
+          "text": "bottle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — курьер отмечает содержимое первого отделения коробки; назовите несколько бутылок для воды «Это бутылки»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are bottles.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — курьер отмечает содержимое первого отделения коробки; назовите несколько бутылок для воды «Это бутылки»",
+          "uk": "Зберіть фразу — кур’єр позначає вміст першого відділення коробки; назвіть кілька пляшок для води: «Це пляшки»"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "bottles"
+        ],
+        "authoredDistractorTokens": [
+          "bottle"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-22:i05:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — курьер отмечает содержи",
+            "feedbackByLocale": {
+              "ru": "Вы называете несколько бутылок. В этой фразе нужно `bottles`.",
+              "uk": "Ви називаєте кілька пляшок. У цій фразі потрібно `bottles`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте название — курьер спрашивает о двух мисках, которые вы вынули из коробки; скажите «Это миски»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-22:i06:r1",
+          "text": "bowls"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i06:r2",
+          "text": "bowl"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i06:r3",
+          "text": "a bowl"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте название — курьер спрашивает о двух мисках, которые вы вынули из коробки; скажите «Это миски»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — курьер спрашивает о двух мисках, которые вы вынули из коробки; скажите «Это миски»",
+          "uk": "Вставте назву — кур’єр питає про дві миски, які ви дістали з коробки; скажіть «Це миски»"
+        },
+        "gappedTargetPhrase": "They are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i06:r1",
+            "text": "bowls"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i06:r2",
+            "text": "bowl"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i06:r3",
+            "text": "a bowl"
+          }
+        ],
+        "testedDimension": "Вставьте название — курьер спрашивает о ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-22:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер спрашивает о ",
+            "feedbackByLocale": {
+              "ru": "Перед вами две миски. Их название — `bowls`, с окончанием `s`.",
+              "uk": "Перед вами дві миски. Їхня назва — `bowls`, із `s` наприкінці."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер спрашивает о ",
+            "feedbackByLocale": {
+              "ru": "`a bowl` — одна миска. Здесь называем две: `They are bowls`.",
+              "uk": "`a bowl` — одна миска. Тут називаємо дві: `They are bowls`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — plate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-22:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — plate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-22:i07:audio",
+          "transcript": "plate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-22:i07:r1",
+            "targetText": "plate",
+            "meaningByLocale": {
+              "ru": "«тарелка». Плоский предмет посуды, обычно круглый, со слегка приподнятым краем, на который кладут еду.",
+              "uk": "«тарілка». Плоский предмет посуду, зазвичай круглий, із трохи піднятим краєм, на який кладуть їжу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plate",
+          "definitionByLocale": {
+            "ru": "«тарелка». Плоский предмет посуды, обычно круглый, со слегка приподнятым краем, на который кладут еду.",
+            "uk": "«тарілка». Плоский предмет посуду, зазвичай круглий, із трохи піднятим краєм, на який кладуть їжу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово сказал курьер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-22:i08:r1",
+          "text": "plate"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i08:r2",
+          "text": "slate"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i08:r3",
+          "text": "late"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-22:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово сказал курьер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-22:i08:audio",
+          "transcript": "plate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-22:i08:r1",
+            "targetText": "plate",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i08:r2",
+            "targetText": "slate",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i08:r3",
+            "targetText": "late",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-22:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`slate` — «сланец», горная порода. Первым слышно «с», воздух идёт непрерывно. У `plate` начало «п»: губы смыкаются и раскрываются.",
+              "uk": "`slate` — «сланець», гірська порода. Спочатку чути «с»: повітря йде безперервно. У `plate` початок — англійське `p`: губи змикаються й розкриваються."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`late` — «поздно». Первым звучит «л». У `plate` сначала «п», затем «л»; остальная часть звучит одинаково.",
+              "uk": "`late` — «пізно». Спочатку звучить англійське `l`. У `plate` спершу чути `p`, потім `l`; решта звучить однаково."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите вопрос — вы сверяете строку про набор тарелок; курьер держит ещё закрытую упаковку, уточните «Это тарелки?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-22:i09:r1",
+          "text": "plate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите вопрос — вы сверяете строку про набор тарелок; курьер держит ещё закрытую упаковку, уточните «Это тарелки?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are they plates?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — вы сверяете строку про набор тарелок; курьер держит ещё закрытую упаковку, уточните «Это тарелки?»",
+          "uk": "Зберіть питання — ви звіряєте рядок про набір тарілок; кур’єр тримає ще закриту упаковку, уточніть «Це тарілки?»"
+        },
+        "orderedTokens": [
+          "Are",
+          "they",
+          "plates"
+        ],
+        "authoredDistractorTokens": [
+          "plate"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-22:i09:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос — вы сверяете строку про",
+            "feedbackByLocale": {
+              "ru": "Уточняем название нескольких предметов из набора. Нужно `plates`.",
+              "uk": "Уточнюємо назву кількох предметів із набору. Потрібно `plates`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте название — курьер спрашивает, что вы достали из широкой коробки; назовите два блюда для подачи закусок (`dish` — «блюдо», `dishes` — «блюда»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-22:i10:r1",
+          "text": "dishes"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i10:r2",
+          "text": "dish"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i10:r3",
+          "text": "a dish"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте название — курьер спрашивает, что вы достали из широкой коробки; назовите два блюда для подачи закусок (`dish` — «блюдо», `dishes` — «блюда»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — курьер спрашивает, что вы достали из широкой коробки; назовите два блюда для подачи закусок (`dish` — «блюдо», `dishes` — «блюда»)",
+          "uk": "Вставте назву — кур’єр питає, що ви дістали з широкої коробки; назвіть два блюда для подавання закусок (`dish` — «блюдо», `dishes` — «блюда»)"
+        },
+        "gappedTargetPhrase": "They are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i10:r1",
+            "text": "dishes"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i10:r2",
+            "text": "dish"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i10:r3",
+            "text": "a dish"
+          }
+        ],
+        "testedDimension": "Вставьте название — курьер спрашивает, ч",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-22:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер спрашивает, ч",
+            "feedbackByLocale": {
+              "ru": "Вы называете два предмета посуды. Нужно `dishes`, форма для нескольких блюд.",
+              "uk": "Ви називаєте два предмети посуду. Потрібно `dishes`, форма для кількох блюд."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер спрашивает, ч",
+            "feedbackByLocale": {
+              "ru": "`a dish` называет одно блюдо. Здесь их два: `They are dishes`.",
+              "uk": "`a dish` називає одне блюдо. Тут їх два: `They are dishes`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — что сказал курьер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-22:i11:r1",
+          "text": "bowl"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — что сказал курьер",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-22:i11:audio",
+          "transcript": "They are not bowls."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are not bowls.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "not",
+          "bowls"
+        ],
+        "authoredDistractorTokens": [
+          "bowl"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-22:i11:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — что сказал курье",
+            "feedbackByLocale": {
+              "ru": "В записи звучит название нескольких мисок — `bowls`. Отрицание `not` эту форму не меняет.",
+              "uk": "У записі звучить назва кількох мисок — `bowls`. Заперечення `not` цієї форми не змінює."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте название — в боковом отделении осталась одна бутылка; курьер спрашивает, что это, ответьте «Это бутылка»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-22:i12:r1",
+          "text": "a bottle"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i12:r2",
+          "text": "bottle"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i12:r3",
+          "text": "bottles"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте название — в боковом отделении осталась одна бутылка; курьер спрашивает, что это, ответьте «Это бутылка»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — в боковом отделении осталась одна бутылка; курьер спрашивает, что это, ответьте «Это бутылка»",
+          "uk": "Вставте назву — у бічному відділенні залишилася одна пляшка; кур’єр питає, що це, відповідайте «Це пляшка»"
+        },
+        "gappedTargetPhrase": "It is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i12:r1",
+            "text": "a bottle"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i12:r2",
+            "text": "bottle"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i12:r3",
+            "text": "bottles"
+          }
+        ],
+        "testedDimension": "Вставьте название — в боковом отделении ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-22:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — в боковом отделении ",
+            "feedbackByLocale": {
+              "ru": "Называя одну бутылку в этой фразе, ставим перед `bottle` слово `a`.",
+              "uk": "Називаючи одну пляшку в цій фразі, ставимо перед `bottle` слово `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — в боковом отделении ",
+            "feedbackByLocale": {
+              "ru": "`bottles` — несколько бутылок. В отделении одна: `a bottle`.",
+              "uk": "`bottles` — кілька пляшок. У відділенні одна: `a bottle`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте название — курьер проверяет последнюю строку про посуду; назовите несколько тарелок, сняв с них бумагу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-22:i13:r1",
+          "text": "plates"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i13:r2",
+          "text": "plate"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i13:r3",
+          "text": "a plates"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте название — курьер проверяет последнюю строку про посуду; назовите несколько тарелок, сняв с них бумагу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — курьер проверяет последнюю строку про посуду; назовите несколько тарелок, сняв с них бумагу",
+          "uk": "Вставте назву — кур’єр перевіряє останній рядок про посуд; назвіть кілька тарілок, знявши з них папір"
+        },
+        "gappedTargetPhrase": "They are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i13:r1",
+            "text": "plates"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i13:r2",
+            "text": "plate"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i13:r3",
+            "text": "a plates"
+          }
+        ],
+        "testedDimension": "Вставьте название — курьер проверяет пос",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-22:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер проверяет пос",
+            "feedbackByLocale": {
+              "ru": "Под бумагой несколько тарелок. Нужна форма `plates`, с окончанием `s`.",
+              "uk": "Під папером кілька тарілок. Потрібна форма `plates`, із `s` наприкінці."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер проверяет пос",
+            "feedbackByLocale": {
+              "ru": "Вы называете несколько тарелок. В этой фразе перед `plates` слово `a` не нужно.",
+              "uk": "Ви називаєте кілька тарілок. У цій фразі перед `plates` слово `a` не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините названия с русскими значениями — кухонная доставка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините названия с русскими значениями — кухонная доставка",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-22:i14:p1",
+            "target": "bottles",
+            "meaningByLocale": {
+              "ru": "бутылки",
+              "uk": "пляшки"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-22:i14:p2",
+            "target": "bowls",
+            "meaningByLocale": {
+              "ru": "миски",
+              "uk": "миски"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-22:i14:p3",
+            "target": "plates",
+            "meaningByLocale": {
+              "ru": "тарелки",
+              "uk": "тарілки"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-22:i14:p4",
+            "target": "dishes",
+            "meaningByLocale": {
+              "ru": "блюда для подачи еды",
+              "uk": "блюда для подавання їжі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bottles",
+          "bowls",
+          "plates",
+          "dishes"
+        ],
+        "rightColumn": [
+          "бутылки",
+          "миски",
+          "тарелки",
+          "блюда для подачи еды"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — курьер ищет в списке блюда для подачи еды; вы показываете на два распакованных блюда и называете их «Это блюда»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-22:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — курьер ищет в списке блюда для подачи еды; вы показываете на два распакованных блюда и называете их «Это блюда»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-22:i15:audio",
+          "transcript": "They are dishes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are dishes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте название — курьер спрашивает, что осталось на дне коробки; вы вынули одну миску, скажите «Это миска»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-22:i16:r1",
+          "text": "a bowl"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i16:r2",
+          "text": "bowls"
+        },
+        {
+          "responseId": "en:lesson-03:session-22:i16:r3",
+          "text": "bowl"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте название — курьер спрашивает, что осталось на дне коробки; вы вынули одну миску, скажите «Это миска»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — курьер спрашивает, что осталось на дне коробки; вы вынули одну миску, скажите «Это миска»",
+          "uk": "Вставте назву — кур’єр питає, що залишилося на дні коробки; ви дістали одну миску, скажіть «Це миска»"
+        },
+        "gappedTargetPhrase": "It is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-22:i16:r1",
+            "text": "a bowl"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i16:r2",
+            "text": "bowls"
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i16:r3",
+            "text": "bowl"
+          }
+        ],
+        "testedDimension": "Вставьте название — курьер спрашивает, ч",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-22:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер спрашивает, ч",
+            "feedbackByLocale": {
+              "ru": "`bowls` называет несколько мисок. Вы вынули одну: `a bowl`.",
+              "uk": "`bowls` називає кілька мисок. Ви дістали одну: `a bowl`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-22:i16:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — курьер спрашивает, ч",
+            "feedbackByLocale": {
+              "ru": "В этой фразе для называния одной миски нужно `a bowl`. Слово `a` пропускать не стоит.",
+              "uk": "У цій фразі одну миску називаємо `a bowl`. Слово `a` пропускати не варто."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-22:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу самостоятельно — курьер проверяет, всё ли из списка найдено, и спрашивает о двух мисках, которые вы отставили на стол",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-22:i17:r1",
+          "text": "bowl"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу самостоятельно — курьер проверяет, всё ли из списка найдено, и спрашивает о двух мисках, которые вы отставили на стол",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are bowls.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — курьер проверяет, всё ли из списка найдено, и спрашивает о двух мисках, которые вы отставили на стол",
+          "uk": "Зберіть фразу самостійно — кур’єр перевіряє, чи все зі списку знайдено, і питає про дві миски, які ви відставили на стіл"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "bowls"
+        ],
+        "authoredDistractorTokens": [
+          "bowl"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-22:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — курьер п",
+            "feedbackByLocale": {
+              "ru": "Вы называете две миски. Нужна форма `bowls`.",
+              "uk": "Ви називаєте дві миски. Потрібна форма `bowls`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6fd28a77e9deecd50a6567e66d326071eee5603d80370ef88a303e75c319288a"
+}

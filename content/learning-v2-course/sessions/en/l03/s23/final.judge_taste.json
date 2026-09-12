@@ -1,0 +1,100 @@
+{
+  "sourceSha256": "6d15551c83a2a8c04931eae5084b2e05a634d502c484786ac353c6f51e3b96c8",
+  "reviewer": "/root/s23_taste",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "high",
+  "pairwise": "equal",
+  "pairwise_reason": "Золотой эталон L1/S2 ярче шутит внутри объяснений, но текущая S23 компенсирует это более плотной и чистой подачей трёх разных задач извлечения: полная смена фразы для одного/нескольких, вопрос `Are they`, затем множественное без `a`. По точности и человеческой ясности сессия не уступает эталону: определения конкретны, сцена не мешает правилу, фонетический feedback заметно сильнее и практичнее, а один естественный юмористический ход есть без приклеенной концовки.",
+  "voice": {
+    "score": 4,
+    "evidence": [
+      "«Чтобы перейти от одной ложки к нескольким, меняем всю фразу, а не только добавляем `s`» — коротко объясняет полезное различие без искусственного реквизита.",
+      "«В этой фразе перед `cups` слово `a` не ставим: оно относится к названию одной чашки» — понятная бытовая формулировка без термина и без новой грамматики.",
+      "«Это когда принесут ложку, а не как её назвать» — лёгкая человеческая реплика, которая помогает удержать различие `soon` и `spoon`."
+    ]
+  },
+  "humor": {
+    "present": true,
+    "on_topic": true,
+    "examples": [
+      "`soon` — «скоро». Это когда принесут ложку, а не как её назвать."
+    ],
+    "misfires": []
+  },
+  "scene": {
+    "present": true,
+    "gives_reason_to_speak": true,
+    "note": "Друг помогает раскладывать распакованные кухонные вещи, поэтому называние одного и нескольких предметов, уточнение содержимого свёртка и распределение по ящику или полкам имеют единый естественный повод. Сцена остаётся в вопросах и инструкциях и не превращается в предысторию внутри объяснений."
+  },
+  "ai_text_or_nonsense": [],
+  "water": [],
+  "dead_language": [],
+  "best_lines": [
+    "Чтобы перейти от одной ложки к нескольким, меняем всю фразу, а не только добавляем `s`.",
+    "`soon` — «скоро». Это когда принесут ложку, а не как её назвать.",
+    "У `fork` воздух в начале идёт непрерывно между нижней губой и верхними зубами."
+  ],
+  "must_fix": [],
+  "verdict": "PASS",
+  "verdict_reason": "Искусственный контраст размера полностью убран, три интро выполняют разные задачи извлечения в прежней грамматической границе, а точный фонетический feedback и естественная шутка про soon сохраняют человеческий голос без воды и бреда.",
+  "reviewHistory": [
+    {
+      "sourceSha256": "2040d5dfb703f1e540e220c1823a54a6a1bc3dc9d22bea82da778f9aeb65f48a",
+      "reviewer": "/root/s23_taste",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "high",
+      "verdict": "REVISE",
+      "pairwise": "worse",
+      "voiceScore": 3,
+      "humor": {
+        "present": true,
+        "on_topic": true,
+        "examples": [
+          "`soon` — «скоро». Это когда принесут ложку, а не как её назвать."
+        ],
+        "misfires": [
+          "Размер здесь ничего не меняет: даже маленькие чашки считаются по отдельности."
+        ]
+      },
+      "ai_text_or_nonsense": [
+        {
+          "where": "Intro1",
+          "quote": "Выбирайте по тому, сколько предметов перед вами, а не по размеру ложки.",
+          "why": "Artificial size versus count contrast."
+        }
+      ],
+      "water": [
+        {
+          "where": "Intro3",
+          "quote": "Размер здесь ничего не меняет: даже маленькие чашки считаются по отдельности. Для их названия выбираем `cups`.",
+          "why": "Repeated size/count angle adds no useful step."
+        }
+      ],
+      "scene": {
+        "present": true,
+        "gives_reason_to_speak": true
+      },
+      "must_fix": [
+        "Remove repeated artificial size/count contrast in intro1/3; distinguish their scope without newgrammar."
+      ],
+      "preserve": [
+        "Accurate definitions, positive phonetic contrast feedback, natural soon humour."
+      ],
+      "verdict_reason": "Сессия понятна, правдива и имеет уместный юмористический ход, но повторённый искусственный контраст размера с числом и три однотипных интро пока ставят её ниже золотого эталона."
+    },
+    {
+      "sourceSha256": "2040d5dfb703f1e540e220c1823a54a6a1bc3dc9d22bea82da778f9aeb65f48a",
+      "verdict": "REVISE",
+      "confirmed": [
+        "Rewrite intro1+3 whole bodies and linked size references; no other changes."
+      ],
+      "withdrawn": [
+        "Intro2 already has distinct safe question job; keep unchanged."
+      ],
+      "preserve": [
+        "Practice/cards/phonetics/soon humour"
+      ],
+      "noAddedHumourQuota": true
+    }
+  ]
+}

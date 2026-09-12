@@ -1,0 +1,922 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яка репліка прозвучала біля стійки прокату",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-50:i01:r1",
+          "text": "Are you ready?"
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i01:r2",
+          "text": "Am I ready?"
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i01:r3",
+          "text": "You are ready."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яка репліка прозвучала біля стійки прокату",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:i01:audio",
+          "transcript": "Are you ready?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-50:i01:r1",
+            "targetText": "Are you ready?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i01:r2",
+            "targetText": "Am I ready?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i01:r3",
+            "targetText": "You are ready.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-50:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "feedbackByLocale": {
+              "ru": "Это вопрос о себе. В записи сотрудник начинает с `Are you` и обращается к вам.",
+              "uk": "Це запитання про себе. У записі працівник починає з `Are you` й звертається до вас."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика пр",
+            "feedbackByLocale": {
+              "ru": "Это сообщение. На записи сначала `Are you`: сотрудник задаёт вопрос.",
+              "uk": "Це повідомлення. Запис починається з `Are you`: працівник ставить запитання."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — працівник запитав, чи готові ви вибрати велосипед; ви вже визначилися, дайте коротку відповідь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — працівник запитав, чи готові ви вибрати велосипед; ви вже визначилися, дайте коротку відповідь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yes, I am.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сотрудник спросил, готовы ли вы выбрать велосипед; вы уже определились, ответьте коротко",
+          "uk": "Складіть фразу — працівник запитав, чи готові ви вибрати велосипед; ви вже визначилися, дайте коротку відповідь"
+        },
+        "orderedTokens": [
+          "Yes,",
+          "I",
+          "am"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яка репліка друга прозвучала біля стійки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-50:i03:r1",
+          "text": "Is she free?"
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i03:r2",
+          "text": "Is he free?"
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i03:r3",
+          "text": "Is she ready?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яка репліка друга прозвучала біля стійки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:i03:audio",
+          "transcript": "Is she free?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-50:i03:r1",
+            "targetText": "Is she free?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i03:r2",
+            "targetText": "Is he free?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i03:r3",
+            "targetText": "Is she ready?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "feedbackByLocale": {
+              "ru": "Это вопрос о мужчине. В записи звучит `she` — «она».",
+              "uk": "Це запитання про чоловіка. У записі звучить `she` — «вона»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "feedbackByLocale": {
+              "ru": "Это вопрос о готовности. На записи последнее слово `free` — «свободна».",
+              "uk": "Це запитання про готовність. Останнє слово в записі — `free`, «вільна»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — на запитання друга про працівницю дайте відповідь «Ні»: вона зайнята іншим відвідувачем (`free` — «вільна»)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:i04:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — на запитання друга про працівницю дайте відповідь «Ні»: вона зайнята іншим відвідувачем (`free` — «вільна»)",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:i04:audio",
+          "transcript": "No, she is not."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, she is not.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — працівник запропонував поїхати до парку й показав його на карті; уточніть, чи близько парк від пункту прокату",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — працівник запропонував поїхати до парку й показав його на карті; уточніть, чи близько парк від пункту прокату",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it near?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сотрудник предложил поехать в парк и показал его на карте; уточните, близко ли парк от проката",
+          "uk": "Складіть фразу — працівник запропонував поїхати до парку й показав його на карті; уточніть, чи близько парк від пункту прокату"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "near"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яка репліка працівника прозвучала у відповідь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-50:i06:r1",
+          "text": "Yes, it is."
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i06:r2",
+          "text": "No, it is not."
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i06:r3",
+          "text": "Yes, he is."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яка репліка працівника прозвучала у відповідь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:i06:audio",
+          "transcript": "Yes, it is."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-50:i06:r1",
+            "targetText": "Yes, it is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i06:r2",
+            "targetText": "No, it is not.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i06:r3",
+            "targetText": "Yes, he is.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика со",
+            "feedbackByLocale": {
+              "ru": "Это отрицательный ответ. На записи сотрудник подтверждает: `Yes, it is`.",
+              "uk": "Це заперечна відповідь. У записі працівник підтверджує: `Yes, it is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика со",
+            "feedbackByLocale": {
+              "ru": "Это ответ о мужчине. В записи звучит `it`: речь о парке.",
+              "uk": "Це відповідь про чоловіка. У записі звучить `it`: ідеться про парк."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яка репліка друга прозвучала під час розмови біля велосипедів",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-50:i07:r1",
+          "text": "Are you sure?"
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i07:r2",
+          "text": "Am I sure?"
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i07:r3",
+          "text": "Are you ready?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яка репліка друга прозвучала під час розмови біля велосипедів",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:i07:audio",
+          "transcript": "Are you sure?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-50:i07:r1",
+            "targetText": "Are you sure?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i07:r2",
+            "targetText": "Am I sure?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i07:r3",
+            "targetText": "Are you ready?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-50:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "feedbackByLocale": {
+              "ru": "Это вопрос о себе. В записи друг обращается к вам: `Are you`.",
+              "uk": "Це запитання про себе. У записі друг звертається до вас: `Are you`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "feedbackByLocale": {
+              "ru": "Это вопрос о готовности. На записи последнее слово `sure` — «уверен».",
+              "uk": "Це запитання про готовність. Останнє слово в записі — `sure`, «впевнений»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — друг запитав, чи впевнені ви щодо дороги до парку; ви сумніваєтеся, дайте коротку відповідь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — друг запитав, чи впевнені ви щодо дороги до парку; ви сумніваєтеся, дайте коротку відповідь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, I am not.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг спросил, уверены ли вы в дороге до парка; вы сомневаетесь, ответьте коротко",
+          "uk": "Складіть фразу — друг запитав, чи впевнені ви щодо дороги до парку; ви сумніваєтеся, дайте коротку відповідь"
+        },
+        "orderedTokens": [
+          "No,",
+          "I",
+          "am",
+          "not"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте пари — слова для розмови в пункті прокату",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте пари — слова для розмови в пункті прокату",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-50:i09:p1",
+            "target": "ready",
+            "meaningByLocale": {
+              "ru": "готов",
+              "uk": "готовий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-50:i09:p2",
+            "target": "free",
+            "meaningByLocale": {
+              "ru": "свободен",
+              "uk": "вільний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-50:i09:p3",
+            "target": "near",
+            "meaningByLocale": {
+              "ru": "близко",
+              "uk": "близько"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-50:i09:p4",
+            "target": "sure",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "впевнений"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ready",
+          "free",
+          "near",
+          "sure"
+        ],
+        "rightColumn": [
+          "готов",
+          "свободен",
+          "близко",
+          "уверен"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — велосипед ви вибрали, але шолом іще не підійшов; скажіть другові, що поки не готові їхати",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — велосипед ви вибрали, але шолом іще не підійшов; скажіть другові, що поки не готові їхати",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not ready.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — велосипед вы выбрали, но шлем ещё не подошёл; скажите другу, что пока не готовы ехать",
+          "uk": "Складіть фразу — велосипед ви вибрали, але шолом іще не підійшов; скажіть другові, що поки не готові їхати"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — поки працівник підбирає вам шолом, запитайте друга, чи готовий він їхати",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-50:i11:r1",
+          "text": "ready"
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i11:r2",
+          "text": "free"
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i11:r3",
+          "text": "sure"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — поки працівник підбирає вам шолом, запитайте друга, чи готовий він їхати",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — пока сотрудник подбирает вам шлем, спросите друга, готов ли он к поездке",
+          "uk": "Вставте слово — поки працівник підбирає вам шолом, запитайте друга, чи готовий він їхати"
+        },
+        "gappedTargetPhrase": "Are you ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i11:r1",
+            "text": "ready"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i11:r2",
+            "text": "free"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i11:r3",
+            "text": "sure"
+          }
+        ],
+        "testedDimension": "Вставьте слово — пока сотрудник подбирае",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — пока сотрудник подбирае",
+            "feedbackByLocale": {
+              "ru": "Это вопрос о том, свободен ли друг. Сейчас вы проверяете его готовность ехать: `ready`.",
+              "uk": "Це запитання про те, чи вільний друг. Зараз ви перевіряєте його готовність їхати: `ready`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — пока сотрудник подбирае",
+            "feedbackByLocale": {
+              "ru": "Это вопрос об уверенности. Вам нужно узнать, готов ли он: `Are you ready?`",
+              "uk": "Це запитання про впевненість. Вам треба дізнатися, чи він готовий: `Are you ready?`"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яка репліка друга прозвучала у відповідь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-50:i12:r1",
+          "text": "Yes, I am."
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i12:r2",
+          "text": "No, I am not."
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i12:r3",
+          "text": "Yes, you are."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яка репліка друга прозвучала у відповідь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:i12:audio",
+          "transcript": "Yes, I am."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-50:i12:r1",
+            "targetText": "Yes, I am.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i12:r2",
+            "targetText": "No, I am not.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i12:r3",
+            "targetText": "Yes, you are.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "feedbackByLocale": {
+              "ru": "Это отрицательный ответ. На записи друг отвечает `Yes, I am`.",
+              "uk": "Це заперечна відповідь. У записі друг відповідає `Yes, I am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "feedbackByLocale": {
+              "ru": "Это ответ о собеседнике. В записи друг говорит о себе: `I am`.",
+              "uk": "Це відповідь про співрозмовника. У записі друг говорить про себе: `I am`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть — друг запитує про чоловіка, який допомагає вам із шоломом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть — друг запитує про чоловіка, який допомагає вам із шоломом",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:i13:audio",
+          "transcript": "Is he new?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is he new?",
+        "orderedTokens": [
+          "Is",
+          "he",
+          "new"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — працівник сказав вам, що працює в пункті прокату перший тиждень; на запитання друга, чи він новенький, дайте коротку відповідь: «Так»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-50:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — працівник сказав вам, що працює в пункті прокату перший тиждень; на запитання друга, чи він новенький, дайте коротку відповідь: «Так»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сотрудник сказал вам, что работает в прокате первую неделю; на вопрос друга, новенький ли он, ответьте коротко: «Да»",
+          "uk": "Вставте слово — працівник сказав вам, що працює в пункті прокату перший тиждень; на запитання друга, чи він новенький, дайте коротку відповідь: «Так»"
+        },
+        "gappedTargetPhrase": "Yes, he ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сотрудник сказал вам, ч",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-50:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сотрудник сказал вам, ч",
+            "feedbackByLocale": {
+              "ru": "После `he` нужна форма `is`, а не `are`: `Yes, he is`.",
+              "uk": "Після `he` потрібне `is`, а не `are`: `Yes, he is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сотрудник сказал вам, ч",
+            "feedbackByLocale": {
+              "ru": "Форма `am` сочетается с `I`. Здесь речь о сотруднике, поэтому нужно `he is`.",
+              "uk": "Форма `am` поєднується з `I`. Тут ідеться про працівника, тому потрібне `he is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — відповідний шолом знайшли й застебнули; повідомте другові: «Я готовий» (`ready` — «готовий»)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — відповідний шолом знайшли й застебнули; повідомте другові: «Я готовий» (`ready` — «готовий»)",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:i15:audio",
+          "transcript": "I am ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яка репліка друга прозвучала після пояснення маршруту працівником",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-50:i16:r1",
+          "text": "Are you sure?"
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i16:r2",
+          "text": "You are sure."
+        },
+        {
+          "responseId": "en:lesson-02:session-50:i16:r3",
+          "text": "Are we sure?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яка репліка друга прозвучала після пояснення маршруту працівником",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-50:i16:audio",
+          "transcript": "Are you sure?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-50:i16:r1",
+            "targetText": "Are you sure?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i16:r2",
+            "targetText": "You are sure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i16:r3",
+            "targetText": "Are we sure?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-50:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "feedbackByLocale": {
+              "ru": "Это сообщение. На записи сначала `Are you`: друг задаёт вопрос.",
+              "uk": "Це повідомлення. Запис починається з `Are you`: друг ставить запитання."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какая реплика др",
+            "feedbackByLocale": {
+              "ru": "Это вопрос об уверенности вас обоих. В записи друг спрашивает именно вас: `Are you sure?`",
+              "uk": "Це запитання про впевненість вас обох. У записі друг запитує саме вас: `Are you sure?`"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-50:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — працівник показав дорогу, ви звірили її з картою й упевнені; на запитання друга дайте коротку відповідь: «Так»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — працівник показав дорогу, ви звірили її з картою й упевнені; на запитання друга дайте коротку відповідь: «Так»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yes, I am.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сотрудник показал дорогу, вы сверили её с картой и уверены; на вопрос друга ответьте коротко: «Да»",
+          "uk": "Складіть фразу — працівник показав дорогу, ви звірили її з картою й упевнені; на запитання друга дайте коротку відповідь: «Так»"
+        },
+        "orderedTokens": [
+          "Yes,",
+          "I",
+          "am"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dce2170d1015161718e9199bfc4134ada5c4e63af3353f15e419334504ca9e0f"
+}

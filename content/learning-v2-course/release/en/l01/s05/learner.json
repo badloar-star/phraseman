@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-05:i02:r1",
+            "responseId": "en:lesson-01:session-05:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — hot",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-05:i02:r2",
+            "responseId": "en:lesson-01:session-05:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — hot",
             "feedbackByLocale": {
@@ -289,7 +289,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-05:i06:r1",
+            "responseId": "en:lesson-01:session-05:i06:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — lost",
             "feedbackByLocale": {
@@ -298,7 +298,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-05:i06:r2",
+            "responseId": "en:lesson-01:session-05:i06:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — lost",
             "feedbackByLocale": {
@@ -408,7 +408,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-05:i08:r1",
+            "responseId": "en:lesson-01:session-05:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — sick",
             "feedbackByLocale": {
@@ -417,7 +417,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-05:i08:r2",
+            "responseId": "en:lesson-01:session-05:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — sick",
             "feedbackByLocale": {
@@ -484,7 +484,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-05:i09:r1",
+            "responseId": "en:lesson-01:session-05:i09:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — new",
             "feedbackByLocale": {
@@ -493,7 +493,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-05:i09:r2",
+            "responseId": "en:lesson-01:session-05:i09:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — new",
             "feedbackByLocale": {
@@ -555,7 +555,7 @@
         "testedDimension": "Вставьте скрепку — вы потерялись между э",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-05:i10:r1",
+            "responseId": "en:lesson-01:session-05:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вы потерялись между э",
             "feedbackByLocale": {
@@ -564,7 +564,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-05:i10:r2",
+            "responseId": "en:lesson-01:session-05:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вы потерялись между э",
             "feedbackByLocale": {
@@ -697,7 +697,7 @@
         "testedDimension": "Вставьте слово — коллега приболел, а вы ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-05:i12:r1",
+            "responseId": "en:lesson-01:session-05:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега приболел, а вы ",
             "feedbackByLocale": {
@@ -706,7 +706,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-05:i12:r2",
+            "responseId": "en:lesson-01:session-05:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега приболел, а вы ",
             "feedbackByLocale": {
@@ -827,7 +827,7 @@
         "testedDimension": "Вставьте скрепку — вас спросили, как дел",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-05:i15:r1",
+            "responseId": "en:lesson-01:session-05:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вас спросили, как дел",
             "feedbackByLocale": {
@@ -836,7 +836,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-05:i15:r2",
+            "responseId": "en:lesson-01:session-05:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вас спросили, как дел",
             "feedbackByLocale": {

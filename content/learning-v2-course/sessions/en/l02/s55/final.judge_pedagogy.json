@@ -1,0 +1,63 @@
+{
+  "sourceSha256": "76d0f8d2c262d0812271ee934a2ab1675b6fccaa5673f93676462268c813cf78",
+  "verdict": "PASS",
+  "issues": [],
+  "checks": {
+    "tasks": 17,
+    "introLengths": [
+      267,
+      263,
+      268
+    ],
+    "chapterReturnsCovered": 7,
+    "returnContacts": {
+      "hungry": [
+        1,
+        2,
+        9
+      ],
+      "crowded": [
+        3,
+        9,
+        13
+      ],
+      "station": [
+        4,
+        5,
+        9
+      ],
+      "price": [
+        7,
+        9,
+        12
+      ],
+      "host": [
+        6,
+        17
+      ],
+      "wrong": [
+        8,
+        15
+      ],
+      "excuse me": [
+        10,
+        16
+      ]
+    },
+    "builders": [
+      3,
+      5,
+      8,
+      12,
+      14,
+      17
+    ],
+    "speedMatchBoards": 1,
+    "singleAnswerAndFeedback": true,
+    "shortAnswerConstructionTask11": true,
+    "supportFades": true,
+    "finalIndependent": true,
+    "unknownTargets": []
+  },
+  "note": "Отложенный возврат всех семи глав содержателен; фактическое качество аудио не оценивалось."
+}

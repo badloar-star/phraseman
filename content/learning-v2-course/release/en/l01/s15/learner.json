@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-15:i02:r1",
+            "responseId": "en:lesson-01:session-15:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — polite",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-15:i02:r2",
+            "responseId": "en:lesson-01:session-15:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — polite",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-15:i04:r1",
+            "responseId": "en:lesson-01:session-15:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — serious",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-15:i04:r2",
+            "responseId": "en:lesson-01:session-15:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — serious",
             "feedbackByLocale": {
@@ -289,7 +289,7 @@
         "testedDimension": "Вставьте слово — коллега всем говорит «с",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-15:i05:r1",
+            "responseId": "en:lesson-01:session-15:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега всем говорит «с",
             "feedbackByLocale": {
@@ -298,7 +298,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-15:i05:r2",
+            "responseId": "en:lesson-01:session-15:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега всем говорит «с",
             "feedbackByLocale": {
@@ -435,7 +435,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-15:i08:r1",
+            "responseId": "en:lesson-01:session-15:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — lucky",
             "feedbackByLocale": {
@@ -444,7 +444,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-15:i08:r2",
+            "responseId": "en:lesson-01:session-15:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — lucky",
             "feedbackByLocale": {
@@ -554,7 +554,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-15:i10:r1",
+            "responseId": "en:lesson-01:session-15:i10:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — sad",
             "feedbackByLocale": {
@@ -563,7 +563,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-15:i10:r2",
+            "responseId": "en:lesson-01:session-15:i10:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — sad",
             "feedbackByLocale": {
@@ -698,7 +698,7 @@
         "testedDimension": "Вставьте скрепку — вы говорите коллеге, ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-15:i12:r1",
+            "responseId": "en:lesson-01:session-15:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вы говорите коллеге, ",
             "feedbackByLocale": {
@@ -707,7 +707,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-15:i12:r2",
+            "responseId": "en:lesson-01:session-15:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — вы говорите коллеге, ",
             "feedbackByLocale": {
@@ -844,7 +844,7 @@
         "testedDimension": "Вставьте слово — поезд отменили, все заб",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-15:i15:r1",
+            "responseId": "en:lesson-01:session-15:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — поезд отменили, все заб",
             "feedbackByLocale": {
@@ -853,7 +853,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-15:i15:r2",
+            "responseId": "en:lesson-01:session-15:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — поезд отменили, все заб",
             "feedbackByLocale": {

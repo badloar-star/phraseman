@@ -1,0 +1,231 @@
+{
+  "sourceSha256": "d3ef03d8192d9565746be1dbd312403c4ba075faa09f56823549594f75436baa",
+  "issues": [],
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "couple",
+      "crowd"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 6,
+        "trap": "guest"
+      },
+      {
+        "task": 9,
+        "trap": "friends"
+      },
+      {
+        "task": 17,
+        "trap": "Where"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "mode_entries": 17,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "couple",
+        "crowd",
+        "host",
+        "guests"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "repeated_answer_banks": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      17
+    ],
+    "builder_count": 6,
+    "builder_variation_ok": true,
+    "max_same_builder_frame": 1,
+    "final_answer_leaked_by_task_16": false
+  },
+  "intro_contract": {
+    "lengths": [
+      250,
+      259,
+      254
+    ],
+    "within_210_320": true,
+    "word_or_phrase_meaning_first": true,
+    "humor_required": false
+  },
+  "new_word_choreography": {
+    "couple": {
+      "card": 1,
+      "listen": 2,
+      "correct_phrase": 8
+    },
+    "crowd": {
+      "card": 3,
+      "listen": 4,
+      "correct_phrase": 7
+    }
+  },
+  "return_words": {
+    "host": {
+      "contacts": [
+        2,
+        5,
+        6,
+        10
+      ],
+      "correct_uses": [
+        5,
+        6,
+        10
+      ],
+      "gloss_present": true
+    },
+    "guests": {
+      "contacts": [
+        4,
+        10,
+        12,
+        13
+      ],
+      "correct_uses": [
+        10,
+        12,
+        13
+      ],
+      "gloss_present": true
+    },
+    "strangers": {
+      "contacts": [
+        4,
+        9,
+        14,
+        15
+      ],
+      "correct_uses": [
+        9,
+        14,
+        15
+      ],
+      "gloss_present": true
+    }
+  },
+  "collective_british_variation": {
+    "handled": true,
+    "reason": "Материал моделирует `The couple is here`, но не утверждает, что британский вариант с согласованием во множественном числе ложен или невозможен."
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 2,
+      "listen_choose": 3,
+      "phrase_builder": 5,
+      "context_gap_grammar": 3,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "scripted_repeat_compare": 2
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "План, границы, 17 заданий, word-first для двух новых слов, возврат трёх слов, индивидуальный feedback, неповторяющиеся банки, шесть разнообразных сборок и независимый финал соблюдены.",
+  "initialVerdict": "PASS",
+  "deltaReview": {
+    "sourceSha256": "f844630734a0d961f878d0f7c523fc9e6aa13276b6f0abc8e00d981b0fc62057",
+    "delta_verified": {
+      "scope": "task_15_heading_only",
+      "wording_matches_requested": true,
+      "english_target_unchanged": "They are not strangers.",
+      "context_uniquely_supports_target": true,
+      "reason": "Фраза «вы оба с ними знакомы» однозначно опровергает предположение, что эти люди — незнакомцы."
+    },
+    "issues": [],
+    "prior_counts_stand": true,
+    "verdict": "PASS",
+    "verdict_reason": "Новая формулировка задания 15 даёт ясную причину сказать `They are not strangers`, не меняет границы, последовательность поддержки или остальные ранее проверенные требования S39."
+  },
+  "reviewedOriginalSha256": "aa9f347ea0a24d41132004b24240e7b12ca572bb13bfd18e66c867f790ea27c1",
+  "previousSourceSha256": "f844630734a0d961f878d0f7c523fc9e6aa13276b6f0abc8e00d981b0fc62057",
+  "listeningRepairReview": {
+    "session": 39,
+    "sourceSha256": "d3ef03d8192d9565746be1dbd312403c4ba075faa09f56823549594f75436baa",
+    "verdict": "PASS",
+    "delta_against_backup": {
+      "only_tasks_changed": [
+        2,
+        4
+      ],
+      "only_other_change": "self-check contact rows and listening-bank description",
+      "unexpected_changes": []
+    },
+    "neutral_prompts": true,
+    "answer_leak": false,
+    "phonetic_options_distinguishable": true,
+    "word_first_preserved": [
+      "couple: card 1 → listen 2",
+      "crowd: card 3 → listen 4"
+    ],
+    "return_table_matches_tasks": true,
+    "return_words": {
+      "host": {
+        "contacts": [
+          5,
+          6,
+          10
+        ],
+        "correct_uses": [
+          5,
+          6,
+          10
+        ]
+      },
+      "guests": {
+        "contacts": [
+          10,
+          12,
+          13
+        ],
+        "correct_uses": [
+          10,
+          12,
+          13
+        ]
+      },
+      "strangers": {
+        "contacts": [
+          9,
+          14,
+          15
+        ],
+        "correct_uses": [
+          9,
+          14,
+          15
+        ]
+      }
+    }
+  }
+}

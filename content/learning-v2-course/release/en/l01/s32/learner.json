@@ -56,7 +56,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-32:i01:r1",
+            "responseId": "en:lesson-01:session-32:i01:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — small",
             "feedbackByLocale": {
@@ -65,7 +65,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-32:i01:r2",
+            "responseId": "en:lesson-01:session-32:i01:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — small",
             "feedbackByLocale": {
@@ -127,7 +127,7 @@
         "testedDimension": "Вставьте слово — про комнату, которая ва",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-32:i02:r1",
+            "responseId": "en:lesson-01:session-32:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — про комнату, которая ва",
             "feedbackByLocale": {
@@ -136,7 +136,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-32:i02:r2",
+            "responseId": "en:lesson-01:session-32:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — про комнату, которая ва",
             "feedbackByLocale": {
@@ -201,7 +201,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-32:i03:r1",
+            "responseId": "en:lesson-01:session-32:i03:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — dark",
             "feedbackByLocale": {
@@ -210,7 +210,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-32:i03:r2",
+            "responseId": "en:lesson-01:session-32:i03:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — dark",
             "feedbackByLocale": {
@@ -302,7 +302,7 @@
         "testedDimension": "Вставьте слово — окна на солнечную сторо",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-32:i05:r1",
+            "responseId": "en:lesson-01:session-32:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — окна на солнечную сторо",
             "feedbackByLocale": {
@@ -311,7 +311,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-32:i05:r2",
+            "responseId": "en:lesson-01:session-32:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — окна на солнечную сторо",
             "feedbackByLocale": {
@@ -376,7 +376,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-32:i06:r1",
+            "responseId": "en:lesson-01:session-32:i06:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — expensive",
             "feedbackByLocale": {
@@ -385,7 +385,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-32:i06:r2",
+            "responseId": "en:lesson-01:session-32:i06:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — expensive",
             "feedbackByLocale": {
@@ -600,7 +600,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-32:i10:r1",
+            "responseId": "en:lesson-01:session-32:i10:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — cold",
             "feedbackByLocale": {
@@ -609,7 +609,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-32:i10:r2",
+            "responseId": "en:lesson-01:session-32:i10:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — cold",
             "feedbackByLocale": {
@@ -705,7 +705,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-32:i12:r1",
+            "responseId": "en:lesson-01:session-32:i12:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — rainy",
             "feedbackByLocale": {
@@ -714,7 +714,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-32:i12:r2",
+            "responseId": "en:lesson-01:session-32:i12:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — rainy",
             "feedbackByLocale": {
@@ -776,7 +776,7 @@
         "testedDimension": "Вставьте слово — с утра льёт не перестав",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-32:i13:r1",
+            "responseId": "en:lesson-01:session-32:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — с утра льёт не перестав",
             "feedbackByLocale": {
@@ -785,7 +785,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-32:i13:r2",
+            "responseId": "en:lesson-01:session-32:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — с утра льёт не перестав",
             "feedbackByLocale": {
@@ -850,7 +850,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-32:i14:r1",
+            "responseId": "en:lesson-01:session-32:i14:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — warm",
             "feedbackByLocale": {
@@ -859,7 +859,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-32:i14:r2",
+            "responseId": "en:lesson-01:session-32:i14:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — warm",
             "feedbackByLocale": {
@@ -921,7 +921,7 @@
         "testedDimension": "Вставьте слово — батареи горячие, в курт",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-32:i15:r1",
+            "responseId": "en:lesson-01:session-32:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — батареи горячие, в курт",
             "feedbackByLocale": {
@@ -930,7 +930,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-32:i15:r2",
+            "responseId": "en:lesson-01:session-32:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — батареи горячие, в курт",
             "feedbackByLocale": {
@@ -1038,7 +1038,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-32:i17:r1",
+            "responseId": "en:lesson-01:session-32:i17:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — clean",
             "feedbackByLocale": {
@@ -1047,7 +1047,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-32:i17:r2",
+            "responseId": "en:lesson-01:session-32:i17:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — clean",
             "feedbackByLocale": {

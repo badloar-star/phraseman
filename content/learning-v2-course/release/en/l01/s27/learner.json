@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-27:i02:r1",
+            "responseId": "en:lesson-01:session-27:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — cheap",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-27:i02:r2",
+            "responseId": "en:lesson-01:session-27:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — cheap",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-27:i04:r1",
+            "responseId": "en:lesson-01:session-27:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — far",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-27:i04:r2",
+            "responseId": "en:lesson-01:session-27:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — far",
             "feedbackByLocale": {
@@ -361,7 +361,7 @@
         "testedDimension": "Вставьте слово — до остановки пять минут",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-27:i07:r1",
+            "responseId": "en:lesson-01:session-27:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — до остановки пять минут",
             "feedbackByLocale": {
@@ -370,7 +370,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-27:i07:r2",
+            "responseId": "en:lesson-01:session-27:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — до остановки пять минут",
             "feedbackByLocale": {
@@ -521,7 +521,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-27:i10:r1",
+            "responseId": "en:lesson-01:session-27:i10:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — hard",
             "feedbackByLocale": {
@@ -530,7 +530,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-27:i10:r2",
+            "responseId": "en:lesson-01:session-27:i10:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — hard",
             "feedbackByLocale": {
@@ -635,7 +635,7 @@
         "testedDimension": "Вставьте слово — замок заедает, ключ про",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-27:i12:r1",
+            "responseId": "en:lesson-01:session-27:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — замок заедает, ключ про",
             "feedbackByLocale": {
@@ -644,7 +644,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-27:i12:r2",
+            "responseId": "en:lesson-01:session-27:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — замок заедает, ключ про",
             "feedbackByLocale": {
@@ -820,7 +820,7 @@
         "testedDimension": "Вставьте скрепку — агент называет комнат",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-27:i15:r1",
+            "responseId": "en:lesson-01:session-27:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — агент называет комнат",
             "feedbackByLocale": {
@@ -829,7 +829,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-27:i15:r2",
+            "responseId": "en:lesson-01:session-27:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — агент называет комнат",
             "feedbackByLocale": {

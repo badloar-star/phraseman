@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-03:i02:r1",
+            "responseId": "en:lesson-01:session-03:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — hungry",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-03:i02:r2",
+            "responseId": "en:lesson-01:session-03:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — hungry",
             "feedbackByLocale": {
@@ -261,7 +261,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-03:i05:r1",
+            "responseId": "en:lesson-01:session-03:i05:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — sure",
             "feedbackByLocale": {
@@ -270,7 +270,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-03:i05:r2",
+            "responseId": "en:lesson-01:session-03:i05:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — sure",
             "feedbackByLocale": {
@@ -477,7 +477,7 @@
         "testedDimension": "Вставьте слово — вам холодно? Нет.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-03:i09:r1",
+            "responseId": "en:lesson-01:session-03:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вам холодно? Нет.",
             "feedbackByLocale": {
@@ -486,7 +486,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-03:i09:r2",
+            "responseId": "en:lesson-01:session-03:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вам холодно? Нет.",
             "feedbackByLocale": {
@@ -546,7 +546,7 @@
         "testedDimension": "Вставьте слово — вы всё ещё в офисе, и в",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-03:i10:r1",
+            "responseId": "en:lesson-01:session-03:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы всё ещё в офисе, и в",
             "feedbackByLocale": {
@@ -555,7 +555,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-03:i10:r2",
+            "responseId": "en:lesson-01:session-03:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы всё ещё в офисе, и в",
             "feedbackByLocale": {
@@ -647,7 +647,7 @@
         "testedDimension": "Вставьте скрепку — начальник спросил, ус",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-03:i12:r1",
+            "responseId": "en:lesson-01:session-03:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — начальник спросил, ус",
             "feedbackByLocale": {
@@ -656,7 +656,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-03:i12:r2",
+            "responseId": "en:lesson-01:session-03:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — начальник спросил, ус",
             "feedbackByLocale": {

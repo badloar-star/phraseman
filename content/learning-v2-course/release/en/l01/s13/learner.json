@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-13:i02:r1",
+            "responseId": "en:lesson-01:session-13:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — young",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-13:i02:r2",
+            "responseId": "en:lesson-01:session-13:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — young",
             "feedbackByLocale": {
@@ -241,7 +241,7 @@
         "testedDimension": "Вставьте слово — вы говорите про себя",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-13:i05:r1",
+            "responseId": "en:lesson-01:session-13:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы говорите про себя",
             "feedbackByLocale": {
@@ -250,7 +250,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-13:i05:r2",
+            "responseId": "en:lesson-01:session-13:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы говорите про себя",
             "feedbackByLocale": {
@@ -358,7 +358,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-13:i07:r1",
+            "responseId": "en:lesson-01:session-13:i07:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — strong",
             "feedbackByLocale": {
@@ -367,7 +367,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-13:i07:r2",
+            "responseId": "en:lesson-01:session-13:i07:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — strong",
             "feedbackByLocale": {
@@ -477,7 +477,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-13:i09:r1",
+            "responseId": "en:lesson-01:session-13:i09:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — tall",
             "feedbackByLocale": {
@@ -486,7 +486,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-13:i09:r2",
+            "responseId": "en:lesson-01:session-13:i09:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — tall",
             "feedbackByLocale": {
@@ -548,7 +548,7 @@
         "testedDimension": "Вставьте слово — коллега легко подняла к",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-13:i10:r1",
+            "responseId": "en:lesson-01:session-13:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега легко подняла к",
             "feedbackByLocale": {
@@ -557,7 +557,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-13:i10:r2",
+            "responseId": "en:lesson-01:session-13:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега легко подняла к",
             "feedbackByLocale": {
@@ -720,7 +720,7 @@
         "testedDimension": "Вставьте скрепку — про собеседника",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-13:i13:r1",
+            "responseId": "en:lesson-01:session-13:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про собеседника",
             "feedbackByLocale": {
@@ -729,7 +729,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-13:i13:r2",
+            "responseId": "en:lesson-01:session-13:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про собеседника",
             "feedbackByLocale": {
@@ -837,7 +837,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-13:i15:r1",
+            "responseId": "en:lesson-01:session-13:i15:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — brave",
             "feedbackByLocale": {
@@ -846,7 +846,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-13:i15:r2",
+            "responseId": "en:lesson-01:session-13:i15:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — brave",
             "feedbackByLocale": {

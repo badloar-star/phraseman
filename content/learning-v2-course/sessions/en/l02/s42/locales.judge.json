@@ -1,0 +1,20 @@
+{
+  "sourceSha256": "976d4a4a7b28c67f395e67c42914e288d79bdf3d1b2a648e1526f2db366e0393",
+  "localeSha256": {
+    "uk": "a81c7ffa55b2e461cb11e17bc14fc42968dc8fe0c2c300796f5b9608bfbf9b6c"
+  },
+  "locales": {
+    "uk": {
+      "session": "S42",
+      "sourceSha256": "976d4a4a7b28c67f395e67c42914e288d79bdf3d1b2a648e1526f2db366e0393",
+      "localeSha256": "a81c7ffa55b2e461cb11e17bc14fc42968dc8fe0c2c300796f5b9608bfbf9b6c",
+      "verdict": "PASS",
+      "issues": [],
+      "reviewScope": "exact early precision delta extending previous native PASS",
+      "verifiedReplacements": 5,
+      "englishSequenceUnchanged": true,
+      "previousNativeReview": "owner-tone-before/pre-early-native-review.json",
+      "exactDelta": "owner-tone-before/early-precision-delta.json"
+    }
+  }
+}

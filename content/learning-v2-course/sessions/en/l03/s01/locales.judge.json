@@ -1,0 +1,25 @@
+{
+  "sourceSha256": "b359c831e0a98a3195b604202d96d2c349735b668f5fff96a6c6215e50473802",
+  "localeSha256": {
+    "uk": "3623c0e975be1492472e670279b020d05ca856a745dda602899f1ddb94afdb72"
+  },
+  "locales": {
+    "uk": {
+      "session": "en/l03/s01",
+      "sourceSha256": "b359c831e0a98a3195b604202d96d2c349735b668f5fff96a6c6215e50473802",
+      "localeSha256": "3623c0e975be1492472e670279b020d05ca856a745dda602899f1ddb94afdb72",
+      "reviewScope": "phonetic delta only, on top of the existing native review",
+      "verdict": "PASS",
+      "checks": {
+        "onlyIntendedDelta": true,
+        "currentText": "У `cheer` голосний починається ближче до українського «и», а в `chair` — до «е». У записі — `chair`.",
+        "assessment": "Natural and precise. «Починається» correctly limits the comparison to the vowel onset, accommodates UK /ɪə/ and US /ɪr/, and cannot be mistaken for pitch."
+      },
+      "scope": "current local course source and local preview only; app-export compatibility excluded",
+      "actualReceipt": "judgements/2026-09-08_l03_native_vowel_correction.json",
+      "appExportCompatibility": "INCOMPATIBLE_UNRESOLVED",
+      "actualAudioReviewed": false,
+      "visualReviewPerformed": false
+    }
+  }
+}

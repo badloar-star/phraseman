@@ -1,0 +1,970 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sandwich",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sandwich",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i01:audio",
+          "transcript": "sandwich"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-14:i01:r1",
+            "targetText": "sandwich",
+            "meaningByLocale": {
+              "ru": "«сэндвич». Хлеб с начинкой, например с сыром. Здесь речь об одном сэндвиче.",
+              "uk": "«сендвіч». Хліб із начинкою, наприклад, із сиром. Тут ідеться про один сендвіч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sandwich",
+          "definitionByLocale": {
+            "ru": "«сэндвич». Хлеб с начинкой, например с сыром. Здесь речь об одном сэндвиче.",
+            "uk": "«сендвіч». Хліб із начинкою, наприклад, із сиром. Тут ідеться про один сендвіч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово сказал друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i02:r1",
+          "text": "sandwich"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i02:r2",
+          "text": "bandage"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i02:r3",
+          "text": "language"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово сказал друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i02:audio",
+          "transcript": "sandwich"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-14:i02:r1",
+            "targetText": "sandwich",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i02:r2",
+            "targetText": "bandage",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i02:r3",
+            "targetText": "language",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`bandage` — «повязка». Первым слышен «б». В `sandwich` первым звучит «с»; ритм слов похож.",
+              "uk": "`bandage` — «пов’язка». Спочатку чути «б». У `sandwich` першим звучить «с»; ритм слів подібний."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`language` — «язык». Слово начинается с «л», а `sandwich` — с «с». Слушайте начало, а не только похожую вторую часть.",
+              "uk": "`language` — «мова». Слово починається з «л», а `sandwich` — з «с». Слухайте початок, а не лише подібну другу частину."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — salad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — salad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i03:audio",
+          "transcript": "salad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-14:i03:r1",
+            "targetText": "salad",
+            "meaningByLocale": {
+              "ru": "«салат». Блюдо из смешанных продуктов, часто с овощами. Здесь называем одну порцию.",
+              "uk": "«салат». Страва зі змішаних продуктів, часто з овочами. Тут називаємо одну порцію."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "salad",
+          "definitionByLocale": {
+            "ru": "«салат». Блюдо из смешанных продуктов, часто с овощами. Здесь называем одну порцию.",
+            "uk": "«салат». Страва зі змішаних продуктів, часто з овочами. Тут називаємо одну порцію."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс официант",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i04:r1",
+          "text": "salad"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i04:r2",
+          "text": "valid"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i04:r3",
+          "text": "sallow"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс официант",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i04:audio",
+          "transcript": "salad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-14:i04:r1",
+            "targetText": "salad",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i04:r2",
+            "targetText": "valid",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i04:r3",
+            "targetText": "sallow",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`valid` — «действительный». Начинается с «в», а `salad` — с «с». Похожий ритм не делает слова одинаковыми.",
+              "uk": "`valid` — «чинний». Починається з «в», а `salad` — з «с». Подібний ритм не робить слова однаковими."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`sallow` — «нездорово-бледный». Начало похоже, но на конце звучит гласный с переходом к другому звучанию. В `salad` слово заканчивается согласным «д».",
+              "uk": "`sallow` — «хворобливо-блідий». Початок схожий, але наприкінці голосний ковзає від одного звучання до іншого. У `salad` слово закінчується приголосним «д»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите короткое название — официант уточняет, что вы выбрали; ответьте двумя словами «сэндвич»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i05:r1",
+          "text": "An"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите короткое название — официант уточняет, что вы выбрали; ответьте двумя словами «сэндвич»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "A sandwich.",
+        "localizedMeaning": {
+          "ru": "Соберите короткое название — официант уточняет, что вы выбрали; ответьте двумя словами «сэндвич»",
+          "uk": "Складіть коротку назву — офіціант уточнює, що ви обрали; дайте відповідь двома англійськими словами, що означають «сендвіч»"
+        },
+        "orderedTokens": [
+          "A",
+          "sandwich"
+        ],
+        "authoredDistractorTokens": [
+          "An"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i05:r1",
+            "correct": false,
+            "testedDimension": "Соберите короткое название — официант ут",
+            "feedbackByLocale": {
+              "ru": "Название `sandwich` начинается с согласного «с». В коротком ответе перед ним нужно `A`.",
+              "uk": "Назва `sandwich` починається з приголосного «с». У короткій відповіді перед нею потрібне `A`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — egg",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — egg",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i06:audio",
+          "transcript": "egg"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-14:i06:r1",
+            "targetText": "egg",
+            "meaningByLocale": {
+              "ru": "«яйцо». Например, куриное яйцо. Здесь речь об одном целом яйце, а не о части блюда.",
+              "uk": "«яйце». Наприклад, куряче яйце. Тут ідеться про одне ціле яйце, а не про частину страви."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "egg",
+          "definitionByLocale": {
+            "ru": "«яйцо». Например, куриное яйцо. Здесь речь об одном целом яйце, а не о части блюда.",
+            "uk": "«яйце». Наприклад, куряче яйце. Тут ідеться про одне ціле яйце, а не про частину страви."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i07:r1",
+          "text": "egg"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i07:r2",
+          "text": "edge"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i07:r3",
+          "text": "leg"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i07:audio",
+          "transcript": "egg"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-14:i07:r1",
+            "targetText": "egg",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i07:r2",
+            "targetText": "edge",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i07:r3",
+            "targetText": "leg",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`edge` — «край». На конце звучит сочетание «дж», а в `egg` — «г». Начало похоже, поэтому дослушайте слово.",
+              "uk": "`edge` — «край». Наприкінці чути поєднання «дж», а в `egg` — проривний звук, близький до українського «ґ». Початок схожий, тому дослухайте слово."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`leg` — «нога». Сначала слышно «л», затем гласный. В `egg` начало сразу гласное, а конец у слов одинаковый.",
+              "uk": "`leg` — «нога». Спершу чути «л», а потім голосний. У `egg` початок одразу голосний, а кінцівка в обох словах подібна."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друг показывает на часы на стене и спрашивает, что это; назовите предмет (`clock` — «часы», настенные или настольные)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i08:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i08:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i08:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друг показывает на часы на стене и спрашивает, что это; назовите предмет (`clock` — «часы», настенные или настольные)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг показывает на часы на стене и спрашивает, что это; назовите предмет (`clock` — «часы», настенные или настольные)",
+          "uk": "Вставте слово — друг показує на годинник на стіні й питає, що це; назвіть предмет (`clock` — «годинник», настінний або настільний)"
+        },
+        "gappedTargetPhrase": "It is ___ clock.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i08:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i08:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i08:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг показывает на часы",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг показывает на часы",
+            "feedbackByLocale": {
+              "ru": "В начале `clock` слышно согласный «к». Перед этим названием выбираем `a`.",
+              "uk": "На початку `clock` чути приголосний «к». Перед цією назвою обираємо `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг показывает на часы",
+            "feedbackByLocale": {
+              "ru": "После `It` уже стоит `is`. Перед названием часов здесь нужно `a`, а не второе `is`.",
+              "uk": "Після `It` уже стоїть `is`. Перед назвою годинника тут потрібне `a`, а не друге `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — официант говорит о еде",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i09:r1",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — официант говорит о еде",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i09:audio",
+          "transcript": "It is an egg."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is an egg.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "an",
+          "egg"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i09:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — официант говорит",
+            "feedbackByLocale": {
+              "ru": "В записи перед `egg` звучит `an`. Название начинается с гласного звука, поэтому плитка `a` лишняя.",
+              "uk": "У записі перед `egg` звучить `an`. Назва починається з голосного звуку, тому плитка `a` зайва."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — до встречи ровно шестьдесят минут; назовите этот промежуток двумя словами (`hour` — «час»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i10:r1",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i10:r2",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i10:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — до встречи ровно шестьдесят минут; назовите этот промежуток двумя словами (`hour` — «час»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — до встречи ровно шестьдесят минут; назовите этот промежуток двумя словами (`hour` — «час»)",
+          "uk": "Вставте слово — до зустрічі рівно шістдесят хвилин; назвіть цей проміжок двома словами (`hour` — «година»)"
+        },
+        "gappedTargetPhrase": "___ hour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-14:i10:r1",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i10:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i10:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Вставьте слово — до встречи ровно шестьд",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — до встречи ровно шестьд",
+            "feedbackByLocale": {
+              "ru": "Первая буква `h` в `hour` не звучит: слово начинается с гласного. Перед ним нужно `An`.",
+              "uk": "Перша літера `h` у `hour` не звучить: слово починається з голосного. Перед ним потрібне `An`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — до встречи ровно шестьд",
+            "feedbackByLocale": {
+              "ru": "Нужно короткое название промежутка времени: `An hour`. Одно `Is` перед `hour` такого названия не образует.",
+              "uk": "Потрібна коротка назва проміжку часу: `An hour`. Одне `Is` перед `hour` такої назви не утворює."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините названия с русскими значениями — что встретилось в кафе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините названия с русскими значениями — что встретилось в кафе",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-14:i11:p1",
+            "target": "sandwich",
+            "meaningByLocale": {
+              "ru": "сэндвич",
+              "uk": "сендвіч"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-14:i11:p2",
+            "target": "salad",
+            "meaningByLocale": {
+              "ru": "салат",
+              "uk": "салат"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-14:i11:p3",
+            "target": "egg",
+            "meaningByLocale": {
+              "ru": "яйцо",
+              "uk": "яйце"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-14:i11:p4",
+            "target": "clock",
+            "meaningByLocale": {
+              "ru": "часы",
+              "uk": "годинник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sandwich",
+          "salad",
+          "egg",
+          "clock"
+        ],
+        "rightColumn": [
+          "сэндвич",
+          "салат",
+          "яйцо",
+          "часы"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите вопрос — друг принёс порцию блюда; уточните «Это салат?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i12:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите вопрос — друг принёс порцию блюда; уточните «Это салат?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it a salad?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — друг принёс порцию блюда; уточните «Это салат?»",
+          "uk": "Складіть питання — друг приніс порцію страви; уточніть «Це салат?»"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "salad"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i12:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос — друг принёс порцию блю",
+            "feedbackByLocale": {
+              "ru": "После `Is it` нужно `a salad`. Название порции начинается с согласного «с».",
+              "uk": "Після `Is it` потрібне `a salad`. Назва порції починається з приголосного «с»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — что друг сказал о еде",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i13:r1",
+          "text": "It is not a sandwich."
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i13:r2",
+          "text": "It is a sandwich."
+        },
+        {
+          "responseId": "en:lesson-03:session-14:i13:r3",
+          "text": "It is not an egg."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — что друг сказал о еде",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i13:audio",
+          "transcript": "It is not a sandwich."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-14:i13:r1",
+            "targetText": "It is not a sandwich.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i13:r2",
+            "targetText": "It is a sandwich.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i13:r3",
+            "targetText": "It is not an egg.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг сказал ",
+            "feedbackByLocale": {
+              "ru": "В этом варианте название подтверждают. В записи после `is` слышно `not` — название отрицают.",
+              "uk": "У цьому варіанті назву підтверджують. У записі після `is` чути `not` — назву заперечують."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-14:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг сказал ",
+            "feedbackByLocale": {
+              "ru": "Здесь названо яйцо: `an egg`. В записи после отрицания звучит `a sandwich`.",
+              "uk": "Тут названо яйце: `an egg`. У записі після заперечення звучить `a sandwich`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — друг говорит о времени до встречи",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i14:r1",
+          "text": "A"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — друг говорит о времени до встречи",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i14:audio",
+          "transcript": "An hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "An hour.",
+        "orderedTokens": [
+          "An",
+          "hour"
+        ],
+        "authoredDistractorTokens": [
+          "A"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i14:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — друг говорит о в",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `An hour`. У `hour` гласное начало, поэтому перед ним выбираем `An`.",
+              "uk": "У записі звучить `An hour`. У `hour` голосний початок, тому перед ним обираємо `An`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите отрицание — друг принял булочку за сэндвич; поправьте его: «Это не сэндвич»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i15:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите отрицание — друг принял булочку за сэндвич; поправьте его: «Это не сэндвич»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is not a sandwich.",
+        "localizedMeaning": {
+          "ru": "Соберите отрицание — друг принял булочку за сэндвич; поправьте его: «Это не сэндвич»",
+          "uk": "Складіть заперечення — друг прийняв булочку за сендвіч; виправте його: «Це не сендвіч»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "a",
+          "sandwich"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i15:r1",
+            "correct": false,
+            "testedDimension": "Соберите отрицание — друг принял булочку",
+            "feedbackByLocale": {
+              "ru": "После `It is not` ставим `a sandwich`. Отрицание сохраняет `a` перед согласным началом названия.",
+              "uk": "Після `It is not` ставимо `a sandwich`. Заперечення зберігає `a` перед приголосним початком назви."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — друг спрашивает, что висит на стене кафе; скажите «Это часы»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-14:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — друг спрашивает, что висит на стене кафе; скажите «Это часы»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-14:i16:audio",
+          "transcript": "It is a clock."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a clock.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-14:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу самостоятельно — друг смотрит на вашу порцию салата и спрашивает, что это; назовите блюдо полной фразой",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-14:i17:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу самостоятельно — друг смотрит на вашу порцию салата и спрашивает, что это; назовите блюдо полной фразой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a salad.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — друг смотрит на вашу порцию салата и спрашивает, что это; назовите блюдо полной фразой",
+          "uk": "Складіть фразу самостійно — друг дивиться на вашу порцію салату й питає, що це; назвіть страву повною фразою"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "salad"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-14:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — друг смо",
+            "feedbackByLocale": {
+              "ru": "После `It is` нужно `a salad`: называем одну порцию, а первый звук названия — согласный «с».",
+              "uk": "Після `It is` потрібне `a salad`: називаємо одну порцію, а перший звук назви приголосний «с»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0177c3b5355e211fcadfe582f95aae08fed43fbeec87b95efefcd8aaf11ba06a"
+}

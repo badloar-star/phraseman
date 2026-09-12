@@ -1,0 +1,26 @@
+{
+  "sourceSha256": "ba5f00aba9f622237f81d29891e7c62a5fb7b125494d1426adac32cd425a5aeb",
+  "localeSha256": {
+    "uk": "d9a759bda11fe2d0586102419d437bc066ac310246baff13de0fca8e8c4f35c1"
+  },
+  "locales": {
+    "uk": {
+      "sourceSha256": "ba5f00aba9f622237f81d29891e7c62a5fb7b125494d1426adac32cd425a5aeb",
+      "localeSha256": "d9a759bda11fe2d0586102419d437bc066ac310246baff13de0fca8e8c4f35c1",
+      "verdict": "PASS",
+      "issues": [],
+      "checks": {
+        "verifiedChanges": 2,
+        "intro1HeadingNatural": true,
+        "intro2IReferenceClear": true,
+        "changesFitContext": true,
+        "englishTasksOptionsTilesUnchanged": true,
+        "meaningParityPreserved": true,
+        "task6PromptNeutral": true,
+        "privateProjectionRebuilt": true,
+        "previousNativeChecksRemainValid": true
+      },
+      "verdict_reason": "Both native-language defects are fixed naturally and precisely; the Ukrainian version preserves the Russian source’s pedagogy and all learner-facing English material."
+    }
+  }
+}

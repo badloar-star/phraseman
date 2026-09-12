@@ -1,0 +1,840 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — key",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-04:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — key",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-04:i01:audio",
+          "transcript": "key"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-04:i01:r1",
+            "targetText": "key",
+            "meaningByLocale": {
+              "ru": "«ключ». Им открывают замок.",
+              "uk": "«ключ». Ним відмикають замок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "key",
+          "definitionByLocale": {
+            "ru": "«ключ». Им открывают замок.",
+            "uk": "«ключ». Ним відмикають замок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс хозяин",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-04:i02:r1",
+          "text": "key"
+        },
+        {
+          "responseId": "en:lesson-03:session-04:i02:r2",
+          "text": "tea"
+        },
+        {
+          "responseId": "en:lesson-03:session-04:i02:r3",
+          "text": "fee"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс хозяин",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-04:i02:audio",
+          "transcript": "key"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-04:i02:r1",
+            "targetText": "key",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i02:r2",
+            "targetText": "tea",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i02:r3",
+            "targetText": "fee",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "Первый звук в `tea` — «т», а в `key` — «к». В записи `key`.",
+              "uk": "Перший звук у `tea` — «т», а в `key` — «к». У записі — `key`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "Первый звук в `fee` — «ф», а в `key` — «к». Здесь звучит `key`.",
+              "uk": "Перший звук у `fee` — «ф», а в `key` — «к». Тут звучить `key`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-04:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-04:i03:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-04:i03:r1",
+            "targetText": "door",
+            "meaningByLocale": {
+              "ru": "«дверь». Её открывают, чтобы войти или выйти.",
+              "uk": "«двері». Їх відчиняють, щоб увійти або вийти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door",
+          "definitionByLocale": {
+            "ru": "«дверь». Её открывают, чтобы войти или выйти.",
+            "uk": "«двері». Їх відчиняють, щоб увійти або вийти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало в прихожей",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-04:i04:r1",
+          "text": "door"
+        },
+        {
+          "responseId": "en:lesson-03:session-04:i04:r2",
+          "text": "four"
+        },
+        {
+          "responseId": "en:lesson-03:session-04:i04:r3",
+          "text": "more"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-04:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало в прихожей",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-04:i04:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-04:i04:r1",
+            "targetText": "door",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i04:r2",
+            "targetText": "four",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i04:r3",
+            "targetText": "more",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-04:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "В `four` первым слышно «ф», а в `door` — «д». В записи `door`.",
+              "uk": "На початку `four` чути «ф», а в `door` — «д». У записі — `door`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "В `more` первым слышно «м», а в `door` — «д». Здесь звучит `door`.",
+              "uk": "На початку `more` чути «м», а в `door` — «д». Тут звучить `door`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — хозяин коротко называет предмет",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-04:i05:r1",
+          "text": "door"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — хозяин коротко называет предмет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-04:i05:audio",
+          "transcript": "A key."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "A key.",
+        "orderedTokens": [
+          "A",
+          "key"
+        ],
+        "authoredDistractorTokens": [
+          "door"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-04:i05:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — хозяин коротко н",
+            "feedbackByLocale": {
+              "ru": "В записи прозвучало `key`, а не `door`. Короткое название — `A key`.",
+              "uk": "У записі прозвучало `key`, а не `door`. Коротка назва — `A key`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — window",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-04:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — window",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-04:i06:audio",
+          "transcript": "window"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-04:i06:r1",
+            "targetText": "window",
+            "meaningByLocale": {
+              "ru": "«окно». Через него в комнату попадает дневной свет.",
+              "uk": "«вікно». Через нього до кімнати потрапляє денне світло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "window",
+          "definitionByLocale": {
+            "ru": "«окно». Через него в комнату попадает дневной свет.",
+            "uk": "«вікно». Через нього до кімнати потрапляє денне світло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс хозяин",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-04:i07:r1",
+          "text": "window"
+        },
+        {
+          "responseId": "en:lesson-03:session-04:i07:r2",
+          "text": "willow"
+        },
+        {
+          "responseId": "en:lesson-03:session-04:i07:r3",
+          "text": "winter"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-04:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс хозяин",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-04:i07:audio",
+          "transcript": "window"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-04:i07:r1",
+            "targetText": "window",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i07:r2",
+            "targetText": "willow",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i07:r3",
+            "targetText": "winter",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-04:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "В середине `willow` слышно «л», а в `window` — сочетание «н» и «д». В записи `window`.",
+              "uk": "У середині `willow` чути «л», а в `window` — сполучення «н» і «д». У записі — `window`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-04:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "Во второй части `winter` слышно «т», а в `window` — «д». Здесь звучит `window`.",
+              "uk": "У другій частині `winter` чути «т», а в `window` — «д». Тут звучить `window`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — хозяин просит назвать предмет за шторой; скажите «Это окно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — хозяин просит назвать предмет за шторой; скажите «Это окно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a window.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — хозяин просит назвать предмет за шторой; скажите «Это окно»",
+          "uk": "Складіть фразу — господар просить назвати предмет за шторою; скажіть «Це вікно»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — хозяин показывает на предмет у входа; назовите зеркало (`mirror` — «зеркало»)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — хозяин показывает на предмет у входа; назовите зеркало (`mirror` — «зеркало»)",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-04:i09:audio",
+          "transcript": "It is a mirror."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a mirror.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — хозяин обращается к вам из коридора",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-04:i10:r1",
+          "text": "window"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-04:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — хозяин обращается к вам из коридора",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-04:i10:audio",
+          "transcript": "Is it a door?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is it a door?",
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "door"
+        ],
+        "authoredDistractorTokens": [
+          "window"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-04:i10:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — хозяин обращаетс",
+            "feedbackByLocale": {
+              "ru": "В записи прозвучало `door`, а не `window`: `Is it a door?`.",
+              "uk": "У записі прозвучало `door`, а не `window`: `Is it a door?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары — что показал хозяин",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары — что показал хозяин",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-04:i11:p1",
+            "target": "key",
+            "meaningByLocale": {
+              "ru": "ключ",
+              "uk": "ключ"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-04:i11:p2",
+            "target": "door",
+            "meaningByLocale": {
+              "ru": "дверь",
+              "uk": "двері"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-04:i11:p3",
+            "target": "window",
+            "meaningByLocale": {
+              "ru": "окно",
+              "uk": "вікно"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-04:i11:p4",
+            "target": "mirror",
+            "meaningByLocale": {
+              "ru": "зеркало",
+              "uk": "дзеркало"
+            }
+          }
+        ],
+        "leftColumn": [
+          "key",
+          "door",
+          "window",
+          "mirror"
+        ],
+        "rightColumn": [
+          "ключ",
+          "дверь",
+          "окно",
+          "зеркало"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — хозяин принял металлический брелок в вашей руке за ключ; возразите: «Это не ключ»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-04:i12:r1",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — хозяин принял металлический брелок в вашей руке за ключ; возразите: «Это не ключ»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is not a key.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — хозяин принял металлический брелок в вашей руке за ключ; возразите: «Это не ключ»",
+          "uk": "Складіть фразу — господар прийняв металевий брелок у вашій руці за ключ; заперечте: «Це не ключ»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "a",
+          "key"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-04:i12:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — хозяин принял металличе",
+            "feedbackByLocale": {
+              "ru": "После `It` здесь нужна форма `is`. Отрицание и название идут дальше: `It is not a key`.",
+              "uk": "Після `It` тут потрібне `is`. Заперечення й назва стоять далі: `It is not a key`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — хозяин придерживает входную дверь; назовите её полной фразой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — хозяин придерживает входную дверь; назовите её полной фразой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-04:i13:audio",
+          "transcript": "It is a door."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a door.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите вопрос — хозяин показывает на блестящую поверхность у шкафа; уточните, зеркало ли это",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-04:i14:r1",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите вопрос — хозяин показывает на блестящую поверхность у шкафа; уточните, зеркало ли это",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it a mirror?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — хозяин показывает на блестящую поверхность у шкафа; уточните, зеркало ли это",
+          "uk": "Складіть запитання — господар показує на блискучу поверхню біля шафи; уточніть, чи це дзеркало"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "mirror"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-04:i14:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос — хозяин показывает на б",
+            "feedbackByLocale": {
+              "ru": "Вопрос об этом предмете начинаем с `Is it`: `Is it a mirror?`.",
+              "uk": "Запитання про цей предмет починаємо з `Is it`: `Is it a mirror?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — хозяин достаёт небольшой предмет из кармана; спросите «Это ключ?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-04:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — хозяин достаёт небольшой предмет из кармана; спросите «Это ключ?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-04:i15:audio",
+          "transcript": "Is it a key?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is it a key?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — хозяин решил, что вы указываете на дверь, но вы показываете на шкаф; возразите: «Это не дверь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-04:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — хозяин решил, что вы указываете на дверь, но вы показываете на шкаф; возразите: «Это не дверь»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-04:i16:audio",
+          "transcript": "It is not a door."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is not a door.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-04:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу самостоятельно — перед уходом хозяин спрашивает, что осталось на столе; вы показываете на ключ и называете его полной фразой",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-04:i17:r1",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу самостоятельно — перед уходом хозяин спрашивает, что осталось на столе; вы показываете на ключ и называете его полной фразой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a key.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — перед уходом хозяин спрашивает, что осталось на столе; вы показываете на ключ и называете его полной фразой",
+          "uk": "Складіть фразу самостійно — перед виходом господар запитує, що лишилося на столі; ви показуєте на ключ і називаєте його повною фразою"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "key"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-04:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — перед ух",
+            "feedbackByLocale": {
+              "ru": "Форма `am` относится к `I`. Здесь называем предмет через `It is`: `It is a key`.",
+              "uk": "`am` уживають з `I`. Тут називаємо предмет через `It is`: `It is a key`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7b7fd569a8abc42bed21e1fa618bb2e4e3878a38ec4ac2395ca385b58fee48b3"
+}

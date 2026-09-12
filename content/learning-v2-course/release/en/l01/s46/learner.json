@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-46:i02:r1",
+            "responseId": "en:lesson-01:session-46:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — fun",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-46:i02:r2",
+            "responseId": "en:lesson-01:session-46:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — fun",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-46:i04:r1",
+            "responseId": "en:lesson-01:session-46:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — boring",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-46:i04:r2",
+            "responseId": "en:lesson-01:session-46:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — boring",
             "feedbackByLocale": {
@@ -333,7 +333,7 @@
         "testedDimension": "Вставьте слово — вы трижды посмотрели на",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-46:i06:r1",
+            "responseId": "en:lesson-01:session-46:i06:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы трижды посмотрели на",
             "feedbackByLocale": {
@@ -342,7 +342,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-46:i06:r2",
+            "responseId": "en:lesson-01:session-46:i06:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы трижды посмотрели на",
             "feedbackByLocale": {
@@ -493,7 +493,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-46:i09:r1",
+            "responseId": "en:lesson-01:session-46:i09:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — weird",
             "feedbackByLocale": {
@@ -502,7 +502,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-46:i09:r2",
+            "responseId": "en:lesson-01:session-46:i09:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — weird",
             "feedbackByLocale": {
@@ -604,7 +604,7 @@
           "ru": "Вставьте короткую форму — вы пишете другу, что устали (`tired`)",
           "uk": "Вставте коротку форму — ви пишете другові, що втомилися (`tired`)"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ tired.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-46:i11:r1",
@@ -622,7 +622,7 @@
         "testedDimension": "Вставьте короткую форму — вы пишете друг",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-46:i11:r1",
+            "responseId": "en:lesson-01:session-46:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте короткую форму — вы пишете друг",
             "feedbackByLocale": {
@@ -631,7 +631,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-46:i11:r2",
+            "responseId": "en:lesson-01:session-46:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте короткую форму — вы пишете друг",
             "feedbackByLocale": {
@@ -797,7 +797,7 @@
         "testedDimension": "Вставьте слово — в чате обсуждают новень",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-46:i14:r1",
+            "responseId": "en:lesson-01:session-46:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — в чате обсуждают новень",
             "feedbackByLocale": {
@@ -806,7 +806,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-46:i14:r2",
+            "responseId": "en:lesson-01:session-46:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — в чате обсуждают новень",
             "feedbackByLocale": {
@@ -911,7 +911,7 @@
         "testedDimension": "Вставьте слово — друг спрашивает про каф",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-46:i16:r1",
+            "responseId": "en:lesson-01:session-46:i16:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — друг спрашивает про каф",
             "feedbackByLocale": {
@@ -920,7 +920,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-46:i16:r2",
+            "responseId": "en:lesson-01:session-46:i16:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — друг спрашивает про каф",
             "feedbackByLocale": {
@@ -972,5 +972,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f86a6d6b3ff1301c4c19ab3ac09a65fa745aae25665dec33f51ea492dd26362b"
+  "learnerFingerprint": "808faee3e78d3d8c6ed0c0e18e79a87b441ac09afb6a53e4349ef90f576d8aaa"
 }

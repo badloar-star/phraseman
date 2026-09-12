@@ -1,0 +1,47 @@
+{
+  "session": "en/l02/s35",
+  "sourceSha256": "d7b438ff40d66aa750958cfd2b5d575d96fc991ef645c5b56b696d83a3ed61b4",
+  "verdict": "PASS",
+  "issues": [],
+  "answers": [
+    {
+      "task": 14,
+      "answer": "The host is here."
+    }
+  ],
+  "verdict_reason": "Transcript, prompt, and tile set yield one clear phrase.",
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "sourceSha256": "d630f942bba5f49f0c525d8f6e5a75418be0196b6dc2212297bd242e0ac8c907",
+    "deltaOnly": true,
+    "introAnswers": {
+      "intro1": "Whose is it?",
+      "intro2": "Whose is it?",
+      "intro3": "Whose is it?"
+    },
+    "issues": [],
+    "verdict": "PASS",
+    "baselineReview": "owner-tone-before/final.judge_learner.json",
+    "unchangedPracticeVerified": true
+  },
+  "deltaReview": {
+    "session": "en/l02/s35",
+    "sourceSha256": "d7b438ff40d66aa750958cfd2b5d575d96fc991ef645c5b56b696d83a3ed61b4",
+    "verdict": "PASS",
+    "issues": [],
+    "answers": [
+      {
+        "task": 14,
+        "answer": "The host is here."
+      }
+    ],
+    "verdict_reason": "Transcript, prompt, and tile set yield one clear phrase."
+  },
+  "retainedSourceSha256": "d630f942bba5f49f0c525d8f6e5a75418be0196b6dc2212297bd242e0ac8c907",
+  "answerComparison": {
+    "changedTasksMatch": true,
+    "comparedTasks": [
+      14
+    ]
+  }
+}

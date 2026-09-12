@@ -3,7 +3,7 @@
   "courseSessionId": "en:lesson-02:session-27",
   "learningOutcomeByLocale": {
     "ru": "`What are these?`",
-    "uk": ""
+    "uk": "`What are these?`"
   },
   "pages": [
     {
@@ -75,8 +75,8 @@
       "question": {
         "interactionId": "en:lesson-02:session-27:intro2:q",
         "promptByLocale": {
-          "ru": "На прилавке цифры без пояснений, и вы не понимаете, что они значат. Спросите продавца про цены.",
-          "uk": "На прилавку самі цифри без пояснень, і ви не розумієте, що вони означають. Запитайте продавця про ціни."
+          "ru": "Цены втрое выше, чем вы ожидали. Спросите продавца с удивлением: «Что это за цены?»",
+          "uk": "Ціни втричі вищі, ніж ви очікували. З подивом запитайте продавця: «Що це за ціни?»"
         },
         "choicesByLocale": {
           "ru": [
@@ -109,8 +109,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "На прилавке цифры без пояснений, и вы не понимаете, что они значат. Спросите продавца про цены.",
-          "uk": "На прилавку самі цифри без пояснень, і ви не розумієте, що вони означають. Запитайте продавця про ціни."
+          "ru": "Цены втрое выше, чем вы ожидали. Спросите продавца с удивлением: «Что это за цены?»",
+          "uk": "Ціни втричі вищі, ніж ви очікували. З подивом запитайте продавця: «Що це за ціни?»"
         }
       }
     },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "93cce78c4e58b5c1c11f081cf13101b06eb06d2025a41660caca46d61e68df30"
+  "introFingerprint": "bdcba0835b7aeab72bf848c2bc4f3f49e2e95d337ed8bcd7b1e56db1588b0d63"
 }

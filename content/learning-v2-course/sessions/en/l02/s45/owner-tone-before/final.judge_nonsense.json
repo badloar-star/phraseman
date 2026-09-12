@@ -1,0 +1,14 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "fd65a613457ba0361cccb09ffd7b8a2b24e780c5e23bf454e09623ca4aecd59a",
+  "issues": [],
+  "checks": {
+    "amI_vs_Iam": "accurate",
+    "echoQuestion": "`I am late?` is correctly allowed as a surprised echo question, while `Am I late?` is taught as the neutral information-seeking form",
+    "sceneLogic": "coherent through the final confirmation that the lesson starts in five minutes",
+    "audioExplanations": "all rely on audible words/order, without false intonation claims",
+    "tasks": 17,
+    "builders": 6,
+    "introLengths": [252, 249, 259]
+  }
+}

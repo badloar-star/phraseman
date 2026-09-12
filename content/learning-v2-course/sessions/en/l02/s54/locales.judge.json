@@ -1,0 +1,34 @@
+{
+  "sourceSha256": "6fcf2709637ea1ef51aebc8acf5a94ac13110eb22785c28f66513ef295861644",
+  "localeSha256": {
+    "uk": "039be2afd1efd866c903c6bfbbe2237c9c46bbe685bb0ef3305842cea4fb4595"
+  },
+  "locales": {
+    "uk": {
+      "session": "S54",
+      "sourceSha256": "6fcf2709637ea1ef51aebc8acf5a94ac13110eb22785c28f66513ef295861644",
+      "localeSha256": "039be2afd1efd866c903c6bfbbe2237c9c46bbe685bb0ef3305842cea4fb4595",
+      "verdict": "PASS",
+      "issues": [],
+      "checks": {
+        "nativeUkrainian": true,
+        "sourceMeaningPreserved": true,
+        "englishTargetsOptionsAndAnswersPreserved": true,
+        "landlordLandmarkLandslideCuesAccurate": true,
+        "rentLentSentCuesAccurate": true,
+        "quietQuiteFeedbackAccurate": true,
+        "shortAnswerConstructionAccurate": true,
+        "humourDoesNotDistortRules": true,
+        "introLengths": [
+          272,
+          247,
+          274
+        ],
+        "introLengthsWithin210To320": true,
+        "introCount": 3,
+        "practiceTaskCount": 17,
+        "actualAudioAssessed": false
+      }
+    }
+  }
+}

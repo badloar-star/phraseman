@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-18:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i02",
+    "correctText": "bus",
+    "correctResponseId": "en:lesson-03:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i04",
+    "correctText": "dish",
+    "correctResponseId": "en:lesson-03:session-18:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i06",
+    "correctText": "watch",
+    "correctResponseId": "en:lesson-03:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i08",
+    "correctText": "box",
+    "correctResponseId": "en:lesson-03:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i09",
+    "correctText": "They are buses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i10",
+    "correctText": "Are they dishes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i11",
+    "correctText": "tickets",
+    "correctResponseId": "en:lesson-03:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i12",
+    "correctText": "They are not watches.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i13",
+    "correctText": "boxes",
+    "correctResponseId": "en:lesson-03:session-18:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i15",
+    "correctText": "They are dishes.",
+    "correctResponseId": "en:lesson-03:session-18:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i16",
+    "correctText": "They are tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-18:i17",
+    "correctText": "They are boxes.",
+    "correctResponseId": null
+  }
+]

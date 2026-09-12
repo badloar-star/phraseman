@@ -1,0 +1,18 @@
+{
+  "session": "S44",
+  "sourceSha256": "fefd5431e280f4cdd6c9f0ae83d34d9d6d4a11b8aa983858670e68020046ef49",
+  "verdict": "PASS",
+  "issues": [],
+  "verified": {
+    "iVsWeReferenceAccurate": true,
+    "statementToOrdinaryQuestionOrderingAccurate": true,
+    "listeningCueUsesWordOrderRatherThanIntonation": true,
+    "lateAndReadyMeaningsFitTheScenes": true,
+    "readinessHumourDoesNotCreateAFalseRule": true,
+    "introLengths": [
+      285,
+      278,
+      269
+    ]
+  }
+}

@@ -1,10 +1,25 @@
 {
+  "verdict": "PASS",
+  "sourceSha256": "83f4685d83b8834836096b0aa0bb65eb4a3facb375adac38130f9924ebb272fc",
+  "localeSha256": {
+    "uk": "0dacdac23785857d24a8c09a582106d8130d31911cc95b2520f3bbb8286a8be5"
+  },
   "locales": {
     "uk": {
       "verdict": "PASS",
-      "problems": []
+      "scope": "Historical native review plus current independent RUUK repair delta"
     }
   },
-  "verdict": "PASS",
-  "verdict_reason": "Украинская версия структурно идентична мастеру, язык живой и естественный — носитель не заметил бы, что это перевод."
+  "previousReview": {
+    "locales": {
+      "uk": {
+        "verdict": "PASS",
+        "problems": []
+      }
+    },
+    "verdict": "PASS",
+    "verdict_reason": "Украинская версия структурно идентична мастеру, язык живой и естественный — носитель не заметил бы, что это перевод."
+  },
+  "repairEvidence": "judgements/2026-09-12_audit100_final.json",
+  "actualAudioReviewed": false
 }

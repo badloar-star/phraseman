@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-33:i02:r1",
@@ -60,18 +60,18 @@
         },
         {
           "responseId": "en:lesson-02:session-33:i02:r2",
-          "text": "cold"
+          "text": "coast"
         },
         {
           "responseId": "en:lesson-02:session-33:i02:r3",
-          "text": "name"
+          "text": "toast"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-33:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — host",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -87,12 +87,12 @@
           },
           {
             "responseId": "en:lesson-02:session-33:i02:r2",
-            "targetText": "cold",
+            "targetText": "coast",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-33:i02:r3",
-            "targetText": "name",
+            "targetText": "toast",
             "meaningByLocale": null
           }
         ],
@@ -101,19 +101,19 @@
           {
             "responseId": "en:lesson-02:session-33:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — host",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «холодный». Прозвучало `host` — слово про хозяина вечера.",
-              "uk": "Це «холодний». Прозвучало `host` — слово про господаря вечора."
+              "ru": "`Coast` — «побережье». Послушайте первый звук: в записи `host`.",
+              "uk": "`Coast` — «узбережжя». Послухайте перший звук: у записі `host`."
             }
           },
           {
             "responseId": "en:lesson-02:session-33:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — host",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «имя». На записи — `host`, человек, который принимает гостей.",
-              "uk": "Це «ім’я». На записі — `host`, людина, яка приймає гостей."
+              "ru": "`Toast` — «тост». Послушайте первый звук: в записи `host`.",
+              "uk": "`Toast` — «тост». Послухайте перший звук: у записі `host`."
             }
           }
         ],
@@ -171,7 +171,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-33:i04:r1",
@@ -179,18 +179,18 @@
         },
         {
           "responseId": "en:lesson-02:session-33:i04:r2",
-          "text": "host"
+          "text": "best"
         },
         {
           "responseId": "en:lesson-02:session-33:i04:r3",
-          "text": "cheerful"
+          "text": "west"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-33:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — guest",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -206,12 +206,12 @@
           },
           {
             "responseId": "en:lesson-02:session-33:i04:r2",
-            "targetText": "host",
+            "targetText": "best",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-33:i04:r3",
-            "targetText": "cheerful",
+            "targetText": "west",
             "meaningByLocale": null
           }
         ],
@@ -220,19 +220,19 @@
           {
             "responseId": "en:lesson-02:session-33:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — guest",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это хозяин, который принимает гостей. Прозвучало `guest` — гость.",
-              "uk": "Це господар, який приймає гостей. Прозвучало `guest` — гість."
+              "ru": "`Best` — «лучший». Послушайте первый звук: в записи `guest`.",
+              "uk": "`Best` — «найкращий». Послухайте перший звук: у записі `guest`."
             }
           },
           {
             "responseId": "en:lesson-02:session-33:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — guest",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «весёлый», описание настроения. На записи слово `guest`.",
-              "uk": "Це «веселий», опис настрою. На записі слово `guest`."
+              "ru": "`West` — «запад». Послушайте первый звук: в записи `guest`.",
+              "uk": "`West` — «захід». Послухайте перший звук: у записі `guest`."
             }
           }
         ],
@@ -369,7 +369,7 @@
           "ru": "Вставьте слово — хозяин в этой комнате, но вы не знаете, кто из людей хозяин",
           "uk": "Вставте слово — господар у цій кімнаті, але ви не знаєте, хто з людей господар"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ is the host?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-33:i07:r1",
@@ -414,7 +414,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какое слово сосед сказал о приглашённых",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-33:i08:r1",
@@ -422,18 +422,18 @@
         },
         {
           "responseId": "en:lesson-02:session-33:i08:r2",
-          "text": "friends"
+          "text": "tests"
         },
         {
           "responseId": "en:lesson-02:session-33:i08:r3",
-          "text": "neighbours"
+          "text": "vests"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-33:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какое слово сосед сказал о приглашённых",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -449,12 +449,12 @@
           },
           {
             "responseId": "en:lesson-02:session-33:i08:r2",
-            "targetText": "friends",
+            "targetText": "tests",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-33:i08:r3",
-            "targetText": "neighbours",
+            "targetText": "vests",
             "meaningByLocale": null
           }
         ],
@@ -463,19 +463,19 @@
           {
             "responseId": "en:lesson-02:session-33:i08:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сосе",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «друзья». На записи другое слово: `guests` — «гости».",
-              "uk": "Це «друзі». На записі інше слово: `guests` — «гості»."
+              "ru": "`Tests` — «тесты». Послушайте первый звук: в записи `guests`.",
+              "uk": "`Tests` — «тести». Послухайте перший звук: у записі `guests`."
             }
           },
           {
             "responseId": "en:lesson-02:session-33:i08:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сосе",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «соседи». Прозвучало `guests`, слово о тех, кто пришёл в гости.",
-              "uk": "Це «сусіди». Прозвучало `guests`, слово про тих, хто прийшов у гості."
+              "ru": "`Vests` — «жилеты». Послушайте первый звук: в записи `guests`.",
+              "uk": "`Vests` — «жилети». Послухайте перший звук: у записі `guests`."
             }
           }
         ],
@@ -559,11 +559,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -632,7 +632,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — сосед произносит слово «имя»",
+      "prompt": "Послушайте и выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-33:i11:r1",
@@ -640,18 +640,18 @@
         },
         {
           "responseId": "en:lesson-02:session-33:i11:r2",
-          "text": "near"
+          "text": "game"
         },
         {
           "responseId": "en:lesson-02:session-33:i11:r3",
-          "text": "host"
+          "text": "fame"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-33:i11:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — сосед произносит слово «имя»",
+      "accessibilityLabel": "Послушайте и выберите слово",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -667,12 +667,12 @@
           },
           {
             "responseId": "en:lesson-02:session-33:i11:r2",
-            "targetText": "near",
+            "targetText": "game",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-02:session-33:i11:r3",
-            "targetText": "host",
+            "targetText": "fame",
             "meaningByLocale": null
           }
         ],
@@ -681,19 +681,19 @@
           {
             "responseId": "en:lesson-02:session-33:i11:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — сосед произносит",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «рядом». На записи `name` — «имя».",
-              "uk": "Це «поруч». На записі `name` — «ім’я»."
+              "ru": "`Game` — «игра». Послушайте первый звук: в записи `name`.",
+              "uk": "`Game` — «гра». Послухайте перший звук: у записі `name`."
             }
           },
           {
             "responseId": "en:lesson-02:session-33:i11:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — сосед произносит",
+            "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Это «хозяин». Прозвучало слово про имя, `name`.",
-              "uk": "Це «господар». Прозвучало слово про ім’я — `name`."
+              "ru": "`Fame` — «слава». Послушайте первый звук: в записи `name`.",
+              "uk": "`Fame` — «слава». Послухайте перший звук: у записі `name`."
             }
           }
         ],
@@ -961,5 +961,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "42dce37e14f981cb069bfd376fcc675086d21b3b8831d855158d2c4576373419"
+  "learnerFingerprint": "3d5be93785b422468275b2137a47d25a3be47f8f10afe4f4c2eafaab43f621bc"
 }

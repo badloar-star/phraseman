@@ -56,7 +56,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-12:i01:r1",
+            "responseId": "en:lesson-02:session-12:i01:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — вопрос или сообщ",
             "feedbackByLocale": {
@@ -65,7 +65,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-12:i01:r2",
+            "responseId": "en:lesson-02:session-12:i01:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — вопрос или сообщ",
             "feedbackByLocale": {
@@ -132,7 +132,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-12:i02:r1",
+            "responseId": "en:lesson-02:session-12:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — про кого речь",
             "feedbackByLocale": {
@@ -141,7 +141,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-12:i02:r2",
+            "responseId": "en:lesson-02:session-12:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — про кого речь",
             "feedbackByLocale": {
@@ -255,7 +255,7 @@
         "testedDimension": "Вставьте слово — мужчина у окна кутается",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-12:i04:r1",
+            "responseId": "en:lesson-02:session-12:i04:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — мужчина у окна кутается",
             "feedbackByLocale": {
@@ -264,7 +264,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-12:i04:r2",
+            "responseId": "en:lesson-02:session-12:i04:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — мужчина у окна кутается",
             "feedbackByLocale": {
@@ -403,7 +403,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-12:i07:r1",
+            "responseId": "en:lesson-02:session-12:i07:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — вопрос или сообщ",
             "feedbackByLocale": {
@@ -412,7 +412,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-12:i07:r2",
+            "responseId": "en:lesson-02:session-12:i07:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — вопрос или сообщ",
             "feedbackByLocale": {
@@ -547,7 +547,7 @@
         "testedDimension": "Вставьте слово — женщина у двери держит ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-12:i09:r1",
+            "responseId": "en:lesson-02:session-12:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — женщина у двери держит ",
             "feedbackByLocale": {
@@ -556,7 +556,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-12:i09:r2",
+            "responseId": "en:lesson-02:session-12:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — женщина у двери держит ",
             "feedbackByLocale": {
@@ -664,7 +664,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-12:i11:r1",
+            "responseId": "en:lesson-02:session-12:i11:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — «он любопытный?»",
             "feedbackByLocale": {
@@ -673,7 +673,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-12:i11:r2",
+            "responseId": "en:lesson-02:session-12:i11:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — «он любопытный?»",
             "feedbackByLocale": {
@@ -821,7 +821,7 @@
           "ru": "Вставьте слово — спутник спрашивает «Is she upset?», и вы согласны",
           "uk": "Вставте слово — супутник питає «Is she upset?», і ви згодні"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ , she is.",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-12:i15:r1",
@@ -839,7 +839,7 @@
         "testedDimension": "Вставьте слово — спутник спрашивает «Is ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-12:i15:r1",
+            "responseId": "en:lesson-02:session-12:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник спрашивает «Is ",
             "feedbackByLocale": {
@@ -848,7 +848,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-12:i15:r2",
+            "responseId": "en:lesson-02:session-12:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник спрашивает «Is ",
             "feedbackByLocale": {
@@ -985,7 +985,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-12:i18:r1",
+            "responseId": "en:lesson-02:session-12:i18:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — «она красивая?»",
             "feedbackByLocale": {
@@ -994,7 +994,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-12:i18:r2",
+            "responseId": "en:lesson-02:session-12:i18:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — «она красивая?»",
             "feedbackByLocale": {
@@ -1151,5 +1151,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c14e8d73be3906af4669173bec2718844e0f3165fbd8210c8957bf45c7b84051"
+  "learnerFingerprint": "10780f17b308f60b65733b21431177a196206d638cb6cdbdfd84f6b62a0d22c9"
 }

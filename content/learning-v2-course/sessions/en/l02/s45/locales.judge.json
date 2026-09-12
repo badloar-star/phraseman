@@ -1,0 +1,51 @@
+{
+  "sourceSha256": "96ee682a665225bf9d2f42799a5d691314cd082096b07d8f9e8b18a5acbf58db",
+  "localeSha256": {
+    "uk": "561064aacb54af3e38811d122ea3294d545c2e84ad061dfe801896ef5274f8cc"
+  },
+  "locales": {
+    "uk": {
+      "session": "S45",
+      "sourceSha256": "96ee682a665225bf9d2f42799a5d691314cd082096b07d8f9e8b18a5acbf58db",
+      "localeSha256": "561064aacb54af3e38811d122ea3294d545c2e84ad061dfe801896ef5274f8cc",
+      "verdict": "PASS",
+      "issues": [],
+      "checks": {
+        "onlyListedPromptsChanged": true,
+        "introByteTextUnchanged": true,
+        "englishTokenSequenceUnchanged": true,
+        "targetTilesAnswerFeedbackUnchanged": true,
+        "ruPromptNeutral": true,
+        "ukPromptNativeAndNeutral": true,
+        "contextCoherent": true
+      },
+      "verdict_reason": "T13 сохраняет разговор с преподавателем, но больше не сообщает заранее полный смысл We are here.",
+      "priorFullReviewRetained": true,
+      "reviewScope": "Independent RU/UK native delta review; prior full locale review retained",
+      "priorFullReview": {
+        "sourceSha256": "dc8d8512e7f9846201cbba9dbf715013dff6088e583ffe45dbbe72440aad38d2",
+        "localeSha256": {
+          "uk": "9e0063314d43d8412de00c519d26b04713b40cf8b2ca9695d7d6dd84b36712cb"
+        },
+        "locales": {
+          "uk": {
+            "session": "S45",
+            "sourceSha256": "dc8d8512e7f9846201cbba9dbf715013dff6088e583ffe45dbbe72440aad38d2",
+            "localeSha256": "9e0063314d43d8412de00c519d26b04713b40cf8b2ca9695d7d6dd84b36712cb",
+            "verdict": "PASS",
+            "issues": [],
+            "verifiedDelta": {
+              "intro1AlternativeQuestionComplete": true,
+              "intro3AlternativeQuestionComplete": true,
+              "introLengths": [
+                309,
+                280,
+                290
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

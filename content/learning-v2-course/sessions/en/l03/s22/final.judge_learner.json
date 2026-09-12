@@ -1,0 +1,224 @@
+{
+  "sourceSha256": "20a9aafd2d1cd8d6cf3cc227413faf304314cd13c2b2a5cd85fea157aa9357fc",
+  "reviewer": "/root/s22_blind",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "They are bottles."
+    },
+    {
+      "step": 2,
+      "answer": "They are bowls."
+    },
+    {
+      "step": 3,
+      "answer": "Are they plates?"
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "bottle"
+    },
+    {
+      "step": 2,
+      "answer": "bottle"
+    },
+    {
+      "step": 3,
+      "answer": "bowl"
+    },
+    {
+      "step": 4,
+      "answer": "bowl"
+    },
+    {
+      "step": 5,
+      "answer": "They are bottles."
+    },
+    {
+      "step": 6,
+      "answer": "bowls"
+    },
+    {
+      "step": 7,
+      "answer": "plate"
+    },
+    {
+      "step": 8,
+      "answer": "plate"
+    },
+    {
+      "step": 9,
+      "answer": "Are they plates?"
+    },
+    {
+      "step": 10,
+      "answer": "dishes"
+    },
+    {
+      "step": 11,
+      "answer": "They are not bowls."
+    },
+    {
+      "step": 12,
+      "answer": "a bottle"
+    },
+    {
+      "step": 13,
+      "answer": "plates"
+    },
+    {
+      "step": 14,
+      "answer": {
+        "bowls": "миски",
+        "bottles": "бутылки",
+        "dishes": "блюда для подачи еды",
+        "plates": "тарелки"
+      }
+    },
+    {
+      "step": 15,
+      "answer": "They are dishes."
+    },
+    {
+      "step": 16,
+      "answer": "a bowl"
+    },
+    {
+      "step": 17,
+      "answer": "They are bowls."
+    }
+  ],
+  "confusion": [],
+  "impossible_tasks": [],
+  "learned_new": [
+    "Могу назвать несколько бутылок: They are bottles.",
+    "Могу назвать несколько мисок: They are bowls.",
+    "Могу спросить о нескольких тарелках: Are they plates?",
+    "Понимаю bottle, bowl и plate вместе с формами для нескольких предметов."
+  ],
+  "felt_alive": [
+    "Реплика о том, что остальные бутылки «зря ехали», делает разницу между одной и несколькими бутылками запоминающейся.",
+    "Доставка и проверка коробки дают ясную причину называть и уточнять предметы."
+  ],
+  "would_continue": "да — новые слова сразу используются в понятной короткой сцене.",
+  "verdict": "PASS",
+  "verdict_reason": "Все ответы честно выводятся из текущего текста и известных ранее форм, без требуемого незнакомого материала.",
+  "actualAudio": "NOT_REVIEWED",
+  "reviewHistory": [
+    {
+      "sourceSha256": "7394bfc8283282acfec8f9445347514911541c003a5066c9c2ec576039a3412b",
+      "reviewer": "/root/s22_blind",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "introAnswers": [
+        {
+          "step": 1,
+          "answer": "They are bottles."
+        },
+        {
+          "step": 2,
+          "answer": "They are bowls."
+        },
+        {
+          "step": 3,
+          "answer": "Are they plates?"
+        }
+      ],
+      "practiceAnswers": [
+        {
+          "step": 1,
+          "answer": "bottle"
+        },
+        {
+          "step": 2,
+          "answer": "bottle"
+        },
+        {
+          "step": 3,
+          "answer": "bowl"
+        },
+        {
+          "step": 4,
+          "answer": "bowl"
+        },
+        {
+          "step": 5,
+          "answer": "They are bottles."
+        },
+        {
+          "step": 6,
+          "answer": "bowls"
+        },
+        {
+          "step": 7,
+          "answer": "plate"
+        },
+        {
+          "step": 8,
+          "answer": "plate"
+        },
+        {
+          "step": 9,
+          "answer": "Are they plates?"
+        },
+        {
+          "step": 10,
+          "answer": "dishes"
+        },
+        {
+          "step": 11,
+          "answer": "They are not bowls."
+        },
+        {
+          "step": 12,
+          "answer": "a bottle"
+        },
+        {
+          "step": 13,
+          "answer": "plates"
+        },
+        {
+          "step": 14,
+          "answer": {
+            "bowls": "миски",
+            "bottles": "бутылки",
+            "dishes": "блюда для подачи еды",
+            "plates": "тарелки"
+          }
+        },
+        {
+          "step": 15,
+          "answer": "They are dishes."
+        },
+        {
+          "step": 16,
+          "answer": "a bowl"
+        },
+        {
+          "step": 17,
+          "answer": "They are bowls."
+        }
+      ],
+      "confusion": [],
+      "impossible_tasks": [],
+      "learned_new": [
+        "Могу назвать несколько бутылок: They are bottles.",
+        "Могу назвать несколько мисок: They are bowls.",
+        "Могу спросить о нескольких тарелках: Are they plates?",
+        "Понимаю слова bottle, bowl и plate, а также их формы для нескольких предметов."
+      ],
+      "felt_alive": [
+        "Курьер и коробка дают простой понятный повод назвать предметы и уточнить содержимое.",
+        "Миски, вложенные друг в друга, хорошо объясняют, почему предметов несколько."
+      ],
+      "would_continue": "да — я выучил три нужных слова и сразу применил их в короткой ситуации.",
+      "verdict": "PASS",
+      "verdict_reason": "Все задания решаются из показанного материала и известных ранее форм, а сценарий доставки ясно объясняет, зачем нужны фразы.",
+      "actualAudio": "NOT_REVIEWED"
+    }
+  ]
+}

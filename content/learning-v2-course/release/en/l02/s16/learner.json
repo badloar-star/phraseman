@@ -56,7 +56,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-16:i01:r1",
+            "responseId": "en:lesson-02:session-16:i01:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — thirsty",
             "feedbackByLocale": {
@@ -65,7 +65,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-16:i01:r2",
+            "responseId": "en:lesson-02:session-16:i01:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — thirsty",
             "feedbackByLocale": {
@@ -127,7 +127,7 @@
         "testedDimension": "Вставьте слово — мужчина у стойки просит",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-16:i02:r1",
+            "responseId": "en:lesson-02:session-16:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — мужчина у стойки просит",
             "feedbackByLocale": {
@@ -136,7 +136,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-16:i02:r2",
+            "responseId": "en:lesson-02:session-16:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — мужчина у стойки просит",
             "feedbackByLocale": {
@@ -196,7 +196,7 @@
         "testedDimension": "Вставьте слово — свободных столиков нет,",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-16:i03:r1",
+            "responseId": "en:lesson-02:session-16:i03:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — свободных столиков нет,",
             "feedbackByLocale": {
@@ -205,7 +205,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-16:i03:r2",
+            "responseId": "en:lesson-02:session-16:i03:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — свободных столиков нет,",
             "feedbackByLocale": {
@@ -287,7 +287,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «люд",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-16:i05:r1",
+            "responseId": "en:lesson-02:session-16:i05:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «люд",
             "feedbackByLocale": {
@@ -425,7 +425,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-16:i07:r1",
+            "responseId": "en:lesson-02:session-16:i07:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — handsome",
             "feedbackByLocale": {
@@ -434,7 +434,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-16:i07:r2",
+            "responseId": "en:lesson-02:session-16:i07:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — handsome",
             "feedbackByLocale": {
@@ -496,7 +496,7 @@
         "testedDimension": "Вставьте слово — мужчина за дальним стол",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-16:i08:r1",
+            "responseId": "en:lesson-02:session-16:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — мужчина за дальним стол",
             "feedbackByLocale": {
@@ -505,7 +505,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-16:i08:r2",
+            "responseId": "en:lesson-02:session-16:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — мужчина за дальним стол",
             "feedbackByLocale": {
@@ -596,7 +596,7 @@
         "testedDimension": "Вставьте слово — спутник сидит в мягком ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-16:i10:r1",
+            "responseId": "en:lesson-02:session-16:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник сидит в мягком ",
             "feedbackByLocale": {
@@ -605,7 +605,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-16:i10:r2",
+            "responseId": "en:lesson-02:session-16:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник сидит в мягком ",
             "feedbackByLocale": {
@@ -695,7 +695,7 @@
         "testedDimension": "Вставьте слово — женщина встала и схвати",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-16:i12:r1",
+            "responseId": "en:lesson-02:session-16:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — женщина встала и схвати",
             "feedbackByLocale": {
@@ -704,7 +704,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-16:i12:r2",
+            "responseId": "en:lesson-02:session-16:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — женщина встала и схвати",
             "feedbackByLocale": {
@@ -764,7 +764,7 @@
         "testedDimension": "Вставьте слово — человек у входа вертит ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-16:i13:r1",
+            "responseId": "en:lesson-02:session-16:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — человек у входа вертит ",
             "feedbackByLocale": {
@@ -773,7 +773,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-16:i13:r2",
+            "responseId": "en:lesson-02:session-16:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — человек у входа вертит ",
             "feedbackByLocale": {

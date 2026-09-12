@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-10:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i02",
+    "correctText": "kettle",
+    "correctResponseId": "en:lesson-03:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i04",
+    "correctText": "toaster",
+    "correctResponseId": "en:lesson-03:session-10:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i05",
+    "correctText": "A kettle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i07",
+    "correctText": "vacuum",
+    "correctResponseId": "en:lesson-03:session-10:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i08",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-03:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i09",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i11",
+    "correctText": "It is a toaster.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i12",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-03:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i13",
+    "correctText": "Is it a kettle?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i14",
+    "correctText": "It is not a vacuum.",
+    "correctResponseId": "en:lesson-03:session-10:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i15",
+    "correctText": "It is not a toaster.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i16",
+    "correctText": "Is it an armchair?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-10:i17",
+    "correctText": "It is a vacuum.",
+    "correctResponseId": null
+  }
+]

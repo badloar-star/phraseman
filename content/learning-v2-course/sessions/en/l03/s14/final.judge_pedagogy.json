@@ -1,0 +1,139 @@
+{
+  "sourceSha256": "07f2eedf12eea831703f2c51d5e2c07b0b70e95590eeb74d79251afb06a9bc9b",
+  "reviewer": "/root/s10_pedagogy",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "machineFactsHard": [],
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "sandwich",
+      "salad",
+      "egg"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "silly": [],
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "sound_cues_usable": true
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "sandwich",
+        "salad",
+        "egg",
+        "clock"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "combinedBuilders": [
+      5,
+      9,
+      12,
+      14,
+      15,
+      17
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "verdict": "PASS",
+  "verdict_reason": "All article choices use the declared singular food referents and sound rule; each answer is unique and the listening prompts remain neutral.",
+  "actualAudioReviewed": false,
+  "previousReview": {
+    "sourceSha256": "4f167bdcf5113237ff34b2d6132104484dff1701a03e0fa8b74d0102f3fcbab9",
+    "reviewer": "/root/s10_pedagogy",
+    "model": "gpt-5.6-terra",
+    "reasoningEffort": "medium",
+    "machineFactsHard": [],
+    "plan_fidelity": {
+      "operation_matches": true,
+      "new_words_match": [
+        "sandwich",
+        "salad",
+        "egg"
+      ],
+      "missing": [],
+      "extra_grammar_smuggled": []
+    },
+    "answer_semantics": [],
+    "boundary": {
+      "unknown_in_explanations": [],
+      "unknown_in_targets": []
+    },
+    "traps": {
+      "silly": [],
+      "feedback_teaches_unknown_form": []
+    },
+    "feedback": {
+      "missing_per_option": [],
+      "duplicated": [],
+      "sound_cues_usable": true
+    },
+    "structure": {
+      "task_count": 17,
+      "below_12": false,
+      "word_first_respected": true,
+      "support_fades": true,
+      "speed_match_boards": [
+        [
+          "sandwich",
+          "salad",
+          "egg",
+          "clock"
+        ]
+      ],
+      "speed_match_overlap": false,
+      "repeated_targets": [],
+      "generic_instructions": [],
+      "combinedBuilders": [
+        5,
+        9,
+        12,
+        14,
+        15,
+        17
+      ]
+    },
+    "time_references": [],
+    "cross_session_repeats": [],
+    "textbook_formulas": [],
+    "verdict": "PASS",
+    "verdict_reason": "All article choices use the declared singular food referents and sound rule; each answer is unique and the listening prompts remain neutral.",
+    "actualAudioReviewed": false
+  },
+  "scope": "Initial whole-source review plus actual independent bounded reviews of every changed passage",
+  "deltaReviews": [
+    {
+      "sourceSha256": "e122c06f8e04dca9ee5d2a162b1188675802447c16fbe708265c59c89df84836",
+      "verdict": "PASS",
+      "scope": "Intro 1 full-phrase wording; questions, options and practice unchanged",
+      "evidence": "Linked question remains grounded; no new construct."
+    },
+    {
+      "sourceSha256": "07f2eedf12eea831703f2c51d5e2c07b0b70e95590eeb74d79251afb06a9bc9b",
+      "verdict": "PASS",
+      "scope": "Intro 3 question and practice 8 instruction",
+      "evidence": "Whole egg and wall clock each support the unchanged unique answer; no new construct or ambiguity."
+    }
+  ]
+}

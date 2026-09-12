@@ -1,0 +1,11 @@
+{
+  "session": "S49",
+  "sourceSha256": "cca7122f9ca01d25bd877e1b5616993e407a281af98a899c2c4e0cbfec567cf9",
+  "verdict": "PASS",
+  "issues": [],
+  "evidence": [
+    "Intro 1 distractors `Yes, I is.` and `Yes, am.` diagnose the auxiliary form and missing subject while preserving affirmative first-person intent.",
+    "All three explanations are factually accurate, unambiguous and do not prohibit valid full answers.",
+    "Humour supports the rules without changing their meaning."
+  ]
+}

@@ -1,16 +1,27 @@
 {
+  "sourceSha256": "cf0cc64d6934150f48e0856c2a80d1078becd1bfe69fd0bc29be7768116e5cde",
+  "localeSha256": {
+    "uk": "155e15ea269fca0cd7e351cde1a0a86eb1a36473a36a1fcbfd980b12a8c0d7c5"
+  },
   "locales": {
     "uk": {
+      "session": "S33",
+      "sourceSha256": "cf0cc64d6934150f48e0856c2a80d1078becd1bfe69fd0bc29be7768116e5cde",
+      "localeSha256": "155e15ea269fca0cd7e351cde1a0a86eb1a36473a36a1fcbfd980b12a8c0d7c5",
       "verdict": "PASS",
-      "problems": []
+      "issues": [],
+      "verified": {
+        "deltaLimitedToThreeIntroBodies": true,
+        "naturalUkrainian": true,
+        "hostGuestAndWhoWhereMeaningsAccurate": true,
+        "grammarStatementsAccurate": true,
+        "humourHumanAndNonDistorting": true,
+        "introLengths": [
+          272,
+          287,
+          257
+        ]
+      }
     }
-  },
-  "verdict": "PASS",
-  "verdict_reason": "Усі п’ять виправлень внесено коректно; форми «сесії» в таблиці також узгоджено. Український текст природний, ясний для дорослого початківця, без русизмів і неперекладених рядків. Структура відповідає final.ru.md: збережено всі три інтро, 18 вправ, англійські цілі, правильні відповіді, дистрактори, плитки, повторювані слова та mode IDs.",
-  "sourceSha256": "56789703f95f9dc122b83532472d171bca221901fbd6704f4b19edb6c311ff55",
-  "localeSha256": {
-    "uk": "147f83bd3ebe3a5c45d75323a3581779cd22f7d82036cdd3644818ed0c14fa93"
-  },
-  "reviewedAt": "2026-09-08T08:29:46.145431+00:00",
-  "reviewMethod": "builtin_codex_independent_localization_review"
+  }
 }

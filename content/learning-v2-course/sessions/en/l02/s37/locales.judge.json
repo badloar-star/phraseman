@@ -1,0 +1,54 @@
+{
+  "sourceSha256": "bdd8454c7d36d27fbb2361dcbbcdb7ad17f441e95748798a2eec415546d50214",
+  "localeSha256": {
+    "uk": "72479daba9826cd6a82d7f3c6a88d013eb57fcd89d42f05fa3029b614c1bd81f"
+  },
+  "locales": {
+    "uk": {
+      "session": "S37",
+      "sourceSha256": "bdd8454c7d36d27fbb2361dcbbcdb7ad17f441e95748798a2eec415546d50214",
+      "localeSha256": "72479daba9826cd6a82d7f3c6a88d013eb57fcd89d42f05fa3029b614c1bd81f",
+      "verdict": "PASS",
+      "issues": [],
+      "checks": {
+        "onlyListedPromptsChanged": true,
+        "introByteTextUnchanged": true,
+        "englishTokenSequenceUnchanged": true,
+        "targetTilesAnswerFeedbackUnchanged": true,
+        "ruPromptNeutral": true,
+        "ukPromptNativeAndNeutral": true,
+        "contextCoherent": true
+      },
+      "verdict_reason": "T13 сохраняет мужчину и шарф как сцену, но больше не пересказывает вопрос Is he the host? до прослушивания.",
+      "priorFullReviewRetained": true,
+      "reviewScope": "Independent RU/UK native delta review; prior full locale review retained",
+      "priorFullReview": {
+        "sourceSha256": "1673e10a866661dd4595d9ae009a6d7715bddf07a59695fb5f9c065f1dbbb0e6",
+        "localeSha256": {
+          "uk": "a0ada76b24cb0c7e9af3cafb07a5626da626e51584b3c9d8f763d37fab0400db"
+        },
+        "locales": {
+          "uk": {
+            "session": "S37",
+            "sourceSha256": "1673e10a866661dd4595d9ae009a6d7715bddf07a59695fb5f9c065f1dbbb0e6",
+            "localeSha256": "a0ada76b24cb0c7e9af3cafb07a5626da626e51584b3c9d8f763d37fab0400db",
+            "verdict": "PASS",
+            "issues": [],
+            "verified": {
+              "naturalUkrainian": true,
+              "englishAnchorsAndMeaningsPreserved": true,
+              "whoVsWhoseDistinctionAccurate": true,
+              "humourNaturalAndNonMisleading": true,
+              "noAddedGrammarRule": true,
+              "introLengths": [
+                269,
+                255,
+                289
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

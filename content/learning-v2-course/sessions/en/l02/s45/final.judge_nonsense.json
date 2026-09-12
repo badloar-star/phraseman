@@ -1,0 +1,57 @@
+{
+  "session": "en/l02/s45",
+  "sourceSha256": "96ee682a665225bf9d2f42799a5d691314cd082096b07d8f9e8b18a5acbf58db",
+  "localeSha256": "561064aacb54af3e38811d122ea3294d545c2e84ad061dfe801896ef5274f8cc",
+  "verdict": "PASS",
+  "issues": [],
+  "checks": {
+    "onlyListedPromptsChanged": true,
+    "introByteTextUnchanged": true,
+    "englishTokenSequenceUnchanged": true,
+    "targetTilesAnswerFeedbackUnchanged": true,
+    "ruPromptNeutral": true,
+    "ukPromptNativeAndNeutral": true,
+    "contextCoherent": true
+  },
+  "verdict_reason": "T13 сохраняет разговор с преподавателем, но больше не сообщает заранее полный смысл We are here.",
+  "priorFullReviewRetained": true,
+  "reviewScope": "Independent review of changed listening prompts, with unchanged material covered by the retained full review. Not a new full walkthrough.",
+  "priorFullReview": {
+    "session": "S45",
+    "sourceSha256": "dc8d8512e7f9846201cbba9dbf715013dff6088e583ffe45dbbe72440aad38d2",
+    "verdict": "PASS",
+    "issues": [],
+    "verified": {
+      "ordinaryAmIQuestionOrderAccurate": true,
+      "iAmStatementOrderAccurate": true,
+      "surprisedDeclarativeEchoQuestionCaveatValid": true,
+      "ordinaryFirstInquiryDistinguishedFromEchoUse": true,
+      "notLateMeaningAccurate": true,
+      "humourDoesNotCreateAFalseRule": true,
+      "introLengths": [
+        271,
+        269,
+        276
+      ]
+    }
+  },
+  "deltaReview": {
+    "session": "S45",
+    "sourceSha256": "96ee682a665225bf9d2f42799a5d691314cd082096b07d8f9e8b18a5acbf58db",
+    "localeSha256": "561064aacb54af3e38811d122ea3294d545c2e84ad061dfe801896ef5274f8cc",
+    "verdict": "PASS",
+    "issues": [],
+    "checks": {
+      "onlyListedPromptsChanged": true,
+      "introByteTextUnchanged": true,
+      "englishTokenSequenceUnchanged": true,
+      "targetTilesAnswerFeedbackUnchanged": true,
+      "ruPromptNeutral": true,
+      "ukPromptNativeAndNeutral": true,
+      "contextCoherent": true
+    },
+    "verdict_reason": "T13 сохраняет разговор с преподавателем, но больше не сообщает заранее полный смысл We are here.",
+    "priorFullReviewRetained": true
+  },
+  "retainedSourceSha256": "dc8d8512e7f9846201cbba9dbf715013dff6088e583ffe45dbbe72440aad38d2"
+}

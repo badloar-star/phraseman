@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-21:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i02",
+    "correctText": "towel",
+    "correctResponseId": "en:lesson-03:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i04",
+    "correctText": "curtain",
+    "correctResponseId": "en:lesson-03:session-21:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i05",
+    "correctText": "It is a towel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i06",
+    "correctText": "curtains",
+    "correctResponseId": "en:lesson-03:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i08",
+    "correctText": "pillow",
+    "correctResponseId": "en:lesson-03:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i09",
+    "correctText": "They are pillows.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i10",
+    "correctText": "a glass",
+    "correctResponseId": "en:lesson-03:session-21:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i11",
+    "correctText": "a curtain",
+    "correctResponseId": "en:lesson-03:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i12",
+    "correctText": "They are not towels.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i13",
+    "correctText": "pillows",
+    "correctResponseId": "en:lesson-03:session-21:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i15",
+    "correctText": "glasses",
+    "correctResponseId": "en:lesson-03:session-21:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i16",
+    "correctText": "It is a curtain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-21:i17",
+    "correctText": "It is a pillow.",
+    "correctResponseId": null
+  }
+]

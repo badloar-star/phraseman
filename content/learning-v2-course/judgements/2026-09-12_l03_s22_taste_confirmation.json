@@ -1,0 +1,20 @@
+{
+  "sourceSha256": "7394bfc8283282acfec8f9445347514911541c003a5066c9c2ec576039a3412b",
+  "verdict": "REVISE",
+  "pairwise": "worse",
+  "confirmedProblems": [
+    "No natural humour; rewrite Intro1 body and remove artificial bottle-per-item line."
+  ],
+  "withdrawn": [
+    "Courier list verification is plausible; scene objection retracted."
+  ],
+  "optional": [
+    "Intro2 question and T13 register; not blockers."
+  ],
+  "water": [],
+  "dead_language": [],
+  "scene": {
+    "present": true,
+    "gives_reason_to_speak": true
+  }
+}

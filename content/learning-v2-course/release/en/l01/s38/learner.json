@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-38:i02:r1",
+            "responseId": "en:lesson-01:session-38:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — lost",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-38:i02:r2",
+            "responseId": "en:lesson-01:session-38:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — lost",
             "feedbackByLocale": {
@@ -329,7 +329,7 @@
         "testedDimension": "Вставьте слово — вокруг спокойно, никто ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-38:i07:r1",
+            "responseId": "en:lesson-01:session-38:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вокруг спокойно, никто ",
             "feedbackByLocale": {
@@ -338,7 +338,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-38:i07:r2",
+            "responseId": "en:lesson-01:session-38:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вокруг спокойно, никто ",
             "feedbackByLocale": {
@@ -390,7 +390,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «в б",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-38:i08:r1",
+            "responseId": "en:lesson-01:session-38:i08:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «в б",
             "feedbackByLocale": {
@@ -483,7 +483,7 @@
         "testedDimension": "Вставьте слово — все развернулись и идут",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-38:i10:r1",
+            "responseId": "en:lesson-01:session-38:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — все развернулись и идут",
             "feedbackByLocale": {
@@ -492,7 +492,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-38:i10:r2",
+            "responseId": "en:lesson-01:session-38:i10:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — все развернулись и идут",
             "feedbackByLocale": {
@@ -668,7 +668,7 @@
         "testedDimension": "Вставьте слово — идёте всей толпой, не р",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-38:i13:r1",
+            "responseId": "en:lesson-01:session-38:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — идёте всей толпой, не р",
             "feedbackByLocale": {
@@ -677,7 +677,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-38:i13:r2",
+            "responseId": "en:lesson-01:session-38:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — идёте всей толпой, не р",
             "feedbackByLocale": {

@@ -1,0 +1,30 @@
+{
+  "sourceSha256": "7ec753f0fca6f9045423183c07c2054b591ea8f1ff12ea2e3683424b4132816d",
+  "reasoningEffort": "medium",
+  "reviewer": "/root/s10_truth",
+  "model": "gpt-5.6-sol",
+  "scope": "Initial full review plus actual independent semantic and final two-phrase copy deltas",
+  "problems": [],
+  "verdict": "PASS",
+  "verdict_reason": "ticket accurately defined by travel/entry rights without requiring payment; coin as metal money and access-card sense correct. Written -s plurals and they/are/not frames correct and locally scoped. Sound contrasts match saved UK/US IPA within each accent. No English /r/ identity asserted. Wrong-option glosses legitimate; listening instructions neutral.",
+  "evidencePath": "judgements/2026-09-12_l03_s17_pronunciation_evidence.md",
+  "actualAudioReviewed": false,
+  "previousReview": {
+    "sourceSha256": "27fccff64a607584487fa69ee95f13813855272174afbfe038d8cddde6f09fe3",
+    "reasoningEffort": "medium",
+    "reviewer": "/root/s10_truth",
+    "model": "gpt-5.6-sol",
+    "scope": "Full independent language-fact review; actual audio excluded.",
+    "problems": [],
+    "verdict": "PASS",
+    "verdict_reason": "ticket accurately defined by travel/entry rights without requiring payment; coin as metal money and access-card sense correct. Written -s plurals and they/are/not frames correct and locally scoped. Sound contrasts match saved UK/US IPA within each accent. No English /r/ identity asserted. Wrong-option glosses legitimate; listening instructions neutral.",
+    "evidencePath": "judgements/2026-09-12_l03_s17_pronunciation_evidence.md",
+    "actualAudioReviewed": false
+  },
+  "finalDeltaEvidence": "Reviewer compared final against draft_02 and confirmed only the two stated Russian wording repairs; task meanings, options, answers and prior findings retained.",
+  "semanticDelta": {
+    "sourceSha256": "f0409b500c3924f239f23cf11d3c3b218f1bccf4d901bceda8a9d31cda5a8f72",
+    "verdict": "PASS",
+    "evidence": "Scoped coin→coins, Are they coins? and retained s truthful. Cash desk distinguishes change coins from participant tokens; task9 uncertainty and task16 named coins semantically correct. Board label true; no new universal claim."
+  }
+}

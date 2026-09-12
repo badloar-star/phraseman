@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-49:i02:r1",
+            "responseId": "en:lesson-01:session-49:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — everyone",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-49:i02:r2",
+            "responseId": "en:lesson-01:session-49:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — everyone",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-49:i04:r1",
+            "responseId": "en:lesson-01:session-49:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — nobody",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-49:i04:r2",
+            "responseId": "en:lesson-01:session-49:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — nobody",
             "feedbackByLocale": {
@@ -289,7 +289,7 @@
         "testedDimension": "Вставьте скрепку — все на работе добрые",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-49:i05:r1",
+            "responseId": "en:lesson-01:session-49:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — все на работе добрые",
             "feedbackByLocale": {
@@ -298,7 +298,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-49:i05:r2",
+            "responseId": "en:lesson-01:session-49:i05:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — все на работе добрые",
             "feedbackByLocale": {
@@ -449,7 +449,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-49:i08:r1",
+            "responseId": "en:lesson-01:session-49:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — family",
             "feedbackByLocale": {
@@ -458,7 +458,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-49:i08:r2",
+            "responseId": "en:lesson-01:session-49:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — family",
             "feedbackByLocale": {
@@ -520,7 +520,7 @@
         "testedDimension": "Вставьте скрепку — люди за стенкой шумят",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-49:i09:r1",
+            "responseId": "en:lesson-01:session-49:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — люди за стенкой шумят",
             "feedbackByLocale": {
@@ -529,7 +529,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-49:i09:r2",
+            "responseId": "en:lesson-01:session-49:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — люди за стенкой шумят",
             "feedbackByLocale": {
@@ -602,7 +602,7 @@
           "ru": "Вставьте слово — в офисе в шесть вечера пусто",
           "uk": "Вставте слово — в офісі о шостій вечора порожньо"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ is here.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-49:i11:r1",
@@ -620,7 +620,7 @@
         "testedDimension": "Вставьте слово — в офисе в шесть вечера ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-49:i11:r1",
+            "responseId": "en:lesson-01:session-49:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — в офисе в шесть вечера ",
             "feedbackByLocale": {
@@ -629,7 +629,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-49:i11:r2",
+            "responseId": "en:lesson-01:session-49:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — в офисе в шесть вечера ",
             "feedbackByLocale": {
@@ -825,7 +825,7 @@
         "testedDimension": "Вставьте скрепку — про себя после недели",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-49:i15:r1",
+            "responseId": "en:lesson-01:session-49:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про себя после недели",
             "feedbackByLocale": {
@@ -834,7 +834,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-49:i15:r2",
+            "responseId": "en:lesson-01:session-49:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про себя после недели",
             "feedbackByLocale": {
@@ -919,5 +919,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "37729903055edad37f0f4afa4a7ccbbb647806d118ae51a4258c459ff7323f4c"
+  "learnerFingerprint": "36cfe7d34d8cf21d6b6776738b3a6fbcfb9dc97f90d2e3bb275e244e776361ca"
 }

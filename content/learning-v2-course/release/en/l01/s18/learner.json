@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-18:i02:r1",
+            "responseId": "en:lesson-01:session-18:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — shy",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-18:i02:r2",
+            "responseId": "en:lesson-01:session-18:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — shy",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-18:i04:r1",
+            "responseId": "en:lesson-01:session-18:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — loud",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-18:i04:r2",
+            "responseId": "en:lesson-01:session-18:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — loud",
             "feedbackByLocale": {
@@ -332,7 +332,7 @@
         "testedDimension": "Вставьте слово — парень весь обед просид",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-18:i06:r1",
+            "responseId": "en:lesson-01:session-18:i06:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — парень весь обед просид",
             "feedbackByLocale": {
@@ -341,7 +341,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-18:i06:r2",
+            "responseId": "en:lesson-01:session-18:i06:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — парень весь обед просид",
             "feedbackByLocale": {
@@ -401,7 +401,7 @@
         "testedDimension": "Вставьте слово — про парня, который трет",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-18:i07:r1",
+            "responseId": "en:lesson-01:session-18:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — про парня, который трет",
             "feedbackByLocale": {
@@ -410,7 +410,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-18:i07:r2",
+            "responseId": "en:lesson-01:session-18:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — про парня, который трет",
             "feedbackByLocale": {
@@ -470,7 +470,7 @@
         "testedDimension": "Вставьте скрепку — про женщину",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-18:i08:r1",
+            "responseId": "en:lesson-01:session-18:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про женщину",
             "feedbackByLocale": {
@@ -479,7 +479,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-18:i08:r2",
+            "responseId": "en:lesson-01:session-18:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте скрепку — про женщину",
             "feedbackByLocale": {
@@ -587,7 +587,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-18:i10:r1",
+            "responseId": "en:lesson-01:session-18:i10:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — clever",
             "feedbackByLocale": {
@@ -596,7 +596,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-18:i10:r2",
+            "responseId": "en:lesson-01:session-18:i10:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — clever",
             "feedbackByLocale": {
@@ -850,7 +850,7 @@
         "testedDimension": "Вставьте слово — коллега пересказала ане",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-18:i15:r1",
+            "responseId": "en:lesson-01:session-18:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега пересказала ане",
             "feedbackByLocale": {
@@ -859,7 +859,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-18:i15:r2",
+            "responseId": "en:lesson-01:session-18:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега пересказала ане",
             "feedbackByLocale": {
@@ -1065,7 +1065,7 @@
         "testedDimension": "Вставьте слово — про парня, который за м",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-18:i20:r1",
+            "responseId": "en:lesson-01:session-18:i20:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — про парня, который за м",
             "feedbackByLocale": {
@@ -1074,7 +1074,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-18:i20:r2",
+            "responseId": "en:lesson-01:session-18:i20:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — про парня, который за м",
             "feedbackByLocale": {

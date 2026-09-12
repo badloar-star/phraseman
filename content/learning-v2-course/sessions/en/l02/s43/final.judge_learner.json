@@ -1,0 +1,13 @@
+{
+  "sourceSha256": "557c8f510499df2230f6685de82d0b80c14e9045797d5791e33c2080fd96c445",
+  "deltaOnly": true,
+  "introAnswers": {
+    "intro1": "Are we lost?",
+    "intro2": "Are we sure?",
+    "intro3": "Are we here?"
+  },
+  "confusion": [],
+  "verdict": "PASS",
+  "baselineReview": "owner-tone-before/final.judge_learner.json",
+  "unchangedPracticeVerified": true
+}

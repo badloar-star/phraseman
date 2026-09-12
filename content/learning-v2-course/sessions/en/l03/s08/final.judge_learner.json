@@ -1,0 +1,303 @@
+{
+  "sourceSha256": "db00161c4ed9a596a8aaea24990dd38e9279dff3c1fa1d2f77f4c3f8254e1591",
+  "reviewer": "/root/s08_blind",
+  "introAnswers": [
+    {
+      "step": 1,
+      "answer": "It is a lamp."
+    },
+    {
+      "step": 2,
+      "answer": "Is it a mirror?"
+    },
+    {
+      "step": 3,
+      "answer": "It is not a stool."
+    }
+  ],
+  "practiceAnswers": [
+    {
+      "step": 1,
+      "answer": "a"
+    },
+    {
+      "step": 2,
+      "answer": "It is a mirror."
+    },
+    {
+      "step": 3,
+      "answer": "Is it a chair?"
+    },
+    {
+      "step": 4,
+      "answer": "A basket."
+    },
+    {
+      "step": 5,
+      "answer": "It is a basket."
+    },
+    {
+      "step": 6,
+      "answer": "is"
+    },
+    {
+      "step": 7,
+      "answer": "It is a key."
+    },
+    {
+      "step": 8,
+      "answer": {
+        "lamp": "лампа",
+        "mirror": "зеркало",
+        "chair": "стул",
+        "key": "ключ"
+      }
+    },
+    {
+      "step": 9,
+      "answer": "Is it a chair?"
+    },
+    {
+      "step": 10,
+      "answer": "is"
+    },
+    {
+      "step": 11,
+      "answer": "It is not a lamp."
+    },
+    {
+      "step": 12,
+      "answer": "It is a tag."
+    },
+    {
+      "step": 13,
+      "answer": "It is not a stool."
+    },
+    {
+      "step": 14,
+      "answer": "a"
+    },
+    {
+      "step": 15,
+      "answer": {
+        "stool": "табурет",
+        "door": "дверь",
+        "tag": "бирка",
+        "basket": "корзина"
+      }
+    },
+    {
+      "step": 16,
+      "answer": "Is it a mirror?"
+    },
+    {
+      "step": 17,
+      "answer": "It is a door."
+    }
+  ],
+  "confusion": [
+    "No material confusion. The repeated contrast is clear: declarative uses It is, question uses Is it, and negation adds not after is.",
+    "Step 4 asks for a two-word noun phrase, so A basket. is appropriate rather than a full sentence."
+  ],
+  "retrievalSkillsPracticed": [
+    "a + singular count noun",
+    "It is a + noun",
+    "Is it a + noun?",
+    "It is not a + noun",
+    "known object-word meaning recall",
+    "word-order construction",
+    "Russian-to-English phrase retrieval",
+    "English-to-Russian matching"
+  ],
+  "feltAlive": true,
+  "wouldContinue": true,
+  "verdict": "PASS",
+  "originalVerdict": "PASS — all three intro checks and all 17 practice steps are independently answerable from the text transcript; no new vocabulary is required.",
+  "actualAudioReviewed": false,
+  "reviewScope": "Original blind walkthrough retained: all question/answer and practice bytes independently verified unchanged. Current reordered intro explanations independently reread by reader with PASS. Not a fresh blind rerun.",
+  "priorFullReview": {
+    "sourceSha256": "8165e1af4a4d1d271de2929aaf036f452773c1bc2031324338620d02e6066c17",
+    "reviewer": "/root/s08_blind",
+    "introAnswers": [
+      {
+        "step": 1,
+        "answer": "It is a lamp."
+      },
+      {
+        "step": 2,
+        "answer": "Is it a mirror?"
+      },
+      {
+        "step": 3,
+        "answer": "It is not a stool."
+      }
+    ],
+    "practiceAnswers": [
+      {
+        "step": 1,
+        "answer": "a"
+      },
+      {
+        "step": 2,
+        "answer": "It is a mirror."
+      },
+      {
+        "step": 3,
+        "answer": "Is it a chair?"
+      },
+      {
+        "step": 4,
+        "answer": "A basket."
+      },
+      {
+        "step": 5,
+        "answer": "It is a basket."
+      },
+      {
+        "step": 6,
+        "answer": "is"
+      },
+      {
+        "step": 7,
+        "answer": "It is a key."
+      },
+      {
+        "step": 8,
+        "answer": {
+          "lamp": "лампа",
+          "mirror": "зеркало",
+          "chair": "стул",
+          "key": "ключ"
+        }
+      },
+      {
+        "step": 9,
+        "answer": "Is it a chair?"
+      },
+      {
+        "step": 10,
+        "answer": "is"
+      },
+      {
+        "step": 11,
+        "answer": "It is not a lamp."
+      },
+      {
+        "step": 12,
+        "answer": "It is a tag."
+      },
+      {
+        "step": 13,
+        "answer": "It is not a stool."
+      },
+      {
+        "step": 14,
+        "answer": "a"
+      },
+      {
+        "step": 15,
+        "answer": {
+          "stool": "табурет",
+          "door": "дверь",
+          "tag": "бирка",
+          "basket": "корзина"
+        }
+      },
+      {
+        "step": 16,
+        "answer": "Is it a mirror?"
+      },
+      {
+        "step": 17,
+        "answer": "It is a door."
+      }
+    ],
+    "confusion": [
+      "No material confusion. The repeated contrast is clear: declarative uses It is, question uses Is it, and negation adds not after is.",
+      "Step 4 asks for a two-word noun phrase, so A basket. is appropriate rather than a full sentence."
+    ],
+    "retrievalSkillsPracticed": [
+      "a + singular count noun",
+      "It is a + noun",
+      "Is it a + noun?",
+      "It is not a + noun",
+      "known object-word meaning recall",
+      "word-order construction",
+      "Russian-to-English phrase retrieval",
+      "English-to-Russian matching"
+    ],
+    "feltAlive": true,
+    "wouldContinue": true,
+    "verdict": "PASS",
+    "originalVerdict": "PASS — all three intro checks and all 17 practice steps are independently answerable from the text transcript; no new vocabulary is required.",
+    "actualAudioReviewed": false
+  },
+  "deltaReview": {
+    "sourceSha256": "db00161c4ed9a596a8aaea24990dd38e9279dff3c1fa1d2f77f4c3f8254e1591",
+    "reviewer": "/root/s08_truth",
+    "reviewScope": "delta_only_three_intro_bodies",
+    "verdict": "PASS",
+    "findings": [],
+    "truthDelta": {
+      "intro1": "PASS — a lamp остаётся корректно ограничено данной именной группой; It is правильно добавляется перед ней для полной фразы.",
+      "intro2": "PASS — вопрос с singular it правильно строится как Is it a mirror?",
+      "intro3": "PASS — отрицание правильно строится как It is + not + a stool; ложного правила об артикле нет."
+    },
+    "unchangedEvidence": {
+      "intro1QuestionAnswers": {
+        "exactByteEquivalent": true,
+        "sha256": "55953b9f29d35e79c8e8d6ee2b0719e334edfadc0d1099a081ae7068c1914bd2"
+      },
+      "intro2QuestionAnswers": {
+        "exactByteEquivalent": true,
+        "sha256": "bd75ae24a3bdbe463e0ce84b4da29d363691501f8bd9743892b5de54431fbca3"
+      },
+      "intro3QuestionAnswers": {
+        "exactByteEquivalent": true,
+        "sha256": "8d6a7b2d636a8b5b038565158f7136b97c7c23d8970519184a770500b02fc1ee"
+      },
+      "practiceThroughEof": {
+        "exactByteEquivalent": true,
+        "sha256": "cf99210c0d3de10433ba4e8492d79102caae4f8d6243049cbf1a23996c9ee3e3"
+      }
+    },
+    "draftFinalExactMatch": true,
+    "actualAudioVerified": false,
+    "reviewClaim": "Fresh delta review only; prior full review remains the full-session evidence."
+  },
+  "currentIntroReader": {
+    "sourceSha256": "db00161c4ed9a596a8aaea24990dd38e9279dff3c1fa1d2f77f4c3f8254e1591",
+    "reviewer": "/root/s08_reader",
+    "priorFinding": {
+      "sourceSha256": "8165e1af4a4d1d271de2929aaf036f452773c1bc2031324338620d02e6066c17",
+      "verdict": "BLOCK",
+      "reason": "All three pages showed complete phrases before explaining construction. Reordered before this actual reread."
+    },
+    "pages": [
+      {
+        "page": 1,
+        "retelling": "Чтобы назвать один предмет лампой, перед `lamp` нужно оставить `a`, а для полной фразы добавить `It is`.",
+        "what_i_do_now": "Теперь я скажу `It is a lamp`, сохранив `a` перед `lamp`.",
+        "understood": true,
+        "problems": []
+      },
+      {
+        "page": 2,
+        "retelling": "Если я не уверен, что передо мной зеркало, нужно начать вопрос с `Is it` и сохранить сочетание `a mirror`.",
+        "what_i_do_now": "Теперь я спрошу `Is it a mirror?`.",
+        "understood": true,
+        "problems": []
+      },
+      {
+        "page": 3,
+        "retelling": "Чтобы сказать, что предмет не является табуретом, нужно поставить `not` после `It is` и затем сказать `a stool`.",
+        "what_i_do_now": "Теперь я скажу `It is not a stool`, не убирая `a`.",
+        "understood": true,
+        "problems": []
+      }
+    ],
+    "pages_understood": 3,
+    "verdict": "PASS",
+    "verdict_reason": "Все три страницы понятны после одного чтения: сначала показывается нужное слово, затем объясняется порядок слов, и только после этого появляется полная фраза. На каждой странице я понимаю, что именно нужно сказать иначе."
+  }
+}

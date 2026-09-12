@@ -1,0 +1,14 @@
+{
+  "session": "S36",
+  "sourceSha256": "95dade58bfe157a73a3847ef22b44473ec9ed51790fdbd5ed771e7bb6bd84df6",
+  "verdict": "PASS",
+  "issues": [],
+  "verified": {
+    "deltaLimitedToThreeIntroBodies": true,
+    "whoRequestsIdentificationAndWhereRequestsLocation": true,
+    "heSheListeningDistinctionAccurate": true,
+    "standaloneQuestionWordOrderAccurate": true,
+    "hostMeaningAndWhoIsTheHostFrameAccurate": true,
+    "humourDoesNotDistortMeaningOrGrammar": true
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "sourceSha256": "c390f5b9da85a52bc56906498f12c67a37471cd2b6ee17fe097030f71f432835",
+  "reviewer": "/root/s10_truth",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "verdict": "PASS",
+  "reason": "All four revised lines are truthful, natural, referentially explicit, and consistent with the compiled learner-visible boundary.",
+  "must_fix": [],
+  "baseSha256": "749160656f9f0ceb18c296df4e6141efece3cbb489c60a017e3998a5ed3771fe",
+  "changedLines": 4,
+  "issues": [],
+  "scope": {
+    "priorFullLanguageAndPhoneticReviewRetained": true,
+    "actualAudio": "NOT_REVIEWED"
+  },
+  "correction": "My earlier description of task 12 feedback as conditionally visible was mistaken; phrase-builder and dictation slot feedback is not projected, and the revised self-check now states the correct visible provenance.",
+  "reviewHistory": [
+    {
+      "sourceSha256": "749160656f9f0ceb18c296df4e6141efece3cbb489c60a017e3998a5ed3771fe",
+      "verdict": "PASS",
+      "scope": "Full learner-facing language, definitions, article rules, sound contrasts, keys, feedback and literal referents.",
+      "evidence": [
+        {
+          "claim": "a/an with singular count nouns; no false prohibition of other plural determiners.",
+          "source": "https://dictionary.cambridge.org/grammar/british-grammar/a-an-and-the"
+        },
+        {
+          "claim": "Towel drying cloth/paper; no categorical syllable count.",
+          "source": "https://dictionary.cambridge.org/dictionary/english/towel"
+        },
+        {
+          "claim": "Curtain window/opening; central stressed vowel contrasted with more open back carton vowel.",
+          "source": "https://dictionary.cambridge.org/dictionary/english/curtain"
+        },
+        {
+          "claim": "Pillow soft head support in bed; p/w and pɪ/je contrasts accurate.",
+          "source": "https://dictionary.cambridge.org/pronunciation/english/pillow"
+        }
+      ],
+      "limitation": "Initial conditional-feedback description was later withdrawn: slotFeedback is never learner-visible in dictation/builders."
+    },
+    {
+      "sourceSha256": "749160656f9f0ceb18c296df4e6141efece3cbb489c60a017e3998a5ed3771fe",
+      "verdict": "REVISE_SELF_CHECK_ONLY",
+      "finding": "перевод формы нескольких в разборе диктовки 12 relies on unprojected slotFeedback.",
+      "grounding": "PASS: visible singular card/recognition/use plus known plural and positive dictation target before board."
+    }
+  ]
+}

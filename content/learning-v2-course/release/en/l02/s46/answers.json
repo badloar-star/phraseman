@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-46:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i02",
+    "correctText": "audible",
+    "correctResponseId": "en:lesson-02:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i04",
+    "correctText": "clear",
+    "correctResponseId": "en:lesson-02:session-46:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i05",
+    "correctText": "Am I audible?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i06",
+    "correctText": "clear",
+    "correctResponseId": "en:lesson-02:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i07",
+    "correctText": "Am I clear?",
+    "correctResponseId": "en:lesson-02:session-46:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i08",
+    "correctText": "I am not sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i09",
+    "correctText": "ready",
+    "correctResponseId": "en:lesson-02:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i11",
+    "correctText": "You are clear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i12",
+    "correctText": "Am",
+    "correctResponseId": "en:lesson-02:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i13",
+    "correctText": "We are not ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i14",
+    "correctText": "ready",
+    "correctResponseId": "en:lesson-02:session-46:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i15",
+    "correctText": "You are clear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i16",
+    "correctText": "I am ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-46:i17",
+    "correctText": "Am I clear?",
+    "correctResponseId": null
+  }
+]

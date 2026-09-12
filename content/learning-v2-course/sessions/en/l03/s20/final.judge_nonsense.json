@@ -1,0 +1,106 @@
+{
+  "sourceSha256": "0b8ee756248840a8741a87265eab930e0dd0634c49063b178a52092f5d84a5c8",
+  "reviewer": "/root/s10_truth",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "claims": {
+    "definitionsAndGlosses": "PASS",
+    "singularPluralForms": "PASS",
+    "syllableClaims": "PASS",
+    "phoneticContrasts": "PASS",
+    "introTitleQuestionAlignment": "PASS",
+    "answerAndFeedbackSemantics": "PASS",
+    "listeningPromptNeutrality": "PASS",
+    "naturalEnglish": "PASS",
+    "scopeOfRule": "PASS",
+    "actualAudio": "NOT_REVIEWED"
+  },
+  "evidence": [
+    {
+      "claim": "For the three named pairs, glass/glasses, brush/brushes, and bench/benches change from one syllable to two through the plural ending /ɪz/.",
+      "source": "https://dictionary.cambridge.org/grammar/british-grammar/nouns-form"
+    },
+    {
+      "claim": "glass means a drinking vessel in the stated context; class and grass have the documented /kl/ and /ɡr/ onsets against /ɡl/.",
+      "source": "https://dictionary.cambridge.org/dictionary/english/glass"
+    },
+    {
+      "claim": "brush is a physical tool with bristles; brush, blush, and crush are distinguished by /br/, /bl/, and /kr/.",
+      "source": "https://dictionary.cambridge.org/pronunciation/english/brush"
+    },
+    {
+      "claim": "bench is a long, usually hard seat; bunch differs in its vowel and drench in its onset.",
+      "source": "https://dictionary.cambridge.org/dictionary/english/bench"
+    },
+    {
+      "claim": "box and fox share the post-onset sequence and differ initially, while boxes has two syllables.",
+      "source": "https://dictionary.cambridge.org/pronunciation/english/box"
+    }
+  ],
+  "issues": [],
+  "verdict": "PASS",
+  "reason": "Actual final truth delta PASS: T16 now has two explicit countable referents; English is grammatical, true and unambiguous. Prior full language, meaning, phonetic and listening-neutrality scope retained; no audio reviewed.",
+  "reviewHistory": [
+    {
+      "sourceSha256": "ed5e6b4ee17b2d9ceddb68c7be885b12f38349de9487fa915448a263a63176bb",
+      "reviewer": "/root/s10_truth",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "medium",
+      "claims": {
+        "definitionsAndGlosses": "PASS",
+        "singularPluralForms": "PASS",
+        "syllableClaims": "PASS",
+        "phoneticContrasts": "PASS",
+        "introTitleQuestionAlignment": "PASS",
+        "answerAndFeedbackSemantics": "PASS",
+        "listeningPromptNeutrality": "PASS",
+        "naturalEnglish": "PASS",
+        "scopeOfRule": "PASS",
+        "actualAudio": "NOT_REVIEWED"
+      },
+      "evidence": [
+        {
+          "claim": "For the three named pairs, glass/glasses, brush/brushes, and bench/benches change from one syllable to two through the plural ending /ɪz/.",
+          "source": "https://dictionary.cambridge.org/grammar/british-grammar/nouns-form"
+        },
+        {
+          "claim": "glass means a drinking vessel in the stated context; class and grass have the documented /kl/ and /ɡr/ onsets against /ɡl/.",
+          "source": "https://dictionary.cambridge.org/dictionary/english/glass"
+        },
+        {
+          "claim": "brush is a physical tool with bristles; brush, blush, and crush are distinguished by /br/, /bl/, and /kr/.",
+          "source": "https://dictionary.cambridge.org/pronunciation/english/brush"
+        },
+        {
+          "claim": "bench is a long, usually hard seat; bunch differs in its vowel and drench in its onset.",
+          "source": "https://dictionary.cambridge.org/dictionary/english/bench"
+        },
+        {
+          "claim": "box and fox share the post-onset sequence and differ initially, while boxes has two syllables.",
+          "source": "https://dictionary.cambridge.org/pronunciation/english/box"
+        }
+      ],
+      "issues": [],
+      "verdict": "PASS",
+      "reason": "Every English and Russian language claim, definition, sound cue, keyed answer, and feedback explanation is accurate within the stated contexts; the listening instructions remain neutral, and the extra-syllable rule is explicitly limited to the three taught pairs."
+    }
+  ],
+  "actualDelta": {
+    "sourceSha256": "0b8ee756248840a8741a87265eab930e0dd0634c49063b178a52092f5d84a5c8",
+    "priorSha256": "ed5e6b4ee17b2d9ceddb68c7be885b12f38349de9487fa915448a263a63176bb",
+    "editedSha256": "e31c18d928576f5a9d5bb4f624742d57c4f41665c66b2631e814412b28125a10",
+    "changedLines": [
+      29,
+      31,
+      76,
+      99,
+      122
+    ],
+    "finalChangedLines": [
+      122
+    ],
+    "verdict": "PASS",
+    "fullPriorScopeRetained": true,
+    "intermediateVerdict": "Initial e31c PASS withdrawn after literal referent check; REVISE for singular bag and collective посуда. Final exact suggested two-glasses correction independently verified PASS."
+  }
+}

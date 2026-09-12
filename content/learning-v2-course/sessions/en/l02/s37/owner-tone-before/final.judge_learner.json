@@ -1,0 +1,76 @@
+{
+  "introanswers": {
+    "1": "Who is he?",
+    "2": "Whose is it?",
+    "3": "Who are these people?"
+  },
+  "walkthroughanswers": {
+    "1": "Whose is it?",
+    "2": "Who",
+    "3": "Who is he?",
+    "4": "strangers",
+    "5": "They are strangers.",
+    "6": "Whose",
+    "7": "twins",
+    "8": "We are not twins.",
+    "9": "sure",
+    "10": {
+      "sure": "уверен",
+      "twins": "близнецы",
+      "host": "хозяин вечера",
+      "strangers": "незнакомцы"
+    },
+    "11": "Who are these people?",
+    "12": "Who are these people?",
+    "13": "Is he the host?",
+    "14": "is",
+    "15": "Who is she?",
+    "16": "Where is the host?",
+    "17": "Whose is it?"
+  },
+  "learned_new": [
+    "contrast: Who asks for a person's identity; Whose asks who owns an item.",
+    "transfer: plural people use Who are these people?, while ownership remains Whose is it?.",
+    "fluency: the two spoken prompts provide text-based repetition targets; actual audio comparison was not tested."
+  ],
+  "impossible_tasks": [],
+  "ambiguous_tasks": [],
+  "verdict": "PASS",
+  "reason": "All three intro checks and all 17 practice tasks have one contextually correct response using visible controls.",
+  "sourceSha256": "ad0183db5fd0a3fe68020a2dcd9312139bf303bb59b21c68385a0632083b86d5",
+  "reviewedAt": "2026-09-08T09:54:00.828025+00:00",
+  "reviewMethod": "builtin_codex_independent_role_with_targeted_delta_review",
+  "deltaReview": {
+    "16": "Where is the host?",
+    "final17": "Whose is it?",
+    "prior_answers_still_valid": true,
+    "final17_independently_answerable": true,
+    "verdict": "PASS",
+    "reason": "Task 16 now asks for the host's location. Task 17 still has the visible tiles needed to assemble the contextually correct ownership question."
+  },
+  "previousSourceSha256": "b401b25161766921b8072362f4b463739ba0514c7b6d6ac0e9ef8ddc5c796145",
+  "listeningRepairReview": {
+    "verdict": "PASS",
+    "items": [
+      {
+        "session": 37,
+        "task": 4,
+        "answer": "strangers",
+        "prompt_leaks_answer": false,
+        "text_solvable": true,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      },
+      {
+        "session": 37,
+        "task": 7,
+        "answer": "twins",
+        "prompt_leaks_answer": false,
+        "text_solvable": true,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      }
+    ],
+    "scope": "Text-only review of prompt, supplied transcript, and options. No audio-quality or playback assessment; no future-word knowledge assumed."
+  }
+}

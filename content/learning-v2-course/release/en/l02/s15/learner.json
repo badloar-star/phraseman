@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-15:i02:r1",
+            "responseId": "en:lesson-02:session-15:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — elegant",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-15:i02:r2",
+            "responseId": "en:lesson-02:session-15:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — elegant",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-15:i04:r1",
+            "responseId": "en:lesson-02:session-15:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — plain",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-15:i04:r2",
+            "responseId": "en:lesson-02:session-15:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — plain",
             "feedbackByLocale": {
@@ -375,7 +375,7 @@
         "testedDimension": "Вставьте слово — мужчина в костюме, кото",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-15:i07:r1",
+            "responseId": "en:lesson-02:session-15:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — мужчина в костюме, кото",
             "feedbackByLocale": {
@@ -384,7 +384,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-15:i07:r2",
+            "responseId": "en:lesson-02:session-15:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — мужчина в костюме, кото",
             "feedbackByLocale": {
@@ -474,7 +474,7 @@
         "testedDimension": "Вставьте слово — в зале ни одного свобод",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-15:i09:r1",
+            "responseId": "en:lesson-02:session-15:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — в зале ни одного свобод",
             "feedbackByLocale": {
@@ -483,7 +483,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-15:i09:r2",
+            "responseId": "en:lesson-02:session-15:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — в зале ни одного свобод",
             "feedbackByLocale": {
@@ -535,7 +535,7 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «про",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-15:i10:r1",
+            "responseId": "en:lesson-02:session-15:i10:r2",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «про",
             "feedbackByLocale": {
@@ -595,7 +595,7 @@
         "testedDimension": "Вставьте слово — за столиком мужчина, на",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-15:i11:r1",
+            "responseId": "en:lesson-02:session-15:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — за столиком мужчина, на",
             "feedbackByLocale": {
@@ -604,7 +604,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-15:i11:r2",
+            "responseId": "en:lesson-02:session-15:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — за столиком мужчина, на",
             "feedbackByLocale": {
@@ -813,7 +813,7 @@
         "testedDimension": "Вставьте слово — музыка играет так, что ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-15:i15:r1",
+            "responseId": "en:lesson-02:session-15:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — музыка играет так, что ",
             "feedbackByLocale": {
@@ -822,7 +822,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-15:i15:r2",
+            "responseId": "en:lesson-02:session-15:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — музыка играет так, что ",
             "feedbackByLocale": {
@@ -912,7 +912,7 @@
         "testedDimension": "Вставьте слово — спутник третий раз тяне",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-15:i17:r1",
+            "responseId": "en:lesson-02:session-15:i17:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник третий раз тяне",
             "feedbackByLocale": {
@@ -921,7 +921,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-15:i17:r2",
+            "responseId": "en:lesson-02:session-15:i17:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — спутник третий раз тяне",
             "feedbackByLocale": {

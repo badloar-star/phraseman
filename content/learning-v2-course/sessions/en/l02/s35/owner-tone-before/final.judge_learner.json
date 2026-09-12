@@ -1,0 +1,115 @@
+{
+  "introAnswers": [
+    "Whose is it?",
+    "Whose is it?",
+    "Whose is it?"
+  ],
+  "taskAnswers": [
+    {
+      "task": 1,
+      "answer": "Whose is it?"
+    },
+    {
+      "task": 2,
+      "answer": "Whose"
+    },
+    {
+      "task": 3,
+      "answer": "Whose is it?"
+    },
+    {
+      "task": 4,
+      "answer": "wet"
+    },
+    {
+      "task": 5,
+      "answer": "It is wet."
+    },
+    {
+      "task": 6,
+      "answer": "sure"
+    },
+    {
+      "task": 7,
+      "answer": "host"
+    },
+    {
+      "task": 8,
+      "answer": "Where is the host?"
+    },
+    {
+      "task": 9,
+      "answer": "is"
+    },
+    {
+      "task": 10,
+      "answer": [
+        "host — хозяин вечера",
+        "sure — уверен",
+        "wet — мокрый",
+        "here — здесь"
+      ]
+    },
+    {
+      "task": 11,
+      "answer": "here"
+    },
+    {
+      "task": 12,
+      "answer": "I am not sure."
+    },
+    {
+      "task": 13,
+      "answer": "Is it wet?"
+    },
+    {
+      "task": 14,
+      "answer": "The host is here."
+    },
+    {
+      "task": 15,
+      "answer": "Whose is it?"
+    },
+    {
+      "task": 16,
+      "answer": "Is he here?"
+    },
+    {
+      "task": 17,
+      "answer": "Whose is it?"
+    }
+  ],
+  "ambiguousTasks": [],
+  "learnedSummary": "Whose is it? значит «Чьё это?»; порядок слов: Whose + is + it. Также повторены слова host, sure, wet, here и знакомые вопросы с is.",
+  "verdict": "PASS",
+  "verdict_reason": "Все три интро-вопроса и 17 заданий имеют один однозначный ответ среди доступных вариантов или плиток.",
+  "sourceSha256": "c99987db83f110957ac93e2194084f296727e4d9f67d264d4cca00529fee1fcf",
+  "reviewedAt": "2026-09-08T09:01:01.166769+00:00",
+  "reviewMethod": "builtin_codex_independent_role",
+  "reviewedScope": "full_session",
+  "previousSourceSha256": "7a6c5c1b602ec19aaf1f85c9c83bc9cb5e6143555bddb8477aebbdaf13648d0b",
+  "listeningRepairReview": {
+    "verdict": "PASS",
+    "items": [
+      {
+        "session": 35,
+        "task": 4,
+        "answer": "wet",
+        "prompt_leaks_answer": false,
+        "text_solvable": true,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      },
+      {
+        "session": 35,
+        "task": 7,
+        "answer": "host",
+        "prompt_leaks_answer": false,
+        "text_solvable": true,
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      }
+    ],
+    "scope": "Text-only review of prompt, supplied transcript, and options. No audio-quality or playback assessment; no future-word knowledge assumed."
+  }
+}

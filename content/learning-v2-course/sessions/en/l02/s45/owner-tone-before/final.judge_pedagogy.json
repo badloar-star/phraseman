@@ -1,0 +1,55 @@
+{
+  "sourceSha256": "fd65a613457ba0361cccb09ffd7b8a2b24e780c5e23bf454e09623ca4aecd59a",
+  "delta": {
+    "task_5": {
+      "prompt_clear": true,
+      "uniquely_supports": "Am I late?",
+      "awkward_self_reference_removed": true
+    },
+    "task_10": {
+      "prompt_clear": true,
+      "uniquely_supports": "I am here.",
+      "location_exchange_natural": true
+    },
+    "neighbor_contexts": {
+      "task_11_friend_returns_and_unpacks": "coherent",
+      "task_17_teacher_confirms_start_time": "unaffected",
+      "final_independence_preserved": true
+    },
+    "answers_and_structure_unchanged": true
+  },
+  "issues": [],
+  "verdict": "PASS",
+  "verdict_reason": "Обе формулировки стали яснее, естественно продолжают сцену и не меняют смысл соседних заданий или самостоятельность финала.",
+  "priorReviews": [
+    {
+      "sourceSha256": "f0405e8292d134e2161333a0a310697db54802e7258ba3e5ce2e53a406e8609a",
+      "counts": {
+        "tasks": 17,
+        "modes": 17,
+        "builders": 6,
+        "intro_lengths": [
+          252,
+          249,
+          259
+        ],
+        "unknown_items": 0
+      },
+      "checks": {
+        "neutral_am_i_vs_i_am_contrast_accurate": true,
+        "surprised_echo_i_am_late_allowed": true,
+        "prerequisites_respected": true,
+        "answers_unique": true,
+        "listening_prompts_neutral": true,
+        "scene_coherent": true,
+        "return_contacts_and_glosses_sufficient": true,
+        "speed_match_uses_known_words": true,
+        "support_fades": true,
+        "final_question_to_answer_transition_independent": true
+      },
+      "issues": [],
+      "verdict": "PASS",
+      "verdict_reason": "S45 точно различает нейтральный вопрос и сообщение, не объявляет разговорный переспрос ошибкой, сохраняет однозначные ситуации и завершает практику самостоятельным сообщением после полученного ответа."
+    }
+  ]
+}

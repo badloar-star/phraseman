@@ -1,0 +1,131 @@
+{
+  "sourceSha256": "20a9aafd2d1cd8d6cf3cc227413faf304314cd13c2b2a5cd85fea157aa9357fc",
+  "reviewer": "/root/s10_pedagogy",
+  "model": "gpt-5.6-terra",
+  "reasoningEffort": "medium",
+  "verdict": "PASS",
+  "verdict_reason": "Full initial pedagogy PASS retained after actual one-line delta review; initial scope concern withdrawn after literal whole-paragraph assessment. All task choices and sequence unchanged.",
+  "answer_semantics": [],
+  "substitution_evidence": [
+    "Intro1/T5 several bottles: They are bottles; singular and a-plural fail.",
+    "Intro2/T6 two bowls: They are bowls; singular alternatives fail.",
+    "Intro3/T9 closed expected set: Are they plates? is genuine plural question.",
+    "T10/T15 two serving dishes, correct dishes; T12 one bottle a bottle; T13 plates; T16 a bowl; T17 two bowls They are bowls."
+  ],
+  "grounding": {
+    "dish_visible_correct_contacts": [
+      10,
+      14,
+      15
+    ],
+    "hiddenFeedbackCounted": false,
+    "wordFirst": {
+      "bottle": [
+        1,
+        2,
+        5
+      ],
+      "bowl": [
+        3,
+        4,
+        6
+      ],
+      "plate": [
+        7,
+        8,
+        9
+      ]
+    },
+    "boardGrounded": true
+  },
+  "builders": [
+    5,
+    9,
+    11,
+    17
+  ],
+  "sameSkeletonMax": 2,
+  "finalIndependent": true,
+  "scope": "Known plural and article forms, no new countability/list rule",
+  "audioPromptsNeutral": [
+    2,
+    4,
+    8,
+    11
+  ],
+  "actualAudio": "NOT_REVIEWED",
+  "remainingIssues": [],
+  "reviewHistory": [
+    {
+      "sourceSha256": "7394bfc8283282acfec8f9445347514911541c003a5066c9c2ec576039a3412b",
+      "reviewer": "/root/s10_pedagogy",
+      "model": "gpt-5.6-terra",
+      "reasoningEffort": "medium",
+      "verdict": "PASS",
+      "verdict_reason": "S22 cleanly transfers established singular/plural frames to grounded kitchen-delivery objects, with accurate novelty treatment for plate, three visible serving-dish contacts, neutral listening prompts, and an independent final builder.",
+      "answer_semantics": [],
+      "substitution_evidence": [
+        "Intro1/T5 several bottles: They are bottles; singular and a-plural fail.",
+        "Intro2/T6 two bowls: They are bowls; singular alternatives fail.",
+        "Intro3/T9 closed expected set: Are they plates? is genuine plural question.",
+        "T10/T15 two serving dishes, correct dishes; T12 one bottle a bottle; T13 plates; T16 a bowl; T17 two bowls They are bowls."
+      ],
+      "grounding": {
+        "dish_visible_correct_contacts": [
+          10,
+          14,
+          15
+        ],
+        "hiddenFeedbackCounted": false,
+        "wordFirst": {
+          "bottle": [
+            1,
+            2,
+            5
+          ],
+          "bowl": [
+            3,
+            4,
+            6
+          ],
+          "plate": [
+            7,
+            8,
+            9
+          ]
+        },
+        "boardGrounded": true
+      },
+      "builders": [
+        5,
+        9,
+        11,
+        17
+      ],
+      "sameSkeletonMax": 2,
+      "finalIndependent": true,
+      "scope": "Known plural and article forms, no new countability/list rule",
+      "audioPromptsNeutral": [
+        2,
+        4,
+        8,
+        11
+      ],
+      "actualAudio": "NOT_REVIEWED",
+      "remainingIssues": []
+    },
+    {
+      "sourceSha256": "20a9aafd2d1cd8d6cf3cc227413faf304314cd13c2b2a5cd85fea157aa9357fc",
+      "verdict": "REVISE",
+      "finding": "Possible universal -s rule in isolated second sentence."
+    }
+  ],
+  "deltaReview": {
+    "changedLines": [
+      15
+    ],
+    "verdict": "PASS",
+    "full_scope_retained": true,
+    "reassessment": "Withdrawn as a required finding. In the full paragraph, Для нескольких is ordinary ellipsis referring to the immediately named bottle/bottles pair; no universal plural rule is asserted."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "5de3323ec67604c19569355b98d01f5a79ac7a5d4bfd52d17df059237ae7aeee",
+  "localeSha256": {
+    "uk": "59661c20453c4d47a25065c5fed2289fdd2583a34daf0d9132f007814118155b"
+  },
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "sourceSha256": {
+        "ru": "5de3323ec67604c19569355b98d01f5a79ac7a5d4bfd52d17df059237ae7aeee",
+        "uk": "59661c20453c4d47a25065c5fed2289fdd2583a34daf0d9132f007814118155b"
+      },
+      "issues": [],
+      "verifiedDelta": "Задания 15 и 17 теперь однозначно задают нейтральные вопросы `Are we rude?` и `Am I rude?`. Это локальное уточнение данных контекстов и не утверждает общего запрета на украинскую конструкцию `чи не`."
+    }
+  },
+  "priorReviews": [
+    {
+      "verdict": "REVISE",
+      "sourceSha256": {
+        "ru": "5de3323ec67604c19569355b98d01f5a79ac7a5d4bfd52d17df059237ae7aeee",
+        "uk": "4ab73e42e18e5d79c4a4213187f5286fc827ae12c75d8c7fc0a7e24d5abd2538"
+      },
+      "issues": [
+        {
+          "locations": [
+            "Task 15 prompt",
+            "Task 17 prompt"
+          ],
+          "problem": "Украинское `чи не…` допускает отрицательное прочтение «разве мы/я не грубые?», тогда как `Are we rude?` и `Am I rude?` — нейтральные вопросы без `not`.",
+          "exactFixes": [
+            "`запитайте, чи не грубі ви` → `запитайте, чи ви грубі`",
+            "`попросіть друга оцінити, чи не здаєтеся ви грубою людиною` → `попросіть друга оцінити, чи здаєтеся ви грубою людиною`"
+          ]
+        }
+      ],
+      "passed": {
+        "nativeUkrainianOtherwise": true,
+        "sceneAndAddressees": true,
+        "task12Neutral": true,
+        "task16SorryGlossVisible": true,
+        "futureProgressiveClaim": false,
+        "introLengths": [
+          254,
+          250,
+          265
+        ],
+        "audioQuality": "not assessed"
+      }
+    }
+  ],
+  "authorModel": "gpt-5.6-sol high",
+  "revisionCount": 1,
+  "scope": "Independent native text review; actual audio and browser not assessed"
+}

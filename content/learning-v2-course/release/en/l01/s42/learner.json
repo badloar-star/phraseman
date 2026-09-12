@@ -99,7 +99,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-42:i02:r1",
+            "responseId": "en:lesson-01:session-42:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — great",
             "feedbackByLocale": {
@@ -108,7 +108,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-42:i02:r2",
+            "responseId": "en:lesson-01:session-42:i02:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — great",
             "feedbackByLocale": {
@@ -218,7 +218,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-42:i04:r1",
+            "responseId": "en:lesson-01:session-42:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — awful",
             "feedbackByLocale": {
@@ -227,7 +227,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-42:i04:r2",
+            "responseId": "en:lesson-01:session-42:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — awful",
             "feedbackByLocale": {
@@ -366,7 +366,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-42:i07:r1",
+            "responseId": "en:lesson-01:session-42:i07:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — gone",
             "feedbackByLocale": {
@@ -375,7 +375,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-42:i07:r2",
+            "responseId": "en:lesson-01:session-42:i07:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — gone",
             "feedbackByLocale": {
@@ -437,7 +437,7 @@
         "testedDimension": "Вставьте слово — начальник в баре всем п",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-42:i08:r1",
+            "responseId": "en:lesson-01:session-42:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — начальник в баре всем п",
             "feedbackByLocale": {
@@ -446,7 +446,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-42:i08:r2",
+            "responseId": "en:lesson-01:session-42:i08:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — начальник в баре всем п",
             "feedbackByLocale": {
@@ -506,7 +506,7 @@
         "testedDimension": "Вставьте значок — «она тихая»",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-42:i09:r1",
+            "responseId": "en:lesson-01:session-42:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте значок — «она тихая»",
             "feedbackByLocale": {
@@ -515,7 +515,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-42:i09:r2",
+            "responseId": "en:lesson-01:session-42:i09:r3",
             "correct": false,
             "testedDimension": "Вставьте значок — «она тихая»",
             "feedbackByLocale": {
@@ -681,7 +681,7 @@
         "testedDimension": "Вставьте слово — вы обернулись, а стул д",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-42:i12:r1",
+            "responseId": "en:lesson-01:session-42:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы обернулись, а стул д",
             "feedbackByLocale": {
@@ -690,7 +690,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-42:i12:r2",
+            "responseId": "en:lesson-01:session-42:i12:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — вы обернулись, а стул д",
             "feedbackByLocale": {
@@ -813,7 +813,7 @@
         "testedDimension": "Вставьте слово — на улице ливень, вы заб",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-42:i15:r1",
+            "responseId": "en:lesson-01:session-42:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — на улице ливень, вы заб",
             "feedbackByLocale": {
@@ -822,7 +822,7 @@
             }
           },
           {
-            "responseId": "en:lesson-01:session-42:i15:r2",
+            "responseId": "en:lesson-01:session-42:i15:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — на улице ливень, вы заб",
             "feedbackByLocale": {

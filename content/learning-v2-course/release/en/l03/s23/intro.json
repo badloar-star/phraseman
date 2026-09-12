@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "извлечение форм одного и нескольких предметов: `a spoon`, `spoons`, `a fork`, `forks`, `a cup`, `cups`; знакомые `It is a`, `They are`, `Are they`, `They are not`",
+    "uk": "пригадуємо форми одного й кількох предметів: `a spoon`, `spoons`, `a fork`, `forks`, `a cup`, `cups`; знайомі `It is a`, `They are`, `Are they`, `They are not`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ложка или ложки",
+        "uk": "Ложка чи ложки"
+      },
+      "bodyByLocale": {
+        "ru": "`spoon` — «ложка», `spoons` — «ложки». Одну ложку называем `It is a spoon` — «Это ложка»: перед названием стоит `a`. Несколько — `They are spoons`, «Это ложки». Чтобы перейти от одной ложки к нескольким, меняем всю фразу, а не только добавляем `s`.",
+        "uk": "`spoon` — «ложка», `spoons` — «ложки». Одну ложку називаємо `It is a spoon` — «Це ложка»: перед назвою стоїть `a`. Кілька — `They are spoons`, «Це ложки». Переходячи від однієї ложки до кількох, змінюємо всю фразу, а не лише додаємо `s`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг открывает ящик и спрашивает, что вы распаковали. У вас одна ложка. Скажите: «Это ложка».",
+          "uk": "Друг відчиняє шухляду й питає, що ви розпакували. У вас одна ложка. Скажіть: «Це ложка»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-23:intro1:r1",
+              "text": "It is a spoon."
+            },
+            {
+              "responseId": "en:lesson-03:session-23:intro1:r2",
+              "text": "It is spoon."
+            },
+            {
+              "responseId": "en:lesson-03:session-23:intro1:r3",
+              "text": "It is a spoons."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-23:intro1:r1",
+              "text": "It is a spoon."
+            },
+            {
+              "responseId": "en:lesson-03:session-23:intro1:r2",
+              "text": "It is spoon."
+            },
+            {
+              "responseId": "en:lesson-03:session-23:intro1:r3",
+              "text": "It is a spoons."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг открывает ящик и спрашивает, что вы распаковали. У вас одна ложка. Скажите: «Это ложка».",
+          "uk": "Друг відчиняє шухляду й питає, що ви розпакували. У вас одна ложка. Скажіть: «Це ложка»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что в свёртке",
+        "uk": "Що у пакунку"
+      },
+      "bodyByLocale": {
+        "ru": "`fork` — «вилка», `forks` — «вилки». Несколько вилок называем `They are forks` — «Это вилки». Если нужно уточнить название, начало меняется на `Are they`: `Are they forks?` — «Это вилки?» Вопрос о нескольких предметах сохраняет форму `forks`.",
+        "uk": "`fork` — «виделка», `forks` — «виделки». Кілька виделок називаємо `They are forks` — «Це виделки». Якщо треба уточнити назву, початок змінюється на `Are they`: `Are they forks?` — «Це виделки?» Питання про кілька предметів зберігає форму `forks`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг держит свёрток с несколькими столовыми приборами, но бумагу ещё не снял. Уточните: «Это вилки?»",
+          "uk": "Друг тримає пакунок із кількома предметами столового приладдя, але папір ще не зняв. Уточніть: «Це виделки?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-23:intro2:r1",
+              "text": "Are they forks?"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:intro2:r2",
+              "text": "Are they fork?"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:intro2:r3",
+              "text": "Is they forks?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-23:intro2:r1",
+              "text": "Are they forks?"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:intro2:r2",
+              "text": "Are they fork?"
+            },
+            {
+              "responseId": "en:lesson-03:session-23:intro2:r3",
+              "text": "Is they forks?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг держит свёрток с несколькими столовыми приборами, но бумагу ещё не снял. Уточните: «Это вилки?»",
+          "uk": "Друг тримає пакунок із кількома предметами столового приладдя, але папір ще не зняв. Уточніть: «Це виделки?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сколько чашек",
+        "uk": "Скільки чашок"
+      },
+      "bodyByLocale": {
+        "ru": "`cup` — «чашка», `cups` — «чашки». Одна чашка в полной фразе — `It is a cup`, «Это чашка». Несколько — `They are cups`, «Это чашки». В этой фразе перед `cups` слово `a` не ставим: оно относится к названию одной чашки. Для нескольких остаётся `cups`.",
+        "uk": "`cup` — «чашка», `cups` — «чашки». Одна чашка в повній фразі — `It is a cup`, «Це чашка». Кілька — `They are cups`, «Це чашки». Перед `cups` у цій фразі `a` не ставимо: воно стосується назви однієї чашки. Для кількох лишається `cups`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг освобождает полку и спрашивает, что вы будете туда ставить. Перед вами несколько чашек. Назовите их: «Это чашки».",
+          "uk": "Друг звільняє полицю й питає, що ви туди поставите. Перед вами кілька чашок. Назвіть їх: «Це чашки»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-23:intro3:r1",
+              "text": "They are cups."
+            },
+            {
+              "responseId": "en:lesson-03:session-23:intro3:r2",
+              "text": "They are cup."
+            },
+            {
+              "responseId": "en:lesson-03:session-23:intro3:r3",
+              "text": "They are a cups."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-23:intro3:r1",
+              "text": "They are cups."
+            },
+            {
+              "responseId": "en:lesson-03:session-23:intro3:r2",
+              "text": "They are cup."
+            },
+            {
+              "responseId": "en:lesson-03:session-23:intro3:r3",
+              "text": "They are a cups."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг освобождает полку и спрашивает, что вы будете туда ставить. Перед вами несколько чашек. Назовите их: «Это чашки».",
+          "uk": "Друг звільняє полицю й питає, що ви туди поставите. Перед вами кілька чашок. Назвіть їх: «Це чашки»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a42221784a3427fd07af7e7c945431df418e48c2848451d27300fb2e7ed3632a"
+}

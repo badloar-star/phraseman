@@ -1,0 +1,43 @@
+{
+  "sourceSha256": "3f0c5b6ecc21cd4d5505bea97549bbee0e4bda8ef1c1ed3a13623599977aa9a6",
+  "verdict": "PASS",
+  "reviewScope": "L3S2/L3S3 phonetic feedback delta only; prior full reviews retained, not rerun",
+  "actualReceipt": "content/learning-v2-course/judgements/2026-09-09_l03_s02_s03_phonetic_delta.json",
+  "priorFullReview": {
+    "sourceSha256": "45a29f88af55d12f0eca4f40f28a2b01cf5e3b5a3fcee62af225f1c379ef1f15",
+    "verdict": "PASS",
+    "must_fix": [],
+    "evidence": [
+      "Определения корректны: stool — табурет/сиденье на ножках, обычно без спинки; mirror — зеркало; rug — коврик или небольшой участок напольного покрытия.",
+      "Правило про a явно ограничено называнием одного исчисляемого предмета в конструкции It is a + noun; текст не вводит ложного всеобщего запрета и верно объясняет, что a не означает единственность предмета и не обязано отдельно переводиться русским «один».",
+      "Контраст stool /stuːl/, school /skuːl/, spool /spuːl/ корректно различён вторым согласным /t/, /k/, /p/; омофонов нет.",
+      "Контраст mirror /ˈmɪr-/, minor /ˈmaɪn-/, merry /ˈmɛr-/ корректно различён первым гласным; формулировки «ай», ближе к «и» и ближе к «э» достаточны как сравнительные подсказки, а не ложная транскрипция.",
+      "Контраст rug /rʌɡ/, bug /bʌɡ/, mug /mʌɡ/ корректно различён начальными /r/, /b/, /m/; омофонов нет.",
+      "Фрагмент A stool допустим как запрошенное короткое двухсловное название; остальные правильные ответы и разборы ошибок грамматически и семантически согласованы с указанным намерением.",
+      "Текст не заявляет, что фактические аудиозаписи проверены; вывод относится только к заданным словам и их нормативным фонетическим контрастам."
+    ]
+  },
+  "deltaReview": {
+    "session": "s03",
+    "baseHashes": {
+      "ru": "45a29f88af55d12f0eca4f40f28a2b01cf5e3b5a3fcee62af225f1c379ef1f15",
+      "uk": "2469b72e5c687621a41f501bb4684fafe2b8935447b2880ecd0823fea5004340"
+    },
+    "currentHashes": {
+      "ru": "3f0c5b6ecc21cd4d5505bea97549bbee0e4bda8ef1c1ed3a13623599977aa9a6",
+      "uk": "80cdd3d2a2e304b25866bc1ce66a4873ee5a611653bd8f9095fbfc266935ede7"
+    },
+    "diffReviewed": "Two bug/rug and mug/rug feedback lines in each locale",
+    "rolesCovered": {
+      "reader": "PASS",
+      "pedagogy": "PASS",
+      "nonsense": "PASS",
+      "taste": "PASS",
+      "native": "PASS"
+    },
+    "englishAnswersInvariant": true,
+    "contractEvidence": "9 intro choices, 32 practice-contract items unchanged; RU/UK 121 backtick spans identical in order",
+    "tasteEvidence": "Intro and humor unchanged; all prior humor.examples and best_lines remain exact source substrings",
+    "retainPriorFullTaste": true
+  }
+}

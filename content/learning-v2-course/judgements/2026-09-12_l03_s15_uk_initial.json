@@ -1,0 +1,66 @@
+{
+  "sourceSha256": "7b600965938751fb67aa28fbec100362036023dc365b07ae7c38883ab7fd0bdc",
+  "localeSha256": {
+    "uk": "810e82ec2210c8131fe5a1b226fbe5b1cfa63bf376a5a64ca7ecc23e5d6bdf3e"
+  },
+  "reviewer": "/root/s10_uk_native",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "scope": {
+    "intros": 3,
+    "intro_body_chars": [
+      237,
+      266,
+      242
+    ],
+    "tasks": 17,
+    "actual_audio_reviewed": false
+  },
+  "structure_identical": true,
+  "english_targets_identical": true,
+  "structure_diffs": [],
+  "locales": {
+    "uk": {
+      "verdict": "REVISE",
+      "problems": [
+        {
+          "where": "Intro3 question",
+          "quote": "«Це рослина?».",
+          "fix": "«Це рослина?»"
+        },
+        {
+          "where": "task2 handle",
+          "quote": "наприклад, біля дверей",
+          "fix": "наприклад, щоб відчинити двері"
+        },
+        {
+          "where": "task8 grant",
+          "quote": "Спочатку чути інший англійський звук",
+          "why": "No concrete diagnostic sound contrast."
+        },
+        {
+          "where": "task13 feedback",
+          "quote": "підтверджує назву / назву заперечують",
+          "fix": "стверджує, що це рослина / сказано, що це не рослина"
+        },
+        {
+          "where": "task14 instruction",
+          "quote": "чи свічка у вашій коробочці",
+          "fix": "чи у вашій коробочці свічка"
+        },
+        {
+          "where": "tasks3/16feedback",
+          "quote": "Перед приголосним початком",
+          "fix": "починається з приголосного, тому"
+        }
+      ]
+    }
+  },
+  "humor": {
+    "on_topic": true,
+    "applicable_session_requirement_met": true
+  },
+  "definitions_alive": true,
+  "verdict": "REVISE",
+  "verdict_reason": "Six native wording/punctuation groups require correction; rest of full source passes."
+}

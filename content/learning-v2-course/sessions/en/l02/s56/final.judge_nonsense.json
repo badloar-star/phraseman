@@ -1,0 +1,21 @@
+{
+  "session": "S56",
+  "sourceSha256": "ba5f00aba9f622237f81d29891e7c62a5fb7b125494d1426adac32cd425a5aeb",
+  "verdict": "PASS",
+  "issues": [],
+  "verifiedDelta": {
+    "scope": "task 6 prompt only",
+    "before": "сотрудник замечает вернувшуюся руководительницу и отвечает вам",
+    "after": "сотрудник отвечает на ваш вопрос о руководительнице",
+    "findingClosed": true,
+    "reason": "Новая инструкция сохраняет связь с вопросом о руководительнице, но больше не раскрывает значение `She is here.` до прослушивания."
+  },
+  "checks": {
+    "priorFullFactualPassRetained": true,
+    "targetsIntrosOptionsAndFeedbackUnchanged": true,
+    "allSeventeenAnswersUniqueBySubstitution": true,
+    "shortAnswerDistractorsStructural": true,
+    "listeningPromptsNowNeutral": true,
+    "actualAudioAssessed": false
+  }
+}

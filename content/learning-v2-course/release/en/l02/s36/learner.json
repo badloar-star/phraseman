@@ -1,0 +1,842 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-36:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какой вопрос друг задал о мужчине у колонки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-36:i01:r1",
+          "text": "Who is he?"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i01:r2",
+          "text": "Where is he?"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i01:r3",
+          "text": "Who is she?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какой вопрос друг задал о мужчине у колонки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:i01:audio",
+          "transcript": "Who is he?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-36:i01:r1",
+            "targetText": "Who is he?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i01:r2",
+            "targetText": "Where is he?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i01:r3",
+            "targetText": "Who is she?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-36:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "feedbackByLocale": {
+              "ru": "Это вопрос о месте. На записи в начале `Who`: друг спрашивает, кто этот мужчина.",
+              "uk": "Це запитання про місце. На записі спочатку звучить `Who`: друг запитує, хто цей чоловік."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какой вопрос дру",
+            "feedbackByLocale": {
+              "ru": "В этом варианте вопрос о женщине. На записи последнее слово — `he`, «он».",
+              "uk": "У цьому варіанті запитання про жінку. На записі останнє слово — `he`, «він»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите о женщине рядом с другом: «Кто она?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите о женщине рядом с другом: «Кто она?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Who is she?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите о женщине рядом с другом: «Кто она?»",
+          "uk": "Складіть фразу — запитайте про жінку поруч із другом: «Хто вона?»"
+        },
+        "orderedTokens": [
+          "Who",
+          "is",
+          "she"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-36:i03:r1",
+          "text": "host"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i03:r2",
+          "text": "post"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i03:r3",
+          "text": "roast"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:i03:audio",
+          "transcript": "host"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-36:i03:r1",
+            "targetText": "host",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i03:r2",
+            "targetText": "post",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i03:r3",
+            "targetText": "roast",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "`Post` — «почта». Послушайте первый звук: в записи `host`.",
+              "uk": "`Post` — «пошта». Послухайте перший звук: у записі `host`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "`Roast` — «жаркое». Послушайте первый звук: в записи `host`.",
+              "uk": "`Roast` — «печеня». Послухайте перший звук: у записі `host`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — хозяин громче всех перекрикивает музыку; скажите, что он шумный",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:i04:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — хозяин громче всех перекрикивает музыку; скажите, что он шумный",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:i04:audio",
+          "transcript": "The host is noisy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The host is noisy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — музыка мешает разговору; спросите друга: «Здесь шумно?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-36:i05:r1",
+          "text": "noisy"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i05:r2",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i05:r3",
+          "text": "guest"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — музыка мешает разговору; спросите друга: «Здесь шумно?»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — музыка мешает разговору; спросите друга: «Здесь шумно?»",
+          "uk": "Вставте слово — музика заважає розмові; запитайте друга: «Тут шумно?»"
+        },
+        "gappedTargetPhrase": "Is it ___ here?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i05:r1",
+            "text": "noisy"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i05:r2",
+            "text": "sure"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i05:r3",
+            "text": "guest"
+          }
+        ],
+        "testedDimension": "Вставьте слово — музыка мешает разговору",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-36:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — музыка мешает разговору",
+            "feedbackByLocale": {
+              "ru": "Это «уверен». Для вопроса о шуме нужно `noisy`.",
+              "uk": "Це «впевнений». Для запитання про шум потрібне `noisy`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — музыка мешает разговору",
+            "feedbackByLocale": {
+              "ru": "Это «гость», человек. Здесь нужно описание обстановки — `noisy`.",
+              "uk": "Це «гість», людина. Тут потрібен опис обстановки — `noisy`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — что друг спросил о мужчине у колонки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-36:i06:r1",
+          "text": "Is he the host?"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i06:r2",
+          "text": "Who is the host?"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i06:r3",
+          "text": "Where is the host?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — что друг спросил о мужчине у колонки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:i06:audio",
+          "transcript": "Is he the host?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-36:i06:r1",
+            "targetText": "Is he the host?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i06:r2",
+            "targetText": "Who is the host?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i06:r3",
+            "targetText": "Where is the host?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-36:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг спросил",
+            "feedbackByLocale": {
+              "ru": "Это «Кто хозяин?». На записи друг уточняет про одного мужчину: «Он хозяин?»",
+              "uk": "Це «Хто господар?». На записі друг уточнює, чи цей чоловік — господар: «Він господар?»"
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг спросил",
+            "feedbackByLocale": {
+              "ru": "Это «Где хозяин?». На записи нет `Where`: вопрос начинается с `Is he`.",
+              "uk": "Це «Де господар?». На записі немає `Where`: запитання починається з `Is he`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг ищет одного гостя; тот подошёл к вам, скажите: «Гость здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг ищет одного гостя; тот подошёл к вам, скажите: «Гость здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The guest is here.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг ищет одного гостя; тот подошёл к вам, скажите: «Гость здесь»",
+          "uk": "Складіть фразу — друг шукає одного гостя; той підійшов до вас, скажіть: «Гість тут»"
+        },
+        "orderedTokens": [
+          "The",
+          "guest",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какой вопрос задаёт подошедший сосед",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-36:i08:r1",
+          "text": "Who is the guest?"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i08:r2",
+          "text": "Where is the guest?"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i08:r3",
+          "text": "Who is the host?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какой вопрос задаёт подошедший сосед",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:i08:audio",
+          "transcript": "Who is the guest?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-36:i08:r1",
+            "targetText": "Who is the guest?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i08:r2",
+            "targetText": "Where is the guest?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i08:r3",
+            "targetText": "Who is the host?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какой вопрос зад",
+            "feedbackByLocale": {
+              "ru": "Так спрашивают, где гость. На записи начало `Who is`: сосед хочет узнать, кто этот гость.",
+              "uk": "Так запитують, де гість. На записі початок `Who is`: сусід хоче дізнатися, хто цей гість."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какой вопрос зад",
+            "feedbackByLocale": {
+              "ru": "Здесь вопрос о хозяине. Сосед произнёс в конце `guest` — «гость».",
+              "uk": "Тут запитання про господаря. Сусід вимовив наприкінці `guest` — «гість»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — друг говорит о хозяине",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — друг говорит о хозяине",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:i09:audio",
+          "transcript": "The host is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The host is here.",
+        "orderedTokens": [
+          "The",
+          "host",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы точно знаете, кто хозяин; скажите другу: «Я уверен»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-36:i10:r1",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i10:r2",
+          "text": "here"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i10:r3",
+          "text": "noisy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы точно знаете, кто хозяин; скажите другу: «Я уверен»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы точно знаете, кто хозяин; скажите другу: «Я уверен»",
+          "uk": "Вставте слово — ви точно знаєте, хто господар; скажіть другові: «Я впевнений»"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-36:i10:r1",
+            "text": "sure"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i10:r2",
+            "text": "here"
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i10:r3",
+            "text": "noisy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы точно знаете, кто хо",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-36:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы точно знаете, кто хо",
+            "feedbackByLocale": {
+              "ru": "Это «здесь». Вы хотите подтвердить уверенность в ответе: `I am sure`.",
+              "uk": "Це «тут». Ви хочете підтвердити впевненість у відповіді: `I am sure`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы точно знаете, кто хо",
+            "feedbackByLocale": {
+              "ru": "Это «шумный». Здесь речь о том, что вы точно знаете ответ, — `sure`.",
+              "uk": "Це «галасливий». Тут ідеться про те, що ви точно знаєте відповідь, — `sure`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг спрашивает, знакомы ли двое гостей; вы не знаете и признаётесь: «Я не уверен»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг спрашивает, знакомы ли двое гостей; вы не знаете и признаётесь: «Я не уверен»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not sure.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг спрашивает, знакомы ли двое гостей; вы не знаете и признаётесь: «Я не уверен»",
+          "uk": "Складіть фразу — друг запитує, чи знайомі двоє гостей; ви не знаєте й зізнаєтеся: «Я не впевнений»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "sure"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — друг спрашивает о женщине, которую потерял из виду",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-36:i12:r1",
+          "text": "Is she here?"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i12:r2",
+          "text": "Is he here?"
+        },
+        {
+          "responseId": "en:lesson-02:session-36:i12:r3",
+          "text": "Who is she?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — друг спрашивает о женщине, которую потерял из виду",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:i12:audio",
+          "transcript": "Is she here?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-36:i12:r1",
+            "targetText": "Is she here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i12:r2",
+            "targetText": "Is he here?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i12:r3",
+            "targetText": "Who is she?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-36:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — друг спрашивает ",
+            "feedbackByLocale": {
+              "ru": "В этом варианте вопрос о мужчине. На записи звучит `she`: друг спрашивает о женщине.",
+              "uk": "У цьому варіанті запитання про чоловіка. На записі звучить `she`: друг запитує про жінку."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-36:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — друг спрашивает ",
+            "feedbackByLocale": {
+              "ru": "Это «Кто она?». Друг спросил, здесь ли она: в конце прозвучало `here`.",
+              "uk": "Це «Хто вона?». Друг запитав, чи вона тут: наприкінці прозвучало `here`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — гость говорит о колонке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — гость говорит о колонке",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:i13:audio",
+          "transcript": "It is noisy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is noisy.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "noisy"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — хозяин отошёл, и вы ищете его; спросите друга, где хозяин",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — хозяин отошёл, и вы ищете его; спросите друга, где хозяин",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:i14:audio",
+          "transcript": "Where is the host?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the host?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — друг упомянул знакомого мужчину; уточните, здесь ли он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — друг упомянул знакомого мужчину; уточните, здесь ли он",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-36:i15:audio",
+          "transcript": "Is he here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is he here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг ждёт одну гостью; покажите на подошедшую женщину и спросите: «Она та гостья?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг ждёт одну гостью; покажите на подошедшую женщину и спросите: «Она та гостья?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is she the guest?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг ждёт одну гостью; покажите на подошедшую женщину и спросите: «Она та гостья?»",
+          "uk": "Складіть фразу — друг чекає на одну гостю; покажіть на жінку, яка підійшла, і запитайте: «Вона та гостя?»"
+        },
+        "orderedTokens": [
+          "Is",
+          "she",
+          "the",
+          "guest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-36:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы перешли к другой компании; все перед вами, но вы не знаете, кто из них хозяин вечера; узнайте это",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы перешли к другой компании; все перед вами, но вы не знаете, кто из них хозяин вечера; узнайте это",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Who is the host?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы перешли к другой компании; все перед вами, но вы не знаете, кто из них хозяин вечера; узнайте это",
+          "uk": "Складіть фразу — ви перейшли до іншої компанії; усі перед вами, але ви не знаєте, хто з них господар вечора; дізнайтеся це"
+        },
+        "orderedTokens": [
+          "Who",
+          "is",
+          "the",
+          "host"
+        ],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b587b67df202190c861b8de7f78978578feb44a515b216f43e713972d7369ef2"
+}

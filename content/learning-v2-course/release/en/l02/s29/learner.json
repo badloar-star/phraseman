@@ -28,7 +28,7 @@
       "audioTargetIds": [
         "en:lesson-02:session-29:i01:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — which",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -56,7 +56,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-29:i01:r1",
+            "responseId": "en:lesson-02:session-29:i01:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — which",
             "feedbackByLocale": {
@@ -65,7 +65,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-29:i01:r2",
+            "responseId": "en:lesson-02:session-29:i01:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — which",
             "feedbackByLocale": {
@@ -109,7 +109,7 @@
           "ru": "Вставьте слово — на бирке нет цифры, спрашиваете про стоимость",
           "uk": "Вставте слово — на бирці немає цифри, питаєте про вартість"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ is the price?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-29:i02:r1",
@@ -127,7 +127,7 @@
         "testedDimension": "Вставьте слово — на бирке нет цифры, спр",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-29:i02:r1",
+            "responseId": "en:lesson-02:session-29:i02:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — на бирке нет цифры, спр",
             "feedbackByLocale": {
@@ -136,7 +136,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-29:i02:r2",
+            "responseId": "en:lesson-02:session-29:i02:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — на бирке нет цифры, спр",
             "feedbackByLocale": {
@@ -239,7 +239,7 @@
         "testedDimension": "Вставьте слово — перед вами две сумки, и",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-29:i04:r1",
+            "responseId": "en:lesson-02:session-29:i04:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — перед вами две сумки, и",
             "feedbackByLocale": {
@@ -248,7 +248,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-29:i04:r2",
+            "responseId": "en:lesson-02:session-29:i04:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — перед вами две сумки, и",
             "feedbackByLocale": {
@@ -340,7 +340,7 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-29:i06:r1",
+            "responseId": "en:lesson-02:session-29:i06:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что прозвучало",
             "feedbackByLocale": {
@@ -349,7 +349,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-29:i06:r2",
+            "responseId": "en:lesson-02:session-29:i06:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что прозвучало",
             "feedbackByLocale": {
@@ -393,7 +393,7 @@
           "ru": "Вставьте слово — на прилавке две сумки, вы спрашиваете про красивую",
           "uk": "Вставте слово — на прилавку дві сумки, ви питаєте про гарну"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ one is elegant?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-29:i07:r1",
@@ -411,7 +411,7 @@
         "testedDimension": "Вставьте слово — на прилавке две сумки, ",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-29:i07:r1",
+            "responseId": "en:lesson-02:session-29:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — на прилавке две сумки, ",
             "feedbackByLocale": {
@@ -420,7 +420,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-29:i07:r2",
+            "responseId": "en:lesson-02:session-29:i07:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — на прилавке две сумки, ",
             "feedbackByLocale": {
@@ -566,7 +566,7 @@
           "ru": "Вставьте слово — продавец назвал вещь незнакомым словом, вы ждёте, что он его повторит",
           "uk": "Вставте слово — продавець назвав річ незнайомим словом, ви чекаєте, що він його повторить"
         },
-        "gappedTargetPhrase": "",
+        "gappedTargetPhrase": "___ is the name?",
         "gapOptions": [
           {
             "responseId": "en:lesson-02:session-29:i11:r1",
@@ -584,7 +584,7 @@
         "testedDimension": "Вставьте слово — продавец назвал вещь не",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-29:i11:r1",
+            "responseId": "en:lesson-02:session-29:i11:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — продавец назвал вещь не",
             "feedbackByLocale": {
@@ -593,7 +593,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-29:i11:r2",
+            "responseId": "en:lesson-02:session-29:i11:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — продавец назвал вещь не",
             "feedbackByLocale": {
@@ -611,11 +611,11 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "prompt": "Соедините пары",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "accessibilityLabel": "Соедините пары",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -726,7 +726,7 @@
         "testedDimension": "Вставьте слово — сумка стоит три евро, и",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-29:i13:r1",
+            "responseId": "en:lesson-02:session-29:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сумка стоит три евро, и",
             "feedbackByLocale": {
@@ -735,7 +735,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-29:i13:r2",
+            "responseId": "en:lesson-02:session-29:i13:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сумка стоит три евро, и",
             "feedbackByLocale": {
@@ -795,7 +795,7 @@
         "testedDimension": "Вставьте слово — сумка без единой лишней",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-02:session-29:i14:r1",
+            "responseId": "en:lesson-02:session-29:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сумка без единой лишней",
             "feedbackByLocale": {
@@ -804,7 +804,7 @@
             }
           },
           {
-            "responseId": "en:lesson-02:session-29:i14:r2",
+            "responseId": "en:lesson-02:session-29:i14:r3",
             "correct": false,
             "testedDimension": "Вставьте слово — сумка без единой лишней",
             "feedbackByLocale": {
@@ -916,5 +916,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "aca2b63cb4237760f8c22b18f7de1416ac4f7656669a4d0e6ac2fc42548458d6"
+  "learnerFingerprint": "607506d4f6e3f093ac67a9f259f3d0af8b984c9561795de1cc9ba913b147fe92"
 }

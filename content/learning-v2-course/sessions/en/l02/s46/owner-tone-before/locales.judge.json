@@ -1,0 +1,64 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "153bd8b1d7a45631d4e1e668fcf19f75b2dcb2335c7203900cf7f68cda2ef046",
+  "localeSha256": {
+    "uk": "8c7b4bf4a2b09cd25d20ef19425c67e61fb596b940ea0577a8f0b9bd1ffeef2b"
+  },
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "sourceSha256": {
+        "ru": "153bd8b1d7a45631d4e1e668fcf19f75b2dcb2335c7203900cf7f68cda2ef046",
+        "uk": "8c7b4bf4a2b09cd25d20ef19425c67e61fb596b940ea0577a8f0b9bd1ffeef2b"
+      },
+      "issues": [],
+      "verifiedDelta": "Все три конструкции теперь звучат естественно по-украински и сохраняют исходный смысл.",
+      "introLengths": [
+        259,
+        277,
+        257
+      ]
+    }
+  },
+  "priorReviews": [
+    {
+      "verdict": "REVISE",
+      "sourceSha256": {
+        "ru": "153bd8b1d7a45631d4e1e668fcf19f75b2dcb2335c7203900cf7f68cda2ef046",
+        "uk": "eec4d338087075ac5c6256342e6e92c48af9389d3c1cdd78ea6f15598976dc95"
+      },
+      "issues": [
+        {
+          "type": "native_ukrainian",
+          "locations": [
+            "Интро 1 explanation",
+            "Интро 1 prompt",
+            "Task 17 prompt"
+          ],
+          "problem": "Три конструкции понятны, но звучат как кальки, а не естественный украинский.",
+          "exactFixes": [
+            "`голос може бути чутно` → `голос може бути чутним`",
+            "`Запитайте, чи чути йому ваш голос.` → `Запитайте, чи він чує ваш голос.`",
+            "`перевірте у ведучого, чи розбірливо тепер звучать ваші слова` → `запитайте ведучого, чи розбірливо тепер звучать ваші слова`"
+          ]
+        }
+      ],
+      "passed": {
+        "meaningsAndClearAudibleDistinction": true,
+        "pronunciationCues": true,
+        "sceneAndAddressees": true,
+        "answerUniqueness": true,
+        "wordCardsAndFeedback": true,
+        "introLengths": [
+          258,
+          277,
+          257
+        ],
+        "audioQuality": "not assessed"
+      }
+    }
+  ],
+  "authorModel": "gpt-5.6-sol high",
+  "revisionCount": 1,
+  "scope": "Independent native text review; actual audio and browser not assessed"
+}

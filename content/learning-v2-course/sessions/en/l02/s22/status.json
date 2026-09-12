@@ -1,10 +1,9 @@
 {
   "session": "en/l02/s22",
-  "ru": 6,
-  "locales": null,
-  "at": "2026-09-07T04:57:08.422Z",
+  "sourceSha256": "83f4685d83b8834836096b0aa0bb65eb4a3facb375adac38130f9924ebb272fc",
   "converged": true,
   "needsHumanReview": false,
-  "judgedFinal": true,
-  "note": "финал пересужен: pedagogy PASS, nonsense в обоих прогонах — фактических ошибок нет; убраны все 6 грамматических терминов по прямому указанию читателя"
+  "repairEvidence": "judgements/2026-09-12_audit100_final.json",
+  "audioReviewed": false,
+  "visualReviewed": false
 }

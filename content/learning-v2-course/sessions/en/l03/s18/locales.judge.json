@@ -1,0 +1,34 @@
+{
+  "sourceSha256": "8efde328d6ddc3ac3b6ea3d540cf821564e964e6db297dbb3460d4b715d2cfc8",
+  "localeSha256": {
+    "uk": "ee601edf470bc467ca76480b31c1e8e13579c739dbabe87aa09b8e6c20332fb1"
+  },
+  "reviewer": "/root/s17_uk_native",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "medium",
+  "previousReviewPath": "judgements/2026-09-12_l03_s18_uk_initial.json",
+  "scope": "Full independent native review plus actual exact four-occurrence delta check",
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "problems": [],
+      "intro_body_chars": [
+        234,
+        245,
+        246
+      ],
+      "structure_identical": true,
+      "english_targets_identical": true,
+      "humor": {
+        "present": true,
+        "on_topic": true,
+        "evidence": [
+          "Два годинники не сховаються за одним `watch`."
+        ]
+      },
+      "deltaEvidence": "Independent exact transform equals current; exactly four repairs in three groups, old box wording0/new2. Prior fullscope retained. Number of watches nowconsistent, box physicalcontainer, native metadata. No otherchanges."
+    }
+  },
+  "verdict": "PASS",
+  "actualAudioReviewed": false
+}

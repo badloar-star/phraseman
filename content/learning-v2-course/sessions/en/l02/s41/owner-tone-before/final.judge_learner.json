@@ -1,0 +1,137 @@
+{
+  "role": "blind_adult_russian_learner",
+  "session": "en/l02/s41",
+  "scope": "Text-only sequential simulation of the supplied packet. Audio was interpreted solely from supplied transcripts; actual hearing, playback, and visual/UI behavior were not assessed.",
+  "walkthrough": [
+    {
+      "step": "intro1",
+      "answer": "Am I late?"
+    },
+    {
+      "step": "intro2",
+      "answer": "Am I wrong?"
+    },
+    {
+      "step": "intro3",
+      "answer": "Am I welcome here?"
+    },
+    {
+      "step": 1,
+      "answer": "punctual — пунктуальный; обычно приходит к оговорённому времени"
+    },
+    {
+      "step": 2,
+      "answer": "punctual"
+    },
+    {
+      "step": 3,
+      "answer": "punctual",
+      "completed_phrase": "I am punctual."
+    },
+    {
+      "step": 4,
+      "answer": "Am I early?"
+    },
+    {
+      "step": 5,
+      "answer": "wrong",
+      "completed_phrase": "Am I wrong?"
+    },
+    {
+      "step": 6,
+      "answer": "I am here."
+    },
+    {
+      "step": 7,
+      "answer": "Am",
+      "completed_phrase": "Am I late?"
+    },
+    {
+      "step": 8,
+      "answer": "Am I early?"
+    },
+    {
+      "step": 9,
+      "answer": {
+        "wrong": "неправ",
+        "late": "опоздал",
+        "early": "рано",
+        "punctual": "пунктуальный"
+      }
+    },
+    {
+      "step": 10,
+      "answer": "here",
+      "completed_phrase": "Am I welcome here?"
+    },
+    {
+      "step": 11,
+      "answer": "You are welcome here."
+    },
+    {
+      "step": 12,
+      "answer": "You are not late."
+    },
+    {
+      "step": 13,
+      "answer": "I am not wrong."
+    },
+    {
+      "step": 14,
+      "answer": "punctual",
+      "completed_phrase": "Am I punctual?"
+    },
+    {
+      "step": 15,
+      "answer": "Am I wrong?"
+    },
+    {
+      "step": 16,
+      "answer": "I am early."
+    },
+    {
+      "step": 17,
+      "answer": "Am I welcome here?"
+    }
+  ],
+  "ambiguity_count": 0,
+  "confusions": [],
+  "scene_consistency": {
+    "result": "PASS",
+    "reason": "Все ситуации остаются в одной сцене воскресного завтрака у соседей: приход, время, вход, хозяин и отношение к гостю."
+  },
+  "learning_delta": {
+    "result": "PASS",
+    "evidence": [
+      "Три интро последовательно вводят вопросительную перестановку Am I, перенос её на wrong и значение welcome как отношения к гостю.",
+      "Карточка punctual появляется до первого оцениваемого контакта с этим словом.",
+      "Практика извлекает Am I с late, early, wrong, punctual и welcome here в разных ситуациях, а также отличает утвердительный и отрицательный порядок I am / You are not."
+    ]
+  },
+  "issues": [],
+  "verdict": "PASS",
+  "deltaReview": {
+    "role": "blind_adult_russian_learner",
+    "session": "en/l02/s41",
+    "scope": "Delta-only review of steps 2 and 13. Audio was assessed only through the supplied transcript; actual audio was not tested.",
+    "choices": [
+      {
+        "step": 2,
+        "answer": "punctual",
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      },
+      {
+        "step": 13,
+        "answer": "I am not wrong.",
+        "text_ambiguity": null,
+        "verdict": "PASS"
+      }
+    ],
+    "ambiguity_count": 0,
+    "confusion": [],
+    "verdict": "PASS"
+  },
+  "sourceSha256": "d074aea3bdfe211b72b58384fab0afdae2d4de4e0b2d79e9b775f224c1ab1bc7",
+  "blindPacketSha256": "2d7ad0529f3436db8f65f683bb8c3156cffbc5f2ef0ce182f277c43b3be6215f"
+}

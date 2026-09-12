@@ -1,0 +1,18 @@
+{
+  "session": "S42",
+  "sourceSha256": "976d4a4a7b28c67f395e67c42914e288d79bdf3d1b2a648e1526f2db366e0393",
+  "verdict": "PASS",
+  "issues": [],
+  "verified": {
+    "earlyAndLateMeaningsAccurateInArrivalContext": true,
+    "welcomeMeaningAccurateAndSeparateFromTiming": true,
+    "questionVsStatementDistinctionAccurate": true,
+    "notLateDoesNotRequireBeingExactlyOnTime": true,
+    "humourDoesNotImplyAnUnstatedSocialJudgement": true,
+    "introLengths": [
+      274,
+      259,
+      276
+    ]
+  }
+}

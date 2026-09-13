@@ -333,7 +333,18 @@ export default function FlashcardsHubScreen() {
   }, [router]);
 
   const trainingLocked = quotaPreview.status === 'exhausted';
-  const trainingEntryReady = quotaPreview.status === 'allowed';
+  /**
+   * зачем (владелец 2026-09-13: «кнопка нажимается, но ничего не происходит»):
+   * раньше пускал ТОЛЬКО статус 'allowed', поэтому при любой поломке на нашей
+   * стороне тап гас молча. Решение владельца: человека нельзя наказывать за
+   * нашу аварию — когда квоту прочитать НЕВОЗМОЖНО ('unavailable' — база
+   * phone-state не открылась, 'stale_account' — токен разъехался), пускаем
+   * так, будто лимит не исчерпан. Ждём мы только 'waiting' — это нормальная
+   * загрузка, которая вот-вот закончится сама.
+   */
+  const trainingEntryReady = quotaPreview.status === 'allowed'
+    || quotaPreview.status === 'unavailable'
+    || quotaPreview.status === 'stale_account';
   const speakingLocked = trainingLocked;
 
   /** Free-пользователь получает paywall до экрана настройки, а не после лишнего тапа. */

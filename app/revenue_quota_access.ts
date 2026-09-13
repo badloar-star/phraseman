@@ -213,6 +213,20 @@ export function createFlashcardTrainingQuotaAccess(deps: Dependencies) {
         if (!deps.isCurrentAccount(input.token)) return base('stale_account');
         const read = await deps.readReceipts(input.token.stableId);
         if (!deps.isCurrentAccount(input.token)) return base('stale_account');
+        /**
+         * зачем (владелец 2026-09-13): хранилище квоты физически недоступно —
+         * база phone-state не открылась. Раньше это давало отказ, и человек не
+         * мог начать тренировку ВООБЩЕ: из хаба его пускали, а здесь выбрасывало
+         * с откатом энергии. Решение владельца — не наказывать за нашу аварию.
+         * Записать чек всё равно некуда, поэтому пропускаем как разовый обход;
+         * bypass помечен, чтобы это было видно в аналитике, а не выглядело
+         * обычным платным стартом. Сам ЛИМИТ при этом не отменён: как только
+         * база откроется, счёт снова ведётся честно.
+         */
+        if (read.status === 'unavailable') {
+          console.warn('[FC-TRAIN-ENTRY] consume: хранилище квоты недоступно — пускаем без списания');
+          return unlimited('remote_config');
+        }
         if (read.status !== 'available') return base(read.status);
         const { window, used, receipts } = stateFromRead(deps, read);
         const replay = receipts.some((receipt) => receipt.receiptId === input.receiptId);

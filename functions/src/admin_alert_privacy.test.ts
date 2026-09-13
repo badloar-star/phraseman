@@ -50,7 +50,7 @@ describe('admin Telegram alert privacy formatter', () => {
     });
 
     expect(message).toContain('<b>КУПИЛИ PREMIUM</b>');
-    expect(message).toContain('39.99 EUR');
+    expect(message).toContain('39,99 €');
     expect(message).not.toContain('••••4C9D');
     expect(message).not.toContain('owner-leak@example.com');
     expect(message).not.toContain('uid-very-long-secret');
@@ -131,6 +131,24 @@ describe('admin Telegram alert privacy formatter', () => {
     // зачем: владелец убрал заглушки — пустое поле не печатается вообще.
     expect(message).not.toContain('ник не найден');
     expect(message).not.toContain('не передана клиентом');
+  });
+
+  test('money keeps the currency the person actually paid in', () => {
+    // зачем: владелец 2026-09-13 отменил пересчёт в евро («пусть будет как есть,
+    // не надо конвертировать»). Показываем факт платежа, а не приблизительную
+    // цифру по одному курсу, которую нельзя свести с отчётом магазина.
+    const rub = renderAdminAlertMessage({ eventType: 'premiumPurchase', occurredAtMs: 1725000000000,
+      payload: { amount: 1200, currency: 'RUB' } });
+    expect(rub).toContain('1 200,00 RUB');
+    expect(rub).not.toContain('EUR_PER_USD');
+
+    const eur = renderAdminAlertMessage({ eventType: 'renewal', occurredAtMs: 1725000000000,
+      payload: { amount: 11.49, currency: 'EUR' } });
+    expect(eur).toContain('11,49 €');
+
+    const shard = renderAdminAlertMessage({ eventType: 'ugcPurchase', occurredAtMs: 1725000000000,
+      payload: { amount: 250, currency: 'SHARD' } });
+    expect(shard).toContain('250,00 SHARD');
   });
 
   test('every catalog type has a unique template: hero, emoji and id', () => {

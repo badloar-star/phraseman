@@ -331,6 +331,33 @@ export function sanitizeAdminAlertPayload(
   return Object.freeze(sanitized) as AdminAlertSafePayload;
 }
 
+/** Разряды пробелами: «1 234,56» читается быстрее, чем «1234.56». */
+function moneyDigits(value: number): string {
+  const [whole, cents] = value.toFixed(2).split('.');
+  return `${whole.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')},${cents}`;
+}
+
+/**
+ * Сумма письма — РОВНО та валюта, в которой человек заплатил.
+ *
+ * зачем: владелец 2026-09-13 сначала попросил пересчёт в евро, посмотрел и
+ * отменил: «пусть будет как есть, не надо конвертировать». Пересчёт по одному
+ * курсу — это приблизительная цифра, которую всё равно нельзя свести с отчётом
+ * магазина, а покупатели платят в 16 валютах. Показываем факт, а сравнение
+ * валют между собой живёт в админке, где есть настоящие курсы.
+ */
+export function formatAlertMoney(
+  payload: AdminAlertSafePayload,
+): { readonly headline: string; readonly original: string } | null {
+  const amount = Number(payload.amount);
+  if (!Number.isFinite(amount) || amount < 0 || amount > 1_000_000_000) return null;
+  const currency = /^[A-Z]{3,5}$/.test(String(payload.currency ?? '').trim().toUpperCase())
+    ? String(payload.currency).trim().toUpperCase() : '';
+  // Евро показываем знаком: он короче кода и читается мгновенно.
+  const suffix = currency === 'EUR' ? ' €' : currency ? ` ${currency}` : '';
+  return { headline: `${moneyDigits(amount)}${suffix}`, original: '' };
+}
+
 function formatField(key: SafePayloadKey, payload: AdminAlertSafePayload): string | null {
   const value = payload[key];
   if (value === undefined || value === null) return null;
@@ -352,12 +379,8 @@ function formatField(key: SafePayloadKey, payload: AdminAlertSafePayload): strin
     return Number.isInteger(rating) && rating >= 1 && rating <= 5 ? `${FIELD_LABELS.rating}: ${rating}/5` : null;
   }
   if (key === 'amount') {
-    const amount = Number(value);
-    if (!Number.isFinite(amount) || amount < 0 || amount > 1_000_000_000) return null;
-    const currency = /^[A-Z]{3,5}$/.test(String(payload.currency ?? '').trim().toUpperCase())
-      ? String(payload.currency).trim().toUpperCase()
-      : '';
-    return `${FIELD_LABELS.amount}: <b>${amount.toFixed(2)}${currency ? ` ${currency}` : ''}</b>`;
+    const money = formatAlertMoney(payload);
+    return money ? `${FIELD_LABELS.amount}: <b>${money.headline}</b>${money.original ? ` · ${money.original}` : ''}` : null;
   }
   if (key === 'count') {
     const count = Number(value);

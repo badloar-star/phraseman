@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Шаблоны Telegram-уведомлений · Phraseman</title>
+<style>
+  :root{
+    --bg:#0f1216; --panel:#161b22; --ink:#e8edf4; --dim:#8b98a9; --line:#232b36;
+    --tg-bubble:#1e2b3a; --tg-ink:#e9f0f7; --tg-dim:#8ba3bd; --tg-link:#6ab3f3;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1500px;margin:0 auto;padding:40px 24px 90px}
+
+  header{margin-bottom:34px}
+  h1{font-size:30px;line-height:1.2;margin:0 0 10px;letter-spacing:-.02em}
+  .lede{color:var(--dim);max-width:760px;margin:0 0 8px;font-size:16px}
+  .lede b{color:var(--ink);font-weight:600}
+
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+  .lg{display:flex;align-items:center;gap:7px;background:var(--panel);
+    padding:7px 13px;border-radius:999px;font-size:13px;color:var(--dim)}
+  .lg i{width:9px;height:9px;border-radius:50%;background:var(--c);display:block}
+
+  nav{position:sticky;top:0;z-index:20;background:rgba(15,18,22,.93);
+    backdrop-filter:blur(12px);padding:14px 0;margin:26px 0 6px;
+    display:flex;flex-wrap:wrap;gap:8px}
+  nav a{color:var(--dim);text-decoration:none;background:var(--panel);
+    padding:8px 14px;border-radius:10px;font-size:13.5px;font-weight:500;
+    display:flex;align-items:center;gap:7px;transition:color .15s,background .15s}
+  nav a:hover{color:var(--ink);background:#1d242e}
+  nav a i{font-style:normal;font-size:11px;color:#5d6b7d;background:#0f1318;
+    padding:2px 7px;border-radius:6px}
+
+  section{margin:52px 0 0;scroll-margin-top:72px}
+  .sec-head{margin-bottom:22px}
+  .sec-head h2{font-size:21px;margin:0 0 5px;letter-spacing:-.01em}
+  .sec-head p{margin:0;color:var(--dim);font-size:14.5px;max-width:680px}
+  .sec-count{margin-top:9px;font-size:12px;color:#5d6b7d;text-transform:uppercase;letter-spacing:.08em}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(348px,1fr));gap:20px}
+
+  .card{background:var(--panel);border-radius:16px;padding:16px 16px 14px;
+    display:flex;flex-direction:column;gap:12px}
+  .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  .card-id{font-size:14px;font-weight:600;line-height:1.35}
+  .card-id code{display:block;font-size:11.5px;color:#5d6b7d;font-weight:400;
+    margin-top:3px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .chip{font-size:11px;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);
+    padding:4px 10px;border-radius:999px;white-space:nowrap;font-weight:600;flex-shrink:0}
+
+  /* ── телеграм-пузырь ── */
+  .tg{background:#0c1014;border-radius:12px;padding:14px 12px;
+    background-image:radial-gradient(circle at 20% 15%,#16202b 0,transparent 45%),
+                     radial-gradient(circle at 80% 85%,#131c26 0,transparent 40%)}
+  .bubble{background:var(--tg-bubble);color:var(--tg-ink);border-radius:14px 14px 14px 5px;
+    padding:11px 13px 8px;position:relative;font-size:14px;line-height:1.5;
+    box-shadow:0 1px 2px rgba(0,0,0,.4)}
+  .bubble>div{margin:0 0 7px}
+  .bubble>div:last-child{margin-bottom:0}
+
+  .hero{display:flex;gap:9px;align-items:flex-start;margin-bottom:10px!important;
+    padding-left:9px;border-radius:4px;position:relative}
+  .hero::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:3px;
+    border-radius:3px;background:var(--m)}
+  .hero-e{font-size:17px;line-height:1.25}
+  .hero-t{font-weight:700;font-size:14.5px;letter-spacing:.01em;color:#fff;line-height:1.3}
+  .mood-celebrate{--m:#4ade80}
+  .mood-neutral{--m:#7aa7d6}
+  .mood-warn{--m:#f0b95c}
+  .mood-alarm{--m:#f2706e}
+  .mood-digest{--m:#b58ce0}
+
+  .b-plain{color:var(--tg-ink)}
+  .b-meta{color:var(--tg-dim);font-size:12.5px}
+  .b-stat{color:var(--tg-dim);font-size:13px}
+  .b-big{font-size:19px;font-weight:700;color:#fff;letter-spacing:-.01em}
+  .b-money{font-size:24px;font-weight:800;color:#4ade80;letter-spacing:-.02em;line-height:1.15}
+  .mood-alarm .b-money{color:#f2706e}
+  .mood-digest .b-money{color:#fff}
+  .b-title{font-weight:600;color:#fff;font-size:14.5px}
+  .b-phrase{font-size:17px;font-weight:600;color:#fff}
+  .b-from{color:var(--tg-dim);font-size:13px}
+  .b-chain{color:var(--tg-ink);font-size:13.5px}
+  .b-stars{font-size:16px;color:#f0b95c;letter-spacing:.05em}
+
+  .b-quote{border-left:2.5px solid var(--m);padding:2px 0 2px 10px;
+    color:var(--tg-ink);background:rgba(255,255,255,.035);border-radius:0 6px 6px 0}
+  .b-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
+    background:rgba(0,0,0,.3);padding:7px 9px;border-radius:7px;color:#ffb4b2;
+    overflow-wrap:anywhere}
+  .b-stack{font-size:12.5px;color:var(--tg-dim);background:rgba(0,0,0,.22);
+    padding:6px 9px;border-radius:7px;cursor:default}
+  .b-badge{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;
+    background:rgba(255,255,255,.08);color:#fff;padding:3px 9px;border-radius:6px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .b-warn{font-size:13px;color:#ffcf8f;background:rgba(240,185,92,.13);
+    padding:6px 9px;border-radius:7px}
+  .b-deadline{font-size:13px;color:#9fd6ff;background:rgba(106,179,243,.12);
+    padding:6px 9px;border-radius:7px}
+  .b-counter{font-size:13px;color:var(--tg-dim)}
+  .b-progress{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;
+    color:var(--m);letter-spacing:.02em}
+  .b-trend{font-size:13px;color:#4ade80}
+  .b-link{color:var(--tg-link);font-size:13.5px}
+
+  .b-table .tr{display:flex;justify-content:space-between;gap:14px;
+    padding:3.5px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13.5px}
+  .b-table .tr:last-child{border-bottom:0}
+  .b-table span{color:var(--tg-dim)}
+  .b-table b{color:#fff;font-variant-numeric:tabular-nums}
+
+  .b-sections .sec{display:flex;justify-content:space-between;gap:12px;
+    padding:5px 0;font-size:13.5px}
+  .b-sections b{color:#fff;font-weight:600}
+  .b-sections span{color:var(--tg-dim);text-align:right}
+
+  .b-bars .bar{margin-bottom:7px}
+  .b-bars .bar:last-child{margin-bottom:0}
+  .bar-t{display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px}
+  .bar-t span{color:var(--tg-dim)}
+  .bar-t b{color:#fff}
+  .bar-r{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+  .bar-r i{display:block;height:100%;background:var(--m);border-radius:3px}
+
+  .b-funnel .fn{position:relative;margin-bottom:5px;padding:6px 9px;border-radius:6px;
+    background:rgba(255,255,255,.04);overflow:hidden}
+  .b-funnel .fn:last-child{margin-bottom:0}
+  .fn-r{position:absolute;left:0;top:0;bottom:0;background:rgba(181,140,224,.28)}
+  .fn-t{position:relative;display:flex;justify-content:space-between;font-size:13px}
+  .fn-t span{color:var(--tg-ink)}
+  .fn-t b{color:#fff}
+
+  .b-q span,.b-f span,.b-r span{display:block;font-size:10.5px;text-transform:uppercase;
+    letter-spacing:.09em;color:var(--tg-dim);margin-bottom:2px}
+  .b-q{color:#fff;font-weight:600}
+  .b-f{background:rgba(242,112,110,.12);padding:7px 9px;border-radius:7px;color:#ffc9c8}
+  .b-r{background:rgba(74,222,128,.12);padding:7px 9px;border-radius:7px;color:#a6f0c2}
+
+  .foot{color:var(--tg-dim);font-size:12.5px;padding-top:3px}
+  .tick{text-align:right;font-size:11px;color:#6d8199;margin-top:4px!important}
+
+  .note{font-size:12.5px;color:#8b98a9;line-height:1.5;padding-left:11px;position:relative}
+  .note::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:2px;
+    background:#2f3a47;border-radius:2px}
+
+  @media (max-width:640px){
+    .wrap{padding:26px 14px 60px}
+    h1{font-size:24px}
+    .grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Шаблоны Telegram-уведомлений</h1>
+  <p class="lede">Все <b>47 типов</b> уведомлений, каждый со своим шаблоном: свой
+  эмодзи-герой, своя первая строка, свой порядок блоков и свой тон. Сегодня все типы
+  идут одним каркасом, поэтому покупка Premium выглядит так же, как падение крона.</p>
+  <p class="lede">Пустые поля <b>не печатаются</b>: нет ника — нет строки. Заглушки
+  «ник не найден» и «версия не передана клиентом» убраны.</p>
+  <div class="legend">
+    <div class="lg" style="--c:#4ade80"><i></i>Праздник</div>
+    <div class="lg" style="--c:#7aa7d6"><i></i>Нейтральный</div>
+    <div class="lg" style="--c:#f0b95c"><i></i>Предупреждение</div>
+    <div class="lg" style="--c:#f2706e"><i></i>Тревога</div>
+    <div class="lg" style="--c:#b58ce0"><i></i>Сводка</div>
+  </div>
+</header>
+<nav><a href="#people">💚 Люди <i>6</i></a><a href="#learning">📚 Обучение <i>4</i></a><a href="#reports">🚩 Репорты и ошибки <i>9</i></a><a href="#revenue">💰 Деньги <i>11</i></a><a href="#content">✍️ Контент и обратная связь <i>8</i></a><a href="#operations">⚙️ Операции <i>9</i></a></nav>
+<section id="people">
+  <div class="sec-head">
+    <h2>💚 Люди</h2>
+    <p>Рост базы. Тон праздничный: каждый новый человек — маленькая победа.</p>
+    <div class="sec-count">6 типов</div>
+  </div>
+  <div class="grid"><div class="card">
+  <div class="card-head">
+    <div class="card-id">Новый пользователь<code>newUser</code></div>
+    <div class="chip" style="--c:#4ade80">Праздник</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-celebrate">
+      <div class="hero"><span class="hero-e">🎉</span><span class="hero-t">НОВЫЙ ЧЕЛОВЕК В PHRASEMAN</span></div>
+      <div class="b-plain"><b>Axiom 31657</b> · iOS · учит испанский</div><div class="b-plain">Пришёл сам, без реферала</div><div class="b-stat">Сегодня это <b>7-й</b> новичок</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  <div class="note">Ника ещё нет — строка не печатается вообще. Сейчас на её месте стоит «ник не найден».</div>
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Реферальный код применён<code>referralAttributed</code></div>
+    <div class="chip" style="--c:#4ade80">Праздник</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-celebrate">
+      <div class="hero"><span class="hero-e">🤝</span><span class="hero-t">КОД ДРУГА СРАБОТАЛ</span></div>
+      <div class="b-chain"><b>Мария</b> пригласила <b>Axiom 31657</b></div><div class="b-progress">▰▱▱ код → запуск → награда</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Первый запуск по рефералу<code>referralFirstLaunch</code></div>
+    <div class="chip" style="--c:#4ade80">Праздник</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-celebrate">
+      <div class="hero"><span class="hero-e">🚀</span><span class="hero-t">ПРИГЛАШЁННЫЙ ОТКРЫЛ ПРИЛОЖЕНИЕ</span></div>
+      <div class="b-chain"><b>Мария</b> → <b>Axiom 31657</b></div><div class="b-progress">▰▰▱ код → запуск → награда</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Реферал квалифицирован<code>referralQualified</code></div>
+    <div class="chip" style="--c:#4ade80">Праздник</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-celebrate">
+      <div class="hero"><span class="hero-e">✅</span><span class="hero-t">РЕФЕРАЛ ЗАСЧИТАН</span></div>
+      <div class="b-chain"><b>Мария</b> → <b>Axiom 31657</b></div><div class="b-plain">Условия выполнены, награда на подходе</div><div class="b-progress">▰▰▰ код → запуск → награда</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Реферальная награда выдана<code>referralRewarded</code></div>
+    <div class="chip" style="--c:#4ade80">Праздник</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-celebrate">
+      <div class="hero"><span class="hero-e">🎁</span><span class="hero-t">НАГРАДА ЗА ДРУГА ВЫДАНА</span></div>
+      <div class="b-big">+14 дней Premium</div><div class="b-plain">Получила <b>Мария</b> за <b>Axiom 31657</b></div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Бан или снятие бана<code>banChanged</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">🔨</span><span class="hero-t">БАН ВЫДАН</span></div>
+      <div class="b-plain"><b>Axiom 31657</b> · iOS</div><div class="b-quote">Причина: спам в Community Pack</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  <div class="note">Снятие бана — своя шапка «🕊 БАН СНЯТ» и спокойный тон вместо тревожного.</div>
+</div></div>
+</section><section id="learning">
+  <div class="sec-head">
+    <h2>📚 Обучение</h2>
+    <p>Оценки и прогресс. Ведёт оценка, а не имя: сначала сколько звёзд, потом кто поставил.</p>
+    <div class="sec-count">4 типов</div>
+  </div>
+  <div class="grid"><div class="card">
+  <div class="card-head">
+    <div class="card-id">Новая оценка урока<code>lessonRating</code></div>
+    <div class="chip" style="--c:#7aa7d6">Нейтральный</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-neutral">
+      <div class="hero"><span class="hero-e">⭐</span><span class="hero-t">ОЦЕНКА УРОКА</span></div>
+      <div class="b-stars">★★★★★ 5 из 5</div><div class="b-plain">Урок 12 «Знакомство» · испанский</div><div class="b-quote">Наконец понятно объяснили эти глаголы!</div><div class="b-meta">Axiom 31657 · v1.6.16 (122) · iOS</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  <div class="note">Оценка 1–2 переключает шапку в тревожный тон: низкий балл это сигнал, а не статистика.</div>
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Оценка Vocab или Dialogue<code>vocabDialogueRating</code></div>
+    <div class="chip" style="--c:#7aa7d6">Нейтральный</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-neutral">
+      <div class="hero"><span class="hero-e">💬</span><span class="hero-t">ОЦЕНКА ДИАЛОГА</span></div>
+      <div class="b-stars">★★★★☆ 4 из 5</div><div class="b-plain">Диалог «В кафе» · испанский</div><div class="b-quote">Живые реплики, приятно тренироваться</div><div class="b-meta">Axiom 31657 · v1.6.16 (122) · iOS</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  <div class="note">Оценка 1–2 переключает письмо в тревожный вид: шапка «НИЗКАЯ ОЦЕНКА ДИАЛОГА».</div>
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Оценка Arena<code>arenaRating</code></div>
+    <div class="chip" style="--c:#7aa7d6">Нейтральный</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-neutral">
+      <div class="hero"><span class="hero-e">⚔️</span><span class="hero-t">ОЦЕНКА АРЕНЫ</span></div>
+      <div class="b-stars">★★★★☆ 4 из 5</div><div class="b-plain">Быстрый матч · 6 раундов</div><div class="b-quote">Соперник попался сильный, было интересно</div><div class="b-meta">Axiom 31657 · v1.6.16 (122) · Android</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Завершения уроков<code>lessonCompletionDigest</code></div>
+    <div class="chip" style="--c:#b58ce0">Сводка</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-digest">
+      <div class="hero"><span class="hero-e">📚</span><span class="hero-t">УРОКИ ЗА СУТКИ</span></div>
+      <div class="b-big">340 завершений</div><div class="b-table"><div class="tr"><span>Уникальных учеников</span><b>96</b></div><div class="tr"><span>Средний балл</span><b>82%</b></div><div class="tr"><span>Бросили на середине</span><b>24</b></div></div><div class="b-trend">↑ 12% ко вчера</div>
+      <div class="foot">🗓 20:00 → 20:00 · 13.09</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div></div>
+</section><section id="reports">
+  <div class="sec-head">
+    <h2>🚩 Репорты и ошибки</h2>
+    <p>Тон тревожный. Ведёт суть проблемы, техника прячется под свёрнутый блок.</p>
+    <div class="sec-count">9 типов</div>
+  </div>
+  <div class="grid"><div class="card">
+  <div class="card-head">
+    <div class="card-id">Репорт контента<code>contentReport</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">🚩</span><span class="hero-t">ЖАЛОБА НА КОНТЕНТ</span></div>
+      <div class="b-quote">Кнопка «Далее» не отвечает, когда открываю урок</div><div class="b-plain">Экран: урок 12 · испанский</div><div class="b-meta">Axiom 31657 · v1.6.16 (122) · iOS · Premium</div><div class="b-link">Открыть в админке</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Репорт на пользователя<code>userReport</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">⚠️</span><span class="hero-t">ЖАЛОБА НА ЧЕЛОВЕКА</span></div>
+      <div class="b-chain"><b>Axiom 31657</b> пожаловался на <b>Данил 90210</b></div><div class="b-quote">Причина: оскорбления в чате арены</div><div class="b-link">Открыть в админке</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Репорт идеи или набора<code>ideaOrCommunityReport</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">📌</span><span class="hero-t">ЖАЛОБА НА ИДЕЮ ИЛИ НАБОР</span></div>
+      <div class="b-title">«Испанский для поездок»</div><div class="b-chain">Автор: <b>Данил 90210</b></div><div class="b-quote">Причина: чужой контент без разрешения</div><div class="b-link">Открыть в админке</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Репорт объяснения<code>explanationReport</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">🧩</span><span class="hero-t">ЖАЛОБА НА ОБЪЯСНЕНИЕ</span></div>
+      <div class="b-phrase">«estoy de acuerdo»</div><div class="b-quote">Причина: объяснение противоречит уроку</div><div class="b-counter">Жалоб на это объяснение: 4</div><div class="b-warn">Объяснение снято автоматически</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  <div class="note">Автоотключение — отдельная заметная плашка, а не строчка в общем списке.</div>
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Критическая ошибка<code>criticalError</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">💥</span><span class="hero-t">КРИТИЧЕСКАЯ ОШИБКА</span></div>
+      <div class="b-badge">◆ КРИТИЧНО · 4-й раз за час</div><div class="b-code">TypeError: undefined is not an object</div><div class="b-plain">Экран урока · при открытии задания</div><div class="b-meta">Axiom 31657 · v1.6.16 (122) · Android 14</div><div class="b-stack">▸ Развернуть стек ошибки</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Всплеск ошибок входа<code>authFailureSpike</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">🔐</span><span class="hero-t">ЛЮДИ НЕ МОГУТ ВОЙТИ</span></div>
+      <div class="b-big">144 отказа за 15 минут</div><div class="b-plain">Порог 20 · превышен в 7 раз</div><div class="b-table"><div class="tr"><span>Apple</span><b>96</b></div><div class="tr"><span>Google</span><b>41</b></div><div class="tr"><span>Анонимно</span><b>7</b></div></div><div class="b-warn">Проверить авторизацию прямо сейчас</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Safety-флаг<code>safetyFlag</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">🛡</span><span class="hero-t">ОПАСНЫЙ ТЕКСТ ОТ ПОЛЬЗОВАТЕЛЯ</span></div>
+      <div class="b-badge">Категория: самоповреждение</div><div class="b-stack">▸ Развернуть текст пользователя</div><div class="b-plain">Режим: диалог с ИИ</div><div class="b-link">Открыть в админке</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  <div class="note">Текст всегда под свёрнутым блоком: такое не должно бросаться в глаза в списке чатов.</div>
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Новый App Error<code>appErrorDigest</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">🐞</span><span class="hero-t">НОВЫЙ ТИП ОШИБКИ</span></div>
+      <div class="b-plain">Такой ошибки раньше не было</div><div class="b-code">RangeError: invalid array length</div><div class="b-meta">v1.6.16 (122) · Android · 3 устройства</div><div class="b-stack">▸ Развернуть стек ошибки</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Compliance-риск<code>complianceRisk</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">📋</span><span class="hero-t">КОНТРОЛЬ НЕ ПРОЙДЕН</span></div>
+      <div class="b-badge">Контроль CC7.2 · мониторинг</div><div class="b-quote">Проблема: не настроено оповещение о сбое бэкапа</div><div class="b-link">Открыть в админке</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div></div>
+</section><section id="revenue">
+  <div class="sec-head">
+    <h2>💰 Деньги</h2>
+    <p>Сумма — главный знак письма. Приход празднует, уход не паникует, сбой оплаты тревожит.</p>
+    <div class="sec-count">11 типов</div>
+  </div>
+  <div class="grid"><div class="card">
+  <div class="card-head">
+    <div class="card-id">Старт пробного периода<code>trialStart</code></div>
+    <div class="chip" style="--c:#4ade80">Праздник</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-celebrate">
+      <div class="hero"><span class="hero-e">🌱</span><span class="hero-t">НАЧАЛСЯ ПРОБНЫЙ ПЕРИОД</span></div>
+      <div class="b-big">7 дней бесплатно</div><div class="b-plain"><b>Axiom 31657</b> · App Store · годовой тариф</div><div class="b-plain">Спишется 1 200 ₽, если не отменит</div><div class="b-stat">Сегодня это <b>4-й</b> пробник</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Новая покупка Premium<code>premiumPurchase</code></div>
+    <div class="chip" style="--c:#4ade80">Праздник</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-celebrate">
+      <div class="hero"><span class="hero-e">💎</span><span class="hero-t">КУПИЛИ PREMIUM</span></div>
+      <div class="b-money">1 200 ₽</div><div class="b-plain">🎉 <b>Axiom 31657</b> — первый платёж</div><div class="b-plain">Годовая подписка · App Store</div><div class="b-stat">Седьмая покупка за сегодня · 8 400 ₽</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  <div class="note">Сумма — главный знак письма, крупно и первой строкой после шапки.</div>
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Продление подписки<code>renewal</code></div>
+    <div class="chip" style="--c:#4ade80">Праздник</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-celebrate">
+      <div class="hero"><span class="hero-e">🔁</span><span class="hero-t">ПОДПИСКА ПРОДЛЕНА</span></div>
+      <div class="b-money">1 200 ₽</div><div class="b-plain"><b>Axiom 31657</b> · продление №3</div><div class="b-plain">С нами уже 9 месяцев</div><div class="b-stat">Всего принёс 3 600 ₽</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Отмена автопродления<code>cancellation</code></div>
+    <div class="chip" style="--c:#f0b95c">Предупреждение</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-warn">
+      <div class="hero"><span class="hero-e">💔</span><span class="hero-t">ОТКЛЮЧИЛИ АВТОПРОДЛЕНИЕ</span></div>
+      <div class="b-plain"><b>Axiom 31657</b> · был с нами 9 месяцев</div><div class="b-quote">Причина: дорого</div><div class="b-deadline">Доступ работает до 14.10</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  <div class="note">Не праздник и не авария: спокойный тон, главное — дата, до которой человек ещё с нами.</div>
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Истечение подписки<code>expiration</code></div>
+    <div class="chip" style="--c:#f0b95c">Предупреждение</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-warn">
+      <div class="hero"><span class="hero-e">🌙</span><span class="hero-t">ПОДПИСКА ЗАКОНЧИЛАСЬ</span></div>
+      <div class="b-plain"><b>Axiom 31657</b> · был с нами 9 месяцев</div><div class="b-plain">Причина: не продлил</div><div class="b-stat">Принёс за всё время 3 600 ₽</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Проблема оплаты<code>billingIssue</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">🧾</span><span class="hero-t">ПЛАТЁЖ НЕ ПРОШЁЛ</span></div>
+      <div class="b-money">1 200 ₽ не списаны</div><div class="b-plain"><b>Axiom 31657</b> · App Store</div><div class="b-quote">Причина: недостаточно средств</div><div class="b-deadline">Повтор списания 16.09</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Возврат средств<code>refund</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">↩️</span><span class="hero-t">ВОЗВРАТ ДЕНЕГ</span></div>
+      <div class="b-money">−1 200 ₽</div><div class="b-plain"><b>Axiom 31657</b> · App Store</div><div class="b-quote">Причина: случайная покупка</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Серийный возврат<code>refundSpike</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">🔥</span><span class="hero-t">ВСПЛЕСК ВОЗВРАТОВ</span></div>
+      <div class="b-big">5 возвратов за 2 часа</div><div class="b-money">−6 000 ₽</div><div class="b-plain">Порог 3 · превышен</div><div class="b-warn">Похоже на злоупотребление, проверить</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Покупка набора Community<code>ugcPurchase</code></div>
+    <div class="chip" style="--c:#4ade80">Праздник</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-celebrate">
+      <div class="hero"><span class="hero-e">🛒</span><span class="hero-t">КУПИЛИ НАБОР СООБЩЕСТВА</span></div>
+      <div class="b-money">250 жемчужин</div><div class="b-title">«Испанский для поездок»</div><div class="b-chain">Покупатель <b>Axiom 31657</b> · автор <b>Данил 90210</b></div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Промокод или сертификат<code>promoGift</code></div>
+    <div class="chip" style="--c:#4ade80">Праздник</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-celebrate">
+      <div class="hero"><span class="hero-e">🎟</span><span class="hero-t">ПРОМОКОД АКТИВИРОВАН</span></div>
+      <div class="b-big">+30 дней Premium</div><div class="b-plain">Код NEWYEAR2026</div><div class="b-plain"><b>Axiom 31657</b> · подарочный сертификат</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Денежная сводка<code>revenueDigest</code></div>
+    <div class="chip" style="--c:#b58ce0">Сводка</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-digest">
+      <div class="hero"><span class="hero-e">💰</span><span class="hero-t">ДЕНЬГИ ЗА СУТКИ</span></div>
+      <div class="b-money">14 400 ₽</div><div class="b-table"><div class="tr"><span>Новых покупок</span><b>7</b></div><div class="tr"><span>Продлений</span><b>5</b></div><div class="tr"><span>Возвратов</span><b>1</b></div><div class="tr"><span>Пробников начато</span><b>4</b></div></div><div class="b-trend">↑ 23% к прошлой неделе</div>
+      <div class="foot">🗓 20:00 → 20:00 · 13.09</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div></div>
+</section><section id="content">
+  <div class="sec-head">
+    <h2>✍️ Контент и обратная связь</h2>
+    <p>Ведёт голос человека: цитата крупно, служебное мелко.</p>
+    <div class="sec-count">8 типов</div>
+  </div>
+  <div class="grid"><div class="card">
+  <div class="card-head">
+    <div class="card-id">Новая идея пользователя<code>newIdea</code></div>
+    <div class="chip" style="--c:#7aa7d6">Нейтральный</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-neutral">
+      <div class="hero"><span class="hero-e">💡</span><span class="hero-t">ИДЕЯ ОТ ПОЛЬЗОВАТЕЛЯ</span></div>
+      <div class="b-title">«Добавить произношение по слогам»</div><div class="b-quote">Когда слово длинное, непонятно куда падает ударение. Хочу разбивку.</div><div class="b-meta">Axiom 31657 · v1.6.16 (122)</div><div class="b-link">Открыть в админке</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Сообщение с сайта<code>websiteInbox</code></div>
+    <div class="chip" style="--c:#7aa7d6">Нейтральный</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-neutral">
+      <div class="hero"><span class="hero-e">🌐</span><span class="hero-t">ПИСЬМО С САЙТА</span></div>
+      <div class="b-from">От Мария · тема «Сотрудничество»</div><div class="b-quote">Здравствуйте! Мы школа языков, хотим обсудить партнёрство.</div><div class="b-plain">Страница knowlyapps.com/start</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Письмо поддержки<code>supportEmail</code></div>
+    <div class="chip" style="--c:#7aa7d6">Нейтральный</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-neutral">
+      <div class="hero"><span class="hero-e">✉️</span><span class="hero-t">ПИСЬМО В ПОДДЕРЖКУ</span></div>
+      <div class="b-from">От Данил · тема «Не открывается урок»</div><div class="b-quote">После обновления урок 12 не запускается, крутится загрузка.</div><div class="b-link">Ответить в админке</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Набор на модерации<code>ugcSubmission</code></div>
+    <div class="chip" style="--c:#7aa7d6">Нейтральный</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-neutral">
+      <div class="hero"><span class="hero-e">📦</span><span class="hero-t">НАБОР ЖДЁТ ПРОВЕРКИ</span></div>
+      <div class="b-title">«Испанский для поездок»</div><div class="b-plain">Автор <b>Данил 90210</b> · 48 карточек</div><div class="b-plain">Тип: первая публикация</div><div class="b-link">Проверить в админке</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Ответы на опрос<code>surveyDigest</code></div>
+    <div class="chip" style="--c:#b58ce0">Сводка</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-digest">
+      <div class="hero"><span class="hero-e">📊</span><span class="hero-t">ОТВЕТЫ НА ОПРОС</span></div>
+      <div class="b-big">62 ответа</div><div class="b-bars"><div class="bar"><div class="bar-t"><span>Слишком дорого</span><b>41%</b></div><div class="bar-r"><i style="width:41%"></i></div></div><div class="bar"><div class="bar-t"><span>Мало времени</span><b>33%</b></div><div class="bar-r"><i style="width:33%"></i></div></div><div class="bar"><div class="bar-t"><span>Не хватает функций</span><b>26%</b></div><div class="bar-r"><i style="width:26%"></i></div></div></div>
+      <div class="foot">🗓 20:00 → 20:00 · 13.09</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Причина отмены<code>cancelReason</code></div>
+    <div class="chip" style="--c:#f0b95c">Предупреждение</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-warn">
+      <div class="hero"><span class="hero-e">🗣</span><span class="hero-t">ПОЧЕМУ ОТМЕНИЛИ</span></div>
+      <div class="b-badge">Причина: дорого</div><div class="b-quote">Люблю приложение, но 1200 в год для меня много</div><div class="b-meta">Axiom 31657 · был с нами 9 месяцев</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Реакции на сообщение<code>appMessageDigest</code></div>
+    <div class="chip" style="--c:#b58ce0">Сводка</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-digest">
+      <div class="hero"><span class="hero-e">👍</span><span class="hero-t">РЕАКЦИИ НА СООБЩЕНИЕ</span></div>
+      <div class="b-title">«Новый курс испанского уже здесь»</div><div class="b-bars"><div class="bar"><div class="bar-t"><span>❤️ Нравится</span><b>312</b></div><div class="bar-r"><i style="width:100%"></i></div></div><div class="bar"><div class="bar-t"><span>🔥 Огонь</span><b>88</b></div><div class="bar-r"><i style="width:28%"></i></div></div><div class="bar"><div class="bar-t"><span>😐 Так себе</span><b>12</b></div><div class="bar-r"><i style="width:4%"></i></div></div></div><div class="b-stat">Прочитали 1 420 человек</div>
+      <div class="foot">🗓 20:00 → 20:00 · 13.09</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Карточки за сутки<code>cardPackDigest</code></div>
+    <div class="chip" style="--c:#b58ce0">Сводка</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-digest">
+      <div class="hero"><span class="hero-e">🃏</span><span class="hero-t">КАРТОЧКИ ЗА СУТКИ</span></div>
+      <div class="b-table"><div class="tr"><span>Сохранили набор</span><b>128</b></div><div class="tr"><span>Купили набор</span><b>19</b></div><div class="tr"><span>Создали свой</span><b>7</b></div></div><div class="b-trend">↑ 8% ко вчера</div>
+      <div class="foot">🗓 20:00 → 20:00 · 13.09</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div></div>
+</section><section id="operations">
+  <div class="sec-head">
+    <h2>⚙️ Операции</h2>
+    <p>Состояние системы. Ведёт факт «работает / упало» и что это значит для людей.</p>
+    <div class="sec-count">9 типов</div>
+  </div>
+  <div class="grid"><div class="card">
+  <div class="card-head">
+    <div class="card-id">Крон упал или встал<code>cronHealth</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">⏰</span><span class="hero-t">ФОНОВАЯ ЗАДАЧА УПАЛА</span></div>
+      <div class="b-badge">leagueFinalizeCron</div><div class="b-code">Error: deadline exceeded after 540s</div><div class="b-plain">Падает 3-й раз подряд</div><div class="b-warn">Итоги лиги могут не посчитаться</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  <div class="note">Восстановление — своя шапка «✅ ЗАДАЧА ВОССТАНОВИЛАСЬ» и спокойный тон.</div>
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Платёжный webhook не обработан<code>paymentWebhookFailure</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">💸</span><span class="hero-t">ПЛАТЁЖ НЕ ДОЕХАЛ</span></div>
+      <div class="b-badge">RevenueCat · INITIAL_PURCHASE</div><div class="b-code">Error: invalid signature</div><div class="b-warn">Деньги списаны, доступ мог не выдаться</div><div class="b-link">Открыть в админке</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Изменение администратором<code>adminAudit</code></div>
+    <div class="chip" style="--c:#7aa7d6">Нейтральный</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-neutral">
+      <div class="hero"><span class="hero-e">🔑</span><span class="hero-t">ДЕЙСТВИЕ В АДМИНКЕ</span></div>
+      <div class="b-chain"><b>badloar</b> выдал Premium</div><div class="b-plain">Кому: <b>Axiom 31657</b></div><div class="b-quote">Причина: компенсация за сбой</div><div class="b-link">История изменений</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Push-рассылка<code>pushJob</code></div>
+    <div class="chip" style="--c:#7aa7d6">Нейтральный</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-neutral">
+      <div class="hero"><span class="hero-e">📣</span><span class="hero-t">РАССЫЛКА ОТПРАВЛЕНА</span></div>
+      <div class="b-title">«Новый курс испанского уже здесь»</div><div class="b-table"><div class="tr"><span>Доставлено</span><b>12 480</b></div><div class="tr"><span>Не дошло</span><b>320</b></div><div class="tr"><span>Цель</span><b>12 800</b></div></div><div class="b-progress">▰▰▰▰▰▰▰▰▰▱ 97,5%</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  <div class="note">Если рассылка упала — шапка «🚨 РАССЫЛКА УПАЛА» и причина вместо цифр.</div>
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">App Message опубликовано<code>appMessagePublished</code></div>
+    <div class="chip" style="--c:#7aa7d6">Нейтральный</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-neutral">
+      <div class="hero"><span class="hero-e">📰</span><span class="hero-t">СООБЩЕНИЕ ОПУБЛИКОВАНО</span></div>
+      <div class="b-title">«Новый курс испанского уже здесь»</div><div class="b-quote">Открывайте раздел «Уроки» — там 56 новых занятий.</div><div class="b-plain">Опрос: 3 варианта ответа</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Jarvis нашёл проблему<code>jarvisCritical</code></div>
+    <div class="chip" style="--c:#f2706e">Тревога</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-alarm">
+      <div class="hero"><span class="hero-e">🤖</span><span class="hero-t">JARVIS: КРИТИЧНАЯ НАХОДКА</span></div>
+      <div class="b-q"><span>Вопрос</span>Почему упала выручка в сентябре?</div><div class="b-f"><span>Находка</span>Пейволл не показывается на Android с v1.6.14</div><div class="b-r"><span>Что делать</span>Откатить эксперимент paywall_v3</div><div class="b-link">Открыть план</div>
+      <div class="foot">⏱ 13.09, 08:50</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  <div class="note">Три смысловых блока подряд: вопрос, находка, что делать. Это решение, а не отчёт.</div>
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Активные пользователи<code>activityDigest</code></div>
+    <div class="chip" style="--c:#b58ce0">Сводка</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-digest">
+      <div class="hero"><span class="hero-e">📈</span><span class="hero-t">АКТИВНОСТЬ ЗА СУТКИ</span></div>
+      <div class="b-big">1 240 активных</div><div class="b-table"><div class="tr"><span>Запусков</span><b>3 180</b></div><div class="tr"><span>Новых</span><b>7</b></div><div class="tr"><span>Вернулись</span><b>86</b></div></div><div class="b-trend">↑ 4% ко вчера</div>
+      <div class="foot">🗓 20:00 → 20:00 · 13.09</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Paywall funnel<code>paywallDigest</code></div>
+    <div class="chip" style="--c:#b58ce0">Сводка</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-digest">
+      <div class="hero"><span class="hero-e">🚪</span><span class="hero-t">ВОРОНКА ПЕЙВОЛЛА</span></div>
+      <div class="b-funnel"><div class="fn"><div class="fn-r" style="width:100%"></div><div class="fn-t"><span>Увидели пейволл</span><b>2 400</b></div></div><div class="fn"><div class="fn-r" style="width:13%"></div><div class="fn-t"><span>Нажали купить</span><b>310</b></div></div><div class="fn"><div class="fn-r" style="width:8%"></div><div class="fn-t"><span>Оплатили</span><b>52</b></div></div></div><div class="b-trend">Конверсия ↓ 0,4% ко вчера</div>
+      <div class="foot">🗓 20:00 → 20:00 · 13.09</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div><div class="card">
+  <div class="card-head">
+    <div class="card-id">Ежедневный дайджест<code>ownerDailyDigest</code></div>
+    <div class="chip" style="--c:#b58ce0">Сводка</div>
+  </div>
+  <div class="tg">
+    <div class="bubble mood-digest">
+      <div class="hero"><span class="hero-e">🌅</span><span class="hero-t">ИТОГИ ДНЯ</span></div>
+      <div class="b-money">14 400 ₽ · 7 новых людей</div><div class="b-sections"><div class="sec"><b>💚 Люди</b><span>7 новых · 2 реферала</span></div><div class="sec"><b>💰 Деньги</b><span>7 покупок · 1 возврат</span></div><div class="sec"><b>🚩 Репорты</b><span>3 жалобы · 1 ошибка</span></div><div class="sec"><b>📚 Обучение</b><span>340 уроков</span></div></div><div class="b-link">Открыть админку</div>
+      <div class="foot">🗓 20:00 → 20:00 · 13.09</div>
+      <div class="tick">12:50 ✓✓</div>
+    </div>
+  </div>
+  
+</div></div>
+</section>
+</div>
+</body>
+</html>

@@ -120,6 +120,11 @@ const ALLOWLIST_FILES = new Set([
   // зачем: таблица заведомо опасных строк, которые нормализатор ОБЯЗАН отклонить.
   // Значения — плоские заглушки вида «префикс + латинский алфавит», не ключи.
   'functions/src/support_owner_instructions.test.ts',
+  // зачем: тест проверяет, что redactAdminAlertText ВЫРЕЗАЕТ секреты из текста,
+  // уходящего в Telegram. Поэтому в нём лежит таблица форм ключей с заглушками
+  // «SUPERSECRET» / «TOP SECRET VALUE» — настоящих ключей там нет и быть не может:
+  // сам тест падает, если заглушка уцелела в результате вырезания.
+  'functions/src/admin_alert_privacy.test.ts',
 ]);
 
 // Files where a Firebase WEB/CLIENT Google API key (AIza…) is public by design

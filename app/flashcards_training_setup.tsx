@@ -2,19 +2,23 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import ScreenGradient from '../components/ScreenGradient';
+import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
-import { useFeatureAccess, usePremium } from '../components/PremiumContext';
+import { usePremium } from '../components/PremiumContext';
 import { triLang } from '../constants/i18n';
 import { canStartBlitz } from './flashcards/blitz_logic';
+import { FC_DAILY_PRACTICE_MIN_POOL } from './flashcards/daily_practice';
+import { trainingSetupExplanation } from './flashcards/training_setup_explanation';
 import { loadFcDeckOptions, peekFcDeckOptions, sameDeckOptions } from './flashcards/deck_options';
 import type { DeckSheetOption } from './flashcards/DeckPickerSheet';
+import DeckSelectionTile from './flashcards/DeckSelectionTile';
 import {
-  cardsCountLabel,
   deckSelectionLabel,
   summarizeDeckSelection,
   toggleDeckSelection,
@@ -44,6 +48,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { hapticTap } from '../hooks/use-haptics';
+import { useFlashcardTrainingQuotaPreview } from '../hooks/useFlashcardTrainingQuotaPreview';
 import { isSpeakingEnabled } from './remote_flags';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 
@@ -53,18 +58,23 @@ type LoadErrorKind = 'invalid' | 'unavailable' | 'load' | null;
 function presetModeFor(mode: CardsTrainingMode): FcPresetMode {
   if (mode === 'blitz') return fcTrainOptionPresetMode('blitz');
   if (mode === 'speaking') return fcTrainOptionPresetMode('speak');
-  if (mode === 'listening') return 'listening';
   return fcTrainOptionPresetMode('train');
 }
 
 export default function FlashcardsTrainingSetupScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ mode?: string | string[] }>();
+  const params = useLocalSearchParams<{ mode?: string | string[]; daily?: string | string[] }>();
   const mode = useMemo(() => parseCardsTrainingMode(params.mode), [params.mode]);
+  const daily = useMemo(
+    () => (Array.isArray(params.daily) ? params.daily[0] : params.daily) === '1',
+    [params.daily],
+  );
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const { theme: t, f, statusBarLight } = useTheme();
+  const reducedMotion = useReducedMotion();
   const { accessResolved } = usePremium();
-  const flashcardsAccess = useFeatureAccess('flashcards');
+  const quotaPreview = useFlashcardTrainingQuotaPreview();
   const paywallRedirectedRef = useRef(false);
   /**
    * зачем (владелец: «открывая раздел тренировки, экран отметить наборы моргает»):
@@ -72,8 +82,8 @@ export default function FlashcardsTrainingSetupScreen() {
    * и не сменяется со спиннера. Снимка нет (первый заход) — честно грузим.
    */
   const warmDecks = useMemo(
-    () => (mode ? peekFcDeckOptions(presetModeFor(mode), lang) : null),
-    [lang, mode],
+    () => (mode ? peekFcDeckOptions(presetModeFor(mode), lang, studyTarget) : null),
+    [lang, mode, studyTarget],
   );
   const [loadState, setLoadState] = useState<LoadState>(
     () => (warmDecks && warmDecks.length > 0 ? 'ready' : 'loading'),
@@ -87,18 +97,17 @@ export default function FlashcardsTrainingSetupScreen() {
   const [loadRevision, setLoadRevision] = useState(0);
   const [starting, setStarting] = useState(false);
   const startInFlightRef = useRef(false);
-  const { studyTarget } = useStudyTarget();
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
 
   useEffect(() => {
-    if (!accessResolved || flashcardsAccess || paywallRedirectedRef.current) return;
+    if (quotaPreview.status !== 'exhausted' || paywallRedirectedRef.current) return;
     paywallRedirectedRef.current = true;
     markNextNavigationAsReplace();
     router.replace({
       pathname: '/premium_modal',
       params: { context: 'flashcard_training', source: 'flashcards_training_setup_direct' },
     } as never);
-  }, [accessResolved, flashcardsAccess, router]);
+  }, [quotaPreview.status, router]);
   /**
    * зачем (владелец): «когда наборов нет ни одного — показывать три лучших
    * пользовательских с предложением добавить». Витрина живёт ТОЛЬКО в этом
@@ -118,6 +127,15 @@ export default function FlashcardsTrainingSetupScreen() {
       'pt-BR': 'Modo indisponível', vi: 'Chế độ không khả dụng', id: 'Mode tidak tersedia',
       tr: 'Mod kullanılamıyor', pl: 'Tryb niedostępny',
     });
+    /**
+     * зачем (владелец 2026-09-13: «"Начать писать" замени на "Начать"»): одно
+     * слово на всех режимах. Режим уже назван заголовком экрана («Вспомни и
+     * напиши»), поэтому повторять его на кнопке — лишний шум.
+     */
+    const start = triLang(lang, {
+      ru: 'Начать', uk: 'Почати', en: 'Start', es: 'Empezar',
+      'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij',
+    });
     if (!mode) return { title: invalid, start: invalid };
     if (mode === 'blitz') return {
       title: triLang(lang, {
@@ -125,10 +143,7 @@ export default function FlashcardsTrainingSetupScreen() {
         'pt-BR': 'Blitz', vi: 'Blitz', id: 'Blitz',
         tr: 'Blitz', pl: 'Blitz',
       }),
-      start: triLang(lang, {
-        ru: 'Начать блиц', uk: 'Почати бліц', en: 'Start Blitz', es: 'Iniciar Blitz',
-        'pt-BR': 'Iniciar Blitz', vi: 'Bắt đầu Blitz', id: 'Mulai Blitz', tr: 'Blitz’i başlat', pl: 'Rozpocznij Blitz',
-      }),
+      start,
     };
     if (mode === 'speaking') return {
       title: triLang(lang, {
@@ -137,23 +152,15 @@ export default function FlashcardsTrainingSetupScreen() {
         vi: 'Luyện nói', id: 'Latihan lisan', tr: 'Sözlü çalışma',
         pl: 'Ćwiczenia ustne',
       }),
-      start: triLang(lang, {
-        ru: 'Начать устно', uk: 'Почати усно', en: 'Start speaking', es: 'Empezar práctica oral',
-        'pt-BR': 'Começar a falar', vi: 'Bắt đầu nói', id: 'Mulai lisan', tr: 'Sözlü çalışmayı başlat',
-        pl: 'Zacznij mówić',
-      }),
+      start,
     };
-    if (mode === 'listening') return {
+    if (mode === 'recall') return {
       title: triLang(lang, {
-        ru: 'Слушание', uk: 'Слухання', en: 'Listening', es: 'Escucha',
-        'pt-BR': 'Escuta', vi: 'Nghe', id: 'Mendengarkan',
-        tr: 'Dinleme', pl: 'Słuchanie',
+        ru: 'Вспомни и напиши', uk: 'Згадай і напиши', en: 'Recall and write', es: 'Recuerda y escribe',
+        'pt-BR': 'Lembre e escreva', vi: 'Nhớ và viết', id: 'Ingat dan tulis',
+        tr: 'Hatırla ve yaz', pl: 'Przypomnij i napisz',
       }),
-      start: triLang(lang, {
-        ru: 'Начать слушать', uk: 'Почати слухати', en: 'Start listening', es: 'Empezar a escuchar',
-        'pt-BR': 'Começar a ouvir', vi: 'Bắt đầu nghe', id: 'Mulai mendengarkan', tr: 'Dinlemeye başla',
-        pl: 'Zacznij słuchać',
-      }),
+      start,
     };
     return {
       title: triLang(lang, {
@@ -162,11 +169,7 @@ export default function FlashcardsTrainingSetupScreen() {
         'pt-BR': 'Verdadeiro / falso', vi: 'Đúng / sai',
         id: 'Benar / salah', tr: 'Doğru / yanlış', pl: 'Prawda / fałsz',
       }),
-      start: triLang(lang, {
-        ru: 'Начать тренировку', uk: 'Почати тренування', en: 'Start training', es: 'Empezar entrenamiento',
-        'pt-BR': 'Começar treino', vi: 'Bắt đầu luyện tập', id: 'Mulai latihan', tr: 'Antrenmanı başlat',
-        pl: 'Rozpocznij trening',
-      }),
+      start,
     };
   }, [lang, mode]);
 
@@ -228,7 +231,15 @@ export default function FlashcardsTrainingSetupScreen() {
       // Состав тот же — держим ПРЕЖНЮЮ ссылку, чтобы список не перерисовывался.
       setDecks((prev) => (sameDeckOptions(prev, eligible) ? prev : eligible));
       setSelectedDeckIds((prev) => {
-        const next = restored.length > 0 ? restored : fallback ? [fallback.deckId] : [];
+        const next = daily
+          ? eligible.map((deck) => deck.deckId)
+          : restored.length > 0 ? restored : fallback ? [fallback.deckId] : [];
+        // Daily assignment always begins from the full eligible pool. A stale
+        // selection from a previous ordinary setup screen must not silently
+        // shrink the 30-card gate or the day's deterministic rotation.
+        if (daily) {
+          return prev.length === next.length && prev.every((id, i) => id === next[i]) ? prev : next;
+        }
         // Отметки человека, сделанные до ответа хранилища, важнее восстановленных.
         if (prev.length > 0 && prev.every((id) => eligibleIds.has(id))) return prev;
         return prev.length === next.length && prev.every((id, i) => id === next[i]) ? prev : next;
@@ -243,7 +254,7 @@ export default function FlashcardsTrainingSetupScreen() {
       setLoadErrorKind('load');
       setLoadState('error');
     }
-  }, [lang, mode]);
+  }, [daily, lang, mode, studyTarget]);
 
   useEffect(() => {
     void loadDecks();
@@ -313,7 +324,43 @@ export default function FlashcardsTrainingSetupScreen() {
     [decks, selectedDeckIds],
   );
   const blitzHasEnoughCards = mode !== 'blitz' || canStartBlitz(summary.cardCount);
-  const canStart = loadState === 'ready' && summary.cardCount > 0 && blitzHasEnoughCards && !starting;
+  const dailyHasEnoughCards = !daily || summary.cardCount >= FC_DAILY_PRACTICE_MIN_POOL;
+  /**
+   * зачем (владелец 2026-09-13: «почему она серая и нельзя запустить»): старт
+   * требовал СТРОГО 'allowed', поэтому любая поломка на нашей стороне гасила
+   * кнопку насмерть — база phone-state не открывалась, квота читалась как
+   * 'unavailable', и человек с 30 выбранными карточками не мог начать.
+   * Решение владельца: не наказывать за нашу аварию. Ждём только 'waiting' —
+   * это обычная загрузка, которая вот-вот закончится сама. То же правило уже
+   * действует в хабе карточек и в consume квоты (коммит 6823b8de2), этот экран
+   * был последней точкой со старым строгим условием.
+   */
+  const quotaAllowsStart = quotaPreview.status === 'allowed'
+    || quotaPreview.status === 'unavailable'
+    || quotaPreview.status === 'stale_account';
+  const canStart = loadState === 'ready'
+    && quotaAllowsStart
+    && summary.cardCount > 0
+    && blitzHasEnoughCards
+    && dailyHasEnoughCards
+    && !starting;
+
+  // зачем: серая кнопка молчала о причине. Печатаем КАЖДОЕ слагаемое, а не
+  // итог, чтобы сразу видеть, какое из них её держит.
+  if (!canStart) {
+    console.log('[FC-TRAIN-ENTRY] setup:кнопка серая', JSON.stringify({
+      mode,
+      daily,
+      loadState,
+      quotaStatus: quotaPreview.status,
+      quotaAllowsStart,
+      cardCount: summary.cardCount,
+      selectedDecks: selectedDeckIds.length,
+      blitzHasEnoughCards,
+      dailyHasEnoughCards,
+      starting,
+    }));
+  }
 
   const resetStartLock = useCallback(() => {
     startInFlightRef.current = false;
@@ -332,31 +379,42 @@ export default function FlashcardsTrainingSetupScreen() {
 
   const startTraining = useCallback(async () => {
     if (startInFlightRef.current || !mode || !canStart) return;
-    const route = buildCardsTrainingRoute(mode, selectedDeckIds);
+    const route = buildCardsTrainingRoute(mode, selectedDeckIds, { daily });
     if (!route) return;
     startInFlightRef.current = true;
     setStarting(true);
-    void setLastPreset(presetModeFor(mode), {
-      deckIds: selectedDeckIds,
-      size: FC_DEFAULT_SESSION_SIZE,
-    }).catch(() => {});
+    // Daily всегда использует полный доступный пул. Не записываем его как
+    // пользовательский пресет: иначе после задания дня обычная тренировка
+    // внезапно открывалась со всеми наборами вместо последнего выбора человека.
+    if (!daily) {
+      void setLastPreset(presetModeFor(mode), {
+        deckIds: selectedDeckIds,
+        size: FC_DEFAULT_SESSION_SIZE,
+      }).catch(() => {});
+    }
     try {
       router.push({ pathname: route.pathname, params: route.params } as never);
     } catch {
       resetStartLock();
     }
-  }, [canStart, mode, resetStartLock, router, selectedDeckIds]);
+  }, [canStart, daily, mode, resetStartLock, router, selectedDeckIds]);
 
   const retryLabel = triLang(lang, {
     ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente',
     vi: 'Thử lại', id: 'Coba lagi', tr: 'Yeniden dene', pl: 'Spróbuj ponownie',
   });
   const emptyLabel = triLang(lang, {
-    ru: 'Нет доступных наборов с карточками.', uk: 'Немає доступних наборів із картками.',
-    en: 'No packs with cards are available.', es: 'No hay packs con tarjetas disponibles.',
-    'pt-BR': 'Não há pacotes com cartões disponíveis.', vi: 'Không có bộ thẻ khả dụng.',
-    id: 'Tidak ada paket berisi kartu.', tr: 'Kart içeren kullanılabilir paket yok.',
-    pl: 'Brak dostępnych zestawów z kartami.',
+    ru: 'Пока нет карточек для тренировки. Сохрани карточки или добавь набор из сообщества.', uk: 'Поки немає карток для тренування. Збережи картки або додай набір зі спільноти.',
+    en: 'No cards to practise yet. Save cards or add a community pack.', es: 'Aún no hay tarjetas para practicar. Guarda tarjetas o añade un pack de la comunidad.',
+    'pt-BR': 'Ainda não há cartões para praticar. Salve cartões ou adicione um pacote da comunidade.', vi: 'Chưa có thẻ để luyện tập. Hãy lưu thẻ hoặc thêm bộ thẻ cộng đồng.',
+    id: 'Belum ada kartu untuk latihan. Simpan kartu atau tambahkan paket komunitas.', tr: 'Henüz çalışacak kart yok. Kart kaydet veya topluluktan bir paket ekle.',
+    pl: 'Nie ma jeszcze kart do ćwiczeń. Zapisz karty lub dodaj zestaw społeczności.',
+  });
+  const selectionExplanation = trainingSetupExplanation(loadState, decks.length, deckSelectionLabel(lang, summary), {
+    empty: emptyLabel,
+    loading: triLang(lang, { ru: 'Загружаем наборы…', uk: 'Завантажуємо набори…', en: 'Loading packs…', es: 'Cargando packs…', 'pt-BR': 'Carregando pacotes…', vi: 'Đang tải bộ thẻ…', id: 'Memuat paket…', tr: 'Paketler yükleniyor…', pl: 'Ładowanie zestawów…' }),
+    error: triLang(lang, { ru: 'Выбор наборов', uk: 'Вибір наборів', en: 'Choose packs', es: 'Elegir packs', 'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih paket', tr: 'Paket seç', pl: 'Wybór zestawów' }),
+    unselected: triLang(lang, { ru: 'Отметь один или несколько наборов для тренировки.', uk: 'Вибери один або кілька наборів для тренування.', en: 'Select one or more packs to practise.', es: 'Selecciona uno o más packs para practicar.', 'pt-BR': 'Selecione um ou mais pacotes para praticar.', vi: 'Chọn một hoặc nhiều bộ thẻ để luyện tập.', id: 'Pilih satu atau beberapa paket untuk latihan.', tr: 'Çalışmak için bir veya daha fazla paket seç.', pl: 'Zaznacz jeden lub kilka zestawów do ćwiczeń.' }),
   });
   /** Витрина на пустом экране: приглашение добавить первый набор. */
   const suggestHeading = triLang(lang, {
@@ -376,6 +434,17 @@ export default function FlashcardsTrainingSetupScreen() {
     'pt-BR': 'O Blitz precisa de pelo menos 4 cartões.', vi: 'Blitz cần ít nhất 4 thẻ.',
     id: 'Blitz memerlukan setidaknya 4 kartu.', tr: 'Blitz için en az 4 kart gerekir.',
     pl: 'Blitz wymaga co najmniej 4 kart.',
+  });
+  const dailyMinimumLabel = triLang(lang, {
+    ru: `Для ежедневной тренировки нужно минимум ${FC_DAILY_PRACTICE_MIN_POOL} карточек.`,
+    uk: `Для щоденного тренування потрібно щонайменше ${FC_DAILY_PRACTICE_MIN_POOL} карток.`,
+    en: `Daily practice needs at least ${FC_DAILY_PRACTICE_MIN_POOL} cards.`,
+    es: `La práctica diaria necesita al menos ${FC_DAILY_PRACTICE_MIN_POOL} tarjetas.`,
+    'pt-BR': `A prática diária precisa de pelo menos ${FC_DAILY_PRACTICE_MIN_POOL} cartões.`,
+    vi: `Luyện tập hằng ngày cần ít nhất ${FC_DAILY_PRACTICE_MIN_POOL} thẻ.`,
+    id: `Latihan harian membutuhkan setidaknya ${FC_DAILY_PRACTICE_MIN_POOL} kartu.`,
+    tr: `Günlük çalışma için en az ${FC_DAILY_PRACTICE_MIN_POOL} kart gerekir.`,
+    pl: `Codzienny trening wymaga co najmniej ${FC_DAILY_PRACTICE_MIN_POOL} kart.`,
   });
 
   return (
@@ -402,7 +471,7 @@ export default function FlashcardsTrainingSetupScreen() {
                 styles.summary,
                 { color: t.textPrimary, fontSize: f.sub },
               ]}>
-                {deckSelectionLabel(lang, summary) || emptyLabel}
+                {selectionExplanation}
               </Text>
             </View>
 
@@ -466,6 +535,7 @@ export default function FlashcardsTrainingSetupScreen() {
                                 <Ionicons name="albums-outline" size={21} color={t.accent} />
                               )}
                             </View>
+                            {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- compact source tile has fixed geometry; the full pack title is exposed by the parent accessibilityLabel */}
                             <Text
                               numberOfLines={2}
                               style={[styles.suggestTitle, { color: t.textPrimary, fontSize: f.caption }]}
@@ -480,36 +550,21 @@ export default function FlashcardsTrainingSetupScreen() {
                 ) : null}
               </View>
             ) : (
-              <View style={styles.deckList}>
-                {decks.map((deck) => {
+              <View style={styles.deckGrid}>
+                {decks.map((deck, index) => {
                   const selected = selectedDeckIds.includes(deck.deckId);
                   return (
-                    <Pressable
+                    <DeckSelectionTile
                       key={deck.deckId}
-                      testID={`fc-training-setup-deck-${deck.deckId}`}
-                      accessibilityRole="checkbox"
-                      accessibilityState={{ checked: selected }}
-                      accessibilityLabel={`${deck.title}. ${cardsCountLabel(lang, deck.count)}`}
-                      onPress={() => setSelectedDeckIds((current) => toggleDeckSelection(current, deck.deckId))}
-                      style={({ pressed }) => [
-                        styles.deckRow,
-                        { backgroundColor: selected ? `${t.accent}14` : t.bgSurface, opacity: pressed ? 0.82 : 1 },
-                      ]}
-                    >
-                      <View style={[styles.deckIcon, { backgroundColor: `${t.accent}1F` }]}>
-                        <Ionicons name={deck.icon} size={21} color={t.accent} />
-                      </View>
-                      <View style={styles.deckCopy}>
-                        <Text style={[styles.deckTitle, { color: t.textPrimary, fontSize: f.body }]}>{deck.title}</Text>
-                        <Text style={[styles.deckMeta, { color: t.textSecond, fontSize: f.caption }]}>{cardsCountLabel(lang, deck.count)}</Text>
-                      </View>
-                      <View style={[styles.checkbox, {
-                        borderColor: selected ? t.accent : t.textGhost,
-                        backgroundColor: selected ? t.accent : 'transparent',
-                      }]}>
-                        {selected ? <Ionicons name="checkmark" size={16} color={t.correctText} /> : null}
-                      </View>
-                    </Pressable>
+                      deck={deck}
+                      index={index}
+                      selected={selected}
+                      onToggle={(deckId) => setSelectedDeckIds((current) => toggleDeckSelection(current, deckId))}
+                      simpleMotion={Boolean(reducedMotion)}
+                      t={t}
+                      f={f}
+                      testIDPrefix="fc-training-setup-deck"
+                    />
                   );
                 })}
               </View>
@@ -521,6 +576,12 @@ export default function FlashcardsTrainingSetupScreen() {
                 { color: t.wrong, fontSize: f.sub },
               ]}>{blitzMinimumLabel}</Text>
             ) : null}
+            {!dailyHasEnoughCards && summary.cardCount > 0 ? (
+              <Text accessibilityLiveRegion="polite" style={[
+                styles.validation,
+                { color: t.wrong, fontSize: f.sub },
+              ]}>{dailyMinimumLabel}</Text>
+            ) : null}
             <Pressable
               testID="fc-training-setup-start"
               accessibilityRole="button"
@@ -530,11 +591,16 @@ export default function FlashcardsTrainingSetupScreen() {
               style={[styles.startButton, { backgroundColor: t.accent, opacity: canStart ? 1 : 0.38 }]}
             >
               <Text style={[styles.startText, { color: t.correctText, fontSize: f.bodyLg }]}>{copy.start}</Text>
-              {canStart ? <EnergyCostBadge testID="fc-training-setup-energy-cost" /> : null}
+              {canStart ? <EnergyCostBadge activity="flashcards" testID="fc-training-setup-energy-cost" /> : null}
             </Pressable>
           </ScrollView>
         </ContentWrap>
       </SafeAreaView>
+      {mode && mode !== 'truefalse' ? <FeatureIntroEntry
+        key={mode}
+        id={`training_${mode}_first_visit`}
+        enabled={accessResolved && quotaPreview.status === 'allowed' && loadState === 'ready' && decks.length > 0 && !starting && !openingPackId}
+      /> : null}
     </ScreenGradient>
   );
 }
@@ -559,13 +625,7 @@ const styles = StyleSheet.create({
   message: { textAlign: 'center', fontWeight: '600' },
   retryButton: { minHeight: 48, borderRadius: 14, paddingHorizontal: 18, alignItems: 'center', justifyContent: 'center' },
   retryText: { fontWeight: '900' },
-  deckList: { gap: 9 },
-  deckRow: { minHeight: 68, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 11, flexDirection: 'row', alignItems: 'center', gap: 11 },
-  deckIcon: { width: 42, height: 42, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  deckCopy: { flex: 1, minWidth: 0 },
-  deckTitle: { fontWeight: '800' },
-  deckMeta: { marginTop: 3, fontWeight: '700' },
-  checkbox: { width: 25, height: 25, borderRadius: 8, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },
+  deckGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 10 },
   validation: { marginTop: 10, textAlign: 'center', fontWeight: '700' },
   startButton: { minHeight: 52, marginTop: 14, borderRadius: 17, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
   startText: { textAlign: 'center', fontWeight: '900' },
